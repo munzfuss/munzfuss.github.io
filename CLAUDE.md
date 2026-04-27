@@ -71,6 +71,10 @@ When a value is estimated, unverified, or based on analogy rather than a primary
 
 **Never fake certainty.** Better to have 10 rows with `(?)` markers than 10 rows of plausible-looking fabrication.
 
+**Strict rule for flipping `*_verified` to `true`**: the flip is only allowed when an **identifiable source confirms the value**. Acceptable sources are listed in §5 (coin inscription, museum catalogue, auction catalogue, MGM, Numista with explicit data, Wikipedia with citation, Hede / Wilcke / Schou / Bobzin etc.). Heuristic reasoning — «the Δ falls within typical specimen tolerance», «the value matches the standard», «this looks plausible» — is **not** a valid confirmation. If no source is at hand, leave `verified: false`. The `(?)` marker is honest; a wrong `true` is a silent corruption.
+
+The same applies to *modifying* a value: do not edit a field marked `verified: true` unless a source contradicts it. Do not edit a `verified: false` field to a different value unless a source supports the new value.
+
 ### 5. Source hierarchy
 
 In descending order of authority:
