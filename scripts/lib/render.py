@@ -1069,8 +1069,13 @@ footer {{
    (phase bars, (?)-markers, ent-badges, table headers etc.). Replaces
    the native HTML title= attribute, which has a ~700-1500ms browser
    delay before appearing. Hover here → tooltip is instant.
+
+   :not(.tl-phase) — timeline phase markers are already position:absolute
+   (anchored to a year-derived X coordinate); forcing them to relative
+   collapses the layout. Their ::after still positions correctly because
+   the absolutely-positioned parent itself acts as the containing block.
    --------------------------------------------------------------------- */
-[data-tooltip] {{
+[data-tooltip]:not(.tl-phase) {{
   position: relative;
 }}
 [data-tooltip]:hover::after {{
