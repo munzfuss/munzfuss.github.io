@@ -1,0 +1,157 @@
+# Visual theme configuration.
+# Colors, typography, spacing for the generated artifacts.
+# Used by build.py → render.py → CSS generation.
+
+colors:
+  # Base
+  bg_page: "#1a1612"
+  bg_card: "#2a2520"
+  bg_subcard: "#1a1612"
+  
+  # Text
+  text_primary: "#f0ece4"
+  text_secondary: "#aaa"
+  text_muted: "#888"
+  text_dim: "#666"
+  
+  # Borders
+  border: "#444"
+  border_subtle: "#3a3530"
+  border_light: "#555"
+  
+  # Badge colors (metal indicators)
+  badge_silver_bg: "#555"
+  badge_silver_fg: "#ddd"
+  badge_gold_bg: "#5c3d00"
+  badge_gold_fg: "#fcd34d"
+  badge_giro_bg: "#1e3a5f"
+  badge_giro_fg: "#93c5fd"
+  badge_tarif_bg: "#3a1e3a"
+  badge_tarif_fg: "#c2a0f0"
+  
+  # Subcat dividers
+  subcat_kurant_bg: "#1f2d1a"
+  subcat_kurant_border: "#6b8e4e"
+  subcat_kurant_fg: "#c4d9a6"
+  
+  subcat_scheide_bg: "#2d231a"
+  subcat_scheide_border: "#c28b4b"
+  subcat_scheide_fg: "#e6c590"
+
+  subcat_copper_bg: "#2a1f19"
+  subcat_copper_border: "#a8673c"
+  subcat_copper_fg: "#d69a6e"
+  
+  # Δ-deviation indicators — 4-state spectrum: yellow-brown for under-weight,
+  # green for at-or-above standard. Each side has «mild» (within remedium) and
+  # «deep»/«strong» (beyond remedium) variants.
+  #
+  # Sign × magnitude table:
+  #   −∞ … −1%   → under_deep   (vivid amber — significant deficit)
+  #   −1% … 0    → under_mild   (muted tan — slight deficit, within remedium)
+  #   0 … +1%    → over_mild    (calm green — slight surplus, within remedium)
+  #   +1% … +∞   → over_strong  (vivid green — significant surplus)
+  under_deep: "#c97a3d"
+  under_deep_bg: "#2a1e14"
+  under_mild: "#a08966"
+  under_mild_bg: "#221a13"
+  over_mild: "#68a257"
+  over_mild_bg: "#1a2a1a"
+  over_strong: "#92d24c"
+  over_strong_bg: "#1f3017"
+  # Legacy aliases — kept for any references that still use the old names
+  ok: "#68a257"
+  ok_bg: "#1a2a1a"
+  dev: "#c97a3d"
+  dev_bg: "#2a1e14"
+  dev_pos: "#92d24c"
+  dev_pos_bg: "#1f3017"
+  
+  # Purple accent (secondary labels, dual-denom context)
+  accent_purple: "#b5a0d0"
+  accent_purple_bg: "#1a1612"
+
+  # Cite / quotation
+  cite_color: "#e3c789"
+
+# ---------------------------------------------------------------------
+# Accents — semantic colour family used by phase header, Fuß column,
+# dual-nominal ranks, summary pills. All values are RGB hex strings.
+# Extracted from the original holstein_muentzwesen artifact.
+# ---------------------------------------------------------------------
+accents:
+  # Gold family — phase headers, Fuß primary text, mt-caption
+  gold_deep: "#d4a574"          # main Fuß gold (accent bars, axis ticks)
+  gold_light: "#e8b888"          # brightest gold (phase-header title)
+  gold_muted: "#c0a680"          # muted gold (sf-line.primary text, mt-caption)
+  gold_border: "#5a4a38"         # dark-brown border / left edge
+  gold_border_active: "#7a5a38"  # lit-up details border
+  gold_bullet: "#8a7350"         # ▸ Primär bullet colour
+
+  # Purple family — secondary rank
+  purple_text: "#a898c4"         # sf-line.secondary text
+  purple_bullet: "#8575b0"       # ▸ Sekundär bullet colour
+
+  # Blue family — tertiary rank
+  blue_text: "#8ab0c4"           # sf-line.tertiary text
+  blue_bullet: "#5585a0"         # ▸ Tertiär bullet colour
+
+  # Phase-header (dark gradient band)
+  phase_head_from: "#3a2e20"
+  phase_head_to: "#2a2520"
+
+  # <details> pill (Hintergrund, Kontext und Details)
+  pill_fg: "#a58b6c"
+  pill_active_bg: "#2a2320"
+
+  # .phd — phase short description
+  phd_fg: "#a89880"
+
+  # Coin tables
+  table_header_bg: "#2e2620"      # <thead> background
+  table_row_hover_bg: "#221d18"   # <tr>:hover background
+  table_scroll_border: "#3a3530"  # rounded frame around .mt-scroll
+
+# Timeline bar palette — each bar ID pairs a gradient with an optional text override.
+# Bars reference these IDs via color_class in location YAML.
+timeline_bars:
+  rt:  { from: "#4a3a2a", to: "#7a5a3f" }   # Reichsthaler 9-Fuß (deeper sepia, distinct from si)
+  si:  { from: "#6d5a3f", to: "#8a7350" }
+  sh:  { from: "#5a4d6d", to: "#8575b0" }
+  rb:  { from: "#7a4a3a", to: "#a06855" }
+  kr:  { from: "#3a5a6d", to: "#5585a0" }
+  krm: { from: "#6d2a5a", to: "#a8468a", fg: "#f0ece4" }
+  vt:  { from: "#345a34", to: "#5a8a5a" }
+  rm:  { from: "#8a6d2a", to: "#d4a574", fg: "#1a1612", weight: 600 }
+  g:   { from: "#5c4a00", to: "#fcd34d", fg: "#1a1612", weight: 600 }
+
+typography:
+  family_body: 'Georgia, serif'
+  family_mono: '"SF Mono", Consolas, monospace'
+  size_body: "14px"
+  size_small: "12px"
+  size_xsmall: "11px"
+  size_tiny: "10px"
+  line_height: "1.45"
+  letter_spacing_small: "0.05em"
+  letter_spacing_cap: "0.07em"
+
+layout:
+  max_width: "960px"
+  padding_page: "1rem"
+  gap_cards: "12px"
+  
+  radius_card: "8px"
+  radius_block: "4px"
+  radius_pill: "12px"
+  
+  border_width: "0.5px"
+
+# Language-specific tweaks
+language_overrides:
+  uk:
+    # Ukrainian text tends to run longer; slightly looser line-height
+    line_height: "1.55"
+  en:
+    # English is ≈10% shorter; can use tighter
+    line_height: "1.40"

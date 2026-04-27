@@ -1,0 +1,885 @@
+# Global Münzfuß (coinage standard) definitions.
+#
+# These are universal mathematical constructs, not location-specific.
+# A Müntzfuß is defined by: grid_unit_g / grid_stops = soll_fein_g per 1-unit coin.
+#
+# Each fraction specifies the Feingewicht (and for gold, Raugewicht) expected
+# for that denominational fraction, computed from the standard.
+#
+# Locations reference these by `id`. Multiple locations can share the same fuss;
+# each applies it during its own chronological phases.
+
+reichsdukatenfuss:
+  name:
+    de: Reichsdukatenfuß
+    en: Reichsdukatenfuß
+    uk: Reichsdukatenfuß
+  metal: gold
+  grid_unit_g: 233.856    # Cöllnische Marck, Feingold
+  grid_stops: 67          # 67 Dukaten aus der feinen Marck
+  fineness_standard: 0.98611111    # 23 Karat 8 Grän = 284/288
+  fineness_display: "986 1/9 ‰ (23 Karat 8 Grän = 284/288)"
+  grundwerte:
+    heading:
+      de: "Grundwerte · Dukatenfuß"
+      en: "Base values · Ducat standard"
+      uk: "Базові значення · дукатний стандарт"
+    subheading:
+      de: "Cöllnische Marck = 233,856 g Feingold · seit Reichsmünzordnung 1559 · 67 Dukaten aus der feinen Cöllnischen Marck"
+      en: "Cologne Mark = 233.856 g fine gold · since the Imperial Ordinance of 1559 · 67 ducats from one fine Cologne Mark"
+      uk: "Кельнська марка = 233,856 г чистого золота · від імперського ордонансу 1559 · 67 дукатів із чистої кельнської марки"
+    badge:
+      de: "Müntzfuß · Gold"
+      en: "Müntzfuß · Gold"
+      uk: "Стопа · золото"
+    rows:
+      - key:
+          de: "Feingewicht Dukat"
+          en: "Fine weight, ducat"
+          uk: "Чиста вага дуката"
+        value:
+          de: "<b>3,44191 g</b> Feingold (= 233,856 × 284/288 / 67)"
+          en: "<b>3.44191 g</b> fine gold (= 233.856 × 284/288 / 67)"
+          uk: "<b>3,44191 г</b> чистого золота (= 233,856 × 284/288 / 67)"
+      - key:
+          de: "Raugewicht"
+          en: "Rough weight"
+          uk: "Повна вага"
+        value:
+          de: "3,49039 g (= 233,856 / 67) · 986 1/9 ‰ (= 23 Karat 8 Grän)"
+          en: "3.49039 g (= 233.856 / 67) · 986 1/9‰ (= 23 carats 8 grains)"
+          uk: "3,49039 г (= 233,856 / 67) · 986 1/9 ‰ (= 23 карати 8 гран)"
+      - key:
+          de: "Handelskurs"
+          en: "Trade rate"
+          uk: "Торговий курс"
+        value:
+          de: "Kein festes Silberverhältnis; Marktkurs zu Thaler Species ca. 2,0–2,5 im 18. Jh."
+          en: "No fixed silver ratio; market rate to Thaler Species roughly 2.0–2.5 throughout the 18th century."
+          uk: "Жорсткого срібного співвідношення немає; ринковий курс до Thaler Species у XVIII ст. ≈ 2,0–2,5."
+      - key:
+          de: "Verbreitung"
+          en: "Geographic reach"
+          uk: "Поширення"
+        value:
+          de: "Universale Handelsmünze im Norden und Ostseeraum · gemeinsamer Goldstandard HRRDN + dän.-norw. Verbund + Schweden"
+          en: "Universal trade coin across the North and Baltic Sea region · common gold standard of the Holy Roman Empire + the Danish-Norwegian union + Sweden"
+          uk: "Універсальна торгова монета північного й балтійського регіону · спільний золотий стандарт Священної Римської імперії + дансько-норвезького союзу + Швеції"
+    rechnungsfraktionen_label:
+      de: "Rechnungs- und Kursbindungen"
+      en: "Accounting and exchange links"
+      uk: "Розрахункові та курсові звʼязки"
+    rechnungsfraktionen:
+      de: |
+        <b>1 Dukat</b> = <b>3,44191 g</b> Feingold · kein festes Silberäquivalent<br>
+        <b>Kurs in Holstein 1790er:</b> 1 Dukat ≈ 2½ Thaler Species = 150 Schilling Courant (Marktkurs)<br>
+        <b>Courantdukat (Altona ab 1771):</b> Dukat mit festem Kurs von 2½ Rigsdaler Courant (= ca. 12½ Marck Danske)<br>
+        <em>Als Handelsgold zirkulierten in Holstein auch niederländische, venezianische, ungarische und türkische Dukaten desselben Fußes nach Silbergehalt.</em>
+      en: |-
+        <b>1 Dukat</b> = <b>3.44191 g</b> fine gold · no fixed silver equivalent<br> <b>Rate in Holstein, 1790s:</b> 1 Dukat ≈ 2½ Thaler Species = 150 Schilling Courant (market rate)<br> <b>Courantdukat (Altona, from 1771):</b> ducat with a fixed rate of 2½ Rigsdaler Courant (≈ 12½ Marck Danske)<br> <em>As trade gold, Dutch, Venetian, Hungarian and Turkish ducats of the same standard also circulated in Holstein, accepted by silver content.</em>
+      uk: |-
+        <b>1 дукат</b> = <b>3,44191 г</b> чистого золота · фіксованого срібного еквівалента немає<br> <b>Курс у Гольштейні 1790-х:</b> 1 дукат ≈ 2½ Thaler Species = 150 Schilling Courant (ринковий курс)<br> <b>Courantdukat (Альтона, з 1771):</b> дукат із фіксованим курсом 2½ Rigsdaler Courant (≈ 12½ Marck Danske)<br> <em>Як торгове золото в Гольштейні перебували в обігу також нідерландські, венеційські, угорські й турецькі дукати тієї самої стопи — приймались за вмістом срібла.</em>
+  description:
+    de: |
+      Augspurgische Reichsmünzordnung 19. Aug. 1559 · 67 Dukaten aus der feinen
+      Cöllnischen Marck (233,856 g). Grundstandard für Goldmünzen im Heiligen
+      Römischen Reich biß 1871. Feinheit 23 Karat 8 Grän.
+    en: |-
+      Imperial Coinage Ordinance of Augsburg, 19 Aug. 1559. 67 ducats struck from the fine Cologne mark (233.856 g). Fundamental gold standard in the Holy Roman Empire until 1871. Fineness 23 carats 8 grains.
+    uk: |-
+      Імперський монетний ордонанс Ауґсбургу від 19 серпня 1559 р. 67 дукатів з чистої кельнської марки (233,856 г). Фундаментальний золотий стандарт Священної Римської імперії до 1871 р. Проба 23 карати 8 гран.
+  fractions:
+    "1": {soll_rau_g: 3.49039, soll_fein_g: 3.44191}
+    "1/2": {soll_rau_g: 1.74520, soll_fein_g: 1.72096}
+    "1/4": {soll_rau_g: 0.87260, soll_fein_g: 0.86048}
+    "2": {soll_rau_g: 6.98078, soll_fein_g: 6.88382}
+    "3/2": {soll_rau_g: 5.23559, soll_fein_g: 5.16287}
+    "5": {soll_rau_g: 17.45196, soll_fein_g: 17.20955}
+    "10": {soll_rau_g: 34.90392, soll_fein_g: 34.41910}
+
+9_25_thaler:
+  name:
+    de: 9¼-Thalerfuß
+    en: 9¼-Thaler-Fuß
+    uk: 9¼-Thaler-Fuß
+  metal: silver
+  grid_unit_g: 233.856
+  grid_stops: 9.25
+  fineness_standard: 0.875    # 14 Loth
+  fineness_display: "875 ‰ (14 Loth)"
+  grundwerte:
+    heading:
+      de: "Grundwerte · Silberstandard"
+      en: "Base values · Silver standard"
+      uk: "Базові значення · срібний стандарт"
+    subheading:
+      de: "Cöllnische Marck = 233,856 g Feinsilber · 9¼ Thaler Species aus der feinen Marck"
+      en: "Cologne Mark = 233.856 g fine silver · 9¼ Thaler Species from one fine Cologne Mark"
+      uk: "Кельнська марка = 233,856 г чистого срібла · 9¼ Thaler Species з чистої марки"
+    badge:
+      de: "Müntzfuß · Silber"
+      en: "Müntzfuß · Silver"
+      uk: "Стопа · срібло"
+    rows:
+      - key:
+          de: "Feingewicht Thaler Species"
+          en: "Fine weight, Thaler Species"
+          uk: "Чиста вага Thaler Species"
+        value:
+          de: "<b>25,28173 g</b> (= 233,856 / 9,25) · 28,89341 g rau · 875 ‰ (14 Loth)"
+          en: "<b>25.28173 g</b> (= 233.856 / 9.25) · 28.89341 g rough · 875‰ (14 Loth)"
+          uk: "<b>25,28173 г</b> (= 233,856 / 9,25) · 28,89341 г повної ваги · 875 ‰ (14 Loth)"
+      - key:
+          de: "Cölln. Marck Feinsilber"
+          en: "Cologne Mark, fine silver"
+          uk: "Кельнська марка чистого срібла"
+        value:
+          de: "9¼ Thaler Species · zeitgenössisch «9¼ eine feine Marck»"
+          en: "9¼ Thaler Species · period phrasing «9¼ to one fine Mark»"
+          uk: "9¼ Thaler Species · сучасник казав «9¼ на одну чисту марку»"
+      - key:
+          de: "Verhältnis zum Reichsthaler-9-Fuß"
+          en: "Ratio to the Reichsthaler 9-Fuß"
+          uk: "Співвідношення до Reichsthaler-9-Fuß"
+        value:
+          de: "Thaler Species 25,28173 g &lt; Reichsthaler Species 25,98400 g · das Verhältnis 9 zu 9¼ beträgt 36/37, d. h. der holsteinische Species ist 1/37 ≈ 2,7 % leichter"
+          en: "Thaler Species 25.28173 g &lt; Reichsthaler Species 25.98400 g · the ratio 9 to 9¼ is 36/37, i.e. the Holstein Species is 1/37 ≈ 2.7 % lighter"
+          uk: "Thaler Species 25,28173 г &lt; Reichsthaler Species 25,98400 г · відношення 9 до 9¼ = 36/37, тобто гольштинський Species на 1/37 ≈ 2,7 % легший"
+    rechnungsfraktionen_label:
+      de: "Rechnungsfraktionen"
+      en: "Accounting fractions"
+      uk: "Розрахункові фракції"
+    rechnungsfraktionen:
+      de: |
+        <b>1 Thaler Species</b> = <b>25,28173 g</b> fein = 3 Mark lübisch = 48 Schilling lübisch = 576 Pfennig (hanseatisch 1622–1775) · identisch mit: 1 Rigsdaler Species (dän.), 1 Reichsthaler Species (hanseat.). Die Bezeichnungen sind regional, die Münze ist eine.<br>
+        <b>1 Mark lübisch</b> = <b>8,427 g</b> fein (<i>Rechnungseinheit</i>) = ⅓ Thaler Species = 16 Schilling lübisch = 192 Pfennig<br><br>
+        <b>Der Skilling Danske</b> (<b>0,21494 g</b> fein) ist die praktische Unterfraktion aller Rechnungssysteme. Die Rechnungskonvention «120 Skilling = 1 Rigsdaler Species» gilt seit Beginn der Kurantmøntfod (1726) als amtliche Unterteilung. Das resultierende Silberäquivalent (120 × 0,21494 = 25,79 g) überschreitet das tatsächliche Silbergewicht des Species (25,28 g) um ~2 %; diese Differenz war historisch als <em>Opgæld</em> auf dem Wechselmarkt sichtbar und wurde erst durch Plakat 3. Dezember 1794 amtlich beseitigt.<br><br>
+        <b>Hanseatisches Zählsystem (Wendischer Münzverein, Hamburg/Lübeck) nach Phasen:</b><br>
+         · <i>ab 1572:</i> 1 Rtlr. = 2 Mark lübisch = 32 Schilling lübisch = 64 Sechslinge = 384 Pfennig<br>
+         · <i>1622–1775:</i> 1 Rtlr. = 3 Mark lübisch = 4 Ort = 16 Düttchen = 48 Schilling lübisch = 96 Sechslinge = 192 Dreilinge = 576 Pfennig<br><br>
+        <b>Schleswig-Holstein (Thaler-Species-Rechnung):</b> folgte dem hanseatischen System · ½ Schilling = Sechsling · ¼ Schilling = Dreiling<br><br>
+        <b>Kurse Species ↔ Courant:</b><br>
+         · <i>1726–1794:</i> Rechnungskonvention 1 RSp = 1¼ RCour = 120 Skilling Danske amtlich fixiert; Marktkurs ~122½:100 war die Silberparität. Differenz hieß <em>Opgæld</em><br>
+         · <i>ab 1794</i> (<b>Plakat 3. Dezember 1794</b>): Opgæld-Marktkurs abgeschafft; 1 RSp = 1¼ RCour = 5:4 einzig gültige Wechselrelation. RCour ~2 % unter Silberwert — Seigniorage-Gewinn der Krone<br>
+         · <i>ab 1788:</i> 1 Thaler Species = 60 Schilling Schleswig-Holsteinisch Courant (S.-H.-Reform 1788)<br>
+         · <i>ab 1813:</i> 1 Thaler Species = 2 Rigsbankdaler = 192 Rigsbankskilling (Forordning 5. Jan. 1813)<br><br>
+        <em>Physische Teilstücke: ½, ⅓, ¼, ⅙, ⅛, 1/12, 1/16, 1/24, 1/48 Thaler Species</em>
+      en: |-
+        <b>1 Thaler Species</b> = <b>25.28173 g</b> fine = 3 Mark lübisch = 48 Schilling lübisch = 576 Pfennig (Hanseatic 1622–1775) · identical with: 1 Rigsdaler Species (Danish), 1 Reichsthaler Species (Hanseatic). The names are regional, the coin is one and the same.<br> <b>1 Mark lübisch</b> = <b>8.427 g</b> fine (<i>accounting unit</i>) = ⅓ Thaler Species = 16 Schilling lübisch = 192 Pfennig<br><br> <b>The Skilling Danske</b> (<b>0.21494 g</b> fine) is the practical sub-fraction of every accounting system. The convention «120 Skilling = 1 Rigsdaler Species» served as the official subdivision from the start of the Kurantmøntfod (1726). Its silver equivalent (120 × 0.21494 = 25.79 g) exceeds the real silver weight of the Species (25.28 g) by ~2 %; this gap appeared historically as <em>Opgæld</em> on the exchange market and was only abolished by the Placard of 3 December 1794.<br><br> <b>Hanseatic counting system (Wendish Mint Union, Hamburg/Lübeck), by period:</b><br> · <i>from 1572:</i> 1 Rtlr. = 2 Mark lübisch = 32 Schilling lübisch = 64 Sechslinge = 384 Pfennig<br> · <i>1622–1775:</i> 1 Rtlr. = 3 Mark lübisch = 4 Ort = 16 Düttchen = 48 Schilling lübisch = 96 Sechslinge = 192 Dreilinge = 576 Pfennig<br><br> <b>Schleswig-Holstein (Thaler-Species accounting):</b> followed the Hanseatic system · ½ Schilling = Sechsling · ¼ Schilling = Dreiling<br><br> <b>Species ↔ Courant rates:</b><br> · <i>1726–1794:</i> the convention 1 RSp = 1¼ RCour = 120 Skilling Danske was officially fixed; the market rate ~122½:100 reflected the true silver parity. The gap was called <em>Opgæld</em><br> · <i>from 1794</i> (<b>Placard of 3 Dec. 1794</b>): the Opgæld market rate was abolished; 1 RSp = 1¼ RCour = 5:4 became the sole legal exchange ratio. RCour now sat ~2 % below its silver value — a seigniorage gain for the Crown<br> · <i>from 1788:</i> 1 Thaler Species = 60 Schilling Schleswig-Holsteinisch Courant (S.-H. Reform 1788)<br> · <i>from 1813:</i> 1 Thaler Species = 2 Rigsbankdaler = 192 Rigsbankskilling (Forordning 5 Jan. 1813)<br><br> <em>Physical sub-units actually struck: ½, ⅓, ¼, ⅙, ⅛, 1/12, 1/16, 1/24, 1/48 Thaler Species</em>
+      uk: |-
+        <b>1 Thaler Species</b> = <b>25,28173 г</b> чистого = 3 Mark lübisch = 48 Schilling lübisch = 576 Pfennig (ганз. 1622–1775) · ідентичний з: 1 Rigsdaler Species (дан.), 1 Reichsthaler Species (ганз.). Назви регіональні — монета одна.<br> <b>1 Mark lübisch</b> = <b>8,427 г</b> чистого (<i>розрахункова одиниця</i>) = ⅓ Thaler Species = 16 Schilling lübisch = 192 Pfennig<br><br> <b>Skilling Danske</b> (<b>0,21494 г</b> чистого) — практична субодиниця всіх розрахункових систем. Конвенція «120 Skilling = 1 Rigsdaler Species» діє з початку Kurantmøntfod (1726) як офіційний поділ. Її срібний еквівалент (120 × 0,21494 = 25,79 г) перевищує справжню срібну вагу Species (25,28 г) на ~2 %; історично цю різницю позначали як <em>Opgæld</em> на валютному ринку — її скасував лише Plakat 3 грудня 1794 р.<br><br> <b>Ганзейська система рахунку (Wendischer Münzverein, Гамбург/Любек) за періодами:</b><br> · <i>з 1572:</i> 1 Rtlr. = 2 Mark lübisch = 32 Schilling lübisch = 64 Sechsling = 384 Pfennig<br> · <i>1622–1775:</i> 1 Rtlr. = 3 Mark lübisch = 4 Ort = 16 Düttchen = 48 Schilling lübisch = 96 Sechsling = 192 Dreiling = 576 Pfennig<br><br> <b>Шлезвіг-Гольштейн (рахунок у Thaler Species):</b> наслідував ганзейську систему · ½ Schilling = Sechsling · ¼ Schilling = Dreiling<br><br> <b>Курси Species ↔ Courant:</b><br> · <i>1726–1794:</i> конвенція 1 RSp = 1¼ RCour = 120 Skilling Danske була офіційно зафіксована; ринковий курс ~122½:100 відображав справжній срібний паритет. Різниця називалася <em>Opgæld</em><br> · <i>з 1794</i> (<b>Plakat 3 грудня 1794</b>): ринковий Opgæld-курс скасовано; 1 RSp = 1¼ RCour = 5:4 — єдине дійсне відношення. RCour опинився ~2 % нижче своєї срібної вартості — сеньйораж на користь Корони<br> · <i>з 1788:</i> 1 Thaler Species = 60 Schilling Schleswig-Holsteinisch Courant (Шлезв.-Гольшт. реформа 1788)<br> · <i>з 1813:</i> 1 Thaler Species = 2 Rigsbankdaler = 192 Rigsbankskilling (Forordning 5 січня 1813)<br><br> <em>Реально карбовані частки: ½, ⅓, ¼, ⅙, ⅛, 1/12, 1/16, 1/24, 1/48 Thaler Species</em>
+  description:
+    de: |
+      9¼-Thalerfuß · Thaler-Species-Standard für Holstein, Hamburg, Lübeck,
+      Schleswig. 233,856 g ÷ 9¼ = 25,28173 g Feinsilber je Thaler Species.
+      Raugewicht 28,89341 g bei 875 ‰. Parallele zum Konventionsfuß
+      (anders als 9-Fuß der Reichsreform 1566).
+    en: |-
+      9¼-Thaler-Fuß · Thaler Species for Holstein, Hamburg, Lübeck, Schleswig. 233.856 g ÷ 9.25 = 25.28173 g fine silver per Thaler Species. Rough weight 28.89341 g at 875‰. Parallel to the Convention Standard (distinct from 9-Thaler-Fuß of 1566 Imperial reform).
+    uk: |-
+      9¼-Thaler-Fuß · спецієсталер для Гольштейну, Гамбургу, Любеку, Шлезвігу. 233,856 г ÷ 9¼ = 25,28173 г чистого срібла на один талер. Повна вага 28,89341 г при 875‰. Паралельний до конвенційного стандарту.
+  fractions:
+    "1": {soll_fein_g: 25.28173}        # 1 Thaler Species
+    "3/2": {soll_fein_g: 37.92260}      # 1½ Thaler Species (Sterbethaler etc.)
+    "2/3": {soll_fein_g: 16.85449}      # ⅔ Thaler Species = 40 Sch.C.
+    "1/3": {soll_fein_g: 8.42724}       # ⅓ Thaler Species = 20 Sch.C.
+    "1/6": {soll_fein_g: 4.21362}       # ⅙ Thaler Species = 10 Sch.C. (or 8 Sch.Lüb.)
+    "1/12": {soll_fein_g: 2.10681}      # 1/12 = 5 Sch.C. (or 4 Sch.Lüb.)
+    "1/16": {soll_fein_g: 1.58011}      # 1/16 Thaler Species (= 3 Sch.Lüb.)
+    "1/24": {soll_fein_g: 1.05341}      # 1/24 = 2½ Sch.C. or 1 Groschen (early)
+    "1/32": {soll_fein_g: 0.79005}      # 1 Schilling (pre-Kipper, John Adolphus era)
+    "1/48": {soll_fein_g: 0.52670}      # 1/48 = 1 Sch.Lüb. (post-Kipper)
+    "1/60": {soll_fein_g: 0.42136}      # 1/60 = 1 Sch.C. (= 2 Sechsling)
+    "1/64": {soll_fein_g: 0.39503}      # 1/64 = 6 Pfennig
+    "1/96": {soll_fein_g: 0.26335}      # 1/96 = 4 Pfennig
+    "1/128": {soll_fein_g: 0.19751}     # 1/128 = 3 Pfennig
+    "1/2": {soll_fein_g: 12.64086}      # ½ Speciedaler
+    "1/4": {soll_fein_g: 6.32043}       # ¼ Speciedaler
+    "1/8": {soll_fein_g: 3.16022}       # ⅛ Speciedaler
+    "1/15": {soll_fein_g: 1.68545}      # 1/15 Specie = 4 Schilling lübisch (Sonderburg-Mode)
+    "1/30": {soll_fein_g: 0.84272}      # 1/30 Specie = 2 Schilling lübisch (Sonderburg-Mode)
+
+9_thaler:
+  name:
+    de: 9-Thaler-Fuß
+    en: 9-Thaler-Fuß
+    uk: 9-Thaler-Fuß
+  metal: silver
+  grid_unit_g: 233.856
+  grid_stops: 9
+  fineness_standard: 0.88889   # 14 2/9 Loth = 888 8/9 ‰
+  fineness_display: "888 8/9 ‰ (14²⁄₉ Loth)"
+  grundwerte:
+    heading:
+      de: "Grundwerte · Reichsthaler-Standard"
+      en: "Base values · Reichsthaler standard"
+      uk: "Базові значення · стандарт Reichsthaler"
+    subheading:
+      de: "Cöllnische Marck = 233,856 g Feinsilber · 9 Reichsthaler aus der feinen Marck"
+      en: "Cologne Mark = 233.856 g fine silver · 9 Reichsthaler from one fine Cologne Mark"
+      uk: "Кельнська марка = 233,856 г чистого срібла · 9 рейхсталерів з чистої марки"
+    badge:
+      de: "Müntzfuß · Silber"
+      en: "Müntzfuß · Silver"
+      uk: "Стопа · срібло"
+    rows:
+      - key:
+          de: "Feingewicht Reichsthaler"
+          en: "Fine weight, Reichsthaler"
+          uk: "Чиста вага рейхсталера"
+        value:
+          de: "<b>25,98400 g</b> Feinsilber (= 233,856 ÷ 9)"
+          en: "<b>25.98400 g</b> fine silver (= 233.856 ÷ 9)"
+          uk: "<b>25,98400 г</b> чистого срібла (= 233,856 ÷ 9)"
+      - key:
+          de: "Raugewicht"
+          en: "Rough weight"
+          uk: "Повна вага"
+        value:
+          de: "<b>29,23200 g</b> (= 25,984 ÷ 0,8889) bei <b>14²⁄₉ Loth</b> = 888⁸⁄₉ ‰ Feingehalt"
+          en: "<b>29.23200 g</b> (= 25.984 ÷ 0.8889) at <b>14²⁄₉ Loth</b> = 888⁸⁄₉‰ fineness"
+          uk: "<b>29,23200 г</b> (= 25,984 ÷ 0,8889) при <b>14²⁄₉ Loth</b> = 888⁸⁄₉ ‰ проби"
+      - key:
+          de: "Geltungszeitraum"
+          en: "Period of validity"
+          uk: "Період дії"
+        value:
+          de: "1566 (Augspurgisches Reichsmüntz-Abschied) → ca. 1620 (Kipper-Wipper-Periode beendet die geordnete Prägung)"
+          en: "1566 (Augsburg Imperial Mint Decree) → ca. 1620 (Kipper-Wipper crisis ended orderly minting)"
+          uk: "1566 (Ауґсбурзький імперський монетний ордонанс) → бл. 1620 (криза Kipper-Wipper припинила впорядковане карбування)"
+      - key:
+          de: "Verbreitung"
+          en: "Geographic reach"
+          uk: "Поширення"
+        value:
+          de: "Heiliges Römisches Reich · Reichsstandard für alle Münzstätten · Hamburg/Lübeck behalten ihn als Bankgeld biß 1875"
+          en: "Holy Roman Empire · imperial standard for all mints · Hamburg/Lübeck retained it as bank money until 1875"
+          uk: "Священна Римська імперія · імперський стандарт для всіх монетних дворів · Гамбург і Любек зберігали його як банківські гроші до 1875 р."
+    rechnungsfraktionen_label:
+      de: "Rechnungsfraktionen (lübisch-gottorpische Theilung)"
+      en: "Accounting fractions (Lübeck-Gottorp subdivision)"
+      uk: "Розрахункові фракції (любецько-ґотторпський поділ)"
+    rechnungsfraktionen:
+      de: |
+        <b>1 Reichsthaler</b> = <b>25,984 g</b> Feinsilber = 3 Mark lübisch = 48 Schilling lübisch = 576 Pfennig<br>
+        <b>1 Mark lübisch</b> = <b>8,661 g</b> fein (<i>Rechnungseinheit</i>) = ⅓ Thaler = 16 Schilling lübisch = 192 Pfennig<br>
+        <b>1 Schilling lübisch</b> = 1/48 Thaler = 12 Pfennig<br>
+        <b>1 Sechsling</b> = ½ Schilling lübisch = 6 Pfennig<br>
+        <b>1 Dreiling</b> = ¼ Schilling lübisch = 3 Pfennig<br>
+        <em>Frühe Holstein-Gottorp-Schillingstücke (KM# 6, 1595–1597) tragen «1 SCHILLING» = 1/32 Thaler nach gleicher Münz-Rechnung wie in Norddeutschland.</em><br>
+        <em><b>Hinweis:</b> Die Feinsilberangaben für Thaler und Mark gelten für tatsächlich par-Silber geprägte Vollwert-Münzen. Die Schilling-, Sechsling- und Dreiling-Stücke wurden meist als <b>Scheidemünzen</b> mit reduziertem Feingehalt geprägt — der theoretische Silberwert (1 Schilling lübisch ≈ 0,541 g fein) ist Rechnungsbezug, nicht tatsächlicher Münz-Silbergehalt.</em>
+      en: |-
+        <b>1 Reichsthaler</b> = <b>25.984 g</b> fine silver = 3 Mark lübisch = 48 Schilling lübisch = 576 Pfennig<br> <b>1 Mark lübisch</b> = <b>8.661 g</b> fine (<i>accounting unit</i>) = ⅓ Thaler = 16 Schilling lübisch = 192 Pfennig<br> <b>1 Schilling lübisch</b> = 1/48 Thaler = 12 Pfennig<br> <b>1 Sechsling</b> = ½ Schilling lübisch = 6 Pfennig<br> <b>1 Dreiling</b> = ¼ Schilling lübisch = 3 Pfennig<br> <em>Early Holstein-Gottorp Schilling pieces (KM# 6, 1595–1597) bear «1 SCHILLING» = 1/32 Thaler under the same accounting reckoning as elsewhere in northern Germany.</em><br> <em><b>Note:</b> Fine-silver figures for Thaler and Mark apply to full-value coins struck at par silver. Schilling, Sechsling and Dreiling pieces were typically struck as <b>petty coins (Scheidemünzen)</b> with reduced fineness — the theoretical silver value (1 Schilling lübisch ≈ 0.541 g fine) is a reckoning reference, not actual coin silver content.</em>
+      uk: |-
+        <b>1 Reichsthaler</b> = <b>25,984 г</b> чистого срібла = 3 Mark lübisch = 48 Schilling lübisch = 576 Pfennig<br> <b>1 Mark lübisch</b> = <b>8,661 г</b> чистого (<i>розрахункова одиниця</i>) = ⅓ Thaler = 16 Schilling lübisch = 192 Pfennig<br> <b>1 Schilling lübisch</b> = 1/48 Thaler = 12 Pfennig<br> <b>1 Sechsling</b> = ½ Schilling lübisch = 6 Pfennig<br> <b>1 Dreiling</b> = ¼ Schilling lübisch = 3 Pfennig<br> <em>Ранні гольштейнсько-ґотторпські шилінгові монети (KM# 6, 1595–1597) несуть «1 SCHILLING» = 1/32 Thaler за тим самим рахунком, що й по всій північній Німеччині.</em><br> <em><b>Зауваження:</b> Значення чистого срібла для Thaler і Mark стосуються повноцінних монет, карбованих за par-silver. Schilling, Sechsling і Dreiling зазвичай карбувались як <b>розмінні монети (Scheidemünzen)</b> зі зниженою пробою — теоретичний срібний еквівалент (1 Schilling lübisch ≈ 0,541 г чистого) є розрахунковим орієнтиром, а не фактичним вмістом срібла в монеті.</em>
+  description:
+    de: |
+      Augspurgischer Reichsmüntz-Abschied 30. Mai 1566. 233,856 g ÷ 9 = 25,984 g
+      Feinsilber je Reichsthaler. Reichsstandard biß zur Kipper-Wipper-Krise um 1620,
+      danach durch leichteren 9¼-Fuß (Thaler Species) abgelöst. Hamburg/Lübeck
+      behielten den 9-Fuß als Bank-Rechnungsmünze biß 1875.
+    en: |-
+      Imperial Mint Decree of Augsburg, 30 May 1566. 233.856 g ÷ 9 = 25.984 g fine silver per Reichsthaler. Imperial standard until the Kipper-Wipper crisis around 1620, then superseded by the lighter 9¼-Fuß (Thaler Species). Hamburg/Lübeck retained the 9-Fuß as bank money until 1875.
+    uk: |-
+      Імперський монетний ордонанс Ауґсбургу 30 травня 1566. 233,856 ÷ 9 = 25,984 г чистого срібла на рейхсталер. Імперський стандарт до Kipper-Wipper-кризи близько 1620 р., потім витіснений легшим 9¼-Fuß (Thaler Species). Гамбург і Любек зберігали 9-Fuß як банківську розрахункову монету до 1875 р.
+  fractions:
+    "1": {soll_fein_g: 25.98400}         # 1 Reichsthaler
+    "2": {soll_fein_g: 51.96800}         # 2 Thaler (Doppelthaler)
+    "3": {soll_fein_g: 77.95200}         # 3 Thaler (Schauenburg Ernst 1603)
+    "3/2": {soll_fein_g: 38.97600}       # 1½ Thaler (Doppelthaler-Schau)
+    "1/2": {soll_fein_g: 12.99200}       # ½ Reichsthaler
+    "1/4": {soll_fein_g: 6.49600}        # ¼ Reichsthaler
+    "1/8": {soll_fein_g: 3.24800}        # ⅛ Thaler
+    "1/12": {soll_fein_g: 2.16533}       # 1/12 Thaler = 4 Mariengroschen (Schauenburg)
+    "1/15": {soll_fein_g: 1.73227}       # 1/15 Thaler = 4 Schilling lübisch (Sonderburg John 1622)
+    "1/16": {soll_fein_g: 1.62400}       # 1/16 Thaler = 3 Schilling lübisch
+    "1/30": {soll_fein_g: 0.86613}       # 1/30 Thaler = 2 Schilling lübisch (Sonderburg)
+    "1/24": {soll_fein_g: 1.08267}       # 1/24 Thaler = 1 Groschen = 2 Schilling
+    "1/32": {soll_fein_g: 0.81200}       # 1/32 Thaler = 1 Schilling (frühe Stadt-Holstein-Rechnung)
+    "1/48": {soll_fein_g: 0.54133}       # 1/48 Thaler = 1 Schilling lübisch
+    "1/64": {soll_fein_g: 0.40600}       # 1/64 Thaler = 6 Pfennig
+    "1/96": {soll_fein_g: 0.27067}       # 1/96 Thaler = 4 Pfennig
+    "1/128": {soll_fein_g: 0.20300}      # 1/128 Thaler = 3 Pfennig
+    "1/168": {soll_fein_g: 0.15467}      # 1/168 Thaler = 1½ Pfennig (Schauenburg Ernst 1620)
+    "1/252": {soll_fein_g: 0.10311}      # 1/252 Thaler = 1 Pfennig (Schauenburg Otto IV)
+
+11_333_thaler:
+  name:
+    de: 11⅓-Thalerfuß
+    en: 11⅓-Thaler-Fuß
+    uk: 11⅓-Thaler-Fuß
+  metal: silver
+  grid_unit_g: 233.856
+  grid_stops: 11.33333
+  fineness_standard: 0.73        # variable; coin-specific
+  fineness_display: "≈ 730–750 ‰ (coin-dependent)"
+  grundwerte:
+    heading:
+      de: "Grundwerte · Kurantmøntfod"
+      en: "Base values · Kurantmøntfod"
+      uk: "Базові значення Kurantmøntfod"
+    subheading:
+      de: "Forordningerne af 15. und 31. Juli 1726 · 34 Marck Danske je feine Cöllnische Marck · constante Silberhaltung 20,63435 g pr. Rigsdaler Courant"
+      en: "Decrees of 15/31 July 1726 · 34 Marck Danske from one fine Cologne Mark · constant silver content of 20.63435 g per Rigsdaler Courant"
+      uk: "Ордонанси 15/31 липня 1726 · 34 Marck Danske з однієї чистої кельнської марки · постійний вміст 20,63435 г на Rigsdaler Courant"
+    badge:
+      de: "Müntzfuß · Silber"
+      en: "Müntzfuß · Silver"
+      uk: "Стопа · срібло"
+    rows:
+      - key:
+          de: "Feingewicht Rigsdaler Courant"
+          en: "Fine weight, Rigsdaler Courant"
+          uk: "Чиста вага Rigsdaler Courant"
+        value:
+          de: "<b>20,63435 g</b> fein (= 233,856 × 3 / 34)"
+          en: "<b>20.63435 g</b> fine (= 233.856 × 3 / 34)"
+          uk: "<b>20,63435 г</b> чистого (= 233,856 × 3 / 34)"
+      - key:
+          de: "Untertheilung"
+          en: "Subdivisions"
+          uk: "Поділ"
+        value:
+          de: "1 Rigsdaler Courant = 6 Marck Danske = 96 Skilling Danske"
+          en: "1 Rigsdaler Courant = 6 Marck Danske = 96 Skilling Danske"
+          uk: "1 Rigsdaler Courant = 6 Marck Danske = 96 Skilling Danske"
+      - key:
+          de: "Kurs zur Species"
+          en: "Rate to the Species"
+          uk: "Курс до Species"
+        value:
+          de: "Rechnungskonvention seit 1726: 1 RSp = 1¼ RCour = 120 Sk · Marktkurs 1726–1794: ~122½:100 (Opgæld) · <b>Plakat 3. Dezember 1794</b>: Marktkurs abgeschafft, amtliches Verhältnis 1:1¼ einzig gültig"
+          en: "Accounting convention since 1726: 1 RSp = 1¼ RCour = 120 Sk · market rate 1726–1794: ~122½:100 (Opgæld) · <b>Placard of 3 Dec. 1794</b>: market rate abolished; the official 1:1¼ ratio became the sole legal relation"
+          uk: "Розрахункова конвенція з 1726: 1 RSp = 1¼ RCour = 120 Sk · ринковий курс 1726–1794: ~122½:100 (Opgæld) · <b>Plakat 3 грудня 1794</b>: ринковий курс скасовано, єдиним дійсним стало офіційне 1:1¼"
+      - key:
+          de: "Opgæld"
+          en: "Opgæld"
+          uk: "Opgæld"
+        value:
+          de: "Wegen unrundem Verhältnis beim Tausch Courant → Species · Grund der S.-H.-Reform 1788"
+          en: "An uneven ratio at the Courant → Species exchange · the underlying reason for the Schleswig-Holstein reform of 1788"
+          uk: "Через нерівне співвідношення при обміні Courant → Species · головна причина шлезв.-гольшт. реформи 1788"
+    rechnungsfraktionen_label:
+      de: "Rechnungsfraktionen"
+      en: "Accounting fractions"
+      uk: "Розрахункові фракції"
+    rechnungsfraktionen:
+      de: |
+        <b>Arithmetische Identitäten (juristisch fixiert):</b><br>
+        <b>1 Rigsdaler Courant</b> = <b>20,63435 g</b> Feinsilber = 6 Marck Danske = 96 Skilling Danske = 1152 Penninge<br>
+        <b>1 Marck Danske</b> = <b>3,43906 g</b> fein (<i>Rechnungseinheit</i>) = ⅙ Rigsdaler = 16 Skilling Danske = 192 Penninge<br>
+        <b>1 Skilling Danske</b> = 12 Penninge = <b>0,21494 g</b> fein · Münzbeleg: <i>24 Skilling Danske</i> (KM# 250, Christian VII. 1767–1788): Silber .562 · 9,17 g rau · 5,15354 g fein → 1 Skilling = 0,21473 g fein ✓<br><br>
+        <b>Kurs Species ↔ Courant</b> (Rechnungskonvention, Marktkurs, Plakat 1794):<br>
+        · <b>1726–1794:</b> Rechnungskonvention 1 Rigsdaler Species = 1¼ Rigsdaler Courant = 120 Skilling Danske von Anfang an. Marktkurs im Wechselgeschäft ~122½:100 — zugleich Silberparität (122,5 × 20,63435 = 2527,71 g vs. 100 × 25,28173 = 2528,17 g; Differenz 0,02 %). Differenz zur Rechnungskonvention hieß <em>Opgæld</em><br>
+        · <b>Plakat 3. Dezember 1794</b>: Opgæld-Marktkurs abgeschafft; 1 RSp = 1¼ RCour = 5:4 einzig gültige Wechselrelation. Krone bricht Silberparität zuungunsten des RCour: 125 × 20,63435 = 2579,29 g Silber vs. 100 × 25,28173 = 2528,17 g. RCour gesetzlich ~2 % unter Silberwert → Seigniorage-Gewinn<br><br>
+        <b>1 Krone</b> (Silbermünze) = 4 Marck Danske = 60 Kroneskilling = 64 Skilling Danske = ⅔ Rigsdaler Courant = <b>13,75623 g</b> fein · 1 Kroneskilling = 16/15 Skilling Danske<br>
+        <em>Die Bezeichnung «Skilling Danske» erscheint buchstäblich auf den Prägungen.</em>
+      en: |-
+        <b>Arithmetic identities (legally fixed):</b><br> <b>1 Rigsdaler Courant</b> = <b>20.63435 g</b> fine silver = 6 Marck Danske = 96 Skilling Danske = 1152 Penninge<br> <b>1 Marck Danske</b> = <b>3.43906 g</b> fine (<i>accounting unit</i>) = ⅙ Rigsdaler = 16 Skilling Danske = 192 Penninge<br> <b>1 Skilling Danske</b> = 12 Penninge = <b>0.21494 g</b> fine · numismatic check: <i>24 Skilling Danske</i> (KM# 250, Christian VII, 1767–1788): silver .562 · 9.17 g rough · 5.15354 g fine → 1 Skilling = 0.21473 g fine ✓<br><br> <b>Species ↔ Courant rate</b> (accounting convention, market rate, Placard 1794):<br> · <b>1726–1794:</b> the accounting convention 1 Rigsdaler Species = 1¼ Rigsdaler Courant = 120 Skilling Danske held from the start. The exchange-market rate of ~122½:100 also reflected the silver parity (122.5 × 20.63435 = 2527.71 g vs. 100 × 25.28173 = 2528.17 g; gap 0.02 %). The shortfall against the accounting convention was called <em>Opgæld</em><br> · <b>Placard of 3 Dec. 1794</b>: Opgæld market rate abolished; 1 RSp = 1¼ RCour = 5:4 became the sole legal exchange ratio. The Crown broke the silver parity at the Courant's expense: 125 × 20.63435 = 2579.29 g silver vs. 100 × 25.28173 = 2528.17 g. RCour now sat ~2 % below its silver value — a seigniorage gain<br><br> <b>1 Krone</b> (silver coin) = 4 Marck Danske = 60 Kroneskilling = 64 Skilling Danske = ⅔ Rigsdaler Courant = <b>13.75623 g</b> fine · 1 Kroneskilling = 16/15 Skilling Danske<br> <em>The designation «Skilling Danske» appears literally on the coins themselves.</em>
+      uk: |-
+        <b>Арифметичні тотожності (юридично закріплені):</b><br> <b>1 Rigsdaler Courant</b> = <b>20,63435 г</b> чистого срібла = 6 Marck Danske = 96 Skilling Danske = 1152 Penninge<br> <b>1 Marck Danske</b> = <b>3,43906 г</b> чистого (<i>розрахункова одиниця</i>) = ⅙ Rigsdaler = 16 Skilling Danske = 192 Penninge<br> <b>1 Skilling Danske</b> = 12 Penninge = <b>0,21494 г</b> чистого · нумізматична перевірка: <i>24 Skilling Danske</i> (KM# 250, Christian VII. 1767–1788): срібло .562 · 9,17 г повної ваги · 5,15354 г чистого → 1 Skilling = 0,21473 г чистого ✓<br><br> <b>Курс Species ↔ Courant</b> (розрахункова конвенція, ринковий курс, Plakat 1794):<br> · <b>1726–1794:</b> розрахункова конвенція 1 Rigsdaler Species = 1¼ Rigsdaler Courant = 120 Skilling Danske діяла з самого початку. Ринковий курс на валютній біржі ~122½:100 одночасно відображав срібний паритет (122,5 × 20,63435 = 2527,71 г проти 100 × 25,28173 = 2528,17 г; різниця 0,02 %). Розрив із розрахунковою конвенцією називався <em>Opgæld</em><br> · <b>Plakat 3 грудня 1794</b>: ринковий Opgæld-курс скасовано; 1 RSp = 1¼ RCour = 5:4 — єдина дійсна валютна формула. Корона зламала срібний паритет на шкоду Courant: 125 × 20,63435 = 2579,29 г срібла проти 100 × 25,28173 = 2528,17 г. RCour опинився ~2 % нижче своєї срібної вартості → сеньйораж<br><br> <b>1 Krone</b> (срібна монета) = 4 Marck Danske = 60 Kroneskilling = 64 Skilling Danske = ⅔ Rigsdaler Courant = <b>13,75623 г</b> чистого · 1 Kroneskilling = 16/15 Skilling Danske<br> <em>Напис «Skilling Danske» зʼявляється буквально на самих монетах.</em>
+  description:
+    de: |
+      Dänisch-Norwegischer Kurantmøntfod, eingeführt 15./31. Juli 1726.
+      233,856 g ÷ 11⅓ = 20,63435 g Feinsilber je Rigsdaler Courant
+      (= 3 Mark Danske = 48 Skilling Danske). Der Hauptkurant-Standard
+      Dänemarks und Holsteins biß zur Schleswig-Holsteinischen Reform 1788
+      bzw. biß zum Staatsbankrott 1813 (Dänemark).
+    en: |-
+      Danish-Norwegian Kurantmøntfod, introduced 15/31 July 1726. 233.856 g ÷ 11⅓ = 20.63435 g fine silver per Rigsdaler Courant (= 3 Mark Danske = 48 Skilling Danske). Denmark's and Holstein's main courant standard until the Schleswig-Holstein reform of 1788 / Danish state bankruptcy of 1813.
+    uk: |-
+      Данський куранттмьонтфод, впроваджений 15/31 липня 1726 р. 233,856 г ÷ 11⅓ = 20,63435 г чистого срібла на рігсдалер курант. Основний курантний стандарт Данії та Гольштейну до реформи 1788 р. чи банкрутства держави 1813 р.
+  fractions:
+    "1": {soll_fein_g: 20.63435}        # 1 Rigsdaler Courant
+    "1/2": {soll_fein_g: 10.31718}
+    "1/4": {soll_fein_g: 5.15859}       # 24 Skilling Danske = Rigsort
+    "1/8": {soll_fein_g: 2.57929}       # 12 Skilling
+    "1/12": {soll_fein_g: 1.71953}      # 8 Skilling
+    "1/24": {soll_fein_g: 0.85976}      # 4 Skilling
+    "1/48": {soll_fein_g: 0.42990}      # 2 Skilling
+    "1/96": {soll_fein_g: 0.21495}      # 1 Skilling
+    "1/192": {soll_fein_g: 0.10748}     # ½ Skilling
+
+18_5_thaler:
+  name:
+    de: 18½-Thalerfuß
+    en: 18½-Thaler-Fuß
+    uk: 18½-Thaler-Fuß
+  metal: silver
+  grid_unit_g: 233.856
+  grid_stops: 18.5
+  fineness_standard: 0.875
+  fineness_display: "875 ‰ (14 Loth)"
+  grundwerte:
+    heading:
+      de: "Grundwerte · Rigsbankdaler-System"
+      en: "Base values · Rigsbankdaler system"
+      uk: "Базові значення · система Rigsbankdaler"
+    subheading:
+      de: "Forordning 5. januar 1813 (statsbankerotten) · ny Rigsbank oprettet · 18½ Rigsbankdaler på den fine Cöln'ske mark"
+      en: "Decree of 5 January 1813 (the state bankruptcy) · new Rigsbank founded · 18½ Rigsbankdaler from one fine Cologne Mark"
+      uk: "Forordning 5 січня 1813 (державне банкрутство) · засновано новий Rigsbank · 18½ Rigsbankdaler з однієї чистої кельнської марки"
+    badge:
+      de: "Müntzfuß · Silber"
+      en: "Müntzfuß · Silver"
+      uk: "Стопа · срібло"
+    rows:
+      - key:
+          de: "Feingewicht Rigsbankdaler"
+          en: "Fine weight, Rigsbankdaler"
+          uk: "Чиста вага Rigsbankdaler"
+        value:
+          de: "<b>12,64086 g</b> (= 233,856 / 18,5) · 14,44670 g rau · 875 ‰"
+          en: "<b>12.64086 g</b> (= 233.856 / 18.5) · 14.44670 g rough · 875‰"
+          uk: "<b>12,64086 г</b> (= 233,856 / 18,5) · 14,44670 г повної ваги · 875 ‰"
+      - key:
+          de: "Bindung zur Species"
+          en: "Link to the Species"
+          uk: "Звʼязок із Species"
+        value:
+          de: "<b>2 Rigsbankdaler = 1 Thaler Species</b> (konstruktiv festgelegt 1813) · glatter Bruch zum 9¼-Fuß"
+          en: "<b>2 Rigsbankdaler = 1 Thaler Species</b> (set constructively in 1813) · clean fraction of the 9¼-Fuß"
+          uk: "<b>2 Rigsbankdaler = 1 Thaler Species</b> (закладено конструктивно в 1813) · рівна частка 9¼-Fuß"
+      - key:
+          de: "Untertheilung"
+          en: "Subdivisions"
+          uk: "Поділ"
+        value:
+          de: "1 Rigsbankdaler = 96 Rigsbankskilling"
+          en: "1 Rigsbankdaler = 96 Rigsbankskilling"
+          uk: "1 Rigsbankdaler = 96 Rigsbankskilling"
+      - key:
+          de: "Brücke Schilling Sch.-H. Courant"
+          en: "Bridge to Schilling Sch.-H. Courant"
+          uk: "Місток до Schilling Sch.-H. Courant"
+        value:
+          de: "30 Schilling Sch.-H. Courant = 1 Rigsbankdaler (= ½ Thaler Species; 60/2 = 30 Sch. Courant)"
+          en: "30 Schilling Sch.-H. Courant = 1 Rigsbankdaler (= ½ Thaler Species; 60/2 = 30 Sch. Courant)"
+          uk: "30 Schilling Sch.-H. Courant = 1 Rigsbankdaler (= ½ Thaler Species; 60/2 = 30 Sch. Courant)"
+    rechnungsfraktionen_label:
+      de: "Rechnungsfraktionen (1813–1854: Rigsbank-Nomenklatur)"
+      en: "Accounting fractions (1813–1854: Rigsbank nomenclature)"
+      uk: "Розрахункові фракції (1813–1854: номенклатура Rigsbank)"
+    rechnungsfraktionen:
+      de: |
+        <b>1 Rigsbankdaler</b> = <b>12,64086 g</b> Feinsilber = 96 Rigsbankskilling = 1152 Penninge = ½ Thaler Species = 30 Schilling Sch.-H. Courant<br>
+        <b>1 Rigsbankskilling</b> = 12 Penninge ≈ <b>0,13168 g</b> fein (<i>Rechenwert</i>)<br>
+        <b>6 Rigsbankdaler</b> = 1 Thaler Species (bei Rigsdaler Courant-Umrechnung: 1 RBD = 1,16 Rigsdaler Courant alter Prägung nach Silbergehalt)<br><br>
+        <em>Umbenennung 31. Juli 1854 (Frederik VII.): Rigsbankdaler → Rigsdaler Rigsmønt, Rigsbankskilling → Skilling Rigsmønt — kein Fußwechsel, nur Namenswechsel.</em><br>
+        <em><b>Hinweis:</b> Die Feinsilberangabe für den Rigsbankdaler gilt für Vollwert-Münzen (par-Silber). Rigsbankskilling-Stücke wurden meist als Scheidemünzen mit reduziertem Feingehalt geprägt — der theoretische Wert 0,13168 g fein ist Rechnungsbezug, nicht tatsächlicher Münz-Silbergehalt.</em>
+      en: |-
+        <b>1 Rigsbankdaler</b> = <b>12.64086 g</b> fine silver = 96 Rigsbankskilling = 1152 Penninge = ½ Thaler Species = 30 Schilling Sch.-H. Courant<br> <b>1 Rigsbankskilling</b> = 12 Penninge ≈ <b>0.13168 g</b> fine (<i>computed</i>)<br> <b>6 Rigsbankdaler</b> = 1 Thaler Species (when converting old-style Rigsdaler Courant: 1 RBD = 1.16 Rigsdaler Courant of the earlier issue, by silver content)<br><br> <em>Renaming on 31 July 1854 (Frederik VII): Rigsbankdaler → Rigsdaler Rigsmønt, Rigsbankskilling → Skilling Rigsmønt — no change of standard, only of name.</em><br> <em><b>Note:</b> The fine-silver figure for the Rigsbankdaler applies to full-value coins (par silver). Rigsbankskilling pieces were typically struck as petty coins with reduced fineness — the theoretical 0.13168 g fine is a reckoning reference, not actual coin silver content.</em>
+      uk: |-
+        <b>1 Rigsbankdaler</b> = <b>12,64086 г</b> чистого срібла = 96 Rigsbankskilling = 1152 Penninge = ½ Thaler Species = 30 Schilling Sch.-H. Courant<br> <b>1 Rigsbankskilling</b> = 12 Penninge ≈ <b>0,13168 г</b> чистого (<i>розрахункова</i>)<br> <b>6 Rigsbankdaler</b> = 1 Thaler Species (при перерахунку зі старого Rigsdaler Courant: 1 RBD = 1,16 Rigsdaler Courant попереднього карбування за вмістом срібла)<br><br> <em>Перейменування 31 липня 1854 (Frederik VII.): Rigsbankdaler → Rigsdaler Rigsmønt, Rigsbankskilling → Skilling Rigsmønt — без зміни стопи, лише назви.</em><br> <em><b>Зауваження:</b> Значення чистого срібла для Rigsbankdaler стосується повноцінних монет (par-silver). Rigsbankskilling-монети зазвичай карбувались як розмінні зі зниженою пробою — теоретичні 0,13168 г чистого є розрахунковим орієнтиром, не фактичним вмістом срібла в монеті.</em>
+  description:
+    de: |
+      Eingeführt 5. Januar 1813 nach dem dänischen Staatsbankrott als Rigsbankdaler.
+      Umbenannt 31. Juli 1854 in Rigsdaler Rigsmønt (Frederik VII.) — ohne Wertänderung.
+      233,856 g ÷ 18½ = 12,64086 g Feinsilber je Rigsbankdaler (14,44670 g rau × 875‰).
+      2 Rigsbankdaler = 1 Thaler Species (Silberparität zum 9¼-Fuß).
+    en: |-
+      Introduced 5 January 1813 after the Danish state bankruptcy as Rigsbankdaler. Renamed 31 July 1854 to Rigsdaler Rigsmønt (Frederik VII) with no value change. 233.856 g ÷ 18.5 = 12.64086 g fine silver per Rigsbankdaler. 2 Rigsbankdaler = 1 Thaler Species (silver parity to the 9¼-Thaler-Fuß).
+    uk: |-
+      Впроваджений 5 січня 1813 р. після державного банкрутства Данії як рігсбанкдалер. Перейменований 31 липня 1854 р. на рігсдалер рігсмьонт (Фредерік VII) без зміни вартості. 233,856 г ÷ 18½ = 12,64086 г чистого срібла. 2 рігсбанкдалери = 1 спецієсталер (срібний паритет з 9¼-стандартом).
+  fractions:
+    "1": {soll_fein_g: 12.64086}
+    "2": {soll_fein_g: 25.28173}         # 2 Rigsdaler (Sølvbryllup, Tod Fred. VII.)
+    "1/2": {soll_fein_g: 6.32043}
+    "1/3": {soll_fein_g: 4.21362}       # 32 RBS = 10 Sch.C.
+    "1/6": {soll_fein_g: 2.10681}       # 16 RBS = 5 Sch.C.
+    "1/12": {soll_fein_g: 1.05341}      # 8 RBS = 2½ Sch.C.
+    "1/24": {soll_fein_g: 0.52670}      # 4 RBS = 1¼ Sch.C.
+    "1/96": {soll_fein_g: 0.13168}      # 1 RBS
+    "1/192": {soll_fein_g: 0.06584}     # ½ RBS
+
+30_thaler:
+  name:
+    de: 30-Thalerfuß
+    en: 30-Thaler-Fuß
+    uk: 30-Thaler-Fuß
+  metal: silver
+  grid_unit_g: 500.0    # Zollpfund (ab 1857!)
+  grid_stops: 30
+  fineness_standard: 0.900
+  fineness_display: "900 ‰"
+  grundwerte:
+    heading:
+      de: "Grundwerte · Vereinsthalerfuß"
+      en: "Base values · Vereinsthaler standard"
+      uk: "Базові значення · стопа Vereinsthaler"
+    subheading:
+      de: "Wiener Münzvertrag 24. Januar 1857 · Zollpfund = 500 g Feinsilber · 30 Vereinsthaler je Pfund · in Holstein gültig ab preuß. Annexion 24. Aug. 1866"
+      en: "Vienna Monetary Treaty of 24 January 1857 · Zollpfund = 500 g fine silver · 30 Vereinsthaler per pound · valid in Holstein from the Prussian annexation, 24 Aug. 1866"
+      uk: "Віденська монетна конвенція 24 січня 1857 · Zollpfund = 500 г чистого срібла · 30 Vereinsthaler на фунт · у Гольштейні діє від прусської анексії 24 серпня 1866"
+    badge:
+      de: "Müntzfuß · Silber"
+      en: "Müntzfuß · Silver"
+      uk: "Стопа · срібло"
+    rows:
+      - key:
+          de: "Feingewicht Vereinsthaler"
+          en: "Fine weight, Vereinsthaler"
+          uk: "Чиста вага Vereinsthaler"
+        value:
+          de: "<b>16,66667 g</b> (= 500 / 30) · 18,51852 g rau · 900 ‰ · «XXX EIN PFUND FEIN»"
+          en: "<b>16.66667 g</b> (= 500 / 30) · 18.51852 g rough · 900‰ · legend «XXX EIN PFUND FEIN»"
+          uk: "<b>16,66667 г</b> (= 500 / 30) · 18,51852 г повної ваги · 900 ‰ · напис «XXX EIN PFUND FEIN»"
+      - key:
+          de: "Untertheilung"
+          en: "Subdivisions"
+          uk: "Поділ"
+        value:
+          de: "1 Vereinsthaler = 30 Silbergroschen = 360 Pfennig"
+          en: "1 Vereinsthaler = 30 Silbergroschen = 360 Pfennig"
+          uk: "1 Vereinsthaler = 30 Silbergroschen = 360 Pfennig"
+      - key:
+          de: "Kurs zu Rigsdaler"
+          en: "Rate to Rigsdaler"
+          uk: "Курс до Rigsdaler"
+        value:
+          de: "Vereinsthaler ≈ 1,319 Rigsdaler (16,67 / 12,64) · Umtausch zu festem Tarif"
+          en: "Vereinsthaler ≈ 1.319 Rigsdaler (16.67 / 12.64) · exchanged at a fixed tariff"
+          uk: "Vereinsthaler ≈ 1,319 Rigsdaler (16,67 / 12,64) · обмін за фіксованим тарифом"
+      - key:
+          de: "Kurs zu Species"
+          en: "Rate to Species"
+          uk: "Курс до Species"
+        value:
+          de: "Thaler Species 25,28173 g ≈ 1,517 Vereinsthaler · Umtausch 3:2 (approximativ)"
+          en: "Thaler Species 25.28173 g ≈ 1.517 Vereinsthaler · exchange ratio 3:2 (approximate)"
+          uk: "Thaler Species 25,28173 г ≈ 1,517 Vereinsthaler · обмін 3:2 (приблизно)"
+    rechnungsfraktionen_label:
+      de: "Rechnungsfraktionen"
+      en: "Accounting fractions"
+      uk: "Розрахункові фракції"
+    rechnungsfraktionen:
+      de: |
+        <b>1 Vereinsthaler</b> = <b>16,66667 g</b> Feinsilber = 30 Silbergroschen = 360 Pfennig<br>
+        <b>1 Silbergroschen</b> = <b>0,55556 g</b> fein (<i>Rechnungseinheit</i>) = 1/30 Vereinsthaler = 12 Pfennig<br>
+        <b>2 Vereinsthaler</b> = 3½ südd. Gulden = 3 österr. Gulden (Brückenmünze des Wiener Vertrags)<br>
+        <b>Ab 1871:</b> 1 Vereinsthaler = 3 Mark (biß 1907 gesetzliches Zahlmittel)<br>
+        <em><b>Hinweis:</b> Vereinsthaler und ½-/⅙-Stücke wurden par-Silber geprägt. Die kleineren Silbergroschen-/Pfennig-Stücke sind <b>Scheidemünzen</b> mit reduziertem Feingehalt — der Rechnungswert von 0,556 g pro Silbergroschen gilt nicht für die tatsächlichen Münzen.</em>
+      en: |-
+        <b>1 Vereinsthaler</b> = <b>16.66667 g</b> fine silver = 30 Silbergroschen = 360 Pfennig<br> <b>1 Silbergroschen</b> = <b>0.55556 g</b> fine (<i>accounting unit</i>) = 1/30 Vereinsthaler = 12 Pfennig<br> <b>2 Vereinsthaler</b> = 3½ South-German Gulden = 3 Austrian Gulden (the bridge coin of the Vienna treaty)<br> <b>From 1871:</b> 1 Vereinsthaler = 3 Mark (legal tender until 1907)<br> <em><b>Note:</b> Vereinsthaler and ½-/⅙-pieces were struck at par silver. Smaller Silbergroschen and Pfennig pieces are <b>petty coins</b> with reduced fineness — the 0.556 g reckoning value per Silbergroschen does not apply to the actual coins.</em>
+      uk: |-
+        <b>1 Vereinsthaler</b> = <b>16,66667 г</b> чистого срібла = 30 Silbergroschen = 360 Pfennig<br> <b>1 Silbergroschen</b> = <b>0,55556 г</b> чистого (<i>розрахункова одиниця</i>) = 1/30 Vereinsthaler = 12 Pfennig<br> <b>2 Vereinsthaler</b> = 3½ південнонімецьких Gulden = 3 австрійські Gulden (монета-міст Віденської конвенції)<br> <b>З 1871:</b> 1 Vereinsthaler = 3 Mark (законний платіжний засіб до 1907)<br> <em><b>Зауваження:</b> Vereinsthaler і його ½-/⅙-частки карбувалися за par-silver. Дрібніші Silbergroschen і Pfennig — <b>розмінні монети</b> зі зниженою пробою — розрахунковий орієнтир 0,556 г на Silbergroschen не стосується фактичних монет.</em>
+  description:
+    de: |
+      Wiener Münzvertrag 24. Januar 1857. Ersetzt die Cöllnische Marck durch
+      das Zollpfund (500 g Feinsilber). 500 ÷ 30 = 16,66667 g Feinsilber je
+      Vereinsthaler · 18,51852 g rau bei 900 ‰. Auf Prägungen «XXX EIN PFUND FEIN».
+      In Holstein ab 24. Aug. 1866 (preuß. Annexion).
+    en: |-
+      Vienna Monetary Treaty, 24 January 1857. Replaced the Cologne mark with the Zollpfund (500 g fine silver). 500 ÷ 30 = 16.66667 g fine silver per Vereinsthaler · 18.51852 g rough at 900‰. Coin legend: "XXX EIN PFUND FEIN". In Holstein from 24 Aug. 1866 (Prussian annexation).
+    uk: |-
+      Віденська монетна конвенція 24 січня 1857 р. Замінив кельнську марку цольфунтом (500 г чистого срібла). 500 ÷ 30 = 16,66667 г чистого срібла на один союзний талер. У Гольштейні з 24 серпня 1866 р. після прусської анексії.
+  fractions:
+    "1": {soll_fein_g: 16.66667}        # 1 Vereinsthaler
+    "2": {soll_fein_g: 33.33333}        # 2 Vereinsthaler
+    "1/6": {soll_fein_g: 2.77778}       # Groschen (Preußen)
+
+kronemont_chr_iv:
+  name:
+    de: "Christian IVs kroner"
+    en: "Christian IV's kroner"
+    uk: "Christian IV's kroner"
+  metal: silver
+  grid_unit_g: 233.856
+  # Christian IV's kroner — primärkanonische Hede-Formel (Wilcke I p. 152, NNUM 1957):
+  # 12 257/700 Stück je 13¾-lötiger Marck (.859) = 18,909 g rau / 16,250 g fein je Krone.
+  # Anwendungszeitraum: 1618 (nur 2 Krone) bzw. 1619-1652 (alle Werte).
+  # grid_stops = 233,856 ÷ 16,250 = 14,391 (Stück pro Marck Feinsilber).
+  grid_stops: 14.391
+  fineness_standard: 0.859375
+  fineness_display: "≈ 859 ‰ (13¾ Loth = ⁵⁵⁄₆₄)"
+  grundwerte:
+    heading:
+      de: "Grundwerte · Christian IVs kroner (1618–1652)"
+      en: "Base values · Christian IV's kroner (1618–1652)"
+      uk: "Базові значення · Christian IV's kroner (1618–1652)"
+    subheading:
+      de: "Cöllnische Marck (Raulegierung) = 233,856 g · Hede-Formel: <b>12 ²⁵⁷⁄₇₀₀ Stück je 13¾-lötiger Marck</b> = 18,909 g rau bei .859 Feingehalt = <b>16,250 g fein je Krone</b> (Wilcke I p. 152)"
+      en: "Cologne mark (raw alloy) = 233.856 g · Hede formula: <b>12 ²⁵⁷⁄₇₀₀ pieces per 13¾-lødig mark</b> = 18.909 g rough at .859 fineness = <b>16.250 g fine per Krone</b> (Wilcke I p. 152)"
+      uk: "Кельнська марка (сплав, rau) = 233,856 г · Hede-формула: <b>12 ²⁵⁷⁄₇₀₀ штук з 13¾-lødig марки</b> = 18,909 г повної ваги за проби .859 = <b>16,250 г чистого на Krone</b> (Wilcke I с. 152)"
+    badge:
+      de: "Müntzfuß · Tarifmünze"
+      en: "Müntzfuß · Tariff coin"
+      uk: "Стопа · тарифна монета"
+    rows:
+      - key:
+          de: "Münzfuß-Formel (Hede / Wilcke I p. 152)"
+          en: "Münzfuß formula (Hede / Wilcke I p. 152)"
+          uk: "Формула стопи (Hede / Wilcke I с. 152)"
+        value:
+          de: "<b>12 ²⁵⁷⁄₇₀₀ Krone (≈ 12,367) je Cöllnische Marck Raulegierung von 13¾ Loth</b> · 18,909 g rau je Krone · 37,819 g rau je Doppelkrone (Corona Danica) · 9,455 g rau je ½ Krone · belegte Hede-Werte aus dem Schou-Katalog (H105, H106, H107, H124, H125, H126)<sup><a href=\"#ref23\">[23]</a></sup>"
+          en: "<b>12 ²⁵⁷⁄₇₀₀ Krone (≈ 12.367) per Cologne mark of raw alloy at 13¾ Loth</b> · 18.909 g rough per Krone · 37.819 g rough per Doppelkrone (Corona Danica) · 9.455 g rough per ½ Krone · catalogue values per Hede / Schou (H105, H106, H107, H124, H125, H126)<sup><a href=\"#ref23\">[23]</a></sup>"
+          uk: "<b>12 ²⁵⁷⁄₇₀₀ Krone (≈ 12,367) з кельнської марки сплаву проби 13¾ Loth</b> · 18,909 г повної ваги на Krone · 37,819 г на Doppelkrone (Corona Danica) · 9,455 г на ½ Krone · документовані значення за Hede / Schou (H105, H106, H107, H124, H125, H126)<sup><a href=\"#ref23\">[23]</a></sup>"
+      - key:
+          de: "Feingehalt"
+          en: "Fineness"
+          uk: "Проба"
+        value:
+          de: "<b>13¾ Loth = ⁵⁵⁄₆₄ = .8594</b> (Hede / Schou: .859) — direkt aus der Hede-Formel «12 ²⁵⁷⁄₇₀₀ Stück je 13¾-lötiger Marck»<sup><a href=\"#ref23\">[23]</a></sup>"
+          en: "<b>13¾ Loth = ⁵⁵⁄₆₄ = .8594</b> (Hede / Schou: .859) — directly from the Hede formula «12 ²⁵⁷⁄₇₀₀ pieces per 13¾-lødig mark»<sup><a href=\"#ref23\">[23]</a></sup>"
+          uk: "<b>13¾ Loth = ⁵⁵⁄₆₄ = .8594</b> (Hede / Schou: .859) — прямо з Hede-формули «12 ²⁵⁷⁄₇₀₀ штук з 13¾-lødig марки»<sup><a href=\"#ref23\">[23]</a></sup>"
+      - key:
+          de: "Feingewicht (Hede)"
+          en: "Fine weight (Hede)"
+          uk: "Чиста вага (Hede)"
+        value:
+          de: "<b>16,250 g fein je Krone</b> · 32,500 g fein je Doppelkrone · 8,125 g fein je ½ Krone · 4,0625 g fein je ¼ Krone — direkt aus dem Schou-Katalog (Wikipedia und Schrötter <i>Wörterbuch der Münzkunde</i> 1930 zitieren dieselben 32,5 g für die Doppelkrone)<sup><a href=\"#ref21\">[21]</a><a href=\"#ref22\">[22]</a><a href=\"#ref23\">[23]</a></sup>"
+          en: "<b>16.250 g fine per Krone</b> · 32.500 g fine per Doppelkrone · 8.125 g fine per ½ Krone · 4.0625 g fine per ¼ Krone — taken directly from the Schou catalogue (Wikipedia and Schrötter, <i>Wörterbuch der Münzkunde</i> 1930, cite the same 32.5 g for the Doppelkrone)<sup><a href=\"#ref21\">[21]</a><a href=\"#ref22\">[22]</a><a href=\"#ref23\">[23]</a></sup>"
+          uk: "<b>16,250 г чистого на Krone</b> · 32,500 г чистого на Doppelkrone · 8,125 г на ½ Krone · 4,0625 г на ¼ Krone — прямі значення зі Schou-каталогу (Wikipedia та Schrötter <i>Wörterbuch der Münzkunde</i> 1930 цитують ті самі 32,5 г для Doppelkrone)<sup><a href=\"#ref21\">[21]</a><a href=\"#ref22\">[22]</a><a href=\"#ref23\">[23]</a></sup>"
+      - key:
+          de: "Müntzfuß nach Feinsilber (abgeleitet)"
+          en: "Müntzfuß by fine silver (derived)"
+          uk: "Стопа за чистим сріблом (похідна)"
+        value:
+          de: "<b>≈ 14,391 Krone je Cöllnische Marck Feinsilber</b> (= 233,856 ÷ 16,250) · kein einfacher kanonischer Bruch — die ungewöhnliche Form <b>12 ²⁵⁷⁄₇₀₀</b> je Raumarck deutet darauf hin, daß der Münzedikt 1618 den Fuß über die Daler-Ausbringung definierte und nicht über eine glatte Stück-Zahl"
+          en: "<b>≈ 14.391 Krone per Cologne mark of fine silver</b> (= 233.856 ÷ 16.250) · not a clean canonical fraction — the unusual form <b>12 ²⁵⁷⁄₇₀₀</b> per raw mark suggests that the 1618 mint edict defined the standard via the daler-udbringning rather than via a round piece count"
+          uk: "<b>≈ 14,391 Krone з кельнської марки чистого срібла</b> (= 233,856 ÷ 16,250) · це не «красивий» канонічний дріб — незвична форма <b>12 ²⁵⁷⁄₇₀₀</b> з повної марки вказує на те, що едикт 1618 р. задавав стопу через daler-udbringning, а не через круглу кількість штук"
+      - key:
+          de: "Daler-Ausbringung (Marken fin udbragt til X daler)"
+          en: "Daler udbringning (Marken fin udbragt til X daler)"
+          uk: "Daler-udbringning (Marken fin udbragt til X daler)"
+        value:
+          de: "<em>«Marken fin udbragt til X daler»</em> = «aus 1 Marck Feinsilber wurden Krone-Münzen im Nennwert von X Daler ausgeprägt» — die <b>finanzielle Ausbringung</b> einer Feinmarck Silber bei dem damals geltenden Tarif. Es ist die period-korrekte dänische Definition des Münzfußes: nicht über eine runde Stückzahl, sondern über die Daler-Ausbringung.<br><br><b>1618 (Anfangstarif 1½ Specie/Doppelkrone, Hede H105):</b> 1 Marck fein → 10,793 Daler in Kronen (= 14,391 Krone × ¾ Specie/Krone)<br>· <b>1624 (Forordning 14. Februar 1624, Specie auf 100 Skilling neu tarifiert, Hede H124):</b> 1 Marck fein → 10,361 Daler in Kronen<br>· <em>identische physische Münze (37,819 g rau, 32,500 g fein); die Daler-Ausbringung sinkt nur, weil der Specie selbst aufgewertet wurde — nicht weil sich die Krone änderte</em><sup><a href=\"#ref23\">[23]</a></sup>"
+          en: "<em>«Marken fin udbragt til X daler»</em> = «one fine mark of silver was struck into Krone coin of face value X daler» — the <b>financial output</b> of one fine Cologne mark of silver at the prevailing tariff. This is the period-correct Danish definition of the Münzfuß: not via a round piece count, but via the daler-udbringning.<br><br><b>1618 (initial 1½ Specie/Doppelkrone tariff, Hede H105):</b> 1 fine mark → 10.793 daler in kroner (= 14.391 Krone × ¾ Specie/Krone)<br>· <b>1624 (Forordning 14 February 1624, Specie re-rated to 100 skilling, Hede H124):</b> 1 fine mark → 10.361 daler in kroner<br>· <em>same physical coin (37.819 g rough, 32.500 g fine); the daler output falls only because the Specie itself was re-rated, not because the Krone changed</em><sup><a href=\"#ref23\">[23]</a></sup>"
+          uk: "<em>«Marken fin udbragt til X daler»</em> = «з 1 марки чистого срібла викарбувано Krone-монет на номінальну суму X даллерів» — це <b>фінансовий вихід</b> однієї марки чистого срібла за чинним тарифом. Це період-коректне данське означення Münzfuß: не через круглу кількість штук, а через daler-udbringning.<br><br><b>1618 (початковий тариф 1½ Specie/Doppelkrone, Hede H105):</b> 1 марка чистого → 10,793 даллерів у Кронах (= 14,391 Krone × ¾ Specie/Krone)<br>· <b>1624 (forordning 14 лютого 1624 р., Specie перетарифовано на 100 skilling, Hede H124):</b> 1 марка чистого → 10,361 даллерів у Кронах<br>· <em>фізично та сама монета (37,819 г повної ваги, 32,500 г чистого); daler-вихід падає лише через перетарифування самого Specie, а не через зміну Krone</em><sup><a href=\"#ref23\">[23]</a></sup>"
+      - key:
+          de: "Tarifhistorie und Specie-Äquivalent (königliche Verordnung)"
+          en: "Tariff history and Specie equivalent (royal decree)"
+          uk: "Історія тарифу та Specie-еквівалент (королівський декрет)"
+        value:
+          de: "<b>1618</b> (Corona Danica): 1 Krone = <b>1½ Reichstaler</b> = <b>96 Kroneskilling</b> → 14,391 × 1½ ≈ <b>21,6 Specie-Nominale je Marck Feinsilber</b> (übermäßiger Aufschlag — Anlaß für den Kaufmannsprotest)<br>· <b>1625</b> (offizielle Tarifsenkung): 1 Krone = <b>1⅓ Reichstaler</b> → 14,391 × 1⅓ ≈ <b>19,2 Specie-Nominale je Marck</b> · Münzgewinn der Krone bei der Reduktion ca. 11 %<sup><a href=\"#ref21\">[21]</a><a href=\"#ref22\">[22]</a></sup>"
+          en: "<b>1618</b> (Corona Danica): 1 Krone = <b>1½ Reichstaler</b> = <b>96 Kroneskilling</b> → 14.391 × 1½ ≈ <b>21.6 Specie nominals per Mark of fine silver</b> (excessive premium — trigger for the merchant protest)<br>· <b>1625</b> (official tariff reduction): 1 Krone = <b>1⅓ Reichstaler</b> → 14.391 × 1⅓ ≈ <b>19.2 Specie nominals per Mark</b> · the Crown's mint gain on the reduction was about 11 %<sup><a href=\"#ref21\">[21]</a><a href=\"#ref22\">[22]</a></sup>"
+          uk: "<b>1618</b> (Corona Danica): 1 Krone = <b>1½ Рейхсталер</b> = <b>96 Kroneskilling</b> → 14,391 × 1½ ≈ <b>21,6 Specie-номіналів з марки чистого срібла</b> (надмірна надбавка — поштовх до купецького протесту)<br>· <b>1625</b> (офіційна тарифна редукція): 1 Krone = <b>1⅓ Рейхсталера</b> → 14,391 × 1⅓ ≈ <b>19,2 Specie-номіналів з марки</b> · монетний прибуток Корони від редукції ~11 %<sup><a href=\"#ref21\">[21]</a><a href=\"#ref22\">[22]</a></sup>"
+    rechnungsfraktionen_label:
+      de: Rechnungsfraktionen (Krone-Tarif-Theilung)
+      en: Accounting fractions (Krone-tariff subdivision)
+      uk: Розрахункові фракції (поділ за Krone-тарифом)
+    rechnungsfraktionen:
+      de: <b>1 Krone</b> = <b>16,250 g</b> Feinsilber = <b>1½ Reichstaler</b> (1618–1624) bzw. <b>1⅓ Reichstaler</b> (ab 1625) = <b>4 Marck Danske</b> = <b>96 Kroneskilling</b><br><b>2 Krone</b> (Doppelkrone, Corona Danica) = <b>32,500 g</b> fein, 37,819 g rau (Hede H105, H124 — KM# 60, 61, 99)<br><b>½ Krone</b> = <b>8,125 g</b> fein, 9,455 g rau = 48 Kroneskilling = 2 Marck Danske (Hede H107, H126 — KM# 58, 58a, 94, 95)<br><b>¼ Krone</b> = <b>4,0625 g</b> fein = 24 Kroneskilling = 1 Marck Danske (KM# 57; Wilcke I p. 152 — 1618 etwas niedrigere Münzfod als die Hauptformel, exakte Werte aus Wilcke nachzutragen)<br><br><b>Kroneskilling-Subeinheit</b> (1619–1621, eigene Prägungen):<br>· <b>1 Kroneskilling</b> = 1/96 Krone (Tarif) — KM# 65 (N#109264)<br>· <b>2 Kroneskilling</b> = 1/48 Krone (Tarif) — KM# 68 (N#142850)<br>· <b>4 Kroneskilling</b> = 1/24 Krone (Tarif) — KM# 70 (Typ I), KM# 81 (Typ II)<br>· <b>8 Kroneskilling</b> = 1/12 Krone (Tarif) — KM# 82 (Typ II)<br><br><em><b>Hinweis:</b> Die Kroneskillinge tragen empirisch bis ~2× mehr Feinsilber pro Stück als der strikte 1/96-Krone-Müntzfuß vorschreibt — typisch für Kleinmünzen, deren Nutzbarkeit im Alltagsumlauf einen Mindestsilbergehalt erfordert. Daher zählen sie als <b>Scheidemünzen innerhalb der Christian-IVs-kroner-Münzformel</b> (siehe Sondertabelle unten). Tarif-Theilungsverhältnis 1:96 bleibt nominell, der Silberanteil pro Kroneskilling weicht aber positiv ab.</em><br><br><em>Nicht zu verwechseln mit Skilling Lybsk (1/48 Reichsthaler im 9-Fuß) oder Skilling Dansk (1/96 Speciedaler im 9¼-Fuß) — Kroneskilling ist eine eigenständige Subeinheit speziell der Corona-Danica-Tarifmünze.</em>
+      en: <b>1 Krone</b> = <b>16.250 g</b> fine silver = <b>1½ Reichstaler</b> (1618–1624) or <b>1⅓ Reichstaler</b> (from 1625) = <b>4 Marck Danske</b> = <b>96 Kroneskilling</b><br><b>2 Krone</b> (Doppelkrone, Corona Danica) = <b>32.500 g</b> fine, 37.819 g rough (Hede H105, H124 — KM# 60, 61, 99)<br><b>½ Krone</b> = <b>8.125 g</b> fine, 9.455 g rough = 48 Kroneskilling = 2 Marck Danske (Hede H107, H126 — KM# 58, 58a, 94, 95)<br><b>¼ Krone</b> = <b>4.0625 g</b> fine = 24 Kroneskilling = 1 Marck Danske (KM# 57; Wilcke I p. 152 — a slightly lower Münzfod than the main formula was used in 1618; exact values to be added from Wilcke)<br><br><b>Kroneskilling subunit</b> (separate strikes 1619–1621):<br>· <b>1 Kroneskilling</b> = 1/96 Krone (tariff) — KM# 65 (N#109264)<br>· <b>2 Kroneskilling</b> = 1/48 Krone (tariff) — KM# 68 (N#142850)<br>· <b>4 Kroneskilling</b> = 1/24 Krone (tariff) — KM# 70 (Type I), KM# 81 (Type II)<br>· <b>8 Kroneskilling</b> = 1/12 Krone (tariff) — KM# 82 (Type II)<br><br><em><b>Note:</b> The Kroneskillinge empirically carry up to ~2× more fine silver per piece than the strict 1/96 Krone standard would prescribe — typical for petty coins whose everyday usability requires a minimum silver content. They therefore count as <b>Scheidemünzen within the Christian IV's kroner standard</b> (see separate sub-table below). The 1:96 tariff subdivision remains nominal; the silver share per Kroneskilling deviates positively from it.</em><br><br><em>Not to be confused with Skilling Lybsk (1/48 Reichsthaler in the 9-Fuß) or Skilling Dansk (1/96 Speciedaler in the 9¼-Fuß) — Kroneskilling is an independent subunit specific to the Corona Danica tariff coinage.</em>
+      uk: <b>1 Krone</b> = <b>16,250 г</b> чистого срібла = <b>1½ Рейхсталер</b> (1618–1624) або <b>1⅓ Рейхсталер</b> (з 1625) = <b>4 Marck Danske</b> = <b>96 Kroneskilling</b><br><b>2 Krone</b> (Doppelkrone, Corona Danica) = <b>32,500 г</b> чистого, 37,819 г повної ваги (Hede H105, H124 — KM# 60, 61, 99)<br><b>½ Krone</b> = <b>8,125 г</b> чистого, 9,455 г повної ваги = 48 Kroneskilling = 2 Marck Danske (Hede H107, H126 — KM# 58, 58a, 94, 95)<br><b>¼ Krone</b> = <b>4,0625 г</b> чистого = 24 Kroneskilling = 1 Marck Danske (KM# 57; Wilcke I с. 152 — 1618 р. застосовувалась дещо нижча møntfod; точні значення треба підняти з Wilcke)<br><br><b>Kroneskilling-субодиниця</b> (окремі карбування 1619–1621):<br>· <b>1 Kroneskilling</b> = 1/96 Krone (тариф) — KM# 65 (N#109264)<br>· <b>2 Kroneskilling</b> = 1/48 Krone (тариф) — KM# 68 (N#142850)<br>· <b>4 Kroneskilling</b> = 1/24 Krone (тариф) — KM# 70 (Тип I), KM# 81 (Тип II)<br>· <b>8 Kroneskilling</b> = 1/12 Krone (тариф) — KM# 82 (Тип II)<br><br><em><b>Зауваження:</b> Kroneskilling-и емпірично несуть до ~2× більше чистого срібла на штуку, ніж передбачає строга 1/96-Krone-стопа — типова риса дрібних монет, для яких мінімальний срібний вміст потрібен для повсякденної придатності. Тому вони класифіковані як <b>Scheidemünzen у межах Christian IV's kroner</b> (див. окрему підтаблицю нижче). Тарифне співвідношення поділу 1:96 залишається номінальним; срібна частка на Kroneskilling відхиляється від нього в плюс.</em><br><br><em>Не плутати зі Skilling Lybsk (1/48 Reichsthaler у 9-Fuß) чи Skilling Dansk (1/96 Speciedaler у 9¼-Fuß) — Kroneskilling це самостійна субодиниця, специфічна саме для тарифної монети Corona Danica.</em>
+  fractions:
+    # Hede-Schou primary catalogue values (H105/H106/H107 + H124/H125/H126).
+    # Wikipedia and Schrötter 1930 (Wörterbuch der Münzkunde, p. 113-114) cite
+    # the same 32,5 g fine for the Doppelkrone (Corona Danica).
+    "2": {soll_fein_g: 32.500}       # 2 Krone / Doppelkrone (Hede H105, H124)
+    "1": {soll_fein_g: 16.250}       # 1 Krone (Hede H106, H125)
+    "1/2": {soll_fein_g: 8.125}      # ½ Krone (Hede H107, H126)
+    "1/4": {soll_fein_g: 4.0625}     # ¼ Krone (1618 only; per Wilcke I p. 152
+                                     # the 1618 sub-Krone denominations were
+                                     # struck on a slightly worse Münzfod —
+                                     # exact values to be added from Wilcke)
+
+    # Kroneskilling subdivisions: nominal 1/96 of the Krone tariff. Empirical
+    # Kroneskillinge carry up to ~2× more fine silver than these targets.
+    1/96:
+      soll_fein_g: 0.16927           # 16.250 ÷ 96
+    1/48:
+      soll_fein_g: 0.33854           # 16.250 ÷ 48
+    1/24:
+      soll_fein_g: 0.67708           # 16.250 ÷ 24
+    1/12:
+      soll_fein_g: 1.35417           # 16.250 ÷ 12
+kronemont:
+  name:
+    de: 10½-Krone-Fuß
+    en: 10½-Krone-Fuß
+    uk: 10½-Krone-Fuß
+  metal: silver
+  grid_unit_g: 233.856
+  # 10½-Krone-Fuß (Hede-Nickname «grove kroner»). Hede 1957 / Wilcke II p. 203:
+  # 10½ Stück je 10¾-lötiger Marck (.671875 = 43/64) = 22,272 g rau / 14,964 g fein.
+  # Norwegen ab 1649, Dänemark ab 1652, letzte Prägung 1732.
+  # grid_stops = 233,856 ÷ 14,964 = 15,628.
+  grid_stops: 15.628
+  fineness_standard: 0.671875
+  fineness_display: "≈ 672 ‰ (10¾ Loth = ⁴³⁄₆₄)"
+  grundwerte:
+    heading:
+      de: "Grundwerte · 10½-Krone-Fuß («Grobe Krone», 1649/1652–1732)"
+      en: "Base values · 10½-Krone-Fuß («Coarse Krone», 1649/1652–1732)"
+      uk: "Базові значення · 10½-Krone-Fuß («Груба Крона», 1649/1652–1732)"
+    subheading:
+      de: "Cöllnische Marck (Raulegierung) = 233,856 g · Hede-Formel: <b>10½ Stück je 10¾-lötiger Marck</b> = 22,272 g rau bei .672 Feingehalt = <b>14,964 g fein je Krone</b> · «<i>Grobe Krone</i>»"
+      en: "Cologne mark (raw alloy) = 233.856 g · Hede formula: <b>10½ pieces per 10¾-lødig mark</b> = 22.272 g rough at .672 fineness = <b>14.964 g fine per Krone</b> · «<i>Coarse Krone</i>»"
+      uk: "Кельнська марка (сплав, rau) = 233,856 г · Hede-формула: <b>10½ штук з 10¾-lødig марки</b> = 22,272 г повної ваги за проби .672 = <b>14,964 г чистого на Krone</b> · «<i>Груба Крона</i>»"
+    badge:
+      de: "Müntzfuß · Tarifmünze"
+      en: "Müntzfuß · Tariff coin"
+      uk: "Стопа · тарифна монета"
+    rows:
+      - key:
+          de: "Münzfuß-Formel (Hede / Wilcke II p. 203)"
+          en: "Münzfuß formula (Hede / Wilcke II p. 203)"
+          uk: "Формула стопи (Hede / Wilcke II с. 203)"
+        value:
+          de: "<b>10½ Krone je Cöllnische Marck Raulegierung von 10¾ Loth</b> · 22,272 g rau je Krone · 11,136 g rau je ½ Krone · 5,568 g rau je ¼ Krone — Norwegen ab 1649, Dänemark ab 1652, letzte Prägung 1732<sup><a href=\"#ref23\">[23]</a></sup>"
+          en: "<b>10½ Krone per Cologne mark of raw alloy at 10¾ Loth</b> · 22.272 g rough per Krone · 11.136 g rough per ½ Krone · 5.568 g rough per ¼ Krone — Norway from 1649, Denmark from 1652, last struck 1732<sup><a href=\"#ref23\">[23]</a></sup>"
+          uk: "<b>10½ Krone з кельнської марки сплаву проби 10¾ Loth</b> · 22,272 г повної ваги на Krone · 11,136 г на ½ Krone · 5,568 г на ¼ Krone — Норвегія з 1649 р., Данія з 1652 р., останнє карбування 1732 р.<sup><a href=\"#ref23\">[23]</a></sup>"
+      - key:
+          de: "Feingehalt"
+          en: "Fineness"
+          uk: "Проба"
+        value:
+          de: "<b>10¾ Loth = ⁴³⁄₆₄ = .671875</b> (Hede / Schou: .672) — direkt aus der Hede-Formel «10½ Stück je 10¾-lötiger Marck»<sup><a href=\"#ref23\">[23]</a></sup>"
+          en: "<b>10¾ Loth = ⁴³⁄₆₄ = .671875</b> (Hede / Schou: .672) — directly from the Hede formula «10½ pieces per 10¾-lødig mark»<sup><a href=\"#ref23\">[23]</a></sup>"
+          uk: "<b>10¾ Loth = ⁴³⁄₆₄ = .671875</b> (Hede / Schou: .672) — прямо з Hede-формули «10½ штук з 10¾-lødig марки»<sup><a href=\"#ref23\">[23]</a></sup>"
+      - key:
+          de: "Feingewicht (Hede)"
+          en: "Fine weight (Hede)"
+          uk: "Чиста вага (Hede)"
+        value:
+          de: "<b>14,964 g fein je Krone</b> (= 22,272 × .671875) · 7,482 g fein je ½ Krone · 3,741 g fein je ¼ Krone<sup><a href=\"#ref23\">[23]</a></sup>"
+          en: "<b>14.964 g fine per Krone</b> (= 22.272 × .671875) · 7.482 g fine per ½ Krone · 3.741 g fine per ¼ Krone<sup><a href=\"#ref23\">[23]</a></sup>"
+          uk: "<b>14,964 г чистого на Krone</b> (= 22,272 × .671875) · 7,482 г чистого на ½ Krone · 3,741 г чистого на ¼ Krone<sup><a href=\"#ref23\">[23]</a></sup>"
+      - key:
+          de: "Müntzfuß nach Feinsilber (abgeleitet)"
+          en: "Müntzfuß by fine silver (derived)"
+          uk: "Стопа за чистим сріблом (похідна)"
+        value:
+          de: "<b>≈ 15,628 Krone je Marck Feinsilber</b> (= 10½ × ⁶⁴⁄₄₃) · <em>kein einfacher kanonischer Bruch — der 10½-Krone-Fuß wurde nach Raugewicht festgelegt, nicht nach Feinsilber-Stückzahl</em> · zum Vergleich: Thaler Species 9¼-Fuß, Reichsthaler 9-Fuß, Kurantdaler 11⅓-Fuß"
+          en: "<b>≈ 15.628 Krone per Mark of fine silver</b> (= 10½ × ⁶⁴⁄₄₃) · <em>not a clean canonical fraction — the 10½-Krone-Fuß was specified by rough weight, not by fine-silver piece count</em> · for comparison: Thaler Species 9¼-Fuß, Reichsthaler 9-Fuß, Kurantdaler 11⅓-Fuß"
+          uk: "<b>≈ 15,628 Krone з марки чистого срібла</b> (= 10½ × ⁶⁴⁄₄₃) · <em>це не «красивий» канонічний дріб — 10½-Krone-Fuß задавався за повною вагою, а не за кількістю штук на чисте срібло</em> · для порівняння: Thaler Species 9¼-Fuß, Reichsthaler 9-Fuß, Kurantdaler 11⅓-Fuß"
+      - key:
+          de: "Tarifhistorie und Specie-Äquivalent (königliche Verordnung)"
+          en: "Tariff history and Specie equivalent (royal decree)"
+          uk: "Історія тарифу та Specie-еквівалент (королівський декрет)"
+        value:
+          de: "<b>1670</b> (Chr. V., auf Münze «2 MARCK» = ⅔ Specie explizit): 1 Krone = <b>⅔ Specie</b> → 15,628 × ⅔ ≈ <b>10,42 Specie-Nominale je Marck Feinsilber</b> (Hauptbestand des Katalogs — stabilisierte Endphase der Krone-Mønt)<br>· Vorgängerformel <i>Christian IVs kroner</i> (1618–1652) hatte höheren Feingehalt und höheren Tarif (1½ Specie/Krone), siehe oben.<br><em>Specie-Nominale ≠ Stück-pro-Marck-Münzfuß — die Specie-Skala bemißt nominellen Tarifwert, nicht Münzfuß.</em>"
+          en: "<b>1670</b> (Christian V, with «2 MARCK» = ⅔ Specie explicit on the coin): 1 Krone = <b>⅔ Specie</b> → 15.628 × ⅔ ≈ <b>10.42 Specie nominals per Mark of fine silver</b> (bulk of the catalogue — stabilised final phase of the Krone-Mønt)<br>· The predecessor formula <i>Christian IV's kroner</i> (1618–1652) had higher fineness and a higher tariff (1½ Specie/Krone), see above.<br><em>Specie nominals ≠ coins-per-Mark standard — the Specie scale measures nominal tariff value, not Münzfuß.</em>"
+          uk: "<b>1670</b> (Кристіан V, на монеті явно «2 MARCK» = ⅔ Specie): 1 Krone = <b>⅔ Specie</b> → 15,628 × ⅔ ≈ <b>10,42 Specie-номіналів з марки чистого срібла</b> (основна частина каталогу — стабілізована фінальна фаза Krone-Mønt)<br>· Попередня формула <i>Christian IV's kroner</i> (1618–1652) мала вищу пробу і вищий тариф (1½ Specie/Krone), див. вище.<br><em>Specie-номінали ≠ «монет з марки» — Specie-шкала вимірює номінальну вартість за тарифом, а не Münzfuß.</em>"
+    rechnungsfraktionen_label:
+      de: Rechnungsfraktionen (Krone-Tarif-Theilung)
+      en: Accounting fractions (Krone-tariff subdivision)
+      uk: Розрахункові фракції (поділ за Krone-тарифом)
+    rechnungsfraktionen:
+      de: <b>1 Krone</b> = <b>4 Marck Danske</b> = <b>14,964 g</b> Feinsilber = <b>⅔ Speciedaler</b> (Tarif Christian V., 1670+) — 22,272 g rau bei .672 Feingehalt<br><b>½ Krone</b> = <b>2 Marck Danske</b> = <b>7,482 g</b> fein = <b>⅓ Speciedaler</b> · 11,136 g rau (KM# 65, 80.1, 80.2, 377, 406.3)<br><b>¼ Krone</b> = <b>1 Marck Danske</b> = <b>3,741 g</b> fein = <b>⅙ Speciedaler</b> · 5,568 g rau (KM# 342, 350, 381 — Kopenhagener Prägungen Christian V.)<br><br><em><b>Marck Danske</b> ist die Rechnungsfraktion der Krone in diesem Müntzfuß — nicht zu verwechseln mit <b>Mark lübisch</b> (1/3 Reichsthaler im 9-Fuß), <b>Mark Sch.-H. Courant</b> (1/3 Thaler Species ab 1788) oder dem späteren <b>Rigsbankdaler</b> (1813+). Die hier verwendete Marck Danske gehört speziell zur dänischen Kronemønt-Tarifsystemik 1644–1696.</em><br><br><em>Die ältere Krone-Münzformel <i>Christian IVs kroner</i> 1618–1652 (siehe oben) übernimmt denselben Krone-Begriff, aber mit höherem Feingehalt (.859 statt .672) und höherem Tarif (1½ → 1⅓ Specie statt ⅔). Eine spätere dritte Formel — der <b>13-Krone-Fuß</b> («<i>Feine Krone</i>») 1693–1771 — folgt unten.</em>
+      en: <b>1 Krone</b> = <b>4 Marck Danske</b> = <b>14.964 g</b> fine silver = <b>⅔ Speciedaler</b> (Christian V tariff, 1670+) — 22.272 g rough at .672 fineness<br><b>½ Krone</b> = <b>2 Marck Danske</b> = <b>7.482 g</b> fine = <b>⅓ Speciedaler</b> · 11.136 g rough (KM# 65, 80.1, 80.2, 377, 406.3)<br><b>¼ Krone</b> = <b>1 Marck Danske</b> = <b>3.741 g</b> fine = <b>⅙ Speciedaler</b> · 5.568 g rough (KM# 342, 350, 381 — Copenhagen Christian V issues)<br><br><em><b>Marck Danske</b> is the accounting fraction of the Krone in this standard — not to be confused with <b>Mark lübisch</b> (1/3 Reichsthaler in the 9-Fuß), <b>Mark Sch.-H. Courant</b> (1/3 Thaler Species from 1788) or the later <b>Rigsbankdaler</b> (1813+). The Marck Danske used here belongs specifically to the Danish Kronemønt tariff system 1644–1696.</em><br><br><em>The earlier Krone formula <i>Christian IV's kroner</i> 1618–1652 (see above) uses the same «Krone» label but at higher fineness (.859 vs .672) and higher tariff (1½ → 1⅓ Specie rather than ⅔). A later third formula — the <b>13-Krone-Fuß</b> («<i>Fine Krone</i>») 1693–1771 — follows below.</em>
+      uk: <b>1 Krone</b> = <b>4 Marck Danske</b> = <b>14,964 г</b> чистого срібла = <b>⅔ Speciedaler</b> (тариф Кристіана V, 1670+) — 22,272 г повної ваги за проби .672<br><b>½ Krone</b> = <b>2 Marck Danske</b> = <b>7,482 г</b> чистого = <b>⅓ Speciedaler</b> · 11,136 г повної ваги (KM# 65, 80.1, 80.2, 377, 406.3)<br><b>¼ Krone</b> = <b>1 Marck Danske</b> = <b>3,741 г</b> чистого = <b>⅙ Speciedaler</b> · 5,568 г повної ваги (KM# 342, 350, 381 — копенгагенські емісії Кристіана V)<br><br><em><b>Marck Danske</b> у цій стопі — розрахункова частка Krone, не плутати з <b>Mark lübisch</b> (1/3 Reichsthaler у 9-Fuß), <b>Mark Sch.-H. Courant</b> (1/3 Thaler Species з 1788) чи пізнішим <b>Rigsbankdaler</b> (1813+). Використана тут Marck Danske належить саме до данської Kronemønt-тарифної системи 1644–1696.</em><br><br><em>Старіша Krone-формула <i>Christian IV's kroner</i> 1618–1652 (див. вище) використовує той самий термін «Krone», але з вищою пробою (.859 проти .672) і вищим тарифом (1½ → 1⅓ Specie замість ⅔). Ще одна, третя формула — <b>13-Krone-Fuß</b> («<i>Тонка Крона</i>») 1693–1771 — далі нижче.</em>
+  description:
+    de: |
+      Fiskalische Tarifmünze, Christian IV. bis Christian V. (1618–1696).
+      KEIN vollwertiger Thaler Species — folgt eigenem Münzfuß mit reduziertem
+      Feingehalt, der sich weder mathematisch noch konzeptionell aus dem 9¼-Fuß
+      ableiten läßt. Empirisch ≈ 15,65 Kronen je Cöllnische Marck Feinsilber.
+      Fundamental ist nicht der Feingehalt, sondern der TARIF: Die Krone wurde
+      zu einem königlich festgesetzten Nennwert ÜBER dem Silberwert gehandelt.
+      Die Differenz war Seigniorage-Gewinn der Krone, nicht Marktpreis.
+    en: |-
+      Fiscal tariff coin, Christian IV through Christian V (1618–1696). NOT a full-value Thaler Species — follows its own standard with reduced fineness that cannot be mathematically or conceptually derived from the 9¼-Thaler-Fuß. Empirically ≈ 15.65 Krones per fine Cologne mark. The fundamental feature is not the fineness but the TARIFF: the Krone was traded at a king-set face value ABOVE silver content. The difference was state seigniorage, not market price.
+    uk: |-
+      Фіскальна тарифна монета, від Крістіана IV до Крістіана V (1618–1696). НЕ повноцінний спецієсталер — має власний стандарт зі зниженою пробою, який не виводиться математично зі 9¼-стандарту. Емпірично ≈ 15,65 крон з чистої кельнської марки. Фундаментальною рисою є не проба, а ТАРИФ: крона обігала за встановленою королем вартістю ВИЩЕ вмісту срібла. Різниця — сеньйораж, а не ринкова ціна.
+  fractions:
+    # Hede / Wilcke II p. 203 formula: 22.272 g rough × .671875 = 14.964 g fine.
+    "2": {soll_fein_g: 29.928}          # 2 Krone (Doppelkrone)
+    "1": {soll_fein_g: 14.964}          # 1 Krone = 4 Marck Danske
+    "1/2": {soll_fein_g: 7.482}         # ½ Krone = 2 Marck Danske
+    "1/4": {soll_fein_g: 3.741}         # ¼ Krone = 1 Marck Danske
+
+# -----------------------------------------------------------------------------
+# 13-Krone-Fuß (Hede-Nickname «fine kroner»). Hede 1957:
+#   13 Stück je 13⅓-lötiger Marck (≈ .833) = 17.988 g rau / 14.984 g fein.
+# Eingeführt durch Reskript 31. Dezember 1692 (Christian V.); letzte Prägung
+# 1771. Höherer Feingehalt als der 10½-Fuß, aber nur 0,02 g mehr Feinsilber pro
+# Stück — der Wechsel war eher symbolisch (Vertrauenswiederherstellung) als eine
+# echte Aufwertung. grid_stops = 233.856 ÷ 14.984 = 15.607.
+# -----------------------------------------------------------------------------
+kronemont_fine:
+  name:
+    de: 13-Krone-Fuß
+    en: 13-Krone-Fuß
+    uk: 13-Krone-Fuß
+  metal: silver
+  grid_unit_g: 233.856
+  grid_stops: 15.607
+  fineness_standard: 0.833333
+  fineness_display: "≈ 833 ‰ (13⅓ Loth = ⁴⁰⁄₄₈)"
+  grundwerte:
+    heading:
+      de: "Grundwerte · 13-Krone-Fuß («Feine Krone», 1693–1771)"
+      en: "Base values · 13-Krone-Fuß («Fine Crown», 1693–1771)"
+      uk: "Базові значення · 13-Krone-Fuß («Тонка Крона», 1693–1771)"
+    subheading:
+      de: "Cöllnische Marck (Raulegierung) = 233,856 g · Hede-Formel: <b>13 Stück je 13⅓-lötiger Marck</b> = 17,988 g rau bei .833 Feingehalt = <b>14,984 g fein je Krone</b> · «<i>Feine Krone</i>» · eingeführt durch Reskript 31. Dezember 1692"
+      en: "Cologne mark (raw alloy) = 233.856 g · Hede formula: <b>13 pieces per 13⅓-lødig mark</b> = 17.988 g rough at .833 fineness = <b>14.984 g fine per Krone</b> · «<i>Fine Krone</i>» · introduced by reskript of 31 December 1692"
+      uk: "Кельнська марка (сплав, rau) = 233,856 г · Hede-формула: <b>13 штук з 13⅓-lødig марки</b> = 17,988 г повної ваги за проби .833 = <b>14,984 г чистого на Krone</b> · «<i>Тонка Крона</i>» · запроваджено рескриптом 31 грудня 1692 р."
+    badge:
+      de: "Müntzfuß · Tarifmünze"
+      en: "Müntzfuß · Tariff coin"
+      uk: "Стопа · тарифна монета"
+    rows:
+      - key:
+          de: "Münzfuß-Formel (Hede)"
+          en: "Münzfuß formula (Hede)"
+          uk: "Формула стопи (Hede)"
+        value:
+          de: "<b>13 Krone je Cöllnische Marck Raulegierung von 13⅓ Loth</b> · 17,988 g rau je Krone · 8,994 g rau je ½ Krone · 35,976 g rau je 2 Krone — Reskript 31. Dezember 1692; Prägung 1693–1771<sup><a href=\"#ref23\">[23]</a></sup>"
+          en: "<b>13 Krone per Cologne mark of raw alloy at 13⅓ Loth</b> · 17.988 g rough per Krone · 8.994 g rough per ½ Krone · 35.976 g rough per 2 Krone — reskript of 31 December 1692; struck 1693–1771<sup><a href=\"#ref23\">[23]</a></sup>"
+          uk: "<b>13 Krone з кельнської марки сплаву проби 13⅓ Loth</b> · 17,988 г повної ваги на Krone · 8,994 г на ½ Krone · 35,976 г на 2 Krone — рескрипт 31 грудня 1692 р.; карбування 1693–1771 рр.<sup><a href=\"#ref23\">[23]</a></sup>"
+      - key:
+          de: "Feingehalt"
+          en: "Fineness"
+          uk: "Проба"
+        value:
+          de: "<b>13⅓ Loth = ⁴⁰⁄₄₈ = ⅚ = .8333</b> (Hede / Schou: .833)<sup><a href=\"#ref23\">[23]</a></sup>"
+          en: "<b>13⅓ Loth = ⁴⁰⁄₄₈ = ⅚ = .8333</b> (Hede / Schou: .833)<sup><a href=\"#ref23\">[23]</a></sup>"
+          uk: "<b>13⅓ Loth = ⁴⁰⁄₄₈ = ⅚ = .8333</b> (Hede / Schou: .833)<sup><a href=\"#ref23\">[23]</a></sup>"
+      - key:
+          de: "Feingewicht (Hede)"
+          en: "Fine weight (Hede)"
+          uk: "Чиста вага (Hede)"
+        value:
+          de: "<b>14,984 g fein je Krone</b> (= 17,988 × .8333) · 7,492 g fein je ½ Krone · 29,968 g fein je 2 Krone<sup><a href=\"#ref23\">[23]</a></sup>"
+          en: "<b>14.984 g fine per Krone</b> (= 17.988 × .8333) · 7.492 g fine per ½ Krone · 29.968 g fine per 2 Krone<sup><a href=\"#ref23\">[23]</a></sup>"
+          uk: "<b>14,984 г чистого на Krone</b> (= 17,988 × .8333) · 7,492 г чистого на ½ Krone · 29,968 г чистого на 2 Krone<sup><a href=\"#ref23\">[23]</a></sup>"
+      - key:
+          de: "Müntzfuß nach Feinsilber"
+          en: "Müntzfuß by fine silver"
+          uk: "Стопа за чистим сріблом"
+        value:
+          de: "<b>≈ 15,607 Krone je Marck Feinsilber</b> (= 233,856 ÷ 14,984) · zum Vergleich: <b>10½-Krone-Fuß</b> 15,628; <i>Christian IVs kroner</i> 14,391 — der 13-Krone-Fuß liegt nur 0,02 g Feinsilber über dem 10½-Krone-Fuß (Hede)"
+          en: "<b>≈ 15.607 Krone per Mark of fine silver</b> (= 233.856 ÷ 14.984) · for comparison: <b>10½-Krone-Fuß</b> 15.628; <i>Christian IV's kroner</i> 14.391 — the 13-Krone-Fuß sits only 0.02 g of fine silver above the 10½-Krone-Fuß (Hede)"
+          uk: "<b>≈ 15,607 Krone з марки чистого срібла</b> (= 233,856 ÷ 14,984) · для порівняння: <b>10½-Krone-Fuß</b> 15,628; <i>Christian IV's kroner</i> 14,391 — 13-Krone-Fuß містить лише на 0,02 г чистого срібла більше, ніж 10½-Krone-Fuß (Hede)"
+      - key:
+          de: "Reform-Charakter"
+          en: "Reform character"
+          uk: "Характер реформи"
+        value:
+          de: "Reskript 31. Dezember 1692 spricht von «<i>der allerbedste Godhed som den nogen Tid udi vores Regerings Tid haver været slagen</i>», setzt aber den tatsächlichen Feinsilbergehalt nur 0,02 g über den bisherigen 10½-Krone-Fuß. Die Reform ist vorwiegend symbolisch — höhere nominale Lötigkeit bei kleinerem Stück, gleicher Feinsilbervorrat<sup><a href=\"#ref23\">[23]</a></sup>"
+          en: "The reskript of 31 December 1692 speaks of «<i>der allerbedste Godhed som den nogen Tid udi vores Regerings Tid haver været slagen</i>» («the very best fineness ever struck in our reign»), yet sets the actual fine-silver content only 0.02 g above the existing 10½-Krone-Fuß. The reform is largely symbolic — higher nominal fineness on a smaller coin, same fine-silver content<sup><a href=\"#ref23\">[23]</a></sup>"
+          uk: "Рескрипт 31 грудня 1692 р. говорить про «<i>der allerbedste Godhed som den nogen Tid udi vores Regerings Tid haver været slagen</i>» («найкращу пробу за весь час нашого правління»), але фактично встановлює вміст чистого срібла лише на 0,02 г вище за вже існуючий 10½-Krone-Fuß. Реформа здебільшого символічна — вища номінальна проба на меншій монеті, той самий вміст чистого срібла<sup><a href=\"#ref23\">[23]</a></sup>"
+    rechnungsfraktionen_label:
+      de: Rechnungsfraktionen
+      en: Accounting fractions
+      uk: Розрахункові фракції
+    rechnungsfraktionen:
+      de: "<b>2 Krone</b> = <b>29,968 g</b> fein, 35,976 g rau<br><b>1 Krone</b> = <b>14,984 g</b> fein, 17,988 g rau = 4 Marck Danske<br><b>½ Krone</b> = <b>7,492 g</b> fein, 8,994 g rau = 2 Marck Danske<br><br><em>In dieser Fußform wurde die Krone bis zur endgültigen Ablösung 1771 weitergeprägt — vor allem in den Regierungsjahren Christians V. (Schluß), Frederiks IV., Christians VI. und Frederiks V. Glückstadter Prägungen sind selten; der Schwerpunkt lag in Kopenhagen.</em>"
+      en: "<b>2 Krone</b> = <b>29.968 g</b> fine, 35.976 g rough<br><b>1 Krone</b> = <b>14.984 g</b> fine, 17.988 g rough = 4 Marck Danske<br><b>½ Krone</b> = <b>7.492 g</b> fine, 8.994 g rough = 2 Marck Danske<br><br><em>The Krone continued to be struck on this formula until its final retirement in 1771 — chiefly under the late Christian V, Frederik IV, Christian VI and Frederik V. Glückstadt strikes are rare; the bulk was minted in Copenhagen.</em>"
+      uk: "<b>2 Krone</b> = <b>29,968 г</b> чистого, 35,976 г повної ваги<br><b>1 Krone</b> = <b>14,984 г</b> чистого, 17,988 г повної ваги = 4 Marck Danske<br><b>½ Krone</b> = <b>7,492 г</b> чистого, 8,994 г повної ваги = 2 Marck Danske<br><br><em>За цією формулою Krone карбувалася аж до остаточного припинення 1771 р. — переважно за правління пізнього Кристіана V, Фредеріка IV, Кристіана VI та Фредеріка V. Ґлюкштатські емісії рідкісні; основа карбування — Копенгаген.</em>"
+  description:
+    de: |
+      Dritte und letzte Krone-Münzformel der dänischen Monarchie. Eingeführt durch
+      Reskript 31. Dezember 1692 unter Christian V. — höherer Feingehalt (13⅓ Loth)
+      bei reduziertem Raugewicht (17,988 g) gegenüber dem 10½-Krone-Fuß. De facto
+      nur 0,02 g mehr Feinsilber pro Stück; die Reform ist vorwiegend Symbolik der
+      Vertrauenswiederherstellung. Letzte Prägung 1771.
+    en: |-
+      The third and final Krone formula of the Danish monarchy. Introduced by
+      reskript of 31 December 1692 under Christian V — higher fineness (13⅓ Loth)
+      on a reduced rough weight (17.988 g) versus the 10½-Krone-Fuß. The actual
+      fine-silver content is only 0.02 g higher per coin; the reform is mainly
+      symbolic, intended to restore confidence. Last struck 1771.
+    uk: |-
+      Третя і остання Krone-формула данської монархії. Запроваджена рескриптом
+      31 грудня 1692 р. за Кристіана V — вища проба (13⅓ Loth) при зменшеній
+      повній вазі (17,988 г) порівняно з 10½-Krone-Fuß. Фактичний вміст чистого
+      срібла лише на 0,02 г вищий за монету; реформа переважно символічна, мала
+      на меті відновити довіру. Востаннє карбувалася 1771 р.
+  fractions:
+    "2": {soll_fein_g: 29.968}          # 2 Krone (rare in this formula)
+    "1": {soll_fein_g: 14.984}          # 1 Krone (canonical)
+    "1/2": {soll_fein_g: 7.492}         # ½ Krone

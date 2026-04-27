@@ -1,0 +1,271 @@
+# UI strings in three languages.
+# Referenced by key in templates: {{ ui['col.nominal'] }}
+# Used for: column headers, navigation, button labels, accessibility text.
+
+# Navigation
+nav.home:
+  de: Startseite
+  en: Home
+  uk: Головна
+
+nav.language:
+  de: Sprache
+  en: Language
+  uk: Мова
+
+nav.locations:
+  de: Orte
+  en: Locations
+  uk: Місцевості
+
+# Table column headers
+col.nominal:
+  de: Nominal
+  en: Denomination
+  uk: Номінал
+
+col.year:
+  de: Jahr(e)
+  en: Year(s)
+  uk: Рік(роки)
+
+col.ruler:
+  de: Herrscher
+  en: Ruler
+  uk: Правитель
+
+col.catalog:
+  de: Katalog
+  en: Catalog
+  uk: Каталог
+
+col.metal:
+  de: Metall
+  en: Metal
+  uk: Метал
+
+col.metal_fineness:
+  de: Metall / Feingeh.
+  en: Metal / Fineness
+  uk: Метал / Проба
+
+col.rough:
+  de: rau
+  en: rough
+  uk: повна
+
+col.fine:
+  de: fein
+  en: fine
+  uk: чиста
+
+col.diameter:
+  de: Ø
+  en: Ø
+  uk: Ø
+
+col.mint:
+  de: Müntzstätte
+  en: Mint
+  uk: Монетний двір
+
+col.note:
+  de: Bemerkung
+  en: Note
+  uk: Примітка
+
+col.soll:
+  de: Soll
+  en: Target
+  uk: Ціль
+
+col.soll_tooltip:
+  de: Soll-Feingewicht laut Ziel-Müntzfuß (grid_unit ÷ grid_stops × Fraktion)
+  en: Target fine weight per intended standard (grid_unit ÷ grid_stops × fraction)
+  uk: Цільова чиста вага згідно стопи (grid_unit ÷ grid_stops × фракція)
+
+col.delta:
+  de: Δ
+  en: Δ
+  uk: Δ
+
+col.delta_tooltip:
+  de: Ist − Soll · in Gramm und Prozent · «✓» innerhalb Remedium (≤ 1 %)
+  en: Actual − Target · in grams and percent · «✓» within tolerance (≤ 1 %)
+  uk: Фактична − Цільова · у грамах і відсотках · «✓» в межах допуску (≤ 1 %)
+
+col.fuss:
+  de: Fuß
+  en: Standard
+  uk: Стопа
+
+col.fuss_tooltip:
+  de: Nominaler Ziel-Fuß · bei relevanter Abweichung auch ableitbarer Ist-Fuß
+  en: Nominal target standard · where deviation is relevant, also the computed actual standard
+  uk: Номінальна цільова стопа · при суттєвому відхиленні — також розрахована фактична
+
+col.entity:
+  de: Emittent
+  en: Authority
+  uk: Емітент
+
+col.entity_tooltip:
+  de: "Politische Einheit, die diese Münze prägte"
+  en: "Political entity that struck this coin"
+  uk: "Політичне утворення, що карбувало цю монету"
+
+col.source:
+  de: Quelle
+  en: Source
+  uk: Джерело
+
+col.sort_asc:
+  de: Sortiert aufsteigend nach frühestem Jahr
+  en: Sorted ascending by earliest year
+  uk: Сортування за зростанням першого року
+
+# Kurant/Scheide sub-category labels
+label.kurant:
+  de: "Kurantmünzen — Vollwertmünzen"
+  en: "Kurant coins — Full-value coinage"
+  uk: "Курантні монети — Повноцінні монети"
+
+label.scheide:
+  de: "Billon-Scheidemünzen — unterwertige Silbermünzen"
+  en: "Billon petty coins — underweight silver"
+  uk: "Білонні розмінні — неповновагові срібні"
+
+label.copper:
+  de: "Kupfer-Kleinmünzen — ohne Edelmetall"
+  en: "Copper petty coins — no precious metal"
+  uk: "Мідні дрібні монети — без дорогоцінного металу"
+
+label.tarif:
+  de: "Tarifmünzen — Fiskalprägungen"
+  en: "Tariff coins — Fiscal strikes"
+  uk: "Тарифні монети — Фіскальні карбунки"
+
+label.tarif_deviant:
+  de: "Tarifmünzen mit reduziertem Feingehalt — Kriegs-Debasement"
+  en: "Tariff coins at reduced fineness — wartime debasement"
+  uk: "Тарифні монети зі зниженою пробою — воєнний debasement"
+
+label.gedenk:
+  de: "Gedenkmünzen"
+  en: "Commemorative coins"
+  uk: "Пам'ятні монети"
+
+kurant.desc:
+  de: "Vollwertig · Nennwert ≈ Silberwert · vom Staat ohne oder mit geringem Aufschlag ausgegeben"
+  en: "Full-value · face value ≈ silver content · issued by the state without or with minor premium"
+  uk: "Повноцінні · номінал ≈ вмісту срібла · випущені державою без або з незначною надбавкою"
+
+scheide.desc:
+  de: "Billonmünzen · Nennwert > Silberwert · Differenz deckt Seigniorage-Gewinn der Krone · nur im lokalen Umlauf"
+  en: "Billon coins · face value > silver content · difference is state seigniorage · local circulation only"
+  uk: "Білонні монети · номінал > вміст срібла · різниця — сеньйораж держави · лише локальний обіг"
+
+copper.desc:
+  de: "Reines Kleingeld ohne Silbergehalt · reiner Fiat-Kurs (Fiatgeld) · Δ nicht definiert · nur im lokalen Umlauf"
+  en: "Pure small change with no silver · fiat value only · Δ not defined · local circulation only"
+  uk: "Чисте дрібне без вмісту срібла · лише фіатний курс · Δ не визначається · тільки локальний обіг"
+
+tarif.desc:
+  de: "Nach königlichem Tarif gehandelt · Nennwert über Silberwert festgesetzt · Differenz = fiskalischer Gewinn"
+  en: "Traded at royal tariff · face value set above silver content · difference = fiscal gain"
+  uk: "Обігають за королівським тарифом · номінал встановлено вище срібла · різниця — фіскальний прибуток"
+
+tarif_deviant.desc:
+  de: "Wie Tarifmünze, aber mit zusätzlich reduziertem Feingehalt unter dem Standard des Müntzfußes · «Scheidemünze innerhalb der Tarifmünze» · doppeltes Debasement im Krieg"
+  en: "Like a tariff coin, but at fineness materially below the standard of the Müntzfuß · a «Scheidemünze within the Tarifmünze» · doubled debasement in wartime"
+  uk: "Як тарифна монета, але з пробою суттєво нижчою за стандарт стопи · «Scheidemünze всередині Tarifmünze» · подвійний debasement у воєнний час"
+
+# Markers / verification
+marker.unverified:
+  de: "Wert nicht in Online-Quellen belegt — Schätzung"
+  en: "Value not documented in online sources — estimate"
+  uk: "Значення не задокументовано в онлайн-джерелах — оцінка"
+
+marker.copper_nodelta:
+  de: "Kupfer-Scheidemünze — kein Feinsilber, daher Δ nicht definiert"
+  en: "Copper token — no fine silver, Δ not defined"
+  uk: "Мідна розмінна монета — без чистого срібла, Δ не визначається"
+
+marker.derived_unverified:
+  de: "Abgeleiteter Wert — Eingangsdaten (Raugewicht oder Feingehalt) sind nicht aus Primärquelle belegt"
+  en: "Derived value — input data (rough weight or fineness) not verified from a primary source"
+  uk: "Похідне значення — вхідні дані (повна вага або проба) не підтверджено первинним джерелом"
+
+marker.within_remedium:
+  de: "innerhalb Remedium"
+  en: "within tolerance"
+  uk: "в межах допуску"
+
+marker.outside_remedium:
+  de: "außer Remedium"
+  en: "outside tolerance"
+  uk: "поза допуском"
+
+# Landing page
+landing.title:
+  de: Müntzfüße in deutschen Landen
+  en: Münzfüße of German Territories
+  uk: Монетні стандарти німецьких земель
+
+landing.subtitle:
+  de: Nordwest- und Ostseeraum · 16.–19. Jahrhundert
+  en: North-West and Baltic · 16th–19th century
+  uk: Північно-західний і балтійський регіон · XVI–XIX ст.
+
+landing.select_location:
+  de: Ort auswählen
+  en: Select location
+  uk: Оберіть місцевість
+
+# Meta
+meta.generated:
+  de: Generiert am
+  en: Generated on
+  uk: Згенеровано
+
+meta.source_data:
+  de: Quelldaten auf GitHub
+  en: Source data on GitHub
+  uk: Вихідні дані на GitHub
+
+# Verification states
+verified.yes:
+  de: belegt
+  en: verified
+  uk: підтверджено
+
+verified.no:
+  de: unbestätigt
+  en: unverified
+  uk: непідтверджено
+
+# Footnote markers
+footnote.tooltip:
+  de: Tippen/hover für Details
+  en: Tap/hover for details
+  uk: Натисніть для деталей
+
+phase.show_details:
+  de: "Münzen und Details zeigen"
+  en: "Show coins and details"
+  uk: "Показати монети та деталі"
+
+phase.hide_details:
+  de: "Zusammenklappen"
+  en: "Collapse"
+  uk: "Згорнути"
+
+fuss.show_details:
+  de: "Details zeigen"
+  en: "Show details"
+  uk: "Деталі"
+
+fuss.hide_details:
+  de: "Details ausblenden"
+  en: "Hide details"
+  uk: "Згорнути деталі"

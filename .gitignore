@@ -1,0 +1,34 @@
+# Build output (regenerable via `python scripts/build.py`)
+site/
+
+# Debug / intermediate artifacts (regenerable via build --debug or migration scripts)
+output/
+
+# Intermediate extraction data (should be committed only if edited by hand)
+_extracted_coins.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Claude Code session metadata (local-only)
+.claude/
+
+# Environment / Secrets / API keys (NEVER commit)
+.env
+.env.local
+local.env
+.numista_api_key
+
+# Numista refs scratch (regenerable via scripts/enrich_numista_refs.py)
+scripts/numista_refs.json

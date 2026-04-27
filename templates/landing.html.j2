@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ ui_get('landing.title') }}</title>
+<link rel="stylesheet" href="{{ base_url }}/assets/style.css">
+<script src="{{ base_url }}/assets/app.js" defer></script>
+</head>
+<body>
+
+<nav class="nav">
+  <strong>{{ ui_get('landing.title') }}</strong>
+  <div class="lang-switch">
+    {% for l in languages -%}
+      {%- if l == lang -%}
+        <a class="active">{{ l|upper }}</a>
+      {%- else -%}
+        <a href="../{{ l }}/">{{ l|upper }}</a>
+      {%- endif -%}
+    {%- endfor %}
+  </div>
+</nav>
+
+<h1 class="h1">{{ ui_get('landing.title') }}</h1>
+<p style="color: var(--text-secondary); font-size: 13px;">{{ ui_get('landing.subtitle') }}</p>
+
+<h2 style="font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 24px;">
+  {{ ui_get('landing.select_location') }}
+</h2>
+
+<div class="loc-grid">
+  {% for loc in locations %}
+  <a class="loc-card" href="../../{{ loc.id }}/{{ lang }}/">
+    <h3>{{ loc.name|t(lang) }}</h3>
+    <p>{{ loc.summary|t(lang) }}</p>
+  </a>
+  {% endfor %}
+</div>
+
+<footer>
+  {{ ui_get('meta.generated') }}: {{ generated_date }}
+  {% if repo_url %} · <a href="{{ repo_url }}">{{ ui_get('meta.source_data') }}</a>{% endif %}
+</footer>
+
+</body>
+</html>

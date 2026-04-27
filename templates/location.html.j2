@@ -1,0 +1,549 @@
+{#
+  Location page template. Renders one fuss per card,
+  with phases grouped by Kurant/Scheide sub-categories.
+#}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ tree.location.name|t(lang) }} · Müntzfüße</title>
+<link rel="stylesheet" href="{{ base_url }}/assets/style.css">
+<script src="{{ base_url }}/assets/app.js" defer></script>
+</head>
+<body>
+
+{%- macro coin_row(coin) %}
+<tr{% if coin.raw.kind == 'scheide' %} class="rw-sch"{% endif %}>
+  <td class="c-nom">{{ coin.raw.nominal }}</td>
+  <td class="c-year">{{ coin.raw.year_label }}</td>
+  <td>{{ coin.raw.ruler or '—' }}</td>
+  <td class="c-km">
+    {%- for prefix, vals in coin.catalog_groups -%}
+      {%- if prefix -%}
+        <span class="cat-group"><span class="cat-prefix">{{ prefix }}#</span> {{ vals | join(', ') }}</span>
+      {%- else -%}
+        <span class="cat-group cat-plain">{{ vals | join('; ') }}</span>
+      {%- endif -%}
+      {%- if not loop.last %}<br>{% endif -%}
+    {%- endfor -%}
+  </td>
+  <td class="c-metal">
+    {%- if coin.raw.metal -%}
+      {%- set metals = {
+        'silver': {'de': 'Silber', 'en': 'Silver', 'uk': 'Срібло'},
+        'gold':   {'de': 'Gold',   'en': 'Gold',   'uk': 'Золото'},
+        'billon': {'de': 'Billon', 'en': 'Billon', 'uk': 'Білон'},
+        'copper': {'de': 'Kupfer', 'en': 'Copper', 'uk': 'Мідь'}
+      } -%}
+      {{ metals[coin.raw.metal][lang] }}
+      {%- if coin.raw.fineness %} .{{ (coin.raw.fineness * 1000)|round|int }}{% endif -%}
+      {%- if not coin.raw.fineness_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-w">
+    {%- if coin.raw.weight_rough_g -%}
+      {{ fmt_num(coin.raw.weight_rough_g, decimals=2) }}
+      {%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}
+    {%- elif coin.raw.weight_rough_label -%}
+      {{ coin.raw.weight_rough_label|t(lang) }}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-w">
+    {%- if coin.weight_fein_g -%}
+      {{ fmt_num(coin.weight_fein_g, decimals=5) }}
+      {%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-d">
+    {%- if coin.raw.diameter_mm -%}
+      {{ fmt_num(coin.raw.diameter_mm, decimals=1, unit='mm') }}
+      {%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-mint">{{ coin.raw.mint or '—' }}</td>
+  <td class="c-entity">
+    {%- set ent = issuing_entities.get(coin.raw.issuing_entity) if coin.raw.issuing_entity else None -%}
+    {%- if ent -%}
+      <span class="ent-badge ent-{{ coin.raw.issuing_entity }}" data-tooltip="{{ ent.name|t(lang) }} — {{ (ent.description|t(lang))|striptags if ent.description else '' }}">{{ ent.abbrev }}</span>
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-note">{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
+  <td class="c-soll">
+    {%- if coin.soll_fein_g -%}
+      {{ fmt_num(coin.soll_fein_g, decimals=5) }}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-delta">
+    {%- if coin.delta_g is not none -%}
+      {# 4-state Δ palette: under-deep (<-1%), under-mild (-1% … 0), over-mild (0 … +1%), over-strong (>+1%) #}
+      {%- if coin.delta_pct < -1.0 -%}{%- set sd_cls = 'under-deep' -%}
+      {%- elif coin.delta_pct < 0   -%}{%- set sd_cls = 'under-mild' -%}
+      {%- elif coin.delta_pct <= 1.0 -%}{%- set sd_cls = 'over-mild' -%}
+      {%- else -%}{%- set sd_cls = 'over-strong' -%}
+      {%- endif %}
+      <span class="sd {{ sd_cls }}">
+        {{ fmt_delta(coin.delta_g, coin.delta_pct) }}
+      </span>
+      {%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}
+    {%- elif coin.raw.metal == 'copper' -%}
+      <span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-fuss">
+    {%- if coin.raw.fuss_refs -%}
+      {%- for ref in coin.raw.fuss_refs -%}
+        <span class="sf-line {{ ref.rank }}">{{ ref.label|t(lang)|safe }}</span>
+      {%- endfor -%}
+    {%- else -%}
+      <span class="fuss-nominal">{{ coin.fuss.name|t(lang) }}</span>
+    {%- endif -%}
+    {# Auto-computed implied Fuß — appended whenever the coin meaningfully deviates
+       from its declared standard (>2%) AND fuss_refs doesn't already document an
+       "Ist-Wert" note. Quantifies seigniorage gap for Scheidemünzen. #}
+    {%- if coin.implied_fuss and not coin.has_manual_implied
+           and coin.delta_pct is not none and coin.delta_pct|abs > 2 -%}
+      {%- set impl_label = {'de':'Ist','en':'Actual','uk':'Факт'}[lang] -%}
+      {# Pick the Fuß-unit label by the fuss family, not by metal alone:
+         a Krone-mønt fuss has 'Krone' in its name; gold fuesse default to Dukatenfuß.
+         Otherwise fall back to the generic Thaler-Fuß. #}
+      {%- set fuss_name = coin.fuss.name|t(lang) -%}
+      {%- if coin.fuss.metal == 'gold' -%}
+        {%- set fuss_unit = 'Dukatenfuß' -%}
+      {%- elif 'Krone' in fuss_name -%}
+        {%- set fuss_unit = 'Krone-Fuß' -%}
+      {%- else -%}
+        {%- set fuss_unit = 'Thaler-Fuß' -%}
+      {%- endif -%}
+      <span class="sf-line implied">↳ {{ impl_label }} ≈ {{ fmt_num(coin.implied_fuss, decimals=2, unit='') }}-{{ fuss_unit }}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}</span>
+    {%- endif -%}
+  </td>
+  <td class="c-ref">
+    {%- for s in coin.raw.sources -%}
+      {%- if s.url -%}
+        <a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.ref or s.type }}</a>
+      {%- else -%}
+        {{ s.ref or s.type }}
+      {%- endif -%}
+      {%- if not loop.last %} · {% endif -%}
+    {%- endfor -%}
+  </td>
+</tr>
+{%- endmacro %}
+
+{%- macro coin_table(coins) %}
+<div class="mt-scroll"><table class="mt">
+  <thead>
+    <tr>
+      <th>{{ ui_get('col.nominal') }}</th>
+      <th>{{ ui_get('col.year') }}</th>
+      <th>{{ ui_get('col.ruler') }}</th>
+      <th>{{ ui_get('col.catalog') }}</th>
+      <th>{{ ui_get('col.metal_fineness') }}</th>
+      <th>{{ ui_get('col.rough') }}</th>
+      <th>{{ ui_get('col.fine') }}</th>
+      <th>{{ ui_get('col.diameter') }}</th>
+      <th>{{ ui_get('col.mint') }}</th>
+      <th data-tooltip="{{ ui_get('col.entity_tooltip') }}">{{ ui_get('col.entity') }}</th>
+      <th>{{ ui_get('col.note') }}</th>
+      <th data-tooltip="{{ ui_get('col.soll_tooltip') }}">{{ ui_get('col.soll') }}</th>
+      <th data-tooltip="{{ ui_get('col.delta_tooltip') }}">{{ ui_get('col.delta') }}</th>
+      <th data-tooltip="{{ ui_get('col.fuss_tooltip') }}">{{ ui_get('col.fuss') }}</th>
+      <th>{{ ui_get('col.source') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for coin in coins %}{{ coin_row(coin) }}{% endfor %}
+  </tbody>
+</table></div>
+{%- endmacro %}
+
+{# Copper petty-coin row — pure copper tokens have no silver target, so Soll/Δ/Fuß
+   are dropped entirely. Fine-weight column is also omitted (always zero for copper). #}
+{%- macro coin_row_copper(coin) %}
+<tr class="rw-cp">
+  <td class="c-nom">{{ coin.raw.nominal }}</td>
+  <td class="c-year">{{ coin.raw.year_label }}</td>
+  <td>{{ coin.raw.ruler or '—' }}</td>
+  <td class="c-km">
+    {%- for prefix, vals in coin.catalog_groups -%}
+      {%- if prefix -%}
+        <span class="cat-group"><span class="cat-prefix">{{ prefix }}#</span> {{ vals | join(', ') }}</span>
+      {%- else -%}
+        <span class="cat-group cat-plain">{{ vals | join('; ') }}</span>
+      {%- endif -%}
+      {%- if not loop.last %}<br>{% endif -%}
+    {%- endfor -%}
+  </td>
+  <td class="c-metal">
+    {%- set metals = {
+      'copper': {'de': 'Kupfer', 'en': 'Copper', 'uk': 'Мідь'},
+      'bronze': {'de': 'Bronze', 'en': 'Bronze', 'uk': 'Бронза'},
+      'brass':  {'de': 'Messing','en': 'Brass',  'uk': 'Латунь'}
+    } -%}
+    {{ metals[coin.raw.metal][lang] if coin.raw.metal in metals else coin.raw.metal }}
+  </td>
+  <td class="c-w">
+    {%- if coin.raw.weight_rough_g -%}
+      {{ fmt_num(coin.raw.weight_rough_g, decimals=2) }}
+      {%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}
+    {%- elif coin.raw.weight_rough_label -%}
+      {{ coin.raw.weight_rough_label|t(lang) }}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-d">
+    {%- if coin.raw.diameter_mm -%}
+      {{ fmt_num(coin.raw.diameter_mm, decimals=1, unit='mm') }}
+      {%- if not coin.raw.diameter_mm_verified %} <span class="unverified">(?)</span>{% endif -%}
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-mint">{{ coin.raw.mint or '—' }}</td>
+  <td class="c-entity">
+    {%- set ent = issuing_entities.get(coin.raw.issuing_entity) if coin.raw.issuing_entity else None -%}
+    {%- if ent -%}
+      <span class="ent-badge ent-{{ coin.raw.issuing_entity }}" data-tooltip="{{ ent.name|t(lang) }}">{{ ent.abbrev }}</span>
+    {%- else -%}—{%- endif -%}
+  </td>
+  <td class="c-note">{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
+  <td class="c-ref">
+    {%- for s in coin.raw.sources -%}
+      {%- if s.url -%}
+        <a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.ref or s.type }}</a>
+      {%- else -%}
+        {{ s.ref or s.type }}
+      {%- endif -%}
+      {%- if not loop.last %} · {% endif -%}
+    {%- endfor -%}
+  </td>
+</tr>
+{%- endmacro %}
+
+{%- macro coin_table_copper(coins) %}
+<div class="mt-scroll"><table class="mt mt-copper">
+  <thead>
+    <tr>
+      <th>{{ ui_get('col.nominal') }}</th>
+      <th>{{ ui_get('col.year') }}</th>
+      <th>{{ ui_get('col.ruler') }}</th>
+      <th>{{ ui_get('col.catalog') }}</th>
+      <th>{{ ui_get('col.metal') }}</th>
+      <th>{{ ui_get('col.rough') }}</th>
+      <th>{{ ui_get('col.diameter') }}</th>
+      <th>{{ ui_get('col.mint') }}</th>
+      <th data-tooltip="{{ ui_get('col.entity_tooltip') }}">{{ ui_get('col.entity') }}</th>
+      <th>{{ ui_get('col.note') }}</th>
+      <th>{{ ui_get('col.source') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for coin in coins %}{{ coin_row_copper(coin) }}{% endfor %}
+  </tbody>
+</table></div>
+{%- endmacro %}
+
+
+
+<nav class="nav">
+  <a href="../../index.html">{{ ui_get('nav.home') }}</a>
+  <span style="color: var(--text-muted);">/</span>
+  <strong>{{ tree.location.name|t(lang) }}</strong>
+  <div class="lang-switch">
+    {% for l in languages -%}
+      {%- if l == lang -%}
+        <a class="active">{{ l|upper }}</a>
+      {%- else -%}
+        <a href="../{{ l }}/">{{ l|upper }}</a>
+      {%- endif -%}
+    {%- endfor %}
+  </div>
+</nav>
+
+<h1 class="h1">{{ tree.location.name|t(lang) }}</h1>
+<p>{{ tree.location.summary|t(lang) }}</p>
+
+{% set tl = tree.location.timeline %}
+{% if tl %}
+{% set tl_span = (tl.year_to - tl.year_from) %}
+<div class="tl">
+  <div class="tl-title">{{ tl.title|t(lang) }}</div>
+  <div class="tl-grid">
+    {%- macro tl_bar_html(bar, tl, tl_span, lang, extra_class='') -%}
+      {%- set raw_left  = (bar.year_from - tl.year_from) / tl_span * 100 -%}
+      {%- set raw_right = (bar.year_to   - tl.year_from) / tl_span * 100 -%}
+      {%- set clamped_left  = [raw_left, 0]  | max -%}
+      {%- set clamped_right = [raw_right, 100] | min -%}
+      {%- set left_pct  = clamped_left | round(2) -%}
+      {%- set width_pct = (clamped_right - clamped_left) | round(2) -%}
+      {# Short bars (< 8% of timeline) cannot fit the bar_label inside — render
+         the label as a floating tag above the bar instead. The .tl-bar-narrow
+         class flips overflow + positions the label outside via a wrapper span. #}
+      {%- set narrow = width_pct < 8 -%}
+      <div class="tl-bar {{ bar.color_class }}{% if bar.dashed %} tl-bar-dashed{% endif %}{% if raw_left < 0 %} tl-bar-cut-left{% endif %}{% if raw_right > 100 %} tl-bar-cut-right{% endif %}{% if narrow %} tl-bar-narrow{% endif %} {{ extra_class }}"
+           style="left:{{ left_pct }}%;width:{{ width_pct }}%"
+           {% if bar.bar_title %}title="{{ bar.bar_title|t(lang) }}"{% endif %}>
+        {%- if bar.bar_label -%}
+          {%- if narrow -%}
+            <span class="tl-bar-label-float">{{ bar.bar_label|t(lang) }}</span>
+          {%- else -%}
+            {{ bar.bar_label|t(lang) }}
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    {%- endmacro -%}
+
+    {% for group in tl.bars | group_bars %}
+      {% set primary = group.primary %}
+      <div class="tl-label{% if primary.indented %} tl-label-sub{% endif %}">
+        {{ primary.label|t(lang) }}
+        {% if primary.small %}<small>{{ primary.small|t(lang) }}</small>{% endif %}
+        {% for ov in group.overlays %}
+        <div class="tl-sublabel{% if ov.indented %} tl-label-sub{% endif %}">
+          {{ ov.label|t(lang) }}
+          {% if ov.small %}<small>{{ ov.small|t(lang) }}</small>{% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="tl-track{% if primary.compact %} tl-track-compact{% endif %}">
+        {{ tl_bar_html(primary, tl, tl_span, lang) }}
+        {% for ov in group.overlays %}
+          {{ tl_bar_html(ov, tl, tl_span, lang, 'tl-bar-overlay') }}
+        {% endfor %}
+        {# Phase segments inside the primary bar — only when phases are defined for this Müntzfuß #}
+        {% set fuss_phases = tree.location.phases.get(primary.id, []) %}
+        {% for ph in fuss_phases %}
+          {% set raw_left  = (ph.year_from - tl.year_from) / tl_span * 100 %}
+          {% set raw_right = (ph.year_to   - tl.year_from) / tl_span * 100 %}
+          {% set clamped_left  = [raw_left,  0]   | max %}
+          {% set clamped_right = [raw_right, 100] | min %}
+          {% set ph_left  = clamped_left | round(2) %}
+          {% set ph_width = (clamped_right - clamped_left) | round(2) %}
+          {% if ph_width > 0 %}
+          {# A "pause" phase (id="—") marks a documented production gap; render
+             with a distinct .tl-phase-pause style and skip the "Phase X" tooltip prefix. #}
+          {% set is_pause = (ph.id == '—') %}
+          <div class="tl-phase{% if loop.first %} tl-phase-first{% endif %}{% if loop.last %} tl-phase-last{% endif %}{% if is_pause %} tl-phase-pause{% endif %}"
+               style="left:{{ ph_left }}%;width:{{ ph_width }}%"
+               data-tooltip="{% if ph.id not in ('single','only','einzige') and not is_pause %}Phase {{ ph.id }} · {% endif %}{{ ph.from_label }} → {{ ph.to_label }} · {{ ph.title|t(lang) }}">
+            {%- if ph_width >= 3 and ph.id not in ('single','only','einzige') -%}
+              <span class="tl-phase-label">{{ ph.id }}</span>
+            {%- endif -%}
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endfor %}
+    <div></div>
+    <div class="tl-axis">
+      {% set axis_count = ((tl.year_to - tl.year_from) // tl.axis_step) + 1 %}
+      {% for i in range(axis_count) %}
+        {% set year = tl.year_from + i * tl.axis_step %}
+        {% set pos = ((year - tl.year_from) / tl_span * 100) | round(2) %}
+        <span style="left:{{ pos }}%">{{ year }}</span>
+      {% endfor %}
+      {% set last_year = tl.year_from + (axis_count - 1) * tl.axis_step %}
+      {% if last_year < tl.year_to %}
+        <span style="left:100%">{{ tl.year_to }}</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% set fuss_periods = tree.location.fuss_periods %}
+{% for sg in tree.fuesse %}
+{% set sp = fuss_periods.get(sg.fuss.id) if fuss_periods else None %}
+{# Render the Müntzfuß block if it has phases OR a period description OR grundwerte — so a standard that applied in the location but without its own coin issues (e.g. Prussian Vereinsthaler here) still appears as header + grundwerte + closing. #}
+{% if sg.nonempty_phases or sp or sg.fuss.grundwerte %}
+
+<section class="fuss-block fuss-{{ sg.fuss.id }}">
+<div class="phase-header">
+  <span class="pname">{{ sg.fuss.name|t(lang) }}</span>
+  {% if sp and sp.pdate_label %}
+    <span class="pdate">{{ sp.pdate_label|t(lang)|safe }}</span>
+  {% endif %}
+  {# Short summary in the title — uses hintergrund directly. Each fuss is
+     expected to keep hintergrund short (1–3 sentences); longer historical
+     elaboration belongs in `details` and lives inside the details toggle. #}
+  {% if sp and sp.hintergrund %}
+    <span class="psub">{{ sp.hintergrund|t(lang)|safe }}</span>
+  {% elif sg.fuss.description %}
+    <span class="psub" style="white-space: pre-line;">{{ sg.fuss.description|t(lang) }}</span>
+  {% endif %}
+</div>
+
+{% set gw = sg.fuss.grundwerte %}
+{% if gw %}
+<section class="gw">
+  <div class="gw-head">
+    <div class="gw-head-text">
+      {% if gw.heading %}<div class="gw-heading">{{ gw.heading|t(lang) }}</div>{% endif %}
+      {% if gw.subheading %}<div class="gw-subheading">{{ gw.subheading|t(lang) }}</div>{% endif %}
+    </div>
+    {% if gw.badge %}<span class="bx {{ sg.fuss.metal }}">{{ gw.badge|t(lang) }}</span>{% endif %}
+  </div>
+  <div class="gw-body">
+    {% if gw.rows %}
+    <div class="gw-rows">
+      {% for row in gw.rows %}
+      <div class="gw-row">
+        <div class="gw-k">{{ row.key|t(lang) }}</div>
+        <div class="gw-v">{{ row.value|t(lang)|safe }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if gw.rechnungsfraktionen %}
+    <div class="gw-fr">
+      {% if gw.rechnungsfraktionen_label %}
+      <span class="gw-fr-label">{{ gw.rechnungsfraktionen_label|t(lang) }}</span>
+      {% endif %}
+      {{ gw.rechnungsfraktionen|t(lang)|safe }}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+{# A single fuss-level toggle that reveals the long historical detail (sp.details)
+   and ALL phase blocks with their tables already expanded. Replaces the
+   previous per-phase <details> mechanism. #}
+{% if sg.nonempty_phases or (sp and sp.details) %}
+<details class="fuss-details" data-fuss="{{ sg.fuss.id }}">
+  <summary>
+    <span class="fd-label fd-label-show">{{ ui_get('fuss.show_details') }}</span>
+    <span class="fd-label fd-label-hide">{{ ui_get('fuss.hide_details') }}</span>
+    <span class="fd-count">({{ sg.nonempty_phases|sum(attribute='total') if sg.nonempty_phases else 0 }})</span>
+  </summary>
+  <div class="fuss-details-body">
+
+    {# Long-form historical detail — only inside the details toggle. The title
+       block already shows the short hintergrund summary; this is the place
+       for paragraphs of historical context, sourcing notes, etc. #}
+    {% if sp and sp.details %}
+    <div class="fuss-hintergrund">{{ sp.details|t(lang)|safe }}</div>
+    {% endif %}
+
+    {% for pg in sg.nonempty_phases %}
+    <div class="ph" data-phase="{{ pg.phase.id }}">
+      {% if pg.phase.id in ('single', 'only', 'einzige') %}
+        {{ pg.phase.title|t(lang) }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }}
+      {% else %}
+        {% if lang == 'de' %}Phase{% elif lang == 'en' %}Phase{% else %}Фаза{% endif %} {{ pg.phase.id }} · {{ pg.phase.from_label }} → {{ pg.phase.to_label }} · {{ pg.phase.title|t(lang) }}
+      {% endif %}
+    </div>
+    {% if pg.phase.description %}
+    <div class="phd">{{ pg.phase.description|t(lang)|safe }}</div>
+    {% endif %}
+
+    <div class="phc">
+      {% if pg.phase.context %}
+      <div class="phc-context">{{ pg.phase.context|t(lang)|safe }}</div>
+      {% endif %}
+
+      {% if pg.phase.mt_caption %}
+      <div class="mt-caption">{{ pg.phase.mt_caption|t(lang)|safe }}</div>
+      {% endif %}
+
+      {# Display order: main coins (kurant / tarif) before subsidiary coins
+         (scheide / copper). This puts the headline coin of the standard first
+         and its petty subdivisions after — the standard numismatic-catalogue
+         convention. #}
+      {% if pg.kurant_coins %}
+        {% if pg.is_mixed or pg.tarif_coins %}
+        <div class="mt-subcat kurant">
+          ✦ {{ ui_get('label.kurant') }}
+          <span class="sc-desc">{{ ui_get('kurant.desc') }}</span>
+        </div>
+        {% endif %}
+        {{ coin_table(pg.kurant_coins) }}
+      {% endif %}
+
+      {% if pg.tarif_coins %}
+        {% if pg.tarif_deviant_coins or pg.scheide_coins or pg.copper_coins %}
+        <div class="mt-subcat kurant">
+          ✦ {{ ui_get('label.tarif') }}
+          <span class="sc-desc">{{ ui_get('tarif.desc') }}</span>
+        </div>
+        {% endif %}
+        {{ coin_table(pg.tarif_coins) }}
+      {% endif %}
+
+      {% if pg.tarif_deviant_coins %}
+        <div class="mt-subcat scheide">
+          ∘ {{ ui_get('label.tarif_deviant') }}
+          <span class="sc-desc">{{ ui_get('tarif_deviant.desc') }}</span>
+        </div>
+        {{ coin_table(pg.tarif_deviant_coins) }}
+      {% endif %}
+
+      {% if pg.scheide_coins %}
+        <div class="mt-subcat scheide">
+          ∘ {{ ui_get('label.scheide') }}
+          <span class="sc-desc">{{ ui_get('scheide.desc') }}</span>
+        </div>
+        {{ coin_table(pg.scheide_coins) }}
+      {% endif %}
+
+      {% if pg.copper_coins %}
+        <div class="mt-subcat copper">
+          ∘ {{ ui_get('label.copper') }}
+          <span class="sc-desc">{{ ui_get('copper.desc') }}</span>
+        </div>
+        {{ coin_table_copper(pg.copper_coins) }}
+      {% endif %}
+
+      {% if pg.gedenk_coins %}
+        <div class="mt-subcat kurant">✦ {{ ui_get('label.gedenk') }}</div>
+        {{ coin_table(pg.gedenk_coins) }}
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="fd-foot">
+      <button type="button" class="fd-close">
+        <span class="fd-close-icon">▴</span>
+        <span class="fd-close-label">{{ ui_get('fuss.hide_details') }}</span>
+      </button>
+    </div>
+  </div>
+</details>
+{% endif %}
+
+{% if sp and sp.closing %}
+<div class="terr">
+  {% if sp.closing_label %}<span class="tlb">{{ sp.closing_label|t(lang) }}</span>{% endif %}
+  {{ sp.closing|t(lang)|safe }}
+</div>
+{% endif %}
+</section>
+
+{% endif %}
+{% endfor %}
+
+{% if tree.location.methodology %}
+<hr class="rsep">
+<h2 class="refs-title" id="methodik">{{ (tree.location.methodology_heading|t(lang)) if tree.location.methodology_heading else 'Methodische Anmerkungen' }}</h2>
+<div class="methodology">{{ tree.location.methodology|t(lang)|safe }}</div>
+{% endif %}
+
+{% if references and references.entries %}
+<hr class="rsep">
+<h2 class="refs-title">{{ references.heading }}</h2>
+<ol class="refs">
+  {# value="N" overrides the auto-counter so the visible item number matches the
+     ref ID and the inline [N] citations even if a future edit drops some entries
+     and leaves gaps in the numbering. Currently 1..23 are sequential, but this
+     guards against silent renumbering on future cleanups. #}
+  {% for entry in references.entries %}
+  <li id="{{ entry.id }}" value="{{ entry.id|replace('ref', '') }}">{{ entry.content | safe }}</li>
+  {% endfor %}
+</ol>
+{% endif %}
+
+<footer>
+  {{ ui_get('meta.generated') }}: {{ generated_date }}
+  {% if repo_url %} · <a href="{{ repo_url }}">{{ ui_get('meta.source_data') }}</a>{% endif %}
+</footer>
+
+</body>
+</html>

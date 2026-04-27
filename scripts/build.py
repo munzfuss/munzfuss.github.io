@@ -1,0 +1,349 @@
+#!/usr/bin/env python3
+"""
+Build the site from YAML data.
+
+Usage:
+  python scripts/build.py                        # full build
+  python scripts/build.py --location schleswig   # single location
+  python scripts/build.py --lang de              # single language
+  python scripts/build.py --validate-only        # schema check, no render
+  python scripts/build.py --debug                # dump intermediate JSON
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import shutil
+import sys
+from datetime import datetime
+from pathlib import Path
+
+import yaml
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+from pydantic import ValidationError
+
+# Make local lib importable when run as `python scripts/build.py`
+sys.path.insert(0, str(Path(__file__).parent))
+
+from lib import i18n
+from lib.categorize import categorize
+from lib.compute import compute_location
+from lib.render import build_env, generate_css
+from lib.schema import Location, Fuss, I18nText
+
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = REPO_ROOT / "data"
+CONFIG_DIR = REPO_ROOT / "config"
+TEMPLATE_DIR = REPO_ROOT / "templates"
+SITE_DIR = REPO_ROOT / "site"
+DEBUG_DIR = REPO_ROOT / "output" / "debug"
+
+DEFAULT_LANGS = ["de", "en", "uk"]
+
+
+def load_fuesse() -> dict[str, Fuss]:
+    path = DATA_DIR / "shared" / "fuesse.yml"
+    with open(path, encoding="utf-8") as f:
+        raw = yaml.safe_load(f)
+    
+    fuesse = {}
+    for fuss_id, data in raw.items():
+        data["id"] = fuss_id
+        fuesse[fuss_id] = Fuss(**data)
+    return fuesse
+
+
+def load_theme() -> dict:
+    with open(CONFIG_DIR / "theme.yml", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
+def load_ui() -> dict:
+    return i18n.load_ui(str(DATA_DIR / "i18n" / "ui.yml"))
+
+
+def load_issuing_entities() -> dict:
+    """Load political-entity definitions for the issuing_entity field."""
+    path = DATA_DIR / "i18n" / "issuing_entities.yml"
+    if not path.exists():
+        return {}
+    with open(path, encoding="utf-8") as f:
+        return yaml.safe_load(f) or {}
+
+
+def load_locations(filter_id: str | None = None) -> list[Location]:
+    locations = []
+    for path in sorted((DATA_DIR / "locations").glob("*.yml")):
+        # Skip reference sidecar files
+        if path.stem.endswith("-references"):
+            continue
+        if filter_id and path.stem != filter_id:
+            continue
+        with open(path, encoding="utf-8") as f:
+            raw = yaml.safe_load(f)
+        try:
+            loc = Location(**raw)
+            # Attach references sidecar if present
+            ref_path = path.parent / f"{path.stem}-references.yml"
+            if ref_path.exists():
+                with open(ref_path, encoding="utf-8") as rf:
+                    loc._references_data = yaml.safe_load(rf)
+            else:
+                loc._references_data = None
+            locations.append(loc)
+        except ValidationError as e:
+            print(f"❌ Schema errors in {path.name}:")
+            print(e)
+            raise
+    return locations
+
+
+def cross_ref_check(locations: list[Location], fuesse: dict[str, Fuss]) -> bool:
+    all_ok = True
+    for loc in locations:
+        errors = loc.validate_cross_refs(fuesse)
+        if errors:
+            all_ok = False
+            print(f"❌ Cross-reference errors in '{loc.id}':")
+            for err in errors:
+                print(f"   {err}")
+    return all_ok
+
+
+def dump_debug_computed(loc_id: str, computed) -> None:
+    DEBUG_DIR.mkdir(parents=True, exist_ok=True)
+    path = DEBUG_DIR / f"{loc_id}.computed.json"
+    with open(path, "w", encoding="utf-8") as f:
+        data = []
+        for cc in computed:
+            d = cc.raw.model_dump(exclude_none=True)
+            d["_computed"] = {
+                "weight_fein_g": cc.weight_fein_g,
+                "soll_fein_g": cc.soll_fein_g,
+                "delta_g": cc.delta_g,
+                "delta_pct": cc.delta_pct,
+                "within_remedium": cc.within_remedium,
+                "implied_fuss": cc.implied_fuss,
+            }
+            data.append(d)
+        json.dump(data, f, ensure_ascii=False, indent=2, default=str)
+    print(f"   ↳ Wrote {path.relative_to(REPO_ROOT)}")
+
+
+def build_location(
+    loc: Location,
+    fuesse: dict[str, Fuss],
+    theme: dict,
+    ui: dict,
+    languages: list[str],
+    env: Environment,
+    debug: bool = False,
+    repo_url: str = "",
+    issuing_entities: dict | None = None,
+    base_url: str = "",
+) -> None:
+    print(f"🏛️  Building {loc.id} ({len(loc.coins)} coins)")
+    
+    computed = compute_location(loc, fuesse)
+    if debug:
+        dump_debug_computed(loc.id, computed)
+    
+    tree = categorize(loc, computed, fuesse)
+    
+    # Resolve references (from sidecar YAML) if present
+    references_data = getattr(loc, '_references_data', None)
+    
+    generated_date = datetime.now().strftime("%Y-%m-%d")
+    
+    tmpl = env.get_template("location.html.j2")
+    
+    for lang in languages:
+        # Pre-resolve references for this language
+        refs_for_lang = None
+        if references_data:
+            refs_for_lang = {
+                'heading': i18n.t(references_data.get('heading'), lang),
+                'entries': [
+                    {'id': e['id'], 'content': i18n.t(e.get('content'), lang)}
+                    for e in references_data.get('entries', [])
+                    if i18n.t(e.get('content'), lang)
+                ]
+            }
+        
+        html = tmpl.render(
+            tree=tree,
+            ui=ui,
+            theme=theme,
+            lang=lang,
+            languages=languages,
+            references=refs_for_lang,
+            generated_date=generated_date,
+            repo_url=repo_url,
+            base_url=base_url,
+            issuing_entities=issuing_entities or {},
+            ui_get=lambda k, l=lang: i18n.ui_get(ui, k, l),
+            t=lambda v, l=lang: i18n.t(v, l),
+            fmt_num=lambda v, **kw: i18n.fmt_num(v, lang, **kw),
+            fmt_delta=lambda g, p: i18n.fmt_delta(g, p, lang),
+        )
+        
+        out_dir = SITE_DIR / loc.id / lang
+        out_dir.mkdir(parents=True, exist_ok=True)
+        out_file = out_dir / "index.html"
+        with open(out_file, "w", encoding="utf-8") as f:
+            f.write(html)
+        print(f"   → {out_file.relative_to(REPO_ROOT)}")
+
+
+def build_landing(
+    locations: list[Location],
+    ui: dict,
+    theme: dict,
+    languages: list[str],
+    env: Environment,
+    repo_url: str = "",
+    base_url: str = "",
+) -> None:
+    tmpl = env.get_template("landing.html.j2")
+    generated_date = datetime.now().strftime("%Y-%m-%d")
+
+    # Landing is generated per-language at /<lang>/index.html;
+    # root / redirects to /de/ (or user's preferred language via JS — optional)
+    for lang in languages:
+        html = tmpl.render(
+            locations=locations,
+            ui=ui,
+            theme=theme,
+            lang=lang,
+            languages=languages,
+            generated_date=generated_date,
+            repo_url=repo_url,
+            base_url=base_url,
+            ui_get=lambda k, l=lang: i18n.ui_get(ui, k, l),
+            t=lambda v, l=lang: i18n.t(v, l),
+        )
+        out_dir = SITE_DIR / lang
+        out_dir.mkdir(parents=True, exist_ok=True)
+        with open(out_dir / "index.html", "w", encoding="utf-8") as f:
+            f.write(html)
+        print(f"🏠 Landing: {out_dir.relative_to(REPO_ROOT)}/index.html")
+
+    # Root index.html — language redirect.
+    # Priority: 1) lang cookie set by app.js on previous visit
+    #           2) browser preference (navigator.language)
+    #           3) fallback to 'en'
+    root_html = f"""<!DOCTYPE html><html><head>
+<meta charset="UTF-8">
+<title>Müntzfüße</title>
+<script>
+const base = {base_url!r};
+const langs = ['de', 'en', 'uk'];
+const m = document.cookie.match(/(?:^|;\\s*)lang=([a-z]{{2}})/);
+const cookieLang = m ? m[1] : null;
+const browserLang = (navigator.language || 'en').slice(0, 2).toLowerCase();
+let target = 'en';
+if (langs.includes(cookieLang)) target = cookieLang;
+else if (langs.includes(browserLang)) target = browserLang;
+window.location.replace(base + '/' + target + '/');
+</script>
+<noscript><meta http-equiv="refresh" content="0; url={base_url}/en/"></noscript>
+</head><body><p>Loading… <a href="{base_url}/en/">English</a> · <a href="{base_url}/de/">Deutsch</a> · <a href="{base_url}/uk/">Українська</a></p></body></html>"""
+    with open(SITE_DIR / "index.html", "w", encoding="utf-8") as f:
+        f.write(root_html)
+
+
+def generate_assets(theme: dict) -> None:
+    assets_dir = SITE_DIR / "assets"
+    assets_dir.mkdir(parents=True, exist_ok=True)
+    css = generate_css(theme, lang="de")
+    with open(assets_dir / "style.css", "w", encoding="utf-8") as f:
+        f.write(css)
+    print(f"🎨 CSS: site/assets/style.css ({len(css):,} bytes)")
+
+    # Copy static assets (JS, images) from /assets → site/assets
+    src_assets = REPO_ROOT / "assets"
+    if src_assets.is_dir():
+        for src in src_assets.iterdir():
+            if src.is_file():
+                dst = assets_dir / src.name
+                shutil.copyfile(src, dst)
+                print(f"📎 Asset: site/assets/{src.name} ({dst.stat().st_size:,} bytes)")
+
+
+def parse_args():
+    p = argparse.ArgumentParser()
+    p.add_argument("--location", help="Build only this location (default: all)")
+    p.add_argument("--lang", help="Build only this language (default: all)")
+    p.add_argument("--debug", action="store_true", help="Dump intermediate JSON")
+    p.add_argument("--validate-only", action="store_true", help="Check schema + cross-refs, don't render")
+    p.add_argument("--clean", action="store_true", help="Remove site/ before building")
+    p.add_argument("--repo-url", default="", help="URL for source data link in footer")
+    p.add_argument("--base-url", default="", help="URL prefix for assets and inter-page "
+                   "links. Empty for user pages or root-served sites; '/repo-name' for "
+                   "GitHub Pages project sites. Trailing slash stripped automatically.")
+    return p.parse_args()
+
+
+def main():
+    args = parse_args()
+
+    # Normalise base_url: drop trailing slash so templates can use {{ base_url }}/path
+    base_url = args.base_url.rstrip("/")
+
+    # Load shared resources
+    print("📦 Loading shared resources...")
+    fuesse = load_fuesse()
+    print(f"   Müntzfüße: {len(fuesse)} ({', '.join(fuesse)})")
+    
+    theme = load_theme()
+    ui = load_ui()
+    print(f"   UI strings: {len(ui)} keys")
+    issuing_entities = load_issuing_entities()
+    print(f"   Issuing entities: {len(issuing_entities)} ({', '.join(issuing_entities)})")
+    
+    # Load locations
+    locations = load_locations(filter_id=args.location)
+    print(f"   Locations: {len(locations)} ({', '.join(l.id for l in locations)})")
+    print()
+    
+    # Schema + cross-ref validation
+    print("🔍 Validating cross-references...")
+    if not cross_ref_check(locations, fuesse):
+        print("\n❌ Validation failed. Fix errors above and rerun.")
+        sys.exit(1)
+    print("   ✓ All cross-references OK")
+    print()
+    
+    if args.validate_only:
+        print("✅ Validation-only mode. No rendering performed.")
+        return
+    
+    # Clean site/ if requested
+    if args.clean and SITE_DIR.exists():
+        shutil.rmtree(SITE_DIR)
+        print("🗑️  Cleaned site/")
+    
+    SITE_DIR.mkdir(parents=True, exist_ok=True)
+    
+    # Render
+    languages = [args.lang] if args.lang else DEFAULT_LANGS
+    env = build_env(str(TEMPLATE_DIR))
+    
+    for loc in locations:
+        build_location(loc, fuesse, theme, ui, languages, env,
+                       debug=args.debug, repo_url=args.repo_url,
+                       issuing_entities=issuing_entities, base_url=base_url)
+
+    if len(locations) > 1 or not args.location:
+        build_landing(locations, ui, theme, languages, env,
+                      repo_url=args.repo_url, base_url=base_url)
+
+    generate_assets(theme)
+    
+    print()
+    print(f"✅ Build complete: {SITE_DIR}/")
+
+
+if __name__ == "__main__":
+    main()

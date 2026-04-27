@@ -1,0 +1,258 @@
+# Numismatic Münzfüße Project — Claude Code Context
+
+> **Read this file first on every session.** It contains non-negotiable principles and conventions developed over many research sessions. Supporting files: `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`, `docs/CONVENTIONS.md`, `docs/GLOSSARY.md`.
+
+## Mission
+
+Build mathematically-verified, historically accurate reference artifacts documenting coinage standards (*Münzfüße*) of North German cities and territories, ca. 1566–1914. Output: static HTML pages hosted on GitHub Pages, one per location, in three languages (DE/EN/UK), with a landing page linking them.
+
+**Primary researcher:** Serhii (Ukrainian, expert-level numismatist). Communication in Ukrainian (ти-form). Expects direct, precise answers — no hedging, no self-abasement. Catches analytical errors; challenges conceptual weaknesses; trust is earned through accuracy.
+
+## Non-negotiable research principles
+
+### 1. What's on the coin vs. what's calculated
+
+> **Only what is literally inscribed on the coin goes in the `nominal` field. Calculated equivalents, historiographical nicknames, and secondary rechnerische Äquivalenten go in `note` (Bemerkung).**
+
+Examples:
+- Coin inscription `*VIII* SKILLING DANSKE` → `nominal: "8 Skilling Danske"`. NOT `"8 Skilling Dansk (= 4 Skilling Lybsk = 1/12 Speciedaler)"`. The equivalents go in `note`.
+- Coin inscription `MONNO GLVCKSTAD · XVI · E·REIC· HS·DA` → `nominal: "1/16 Reichsthaler Holstein-Dänisch"` (matching the legend). NOT `"1/16 Speciedaler"` (modern classification).
+- `Rigsort` is a historiographical nickname — does NOT appear on the coin — goes in `note`.
+- Pre-1841 Rigsbankskilling: legend is `*16* REICHS=BANK SCHILLING`, single-inscribed. Post-1841 (after Forordning 18. Dez. 1841): dual-inscribed. Do not conflate.
+
+### 2. Period-correct German orthography (mandatory in `de` fields)
+
+| Use | NOT |
+|---|---|
+| Müntz, Müntzfuß, Müntzwesen | Münz, Münzfuß |
+| biß | bis |
+| Marck | Mark (except Kurantmark/Reichsmark contexts) |
+| Cöllnische Marck | Kölnische Mark |
+| Thaler | Taler |
+| Courant | Kurant |
+| Groß, groß | Gross (never ß→ss) |
+| Müntzvertrag, Müntzordnung | Münzvertrag |
+
+Danish forms preserved intact: Kurantmøntfod, Plakat, Forordning, Danske Kancelli, Rigsdaler, Rigsort.
+
+English/Ukrainian fields use modern orthography (Münzfuß, Mark etc.) — period orthography is a DE-only convention reflecting historical sources.
+
+### 2a. Academic register (mandatory in all three languages)
+
+This is a **scholarly historical-numismatic study**, not a popular-history blog. All running text — descriptions, phase backgrounds, coin notes, methodological remarks — uses an **academic register**: precise, restrained, source-driven. Avoid:
+
+- **Colloquialisms** (uk: «наварок», «крутий», «класний»; de: «echt mega», «krass»; en: "huge gain", "crazy")
+- **Sensationalist intensifiers** ("екстремальний", "величезний", "extreme", "massive", "unbelievable") — quantify instead ("≈ +154 % über Silberwert", "23,48 vs. 10,43")
+- **Editorial exclamations** ("nicht Kopenhagen!", "achtung!", "WOW") — state the fact plainly
+- **Ad-hoc abbreviations and informal punctuation** in section titles (`+`, `&`, `/`); use full conjunctions ("und"/"and"/"та")
+- **First-person voice** ("we think", "our analysis suggests") — use impersonal constructions or attribute to a source
+- **Vague hedging** ("probably", "kind of", "досить") — either commit and cite, or mark `verified: false` with a verification note
+
+Preferred terms (uk → register-correct German/English equivalents in parentheses):
+- «надбавка» / «премія» / «маржа» (de: «Aufschlag», en: "premium")  — NOT «наварок»
+- «значне відхилення» / «суттєве перевищення» (de: «erhebliche Abweichung», en: "substantial deviation") — NOT «екстремальне»
+- «спричинило» / «зумовило» / «послужило приводом для» (de: «löste aus», en: "prompted") — NOT «спровокувало» (acceptable but slightly populist)
+
+**Forbidden non-words (in any language):**
+- **«stope»** — does not exist in English, German, or Ukrainian. Use the actual term: «standard», «Müntzfuß», «стопа» (uk), or the language-appropriate noun. Never coin pseudo-Anglo hybrids from Slavic roots.
+- «емпіричні дані свідчать» / «джерела підтверджують» (de: «empirisch belegt», en: "the evidence shows") — NOT «факти кажуть»
+
+When in doubt, ask: *would this phrase appear in a peer-reviewed numismatic article*? If no, rephrase.
+
+### 3. Precision conventions
+
+- **Decimal separator**: comma in DE (`25,28173 g`), period in EN (`25.28173 g`), comma in UK (`25,28173 г`). The build script handles this via i18n formatter; YAML stores numbers as JSON numbers (`25.28173`).
+- **5-decimal precision** for all Feingewicht calculations that appear in text. Internal computation uses full float precision.
+- **`=` vs `≈` vs `Kurs`**: strict distinction. `=` for exact mathematical identity; `≈` for approximations ≤0.1%; `Kurs` for historically-set exchange rates that need not reflect metal content.
+
+### 4. Unconfirmed data marker `(?)`
+
+When a value is estimated, unverified, or based on analogy rather than a primary source, mark the field as unverified. In YAML: `verified: false` with a `verification_note`. The build script renders this as `(?)` with a tooltip.
+
+**Never fake certainty.** Better to have 10 rows with `(?)` markers than 10 rows of plausible-looking fabrication.
+
+### 5. Source hierarchy
+
+In descending order of authority:
+
+1. **Coin inscription itself** (from IKMK, museum catalog, or high-resolution photo)
+2. **Museum catalogs** (IKMK Berlin, Royal Coin Cabinet Copenhagen, British Museum)
+3. **Auction catalog introductions** (Bruun Part II by Stack's Bowers Zürich 2025 is exceptionally well-researched)
+4. **MGM Münzlexikon** (Münzen, Geschichte, Menschen)
+5. **Numista** — useful for catalog numbers and rough data, but user-edited, treat with some skepticism
+6. **Wikipedia** (DE/EN) — last resort, always cross-check
+7. **Secondary literature** (rounded figures, modern retellings) — lowest priority
+
+When sources conflict, primary sources (inscriptions, archives) override secondary/tertiary sources. Always document the source chain in `coin.source`.
+
+### 6. Kurantmünze vs. Scheidemünze distinction
+
+- **Kurantmünze** (vollwertig): nominal ≈ silver content. Issued by state without (or with minor) seigniorage. Full-value money.
+- **Scheidemünze** (Billon/copper): nominal > silver content. Difference = seigniorage (state profit). Circulates locally only.
+- **Tarifmünze** (special case — Kronemønt 1618–1696): set by fiat to a tariff above silver value; distinct category.
+
+In `coin.kind`: one of `kurant | scheide | tarif | gedenk`. Build script renders these into separate sub-tables within each phase (green divider for Kurant, amber for Scheide). This distinction is **mandatory**: conflating them obscures the economic logic.
+
+### 7. Münzfüße are global; phases are local
+
+- **Stopes** (`data/shared/stopes.yml`) are universal mathematical constructs: Cöllnische Marck ÷ N. The 9¼-Fuß is the same everywhere. Defined once.
+- **Phases** are location-specific: how *this location* applied *this stope* during *this period*. Bremen's 9¼-Fuß phases differ from Schleswig's.
+- Coins reference both: `stope: reichsdukatenfuss` (global), `phase: A` (local to the location file).
+
+### 8. Coin placement rules (audit checklist)
+
+Every coin must be in:
+1. **The correct stope** by its actual Münzfuß (not where it might seem to fit rhetorically). E.g., dual-denom Rigsbankskilling belong in 18½-Fuß (their Primär-Fuß), not in 9¼-Fuß even though 5 Schilling Courant = 1/12 Speciestaler.
+2. **The correct chronological phase** within that stope. First year of issue determines phase.
+3. **The correct Kurant/Scheide category** within that phase.
+
+Never shortcut this. Mis-placement has happened repeatedly and always produces confused conclusions.
+
+### 9. Coin inclusion criteria (source-agnostic)
+
+When deciding whether a coin entry belongs in a location's coin table — regardless of where it was sourced (Numista, Bruun, IKMK Berlin, Lange, MGM, hand-typed from a museum visit) — apply these three exclusions, and only these:
+
+1. **Patterns / trial strikes** — entries marked `Pn*`, `(Silver pattern strike)`, `(Gold pattern)`, "Probe", "Essai" etc. They were not struck for circulation. Skip.
+2. **Exonumia** — medals, jetons, commemorative tokens, Tin/White-metal pieces without a denomination. They belong to separate registers, not to coin tables.
+3. **Duplicates** — defined strictly by **catalog index**, primarily KM# (Krause-Mishler). Two entries sharing the same KM# (or the same Hede#, Sieg#, Lange# when KM# is absent) are duplicates. **Different catalog index = different type**, even if the denomination, ruler, mint, and year ranges overlap. Krause-Mishler assigns a separate KM# to each design / mint / mintmaster / fineness variant by design.
+
+**Do NOT skip:**
+- Multiple coins of the same denomination per ruler if their catalog indices differ (each KM# = a distinct documented type with its own row).
+- Coins outside the currently-added time window if they fall within the location's overall historical scope. Extend the relevant phase to cover them rather than dropping the coin.
+- Coins where the source lacks fineness or weight — add them with `verified: false` and let `(?)` markers render. Under-documentation is preferable to omission.
+
+This rule was introduced after a manual import accidentally collapsed multiple KM# variants into single representatives ("one 1 Thaler John Adolphus per period"), losing typological coverage. A complete catalog ingest from any source should match that source 1:1 except for the three exclusions above.
+
+## Architecture overview
+
+```
+data/shared/stopes.yml          # Mathematical definitions of Münzfüße (global)
+data/shared/glossary.yml        # Terms with DE/EN/UK translations
+data/locations/<loc>.yml        # Per-location: phases + coins (inline i18n)
+data/i18n/ui.yml                # UI strings (column headers, buttons)
+data/i18n/boilerplate.yml       # Recurring methodological notes
+
+config/theme.yml                # Colors, typography, dimensions
+
+templates/landing.html.j2       # Homepage — location cards
+templates/location.html.j2      # Per-location/per-language page
+templates/partials/*.j2         # Phase blocks, subcat dividers, coin rows
+
+scripts/build.py                # Single entry point: data → site/
+scripts/lib/
+  schema.py                     # Pydantic models for validation
+  compute.py                    # A → B: fein, delta, implied stope
+  categorize.py                 # B → C: group by phase, kind
+  render.py                     # C → HTML via Jinja2
+  i18n.py                       # Translation resolution, number formatting
+
+site/                           # .gitignored — build output
+  index.html                    # Landing page (language-switchable)
+  <loc>/<lang>/index.html       # e.g., schleswig/de/index.html
+  assets/{style.css, app.js}
+
+.github/workflows/deploy.yml    # Auto-build + deploy on push to main
+```
+
+## Build pipeline (A → B → C → HTML)
+
+- **A (source)** = raw YAML in `data/`. Hand-edited. Minimal fields: what's on the coin, weight_rough, fineness, stope, phase, source.
+- **B (computed, in-memory)** = A + derived fields: weight_fein, soll_fein, delta_g, delta_pct, implied_stope. Computed by `compute.py`. Debug output optional → `output/debug/<loc>.computed.json`.
+- **C (categorized, in-memory)** = B grouped by stope → phase → kind (kurant/scheide). Sorted by year_first. Build script walks this tree.
+- **HTML** = Jinja2 templates render C. One HTML per (location, language).
+
+Never edit B or C manually. Never edit site/ HTML manually. Always edit `data/` and rebuild.
+
+## Build command
+
+```bash
+python scripts/build.py                    # builds everything
+python scripts/build.py --location schleswig   # single location, all languages
+python scripts/build.py --location schleswig --lang de   # single page
+python scripts/build.py --debug            # also writes output/debug/*.json
+python scripts/build.py --validate-only    # runs schema validation, no rendering
+```
+
+## Git workflow
+
+- **main** = source of truth. Every push triggers GitHub Actions → build → deploy to Pages.
+- **Feature branches** for larger changes (new location, template rework).
+- **Commit messages**: conventional prefixes — `data:` (YAML changes), `schema:` (model changes), `template:` (render changes), `build:` (script logic), `docs:`, `fix:`.
+- **Commit messages MUST be in English only** (subject + body), regardless of the language used in the chat conversation. Project communication may be in Ukrainian, but git history is English-only.
+- Commit small, commit often. YAML diffs are readable.
+
+## Data editing workflow
+
+1. Edit the relevant YAML file (e.g., add a coin to `data/locations/schleswig.yml`)
+2. Run `python scripts/build.py --validate-only` locally to catch schema errors
+3. Optionally `python scripts/build.py --location schleswig --lang de` to preview
+4. Commit + push
+5. GitHub Actions rebuilds and deploys (~1 min)
+
+## i18n policy
+
+Strategy A (inline): each translatable field is a `{de: ..., en: ..., uk: ...}` object in YAML. Supported fields: `title`, `description`, `note`, `verification_note`, boilerplate texts.
+
+Non-translated fields (global identifiers):
+- Catalog references (KM#, Hede, Sieg, Bruun-lot) — never translated
+- `nominal` — kept as literal inscription (Danish/German/Latin); translation is in `note` if needed
+- Mint names, ruler names — use standard academic spellings, identical across languages
+- Münzfuß names in technical form (`9¼-Fuß`) — displayed identically across languages
+- Numbers — localized by formatter, not translated per-row
+
+UI strings (column headers, navigation, buttons) live in `data/i18n/ui.yml`.
+
+## Anti-patterns to avoid
+
+1. **Mental reframing of user requests.** If the user says "don't change X", don't change X even if a "better" change seems obvious.
+2. **Inventing sources.** If unsure, say `verified: false` and `verification_note: "not found in online sources"`.
+3. **Rounding silently.** All numbers in YAML must be traceable. If the source says 3.46 g, store 3.46 not 3.5.
+4. **Fixing YAML in one place while leaving equivalent issue elsewhere.** E.g., don't rename KM# 82's nominal without checking KM# 42.1 for the same pattern.
+5. **Leaving HTML hand-edits in site/.** site/ is regenerable. If the fix belongs there, it belongs in the template or data.
+
+## Checking your work
+
+Before committing:
+```bash
+python scripts/build.py --validate-only   # schema OK
+python scripts/build.py                    # builds successfully
+# open site/schleswig/de/index.html in browser — spot check
+git diff data/                             # sanity check on changes
+```
+
+After non-trivial changes, run the structural audit script:
+```bash
+python scripts/audit.py schleswig
+```
+Reports chronology mismatches, orphan coins (phase doesn't exist), duplicate KM# entries, and Kurant/Scheide imbalances.
+
+## When to ask the user
+
+- Ambiguous coin provenance, multiple plausible catalog entries
+- Conflicting sources on fineness
+- Whether a new variant deserves its own row or a note on existing row
+- Translation calls for specialized numismatic terms in UK (Ukrainian numismatic vocabulary is sparse)
+
+Never invent translations for technical German numismatic terms without confirming with the user.
+
+## Prior work (context)
+
+This project began as iterative research in claude.ai chat. Before this build pipeline existed, three main HTML artifacts were hand-built:
+
+1. **Schleswig-Holstein** (180KB, 86 coins across 7 Münzfüße, 1618–1873). This is the fidelity target for the first build — `data/locations/schleswig.yml` + build pipeline should reproduce it structurally.
+2. **Pan-German Münzfüße overview** (`reference/muenzfuesse_v5.html`, 57KB, 18 Münzfuß cards ca. 1566–1875). The source material for expanding `data/shared/stopes.yml` and for future locations (Bremen, Hamburg, Lübeck, etc.).
+3. **Lübeck coin catalog 1749–1810** (`reference/lubeck_1750_1850_verified_complete.html`, 18KB). Numista + IKMK Berlin data for Lübeck coins. Source material for future `data/locations/lubeck.yml`.
+
+See `reference/README.md` for details on these legacy HTML files and how to use them.
+
+See `docs/DECISIONS.md` for the specific analytical decisions (e.g., why KM# 73 Stapelholmer Schanze is classified as 1698-reduced, why Bremen's 1840 silver Münzfuß reconstruction uses 71/72 fineness, etc.)
+
+See `docs/GLOSSARY.md` for German/Danish/Ukrainian numismatic term mappings.
+
+## Tools and resources
+
+- **Numista** (`en.numista.com`): catalog numbers, rough weights. Rate-limited via HTTP 403; use browser console Promise.all for bulk queries.
+- **IKMK Berlin** (`ikmk.smb.museum`): `/object?id={id}&download=json_ext` returns full record. Bulk scraping via browser console on the origin domain bypasses CORS.
+- **Bruun PDF** (Stack's Bowers Zürich 14-15 March 2025, Part II): the gold standard reference for Gottorp/Schleswig coinage. 356 pages. `danskmoent.dk` hosts the PDF.
+- **CoinVarieties, MGM Münzlexikon, Bobzin, danskmoent.dk**: supplementary academic sources.
+- **Offline (paper only)**: Lange 1908/12, Sieg-Møntkatalog 2018, Storgaard 2001 — cited by Bruun/Numista, rarely accessible digitally.

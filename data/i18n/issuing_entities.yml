@@ -1,0 +1,148 @@
+# Political entities that issued coinage circulating in Schleswig-Holstein.
+# Referenced by `coin.issuing_entity: <id>` in location YAML files.
+#
+# Granularity:
+#   - Holstein up to 1773: split between Royal Danish portion (Glückstadt/Altona)
+#     and Gottorp ducal portion (Tönning/Schleswig/Kiel). These are distinct
+#     issuing authorities under different sovereigns.
+#   - 1773 onwards: Gottorp share bought out by Denmark → unified Gesamtstaat.
+#     All later Holstein coinage is struck under the Danish king's sole
+#     authority, even if minted at Altona or Poppenbüttel.
+#   - 1850–1851: brief Provisional Government during the First Schleswig War.
+#   - 1864–1866: Austrian–Prussian condominium (no separate coinage struck).
+#   - 1867+: Prussian Province.
+
+royal_holstein:
+  abbrev: "RH"
+  name:
+    de: "Holsteinischer König-Antheil (kgl. dänisch)"
+    en: "Royal Danish portion of Holstein"
+    uk: "Гольштейн (королівсько-данська частина)"
+  short:
+    de: "Kgl. Holstein"
+    en: "Royal Holstein"
+    uk: "Корол. Гольштейн"
+  description:
+    de: "Vom dänischen König (Christian IV. → Friedrich V.) regierter Antheil des Herzogthums Holstein, Münzstätten Glückstadt und Altona/Poppenbüttel. Existierte parallel zum Gottorpischen Antheil bis zur Vereinigung 1773."
+    en: "Portion of the Duchy of Holstein ruled by the Danish king (Christian IV → Frederik V), minted at Glückstadt and Altona/Poppenbüttel. Co-existed with the Gottorp portion until the 1773 unification."
+    uk: "Частина Гольштейну, якою управляв данський король (Кристіан IV → Фредерік V); монетні двори Глюкштадт і Альтона/Поппенбюттель. Існувала паралельно з ґотторпською частиною до обʼєднання 1773."
+
+gottorp_duchy:
+  abbrev: "HG"
+  name:
+    de: "Herzogthum Schleswig-Holstein-Gottorp"
+    en: "Duchy of Schleswig-Holstein-Gottorp"
+    uk: "Герцогство Шлезвіг-Гольштейн-Ґотторп"
+  short:
+    de: "Hzgt. Gottorp"
+    en: "Gottorp Duchy"
+    uk: "Герц. Ґотторп"
+  description:
+    de: "Selbständige Linie der Holstein-Herzöge (Adolf I. 1544 → Karl Peter Ulrich 1762). Münzstätten Tönning, Schleswig, Kiel. Souveränität endete mit dem Vertrag von Zarskoje Selo 1773 — die Gottorpischen Theile fielen an die dänische Krone im Tausch für Oldenburg/Delmenhorst."
+    en: "Independent line of the Holstein dukes (Adolf I 1544 → Karl Peter Ulrich 1762). Mints at Tönning, Schleswig, Kiel. Sovereignty ended with the 1773 Treaty of Tsarskoye Selo — the Gottorp territories passed to the Danish Crown in exchange for Oldenburg/Delmenhorst."
+    uk: "Незалежна гілка гольштинських герцогів (Адольф I 1544 → Карл Петер Ульріх 1762). Монетні двори Тьоннінг, Шлезвіг, Кіль. Суверенітет завершився Царськосельським договором 1773 р. — ґотторпські території перейшли данській короні в обмін на Ольденбург/Дельменгорст."
+
+danish_realm:
+  abbrev: "DK"
+  name:
+    de: "Königreich Dänemark"
+    en: "Kingdom of Denmark"
+    uk: "Королівство Данія"
+  short:
+    de: "Königreich DK"
+    en: "Kingdom DK"
+    uk: "Корол. Данія"
+  description:
+    de: "Münzstätte Kopenhagen (Christiansborg, ab 1739 Den Kongelige Mønt). Reichsweite Prägungen für die gesamte dänische Monarchie, einschließlich der Herzogthümer."
+    en: "Royal Danish Mint at Copenhagen (Christiansborg, then Den Kongelige Mønt from 1739). Realm-wide issues for the whole Danish monarchy including the duchies."
+    uk: "Королівський монетний двір у Копенгагені (Крістіансборг, з 1739 — Кongelige Mønt). Загальнодержавні випуски для всієї данської монархії, включно з герцогствами."
+
+gesamtstaat:
+  abbrev: "DK+"
+  name:
+    de: "Dänisch-holsteinischer Gesamtstaat"
+    en: "Danish-Holstein composite state (Gesamtstaat)"
+    uk: "Данський сукупно-державний устрій (Gesamtstaat)"
+  short:
+    de: "Gesamtstaat"
+    en: "Gesamtstaat"
+    uk: "Сукуп. держ."
+  description:
+    de: "Vereinigte dänische Krone + Herzogthümer (1773 → 1864). Münzstätten Altona, Kopenhagen, Glückstadt prägen für den gesamten Realm. Umfaßt Rigsbankdaler-Reform 1813 und Rigsmønt-Reform 1854."
+    en: "Unified Danish Crown + duchies (1773 → 1864). Mints at Altona, Copenhagen, Glückstadt strike for the whole realm. Covers the 1813 Rigsbankdaler reform and the 1854 Rigsmønt reform."
+    uk: "Обʼєднана данська корона + герцогства (1773 → 1864). Монетні двори Альтона, Копенгаген, Глюкштадт карбують для всієї держави. Охоплює реформу Rigsbankdaler 1813 і реформу Rigsmønt 1854."
+
+provisional_govt:
+  abbrev: "PG"
+  name:
+    de: "Provisorische Regierung Schleswig-Holstein"
+    en: "Provisional Government of Schleswig-Holstein"
+    uk: "Тимчасовий уряд Шлезвіг-Гольштейну"
+  short:
+    de: "Prov. Regierung"
+    en: "Prov. Government"
+    uk: "Тимчас. уряд"
+  description:
+    de: "Während des Ersten Schleswig-Krieges (1848–1851) bestehende deutsche Übergangsregierung. Eigene Kupfer-Scheidemünzen (KM# 160, 162, X#6) Münzstätte Altona 1850–1851."
+    en: "German transitional government during the First Schleswig War (1848–1851). Issued copper petty coins (KM# 160, 162, X#6) from the Altona mint, 1850–1851."
+    uk: "Німецький перехідний уряд часів Першої шлезвізької війни (1848–1851). Карбував мідні розмінні монети (KM# 160, 162, X#6) на монетному дворі Альтона у 1850–1851 рр."
+
+schauenburg_pinneberg:
+  abbrev: "SP"
+  name:
+    de: "Grafschaft Holstein-Schaumburg-Pinneberg"
+    en: "County of Holstein-Schauenburg-Pinneberg"
+    uk: "Графство Гольштейн-Шауенбург-Піннеберг"
+  short:
+    de: "Gft. Pinneberg"
+    en: "Pinneberg County"
+    uk: "Граф. Піннеберг"
+  description:
+    de: "Selbständiges Reichslehen der Grafen von Schaumburg im nördlichen Holstein (Pinneberg). Die Schaumburger regierten ursprünglich ganz Holstein (1110–1459), behielten ab 1459 nur ihr Stammgrafschaft. Eigene Münzprägung biß zum Aussterben der Linie 1640; danach fiel Pinneberg an den dänischen Kgl. Antheil."
+    en: "Independent imperial fief of the Counts of Schaumburg in northern Holstein (Pinneberg). The Schaumburgs originally ruled all of Holstein (1110–1459), keeping only their ancestral county after 1459. Issued its own coinage until the line died out in 1640; Pinneberg then passed to the Royal Danish portion."
+    uk: "Самостійний імперський лен графів Шаумбурга в північному Гольштейні (Піннеберг). Шаумбурги первісно правили всім Гольштейном (1110-1459), зберігаючи з 1459 лише своє родове графство. Власне карбування до вимирання роду 1640 р.; після того Піннеберг увійшов до королівсько-данської частини."
+
+sonderburg_duchy:
+  abbrev: "SO"
+  name:
+    de: "Herzogthum Schleswig-Holstein-Sonderburg"
+    en: "Duchy of Schleswig-Holstein-Sonderburg"
+    uk: "Герцогство Шлезвіг-Гольштейн-Зондербург"
+  short:
+    de: "Hzgt. Sonderburg"
+    en: "Sonderburg Duchy"
+    uk: "Герц. Зондербург"
+  description:
+    de: "Hauptlinie der Sonderburger Herzöge, gestiftet 1564 von Hans dem Jüngeren (1545–1622). Residenz Sonderburg auf Alsen. Eigene Münzprägung biß zum Erbschaftskonkurs der Stammlinie 1668; danach Theilung in Cadettlinien (Plön, Augustenburg, Glücksburg). Münzprägung unter Johann (Hans d. J., 1604–1622) und seinem Sohn Alexander (1622–1627)."
+    en: "Main line of the Sonderburg dukes, founded in 1564 by Hans the Younger (1545–1622). Seat at Sønderborg on Als. Issued its own coinage until the bankruptcy of the senior line in 1668; subsequently split into cadet branches (Plön, Augustenburg, Glücksburg). Coinage under Johann (Hans the Younger, 1604–1622) and his son Alexander (1622–1627)."
+    uk: "Головна лінія Зондербургівських герцогів, заснована 1564 Гансом Молодшим (1545-1622). Резиденція Зондербург на Альсі. Власне карбування до банкрутства старшої лінії 1668; потім поділ на кадетські гілки (Плен, Аугустенбург, Глюксбург). Карбування за Йоганна (Ганс Молодший, 1604-1622) та його сина Александра (1622-1627)."
+
+norburg_plon_duchy:
+  abbrev: "NP"
+  name:
+    de: "Herzogthum Schleswig-Holstein-Norburg-Plön"
+    en: "Duchy of Schleswig-Holstein-Norburg-Plön"
+    uk: "Герцогство Шлезвіг-Гольштейн-Норбург-Плен"
+  short:
+    de: "Hzgt. Plön"
+    en: "Plön Duchy"
+    uk: "Герц. Плен"
+  description:
+    de: "Sonderburg-Plöner Nebenlinie der Holsteiner Herzöge (1622–1761), Residenz Schloß Plön. Eigene Münzprägung unter Johann Adolph I. (1690er) und Friedrich Karl (1750er). Mit dem Tod Friedrich Karls 1761 fiel das Herzogthum an die dänische Krone."
+    en: "Sonderburg-Plön cadet line of the Holstein dukes (1622–1761), seat at Plön Castle. Own coinage under Johann Adolph I (1690s) and Friedrich Karl (1750s). With the death of Friedrich Karl in 1761 the duchy reverted to the Danish Crown."
+    uk: "Sonderburg-Plöner молодша лінія гольштинських герцогів (1622-1761), резиденція замок Плен. Власне карбування за Йоганна Адольфа I (1690-ті) та Фрідріха Карла (1750-ті). Зі смертю Фрідріха Карла 1761 герцогство повернулось до данської корони."
+
+prussian_province:
+  abbrev: "PR"
+  name:
+    de: "Provinz Schleswig-Holstein (Preußen)"
+    en: "Prussian Province of Schleswig-Holstein"
+    uk: "Прусська провінція Шлезвіг-Гольштейн"
+  short:
+    de: "Preuß. Provinz"
+    en: "Prussian Province"
+    uk: "Пр. провінція"
+  description:
+    de: "Nach der Annexion vom 24. August 1866 als preußische Provinz integriert. Ab 1867 reichsdänische Münzen außer Kraft, ab 1871 Reichsgoldmünzen-Ära."
+    en: "After the annexation of 24 August 1866 incorporated as a Prussian province. From 1867 the Danish coinage went out of use; the Reichsgoldmünzen era began in 1871."
+    uk: "Після анексії 24 серпня 1866 інтегрована як прусська провінція. З 1867 данські монети виходять з обігу; з 1871 — епоха Reichsgoldmünzen."
