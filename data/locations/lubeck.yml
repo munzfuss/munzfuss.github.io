@@ -1,0 +1,95 @@
+# Free Hanseatic City of Lübeck — coinage of the Wendischer Münzverein and
+# its successors, ca. 1500-1801 (Reichsdeputationshauptschluss).
+#
+# This file is a STUB for future expansion. Lübeck is referenced from the
+# Schleswig-Holstein artifact (the 11⅓-Fuß Kurantdaler is fine-silver-equivalent
+# to Lübeck's 48 Schilling Courant), and one Lübeck coin had been incorrectly
+# tagged as Holstein-Danish in schleswig.yml — moved here on 2026-04-27.
+#
+# Future work:
+#   1. Define a proper Wendisch-Lübisch fuss in data/shared/fuesse.yml
+#      (the 9⅔-Lübisch standard with .750 fineness — distinct from the
+#      Holstein-Danish 11⅓-Fuß at .875).
+#   2. Build out phases for the Wendischer Münzverein (1379+), and the
+#      late-imperial city issues (1700+).
+#   3. Migrate data from reference/lubeck_1750_1850_verified_complete.html
+#      (legacy artifact, 18KB).
+
+id: lubeck
+name:
+  de: Lübeck
+  en: Lübeck
+  uk: Любек
+
+summary:
+  de: |
+    Müntzwesen der Freien Hanse­stadt Lübeck — Wendischer Münzverein und seine
+    Nachfolger, ca. 1500 biß 1801. <em>Stub-Datei: derzeit eine einzige Münze
+    (irrtümlich aus dem Schleswig-Holstein-Artefakt verschoben). Vollständige
+    Bearbeitung steht aus.</em>
+  en: |-
+    Coinage of the Free Hanseatic City of Lübeck — the Wendischer Münzverein and its successors, ca. 1500 to 1801. <em>Stub file: currently a single coin (moved here from the Schleswig-Holstein artifact, where it had been mis-classified). Full treatment pending.</em>
+  uk: |-
+    Монетна справа Вільного Ганзейського міста Любек — Вендський монетний союз та його наступники, бл. 1500–1801. <em>Stub-файл: наразі одна монета (помилково перенесена з артефакту Шлезвіг-Гольштейну). Повна обробка попереду.</em>
+
+# Order in which fuesse render. We use the Holstein-Danish 11⅓-Fuß as a
+# placeholder — the proper Wendisch-Lübisch standard (9⅔-Fuß at .750) needs
+# to be added to data/shared/fuesse.yml separately.
+fuss_order:
+  - 11_333_thaler
+
+# Minimum phase definition so the moved coin validates against the schema.
+phases:
+  11_333_thaler:
+    - id: A
+      year_from: 1500
+      year_to: 1801
+      from_label: '~1500'
+      to_label: '1801'
+      title:
+        de: Wendisch-Lübisches Müntzwesen (Stub-Phase)
+        en: Wendisch-Lübisch coinage (stub phase)
+        uk: Вендсько-любецька монетна система (stub-фаза)
+      description:
+        de: 'Lübeck folgte dem Wendischer Münzverein. Die hier abgebildete einzelne Münze (KM# 168, 1752) entstand am Ende dieses Zeitraums. <em>Diese Phase ist eine Sammelphase für Stub-Zwecke; künftige Verfeinerung folgt.</em>'
+        en: 'Lübeck followed the Wendischer Münzverein standard. The single coin shown here (KM# 168, 1752) was struck near the end of that period. <em>This phase is a placeholder; future refinement is planned.</em>'
+        uk: 'Любек дотримувався Вендського монетного союзу. Єдина наведена тут монета (KM# 168, 1752 р.) карбувалась наприкінці цього періоду. <em>Ця фаза — заглушка; уточнення в майбутньому.</em>'
+
+coins:
+  - id: km-168-1-1752
+    fuss: 11_333_thaler
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 48 Schilling Courant
+    year_label: '1752'
+    year_first: 1752
+    ruler: Free Hanseatic City of Lübeck
+    mint: Lübeck
+    catalog:
+      km: '168.1'
+      dav: '2420'
+      numista: '24631'
+      others:
+        - Behrens 291a
+        - Jaeger 22
+    metal: silver
+    fineness: 0.750
+    weight_rough_g: 27.51
+    diameter_mm: 41
+    note:
+      de: |-
+        Aversi-Legende «48 SCHILLING COURANT GELDT ANNO 1752»; Reverse: doppelköpfiger Adler des Heiligen Römischen Reichs, Wertangabe auf der Brust, drei Ähren als Stadtwappen-Element. <em>Dieser Eintrag wurde am 2026-04-27 aus schleswig.yml hierher verschoben — ursprünglich war er fälschlich als königlich-holsteinische Frederik-V.-Prägung mit fingierten Parametern (~23,6 g, .875) erfaßt; tatsächlich handelt es sich um das Lübecker Stadt-Stück nach Davenport 2420 / KM# 168.</em> Es existieren sechs KM#-Untervarianten (168.1–168.6) und entsprechend Davenport 2420A–2420E.
+      en: |-
+        Reverse legend: «48 SCHILLING COURANT GELDT ANNO 1752»; obverse: double-headed eagle of the Holy Roman Empire with the value on the chest and three ears of wheat as a city-arms element. <em>Moved here from schleswig.yml on 2026-04-27 — the original entry mis-attributed it as a royal-Holstein Frederik V issue with fabricated parameters (~23.6 g, .875); it is actually the Lübeck city piece per Davenport 2420 / KM# 168.</em> Six KM# sub-variants exist (168.1–168.6) and corresponding Davenport 2420A–2420E.
+      uk: |-
+        Реверс-легенда: «48 SCHILLING COURANT GELDT ANNO 1752»; аверс: двоголовий орел Священної Римської імперії з номіналом на грудях і трьома колосами як елемент міського герба. <em>Перенесено сюди зі schleswig.yml 27 квітня 2026 р. — початковий запис помилково атрибутував монету як королівсько-гольштинський випуск Фредеріка V з вигаданими параметрами (~23,6 г, .875); насправді це любецький міський карбунок за Davenport 2420 / KM# 168.</em> Існує шість підваріантів KM# (168.1–168.6) і відповідні Davenport 2420A–2420E.
+    sources:
+      - type: numista
+        url: 'https://en.numista.com/catalogue/pieces24631.html'
+        ref: Numista
+      - type: web
+        url: 'https://www.ngccoin.com/price-guide/world/german-states-l%C3%BCbeck-48-schilling-km-168.1-1752-cuid-1137379-duid-1339595'
+        ref: NGC
+      - type: literature
+        ref: Davenport 2420 (European Crowns)
