@@ -32,3 +32,8 @@ local.env
 
 # Numista refs scratch (regenerable via scripts/enrich_numista_refs.py)
 scripts/numista_refs.json
+
+# One-off / scratch scripts (see CLAUDE.md "Git workflow"). Anything that runs
+# once on a specific dataset and won't be re-applied lives here. Truly reusable
+# utilities go directly under scripts/.
+scripts/oneoff/

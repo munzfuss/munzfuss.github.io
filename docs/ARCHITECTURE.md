@@ -15,7 +15,7 @@
 
 Hand-edited YAML. The only layer humans modify.
 
-- `data/shared/stopes.yml` — global Münzfuß definitions
+- `data/shared/fuesse.yml` — global Münzfuß definitions
 - `data/shared/glossary.yml` — term translations
 - `data/locations/<location>.yml` — per-location phases + coins
 - `data/i18n/ui.yml` — UI strings
@@ -24,12 +24,12 @@ Hand-edited YAML. The only layer humans modify.
 
 ### Layer B — Computed
 
-For each coin, derive fields from raw input using `stopes.yml` lookups:
+For each coin, derive fields from raw input using `fuesse.yml` lookups:
 
 | Field | Formula |
 |---|---|
 | `weight_fein` | `weight_rough × fineness` |
-| `soll_fein` | lookup in `stopes[coin.stope].fractions[coin.fraction]` |
+| `soll_fein` | lookup in `fuesse[coin.fuss].fractions[coin.fraction]` |
 | `delta_g` | `weight_fein − soll_fein` |
 | `delta_pct` | `delta_g / soll_fein × 100` |
 | `within_remedium` | `abs(delta_pct) ≤ 1.0` (boolean) |
@@ -45,8 +45,8 @@ Group computed coins:
 
 ```
 location
-  └─ stopes[]
-      └─ stope
+  └─ fuesse[]
+      └─ fuss
           └─ phases[]
               └─ phase (id, title, date_range, description)
                   ├─ kurant_coins[]    (sorted by year_first)
@@ -62,8 +62,8 @@ Jinja2 templates consume the categorized tree. One render per (location, languag
 
 - `landing.html.j2` — root index, lists locations
 - `location.html.j2` — single location page
-- `partials/stope_card.j2` — one stope block
-- `partials/phase_block.j2` — one phase within stope
+- `partials/fuss_card.j2` — one fuss block
+- `partials/phase_block.j2` — one phase within fuss
 - `partials/subcat_divider.j2` — Kurant/Scheide divider
 - `partials/coin_row.j2` — single `<tr>`
 
@@ -81,7 +81,7 @@ class Fraction(BaseModel):
     soll_rau_g: float | None   # gold: required; silver: optional
     soll_fein_g: float
 
-class Stope(BaseModel):
+class Fuss(BaseModel):
     id: str                    # "reichsdukatenfuss"
     name: I18nText
     metal: Literal["silver", "gold"]
@@ -115,8 +115,8 @@ class CatalogRefs(BaseModel):
 
 class Coin(BaseModel):
     id: str                       # "km-146-chr-albrecht-1689"
-    stope: str                    # FK to stopes
-    phase: str                    # FK to phases (within this location's stopes)
+    fuss: str                    # FK to fuesse
+    phase: str                    # FK to phases (within this location's fuesse)
     nominal: str                  # exactly as on coin
     year_label: str               # "1689", "1787–1808", "1771 (frozen)"
     year_first: int               # 1689, 1787, 1771 — sort key
@@ -144,10 +144,10 @@ class Location(BaseModel):
     id: str
     name: I18nText
     summary: I18nText
-    stope_usage: list[StopeUsage]  # which global stopes are used + phase defs
+    fuss_usage: list[FussUsage]  # which global fuesse are used + phase defs
 
-class StopeUsage(BaseModel):
-    stope: str                     # FK
+class FussUsage(BaseModel):
+    fuss: str                     # FK
     phases: list[Phase]
     coins: list[Coin]
 ```
@@ -159,7 +159,7 @@ def main():
     args = parse_args()
     
     # Load shared
-    stopes = load_stopes("data/shared/stopes.yml")
+    fuesse = load_fuesse("data/shared/fuesse.yml")
     glossary = load_glossary("data/shared/glossary.yml")
     ui = load_i18n("data/i18n/ui.yml")
     boilerplate = load_i18n("data/i18n/boilerplate.yml")
@@ -169,8 +169,8 @@ def main():
     languages = args.lang or ["de", "en", "uk"]
     
     for loc in locations:
-        validate(loc, stopes)                        # schema + cross-ref checks
-        computed = compute(loc, stopes)              # A → B
+        validate(loc, fuesse)                        # schema + cross-ref checks
+        computed = compute(loc, fuesse)              # A → B
         if args.debug:
             dump_json(computed, f"output/debug/{loc.id}.computed.json")
         categorized = categorize(computed)           # B → C
@@ -189,10 +189,10 @@ def main():
 
 ## Data validation (build-time checks)
 
-- Every `coin.stope` must exist in `stopes.yml`
-- Every `coin.phase` must exist in that location's `phases` for that stope
+- Every `coin.fuss` must exist in `fuesse.yml`
+- Every `coin.phase` must exist in that location's `phases` for that fuss
 - `coin.year_first` must be within `phase.year_from ≤ year_first ≤ phase.year_to`
-- `coin.fraction` (if given) must exist in `stope.fractions`
+- `coin.fraction` (if given) must exist in `fuss.fractions`
 - Unique `coin.id` within a location
 - `I18nText.de` always non-empty (DE is the canonical source)
 - Warnings for: missing `verification_note` when `verified: false`; missing source URLs
@@ -234,7 +234,7 @@ jobs:
 
 Adding `data/locations/bremen.yml` is additive — nothing in existing code changes. The build script iterates `data/locations/*.yml` automatically. Landing page is regenerated.
 
-If Bremen introduces a stope not yet in `stopes.yml`, add the mathematical definition there once; subsequent locations can reference it. E.g., Bremen's reconstructed 13⅓ silver-Münzfuß at 71/72 fineness becomes a global entry.
+If Bremen introduces a fuss not yet in `fuesse.yml`, add the mathematical definition there once; subsequent locations can reference it. E.g., Bremen's reconstructed 13⅓ silver-Münzfuß at 71/72 fineness becomes a global entry.
 
 ## Language fallback
 

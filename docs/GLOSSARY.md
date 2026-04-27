@@ -128,7 +128,7 @@ Keep literal German/Danish spelling across languages:
 | Soll | target / nominal | цільове |
 | Ist | actual | фактичне |
 | Remedium | tolerance | допуск |
-| Fuß-Äquivalent | stope equivalent | еквівалент стопи |
+| Fuß-Äquivalent | fuss equivalent | еквівалент стопи |
 | Silberparität | silver parity | срібний паритет |
 | Kursverhältnis | exchange rate | курсове співвідношення |
 | Gold-Silber-Ratio | gold-silver ratio | відношення золота до срібла |
@@ -166,7 +166,7 @@ Keep literal German/Danish spelling across languages:
 | col.diameter | Ø | Ø | Ø |
 | col.mint | Müntzstätte | Mint | Монетний двір |
 | col.note | Bemerkung | Note | Примітка |
-| col.stope | Soll · Δ · Fuß | Target · Δ · Stope | Ціль · Δ · Стопа |
+| col.fuss | Soll · Δ · Fuß | Target · Δ · Fuss | Ціль · Δ · Стопа |
 | col.source | Quelle | Source | Джерело |
 | label.kurant | Kurantmünzen — Vollwertmünzen | Kurant coins — full-value coinage | Курантні монети — повноцінна монета |
 | label.scheide | Scheidemünzen — Kleingeld | Scheide coins — small change | Розмінні монети — дрібні гроші |

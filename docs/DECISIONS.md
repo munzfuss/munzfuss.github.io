@@ -12,7 +12,7 @@ Bremen's silver Münzfuß from 1840 was reconstructed independently: **13⅓ aus
 - The Jever 1764 4-Grote coin inscription «240 OBF FEIN MARC» independently documents the identical standard 76 years earlier — confirming it as an established North German coastal regional standard, not a Bremen innovation.
 - Must be recorded as an **original reconstruction**, not citable secondary literature.
 
-**When to note this**: in Bremen's YAML, the stope block needs `verification_note` explaining this is a first-principles reconstruction from coin inscriptions + Jever precedent, not a published historical standard. User expects this transparency.
+**When to note this**: in Bremen's YAML, the fuss block needs `verification_note` explaining this is a first-principles reconstruction from coin inscriptions + Jever precedent, not a published historical standard. User expects this transparency.
 
 ## 2026-03 — Bremen periodization before 1870
 
@@ -28,7 +28,7 @@ The implied ratio in Bremen's Friedrich d'or = 5 Thaler Gold exchange rate is **
 
 Kronemønt (1618–1696) is classified as its **own fiscal Tarifmünze category**, not as "reduced 9¼-Fuß". Empirically ≈15.65 Kronen/Marck; ≈10.43-Thaler-Fuß-equivalent. But the fundamental point is that **the Krone was a Tarifmünze** — traded at a king-set value *above* silver content. The difference = Seigniorage, not market price.
 
-Confusing it with a reduced Speciesthaler would misrepresent the economic mechanism. It gets its own stope entry (`kronemont`) with `kind: tarif` for all its coins.
+Confusing it with a reduced Speciesthaler would misrepresent the economic mechanism. It gets its own fuss entry (`kronemont`) with `kind: tarif` for all its coins.
 
 ## 2026-04 — Lübeck 1776 Speciesthaler is 9-Fuß, not 34-Mark-Fuß
 
@@ -43,9 +43,9 @@ Hamburg Bancovaluta has two fundamentally different phases separated by the 1769
 
 When modeling Hamburg: these must be **three separate phases**, not one "Bancovaluta 1619–1875".
 
-## 2026-04 — 13⅓-Thalerfuß: separate stope from Konventionsfuß
+## 2026-04 — 13⅓-Thalerfuß: separate fuss from Konventionsfuß
 
-Despite mathematical equivalence (3/4 × Konventionstaler = Kuranttaler), the **13⅓-Thalerfuß** (Konventionskuranttaler-Fuß) should be treated as a **distinct stope**:
+Despite mathematical equivalence (3/4 × Konventionstaler = Kuranttaler), the **13⅓-Thalerfuß** (Konventionskuranttaler-Fuß) should be treated as a **distinct fuss**:
 - As a rechnerische Einheit throughout Norddeutschland wherever Konventionsfuß was used but Groschen-Teilung (24/Taler) kept
 - Specific prägungen: Sachsen-Weimar-Eisenach 1760 (explicit «13⅓ ST. EINE FEINE MARCK»), Hessen-Kassel 1776/78/79 Sterntaler, Oldenburg 1761–1765
 
@@ -83,13 +83,13 @@ Rule: always verify against actual coin inscription (from museum catalog, auctio
 
 ## 2026-04 — "Schillingfuß" is not a real Münzfuß
 
-Early drafts labeled small Billon coins as being "in Schillingfuß". **This is wrong** — Münzfuß is defined by the head silver coin (Speciestaler). Schilling is a nominal *within* that Münzfuß, not a separate stope.
+Early drafts labeled small Billon coins as being "in Schillingfuß". **This is wrong** — Münzfuß is defined by the head silver coin (Speciestaler). Schilling is a nominal *within* that Münzfuß, not a separate fuss.
 
 All 7 Tönning Scheidemünzen (KM# 155, 158, 183, 185, 212, Lange 438, KM# 164 variant) are now correctly classified as belonging to 9¼-Fuß with `kind: scheide`.
 
 ## 2026-04 — Kurant vs Scheide as sub-category of phase
 
-Within each phase of a stope, coins are further split into:
+Within each phase of a fuss, coins are further split into:
 - ✦ Kurantmünzen (green divider): vollwertig, nominal ≈ silver content
 - ∘ Scheidemünzen (amber divider): nominal > silver content, local only
 

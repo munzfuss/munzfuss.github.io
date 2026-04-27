@@ -95,15 +95,15 @@ In `coin.kind`: one of `kurant | scheide | tarif | gedenk`. Build script renders
 
 ### 7. Münzfüße are global; phases are local
 
-- **Stopes** (`data/shared/stopes.yml`) are universal mathematical constructs: Cöllnische Marck ÷ N. The 9¼-Fuß is the same everywhere. Defined once.
-- **Phases** are location-specific: how *this location* applied *this stope* during *this period*. Bremen's 9¼-Fuß phases differ from Schleswig's.
-- Coins reference both: `stope: reichsdukatenfuss` (global), `phase: A` (local to the location file).
+- **Fuesse** (`data/shared/fuesse.yml`) are universal mathematical constructs: Cöllnische Marck ÷ N. The 9¼-Fuß is the same everywhere. Defined once.
+- **Phases** are location-specific: how *this location* applied *this fuss* during *this period*. Bremen's 9¼-Fuß phases differ from Schleswig's.
+- Coins reference both: `fuss: reichsdukatenfuss` (global), `phase: A` (local to the location file).
 
 ### 8. Coin placement rules (audit checklist)
 
 Every coin must be in:
-1. **The correct stope** by its actual Münzfuß (not where it might seem to fit rhetorically). E.g., dual-denom Rigsbankskilling belong in 18½-Fuß (their Primär-Fuß), not in 9¼-Fuß even though 5 Schilling Courant = 1/12 Speciestaler.
-2. **The correct chronological phase** within that stope. First year of issue determines phase.
+1. **The correct fuss** by its actual Münzfuß (not where it might seem to fit rhetorically). E.g., dual-denom Rigsbankskilling belong in 18½-Fuß (their Primär-Fuß), not in 9¼-Fuß even though 5 Schilling Courant = 1/12 Speciestaler.
+2. **The correct chronological phase** within that fuss. First year of issue determines phase.
 3. **The correct Kurant/Scheide category** within that phase.
 
 Never shortcut this. Mis-placement has happened repeatedly and always produces confused conclusions.
@@ -126,39 +126,39 @@ This rule was introduced after a manual import accidentally collapsed multiple K
 ## Architecture overview
 
 ```
-data/shared/stopes.yml          # Mathematical definitions of Münzfüße (global)
-data/shared/glossary.yml        # Terms with DE/EN/UK translations
-data/locations/<loc>.yml        # Per-location: phases + coins (inline i18n)
-data/i18n/ui.yml                # UI strings (column headers, buttons)
-data/i18n/boilerplate.yml       # Recurring methodological notes
+data/shared/fuesse.yml                  # Mathematical definitions of Münzfüße (global)
+data/locations/<loc>.yml                # Per-location: phases + coins (inline i18n)
+data/locations/<loc>-references.yml     # Bibliography sidecar (refs cited inline as [N])
+data/i18n/ui.yml                        # UI strings (column headers, badges, buttons)
+data/i18n/issuing_entities.yml          # Issuing-entity (kingdom / duchy) metadata
 
-config/theme.yml                # Colors, typography, dimensions
+config/theme.yml                        # Colors, typography, dimensions
 
-templates/landing.html.j2       # Homepage — location cards
-templates/location.html.j2      # Per-location/per-language page
-templates/partials/*.j2         # Phase blocks, subcat dividers, coin rows
+templates/landing.html.j2               # Homepage — location cards
+templates/location.html.j2              # Per-location/per-language page
 
-scripts/build.py                # Single entry point: data → site/
+scripts/build.py                        # Single entry point: data → site/
 scripts/lib/
-  schema.py                     # Pydantic models for validation
-  compute.py                    # A → B: fein, delta, implied stope
-  categorize.py                 # B → C: group by phase, kind
-  render.py                     # C → HTML via Jinja2
-  i18n.py                       # Translation resolution, number formatting
+  schema.py                             # Pydantic models for validation
+  compute.py                            # A → B: fein, delta, implied fuss
+  categorize.py                         # B → C: group by phase, kind
+  render.py                             # C → HTML via Jinja2 + theme-driven CSS
+  i18n.py                               # Translation resolution, number formatting
 
-site/                           # .gitignored — build output
-  index.html                    # Landing page (language-switchable)
-  <loc>/<lang>/index.html       # e.g., schleswig/de/index.html
+site/                                   # .gitignored — build output
+  index.html                            # Landing page (language-switchable)
+  <lang>/index.html                     # e.g., de/index.html (locations index)
+  <loc>/<lang>/index.html               # e.g., schleswig/de/index.html
   assets/{style.css, app.js}
 
-.github/workflows/deploy.yml    # Auto-build + deploy on push to main
+.github/workflows/deploy.yml            # Auto-build + deploy on push to main
 ```
 
 ## Build pipeline (A → B → C → HTML)
 
-- **A (source)** = raw YAML in `data/`. Hand-edited. Minimal fields: what's on the coin, weight_rough, fineness, stope, phase, source.
-- **B (computed, in-memory)** = A + derived fields: weight_fein, soll_fein, delta_g, delta_pct, implied_stope. Computed by `compute.py`. Debug output optional → `output/debug/<loc>.computed.json`.
-- **C (categorized, in-memory)** = B grouped by stope → phase → kind (kurant/scheide). Sorted by year_first. Build script walks this tree.
+- **A (source)** = raw YAML in `data/`. Hand-edited. Minimal fields: what's on the coin, weight_rough, fineness, fuss, phase, source.
+- **B (computed, in-memory)** = A + derived fields: weight_fein, soll_fein, delta_g, delta_pct, implied_fuss. Computed by `compute.py`. Debug output optional → `output/debug/<loc>.computed.json`.
+- **C (categorized, in-memory)** = B grouped by fuss → phase → kind (kurant/scheide). Sorted by year_first. Build script walks this tree.
 - **HTML** = Jinja2 templates render C. One HTML per (location, language).
 
 Never edit B or C manually. Never edit site/ HTML manually. Always edit `data/` and rebuild.
@@ -180,6 +180,17 @@ python scripts/build.py --validate-only    # runs schema validation, no renderin
 - **Commit messages**: conventional prefixes — `data:` (YAML changes), `schema:` (model changes), `template:` (render changes), `build:` (script logic), `docs:`, `fix:`.
 - **Commit messages MUST be in English only** (subject + body), regardless of the language used in the chat conversation. Project communication may be in Ukrainian, but git history is English-only.
 - Commit small, commit often. YAML diffs are readable.
+
+### One-off / scratch scripts
+
+Anything that runs **once** on a specific dataset and won't be replayed (data migrations, ad-hoc cleanups, one-time imports keyed to a particular ruler / mint / catalog) lives in **`scripts/oneoff/`** — gitignored. Do not commit it.
+
+Truly reusable utilities (build steps, periodic enrichment passes, idempotent quality checks) go directly under `scripts/`. Tests:
+
+- *Could this run again next year on a different dataset?* → `scripts/`.
+- *Is the input data hardcoded / already gone / consumed?* → `scripts/oneoff/`.
+
+Past examples of one-off scripts (now removed): `cleanup_sources.py`, `migrate_notes.py`, `relocate_data_notes.py`, `fix_wrong_numista_urls.py`, `manual_translations.py`, `add_new_coins.py` (Gottorp Duchy import), etc. — all served their migration purpose and were dropped from the repo.
 
 ## Data editing workflow
 
@@ -240,7 +251,7 @@ Never invent translations for technical German numismatic terms without confirmi
 This project began as iterative research in claude.ai chat. Before this build pipeline existed, three main HTML artifacts were hand-built:
 
 1. **Schleswig-Holstein** (180KB, 86 coins across 7 Münzfüße, 1618–1873). This is the fidelity target for the first build — `data/locations/schleswig.yml` + build pipeline should reproduce it structurally.
-2. **Pan-German Münzfüße overview** (`reference/muenzfuesse_v5.html`, 57KB, 18 Münzfuß cards ca. 1566–1875). The source material for expanding `data/shared/stopes.yml` and for future locations (Bremen, Hamburg, Lübeck, etc.).
+2. **Pan-German Münzfüße overview** (`reference/muenzfuesse_v5.html`, 57KB, 18 Münzfuß cards ca. 1566–1875). The source material for expanding `data/shared/fuesse.yml` and for future locations (Bremen, Hamburg, Lübeck, etc.).
 3. **Lübeck coin catalog 1749–1810** (`reference/lubeck_1750_1850_verified_complete.html`, 18KB). Numista + IKMK Berlin data for Lübeck coins. Source material for future `data/locations/lubeck.yml`.
 
 See `reference/README.md` for details on these legacy HTML files and how to use them.

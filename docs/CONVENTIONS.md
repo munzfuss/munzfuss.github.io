@@ -224,10 +224,10 @@ These are for humans, not rendered.
 
 Common build-time errors and their meaning:
 
-- `KeyError: coin references stope 'X' but not in stopes.yml` — typo in `coin.stope` or new stope needs adding to shared
+- `KeyError: coin references fuss 'X' but not in fuesse.yml` — typo in `coin.fuss` or new fuss needs adding to shared
 - `ValidationError: coin year_first=1842 outside phase A range [1813, 1841]` — wrong phase assignment
 - `ValidationError: I18nText.de is required` — missing German text (DE is canonical)
 - `DuplicateIDError: coin 'km-138-1-chr-vii-1787' defined twice` — same coin ID in file
-- `UnknownFraction: fraction '3/7' not in stopes[9_25_thaler].fractions` — need to add this fraction to shared stope definition or it's a data error
+- `UnknownFraction: fraction '3/7' not in fuesse[9_25_thaler].fractions` — need to add this fraction to shared fuss definition or it's a data error
 
 When in doubt, run `python scripts/build.py --validate-only` and read the full error.
