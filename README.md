@@ -1,8 +1,8 @@
 # Müntzfüße · Coinage Standards of North German Territories
 
-Mathematically-verified, historically accurate reference pages documenting coinage standards (*Münzfüße*) of North German cities and territories, ca. 1566–1914.
+Mathematically-verified, historically accurate reference pages documenting coinage standards (*Münzfüße*) of North German cities and territories, ca. 1559–1914.
 
-**Live:** https://your-domain.example (set up via GitHub Pages)  
+**Live:** https://serg-maximchuk.github.io/munzfuss/  
 **Source research language:** German (period-correct orthography)  
 **Interface languages:** DE · EN · UK
 
@@ -15,11 +15,13 @@ This repo is a **static site generator** specialized for numismatic research. Ev
 ```
 data/
 ├── shared/
-│   └── stopes.yml              Mathematical definitions of Münzfüße (global)
+│   └── fuesse.yml              Mathematical definitions of Münzfüße (global)
 ├── locations/
-│   └── schleswig.yml           Per-location: phases + coins + inline DE/EN/UK
+│   ├── schleswig.yml           Per-location: phases + coins + inline DE/EN/UK
+│   └── schleswig-references.yml  Bibliography sidecar (refs cited inline as [N])
 └── i18n/
-    └── ui.yml                  UI strings (column headers, etc.)
+    ├── ui.yml                  UI strings (column headers, badges, etc.)
+    └── issuing_entities.yml    Issuing-entity (kingdom / duchy) metadata
 
 config/theme.yml                Colors, typography
 
@@ -77,7 +79,7 @@ Find the right location file (e.g., `data/locations/schleswig.yml`), add a new `
 
 ```yaml
 - id: km-200-chr-viii-1842
-  stope: 18_5_thaler        # must exist in data/shared/stopes.yml
+  fuss: 18_5_thaler         # must exist in data/shared/fuesse.yml
   phase: B                  # must exist in this location's phases[18_5_thaler]
   kind: kurant              # kurant | scheide | tarif | gedenk
   nominal: "1 Rigsbankdaler"   # literal inscription, not calculated equivalent
@@ -91,7 +93,7 @@ Find the right location file (e.g., `data/locations/schleswig.yml`), add a new `
   metal: silver
   fineness: 0.875
   weight_rough_g: 14.44670
-  fraction: "1"             # optional: lookup key in stope.fractions
+  fraction: "1"             # optional: lookup key in fuss.fractions
   note:
     de: "…"
     en: null                # TODO: translate
@@ -102,16 +104,16 @@ Find the right location file (e.g., `data/locations/schleswig.yml`), add a new `
   verified: true
 ```
 
-Build script auto-computes `weight_fein_g`, `soll_fein_g`, `delta_g`, `delta_pct`, `implied_stope`.
+Build script auto-computes `weight_fein_g`, `soll_fein_g`, `delta_g`, `delta_pct`, `implied_fuss`.
 
 ## Adding a new location
 
 1. Create `data/locations/<newloc>.yml` (copy Schleswig as template).
-2. Define `phases` (per-stope, per-location).
+2. Define `phases` (per-Fuß, per-location).
 3. Add coins.
 4. Build — `python scripts/build.py` — the new location appears on the landing page automatically.
 
-If the new location uses a stope not yet defined, add it to `data/shared/stopes.yml` once. Subsequent locations can reference it.
+If the new location uses a Münzfuß not yet defined, add it to `data/shared/fuesse.yml` once. Subsequent locations can reference it.
 
 ## GitHub Pages + custom domain
 
@@ -144,7 +146,7 @@ See: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-githu
 
 ## License
 
-To be determined. Data: research-commons attribution. Code: MIT or similar.
+[GNU General Public License v3.0](LICENSE) — code, data, and generated artifacts.
 
 ## Contact
 
