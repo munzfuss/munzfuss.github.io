@@ -2,7 +2,7 @@
 
 Mathematically-verified, historically accurate reference pages documenting coinage standards (*Münzfüße*) of North German cities and territories, ca. 1559–1914.
 
-**Live:** https://munzfuss.github.io/munzfuss/  
+**Live:** https://munzfuss.github.io/  
 **Source research language:** German (period-correct orthography)  
 **Interface languages:** DE · EN · UK
 
