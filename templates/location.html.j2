@@ -321,13 +321,15 @@
           {# A "pause" phase (id="—") marks a documented production gap; render
              with a distinct .tl-phase-pause style and skip the "Phase X" tooltip prefix. #}
           {% set is_pause = (ph.id == '—') %}
+          {# Phase letters (A/B/C…) used to render here; removed per request.
+             Phase boundaries are still visible as the dashed left/right edges
+             of each .tl-phase block, and full info (Phase id · year range ·
+             title) appears in the data-tooltip on hover. Pause segments
+             (.tl-phase-pause) keep their diagonal-stripe background as a
+             visual marker that no coins were struck in that span. #}
           <div class="tl-phase{% if loop.first %} tl-phase-first{% endif %}{% if loop.last %} tl-phase-last{% endif %}{% if is_pause %} tl-phase-pause{% endif %}"
                style="left:{{ ph_left }}%;width:{{ ph_width }}%"
-               data-tooltip="{% if ph.id not in ('single','only','einzige') and not is_pause %}Phase {{ ph.id }} · {% endif %}{{ ph.from_label }} → {{ ph.to_label }} · {{ ph.title|t(lang) }}">
-            {%- if ph_width >= 3 and ph.id not in ('single','only','einzige') -%}
-              <span class="tl-phase-label">{{ ph.id }}</span>
-            {%- endif -%}
-          </div>
+               data-tooltip="{% if ph.id not in ('single','only','einzige') and not is_pause %}Phase {{ ph.id }} · {% endif %}{{ ph.from_label }} → {{ ph.to_label }} · {{ ph.title|t(lang) }}"></div>
           {% endif %}
         {% endfor %}
       </div>
