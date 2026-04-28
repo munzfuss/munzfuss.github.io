@@ -308,30 +308,10 @@
         {% for ov in group.overlays %}
           {{ tl_bar_html(ov, tl, tl_span, lang, 'tl-bar-overlay') }}
         {% endfor %}
-        {# Phase segments inside the primary bar — only when phases are defined for this Müntzfuß #}
-        {% set fuss_phases = tree.location.phases.get(primary.id, []) %}
-        {% for ph in fuss_phases %}
-          {% set raw_left  = (ph.year_from - tl.year_from) / tl_span * 100 %}
-          {% set raw_right = (ph.year_to   - tl.year_from) / tl_span * 100 %}
-          {% set clamped_left  = [raw_left,  0]   | max %}
-          {% set clamped_right = [raw_right, 100] | min %}
-          {% set ph_left  = clamped_left | round(2) %}
-          {% set ph_width = (clamped_right - clamped_left) | round(2) %}
-          {% if ph_width > 0 %}
-          {# A "pause" phase (id="—") marks a documented production gap; render
-             with a distinct .tl-phase-pause style and skip the "Phase X" tooltip prefix. #}
-          {% set is_pause = (ph.id == '—') %}
-          {# Phase letters (A/B/C…) used to render here; removed per request.
-             Phase boundaries are still visible as the dashed left/right edges
-             of each .tl-phase block, and full info (Phase id · year range ·
-             title) appears in the data-tooltip on hover. Pause segments
-             (.tl-phase-pause) keep their diagonal-stripe background as a
-             visual marker that no coins were struck in that span. #}
-          <div class="tl-phase{% if loop.first %} tl-phase-first{% endif %}{% if loop.last %} tl-phase-last{% endif %}{% if is_pause %} tl-phase-pause{% endif %}"
-               style="left:{{ ph_left }}%;width:{{ ph_width }}%"
-               data-tooltip="{% if ph.id not in ('single','only','einzige') and not is_pause %}Phase {{ ph.id }} · {% endif %}{{ ph.from_label }} → {{ ph.to_label }} · {{ ph.title|t(lang) }}"></div>
-          {% endif %}
-        {% endfor %}
+        {# Phase sub-divisions are intentionally NOT rendered on the timeline
+           — that level of detail belongs in the per-fuss section below where
+           each phase has its own card with title, dates, description and
+           coin tables. The timeline is just the year-range overview. #}
       </div>
     {% endfor %}
     <div></div>
