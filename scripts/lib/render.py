@@ -975,17 +975,19 @@ footer {{
 
 .tl-track {{
   position: relative;
-  height: 46px;                           /* 14px phase strip + 32px bar */
+  height: 46px;                           /* whole height now belongs to the bar
+                                             since the phase strip was removed
+                                             from the timeline (103debf) */
   background: rgba(0, 0, 0, 0.25);
   border-radius: 3px;
   border: .5px solid var(--border-subtle);
   margin: 9px 0;
 }}
-.tl-track-compact {{ height: 28px; margin: 12px 0; }}   /* still has phase strip */
+.tl-track-compact {{ height: 32px; margin: 12px 0; }}
 
 .tl-bar {{
   position: absolute;
-  top: 14px;                              /* leave room for phase strip above */
+  top: 0;
   bottom: 0;
   border-radius: 2px;
   display: flex;
