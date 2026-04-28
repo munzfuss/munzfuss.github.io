@@ -109,13 +109,13 @@
     {%- if coin.implied_fuss and not coin.has_manual_implied
            and coin.delta_pct is not none and coin.delta_pct|abs > 2 -%}
       {%- set impl_label = {'de':'Ist','en':'Actual','uk':'Факт'}[lang] -%}
-      {# Pick the Fuß-unit label by the fuss family, not by metal alone:
-         a Krone-mønt fuss has 'Krone' in its name; gold fuesse default to Dukatenfuß.
-         Otherwise fall back to the generic Thaler-Fuß. #}
-      {%- set fuss_name = coin.fuss.name|t(lang) -%}
+      {# Pick the Fuß-unit label by the fuss id (stable across DE/EN/UK names):
+         every Krone-mønt fuss has 'kronemont' in its id (kronemont, kronemont_chr_iv,
+         kronemont_fine); gold fuesse default to Dukatenfuß. Otherwise fall back
+         to the generic Thaler-Fuß. #}
       {%- if coin.fuss.metal == 'gold' -%}
         {%- set fuss_unit = 'Dukatenfuß' -%}
-      {%- elif 'Krone' in fuss_name -%}
+      {%- elif 'kronemont' in coin.fuss.id -%}
         {%- set fuss_unit = 'Krone-Fuß' -%}
       {%- else -%}
         {%- set fuss_unit = 'Thaler-Fuß' -%}
