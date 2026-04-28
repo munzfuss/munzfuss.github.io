@@ -186,8 +186,9 @@ def build_location(
             t=lambda v, l=lang: i18n.t(v, l),
             fmt_num=lambda v, **kw: i18n.fmt_num(v, lang, **kw),
             fmt_delta=lambda g, p: i18n.fmt_delta(g, p, lang),
+            fmt_date=lambda d, l=lang: i18n.fmt_date(d, l),
         )
-        
+
         out_dir = SITE_DIR / loc.id / lang
         out_dir.mkdir(parents=True, exist_ok=True)
         out_file = out_dir / "index.html"
@@ -222,6 +223,7 @@ def build_landing(
             base_url=base_url,
             ui_get=lambda k, l=lang: i18n.ui_get(ui, k, l),
             t=lambda v, l=lang: i18n.t(v, l),
+            fmt_date=lambda d, l=lang: i18n.fmt_date(d, l),
         )
         out_dir = SITE_DIR / lang
         out_dir.mkdir(parents=True, exist_ok=True)
