@@ -137,7 +137,9 @@ typography:
   letter_spacing_cap: "0.07em"
 
 layout:
-  max_width: "1200px"     # body max-width AND .mt table min-width — see render.py
+  max_width: "1200px"     # used only as .mt table min-width (so the note column has
+                          # ≈400 px even on narrow viewports — see .mt CSS in
+                          # render.py). Body itself stays full-window-width.
   padding_page: "1rem"
   gap_cards: "12px"
   

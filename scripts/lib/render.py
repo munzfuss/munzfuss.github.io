@@ -187,8 +187,7 @@ body {{
   font-family: {t['family_body']};
   background: var(--bg-page);
   padding: 1rem 1.5rem;
-  margin: 0 auto;
-  max-width: {l['max_width']};
+  margin: 0;
   line-height: {line_height};
 }}
 
