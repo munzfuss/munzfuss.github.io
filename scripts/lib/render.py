@@ -1033,10 +1033,13 @@ footer {{
     -1px  1px 0 var(--bg-page),
      1px  1px 0 var(--bg-page);  /* outline halo for readability over any bg */
 }}
-/* Overlay bar — laid INTO the parent track, sits as a thinner stripe over it */
+/* Overlay bar — laid INTO the parent track, sits as a thinner stripe over it.
+   Vertically centred in the 46 px track (was bottom-aligned when the parent
+   bar started at top:14 leaving room for a phase strip; that strip is gone
+   now, so symmetric 14 px insets). */
 .tl-bar-overlay {{
-  top: 21px;                              /* parent bar top is 14, leave 7px inset */
-  bottom: 7px;
+  top: 14px;
+  bottom: 14px;
   border: .5px dashed rgba(255,255,255,0.6);
   box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
   z-index: 2;
