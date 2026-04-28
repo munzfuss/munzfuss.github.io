@@ -82,9 +82,7 @@
       {%- elif coin.delta_pct <= 1.0 -%}{%- set sd_cls = 'over-mild' -%}
       {%- else -%}{%- set sd_cls = 'over-strong' -%}
       {%- endif %}
-      <span class="sd {{ sd_cls }}">
-        {{ fmt_delta(coin.delta_g, coin.delta_pct) }}
-      </span>
+      <span class="sd {{ sd_cls }}">{{ fmt_delta(coin.delta_g, coin.delta_pct)|safe }}</span>
       {%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}
     {%- elif coin.raw.metal == 'copper' -%}
       <span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>

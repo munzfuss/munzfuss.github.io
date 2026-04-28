@@ -733,6 +733,10 @@ a:hover {{ text-decoration: underline; }}
 .c-delta .sd.dev         {{ color: {c['under_deep']};  background: {c['under_deep_bg']};  padding: 0 4px; border-radius: 2px; }}
 .c-delta .sd.dev-pos     {{ color: {c['over_strong']}; background: {c['over_strong_bg']}; padding: 0 4px; border-radius: 2px; }}
 .c-delta .sd-na          {{ color: var(--text-muted); font-style: italic; cursor: help; }}
+/* Δ split across two lines: gram value on top, percentage below.
+   Both wrappers are display:block so they stack inside the .sd pill. */
+.c-delta .sd-g, .c-delta .sd-pct {{ display: block; }}
+.c-delta .sd-pct                 {{ font-size: 0.92em; opacity: 0.85; }}
 
 .c-fuss {{
   font-size: {t['size_xsmall']};

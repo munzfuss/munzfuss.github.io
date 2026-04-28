@@ -72,14 +72,22 @@ def fmt_pct(val: float | None, lang: str) -> str:
 
 
 def fmt_delta(delta_g: float | None, delta_pct: float | None, lang: str) -> str:
-    """Render 'Δ ±X,XXXXX g · ±Y,YY%'"""
+    """Render Δ as two stacked lines: grams first, percentage second.
+
+    Returns inline HTML; the template must pipe through |safe. The two
+    line wrappers carry .sd-g and .sd-pct classes so per-line typography
+    can be tuned in CSS.
+    """
     if delta_g is None:
-        return "Δ —"
+        return '<span class="sd-g">Δ —</span>'
     g_str = fmt_num(delta_g, lang, decimals=5)
     if not g_str.startswith("-"):
         g_str = "+" + g_str
     pct_str = fmt_pct(delta_pct, lang) if delta_pct is not None else ""
-    return f"Δ {g_str} · {pct_str}" if pct_str else f"Δ {g_str}"
+    parts = [f'<span class="sd-g">Δ {g_str}</span>']
+    if pct_str:
+        parts.append(f'<span class="sd-pct">{pct_str}</span>')
+    return "".join(parts)
 
 
 def load_ui(path: str) -> dict[str, dict[str, str]]:
