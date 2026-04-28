@@ -6,19 +6,36 @@
 <title>{{ ui_get('landing.title') }}</title>
 <link rel="stylesheet" href="{{ base_url }}/assets/style.css">
 <script src="{{ base_url }}/assets/app.js" defer></script>
+<script>(function(){var t='v3';try{var s=localStorage.getItem('mz-theme');if(s==='v1'||s==='v2'||s==='v3')t=s;}catch(e){}document.documentElement.dataset.theme=t;})();</script>
 </head>
 <body>
 
 <nav class="nav">
   <strong>{{ ui_get('landing.title') }}</strong>
-  <div class="lang-switch">
-    {% for l in languages -%}
-      {%- if l == lang -%}
-        <a class="active">{{ l|upper }}</a>
-      {%- else -%}
-        <a href="../{{ l }}/">{{ l|upper }}</a>
-      {%- endif -%}
-    {%- endfor %}
+  <div class="switchers">
+    <div class="theme-switch" role="group" aria-label="Theme">
+      <button type="button" class="th th-v1" data-theme="v1" title="Museum Atlas — paper &amp; gold" aria-label="Museum Atlas">
+        <span class="th-swatch" aria-hidden="true"><i class="sw sw-1"></i><i class="sw sw-2"></i><i class="sw sw-3"></i></span>
+        <span class="th-label">Atlas</span>
+      </button>
+      <button type="button" class="th th-v2" data-theme="v2" title="Editorial Codex — ink &amp; vermilion" aria-label="Editorial Codex">
+        <span class="th-swatch" aria-hidden="true"><i class="sw sw-1"></i><i class="sw sw-2"></i><i class="sw sw-3"></i></span>
+        <span class="th-label">Codex</span>
+      </button>
+      <button type="button" class="th th-v3 active" data-theme="v3" title="Refined Dark — graphite &amp; gold" aria-label="Refined Dark">
+        <span class="th-swatch" aria-hidden="true"><i class="sw sw-1"></i><i class="sw sw-2"></i><i class="sw sw-3"></i></span>
+        <span class="th-label">Noir</span>
+      </button>
+    </div>
+    <div class="lang-switch">
+      {% for l in languages -%}
+        {%- if l == lang -%}
+          <a class="active">{{ l|upper }}</a>
+        {%- else -%}
+          <a href="../{{ l }}/">{{ l|upper }}</a>
+        {%- endif -%}
+      {%- endfor %}
+    </div>
   </div>
 </nav>
 
@@ -39,8 +56,8 @@
 </div>
 
 <footer>
-  {{ ui_get('meta.generated') }}: {{ generated_date }}
-  {% if repo_url %} · <a href="{{ repo_url }}">{{ ui_get('meta.source_data') }}</a>{% endif %}
+  <span class="ftr-l">{{ ui_get('meta.generated') }}: {{ fmt_date(generated_date) }}{% if repo_url %} · <a href="{{ repo_url }}">{{ ui_get('meta.source_data') }}</a>{% endif %}</span>
+  <span class="ftr-r">Müntzfüße · CC-BY-SA</span>
 </footer>
 
 </body>

@@ -1,0 +1,1704 @@
+"""
+CSS generation — three selectable themes (Atlas / Codex / Noir) sharing one
+template DOM. Each theme is scoped under `body.theme-vN`; a CSS-variable
+substrate lets most rules stay theme-agnostic.
+
+Themes:
+  * v3 Noir (default)  — dark graphite + warm gold, refined version of the
+                          existing site palette. Loaded when no body class set.
+  * v1 Atlas           — paper / ink / gold. Light, classical, museum-catalogue.
+  * v2 Codex           — cream paper / black ink / vermilion. Editorial.
+
+The single CSS file targets the existing template class names
+(`.fuss-block`, `.phase-header`, `.gw`, `.fuss-details`, `.mt`, `.tl`, …)
+so templates remain unchanged structurally; only nav gets the theme switcher.
+"""
+from __future__ import annotations
+
+
+FONT_IMPORTS = """\
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Spectral:ital,wght@0,400;0,500;0,700;1,400&family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&display=swap');
+"""
+
+
+def _timeline_bars_css(bars: dict) -> str:
+    """Theme-agnostic timeline-bar palette generated from theme.yml."""
+    out = []
+    for bar_id, conf in bars.items():
+        extras = []
+        if conf.get("fg"):
+            extras.append(f"color: {conf['fg']};")
+        if conf.get("weight"):
+            extras.append(f"font-weight: {conf['weight']};")
+        extras_str = " " + " ".join(extras) if extras else ""
+        out.append(
+            f".tl-bar.{bar_id} {{ background: linear-gradient(90deg, {conf['from']}, {conf['to']});{extras_str} }}"
+        )
+    return "\n".join(out)
+
+
+def build_css(theme: dict, lang: str = "de") -> str:
+    """Render the full stylesheet (≈shared base + 3 theme overlays)."""
+    c = theme.get("colors", {})
+    a = theme.get("accents", {})
+    l = theme.get("layout", {})
+    bars = theme.get("timeline_bars", {})
+
+    # Language-specific line-height tweak (Ukrainian runs longer)
+    body_lh = "1.55"
+    overrides = theme.get("language_overrides", {})
+    if lang in overrides and "line_height" in overrides[lang]:
+        body_lh = overrides[lang]["line_height"]
+
+    bar_css_block = _timeline_bars_css(bars)
+
+    # Pull v3 (default) palette directly from theme.yml so the dark theme
+    # keeps its current colour vocabulary.
+    v3_bg_page = c.get("bg_page", "#14110d")
+    v3_bg_card = c.get("bg_card", "#1c1813")
+    v3_bg_sub = c.get("bg_subcard", "#241f18")
+    v3_text = c.get("text_primary", "#ece4d2")
+    v3_text_soft = c.get("text_secondary", "#b8ad96")
+    v3_text_muted = c.get("text_muted", "#7a7060")
+    v3_text_dim = c.get("text_dim", "#666")
+    v3_border = c.get("border", "#2e2820")
+    v3_border_soft = c.get("border_subtle", "#3a3530")
+    v3_border_lt = c.get("border_light", "#3e372c")
+    v3_accent = a.get("gold_deep", "#d4a85a")
+    v3_accent_glow = "#f0c878"
+    v3_accent_dark = a.get("gold_border", "#5a4a38")
+    v3_accent_muted = a.get("gold_muted", "#c0a680")
+    v3_accent_bg = a.get("pill_active_bg", "#2a2320")
+    v3_purple = c.get("accent_purple", "#b5a0d0")
+    v3_cite = c.get("cite_color", "#e3c789")
+
+    # Δ-spectrum pulled from theme.yml so existing semantics survive.
+    sd_under_deep_fg = c.get("under_deep", "#c97a3d")
+    sd_under_deep_bg = c.get("under_deep_bg", "#2a1e14")
+    sd_under_mild_fg = c.get("under_mild", "#a08966")
+    sd_under_mild_bg = c.get("under_mild_bg", "#221a13")
+    sd_over_mild_fg = c.get("over_mild", "#68a257")
+    sd_over_mild_bg = c.get("over_mild_bg", "#1a2a1a")
+    sd_over_strong_fg = c.get("over_strong", "#92d24c")
+    sd_over_strong_bg = c.get("over_strong_bg", "#1f3017")
+
+    badge_silver_bg = c.get("badge_silver_bg", "#555")
+    badge_silver_fg = c.get("badge_silver_fg", "#ddd")
+    badge_gold_bg = c.get("badge_gold_bg", "#5c3d00")
+    badge_gold_fg = c.get("badge_gold_fg", "#fcd34d")
+    badge_giro_bg = c.get("badge_giro_bg", "#1e3a5f")
+    badge_giro_fg = c.get("badge_giro_fg", "#93c5fd")
+    badge_tarif_bg = c.get("badge_tarif_bg", "#3a1e3a")
+    badge_tarif_fg = c.get("badge_tarif_fg", "#c2a0f0")
+
+    subcat_kurant_bg = c.get("subcat_kurant_bg", "#1f2d1a")
+    subcat_kurant_border = c.get("subcat_kurant_border", "#6b8e4e")
+    subcat_kurant_fg = c.get("subcat_kurant_fg", "#c4d9a6")
+    subcat_scheide_bg = c.get("subcat_scheide_bg", "#2d231a")
+    subcat_scheide_border = c.get("subcat_scheide_border", "#c28b4b")
+    subcat_scheide_fg = c.get("subcat_scheide_fg", "#e6c590")
+    subcat_copper_bg = c.get("subcat_copper_bg", "#2a1f19")
+    subcat_copper_border = c.get("subcat_copper_border", "#a8673c")
+    subcat_copper_fg = c.get("subcat_copper_fg", "#d69a6e")
+
+    return f"""\
+{FONT_IMPORTS}
+
+/* ==========================================================================
+   Müntzfüße — three-theme stylesheet (Atlas / Codex / Noir)
+   Default = Noir (dark). Switcher in nav toggles `[data-theme="v1"]|v2`.
+   ========================================================================== */
+
+* {{ box-sizing: border-box; }}
+
+/* --- Theme tokens ---------------------------------------------------------
+   Each theme defines the same variable names. Most rules below read these
+   variables and stay theme-agnostic.                                          */
+
+/* v3 Noir — default (no body class needed) */
+:root, :root[data-theme="v3"] {{
+  --bg-page:        {v3_bg_page};
+  --bg-card:        {v3_bg_card};
+  --bg-subcard:     {v3_bg_sub};
+  --bg-elev:        #241f18;
+
+  --text-primary:   {v3_text};
+  --text-secondary: {v3_text_soft};
+  --text-muted:     {v3_text_muted};
+  --text-faint:     {v3_text_dim};
+
+  --border:         {v3_border};
+  --border-soft:    {v3_border_soft};
+  --border-light:   {v3_border_lt};
+
+  --accent:         {v3_accent};
+  --accent-deep:    {v3_accent_dark};
+  --accent-glow:    {v3_accent_glow};
+  --accent-muted:   {v3_accent_muted};
+  --accent-bg:      {v3_accent_bg};
+  --accent-bg-strong: rgba(212, 168, 90, 0.12);
+
+  --purple:         {v3_purple};
+  --cite:           {v3_cite};
+
+  --font-display:   'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-body:      'Spectral', 'Source Serif Pro', Georgia, serif;
+  --font-sans:      'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:      'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  --radius-card:    6px;
+  --radius-pill:    999px;
+  --radius-block:   4px;
+
+  --page-pad-x:     64px;
+  --page-pad-y:     56px;
+
+  --bg-grad:        radial-gradient(ellipse at top, #1c1813, var(--bg-page) 60%);
+  --hairline:       0.5px;
+}}
+
+/* v1 Atlas — paper, ink, gold */
+[data-theme="v1"] {{
+  --bg-page:        #f5efe1;
+  --bg-card:        #ede4ce;
+  --bg-subcard:     #ede4ce;
+  --bg-elev:        #e3d8b8;
+
+  --text-primary:   #2a221a;
+  --text-secondary: #5e4f3d;
+  --text-muted:     #8a7a64;
+  --text-faint:     #a39078;
+
+  --border:         #c9b896;
+  --border-soft:    #d8c9a8;
+  --border-light:   #d8c9a8;
+
+  --accent:         #a37c2c;
+  --accent-deep:    #6b4f17;
+  --accent-glow:    #d4a85a;
+  --accent-muted:   #8a6e3c;
+  --accent-bg:      rgba(163, 124, 44, 0.10);
+  --accent-bg-strong: rgba(163, 124, 44, 0.18);
+
+  --purple:         #6b2a26;
+  --cite:           #6b4f17;
+
+  --font-display:   'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-body:      'Source Serif Pro', 'Cormorant Garamond', Georgia, serif;
+  --font-sans:      'Inter', system-ui, sans-serif;
+  --font-mono:      'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  --bg-grad:        var(--bg-page);
+  --hairline:       1px;
+}}
+
+/* v2 Codex — cream, black ink, vermilion */
+[data-theme="v2"] {{
+  --bg-page:        #fbf8f1;
+  --bg-card:        #f6f1e6;
+  --bg-subcard:     #f6f1e6;
+  --bg-elev:        #efe9d9;
+
+  --text-primary:   #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted:     #888;
+  --text-faint:     #aaa;
+
+  --border:         #d8d4c8;
+  --border-soft:    #e3dfd0;
+  --border-light:   #d8d4c8;
+
+  --accent:         #8a3a2e;
+  --accent-deep:    #6b2a20;
+  --accent-glow:    #b86d63;
+  --accent-muted:   #a86355;
+  --accent-bg:      rgba(138, 58, 46, 0.06);
+  --accent-bg-strong: rgba(138, 58, 46, 0.14);
+
+  --purple:         #6b2a4f;
+  --cite:           #6b2a20;
+
+  --font-display:   'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-body:      'Spectral', 'Source Serif Pro', Georgia, serif;
+  --font-sans:      'Inter', system-ui, sans-serif;
+  --font-mono:      'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  --bg-grad:        var(--bg-page);
+  --hairline:       1px;
+}}
+
+/* --- Body & global type --------------------------------------------------- */
+
+html {{ background: var(--bg-page); }}
+
+body {{
+  margin: 0;
+  padding: var(--page-pad-y) var(--page-pad-x) 80px;
+  background: var(--bg-grad);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: {body_lh};
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}}
+
+@media (max-width: 720px) {{
+  body {{ padding: 28px 18px 60px; }}
+  :root {{ --page-pad-x: 18px; --page-pad-y: 28px; }}
+}}
+
+a {{ color: var(--accent); text-decoration: none; }}
+a:hover {{ text-decoration: underline; }}
+
+/* --- NAV (top breadcrumb + switchers) ------------------------------------ */
+
+.nav {{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 0 16px;
+  border-bottom: var(--hairline) solid var(--border);
+  margin-bottom: 28px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}}
+.nav a {{
+  color: var(--text-secondary);
+  text-decoration: none;
+}}
+[data-theme="v1"] .nav a {{ border-bottom: 1px dotted var(--border); }}
+.nav strong {{
+  color: var(--text-primary);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}}
+[data-theme="v3"] .nav strong {{ color: var(--accent); font-weight: 500; }}
+[data-theme="v2"] .nav strong {{ color: var(--text-primary); font-weight: 600; }}
+
+.nav .switchers {{
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}}
+
+/* Lang switcher — pill row matched to the theme switcher below */
+.lang-switch {{ display: flex; gap: 6px; margin-left: 0; }}
+.nav .lang-switch {{ margin-left: 0; }}
+.lang-switch a {{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 22px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: transparent;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}}
+[data-theme="v2"] .lang-switch a {{ border-radius: 2px; }}
+.lang-switch a:hover {{ color: var(--text-primary); border-color: var(--accent); }}
+.lang-switch a.active {{
+  background: var(--text-primary);
+  color: var(--bg-page);
+  border-color: var(--text-primary);
+  font-weight: 500;
+}}
+[data-theme="v3"] .lang-switch a.active {{
+  background: var(--accent);
+  color: var(--bg-page);
+  border-color: var(--accent);
+}}
+
+/* Theme switcher — three coloured pills with palette dots */
+.theme-switch {{ display: flex; gap: 6px; align-items: center; }}
+.theme-switch .th {{
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 22px;
+  padding: 0 10px 0 5px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+  box-sizing: border-box;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-weight: 400;
+  opacity: 0.55;
+  transition: opacity 0.15s, transform 0.15s, background 0.15s, border-color 0.15s;
+}}
+[data-theme="v2"] .theme-switch .th {{ border-radius: 2px; }}
+.theme-switch .th:hover {{ opacity: 0.9; transform: translateY(-1px); }}
+.theme-switch .th-swatch {{
+  display: inline-flex;
+  gap: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  flex: 0 0 auto;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.18);
+}}
+[data-theme="v3"] .theme-switch .th-swatch {{ box-shadow: 0 0 0 1px rgba(255,255,255,0.12); }}
+.theme-switch .th-swatch .sw {{ width: 8px; height: 8px; display: block; }}
+.theme-switch .th-label {{ line-height: 1; }}
+.theme-switch .th.active {{
+  opacity: 1;
+  font-weight: 600;
+  background: var(--text-primary);
+  color: var(--bg-page);
+  border-color: var(--text-primary);
+}}
+[data-theme="v3"] .theme-switch .th.active {{
+  background: var(--accent);
+  color: var(--bg-page);
+  border-color: var(--accent);
+}}
+.theme-switch .th.active .th-swatch {{ box-shadow: 0 0 0 1px rgba(255,255,255,0.35); }}
+[data-theme="v3"] .theme-switch .th.active .th-swatch {{ box-shadow: 0 0 0 1px rgba(0,0,0,0.35); }}
+/* Swatch fills — same regardless of host theme so each button identifies its destination */
+.theme-switch .th-v1 .sw-1 {{ background: #f5efe1; }}
+.theme-switch .th-v1 .sw-2 {{ background: #2a221a; }}
+.theme-switch .th-v1 .sw-3 {{ background: #a37c2c; }}
+.theme-switch .th-v2 .sw-1 {{ background: #fbf8f1; }}
+.theme-switch .th-v2 .sw-2 {{ background: #1a1a1a; }}
+.theme-switch .th-v2 .sw-3 {{ background: #8a3a2e; }}
+.theme-switch .th-v3 .sw-1 {{ background: #14110d; }}
+.theme-switch .th-v3 .sw-2 {{ background: #ece4d2; }}
+.theme-switch .th-v3 .sw-3 {{ background: #d4a85a; }}
+
+/* --- Hero (title + deck on the left, stats grid on the right) ------------- */
+
+.hero {{
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 48px;
+  align-items: start;
+  margin: 0 0 36px;
+  padding: 4px 0 32px;
+  border-bottom: var(--hairline) solid var(--border);
+}}
+@media (max-width: 980px) {{
+  .hero {{ grid-template-columns: 1fr; gap: 24px; }}
+}}
+.hero-text {{ min-width: 0; }}
+
+.h1 {{
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 1.0;
+  letter-spacing: -0.005em;
+  margin: 0 0 14px;
+  color: var(--text-primary);
+  font-variant: small-caps;
+}}
+[data-theme="v1"] .h1 {{ font-size: 60px; }}
+[data-theme="v2"] .h1 {{
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 60px;
+  letter-spacing: -0.014em;
+  font-variant: normal;
+}}
+[data-theme="v3"] .h1 {{
+  background: linear-gradient(180deg, var(--accent-glow), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}}
+/* Sub-line under the main «Müntzfüße» eyebrow: location name as italic serif.
+   line-height kept generous (1.25) so italic descenders like «g», «j», «p»
+   in location names (Schleswig, Plön, …) don't get clipped. */
+.h1-sub {{
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-variant: normal;
+  font-weight: 400;
+  font-size: 0.62em;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  margin-top: 8px;
+  padding-bottom: 4px;
+  color: var(--accent-deep);
+}}
+[data-theme="v1"] .h1-sub {{ color: var(--accent-deep); }}
+[data-theme="v2"] .h1-sub {{ color: var(--accent); font-style: italic; }}
+[data-theme="v3"] .h1-sub {{
+  background: linear-gradient(180deg, var(--accent-glow), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}}
+
+/* Deck/lede paragraph below the hero h1 */
+.hero .deck, .h1 + p {{
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 62ch;
+  margin: 0;
+}}
+[data-theme="v2"] .hero .deck::first-letter,
+[data-theme="v2"] .h1 + p::first-letter {{
+  font-family: var(--font-display);
+  font-size: 60px;
+  float: left;
+  line-height: 0.9;
+  padding: 6px 10px 0 0;
+  color: var(--accent);
+  font-style: normal;
+}}
+
+/* Hero stats grid — 2-col tiles, Letzte Revision spans both */
+.hero-stats {{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  align-self: start;
+}}
+[data-theme="v1"] .hero-stats {{ background: var(--border-soft); border-color: var(--border); }}
+[data-theme="v2"] .hero-stats {{
+  background: var(--text-primary);
+  border: 0;
+  border-top: 4px solid var(--text-primary);
+  border-radius: 0;
+}}
+.hs-stat {{
+  background: var(--bg-card);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}}
+[data-theme="v1"] .hs-stat {{ background: var(--bg-page); }}
+[data-theme="v2"] .hs-stat {{ background: var(--bg-page); }}
+.hs-stat-wide {{ grid-column: 1 / -1; }}
+.hs-lbl {{
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}}
+.hs-val {{
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+  font-variant: small-caps;
+}}
+[data-theme="v1"] .hs-val {{ color: var(--accent-deep); font-variant: normal; }}
+[data-theme="v2"] .hs-val {{
+  font-family: var(--font-display);
+  font-variant: normal;
+  font-weight: 400;
+  color: var(--text-primary);
+}}
+.hs-val sub {{
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 5px;
+  vertical-align: baseline;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}}
+.hs-val-date {{
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-variant: small-caps;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}}
+[data-theme="v1"] .hs-val-date {{ color: var(--accent-deep); font-variant: normal; }}
+[data-theme="v2"] .hs-val-date {{ font-variant: normal; font-weight: 400; color: var(--text-primary); }}
+
+/* Section header just above location grid */
+h2[style] {{
+  /* override the inline-styled section title in landing.html.j2 */
+  font-family: var(--font-sans) !important;
+  font-size: 10.5px !important;
+  letter-spacing: 0.2em !important;
+  color: var(--text-muted) !important;
+  margin-top: 32px !important;
+}}
+
+/* --- Timeline ------------------------------------------------------------ */
+
+.tl {{
+  background: var(--bg-card);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 22px 26px 26px;
+  margin: 0 0 48px;
+  position: relative;
+  overflow: hidden;
+}}
+[data-theme="v3"] .tl::before {{
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top right, rgba(212, 168, 90, 0.06), transparent 60%);
+  pointer-events: none;
+}}
+
+.tl-title {{
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 18px;
+  position: relative;
+}}
+[data-theme="v3"] .tl-title {{ color: var(--accent); font-family: var(--font-display); font-size: 18px; font-variant: small-caps; letter-spacing: 0.04em; }}
+
+.tl-grid {{
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 0 18px;
+  align-items: center;
+  font-size: 13px;
+  position: relative;
+}}
+@media (max-width: 720px) {{
+  .tl-grid {{ grid-template-columns: 140px 1fr; font-size: 12px; gap: 0 10px; }}
+}}
+/* Left column — fuss name (1-2 lines) + meta (weight·metal·…) right-aligned. */
+.tl-label {{
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14.5px;
+  font-variant: small-caps;
+  text-align: right;
+  padding: 10px 6px 10px 2px;
+  line-height: 1.2;
+  border-bottom: var(--hairline) dotted var(--border-soft);
+  word-break: break-word;
+}}
+[data-theme="v1"] .tl-label {{ font-family: var(--font-display); font-size: 15px; }}
+[data-theme="v2"] .tl-label {{ font-family: var(--font-display); font-variant: normal; font-weight: 400; font-size: 14.5px; font-style: italic; }}
+[data-theme="v3"] .tl-label {{ color: var(--text-primary); }}
+.tl-label-sub {{
+  padding-left: 18px;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+}}
+.tl-label small {{
+  display: block;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 400;
+  font-variant: normal;
+  margin-top: 4px;
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+  word-break: break-word;
+}}
+[data-theme="v2"] .tl-label small {{ font-family: var(--font-mono); font-style: normal; }}
+.tl-grid > div:nth-child(n+3) {{ border-top: var(--hairline) dotted var(--border-soft); }}
+/* Subtle zebra striping on the dark theme only — keeps long timelines parsable. */
+[data-theme="v3"] .tl-grid > div:nth-child(4n+1),
+[data-theme="v3"] .tl-grid > div:nth-child(4n+2) {{ background: rgba(255,255,255,0.014); }}
+
+/* Track per theme:
+   v3 — dark recess with thin gold-warm border + faint inset glow
+   v1 — paper recess, lightly etched dotted border
+   v2 — clean cream stripe with sharp ink underline (newspaper register) */
+.tl-track {{
+  position: relative;
+  height: 40px;
+  background: rgba(0,0,0,0.20);
+  border-radius: 3px;
+  border: var(--hairline) solid var(--border-soft);
+  margin: 9px 0;
+}}
+[data-theme="v3"] .tl-track {{
+  background: rgba(0,0,0,0.30);
+  border: var(--hairline) solid var(--border);
+  box-shadow: inset 0 0 0 1px rgba(212,168,90,0.04);
+}}
+[data-theme="v1"] .tl-track {{
+  background: rgba(163, 124, 44, 0.05);
+  border: var(--hairline) solid var(--border-soft);
+  border-radius: 2px;
+}}
+[data-theme="v2"] .tl-track {{
+  background: rgba(0,0,0,0.04);
+  border: 0;
+  border-bottom: var(--hairline) solid var(--text-primary);
+  border-radius: 0;
+  height: 32px;
+}}
+.tl-track-compact {{ height: 28px; margin: 12px 0; }}
+
+.tl-bar {{
+  position: absolute;
+  top: 0; bottom: 0;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  padding: 0 7px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.92);
+  white-space: nowrap;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.30);
+  letter-spacing: 0.02em;
+}}
+[data-theme="v3"] .tl-bar {{ box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset; }}
+.tl-bar-dashed {{
+  border: 0.5px dashed var(--purple);
+  opacity: 0.7;
+  font-size: 10.5px;
+}}
+.tl-bar-cut-left  {{ border-top-left-radius: 0; border-bottom-left-radius: 0; border-left:  1.5px dotted rgba(255,255,255,0.45); }}
+.tl-bar-cut-right {{ border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: 1.5px dotted rgba(255,255,255,0.45); }}
+.tl-bar-narrow {{ overflow: visible; padding: 0; }}
+.tl-bar-narrow .tl-bar-label-float {{
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  pointer-events: none;
+  text-shadow:
+    -1px -1px 0 var(--bg-card),
+     1px -1px 0 var(--bg-card),
+    -1px  1px 0 var(--bg-card),
+     1px  1px 0 var(--bg-card);
+}}
+/* Overlay bar (e.g. "1788–1866 Theilung" inside the 9¼-Fuß row).
+   Uses percentage inset so the overlay scales with the host track height
+   (40 px in v1/v3, 32 px in v2) — fixed pixel inset previously made the
+   overlay only 8 px tall on v2 and clipped its text. */
+.tl-bar-overlay {{
+  top: 16%; bottom: 16%;
+  border: 0.5px dashed rgba(255,255,255,0.6);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
+  z-index: 2;
+  font-size: 10px;
+  padding: 0 6px;
+}}
+[data-theme="v1"] .tl-bar-overlay,
+[data-theme="v2"] .tl-bar-overlay {{ border-color: rgba(0,0,0,0.4); box-shadow: 0 0 0 1px rgba(255,255,255,0.4); }}
+
+/* Sub-label folded under the parent's label */
+.tl-sublabel {{
+  margin-top: 4px;
+  padding-left: 12px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}}
+[data-theme="v2"] .tl-sublabel {{ font-family: var(--font-display); }}
+.tl-sublabel small {{
+  display: block;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  margin-top: 1px;
+}}
+
+/* Per-bar gradients (from theme.yml) — kept as-is across themes */
+{bar_css_block}
+
+.tl-axis {{
+  position: relative;
+  height: 22px;
+  border-top: var(--hairline) solid var(--border-soft);
+  margin-top: 8px;
+  font-family: var(--font-mono);
+}}
+.tl-axis span {{
+  position: absolute;
+  top: 5px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}}
+.tl-axis span:first-child {{ transform: translateX(0); }}
+.tl-axis span::before {{
+  content: "";
+  position: absolute;
+  top: -8px; left: 50%;
+  width: 0.5px; height: 5px;
+  background: var(--border);
+}}
+
+/* --- Fuss block (one per Münzfuß) ---------------------------------------- */
+
+.fuss-block {{
+  background: transparent;
+  padding: 6px 0 8px;
+  margin: 48px 0 0;
+  border-radius: 0;
+  border: 0;
+  position: relative;
+}}
+[data-theme="v1"] .fuss-block {{ background: transparent; }}
+[data-theme="v2"] .fuss-block {{
+  background: transparent;
+  padding: 28px 0 0;
+  border: 0;
+  border-top: 4px solid var(--text-primary);
+  border-radius: 0;
+  margin-top: 48px;
+}}
+[data-theme="v3"] .fuss-block {{ background: transparent; }}
+.fuss-block + .fuss-block {{ margin-top: 56px; }}
+.fuss-block > .phase-header:first-child {{ margin-top: 0; }}
+.fuss-block > .terr:last-child {{ margin-bottom: 0; }}
+
+/* Müntzfuß header — name on the left, validity period top-right, sub paragraph below.
+   Uses CSS-grid so the period sits baseline-aligned with the title (per design).
+   minmax on the title column prevents long pdate strings (some location YAML
+   carries a verbose «Geltungsbereich …» rather than a terse date range) from
+   squashing the title — pdate is allowed to wrap into multiple right-aligned
+   lines instead. */
+.phase-header {{
+  display: grid;
+  grid-template-columns: minmax(60%, 1fr) auto;
+  column-gap: 28px;
+  align-items: baseline;
+  padding: 16px 0 12px;
+  margin: 0 0 18px;
+  border-bottom: var(--hairline) solid var(--border);
+}}
+[data-theme="v1"] .phase-header {{
+  border-bottom: 2px solid var(--text-primary);
+  padding: 0 0 12px;
+}}
+[data-theme="v2"] .phase-header {{
+  border-bottom: var(--hairline) solid var(--border);
+  padding: 0 0 12px;
+}}
+.phase-header .pname {{
+  grid-column: 1;
+  display: block;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  font-variant: small-caps;
+  letter-spacing: 0.005em;
+  color: var(--accent);
+  margin: 0;
+  line-height: 1.05;
+}}
+[data-theme="v1"] .phase-header .pname {{
+  font-size: 36px;
+  color: var(--text-primary);
+  font-weight: 500;
+}}
+[data-theme="v2"] .phase-header .pname {{
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-variant: normal;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: -0.005em;
+}}
+.phase-header .pdate {{
+  grid-column: 2;
+  align-self: baseline;
+  justify-self: end;
+  display: block;
+  max-width: 36ch;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--text-muted);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}}
+[data-theme="v1"] .phase-header .pdate {{ color: var(--accent-deep); }}
+[data-theme="v2"] .phase-header .pdate {{ color: var(--accent); }}
+.phase-header .pdate b {{ color: var(--text-primary); font-weight: 600; }}
+[data-theme="v3"] .phase-header .pdate b {{ color: var(--accent); }}
+.phase-header .psub {{
+  grid-column: 1;          /* confined to the title column — width matches .pname */
+  display: block;
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 14.5px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin: 8px 0 0;
+  line-height: 1.6;
+}}
+[data-theme="v1"] .phase-header .psub {{ color: var(--text-secondary); font-size: 16px; }}
+[data-theme="v2"] .phase-header .psub {{ font-size: 15px; line-height: 1.55; }}
+
+/* --- Grundwerte (gw) ------------------------------------------------------ */
+
+.gw {{
+  background: var(--bg-subcard);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius-card);
+  margin: 0 0 18px;
+  overflow: hidden;
+}}
+[data-theme="v1"] .gw {{
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-page));
+  border-top: 3px double var(--accent);
+}}
+[data-theme="v2"] .gw {{
+  background: rgba(0,0,0,0.015);
+  border: 0;
+  border-top: 1px solid var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+}}
+[data-theme="v3"] .gw {{
+  background: var(--bg-card);
+  border-color: var(--border);
+}}
+
+.gw-head {{
+  padding: 12px 22px 11px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border-bottom: var(--hairline) solid var(--border);
+  background: linear-gradient(180deg, rgba(212, 168, 90, 0.06), transparent);
+}}
+[data-theme="v1"] .gw-head {{ background: transparent; border-bottom-color: var(--border-soft); }}
+[data-theme="v2"] .gw-head {{ background: transparent; border-bottom: 0; padding: 12px 16px 4px; }}
+.gw-head-text {{ flex: 1; min-width: 0; }}
+.gw-heading {{
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}}
+[data-theme="v1"] .gw-heading {{ color: var(--accent-deep); font-size: 18px; }}
+[data-theme="v2"] .gw-heading {{
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-variant: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.20em;
+  color: var(--text-muted);
+  font-weight: 500;
+}}
+.gw-subheading {{
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  line-height: 1.5;
+  font-style: italic;
+}}
+
+.gw-body {{
+  padding: 14px 22px 16px;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 0 28px;
+}}
+@media (max-width: 720px) {{
+  .gw-body {{ grid-template-columns: 1fr; gap: 12px 0; }}
+}}
+
+.gw-rows {{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  font-size: 13px;
+}}
+.gw-row {{
+  display: block;
+  padding: 7px 0;
+  border-bottom: var(--hairline) dotted var(--border-soft);
+}}
+.gw-row:last-child {{ border-bottom: 0; }}
+.gw-k {{
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}}
+.gw-v {{
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  word-break: break-word;
+}}
+.gw-v b {{ color: var(--text-primary); font-weight: 600; }}
+.gw-v em {{ color: var(--text-muted); font-style: italic; }}
+
+/* Rechnungsfraktionen sub-card — sits in the right column of gw-body */
+.gw-fr {{
+  background: rgba(212, 168, 90, 0.04);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+  padding: 12px 16px;
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin: 0;
+  font-family: var(--font-mono);
+}}
+[data-theme="v1"] .gw-fr {{ background: rgba(163, 124, 44, 0.04); border-left-color: var(--accent); }}
+[data-theme="v2"] .gw-fr {{ background: rgba(138, 58, 46, 0.04); border-left-color: var(--accent); }}
+.gw-fr b {{ color: var(--text-primary); font-weight: 500; }}
+.gw-fr em {{ color: var(--text-muted); font-style: normal; }}
+.gw-fr i  {{ color: var(--text-muted); font-style: italic; }}
+.gw-fr .gw-fr-label {{
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}}
+
+/* --- Fuss summary bar (acts as the <details> summary) -------------------- */
+
+.fuss-details {{ margin: 16px 0 18px; }}
+.fuss-details:not([open]) > .fuss-details-body {{ display: none; }}
+.fuss-details[open] > .fuss-details-body {{ display: block; margin-top: 22px; }}
+
+/* The <summary> is rendered as a full-width bar with stats on the left and
+   a Details pill on the right. The whole bar is clickable (native <details>
+   toggle) — the pill is purely visual. */
+summary.fuss-summary {{
+  cursor: pointer;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  background: var(--bg-card);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  list-style: none;
+  user-select: none;
+  transition: border-color 0.15s;
+}}
+[data-theme="v1"] summary.fuss-summary {{
+  background: var(--bg-card);
+  border-color: var(--border);
+  border-radius: 0;
+}}
+[data-theme="v2"] summary.fuss-summary {{
+  background: transparent;
+  border: 0;
+  border-top: var(--hairline) solid var(--text-primary);
+  border-bottom: var(--hairline) solid var(--text-primary);
+  border-radius: 0;
+}}
+summary.fuss-summary::-webkit-details-marker {{ display: none; }}
+summary.fuss-summary::marker {{ display: none; content: ""; }}
+summary.fuss-summary:hover {{ border-color: var(--accent); }}
+[data-theme="v2"] summary.fuss-summary:hover {{ border-color: var(--text-primary); }}
+
+.fs-stats {{
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  min-width: 0;
+}}
+.fs-stat {{
+  padding: 12px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-right: var(--hairline) dotted var(--border-soft);
+  min-width: 0;
+}}
+[data-theme="v1"] .fs-stat {{ border-right: var(--hairline) dotted var(--border-soft); }}
+[data-theme="v2"] .fs-stat {{ border-right: var(--hairline) solid var(--border); }}
+.fs-num {{
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--accent);
+  font-variant: small-caps;
+  letter-spacing: 0.01em;
+}}
+[data-theme="v1"] .fs-num {{ color: var(--accent-deep); font-variant: normal; }}
+[data-theme="v2"] .fs-num {{ font-variant: normal; font-weight: 400; color: var(--text-primary); }}
+.fs-lbl {{
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}}
+
+/* Details pill — sits at the right end of the bar, shares its height */
+.fs-toggle {{
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 26px;
+  background: linear-gradient(180deg, var(--accent-glow), var(--accent));
+  color: var(--bg-page);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: filter 0.15s;
+}}
+[data-theme="v1"] .fs-toggle {{ background: var(--text-primary); color: var(--bg-page); }}
+[data-theme="v2"] .fs-toggle {{ background: var(--accent); color: white; font-weight: 500; letter-spacing: 0.20em; }}
+summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
+.fs-toggle-icon {{
+  font-family: var(--font-mono);
+  font-size: 0;            /* hide template's literal "+" — glyph drawn via ::before */
+  width: 14px;
+  text-align: center;
+  line-height: 1;
+}}
+.fs-toggle-icon::before {{
+  content: "+";
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  display: inline-block;
+  line-height: 1;
+}}
+.fuss-details[open] .fs-toggle-icon::before {{ content: "−"; }}
+.fd-count {{
+  font-family: var(--font-mono);
+  opacity: 0.85;
+  letter-spacing: 0.05em;
+  font-weight: 400;
+}}
+/* Show/Hide label flips with the [open] state */
+.fd-label-hide {{ display: none; }}
+.fuss-details[open] summary.fuss-summary .fd-label-show {{ display: none; }}
+.fuss-details[open] summary.fuss-summary .fd-label-hide {{ display: inline; }}
+
+/* Long-form historical block at top of fuss-details body */
+.fuss-hintergrund {{
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0 0 22px;
+  padding: 14px 18px;
+  background: var(--bg-subcard);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 var(--radius-block) var(--radius-block) 0;
+}}
+[data-theme="v2"] .fuss-hintergrund {{ border-left-color: var(--accent); background: rgba(0,0,0,0.018); }}
+.fuss-hintergrund p {{ margin: 0 0 10px; }}
+.fuss-hintergrund p:last-child {{ margin-bottom: 0; }}
+.fuss-hintergrund b {{ color: var(--text-primary); font-weight: 600; }}
+.fuss-hintergrund i, .fuss-hintergrund em {{ font-style: italic; color: var(--text-muted); }}
+
+/* Bottom close button mirroring the open pill */
+.fd-foot {{ margin-top: 20px; text-align: right; }}
+.fd-close {{
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--bg-page);
+  border: var(--hairline) solid var(--accent);
+  border-radius: var(--radius-pill);
+}}
+[data-theme="v2"] .fd-close {{ border-radius: 0; }}
+.fd-close:hover {{ background: var(--accent-bg); }}
+.fd-close-icon {{ font-size: 11px; line-height: 1; }}
+
+@media print {{
+  .fuss-details {{ display: block; }}
+  .fuss-details > summary {{ display: none; }}
+  .fuss-details > .fuss-details-body {{ display: block !important; }}
+}}
+
+/* --- Phase header / description / content -------------------------------- */
+
+.ph {{
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  margin: 22px 0 4px;
+  padding-left: 10px;
+  border-left: 2px solid var(--accent);
+}}
+[data-theme="v1"] .ph {{ color: var(--text-secondary); border-left-color: var(--accent-deep); }}
+[data-theme="v2"] .ph {{
+  color: white;
+  background: var(--accent);
+  border-left: 0;
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 10px;
+  letter-spacing: 0.20em;
+  margin-bottom: 0;
+}}
+.ph em {{
+  color: var(--text-muted);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}}
+
+.phd {{
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 6px 0 10px 12px;
+  font-style: italic;
+}}
+[data-theme="v1"] .phd {{ color: var(--text-secondary); }}
+[data-theme="v2"] .phd {{ color: var(--text-secondary); margin-left: 0; padding-top: 8px; }}
+
+.phc {{
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  padding: 6px 0 4px 18px;
+  border-left: var(--hairline) solid var(--border-soft);
+  margin: 4px 0 10px 12px;
+}}
+[data-theme="v2"] .phc {{ border-left: 0; padding-left: 0; margin-left: 0; }}
+.phc b {{ color: var(--text-primary); font-weight: 600; }}
+.phc em {{ color: var(--text-muted); font-style: italic; font-size: 13px; }}
+
+.phc-context {{
+  margin: 6px 0 14px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 var(--radius-block) var(--radius-block) 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}}
+.phc-context b {{ color: var(--accent); }}
+.phc-context em {{ color: var(--text-muted); font-style: italic; }}
+
+/* --- Coin-table caption (above each table) ------------------------------- */
+
+.mt-caption {{
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--accent-muted);
+  margin: 14px 0 4px;
+  font-weight: 400;
+  line-height: 1.55;
+}}
+.mt-caption b {{ color: var(--text-primary); font-weight: 600; font-style: normal; }}
+.mt-caption i {{ font-style: italic; color: var(--text-muted); }}
+
+/* --- Subcat dividers (Kurant / Scheide / Copper) ------------------------- */
+
+.mt-subcat {{
+  margin: 16px 0 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-block);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-variant: small-caps;
+  color: var(--text-primary);
+  border-left: 3px solid var(--accent);
+}}
+[data-theme="v1"] .mt-subcat {{ font-family: var(--font-display); }}
+[data-theme="v2"] .mt-subcat {{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-variant: normal;
+  font-size: 17px;
+  background: transparent !important;
+  border-left: 0;
+  border-bottom: 1px solid var(--text-primary);
+  border-radius: 0;
+  padding: 8px 0 6px;
+}}
+.mt-subcat.kurant {{
+  background: {subcat_kurant_bg};
+  border-left-color: {subcat_kurant_border};
+  color: {subcat_kurant_fg};
+}}
+.mt-subcat.scheide {{
+  background: {subcat_scheide_bg};
+  border-left-color: {subcat_scheide_border};
+  color: {subcat_scheide_fg};
+}}
+.mt-subcat.copper {{
+  background: {subcat_copper_bg};
+  border-left-color: {subcat_copper_border};
+  color: {subcat_copper_fg};
+}}
+[data-theme="v1"] .mt-subcat.kurant  {{ background: rgba(163, 124, 44, 0.08); color: var(--accent-deep); border-left-color: var(--accent); }}
+[data-theme="v1"] .mt-subcat.scheide {{ background: rgba(196, 165, 100, 0.10); color: var(--text-secondary); border-left-color: var(--border); }}
+[data-theme="v1"] .mt-subcat.copper  {{ background: rgba(168, 103, 60, 0.10); color: #6b3a17; border-left-color: #a8673c; }}
+[data-theme="v2"] .mt-subcat.kurant  {{ color: var(--accent); }}
+[data-theme="v2"] .mt-subcat.scheide {{ color: var(--text-secondary); }}
+[data-theme="v2"] .mt-subcat.copper  {{ color: #6b3a17; }}
+
+.mt-subcat .sc-desc {{
+  display: block;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-style: italic;
+  font-variant: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  margin-top: 3px;
+  opacity: 0.85;
+  color: var(--text-muted);
+}}
+
+/* --- Coin tables --------------------------------------------------------- */
+
+.mt-scroll {{
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 8px 0 6px;
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius-block);
+  background: var(--bg-page);
+  -webkit-overflow-scrolling: touch;
+}}
+[data-theme="v1"] .mt-scroll {{ background: var(--bg-page); }}
+[data-theme="v2"] .mt-scroll {{ border: 0; border-top: 1px solid var(--text-primary); border-radius: 0; }}
+.mt-scroll::-webkit-scrollbar        {{ height: 8px; }}
+.mt-scroll::-webkit-scrollbar-track  {{ background: var(--bg-page); }}
+.mt-scroll::-webkit-scrollbar-thumb  {{ background: var(--border); border-radius: 4px; }}
+.mt-scroll::-webkit-scrollbar-thumb:hover {{ background: var(--accent); }}
+
+.mt {{
+  width: 100%;
+  min-width: 1100px;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 13px;
+  background: var(--bg-page);
+  margin: 0;
+}}
+[data-theme="v1"] .mt {{ font-family: 'Source Serif Pro', 'Cormorant Garamond', serif; }}
+[data-theme="v2"] .mt {{ font-family: 'Spectral', serif; font-size: 13px; }}
+
+.mt thead th {{
+  background: var(--bg-elev);
+  color: var(--accent-muted);
+  padding: 10px 8px;
+  border-bottom: var(--hairline) solid var(--accent);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 9.5px;
+  white-space: nowrap;
+  vertical-align: bottom;
+}}
+[data-theme="v1"] .mt thead th {{ background: transparent; color: var(--text-muted); border-bottom-color: var(--text-primary); }}
+[data-theme="v2"] .mt thead th {{ background: transparent; color: var(--text-muted); border-bottom-color: var(--text-primary); padding: 9px 6px; }}
+
+.mt tbody td {{
+  padding: 8px 8px;
+  border-bottom: var(--hairline) solid var(--border-soft);
+  vertical-align: top;
+}}
+[data-theme="v1"] .mt tbody td {{ border-bottom-color: var(--border-soft); }}
+[data-theme="v2"] .mt tbody td {{ vertical-align: baseline; padding: 7px 6px; border-bottom-color: var(--border); }}
+.mt tbody tr:last-child td {{ border-bottom: 0; }}
+.mt tbody tr:hover td {{ background: rgba(212, 168, 90, 0.04); }}
+[data-theme="v1"] .mt tbody tr:hover td {{ background: rgba(163, 124, 44, 0.06); }}
+[data-theme="v2"] .mt tbody tr:hover td {{ background: rgba(138, 58, 46, 0.04); }}
+
+.mt tbody tr.rw-sch td {{ background: rgba(196, 139, 75, 0.05); }}
+[data-theme="v1"] .mt tbody tr.rw-sch td {{ background: rgba(196, 165, 100, 0.06); }}
+[data-theme="v2"] .mt tbody tr.rw-sch td {{ background: rgba(0,0,0,0.025); }}
+.mt tbody tr.rw-sch:hover td {{ background: rgba(212, 168, 90, 0.08); }}
+
+/* Per-cell typography */
+.c-nom {{ font-weight: 500; font-style: italic; max-width: 220px; }}
+[data-theme="v2"] .c-nom {{ font-style: normal; font-weight: 600; }}
+.c-year {{ font-family: var(--font-mono); font-size: 11px; color: var(--accent); white-space: nowrap; }}
+.c-km {{ font-size: 11px; color: var(--text-secondary); line-height: 1.4; }}
+.c-km .cat-group {{ display: inline-block; }}
+.c-km .cat-prefix {{ color: var(--text-muted); font-weight: 500; font-family: var(--font-sans); }}
+.c-km .cat-plain {{ color: var(--text-muted); font-style: italic; }}
+.c-metal {{ font-size: 11px; color: var(--text-secondary); }}
+.c-w {{ font-family: var(--font-mono); font-size: 11px; white-space: nowrap; }}
+.c-d {{ font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }}
+.c-mint {{ font-size: 11px; color: var(--text-secondary); }}
+.c-note {{
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  min-width: 380px;
+}}
+.c-note b, .c-note strong {{ color: var(--text-primary); font-weight: 600; }}
+.c-note i, .c-note em {{ font-style: italic; color: var(--text-secondary); }}
+.c-note u {{ text-decoration: underline; }}
+.c-note a {{ color: var(--accent); }}
+.c-note sup a {{ font-size: 0.85em; }}
+
+.c-soll {{ font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; }}
+.c-delta {{ font-family: var(--font-mono); font-size: 11px; white-space: nowrap; font-variant-numeric: tabular-nums; }}
+
+/* Δ palette — 4-state spectrum, applied per .sd class */
+.c-delta .sd                     {{ display: inline-block; line-height: 1.25; vertical-align: top; padding: 1px 6px; border-radius: 2px; }}
+.c-delta .sd-g, .c-delta .sd-pct {{ display: block; }}
+.c-delta .sd-pct                 {{ font-size: 0.92em; opacity: 0.85; }}
+.c-delta .sd.under-deep  {{ color: {sd_under_deep_fg};  background: {sd_under_deep_bg}; }}
+.c-delta .sd.under-mild  {{ color: {sd_under_mild_fg};  background: {sd_under_mild_bg}; }}
+.c-delta .sd.over-mild   {{ color: {sd_over_mild_fg};   background: {sd_over_mild_bg}; }}
+.c-delta .sd.over-strong {{ color: {sd_over_strong_fg}; background: {sd_over_strong_bg}; }}
+/* Light themes use parchment-friendly Δ backgrounds */
+[data-theme="v1"] .c-delta .sd.under-deep  {{ background: rgba(201, 122, 61, 0.18);  color: #6b3a17; }}
+[data-theme="v1"] .c-delta .sd.under-mild  {{ background: rgba(160, 137, 102, 0.16); color: #5a4a32; }}
+[data-theme="v1"] .c-delta .sd.over-mild   {{ background: rgba(104, 162, 87, 0.18);  color: #355a2a; }}
+[data-theme="v1"] .c-delta .sd.over-strong {{ background: rgba(146, 210, 76, 0.22);  color: #2e5d1c; }}
+[data-theme="v2"] .c-delta .sd.under-deep  {{ background: rgba(138, 58, 46, 0.14);   color: var(--accent); }}
+[data-theme="v2"] .c-delta .sd.under-mild  {{ background: rgba(160, 137, 102, 0.12); color: #5a4a32; }}
+[data-theme="v2"] .c-delta .sd.over-mild   {{ background: rgba(104, 162, 87, 0.14);  color: #2f5a23; }}
+[data-theme="v2"] .c-delta .sd.over-strong {{ background: rgba(146, 210, 76, 0.16);  color: #2e5a1a; }}
+.c-delta .sd.ok       {{ color: {sd_over_mild_fg};   background: {sd_over_mild_bg};   padding: 1px 6px; border-radius: 2px; }}
+.c-delta .sd.dev      {{ color: {sd_under_deep_fg};  background: {sd_under_deep_bg};  padding: 1px 6px; border-radius: 2px; }}
+.c-delta .sd.dev-pos  {{ color: {sd_over_strong_fg}; background: {sd_over_strong_bg}; padding: 1px 6px; border-radius: 2px; }}
+.c-delta .sd-na       {{ color: var(--text-muted); font-style: italic; cursor: help; }}
+
+.c-fuss {{ font-size: 11px; color: var(--text-secondary); line-height: 1.4; }}
+.c-fuss .fuss-nominal {{ display: block; color: var(--text-primary); }}
+.c-fuss .fuss-implied {{ color: var(--accent); font-style: italic; }}
+.c-fuss .sf-line {{
+  display: block;
+  font-size: 10.5px;
+  font-style: italic;
+  line-height: 1.35;
+  margin-top: 2px;
+}}
+.c-fuss .sf-line.plain     {{ color: var(--text-muted); font-style: normal; }}
+.c-fuss .sf-line.primary   {{ color: var(--accent-muted); }}
+.c-fuss .sf-line.primary::before   {{ content: "▸ Primär: "; color: var(--accent); font-weight: 600; font-style: normal; }}
+.c-fuss .sf-line.secondary {{ color: var(--purple); }}
+.c-fuss .sf-line.secondary::before {{ content: "▸ Sekundär: "; color: var(--purple); font-weight: 600; font-style: normal; }}
+.c-fuss .sf-line.tertiary  {{ color: var(--cite); }}
+.c-fuss .sf-line.tertiary::before  {{ content: "▸ Tertiär: "; color: var(--cite); font-weight: 600; font-style: normal; }}
+.c-fuss .sf-line.implied   {{ color: {sd_under_deep_fg}; font-style: italic; opacity: 0.85; }}
+
+.c-ref {{ font-family: var(--font-sans); font-size: 10.5px; color: var(--accent-muted); font-style: italic; }}
+.c-ref a {{ color: var(--accent-muted); }}
+
+.c-entity {{ text-align: center; vertical-align: middle; padding: 4px 6px; }}
+.ent-badge {{
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: help;
+  border: 0.5px solid transparent;
+}}
+.ent-badge.ent-royal_holstein    {{ background: #3a1a1a; color: #e89090; border-color: #6e2d2d; }}
+.ent-badge.ent-gottorp_duchy     {{ background: #1a2d1a; color: #a8d490; border-color: #4d6e35; }}
+.ent-badge.ent-danish_realm      {{ background: #1a2438; color: #8aaef0; border-color: #355088; }}
+.ent-badge.ent-gesamtstaat       {{ background: #281a36; color: #c8a8e8; border-color: #5a3a85; }}
+.ent-badge.ent-provisional_govt  {{ background: #38301a; color: #ead890; border-color: #8a7038; }}
+.ent-badge.ent-prussian_province {{ background: #1f1f1f; color: #b8b8b8; border-color: #4a4a4a; }}
+.ent-badge.ent-schauenburg_pinneberg {{ background: #2a2532; color: #c8b8d8; border-color: #5a4a72; }}
+.ent-badge.ent-norburg_plon_duchy {{ background: #1f2a35; color: #98c0e0; border-color: #3d6080; }}
+.ent-badge.ent-sonderburg_duchy {{ background: #1a3030; color: #88c8c0; border-color: #3a6868; }}
+/* Light-theme overrides — softer pastel tints so badges stay legible */
+[data-theme="v1"] .ent-badge,
+[data-theme="v2"] .ent-badge {{ background: var(--bg-card); color: var(--text-primary); border-color: var(--border); }}
+
+/* Verification & translation markers */
+.unverified  {{ color: {sd_under_deep_fg}; cursor: help; font-weight: 600; font-family: var(--font-sans); }}
+[data-theme="v1"] .unverified, [data-theme="v2"] .unverified {{ color: var(--accent); }}
+.untranslated {{
+  background: rgba(255, 220, 0, 0.08);
+  border-bottom: 1px dashed rgba(255, 220, 0, 0.3);
+}}
+
+/* --- Closing summary (.terr) --------------------------------------------- */
+
+.terr {{
+  background: var(--bg-subcard);
+  border: var(--hairline) solid var(--border-soft);
+  border-radius: var(--radius-block);
+  padding: 14px 18px;
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-style: italic;
+}}
+[data-theme="v1"] .terr {{
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-page));
+  border: var(--hairline) dashed var(--border);
+}}
+[data-theme="v2"] .terr {{
+  background: transparent;
+  border: 0;
+  border-left: 4px solid var(--accent);
+  border-top: 1px solid var(--text-primary);
+  border-radius: 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  padding: 14px 18px;
+}}
+.terr .tlb {{
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 4px;
+  font-style: normal;
+}}
+.terr b {{ color: var(--text-primary); font-weight: 500; }}
+.terr i {{ font-style: italic; }}
+
+/* --- Methodology + references -------------------------------------------- */
+
+.rsep {{
+  border: 0;
+  border-top: var(--hairline) solid var(--border);
+  margin: 36px 0 18px;
+}}
+.refs-title {{
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  font-variant: small-caps;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin: 18px 0 14px;
+}}
+[data-theme="v1"] .refs-title {{ color: var(--accent-deep); }}
+[data-theme="v2"] .refs-title {{ font-family: var(--font-display); font-variant: normal; font-weight: 400; color: var(--text-primary); }}
+.refs {{
+  padding-left: 24px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}}
+.refs li {{ margin-bottom: 8px; padding-left: 4px; }}
+.refs li b {{ color: var(--text-primary); font-weight: 600; }}
+.refs li i {{ color: var(--cite); font-style: italic; }}
+.refs a {{ color: var(--accent); word-break: break-word; }}
+.refs a:hover {{ text-decoration: underline; }}
+
+.methodology {{
+  background: var(--bg-card);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 16px 22px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0 0 22px;
+}}
+.methodology b {{ color: var(--text-primary); font-weight: 600; }}
+.methodology em, .methodology i {{ color: var(--accent); font-style: italic; }}
+
+/* --- Landing (loc-grid) -------------------------------------------------- */
+
+.loc-grid {{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}}
+a.loc-card {{
+  display: block;
+  background: var(--bg-card);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 18px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}}
+a.loc-card:hover {{
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  transform: translateY(-1px);
+  text-decoration: none;
+}}
+.loc-card h3 {{
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  font-variant: small-caps;
+  letter-spacing: 0.01em;
+  color: var(--accent);
+}}
+[data-theme="v1"] .loc-card h3 {{ color: var(--accent-deep); }}
+[data-theme="v2"] .loc-card h3 {{ font-variant: normal; font-weight: 400; color: var(--text-primary); }}
+.loc-card p {{ margin: 0; font-size: 13px; color: var(--text-secondary); line-height: 1.55; }}
+
+/* --- Footer -------------------------------------------------------------- */
+
+footer {{
+  margin-top: 64px;
+  padding-top: 18px;
+  border-top: var(--hairline) solid var(--border);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}}
+footer .ftr-l {{ text-align: left; }}
+footer .ftr-r {{ text-align: right; }}
+footer a {{ color: var(--text-muted); }}
+footer a:hover {{ color: var(--accent); }}
+@media (max-width: 720px) {{
+  footer {{ flex-direction: column; align-items: flex-start; gap: 8px; }}
+}}
+
+/* --- Tooltips (data-tooltip="…" on any element) ------------------------- */
+
+[data-tooltip]:not(.tl-phase) {{ position: relative; }}
+[data-tooltip]:hover::after {{
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: var(--hairline) solid var(--accent);
+  color: var(--text-primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.45;
+  white-space: normal;
+  width: max-content;
+  max-width: 320px;
+  z-index: 100;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.45);
+}}
+
+/* --- Phase strip (timeline mini-phases) — preserved as-is from prior CSS - */
+
+.tl-phase {{
+  position: absolute;
+  top: 0;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px dashed rgba(255,255,255,0.35);
+  cursor: help;
+  pointer-events: auto;
+  z-index: 3;
+}}
+[data-theme="v1"] .tl-phase, [data-theme="v2"] .tl-phase {{ border-right-color: rgba(0,0,0,0.35); }}
+.tl-phase.tl-phase-first {{ border-left: 1px dashed rgba(255,255,255,0.35); }}
+.tl-phase.tl-phase-last  {{ border-right: 1px dashed rgba(255,255,255,0.35); }}
+[data-theme="v1"] .tl-phase.tl-phase-first, [data-theme="v2"] .tl-phase.tl-phase-first {{ border-left-color: rgba(0,0,0,0.35); }}
+.tl-phase-label {{
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}}
+.tl-phase.tl-phase-pause {{
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255,255,255,0.08) 0,
+    rgba(255,255,255,0.08) 4px,
+    rgba(0,0,0,0.18) 4px,
+    rgba(0,0,0,0.18) 8px);
+}}
+.tl-phase.tl-phase-pause .tl-phase-label {{ color: rgba(255,255,255,0.7); font-size: 13px; letter-spacing: 0; }}
+"""

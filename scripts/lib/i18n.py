@@ -32,6 +32,39 @@ def t(value: Any, lang: str) -> str | None:
     return None
 
 
+# Month names for fmt_date — kept in this module rather than ui.yml because
+# they're a closed set tied to the date formatter, not user-facing translation keys.
+_MONTHS = {
+    "de": ["Januar", "Februar", "März", "April", "Mai", "Juni",
+           "Juli", "August", "September", "Oktober", "November", "Dezember"],
+    "en": ["January", "February", "March", "April", "May", "June",
+           "July", "August", "September", "October", "November", "December"],
+    "uk": ["січня", "лютого", "березня", "квітня", "травня", "червня",
+           "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"],
+}
+
+
+def fmt_date(iso: str, lang: str) -> str:
+    """Render an ISO YYYY-MM-DD date in language-appropriate long form.
+
+    de: "27. April 2026"   en: "27 April 2026"   uk: "27 квітня 2026"
+    """
+    try:
+        y, m, d = iso.split("-")
+        m_idx = int(m) - 1
+        d_int = int(d)
+    except (ValueError, IndexError):
+        return iso
+    months = _MONTHS.get(lang, _MONTHS["de"])
+    if not (0 <= m_idx < 12):
+        return iso
+    if lang == "de":
+        return f"{d_int}. {months[m_idx]} {y}"
+    if lang == "uk":
+        return f"{d_int} {months[m_idx]} {y}"
+    return f"{d_int} {months[m_idx]} {y}"
+
+
 def fmt_num(val: float | None, lang: str, decimals: int = 5, unit: str = "g") -> str:
     """Format a number with language-appropriate decimal separator and optional unit."""
     if val is None:

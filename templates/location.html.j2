@@ -10,6 +10,7 @@
 <title>{{ tree.location.name|t(lang) }} · Müntzfüße</title>
 <link rel="stylesheet" href="{{ base_url }}/assets/style.css">
 <script src="{{ base_url }}/assets/app.js" defer></script>
+<script>(function(){var t='v3';try{var s=localStorage.getItem('mz-theme');if(s==='v1'||s==='v2'||s==='v3')t=s;}catch(e){}document.documentElement.dataset.theme=t;})();</script>
 </head>
 <body>
 
@@ -251,19 +252,79 @@
   <a href="../../index.html">{{ ui_get('nav.home') }}</a>
   <span style="color: var(--text-muted);">/</span>
   <strong>{{ tree.location.name|t(lang) }}</strong>
-  <div class="lang-switch">
-    {% for l in languages -%}
-      {%- if l == lang -%}
-        <a class="active">{{ l|upper }}</a>
-      {%- else -%}
-        <a href="../{{ l }}/">{{ l|upper }}</a>
-      {%- endif -%}
-    {%- endfor %}
+  <div class="switchers">
+    <div class="theme-switch" role="group" aria-label="Theme">
+      <button type="button" class="th th-v1" data-theme="v1" title="Museum Atlas — paper &amp; gold" aria-label="Museum Atlas">
+        <span class="th-swatch" aria-hidden="true"><i class="sw sw-1"></i><i class="sw sw-2"></i><i class="sw sw-3"></i></span>
+        <span class="th-label">Atlas</span>
+      </button>
+      <button type="button" class="th th-v2" data-theme="v2" title="Editorial Codex — ink &amp; vermilion" aria-label="Editorial Codex">
+        <span class="th-swatch" aria-hidden="true"><i class="sw sw-1"></i><i class="sw sw-2"></i><i class="sw sw-3"></i></span>
+        <span class="th-label">Codex</span>
+      </button>
+      <button type="button" class="th th-v3 active" data-theme="v3" title="Refined Dark — graphite &amp; gold" aria-label="Refined Dark">
+        <span class="th-swatch" aria-hidden="true"><i class="sw sw-1"></i><i class="sw sw-2"></i><i class="sw sw-3"></i></span>
+        <span class="th-label">Noir</span>
+      </button>
+    </div>
+    <div class="lang-switch">
+      {% for l in languages -%}
+        {%- if l == lang -%}
+          <a class="active">{{ l|upper }}</a>
+        {%- else -%}
+          <a href="../{{ l }}/">{{ l|upper }}</a>
+        {%- endif -%}
+      {%- endfor %}
+    </div>
   </div>
 </nav>
 
-<h1 class="h1">{{ tree.location.name|t(lang) }}</h1>
-<p>{{ tree.location.summary|t(lang) }}</p>
+{# Compute hero stats — counts walked across the rendered fuss tree so
+   the Münzfüße / Münzen tiles match the visible content (skipping
+   fuesse without phases / period / Grundwerte that the template hides). #}
+{% set ns = namespace(fuss_count=0, coin_total=0) %}
+{% set fp_lookup = tree.location.fuss_periods %}
+{% for sg in tree.fuesse %}
+  {% set sp = fp_lookup.get(sg.fuss.id) if fp_lookup else None %}
+  {% if sg.nonempty_phases or sp or sg.fuss.grundwerte %}
+    {% set ns.fuss_count = ns.fuss_count + 1 %}
+    {% set ns.coin_total = ns.coin_total + (sg.nonempty_phases | sum(attribute='total') if sg.nonempty_phases else 0) %}
+  {% endif %}
+{% endfor %}
+{% set hero_refs = (references.entries | length) if references and references.entries else 0 %}
+
+<section class="hero">
+  <div class="hero-text">
+    <h1 class="h1">{{ ui_get('hero.eyebrow') }}<em class="h1-sub">{{ tree.location.name|t(lang) }}</em></h1>
+    <p class="deck">{{ tree.location.summary|t(lang) }}</p>
+  </div>
+  <div class="hero-stats">
+    {% if tree.location.timeline %}
+    <div class="hs-stat">
+      <span class="hs-lbl">{{ ui_get('hero.stat.zeitraum') }}</span>
+      <span class="hs-val">{{ tree.location.timeline.year_from }}<sub>—{{ tree.location.timeline.year_to }}</sub></span>
+    </div>
+    {% endif %}
+    <div class="hs-stat">
+      <span class="hs-lbl">{{ ui_get('hero.stat.muenzfuesse') }}</span>
+      <span class="hs-val">{{ ns.fuss_count }}<sub>{{ ui_get('hero.stat.standards_unit') }}</sub></span>
+    </div>
+    <div class="hs-stat">
+      <span class="hs-lbl">{{ ui_get('hero.stat.muenzen') }}</span>
+      <span class="hs-val">{{ ns.coin_total }}<sub>{{ ui_get('hero.stat.coins_unit') }}</sub></span>
+    </div>
+    {% if hero_refs %}
+    <div class="hs-stat">
+      <span class="hs-lbl">{{ ui_get('hero.stat.quellen') }}</span>
+      <span class="hs-val">{{ hero_refs }}<sub>{{ ui_get('hero.stat.refs_unit') }}</sub></span>
+    </div>
+    {% endif %}
+    <div class="hs-stat hs-stat-wide">
+      <span class="hs-lbl">{{ ui_get('hero.stat.revision') }}</span>
+      <span class="hs-val hs-val-date">{{ fmt_date(generated_date) }}</span>
+    </div>
+  </div>
+</section>
 
 {% set tl = tree.location.timeline %}
 {% if tl %}
@@ -278,19 +339,23 @@
       {%- set clamped_right = [raw_right, 100] | min -%}
       {%- set left_pct  = clamped_left | round(2) -%}
       {%- set width_pct = (clamped_right - clamped_left) | round(2) -%}
-      {# Short bars (< 8% of timeline) cannot fit the bar_label inside — render
-         the label as a floating tag above the bar instead. The .tl-bar-narrow
-         class flips overflow + positions the label outside via a wrapper span. #}
-      {%- set narrow = width_pct < 8 -%}
+      {# Bars under ~22 % of the timeline cannot fit a typical bar_label
+         («1566 — ca. 1622 · ~56 J.» ≈ 24 chars × 7 px = 168 px in mono;
+         a 22 %-wide bar on a 900 px track is ~198 px — the cutoff). Below
+         this threshold the label renders as a floating tag overlaid on
+         the bar (overflow visible, halo text-shadow for legibility). #}
+      {%- set narrow = width_pct < 22 -%}
+      {# Auto-derive a year-range label if the YAML doesn't set one explicitly.
+         Keeps narrow bars (e.g. 30-Thaler-Fuß · Vereinsthaler 1866–1871) from
+         rendering as bare swatches with no temporal info. #}
+      {%- set _label = bar.bar_label|t(lang) if bar.bar_label else (bar.year_from|string + '—' + bar.year_to|string) -%}
       <div class="tl-bar {{ bar.color_class }}{% if bar.dashed %} tl-bar-dashed{% endif %}{% if raw_left < 0 %} tl-bar-cut-left{% endif %}{% if raw_right > 100 %} tl-bar-cut-right{% endif %}{% if narrow %} tl-bar-narrow{% endif %} {{ extra_class }}"
            style="left:{{ left_pct }}%;width:{{ width_pct }}%"
            {% if bar.bar_title %}title="{{ bar.bar_title|t(lang) }}"{% endif %}>
-        {%- if bar.bar_label -%}
-          {%- if narrow -%}
-            <span class="tl-bar-label-float">{{ bar.bar_label|t(lang) }}</span>
-          {%- else -%}
-            {{ bar.bar_label|t(lang) }}
-          {%- endif -%}
+        {%- if narrow -%}
+          <span class="tl-bar-label-float">{{ _label }}</span>
+        {%- else -%}
+          {{ _label }}
         {%- endif -%}
       </div>
     {%- endmacro -%}
@@ -320,16 +385,18 @@
     {% endfor %}
     <div></div>
     <div class="tl-axis">
-      {% set axis_count = ((tl.year_to - tl.year_from) // tl.axis_step) + 1 %}
-      {% for i in range(axis_count) %}
-        {% set year = tl.year_from + i * tl.axis_step %}
+      {# Snap axis labels to round years (1550, 1600, …) for legibility — instead
+         of starting at year_from (1559) which produces awkward 1559/1609/1659…
+         labels. Off-scale ticks are clamped between 0 % and 100 %. #}
+      {% set first_tick = (tl.year_from // tl.axis_step) * tl.axis_step %}
+      {% if first_tick < tl.year_from %}{% set first_tick = first_tick + tl.axis_step %}{% endif %}
+      {% set last_tick = (tl.year_to // tl.axis_step) * tl.axis_step %}
+      {% set tick_count = ((last_tick - first_tick) // tl.axis_step) + 1 if last_tick >= first_tick else 0 %}
+      {% for i in range(tick_count) %}
+        {% set year = first_tick + i * tl.axis_step %}
         {% set pos = ((year - tl.year_from) / tl_span * 100) | round(2) %}
         <span style="left:{{ pos }}%">{{ year }}</span>
       {% endfor %}
-      {% set last_year = tl.year_from + (axis_count - 1) * tl.axis_step %}
-      {% if last_year < tl.year_to %}
-        <span style="left:100%">{{ tl.year_to }}</span>
-      {% endif %}
     </div>
   </div>
 </div>
@@ -391,14 +458,37 @@
 {% endif %}
 
 {# A single fuss-level toggle that reveals the long historical detail (sp.details)
-   and ALL phase blocks with their tables already expanded. Replaces the
-   previous per-phase <details> mechanism. #}
+   and ALL phase blocks with their tables already expanded. The <summary> doubles
+   as a stats bar — phase / coin / Grundwerte counts on the left, Details pill
+   on the right (per design). #}
 {% if sg.nonempty_phases or (sp and sp.details) %}
+{% set ph_n = sg.nonempty_phases|length %}
+{% set coin_n = sg.nonempty_phases|sum(attribute='total') if sg.nonempty_phases else 0 %}
+{% set base_n = (sg.fuss.grundwerte.rows|length) if (sg.fuss.grundwerte and sg.fuss.grundwerte.rows) else 0 %}
 <details class="fuss-details" data-fuss="{{ sg.fuss.id }}">
-  <summary>
-    <span class="fd-label fd-label-show">{{ ui_get('fuss.show_details') }}</span>
-    <span class="fd-label fd-label-hide">{{ ui_get('fuss.hide_details') }}</span>
-    <span class="fd-count">({{ sg.nonempty_phases|sum(attribute='total') if sg.nonempty_phases else 0 }})</span>
+  <summary class="fuss-summary">
+    <div class="fs-stats">
+      <div class="fs-stat">
+        <span class="fs-num">{{ ph_n }}</span>
+        <span class="fs-lbl">{{ ui_get('fuss.stat.phase_one') if ph_n == 1 else ui_get('fuss.stat.phase_many') }}</span>
+      </div>
+      <div class="fs-stat">
+        <span class="fs-num">{{ coin_n }}</span>
+        <span class="fs-lbl">{{ ui_get('fuss.stat.coins_logged') }}</span>
+      </div>
+      {% if base_n %}
+      <div class="fs-stat">
+        <span class="fs-num">{{ base_n }}</span>
+        <span class="fs-lbl">{{ ui_get('fuss.stat.base_values') }}</span>
+      </div>
+      {% endif %}
+    </div>
+    <span class="fs-toggle">
+      <span class="fs-toggle-icon" aria-hidden="true">+</span>
+      <span class="fd-label fd-label-show">{{ ui_get('fuss.show_details') }}</span>
+      <span class="fd-label fd-label-hide">{{ ui_get('fuss.hide_details') }}</span>
+      <span class="fd-count">({{ coin_n }})</span>
+    </span>
   </summary>
   <div class="fuss-details-body">
 
@@ -527,8 +617,8 @@
 {% endif %}
 
 <footer>
-  {{ ui_get('meta.generated') }}: {{ generated_date }}
-  {% if repo_url %} · <a href="{{ repo_url }}">{{ ui_get('meta.source_data') }}</a>{% endif %}
+  <span class="ftr-l">{{ ui_get('meta.generated') }}: {{ fmt_date(generated_date) }}{% if repo_url %} · <a href="{{ repo_url }}">{{ ui_get('meta.source_data') }}</a>{% endif %}</span>
+  <span class="ftr-r">Müntzfüße · CC-BY-SA</span>
 </footer>
 
 </body>
