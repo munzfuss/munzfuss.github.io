@@ -691,7 +691,17 @@ a:hover {{ text-decoration: underline; }}
 .c-w {{ font-family: {t['family_mono']}; font-size: {t['size_xsmall']}; white-space: nowrap; }}
 .c-d {{ font-family: {t['family_mono']}; font-size: {t['size_xsmall']}; color: var(--text-muted); }}
 .c-mint {{ font-size: {t['size_xsmall']}; color: var(--text-secondary); }}
-.c-note {{ font-size: {t['size_xsmall']}; color: var(--text-secondary); line-height: 1.45; }}
+.c-note {{
+  font-size: {t['size_xsmall']};
+  color: var(--text-secondary);
+  line-height: 1.45;
+  /* The note column must be wide enough for prose, otherwise long Bemerkungen
+     wrap into 12-15 lines. min-width forces the browser's auto layout to give
+     this column ≥380 px even on a wide table; combined with .mt min-width:1200
+     the column is always readable. The table will overflow horizontally inside
+     .mt-scroll if the window is too narrow to fit everything. */
+  min-width: 380px;
+}}
 .c-note b, .c-note strong {{ color: var(--text-primary); font-weight: 600; }}
 .c-note i, .c-note em {{ font-style: italic; color: var(--text-secondary); }}
 .c-note u {{ text-decoration: underline; }}
