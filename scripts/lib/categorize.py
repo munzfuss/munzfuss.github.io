@@ -25,13 +25,19 @@ class PhaseGroup:
     # (Hebræermønt 1645 .593 vs Kronemønt-Standard .671) — a "Scheidemünze
     # within the Tarifmünze": same nominal tariff, additional silver debasement
     # on top. Rendered in its own sub-block analogous to Scheidemünze.
+    tarif_subunit_coins: list[ComputedCoin] = field(default_factory=list)
+    # ↑ Tariff subdivision coins under the same tariff regime — same fineness
+    # as the parent Tarifmünze, but per-piece silver content systematically
+    # exceeds the strict subdivision proportion (e.g. Kroneskilling 1619-1621
+    # at .859 carry up to ~2× the silver of strict 1/96-Krone). Rendered as
+    # its own sub-block, contrasting with the at-tariff main coins.
     gedenk_coins: list[ComputedCoin] = field(default_factory=list)
 
     @property
     def total(self) -> int:
         return (len(self.kurant_coins) + len(self.scheide_coins) + len(self.copper_coins)
                 + len(self.tarif_coins) + len(self.tarif_deviant_coins)
-                + len(self.gedenk_coins))
+                + len(self.tarif_subunit_coins) + len(self.gedenk_coins))
 
     @property
     def nonempty(self) -> bool:
@@ -41,7 +47,8 @@ class PhaseGroup:
     def is_mixed(self) -> bool:
         """True when more than one category group has coins (needs subcat dividers)."""
         groups = [bool(self.kurant_coins), bool(self.scheide_coins), bool(self.copper_coins),
-                  bool(self.tarif_coins), bool(self.tarif_deviant_coins)]
+                  bool(self.tarif_coins), bool(self.tarif_deviant_coins),
+                  bool(self.tarif_subunit_coins)]
         return sum(groups) > 1
 
 
@@ -113,6 +120,8 @@ def categorize(
                         pg.tarif_deviant_coins.append(cc)
                     else:
                         pg.tarif_coins.append(cc)
+                elif cc.raw.kind == "tarif_subunit":
+                    pg.tarif_subunit_coins.append(cc)
                 elif cc.raw.kind == "gedenk":
                     pg.gedenk_coins.append(cc)
             

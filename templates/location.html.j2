@@ -535,7 +535,7 @@
       {% endif %}
 
       {% if pg.tarif_coins %}
-        {% if pg.tarif_deviant_coins or pg.scheide_coins or pg.copper_coins %}
+        {% if pg.tarif_deviant_coins or pg.tarif_subunit_coins or pg.scheide_coins or pg.copper_coins %}
         <div class="mt-subcat kurant">
           ✦ {{ ui_get('label.tarif') }}
           <span class="sc-desc">{{ ui_get('tarif.desc') }}</span>
@@ -550,6 +550,14 @@
           <span class="sc-desc">{{ ui_get('tarif_deviant.desc') }}</span>
         </div>
         {{ coin_table(pg.tarif_deviant_coins) }}
+      {% endif %}
+
+      {% if pg.tarif_subunit_coins %}
+        <div class="mt-subcat kurant">
+          ∘ {{ ui_get('label.tarif_subunit') }}
+          <span class="sc-desc">{{ ui_get('tarif_subunit.desc') }}</span>
+        </div>
+        {{ coin_table(pg.tarif_subunit_coins) }}
       {% endif %}
 
       {% if pg.scheide_coins %}

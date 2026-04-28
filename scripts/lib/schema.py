@@ -153,7 +153,7 @@ class Coin(BaseModel):
     id: str
     fuss: str = Field(..., description="FK to shared/fuesse.yml")
     phase: str = Field(..., description="FK to location.phases[fuss]")
-    kind: Literal["kurant", "scheide", "tarif", "gedenk"]
+    kind: Literal["kurant", "scheide", "tarif", "tarif_subunit", "gedenk"]
     nominal: str = Field(..., description="Literal inscription or closest transcription")
     year_label: str
     year_first: int
