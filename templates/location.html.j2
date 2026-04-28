@@ -89,7 +89,13 @@
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-fuss">
-    {%- if coin.raw.fuss_refs -%}
+    {# When the coin has no computable fein weight (no fineness or no rough weight),
+       collapse the Stopa column to a single plain rendering of the fuss name. The
+       "▸ Primär:" prefix only carries meaning when contrasted with a Sekundär/Tertiär
+       line; for unknown-fein coins it adds visual noise without information. #}
+    {%- if coin.weight_fein_g is none -%}
+      <span class="fuss-nominal">{{ coin.fuss.name|t(lang) }}</span>
+    {%- elif coin.raw.fuss_refs -%}
       {%- for ref in coin.raw.fuss_refs -%}
         <span class="sf-line {{ ref.rank }}">{{ ref.label|t(lang)|safe }}</span>
       {%- endfor -%}
