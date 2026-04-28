@@ -10,6 +10,28 @@ Build mathematically-verified, historically accurate reference artifacts documen
 
 ## Non-negotiable research principles
 
+### 0. No invention. State only what the sources document.
+
+> **This is a scholarly historical-numismatic study, not creative writing.** Every factual claim that lands in the rendered artefact (phase descriptions, coin notes, fuss summaries, location preambles, references) must be traceable to a named source — coin inscription, museum catalogue, auction catalogue, MGM, Numista entry, Hede / Wilcke / Schou / Lange / Sieg, danskmoent.dk page, Wikipedia article with citation, or the user's directly-stated knowledge.
+
+**Forbidden moves:**
+- Asserting **mintage figures, rarity, "sole issue", "only known specimen"** without an explicit source. Existence of a coin in a catalogue does not establish singularity. Hede c5h120 documenting a 1683 Speciedaler at 9-Fuß confirms the type and the standard — it does NOT confirm that the issue was unique, special, or one-off.
+- Asserting **rulers' motivations, decrees, intent** ("Christian V ordered…", "the duchy decided…", "in response to the crisis…") unless that motivation is recorded in a primary or recognised secondary source. Otherwise: state the dated fact, not the reason.
+- Adding **temporal embellishments** ("long after the standard had been superseded", "shortly before the reform", "in the twilight of the system") that go beyond bare chronology. State the year, leave interpretation to the reader.
+- Inventing **historiographical labels** ("Sonderprägung", "transitional issue", "experimental coinage", "ґлюкштатське відновлення") that do not appear in literature. If a term is novel, it is the user's call to coin it — never Claude's.
+- Filling **descriptive prose** to make a section "feel complete". A two-sentence factual phase description is preferable to a paragraph of plausible-sounding narrative. Empty space is honest; padding is not.
+- Reasoning by analogy from one location/period to another and presenting the conclusion as established fact. Analogy is at most a hypothesis — and a hypothesis without a source has no place in the artefact.
+
+**Required moves:**
+- When you write a sentence, ask: *which source says this*? If you cannot name one, the sentence is fabrication. Either find a source or remove the sentence.
+- For interpretive observations that genuinely belong (e.g. "this Δ exceeds the Schleswig 9¼-Fuß remedium"), attribute them to the build's own computation: «errechnet aus … » / «as computed from …». Don't dress computation as historical narrative.
+- When a source confirms only part of a claim, write only that part. Hede c5h120 confirms a 9-Fuß Speciedaler from 1683 — write "Speciedaler 1683 (Glückstadt) nach 9-Fuß, Hede 120". Do not extend.
+- When in doubt, say so explicitly in the prose: «Auflage und Anlaß sind in den vorliegenden Quellen nicht angegeben» / «mintage and circumstance are not given in the available sources». An explicit gap is more useful than a confident fiction.
+
+This rule **subsumes and reinforces** §4 (unconfirmed-data marker), §5 (source hierarchy), §2a (academic register), and the "Inventing sources" anti-pattern. When those rules and this one say similar things, this one is the canonical statement; the others are specific applications.
+
+**The scholarly tone is not optional decoration.** A hedged guess presented in confident prose is worse than no entry at all — it pollutes the reference and silently corrupts every researcher who later cites it.
+
 ### 1. What's on the coin vs. what's calculated
 
 > **Only what is literally inscribed on the coin goes in the `nominal` field. Calculated equivalents, historiographical nicknames, and secondary rechnerische Äquivalenten go in `note` (Bemerkung).**
