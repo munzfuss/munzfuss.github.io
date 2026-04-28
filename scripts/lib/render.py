@@ -187,7 +187,8 @@ body {{
   font-family: {t['family_body']};
   background: var(--bg-page);
   padding: 1rem 1.5rem;
-  margin: 0;
+  margin: 0 auto;
+  max-width: {l['max_width']};
   line-height: {line_height};
 }}
 
@@ -647,6 +648,10 @@ a:hover {{ text-decoration: underline; }}
 
 .mt {{
   width: 100%;
+  /* min-width keeps the note column readable (~400 px) on narrower viewports;
+     parent .mt-scroll already provides overflow-x: auto so users can scroll
+     horizontally on phones / split windows. */
+  min-width: {l['max_width']};
   border-collapse: collapse;
   font-size: {t['size_small']};
   background: var(--bg-page);
