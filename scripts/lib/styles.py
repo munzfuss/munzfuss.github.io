@@ -761,6 +761,15 @@ h2[style] {{
 :root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar-reichsdukatenfuss {{
   background: linear-gradient(90deg, #fcd34d, #5c4a00);
 }}
+
+/* Noir only: every bar except Reichsdukatenfuß picks up the same
+   font-weight as the Reichsgoldmünzfuß palette (600), so monospace
+   year digits read with a uniform stroke width across the timeline.
+   Colour and halo are left untouched — only the weight changes. */
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar:not(.tl-bar-reichsdukatenfuss),
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar:not(.tl-bar-reichsdukatenfuss) .tl-bar-label-float {{
+  font-weight: 600;
+}}
 /* Overlay bar (e.g. "1788–1866 Theilung" inside the 9¼-Fuß row).
    Uses percentage inset so the overlay scales with the host track height
    (40 px in v1/v3, 32 px in v2) — fixed pixel inset previously made the
