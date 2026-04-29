@@ -1887,14 +1887,16 @@ coins:
     ruler: "Christian VII."
     catalog:
       km: "120"
-      numista: '34037'
-      others:
-        - KM# 23
-        - Schön# 23
     metal: billon
     fineness: 0.25
+    fineness_verified: false
     weight_rough_g: 1.499
+    weight_rough_verified: false
     diameter_mm: 18.0
+    verification_note:
+      de: "Frühere Numista-Verlinkung (N#34037) war falsch — verwies auf eine ½-Rupie Mauritius 1946. Wert/Maße zur Zeit nicht aus einer Online-Primärquelle verifiziert; KM# 120 als kanonische Krause-Klassifikation behalten."
+      en: "Earlier Numista link (N#34037) was wrong — pointed to a 1946 Mauritius ½ Rupee. Values and metrics not currently verified against an online primary source; KM# 120 retained as canonical Krause classification."
+      uk: "Попереднє посилання на Numista (N#34037) було помилковим — вело на 1946 ½ Рупії Маврикію. Значення й розміри наразі не звірено з онлайн-первинним джерелом; KM# 120 збережено як канонічну класифікацію Krause."
     note:
       de: |-
         = 1 Schilling Courant in Doppelung; <b>keine 1-Schilling-Münze</b> geprägt — Folge der Lübisch-Hanseat. Tradition
@@ -1981,7 +1983,7 @@ coins:
     year_label: "1819"
     year_first: 1819
     ruler: "Frederik VI."
-    mint: "Kopenhagen"
+    mint: "Altona"
     catalog:
       km: "693"
       dav: "EC IV 72"
@@ -4293,7 +4295,7 @@ coins:
     year_label: "1854"
     year_first: 1854
     ruler: "Frederik VII."
-    mint: "Kopenhagen (FK VS)"
+    mint: "Altona, Kopenhagen (FK VS)"
     catalog:
       km: "761"
       hede: "7"
@@ -4332,7 +4334,7 @@ coins:
     year_label: "1854"
     year_first: 1854
     ruler: "Frederik VII."
-    mint: "Kopenhagen"
+    mint: "Altona, Kopenhagen"
     catalog:
       km: "760"
       numista: '22192'
@@ -6942,7 +6944,8 @@ coins:
     year_label: '1726'
     year_first: 1726
     ruler: Karl Friedrich von Gottorp
-    metal: silver
+    mint: Kiel
+    metal: billon
     note:
       de: 6 Pfennigs = 1/64 Thaler · Karl Friedrich von Gottorp, 1726 · Numista N#292243
       en: 6 Pfennigs = 1/64 Thaler · Charles Frederick, Duke of Schleswig-Holstein-Gottorp, 1726 · Numista N#292243
@@ -6956,7 +6959,6 @@ coins:
       numista: '292243'
       km: '204'
       lange: '481'
-    mint: Kiel
     weight_rough_g: 0.6
   - id: km-79-chr-iv-1623
     fuss: 9_25_thaler
@@ -8470,18 +8472,18 @@ coins:
     fuss: 9_thaler
     phase: A
     kind: kurant
-    fraction: '1'
-    nominal: 1 Thaler
+    fraction: '2'
+    nominal: 2 Thaler
     year_label: '1620'
     year_first: 1620
     ruler: Ernst von Schaumburg-Pinneberg
     metal: silver
-    weight_rough_g: 28.5
+    weight_rough_g: 56.07
     issuing_entity: schauenburg_pinneberg
     note:
-      de: 1 Thaler · Ernst von Schaumburg-Pinneberg, 1620 · Numista N#137415
-      en: 1 Thaler · Ernst, Count of Schaumburg-Pinneberg, 1620 · Numista N#137415
-      uk: 1 Thaler · Ернст Шаумбург-Піннеберг, 1620 · Numista N#137415
+      de: 2 Thaler (Doppeltaler) · Ernst III. von Schaumburg-Pinneberg, 1620 · Numista N#137415 · Lange# 832 a, Dav Lg# 475, Weinm# 96
+      en: 2 Thalers (Doppeltaler) · Ernst III, Count of Schaumburg-Pinneberg, 1620 · Numista N#137415 · Lange# 832 a, Dav Lg# 475, Weinm# 96
+      uk: 2 Thaler (Doppeltaler) · Ернст III, граф Шаумбург-Піннеберг, 1620 · Numista N#137415 · Lange# 832 a, Dav Lg# 475, Weinm# 96
     sources:
       - type: numista
         url: https://en.numista.com/catalogue/pieces137415.html
@@ -8827,12 +8829,13 @@ coins:
     year_label: '1760'
     year_first: 1760
     ruler: Friedrich Karl von Holstein-Plön
+    mint: Hamburg
     catalog:
       km: '27'
       lange: 769b
       fr: '3098'
       numista: '222051'
-    metal: silver
+    metal: gold
     fineness: 0.986
     fineness_verified: true
     weight_rough_g: 3.46
@@ -8845,7 +8848,6 @@ coins:
       - type: numista
         url: https://en.numista.com/catalogue/pieces222051.html
         ref: Numista
-    mint: Hamburg Mint
   - id: km-28-fr-karl-plon-1761
     fuss: 9_25_thaler
     phase: B
