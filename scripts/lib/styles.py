@@ -747,6 +747,15 @@ h2[style] {{
     inset 0 0 0 0.5px rgba(0,0,0,0.30),
     inset 0 0 0 999px rgba(255, 248, 230, 0.30);
 }}
+
+/* Noir only: reverse the Reichsdukatenfuß gradient direction so the
+   brighter gold sits on the left rather than the right (which on the
+   dark Noir backdrop reads as the bar receding into shadow toward the
+   later years rather than starting in shadow). Light themes keep the
+   default left-dark / right-bright direction. */
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar-reichsdukatenfuss {{
+  background: linear-gradient(90deg, #fcd34d, #5c4a00);
+}}
 /* Overlay bar (e.g. "1788–1866 Theilung" inside the 9¼-Fuß row).
    Uses percentage inset so the overlay scales with the host track height
    (40 px in v1/v3, 32 px in v2) — fixed pixel inset previously made the
