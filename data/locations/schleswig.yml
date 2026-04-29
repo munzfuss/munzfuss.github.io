@@ -28,11 +28,11 @@ summary:
   de: |
     Müntzwesen in Schleswig und Holstein, 1559–1914 — von der Augspurger
     Reichsmünzordnung biß zur Suspendierung des Reichsgoldmünzfußes.
-    Neun überlappende Müntz- und Rechnungsfüße.
+    Zehn überlappende Müntz- und Rechnungsfüße.
   en: |-
-    Coinage of Schleswig-Holstein, 1559–1914 — from the Augsburg Imperial Coinage Ordinance to the suspension of the Reichsgoldmünzfuß. Nine overlapping currency standards.
+    Coinage of Schleswig-Holstein, 1559–1914 — from the Augsburg Imperial Coinage Ordinance to the suspension of the Reichsgoldmünzfuß. Ten overlapping currency standards.
   uk: |-
-    Монетна справа Шлезвігу та Гольштейну, 1559–1914 — від Авґсбурзького імперського монетного ордонансу до призупинення Reichsgoldmünzfuß. Девʼять паралельних монетно-розрахункових стандартів.
+    Монетна справа Шлезвігу та Гольштейну, 1559–1914 — від Авґсбурзького імперського монетного ордонансу до призупинення Reichsgoldmünzfuß. Десять паралельних монетно-розрахункових стандартів.
 
 # Order in which fuesse are rendered on the page
 fuss_order:
@@ -44,6 +44,7 @@ fuss_order:
   - 18_5_thaler
   - 30_thaler
   - reichsdukatenfuss
+  - guldkrone
 
 # ---------------------------------------------------------------------
 # Timeline — visual overlap of Müntzfüße in Holstein, ca. 1600–1880
@@ -256,6 +257,27 @@ timeline:
         uk: "Закон про монету 4 грудня 1871 → припинення Reichsbank золотого розміну 4 серпня 1914"
       color_class: rm
 
+    - id: guldkrone
+      label:
+        de: "Guldkrone-Fuß · Tarifmünze · Gold"
+        en: "Guldkrone-Fuß · tariff coin · gold"
+        uk: "Guldkrone-Fuß · тарифна монета · золото"
+      small:
+        de: "5,498 g fein · 22 Karat Gold · Tarif 1 Guldkrone = 3½ Speciedaler (Hede 145B)"
+        en: "5.498 g fine · 22-carat gold · tariff 1 Guldkrone = 3½ Speciedaler (Hede 145B)"
+        uk: "5,498 г чистого · 22-каратне золото · тариф 1 Guldkrone = 3½ Speciedaler (Hede 145B)"
+      year_from: 1657
+      year_to: 1660
+      bar_label:
+        de: "1657 — 1660 · 4 J."
+        en: "1657 — 1660 · 4 yrs."
+        uk: "1657 — 1660 · 4 роки"
+      bar_title:
+        de: "Glückstadter Guldkrone-Programm Frederik III. · 1657–1660 · Mzm. Jacob Schwieger · ein einziger belegter Typ (Hede 145B)"
+        en: "Glückstadt Guldkrone programme of Frederik III · 1657–1660 · mintmaster Jacob Schwieger · a single documented type (Hede 145B)"
+        uk: "Ґлюкштадтська програма Guldkrone Фредеріка III · 1657–1660 · монетмайстер Jacob Schwieger · єдиний задокументований тип (Hede 145B)"
+      color_class: g
+
 # ---------------------------------------------------------------------
 # Per-Müntzfuß framing in this location: validity range, background, closing
 # ---------------------------------------------------------------------
@@ -435,6 +457,30 @@ fuss_periods:
         The Reichsdukatenfuß is the <b>most stable Müntzfuß</b> in the whole survey — more durable than any silver standard: from the Augsburg Imperial Coinage Ordinance of 1559 to the Reichsgoldmünzfuß of 1871 (312 years across the Reich, of which at least 250 in Holstein). Gold as a store of value withstood political crises, the state bankruptcy of 1813 and changes of dynasty. Only the structural shift from a gold trade-coin alongside a parallel silver currency to a true gold currency (Coinage Act of 4 Dec. 1871) ended the Dukatenfuß definitively.
       uk: |-
         Reichsdukatenfuß — <b>найстабільніша Müntzfuß</b> у всьому огляді: триваліша за будь-який срібний стандарт — від Авґсбурзького імперського монетного ордонансу 1559 до Reichsgoldmünzfuß 1871 (312 років у Рейху, з яких щонайменше 250 у Гольштейні). Золото як носій вартості витримало політичні кризи, державне банкрутство 1813 і зміни династій. Лише структурний перехід від торгової золотої монети з паралельною срібною валютою до власне золотої валюти (Закон про монету 4 грудня 1871) остаточно завершив Dukatenfuß.
+
+  guldkrone:
+    pdate_label:
+      de: 'Geltungsbereich: 1657 → 1660 · 4 Jahre (Glückstadt)'
+      en: 'Period of validity: 1657 → 1660 · 4 years (Glückstadt)'
+      uk: 'Період дії: 1657 → 1660 · 4 роки (Glückstadt)'
+    hintergrund:
+      de: |
+        Goldene <b>Tarifmünze</b> Frederik III., geprägt in Glückstadt 1657–1660. Goldenes Pendant der Krone-Mønt-Kategorie: gleicher Krone-Name und gleiche Tarif-Logik wie die silberne Krone, aber in 22-karätigem Gold und mit eigener metrischer Definition (rechnerisch ≈ 39 Stück je Cöllnische Marck Raulegierung von 22 Karat = 5,996 g rau / 5,498 g fein je Stück). Tarif: <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b>. <b>Nicht zu verwechseln mit dem Goldgulden</b> (HRR-Goldmünze nach Reichsmünzordnung 1559, andere Lineage und andere Tarifeinheit). Belegt durch Hede 145B / Sieg-160(B) / Schou-2 / Aagaard-4.1 [57.1–60.4] / Bruun-6344 / KM-40.2.
+      en: |-
+        A gold <b>tariff coin</b> of Frederik III, struck at Glückstadt 1657–1660. The gold counterpart of the Krone-Mønt category: same Krone name and same tariff logic as the silver Krone, but in 22-carat gold and with its own metric definition (computationally ≈ 39 pieces per Cologne mark of raw 22-carat alloy = 5.996 g rough / 5.498 g fine each). Tariff: <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b>. <b>Not to be confused with the Goldgulden</b> (Holy Roman Empire gold coin under the Reichsmünzordnung of 1559, separate lineage and a different tariff unit). Documented by Hede 145B / Sieg-160(B) / Schou-2 / Aagaard-4.1 [57.1–60.4] / Bruun-6344 / KM-40.2.
+      uk: |-
+        Золота <b>тарифна монета</b> Фредеріка III, карбована в Glückstadt 1657–1660. Золотий аналог Krone-Mønt-категорії: та сама назва Krone та сама тарифна логіка, що й срібна Krone, але в 22-каратному золоті й з власним метричним означенням (розрахунково ≈ 39 штук з кельнської марки сплаву 22 карат = 5,996 г повної ваги / 5,498 г чистого на штуку). Тариф: <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b>. <b>Не плутати з Goldgulden</b> (золота монета Священної Римської імперії за Reichsmünzordnung 1559, окрема лінія та інша тарифна одиниця). Задокументовано Hede 145B / Sieg-160(B) / Schou-2 / Aagaard-4.1 [57.1–60.4] / Bruun-6344 / KM-40.2.
+    closing_label:
+      de: "Zusammenfassung · ein einziger belegter Typ"
+      en: "Summary · a single documented type"
+      uk: "Підсумок · єдиний задокументований тип"
+    closing:
+      de: |
+        Das Glückstadter Guldkrone-Programm 1657–1660 ist einer der <b>seltensten und kürzlebigsten Müntzfüße</b> im Holstein-Verzeichnis: vier Jahre, ein einziger dokumentierter Typ (Hede 145B), Münzmeister Jacob Schwieger. Die spätere Frederik-III-Guldkrone-Prägung Kopenhagen 1668 (KM# 303, anderes Raugewicht und reduzierter Tarif von 3 Specie) gehört bereits einem anderen physischen Müntzfuß an und ist hier nicht aufgeführt — Kopenhagen liegt außerhalb dieses Verzeichnisses. Mit dem Übergang zu reinem Reichsdukaten-Gold (Glückstadt unter Christian V., siehe Reichsdukatenfuß) endet die Guldkrone-Tarifprägung in Holstein.
+      en: |-
+        The Glückstadt Guldkrone programme 1657–1660 is one of the <b>rarest and shortest-lived standards</b> in the Holstein register: four years, one documented type (Hede 145B), mintmaster Jacob Schwieger. The later Frederik III Guldkrone issue from Copenhagen 1668 (KM# 303, different rough weight and a reduced tariff of 3 Specie) already belongs to a different physical standard and is not listed here — Copenhagen lies outside this register. With the shift to pure Reichsdukat gold (Glückstadt under Christian V, see Reichsdukatenfuß) tariff-based Guldkrone production ends in Holstein.
+      uk: |-
+        Ґлюкштадтська програма Guldkrone 1657–1660 — одна з <b>найрідкісніших і найкоротших стоп</b> у гольштинському реєстрі: чотири роки, єдиний задокументований тип (Hede 145B), монетмайстер Jacob Schwieger. Пізніший випуск Guldkrone Фредеріка III у Копенгагені 1668 р. (KM# 303, інша повна вага й знижений тариф 3 Specie) уже належить до іншої фізичної стопи й тут не наведений — Копенгаген поза цим реєстром. З переходом на чисте золото Reichsdukatenfuß (Glückstadt за Кристіана V, див. Reichsdukatenfuß) тарифне карбування Guldkrone в Гольштейні завершується.
 
 # ---------------------------------------------------------------------
 # Phase definitions — grouped by fuss
@@ -921,6 +967,34 @@ phases:
         de: 'Einzige Phase der Christian-IV.-Krone: alle Prägungen 1618–1624 laufen unter dem ursprünglichen Tarif <b>1½ Speciedaler</b> — eine Wertigkeit, die im Volksmund die satirische Umdeutung des königlichen Wahlspruches <b>RFP</b> (regna firmat pietas) als <b>R(iget) F(attes) P(enge)</b> hervorrief.<sup><a href="#ref25">[25]</a></sup> Die offizielle Tarifsenkung auf 1⅓ Speciedaler erfolgt erst <b>1625</b><sup><a href="#ref21">[21]</a><a href="#ref22">[22]</a></sup>, unmittelbar nach Einstellung der Krone-Prägung. Stilistische Untergruppen: Corona-Danica-Originalprägungen 1618–1622 (KM# 57–61, 58a, 59a) und «Dicke» / Open-Crown-Varianten 1624 (KM# 94–99) — alle innerhalb desselben Tarifregimes.'
         en: 'Sole phase of the Christian IV Krone: all 1618–1624 issues run under the original <b>1½ Speciedaler</b> tariff — a parity that in folk parlance prompted the satirical reread of the royal motto <b>RFP</b> (regna firmat pietas) as <b>R(iget) F(attes) P(enge)</b>.<sup><a href="#ref25">[25]</a></sup> The official tariff cut to 1⅓ Speciedaler only comes in <b>1625</b><sup><a href="#ref21">[21]</a><a href="#ref22">[22]</a></sup>, right after Krone production stops. Stylistic sub-groups: Corona Danica original strikes 1618–1622 (KM# 57–61, 58a, 59a) and «Dicke» / Open-Crown variants 1624 (KM# 94–99) — all within the same tariff regime.'
         uk: 'Єдина фаза Krone Кристіана IV: усі емісії 1618–1624 під оригінальним тарифом <b>1½ Speciedaler</b> — паритет, який у народі породив сатиричне переосмислення королівського девізу <b>RFP</b> (regna firmat pietas) як <b>R(iget) F(attes) P(enge)</b>.<sup><a href="#ref25">[25]</a></sup> Офіційне зниження тарифу до 1⅓ Speciedaler відбувається лише <b>1625</b><sup><a href="#ref21">[21]</a><a href="#ref22">[22]</a></sup> — одразу після припинення карбування Krone. Стилістичні підгрупи: оригінальні Corona Danica 1618–1622 (KM# 57–61, 58a, 59a) та варіанти «Dicke» / Open-Crown 1624 (KM# 94–99) — усі в одному тарифному режимі.'
+
+  guldkrone:
+    - id: A
+      year_from: 1657
+      year_to: 1660
+      from_label: '1657'
+      to_label: '1660'
+      title:
+        de: Frederik III. · Glückstadt · Tarif 3½ Speciedaler
+        en: Frederik III · Glückstadt · tariff 3½ Speciedaler
+        uk: Фредерік III · Glückstadt · тариф 3½ Speciedaler
+      description:
+        de: 'Einzige Phase des Glückstadter Guldkrone-Programms. Sämtliche bekannten Stücke folgen demselben Tarif-Regime <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b> bei .917 Feingehalt (22 Karat) und ≈ 5,996 g Raugewicht. Belegtyp: <b>Hede 145B / Sieg-160(B) / Schou-2 / Aagaard-4.1 / Bruun-6344 / KM-40.2</b>; Münzmeister <b>Jacob Schwieger</b> (Glückstadt 1648–1664), Mzz. korslagte glødehager. Stempelschneider Matthias Först (Avers) und Johan Blum (Revers) laut Bruun-Provenienz Lot 11222.'
+        en: 'Sole phase of the Glückstadt Guldkrone programme. All known pieces share the same tariff regime <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b>, at .917 fineness (22 carat) and a rough weight of ≈ 5.996 g. Reference type: <b>Hede 145B / Sieg-160(B) / Schou-2 / Aagaard-4.1 / Bruun-6344 / KM-40.2</b>; mintmaster <b>Jacob Schwieger</b> (Glückstadt 1648–1664), mintmark crossed pokers. Engravers Matthias Först (obverse) and Johan Blum (reverse) per the Bruun provenance, Lot 11222.'
+        uk: 'Єдина фаза ґлюкштадтської програми Guldkrone. Усі відомі екземпляри в тому самому тарифному режимі <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b> при пробі .917 (22 карати) і повній вазі ≈ 5,996 г. Еталонний тип: <b>Hede 145B / Sieg-160(B) / Schou-2 / Aagaard-4.1 / Bruun-6344 / KM-40.2</b>; монетмайстер <b>Jacob Schwieger</b> (Glückstadt 1648–1664), монограма — схрещені граблі. Різьбярі штемпелів Matthias Först (аверс) і Johan Blum (реверс) за провенансом Bruun, лот 11222.'
+      context:
+        de: |
+          <b>Quellengrundlage:</b> physisches Belegexemplar Bruun III, Lot 11222 (NGC MS-61, 5,91 g rau, Verkaufspreis €18 000 am 29. Okt. 2025); Numista N#306974 als typenkanonische Referenz mit drei dokumentierten Jahren (1657, 1659, 1660) und drei Legendenvarianten:<br>
+          · 1657 — «NORWEGIÆ · VANDA : GOTTO : Q : REX»<br>
+          · 1659 — «NORWEG : VAND : GOTHOR : Q : REX»<br>
+          · 1660 — «NORWEG : VANDALOR : GOTHOR : Q : REX»<br>
+          Avers durchgängig «· FRIDERICVS · III · D · G · DAN ·», gekrönter Wappenschild im Strickkreis. Revers Krone und Devise <i>Dominus Providebit</i> über Datum.<br><br>
+          <b>Methodische Anmerkung zur Müntzfuß-Form:</b> Die in <a href="#guldkrone-grundwerte">Grundwerten</a> angegebene «39-Stück»-Form ist <em>rechnerisch aus dem Numista-Raugewicht abgeleitet</em>, nicht aus einem direkten Hede-/Wilcke-Zitat. Sven Aagaards Monographie <i>Frederik III Guldmønt og speciemønt 1648–1670</i> (2011) wäre die nächstliegende Primärquelle, ist hier aber nicht eingesehen — die Kataloggleichungen aus Bruun III bestätigen jedoch Hede 145B als kanonischen Typ.
+        en: |-
+          <b>Source basis:</b> the physical reference specimen at Bruun III, Lot 11222 (NGC MS-61, 5.91 g rough, hammer price €18,000 on 29 Oct. 2025); Numista N#306974 as the type-canonical reference, listing three documented years (1657, 1659, 1660) with three legend variants:<br> · 1657 — «NORWEGIÆ · VANDA : GOTTO : Q : REX»<br> · 1659 — «NORWEG : VAND : GOTHOR : Q : REX»<br> · 1660 — «NORWEG : VANDALOR : GOTHOR : Q : REX»<br> Obverse throughout «· FRIDERICVS · III · D · G · DAN ·», crowned coat of arms within rope circle. Reverse: crown and motto <i>Dominus Providebit</i> above the date.<br><br> <b>Methodological note on the Müntzfuß form:</b> the «39-piece» form given in the <a href="#guldkrone-grundwerte">base values</a> is <em>computed from the Numista rough weight</em>, not from a direct citation in Hede or Wilcke. Sven Aagaard's monograph <i>Frederik III Guldmønt og speciemønt 1648–1670</i> (2011) would be the closest primary source but is not consulted here; the catalogue equivalences from Bruun III nonetheless confirm Hede 145B as the canonical type.
+        uk: |-
+          <b>Джерельна база:</b> фізичний еталонний зразок Bruun III, лот 11222 (NGC MS-61, 5,91 г повної ваги, ціна молотка €18 000 29 жовтня 2025); Numista N#306974 як типо-канонічне посилання з трьома задокументованими роками (1657, 1659, 1660) і трьома варіантами легенди:<br> · 1657 — «NORWEGIÆ · VANDA : GOTTO : Q : REX»<br> · 1659 — «NORWEG : VAND : GOTHOR : Q : REX»<br> · 1660 — «NORWEG : VANDALOR : GOTHOR : Q : REX»<br> Аверс наскрізно «· FRIDERICVS · III · D · G · DAN ·», коронований гербовий щит у мотузковому колі. Реверс: корона й девіз <i>Dominus Providebit</i> над датою.<br><br> <b>Методична примітка щодо форми Müntzfuß:</b> наведена в <a href="#guldkrone-grundwerte">базових значеннях</a> форма «39 штук» <em>обчислена з повної ваги в Numista</em>, а не за прямим посиланням на Hede чи Wilcke. Монографія Sven Aagaard <i>Frederik III Guldmønt og speciemønt 1648–1670</i> (2011) була б найближчим первинним джерелом, але тут не переглянута; каталогові відповідності з Bruun III, проте, підтверджують Hede 145B як канонічний тип.
+
 methodology_heading:
   de: "Methodische Anmerkungen"
   en: "Methodological notes"
@@ -8895,3 +8969,58 @@ coins:
       - type: numista
         url: https://en.numista.com/catalogue/pieces151536.html
         ref: Numista
+
+  # ========== guldkrone ==========
+
+  # ---- guldkrone / Phase A (Frederik III Glückstadt 1657–1660) ----
+
+  - id: km-40-2-fr-iii-1657
+    fuss: guldkrone
+    phase: A
+    kind: tarif
+    fraction: "1"
+    nominal: 1 Guldkrone
+    year_label: "1657, 1659, 1660"
+    year_first: 1657
+    year_last: 1660
+    ruler: "Friedrich III."
+    mint: "Glückstadt"
+    mintmaster: "Jacob Schwieger"
+    catalog:
+      km: "40"
+      hede: "145B"
+      sieg: "160 (B)"
+      schou: "2"
+      fr: "120"
+      bruun_lot: "11222"
+      numista: '306974'
+      others:
+        - "KM-40.2"
+        - "Aagaard 4.1 (57.1-60.4)"
+        - "Bruun-6344"
+    metal: gold
+    fineness: 0.91667
+    weight_rough_g: 5.996
+    diameter_mm: 30.33
+    note:
+      de: |-
+        1 Guldkrone Frederik III. (Glückstadt 1657–1660) · Mzm. <b>Jacob Schwieger</b> (Glückstadt 1648–1664), Mzz. korslagte glødehager · Stempelschneider Matthias Först (Avers) und Johan Blum (Revers) laut Bruun-Provenienz Lot 11222. Avers «· FRIDERICVS · III · D · G · DAN ·» mit gekröntem Wappenschild im Strickkreis; Revers Krone und Devise «<i>Dominus Providebit</i>» über Datum. Drei Jahresvarianten der Außenlegende: 1657 «NORWEGIÆ · VANDA : GOTTO : Q : REX», 1659 «NORWEG : VAND : GOTHOR : Q : REX», 1660 «NORWEG : VANDALOR : GOTHOR : Q : REX». Tarif <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b>; .917 Feingehalt (22 Karat).<br><br>
+        <b>Quellen-Hierarchie:</b> Hede 145B (kanonisch); Sieg-160(B); Schou-2; Aagaard-4.1 (Belegspezifika 57.1–60.4); Bruun-6344; Friedberg-120; Krause KM-40.2 (Untertyp). Belegexemplar Bruun III, Lot 11222 (NGC MS-61, 5,91 g rau, ex Bruun → Brahesminde Privatverkauf 1922 → Stack's Bowers 29. Okt. 2025).
+      en: |-
+        1 Guldkrone of Frederik III (Glückstadt 1657–1660) · mintmaster <b>Jacob Schwieger</b> (Glückstadt 1648–1664), mintmark crossed pokers · engravers Matthias Först (obverse) and Johan Blum (reverse) per the Bruun provenance, Lot 11222. Obverse «· FRIDERICVS · III · D · G · DAN ·» with crowned coat of arms inside a rope circle; reverse a crown above the motto «<i>Dominus Providebit</i>» and the date. Three annual outer-legend variants: 1657 «NORWEGIÆ · VANDA : GOTTO : Q : REX», 1659 «NORWEG : VAND : GOTHOR : Q : REX», 1660 «NORWEG : VANDALOR : GOTHOR : Q : REX». Tariff <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b>; .917 fineness (22 carat).<br><br>
+        <b>Source hierarchy:</b> Hede 145B (canonical); Sieg-160(B); Schou-2; Aagaard-4.1 (specimen detail 57.1–60.4); Bruun-6344; Friedberg-120; Krause KM-40.2 (sub-type). Reference specimen Bruun III, Lot 11222 (NGC MS-61, 5.91 g rough, ex Bruun → Brahesminde private sale 1922 → Stack's Bowers 29 Oct. 2025).
+      uk: |-
+        1 Guldkrone Фредеріка III (Glückstadt 1657–1660) · монетмайстер <b>Jacob Schwieger</b> (Glückstadt 1648–1664), монограма — схрещені граблі · різьбярі штемпелів Matthias Först (аверс) і Johan Blum (реверс) за провенансом Bruun, лот 11222. Аверс «· FRIDERICVS · III · D · G · DAN ·» з коронованим гербовим щитом у мотузковому колі; реверс — корона над девізом «<i>Dominus Providebit</i>» і дата. Три річні варіанти зовнішньої легенди: 1657 «NORWEGIÆ · VANDA : GOTTO : Q : REX», 1659 «NORWEG : VAND : GOTHOR : Q : REX», 1660 «NORWEG : VANDALOR : GOTHOR : Q : REX». Тариф <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b>; проба .917 (22 карати).<br><br>
+        <b>Ієрархія джерел:</b> Hede 145B (канонічне); Sieg-160(B); Schou-2; Aagaard-4.1 (специфіка зразка 57.1–60.4); Bruun-6344; Friedberg-120; Krause KM-40.2 (підтип). Еталонний зразок Bruun III, лот 11222 (NGC MS-61, 5,91 г повної ваги, ex Bruun → Brahesminde приватний продаж 1922 → Stack's Bowers 29 жовтня 2025).
+    sources:
+      - type: numista
+        url: "https://en.numista.com/306974"
+        ref: "Numista N#306974"
+      - type: auction
+        url: "https://auctions.stacksbowers.com/lots/view/3-1LYTJ8/denmark-gold-krone-1660-glckstadt-mint-privy-mark-crossed-pokers-frederik-iii-ngc-ms-61"
+        ref: "Stack's Bowers · Bruun Coll. Part III · Lot 11222 (29 Oct. 2025)"
+      - type: web
+        url: "https://www.danskmoent.dk/c5.htm"
+        ref: "danskmoent.dk · Glückstadt mintmaster table (Schwieger 1648-1664)"
+    issuing_entity: royal_holstein
+    fineness_verified: true

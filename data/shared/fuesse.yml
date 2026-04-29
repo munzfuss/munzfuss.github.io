@@ -884,3 +884,118 @@ kronemont_fine:
     "2": {soll_fein_g: 29.968}          # 2 Krone (rare in this formula)
     "1": {soll_fein_g: 14.984}          # 1 Krone (canonical)
     "1/2": {soll_fein_g: 7.492}         # ½ Krone
+
+# -----------------------------------------------------------------------------
+# Guldkrone-Fuß. Frederik III's Glückstadt gold tariff coin 1657–1660.
+# Goldenes Pendant der Krone-Mønt-Kategorie: gleicher Krone-Name und Tarif-Logik
+# wie die silberne Krone-Mønt, aber in Gold (.917 = 22 Karat) bei einem
+# eigenständigen physischen Müntzfuß.
+#
+# Numista N#306974 + Stacks Bowers Bruun Part III Lot 11222 (Hede 145B,
+# Sieg-160B, Schou-2, Aagaard-4.1 [57.1-60.4], Bruun-6344) belegen für die
+# Glückstadter Prägung 1660 ein Raugewicht von 5,91–5,996 g und Feingehalt .917.
+# Aus dem mittleren Raugewicht 5,996 g folgt die Hede-typische Form
+# «39 Stück je Cöllnische Marck Raulegierung von 22 Karat»:
+#   233,856 ÷ 39 = 5,99631 g rau · × .91667 = 5,49671 g fein.
+# Diese Form ist NICHT direkt aus einem zitierfähigen Hede-/Wilcke-Eintrag
+# nachgewiesen, sondern aus den Numista-Maßen rechnerisch abgeleitet
+# (siehe verification_note der Münze km-40-2-fr-iii-1657 in
+# data/locations/schleswig.yml).
+#
+# Tarif: 1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk (Numista «Value: 1 Gold
+# Krone (7⁄2)» bezogen auf «Currency: Speciedaler 1617–1773»). Spätere
+# Frederik-III-Guldkrone-Prägung Kopenhagen 1668 (KM# 303, Numista N#308327)
+# folgt einem reduzierten Tarif (3 Specie = 18 Mark) bei kleinerem Raugewicht
+# 5,47 g — physikalisch ein anderer Müntzfuß und in dieser Definition NICHT
+# enthalten (Kopenhagen liegt außerhalb des Holstein-Verzeichnisses).
+# -----------------------------------------------------------------------------
+guldkrone:
+  name:
+    de: Guldkrone-Fuß
+    en: Guldkrone-Fuß
+    uk: Guldkrone-Fuß
+  metal: gold
+  grid_unit_g: 233.856
+  grid_stops: 39                  # 39 Stück je Cöllnische Marck Raulegierung
+                                  # von 22 Karat (rechnerisch aus Numista-Raugewicht)
+  fineness_standard: 0.91667      # 22 Karat = 22/24 = ⁸⁸⁄₉₆ = .91667
+  fineness_display: "917 ‰ (22 Karat = 22/24)"
+  grundwerte:
+    heading:
+      de: "Grundwerte · Guldkrone-Fuß (Glückstadt 1657–1660)"
+      en: "Base values · Guldkrone-Fuß (Glückstadt 1657–1660)"
+      uk: "Базові значення · Guldkrone-Fuß (Glückstadt 1657–1660)"
+    subheading:
+      de: "Cöllnische Marck (Raulegierung) = 233,856 g · rechnerische Hede-Form: <b>≈ 39 Stück je Cöllnische Marck Raulegierung von 22 Karat</b> = 5,996 g rau bei .917 Feingehalt = <b>5,498 g fein je Guldkrone</b> · Tarif <b>1 Guldkrone = 3½ Speciedaler</b>"
+      en: "Cologne mark (raw alloy) = 233.856 g · reconstructed Hede form: <b>≈ 39 pieces per Cologne mark of raw 22-karat alloy</b> = 5.996 g rough at .917 fineness = <b>5.498 g fine per Guldkrone</b> · tariff <b>1 Guldkrone = 3½ Speciedaler</b>"
+      uk: "Кельнська марка (сплав, rau) = 233,856 г · реконструйована Hede-форма: <b>≈ 39 штук з кельнської марки сплаву 22 карат</b> = 5,996 г повної ваги за проби .917 = <b>5,498 г чистого на Guldkrone</b> · тариф <b>1 Guldkrone = 3½ Speciedaler</b>"
+    badge:
+      de: "Müntzfuß · Tarifmünze · Gold"
+      en: "Müntzfuß · Tariff coin · Gold"
+      uk: "Стопа · тарифна монета · золото"
+    rows:
+      - key:
+          de: "Müntzfuß-Form (rechnerisch aus Numista N#306974)"
+          en: "Münzfuß form (reconstructed from Numista N#306974)"
+          uk: "Форма стопи (реконструйована з Numista N#306974)"
+        value:
+          de: "<b>≈ 39 Guldkrone je Cöllnische Marck Raulegierung von 22 Karat</b> · 5,996 g rau je Guldkrone · 5,498 g fein · ergibt sich aus dem auf Stacks Bowers Bruun III, Lot 11222, dokumentierten Belegexemplar (5,91 g) sowie Numista N#306974 (5,996 g Mittelwert). Eine direkte Zitatstelle aus Hede oder Wilcke für die «39-Stück»-Form ist hier nicht eingesehen — die Form ist also <em>rechnerisch rekonstruiert</em>, nicht primärquellig belegt.<sup><a href=\"#refgk1\">[gk1]</a></sup>"
+          en: "<b>≈ 39 Guldkrone per Cologne mark of raw 22-karat alloy</b> · 5.996 g rough per Guldkrone · 5.498 g fine · derived from the reference specimen documented at Stacks Bowers Bruun III, Lot 11222 (5.91 g) and Numista N#306974 (mean 5.996 g). A direct citation from Hede or Wilcke for the «39-piece» form is not on hand here — the form is therefore <em>computationally reconstructed</em>, not yet attested from primary sources.<sup><a href=\"#refgk1\">[gk1]</a></sup>"
+          uk: "<b>≈ 39 Guldkrone з кельнської марки сплаву 22 карат</b> · 5,996 г повної ваги на Guldkrone · 5,498 г чистого · виведено зі зразка-еталона зі Stacks Bowers Bruun III, лот 11222 (5,91 г) і середнього значення Numista N#306974 (5,996 г). Прямого посилання на Hede чи Wilcke для форми «39 штук» тут не маємо — форма <em>реконструйована розрахунково</em>, а не задокументована за першоджерелом.<sup><a href=\"#refgk1\">[gk1]</a></sup>"
+      - key:
+          de: "Feingehalt"
+          en: "Fineness"
+          uk: "Проба"
+        value:
+          de: "<b>22 Karat = 22/24 = ⁸⁸⁄₉₆ = .91667</b> (Numista / Friedberg / Stacks Bowers Bruun-Lot durchgängig .917)"
+          en: "<b>22 carats = 22/24 = ⁸⁸⁄₉₆ = .91667</b> (Numista, Friedberg, and Stacks Bowers Bruun lot all give .917)"
+          uk: "<b>22 карати = 22/24 = ⁸⁸⁄₉₆ = .91667</b> (Numista, Friedberg та Stacks Bowers Bruun-лот стабільно дають .917)"
+      - key:
+          de: "Feingewicht (rechnerisch)"
+          en: "Fine weight (computed)"
+          uk: "Чиста вага (розрахункова)"
+        value:
+          de: "<b>5,498 g fein je Guldkrone</b> (= 5,996 × .91667) · Belegexemplar Bruun III, Lot 11222: 5,91 g rau ⇒ 5,418 g fein (innerhalb des typischen Münzremediums)"
+          en: "<b>5.498 g fine per Guldkrone</b> (= 5.996 × .91667) · reference specimen Bruun III, Lot 11222: 5.91 g rough ⇒ 5.418 g fine (within typical mint tolerance)"
+          uk: "<b>5,498 г чистого на Guldkrone</b> (= 5,996 × .91667) · еталонний зразок Bruun III, лот 11222: 5,91 г повної ваги ⇒ 5,418 г чистого (у межах типового монетного допуску)"
+      - key:
+          de: "Tarifhistorie und Specie-Äquivalent"
+          en: "Tariff history and Specie equivalent"
+          uk: "Історія тарифу та Specie-еквівалент"
+        value:
+          de: "<b>Glückstadt 1657–1660:</b> 1 Guldkrone = <b>3½ Speciedaler</b> = <b>21 Mark Dansk</b> = 168 Skilling Dansk · Numista-Wertfeld «1 Gold Krone (7⁄2)» bezogen auf «Currency: Speciedaler»<br>· <b>Kopenhagen 1668</b> (KM# 303, Numista N#308327, hier <em>nicht</em> Bestandteil dieses Müntzfußes): Tarif auf <b>3 Speciedaler = 18 Mark Dansk</b> reduziert, Raugewicht auf 5,47 g abgesenkt. Physikalisch ein anderer Fuß; in der Bruun-/Aagaard-Systematik als separater Typ klassifiziert.<br>· <em>Tarifäquivalent zum Marktwert:</em> 5,498 g fein × Markt-Au/Ag ≈ 14:1 (1660) ≈ 77 g Feinsilber-Äquivalent ≈ 3,05 Speciedaler · Tarif 3,5 Specie ⇒ ≈ 15 % Seigniorage-Aufschlag."
+          en: "<b>Glückstadt 1657–1660:</b> 1 Guldkrone = <b>3½ Speciedaler</b> = <b>21 Mark Dansk</b> = 168 Skilling Dansk · Numista value field «1 Gold Krone (7⁄2)» referenced to «Currency: Speciedaler»<br>· <b>Copenhagen 1668</b> (KM# 303, Numista N#308327, <em>not</em> covered by this standard): tariff lowered to <b>3 Speciedaler = 18 Mark Dansk</b>, rough weight reduced to 5.47 g. Physically a different standard; classified as a separate type in the Bruun / Aagaard systematics.<br>· <em>Tariff vs. market value:</em> 5.498 g fine × market Au/Ag ≈ 14:1 (1660) ≈ 77 g fine-silver equivalent ≈ 3.05 Speciedaler · tariff 3.5 Specie ⇒ ≈ 15 % seigniorage premium."
+          uk: "<b>Glückstadt 1657–1660:</b> 1 Guldkrone = <b>3½ Speciedaler</b> = <b>21 Mark Dansk</b> = 168 Skilling Dansk · поле вартості Numista «1 Gold Krone (7⁄2)» прив'язане до «Currency: Speciedaler»<br>· <b>Копенгаген 1668</b> (KM# 303, Numista N#308327, <em>не охоплено</em> цією стопою): тариф знижено до <b>3 Speciedaler = 18 Mark Dansk</b>, повну вагу — до 5,47 г. Фізично інша стопа; у систематиці Bruun / Aagaard класифікується як окремий тип.<br>· <em>Тариф проти ринкової вартості:</em> 5,498 г чистого × ринкове Au/Ag ≈ 14:1 (1660 р.) ≈ 77 г чистосрібного еквіваленту ≈ 3,05 Speciedaler · тариф 3,5 Specie ⇒ ≈ 15 % сеньйораж-надбавки."
+      - key:
+          de: "Verhältnis zu anderen Müntzfüßen"
+          en: "Relation to other standards"
+          uk: "Відношення до інших стоп"
+        value:
+          de: "<b>Eigenständige Müntzfuß-Familie:</b> der Guldkrone-Fuß steht weder unter dem Reichsdukatenfuß (.986/3,49 g, Handelsmünze) noch unter dem 10½-Krone-Fuß (.672/22,272 g, Silber-Tarifmünze). Konzeptionell ist die Guldkrone das <b>goldene Pendant der Krone-Mønt-Kategorie</b>: gleicher Krone-Name, gleiche tarifäre Logik (Nennwert per königlichem Mandat über dem Metallwert), aber in Gold und mit eigener metrischer Definition.<br>· <em>Nicht zu verwechseln mit dem Goldgulden</em> (HRR-Goldmünze nach Reichsmünzordnung 1559, Tarif in Gulden, andere Lineage)."
+          en: "<b>Standalone Münzfuß family:</b> the Guldkrone-Fuß does not sit under the Reichsdukatenfuß (.986/3.49 g, trade coin) nor under the 10½-Krone-Fuß (.672/22.272 g, silver tariff coin). Conceptually the Guldkrone is the <b>gold counterpart of the Krone-Mønt category</b>: same Krone name, same tariff logic (face value set by royal mandate above metal value), but in gold and with its own metric definition.<br>· <em>Not to be confused with the Goldgulden</em> (Holy Roman Empire gold coin under the Reichsmünzordnung of 1559, tariffed in Gulden, separate lineage)."
+          uk: "<b>Самостійна родина Müntzfuß:</b> Guldkrone-Fuß не належить ані до Reichsdukatenfuß (.986/3,49 г, торгова монета), ані до 10½-Krone-Fuß (.672/22,272 г, срібна тарифна монета). Концептуально Guldkrone — це <b>золотий аналог Krone-Mønt-категорії</b>: та сама назва Krone, та сама тарифна логіка (номінал встановлений королівським мандатом вище металевої вартості), але в золоті й зі своїм метричним означенням.<br>· <em>Не плутати з Goldgulden</em> (золота монета Священної Римської імперії за Reichsmünzordnung 1559, тариф у Gulden, окрема лінія)."
+    rechnungsfraktionen_label:
+      de: Rechnungsfraktionen (Guldkrone-Tarif-Theilung)
+      en: Accounting fractions (Guldkrone-tariff subdivision)
+      uk: Розрахункові фракції (поділ за Guldkrone-тарифом)
+    rechnungsfraktionen:
+      de: "<b>1 Guldkrone</b> = <b>5,498 g</b> Feingold (5,996 g rau, 22 Karat) = <b>3½ Speciedaler</b> = <b>21 Mark Dansk</b> = 168 Skilling Dansk · Glückstadt 1657–1660, Mzm. <b>Jacob Schwieger</b>, Mzz. korslagte glødehager · belegt durch Hede 145B / Sieg-160(B) / Schou-2 / Aagaard-4.1 / Bruun-6344 / KM-40.2.<br><br><em>Sub-Nominale (½, ¼ Guldkrone) sind aus dem Glückstadter Programm 1657–1660 hier nicht belegt; sollten Belegexemplare später eingearbeitet werden, sind die jeweiligen soll_fein_g-Werte als 1/2 bzw. 1/4 des Hauptnominals zu führen.</em>"
+      en: "<b>1 Guldkrone</b> = <b>5.498 g</b> fine gold (5.996 g rough, 22 carats) = <b>3½ Speciedaler</b> = <b>21 Mark Dansk</b> = 168 Skilling Dansk · Glückstadt 1657–1660, mintmaster <b>Jacob Schwieger</b>, mintmark crossed pokers · documented by Hede 145B / Sieg-160(B) / Schou-2 / Aagaard-4.1 / Bruun-6344 / KM-40.2.<br><br><em>Sub-denominations (½, ¼ Guldkrone) of the Glückstadt 1657–1660 programme are not documented here; if reference specimens are added later, the corresponding soll_fein_g values are 1/2 and 1/4 of the main denomination.</em>"
+      uk: "<b>1 Guldkrone</b> = <b>5,498 г</b> чистого золота (5,996 г повної ваги, 22 карати) = <b>3½ Speciedaler</b> = <b>21 Mark Dansk</b> = 168 Skilling Dansk · Glückstadt 1657–1660, монетмайстер <b>Jacob Schwieger</b>, монограма — схрещені граблі · задокументовано Hede 145B / Sieg-160(B) / Schou-2 / Aagaard-4.1 / Bruun-6344 / KM-40.2.<br><br><em>Підрозмінні номінали (½, ¼ Guldkrone) ґлюкштадтської програми 1657–1660 тут не задокументовано; якщо в майбутньому додавати, відповідні soll_fein_g — 1/2 та 1/4 від головного номіналу.</em>"
+  description:
+    de: |
+      Goldene Tarifmünze Frederik III., geprägt in Glückstadt 1657–1660.
+      Goldenes Pendant der Krone-Mønt-Kategorie: dieselbe Tarif-Logik wie die
+      silberne Krone, aber in 22-karätigem Gold und mit höherem Tarif (1 Guldkrone =
+      3½ Speciedaler = 21 Mark Dansk). NICHT zu verwechseln mit dem Goldgulden
+      (HRR-Goldmünze nach Reichsmünzordnung 1559, andere Lineage und andere
+      Tarifeinheit). Belegt durch Hede 145B, Sieg-160B, Schou-2, Aagaard-4.1,
+      Bruun-6344, KM# 40.
+    en: |-
+      A gold tariff coin of Frederik III, struck at Glückstadt 1657–1660. The gold counterpart of the Krone-Mønt category: same tariff logic as the silver Krone but in 22-carat gold and at a higher tariff (1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk). NOT to be confused with the Goldgulden (a Holy Roman Empire gold coin under the Reichsmünzordnung of 1559, with a separate lineage and a different tariff unit). Documented by Hede 145B, Sieg-160B, Schou-2, Aagaard-4.1, Bruun-6344, KM# 40.
+    uk: |-
+      Золота тарифна монета Фредеріка III, карбована в Glückstadt 1657–1660. Золотий аналог Krone-Mønt-категорії: та сама тарифна логіка, що й срібна Krone, але в 22-каратному золоті й з вищим тарифом (1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk). НЕ плутати з Goldgulden (золота монета Священної Римської імперії за Reichsmünzordnung 1559, окрема лінія та інша тарифна одиниця). Задокументовано: Hede 145B, Sieg-160B, Schou-2, Aagaard-4.1, Bruun-6344, KM# 40.
+  fractions:
+    "1": {soll_rau_g: 5.99631, soll_fein_g: 5.49671}   # 1 Guldkrone (canonical)
+    "1/2": {soll_rau_g: 2.99815, soll_fein_g: 2.74835} # ½ Guldkrone (per tariff division — no specimen documented in this programme)
+    "1/4": {soll_rau_g: 1.49908, soll_fein_g: 1.37418} # ¼ Guldkrone (per tariff division — no specimen documented in this programme)
