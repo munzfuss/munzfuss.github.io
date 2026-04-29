@@ -452,14 +452,15 @@ a:hover {{ text-decoration: underline; }}
   color: transparent;
 }}
 
-/* Deck/lede paragraph below the hero h1 */
+/* Deck/lede paragraph below the hero h1 — full parent width
+   (was max-width: 62ch, dropped by request so the deck spans the
+   full hero-text column). */
 .hero .deck, .h1 + p {{
   font-family: var(--font-body);
   font-style: italic;
   color: var(--text-secondary);
   font-size: 17px;
   line-height: 1.6;
-  max-width: 62ch;
   margin: 0;
 }}
 [data-theme="v2"] .hero .deck::first-letter,
