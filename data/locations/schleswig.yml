@@ -39,6 +39,7 @@ fuss_order:
   - 9_25_thaler
   - kronemont_chr_iv
   - kronemont
+  - kronemont_fine
   - guldkrone
   - 11_333_thaler
   - 18_5_thaler
@@ -139,6 +140,28 @@ timeline:
         en: "1644 → 1696 (Frederik III / Christian V)"
         uk: "1644 → 1696 (Фредерік III / Кристіан V)"
       color_class: krm
+
+    - id: kronemont_fine
+      label:
+        de: "13-Krone-Fuß · «Feine Krone» (Kopenhagen)"
+        en: "13-Krone-Fuß · «Fine Crown» (Copenhagen)"
+        uk: "13-Krone-Fuß · «Тонка Крона» (Копенгаген)"
+      small:
+        de: "14,984 g fein · Silber"
+        en: "14.984 g fine · silver"
+        uk: "14,984 г чистого · срібло"
+      year_from: 1693
+      year_to: 1771
+      bar_label:
+        de: "1693 — 1771 · 78 J. (nur Kopenhagen)"
+        en: "1693 — 1771 · 78 yrs. (Copenhagen only)"
+        uk: "1693 — 1771 · 78 років (лише Копенгаген)"
+      bar_title:
+        de: "Reskript 31. Dezember 1692 (Christian V.) → 1771 · ausschließlich Kopenhagen, in Holstein nicht eingeführt"
+        en: "Reskript of 31 December 1692 (Christian V) → 1771 · Copenhagen only, not introduced in Holstein"
+        uk: "Рескрипт 31 грудня 1692 (Кристіан V) → 1771 · виключно Копенгаген, у Гольштейні не запроваджено"
+      color_class: krm
+      dashed: true
 
     - id: guldkrone
       label:
@@ -437,6 +460,30 @@ fuss_periods:
         The Reichsdukatenfuß is the <b>most stable Müntzfuß</b> in the whole survey — more durable than any silver standard: from the Augsburg Imperial Coinage Ordinance of 1559 to the Reichsgoldmünzfuß of 1871 (312 years across the Reich, of which at least 250 in Holstein). Gold as a store of value withstood political crises, the state bankruptcy of 1813 and changes of dynasty. Only the structural shift from a gold trade-coin alongside a parallel silver currency to a true gold currency (Coinage Act of 4 Dec. 1871) ended the Dukatenfuß definitively.
       uk: |-
         Reichsdukatenfuß — <b>найстабільніша Müntzfuß</b> у всьому огляді: триваліша за будь-який срібний стандарт — від Авґсбурзького імперського монетного ордонансу 1559 до Reichsgoldmünzfuß 1871 (312 років у Рейху, з яких щонайменше 250 у Гольштейні). Золото як носій вартості витримало політичні кризи, державне банкрутство 1813 і зміни династій. Лише структурний перехід від торгової золотої монети з паралельною срібною валютою до власне золотої валюти (Закон про монету 4 грудня 1871) остаточно завершив Dukatenfuß.
+
+  kronemont_fine:
+    pdate_label:
+      de: 'Geltungsbereich (Kopenhagen): 31. Dez. 1692 → 1771 · ca. 79 Jahre · in Holstein nicht eingeführt'
+      en: 'Period of validity (Copenhagen): 31 Dec. 1692 → 1771 · ~79 years · not introduced in Holstein'
+      uk: 'Період дії (Копенгаген): 31 грудня 1692 → 1771 · ~79 років · у Гольштейні не запроваджено'
+    hintergrund:
+      de: |
+        Dritte und letzte Krone-Münzformel der dänischen Monarchie. Reskript vom 31. Dezember 1692 (Christian V.): höhere nominale Lötigkeit (13⅓ Loth ≈ .833) bei reduziertem Raugewicht (17,988 g) gegenüber dem 10½-Krone-Fuß — der tatsächliche Feinsilbergehalt liegt jedoch nur 0,02 g höher pro Stück, die Reform ist vorwiegend Symbolik der Vertrauenswiederherstellung. Letzte Prägung 1771. <b>In Holstein nicht durchgeführt</b> — die «<i>Feine Krone</i>» ist eine ausschließlich auf die Kopenhagener Hauptmünze beschränkte Reform und wird daher in diesem Verzeichnis nur kontextuell aufgeführt (keine Gockstadter oder Tönninger Belege).
+      en: |-
+        The third and final Krone formula of the Danish monarchy. Reskript of 31 December 1692 (Christian V): higher nominal fineness (13⅓ Loth ≈ .833) on a reduced rough weight (17.988 g) versus the 10½-Krone-Fuß — yet the actual fine-silver content is only 0.02 g higher per coin, the reform is largely symbolic, intended to restore confidence. Last struck 1771. <b>Not introduced in Holstein</b> — the «<i>Fine Crown</i>» is a reform confined entirely to the Copenhagen royal mint and is therefore listed here only for context (no Glückstadt or Tönning specimens).
+      uk: |-
+        Третя і остання Krone-формула данської монархії. Рескрипт 31 грудня 1692 р. (Кристіан V): вища номінальна проба (13⅓ Loth ≈ .833) при зменшеній повній вазі (17,988 г) порівняно з 10½-Krone-Fuß — однак фактичний вміст чистого срібла лише на 0,02 г вищий за монету, реформа переважно символічна, мала на меті відновити довіру. Востаннє карбувалася 1771 р. <b>У Гольштейні не запроваджено</b> — «<i>Тонка Крона</i>» це реформа, обмежена виключно Копенгагенським королівським монетним двором, тому в цьому реєстрі вона наведена лише контекстуально (ґлюкштадтських чи тенніннгських зразків немає).
+    closing_label:
+      de: "Zusammenfassung · ausschließlich Kopenhagen, kein Holstein-Bestand"
+      en: "Summary · Copenhagen-only, no Holstein register"
+      uk: "Підсумок · виключно Копенгаген, гольштинських зразків немає"
+    closing:
+      de: |
+        Der 13-Krone-Fuß ist im Holstein-Verzeichnis ein <b>kontextueller Eintrag</b>: in der dänisch-holsteinischen Zeitlinie parallel zum 10½-Krone-Fuß (Glückstadt 1644–1696) und zum 11⅓-Thaler-Fuß (Holstein ab 1726), aber selbst nie in Holstein eingeführt. Vollständige Belegtypologie und Stempelvarianten finden sich in den Kopenhagener Spezialkatalogen (Sven Aagaard <i>Kronemønt</i>-Studien; Hede / Schou).
+      en: |-
+        Within the Holstein register the 13-Krone-Fuß is a <b>contextual entry</b>: in the Danish-Holstein timeline it runs in parallel with the 10½-Krone-Fuß (Glückstadt 1644–1696) and the 11⅓-Thaler-Fuß (Holstein from 1726), yet it was never itself introduced in Holstein. Full type catalogue and die-variants are documented in the Copenhagen specialist literature (Sven Aagaard's <i>Kronemønt</i> studies; Hede / Schou).
+      uk: |-
+        У гольштинському реєстрі 13-Krone-Fuß — <b>контекстуальний запис</b>: у дансько-гольштинській хронології він проходить паралельно з 10½-Krone-Fuß (Glückstadt 1644–1696) і 11⅓-Thaler-Fuß (Гольштейн з 1726), однак сам у Гольштейні не запроваджувався. Повна типологія та штемпельні варіанти задокументовані в копенгагенських спеціальних каталогах (студії Sven Aagaard про <i>Kronemønt</i>; Hede / Schou).
 
   guldkrone:
     pdate_label:
@@ -947,6 +994,13 @@ phases:
         de: 'Einzige Phase der Christian-IV.-Krone: alle Prägungen 1618–1624 laufen unter dem ursprünglichen Tarif <b>1½ Speciedaler</b> — eine Wertigkeit, die im Volksmund die satirische Umdeutung des königlichen Wahlspruches <b>RFP</b> (regna firmat pietas) als <b>R(iget) F(attes) P(enge)</b> hervorrief.<sup><a href="#ref25">[25]</a></sup> Die offizielle Tarifsenkung auf 1⅓ Speciedaler erfolgt erst <b>1625</b><sup><a href="#ref21">[21]</a><a href="#ref22">[22]</a></sup>, unmittelbar nach Einstellung der Krone-Prägung. Stilistische Untergruppen: Corona-Danica-Originalprägungen 1618–1622 (KM# 57–61, 58a, 59a) und «Dicke» / Open-Crown-Varianten 1624 (KM# 94–99) — alle innerhalb desselben Tarifregimes.'
         en: 'Sole phase of the Christian IV Krone: all 1618–1624 issues run under the original <b>1½ Speciedaler</b> tariff — a parity that in folk parlance prompted the satirical reread of the royal motto <b>RFP</b> (regna firmat pietas) as <b>R(iget) F(attes) P(enge)</b>.<sup><a href="#ref25">[25]</a></sup> The official tariff cut to 1⅓ Speciedaler only comes in <b>1625</b><sup><a href="#ref21">[21]</a><a href="#ref22">[22]</a></sup>, right after Krone production stops. Stylistic sub-groups: Corona Danica original strikes 1618–1622 (KM# 57–61, 58a, 59a) and «Dicke» / Open-Crown variants 1624 (KM# 94–99) — all within the same tariff regime.'
         uk: 'Єдина фаза Krone Кристіана IV: усі емісії 1618–1624 під оригінальним тарифом <b>1½ Speciedaler</b> — паритет, який у народі породив сатиричне переосмислення королівського девізу <b>RFP</b> (regna firmat pietas) як <b>R(iget) F(attes) P(enge)</b>.<sup><a href="#ref25">[25]</a></sup> Офіційне зниження тарифу до 1⅓ Speciedaler відбувається лише <b>1625</b><sup><a href="#ref21">[21]</a><a href="#ref22">[22]</a></sup> — одразу після припинення карбування Krone. Стилістичні підгрупи: оригінальні Corona Danica 1618–1622 (KM# 57–61, 58a, 59a) та варіанти «Dicke» / Open-Crown 1624 (KM# 94–99) — усі в одному тарифному режимі.'
+
+  # 13-Krone-Fuß («Feine Krone») — Copenhagen-only standard, no
+  # Holstein issues. Listed here as a contextual section so the
+  # Krone-Mønt family (Christian IVs kroner → 10½-Krone-Fuß →
+  # 13-Krone-Fuß) is presented in full on the timeline. Empty phase
+  # array is intentional — no Glückstadt or Tönning specimens.
+  kronemont_fine: []
 
   guldkrone:
     - id: A
