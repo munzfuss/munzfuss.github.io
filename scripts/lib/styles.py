@@ -701,11 +701,15 @@ h2[style] {{
   color: var(--text-primary);
   white-space: nowrap;
   pointer-events: none;
+  /* Soft radial glow halo (rather than a hard 4-corner stroke) so the
+     halo blends smoothly into the bar gradient on every theme. Three
+     stacked shadows of increasing blur fade the bg-card colour out
+     gradually — readable on Atlas/Codex (cream halo on dark text) and
+     on Noir (dark halo on light text) without the pixelated outline. */
   text-shadow:
-    -1px -1px 0 var(--bg-card),
-     1px -1px 0 var(--bg-card),
-    -1px  1px 0 var(--bg-card),
-     1px  1px 0 var(--bg-card);
+    0 0 3px var(--bg-card),
+    0 0 6px var(--bg-card),
+    0 0 10px var(--bg-card);
 }}
 /* Overlay bar (e.g. "1788–1866 Theilung" inside the 9¼-Fuß row).
    Uses percentage inset so the overlay scales with the host track height
