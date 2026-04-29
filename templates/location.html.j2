@@ -350,14 +350,14 @@
          a 22 %-wide bar on a 900 px track is ~198 px — the cutoff). Below
          this threshold the label renders as a floating tag overlaid on
          the bar (overflow visible, halo text-shadow for legibility). #}
-      {%- set narrow = width_pct < 22 -%}
+      {%- set narrow = width_pct < 21 -%}
       {# Auto-derive a year-range label if the YAML doesn't set one explicitly.
          Keeps narrow bars (e.g. 30-Thaler-Fuß · Vereinsthaler 1866–1871) from
          rendering as bare swatches with no temporal info. #}
       {%- set _label = bar.bar_label|t(lang) if bar.bar_label else (bar.year_from|string + '—' + bar.year_to|string) -%}
       <div class="tl-bar tl-bar-{{ bar.id }} {{ bar.color_class }}{% if bar.dashed %} tl-bar-dashed{% endif %}{% if raw_left < 0 %} tl-bar-cut-left{% endif %}{% if raw_right > 100 %} tl-bar-cut-right{% endif %}{% if narrow %} tl-bar-narrow{% endif %} {{ extra_class }}"
            style="left:{{ left_pct }}%;width:{{ width_pct }}%"
-           {% if bar.bar_title %}title="{{ bar.bar_title|t(lang) }}"{% endif %}>
+           {% if bar.bar_title %}data-tooltip="{{ bar.bar_title|t(lang) }}"{% endif %}>
         {%- if narrow -%}
           <span class="tl-bar-label-float">{{ _label }}</span>
         {%- else -%}

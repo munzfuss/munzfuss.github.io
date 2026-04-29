@@ -683,6 +683,7 @@ h2[style] {{
   overflow: hidden;
   box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.30);
   letter-spacing: 0.02em;
+  cursor: text;
   /* Default contrast halo: light-coloured year text gets a soft dark
      halo behind it so digits stay legible across the full bar gradient
      on every theme. Bars with explicit dark `fg` (the `g` and `rm`
@@ -725,8 +726,6 @@ h2[style] {{
 [data-theme="v1"] .tl-bar .tl-bar-label-float {{ font-weight: 600; }}
 .tl-bar-dashed {{
   border: 0.5px dashed var(--purple);
-  opacity: 0.7;
-  font-size: 10.5px;
 }}
 .tl-bar-cut-left  {{ border-top-left-radius: 0; border-bottom-left-radius: 0; border-left:  1.5px dotted rgba(255,255,255,0.45); }}
 .tl-bar-cut-right {{ border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: 1.5px dotted rgba(255,255,255,0.45); }}
