@@ -691,11 +691,11 @@ h2[style] {{
    alternation between adjacent bars. */
 [data-theme="v2"] .tl-bar {{ font-weight: 600; }}
 /* Atlas: same Reichsdukatenfuß-style weight 600 applied to every bar
-   AND to the axis tick labels — uniform monospace stroke across the
-   whole timeline strip on the cream paper. */
+   so the timeline strip reads with a uniform monospace stroke on the
+   cream paper. (Axis tick labels carry the same 600 weight from the
+   base .tl-axis span rule, which applies to every theme.) */
 [data-theme="v1"] .tl-bar,
-[data-theme="v1"] .tl-bar .tl-bar-label-float,
-[data-theme="v1"] .tl-axis span {{ font-weight: 600; }}
+[data-theme="v1"] .tl-bar .tl-bar-label-float {{ font-weight: 600; }}
 .tl-bar-dashed {{
   border: 0.5px dashed var(--purple);
   opacity: 0.7;
@@ -825,6 +825,7 @@ h2[style] {{
   position: absolute;
   top: 5px;
   font-size: 10.5px;
+  font-weight: 600;
   color: var(--text-muted);
   transform: translateX(-50%);
   white-space: nowrap;
