@@ -713,8 +713,18 @@ h2[style] {{
     0 0 6px var(--bg-card),
     0 0 10px var(--bg-card);
 }}
-[data-theme="v1"] .tl-bar-narrow .tl-bar-label-float,
-[data-theme="v2"] .tl-bar-narrow .tl-bar-label-float {{
+/* On Atlas/Codex, suppress the halo only for the four bars where the
+   page-background and the bar gradient already give enough contrast on
+   their own (so the cream halo would just look like a blob on a dark
+   bar). All other narrow bars keep the soft glow defined above. */
+[data-theme="v1"] .tl-bar-narrow.tl-bar-9_thaler .tl-bar-label-float,
+[data-theme="v2"] .tl-bar-narrow.tl-bar-9_thaler .tl-bar-label-float,
+[data-theme="v1"] .tl-bar-narrow.tl-bar-kronemont .tl-bar-label-float,
+[data-theme="v2"] .tl-bar-narrow.tl-bar-kronemont .tl-bar-label-float,
+[data-theme="v1"] .tl-bar-narrow.tl-bar-18_5_thaler .tl-bar-label-float,
+[data-theme="v2"] .tl-bar-narrow.tl-bar-18_5_thaler .tl-bar-label-float,
+[data-theme="v1"] .tl-bar-narrow.tl-bar-reichsgoldmuenzfuss .tl-bar-label-float,
+[data-theme="v2"] .tl-bar-narrow.tl-bar-reichsgoldmuenzfuss .tl-bar-label-float {{
   text-shadow: none;
 }}
 /* Overlay bar (e.g. "1788–1866 Theilung" inside the 9¼-Fuß row).

@@ -349,7 +349,7 @@
          Keeps narrow bars (e.g. 30-Thaler-Fuß · Vereinsthaler 1866–1871) from
          rendering as bare swatches with no temporal info. #}
       {%- set _label = bar.bar_label|t(lang) if bar.bar_label else (bar.year_from|string + '—' + bar.year_to|string) -%}
-      <div class="tl-bar {{ bar.color_class }}{% if bar.dashed %} tl-bar-dashed{% endif %}{% if raw_left < 0 %} tl-bar-cut-left{% endif %}{% if raw_right > 100 %} tl-bar-cut-right{% endif %}{% if narrow %} tl-bar-narrow{% endif %} {{ extra_class }}"
+      <div class="tl-bar tl-bar-{{ bar.id }} {{ bar.color_class }}{% if bar.dashed %} tl-bar-dashed{% endif %}{% if raw_left < 0 %} tl-bar-cut-left{% endif %}{% if raw_right > 100 %} tl-bar-cut-right{% endif %}{% if narrow %} tl-bar-narrow{% endif %} {{ extra_class }}"
            style="left:{{ left_pct }}%;width:{{ width_pct }}%"
            {% if bar.bar_title %}title="{{ bar.bar_title|t(lang) }}"{% endif %}>
         {%- if narrow -%}
