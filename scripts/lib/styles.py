@@ -702,14 +702,19 @@ h2[style] {{
   white-space: nowrap;
   pointer-events: none;
   /* Soft radial glow halo (rather than a hard 4-corner stroke) so the
-     halo blends smoothly into the bar gradient on every theme. Three
-     stacked shadows of increasing blur fade the bg-card colour out
-     gradually — readable on Atlas/Codex (cream halo on dark text) and
-     on Noir (dark halo on light text) without the pixelated outline. */
+     halo blends smoothly into the bar gradient. Used on Noir, where the
+     dark glow on light text on a coloured bar reads well. Light themes
+     drop the halo entirely (override below) — dark text on the page
+     background is legible without it and the cream halo there came out
+     looking like a blob. */
   text-shadow:
     0 0 3px var(--bg-card),
     0 0 6px var(--bg-card),
     0 0 10px var(--bg-card);
+}}
+[data-theme="v1"] .tl-bar-narrow .tl-bar-label-float,
+[data-theme="v2"] .tl-bar-narrow .tl-bar-label-float {{
+  text-shadow: none;
 }}
 /* Overlay bar (e.g. "1788–1866 Theilung" inside the 9¼-Fuß row).
    Uses percentage inset so the overlay scales with the host track height
