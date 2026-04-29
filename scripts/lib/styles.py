@@ -692,9 +692,20 @@ h2[style] {{
     0 0 6px rgba(0,0,0,0.30);
 }}
 .tl-bar.g,
-.tl-bar.rm,
-.tl-bar.tl-bar-kronemont_fine,
-.tl-bar.tl-bar-kronemont_fine .tl-bar-label-float {{
+.tl-bar.rm {{
+  color: #1a1612;
+  text-shadow:
+    0 0 3px rgba(255,248,230,0.70),
+    0 0 6px rgba(255,248,230,0.50);
+}}
+/* kronemont_fine bar: text colour follows the theme just like every
+   other bar — dark on the cream paper themes, light on Noir. The
+   .tl-bar-dashed opacity 0.7 dims it slightly to cue "parallel
+   standard, not Holstein-issued". */
+[data-theme="v1"] .tl-bar.tl-bar-kronemont_fine,
+[data-theme="v2"] .tl-bar.tl-bar-kronemont_fine,
+[data-theme="v1"] .tl-bar.tl-bar-kronemont_fine .tl-bar-label-float,
+[data-theme="v2"] .tl-bar.tl-bar-kronemont_fine .tl-bar-label-float {{
   color: #1a1612;
   text-shadow:
     0 0 3px rgba(255,248,230,0.70),
