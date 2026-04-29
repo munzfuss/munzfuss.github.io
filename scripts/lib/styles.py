@@ -697,8 +697,11 @@ h2[style] {{
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10.5px;
-  font-weight: 600;
+  /* Match .tl-bar exactly so years read in the same typeface and size
+     across narrow (floated) and wide (inline) bars. */
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
   color: var(--text-primary);
   white-space: nowrap;
   pointer-events: none;
@@ -726,6 +729,23 @@ h2[style] {{
 [data-theme="v1"] .tl-bar-narrow.tl-bar-reichsgoldmuenzfuss .tl-bar-label-float,
 [data-theme="v2"] .tl-bar-narrow.tl-bar-reichsgoldmuenzfuss .tl-bar-label-float {{
   text-shadow: none;
+}}
+
+/* On Atlas/Codex, lay a thin translucent paper wash on top of three
+   bars whose strong saturated gradients (gold, dark steel, magenta)
+   would otherwise read as too loud against the cream page. The wash
+   is applied as an inset box-shadow that fills the entire bar with a
+   ~30 % cream layer over the existing gradient — keeps the bar's
+   colour identity but softens it to match the surrounding paper. */
+[data-theme="v1"] .tl-bar-reichsdukatenfuss,
+[data-theme="v2"] .tl-bar-reichsdukatenfuss,
+[data-theme="v1"] .tl-bar-9_thaler,
+[data-theme="v2"] .tl-bar-9_thaler,
+[data-theme="v1"] .tl-bar-kronemont,
+[data-theme="v2"] .tl-bar-kronemont {{
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0,0,0,0.30),
+    inset 0 0 0 999px rgba(255, 248, 230, 0.30);
 }}
 /* Overlay bar (e.g. "1788–1866 Theilung" inside the 9¼-Fuß row).
    Uses percentage inset so the overlay scales with the host track height
