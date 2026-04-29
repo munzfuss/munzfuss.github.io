@@ -22,8 +22,19 @@ FONT_IMPORTS = """\
 
 
 def _timeline_bars_css(bars: dict) -> str:
-    """Theme-agnostic timeline-bar palette generated from theme.yml."""
+    """Theme-agnostic timeline-bar palette generated from theme.yml.
+
+    Emits two rules per palette:
+      • a default `.tl-bar.{palette}` with `linear-gradient(90deg, from, to)`
+      • a Noir-only override that swaps from/to (so the brighter end
+        sits on the left of the bar against the dark page) — applied
+        to every bar EXCEPT `.tl-bar-reichsdukatenfuss`, which has its
+        own already-swapped gradient defined later in the stylesheet.
+    """
     out = []
+    noir_selector = (
+        ':root:not([data-theme="v1"]):not([data-theme="v2"])'
+    )
     for bar_id, conf in bars.items():
         extras = []
         if conf.get("fg"):
@@ -33,6 +44,11 @@ def _timeline_bars_css(bars: dict) -> str:
         extras_str = " " + " ".join(extras) if extras else ""
         out.append(
             f".tl-bar.{bar_id} {{ background: linear-gradient(90deg, {conf['from']}, {conf['to']});{extras_str} }}"
+        )
+        # Noir-only reversed gradient (skip Reichsdukatenfuß — handled
+        # separately so its gold gradient stays the timeline focal point).
+        out.append(
+            f"{noir_selector} .tl-bar.{bar_id}:not(.tl-bar-reichsdukatenfuss) {{ background: linear-gradient(90deg, {conf['to']}, {conf['from']}); }}"
         )
     return "\n".join(out)
 
