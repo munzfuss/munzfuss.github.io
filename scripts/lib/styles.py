@@ -683,6 +683,19 @@ h2[style] {{
   overflow: hidden;
   box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.30);
   letter-spacing: 0.02em;
+  /* Default contrast halo: light-coloured year text gets a soft dark
+     halo behind it so digits stay legible across the full bar gradient
+     on every theme. Bars with explicit dark `fg` (the `g` and `rm`
+     palettes) flip to a light halo via the override just below. */
+  text-shadow:
+    0 0 3px rgba(0,0,0,0.45),
+    0 0 6px rgba(0,0,0,0.30);
+}}
+.tl-bar.g,
+.tl-bar.rm {{
+  text-shadow:
+    0 0 3px rgba(255,248,230,0.70),
+    0 0 6px rgba(255,248,230,0.50);
 }}
 [data-theme="v3"] .tl-bar {{ box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset; }}
 /* Codex: every bar carries the same font-weight as the `g` palette
@@ -726,20 +739,6 @@ h2[style] {{
     0 0 3px var(--bg-card),
     0 0 6px var(--bg-card),
     0 0 10px var(--bg-card);
-}}
-/* On Atlas/Codex, suppress the halo only for the four bars where the
-   page-background and the bar gradient already give enough contrast on
-   their own (so the cream halo would just look like a blob on a dark
-   bar). All other narrow bars keep the soft glow defined above. */
-[data-theme="v1"] .tl-bar-narrow.tl-bar-9_thaler .tl-bar-label-float,
-[data-theme="v2"] .tl-bar-narrow.tl-bar-9_thaler .tl-bar-label-float,
-[data-theme="v1"] .tl-bar-narrow.tl-bar-kronemont .tl-bar-label-float,
-[data-theme="v2"] .tl-bar-narrow.tl-bar-kronemont .tl-bar-label-float,
-[data-theme="v1"] .tl-bar-narrow.tl-bar-18_5_thaler .tl-bar-label-float,
-[data-theme="v2"] .tl-bar-narrow.tl-bar-18_5_thaler .tl-bar-label-float,
-[data-theme="v1"] .tl-bar-narrow.tl-bar-reichsgoldmuenzfuss .tl-bar-label-float,
-[data-theme="v2"] .tl-bar-narrow.tl-bar-reichsgoldmuenzfuss .tl-bar-label-float {{
-  text-shadow: none;
 }}
 
 /* On Atlas/Codex, lay a thin translucent paper wash on top of three
