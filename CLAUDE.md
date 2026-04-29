@@ -304,9 +304,14 @@ When one tool returns 403/blocked/empty, **escalate to the next tier** rather th
 2. **WebFetch** (Anthropic-built) — single URL → small-model summary. Good for short pages with a focused question. Often blocked by aggressive bot defences (Numista returns 403, NGC returns 403).
 3. **Apify rag-web-browser** (`mcp__Apify__apify--rag-web-browser`) — Google search results + targeted page scrape. Bypasses some 403s by fetching through Apify infra. Numista *sometimes* works here, often returns 403 too. Useful for getting Markdown of a single known URL even when WebFetch fails.
 4. **Chrome MCP** (`mcp__Claude_in_Chrome__*`) — real Chrome browser via the user's extension. Bypasses **all** bot defences because it's an actual logged-in browser session on the user's machine. Heaviest tool (real browser, batched actions, screenshots) — use last, but never forget it exists.
+5. **Ask the user** — if all four tiers fail, ask the user to paste the page HTML / Markdown / a screenshot directly into chat. Do not silently abandon the verification. Phrase it precisely: «Numista N#XXX still won't load through any tool I have. Could you open the page in your browser and paste the relevant section here?»
 
-**Numista-specific:** WebFetch and Apify both routinely return 403 on Numista catalogue pages (mi=…, ru=…, large queries especially). Chrome MCP works reliably. If a verification depends on Numista data and Apify is rate-limited, **switch to Chrome MCP immediately** — do not abandon the verification.
+**For PDF content** (Bruun Part II, Wilcke I/II, NNUM articles, danskmoent.dk PDFs):
+
+Use the **pdf-viewer MCP** (`mcp__pdf-viewer__display_pdf` to open, then `mcp__pdf-viewer__interact` to navigate / search / get_text / get_screenshot). Accepts both local file paths and HTTPS URLs. Most efficient for: searching by lot number across a 356-page Bruun catalogue, extracting Hede tables, getting a specific page screenshot for cross-reference. If the PDF tool is unavailable in this session, fall back to: WebFetch on a direct PDF URL → ask the user to provide the relevant page text.
+
+**Numista-specific:** WebFetch and Apify both routinely return 403 on Numista catalogue pages (mi=…, ru=…, large queries especially). Chrome MCP works reliably (Cloudflare challenge resolves automatically after ~5–10 s — wait once, then re-issue `get_page_text`). If a verification depends on Numista data and Apify is rate-limited, **switch to Chrome MCP immediately** — do not abandon the verification.
 
 **Pattern for browser automation via Chrome MCP:** always batch actions with `browser_batch` (the runtime gives a system-reminder if you don't). Sequence: `list_connected_browsers` → `select_browser` → `tabs_context_mcp(createIfEmpty: true)` → then a single `browser_batch` with `[navigate, get_page_text]` per URL. For multi-page comparisons, one `browser_batch` per URL keeps the round trip count low.
 
-**General principle:** when a tool fails, the next sentence in your response should *not* be «I cannot verify». It should be «trying tier N+1». Only report «cannot verify» after the whole chain fails.
+**General principle:** when a tool fails, the next sentence in your response should *not* be «I cannot verify». It should be «trying tier N+1». Only report «cannot verify» after the whole chain — including asking the user — has been exhausted.
