@@ -378,19 +378,19 @@
       {% set primary = group.primary %}
       <div class="tl-label{% if primary.indented %} tl-label-sub{% endif %}">
         {%- if primary.id in _fuss_section_ids -%}
-          <a class="tl-label-link" href="#fuss-{{ primary.id }}">{{ primary.label|t(lang) }}{% if primary.small %} <small>{{ primary.small|t(lang) }}</small>{% endif %}</a>
+          <a class="tl-label-link" href="#fuss-{{ primary.id }}">{{ primary.label|t(lang) }}</a>
         {%- else -%}
           {{ primary.label|t(lang) }}
-          {% if primary.small %}<small>{{ primary.small|t(lang) }}</small>{% endif %}
         {%- endif -%}
+        {% if primary.small %}<small>{{ primary.small|t(lang) }}</small>{% endif %}
         {% for ov in group.overlays %}
         <div class="tl-sublabel{% if ov.indented %} tl-label-sub{% endif %}">
           {%- if ov.id in _fuss_section_ids -%}
-            <a class="tl-label-link" href="#fuss-{{ ov.id }}">{{ ov.label|t(lang) }}{% if ov.small %} <small>{{ ov.small|t(lang) }}</small>{% endif %}</a>
+            <a class="tl-label-link" href="#fuss-{{ ov.id }}">{{ ov.label|t(lang) }}</a>
           {%- else -%}
             {{ ov.label|t(lang) }}
-            {% if ov.small %}<small>{{ ov.small|t(lang) }}</small>{% endif %}
           {%- endif -%}
+          {% if ov.small %}<small>{{ ov.small|t(lang) }}</small>{% endif %}
         </div>
         {% endfor %}
       </div>
