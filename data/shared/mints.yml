@@ -1,0 +1,125 @@
+# Mint registry for Linked Open Data interop.
+#
+# Each entry keys a stable canonical short name (lowercase, ascii) used in
+# the project's `mint:` field on coin entries. Values record cross-walks to
+# the three external authorities most useful for numismatic LOD:
+#
+#   nomisma_id  — canonical concept URI fragment at nomisma.org
+#                 (e.g. `glueckstadt` → http://nomisma.org/id/glueckstadt).
+#                 Only present for mints that nomisma.org has actually
+#                 minted as a concept; many smaller Holstein mints aren't there.
+#   wikidata    — Wikidata Q-id of the mint city / authority.
+#   ikmk_ndp    — IKMK Berlin Normdatenportal location id
+#                 (https://ikmk.smb.museum/ndp/location/<id>).
+#
+# Verified entries reference the three identifiers as primary-source
+# checks done at the time of entry. Unverified mints carry only the
+# fields that have been confirmed; missing fields are deliberately
+# omitted rather than guessed.
+
+glueckstadt:
+  name:
+    de: Glückstadt
+    en: Glückstadt
+    uk: Глюкштадт
+  nomisma_id: glueckstadt
+  wikidata: Q377277
+  ikmk_ndp: 158
+
+altona:
+  name:
+    de: Altona
+    en: Altona
+    uk: Альтона
+  nomisma_id: altona
+  wikidata: Q1630
+  ikmk_ndp: 1153
+
+hamburg:
+  name:
+    de: Hamburg
+    en: Hamburg
+    uk: Гамбург
+  nomisma_id: hamburg
+  wikidata: Q1055
+  ikmk_ndp: 169
+
+# Mints used in schleswig.yml that are NOT (yet) on nomisma.org.
+# Wikidata Q-ids cover the city/authority entity. IKMK NDP ids would
+# need separate lookup against the IKMK Berlin search interface.
+
+toenning:
+  name:
+    de: Tönning
+    en: Tönning
+    uk: Теннінг
+  wikidata: Q259820
+
+schleswig:
+  name:
+    de: Schleswig
+    en: Schleswig
+    uk: Шлезвіг
+  wikidata: Q3917
+
+kopenhagen:
+  name:
+    de: Kopenhagen
+    en: Copenhagen
+    uk: Копенгаген
+  wikidata: Q1748
+
+kiel:
+  name:
+    de: Kiel
+    en: Kiel
+    uk: Кіль
+  wikidata: Q2102
+
+husum:
+  name:
+    de: Husum
+    en: Husum
+    uk: Хузум
+  wikidata: Q4099
+
+reinfeld:
+  name:
+    de: Reinfeld
+    en: Reinfeld
+    uk: Райнфельд
+  wikidata: Q15846
+
+# Smaller / one-off mints — entries kept stub-only until external IDs
+# are looked up. Names match the strings used in the YAML coin entries.
+
+steinbek:
+  name:
+    de: Steinbek
+    en: Steinbek
+    uk: Штайнбек
+
+oldendorf:
+  name:
+    de: Oldendorf
+    en: Oldendorf
+    uk: Ольдендорф
+
+mannheim:
+  name:
+    de: Mannheim
+    en: Mannheim
+    uk: Мангайм
+  wikidata: Q2742
+
+burg_fehmarn:
+  name:
+    de: Burg auf Fehmarn
+    en: Burg auf Fehmarn
+    uk: Бург-ауф-Фемарн
+
+rethwisch:
+  name:
+    de: Rethwisch
+    en: Rethwisch
+    uk: Ретвіш
