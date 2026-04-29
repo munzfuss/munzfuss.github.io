@@ -633,6 +633,19 @@ h2[style] {{
   word-break: break-word;
 }}
 [data-theme="v2"] .tl-label small {{ font-family: var(--font-mono); font-style: normal; }}
+/* Click-to-scroll link wrapping the entire fuss label (display name + small).
+   Inherits the label's typography unchanged; on hover the accent color
+   underlines the main name to cue the link affordance. */
+.tl-label-link {{
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+}}
+.tl-label-link:hover {{
+  color: var(--accent);
+}}
+.tl-label-link:hover small {{ color: inherit; }}
 .tl-grid > div:nth-child(n+3) {{ border-top: var(--hairline) dotted var(--border-soft); }}
 /* Subtle zebra striping on the dark theme only — keeps long timelines parsable. */
 [data-theme="v3"] .tl-grid > div:nth-child(4n+1),
@@ -1743,7 +1756,7 @@ footer a:hover {{ color: var(--accent); }}
 
 /* --- Tooltips (data-tooltip="…" on any element) ------------------------- */
 
-[data-tooltip]:not(.tl-phase) {{ position: relative; }}
+[data-tooltip]:not(.tl-phase):not(.tl-bar) {{ position: relative; }}
 [data-tooltip]:hover::after {{
   content: attr(data-tooltip);
   position: absolute;

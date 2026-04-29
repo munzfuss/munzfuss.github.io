@@ -366,15 +366,31 @@
       </div>
     {%- endmacro -%}
 
+    {%- set _fuss_section_ids = [] -%}
+    {%- for sg in tree.fuesse -%}
+      {%- set _sp = fp_lookup.get(sg.fuss.id) if fp_lookup else None -%}
+      {%- if sg.nonempty_phases or _sp or sg.fuss.grundwerte -%}
+        {%- set _ = _fuss_section_ids.append(sg.fuss.id) -%}
+      {%- endif -%}
+    {%- endfor -%}
+
     {% for group in tl.bars | group_bars %}
       {% set primary = group.primary %}
       <div class="tl-label{% if primary.indented %} tl-label-sub{% endif %}">
-        {{ primary.label|t(lang) }}
-        {% if primary.small %}<small>{{ primary.small|t(lang) }}</small>{% endif %}
+        {%- if primary.id in _fuss_section_ids -%}
+          <a class="tl-label-link" href="#fuss-{{ primary.id }}">{{ primary.label|t(lang) }}{% if primary.small %} <small>{{ primary.small|t(lang) }}</small>{% endif %}</a>
+        {%- else -%}
+          {{ primary.label|t(lang) }}
+          {% if primary.small %}<small>{{ primary.small|t(lang) }}</small>{% endif %}
+        {%- endif -%}
         {% for ov in group.overlays %}
         <div class="tl-sublabel{% if ov.indented %} tl-label-sub{% endif %}">
-          {{ ov.label|t(lang) }}
-          {% if ov.small %}<small>{{ ov.small|t(lang) }}</small>{% endif %}
+          {%- if ov.id in _fuss_section_ids -%}
+            <a class="tl-label-link" href="#fuss-{{ ov.id }}">{{ ov.label|t(lang) }}{% if ov.small %} <small>{{ ov.small|t(lang) }}</small>{% endif %}</a>
+          {%- else -%}
+            {{ ov.label|t(lang) }}
+            {% if ov.small %}<small>{{ ov.small|t(lang) }}</small>{% endif %}
+          {%- endif -%}
         </div>
         {% endfor %}
       </div>
@@ -414,7 +430,7 @@
 {# Render the Müntzfuß block if it has phases OR a period description OR grundwerte — so a standard that applied in the location but without its own coin issues (e.g. Prussian Vereinsthaler here) still appears as header + grundwerte + closing. #}
 {% if sg.nonempty_phases or sp or sg.fuss.grundwerte %}
 
-<section class="fuss-block fuss-{{ sg.fuss.id }}">
+<section class="fuss-block fuss-{{ sg.fuss.id }}" id="fuss-{{ sg.fuss.id }}">
 <div class="phase-header">
   <span class="pname">{{ sg.fuss.name|t(lang) }}</span>
   {% if sp and sp.pdate_label %}
