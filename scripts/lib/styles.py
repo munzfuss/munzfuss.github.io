@@ -690,6 +690,12 @@ h2[style] {{
    uniform stroke width across the whole timeline — no narrow vs bold
    alternation between adjacent bars. */
 [data-theme="v2"] .tl-bar {{ font-weight: 600; }}
+/* Atlas: same Reichsdukatenfuß-style weight 600 applied to every bar
+   AND to the axis tick labels — uniform monospace stroke across the
+   whole timeline strip on the cream paper. */
+[data-theme="v1"] .tl-bar,
+[data-theme="v1"] .tl-bar .tl-bar-label-float,
+[data-theme="v1"] .tl-axis span {{ font-weight: 600; }}
 .tl-bar-dashed {{
   border: 0.5px dashed var(--purple);
   opacity: 0.7;
