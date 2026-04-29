@@ -24,12 +24,15 @@ FONT_IMPORTS = """\
 def _timeline_bars_css(bars: dict) -> str:
     """Theme-agnostic timeline-bar palette generated from theme.yml.
 
-    Emits two rules per palette:
+    Emits three rules per palette:
       • a default `.tl-bar.{palette}` with `linear-gradient(90deg, from, to)`
       • a Noir-only override that swaps from/to (so the brighter end
         sits on the left of the bar against the dark page) — applied
         to every bar EXCEPT `.tl-bar-reichsdukatenfuss`, which has its
         own already-swapped gradient defined later in the stylesheet.
+      • an Atlas/Codex override that swaps from/to on every bar (no
+        exceptions) so the brighter end sits on the left of the bar
+        against the cream paper.
     """
     out = []
     noir_selector = (
@@ -49,6 +52,10 @@ def _timeline_bars_css(bars: dict) -> str:
         # separately so its gold gradient stays the timeline focal point).
         out.append(
             f"{noir_selector} .tl-bar.{bar_id}:not(.tl-bar-reichsdukatenfuss) {{ background: linear-gradient(90deg, {conf['to']}, {conf['from']}); }}"
+        )
+        # Atlas/Codex reversed gradient (no exceptions).
+        out.append(
+            f'[data-theme="v1"] .tl-bar.{bar_id}, [data-theme="v2"] .tl-bar.{bar_id} {{ background: linear-gradient(90deg, {conf["to"]}, {conf["from"]}); }}'
         )
     return "\n".join(out)
 
