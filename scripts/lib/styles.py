@@ -1759,9 +1759,13 @@ footer a:hover {{ color: var(--accent); }}
   bottom: calc(100% + 4px);
   left: 50%;
   transform: translateX(-50%);
-  background: var(--bg-card);
+  /* Tooltip inverts the theme palette so it pops against the page —
+     light card on the dark Noir backdrop, dark card on the cream
+     Atlas/Codex paper. Defaults below cover Noir; the v1/v2 override
+     just below flips them for the light themes. */
+  background: #ede4ce;
   border: var(--hairline) solid var(--accent);
-  color: var(--text-primary);
+  color: #2a221a;
   padding: 6px 10px;
   border-radius: 4px;
   font-family: var(--font-body);
@@ -1776,6 +1780,11 @@ footer a:hover {{ color: var(--accent); }}
   z-index: 100;
   pointer-events: none;
   box-shadow: 0 2px 8px rgba(0,0,0,0.45);
+}}
+[data-theme="v1"] [data-tooltip]:hover::after,
+[data-theme="v2"] [data-tooltip]:hover::after {{
+  background: #2a2520;
+  color: #ece4d2;
 }}
 
 /* --- Phase strip (timeline mini-phases) — preserved as-is from prior CSS - */
