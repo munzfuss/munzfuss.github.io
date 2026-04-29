@@ -685,6 +685,11 @@ h2[style] {{
   letter-spacing: 0.02em;
 }}
 [data-theme="v3"] .tl-bar {{ box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset; }}
+/* Codex: every bar carries the same font-weight as the `g` palette
+   (Guldkrone-Fuß / Reichsdukatenfuß), so monospace digits read with a
+   uniform stroke width across the whole timeline — no narrow vs bold
+   alternation between adjacent bars. */
+[data-theme="v2"] .tl-bar {{ font-weight: 600; }}
 .tl-bar-dashed {{
   border: 0.5px dashed var(--purple);
   opacity: 0.7;
