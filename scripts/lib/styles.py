@@ -692,7 +692,10 @@ h2[style] {{
     0 0 6px rgba(0,0,0,0.30);
 }}
 .tl-bar.g,
-.tl-bar.rm {{
+.tl-bar.rm,
+.tl-bar.tl-bar-kronemont_fine,
+.tl-bar.tl-bar-kronemont_fine .tl-bar-label-float {{
+  color: #1a1612;
   text-shadow:
     0 0 3px rgba(255,248,230,0.70),
     0 0 6px rgba(255,248,230,0.50);
@@ -1550,9 +1553,29 @@ summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
 .ent-badge.ent-schauenburg_pinneberg {{ background: #2a2532; color: #c8b8d8; border-color: #5a4a72; }}
 .ent-badge.ent-norburg_plon_duchy {{ background: #1f2a35; color: #98c0e0; border-color: #3d6080; }}
 .ent-badge.ent-sonderburg_duchy {{ background: #1a3030; color: #88c8c0; border-color: #3a6868; }}
-/* Light-theme overrides — softer pastel tints so badges stay legible */
-[data-theme="v1"] .ent-badge,
-[data-theme="v2"] .ent-badge {{ background: var(--bg-card); color: var(--text-primary); border-color: var(--border); }}
+/* Light-theme per-entity tints — warm pastels keyed off each entity's
+   Noir hue, restated for the cream paper palette so the colour story
+   («royal-Holstein burgundy», «Gottorp sage», «Danish-realm blue» …)
+   carries across themes instead of every Atlas/Codex badge looking
+   identical. */
+[data-theme="v1"] .ent-badge.ent-royal_holstein,
+[data-theme="v2"] .ent-badge.ent-royal_holstein     {{ background: #f0d8d4; color: #6b2424; border-color: #c08080; }}
+[data-theme="v1"] .ent-badge.ent-gottorp_duchy,
+[data-theme="v2"] .ent-badge.ent-gottorp_duchy      {{ background: #e0e8d4; color: #3d5a25; border-color: #8aa070; }}
+[data-theme="v1"] .ent-badge.ent-danish_realm,
+[data-theme="v2"] .ent-badge.ent-danish_realm       {{ background: #d8e0f0; color: #1f3a6e; border-color: #6e90c0; }}
+[data-theme="v1"] .ent-badge.ent-gesamtstaat,
+[data-theme="v2"] .ent-badge.ent-gesamtstaat        {{ background: #e8d8ee; color: #4a1f5a; border-color: #9070a8; }}
+[data-theme="v1"] .ent-badge.ent-provisional_govt,
+[data-theme="v2"] .ent-badge.ent-provisional_govt   {{ background: #f0e0c0; color: #5a4520; border-color: #b09060; }}
+[data-theme="v1"] .ent-badge.ent-prussian_province,
+[data-theme="v2"] .ent-badge.ent-prussian_province  {{ background: #e2dfd6; color: #3a3a38; border-color: #908a82; }}
+[data-theme="v1"] .ent-badge.ent-schauenburg_pinneberg,
+[data-theme="v2"] .ent-badge.ent-schauenburg_pinneberg {{ background: #e8dde8; color: #4a3460; border-color: #a08aa8; }}
+[data-theme="v1"] .ent-badge.ent-norburg_plon_duchy,
+[data-theme="v2"] .ent-badge.ent-norburg_plon_duchy {{ background: #d8e4ea; color: #1f4055; border-color: #6890a8; }}
+[data-theme="v1"] .ent-badge.ent-sonderburg_duchy,
+[data-theme="v2"] .ent-badge.ent-sonderburg_duchy   {{ background: #d4e6e2; color: #1f4a44; border-color: #6ea8a0; }}
 
 /* Verification & translation markers */
 .unverified  {{ color: {sd_under_deep_fg}; cursor: help; font-weight: 600; font-family: var(--font-sans); }}
