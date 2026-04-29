@@ -62,7 +62,10 @@
       {%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
-  <td class="c-mint">{{ coin.raw.mint or '—' }}</td>
+  <td class="c-mint">
+    {%- if coin.raw.mint -%}{{ coin.raw.mint }}{%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- else -%}—{%- endif -%}
+  </td>
   <td class="c-entity">
     {%- set ent = issuing_entities.get(coin.raw.issuing_entity) if coin.raw.issuing_entity else None -%}
     {%- if ent -%}
@@ -202,7 +205,10 @@
       {%- if not coin.raw.diameter_mm_verified %} <span class="unverified">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
-  <td class="c-mint">{{ coin.raw.mint or '—' }}</td>
+  <td class="c-mint">
+    {%- if coin.raw.mint -%}{{ coin.raw.mint }}{%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- else -%}—{%- endif -%}
+  </td>
   <td class="c-entity">
     {%- set ent = issuing_entities.get(coin.raw.issuing_entity) if coin.raw.issuing_entity else None -%}
     {%- if ent -%}

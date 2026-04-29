@@ -160,6 +160,7 @@ class Coin(BaseModel):
     year_last: int | None = None
     ruler: str | None = None
     mint: str | None = None
+    mint_verified: bool = True
     mintmaster: str | None = None
     catalog: CatalogRefs = Field(default_factory=CatalogRefs)
     metal: Literal["silver", "gold", "billon", "copper"] | None = None
