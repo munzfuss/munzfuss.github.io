@@ -1111,6 +1111,19 @@ h2[style] {{
 [data-theme="v1"] .tl-bar-overlay,
 [data-theme="v2"] .tl-bar-overlay {{ border-color: rgba(0,0,0,0.4); box-shadow: 0 0 0 1px rgba(255,255,255,0.4); }}
 
+/* Light-theme softening for `.g` (Reichsdukatenfuß gold). On cream paper
+   the bright `to: #fcd34d` saturates so quickly that the differences
+   between 5- and 6-layer overlap zones (mint-period vs surrounding
+   status/circulation) merge into a single uniform yellow. Per-layer
+   alpha is dropped from 0.1667 to 0.115 on light themes only — six
+   summed layers reach ~0.69 alpha instead of clamping at full opacity,
+   keeping the cream backdrop bleeding through proportionally to the
+   layer count and so making the mint-Holstein period visually distinct
+   from its 5-layer surroundings. Noir keeps the original 0.1667 (light
+   tints on dark Noir track read crisp at full saturation). */
+[data-theme="v1"] .tl-bar-layer.g,
+[data-theme="v2"] .tl-bar-layer.g {{ background: rgba(252, 211, 77, 0.115); }}
+
 /* --- Per-year mintage markers ------------------------------------------- */
 /* Each `.tl-coin-year` rect marks one consecutive run of years where at
    least one coin was minted under the parent stope (per the location's
