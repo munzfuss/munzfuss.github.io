@@ -1042,6 +1042,12 @@ h2[style] {{
   bottom: 0;
   pointer-events: auto;
   cursor: help;
+  /* Promote markers above the layered period × scope fills inside the
+     same `.tl-bar-layers` isolation. Each `.tl-bar-layer` is itself a
+     stacking context (forced by its `mix-blend-mode: plus-lighter`),
+     and DOM order alone keeps markers on top — but z-index makes the
+     stacking explicit and immune to future DOM-order regressions. */
+  z-index: 1;
   /* No mix-blend-mode override needed — `.tl-bar-layer` carries
      `plus-lighter` via class match, but `.tl-coin-year` doesn't, so it
      defaults to `normal` and paints crisp cream over the summed fill. */

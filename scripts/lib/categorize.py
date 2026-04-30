@@ -322,9 +322,32 @@ def compute_bar_layers(
         for scope in ("anywhere", "holstein"):
             _add("circulation", scope, fa, de_)
 
-        # Sort by length DESC so the longest layer is rendered first
-        # (DOM order = bottom of stack); the shortest paints last (= on top).
-        layers.sort(key=lambda l: l["length"], reverse=True)
+        # Sort layers so the rendered DOM order = bottom-to-top stacking,
+        # with the topmost layer winning hover at any overlap point.
+        #
+        # Primary key: length DESC — the longest layer goes to the bottom,
+        #   the shortest to the top. (Shorter usually = more specific
+        #   to the position the user hovered.)
+        # Secondary key: scope (holstein > anywhere) — for equal-length
+        #   layers, the project-focused Holstein scope wins.
+        # Tertiary key: kind (mint > status > circulation) — for equal
+        #   length AND equal scope, the most concrete fact (mint) is
+        #   what the user wants to see; status and circulation are
+        #   semantically subordinate.
+        #
+        # Without the secondary/tertiary keys the stable sort fell back
+        # to the original DOM-add order (mint→status→circulation), which
+        # for stopes whose mint/status/circ-Holstein all coincide
+        # (kronemont 1644-1696, 11⅓-Thaler-Fuß 1726-1788, etc.) put
+        # status_h or circ_h on top and shadowed the mint_h tooltip the
+        # user actually wanted to see.
+        _SCOPE_PRIORITY = {"anywhere": 0, "holstein": 1}
+        _KIND_PRIORITY = {"circulation": 0, "status": 1, "mint": 2}
+        layers.sort(key=lambda l: (
+            -l["length"],
+            _SCOPE_PRIORITY[l["scope"]],
+            _KIND_PRIORITY[l["kind"]],
+        ))
 
         for l in layers:
             # `last + 1` because a year is a 1-year-wide block, not a
