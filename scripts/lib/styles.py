@@ -1045,6 +1045,21 @@ h2[style] {{
     0 0 10px var(--bg-card);
 }}
 
+/* 10½-Krone-Fuß is the only narrow bar on light themes (Atlas/Codex)
+   whose layered fill is a saturated magenta (krm: #a8468a) — dark text
+   + cream halo from the generic `.tl-bar-narrow .tl-bar-label-float`
+   rule above is illegible on it. Force WHITE text + BLACK halo just
+   for this bar on light themes; every other narrow bar (rt steel-blue,
+   kr warm-gray, etc.) has a paler silver fill where the default dark-
+   on-cream direction stays correct. */
+[data-theme="v1"] .tl-bar.tl-bar-kronemont.tl-bar-narrow .tl-bar-label-float,
+[data-theme="v2"] .tl-bar.tl-bar-kronemont.tl-bar-narrow .tl-bar-label-float {{
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.80),
+    0 0 6px rgba(0, 0, 0, 0.55);
+}}
+
 /* On Atlas/Codex, lay a thin translucent paper wash on top of three
    bars whose strong saturated gradients (gold, dark steel, magenta)
    would otherwise read as too loud against the cream page. The wash
