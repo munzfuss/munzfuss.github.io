@@ -76,6 +76,57 @@ class Grundwerte(BaseModel):
     rechnungsfraktionen: I18nText | None = None      # rich block, safe HTML
 
 
+class FussEvent(BaseModel):
+    """One historical event year recorded for two scopes.
+
+    Each event has a single canonical year per scope:
+      - `anywhere` : the year *anywhere* the standard was active.
+        Always present for an event that happened at all.
+      - `holstein` : the year specifically within Schleswig-Holstein.
+        `null` (or omitted) means the event did not apply in H —
+        e.g. `first_mint.holstein = null` for a Copenhagen-only
+        kronemont, or for a standard adopted in H but never minted there.
+
+    `approx_anywhere` / `approx_holstein` flag uncertain dates (rendered
+    elsewhere as `~YYYY`; the int is still stored verbatim).
+
+    `note` is a brief plain-text explanation — typically *why* the year
+    is approximate, or which forordning / Reichsabschied marks the date.
+    """
+    anywhere: int | None = None
+    holstein: int | None = None
+    approx_anywhere: bool = False
+    approx_holstein: bool = False
+    note: str | None = None
+
+
+class FussEvents(BaseModel):
+    """Five canonical historical events per stope.
+
+    These atomic events are the source of truth. The three nested
+    period types (visible as ▓ ⊂ ▒ ⊂ ░ in the timeline schematic)
+    are derived from them:
+
+      mint         = [first_mint, last_mint]                   (▓)
+      status       = [first_adoption, std_end]                 (▒)
+      circulation  = [first_adoption, demonetisation]          (░)
+
+    Storing events (not periods) avoids duplication: when first_mint
+    coincides with first_adoption (the standard was minted from year
+    one), the year appears once. Containment ▓ ⊂ ▒ ⊂ ░ usually holds
+    historically, but rare cases break it (e.g. 9-Thaler-Fuß H:
+    std_end 1622 < last_mint 1625 — Friedrich III. switched standards
+    while transition strikes continued). Storing atomic events keeps
+    such facts faithful; the visualization layer is free to expand
+    boundaries for display.
+    """
+    first_adoption: FussEvent | None = None
+    first_mint: FussEvent | None = None
+    last_mint: FussEvent | None = None
+    std_end: FussEvent | None = None
+    demonetisation: FussEvent | None = None
+
+
 class Fuss(BaseModel):
     """A global Münzfuß mathematical definition."""
     id: str = ""  # filled in by loader
@@ -88,6 +139,7 @@ class Fuss(BaseModel):
     description: I18nText | None = None
     grundwerte: Grundwerte | None = None
     fractions: dict[str, Fraction]
+    events: FussEvents | None = None
 
 
 # =============================================================================
@@ -198,6 +250,10 @@ class TimelineBar(BaseModel):
     overlay: bool = False     # render INTO the previous bar's track (not a new row);
                               # the bar lays over its parent as a thinner stripe and
                               # its label folds in as a sub-line under the parent's label.
+    events: FussEvents | None = None    # 5 canonical events × 2 scopes (anywhere / holstein);
+                                        # used for stopes that appear on the timeline but
+                                        # are NOT defined in shared/fuesse.yml as a Fuß
+                                        # (e.g. Reichsgoldmünzfuß is a contextual entry only)
 
 
 class Timeline(BaseModel):

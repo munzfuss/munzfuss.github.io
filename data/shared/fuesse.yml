@@ -96,6 +96,30 @@ reichsdukatenfuss:
     "3/2": {soll_rau_g: 5.23559, soll_fein_g: 5.16287}
     "5": {soll_rau_g: 17.45196, soll_fein_g: 17.20955}
     "10": {soll_rau_g: 34.90392, soll_fein_g: 34.41910}
+  events:
+    first_adoption:
+      anywhere: 1559
+      holstein: 1559
+      note: Reichsmünzordnung Augsburg 19. Aug 1559; HRR-wide adoption applied to all Holstein duchies.
+    first_mint:
+      anywhere: 1559
+      holstein: 1640
+      approx_holstein: true
+      note: anywhere = first imperial dukaten under the 1559 ordinance. H first-mint ≈ 1640 = first Glückstadt-Tönning Dukaten under Frederik III.
+    last_mint:
+      anywhere: 1871
+      holstein: 1813
+      approx_holstein: true
+      note: anywhere = last German Reichsdukaten before Reichsmünzgesetz. H last-mint ≈ 1813 = closure of the Glückstadt mint.
+    std_end:
+      anywhere: 1871
+      holstein: 1813
+      approx_holstein: true
+      note: anywhere = Reichsmünzgesetz 4. Dec 1871 superseded the Dukatenfuß. H std_end coincides with the H last-mint (no Holstein-specific reform).
+    demonetisation:
+      anywhere: 1871
+      holstein: 1871
+      note: Reichsmünzgesetz aftermath. Austrian restrike-Dukaten dated 1915 are out-of-system.
 
 9_25_thaler:
   name:
@@ -200,6 +224,28 @@ reichsdukatenfuss:
     "1/15": {soll_fein_g: 1.68545}      # 1/15 Specie = 4 Schilling lübisch (Sonderburg-Mode)
     "1/30": {soll_fein_g: 0.84272}      # 1/30 Specie = 2 Schilling lübisch (Sonderburg-Mode)
 
+  events:
+    first_adoption:
+      anywhere: 1622
+      holstein: 1622
+      note: Friedrich III. von Gottorp at the Schleswig mint — Holstein-first; Christiania (Norway) took it up 1628.
+    first_mint:
+      anywhere: 1622
+      holstein: 1622
+    last_mint:
+      anywhere: 1873
+      holstein: 1854
+      approx_anywhere: true
+      approx_holstein: true
+      note: anywhere last-mint ~1873 = late Speciesthaler in Altona. H last-mint ~1854 = Christian VIII / Frederik VII Holstein issues.
+    std_end:
+      anywhere: 1873
+      holstein: 1866
+      note: anywhere std_end 1873 = Reichsmünzgesetz / Markrechnung. H std_end 1866 = Prussian annexation, transition to 30-Thaler-Fuß.
+    demonetisation:
+      anywhere: 1875
+      holstein: 1866
+      note: anywhere demon 1875 = Reichsmünzgesetz aftermath (Hamburg, Lübeck conversion).
 9_thaler:
   name:
     de: 9-Thaler-Fuß
@@ -304,6 +350,29 @@ reichsdukatenfuss:
     "1/168": {soll_fein_g: 0.15467}      # 1/168 Thaler = 1½ Pfennig (Schauenburg Ernst 1620)
     "1/252": {soll_fein_g: 0.10311}      # 1/252 Thaler = 1 Pfennig (Schauenburg Otto IV)
 
+  events:
+    first_adoption:
+      anywhere: 1566
+      holstein: 1566
+      note: Reichsabschied Augsburg 1566 (Reichsmünzordnung); HRR-wide adoption.
+    first_mint:
+      anywhere: 1566
+      holstein: 1567
+    last_mint:
+      anywhere: 1764
+      holstein: 1625
+      approx_anywhere: true
+      note: anywhere last-mint ~1764 = late Hamburg Speciesthaler. H last-mint 1625 = end of Holstein-Gottorp 9-Thaler issuance under Friedrich III.
+    std_end:
+      anywhere: 1857
+      holstein: 1622
+      approx_anywhere: true
+      note: anywhere status persisted formally as Reichsmünzfuß until Wiener Münzvertrag 1857. H std_end 1622 = Friedrich III. von Gottorp's switch to 9¼-Thaler-Fuß (predates H last-mint 1625 — transition strikes ran past the formal switch).
+    demonetisation:
+      anywhere: 1875
+      holstein: 1625
+      approx_holstein: true
+      note: anywhere demon = Reichsmünzgesetz aftermath 1875. H demon ≈ 1625 — once Friedrich III. switched, old 9-Thaler issues were no longer current.
 11_333_thaler:
   name:
     de: 11⅓-Thalerfuß
@@ -401,6 +470,26 @@ reichsdukatenfuss:
     "1/96": {soll_fein_g: 0.21495}      # 1 Skilling
     "1/192": {soll_fein_g: 0.10748}     # ½ Skilling
 
+  events:
+    first_adoption:
+      anywhere: 1726
+      holstein: 1726
+      note: Forordning Kurantmøntfod 1726.
+    first_mint:
+      anywhere: 1726
+      holstein: 1726
+    last_mint:
+      anywhere: 1813
+      holstein: 1788
+      note: H last-mint 1788 = last Altona Rigsdaler Courant.
+    std_end:
+      anywhere: 1813
+      holstein: 1788
+      note: anywhere std_end 1813 = Statsbankerot (replaced by Rigsbankdaler).
+    demonetisation:
+      anywhere: 1813
+      holstein: 1788
+      note: all three levels coincide — clean replacement, no post-status tail.
 18_5_thaler:
   name:
     de: 18½-Thalerfuß
@@ -493,6 +582,26 @@ reichsdukatenfuss:
     "1/96": {soll_fein_g: 0.13168}      # 1 RBS
     "1/192": {soll_fein_g: 0.06584}     # ½ RBS
 
+  events:
+    first_adoption:
+      anywhere: 1813
+      holstein: 1813
+      note: Forordning 5. Jan 1813 (post-Statsbankerot) → Rigsbankdaler / Rigsmønt.
+    first_mint:
+      anywhere: 1813
+      holstein: 1813
+    last_mint:
+      anywhere: 1875
+      holstein: 1863
+      approx_holstein: true
+      note: anywhere last-mint 1875 = Danish krone reform. H last-mint ~1863 = late Frederik VII Altona issues.
+    std_end:
+      anywhere: 1875
+      holstein: 1866
+      note: anywhere std_end 1875 = Danish krone reform. H std_end 1866 = Prussian annexation.
+    demonetisation:
+      anywhere: 1875
+      holstein: 1866
 30_thaler:
   name:
     de: 30-Thalerfuß
@@ -579,6 +688,26 @@ reichsdukatenfuss:
     "2": {soll_fein_g: 33.33333}        # 2 Vereinsthaler
     "1/6": {soll_fein_g: 2.77778}       # Groschen (Preußen)
 
+  events:
+    first_adoption:
+      anywhere: 1857
+      holstein: 1866
+      note: Wiener Münzvertrag 1857 (Vereinsthaler). H adopted only after Prussian annexation 1866.
+    first_mint:
+      anywhere: 1857
+      holstein:
+      note: No Holstein local mint at this standard. H used Berlin / pan-German Vereinsthaler issues.
+    last_mint:
+      anywhere: 1871
+      holstein:
+    std_end:
+      anywhere: 1871
+      holstein: 1871
+      note: Reichsmünzgesetz 4. Dec 1871 superseded Vereinsthaler with Goldmark.
+    demonetisation:
+      anywhere: 1907
+      holstein: 1907
+      note: Bankgesetz 1907 ended Vereinsthaler legal tender. 36-year «two-metal tail» (1871–1907) — the longest gap in the entire register.
 kronemont_chr_iv:
   name:
     de: "Christian IVs kroner"
@@ -685,6 +814,25 @@ kronemont_chr_iv:
       soll_fein_g: 0.67708           # 16.250 ÷ 24
     1/12:
       soll_fein_g: 1.35417           # 16.250 ÷ 12
+  events:
+    first_adoption:
+      anywhere: 1618
+      holstein:
+      note: Christian IV's kroner — Copenhagen-only six-year program. Never adopted in Holstein.
+    first_mint:
+      anywhere: 1618
+      holstein:
+    last_mint:
+      anywhere: 1624
+      holstein:
+    std_end:
+      anywhere: 1624
+      holstein:
+    demonetisation:
+      anywhere: 1644
+      holstein:
+      approx_anywhere: true
+      note: anywhere demon ~1644 with Frederik III's resumed kronemont (10½-Krone-Fuß).
 kronemont:
   name:
     de: 10½-Krone-Fuß
@@ -789,6 +937,28 @@ kronemont:
 # Stück — der Wechsel war eher symbolisch (Vertrauenswiederherstellung) als eine
 # echte Aufwertung. grid_stops = 233.856 ÷ 14.984 = 15.607.
 # -----------------------------------------------------------------------------
+  events:
+    first_adoption:
+      anywhere: 1644
+      holstein: 1644
+      note: Glückstadt Hebræermønt under Frederik III. — Holstein-first; Norway took it up 1649, Denmark 1652.
+    first_mint:
+      anywhere: 1644
+      holstein: 1644
+    last_mint:
+      anywhere: 1732
+      holstein: 1696
+      note: anywhere last-mint 1732 = Copenhagen transition strikes after the formal Std end. H last-mint 1696 = closure of the Glückstadt kronemont.
+    std_end:
+      anywhere: 1726
+      holstein: 1696
+      note: anywhere std_end = Forordning Kurantmøntfod 1726 (introducing 11⅓-Thaler-Fuß), though Copenhagen kept striking at the older standard until 1732 (transition).
+    demonetisation:
+      anywhere: 1773
+      holstein: 1726
+      approx_anywhere: true
+      approx_holstein: true
+      note: anywhere demon ~1773 = Copenhagen cleanup of older kronemont. H demon ~1726 coincides with the global Std end.
 kronemont_fine:
   name:
     de: 13-Krone-Fuß
@@ -907,6 +1077,25 @@ kronemont_fine:
 # 5,47 g — physikalisch ein anderer Müntzfuß und in dieser Definition NICHT
 # enthalten (Kopenhagen liegt außerhalb des Holstein-Verzeichnisses).
 # -----------------------------------------------------------------------------
+  events:
+    first_adoption:
+      anywhere: 1693
+      holstein:
+      note: 13-Krone-Fuß («Feine Krone»), Reskript 31. Dezember 1692 → first issues 1693. Copenhagen-only standard; never adopted in Holstein.
+    first_mint:
+      anywhere: 1693
+      holstein:
+    last_mint:
+      anywhere: 1771
+      holstein:
+    std_end:
+      anywhere: 1771
+      holstein:
+    demonetisation:
+      anywhere: 1773
+      holstein:
+      approx_anywhere: true
+      note: anywhere demon ~1773 = same Copenhagen kronemont cleanup as 10½-Krone-Fuß.
 guldkrone:
   name:
     de: Guldkrone-Fuß
@@ -1002,3 +1191,25 @@ guldkrone:
     "1": {soll_rau_g: 5.99631, soll_fein_g: 5.49671}   # 1 Guldkrone (canonical)
     "1/2": {soll_rau_g: 2.99815, soll_fein_g: 2.74835} # ½ Guldkrone (per tariff division — no specimen documented in this programme)
     "1/4": {soll_rau_g: 1.49908, soll_fein_g: 1.37418} # ¼ Guldkrone (per tariff division — no specimen documented in this programme)
+  events:
+    first_adoption:
+      anywhere: 1657
+      holstein: 1657
+      note: Glückstadt was the originator (Holstein-first); Copenhagen follow-up 1668.
+    first_mint:
+      anywhere: 1657
+      holstein: 1657
+    last_mint:
+      anywhere: 1668
+      holstein: 1660
+      note: anywhere last-mint 1668 = last Copenhagen Guldkrone. H last-mint 1660 = last Glückstadt issue.
+    std_end:
+      anywhere: 1670
+      holstein: 1670
+      approx_holstein: true
+      note: anywhere std_end 1670 = formal program close. H std_end coincides at the same date.
+    demonetisation:
+      anywhere: 1670
+      holstein: 1670
+      approx_holstein: true
+      note: circulation closes with the standard — no significant post-program legal-tender tail.
