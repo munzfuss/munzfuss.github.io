@@ -1111,18 +1111,26 @@ h2[style] {{
 [data-theme="v1"] .tl-bar-overlay,
 [data-theme="v2"] .tl-bar-overlay {{ border-color: rgba(0,0,0,0.4); box-shadow: 0 0 0 1px rgba(255,255,255,0.4); }}
 
-/* Light-theme softening for `.g` (Reichsdukatenfuß gold). On cream paper
-   the bright `to: #fcd34d` saturates so quickly that the differences
-   between 5- and 6-layer overlap zones (mint-period vs surrounding
-   status/circulation) merge into a single uniform yellow. Per-layer
-   alpha is dropped from 0.1667 to 0.115 on light themes only — six
-   summed layers reach ~0.69 alpha instead of clamping at full opacity,
-   keeping the cream backdrop bleeding through proportionally to the
-   layer count and so making the mint-Holstein period visually distinct
-   from its 5-layer surroundings. Noir keeps the original 0.1667 (light
-   tints on dark Noir track read crisp at full saturation). */
+/* Light-theme override for `.g` (Reichsdukatenfuß gold). The first
+   attempt — only lowering per-layer alpha from 0.1667 to 0.115 —
+   didn't make the mint-Holstein period visibly distinct from its
+   5-layer surroundings, because the underlying issue isn't alpha:
+   it's luminance contrast. The theme.yml `to: #fcd34d` is a bright,
+   high-luminance yellow, almost the same lightness as the cream
+   paper backdrop (`#ede4ce`-ish). The 1/6-layer step doesn't show
+   as a distinct shade — both 5/6 and 6/6 overlap zones read as
+   «pale yellow on cream», indistinguishable.
+
+   Switch the layer base to a darker, more saturated gold (#b8902f,
+   close to the v1 Atlas `--accent` `#a37c2c`) for light themes. Per-
+   layer alpha 0.15 → 6-overlap = 0.90 (mostly saturated gold), 5-
+   overlap = 0.75 (visibly less saturated, more cream bleeding
+   through). The luminance gap between gold and cream is now wide
+   enough that the 0.15 step reads as a perceptible shade change.
+   Noir keeps the original bright `#fcd34d` × 0.1667 — that
+   combination already pops on the dark track. */
 [data-theme="v1"] .tl-bar-layer.g,
-[data-theme="v2"] .tl-bar-layer.g {{ background: rgba(252, 211, 77, 0.115); }}
+[data-theme="v2"] .tl-bar-layer.g {{ background: rgba(184, 144, 47, 0.15); }}
 
 /* --- Per-year mintage markers ------------------------------------------- */
 /* Each `.tl-coin-year` rect marks one consecutive run of years where at
