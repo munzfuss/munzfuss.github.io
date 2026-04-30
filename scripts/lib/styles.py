@@ -717,10 +717,22 @@ h2[style] {{
   border: var(--hairline) solid var(--border);
   box-shadow: inset 0 0 0 1px rgba(212,168,90,0.04);
 }}
-/* Isolate the track's stacking context so `mix-blend-mode: plus-lighter`
-   on `.tl-bar-layer` children only composites within this track and does
-   not bleed onto sibling timeline rows or the page background. */
-.tl-track {{ isolation: isolate; }}
+/* Isolation moves to `.tl-bar-layers` (the inner wrapper around the six
+   period × scope layer divs). Putting `isolation: isolate` on .tl-track
+   would include the track's own background-color in the plus-lighter
+   destination, lifting every overlap zone above the base palette colour
+   (track_bg + base instead of base). Wrapping layers in a separate
+   transparent group fixes that — the group composites cleanly onto
+   the track BG via normal blending. */
+.tl-bar-layers {{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  isolation: isolate;
+  pointer-events: none;
+}}
 [data-theme="v1"] .tl-track {{
   background: rgba(163, 124, 44, 0.05);
   border: var(--hairline) solid var(--border-soft);

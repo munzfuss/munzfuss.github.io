@@ -363,6 +363,12 @@
          renders proportionally fainter. The .tl-bar itself becomes a
          transparent label-only box (no gradient) when layers are present. #}
       {%- if layers -%}
+        {# Wrap layers in their own isolation group so plus-lighter starts
+           from a transparent backdrop (NOT the track's own dark bg, which
+           would otherwise be additively summed into the result and lift
+           every overlap above the base colour). The group itself then
+           composites onto the track via normal blending. #}
+        <div class="tl-bar-layers">
         {%- for layer in layers -%}
           {# Per-layer tooltip: «{kind} · {scope} · {first}—{last}». The kind
              label comes from UI strings (`tl.layer.{mint|status|circulation}`);
@@ -384,6 +390,7 @@
                data-tooltip="{{ _kind_lbl }} · {{ _scope_lbl }} · {{ _y0 }}—{{ _y1 }}"
                aria-hidden="true"></div>
         {%- endfor -%}
+        </div>
       {%- endif -%}
       <div class="tl-bar tl-bar-{{ bar.id }} {{ bar.color_class }}{% if layers %} tl-bar-layered{% endif %}{% if bar.dashed %} tl-bar-dashed{% endif %}{% if raw_left < 0 %} tl-bar-cut-left{% endif %}{% if raw_right > 100 %} tl-bar-cut-right{% endif %}{% if narrow %} tl-bar-narrow{% endif %} {{ extra_class }}"
            style="left:{{ left_pct }}%;width:{{ width_pct }}%"
