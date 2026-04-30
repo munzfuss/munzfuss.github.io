@@ -35,16 +35,21 @@ summary:
 
 # Order in which fuesse are rendered on the page
 fuss_order:
+  # Matches the timeline-bar order in `timeline.bars` below (Reichsdukatenfuß
+  # opens the chronology as the imperial gold standard since 1559;
+  # Reichsgoldmünzfuß closes it as the 1871-Goldmark — but the latter is a
+  # timeline-only contextual entry without its own Fuß record in
+  # data/shared/fuesse.yml, so it's absent from fuss_order).
+  - reichsdukatenfuss
   - 9_thaler
-  - 9_25_thaler
   - kronemont_chr_iv
   - kronemont
   - kronemont_fine
   - guldkrone
+  - 9_25_thaler
   - 11_333_thaler
   - 18_5_thaler
   - 30_thaler
-  - reichsdukatenfuss
 
 # ---------------------------------------------------------------------
 # Timeline — visual overlap of Müntzfüße in Holstein, ca. 1600–1880
@@ -279,9 +284,9 @@ timeline:
       year_from: 1871
       year_to: 1914
       bar_label:
-        de: "1871 — 1914"
-        en: "1871 — 1914"
-        uk: "1871 — 1914"
+        de: "1871 — 1914 · 43 Jahre"
+        en: "1871 — 1914 · 43 years"
+        uk: "1871 — 1914 · 43 роки"
       bar_title:
         de: "Goldmark nach Münzgesetz 4. Dezember 1871 (2790 Mark je kg Feingold = 0,358 g Feingold je Mark, 900 ‰ Feingehalt) · gemeinsamer Goldstandard des Deutschen Kaiserreichs · 5-, 10- und 20-Mark-Stücke geprägt in Berlin (A), Hamburg (J) und sechs weiteren Reichsmünzstätten — keine Holstein-Prägung (Altona-Münze geschlossen 1863) · gilt biß zur Reichsbank-Goldsuspendierung 4. August 1914 zu Kriegsbeginn · formal abgelöst 1924 durch Reichsmark / Rentenmark"
         en: "Goldmark under the Coinage Act of 4 December 1871 (2,790 Mark per kg of fine gold = 0.358 g of fine gold per Mark, 900 ‰ fineness) · the common gold standard of the German Empire · 5-, 10- and 20-Mark pieces struck in Berlin (A), Hamburg (J) and six other imperial mints — no Holstein issue (the Altona mint closed in 1863) · in force until the Reichsbank gold-redemption suspension on 4 August 1914 at the start of the war · formally replaced in 1924 by the Reichsmark / Rentenmark"

@@ -883,16 +883,66 @@ h2[style] {{
     0 0 3px rgba(255,248,230,0.70),
     0 0 6px rgba(255,248,230,0.50);
 }}
-/* kronemont_fine bar: white text, no halo on every theme. The magenta
-   gradient is dark enough to keep white digits readable, and the bar
-   renders wide (≥ 21 % of the strip) so text sits inline within the
-   gradient — no overflow onto the page background. */
-.tl-bar.tl-bar-kronemont_fine,
-.tl-bar.tl-bar-kronemont_fine .tl-bar-label-float {{
-  color: rgba(255,255,255,0.92);
-  text-shadow: none;
-}}
+/* (Removed the previous `kronemont_fine: text-shadow: none` override —
+   it predated the layered-bar treatment, where bars are transparent
+   on top of plus-lighter layer fills and the soft black halo IS
+   needed for legibility against partially-faint zones. The default
+   `.tl-bar` shadow now applies on every bar including kronemont_fine.) */
 [data-theme="v3"] .tl-bar {{ box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset; }}
+
+/* Noir-only stronger text-shadow for layered bars whose layered fill
+   may have partially-dark zones (1-2 layer overlap, far from the
+   stope's central Holstein-saturated band). The default 0.45/0.30
+   shadow is too soft against a near-black backdrop — text reads as
+   "ungrounded white" with no perceivable halo. Bumped to 0.85/0.60. */
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.tl-bar-layered,
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.tl-bar-layered .tl-bar-label-float {{
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.85),
+    0 0 6px rgba(0, 0, 0, 0.60);
+}}
+
+/* Per-bar text-colour overrides on light themes (Atlas v1, Codex v2):
+   - kronemont_fine («13-Krone-Fuß») and 9_25_thaler («9¼-Thaler-Fuß»)
+     read as DARK text + cream halo (matches the .tl-bar.g / .tl-bar.rm
+     contrast direction).
+   - 9_thaler («9-Thaler-Fuß») reads as WHITE text + dark halo (its
+     layered fill on light themes is a darker steel-silver tone, so
+     the white-on-dark contrast is the legible direction). */
+[data-theme="v1"] .tl-bar.tl-bar-kronemont_fine,
+[data-theme="v2"] .tl-bar.tl-bar-kronemont_fine,
+[data-theme="v1"] .tl-bar.tl-bar-kronemont_fine .tl-bar-label-float,
+[data-theme="v2"] .tl-bar.tl-bar-kronemont_fine .tl-bar-label-float,
+[data-theme="v1"] .tl-bar.tl-bar-9_25_thaler,
+[data-theme="v2"] .tl-bar.tl-bar-9_25_thaler,
+[data-theme="v1"] .tl-bar.tl-bar-9_25_thaler .tl-bar-label-float,
+[data-theme="v2"] .tl-bar.tl-bar-9_25_thaler .tl-bar-label-float {{
+  color: #1a1612;
+  text-shadow:
+    0 0 3px rgba(255, 248, 230, 0.80),
+    0 0 6px rgba(255, 248, 230, 0.55);
+}}
+[data-theme="v1"] .tl-bar.tl-bar-9_thaler,
+[data-theme="v2"] .tl-bar.tl-bar-9_thaler,
+[data-theme="v1"] .tl-bar.tl-bar-9_thaler .tl-bar-label-float,
+[data-theme="v2"] .tl-bar.tl-bar-9_thaler .tl-bar-label-float {{
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.75),
+    0 0 6px rgba(0, 0, 0, 0.50);
+}}
+
+/* Reichsgoldmünzfuß sits flush against the right edge of the timeline
+   (1871–1914 = ~12 % wide at the far right). Its bar_label «1871 —
+   1914 · 43 Jahre» is wider than the bar itself, so the centred float-
+   label would overflow past the timeline's right edge. Anchor the
+   right edge of the label to the right edge of the bar so it extends
+   leftward instead. */
+.tl-bar.tl-bar-reichsgoldmuenzfuss .tl-bar-label-float {{
+  left: auto;
+  right: 0;
+  transform: translateY(-50%);
+}}
 
 /* --- Period × scope layers ----------------------------------------------- */
 /* The .tl-bar with `tl-bar-layered` becomes a transparent label-only box;
