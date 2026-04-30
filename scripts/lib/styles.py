@@ -1862,7 +1862,17 @@ footer a:hover {{ color: var(--accent); }}
 
 /* --- Tooltips (data-tooltip="…" on any element) ------------------------- */
 
-[data-tooltip]:not(.tl-phase):not(.tl-bar) {{ position: relative; }}
+/* Default `position: relative` for any `[data-tooltip]` so the tooltip
+   ::after pseudo-element has a positioning context. Excluded:
+   - `.tl-phase` and `.tl-bar` keep their explicit `position: absolute`
+     (they're laid out within `.tl-track`).
+   - `.tl-bar-layer` likewise — added when each layer got its own
+     per-period tooltip; without this exclusion the rule's higher
+     specificity (one attribute + two `:not` classes vs the layer's
+     single class) clobbers the layer's `position: absolute`, the
+     layer falls back to flow-positioning at zero intrinsic height,
+     and the entire timeline visually empties out. */
+[data-tooltip]:not(.tl-phase):not(.tl-bar):not(.tl-bar-layer) {{ position: relative; }}
 [data-tooltip]:hover::after {{
   content: attr(data-tooltip);
   position: absolute;
