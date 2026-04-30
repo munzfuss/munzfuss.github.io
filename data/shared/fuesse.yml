@@ -108,14 +108,12 @@ reichsdukatenfuss:
       note: anywhere = first imperial dukaten under the 1559 ordinance. H first-mint ≈ 1640 = first Glückstadt-Tönning Dukaten under Frederik III.
     last_mint:
       anywhere: 1871
-      holstein: 1813
-      approx_holstein: true
-      note: anywhere = last German Reichsdukaten before Reichsmünzgesetz. H last-mint ≈ 1813 = closure of the Glückstadt mint.
+      holstein: 1802
+      note: anywhere = last German Reichsdukaten before Reichsmünzgesetz. H last-mint 1802 = KM#650 Christian VII Altona-Dukat 1791-1802. The Glückstadt mint operated until 1812 but no later Reichsdukatenfuß-Dukat is documented from a Holstein mint.
     std_end:
       anywhere: 1871
-      holstein: 1813
-      approx_holstein: true
-      note: anywhere = Reichsmünzgesetz 4. Dec 1871 superseded the Dukatenfuß. H std_end coincides with the H last-mint (no Holstein-specific reform).
+      holstein: 1871
+      note: Reichsmünzgesetz 4. Dec 1871 superseded the Dukatenfuß Reich-wide; Holstein, as part of the Empire, exits the standard at the same date — no separate Holstein-specific reform.
     demonetisation:
       anywhere: 1871
       holstein: 1871
@@ -368,9 +366,9 @@ reichsdukatenfuss:
       holstein: 1567
     last_mint:
       anywhere: 1764
-      holstein: 1625
+      holstein: 1683
       approx_anywhere: true
-      note: anywhere last-mint ~1764 = late Hamburg Speciesthaler. H last-mint 1625 = end of Holstein-Gottorp 9-Thaler issuance under Friedrich III.
+      note: anywhere last-mint ~1764 = late Hamburg Speciesthaler. H last-mint 1683 = KM#105 (Christian V, Glückstadt) — a one-off 9-Fuß Reichsthaler outside the 9¼-Fuß-Holstein-mainline (Hede c5h120). Mainstream Holstein 9-Thaler issuance ended 1625 with Friedrich III's switch — see std_end.
     std_end:
       anywhere: 1857
       holstein: 1622
@@ -379,8 +377,8 @@ reichsdukatenfuss:
     demonetisation:
       anywhere: 1875
       holstein: 1625
+      note: anywhere demon = Reichsmünzgesetz aftermath 1875. H demon ≈ 1625 — once Friedrich III. switched to 9¼-Fuß, old 9-Thaler-Fuß issues were no longer current locally; the KM#105 1683 Reichsthaler is a one-off late strike, not a continuation of legal-tender 9-Fuß circulation.
       approx_holstein: true
-      note: anywhere demon = Reichsmünzgesetz aftermath 1875. H demon ≈ 1625 — once Friedrich III. switched, old 9-Thaler issues were no longer current.
     anywhere_label:
       de: Heiliges Römisches Reich, danach Hamburger Bank-Mark + Lübecker Speciemark
       en: Holy Roman Empire, then Hamburg Bank-Mark + Lübeck Speciemark
@@ -489,7 +487,8 @@ reichsdukatenfuss:
       note: Forordning Kurantmøntfod 1726.
     first_mint:
       anywhere: 1726
-      holstein: 1726
+      holstein: 1771
+      note: Forordning Kurantmøntfod 1726 set the standard but Holstein had no local Kurantmøntfod mint until the Altona Royal Mint opened in 1771 (Christian VII). Pre-1771 Kurantmøntfod for Holstein came from Copenhagen.
     last_mint:
       anywhere: 1813
       holstein: 1788
@@ -1336,7 +1335,7 @@ reichsgoldmuenzfuss:
     uk: |-
       Закон про монету від 4 грудня 1871 р.: спільний золотий стандарт Німецької імперії. 1 кг чистого золота = 2790 марок · проба 900 ‰. Золоті монети у 5, 10 і 20 Mark; у Гольштейні власних карбувань немає (двір в Альтоні закритий 1863 р.). Золотий розмін призупинено на початку війни 4 серпня 1914 р.; формально замінено 1924 р. Reichsmark / Rentenmark.
   fractions:
-    "5":  {soll_rau_g: 1.99124, soll_fein_g: 1.79211}    # 5 Mark
+    "5": {soll_rau_g: 1.99124, soll_fein_g: 1.79211}     # 5 Mark
     "10": {soll_rau_g: 3.98248, soll_fein_g: 3.58423}    # 10 Mark / Krone
     "20": {soll_rau_g: 7.96496, soll_fein_g: 7.16846}    # 20 Mark / Doppelkrone
 
