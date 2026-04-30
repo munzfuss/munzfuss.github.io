@@ -70,6 +70,96 @@ class LocationTree:
     fuesse: list[FussGroup] = field(default_factory=list)
 
 
+def compute_bar_layers(
+    bars: list,
+    fuesse: dict,
+    tl_year_from: int,
+    tl_year_to: int,
+) -> dict[str, list[dict]]:
+    """For each timeline bar, derive the up-to-six period × scope layers
+    (mint × {anywhere, holstein}, status × {anywhere, holstein},
+    circulation × {anywhere, holstein}) from its `events` block, falling
+    back to the matching Fuss in `fuesse` when the bar itself doesn't carry
+    events. Returns a dict `bar_id → [layer, ...]` sorted by length DESC
+    (longest first → bottom of the visual stack), with `left_pct` /
+    `width_pct` pre-computed for the timeline track.
+
+    A layer has shape:
+      {
+        "kind":      "mint" | "status" | "circulation",
+        "scope":     "anywhere" | "holstein",
+        "first":     int,
+        "last":      int,
+        "length":    int,                 # last - first
+        "left_pct":  float (0..100),
+        "width_pct": float (0..100),
+      }
+
+    Layers with first/last == None (e.g. holstein-side of a Copenhagen-only
+    standard, or no-local-mint stopes like Vereinsthaler in H) are skipped
+    — the result only contains layers that have a real year range.
+    """
+    out: dict[str, list[dict]] = {}
+    tl_span = tl_year_to - tl_year_from
+    if tl_span <= 0:
+        return out
+
+    for bar in bars:
+        events = getattr(bar, "events", None)
+        if events is None and bar.id in fuesse:
+            events = getattr(fuesse[bar.id], "events", None)
+        if events is None:
+            out[bar.id] = []
+            continue
+
+        layers: list[dict] = []
+
+        def _add(kind: str, scope: str, first, last):
+            if first is None or last is None:
+                return
+            layers.append({
+                "kind": kind,
+                "scope": scope,
+                "first": first,
+                "last": last,
+                "length": last - first,
+            })
+
+        # mint = [first_mint, last_mint]
+        fm, lm = events.first_mint, events.last_mint
+        if fm and lm:
+            _add("mint", "anywhere", fm.anywhere, lm.anywhere)
+            _add("mint", "holstein", fm.holstein, lm.holstein)
+
+        # status = [first_adoption, std_end]
+        fa, se = events.first_adoption, events.std_end
+        if fa and se:
+            _add("status", "anywhere", fa.anywhere, se.anywhere)
+            _add("status", "holstein", fa.holstein, se.holstein)
+
+        # circulation = [first_adoption, demonetisation]
+        de = events.demonetisation
+        if fa and de:
+            _add("circulation", "anywhere", fa.anywhere, de.anywhere)
+            _add("circulation", "holstein", fa.holstein, de.holstein)
+
+        # Sort by length DESC so the longest layer is rendered first
+        # (DOM order = bottom of stack); the shortest paints last (= on top).
+        layers.sort(key=lambda l: l["length"], reverse=True)
+
+        for l in layers:
+            raw_left  = (l["first"] - tl_year_from) / tl_span * 100
+            raw_right = (l["last"]  - tl_year_from) / tl_span * 100
+            cl = max(raw_left, 0.0)
+            cr = min(raw_right, 100.0)
+            l["left_pct"]  = round(cl, 2)
+            l["width_pct"] = round(cr - cl, 2)
+
+        out[bar.id] = layers
+
+    return out
+
+
 def categorize(
     location: Location,
     computed_coins: list[ComputedCoin],

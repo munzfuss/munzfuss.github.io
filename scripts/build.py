@@ -26,7 +26,7 @@ from pydantic import ValidationError
 sys.path.insert(0, str(Path(__file__).parent))
 
 from lib import i18n
-from lib.categorize import categorize
+from lib.categorize import categorize, compute_bar_layers
 from lib.compute import compute_location
 from lib.render import build_env, generate_css
 from lib.schema import Location, Fuss, I18nText
@@ -150,7 +150,16 @@ def build_location(
         dump_debug_computed(loc.id, computed)
     
     tree = categorize(loc, computed, fuesse)
-    
+
+    # Pre-compute the up-to-six period × scope layers for each timeline bar.
+    # Empty when this location has no timeline (e.g. lubeck stub).
+    bar_layers = {}
+    if loc.timeline:
+        bar_layers = compute_bar_layers(
+            loc.timeline.bars, fuesse,
+            loc.timeline.year_from, loc.timeline.year_to,
+        )
+
     # Resolve references (from sidecar YAML) if present
     references_data = getattr(loc, '_references_data', None)
     
@@ -182,6 +191,7 @@ def build_location(
             repo_url=repo_url,
             base_url=base_url,
             issuing_entities=issuing_entities or {},
+            bar_layers=bar_layers,
             ui_get=lambda k, l=lang: i18n.ui_get(ui, k, l),
             t=lambda v, l=lang: i18n.t(v, l),
             fmt_num=lambda v, **kw: i18n.fmt_num(v, lang, **kw),

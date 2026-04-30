@@ -338,7 +338,7 @@
 <div class="tl">
   <div class="tl-title">{{ tl.title|t(lang) }}</div>
   <div class="tl-grid">
-    {%- macro tl_bar_html(bar, tl, tl_span, lang, extra_class='') -%}
+    {%- macro tl_bar_html(bar, tl, tl_span, lang, extra_class='', layers=None) -%}
       {%- set raw_left  = (bar.year_from - tl.year_from) / tl_span * 100 -%}
       {%- set raw_right = (bar.year_to   - tl.year_from) / tl_span * 100 -%}
       {%- set clamped_left  = [raw_left, 0]  | max -%}
@@ -355,7 +355,21 @@
          Keeps narrow bars (e.g. 30-Thaler-Fuß · Vereinsthaler 1866–1871) from
          rendering as bare swatches with no temporal info. #}
       {%- set _label = bar.bar_label|t(lang) if bar.bar_label else (bar.year_from|string + '—' + bar.year_to|string) -%}
-      <div class="tl-bar tl-bar-{{ bar.id }} {{ bar.color_class }}{% if bar.dashed %} tl-bar-dashed{% endif %}{% if raw_left < 0 %} tl-bar-cut-left{% endif %}{% if raw_right > 100 %} tl-bar-cut-right{% endif %}{% if narrow %} tl-bar-narrow{% endif %} {{ extra_class }}"
+      {# When the bar has period × scope layers (mint / status / circulation
+         × anywhere / holstein), render them as siblings BEFORE the .tl-bar
+         so they paint underneath the label. Each layer is a flat-colour
+         block at 1/6 alpha with `mix-blend-mode: plus-lighter`, so 6
+         overlapping layers sum to the full base colour and any subset
+         renders proportionally fainter. The .tl-bar itself becomes a
+         transparent label-only box (no gradient) when layers are present. #}
+      {%- if layers -%}
+        {%- for layer in layers -%}
+          <div class="tl-bar-layer {{ bar.color_class }} tl-bar-layer-{{ layer.kind }} tl-bar-layer-{{ layer.scope }}"
+               style="left:{{ layer.left_pct }}%;width:{{ layer.width_pct }}%"
+               aria-hidden="true"></div>
+        {%- endfor -%}
+      {%- endif -%}
+      <div class="tl-bar tl-bar-{{ bar.id }} {{ bar.color_class }}{% if layers %} tl-bar-layered{% endif %}{% if bar.dashed %} tl-bar-dashed{% endif %}{% if raw_left < 0 %} tl-bar-cut-left{% endif %}{% if raw_right > 100 %} tl-bar-cut-right{% endif %}{% if narrow %} tl-bar-narrow{% endif %} {{ extra_class }}"
            style="left:{{ left_pct }}%;width:{{ width_pct }}%"
            {% if bar.bar_title %}data-tooltip="{{ bar.bar_title|t(lang) }}"{% endif %}>
         {%- if narrow -%}
@@ -395,9 +409,9 @@
         {% endfor %}
       </div>
       <div class="tl-track{% if primary.compact %} tl-track-compact{% endif %}">
-        {{ tl_bar_html(primary, tl, tl_span, lang) }}
+        {{ tl_bar_html(primary, tl, tl_span, lang, layers=bar_layers.get(primary.id, []) if bar_layers else []) }}
         {% for ov in group.overlays %}
-          {{ tl_bar_html(ov, tl, tl_span, lang, 'tl-bar-overlay') }}
+          {{ tl_bar_html(ov, tl, tl_span, lang, 'tl-bar-overlay', layers=bar_layers.get(ov.id, []) if bar_layers else []) }}
         {% endfor %}
         {# Phase sub-divisions are intentionally NOT rendered on the timeline
            — that level of detail belongs in the per-fuss section below where

@@ -21,23 +21,32 @@ FONT_IMPORTS = """\
 """
 
 
+def _hex_to_rgb(hex_str: str) -> tuple[int, int, int]:
+    """`#abcdef` → `(171, 205, 239)`. Tolerant of leading `#` only."""
+    s = hex_str.lstrip("#")
+    return (int(s[0:2], 16), int(s[2:4], 16), int(s[4:6], 16))
+
+
 def _timeline_bars_css(bars: dict) -> str:
     """Theme-agnostic timeline-bar palette generated from theme.yml.
 
-    Emits three rules per palette:
-      • a default `.tl-bar.{palette}` with `linear-gradient(90deg, from, to)`
-      • a Noir-only override that swaps from/to (so the brighter end
-        sits on the left of the bar against the dark page) — applied
-        to every bar EXCEPT `.tl-bar-reichsdukatenfuss`, which has its
-        own already-swapped gradient defined later in the stylesheet.
-      • an Atlas/Codex override that swaps from/to on every bar (no
-        exceptions) so the brighter end sits on the left of the bar
-        against the cream paper.
+    For every palette key (rt / si / sh / kr / krm / vt / rm / g / …) emits:
+      • foreground / weight rules on `.tl-bar.{palette}` (no background —
+        the colour comes from layered `.tl-bar-layer` siblings now).
+      • flat-colour `.tl-bar-layer.{palette}` rules using the brighter
+        `to` colour at 1/6 alpha (~0.1667). Combined with the layer's
+        `mix-blend-mode: plus-lighter`, six overlapping layers sum to the
+        original full colour, and any subset renders proportionally
+        fainter — providing the visual decomposition of the period ×
+        scope grid (mint / status / circulation × anywhere / holstein).
+      • a kept-as-fallback gradient on `.tl-bar.{palette}:not(.tl-bar-layered)`
+        so any bar that doesn't yet carry events still renders as before.
     """
     out = []
     noir_selector = (
         ':root:not([data-theme="v1"]):not([data-theme="v2"])'
     )
+    alpha = 1 / 6  # six layers stacking with plus-lighter sum to alpha=1
     for bar_id, conf in bars.items():
         extras = []
         if conf.get("fg"):
@@ -45,17 +54,29 @@ def _timeline_bars_css(bars: dict) -> str:
         if conf.get("weight"):
             extras.append(f"font-weight: {conf['weight']};")
         extras_str = " " + " ".join(extras) if extras else ""
+
+        # Foreground / weight on `.tl-bar.{palette}` (no background here).
+        if extras_str.strip():
+            out.append(f".tl-bar.{bar_id} {{{extras_str} }}")
+
+        # Layer-colour rule. Use the brighter `to` colour as the base —
+        # six summed layers reproduce that colour at full opacity.
+        r, g, b = _hex_to_rgb(conf["to"])
         out.append(
-            f".tl-bar.{bar_id} {{ background: linear-gradient(90deg, {conf['from']}, {conf['to']});{extras_str} }}"
+            f".tl-bar-layer.{bar_id} {{ background: rgba({r}, {g}, {b}, {alpha:.4f}); }}"
         )
-        # Noir-only reversed gradient (skip Reichsdukatenfuß — handled
-        # separately so its gold gradient stays the timeline focal point).
+
+        # Fallback gradient kept for bars without layers (no events data).
         out.append(
-            f"{noir_selector} .tl-bar.{bar_id}:not(.tl-bar-reichsdukatenfuss) {{ background: linear-gradient(90deg, {conf['to']}, {conf['from']}); }}"
+            f".tl-bar.{bar_id}:not(.tl-bar-layered) {{ background: linear-gradient(90deg, {conf['from']}, {conf['to']}); }}"
         )
-        # Atlas/Codex reversed gradient (no exceptions).
+        # Noir-only reversed fallback gradient (skip Reichsdukatenfuß).
         out.append(
-            f'[data-theme="v1"] .tl-bar.{bar_id}, [data-theme="v2"] .tl-bar.{bar_id} {{ background: linear-gradient(90deg, {conf["to"]}, {conf["from"]}); }}'
+            f"{noir_selector} .tl-bar.{bar_id}:not(.tl-bar-layered):not(.tl-bar-reichsdukatenfuss) {{ background: linear-gradient(90deg, {conf['to']}, {conf['from']}); }}"
+        )
+        # Atlas/Codex reversed fallback gradient.
+        out.append(
+            f'[data-theme="v1"] .tl-bar.{bar_id}:not(.tl-bar-layered), [data-theme="v2"] .tl-bar.{bar_id}:not(.tl-bar-layered) {{ background: linear-gradient(90deg, {conf["to"]}, {conf["from"]}); }}'
         )
     return "\n".join(out)
 
@@ -696,6 +717,10 @@ h2[style] {{
   border: var(--hairline) solid var(--border);
   box-shadow: inset 0 0 0 1px rgba(212,168,90,0.04);
 }}
+/* Isolate the track's stacking context so `mix-blend-mode: plus-lighter`
+   on `.tl-bar-layer` children only composites within this track and does
+   not bleed onto sibling timeline rows or the page background. */
+.tl-track {{ isolation: isolate; }}
 [data-theme="v1"] .tl-track {{
   background: rgba(163, 124, 44, 0.05);
   border: var(--hairline) solid var(--border-soft);
@@ -757,6 +782,30 @@ h2[style] {{
   text-shadow: none;
 }}
 [data-theme="v3"] .tl-bar {{ box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset; }}
+
+/* --- Period × scope layers ----------------------------------------------- */
+/* The .tl-bar with `tl-bar-layered` becomes a transparent label-only box;
+   the bar's colour comes from up to six `.tl-bar-layer` siblings rendered
+   BEFORE it inside the same .tl-track. Each layer paints a flat colour at
+   1/6 alpha; with `mix-blend-mode: plus-lighter` six overlapping layers
+   sum back to the original full colour, while any subset renders fainter. */
+.tl-bar.tl-bar-layered {{
+  background: transparent !important;
+  box-shadow: none;
+}}
+.tl-bar-layer {{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+  mix-blend-mode: plus-lighter;
+  /* No border-radius on layers — the parent .tl-bar paints the rounded
+     corners via its own border-radius; layers inside align to its edges. */
+}}
+/* On Atlas (cream paper) plus-lighter on dark layer colours doesn't lift
+   to the saturated `to` colour by addition — `lighten` would clip. We
+   accept slightly muted Atlas/Codex colours; the period decomposition is
+   the point, not perfect colour fidelity across themes. */
 /* Codex: every bar carries the same font-weight as the `g` palette
    (Guldkrone-Fuß / Reichsdukatenfuß), so monospace digits read with a
    uniform stroke width across the whole timeline — no narrow vs bold
@@ -804,12 +853,12 @@ h2[style] {{
    is applied as an inset box-shadow that fills the entire bar with a
    ~30 % cream layer over the existing gradient — keeps the bar's
    colour identity but softens it to match the surrounding paper. */
-[data-theme="v1"] .tl-bar-reichsdukatenfuss,
-[data-theme="v2"] .tl-bar-reichsdukatenfuss,
-[data-theme="v1"] .tl-bar-9_thaler,
-[data-theme="v2"] .tl-bar-9_thaler,
-[data-theme="v1"] .tl-bar-kronemont,
-[data-theme="v2"] .tl-bar-kronemont {{
+[data-theme="v1"] .tl-bar-reichsdukatenfuss:not(.tl-bar-layered),
+[data-theme="v2"] .tl-bar-reichsdukatenfuss:not(.tl-bar-layered),
+[data-theme="v1"] .tl-bar-9_thaler:not(.tl-bar-layered),
+[data-theme="v2"] .tl-bar-9_thaler:not(.tl-bar-layered),
+[data-theme="v1"] .tl-bar-kronemont:not(.tl-bar-layered),
+[data-theme="v2"] .tl-bar-kronemont:not(.tl-bar-layered) {{
   box-shadow:
     inset 0 0 0 0.5px rgba(0,0,0,0.30),
     inset 0 0 0 999px rgba(255, 248, 230, 0.30);
@@ -819,8 +868,10 @@ h2[style] {{
    brighter gold sits on the left rather than the right (which on the
    dark Noir backdrop reads as the bar receding into shadow toward the
    later years rather than starting in shadow). Light themes keep the
-   default left-dark / right-bright direction. */
-:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar-reichsdukatenfuss {{
+   default left-dark / right-bright direction.
+   Scoped to :not(.tl-bar-layered) so the gradient is dropped when the
+   bar is decomposed into period × scope layers. */
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar-reichsdukatenfuss:not(.tl-bar-layered) {{
   background: linear-gradient(90deg, #fcd34d, #5c4a00);
 }}
 
