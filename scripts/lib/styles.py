@@ -715,7 +715,14 @@ h2[style] {{
   font-size: 11px;
   color: rgba(255,255,255,0.92);
   white-space: nowrap;
-  overflow: hidden;
+  /* `overflow: visible` (was `hidden`) so the `::after` tooltip popup
+     can escape the bar's box. With `hidden` set, wide bars (those
+     without the .tl-bar-narrow class) clipped their tooltips to the
+     bar's own ~40 px height, hiding the popup. The bar itself still
+     visually fills only its `style="left:X%; width:Y%"` area because
+     padding + flex layout keeps year text inside; nothing else
+     extends beyond. */
+  overflow: visible;
   box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.30);
   letter-spacing: 0.02em;
   cursor: text;
@@ -1813,6 +1820,24 @@ footer a:hover {{ color: var(--accent); }}
 [data-theme="v2"] [data-tooltip]:hover::after {{
   background: #2a2520;
   color: #ece4d2;
+}}
+
+/* Edge anchoring for tooltips on the leftmost / rightmost timeline bars.
+   The default `left: 50%; transform: translateX(-50%)` centers the
+   ::after card on the bar. For a bar sitting flush against the left
+   or right edge of the timeline (Reichsdukatenfuß ≈ 1559–1625 on the
+   far left; Reichsgoldmünzfuß 1871–1914 on the far right), centering
+   pushes ~160 px (half of the 320 px max-width) past the timeline's
+   own width, where the surrounding section padding clips it.
+   Anchor the tooltip's near edge to the bar's near edge instead. */
+.tl-bar.tl-bar-reichsgoldmuenzfuss[data-tooltip]:hover::after {{
+  left: auto;
+  right: 0;
+  transform: none;
+}}
+.tl-bar.tl-bar-reichsdukatenfuss[data-tooltip]:hover::after {{
+  left: 0;
+  transform: none;
 }}
 
 /* --- Phase strip (timeline mini-phases) — preserved as-is from prior CSS - */
