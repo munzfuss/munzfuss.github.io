@@ -896,16 +896,35 @@ h2[style] {{
    shadow is too soft against a near-black backdrop — text reads as
    "ungrounded white" with no perceivable halo. Bumped to 0.85/0.60.
 
-   Explicitly excludes the `g` (gold / Reichsdukatenfuß) and `rm`
-   (Reichsgoldmünzfuß) palettes — those carry DARK fg text per
-   theme.yml, with their own cream halo set on `.tl-bar.g, .tl-bar.rm`
-   above. A dark halo behind dark text would merge into the digit
-   strokes and erase the contrast. */
-:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.tl-bar-layered:not(.g):not(.rm),
-:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.tl-bar-layered:not(.g):not(.rm) .tl-bar-label-float {{
+   Explicitly excludes the palettes whose Noir treatment is DARK text
+   on a CREAM halo (the legible direction for dark digits over a
+   coloured layered fill):
+     • g  — gold / Reichsdukatenfuß
+     • rm — Reichsgoldmünzfuß
+     • si — 9¼-Thaler-Fuß       (set to dark+cream just below)
+     • rb — 18½-Thaler-Fuß      (set to dark+cream just below) */
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.tl-bar-layered:not(.g):not(.rm):not(.si):not(.rb),
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.tl-bar-layered:not(.g):not(.rm):not(.si):not(.rb) .tl-bar-label-float {{
   text-shadow:
     0 0 3px rgba(0, 0, 0, 0.85),
     0 0 6px rgba(0, 0, 0, 0.60);
+}}
+
+/* Noir-only: 9¼-Thaler-Fuß (.si) and 18½-Thaler-Fuß (.rb) — DARK text
+   + cream halo, matching the Reichsdukatenfuß (.g) treatment. Their
+   layered-fill silver tones blend with white digits on the Noir
+   track; dark digits + cream halo gives a strong readable contrast.
+   Light themes already handle .si separately; .rb keeps the default
+   white-text behaviour on light themes (its layered fill there is a
+   warm light silver, white-on-light is fine). */
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.si,
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.rb,
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.si .tl-bar-label-float,
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.rb .tl-bar-label-float {{
+  color: #1a1612;
+  text-shadow:
+    0 0 3px rgba(255, 248, 230, 0.85),
+    0 0 6px rgba(255, 248, 230, 0.60);
 }}
 
 /* Per-bar text-colour overrides on light themes (Atlas v1, Codex v2):
