@@ -216,6 +216,19 @@ class Coin(BaseModel):
     year_label: str
     year_first: int
     year_last: int | None = None
+    year_ranges: list[list[int]] | None = Field(
+        None,
+        description=(
+            "Optional list of explicit `[first, last]` minted-year sub-ranges "
+            "for coins NOT struck continuously across [year_first, year_last]. "
+            "Use when Numista (or any source) shows actual struck years are "
+            "sparse — e.g. KM#75 N#313684 spans 1625-1657 in the summary but "
+            "was actually struck only 1625-1626, 1635-1636, 1656-1657. When "
+            "set, the per-year mintage marker on the timeline iterates "
+            "year_ranges (NOT [year_first, year_last]) so the visualization "
+            "and tooltip counts reflect real minting activity."
+        ),
+    )
     ruler: str | None = None
     mint: str | None = None
     mint_verified: bool = True
@@ -239,6 +252,33 @@ class Coin(BaseModel):
     sources: list[Source] = Field(default_factory=list)
     verified: bool = True
     verification_note: I18nText | None = None
+
+    @model_validator(mode="after")
+    def _check_year_ranges(self):
+        """If `year_ranges` is set: validate well-formed [first, last] pairs
+        and confirm that `year_first` / `year_last` envelope the union."""
+        if self.year_ranges is None:
+            return self
+        if not self.year_ranges:
+            raise ValueError(f"coin {self.id}: year_ranges must be non-empty if set")
+        for r in self.year_ranges:
+            if len(r) != 2 or not all(isinstance(x, int) for x in r):
+                raise ValueError(f"coin {self.id}: each year_ranges item must be [first:int, last:int]")
+            if r[1] < r[0]:
+                raise ValueError(f"coin {self.id}: year_ranges item {r}: last < first")
+        rmin = min(r[0] for r in self.year_ranges)
+        rmax = max(r[1] for r in self.year_ranges)
+        if self.year_first != rmin:
+            raise ValueError(
+                f"coin {self.id}: year_first ({self.year_first}) must equal "
+                f"min(year_ranges) ({rmin})"
+            )
+        if self.year_last is None or self.year_last != rmax:
+            raise ValueError(
+                f"coin {self.id}: year_last ({self.year_last}) must equal "
+                f"max(year_ranges) ({rmax})"
+            )
+        return self
 
 
 class TimelineBar(BaseModel):
