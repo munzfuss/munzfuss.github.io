@@ -1259,8 +1259,8 @@ reichsgoldmuenzfuss:
     en: Reichsgoldmünzfuß
     uk: Reichsgoldmünzfuß
   metal: gold
-  grid_unit_g: 1000.0    # 1 kg Feingold per Münzgesetz 4. Dez. 1871
-  grid_stops: 2790       # 2790 Mark je kg Feingold
+  grid_unit_g: 500.0     # 1 Zollpfund Feingold (vom Wiener Münzvertrag 1857 übernommen)
+  grid_stops: 1395       # «aus 1 Pfund Feingold werden 139½ Zehnmarkstücke ausgeprägt» (Münzgesetz 4. Dez. 1871) = 1395 Mark
   fineness_standard: 0.900
   fineness_display: "900 ‰"
   grundwerte:
@@ -1269,9 +1269,9 @@ reichsgoldmuenzfuss:
       en: "Base values · Gold Mark"
       uk: "Базові значення · Goldmark"
     subheading:
-      de: "Münzgesetz vom 4. Dezember 1871 · 1 kg Feingold = 2790 Mark · Feingehalt 900 ‰ · gemeinsamer Goldstandard des Deutschen Kaiserreichs"
-      en: "Coinage Act of 4 December 1871 · 1 kg fine gold = 2,790 Mark · 900 ‰ fineness · the common gold standard of the German Empire"
-      uk: "Закон про монету від 4 грудня 1871 р. · 1 кг чистого золота = 2790 марок · проба 900 ‰ · спільний золотий стандарт Німецької імперії"
+      de: "Münzgesetz vom 4. Dezember 1871 · 1 Zollpfund (500 g) Feingold = 139½ Zehnmarkstücke = 1395 Mark · Feingehalt 900 ‰ · gemeinsamer Goldstandard des Deutschen Kaiserreichs"
+      en: "Coinage Act of 4 December 1871 · 1 Zollpfund (500 g) of fine gold = 139½ ten-Mark pieces = 1,395 Mark · 900 ‰ fineness · the common gold standard of the German Empire"
+      uk: "Закон про монету від 4 грудня 1871 р. · 1 цольфунт (500 г) чистого золота = 139½ десятимаркових монет = 1395 марок · проба 900 ‰ · спільний золотий стандарт Німецької імперії"
     badge:
       de: "Müntzfuß · Gold"
       en: "Müntzfuß · Gold"
@@ -1282,9 +1282,9 @@ reichsgoldmuenzfuss:
           en: "Fine weight, 20 Mark"
           uk: "Чиста вага 20 Mark"
         value:
-          de: "<b>7,16846 g</b> Feingold (= 1000 × 20 / 2790) · 7,96496 g rau bei 900 ‰"
-          en: "<b>7.16846 g</b> fine gold (= 1000 × 20 / 2790) · 7.96496 g rough at 900‰"
-          uk: "<b>7,16846 г</b> чистого золота (= 1000 × 20 / 2790) · 7,96496 г повної ваги при 900 ‰"
+          de: "<b>7,16846 g</b> Feingold (= 500 × 20 / 1395) · 7,96496 g rau bei 900 ‰"
+          en: "<b>7.16846 g</b> fine gold (= 500 × 20 / 1,395) · 7.96496 g rough at 900‰"
+          uk: "<b>7,16846 г</b> чистого золота (= 500 × 20 / 1395) · 7,96496 г повної ваги при 900 ‰"
       - key:
           de: "Untertheilung"
           en: "Subdivisions"
@@ -1326,14 +1326,15 @@ reichsgoldmuenzfuss:
   description:
     de: |
       Münzgesetz vom 4. Dezember 1871: gemeinsamer Goldstandard des Deutschen
-      Kaiserreichs. 1 kg Feingold = 2790 Mark · 900 ‰ Feingehalt. Gold-
-      münzen zu 5, 10 und 20 Mark; in Holstein keine eigenen Prägungen
-      (Altona-Münze geschlossen 1863). Goldsuspendierung bei Kriegsbeginn
-      4. August 1914; formal abgelöst 1924 durch Reichsmark / Rentenmark.
+      Kaiserreichs. Aus 1 Pfund (500 g) Feingold werden 139½ Zehnmarkstücke
+      = 1395 Mark ausgeprägt · 900 ‰ Feingehalt. Goldmünzen zu 5, 10 und
+      20 Mark; in Holstein keine eigenen Prägungen (Altona-Münze geschlossen
+      1863). Goldsuspendierung bei Kriegsbeginn 4. August 1914; formal
+      abgelöst 1924 durch Reichsmark / Rentenmark.
     en: |-
-      Coinage Act of 4 December 1871: the common gold standard of the German Empire. 1 kg fine gold = 2,790 Mark · 900‰ fineness. Gold coins of 5, 10 and 20 Mark; no Holstein issues (the Altona mint closed in 1863). Gold-redemption suspended at the outbreak of war on 4 August 1914; formally replaced in 1924 by the Reichsmark / Rentenmark.
+      Coinage Act of 4 December 1871: the common gold standard of the German Empire. From 1 Pfund (500 g) of fine gold, 139½ ten-Mark pieces = 1,395 Mark are struck · 900‰ fineness. Gold coins of 5, 10 and 20 Mark; no Holstein issues (the Altona mint closed in 1863). Gold-redemption suspended at the outbreak of war on 4 August 1914; formally replaced in 1924 by the Reichsmark / Rentenmark.
     uk: |-
-      Закон про монету від 4 грудня 1871 р.: спільний золотий стандарт Німецької імперії. 1 кг чистого золота = 2790 марок · проба 900 ‰. Золоті монети у 5, 10 і 20 Mark; у Гольштейні власних карбувань немає (двір в Альтоні закритий 1863 р.). Золотий розмін призупинено на початку війни 4 серпня 1914 р.; формально замінено 1924 р. Reichsmark / Rentenmark.
+      Закон про монету від 4 грудня 1871 р.: спільний золотий стандарт Німецької імперії. З 1 фунта (500 г) чистого золота карбують 139½ десятимаркових монет = 1395 марок · проба 900 ‰. Золоті монети у 5, 10 і 20 Mark; у Гольштейні власних карбувань немає (двір в Альтоні закритий 1863 р.). Золотий розмін призупинено на початку війни 4 серпня 1914 р.; формально замінено 1924 р. Reichsmark / Rentenmark.
   fractions:
     "5": {soll_rau_g: 1.99124, soll_fein_g: 1.79211}     # 5 Mark
     "10": {soll_rau_g: 3.98248, soll_fein_g: 3.58423}    # 10 Mark / Krone
