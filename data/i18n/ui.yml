@@ -348,13 +348,30 @@ tl.layer.mint:
   uk: "Карбування"
 tl.layer.status:
   de: "Amtlicher Münzfuß"
-  en: "Legal tender (current standard)"
-  uk: "Legal tender (чинний стандарт)"
+  en: "Legal tender"
+  uk: "Чинний стандарт"
 tl.layer.circulation:
   de: "Umlauf"
   en: "In circulation"
-  uk: "Перебування в обігу"
+  uk: "В обігу"
 tl.scope.holstein:
   de: "Holstein"
   en: "Holstein"
   uk: "Гольштейн"
+# Label used in the per-year mintage marker tooltip as a key:value
+# pair: «1640—1646 · Монет: 7» / «Coins: 7» / «Münzen: 7». Putting the
+# noun before a colon and the count after sidesteps Ukrainian/German
+# pluralisation entirely — the genitive-plural form is grammatically
+# valid for any count when used as a label («Of coins: 1»).
+tl.coin_year.coins:
+  de: "Münzen"
+  en: "Coins"
+  uk: "Монет"
+
+# Master «select all» chip in the timeline filter strip; sits to the
+# LEFT of the per-entity checkboxes and (once wired up interactively)
+# toggles every entity chip in one click.
+tl.filter.all:
+  de: "Alle"
+  en: "All"
+  uk: "Усі"

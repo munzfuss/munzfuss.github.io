@@ -26,7 +26,7 @@ from pydantic import ValidationError
 sys.path.insert(0, str(Path(__file__).parent))
 
 from lib import i18n
-from lib.categorize import categorize, compute_bar_layers
+from lib.categorize import categorize, compute_bar_layers, compute_coin_year_runs
 from lib.compute import compute_location
 from lib.render import build_env, generate_css
 from lib.schema import Location, Fuss, I18nText
@@ -151,12 +151,29 @@ def build_location(
     
     tree = categorize(loc, computed, fuesse)
 
+    # Per-location set of issuing entities that actually have coins here.
+    # The filter strip in the template iterates the global registry but
+    # SKIPS entries not in this set, so a chip with no coins to toggle
+    # (e.g. `prussian_province` in schleswig.yml) doesn't render at all.
+    active_entity_ids = {
+        c.issuing_entity for c in loc.coins if c.issuing_entity is not None
+    }
+
     # Pre-compute the up-to-six period × scope layers for each timeline bar.
     # Empty when this location has no timeline (e.g. lubeck stub).
     bar_layers = {}
+    coin_years = {}
     if loc.timeline:
         bar_layers = compute_bar_layers(
             loc.timeline.bars, fuesse,
+            loc.timeline.year_from, loc.timeline.year_to,
+        )
+        # Per-bar list of consecutive-year runs marking every year a coin
+        # was actually minted under that stope (per data/locations/<loc>.yml
+        # coin entries). Renders as 1-year-wide rectangles overlaid on the
+        # layered period × scope bar.
+        coin_years = compute_coin_year_runs(
+            loc.timeline.bars, computed,
             loc.timeline.year_from, loc.timeline.year_to,
         )
 
@@ -191,7 +208,9 @@ def build_location(
             repo_url=repo_url,
             base_url=base_url,
             issuing_entities=issuing_entities or {},
+            active_entity_ids=active_entity_ids,
             bar_layers=bar_layers,
+            coin_years=coin_years,
             ui_get=lambda k, l=lang: i18n.ui_get(ui, k, l),
             t=lambda v, l=lang: i18n.t(v, l),
             fmt_num=lambda v, **kw: i18n.fmt_num(v, lang, **kw),

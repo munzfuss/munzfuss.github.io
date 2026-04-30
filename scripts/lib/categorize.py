@@ -6,6 +6,7 @@ Produces nested structure: location → fuss → phase → kind → coins (sorte
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from itertools import combinations
 from typing import Any
 
 from .compute import ComputedCoin
@@ -68,6 +69,176 @@ class LocationTree:
     """Full categorized tree for a location."""
     location: Location
     fuesse: list[FussGroup] = field(default_factory=list)
+
+
+def compute_coin_year_runs(
+    bars: list,
+    computed_coins: list,
+    tl_year_from: int,
+    tl_year_to: int,
+) -> dict[str, list[dict]]:
+    """For each timeline bar, collect the set of years when at least one
+    coin was minted under that stope (per the location's coin entries),
+    collapse consecutive years into runs, and pre-compute left% / width%
+    for the timeline track.
+
+    A run has shape `{"first": int, "last": int, "coin_count": int,
+    "state": str, "left_pct": float, "width_pct": float}`. Each year a
+    `Coin` covers (year_first through year_last inclusive, or just
+    year_first if year_last is None) counts as one minting year for its
+    `fuss`.
+
+    Runs collapse consecutive years OF THE SAME `state` — where state is
+    either the year's single distinct issuing entity (`"royal_holstein"`,
+    `"gottorp_duchy"`, …) or the sentinel `"shared"` for years where
+    coins from more than one entity were minted (or where some coin
+    lacks an `issuing_entity` so the year cannot be cleanly attributed
+    to a single authority). A change of state breaks a run.
+
+    This split lets the renderer paint each year-marker in its issuing
+    entity's colour and merges multi-entity years into a neutral band,
+    while still merging consecutive same-state years to keep the DOM
+    small.
+    """
+    SHARED = "shared"
+    out: dict[str, list[dict]] = {}
+    tl_span = tl_year_to - tl_year_from
+    if tl_span <= 0:
+        return out
+
+    # Map fuss_id → year → entity_id (or None) → set of coin IDs.
+    # The full mapping per (fuss, year) lets us derive the year's state
+    # (single entity vs shared) AND count distinct coins per run, all
+    # without ever leaving the source `Coin` records.
+    by_fuss_year_ent: dict[str, dict[int, dict[str | None, set[str]]]] = {}
+    for cc in computed_coins:
+        c = cc.raw
+        # If the coin specifies sparse `year_ranges`, iterate only those
+        # sub-spans (so a 1625-1657 cataloged coin actually struck only
+        # 1625-1626, 1635-1636, 1656-1657 leaves the gap years bare).
+        # Otherwise fall back to a single [year_first, year_last] span.
+        if c.year_ranges:
+            ranges_iter = [(int(r[0]), int(r[1])) for r in c.year_ranges]
+        else:
+            yl = c.year_last if c.year_last is not None else c.year_first
+            f, l = (c.year_first, yl) if yl >= c.year_first else (yl, c.year_first)
+            ranges_iter = [(f, l)]
+        years_ent = by_fuss_year_ent.setdefault(c.fuss, {})
+        ent = c.issuing_entity  # may be None
+        for first, last in ranges_iter:
+            for y in range(first, last + 1):
+                if tl_year_from <= y <= tl_year_to:
+                    ent_map = years_ent.setdefault(y, {})
+                    ent_map.setdefault(ent, set()).add(c.id)
+
+    def _state_for(ent_map: dict) -> str:
+        """A year is `entity_id` if it has exactly one distinct entity
+        and no `None`-entity coin (an unattributed coin still poisons the
+        year into `shared`); otherwise it's `shared`. The latter covers:
+        - 2+ distinct entities in the same year
+        - 1+ entity plus an unattributed coin
+        - all coins unattributed (no clean entity → use neutral colour).
+        """
+        if len(ent_map) == 1:
+            only = next(iter(ent_map.keys()))
+            return only if only is not None else SHARED
+        return SHARED
+
+    def _collect_coins(ent_map: dict) -> set[str]:
+        s: set[str] = set()
+        for v in ent_map.values():
+            s |= v
+        return s
+
+    def _accumulate(target: dict, source: dict) -> None:
+        """Merge source `{entity_id_or_None → coin_id_set}` into target."""
+        for ent, ids in source.items():
+            target.setdefault(ent, set()).update(ids)
+
+    def _close_run(start: int, end: int, state: str,
+                   ent_sets: dict) -> dict:
+        """Build a run dict from accumulated per-entity coin sets.
+
+        For a run whose original entities are O = {e1, e2, …}, generate
+        a list of `variants` — one per non-empty subset of O (so 2^|O|−1
+        variants). At render time each variant becomes its own DOM div
+        sharing the same `[left_pct, width_pct]`; JS toggles visibility
+        per the «highest-match» rule: variant V is shown iff
+        `V == checked ∩ O` (and at least one of O is checked).
+
+        Single-entity runs: |O| = 1 → exactly one variant.
+        Shared runs:        |O| > 1 → 2^|O|−1 variants, allowing any
+                                       subset of selected filters to
+                                       address the rect precisely.
+        """
+        sorted_counts = sorted(
+            ((ent, len(s)) for ent, s in ent_sets.items()),
+            key=lambda x: (-x[1], x[0] or ""),
+        )
+        counts_map = {ent: cnt for ent, cnt in sorted_counts}
+        # Sorted alphabetically — same canonical order used by the JS
+        # `data-ents` / `data-orig` comparison (sorted-comma-join).
+        non_none_ents = sorted(e for e in counts_map if e is not None)
+
+        variants: list[dict] = []
+        for r in range(1, len(non_none_ents) + 1):
+            for subset in combinations(non_none_ents, r):
+                variants.append({
+                    "entities": list(subset),
+                    "entity_counts": [(e, counts_map[e]) for e in subset],
+                })
+
+        return {
+            "first": start,
+            "last": end,
+            "state": state,
+            "entity_counts": sorted_counts,
+            "coin_count": sum(len(s) for s in ent_sets.values()),
+            "orig_entities": non_none_ents,
+            "variants": variants,
+        }
+
+    for bar in bars:
+        years_ent = by_fuss_year_ent.get(bar.id, {})
+        if not years_ent:
+            out[bar.id] = []
+            continue
+
+        years = sorted(years_ent.keys())
+        runs: list[dict] = []
+        start = prev = years[0]
+        cur_state = _state_for(years_ent[start])
+        ent_sets: dict[str | None, set[str]] = {}
+        _accumulate(ent_sets, years_ent[start])
+
+        for y in years[1:]:
+            y_state = _state_for(years_ent[y])
+            if y == prev + 1 and y_state == cur_state:
+                prev = y
+                _accumulate(ent_sets, years_ent[y])
+            else:
+                runs.append(_close_run(start, prev, cur_state, ent_sets))
+                start = prev = y
+                cur_state = y_state
+                ent_sets = {}
+                _accumulate(ent_sets, years_ent[y])
+        runs.append(_close_run(start, prev, cur_state, ent_sets))
+
+        # The rect for year Y spans [Y, Y+1) on the timeline so that
+        # a single year reads as a 1-year-wide tick, and a run of
+        # N consecutive years reads as an N-year-wide band with no
+        # gap between adjacent runs.
+        for r in runs:
+            raw_left  = (r["first"] - tl_year_from) / tl_span * 100
+            raw_right = (r["last"]  - tl_year_from + 1) / tl_span * 100
+            cl = max(raw_left, 0.0)
+            cr = min(raw_right, 100.0)
+            r["left_pct"]  = round(cl, 3)
+            r["width_pct"] = round(cr - cl, 3)
+
+        out[bar.id] = runs
+
+    return out
 
 
 def compute_bar_layers(
@@ -156,8 +327,13 @@ def compute_bar_layers(
         layers.sort(key=lambda l: l["length"], reverse=True)
 
         for l in layers:
-            raw_left  = (l["first"] - tl_year_from) / tl_span * 100
-            raw_right = (l["last"]  - tl_year_from) / tl_span * 100
+            # `last + 1` because a year is a 1-year-wide block, not a
+            # point on the axis: a layer running through year 1696 must
+            # cover [1696, 1697) so its right edge lines up with the
+            # right edge of a year-mintage marker for the same year
+            # (which uses the same `+1` convention in compute_coin_year_runs).
+            raw_left  = (l["first"]    - tl_year_from) / tl_span * 100
+            raw_right = (l["last"] + 1 - tl_year_from) / tl_span * 100
             cl = max(raw_left, 0.0)
             cr = min(raw_right, 100.0)
             l["left_pct"]  = round(cl, 2)

@@ -336,11 +336,42 @@
 {% if tl %}
 {% set tl_span = (tl.year_to - tl.year_from) %}
 <div class="tl">
-  <div class="tl-title">{{ tl.title|t(lang) }}</div>
+  <div class="tl-header">
+    <div class="tl-title">{{ tl.title|t(lang) }}</div>
+    {# Per-entity filter chips: one checkbox per issuing entity, labelled
+       with its 2-letter abbrev («RH» / «HG» / «DK» / «DK+» / …), preceded
+       by a single «All» master chip. All unchecked by default —
+       interactive behaviour to be wired up separately. Per-entity order
+       matches data/i18n/issuing_entities.yml; entities with no coins in
+       this location are skipped (no marker would ever show, so the chip
+       would be dead weight — e.g. `prussian_province` in schleswig.yml,
+       since post-1866 Reichsmark coinage isn't modelled as a Fuß here). #}
+    <div class="tl-filters">
+      <label class="tl-filter tl-filter-all">
+        <input type="checkbox" name="tl-filter-all" />
+        <span class="tl-filter-label">{{ ui_get('tl.filter.all') }}</span>
+      </label>
+      {%- for ent_id, ent in issuing_entities.items() -%}
+        {%- if ent_id in active_entity_ids -%}
+          <label class="tl-filter tl-filter-{{ ent_id }}"
+                 {% if ent.name %}data-tooltip="{{ ent.name|t(lang) }}"{% endif %}>
+            <input type="checkbox" name="tl-filter-{{ ent_id }}" />
+            <span class="tl-filter-label">{{ ent.abbrev }}</span>
+          </label>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
   <div class="tl-grid">
-    {%- macro tl_bar_html(bar, tl, tl_span, lang, extra_class='', layers=None) -%}
-      {%- set raw_left  = (bar.year_from - tl.year_from) / tl_span * 100 -%}
-      {%- set raw_right = (bar.year_to   - tl.year_from) / tl_span * 100 -%}
+    {%- macro tl_bar_html(bar, tl, tl_span, lang, extra_class='', layers=None, year_runs=None) -%}
+      {# A year is a 1-year-wide block, not a point — the bar runs through
+         year `year_to` inclusive, so the right edge sits at point
+         `(year_to + 1)`. Same convention used by `.tl-bar-layer` (in
+         lib/categorize.compute_bar_layers) and `.tl-coin-year` (in
+         compute_coin_year_runs); without this `+ 1` the marker for the
+         last minted year visibly overshoots the bar's right edge. #}
+      {%- set raw_left  = (bar.year_from     - tl.year_from) / tl_span * 100 -%}
+      {%- set raw_right = (bar.year_to + 1   - tl.year_from) / tl_span * 100 -%}
       {%- set clamped_left  = [raw_left, 0]  | max -%}
       {%- set clamped_right = [raw_right, 100] | min -%}
       {%- set left_pct  = clamped_left | round(2) -%}
@@ -362,34 +393,82 @@
          overlapping layers sum to the full base colour and any subset
          renders proportionally fainter. The .tl-bar itself becomes a
          transparent label-only box (no gradient) when layers are present. #}
-      {%- if layers -%}
-        {# Wrap layers in their own isolation group so plus-lighter starts
-           from a transparent backdrop (NOT the track's own dark bg, which
-           would otherwise be additively summed into the result and lift
-           every overlap above the base colour). The group itself then
-           composites onto the track via normal blending. #}
+      {%- if layers or year_runs -%}
+        {# `.tl-bar-layers` wraps BOTH the period × scope colour layers AND
+           the per-year mintage markers in a single isolation group so:
+             1. `mix-blend-mode: plus-lighter` on `.tl-bar-layer` starts
+                from a transparent backdrop (NOT the track's dark bg,
+                which would otherwise be additively summed in).
+             2. Hover tooltips on layers AND on markers — both `::after`
+                pseudo-elements with `z-index: 100` — render on top of
+                every other element in the same stacking context, including
+                the markers themselves. Markers used to sit OUTSIDE this
+                isolation with `z-index: 3`, which made layer tooltips
+                (locked inside the isolation, whose context sat at
+                `z-auto` in the track) paint UNDERNEATH markers. #}
         <div class="tl-bar-layers">
-        {%- for layer in layers -%}
-          {# Per-layer tooltip: «{kind} · {scope} · {first}—{last}». The kind
-             label comes from UI strings (`tl.layer.{mint|status|circulation}`);
-             the scope label is either UI «Holstein» or the per-stope
-             `anywhere_label` from the events block. Approximate years carry
-             a leading «~». #}
-          {%- set _kind_lbl = ui_get('tl.layer.' ~ layer.kind) -%}
-          {%- if layer.scope == 'holstein' -%}
-            {%- set _scope_lbl = ui_get('tl.scope.holstein') -%}
-          {%- elif layer.anywhere_label -%}
-            {%- set _scope_lbl = layer.anywhere_label|t(lang) -%}
-          {%- else -%}
-            {%- set _scope_lbl = '—' -%}
-          {%- endif -%}
-          {%- set _y0 = ('~' ~ layer.first) if layer.first_approx else layer.first -%}
-          {%- set _y1 = ('~' ~ layer.last) if layer.last_approx else layer.last -%}
-          <div class="tl-bar-layer {{ bar.color_class }} tl-bar-layer-{{ layer.kind }} tl-bar-layer-{{ layer.scope }}"
-               style="left:{{ layer.left_pct }}%;width:{{ layer.width_pct }}%"
-               data-tooltip="{{ _kind_lbl }} · {{ _scope_lbl }} · {{ _y0 }}—{{ _y1 }}"
-               aria-hidden="true"></div>
-        {%- endfor -%}
+        {%- if layers -%}
+          {%- for layer in layers -%}
+            {# Per-layer tooltip: «{kind} · {scope} · {first}—{last}». The kind
+               label comes from UI strings (`tl.layer.{mint|status|circulation}`);
+               the scope label is either UI «Holstein» or the per-stope
+               `anywhere_label` from the events block. Approximate years carry
+               a leading «~». #}
+            {%- set _kind_lbl = ui_get('tl.layer.' ~ layer.kind) -%}
+            {%- if layer.scope == 'holstein' -%}
+              {%- set _scope_lbl = ui_get('tl.scope.holstein') -%}
+            {%- elif layer.anywhere_label -%}
+              {%- set _scope_lbl = layer.anywhere_label|t(lang) -%}
+            {%- else -%}
+              {%- set _scope_lbl = '—' -%}
+            {%- endif -%}
+            {%- set _y0 = ('~' ~ layer.first) if layer.first_approx else layer.first -%}
+            {%- set _y1 = ('~' ~ layer.last) if layer.last_approx else layer.last -%}
+            <div class="tl-bar-layer {{ bar.color_class }} tl-bar-layer-{{ layer.kind }} tl-bar-layer-{{ layer.scope }}"
+                 style="left:{{ layer.left_pct }}%;width:{{ layer.width_pct }}%"
+                 data-tooltip="{{ _kind_lbl }} · {{ _scope_lbl }} · {{ _y0 }}—{{ _y1 }}"
+                 aria-hidden="true"></div>
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if year_runs -%}
+          {%- for run in year_runs -%}
+            {%- if run.first == run.last -%}
+              {%- set _years_lbl = run.first|string -%}
+            {%- else -%}
+              {%- set _years_lbl = run.first|string ~ '—' ~ run.last|string -%}
+            {%- endif -%}
+            {%- set _orig = run.orig_entities|join(',') -%}
+            {# One DOM `<div>` per non-empty subset of the run's entity set.
+               JS picks at most one variant to render visible per rect:
+               the variant whose `data-ents` exactly equals the checked-
+               filter intersection with `data-orig` («highest match»).
+               Variants share `[left, width]`, so they overlap perfectly;
+               only the matching one carries `tl-coin-year-show` and
+               flips into `display: block`. Tooltip per variant lists
+               only the entities present in THAT subset's coin counts. #}
+            {%- for variant in run.variants -%}
+              {%- set _ents = variant.entities|join(',') -%}
+              {%- if variant.entities|length == 1 -%}
+                {%- set _color_class = 'tl-coin-year-' ~ variant.entities[0] -%}
+              {%- else -%}
+                {%- set _color_class = 'tl-coin-year-shared' -%}
+              {%- endif -%}
+              {%- set ns = namespace(parts=[_years_lbl]) -%}
+              {%- for ent_id, cnt in variant.entity_counts -%}
+                {%- if issuing_entities.get(ent_id) -%}
+                  {%- set _name = issuing_entities.get(ent_id).name|t(lang) -%}
+                  {%- set ns.parts = ns.parts + [_name ~ ': ' ~ cnt|string] -%}
+                {%- endif -%}
+              {%- endfor -%}
+              <div class="tl-coin-year {{ _color_class }}"
+                   data-orig="{{ _orig }}"
+                   data-ents="{{ _ents }}"
+                   style="left:{{ run.left_pct }}%;width:{{ run.width_pct }}%"
+                   data-tooltip="{{ ns.parts | join('\n') }}"
+                   aria-hidden="true"></div>
+            {%- endfor -%}
+          {%- endfor -%}
+        {%- endif -%}
         </div>
       {%- endif -%}
       <div class="tl-bar tl-bar-{{ bar.id }} {{ bar.color_class }}{% if layers %} tl-bar-layered{% endif %}{% if bar.dashed %} tl-bar-dashed{% endif %}{% if raw_left < 0 %} tl-bar-cut-left{% endif %}{% if raw_right > 100 %} tl-bar-cut-right{% endif %}{% if narrow %} tl-bar-narrow{% endif %} {{ extra_class }}"
@@ -432,9 +511,9 @@
         {% endfor %}
       </div>
       <div class="tl-track{% if primary.compact %} tl-track-compact{% endif %}">
-        {{ tl_bar_html(primary, tl, tl_span, lang, layers=bar_layers.get(primary.id, []) if bar_layers else []) }}
+        {{ tl_bar_html(primary, tl, tl_span, lang, layers=bar_layers.get(primary.id, []) if bar_layers else [], year_runs=coin_years.get(primary.id, []) if coin_years else []) }}
         {% for ov in group.overlays %}
-          {{ tl_bar_html(ov, tl, tl_span, lang, 'tl-bar-overlay', layers=bar_layers.get(ov.id, []) if bar_layers else []) }}
+          {{ tl_bar_html(ov, tl, tl_span, lang, 'tl-bar-overlay', layers=bar_layers.get(ov.id, []) if bar_layers else [], year_runs=coin_years.get(ov.id, []) if coin_years else []) }}
         {% endfor %}
         {# Phase sub-divisions are intentionally NOT rendered on the timeline
            — that level of detail belongs in the per-fuss section below where

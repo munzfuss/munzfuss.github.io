@@ -626,6 +626,16 @@ h2[style] {{
   pointer-events: none;
 }}
 
+/* Timeline header strip — title on the left, per-entity filter chips
+   right-aligned on the same horizontal level. */
+.tl-header {{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 0 18px;
+  flex-wrap: wrap;
+}}
 .tl-title {{
   font-family: var(--font-sans);
   font-size: 10px;
@@ -633,10 +643,99 @@ h2[style] {{
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin: 0 0 18px;
+  margin: 0;
   position: relative;
 }}
 [data-theme="v3"] .tl-title {{ color: var(--accent); font-family: var(--font-display); font-size: 18px; font-variant: small-caps; letter-spacing: 0.04em; }}
+
+/* Per-entity filter chips. Each `.tl-filter` is a `<label>` wrapping a
+   native checkbox + abbrev span. Default unchecked; the chip's coloured
+   border / text follow the same per-entity palette as `.ent-badge` and
+   `.tl-coin-year-*` so the timeline keeps a single colour story. */
+.tl-filters {{
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}}
+.tl-filter {{
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px 2px 4px;
+  border: 0.5px solid var(--border);
+  border-radius: 3px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  user-select: none;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-secondary);
+  transition: background 120ms ease, border-color 120ms ease;
+}}
+.tl-filter:hover {{
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-muted);
+}}
+.tl-filter input[type="checkbox"] {{
+  margin: 0;
+  width: 11px;
+  height: 11px;
+  cursor: pointer;
+  accent-color: var(--accent);
+}}
+.tl-filter-label {{
+  letter-spacing: 0.04em;
+}}
+/* Active state: when the checkbox is checked, the chip lights up in
+   the entity's own colour — replicating the `.ent-badge` palette so
+   selected filters visually echo the markers they govern. */
+.tl-filter:has(input:checked) {{
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--text-primary);
+}}
+
+/* Master «All» chip — neutral, accent-coloured to read as a toggle
+   for every per-entity chip beside it. Sits before the entity chips. */
+.tl-filter-all {{
+  color: var(--accent);
+  border-color: var(--accent-muted);
+}}
+.tl-filter-all:hover {{ border-color: var(--accent); }}
+
+/* Per-entity tinting on the chip borders / text — mirrors the
+   `.ent-badge` and `.tl-coin-year-*` palette. */
+.tl-filter-royal_holstein     {{ color: #e89090; }}
+.tl-filter-gottorp_duchy      {{ color: #a8d490; }}
+.tl-filter-danish_realm       {{ color: #8aaef0; }}
+.tl-filter-gesamtstaat        {{ color: #c8a8e8; }}
+.tl-filter-provisional_govt   {{ color: #ead890; }}
+.tl-filter-prussian_province  {{ color: #b8b8b8; }}
+.tl-filter-schauenburg_pinneberg {{ color: #c8b8d8; }}
+.tl-filter-sonderburg_duchy   {{ color: #88c8c0; }}
+.tl-filter-norburg_plon_duchy {{ color: #98c0e0; }}
+[data-theme="v1"] .tl-filter-royal_holstein,
+[data-theme="v2"] .tl-filter-royal_holstein     {{ color: #6b2424; }}
+[data-theme="v1"] .tl-filter-gottorp_duchy,
+[data-theme="v2"] .tl-filter-gottorp_duchy      {{ color: #3d5a25; }}
+[data-theme="v1"] .tl-filter-danish_realm,
+[data-theme="v2"] .tl-filter-danish_realm       {{ color: #1f3a6e; }}
+[data-theme="v1"] .tl-filter-gesamtstaat,
+[data-theme="v2"] .tl-filter-gesamtstaat        {{ color: #4a1f5a; }}
+[data-theme="v1"] .tl-filter-provisional_govt,
+[data-theme="v2"] .tl-filter-provisional_govt   {{ color: #5a4520; }}
+[data-theme="v1"] .tl-filter-prussian_province,
+[data-theme="v2"] .tl-filter-prussian_province  {{ color: #3a3a38; }}
+[data-theme="v1"] .tl-filter-schauenburg_pinneberg,
+[data-theme="v2"] .tl-filter-schauenburg_pinneberg {{ color: #4a3460; }}
+[data-theme="v1"] .tl-filter-sonderburg_duchy,
+[data-theme="v2"] .tl-filter-sonderburg_duchy   {{ color: #1f4a44; }}
+[data-theme="v1"] .tl-filter-norburg_plon_duchy,
+[data-theme="v2"] .tl-filter-norburg_plon_duchy {{ color: #1f4055; }}
 
 .tl-grid {{
   display: grid;
@@ -921,6 +1020,92 @@ h2[style] {{
 }}
 [data-theme="v1"] .tl-bar-overlay,
 [data-theme="v2"] .tl-bar-overlay {{ border-color: rgba(0,0,0,0.4); box-shadow: 0 0 0 1px rgba(255,255,255,0.4); }}
+
+/* --- Per-year mintage markers ------------------------------------------- */
+/* Each `.tl-coin-year` rect marks one consecutive run of years where at
+   least one coin was minted under the parent stope (per the location's
+   coin entries). Width is exactly 1 year × N for an N-year run; adjacent
+   runs share an edge so a continuous-mintage span renders as a clean
+   uninterrupted band, while a sparse spread renders as individual ticks
+   ~3 px wide on a typical 1100 px-wide track (1 yr × 100 / 355 yr-span).
+
+   Markers live INSIDE `.tl-bar-layers` (alongside the period × scope
+   layers) so all hover tooltips share the same isolation context — the
+   tooltip `::after` (z-100) on a layer renders ABOVE the markers in the
+   same context, instead of being overlapped from above by markers that
+   used to live outside isolation with explicit `z-index: 3`. DOM order
+   inside the wrapper (markers AFTER layers) keeps the marker bg painted
+   on top of the layered fill, which is the visually intended order. */
+.tl-coin-year {{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: auto;
+  cursor: help;
+  /* No mix-blend-mode override needed — `.tl-bar-layer` carries
+     `plus-lighter` via class match, but `.tl-coin-year` doesn't, so it
+     defaults to `normal` and paints crisp cream over the summed fill. */
+  /* No border-radius — markers butt up against each other inside a run
+     and against neighbouring runs; rounded corners would create visible
+     seams in continuous bands. */
+}}
+
+/* Per-entity marker fills, keyed off the same colour story as `.ent-badge`
+   so the timeline reads consistently with the per-coin entity badge in
+   the table below. The `tl-coin-year-shared` neutral applies whenever a
+   year couldn't be cleanly attributed to a single entity (multiple
+   entities minting in the same year, or any unattributed coin). */
+/* Noir per-entity markers — fully opaque, high-chroma tints of each
+   entity's hue family. Sit on the dark track + layered fill, so the
+   bright saturated forms read as crisp coloured stripes — mirroring
+   the vivid light-theme treatment but inverted (light-saturated on
+   dark, vs dark-saturated on cream). The neutral `shared` cream stays
+   a low-saturation pivot tone, deliberately de-coloured. */
+.tl-coin-year-shared             {{ background: rgba(255, 248, 230, 0.65); }}
+.tl-coin-year-royal_holstein     {{ background: rgb(240, 110, 115); }}
+.tl-coin-year-gottorp_duchy      {{ background: rgb(135, 220, 105); }}
+.tl-coin-year-danish_realm       {{ background: rgb(110, 155, 250); }}
+.tl-coin-year-gesamtstaat        {{ background: rgb(205, 145, 240); }}
+.tl-coin-year-provisional_govt   {{ background: rgb(245, 215, 105); }}
+.tl-coin-year-prussian_province  {{ background: rgb(200, 200, 195); }}
+.tl-coin-year-schauenburg_pinneberg {{ background: rgb(210, 175, 235); }}
+.tl-coin-year-norburg_plon_duchy {{ background: rgb(125, 185, 235); }}
+.tl-coin-year-sonderburg_duchy   {{ background: rgb(115, 215, 195); }}
+/* Light-theme variants — fully-opaque, mid-saturation hues lifted ~30
+   units per channel from the deepest base, so each entity reads as a
+   distinct stripe but doesn't sit so dark as to clash with the cream
+   paper. Slightly lighter than the first vivid pass; still well within
+   each entity's hue family (cf. `.ent-badge` light-theme palette). */
+[data-theme="v1"] .tl-coin-year-shared,
+[data-theme="v2"] .tl-coin-year-shared             {{ background: rgba(60, 60, 60, 0.80); }}
+[data-theme="v1"] .tl-coin-year-royal_holstein,
+[data-theme="v2"] .tl-coin-year-royal_holstein     {{ background: rgb(170, 60, 65); }}
+[data-theme="v1"] .tl-coin-year-gottorp_duchy,
+[data-theme="v2"] .tl-coin-year-gottorp_duchy      {{ background: rgb(80, 140, 60); }}
+[data-theme="v1"] .tl-coin-year-danish_realm,
+[data-theme="v2"] .tl-coin-year-danish_realm       {{ background: rgb(65, 100, 175); }}
+[data-theme="v1"] .tl-coin-year-gesamtstaat,
+[data-theme="v2"] .tl-coin-year-gesamtstaat        {{ background: rgb(125, 60, 155); }}
+[data-theme="v1"] .tl-coin-year-provisional_govt,
+[data-theme="v2"] .tl-coin-year-provisional_govt   {{ background: rgb(170, 130, 55); }}
+[data-theme="v1"] .tl-coin-year-prussian_province,
+[data-theme="v2"] .tl-coin-year-prussian_province  {{ background: rgb(100, 100, 95); }}
+[data-theme="v1"] .tl-coin-year-schauenburg_pinneberg,
+[data-theme="v2"] .tl-coin-year-schauenburg_pinneberg {{ background: rgb(130, 90, 160); }}
+[data-theme="v1"] .tl-coin-year-norburg_plon_duchy,
+[data-theme="v2"] .tl-coin-year-norburg_plon_duchy {{ background: rgb(60, 120, 160); }}
+[data-theme="v1"] .tl-coin-year-sonderburg_duchy,
+[data-theme="v2"] .tl-coin-year-sonderburg_duchy   {{ background: rgb(60, 135, 125); }}
+
+/* --- Per-year mintage marker visibility --------------------------------- */
+/* Markers are HIDDEN by default and become visible only when JS marks
+   them with `tl-coin-year-show`. Each rect renders multiple variants
+   (one per non-empty subset of its original entity set); JS toggles
+   visibility per the «highest-match» rule: variant V is shown iff
+   `V == checked ∩ orig_entities` and that intersection is non-empty.
+   See assets/app.js `refreshTimelineMarkers`. */
+.tl-coin-year {{ display: none; }}
+.tl-coin-year.tl-coin-year-show {{ display: block; }}
 
 /* Sub-label folded under the parent's label */
 .tl-sublabel {{
@@ -1863,16 +2048,19 @@ footer a:hover {{ color: var(--accent); }}
 /* --- Tooltips (data-tooltip="…" on any element) ------------------------- */
 
 /* Default `position: relative` for any `[data-tooltip]` so the tooltip
-   ::after pseudo-element has a positioning context. Excluded:
+   ::after pseudo-element has a positioning context. Excluded — every
+   absolutely-positioned timeline child that ALSO carries a tooltip:
    - `.tl-phase` and `.tl-bar` keep their explicit `position: absolute`
-     (they're laid out within `.tl-track`).
-   - `.tl-bar-layer` likewise — added when each layer got its own
-     per-period tooltip; without this exclusion the rule's higher
-     specificity (one attribute + two `:not` classes vs the layer's
-     single class) clobbers the layer's `position: absolute`, the
-     layer falls back to flow-positioning at zero intrinsic height,
-     and the entire timeline visually empties out. */
-[data-tooltip]:not(.tl-phase):not(.tl-bar):not(.tl-bar-layer) {{ position: relative; }}
+     (laid out within `.tl-track`).
+   - `.tl-bar-layer` likewise — needed once each layer got its own
+     per-period tooltip; without exclusion the rule's higher
+     specificity clobbers the layer's `position: absolute`, the layer
+     falls back to flow positioning at zero intrinsic height, and the
+     entire layered fill visually empties out.
+   - `.tl-coin-year` likewise — same root cause; without exclusion the
+     1-year mintage rectangles collapse to zero height (no visible
+     marks despite correct left%/width%). */
+[data-tooltip]:not(.tl-phase):not(.tl-bar):not(.tl-bar-layer):not(.tl-coin-year) {{ position: relative; }}
 [data-tooltip]:hover::after {{
   content: attr(data-tooltip);
   position: absolute;
@@ -1900,7 +2088,10 @@ footer a:hover {{ color: var(--accent); }}
   letter-spacing: 0;
   text-transform: none;
   line-height: 1.45;
-  white-space: normal;
+  /* `pre-line` preserves explicit newlines from the source attribute
+     (e.g. multi-line per-entity breakdowns on `.tl-coin-year`) while
+     still collapsing whitespace and wrapping long single lines. */
+  white-space: pre-line;
   width: max-content;
   max-width: 320px;
   z-index: 100;
@@ -1928,6 +2119,18 @@ footer a:hover {{ color: var(--accent); }}
 }}
 .tl-bar.tl-bar-reichsdukatenfuss[data-tooltip]:hover::after {{
   left: 0;
+  transform: none;
+}}
+
+/* Filter-chip tooltips: the whole `.tl-filters` strip is right-aligned
+   inside `.tl-header`, so every chip lives in the right half of the
+   page. Centering the tooltip on the chip pushes it past the viewport
+   for the rightmost chips (NP / SO …) and clips the entity name. Anchor
+   the tooltip's RIGHT edge to the chip's right edge instead — the card
+   then extends leftward and always stays within the viewport. */
+.tl-filters .tl-filter[data-tooltip]:hover::after {{
+  left: auto;
+  right: 0;
   transform: none;
 }}
 
