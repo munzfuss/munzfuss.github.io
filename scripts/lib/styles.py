@@ -894,9 +894,15 @@ h2[style] {{
    may have partially-dark zones (1-2 layer overlap, far from the
    stope's central Holstein-saturated band). The default 0.45/0.30
    shadow is too soft against a near-black backdrop — text reads as
-   "ungrounded white" with no perceivable halo. Bumped to 0.85/0.60. */
-:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.tl-bar-layered,
-:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.tl-bar-layered .tl-bar-label-float {{
+   "ungrounded white" with no perceivable halo. Bumped to 0.85/0.60.
+
+   Explicitly excludes the `g` (gold / Reichsdukatenfuß) and `rm`
+   (Reichsgoldmünzfuß) palettes — those carry DARK fg text per
+   theme.yml, with their own cream halo set on `.tl-bar.g, .tl-bar.rm`
+   above. A dark halo behind dark text would merge into the digit
+   strokes and erase the contrast. */
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.tl-bar-layered:not(.g):not(.rm),
+:root:not([data-theme="v1"]):not([data-theme="v2"]) .tl-bar.tl-bar-layered:not(.g):not(.rm) .tl-bar-label-float {{
   text-shadow:
     0 0 3px rgba(0, 0, 0, 0.85),
     0 0 6px rgba(0, 0, 0, 0.60);
