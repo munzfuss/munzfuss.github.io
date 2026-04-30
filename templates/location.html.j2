@@ -364,14 +364,30 @@
          transparent label-only box (no gradient) when layers are present. #}
       {%- if layers -%}
         {%- for layer in layers -%}
+          {# Per-layer tooltip: «{kind} · {scope} · {first}—{last}». The kind
+             label comes from UI strings (`tl.layer.{mint|status|circulation}`);
+             the scope label is either UI «Holstein» or the per-stope
+             `anywhere_label` from the events block. Approximate years carry
+             a leading «~». #}
+          {%- set _kind_lbl = ui_get('tl.layer.' ~ layer.kind) -%}
+          {%- if layer.scope == 'holstein' -%}
+            {%- set _scope_lbl = ui_get('tl.scope.holstein') -%}
+          {%- elif layer.anywhere_label -%}
+            {%- set _scope_lbl = layer.anywhere_label|t(lang) -%}
+          {%- else -%}
+            {%- set _scope_lbl = '—' -%}
+          {%- endif -%}
+          {%- set _y0 = ('~' ~ layer.first) if layer.first_approx else layer.first -%}
+          {%- set _y1 = ('~' ~ layer.last) if layer.last_approx else layer.last -%}
           <div class="tl-bar-layer {{ bar.color_class }} tl-bar-layer-{{ layer.kind }} tl-bar-layer-{{ layer.scope }}"
                style="left:{{ layer.left_pct }}%;width:{{ layer.width_pct }}%"
+               data-tooltip="{{ _kind_lbl }} · {{ _scope_lbl }} · {{ _y0 }}—{{ _y1 }}"
                aria-hidden="true"></div>
         {%- endfor -%}
       {%- endif -%}
       <div class="tl-bar tl-bar-{{ bar.id }} {{ bar.color_class }}{% if layers %} tl-bar-layered{% endif %}{% if bar.dashed %} tl-bar-dashed{% endif %}{% if raw_left < 0 %} tl-bar-cut-left{% endif %}{% if raw_right > 100 %} tl-bar-cut-right{% endif %}{% if narrow %} tl-bar-narrow{% endif %} {{ extra_class }}"
            style="left:{{ left_pct }}%;width:{{ width_pct }}%"
-           {% if bar.bar_title %}data-tooltip="{{ bar.bar_title|t(lang) }}"{% endif %}>
+           {%- if not layers and bar.bar_title %} data-tooltip="{{ bar.bar_title|t(lang) }}"{%- endif %}>
         {%- if narrow -%}
           <span class="tl-bar-label-float">{{ _label }}</span>
         {%- else -%}

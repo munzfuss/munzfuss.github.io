@@ -113,35 +113,43 @@ def compute_bar_layers(
             continue
 
         layers: list[dict] = []
+        anywhere_label = getattr(events, "anywhere_label", None)
 
-        def _add(kind: str, scope: str, first, last):
+        def _add(kind, scope, start_event, end_event):
+            """Pull (year, approx) for one scope from a (start, end) event pair."""
+            if start_event is None or end_event is None:
+                return
+            first = getattr(start_event, scope)
+            last = getattr(end_event, scope)
             if first is None or last is None:
                 return
+            first_approx = getattr(start_event, f"approx_{scope}", False)
+            last_approx = getattr(end_event, f"approx_{scope}", False)
             layers.append({
                 "kind": kind,
                 "scope": scope,
                 "first": first,
                 "last": last,
                 "length": last - first,
+                "first_approx": first_approx,
+                "last_approx": last_approx,
+                "anywhere_label": anywhere_label,  # I18nText | None — per-stope label
             })
 
         # mint = [first_mint, last_mint]
         fm, lm = events.first_mint, events.last_mint
-        if fm and lm:
-            _add("mint", "anywhere", fm.anywhere, lm.anywhere)
-            _add("mint", "holstein", fm.holstein, lm.holstein)
+        for scope in ("anywhere", "holstein"):
+            _add("mint", scope, fm, lm)
 
         # status = [first_adoption, std_end]
         fa, se = events.first_adoption, events.std_end
-        if fa and se:
-            _add("status", "anywhere", fa.anywhere, se.anywhere)
-            _add("status", "holstein", fa.holstein, se.holstein)
+        for scope in ("anywhere", "holstein"):
+            _add("status", scope, fa, se)
 
         # circulation = [first_adoption, demonetisation]
-        de = events.demonetisation
-        if fa and de:
-            _add("circulation", "anywhere", fa.anywhere, de.anywhere)
-            _add("circulation", "holstein", fa.holstein, de.holstein)
+        de_ = events.demonetisation
+        for scope in ("anywhere", "holstein"):
+            _add("circulation", scope, fa, de_)
 
         # Sort by length DESC so the longest layer is rendered first
         # (DOM order = bottom of stack); the shortest paints last (= on top).

@@ -792,13 +792,25 @@ h2[style] {{
 .tl-bar.tl-bar-layered {{
   background: transparent !important;
   box-shadow: none;
+  /* The bar is now just a label-only transparent box. Hover passes
+     THROUGH to the layers underneath so each layer can serve its own
+     tooltip — the bar itself no longer carries a `data-tooltip`. */
+  pointer-events: none;
 }}
 .tl-bar-layer {{
   position: absolute;
   top: 0;
   bottom: 0;
-  pointer-events: none;
+  /* Layers ARE hover targets — each one carries its own per-period
+     `data-tooltip` («Карбування · Holstein · 1640—1813» etc.). Where
+     multiple layers stack at the same x-coordinate, the topmost in
+     DOM order wins (which, given the longest-first DOM sort, is the
+     SHORTEST overlapping layer at that position — usually a
+     Holstein-scope layer in central zones, an «anywhere»-scope one
+     in the chronological tail). */
+  pointer-events: auto;
   mix-blend-mode: plus-lighter;
+  cursor: help;
   /* No border-radius on layers — the parent .tl-bar paints the rounded
      corners via its own border-radius; layers inside align to its edges. */
 }}

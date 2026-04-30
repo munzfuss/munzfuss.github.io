@@ -125,6 +125,12 @@ class FussEvents(BaseModel):
     last_mint: FussEvent | None = None
     std_end: FussEvent | None = None
     demonetisation: FussEvent | None = None
+    anywhere_label: I18nText | None = None
+    """Short translatable label for the `anywhere` scope, used in
+    layer tooltips. Concretely identifies *where* "anywhere" means
+    for THIS stope — e.g. «Священна Римська імперія», «Данія-Норвегія»,
+    «Дансько-холштинський Гезамтштат», «Wiener Münzvertrag-Raum». The
+    `holstein` scope uses the global UI string `tl.scope.holstein`."""
 
 
 class Fuss(BaseModel):
