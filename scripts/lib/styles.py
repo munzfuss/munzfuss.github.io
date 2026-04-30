@@ -1788,6 +1788,12 @@ footer a:hover {{ color: var(--accent); }}
   background: #ede4ce;
   border: var(--hairline) solid var(--accent);
   color: #2a221a;
+  /* Reset text-shadow that the tooltip would otherwise inherit from a
+     parent .tl-bar (which carries a contrast-halo for legibility on
+     the gradient bar). On the tooltip's own card-coloured backdrop
+     the inherited halo reads as a smudge behind the body text and
+     visibly impairs readability. */
+  text-shadow: none;
   padding: 6px 10px;
   border-radius: 4px;
   font-family: var(--font-body);
