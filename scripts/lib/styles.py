@@ -590,11 +590,17 @@ h2[style] {{
   padding: 22px 26px 26px;
   margin: 0 0 48px;
   position: relative;
-  overflow: hidden;
+  /* `overflow: visible` (was `hidden`) so that bar tooltips on the
+     topmost row (Reichsdukatenfuß) and at the right edge can escape
+     the card boundary without being clipped. The radial-gradient
+     ::before below carries `border-radius: inherit` so it still
+     respects the card's rounded corners. */
+  overflow: visible;
 }}
 [data-theme="v3"] .tl::before {{
   content: "";
   position: absolute; inset: 0;
+  border-radius: inherit;
   background: radial-gradient(ellipse at top right, rgba(212, 168, 90, 0.06), transparent 60%);
   pointer-events: none;
 }}
