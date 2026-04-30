@@ -35,11 +35,9 @@ summary:
 
 # Order in which fuesse are rendered on the page
 fuss_order:
-  # Matches the timeline-bar order in `timeline.bars` below (Reichsdukatenfuß
-  # opens the chronology as the imperial gold standard since 1559;
-  # Reichsgoldmünzfuß closes it as the 1871-Goldmark — but the latter is a
-  # timeline-only contextual entry without its own Fuß record in
-  # data/shared/fuesse.yml, so it's absent from fuss_order).
+  # Matches the timeline-bar order in `timeline.bars` below: Reichsdukatenfuß
+  # opens the chronology as the imperial gold standard since 1559 and
+  # Reichsgoldmünzfuß closes it as the 1871-Goldmark.
   - reichsdukatenfuss
   - 9_thaler
   - 9_25_thaler
@@ -50,6 +48,7 @@ fuss_order:
   - 11_333_thaler
   - 18_5_thaler
   - 30_thaler
+  - reichsgoldmuenzfuss
 
 # ---------------------------------------------------------------------
 # Timeline — visual overlap of Müntzfüße in Holstein, ca. 1600–1880
@@ -292,34 +291,10 @@ timeline:
         en: "Goldmark under the Coinage Act of 4 December 1871 (2,790 Mark per kg of fine gold = 0.358 g of fine gold per Mark, 900 ‰ fineness) · the common gold standard of the German Empire · 5-, 10- and 20-Mark pieces struck in Berlin (A), Hamburg (J) and six other imperial mints — no Holstein issue (the Altona mint closed in 1863) · in force until the Reichsbank gold-redemption suspension on 4 August 1914 at the start of the war · formally replaced in 1924 by the Reichsmark / Rentenmark"
         uk: "Goldmark за Законом про монету 4 грудня 1871 (2790 марок з кг чистого золота = 0,358 г чистого золота на марку, проба 900 ‰) · спільний золотий стандарт Німецької імперії · 5-, 10- і 20-маркові монети карбувались у Берліні (A), Гамбурзі (J) та ще шести імперських монетних дворах — у Гольштейні не карбувалися (двір в Альтоні закритий 1863 р.) · діє до призупинення Reichsbank золотого розміну 4 серпня 1914 р. на початку війни · формально замінено 1924 р. Reichsmark / Rentenmark"
       color_class: rm
-      events:
-        first_adoption:
-          anywhere: 1871
-          holstein: 1871
-          note: Reichsmünzgesetz 4. Dec 1871; Holstein under the Kaiserreich 1871–1914.
-        first_mint:
-          anywhere: 1871
-          holstein:
-          note: No Holstein local mint. Reichsgoldmünzen struck at Berlin / Hamburg / München etc.
-        last_mint:
-          anywhere: 1914
-          holstein:
-        std_end:
-          anywhere: 1914
-          holstein: 1914
-          note: Gold-standard convertibility suspended 1914 (WWI); minting effectively halts.
-        demonetisation:
-          anywhere: 1924
-          holstein: 1924
-          note: Formal demonetisation 1924 = Rentenmark / Reichsmark reform.
 
 # ---------------------------------------------------------------------
 # Per-Müntzfuß framing in this location: validity range, background, closing
 # ---------------------------------------------------------------------
-        anywhere_label:
-          de: Deutsches Kaiserreich
-          en: German Empire
-          uk: Німецька імперія
 fuss_periods:
   9_thaler:
     pdate_label:
@@ -562,6 +537,30 @@ fuss_periods:
       de: "<p>Die Christian-IV.-Krone war keine Handelsmünze nach Silbergehalt, sondern eine fiskalische Tarifmünze: ihr Nennwert wurde vom König per Mandat über dem tatsächlichen Silberwert festgesetzt, die Differenz floß als Seigniorage in die Staatskasse.</p><p><b>Primärkanonische Hede-Formel</b><sup><a href=\"#ref23\">[23]</a></sup>: <b>12 ²⁵⁷⁄₇₀₀ Stück je 13¾-lötiger Marck</b> = 18,909 g rau bei .859 Feingehalt = 16,250 g fein je Krone. Diese ungewöhnliche Bruchform (12,367 statt eines glatten 12½) deutet darauf hin, daß der Münzedikt 1618 den Fuß nicht über eine runde Stückzahl, sondern über die <b>Daler-Ausbringung</b> definierte — also über den nominellen Gesamtwert in Speciedaler, der aus einer feinen Marck Silber als Krone-Münzen herauskam. Bei Anfangstarif 1½ Specie pro Doppelkrone (= ¾ Specie pro Krone): aus 233,856 g Feinsilber gehen 14,391 Krone, deren Nennwert sich auf 10,793 Speciedaler addiert (Hede H105<sup><a href=\"#ref23\">[23]</a></sup>). Nach der Forordning vom 14. Februar 1624 wird die Specie selbst auf 100 Skilling neu tarifiert; die physische Krone bleibt unverändert, aber dieselbe Marck Feinsilber «bringt» nach der neuen Specie-Skala nur noch 10,361 Speciedaler aus (Hede H124<sup><a href=\"#ref23\">[23]</a></sup>).</p><p>1618 wurde nur die 2 Krone (damals einfach «Krone» genannt) nach dieser Formel geprägt; ½, ¼ und ⅛ Krone des Jahres 1618 folgten einer leicht niedrigeren Münzfod, deren exakte Werte aus Wilcke nachzutragen sind. Ab 1619 prägt auch die ½ Krone nach der Hauptformel<sup><a href=\"#ref23\">[23]</a></sup>.</p><p><b>Spezialliteratur:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) und <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — behandeln vor allem die spätere Wiederaufnahme im 10½-Krone-Fuß («<i>Grobe Krone</i>»); die Christian-IV.-Phase wird primär aus dem Hede-/Schou-Katalog (H105–H107, H124–H126) sowie den Bruun-Lots 13089 ff. (Stack's Bowers Auktion Part II, Zürich 14.–15. März 2025) belegt.</p>"
       en: "<p>The Christian IV Krone was not a trade coin valued by silver content but a fiscal tariff coin: its face value was set by royal mandate above the actual silver value, the gap accruing to the treasury as seigniorage.</p><p><b>Primary catalogue formula (Hede)</b><sup><a href=\"#ref23\">[23]</a></sup>: <b>12 ²⁵⁷⁄₇₀₀ pieces per 13¾-lødig mark</b> = 18.909 g rough at .859 fineness = 16.250 g fine per Krone. The unusual fractional form (12.367 rather than a clean 12½) suggests the 1618 mint edict defined the standard not via a round piece count but via the <b>daler output</b> — that is, the total face value, expressed in Speciedaler, that one fine mark of silver yielded once struck into Krone coin. At the initial tariff of 1½ Specie per Doppelkrone (= ¾ Specie per Krone): 233.856 g of fine silver yields 14.391 Krone, whose face values add up to 10.793 Speciedaler (Hede H105<sup><a href=\"#ref23\">[23]</a></sup>). After the Forordning of 14 February 1624 the Specie itself is re-rated to 100 Skilling; the physical Krone is unchanged, but on the new Specie scale the same fine mark now yields only 10.361 Speciedaler (Hede H124<sup><a href=\"#ref23\">[23]</a></sup>).</p><p>In 1618 only the 2 Krone (then simply called «Krone») was struck on this formula; the ½, ¼ and ⅛ Krone of 1618 followed a slightly lower Münzfod whose exact values still need to be lifted from Wilcke. From 1619 the ½ Krone also follows the main formula<sup><a href=\"#ref23\">[23]</a></sup>.</p><p><b>Specialist literature:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) and <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — these treat mainly the later revival under the 10½-Krone-Fuß («<i>Coarse Krone</i>»); the Christian IV phase is documented primarily through the Hede / Schou catalogue (H105–H107, H124–H126) and Bruun lots 13089 ff. (Stack's Bowers auction Part II, Zurich 14–15 March 2025).</p>"
       uk: "<p>Krone Кристіана IV не була торговельною монетою за вмістом срібла, а фіскальною тарифною: її номінал встановлювався королівським мандатом вище фактичної срібної вартості, різниця надходила до скарбниці як сеньйораж.</p><p><b>Першоджерельна Hede-формула</b><sup><a href=\"#ref23\">[23]</a></sup>: <b>12 ²⁵⁷⁄₇₀₀ штук з 13¾-lødig марки</b> = 18,909 г повної ваги за проби .859 = 16,250 г чистого на Krone. Незвична дробова форма (12,367 замість «красивого» 12½) вказує на те, що монетний едикт 1618 р. задавав стопу не через круглу кількість штук, а через <b>вихід у даллерах (daler-udbringning)</b> — тобто через сумарну номінальну вартість у Speciedaler, яку одна марка чистого срібла «приносила» при карбуванні в Krone-монети. За початкового тарифу 1½ Specie на Doppelkrone (= ¾ Specie на одну Krone): з 233,856 г чистого срібла виходить 14,391 Krone, сумарна номінальна вартість яких становить 10,793 Speciedaler (Hede H105<sup><a href=\"#ref23\">[23]</a></sup>). Після Forordning 14 лютого 1624 р. сам Specie перетарифовано на 100 Skilling; фізично Krone лишається без змін, але та сама марка чистого срібла за новою Specie-шкалою «приносить» уже лише 10,361 Speciedaler (Hede H124<sup><a href=\"#ref23\">[23]</a></sup>).</p><p>1618 р. за цією формулою карбувалась лише 2 Krone (тоді просто «Krone»); ½, ¼ та ⅛ Krone 1618 р. йшли за дещо нижчою møntfod, точні значення якої треба підняти з Wilcke. З 1619 р. ½ Krone теж переходить на головну формулу<sup><a href=\"#ref23\">[23]</a></sup>.</p><p><b>Спеціальна література:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) і <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — стосуються переважно пізнішого відновлення у 10½-Krone-Fuß («<i>Груба Крона</i>»); фаза Кристіана IV задокументована переважно за Hede/Schou (H105–H107, H124–H126) і лотами Bruun 13089 і далі (Stack's Bowers auction Part II, Цюрих 14–15 березня 2025).</p>"
+
+  reichsgoldmuenzfuss:
+    pdate_label:
+      de: "Geltungsbereich in Holstein: 4. Dez. 1871 → 4. Aug. 1914 (Goldsuspendierung) · 43 Jahre · in Holstein keine eigenen Prägungen"
+      en: "In force in Holstein: 4 Dec. 1871 → 4 Aug. 1914 (gold-redemption suspension) · 43 years · no Holstein issues"
+      uk: "Дія в Гольштейні: 4 грудня 1871 → 4 серпня 1914 (призупинення золотого розміну) · 43 роки · у Гольштейні власні карбування відсутні"
+    hintergrund:
+      de: |
+        Münzgesetz vom 4. Dezember 1871: gemeinsamer Goldstandard des Deutschen Kaiserreichs. 1 kg Feingold = 2790 Mark · Feingehalt 900 ‰ · Goldnominale zu 5, 10 und 20 Mark. Geprägt an acht Reichsmünzstätten — Berlin (A), Hannover (B), Frankfurt am Main (C), München (D), Dresden (E), Stuttgart (F), Karlsruhe (G), Hamburg (J) — Altona war 1863 geschlossen worden, sodaß keine Holstein-eigene Prägestätte am Reichsgoldmünzfuß teilnahm. Die Goldsuspendierung der Reichsbank am 4. August 1914 zu Kriegsbeginn beendet die praktische Geltung; formal abgelöst 1924 durch Reichsmark / Rentenmark.
+      en: |-
+        Coinage Act of 4 December 1871: the common gold standard of the German Empire. 1 kg fine gold = 2,790 Mark · 900‰ fineness · gold denominations of 5, 10 and 20 Mark. Struck at eight imperial mints — Berlin (A), Hannover (B), Frankfurt am Main (C), Munich (D), Dresden (E), Stuttgart (F), Karlsruhe (G), Hamburg (J) — the Altona mint had closed in 1863, so no Holstein-specific mint took part in the Reichsgoldmünzfuß. The Reichsbank's suspension of gold redemption on 4 August 1914, at the outbreak of war, ends practical operation; formally replaced in 1924 by the Reichsmark / Rentenmark.
+      uk: |-
+        Закон про монету від 4 грудня 1871 р.: спільний золотий стандарт Німецької імперії. 1 кг чистого золота = 2790 марок · проба 900 ‰ · золоті номінали у 5, 10 і 20 Mark. Карбування здійснювалось у восьми імперських монетних дворах — Берлін (A), Ганновер (B), Франкфурт-на-Майні (C), Мюнхен (D), Дрезден (E), Штутгарт (F), Карлсруе (G), Гамбург (J). Двір в Альтоні зачинено ще 1863 р., тож жоден гольштинський монетний двір у Reichsgoldmünzfuß не брав участі. Призупинення Reichsbank-ом золотого розміну 4 серпня 1914 р. на початку війни припиняє фактичну дію; формально стандарт замінено 1924 р. на Reichsmark / Rentenmark.
+    closing_label:
+      de: "Zusammenfassung · 43 Jahre Geltung im Reich, in Holstein keine eigenen Prägungen"
+      en: "Summary · 43 years across the Reich, no Holstein issues"
+      uk: "Підсумок · 43 роки чинності в Рейху, у Гольштейні власних карбувань немає"
+    closing:
+      de: |
+        Der Reichsgoldmünzfuß ist im Holstein-Verzeichnis ein <b>kontextueller Eintrag</b>: er beendet als reichseinheitlicher Goldstandard 1871 die 312-jährige Geltung des Reichsdukatenfußes, hat aber selbst keine eigene Holstein-Prägestätte (Altona 1863 geschlossen). Die in Holstein zirkulierenden 5/10/20-Mark-Goldstücke kommen aus den anderen Reichsmünzstätten — vor allem Hamburg (J) und Berlin (A) — und sind als gemeinsame Reichsmünzen nicht territorial unterscheidbar. Mit der Goldsuspendierung 1914 endet die praktische Goldwährung; die formal-rechtliche Demonetisierung 1924 schließt ein 53-jähriges Goldzeitalter ab und überführt Deutschland endgültig in die Papier-Mark-Ära (Reichsmark / Rentenmark).
+      en: |-
+        Within the Holstein register the Reichsgoldmünzfuß is a <b>contextual entry</b>: as a Reich-wide gold standard introduced in 1871 it ends the 312-year run of the Reichsdukatenfuß, but it had no Holstein-specific mint of its own (Altona had closed in 1863). The 5/10/20-Mark gold coins circulating in Holstein came from the other imperial mints — chiefly Hamburg (J) and Berlin (A) — and as common imperial coinage cannot be distinguished territorially. The 1914 gold-redemption suspension ends the practical gold currency; formal demonetisation in 1924 closes a 53-year gold era and definitively moves Germany into the paper-Mark era (Reichsmark / Rentenmark).
+      uk: |-
+        У гольштинському реєстрі Reichsgoldmünzfuß — <b>контекстуальний запис</b>: запроваджений 1871 р. як загальноімперський золотий стандарт, він завершує 312-річну дію Reichsdukatenfuß, проте власної гольштинської монетної установи не має (Альтонський двір закрито ще 1863 р.). Золоті 5/10/20-маркові монети, що оберталися в Гольштейні, надходили з інших імперських монетних дворів — передусім Гамбурга (J) і Берліна (A) — і як спільне імперське карбування не розрізняються територіально. Призупинення золотого розміну 1914 р. припиняє фактичну золоту валюту; формальна демонетизація 1924 р. закриває 53-річну золоту епоху і остаточно переводить Німеччину в епоху паперової марки (Reichsmark / Rentenmark).
 phases:
   9_thaler:
     - id: A
@@ -1038,6 +1037,16 @@ phases:
   # 13-Krone-Fuß) is presented in full on the timeline. Empty phase
   # array is intentional — no Glückstadt or Tönning specimens.
   kronemont_fine: []
+
+  # Reichsgoldmünzfuß (Goldmark) — Reich-wide 1871–1914 (gold standard
+  # suspended 4 Aug 1914 at the start of WWI; formal demonetisation
+  # 1924 → Rentenmark / Reichsmark). Holstein had no participating
+  # mint (the Altona Mint closed in 1863, before the standard was
+  # introduced); 5/10/20-Mark gold coins circulating in Holstein
+  # came from Berlin (A), Hamburg (J) and the other Reich mints.
+  # Empty phase array — included as a contextual section so the
+  # gold-standard history closes properly after the Reichsdukatenfuß.
+  reichsgoldmuenzfuss: []
 
   guldkrone:
     - id: A
