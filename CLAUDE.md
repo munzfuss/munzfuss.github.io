@@ -1,6 +1,8 @@
 # Numismatic Münzfüße Project — Claude Code Context
 
 > **Read this file first on every session.** It contains non-negotiable principles and conventions developed over many research sessions. Supporting files: `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`, `docs/CONVENTIONS.md`, `docs/GLOSSARY.md`.
+>
+> **Also read `docs/TODO.md` at session start.** It tracks open audit items the user has flagged across sessions (continuous-year-range verification, etc.). Surface relevant TODO entries to the user when their current task touches on those topics, so we don't drift past them silently.
 
 ## Mission
 
