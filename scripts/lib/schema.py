@@ -211,7 +211,7 @@ class CatalogRefs(_StrictBase):
 
 
 class Source(_StrictBase):
-    type: Literal["numista", "auction", "museum", "literature", "web", "other"] = "other"
+    type: Literal["numista", "ucoin", "auction", "museum", "literature", "web", "other"] = "other"
     url: str | None = None
     ref: str | None = None
     note: str | None = None
