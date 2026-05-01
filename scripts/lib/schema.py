@@ -61,6 +61,22 @@ class I18nTextOptional(_StrictBase):
         return None
 
 
+class FieldAlt(_StrictBase):
+    """A numeric field value from an alternative source. Used when
+    multiple sources disagree on a measurement (e.g. diameter, weight)
+    and we want to record all of them with attribution rather than
+    silently picking one.
+
+    `source` is a short label suitable for in-table display, e.g.
+    "ucoin", "Numista N#22190", "Hede 121", "Lange 82". The full URL
+    or catalogue context lives in the coin's `sources` block; this
+    label only needs to be short enough to clarify provenance in a
+    cell tooltip.
+    """
+    value: float = Field(..., gt=0)
+    source: str = Field(..., min_length=1)
+
+
 # =============================================================================
 # Shared: fuesse.yml
 # =============================================================================
@@ -260,6 +276,15 @@ class Coin(_StrictBase):
     weight_rough_verified: bool = True
     diameter_mm: float | None = Field(None, gt=0)
     diameter_mm_verified: bool = True
+    diameter_mm_alts: list[FieldAlt] | None = Field(
+        None,
+        description=(
+            "Alternative diameter values from other sources, when sources "
+            "disagree. Each item carries `value` + `source` label. The "
+            "primary `diameter_mm` is what we trust; alts are recorded for "
+            "transparency and rendered as a small annotation in the cell."
+        ),
+    )
     fraction: str | None = Field(None, description="E.g., '1/12' — lookup key in fuss.fractions")
     issuing_entity: str | None = Field(None, description="FK to data/i18n/issuing_entities.yml — political entity that struck the coin")
     fuss_refs: list[FussRef] = Field(default_factory=list,

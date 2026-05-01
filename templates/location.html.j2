@@ -60,6 +60,9 @@
     {%- if coin.raw.diameter_mm -%}
       {{ fmt_num(coin.raw.diameter_mm, decimals=1, unit='mm') }}
       {%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+      {%- if coin.raw.diameter_mm_alts -%}
+        {%- for alt in coin.raw.diameter_mm_alts %} <span class="alt-source" data-tooltip="{{ alt.source }}">| {{ fmt_num(alt.value, decimals=1) }}</span>{% endfor -%}
+      {%- endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-mint">
@@ -203,6 +206,9 @@
     {%- if coin.raw.diameter_mm -%}
       {{ fmt_num(coin.raw.diameter_mm, decimals=1, unit='mm') }}
       {%- if not coin.raw.diameter_mm_verified %} <span class="unverified">(?)</span>{% endif -%}
+      {%- if coin.raw.diameter_mm_alts -%}
+        {%- for alt in coin.raw.diameter_mm_alts %} <span class="alt-source" data-tooltip="{{ alt.source }}">| {{ fmt_num(alt.value, decimals=1) }}</span>{% endfor -%}
+      {%- endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-mint">
