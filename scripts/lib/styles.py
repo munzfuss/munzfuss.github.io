@@ -1018,8 +1018,14 @@ h2[style] {{
 .tl-bar-dashed {{
   border: 0.5px dashed var(--purple);
 }}
-.tl-bar-cut-left  {{ border-top-left-radius: 0; border-bottom-left-radius: 0; border-left:  1.5px dotted rgba(255,255,255,0.45); }}
-.tl-bar-cut-right {{ border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: 1.5px dotted rgba(255,255,255,0.45); }}
+/* `tl-bar-cut-left` / `tl-bar-cut-right` flag bars whose extent
+   extends past the timeline's year_from / year_to. The visual cue
+   is JUST the squared-off corner on the cut side (no border-radius);
+   the previous `1.5px dotted` border was redundant — with the year-
+   block convention all bars touch the timeline edge cleanly, and
+   the dotted line read as visual noise on the layered bars. */
+.tl-bar-cut-left  {{ border-top-left-radius: 0; border-bottom-left-radius: 0; }}
+.tl-bar-cut-right {{ border-top-right-radius: 0; border-bottom-right-radius: 0; }}
 .tl-bar-narrow {{ overflow: visible; padding: 0; }}
 .tl-bar-narrow .tl-bar-label-float {{
   position: absolute;
