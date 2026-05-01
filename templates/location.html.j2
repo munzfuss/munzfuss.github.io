@@ -548,23 +548,27 @@
 
 <section class="fuss-block fuss-{{ sg.fuss.id }}" id="fuss-{{ sg.fuss.id }}">
 <div class="phase-header">
-  <span class="pname">{{ sg.fuss.name|t(lang) }}</span>
+  <div class="ph-left">
+    <span class="pname">{{ sg.fuss.name|t(lang) }}</span>
+    {# Period-correct or near-period synonym (Reichsmüntzfuß, Speciesfuß,
+       Kurantmøntfod, Rigsbankfod, Vereinsmüntzfuß, Kronemøntfod, …) — single
+       proper-noun string, same for all rendered languages. Styled as h1-sub. #}
+    {% if sg.fuss.historical_name %}
+      <span class="phistorical">«{{ sg.fuss.historical_name }}»</span>
+    {% endif %}
+    {# Short summary in the title — uses hintergrund directly. Each fuss is
+       expected to keep hintergrund short (1–3 sentences); longer historical
+       elaboration belongs in `details` and lives inside the details toggle. #}
+    {% if sp and sp.hintergrund %}
+      <span class="psub">{{ sp.hintergrund|t(lang)|safe }}</span>
+    {% elif sg.fuss.description %}
+      <span class="psub" style="white-space: pre-line;">{{ sg.fuss.description|t(lang) }}</span>
+    {% endif %}
+  </div>
   {% if sp and sp.pdate_label %}
-    <span class="pdate">{{ sp.pdate_label|t(lang)|safe }}</span>
-  {% endif %}
-  {# Period-correct or near-period synonym (Reichsmüntzfuß, Speciesfuß,
-     Kurantmøntfod, Rigsbankfod, Vereinsmüntzfuß, Kronemøntfod, …) — single
-     proper-noun string, same for all rendered languages. #}
-  {% if sg.fuss.historical_name %}
-    <span class="phistorical">«{{ sg.fuss.historical_name }}»</span>
-  {% endif %}
-  {# Short summary in the title — uses hintergrund directly. Each fuss is
-     expected to keep hintergrund short (1–3 sentences); longer historical
-     elaboration belongs in `details` and lives inside the details toggle. #}
-  {% if sp and sp.hintergrund %}
-    <span class="psub">{{ sp.hintergrund|t(lang)|safe }}</span>
-  {% elif sg.fuss.description %}
-    <span class="psub" style="white-space: pre-line;">{{ sg.fuss.description|t(lang) }}</span>
+    <div class="ph-right">
+      <span class="pdate">{{ sp.pdate_label|t(lang)|safe }}</span>
+    </div>
   {% endif %}
 </div>
 

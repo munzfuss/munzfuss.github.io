@@ -1309,6 +1309,12 @@ h2[style] {{
    carries a verbose «Geltungsbereich …» rather than a terse date range) from
    squashing the title — pdate is allowed to wrap into multiple right-aligned
    lines instead. */
+/* Two explicit child blocks — `.ph-left` (title stack: pname / phistorical /
+   psub, vertically) and `.ph-right` (pdate, right-aligned). The grid only
+   manages the LR split; vertical stacking inside each side is plain block
+   flow. This replaced the earlier flat layout where pname/phistorical/psub
+   each carried their own `grid-column: 1` rule and depended on DOM order to
+   wrap into rows. */
 .phase-header {{
   display: grid;
   grid-template-columns: minmax(60%, 1fr) auto;
@@ -1326,73 +1332,67 @@ h2[style] {{
   border-bottom: var(--hairline) solid var(--border);
   padding: 0 0 12px;
 }}
-.phase-header .pname {{
-  grid-column: 1;
-  display: block;
-  font-family: var(--font-display);
-  font-size: 30px;
-  font-weight: 500;
-  font-variant: small-caps;
-  letter-spacing: 0.005em;
-  color: var(--accent);
-  margin: 0;
-  line-height: 1.05;
+.phase-header .ph-left {{
+  min-width: 0;
 }}
-[data-theme="v1"] .phase-header .pname {{
-  font-size: 36px;
-  color: var(--text-primary);
-  font-weight: 500;
-}}
-[data-theme="v2"] .phase-header .pname {{
-  font-family: var(--font-display);
-  font-size: 38px;
-  font-variant: normal;
-  font-weight: 400;
-  color: var(--text-primary);
-  letter-spacing: -0.005em;
-}}
-.phase-header .pdate {{
-  grid-column: 2;
-  align-self: baseline;
+.phase-header .ph-right {{
   justify-self: end;
-  display: block;
+  align-self: baseline;
   max-width: 36ch;
   text-align: right;
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 400;
-  color: var(--text-muted);
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-  margin: 0;
-  letter-spacing: 0.02em;
-  line-height: 1.4;
 }}
-[data-theme="v1"] .phase-header .pdate {{ color: var(--accent-deep); }}
-[data-theme="v2"] .phase-header .pdate {{ color: var(--accent); }}
-.phase-header .pdate b {{ color: var(--text-primary); font-weight: 600; }}
-[data-theme="v3"] .phase-header .pdate b {{ color: var(--accent); }}
-/* Period-correct synonym (Reichsmüntzfuß, Speciesfuß, Kurantmøntfod, …)
-   sits between the numeric title and the .psub summary. Slightly smaller
-   and italic; uses « … » guillemets in the template. */
+/* `.pname` mirrors `.h1` from the hero — same display font, weight, size,
+   small-caps, line-height. Numeric Müntzfuß name is the page-section's
+   primary title and reads as such. */
+.phase-header .pname {{
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 1.0;
+  letter-spacing: -0.005em;
+  margin: 0 0 14px;
+  color: var(--text-primary);
+  font-variant: small-caps;
+}}
+[data-theme="v1"] .phase-header .pname {{ font-size: 60px; }}
+[data-theme="v2"] .phase-header .pname {{
+  font-weight: 400;
+  font-size: 60px;
+  letter-spacing: -0.014em;
+  font-variant: normal;
+}}
+[data-theme="v3"] .phase-header .pname {{
+  background: linear-gradient(180deg, var(--accent-glow), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}}
+/* `.phistorical` mirrors `.h1-sub` — italic display font, ~0.62em of the
+   pname size, accent-deep colour. Period-correct synonym sits directly
+   under the numeric pname, before the descriptive .psub block. */
 .phase-header .phistorical {{
-  grid-column: 1;
   display: block;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 18px;
+  font-variant: normal;
   font-weight: 400;
-  color: var(--accent);
-  margin: 4px 0 0;
-  letter-spacing: 0.005em;
-  line-height: 1.2;
+  font-size: 0.62em;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  margin-top: 8px;
+  padding-bottom: 4px;
+  color: var(--accent-deep);
 }}
-[data-theme="v1"] .phase-header .phistorical {{ color: var(--accent-deep); font-size: 19px; }}
-[data-theme="v2"] .phase-header .phistorical {{ font-size: 19px; color: var(--text-secondary); }}
+[data-theme="v1"] .phase-header .phistorical {{ color: var(--accent-deep); }}
+[data-theme="v2"] .phase-header .phistorical {{ color: var(--accent); font-style: italic; }}
+[data-theme="v3"] .phase-header .phistorical {{
+  background: linear-gradient(180deg, var(--accent-glow), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}}
 .phase-header .psub {{
-  grid-column: 1;          /* confined to the title column — width matches .pname */
   display: block;
   font-family: var(--font-body);
   font-style: italic;
@@ -1404,6 +1404,19 @@ h2[style] {{
 }}
 [data-theme="v1"] .phase-header .psub {{ color: var(--text-secondary); font-size: 16px; }}
 [data-theme="v2"] .phase-header .psub {{ font-size: 15px; line-height: 1.55; }}
+.phase-header .pdate {{
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}}
+[data-theme="v1"] .phase-header .pdate {{ color: var(--accent-deep); }}
+[data-theme="v2"] .phase-header .pdate {{ color: var(--accent); }}
+.phase-header .pdate b {{ color: var(--text-primary); font-weight: 600; }}
+[data-theme="v3"] .phase-header .pdate b {{ color: var(--accent); }}
 
 /* --- Grundwerte (gw) ------------------------------------------------------ */
 
