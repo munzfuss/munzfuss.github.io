@@ -324,3 +324,25 @@ Use the **pdf-viewer MCP** (`mcp__pdf-viewer__display_pdf` to open, then `mcp__p
 **Pattern for browser automation via Chrome MCP:** always batch actions with `browser_batch` (the runtime gives a system-reminder if you don't). Sequence: `list_connected_browsers` → `select_browser` → `tabs_context_mcp(createIfEmpty: true)` → then a single `browser_batch` with `[navigate, get_page_text]` per URL. For multi-page comparisons, one `browser_batch` per URL keeps the round trip count low.
 
 **General principle:** when a tool fails, the next sentence in your response should *not* be «I cannot verify». It should be «trying tier N+1». Only report «cannot verify» after the whole chain — including asking the user — has been exhausted.
+
+## Numista API budget — ASK before bulk-fetching (May 2026 only)
+
+> **Time-scoped rule: applies through May 2026 only.** Re-evaluate at the
+> start of June 2026 — the user's monthly Numista quota resets and the
+> rule may be relaxed or dropped. If today's date (see `# currentDate`
+> in this file's context) is past 2026-05-31, ask the user whether this
+> rule still stands before applying it.
+
+The user is on a **rate-limited Numista API plan** (200 calls / 24h on the free tier; in May 2026 the user explicitly noted the remaining monthly budget is scarce). Calling `https://api.numista.com/v3/...` consumes that quota.
+
+**While this rule is active: before issuing more than ~5 Numista API requests in a session, STOP and ask the user.** Phrase it as a budget request, not a fait accompli, and propose alternatives. Example:
+
+> «Для класифікації 70 коінів треба ~140 Numista API викликів (search + type fetch). У тебе ліміт квоти. Альтернативи:
+> (a) Скрапити кожний coin-page через Chrome MCP (повільно, але без квоти)
+> (b) Обробити лише 10 пріоритетних KM# і пропустити решту
+> (c) Витратити квоту і прийняти ~140 запитів
+> Як вирішиш?»
+
+**Never silently burn the quota.** Even if the script is technically correct and the data would be useful, the user needs to make the budget call. Cached requests in `scripts/cache/numista/<nid>.json` are free to re-read — only LIVE API calls count. So always check the cache first, and only ask permission for the new fetches.
+
+The same principle applies to any other paid/quota'd resource you might integrate later (e.g. authenticated APIs, paid scraping services) — but those have their own scope and timeline; this specific rule is May-2026-bound.
