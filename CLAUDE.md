@@ -97,6 +97,8 @@ When a value is estimated, unverified, or based on analogy rather than a primary
 
 The same applies to *modifying* a value: do not edit a field marked `verified: true` unless a source contradicts it. Do not edit a `verified: false` field to a different value unless a source supports the new value.
 
+**Source years are immutable — never truncate to fit our taxonomy.** A coin's `year_first` / `year_last` / `year_label` / `year_ranges` reflect what the source documents. **Do not silently shorten** the range to align with a Fuß window, a Phase boundary, or any other locally-defined annotation. If the source documents that a type was minted 1617, 1627, 1628, 1629, then `year_first: 1617`, `year_last: 1629`, `year_ranges: [[1617,1617], [1627,1629]]`, `year_label: "1617, 1627–1629"` — even if our Phase A for that Fuß ends in 1625. Phases and Füße are **our** structural annotations; years are **the source's** factual record. When the documented years overshoot a phase boundary, leave the years intact and (a) place the coin in the phase whose Münzfuß it actually represents (year_first determines phase per §8.2) — `year_last` overshooting the phase end is acceptable, or (b) note the cross-phase span explicitly in the prose. Never quietly clip.
+
 ### 5. Source hierarchy
 
 In descending order of authority:
