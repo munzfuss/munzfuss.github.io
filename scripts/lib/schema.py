@@ -137,6 +137,13 @@ class Fuss(BaseModel):
     """A global Münzfuß mathematical definition."""
     id: str = ""  # filled in by loader
     name: I18nText
+    historical_name: str | None = None
+    # ↑ Period-correct or near-period name (Reichsmüntzfuß, Speciesfuß,
+    # Kurantmøntfod, Rigsbankfod, Vereinsmüntzfuß, Kronemøntfod, …).
+    # Single string in original orthography (German with ß/ä; Danish with ø);
+    # not localised — these are proper-noun monetary terms shared across all
+    # rendered languages. Rendered in `.phistorical` above `.psub` in the
+    # phase-header.
     metal: Literal["silver", "gold"]
     grid_unit_g: float = Field(..., description="E.g., 233.856 for Cöllnische Marck")
     grid_stops: float = Field(..., description="E.g., 9.25 for 9¼-Fuß")

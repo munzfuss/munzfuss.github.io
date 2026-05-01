@@ -1374,6 +1374,23 @@ h2[style] {{
 [data-theme="v2"] .phase-header .pdate {{ color: var(--accent); }}
 .phase-header .pdate b {{ color: var(--text-primary); font-weight: 600; }}
 [data-theme="v3"] .phase-header .pdate b {{ color: var(--accent); }}
+/* Period-correct synonym (Reichsmüntzfuß, Speciesfuß, Kurantmøntfod, …)
+   sits between the numeric title and the .psub summary. Slightly smaller
+   and italic; uses « … » guillemets in the template. */
+.phase-header .phistorical {{
+  grid-column: 1;
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--accent);
+  margin: 4px 0 0;
+  letter-spacing: 0.005em;
+  line-height: 1.2;
+}}
+[data-theme="v1"] .phase-header .phistorical {{ color: var(--accent-deep); font-size: 19px; }}
+[data-theme="v2"] .phase-header .phistorical {{ font-size: 19px; color: var(--text-secondary); }}
 .phase-header .psub {{
   grid-column: 1;          /* confined to the title column — width matches .pname */
   display: block;

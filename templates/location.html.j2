@@ -552,6 +552,12 @@
   {% if sp and sp.pdate_label %}
     <span class="pdate">{{ sp.pdate_label|t(lang)|safe }}</span>
   {% endif %}
+  {# Period-correct or near-period synonym (Reichsmüntzfuß, Speciesfuß,
+     Kurantmøntfod, Rigsbankfod, Vereinsmüntzfuß, Kronemøntfod, …) — single
+     proper-noun string, same for all rendered languages. #}
+  {% if sg.fuss.historical_name %}
+    <span class="phistorical">«{{ sg.fuss.historical_name }}»</span>
+  {% endif %}
   {# Short summary in the title — uses hintergrund directly. Each fuss is
      expected to keep hintergrund short (1–3 sentences); longer historical
      elaboration belongs in `details` and lives inside the details toggle. #}
