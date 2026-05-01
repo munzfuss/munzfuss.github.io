@@ -10,14 +10,25 @@ All types are Pydantic models. Validation errors at build-time catch:
 from __future__ import annotations
 
 from typing import Literal
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+
+
+# Guard: every model below uses `extra='forbid'` (via _StrictBase) so that
+# stray YAML keys — typos in field names, orphaned fields after a botched
+# text-substitution edit, or fields the schema doesn't actually accept —
+# raise a hard ValidationError at build time rather than being silently
+# ignored. Combined with the AST-level duplicate-key check in
+# `lib.yaml_check`, this makes the whole data layer fail-fast on shape
+# mistakes, not just on type mistakes.
+class _StrictBase(BaseModel):
+    model_config = ConfigDict(extra="forbid")
 
 
 # =============================================================================
 # Shared types
 # =============================================================================
 
-class I18nText(BaseModel):
+class I18nText(_StrictBase):
     """A translatable string. DE is mandatory; EN/UK fall back."""
     de: str
     en: str | None = None
@@ -34,7 +45,7 @@ class I18nText(BaseModel):
         return self.de  # last resort
 
 
-class I18nTextOptional(BaseModel):
+class I18nTextOptional(_StrictBase):
     """Like I18nText but DE is optional (used for weight_rough_label etc.)."""
     de: str | None = None
     en: str | None = None
@@ -54,19 +65,19 @@ class I18nTextOptional(BaseModel):
 # Shared: fuesse.yml
 # =============================================================================
 
-class Fraction(BaseModel):
+class Fraction(_StrictBase):
     """A single denominational fraction of a fuss."""
     soll_fein_g: float
     soll_rau_g: float | None = None  # only for gold fuesse (optional)
 
 
-class GrundwerteRow(BaseModel):
+class GrundwerteRow(_StrictBase):
     """A key-value row inside the Grundwerte card. Values may contain safe HTML."""
     key: I18nText
     value: I18nText
 
 
-class Grundwerte(BaseModel):
+class Grundwerte(_StrictBase):
     """Base-value card shown under each Müntzfuß header."""
     heading: I18nText | None = None
     subheading: I18nTextOptional | None = None
@@ -76,7 +87,7 @@ class Grundwerte(BaseModel):
     rechnungsfraktionen: I18nText | None = None      # rich block, safe HTML
 
 
-class FussEvent(BaseModel):
+class FussEvent(_StrictBase):
     """One historical event year recorded for two scopes.
 
     Each event has a single canonical year per scope:
@@ -100,7 +111,7 @@ class FussEvent(BaseModel):
     note: str | None = None
 
 
-class FussEvents(BaseModel):
+class FussEvents(_StrictBase):
     """Five canonical historical events per stope.
 
     These atomic events are the source of truth. The three nested
@@ -133,7 +144,7 @@ class FussEvents(BaseModel):
     `holstein` scope uses the global UI string `tl.scope.holstein`."""
 
 
-class Fuss(BaseModel):
+class Fuss(_StrictBase):
     """A global Münzfuß mathematical definition."""
     id: str = ""  # filled in by loader
     name: I18nText
@@ -159,7 +170,7 @@ class Fuss(BaseModel):
 # Location YAML: phases + coins
 # =============================================================================
 
-class Phase(BaseModel):
+class Phase(_StrictBase):
     id: str
     year_from: int
     year_to: int
@@ -177,7 +188,7 @@ class Phase(BaseModel):
         return self
 
 
-class FussPeriod(BaseModel):
+class FussPeriod(_StrictBase):
     """Per-location framing of a single Müntzfuß: validity range + background + closing summary."""
     pdate_label: I18nText | None = None      # .pdate — e.g. "Geltungsbereich in Holstein: ca. 1625 → 24. Aug. 1866 · ca. 240 Jahre"
     hintergrund: I18nText | None = None      # .psub — short summary (1–3 sentences) shown in the fuss title block
@@ -186,7 +197,7 @@ class FussPeriod(BaseModel):
     closing_label: I18nTextOptional | None = None  # small uppercase .tlb inside .terr
 
 
-class CatalogRefs(BaseModel):
+class CatalogRefs(_StrictBase):
     km: str | None = None
     lange: str | None = None
     hede: str | None = None
@@ -199,14 +210,14 @@ class CatalogRefs(BaseModel):
     others: list[str] = Field(default_factory=list)
 
 
-class Source(BaseModel):
+class Source(_StrictBase):
     type: Literal["numista", "auction", "museum", "literature", "web", "other"] = "other"
     url: str | None = None
     ref: str | None = None
     note: str | None = None
 
 
-class FussRef(BaseModel):
+class FussRef(_StrictBase):
     """One line in the Fuß-column for a coin (primary / secondary / tertiary).
     Used for dual- or triple-denominated coins where the same silver content
     simultaneously expresses a fraction of several Müntzfüße."""
@@ -214,7 +225,7 @@ class FussRef(BaseModel):
     label: I18nText
 
 
-class Coin(BaseModel):
+class Coin(_StrictBase):
     id: str
     fuss: str = Field(..., description="FK to shared/fuesse.yml")
     phase: str = Field(..., description="FK to location.phases[fuss]")
@@ -288,7 +299,7 @@ class Coin(BaseModel):
         return self
 
 
-class TimelineBar(BaseModel):
+class TimelineBar(_StrictBase):
     id: str
     label: I18nText
     small: I18nTextOptional | None = None
@@ -309,7 +320,7 @@ class TimelineBar(BaseModel):
                                         # (e.g. Reichsgoldmünzfuß is a contextual entry only)
 
 
-class Timeline(BaseModel):
+class Timeline(_StrictBase):
     title: I18nText
     year_from: int
     year_to: int
@@ -317,7 +328,7 @@ class Timeline(BaseModel):
     bars: list[TimelineBar] = Field(default_factory=list)
 
 
-class Location(BaseModel):
+class Location(_StrictBase):
     model_config = {"extra": "allow"}  # permit sidecar fields like _references_data
 
     id: str

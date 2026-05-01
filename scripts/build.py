@@ -322,6 +322,20 @@ def main():
     # Normalise base_url: drop trailing slash so templates can use {{ base_url }}/path
     base_url = args.base_url.rstrip("/")
 
+    # YAML integrity guard — runs BEFORE Pydantic validation because
+    # Pydantic operates on the parsed dict, after PyYAML has silently
+    # collapsed duplicate keys via last-wins. A botched edit that
+    # duplicates a key (two `metal:` lines under one record) survives
+    # schema validation and ships broken data; this AST walk catches it.
+    from lib.yaml_check import check_data_directory
+    print("🛡️  YAML integrity check (duplicate keys)...")
+    n_dups = check_data_directory(Path("data"))
+    if n_dups:
+        print(f"\n❌ Found {n_dups} duplicate-key issue(s). Fix and rerun.")
+        sys.exit(1)
+    print("   ✓ No duplicate keys")
+    print()
+
     # Load shared resources
     print("📦 Loading shared resources...")
     fuesse = load_fuesse()
