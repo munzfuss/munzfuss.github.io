@@ -26,8 +26,27 @@ def build_env(template_dir: str) -> Environment:
     env.filters["fmt_delta"] = i18n.fmt_delta
     env.filters["group_bars"] = group_timeline_bars
     env.filters["first_sentence"] = first_sentence
+    env.filters["ruler"] = ruler_for_lang
 
     return env
+
+
+def ruler_for_lang(name: str | None, lang: str) -> str:
+    """Render a ruler name appropriate to the target language.
+
+    The YAML stores rulers in canonical German form, where Roman-numeral
+    ordinals carry a trailing period (Christian IV. = "Christian der IV.").
+    English and Ukrainian don't use this convention — strip the period
+    from Roman numerals for non-DE rendering.
+    """
+    if not name:
+        return "—"
+    if lang == "de":
+        return name
+    import re
+    # Match a space + Roman numeral + literal period; drop the period.
+    # Roman numerals: combinations of I, V, X (for 1..30 — sufficient for monarchs).
+    return re.sub(r"(\s[IVX]+)\.", r"\1", name)
 
 
 def first_sentence(html_text: str) -> str:

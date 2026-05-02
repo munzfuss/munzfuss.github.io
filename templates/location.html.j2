@@ -21,7 +21,7 @@
     {%- set parts = coin.raw.year_label.split(',') -%}
     {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
   {%- endif -%}</td>
-  <td>{{ coin.raw.ruler or '—' }}</td>
+  <td>{{ coin.raw.ruler|ruler(lang) }}</td>
   <td class="c-km">
     {%- for prefix, vals in coin.catalog_groups -%}
       {%- if prefix -%}
@@ -204,7 +204,7 @@
     {%- set parts = coin.raw.year_label.split(',') -%}
     {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
   {%- endif -%}</td>
-  <td>{{ coin.raw.ruler or '—' }}</td>
+  <td>{{ coin.raw.ruler|ruler(lang) }}</td>
   <td class="c-km">
     {%- for prefix, vals in coin.catalog_groups -%}
       {%- if prefix -%}
