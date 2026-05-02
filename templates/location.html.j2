@@ -17,7 +17,10 @@
 {%- macro coin_row(coin) %}
 <tr{% if coin.raw.kind == 'scheide' %} class="rw-sch"{% endif %}>
   <td class="c-nom">{{ coin.raw.nominal }}</td>
-  <td class="c-year">{{ coin.raw.year_label }}</td>
+  <td class="c-year">{%- if coin.raw.year_label -%}
+    {%- set parts = coin.raw.year_label.split(',') -%}
+    {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
+  {%- endif -%}</td>
   <td>{{ coin.raw.ruler or '—' }}</td>
   <td class="c-km">
     {%- for prefix, vals in coin.catalog_groups -%}
@@ -192,7 +195,10 @@
 {%- macro coin_row_copper(coin) %}
 <tr class="rw-cp">
   <td class="c-nom">{{ coin.raw.nominal }}</td>
-  <td class="c-year">{{ coin.raw.year_label }}</td>
+  <td class="c-year">{%- if coin.raw.year_label -%}
+    {%- set parts = coin.raw.year_label.split(',') -%}
+    {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
+  {%- endif -%}</td>
   <td>{{ coin.raw.ruler or '—' }}</td>
   <td class="c-km">
     {%- for prefix, vals in coin.catalog_groups -%}

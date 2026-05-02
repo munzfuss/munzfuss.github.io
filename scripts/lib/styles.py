@@ -1930,7 +1930,8 @@ summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
 /* Per-cell typography */
 .c-nom {{ font-weight: 500; font-style: italic; max-width: 220px; }}
 [data-theme="v2"] .c-nom {{ font-style: normal; font-weight: 600; }}
-.c-year {{ font-family: var(--font-mono); font-size: 11px; color: var(--accent); white-space: nowrap; }}
+.c-year {{ font-family: var(--font-mono); font-size: 11px; color: var(--accent); }}
+.c-year .yr-chunk {{ display: block; white-space: nowrap; }}
 .c-km {{ font-size: 11px; color: var(--text-secondary); line-height: 1.4; }}
 .c-km .cat-group {{ display: inline-block; }}
 .c-km .cat-prefix {{ color: var(--text-muted); font-weight: 500; font-family: var(--font-sans); }}
