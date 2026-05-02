@@ -110,8 +110,9 @@ In descending order of authority:
 3. **Auction catalog introductions** (Bruun Part II by Stack's Bowers Zürich 2025 is exceptionally well-researched)
 4. **MGM Münzlexikon** (Münzen, Geschichte, Menschen)
 5. **Numista** — useful for catalog numbers and rough data, but user-edited, treat with some skepticism
-6. **Wikipedia** (DE/EN) — last resort, always cross-check
-7. **Secondary literature** (rounded figures, modern retellings) — lowest priority
+6. **ucoin.net** — same tier as Numista; user-edited catalogue covering many overlapping types. Use as confirmation source: when ucoin's weight/fineness/diameter agrees with our value, that counts as a confirmation suitable for flipping `*_verified: true`. When ucoin disagrees, record the divergence via `measurement_alts` rather than picking one silently.
+7. **Wikipedia** (DE/EN) — last resort, always cross-check
+8. **Secondary literature** (rounded figures, modern retellings) — lowest priority
 
 When sources conflict, primary sources (inscriptions, archives) override secondary/tertiary sources. Always document the source chain in `coin.source`.
 
