@@ -2006,6 +2006,17 @@ summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
   line-height: 1.35;
   margin-top: 2px;
 }}
+/* Primary / Secondary / Tertiary lines carry a short auto-prefix
+   ("▸ Primär: ") + a short fuss label ("18½-Fuß"). Without nowrap the
+   narrow .c-fuss column breaks the label after the internal hyphen
+   ("18½-" / "Fuß") and the result reads as two unrelated tokens.
+   Implied lines ("↳ Факт ≈ 18,04-Thaler-Fuß") already wrap their
+   fuss-token via the inner .fuss-name span, so nowrap stays scoped
+   to the labelled rank lines. */
+.c-fuss .sf-line.primary,
+.c-fuss .sf-line.secondary,
+.c-fuss .sf-line.tertiary,
+.c-fuss .sf-line.plain {{ white-space: nowrap; }}
 .c-fuss .sf-line.plain     {{ color: var(--text-muted); font-style: normal; }}
 .c-fuss .sf-line.primary   {{ color: var(--accent-muted); }}
 .c-fuss .sf-line.primary::before   {{ content: "▸ Primär: "; color: var(--accent); font-weight: 600; font-style: normal; }}
