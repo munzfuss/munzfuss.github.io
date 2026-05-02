@@ -99,6 +99,16 @@ When a value is estimated, unverified, or based on analogy rather than a primary
 
 The same applies to *modifying* a value: do not edit a field marked `verified: true` unless a source contradicts it. Do not edit a `verified: false` field to a different value unless a source supports the new value.
 
+**One source with full data is enough for `verified: true`.** Verification is not a quorum requirement — it asks "does any acceptable source attest this exact value?". A single Numista entry (or single ucoin / Hede / IKMK record) that publishes the field directly is sufficient. The flag means «present in a source», not «present in multiple sources».
+
+**When `verified: false` is the right call for a partially-sourced coin:**
+A source may publish *some* fields but not others (e.g. a ucoin entry gives weight + diameter but no fineness). For the unsourced field, you may still record the value our project would expect from the standard — but only when **both** of these hold:
+1. The fineness (or other missing field) is the **canonical value of the Münzfuß** the coin clearly belongs to (e.g. .500 for an 18½-Fuß Rigsbankskilling, .875 for a 9¼-Fuß Speciedaler) — i.e. the value is *known to us from the standard*, not invented.
+2. The arithmetic check using that canonical value × the sourced weight produces a Feingewicht that **falls within the standard's typical Δ envelope** (≤ ~2 % off the soll) — i.e. nothing in the sourced data contradicts the assumption.
+In that case write the canonical value and mark **`<field>_verified: false`** with a `verification_note` such as «assumed canonical .500 fineness for 18½-Fuß; ucoin tid X attests weight only, fineness inferred from standard». The `(?)` marker correctly signals to the reader that *this specific field* is inferred, while preserving the coin's place in the table.
+
+**`verified: true` is wrong** in any of these cases: (a) the value comes purely from a back-computation we performed (no source published it directly), (b) the value comes from analogy with another type, (c) the value matches the standard «too neatly» without an explicit source — neat fits are evidence the value is *plausible*, not *attested*.
+
 **Source years are immutable — never truncate to fit our taxonomy.** A coin's `year_first` / `year_last` / `year_label` / `year_ranges` reflect what the source documents. **Do not silently shorten** the range to align with a Fuß window, a Phase boundary, or any other locally-defined annotation. If the source documents that a type was minted 1617, 1627, 1628, 1629, then `year_first: 1617`, `year_last: 1629`, `year_ranges: [[1617,1617], [1627,1629]]`, `year_label: "1617, 1627–1629"` — even if our Phase A for that Fuß ends in 1625. Phases and Füße are **our** structural annotations; years are **the source's** factual record. When the documented years overshoot a phase boundary, leave the years intact and (a) place the coin in the phase whose Münzfuß it actually represents (year_first determines phase per §8.2) — `year_last` overshooting the phase end is acceptable, or (b) note the cross-phase span explicitly in the prose. Never quietly clip.
 
 ### 5. Source hierarchy

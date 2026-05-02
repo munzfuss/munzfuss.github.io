@@ -2332,8 +2332,12 @@ coins:
         - Jaeg 6 NWD# 16
         - Kahnt/Schön# 2
     metal: copper
-    weight_rough_g: 9.5
-    diameter_mm: 27.1
+    weight_rough_g:
+      - {value: 9.5, source: "Numista N#19525\nucoin tid 90814"}
+      - {value: 9.57, source: "ucoin tid 187884"}
+    diameter_mm:
+      - {value: 27.1, source: "Numista N#19525"}
+      - {value: 27.0, source: "ucoin tid 90814\nucoin tid 187884"}
     note:
       de: "Zwei Jahrgänge (1850, 1851) · Provisorische Regierung Schleswig-Holsteins"
       en: "Two year issues (1850, 1851) · Provisional Government of Schleswig-Holstein"
@@ -2345,6 +2349,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/schleswig_holstein-1-sechsling-1850-1851/?tid=90814
         ref: ucoin tid 90814
+      - type: ucoin
+        url: https://en.ucoin.net/coin/schleswig_holstein-1-sechsling-1850/?tid=187884
+        ref: ucoin tid 187884
     issuing_entity: provisional_govt
     mint: Altona
   - id: km-x006-1850
