@@ -2050,7 +2050,7 @@ summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
 .unverified  {{ color: {sd_under_deep_fg}; cursor: help; font-weight: 600; font-family: var(--font-sans); }}
 [data-theme="v1"] .unverified, [data-theme="v2"] .unverified {{ color: var(--accent); }}
 .val-source  {{ cursor: help; }}  /* primary value with explicit source — inline */
-.alt-source  {{ color: {sd_under_deep_fg}; opacity: 0.65; cursor: help; display: block; }}
+.alt-source  {{ color: {sd_under_deep_fg}; opacity: 0.65; cursor: help; display: block; width: fit-content; }}
 .untranslated {{
   background: rgba(255, 220, 0, 0.08);
   border-bottom: 1px dashed rgba(255, 220, 0, 0.3);
