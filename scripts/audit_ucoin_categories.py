@@ -16,19 +16,18 @@ Categories:
                                variant matches (different denom/year)
   D_DENMARK_HOLSTEIN_MINT    ← Denmark-source, Numista cache OR our base
                                attests a Holstein mint for that KM#
-  E_DENMARK_AMBIGUOUS        ← Denmark-source, KM# overlaps our base but
-                               denom/year don't match — needs per-coin
-                               manual check (could be different variant)
+  E_DENMARK_AMBIGUOUS        ← KM# overlaps our base but denom/year don't
+                               match — needs per-coin manual check.
+                               Covers BOTH (a) Denmark-source entries
+                               picked up by the heuristic AND
+                               (b) Holstein-period entries (period_2939,
+                               period_2995) that turned out to be Royal
+                               Danish Copenhagen-mint issues sharing the
+                               KM# numeric value with a different SH coin.
   F_OUT_OF_SCOPE             ← Clearly outside Holstein (year range past
                                our 1559–1866 window — Reichsmünzordnung
                                to Prussian annexation — or geographic
                                mismatch with Holstein-mint cities)
-  G_INSCOPE_NOEVIDENCE       ← Year range falls in our Holstein window
-                               AND period-source is Holstein-relevant, but
-                               no explicit Holstein-mint indicator — could
-                               be Copenhagen-only or genuinely unattested.
-                               Needs per-coin verification before either
-                               adding or definitively excluding.
   X_HANSEATIC_SKIP           ← Lübeck/Hamburg, out of Schleswig scope
 
 Decision precedence (each step short-circuits the rest):
@@ -312,7 +311,6 @@ def main():
         "D_DENMARK_HOLSTEIN_MINT": [],
         "E_DENMARK_AMBIGUOUS": [],
         "F_OUT_OF_SCOPE": [],
-        "G_INSCOPE_NOEVIDENCE": [],
         "X_HANSEATIC_SKIP": [],
     }
 
@@ -323,27 +321,26 @@ def main():
     # The 10 entries below were initially misclassified into
     # C_HOLSTEIN_KM_VARIANT because the categoriser cannot disambiguate
     # Royal Danish KM# from Schleswig-Holstein KM# (Krause-Mishler uses
-    # separate KM# series per emitter; e.g. "KM# 8" is a different coin
+    # separate KM# series per emitter; e.g. «KM# 8» is a different coin
     # in Royal Denmark vs Schleswig-Holstein-Sonderburg-Duchy).
     #
-    # After manual review they're routed to G_INSCOPE_NOEVIDENCE — they
-    # all fall in our Holstein historical window AND originate from
-    # Holstein-period source pages (period_2939 = Christian V era,
-    # period_2995 = Frederik IV era), but each is a Royal Danish
-    # Copenhagen-mint issue with NO Holstein-mint evidence. They aren't
-    # «out of scope» in the strict sense — the period overlaps — but no
-    # current evidence supports adding them to the Holstein register.
+    # Routed to E_DENMARK_AMBIGUOUS: mechanically these are exactly what
+    # E is for — KM# overlap with our base + denom/year don't match,
+    # needing per-coin manual verification. The «source page is Holstein-
+    # period» detail (period_2939 / period_2995) doesn't change the
+    # downstream work, so a separate bucket would just fragment a
+    # semantically homogeneous group.
     MANUAL_OVERRIDES = {
-        "163582": ("G_INSCOPE_NOEVIDENCE", "Royal Danish 1 Skilling Dansk 1694, Copenhagen — KM# 81 in Danish series, not SH"),
-        "163585": ("G_INSCOPE_NOEVIDENCE", "Royal Danish 2 Skilling Dansk 1681, Copenhagen — KM# 71 in Danish series"),
-        "163588": ("G_INSCOPE_NOEVIDENCE", "Royal Danish 2 Skilling Lybsk 1620, Copenhagen — visually different coin from km-11 Sonderburg"),
-        "163638": ("G_INSCOPE_NOEVIDENCE", "Royal Danish 4 Skilling Lybsk 1620, Copenhagen — no match in our base"),
-        "163670": ("G_INSCOPE_NOEVIDENCE", "Royal Danish 1 Dukat 1682, Copenhagen — Glückstadt variant exists as km-70.1"),
-        "163671": ("G_INSCOPE_NOEVIDENCE", "ucoin '1 krone' 3g .917 — same as our km-40-2 Guldkrone (5.996g) but with bad weight; data unreliable"),
-        "169251": ("G_INSCOPE_NOEVIDENCE", "Royal Danish 1 Skilling 1719-1720, Frederik IV Copenhagen"),
-        "169252": ("G_INSCOPE_NOEVIDENCE", "Royal Danish 12 Skilling 1716-1720, Frederik IV Copenhagen"),
-        "169253": ("G_INSCOPE_NOEVIDENCE", "Royal Danish ½ Dukat 1719, Frederik IV Copenhagen"),
-        "169254": ("G_INSCOPE_NOEVIDENCE", "Royal Danish 1 Dukat 1718-1719, Frederik IV Copenhagen"),
+        "163582": ("E_DENMARK_AMBIGUOUS", "Royal Danish 1 Skilling Dansk 1694, Copenhagen — KM# 81 in Danish series, not SH"),
+        "163585": ("E_DENMARK_AMBIGUOUS", "Royal Danish 2 Skilling Dansk 1681, Copenhagen — KM# 71 in Danish series"),
+        "163588": ("E_DENMARK_AMBIGUOUS", "Royal Danish 2 Skilling Lybsk 1620, Copenhagen — visually different coin from km-11 Sonderburg"),
+        "163638": ("E_DENMARK_AMBIGUOUS", "Royal Danish 4 Skilling Lybsk 1620, Copenhagen — no match in our base"),
+        "163670": ("E_DENMARK_AMBIGUOUS", "Royal Danish 1 Dukat 1682, Copenhagen — Glückstadt variant exists as km-70.1"),
+        "163671": ("E_DENMARK_AMBIGUOUS", "ucoin '1 krone' 3g .917 — same as our km-40-2 Guldkrone (5.996g) but with bad weight; data unreliable"),
+        "169251": ("E_DENMARK_AMBIGUOUS", "Royal Danish 1 Skilling 1719-1720, Frederik IV Copenhagen"),
+        "169252": ("E_DENMARK_AMBIGUOUS", "Royal Danish 12 Skilling 1716-1720, Frederik IV Copenhagen"),
+        "169253": ("E_DENMARK_AMBIGUOUS", "Royal Danish ½ Dukat 1719, Frederik IV Copenhagen"),
+        "169254": ("E_DENMARK_AMBIGUOUS", "Royal Danish 1 Dukat 1718-1719, Frederik IV Copenhagen"),
     }
 
     for tid, e in ucoin.items():
@@ -472,8 +469,7 @@ def main():
     print(f"=== STRICT CATEGORIZATION ({len(ucoin)} ucoin entries) ===\n")
     for cat in ["A_ALREADY", "B_HOLSTEIN_NEW", "C_HOLSTEIN_KM_VARIANT",
                 "D_DENMARK_HOLSTEIN_MINT", "E_DENMARK_AMBIGUOUS",
-                "F_OUT_OF_SCOPE", "G_INSCOPE_NOEVIDENCE",
-                "X_HANSEATIC_SKIP"]:
+                "F_OUT_OF_SCOPE", "X_HANSEATIC_SKIP"]:
         rs = results[cat]
         print(f"  {cat:30s}  {len(rs):4d}")
 
