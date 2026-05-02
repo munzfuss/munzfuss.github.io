@@ -41,47 +41,53 @@
         'copper': {'de': 'Kupfer', 'en': 'Copper', 'uk': 'Мідь'}
       } -%}
       {{ metals[coin.raw.metal][lang] }}
-      {%- if coin.primary_fineness %}
-        {%- if coin.primary_fineness_source %} <span class="alt-source" data-tooltip="{{ coin.primary_fineness_source }}">.{{ (coin.primary_fineness * 1000)|round|int }}</span>
-        {%- else %} .{{ (coin.primary_fineness * 1000)|round|int }}{% endif -%}
+      {%- if coin.fineness_groups -%}
+        {%- for g in coin.fineness_groups %}
+          {%- set _txt = '.' ~ ((g.value * 1000)|round|int) %}
+          {%- if g.is_unanimous %} {{ _txt }}
+          {%- else %} <span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}</span>
+          {%- endif %}
+        {%- endfor %}
       {%- endif -%}
       {%- if not coin.raw.fineness_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
-      {%- for alt in coin.alts -%}
-        {%- if alt.fineness %} <span class="alt-source" data-tooltip="{{ alt.source }}">.{{ (alt.fineness*1000)|round|int }}</span>{% endif -%}
-      {%- endfor -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-w">
-    {%- if coin.primary_weight_rough_g -%}
-      {%- if coin.primary_weight_source %}<span class="alt-source" data-tooltip="{{ coin.primary_weight_source }}">{{ fmt_num(coin.primary_weight_rough_g, decimals=2, unit='') }}</span>
-      {%- else %}{{ fmt_num(coin.primary_weight_rough_g, decimals=2, unit='') }}{% endif -%}
-      {%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}
-      {%- for alt in coin.alts -%}
-        {%- if alt.weight_rough_g %} <span class="alt-source" data-tooltip="{{ alt.source }}">{{ fmt_num(alt.weight_rough_g, decimals=2, unit='') }}</span>{% endif -%}
+    {%- if coin.weight_groups -%}
+      {%- for g in coin.weight_groups -%}
+        {%- set _txt = fmt_num(g.value, decimals=2, unit='') -%}
+        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}
+        {%- elif g.is_unanimous -%}{{ _txt }}
+        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}</span>
+        {%- endif -%}
       {%- endfor -%}
+      {%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}
     {%- elif coin.raw.weight_rough_label -%}
       {{ coin.raw.weight_rough_label|t(lang) }}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-w">
-    {%- if coin.weight_fein_g -%}
-      {%- if coin.primary_derived_source %}<span class="alt-source" data-tooltip="{{ coin.primary_derived_source }}">{{ fmt_num(coin.weight_fein_g, decimals=5, unit='') }}</span>
-      {%- else %}{{ fmt_num(coin.weight_fein_g, decimals=5, unit='') }}{% endif -%}
-      {%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}
-      {%- for alt in coin.alts -%}
-        {%- if alt.weight_fein_g and (alt.weight_rough_g or alt.fineness) %} <span class="alt-source" data-tooltip="Обчислено з вагою × пробою з:
-{{ alt.source }}">{{ fmt_num(alt.weight_fein_g, decimals=5, unit='') }}</span>{% endif -%}
+    {%- if coin.weight_fein_groups -%}
+      {%- for g in coin.weight_fein_groups -%}
+        {%- set _txt = fmt_num(g.value, decimals=5, unit='') -%}
+        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}
+        {%- elif g.is_unanimous -%}{{ _txt }}
+        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}</span>
+        {%- endif -%}
       {%- endfor -%}
+      {%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-d">
-    {%- if coin.primary_diameter_mm -%}
-      {%- if coin.primary_diameter_source %}<span class="alt-source" data-tooltip="{{ coin.primary_diameter_source }}">{{ fmt_num(coin.primary_diameter_mm, decimals=1, unit='') }}</span>
-      {%- else %}{{ fmt_num(coin.primary_diameter_mm, decimals=1, unit='') }}{% endif -%}
-      {%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
-      {%- for alt in coin.alts -%}
-        {%- if alt.diameter_mm %} <span class="alt-source" data-tooltip="{{ alt.source }}">{{ fmt_num(alt.diameter_mm, decimals=1, unit='') }}</span>{% endif -%}
+    {%- if coin.diameter_groups -%}
+      {%- for g in coin.diameter_groups -%}
+        {%- set _txt = fmt_num(g.value, decimals=1, unit='') -%}
+        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}
+        {%- elif g.is_unanimous -%}{{ _txt }}
+        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}</span>
+        {%- endif -%}
       {%- endfor -%}
+      {%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-mint">

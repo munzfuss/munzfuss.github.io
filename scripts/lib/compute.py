@@ -40,6 +40,61 @@ def primary_value(field) -> float | None:
 
 
 @dataclass
+class DisplayGroup:
+    """A renderable group of source readings that all round to the same
+    display value. Used to collapse `[(14.447, "Hede"), (14.45, "ucoin")]`
+    (which both display as "14,45" at 2 decimals) into ONE rendered
+    span with a combined tooltip — and, when this is the ONLY group
+    in a field, drop the alt-source styling entirely (single-value
+    consensus, just plain text).
+    """
+    value: float                # canonical numeric value (first member)
+    sources: list[str]          # ordered, deduped source labels
+    is_unanimous: bool = False  # True when this is the SOLE group in its field
+
+
+def make_display_groups(
+    pairs: list[tuple[float, str | None]],
+    precision: int,
+) -> list[DisplayGroup]:
+    """Group (value, source) pairs by their display-precision rounded
+    value. Each unique display value → one DisplayGroup whose `sources`
+    list combines every contributing source label. When all pairs round
+    to the same display value, the single returned group has
+    `is_unanimous=True` so the renderer can drop tooltip+styling
+    (consensus = plain text)."""
+    if not pairs:
+        return []
+    groups: dict[float, list[tuple[float, str | None]]] = {}
+    order: list[float] = []
+    for v, src in pairs:
+        if v is None:
+            continue
+        key = round(v, precision)
+        if key not in groups:
+            groups[key] = []
+            order.append(key)
+        groups[key].append((v, src))
+
+    is_unanimous = len(order) == 1
+    out: list[DisplayGroup] = []
+    for key in order:
+        members = groups[key]
+        canonical = members[0][0]
+        srcs: list[str] = []
+        for _, src in members:
+            if not src:
+                continue
+            for tok in src.split("\n"):
+                tok = tok.strip()
+                if tok and tok not in srcs:
+                    srcs.append(tok)
+        out.append(DisplayGroup(value=canonical, sources=srcs,
+                                is_unanimous=is_unanimous))
+    return out
+
+
+@dataclass
 class ComputedAlt:
     """Per-source alternative measurement set with derived values
     computed coherently from THAT source's reading. Inputs come from a
@@ -103,6 +158,15 @@ class ComputedCoin:
     # disagree on weight/fineness/diameter. Populated from non-primary
     # entries in list-form measurement fields.
     alts: list[ComputedAlt] = field(default_factory=list)
+    # Display-level grouping of all readings (primary + alts) by rounded
+    # value. Each group → one rendered span: when sources agree on value,
+    # they collapse into one entry with combined tooltip; when ALL
+    # sources agree (single group), template renders plain text without
+    # alt-source styling. See make_display_groups() above.
+    weight_groups: list[DisplayGroup] = field(default_factory=list)
+    fineness_groups: list[DisplayGroup] = field(default_factory=list)
+    diameter_groups: list[DisplayGroup] = field(default_factory=list)
+    weight_fein_groups: list[DisplayGroup] = field(default_factory=list)
 
     def __getattr__(self, name):
         """Proxy to raw for convenience."""
@@ -419,6 +483,26 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
                 if full_unit > 0:
                     ca.implied_fuss = round(fuss.grid_unit_g / full_unit, 2)
         cc.alts.append(ca)
+
+    # ---- Display-level grouping by rounded value ----
+    # For each measurement field, build "groups" the renderer iterates.
+    # Each group ≈ one rendered span. When all readings for a field
+    # round to the same value → single group with is_unanimous=True →
+    # plain text (no tooltip, no alt-source styling).
+    cc.weight_groups   = make_display_groups(weight_pairs,   precision=2)
+    cc.fineness_groups = make_display_groups(fineness_pairs, precision=3)
+    cc.diameter_groups = make_display_groups(diameter_pairs, precision=1)
+
+    # Derived Feingewicht groups: build (value, source) pairs from
+    # primary + per-source alts, then group at 5-decimal precision.
+    fein_pairs: list[tuple[float, str | None]] = []
+    if cc.weight_fein_g is not None:
+        fein_pairs.append((cc.weight_fein_g, cc.primary_derived_source))
+    for ca in cc.alts:
+        if ca.weight_fein_g is not None and (ca.weight_rough_g or ca.fineness):
+            fein_pairs.append((ca.weight_fein_g,
+                               f"Обчислено з вагою × пробою з:\n{ca.source}"))
+    cc.weight_fein_groups = make_display_groups(fein_pairs, precision=5)
 
     return cc
 
