@@ -347,23 +347,51 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
     # Per-source alt computations: when measurement fields are list-form
     # (multiple sources), each non-primary source gets its own
     # Feingewicht / delta / implied_fuss derived from THAT source's
-    # weight + fineness pair (paired by matching `source` label).
-    # Missing fields fall back to primary.
-    #
-    # Build set of all non-primary source labels appearing in any field
-    # (weight_pairs[1:], fineness_pairs[1:], diameter_pairs[1:]).
-    alt_sources: list[str] = []  # ordered, deduped
+    # weight + fineness pair. Source labels can be COMBINED (newline-
+    # separated, e.g. "ucoin tid X\nNumista N#Y" when one value is
+    # confirmed by multiple sources). We pair by checking if any TOKEN
+    # of an alt source matches any token of weight/fineness source —
+    # so a combined-label fineness entry still pairs cleanly with a
+    # specific-label weight entry from the same source. Otherwise a
+    # cross-source product (primary-weight × alt-fineness with no
+    # token match) would surface as an "extra" derived value the user
+    # can't trace to any single coherent source reading.
+    def _tokens(src: str) -> list[str]:
+        return [t.strip() for t in (src or "").split("\n") if t.strip()]
+
+    def _value_for_source(pairs: list[tuple[float, str | None]],
+                          source_tokens: set[str],
+                          exclude_primary: bool = True) -> float | None:
+        """Find a NON-PRIMARY entry whose source label shares ANY token
+        with source_tokens. Primary entry (index 0) excluded by default
+        — its value is shown by the primary render path; including it
+        here would surface as a duplicate alt."""
+        candidates = pairs[1:] if exclude_primary else pairs
+        for v, s in candidates:
+            if s and source_tokens & set(_tokens(s)):
+                return v
+        return None
+
+    # Collect all unique INDIVIDUAL source tokens that appear in any
+    # non-primary position. NOTE: we do NOT exclude tokens present in
+    # primary entries — a token like "ucoin tid X" can be part of a
+    # combined-label primary diameter ("Hede X\nucoin tid X") while
+    # still being a distinct alt source for weight/fineness. Excluding
+    # it would silently drop that source's alt in the other field.
+    alt_tokens: list[str] = []
     for pairs in (weight_pairs[1:], fineness_pairs[1:], diameter_pairs[1:]):
         for _, src in pairs:
-            if src and src not in alt_sources:
-                alt_sources.append(src)
+            for tok in _tokens(src):
+                if tok not in alt_tokens:
+                    alt_tokens.append(tok)
 
-    for src in alt_sources:
-        ca = ComputedAlt(source=src)
-        # For each field: pick that source's value if present, else primary
-        ca.weight_rough_g = next((v for v, s in weight_pairs   if s == src), None)
-        ca.fineness       = next((v for v, s in fineness_pairs if s == src), None)
-        ca.diameter_mm    = next((v for v, s in diameter_pairs if s == src), None)
+    for tok in alt_tokens:
+        toks = {tok}
+        ca = ComputedAlt(source=tok)
+        # For each field: pick value whose source label includes this token
+        ca.weight_rough_g = _value_for_source(weight_pairs,   toks)
+        ca.fineness       = _value_for_source(fineness_pairs, toks)
+        ca.diameter_mm    = _value_for_source(diameter_pairs, toks)
 
         w = ca.weight_rough_g if ca.weight_rough_g is not None else primary_w
         f = ca.fineness       if ca.fineness       is not None else primary_f
