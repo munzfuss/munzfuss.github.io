@@ -126,6 +126,20 @@ def dump_debug_computed(loc_id: str, computed) -> None:
                 "within_remedium": cc.within_remedium,
                 "implied_fuss": cc.implied_fuss,
             }
+            if cc.alts:
+                d["_computed"]["alts"] = [
+                    {
+                        "source": a.source,
+                        "weight_rough_g": a.weight_rough_g,
+                        "fineness": a.fineness,
+                        "diameter_mm": a.diameter_mm,
+                        "weight_fein_g": a.weight_fein_g,
+                        "delta_g": a.delta_g,
+                        "delta_pct": a.delta_pct,
+                        "within_remedium": a.within_remedium,
+                        "implied_fuss": a.implied_fuss,
+                    } for a in cc.alts
+                ]
             data.append(d)
         json.dump(data, f, ensure_ascii=False, indent=2, default=str)
     print(f"   ↳ Wrote {path.relative_to(REPO_ROOT)}")

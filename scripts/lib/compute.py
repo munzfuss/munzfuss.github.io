@@ -12,6 +12,31 @@ from .schema import Coin, Fuss, Location
 
 
 @dataclass
+class ComputedAlt:
+    """Per-source alternative measurement set with derived values
+    computed coherently from THAT source's reading. Inputs come from a
+    matching `MeasurementAlt` entry on the coin; missing fields fall
+    back to the primary so derived calculations always have a complete
+    (weight, fineness) pair from the same logical reading.
+
+    Display fields (`weight_rough_g`, `fineness`, `diameter_mm`) only
+    carry a value when the alt explicitly differs from primary — so
+    the template can decide whether to render an alt annotation in
+    each cell."""
+    source: str = ""
+    # Display values — non-None only when alt explicitly overrides primary
+    weight_rough_g: float | None = None
+    fineness: float | None = None
+    diameter_mm: float | None = None
+    # Derived (always computed when inputs allow)
+    weight_fein_g: float | None = None
+    delta_g: float | None = None
+    delta_pct: float | None = None
+    within_remedium: bool | None = None
+    implied_fuss: float | None = None
+
+
+@dataclass
 class ComputedCoin:
     """A coin with its computed numerical fields added."""
     raw: Coin                              # original input
@@ -31,6 +56,10 @@ class ComputedCoin:
     # ALL derived values (weight_fein, delta, implied_fuss) inherit the (?)
     # marker — they sit on a non-primary base.
     derived_unverified: bool = False
+    # Per-source alternative measurements with derived values computed
+    # for each (Feingewicht, delta) — preserves provenance when sources
+    # disagree on weight/fineness/diameter.
+    alts: list[ComputedAlt] = field(default_factory=list)
 
     def __getattr__(self, name):
         """Proxy to raw for convenience."""
@@ -236,6 +265,42 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
         if any(m in joined for m in MARKERS):
             cc.has_manual_implied = True
             break
+
+    # Per-alt computations: each measurement_alts entry gets its own
+    # Feingewicht / delta / implied_fuss derived from THAT source's
+    # weight + fineness pair. Missing fields fall back to primary.
+    for alt in (coin.measurement_alts or []):
+        ca = ComputedAlt(source=alt.source)
+        # Display values: only set when alt explicitly overrides primary
+        ca.weight_rough_g = alt.weight_rough_g
+        ca.fineness = alt.fineness
+        ca.diameter_mm = alt.diameter_mm
+        # Compute inputs: alt value if present, else primary
+        w = alt.weight_rough_g if alt.weight_rough_g is not None else coin.weight_rough_g
+        f = alt.fineness if alt.fineness is not None else coin.fineness
+        if w is not None and f is not None:
+            ca.weight_fein_g = round(w * f, 5)
+        if ca.weight_fein_g is not None and cc.soll_fein_g is not None:
+            ca.delta_g = round(ca.weight_fein_g - cc.soll_fein_g, 5)
+            ca.delta_pct = round(ca.delta_g / cc.soll_fein_g * 100, 3)
+            ca.within_remedium = abs(ca.delta_pct) <= 1.0
+        # implied_fuss for this alt
+        if coin.fraction:
+            try:
+                num, _, den = coin.fraction.partition("/")
+                k = float(num) / float(den) if den else float(num)
+            except (ValueError, ZeroDivisionError):
+                k = None
+            metal_g = None
+            if fuss.metal == "silver" and ca.weight_fein_g:
+                metal_g = ca.weight_fein_g
+            elif fuss.metal == "gold" and w:
+                metal_g = w
+            if k and metal_g and k > 0 and metal_g > 0:
+                full_unit = metal_g / k
+                if full_unit > 0:
+                    ca.implied_fuss = round(fuss.grid_unit_g / full_unit, 2)
+        cc.alts.append(ca)
 
     return cc
 

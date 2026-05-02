@@ -61,19 +61,27 @@ class I18nTextOptional(_StrictBase):
         return None
 
 
-class FieldAlt(_StrictBase):
-    """A numeric field value from an alternative source. Used when
-    multiple sources disagree on a measurement (e.g. diameter, weight)
-    and we want to record all of them with attribution rather than
-    silently picking one.
+class MeasurementAlt(_StrictBase):
+    """An alternative measurement set from another source. Used when
+    sources disagree on weight, fineness, or diameter and we want to
+    record all values with attribution rather than silently picking
+    one. Each item is one source's reading — set only the fields that
+    differ from the primary; leave others None.
 
-    `source` is a short label suitable for in-table display, e.g.
+    Critically, `weight_rough_g` and `fineness` are kept TOGETHER
+    in one alt entry because Feingewicht (= weight × fineness) is
+    derived from both — pairing them per-source guarantees the
+    derived calculation uses one source's coherent measurement, never
+    a Cartesian mix across sources.
+
+    `source` is a short label suitable for in-table tooltips, e.g.
     "ucoin", "Numista N#22190", "Hede 121", "Lange 82". The full URL
     or catalogue context lives in the coin's `sources` block; this
-    label only needs to be short enough to clarify provenance in a
-    cell tooltip.
+    label only needs to be short enough to clarify provenance.
     """
-    value: float = Field(..., gt=0)
+    weight_rough_g: float | None = Field(None, gt=0)
+    fineness: float | None = Field(None, ge=0.0, le=1.0)
+    diameter_mm: float | None = Field(None, gt=0)
     source: str = Field(..., min_length=1)
 
 
@@ -276,13 +284,16 @@ class Coin(_StrictBase):
     weight_rough_verified: bool = True
     diameter_mm: float | None = Field(None, gt=0)
     diameter_mm_verified: bool = True
-    diameter_mm_alts: list[FieldAlt] | None = Field(
+    measurement_alts: list[MeasurementAlt] | None = Field(
         None,
         description=(
-            "Alternative diameter values from other sources, when sources "
-            "disagree. Each item carries `value` + `source` label. The "
-            "primary `diameter_mm` is what we trust; alts are recorded for "
-            "transparency and rendered as a small annotation in the cell."
+            "Alternative measurement readings from other sources, when "
+            "sources disagree. Each entry pairs weight + fineness + "
+            "diameter from one source so derived calculations "
+            "(Feingewicht = weight × fineness, delta vs soll) compute "
+            "coherently per-source rather than mixing values across "
+            "sources. Render as small in-cell annotations with source "
+            "tooltip alongside the primary value."
         ),
     )
     fraction: str | None = Field(None, description="E.g., '1/12' — lookup key in fuss.fractions")
