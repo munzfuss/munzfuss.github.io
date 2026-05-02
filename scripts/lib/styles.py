@@ -2253,6 +2253,10 @@ footer a:hover {{ color: var(--accent); }}
   max-width: 320px;
   z-index: 100;
   pointer-events: none;
+  /* Reset opacity to 1 — tooltip on a parent with opacity (e.g. .alt-source
+     with 0.65) would otherwise inherit it and become semi-transparent,
+     making the text bleed through. */
+  opacity: 1;
   box-shadow: 0 2px 8px rgba(0,0,0,0.45);
 }}
 [data-theme="v1"] [data-tooltip]:hover::after,
