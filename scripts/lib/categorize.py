@@ -412,8 +412,8 @@ def categorize(
                     # debasement (e.g. Hebræermønt .593 vs .671 = 11.6 % gap)
                     # is broken out into its own sub-table.
                     fuss_std = cc.fuss.fineness_standard
-                    if (cc.raw.fineness is not None and fuss_std
-                            and cc.raw.fineness < fuss_std - 0.01):
+                    if (cc.primary_fineness is not None and fuss_std
+                            and cc.primary_fineness < fuss_std - 0.01):
                         pg.tarif_deviant_coins.append(cc)
                     else:
                         pg.tarif_coins.append(cc)
