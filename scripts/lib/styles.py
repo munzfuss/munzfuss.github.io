@@ -1994,6 +1994,11 @@ summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
 .c-fuss {{ font-size: 11px; color: var(--text-secondary); line-height: 1.4; }}
 .c-fuss .fuss-nominal {{ display: block; color: var(--text-primary); }}
 .c-fuss .fuss-implied {{ color: var(--accent); font-style: italic; }}
+/* Keep Fuß names like "9¼-Thaler-Fuß" / "Reichsdukatenfuß" on a single
+   line — internal hyphens shouldn't be wrap points (without nowrap, the
+   narrow .c-fuss column breaks "9¼-Thaler-Fuß" after the first "-",
+   stacking "9¼-" / "Thaler-" / "Fuß" on three rows). */
+.c-fuss .fuss-name    {{ white-space: nowrap; }}
 .c-fuss .sf-line {{
   display: block;
   font-size: 10.5px;

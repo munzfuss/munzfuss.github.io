@@ -159,7 +159,16 @@
       {%- else -%}
         {%- set fuss_unit = 'Thaler-Fuß' -%}
       {%- endif -%}
-      <span class="sf-line implied">↳ {{ impl_label }} ≈ {{ fmt_num(coin.implied_fuss, decimals=2, unit='') }}-{{ fuss_unit }}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}</span>
+      <span class="sf-line implied">↳ {{ impl_label }} ≈ <span class="fuss-name">{{ fmt_num(coin.implied_fuss, decimals=2, unit='') }}-{{ fuss_unit }}</span>{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}</span>
+      {# Per-source alt implied Fuß: when the coin has multiple weight/fineness
+         readings, each source's implied Fuß differs. Show all so the reader sees
+         the seigniorage gap as computed from EACH source's coherent reading. #}
+      {%- for alt in coin.alts -%}
+        {%- if alt.implied_fuss and (alt.weight_rough_g or alt.fineness) and alt.implied_fuss != coin.implied_fuss -%}
+          <span class="sf-line implied alt-source" data-tooltip="Обчислено з вагою × пробою з:
+{{ alt.source }}">↳ {{ impl_label }} ≈ <span class="fuss-name">{{ fmt_num(alt.implied_fuss, decimals=2, unit='') }}-{{ fuss_unit }}</span></span>
+        {%- endif -%}
+      {%- endfor -%}
     {%- endif -%}
   </td>
   <td class="c-ref">
