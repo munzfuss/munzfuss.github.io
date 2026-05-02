@@ -65,7 +65,8 @@
   </td>
   <td class="c-w">
     {%- if coin.weight_fein_g -%}
-      {{ fmt_num(coin.weight_fein_g, decimals=5, unit='') }}
+      {%- if coin.primary_derived_source %}<span class="alt-source" data-tooltip="{{ coin.primary_derived_source }}">{{ fmt_num(coin.weight_fein_g, decimals=5, unit='') }}</span>
+      {%- else %}{{ fmt_num(coin.weight_fein_g, decimals=5, unit='') }}{% endif -%}
       {%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}
       {%- for alt in coin.alts -%}
         {%- if alt.weight_fein_g and (alt.weight_rough_g or alt.fineness) %} <span class="alt-source" data-tooltip="{{ alt.source }}">{{ fmt_num(alt.weight_fein_g, decimals=5, unit='') }}</span>{% endif -%}
@@ -106,7 +107,11 @@
       {%- elif coin.delta_pct <= 1.0 -%}{%- set sd_cls = 'over-mild' -%}
       {%- else -%}{%- set sd_cls = 'over-strong' -%}
       {%- endif %}
-      <span class="sd {{ sd_cls }}">{{ fmt_delta(coin.delta_g, coin.delta_pct)|safe }}</span>
+      {%- if coin.primary_derived_source -%}
+        <span class="sd {{ sd_cls }}" data-tooltip="{{ coin.primary_derived_source }}" style="cursor: help;">{{ fmt_delta(coin.delta_g, coin.delta_pct)|safe }}</span>
+      {%- else -%}
+        <span class="sd {{ sd_cls }}">{{ fmt_delta(coin.delta_g, coin.delta_pct)|safe }}</span>
+      {%- endif -%}
       {%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}
       {%- for alt in coin.alts -%}
         {%- if alt.delta_g is not none and (alt.weight_rough_g or alt.fineness) -%}

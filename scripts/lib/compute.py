@@ -78,6 +78,11 @@ class ComputedCoin:
     primary_fineness_source: str | None = None
     primary_diameter_mm: float | None = None
     primary_diameter_source: str | None = None
+    # Source label for derived weight_fein_g / delta. When the same source
+    # supplied both primary weight and primary fineness, it's that source's
+    # name. When they differ, it's a combined "weight from X, fineness from
+    # Y" label so the rendered tooltip still shows full provenance.
+    primary_derived_source: str | None = None
     weight_fein_g: float | None = None     # primary rough × primary fineness
     soll_fein_g: float | None = None       # from fuss.fractions[fraction]
     soll_rau_g: float | None = None        # for gold
@@ -267,6 +272,21 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
     cc.primary_fineness_source = fineness_pairs[0][1] if fineness_pairs else None
     cc.primary_diameter_mm     = primary_d
     cc.primary_diameter_source = diameter_pairs[0][1] if diameter_pairs else None
+
+    # Source label for derived primary Feingewicht/delta:
+    #   - both inputs from same source → that source
+    #   - inputs from different sources → combined "weight from X · fineness from Y"
+    #   - one or both have no source label → None (scalar form, no tooltip)
+    if cc.primary_weight_source and cc.primary_fineness_source:
+        if cc.primary_weight_source == cc.primary_fineness_source:
+            cc.primary_derived_source = cc.primary_weight_source
+        else:
+            cc.primary_derived_source = (f"вага: {cc.primary_weight_source} · "
+                                         f"проба: {cc.primary_fineness_source}")
+    elif cc.primary_weight_source:
+        cc.primary_derived_source = f"вага: {cc.primary_weight_source}"
+    elif cc.primary_fineness_source:
+        cc.primary_derived_source = f"проба: {cc.primary_fineness_source}"
 
     # Propagate the unverified marker: any derived metric is only as solid as
     # its inputs. If the rough weight or fineness is unverified, mark all
