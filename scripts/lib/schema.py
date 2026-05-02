@@ -61,27 +61,22 @@ class I18nTextOptional(_StrictBase):
         return None
 
 
-class MeasurementAlt(_StrictBase):
-    """An alternative measurement set from another source. Used when
-    sources disagree on weight, fineness, or diameter and we want to
-    record all values with attribution rather than silently picking
-    one. Each item is one source's reading — set only the fields that
-    differ from the primary; leave others None.
+class FieldValue(_StrictBase):
+    """A single measurement reading attributed to one source. Used as
+    elements in list-form measurement fields (weight_rough_g,
+    fineness, diameter_mm) when one or more sources document the
+    field. The source label is short — full URL/citation context
+    lives in the coin's `sources` block.
 
-    Critically, `weight_rough_g` and `fineness` are kept TOGETHER
-    in one alt entry because Feingewicht (= weight × fineness) is
-    derived from both — pairing them per-source guarantees the
-    derived calculation uses one source's coherent measurement, never
-    a Cartesian mix across sources.
-
-    `source` is a short label suitable for in-table tooltips, e.g.
-    "ucoin", "Numista N#22190", "Hede 121", "Lange 82". The full URL
-    or catalogue context lives in the coin's `sources` block; this
-    label only needs to be short enough to clarify provenance.
+    A coin field can be either a bare number (single value, source
+    implicit in the coin's catalog refs) OR a list of FieldValue
+    entries (one per source, all values preserved with attribution).
+    For derived calculations (Feingewicht = weight × fineness),
+    values are paired by matching `source` label — so each source's
+    coherent reading produces its own derived value, never mixing
+    weight from one source with fineness from another.
     """
-    weight_rough_g: float | None = Field(None, gt=0)
-    fineness: float | None = Field(None, ge=0.0, le=1.0)
-    diameter_mm: float | None = Field(None, gt=0)
+    value: float = Field(..., gt=0)
     source: str = Field(..., min_length=1)
 
 
@@ -277,25 +272,41 @@ class Coin(_StrictBase):
     mintmaster: str | None = None
     catalog: CatalogRefs = Field(default_factory=CatalogRefs)
     metal: Literal["silver", "gold", "billon", "copper"] | None = None
-    fineness: float | None = Field(None, ge=0.0, le=1.0)
-    fineness_verified: bool = True
-    weight_rough_g: float | None = Field(None, gt=0)
-    weight_rough_label: I18nTextOptional | None = None
-    weight_rough_verified: bool = True
-    diameter_mm: float | None = Field(None, gt=0)
-    diameter_mm_verified: bool = True
-    measurement_alts: list[MeasurementAlt] | None = Field(
+    fineness: float | list[FieldValue] | None = Field(
         None,
         description=(
-            "Alternative measurement readings from other sources, when "
-            "sources disagree. Each entry pairs weight + fineness + "
-            "diameter from one source so derived calculations "
-            "(Feingewicht = weight × fineness, delta vs soll) compute "
-            "coherently per-source rather than mixing values across "
-            "sources. Render as small in-cell annotations with source "
-            "tooltip alongside the primary value."
+            "Either a bare number (single source, source implicit in "
+            "catalog refs) OR a list of FieldValue entries — one per "
+            "source — when multiple sources document the value with "
+            "explicit attribution required."
         ),
     )
+    fineness_verified: bool = True
+    weight_rough_g: float | list[FieldValue] | None = Field(
+        None,
+        description="Same form as fineness — scalar or list of FieldValue.",
+    )
+    weight_rough_label: I18nTextOptional | None = None
+    weight_rough_verified: bool = True
+    diameter_mm: float | list[FieldValue] | None = Field(
+        None,
+        description="Same form as fineness — scalar or list of FieldValue.",
+    )
+    diameter_mm_verified: bool = True
+
+    @field_validator("fineness", mode="before")
+    @classmethod
+    def _validate_fineness_range(cls, v):
+        # Bare-number form: must be in [0, 1]
+        if isinstance(v, (int, float)):
+            if not (0.0 <= v <= 1.0):
+                raise ValueError(f"fineness must be in [0, 1], got {v}")
+        elif isinstance(v, list):
+            for entry in v:
+                val = entry.get("value") if isinstance(entry, dict) else getattr(entry, "value", None)
+                if val is not None and not (0.0 <= val <= 1.0):
+                    raise ValueError(f"fineness FieldValue.value must be in [0, 1], got {val}")
+        return v
     fraction: str | None = Field(None, description="E.g., '1/12' — lookup key in fuss.fractions")
     issuing_entity: str | None = Field(None, description="FK to data/i18n/issuing_entities.yml — political entity that struck the coin")
     fuss_refs: list[FussRef] = Field(default_factory=list,

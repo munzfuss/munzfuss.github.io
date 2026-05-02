@@ -8,14 +8,42 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from .schema import Coin, Fuss, Location
+from .schema import Coin, Fuss, Location, FieldValue
+
+
+def normalise_field(v) -> list[tuple[float, str | None]]:
+    """Normalise a measurement field (scalar | list[FieldValue] | None)
+    into a uniform list of (value, source) pairs. Scalar form means
+    a single reading with no explicit source label; list form carries
+    one entry per source.
+
+    Returns: [] for None, [(value, None)] for scalar, [(v.value, v.source), ...] for list.
+    """
+    if v is None:
+        return []
+    if isinstance(v, (int, float)):
+        return [(float(v), None)]
+    if isinstance(v, list):
+        return [(fv.value, fv.source) for fv in v]
+    # FieldValue object (shouldn't happen at this layer but defensive)
+    if hasattr(v, "value"):
+        return [(v.value, getattr(v, "source", None))]
+    return []
+
+
+def primary_value(field) -> float | None:
+    """The first value in a measurement field. For scalar form it's the
+    only value; for list form it's the first list entry (treated as the
+    primary reading). None if the field is empty/None."""
+    pairs = normalise_field(field)
+    return pairs[0][0] if pairs else None
 
 
 @dataclass
 class ComputedAlt:
     """Per-source alternative measurement set with derived values
     computed coherently from THAT source's reading. Inputs come from a
-    matching `MeasurementAlt` entry on the coin; missing fields fall
+    matching list-form entry on the coin; missing fields fall
     back to the primary so derived calculations always have a complete
     (weight, fineness) pair from the same logical reading.
 
@@ -41,7 +69,16 @@ class ComputedCoin:
     """A coin with its computed numerical fields added."""
     raw: Coin                              # original input
     fuss: Fuss                           # resolved fuss reference
-    weight_fein_g: float | None = None     # rough × fineness
+    # Primary measurement readings — first entry of each list-form field
+    # (or the bare scalar). Always available as a float for templates that
+    # don't know about list-form. Source is None when scalar form is used.
+    primary_weight_rough_g: float | None = None
+    primary_weight_source: str | None = None
+    primary_fineness: float | None = None
+    primary_fineness_source: str | None = None
+    primary_diameter_mm: float | None = None
+    primary_diameter_source: str | None = None
+    weight_fein_g: float | None = None     # primary rough × primary fineness
     soll_fein_g: float | None = None       # from fuss.fractions[fraction]
     soll_rau_g: float | None = None        # for gold
     delta_g: float | None = None           # actual − target
@@ -58,7 +95,8 @@ class ComputedCoin:
     derived_unverified: bool = False
     # Per-source alternative measurements with derived values computed
     # for each (Feingewicht, delta) — preserves provenance when sources
-    # disagree on weight/fineness/diameter.
+    # disagree on weight/fineness/diameter. Populated from non-primary
+    # entries in list-form measurement fields.
     alts: list[ComputedAlt] = field(default_factory=list)
 
     def __getattr__(self, name):
@@ -210,14 +248,34 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
     # Catalog groups for the «Каталог» column
     cc.catalog_groups = _compute_catalog_groups(coin)
 
+    # Normalise measurement fields to (value, source) lists. Scalar form
+    # → single (value, None) reading; list form → one entry per source.
+    weight_pairs   = normalise_field(coin.weight_rough_g)
+    fineness_pairs = normalise_field(coin.fineness)
+    diameter_pairs = normalise_field(coin.diameter_mm)
+
+    # Primary values (first list entry) drive the table's main display
+    # and the "primary" Feingewicht/delta computation.
+    primary_w = weight_pairs[0][0]   if weight_pairs   else None
+    primary_f = fineness_pairs[0][0] if fineness_pairs else None
+    primary_d = diameter_pairs[0][0] if diameter_pairs else None
+
+    # Expose primary readings on ComputedCoin for template access.
+    cc.primary_weight_rough_g  = primary_w
+    cc.primary_weight_source   = weight_pairs[0][1]   if weight_pairs   else None
+    cc.primary_fineness        = primary_f
+    cc.primary_fineness_source = fineness_pairs[0][1] if fineness_pairs else None
+    cc.primary_diameter_mm     = primary_d
+    cc.primary_diameter_source = diameter_pairs[0][1] if diameter_pairs else None
+
     # Propagate the unverified marker: any derived metric is only as solid as
     # its inputs. If the rough weight or fineness is unverified, mark all
     # downstream computations the same way.
     cc.derived_unverified = (not coin.weight_rough_verified) or (not coin.fineness_verified)
 
-    # weight_fein from rough × fineness
-    if coin.weight_rough_g is not None and coin.fineness is not None:
-        cc.weight_fein_g = round(coin.weight_rough_g * coin.fineness, 5)
+    # weight_fein from primary rough × fineness
+    if primary_w is not None and primary_f is not None:
+        cc.weight_fein_g = round(primary_w * primary_f, 5)
 
     # soll values from fuss fractions
     if coin.fraction and coin.fraction in fuss.fractions:
@@ -232,10 +290,6 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
         cc.within_remedium = abs(cc.delta_pct) <= 1.0
 
     # implied fuss: back-compute the standard from the coin's actual silver/gold.
-    # Formula for a coin declared as fraction k of 1 Fuß-unit:
-    #   full_metal_per_unit = actual_metal_g / k
-    #   implied_fuss        = grid_unit_g / full_metal_per_unit
-    # For Scheidemünzen this quantifies the seigniorage gap.
     if coin.fraction:
         try:
             num, _, den = coin.fraction.partition("/")
@@ -245,8 +299,8 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
         metal_g = None
         if fuss.metal == "silver" and cc.weight_fein_g:
             metal_g = cc.weight_fein_g
-        elif fuss.metal == "gold" and coin.weight_rough_g:
-            metal_g = coin.weight_rough_g
+        elif fuss.metal == "gold" and primary_w:
+            metal_g = primary_w
         if k and metal_g and k > 0 and metal_g > 0:
             full_unit = metal_g / k
             if full_unit > 0:
@@ -266,25 +320,35 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
             cc.has_manual_implied = True
             break
 
-    # Per-alt computations: each measurement_alts entry gets its own
+    # Per-source alt computations: when measurement fields are list-form
+    # (multiple sources), each non-primary source gets its own
     # Feingewicht / delta / implied_fuss derived from THAT source's
-    # weight + fineness pair. Missing fields fall back to primary.
-    for alt in (coin.measurement_alts or []):
-        ca = ComputedAlt(source=alt.source)
-        # Display values: only set when alt explicitly overrides primary
-        ca.weight_rough_g = alt.weight_rough_g
-        ca.fineness = alt.fineness
-        ca.diameter_mm = alt.diameter_mm
-        # Compute inputs: alt value if present, else primary
-        w = alt.weight_rough_g if alt.weight_rough_g is not None else coin.weight_rough_g
-        f = alt.fineness if alt.fineness is not None else coin.fineness
+    # weight + fineness pair (paired by matching `source` label).
+    # Missing fields fall back to primary.
+    #
+    # Build set of all non-primary source labels appearing in any field
+    # (weight_pairs[1:], fineness_pairs[1:], diameter_pairs[1:]).
+    alt_sources: list[str] = []  # ordered, deduped
+    for pairs in (weight_pairs[1:], fineness_pairs[1:], diameter_pairs[1:]):
+        for _, src in pairs:
+            if src and src not in alt_sources:
+                alt_sources.append(src)
+
+    for src in alt_sources:
+        ca = ComputedAlt(source=src)
+        # For each field: pick that source's value if present, else primary
+        ca.weight_rough_g = next((v for v, s in weight_pairs   if s == src), None)
+        ca.fineness       = next((v for v, s in fineness_pairs if s == src), None)
+        ca.diameter_mm    = next((v for v, s in diameter_pairs if s == src), None)
+
+        w = ca.weight_rough_g if ca.weight_rough_g is not None else primary_w
+        f = ca.fineness       if ca.fineness       is not None else primary_f
         if w is not None and f is not None:
             ca.weight_fein_g = round(w * f, 5)
         if ca.weight_fein_g is not None and cc.soll_fein_g is not None:
             ca.delta_g = round(ca.weight_fein_g - cc.soll_fein_g, 5)
             ca.delta_pct = round(ca.delta_g / cc.soll_fein_g * 100, 3)
             ca.within_remedium = abs(ca.delta_pct) <= 1.0
-        # implied_fuss for this alt
         if coin.fraction:
             try:
                 num, _, den = coin.fraction.partition("/")
