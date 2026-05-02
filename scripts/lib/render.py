@@ -27,8 +27,31 @@ def build_env(template_dir: str) -> Environment:
     env.filters["group_bars"] = group_timeline_bars
     env.filters["first_sentence"] = first_sentence
     env.filters["ruler"] = ruler_for_lang
+    env.filters["nominal_nbsp"] = nominal_nbsp
 
     return env
+
+
+def nominal_nbsp(s: str | None) -> str:
+    """Glue the nominal's leading number to its first word with NBSP so
+    the «1 Rigsbankdaler» line never wraps between the count and the
+    denomination. Subsequent spaces stay normal — the rest of the
+    denomination phrase wraps naturally on narrow viewports.
+
+    Marked safe: returned with raw `&nbsp;` entity, applied via |safe in
+    the template. Other characters are NOT escaped because the upstream
+    template still owns autoescape control — callers must apply this
+    only to trusted nominal strings (which they always are; nominals
+    come from the YAML, never user input).
+    """
+    if not s:
+        return ""
+    # HTML-escape first (callers will pass through |safe), then replace
+    # ONLY the first whitespace run with a single NBSP entity.
+    import html
+    import re
+    escaped = html.escape(s)
+    return re.sub(r"\s+", "&nbsp;", escaped, count=1)
 
 
 def ruler_for_lang(name: str | None, lang: str) -> str:

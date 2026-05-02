@@ -178,4 +178,91 @@
   } else {
     initTimelineFilters();
   }
+
+  // 5) Tooltip portal for elements inside `.mt-scroll`.
+  //
+  //    The CSS `[data-tooltip]:hover::after` rule positions the tooltip
+  //    with `position: absolute` relative to the trigger. That works for
+  //    most tooltips (timeline bars, filter chips), but inside the coin
+  //    tables the surrounding `.mt-scroll` has `overflow-x: auto` (so
+  //    narrow viewports get a horizontal scrollbar) which clips the
+  //    tooltip on every side. `overflow-clip-margin-block` extends the
+  //    vertical clip box but the horizontal axis is hard-capped by the
+  //    scroll container.
+  //
+  //    Solution: for triggers within `.mt-scroll`, intercept hover and
+  //    render a portal tooltip on `document.body` with `position: fixed`,
+  //    sized and positioned via getBoundingClientRect. This bypasses ALL
+  //    parent clipping. We only handle these specific triggers (not all
+  //    `[data-tooltip]`) so timeline / chip tooltips keep their native
+  //    CSS positioning, which is more performant and edge-anchored
+  //    correctly for those elements.
+  var portalEl = null;
+  function ensurePortal() {
+    if (portalEl) return portalEl;
+    portalEl = document.createElement("div");
+    portalEl.className = "tooltip-portal";
+    portalEl.setAttribute("role", "tooltip");
+    portalEl.style.cssText = [
+      "position: fixed",
+      "z-index: 1000",
+      "pointer-events: none",
+      "opacity: 0",
+      "visibility: hidden"
+    ].join(";");
+    document.body.appendChild(portalEl);
+    return portalEl;
+  }
+  function showPortal(trigger) {
+    var text = trigger.getAttribute("data-tooltip");
+    if (!text) return;
+    var p = ensurePortal();
+    p.textContent = text;
+    p.style.visibility = "hidden";
+    p.style.opacity = "0";
+    // First measure with content laid out
+    var rect = trigger.getBoundingClientRect();
+    var tw = p.offsetWidth;
+    var th = p.offsetHeight;
+    var pad = 4;  // gap between trigger and tooltip
+    // Default: above and centered on trigger
+    var top = rect.top - th - pad;
+    var left = rect.left + rect.width / 2 - tw / 2;
+    // Flip below if there's not enough room above
+    if (top < 4) top = rect.bottom + pad;
+    // Clamp horizontally to viewport
+    var vw = document.documentElement.clientWidth;
+    if (left < 4) left = 4;
+    if (left + tw > vw - 4) left = vw - tw - 4;
+    p.style.top = top + "px";
+    p.style.left = left + "px";
+    p.style.visibility = "visible";
+    p.style.opacity = "1";
+  }
+  function hidePortal() {
+    if (!portalEl) return;
+    portalEl.style.opacity = "0";
+    portalEl.style.visibility = "hidden";
+  }
+  // Capture-phase delegation on document so we catch every hover into a
+  // qualifying trigger, even if templates change shape later.
+  document.addEventListener("mouseover", function (ev) {
+    var t = ev.target && ev.target.closest && ev.target.closest("[data-tooltip]");
+    if (!t) return;
+    if (!t.closest(".mt-scroll")) return;
+    showPortal(t);
+  });
+  document.addEventListener("mouseout", function (ev) {
+    var t = ev.target && ev.target.closest && ev.target.closest("[data-tooltip]");
+    if (!t) return;
+    if (!t.closest(".mt-scroll")) return;
+    // Only hide when the pointer actually leaves the trigger (not when it
+    // moves to a child element of the same trigger).
+    var related = ev.relatedTarget;
+    if (related && t.contains(related)) return;
+    hidePortal();
+  });
+  // Hide on scroll inside any scroll container (table or page) so a stale
+  // tooltip doesn't drift away from its anchor while the user scrolls.
+  document.addEventListener("scroll", hidePortal, true);
 })();

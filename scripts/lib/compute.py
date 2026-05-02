@@ -47,10 +47,16 @@ class DisplayGroup:
     span with a combined tooltip — and, when this is the ONLY group
     in a field, drop the alt-source styling entirely (single-value
     consensus, just plain text).
+
+    `delta_pct` is populated only for derived-value groups (delta,
+    implied_fuss) and carries the percent-deviation context that the
+    template needs for colour-class selection (Δ badges) and for the
+    > 2 % gate that filters informative implied-Fuß lines.
     """
     value: float                # canonical numeric value (first member)
     sources: list[str]          # ordered, deduped source labels
     is_unanimous: bool = False  # True when this is the SOLE group in its field
+    delta_pct: float | None = None  # context for derived-value groups
 
 
 def make_display_groups(
@@ -167,6 +173,15 @@ class ComputedCoin:
     fineness_groups: list[DisplayGroup] = field(default_factory=list)
     diameter_groups: list[DisplayGroup] = field(default_factory=list)
     weight_fein_groups: list[DisplayGroup] = field(default_factory=list)
+    # Per-source Δ values, collapsed by rounded delta_g. Each group carries
+    # delta_pct on it (computed from the canonical value ÷ soll_fein) so
+    # the template can pick the colour class without re-deriving.
+    delta_groups: list[DisplayGroup] = field(default_factory=list)
+    # Per-source implied Fuß values, filtered to entries where |delta_pct|
+    # > 2 (small deviations make the implied Fuß ≈ declared Fuß and add no
+    # information). Group key = rounded implied_fuss; sources combined.
+    # Empty when no source's reading meaningfully deviates from the standard.
+    implied_fuss_groups: list[DisplayGroup] = field(default_factory=list)
 
     def __getattr__(self, name):
         """Proxy to raw for convenience."""
@@ -496,13 +511,55 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
     # Derived Feingewicht groups: build (value, source) pairs from
     # primary + per-source alts, then group at 5-decimal precision.
     fein_pairs: list[tuple[float, str | None]] = []
+    delta_pairs: list[tuple[float, str | None]] = []
+    impl_pairs: list[tuple[float, str | None, float]] = []  # (value, src, delta_pct)
     if cc.weight_fein_g is not None:
         fein_pairs.append((cc.weight_fein_g, cc.primary_derived_source))
+    if cc.delta_g is not None:
+        delta_pairs.append((cc.delta_g, cc.primary_derived_source))
+    if (cc.implied_fuss is not None and cc.delta_pct is not None
+            and abs(cc.delta_pct) > 2):
+        impl_pairs.append((cc.implied_fuss, cc.primary_derived_source, cc.delta_pct))
     for ca in cc.alts:
-        if ca.weight_fein_g is not None and (ca.weight_rough_g or ca.fineness):
-            fein_pairs.append((ca.weight_fein_g,
-                               f"Обчислено з вагою × пробою з:\n{ca.source}"))
+        if not (ca.weight_rough_g or ca.fineness):
+            continue
+        alt_label = f"Обчислено з вагою × пробою з:\n{ca.source}"
+        if ca.weight_fein_g is not None:
+            fein_pairs.append((ca.weight_fein_g, alt_label))
+        if ca.delta_g is not None:
+            delta_pairs.append((ca.delta_g, alt_label))
+        if (ca.implied_fuss is not None and ca.delta_pct is not None
+                and abs(ca.delta_pct) > 2):
+            impl_pairs.append((ca.implied_fuss, alt_label, ca.delta_pct))
+
     cc.weight_fein_groups = make_display_groups(fein_pairs, precision=5)
+    cc.delta_groups = make_display_groups(delta_pairs, precision=5)
+    # Annotate delta groups with delta_pct (from canonical value ÷ soll_fein)
+    # so the template colour-classes the Δ badge without recomputing.
+    if cc.soll_fein_g:
+        for g in cc.delta_groups:
+            g.delta_pct = round(g.value / cc.soll_fein_g * 100, 3)
+
+    # implied_fuss_groups: only entries where the corresponding source's
+    # |delta_pct| > 2 — small deviations make implied ≈ declared and add no
+    # information. Pre-filtered above; here we only need to group by the
+    # rounded implied_fuss value.
+    cc.implied_fuss_groups = make_display_groups(
+        [(v, s) for v, s, _ in impl_pairs], precision=2
+    )
+    # Carry the maximum |delta_pct| from each group's contributing readings
+    # so the template can keep the existing > 2 threshold semantics if it
+    # ever needs to apply per-group filtering downstream.
+    if impl_pairs:
+        # Build group_key → max_abs_delta_pct
+        max_dp: dict[float, float] = {}
+        for v, _, dp in impl_pairs:
+            key = round(v, 2)
+            cur = max_dp.get(key, 0.0)
+            if abs(dp) > cur:
+                max_dp[key] = abs(dp)
+        for g in cc.implied_fuss_groups:
+            g.delta_pct = max_dp.get(round(g.value, 2))
 
     return cc
 

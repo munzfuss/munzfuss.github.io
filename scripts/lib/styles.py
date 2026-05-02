@@ -2292,6 +2292,40 @@ footer a:hover {{ color: var(--accent); }}
   color: #ece4d2;
 }}
 
+/* Suppress the CSS ::after tooltip for triggers inside `.mt-scroll` —
+   they're handled by the JS portal in app.js (showPortal) which renders
+   on document.body to escape the scroll container's clipping. Without
+   this suppression we'd see TWO overlapping tooltip cards on hover. */
+.mt-scroll [data-tooltip]:hover::after {{ content: none; }}
+
+/* Tooltip portal element appended to <body> by app.js. Mirrors the
+   visual style of the CSS ::after rule above so the user can't tell
+   which path the tooltip took. */
+.tooltip-portal {{
+  background: #ede4ce;
+  border: var(--hairline) solid var(--accent);
+  color: #2a221a;
+  text-shadow: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.45;
+  white-space: pre-line;
+  width: max-content;
+  max-width: 320px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.45);
+  transition: opacity 0.08s ease-out;
+}}
+[data-theme="v1"] .tooltip-portal,
+[data-theme="v2"] .tooltip-portal {{
+  background: #2a2520;
+  color: #ece4d2;
+}}
+
 /* Edge anchoring for tooltips on the leftmost / rightmost timeline bars.
    The default `left: 50%; transform: translateX(-50%)` centers the
    ::after card on the bar. For a bar sitting flush against the left
