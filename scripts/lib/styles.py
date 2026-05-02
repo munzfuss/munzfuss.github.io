@@ -1992,7 +1992,7 @@ summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
 .c-delta .sd-na       {{ color: var(--text-muted); font-style: italic; cursor: help; }}
 
 .c-fuss {{ font-size: 11px; color: var(--text-secondary); line-height: 1.4; }}
-.c-fuss .fuss-nominal {{ display: block; color: var(--text-primary); }}
+.c-fuss .fuss-nominal {{ display: block; color: var(--text-primary); white-space: nowrap; }}
 .c-fuss .fuss-implied {{ color: var(--accent); font-style: italic; }}
 /* Keep Fuß names like "9¼-Thaler-Fuß" / "Reichsdukatenfuß" on a single
    line — internal hyphens shouldn't be wrap points (without nowrap, the
@@ -2017,6 +2017,11 @@ summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
 
 .c-ref {{ font-family: var(--font-sans); font-size: 10.5px; color: var(--accent-muted); font-style: italic; }}
 .c-ref a {{ color: var(--accent-muted); }}
+/* Each source on its own line — was previously joined with " · " inline,
+   which forced wide cells and split single source labels mid-line.
+   white-space: nowrap keeps refs like "Hede 115B / danskmoent.dk" intact
+   on one line (the slash is meaningful: catalogue-ref / hosting-source). */
+.c-ref .ref-line {{ display: block; line-height: 1.5; white-space: nowrap; }}
 
 .c-entity {{ text-align: center; vertical-align: middle; padding: 4px 6px; }}
 .ent-badge {{
