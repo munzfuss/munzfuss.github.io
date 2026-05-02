@@ -273,20 +273,24 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
     cc.primary_diameter_mm     = primary_d
     cc.primary_diameter_source = diameter_pairs[0][1] if diameter_pairs else None
 
-    # Source label for derived primary Feingewicht/delta:
-    #   - both inputs from same source → that source
-    #   - inputs from different sources → combined "weight from X · fineness from Y"
-    #   - one or both have no source label → None (scalar form, no tooltip)
+    # Source label for derived primary Feingewicht/delta. Critically,
+    # these are COMPUTED values (weight × fineness), NOT directly cited
+    # from any source — the source(s) supply the inputs, not the
+    # derived number. The label makes that explicit ("обчислено з …")
+    # so a reader hovering doesn't think e.g. Numista published .979 ×
+    # 3.48 = 3.40692; Numista only published 3.48 g and .979 fineness;
+    # the multiplication is ours.
     if cc.primary_weight_source and cc.primary_fineness_source:
         if cc.primary_weight_source == cc.primary_fineness_source:
-            cc.primary_derived_source = cc.primary_weight_source
+            cc.primary_derived_source = (f"обчислено: вага × проба з "
+                                         f"{cc.primary_weight_source}")
         else:
-            cc.primary_derived_source = (f"вага: {cc.primary_weight_source} · "
-                                         f"проба: {cc.primary_fineness_source}")
+            cc.primary_derived_source = (f"обчислено: вага з {cc.primary_weight_source} "
+                                         f"× проба з {cc.primary_fineness_source}")
     elif cc.primary_weight_source:
-        cc.primary_derived_source = f"вага: {cc.primary_weight_source}"
+        cc.primary_derived_source = f"обчислено з вагою з {cc.primary_weight_source}"
     elif cc.primary_fineness_source:
-        cc.primary_derived_source = f"проба: {cc.primary_fineness_source}"
+        cc.primary_derived_source = f"обчислено з пробою з {cc.primary_fineness_source}"
 
     # Propagate the unverified marker: any derived metric is only as solid as
     # its inputs. If the rough weight or fineness is unverified, mark all

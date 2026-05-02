@@ -69,7 +69,7 @@
       {%- else %}{{ fmt_num(coin.weight_fein_g, decimals=5, unit='') }}{% endif -%}
       {%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}
       {%- for alt in coin.alts -%}
-        {%- if alt.weight_fein_g and (alt.weight_rough_g or alt.fineness) %} <span class="alt-source" data-tooltip="{{ alt.source }}">{{ fmt_num(alt.weight_fein_g, decimals=5, unit='') }}</span>{% endif -%}
+        {%- if alt.weight_fein_g and (alt.weight_rough_g or alt.fineness) %} <span class="alt-source" data-tooltip="обчислено: вага × проба з {{ alt.source }}">{{ fmt_num(alt.weight_fein_g, decimals=5, unit='') }}</span>{% endif -%}
       {%- endfor -%}
     {%- else -%}—{%- endif -%}
   </td>
@@ -119,7 +119,7 @@
           {%- elif alt.delta_pct < 0   -%}{%- set alt_cls = 'under-mild' -%}
           {%- elif alt.delta_pct <= 1.0 -%}{%- set alt_cls = 'over-mild' -%}
           {%- else -%}{%- set alt_cls = 'over-strong' -%}
-          {%- endif %} <span class="alt-source sd {{ alt_cls }}" data-tooltip="{{ alt.source }}">{{ fmt_delta(alt.delta_g, alt.delta_pct)|safe }}</span>
+          {%- endif %} <span class="alt-source sd {{ alt_cls }}" data-tooltip="обчислено: вага × проба з {{ alt.source }}">{{ fmt_delta(alt.delta_g, alt.delta_pct)|safe }}</span>
         {%- endif -%}
       {%- endfor -%}
     {%- elif coin.raw.metal == 'copper' -%}
