@@ -42,7 +42,7 @@
       } -%}
       {{ metals[coin.raw.metal][lang] }}
       {%- if coin.primary_fineness %}
-        {%- if coin.primary_fineness_source %} <span class="val-source" data-tooltip="{{ coin.primary_fineness_source }}">.{{ (coin.primary_fineness * 1000)|round|int }}</span>
+        {%- if coin.primary_fineness_source %} <span class="alt-source" data-tooltip="{{ coin.primary_fineness_source }}">.{{ (coin.primary_fineness * 1000)|round|int }}</span>
         {%- else %} .{{ (coin.primary_fineness * 1000)|round|int }}{% endif -%}
       {%- endif -%}
       {%- if not coin.raw.fineness_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
@@ -53,7 +53,7 @@
   </td>
   <td class="c-w">
     {%- if coin.primary_weight_rough_g -%}
-      {%- if coin.primary_weight_source %}<span class="val-source" data-tooltip="{{ coin.primary_weight_source }}">{{ fmt_num(coin.primary_weight_rough_g, decimals=2, unit='') }}</span>
+      {%- if coin.primary_weight_source %}<span class="alt-source" data-tooltip="{{ coin.primary_weight_source }}">{{ fmt_num(coin.primary_weight_rough_g, decimals=2, unit='') }}</span>
       {%- else %}{{ fmt_num(coin.primary_weight_rough_g, decimals=2, unit='') }}{% endif -%}
       {%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}
       {%- for alt in coin.alts -%}
@@ -74,7 +74,7 @@
   </td>
   <td class="c-d">
     {%- if coin.primary_diameter_mm -%}
-      {%- if coin.primary_diameter_source %}<span class="val-source" data-tooltip="{{ coin.primary_diameter_source }}">{{ fmt_num(coin.primary_diameter_mm, decimals=1, unit='') }}</span>
+      {%- if coin.primary_diameter_source %}<span class="alt-source" data-tooltip="{{ coin.primary_diameter_source }}">{{ fmt_num(coin.primary_diameter_mm, decimals=1, unit='') }}</span>
       {%- else %}{{ fmt_num(coin.primary_diameter_mm, decimals=1, unit='') }}{% endif -%}
       {%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
       {%- for alt in coin.alts -%}
@@ -225,7 +225,7 @@
   </td>
   <td class="c-w">
     {%- if coin.primary_weight_rough_g -%}
-      {%- if coin.primary_weight_source %}<span class="val-source" data-tooltip="{{ coin.primary_weight_source }}">{{ fmt_num(coin.primary_weight_rough_g, decimals=2, unit='') }}</span>
+      {%- if coin.primary_weight_source %}<span class="alt-source" data-tooltip="{{ coin.primary_weight_source }}">{{ fmt_num(coin.primary_weight_rough_g, decimals=2, unit='') }}</span>
       {%- else %}{{ fmt_num(coin.primary_weight_rough_g, decimals=2, unit='') }}{% endif -%}
       {%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}
       {%- for alt in coin.alts -%}
@@ -237,7 +237,7 @@
   </td>
   <td class="c-d">
     {%- if coin.primary_diameter_mm -%}
-      {%- if coin.primary_diameter_source %}<span class="val-source" data-tooltip="{{ coin.primary_diameter_source }}">{{ fmt_num(coin.primary_diameter_mm, decimals=1, unit='') }}</span>
+      {%- if coin.primary_diameter_source %}<span class="alt-source" data-tooltip="{{ coin.primary_diameter_source }}">{{ fmt_num(coin.primary_diameter_mm, decimals=1, unit='') }}</span>
       {%- else %}{{ fmt_num(coin.primary_diameter_mm, decimals=1, unit='') }}{% endif -%}
       {%- if not coin.raw.diameter_mm_verified %} <span class="unverified">(?)</span>{% endif -%}
       {%- for alt in coin.alts -%}
