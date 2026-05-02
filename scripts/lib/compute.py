@@ -282,15 +282,17 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
     # the multiplication is ours.
     if cc.primary_weight_source and cc.primary_fineness_source:
         if cc.primary_weight_source == cc.primary_fineness_source:
-            cc.primary_derived_source = (f"обчислено: вага × проба з "
+            cc.primary_derived_source = (f"Обчислено з вагою × пробою з:\n"
                                          f"{cc.primary_weight_source}")
         else:
-            cc.primary_derived_source = (f"обчислено: вага з {cc.primary_weight_source} "
-                                         f"× проба з {cc.primary_fineness_source}")
+            cc.primary_derived_source = (f"Обчислено з вагою з:\n"
+                                         f"{cc.primary_weight_source}\n"
+                                         f"з пробою з:\n"
+                                         f"{cc.primary_fineness_source}")
     elif cc.primary_weight_source:
-        cc.primary_derived_source = f"обчислено з вагою з {cc.primary_weight_source}"
+        cc.primary_derived_source = f"Обчислено з вагою з:\n{cc.primary_weight_source}"
     elif cc.primary_fineness_source:
-        cc.primary_derived_source = f"обчислено з пробою з {cc.primary_fineness_source}"
+        cc.primary_derived_source = f"Обчислено з пробою з:\n{cc.primary_fineness_source}"
 
     # Propagate the unverified marker: any derived metric is only as solid as
     # its inputs. If the rough weight or fineness is unverified, mark all

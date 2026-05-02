@@ -1866,8 +1866,18 @@ summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
 /* --- Coin tables --------------------------------------------------------- */
 
 .mt-scroll {{
+  /* overflow-x: auto for horizontal scroll on narrow viewports; vertical
+     uses `clip` + `overflow-clip-margin` so cell tooltips floating above
+     the cell with position:absolute are NOT cut off at the table border
+     (problem: long source-attribution tooltips spilled past the top of
+     the .mt-scroll container and got clipped). overflow-clip-margin lets
+     the clip box extend ~120px around the visible region, enough for any
+     reasonable tooltip popup. Falls back to `hidden` in browsers without
+     overflow-clip-margin support. */
   overflow-x: auto;
   overflow-y: hidden;
+  overflow-y: clip;
+  overflow-clip-margin-block: 120px;
   margin: 8px 0 6px;
   border: var(--hairline) solid var(--border);
   border-radius: var(--radius-block);
@@ -1957,8 +1967,10 @@ summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
 .c-delta {{ font-family: var(--font-mono); font-size: 11px; white-space: nowrap; font-variant-numeric: tabular-nums; }}
 
 /* Δ palette — 4-state spectrum, applied per .sd class */
-.c-delta .sd                     {{ display: inline-block; line-height: 1.25; vertical-align: top; padding: 1px 6px; border-radius: 2px; margin-bottom: 2px; }}
-.c-delta .sd + .sd               {{ display: block; }}  /* second and later Δ go on new line */
+/* Δ badges fill the full column width so consecutive badges (primary +
+   alt(s)) align flush instead of each shrinking to its own text width. */
+.c-delta .sd                     {{ display: block; width: auto; line-height: 1.25; padding: 1px 6px; border-radius: 2px; margin-bottom: 2px; box-sizing: border-box; }}
+.c-delta .sd.alt-source          {{ width: auto; }}  /* override .alt-source fit-content */
 .c-delta .sd-g, .c-delta .sd-pct {{ display: block; }}
 .c-delta .sd-pct                 {{ font-size: 0.92em; opacity: 0.85; }}
 .c-delta .sd.under-deep  {{ color: {sd_under_deep_fg};  background: {sd_under_deep_bg}; }}
