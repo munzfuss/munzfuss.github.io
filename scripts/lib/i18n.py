@@ -113,7 +113,7 @@ def fmt_delta(delta_g: float | None, delta_pct: float | None, lang: str) -> str:
     """
     if delta_g is None:
         return '<span class="sd-g">Δ —</span>'
-    g_str = fmt_num(delta_g, lang, decimals=5)
+    g_str = fmt_num(delta_g, lang, decimals=5, unit='')
     if not g_str.startswith("-"):
         g_str = "+" + g_str
     pct_str = fmt_pct(delta_pct, lang) if delta_pct is not None else ""
