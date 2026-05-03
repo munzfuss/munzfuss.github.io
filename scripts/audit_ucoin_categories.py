@@ -369,6 +369,13 @@ def main():
         "163638": ("A_ALREADY",              "Added as km-x007-chr-iv-1620 (4 Sk Lybsk Glückstadt, sibling to km-x005; KM-DK# 9)"),
         "163670": ("A_ALREADY",              "Added as km-72-chr-v-1682 — separate Krause type from km-70.1 (1682-only, .979, Hede 117); km-70-1 simultaneously cleaned to be only Coin B"),
         "163671": ("K_WRONG_DATA_IGNORE",    "ucoin '1 krone' 3g .917 — same coin as our km-40-2 Guldkrone (5.996g .917) per Numista N#306974 but with corrupted ucoin weight (3g = exactly half of correct value); data unreliable, do not import"),
+        # ----- Group D-MED-WITH-BASE (6 reviewed 2026-05-03 — base-overlap candidates): -----
+        "163009": ("A_ALREADY",              "Added as km-x024-chr-iv-1618 (Christian IV 2 Skilling 1618 .298 — user verified visually different from km-5 Sonderburg)"),
+        "163023": ("A_ALREADY",              "Folded into existing km-70-chr-iv-1619 as alt — user verified visually identical (same KM# 70 Royal Danish); ucoin diverges in fineness (.437 vs Numista .859), recorded as alt with note"),
+        "163047": ("A_ALREADY",              "Added as km-x025-chr-iv-1612 (Christian IV 1 Mark 1612-1618 .593 — kept separate from km-A4 per user instruction; very similar parameters but ucoin has no image to confirm identity)"),
+        "163065": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Speciedaler 1590 UC# 6 .937 29.23g — user verified visually different from km-278276 Schauenburg; pre-1617 strict rule routes to Copenhagen"),
+        "163411": ("A_ALREADY",              "Added as km-x026-chr-iv-1611 (Christian IV 1 Rosenoble 1611-1629 GOLD .833 — separate trade-gold standard, distinct from silver km-A4 per metal filter)"),
+        "96430":  ("A_ALREADY",              "Added as km-x027-fr-iii-1651 (Frederik III 1 Søsling 1651 COPPER — distinct from silver km-93 per metal filter)"),
         # ----- Group D-MED-1617+ (8 reviewed 2026-05-03 — added as new Holstein-mint candidates): -----
         "163036": ("A_ALREADY",              "Added as km-x016-chr-iv-1622 (Christian IV 6 Skilling 1622, fineness inferred from .888 standard)"),
         "163037": ("A_ALREADY",              "Added as km-x017-chr-iv-1622 (Christian IV 12 Skilling 1622-1623 .888)"),
