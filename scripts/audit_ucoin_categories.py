@@ -7,10 +7,9 @@ classification snapshot to `scripts/cache/ucoin/_categorized_strict.json`
 that downstream investigation tools can consume.
 
 Categories:
-  A_ALREADY                  ← strict match against our base (KM# +
-                               denom + year + fineness compatibility,
-                               OR direct ucoin tid found in a base coin's
-                               sources block)
+
+Active workflow (live triage of Holstein candidates from new ucoin
+harvests — currently all empty since the Schleswig backlog is closed):
   B_HOLSTEIN_NEW             ← Holstein-source, KM# not in our base
   C_HOLSTEIN_KM_VARIANT      ← Holstein-source, KM# in our base but no
                                variant matches (different denom/year)
@@ -18,49 +17,39 @@ Categories:
                                attests a Holstein mint for that KM#
   E_DENMARK_AMBIGUOUS        ← KM# overlaps our base but denom/year don't
                                match — needs per-coin manual check.
-                               Auto-routed entries from the heuristic;
-                               manually-reviewed ones get reclassified
-                               into H/J/F via MANUAL_OVERRIDES.
-  F_OUT_OF_SCOPE             ← Clearly outside Holstein (year range past
-                               our 1559–1866 window — Reichsmünzordnung
-                               to Prussian annexation — or geographic
-                               mismatch with Holstein-mint cities). Also
-                               receives data-quality skips (e.g. ucoin
-                               entries with bad weight values that we
-                               don't want polluting the base).
-  H_COPENHAGEN_CONFIRMED     ← User-reviewed Royal Danish Copenhagen
-                               issues. Period field on ucoin = «Speciedaler
-                               (1582-1624)» or «Rigsdaler (1625-1699)»
-                               (i.e. the broader Denmark-realm coinage,
-                               NOT a Glückstadt-period sub-page).
-                               Manually verified, not from the heuristic.
   J_HOLSTEIN_TO_ADD          ← User-reviewed Holstein-mint candidates
-                               ready to add as new coin entries (or as
-                               alts to existing entries pending visual
-                               verification). Period field on ucoin =
-                               «Glückstadt (1617-1773)» or «Holstein-
-                               Gottorp-Rendsburg (1716-1720)». An optional
-                               `verification_note` flags entries that
-                               look like potential duplicates of existing
-                               base coins — the user clears these via
-                               visual inspection before commit.
-  K_WRONG_DATA_IGNORE        ← User-reviewed entries where ucoin's data
-                               is demonstrably wrong (e.g. weight off by
-                               2× the canonical value, fineness contradicting
-                               every published source). Distinct from
-                               F_OUT_OF_SCOPE because the coin itself MAY
-                               be in scope, but the ucoin record is
-                               poisoned — importing it would corrupt the
-                               base. Recorded so future re-runs don't
-                               re-surface the entry as a candidate.
-  X_HANSEATIC_SKIP           ← Lübeck/Hamburg, out of Schleswig scope
+                               ready to add as new coin entries.
+
+Future-location seed (out of Schleswig scope but kept as harvest data
+for future location files — bremen.yml, hamburg.yml, lubeck.yml):
+  H_DENMARK_SEED             ← Royal Danish Copenhagen issues. Combines
+                               (a) user-reviewed entries with ucoin Period
+                               «Speciedaler 1582-1624» / «Rigsdaler …» /
+                               «Rigsbankdaler …» / «Rigsdaler rigsmønt …»
+                               and (b) heuristic Denmark-source entries
+                               with no Holstein-mint signal.
+  X_HAMBURG_SEED             ← Hamburg city issues (ucoin source =
+                               country_hamburg).
+  X_LUBECK_SEED              ← Lübeck city issues (ucoin source =
+                               country_lubeck or period_1204/1205, the
+                               Hanseatic Reichsthaler era).
+
+Silently dropped (entries are processed for traceability but not bucketed):
+  - Already in base (heuristic strict-match OR ucoin-tid bridge OR a
+    MANUAL_OVERRIDES entry the user marked as folded/added) — counted in
+    the summary as "processed_in_base" but not written to the JSON bucket.
+  - Wrong-data ucoin records the user has flagged as "do not import" —
+    counted as "data_quality_skip" but not written to a bucket. Audit
+    trail lives in MANUAL_OVERRIDES + git history.
 
 Decision precedence (each step short-circuits the rest):
   1. MANUAL_OVERRIDES — user-reviewed entries with an explicit category
   2. Direct ucoin-tid bridge — base coin's sources contain this tid URL
-  3. Hanseatic source filter (X_HANSEATIC_SKIP)
-  4. Strict KM+denom+year+fineness match (A_ALREADY)
-  5. KM-overlap fallback (B/C/D/E/F per source-region heuristics)
+     (silent drop — already in base)
+  3. Hanseatic source filter — split by city (X_HAMBURG_SEED / X_LUBECK_SEED)
+  4. Strict KM+denom+year+fineness match (silent drop — already in base)
+  5. KM-overlap fallback (B/C/D/E for Holstein candidates;
+     H_DENMARK_SEED for everything else)
 
 Promoted from `scripts/oneoff/` 2026-05-02 because it's idempotent over
 the live cache and the MANUAL_OVERRIDES table belongs in version
@@ -86,8 +75,9 @@ OUT_JSON = CACHE_UCOIN / "_categorized_strict.json"
 
 HOLSTEIN_SOURCES = {"country_schleswig_holstein", "period_2939",
                      "period_2995", "q_holstein_extras"}
-HANSEATIC_SOURCES = {"country_lubeck", "country_hamburg",
-                      "period_1204", "period_1205"}
+HAMBURG_SOURCES  = {"country_hamburg"}
+LUBECK_SOURCES   = {"country_lubeck", "period_1204", "period_1205"}
+HANSEATIC_SOURCES = HAMBURG_SOURCES | LUBECK_SOURCES  # used by base-coin mint heuristics
 
 EASY_HOLSTEIN_MINTS = {"glückstadt", "gluckstadt", "altona", "oldendorf"}
 AMBIGUOUS_HOLSTEIN_MINTS = {"schleswig", "tönning", "toenning",
@@ -330,17 +320,28 @@ def main():
     numista_mints = load_numista_mints()
 
     results: dict[str, list[dict]] = {
-        "A_ALREADY": [],
+        # Active workflow (Holstein triage)
         "B_HOLSTEIN_NEW": [],
         "C_HOLSTEIN_KM_VARIANT": [],
         "D_DENMARK_HOLSTEIN_MINT": [],
         "E_DENMARK_AMBIGUOUS": [],
-        "F_OUT_OF_SCOPE": [],
-        "H_COPENHAGEN_CONFIRMED": [],
         "J_HOLSTEIN_TO_ADD": [],
-        "K_WRONG_DATA_IGNORE": [],
-        "X_HANSEATIC_SKIP": [],
+        # Future-location seed
+        "H_DENMARK_SEED": [],
+        "X_HAMBURG_SEED": [],
+        "X_LUBECK_SEED": [],
     }
+    # Silent-drop categories — entries with these legacy labels in
+    # MANUAL_OVERRIDES are processed for traceability but not bucketed.
+    # The counters surface in the summary so the count is visible.
+    DROPPED_CATEGORIES = {"A_ALREADY", "K_WRONG_DATA_IGNORE"}
+    dropped_count: dict[str, int] = {c: 0 for c in DROPPED_CATEGORIES}
+
+    def add(cat_name: str, record: dict) -> None:
+        if cat_name in DROPPED_CATEGORIES:
+            dropped_count[cat_name] += 1
+            return
+        results[cat_name].append(record)
 
     # Manual overrides — entries reviewed by the user where the heuristic
     # categorisation is wrong. Each entry includes the rationale so future
@@ -355,7 +356,7 @@ def main():
     # are Royal Danish Copenhagen out-of-scope.
     #
     # Routing:
-    #   - 12 Royal Danish Copenhagen → H_COPENHAGEN_CONFIRMED
+    #   - 12 Royal Danish Copenhagen → H_DENMARK_SEED
     #   - 7 confirmed Holstein candidates → J_HOLSTEIN_TO_ADD
     #   - 2 ambiguous (possible duplicate of existing) → J with verification flag
     #   - 1 unreliable data → F_OUT_OF_SCOPE with reason
@@ -373,66 +374,66 @@ def main():
         #       mint markers anywhere.
         # Routing label kept as "[bulk-route per 10-sample verification]" for git-trace continuity;
         # it now reflects an exhaustive check, not a sampled extrapolation.
-        "162989": ("H_COPENHAGEN_CONFIRMED", "1 Søsling - Christian IV (first type) (1602, KM# 10) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "163020": ("H_COPENHAGEN_CONFIRMED", "4 Skilling Dansk - Christian IV (Helsingør) (1602-1609, KM# 11) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "163410": ("H_COPENHAGEN_CONFIRMED", "6 Daler - Christian IV (1604, KM# 26) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "162995": ("H_COPENHAGEN_CONFIRMED", "1 Skilling Dansk - Christian IV (Oval shield; date under value) (1605-1616, KM# 29.1) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "163033": ("H_COPENHAGEN_CONFIRMED", "8 Skilling Dansk - Christian IV (1606, KM# 31) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "163021": ("H_COPENHAGEN_CONFIRMED", "4 Skilling Dansk - Christian IV (1606-1608, KM# 30) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "163031": ("H_COPENHAGEN_CONFIRMED", "8 Skilling Dansk - Christian IV (1606-1609, KM# 32) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "163046": ("H_COPENHAGEN_CONFIRMED", "1 Mark Dansk - Christian IV (1607-1609, KM# 36) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "163034": ("H_COPENHAGEN_CONFIRMED", "8 Skilling Dansk - Christian IV (1608, KM# 42) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "163022": ("H_COPENHAGEN_CONFIRMED", "4 Skilling Dansk - Christian IV (Helsingør) (1608-1609, KM# 41) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "162996": ("H_COPENHAGEN_CONFIRMED", "1 Skilling Dansk - Christian IV (Oval shield; date under value) (1615-1619, KM# 29.2) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "162999": ("H_COPENHAGEN_CONFIRMED", "1 Skilling Dansk - Christian IV (1619, KM# 65) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "163055": ("H_COPENHAGEN_CONFIRMED", "½ Gold Krone - Christian IV (1619, KM# 72) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "163026": ("H_COPENHAGEN_CONFIRMED", "8 Skilling Dansk - Christian IV (Frederiksborg) (1620-1621, KM# 82) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "163029": ("H_COPENHAGEN_CONFIRMED", "8 Skilling Dansk - Christian IV (Frederiksborg) (1624-1625, KM# 90) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "97393": ("H_COPENHAGEN_CONFIRMED", "½ Dukat - Christian IV (Hebræermønt) (1644-1646, KM# 138) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "96459": ("H_COPENHAGEN_CONFIRMED", "2 Skilling Dansk - Frederik III (Rex Electus) (1644-1648, KM# 132) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "97395": ("H_COPENHAGEN_CONFIRMED", "½ Dukat - Christian IV (Hebræermønt) (1647, KM# 152) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "99106": ("H_COPENHAGEN_CONFIRMED", "1 Speciedaler - Frederik III (11 province arms) (1649, KM# 169) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "99129": ("H_COPENHAGEN_CONFIRMED", "1 Krone - Frederik III (Short motto; clockwise) (1651, KM# 181) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "99090": ("H_COPENHAGEN_CONFIRMED", "2 Mark Dansk - Frederik III (1652, KM# 185) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "97152": ("H_COPENHAGEN_CONFIRMED", "1 Krone - Frederik III (Short motto; clockwise) (1652-1653, KM# 186) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "96464": ("H_COPENHAGEN_CONFIRMED", "2 Skilling Dansk - Frederik III (Shield type IIb) (1653, KM# 189.1) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "96465": ("H_COPENHAGEN_CONFIRMED", "2 Skilling Dansk - Frederik III (Shield type III) (1653-1655, KM# 189.2) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "97362": ("H_COPENHAGEN_CONFIRMED", "1 Speciedaler - Frederik III (1657-1661, KM# 212) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "79162": ("H_COPENHAGEN_CONFIRMED", "1 Speciedaler - Frederik V (Type II) (1764, KM# 600) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "79167": ("H_COPENHAGEN_CONFIRMED", "1 Speciedaler - Christian VII (1776-1780, KM# 632) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "79168": ("H_COPENHAGEN_CONFIRMED", "1 Speciedaler - Christian VII (1777, KM# 634) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "79089": ("H_COPENHAGEN_CONFIRMED", "24 Skilling Dansk - Christian VII (1778-1783, KM# 635) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "101042": ("H_COPENHAGEN_CONFIRMED", "12 Mark - Christian VII (1781-1785, KM# 641) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "79160": ("H_COPENHAGEN_CONFIRMED", "½ Speciedaler - Christian VII (1786, KM# 633) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "79169": ("H_COPENHAGEN_CONFIRMED", "1 Speciedaler - Christian VII (Bauert portrait) (1795-1801, KM# 651) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "79093": ("H_COPENHAGEN_CONFIRMED", "1⁄12 Speciedaler - Christian VII (1796-1799, KM# 652) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "79553": ("H_COPENHAGEN_CONFIRMED", "2 Skilling Dansk - Christian VII (1801-1805, KM# 660) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "79557": ("H_COPENHAGEN_CONFIRMED", "4 Skilling Dansk - Christian VII (1807, KM# 661) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "126062": ("H_COPENHAGEN_CONFIRMED", "⅙ Rigsdaler Courant 'Offermark' - Frederik VI (1808, KM# 664) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "79526": ("H_COPENHAGEN_CONFIRMED", "1 Skilling Dansk - Frederik VI (1808-1809, KM# 662) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "79552": ("H_COPENHAGEN_CONFIRMED", "1 Skilling Dansk - Frederik VI (1812, KM# 671) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70756": ("H_COPENHAGEN_CONFIRMED", "32 Rigsbankskilling - Frederik VI (1820, KM# 690) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "132805": ("H_COPENHAGEN_CONFIRMED", "2 Frederiks d'Or - Frederik VI (Type 1) (1826-1827, KM# 697) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70759": ("H_COPENHAGEN_CONFIRMED", "1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 1; straight neck cut) (1826-1828, KM# 696) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "133224": ("H_COPENHAGEN_CONFIRMED", "1 Frederiks d'Or - Frederik VI (1827, KM# 698) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "132803": ("H_COPENHAGEN_CONFIRMED", "1 Frederik d'Or - Frederik VI (Type 2; first head) (1828, KM# 699) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "132806": ("H_COPENHAGEN_CONFIRMED", "2 Frederiks d'Or - Frederik VI (Type 2) (1828-1836, KM# 700) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "132804": ("H_COPENHAGEN_CONFIRMED", "1 Frederik d'Or - Frederik VI (Type 2; second head) (1829-1838, KM# 701) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70760": ("H_COPENHAGEN_CONFIRMED", "1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 2; broken neck cut) (1833-1839, KM# 706) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70747": ("H_COPENHAGEN_CONFIRMED", "2 Rigsbankskilling - Frederik VI (1836, KM# 710) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70749": ("H_COPENHAGEN_CONFIRMED", "3 Rigsbankskilling - Frederik VI (1836, KM# 711) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70752": ("H_COPENHAGEN_CONFIRMED", "4 Rigsbankskilling - Frederik VI (1836, KM# 712) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "130240": ("H_COPENHAGEN_CONFIRMED", "2 Christians d'Or - Christian VIII (1841-1847, KM# 722) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70716": ("H_COPENHAGEN_CONFIRMED", "⅕ Rigsbankskilling - Christian VIII (1842, KM# 723) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70717": ("H_COPENHAGEN_CONFIRMED", "⅕ Rigsbankskilling - Christian VIII (1842, KM# 724) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70750": ("H_COPENHAGEN_CONFIRMED", "3 Rigsbankskilling - Christian VIII (Type II) (1842, KM# 729) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70751": ("H_COPENHAGEN_CONFIRMED", "3 Rigsbankskilling - Christian VIII (Type II) (1842, KM# A730) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "130239": ("H_COPENHAGEN_CONFIRMED", "1 Christians d'Or - Christian VIII (1843-1847, KM# 730) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "130482": ("H_COPENHAGEN_CONFIRMED", "2 Frederiks d'Or - Frederik VII (1850-1863, KM# 750) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "130481": ("H_COPENHAGEN_CONFIRMED", "1 Frederik d'Or - Frederik VII (1853, KM# 757) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70691": ("H_COPENHAGEN_CONFIRMED", "1 Rigsdaler - Frederik VII (1854-1855, KM# 760) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70685": ("H_COPENHAGEN_CONFIRMED", "1 Skilling Rigsmønt - Frederik VII (1856-1863, KM# 763) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
-        "70682": ("H_COPENHAGEN_CONFIRMED", "½ Skilling Rigsmønt - Frederik VII (1857, KM# 767) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "162989": ("H_DENMARK_SEED", "1 Søsling - Christian IV (first type) (1602, KM# 10) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "163020": ("H_DENMARK_SEED", "4 Skilling Dansk - Christian IV (Helsingør) (1602-1609, KM# 11) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "163410": ("H_DENMARK_SEED", "6 Daler - Christian IV (1604, KM# 26) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "162995": ("H_DENMARK_SEED", "1 Skilling Dansk - Christian IV (Oval shield; date under value) (1605-1616, KM# 29.1) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "163033": ("H_DENMARK_SEED", "8 Skilling Dansk - Christian IV (1606, KM# 31) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "163021": ("H_DENMARK_SEED", "4 Skilling Dansk - Christian IV (1606-1608, KM# 30) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "163031": ("H_DENMARK_SEED", "8 Skilling Dansk - Christian IV (1606-1609, KM# 32) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "163046": ("H_DENMARK_SEED", "1 Mark Dansk - Christian IV (1607-1609, KM# 36) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "163034": ("H_DENMARK_SEED", "8 Skilling Dansk - Christian IV (1608, KM# 42) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "163022": ("H_DENMARK_SEED", "4 Skilling Dansk - Christian IV (Helsingør) (1608-1609, KM# 41) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "162996": ("H_DENMARK_SEED", "1 Skilling Dansk - Christian IV (Oval shield; date under value) (1615-1619, KM# 29.2) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "162999": ("H_DENMARK_SEED", "1 Skilling Dansk - Christian IV (1619, KM# 65) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "163055": ("H_DENMARK_SEED", "½ Gold Krone - Christian IV (1619, KM# 72) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "163026": ("H_DENMARK_SEED", "8 Skilling Dansk - Christian IV (Frederiksborg) (1620-1621, KM# 82) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "163029": ("H_DENMARK_SEED", "8 Skilling Dansk - Christian IV (Frederiksborg) (1624-1625, KM# 90) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "97393": ("H_DENMARK_SEED", "½ Dukat - Christian IV (Hebræermønt) (1644-1646, KM# 138) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "96459": ("H_DENMARK_SEED", "2 Skilling Dansk - Frederik III (Rex Electus) (1644-1648, KM# 132) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "97395": ("H_DENMARK_SEED", "½ Dukat - Christian IV (Hebræermønt) (1647, KM# 152) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "99106": ("H_DENMARK_SEED", "1 Speciedaler - Frederik III (11 province arms) (1649, KM# 169) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "99129": ("H_DENMARK_SEED", "1 Krone - Frederik III (Short motto; clockwise) (1651, KM# 181) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "99090": ("H_DENMARK_SEED", "2 Mark Dansk - Frederik III (1652, KM# 185) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "97152": ("H_DENMARK_SEED", "1 Krone - Frederik III (Short motto; clockwise) (1652-1653, KM# 186) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "96464": ("H_DENMARK_SEED", "2 Skilling Dansk - Frederik III (Shield type IIb) (1653, KM# 189.1) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "96465": ("H_DENMARK_SEED", "2 Skilling Dansk - Frederik III (Shield type III) (1653-1655, KM# 189.2) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "97362": ("H_DENMARK_SEED", "1 Speciedaler - Frederik III (1657-1661, KM# 212) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "79162": ("H_DENMARK_SEED", "1 Speciedaler - Frederik V (Type II) (1764, KM# 600) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "79167": ("H_DENMARK_SEED", "1 Speciedaler - Christian VII (1776-1780, KM# 632) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "79168": ("H_DENMARK_SEED", "1 Speciedaler - Christian VII (1777, KM# 634) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "79089": ("H_DENMARK_SEED", "24 Skilling Dansk - Christian VII (1778-1783, KM# 635) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "101042": ("H_DENMARK_SEED", "12 Mark - Christian VII (1781-1785, KM# 641) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "79160": ("H_DENMARK_SEED", "½ Speciedaler - Christian VII (1786, KM# 633) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "79169": ("H_DENMARK_SEED", "1 Speciedaler - Christian VII (Bauert portrait) (1795-1801, KM# 651) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "79093": ("H_DENMARK_SEED", "1⁄12 Speciedaler - Christian VII (1796-1799, KM# 652) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "79553": ("H_DENMARK_SEED", "2 Skilling Dansk - Christian VII (1801-1805, KM# 660) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "79557": ("H_DENMARK_SEED", "4 Skilling Dansk - Christian VII (1807, KM# 661) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "126062": ("H_DENMARK_SEED", "⅙ Rigsdaler Courant 'Offermark' - Frederik VI (1808, KM# 664) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "79526": ("H_DENMARK_SEED", "1 Skilling Dansk - Frederik VI (1808-1809, KM# 662) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "79552": ("H_DENMARK_SEED", "1 Skilling Dansk - Frederik VI (1812, KM# 671) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70756": ("H_DENMARK_SEED", "32 Rigsbankskilling - Frederik VI (1820, KM# 690) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "132805": ("H_DENMARK_SEED", "2 Frederiks d'Or - Frederik VI (Type 1) (1826-1827, KM# 697) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70759": ("H_DENMARK_SEED", "1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 1; straight neck cut) (1826-1828, KM# 696) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "133224": ("H_DENMARK_SEED", "1 Frederiks d'Or - Frederik VI (1827, KM# 698) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "132803": ("H_DENMARK_SEED", "1 Frederik d'Or - Frederik VI (Type 2; first head) (1828, KM# 699) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "132806": ("H_DENMARK_SEED", "2 Frederiks d'Or - Frederik VI (Type 2) (1828-1836, KM# 700) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "132804": ("H_DENMARK_SEED", "1 Frederik d'Or - Frederik VI (Type 2; second head) (1829-1838, KM# 701) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70760": ("H_DENMARK_SEED", "1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 2; broken neck cut) (1833-1839, KM# 706) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70747": ("H_DENMARK_SEED", "2 Rigsbankskilling - Frederik VI (1836, KM# 710) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70749": ("H_DENMARK_SEED", "3 Rigsbankskilling - Frederik VI (1836, KM# 711) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70752": ("H_DENMARK_SEED", "4 Rigsbankskilling - Frederik VI (1836, KM# 712) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "130240": ("H_DENMARK_SEED", "2 Christians d'Or - Christian VIII (1841-1847, KM# 722) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70716": ("H_DENMARK_SEED", "⅕ Rigsbankskilling - Christian VIII (1842, KM# 723) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70717": ("H_DENMARK_SEED", "⅕ Rigsbankskilling - Christian VIII (1842, KM# 724) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70750": ("H_DENMARK_SEED", "3 Rigsbankskilling - Christian VIII (Type II) (1842, KM# 729) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70751": ("H_DENMARK_SEED", "3 Rigsbankskilling - Christian VIII (Type II) (1842, KM# A730) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "130239": ("H_DENMARK_SEED", "1 Christians d'Or - Christian VIII (1843-1847, KM# 730) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "130482": ("H_DENMARK_SEED", "2 Frederiks d'Or - Frederik VII (1850-1863, KM# 750) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "130481": ("H_DENMARK_SEED", "1 Frederik d'Or - Frederik VII (1853, KM# 757) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70691": ("H_DENMARK_SEED", "1 Rigsdaler - Frederik VII (1854-1855, KM# 760) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70685": ("H_DENMARK_SEED", "1 Skilling Rigsmønt - Frederik VII (1856-1863, KM# 763) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
+        "70682": ("H_DENMARK_SEED", "½ Skilling Rigsmønt - Frederik VII (1857, KM# 767) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
         # ----- end Group D-DANEMARK -----
 
         # ----- Group A: Glückstadt-mint per ucoin (Period «Glückstadt 1617-1773») -----
@@ -443,22 +444,22 @@ def main():
         "163588": ("A_ALREADY",              "Added as km-x005-chr-iv-1620 (2 Sk Lybsk Glückstadt, earliest documented Christian IV Glückstadt Sk-Lybsk; KM-DK# 8)"),
         "163638": ("A_ALREADY",              "Added as km-x007-chr-iv-1620 (4 Sk Lybsk Glückstadt, sibling to km-x005; KM-DK# 9)"),
         "163670": ("A_ALREADY",              "Added as km-72-chr-v-1682 — separate Krause type from km-70.1 (1682-only, .979, Hede 117); km-70-1 simultaneously cleaned to be only Coin B"),
-        "163671": ("K_WRONG_DATA_IGNORE",    "ucoin '1 krone' 3g .917 — same coin as our km-40-2 Guldkrone (5.996g .917) per Numista N#306974 but with corrupted ucoin weight (3g = exactly half of correct value); data unreliable, do not import"),
+        "163671": ("A_ALREADY",              "Same coin as km-40-2 Guldkrone (5.996g .917) per Numista N#306974, but ucoin weight (3g) is corrupted — exactly half of the canonical value. Marked already-in-base via this override; do NOT add as alt source (would propagate the bad weight)."),
         # ----- Group D-MED-WD-PRE1617 (14 weight-divergent pre-1617 — Glückstadt impossible): -----
-        "163398": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Gulden 1591-1593 UC# 12 silver .972 — pre-1617 → Copenhagen"),
-        "173642": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Speciedaler 1596 UC# 13 silver .937 — pre-1617 → Copenhagen"),
-        "163068": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Speciedaler 1597 UC# 8 silver .937 — pre-1617 → Copenhagen"),
-        "162972": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Penning 1602 KM# 5 copper — pre-1617 → Copenhagen"),
-        "162975": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Penning 1602 KM# 6 copper (sub-variant) — pre-1617 → Copenhagen"),
-        "162978": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Hvid 1602 KM# 9 billon .1 — pre-1617 → Copenhagen"),
-        "163043": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Mark 1602-1604 KM# 12 silver .593 — pre-1617 → Copenhagen"),
-        "163008": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Skilling 1603-1613 KM# 16.1 silver .298 — pre-1617 → Copenhagen"),
-        "163077": ("H_COPENHAGEN_CONFIRMED", "Christian IV 10 Ducat 1604 UC# 11 GOLD .979 — pre-1617 → Copenhagen"),
-        "162991": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Søsling 1607 KM# 40 silver .125 — pre-1617 → Copenhagen"),
-        "162992": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Søsling 1611 KM# 47 silver .125 — pre-1617 → Copenhagen"),
-        "162986": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Hvid 1613-1614 KM# 54 billon .1 — pre-1617 → Copenhagen"),
-        "163017": ("H_COPENHAGEN_CONFIRMED", "Christian IV 4 Skilling 1616-1619 KM# 55.1 silver .437 — majority pre-1617 → Copenhagen"),
-        "163019": ("H_COPENHAGEN_CONFIRMED", "Christian IV 4 Skilling 1616-1619 KM# 55.2 silver .437 (sub-variant) — majority pre-1617 → Copenhagen"),
+        "163398": ("H_DENMARK_SEED", "Christian IV 1 Gulden 1591-1593 UC# 12 silver .972 — pre-1617 → Copenhagen"),
+        "173642": ("H_DENMARK_SEED", "Christian IV 1 Speciedaler 1596 UC# 13 silver .937 — pre-1617 → Copenhagen"),
+        "163068": ("H_DENMARK_SEED", "Christian IV 1 Speciedaler 1597 UC# 8 silver .937 — pre-1617 → Copenhagen"),
+        "162972": ("H_DENMARK_SEED", "Christian IV 1 Penning 1602 KM# 5 copper — pre-1617 → Copenhagen"),
+        "162975": ("H_DENMARK_SEED", "Christian IV 1 Penning 1602 KM# 6 copper (sub-variant) — pre-1617 → Copenhagen"),
+        "162978": ("H_DENMARK_SEED", "Christian IV 1 Hvid 1602 KM# 9 billon .1 — pre-1617 → Copenhagen"),
+        "163043": ("H_DENMARK_SEED", "Christian IV 1 Mark 1602-1604 KM# 12 silver .593 — pre-1617 → Copenhagen"),
+        "163008": ("H_DENMARK_SEED", "Christian IV 2 Skilling 1603-1613 KM# 16.1 silver .298 — pre-1617 → Copenhagen"),
+        "163077": ("H_DENMARK_SEED", "Christian IV 10 Ducat 1604 UC# 11 GOLD .979 — pre-1617 → Copenhagen"),
+        "162991": ("H_DENMARK_SEED", "Christian IV 1 Søsling 1607 KM# 40 silver .125 — pre-1617 → Copenhagen"),
+        "162992": ("H_DENMARK_SEED", "Christian IV 1 Søsling 1611 KM# 47 silver .125 — pre-1617 → Copenhagen"),
+        "162986": ("H_DENMARK_SEED", "Christian IV 1 Hvid 1613-1614 KM# 54 billon .1 — pre-1617 → Copenhagen"),
+        "163017": ("H_DENMARK_SEED", "Christian IV 4 Skilling 1616-1619 KM# 55.1 silver .437 — majority pre-1617 → Copenhagen"),
+        "163019": ("H_DENMARK_SEED", "Christian IV 4 Skilling 1616-1619 KM# 55.2 silver .437 (sub-variant) — majority pre-1617 → Copenhagen"),
         # ----- Group D-MED-WD-POST1617 (9 added as NEW Holstein candidates): -----
         "162985": ("A_ALREADY",              "Added as km-x028-chr-iv-1618 (1 Hvid 1618 billon .1, KM-DK# 63)"),
         "163005": ("A_ALREADY",              "Added as km-x029-chr-iv-1619 (2 Skilling 1619-1621 silver .86, KM-DK# 69)"),
@@ -473,7 +474,7 @@ def main():
         "163009": ("A_ALREADY",              "Added as km-x024-chr-iv-1618 (Christian IV 2 Skilling 1618 .298 — user verified visually different from km-5 Sonderburg)"),
         "163023": ("A_ALREADY",              "Folded into existing km-70-chr-iv-1619 as alt — user verified visually identical (same KM# 70 Royal Danish); ucoin diverges in fineness (.437 vs Numista .859), recorded as alt with note"),
         "163047": ("A_ALREADY",              "Added as km-x025-chr-iv-1612 (Christian IV 1 Mark 1612-1618 .593 — kept separate from km-A4 per user instruction; very similar parameters but ucoin has no image to confirm identity)"),
-        "163065": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Speciedaler 1590 UC# 6 .937 29.23g — user verified visually different from km-278276 Schauenburg; pre-1617 strict rule routes to Copenhagen"),
+        "163065": ("H_DENMARK_SEED", "Christian IV 1 Speciedaler 1590 UC# 6 .937 29.23g — user verified visually different from km-278276 Schauenburg; pre-1617 strict rule routes to Copenhagen"),
         "163411": ("A_ALREADY",              "Added as km-x026-chr-iv-1611 (Christian IV 1 Rosenoble 1611-1629 GOLD .833 — separate trade-gold standard, distinct from silver km-A4 per metal filter)"),
         "96430":  ("A_ALREADY",              "Added as km-x027-fr-iii-1651 (Frederik III 1 Søsling 1651 COPPER — distinct from silver km-93 per metal filter)"),
         # ----- Group D-MED-1617+ (8 reviewed 2026-05-03 — added as new Holstein-mint candidates): -----
@@ -488,16 +489,16 @@ def main():
         # ----- Group D-MED-PRE-1617: 10 pre-1617 entries, definitively Copenhagen -----
         # (Glückstadt mint was founded in 1617 — anything before that year cannot
         #  be Glückstadt-mint regardless of which Period ucoin files them under)
-        "162984": ("H_COPENHAGEN_CONFIRMED", "Frederik II 1 Hvid 1582-1583, billon — pre-Glückstadt → Copenhagen"),
-        "163001": ("H_COPENHAGEN_CONFIRMED", "Frederik II 1 Skilling 1582-1583 .187 — pre-Glückstadt → Copenhagen"),
-        "163011": ("H_COPENHAGEN_CONFIRMED", "Frederik II 2 Skilling 1582-1585 .312 — pre-Glückstadt → Copenhagen"),
-        "163030": ("H_COPENHAGEN_CONFIRMED", "Frederik II 8 Skilling 1582-1585 .610 — pre-Glückstadt → Copenhagen"),
-        "163075": ("H_COPENHAGEN_CONFIRMED", "Christian IV 10 Ducat 1588 GOLD (accession piece, UC# 10) — pre-Glückstadt → Copenhagen"),
-        "163012": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Skilling 1594-1596 .312 — pre-Glückstadt → Copenhagen"),
-        "163067": ("H_COPENHAGEN_CONFIRMED", "Christian IV 4 Mark 1596 .937 (high-fineness rarity) — pre-Glückstadt → Copenhagen"),
-        "163071": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Speciedaler 1597-1600 .888 — pre-Glückstadt → Copenhagen"),
-        "163409": ("H_COPENHAGEN_CONFIRMED", "Christian IV 4 Daler 1604 GOLD .833 — pre-Glückstadt → Copenhagen"),
-        "163074": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Speciedaler 1607 .888 — pre-Glückstadt → Copenhagen"),
+        "162984": ("H_DENMARK_SEED", "Frederik II 1 Hvid 1582-1583, billon — pre-Glückstadt → Copenhagen"),
+        "163001": ("H_DENMARK_SEED", "Frederik II 1 Skilling 1582-1583 .187 — pre-Glückstadt → Copenhagen"),
+        "163011": ("H_DENMARK_SEED", "Frederik II 2 Skilling 1582-1585 .312 — pre-Glückstadt → Copenhagen"),
+        "163030": ("H_DENMARK_SEED", "Frederik II 8 Skilling 1582-1585 .610 — pre-Glückstadt → Copenhagen"),
+        "163075": ("H_DENMARK_SEED", "Christian IV 10 Ducat 1588 GOLD (accession piece, UC# 10) — pre-Glückstadt → Copenhagen"),
+        "163012": ("H_DENMARK_SEED", "Christian IV 2 Skilling 1594-1596 .312 — pre-Glückstadt → Copenhagen"),
+        "163067": ("H_DENMARK_SEED", "Christian IV 4 Mark 1596 .937 (high-fineness rarity) — pre-Glückstadt → Copenhagen"),
+        "163071": ("H_DENMARK_SEED", "Christian IV 2 Speciedaler 1597-1600 .888 — pre-Glückstadt → Copenhagen"),
+        "163409": ("H_DENMARK_SEED", "Christian IV 4 Daler 1604 GOLD .833 — pre-Glückstadt → Copenhagen"),
+        "163074": ("H_DENMARK_SEED", "Christian IV 2 Speciedaler 1607 .888 — pre-Glückstadt → Copenhagen"),
         # ----- Group D-HIGH (4 reviewed 2026-05-03 from D_DENMARK_HOLSTEIN_MINT pre-screen): -----
         "97365":  ("A_ALREADY",              "Added as km-x013-fr-iii-1664 (Frederik III Glückstadt 1 Speciedaler 1664-only at .875 — separate type from km-51 1664-1666 .888 per user verification of fineness mismatch)"),
         "99114":  ("A_ALREADY",              "Added as km-x014-chr-iv-1624 (Christian IV Glückstadt 2 Speciedaler 1624-1634 at .875 — visually distinct from km-16 1623 per user verification)"),
@@ -511,25 +512,25 @@ def main():
         "169253": ("A_ALREADY",              "Added as km-x011-fr-iv-1719-half (½ Dukat Rendsburg-Gottorp interim; KM-DK# 7)"),
         "169254": ("A_ALREADY",              "Added as km-x012-fr-iv-1718 (1 Dukat Rendsburg-Gottorp interim; KM-DK# 8)"),
         # ----- Group C: Royal Danish Copenhagen (Period «Speciedaler 1582-1624» / «Rigsdaler 1625-1699») -----
-        "101246": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Dukat 1644-1648 (KM# 140); Hebræermønt-style legend «IUDEX IUSTUS יהוה» but Period=Rigsdaler ≠ Glückstadt → Copenhagen mint"),
-        "162976": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Penning 1602 copper (KM# 7); Period «Speciedaler 1582-1624» = Copenhagen"),
-        "162977": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Hvid 1602 billon (KM# 8); Copenhagen"),
-        "163042": ("H_COPENHAGEN_CONFIRMED", "Christian IV 24 Skilling 1624 (KM# 93); Copenhagen"),
-        "163045": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Mark 1606-1607 (KM# 33); Copenhagen"),
-        "163070": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Speciedaler 1608-1621 (KM# 44); Copenhagen"),
-        "96444":  ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Skilling 1629 (KM# 113.1); Copenhagen"),
-        "96445":  ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Skilling 1629 (KM# 113.2); Copenhagen sub-variant"),
-        "96446":  ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Skilling 1644-1648 (KM# 131); Copenhagen"),
-        "96458":  ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Skilling 1630-1632 (KM# 120); Copenhagen"),
-        "96461":  ("H_COPENHAGEN_CONFIRMED", "Frederick III 2 Skilling 1648-1651 (KM# 158); Copenhagen"),
-        "99093":  ("H_COPENHAGEN_CONFIRMED", "Frederick III 2 Mark 1658-1661 (KM# 218); Copenhagen"),
+        "101246": ("H_DENMARK_SEED", "Christian IV 2 Dukat 1644-1648 (KM# 140); Hebræermønt-style legend «IUDEX IUSTUS יהוה» but Period=Rigsdaler ≠ Glückstadt → Copenhagen mint"),
+        "162976": ("H_DENMARK_SEED", "Christian IV 2 Penning 1602 copper (KM# 7); Period «Speciedaler 1582-1624» = Copenhagen"),
+        "162977": ("H_DENMARK_SEED", "Christian IV 1 Hvid 1602 billon (KM# 8); Copenhagen"),
+        "163042": ("H_DENMARK_SEED", "Christian IV 24 Skilling 1624 (KM# 93); Copenhagen"),
+        "163045": ("H_DENMARK_SEED", "Christian IV 1 Mark 1606-1607 (KM# 33); Copenhagen"),
+        "163070": ("H_DENMARK_SEED", "Christian IV 1 Speciedaler 1608-1621 (KM# 44); Copenhagen"),
+        "96444":  ("H_DENMARK_SEED", "Christian IV 1 Skilling 1629 (KM# 113.1); Copenhagen"),
+        "96445":  ("H_DENMARK_SEED", "Christian IV 1 Skilling 1629 (KM# 113.2); Copenhagen sub-variant"),
+        "96446":  ("H_DENMARK_SEED", "Christian IV 1 Skilling 1644-1648 (KM# 131); Copenhagen"),
+        "96458":  ("H_DENMARK_SEED", "Christian IV 2 Skilling 1630-1632 (KM# 120); Copenhagen"),
+        "96461":  ("H_DENMARK_SEED", "Frederick III 2 Skilling 1648-1651 (KM# 158); Copenhagen"),
+        "99093":  ("H_DENMARK_SEED", "Frederick III 2 Mark 1658-1661 (KM# 218); Copenhagen"),
     }
 
     for tid, e in ucoin.items():
         # Manual override takes precedence over heuristic logic.
         if tid in MANUAL_OVERRIDES:
             cat_name, reason = MANUAL_OVERRIDES[tid]
-            results[cat_name].append({
+            add(cat_name, {
                 "tid": tid, "km": (e.get("km") or "").strip(),
                 "denom": e.get("denom"), "year": e.get("year"),
                 "fineness": e.get("fineness"), "weight_g": e.get("weight_g"),
@@ -538,16 +539,12 @@ def main():
             })
             continue
         # Direct tid bridge: if a base coin's sources include this exact
-        # ucoin URL, it's already incorporated — no need to run the
-        # heuristic match logic.
+        # ucoin URL, it's already incorporated — silent drop (was A_ALREADY,
+        # now counted as processed_in_base via the dropped_count helper).
         direct_match = base_by_ucoin_tid.get(tid)
         if direct_match is not None:
-            results["A_ALREADY"].append({
-                "tid": tid, "km": (e.get("km") or "").strip(),
-                "denom": e.get("denom"), "year": e.get("year"),
-                "fineness": e.get("fineness"), "weight_g": e.get("weight_g"),
-                "url": e.get("url"), "source": e.get("source", ""),
-                "matched_ids": [direct_match["id"]],
+            add("A_ALREADY", {
+                "tid": tid, "matched_ids": [direct_match["id"]],
                 "match_method": "ucoin_tid_in_sources",
             })
             continue
@@ -569,11 +566,15 @@ def main():
                   .replace("H# ", "").strip()) if is_real_km else ""
         source = e.get("source", "")
 
-        if source in HANSEATIC_SOURCES:
-            results["X_HANSEATIC_SKIP"].append({"tid": tid, **e})
+        # Hanseatic — split by city for future-location seed buckets.
+        if source in HAMBURG_SOURCES:
+            add("X_HAMBURG_SEED", {"tid": tid, **e})
+            continue
+        if source in LUBECK_SOURCES:
+            add("X_LUBECK_SEED", {"tid": tid, **e})
             continue
 
-        # Strict A_ALREADY check — only keyed on KM# when we actually have one.
+        # Strict already-in-base check — only keyed on KM# when we actually have one.
         candidates: list = []
         if is_real_km and km_raw:
             candidates = list(base_by_km.get(km_raw, []))
@@ -609,8 +610,8 @@ def main():
                   "source": source}
 
         if match_ids:
-            record["matched_ids"] = match_ids
-            results["A_ALREADY"].append(record)
+            # Already in base — silent drop.
+            add("A_ALREADY", {**record, "matched_ids": match_ids})
             continue
 
         # Not matched. Holstein-source?
@@ -618,9 +619,9 @@ def main():
             if candidates:
                 # KM# exists in base but no variant matches → KM_VARIANT
                 record["base_km_present_ids"] = [c["id"] for c in candidates]
-                results["C_HOLSTEIN_KM_VARIANT"].append(record)
+                add("C_HOLSTEIN_KM_VARIANT", record)
             else:
-                results["B_HOLSTEIN_NEW"].append(record)
+                add("B_HOLSTEIN_NEW", record)
             continue
 
         # Denmark-source. Use Numista cache + base-coin mint hints.
@@ -632,37 +633,43 @@ def main():
         # Heuristic priority:
         if has_holstein_mint(n_mints) or base_holstein is True:
             record["why"] = "numista_or_base_attests_holstein_mint"
-            results["D_DENMARK_HOLSTEIN_MINT"].append(record)
+            add("D_DENMARK_HOLSTEIN_MINT", record)
         elif is_copenhagen_only(n_mints):
             record["why"] = "numista_says_copenhagen_only"
-            results["F_OUT_OF_SCOPE"].append(record)
+            add("H_DENMARK_SEED", record)
         elif candidates:
             # KM# in our base but mint info missing — needs check
             record["why"] = "km_in_base_but_no_variant_match_no_mint_info"
             record["base_km_present_ids"] = [c["id"] for c in candidates]
-            results["E_DENMARK_AMBIGUOUS"].append(record)
+            add("E_DENMARK_AMBIGUOUS", record)
         else:
             # No KM# overlap, Denmark source, no Holstein mint info → likely Copenhagen
             record["why"] = "no_km_overlap_denmark_source"
-            results["F_OUT_OF_SCOPE"].append(record)
+            add("H_DENMARK_SEED", record)
 
     # --- Report -----------------------------------------------------------
 
-    print(f"=== STRICT CATEGORIZATION ({len(ucoin)} ucoin entries) ===\n")
-    for cat in ["A_ALREADY", "B_HOLSTEIN_NEW", "C_HOLSTEIN_KM_VARIANT",
+    print(f"=== UCOIN CATEGORIZATION ({len(ucoin)} ucoin entries) ===\n")
+    print("  Active workflow (Holstein triage):")
+    for cat in ["B_HOLSTEIN_NEW", "C_HOLSTEIN_KM_VARIANT",
                 "D_DENMARK_HOLSTEIN_MINT", "E_DENMARK_AMBIGUOUS",
-                "F_OUT_OF_SCOPE", "H_COPENHAGEN_CONFIRMED",
-                "J_HOLSTEIN_TO_ADD", "K_WRONG_DATA_IGNORE",
-                "X_HANSEATIC_SKIP"]:
-        rs = results[cat]
-        print(f"  {cat:30s}  {len(rs):4d}")
+                "J_HOLSTEIN_TO_ADD"]:
+        print(f"    {cat:30s}  {len(results[cat]):4d}")
 
-    # Diff against the v1 linker outcome
-    print()
-    n_a_strict = len(results["A_ALREADY"])
-    print(f"v1 linker actually attached to: 124 coins (~33% wrong)")
-    print(f"v2 linker (strict):              89 coins")
-    print(f"v3 strict-categorize A_ALREADY:  {n_a_strict} ucoin entries")
+    print("\n  Future-location seed:")
+    for cat in ["H_DENMARK_SEED", "X_HAMBURG_SEED", "X_LUBECK_SEED"]:
+        print(f"    {cat:30s}  {len(results[cat]):4d}")
+
+    print("\n  Silently dropped (audit trail in MANUAL_OVERRIDES + git):")
+    label_map = {"A_ALREADY": "processed_in_base",
+                 "K_WRONG_DATA_IGNORE": "data_quality_skip"}
+    for cat, n in dropped_count.items():
+        print(f"    {label_map[cat]:30s}  {n:4d}  (legacy label: {cat})")
+
+    total_bucketed = sum(len(v) for v in results.values())
+    total_dropped  = sum(dropped_count.values())
+    print(f"\n  TOTAL  bucketed={total_bucketed}  dropped={total_dropped}  "
+          f"sum={total_bucketed + total_dropped}  /  ucoin_in={len(ucoin)}")
 
     # Save
     with open(OUT_JSON, "w") as fp:
