@@ -210,7 +210,13 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
 
 # Render priority: lower = earlier. Unknown prefixes get a mid-rank.
 _PREFIX_PRIORITY: dict[str, int] = {
-    "KM": 10, "Hede": 20, "Sieg": 30, "Schou": 40, "Lange": 50,
+    # `KM#` (no suffix) defaults to the territorial Krause-Mishler register
+    # for the location being documented (Schleswig-Holstein for our base).
+    # `KM-DK#` is the Royal Danish Krause-Mishler register — same publisher,
+    # different territorial scope. Several Glückstadt issues appear in BOTH
+    # registers under different numbers (e.g. our km-358 = SH-KM# 358 =
+    # DK-KM# 71), so the suffix is needed for unambiguous citation.
+    "KM": 10, "KM-DK": 11, "Hede": 20, "Sieg": 30, "Schou": 40, "Lange": 50,
     "Fr": 60,
     "Dav": 70,
     "Dav EC II": 71, "Dav EC III": 72, "Dav EC IV": 73, "Dav ECT": 74,

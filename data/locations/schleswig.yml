@@ -3499,10 +3499,15 @@ coins:
       numista: '22576'
       others:
         - "Schou 50-54"
+        - "KM-DK# 71"
     metal: billon
     fineness: 0.281
-    weight_rough_g: 1.32
-    diameter_mm: 19.0
+    weight_rough_g:
+      - {value: 1.32, source: "Numista N#22576\nucoin tid 96983"}
+      - {value: 1.3, source: "ucoin tid 163585"}
+    diameter_mm:
+      - {value: 19.0, source: "Numista N#22576\nucoin tid 96983"}
+      - {value: 17.0, source: "ucoin tid 163585"}
     verification_note:
       de: "Numista N#22576 / KM# 358 fasst Kopenhagener (Hede 74A 1676–77, Hede 74B 1680–81) und Glückstädter (Hede 123 1681) Prägungen unter einem Eintrag zusammen; die dort aufgeführten Maße und Feingehalt-Werte sind über alle Münzstätten gemittelt und nicht nach Glückstadt aufgeschlüsselt."
       en: "Numista N#22576 / KM# 358 conflates Copenhagen (Hede 74A 1676–77, Hede 74B 1680–81) and Glückstadt (Hede 123 1681) issues in a single entry; the weight and fineness given there are pooled across mints and not broken out for Glückstadt."
@@ -3526,7 +3531,10 @@ coins:
         ref: "Hede 123 / danskmoent.dk"
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-skilling-1676-1681/?tid=96983
-        ref: ucoin
+        ref: ucoin tid 96983
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-dansk-1681/?tid=163585
+        ref: ucoin tid 163585
     issuing_entity: royal_holstein
 
   - id: km-74-chr-v-1682

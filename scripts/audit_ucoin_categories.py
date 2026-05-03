@@ -44,6 +44,15 @@ Categories:
                                look like potential duplicates of existing
                                base coins — the user clears these via
                                visual inspection before commit.
+  K_WRONG_DATA_IGNORE        ← User-reviewed entries where ucoin's data
+                               is demonstrably wrong (e.g. weight off by
+                               2× the canonical value, fineness contradicting
+                               every published source). Distinct from
+                               F_OUT_OF_SCOPE because the coin itself MAY
+                               be in scope, but the ucoin record is
+                               poisoned — importing it would corrupt the
+                               base. Recorded so future re-runs don't
+                               re-surface the entry as a candidate.
   X_HANSEATIC_SKIP           ← Lübeck/Hamburg, out of Schleswig scope
 
 Decision precedence (each step short-circuits the rest):
@@ -329,6 +338,7 @@ def main():
         "F_OUT_OF_SCOPE": [],
         "H_COPENHAGEN_CONFIRMED": [],
         "J_HOLSTEIN_TO_ADD": [],
+        "K_WRONG_DATA_IGNORE": [],
         "X_HANSEATIC_SKIP": [],
     }
 
@@ -356,7 +366,7 @@ def main():
         "163588": ("J_HOLSTEIN_TO_ADD",      "Christian IV Glückstadt 2 Skilling Lybsk 1620 (KM# 8 Danish series); user previously confirmed visually different from km-11 Sonderburg-Duchy — likely a separate Glückstadt issue not yet in base"),
         "163638": ("J_HOLSTEIN_TO_ADD",      "Christian IV Glückstadt 4 Skilling Lybsk 1620 (KM# 9 Danish series); no match in our base; sibling to #9"),
         "163670": ("J_HOLSTEIN_TO_ADD",      "Christian V Glückstadt 1 Ducat 1682 (KM# 72 Danish series); needs verification — w=3.5g .986 vs our km-70-1-chr-v-1680 (3.49g .979). Numista has separate N#112809 (1682-only Glückstadt .979) — could be alt to km-70.1 OR separate variant"),
-        "163671": ("F_OUT_OF_SCOPE",         "ucoin '1 krone' 3g .917 — same coin as our km-40-2 Guldkrone (5.996g .917) per Numista N#306974 but with corrupted ucoin weight (3g = exactly half of correct value); data unreliable, do not import"),
+        "163671": ("K_WRONG_DATA_IGNORE",    "ucoin '1 krone' 3g .917 — same coin as our km-40-2 Guldkrone (5.996g .917) per Numista N#306974 but with corrupted ucoin weight (3g = exactly half of correct value); data unreliable, do not import"),
         # ----- Group B: Holstein-Gottorp-Rendsburg (Period «Holstein-Gottorp-Rendsburg 1716-1720») -----
         "169251": ("J_HOLSTEIN_TO_ADD",      "Frederik IV (Denmark) Holstein-Gottorp-Rendsburg 1 Skilling 1719-1720 (KM# 5); interim coinage during Danish occupation of Gottorp territory after Great Northern War — Holstein-mint per ucoin Period"),
         "169252": ("J_HOLSTEIN_TO_ADD",      "Frederik IV Holstein-Gottorp-Rendsburg 12 Skilling 1716-1720 (KM# 6)"),
@@ -504,7 +514,8 @@ def main():
     for cat in ["A_ALREADY", "B_HOLSTEIN_NEW", "C_HOLSTEIN_KM_VARIANT",
                 "D_DENMARK_HOLSTEIN_MINT", "E_DENMARK_AMBIGUOUS",
                 "F_OUT_OF_SCOPE", "H_COPENHAGEN_CONFIRMED",
-                "J_HOLSTEIN_TO_ADD", "X_HANSEATIC_SKIP"]:
+                "J_HOLSTEIN_TO_ADD", "K_WRONG_DATA_IGNORE",
+                "X_HANSEATIC_SKIP"]:
         rs = results[cat]
         print(f"  {cat:30s}  {len(rs):4d}")
 
