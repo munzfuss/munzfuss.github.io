@@ -63,50 +63,61 @@ ucoin pages via Chrome MCP / Apify.
 
 ---
 
-### B. Investigate Frederick III silver «1 Krone» 1659–1660 (N#313341)  *(opened 2026-05-02)*
+### C. Bremen-Archbishopric Frederick (II/III) coinage 1641–1643  *(opened 2026-05-03)*
 
-**Source.** Surfaced during the C_HOLSTEIN_KM_VARIANT investigation
-(ucoin candidate #7 cross-check). Numista cache contains an entry for
-**«1 Krone — Frederick III» 1659–1660** with weight 21.94 g, silver
-(.691 implied via melt value), filed under the
-`schleswig_holstein_danish_duchies` issuer — i.e. NOT the Glückstadt
-gold Guldkrone (5.996 g .917, our existing km-40-2). It looks like a
-**predecessor of the 1665 «Pumphosekrone»** silver issue, struck just
-before Frederick III's main krone-program.
+**Surfaced during.** Cross-check of the 3 Numista issuer-list pages
+linked from item B (now closed). The Bremen-archbishopric page
+returned 3 Frederick III Bremen issues — historically connected to
+our Holstein register because Frederick III held the Bremen
+archbishopric (as Frederick II) before becoming Danish king in 1648.
 
-We currently have **no entry** for this type. It would slot somewhere
-in the late phase of the Reichsmünzordnung-era Krone series or as a
-transitional coin between Guldkrone (1657–1660) and Pumphosekrone
-(1665).
+**3 coins to model into a future `data/locations/bremen.yml`:**
 
-**Numista record.** `https://en.numista.com/313341` — title «1 Krone -
-Frederick III», issuer «Schleswig and Holstein, Danish duchies of»,
-years 1659-1660, weight 21.94 g.
+| Coin | KM# | Numista | Metal / spec |
+|---|---|---|---|
+| 1 Thaler Frederick of Dänemark 1641 | KM# 38 | N#129848 | Silver .888, 29.23 g, Dav CCT# 5078/5078A, Jungk# 363… |
+| 2 Schilling Frederick II 1641–1643 | KM# 36 | N#429659 | Silver |
+| 1/16 Thaler 1641–1643 | KM# 37.1 | N#394107 | Silver, 1.57 g, ⌀19.3 mm, Jungk# 366–371 |
 
-**Research links to follow.**
-- http://en.numista.com/catalogue/index.php?p=1&ru=437&e=bremen_archbishopric — Frederick III Bremen-archbishopric coinage (he held the archbishopric)
-- https://en.numista.com/catalogue/index.php?p=1&ru=437&e=gluckstadt_city&q=200 — Frederick III Glückstadt (filter by 200 mass-rough? clarify)
-- https://en.numista.com/catalogue/index.php?p=1&ru=437&e=schleswig_holstein_danish_duchies&q=200 — Frederick III Schleswig-Holstein-Danish-duchies issuer (the page where N#313341 lives)
+These are **NOT in scope of `schleswig.yml`** — Bremen archbishopric
+is a distinct ecclesiastical territory, not a Schleswig-Holstein
+duchy. They would belong in a separate `bremen.yml` location.
 
-**To resolve before adding.**
-- Confirm mint (Glückstadt or Copenhagen).
-- Establish issuing entity: likely `royal_holstein` if Glückstadt-mint,
-  `danish_realm` if Copenhagen.
-- Determine which Münzfuß this fits — at 21.94 g .691 silver the
-  fine-weight is ≈ 15.16 g, which doesn't match either 9¼-Fuß
-  Speciedaler (25.28 g) or any documented kronemont fraction. May need
-  a separate small-fuss anchor, OR may be an exonumia-style transition
-  piece outside our Müntzfuß framework.
-- Check Bruun, Schou, Sieg references for this type via danskmoent.dk
-  or NNUM articles.
+The user opened these as part of TODO B research; recording here so
+the link from B's closure isn't lost. Whenever Bremen comes up as a
+new location target, this is the seed list.
 
-**Done criterion.** Either (a) coin entry added with full provenance
-and correct fuss attribution, or (b) explicit decision recorded that
-the type is out-of-scope (e.g. medallion-style commemorative, not a
-circulating coin) — in which case note in this TODO why we excluded.
+**Done criterion.** Bremen location file created with these 3 coins
+(plus whatever else the bremen.yml scoping work surfaces) — OR an
+explicit decision that Bremen stays outside the project scope.
 
 ---
 
 ## Done
+
+### B. Investigate Frederick III silver «1 Krone» 1659–1660 (N#313341)  *(closed 2026-05-03)*
+
+**Outcome.** N#313341 turned out to be a **duplicate Numista listing
+of our existing `km-x001-fr-iii-1659`** (Type II, Hede 153A). Numista
+carries two parallel entries for the same Davenport-3675 type:
+N#111285 under the «City of Glückstadt» issuer (KM# B43) and N#313341
+under the «Schleswig-Holstein duchies» issuer (KM# 95). The km-x001
+entry already cites both Numista IDs in `sources` and explicitly
+documents the duplication in its body note («same coin, duplicate
+Numista listing»).
+
+**Cross-check of the 3 research links** (all Frederick III, ru=437):
+- `schleswig_holstein_danish_duchies` (3 hits): all 3 already in base
+  — km-90 (1 Sechsling), km-x001 (1 Krone, this item), km-103 (4 Marck
+  Danske, listed under Christian V on Numista despite the FRIII filter)
+- `gluckstadt_city` (9 hits): all 9 already in base — Guldkrone,
+  1/16 Speciedaler, both 4-Mark-Dansk types, Speciedaler 1664-66,
+  ⅛ Reichs Daler, both 1/16-Thaler bust types, 1 Ducat 1666-69
+- `bremen_archbishopric` (3 hits): not in base, not in Holstein scope
+  — moved to Item C as seed for a future `bremen.yml`
+
+**Net result.** No new Holstein coin to add from item B. The «silver
+Krone» discovery turned into a Numista-duplicate normalisation that
+was already done.
 
 (none yet)
