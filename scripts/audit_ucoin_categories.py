@@ -369,6 +369,15 @@ def main():
         "163638": ("A_ALREADY",              "Added as km-x007-chr-iv-1620 (4 Sk Lybsk Glückstadt, sibling to km-x005; KM-DK# 9)"),
         "163670": ("A_ALREADY",              "Added as km-72-chr-v-1682 — separate Krause type from km-70.1 (1682-only, .979, Hede 117); km-70-1 simultaneously cleaned to be only Coin B"),
         "163671": ("K_WRONG_DATA_IGNORE",    "ucoin '1 krone' 3g .917 — same coin as our km-40-2 Guldkrone (5.996g .917) per Numista N#306974 but with corrupted ucoin weight (3g = exactly half of correct value); data unreliable, do not import"),
+        # ----- Group D-MED-1617+ (8 reviewed 2026-05-03 — added as new Holstein-mint candidates): -----
+        "163036": ("A_ALREADY",              "Added as km-x016-chr-iv-1622 (Christian IV 6 Skilling 1622, fineness inferred from .888 standard)"),
+        "163037": ("A_ALREADY",              "Added as km-x017-chr-iv-1622 (Christian IV 12 Skilling 1622-1623 .888)"),
+        "163038": ("A_ALREADY",              "Added as km-x018-chr-iv-1624 (Christian IV 12 Skilling 1624-1625 .860, post-Kipper reduction)"),
+        "97085":  ("A_ALREADY",              "Added as km-x019-chr-iv-1627 (Christian IV 6 Skilling 1627-1629 .781, KM-DK# 109)"),
+        "97086":  ("A_ALREADY",              "Added as km-x020-chr-iv-1628 (Christian IV 6 Skilling 1628-1629 .781, KM-DK# 110, sub-variant of km-x019)"),
+        "97375":  ("A_ALREADY",              "Added as km-x021-fr-iii-1649 (Frederik III 2 Speciedaler 1649-1650 .888, early-reign issue)"),
+        "97324":  ("A_ALREADY",              "Added as km-x022-fr-iii-1651 (Frederik III 2 Kroner 1651 .860 — Pumphosekrone predecessor; filed under kronemont_fine fuss)"),
+        "97396":  ("A_ALREADY",              "Added as km-x023-fr-iii-1652 (Frederik III ½ Dukat 1652 GOLD .980, sister to km-x015 1/16 Dukat 1648)"),
         # ----- Group D-MED-PRE-1617: 10 pre-1617 entries, definitively Copenhagen -----
         # (Glückstadt mint was founded in 1617 — anything before that year cannot
         #  be Glückstadt-mint regardless of which Period ucoin files them under)
