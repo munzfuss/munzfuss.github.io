@@ -369,6 +369,11 @@ def main():
         "163638": ("A_ALREADY",              "Added as km-x007-chr-iv-1620 (4 Sk Lybsk Glückstadt, sibling to km-x005; KM-DK# 9)"),
         "163670": ("A_ALREADY",              "Added as km-72-chr-v-1682 — separate Krause type from km-70.1 (1682-only, .979, Hede 117); km-70-1 simultaneously cleaned to be only Coin B"),
         "163671": ("K_WRONG_DATA_IGNORE",    "ucoin '1 krone' 3g .917 — same coin as our km-40-2 Guldkrone (5.996g .917) per Numista N#306974 but with corrupted ucoin weight (3g = exactly half of correct value); data unreliable, do not import"),
+        # ----- Group D-HIGH (4 reviewed 2026-05-03 from D_DENMARK_HOLSTEIN_MINT pre-screen): -----
+        "97365":  ("A_ALREADY",              "Added as km-x013-fr-iii-1664 (Frederik III Glückstadt 1 Speciedaler 1664-only at .875 — separate type from km-51 1664-1666 .888 per user verification of fineness mismatch)"),
+        "99114":  ("A_ALREADY",              "Added as km-x014-chr-iv-1624 (Christian IV Glückstadt 2 Speciedaler 1624-1634 at .875 — visually distinct from km-16 1623 per user verification)"),
+        "97236":  ("A_ALREADY",              "Folded into existing km-x001-fr-iii-1659 as third ucoin source URL (KM-DK# 194 cross-ref); user verified visually identical with year-only differences"),
+        "97384":  ("A_ALREADY",              "Added as km-x015-chr-iv-1648 (Christian IV 1/16 Dukat 1648 GOLD — different metal from km-93 silver, user-confirmed separate coin; mint Glückstadt-vs-Copenhagen unverified)"),
         # ----- Group B: Holstein-Gottorp-Rendsburg (Period «Holstein-Gottorp-Rendsburg 1716-1720») -----
         # All 4 added to schleswig.yml as Frederik IV interim issues during the
         # Danish occupation of Gottorp lands (1713-1721).
