@@ -296,8 +296,13 @@ def base_coin_mint_holstein(base_candidates: list[dict]) -> bool | None:
 def main():
     with open(CACHE_UCOIN / "_url_index.json") as fp:
         ucoin = json.load(fp)
-    with open(SCHLESWIG_HOLSTEIN) as fp:
-        doc = yaml.safe_load(fp)
+
+    # Read ALL location files — the bulk-imported denmark/hamburg/lubeck
+    # seeds also count as «already in base», so any future ucoin re-fetch
+    # of the same tid silently drops instead of re-bucketing as seed.
+    LOCATIONS_DIR = Path("data/locations")
+    location_paths = sorted(p for p in LOCATIONS_DIR.glob("*.yml")
+                            if not p.stem.endswith("-references"))
 
     base_by_km: dict[str, list[dict]] = {}
     # Reverse lookup tid → coin for entries already present in our base
@@ -306,16 +311,21 @@ def main():
     # bridging them (e.g. ucoin-only candidates added under km-x*** ids
     # with the ucoin tid as the only catalog reference).
     base_by_ucoin_tid: dict[str, dict] = {}
-    for c in doc.get("coins", []):
-        for km in get_kms_from_coin(c):
-            base_by_km.setdefault(km, []).append(c)
-            if "." in km:
-                base_by_km.setdefault(km.split(".")[0], []).append(c)
-        for s in (c.get("sources") or []):
-            url = s.get("url") or ""
-            m = re.search(r"[?&]tid=(\d+)", url)
-            if m:
-                base_by_ucoin_tid.setdefault(m.group(1), c)
+    for path in location_paths:
+        with open(path) as fp:
+            doc = yaml.safe_load(fp)
+        if not doc:
+            continue
+        for c in doc.get("coins") or []:
+            for km in get_kms_from_coin(c):
+                base_by_km.setdefault(km, []).append(c)
+                if "." in km:
+                    base_by_km.setdefault(km.split(".")[0], []).append(c)
+            for s in (c.get("sources") or []):
+                url = s.get("url") or ""
+                m = re.search(r"[?&]tid=(\d+)", url)
+                if m:
+                    base_by_ucoin_tid.setdefault(m.group(1), c)
 
     numista_mints = load_numista_mints()
 
@@ -527,7 +537,21 @@ def main():
     }
 
     for tid, e in ucoin.items():
-        # Manual override takes precedence over heuristic logic.
+        # Direct tid bridge: if ANY base coin's sources include this exact
+        # ucoin URL, it's already incorporated — silent drop. Checked
+        # BEFORE MANUAL_OVERRIDES so a coin bulk-imported into denmark/
+        # hamburg/lubeck.yml after being manually tagged with H_DENMARK_SEED
+        # in MANUAL_OVERRIDES is recognised as in-base and silently dropped
+        # (the override's tag becomes redundant once the coin lives in a
+        # location file).
+        direct_match = base_by_ucoin_tid.get(tid)
+        if direct_match is not None:
+            add("A_ALREADY", {
+                "tid": tid, "matched_ids": [direct_match["id"]],
+                "match_method": "ucoin_tid_in_sources",
+            })
+            continue
+        # Manual override (only reached if not already in base via tid).
         if tid in MANUAL_OVERRIDES:
             cat_name, reason = MANUAL_OVERRIDES[tid]
             add(cat_name, {
@@ -536,16 +560,6 @@ def main():
                 "fineness": e.get("fineness"), "weight_g": e.get("weight_g"),
                 "url": e.get("url"), "source": e.get("source", ""),
                 "manual_override_reason": reason,
-            })
-            continue
-        # Direct tid bridge: if a base coin's sources include this exact
-        # ucoin URL, it's already incorporated — silent drop (was A_ALREADY,
-        # now counted as processed_in_base via the dropped_count helper).
-        direct_match = base_by_ucoin_tid.get(tid)
-        if direct_match is not None:
-            add("A_ALREADY", {
-                "tid": tid, "matched_ids": [direct_match["id"]],
-                "match_method": "ucoin_tid_in_sources",
             })
             continue
 

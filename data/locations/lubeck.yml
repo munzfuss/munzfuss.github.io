@@ -39,6 +39,7 @@ fuss_order:
   - 11_333_thaler
 
 # Minimum phase definition so the moved coin validates against the schema.
+  - seed_unsorted
 phases:
   11_333_thaler:
     - id: A
@@ -55,7 +56,1756 @@ phases:
         en: 'Lübeck followed the Wendischer Münzverein standard. The single coin shown here (KM# 168, 1752) was struck near the end of that period. <em>This phase is a placeholder; future refinement is planned.</em>'
         uk: 'Любек дотримувався Вендського монетного союзу. Єдина наведена тут монета (KM# 168, 1752 р.) карбувалась наприкінці цього періоду. <em>Ця фаза — заглушка; уточнення в майбутньому.</em>'
 
+  seed_unsorted:
+    - id: A
+      year_from: 1500
+      year_to: 1900
+      from_label: (?)
+      to_label: (?)
+      title:
+        de: Bulk-Seed-Phase
+        en: Bulk seed phase
+        uk: Bulk-seed-фаза
+      description:
+        de: Sammelphase für die initial bulk-importierten Stücke aus ucoin. Bei der nächsten Detail-Bearbeitung wandern die einzelnen Münzen in eigene Phasen mit korrekter Periodisierung.
+        en: Catch-all phase for the initial bulk-imported pieces from ucoin. On the next detailed pass each coin will move into its own properly periodised phase.
+        uk: Збірна фаза для початково bulk-імпортованих монет з ucoin. При наступному детальному проходженні кожна монета перейде у власну фазу з коректною періодизацією.
 coins:
+  - id: lu-tid-102423
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Schilling
+    year_label: 1620-1671
+    year_first: 1620
+    year_last: 1671
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '53'
+    weight_rough_g: 1.08
+    diameter_mm: 17.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-schilling-1620-1671/?tid=102423
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102423 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102423 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102423 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102441
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1/192 Thaler
+    year_label: 1620-1712
+    year_first: 1620
+    year_last: 1712
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '27'
+    weight_rough_g: 0.41
+    diameter_mm: 14.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-192-thaler-1620-1712/?tid=102441
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102441 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102441 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102441 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102560
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1/96 Thaler
+    year_label: 1620-1676
+    year_first: 1620
+    year_last: 1676
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A50
+    weight_rough_g: 0.7
+    diameter_mm: 17.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-96-thaler-1620-1676/?tid=102560
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102560 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102560 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102560 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102636
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 8 Schilling
+    year_label: 1620-1621
+    year_first: 1620
+    year_last: 1621
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A51
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-8-schilling-1620-1621/?tid=102636
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102636 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102636 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102636 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102677
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 16 Schilling
+    year_label: 1620-1635
+    year_first: 1620
+    year_last: 1635
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '52'
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-16-schilling-1620-1635/?tid=102677
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102677 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102677 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102677 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102701
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: 1620-1627
+    year_first: 1620
+    year_last: 1627
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '54'
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1620-1627/?tid=102701
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102701 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102701 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102701 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102637
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 8 Schilling
+    year_label: 1621-1637
+    year_first: 1621
+    year_last: 1637
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A55
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-8-schilling-1621-1637/?tid=102637
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102637 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102637 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102637 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102428
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 4 Schilling
+    year_label: 1622-1637
+    year_first: 1622
+    year_last: 1637
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A56
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-4-schilling-1622-1637/?tid=102428
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102428 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102428 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102428 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102725
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Goldgulden
+    year_label: 1622-1675
+    year_first: 1622
+    year_last: 1675
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A21
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 3.5
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-goldgulden-1622-1675/?tid=102725
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102725 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102725 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102725 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102700
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1/16 Thaler
+    year_label: 1623-1683
+    year_first: 1623
+    year_last: 1683
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A57
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-16-thaler-1623-1683/?tid=102700
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102700 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102700 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102700 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102726
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Goldgulden
+    year_label: 1625-1637
+    year_first: 1625
+    year_last: 1637
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A25
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 3.5
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-goldgulden-1625-1637/?tid=102726
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102726 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102726 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102726 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102702
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: 1627-1635
+    year_first: 1627
+    year_last: 1635
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A61
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1627-1635/?tid=102702
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102702 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102702 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102702 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102730
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Ducat
+    year_label: 1627-1737
+    year_first: 1627
+    year_last: 1737
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A36
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 3.5
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-ducat-1627-1737/?tid=102730
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102730 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102730 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102730 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102703
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: 1634-1638
+    year_first: 1634
+    year_last: 1638
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A65
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1634-1638/?tid=102703
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102703 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102703 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102703 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102638
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 8 Schilling
+    year_label: '1637'
+    year_first: 1637
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A67
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-8-schilling-1637/?tid=102638
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102638 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102638 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102638 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102704
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: 1637-1640
+    year_first: 1637
+    year_last: 1640
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A69
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1637-1640/?tid=102704
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102704 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102704 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102704 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102429
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 4 Schilling
+    year_label: 1639-1646
+    year_first: 1639
+    year_last: 1646
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '71'
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-4-schilling-1639-1646/?tid=102429
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102429 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102429 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102429 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102678
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 16 Schilling
+    year_label: '1640'
+    year_first: 1640
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A75
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-16-schilling-1640/?tid=102678
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102678 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102678 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102678 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102707
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: 1641-1650
+    year_first: 1641
+    year_last: 1650
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A76
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1641-1650/?tid=102707
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102707 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102707 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102707 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102698
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1/24 Thaler
+    year_label: '1644'
+    year_first: 1644
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A77
+    weight_rough_g: 1.82
+    diameter_mm: 20.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-24-thaler-1644/?tid=102698
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102698 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102698 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102698 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102639
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 8 Schilling
+    year_label: 1645-1646
+    year_first: 1645
+    year_last: 1646
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A78
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-8-schilling-1645-1646/?tid=102639
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102639 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102639 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102639 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102699
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1/24 Thaler
+    year_label: 1645-1715
+    year_first: 1645
+    year_last: 1715
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A79
+    weight_rough_g: 1.82
+    diameter_mm: 20.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-24-thaler-1645-1715/?tid=102699
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102699 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102699 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102699 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102679
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 16 Schilling
+    year_label: '1646'
+    year_first: 1646
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A81
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-16-schilling-1646/?tid=102679
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102679 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102679 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102679 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102727
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: ¼ Ducat
+    year_label: '1650'
+    year_first: 1650
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A85
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 0.875
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-4-ducat-1650/?tid=102727
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102727 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102727 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102727 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102680
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 16 Schilling
+    year_label: '1654'
+    year_first: 1654
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: A87
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-16-schilling-1654/?tid=102680
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102680 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102680 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102680 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102559
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1/192 Thaler
+    year_label: 1655-1668
+    year_first: 1655
+    year_last: 1668
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '88'
+    weight_rough_g: 0.41
+    diameter_mm: 14.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-192-thaler-1655-1668/?tid=102559
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102559 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102559 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102559 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-111539
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 2 Ducat
+    year_label: 1656-1716
+    year_first: 1656
+    year_last: 1716
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '89'
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 7.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-2-ducat-1656-1716/?tid=111539
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 111539 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 111539 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 111539 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102708
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: '1660'
+    year_first: 1660
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '95'
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1660/?tid=102708
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102708 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102708 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102708 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102709
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: '1661'
+    year_first: 1661
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '96'
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1661/?tid=102709
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102709 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102709 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102709 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102681
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 16 Schilling
+    year_label: '1662'
+    year_first: 1662
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '97'
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-16-schilling-1662/?tid=102681
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102681 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102681 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102681 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102710
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: 1662-1663
+    year_first: 1662
+    year_last: 1663
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '99'
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1662-1663/?tid=102710
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102710 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102710 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102710 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102711
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: '1670'
+    year_first: 1670
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '105'
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1670/?tid=102711
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102711 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102711 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102711 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102685
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 32 Schilling
+    year_label: '1671'
+    year_first: 1671
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '106'
+    metal: silver
+    fineness: 0.75
+    weight_rough_g: 18.32
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-32-schilling-1671/?tid=102685
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102685 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102685 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102685 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102686
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 32 Schilling
+    year_label: '1672'
+    year_first: 1672
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '107'
+    metal: silver
+    fineness: 0.75
+    weight_rough_g: 18.32
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-32-schilling-1672/?tid=102686
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102686 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102686 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102686 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102713
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: '1673'
+    year_first: 1673
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '108'
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1673/?tid=102713
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102713 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102713 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102713 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102714
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: '1676'
+    year_first: 1676
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '109'
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1676/?tid=102714
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102714 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102714 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102714 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102728
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: ¼ Ducat
+    year_label: 1679-1728
+    year_first: 1679
+    year_last: 1728
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '110'
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 0.875
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-4-ducat-1679-1728/?tid=102728
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102728 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102728 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102728 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102729
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: ½ Ducat
+    year_label: 1679-1716
+    year_first: 1679
+    year_last: 1716
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '111'
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 1.75
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-2-ducat-1679-1716/?tid=102729
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102729 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102729 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102729 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102715
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: 1680-1683
+    year_first: 1680
+    year_last: 1683
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '115'
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1680-1683/?tid=102715
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102715 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102715 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102715 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102682
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 16 Schilling
+    year_label: 1681-1683
+    year_first: 1681
+    year_last: 1683
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '116'
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-16-schilling-1681-1683/?tid=102682
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102682 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102682 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102682 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-181239
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 4 Pfennig
+    year_label: '1687'
+    year_first: 1687
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '117'
+    weight_rough_g: 0.72
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-4-pfennig-1687/?tid=181239
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 181239 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 181239 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 181239 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102716
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: 1690-1696
+    year_first: 1690
+    year_last: 1696
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '120'
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1690-1696/?tid=102716
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102716 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102716 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102716 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102733
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Ducat
+    year_label: '1707'
+    year_first: 1707
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '125'
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 3.5
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-ducat-1707/?tid=102733
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102733 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102733 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102733 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102717
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: '1710'
+    year_first: 1710
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '130'
+    weight_rough_g: 29.0
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1710/?tid=102717
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102717 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102717 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102717 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102430
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 4 Schilling
+    year_label: '1711'
+    year_first: 1711
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '131'
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-4-schilling-1711/?tid=102430
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102430 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102430 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102430 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102424
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Schilling
+    year_label: 1727-1758
+    year_first: 1727
+    year_last: 1758
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '141'
+    metal: billon
+    fineness: 0.375
+    weight_rough_g: 1.08
+    diameter_mm: 17.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-schilling-1727-1758/?tid=102424
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102424 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102424 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102424 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102426
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 2 Schilling
+    year_label: '1727'
+    year_first: 1727
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '142'
+    metal: billon
+    fineness: 0.437
+    weight_rough_g: 1.96
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-2-schilling-1727/?tid=102426
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102426 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102426 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102426 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102431
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 4 Schilling
+    year_label: 1727-1729
+    year_first: 1727
+    year_last: 1729
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '143'
+    metal: silver
+    fineness: 0.562
+    weight_rough_g: 3.05
+    diameter_mm: 23.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-4-schilling-1727-1729/?tid=102431
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102431 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102431 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102431 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102435
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Dreiling
+    year_label: 1727-1747
+    year_first: 1727
+    year_last: 1747
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '140'
+    metal: billon
+    fineness: 0.187
+    weight_rough_g: 0.51
+    diameter_mm: 13.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-dreiling-1727-1747/?tid=102435
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102435 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102435 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102435 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102640
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 8 Schilling
+    year_label: 1727-1758
+    year_first: 1727
+    year_last: 1758
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '144'
+    metal: silver
+    fineness: 0.625
+    weight_rough_g: 5.5
+    diameter_mm: 28.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-8-schilling-1727-1758/?tid=102640
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102640 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102640 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102640 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102719
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: '1727'
+    year_first: 1727
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '145'
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 29.2
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1727/?tid=102719
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102719 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102719 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102719 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102683
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 16 Schilling
+    year_label: '1728'
+    year_first: 1728
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '146'
+    metal: silver
+    fineness: 0.75
+    weight_rough_g: 9.16
+    diameter_mm: 32.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-16-schilling-1728/?tid=102683
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102683 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102683 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102683 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102687
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 32 Schilling
+    year_label: '1728'
+    year_first: 1728
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '147'
+    metal: silver
+    fineness: 0.9
+    weight_rough_g: 18.2
+    diameter_mm: 38.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-32-schilling-1728/?tid=102687
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102687 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102687 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102687 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102735
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Ducat
+    year_label: 1729-1730
+    year_first: 1729
+    year_last: 1730
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '148'
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 3.5
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-ducat-1729-1730/?tid=102735
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102735 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102735 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102735 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102641
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 8 Schilling
+    year_label: 1731-1758
+    year_first: 1731
+    year_last: 1758
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '152'
+    metal: silver
+    fineness: 0.625
+    weight_rough_g: 5.5
+    diameter_mm: 28.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-8-schilling-1731-1758/?tid=102641
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102641 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102641 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102641 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102684
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 16 Schilling
+    year_label: 1731-1758
+    year_first: 1731
+    year_last: 1758
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '153'
+    metal: silver
+    fineness: 0.75
+    weight_rough_g: 9.16
+    diameter_mm: 32.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-16-schilling-1731-1758/?tid=102684
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102684 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102684 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102684 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102691
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 32 Schilling
+    year_label: 1731-1738
+    year_first: 1731
+    year_last: 1738
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '154'
+    metal: silver
+    fineness: 0.9
+    weight_rough_g: 18.2
+    diameter_mm: 38.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-32-schilling-1731-1738/?tid=102691
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102691 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102691 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102691 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102721
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: '1731'
+    year_first: 1731
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '155'
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 29.2
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1731/?tid=102721
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102721 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102721 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102721 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102432
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 4 Schilling
+    year_label: 1732-1752
+    year_first: 1732
+    year_last: 1752
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '156'
+    metal: silver
+    fineness: 0.562
+    weight_rough_g: 3.05
+    diameter_mm: 23.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-4-schilling-1732-1752/?tid=102432
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102432 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102432 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102432 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102722
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: '1742'
+    year_first: 1742
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '160'
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 29.2
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1742/?tid=102722
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102722 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102722 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102722 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102723
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: '1745'
+    year_first: 1745
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '161'
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 29.2
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1745/?tid=102723
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102723 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102723 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102723 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102692
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 32 Schilling
+    year_label: 1747-1748
+    year_first: 1747
+    year_last: 1748
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '162'
+    metal: silver
+    fineness: 0.9
+    weight_rough_g: 18.2
+    diameter_mm: 38.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-32-schilling-1747-1748/?tid=102692
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102692 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102692 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102692 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102693
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 32 Schilling
+    year_label: 1749-1750
+    year_first: 1749
+    year_last: 1750
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '163'
+    metal: silver
+    fineness: 0.9
+    weight_rough_g: 18.2
+    diameter_mm: 38.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-32-schilling-1749-1750/?tid=102693
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102693 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102693 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102693 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102737
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Ducat
+    year_label: 1749-1759
+    year_first: 1749
+    year_last: 1759
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '179'
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 3.5
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-ducat-1749-1759/?tid=102737
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102737 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102737 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102737 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102437
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Sechsling
+    year_label: '1750'
+    year_first: 1750
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '165'
+    metal: billon
+    fineness: 0.187
+    weight_rough_g: 0.52
+    diameter_mm: 17.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-sechsling-1750/?tid=102437
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102437 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102437 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102437 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
   - id: km-168-1-1752
     fuss: 11_333_thaler
     phase: A
@@ -93,3 +1843,412 @@ coins:
         ref: NGC
       - type: literature
         ref: Davenport 2420 (European Crowns)
+  - id: lu-tid-102436
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Dreiling
+    year_label: 1752-1762
+    year_first: 1752
+    year_last: 1762
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '166'
+    metal: billon
+    fineness: 0.187
+    weight_rough_g: 0.51
+    diameter_mm: 13.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-dreiling-1752-1762/?tid=102436
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102436 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102436 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102436 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102694
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 32 Schilling
+    year_label: '1752'
+    year_first: 1752
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '167'
+    metal: silver
+    fineness: 0.9
+    weight_rough_g: 18.2
+    diameter_mm: 38.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-32-schilling-1752/?tid=102694
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102694 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102694 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102694 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102697
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 48 Schilling
+    year_label: '1752'
+    year_first: 1752
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '168'
+    metal: silver
+    fineness: 0.9
+    weight_rough_g: 27.51
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-48-schilling-1752/?tid=102697
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102697 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102697 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102697 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102427
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 2 Schilling
+    year_label: '1758'
+    year_first: 1758
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '175'
+    metal: billon
+    fineness: 0.437
+    weight_rough_g: 1.96
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-2-schilling-1758/?tid=102427
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102427 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102427 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102427 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102433
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 4 Schilling
+    year_label: '1758'
+    year_first: 1758
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '174'
+    metal: silver
+    fineness: 0.562
+    weight_rough_g: 3.05
+    diameter_mm: 23.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-4-schilling-1758/?tid=102433
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102433 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102433 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102433 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102695
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 32 Schilling
+    year_label: '1758'
+    year_first: 1758
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '176'
+    metal: silver
+    fineness: 0.9
+    weight_rough_g: 18.2
+    diameter_mm: 38.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-32-schilling-1758/?tid=102695
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102695 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102695 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102695 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102724
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Thaler
+    year_label: '1776'
+    year_first: 1776
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '185'
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 29.2
+    diameter_mm: 41.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-thaler-1776/?tid=102724
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102724 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102724 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102724 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102425
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Schilling
+    year_label: '1789'
+    year_first: 1789
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '190'
+    metal: billon
+    fineness: 0.375
+    weight_rough_g: 1.08
+    diameter_mm: 17.25
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-schilling-1789/?tid=102425
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102425 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102425 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102425 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102738
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Ducat
+    year_label: 1789-1790
+    year_first: 1789
+    year_last: 1790
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '191'
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 3.5
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-ducat-1789-1790/?tid=102738
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102738 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102738 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102738 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102739
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Ducat
+    year_label: 1791-1792
+    year_first: 1791
+    year_last: 1792
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '195'
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 3.5
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-ducat-1791-1792/?tid=102739
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102739 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102739 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102739 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102740
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Ducat
+    year_label: '1792'
+    year_first: 1792
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '196'
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 3.5
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-ducat-1792/?tid=102740
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102740 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102740 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102740 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102741
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Ducat
+    year_label: 1793-1797
+    year_first: 1793
+    year_last: 1797
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '198'
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 3.5
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-ducat-1793-1797/?tid=102741
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102741 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102741 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102741 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102696
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 32 Schilling
+    year_label: 1796-1797
+    year_first: 1796
+    year_last: 1797
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '199'
+    metal: silver
+    fineness: 0.9
+    weight_rough_g: 18.2
+    diameter_mm: 38.0
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-32-schilling-1796-1797/?tid=102696
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    diameter_mm_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102696 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102696 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102696 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+  - id: lu-tid-102742
+    fuss: seed_unsorted
+    phase: A
+    kind: kurant
+    nominal: 1 Ducat
+    year_label: '1801'
+    year_first: 1801
+    ruler: Freie Reichsstadt Lübeck
+    mint: Lübeck
+    catalog:
+      km: '205'
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 3.5
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/lubeck-1-ducat-1801/?tid=102742
+        ref: ucoin
+    issuing_entity: hanseatic_lubeck
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    verification_note:
+      de: Bulk-Import aus ucoin tid 102742 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
+      en: Bulk import from ucoin tid 102742 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
+      uk: Bulk-імпорт з ucoin tid 102742 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+fuss_periods:
+  seed_unsorted:
+    pdate_label:
+      de: Bulk-Seed-Sammelbucket — Geltungsbereich pro Münze noch zuzuweisen
+      en: Bulk seed bucket — period of validity to be assigned per coin
+      uk: Bulk-seed загальний кошик — період дії потрібно призначити per coin
+    hintergrund:
+      de: Technischer Sammelbucket für bulk-importierte Münzen aus ucoin. Bei künftiger Detail-Bearbeitung wandern die Stücke in den jeweils passenden eigentlichen Müntzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code> etc.).
+      en: Technical catch-all bucket for bulk-imported coins from ucoin. On future detailed work the pieces will move to their proper Münzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code>, etc.).
+      uk: Технічний загальний кошик для bulk-імпортованих монет із ucoin. При майбутній детальній роботі монети перейдуть у відповідну Müntzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code> тощо).
