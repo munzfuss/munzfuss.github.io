@@ -217,8 +217,8 @@ Never edit B or C manually. Never edit site/ HTML manually. Always edit `data/` 
 
 ```bash
 python scripts/build.py                    # builds everything
-python scripts/build.py --location schleswig   # single location, all languages
-python scripts/build.py --location schleswig --lang de   # single page
+python scripts/build.py --location schleswig_holstein   # single location, all languages
+python scripts/build.py --location schleswig_holstein --lang de   # single page
 python scripts/build.py --debug            # also writes output/debug/*.json
 python scripts/build.py --validate-only    # runs schema validation, no rendering
 ```
@@ -244,9 +244,9 @@ Past examples of one-off scripts (now removed): `cleanup_sources.py`, `migrate_n
 
 ## Data editing workflow
 
-1. Edit the relevant YAML file (e.g., add a coin to `data/locations/schleswig.yml`)
+1. Edit the relevant YAML file (e.g., add a coin to `data/locations/schleswig_holstein.yml`)
 2. Run `python scripts/build.py --validate-only` locally to catch schema errors
-3. Optionally `python scripts/build.py --location schleswig --lang de` to preview
+3. Optionally `python scripts/build.py --location schleswig_holstein --lang de` to preview
 4. Commit + push
 5. GitHub Actions rebuilds and deploys (~1 min)
 
@@ -278,7 +278,7 @@ Before committing:
 ```bash
 python scripts/build.py --validate-only   # schema OK
 python scripts/build.py                    # builds successfully
-# open site/schleswig/de/index.html in browser — spot check
+# open site/schleswig_holstein/de/index.html in browser — spot check
 git diff data/                             # sanity check on changes
 ```
 
@@ -301,7 +301,7 @@ Never invent translations for technical German numismatic terms without confirmi
 
 This project began as iterative research in claude.ai chat. Before this build pipeline existed, three main HTML artifacts were hand-built:
 
-1. **Schleswig-Holstein** (180KB, 86 coins across 7 Münzfüße, 1618–1873). This is the fidelity target for the first build — `data/locations/schleswig.yml` + build pipeline should reproduce it structurally.
+1. **Schleswig-Holstein** (180KB, 86 coins across 7 Münzfüße, 1618–1873). This is the fidelity target for the first build — `data/locations/schleswig_holstein.yml` + build pipeline should reproduce it structurally.
 2. **Pan-German Münzfüße overview** (`reference/muenzfuesse_v5.html`, 57KB, 18 Münzfuß cards ca. 1566–1875). The source material for expanding `data/shared/fuesse.yml` and for future locations (Bremen, Hamburg, Lübeck, etc.).
 3. **Lübeck coin catalog 1749–1810** (`reference/lubeck_1750_1850_verified_complete.html`, 18KB). Numista + IKMK Berlin data for Lübeck coins. Source material for future `data/locations/lubeck.yml`.
 

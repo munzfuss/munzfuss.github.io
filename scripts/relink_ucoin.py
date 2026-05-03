@@ -44,7 +44,7 @@ from ruamel.yaml.comments import CommentedMap, CommentedSeq
 
 CACHE_UCOIN = Path("scripts/cache/ucoin")
 CACHE_NUMISTA = Path("scripts/cache/numista")
-SCHLESWIG = Path("data/locations/schleswig.yml")
+SCHLESWIG_HOLSTEIN = Path("data/locations/schleswig_holstein.yml")
 
 HOLSTEIN_SOURCES = {"country_schleswig_holstein", "period_2939",
                      "period_2995", "q_holstein_extras"}
@@ -276,7 +276,7 @@ def main():
     yaml.preserve_quotes = True
     yaml.width = 1000
     yaml.indent(mapping=2, sequence=4, offset=2)
-    with open(SCHLESWIG) as fp:
+    with open(SCHLESWIG_HOLSTEIN) as fp:
         doc = yaml.load(fp)
 
     coins_modified = 0
@@ -395,9 +395,9 @@ def main():
             print(r)
 
     if not args.dry_run:
-        with open(SCHLESWIG, "w") as fp:
+        with open(SCHLESWIG_HOLSTEIN, "w") as fp:
             yaml.dump(doc, fp)
-        print(f"\nWrote {SCHLESWIG}")
+        print(f"\nWrote {SCHLESWIG_HOLSTEIN}")
     else:
         print("\n(dry-run: no file written)")
 

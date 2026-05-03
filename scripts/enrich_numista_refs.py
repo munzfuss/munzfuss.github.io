@@ -32,7 +32,7 @@ from ruamel.yaml import YAML
 from ruamel.yaml.comments import CommentedMap, CommentedSeq
 
 REFS_JSON = pathlib.Path("scripts/numista_refs.json")
-YML = pathlib.Path("data/locations/schleswig.yml")
+YML = pathlib.Path("data/locations/schleswig_holstein.yml")
 
 # Map Numista prefix → catalog field name in our schema
 PREFIX_FIELD = {

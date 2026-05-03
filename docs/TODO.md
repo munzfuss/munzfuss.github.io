@@ -23,7 +23,7 @@ archbishopric (as Frederick II) before becoming Danish king in 1648.
 | 2 Schilling Frederick II 1641–1643 | KM# 36 | N#429659 | Silver |
 | 1/16 Thaler 1641–1643 | KM# 37.1 | N#394107 | Silver, 1.57 g, ⌀19.3 mm, Jungk# 366–371 |
 
-These are **NOT in scope of `schleswig.yml`** — Bremen archbishopric
+These are **NOT in scope of `schleswig_holstein.yml`** — Bremen archbishopric
 is a distinct ecclesiastical territory, not a Schleswig-Holstein
 duchy. They would belong in a separate `bremen.yml` location.
 

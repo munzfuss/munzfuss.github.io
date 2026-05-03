@@ -28,7 +28,7 @@ import yaml
 
 
 CACHE_UCOIN = Path("scripts/cache/ucoin")
-SCHLESWIG = Path("data/locations/schleswig.yml")
+SCHLESWIG_HOLSTEIN = Path("data/locations/schleswig_holstein.yml")
 OUT_JSON = CACHE_UCOIN / "_data_audit.json"
 
 
@@ -146,7 +146,7 @@ def alt_covers_field(coin, tid, field, ucoin_value, tolerance_pct):
 def main():
     with open(CACHE_UCOIN / "_url_index.json") as fp:
         ucoin = json.load(fp)
-    with open(SCHLESWIG) as fp:
+    with open(SCHLESWIG_HOLSTEIN) as fp:
         doc = yaml.safe_load(fp)
 
     rows = []  # one row per (coin, ucoin_url) pair

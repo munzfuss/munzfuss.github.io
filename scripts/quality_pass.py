@@ -752,7 +752,7 @@ def main():
 
     total_fixed = 0
     total_overrides = 0
-    for path in ("data/locations/schleswig.yml", "data/shared/fuesse.yml"):
+    for path in ("data/locations/schleswig_holstein.yml", "data/shared/fuesse.yml"):
         p = Path(path)
         data = yaml.load(p.read_text(encoding="utf-8"))
         # System fixes

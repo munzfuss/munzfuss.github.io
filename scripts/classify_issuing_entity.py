@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Classify each coin in schleswig.yml by issuing political entity.
+"""Classify each coin in schleswig_holstein.yml by issuing political entity.
 
 Heuristic rules (applied in order):
   1. Provisional Government 1850-1851 → 'provisional_govt'
@@ -98,7 +98,7 @@ def classify(coin: dict) -> str:
 
 
 def main():
-    p = pathlib.Path("data/locations/schleswig.yml")
+    p = pathlib.Path("data/locations/schleswig_holstein.yml")
     data = yaml.load(p.read_text())
 
     classified_counts: dict[str, int] = {}

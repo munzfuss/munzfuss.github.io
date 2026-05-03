@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-off: audit every Numista-sourced multi-year coin in schleswig.yml,
+"""One-off: audit every Numista-sourced multi-year coin in schleswig_holstein.yml,
 fetch its actual struck-year list via Numista API v3
 `/v3/types/{id}/issues` (which returns the per-specimen list shown in the
 struck-year table on the HTML page — exactly what the API summary
@@ -31,7 +31,7 @@ from ruamel.yaml.comments import CommentedSeq  # noqa: E402
 
 CACHE_DIR = pathlib.Path("scripts/cache/numista")
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
-SCHLESWIG_YML = pathlib.Path("data/locations/schleswig.yml")
+SCHLESWIG_HOLSTEIN_YML = pathlib.Path("data/locations/schleswig_holstein.yml")
 API_BASE = "https://api.numista.com/v3"
 RATE_LIMIT_S = 1.0  # seconds between live calls; free tier = 200/day
 
@@ -102,7 +102,7 @@ def main() -> int:
     yaml.indent(mapping=2, sequence=4, offset=2)
     yaml.width = 4096
 
-    with open(SCHLESWIG_YML) as f:
+    with open(SCHLESWIG_HOLSTEIN_YML) as f:
         doc = yaml.load(f)
 
     targets: list[tuple] = []
@@ -209,8 +209,8 @@ def main() -> int:
             print(f"  - {e}")
 
     if not args.dry_run:
-        yaml.dump(doc, SCHLESWIG_YML)
-        print(f"\n✓ Wrote {SCHLESWIG_YML}")
+        yaml.dump(doc, SCHLESWIG_HOLSTEIN_YML)
+        print(f"\n✓ Wrote {SCHLESWIG_HOLSTEIN_YML}")
     else:
         print("\n(dry-run; no file modified)")
 

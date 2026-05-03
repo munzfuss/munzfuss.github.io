@@ -4,7 +4,7 @@ Build the site from YAML data.
 
 Usage:
   python scripts/build.py                        # full build
-  python scripts/build.py --location schleswig   # single location
+  python scripts/build.py --location schleswig_holstein   # single location
   python scripts/build.py --lang de              # single language
   python scripts/build.py --validate-only        # schema check, no render
   python scripts/build.py --debug                # dump intermediate JSON
@@ -168,7 +168,7 @@ def build_location(
     # Per-location set of issuing entities that actually have coins here.
     # The filter strip in the template iterates the global registry but
     # SKIPS entries not in this set, so a chip with no coins to toggle
-    # (e.g. `prussian_province` in schleswig.yml) doesn't render at all.
+    # (e.g. `prussian_province` in schleswig_holstein.yml) doesn't render at all.
     active_entity_ids = {
         c.issuing_entity for c in loc.coins if c.issuing_entity is not None
     }

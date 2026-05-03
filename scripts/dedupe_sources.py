@@ -60,7 +60,7 @@ def dedupe_sources(sources):
 
 
 def main():
-    p = pathlib.Path("data/locations/schleswig.yml")
+    p = pathlib.Path("data/locations/schleswig_holstein.yml")
     data = yaml.load(p.read_text())
 
     changed = 0

@@ -43,7 +43,7 @@ Conventions
 Usage
 -----
     .venv/bin/python scripts/audit_fuss_anchors.py
-    .venv/bin/python scripts/audit_fuss_anchors.py --location schleswig
+    .venv/bin/python scripts/audit_fuss_anchors.py --location schleswig_holstein
 """
 from __future__ import annotations
 import argparse
@@ -157,7 +157,7 @@ def audit(location: str) -> int:
 
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    p.add_argument("--location", default="schleswig",
+    p.add_argument("--location", default="schleswig_holstein",
                    help="Location id under data/locations/ (default: schleswig)")
     args = p.parse_args()
     rc = audit(args.location)

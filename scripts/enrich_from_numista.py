@@ -23,7 +23,7 @@ yaml.width = 10000
 yaml.indent(mapping=2, sequence=4, offset=2)
 
 SCRATCH = pathlib.Path("scripts/numista_scratch.json")
-YML = pathlib.Path("data/locations/schleswig.yml")
+YML = pathlib.Path("data/locations/schleswig_holstein.yml")
 
 scratch = json.loads(SCRATCH.read_text())
 pieces = scratch["pieces"]

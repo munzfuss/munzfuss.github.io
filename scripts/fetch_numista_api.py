@@ -2,7 +2,7 @@
 """Fetch coin references from Numista API v3 (replaces browser scraping).
 
 Strategy:
-- Reads `data/locations/schleswig.yml`, collects unique `catalog.numista` IDs.
+- Reads `data/locations/schleswig_holstein.yml`, collects unique `catalog.numista` IDs.
 - For each, looks up cached `scripts/cache/numista/<nid>.json`. If absent,
   fetches from the API and caches the full JSON response.
 - Compiles `scripts/numista_refs.json` — the input expected by
@@ -88,7 +88,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true",
                     help="Refetch even if cached (uses up API quota)")
-    ap.add_argument("--location", default="schleswig",
+    ap.add_argument("--location", default="schleswig_holstein",
                     help="Location YAML stem (default: schleswig)")
     args = ap.parse_args()
 

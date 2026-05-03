@@ -10,7 +10,7 @@ import re, pathlib
 from ruamel.yaml import YAML
 from ruamel.yaml.comments import CommentedMap
 
-YML = pathlib.Path("data/locations/schleswig.yml")
+YML = pathlib.Path("data/locations/schleswig_holstein.yml")
 
 # Numista URLs come in several formats:
 #   https://en.numista.com/catalogue/pieces<NUMERIC_ID>.html

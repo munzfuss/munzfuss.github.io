@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Categorise every ucoin entry against our Schleswig coin base.
+"""Categorise every ucoin entry against our Schleswig-Holstein coin base.
 
 Reads from `scripts/cache/ucoin/_url_index.json` (705 entries built by
-the harvest scripts) and `data/locations/schleswig.yml`. Writes a
+the harvest scripts) and `data/locations/schleswig_holstein.yml`. Writes a
 classification snapshot to `scripts/cache/ucoin/_categorized_strict.json`
 that downstream investigation tools can consume.
 
 Categories:
 
 Active workflow (live triage of Holstein candidates from new ucoin
-harvests — currently all empty since the Schleswig backlog is closed):
+harvests — currently all empty since the Schleswig-Holstein backlog is closed):
   B_HOLSTEIN_NEW             ← Holstein-source, KM# not in our base
   C_HOLSTEIN_KM_VARIANT      ← Holstein-source, KM# in our base but no
                                variant matches (different denom/year)
@@ -20,7 +20,7 @@ harvests — currently all empty since the Schleswig backlog is closed):
   J_HOLSTEIN_TO_ADD          ← User-reviewed Holstein-mint candidates
                                ready to add as new coin entries.
 
-Future-location seed (out of Schleswig scope but kept as harvest data
+Future-location seed (out of Schleswig-Holstein scope but kept as harvest data
 for future location files — bremen.yml, hamburg.yml, lubeck.yml):
   H_DENMARK_SEED             ← Royal Danish Copenhagen issues. Combines
                                (a) user-reviewed entries with ucoin Period
@@ -70,7 +70,7 @@ import yaml
 
 CACHE_UCOIN = Path("scripts/cache/ucoin")
 CACHE_NUMISTA = Path("scripts/cache/numista")
-SCHLESWIG = Path("data/locations/schleswig.yml")
+SCHLESWIG_HOLSTEIN = Path("data/locations/schleswig_holstein.yml")
 OUT_JSON = CACHE_UCOIN / "_categorized_strict.json"
 
 HOLSTEIN_SOURCES = {"country_schleswig_holstein", "period_2939",
@@ -296,7 +296,7 @@ def base_coin_mint_holstein(base_candidates: list[dict]) -> bool | None:
 def main():
     with open(CACHE_UCOIN / "_url_index.json") as fp:
         ucoin = json.load(fp)
-    with open(SCHLESWIG) as fp:
+    with open(SCHLESWIG_HOLSTEIN) as fp:
         doc = yaml.safe_load(fp)
 
     base_by_km: dict[str, list[dict]] = {}
@@ -351,7 +351,7 @@ def main():
     # auto-categorised E entries, the picture changed substantially —
     # ucoin's Period IS the most reliable mint indicator. Entries with
     # Period «Glückstadt (1617-1773)» or «Holstein-Gottorp-Rendsburg
-    # (1716-1720)» are HOLSTEIN-MINT candidates worth adding; entries
+    # (1716-1720)» are SCHLESWIG_HOLSTEIN-MINT candidates worth adding; entries
     # with Period «Speciedaler (1582-1624)» or «Rigsdaler (1625-1699)»
     # are Royal Danish Copenhagen out-of-scope.
     #
@@ -437,7 +437,7 @@ def main():
         # ----- end Group D-DANEMARK -----
 
         # ----- Group A: Glückstadt-mint per ucoin (Period «Glückstadt 1617-1773») -----
-        # All 6 added to schleswig.yml (2026-05-03) — auto-routed to A_ALREADY
+        # All 6 added to schleswig_holstein.yml (2026-05-03) — auto-routed to A_ALREADY
         # via the direct ucoin-tid bridge in the new coin entries' sources.
         "163582": ("A_ALREADY",              "Added as km-x004-chr-v-1694 (1 Sk Danske, fills gap in 1693-1697 series; KM-DK# 81 Royal Danish cross-ref)"),
         "163585": ("A_ALREADY",              "Folded into existing km-358-h123-chr-v-1681 (KM-DK# 71 cross-ref); user verified same coin as Hede 123 under Royal Danish register"),
@@ -505,7 +505,7 @@ def main():
         "97236":  ("A_ALREADY",              "Folded into existing km-x001-fr-iii-1659 as third ucoin source URL (KM-DK# 194 cross-ref); user verified visually identical with year-only differences"),
         "97384":  ("A_ALREADY",              "Added as km-x015-chr-iv-1648 (Christian IV 1/16 Dukat 1648 GOLD — different metal from km-93 silver, user-confirmed separate coin; mint Glückstadt-vs-Copenhagen unverified)"),
         # ----- Group B: Holstein-Gottorp-Rendsburg (Period «Holstein-Gottorp-Rendsburg 1716-1720») -----
-        # All 4 added to schleswig.yml as Frederik IV interim issues during the
+        # All 4 added to schleswig_holstein.yml as Frederik IV interim issues during the
         # Danish occupation of Gottorp lands (1713-1721).
         "169251": ("A_ALREADY",              "Added as km-x008-fr-iv-1719 (1 Sk Rendsburg-Gottorp interim; KM-DK# 5)"),
         "169252": ("A_ALREADY",              "Added as km-x010-fr-iv-1716 (12 Sk Rendsburg-Gottorp interim; KM-DK# 6)"),

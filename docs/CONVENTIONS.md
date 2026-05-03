@@ -12,7 +12,7 @@ Concrete rules for writing and editing data files.
 
 ## File naming
 
-- Locations: `data/locations/<short-name>.yml` — lowercase, hyphenated if needed (`schleswig.yml`, `mecklenburg-schwerin.yml`)
+- Locations: `data/locations/<short-name>.yml` — lowercase, hyphenated if needed (`schleswig_holstein.yml`, `mecklenburg-schwerin.yml`)
 - Shared: `data/shared/<purpose>.yml`
 - IDs inside files: same convention (lowercase, hyphenated)
 

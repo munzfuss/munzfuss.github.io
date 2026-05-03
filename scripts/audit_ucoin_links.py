@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Audit ucoin source URLs added to schleswig.yml — find mismatches where
+Audit ucoin source URLs added to schleswig_holstein.yml — find mismatches where
 the linked ucoin coin doesn't actually correspond to our coin.
 
 For each (our coin, ucoin URL) pair:
@@ -21,7 +21,7 @@ import yaml
 
 
 CACHE_UCOIN = Path("scripts/cache/ucoin")
-SCHLESWIG = Path("data/locations/schleswig.yml")
+SCHLESWIG_HOLSTEIN = Path("data/locations/schleswig_holstein.yml")
 
 
 def normalize_denom(s: str) -> set[str]:
@@ -64,7 +64,7 @@ def main():
     # Build tid → ucoin entry
     by_tid = {tid: e for tid, e in ucoin.items()}
 
-    with open(SCHLESWIG) as fp:
+    with open(SCHLESWIG_HOLSTEIN) as fp:
         d = yaml.safe_load(fp)
 
     issues: list[dict] = []
