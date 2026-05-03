@@ -111,6 +111,22 @@ Keep literal German/Danish spelling across languages:
 - Hamburg (Hanseatic city — see `data/locations/hamburg.yml`)
 - Lübeck (Hanseatic city — see `data/locations/lubeck.yml`)
 
+## Political / territorial entities
+
+| DE | EN | UK |
+|---|---|---|
+| Heiliges Römisches Reich (HRR) | Holy Roman Empire (HRE) | Священна Римська імперія (СРІ) |
+| Dänischer Gesamtstaat (Helstaten) | Danish composite state (Helstaten) | **Данська цілісна держава (Helstaten)** |
+| Dänisch-norwegischer Verbund | Danish-Norwegian union | Дансько-норвезький союз |
+| Schleswig-Holstein-Herzogthümer | Schleswig-Holstein duchies | Герцогства Шлезвіг-Гольштейн |
+| Königliche Holsteinische Antheil | Royal Danish portion of Holstein | Королівсько-данська частина Гольштейну |
+| Hansestadt | Hanseatic city | Ганзейське місто |
+| Provinz Schleswig-Holstein | Province of Schleswig-Holstein | Провінція Шлезвіг-Гольштейн |
+
+**Notes:**
+- For «Helstaten» — preserve the Danish term in parentheses as a proper noun across all three languages. **Avoid** transliterations like «Гезамтштат» (DE→UK calque, awkward) or verbose translations like «сукупно-державний устрій». «Цілісна держава» is the canonical UK form.
+- Spell out HRR/СРІ in tooltips and prose where the abbreviation isn't already in context (reader may be unfamiliar). Acceptable in inline tags / short labels.
+
 ## Phase & period markers
 
 | DE | EN | UK |
