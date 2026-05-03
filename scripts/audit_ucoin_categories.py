@@ -361,17 +361,21 @@ def main():
     #   - 1 unreliable data → F_OUT_OF_SCOPE with reason
     MANUAL_OVERRIDES = {
         # ----- Group A: Glückstadt-mint per ucoin (Period «Glückstadt 1617-1773») -----
-        "163582": ("J_HOLSTEIN_TO_ADD",      "Christian V Glückstadt 1 Skilling Danske 1694 (KM# 81 Danish series); fills gap in our 1693-1697 series (km-78 2Sk, km-79 4Sk, km-82 8Sk)"),
-        "163585": ("A_ALREADY",              "Christian V Glückstadt 2 Skilling Dansk 1681 — visual verification (2026-05-03) confirmed it's the same coin as our existing km-358-h123-chr-v-1681 (Hede 123) under the Royal Danish KM# 71 register. Folded in as second ucoin source URL on km-358 with KM-DK# 71 cross-reference."),
-        "163588": ("J_HOLSTEIN_TO_ADD",      "Christian IV Glückstadt 2 Skilling Lybsk 1620 (KM# 8 Danish series); user previously confirmed visually different from km-11 Sonderburg-Duchy — likely a separate Glückstadt issue not yet in base"),
-        "163638": ("J_HOLSTEIN_TO_ADD",      "Christian IV Glückstadt 4 Skilling Lybsk 1620 (KM# 9 Danish series); no match in our base; sibling to #9"),
-        "163670": ("A_ALREADY",              "Christian V Glückstadt 1 Ducat 1682, KM# 72, Hede 117, .979 fineness. After visual verification (2026-05-03) confirmed as a SEPARATE Krause type from km-70.1 — different obverse titulature, different reverse legend composition, different fineness (.979 vs .986), different Lange# (81 vs 80A), different Fr# (176 vs 141). Added as new entry km-72-chr-v-1682; this tid links via direct ucoin-tid bridge in sources."),
+        # All 6 added to schleswig.yml (2026-05-03) — auto-routed to A_ALREADY
+        # via the direct ucoin-tid bridge in the new coin entries' sources.
+        "163582": ("A_ALREADY",              "Added as km-x004-chr-v-1694 (1 Sk Danske, fills gap in 1693-1697 series; KM-DK# 81 Royal Danish cross-ref)"),
+        "163585": ("A_ALREADY",              "Folded into existing km-358-h123-chr-v-1681 (KM-DK# 71 cross-ref); user verified same coin as Hede 123 under Royal Danish register"),
+        "163588": ("A_ALREADY",              "Added as km-x005-chr-iv-1620 (2 Sk Lybsk Glückstadt, earliest documented Christian IV Glückstadt Sk-Lybsk; KM-DK# 8)"),
+        "163638": ("A_ALREADY",              "Added as km-x007-chr-iv-1620 (4 Sk Lybsk Glückstadt, sibling to km-x005; KM-DK# 9)"),
+        "163670": ("A_ALREADY",              "Added as km-72-chr-v-1682 — separate Krause type from km-70.1 (1682-only, .979, Hede 117); km-70-1 simultaneously cleaned to be only Coin B"),
         "163671": ("K_WRONG_DATA_IGNORE",    "ucoin '1 krone' 3g .917 — same coin as our km-40-2 Guldkrone (5.996g .917) per Numista N#306974 but with corrupted ucoin weight (3g = exactly half of correct value); data unreliable, do not import"),
         # ----- Group B: Holstein-Gottorp-Rendsburg (Period «Holstein-Gottorp-Rendsburg 1716-1720») -----
-        "169251": ("J_HOLSTEIN_TO_ADD",      "Frederik IV (Denmark) Holstein-Gottorp-Rendsburg 1 Skilling 1719-1720 (KM# 5); interim coinage during Danish occupation of Gottorp territory after Great Northern War — Holstein-mint per ucoin Period"),
-        "169252": ("J_HOLSTEIN_TO_ADD",      "Frederik IV Holstein-Gottorp-Rendsburg 12 Skilling 1716-1720 (KM# 6)"),
-        "169253": ("J_HOLSTEIN_TO_ADD",      "Frederik IV Holstein-Gottorp-Rendsburg ½ Dukat 1719 (KM# 7)"),
-        "169254": ("J_HOLSTEIN_TO_ADD",      "Frederik IV Holstein-Gottorp-Rendsburg 1 Dukat 1718-1719 (KM# 8)"),
+        # All 4 added to schleswig.yml as Frederik IV interim issues during the
+        # Danish occupation of Gottorp lands (1713-1721).
+        "169251": ("A_ALREADY",              "Added as km-x008-fr-iv-1719 (1 Sk Rendsburg-Gottorp interim; KM-DK# 5)"),
+        "169252": ("A_ALREADY",              "Added as km-x010-fr-iv-1716 (12 Sk Rendsburg-Gottorp interim; KM-DK# 6)"),
+        "169253": ("A_ALREADY",              "Added as km-x011-fr-iv-1719-half (½ Dukat Rendsburg-Gottorp interim; KM-DK# 7)"),
+        "169254": ("A_ALREADY",              "Added as km-x012-fr-iv-1718 (1 Dukat Rendsburg-Gottorp interim; KM-DK# 8)"),
         # ----- Group C: Royal Danish Copenhagen (Period «Speciedaler 1582-1624» / «Rigsdaler 1625-1699») -----
         "101246": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Dukat 1644-1648 (KM# 140); Hebræermønt-style legend «IUDEX IUSTUS יהוה» but Period=Rigsdaler ≠ Glückstadt → Copenhagen mint"),
         "162976": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Penning 1602 copper (KM# 7); Period «Speciedaler 1582-1624» = Copenhagen"),
