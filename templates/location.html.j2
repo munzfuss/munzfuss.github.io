@@ -506,7 +506,18 @@
                the scope label is either UI «Holstein» or the per-stope
                `anywhere_label` from the events block. Approximate years carry
                a leading «~». #}
-            {%- set _kind_lbl = ui_get('tl.layer.' ~ layer.kind) -%}
+            {# Merged-layer support: when several layers share the same
+               (scope, first, last) span (e.g. status + circulation when
+               std_end == demonetisation), `compute_bar_layers` merges
+               them into one layer carrying `kinds = [...]`. Join all
+               kind labels with « + » so the tooltip reads e.g.
+               «Чинний стандарт + В обігу · … · 1559—1876». For
+               unmerged layers, `kinds` is a single-element list. #}
+            {%- set _kind_parts = [] -%}
+            {%- for k in (layer.kinds or [layer.kind]) -%}
+              {%- if _kind_parts.append(ui_get('tl.layer.' ~ k)) -%}{%- endif -%}
+            {%- endfor -%}
+            {%- set _kind_lbl = _kind_parts | join(' + ') -%}
             {%- if layer.scope == 'holstein' -%}
               {# Per-fuss scope label key — one of tl.scope.holstein /
                  tl.scope.schleswig / tl.scope.schleswig_holstein, derived

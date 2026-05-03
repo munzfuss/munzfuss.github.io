@@ -379,20 +379,50 @@ def compute_bar_layers(
         for scope in ("anywhere", "holstein"):
             _add("circulation", scope, fa, de_)
 
-        # sole = [sole_start, sole_end] — OPTIONAL; only emit a layer when
-        # the sole-period years actually differ from the status-period years
-        # for that scope. If they coincide, the «sole» bar would visually
-        # duplicate the status bar and add no information.
+        # sole = [sole_start, sole_end] — OPTIONAL. Always emit when both
+        # endpoints are defined; the layer-merge step below will combine
+        # any layers whose (scope, first, last) coincide so a sole-period
+        # identical to status doesn't render as two overlapping bars but
+        # as a single bar with combined tooltip («Чинний стандарт + Єдиний
+        # стандарт · …»).
         ss, se_sole = events.sole_start, events.sole_end
         if ss is not None and se_sole is not None:
             for scope in ("anywhere", "holstein"):
-                sole_start = getattr(ss, scope, None)
-                sole_end = getattr(se_sole, scope, None)
-                status_start = getattr(fa, scope, None) if fa else None
-                status_end = getattr(se, scope, None) if se else None
-                if (sole_start is not None and sole_end is not None
-                        and (sole_start, sole_end) != (status_start, status_end)):
-                    _add("sole", scope, ss, se_sole)
+                _add("sole", scope, ss, se_sole)
+
+        # Layer merging: bars with identical (scope, first, last) span
+        # would render as visual duplicates that overlap perfectly,
+        # showing only one tooltip on hover. Common case: when std_end
+        # equals demonetisation, status and circulation layers fully
+        # coincide (e.g. reichsdukatenfuss anywhere 1559-1876 — both
+        # status and circulation share that span). Merge such groups
+        # into a single layer carrying all coinciding kinds in `kinds`,
+        # which the template joins with « + » in the tooltip («Чинний
+        # стандарт + В обігу · … · 1559—1876»).
+        _SCOPE_PRIORITY = {"anywhere": 0, "holstein": 1}
+        _KIND_PRIORITY = {"circulation": 0, "status": 1, "mint": 2, "sole": 3}
+
+        groups: dict[tuple, list[dict]] = {}
+        for layer in layers:
+            key = (layer["scope"], layer["first"], layer["last"])
+            groups.setdefault(key, []).append(layer)
+        merged_layers: list[dict] = []
+        for grp in groups.values():
+            if len(grp) == 1:
+                grp[0]["kinds"] = [grp[0]["kind"]]
+                merged_layers.append(grp[0])
+                continue
+            # Multiple layers at the same span — merge. Use the highest-
+            # priority kind for CSS class & sort key (so the merged bar
+            # behaves identically to the most-specific layer it absorbs).
+            grp.sort(key=lambda l: -_KIND_PRIORITY[l["kind"]])
+            base = dict(grp[0])
+            base["kinds"] = [l["kind"] for l in grp]
+            # Preserve the intent-preserving order: render kinds in
+            # priority order so the most specific reads first in the
+            # tooltip («Єдиний стандарт + Чинний стандарт + В обігу»).
+            merged_layers.append(base)
+        layers = merged_layers
 
         # Sort layers so the rendered DOM order = bottom-to-top stacking,
         # with the topmost layer winning hover at any overlap point.
@@ -405,16 +435,8 @@ def compute_bar_layers(
         # Tertiary key: kind (mint > status > circulation) — for equal
         #   length AND equal scope, the most concrete fact (mint) is
         #   what the user wants to see; status and circulation are
-        #   semantically subordinate.
-        #
-        # Without the secondary/tertiary keys the stable sort fell back
-        # to the original DOM-add order (mint→status→circulation), which
-        # for stopes whose mint/status/circ-Holstein all coincide
-        # (kronemont 1644-1696, 11⅓-Thaler-Fuß 1726-1788, etc.) put
-        # status_h or circ_h on top and shadowed the mint_h tooltip the
-        # user actually wanted to see.
-        _SCOPE_PRIORITY = {"anywhere": 0, "holstein": 1}
-        _KIND_PRIORITY = {"circulation": 0, "status": 1, "mint": 2, "sole": 3}
+        #   semantically subordinate. After merging, kind = highest-
+        #   priority of the merged set.
         layers.sort(key=lambda l: (
             -l["length"],
             _SCOPE_PRIORITY[l["scope"]],
