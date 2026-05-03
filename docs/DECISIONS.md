@@ -4,6 +4,63 @@ Chronological log of significant analytical and architectural decisions made dur
 
 ---
 
+## 2026-05 — Landing-page filter for unsorted-seed locations
+
+`build_landing` now hides any location card whose coins include at least one entry under `fuss: seed_unsorted` (the bulk-import placeholder). Per-language pages still build and remain reachable by direct URL — only the landing card disappears.
+
+The filter is automatic and idempotent: every build re-evaluates `visible_locations = [loc for loc in locations if not any(c.fuss == "seed_unsorted" for c in loc.coins)]`. As soon as a location's last seed entry is moved into a real Müntzfuß, the next build re-includes the card. No template or config edit needed at the threshold.
+
+Build log surfaces the hidden set: «🙈 Landing hides 3 location(s) with unsorted seed entries: denmark, hamburg, lubeck».
+
+## 2026-05 — Strict-cut Royal Danish coins move to denmark.yml
+
+After the project picked up many Royal Danish Copenhagen issues during ucoin imports — some by mistake, some as «cross-mint context» for Holstein equivalents — settled on a **strict cut**: any pure Royal Danish issue (`mint: Kopenhagen`, `issuing_entity: danish_realm`, no Holstein-side Krause KM#) belongs in `data/locations/denmark.yml`, not in `schleswig_holstein.yml`.
+
+This applied even to two coins previously argued to deserve the «cross-mint context» exception:
+- **km-137-chr-iv-1644** (Hebræermønt 1644 Copenhagen — sister to km-32 Glückstadt Hebræermønt 1645)
+- **km-303-fr-iii-1668** (Guldkrone Copenhagen 1668 — reformed continuation of km-40-2 Glückstadt Guldkrone 1657–1660)
+
+Migrated in two rounds (commits `bd99259`, `47ac788`):
+- Round 1 (21 coins): the entire Christian IV Kronemønt 1618–1624 series + 3 Reichsdukatenfuß ducats 1738–1749.
+- Round 2 (25 coins): 23 km-x*** entries originally tagged as «mint: Glückstadt» but with ucoin Period = «Rigsdaler 1625-1699» / «Speciedaler 1582-1624» (= Royal Danish Copenhagen) — re-attributed to Kopenhagen + danish_realm. Plus the 2 cross-mint exceptions above.
+
+ucoin's Period field is the canonical mint signal: pages 2940 / 1147 / 1115 / 846 / 647 / 646 / 374 are all Copenhagen; only page 2939 («Glückstadt 1617-1773») and 2995 («Holstein-Gottorp-Rendsburg 1716-1720») mark Holstein-mint coinage. KM-DK# in `catalog.others` alone is NOT evidence of Copenhagen mint — Krause assigned KM-DK# to many Glückstadt-mint coins as cross-references; it is the *absence* of a Holstein-side KM# combined with Copenhagen-period ucoin that disqualifies a coin from `schleswig_holstein.yml`.
+
+## 2026-05 — Location id `schleswig` → `schleswig_holstein`
+
+The location file covers BOTH Schleswig and Holstein duchies (and Royal Holstein, Gottorp, Sonderburg, Schauenburg-Pinneberg, etc.). Just `schleswig` is a misnomer; `holstein` would be just as wrong (Schleswig duchy mints — Schleswig itself, Tönning, Reinfeld — wouldn't fit). Settled on the proper compound `schleswig_holstein` (commit `25544eb`).
+
+Touched 27 files: file rename, all `id: schleswig` → `id: schleswig_holstein`, all path strings in maintenance scripts, all CLI `--location` flags, Python identifiers (HOLSTEIN → SCHLESWIG_HOLSTEIN), and prose mentions in README/CLAUDE.md/docs that referred to the *file* (geographic «Schleswig» / «Schleswig-Holstein» mentions and HOLSTEIN_SOURCES / EASY_HOLSTEIN_MINTS mint constants left intact).
+
+URL impact: live `/schleswig/` paths break and become `/schleswig_holstein/`. Acceptable since the project is in active development and no external linkers depend on stable URLs.
+
+## 2026-05 — Bulk-import seed buckets into denmark/hamburg/lubeck
+
+The ucoin categoriser had been holding 581 entries in three seed buckets (`H_DENMARK_SEED` 422, `X_HAMBURG_SEED` 80, `X_LUBECK_SEED` 79) marked «out of Schleswig scope but worth keeping for future location files». Bulk-imported all 581 into the corresponding location files (commit `1abbef8`):
+
+- `denmark.yml` :  46 → 468 coins (curated 46 + 422 seed)
+- `hamburg.yml` :   0 →  80 coins (NEW location file)
+- `lubeck.yml`  :   1 →  80 coins (existing stub + 79 seed)
+
+Each seed coin carries its raw ucoin data (km, denom, year, fineness, weight, diameter, url, tid) plus best-effort heuristic inference: ruler from Royal Danish reign chronology (or hanseatic city-state name), mint = location default, metal heuristic from fineness band. All values flagged `verified: false`; verification_note in DE/EN/UK explains the bulk-import status and what's pending.
+
+Required infrastructure:
+- A new placeholder fuss `seed_unsorted` in `data/shared/fuesse.yml` — empty `fractions`, so no soll/delta computation runs and the rendered tables show only what ucoin actually attests.
+- Two new issuing entities `hanseatic_hamburg` and `hanseatic_lubeck` in `data/i18n/issuing_entities.yml`.
+- Categoriser dispatcher reorder: direct ucoin-tid bridge now wins over MANUAL_OVERRIDES, so bulk-imported coins are recognised as «in base» on the next ucoin re-fetch instead of re-bucketing as seed. Net effect: every one of the 705 ucoin entries now resolves to processed_in_base; all active and seed bucket counts are 0.
+
+Detailed per-coin work moves each seed entry into its proper Müntzfuß and flips `verified: true` for source-attested fields. See `docs/TODO.md` item D for the recommended order (Hamburg → Lübeck → Denmark) and the period→fuss mapping table for the Denmark cluster.
+
+## 2026-05 — Christian IV's Kronemønt 1618 series is Royal Danish, not Holstein
+
+`kronemont_chr_iv` — the 1618–1624 Christian IV Kronemønt programme — is **entirely Royal Danish Copenhagen**. All 18 coins (¼/½/1/2 Krone + Kroneskilling sub-units) live in `denmark.yml`. Glückstadt was founded in 1617 but its 1618 production focused on Reichsthaler/Skilling, not Krone-fractions. Wilcke I p. 152 documents the sub-Krone series without attributing it to Glückstadt; the Royal Danish Krause KM-DK# 56 ⅛ Krone was originally added to schleswig.yml as «mint Glückstadt provisionally entered», then audit revealed all 18 share that misattribution.
+
+Three independent signals confirm Copenhagen for every coin in the series: (a) ucoin Period = «Speciedaler 1582-1624» (Royal Danish page, not Glückstadt), (b) Numista issuer_code = `danemark` with empty `numista_mints`, (c) Krause cross-references to KM-DK# numbers without any Holstein-side KM#.
+
+In `schleswig_holstein.yml` the `kronemont_chr_iv` Münzfuß remains in `fuss_order` with the full historical fuss_periods description but zero coins — Vereinsmünzfuß / 30_thaler pattern: «the standard was in circulation, no Holstein issues struck». pdate_label appends «in Holstein keine eigenen Prägungen — siehe denmark.yml».
+
+---
+
 ## 2026-03 — Bremen Thaler Gold silver Münzfuß (1840–1872) reconstruction
 
 Bremen's silver Münzfuß from 1840 was reconstructed independently: **13⅓ aus der rauhen Kölner Mark at fineness 71/72 (= 23 Karat 8 Grän = Reichsdukat gold standard applied to silver)**.

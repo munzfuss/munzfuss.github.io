@@ -106,7 +106,10 @@ Keep literal German/Danish spelling across languages:
 - Glückstadt
 - Kopenhagen / København (context-dependent)
 - Poppenbüttel
+- Rendsburg (Holstein-Gottorp interim 1716–1720)
 - Kongsberg (Norway)
+- Hamburg (Hanseatic city — see `data/locations/hamburg.yml`)
+- Lübeck (Hanseatic city — see `data/locations/lubeck.yml`)
 
 ## Phase & period markers
 

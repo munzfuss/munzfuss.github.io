@@ -12,9 +12,10 @@ Concrete rules for writing and editing data files.
 
 ## File naming
 
-- Locations: `data/locations/<short-name>.yml` — lowercase, hyphenated if needed (`schleswig_holstein.yml`, `mecklenburg-schwerin.yml`)
+- Locations: `data/locations/<short-name>.yml` — lowercase. Compound region names use **underscores** (`schleswig_holstein.yml`), not hyphens — keeps file ids and URL paths uniform with Python identifiers used in maintenance scripts (`SCHLESWIG_HOLSTEIN`).
+- References sidecar: `data/locations/<short-name>-references.yml` — single hyphen separator marking the sidecar. Build pipeline auto-attaches it when present.
 - Shared: `data/shared/<purpose>.yml`
-- IDs inside files: same convention (lowercase, hyphenated)
+- IDs inside files: same convention (lowercase, underscores for compound names).
 
 ## Coin IDs
 
@@ -165,6 +166,31 @@ verification_note:
 ```
 
 Build script renders `(?)` marker next to the value; tooltip shows the note.
+
+Per-field verified flags currently supported by the schema:
+`verified` (overall), `mint_verified`, `fineness_verified`,
+`weight_rough_verified`, `diameter_mm_verified`. Each defaults to `True`;
+explicitly set to `False` for any value not directly attested by a source.
+
+## Bulk-imported seed coins
+
+Coins imported in bulk from ucoin (currently in `denmark.yml`,
+`hamburg.yml`, `lubeck.yml` — see `docs/TODO.md` item D) carry:
+
+```yaml
+fuss: seed_unsorted          # placeholder — no fractions, no soll/delta
+phase: A                     # single placeholder phase
+verified: false              # plus all per-field _verified: false
+verification_note:
+  de: "Bulk-Import aus ucoin tid NNNN als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt)."
+```
+
+When triaging a seed coin into its proper Müntzfuß: change `fuss` to the
+real one, set `phase` accordingly, replace the bulk-import
+`verification_note` with the per-coin rationale, and flip the
+`*_verified` flags for each field that's now source-attested.
+A location's landing card reappears automatically once it has zero
+seed_unsorted coins (see `scripts/build.py::build_landing`).
 
 ## Sources
 
