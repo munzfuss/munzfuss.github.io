@@ -18,16 +18,32 @@ Categories:
                                attests a Holstein mint for that KM#
   E_DENMARK_AMBIGUOUS        ← KM# overlaps our base but denom/year don't
                                match — needs per-coin manual check.
-                               Covers BOTH (a) Denmark-source entries
-                               picked up by the heuristic AND
-                               (b) Holstein-period entries (period_2939,
-                               period_2995) that turned out to be Royal
-                               Danish Copenhagen-mint issues sharing the
-                               KM# numeric value with a different SH coin.
+                               Auto-routed entries from the heuristic;
+                               manually-reviewed ones get reclassified
+                               into H/J/F via MANUAL_OVERRIDES.
   F_OUT_OF_SCOPE             ← Clearly outside Holstein (year range past
                                our 1559–1866 window — Reichsmünzordnung
                                to Prussian annexation — or geographic
-                               mismatch with Holstein-mint cities)
+                               mismatch with Holstein-mint cities). Also
+                               receives data-quality skips (e.g. ucoin
+                               entries with bad weight values that we
+                               don't want polluting the base).
+  H_COPENHAGEN_CONFIRMED     ← User-reviewed Royal Danish Copenhagen
+                               issues. Period field on ucoin = «Speciedaler
+                               (1582-1624)» or «Rigsdaler (1625-1699)»
+                               (i.e. the broader Denmark-realm coinage,
+                               NOT a Glückstadt-period sub-page).
+                               Manually verified, not from the heuristic.
+  J_HOLSTEIN_TO_ADD          ← User-reviewed Holstein-mint candidates
+                               ready to add as new coin entries (or as
+                               alts to existing entries pending visual
+                               verification). Period field on ucoin =
+                               «Glückstadt (1617-1773)» or «Holstein-
+                               Gottorp-Rendsburg (1716-1720)». An optional
+                               `verification_note` flags entries that
+                               look like potential duplicates of existing
+                               base coins — the user clears these via
+                               visual inspection before commit.
   X_HANSEATIC_SKIP           ← Lübeck/Hamburg, out of Schleswig scope
 
 Decision precedence (each step short-circuits the rest):
@@ -311,6 +327,8 @@ def main():
         "D_DENMARK_HOLSTEIN_MINT": [],
         "E_DENMARK_AMBIGUOUS": [],
         "F_OUT_OF_SCOPE": [],
+        "H_COPENHAGEN_CONFIRMED": [],
+        "J_HOLSTEIN_TO_ADD": [],
         "X_HANSEATIC_SKIP": [],
     }
 
@@ -318,29 +336,45 @@ def main():
     # categorisation is wrong. Each entry includes the rationale so future
     # re-runs preserve the decision and the audit trail.
     #
-    # The 10 entries below were initially misclassified into
-    # C_HOLSTEIN_KM_VARIANT because the categoriser cannot disambiguate
-    # Royal Danish KM# from Schleswig-Holstein KM# (Krause-Mishler uses
-    # separate KM# series per emitter; e.g. «KM# 8» is a different coin
-    # in Royal Denmark vs Schleswig-Holstein-Sonderburg-Duchy).
+    # 2026-05-03 revision: after fetching ucoin Period field for all 22
+    # auto-categorised E entries, the picture changed substantially —
+    # ucoin's Period IS the most reliable mint indicator. Entries with
+    # Period «Glückstadt (1617-1773)» or «Holstein-Gottorp-Rendsburg
+    # (1716-1720)» are HOLSTEIN-MINT candidates worth adding; entries
+    # with Period «Speciedaler (1582-1624)» or «Rigsdaler (1625-1699)»
+    # are Royal Danish Copenhagen out-of-scope.
     #
-    # Routed to E_DENMARK_AMBIGUOUS: mechanically these are exactly what
-    # E is for — KM# overlap with our base + denom/year don't match,
-    # needing per-coin manual verification. The «source page is Holstein-
-    # period» detail (period_2939 / period_2995) doesn't change the
-    # downstream work, so a separate bucket would just fragment a
-    # semantically homogeneous group.
+    # Routing:
+    #   - 12 Royal Danish Copenhagen → H_COPENHAGEN_CONFIRMED
+    #   - 7 confirmed Holstein candidates → J_HOLSTEIN_TO_ADD
+    #   - 2 ambiguous (possible duplicate of existing) → J with verification flag
+    #   - 1 unreliable data → F_OUT_OF_SCOPE with reason
     MANUAL_OVERRIDES = {
-        "163582": ("E_DENMARK_AMBIGUOUS", "Royal Danish 1 Skilling Dansk 1694, Copenhagen — KM# 81 in Danish series, not SH"),
-        "163585": ("E_DENMARK_AMBIGUOUS", "Royal Danish 2 Skilling Dansk 1681, Copenhagen — KM# 71 in Danish series"),
-        "163588": ("E_DENMARK_AMBIGUOUS", "Royal Danish 2 Skilling Lybsk 1620, Copenhagen — visually different coin from km-11 Sonderburg"),
-        "163638": ("E_DENMARK_AMBIGUOUS", "Royal Danish 4 Skilling Lybsk 1620, Copenhagen — no match in our base"),
-        "163670": ("E_DENMARK_AMBIGUOUS", "Royal Danish 1 Dukat 1682, Copenhagen — Glückstadt variant exists as km-70.1"),
-        "163671": ("E_DENMARK_AMBIGUOUS", "ucoin '1 krone' 3g .917 — same as our km-40-2 Guldkrone (5.996g) but with bad weight; data unreliable"),
-        "169251": ("E_DENMARK_AMBIGUOUS", "Royal Danish 1 Skilling 1719-1720, Frederik IV Copenhagen"),
-        "169252": ("E_DENMARK_AMBIGUOUS", "Royal Danish 12 Skilling 1716-1720, Frederik IV Copenhagen"),
-        "169253": ("E_DENMARK_AMBIGUOUS", "Royal Danish ½ Dukat 1719, Frederik IV Copenhagen"),
-        "169254": ("E_DENMARK_AMBIGUOUS", "Royal Danish 1 Dukat 1718-1719, Frederik IV Copenhagen"),
+        # ----- Group A: Glückstadt-mint per ucoin (Period «Glückstadt 1617-1773») -----
+        "163582": ("J_HOLSTEIN_TO_ADD",      "Christian V Glückstadt 1 Skilling Danske 1694 (KM# 81 Danish series); fills gap in our 1693-1697 series (km-78 2Sk, km-79 4Sk, km-82 8Sk)"),
+        "163585": ("J_HOLSTEIN_TO_ADD",      "Christian V Glückstadt 2 Skilling Dansk 1681 (KM# 71 Danish series); needs visual verification — possibly duplicate of existing km-358-h123-chr-v-1681 (Hede 123, w=1.32g vs ucoin 1.3g)"),
+        "163588": ("J_HOLSTEIN_TO_ADD",      "Christian IV Glückstadt 2 Skilling Lybsk 1620 (KM# 8 Danish series); user previously confirmed visually different from km-11 Sonderburg-Duchy — likely a separate Glückstadt issue not yet in base"),
+        "163638": ("J_HOLSTEIN_TO_ADD",      "Christian IV Glückstadt 4 Skilling Lybsk 1620 (KM# 9 Danish series); no match in our base; sibling to #9"),
+        "163670": ("J_HOLSTEIN_TO_ADD",      "Christian V Glückstadt 1 Ducat 1682 (KM# 72 Danish series); needs verification — w=3.5g .986 vs our km-70-1-chr-v-1680 (3.49g .979). Numista has separate N#112809 (1682-only Glückstadt .979) — could be alt to km-70.1 OR separate variant"),
+        "163671": ("F_OUT_OF_SCOPE",         "ucoin '1 krone' 3g .917 — same coin as our km-40-2 Guldkrone (5.996g .917) per Numista N#306974 but with corrupted ucoin weight (3g = exactly half of correct value); data unreliable, do not import"),
+        # ----- Group B: Holstein-Gottorp-Rendsburg (Period «Holstein-Gottorp-Rendsburg 1716-1720») -----
+        "169251": ("J_HOLSTEIN_TO_ADD",      "Frederik IV (Denmark) Holstein-Gottorp-Rendsburg 1 Skilling 1719-1720 (KM# 5); interim coinage during Danish occupation of Gottorp territory after Great Northern War — Holstein-mint per ucoin Period"),
+        "169252": ("J_HOLSTEIN_TO_ADD",      "Frederik IV Holstein-Gottorp-Rendsburg 12 Skilling 1716-1720 (KM# 6)"),
+        "169253": ("J_HOLSTEIN_TO_ADD",      "Frederik IV Holstein-Gottorp-Rendsburg ½ Dukat 1719 (KM# 7)"),
+        "169254": ("J_HOLSTEIN_TO_ADD",      "Frederik IV Holstein-Gottorp-Rendsburg 1 Dukat 1718-1719 (KM# 8)"),
+        # ----- Group C: Royal Danish Copenhagen (Period «Speciedaler 1582-1624» / «Rigsdaler 1625-1699») -----
+        "101246": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Dukat 1644-1648 (KM# 140); Hebræermønt-style legend «IUDEX IUSTUS יהוה» but Period=Rigsdaler ≠ Glückstadt → Copenhagen mint"),
+        "162976": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Penning 1602 copper (KM# 7); Period «Speciedaler 1582-1624» = Copenhagen"),
+        "162977": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Hvid 1602 billon (KM# 8); Copenhagen"),
+        "163042": ("H_COPENHAGEN_CONFIRMED", "Christian IV 24 Skilling 1624 (KM# 93); Copenhagen"),
+        "163045": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Mark 1606-1607 (KM# 33); Copenhagen"),
+        "163070": ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Speciedaler 1608-1621 (KM# 44); Copenhagen"),
+        "96444":  ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Skilling 1629 (KM# 113.1); Copenhagen"),
+        "96445":  ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Skilling 1629 (KM# 113.2); Copenhagen sub-variant"),
+        "96446":  ("H_COPENHAGEN_CONFIRMED", "Christian IV 1 Skilling 1644-1648 (KM# 131); Copenhagen"),
+        "96458":  ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Skilling 1630-1632 (KM# 120); Copenhagen"),
+        "96461":  ("H_COPENHAGEN_CONFIRMED", "Frederick III 2 Skilling 1648-1651 (KM# 158); Copenhagen"),
+        "99093":  ("H_COPENHAGEN_CONFIRMED", "Frederick III 2 Mark 1658-1661 (KM# 218); Copenhagen"),
     }
 
     for tid, e in ucoin.items():
@@ -469,7 +503,8 @@ def main():
     print(f"=== STRICT CATEGORIZATION ({len(ucoin)} ucoin entries) ===\n")
     for cat in ["A_ALREADY", "B_HOLSTEIN_NEW", "C_HOLSTEIN_KM_VARIANT",
                 "D_DENMARK_HOLSTEIN_MINT", "E_DENMARK_AMBIGUOUS",
-                "F_OUT_OF_SCOPE", "X_HANSEATIC_SKIP"]:
+                "F_OUT_OF_SCOPE", "H_COPENHAGEN_CONFIRMED",
+                "J_HOLSTEIN_TO_ADD", "X_HANSEATIC_SKIP"]:
         rs = results[cat]
         print(f"  {cat:30s}  {len(rs):4d}")
 
