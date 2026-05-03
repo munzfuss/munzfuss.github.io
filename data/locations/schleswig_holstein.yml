@@ -1,22 +1,7 @@
 # Schleswig-Holstein location data.
 # Referenced fuesse are defined in data/shared/fuesse.yml.
-# Each coin has `fuss` and `phase` keys — build-script looks up Soll values from fuesse.yml.
-
-# =====================================================================
-# CONVERSION NOTES (for Claude Code)
-# =====================================================================
-# This file was machine-converted from the 180KB holstein_muentzwesen.html
-# artifact. It includes all 86 coins but translations for EN/UK are
-# placeholders (null). German notes were shortened to ≤200 chars — full
-# notes live in the original HTML and need to be migrated file-by-file.
-#
-# Priorities after initial commit:
-#   1. Expand `note.de` for coins that had detailed Bemerkungen in HTML.
-#   2. Add EN translations for phase titles and key coin notes.
-#   3. Add UK translations (consult docs/GLOSSARY.md).
-#   4. Add `sources` arrays (URLs) for each coin — mostly missing.
-#   5. Remove TODO markers as work progresses.
-# =====================================================================
+# Each coin has `fuss` and `phase` keys — the build script looks up
+# soll values from fuesse.yml.
 
 id: schleswig_holstein
 name:
