@@ -2298,6 +2298,13 @@ footer a:hover {{ color: var(--accent); }}
      1-year mintage rectangles collapse to zero height (no visible
      marks despite correct left%/width%). */
 [data-tooltip]:not(.tl-phase):not(.tl-bar):not(.tl-bar-layer):not(.tl-coin-year) {{ position: relative; }}
+/* Edge-anchored tooltip variants — added by app.js when the trigger
+   element's center sits within ~half-tooltip-width of a viewport edge,
+   so the ::after pseudo doesn't extend past the screen. Default is
+   centered on the element (left:50% / translateX(-50%)); the variants
+   pin the tooltip's left or right edge to the element's edge instead. */
+[data-tooltip].tt-anchor-left:hover::after {{ left: 0; right: auto; transform: none; }}
+[data-tooltip].tt-anchor-right:hover::after {{ left: auto; right: 0; transform: none; }}
 [data-tooltip]:hover::after {{
   content: attr(data-tooltip);
   position: absolute;

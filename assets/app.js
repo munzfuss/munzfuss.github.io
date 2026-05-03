@@ -266,3 +266,56 @@
   // tooltip doesn't drift away from its anchor while the user scrolls.
   document.addEventListener("scroll", hidePortal, true);
 })();
+
+/* ---------------------------------------------------------------------
+ * Smart tooltip edge-anchoring (for non-portal `[data-tooltip]` ::after
+ * pseudos — i.e. timeline layers, header chips, etc., everything OUTSIDE
+ * the .mt-scroll table portal handler above).
+ *
+ * Default CSS centers the tooltip on its trigger (left:50% / translateX
+ * (-50%)). For triggers near a viewport edge — common in the timeline
+ * where layers near the right end have very little room on their right —
+ * the centered tooltip overflows past the screen and gets clipped.
+ *
+ * Fix: on mouseover, measure the trigger's position vs viewport. If the
+ * trigger's center is within ~half-tooltip-width of an edge, add a
+ * `tt-anchor-left` or `tt-anchor-right` class. The corresponding CSS
+ * (in styles.py) re-anchors the tooltip's left or right edge to the
+ * trigger's edge instead of centering. On mouseout, the class is removed.
+ * --------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  // Upper-bound estimate matching the CSS max-width: 320px → half = 160 px,
+  // plus a small viewport-pad so the tooltip doesn't kiss the edge.
+  var HALF_MAX = 160;
+  var EDGE_PAD = 12;
+
+  function classify(el) {
+    var rect = el.getBoundingClientRect();
+    var center = rect.left + rect.width / 2;
+    var vw = document.documentElement.clientWidth || window.innerWidth;
+    el.classList.remove("tt-anchor-left", "tt-anchor-right");
+    if (center - HALF_MAX < EDGE_PAD) {
+      el.classList.add("tt-anchor-left");
+    } else if (center + HALF_MAX > vw - EDGE_PAD) {
+      el.classList.add("tt-anchor-right");
+    }
+  }
+
+  document.addEventListener("mouseover", function (ev) {
+    var t = ev.target && ev.target.closest && ev.target.closest("[data-tooltip]");
+    if (!t) return;
+    // Skip table-cell tooltips — those use the portal system above.
+    if (t.closest(".mt-scroll")) return;
+    classify(t);
+  });
+
+  document.addEventListener("mouseout", function (ev) {
+    var t = ev.target && ev.target.closest && ev.target.closest("[data-tooltip]");
+    if (!t) return;
+    if (t.closest(".mt-scroll")) return;
+    var related = ev.relatedTarget;
+    if (related && t.contains(related)) return;
+    t.classList.remove("tt-anchor-left", "tt-anchor-right");
+  });
+})();
