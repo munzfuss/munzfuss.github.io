@@ -461,10 +461,23 @@
          this threshold the label renders as a floating tag overlaid on
          the bar (overflow visible, halo text-shadow for legibility). #}
       {%- set narrow = width_pct < 21 -%}
-      {# Auto-derive a year-range label if the YAML doesn't set one explicitly.
-         Keeps narrow bars (e.g. 30-Thaler-Fuß · Vereinsthaler 1866–1871) from
-         rendering as bare swatches with no temporal info. #}
-      {%- set _label = bar.bar_label|t(lang) if bar.bar_label else (bar.year_from|string + '—' + bar.year_to|string) -%}
+      {# Bar label: use the YAML-set bar_label if present. Auto-derived
+         «year_from—year_to» is suppressed when the bar carries layers
+         (mint × {anywhere, holstein}, status × …, circulation × …) —
+         per user feedback the auto-years confuse readers because the
+         single «1566—1764» on a multi-layer bar reads as «one period»,
+         while the actual mint / status / circulation periods may end
+         at different years. The detailed years live in per-layer
+         tooltips instead. Layer-less bars keep the auto-derived label
+         so a narrow swatch with no layers (e.g. a stub fuss) still
+         shows temporal context. #}
+      {%- if bar.bar_label -%}
+        {%- set _label = bar.bar_label|t(lang) -%}
+      {%- elif layers -%}
+        {%- set _label = '' -%}
+      {%- else -%}
+        {%- set _label = bar.year_from|string + '—' + bar.year_to|string -%}
+      {%- endif -%}
       {# When the bar has period × scope layers (mint / status / circulation
          × anywhere / holstein), render them as siblings BEFORE the .tl-bar
          so they paint underneath the label. Each layer is a flat-colour
