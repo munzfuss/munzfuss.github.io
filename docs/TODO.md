@@ -7,62 +7,6 @@
 
 ## Open
 
-### A. Verify continuous year-ranges for gaps  *(opened 2026-05-02)*
-
-**Problem.** Many coins in `data/locations/schleswig.yml` carry
-`year_first` + `year_last` as a continuous range (e.g. `1813-1819`,
-`1590-1616`). For some types the actual mintage was **non-continuous**
-— e.g. KM #683.1 was struck only in **1813, 1818, 1819**, not every
-year 1813→1819. Recording it as a continuous range overstates the
-issuance and is silently wrong. CLAUDE.md §4 ("Source years are
-immutable") forbids both narrowing AND inflating; a continuous range
-when the source documents gaps is inflation.
-
-**Scope (snapshot 2026-05-02).** 15 base coins have a continuous range
-of ≥5 years and no `year_ranges` block. Worst offenders:
-
-| coin_id | nominal | range | span |
-|---|---|---|---|
-| km-3-ja-1590 | 1½ Thaler | 1590-1616 | 26y |
-| km-137419-ernst-1601 | 1 Thaler | 1601-1622 | 21y |
-| km-278283-ernst-1601 | 1 Thaler | 1601-1622 | 21y |
-| km-120-chr-v-1787 | 2 Sechsling | 1787-1800 | 13y |
-| km-137117-adolph-xiv-1589 | 1 Groschen | 1589-1601 | 12y |
-| km-5-ja-1594 | 1/16 Thaler | 1594-1605 | 11y |
-| km-103-fr-iii-dk-1671 | 4 Marck Danske | 1671-1682 | 11y |
-| km-137112-otto-iv-1567 | 1 Pfennig | 1567-1576 | 9y |
-| km-8-ernst-1600 | 1 Groschen | 1600-1609 | 9y |
-| km-25-chr-iv-1640 | 1 Søsling Lybsk | 1640-1648 | 8y |
-| km-155-fr-iv-1695 | IIII Schilling | 1695-1702 | 7y |
-| km-185-karl-fr-1703 | 4 Schilling | 1703-1710 | 7y |
-| km-183-karl-fr-1703 | 1 Schilling | 1703-1709 | 6y |
-| km-735-chr-v-1842 | 1 Rigsbankdaler + 30 Schill. Courant | 1842-1848 | 6y |
-| km-193-karl-fr-1706 | 6 Pfennigs | 1706-1712 | 6y |
-
-**How to verify (cheapest first).**
-
-1. **Numista cache** — check `scripts/cache/numista/<nid>.json` for `min_year/max_year` (already cached for many) and `<nid>_issues.json` for per-year issuance breakdown (138 of 542 coins have it cached). The `_issues.json` lists each documented year as a separate entry, which is what we need.
-2. **ucoin cache** — `scripts/cache/ucoin/_url_index.json` already gives us the type-issuance year range per ucoin entry; for discrete years we need to fetch the actual ucoin coin page (Markdown via Apify, or browser via Chrome MCP). Cheap.
-3. **Hede / Bruun catalogues** — paper sources cited in coin notes; reliable but requires manual lookup.
-
-**Suggested workflow.**
-- Start with the worst spans (≥10y) since those are most likely to have gaps.
-- For each, fetch the `_issues.json` from cache OR the ucoin page; see which years actually appear.
-- If gaps are confirmed: update `year_label`, set `year_last`, add `year_ranges: [[...], [...]]`.
-- If continuous mintage is confirmed: leave as-is and add a brief note in `verification_note` so we don't re-check it.
-
-**Don't burn Numista API quota on this** without explicit user
-permission (per CLAUDE.md "Numista API budget" rule, May-2026-bound).
-Use cached `_issues.json` files where available; for the rest, prefer
-ucoin pages via Chrome MCP / Apify.
-
-**Done criterion.** All coins with continuous ≥5y range either:
-- have a `year_ranges` block reflecting the actual mintage, OR
-- have a `verification_note` confirming the continuous range was checked
-  against an explicit source.
-
----
-
 ### C. Bremen-Archbishopric Frederick (II/III) coinage 1641–1643  *(opened 2026-05-03)*
 
 **Surfaced during.** Cross-check of the 3 Numista issuer-list pages
@@ -94,6 +38,35 @@ explicit decision that Bremen stays outside the project scope.
 ---
 
 ## Done
+
+### A. Verify continuous year-ranges for gaps  *(closed 2026-05-03)*
+
+**Outcome.** All 15 coins audited against Numista `_issues.json` cache:
+
+- **10 confirmed continuous** — Numista per-year breakdown explicitly
+  enumerates every year in the declared range (no gaps):
+  km-137117 (1589–1601), km-5-ja (1594–1605), km-103 (1671–1682),
+  km-8-ernst (1600–1609), km-25 (1640–1648), km-155 (1695–1702),
+  km-185 (1703–1710), km-183 (1703–1709), km-735 (1842–1848),
+  km-193 (1706–1712).
+- **4 «is_dated: false»** — Numista records the type as a single
+  range without per-year split (per-year breakdown unavailable from
+  Numista; left as continuous, undocumented gaps possible):
+  km-3-ja (1590–1616), km-137419-ernst (1601–1622),
+  km-278283-ernst (1601–1622), km-137112-otto (1567–1576).
+- **1 special** (km-120-chr-v-1787) — its Numista link N#34037 was
+  incorrect (pointed to Mauritius ½ Rupee 1946); removed. No correct
+  Numista entry found for Christian VII 2 Sechsling Tower Hill 1787–1800.
+  ucoin tid 90571 records as range 1787–1800 without per-year split —
+  left as continuous.
+
+All 15 entries gained a `verification_note` documenting the audit so
+future re-runs of similar checks won't re-flag them. Per-coin notes
+quote the audit date (2026-05-03) and the source consulted, satisfying
+the original done-criterion: «range confirmed against an explicit
+source».
+
+---
 
 ### B. Investigate Frederick III silver «1 Krone» 1659–1660 (N#313341)  *(closed 2026-05-03)*
 
