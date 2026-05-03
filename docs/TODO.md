@@ -7,6 +7,48 @@
 
 ## Open
 
+### D. Triage `seed_unsorted` coins in denmark / hamburg / lubeck  *(opened 2026-05-04)*
+
+**Background.** After bulk-importing 581 ucoin entries into proper
+location files (commit `1abbef8`), three locations carry coins under
+the placeholder `seed_unsorted` Müntzfuß:
+
+- `data/locations/denmark.yml`     — 422 seed entries (years 1582–1875)
+- `data/locations/hamburg.yml`     —  80 seed entries (years 1726–1873)
+- `data/locations/lubeck.yml`      —  79 seed entries (years 1620–1797)
+
+Each seed entry carries raw ucoin data (km, denom, year, fineness,
+weight, diameter, url, tid) plus best-effort heuristic inference for
+ruler/mint/metal. Every value flagged `verified: false`.
+
+**Done criterion (per location).** All seed entries reclassified into
+their proper Müntzfuß and gain `verified: true` for source-attested
+fields. The location automatically reappears on the landing page once
+its `seed_unsorted` count reaches zero — the build script
+(`scripts/build.py::build_landing`) hides any location with even a
+single seed entry, then re-checks on every build. No template/config
+edit needed when the threshold is crossed.
+
+**Recommended order.**
+
+1. **Hamburg (80, smallest)** — needs new Hamburg-specific Müntzfüße
+   defined in `data/shared/fuesse.yml` first (Bankthaler / Speciesthaler /
+   Mark-Courant standards). Triage by ucoin Period + Hede equivalents.
+2. **Lübeck (79)** — needs Wendisch-Lübisch Münzfüße defined (the
+   existing 11_333_thaler proxy is incorrect for most Lübeck coins).
+   The 1 already-curated entry (km-168-1-1752) is the model.
+3. **Denmark (422, largest)** — most coins fit existing fuesse:
+   - period_2940 (Speciedaler 1582-1624) → 9_25_thaler / 9_thaler
+   - period_1147 (Rigsdaler 1625-1699) → 9_25_thaler / kronemont
+   - period_1115 (Rigsdaler 1699-1749) → 9_25_thaler / reichsdukatenfuss
+   - period_846  (Rigsdaler 1750-1812) → 11_333_thaler / 18_5_thaler
+   - period_647  (Rigsbankdaler 1813-1854) → 18_5_thaler
+   - period_646  (Rigsdaler rigsmønt 1854-1873) → 30_thaler
+   - period_374  (Christian IX 1873-1906) → reichsgoldmuenzfuss
+   Some need new Royal Danish standards added (Kurantmøntfod 1726+).
+
+---
+
 ### C. Bremen-Archbishopric Frederick (II/III) coinage 1641–1643  *(opened 2026-05-03)*
 
 **Surfaced during.** Cross-check of the 3 Numista issuer-list pages

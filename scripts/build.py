@@ -252,11 +252,25 @@ def build_landing(
     tmpl = env.get_template("landing.html.j2")
     generated_date = datetime.now().strftime("%Y-%m-%d")
 
+    # Hide cards for locations that still have unsorted seed entries —
+    # any coin filed under the placeholder `seed_unsorted` Müntzfuß means
+    # the location has not yet been triaged into proper standards. The
+    # location's per-language pages still build (so existing URLs keep
+    # working), they just don't appear on the landing index until cleaned up.
+    visible_locations = [
+        loc for loc in locations
+        if not any(c.fuss == "seed_unsorted" for c in loc.coins)
+    ]
+    hidden = [loc.id for loc in locations if loc not in visible_locations]
+    if hidden:
+        print(f"🙈 Landing hides {len(hidden)} location(s) with unsorted "
+              f"seed entries: {', '.join(hidden)}")
+
     # Landing is generated per-language at /<lang>/index.html;
     # root / redirects to /de/ (or user's preferred language via JS — optional)
     for lang in languages:
         html = tmpl.render(
-            locations=locations,
+            locations=visible_locations,
             ui=ui,
             theme=theme,
             lang=lang,
