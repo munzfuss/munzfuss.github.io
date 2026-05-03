@@ -4,12 +4,16 @@ name:
   en: Kingdom of Denmark (Copenhagen)
   uk: Королівство Данія (Копенгаген)
 summary:
-  de: 'Müntzwesen des Königreichs Dänemark — Prägungen der Kopenhagener Münzstätte, die einen in diesem Projekt dokumentierten Müntzfuß verwenden. <em>Aktuell 21 Stücke, allesamt aus schleswig_holstein.yml ausgegliedert (zwei Cluster: Christian-IV.-Kronemønt 1618–1624 und drei Reichsdukatenfuß-Dukaten 1738–1749). Die vollständige königlich-dänische Münzgeschichte ist nicht Gegenstand dieses Projekts — hier finden sich nur Stücke, die als Referenz für die in Holstein geltenden Standards dienen.</em>'
-  en: "Coinage of the Kingdom of Denmark — Copenhagen-mint issues that follow a Münzfuß documented in this project. <em>Currently 21 pieces, all moved out of schleswig_holstein.yml (two clusters: Christian IV's Kronemønt 1618–1624, and three Reichsdukatenfuß ducats 1738–1749). The full Royal Danish coin history is out of scope for this project; only pieces that serve as reference for standards in force in Holstein are kept here.</em>"
-  uk: 'Монетна справа Королівства Данія — карбування Копенгагенського монетного двору, які слідують одному зі задокументованих у цьому проєкті стандартів. <em>Наразі 21 монета, усі винесено зі schleswig_holstein.yml (два кластери: Kronemønt Кристіана IV 1618–1624 і три Reichsdukatenfuß-дукати 1738–1749). Повна королівсько-данська монетна історія в проєкті не охоплена — тут зберігаються лише монети, які служать референсом до стандартів, чинних у Гольштейні.</em>'
+  de: 'Müntzwesen des Königreichs Dänemark — Prägungen der Kopenhagener Münzstätte, die einen in diesem Projekt dokumentierten Müntzfuß verwenden. <em>Aktuell ca. 46 Stücke, alle aus dem Schleswig-Holstein-Artefakt ausgegliedert (zwei Wellen: Christian-IV.-Kronemønt 1618–1624, sowie weitere königlich-dänische Stücke 1611–1749, die ursprünglich beim ucoin-Import irrtümlich «Glückstadt» erhielten). Die vollständige königlich-dänische Münzgeschichte ist nicht Gegenstand dieses Projekts — hier finden sich nur Stücke, die als Referenz für die in Holstein geltenden Standards dienen.</em>'
+  en: "Coinage of the Kingdom of Denmark — Copenhagen-mint issues that follow a Münzfuß documented in this project. <em>Currently ~46 pieces, all moved out of the Schleswig-Holstein artefact (two waves: Christian IV's Kronemønt 1618–1624, plus further Royal Danish pieces 1611–1749 that had been wrongly tagged «Glückstadt» during the ucoin import). The full Royal Danish coin history is out of scope for this project; only pieces that serve as reference for standards in force in Holstein are kept here.</em>"
+  uk: 'Монетна справа Королівства Данія — карбування Копенгагенського монетного двору, які слідують одному зі задокументованих у цьому проєкті стандартів. <em>Наразі ≈46 монет, усі винесено зі Schleswig-Holstein-артефакту (дві хвилі: Kronemønt Кристіана IV 1618–1624, плюс інші королівсько-данські монети 1611–1749, які при ucoin-імпорті помилково отримали ярлик «Glückstadt»). Повна королівсько-данська монетна історія в проєкті не охоплена — тут зберігаються лише монети, які служать референсом до стандартів, чинних у Гольштейні.</em>'
 fuss_order:
-  - kronemont_chr_iv
+  - 9_thaler
+  - 9_25_thaler
+  - kronemont
   - reichsdukatenfuss
+  - kronemont_chr_iv
+  - guldkrone
 fuss_periods:
   kronemont_chr_iv:
     pdate_label:
@@ -34,6 +38,114 @@ fuss_periods:
       de: 'Reichsdukatenfuß der Augsburger Reichsmünzordnung vom 19. August 1559: 67 Dukaten aus der feinen Cöllnischen Marck (233,856 g). Im Königreich Dänemark fortgeführt durch das gesamte 17.–18. Jahrhundert. Die hier erfaßten drei Stücke gehören in die <b>Phase B</b> nach unserer Periodisierung (1726 → 1771: parallele Etablierung des Courantdukat neben dem Reichsdukat).'
       en: 'Reichsdukatenfuß under the Augsburg Imperial Coinage Ordinance of 19 August 1559: 67 ducats from the fine Cologne mark (233.856 g). Continued in the Kingdom of Denmark throughout the 17th–18th century. The three pieces catalogued here fall within <b>Phase B</b> of our periodisation (1726 → 1771: parallel establishment of the Courantdukat alongside the Reichsdukat).'
       uk: 'Reichsdukatenfuß за Аугсбурзькою імперською монетною постановою 19 серпня 1559 р.: 67 дукатів з чистої кельнської марки (233,856 г). У Королівстві Данія дія тривала впродовж усього 17–18 ст. Три каталогізовані тут монети належать до <b>фази B</b> нашої періодизації (1726 → 1771: паралельне становлення Courantdukat поряд із Reichsdukat).'
+  9_thaler:
+    pdate_label:
+      de: "Geltungsbereich in Holstein: 1566 (Augspurger Reichsmünz-Abschied) → 1625 (letzte Prägung; ab 1622 parallel vom 9¼-Fuß abgelöst) · 59 Jahre"
+      en: "In force in Holstein: 1566 (Augsburg Imperial Mint Decree) → 1625 (last strike; from 1622 already being superseded in parallel by the 9¼-Fuß) · 59 years"
+      uk: "Дія в Гольштейні: 1566 (Авґсбурзький імперський монетний ордонанс) → 1625 (останнє карбування; з 1622 паралельно витісняється 9¼-Fuß) · 59 років"
+    hintergrund:
+      de: |
+        Reichsstandard nach dem Augspurger Reichsmüntz-Abschied vom 30. Mai 1566 — verbindlich für sämtliche Reichsstände. In Holstein-Gottorp dominierte er unter Adolf I., Johann Adolf und Friedrich III.; Münzstätten Glückstadt und Tönning prägten nach diesem Fuß Thaler Species, Mark-lübisch-Theilstücke und Schillinge. Während der Kipper-Wipper-Krise (1620–1623) brach das einheitliche Reichsmünzwesen zusammen — bereits ab 1622 (Friedrich III. von Gottorp, Glückstadt) setzt sich der leichtere 9¼-Thaler-Fuß als Großsilberstandard durch, die letzte holsteinische 9-Fuß-Prägung erfolgt 1625 (Hans Jr. von Sonderburg, 2 Schilling Lübisch). <b>Über Holstein hinaus blieb der 9-Fuß als Banktauschmünze in Kraft:</b> Hamburg führte ihn als <i>Bank-Mark</i> der Hamburger Bank weiter, Lübeck als <i>Speciemark</i> — beide bis zur Reichsmünzreform 1875.
+      en: |-
+        Imperial standard following the Augsburg Imperial Mint Decree of 30 May 1566 — binding on all imperial estates. In Holstein-Gottorp it dominated under Adolf I, Johann Adolf and Friedrich III; the Glückstadt and Tönning mints struck Thaler Species, Mark-lübisch sub-units and Schilling petty coins on this standard. The Kipper-Wipper crisis (1620–1623) collapsed the unified imperial coinage; from 1622 onward (Friedrich III of Gottorp, Glückstadt) the lighter 9¼-Thaler-Fuß took over as the large-silver standard, and the last Holstein 9-Fuß strike falls in 1625 (Hans Jr. of Sonderburg, 2 Schilling Lübisch). <b>Beyond Holstein the 9-Fuß remained in force as bank-exchange money:</b> Hamburg kept it as the <i>Bank-Mark</i> of the Hamburger Bank, Lübeck as the <i>Speciemark</i> — both until the imperial coinage reform of 1875.
+      uk: |-
+        Імперський стандарт за Авґсбурзьким імперським монетним ордонансом 30 травня 1566 р. — обов'язковий для всіх імперських станів. У Гольштейн-Ґотторпі домінував за Адольфа I, Йоганна Адольфа й Фредеріка III; монетні двори Glückstadt і Tönning карбували за цим стандартом Thaler Species, частки Mark lübisch і дрібні Schilling-монети. Криза Kipper-Wipper (1620–1623) зруйнувала єдину імперську монетну систему — вже з 1622 (Фредерік III Ґотторпський, Glückstadt) у Гольштейні утверджується легший 9¼-Thaler-Fuß як великосрібний стандарт, а останнє 9-Fuß-карбування припадає на 1625 р. (Hans Jr. Sonderburg, 2 Schilling Lübisch). <b>Поза Гольштейном 9-Fuß продовжував існувати як банковий рахунок:</b> Гамбург тримав його як <i>Bank-Mark</i> Гамбурзького банку, Любек — як <i>Speciemark</i>; обидва до імперської монетної реформи 1875 р.
+    closing_label:
+      de: "Übergang zum 9¼-Fuß (Thaler Species) ab 1622, letzte Holstein-Prägung 1625"
+      en: "Transition to the 9¼-Fuß (Thaler Species) from 1622; last Holstein strike 1625"
+      uk: "Перехід до 9¼-Fuß (Thaler Species) з 1622; останнє карбування в Гольштейні — 1625"
+    closing:
+      de: |
+        Der 9-Thaler-Fuß war kurzlebig in Holstein selbst (Adolf I. → Hans Jr. Sonderburg, letzte Prägung 1625; ab 1622 vom 9¼-Fuß abgelöst), bleibt aber <b>außerhalb Holsteins als Hamburger Bank-Mark und Lübecker Speciemark Rechnungseinheit biß 1875</b>. Die holsteinischen Reichsthaler unter Johann Adolf gehören zu den frühesten dokumentierten Großsilbermünzen der Region und bilden die Grundlage für die spätere 9¼-Fuß-Tradition.
+      en: |-
+        The 9-Thaler-Fuß was short-lived in Holstein itself (Adolf I → Hans Jr. of Sonderburg, last strike 1625; superseded by the 9¼-Fuß from 1622), but it survived <b>beyond Holstein as the Hamburg Bank Mark and the Lübeck Speciemark unit of account until 1875</b>. The Holstein Reichsthaler under Johann Adolf are among the earliest documented large-silver coins in the region and form the foundation for the later 9¼-Fuß tradition.
+      uk: |-
+        9-Thaler-Fuß у самому Гольштейні був недовговічним (Адольф I → Hans Jr. Sonderburg, останнє карбування 1625; з 1622 витіснений 9¼-Fuß), однак <b>поза Гольштейном залишався розрахунковою одиницею як Гамбурзька Bank-Mark і Любецька Speciemark до 1875 р.</b> Гольштинські рейхсталери за Йоганна Адольфа належать до найдавніших задокументованих великосрібних монет регіону і становлять основу пізнішої традиції 9¼-Fuß.
+
+  9_25_thaler:
+    pdate_label:
+      de: "Geltungsbereich in Holstein: 1622 (Friedrich III.) → 24. Aug. 1866 (preuß. Annexion) · 244 Jahre"
+      en: "In force in Holstein: 1622 (Friedrich III) → 24 Aug. 1866 (Prussian annexation) · 244 years"
+      uk: "Дія в Гольштейні: 1622 (Фредерік III) → 24 серпня 1866 (прусська анексія) · 244 роки"
+    hintergrund:
+      de: |
+        Großsilbermünze nach dänisch-holsteinischer Tradition; etwas leichter als der Reichs-9-Fuß. Durchgehend stabil seit 1622 (Friedrich III. von Gottorp, Glückstadt) biß zur preußischen Annexion 1867. Mit der Schleswig-Holsteinischen Reform von 1788 (siehe Phase C) wird er zur Alleingrundmünze aller holsteinischen Courant-Nominale.
+      en: |-
+        A large silver coin in the Danish-Holstein tradition; slightly lighter than the imperial 9-Fuß. Stable without interruption since 1622 (Friedrich III of Gottorp, Glückstadt) until the Prussian annexation of 1867. With the Schleswig-Holstein reform of 1788 (see Phase C) it becomes the sole base coin of all Holstein Courant denominations.
+      uk: |-
+        Велика срібна монета дансько-гольштинської традиції; дещо легша за імперський 9-Fuß. Безперервно стабільна з 1622 р. (Фредерік III Ґотторпський, Glückstadt) до прусської анексії 1867 р. З Шлезв.-Гольштинською реформою 1788 р. (див. Фазу C) стає єдиною базовою монетою для всіх гольштинських Courant-номіналів.
+    closing_label:
+      de: "Zusammenfassung · 240 Jahre Geltung"
+      en: "Summary · 240 years in force"
+      uk: "Підсумок · 240 років чинності"
+    closing:
+      de: |
+        Der 9¼-Thaler-Fuß ist der <b>längstlebige und stabilste</b> Silberstandard in der holsteinischen Geldgeschichte. Über politische Umwälzungen hinweg (Gottorp-Vereinigung 1773, Staatsbankrott 1813, mehrere Herrscherwechsel, Kondominium 1864<sup><a href="#ref11">[11]</a></sup>) blieb der Feingehalt von 25,28173 g konstant. Erst die preußische Annexion 1866 beendet seine Funktion als gesetzliches Zahlmittel. Numismatisch wirkt er biß 1907 nach, als der letzte Vereinsthaler (nachfolger-Fuß) ausser Kurs gesetzt wird.
+      en: |-
+        The 9¼-Thaler-Fuß is the <b>longest-lived and most stable</b> silver standard in Holstein's monetary history. Through every political upheaval (the Gottorp union of 1773, the state bankruptcy of 1813, several royal successions, the condominium of 1864<sup><a href="#ref11">[11]</a></sup>) the fine weight of 25.28173 g remained unchanged. Only the Prussian annexation of 1866 ended its function as legal tender. Numismatically it lived on until 1907, when the last Vereinsthaler (its successor standard) was withdrawn from circulation.
+      uk: |-
+        9¼-Thaler-Fuß — <b>найдовговічніший і найстабільніший</b> срібний стандарт у грошовій історії Гольштейну. Через усі політичні переломи (обʼєднання з Готторпом 1773, державне банкрутство 1813, кілька зміни правителів, кондомініум 1864<sup><a href="#ref11">[11]</a></sup>) чиста вага 25,28173 г залишалася незмінною. Лише прусська анексія 1866 поклала край його статусу законного платіжного засобу. Нумізматично він діяв до 1907 року, коли останній Vereinsthaler (стопа-наступник) було вилучено з обігу.
+
+  kronemont:
+    pdate_label:
+      de: "Geltungsbereich: 1644 → 1696 · ca. 52 Jahre"
+      en: "Period of validity: 1644 → 1696 · ~52 years"
+      uk: "Період дії: 1644 → 1696 · ~52 років"
+    hintergrund:
+      de: |-
+        Fiskalische <b>Tarifmünze</b> der dänischen Krone, 1618–1696. Nennwert per königlichem Mandat über dem Silberwert festgesetzt; die Differenz floß als Seigniorage in die Staatskasse. <b>Historischer Vorläufer:</b> der Krone-Standard <b>Christian IVs kroner</b> (Corona Danica 1618–1624) — dieselbe Münzkategorie (Tarifmünze) und derselbe Münzname, aber mit höherem Feingehalt und höherem Tarif pro Krone als der 10½-Krone-Fuß. Der 1644 in Glückstadt wiederaufgenommene <b>10½-Krone-Fuß</b> («<i>Grobe Krone</i>») übernimmt nur die Tarif-Logik der Krone, nicht ihre metrischen Parameter. <b>Paralleler dänischer Standard:</b> der <b>13-Krone-Fuß</b> («<i>Feine Krone</i>», Reskript 31. Dezember 1692) — eine ausschließlich auf die Kopenhagener Hauptmünze beschränkte Reform, in Holstein nicht durchgeführt; daher in diesem Artefakt nicht als eigene Sektion behandelt.
+      en: |-
+        Fiscal <b>tariff coin</b> of the Danish Crown, 1618–1696. Face value set by royal mandate above the silver value; the gap accrued to the treasury as seigniorage. <b>Historical predecessor:</b> the Krone standard <b>Christian IV's kroner</b> (Corona Danica 1618–1624) — same coin category (tariff coin) and same coin name, but at higher fineness and a higher per-Krone tariff than the 10½-Krone-Fuß. The Glückstadt standard taken up again in 1644 — the <b>10½-Krone-Fuß</b> («<i>Coarse Krone</i>») — inherits only the Krone's tariff logic, not its metric parameters. <b>Parallel Danish standard:</b> the <b>13-Krone-Fuß</b> («<i>Fine Crown</i>», reskript of 31 December 1692) — a reform confined entirely to the Copenhagen royal mint, never carried through in Holstein; therefore not treated as its own section in this artefact.
+      uk: |-
+        Фіскальна <b>тарифна монета</b> данської Корони, 1618–1696. Номінал встановлювався королівським мандатом вище срібної вартості; різниця надходила до скарбниці як сеньйораж. <b>Історичний предтеча:</b> Krone-стандарт <b>Christian IV's kroner</b> (Corona Danica 1618–1624) — та сама монетна категорія (тарифна монета) і та сама назва монети, але з вищою пробою і вищим тарифом на одну Krone, ніж 10½-Krone-Fuß. Відновлений у Glückstadt 1644 р. <b>10½-Krone-Fuß</b> («<i>Груба Крона</i>») успадковує лише тарифну логіку Krone, не її метричні параметри. <b>Паралельний данський стандарт:</b> <b>13-Krone-Fuß</b> («<i>Тонка Крона</i>», рескрипт 31 грудня 1692 р.) — реформа, що обмежувалась виключно Копенгагенським королівським монетним двором, у Гольштейні не впроваджена; тому в цьому артефакті окремою секцією не подається.
+    details:
+      de: |
+        <p>Die Kronemønt wurde 1618 unter Christian IV. als <i>Corona Danica</i> eingeführt — keine Handelsmünze nach Silbergehalt, sondern eine Binnenwährung mit königlich verfügtem Tarif. Der Aufschlag über dem tatsächlichen Silberwert war Seigniorage-Gewinn der Krone.</p>
+        <p>Der ursprüngliche Tarif (1 Krone = 1½ Speciedaler) bedeutete einen erheblichen Seigniorage-Aufschlag über dem reinen Silberwert; im Volksmund wurde der königliche Wahlspruch <b>RFP</b> (regna firmat pietas — «Frömmigkeit stärkt die Reiche») daraufhin als <b>R(iget) F(attes) P(enge)</b> — «Dem Reich fehlt Geld» — gelesen.<sup><a href="#ref25">[25]</a></sup> Im Jahre 1625 wurde der Tarif auf 1⅓ Specie herabgesetzt; um 1670 stabilisierte ihn Christian V. auf <b>⅔ Specie</b> = 2 Marck Danske, eine Wertigkeit, die fortan auf den Münzen explizit als «<b>2 MARCK</b>» eingeprägt erscheint.</p>
+        <p>Geprägt wurde in <b>Kopenhagen</b> (königliche Münze) und in <b>Glückstadt</b> (holsteinische Münze, ab 1644 dominant). Die Kronemønt zirkulierte nach dem königlich gesetzten Tarif; parallel prägten Kopenhagen und Glückstadt vollwertige Speciedaler nach 9¼-Fuß (siehe Bruun-Lots im Speciedaler-Abschnitt). Die Serie endet 1696; ab 1726 löst der <b>Rigsdaler Courant (11⅓-Fuß)</b> sie als dänische Hauptmünze ab — auf Grundlage der Metalläquivalenz statt der Tarif-Logik.</p>
+        <p><b>Quellengrundlage des Müntzfußes und des Feingehalts:</b> Bei fehlenden Primärtexten der Münzedikte sind die Müntzen selbst die Quelle. Der Müntzfuß <b>10½</b> ergibt sich exakt: 22,272 g Raugewicht × 10,5 = 233,856 g = 1 Cöllnische Marck (ohne Rundung). Der Feingehalt <b>.671</b> auf Numista entspricht der nächstgelegenen kanonischen Loth-Grän-Stufe <b>⁴³⁄₆₄ = 10 Loth 12 Grän = .671875</b> — die Differenz liegt in der vierten Dezimalstelle, innerhalb der üblichen Numista-Rundung auf drei Stellen; benachbarte Stufen (.6641 und .6797) sind ausgeschlossen. Der Müntzfuß <b>10½</b> bezieht sich auf die RAUE Marck, nicht auf Feinsilber wie bei den Thaler-Müntzfüßen. Belegexemplare: N#111284, N#111285, N#108760, N#108735.</p>
+        <p><b>Spezialliteratur:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) und <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — beide trennen die Kronemønt-Serie bewußt vom regulären Speciedaler.</p>
+      en: |-
+        <p>The Kronemønt was introduced in 1618 by Christian IV as the <i>Corona Danica</i> — not a trade coin valued by silver content but a domestic currency with a royally decreed tariff. The premium above the actual silver value was Crown seigniorage.</p>
+        <p>The original tariff (1 Krone = 1½ Speciedaler) implied a substantial seigniorage premium above the pure silver value; the royal motto <b>RFP</b> (regna firmat pietas — «piety strengthens kingdoms») was therefore reread in folk parlance as <b>R(iget) F(attes) P(enge)</b> — «the realm lacks money».<sup><a href="#ref25">[25]</a></sup> In 1625 the tariff was lowered to 1⅓ Specie; around 1670 Christian V stabilised it at <b>⅔ Specie</b> = 2 Marck Danske, a parity which thereafter appears explicitly on the coins as «<b>2 MARCK</b>».</p>
+        <p>Striking took place at <b>Copenhagen</b> (royal mint) and at <b>Glückstadt</b> (the Holstein mint, dominant from 1644 onwards). The Kronemønt circulated at the royally set tariff; in parallel both Copenhagen and Glückstadt struck full-value Speciedaler on the 9¼-Fuß (see the Bruun lots in the Speciedaler section). The series ends in 1696; from 1726 the <b>Rigsdaler Courant (11⅓-Fuß)</b> succeeds it as the principal Danish coin — on a metal-equivalence basis rather than a tariff basis.</p>
+        <p><b>Source basis for the standard and fineness:</b> in the absence of accessible mint-edict texts, the coins themselves are the source. The standard <b>10½</b> follows exactly: 22.272 g rough × 10.5 = 233.856 g = 1 Cologne mark (no rounding). The fineness <b>.671</b> on Numista matches the nearest canonical Loth-Grän step <b>⁴³⁄₆₄ = 10 Loth 12 Grän = .671875</b> — a 4th-decimal difference, within Numista's usual 3-digit rounding; the adjacent steps .6641 and .6797 are ruled out. The standard <b>10½</b> refers to the RAW mark, not to fine silver as in the Thaler standards. Reference specimens: N#111284, N#111285, N#108760, N#108735.</p>
+        <p><b>Specialist literature:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) and <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — both deliberately separate the Kronemønt series from the regular Speciedaler.</p>
+      uk: |-
+        <p>Kronemønt запроваджено 1618 року Кристіаном IV як <i>Corona Danica</i> — не торговельну монету за вмістом срібла, а внутрішню валюту з королівсько встановленим тарифом. Надбавка над фактичною срібною вартістю становила сеньйораж Корони.</p>
+        <p>Початковий тариф (1 Krone = 1½ Speciedaler) означав суттєву сеньйораж-надбавку над чистою срібною вартістю; королівський девіз <b>RFP</b> (regna firmat pietas — «побожність зміцнює царства») у народі відтак переосмислили як <b>R(iget) F(attes) P(enge)</b> — «Державі бракує грошей».<sup><a href="#ref25">[25]</a></sup> 1625 року тариф знижено до 1⅓ Specie; близько 1670 року Кристіан V стабілізував його на рівні <b>⅔ Specie</b> = 2 Marck Danske — паритет, який відтоді з'являється на монетах явно як «<b>2 MARCK</b>».</p>
+        <p>Карбування здійснювалося в <b>Копенгагені</b> (королівський монетний двір) і в <b>Glückstadt</b> (гольштинський монетний двір, домінантний з 1644). Kronemønt оберталась за встановленим королем тарифом; паралельно Копенгаген і Glückstadt карбували повноцінні Speciedaler за 9¼-Fuß (див. Bruun-лоти в Speciedaler-розділі). Серія завершується 1696 року; з 1726 р. <b>Rigsdaler Courant (11⅓-Fuß)</b> змінює її як головна данська монета — на основі еквівалентності металу, не тарифу.</p>
+        <p><b>Джерельна база стопи та проби:</b> за відсутності доступних текстів монетних едиктів первинним джерелом є самі монети. Стопа <b>10½</b> виходить точно: 22,272 г повної ваги × 10,5 = 233,856 г = 1 кельнська марка (без округлення). Проба <b>.671</b> у Numista збігається з найближчою канонічною точкою системи Loth-Grän <b>⁴³⁄₆₄ = 10 Loth 12 Grän = .671875</b> — різниця в четвертій цифрі після коми, у межах звичайного округлення Numista до трьох знаків; сусідні рівні .6641 і .6797 виключаються. Стопа <b>10½</b> рахується від повної (rau) марки, а не від чистого срібла як у Thaler-стопах. Зразки-приклади: N#111284, N#111285, N#108760, N#108735.</p>
+        <p><b>Спеціальна література:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) і <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — обидва навмисно відокремлюють серію Kronemønt від звичайного Speciedaler.</p>
+
+  guldkrone:
+    pdate_label:
+      de: 'Geltungsbereich: 1657 → 1670 · 13 Jahre (Frederik-III.-Tarifregime; in Holstein nur Glückstadt-Phase 1657–1660)'
+      en: 'Period of validity: 1657 → 1670 · 13 years (Frederik III tariff regime; in Holstein only the Glückstadt phase 1657–1660)'
+      uk: 'Період дії: 1657 → 1670 · 13 років (тарифний режим Фредеріка III; у Гольштейні лише ґлюкштадтська фаза 1657–1660)'
+    hintergrund:
+      de: |
+        Goldene <b>Tarifmünze</b> Frederik III., 1657 in Glückstadt eingeführt; goldenes Pendant der Krone-Mønt-Kategorie mit gleicher Tarif-Logik wie die silberne Krone, aber in 22-karätigem Gold und mit eigener metrischer Definition (≈ 39 Stück je Cöllnische Marck Raulegierung von 22 Karat = 5,996 g rau / 5,498 g fein je Stück). Tarif <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b>. Geprägt in Glückstadt 1657–1660 (Hede 145B, Mzm. Jacob Schwieger) und in Kopenhagen 1668 (KM# 303, bei reduziertem Tarif von 3 Speciedaler und kleinerem Raugewicht von 5,47 g — ein verwandter, aber physikalisch anderer Müntzfuß). Mit dem Tod Frederiks III. 1670 endet die Guldkrone-Tarifprägung; Christian V. setzt sie nicht fort und prägt in Glückstadt nur noch nach dem Reichsdukatenfuß. <b>Nicht zu verwechseln mit dem Goldgulden</b> (HRR-Goldmünze nach Reichsmünzordnung 1559, andere Lineage und andere Tarifeinheit).
+      en: |-
+        A gold <b>tariff coin</b> of Frederik III, introduced at Glückstadt in 1657; the gold counterpart of the Krone-Mønt category, with the same tariff logic as the silver Krone but in 22-carat gold and with its own metric definition (≈ 39 pieces per Cologne mark of raw 22-carat alloy = 5.996 g rough / 5.498 g fine each). Tariff <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b>. Struck at Glückstadt 1657–1660 (Hede 145B, mintmaster Jacob Schwieger) and at Copenhagen in 1668 (KM# 303, at a reduced tariff of 3 Speciedaler and a smaller rough weight of 5.47 g — a related but physically distinct standard). With the death of Frederik III in 1670 Guldkrone tariff coinage ends; Christian V does not continue it and strikes Glückstadt gold only on the Reichsdukatenfuß. <b>Not to be confused with the Goldgulden</b> (Holy Roman Empire gold coin under the Reichsmünzordnung of 1559, separate lineage and a different tariff unit).
+      uk: |-
+        Золота <b>тарифна монета</b> Фредеріка III, запроваджена в Glückstadt 1657 р.; золотий аналог Krone-Mønt-категорії з тією ж тарифною логікою, що й срібна Krone, але в 22-каратному золоті й з власним метричним означенням (≈ 39 штук з кельнської марки сплаву 22 карат = 5,996 г повної ваги / 5,498 г чистого на штуку). Тариф <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b>. Карбувалася в Glückstadt 1657–1660 (Hede 145B, монетмайстер Jacob Schwieger) і в Копенгагені 1668 р. (KM# 303, зі зниженим тарифом 3 Speciedaler і меншою повною вагою 5,47 г — споріднена, але фізично окрема стопа). Зі смертю Фредеріка III 1670 р. тарифне карбування Guldkrone завершується; Кристіан V його не продовжує і в Glückstadt карбує золото лише за Reichsdukatenfuß. <b>Не плутати з Goldgulden</b> (золота монета Священної Римської імперії за Reichsmünzordnung 1559, окрема лінія й інша тарифна одиниця).
+    closing_label:
+      de: "Zusammenfassung · 13 Jahre Frederik-III.-Tarifregime"
+      en: "Summary · 13 years of the Frederik III tariff regime"
+      uk: "Підсумок · 13 років тарифного режиму Фредеріка III"
+    closing:
+      de: |
+        Der Guldkrone-Fuß ist eines der <b>kürzlebigsten Tarifregime</b> im Holstein-Verzeichnis: ein einziger Regent (Frederik III., 1648–1670) und zwei Münzstätten (Glückstadt 1657–1660, Kopenhagen 1668). Im Holstein-Skopus liegt nur die Glückstadt-Phase mit dem kanonischen Typ Hede 145B (Mzm. Jacob Schwieger); die Kopenhagener Folgeprägung 1668 ist als eigener Typ erfaßt, gehört aber nicht zu diesem Verzeichnis. Mit Christian V. läuft die Guldkrone-Tarif-Logik aus — Goldprägung in Glückstadt setzt sich nur noch im Reichsdukatenfuß fort.
+      en: |-
+        The Guldkrone-Fuß is one of the <b>shortest-lived tariff regimes</b> in the Holstein register: a single ruler (Frederik III, 1648–1670) and two mints (Glückstadt 1657–1660, Copenhagen 1668). Only the Glückstadt phase falls within the Holstein scope, with the canonical type Hede 145B (mintmaster Jacob Schwieger); the Copenhagen follow-up of 1668 is registered as its own type but does not belong to this catalogue. With Christian V the Guldkrone tariff logic lapses — gold coinage at Glückstadt continues only on the Reichsdukatenfuß.
+      uk: |-
+        Guldkrone-Fuß — один із <b>найкоротших тарифних режимів</b> у гольштинському реєстрі: один правитель (Фредерік III, 1648–1670) і два монетні двори (Glückstadt 1657–1660, Копенгаген 1668). У гольштинський скоуп потрапляє лише ґлюкштадтська фаза з канонічним типом Hede 145B (монетмайстер Jacob Schwieger); копенгагенський наступний випуск 1668 р. зафіксовано як окремий тип, але до цього каталогу він не належить. За Кристіана V тарифна логіка Guldkrone згортається — золоте карбування в Glückstadt далі ведеться лише за Reichsdukatenfuß.
+
+# ---------------------------------------------------------------------
+# Phase definitions — grouped by fuss
+# ---------------------------------------------------------------------
+
 phases:
   kronemont_chr_iv:
     - id: A
@@ -56,6 +168,20 @@ phases:
   # 13-Krone-Fuß) is presented in full on the timeline. Empty phase
   # array is intentional — no Glückstadt or Tönning specimens.
   reichsdukatenfuss:
+    - id: A
+      year_from: 1600
+      year_to: 1726
+      from_label: "17. Jh."
+      to_label: "1726"
+      title:
+        de: "Glückstadt und Gottorp · Tönning"
+        en: "Glückstadt and Gottorp · Tönning"
+        uk: "Glückstadt і Готторп · Tönning"
+      mt_caption:
+        de: "Dukat-Prägung nach Reichsdukatenfuß (.986) · Glückstadt (Chr. IV. / Chr. V.) und Tönning (Chr. Albrecht / Fr. IV. / Karl Fr.) · sortiert nach Jahr"
+        en: "Ducat issues to the Reichsdukatenfuß (.986) · Glückstadt (Christian IV / Christian V) and Tönning (Christian Albrecht / Frederik IV / Karl Friedrich) · sorted by year"
+        uk: "Карбування дукатів за Reichsdukatenfuß (.986) · Glückstadt (Кристіан IV / Кристіан V) і Tönning (Кристіан Альбрехт / Фредерік IV / Карл Фрідріх) · впорядковано за роком"
+
     - id: B
       year_from: 1726
       year_to: 1771
@@ -70,7 +196,244 @@ phases:
         en: "With the Kurantmøntfod of 1726 a <b>Courantdukat</b> grows up alongside the Reichsdukatenfuß — a ducat with slightly reduced fine weight, designed for a fixed exchange link (2 Rigsdaler Courant = 1 Courantdukat, later 2½ Rigsdaler Courant). The Altona mint is only opened in 1771; the ducats of this phase are struck in Copenhagen and Glückstadt for the trade of the composite state."
         uk: "З Kurantmøntfod 1726 паралельно до Reichsdukatenfuß виростає <b>Courantdukat</b> — дукат із трохи зниженою чистою вагою, призначений для фіксованої курсової привʼязки (2 Rigsdaler Courant = 1 Courantdukat, пізніше 2½ Rigsdaler Courant). Монетний двір в Альтоні відкриють лише 1771; дукати цієї фази карбують у Копенгагені й Glückstadt для торгівлі цілісної держави."
 
+  9_thaler:
+    - id: A
+      year_from: 1566
+      year_to: 1625
+      from_label: "30. Mai 1566"
+      to_label: "1625"
+      title:
+        de: "Reichsmünzordnung in Holstein-Gottorp"
+        en: "Imperial Mint Decree in Holstein-Gottorp"
+        uk: "Імперський монетний ордонанс у Гольштейн-Ґотторпі"
+      description:
+        de: "Holsteinische Reichsthaler-Prägungen unter Adolf I., Johann Adolf, frühem Friedrich III. und Hans Jr. von Sonderburg — Kipper-Wipper-Krise (1620–1623), ab 1622 parallel vom leichteren 9¼-Fuß abgelöst, letzte Holstein-Prägung 1625."
+        en: "Holstein Reichsthaler issues under Adolf I, Johann Adolf, early Friedrich III and Hans Jr. of Sonderburg — Kipper-Wipper crisis (1620–1623), superseded in parallel by the lighter 9¼-Fuß from 1622, last Holstein strike 1625."
+        uk: "Гольштинські карбування Reichsthaler за Адольфа I, Йоганна Адольфа, раннього Фредеріка III та Hans Jr. Sonderburg — Kipper-Wipper-криза (1620–1623); з 1622 паралельно витісняється легшим 9¼-Fuß; останнє карбування в Гольштейні — 1625."
+      context:
+        de: |
+          <b>Reichsstandard biß 1625:</b> Reichsthaler 9-Fuß (.889/14²⁄₉ Loth, 25,984 g fein), Mark-lübisch-Theilstücke (½, ¼, ⅛ Thaler), Schillinge (1/32, 1/48 Thaler), Pfennig-Scheidemünzen (1/96, 1/128 Thaler).<br>
+          <b>Münzstätten:</b> in Holstein-Gottorp vor allem Schleswig und Husum. Nach dem Kipper-Wipper-Zusammenbruch (~1620) verlieren die Reichsstände das einheitliche Münzwesen — ab 1622 setzt sich in Holstein der leichtere 9¼-Fuß (Thaler Species, 25,28173 g fein gegen 25,984 g im 9-Fuß) durch, die letzte holsteinische 9-Fuß-Prägung erfolgt 1625 (Hans Jr. Sonderburg, 2 Schilling Lübisch).<br>
+          <b>Außerhalb Holsteins lebt der 9-Fuß weiter:</b> Hamburg behält ihn als <i>Bank-Mark</i> der Hamburger Bank, Lübeck als <i>Speciemark</i> — beide biß 1875.
+        en: |-
+          <b>Imperial standard until 1625:</b> Reichsthaler at 9-Fuß (.889/14²⁄₉ Loth, 25.984 g fine), Mark-lübisch sub-units (½, ¼, ⅛ Thaler), Schilling pieces (1/32, 1/48 Thaler), Pfennig petty coins (1/96, 1/128 Thaler).<br> <b>Mints:</b> in Holstein-Gottorp mainly Schleswig and Husum. After the Kipper-Wipper collapse (~1620) the imperial estates lose unified coinage; from 1622 the lighter 9¼-Fuß (Thaler Species, 25.28173 g fine vs. 25.984 g in the 9-Fuß) takes over in Holstein, with the last 9-Fuß strike falling in 1625 (Hans Jr. of Sonderburg, 2 Schilling Lübisch).<br> <b>Beyond Holstein the 9-Fuß lived on:</b> Hamburg kept it as the <i>Bank-Mark</i> of the Hamburger Bank, Lübeck as the <i>Speciemark</i> — both until 1875.
+        uk: |-
+          <b>Імперський стандарт до 1625:</b> Reichsthaler у 9-Fuß (.889/14²⁄₉ Loth, 25,984 г чистого), частки Mark lübisch (½, ¼, ⅛ Thaler), Schilling-монети (1/32, 1/48 Thaler), Pfennig-розмінні монети (1/96, 1/128 Thaler).<br> <b>Монетні двори:</b> в Гольштейн-Ґотторпі переважно Шлезвіг і Гузум. Після колапсу Kipper-Wipper (~1620) імперські стани втрачають єдину монетну систему; з 1622 у Гольштейні утверджується легший 9¼-Fuß (Thaler Species, 25,28173 г чистого проти 25,984 г у 9-Fuß), а останнє 9-Fuß-карбування припадає на 1625 р. (Hans Jr. Sonderburg, 2 Schilling Lübisch).<br> <b>Поза Гольштейном 9-Fuß продовжує існувати:</b> Гамбург тримає його як <i>Bank-Mark</i> Гамбурзького банку, Любек — як <i>Speciemark</i>; обидва до 1875 р.
+
+  9_25_thaler:
+    - id: A
+      year_from: 1622
+      year_to: 1726
+      from_label: "1622"
+      to_label: "15. Juli 1726"
+      title:
+        de: "Etablierung unter dänischer und gottorpischer Herrschaft"
+        en: "Establishment under Danish and Gottorp rule"
+        uk: "Становлення під данським і ґотторпським правлінням"
+      description:
+        de: "Holstein zweigetheilt: Königsl. dänischer Antheil (Glückstadt, Pinneberg, Rantzau) und Gottorpischer Antheil (Tönning, Schleswig, Kiel) · keine einheitliche Münzstruktur · Aufgeld zwischen Species und Umlaufmünzen üblich."
+        en: "Holstein divided in two: the royal Danish part (Glückstadt, Pinneberg, Rantzau) and the Gottorp part (Tönning, Schleswig, Kiel) · no unified coinage structure · a premium between Species and circulating coins is the norm."
+        uk: "Гольштейн розділений на дві частини: королівська данська частина (Glückstadt, Pinneberg, Rantzau) і ґотторпська частина (Tönning, Schleswig, Kiel) · єдиної монетної структури немає · надбавка (Aufgeld) між Species і обіговими монетами — звична практика."
+      context:
+        de: |
+          <b>Dominierende Großsilbermünze:</b> Thaler Species im 9¼-Fuß, nach dänischer Tradition etabliert; daneben lübisch geprägte Schilling-Scheidemünzen. <b>Zeitgenössische Nomenklatur:</b> auf den Münzen «SPECIES» oder Mark-Danske-Denomination; in Auktionskatalogen auch «Speciedaler».<br>
+          <b>Hauptumlauf in Holstein:</b> Neben heimischen Prägungen zirkulieren lübische, hamburgische und norddeutsche Thaler Species; niederländische Patagonen/Albertusthaler; schwedische 4-Mark-Stücke; spanische Piaster — der Handel akzeptiert jede Species nach Silbergehalt.<br>
+          <b>Parallel zur Thaler-Species-Prägung: die Kronemønt-Kategorie (1618 → 1696).</b> Siehe eigene Sektion <i>10½-Krone-Fuß · Kronemønt-Tarifmünze</i> unten, wo die Tarifhistorie 1½ → 1⅓ → ⅔ Speciedaler und die Prägetabelle 1644–1696 detailliert dokumentiert sind.
+        en: |-
+          <b>Dominant large silver coin:</b> the Thaler Species in the 9¼-Fuß, established by Danish tradition; alongside it, Schilling petty coinage in Lübeck reckoning. <b>Contemporary nomenclature:</b> on the coins themselves «SPECIES» or a Mark-Danske denomination; auction catalogues often use «Speciedaler».<br> <b>Main circulation in Holstein:</b> besides domestic issues, Lübeck, Hamburg and North-German Thaler Species circulate; Dutch Patagonen/Albertusthaler; Swedish 4-Mark pieces; Spanish piastres — trade accepts every Species by silver content.<br> <b>In parallel with the Thaler Species issues — the Kronemønt category (1618 → 1696).</b> See the dedicated section <i>10½-Krone-Fuß · Kronemønt tariff coin</i> below, which documents the tariff history 1½ → 1⅓ → ⅔ Speciedaler and the strike table 1644–1696 in detail.
+        uk: |-
+          <b>Домінантна велика срібна монета:</b> Thaler Species у 9¼-Fuß, закріплений данською традицією; поруч — Schilling-розмінна монета у любецькому рахунку. <b>Сучасна термінологія:</b> на самих монетах «SPECIES» або номінал у Mark-Danske; аукціонні каталоги вживають також «Speciedaler».<br> <b>Основний обіг у Гольштейні:</b> крім місцевих карбувань, обертають любецькі, гамбурзькі й північнонімецькі Thaler Species; нідерландські Patagonen/Albertusthaler; шведські 4-Mark; іспанські піастри — торгівля приймає кожен Species за вмістом срібла.<br> <b>Паралельно з карбуванням Thaler Species — категорія Kronemønt (1618 → 1696).</b> Див. окрему секцію <i>10½-Krone-Fuß · тарифна монета Kronemønt</i> нижче, де докладно задокументовано історію тарифу 1½ → 1⅓ → ⅔ Speciedaler і таблицю карбувань 1644–1696.
+      mt_caption:
+        de: "Münzstätte Tönning · Gottorpisches Holstein · 1689–1726 · Scheidemünzen mit lübischer Nominalangabe (im 9¼-Fuß-System) + Thaler Species und Dukaten (aus Bruun Coll. Stack's Bowers Auktion Zürich 14.–15. März 2025)"
+        en: "Tönning mint · Gottorp Holstein · 1689–1726 · petty coins denominated in Lübeck reckoning (within the 9¼-Fuß system) plus Thaler Species and ducats (from the Bruun Coll., Stack's Bowers auction, Zurich 14–15 March 2025)"
+        uk: "Монетний двір Tönning · ґотторпський Гольштейн · 1689–1726 · розмінна монета з номіналом у любецькому рахунку (в межах системи 9¼-Fuß) плюс Thaler Species і дукати (з колекції Bruun, аукціон Stack's Bowers, Цюрих 14–15 березня 2025)"
+
+  kronemont:
+    - id: A
+      year_from: 1644
+      year_to: 1669
+      from_label: '1644'
+      to_label: '1669'
+      title:
+        de: 10½-Krone-Fuß · Hebræermønt und Frederik-III.-Glückstadt-Serie
+        en: 10½-Krone-Fuß · Hebræermønt and Frederik III Glückstadt series
+        uk: 10½-Krone-Fuß · Hebræermønt та серія Frederik III Glückstadt
+      description:
+        de: 'Nach dem 19-jährigen Stillstand 1625–1643 (siehe <i>Christian IVs kroner</i> oben) kehrt die Krone-Mønt 1644 im <b>10½-Krone-Fuß</b> («<i>Grobe Krone</i>») zurück: <b>10½ Krone je rauer Marck</b> von 10¾ Loth (.672 Feingehalt, 14,964 g fein je Stück, Hede / Wilcke II p. 203) — ~8 % weniger Feinsilber pro Münze als unter Christian IV. Beginn mit der <b>Hebræermønt</b> (KM# 32, KM# 137) und der regulären Glückstadter 4-Marck-Danske-Serie unter Frederik III. Tarif weiterhin 1⅓ Speciedaler.<sup><a href="#ref16">[16]</a><a href="#ref23">[23]</a></sup>'
+        en: 'After the 19-year hiatus of 1625–1643 (see <i>Christian IV''s kroner</i> above), the Krone returns in 1644 under the <b>10½-Krone-Fuß</b> («<i>Coarse Krone</i>»): <b>10½ Krone per raw mark</b> at 10¾ Loth (.672 fineness, 14.964 g fine per coin, Hede / Wilcke II p. 203) — ~8 % less fine silver per coin than under Christian IV. The series opens with the <b>Hebræermønt</b> (KM# 32, KM# 137) and the regular Glückstadt 4-Marck-Danske series under Frederik III. The tariff remains 1⅓ Speciedaler.<sup><a href="#ref16">[16]</a><a href="#ref23">[23]</a></sup>'
+        uk: 'Після 19-річного припинення 1625–1643 (див. <i>Christian IV''s kroner</i> вище) Krone-Mønt повертається 1644 р. у <b>10½-Krone-Fuß</b> («<i>Груба Крона</i>»): <b>10½ Krone з повної марки</b> проби 10¾ Loth (.672 проби, 14,964 г чистого на монету, Hede / Wilcke II с. 203) — ~8 % менше чистого срібла на монету, ніж за Кристіана IV. Серія відкривається <b>Hebræermønt</b> (KM# 32, KM# 137) та регулярною ґлюкштатською серією 4 Marck Danske за Фредеріка III. Тариф лишається 1⅓ Speciedaler.<sup><a href="#ref16">[16]</a><a href="#ref23">[23]</a></sup>'
+      context:
+        de: <p>Die <b>Hebræermønt</b> wird parallel in zwei Münzstätten geprägt — København (KM# 137, 1644–1646) und Glückstadt (KM# 32, 1645) — beide mit dem Tetragramm יהוה auf der Rückseite und beide bei .593 Feingehalt (gegen den Kronemønt-Standard .671 reduziert). Bei unverändertem Tarif von ⅓ Speciedaler steigt der kumulative Seigniorage-Aufschlag durch dieses zweite Debasement auf ca. +27,6 % (siehe Sondertabelle).</p><p>Parallel dazu Glückstadter 4-Marck-Danske-Serie unter Frederik III. (KM# A43, B43) am Standardfeingehalt .671 — die Norm­fortsetzung, die später die Christian-V.-Serie ablöst.</p>
+        en: <p>The <b>Hebræermønt</b> is struck in parallel at two mints — Copenhagen (KM# 137, 1644–1646) and Glückstadt (KM# 32, 1645) — both bearing the Tetragrammaton יהוה on the reverse and both at .593 fineness (reduced from the Kronemønt standard of .671). At an unchanged tariff of ⅓ Speciedaler, this second debasement raises the cumulative seigniorage premium to about +27.6 % (see separate sub-table).</p><p>Alongside, the Glückstadt 4-Marck-Danske series under Frederik III (KM# A43, B43) at standard fineness .671 — the normative continuation that the Christian V series later carries forward.</p>
+        uk: <p><b>Hebræermønt</b> карбується паралельно на двох монетних дворах — Копенгаген (KM# 137, 1644–1646) і Glückstadt (KM# 32, 1645) — обидва з тетраграматоном יהוה на реверсі та обидва на пробі .593 (знижено від стандартної kronemønt-проби .671). За незмінним тарифом ⅓ Speciedaler це другий шар debasement піднімає кумулятивну сеньйораж-надбавку до ~+27,6 % (див. окрему підтаблицю).</p><p>Паралельно — ґлюкштатська серія 4 Marck Danske за Фредеріка III (KM# A43, B43) на стандартній пробі .671 — нормативне продовження, яке пізніше підхоплює серія Кристіана V.</p>
+  guldkrone:
+    - id: B
+      year_from: 1668
+      year_to: 1668
+      from_label: '1668'
+      to_label: '1668'
+      title:
+        de: Frederik III. · Kopenhagen · Tarif 3 Speciedaler (Tarifsenkung)
+        en: Frederik III · Copenhagen · tariff 3 Speciedaler (tariff reduction)
+        uk: Фредерік III · Копенгаген · тариф 3 Speciedaler (зниження тарифу)
+      description:
+        de: 'Späte Kopenhagener Folgeprägung der Guldkrone-Serie 1668: Tarif gegenüber der Glückstadter Phase 1657–1660 von 3½ auf <b>3 Speciedaler = 18 Mark Dansk</b> reduziert, Raugewicht von 5,996 auf 5,47 g abgesenkt. Feingehalt unverändert .917 (22 Karat). Belegtyp: <b>KM# 303 / Friedberg# 92 / Numista N#308327</b>; Münzmeister <b>Gotfred Krüger</b> (Kopenhagen 1664–1680), Mzz. <b>GK</b>. Reverslegende «<i>Dominus Providebit</i> XVIII · M · 1668 · G · K ·».'
+        en: 'A late Copenhagen follow-up to the Guldkrone series in 1668: tariff reduced from the Glückstadt phase 1657–1660 of 3½ to <b>3 Speciedaler = 18 Mark Dansk</b>, rough weight lowered from 5.996 to 5.47 g. Fineness unchanged at .917 (22 carat). Reference type: <b>KM# 303 / Friedberg# 92 / Numista N#308327</b>; mintmaster <b>Gotfred Krüger</b> (Copenhagen 1664–1680), mintmark <b>GK</b>. Reverse legend «<i>Dominus Providebit</i> XVIII · M · 1668 · G · K ·».'
+        uk: 'Пізніший копенгагенський наступний випуск серії Guldkrone 1668 р.: тариф знижено з ґлюкштадтської фази 1657–1660 з 3½ до <b>3 Speciedaler = 18 Mark Dansk</b>, повна вага зменшена з 5,996 до 5,47 г. Проба незмінна .917 (22 карати). Еталонний тип: <b>KM# 303 / Friedberg# 92 / Numista N#308327</b>; монетмайстер <b>Gotfred Krüger</b> (Копенгаген 1664–1680), монограма <b>GK</b>. Легенда реверсу «<i>Dominus Providebit</i> XVIII · M · 1668 · G · K ·».'
+      context:
+        de: |
+          <b>Außerhalb Holsteins, eingearbeitet zur Vollständigkeit der Frederik-III.-Tarif-Serie:</b> die Münze wurde in Kopenhagen geprägt, gehört also nicht zum Kern-Skopus dieses Verzeichnisses. Sie ist hier aufgeführt, weil sie das einzige weitere bekannte Stück der <i>Guldkrone</i>-Tarifserie überhaupt ist und das Tarifregime der Glückstadter Phase 1657–1660 historisch ablöst.<br><br>
+          <b>Müntzfuß-Verhältnis zur Glückstadter Form:</b> bei gleichem Feingehalt .917 ist das Raugewicht um ≈ 8,8 % gesenkt (5,47 statt 5,996 g) — das Feinsilberäquivalent geht entsprechend zurück. Aus der Cöllnischen Marck Raulegierung lassen sich nun ≈ 233,856 ÷ 5,47 ≈ 42,75 Stück je Marck schlagen, gegen 39 in Glückstadt. Da die Form keine glatte ganze Zahl ergibt und der Tarif ebenfalls nicht zum 22-karätigen Raugewicht passt (3 Specie ≈ 18 Mark Dansk), liegt physikalisch ein eigener Müntzfuß vor — die Münze wird in der Δ-Spalte daher als «außer Remedium» gegen die kanonische Glückstadter Form ausgewiesen.
+        en: |-
+          <b>Outside Holstein, included for completeness of the Frederik III tariff series:</b> the coin was struck in Copenhagen, so it does not belong to the core scope of this register. It is listed here because it is the only other known piece of the <i>Guldkrone</i> tariff series and historically supersedes the tariff regime of the Glückstadt phase 1657–1660.<br><br> <b>Standard relative to the Glückstadt form:</b> at the same fineness .917 the rough weight is reduced by ≈ 8.8 % (5.47 g instead of 5.996 g) — fine-silver equivalent falls in step. From a Cologne mark of raw alloy one now strikes ≈ 233.856 ÷ 5.47 ≈ 42.75 pieces per mark, versus 39 at Glückstadt. Since the form does not yield a clean integer and the tariff also fails to match the 22-carat rough weight (3 Specie ≈ 18 Mark Dansk), the coin physically belongs to its own standard — the Δ column accordingly flags it as «outside tolerance» against the canonical Glückstadt form.
+        uk: |-
+          <b>Поза Гольштейном, наведено для повноти тарифної серії Фредеріка III:</b> монету викарбувано в Копенгагені, тож вона не належить до основного скоупу цього реєстру. Включена тут, бо це єдина інша відома штука серії <i>Guldkrone</i> і вона історично змінює тарифний режим ґлюкштадтської фази 1657–1660.<br><br> <b>Стопа щодо ґлюкштадтської форми:</b> при тій же пробі .917 повна вага знижена на ≈ 8,8 % (5,47 г замість 5,996 г) — чистий срібно-золотий еквівалент пропорційно падає. З кельнської марки сплаву тепер виходить ≈ 233,856 ÷ 5,47 ≈ 42,75 штук на марку проти 39 у Glückstadt. Оскільки форма не дає круглого цілого числа й тариф теж не відповідає 22-каратному повному вагому (3 Specie ≈ 18 Mark Dansk), монета фізично належить до власної стопи — у стовпці Δ її буде відмічено як «поза допуском» щодо канонічної ґлюкштадтської форми.
+
 coins:
+  - id: km-x026-chr-iv-1611
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: "2"
+    nominal: 1 Rosenoble
+    year_label: "1611–1629"
+    year_first: 1611
+    year_last: 1629
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 51"
+    metal: gold
+    fineness: 0.833
+    weight_rough_g: 8.99
+    diameter_mm: 29.0
+    note:
+      de: |-
+        1 Rosenoble Christians IV. (1611–1629) — Goldhandelsmünze nach englischem Vorbild (Rose-Noble seit 1465). Eigener trade-Standard mit .833 Feingehalt und 8,99 g Rohgewicht — passt nicht in die regulären Reichsdukatenfuß-Theilungen (vorläufig als fraction "2" einsortiert, was nur ein grober rechnerischer Anker ist). Δ wird gegenüber Reichsdukatenfuß-Norm 6,88 g auffällig hoch ausfallen — der Rosenoble folgt einer separaten Trade-Gold-Norm. Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 51</b>; in Numista nicht katalogisiert.
+      en: |-
+        1 Rosenoble of Christian IV (1611–1629) — gold trade coin after the English model (Rose-Noble since 1465). Its own trade standard at .833 fineness and 8.99 g rough — doesn't fit the regular Reichsdukatenfuß subdivisions (provisionally filed under fraction "2", a rough computational anchor only). Δ will read visibly high against the Reichsdukatenfuß norm of 6.88 g — the Rosenoble follows a separate trade-gold norm. Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 51</b>; not catalogued by Numista.
+      uk: |-
+        1 Rosenoble Кристіана IV (1611–1629) — золота торгова монета за англійським зразком (Rose-Noble від 1465). Власний trade-стандарт із пробою .833 і грубою вагою 8,99 г — не вписується в регулярні поділи Reichsdukatenfuß (попередньо внесено в fraction "2" як грубий розрахунковий якір). Δ буде помітно завищеним проти норми Reichsdukatenfuß 6,88 г — Rosenoble слідує окремій нормі trade-gold. Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 51</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-rosenoble-1611-1629/?tid=163411
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 51 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1611–1629). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 51 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1611–1629). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 51 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1611–1629). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x025-chr-iv-1612
+    fuss: 9_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/3"
+    nominal: 1 Mark
+    year_label: "1612–1618"
+    year_first: 1612
+    year_last: 1618
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 52"
+    metal: silver
+    fineness: 0.593
+    weight_rough_g: 8.66
+    diameter_mm: 31.0
+    note:
+      de: |-
+        1 Mark Christians IV. (1612–1618) — 1/3 Speciedaler-Theilung. Parameter (silver .593, 8,66 g) liegen sehr nahe bei km-A4-chr-iv-1617 (1 Marck Lübisch Glückstadt, .589, 8,35 g, 1617+1627–1629), <b>aber Zeiträume und Quellenlage unterscheiden sich</b> — auf ucoin gibt es kein Bild, und wir behalten beide separat, bis eine visuelle Verifikation eine Identifikation als ein Typ erlaubt. Mzm. nicht eindeutig (Periode «Speciedaler 1582–1624» abdeckt Glückstadt und Copenhagen) — vorerst als Glückstadt eingetragen. <b>KM-DK# 52</b>; in Numista nicht katalogisiert.
+      en: |-
+        1 Mark of Christian IV (1612–1618) — 1/3 Speciedaler subdivision. Parameters (silver .593, 8.66 g) sit very close to km-A4-chr-iv-1617 (1 Marck Lübisch Glückstadt, .589, 8.35 g, 1617 + 1627–1629), <b>but the year ranges and source provenance differ</b> — ucoin has no image, and we keep them separate until a visual verification supports identifying them as one type. Mint not unambiguous (the «Speciedaler 1582–1624» period covers Glückstadt and Copenhagen) — provisionally entered as Glückstadt. <b>KM-DK# 52</b>; not catalogued by Numista.
+      uk: |-
+        1 Mark Кристіана IV (1612–1618) — поділ 1/3 Speciedaler. Параметри (silver .593, 8,66 г) дуже близькі до km-A4-chr-iv-1617 (1 Marck Lübisch Glückstadt, .589, 8,35 г, 1617 + 1627–1629), <b>але часові проміжки і джерела відрізняються</b> — на ucoin зображення немає, тому тримаємо обидва окремо, доки візуальна верифікація не підтвердить, що це один тип. Монетний двір неоднозначний (період «Speciedaler 1582–1624» покриває Глюкштадт і Копенгаген) — попередньо внесено як Глюкштадт. <b>KM-DK# 52</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-mark-1612-1618/?tid=163047
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 52 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1612–1618). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 52 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1612–1618). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 52 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1612–1618). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x024-chr-iv-1618
+    fuss: 9_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/48"
+    nominal: 2 Skilling
+    year_label: "1618"
+    year_first: 1618
+    year_last: 1618
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 16.2"
+    metal: silver
+    fineness: 0.298
+    weight_rough_g: 1.78
+    diameter_mm: 22.3
+    note:
+      de: |-
+        2 Skilling Christians IV. (1618) — 1/48 Speciedaler in dänischer Theilung. Stark reduzierter Feingehalt .298 (Billon-Niveau) — typische frühe Kipper-Wipper-Vorstufe. Visuell verschieden vom km-5-hans-jr-sonderb-1618 (Hans junior von Sonderburg, gleicher Nominal aber anderer Emittent). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 16.2</b>; in Numista nicht katalogisiert.
+      en: |-
+        2 Skilling of Christian IV (1618) — 1/48 Speciedaler in the Danish subdivision. Sharply reduced fineness .298 (billon level) — typical early Kipper-Wipper precursor. Visually different from km-5-hans-jr-sonderb-1618 (Hans junior of Sonderburg, same nominal but a different issuer). Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 16.2</b>; not catalogued by Numista.
+      uk: |-
+        2 Skilling Кристіана IV (1618) — 1/48 Speciedaler у данському поділі. Різко знижена проба .298 (білонний рівень) — типовий ранній попередник Kipper-Wipper-кризи. Візуально відрізняється від km-5-hans-jr-sonderb-1618 (Hans junior von Sonderburg, той самий номінал, але інший емітент). Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 16.2</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1618/?tid=163009
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 16.2 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1618). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 16.2 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1618). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 16.2 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1618). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x028-chr-iv-1618
+    fuss: 9_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/192"
+    nominal: 1 Hvid
+    year_label: "1618"
+    year_first: 1618
+    year_last: 1618
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 63"
+    metal: billon
+    fineness: 0.1
+    weight_rough_g: 0.565
+    diameter_mm: 14.35
+    note:
+      de: |-
+        1 Hvid Christians IV. (1618) — sehr kleine Billon-Theilung. Nominale Theilung als 1/192 Speciedaler (ältere dänische Konvention; modern auch 1/1152 Sp = 1/12 Skilling Danske ausgewiesen). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 63</b>; in Numista nicht katalogisiert.
+      en: |-
+        1 Hvid of Christian IV (1618) — very small billon subdivision. Nominal subdivision as 1/192 Speciedaler (older Danish convention; modern reckoning would be 1/1152 Sp = 1/12 Skilling Danske). Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 63</b>; not catalogued by Numista.
+      uk: |-
+        1 Hvid Кристіана IV (1618) — дуже дрібний білонний поділ. Номінальний поділ як 1/192 Speciedaler (давня данська конвенція; сучасний рахунок дав би 1/1152 Sp = 1/12 Skilling Danske). Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 63</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-hvid-1618/?tid=162985
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 63 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1618). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 63 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1618). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 63 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1618). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: km-57-chr-iv-1618
     fuss: kronemont_chr_iv
     phase: A
@@ -281,6 +644,78 @@ coins:
       en: "Mint provisionally recorded as Copenhagen — consistent with the rest of the 1618 Kronemønt series (km-57 ¼, km-58 ½, km-59 1, km-60 2 Krone, all Copenhagen) and with the Royal Danish Krause index KM-DK# 56; Glückstadt struck no Krone fractions in 1618. Direct mint attestation via Hede/Wilcke still pending, hence (?). Diameter not given by ucoin."
       uk: "Монетний двір попередньо записано як Копенгаген — узгоджено з рештою 1618-ї Kronemønt-серії (km-57 ¼, km-58 ½, km-59 1, km-60 2 Krone, усі Копенгаген) та з Royal-Danish-Krause-індексом KM-DK# 56; Глюкштадт у 1618 р. не карбував Krone-фракцій. Прямий Mzm.-доказ за Hede/Wilcke ще очікується, звідси (?). Діаметр у ucoin не вказано."
 
+  - id: km-x029-chr-iv-1619
+    fuss: 9_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/48"
+    nominal: 2 Skilling
+    year_label: "1619–1621"
+    year_first: 1619
+    year_last: 1621
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 69"
+    metal: silver
+    fineness: 0.86
+    weight_rough_g: 0.53
+    diameter_mm: 13.5
+    note:
+      de: |-
+        2 Skilling Christians IV. (1619–1621) — 1/48 Speciedaler in dänischer Theilung (Sk Danske-Konvention: 96 Sk Danske = 1 Sp). Sehr leichtes Stück (0,53 g) bei .86 Feinheit. Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 69</b>; in Numista nicht katalogisiert.
+      en: |-
+        2 Skilling of Christian IV (1619–1621) — 1/48 Speciedaler in the Danish subdivision (Sk Danske convention: 96 Sk Danske = 1 Sp). Very light piece (0.53 g) at .86 fineness. Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 69</b>; not catalogued by Numista.
+      uk: |-
+        2 Skilling Кристіана IV (1619–1621) — 1/48 Speciedaler у данському поділі (конвенція Sk Danske: 96 Sk Danske = 1 Sp). Дуже легка монета (0,53 г) при пробі .86. Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 69</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1619-1621/?tid=163005
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 69 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1619–1621). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 69 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1619–1621). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 69 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1619–1621). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x030-chr-iv-1619
+    fuss: 9_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/12"
+    nominal: 8 Skilling
+    year_label: "1619"
+    year_first: 1619
+    year_last: 1619
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 71"
+    metal: silver
+    fineness: 0.86
+    weight_rough_g: 3.1
+    diameter_mm: 25.0
+    note:
+      de: |-
+        8 Skilling Christians IV. (1619) — 1/12 Speciedaler in dänischer Theilung. Schwerer (3,1 g) als die parallele Sk-Danske-Reihe; passt rechnerisch zu 1/12 Sp (soll 2,165 g fein, ist 2,67 g fein bei .86 — leicht über Schwelle). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 71</b>; in Numista nicht katalogisiert.
+      en: |-
+        8 Skilling of Christian IV (1619) — 1/12 Speciedaler in the Danish subdivision. Heavier (3.1 g) than the parallel Sk Danske series; fits 1/12 Sp arithmetically (soll 2.165 g fine, actual 2.67 g fine at .86 — slightly above threshold). Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 71</b>; not catalogued by Numista.
+      uk: |-
+        8 Skilling Кристіана IV (1619) — 1/12 Speciedaler у данському поділі. Важчий (3,1 г) ніж паралельна серія Sk Danske; відповідає 1/12 Sp розрахунково (soll 2,165 г чистого, фактичний 2,67 г чистого при .86 — трохи вище порогу). Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 71</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-8-skilling-1619/?tid=163035
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 71 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1619). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 71 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1619). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 71 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1619). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: km-58a-chr-iv-1619
     fuss: kronemont_chr_iv
     phase: A
@@ -483,6 +918,151 @@ coins:
         ref: Numista
     issuing_entity: danish_realm
     mint: Kopenhagen
+  - id: km-x016-chr-iv-1622
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/16"
+    nominal: 6 Skilling
+    year_label: "1622"
+    year_first: 1622
+    year_last: 1622
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 83"
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 1.64
+    note:
+      de: |-
+        6 Skilling Christians IV. (1622) — 1/16 Speciedaler in dänischer Theilung (96 Sk Danske = 1 Sp). ucoin gibt keine Feingehaltsangabe; <em>aus dem Reichsmüntzfuß-Standard .888 hergeleitet</em>. Münzstätte nicht eindeutig: ucoin-Periode «Speciedaler 1582–1624» deckt sowohl Glückstadt (gegr. 1617) als auch Copenhagen ab — vorerst als Glückstadt eingetragen. <b>KM-DK# 83</b>; in Numista nicht katalogisiert.
+      en: |-
+        6 Skilling of Christian IV (1622) — 1/16 Speciedaler in the Danish subdivision (96 Sk Danske = 1 Sp). ucoin does not give the fineness; <em>inferred from the Reichsmüntzfuß standard .888</em>. Mint not unambiguous: the ucoin period «Speciedaler 1582–1624» covers both Glückstadt (founded 1617) and Copenhagen — provisionally entered as Glückstadt. <b>KM-DK# 83</b>; not catalogued by Numista.
+      uk: |-
+        6 Skilling Кристіана IV (1622) — 1/16 Speciedaler у данському поділі (96 Sk Danske = 1 Sp). ucoin не дає проби; <em>виведено зі стандарту Reichsmüntzfuß .888</em>. Монетний двір неоднозначний: період ucoin «Speciedaler 1582–1624» покриває як Глюкштадт (засн. 1617), так і Копенгаген — попередньо внесено як Глюкштадт. <b>KM-DK# 83</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-6-skilling-1622/?tid=163036
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: false
+    mint_verified: false
+    diameter_mm_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 83 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1622). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 83 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1622). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 83 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1622). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x017-chr-iv-1622
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/8"
+    nominal: 12 Skilling
+    year_label: "1622–1623"
+    year_first: 1622
+    year_last: 1623
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 85"
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 3.02
+    diameter_mm: 20.0
+    note:
+      de: |-
+        12 Skilling Christians IV. (1622–1623) — 1/8 Speciedaler. Reichsmüntzfuß-Standardprobe .888. Mzm. nicht eindeutig (ucoin-Periode «Speciedaler 1582–1624» deckt Glückstadt und Copenhagen ab) — vorerst als Glückstadt eingetragen. <b>KM-DK# 85</b>; in Numista nicht katalogisiert.
+      en: |-
+        12 Skilling of Christian IV (1622–1623) — 1/8 Speciedaler. Reichsmüntzfuß standard fineness .888. Mint not unambiguous (ucoin period «Speciedaler 1582–1624» covers Glückstadt and Copenhagen) — provisionally entered as Glückstadt. <b>KM-DK# 85</b>; not catalogued by Numista.
+      uk: |-
+        12 Skilling Кристіана IV (1622–1623) — 1/8 Speciedaler. Стандартна проба Reichsmüntzfuß .888. Монетний двір неоднозначний (період ucoin «Speciedaler 1582–1624» покриває Глюкштадт і Копенгаген) — попередньо внесено як Глюкштадт. <b>KM-DK# 85</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-12-skilling-1622-1623/?tid=163037
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 85 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1622–1623). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 85 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1622–1623). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 85 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1622–1623). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x014-chr-iv-1624
+    fuss: 9_25_thaler
+    phase: A
+    kind: kurant
+    fraction: "2"
+    nominal: 2 Speciedaler
+    year_label: "1624–1634"
+    year_first: 1624
+    year_last: 1634
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 104"
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 58.46
+    diameter_mm: 44.5
+    note:
+      de: |-
+        2 Speciedaler Christians IV. (Glückstadt 1624–1634) — <b>nachfolgender Sondertyp zum km-16 (1623)</b> mit reduziertem Feingehalt .875 (vs. nominaler 9¼-Fuß-Norm .888). Visuell laut Quellen unterscheidbar von km-16 (eigene Reverse-/Obverse-Komposition). Im Schleswig-Holstein-KM-Register nicht erfasst, sondern nur als <b>KM-DK# 104</b> im Royal-Danish-Register. ucoin-Eintrag tid 99114; in Numista nicht direkt katalogisiert (N#468489 deckt nur die 1623-Variante km-16).
+      en: |-
+        2 Speciedaler of Christian IV (Glückstadt 1624–1634) — <b>successor special type to km-16 (1623)</b> with reduced fineness .875 (vs. nominal 9¼-Fuß standard .888). Visually distinct from km-16 per sources (own reverse/obverse composition). Not recorded in the Schleswig-Holstein KM register, only as <b>KM-DK# 104</b> in the Royal Danish register. ucoin entry tid 99114; not catalogued directly by Numista (N#468489 covers only the 1623 km-16 variant).
+      uk: |-
+        2 Speciedaler Кристіана IV (Glückstadt 1624–1634) — <b>наступний спеціальний тип до km-16 (1623)</b> зі зниженою пробою .875 (vs. номінальний 9¼-Fuß-стандарт .888). Візуально відрізняється від km-16 за джерелами (своя композиція реверсу/аверсу). У шлезвіг-гольштинському KM-реєстрі не зафіксовано, лише як <b>KM-DK# 104</b> у данському Royal-реєстрі. ucoin запис tid 99114; у Numista окремо не каталогізовано (N#468489 покриває лише варіант 1623 km-16).
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1624-1634/?tid=99114
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 104 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1624–1634). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 104 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1624–1634). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 104 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1624–1634). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x018-chr-iv-1624
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/8"
+    nominal: 12 Skilling
+    year_label: "1624–1625"
+    year_first: 1624
+    year_last: 1625
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 91"
+    metal: silver
+    fineness: 0.860
+    weight_rough_g: 3.08
+    diameter_mm: 20.0
+    note:
+      de: |-
+        12 Skilling Christians IV. (1624–1625) — Nachfolger zu km-x017 mit reduziertem Feingehalt .860 (vs. .888 1622–1623). Kipper-Wipper-bedingte Theilstückreduktion. Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 91</b>; in Numista nicht katalogisiert.
+      en: |-
+        12 Skilling of Christian IV (1624–1625) — successor to km-x017 with reduced fineness .860 (vs. .888 in 1622–1623). Kipper-Wipper-driven petty-coin reduction. Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 91</b>; not catalogued by Numista.
+      uk: |-
+        12 Skilling Кристіана IV (1624–1625) — наступник km-x017 зі зниженою пробою .860 (vs. .888 у 1622–1623). Зниження Scheide-monet, спричинене Kipper-Wipper-кризою. Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 91</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-12-skilling-1624-1625/?tid=163038
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 91 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1624–1625). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 91 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1624–1625). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 91 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1624–1625). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: km-94-chr-iv-1624
     fuss: kronemont_chr_iv
     phase: A
@@ -650,6 +1230,541 @@ coins:
         ref: ucoin
     issuing_entity: danish_realm
     mint: Kopenhagen
+  - id: km-x019-chr-iv-1627
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/16"
+    nominal: 6 Skilling
+    year_label: "1627–1629"
+    year_first: 1627
+    year_last: 1629
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 109"
+    metal: silver
+    fineness: 0.781
+    weight_rough_g: 1.77
+    diameter_mm: 19.0
+    note:
+      de: |-
+        6 Skilling Christians IV. (1627–1629) — 1/16 Speciedaler bei reduziertem Feingehalt .781 (post-Kipper-Wipper-Reduktion). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. Sub-Variantenpaar zu km-x020 (KM# 110). <b>KM-DK# 109</b>; in Numista nicht katalogisiert.
+      en: |-
+        6 Skilling of Christian IV (1627–1629) — 1/16 Speciedaler at reduced fineness .781 (post-Kipper-Wipper reduction). Mint not unambiguous — provisionally entered as Glückstadt. Sub-variant pair with km-x020 (KM# 110). <b>KM-DK# 109</b>; not catalogued by Numista.
+      uk: |-
+        6 Skilling Кристіана IV (1627–1629) — 1/16 Speciedaler при зниженій пробі .781 (post-Kipper-Wipper-зниження). Монетний двір неоднозначний — попередньо внесено як Глюкштадт. Sub-варіантна пара з km-x020 (KM# 110). <b>KM-DK# 109</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-6-skilling-1627-1629/?tid=97085
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 109 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1627–1629). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 109 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1627–1629). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 109 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1627–1629). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x020-chr-iv-1628
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/16"
+    nominal: 6 Skilling
+    year_label: "1628–1629"
+    year_first: 1628
+    year_last: 1629
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 110"
+    metal: silver
+    fineness: 0.781
+    weight_rough_g: 1.77
+    diameter_mm: 19.0
+    note:
+      de: |-
+        6 Skilling Christians IV. (1628–1629) — Sub-Variante zum km-x019 (KM# 109) mit identischen physischen Parametern. <b>KM-DK# 110</b>; in Numista nicht katalogisiert.
+      en: |-
+        6 Skilling of Christian IV (1628–1629) — sub-variant of km-x019 (KM# 109) with identical physical parameters. <b>KM-DK# 110</b>; not catalogued by Numista.
+      uk: |-
+        6 Skilling Кристіана IV (1628–1629) — sub-варіант km-x019 (KM# 109) з ідентичними фізичними параметрами. <b>KM-DK# 110</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-6-skilling-1628-1629/?tid=97086
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 110 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1628–1629). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 110 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1628–1629). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 110 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1628–1629). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x036-chr-iv-1637
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: "1"
+    nominal: 1 Dukat
+    year_label: "1637"
+    year_first: 1637
+    year_last: 1637
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 124"
+    metal: gold
+    fineness: 0.98
+    weight_rough_g: 3.49
+    note:
+      de: 1 Dukat Christians IV. (1637). Reichsdukatenfuß-Standard 3,49 g .986 (ucoin .98 = Rundung). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 124</b>; in Numista nicht katalogisiert.
+      en: 1 Ducat of Christian IV (1637). Reichsdukatenfuß standard 3.49 g .986 (ucoin .98 = rounding). Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 124</b>; not catalogued by Numista.
+      uk: 1 Dukat Кристіана IV (1637). Стандарт Reichsdukatenfuß 3,49 г .986 (ucoin .98 = округлення). Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 124</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-dukat-1637/?tid=97404
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    diameter_mm_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 124 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1637). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 124 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1637). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 124 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1637). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x033-chr-iv-1644-sixteen
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/6"
+    nominal: 16 Skilling
+    year_label: "1644–1646"
+    year_first: 1644
+    year_last: 1646
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 136"
+    metal: silver
+    fineness: 0.593
+    weight_rough_g: 5.57
+    diameter_mm: 28.0
+    note:
+      de: |-
+        16 Skilling Christians IV. (1644–1646) — 1/6 Speciedaler in dänischer Theilung. Reduzierter Feingehalt .593 (Hebræermünt-Ära, Schweden-Krieg 1644–1648). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 136</b>; in Numista nicht katalogisiert.
+      en: |-
+        16 Skilling of Christian IV (1644–1646) — 1/6 Speciedaler in the Danish subdivision. Reduced fineness .593 (Hebræermünt era, Schweden-Krieg 1644–1648). Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 136</b>; not catalogued by Numista.
+      uk: |-
+        16 Skilling Кристіана IV (1644–1646) — 1/6 Speciedaler у данському поділі. Знижена проба .593 (доба Hebræermünt, Schweden-Krieg 1644–1648). Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 136</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-16-skilling-1644-1646/?tid=97094
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 136 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1644–1646). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 136 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1644–1646). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 136 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1644–1646). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-137-chr-iv-1644
+    fuss: kronemont
+    phase: A
+    kind: tarif
+    fraction: 1/2
+    nominal: 2 Mark Danske
+    year_label: 1644–1646
+    year_first: 1644
+    year_last: 1646
+    ruler: Christian IV. (Kgr. Dänemark, København)
+    catalog:
+      km: '137'
+      numista: '82679'
+    metal: silver
+    fineness: 0.593
+    weight_rough_g:
+      - {value: 11.136, source: Numista}
+      - {value: 11.14, source: ucoin}
+    diameter_mm: 32.0
+    note:
+      de: 'Kopenhagener Pendant zu km-32 (Glückstadter Hebræermønt 1645) — selber Tetragramm יהוה auf der Rückseite, selber reduzierter Feingehalt .593 unter dem Druck des Torstensson-Krieges (1643–1645). Beide Münzstätten — København und Glückstadt — prägten die Hebræermønt parallel; Krause weist sie als getrennte Typen aus (vgl. KM# 32 für die Glückstädter Parallele). Strukturell identisch zu km-32: Tarif unverändert ⅓ Speciedaler, kumulativer Seigniorage-Aufschlag durch das Debasement bei ca. +27,6 %.'
+      en: 'Copenhagen pendant to km-32 (Glückstadt Hebræermønt 1645) — same Tetragrammaton יהוה on the reverse, same reduced fineness .593 under the strain of the Torstensson War (1643–1645). Both mints — Copenhagen and Glückstadt — struck the Hebræermønt in parallel; Krause lists them as separate types (cf. KM# 32 for the Glückstadt parallel). Structurally identical to km-32: tariff unchanged at ⅓ Speciedaler, cumulative seigniorage premium from the debasement at about +27.6 %.'
+      uk: 'Копенгагенська пара до km-32 (ґлюкштатський Hebræermønt 1645) — той самий тетраграматон יהוה на реверсі, та сама знижена проба .593 під тиском Торстенсонської війни (1643–1645). Обидва монетні двори — Копенгаген і Glückstadt — карбували Hebræermønt паралельно; Krause виділяє їх як окремі типи (пор. KM# 32 для ґлюкштатської пари). Структурно ідентично до km-32: тариф незмінний ⅓ Speciedaler, кумулятивна сеньйораж-надбавка через debasement ~+27,6 %.'
+    sources:
+      - type: numista
+        url: https://en.numista.com/82679
+        ref: Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-mark-1644-1646/?tid=99089
+        ref: ucoin
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+  - id: km-x032-chr-iv-1646-half-spec
+    fuss: 9_25_thaler
+    phase: A
+    kind: kurant
+    fraction: "1/2"
+    nominal: ½ Speciedaler
+    year_label: "1646"
+    year_first: 1646
+    year_last: 1646
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 135"
+    metal: silver
+    fineness: 0.88
+    weight_rough_g: 14.62
+    diameter_mm: 35.37
+    note:
+      de: |-
+        ½ Speciedaler Christians IV. (1646) — Theilstück zum km-27 (1 Speciedaler 1644–1648) im 9¼-Fuß. Sister-Sub-Fraktion zur frühen km-14 (½ Sp 1623). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 135</b>; in Numista nicht katalogisiert.
+      en: |-
+        ½ Speciedaler of Christian IV (1646) — sub-fraction of km-27 (1 Speciedaler 1644–1648) on the 9¼-Fuß. Sister sub-fraction to the earlier km-14 (½ Sp 1623). Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 135</b>; not catalogued by Numista.
+      uk: |-
+        ½ Speciedaler Кристіана IV (1646) — sub-фракція до km-27 (1 Speciedaler 1644–1648) у 9¼-Fuß. Сестринська sub-фракція до раніше доданого km-14 (½ Sp 1623). Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 135</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-2-speciedaler-1646/?tid=170135
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 135 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1646). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 135 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1646). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 135 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1646). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x035-chr-iv-1647
+    fuss: 9_25_thaler
+    phase: A
+    kind: kurant
+    fraction: "2"
+    nominal: 2 Speciedaler
+    year_label: "1647"
+    year_first: 1647
+    year_last: 1647
+    ruler: "Christian IV."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 146"
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 58.46
+    diameter_mm: 45.0
+    note:
+      de: |-
+        2 Speciedaler Christians IV. (1647) — Theilstück-Doppelung zum km-27 (1 Speciedaler 1644–1648); Reichsmüntzfuß-Standard .888. Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 146</b>; in Numista nicht katalogisiert.
+      en: |-
+        2 Speciedaler of Christian IV (1647) — double-fraction sister to km-27 (1 Speciedaler 1644–1648); Reichsmüntzfuß standard .888. Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 146</b>; not catalogued by Numista.
+      uk: |-
+        2 Speciedaler Кристіана IV (1647) — sub-фракція-подвоєння до km-27 (1 Speciedaler 1644–1648); стандартна проба Reichsmüntzfuß .888. Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 146</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1647/?tid=97374
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 146 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1647). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 146 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1647). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 146 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1647). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x015-chr-iv-1648
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: "1/16"
+    nominal: 1/16 Dukat
+    year_label: "1648"
+    year_first: 1648
+    year_last: 1648
+    ruler: "Christian IV."
+    catalog:
+      others:
+        - "KM-DK# 174"
+    metal: gold
+    fineness: 0.986
+    weight_rough_g: 0.218
+    note:
+      de: |-
+        1/16 Dukat Christians IV. (1648 — letztes Regierungsjahr, Christian IV. † 28. Februar 1648). Goldemission der Reichsdukatenfuß-Theilung (3,49 g rau / 16 = 0,218 g pro Stück). Münzstätte ist nicht eindeutig: ucoin-Periode «Rigsdaler 1625–1699» deckt sowohl Glückstadt als auch København ab. ucoin gibt weder Rohgewicht noch Feingehalt an — beide Werte hier <em>aus dem Reichsdukatenfuß-Standard berechnet</em>. ucoin-Eintrag tid 97384 (KM-DK# 174); in Numista nicht direkt katalogisiert.
+      en: |-
+        1/16 Ducat of Christian IV (1648 — last regnal year, Christian IV. † 28 February 1648). Gold issue at the Reichsdukatenfuß subdivision (3.49 g rough / 16 = 0.218 g per piece). Mint is not unambiguous: the ucoin period «Rigsdaler 1625–1699» covers both Glückstadt and Copenhagen. ucoin gives neither weight nor fineness — both values here are <em>computed from the Reichsdukatenfuß standard</em>. ucoin entry tid 97384 (KM-DK# 174); not catalogued directly by Numista.
+      uk: |-
+        1/16 Dukat Кристіана IV (1648 — останній рік правління, Кристіан IV † 28 лютого 1648). Золотий випуск Reichsdukatenfuß-поділу (3,49 г груб. / 16 = 0,218 г на штуку). Монетний двір неоднозначний: ucoin-період «Rigsdaler 1625–1699» покриває як Глюкштадт, так і Копенгаген. ucoin не дає ні ваги, ні проби — обидва значення тут <em>обчислено зі стандарту Reichsdukatenfuß</em>. ucoin запис tid 97384 (KM-DK# 174); у Numista окремо не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-16-dukat-1648/?tid=97384
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: false
+    diameter_mm_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 174 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1648). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 174 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1648). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 174 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1648). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+    mint: Kopenhagen
+  - id: km-x021-fr-iii-1649
+    fuss: 9_25_thaler
+    phase: A
+    kind: kurant
+    fraction: "2"
+    nominal: 2 Speciedaler
+    year_label: "1649–1650"
+    year_first: 1649
+    year_last: 1650
+    ruler: "Friedrich III."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 170"
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 58.46
+    diameter_mm: 45.0
+    note:
+      de: |-
+        2 Speciedaler Friedrichs III. (1649–1650) — frühe Regierungsemission (Friedrich III. krönte sich 1648 nach Christian IV.s Tod). Reichsmüntzfuß-Standardprobe .888. Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 170</b>; in Numista nicht katalogisiert.
+      en: |-
+        2 Speciedaler of Frederik III (1649–1650) — early-reign issue (Frederik III was crowned in 1648 after Christian IV's death). Reichsmüntzfuß standard fineness .888. Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 170</b>; not catalogued by Numista.
+      uk: |-
+        2 Speciedaler Фредеріка III (1649–1650) — рання емісія правління (Фредерік III коронований 1648 після смерті Кристіана IV). Стандартна проба Reichsmüntzfuß .888. Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 170</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1649-1650/?tid=97375
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 170 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1649–1650). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 170 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1649–1650). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 170 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1649–1650). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x027-fr-iii-1651
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/96"
+    nominal: 1 Søsling
+    year_label: "1651"
+    year_first: 1651
+    year_last: 1651
+    ruler: "Friedrich III."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 176"
+    metal: copper
+    weight_rough_g: 1.46
+    diameter_mm: 19.8
+    note:
+      de: |-
+        1 Søsling Friedrichs III. (1651) — Kupfer-Scheidemünze, 1/96 Speciedaler-Theilung. Reine Kupferprägung (kein Silbergehalt). Frühes Frederik-III-Stück (regiert 1648–1670). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 176</b>; in Numista nicht katalogisiert.
+      en: |-
+        1 Søsling of Frederik III (1651) — copper petty coin, 1/96 Speciedaler subdivision. Pure copper issue (no silver content). Early Frederik III piece (reigned 1648–1670). Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 176</b>; not catalogued by Numista.
+      uk: |-
+        1 Søsling Фредеріка III (1651) — мідна розмінна монета, поділ 1/96 Speciedaler. Чисто мідний випуск (без вмісту срібла). Ранній екземпляр Фредеріка III (правив 1648–1670). Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 176</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-sosling-1651/?tid=96430
+        ref: ucoin
+    issuing_entity: danish_realm
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 176 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1651). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 176 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1651). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 176 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1651). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x022-fr-iii-1651
+    fuss: kronemont
+    phase: A
+    kind: kurant
+    fraction: "2"
+    nominal: 2 Kroner
+    year_label: "1651"
+    year_first: 1651
+    year_last: 1651
+    ruler: "Friedrich III."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 183"
+    metal: silver
+    fineness: 0.860
+    weight_rough_g: 37.82
+    diameter_mm: 40.4
+    note:
+      de: |-
+        2 Kroner Friedrichs III. (1651) — frühe Krone-Emission, <b>Vorläufer der Pumphosekrone (1665)</b>. Im kronemont-Fuß einsortiert (Standardprobe .672, in Holstein 1644–1696 gültig); die ucoin-Probe .860 ist deutlich höher als die kronemont-Norm — möglicherweise transitionaler Typ mit eigener Norm zwischen Christian IVs Krone-Programm (1644+) und der Pumphosekrone-Reform 1665, oder ucoin-Datenfehler. Δ wird gegenüber dem kronemont-Standard sichtbar überhöht. Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 183</b>; in Numista nicht katalogisiert.
+      en: |-
+        2 Kroner of Frederik III (1651) — early Krone issue, <b>predecessor to the Pumphosekrone (1665)</b>. Filed under the kronemont fuss (standard fineness .672, valid in Holstein 1644–1696); the ucoin fineness .860 sits well above the kronemont norm — likely a transitional type with its own standard between Christian IV's Krone programme (1644+) and the Pumphosekrone reform of 1665, or a ucoin data error. Δ will read visibly high against the kronemont standard. Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 183</b>; not catalogued by Numista.
+      uk: |-
+        2 Kroner Фредеріка III (1651) — рання Krone-емісія, <b>попередник Pumphosekrone (1665)</b>. Внесено в fuss kronemont (стандартна проба .672, у Гольштейні чинний 1644–1696); проба ucoin .860 значно вища за норму kronemont — імовірно транзиційний тип із власним стандартом між Krone-програмою Кристіана IV (1644+) і реформою Pumphosekrone 1665, або помилка даних ucoin. Δ буде помітно завищеним проти стандарту kronemont. Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 183</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-kroner-1651/?tid=97324
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 183 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1651). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 183 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1651). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 183 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1651). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x023-fr-iii-1652
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: "1/2"
+    nominal: ½ Dukat
+    year_label: "1652"
+    year_first: 1652
+    year_last: 1652
+    ruler: "Friedrich III."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 188"
+    metal: gold
+    fineness: 0.980
+    weight_rough_g: 1.75
+    note:
+      de: |-
+        ½ Dukat Friedrichs III. (1652) — frühe Goldemission. Reichsdukatenfuß-Theilung (3,49 g rau / 2 = 1,745 g pro Stück; ucoin-Wert 1,75 g passt exakt). Probe .980 nahe dem Standard .986 (ucoin-Rundung). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 188</b>; in Numista nicht katalogisiert. Schwesterstück: km-x015-chr-iv-1648 (1/16 Dukat 1648, Christian IV).
+      en: |-
+        ½ Ducat of Frederik III (1652) — early gold issue. Reichsdukatenfuß subdivision (3.49 g rough / 2 = 1.745 g per piece; ucoin value 1.75 g matches exactly). Fineness .980 close to the standard .986 (ucoin rounding). Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 188</b>; not catalogued by Numista. Sister type: km-x015-chr-iv-1648 (1/16 Dukat 1648, Christian IV).
+      uk: |-
+        ½ Dukat Фредеріка III (1652) — рання золота емісія. Reichsdukatenfuß-поділ (3,49 г груб. / 2 = 1,745 г на штуку; значення ucoin 1,75 г точно збігається). Проба .980 близька до стандарту .986 (округлення ucoin). Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 188</b>; у Numista не каталогізовано. Сестринський тип: km-x015-chr-iv-1648 (1/16 Dukat 1648, Кристіан IV).
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-2-dukat-1652/?tid=97396
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    diameter_mm_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 188 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1652). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 188 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1652). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 188 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1652). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x034-fr-iii-1655
+    fuss: 9_25_thaler
+    phase: A
+    kind: kurant
+    fraction: "1"
+    nominal: 1 Speciedaler
+    year_label: "1655–1656"
+    year_first: 1655
+    year_last: 1656
+    ruler: "Friedrich III."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 204"
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 28.78
+    diameter_mm: 43.5
+    note:
+      de: |-
+        1 Speciedaler Friedrichs III. (1655–1656) — frühes Mitte-Regierungs-Stück (zwischen Krönung 1648 und der ersten Pumphosekrone 1665). Schwesterstück zu km-51 (1664–1666) und km-x013 (1664-only .875). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 204</b>; in Numista nicht katalogisiert.
+      en: |-
+        1 Speciedaler of Frederik III (1655–1656) — early mid-reign piece (between the 1648 coronation and the first Pumphosekrone of 1665). Sister piece to km-51 (1664–1666) and km-x013 (1664-only .875). Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 204</b>; not catalogued by Numista.
+      uk: |-
+        1 Speciedaler Фредеріка III (1655–1656) — рання середина правління (між коронацією 1648 і першою Pumphosekrone 1665). Сестринська монета до km-51 (1664–1666) та km-x013 (1664-only .875). Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 204</b>; у Numista не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1655-1656/?tid=97361
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    mint_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 204 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1655–1656). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 204 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1655–1656). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 204 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1655–1656). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+  - id: km-x013-fr-iii-1664
+    fuss: 9_25_thaler
+    phase: A
+    kind: kurant
+    fraction: "1"
+    nominal: 1 Speciedaler
+    year_label: "1664"
+    year_first: 1664
+    year_last: 1664
+    ruler: "Friedrich III."
+    mint: "Kopenhagen"
+    catalog:
+      others:
+        - "KM-DK# 250"
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 28.78
+    note:
+      de: |-
+        1 Speciedaler Friedrichs III. (Glückstadt 1664) — <b>Sondertyp mit reduziertem Feingehalt .875</b> (vs. dem Standard-9¼-Fuß-Wert .888 für die parallele Hauptemission km-51 1664–1666). Im Schleswig-Holstein-KM-Register nicht erfasst, sondern nur als <b>KM-DK# 250</b> im Royal-Danish-Register. ucoin-Eintrag tid 97365; in Numista nicht direkt katalogisiert.
+      en: |-
+        1 Speciedaler of Frederik III (Glückstadt 1664) — <b>special type with reduced fineness .875</b> (vs. the standard 9¼-Fuß value .888 of the parallel main issue km-51 1664–1666). Not recorded in the Schleswig-Holstein KM register, only as <b>KM-DK# 250</b> in the Royal Danish register. ucoin entry tid 97365; not catalogued directly by Numista.
+      uk: |-
+        1 Speciedaler Фредеріка III (Glückstadt 1664) — <b>спеціальний тип зі зниженою пробою .875</b> (vs. стандартне для 9¼-Fuß значення .888 паралельної основної емісії km-51 1664–1666). У шлезвіг-гольштинському KM-реєстрі не зафіксовано, лише як <b>KM-DK# 250</b> у данському Royal-реєстрі. ucoin запис tid 97365; у Numista окремо не каталогізовано.
+    sources:
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1664/?tid=97365
+        ref: ucoin
+    issuing_entity: danish_realm
+    fineness_verified: true
+    diameter_mm_verified: false
+    verification_note:
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 250 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1664). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 250 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1664). Mint still (?) — no direct Hede / Wilcke attestation.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 250 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1664). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+    mint_verified: false
+  - id: km-303-fr-iii-1668
+    fuss: guldkrone
+    phase: B
+    kind: tarif
+    fraction: "1"
+    nominal: 1 Guldkrone
+    year_label: "1668"
+    year_first: 1668
+    year_last: 1668
+    ruler: "Friedrich III."
+    mint: "Kopenhagen"
+    mintmaster: "Gotfred Krüger"
+    catalog:
+      km: "303"
+      fr: "92"
+      numista: '308327'
+    metal: gold
+    fineness: 0.91667
+    weight_rough_g: 5.47
+    diameter_mm: 26.2
+    note:
+      de: |-
+        1 Guldkrone Frederik III. (Kopenhagen 1668) · Mzm. <b>Gotfred Krüger</b> (Kopenhagen 1664–1680), Mzz. <b>GK</b>. Avers «FRID • III • D • G • DAN • NOR • V • G • REX» mit lorbeergeschmückter Büste in Rüstung mit Löwenköpfen auf der Schulter; Revers Krone von Dänemark zentral, Devise «<i>Dominus Providebit</i>» kursiv darüber, Wertangabe und Datum «XVIII • M • 1668 • G • K •» darunter. Tarif gegenüber Glückstadt 1657–1660 von 3½ auf <b>3 Speciedaler = 18 Mark Dansk</b> reduziert; Raugewicht entsprechend von 5,996 auf 5,47 g abgesenkt; Feingehalt unverändert .917 (22 Karat).<br><br>
+        <b>Außerhalb Holsteins</b> — Münzstätte Kopenhagen, hier zur Vollständigkeit der Frederik-III.-Tarif-Serie aufgenommen. Δ-Spalte gegen die kanonische Glückstadter Form (5,498 g fein, 39 Stück je Cöllnische Marck) zeigt die ≈ 8,8 % Senkung des Raugewichts.
+      en: |-
+        1 Guldkrone of Frederik III (Copenhagen 1668) · mintmaster <b>Gotfred Krüger</b> (Copenhagen 1664–1680), mintmark <b>GK</b>. Obverse «FRID • III • D • G • DAN • NOR • V • G • REX» with laureate bust in armour with lion heads on the shoulder; reverse Crown of Denmark in centre, motto «<i>Dominus Providebit</i>» in italic above, value and date «XVIII • M • 1668 • G • K •» below. Tariff reduced from the Glückstadt 1657–1660 standard of 3½ to <b>3 Speciedaler = 18 Mark Dansk</b>; rough weight correspondingly lowered from 5.996 to 5.47 g; fineness unchanged at .917 (22 carat).<br><br>
+        <b>Outside Holstein</b> — Copenhagen mint, included here for completeness of the Frederik III tariff series. The Δ column against the canonical Glückstadt form (5.498 g fine, 39 pieces per Cologne mark) reflects the ≈ 8.8 % reduction in rough weight.
+      uk: |-
+        1 Guldkrone Фредеріка III (Копенгаген 1668) · монетмайстер <b>Gotfred Krüger</b> (Копенгаген 1664–1680), монограма <b>GK</b>. Аверс «FRID • III • D • G • DAN • NOR • V • G • REX» з лавровим бюстом у обладунку з левиними голівками на плечі; реверс — корона Данії в центрі, девіз «<i>Dominus Providebit</i>» курсивом над, номінал і дата «XVIII • M • 1668 • G • K •» під короною. Тариф знижено з ґлюкштадтського 1657–1660 з 3½ до <b>3 Speciedaler = 18 Mark Dansk</b>; повну вагу відповідно зменшено з 5,996 до 5,47 г; пробу не змінено .917 (22 карати).<br><br>
+        <b>Поза Гольштейном</b> — копенгагенський монетний двір, включено для повноти тарифної серії Фредеріка III. Стовпець Δ щодо канонічної ґлюкштадтської форми (5,498 г чистого, 39 штук на кельнську марку) відображає ≈ 8,8 % зниження повної ваги.
+    sources:
+      - type: numista
+        url: "https://en.numista.com/308327"
+        ref: "Numista"
+      - type: web
+        url: "https://www.danskmoent.dk/c5.htm"
+        ref: "danskmoent.dk · MM Krüger"
+    issuing_entity: danish_realm
+    fineness_verified: true
   - id: km-542-chr-v-1738
     fuss: reichsdukatenfuss
     phase: B
