@@ -339,14 +339,12 @@ reichsdukatenfuss:
       anywhere: 1875
       holstein: 1866
       note: anywhere demon 1875 = Reichsmünzgesetz aftermath (Hamburg, Lübeck conversion).
-    # sole_start / sole_end intentionally NOT set: 9¼-Fuß was the
-    # principal Kurant silver standard in Holstein 1788-1813, but the
-    # parallel Reichsdukatenfuß (gold) and surviving Krone / Hebræer-
-    # mønt coins kept the standard from being absolutely sole. After
-    # 1813 it ran in parallel with 18½-Fuß Rigsbankdaler (1 Speciedaler
-    # = 2 Rigsbankdaler — same fine-silver content via different
-    # denomination units). «Principal» yes; «sole» strictly speaking
-    # never.
+    sole_start:
+      holstein: 1788
+      note: 'H sole-start 1788 = Schimmelmann-Reform: Holstein wird vom dänisch-norwegischen Kurantmøntfod (11⅓-Th-Fuß) ausgegliedert; 9¼-Fuß bleibt der einzige operative Silber-Kurant-Standard für Holstein. Sole hier = sole silver-Kurant standard within its niche; the parallel Reichsdukatenfuß (gold) is a different metal niche and does not disqualify «sole», nor do surviving older coins (Krone, Hebræermønt etc.) circulating as bullion-value money rather than as operating standards. anywhere = null because within the broader Helstaten 9¼-Fuß ran parallel with the Kurantmøntfod (1726+) until Statsbankerot 1813.'
+    sole_end:
+      holstein: 1813
+      note: 'H sole-end 1813 = Statsbankerot Forordning 5. Jan 1813 introduces 18½-Fuß-Rigsbankdaler. Note: 9¼-Fuß Speciedaler continues to be minted in parallel as trade coinage (~7 in our base 1813-1854), so neither 9¼ nor 18½ is sole post-1813 — they nest into one monetary system (1 Speciedaler = 2 Rigsbankdaler, same fine-silver content).'
     anywhere_label:
       de: Dänemark + Hansestädte
       en: Denmark + Hanseatic cities
@@ -780,13 +778,16 @@ reichsdukatenfuss:
       anywhere: 1875
       holstein: 1866
     # sole_start / sole_end intentionally NOT set: 18½-Fuß was the
-    # PRINCIPAL Kurant standard 1813-1875 (anywhere) / 1813-1866 (H),
-    # but Speciedaler at 9¼-Fuß continued to be minted in parallel
-    # (~7 coins in our base 1813-1854 from Altona alone) as trade
-    # coinage. The two standards relate mathematically (1 Speciedaler
-    # = 2 Rigsbankdaler at the same fine-silver content) and were
-    # nested into one monetary system rather than one replacing the
-    # other. «Principal» yes; «sole» strictly speaking never.
+    # PRINCIPAL Kurant standard / legal tender 1813-1875 (anywhere) /
+    # 1813-1866 (H) — i.e. «чинний», not «єдиний». Even within the
+    # silver-Kurant niche it was not sole: 9¼-Fuß Speciedaler continued
+    # to be minted in parallel (~7 coins in our base 1813-1854 from
+    # Altona alone) as the higher-class trade-coinage variant. The two
+    # standards relate mathematically (1 Speciedaler = 2 Rigsbankdaler
+    # at the same fine-silver content) and were nested into one monetary
+    # system rather than one replacing the other. Compare 9¼-Fuß
+    # 1788-1813, which DID get sole-marker because it was the operative
+    # silver-Kurant standard with no competing silver-Kurant rival.
     anywhere_label:
       de: Dänischer Gesamtstaat (Helstaten)
       en: Danish composite state (Helstaten)
