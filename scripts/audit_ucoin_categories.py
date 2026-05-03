@@ -369,6 +369,19 @@ def main():
         "163638": ("A_ALREADY",              "Added as km-x007-chr-iv-1620 (4 Sk Lybsk Glückstadt, sibling to km-x005; KM-DK# 9)"),
         "163670": ("A_ALREADY",              "Added as km-72-chr-v-1682 — separate Krause type from km-70.1 (1682-only, .979, Hede 117); km-70-1 simultaneously cleaned to be only Coin B"),
         "163671": ("K_WRONG_DATA_IGNORE",    "ucoin '1 krone' 3g .917 — same coin as our km-40-2 Guldkrone (5.996g .917) per Numista N#306974 but with corrupted ucoin weight (3g = exactly half of correct value); data unreliable, do not import"),
+        # ----- Group D-MED-PRE-1617: 10 pre-1617 entries, definitively Copenhagen -----
+        # (Glückstadt mint was founded in 1617 — anything before that year cannot
+        #  be Glückstadt-mint regardless of which Period ucoin files them under)
+        "162984": ("H_COPENHAGEN_CONFIRMED", "Frederik II 1 Hvid 1582-1583, billon — pre-Glückstadt → Copenhagen"),
+        "163001": ("H_COPENHAGEN_CONFIRMED", "Frederik II 1 Skilling 1582-1583 .187 — pre-Glückstadt → Copenhagen"),
+        "163011": ("H_COPENHAGEN_CONFIRMED", "Frederik II 2 Skilling 1582-1585 .312 — pre-Glückstadt → Copenhagen"),
+        "163030": ("H_COPENHAGEN_CONFIRMED", "Frederik II 8 Skilling 1582-1585 .610 — pre-Glückstadt → Copenhagen"),
+        "163075": ("H_COPENHAGEN_CONFIRMED", "Christian IV 10 Ducat 1588 GOLD (accession piece, UC# 10) — pre-Glückstadt → Copenhagen"),
+        "163012": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Skilling 1594-1596 .312 — pre-Glückstadt → Copenhagen"),
+        "163067": ("H_COPENHAGEN_CONFIRMED", "Christian IV 4 Mark 1596 .937 (high-fineness rarity) — pre-Glückstadt → Copenhagen"),
+        "163071": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Speciedaler 1597-1600 .888 — pre-Glückstadt → Copenhagen"),
+        "163409": ("H_COPENHAGEN_CONFIRMED", "Christian IV 4 Daler 1604 GOLD .833 — pre-Glückstadt → Copenhagen"),
+        "163074": ("H_COPENHAGEN_CONFIRMED", "Christian IV 2 Speciedaler 1607 .888 — pre-Glückstadt → Copenhagen"),
         # ----- Group D-HIGH (4 reviewed 2026-05-03 from D_DENMARK_HOLSTEIN_MINT pre-screen): -----
         "97365":  ("A_ALREADY",              "Added as km-x013-fr-iii-1664 (Frederik III Glückstadt 1 Speciedaler 1664-only at .875 — separate type from km-51 1664-1666 .888 per user verification of fineness mismatch)"),
         "99114":  ("A_ALREADY",              "Added as km-x014-chr-iv-1624 (Christian IV Glückstadt 2 Speciedaler 1624-1634 at .875 — visually distinct from km-16 1623 per user verification)"),

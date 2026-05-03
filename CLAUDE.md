@@ -270,6 +270,7 @@ UI strings (column headers, navigation, buttons) live in `data/i18n/ui.yml`.
 3. **Rounding silently.** All numbers in YAML must be traceable. If the source says 3.46 g, store 3.46 not 3.5.
 4. **Fixing YAML in one place while leaving equivalent issue elsewhere.** E.g., don't rename KM# 82's nominal without checking KM# 42.1 for the same pattern.
 5. **Leaving HTML hand-edits in site/.** site/ is regenerable. If the fix belongs there, it belongs in the template or data.
+6. **Proposing a coin-merge without checking metal/composition first.** When suggesting that a ucoin/Numista entry is the same coin as an existing base entry (i.e. fold-as-alt), **metal must be a hard filter** before nominal/year/weight overlap. Two coins of the same denom + year + ruler but different metals (gold vs silver, billon vs copper) are NEVER the same type — they're related issues at most. Pre-screen scripts that match by year + denom token overlap will produce false positives if they ignore composition; always include the metal field in the comparison output and flag mismatches as automatic disqualifiers, not «similar candidates worth checking». Same applies to fineness mismatches beyond ~2 % — different fineness usually means different Krause sub-variant.
 
 ## Checking your work
 
