@@ -182,6 +182,7 @@ def build_location(
         bar_layers = compute_bar_layers(
             loc.timeline.bars, fuesse,
             loc.timeline.year_from, loc.timeline.year_to,
+            loc_coins=loc.coins,
         )
         # Per-bar list of consecutive-year runs marking every year a coin
         # was actually minted under that stope (per data/locations/<loc>.yml

@@ -241,11 +241,55 @@ def compute_coin_year_runs(
     return out
 
 
+# --- Per-fuss territory classification (Schleswig duchy / Holstein duchy) ---
+#
+# The `holstein` scope in events.yml is a historical label for "in this
+# location's territory" — but the location actually covers BOTH Schleswig
+# and Holstein duchies. For each fuss we look at where the actual minting
+# happened and pick the scope label per the data:
+#   - both duchies → "Schleswig-Holstein"
+#   - Holstein-only → "Holstein"
+#   - Schleswig-only → "Schleswig"
+#   - neither (no in-scope mints) → "Holstein" (legacy fallback)
+
+SCHLESWIG_DUCHY_MINTS = {"Schleswig", "Tönning", "Husum", "Hadersleben",
+                          "Apenrade", "Sonderburg", "Norburg", "Augustenburg"}
+HOLSTEIN_DUCHY_MINTS = {"Glückstadt", "Altona", "Poppenbüttel", "Reinfeld",
+                         "Steinbek", "Plön", "Eutin", "Burg auf Fehmarn",
+                         "Rendsburg", "Kiel", "Oldendorf"}
+
+
+def _classify_fuss_territory(fuss_id: str, loc_coins: list) -> str:
+    """Pick the `tl.scope.<X>` ui key for this fuss based on actual mint cities.
+    Returns: 'holstein' | 'schleswig' | 'schleswig_holstein'."""
+    has_schleswig = False
+    has_holstein = False
+    for c in loc_coins:
+        if c.fuss != fuss_id:
+            continue
+        mint = (c.mint or "").strip()
+        if not mint:
+            continue
+        # Tokenise on commas to handle joint-mint strings like
+        # "Altona, Kopenhagen" — count Altona toward Holstein-duchy.
+        for token in [t.strip() for t in mint.split(",")]:
+            if token in SCHLESWIG_DUCHY_MINTS:
+                has_schleswig = True
+            if token in HOLSTEIN_DUCHY_MINTS:
+                has_holstein = True
+    if has_schleswig and has_holstein:
+        return "schleswig_holstein"
+    if has_schleswig:
+        return "schleswig"
+    return "holstein"  # default — Holstein-only or no-mint fallback
+
+
 def compute_bar_layers(
     bars: list,
     fuesse: dict,
     tl_year_from: int,
     tl_year_to: int,
+    loc_coins: list | None = None,
 ) -> dict[str, list[dict]]:
     """For each timeline bar, derive the up-to-six period × scope layers
     (mint × {anywhere, holstein}, status × {anywhere, holstein},
@@ -264,7 +308,13 @@ def compute_bar_layers(
         "length":    int,                 # last - first
         "left_pct":  float (0..100),
         "width_pct": float (0..100),
+        "scope_label_key": "tl.scope.holstein" | "tl.scope.schleswig"
+                           | "tl.scope.schleswig_holstein",
       }
+
+    `scope_label_key` is computed per-fuss from the actual mint cities of
+    the location's coins (passed via `loc_coins`). When omitted, defaults
+    to `tl.scope.holstein` for the holstein-side layers (legacy behaviour).
 
     Layers with first/last == None (e.g. holstein-side of a Copenhagen-only
     standard, or no-local-mint stopes like Vereinsthaler in H) are skipped
@@ -282,6 +332,12 @@ def compute_bar_layers(
         if events is None:
             out[bar.id] = []
             continue
+
+        # Pick scope label key based on actual mint cities for this fuss.
+        scope_label_key = "tl.scope.holstein"  # legacy default
+        if loc_coins is not None:
+            territory = _classify_fuss_territory(bar.id, loc_coins)
+            scope_label_key = f"tl.scope.{territory}"
 
         layers: list[dict] = []
         anywhere_label = getattr(events, "anywhere_label", None)
@@ -305,6 +361,7 @@ def compute_bar_layers(
                 "first_approx": first_approx,
                 "last_approx": last_approx,
                 "anywhere_label": anywhere_label,  # I18nText | None — per-stope label
+                "scope_label_key": scope_label_key,
             })
 
         # mint = [first_mint, last_mint]

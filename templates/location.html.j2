@@ -495,7 +495,10 @@
                a leading «~». #}
             {%- set _kind_lbl = ui_get('tl.layer.' ~ layer.kind) -%}
             {%- if layer.scope == 'holstein' -%}
-              {%- set _scope_lbl = ui_get('tl.scope.holstein') -%}
+              {# Per-fuss scope label key — one of tl.scope.holstein /
+                 tl.scope.schleswig / tl.scope.schleswig_holstein, derived
+                 from the actual mint cities of this fuss's coins. #}
+              {%- set _scope_lbl = ui_get(layer.scope_label_key or 'tl.scope.holstein') -%}
             {%- elif layer.anywhere_label -%}
               {%- set _scope_lbl = layer.anywhere_label|t(lang) -%}
             {%- else -%}
