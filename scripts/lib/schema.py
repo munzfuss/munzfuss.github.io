@@ -131,7 +131,7 @@ class FussEvent(_StrictBase):
 
 
 class FussEvents(_StrictBase):
-    """Five canonical historical events per stope.
+    """Five canonical historical events plus optional «sole» bookmarks.
 
     These atomic events are the source of truth. The three nested
     period types (visible as ▓ ⊂ ▒ ⊂ ░ in the timeline schematic)
@@ -140,6 +140,13 @@ class FussEvents(_StrictBase):
       mint         = [first_mint, last_mint]                   (▓)
       status       = [first_adoption, std_end]                 (▒)
       circulation  = [first_adoption, demonetisation]          (░)
+      sole         = [sole_start, sole_end]                    (✦)
+                     OPTIONAL — only set when the standard had a
+                     distinct period of being the SOLE legal tender,
+                     different from its broader status period. E.g.
+                     Reichsgoldmuenzfuß had legal-tender status
+                     1871-1914, but only became sole legal tender 1907
+                     (after Vereinsthaler demon) → 1914 (war suspension).
 
     Storing events (not periods) avoids duplication: when first_mint
     coincides with first_adoption (the standard was minted from year
@@ -155,6 +162,8 @@ class FussEvents(_StrictBase):
     last_mint: FussEvent | None = None
     std_end: FussEvent | None = None
     demonetisation: FussEvent | None = None
+    sole_start: FussEvent | None = None
+    sole_end: FussEvent | None = None
     anywhere_label: I18nText | None = None
     """Short translatable label for the `anywhere` scope, used in
     layer tooltips. Concretely identifies *where* "anywhere" means

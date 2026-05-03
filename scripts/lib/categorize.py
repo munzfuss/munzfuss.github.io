@@ -379,6 +379,21 @@ def compute_bar_layers(
         for scope in ("anywhere", "holstein"):
             _add("circulation", scope, fa, de_)
 
+        # sole = [sole_start, sole_end] — OPTIONAL; only emit a layer when
+        # the sole-period years actually differ from the status-period years
+        # for that scope. If they coincide, the «sole» bar would visually
+        # duplicate the status bar and add no information.
+        ss, se_sole = events.sole_start, events.sole_end
+        if ss is not None and se_sole is not None:
+            for scope in ("anywhere", "holstein"):
+                sole_start = getattr(ss, scope, None)
+                sole_end = getattr(se_sole, scope, None)
+                status_start = getattr(fa, scope, None) if fa else None
+                status_end = getattr(se, scope, None) if se else None
+                if (sole_start is not None and sole_end is not None
+                        and (sole_start, sole_end) != (status_start, status_end)):
+                    _add("sole", scope, ss, se_sole)
+
         # Sort layers so the rendered DOM order = bottom-to-top stacking,
         # with the topmost layer winning hover at any overlap point.
         #
@@ -399,7 +414,7 @@ def compute_bar_layers(
         # status_h or circ_h on top and shadowed the mint_h tooltip the
         # user actually wanted to see.
         _SCOPE_PRIORITY = {"anywhere": 0, "holstein": 1}
-        _KIND_PRIORITY = {"circulation": 0, "status": 1, "mint": 2}
+        _KIND_PRIORITY = {"circulation": 0, "status": 1, "mint": 2, "sole": 3}
         layers.sort(key=lambda l: (
             -l["length"],
             _SCOPE_PRIORITY[l["scope"]],
