@@ -27,7 +27,10 @@
       {%- if prefix -%}
         <span class="cat-group"><span class="cat-prefix">{{ prefix }}#</span> {{ vals | join(', ') }}</span>
       {%- else -%}
-        <span class="cat-group cat-plain">{{ vals | join('; ') }}</span>
+        {%- for v in vals -%}
+          <span class="cat-group cat-plain">{{ v }}</span>
+          {%- if not loop.last %}<br>{% endif -%}
+        {%- endfor -%}
       {%- endif -%}
       {%- if not loop.last %}<br>{% endif -%}
     {%- endfor -%}
@@ -240,7 +243,10 @@
       {%- if prefix -%}
         <span class="cat-group"><span class="cat-prefix">{{ prefix }}#</span> {{ vals | join(', ') }}</span>
       {%- else -%}
-        <span class="cat-group cat-plain">{{ vals | join('; ') }}</span>
+        {%- for v in vals -%}
+          <span class="cat-group cat-plain">{{ v }}</span>
+          {%- if not loop.last %}<br>{% endif -%}
+        {%- endfor -%}
       {%- endif -%}
       {%- if not loop.last %}<br>{% endif -%}
     {%- endfor -%}
