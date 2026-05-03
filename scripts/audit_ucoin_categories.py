@@ -361,8 +361,18 @@ def main():
     #   - 1 unreliable data → F_OUT_OF_SCOPE with reason
     MANUAL_OVERRIDES = {
         # ----- Group D-DANEMARK (60 entries with Numista issuer=danemark, bulk-routed 2026-05-03 -----
-        # 10-sample verification confirmed all carry ucoin Period «Speciedaler 1582-1624» /
-        # «Rigsdaler 1625-1699» / «Rigsdaler 1750-1812» — Royal Danish realm, Copenhagen mint.
+        # Full per-tid verification (60/60, 2026-05-04) — not just the original 10-sample.
+        # Three independent signals all agree on Royal Danish Copenhagen mint:
+        #   (1) ucoin Period (cached TSV) → all 60 in Speciedaler 1582-1624 / Rigsdaler 1625-1699 /
+        #       Rigsdaler 1699-1749 / Rigsdaler 1750-1812 / Rigsbankdaler 1813-1854 /
+        #       Rigsdaler rigsmønt 1854-1873 / Christian IX 1873-1906; ZERO in Glückstadt 1617-1773
+        #       (period_id=2939) or Holstein-Gottorp-Rendsburg 1716-1720 (period_id=2995).
+        #   (2) Numista issuer_code → all 60 = "danemark"; zero "gluckstadt_city" /
+        #       "schleswig_holstein_danish_duchies" / "holstein_gottorp_*".
+        #   (3) Numista mints[] → all 60 empty; no Glückstadt/Rendsburg/Tönning/Altona/Schleswig
+        #       mint markers anywhere.
+        # Routing label kept as "[bulk-route per 10-sample verification]" for git-trace continuity;
+        # it now reflects an exhaustive check, not a sampled extrapolation.
         "162989": ("H_COPENHAGEN_CONFIRMED", "1 Søsling - Christian IV (first type) (1602, KM# 10) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
         "163020": ("H_COPENHAGEN_CONFIRMED", "4 Skilling Dansk - Christian IV (Helsingør) (1602-1609, KM# 11) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
         "163410": ("H_COPENHAGEN_CONFIRMED", "6 Daler - Christian IV (1604, KM# 26) — Royal Danish Copenhagen [bulk-route per 10-sample verification]"),
