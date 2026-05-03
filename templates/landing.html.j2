@@ -56,7 +56,7 @@
 </div>
 
 <footer>
-  <span class="ftr-l">{{ ui_get('meta.generated') }}: {{ fmt_date(generated_date) }}{% if repo_url %} · <a href="{{ repo_url }}">{{ ui_get('meta.source_data') }}</a>{% endif %}</span>
+  <span class="ftr-l">{{ ui_get('meta.generated') }}: {{ fmt_date(generated_date) }}{% if repo_url %} · <a href="{{ repo_url }}">{{ ui_get('meta.source_data') }}</a>{% endif %}{% if contact_email %} · <a href="mailto:{{ contact_email }}">{{ ui_get('meta.contact') }}</a>{% endif %}</span>
   <span class="ftr-r">Müntzfüße · CC-BY-SA</span>
 </footer>
 

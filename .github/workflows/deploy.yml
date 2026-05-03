@@ -41,8 +41,11 @@ jobs:
         # base_path is provided by configure-pages: "/repo-name" for project pages,
         # "/" for user/org pages and custom domains. We strip a lone "/" so it
         # doesn't produce double slashes when prefixed to asset URLs.
+        # CONTACT_EMAIL: optional GitHub Actions secret; if unset, the landing
+        # footer simply omits the «Contact» link (no error).
         env:
           PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
         run: |
           BASE_URL="${PAGES_BASE_PATH%/}"
           python scripts/build.py \

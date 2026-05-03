@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import sys
 from datetime import datetime
@@ -248,6 +249,7 @@ def build_landing(
     env: Environment,
     repo_url: str = "",
     base_url: str = "",
+    contact_email: str = "",
 ) -> None:
     tmpl = env.get_template("landing.html.j2")
     generated_date = datetime.now().strftime("%Y-%m-%d")
@@ -278,6 +280,7 @@ def build_landing(
             generated_date=generated_date,
             repo_url=repo_url,
             base_url=base_url,
+            contact_email=contact_email,
             ui_get=lambda k, l=lang: i18n.ui_get(ui, k, l),
             t=lambda v, l=lang: i18n.t(v, l),
             fmt_date=lambda d, l=lang: i18n.fmt_date(d, l),
@@ -409,8 +412,15 @@ def main():
                        issuing_entities=issuing_entities, base_url=base_url)
 
     if len(locations) > 1 or not args.location:
+        # Pull contact email from local.env (or process env). Falls back to
+        # empty string → footer just hides the «Contact» link.
+        from lib.env import load_local_env
+        load_local_env()
+        contact_email = os.environ.get("CONTACT_EMAIL", "")
+
         build_landing(locations, ui, theme, languages, env,
-                      repo_url=args.repo_url, base_url=base_url)
+                      repo_url=args.repo_url, base_url=base_url,
+                      contact_email=contact_email)
 
     generate_assets(theme)
     
