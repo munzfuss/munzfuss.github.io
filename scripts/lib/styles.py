@@ -1018,7 +1018,10 @@ h2[style] {{
    and made tooltips invisible. */
 .tl-bar-layer-fade-start, .tl-bar-layer-fade-end {{
   background-color: transparent !important;  /* paint via ::before instead */
-  position: relative;
+  /* base .tl-bar-layer already has `position: absolute` — DON'T override
+     it (relative would collapse the layer's positioning, hiding it). The
+     existing absolute already serves as the containing block for the
+     ::before overlay. */
 }}
 .tl-bar-layer-fade-start::before, .tl-bar-layer-fade-end::before {{
   content: '';
