@@ -519,7 +519,7 @@
             {%- endif -%}
             {%- set _y0 = ('~' ~ layer.first) if layer.first_approx else layer.first -%}
             {%- set _y1 = ('~' ~ layer.last) if layer.last_approx else layer.last -%}
-            <div class="tl-bar-layer {{ bar.color_class }} tl-bar-layer-{{ layer.kind }} tl-bar-layer-{{ layer.scope }}"
+            <div class="tl-bar-layer {{ bar.color_class }} tl-bar-layer-{{ layer.kind }} tl-bar-layer-{{ layer.scope }}{% if layer.first_approx %} tl-bar-layer-fade-start{% endif %}{% if layer.last_approx %} tl-bar-layer-fade-end{% endif %}"
                  style="left:{{ layer.left_pct }}%;width:{{ layer.width_pct }}%"
                  data-tooltip="{{ _kind_lbl }} · {{ _scope_lbl }} · {{ _y0 }}—{{ _y1 }}"
                  aria-hidden="true"></div>

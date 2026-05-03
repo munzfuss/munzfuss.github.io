@@ -1000,6 +1000,25 @@ h2[style] {{
   /* No border-radius on layers — the parent .tl-bar paints the rounded
      corners via its own border-radius; layers inside align to its edges. */
 }}
+/* Approximate-year edges: when a layer's first or last year carries the
+   `~` marker (e.g. last_mint.holstein = ~1813), fade the corresponding
+   end of the layer to ~30 % alpha so the visual conveys uncertainty.
+   Uses CSS mask so the fade applies regardless of the layer's actual
+   colour — works across all themes / palettes. The opaque-portion
+   (last 25 % of the layer) keeps the colour solid so the layer remains
+   identifiable; only the outer 25 % fades. */
+.tl-bar-layer-fade-end {{
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 75%, rgba(0, 0, 0, 0.3) 100%);
+          mask-image: linear-gradient(to right, #000 0%, #000 75%, rgba(0, 0, 0, 0.3) 100%);
+}}
+.tl-bar-layer-fade-start {{
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, #000 25%, #000 100%);
+          mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, #000 25%, #000 100%);
+}}
+.tl-bar-layer-fade-start.tl-bar-layer-fade-end {{
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, #000 25%, #000 75%, rgba(0, 0, 0, 0.3) 100%);
+          mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, #000 25%, #000 75%, rgba(0, 0, 0, 0.3) 100%);
+}}
 /* On Atlas (cream paper) plus-lighter on dark layer colours doesn't lift
    to the saturated `to` colour by addition — `lighten` would clip. We
    accept slightly muted Atlas/Codex colours; the period decomposition is
