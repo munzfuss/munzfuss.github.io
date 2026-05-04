@@ -355,6 +355,14 @@ class Coin(_StrictBase):
         return self
 
 
+class HiddenLayer(_StrictBase):
+    """One (scope, kind) pair to suppress on a single TimelineBar.
+    Used in `TimelineBar.hide_layers` for granular per-page visibility
+    filtering — see the docstring there for context and use cases."""
+    scope: Literal["anywhere", "holstein"]
+    kind: Literal["mint", "status", "circulation", "sole"]
+
+
 class TimelineBar(_StrictBase):
     id: str
     label: I18nText
@@ -374,6 +382,37 @@ class TimelineBar(_StrictBase):
                                         # used for stopes that appear on the timeline but
                                         # are NOT defined in shared/fuesse.yml as a Fuß
                                         # (e.g. Reichsgoldmünzfuß is a contextual entry only)
+    truncate_anywhere_after: int | None = None
+    """Cap the `anywhere` scope's `last` year for this bar at this value;
+    drop the layer entirely when its `first` year is already past the cutoff.
+    Use case: on the Holstein page, Danish-Helstaten stopes (kronemont,
+    9¼-Fuß, 18½-Fuß etc.) continued in Copenhagen after the Prussian
+    annexation 24 Aug. 1866, but that continuation is no longer relevant
+    to a Holstein-page timeline; setting `truncate_anywhere_after: 1866`
+    on those bars sharply cuts every anywhere-scope layer at 1866 (status,
+    circulation, mint, sole) without touching the holstein-scope layers
+    (which already terminate at 1866 in their `events`)."""
+    hide_anywhere: bool = False
+    """When `true`, suppress all anywhere-scope layers (mint, status,
+    circulation, sole) for this bar — render only the holstein-scope
+    layers. The underlying events in `data/shared/fuesse.yml` are
+    preserved; this is a per-page visibility flag. Use case: on the
+    Holstein page the 9-Thaler-Fuß bar's anywhere-extent (1566—1875,
+    Hamburg/Lübeck Bank-Mark continuation) is Reich-/Hanseatic-broad
+    context that distracts from the Holstein-narrative the bar is meant
+    to convey; hiding the anywhere layers keeps only the Holstein-
+    territorial story (1566—1625 mint, 1566—~1700 circulation)."""
+    hide_layers: list["HiddenLayer"] = Field(default_factory=list)
+    """Per-bar visibility filter — suppress specific (scope, kind) layers
+    while keeping the rest of the bar visible. Finer-grained than
+    `hide_anywhere` (which kills every anywhere-scope layer at once).
+    Use case: on the Holstein page the Krone bars (kronemont,
+    kronemont_chr_iv, kronemont_fine) carry an anywhere-circulation
+    layer (Helstaten-wide circulation until Statsbankerot 1813) that is
+    Danish-Norwegian-broad and not relevant to the Holstein narrative;
+    setting `hide_layers: [{scope: anywhere, kind: circulation}]` on
+    those bars suppresses just that one layer while leaving the
+    anywhere-mint and anywhere-status layers intact."""
 
 
 class Timeline(_StrictBase):
@@ -382,6 +421,13 @@ class Timeline(_StrictBase):
     year_to: int
     axis_step: int = 50
     bars: list[TimelineBar] = Field(default_factory=list)
+    scope_mode: Literal["dual", "denmark_only"] = "dual"
+    """`dual` (default): emit both `anywhere` and `holstein` scope layers per
+    bar — this is the Holstein-page model where the Reich/Helstaten span
+    is the broader context and the Holstein-territorial span is the focused
+    sub-track. `denmark_only`: emit only `anywhere` scope layers; suppress
+    every holstein-scope layer entirely. Used on the Denmark page where
+    Holstein is not a separate track — anywhere = the Royal Danish view."""
 
 
 class Location(_StrictBase):

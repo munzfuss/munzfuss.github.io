@@ -27,7 +27,7 @@ from pydantic import ValidationError
 sys.path.insert(0, str(Path(__file__).parent))
 
 from lib import i18n
-from lib.categorize import categorize, compute_bar_layers, compute_coin_year_runs
+from lib.categorize import categorize, compute_bar_layers, compute_coin_year_runs, compute_hover_zones
 from lib.compute import compute_location
 from lib.render import build_env, generate_css
 from lib.schema import Location, Fuss, I18nText
@@ -178,11 +178,12 @@ def build_location(
     # Empty when this location has no timeline (e.g. lubeck stub).
     bar_layers = {}
     coin_years = {}
+    hover_zones = {}
     if loc.timeline:
         bar_layers = compute_bar_layers(
             loc.timeline.bars, fuesse,
             loc.timeline.year_from, loc.timeline.year_to,
-            loc_coins=loc.coins,
+            scope_mode=loc.timeline.scope_mode,
         )
         # Per-bar list of consecutive-year runs marking every year a coin
         # was actually minted under that stope (per data/locations/<loc>.yml
@@ -190,6 +191,14 @@ def build_location(
         # layered period × scope bar.
         coin_years = compute_coin_year_runs(
             loc.timeline.bars, computed,
+            loc.timeline.year_from, loc.timeline.year_to,
+        )
+        # Hover zones — segments where the active layer set stays constant.
+        # Each zone becomes a transparent overlay div with a static
+        # `data-tooltip` aggregating all active layers' texts (template
+        # builds the joined text from per-layer tooltip parts).
+        hover_zones = compute_hover_zones(
+            bar_layers,
             loc.timeline.year_from, loc.timeline.year_to,
         )
 
@@ -227,6 +236,7 @@ def build_location(
             active_entity_ids=active_entity_ids,
             bar_layers=bar_layers,
             coin_years=coin_years,
+            hover_zones=hover_zones,
             ui_get=lambda k, l=lang: i18n.ui_get(ui, k, l),
             t=lambda v, l=lang: i18n.t(v, l),
             fmt_num=lambda v, **kw: i18n.fmt_num(v, lang, **kw),

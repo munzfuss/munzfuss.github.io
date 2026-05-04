@@ -241,47 +241,23 @@ def compute_coin_year_runs(
     return out
 
 
-# --- Per-fuss territory classification (Schleswig duchy / Holstein duchy) ---
+# --- Holstein-scope label ---
 #
-# The `holstein` scope in events.yml is a historical label for "in this
-# location's territory" — but the location actually covers BOTH Schleswig
-# and Holstein duchies. For each fuss we look at where the actual minting
-# happened and pick the scope label per the data:
-#   - both duchies → "Schleswig-Holstein"
-#   - Holstein-only → "Holstein"
-#   - Schleswig-only → "Schleswig"
-#   - neither (no in-scope mints) → "Holstein" (legacy fallback)
-
-SCHLESWIG_DUCHY_MINTS = {"Schleswig", "Tönning", "Husum", "Hadersleben",
-                          "Apenrade", "Sonderburg", "Norburg", "Augustenburg"}
-HOLSTEIN_DUCHY_MINTS = {"Glückstadt", "Altona", "Poppenbüttel", "Reinfeld",
-                         "Steinbek", "Plön", "Eutin", "Burg auf Fehmarn",
-                         "Rendsburg", "Kiel", "Oldendorf"}
-
-
-def _classify_fuss_territory(fuss_id: str, loc_coins: list) -> str:
-    """Pick the `tl.scope.<X>` ui key for this fuss based on actual mint cities.
-    Returns: 'holstein' | 'schleswig' | 'schleswig_holstein'."""
-    has_schleswig = False
-    has_holstein = False
-    for c in loc_coins:
-        if c.fuss != fuss_id:
-            continue
-        mint = (c.mint or "").strip()
-        if not mint:
-            continue
-        # Tokenise on commas to handle joint-mint strings like
-        # "Altona, Kopenhagen" — count Altona toward Holstein-duchy.
-        for token in [t.strip() for t in mint.split(",")]:
-            if token in SCHLESWIG_DUCHY_MINTS:
-                has_schleswig = True
-            if token in HOLSTEIN_DUCHY_MINTS:
-                has_holstein = True
-    if has_schleswig and has_holstein:
-        return "schleswig_holstein"
-    if has_schleswig:
-        return "schleswig"
-    return "holstein"  # default — Holstein-only or no-mint fallback
+# Schleswig and Holstein operated as a single monetary unit throughout the
+# 1559–1914 period this project documents: royal-Danish issues 1544–1864
+# from any of the joint mints (Glückstadt, Altona, Tönning, Schleswig,
+# Rendsburg) were legal tender in BOTH duchies under joint administration
+# (Deutsche Kanzlei → Schleswig-Holsteinische Regierung); Reich /
+# Vereinsthaler / Goldmark standards 1559–1914 covered both as members of
+# HRR / Deutscher Bund / Province Schleswig-Holstein. The physical mint
+# city is a topographic detail, not the coinage's territorial scope.
+#
+# We therefore label every holstein-scope layer as `tl.scope.schleswig_holstein`
+# («Шлезвіг-Гольштейн»). The earlier mint-city classifier conflated mint
+# topology with coinage scope; this default is the historically correct
+# unit of abstraction. Per-bar overrides can be added later via a TimelineBar
+# field if a future bar genuinely covers a narrower scope (e.g. Sonderburg-
+# Plön ducal coinage), but no such bars exist today.
 
 
 def compute_bar_layers(
@@ -289,7 +265,7 @@ def compute_bar_layers(
     fuesse: dict,
     tl_year_from: int,
     tl_year_to: int,
-    loc_coins: list | None = None,
+    scope_mode: str = "dual",
 ) -> dict[str, list[dict]]:
     """For each timeline bar, derive the up-to-six period × scope layers
     (mint × {anywhere, holstein}, status × {anywhere, holstein},
@@ -308,13 +284,13 @@ def compute_bar_layers(
         "length":    int,                 # last - first
         "left_pct":  float (0..100),
         "width_pct": float (0..100),
-        "scope_label_key": "tl.scope.holstein" | "tl.scope.schleswig"
-                           | "tl.scope.schleswig_holstein",
+        "scope_label_key": "tl.scope.schleswig_holstein",
       }
 
-    `scope_label_key` is computed per-fuss from the actual mint cities of
-    the location's coins (passed via `loc_coins`). When omitted, defaults
-    to `tl.scope.holstein` for the holstein-side layers (legacy behaviour).
+    Holstein-scope layers are always labelled «Schleswig-Holstein» — see
+    the module-level comment above this function for the historical
+    rationale (Schleswig + Holstein operated as a joint monetary unit
+    throughout 1559–1914; mint topology ≠ coinage scope).
 
     Layers with first/last == None (e.g. holstein-side of a Copenhagen-only
     standard, or no-local-mint stopes like Vereinsthaler in H) are skipped
@@ -333,17 +309,47 @@ def compute_bar_layers(
             out[bar.id] = []
             continue
 
-        # Pick scope label key based on actual mint cities for this fuss.
-        scope_label_key = "tl.scope.holstein"  # legacy default
-        if loc_coins is not None:
-            territory = _classify_fuss_territory(bar.id, loc_coins)
-            scope_label_key = f"tl.scope.{territory}"
+        # Holstein-scope label: see the module-level comment above
+        # `compute_bar_layers`. Schleswig + Holstein operated as a single
+        # monetary unit throughout 1559–1914 — the holstein-scope is
+        # always labelled «Schleswig-Holstein» on this page.
+        scope_label_key = "tl.scope.schleswig_holstein"
 
         layers: list[dict] = []
         anywhere_label = getattr(events, "anywhere_label", None)
 
+        # Per-bar `truncate_anywhere_after` (e.g. 1866 for Danish-Helstaten
+        # stopes on the Holstein page) — sharply caps the anywhere-scope's
+        # `last` year and drops layers whose `first` is already past it.
+        # Holstein-scope layers are unaffected (they already terminate in
+        # their own `events`). When None, no truncation is applied.
+        trunc_any = getattr(bar, "truncate_anywhere_after", None)
+
+        # `scope_mode` = "denmark_only": iterate only the anywhere scope and
+        # suppress holstein-scope layers entirely (Denmark page where
+        # Holstein is not a separate sub-track). Default "dual": both scopes.
+        active_scopes = ("anywhere",) if scope_mode == "denmark_only" else ("anywhere", "holstein")
+
+        # Per-bar `hide_anywhere`: drop the anywhere scope from this bar
+        # only (e.g. on the Holstein page, the 9-Thaler-Fuß bar — its
+        # anywhere extent is Reich-/Hanseatic-wide and distracts from
+        # the Holstein-narrative). Underlying events in fuesse.yml stay
+        # intact; this is a per-page visibility flag.
+        if getattr(bar, "hide_anywhere", False):
+            active_scopes = tuple(s for s in active_scopes if s != "anywhere")
+
+        # Per-bar `hide_layers`: granular (scope, kind) suppression.
+        # Finer-grained than `hide_anywhere` — used e.g. on Krone bars
+        # to drop just the anywhere-circulation layer while keeping
+        # anywhere-mint and anywhere-status visible.
+        hidden_pairs = {
+            (h.scope, h.kind) for h in (getattr(bar, "hide_layers", None) or [])
+        }
+
         def _add(kind, scope, start_event, end_event):
             """Pull (year, approx) for one scope from a (start, end) event pair."""
+            if (scope, kind) in hidden_pairs:
+                return  # explicitly suppressed by hide_layers
             if start_event is None or end_event is None:
                 return
             first = getattr(start_event, scope)
@@ -352,6 +358,13 @@ def compute_bar_layers(
                 return
             first_approx = getattr(start_event, f"approx_{scope}", False)
             last_approx = getattr(end_event, f"approx_{scope}", False)
+            # Per-bar anywhere-scope truncation (sharp cutoff, not approx).
+            if scope == "anywhere" and trunc_any is not None:
+                if first > trunc_any:
+                    return  # layer entirely past the cutoff — drop
+                if last > trunc_any:
+                    last = trunc_any
+                    last_approx = False
             layers.append({
                 "kind": kind,
                 "scope": scope,
@@ -366,17 +379,17 @@ def compute_bar_layers(
 
         # mint = [first_mint, last_mint]
         fm, lm = events.first_mint, events.last_mint
-        for scope in ("anywhere", "holstein"):
+        for scope in active_scopes:
             _add("mint", scope, fm, lm)
 
         # status = [first_adoption, std_end]
         fa, se = events.first_adoption, events.std_end
-        for scope in ("anywhere", "holstein"):
+        for scope in active_scopes:
             _add("status", scope, fa, se)
 
         # circulation = [first_adoption, demonetisation]
         de_ = events.demonetisation
-        for scope in ("anywhere", "holstein"):
+        for scope in active_scopes:
             _add("circulation", scope, fa, de_)
 
         # sole = [sole_start, sole_end] — OPTIONAL. Always emit when both
@@ -387,7 +400,7 @@ def compute_bar_layers(
         # стандарт · …»).
         ss, se_sole = events.sole_start, events.sole_end
         if ss is not None and se_sole is not None:
-            for scope in ("anywhere", "holstein"):
+            for scope in active_scopes:
                 _add("sole", scope, ss, se_sole)
 
         # Layer merging: bars with identical (scope, first, last) span
@@ -457,6 +470,103 @@ def compute_bar_layers(
             l["width_pct"] = round(cr - cl, 2)
 
         out[bar.id] = layers
+
+    return out
+
+
+def compute_hover_zones(
+    bar_layers: dict[str, list[dict]],
+    tl_year_from: int,
+    tl_year_to: int,
+) -> dict[str, list[dict]]:
+    """For each bar, segment its timeline span into 'hover zones' — year
+    ranges across which the active layer set stays constant. The
+    template renders one transparent overlay div per zone with a static
+    `data-tooltip` aggregating every active layer's text. Browser-native
+    `:hover::after` then renders the joined tooltip without any
+    JavaScript coordination — eliminating the rapid-mousemove flicker
+    that arose when a single tooltip was being live-rebuilt on every
+    cursor pixel.
+
+    Algorithm:
+      1. Collect breakpoints from each layer's `first` and `last + 1`.
+      2. For each consecutive pair (bp[i], bp[i+1]-1), derive the active
+         layer indices = layers whose [first, last] interval contains
+         that whole sub-range.
+      3. Drop zones with no active layers (dead space inside the bar).
+      4. Compute % positions identical to compute_bar_layers (`last + 1`
+         for the right edge — a year is a 1-year-wide block).
+
+    Returned dict shape: `bar_id → [zone, ...]`, each zone:
+      {
+        "first":         int,
+        "last":          int,
+        "layer_indices": [int, ...],   # indices into bar_layers[bar_id]
+        "left_pct":      float (0..100),
+        "width_pct":     float (0..100),
+      }
+    """
+    out: dict[str, list[dict]] = {}
+    tl_span = tl_year_to - tl_year_from
+    if tl_span <= 0:
+        return out
+
+    for bar_id, layers in bar_layers.items():
+        if not layers:
+            out[bar_id] = []
+            continue
+        bps: set[int] = set()
+        for l in layers:
+            bps.add(l["first"])
+            bps.add(l["last"] + 1)
+        sorted_bps = sorted(bps)
+
+        # Cumulative band of all layers in this bar (the visual envelope —
+        # min left to max right across all layers). The tooltip is anchored
+        # at the centre of this band so it sits at one stable x-position
+        # regardless of which sub-zone the cursor is currently inside —
+        # the «cumulative layer» the user sees as a single continuous
+        # multi-coloured strip.
+        cum_left = min(l["left_pct"] for l in layers)
+        cum_right = max(l["left_pct"] + l["width_pct"] for l in layers)
+        cum_center_pct = (cum_left + cum_right) / 2.0
+
+        zones: list[dict] = []
+        for i in range(len(sorted_bps) - 1):
+            zfirst = sorted_bps[i]
+            zlast = sorted_bps[i + 1] - 1
+            if zlast < zfirst:
+                continue
+            active_idx = [
+                j for j, l in enumerate(layers)
+                if l["first"] <= zfirst and l["last"] >= zlast
+            ]
+            if not active_idx:
+                continue
+            raw_left = (zfirst - tl_year_from) / tl_span * 100
+            raw_right = (zlast + 1 - tl_year_from) / tl_span * 100
+            cl = max(raw_left, 0.0)
+            cr = min(raw_right, 100.0)
+            zone_w = cr - cl
+            # tt_offset_pct = where the cumulative-band centre falls inside
+            # this zone, expressed as a % of the zone's own width (the unit
+            # that ::after's `left:` interprets relative to its trigger).
+            # Negative or >100 values are valid — they mean the tooltip
+            # centre sits outside the current zone's rect (CSS happily
+            # positions absolutely-placed children outside their parent).
+            if zone_w > 0:
+                tt_offset_pct = (cum_center_pct - cl) / zone_w * 100.0
+            else:
+                tt_offset_pct = 50.0
+            zones.append({
+                "first": zfirst,
+                "last": zlast,
+                "layer_indices": active_idx,
+                "left_pct": round(cl, 2),
+                "width_pct": round(zone_w, 2),
+                "tt_offset_pct": round(tt_offset_pct, 2),
+            })
+        out[bar_id] = zones
 
     return out
 
