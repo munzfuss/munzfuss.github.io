@@ -34,6 +34,34 @@ This rule **subsumes and reinforces** §4 (unconfirmed-data marker), §5 (source
 
 **The scholarly tone is not optional decoration.** A hedged guess presented in confident prose is worse than no entry at all — it pollutes the reference and silently corrupts every researcher who later cites it.
 
+### 0a. Reader voice vs. analyst voice — strictly separate
+
+> **The artefact is written for the reader, not for us.** The reader is a numismatist or historian using the page as a finished reference work. The chat where we deliberate, weigh sources, and decide is one register; the YAML/HTML output where the conclusion lives is a different register. Do not bleed one into the other.
+
+**The reader expects to see:**
+- Historical facts as a settled, sourced narrative
+- Inline `<sup>` citations to bibliography entries for any non-trivial claim
+- Period-correct language (per §2a)
+- Concise, restrained academic prose (per §2a)
+
+**The reader does NOT want to see (forbidden in rendered prose):**
+- First-person plural about the project: «<i>ми проаналізували</i>», «<i>in unserem Artefakt</i>», «<i>this artefact treats</i>», «<i>wir behandeln</i>», «<i>we classify as</i>».
+- Modelling decisions exposed: «<i>не подається окремою секцією</i>», «<i>not treated as its own section</i>», «<i>belongs in Phase B of our periodisation</i>», «<i>per our taxonomy</i>», «<i>see Phase C</i>» (cross-references inside the artefact's structure are project-meta).
+- Process artifacts: «<i>аналіз показує</i>», «<i>consensus among sources is</i>», «<i>after weighing the evidence</i>», «<i>we conclude</i>».
+- Hedging meta-language: «<i>arguably</i>», «<i>one could say</i>», «<i>the case can be made that</i>» — either commit and cite, or remove the sentence.
+- Authorial editorialising: «<i>interestingly</i>», «<i>importantly</i>», «<i>cікаво що</i>», «<i>варто зазначити</i>», «<i>notably</i>».
+
+**Allowed self-reference (only):**
+- Computation attribution per §0: «<i>errechnet aus … </i>» / «<i>as computed from …</i>». Computation is a deductive step, not a project decision — citing the build's own arithmetic is honest.
+- Source-driven hedging when sources themselves are uncertain: «<i>nach den vorliegenden Quellen</i>» / «<i>according to the available sources</i>» — but only when the uncertainty is in the historical record, not in our analysis.
+
+**Operational test for any sentence going into prose:**
+1. Could a reader who has never seen the chat understand it? If it requires knowing «we are building a project», cut it.
+2. Could a peer-reviewed numismatic journal print this sentence verbatim? If it sounds like a Slack message about the article rather than the article itself, rewrite.
+3. Does the sentence describe a historical fact (✓), or our internal handling of that fact (✗)?
+
+The chat is for analysis, deliberation, source-weighing, modelling decisions. The YAML/HTML output is the **finished form** — already decided, sourced, polished. Strip the scaffolding before writing into the artefact.
+
 ### 1. What's on the coin vs. what's calculated
 
 > **Only what is literally inscribed on the coin goes in the `nominal` field. Calculated equivalents, historiographical nicknames, and secondary rechnerische Äquivalenten go in `note` (Bemerkung).**
@@ -230,6 +258,23 @@ python scripts/build.py --validate-only    # runs schema validation, no renderin
 - **Commit messages**: conventional prefixes — `data:` (YAML changes), `schema:` (model changes), `template:` (render changes), `build:` (script logic), `docs:`, `fix:`.
 - **Commit messages MUST be in English only** (subject + body), regardless of the language used in the chat conversation. Project communication may be in Ukrainian, but git history is English-only.
 - Commit small, commit often. YAML diffs are readable.
+
+### Commit cadence + push reminder (operational rule)
+
+> **Commit at every atomic task boundary.** When a discrete task finishes — a bug fix lands, a prose passage is rewritten, a new field is added, a research finding is integrated — create a commit immediately. Do not let modified files accumulate across multiple unrelated tasks; that turns the eventual commit into an archaeology problem and destroys reviewable history.
+>
+> **What counts as «atomic»:**
+> - One logical change with one clear motivation (e.g. «fix Mark Sch.-H. Courant fraction», «add Krone formal-standard sourcing», «rewrite kronemont_fine bar_title»).
+> - Touches one or a few related files. If a single change spans 6+ files across unrelated subsystems, it's probably 2-3 atomic tasks bundled together — split.
+> - Builds cleanly on its own (`python scripts/build.py --validate-only` passes).
+>
+> **At the end of every chat task that produced changes:**
+> 1. Run `git status` to see what's uncommitted.
+> 2. Group the changes into atomic commits (one per logical task) and create them with conventional-prefix messages (`data:`, `template:`, etc.).
+> 3. Verify the build still passes (`python scripts/build.py`).
+> 4. **Remind the user to push.** Never push autonomously — pushes go to public Pages and need explicit user approval. End the response with a one-liner like «N commits ready locally — `git push` when ready.»
+>
+> **What this prevents:** the «I thought you committed already» surprise — a session ending with 13 files modified, multiple unrelated tasks tangled together, and no git history showing the work in progress.
 
 ### One-off / scratch scripts
 
