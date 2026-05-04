@@ -289,6 +289,9 @@
   // plus a small viewport-pad so the tooltip doesn't kiss the edge.
   var HALF_MAX = 160;
   var EDGE_PAD = 12;
+  var MAX_W = 320;          // matches CSS max-width
+  var H_PAD = 20;           // 10 px × 2 horizontal tooltip padding
+  var FIT_BUFFER = 1;       // 1 px sub-pixel safety
 
   function classify(el) {
     var rect = el.getBoundingClientRect();
@@ -302,11 +305,59 @@
     }
   }
 
+  // Off-screen measurement element. Mirrors the tooltip's text styling
+  // and width constraints so the browser wraps text identically. We then
+  // walk Range.getClientRects() to find the longest wrapped line and set
+  // `--tt-w` on the trigger so the actual tooltip box shrinks to match.
+  // Without this fix the box stays at max-width=320px even when the
+  // longest line is 240 px wide, leaving visible whitespace on the right.
+  var measEl = null;
+  function getMeasEl() {
+    if (measEl) return measEl;
+    measEl = document.createElement("div");
+    measEl.style.cssText = (
+      "position:absolute;visibility:hidden;pointer-events:none;" +
+      "top:0;left:-99999px;" +
+      "padding:6px 10px;" +
+      "font-family:var(--font-body);font-size:11.5px;" +
+      "font-weight:400;letter-spacing:0;text-transform:none;" +
+      "line-height:1.45;" +
+      "white-space:pre-line;" +
+      "width:max-content;" +
+      "max-width:" + MAX_W + "px;"
+    );
+    document.body.appendChild(measEl);
+    return measEl;
+  }
+
+  function fit(el) {
+    var text = el.getAttribute("data-tooltip");
+    if (!text) return;
+    var m = getMeasEl();
+    m.textContent = text;
+    var range = document.createRange();
+    try {
+      range.selectNodeContents(m);
+    } catch (e) {
+      return;
+    }
+    var rects = range.getClientRects();
+    var maxLine = 0;
+    for (var i = 0; i < rects.length; i++) {
+      if (rects[i].width > maxLine) maxLine = rects[i].width;
+    }
+    if (!maxLine) return;
+    var fitted = Math.ceil(maxLine + H_PAD + FIT_BUFFER);
+    if (fitted > MAX_W) fitted = MAX_W;
+    el.style.setProperty("--tt-w", fitted + "px");
+  }
+
   document.addEventListener("mouseover", function (ev) {
     var t = ev.target && ev.target.closest && ev.target.closest("[data-tooltip]");
     if (!t) return;
     // Skip table-cell tooltips — those use the portal system above.
     if (t.closest(".mt-scroll")) return;
+    fit(t);
     classify(t);
   });
 
@@ -317,5 +368,45 @@
     var related = ev.relatedTarget;
     if (related && t.contains(related)) return;
     t.classList.remove("tt-anchor-left", "tt-anchor-right");
+  });
+
+  // ------------------------------------------------------------------
+  // Width unification across hover zones inside the same `.tl-bar-layers`.
+  //
+  // Each `.tl-bar-hover-zone` carries a different `data-tooltip` (active
+  // layer set differs by zone), so the per-trigger `fit()` above would
+  // give each zone its own width — the tooltip would change size as
+  // the cursor crossed zone boundaries. To keep the box visually
+  // stable, on first hover into any zone of a bar we measure ALL the
+  // bar's zones, find the widest fitted width, and apply it to every
+  // sibling via the same `--tt-w` CSS variable that `fit()` sets.
+  // ------------------------------------------------------------------
+  function unifyZoneWidths(zone) {
+    var wrap = zone.closest(".tl-bar-layers");
+    if (!wrap || wrap.dataset.zonesFitted === "1") return;
+    var zones = wrap.querySelectorAll(".tl-bar-hover-zone");
+    if (!zones.length) return;
+    var maxW = 0;
+    for (var i = 0; i < zones.length; i++) {
+      // Reuse fit()'s measurement loop by temporarily letting each
+      // sibling compute its own --tt-w, then take the max.
+      fit(zones[i]);
+      var w = parseFloat(zones[i].style.getPropertyValue("--tt-w"));
+      if (!isNaN(w) && w > maxW) maxW = w;
+    }
+    if (!maxW) return;
+    var unified = maxW + "px";
+    for (var j = 0; j < zones.length; j++) {
+      zones[j].style.setProperty("--tt-w", unified);
+    }
+    wrap.dataset.zonesFitted = "1";
+  }
+
+  document.addEventListener("mouseover", function (ev) {
+    var t = ev.target;
+    if (!t || !t.closest) return;
+    var zone = t.closest(".tl-bar-hover-zone");
+    if (!zone) return;
+    unifyZoneWidths(zone);
   });
 })();

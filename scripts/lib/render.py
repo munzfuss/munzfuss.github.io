@@ -28,6 +28,7 @@ def build_env(template_dir: str) -> Environment:
     env.filters["first_sentence"] = first_sentence
     env.filters["ruler"] = ruler_for_lang
     env.filters["nominal_nbsp"] = nominal_nbsp
+    env.filters["nb_dashes"] = nb_dashes
 
     return env
 
@@ -38,6 +39,14 @@ def nominal_nbsp(s: str | None) -> str:
     denomination. Subsequent spaces stay normal — the rest of the
     denomination phrase wraps naturally on narrow viewports.
 
+    Dual-denomination nominals (two face values on one coin, separated
+    by ` = ` in the YAML — e.g. «8 Rigsbankskilling = 2½ Schilling
+    Courant») render with each denomination on its own line: the « = »
+    becomes the line-break point, and each side gets its own NBSP-
+    glued leading number. This gives a stable two-row visual layout
+    in narrow nominal columns instead of letting the natural wrap
+    break wherever it lands.
+
     Marked safe: returned with raw `&nbsp;` entity, applied via |safe in
     the template. Other characters are NOT escaped because the upstream
     template still owns autoescape control — callers must apply this
@@ -46,12 +55,40 @@ def nominal_nbsp(s: str | None) -> str:
     """
     if not s:
         return ""
-    # HTML-escape first (callers will pass through |safe), then replace
-    # ONLY the first whitespace run with a single NBSP entity.
     import html
     import re
     escaped = html.escape(s)
+    if " = " in escaped:
+        left, right = escaped.split(" = ", 1)
+        left = re.sub(r"\s+", "&nbsp;", left, count=1)
+        right = re.sub(r"\s+", "&nbsp;", right, count=1)
+        return f"{left} =<br>{right}"
     return re.sub(r"\s+", "&nbsp;", escaped, count=1)
+
+
+_NB_DASH_RE = None  # lazy-compiled — see nb_dashes()
+
+
+def nb_dashes(s: str | None) -> str:
+    """Insert U+2060 WORD JOINER on both sides of any «-», «–» or «—»
+    that sits between two non-space characters. The browser then refuses
+    to break the line at that position, so compound year ranges
+    («1644—1696»), compound place names («Шлезвіг-Гольштейн») and
+    similar tight punctuation never break across two lines mid-token.
+
+    Plain prose dashes that ARE surrounded by spaces are not touched —
+    those are valid soft-break opportunities.
+
+    Use as a Jinja filter on `data-tooltip` attribute values:
+        data-tooltip="{{ '...' | nb_dashes }}"
+    """
+    if not s:
+        return s
+    global _NB_DASH_RE
+    if _NB_DASH_RE is None:
+        import re
+        _NB_DASH_RE = re.compile(r"(\S)([\-‐‑‒–—―])(\S)")
+    return _NB_DASH_RE.sub("\\1⁠\\2⁠\\3", s)
 
 
 def ruler_for_lang(name: str | None, lang: str) -> str:

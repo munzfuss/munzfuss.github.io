@@ -84,6 +84,25 @@ def _timeline_bars_css(bars: dict) -> str:
         out.append(
             f'[data-theme="v1"] .tl-bar.{bar_id}:not(.tl-bar-layered), [data-theme="v2"] .tl-bar.{bar_id}:not(.tl-bar-layered) {{ background: linear-gradient(90deg, {conf["to"]}, {conf["from"]}); }}'
         )
+
+    # Per-bar layer-visibility overrides. Default layer alpha is 1/6 so
+    # six stacked layers sum to ~1.0 under `mix-blend-mode: plus-lighter`.
+    # When a bar carries only a few layers (most of its events scopes are
+    # null), the resulting stripe reads as too faint and reduces visual
+    # weight relative to its historical importance. The blocks below
+    # double the alpha for specific (bar, kind, scope) layers.
+    if "rt" in bars:
+        rt_r, rt_g, rt_b = _hex_to_rgb(bars["rt"]["to"])
+        out.append(
+            # 9-Thaler-Fuß circulation in Schleswig-Holstein (1566–~1700)
+            # — the long after-life of the Reichsmünzfuß as a circulation
+            # currency in the duchies. Default 1/6 alpha was barely
+            # visible against the dark page; 2/6 brings it to parity
+            # with the more usual mint+status combo strip.
+            f".tl-bar.tl-bar-9_thaler .tl-bar-layer.tl-bar-layer-circulation.tl-bar-layer-holstein {{ "
+            f"--layer-bg: rgba({rt_r}, {rt_g}, {rt_b}, {alpha * 2:.4f}); }}"
+        )
+
     return "\n".join(out)
 
 
@@ -836,7 +855,26 @@ h2[style] {{
   left: 0;
   right: 0;
   isolation: isolate;
+  /* The wrapper itself is event-transparent — descendants
+     (`.tl-bar-hover-zone` overlays and `.tl-coin-year` markers) are
+     the actual hover targets. Each hover-zone is a static-text overlay
+     covering one segment of the bar in which the active layer set is
+     constant; its `data-tooltip` is server-pre-built as the '\n'-joined
+     text of all active layers, and standard `:hover::after` renders it
+     without any JavaScript. */
   pointer-events: none;
+}}
+.tl-bar-hover-zone {{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: transparent;
+  pointer-events: auto;
+  cursor: help;
+  /* Above the visual layers (which are event-transparent) but BELOW
+     coin-year markers (z-index: 1) so per-year mintage tooltips win
+     when the cursor sits on one. */
+  z-index: 0;
 }}
 [data-theme="v1"] .tl-track {{
   background: rgba(163, 124, 44, 0.05);
@@ -993,16 +1031,13 @@ h2[style] {{
   position: absolute;
   top: 0;
   bottom: 0;
-  /* Layers ARE hover targets — each one carries its own per-period
-     `data-tooltip` («Карбування · Holstein · 1640—1813» etc.). Where
-     multiple layers stack at the same x-coordinate, the topmost in
-     DOM order wins (which, given the longest-first DOM sort, is the
-     SHORTEST overlapping layer at that position — usually a
-     Holstein-scope layer in central zones, an «anywhere»-scope one
-     in the chronological tail). */
-  pointer-events: auto;
+  /* Layers do NOT receive hover individually — their hover is captured
+     by the parent `.tl-bar-layers` wrapper, which aggregates the text
+     of every overlapping layer at the cursor x-position into a single
+     unified tooltip. Each layer stores its tooltip part in
+     `data-tt-part` (read by JS, NOT triggering ::after). */
+  pointer-events: none;
   mix-blend-mode: plus-lighter;
-  cursor: help;
   /* No border-radius on layers — the parent .tl-bar paints the rounded
      corners via its own border-radius; layers inside align to its edges. */
 }}
@@ -1030,17 +1065,22 @@ h2[style] {{
   background-color: var(--layer-bg);
   pointer-events: none;
 }}
+/* Approx-edge fade: long, gentle multi-stop curve. Body of the bar
+   stays fully opaque (≤ 45 % from the solid side); the remaining 55 %
+   eases through four intermediate stops down to a near-transparent
+   edge (alpha 0.05). The wider fade region + softer terminal alpha
+   reads as a soft, smooth «approximate» cue rather than a hard cut. */
 .tl-bar-layer-fade-end::before {{
-  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 75%, rgba(0, 0, 0, 0.3) 100%);
-          mask-image: linear-gradient(to right, #000 0%, #000 75%, rgba(0, 0, 0, 0.3) 100%);
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 45%, rgba(0, 0, 0, 0.85) 65%, rgba(0, 0, 0, 0.55) 80%, rgba(0, 0, 0, 0.25) 92%, rgba(0, 0, 0, 0.05) 100%);
+          mask-image: linear-gradient(to right, #000 0%, #000 45%, rgba(0, 0, 0, 0.85) 65%, rgba(0, 0, 0, 0.55) 80%, rgba(0, 0, 0, 0.25) 92%, rgba(0, 0, 0, 0.05) 100%);
 }}
 .tl-bar-layer-fade-start::before {{
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, #000 25%, #000 100%);
-          mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, #000 25%, #000 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 8%, rgba(0, 0, 0, 0.55) 20%, rgba(0, 0, 0, 0.85) 35%, #000 55%, #000 100%);
+          mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 8%, rgba(0, 0, 0, 0.55) 20%, rgba(0, 0, 0, 0.85) 35%, #000 55%, #000 100%);
 }}
 .tl-bar-layer-fade-start.tl-bar-layer-fade-end::before {{
-  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, #000 25%, #000 75%, rgba(0, 0, 0, 0.3) 100%);
-          mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, #000 25%, #000 75%, rgba(0, 0, 0, 0.3) 100%);
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 8%, rgba(0, 0, 0, 0.55) 20%, rgba(0, 0, 0, 0.85) 35%, #000 50%, rgba(0, 0, 0, 0.85) 65%, rgba(0, 0, 0, 0.55) 80%, rgba(0, 0, 0, 0.25) 92%, rgba(0, 0, 0, 0.05) 100%);
+          mask-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 8%, rgba(0, 0, 0, 0.55) 20%, rgba(0, 0, 0, 0.85) 35%, #000 50%, rgba(0, 0, 0, 0.85) 65%, rgba(0, 0, 0, 0.55) 80%, rgba(0, 0, 0, 0.25) 92%, rgba(0, 0, 0, 0.05) 100%);
 }}
 /* On Atlas (cream paper) plus-lighter on dark layer colours doesn't lift
    to the saturated `to` colour by addition — `lighten` would clip. We
@@ -2297,7 +2337,7 @@ footer a:hover {{ color: var(--accent); }}
    - `.tl-coin-year` likewise — same root cause; without exclusion the
      1-year mintage rectangles collapse to zero height (no visible
      marks despite correct left%/width%). */
-[data-tooltip]:not(.tl-phase):not(.tl-bar):not(.tl-bar-layer):not(.tl-coin-year) {{ position: relative; }}
+[data-tooltip]:not(.tl-phase):not(.tl-bar):not(.tl-bar-layer):not(.tl-coin-year):not(.tl-bar-hover-zone) {{ position: relative; }}
 /* Edge-anchored tooltip variants — added by app.js when the trigger
    element's center sits within ~half-tooltip-width of a viewport edge,
    so the ::after pseudo doesn't extend past the screen. Default is
@@ -2305,6 +2345,13 @@ footer a:hover {{ color: var(--accent); }}
    pin the tooltip's left or right edge to the element's edge instead. */
 [data-tooltip].tt-anchor-left:hover::after {{ left: 0; right: auto; transform: none; }}
 [data-tooltip].tt-anchor-right:hover::after {{ left: auto; right: 0; transform: none; }}
+/* Hover-zone tooltips anchor at the centre of the cumulative layer band
+   (the visual envelope of all overlapping period × scope strips), not at
+   the centre of the individual zone the cursor is in — so the tooltip
+   sits at one stable x-position across all sub-zones of the same bar.
+   `--tt-cx` is set inline by the template per zone (see
+   compute_hover_zones in categorize.py). */
+[data-tooltip].tl-bar-hover-zone:hover::after {{ left: var(--tt-cx, 50%); transform: translateX(-50%); }}
 [data-tooltip]:hover::after {{
   content: attr(data-tooltip);
   position: absolute;
@@ -2336,7 +2383,11 @@ footer a:hover {{ color: var(--accent); }}
      (e.g. multi-line per-entity breakdowns on `.tl-coin-year`) while
      still collapsing whitespace and wrapping long single lines. */
   white-space: pre-line;
-  width: max-content;
+  /* `--tt-w` is set by the JS fitter in app.js on hover, after measuring
+     the longest wrapped line via a hidden Range. When unset (initial
+     hover, JS off, etc.) the tooltip falls back to `max-content` clamped
+     by max-width — same behaviour as before the fitter existed. */
+  width: var(--tt-w, max-content);
   max-width: 320px;
   z-index: 100;
   pointer-events: none;
