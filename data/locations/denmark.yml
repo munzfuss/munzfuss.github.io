@@ -15,6 +15,184 @@ fuss_order:
   - kronemont_chr_iv
   - guldkrone
   - seed_unsorted
+
+# ---------------------------------------------------------------------
+# Timeline overview — chronological span of every Danish-relevant Müntzfuß
+# from the Augsburg Imperial Coinage Ordinance (19 Aug. 1559) to the
+# Krone reform (1873–1875). Excluded: 30-Thaler-Fuß (Vereinsthaler)
+# and Reichsgoldmünzfuß (Goldmark) — both post-1866 German-Reich
+# standards that did not apply in the Danish realm.
+#
+# `scope_mode: denmark_only` suppresses every holstein-scope layer; on
+# this page Holstein is not a separate sub-track. Each bar's anywhere-
+# scope range is taken from `data/shared/fuesse.yml` events as-is —
+# no per-bar truncation, since the Danish realm continued every Danish
+# stope to its full historical end (Statsbankerot 1813 / Krone-reform
+# 1875).
+# ---------------------------------------------------------------------
+timeline:
+  title:
+    de: "Zeitliche Überlappung der Müntzfüße im Königreich Dänemark · 1559–1875"
+    en: "Overlapping currency standards in the Kingdom of Denmark · 1559–1875"
+    uk: "Хронологія монетних стандартів Королівства Данія · 1559–1875"
+  year_from: 1559
+  year_to: 1875
+  axis_step: 50
+  scope_mode: denmark_only
+  bars:
+    - id: "reichsdukatenfuss"
+      label:
+        de: "Reichsdukatenfuß · Dukat"
+        en: "Reichsdukatenfuß · Ducat"
+        uk: "Reichsdukatenfuß · дукат"
+      small:
+        de: "3,44 g fein · Gold"
+        en: "3.44 g fine · gold"
+        uk: "3,44 г чистого · золото"
+      year_from: 1559
+      year_to: 1871
+      bar_title:
+        de: "Reichsdukat nach Augspurger Reichsmünzordnung 19. Aug. 1559 (67 Stück je Cöllnische Marck Feingold, 23 Karat 8 Grän = .986) · gemeinsamer Goldstandard des HRR + dän.-norw. Verbund + Schweden · im Königreich Dänemark biß ins 19. Jahrhundert geprägt — Kopenhagener Hauptmünze und Altonaer Münze (letzte holsteinische Reichsdukaten unter Christian VII., KM#650, 1791–1802) · Reichsweit endet er mit dem Münzgesetz 4. Dezember 1871"
+        en: "Reichsdukat under the Augsburg Imperial Coinage Ordinance of 19 August 1559 (67 pieces per Cologne mark of fine gold, 23 carats 8 grains = .986) · the common gold standard of the Holy Roman Empire + the Danish-Norwegian union + Sweden · struck in the Kingdom of Denmark into the 19th century — Copenhagen royal mint and Altona mint (the last Holstein-side Reichsdukaten under Christian VII, KM#650, 1791–1802) · empire-wide ends with the Coinage Act of 4 December 1871"
+        uk: "Reichsdukat за Авґсбурзьким імперським монетним ордонансом 19 серпня 1559 (67 штук з кельнської марки чистого золота, 23 карати 8 гран = .986) · спільний золотий стандарт Священної Римської імперії, дансько-норвезького союзу та Швеції · у Королівстві Данія карбувався до XIX ст. — Копенгагенський королівський монетний двір та монетний двір Альтони (останні гольштинські Reichsdukaten за Кристіана VII, KM#650, 1791–1802) · Reich-wide завершується Münzgesetz 4 грудня 1871"
+      color_class: g
+
+    - id: "9_thaler"
+      label:
+        de: "9-Thaler-Fuß · Reichsthaler Species"
+        en: "9-Thaler-Fuß · Reichsthaler Species"
+        uk: "9-Thaler-Fuß · Reichsthaler Species"
+      small:
+        de: "25,98 g fein · Silber"
+        en: "25.98 g fine · silver"
+        uk: "25,98 г чистого · срібло"
+      year_from: 1566
+      year_to: 1875
+      bar_title:
+        de: "Augspurger Reichsmüntz-Abschied 30. Mai 1566 · Reichs-Speciedaler-Standard, der mit dem dänisch-norwegischen Speciedaler praktisch deckungsgleich war (25,98 g fein) · in Kopenhagen begleitet er die Frühphase der dänischen Großsilberprägung biß zur Etablierung des leichteren 9¼-Fuß ab 1622 · in Hamburg/Lübeck als Bank-Mark und Speciemark Rechnungseinheit biß zur Reichsmünzreform 1875"
+        en: "Augsburg Imperial Mint Decree of 30 May 1566 · the imperial Speciedaler standard, practically identical with the Danish-Norwegian Speciedaler (25.98 g fine) · in Copenhagen it covers the early phase of Danish large-silver coinage until the lighter 9¼-Fuß is established from 1622 · in Hamburg/Lübeck the Bank-Mark and the Speciemark serve as units of account until the imperial coinage reform of 1875"
+        uk: "Авґсбурзький імперський монетний декрет 30 травня 1566 · імперський Speciedaler-стандарт, практично тотожний дансько-норвезькому Speciedaler (25,98 г чистого) · у Копенгагені охоплює ранню фазу данського великосрібного карбування до утвердження легшого 9¼-Fuß з 1622 · у Гамбурзі/Любеку як Bank-Mark і Speciemark — розрахункові одиниці до імперської монетної реформи 1875"
+      color_class: rt
+
+    - id: "9_25_thaler"
+      label:
+        de: "9¼-Thaler-Fuß · Speciedaler"
+        en: "9¼-Thaler-Fuß · Speciedaler"
+        uk: "9¼-Thaler-Fuß · Speciedaler"
+      small:
+        de: "25,28 g fein · Silber"
+        en: "25.28 g fine · silver"
+        uk: "25,28 г чистого · срібло"
+      year_from: 1622
+      year_to: 1875
+      bar_title:
+        de: "9¼-Thaler-Fuß · Speciedaler nach dänisch-holsteinischer Tradition · ab 1622 (Friedrich III. von Gottorp, Glückstadt) → Krone-Reform 1873–1875 · 251 Jahre durchgehend stabile Hauptsilbermünze des Gesamtstaats · ab Schimmelmann-Reform 1788 alleinige Grundmünze für die holsteinische Seite, in Dänemark parallel zum Rigsdaler Courant (11⅓-Fuß, biß 1813) und dem Rigsbankdaler (18½-Fuß, ab 1813) als Großsilbermünze · letzte Speciedaler-Prägung 1873 (Christian IX.); abgelöst durch die Krone (Skandinavische Münzunion)"
+        en: "9¼-Thaler-Fuß · Speciedaler in the Danish-Holstein tradition · from 1622 (Friedrich III of Gottorp, Glückstadt) → the Krone reform of 1873–1875 · 251 years as the continuously stable main silver coin of the composite state · from the Schimmelmann reform of 1788 the sole base coin on the Holstein side, in Denmark running in parallel with the Rigsdaler Courant (11⅓-Fuß, until 1813) and the Rigsbankdaler (18½-Fuß, from 1813) as the large-silver coin · last Speciedaler struck 1873 (Christian IX); replaced by the Krone (Scandinavian Monetary Union)"
+        uk: "9¼-Thaler-Fuß · Speciedaler у дансько-гольштинській традиції · з 1622 (Фредерік III Ґотторпський, Glückstadt) → Krone-реформа 1873–1875 · 251 рік незмінно стабільна головна срібна монета цілісної держави · з реформи Шіммельмана 1788 — єдина базова монета для гольштинського боку, у Данії — паралельно з Rigsdaler Courant (11⅓-Fuß, до 1813) та Rigsbankdaler (18½-Fuß, з 1813) як великосрібна монета · останнє карбування Speciedaler 1873 (Кристіан IX); змінена Krone (Скандинавська монетна унія)"
+      color_class: si
+
+    - id: kronemont_chr_iv
+      label:
+        de: Christian IVs kroner · Tarifmünze
+        en: Christian IV's kroner · tariff coin
+        uk: Christian IV's kroner · тарифна монета
+      small:
+        de: 16,250 g fein · Silber
+        en: 16.250 g fine · silver
+        uk: 16,250 г чистого · срібло
+      year_from: 1618
+      year_to: 1624
+      bar_title:
+        de: "Corona Danica unter Christian IV. · 1618 (Forordning 14. Februar) → 1624 (letzte Prägung) · Kopenhagener Hauptmünze · Tarifmünze, Anfangstarif 1½ Speciedaler · 1625 offizielle Tarifsenkung auf 1⅓ Speciedaler · danach 19-jährige Pause biß zur Wiederaufnahme im 10½-Krone-Fuß (Glückstadt 1644)"
+        en: "Corona Danica under Christian IV · 1618 (Forordning of 14 February) → 1624 (last strike) · Copenhagen royal mint · tariff coin, initial tariff 1½ Speciedaler · official tariff reduction to 1⅓ Speciedaler in 1625 · followed by a 19-year hiatus until the revival in the 10½-Krone-Fuß (Glückstadt, 1644)"
+        uk: "Corona Danica за Кристіана IV · 1618 (Forordning 14 лютого) → 1624 (останнє карбування) · Копенгагенський королівський монетний двір · тарифна монета, початковий тариф 1½ Speciedaler · офіційне зниження тарифу до 1⅓ Speciedaler 1625 р. · далі 19-річна перерва до відновлення у 10½-Krone-Fuß (Glückstadt, 1644)"
+      color_class: krm
+
+    - id: "kronemont"
+      label:
+        de: "10½-Krone-Fuß · «Grobe Krone»"
+        en: "10½-Krone-Fuß · «Coarse Krone»"
+        uk: "10½-Krone-Fuß · «Груба Крона»"
+      small:
+        de: "14,964 g fein · Silber"
+        en: "14.964 g fine · silver"
+        uk: "14,964 г чистого · срібло"
+      year_from: 1644
+      year_to: 1813
+      bar_title:
+        de: "10½-Krone-Fuß («Grobe Krone») · Wiederaufnahme der Krone-Tarifprägung in Glückstadt 1644 (Hebræermønt unter Christian IV.) → Norwegen ab 1649, Kopenhagen ab 1652 · spätere Kopenhagener Prägung biß 1732 (Hede 41A); ⅔ Speciedaler-Tarif (ab Christian V., 1670+) · ältere Bestände kursierten biß zum Statsbankerot 1813"
+        en: "10½-Krone-Fuß («Coarse Krone») · revival of the Krone tariff coinage in Glückstadt 1644 (Hebræermønt under Christian IV) → Norway adopted 1649, Copenhagen 1652 · later Copenhagen issues until 1732 (Hede 41A); ⅔ Speciedaler tariff (from Christian V, 1670 onward) · older stocks remained in circulation until the Statsbankerot of 1813"
+        uk: "10½-Krone-Fuß («Груба Крона») · відновлення тарифного карбування Krone у Glückstadt 1644 (Hebræermønt за Кристіана IV) → Норвегія прийняла 1649, Копенгаген 1652 · пізніше копенгагенське карбування до 1732 (Hede 41A); тариф ⅔ Speciedaler (від Кристіана V, з 1670) · старі запаси в обігу до Statsbankerot 1813"
+      color_class: krm
+
+    - id: kronemont_fine
+      label:
+        de: "13-Krone-Fuß · «Feine Krone»"
+        en: "13-Krone-Fuß · «Fine Crown»"
+        uk: "13-Krone-Fuß · «Тонка Крона»"
+      small:
+        de: "14,984 g fein · Silber"
+        en: "14.984 g fine · silver"
+        uk: "14,984 г чистого · срібло"
+      year_from: 1693
+      year_to: 1813
+      bar_title:
+        de: "Reskript 31. Dezember 1692 (Christian V.): 13 Specieskronen aus 1 feinen Cöllnischen Marck (≈ 14,98 g fein je Krone) · ausschließlich an der Kopenhagener Hauptmünze geprägt 1693–1771 · läuft parallel zum holsteinischen 10½-Krone-Fuß (Glückstadt 1644–1696) · ältere Bestände kursierten biß zum Statsbankerot 1813"
+        en: "Reskript of 31 December 1692 (Christian V): 13 specie kroner from 1 fine Cöllnische Marck (≈ 14.98 g fine per Krone) · struck exclusively at the Copenhagen royal mint 1693–1771 · runs in parallel with the Holstein 10½-Krone-Fuß (Glückstadt 1644–1696) · older stocks remained in circulation until the Statsbankerot of 1813"
+        uk: "Рескрипт 31 грудня 1692 (Кристіан V): 13 Specieskronen з 1 марки чистого срібла кельнської ваги (≈ 14,98 г чистого на одну Krone) · карбувався виключно на Копенгагенському королівському монетному дворі 1693–1771 · хронологічно паралельний гольштинському 10½-Krone-Fuß (Glückstadt 1644–1696) · старі запаси в обігу до Statsbankerot 1813"
+      color_class: krm
+
+    - id: guldkrone
+      label:
+        de: "Guldkrone-Fuß · Tarifmünze"
+        en: "Guldkrone-Fuß · tariff coin"
+        uk: "Guldkrone-Fuß · тарифна монета"
+      small:
+        de: "5,498 g fein · Gold"
+        en: "5.498 g fine · gold"
+        uk: "5,498 г чистого · золото"
+      year_from: 1657
+      year_to: 1700
+      bar_title:
+        de: "Guldkrone-Tarifprägung unter Frederik III. · 1657 (Einführung in Glückstadt) → 1670 (Ende mit dem Tod Frederiks III.) · Glückstadt-Phase 1657–1660 (Hede 145B, Mzm. Jacob Schwieger); Kopenhagen-Folgeprägung 1668 (KM# 303) bei reduziertem Tarif von 3 Specie · unter Christian V. nicht fortgeführt; Restbestände gegen Ende des Jahrhunderts faktisch außer Umlauf"
+        en: "Guldkrone tariff coinage under Frederik III · 1657 (introduction at Glückstadt) → 1670 (end with the death of Frederik III) · Glückstadt phase 1657–1660 (Hede 145B, mintmaster Jacob Schwieger); Copenhagen follow-up issue of 1668 (KM# 303) at a reduced tariff of 3 Specie · not continued under Christian V; the remaining pieces effectively went out of circulation by the end of the century"
+        uk: "Тарифне карбування Guldkrone за Фредеріка III · 1657 (запровадження в Glückstadt) → 1670 (припинення зі смертю Фредеріка III) · ґлюкштадтська фаза 1657–1660 (Hede 145B, монетмайстер Jacob Schwieger); копенгагенський наступний випуск 1668 (KM# 303) зі зниженим тарифом 3 Specie · за Кристіана V не продовжено; залишки фактично виходять з обігу до кінця століття"
+      color_class: g
+
+    - id: "11_333_thaler"
+      label:
+        de: "11⅓-Thaler-Fuß · Rigsdaler Courant"
+        en: "11⅓-Thaler-Fuß · Rigsdaler Courant"
+        uk: "11⅓-Thaler-Fuß · Rigsdaler Courant"
+      small:
+        de: "20,63 g fein · Silber"
+        en: "20.63 g fine · silver"
+        uk: "20,63 г чистого · срібло"
+      year_from: 1726
+      year_to: 1875
+      bar_title:
+        de: "Rigsdaler Courant nach dänisch-norwegischem Kurantmøntfod · Forordning 15./31. Juli 1726 (Friedrich IV.) → Statsbankerot 5. Januar 1813 · Hauptalltagswährung des Gesamtstaats; in Holstein nur biß 29. Februar 1788 (Schimmelmann-Reform) · Altbestände kursierten ab 1813 noch jahrzehntelang als Scheidemünzen biß zur Krone-Reform 1875"
+        en: "Rigsdaler Courant on the Danish-Norwegian Kurantmøntfod · Forordning of 15/31 July 1726 (Friedrich IV) → Statsbankerot, 5 January 1813 · main everyday currency of the composite state; in Holstein only until 29 February 1788 (Schimmelmann reform) · existing stocks continued to circulate as petty coinage for decades after 1813, until the Krone reform of 1875"
+        uk: "Rigsdaler Courant за дансько-норвезьким Kurantmøntfod · Forordning 15/31 липня 1726 (Фредерік IV) → Statsbankerot 5 січня 1813 · основна повсякденна валюта цілісної держави; у Гольштейні лише до 29 лютого 1788 (реформа Шіммельмана) · старі запаси з 1813 ще десятиліттями кружляли як розмінна монета — до Krone-реформи 1875"
+      color_class: kr
+
+    - id: "18_5_thaler"
+      label:
+        de: "18½-Thaler-Fuß · Rigsbankdaler / Rigsdaler Rigsmønt"
+        en: "18½-Thaler-Fuß · Rigsbankdaler / Rigsdaler Rigsmønt"
+        uk: "18½-Thaler-Fuß · Rigsbankdaler / Rigsdaler Rigsmønt"
+      small:
+        de: "12,64 g fein · Silber"
+        en: "12.64 g fine · silver"
+        uk: "12,64 г чистого · срібло"
+      year_from: 1813
+      year_to: 1875
+      bar_title:
+        de: "Rigsbankdaler nach Forordning 5. Januar 1813 (nach dänischem Staatsbankrott eingeführt) → Krone-Reform 1875 · 1854 in Rigsdaler Rigsmønt umbenannt ohne Fußänderung · §10 der Forordning verankert 1 Speciedaler = 2 Rigsbankdaler (glatte ½-Anteil-Anbindung an den 9¼-Fuß) · Hauptträger des dänischen Geldumlaufs in der zweiten Hälfte des 19. Jahrhunderts biß zur Skandinavischen Münzunion (Krone-Øre)"
+        en: "Rigsbankdaler under the Forordning of 5 January 1813 (introduced after the Danish state bankruptcy) → Krone reform of 1875 · renamed Rigsdaler Rigsmønt in 1854 without a change of standard · §10 of the Forordning fixes 1 Speciedaler = 2 Rigsbankdaler (a clean ½-share link to the 9¼-Fuß) · the main carrier of the Danish money supply in the second half of the 19th century until the Scandinavian Monetary Union (Krone-Øre)"
+        uk: "Rigsbankdaler за Forordning 5 січня 1813 р. (запроваджено після данського державного банкрутства) → Krone-реформа 1875 · 1854 перейменовано на Rigsdaler Rigsmønt без зміни стопи · §10 Forordning фіксує 1 Speciedaler = 2 Rigsbankdaler (чиста привʼязка ½-частки до 9¼-Fuß) · головний носій данського грошового обігу другої половини XIX ст. до Скандинавської монетної унії (Krone-Øre)"
+      color_class: rb
+
 fuss_periods:
   kronemont_chr_iv:
     pdate_label:
@@ -22,13 +200,13 @@ fuss_periods:
       en: 'Period of validity: 1618 → 1624 · ~6 years'
       uk: 'Період дії: 1618 → 1624 · ~6 років'
     hintergrund:
-      de: 'Christian IVs kroner 1618–1624. Tarifmünze, 1618 als <i>Corona Danica</i> mit Tarif 1½ Speciedaler eingeführt; die Prägung endet 1624, im Folgejahr <b>1625</b> wird der Tarif offiziell auf 1⅓ Speciedaler gesenkt; danach folgt eine 19-jährige Pause der Krone-Prägung biß zur Wiederaufnahme im 10½-Krone-Fuß (Glückstadt) 1644.<sup><a href="#ref1">[1]</a><a href="#ref2">[2]</a><a href="#ref3">[3]</a><a href="#ref4">[4]</a></sup>'
-      en: 'Christian IV''s kroner 1618–1624. A tariff coin, introduced in 1618 as the <i>Corona Danica</i> at 1½ Speciedaler; production ends in 1624, and in the following year, <b>1625</b>, the tariff is officially cut to 1⅓ Speciedaler; thereafter a 19-year hiatus of Krone production follows, until the revival in the 10½-Krone-Fuß (Glückstadt) in 1644.<sup><a href="#ref1">[1]</a><a href="#ref2">[2]</a><a href="#ref3">[3]</a><a href="#ref4">[4]</a></sup>'
-      uk: 'Christian IV''s kroner 1618–1624. Тарифна монета, запроваджена 1618 р. як <i>Corona Danica</i> за тарифом 1½ Speciedaler; карбування завершується 1624 р., наступного <b>1625</b> року тариф офіційно знижено до 1⅓ Speciedaler; далі настає 19-річна перерва карбування Krone — аж до відновлення у 10½-Krone-Fuß (Glückstadt) 1644 р.<sup><a href="#ref1">[1]</a><a href="#ref2">[2]</a><a href="#ref3">[3]</a><a href="#ref4">[4]</a></sup>'
+      de: 'Christian IVs kroner 1618–1624. Tarifmünze, 1618 als <i>Corona Danica</i> mit Anfangstarif 1½ Speciedaler eingeführt — eine fiskalische Maßnahme der Krone mit einem Seigniorage-Aufschlag von ca. 11 % über dem Silberwert<sup><a href="#ref8">[8]</a></sup>. Die Prägung endet 1624; im Folgejahr <b>1625</b> wird der Tarif offiziell auf 1⅓ Speciedaler gesenkt. Danach folgt eine 19-jährige Pause der Krone-Prägung biß zur Wiederaufnahme im 10½-Krone-Fuß (Glückstadt) 1644.<sup><a href="#ref1">[1]</a><a href="#ref2">[2]</a><a href="#ref3">[3]</a><a href="#ref4">[4]</a></sup>'
+      en: 'Christian IV''s kroner 1618–1624. A tariff coin, introduced in 1618 as the <i>Corona Danica</i> at an initial tariff of 1½ Speciedaler — a Crown fiscal measure with a seigniorage premium of ca. 11 % above the silver value<sup><a href="#ref8">[8]</a></sup>. Production ends in 1624; in the following year, <b>1625</b>, the tariff is officially cut to 1⅓ Speciedaler. Thereafter a 19-year hiatus of Krone production follows, until the revival in the 10½-Krone-Fuß (Glückstadt) in 1644.<sup><a href="#ref1">[1]</a><a href="#ref2">[2]</a><a href="#ref3">[3]</a><a href="#ref4">[4]</a></sup>'
+      uk: 'Christian IV''s kroner 1618–1624. Тарифна монета, запроваджена 1618 р. як <i>Corona Danica</i> за початковим тарифом 1½ Speciedaler — фіскальний інструмент Корони з сеньйораж­ною надбавкою бл. 11 % над срібною вартістю<sup><a href="#ref8">[8]</a></sup>. Карбування завершується 1624 р., наступного <b>1625</b> року тариф офіційно знижено до 1⅓ Speciedaler. Далі настає 19-річна перерва карбування Krone — аж до відновлення у 10½-Krone-Fuß (Glückstadt) 1644 р.<sup><a href="#ref1">[1]</a><a href="#ref2">[2]</a><a href="#ref3">[3]</a><a href="#ref4">[4]</a></sup>'
     details:
-      de: "<p>Die Christian-IV.-Krone war keine Handelsmünze nach Silbergehalt, sondern eine fiskalische Tarifmünze: ihr Nennwert wurde vom König per Mandat über dem tatsächlichen Silberwert festgesetzt, die Differenz floß als Seigniorage in die Staatskasse.</p><p><b>Primärkanonische Hede-Formel</b><sup><a href=\"#ref4\">[4]</a></sup>: <b>12 ²⁵⁷⁄₇₀₀ Stück je 13¾-lötiger Marck</b> = 18,909 g rau bei .859 Feingehalt = 16,250 g fein je Krone. Diese ungewöhnliche Bruchform (12,367 statt eines glatten 12½) deutet darauf hin, daß der Münzedikt 1618 den Fuß nicht über eine runde Stückzahl, sondern über die <b>Daler-Ausbringung</b> definierte — also über den nominellen Gesamtwert in Speciedaler, der aus einer feinen Marck Silber als Krone-Münzen herauskam. Bei Anfangstarif 1½ Specie pro Doppelkrone (= ¾ Specie pro Krone): aus 233,856 g Feinsilber gehen 14,391 Krone, deren Nennwert sich auf 10,793 Speciedaler addiert (Hede H105<sup><a href=\"#ref4\">[4]</a></sup>). Nach der Forordning vom 14. Februar 1624 wird die Specie selbst auf 100 Skilling neu tarifiert; die physische Krone bleibt unverändert, aber dieselbe Marck Feinsilber «bringt» nach der neuen Specie-Skala nur noch 10,361 Speciedaler aus (Hede H124<sup><a href=\"#ref4\">[4]</a></sup>).</p><p>1618 wurde nur die 2 Krone (damals einfach «Krone» genannt) nach dieser Formel geprägt; ½, ¼ und ⅛ Krone des Jahres 1618 folgten einer leicht niedrigeren Münzfod, deren exakte Werte aus Wilcke nachzutragen sind. Ab 1619 prägt auch die ½ Krone nach der Hauptformel<sup><a href=\"#ref4\">[4]</a></sup>.</p><p><b>Spezialliteratur:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) und <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — behandeln vor allem die spätere Wiederaufnahme im 10½-Krone-Fuß («<i>Grobe Krone</i>»); die Christian-IV.-Phase wird primär aus dem Hede-/Schou-Katalog (H105–H107, H124–H126) sowie den Bruun-Lots 13089 ff. (Stack's Bowers Auktion Part II, Zürich 14.–15. März 2025) belegt.</p>"
-      en: "<p>The Christian IV Krone was not a trade coin valued by silver content but a fiscal tariff coin: its face value was set by royal mandate above the actual silver value, the gap accruing to the treasury as seigniorage.</p><p><b>Primary catalogue formula (Hede)</b><sup><a href=\"#ref4\">[4]</a></sup>: <b>12 ²⁵⁷⁄₇₀₀ pieces per 13¾-lødig mark</b> = 18.909 g rough at .859 fineness = 16.250 g fine per Krone. The unusual fractional form (12.367 rather than a clean 12½) suggests the 1618 mint edict defined the standard not via a round piece count but via the <b>daler output</b> — that is, the total face value, expressed in Speciedaler, that one fine mark of silver yielded once struck into Krone coin. At the initial tariff of 1½ Specie per Doppelkrone (= ¾ Specie per Krone): 233.856 g of fine silver yields 14.391 Krone, whose face values add up to 10.793 Speciedaler (Hede H105<sup><a href=\"#ref4\">[4]</a></sup>). After the Forordning of 14 February 1624 the Specie itself is re-rated to 100 Skilling; the physical Krone is unchanged, but on the new Specie scale the same fine mark now yields only 10.361 Speciedaler (Hede H124<sup><a href=\"#ref4\">[4]</a></sup>).</p><p>In 1618 only the 2 Krone (then simply called «Krone») was struck on this formula; the ½, ¼ and ⅛ Krone of 1618 followed a slightly lower Münzfod whose exact values still need to be lifted from Wilcke. From 1619 the ½ Krone also follows the main formula<sup><a href=\"#ref4\">[4]</a></sup>.</p><p><b>Specialist literature:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) and <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — these treat mainly the later revival under the 10½-Krone-Fuß («<i>Coarse Krone</i>»); the Christian IV phase is documented primarily through the Hede / Schou catalogue (H105–H107, H124–H126) and Bruun lots 13089 ff. (Stack's Bowers auction Part II, Zurich 14–15 March 2025).</p>"
-      uk: "<p>Krone Кристіана IV не була торговельною монетою за вмістом срібла, а фіскальною тарифною: її номінал встановлювався королівським мандатом вище фактичної срібної вартості, різниця надходила до скарбниці як сеньйораж.</p><p><b>Першоджерельна Hede-формула</b><sup><a href=\"#ref4\">[4]</a></sup>: <b>12 ²⁵⁷⁄₇₀₀ штук з 13¾-lødig марки</b> = 18,909 г повної ваги за проби .859 = 16,250 г чистого на Krone. Незвична дробова форма (12,367 замість «красивого» 12½) вказує на те, що монетний едикт 1618 р. задавав стопу не через круглу кількість штук, а через <b>вихід у даллерах (daler-udbringning)</b> — тобто через сумарну номінальну вартість у Speciedaler, яку одна марка чистого срібла «приносила» при карбуванні в Krone-монети. За початкового тарифу 1½ Specie на Doppelkrone (= ¾ Specie на одну Krone): з 233,856 г чистого срібла виходить 14,391 Krone, сумарна номінальна вартість яких становить 10,793 Speciedaler (Hede H105<sup><a href=\"#ref4\">[4]</a></sup>). Після Forordning 14 лютого 1624 р. сам Specie перетарифовано на 100 Skilling; фізично Krone лишається без змін, але та сама марка чистого срібла за новою Specie-шкалою «приносить» уже лише 10,361 Speciedaler (Hede H124<sup><a href=\"#ref4\">[4]</a></sup>).</p><p>1618 р. за цією формулою карбувалась лише 2 Krone (тоді просто «Krone»); ½, ¼ та ⅛ Krone 1618 р. йшли за дещо нижчою møntfod, точні значення якої треба підняти з Wilcke. З 1619 р. ½ Krone теж переходить на головну формулу<sup><a href=\"#ref4\">[4]</a></sup>.</p><p><b>Спеціальна література:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) і <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — стосуються переважно пізнішого відновлення у 10½-Krone-Fuß («<i>Груба Крона</i>»); фаза Кристіана IV задокументована переважно за Hede/Schou (H105–H107, H124–H126) і лотами Bruun 13089 і далі (Stack's Bowers auction Part II, Цюрих 14–15 березня 2025).</p>"
+      de: "<p>Die Christian-IV.-Krone war keine Handelsmünze nach Silbergehalt, sondern eine fiskalische Tarifmünze: ihr Nennwert wurde vom König per Mandat über dem tatsächlichen Silberwert festgesetzt, die Differenz floß als Seigniorage in die Staatskasse<sup><a href=\"#ref8\">[8]</a></sup>.</p><p><b>Primärkanonische Hede-Formel</b><sup><a href=\"#ref4\">[4]</a></sup>: <b>12 ²⁵⁷⁄₇₀₀ Stück je 13¾-lötiger Marck</b> = 18,909 g rau bei .859 Feingehalt = 16,250 g fein je Krone. Die Bruchform (12,367 statt 12½) ergibt sich daraus, daß der Münzedikt 1618 den Fuß über die <b>Daler-Ausbringung</b> definiert — den nominellen Gesamtwert in Speciedaler aus einer feinen Marck Silber als Krone-Münzen. Bei Anfangstarif 1½ Specie pro Doppelkrone (= ¾ Specie pro Krone) ergeben 233,856 g Feinsilber 14,391 Krone, deren Nennwert sich auf 10,793 Speciedaler addiert (Hede H105<sup><a href=\"#ref4\">[4]</a></sup>). Nach der Forordning vom 14. Februar 1624 wird die Specie selbst auf 100 Skilling neu tarifiert; die physische Krone bleibt unverändert, aber dieselbe Marck Feinsilber bringt nach der neuen Specie-Skala nur noch 10,361 Speciedaler aus (Hede H124<sup><a href=\"#ref4\">[4]</a></sup>).</p><p>1618 wurde nur die 2 Krone (damals einfach «Krone» genannt) nach dieser Formel geprägt; ½, ¼ und ⅛ Krone des Jahres 1618 folgten einer leicht niedrigeren Münzfod. Ab 1619 prägt auch die ½ Krone nach der Hauptformel<sup><a href=\"#ref4\">[4]</a></sup>.</p><p>Spezialliteratur zur Christian-IV.-Phase: Hede / Schou (H105–H107, H124–H126); Bruun-Lots 13089 ff. (Stack's Bowers Auktion Part II, Zürich 14.–15. März 2025).</p>"
+      en: "<p>The Christian IV Krone was not a trade coin valued by silver content but a fiscal tariff coin: its face value was set by royal mandate above the actual silver value, the gap accruing to the treasury as seigniorage<sup><a href=\"#ref8\">[8]</a></sup>.</p><p><b>Primary catalogue formula (Hede)</b><sup><a href=\"#ref4\">[4]</a></sup>: <b>12 ²⁵⁷⁄₇₀₀ pieces per 13¾-lødig mark</b> = 18.909 g rough at .859 fineness = 16.250 g fine per Krone. The fractional form (12.367 rather than 12½) follows from the 1618 mint edict defining the standard via the <b>daler output</b> — the total face value, expressed in Speciedaler, that one fine mark of silver yields once struck into Krone coin. At the initial tariff of 1½ Specie per Doppelkrone (= ¾ Specie per Krone), 233.856 g of fine silver yields 14.391 Krone, whose face values add up to 10.793 Speciedaler (Hede H105<sup><a href=\"#ref4\">[4]</a></sup>). After the Forordning of 14 February 1624 the Specie itself is re-rated to 100 Skilling; the physical Krone is unchanged, but on the new Specie scale the same fine mark now yields only 10.361 Speciedaler (Hede H124<sup><a href=\"#ref4\">[4]</a></sup>).</p><p>In 1618 only the 2 Krone (then simply called «Krone») was struck on this formula; the ½, ¼ and ⅛ Krone of 1618 followed a slightly lower Münzfod. From 1619 the ½ Krone also follows the main formula<sup><a href=\"#ref4\">[4]</a></sup>.</p><p>Specialist literature on the Christian IV phase: Hede / Schou (H105–H107, H124–H126); Bruun lots 13089 ff. (Stack's Bowers auction Part II, Zurich 14–15 March 2025).</p>"
+      uk: "<p>Krone Кристіана IV не була торговельною монетою за вмістом срібла, а фіскальною тарифною: її номінал встановлювався королівським мандатом вище фактичної срібної вартості, різниця надходила до скарбниці як сеньйораж<sup><a href=\"#ref8\">[8]</a></sup>.</p><p><b>Першоджерельна Hede-формула</b><sup><a href=\"#ref4\">[4]</a></sup>: <b>12 ²⁵⁷⁄₇₀₀ штук з 13¾-lødig марки</b> = 18,909 г повної ваги за проби .859 = 16,250 г чистого на Krone. Дробова форма (12,367 замість 12½) випливає з того, що монетний едикт 1618 р. задавав стопу через <b>вихід у даллерах (daler-udbringning)</b> — сумарну номінальну вартість у Speciedaler, яку одна марка чистого срібла «приносила» при карбуванні в Krone-монети. За початкового тарифу 1½ Specie на Doppelkrone (= ¾ Specie на одну Krone) з 233,856 г чистого срібла виходить 14,391 Krone, сумарна номінальна вартість яких становить 10,793 Speciedaler (Hede H105<sup><a href=\"#ref4\">[4]</a></sup>). Після Forordning 14 лютого 1624 р. сам Specie перетарифовано на 100 Skilling; фізично Krone лишається без змін, але та сама марка чистого срібла за новою Specie-шкалою «приносить» уже лише 10,361 Speciedaler (Hede H124<sup><a href=\"#ref4\">[4]</a></sup>).</p><p>1618 р. за цією формулою карбувалась лише 2 Krone (тоді просто «Krone»); ½, ¼ та ⅛ Krone 1618 р. йшли за дещо нижчою møntfod. З 1619 р. ½ Krone теж переходить на головну формулу<sup><a href=\"#ref4\">[4]</a></sup>.</p><p>Спеціальна література по фазі Кристіана IV: Hede / Schou (H105–H107, H124–H126); лоти Bruun 13089 і далі (Stack's Bowers auction Part II, Цюрих 14–15 березня 2025).</p>"
 
   reichsdukatenfuss:
     pdate_label:
@@ -94,36 +272,33 @@ fuss_periods:
       uk: "Період дії: 1644 → 1696 · ~52 років"
     hintergrund:
       de: |-
-        Fiskalische <b>Tarifmünze</b> der dänischen Krone, 1618–1696. Nennwert per königlichem Mandat über dem Silberwert festgesetzt; die Differenz floß als Seigniorage in die Staatskasse. <b>Historischer Vorläufer:</b> der Krone-Standard <b>Christian IVs kroner</b> (Corona Danica 1618–1624) — dieselbe Münzkategorie (Tarifmünze) und derselbe Münzname, aber mit höherem Feingehalt und höherem Tarif pro Krone als der 10½-Krone-Fuß. Der 1644 in Glückstadt wiederaufgenommene <b>10½-Krone-Fuß</b> («<i>Grobe Krone</i>») übernimmt nur die Tarif-Logik der Krone, nicht ihre metrischen Parameter. <b>Paralleler dänischer Standard:</b> der <b>13-Krone-Fuß</b> («<i>Feine Krone</i>», Reskript 31. Dezember 1692) — eine ausschließlich auf die Kopenhagener Hauptmünze beschränkte Reform, in Holstein nicht durchgeführt; daher in diesem Artefakt nicht als eigene Sektion behandelt.
+        Silberne Tarifmünze des dänisch-norwegischen Verbunds. Die Krone-Tarifprägung beginnt 1618 unter Christian IV. mit der <i>Corona Danica</i> (eigene Münzformel, höhere Lötigkeit und höherer Tarif pro Krone als der spätere 10½-Krone-Fuß). 1644 wird in Glückstadt während des Torstenson-Krieges (1643–1648) die <b>Hebræermønt</b> ausgegeben — eine Kriegsmünze mit deutlich unterwertigem Silbergehalt, deren Feingehalt absichtlich verschleiert wurde; eine formelle Münzfuß-Ordnung lag dieser Phase nicht zugrunde<sup><a href="#ref7">[7]</a></sup>. Der reguläre <b>10½-Krone-Fuß</b> wird formell erst durch die Münzordnung Christians V. vom <b>22. März 1671</b> festgelegt: «<i>Kronemønt eller sletdalere skal udmøntes til 10 rd. 2½ mark</i>» je Marck Feinsilber<sup><a href="#ref6">[6]</a></sup>. Dieselbe Ordnung verankert die Speciemønt mit 9¼ rd. je Marck als Hauptstandard; die Krone gilt ausdrücklich als untergeordnete, sekundäre Münzfuß-Stufe und erreicht zu keiner Zeit Parität mit dem Specie als Primärstandard<sup><a href="#ref6">[6]</a></sup>. Im Tagesumlauf verdrängte die übertarifierte Krone den Speciedaler nach Greshamschem Mechanismus: gute Specietaler wurden für Auslandszahlungen einbehalten und gelangten kaum in den inländischen Verkehr<sup><a href="#ref4">[4]</a></sup><sup><a href="#ref8">[8]</a></sup>.
       en: |-
-        Fiscal <b>tariff coin</b> of the Danish Crown, 1618–1696. Face value set by royal mandate above the silver value; the gap accrued to the treasury as seigniorage. <b>Historical predecessor:</b> the Krone standard <b>Christian IV's kroner</b> (Corona Danica 1618–1624) — same coin category (tariff coin) and same coin name, but at higher fineness and a higher per-Krone tariff than the 10½-Krone-Fuß. The Glückstadt standard taken up again in 1644 — the <b>10½-Krone-Fuß</b> («<i>Coarse Krone</i>») — inherits only the Krone's tariff logic, not its metric parameters. <b>Parallel Danish standard:</b> the <b>13-Krone-Fuß</b> («<i>Fine Crown</i>», reskript of 31 December 1692) — a reform confined entirely to the Copenhagen royal mint, never carried through in Holstein; therefore not treated as its own section in this artefact.
+        Silver tariff coin of the Danish-Norwegian composite state. Krone tariff coinage begins in 1618 under Christian IV with the <i>Corona Danica</i> (a separate coin formula, with higher fineness and a higher per-Krone tariff than the later 10½-Krone-Fuß). In 1644, during the Torstenson War (1643–1648), the <b>Hebræermønt</b> is issued at Glückstadt — a war coinage substantially under-weight, with the fineness deliberately concealed; this phase rested on no formal Münzfuß ordinance<sup><a href="#ref7">[7]</a></sup>. The regular <b>10½-Krone-Fuß</b> is formally established only by Christian V's Mint Ordinance of <b>22 March 1671</b>: «<i>Kronemønt eller sletdalere skal udmøntes til 10 rd. 2½ mark</i>» per mark of fine silver<sup><a href="#ref6">[6]</a></sup>. The same ordinance anchors Speciemønt at 9¼ rd. per mark as the principal standard; the Krone is explicitly a subordinate, secondary Münzfuß tier and never achieves parity with Specie as a primary standard<sup><a href="#ref6">[6]</a></sup>. In day-to-day circulation the over-tariffed Krone displaced the Speciedaler by Gresham's mechanism: good Specie was held back for foreign payments and scarcely entered domestic exchange<sup><a href="#ref4">[4]</a></sup><sup><a href="#ref8">[8]</a></sup>.
       uk: |-
-        Фіскальна <b>тарифна монета</b> данської Корони, 1618–1696. Номінал встановлювався королівським мандатом вище срібної вартості; різниця надходила до скарбниці як сеньйораж. <b>Історичний предтеча:</b> Krone-стандарт <b>Christian IV's kroner</b> (Corona Danica 1618–1624) — та сама монетна категорія (тарифна монета) і та сама назва монети, але з вищою пробою і вищим тарифом на одну Krone, ніж 10½-Krone-Fuß. Відновлений у Glückstadt 1644 р. <b>10½-Krone-Fuß</b> («<i>Груба Крона</i>») успадковує лише тарифну логіку Krone, не її метричні параметри. <b>Паралельний данський стандарт:</b> <b>13-Krone-Fuß</b> («<i>Тонка Крона</i>», рескрипт 31 грудня 1692 р.) — реформа, що обмежувалась виключно Копенгагенським королівським монетним двором, у Гольштейні не впроваджена; тому в цьому артефакті окремою секцією не подається.
+        Срібна тарифна монета дансько-норвезького союзу. Тарифне карбування Krone розпочинається 1618 р. за Кристіана IV з <i>Corona Danica</i> (окрема монетна формула, вища проба і вищий тариф на одну Krone, ніж пізніший 10½-Krone-Fuß). У 1644 р. під час війни Торстенсона (1643–1648) у Glückstadt випускається <b>Hebræermønt</b> — воєнна монета з суттєво недоваженим вмістом срібла, пробу свідомо приховано; формальна Münzfuß-постанова в основу цієї фази не покладена<sup><a href="#ref7">[7]</a></sup>. Регулярний <b>10½-Krone-Fuß</b> формально встановлюється лише Монетною постановою Кристіана V від <b>22 березня 1671 р.</b>: «<i>Kronemønt eller sletdalere skal udmøntes til 10 rd. 2½ mark</i>» з марки чистого срібла<sup><a href="#ref6">[6]</a></sup>. У тій самій постанові Speciemønt закріплено за 9¼ rd. з марки як головний стандарт; Krone виразно є підпорядкованим, вторинним рівнем Münzfuß і ніколи не досягає паритету зі Specie як первинним стандартом<sup><a href="#ref6">[6]</a></sup>. У повсякденному обігу надтарифікована Krone витіснила Speciedaler за механізмом Грешема: добротні Specie притримували для зовнішньоторговельних розрахунків і вони майже не потрапляли у внутрішній обіг<sup><a href="#ref4">[4]</a></sup><sup><a href="#ref8">[8]</a></sup>.
     details:
       de: |
-        <p>Die Kronemønt wurde 1618 unter Christian IV. als <i>Corona Danica</i> eingeführt — keine Handelsmünze nach Silbergehalt, sondern eine Binnenwährung mit königlich verfügtem Tarif. Der Aufschlag über dem tatsächlichen Silberwert war Seigniorage-Gewinn der Krone.</p>
-        <p>Der ursprüngliche Tarif (1 Krone = 1½ Speciedaler) bedeutete einen erheblichen Seigniorage-Aufschlag über dem reinen Silberwert; im Volksmund wurde der königliche Wahlspruch <b>RFP</b> (regna firmat pietas — «Frömmigkeit stärkt die Reiche») daraufhin als <b>R(iget) F(attes) P(enge)</b> — «Dem Reich fehlt Geld» — gelesen.<sup><a href="#ref25">[25]</a></sup> Im Jahre 1625 wurde der Tarif auf 1⅓ Specie herabgesetzt; um 1670 stabilisierte ihn Christian V. auf <b>⅔ Specie</b> = 2 Marck Danske, eine Wertigkeit, die fortan auf den Münzen explizit als «<b>2 MARCK</b>» eingeprägt erscheint.</p>
-        <p>Geprägt wurde in <b>Kopenhagen</b> (königliche Münze) und in <b>Glückstadt</b> (holsteinische Münze, ab 1644 dominant). Die Kronemønt zirkulierte nach dem königlich gesetzten Tarif; parallel prägten Kopenhagen und Glückstadt vollwertige Speciedaler nach 9¼-Fuß (siehe Bruun-Lots im Speciedaler-Abschnitt). Die Serie endet 1696; ab 1726 löst der <b>Rigsdaler Courant (11⅓-Fuß)</b> sie als dänische Hauptmünze ab — auf Grundlage der Metalläquivalenz statt der Tarif-Logik.</p>
-        <p><b>Quellengrundlage des Müntzfußes und des Feingehalts:</b> Bei fehlenden Primärtexten der Münzedikte sind die Müntzen selbst die Quelle. Der Müntzfuß <b>10½</b> ergibt sich exakt: 22,272 g Raugewicht × 10,5 = 233,856 g = 1 Cöllnische Marck (ohne Rundung). Der Feingehalt <b>.671</b> auf Numista entspricht der nächstgelegenen kanonischen Loth-Grän-Stufe <b>⁴³⁄₆₄ = 10 Loth 12 Grän = .671875</b> — die Differenz liegt in der vierten Dezimalstelle, innerhalb der üblichen Numista-Rundung auf drei Stellen; benachbarte Stufen (.6641 und .6797) sind ausgeschlossen. Der Müntzfuß <b>10½</b> bezieht sich auf die RAUE Marck, nicht auf Feinsilber wie bei den Thaler-Müntzfüßen. Belegexemplare: N#111284, N#111285, N#108760, N#108735.</p>
-        <p><b>Spezialliteratur:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) und <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — beide trennen die Kronemønt-Serie bewußt vom regulären Speciedaler.</p>
+        <p>Der Anfangstarif (1 Krone = 1½ Speciedaler) bedeutete eine Aufschlag von ca. 11 % über dem Silberwert<sup><a href="#ref8">[8]</a></sup>; der königliche Wahlspruch <b>RFP</b> (regna firmat pietas — «Frömmigkeit stärkt die Reiche») wurde im Volksmund daraufhin als <b>R(iget) F(attes) P(enge)</b> — «Dem Reich fehlt Geld» — gelesen<sup><a href="#ref5">[5]</a></sup>. 1625 sank der Tarif auf 1⅓ Specie; um 1670 stabilisierte ihn Christian V. auf <b>⅔ Specie</b> = 2 Marck Danske, eine Wertigkeit, die fortan auf den Münzen explizit als «<b>2 MARCK</b>» eingeprägt erscheint.</p>
+        <p>Geprägt wurde an der Kopenhagener Hauptmünze und ab 1644 dominant in Glückstadt. Die Serie endet 1696. Mit der Forordning vom 15./31. Juli 1726 (Rigsdaler Courant nach Kurantmøntfod) verliert das Krone-Tarif-System seine Funktion als Hauptträger des Geldumlaufs zugunsten einer Metalläquivalenz-Logik<sup><a href="#ref4">[4]</a></sup>.</p>
+        <p>Die Müntzfuß-Werte folgen aus der Münzordnung 1671: 22,272 g Raugewicht × 10,5 = 233,856 g = 1 Cöllnische Marck. Der Feingehalt entspricht der kanonischen Loth-Grän-Stufe ⁴³⁄₆₄ = 10 Loth 12 Grän = .671875 (Numista führt .671 als gerundete Form). Belegexemplare: N#111284, N#111285, N#108760, N#108735.</p>
+        <p>Spezialliteratur zur Glückstadter Phase: Sven Aagaard, <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022).</p>
       en: |-
-        <p>The Kronemønt was introduced in 1618 by Christian IV as the <i>Corona Danica</i> — not a trade coin valued by silver content but a domestic currency with a royally decreed tariff. The premium above the actual silver value was Crown seigniorage.</p>
-        <p>The original tariff (1 Krone = 1½ Speciedaler) implied a substantial seigniorage premium above the pure silver value; the royal motto <b>RFP</b> (regna firmat pietas — «piety strengthens kingdoms») was therefore reread in folk parlance as <b>R(iget) F(attes) P(enge)</b> — «the realm lacks money».<sup><a href="#ref25">[25]</a></sup> In 1625 the tariff was lowered to 1⅓ Specie; around 1670 Christian V stabilised it at <b>⅔ Specie</b> = 2 Marck Danske, a parity which thereafter appears explicitly on the coins as «<b>2 MARCK</b>».</p>
-        <p>Striking took place at <b>Copenhagen</b> (royal mint) and at <b>Glückstadt</b> (the Holstein mint, dominant from 1644 onwards). The Kronemønt circulated at the royally set tariff; in parallel both Copenhagen and Glückstadt struck full-value Speciedaler on the 9¼-Fuß (see the Bruun lots in the Speciedaler section). The series ends in 1696; from 1726 the <b>Rigsdaler Courant (11⅓-Fuß)</b> succeeds it as the principal Danish coin — on a metal-equivalence basis rather than a tariff basis.</p>
-        <p><b>Source basis for the standard and fineness:</b> in the absence of accessible mint-edict texts, the coins themselves are the source. The standard <b>10½</b> follows exactly: 22.272 g rough × 10.5 = 233.856 g = 1 Cologne mark (no rounding). The fineness <b>.671</b> on Numista matches the nearest canonical Loth-Grän step <b>⁴³⁄₆₄ = 10 Loth 12 Grän = .671875</b> — a 4th-decimal difference, within Numista's usual 3-digit rounding; the adjacent steps .6641 and .6797 are ruled out. The standard <b>10½</b> refers to the RAW mark, not to fine silver as in the Thaler standards. Reference specimens: N#111284, N#111285, N#108760, N#108735.</p>
-        <p><b>Specialist literature:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) and <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — both deliberately separate the Kronemønt series from the regular Speciedaler.</p>
+        <p>The initial tariff (1 Krone = 1½ Speciedaler) implied a premium of ca. 11 % above the silver value<sup><a href="#ref8">[8]</a></sup>; the royal motto <b>RFP</b> (regna firmat pietas — «piety strengthens kingdoms») was therefore reread in folk parlance as <b>R(iget) F(attes) P(enge)</b> — «the realm lacks money»<sup><a href="#ref5">[5]</a></sup>. In 1625 the tariff fell to 1⅓ Specie; around 1670 Christian V stabilised it at <b>⅔ Specie</b> = 2 Marck Danske, a parity which thereafter appears explicitly on the coins as «<b>2 MARCK</b>».</p>
+        <p>Striking took place at the Copenhagen royal mint and, from 1644 onward, predominantly at Glückstadt. The series ends in 1696. With the Forordning of 15/31 July 1726 (Rigsdaler Courant on the Kurantmøntfod) the Krone tariff system loses its function as principal medium of circulation in favour of a metal-equivalence logic<sup><a href="#ref4">[4]</a></sup>.</p>
+        <p>The Müntzfuß values follow from the 1671 ordinance: 22.272 g rough × 10.5 = 233.856 g = 1 Cologne mark. The fineness matches the canonical Loth-Grän step ⁴³⁄₆₄ = 10 Loth 12 Grän = .671875 (Numista gives .671 as a rounded form). Reference specimens: N#111284, N#111285, N#108760, N#108735.</p>
+        <p>Specialist literature on the Glückstadt phase: Sven Aagaard, <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022).</p>
       uk: |-
-        <p>Kronemønt запроваджено 1618 року Кристіаном IV як <i>Corona Danica</i> — не торговельну монету за вмістом срібла, а внутрішню валюту з королівсько встановленим тарифом. Надбавка над фактичною срібною вартістю становила сеньйораж Корони.</p>
-        <p>Початковий тариф (1 Krone = 1½ Speciedaler) означав суттєву сеньйораж-надбавку над чистою срібною вартістю; королівський девіз <b>RFP</b> (regna firmat pietas — «побожність зміцнює царства») у народі відтак переосмислили як <b>R(iget) F(attes) P(enge)</b> — «Державі бракує грошей».<sup><a href="#ref25">[25]</a></sup> 1625 року тариф знижено до 1⅓ Specie; близько 1670 року Кристіан V стабілізував його на рівні <b>⅔ Specie</b> = 2 Marck Danske — паритет, який відтоді з'являється на монетах явно як «<b>2 MARCK</b>».</p>
-        <p>Карбування здійснювалося в <b>Копенгагені</b> (королівський монетний двір) і в <b>Glückstadt</b> (гольштинський монетний двір, домінантний з 1644). Kronemønt оберталась за встановленим королем тарифом; паралельно Копенгаген і Glückstadt карбували повноцінні Speciedaler за 9¼-Fuß (див. Bruun-лоти в Speciedaler-розділі). Серія завершується 1696 року; з 1726 р. <b>Rigsdaler Courant (11⅓-Fuß)</b> змінює її як головна данська монета — на основі еквівалентності металу, не тарифу.</p>
-        <p><b>Джерельна база стопи та проби:</b> за відсутності доступних текстів монетних едиктів первинним джерелом є самі монети. Стопа <b>10½</b> виходить точно: 22,272 г повної ваги × 10,5 = 233,856 г = 1 кельнська марка (без округлення). Проба <b>.671</b> у Numista збігається з найближчою канонічною точкою системи Loth-Grän <b>⁴³⁄₆₄ = 10 Loth 12 Grän = .671875</b> — різниця в четвертій цифрі після коми, у межах звичайного округлення Numista до трьох знаків; сусідні рівні .6641 і .6797 виключаються. Стопа <b>10½</b> рахується від повної (rau) марки, а не від чистого срібла як у Thaler-стопах. Зразки-приклади: N#111284, N#111285, N#108760, N#108735.</p>
-        <p><b>Спеціальна література:</b> Sven Aagaard, <i>Frederik III Kronemønt København 1651–1670</i> (2004) і <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022) — обидва навмисно відокремлюють серію Kronemønt від звичайного Speciedaler.</p>
+        <p>Початковий тариф (1 Krone = 1½ Speciedaler) означав надбавку бл. 11 % над срібною вартістю<sup><a href="#ref8">[8]</a></sup>; королівський девіз <b>RFP</b> (regna firmat pietas — «побожність зміцнює царства») у народі переосмислили як <b>R(iget) F(attes) P(enge)</b> — «Державі бракує грошей»<sup><a href="#ref5">[5]</a></sup>. 1625 року тариф знижено до 1⅓ Specie; близько 1670 року Кристіан V стабілізував його на рівні <b>⅔ Specie</b> = 2 Marck Danske — паритет, який відтоді з'являється на монетах явно як «<b>2 MARCK</b>».</p>
+        <p>Карбування здійснювалося на Копенгагенському королівському монетному дворі та з 1644 р. — переважно у Glückstadt. Серія завершується 1696 р. З Forordning 15/31 липня 1726 р. (Rigsdaler Courant за Kurantmøntfod) тарифна система Krone втрачає роль головного носія грошового обігу на користь логіки еквівалентності металу<sup><a href="#ref4">[4]</a></sup>.</p>
+        <p>Значення Müntzfuß випливають з постанови 1671 р.: 22,272 г повної ваги × 10,5 = 233,856 г = 1 кельнська марка. Проба збігається з канонічною точкою Loth-Grän ⁴³⁄₆₄ = 10 Loth 12 Grän = .671875 (Numista наводить .671 як округлену форму). Зразки-приклади: N#111284, N#111285, N#108760, N#108735.</p>
+        <p>Спеціальна література по ґлюкштадтській фазі: Sven Aagaard, <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022).</p>
 
   guldkrone:
     pdate_label:
-      de: 'Geltungsbereich: 1657 → 1670 · 13 Jahre (Frederik-III.-Tarifregime; in Holstein nur Glückstadt-Phase 1657–1660)'
-      en: 'Period of validity: 1657 → 1670 · 13 years (Frederik III tariff regime; in Holstein only the Glückstadt phase 1657–1660)'
-      uk: 'Період дії: 1657 → 1670 · 13 років (тарифний режим Фредеріка III; у Гольштейні лише ґлюкштадтська фаза 1657–1660)'
+      de: 'Geltungsbereich: 1657 → 1670 · 13 Jahre (Frederik-III.-Tarifregime; Glückstadt-Phase 1657–1660, Kopenhagen-Folgeprägung 1668)'
+      en: 'Period of validity: 1657 → 1670 · 13 years (Frederik III tariff regime; Glückstadt phase 1657–1660, Copenhagen follow-up 1668)'
+      uk: 'Період дії: 1657 → 1670 · 13 років (тарифний режим Фредеріка III; ґлюкштадтська фаза 1657–1660, копенгагенський випуск 1668)'
     hintergrund:
       de: |
         Goldene <b>Tarifmünze</b> Frederik III., 1657 in Glückstadt eingeführt; goldenes Pendant der Krone-Mønt-Kategorie mit gleicher Tarif-Logik wie die silberne Krone, aber in 22-karätigem Gold und mit eigener metrischer Definition (≈ 39 Stück je Cöllnische Marck Raulegierung von 22 Karat = 5,996 g rau / 5,498 g fein je Stück). Tarif <b>1 Guldkrone = 3½ Speciedaler = 21 Mark Dansk</b>. Geprägt in Glückstadt 1657–1660 (Hede 145B, Mzm. Jacob Schwieger) und in Kopenhagen 1668 (KM# 303, bei reduziertem Tarif von 3 Speciedaler und kleinerem Raugewicht von 5,47 g — ein verwandter, aber physikalisch anderer Müntzfuß). Mit dem Tod Frederiks III. 1670 endet die Guldkrone-Tarifprägung; Christian V. setzt sie nicht fort und prägt in Glückstadt nur noch nach dem Reichsdukatenfuß. <b>Nicht zu verwechseln mit dem Goldgulden</b> (HRR-Goldmünze nach Reichsmünzordnung 1559, andere Lineage und andere Tarifeinheit).
@@ -137,11 +312,11 @@ fuss_periods:
       uk: "Підсумок · 13 років тарифного режиму Фредеріка III"
     closing:
       de: |
-        Der Guldkrone-Fuß ist eines der <b>kürzlebigsten Tarifregime</b> im Holstein-Verzeichnis: ein einziger Regent (Frederik III., 1648–1670) und zwei Münzstätten (Glückstadt 1657–1660, Kopenhagen 1668). Im Holstein-Skopus liegt nur die Glückstadt-Phase mit dem kanonischen Typ Hede 145B (Mzm. Jacob Schwieger); die Kopenhagener Folgeprägung 1668 ist als eigener Typ erfaßt, gehört aber nicht zu diesem Verzeichnis. Mit Christian V. läuft die Guldkrone-Tarif-Logik aus — Goldprägung in Glückstadt setzt sich nur noch im Reichsdukatenfuß fort.
+        Der Guldkrone-Fuß ist eines der kürzlebigsten Tarifregime der Krone-Mønt-Lineage: ein einziger Regent (Frederik III., 1648–1670) und zwei Münzstätten (Glückstadt 1657–1660 mit dem kanonischen Typ Hede 145B unter Mzm. Jacob Schwieger; Kopenhagen 1668 mit reduziertem Tarif). Mit Christian V. läuft die Guldkrone-Tarif-Logik aus — die Goldprägung setzt sich danach nur noch im Reichsdukatenfuß fort.
       en: |-
-        The Guldkrone-Fuß is one of the <b>shortest-lived tariff regimes</b> in the Holstein register: a single ruler (Frederik III, 1648–1670) and two mints (Glückstadt 1657–1660, Copenhagen 1668). Only the Glückstadt phase falls within the Holstein scope, with the canonical type Hede 145B (mintmaster Jacob Schwieger); the Copenhagen follow-up of 1668 is registered as its own type but does not belong to this catalogue. With Christian V the Guldkrone tariff logic lapses — gold coinage at Glückstadt continues only on the Reichsdukatenfuß.
+        The Guldkrone-Fuß is one of the shortest-lived tariff regimes in the Krone-Mønt lineage: a single ruler (Frederik III, 1648–1670) and two mints (Glückstadt 1657–1660 with the canonical type Hede 145B under mintmaster Jacob Schwieger; Copenhagen 1668 at a reduced tariff). With Christian V the Guldkrone tariff logic lapses — gold coinage thereafter continues only on the Reichsdukatenfuß.
       uk: |-
-        Guldkrone-Fuß — один із <b>найкоротших тарифних режимів</b> у гольштинському реєстрі: один правитель (Фредерік III, 1648–1670) і два монетні двори (Glückstadt 1657–1660, Копенгаген 1668). У гольштинський скоуп потрапляє лише ґлюкштадтська фаза з канонічним типом Hede 145B (монетмайстер Jacob Schwieger); копенгагенський наступний випуск 1668 р. зафіксовано як окремий тип, але до цього каталогу він не належить. За Кристіана V тарифна логіка Guldkrone згортається — золоте карбування в Glückstadt далі ведеться лише за Reichsdukatenfuß.
+        Guldkrone-Fuß — один із найкоротших тарифних режимів у лінії Krone-Mønt: один правитель (Фредерік III, 1648–1670) і два монетні двори (Glückstadt 1657–1660 з канонічним типом Hede 145B за монетмайстра Jacob Schwieger; Копенгаген 1668 зі зниженим тарифом). За Кристіана V тарифна логіка Guldkrone згортається — золоте карбування далі ведеться лише за Reichsdukatenfuß.
 
 # ---------------------------------------------------------------------
 # Phase definitions — grouped by fuss
