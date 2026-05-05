@@ -64,10 +64,6 @@
 {% if german_fuesse %}
 <section class="gf-section">
   <p class="gf-subheading">{{ ui_get('landing.gf.subheading') }}</p>
-  {% set _note = ui_get('landing.gf.lang_note') %}
-  {% if _note %}
-  <p class="gf-langnote">{{ _note }}</p>
-  {% endif %}
 
   {# Each German Müntzfuß renders as a `<section class="gw">` — the same
      base-values component used on the per-location pages (see
@@ -109,14 +105,14 @@
           <div class="gf-phase-summary">{{ block.content|t(lang)|safe }}</div>
         {% endif %}
       {% endfor %}
-      {% if gf.territories %}
-      <div class="gw-fr gf-fr-territories">
-        <span class="gw-fr-label">{{ gf.territories.label|t(lang) }}</span>
-        {{ gf.territories.content|t(lang)|safe }}
-      </div>
-      {% endif %}
     </div>
   </section>
+  {% if gf.territories %}
+  <div class="terr">
+    <span class="tlb">{{ gf.territories.label|t(lang) }}</span>
+    {{ gf.territories.content|t(lang)|safe }}
+  </div>
+  {% endif %}
   {% endfor %}
 </section>
 {% endif %}

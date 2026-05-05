@@ -2342,14 +2342,6 @@ a.loc-card:hover {{
   color: var(--text-secondary);
   line-height: 1.6;
 }}
-.gf-langnote {{
-  margin: 8px 0 24px;
-  font-size: 11px;
-  font-style: italic;
-  color: var(--text-muted);
-  line-height: 1.55;
-}}
-
 /* Each entry in the catalogue is rendered as a `<section class="gw">` —
    the same Grundwerte component used on per-location pages. The `.gw`
    rules below (defined earlier in this stylesheet, ~line 1505) supply
@@ -2397,13 +2389,11 @@ a.loc-card:hover {{
 }}
 .gf-phase-summary b {{ color: var(--text-primary); font-weight: 500; }}
 
-/* Territories block — same .gw-fr framing as Rechnungsfraktionen,
-   distinguished only by the label content. The marker class lets us
-   tweak spacing later if needed (e.g. add top margin to separate
-   from the preceding fractions block). */
-.gw-fr.gf-fr-territories {{
-  margin-top: 12px;
-}}
+/* Territories block — rendered outside the .gw card as a full-width
+   `.terr` block (same class used for the «Zusammenfassung / Підсумок»
+   recap at the bottom of each fuss section on the per-location pages,
+   see scripts/lib/styles.py ~line 2207). No landing-specific override
+   needed; the .terr + .tlb rules already supply the styling. */
 
 /* --- Footer -------------------------------------------------------------- */
 
