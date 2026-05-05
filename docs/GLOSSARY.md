@@ -16,7 +16,7 @@ Reference for consistent terminology across languages. Used when writing YAML i1
 | Rechnungseinheit | unit of account | розрахункова одиниця |
 | Rechnungsmünze | money of account | рахункова монета |
 | Handelsmünze | trade coin | торгова монета |
-| Giralgeld | giro money / book money | жиральні гроші |
+| Giralgeld | giro money / book money | безготівкові гроші |
 | Bancovaluta | bank currency | банкова валюта |
 | Banknote / Kassenanweisung | banknote / treasury note | банкнота / казначейський знак |
 | Courant / Kurant | current / courant | курантний |
