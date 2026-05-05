@@ -31,11 +31,24 @@ und einige wenige Inseln (Hamburg, Lübeck, Hannover) biß weit ins
 > wählt automatisch eine Lesart aus drei möglichen — die Quellen
 > nennen drei verschiedene Anker, jeder für einen anderen Aspekt.
 
-| Anker | Jahr | Quelle / Begründung | Datenfeld |
+| Anker | Jahr | Quelle / Begründung | Datenfeld (`data/shared/fuesse.yml#9_thaler.events`) |
 |---|---|---|---|
-| **Massen-Carbung** (empirisches Ende des Volumengeschäfts) | **1667** | Zinnaer Münzvertrag Brandenburg + Sachsen (Brunswick-Beitritt 1668) → ⅔-Thaler im 10½-Fuß wird neues Hauptnominal; Speciesreichstaler «bis auf wenige Ausnahmen nicht ausgeprägt» (Sächs. Wiki); Meyers eLexikon bestätigt unabhängig | timeline mint truncate |
-| **Hauptumlaufmünze-Funktion** (Funktionsende als zirkulierende Reichswährung) | **~1700** | «blieb bis etwa 1700 die Hauptmünze des Reichs» (Wikipedia DE «Speciestaler», parallel «Reichstaler»); danach Übernahme der Hauptumlauf-Rolle durch ⅔-Thaler (12-Fuß) und französische Écus blancs (DeWiki «Taler») | timeline circulation truncate |
-| **Formal Reichsmünzfuß-Status** (juristische Ablösung als THE Reichsmünzfuß) | **1738** | Karl-VI.-Kommissionsedikt erhebt Leipziger Fuß zum Reichsmünzfuß («Damit wurde der Leipziger Fuß Reichsmünzfuß» — Wikipedia DE «Leipziger Fuß»); übereinstimmend bei Bobzin und Meyers; Sächs. Wiki nennt 1735 (Regensburger Reichstag) als vorbereitenden Akt | `data/shared/fuesse.yml#9_thaler.events.std_end.anywhere` |
+| **Massen-Carbung** (empirisches Ende des Volumengeschäfts) | **1667** | Zinnaer Münzvertrag Brandenburg + Sachsen (Brunswick-Beitritt 1668) → ⅔-Thaler im 10½-Fuß wird neues Hauptnominal; Speciesreichstaler «bis auf wenige Ausnahmen nicht ausgeprägt» (Sächs. Wiki); Meyers eLexikon bestätigt unabhängig | `last_mint.anywhere` |
+| **Hauptumlaufmünze-Funktion** (Funktionsende als zirkulierende Reichswährung) | **~1700** | «blieb bis etwa 1700 die Hauptmünze des Reichs» (Wikipedia DE «Speciestaler», parallel «Reichstaler»); danach Übernahme der Hauptumlauf-Rolle durch ⅔-Thaler (12-Fuß) und französische Écus blancs (DeWiki «Taler») | `demonetisation.anywhere` |
+| **Formal Reichsmünzfuß-Status** (juristische Ablösung als THE Reichsmünzfuß) | **1738** | Karl-VI.-Kommissionsedikt erhebt Leipziger Fuß zum Reichsmünzfuß («Damit wurde der Leipziger Fuß Reichsmünzfuß» — Wikipedia DE «Leipziger Fuß»); übereinstimmend bei Bobzin und Meyers; Sächs. Wiki nennt 1735 (Regensburger Reichstag) als vorbereitenden Akt | `std_end.anywhere` |
+
+**Implementierungs-Philosophie.** Die drei Anker leben in den globalen
+Events der Müntzfuß-Definition — d. h. jede Seite, die den 9-Fuß
+visualisiert (Schleswig-Holstein, Hamburg, Lübeck, künftig weitere),
+zeigt automatisch die korrekte Empire-weite Asymmetrie:
+mint endet 1667, Hauptumlauf endet ~1700, formaler Reichsmünzfuß-
+Status endet 1738. **Regionale Sonderfall** (Hannover Speciesthaler
+1738–1802, Hamburg Bank-Speciesthaler 1730–1764, Lübeck
+Jubiläumsthaler 1730/1776, Hamburg/Lübeck Bank-Mark accounting biß
+1875) wird auf den jeweiligen Locations-Seiten als per-location
+Mint-/Status-Phase dokumentiert — <em>nicht</em> in den globalen
+Anywhere-Envelope eingebaut, weil dies die allgemeine HRR-weite
+Geschichte verzerren würde.
 
 Vor 1738 bleibt der 9-Fuß formell **der** Reichsmünzfuß per
 default — der Leipziger Fuß existiert ab 1690 parallel, aber 1692
@@ -59,7 +72,8 @@ Specie-Subtitle) wird **«1566 → ca. 1700»** als Daumen-Anker
 geführt, weil das den weitesten verlässlichen Funktionsbogen
 darstellt. Auf den Locations-Seiten zeigt die Timeline-Visualisierung
 jeden Anker einer eigenen Schichtart (mint=1667, circulation=1700,
-status=1738), um die Asymmetrie sichtbar zu machen.
+status=1738), automatisch aus den globalen Events abgeleitet — die
+Asymmetrie ist damit auf jeder Seite ohne per-bar-Override sichtbar.
 
 ## Periodisierung des 9-Fuß-Carbunghens (1566 → 1797)
 
