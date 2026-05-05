@@ -75,22 +75,28 @@ timeline:
         uk: "25,98 г чистого · срібло"
       year_from: 1566
       year_to: 1625
-      # Anywhere-scope layers show only the Reich-weit period
-      # (1566–~1623, ending with the Kipper-Wipper crisis that broke
-      # orderly empire-wide minting). The standard's Hamburg/Lübeck
-      # Bank-Mark continuation as an accounting unit until 1875 is
-      # period-attested but Hanseatic-specific, not part of the
-      # general HRR-wide picture this bar conveys; per the user's
-      # framing on the Holstein page we want the general empire
-      # adoption visualised, not the lingering Hanseatic continuation.
-      # Implementation: truncate every anywhere-scope layer at 1623
-      # (mint / status / circulation). Underlying events in
-      # data/shared/fuesse.yml stay intact.
-      truncate_anywhere_after: 1623
+      # Anywhere-scope layers show only the Reich-weit active period
+      # (1566 → 1667). The Reich-wide mass-minting era ends with the
+      # Saxon-Pivot via Zinnaer Münzvertrag 1667 (Brandenburg + Sachsen,
+      # joined by Brunswick-Lüneburg 1668) — ⅔-Thaler in 10½-Fuß
+      # becomes the new Hauptnominal in the largest producer states,
+      # and the whole Reichsthaler-Specie minting collapses to «bis
+      # auf wenige Ausnahmen nicht ausgeprägt». See `data/shared/
+      # fuesse.yml#9_thaler.events.std_end` (anywhere=1667) and
+      # `docs/9_thalerfuss.md` for the four-phase periodisation.
+      #
+      # Post-1700 islands (Hannover 1738–1802, Hamburg 1730–1764,
+      # Lübeck 1730/1776) and the Hamburg/Lübeck Bank-Mark
+      # accounting use until 1875 are period-attested but regional
+      # Sonderfall, not the general HRR-wide picture this bar
+      # conveys; truncating at 1667 keeps the general empire
+      # adoption visualised, not the lingering regional islands.
+      # Underlying events in data/shared/fuesse.yml stay intact.
+      truncate_anywhere_after: 1667
       bar_title:
-        de: "Augspurger Reichsmüntz-Abschied 30. Mai 1566 · in Holstein letzte Prägung 1625 (Hans Jr. Sonderburg, 2 Schilling Lübisch); parallel ab 1622 vom 9¼-Fuß abgelöst (Friedrich III. von Gottorp, Glückstadt) · in Hamburg/Lübeck als Banktauschmünze weiter biß 1875"
-        en: "Augsburg Imperial Mint Decree, 30 May 1566 · last Holstein strike 1625 (Hans Jr. of Sonderburg, 2 Schilling Lübisch); from 1622 already being superseded by the 9¼-Fuß (Friedrich III of Gottorp, Glückstadt) · continued in Hamburg/Lübeck as bank-exchange money until 1875"
-        uk: "Авґсбурзький імперський монетний декрет 30 травня 1566 · у Гольштейні останнє карбування 1625 (Hans Jr. Sonderburg, 2 Schilling Lübisch); з 1622 паралельно витісняється 9¼-Fuß (Фредерік III Ґотторпський, Glückstadt) · у Гамбурзі/Любеку зберігається як банковий рахунок до 1875"
+        de: "Augspurger Reichsmüntz-Abschied 30. Mai 1566 · in Holstein letzte Prägung 1625 (Hans Jr. Sonderburg, 2 Schilling Lübisch); parallel ab 1622 vom 9¼-Fuß abgelöst (Friedrich III. von Gottorp, Glückstadt) · reichsweit endet die Massen-Carbung mit dem Zinnaer Münzvertrag 1667 (Brandenburg + Sachsen, Brunswick-Beitritt 1668) — ⅔-Thaler im 10½-Fuß wird neues Hauptnominal · post-1700 Inseln: Hannover Speciesthaler 1738–1802 (letzte Schaumünze 1797), Hamburg Bank-Speciesthaler 1730–1764 (~110.000 Stück), Lübeck Jubiläumsthaler 1730 / 1776 · Hamburg/Lübeck als Banktauschmünze weiter biß 1875"
+        en: "Augsburg Imperial Mint Decree, 30 May 1566 · last Holstein strike 1625 (Hans Jr. of Sonderburg, 2 Schilling Lübisch); from 1622 already being superseded by the 9¼-Fuß (Friedrich III of Gottorp, Glückstadt) · empire-wide mass minting ends with the Zinnaer Münzvertrag 1667 (Brandenburg + Saxony, joined by Brunswick 1668) — ⅔-Thaler in the 10½-Fuß becomes the new Hauptnominal · post-1700 islands: Hanover Speciesthaler 1738–1802 (last Schaumünze 1797), Hamburg Bank-Speciesthaler 1730–1764 (~110,000 pieces), Lübeck jubilee thaler 1730 / 1776 · Hamburg/Lübeck retained as bank-exchange money until 1875"
+        uk: "Авґсбурзький імперський монетний декрет 30 травня 1566 · у Гольштейні останнє карбування 1625 (Hans Jr. Sonderburg, 2 Schilling Lübisch); з 1622 паралельно витісняється 9¼-Fuß (Фредерік III Ґотторпський, Glückstadt) · у Рейху масове карбування завершується Zinnaer Münzvertrag 1667 (Бранденбург + Саксонія, приєднання Brunswick 1668) — ⅔-Thaler у 10½-Fuß стає новим головним номіналом · пост-1700 острови: ганноверський Speciesthaler 1738–1802 (остання Schaumünze 1797), гамбурзький Bank-Speciesthaler 1730–1764 (~110 000 штук), любекський ювілейний Thaler 1730 / 1776 · Гамбург/Любек як банковий рахунок до 1875"
       color_class: rt
 
     - id: "9_25_thaler"
