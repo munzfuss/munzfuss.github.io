@@ -2324,6 +2324,210 @@ a.loc-card:hover {{
 [data-theme="v2"] .loc-card h3 {{ font-variant: normal; font-weight: 400; color: var(--text-primary); }}
 .loc-card p {{ margin: 0; font-size: 13px; color: var(--text-secondary); line-height: 1.55; }}
 
+/* --- Landing: German Müntzfüße overview ---------------------------------- */
+/* Catalogue rendered under the location cards on the landing page. Data
+   from data/shared/german_fuesse.yml. The visual language deliberately
+   echoes the legacy v6.html reference (compact two-column rows, framed
+   .gf-fr fraction blocks, .gf-terr territory footer) but uses theme
+   tokens — Atlas / Codex / Noir variants flip with the rest of the page. */
+
+.gf-section {{
+  margin: 56px 0 0;
+  padding-top: 36px;
+  border-top: var(--hairline) solid var(--border);
+}}
+.gf-heading {{
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  margin: 0 0 8px;
+}}
+[data-theme="v1"] .gf-heading {{ color: var(--accent-deep); }}
+[data-theme="v2"] .gf-heading {{ font-variant: normal; font-weight: 400; color: var(--text-primary); }}
+.gf-subheading {{
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 70ch;
+}}
+.gf-langnote {{
+  margin: 8px 0 24px;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.55;
+  max-width: 70ch;
+}}
+
+.gf-card {{
+  background: var(--bg-card);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--radius-card);
+  margin-bottom: 14px;
+  overflow: hidden;
+}}
+.gf-years {{
+  margin: 0 0 4px;
+  padding-left: 4px;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}}
+.gf-head {{
+  padding: 10px 14px 9px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  border-bottom: var(--hairline) solid var(--border);
+}}
+.gf-head-text {{ flex: 1; min-width: 0; }}
+.gf-title {{
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.005em;
+}}
+[data-theme="v2"] .gf-title {{ font-weight: 500; }}
+.gf-subtitle {{
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}}
+.gf-bx {{
+  font-size: 10px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
+}}
+.gf-bx-silver {{ background: {badge_silver_bg}; color: {badge_silver_fg}; }}
+.gf-bx-gold {{ background: {badge_gold_bg}; color: {badge_gold_fg}; }}
+.gf-bx-giro {{ background: #1e3a5f; color: #93c5fd; }}
+[data-theme="v1"] .gf-bx-silver {{ background: #d8d4ca; color: #3a3327; }}
+[data-theme="v1"] .gf-bx-gold {{ background: #efdca8; color: #5c3d00; }}
+[data-theme="v1"] .gf-bx-giro {{ background: #cfd9e8; color: #1e3a5f; }}
+[data-theme="v2"] .gf-bx-silver {{ background: #ddd6c1; color: #3a2818; }}
+[data-theme="v2"] .gf-bx-gold {{ background: #f0d496; color: #5c3d00; }}
+[data-theme="v2"] .gf-bx-giro {{ background: #c8d3e3; color: #1e3a5f; }}
+
+.gf-body {{ padding: 8px 14px 10px; }}
+
+/* Two-column rows: key (left, narrow) / value (right). On wide viewports
+   we switch to a 2× horizontal grid so each card uses the full width. */
+.gf-tb {{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  font-size: 11.5px;
+  margin-bottom: 6px;
+}}
+@media (min-width: 720px) {{
+  .gf-tb {{ grid-template-columns: 1fr 1fr; column-gap: 22px; }}
+}}
+.gf-tr {{
+  display: grid;
+  grid-template-columns: minmax(110px, 180px) 1fr;
+  gap: 8px;
+  padding: 3px 0;
+  border-bottom: var(--hairline) solid var(--border-soft);
+  align-items: baseline;
+}}
+.gf-tk {{
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.45;
+}}
+.gf-tv {{
+  color: var(--text-primary);
+  font-size: 11.5px;
+  line-height: 1.5;
+}}
+.gf-tv b {{ color: var(--text-primary); font-weight: 600; }}
+.gf-tv em {{ color: var(--text-muted); font-style: italic; }}
+
+/* Framed fractions block — mirrors .gw-fr in the per-location pages. */
+.gf-fr {{
+  background: var(--bg-page);
+  border: var(--hairline) solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px 9px;
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 8px 0;
+}}
+.gf-fr b {{ color: var(--text-primary); font-weight: 500; }}
+.gf-fr em, .gf-fr i {{ color: var(--text-muted); font-style: italic; }}
+.gf-fr-lb {{
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: 5px;
+}}
+[data-theme="v1"] .gf-fr {{ background: rgba(163, 124, 44, 0.05); }}
+[data-theme="v2"] .gf-fr {{ background: rgba(138, 58, 46, 0.04); }}
+
+/* Phase header (sub-section title within a card). */
+.gf-ph {{
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: var(--text-muted);
+  margin: 10px 0 4px;
+}}
+
+/* Phase summary — short framed paragraph (used for «Phasen» / «Zwei Verwendungen»). */
+.gf-ps {{
+  font-size: 11.5px;
+  background: var(--bg-page);
+  border: var(--hairline) dashed var(--border);
+  border-radius: 5px;
+  padding: 4px 10px;
+  color: var(--text-secondary);
+  margin: 3px 0;
+  line-height: 1.55;
+}}
+.gf-ps b {{ color: var(--text-primary); font-weight: 500; }}
+
+/* Territories footer — distinct background, sits at the bottom of each card. */
+.gf-terr {{
+  background: var(--bg-page);
+  border-top: var(--hairline) solid var(--border-soft);
+  padding: 7px 14px 9px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}}
+.gf-terr b {{ color: var(--text-secondary); font-weight: 500; }}
+.gf-terr-lb {{
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}}
+
 /* --- Footer -------------------------------------------------------------- */
 
 footer {{

@@ -55,6 +55,65 @@
   {% endfor %}
 </div>
 
+{# --- German Müntzfüße overview ----------------------------------------
+   A flat catalogue under data/shared/german_fuesse.yml — populated from
+   the chat-generated v6 reference. Renders only when the YAML provides
+   entries; gracefully degrades to a no-op when the file is absent or
+   empty. Body content is German-primary with i18n.t fallback (see
+   docs note at top of german_fuesse.yml). #}
+{% if german_fuesse %}
+<section class="gf-section">
+  <h2 class="gf-heading">{{ ui_get('landing.gf.heading') }}</h2>
+  <p class="gf-subheading">{{ ui_get('landing.gf.subheading') }}</p>
+  {% set _note = ui_get('landing.gf.lang_note') %}
+  {% if _note %}
+  <p class="gf-langnote">{{ _note }}</p>
+  {% endif %}
+
+  {% for gf in german_fuesse %}
+  <article class="gf-card" id="gf-{{ gf.id }}">
+    <p class="gf-years">{{ gf.years_label|t(lang) }}</p>
+    <div class="gf-head">
+      <div class="gf-head-text">
+        <h3 class="gf-title">{{ gf.title|t(lang) }}</h3>
+        <p class="gf-subtitle">{{ gf.subtitle|t(lang) }}</p>
+      </div>
+      <span class="gf-bx gf-bx-{{ gf.metal }}">{{ ui_get('landing.gf.metal.' ~ gf.metal) }}</span>
+    </div>
+    <div class="gf-body">
+      {% for block in gf.body %}
+        {% if block.kind == 'rows' %}
+          <div class="gf-tb">
+            {% for row in block['items'] %}
+            <div class="gf-tr">
+              <div class="gf-tk">{{ row.key|t(lang) }}</div>
+              <div class="gf-tv">{{ row.value|t(lang)|safe }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        {% elif block.kind == 'prose' %}
+          <div class="gf-fr">
+            <span class="gf-fr-lb">{{ block.label|t(lang) }}</span>
+            {{ block.content|t(lang)|safe }}
+          </div>
+        {% elif block.kind == 'phase_header' %}
+          <div class="gf-ph">{{ block.title|t(lang) }}</div>
+        {% elif block.kind == 'phase_summary' %}
+          <div class="gf-ps">{{ block.content|t(lang)|safe }}</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if gf.territories %}
+    <div class="gf-terr">
+      <span class="gf-terr-lb">{{ gf.territories.label|t(lang) }}</span>
+      {{ gf.territories.content|t(lang)|safe }}
+    </div>
+    {% endif %}
+  </article>
+  {% endfor %}
+</section>
+{% endif %}
+
 <footer>
   <span class="ftr-l">{{ ui_get('meta.generated') }}: {{ fmt_date(generated_date) }}{% if repo_url %} · <a href="{{ repo_url }}">{{ ui_get('meta.source_data') }}</a>{% endif %}{% if contact_email %} · <a href="mailto:{{ contact_email }}">{{ ui_get('meta.contact') }}</a>{% endif %}</span>
   <span class="ftr-r">Müntzfüße · CC-BY-SA</span>

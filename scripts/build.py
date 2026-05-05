@@ -73,6 +73,22 @@ def load_issuing_entities() -> dict:
         return yaml.safe_load(f) or {}
 
 
+def load_german_fuesse() -> list[dict]:
+    """Load the landing-page reference catalogue of German Müntzfüße.
+
+    Returned as a raw list of dicts (NOT validated against Pydantic) — this
+    file is purely a presentation catalogue for the landing page and is not
+    cross-referenced against the per-coin `coin.fuss` field. Returns empty
+    list if the file is absent.
+    """
+    path = DATA_DIR / "shared" / "german_fuesse.yml"
+    if not path.exists():
+        return []
+    with open(path, encoding="utf-8") as f:
+        raw = yaml.safe_load(f) or {}
+    return raw.get("entries", [])
+
+
 def load_locations(filter_id: str | None = None) -> list[Location]:
     locations = []
     for path in sorted((DATA_DIR / "locations").glob("*.yml")):
@@ -261,6 +277,7 @@ def build_landing(
     repo_url: str = "",
     base_url: str = "",
     contact_email: str = "",
+    german_fuesse: list[dict] | None = None,
 ) -> None:
     tmpl = env.get_template("landing.html.j2")
     generated_date = datetime.now().strftime("%Y-%m-%d")
@@ -292,6 +309,7 @@ def build_landing(
             repo_url=repo_url,
             base_url=base_url,
             contact_email=contact_email,
+            german_fuesse=german_fuesse or [],
             ui_get=lambda k, l=lang: i18n.ui_get(ui, k, l),
             t=lambda v, l=lang: i18n.t(v, l),
             fmt_date=lambda d, l=lang: i18n.fmt_date(d, l),
@@ -382,12 +400,14 @@ def main():
     print("📦 Loading shared resources...")
     fuesse = load_fuesse()
     print(f"   Müntzfüße: {len(fuesse)} ({', '.join(fuesse)})")
-    
+
     theme = load_theme()
     ui = load_ui()
     print(f"   UI strings: {len(ui)} keys")
     issuing_entities = load_issuing_entities()
     print(f"   Issuing entities: {len(issuing_entities)} ({', '.join(issuing_entities)})")
+    german_fuesse = load_german_fuesse()
+    print(f"   German Müntzfüße catalogue: {len(german_fuesse)} entries")
     
     # Load locations
     locations = load_locations(filter_id=args.location)
@@ -431,7 +451,8 @@ def main():
 
         build_landing(locations, ui, theme, languages, env,
                       repo_url=args.repo_url, base_url=base_url,
-                      contact_email=contact_email)
+                      contact_email=contact_email,
+                      german_fuesse=german_fuesse)
 
     generate_assets(theme)
     
