@@ -11,7 +11,7 @@
 <body>
 
 <nav class="nav">
-  <strong>{{ ui_get('landing.title') }}</strong>
+  <strong>{{ ui_get('nav.home') }}</strong>
   <div class="switchers">
     <div class="theme-switch" role="group" aria-label="Theme">
       <button type="button" class="th th-v1" data-theme="v1" title="Museum Atlas — paper &amp; gold" aria-label="Museum Atlas">
@@ -63,7 +63,6 @@
    docs note at top of german_fuesse.yml). #}
 {% if german_fuesse %}
 <section class="gf-section">
-  <h2 class="gf-heading">{{ ui_get('landing.gf.heading') }}</h2>
   <p class="gf-subheading">{{ ui_get('landing.gf.subheading') }}</p>
   {% set _note = ui_get('landing.gf.lang_note') %}
   {% if _note %}
