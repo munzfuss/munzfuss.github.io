@@ -151,14 +151,14 @@ def build_css(theme: dict, lang: str = "de") -> str:
     sd_over_strong_fg = c.get("over_strong", "#92d24c")
     sd_over_strong_bg = c.get("over_strong_bg", "#1f3017")
 
+    # Metal-indicator badge in the .gw-head — `<span class="bx silver|gold">…`
+    # silver = default `.bx`, gold = `.bx.gold` modifier. Other metals
+    # (giro/tarif) are not currently used by any fuss; if added, declare
+    # the corresponding token here and add a `.bx.<metal>` rule below.
     badge_silver_bg = c.get("badge_silver_bg", "#555")
     badge_silver_fg = c.get("badge_silver_fg", "#ddd")
     badge_gold_bg = c.get("badge_gold_bg", "#5c3d00")
     badge_gold_fg = c.get("badge_gold_fg", "#fcd34d")
-    badge_giro_bg = c.get("badge_giro_bg", "#1e3a5f")
-    badge_giro_fg = c.get("badge_giro_fg", "#93c5fd")
-    badge_tarif_bg = c.get("badge_tarif_bg", "#3a1e3a")
-    badge_tarif_fg = c.get("badge_tarif_fg", "#c2a0f0")
 
     subcat_kurant_bg = c.get("subcat_kurant_bg", "#1f2d1a")
     subcat_kurant_border = c.get("subcat_kurant_border", "#6b8e4e")
@@ -1632,6 +1632,32 @@ h2[style] {{
   color: var(--accent);
   margin-bottom: 6px;
 }}
+
+/* --- Metal-indicator badge inside .gw-head ------------------------------- */
+/* Rendered by the template as `<span class="bx {{{{ fuss.metal }}}}">…</span>`.
+   Default style = silver. `.bx.gold` is a modifier for gold-fuss badges
+   (Reichsdukatenfuß, Guldkrone-Fuß, Reichsgoldmünzfuß). */
+.bx {{
+  font-size: 10px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: 12px;
+  background: {badge_silver_bg};
+  color: {badge_silver_fg};
+  flex-shrink: 0;
+  align-self: center;
+  white-space: nowrap;
+}}
+.bx.gold {{
+  background: {badge_gold_bg};
+  color: {badge_gold_fg};
+}}
+[data-theme="v1"] .bx {{ background: #d8d4ca; color: #3a3327; }}
+[data-theme="v1"] .bx.gold {{ background: #efdca8; color: #5c3d00; }}
+[data-theme="v2"] .bx {{ background: #ddd6c1; color: #3a2818; }}
+[data-theme="v2"] .bx.gold {{ background: #f0d496; color: #5c3d00; }}
 
 /* --- Fuss summary bar (acts as the <details> summary) -------------------- */
 

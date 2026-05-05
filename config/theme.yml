@@ -19,15 +19,14 @@ colors:
   border_subtle: "#3a3530"
   border_light: "#555"
   
-  # Badge colors (metal indicators)
+  # Badge colors (metal indicators) — rendered in .gw-head as `.bx` (silver,
+  # default) and `.bx.gold`. No fuss currently uses metal: giro/tarif; if
+  # added, declare new tokens here and add a matching `.bx.<metal>` rule
+  # in scripts/lib/styles.py.
   badge_silver_bg: "#555"
   badge_silver_fg: "#ddd"
   badge_gold_bg: "#5c3d00"
   badge_gold_fg: "#fcd34d"
-  badge_giro_bg: "#1e3a5f"
-  badge_giro_fg: "#93c5fd"
-  badge_tarif_bg: "#3a1e3a"
-  badge_tarif_fg: "#c2a0f0"
   
   # Subcat dividers
   subcat_kurant_bg: "#1f2d1a"
