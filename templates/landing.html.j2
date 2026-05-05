@@ -74,12 +74,24 @@
      dividers inside the body, .gw-fr-territories at the bottom) are the
      only landing-specific styles. #}
   {% for gf in german_fuesse %}
-  <p class="gf-years">{{ gf.years_label|t(lang) }}</p>
-  <section class="gw" id="gf-{{ gf.id }}">
+  {# Phase-header — same pattern as the per-location pages
+     (templates/location.html.j2 ~line 673): the primary numeric form
+     (gf.name) sits in .pname; any period synonym(s) in gf.historical_name
+     nest inside as <em class="phistorical">; gf.years_label rides on the
+     right as .pdate. The longer subtitle becomes .psub directly below. #}
+  <div class="phase-header" id="gf-{{ gf.id }}">
+    <div class="ph-left">
+      <span class="pname">{{ gf.name|t(lang) }}{% if gf.historical_name %}<em class="phistorical">{{ gf.historical_name|t(lang) }}</em>{% endif %}</span>
+      {% if gf.subtitle %}<span class="psub">{{ gf.subtitle|t(lang)|safe }}</span>{% endif %}
+    </div>
+    <div class="ph-right">
+      <span class="pdate">{{ gf.years_label|t(lang) }}</span>
+    </div>
+  </div>
+  <section class="gw">
     <div class="gw-head">
       <div class="gw-head-text">
-        <div class="gw-heading">{{ gf.title|t(lang) }}</div>
-        <div class="gw-subheading">{{ gf.subtitle|t(lang) }}</div>
+        <div class="gw-heading">{{ ui_get('landing.gf.gw_heading') }}</div>
       </div>
       <span class="bx {{ gf.metal }}">{{ ui_get('landing.gf.metal.' ~ gf.metal) }}</span>
     </div>

@@ -2350,16 +2350,6 @@ a.loc-card:hover {{
    above each card and the inline phase-header / phase-summary dividers
    inside the body. */
 
-.gf-years {{
-  margin: 18px 0 4px;
-  padding-left: 4px;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-}}
-.gf-years + .gw {{ margin-top: 0; }}
-
 /* Phase header — section divider inside a multi-phase card body
    (Lübischer 1726/1855, Reichsmüntzfuß Hamburg/Lübeck retention,
    Rigsbankdaler I/II/III, Bancovaluta «Phasen»). */
