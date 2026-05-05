@@ -66,42 +66,86 @@ Wesentliche Etappen der Banco-Recheneinheit (nach Bobzin
 |---|---|---|
 | 1619 | 1 Mark Banco ≈ 1/9 Cölln. Marck Feinsilber | ≈ 25,98 g |
 | 1622 | 1 Mark Banco = 8,66 g fein (kurzfristige Justierung) | 8,66 g |
-| 1726 | 27 5/8 Mark Banco = 9 5/24 Reichsthaler (Speciedaler-äquiv.) | ≈ 8,466 g |
+| 1726 | Münzbasiert (Reichstaler 1566 / 9-Talerfuß) | ≈ 8,66 g |
 | 1736 | Wiederherstellung des Hamburger Currency-Friedens (Ende «Handelskrieg») | — |
-| **1770 Hamburger Bank-Reform** | Übergang zur reinen Feinsilberbasis. Buy/Sell-Spread: <b>27 5/8</b> M.B. ankauft, <b>27¾</b> M.B. verkauft je Cölln. Marck Feinsilber | 8,466 / 8,427 g |
-| **1777 Altonaer Banco-Fuß** (sep. Institution) | 27¾ Mark Banco = 9¼ Reichsthaler = 1 feine Cölln. Marck — Altonaer Bank-Ankaufsrate gleich Hamburgs Verkaufsrate; Hamburger Bank-Ankauf bleibt bei 27 5/8 | 8,427 g |
+| **1770 Hamburger Bankreform** | Mark Banco endgültig vom Münznominal abgekoppelt, reine Feinsilberbasis. Bid/Ask-Spread der Bank: <b>27 5/8</b> M.B. Ankauf, <b>27¾</b> M.B. Verkauf je Cölln. Marck Feinsilber. **Kanonischer Hamburger Bankfuß** (Soetbeer 1869, Meyers 1907): <b>27¾</b> | 8,427 g |
+| **1776 Species, Giro- und Leihbank zu Altona** (sep. dänisch-königliche Institution) | 27¾ Mark Banco = 9¼ Reichsthaler — eigener Ankaufsstandard (gleich Hamburgs Verkaufsrate); §19 der Altonaer Bankordnung: «Mark fein Silber höher angenommen als in der Hamburger» — d. h. Altonaer Ankauf 27¾ vs. Hamburger Ankauf 27 5/8 | 8,427 g |
+| 1868 / 1875 | 27¾ Banko-Mark = 1 Cölln. Marck Feinsilber unverändert biß zur Aufhebung der Bank am 31. Dezember 1875 | 8,427 g |
 
-**Zwei einander ergänzende Quellen klären das genaue Bild:**
+**Mehrere einander ergänzende Quellen klären das genaue Bild — und
+deuten darauf hin, dass eine in der Sekundärliteratur kursierende
+«1777 / Hamburger Banco-Fuß / 27¾»-Formulierung wahrscheinlich falsch
+zugeordnet ist:**
 
-Bobzin (<https://www.hagen-bobzin.de/hobby/muenzverein_wendisch.html>)
-nennt je Bankplatz einen «kanonischen» Banco-Fuß — gemeint ist die
-Ankaufsrate (Bilanzbasis):
+Adolf Soetbeer (Archivar der Hamburger Commerz-Deputation),
+*Denkschrift betreffend deutsche Münzeinigung* (Berlin 1869) — er
+schreibt zur aktuellen Lage:
 
-> «1769: Hamburgischer Banko-Fuß: 27 5/8 Mark Banko = 9 5/24 Reichstaler»
+> «In Hamburg besteht für den Großhandel sowie für den größten Theil
+> des Hypothekwesens und der Staatsschulden eine auf Feinsilber in
+> Barren begründete besondere Hamburger Bankvaluta, **59⅓ Mark auf
+> das Zollpfund Feinsilber**.»
 
-> «1777: Altonaer Banko-Fuß: 27¾ Mark Banko = 9¼ Reichstaler =
-> 13 7/8 Gulden = 1 feine kölner Mark»
+(Umrechnung: 59⅓ × 233,856 / 500 ≈ 27,74 ≈ <b>27¾</b> M.B./Cölln.
+Marck — Soetbeer kennt nur einen Hamburger Stand und nennt keinen
+1777-Übergang.)
 
-Wikipedia EN «Hamburg mark»
-(<https://en.wikipedia.org/wiki/Hamburg_mark>) ergänzt das Bild um
-die Verkaufsrate, die in Bobzins Tabelle nicht aufscheint:
+William Arthur Shaw, *History of Currency 1252–1894* (London 1896):
 
-> «From 1770 the Hamburger Bank accepted bullion and coin, **buying
-> one Cologne mark of fine silver for 27 5/8 marks banco** (9 5/24
-> thalers, or 25.40 g per thaler), **and selling it for 27¾ marks**
-> (9¼ thalers, or 25.28 g per thaler).»
+> «But by 1770 the surviving supply of these coins have been reduced
+> in weight to around 25.4 g. Henceforth the bank has turned to
+> accepting bullion as well as coin, with each Cologne mark of silver
+> **bought for 27⅝ marks banco** (9⁵⁄₂₄ thalers, or 25.40 g per thaler)
+> **and sold for 27¾ marks** (9¼ thalers, or 25.28 g per thaler).»
 
-**Auflösung der Quellendiskrepanz** (Hinweis im 1777-Hamburg-Kontext):
-Manchmal in der Sekundärliteratur kursierende «1777 · Hamburger
-Banco-Fuß = 27¾»-Behauptungen verwechseln Hamburgs Verkaufsrate
-(27¾, seit 1770) mit dem Bilanzstandard. Die Hamburger Bank kaufte
-Silber zu 27 5/8 — das ist der von Bobzin als «Banco-Fuß» zitierte
-Wert. Die Altonaer Bank übernahm 1777 als ihre Ankaufsrate exakt
-diejenigen 27¾, die Hamburg als Verkaufsrate fuhr — d. h. ein
-Silberbringer erhielt in Altona ≈ 0,45 % mehr Bankgeldgutschrift
-als in Hamburg. Genau dieses Differential ist die in §19 der
-Altonaer Bankordnung dokumentierte politische Maßnahme und der
-Mechanismus des Greshamschen Silberzugs nach Altona.
+(Shaw klärt: 27⅝ und 27¾ sind keine zwei aufeinanderfolgenden Phasen,
+sondern Bid/Ask-Spread *eines einzigen Reformakts von 1770*.)
+
+Ulrich Bindseil (Director General, EZB), *Central Banking Before
+1800: A Rehabilitation* (OUP 2019), S. 99, 149:
+
+> «...silver content created difficulties to the bank, which were
+> eventually solved by the **reform of 1770** in which the Marc Banco
+> was no longer defined with the reference to any species, but in
+> terms of fine silver content only (8.40 gram).»
+
+Meyers Großes Konversations-Lexikon, Bd. 8 (Leipzig 1907), S. 690:
+
+> «**Hamburger Bankfuß**, Rechnungsmünzfuß der frühern Hamburger
+> Girobank: <b>27¾ Bankmark</b> auf eine Mark Feinsilber.»
+
+**Bobzin im Einzelblog** (<https://www.hagen-bobzin.de/hobby/muenzverein_wendisch.html>) bringt eine Zwei-Datums-Tabelle —
+«1769 Hamburger Bankfuß 27⅝ / 1777 Altonaer Bankfuß 27¾» —, die mit
+dem Soetbeer-Meyers-Bindseil-Konsens kollidiert. Die wahrscheinlichste
+Lesart: Bobzin verwechselt zwei Ereignisse:
+
+1. die *Hamburger Bankreform 1770*, deren Bid/Ask-Spread 27⅝/27¾ er
+   als zwei eigenständige Banco-Füße auffasst (statt als Operationen
+   einer einzigen Reform), und
+2. die Gründung der separaten *Species, Giro- und Leihbank zu Altona*
+   <b>1776</b> (nicht 1777) — eine andere Institution unter
+   dänisch-königlicher Hoheit, deren §19 der Bankordnung den
+   Ankaufskurs bei 27¾ festsetzt.
+
+**Auflösung — was tatsächlich gilt:**
+
+- Hamburger Bank seit 1770: kanonischer Bankfuß <b>27¾</b> M.B./Cölln.
+  Marck (Soetbeer 1869, Meyers 1907). 27⅝ ist die Ankaufsrate des
+  Bid/Ask-Spreads — operative Detail, kein zweiter Standard.
+- Altonaer Bank seit 1776: eigener Ankaufsstandard <b>27¾</b> — formal
+  identisch mit Hamburgs Sell-/Bilanzstandard, aber als *Ankaufs*kurs
+  rechnet er besser für den Silberbringer als Hamburgs Ankauf zu 27⅝.
+- §19-Differential: Altonaer Bankkund:innen erhalten ≈ 0,45 % mehr
+  Bankgeldgutschrift pro 1 Cölln. Marck Feinsilber als bei der
+  Hamburger Bank — Mechanismus des Greshamschen Silberzugs nach
+  Altona.
+
+**Wichtiger Datums-Korrektur:** unsere früheren Notizen folgten
+Bobzins Datum «1777» für die Altonaer Bank. Per Wikipedia
+(«Schleswig-Holsteinische Speciesbank») wurde die *Species, Giro- und
+Leihbank zu Altona* tatsächlich **1776** gegründet — der korrekte
+Übergangsdatum-Bereich ist also 1776 / Bankordnung möglicherweise 1777
+oder kurz danach.
 
 ## Hamburgische Mark Courant (Hamburger 34-Mark-Fuß)
 
