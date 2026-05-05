@@ -68,11 +68,12 @@ Wesentliche Etappen der Banco-Recheneinheit (nach Bobzin
 | 1622 | 1 Mark Banco = 8,66 g fein (kurzfristige Justierung) | 8,66 g |
 | 1726 | 27 5/8 Mark Banco = 9 5/24 Reichsthaler (Speciedaler-äquiv.) | ≈ 8,466 g |
 | 1736 | Wiederherstellung des Hamburger Currency-Friedens (Ende «Handelskrieg») | — |
-| 1769 | 27 5/8 Mark Banco = 9 5/24 Reichsthaler = 1 feine Cölln. Marck | 8,466 g |
-| 1770/1777 | 27¾ Mark Banco = 9¼ Reichsthaler = 1 feine Cölln. Marck (Banco-Justierung) | 8,427 g |
+| **1770 Hamburger Bank-Reform** | 27 5/8 Mark Banco = 9 5/24 Reichstaler — Übergang zur reinen Feinsilberbasis (Wert nicht mehr vom Münznominal abhängig) | 8,466 g |
+| **1777 *Altonaer* Banco-Fuß** (sep. Institution) | 27¾ Mark Banco = 9¼ Reichsthaler = 1 feine Cölln. Marck — **NUR Altonaer Bank**, Hamburg blieb bei 27 5/8 | 8,427 g |
 
-Bobzin notiert für die Periode 1769–1777 (Seite «wendisch»,
-<https://www.hagen-bobzin.de/hobby/muenzverein_wendisch.html>):
+Bobzin (Seite «wendisch»,
+<https://www.hagen-bobzin.de/hobby/muenzverein_wendisch.html>) zitiert
+die zwei separaten Banco-Füße verbatim:
 
 > «1769: Hamburgischer Banko-Fuß: 27 5/8 Mark Banko = 9 5/24
 > Reichstaler»
@@ -80,10 +81,15 @@ Bobzin notiert für die Periode 1769–1777 (Seite «wendisch»,
 > «1777: Altonaer Banko-Fuß: 27¾ Mark Banko = 9¼ Reichstaler =
 > 13 7/8 Gulden = 1 feine kölner Mark»
 
-Das heißt: Hamburg ging 1769 von 27 5/8 auf 27¾ über (kleine
-Anhebung des Mark-Banco-Wertes in Silber, ≈ +0,46 %), und Altona
-zog 1777 nach. Die Hamburger Bank-Bilanzen folgten ab da dem
-gleichen Banco-Fuß wie die Altonaer Bank.
+**Korrektur einer früheren Fehleinschätzung** in diesem Dokument:
+Hamburg übernahm den 27¾-Banco-Fuß *nicht*. Die Hamburger Bank blieb
+durchgehend bei 27 5/8 Mark Banco; die Altonaer Bank etablierte 1777
+*ihren eigenen, separaten* 27¾-Banco-Fuß als bewusste politische
+Maßnahme (siehe §-19-Differential weiter unten). Damit entstand die
+ungewöhnliche Konstellation, dass dieselbe nominelle Recheneinheit
+«Mark Banco» an zwei nebeneinanderliegenden Bankplätzen unterschiedliche
+Silbermengen abbildete — die Grundlage für den Greshamschen Silberzug
+nach Altona.
 
 ## Hamburgische Mark Courant (Hamburger 34-Mark-Fuß)
 
