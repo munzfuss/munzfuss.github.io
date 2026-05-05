@@ -21,6 +21,7 @@ Build mathematically-verified, historically accurate reference artifacts documen
 - Asserting **rulers' motivations, decrees, intent** ("Christian V ordered…", "the duchy decided…", "in response to the crisis…") unless that motivation is recorded in a primary or recognised secondary source. Otherwise: state the dated fact, not the reason.
 - Adding **temporal embellishments** ("long after the standard had been superseded", "shortly before the reform", "in the twilight of the system") that go beyond bare chronology. State the year, leave interpretation to the reader.
 - Inventing **historiographical labels** ("Sonderprägung", "transitional issue", "experimental coinage", "ґлюкштатське відновлення") that do not appear in literature. If a term is novel, it is the user's call to coin it — never Claude's.
+  - **Narrow exception — synthesised display identifiers with explicit user approval.** When the user explicitly asks for a name/label slot (e.g. `historical_name` for a fuss whose only period-attested form is the bare numeric formula, or a similar identifier-shaped field) and an exhaustive search of period and modern sources turns up no usable term, Claude MAY *propose* a synthesised identifier or a modern analogue — never silently apply it. The procedure is mandatory in this exact order: (a) report the search results showing the absence, (b) flag the proposal as «synthesised» / «modern analogue» and explicitly invoke this exception, (c) wait for the user's explicit «yes» / «погоджую» / equivalent in the chat, (d) only then write the term into the YAML/data. The synthesised term must also carry an annotation in the data — either an inline note or a bibliography ref pointing to the search-was-exhausted record — so the reader can see it was synthesised, not period-attested. Quietly inserting any «-Fuß»-suffixed compound, «-стопа»-form, or other identifier-shaped string without going through (a)→(d) is exactly the prohibited «invention» case and remains forbidden.
 - Filling **descriptive prose** to make a section "feel complete". A two-sentence factual phase description is preferable to a paragraph of plausible-sounding narrative. Empty space is honest; padding is not.
 - Reasoning by analogy from one location/period to another and presenting the conclusion as established fact. Analogy is at most a hypothesis — and a hypothesis without a source has no place in the artefact.
 
@@ -316,6 +317,17 @@ Non-translated fields (global identifiers):
 - Mint names, ruler names — use standard academic spellings, identical across languages
 - Münzfuß names in technical form (`9¼-Fuß`) — displayed identically across languages
 - Numbers — localized by formatter, not translated per-row
+
+**Rule: NEVER translate coin denominations or Müntzfuß names.** They stay in their German / Latin / Danish period form across all three language pages, including inside running prose and Rechnungsfraktionen blocks.
+
+This includes (non-exhaustive):
+- **Coin denominations**: Thaler, Reichsthaler, Gulden, Kreutzer, Batzen, Pfennig, Heller, Groschen, Mariengroschen, Schilling, Sechsling, Dreiling, Marck, Mark, Skilling Danske, Kroneskilling, Krone, Dukat, Friedrichsdor, Pistole, Vereinsthaler, Vereinsmünze, Vereinsdoppeltaler, Doppelkrone, Conventionsthaler, Couranttaler, Speciedaler, Rigsdaler, Rigsbankdaler, Rigsbankskilling, Mark Banco / Marck Banco, Pfund Banco, Schilling Banco, Pfennig Banco, Sterntaler, Blutdollar — and any variant compound (e.g. «1 Reichsthaler Sch.-H. Courant», «1 Marck Courant», «½ Reichsthaler»).
+- **Müntzfuß / standard names**: 9-Thalerfuß, 9¼-Thalerfuß, 10½-Thalerfuß, 12-Thalerfuß, 14-Thalerfuß, 18½-Thalerfuß, 30-Thalerfuß, 24-Guldenfuß, 24½-Guldenfuß, 52½-Guldenfuß, 45-Guldenfuß, 20-Guldenfuß, 10⅔-Pfund-Banco-Fuß, Reichsmüntzfuß, Reichsdukatenfuß, Konventionsfuß, Vereinsmünzfuß, Reichsgoldmünzfuß, Graumannscher Müntzfuß, Lübischer Müntzfuß, Hamburgischer Banco-Fuß, Altonaer Banco-Fuß, Burgundischer Fuß, Zinnaischer Müntzfuß, Schleswig-Holsteinisch Courant, Schillingfuß, Rigsbankdalerfuß, Bancovaluta, etc. — and any synonym written as a `-Fuß` compound.
+- **Institutional / ordinance names**: Hamburger Bank, Altonaer Bank, Schleswig-Holsteinische Speciesbank, Königliche Münze zu Altona, Wiener Münzvertrag, Münchener Münzvertrag, Dresdener Münzvertrag, Reichsmünzordnung, Forordning, Müntzconvention, Bankordnung — proper nouns of period institutions and decrees.
+
+What that means in practice: a UK reader sees «1 Thaler = 24 Gute Groschen», not «1 талер = 24 хороших гроші». An EN reader sees «1 Thaler Specie = 60 Schilling S.-H. Courant», not «1 Specie thaler = 60 Schleswig-Holstein Courant shillings». Quantifiers, common verbs and connective prose ARE translated normally; only the period-correct numismatic noun stays.
+
+The exception remains the small set of explicitly-translated UI labels in `data/i18n/ui.yml` (column headers, button captions, section titles like «Rechnungsfraktionen» / «Accounting fractions» / «Розрахункові фракції»). Those are user-interface chrome, not numismatic content.
 
 UI strings (column headers, navigation, buttons) live in `data/i18n/ui.yml`.
 
