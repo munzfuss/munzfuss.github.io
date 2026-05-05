@@ -81,8 +81,30 @@
       <span class="gf-bx gf-bx-{{ gf.metal }}">{{ ui_get('landing.gf.metal.' ~ gf.metal) }}</span>
     </div>
     <div class="gf-body">
+      {# Pair (rows, immediately-following prose) into a side-by-side
+         .gf-row2 layout: rows on the left, prose on the right. Standalone
+         rows or standalone prose render full-width. Phase-headers and
+         phase-summaries always render full-width as separators. #}
       {% for block in gf.body %}
+        {%- set _next = gf.body[loop.index] if loop.index < gf.body|length else none -%}
+        {%- set _prev = gf.body[loop.index0 - 1] if loop.index0 > 0 else none -%}
         {% if block.kind == 'rows' %}
+          {% if _next and _next.kind == 'prose' %}
+          <div class="gf-row2">
+            <div class="gf-tb">
+              {% for row in block['items'] %}
+              <div class="gf-tr">
+                <div class="gf-tk">{{ row.key|t(lang) }}</div>
+                <div class="gf-tv">{{ row.value|t(lang)|safe }}</div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="gf-fr">
+              <span class="gf-fr-lb">{{ _next.label|t(lang) }}</span>
+              {{ _next.content|t(lang)|safe }}
+            </div>
+          </div>
+          {% else %}
           <div class="gf-tb">
             {% for row in block['items'] %}
             <div class="gf-tr">
@@ -91,11 +113,15 @@
             </div>
             {% endfor %}
           </div>
+          {% endif %}
         {% elif block.kind == 'prose' %}
+          {# Skip if already rendered as the right-hand pair of a preceding rows block #}
+          {% if not (_prev and _prev.kind == 'rows') %}
           <div class="gf-fr">
             <span class="gf-fr-lb">{{ block.label|t(lang) }}</span>
             {{ block.content|t(lang)|safe }}
           </div>
+          {% endif %}
         {% elif block.kind == 'phase_header' %}
           <div class="gf-ph">{{ block.title|t(lang) }}</div>
         {% elif block.kind == 'phase_summary' %}

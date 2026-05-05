@@ -2424,8 +2424,24 @@ a.loc-card:hover {{
 
 .gf-body {{ padding: 8px 14px 10px; }}
 
-/* Two-column rows: key (left, narrow) / value (right). On wide viewports
-   we switch to a 2× horizontal grid so each card uses the full width. */
+/* Side-by-side wrapper: rows table on the left, fractions prose on the
+   right (mirrors the legacy v6.html .g2 layout). The template wraps a
+   `.gf-tb` immediately followed by a `.gf-fr` into this. Collapses to a
+   single column on narrow viewports. */
+.gf-row2 {{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 6px 0;
+  align-items: start;
+}}
+@media (min-width: 720px) {{
+  .gf-row2 {{ grid-template-columns: 1fr 1fr; gap: 16px; }}
+}}
+
+/* Single-column rows table — key (narrow) / value (wide). Always
+   single-column internally; the 2-column page layout comes from the
+   parent .gf-row2 wrapper when paired with a fractions block. */
 .gf-tb {{
   display: grid;
   grid-template-columns: 1fr;
@@ -2433,9 +2449,8 @@ a.loc-card:hover {{
   font-size: 11.5px;
   margin-bottom: 6px;
 }}
-@media (min-width: 720px) {{
-  .gf-tb {{ grid-template-columns: 1fr 1fr; column-gap: 22px; }}
-}}
+.gf-row2 > .gf-tb {{ margin-bottom: 0; }}
+.gf-row2 > .gf-fr {{ margin: 0; }}
 .gf-tr {{
   display: grid;
   grid-template-columns: minmax(110px, 180px) 1fr;
