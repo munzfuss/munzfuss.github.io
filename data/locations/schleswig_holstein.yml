@@ -76,42 +76,56 @@ timeline:
       year_from: 1566
       year_to: 1625
       # Anywhere-scope layers show the Reich-wide active period with
-      # asymmetric end dates per layer kind:
+      # three different end dates per layer kind, capturing three
+      # distinct historical anchors (per `docs/9_thalerfuss.md`):
       #
-      #   - mint+status end at 1667 (Saxon-Pivot via Zinnaer Münzvertrag
-      #     between Brandenburg + Sachsen, joined by Brunswick-Lüneburg
-      #     1668) — ⅔-Thaler in the 10½-Fuß becomes the new Hauptnominal
-      #     in the largest producer states, and the whole Reichsthaler-
-      #     Specie minting collapses to «bis auf wenige Ausnahmen nicht
-      #     ausgeprägt». This matches our `events.std_end.anywhere=1667`.
+      #   - mint = 1667 (Saxon-Pivot via Zinnaer Münzvertrag between
+      #     Brandenburg + Sachsen, joined by Brunswick-Lüneburg 1668)
+      #     — empirical end of mass-minting: ⅔-Thaler in 10½-Fuß
+      #     becomes the new Hauptnominal in the largest producer
+      #     states, and the whole Reichsthaler-Specie minting
+      #     collapses to «bis auf wenige Ausnahmen nicht ausgeprägt»
+      #     (Sächs. Wiki). The post-1700 islands (Hannover 1738–1802,
+      #     Hamburg 1730–1764, Lübeck 1730/1776) are regional
+      #     Sonderfall — kept off the general HRR-wide visualisation.
       #
-      #   - circulation extends to ~1700 (Hauptumlaufmünze functional
-      #     end). Two independent Wikipedia sources both say «bis etwa
-      #     1700»: «Reichstaler» («als Währungsmünze des Reichs ungefähr
-      #     bis zum Jahr 1700») and «Speciestaler» («blieb bis etwa 1700
-      #     die Hauptmünze des Reichs»). After ~1700 the Hauptumlauf-
-      #     funktion shifts to ⅔-Thaler (12-Fuß) and Écus blancs
-      #     (DeWiki «Taler»). The 33-year gap 1667→1700 reflects the
-      #     real-world phenomenon: mass minting stopped, but the
-      #     existing stock of Speciesthaler kept circulating as the
-      #     principal Empire-wide silver coin until ~1700.
+      #   - circulation = 1700 (Hauptumlaufmünze functional end).
+      #     Two independent Wikipedia sources both say «bis etwa
+      #     1700»: «Reichstaler» («als Währungsmünze des Reichs
+      #     ungefähr bis zum Jahr 1700») and «Speciestaler» («blieb
+      #     bis etwa 1700 die Hauptmünze des Reichs»). After ~1700
+      #     the Hauptumlaufmünze role shifts to ⅔-Thaler (12-Fuß)
+      #     and French Écus blancs (DeWiki «Taler»). The 33-year
+      #     gap 1667→1700 captures the real-world lag: mass
+      #     production stopped, the existing Speciesthaler stock
+      #     kept circulating as principal Empire silver coin.
       #
-      # Post-1700 islands (Hannover 1738–1802, Hamburg 1730–1764,
-      # Lübeck 1730/1776) and the Hamburg/Lübeck Bank-Mark accounting
-      # use until 1875 are period-attested but regional Sonderfall,
-      # not the general HRR-wide picture this bar conveys.
+      #   - status = 1738 (formal Reichsmünzfuß end). Karl-VI.-
+      #     Kommissionsedikt elevates the Leipziger Fuß to
+      #     Reichsmünzfuß for Halbtaler ... Goldgulden — at this
+      #     point the 9-Fuß ceases to be THE Reichsmünzfuß for the
+      #     bulk of denominations. Three independent sources
+      #     converge on 1738 (Wikipedia DE «Leipziger Fuß», Bobzin,
+      #     Meyers eLexikon). This matches our std_end.anywhere=1738
+      #     in `data/shared/fuesse.yml#9_thaler.events`. Status
+      #     layer ends naturally at 1738 via std_end (the override
+      #     here just makes the cap explicit so any future change
+      #     to demonetisation/last_mint is honoured).
       #
-      # Underlying events in data/shared/fuesse.yml stay intact;
-      # the per-kind override is a per-bar visualisation cap.
-      # See `docs/9_thalerfuss.md` for the four-phase periodisation
-      # that backs these dates.
-      truncate_anywhere_after: 1667
+      # Underlying events in `data/shared/fuesse.yml` stay intact;
+      # the per-kind dict is a per-bar visualisation cap. The bar
+      # itself terminates at year_to=1625 (last Holstein strike),
+      # so the anywhere layers extend the visual context past the
+      # Holstein-narrative endpoint to communicate the broader
+      # HRR-wide chronology.
       truncate_anywhere_after_by_kind:
+        mint: 1667
         circulation: 1700
+        status: 1738
       bar_title:
-        de: "Augspurger Reichsmüntz-Abschied 30. Mai 1566 · in Holstein letzte Prägung 1625 (Hans Jr. Sonderburg, 2 Schilling Lübisch); parallel ab 1622 vom 9¼-Fuß abgelöst (Friedrich III. von Gottorp, Glückstadt) · reichsweit endet die Massen-Carbung mit dem Zinnaer Münzvertrag 1667 (Brandenburg + Sachsen, Brunswick-Beitritt 1668) — ⅔-Thaler im 10½-Fuß wird neues Hauptnominal · als Hauptumlaufmünze biß ca. 1700 (Wikipedia DE «Speciestaler»: «blieb bis etwa 1700 die Hauptmünze des Reichs»; danach Übernahme der Funktion durch ⅔-Thaler im 12-Fuß und französische Écus blancs) · post-1700 Inseln: Hannover Speciesthaler 1738–1802 (letzte Schaumünze 1797), Hamburg Bank-Speciesthaler 1730–1764 (~110.000 Stück), Lübeck Jubiläumsthaler 1730 / 1776 · Hamburg/Lübeck als Banktauschmünze weiter biß 1875"
-        en: "Augsburg Imperial Mint Decree, 30 May 1566 · last Holstein strike 1625 (Hans Jr. of Sonderburg, 2 Schilling Lübisch); from 1622 already being superseded by the 9¼-Fuß (Friedrich III of Gottorp, Glückstadt) · empire-wide mass minting ends with the Zinnaer Münzvertrag 1667 (Brandenburg + Saxony, joined by Brunswick 1668) — ⅔-Thaler in the 10½-Fuß becomes the new Hauptnominal · as principal circulating coin until ca. 1700 (Wikipedia DE «Speciestaler»: «blieb bis etwa 1700 die Hauptmünze des Reichs»; thereafter the role passes to ⅔-Thaler in the 12-Fuß and the French Écus blancs) · post-1700 islands: Hanover Speciesthaler 1738–1802 (last Schaumünze 1797), Hamburg Bank-Speciesthaler 1730–1764 (~110,000 pieces), Lübeck jubilee thaler 1730 / 1776 · Hamburg/Lübeck retained as bank-exchange money until 1875"
-        uk: "Авґсбурзький імперський монетний декрет 30 травня 1566 · у Гольштейні останнє карбування 1625 (Hans Jr. Sonderburg, 2 Schilling Lübisch); з 1622 паралельно витісняється 9¼-Fuß (Фредерік III Ґотторпський, Glückstadt) · у Рейху масове карбування завершується Zinnaer Münzvertrag 1667 (Бранденбург + Саксонія, приєднання Brunswick 1668) — ⅔-Thaler у 10½-Fuß стає новим головним номіналом · як головна обігова монета до бл. 1700 (Wikipedia DE «Speciestaler»: «blieb bis etwa 1700 die Hauptmünze des Reichs»; далі роль перебирають ⅔-Thaler у 12-Fuß і французькі Écus blancs) · пост-1700 острови: ганноверський Speciesthaler 1738–1802 (остання Schaumünze 1797), гамбурзький Bank-Speciesthaler 1730–1764 (~110 000 штук), любекський ювілейний Thaler 1730 / 1776 · Гамбург/Любек як банковий рахунок до 1875"
+        de: "Augspurger Reichsmüntz-Abschied 30. Mai 1566 · drei Anker für das Ende des 9-Fuß: <b>Massen-Carbung 1667</b> (Zinnaer Münzvertrag — Brandenburg + Sachsen, Brunswick-Beitritt 1668; ⅔-Thaler im 10½-Fuß wird neues Hauptnominal) · <b>Hauptumlaufmünze ~1700</b> (Wikipedia DE «Speciestaler»: «blieb bis etwa 1700 die Hauptmünze des Reichs»; danach Übernahme der Funktion durch ⅔-Thaler im 12-Fuß und französische Écus blancs) · <b>formell Reichsmünzfuß biß 1738</b> (Karl-VI.-Kommissionsedikt erhebt Leipziger Fuß zum Reichsmünzfuß: «Damit wurde der Leipziger Fuß Reichsmünzfuß») · in Holstein letzte Prägung 1625 (Hans Jr. Sonderburg, 2 Schilling Lübisch); parallel ab 1622 vom 9¼-Fuß abgelöst (Friedrich III. von Gottorp, Glückstadt) · post-1700 Inseln: Hannover Speciesthaler 1738–1802 (letzte Schaumünze 1797), Hamburg Bank-Speciesthaler 1730–1764 (~110.000 Stück), Lübeck Jubiläumsthaler 1730 / 1776 · Hamburg/Lübeck als Banktauschmünze weiter biß 1875"
+        en: "Augsburg Imperial Mint Decree, 30 May 1566 · three anchors for the end of the 9-Fuß: <b>mass minting 1667</b> (Zinnaer Münzvertrag — Brandenburg + Saxony, Brunswick joins 1668; ⅔-Thaler in the 10½-Fuß becomes the new Hauptnominal) · <b>principal circulating coin until ca. 1700</b> (Wikipedia DE «Speciestaler»: «blieb bis etwa 1700 die Hauptmünze des Reichs»; afterwards the role passes to ⅔-Thaler in the 12-Fuß and the French Écus blancs) · <b>formally Reichsmünzfuß until 1738</b> (Karl-VI Kommissionsedikt elevates the Leipziger Fuß to Reichsmünzfuß: «Damit wurde der Leipziger Fuß Reichsmünzfuß») · last Holstein strike 1625 (Hans Jr. of Sonderburg, 2 Schilling Lübisch); from 1622 already being superseded by the 9¼-Fuß (Friedrich III of Gottorp, Glückstadt) · post-1700 islands: Hanover Speciesthaler 1738–1802 (last Schaumünze 1797), Hamburg Bank-Speciesthaler 1730–1764 (~110,000 pieces), Lübeck jubilee thaler 1730 / 1776 · Hamburg/Lübeck retained as bank-exchange money until 1875"
+        uk: "Авґсбурзький імперський монетний декрет 30 травня 1566 · три якорі кінця 9-Fuß: <b>масове карбування 1667</b> (Zinnaer Münzvertrag — Бранденбург + Саксонія, приєднання Brunswick 1668; ⅔-Thaler у 10½-Fuß стає новим головним номіналом) · <b>головна обігова монета до бл. 1700</b> (Wikipedia DE «Speciestaler»: «blieb bis etwa 1700 die Hauptmünze des Reichs»; далі роль перебирають ⅔-Thaler у 12-Fuß і французькі Écus blancs) · <b>формально Reichsmünzfuß до 1738</b> (Karl-VI Kommissionsedikt підносить Leipziger Fuß до Reichsmünzfuß: «Damit wurde der Leipziger Fuß Reichsmünzfuß») · у Гольштейні останнє карбування 1625 (Hans Jr. Sonderburg, 2 Schilling Lübisch); з 1622 паралельно витісняється 9¼-Fuß (Фредерік III Ґотторпський, Glückstadt) · пост-1700 острови: ганноверський Speciesthaler 1738–1802 (остання Schaumünze 1797), гамбурзький Bank-Speciesthaler 1730–1764 (~110 000 штук), любекський ювілейний Thaler 1730 / 1776 · Гамбург/Любек як банковий рахунок до 1875"
       color_class: rt
 
     - id: "9_25_thaler"

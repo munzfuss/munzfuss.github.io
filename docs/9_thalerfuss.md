@@ -24,6 +24,43 @@ Speciesthaler Hauptumlaufmünze des Reichs **biß ungefähr 1700**
 und einige wenige Inseln (Hamburg, Lübeck, Hannover) biß weit ins
 18. und (bei Hamburg/Lübeck) 19. Jahrhundert.
 
+## Drei Anker des 9-Fuß-Endes — bewusst getrennt halten
+
+> **Wichtigstes terminologisches Resultat dieses Dokuments.** Wer
+> auf eine einzige Jahreszahl für das «Ende» des 9-Fuß'es verweist,
+> wählt automatisch eine Lesart aus drei möglichen — die Quellen
+> nennen drei verschiedene Anker, jeder für einen anderen Aspekt.
+
+| Anker | Jahr | Quelle / Begründung | Datenfeld |
+|---|---|---|---|
+| **Massen-Carbung** (empirisches Ende des Volumengeschäfts) | **1667** | Zinnaer Münzvertrag Brandenburg + Sachsen (Brunswick-Beitritt 1668) → ⅔-Thaler im 10½-Fuß wird neues Hauptnominal; Speciesreichstaler «bis auf wenige Ausnahmen nicht ausgeprägt» (Sächs. Wiki); Meyers eLexikon bestätigt unabhängig | timeline mint truncate |
+| **Hauptumlaufmünze-Funktion** (Funktionsende als zirkulierende Reichswährung) | **~1700** | «blieb bis etwa 1700 die Hauptmünze des Reichs» (Wikipedia DE «Speciestaler», parallel «Reichstaler»); danach Übernahme der Hauptumlauf-Rolle durch ⅔-Thaler (12-Fuß) und französische Écus blancs (DeWiki «Taler») | timeline circulation truncate |
+| **Formal Reichsmünzfuß-Status** (juristische Ablösung als THE Reichsmünzfuß) | **1738** | Karl-VI.-Kommissionsedikt erhebt Leipziger Fuß zum Reichsmünzfuß («Damit wurde der Leipziger Fuß Reichsmünzfuß» — Wikipedia DE «Leipziger Fuß»); übereinstimmend bei Bobzin und Meyers; Sächs. Wiki nennt 1735 (Regensburger Reichstag) als vorbereitenden Akt | `data/shared/fuesse.yml#9_thaler.events.std_end.anywhere` |
+
+Vor 1738 bleibt der 9-Fuß formell **der** Reichsmünzfuß per
+default — der Leipziger Fuß existiert ab 1690 parallel, aber 1692
+hat Leopold I. ausdrücklich erklärt, der Leipziger Fuß sei
+<em>nicht</em> Reichsmünzfuß («<i>Allerdings wurde der Leipziger
+Münzfuß nicht zum Reichsmünzfuß erhoben. Die nach Leipziger
+Münzfuß ausgeprägten Zweidrittel-, Drittel- und Sechsteltaler
+waren keine Reichsmünzen</i>», Wikipedia DE «Leipziger Fuß»). Erst
+das Karl-VI.-Edikt 1738 vollzieht die Ablösung formell.
+
+Auch nach 1738 wird der Speciesreichstaler «<i>weiterhin im
+Reichsmünzfuß geprägt, jedoch mit erhöhtem Wert zu 32 Groschen</i>»
+(Sächs. Wiki) — d. h. der 9-Fuß behält juristische Geltung als
+Standard für eine spezifische Münze (den Speciesreichstaler), ist
+aber nicht mehr THE Reichsmünzfuß. Diese Spätwirkung erstreckt
+sich biß zur Wiener Münzkonvention 1857, wo der Vereinsmünzfuß
+auch das letzte Restregelwerk ablöst.
+
+**Faustregel:** auf den Standard-Karten (German-Müntzfüße-Landing,
+Specie-Subtitle) wird **«1566 → ca. 1700»** als Daumen-Anker
+geführt, weil das den weitesten verlässlichen Funktionsbogen
+darstellt. Auf den Locations-Seiten zeigt die Timeline-Visualisierung
+jeden Anker einer eigenen Schichtart (mint=1667, circulation=1700,
+status=1738), um die Asymmetrie sichtbar zu machen.
+
 ## Periodisierung des 9-Fuß-Carbunghens (1566 → 1797)
 
 Vier funktional verschiedene Phasen lassen sich aus der Quellenlage
