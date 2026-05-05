@@ -89,6 +89,22 @@ def load_german_fuesse() -> list[dict]:
     return raw.get("entries", [])
 
 
+def load_german_fuesse_references() -> dict | None:
+    """Load the bibliography sidecar for the German Müntzfüße catalogue.
+
+    Same convention as `data/locations/<loc>-references.yml`: a YAML
+    file with `heading` (multilingual) and `entries` (each with id +
+    multilingual content). Inline `<sup>` citations in the catalogue
+    prose link by id; the landing template renders the section after
+    the catalogue.
+    """
+    path = DATA_DIR / "shared" / "german_fuesse-references.yml"
+    if not path.exists():
+        return None
+    with open(path, encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
 def load_locations(filter_id: str | None = None) -> list[Location]:
     locations = []
     for path in sorted((DATA_DIR / "locations").glob("*.yml")):
@@ -278,6 +294,7 @@ def build_landing(
     base_url: str = "",
     contact_email: str = "",
     german_fuesse: list[dict] | None = None,
+    german_fuesse_references: dict | None = None,
 ) -> None:
     tmpl = env.get_template("landing.html.j2")
     generated_date = datetime.now().strftime("%Y-%m-%d")
@@ -299,6 +316,19 @@ def build_landing(
     # Landing is generated per-language at /<lang>/index.html;
     # root / redirects to /de/ (or user's preferred language via JS — optional)
     for lang in languages:
+        # Resolve references for this language (same shape as per-
+        # location pages: heading + list of {id, content}).
+        gf_refs_for_lang = None
+        if german_fuesse_references:
+            gf_refs_for_lang = {
+                'heading': i18n.t(german_fuesse_references.get('heading'), lang),
+                'entries': [
+                    {'id': e['id'], 'content': i18n.t(e.get('content'), lang)}
+                    for e in german_fuesse_references.get('entries', [])
+                    if i18n.t(e.get('content'), lang)
+                ]
+            }
+
         html = tmpl.render(
             locations=visible_locations,
             ui=ui,
@@ -310,6 +340,7 @@ def build_landing(
             base_url=base_url,
             contact_email=contact_email,
             german_fuesse=german_fuesse or [],
+            german_fuesse_references=gf_refs_for_lang,
             ui_get=lambda k, l=lang: i18n.ui_get(ui, k, l),
             t=lambda v, l=lang: i18n.t(v, l),
             fmt_date=lambda d, l=lang: i18n.fmt_date(d, l),
@@ -408,6 +439,9 @@ def main():
     print(f"   Issuing entities: {len(issuing_entities)} ({', '.join(issuing_entities)})")
     german_fuesse = load_german_fuesse()
     print(f"   German Müntzfüße catalogue: {len(german_fuesse)} entries")
+    german_fuesse_refs = load_german_fuesse_references()
+    if german_fuesse_refs:
+        print(f"   German Müntzfüße references: {len(german_fuesse_refs.get('entries', []))} entries")
     
     # Load locations
     locations = load_locations(filter_id=args.location)
@@ -452,7 +486,8 @@ def main():
         build_landing(locations, ui, theme, languages, env,
                       repo_url=args.repo_url, base_url=base_url,
                       contact_email=contact_email,
-                      german_fuesse=german_fuesse)
+                      german_fuesse=german_fuesse,
+                      german_fuesse_references=german_fuesse_refs)
 
     generate_assets(theme)
     

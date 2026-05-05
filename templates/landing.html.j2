@@ -131,6 +131,21 @@
   </section>
   {% endfor %}
 </section>
+
+{# References / Bibliography for the German Müntzfüße catalogue.
+   Same template + classes as the per-location references section
+   (location.html.j2 line 884) so styling is shared. Inline
+   <sup><a href="#refN">[N]</a></sup> citations in the YAML body
+   resolve to the <li id="refN"> items below. #}
+{% if german_fuesse_references and german_fuesse_references.entries %}
+<hr class="rsep">
+<h2 class="refs-title">{{ german_fuesse_references.heading }}</h2>
+<ol class="refs">
+  {% for entry in german_fuesse_references.entries %}
+  <li id="{{ entry.id }}" value="{{ entry.id|replace('ref', '') }}">{{ entry.content | safe }}</li>
+  {% endfor %}
+</ol>
+{% endif %}
 {% endif %}
 
 <footer>
