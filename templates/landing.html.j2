@@ -69,72 +69,54 @@
   <p class="gf-langnote">{{ _note }}</p>
   {% endif %}
 
+  {# Each German Müntzfuß renders as a `<section class="gw">` — the same
+     base-values component used on the per-location pages (see
+     templates/location.html.j2 ~line 700). Reusing the .gw / .bx /
+     .gw-rows / .gw-fr classes gives matching typography, spacing and
+     theming across landing and location pages. Wrapper additions for
+     this catalogue (.gf-years above the head, phase-header/summary
+     dividers inside the body, .gw-fr-territories at the bottom) are the
+     only landing-specific styles. #}
   {% for gf in german_fuesse %}
-  <article class="gf-card" id="gf-{{ gf.id }}">
-    <p class="gf-years">{{ gf.years_label|t(lang) }}</p>
-    <div class="gf-head">
-      <div class="gf-head-text">
-        <h3 class="gf-title">{{ gf.title|t(lang) }}</h3>
-        <p class="gf-subtitle">{{ gf.subtitle|t(lang) }}</p>
+  <p class="gf-years">{{ gf.years_label|t(lang) }}</p>
+  <section class="gw" id="gf-{{ gf.id }}">
+    <div class="gw-head">
+      <div class="gw-head-text">
+        <div class="gw-heading">{{ gf.title|t(lang) }}</div>
+        <div class="gw-subheading">{{ gf.subtitle|t(lang) }}</div>
       </div>
-      <span class="gf-bx gf-bx-{{ gf.metal }}">{{ ui_get('landing.gf.metal.' ~ gf.metal) }}</span>
+      <span class="bx {{ gf.metal }}">{{ ui_get('landing.gf.metal.' ~ gf.metal) }}</span>
     </div>
-    <div class="gf-body">
-      {# Pair (rows, immediately-following prose) into a side-by-side
-         .gf-row2 layout: rows on the left, prose on the right. Standalone
-         rows or standalone prose render full-width. Phase-headers and
-         phase-summaries always render full-width as separators. #}
+    <div class="gw-body">
       {% for block in gf.body %}
-        {%- set _next = gf.body[loop.index] if loop.index < gf.body|length else none -%}
-        {%- set _prev = gf.body[loop.index0 - 1] if loop.index0 > 0 else none -%}
         {% if block.kind == 'rows' %}
-          {% if _next and _next.kind == 'prose' %}
-          <div class="gf-row2">
-            <div class="gf-tb">
-              {% for row in block['items'] %}
-              <div class="gf-tr">
-                <div class="gf-tk">{{ row.key|t(lang) }}</div>
-                <div class="gf-tv">{{ row.value|t(lang)|safe }}</div>
-              </div>
-              {% endfor %}
-            </div>
-            <div class="gf-fr">
-              <span class="gf-fr-lb">{{ _next.label|t(lang) }}</span>
-              {{ _next.content|t(lang)|safe }}
-            </div>
-          </div>
-          {% else %}
-          <div class="gf-tb">
+          <div class="gw-rows">
             {% for row in block['items'] %}
-            <div class="gf-tr">
-              <div class="gf-tk">{{ row.key|t(lang) }}</div>
-              <div class="gf-tv">{{ row.value|t(lang)|safe }}</div>
+            <div class="gw-row">
+              <div class="gw-k">{{ row.key|t(lang) }}</div>
+              <div class="gw-v">{{ row.value|t(lang)|safe }}</div>
             </div>
             {% endfor %}
           </div>
-          {% endif %}
         {% elif block.kind == 'prose' %}
-          {# Skip if already rendered as the right-hand pair of a preceding rows block #}
-          {% if not (_prev and _prev.kind == 'rows') %}
-          <div class="gf-fr">
-            <span class="gf-fr-lb">{{ block.label|t(lang) }}</span>
+          <div class="gw-fr">
+            <span class="gw-fr-label">{{ block.label|t(lang) }}</span>
             {{ block.content|t(lang)|safe }}
           </div>
-          {% endif %}
         {% elif block.kind == 'phase_header' %}
-          <div class="gf-ph">{{ block.title|t(lang) }}</div>
+          <div class="gf-phase-header">{{ block.title|t(lang) }}</div>
         {% elif block.kind == 'phase_summary' %}
-          <div class="gf-ps">{{ block.content|t(lang)|safe }}</div>
+          <div class="gf-phase-summary">{{ block.content|t(lang)|safe }}</div>
         {% endif %}
       {% endfor %}
+      {% if gf.territories %}
+      <div class="gw-fr gf-fr-territories">
+        <span class="gw-fr-label">{{ gf.territories.label|t(lang) }}</span>
+        {{ gf.territories.content|t(lang)|safe }}
+      </div>
+      {% endif %}
     </div>
-    {% if gf.territories %}
-    <div class="gf-terr">
-      <span class="gf-terr-lb">{{ gf.territories.label|t(lang) }}</span>
-      {{ gf.territories.content|t(lang)|safe }}
-    </div>
-    {% endif %}
-  </article>
+  </section>
   {% endfor %}
 </section>
 {% endif %}
