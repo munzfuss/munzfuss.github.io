@@ -154,14 +154,25 @@ In descending order of authority:
 
 When sources conflict, primary sources (inscriptions, archives) override secondary/tertiary sources. Always document the source chain in `coin.source`.
 
-**Web-sourced facts → bibliography entry + inline `<sup>` citation**. Whenever a fact you write into the prose / events / data comes from a web lookup (Wikipedia, danskmoent.dk, Numista API, Stack's Bowers PDF, Reichsgesetzblatt scan, etc.), do BOTH steps in the same change:
+**Web-sourced facts → bibliography entry + inline `<sup>` citation, IMMEDIATELY.** Whenever a fact you write into ANY rendered artefact (per-location prose, landing-page text, glossary entries, docs/* notes, anywhere user-facing) comes from a web lookup — Wikipedia, danskmoent.dk, Numista, Stack's Bowers PDF, Reichsgesetzblatt scan, MGM Münzlexikon, Bobzin, Wikisource, etc. — do BOTH steps in the same change, while the source is still open in your context:
 
-1. **Add a bibliography entry** in `data/locations/<loc>-references.yml` (`ref26`, `ref27`, …) with DE/EN/UK content describing the source and the specific claim it backs.
-2. **Inline-cite that entry** in the relevant prose location with `<sup><a href="#ref{N}">[N]</a></sup>` immediately after the sentence whose factual content the source backs. The bibliography slot alone is dead weight if no `<sup>` ref points to it from the rendered text.
+1. **Add a bibliography entry** in the appropriate references file:
+   - Per-location pages → `data/locations/<loc>-references.yml` (`ref26`, `ref27`, …)
+   - Landing-page Müntzfüße overview → `data/shared/german_fuesse-references.yml`
+   - Glossary / docs / cross-cutting → cite inline with the entry, link directly in the doc text
+   Each entry carries DE/EN/UK content describing the source and the specific claim it backs.
+2. **Inline-cite that entry** in the relevant prose with `<sup><a href="#ref{N}">[N]</a></sup>` immediately after the sentence whose factual content the source backs. The bibliography slot alone is dead weight if no `<sup>` ref points to it from the rendered text.
 
-Don't just cite sources at the end of a chat reply — those evaporate; the bibliography file + inline `<sup>` is what actually ships with the artefact and travels with the data. Skipping either step silently regresses §0 (no invention) — a fact without a recorded source, OR a recorded source that nothing in the prose links to, becomes invention the next time someone reads the YAML without the chat history.
+This rule applies equally to:
+- Adding a NEW fact (e.g. «Speciesbank gegründet 29. Februar 1788»).
+- Verifying a fact you already wrote, then keeping it (e.g. «67 Dukaten aus der rauen, nicht feinen, Cölln. Marck» — verified against Wikipedia DE «Dukat»).
+- Confirming a term IS or IS NOT period-attested (e.g. «Zollpfundfuß» dropped because Meyers Konversationslexikon 1888 + Bobzin + Wikipedia DE «Wiener Münzvertrag» do not attest it).
 
-**Self-check before declaring a web-research task done**: search the diff for the new `ref{N}` ids — they should appear at least twice (once in `<loc>-references.yml` defining the entry, once or more in the prose as `<sup>[{N}]</sup>` inline). If the ref appears only in the bibliography file, the inline-cite step was skipped; go back and add it.
+**Why the urgency.** Web-sourced facts citation must happen *while the source is still in your context*. Don't just cite sources at the end of a chat reply — those evaporate; the bibliography file + inline `<sup>` is what actually ships with the artefact and travels with the data. If you defer the citation step to «later», you almost certainly will not have the URL, the exact quote, or the exact wording in scope by the time you commit, and the next session reading the YAML without the chat transcript sees a fact with no source — a silent §0 regression. The compound effect over many sessions is data drift toward unverifiable assertions.
+
+**Skipping either step silently regresses §0 (no invention)** — a fact without a recorded source, OR a recorded source that nothing in the prose links to, becomes invention the next time someone reads the YAML without the chat history.
+
+**Self-check before declaring a web-research task done**: search the diff for the new `ref{N}` ids — they should appear at least twice (once in the references file defining the entry, once or more in the prose as `<sup>[{N}]</sup>` inline). If the ref appears only in the bibliography file, the inline-cite step was skipped; go back and add it. If the diff has prose changes but no new `ref{N}` and the change came from web research, the bibliography step was skipped; go back and add it.
 
 ### 6. Kurantmünze vs. Scheidemünze distinction
 
