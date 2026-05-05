@@ -75,14 +75,18 @@ timeline:
         uk: "25,98 г чистого · срібло"
       year_from: 1566
       year_to: 1625
-      # The 9-Thaler-Fuß anywhere extent (1566—1875, Hamburg / Lübeck
-      # Bank-Mark continuation as a unit of account) is Reich- and
-      # Hansestadt-broad context that distracts from the Holstein-
-      # narrative this bar is meant to convey on the Holstein page.
-      # Hide the anywhere-scope layers (mint, status, circulation) and
-      # show only the holstein-territorial layers. The events in
-      # data/shared/fuesse.yml are preserved.
-      hide_anywhere: true
+      # Anywhere-scope layers show only the Reich-weit period
+      # (1566–~1623, ending with the Kipper-Wipper crisis that broke
+      # orderly empire-wide minting). The standard's Hamburg/Lübeck
+      # Bank-Mark continuation as an accounting unit until 1875 is
+      # period-attested but Hanseatic-specific, not part of the
+      # general HRR-wide picture this bar conveys; per the user's
+      # framing on the Holstein page we want the general empire
+      # adoption visualised, not the lingering Hanseatic continuation.
+      # Implementation: truncate every anywhere-scope layer at 1623
+      # (mint / status / circulation). Underlying events in
+      # data/shared/fuesse.yml stay intact.
+      truncate_anywhere_after: 1623
       bar_title:
         de: "Augspurger Reichsmüntz-Abschied 30. Mai 1566 · in Holstein letzte Prägung 1625 (Hans Jr. Sonderburg, 2 Schilling Lübisch); parallel ab 1622 vom 9¼-Fuß abgelöst (Friedrich III. von Gottorp, Glückstadt) · in Hamburg/Lübeck als Banktauschmünze weiter biß 1875"
         en: "Augsburg Imperial Mint Decree, 30 May 1566 · last Holstein strike 1625 (Hans Jr. of Sonderburg, 2 Schilling Lübisch); from 1622 already being superseded by the 9¼-Fuß (Friedrich III of Gottorp, Glückstadt) · continued in Hamburg/Lübeck as bank-exchange money until 1875"
