@@ -2352,7 +2352,6 @@ a.loc-card:hover {{
   font-size: 13px;
   color: var(--text-secondary);
   line-height: 1.6;
-  max-width: 70ch;
 }}
 .gf-langnote {{
   margin: 8px 0 24px;
@@ -2360,7 +2359,6 @@ a.loc-card:hover {{
   font-style: italic;
   color: var(--text-muted);
   line-height: 1.55;
-  max-width: 70ch;
 }}
 
 .gf-card {{
