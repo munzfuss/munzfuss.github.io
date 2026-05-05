@@ -2350,18 +2350,49 @@ a.loc-card:hover {{
    above each card and the inline phase-header / phase-summary dividers
    inside the body. */
 
+/* The .gw-body on the per-location pages is a 2-column grid (2fr 3fr).
+   In the landing context we re-use those .gw / .gw-rows / .gw-fr classes,
+   but our cards have additional block kinds (phase_header, phase_summary)
+   that must NOT auto-flow into one of the two columns — they need to
+   span the full width as separators / framed paragraphs. The rules below
+   place each kind explicitly so the auto-flow stays predictable
+   regardless of how many blocks a card contains.
+
+   Default placement inside .gw-body:
+     .gf-phase-header    → spans both columns (full-width divider)
+     .gf-phase-summary   → spans both columns (full-width framed paragraph)
+     .gw-rows            → left column (2fr)
+     .gw-fr              → right column (3fr)
+   The phase-header / -summary blocks always render BEFORE any rows/prose
+   pair in the YAML, so the grid auto-flow places them correctly: full-
+   width rows first, then the (rows, prose) row(s) below. */
+
+.gw-body > .gf-phase-header,
+.gw-body > .gf-phase-summary {{
+  grid-column: 1 / -1;
+}}
+
+/* Standalone .gw-fr (one not paired with a preceding .gw-rows in the
+   same conceptual row) spans both columns — covers Bancovaluta-type
+   cards where the Rechnungsfraktionen prose follows phase summaries
+   with no rows table to share its row with. */
+.gw-body > .gw-fr:first-child,
+.gw-body > :not(.gw-rows) + .gw-fr {{
+  grid-column: 1 / -1;
+}}
+
 /* Phase header — section divider inside a multi-phase card body
    (Lübischer 1726/1855, Reichsmüntzfuß Hamburg/Lübeck retention,
    Rigsbankdaler I/II/III, Bancovaluta «Phasen»). */
 .gf-phase-header {{
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.10em;
-  color: var(--text-muted);
-  margin: 14px 0 4px;
-  padding-bottom: 4px;
+  color: var(--accent);
+  margin: 14px 0 6px;
+  padding-bottom: 5px;
   border-bottom: var(--hairline) solid var(--border-soft);
 }}
 
@@ -2372,9 +2403,9 @@ a.loc-card:hover {{
   background: var(--bg-page);
   border: var(--hairline) dashed var(--border);
   border-radius: 5px;
-  padding: 5px 11px;
+  padding: 7px 12px;
   color: var(--text-secondary);
-  margin: 3px 0;
+  margin: 4px 0;
   line-height: 1.6;
 }}
 .gf-phase-summary b {{ color: var(--text-primary); font-weight: 500; }}

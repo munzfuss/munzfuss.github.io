@@ -74,12 +74,15 @@
      dividers inside the body, .gw-fr-territories at the bottom) are the
      only landing-specific styles. #}
   {% for gf in german_fuesse %}
-  {# Phase-header — same pattern as the per-location pages
-     (templates/location.html.j2 ~line 673): the primary numeric form
-     (gf.name) sits in .pname; any period synonym(s) in gf.historical_name
-     nest inside as <em class="phistorical">; gf.years_label rides on the
-     right as .pdate. The longer subtitle becomes .psub directly below. #}
-  <div class="phase-header" id="gf-{{ gf.id }}">
+  {# Each entry wrapped in a .fuss-block — same component the per-location
+     pages use for each Müntzfuß section (templates/location.html.j2:672).
+     The .fuss-block + .fuss-block { margin-top: 56px } rule supplies the
+     vertical spacing between entries. Inside, the .phase-header pattern:
+     primary numeric form (gf.name) in .pname; period synonym(s) in
+     gf.historical_name nested as <em class="phistorical">; gf.years_label
+     in .pdate top-right. Subtitle becomes .psub directly below. #}
+  <section class="fuss-block" id="gf-{{ gf.id }}">
+  <div class="phase-header">
     <div class="ph-left">
       <span class="pname">{{ gf.name|t(lang) }}{% if gf.historical_name %}<em class="phistorical">{{ gf.historical_name|t(lang) }}</em>{% endif %}</span>
       {% if gf.subtitle %}<span class="psub">{{ gf.subtitle|t(lang)|safe }}</span>{% endif %}
@@ -125,6 +128,7 @@
     {{ gf.territories.content|t(lang)|safe }}
   </div>
   {% endif %}
+  </section>
   {% endfor %}
 </section>
 {% endif %}
