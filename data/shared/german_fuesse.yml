@@ -912,166 +912,221 @@ entries:
           <b>Контекст:</b> Бремен ніколи не запроваджував власної срібної ведучої валюти; орієнтувався на золотий курс Friedrich d'or (Pistole) — єдина де-факто-золота валюта на німецьких теренах до 1871.
 
 # ------------------------------------------------------------------
-# 9. Holsteinischer / Altonaer Thaler-Specie-Fuß · 9¼-Thalerfuß
+# 9. 9¼-Thalerfuß · Speciesfuß (Holstein/Schleswig/Dänemark)
 # ------------------------------------------------------------------
-  - id: holsteinischer_specie_9_25
+# Merged entry: combines the three territorial-administrative
+# variants of the same metallic standard (25,28173 g fein per Thaler
+# Specie, 875 ‰, 233,856 g/9,25):
+#   - Phase A — biß 1788 — Dänisch-norwegischer Verbund · Skilling Danske
+#   - Phase B — ab 1777 — Altonaer Banco-Fuß (banco-formaler Stempelung)
+#   - Phase C — ab 29. Febr. 1788 — Schleswig-Holsteinisch Courant · Schillingfuß
+# ------------------------------------------------------------------
+  - id: thaler_specie_9_25
     metal: silver
     years_label:
       de: "17. Jh. → 1868"
       en: "17th c. → 1868"
       uk: "XVII ст. → 1868"
     name: 9¼-Thalerfuß
-    historical_name: Holsteinischer / Altonaer Thaler-Specie-Fuß
+    historical_name: Speciesfuß · Schleswig-Holsteinischer Courant-Fuß · Schillingfuß
     subtitle:
-      de: "Altonaer Banco-Fuß ab 1777 · Cöllnische Marck = 233,856 g Feinsilber · 875 ‰ (14 Loth)"
-      en: "Altona Banco standard from 1777 · Cöllnische Marck = 233.856 g fine silver · 875 ‰ (14 Loth)"
-      uk: "Альтонська Banco-стопа з 1777 · Кельнська марка = 233,856 г чистого срібла · 875 ‰ (14 Лот)"
+      de: "Cöllnische Marck = 233,856 g Feinsilber · 875 ‰ (14 Loth) · gemeinsamer Speciesthaler-Standard von Schleswig-Holstein, Hamburg und Lübeck im 17. Jh. · drei territorial-administrative Stempelungen: Dänisch-norwegischer Verbund (biß 1788), Altonaer Banco-Fuß (ab 1777), Schleswig-Holsteinische Courantwährung (ab 1788) · Münzprägung 1813 eingestellt, als Rechnungsbasis biß 1864 fortgeführt; letzte Holsteinprägung 1868."
+      en: "Cöllnische Marck = 233.856 g fine silver · 875 ‰ (14 Loth) · the common Speciedaler standard of Schleswig-Holstein, Hamburg and Lübeck in the 17th century · three territorial-administrative stamps: Danish-Norwegian union (until 1788), Altona Banco standard (from 1777), Schleswig-Holstein Courant currency (from 1788) · coinage suspended 1813, retained as accounting base until 1864; last Holstein issue 1868."
+      uk: "Кельнська марка = 233,856 г чистого срібла · 875 ‰ (14 Лот) · спільний Speciedaler-стандарт Шлезвіг-Гольштейну, Гамбурга й Любека у XVII ст. · три територіально-адміністративні редакції: данcько-норвезький союз (до 1788), Альтонська Banco-стопа (з 1777), шлезвіг-гольштейнська курантна валюта (з 1788) · карбування припинено 1813, як розрахункова основа збережено до 1864; останнє карбування в Гольштейні 1868."
     body:
+      # Common silver-standard rows (apply across all three phases) +
+      # Rechnungsfraktionen overview that summarises the cross-phase
+      # equivalences (Skilling Danske ↔ Schilling S.-H. Courant ↔
+      # Rigsbankdaler).
       - kind: rows
         items:
-          - key: {de: "Feingewicht Thaler Specie", en: 'Fine weight, Thaler Specie', uk: Чиста вага Thaler Specie}
-            value: {de: "<b>25,28173 g</b> (= 233,856 / 9,25) · 875 ‰ (14 Loth) · 28,89341 g rau · Münzbeleg Holstein 1800–1808 ✓✓", en: <b>25.28173 g</b> (= 233.856 / 9.25) · 875 ‰ (14 Loth) · 28.89341 g rough · Holstein attestation 1800–1808 ✓✓, uk: '<b>25,28173 г</b> (= 233,856 / 9,25) · 875 ‰ (14 Лот) · 28,89341 г повної · гольштейнська атестація 1800–1808 ✓✓'}
-          - key: {de: "Altonaer Banco-Fuß (ab 1777)", en: Altona Banco standard (from 1777), uk: Альтонська Banco-стопа (з 1777)}
-            value: {de: "27¾ Marck Banco = 9¼ Reichsthaler = 1 feine Cöllnische Marck — 9¼-Fuß als Bancostandard für Holstein/Schleswig", en: 27¾ Marck Banco = 9¼ Reichsthaler = 1 fine Cöllnische Marck — 9¼-Fuß as the banco standard for Holstein/Schleswig, uk: 27¾ Marck Banco = 9¼ Reichsthaler = 1 чиста Кельнська марка — 9¼-Фус як banco-стандарт для Гольштейна/Шлезвіга}
+          - key: {de: "Feingewicht Thaler Specie", en: "Fine weight, Thaler Specie", uk: "Чиста вага Thaler Specie"}
+            value:
+              de: "<b>25,28173 g</b> (= 233,856 / 9,25) · 875 ‰ (14 Loth) · 28,89341 g rau · Münzbeleg Holstein 1800–1808 ✓✓"
+              en: "<b>25.28173 g</b> (= 233.856 / 9.25) · 875 ‰ (14 Loth) · 28.89341 g rough · Holstein attestation 1800–1808 ✓✓"
+              uk: "<b>25,28173 г</b> (= 233,856 / 9,25) · 875 ‰ (14 Лот) · 28,89341 г повної · гольштейнська атестація 1800–1808 ✓✓"
+          - key: {de: "Verhältniß zum Hamburger 9-Fuß", en: "Ratio to the Hamburg 9-Fuß", uk: "Відношення до гамбурзького 9-Fuß"}
+            value:
+              de: "25,28173 / 25,98400 = 35/36 ≈ 0,97222 — der Thaler Specie ist ca. 2,7 % leichter als der Reichsthaler Specie."
+              en: "25.28173 / 25.98400 = 35/36 ≈ 0.97222 — the Thaler Specie is about 2.7 % lighter than the Reichsthaler Specie."
+              uk: "25,28173 / 25,98400 = 35/36 ≈ 0,97222 — Thaler Specie приблизно на 2,7 % легший за Reichsthaler Specie."
       - kind: prose
-        label: {de: "Rechnungsfraktionen", en: "Accounting fractions", uk: "Розрахункові фракції"}
+        label:
+          de: "Rechnungsfraktionen — Übersicht aller Phasen"
+          en: "Accounting fractions — overview across phases"
+          uk: "Розрахункові фракції — огляд по фазах"
         content:
           de: |
             <b>1 Thaler Specie</b> (9¼-Fuß) = <b>25,28173 g</b> fein<br>
-            <b>1 Thaler Specie</b> = 60 Schilling S.-H. Courant = 720 Pfennig (ab 1788)<br>
-            <b>1 Thaler Specie</b> = 1¼ Reichsthaler Sch.-H. Courant (5:4)<br>
+            <b>1 Thaler Specie</b> = 120 Skilling Danske (biß 1788, Dänisch-norwegischer Verbund)<br>
+            <b>1 Thaler Specie</b> = 60 Schilling Schleswig-Holsteinisch Courant = 720 Pfennig (ab 29. Febr. 1788)<br>
+            <b>1 Thaler Specie</b> = 1¼ Reichsthaler Sch.-H. Courant (5:4-Tarif)<br>
+            <b>1 Thaler Specie</b> = 3 Marck Banco (Altonaer Banco-Fuß ab 1777: 27¾ Marck Banco aus der feinen Cöllnischen Marck)<br>
             <b>1 Thaler Specie</b> = 2 Rigsbankdaler (ab 1813)<br>
-            <em>Verhältniß zum Hamburgischen 9-Fuß: 25,28173 / 25,98400 = 35/36 ≈ 0,97222</em>
-          en: "<b>1 Thaler Specie</b> (9¼-Fuß) = <b>25.28173 g</b> fine<br>\n<b>1 Thaler Specie</b> = 60 Schilling S.-H. Courant = 720 Pfennig (from 1788)<br>\n<b>1 Thaler Specie</b> = 1¼ Reichsthaler Sch.-H. Courant (5:4)<br>\n<b>1 Thaler Specie</b> = 2 Rigsbankdaler (from 1813)<br>\n<em>Ratio to the Hamburg 9-Fuß: 25.28173 / 25.98400 = 35/36 ≈ 0.97222</em>\n"
-          uk: "<b>1 Thaler Specie</b> (9¼-Фус) = <b>25,28173 г</b> чистого<br>\n<b>1 Thaler Specie</b> = 60 Schilling S.-H. Courant = 720 пфенігів (з 1788)<br>\n<b>1 Thaler Specie</b> = 1¼ Reichsthaler Sch.-H. Courant (5:4)<br>\n<b>1 Thaler Specie</b> = 2 Rigsbankdaler (з 1813)<br>\n<em>Відношення до гамбурзького 9-Фус: 25,28173 / 25,98400 = 35/36 ≈ 0,97222</em>\n"
-    territories:
-      label: {de: "Territorien", en: "Territories", uk: "Території"}
-      content:
-        de: |
-          <b>Regionaler Standard 17. Jh.:</b> Schleswig-Holstein, Hamburg, Lübeck — gemeinsamer Speciesthaler-Standard vor Einführung der Courantwährungen.<br>
-          <b>Altonaer Banco-Fuß (ab 1777):</b> 9¼-Fuß als offizieller Bancostandard für den holsteinischen Handelsraum; löste den Hamburgischen 9-Fuß-Banco im regionalen Verkehr ab.<br>
-          <b>Holstein und Schleswig (ab 1788):</b> Geprägt Altona 1788–1808 und 1825–1849 (Münzstätte Kopenhagen und Altona); 1868 letzte Prägung (2-Rigsdaler unter Christian IX.).<br>
-          <b>Dänemark:</b> Als Rigsdaler Species im dänisch-norwegischen Gesamtstaat; Handelsmünze im Ostseeraum.
-        en: |
-          <b>Regional standard, 17th c.:</b> Schleswig-Holstein, Hamburg, Lübeck — common Speciedaler standard before the introduction of the Courant currencies.<br>
-          <b>Altona Banco standard (from 1777):</b> the 9¼-Fuß as official banco standard for the Holstein trading region; replaced the Hamburg 9-Fuß banco in regional commerce.<br>
-          <b>Holstein and Schleswig (from 1788):</b> struck at Altona 1788–1808 and 1825–1849 (mints Copenhagen and Altona); 1868 final issue (2-Rigsdaler under Christian IX).<br>
-          <b>Denmark:</b> as Rigsdaler Species in the Danish-Norwegian realm; trade coin throughout the Baltic.
-        uk: |
-          <b>Регіональний стандарт XVII ст.:</b> Шлезвіг-Гольштейн, Гамбург, Любек — спільний Speciedaler-стандарт до запровадження курантних валют.<br>
-          <b>Альтонська Banco-стопа (з 1777):</b> 9¼-Фус як офіційний banco-стандарт для гольштейнського торговельного простору; замістила гамбурзьку 9-Фус banco в регіональному обігу.<br>
-          <b>Гольштейн і Шлезвіг (з 1788):</b> карбувалось в Альтоні 1788–1808 і 1825–1849 (монетні двори Копенгаген і Альтона); 1868 — останнє карбування (2-Rigsdaler за Крістіана IX).<br>
-          <b>Данія:</b> як Rigsdaler Species у данcько-норвезькій державі; торгова монета по всій Балтиці.
+            <em>Hamburg-Lübeck-Verhältnis: 25,28173 / 25,98400 = 35/36 — Thaler Specie ist 1/37 (≈ 2,7 %) leichter als Reichsthaler Specie nach Hamburger 9-Fuß.</em>
+          en: |
+            <b>1 Thaler Specie</b> (9¼-Fuß) = <b>25.28173 g</b> fine<br>
+            <b>1 Thaler Specie</b> = 120 Skilling Danske (until 1788, Danish-Norwegian union)<br>
+            <b>1 Thaler Specie</b> = 60 Schilling Schleswig-Holsteinisch Courant = 720 Pfennig (from 29 Feb. 1788)<br>
+            <b>1 Thaler Specie</b> = 1¼ Reichsthaler Sch.-H. Courant (5:4 tariff)<br>
+            <b>1 Thaler Specie</b> = 3 Marck Banco (Altonaer Banco standard from 1777: 27¾ Marck Banco per fine Cöllnische Marck)<br>
+            <b>1 Thaler Specie</b> = 2 Rigsbankdaler (from 1813)<br>
+            <em>Hamburg-Lübeck ratio: 25.28173 / 25.98400 = 35/36 — the Thaler Specie is 1/37 (≈ 2.7 %) lighter than the Reichsthaler Specie of the Hamburg 9-Fuß.</em>
+          uk: |
+            <b>1 Thaler Specie</b> (9¼-Fuß) = <b>25,28173 г</b> чистого<br>
+            <b>1 Thaler Specie</b> = 120 Skilling Danske (до 1788, данcько-норвезький союз)<br>
+            <b>1 Thaler Specie</b> = 60 Schilling Schleswig-Holsteinisch Courant = 720 пфенігів (з 29 лютого 1788)<br>
+            <b>1 Thaler Specie</b> = 1¼ Reichsthaler Sch.-H. Courant (тариф 5:4)<br>
+            <b>1 Thaler Specie</b> = 3 Marck Banco (Altonaer Banco-Fuß з 1777: 27¾ Marck Banco з чистої Кельнської марки)<br>
+            <b>1 Thaler Specie</b> = 2 Rigsbankdaler (з 1813)<br>
+            <em>Гамбурзько-любекське співвідношення: 25,28173 / 25,98400 = 35/36 — Thaler Specie на 1/37 (≈ 2,7 %) легший за Reichsthaler Specie за гамбурзькою 9-Fuß.</em>
 
-# ------------------------------------------------------------------
-# 9b. Dänisch-Norwegischer Courant-Fuß in Holstein/Schleswig
-# ------------------------------------------------------------------
-  - id: daenisch_norwegischer_courantfuss
-    metal: silver
-    years_label:
-      de: "biß 1788"
-      en: "until 1788"
-      uk: "до 1788"
-    name: Dänisch-Norwegischer Courant-Fuß
-    historical_name: Skilling Danske
-    subtitle:
-      de: "Dänischer Gesamtstaat · Holstein und Schleswig als Teil des dänischen Währungsverbundes biß Febr. 1788 · Cöllnische Marck = 233,856 g Feinsilber"
-      en: "Danish realm · Holstein and Schleswig within the Danish currency union until Feb. 1788 · Cöllnische Marck = 233.856 g fine silver"
-      uk: "Данське королівство · Гольштейн і Шлезвіг у данській валютній спілці до лютого 1788 · Кельнська марка = 233,856 г чистого срібла"
-    body:
+      # Phase A — pre-1788 Danish-Norwegian system
+      - kind: phase_header
+        title:
+          de: "biß 1788 · Dänisch-norwegischer Verbund · Skilling Danske"
+          en: "Until 1788 · Danish-Norwegian union · Skilling Danske"
+          uk: "До 1788 · Данcько-норвезький союз · Skilling Danske"
       - kind: rows
         items:
-          - key: {de: "Grosse Münze", en: Large coin, uk: Велика монета}
-            value: {de: "Thaler Specie (Rigsdaler Species) · 9¼-Thaler-Fuß · <b>25,28173 g</b> fein · 875 ‰ · wie in Hamburg/Lübeck", en: Thaler Specie (Rigsdaler Species) · 9¼-Thaler-Fuß · <b>25.28173 g</b> fine · 875 ‰ · as in Hamburg/Lübeck, uk: 'Thaler Specie (Rigsdaler Species) · 9¼-Thaler-Fuß · <b>25,28173 г</b> чистого · 875 ‰ · як у Гамбурзі/Любеку'}
-          - key: {de: "Rigsdaler Courant", en: Rigsdaler Courant, uk: Rigsdaler Courant}
-            value: {de: "<b>20,22538 g</b> fein (= 4/5 × 25,28173 g) · 1 Rigsdaler Courant = 4/5 Rigsdaler Species = 96 Skilling Danske", en: <b>20.22538 g</b> fine (= 4/5 × 25.28173 g) · 1 Rigsdaler Courant = 4/5 Rigsdaler Species = 96 Skilling Danske, uk: '<b>20,22538 г</b> чистого (= 4/5 × 25,28173 г) · 1 Rigsdaler Courant = 4/5 Rigsdaler Species = 96 Skilling Danske'}
-          - key: {de: "Rigsdaler Species", en: Rigsdaler Species, uk: Rigsdaler Species}
-            value: {de: "<b>25,28173 g</b> fein · 120 Skilling Danske = 5/4 Rigsdaler Courant", en: <b>25.28173 g</b> fine · 120 Skilling Danske = 5/4 Rigsdaler Courant, uk: '<b>25,28173 г</b> чистого · 120 Skilling Danske = 5/4 Rigsdaler Courant'}
-          - key: {de: "Skilling Danske", en: Skilling Danske, uk: Skilling Danske}
-            value: {de: "Hauptsubeinheit · 1 Mark Danske = 16 Skilling Danske", en: Principal sub-unit · 1 Mark Danske = 16 Skilling Danske, uk: Головна субодиниця · 1 Mark Danske = 16 Skilling Danske}
-          - key: {de: "Kroneskilling", en: Kroneskilling, uk: Kroneskilling}
-            value: {de: "Separate Subeinheit im Krone-System · 60 Kroneskilling = 1 Krone = 4 Mark Danske = 64 Skilling Danske · 1 Kroneskilling = 16/15 Skilling Danske (größer als Skilling Danske)", en: Separate sub-unit in the Krone system · 60 Kroneskilling = 1 Krone = 4 Mark Danske = 64 Skilling Danske · 1 Kroneskilling = 16/15 Skilling Danske (larger than the Skilling Danske), uk: Окрема субодиниця у системі Krone · 60 Kroneskilling = 1 Krone = 4 Mark Danske = 64 Skilling Danske · 1 Kroneskilling = 16/15 Skilling Danske (більший за Skilling Danske)}
+          - key: {de: "Rigsdaler Species", en: "Rigsdaler Species", uk: "Rigsdaler Species"}
+            value:
+              de: "<b>25,28173 g</b> fein · 120 Skilling Danske = 5/4 Rigsdaler Courant · wie Thaler Specie in Hamburg/Lübeck"
+              en: "<b>25.28173 g</b> fine · 120 Skilling Danske = 5/4 Rigsdaler Courant · same as Thaler Specie in Hamburg/Lübeck"
+              uk: "<b>25,28173 г</b> чистого · 120 Skilling Danske = 5/4 Rigsdaler Courant · як Thaler Specie у Гамбурзі/Любеку"
+          - key: {de: "Rigsdaler Courant", en: "Rigsdaler Courant", uk: "Rigsdaler Courant"}
+            value:
+              de: "<b>20,22538 g</b> fein (= 4/5 × 25,28173 g) · 1 Rigsdaler Courant = 4/5 Rigsdaler Species = 96 Skilling Danske = 6 Mark Danske"
+              en: "<b>20.22538 g</b> fine (= 4/5 × 25.28173 g) · 1 Rigsdaler Courant = 4/5 Rigsdaler Species = 96 Skilling Danske = 6 Mark Danske"
+              uk: "<b>20,22538 г</b> чистого (= 4/5 × 25,28173 г) · 1 Rigsdaler Courant = 4/5 Rigsdaler Species = 96 Skilling Danske = 6 Mark Danske"
+          - key: {de: "Skilling Danske", en: "Skilling Danske", uk: "Skilling Danske"}
+            value:
+              de: "Hauptsubeinheit · 1 Mark Danske = 16 Skilling Danske"
+              en: "Principal sub-unit · 1 Mark Danske = 16 Skilling Danske"
+              uk: "Головна субодиниця · 1 Mark Danske = 16 Skilling Danske"
+          - key: {de: "Kroneskilling", en: "Kroneskilling", uk: "Kroneskilling"}
+            value:
+              de: "Separate Subeinheit im Krone-System · 60 Kroneskilling = 1 Krone = 4 Mark Danske = 64 Skilling Danske · 1 Kroneskilling = 16/15 Skilling Danske (größer als Skilling Danske)"
+              en: "Separate sub-unit in the Krone system · 60 Kroneskilling = 1 Krone = 4 Mark Danske = 64 Skilling Danske · 1 Kroneskilling = 16/15 Skilling Danske (larger than the Skilling Danske)"
+              uk: "Окрема субодиниця у системі Krone · 60 Kroneskilling = 1 Krone = 4 Mark Danske = 64 Skilling Danske · 1 Kroneskilling = 16/15 Skilling Danske (більший за Skilling Danske)"
       - kind: prose
-        label: {de: "Rechnungsfraktionen", en: "Accounting fractions", uk: "Розрахункові фракції"}
+        label:
+          de: "Rechnungsfraktionen (Skilling Danske)"
+          en: "Accounting fractions (Skilling Danske)"
+          uk: "Розрахункові фракції (Skilling Danske)"
         content:
           de: |
             <b>1 Rigsdaler Species</b> = 120 Skilling Danske = 5/4 Rigsdaler Courant<br>
             <b>1 Rigsdaler Courant</b> = 4/5 Rigsdaler Species = 96 Skilling Danske = 6 Mark Danske<br>
             <b>1 Krone</b> = 4 Mark Danske = 64 Skilling Danske = 60 Kroneskilling<br>
             <b>1 Mark Danske</b> = 16 Skilling Danske = 15 Kroneskilling<br>
-            <em>1788: Holstein und Schleswig traten aus dem dänischen Währungsverbund aus und führten eine eigene Courantwährung ein (60 Schilling Courant = 1 Thaler Specie)</em>
-          en: "<b>1 Rigsdaler Species</b> = 120 Skilling Danske = 5/4 Rigsdaler Courant<br>\n<b>1 Rigsdaler Courant</b> = 4/5 Rigsdaler Species = 96 Skilling Danske = 6 Mark Danske<br>\n<b>1 Krone</b> = 4 Mark Danske = 64 Skilling Danske = 60 Kroneskilling<br>\n<b>1 Mark Danske</b> = 16 Skilling Danske = 15 Kroneskilling<br>\n<em>1788: Holstein and Schleswig withdrew from the Danish currency union and introduced their own Courant currency (60 Schilling Courant = 1 Thaler Specie)</em>\n"
-          uk: "<b>1 Rigsdaler Species</b> = 120 Skilling Danske = 5/4 Rigsdaler Courant<br>\n<b>1 Rigsdaler Courant</b> = 4/5 Rigsdaler Species = 96 Skilling Danske = 6 Mark Danske<br>\n<b>1 Krone</b> = 4 Mark Danske = 64 Skilling Danske = 60 Kroneskilling<br>\n<b>1 Mark Danske</b> = 16 Skilling Danske = 15 Kroneskilling<br>\n<em>1788: Гольштейн і Шлезвіг вийшли з данської валютної спілки і запровадили власну курантну валюту (60 Schilling Courant = 1 Thaler Specie)</em>\n"
-    territories:
-      label: {de: "Territorien", en: "Territories", uk: "Території"}
-      content:
-        de: |
-          <b>Holstein, Schleswig, Pinneberg, Rantzau:</b> als Teil des Dänischen Gesamtstaats biß Februar 1788.<br>
-          <b>Münzstätten:</b> Kopenhagen (Hauptprägestätte); Glückstadt (Holstein, biß 1771); Altona (ab 1771).<br>
-          <b>1788:</b> Austritt aus dem dänischen Währungsverbund → eigene schleswig-holsteinische Courantwährung.
-        en: |
-          <b>Holstein, Schleswig, Pinneberg, Rantzau:</b> as part of the Danish realm until February 1788.<br>
-          <b>Mints:</b> Copenhagen (principal); Glückstadt (Holstein, until 1771); Altona (from 1771).<br>
-          <b>1788:</b> Withdrawal from the Danish currency union → own Schleswig-Holstein Courant currency.
-        uk: |
-          <b>Гольштейн, Шлезвіг, Піннеберг, Ранцау:</b> як частина Данського королівства до лютого 1788.<br>
-          <b>Монетні двори:</b> Копенгаген (головний); Глюкштадт (Гольштейн, до 1771); Альтона (з 1771).<br>
-          <b>1788:</b> вихід з данської валютної спілки → власна шлезвіг-гольштейнська курантна валюта.
+            <em>1788: Holstein und Schleswig traten aus dem dänischen Währungsverbund aus und führten eine eigene Courantwährung ein (60 Schilling Courant = 1 Thaler Specie) — siehe Phase C.</em>
+          en: |
+            <b>1 Rigsdaler Species</b> = 120 Skilling Danske = 5/4 Rigsdaler Courant<br>
+            <b>1 Rigsdaler Courant</b> = 4/5 Rigsdaler Species = 96 Skilling Danske = 6 Mark Danske<br>
+            <b>1 Krone</b> = 4 Mark Danske = 64 Skilling Danske = 60 Kroneskilling<br>
+            <b>1 Mark Danske</b> = 16 Skilling Danske = 15 Kroneskilling<br>
+            <em>1788: Holstein and Schleswig withdrew from the Danish currency union and introduced their own Courant currency (60 Schilling Courant = 1 Thaler Specie) — see Phase C below.</em>
+          uk: |
+            <b>1 Rigsdaler Species</b> = 120 Skilling Danske = 5/4 Rigsdaler Courant<br>
+            <b>1 Rigsdaler Courant</b> = 4/5 Rigsdaler Species = 96 Skilling Danske = 6 Mark Danske<br>
+            <b>1 Krone</b> = 4 Mark Danske = 64 Skilling Danske = 60 Kroneskilling<br>
+            <b>1 Mark Danske</b> = 16 Skilling Danske = 15 Kroneskilling<br>
+            <em>1788: Гольштейн і Шлезвіг вийшли з данської валютної спілки і запровадили власну курантну валюту (60 Schilling Courant = 1 Thaler Specie) — див. Фазу C нижче.</em>
 
-# ------------------------------------------------------------------
-# 10. Schleswig-Holsteinischer Courant-Fuß
-# ------------------------------------------------------------------
-  - id: sh_courantfuss
-    metal: silver
-    years_label:
-      de: "1787 → 1864"
-      en: "1787 → 1864"
-      uk: "1787 → 1864"
-    name: 9¼-Thalerfuß
-    historical_name: Schleswig-Holsteinischer Courant-Fuß · Schillingfuß
-    subtitle:
-      de: "Schilling Schleswig-Holsteinisch Courant · Münzprägung ab 1787 · offizielle Einführung 29. Febr. 1788 · Münzprägung 1813 eingestellt; als Rechnungsbasis biß 1864 fortgeführt · Cöllnische Marck = 233,856 g Feinsilber · Bezugsnominal: 1 Thaler Specie (9¼-Thaler-Fuß) = 60 Schilling S.-H. Courant · abgeleiteter Marckfuß: 34 11/16 — nur moderner Vergleichswert, nicht zeitgenössische Bezeichnung"
-      en: "Schilling Schleswig-Holsteinisch Courant · coinage from 1787 · official introduction 29 Feb. 1788 · coinage suspended 1813; retained as accounting base until 1864 · Cöllnische Marck = 233.856 g fine silver · base nominal: 1 Thaler Specie (9¼-Thaler) = 60 Schilling S.-H. Courant · derived Marck standard: 34 11/16 — modern comparative value only, not a period term"
-      uk: "Schilling Schleswig-Holsteinisch Courant · карбування з 1787 · офіційне запровадження 29 лютого 1788 · карбування припинено 1813; як розрахункова основа збережено до 1864 · Кельнська марка = 233,856 г чистого срібла · базовий номінал: 1 Thaler Specie (9¼-талерна стопа) = 60 Schilling S.-H. Courant · похідна маркова стопа: 34 11/16 — лише сучасний порівняльний показник, не епохальна назва"
-    body:
+      # Phase B — 1777 Altonaer Banco-Fuß
+      - kind: phase_header
+        title:
+          de: "ab 1777 · Altonaer Banco-Fuß · Mark-Banco-Stückelung"
+          en: "From 1777 · Altona Banco standard · Mark Banco denomination"
+          uk: "Від 1777 · Альтонська Banco-стопа · стрижування в Mark Banco"
+      - kind: phase_summary
+        content:
+          de: "<b>27¾ Marck Banco = 9¼ Reichsthaler = 1 feine Cöllnische Marck</b> — formaler Müntzfuß der königlich-dänischen Altonaer Bank nach Altonaer Bankordnung §19; numerisch identisch mit dem 9¼-Thaler-Fuß-Speciedaler-Standard, nur in Mark Banco statt Reichsthaler stückeliert (1 Marck Banco = ⅓ Thaler Specie ≈ 8,42724 g fein). Bevorzugung gegenüber dem Hamburger 27⅝ Banco-Fuß: Silber strömte zur Altonaer Bank (Greshamsche Wirkung). Löste den Hamburgischen 9-Fuß-Banco im regionalen holsteinischen Verkehr ab."
+          en: "<b>27¾ Marck Banco = 9¼ Reichsthaler = 1 fine Cöllnische Marck</b> — formal coinage standard of the Royal Danish Altonaer Bank per Altonaer Bankordnung §19; numerically identical with the 9¼-Thaler-Fuß Speciedaler standard, just denominated in Marck Banco rather than Reichsthaler (1 Marck Banco = ⅓ Thaler Specie ≈ 8.42724 g fine). Favoured over the Hamburg 27⅝ Banco standard: silver flowed to the Altonaer Bank (Gresham's effect). Replaced the Hamburg 9-Fuß banco in regional Holstein commerce."
+          uk: "<b>27¾ Marck Banco = 9¼ Reichsthaler = 1 чиста Кельнська марка</b> — формальний Müntzfuß королівсько-данської Altonaer Bank за Altonaer Bankordnung §19; числово тотожний 9¼-Thaler-Fuß-Speciedaler-стандарту, лише виражений у Marck Banco замість Reichsthaler (1 Marck Banco = ⅓ Thaler Specie ≈ 8,42724 г чистого). Перевага над гамбурзькою 27⅝-Banco-стопою: срібло перетікало до Altonaer Bank (ефект Грешема). Замістила гамбурзьку 9-Fuß-banco в регіональному гольштейнському обігу."
+
+      # Phase C — 1788 Schleswig-Holsteinisch Courant
+      - kind: phase_header
+        title:
+          de: "ab 29. Februar 1788 · Schleswig-Holsteinisch Courant · Schillingfuß"
+          en: "From 29 February 1788 · Schleswig-Holsteinisch Courant · Schilling standard"
+          uk: "Від 29 лютого 1788 · Schleswig-Holsteinisch Courant · Schillingfuß"
       - kind: rows
         items:
-          - key: {de: "Feingewicht Reichsthaler Sch.-H. Courant", en: 'Fine weight, Reichsthaler Sch.-H. Courant', uk: 'Чиста вага, Reichsthaler Sch.-H. Courant'}
-            value: {de: "<b>20,22538 g</b> (= 4/5 × 25,28173 g) = 3 Marck S.-H. Courant = 48 Schilling S.-H. Courant", en: <b>20.22538 g</b> (= 4/5 × 25.28173 g) = 3 Marck S.-H. Courant = 48 Schilling S.-H. Courant, uk: '<b>20,22538 г</b> (= 4/5 × 25,28173 г) = 3 Marck S.-H. Courant = 48 Schilling S.-H. Courant'}
-          - key: {de: "1 Marck S.-H. Courant", en: 1 Marck S.-H. Courant, uk: 1 Marck S.-H. Courant}
-            value: {de: "<b>6,74179 g</b> fein (= 20,22538 / 3) = 16 Schilling S.-H. Courant", en: <b>6.74179 g</b> fine (= 20.22538 / 3) = 16 Schilling S.-H. Courant, uk: '<b>6,74179 г</b> чистого (= 20,22538 / 3) = 16 Schilling S.-H. Courant'}
+          - key: {de: "Reichsthaler Sch.-H. Courant", en: "Reichsthaler Sch.-H. Courant", uk: "Reichsthaler Sch.-H. Courant"}
+            value:
+              de: "<b>20,22538 g</b> fein (= 4/5 × 25,28173 g) = 3 Marck S.-H. Courant = 48 Schilling S.-H. Courant"
+              en: "<b>20.22538 g</b> fine (= 4/5 × 25.28173 g) = 3 Marck S.-H. Courant = 48 Schilling S.-H. Courant"
+              uk: "<b>20,22538 г</b> чистого (= 4/5 × 25,28173 г) = 3 Marck S.-H. Courant = 48 Schilling S.-H. Courant"
+          - key: {de: "Marck S.-H. Courant", en: "Marck S.-H. Courant", uk: "Marck S.-H. Courant"}
+            value:
+              de: "<b>6,74179 g</b> fein (= 20,22538 / 3) = 16 Schilling S.-H. Courant"
+              en: "<b>6.74179 g</b> fine (= 20.22538 / 3) = 16 Schilling S.-H. Courant"
+              uk: "<b>6,74179 г</b> чистого (= 20,22538 / 3) = 16 Schilling S.-H. Courant"
       - kind: prose
-        label: {de: "Rechnungsfraktionen", en: "Accounting fractions", uk: "Розрахункові фракції"}
+        label:
+          de: "Rechnungsfraktionen (Schilling S.-H. Courant)"
+          en: "Accounting fractions (Schilling S.-H. Courant)"
+          uk: "Розрахункові фракції (Schilling S.-H. Courant)"
         content:
           de: |
             <b>1 Reichsthaler Species</b> = 60 Schilling S.-H. Courant = 720 Pfennig<br>
             <b>1 Reichsthaler Sch.-H. Courant</b> = 4/5 Reichsthaler Species = 48 Schilling S.-H. Courant = 576 Pfennig<br>
             <b>1 Marck S.-H. Courant</b> = 16 Schilling S.-H. Courant = 192 Pfennig<br>
             <b>1 Schilling S.-H. Courant</b> = 12 Pfennig; ½ Sch. = Sechsling; ¼ Sch. = Dreiling<br>
-            <em>Keine 1-Schilling-Münze geprägt; stattdessen 2-Sechsling</em>
-          en: "<b>1 Reichsthaler Species</b> = 60 Schilling S.-H. Courant = 720 Pfennig<br>\n<b>1 Reichsthaler Sch.-H. Courant</b> = 4/5 Reichsthaler Species = 48 Schilling S.-H. Courant = 576 Pfennig<br>\n<b>1 Marck S.-H. Courant</b> = 16 Schilling S.-H. Courant = 192 Pfennig<br>\n<b>1 Schilling S.-H. Courant</b> = 12 Pfennig; ½ Sch. = Sechsling; ¼ Sch. = Dreiling<br>\n<em>No 1-Schilling coin was struck; in its place the 2-Sechsling</em>\n"
-          uk: "<b>1 Reichsthaler Species</b> = 60 Schilling S.-H. Courant = 720 пфенігів<br>\n<b>1 Reichsthaler Sch.-H. Courant</b> = 4/5 Reichsthaler Species = 48 Schilling S.-H. Courant = 576 пфенігів<br>\n<b>1 Marck S.-H. Courant</b> = 16 Schilling S.-H. Courant = 192 пфеніги<br>\n<b>1 Schilling S.-H. Courant</b> = 12 пфенігів; ½ Sch. = Sechsling; ¼ Sch. = Dreiling<br>\n<em>1-Schilling монета не карбувалась; натомість карбувався 2-Sechsling</em>\n"
+            <em>Keine 1-Schilling-Münze geprägt; stattdessen 2-Sechsling.</em><br>
+            <em>Abgeleiteter Marckfuß: 34 11/16 — nur moderner Vergleichswert (Bobzin), nicht zeitgenössische Bezeichnung.</em>
+          en: |
+            <b>1 Reichsthaler Species</b> = 60 Schilling S.-H. Courant = 720 Pfennig<br>
+            <b>1 Reichsthaler Sch.-H. Courant</b> = 4/5 Reichsthaler Species = 48 Schilling S.-H. Courant = 576 Pfennig<br>
+            <b>1 Marck S.-H. Courant</b> = 16 Schilling S.-H. Courant = 192 Pfennig<br>
+            <b>1 Schilling S.-H. Courant</b> = 12 Pfennig; ½ Sch. = Sechsling; ¼ Sch. = Dreiling<br>
+            <em>No 1-Schilling coin was struck; in its place the 2-Sechsling.</em><br>
+            <em>Derived Marck standard: 34 11/16 — modern comparative value (Bobzin) only, not a period term.</em>
+          uk: |
+            <b>1 Reichsthaler Species</b> = 60 Schilling S.-H. Courant = 720 пфенігів<br>
+            <b>1 Reichsthaler Sch.-H. Courant</b> = 4/5 Reichsthaler Species = 48 Schilling S.-H. Courant = 576 пфенігів<br>
+            <b>1 Marck S.-H. Courant</b> = 16 Schilling S.-H. Courant = 192 пфеніги<br>
+            <b>1 Schilling S.-H. Courant</b> = 12 пфенігів; ½ Sch. = Sechsling; ¼ Sch. = Dreiling<br>
+            <em>1-Schilling монета не карбувалась; натомість карбувався 2-Sechsling.</em><br>
+            <em>Похідна маркова стопа: 34 11/16 — лише сучасний порівняльний показник (Bobzin), не епохальна назва.</em>
     territories:
       label: {de: "Territorien", en: "Territories", uk: "Території"}
       content:
         de: |
-          <b>Herzogtum Holstein, Herzogtum Schleswig:</b> Münzprägung ab 1787; offizielle Einführung 29. Feb. 1788; als Rechnungsbasis biß 1864 (preuß./österr. Annexion).<br>
-          <b>Herrschaft Pinneberg, Grafschaft Rantzau:</b> 1788–1864.<br>
-          <b>Schleswig-Holsteinische Speciesbank, Altona:</b> gegründet 29. Feb. 1788; erste Banknoten (Species Bank-Zettel) in Thaler Specie; Banknoten auf Schilling S.-H. Courant lautend.<br>
-          <b>1813:</b> Münzprägung eingestellt (dänischer Staatsbankrott → Rigsbankdalerfuß tritt in Kraft).<br>
-          <b>1864:</b> Ende mit preuß./österr. Annexion nach Deutsch-Dänischem Krieg.
+          <b>Regionaler Standard 17. Jh.:</b> Schleswig-Holstein, Hamburg, Lübeck — gemeinsamer Speciesthaler-Standard vor Einführung der Courantwährungen.<br>
+          <b>biß 1788 — Dänisch-norwegischer Verbund:</b> Holstein, Schleswig, Pinneberg, Rantzau als Teil des Dänischen Gesamtstaats.<br>
+          <b>Münzstätten:</b> Kopenhagen (Hauptprägestätte); Glückstadt (Holstein, biß 1771); Altona (ab 1771).<br>
+          <b>ab 1777 — Altonaer Bank:</b> 9¼-Fuß als formaler Bancostandard (Altonaer Banco-Fuß); löste den Hamburgischen 9-Fuß-Banco im regionalen Verkehr ab.<br>
+          <b>ab 29. Februar 1788 — Schleswig-Holsteinische Speciesbank, Altona:</b> gegründet zugleich mit der Forordning vom 29. Febr. 1788; erste Banknoten (Species Bank-Zettel) in Thaler Specie; weitere Banknoten auf Schilling S.-H. Courant lautend. Holstein/Schleswig/Pinneberg/Rantzau als eigenständiger Währungsraum.<br>
+          <b>Münzprägung Specie 1788–1808 und 1825–1849</b> (Altona, Kopenhagen).<br>
+          <b>1813:</b> Münzprägung Specie eingestellt (dänischer Staatsbankrott → Rigsbankdalerfuß tritt in Kraft); Specie als Rechnungsbasis im holsteinischen Alltag fortgeführt.<br>
+          <b>1864:</b> Ende der Schleswig-Holsteinischen Courantrechnung mit preuß./österr. Annexion nach Deutsch-Dänischem Krieg.<br>
+          <b>1868:</b> Letzte Holstein-Speciedaler-Prägung (2-Rigsdaler unter Christian IX., Altona).<br>
+          <b>Dänemark-weit:</b> als Rigsdaler Species im dänisch-norwegischen Gesamtstaat fortlaufend gebräuchlich; Handelsmünze im gesamten Ostseeraum.
         en: |
-          <b>Duchy of Holstein, Duchy of Schleswig:</b> coinage from 1787; official introduction 29 Feb. 1788; as accounting base until 1864 (Prussian/Austrian annexation).<br>
-          <b>Lordship of Pinneberg, County of Rantzau:</b> 1788–1864.<br>
-          <b>Schleswig-Holstein Speciesbank, Altona:</b> founded 29 Feb. 1788; first banknotes (Species Bank-Zettel) in Thaler Specie; banknotes denominated in Schilling S.-H. Courant.<br>
-          <b>1813:</b> Coinage suspended (Danish state bankruptcy → Rigsbankdaler standard takes effect).<br>
-          <b>1864:</b> Ends with Prussian/Austrian annexation after the Second Schleswig War.
+          <b>Regional standard, 17th century:</b> Schleswig-Holstein, Hamburg, Lübeck — common Speciedaler standard before the introduction of the Courant currencies.<br>
+          <b>Until 1788 — Danish-Norwegian union:</b> Holstein, Schleswig, Pinneberg, Rantzau as part of the Danish realm.<br>
+          <b>Mints:</b> Copenhagen (principal); Glückstadt (Holstein, until 1771); Altona (from 1771).<br>
+          <b>From 1777 — Altonaer Bank:</b> the 9¼-Fuß formalised as the bank's coinage standard (Altonaer Banco-Fuß); replaced the Hamburg 9-Fuß banco in regional commerce.<br>
+          <b>From 29 February 1788 — Schleswig-Holstein Speciesbank, Altona:</b> founded together with the Forordning of 29 Feb. 1788; first banknotes (Species Bank-Zettel) in Thaler Specie; later banknotes denominated in Schilling S.-H. Courant. Holstein/Schleswig/Pinneberg/Rantzau as an independent monetary zone.<br>
+          <b>Specie coinage 1788–1808 and 1825–1849</b> (Altona, Copenhagen).<br>
+          <b>1813:</b> Specie coinage suspended (Danish state bankruptcy → Rigsbankdaler standard takes effect); Specie retained as the accounting base in everyday Holstein use.<br>
+          <b>1864:</b> End of Schleswig-Holstein Courant accounting with Prussian/Austrian annexation after the Second Schleswig War.<br>
+          <b>1868:</b> Last Holstein Speciedaler issue (2-Rigsdaler under Christian IX, Altona).<br>
+          <b>Denmark-wide:</b> as Rigsdaler Species, continuously in use within the Danish-Norwegian realm; trade coin throughout the entire Baltic region.
         uk: |
-          <b>Герцогство Гольштейн, Герцогство Шлезвіг:</b> карбування з 1787; офіційне запровадження 29 лютого 1788; як розрахункова основа до 1864 (прусько-австрійська анексія).<br>
-          <b>Сеньйорія Піннеберг, Графство Ранцау:</b> 1788–1864.<br>
-          <b>Шлезвіг-гольштейнський Speciesbank, Альтона:</b> заснований 29 лютого 1788; перші банкноти (Species Bank-Zettel) у Thaler Specie; банкноти номіновані в Schilling S.-H. Courant.<br>
-          <b>1813:</b> карбування припинено (данське державне банкрутство → запроваджено Rigsbankdaler-стопу).<br>
-          <b>1864:</b> кінець із прусько-австрійською анексією після Другої шлезвізької війни.
+          <b>Регіональний стандарт XVII ст.:</b> Шлезвіг-Гольштейн, Гамбург, Любек — спільний Speciedaler-стандарт до запровадження курантних валют.<br>
+          <b>До 1788 — данcько-норвезький союз:</b> Гольштейн, Шлезвіг, Піннеберг, Ранцау як частина Данського королівства.<br>
+          <b>Монетні двори:</b> Копенгаген (головний); Глюкштадт (Гольштейн, до 1771); Альтона (з 1771).<br>
+          <b>З 1777 — Altonaer Bank:</b> 9¼-Fuß формалізовано як банковий монетний стандарт (Altonaer Banco-Fuß); замістила гамбурзьку 9-Fuß-banco в регіональному обігу.<br>
+          <b>З 29 лютого 1788 — Schleswig-Holsteinische Speciesbank, Альтона:</b> заснована одночасно з Forordning від 29 лютого 1788; перші банкноти (Species Bank-Zettel) у Thaler Specie; пізніші банкноти номіновані в Schilling S.-H. Courant. Гольштейн/Шлезвіг/Піннеберг/Ранцау як самостійна валютна зона.<br>
+          <b>Карбування Specie 1788–1808 та 1825–1849</b> (Альтона, Копенгаген).<br>
+          <b>1813:</b> карбування Specie припинено (данське державне банкрутство → запроваджено Rigsbankdaler-стопу); Specie збережено як розрахункову основу у повсякденному гольштейнському обігу.<br>
+          <b>1864:</b> кінець шлезвіг-гольштейнської курантної лічби з прусько-австрійською анексією після Другої шлезвізької війни.<br>
+          <b>1868:</b> останнє карбування гольштейнського Speciedaler (2-Rigsdaler за Крістіана IX, Альтона).<br>
+          <b>По всій Данії:</b> як Rigsdaler Species, безперервно в обігу в данcько-норвезькій державі; торгова монета по всьому Балтійському регіону.
 
 # ------------------------------------------------------------------
 # 11. Süddeutscher Münzfuß · 24½-Guldenfuß
