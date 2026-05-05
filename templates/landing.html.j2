@@ -82,10 +82,13 @@
      gf.historical_name nested as <em class="phistorical">; gf.years_label
      in .pdate top-right. Subtitle becomes .psub directly below. #}
   <section class="fuss-block" id="gf-{{ gf.id }}">
+  {# Phase-header: matches the per-location SH page exactly except
+     for placement of the long technical subtitle, which is moved
+     down into the .gw-subheading slot below (per request — that's
+     where the SH page also keeps the metric-anchor sentence). #}
   <div class="phase-header">
     <div class="ph-left">
       <span class="pname">{{ gf.name|t(lang) }}{% if gf.historical_name %}<em class="phistorical">{{ gf.historical_name|t(lang) }}</em>{% endif %}</span>
-      {% if gf.subtitle %}<span class="psub">{{ gf.subtitle|t(lang)|safe }}</span>{% endif %}
     </div>
     <div class="ph-right">
       <span class="pdate">{{ gf.years_label|t(lang) }}</span>
@@ -94,7 +97,8 @@
   <section class="gw">
     <div class="gw-head">
       <div class="gw-head-text">
-        <div class="gw-heading">{{ ui_get('landing.gf.gw_heading') }}</div>
+        <div class="gw-heading">{{ ui_get('landing.gf.gw_heading') }}{% if gf.name %} · {{ gf.name|t(lang) }}{% endif %}</div>
+        {% if gf.subtitle %}<div class="gw-subheading">{{ gf.subtitle|t(lang)|safe }}</div>{% endif %}
       </div>
       <span class="bx {{ gf.metal }}">{{ ui_get('landing.gf.metal.' ~ gf.metal) }}</span>
     </div>
