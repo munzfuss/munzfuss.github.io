@@ -324,6 +324,11 @@ def compute_bar_layers(
         # Holstein-scope layers are unaffected (they already terminate in
         # their own `events`). When None, no truncation is applied.
         trunc_any = getattr(bar, "truncate_anywhere_after", None)
+        # Per-kind override: a dict {kind: int} that supersedes the bar-
+        # wide `truncate_anywhere_after` for specific layer kinds. Lets
+        # mint/status/circulation/sole each have its own cutoff year on
+        # the same bar (e.g. 9-Fuß: mint+status=1667, circulation=1700).
+        trunc_any_by_kind = getattr(bar, "truncate_anywhere_after_by_kind", None) or {}
 
         # `scope_mode` = "denmark_only": iterate only the anywhere scope and
         # suppress holstein-scope layers entirely (Denmark page where
@@ -359,11 +364,13 @@ def compute_bar_layers(
             first_approx = getattr(start_event, f"approx_{scope}", False)
             last_approx = getattr(end_event, f"approx_{scope}", False)
             # Per-bar anywhere-scope truncation (sharp cutoff, not approx).
-            if scope == "anywhere" and trunc_any is not None:
-                if first > trunc_any:
+            # Per-kind override beats the bar-wide value; otherwise fall back.
+            effective_trunc = trunc_any_by_kind.get(kind, trunc_any)
+            if scope == "anywhere" and effective_trunc is not None:
+                if first > effective_trunc:
                     return  # layer entirely past the cutoff — drop
-                if last > trunc_any:
-                    last = trunc_any
+                if last > effective_trunc:
+                    last = effective_trunc
                     last_approx = False
             layers.append({
                 "kind": kind,

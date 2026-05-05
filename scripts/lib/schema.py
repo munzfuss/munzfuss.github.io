@@ -392,6 +392,15 @@ class TimelineBar(_StrictBase):
     on those bars sharply cuts every anywhere-scope layer at 1866 (status,
     circulation, mint, sole) without touching the holstein-scope layers
     (which already terminate at 1866 in their `events`)."""
+    truncate_anywhere_after_by_kind: dict[str, int] | None = None
+    """Per-kind override of `truncate_anywhere_after`. When set, the dict
+    maps layer kind (`mint` / `status` / `circulation` / `sole`) to its
+    own cutoff year for the anywhere scope; any kind not in the dict
+    falls back to `truncate_anywhere_after`. Use case: the 9-Thaler-Fuß
+    bar on the Holstein page wants to cut mint+status at 1667 (Saxon-
+    Pivot, Reich-wide mass-minting end) but extend circulation to ~1700
+    (Hauptumlaufmünze functional end per Wikipedia DE «Speciestaler»);
+    a single `truncate_anywhere_after` cannot express that asymmetry."""
     hide_anywhere: bool = False
     """When `true`, suppress all anywhere-scope layers (mint, status,
     circulation, sole) for this bar — render only the holstein-scope
