@@ -64,6 +64,14 @@ def classify_extended(lot: dict) -> tuple[str, list[str]]:
     # Patterns / medals
     if lot.get("refs", {}).get("Pn"):
         excl.append("pattern (Pn-ref)")
+    # KM-Pn… prefix (e.g. KM-PnA8) is a pattern even when the stage-02
+    # `Pn\d+` form misses the variant (PnA8 has a letter between "Pn" and
+    # the digit). The body's pattern-disclaimer prose for these lots tends
+    # to live past stage 03's 200-char meta-window, so the KM-prefix is
+    # the most reliable per-lot signal.
+    km_ref_text = (lot.get("body_excerpt") or "")[:300]
+    if re.search(r"\bKM[\-#]?\s*Pn[A-Z]?\d", km_ref_text, re.IGNORECASE):
+        excl.append("pattern (KM-Pn-ref)")
     if PATTERN_RE.search(meta) or PATTERN_RE.search(body[:200]):
         excl.append("pattern keyword")
     if MEDAL_RE.search(meta):

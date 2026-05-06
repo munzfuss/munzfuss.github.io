@@ -153,6 +153,16 @@ def parse_part(slug: str) -> list[dict]:
                 break
 
         body = "\n".join(block_lines).strip()
+        # Normalize body for regex matching: collapse PDF line-break hyphenation
+        # ("Bru-\nun-7701" → "Bruun-7701", "Bru -\nun-7951" → "Bruun-7951",
+        # "Wolfenbüt-\ntel" → "Wolfenbüttel") and then join newlines so word-
+        # boundary anchors like \bFrederik V\b match across the original
+        # "Frederik \nV" line splits. Constrain both sides to letters so digit
+        # spans like "ducat - 1604" don't get glued.
+        body_match = re.sub(
+            r"([A-Za-zÄÖÜäöüß])\s*-\s*\n\s*([a-zäöüß])", r"\1\2", body
+        )
+        body_match = re.sub(r"\s+", " ", body_match)
         # Find the metadata line — usually the first non-blank line after lot#,
         # starting with an ALL-CAPS region token
         region = None
@@ -169,32 +179,32 @@ def parse_part(slug: str) -> list[dict]:
         # Refs
         refs = {}
         for k, pat in REF_PATTERNS.items():
-            mm = pat.search(body)
+            mm = pat.search(body_match)
             if mm:
                 refs[k] = mm.group(1)
         # Year (prefer year inside parens, e.g. "MDCIII (1603)" or "Speciedaler, 1672")
         year = None
-        for ym in YEAR_RE.finditer(body[:600]):
+        for ym in YEAR_RE.finditer(body_match[:600]):
             y = int(ym.group(1))
             if 1500 <= y <= 1980:
                 year = y
                 break
         # Weight
-        wmatch = WEIGHT_RE.search(body)
+        wmatch = WEIGHT_RE.search(body_match)
         weight_g = float(wmatch.group(1)) if wmatch else None
         # Grade
-        gmatch = GRADE_RE.search(body)
+        gmatch = GRADE_RE.search(body_match)
         grade = f"{gmatch.group(1)} {gmatch.group(2)}" if gmatch else None
         # Rarity
         rarity = None
-        rmatch = RARITY_RE.search(body)
+        rmatch = RARITY_RE.search(body_match)
         if rmatch:
             rarity = rmatch.group(1).upper()
         # Pattern flag
-        is_pattern = bool(PATTERN_RE.search(body))
+        is_pattern = bool(PATTERN_RE.search(body_match))
         # Mint
         mint = None
-        mmint = MINT_RE.search(body)
+        mmint = MINT_RE.search(body_match)
         if mmint:
             mint = mmint.group(1)
         # Ruler — heuristic: look for KING_NAME inside body, ".[ruler] ."
@@ -214,7 +224,7 @@ def parse_part(slug: str) -> list[dict]:
             "Oskar I", "Oskar II", "Karl XV", "Karl XIV Johan", "Gustav V",
         ]
         for r in rulers:
-            if re.search(rf"\b{re.escape(r)}\b", body):
+            if re.search(rf"\b{re.escape(r)}\b", body_match):
                 ruler = r
                 break
 
