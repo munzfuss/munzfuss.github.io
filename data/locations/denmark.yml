@@ -516,6 +516,33 @@ phases:
         de: "Münzstätte Tönning · Gottorpisches Holstein · 1689–1726 · Scheidemünzen mit lübischer Nominalangabe (im 9¼-Fuß-System) + Thaler Species und Dukaten (aus Bruun Coll. Stack's Bowers Auktion Zürich 14.–15. März 2025)"
         en: "Tönning mint · Gottorp Holstein · 1689–1726 · petty coins denominated in Lübeck reckoning (within the 9¼-Fuß system) plus Thaler Species and ducats (from the Bruun Coll., Stack's Bowers auction, Zurich 14–15 March 2025)"
         uk: "Монетний двір Tönning · ґотторпський Гольштейн · 1689–1726 · розмінна монета з номіналом у любецькому рахунку (в межах системи 9¼-Fuß) плюс Thaler Species і дукати (з колекції Bruun, аукціон Stack's Bowers, Цюрих 14–15 березня 2025)"
+    - id: B
+      year_from: 1726
+      year_to: 1788
+      from_label: "15./31. Juli 1726"
+      to_label: "29. Febr. 1788"
+      title:
+        de: "Parallel zum Dänisch-Norwegischen Kurantmøntfod"
+        en: "Parallel to the Danish-Norwegian Kurantmøntfod"
+        uk: "Паралельно з данською-норвезькою Kurantmøntfod"
+    - id: C
+      year_from: 1788
+      year_to: 1813
+      from_label: "29. Febr. 1788"
+      to_label: "5. Jan. 1813"
+      title:
+        de: "Reform 1788 — Speciedaler im 9¼-Fuß als Hauptsilbermünze"
+        en: "1788 reform — Speciedaler in the 9¼-Fuß as principal silver coin"
+        uk: "Реформа 1788 — Speciedaler у 9¼-Fuß як основна срібна монета"
+    - id: D
+      year_from: 1813
+      year_to: 1854
+      from_label: "5. Jan. 1813"
+      to_label: "31. Juli 1854"
+      title:
+        de: "Parallel zum Rigsbankdaler"
+        en: "Parallel to the Rigsbankdaler"
+        uk: "Паралельно з Rigsbankdaler"
 
   kronemont:
     - id: A
@@ -18920,3 +18947,1369 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1137, p. 191 (Bruun-coll. 7234)
+
+  # === Phase 4c, batch 5 — Frederik IV (1700-1730) + Christian VI (1730-1746) + Frederik V (1746-1766) + Christian VII Copenhagen (1766-1808)
+  # Excluded: P1·1001 (Hans Noble ND 1496, parser misdated to 1791, medieval per project window),
+  #           P2·13241/P2·13242 (KM-641.4 1785 / KM-640.1 1786 — Christian VII Altona series, conflict with SH km-641-2-chr-vii-1783 / km-640-1-chr-vii-1784).
+  # Multi-spec merges: KM-475 Hede-8 (1701+1704); KM-479 Hede-38 (1704 Rejsedaler 3 specs);
+  #   KM-486 Hede-15 (1708+1709); KM-498 Hede-19 (1710+1711); KM-539 Hede-5 (1732+1733);
+  #   KM-587 Hede-22 12 Mark series (1758/1761/1762); KM-587.5 1761+1762.
+  - id: km-475-fr-iv-1701
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Ducats
+    year_label: 1701, 1704
+    year_first: 1701
+    year_last: 1704
+    ruler: Frederik IV.
+    catalog:
+      km: '475'
+      hede: '8'
+      sieg: '49'
+      schou: '1'
+      fr: '229'
+      bruun_collection_id: '7257'
+      bruun_part: I
+      bruun_lot_no: 1125
+      bruun_page: 177
+    metal: gold
+    weight_rough_g:
+      - value: 6.87
+        source: Bruun I, lot 1125 (Bruun-coll. 7257, 1701 specimen)
+      - value: 6.94
+        source: Bruun II, lot 13205 (Bruun-coll. 6975, 1704 specimen, Schou-3)
+    year_ranges:
+      - [1701, 1701]
+      - [1704, 1704]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Ducats KM-475 Hede-8 · zwei Bruun-Specimen 1701 und 1704 · erste Goldemission Friedrichs IV.
+      en: 2 Ducats KM-475 Hede-8 · two Bruun specimens 1701 and 1704 · Frederik IV's first gold issue.
+      uk: 2 Ducats KM-475 Hede-8 · два зразки Bruun 1701 і 1704 · перше золоте карбування Фредеріка IV.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1125, p. 177 (Bruun-coll. 7257, 1701 specimen, 6.87 g)
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13205, p. 151 (Bruun-coll. 6975, 1704 specimen, 6.94 g)
+  - id: hede-9-chr-v-1701
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Ducat
+    year_label: '1701'
+    year_first: 1701
+    year_last: 1701
+    ruler: Christian V.
+    catalog:
+      hede: '9'
+      sieg: '41'
+      schou: '4'
+      fr: '245'
+      bruun_collection_id: '7253'
+      bruun_part: III
+      bruun_lot_no: 11263
+      bruun_page: 134
+    metal: gold
+    weight_rough_g:
+      - value: 3.47
+        source: Bruun III, lot 11263 (Bruun-coll. 7253)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Ducat 1701 (Hede-9) · posthume Christian-V.-Prägung (gestorben 1699), Stempel weiterverwendet · Bruun-Specimen.
+      en: Ducat 1701 (Hede-9) · posthumous Christian V issue (he died 1699, dies re-used) · Bruun specimen.
+      uk: Ducat 1701 (Hede-9) · посмертна емісія Христіяна V (помер 1699, штемпелі повторно використано) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11263, p. 134 (Bruun-coll. 7253)
+  - id: km-480-2-fr-iv-1704
+    fuss: 9_25_thaler
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Speciedaler
+    year_label: '1704'
+    year_first: 1704
+    year_last: 1704
+    ruler: Frederik IV.
+    catalog:
+      km: '480.2'
+      hede: 34B
+      sieg: '24.2'
+      schou: '7'
+      dav: '1288'
+      bruun_collection_id: '6976'
+      bruun_part: III
+      bruun_lot_no: 11264
+      bruun_page: 135
+    metal: silver
+    weight_rough_g:
+      - value: 28.45
+        source: Bruun III, lot 11264 (Bruun-coll. 6976)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Speciedaler 1704 (KM-480.2 Hede-34B) · Bruun-Specimen.
+      en: Speciedaler 1704 (KM-480.2 Hede-34B) · Bruun specimen.
+      uk: Speciedaler 1704 (KM-480.2 Hede-34B) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11264, p. 135 (Bruun-coll. 6976)
+  - id: km-479-fr-iv-1704
+    fuss: 9_25_thaler
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 6 Mark (Rejsedaler)
+    year_label: '1704'
+    year_first: 1704
+    year_last: 1704
+    ruler: Frederik IV.
+    catalog:
+      km: '479.1'
+      hede: '38'
+      sieg: '23.1'
+      schou: '10'
+      dav: '1289'
+      bruun_collection_id: '6977'
+      bruun_part: I
+      bruun_lot_no: 1129
+      bruun_page: 183
+    metal: silver
+    weight_rough_g:
+      - value: 26.79
+        source: Bruun I, lot 1129 (Bruun-coll. 6977, KM-479.1, Sieg-23.1, Schou-10)
+      - value: 27.05
+        source: Bruun IV, lot 17113 (Bruun-coll. 6978, KM-479.2, Sieg-23.2, Schou-8, Fr-230 — note Bruun ruler-tagged Christian VI is body-parser error; coin is Frederik IV)
+      - value: 26.79
+        source: Bruun III, lot 11265 (Bruun-coll. 6979, Sieg-23.3, Schou-9)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 6 Mark Rejsedaler 1704 (KM-479 Hede-38) · drei Bruun-Specimen unterschiedlicher Sieg-Untervarianten (.1/.2/.3) · Reise-Daler Friedrichs IV.
+      en: 6 Mark Rejsedaler 1704 (KM-479 Hede-38) · three Bruun specimens of different Sieg sub-variants (.1/.2/.3) · Frederik IV's travel daler.
+      uk: 6 Mark Rejsedaler 1704 (KM-479 Hede-38) · три зразки Bruun різних підваріантів Sieg (.1/.2/.3) · подорожній Daler Фредеріка IV.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1129, p. 183 (Bruun-coll. 6977, KM-479.1)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17113, p. 74 (Bruun-coll. 6978, KM-479.2)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11265, p. 136 (Bruun-coll. 6979, KM-479)
+  - id: km-a488-fr-iv-1708
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: '2'
+    nominal: Danish West India Company 2 Ducats
+    year_label: '1708'
+    year_first: 1708
+    year_last: 1708
+    ruler: Frederik IV.
+    catalog:
+      km: A488
+      hede: '13'
+      sieg: '51'
+      schou: '1'
+      fr: '247'
+      bruun_collection_id: '7270'
+      bruun_part: I
+      bruun_lot_no: 1130
+      bruun_page: 184
+    metal: gold
+    weight_rough_g:
+      - value: 6.93
+        source: Bruun I, lot 1130 (Bruun-coll. 7270)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Danish West India Company 2 Ducats 1708 (KM-A488 Hede-13) · Sonderprägung der Westindischen Kompanie · Bruun-Specimen.
+      en: Danish West India Company 2 Ducats 1708 (KM-A488 Hede-13) · special issue of the West India Company · Bruun specimen.
+      uk: Данська Вест-Індійська Компанія 2 Ducats 1708 (KM-A488 Hede-13) · спеціальна емісія Вест-Індійської Компанії · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1130, p. 184 (Bruun-coll. 7270)
+  - id: km-486-fr-iv-1708
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Ducats
+    year_label: 1708, 1709
+    year_first: 1708
+    year_last: 1709
+    ruler: Frederik IV.
+    catalog:
+      km: '486'
+      hede: '15'
+      sieg: '44'
+      schou: '2'
+      fr: '211'
+      bruun_collection_id: '7271'
+      bruun_part: III
+      bruun_lot_no: 11267
+      bruun_page: 137
+    metal: gold
+    weight_rough_g:
+      - value: 6.94
+        source: Bruun III, lot 11267 (Bruun-coll. 7271, 1708 specimen, Schou-2)
+      - value: 6.89
+        source: Bruun IV, lot 17114 (Bruun-coll. 7283, 1709 specimen, Schou-1)
+    year_ranges:
+      - [1708, 1709]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Ducats KM-486 Hede-15 · zwei Bruun-Specimen 1708 und 1709.
+      en: 2 Ducats KM-486 Hede-15 · two Bruun specimens 1708 and 1709.
+      uk: 2 Ducats KM-486 Hede-15 · два зразки Bruun 1708 і 1709.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11267, p. 137 (Bruun-coll. 7271, 1708 specimen)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17114, p. 75 (Bruun-coll. 7283, 1709 specimen)
+  - id: hede-14-fr-iv-1708
+    fuss: 9_25_thaler
+    phase: A
+    kind: gedenk
+    fraction: '2'
+    nominal: Silver Off-Metal Strike Ducat
+    year_label: '1708'
+    year_first: 1708
+    year_last: 1708
+    ruler: Frederik IV.
+    catalog:
+      hede: '14'
+      schou: 3a
+      bruun_collection_id: '7272'
+      bruun_part: II
+      bruun_lot_no: 13207
+      bruun_page: 152
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Silber-Off-Metal-Strike eines Ducat-Stempels 1708 (Hede-14) · Bruun-Specimen.
+      en: Silver off-metal strike of a Ducat die 1708 (Hede-14) · Bruun specimen.
+      uk: Срібний off-metal strike штемпеля Ducat 1708 (Hede-14) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13207, p. 152 (Bruun-coll. 7272)
+  - id: km-498-fr-iv-1710
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Ducats
+    year_label: 1710, 1711
+    year_first: 1710
+    year_last: 1711
+    ruler: Frederik IV.
+    catalog:
+      km: '498'
+      hede: '19'
+      sieg: '48'
+      schou: '1'
+      fr: '237'
+      bruun_collection_id: '7311'
+      bruun_part: I
+      bruun_lot_no: 1132
+      bruun_page: 186
+    metal: gold
+    weight_rough_g:
+      - value: 6.93
+        source: Bruun I, lot 1132 (Bruun-coll. 7311, 1710 specimen)
+      - value: 6.93
+        source: Bruun III, lot 11268 (Bruun-coll. 7325, 1711 specimen)
+    year_ranges:
+      - [1710, 1711]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Ducats KM-498 Hede-19 · zwei Bruun-Specimen 1710 und 1711.
+      en: 2 Ducats KM-498 Hede-19 · two Bruun specimens 1710 and 1711.
+      uk: 2 Ducats KM-498 Hede-19 · два зразки Bruun 1710 і 1711.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1132, p. 186 (Bruun-coll. 7311, 1710 specimen)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11268, p. 138 (Bruun-coll. 7325, 1711 specimen)
+  - id: km-499-fr-iv-1710
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Ducat
+    year_label: '1710'
+    year_first: 1710
+    year_last: 1710
+    ruler: Frederik IV.
+    catalog:
+      km: '499'
+      hede: '24'
+      sieg: '31'
+      schou: '3'
+      fr: '239'
+      bruun_collection_id: '7312'
+      bruun_part: IV
+      bruun_lot_no: 17119
+      bruun_page: 79
+    metal: gold
+    weight_rough_g:
+      - value: 6.95
+        source: Bruun IV, lot 17119 (Bruun-coll. 7312)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Ducat 1710 (KM-499 Hede-24) · Bruun-Specimen.
+      en: 2 Ducat 1710 (KM-499 Hede-24) · Bruun specimen.
+      uk: 2 Ducat 1710 (KM-499 Hede-24) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17119, p. 79 (Bruun-coll. 7312)
+  - id: km-497-fr-iv-1710
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Ducat
+    year_label: '1710'
+    year_first: 1710
+    year_last: 1710
+    ruler: Frederik IV.
+    catalog:
+      km: '497'
+      hede: '23'
+      sieg: '30'
+      schou: '9'
+      fr: '240'
+      bruun_collection_id: '7313'
+      bruun_part: III
+      bruun_lot_no: 11275
+      bruun_page: 140
+    metal: gold
+    weight_rough_g:
+      - value: 3.44
+        source: Bruun III, lot 11275 (Bruun-coll. 7313)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Ducat 1710 (KM-497 Hede-23) · Bruun-Specimen.
+      en: Ducat 1710 (KM-497 Hede-23) · Bruun specimen.
+      uk: Ducat 1710 (KM-497 Hede-23) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11275, p. 140 (Bruun-coll. 7313)
+  - id: hede-47-fr-iv-1713
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: gedenk
+    fraction: '2'
+    nominal: Gold 16 Skilling (2 Ducats)
+    year_label: '1713'
+    year_first: 1713
+    year_last: 1713
+    ruler: Frederik IV.
+    catalog:
+      hede: '47'
+      sieg: '15'
+      schou: 1a
+      bruun_collection_id: '7340'
+      bruun_part: I
+      bruun_lot_no: 1133
+      bruun_page: 187
+    metal: gold
+    weight_rough_g:
+      - value: 6.93
+        source: Bruun I, lot 1133 (Bruun-coll. 7340)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Gold 16 Skilling (= 2 Ducats Tarif) 1713 (Hede-47) · Goldprägung eines Skilling-Stempels · Bruun-Specimen.
+      en: Gold 16 Skilling (= 2 Ducats tariff) 1713 (Hede-47) · gold strike of a Skilling die · Bruun specimen.
+      uk: Gold 16 Skilling (= 2 Ducats тариф) 1713 (Hede-47) · золоте карбування штемпеля Skilling · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1133, p. 187 (Bruun-coll. 7340)
+  - id: km-506-fr-iv-1713
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/3"
+    nominal: 1 Mark
+    year_label: '1713'
+    year_first: 1713
+    year_last: 1713
+    ruler: Frederik IV.
+    catalog:
+      km: '506'
+      hede: '46'
+      sieg: '14'
+      schou: '2'
+      bruun_collection_id: '7341'
+      bruun_part: III
+      bruun_lot_no: 11270
+      bruun_page: 139
+    metal: silver
+    weight_rough_g:
+      - value: 5.20
+        source: Bruun III, lot 11270 (Bruun-coll. 7341)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Mark 1713 (KM-506 Hede-46) · Bruun-Specimen.
+      en: Mark 1713 (KM-506 Hede-46) · Bruun specimen.
+      uk: Mark 1713 (KM-506 Hede-46) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11270, p. 139 (Bruun-coll. 7341)
+  - id: schou-10b-fr-iv-1713
+    fuss: 9_25_thaler
+    phase: A
+    kind: gedenk
+    fraction: "1/96"
+    nominal: Skilling Piefort
+    year_label: '1713'
+    year_first: 1713
+    year_last: 1713
+    ruler: Frederik IV.
+    catalog:
+      schou: 10b
+      bruun_collection_id: '7342'
+      bruun_part: III
+      bruun_lot_no: 11271
+      bruun_page: 140
+    metal: silver
+    weight_rough_g:
+      - value: 1.93
+        source: Bruun III, lot 11271 (Bruun-coll. 7342)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Skilling Piefort 1713 (Schou-10b) · Doppelschröttling-Probe eines Skilling-Stempels · Bruun-Specimen.
+      en: Skilling Piefort 1713 (Schou-10b) · double-thickness trial of a Skilling die · Bruun specimen.
+      uk: Skilling Piefort 1713 (Schou-10b) · подвійно-товстий пробний удар штемпеля Skilling · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11271, p. 140 (Bruun-coll. 7342)
+  - id: km-8-fr-iv-1718
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Ducat
+    year_label: '1718'
+    year_first: 1718
+    year_last: 1718
+    ruler: Frederik IV.
+    catalog:
+      km: '8'
+      hede: '60'
+      sieg: '61'
+      schou: '1'
+      fr: '226'
+      bruun_collection_id: '7367'
+      bruun_part: II
+      bruun_lot_no: 13211
+      bruun_page: 154
+    metal: gold
+    weight_rough_g:
+      - value: 3.44
+        source: Bruun II, lot 13211 (Bruun-coll. 7367)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Ducat 1718 (KM-8 Hede-60) · Bruun-Specimen.
+      en: Ducat 1718 (KM-8 Hede-60) · Bruun specimen.
+      uk: Ducat 1718 (KM-8 Hede-60) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13211, p. 154 (Bruun-coll. 7367)
+  - id: km-5-fr-iv-1719
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/96"
+    nominal: 1 Skilling
+    year_label: '1719'
+    year_first: 1719
+    year_last: 1719
+    ruler: Frederik IV.
+    catalog:
+      km: '5'
+      hede: '63'
+      sieg: '58.2'
+      schou: '12'
+      bruun_collection_id: '7378'
+      bruun_part: IV
+      bruun_lot_no: 17116
+      bruun_page: 77
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Skilling 1719 (KM-5 Hede-63) · Bruun-Specimen.
+      en: Skilling 1719 (KM-5 Hede-63) · Bruun specimen.
+      uk: Skilling 1719 (KM-5 Hede-63) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17116, p. 77 (Bruun-coll. 7378)
+  - id: km-5-gold-fr-iv-1719
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: gedenk
+    fraction: "1/2"
+    nominal: Gold Off-Metal Strike Skilling
+    year_label: '1719'
+    year_first: 1719
+    year_last: 1719
+    ruler: Frederik IV.
+    catalog:
+      km: '5'
+      hede: '63'
+      sieg: '58.2'
+      schou: 14a
+      bruun_collection_id: '7379'
+      bruun_part: II
+      bruun_lot_no: 13213
+      bruun_page: 155
+    metal: gold
+    weight_rough_g:
+      - value: 1.72
+        source: Bruun II, lot 13213 (Bruun-coll. 7379)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Gold-Off-Metal-Strike eines Skilling-Stempels 1719 · Bruun-Specimen.
+      en: Gold off-metal strike of a Skilling die 1719 · Bruun specimen.
+      uk: Золотий off-metal strike штемпеля Skilling 1719 · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13213, p. 155 (Bruun-coll. 7379)
+  - id: km-539-chr-vi-1732
+    fuss: 9_25_thaler
+    phase: B
+    kind: kurant
+    fraction: '1'
+    nominal: Kronerigsdaler (6 Mark)
+    year_label: 1732, 1733
+    year_first: 1732
+    year_last: 1733
+    ruler: Christian VI.
+    catalog:
+      km: '539'
+      hede: '5'
+      sieg: '6'
+      schou: '2'
+      dav: '1295'
+      bruun_collection_id: '7488'
+      bruun_part: I
+      bruun_lot_no: 1139
+      bruun_page: 195
+    metal: silver
+    weight_rough_g:
+      - value: 26.84
+        source: Bruun I, lot 1139 (Bruun-coll. 7488, 1732 specimen)
+      - value: 26.78
+        source: Bruun III, lot 11276 (Bruun-coll. 7497, 1733 specimen)
+    year_ranges:
+      - [1732, 1733]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Kronerigsdaler (6 Mark) KM-539 Hede-5 · zwei Bruun-Specimen 1732 und 1733.
+      en: Kronerigsdaler (6 Mark) KM-539 Hede-5 · two Bruun specimens 1732 and 1733.
+      uk: Kronerigsdaler (6 Mark) KM-539 Hede-5 · два зразки Bruun 1732 і 1733.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1139, p. 195 (Bruun-coll. 7488, 1732 specimen)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11276, p. 140 (Bruun-coll. 7497, 1733 specimen)
+  - id: km-553-chr-vi-1746
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Ducats
+    year_label: '1746'
+    year_first: 1746
+    year_last: 1746
+    ruler: Christian VI.
+    catalog:
+      km: '553'
+      hede: 2A
+      sieg: '23.1'
+      schou: '1'
+      fr: '251'
+      bruun_collection_id: '7589'
+      bruun_part: I
+      bruun_lot_no: 1141
+      bruun_page: 198
+    metal: gold
+    weight_rough_g:
+      - value: 6.96
+        source: Bruun I, lot 1141 (Bruun-coll. 7589)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Ducats 1746 (KM-553 Hede-2A) · letzte Christian-VI.-Goldprägung (gestorben 1746) · Bruun-Specimen.
+      en: 2 Ducats 1746 (KM-553 Hede-2A) · Christian VI's last gold issue (he died 1746) · Bruun specimen.
+      uk: 2 Ducats 1746 (KM-553 Hede-2A) · останнє золоте карбування Христіяна VI (помер 1746) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1141, p. 198 (Bruun-coll. 7589)
+  - id: km-547-fr-v-1746
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Ducat
+    year_label: '1746'
+    year_first: 1746
+    year_last: 1746
+    ruler: Frederik V.
+    catalog:
+      km: '547'
+      hede: '1'
+      sieg: '22'
+      schou: '2'
+      fr: '252'
+      bruun_collection_id: '7590'
+      bruun_part: III
+      bruun_lot_no: 11277
+      bruun_page: 141
+    metal: gold
+    weight_rough_g:
+      - value: 3.45
+        source: Bruun III, lot 11277 (Bruun-coll. 7590)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Ducat 1746 (KM-547 Hede-1) · erste Frederik-V.-Goldprägung · Bruun-Specimen.
+      en: Ducat 1746 (KM-547 Hede-1) · Frederik V's first gold issue · Bruun specimen.
+      uk: Ducat 1746 (KM-547 Hede-1) · перше золоте карбування Фредеріка V · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11277, p. 141 (Bruun-coll. 7590)
+  - id: km-558-fr-v-1746
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Ducats
+    year_label: '1746'
+    year_first: 1746
+    year_last: 1746
+    ruler: Frederik V.
+    catalog:
+      km: '558'
+      hede: '8'
+      sieg: '29'
+      schou: '6'
+      fr: '263'
+      bruun_collection_id: '7591'
+      bruun_part: I
+      bruun_lot_no: 1144
+      bruun_page: 201
+    metal: gold
+    weight_rough_g:
+      - value: 6.96
+        source: Bruun I, lot 1144 (Bruun-coll. 7591)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Ducats 1746 (KM-558 Hede-8) · Bruun-Specimen.
+      en: 2 Ducats 1746 (KM-558 Hede-8) · Bruun specimen.
+      uk: 2 Ducats 1746 (KM-558 Hede-8) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1144, p. 201 (Bruun-coll. 7591)
+  - id: km-551-fr-v-1746
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Ducat
+    year_label: '1746'
+    year_first: 1746
+    year_last: 1746
+    ruler: Frederik V.
+    catalog:
+      km: '551'
+      hede: 5B
+      sieg: '26.2'
+      schou: '12'
+      fr: '259'
+      bruun_collection_id: '7592'
+      bruun_part: II
+      bruun_lot_no: 13220
+      bruun_page: 160
+    metal: gold
+    weight_rough_g:
+      - value: 3.49
+        source: Bruun II, lot 13220 (Bruun-coll. 7592)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Ducat 1746 (KM-551 Hede-5B) · Untervariante zur KM-547-Erstprägung · Bruun-Specimen.
+      en: Ducat 1746 (KM-551 Hede-5B) · sub-variant of the initial KM-547 issue · Bruun specimen.
+      uk: Ducat 1746 (KM-551 Hede-5B) · підваріант першої емісії KM-547 · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13220, p. 160 (Bruun-coll. 7592)
+  - id: km-568-2-fr-v-1747
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Ducat
+    year_label: '1747'
+    year_first: 1747
+    year_last: 1747
+    ruler: Frederik V.
+    catalog:
+      km: '568.2'
+      hede: 10B
+      sieg: '31.2'
+      schou: '6'
+      fr: '260'
+      dav: '1297'
+      bruun_collection_id: '7626'
+      bruun_part: IV
+      bruun_lot_no: 17124
+      bruun_page: 80
+    metal: gold
+    weight_rough_g:
+      - value: 6.94
+        source: Bruun IV, lot 17124 (Bruun-coll. 7626)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Ducat 1747 (KM-568.2 Hede-10B) · Bruun-Specimen.
+      en: 2 Ducat 1747 (KM-568.2 Hede-10B) · Bruun specimen.
+      uk: 2 Ducat 1747 (KM-568.2 Hede-10B) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17124, p. 80 (Bruun-coll. 7626)
+  - id: hede-10b-silver-fr-v-1747
+    fuss: 9_25_thaler
+    phase: B
+    kind: gedenk
+    fraction: '2'
+    nominal: Silver Off-Metal Strike 2 Ducat
+    year_label: '1747'
+    year_first: 1747
+    year_last: 1747
+    ruler: Frederik V.
+    catalog:
+      hede: 10B
+      bruun_collection_id: '7627'
+      bruun_part: II
+      bruun_lot_no: 13222
+      bruun_page: 161
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Silber-Off-Metal-Strike eines 2-Ducat-Stempels 1747 (Hede-10B) · Bruun-Specimen.
+      en: Silver off-metal strike of a 2-Ducat die 1747 (Hede-10B) · Bruun specimen.
+      uk: Срібний off-metal strike штемпеля 2-Ducat 1747 (Hede-10B) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13222, p. 161 (Bruun-coll. 7627)
+  - id: km-562-fr-v-1747
+    fuss: 9_25_thaler
+    phase: B
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Speciedaler
+    year_label: '1747'
+    year_first: 1747
+    year_last: 1747
+    ruler: Frederik V.
+    catalog:
+      km: '562'
+      hede: '25'
+      sieg: '16'
+      schou: '12'
+      dav: '1299'
+      bruun_collection_id: '7628'
+      bruun_part: I
+      bruun_lot_no: 1145
+      bruun_page: 202
+    metal: silver
+    weight_rough_g:
+      - value: 29.03
+        source: Bruun I, lot 1145 (Bruun-coll. 7628)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Speciedaler 1747 (KM-562 Hede-25) · Bruun-Specimen (Bruun-Parser-Hinweis "Christian IV" ist Tippfehler — Münze ist Frederik V., Tronthronfolge nach Tod Christian VI. 1746).
+      en: Speciedaler 1747 (KM-562 Hede-25) · Bruun specimen (Bruun parser-tag "Christian IV" is a misread — coin is Frederik V, who succeeded Christian VI on his death in 1746).
+      uk: Speciedaler 1747 (KM-562 Hede-25) · Bruun-зразок (тег парсера Bruun «Christian IV» — помилка зчитування, монета належить Фредеріку V, який наслідував Христіяна VI після його смерті 1746).
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1145, p. 202 (Bruun-coll. 7628)
+  - id: km-574-fr-v-1748
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Ducat
+    year_label: '1748'
+    year_first: 1748
+    year_last: 1748
+    ruler: Frederik V.
+    catalog:
+      km: '574'
+      hede: '16'
+      sieg: '37'
+      schou: '1'
+      fr: '276'
+      bruun_collection_id: '7649'
+      bruun_part: IV
+      bruun_lot_no: 17125
+      bruun_page: 81
+    metal: gold
+    weight_rough_g:
+      - value: 6.92
+        source: Bruun IV, lot 17125 (Bruun-coll. 7649)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Ducat 1748 (KM-574 Hede-16) · Bruun-Specimen.
+      en: 2 Ducat 1748 (KM-574 Hede-16) · Bruun specimen.
+      uk: 2 Ducat 1748 (KM-574 Hede-16) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17125, p. 81 (Bruun-coll. 7649)
+  - id: hede-18-fr-v-1749
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Ducat
+    year_label: '1749'
+    year_first: 1749
+    year_last: 1749
+    ruler: Frederik V.
+    catalog:
+      hede: '18'
+      sieg: '39'
+      schou: '1'
+      fr: '274'
+      bruun_collection_id: '7670'
+      bruun_part: IV
+      bruun_lot_no: 17126
+      bruun_page: 82
+    metal: gold
+    weight_rough_g:
+      - value: 6.95
+        source: Bruun IV, lot 17126 (Bruun-coll. 7670)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Ducat 1749 (Hede-18) · Bruun-Specimen.
+      en: 2 Ducat 1749 (Hede-18) · Bruun specimen.
+      uk: 2 Ducat 1749 (Hede-18) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17126, p. 82 (Bruun-coll. 7670)
+  - id: km-575-fr-v-1749
+    fuss: 9_25_thaler
+    phase: B
+    kind: kurant
+    fraction: '1'
+    nominal: 6 Mark (Rejsedaler)
+    year_label: '1749'
+    year_first: 1749
+    year_last: 1749
+    ruler: Frederik V.
+    catalog:
+      km: '575'
+      hede: 33A
+      sieg: '15.1'
+      schou: '3'
+      bruun_collection_id: '7671'
+      bruun_part: III
+      bruun_lot_no: 11283
+      bruun_page: 144
+    metal: silver
+    weight_rough_g:
+      - value: 26.91
+        source: Bruun III, lot 11283 (Bruun-coll. 7671, Hede-33A, Sieg-15.1, Schou-3, Dav-1301A)
+      - value: 27.17
+        source: Bruun I, lot 1146 (Bruun-coll. 7672, Hede-33B, Sieg-15.2, Schou-4, Dav-1301B)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 6 Mark Rejsedaler 1749 (KM-575) · zwei Bruun-Specimen unterschiedlicher Hede-Untervarianten (33A/33B) und Davenport-Sub-Klassen (1301A/1301B).
+      en: 6 Mark Rejsedaler 1749 (KM-575) · two Bruun specimens of different Hede sub-variants (33A/33B) and Davenport sub-classes (1301A/1301B).
+      uk: 6 Mark Rejsedaler 1749 (KM-575) · два зразки Bruun різних підваріантів Hede (33A/33B) і Davenport-підкласів (1301A/1301B).
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11283, p. 144 (Bruun-coll. 7671, Hede-33A)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1146, p. 203 (Bruun-coll. 7672, Hede-33B)
+  - id: km-582-1-fr-v-1750
+    fuss: 11_333_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/4"
+    nominal: 24 Skilling
+    year_label: '1750'
+    year_first: 1750
+    year_last: 1750
+    ruler: Frederik V.
+    catalog:
+      km: '582.1'
+      hede: 35A
+      sieg: '7.1'
+      schou: '2'
+      bruun_collection_id: '7693'
+      bruun_part: IV
+      bruun_lot_no: 17128
+      bruun_page: 83
+    metal: silver
+    weight_rough_g:
+      - value: 9.10
+        source: Bruun IV, lot 17128 (Bruun-coll. 7693)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 24 Skilling 1750 (KM-582.1 Hede-35A) · Frederik-V.-Erstprägung im neuen 11⅓-Thaler-Fuß (Forordning 1747) · Bruun-Specimen.
+      en: 24 Skilling 1750 (KM-582.1 Hede-35A) · Frederik V's first issue under the new 11⅓-Thaler-Fuß (Forordning 1747) · Bruun specimen.
+      uk: 24 Skilling 1750 (KM-582.1 Hede-35A) · перша емісія Фредеріка V за новим 11⅓-Thaler-Fuß (Forordning 1747) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17128, p. 83 (Bruun-coll. 7693)
+  - id: km-578-1-fr-v-1751
+    fuss: 11_333_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/96"
+    nominal: 1 Skilling
+    year_label: '1751'
+    year_first: 1751
+    year_last: 1751
+    ruler: Frederik V.
+    catalog:
+      km: '578.1'
+      hede: 37A
+      sieg: '2.1'
+      schou: '7'
+      bruun_collection_id: '7711'
+      bruun_part: IV
+      bruun_lot_no: 17129
+      bruun_page: 83
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Skilling 1751 (KM-578.1 Hede-37A) · Bruun-Specimen.
+      en: Skilling 1751 (KM-578.1 Hede-37A) · Bruun specimen.
+      uk: Skilling 1751 (KM-578.1 Hede-37A) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17129, p. 83 (Bruun-coll. 7711)
+  - id: km-577-1-fr-v-1755
+    fuss: 11_333_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/192"
+    nominal: ½ Skilling
+    year_label: '1755'
+    year_first: 1755
+    year_last: 1755
+    ruler: Frederik V.
+    catalog:
+      km: '577.1'
+      hede: 40A
+      sieg: '1.1'
+      schou: '4'
+      bruun_collection_id: '7752'
+      bruun_part: IV
+      bruun_lot_no: 17132
+      bruun_page: 84
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: ½ Skilling 1755 (KM-577.1 Hede-40A) · kleinste Frederik-V.-Scheidemünze · Bruun-Specimen.
+      en: ½ Skilling 1755 (KM-577.1 Hede-40A) · smallest Frederik V petty coin · Bruun specimen.
+      uk: ½ Skilling 1755 (KM-577.1 Hede-40A) · найменша розмінна монета Фредеріка V · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17132, p. 84 (Bruun-coll. 7752)
+  - id: hede-22a-silver-fr-v-1757
+    fuss: 11_333_thaler
+    phase: A
+    kind: gedenk
+    fraction: "1/2"
+    nominal: Silver Off-Metal Strike 12 Mark
+    year_label: '1757'
+    year_first: 1757
+    year_last: 1757
+    ruler: Frederik V.
+    catalog:
+      hede: 22A
+      schou: 1a
+      bruun_collection_id: '7780'
+      bruun_part: II
+      bruun_lot_no: 13227
+      bruun_page: 162
+    metal: silver
+    weight_rough_g:
+      - value: 1.76
+        source: Bruun II, lot 13227 (Bruun-coll. 7780)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Silber-Off-Metal-Strike eines 12-Mark-Stempels 1757 (Hede-22A) · Bruun-Specimen.
+      en: Silver off-metal strike of a 12-Mark die 1757 (Hede-22A) · Bruun specimen.
+      uk: Срібний off-metal strike штемпеля 12-Mark 1757 (Hede-22A) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13227, p. 162 (Bruun-coll. 7780)
+  - id: km-586-1-fr-v-1757
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '1'
+    nominal: 12 Mark (Courant Ducat)
+    year_label: '1757'
+    year_first: 1757
+    year_last: 1757
+    ruler: Frederik V.
+    catalog:
+      km: '586.1'
+      hede: 24A
+      sieg: '20.1'
+      schou: '4'
+      fr: '278'
+      bruun_collection_id: '7781'
+      bruun_part: III
+      bruun_lot_no: 11284
+      bruun_page: 144
+    metal: gold
+    weight_rough_g:
+      - value: 3.14
+        source: Bruun III, lot 11284 (Bruun-coll. 7781)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 12 Mark (Courant Ducat) 1757 (KM-586.1 Hede-24A) · erste Frederik-V.-Courantdukatenprägung in Kopenhagen · Bruun-Specimen.
+      en: 12 Mark (Courant Ducat) 1757 (KM-586.1 Hede-24A) · Frederik V's first Copenhagen Courantdukat issue · Bruun specimen.
+      uk: 12 Mark (Courant Ducat) 1757 (KM-586.1 Hede-24A) · перше Копенгагенське карбування Courantdukat Фредеріка V · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11284, p. 144 (Bruun-coll. 7781)
+  - id: km-587-1-fr-v-1758
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '1'
+    nominal: 12 Mark (Courant Ducat)
+    year_label: '1758'
+    year_first: 1758
+    year_last: 1758
+    ruler: Frederik V.
+    catalog:
+      km: '587.1'
+      hede: 22A
+      sieg: '21.1'
+      schou: '3'
+      fr: '269'
+      bruun_collection_id: '7785'
+      bruun_part: III
+      bruun_lot_no: 11285
+      bruun_page: 144
+    metal: gold
+    weight_rough_g:
+      - value: 3.11
+        source: Bruun III, lot 11285 (Bruun-coll. 7785)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 12 Mark (Courant Ducat) 1758 (KM-587.1 Hede-22A) · Bruun-Specimen.
+      en: 12 Mark (Courant Ducat) 1758 (KM-587.1 Hede-22A) · Bruun specimen.
+      uk: 12 Mark (Courant Ducat) 1758 (KM-587.1 Hede-22A) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11285, p. 144 (Bruun-coll. 7785)
+  - id: km-587-2-fr-v-1758
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '1'
+    nominal: 12 Mark (Courant Ducat)
+    year_label: '1758'
+    year_first: 1758
+    year_last: 1758
+    ruler: Frederik V.
+    catalog:
+      km: '587.2'
+      hede: 22B
+      sieg: '21.2'
+      schou: '4'
+      fr: '269'
+      bruun_collection_id: '7786'
+      bruun_part: IV
+      bruun_lot_no: 17134
+      bruun_page: 86
+    metal: gold
+    weight_rough_g:
+      - value: 3.11
+        source: Bruun IV, lot 17134 (Bruun-coll. 7786)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 12 Mark (Courant Ducat) 1758 (KM-587.2 Hede-22B, Untervariante zu KM-587.1) · Bruun-Specimen.
+      en: 12 Mark (Courant Ducat) 1758 (KM-587.2 Hede-22B, sub-variant of KM-587.1) · Bruun specimen.
+      uk: 12 Mark (Courant Ducat) 1758 (KM-587.2 Hede-22B, підваріант KM-587.1) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17134, p. 86 (Bruun-coll. 7786)
+  - id: km-587-5-fr-v-1761
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '1'
+    nominal: 12 Mark (Courant Ducat)
+    year_label: 1761, 1762
+    year_first: 1761
+    year_last: 1762
+    ruler: Frederik V.
+    catalog:
+      km: '587.5'
+      hede: 22E
+      sieg: '21.5'
+      schou: '3'
+      fr: '269'
+      bruun_collection_id: '7820'
+      bruun_part: III
+      bruun_lot_no: 11286
+      bruun_page: 145
+    metal: gold
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 12 Mark (Courant Ducat) 1761, 1762 (KM-587.5 Hede-22E) · zwei Bruun-Specimen aufeinanderfolgender Jahre.
+      en: 12 Mark (Courant Ducat) 1761, 1762 (KM-587.5 Hede-22E) · two Bruun specimens from consecutive years.
+      uk: 12 Mark (Courant Ducat) 1761, 1762 (KM-587.5 Hede-22E) · два зразки Bruun послідовних років.
+    year_ranges:
+      - [1761, 1762]
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11286, p. 145 (Bruun-coll. 7820, 1761 specimen)
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13229, p. 163 (Bruun-coll. 7831, 1762 specimen)
+  - id: km-596-fr-v-1763
+    fuss: 11_333_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/12"
+    nominal: 8 Skilling
+    year_label: '1763'
+    year_first: 1763
+    year_last: 1763
+    ruler: Frederik V.
+    catalog:
+      km: '596'
+      hede: 38B
+      sieg: '5.2'
+      schou: '15'
+      bruun_collection_id: '7849'
+      bruun_part: IV
+      bruun_lot_no: 17135
+      bruun_page: 86
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 8 Skilling 1763 (KM-596 Hede-38B) · Bruun-Specimen.
+      en: 8 Skilling 1763 (KM-596 Hede-38B) · Bruun specimen.
+      uk: 8 Skilling 1763 (KM-596 Hede-38B) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17135, p. 86 (Bruun-coll. 7849)
+  - id: km-587-7-chr-vii-1765
+    fuss: reichsdukatenfuss
+    phase: B
+    kind: kurant
+    fraction: '1'
+    nominal: 12 Mark (Courant Ducat)
+    year_label: '1765'
+    year_first: 1765
+    year_last: 1765
+    ruler: Christian VII.
+    catalog:
+      km: '587.7'
+      hede: 22G
+      sieg: '21.7'
+      schou: '1'
+      fr: '269'
+      bruun_collection_id: '7869'
+      bruun_part: I
+      bruun_lot_no: 1148
+      bruun_page: 205
+    metal: gold
+    weight_rough_g:
+      - value: 3.10
+        source: Bruun I, lot 1148 (Bruun-coll. 7869)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 12 Mark (Courant Ducat) 1765 (KM-587.7 Hede-22G) · erste Christian-VII.-Goldprägung (er folgte Frederik V. 1766; 1765-Datierung deutet auf Probemuster oder rückdatierten Stempel) · Bruun-Specimen.
+      en: 12 Mark (Courant Ducat) 1765 (KM-587.7 Hede-22G) · Christian VII's first gold issue (he succeeded Frederik V in 1766; 1765 dating suggests trial or back-dated dies) · Bruun specimen.
+      uk: 12 Mark (Courant Ducat) 1765 (KM-587.7 Hede-22G) · перше золоте карбування Христіяна VII (він наслідував Фредеріка V у 1766; датування 1765 свідчить про пробне карбування або зворотньо-датовані штемпелі) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1148, p. 205 (Bruun-coll. 7869)
+  - id: km-638-chr-vii-1771
+    fuss: 9_25_thaler
+    phase: B
+    kind: kurant
+    fraction: '1'
+    nominal: Piaster
+    year_label: '1771'
+    year_first: 1771
+    year_last: 1771
+    ruler: Christian VII.
+    catalog:
+      km: '638'
+      hede: '21'
+      sieg: '17'
+      schou: '6'
+      dav: 411A
+      bruun_collection_id: '7975'
+      bruun_part: IV
+      bruun_lot_no: 17140
+      bruun_page: 88
+    metal: silver
+    weight_rough_g:
+      - value: 26.80
+        source: Bruun IV, lot 17140 (Bruun-coll. 7975)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Piaster 1771 (KM-638 Hede-21) · Asien-Handelsmünze · Bruun-Specimen.
+      en: Piaster 1771 (KM-638 Hede-21) · Asian trade coin · Bruun specimen.
+      uk: Piaster 1771 (KM-638 Hede-21) · азійська торгова монета · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17140, p. 88 (Bruun-coll. 7975)
+  - id: km-616-6-chr-vii-1771
+    fuss: 11_333_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/96"
+    nominal: 1 Skilling
+    year_label: '1771'
+    year_first: 1771
+    year_last: 1771
+    ruler: Christian VII.
+    catalog:
+      km: '616.6'
+      hede: 37d
+      sieg: '2.6'
+      schou: '20'
+      bruun_collection_id: '7977'
+      bruun_part: III
+      bruun_lot_no: 11290
+      bruun_page: 145
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Skilling 1771 (KM-616.6 Hede-37d) · Bruun-Specimen.
+      en: Skilling 1771 (KM-616.6 Hede-37d) · Bruun specimen.
+      uk: Skilling 1771 (KM-616.6 Hede-37d) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11290, p. 145 (Bruun-coll. 7977)
+  - id: km-654-chr-vii-1799
+    fuss: 9_25_thaler
+    phase: C
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Speciedaler
+    year_label: '1799'
+    year_first: 1799
+    year_last: 1799
+    ruler: Christian VII.
+    catalog:
+      km: '654'
+      hede: 13D
+      sieg: '25.4'
+      schou: '2'
+      dav: '1315'
+      bruun_collection_id: '7937'
+      bruun_part: I
+      bruun_lot_no: 1155
+      bruun_page: 214
+    metal: silver
+    weight_rough_g:
+      - value: 28.83
+        source: Bruun I, lot 1155 (Bruun-coll. 7937)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Speciedaler 1799 (KM-654 Hede-13D) · späte Christian-VII.-Speciedaler-Prägung in Kopenhagen · Bruun-Specimen.
+      en: Speciedaler 1799 (KM-654 Hede-13D) · late Christian VII Copenhagen Speciedaler issue · Bruun specimen.
+      uk: Speciedaler 1799 (KM-654 Hede-13D) · пізнє Копенгагенське карбування Speciedaler Христіяна VII · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1155, p. 214 (Bruun-coll. 7937)
