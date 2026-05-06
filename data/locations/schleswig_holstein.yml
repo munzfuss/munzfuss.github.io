@@ -5366,7 +5366,7 @@ coins:
     mint: "Glückstadt"
     catalog:
       km: "64.2"
-      hede: "115B"
+      hede: "115A"
       sieg: "142.1"
       schou: "3"
       fr: "134"
@@ -5376,29 +5376,32 @@ coins:
       lange: '81'
     metal: gold
     fineness:
-      - {value: 0.979, source: "Hede 115B"}
+      - {value: 0.979, source: "Hede 115"}
       - {value: 0.986, source: ucoin}
     weight_rough_g:
-      - {value: 3.49, source: "Hede 115B"}
+      - {value: 3.49, source: "Hede 115"}
+      - {value: 3.44, source: "Bruun-6791 specimen"}
       - {value: 3.5, source: ucoin}
     diameter_mm:
-      - {value: 24.0, source: "Hede 115B / ucoin"}
+      - {value: 24.0, source: "Hede 115 / ucoin"}
     note:
       de: |-
-        Münzmeister Johan Woltereck (IW) · Glückstadt-Dukat-Standard (.979 Feingold, leicht unter Reichsdukatenfuß .986) · <b>erster Christian-V.-Glückstadt-Dukat</b> · Bruun-Lot 13175 (Stack's Bowers Zürich 2025)
+        Münzmeister Johan Woltereck (IW) · Glückstadt-Dukat-Standard (.979 Feingold, leicht unter Reichsdukatenfuß .986) · <b>erster Christian-V.-Glückstadt-Dukat</b> · Bruun-6791 / Auktionslos 13175 — NGC AU Details—Holed · Bruun (Stack's Bowers Zürich 2025): «<i>Fr-134; KM-64.2; Hede-115A; Sieg-142.1; Schou-3; Aagaard-1.1; Bruun-6791. Weight: 3.44 gms. Mintmaster: Johan Woltereck. Mounting trace with minute daylight. Scarce.</i>» — <em>Hede-Klassifikation 115A bezieht sich auf das 1672-IW-Belegexemplar; danskmoent.dk c5h115 dokumentiert daneben Hede 115B mit erweitertem Jahresumfang 1672–1676 (gleicher Münzfuß). Unsere KM# 64.2 fasst beide Hede-Untervarianten unter einem Krause-Eintrag.</em>
 
-      en: mintmaster Johan Woltereck (IW) · Glückstadt ducat standard (.979 fine gold, slightly below the canonical Reichsdukatenfuß .986) · <b>First Christian-V.-Glückstadt-Dukat</b> · Bruun lot 13175 (Stack's Bowers Zürich 2025)
-      uk: монетмайстер Johan Woltereck (IW) · стандарт глюкштадтського дуката (.979 чистого золота — трохи нижче канонічного Reichsdukatenfuß .986) · <b>перший Christian-V.-Glückstadt-Dukat</b> · лот Bruun 13175 (Stack's Bowers Zürich 2025)
+      en: |-
+        mintmaster Johan Woltereck (IW) · Glückstadt ducat standard (.979 fine gold, slightly below the canonical Reichsdukatenfuß .986) · <b>First Christian-V.-Glückstadt-Dukat</b> · Bruun-6791 / Auction lot 13175 — NGC AU Details—Holed · Bruun (Stack's Bowers Zürich 2025): «<i>Fr-134; KM-64.2; Hede-115A; Sieg-142.1; Schou-3; Aagaard-1.1; Bruun-6791. Weight: 3.44 gms. Mintmaster: Johan Woltereck. Mounting trace with minute daylight. Scarce.</i>» — <em>The Hede-115A attribution applies to the 1672-IW reference specimen; danskmoent.dk c5h115 also documents Hede 115B with the broader year range 1672–1676 (same Münzfuß). Our KM# 64.2 groups both Hede sub-variants under one Krause entry.</em>
+      uk: |-
+        монетмайстер Johan Woltereck (IW) · стандарт глюкштадтського дуката (.979 чистого золота — трохи нижче канонічного Reichsdukatenfuß .986) · <b>перший Christian-V.-Glückstadt-Dukat</b> · Bruun-6791 / аукціонний лот 13175 — NGC AU Details—Holed · Bruun (Stack's Bowers Zürich 2025): «<i>Fr-134; KM-64.2; Hede-115A; Sieg-142.1; Schou-3; Aagaard-1.1; Bruun-6791. Weight: 3.44 gms. Mintmaster: Johan Woltereck. Mounting trace with minute daylight. Scarce.</i>» — <em>Атрибуція Hede-115A стосується еталонного зразка 1672-IW; danskmoent.dk c5h115 додатково документує Hede 115B із ширшим річним діапазоном 1672–1676 (та сама Müntzfuß). Наш KM# 64.2 групує обидві Hede-субваріанти під одним Krause-записом.</em>
     sources:
-      - type: numista
-        url: "https://en.numista.com/catalogue/pieces112809.html"
-        ref: "Numista"
       - type: web
         url: "https://www.danskmoent.dk/chr/c5h115.htm"
-        ref: "Hede 115A / danskmoent.dk"
+        ref: "Hede 115 / danskmoent.dk"
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-ducat-1672-1676/?tid=163668
         ref: ucoin
+      - type: auction
+        ref: "Bruun Part II Lot 13175 (Bruun-6791)"
+        note: "Stack's Bowers Zürich, 14 March 2025"
     issuing_entity: royal_holstein
     fineness_verified: true
   - id: km-64-1-chr-v-1674
@@ -5471,6 +5474,7 @@ coins:
       sieg: "144.1"
       schou: "4"
       fr: "141"
+      bruun_lot: "6913"
       numista: '275959'
       others:
         - "Aagaard-5.1"
@@ -5479,17 +5483,18 @@ coins:
     fineness: 0.986
     weight_rough_g:
       - {value: 3.47, source: Numista}
+      - {value: 3.44, source: "Bruun-6913 specimen"}
       - {value: 3.5, source: ucoin}
     diameter_mm:
       - {value: 22.0, source: Numista}
       - {value: 24.0, source: ucoin}
     note:
       de: |-
-        Glückstädter Standard-Typ Christians V. (1680–1685, Münzmeister CW = Christoph Friedrich Woltereck, 1680–1702 — Nachfolger seines Onkels Johan(n) Woltereck/IW 1664–1679) · Obverse «CHRISITANVS · V · D · G · REX · DAN · NOR ·», Reverse «PIETATE. ET. | IUSTITIA . | 1680 . C·⚒·W·» mit Hammer-Mzz. zwischen den CW-Initialen. Reichsdukatenfuß-Standardprobe .986 (23 K 8 Gr). <em>Anmerkung:</em> die CW-Initialen hier nicht mit Christian Wineke senior zu verwechseln, der zeitgleich an der Kopenhagener Münze (KM# 414, N#112811, Fr# 201) tätig war. Schwesterstück: KM# 72 (1682-only, Hede 118, Vægterdukat, reduzierter Feingehalt .979).
+        Glückstädter Standard-Typ Christians V. (1680–1685, Münzmeister CW = Christoph Friedrich Woltereck, 1680–1702 — Nachfolger seines Onkels Johan(n) Woltereck/IW 1664–1679) · Obverse «CHRISITANVS · V · D · G · REX · DAN · NOR ·», Reverse «PIETATE. ET. | IUSTITIA . | 1680 . C·⚒·W·» mit Hammer-Mzz. zwischen den CW-Initialen. Reichsdukatenfuß-Standardprobe .986 (23 K 8 Gr). Bruun-6913 / Auktionslos 13180 — NGC MS-63: «<i>An eminently lustrous example with razor-sharp details. The Ducats struck in Glückstadt differ from the ones struck in Copenhagen in being minted for regular trade use rather than just as occasion coins.</i>» <em>Anmerkung:</em> die CW-Initialen hier nicht mit Christian Wineke senior zu verwechseln, der zeitgleich an der Kopenhagener Münze (KM# 414, N#112811, Fr# 201) tätig war. Schwesterstück: KM# 72 (1682-only, Hede 118, Vægterdukat, reduzierter Feingehalt .979).
       en: |-
-        Glückstadt standard issue under Christian V (1680–1685, mintmaster CW = Christoph Friedrich Woltereck, 1680–1702 — successor to his uncle Johan(n) Woltereck/IW 1664–1679) · obverse «CHRISITANVS · V · D · G · REX · DAN · NOR ·», reverse «PIETATE. ET. | IUSTITIA . | 1680 . C·⚒·W·» with hammer mintmark between the CW initials. Reichsdukatenfuß standard fineness .986 (23 K 8 Gr). <em>Note:</em> the CW initials here are not to be confused with Christian Wineke senior, who was simultaneously active at the Copenhagen mint (KM# 414, N#112811, Fr# 201). Sister type: KM# 72 (1682-only, Hede 118 Vægterdukat, reduced fineness .979).
+        Glückstadt standard issue under Christian V (1680–1685, mintmaster CW = Christoph Friedrich Woltereck, 1680–1702 — successor to his uncle Johan(n) Woltereck/IW 1664–1679) · obverse «CHRISITANVS · V · D · G · REX · DAN · NOR ·», reverse «PIETATE. ET. | IUSTITIA . | 1680 . C·⚒·W·» with hammer mintmark between the CW initials. Reichsdukatenfuß standard fineness .986 (23 K 8 Gr). Bruun-6913 / Auction lot 13180 — NGC MS-63: «<i>An eminently lustrous example with razor-sharp details. The Ducats struck in Glückstadt differ from the ones struck in Copenhagen in being minted for regular trade use rather than just as occasion coins.</i>» <em>Note:</em> the CW initials here are not to be confused with Christian Wineke senior, who was simultaneously active at the Copenhagen mint (KM# 414, N#112811, Fr# 201). Sister type: KM# 72 (1682-only, Hede 118 Vægterdukat, reduced fineness .979).
       uk: |-
-        Ґлюкштадтський стандартний тип Кристіана V (1680–1685, монетмайстер CW = Christoph Friedrich Woltereck, 1680–1702 — наступник свого дядька Johan(n) Woltereck/IW 1664–1679) · аверс «CHRISITANVS · V · D · G · REX · DAN · NOR ·», реверс «PIETATE. ET. | IUSTITIA . | 1680 . C·⚒·W·» з молотом-монограмою між ініціалами CW. Reichsdukatenfuß-стандартна проба .986 (23 K 8 Gr). <em>Зауваження:</em> ініціали CW тут не плутати з Christian Wineke senior, що паралельно працював у копенгагенському монетному дворі (KM# 414, N#112811, Fr# 201). Сестринський тип: KM# 72 (тільки 1682, Hede 118 Vægterdukat, знижена проба .979).
+        Ґлюкштадтський стандартний тип Кристіана V (1680–1685, монетмайстер CW = Christoph Friedrich Woltereck, 1680–1702 — наступник свого дядька Johan(n) Woltereck/IW 1664–1679) · аверс «CHRISITANVS · V · D · G · REX · DAN · NOR ·», реверс «PIETATE. ET. | IUSTITIA . | 1680 . C·⚒·W·» з молотом-монограмою між ініціалами CW. Reichsdukatenfuß-стандартна проба .986 (23 K 8 Gr). Bruun-6913 / аукціонний лот 13180 — NGC MS-63: «<i>An eminently lustrous example with razor-sharp details. The Ducats struck in Glückstadt differ from the ones struck in Copenhagen in being minted for regular trade use rather than just as occasion coins.</i>» <em>Зауваження:</em> ініціали CW тут не плутати з Christian Wineke senior, що паралельно працював у копенгагенському монетному дворі (KM# 414, N#112811, Fr# 201). Сестринський тип: KM# 72 (тільки 1682, Hede 118 Vægterdukat, знижена проба .979).
     sources:
       - type: numista
         url: "https://en.numista.com/275959"
@@ -5497,6 +5502,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-ducat-1680-1685/?tid=163669
         ref: ucoin
+      - type: web
+        url: "https://www.danskmoent.dk/chr/c5h117.htm"
+        ref: "Hede 117 / danskmoent.dk"
+      - type: auction
+        ref: "Bruun Part II Lot 13180 (Bruun-6913)"
+        note: "Stack's Bowers Zürich, 14 March 2025"
     issuing_entity: royal_holstein
     fineness_verified: true
     year_ranges:
@@ -5519,7 +5530,6 @@ coins:
       hede: "118"
       lange: "81"
       fr: "176"
-      bruun_lot: "6913"
       numista: '112809'
     metal: gold
     fineness: 0.979
@@ -5531,11 +5541,11 @@ coins:
       - {value: 24.0, source: ucoin}
     note:
       de: |-
-        Glückstädter <b>1682-only</b>-Sondertyp Christians V. (Münzmeister CW = Christoph Friedrich Woltereck) · Obverse «CHRISTIAN·V·D: G:REX·D:N:V:GOT·» (kürzere Titulatur als KM# 70.1), Reverse «* PIETATE & IUSTITIA / 1682 / CW / ⚒». <b>Reduzierter Feingehalt .979</b> (= ⁹⁴⁰⁄₉₆₀ ≈ 23 K 5 Gr) gegenüber dem Reichsdukatenfuß-Standard .986 (23 K 8 Gr) — dokumentiert in Hede 118 / c5h118 (Vægterdukat) und Bruun-Specimen (Lot 6913). Nach Bruun (Part II, Lot 13180): «<i>The Ducats struck in Glückstadt differ from the ones struck in Copenhagen in being minted for regular trade use rather than just as occasion coins</i>». Schwesterstück: KM# 70.1 (1680–1685, volle Standardprobe .986, andere Reverse-Komposition). Numista trennt diesen 1682-only-Typ vom KM# 70.1 (1680–1685, .986, N#275959) als eigene Krause-Typen, nicht bloß Jahrgangsvarianten.
+        Glückstädter <b>1682-only</b>-Sondertyp Christians V. (Münzmeister CW = Christoph Friedrich Woltereck) · Obverse «CHRISTIAN·V·D: G:REX·D:N:V:GOT·» (kürzere Titulatur als KM# 70.1), Reverse «* PIETATE & IUSTITIA / 1682 / CW / ⚒». <b>Reduzierter Feingehalt .979</b> (= ⁹⁴⁰⁄₉₆₀ ≈ 23 K 5 Gr) gegenüber dem Reichsdukatenfuß-Standard .986 (23 K 8 Gr) — dokumentiert in Hede 118 / c5h118 (Vægterdukat) — kein Belegexemplar in den Bruun-Part-II/III-Auktionen 2025 (das 1682-Vægterdukat ist in beiden Stack's-Bowers-PDF nicht enthalten); ein Numista-Specimen-Bild (Künker) belegt den Typ. Nach Bruun (Part II, Lot 13180): «<i>The Ducats struck in Glückstadt differ from the ones struck in Copenhagen in being minted for regular trade use rather than just as occasion coins</i>». Schwesterstück: KM# 70.1 (1680–1685, volle Standardprobe .986, andere Reverse-Komposition). Numista trennt diesen 1682-only-Typ vom KM# 70.1 (1680–1685, .986, N#275959) als eigene Krause-Typen, nicht bloß Jahrgangsvarianten.
       en: |-
-        Glückstadt <b>1682-only</b> special type under Christian V (mintmaster CW = Christoph Friedrich Woltereck) · obverse «CHRISTIAN·V·D: G:REX·D:N:V:GOT·» (shorter titulature than KM# 70.1), reverse «* PIETATE & IUSTITIA / 1682 / CW / ⚒». <b>Reduced fineness .979</b> (= ⁹⁴⁰⁄₉₆₀ ≈ 23 K 5 Gr) vs the Reichsdukatenfuß standard .986 (23 K 8 Gr) — documented in Hede 118 / c5h118 (Vægterdukat) and Bruun specimens (Lot 6913). Per Bruun (Part II, lot 13180): «<i>The Ducats struck in Glückstadt differ from the ones struck in Copenhagen in being minted for regular trade use rather than just as occasion coins</i>». Sister type: KM# 70.1 (1680–1685, full standard fineness .986, different reverse composition). Numista treats this 1682-only type and KM# 70.1 (1680–1685, .986, N#275959) as separate Krause types, not mere year variants.
+        Glückstadt <b>1682-only</b> special type under Christian V (mintmaster CW = Christoph Friedrich Woltereck) · obverse «CHRISTIAN·V·D: G:REX·D:N:V:GOT·» (shorter titulature than KM# 70.1), reverse «* PIETATE & IUSTITIA / 1682 / CW / ⚒». <b>Reduced fineness .979</b> (= ⁹⁴⁰⁄₉₆₀ ≈ 23 K 5 Gr) vs the Reichsdukatenfuß standard .986 (23 K 8 Gr) — documented in Hede 118 / c5h118 (Vægterdukat) — no specimen in either Bruun Part II / Part III auction 2025 (the 1682 Vægterdukat is absent from both Stack's Bowers PDFs); a Numista specimen image (Künker) attests the type. Per Bruun (Part II, lot 13180): «<i>The Ducats struck in Glückstadt differ from the ones struck in Copenhagen in being minted for regular trade use rather than just as occasion coins</i>». Sister type: KM# 70.1 (1680–1685, full standard fineness .986, different reverse composition). Numista treats this 1682-only type and KM# 70.1 (1680–1685, .986, N#275959) as separate Krause types, not mere year variants.
       uk: |-
-        Ґлюкштадтський <b>тільки 1682</b>-окремий тип Кристіана V (монетмайстер CW = Christoph Friedrich Woltereck) · аверс «CHRISTIAN·V·D: G:REX·D:N:V:GOT·» (коротша титулатура ніж у KM# 70.1), реверс «* PIETATE & IUSTITIA / 1682 / CW / ⚒». <b>Знижена проба .979</b> (= ⁹⁴⁰⁄⁹⁶⁰ ≈ 23 K 5 Gr) проти Reichsdukatenfuß-стандарту .986 (23 K 8 Gr) — задокументовано в Hede 118 / c5h118 (Vægterdukat) та Bruun-специменах (лот 6913). За Bruun (частина II, лот 13180), глюкштадтські дукати карбували <i>для регулярного торгового обігу, а не лише як приурочені випуски</i>. Сестринський тип: KM# 70.1 (1680–1685, повна стандартна проба .986, інша композиція реверса). Numista трактує цей 1682-only-тип і KM# 70.1 (1680–1685, .986, N#275959) як окремі Krause-типи, а не варіанти за роком.
+        Ґлюкштадтський <b>тільки 1682</b>-окремий тип Кристіана V (монетмайстер CW = Christoph Friedrich Woltereck) · аверс «CHRISTIAN·V·D: G:REX·D:N:V:GOT·» (коротша титулатура ніж у KM# 70.1), реверс «* PIETATE & IUSTITIA / 1682 / CW / ⚒». <b>Знижена проба .979</b> (= ⁹⁴⁰⁄⁹⁶⁰ ≈ 23 K 5 Gr) проти Reichsdukatenfuß-стандарту .986 (23 K 8 Gr) — задокументовано в Hede 118 / c5h118 (Vægterdukat) — еталонний зразок відсутній в обох Bruun-аукціонах 2025 (Part II і Part III); тип засвідчено лише Numista-фото (Künker). За Bruun (частина II, лот 13180), глюкштадтські дукати карбували <i>для регулярного торгового обігу, а не лише як приурочені випуски</i>. Сестринський тип: KM# 70.1 (1680–1685, повна стандартна проба .986, інша композиція реверса). Numista трактує цей 1682-only-тип і KM# 70.1 (1680–1685, .986, N#275959) як окремі Krause-типи, а не варіанти за роком.
     sources:
       - type: numista
         url: "https://en.numista.com/112809"
