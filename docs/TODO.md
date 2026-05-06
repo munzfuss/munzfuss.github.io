@@ -49,6 +49,38 @@ edit needed when the threshold is crossed.
 
 ---
 
+### E. Promote 6 Bruun-seed territories into real location files  *(opened 2026-05-06)*
+
+**Background.** Bruun parts I–IV ingest (cache in `scripts/cache/bruun/`) routed
+**37 in-scope coins** to 6 territories that we don't have location files for yet.
+Per-coin data (KM/Hede/Sieg/Lange/Fr/Dav refs, year, ruler, mint, weight, NGC
+grade, body excerpt, Bruun-page citation) is preserved in `data/seed/bruun/` so
+no information is lost. The Müntzfuß-system research was deliberately deferred —
+each territory uses its own Reichskreis or local standard that needs proper study.
+
+**Seed files & their Müntzfuß-systems to research:**
+
+| Seed file | Coins | Müntzfuß systems to research |
+|---|---:|---|
+| `data/seed/bruun/lubeck_bishopric.yml`     | 14 | Reichsthalerfuß via Holstein-Gottorp prince-bishops (Eutin) |
+| `data/seed/bruun/oldenburg.yml`            | 10 | Niedersächsischer Kreis-Fuß; Jever-Mint grote-systems under Anton Günther |
+| `data/seed/bruun/bremen_verden.yml`        |  6 | Niedersächsischer Kreis (1635–1648), then Swedish administration 1648–1712 |
+| `data/seed/bruun/brunswick_lueneburg.yml`  |  4 | Reichsmünzordnung → Leipziger Fuß → Konventionsfuß (Wolfenbüttel mint, Christian IV's Niedersachsen-Periode 1627) |
+| `data/seed/bruun/hesse_kassel.yml`         |  2 | Reichsmünzfuß → Konventionsfuß (Kasseler Münzkonvention 1763), 14-Thalerfuß |
+| `data/seed/bruun/osnabrueck.yml`           |  1 | Niedersächsischer Kreis-Fuß under prince-bishop, alternating Catholic/Lutheran 1648+ |
+
+**Promotion procedure** (per territory) is documented in `data/seed/bruun/README.md`:
+research the relevant Müntzfuß, add to `data/shared/fuesse.yml`, add issuing entity
+to `data/i18n/issuing_entities.yml`, create `data/locations/<territory>.yml` +
+`-references.yml`, transform each seed coin record into a full `Coin` schema entry
+with computed fineness/fuss/phase, then move (don't copy) the seed file out of
+`data/seed/bruun/`.
+
+**Done criterion.** All 6 seed files emptied (or moved to git history). The 37
+coins live in proper `data/locations/` files with correct fuss-classification.
+
+---
+
 ### C. Bremen-Archbishopric Frederick (II/III) coinage 1641–1643  *(opened 2026-05-03)*
 
 **Surfaced during.** Cross-check of the 3 Numista issuer-list pages
