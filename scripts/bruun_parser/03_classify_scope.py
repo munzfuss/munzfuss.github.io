@@ -110,11 +110,12 @@ def classify_extended(lot: dict) -> tuple[str, list[str]]:
     elif mint == "Stade Mint" and not re.search(r"Schleswig-Holstein-Gottorp", meta, re.IGNORECASE):
         # Karl X Gustav / Karl XI Stade-mint coins are Sweden-Bremen-Verden — bremen_verden bucket
         bucket = "bremen_verden"
-    # 0c. Brunswick / Wolfenbüttel (Christian IV's mainland Lower-Saxony territory)
+    # 0c. Brunswick / Wolfenbüttel (Christian IV's mainland Lower-Saxony territory).
+    #     PDF line-break tolerance: "Wolfenbüt - tel", "Wolfenbüt -\ntel" etc.
     elif (
         re.search(r"Brunswick|Braunschweig|Lower Saxony.*Wolfenb", full_classify_text, re.IGNORECASE)
         or mint == "Wolfenbüttel Mint"
-        or re.search(r"\bWolfenbüttel\b|Wolfenbuettel", full_classify_text, re.IGNORECASE)
+        or re.search(r"Wolfenb(?:ü|ue)t[\s\-]*tel", full_classify_text, re.IGNORECASE)
     ):
         bucket = "brunswick_lueneburg"
     # 0d. Lauenburg (separate duchy under DK king from 1815, own Konventionsfuß-style
