@@ -116,6 +116,13 @@ def classify_extended(lot: dict) -> tuple[str, list[str]]:
         or re.search(r"\bWolfenbüttel\b|Wolfenbuettel", full_classify_text, re.IGNORECASE)
     ):
         bucket = "brunswick_lueneburg"
+    # 0d. Lauenburg (separate duchy under DK king from 1815, own Konventionsfuß-style
+    #     Müntzfuß; doesn't fit the Schleswig-Holstein file structure).
+    #     Check BEFORE the SH-keyword match because Lauenburg coins typically read
+    #     "DENMARK. Lauenburg. <denom>, <year>. Altona Mint. <king>." — Altona-mint
+    #     would otherwise route to schleswig_holstein.
+    elif re.search(r"\bLauenburg\b", full_classify_text, re.IGNORECASE):
+        bucket = "lauenburg"
     # 1. Schleswig-Holstein duchies / counties / branches
     elif re.search(
         r"Schleswig-Holstein|Schleswig\b(?!.*Holstein-Gottorp.*Lübeck)|"
@@ -129,11 +136,9 @@ def classify_extended(lot: dict) -> tuple[str, list[str]]:
             bucket = "lubeck_bishopric"
         else:
             bucket = "schleswig_holstein"
-    # 2. SH-mints under Danish king (Glückstadt / Altona / Husum / Rendsburg / Lauenburg)
+    # 2. SH-mints under Danish king (Glückstadt / Altona / Husum / Rendsburg)
     elif mint in {"Glückstadt Mint", "Altona Mint", "Schleswig Mint", "Husum Mint",
                    "Rendsburg Mint"}:
-        bucket = "schleswig_holstein"
-    elif re.search(r"\bLauenburg\b", meta, re.IGNORECASE):
         bucket = "schleswig_holstein"
     # 3. Lübeck Bishopric (when listed without SH-Gottorp prefix; e.g. August Friedrich at Kaltenhof Mint)
     elif (

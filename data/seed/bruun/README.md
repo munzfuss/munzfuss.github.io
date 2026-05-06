@@ -92,6 +92,7 @@ coins:
 | `bremen_verden.yml` | 6 | Archbishopric of Bremen-Verden — Bremervörde + Stade mints. NOT the city-state of Bremen. Coverage: Frederik III 1641 (as Archbishop), Karl X Gustav / Karl XI 1660-1674 (under Sweden after 1648), Johann Friedrich (Holstein-Gottorp) 1622 as prince-bishop. |
 | `brunswick_lueneburg.yml` | 4 | Brunswick-Wolfenbüttel — Christian IV's mainland Lower-Saxony territory. Coverage: 1627 Wolfenbüttel mint Ducat + Speciedaler + Reichstaler + Gutergroschen. |
 | `hesse_kassel.yml` | 2 | Landgraviate of Hesse-Kassel. Coverage: Frederik I 1737-1744 Ducat + 1/4 Ducat (Kassel Mint; same Frederik who was simultaneously King of Sweden 1720-1751). |
+| `lauenburg.yml` | 1 | Duchy of Saxe-Lauenburg under DK king (1815-1864) — own Konventionsfuß-style standard, separate from Schleswig-Holstein. Coverage: Frederik VI 1830 2/3 Taler from Altona Mint (4 051 pieces minted, Bruun catalogue). |
 | `osnabrueck.yml` | 1 | Prince-Bishopric of Osnabrück. Coverage: Franz Wilhelm von Wartenberg 1633 Taler Klippe (Osnabrück Mint, Thirty Years War period). |
 
 Full upstream data: `scripts/cache/bruun/cross_match.json` (per-territory bucketed
