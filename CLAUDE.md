@@ -213,6 +213,39 @@ When deciding whether a coin entry belongs in a location's coin table — regard
 
 This rule was introduced after a manual import accidentally collapsed multiple KM# variants into single representatives ("one 1 Thaler John Adolphus per period"), losing typological coverage. A complete catalog ingest from any source should match that source 1:1 except for the three exclusions above.
 
+### 9a. Multi-specimen merge — preserve all data, never collapse
+
+> **Deduplication is data merge, not data drop.** When the same coin (per §9.3 — same KM# / Hede# / Lange# / Sieg# index) appears as **multiple specimens** (two Bruun-PDF lots of the same KM in different auction parts; three Bruun lots of the same KM in different years; ucoin + Numista + museum entries for the same type) the records merge into ONE coin entry — but **every per-specimen observation that differs (weight, fineness, year, condition, mintmark) must be preserved**.
+
+**The mistake to avoid.** Picking the "best" specimen for the canonical fields and reducing the others to a one-line mention in `note` text. The other specimens' weight observations, condition grades, mint-master initials and provenance disappear from the structured data — future sessions reading the YAML without the chat history see a single arbitrary observation and have no way to reconstruct the variance the source documented.
+
+**The right pattern (per field):**
+
+- **`weight_rough_g`** — list of `{value, source}` entries, one per specimen. The list grows with each new specimen; old entries are never overwritten or replaced.
+  ```yaml
+  weight_rough_g:
+    - value: 13.26
+      source: Bruun III, lot 11304 (Bruun-coll. 8149, 1842 specimen)
+    - value: 13.28
+      source: Bruun IV, lot 17185 (Bruun-coll. 8168, 1844 specimen)
+    - value: 13.29
+      source: Bruun IV, lot 17190 (Bruun-coll. 8184, 1847 specimen)
+  ```
+- **`fineness`** — single field, but if multiple measurements diverge meaningfully, switch to a similar list shape (or note the variance + cite the divergent source).
+- **`sources`** — one entry per specimen citation (auction lot / museum record / catalogue listing). Each `ref` field carries the specimen-specific detail (collection-id, lot-no, page, year, condition, weight) so a reader can identify exactly which physical coin contributed which value.
+- **Multi-year same-KM** — ONE entry with `year_label: "1842, 1844, 1847"`, `year_first: 1842`, `year_last: 1847`, `year_ranges: [[1842,1842], [1844,1844], [1847,1847]]`. Each year's specimen contributes its own weight to `weight_rough_g` and its own citation to `sources`.
+- **Bruun-citation primacy** — `bruun_collection_id` / `bruun_part` / `bruun_lot_no` / `bruun_page` carry the **best-conditioned** (or earliest if grade tied) specimen as a fast-lookup anchor. Alternative specimens travel in `sources` with full Bruun-coll/part/lot/page detail in the `ref` text — losing none of the citation data, just structured slightly differently.
+
+**Why this matters.** Catalog variance — specimen weights spanning ±0.5g for the same KM, different mintmasters' initials across years, NGC grades from VF-30 to MS-65 — is **research signal**. Numismatic scholarship lives off these variations. Collapsing them into one number forces every future researcher to re-extract the data we already had in hand.
+
+**Operational test before committing a "merge"**: inspect the diff. For every specimen of the source you're consuming, the diff must add at least:
+- one `weight_rough_g` list entry (if weight is published)
+- one `sources` list entry (always, with full per-specimen citation)
+
+If a specimen contributed neither, the merge is data-lossy — go back and add the per-specimen entries.
+
+**This rule applies to ANY data merge across sources** — Bruun is just the current trigger. ucoin + Numista + museum entries for the same KM should similarly merge into one entry with multi-source weight/grade/diameter data preserved as a list, never collapsed to a single representative value.
+
 ## Architecture overview
 
 ```
