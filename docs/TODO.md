@@ -49,6 +49,36 @@ edit needed when the threshold is crossed.
 
 ---
 
+### F. Bruun fall-throughs documented for posterity  *(opened 2026-05-06)*
+
+After Phase 4c + Phase 3 completed, the Bruun cross-match shows 11 fall-through
+candidates in DK+SH that did NOT enter the data. All are accounted for:
+
+- **3 medieval (pre-1566, out of project window)** — excluded per project scope:
+  - P1·1001 Hans 1496 Noble (Bruun-coll. 3831, NGC AU-55, UNIQUE in private)
+  - P1·1002 Hans ND 1496-1497 Goldgulden (Bruun-coll. 3840)
+  - P3·11148 Christopher III 1440-42 Skilling Lund (Bruun-coll. 3763)
+
+- **1 pattern (per §9.1)** — excluded:
+  - P2·13140 Frederik III 1659 5 Ducats Hede-100A KM-PnJ16 (Bruun-coll. 6275, NGC Unc Details—Cleaned)
+
+- **2 SH-Altona Christian VII multi-year merges** — addressed in this commit:
+  - KM-640.1 1786 Albertsdaler → enriched km-640-1-chr-vii-1784 (Bruun-coll. 7863, 1786 specimen)
+  - KM-641.4 1785 12 Mark (Courant Ducat) → new entry km-641-4-chr-vii-1785 (Hede-4D sub-variant of Hede-4B 1783, Bruun-coll. 7859)
+
+- **5 already-covered (matcher-quirks)** — no action needed:
+  - P2·14241 KM-226.1 1753 Karl Peter Ulrich Mannheim Taler — flagged as Krause sub-variant of existing km-226-kpu-1753 in Phase 4a batch 6
+  - P2·14261 KM-cf.455 Adolf XIII 1598 3 Taler Altona — already added as bruun-14813-adolf-xiii-1598a (Phase 4a batch SP); matcher missed because no exact KM ref
+  - P3·12215 Adolf XIII 1598 1½ Taler Altona — already added as bruun-14815-adolf-xiii-1598b (Phase 4a batch SP); same matcher reason
+  - P4·17210 KM-758.1 Frederik VII 1854 4 Skilling Rigsmønt → already enriched km-x003-fr-vi-1854 in Phase 4a batch 7b
+  - P4·17218 KM-cf.758.2 Frederik VII 1856 Copper Piefort 4 Skilling — already added as schou-piefort-fr-vii-1856 in Phase 4c batch 6
+
+**Done criterion**: this list is the closing inventory; no further fall-throughs from the
+4-PDF Bruun cross-match remain. Bruun Part V (when published) will run through the same
+pipeline and any new fall-throughs will be triaged similarly.
+
+---
+
 ### E. Promote 6 Bruun-seed territories into real location files  *(opened 2026-05-06)*
 
 **Background.** Bruun parts I–IV ingest (cache in `scripts/cache/bruun/`) routed
