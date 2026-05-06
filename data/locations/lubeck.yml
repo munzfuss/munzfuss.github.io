@@ -1,19 +1,19 @@
-# Free Hanseatic City of Lübeck — coinage of the Wendischer Münzverein and
-# its successors, ca. 1500-1801 (Reichsdeputationshauptschluss).
+# Free Hanseatic City of Lübeck — Lübischer Münzfuß / Lübischer Courant-Fuß
+# 1727-1801. Initial scope migrated from the verified Numista + IKMK Berlin
+# inventory in reference/lubeck_1750_1850_verified_complete.html (April 2026).
 #
-# This file is a STUB for future expansion. Lübeck is referenced from the
-# Schleswig-Holstein artifact (the 11⅓-Fuß Kurantdaler is fine-silver-equivalent
-# to Lübeck's 48 Schilling Courant), and one Lübeck coin had been incorrectly
-# tagged as Holstein-Danish in schleswig_holstein.yml — moved here on 2026-04-27.
+# Coverage:
+#   * 11⅓-Thalerfuß — silver/billon Schilling system 1727-1797 (Dreiling →
+#     48 Schilling Courantthaler), seven nominals 1/192 → 1 of the Lübisch
+#     Thaler Courant. Dreiling and 1 Schilling carry seigniorage (billon
+#     scheide); 2-Sch. and larger are kurant within ±1 % of soll fein.
+#   * 9-Thalerfuß — Speciesthaler 1776 (KM-185), parallel-circulating
+#     Reichsthaler-grade silver alongside the 34-Marckfuß courant.
+#   * Reichsdukatenfuß — gold ducats 1789-1801 (KM-191, 195, 198, 205) at
+#     986 ‰ Au.
 #
-# Future work:
-#   1. Define a proper Wendisch-Lübisch fuss in data/shared/fuesse.yml
-#      (the 9⅔-Lübisch standard with .750 fineness — distinct from the
-#      Holstein-Danish 11⅓-Fuß at .875).
-#   2. Build out phases for the Wendischer Münzverein (1379+), and the
-#      late-imperial city issues (1700+).
-#   3. Migrate data from reference/lubeck_1750_1850_verified_complete.html
-#      (legacy artifact, 18KB).
+# Pre-1727 Hansestadt issues and post-1801 Behrens/Lübisch material remain
+# in seed_unsorted pending further research.
 
 id: lubeck
 name:
@@ -23,38 +23,70 @@ name:
 
 summary:
   de: |
-    Müntzwesen der Freien Hanse­stadt Lübeck — Wendischer Münzverein und seine
-    Nachfolger, ca. 1500 biß 1801. <em>Stub-Datei: derzeit eine einzige Münze
-    (irrtümlich aus dem Schleswig-Holstein-Artefakt verschoben). Vollständige
-    Bearbeitung steht aus.</em>
+    Müntzwesen der Freien Hanse­stadt Lübeck. Der vorliegende Bestand deckt
+    1727 biß 1801 ab — den Lübischen Müntzfuß im 34-Marckfuß (= 11⅓-Thalerfuß,
+    Forordningen 1726) für Schilling-Kleingeld und Courantthaler, parallel den
+    Reichsmüntzfuß im 9-Thalerfuß für den Speciesthaler 1776 sowie den
+    Reichsdukatenfuß für die letzten Lübecker Goldducaten 1789–1801.
   en: |-
-    Coinage of the Free Hanseatic City of Lübeck — the Wendischer Münzverein and its successors, ca. 1500 to 1801. <em>Stub file: currently a single coin (moved here from the Schleswig-Holstein artifact, where it had been mis-classified). Full treatment pending.</em>
+    Coinage of the Free Hanseatic City of Lübeck. The present scope covers 1727 to 1801 — the Lübischer Münzfuß as 34-Marckfuß (= 11⅓-Thalerfuß per the 1726 ordinances) for the Schilling small-change system and Courantthaler, the parallel Reichsmüntzfuß as 9-Thalerfuß for the 1776 Speciesthaler, and the Reichsdukatenfuß for the last Lübeck gold ducats 1789–1801.
   uk: |-
-    Монетна справа Вільного Ганзейського міста Любек — Вендський монетний союз та його наступники, бл. 1500–1801. <em>Stub-файл: наразі одна монета (помилково перенесена з артефакту Шлезвіг-Гольштейну). Повна обробка попереду.</em>
+    Монетна справа Вільного Ганзейського міста Любек. Поточний обсяг охоплює 1727–1801 роки — Любецький Münzfuß як 34-Marckfuß (= 11⅓-Thalerfuß за ордонансами 1726) для шилінгової дрібної монети та куранттталера, паралельно Reichsmüntzfuß як 9-Thalerfuß для Speciesthaler 1776 та Reichsdukatenfuß для останніх любецьких золотих дукатів 1789–1801.
 
-# Order in which fuesse render. We use the Holstein-Danish 11⅓-Fuß as a
-# placeholder — the proper Wendisch-Lübisch standard (9⅔-Fuß at .750) needs
-# to be added to data/shared/fuesse.yml separately.
+# Order in which fuesse render. The Lübisch system 1726-1854 is mathematically
+# the 11⅓-Thalerfuß (1 Thaler Courant = 3 Marck = 48 Schilling Lübisch =
+# 20,63435 g fein), parallel and identical in metal content to the Danish
+# Kurantmøntfod. The 9-Thalerfuß and Reichsdukatenfuß were used alongside
+# for the Speciesthaler 1776 and the Lübeck ducats respectively.
 fuss_order:
   - 11_333_thaler
-
-# Minimum phase definition so the moved coin validates against the schema.
+  - 9_thaler
+  - reichsdukatenfuss
   - seed_unsorted
+
 phases:
   11_333_thaler:
     - id: A
-      year_from: 1500
+      year_from: 1727
       year_to: 1801
-      from_label: '~1500'
+      from_label: '1727'
       to_label: '1801'
       title:
-        de: Wendisch-Lübisches Müntzwesen (Stub-Phase)
-        en: Wendisch-Lübisch coinage (stub phase)
-        uk: Вендсько-любецька монетна система (stub-фаза)
+        de: Lübischer Münzfuß im 34-Marckfuß
+        en: Lübischer Münzfuß as 34-Marckfuß
+        uk: Любецький Münzfuß у 34-Marckfuß
       description:
-        de: 'Lübeck folgte dem Wendischer Münzverein. Die hier abgebildete einzelne Münze (KM# 168, 1752) entstand am Ende dieses Zeitraums. <em>Diese Phase ist eine Sammelphase für Stub-Zwecke; künftige Verfeinerung folgt.</em>'
-        en: 'Lübeck followed the Wendischer Münzverein standard. The single coin shown here (KM# 168, 1752) was struck near the end of that period. <em>This phase is a placeholder; future refinement is planned.</em>'
-        uk: 'Любек дотримувався Вендського монетного союзу. Єдина наведена тут монета (KM# 168, 1752 р.) карбувалась наприкінці цього періоду. <em>Ця фаза — заглушка; уточнення в майбутньому.</em>'
+        de: 'Lübeck und Hamburg übernahmen 1726 den 34-Marckfuß als gemeinsamen Lübischen Courant-Fuß; die hier abgebildeten Stücke folgen dem System 1 Marck Courant = 6,87811 g fein = 16 Schilling Lübisch · 1 Thaler Courant = 3 Marck = 48 Schilling = 20,63432 g fein.<sup><a href="#ref1">[1]</a></sup>'
+        en: 'Lübeck and Hamburg adopted the 34-Marckfuß in 1726 as the common Lübisch Courant standard; the issues shown here follow the system 1 Marck Courant = 6.87811 g fine = 16 Schilling Lübisch · 1 Thaler Courant = 3 Marck = 48 Schilling = 20.63432 g fine.<sup><a href="#ref1">[1]</a></sup>'
+        uk: 'У 1726 р. Любек і Гамбург ухвалили 34-Marckfuß як спільний любецький курантний стандарт; показані тут монети дотримуються системи 1 Marck Courant = 6,87811 г чистого = 16 Schilling Lübisch · 1 Thaler Courant = 3 Marck = 48 Schilling = 20,63432 г чистого.<sup><a href="#ref1">[1]</a></sup>'
+  9_thaler:
+    - id: A
+      year_from: 1776
+      year_to: 1776
+      from_label: '1776'
+      to_label: '1776'
+      title:
+        de: Reichsmüntzfuß · Speciesthaler 1776
+        en: Reichsmüntzfuß · Speciesthaler 1776
+        uk: Reichsmüntzfuß · Speciesthaler 1776
+      description:
+        de: 'Einzelner Lübecker Speciesthaler 1776 (KM-185, Davenport 2422, Behrens 312) am Reichsmüntzfuß im 9-Thalerfuß: 233,856 g ÷ 9 = 25,98400 g Feinsilber bei 888 8/9 ‰ Münzlegierung — eigenständige Kurs-Stope neben dem 34-Marckfuß-Courant.<sup><a href="#ref2">[2]</a></sup>'
+        en: 'Single Lübeck Speciesthaler 1776 (KM-185, Davenport 2422, Behrens 312) at the Reichsmüntzfuß as 9-Thalerfuß: 233.856 g ÷ 9 = 25.98400 g fine silver at 888 8/9 ‰ alloy — an independent accounting standard alongside the 34-Marckfuß Courant.<sup><a href="#ref2">[2]</a></sup>'
+        uk: 'Одинокий любецький Speciesthaler 1776 (KM-185, Davenport 2422, Behrens 312) у Reichsmüntzfuß як 9-Thalerfuß: 233,856 г ÷ 9 = 25,98400 г чистого срібла за пробою 888 8/9 ‰ — самостійний розрахунковий стандарт паралельно з 34-Marckfuß-Courant.<sup><a href="#ref2">[2]</a></sup>'
+  reichsdukatenfuss:
+    - id: A
+      year_from: 1789
+      year_to: 1801
+      from_label: '1789'
+      to_label: '1801'
+      title:
+        de: Reichsdukatenfuß · Lübecker Ducaten 1789–1801
+        en: Reichsdukatenfuß · Lübeck Ducats 1789–1801
+        uk: Reichsdukatenfuß · Любецькі дукати 1789–1801
+      description:
+        de: 'Letzte Goldprägungen Lübecks unter dem Reichsdukatenfuß (986 1/9 ‰ Feingold; 233,856 g ÷ 67 = 3,4419 g rau je Ducat). Behrens 641a–647 dokumentieren die Jahrgänge 1789–1801, alle nach demselben Standard.<sup><a href="#ref3">[3]</a></sup>'
+        en: 'Lübeck''s final gold issues under the Reichsdukatenfuß (986 1/9 ‰ fine gold; 233.856 g ÷ 67 = 3.4419 g rough per ducat). Behrens 641a–647 document the year groups 1789–1801, all to the same standard.<sup><a href="#ref3">[3]</a></sup>'
+        uk: 'Останні золоті карбування Любека за Reichsdukatenfuß (986 1/9 ‰ чистого золота; 233,856 г ÷ 67 = 3,4419 г повної ваги на дукат). Behrens 641a–647 документує роки 1789–1801, усі за тим самим стандартом.<sup><a href="#ref3">[3]</a></sup>'
 
   seed_unsorted:
     - id: A
@@ -1221,9 +1253,9 @@ coins:
       en: Bulk import from ucoin tid 102430 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
       uk: Bulk-імпорт з ucoin tid 102430 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
   - id: lu-tid-102424
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Schilling
     year_label: 1727-1758
     year_first: 1727
@@ -1232,6 +1264,7 @@ coins:
     mint: Lübeck
     catalog:
       km: '141'
+      numista: '38483'
     metal: billon
     fineness: 0.375
     weight_rough_g: 1.08
@@ -1241,17 +1274,18 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-1-schilling-1727-1758/?tid=102424
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102424 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102424 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102424 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    mint_verified: true
+    fraction: 1/48
+    note:
+      de: 1 Schilling 1727–1758 (1/16 Marck Courant) · 375 ‰ Billon · Δ −5,8 % zur 34-Marckfuß-Soll (0,4299 g fein) — Standard-Scheidemünze des Lübisch-Courant-Systems.
+      en: 1 Schilling 1727–1758 (1/16 Marck Courant) · 375 ‰ billon · Δ −5.8 % vs. 34-Marckfuß target of 0.4299 g fine — the standard Scheidemünze of the Lübisch courant system.
+      uk: 1 шилінг 1727–1758 (1/16 Marck Courant) · 375 ‰ білон · Δ −5,8 % проти стандарту 34-Marckfuß (0,4299 г чистого) — типова Scheidemünze любецької курантної системи.
   - id: lu-tid-102426
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
     kind: kurant
     nominal: 2 Schilling
@@ -1261,6 +1295,7 @@ coins:
     mint: Lübeck
     catalog:
       km: '142'
+      numista: '285020'
     metal: billon
     fineness: 0.437
     weight_rough_g: 1.96
@@ -1269,14 +1304,15 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-2-schilling-1727/?tid=102426
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102426 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102426 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102426 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    fraction: 1/24
+    note:
+      de: 2 Schilling 1727 (⅛ Marck Courant) · 437 ‰ Billon · Δ −0,4 % zur 34-Marckfuß-Soll (0,8598 g fein) — innerhalb des Toleranzbandes der Kurantprägung.
+      en: 2 Schilling 1727 (⅛ Marck Courant) · 437 ‰ billon · Δ −0.4 % vs. 34-Marckfuß target of 0.8598 g fine — inside the courant tolerance band.
+      uk: 2 шилінги 1727 р. (⅛ Marck Courant) · 437 ‰ білон · Δ −0,4 % проти стандарту 34-Marckfuß (0,8598 г чистого) — у межах толерантності курантного карбування.
   - id: lu-tid-102431
     fuss: seed_unsorted
     phase: A
@@ -1338,7 +1374,7 @@ coins:
       en: Bulk import from ucoin tid 102435 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
       uk: Bulk-імпорт з ucoin tid 102435 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
   - id: lu-tid-102640
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
     kind: kurant
     nominal: 8 Schilling
@@ -1349,6 +1385,7 @@ coins:
     mint: Lübeck
     catalog:
       km: '144'
+      numista: '19206'
     metal: silver
     fineness: 0.625
     weight_rough_g: 5.5
@@ -1358,15 +1395,16 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-8-schilling-1727-1758/?tid=102640
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102640 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102640 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102640 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    mint_verified: true
+    fraction: 1/6
+    note:
+      de: 8 Schilling 1727–1758 (½ Marck Courant) · 625 ‰ Silber · Δ −0,05 % zur 34-Marckfuß-Soll (3,4391 g fein) — eichengenau.
+      en: 8 Schilling 1727–1758 (½ Marck Courant) · 625 ‰ silver · Δ −0.05 % vs. 34-Marckfuß target of 3.4391 g fine — virtually on standard.
+      uk: 8 шилінгів 1727–1758 (½ Marck Courant) · 625 ‰ срібло · Δ −0,05 % проти стандарту 34-Marckfuß (3,4391 г чистого) — практично у точку.
   - id: lu-tid-102719
     fuss: seed_unsorted
     phase: A
@@ -1483,7 +1521,7 @@ coins:
       en: Bulk import from ucoin tid 102735 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
       uk: Bulk-імпорт з ucoin tid 102735 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
   - id: lu-tid-102641
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
     kind: kurant
     nominal: 8 Schilling
@@ -1494,6 +1532,7 @@ coins:
     mint: Lübeck
     catalog:
       km: '152'
+      numista: '47239'
     metal: silver
     fineness: 0.625
     weight_rough_g: 5.5
@@ -1503,17 +1542,18 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-8-schilling-1731-1758/?tid=102641
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102641 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102641 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102641 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    mint_verified: true
+    fraction: 1/6
+    note:
+      de: 8 Schilling 1731–1758 — paralleler Stempelschnitt KM-152 zu KM-144, gleicher Standard.
+      en: 8 Schilling 1731–1758 — parallel die-cut KM-152 to KM-144, same standard.
+      uk: 8 шилінгів 1731–1758 — паралельний штемпельний різновид KM-152 до KM-144, той самий стандарт.
   - id: lu-tid-102684
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
     kind: kurant
     nominal: 16 Schilling
@@ -1524,6 +1564,7 @@ coins:
     mint: Lübeck
     catalog:
       km: '153'
+      numista: '20520'
     metal: silver
     fineness: 0.75
     weight_rough_g: 9.16
@@ -1533,15 +1574,16 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-16-schilling-1731-1758/?tid=102684
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102684 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102684 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102684 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    mint_verified: true
+    fraction: 1/3
+    note:
+      de: 16 Schilling 1731–1758 (1 Marck Courant) · 750 ‰ Silber · Δ −0,1 % zur 34-Marckfuß-Soll (6,8781 g fein) — Standardrelation.
+      en: 16 Schilling 1731–1758 (1 Marck Courant) · 750 ‰ silver · Δ −0.1 % vs. 34-Marckfuß target of 6.8781 g fine — on standard.
+      uk: 16 шилінгів 1731–1758 (1 Marck Courant) · 750 ‰ срібло · Δ −0,1 % проти стандарту 34-Marckfuß (6,8781 г чистого) — у стандарті.
   - id: lu-tid-102691
     fuss: seed_unsorted
     phase: A
@@ -1602,7 +1644,7 @@ coins:
       en: Bulk import from ucoin tid 102721 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
       uk: Bulk-імпорт з ucoin tid 102721 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
   - id: lu-tid-102432
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
     kind: kurant
     nominal: 4 Schilling
@@ -1613,6 +1655,7 @@ coins:
     mint: Lübeck
     catalog:
       km: '156'
+      numista: '83894'
     metal: silver
     fineness: 0.562
     weight_rough_g: 3.05
@@ -1622,15 +1665,16 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-4-schilling-1732-1752/?tid=102432
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102432 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102432 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102432 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    mint_verified: true
+    fraction: 1/12
+    note:
+      de: 4 Schilling 1732–1752 (¼ Marck Courant) · 562 ‰ Silber · Δ −0,3 % zur 34-Marckfuß-Soll (1,7195 g fein) · KM-156 ist die ältere Stempelvariante.
+      en: 4 Schilling 1732–1752 (¼ Marck Courant) · 562 ‰ silver · Δ −0.3 % vs. 34-Marckfuß target of 1.7195 g fine · KM-156 is the older die variant.
+      uk: 4 шилінги 1732–1752 (¼ Marck Courant) · 562 ‰ срібло · Δ −0,3 % проти стандарту 34-Marckfuß (1,7195 г чистого) · KM-156 — старіший штемпельний варіант.
   - id: lu-tid-102722
     fuss: seed_unsorted
     phase: A
@@ -1720,7 +1764,7 @@ coins:
       en: Bulk import from ucoin tid 102692 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
       uk: Bulk-імпорт з ucoin tid 102692 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
   - id: lu-tid-102693
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
     kind: kurant
     nominal: 32 Schilling
@@ -1731,6 +1775,7 @@ coins:
     mint: Lübeck
     catalog:
       km: '163'
+      numista: '39774'
     metal: silver
     fineness: 0.9
     weight_rough_g: 18.2
@@ -1740,15 +1785,16 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-32-schilling-1749-1750/?tid=102693
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102693 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102693 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102693 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    mint_verified: true
+    fraction: 2/3
+    note:
+      de: 32 Schilling 1749–1750 (2 Marck Courant) · 900 ‰ Silber · 16,38 g fein — Δ +19,1 % zur 34-Marckfuß-Soll (13,7562 g fein). Erstprägung der Doppelmark in deutlich überhöhtem Feingehalt; ab 1751 wurden Folgejahrgänge auf 750 ‰ reduziert (Numista N#39774).
+      en: 32 Schilling 1749–1750 (2 Marck Courant) · 900 ‰ silver · 16.38 g fine — Δ +19.1 % vs. 34-Marckfuß target of 13.7562 g fine. The first issue of the Doppelmark with substantially elevated fineness; subsequent years from 1751 were reduced to 750 ‰ (Numista N#39774).
+      uk: 32 шилінги 1749–1750 (2 Marck Courant) · 900 ‰ срібло · 16,38 г чистого — Δ +19,1 % проти стандарту 34-Marckfuß (13,7562 г чистого). Перша емісія подвійної марки з істотно завищеною пробою; подальші роки з 1751-го було зменшено до 750 ‰ (Numista N#39774).
   - id: lu-tid-102737
     fuss: seed_unsorted
     phase: A
@@ -1844,9 +1890,9 @@ coins:
       - type: literature
         ref: Davenport 2420 (European Crowns)
   - id: lu-tid-102436
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Dreiling
     year_label: 1752-1762
     year_first: 1752
@@ -1855,6 +1901,7 @@ coins:
     mint: Lübeck
     catalog:
       km: '166'
+      numista: '161060'
     metal: billon
     fineness: 0.187
     weight_rough_g: 0.51
@@ -1864,15 +1911,16 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-1-dreiling-1752-1762/?tid=102436
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102436 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102436 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102436 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    mint_verified: true
+    fraction: 1/192
+    note:
+      de: 1 Dreiling 1752–1762 (¼ Schilling Lübisch) · 187 ‰ Billon · Δ −11,2 % zur 34-Marckfuß-Soll (0,1075 g fein) — typische Scheidemünze mit Seigniorage im Kleingeld.
+      en: 1 Dreiling 1752–1762 (¼ Schilling Lübisch) · 187 ‰ billon · Δ −11.2 % vs. the 34-Marckfuß target of 0.1075 g fine — a classic small-change Scheidemünze with embedded seigniorage.
+      uk: 1 дрейлінг 1752–1762 (¼ шилінга Любеку) · 187 ‰ білон · Δ −11,2 % проти стандарту 34-Marckfuß (0,1075 г чистого) — типова Scheidemünze з вбудованим сеньйоражем у дрібному номіналі.
   - id: lu-tid-102694
     fuss: seed_unsorted
     phase: A
@@ -1932,7 +1980,7 @@ coins:
       en: Bulk import from ucoin tid 102697 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
       uk: Bulk-імпорт з ucoin tid 102697 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
   - id: lu-tid-102427
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
     kind: kurant
     nominal: 2 Schilling
@@ -1942,6 +1990,7 @@ coins:
     mint: Lübeck
     catalog:
       km: '175'
+      numista: '285014'
     metal: billon
     fineness: 0.437
     weight_rough_g: 1.96
@@ -1950,16 +1999,17 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-2-schilling-1758/?tid=102427
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102427 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102427 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102427 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    fraction: 1/24
+    note:
+      de: 2 Schilling 1758 — direkter Untertyp KM-142, gleicher 437‰-Standard 30 Jahre später.
+      en: 2 Schilling 1758 — direct sub-type of KM-142, same 437 ‰ standard struck 30 years later.
+      uk: 2 шилінги 1758 р. — прямий підтип KM-142, той самий стандарт 437 ‰ через 30 років.
   - id: lu-tid-102433
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
     kind: kurant
     nominal: 4 Schilling
@@ -1969,6 +2019,7 @@ coins:
     mint: Lübeck
     catalog:
       km: '174'
+      numista: '39025'
     metal: silver
     fineness: 0.562
     weight_rough_g: 3.05
@@ -1978,15 +2029,16 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-4-schilling-1758/?tid=102433
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102433 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102433 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102433 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    mint_verified: true
+    fraction: 1/12
+    note:
+      de: 4 Schilling 1732–1758 — Spätstempel-Variante neben KM-156, gleicher Standard.
+      en: 4 Schilling 1732–1758 — late-die variant alongside KM-156, same standard.
+      uk: 4 шилінги 1732–1758 — пізній штемпельний варіант поряд із KM-156, той самий стандарт.
   - id: lu-tid-102695
     fuss: seed_unsorted
     phase: A
@@ -2017,7 +2069,7 @@ coins:
       en: Bulk import from ucoin tid 102695 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
       uk: Bulk-імпорт з ucoin tid 102695 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
   - id: lu-tid-102724
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 1 Thaler
@@ -2027,6 +2079,9 @@ coins:
     mint: Lübeck
     catalog:
       km: '185'
+      numista: '59482'
+      others:
+        - Davenport 2422; Behrens 312
     metal: silver
     fineness: 0.888
     weight_rough_g: 29.2
@@ -2036,19 +2091,20 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-1-thaler-1776/?tid=102724
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102724 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102724 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102724 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    mint_verified: true
+    fraction: '1'
+    note:
+      de: Lübecker Speciesthaler 1776 · 888 8/9 ‰ Silber · Δ −0,21 % zur 9-Thalerfuß-Soll (25,98400 g fein) · Davenport-2422, Behrens-312. Eigenständig vom 34-Marckfuß-Courant — der Speciesthaler diente als Großhandels-Buchwährung und wurde nach Reichsmüntzfuß ausgemünzt.
+      en: Lübeck Speciesthaler 1776 · 888 8/9 ‰ silver · Δ −0.21 % vs. 9-Thalerfuß target of 25.98400 g fine · Davenport-2422, Behrens-312. Independent of the 34-Marckfuß courant — the Speciesthaler served as wholesale book money and was struck to the Reichsmüntzfuß.
+      uk: Любецький Speciesthaler 1776 · 888 8/9 ‰ срібло · Δ −0,21 % проти стандарту 9-Thalerfuß (25,98400 г чистого) · Davenport-2422, Behrens-312. Незалежний від 34-Marckfuß-Courant — Speciesthaler слугував обліковою грошовою одиницею оптової торгівлі та карбувався за Reichsmüntzfuß.
   - id: lu-tid-102425
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Schilling
     year_label: '1789'
     year_first: 1789
@@ -2056,6 +2112,7 @@ coins:
     mint: Lübeck
     catalog:
       km: '190'
+      numista: '83915'
     metal: billon
     fineness: 0.375
     weight_rough_g: 1.08
@@ -2065,17 +2122,18 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-1-schilling-1789/?tid=102425
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     diameter_mm_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102425 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102425 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102425 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    mint_verified: true
+    fraction: 1/48
+    note:
+      de: 1 Schilling 1789 (Spätemission unter Carl Friedrich von Schweden) · 375 ‰ Billon, identisch mit der Vorgängerprägung KM-141.
+      en: 1 Schilling 1789 (late issue under Carl Friedrich of Sweden) · 375 ‰ billon, mathematically identical to the predecessor type KM-141.
+      uk: 1 шилінг 1789 р. (пізня емісія за Карла Фрідріха Шведського) · 375 ‰ білон, математично ідентичний попередньому типу KM-141.
   - id: lu-tid-102738
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Ducat
@@ -2086,6 +2144,9 @@ coins:
     mint: Lübeck
     catalog:
       km: '191'
+      numista: '409002'
+      others:
+        - Behrens 641a, 642
     metal: gold
     fineness: 0.986
     weight_rough_g: 3.5
@@ -2094,16 +2155,17 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-1-ducat-1789-1790/?tid=102738
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102738 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102738 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102738 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    fraction: '1'
+    note:
+      de: Lübecker 1 Ducat 1789–1790 · 986 1/9 ‰ Feingold (Reichsdukatenfuß) · 3,4510 g fein bei 3,50 g rau · Behrens-641a / Behrens-642 (Stempelgruppe).
+      en: Lübeck 1 Ducat 1789–1790 · 986 1/9 ‰ fine gold (Reichsdukatenfuß) · 3.4510 g fine at 3.50 g rough · Behrens 641a / 642 (die group).
+      uk: Любецький 1 дукат 1789–1790 · 986 1/9 ‰ чистого золота (Reichsdukatenfuß) · 3,4510 г чистого при 3,50 г повної ваги · Behrens 641a / 642 (штемпельна група).
   - id: lu-tid-102739
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Ducat
@@ -2114,6 +2176,9 @@ coins:
     mint: Lübeck
     catalog:
       km: '195'
+      numista: '303461'
+      others:
+        - Behrens 642
     metal: gold
     fineness: 0.986
     weight_rough_g: 3.5
@@ -2122,14 +2187,15 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-1-ducat-1791-1792/?tid=102739
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102739 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102739 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102739 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    fraction: '1'
+    note:
+      de: Lübecker 1 Ducat 1791–1792 · Behrens-642a–b · leicht reduzierter Schrötling (3,47 g rau · 3,4214 g fein) — innerhalb der Reichsdukatenfuß-Toleranz.
+      en: Lübeck 1 Ducat 1791–1792 · Behrens 642a–b · slightly reduced flan (3.47 g rough · 3.4214 g fine) — within Reichsdukatenfuß tolerance.
+      uk: Любецький 1 дукат 1791–1792 · Behrens 642a–b · трохи редукований гурт (3,47 г повної ваги · 3,4214 г чистого) — у межах толерантності Reichsdukatenfuß.
   - id: lu-tid-102740
     fuss: seed_unsorted
     phase: A
@@ -2158,7 +2224,7 @@ coins:
       en: Bulk import from ucoin tid 102740 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
       uk: Bulk-імпорт з ucoin tid 102740 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
   - id: lu-tid-102741
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Ducat
@@ -2169,6 +2235,9 @@ coins:
     mint: Lübeck
     catalog:
       km: '198'
+      numista: '32000'
+      others:
+        - Behrens 644–646
     metal: gold
     fineness: 0.986
     weight_rough_g: 3.5
@@ -2177,14 +2246,15 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-1-ducat-1793-1797/?tid=102741
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102741 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102741 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102741 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    fraction: '1'
+    note:
+      de: Lübecker 1 Ducat 1793–1797 · Behrens-644 biß 646 (Stempelgruppe) · 3,4510 g fein.
+      en: Lübeck 1 Ducat 1793–1797 · Behrens 644–646 (die group) · 3.4510 g fine.
+      uk: Любецький 1 дукат 1793–1797 · Behrens 644–646 (штемпельна група) · 3,4510 г чистого.
   - id: lu-tid-102696
     fuss: seed_unsorted
     phase: A
@@ -2216,7 +2286,7 @@ coins:
       en: Bulk import from ucoin tid 102696 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
       uk: Bulk-імпорт з ucoin tid 102696 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
   - id: lu-tid-102742
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Ducat
@@ -2226,6 +2296,9 @@ coins:
     mint: Lübeck
     catalog:
       km: '205'
+      numista: '271072'
+      others:
+        - Behrens 647
     metal: gold
     fineness: 0.986
     weight_rough_g: 3.5
@@ -2234,15 +2307,61 @@ coins:
         url: https://en.ucoin.net/coin/lubeck-1-ducat-1801/?tid=102742
         ref: ucoin
     issuing_entity: hanseatic_lubeck
-    verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: false
-    verification_note:
-      de: Bulk-Import aus ucoin tid 102742 als Seed-Eintrag — vollständige Verifikation per Hede/Wilcke/Bruun ausstehend, Müntzfuß-Klassifikation noch nicht zugewiesen (provisorisch unter «seed_unsorted» geführt).
-      en: Bulk import from ucoin tid 102742 as seed entry — full verification via Hede/Wilcke/Bruun pending, Münzfuß classification not yet assigned (provisionally filed under «seed_unsorted»).
-      uk: Bulk-імпорт з ucoin tid 102742 як seed-запис — повна верифікація за Hede/Wilcke/Bruun очікується, Müntzfuß-класифікація ще не призначена (тимчасово числиться під «seed_unsorted»).
+    verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: true
+    fraction: '1'
+    note:
+      de: Lübecker 1 Ducat 1801 · Behrens-647 — letzte Lübecker Goldprägung vor dem Reichsdeputationshauptschluss; reduzierter Schrötling (3,47 g rau).
+      en: Lübeck 1 Ducat 1801 · Behrens 647 — Lübeck's final gold issue before the Reichsdeputationshauptschluss; reduced flan (3.47 g rough).
+      uk: Любецький 1 дукат 1801 · Behrens 647 — остання любецька золота емісія перед Reichsdeputationshauptschluss; редукований гурт (3,47 г повної ваги).
 fuss_periods:
+  11_333_thaler:
+    pdate_label:
+      de: Geltung in Lübeck&nbsp;1727&nbsp;→&nbsp;1854 · belegter Bestand 1727–1797
+      en: In force in Lübeck 1727 → 1854 · attested holdings 1727–1797
+      uk: Чинність у Любеку 1727 → 1854 · задокументований корпус 1727–1797
+    hintergrund:
+      de: |
+        Mit den dänischen <em>Forordningen</em> vom 15./31. Juli 1726 wurde der 34-Marckfuß als gemeinsamer
+        norddeutscher Lübischer Courant-Fuß eingeführt;<sup><a href="#ref1">[1]</a></sup> Lübeck und Hamburg übernahmen ihn fristgleich.
+        Der Bestand reicht hier von Christian VI's Schilling-Reform 1727 biß zur letzten 1-Schilling-Prägung
+        unter Carl Friedrich von Schweden 1789, ergänzt um den Sonderfall Doppelmark 1749–1750 (KM&nbsp;163, 900&nbsp;‰
+        anstelle der späteren 750&nbsp;‰).
+      en: |
+        The Danish <em>Forordninger</em> of 15/31 July 1726 instituted the 34-Marckfuß as a common North German Lübisch courant standard;<sup><a href="#ref1">[1]</a></sup> Lübeck and Hamburg adopted it at the same time. The present holdings span Christian VI's 1727 Schilling reform to the last 1-Schilling issue under Carl Friedrich of Sweden in 1789, plus the Doppelmark special case of 1749–1750 (KM&nbsp;163, 900&nbsp;‰ instead of the subsequent 750&nbsp;‰).
+      uk: |
+        Данські <em>Forordninger</em> від 15/31 липня 1726 р. запровадили 34-Marckfuß як спільний північнонімецький любецький курантний стандарт;<sup><a href="#ref1">[1]</a></sup> Любек і Гамбург ухвалили його одночасно. Наявний корпус охоплює реформу шилінга Крістіана&nbsp;VI 1727 р. до останньої 1-шилінгової емісії за Карла Фрідріха Шведського 1789 р., а також винятковий випадок подвійної марки 1749–1750 (KM&nbsp;163, 900&nbsp;‰ замість пізніших 750&nbsp;‰).
+  9_thaler:
+    pdate_label:
+      de: Geltung als Reichsmüntzfuß im Lübisch-Hanseraum 1566 → 1875 · belegtes Stück 1776
+      en: In force as Reichsmüntzfuß in the Lübisch-Hanseatic area 1566 → 1875 · attested specimen 1776
+      uk: Чинність як Reichsmüntzfuß у любецько-ганзейському просторі 1566 → 1875 · задокументований зразок 1776
+    hintergrund:
+      de: |
+        Der 9-Thalerfuß behielt in Hamburg und Lübeck biß 1875 Buchwährungsstatus für den Großhandel<sup><a href="#ref4">[4]</a></sup> —
+        physisch geprägte Speciesthaler sind in Lübeck eine Seltenheit. Der einzige Beleg im vorliegenden
+        Bestand ist die einmalige Spec­ies­thaler-Emission 1776 (KM-185, Davenport 2422), parallel zum laufenden
+        34-Marckfuß-Courant.
+      en: |
+        The 9-Thalerfuß retained book-money status in Hamburg and Lübeck for wholesale trade until 1875;<sup><a href="#ref4">[4]</a></sup> physically struck Speciesthaler are rare in Lübeck. The single specimen in this scope is the one-off Speciesthaler issue of 1776 (KM-185, Davenport 2422), parallel to the everyday 34-Marckfuß Courant.
+      uk: |
+        9-Thalerfuß зберігав статус облікової грошової одиниці в Гамбурзі та Любеку для гуртової торгівлі до 1875 р.;<sup><a href="#ref4">[4]</a></sup> фізично карбовані Speciesthaler у Любеку рідкісні. Єдиний зразок у цьому корпусі — одноразова емісія Speciesthaler 1776 (KM-185, Davenport 2422), паралельно з повсякденним 34-Marckfuß-Courant.
+  reichsdukatenfuss:
+    pdate_label:
+      de: Geltung in Lübeck als Goldfuß biß 1801 · belegter Bestand 1789–1801
+      en: In force in Lübeck as the gold standard until 1801 · attested holdings 1789–1801
+      uk: Чинність у Любеку як золотий стандарт до 1801 · задокументований корпус 1789–1801
+    hintergrund:
+      de: |
+        Lübecker Goldducaten 1789–1801 folgen dem Reichsdukatenfuß (3,4419 g rau · 23 Karat 8 Grän = 986 1/9 ‰
+        Feingold = 3,4214 g fein) — siehe Behrens 641a, 642–647.<sup><a href="#ref3">[3]</a></sup> Vier dokumentierte Stempelgruppen
+        (KM-191, 195, 198, 205) und drei Behrens-Untervarianten ohne KM-Eintrag (Behrens 641a, 643a, 643c).
+      en: |
+        Lübeck gold ducats of 1789–1801 follow the Reichsdukatenfuß (3.4419 g rough · 23 karat 8 grän = 986 1/9 ‰ fine gold = 3.4214 g fine) — see Behrens 641a, 642–647.<sup><a href="#ref3">[3]</a></sup> Four documented die groups (KM-191, 195, 198, 205) and three Behrens sub-variants without a KM listing (Behrens 641a, 643a, 643c).
+      uk: |
+        Любецькі золоті дукати 1789–1801 рр. дотримуються Reichsdukatenfuß (3,4419 г повної ваги · 23 карати 8 гранів = 986 1/9 ‰ чистого золота = 3,4214 г чистого) — див. Behrens 641a, 642–647.<sup><a href="#ref3">[3]</a></sup> Чотири задокументовані штемпельні групи (KM-191, 195, 198, 205) та три підваріанти Behrens без KM (Behrens 641a, 643a, 643c).
   seed_unsorted:
     pdate_label:
       de: Bulk-Seed-Sammelbucket — Geltungsbereich pro Münze noch zuzuweisen
