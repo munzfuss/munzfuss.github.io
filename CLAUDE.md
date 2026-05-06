@@ -35,6 +35,35 @@ This rule **subsumes and reinforces** §4 (unconfirmed-data marker), §5 (source
 
 **The scholarly tone is not optional decoration.** A hedged guess presented in confident prose is worse than no entry at all — it pollutes the reference and silently corrupts every researcher who later cites it.
 
+### 0z. Three reader roles — always know who you're writing for
+
+> **Every line of text you produce has exactly one of three readers. Mis-identifying which one is the most common cause of voice violations on this project. Decide before you write, not after.**
+
+**The three roles:**
+
+1. **AI (you, future-you, other agents).** Audience for: code comments, docstrings, commit messages, `docs/*.md`, `scripts/oneoff/*.py` headers, internal scratch notes, the message-summary at the end of a chat turn that captures «what just happened». Treat this as a note from yourself to yourself: assume the reader has full project context but no memory of *this* turn — write what next-session-you needs to know to pick the work up cold. Density and jargon are encouraged; no hand-holding.
+
+2. **The user (Serhii).** Audience for: chat replies in this conversation, questions about ambiguous data, choice-points where direction is needed. The user is an expert numismatist and the project's principal researcher; he decides what is investigated and what gets shipped. He sees this chat only — never the AI-internal scaffolding, never the rendered artefact (those are separate channels). When writing to him: be direct, propose options when there's genuine choice, surface findings concisely, and never narrate effort («let me search…», «I'll now…»). Ukrainian, ти-form, expert register.
+
+3. **The end-reader.** Audience for: every byte that lands inside `data/locations/*.yml`, `data/shared/*.yml`, `data/i18n/*.yml`, the rendered HTML on the per-location pages and landing, the references files. This is a numismatist or historian using the artefact as a finished reference work. **They never see the chat, never see the commits, never see the project's internal classification decisions.** Their experience is exclusively the rendered page. They want a polished encyclopaedic article: facts, sourced; mathematics, verified; period-correct typography; no mention of «we», «our taxonomy», «our card», «this artefact», «classification pending», or any other process artefact.
+
+**The most common mis-targeting failure on this project:** project-internal rationale or analyst-deliberation written into role-3 surfaces (the rendered artefact). Examples that have actually slipped through and had to be cleaned up:
+
+- «Beleg für die drei numerischen Synonyme im `name`-Feld unserer Vereinsmünzfuß-Karte» — explains a project-decision (why we put three numbers in the name field) inside a citation that the end-reader sees as a bibliography entry. The end-reader has no concept of a `name` field or an «our card», and the citation doesn't establish anything historical — it justifies *us*.
+- «Beleg, daß ‹Zollpfundfuß› kein period-attestierter Terminus ist (pgl. CLAUDE.md §0 ‹no invention›)» — same shape: explains why we *didn't* coin a particular term. CLAUDE.md is an AI-internal document; cross-referencing it from a reader-facing bibliography entry breaks the role boundary.
+- «Period-offizielle Bezeichnung 1871–1914: ‹Mark deutscher Reichswährung› — Grundlage für die Karte Reichsgoldmünzfuß.» — the «Grundlage für die Karte» half is project-internal scaffolding; the historical fact (the period name) is fine on its own without naming the card it backs.
+- «`Konventionscouranttaler` — die Bezeichnung der MÜNZE (24-Groschen-Variante zum Konventionstaler bei 32 Groschen), nicht ein eigener Müntzfuß-Name» — explains the project's *classification* of the term (whether it's a Fuß or a coin name). Useful to us; invisible noise to the reader, who just wants to know what «Konventionscouranttaler» is.
+- «Drei Datierungs-Anker — bewusst getrennt halten: 1667 / ~1700 / 1738. Die einzelne Standard-Karte zeigt ‹1566 → ca. 1700› als Faustanker; die Timeline-Visualisierung auf den Locations-Seiten gibt jeden Anker einer eigenen Schichtart (mint=1667, circulation=1700, status=1738), um die historische Asymmetrie sichtbar zu machen.» — pure project-decision narration. The reader cares that the three dates are documented; how *we* visualise them is not their concern.
+
+**Operational test before any line of text leaves your fingers, two questions:**
+
+1. *Which role am I writing for right now?*
+2. *Would a member of any other role be confused or misled by this sentence?*
+
+If sentence references «our card», «this artefact», «our `name` field», `CLAUDE.md`, `data/...yml` paths, or any project-decision rationale — and it's destined for a role-3 surface — it's mis-targeted. Cut it, or move the historical fact to the prose without the project-meta wrapper.
+
+This rule supersedes and concretises §0a (reader voice vs analyst voice): §0a says *what* the voice should sound like; §0z says *how to decide* which voice applies before opening the YAML or the chat. When the rules say similar things, §0z is the canonical decision-procedure; §0a is the executional style guide.
+
 ### 0a. Reader voice vs. analyst voice — strictly separate
 
 > **The artefact is written for the reader, not for us.** The reader is a numismatist or historian using the page as a finished reference work. The chat where we deliberate, weigh sources, and decide is one register; the YAML/HTML output where the conclusion lives is a different register. Do not bleed one into the other.
