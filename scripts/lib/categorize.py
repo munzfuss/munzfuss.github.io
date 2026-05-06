@@ -260,6 +260,77 @@ def compute_coin_year_runs(
 # Plön ducal coinage), but no such bars exist today.
 
 
+def derive_holstein_mint_overrides(loc: Location, fuesse: dict) -> dict:
+    """Auto-extend `events.first_mint.holstein` / `last_mint.holstein` per
+    Fuß from the actual coins assigned to it on a Holstein-scope page.
+
+    Returns a NEW dict `{fuss_id -> Fuss-with-overridden-events}` — only
+    Fuß systems whose coin span actually exceeds the existing event range
+    appear in the result; the rest of the global `fuesse` dict is left
+    untouched. Callers should merge this dict over the original before
+    handing it to `compute_bar_layers`.
+
+    Rules
+      * Only locations whose mint scope coincides with the events'
+        `holstein` axis run through this — currently only
+        `schleswig_holstein` (Schleswig + Holstein operated as one
+        monetary unit; the schema's `holstein` scope means this).
+      * Override is **extending only** — never shrinks an existing
+        event's range. If `events.first_mint.holstein = 1640` and the
+        earliest SH coin is 1645, we keep 1640 (the curator knew minting
+        started in 1640 even if our oldest catalog entry is later).
+      * Existing `None`s stay `None`. A Fuß whose curator explicitly
+        marked `holstein = None` ("never minted in Holstein") is
+        respected; we don't promote `None` to the data-derived range,
+        even if a coin slipped into the SH yaml. That keeps the curated
+        narrative authoritative. Stray cases surface elsewhere
+        (audit_year_ranges etc.).
+      * `approx_holstein` clears when we extend — the data is now
+        empirical, not approximate.
+    """
+    if loc.id != "schleswig_holstein":
+        return {}
+
+    spans: dict[str, list[int | None]] = {}
+    for c in loc.coins:
+        if c.year_first is None:
+            continue
+        yl = c.year_last if c.year_last is not None else c.year_first
+        cur = spans.setdefault(c.fuss, [c.year_first, yl])
+        if c.year_first < cur[0]:
+            cur[0] = c.year_first
+        if yl > cur[1]:
+            cur[1] = yl
+
+    overrides: dict = {}
+    for fid, (cmin, cmax) in spans.items():
+        f = fuesse.get(fid)
+        if f is None or f.events is None:
+            continue
+        ev = f.events
+        fm = ev.first_mint
+        lm = ev.last_mint
+        # Skip Fuß systems whose Holstein-mint axis is curator-set None
+        # (e.g. Copenhagen-only kronemont_chr_iv / kronemont_fine).
+        if fm is None or fm.holstein is None or lm is None or lm.holstein is None:
+            continue
+        new_fm_h = min(fm.holstein, cmin)
+        new_lm_h = max(lm.holstein, cmax)
+        if new_fm_h == fm.holstein and new_lm_h == lm.holstein:
+            continue  # nothing to extend
+        # Pydantic v2: model_copy(deep=True) on the whole Fuss is the
+        # cleanest way to avoid mutating the global registry.
+        new_f = f.model_copy(deep=True)
+        if new_f.events.first_mint.holstein != new_fm_h:
+            new_f.events.first_mint.holstein = new_fm_h
+            new_f.events.first_mint.approx_holstein = False
+        if new_f.events.last_mint.holstein != new_lm_h:
+            new_f.events.last_mint.holstein = new_lm_h
+            new_f.events.last_mint.approx_holstein = False
+        overrides[fid] = new_f
+    return overrides
+
+
 def compute_bar_layers(
     bars: list,
     fuesse: dict,

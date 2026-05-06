@@ -27,7 +27,10 @@ from pydantic import ValidationError
 sys.path.insert(0, str(Path(__file__).parent))
 
 from lib import i18n
-from lib.categorize import categorize, compute_bar_layers, compute_coin_year_runs, compute_hover_zones
+from lib.categorize import (
+    categorize, compute_bar_layers, compute_coin_year_runs,
+    compute_hover_zones, derive_holstein_mint_overrides,
+)
 from lib.compute import compute_location
 from lib.render import build_env, generate_css
 from lib.schema import Location, Fuss, I18nText
@@ -212,8 +215,30 @@ def build_location(
     coin_years = {}
     hover_zones = {}
     if loc.timeline:
+        # Auto-extend `events.first_mint.holstein` / `last_mint.holstein`
+        # from the actual SH coin spans so a freshly-added Bruun-era
+        # Speciedaler 1859 instantly shifts the mint layer right without
+        # needing a manual fuesse.yml edit. Other locations are no-ops.
+        mint_overrides = derive_holstein_mint_overrides(loc, fuesse)
+        if mint_overrides:
+            fuesse_for_bars = {**fuesse, **mint_overrides}
+            extensions = []
+            for fid, new_f in mint_overrides.items():
+                old_lm = fuesse[fid].events.last_mint.holstein
+                new_lm = new_f.events.last_mint.holstein
+                old_fm = fuesse[fid].events.first_mint.holstein
+                new_fm = new_f.events.first_mint.holstein
+                if new_fm != old_fm or new_lm != old_lm:
+                    extensions.append(
+                        f"{fid}: {old_fm}–{old_lm} → {new_fm}–{new_lm}"
+                    )
+            if extensions:
+                print(f"   📐 Mint-event auto-extend ({len(extensions)} fuesse): "
+                      + "; ".join(extensions))
+        else:
+            fuesse_for_bars = fuesse
         bar_layers = compute_bar_layers(
-            loc.timeline.bars, fuesse,
+            loc.timeline.bars, fuesse_for_bars,
             loc.timeline.year_from, loc.timeline.year_to,
             scope_mode=loc.timeline.scope_mode,
         )
