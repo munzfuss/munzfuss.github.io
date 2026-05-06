@@ -311,7 +311,10 @@ def build_landing(
         if any(c.fuss == "seed_unsorted" for c in loc.coins)
     }
     if include_seed:
-        visible_locations = list(locations)
+        # Stable-sort so non-seed locations land first on the grid; seed
+        # locations follow. Within each group the original location load
+        # order (alphabetical via glob) is preserved.
+        visible_locations = sorted(locations, key=lambda l: l.id in seed_ids)
         if seed_ids:
             print(f"🌱 Landing shows {len(seed_ids)} seed location(s) "
                   f"(local-build mode): {', '.join(sorted(seed_ids))}")
