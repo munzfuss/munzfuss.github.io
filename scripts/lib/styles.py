@@ -743,6 +743,17 @@ h2[style] {{
 .tl-filter-schauenburg_pinneberg {{ color: #c8b8d8; }}
 .tl-filter-sonderburg_duchy   {{ color: #88c8c0; }}
 .tl-filter-norburg_plon_duchy {{ color: #98c0e0; }}
+.tl-filter-glucksburg_duchy   {{ color: #88d4b0; }}
+.tl-filter-rantzau_county     {{ color: #c8c878; }}
+.tl-filter-hanseatic_hamburg  {{ color: #e8a890; }}
+.tl-filter-hanseatic_lubeck   {{ color: #e090d8; }}
+.tl-filter-fuerstbisthum_luebeck {{ color: #a0a0e8; }}
+.tl-filter-erzbisthum_bremen_verden {{ color: #dab080; }}
+.tl-filter-landgrafschaft_hessen_kassel {{ color: #d09870; }}
+.tl-filter-hochstift_osnabrueck {{ color: #ead070; }}
+.tl-filter-grafschaft_oldenburg {{ color: #78c490; }}
+.tl-filter-herzogtum_braunschweig_lueneburg {{ color: #d4ac38; }}
+.tl-filter-herzogtum_sachsen_lauenburg {{ color: #98a8c8; }}
 [data-theme="v1"] .tl-filter-royal_holstein,
 [data-theme="v2"] .tl-filter-royal_holstein     {{ color: #6b2424; }}
 [data-theme="v1"] .tl-filter-gottorp_duchy,
@@ -761,6 +772,28 @@ h2[style] {{
 [data-theme="v2"] .tl-filter-sonderburg_duchy   {{ color: #1f4a44; }}
 [data-theme="v1"] .tl-filter-norburg_plon_duchy,
 [data-theme="v2"] .tl-filter-norburg_plon_duchy {{ color: #1f4055; }}
+[data-theme="v1"] .tl-filter-glucksburg_duchy,
+[data-theme="v2"] .tl-filter-glucksburg_duchy   {{ color: #1f5840; }}
+[data-theme="v1"] .tl-filter-rantzau_county,
+[data-theme="v2"] .tl-filter-rantzau_county     {{ color: #4a4818; }}
+[data-theme="v1"] .tl-filter-hanseatic_hamburg,
+[data-theme="v2"] .tl-filter-hanseatic_hamburg  {{ color: #5a3520; }}
+[data-theme="v1"] .tl-filter-hanseatic_lubeck,
+[data-theme="v2"] .tl-filter-hanseatic_lubeck   {{ color: #5a1f5a; }}
+[data-theme="v1"] .tl-filter-fuerstbisthum_luebeck,
+[data-theme="v2"] .tl-filter-fuerstbisthum_luebeck {{ color: #202065; }}
+[data-theme="v1"] .tl-filter-erzbisthum_bremen_verden,
+[data-theme="v2"] .tl-filter-erzbisthum_bremen_verden {{ color: #5a4218; }}
+[data-theme="v1"] .tl-filter-landgrafschaft_hessen_kassel,
+[data-theme="v2"] .tl-filter-landgrafschaft_hessen_kassel {{ color: #5a3018; }}
+[data-theme="v1"] .tl-filter-hochstift_osnabrueck,
+[data-theme="v2"] .tl-filter-hochstift_osnabrueck {{ color: #564818; }}
+[data-theme="v1"] .tl-filter-grafschaft_oldenburg,
+[data-theme="v2"] .tl-filter-grafschaft_oldenburg {{ color: #1f4a2c; }}
+[data-theme="v1"] .tl-filter-herzogtum_braunschweig_lueneburg,
+[data-theme="v2"] .tl-filter-herzogtum_braunschweig_lueneburg {{ color: #5a481f; }}
+[data-theme="v1"] .tl-filter-herzogtum_sachsen_lauenburg,
+[data-theme="v2"] .tl-filter-herzogtum_sachsen_lauenburg {{ color: #1f3045; }}
 
 .tl-grid {{
   display: grid;
@@ -1276,6 +1309,17 @@ h2[style] {{
 .tl-coin-year-schauenburg_pinneberg {{ background: rgb(210, 175, 235); }}
 .tl-coin-year-norburg_plon_duchy {{ background: rgb(125, 185, 235); }}
 .tl-coin-year-sonderburg_duchy   {{ background: rgb(115, 215, 195); }}
+.tl-coin-year-glucksburg_duchy   {{ background: rgb(120, 220, 175); }}
+.tl-coin-year-rantzau_county     {{ background: rgb(220, 215, 110); }}
+.tl-coin-year-hanseatic_hamburg  {{ background: rgb(240, 165, 130); }}
+.tl-coin-year-hanseatic_lubeck   {{ background: rgb(225, 130, 220); }}
+.tl-coin-year-fuerstbisthum_luebeck {{ background: rgb(140, 140, 235); }}
+.tl-coin-year-erzbisthum_bremen_verden {{ background: rgb(220, 175, 110); }}
+.tl-coin-year-landgrafschaft_hessen_kassel {{ background: rgb(220, 145, 95); }}
+.tl-coin-year-hochstift_osnabrueck {{ background: rgb(240, 210, 95); }}
+.tl-coin-year-grafschaft_oldenburg {{ background: rgb(95, 200, 130); }}
+.tl-coin-year-herzogtum_braunschweig_lueneburg {{ background: rgb(225, 185, 65); }}
+.tl-coin-year-herzogtum_sachsen_lauenburg {{ background: rgb(150, 165, 200); }}
 /* Light-theme variants — fully-opaque, mid-saturation hues lifted ~30
    units per channel from the deepest base, so each entity reads as a
    distinct stripe but doesn't sit so dark as to clash with the cream
@@ -1301,6 +1345,28 @@ h2[style] {{
 [data-theme="v2"] .tl-coin-year-norburg_plon_duchy {{ background: rgb(60, 120, 160); }}
 [data-theme="v1"] .tl-coin-year-sonderburg_duchy,
 [data-theme="v2"] .tl-coin-year-sonderburg_duchy   {{ background: rgb(60, 135, 125); }}
+[data-theme="v1"] .tl-coin-year-glucksburg_duchy,
+[data-theme="v2"] .tl-coin-year-glucksburg_duchy   {{ background: rgb(60, 145, 105); }}
+[data-theme="v1"] .tl-coin-year-rantzau_county,
+[data-theme="v2"] .tl-coin-year-rantzau_county     {{ background: rgb(140, 130, 60); }}
+[data-theme="v1"] .tl-coin-year-hanseatic_hamburg,
+[data-theme="v2"] .tl-coin-year-hanseatic_hamburg  {{ background: rgb(170, 90, 60); }}
+[data-theme="v1"] .tl-coin-year-hanseatic_lubeck,
+[data-theme="v2"] .tl-coin-year-hanseatic_lubeck   {{ background: rgb(150, 60, 145); }}
+[data-theme="v1"] .tl-coin-year-fuerstbisthum_luebeck,
+[data-theme="v2"] .tl-coin-year-fuerstbisthum_luebeck {{ background: rgb(60, 60, 165); }}
+[data-theme="v1"] .tl-coin-year-erzbisthum_bremen_verden,
+[data-theme="v2"] .tl-coin-year-erzbisthum_bremen_verden {{ background: rgb(155, 110, 50); }}
+[data-theme="v1"] .tl-coin-year-landgrafschaft_hessen_kassel,
+[data-theme="v2"] .tl-coin-year-landgrafschaft_hessen_kassel {{ background: rgb(155, 75, 40); }}
+[data-theme="v1"] .tl-coin-year-hochstift_osnabrueck,
+[data-theme="v2"] .tl-coin-year-hochstift_osnabrueck {{ background: rgb(170, 135, 40); }}
+[data-theme="v1"] .tl-coin-year-grafschaft_oldenburg,
+[data-theme="v2"] .tl-coin-year-grafschaft_oldenburg {{ background: rgb(50, 130, 70); }}
+[data-theme="v1"] .tl-coin-year-herzogtum_braunschweig_lueneburg,
+[data-theme="v2"] .tl-coin-year-herzogtum_braunschweig_lueneburg {{ background: rgb(160, 130, 50); }}
+[data-theme="v1"] .tl-coin-year-herzogtum_sachsen_lauenburg,
+[data-theme="v2"] .tl-coin-year-herzogtum_sachsen_lauenburg {{ background: rgb(75, 100, 145); }}
 
 /* --- Per-year mintage marker visibility --------------------------------- */
 /* Markers are HIDDEN by default and become visible only when JS marks
@@ -2163,6 +2229,17 @@ summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
 .ent-badge.ent-schauenburg_pinneberg {{ background: #2a2532; color: #c8b8d8; border-color: #5a4a72; }}
 .ent-badge.ent-norburg_plon_duchy {{ background: #1f2a35; color: #98c0e0; border-color: #3d6080; }}
 .ent-badge.ent-sonderburg_duchy {{ background: #1a3030; color: #88c8c0; border-color: #3a6868; }}
+.ent-badge.ent-glucksburg_duchy  {{ background: #1a2e25; color: #88d4b0; border-color: #3a7058; }}
+.ent-badge.ent-rantzau_county    {{ background: #2a2a18; color: #c8c878; border-color: #6e6e38; }}
+.ent-badge.ent-hanseatic_hamburg {{ background: #38201a; color: #e8a890; border-color: #8a503a; }}
+.ent-badge.ent-hanseatic_lubeck  {{ background: #321a30; color: #e090d8; border-color: #8a3a8e; }}
+.ent-badge.ent-fuerstbisthum_luebeck {{ background: #1a1a3e; color: #a0a0e8; border-color: #454588; }}
+.ent-badge.ent-erzbisthum_bremen_verden {{ background: #322618; color: #dab080; border-color: #806038; }}
+.ent-badge.ent-landgrafschaft_hessen_kassel {{ background: #2e1f15; color: #d09870; border-color: #7a5538; }}
+.ent-badge.ent-hochstift_osnabrueck {{ background: #2c2810; color: #ead070; border-color: #7a6c30; }}
+.ent-badge.ent-grafschaft_oldenburg {{ background: #152a18; color: #78c490; border-color: #3a7048; }}
+.ent-badge.ent-herzogtum_braunschweig_lueneburg {{ background: #322c14; color: #d4ac38; border-color: #7a6c30; }}
+.ent-badge.ent-herzogtum_sachsen_lauenburg {{ background: #1f263a; color: #98a8c8; border-color: #3e4e72; }}
 /* Light-theme per-entity tints — warm pastels keyed off each entity's
    Noir hue, restated for the cream paper palette so the colour story
    («royal-Holstein burgundy», «Gottorp sage», «Danish-realm blue» …)
@@ -2186,6 +2263,28 @@ summary.fuss-summary:hover .fs-toggle {{ filter: brightness(1.08); }}
 [data-theme="v2"] .ent-badge.ent-norburg_plon_duchy {{ background: #d8e4ea; color: #1f4055; border-color: #6890a8; }}
 [data-theme="v1"] .ent-badge.ent-sonderburg_duchy,
 [data-theme="v2"] .ent-badge.ent-sonderburg_duchy   {{ background: #d4e6e2; color: #1f4a44; border-color: #6ea8a0; }}
+[data-theme="v1"] .ent-badge.ent-glucksburg_duchy,
+[data-theme="v2"] .ent-badge.ent-glucksburg_duchy   {{ background: #d4eadd; color: #1f5840; border-color: #6ea88c; }}
+[data-theme="v1"] .ent-badge.ent-rantzau_county,
+[data-theme="v2"] .ent-badge.ent-rantzau_county     {{ background: #e8e8c8; color: #4a4818; border-color: #909058; }}
+[data-theme="v1"] .ent-badge.ent-hanseatic_hamburg,
+[data-theme="v2"] .ent-badge.ent-hanseatic_hamburg  {{ background: #f0d8c8; color: #5a3520; border-color: #b07868; }}
+[data-theme="v1"] .ent-badge.ent-hanseatic_lubeck,
+[data-theme="v2"] .ent-badge.ent-hanseatic_lubeck   {{ background: #ecd0e8; color: #5a1f5a; border-color: #b070b0; }}
+[data-theme="v1"] .ent-badge.ent-fuerstbisthum_luebeck,
+[data-theme="v2"] .ent-badge.ent-fuerstbisthum_luebeck {{ background: #d8d8f0; color: #202065; border-color: #6868b8; }}
+[data-theme="v1"] .ent-badge.ent-erzbisthum_bremen_verden,
+[data-theme="v2"] .ent-badge.ent-erzbisthum_bremen_verden {{ background: #ecdcb8; color: #5a4218; border-color: #b09060; }}
+[data-theme="v1"] .ent-badge.ent-landgrafschaft_hessen_kassel,
+[data-theme="v2"] .ent-badge.ent-landgrafschaft_hessen_kassel {{ background: #ead8c8; color: #5a3018; border-color: #b08068; }}
+[data-theme="v1"] .ent-badge.ent-hochstift_osnabrueck,
+[data-theme="v2"] .ent-badge.ent-hochstift_osnabrueck {{ background: #ece0bc; color: #564818; border-color: #a89860; }}
+[data-theme="v1"] .ent-badge.ent-grafschaft_oldenburg,
+[data-theme="v2"] .ent-badge.ent-grafschaft_oldenburg {{ background: #d0e0d4; color: #1f4a2c; border-color: #6ea888; }}
+[data-theme="v1"] .ent-badge.ent-herzogtum_braunschweig_lueneburg,
+[data-theme="v2"] .ent-badge.ent-herzogtum_braunschweig_lueneburg {{ background: #ece0a0; color: #5a481f; border-color: #b09858; }}
+[data-theme="v1"] .ent-badge.ent-herzogtum_sachsen_lauenburg,
+[data-theme="v2"] .ent-badge.ent-herzogtum_sachsen_lauenburg {{ background: #d4dee8; color: #1f3045; border-color: #6e8aa8; }}
 
 /* Verification & translation markers */
 .unverified  {{ color: {sd_under_deep_fg}; cursor: help; font-weight: 600; font-family: var(--font-sans); }}
