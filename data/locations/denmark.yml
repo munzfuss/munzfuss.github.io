@@ -25,6 +25,8 @@ fuss_order:
   - guldkrone
   - 11_333_thaler
   - 18_5_thaler
+  - 30_thaler
+  - reichsgoldmuenzfuss
   - seed_unsorted
 
 # ---------------------------------------------------------------------
@@ -661,6 +663,36 @@ phases:
         de: 'Notreform Friedrichs VI. nach dem dänischen Staatsbankrott. Forordning vom 5. Januar 1813 setzt 18½ Rigsbankdaler aus 1 feinen Cöllnischen Marck (≈ 12,64 g fein pro Daler). §10 verankert ausdrücklich 1 Speciedaler = 2 Rigsbankdaler — eine glatte ½-Anteil-Anbindung an den 9¼-Thaler-Fuß, die den Übergang vom Kurantfuß logisch glättet. 1854 ohne Fußänderung in Rigsdaler Rigsmønt umbenannt; 1873–1875 ersetzt die Krone der Skandinavischen Münzunion (Schweden, Norwegen, Dänemark) den Rigsdaler.'
         en: 'Friedrich VI''s emergency reform after the Danish state bankruptcy. The Forordning of 5 January 1813 sets 18½ Rigsbankdaler per fine Cologne mark (≈ 12.64 g fine per daler). §10 explicitly anchors 1 Speciedaler = 2 Rigsbankdaler — a clean ½-share link to the 9¼-Thaler-Fuß that smoothly carries the transition from the Kurantfuß. Renamed Rigsdaler Rigsmønt in 1854 without any change of standard; in 1873–1875 the Krone of the Scandinavian Monetary Union (Sweden, Norway, Denmark) supersedes the Rigsdaler.'
         uk: 'Надзвичайна реформа Фредеріка VI після данського державного банкрутства. Forordning 5 січня 1813 встановлює 18½ Rigsbankdaler з 1 марки чистого срібла кельнської ваги (≈ 12,64 г чистого на даллер). §10 явно закріплює 1 Speciedaler = 2 Rigsbankdaler — чиста привʼязка ½-частки до 9¼-Thaler-Fuß, яка логічно згладжує перехід з Kurantfuß. 1854 р. перейменовується на Rigsdaler Rigsmønt без зміни стопи; 1873–1875 рр. Krone Скандинавської монетної унії (Швеція, Норвегія, Данія) заміщує Rigsdaler.'
+
+  30_thaler:
+    - id: A
+      year_from: 1873
+      year_to: 1947
+      from_label: 27. Mai 1873 (Skandinavische Münzunion)
+      to_label: 1947 (Christian X. †)
+      title:
+        de: "Skandinavische Krone-Mønt — 1 Krone = 100 Øre — Christian IX. → Christian X."
+        en: "Scandinavian Krone-Mønt — 1 Krone = 100 Øre — Christian IX → Christian X"
+        uk: "Скандинавська Krone-Mønt — 1 Krone = 100 Øre — Христіян IX → Христіян X"
+      description:
+        de: "Konvention vom 27. Mai 1873 zwischen Dänemark, Schweden (und 1875 Norwegen): einheitliche Krone-Goldwährung mit Silberscheidemünze (Krone-Mønt). 1 Krone = 100 Øre. <b>Hinweis zur Tagging-Konvention</b>: für die dänische Krone-Mønt wird in unserem Artefakt die Bezeichnung «30-Thaler-Fuß» (Reichs-Vereinsgesetz 1857) als Sammelschlüssel verwendet — die ältere 30-Thaler-Konvention läuft mit der Krone-Goldwährung zusammen, die Skandinavische Münzunion ist eine direkte Goldparität-Anpassung dazu (3 Krone = 4 Reichsmark). Eine separate <i>nordkrone</i>-Stope ist im Artefakt nicht angelegt; die Speziphika werden in den einzelnen Münznotizen vermerkt."
+        en: "Convention of 27 May 1873 between Denmark, Sweden (and Norway 1875): unified Krone gold currency with Krone-Mønt silver scheide. 1 Krone = 100 Øre. <b>Tagging convention note</b>: for the Danish Krone-Mønt our artefact uses the label «30-Thaler-Fuß» (Reichs-Vereinsgesetz 1857) as the bucket — the older 30-Thaler convention dovetails with the Krone gold currency, and the Scandinavian Monetary Union is a direct gold-parity alignment to it (3 Krone = 4 Reichsmark). A separate <i>nordkrone</i> standard is not maintained in the artefact; specifics are recorded in individual coin notes."
+        uk: "Конвенція 27 травня 1873 між Данією, Швецією (і 1875 Норвегією): єдина Krone-золота валюта з розмінною Krone-Mønt-срібною. 1 Krone = 100 Øre. <b>Примітка щодо тегування</b>: для данської Krone-Mønt у нашому артефакті використовується назва «30-Thaler-Fuß» (Райхс-Vereinsgesetz 1857) як збірний ключ — старіша 30-Thaler-конвенція поєднується зі Krone-золотою валютою, а Скандинавська монетна унія є прямою золотою паритетною прив'язкою до неї (3 Krone = 4 Reichsmark). Окрема <i>nordkrone</i>-стопа в артефакті не закладена; специфіка зазначена в нотатках до окремих монет."
+
+  reichsgoldmuenzfuss:
+    - id: A
+      year_from: 1873
+      year_to: 1914
+      from_label: 27. Mai 1873 (Skandinavische Münzunion)
+      to_label: 1914 (1. Weltkrieg)
+      title:
+        de: "Skandinavische Goldkrone — 10 Kroner / 20 Kroner — Christian IX. → Christian X."
+        en: "Scandinavian Gold Krone — 10 Kroner / 20 Kroner — Christian IX → Christian X"
+        uk: "Скандинавська золота Krone — 10 Kroner / 20 Kroner — Христіян IX → Христіян X"
+      description:
+        de: "Goldparität der Skandinavischen Münzunion 27. Mai 1873: 1 Krone = 0,4032 g feines Gold; 2480 Krone aus 1 kg feinem Gold. Standardprägungen 10 Krone (4,48 g rauh, .9000) und 20 Krone (8,96 g rauh, .9000). <b>Tagging-Konvention</b>: Reichsgoldmünzfuß verwendet, da die Goldparität direkt an den Reichs-Goldmark angeknüpft ist (3 Krone = 4 Reichsmark). Standard läuft 1914 (Beginn 1. Weltkrieg, faktisch Aussetzung der Goldkonvertibilität) faktisch aus."
+        en: "Gold parity of the Scandinavian Monetary Union of 27 May 1873: 1 Krone = 0.4032 g fine gold; 2,480 Krone from 1 kg of fine gold. Standard issues 10 Krone (4.48 g rough, .9000) and 20 Krone (8.96 g rough, .9000). <b>Tagging convention</b>: Reichsgoldmünzfuß used as the bucket because the gold parity is directly anchored to the German Goldmark (3 Krone = 4 Reichsmark). The standard effectively ends in 1914 (start of WWI, de-facto suspension of gold convertibility)."
+        uk: "Золота паритетна прив'язка Скандинавської монетної унії 27 травня 1873: 1 Krone = 0,4032 г чистого золота; 2480 Krone з 1 кг чистого золота. Стандартні емісії 10 Krone (4,48 г повної ваги, .9000) і 20 Krone (8,96 г повної ваги, .9000). <b>Конвенція тегування</b>: Reichsgoldmünzfuß як bucket, бо золота паритетність прямо привʼязана до Reichs-Goldmark (3 Krone = 4 Reichsmark). Стандарт фактично припиняється 1914 (початок Першої світової війни, фактичне призупинення золотої конвертованості)."
 
   seed_unsorted:
     - id: A
@@ -20986,3 +21018,1268 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17218, p. 111 (Bruun-coll. 8254)
+
+  # === Phase 4c, batch 7 — Christian IX (1863-1906) + Frederik VIII (1906-1912) + Christian X (1912-1947)
+  # Excluded per project window: P3·11148 (Christopher III 1440-42 Skilling, parser misdated to 1874).
+  # Routing:
+  # - Pre-1873 Christian IX gold (Christian d'Or KM-773) → reichsdukatenfuss D
+  # - Pre-1873 Christian IX silver (Rigsdaler/Skilling Rigsmønt) → 18_5_thaler A
+  # - 1873+ silver Krone-Mønt (Krone/2 Krone/Øre series) → 30_thaler A (Skand. Münzunion bucket)
+  # - 1873+ gold Krone (10/20 Kroner) → reichsgoldmuenzfuss A
+  # issuing_entity: gesamtstaat for pre-1864 (Helstaten); danish_realm for post-1864.
+  # Multi-spec merges per §9a: KM-773.2 (1869+1870), KM-772.2 (1871+1872), KM-790.1 (4 yrs),
+  # KM-791.1 (5 yrs), KM-790.2 (1898+1900), KM-810 (5 yrs Fr.VIII/Chr.X), KM-809 (1908+1909),
+  # KM-797.1 (3 yrs), KM-798.1 (2 yrs), KM-798.2 (2 yrs), KM-794.1 (2 yrs), KM-795.1 (3 yrs),
+  # KM-795.2 (2 yrs), KM-796.2 (2 yrs), KM-195.1 (2 yrs).
+  - id: km-773-1-chr-ix-1866
+    fuss: reichsdukatenfuss
+    phase: D
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Christian d'Or
+    year_label: '1866'
+    year_first: 1866
+    year_last: 1866
+    ruler: Christian IX.
+    catalog:
+      km: '773.1'
+      hede: 1A
+      sieg: '7.1'
+      schou: '1'
+      fr: '293'
+      bruun_collection_id: '8264'
+      bruun_part: IV
+      bruun_lot_no: 17225
+      bruun_page: 113
+    metal: gold
+    weight_rough_g:
+      - value: 13.27
+        source: Bruun IV, lot 17225 (Bruun-coll. 8264)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Christian d'Or 1866 (KM-773.1) · erste Christian-IX.-Goldprägung · Bruun-Specimen.
+      en: 2 Christian d'Or 1866 (KM-773.1) · Christian IX's first gold issue · Bruun specimen.
+      uk: 2 Christian d'Or 1866 (KM-773.1) · перше золоте карбування Христіяна IX · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17225, p. 113 (Bruun-coll. 8264)
+  - id: km-773-2-chr-ix-1869
+    fuss: reichsdukatenfuss
+    phase: D
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Christian d'Or
+    year_label: 1869, 1870
+    year_first: 1869
+    year_last: 1870
+    ruler: Christian IX.
+    catalog:
+      km: '773.2'
+      hede: 1B
+      sieg: '7.2'
+      schou: '1'
+      fr: '293'
+      bruun_collection_id: '8270'
+      bruun_part: IV
+      bruun_lot_no: 17226
+      bruun_page: 113
+    metal: gold
+    weight_rough_g:
+      - value: 13.28
+        source: Bruun IV, lot 17226 (Bruun-coll. 8270, 1869 specimen)
+      - value: 13.29
+        source: Bruun IV, lot 17227 (Bruun-coll. 8276, 1870 specimen)
+    year_ranges:
+      - [1869, 1870]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Christian d'Or 1869, 1870 (KM-773.2 Hede-1B) · zwei Bruun-Specimen aufeinanderfolgender Jahre.
+      en: 2 Christian d'Or 1869, 1870 (KM-773.2 Hede-1B) · two Bruun specimens from consecutive years.
+      uk: 2 Christian d'Or 1869, 1870 (KM-773.2 Hede-1B) · два зразки Bruun послідовних років.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17226, p. 113 (Bruun-coll. 8270, 1869 specimen)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17227, p. 114 (Bruun-coll. 8276, 1870 specimen)
+  - id: km-772-2-chr-ix-1871
+    fuss: 18_5_thaler
+    phase: A
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Rigsdaler
+    year_label: 1871, 1872
+    year_first: 1871
+    year_last: 1872
+    ruler: Christian IX.
+    catalog:
+      km: '772.2'
+      hede: 4B
+      sieg: '5.2'
+      schou: '1'
+      dav: '79'
+      bruun_collection_id: '8281'
+      bruun_part: IV
+      bruun_lot_no: 17229
+      bruun_page: 115
+    metal: silver
+    weight_rough_g:
+      - value: 28.88
+        source: Bruun IV, lot 17229 (Bruun-coll. 8281, 1871 specimen)
+      - value: 28.91
+        source: Bruun I, lot 1169 (Bruun-coll. 8290, 1872 specimen)
+    year_ranges:
+      - [1871, 1872]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Rigsdaler 1871, 1872 (KM-772.2 Hede-4B) · zwei Bruun-Specimen · letzte Rigsdaler-Prägungen vor der Krone-Reform 1873.
+      en: 2 Rigsdaler 1871, 1872 (KM-772.2 Hede-4B) · two Bruun specimens · final Rigsdaler issues before the 1873 Krone reform.
+      uk: 2 Rigsdaler 1871, 1872 (KM-772.2 Hede-4B) · два зразки Bruun · останні емісії Rigsdaler перед Krone-реформою 1873.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17229, p. 115 (Bruun-coll. 8281, 1871 specimen)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1169, p. 232 (Bruun-coll. 8290, 1872 specimen)
+  - id: km-775-2-chr-ix-1871
+    fuss: 18_5_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/24"
+    nominal: 4 Skilling Rigsmønt
+    year_label: '1871'
+    year_first: 1871
+    year_last: 1871
+    ruler: Christian IX.
+    catalog:
+      km: '775.2'
+      hede: 5B
+      sieg: '3.2'
+      schou: '2'
+      bruun_collection_id: '8284'
+      bruun_part: IV
+      bruun_lot_no: 17230
+      bruun_page: 115
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 4 Skilling Rigsmønt 1871 (KM-775.2 Hede-5B) · Bruun-Specimen.
+      en: 4 Skilling Rigsmønt 1871 (KM-775.2 Hede-5B) · Bruun specimen.
+      uk: 4 Skilling Rigsmønt 1871 (KM-775.2 Hede-5B) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17230, p. 115 (Bruun-coll. 8284)
+  # === Krone reform 1873 — gold series (Skandinavische Münzunion) ===
+  - id: km-791-1-chr-ix-1873
+    fuss: reichsgoldmuenzfuss
+    phase: A
+    kind: kurant
+    fraction: '20'
+    nominal: 20 Kroner
+    year_label: 1873, 1874, 1876, 1877, 1890
+    year_first: 1873
+    year_last: 1890
+    ruler: Christian IX.
+    catalog:
+      km: '791.1'
+      hede: 8A
+      sieg: '1.1'
+      schou: '2'
+      fr: '295'
+      bruun_collection_id: '8295'
+      bruun_part: IV
+      bruun_lot_no: 17231
+      bruun_page: 115
+    metal: gold
+    weight_rough_g:
+      - value: 8.95
+        source: Bruun IV, lot 17231 (Bruun-coll. 8295, 1873 specimen)
+      - value: 8.96
+        source: Bruun IV, lot 17233 (Bruun-coll. 8302, 1874 specimen)
+      - value: 8.96
+        source: Bruun IV, lot 17240 (Bruun-coll. 8326, 1876 specimen)
+      - value: 8.96
+        source: Bruun IV, lot 17243 (Bruun-coll. 8334, 1877 specimen)
+      - value: 8.96
+        source: Bruun I, lot 1170 (Bruun-coll. 8390, 1890 specimen)
+    year_ranges:
+      - [1873, 1874]
+      - [1876, 1877]
+      - [1890, 1890]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 20 Kroner 1873–1890 (KM-791.1 Hede-8A) · Goldprägung der Skandinavischen Münzunion · fünf Bruun-Specimen unterschiedlicher Jahre · Standardparität 3 Krone = 4 Reichsmark.
+      en: 20 Kroner 1873–1890 (KM-791.1 Hede-8A) · gold issue of the Scandinavian Monetary Union · five Bruun specimens from different years · standard parity 3 Krone = 4 Reichsmark.
+      uk: 20 Kroner 1873–1890 (KM-791.1 Hede-8A) · золоте карбування Скандинавської монетної унії · пʼять зразків Bruun різних років · стандартна паритетність 3 Krone = 4 Reichsmark.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17231, p. 115 (Bruun-coll. 8295, 1873)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17233, p. 115 (Bruun-coll. 8302, 1874)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17240, p. 117 (Bruun-coll. 8326, 1876)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17243, p. 117 (Bruun-coll. 8334, 1877)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1170, p. 233 (Bruun-coll. 8390, 1890)
+  - id: km-790-1-chr-ix-1873
+    fuss: reichsgoldmuenzfuss
+    phase: A
+    kind: kurant
+    fraction: '10'
+    nominal: 10 Kroner
+    year_label: 1873, 1874, 1877, 1890
+    year_first: 1873
+    year_last: 1890
+    ruler: Christian IX.
+    catalog:
+      km: '790.1'
+      hede: 9A
+      sieg: '1.1'
+      schou: '3'
+      fr: '296'
+      bruun_collection_id: '8296'
+      bruun_part: IV
+      bruun_lot_no: 17232
+      bruun_page: 115
+    metal: gold
+    weight_rough_g:
+      - value: 4.48
+        source: Bruun IV, lot 17232 (Bruun-coll. 8296, 1873 specimen)
+      - value: 4.48
+        source: Bruun IV, lot 17234 (Bruun-coll. 8303, 1874 specimen)
+      - value: 4.48
+        source: Bruun IV, lot 17244 (Bruun-coll. 8335, 1877 specimen)
+      - value: 4.48
+        source: Bruun IV, lot 17251 (Bruun-coll. 8391, 1890 specimen)
+    year_ranges:
+      - [1873, 1874]
+      - [1877, 1877]
+      - [1890, 1890]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 10 Kroner 1873-1890 (KM-790.1 Hede-9A) · vier Bruun-Specimen.
+      en: 10 Kroner 1873-1890 (KM-790.1 Hede-9A) · four Bruun specimens.
+      uk: 10 Kroner 1873-1890 (KM-790.1 Hede-9A) · чотири зразки Bruun.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17232, p. 115 (Bruun-coll. 8296, 1873)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17234, p. 116 (Bruun-coll. 8303, 1874)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17244, p. 118 (Bruun-coll. 8335, 1877)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17251, p. 119 (Bruun-coll. 8391, 1890)
+  - id: km-790-2-chr-ix-1898
+    fuss: reichsgoldmuenzfuss
+    phase: A
+    kind: kurant
+    fraction: '10'
+    nominal: 10 Kroner
+    year_label: 1898, 1900
+    year_first: 1898
+    year_last: 1900
+    ruler: Christian IX.
+    catalog:
+      km: '790.2'
+      hede: 9B
+      sieg: '1.2'
+      schou: '1'
+      bruun_collection_id: '8442'
+      bruun_part: IV
+      bruun_lot_no: 17260
+      bruun_page: 120
+    metal: gold
+    weight_rough_g:
+      - value: 4.48
+        source: Bruun IV, lot 17260 (Bruun-coll. 8442, 1898 specimen)
+      - value: 4.48
+        source: Bruun IV, lot 17264 (Bruun-coll. 8456, 1900 specimen, Schou-2)
+    year_ranges:
+      - [1898, 1898]
+      - [1900, 1900]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 10 Kroner 1898, 1900 (KM-790.2 Hede-9B, Untervariante zu KM-790.1) · zwei Bruun-Specimen.
+      en: 10 Kroner 1898, 1900 (KM-790.2 Hede-9B, sub-variant of KM-790.1) · two Bruun specimens.
+      uk: 10 Kroner 1898, 1900 (KM-790.2 Hede-9B, підваріант KM-790.1) · два зразки Bruun.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17260, p. 120 (Bruun-coll. 8442, 1898)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17264, p. 121 (Bruun-coll. 8456, 1900)
+  - id: km-791-2-chr-ix-1900
+    fuss: reichsgoldmuenzfuss
+    phase: A
+    kind: kurant
+    fraction: '20'
+    nominal: 20 Kroner
+    year_label: '1900'
+    year_first: 1900
+    year_last: 1900
+    ruler: Christian IX.
+    catalog:
+      km: '791.2'
+      hede: 8B
+      sieg: '1.2'
+      schou: '1'
+      bruun_collection_id: '8455'
+      bruun_part: IV
+      bruun_lot_no: 17263
+      bruun_page: 121
+    metal: gold
+    weight_rough_g:
+      - value: 8.96
+        source: Bruun IV, lot 17263 (Bruun-coll. 8455)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 20 Kroner 1900 (KM-791.2 Hede-8B, Untervariante zu KM-791.1) · Bruun-Specimen.
+      en: 20 Kroner 1900 (KM-791.2 Hede-8B, sub-variant of KM-791.1) · Bruun specimen.
+      uk: 20 Kroner 1900 (KM-791.2 Hede-8B, підваріант KM-791.1) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17263, p. 121 (Bruun-coll. 8455)
+  - id: km-810-fr-viii-1908
+    fuss: reichsgoldmuenzfuss
+    phase: A
+    kind: kurant
+    fraction: '20'
+    nominal: 20 Kroner
+    year_label: 1908-1912
+    year_first: 1908
+    year_last: 1912
+    ruler: Frederik VIII. / Christian X.
+    catalog:
+      km: '810'
+      hede: '1'
+      sieg: '2'
+      schou: '1'
+      fr: '297'
+      bruun_collection_id: '8478'
+      bruun_part: IV
+      bruun_lot_no: 17271
+      bruun_page: 122
+    metal: gold
+    weight_rough_g:
+      - value: 8.96
+        source: Bruun IV, lot 17271 (Bruun-coll. 8478, 1908)
+      - value: 8.96
+        source: Bruun IV, lot 17273 (Bruun-coll. 8485, 1909)
+      - value: 8.96
+        source: Bruun I, lot 1171 (Bruun-coll. 8500, 1910)
+      - value: 8.96
+        source: Bruun IV, lot 17275 (Bruun-coll. 8503, 1911)
+      - value: 8.96
+        source: Bruun IV, lot 17278 (Bruun-coll. 8508, 1912)
+    year_ranges:
+      - [1908, 1912]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 20 Kroner 1908-1912 (KM-810 Hede-1) · fünf Bruun-Specimen über zwei Herrscher (Frederik VIII. †1912, Christian X. ab 1912) · einheitlicher Stempel.
+      en: 20 Kroner 1908-1912 (KM-810 Hede-1) · five Bruun specimens spanning two rulers (Frederik VIII †1912, Christian X from 1912) · same die.
+      uk: 20 Kroner 1908-1912 (KM-810 Hede-1) · пʼять зразків Bruun, два правителі (Фредерік VIII †1912, Христіян X з 1912) · однаковий штемпель.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17271, p. 122 (Bruun-coll. 8478, 1908)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17273, p. 122 (Bruun-coll. 8485, 1909)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1171, p. 235 (Bruun-coll. 8500, 1910)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17275, p. 123 (Bruun-coll. 8503, 1911)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17278, p. 124 (Bruun-coll. 8508, 1912)
+  - id: km-809-fr-viii-1908
+    fuss: reichsgoldmuenzfuss
+    phase: A
+    kind: kurant
+    fraction: '10'
+    nominal: 10 Kroner
+    year_label: 1908, 1909
+    year_first: 1908
+    year_last: 1909
+    ruler: Frederik VIII.
+    catalog:
+      km: '809'
+      hede: '2'
+      sieg: '2'
+      schou: '2'
+      fr: '298'
+      bruun_collection_id: '8479'
+      bruun_part: IV
+      bruun_lot_no: 17272
+      bruun_page: 122
+    metal: gold
+    weight_rough_g:
+      - value: 4.48
+        source: Bruun IV, lot 17272 (Bruun-coll. 8479, 1908)
+      - value: 4.48
+        source: Bruun IV, lot 17274 (Bruun-coll. 8486, 1909)
+    year_ranges:
+      - [1908, 1909]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 10 Kroner 1908, 1909 (KM-809 Hede-2) · zwei Bruun-Specimen Frederiks VIII.
+      en: 10 Kroner 1908, 1909 (KM-809 Hede-2) · two Bruun specimens of Frederik VIII.
+      uk: 10 Kroner 1908, 1909 (KM-809 Hede-2) · два зразки Bruun Фредеріка VIII.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17272, p. 122 (Bruun-coll. 8479, 1908)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17274, p. 123 (Bruun-coll. 8486, 1909)
+  - id: km-816-chr-x-1913
+    fuss: reichsgoldmuenzfuss
+    phase: A
+    kind: kurant
+    fraction: '10'
+    nominal: 10 Kroner
+    year_label: '1913'
+    year_first: 1913
+    year_last: 1913
+    ruler: Christian X.
+    catalog:
+      km: '816'
+      hede: '2'
+      sieg: '3'
+      schou: '2'
+      fr: '300'
+      bruun_collection_id: '8513'
+      bruun_part: IV
+      bruun_lot_no: 17279
+      bruun_page: 124
+    metal: gold
+    weight_rough_g:
+      - value: 4.49
+        source: Bruun IV, lot 17279 (Bruun-coll. 8513)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 10 Kroner 1913 (KM-816 Hede-2) · erste Christian-X.-10-Kroner-Prägung · Bruun-Specimen.
+      en: 10 Kroner 1913 (KM-816 Hede-2) · Christian X's first 10 Kroner issue · Bruun specimen.
+      uk: 10 Kroner 1913 (KM-816 Hede-2) · перше карбування 10 Kroner Христіяна X · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17279, p. 124 (Bruun-coll. 8513)
+  - id: km-817-1-chr-x-1914
+    fuss: reichsgoldmuenzfuss
+    phase: A
+    kind: kurant
+    fraction: '20'
+    nominal: 20 Kroner
+    year_label: '1914'
+    year_first: 1914
+    year_last: 1914
+    ruler: Christian X.
+    catalog:
+      km: '817.1'
+      hede: 1A
+      sieg: '3.1'
+      schou: '1'
+      fr: '299'
+      bruun_collection_id: '8519'
+      bruun_part: IV
+      bruun_lot_no: 17282
+      bruun_page: 125
+    metal: gold
+    weight_rough_g:
+      - value: 8.95
+        source: Bruun IV, lot 17282 (Bruun-coll. 8519)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 20 Kroner 1914 (KM-817.1 Hede-1A) · letzte 20-Kroner-Prägung vor dem Beginn des 1. Weltkriegs (faktisches Ende der Skandinavischen Münzunion-Goldparität) · Bruun-Specimen.
+      en: 20 Kroner 1914 (KM-817.1 Hede-1A) · last 20 Kroner issue before WWI (de-facto end of the Scandinavian Monetary Union gold parity) · Bruun specimen.
+      uk: 20 Kroner 1914 (KM-817.1 Hede-1A) · останнє карбування 20 Kroner до початку Першої світової війни (фактичний кінець золотої паритетності Скандинавської монетної унії) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17282, p. 125 (Bruun-coll. 8519)
+  # === Krone reform 1873 — silver Krone-Mønt ===
+  - id: km-797-1-chr-ix-1875
+    fuss: 30_thaler
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Krone
+    year_label: 1875, 1876, 1892
+    year_first: 1875
+    year_last: 1892
+    ruler: Christian IX.
+    catalog:
+      km: '797.1'
+      hede: 14A
+      sieg: '1.1'
+      schou: '2'
+      bruun_collection_id: '8311'
+      bruun_part: IV
+      bruun_lot_no: 17238
+      bruun_page: 117
+    metal: silver
+    weight_rough_g:
+      - value: 7.52
+        source: Bruun IV, lot 17238 (Bruun-coll. 8311, 1875 specimen)
+      - value: 7.59
+        source: Bruun IV, lot 17242 (Bruun-coll. 8330, 1876 specimen)
+      - value: 7.51
+        source: Bruun IV, lot 17255 (Bruun-coll. 8412, 1892 specimen)
+    year_ranges:
+      - [1875, 1876]
+      - [1892, 1892]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Krone 1875, 1876, 1892 (KM-797.1 Hede-14A) · drei Bruun-Specimen · Krone-Mønt-Silberprägung der Skandinavischen Münzunion.
+      en: Krone 1875, 1876, 1892 (KM-797.1 Hede-14A) · three Bruun specimens · Krone-Mønt silver issue of the Scandinavian Monetary Union.
+      uk: Krone 1875, 1876, 1892 (KM-797.1 Hede-14A) · три зразки Bruun · срібне карбування Krone-Mønt Скандинавської монетної унії.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17238, p. 117 (Bruun-coll. 8311, 1875)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17242, p. 117 (Bruun-coll. 8330, 1876)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17255, p. 119 (Bruun-coll. 8412, 1892)
+  - id: km-797-2-chr-ix-1898
+    fuss: 30_thaler
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Krone
+    year_label: '1898'
+    year_first: 1898
+    year_last: 1898
+    ruler: Christian IX.
+    catalog:
+      km: '797.2'
+      hede: 14B
+      sieg: '1.2'
+      schou: '2'
+      bruun_collection_id: '8443'
+      bruun_part: IV
+      bruun_lot_no: 17261
+      bruun_page: 120
+    metal: silver
+    weight_rough_g:
+      - value: 7.50
+        source: Bruun IV, lot 17261 (Bruun-coll. 8443)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Krone 1898 (KM-797.2 Hede-14B, Untervariante) · Bruun-Specimen.
+      en: Krone 1898 (KM-797.2 Hede-14B, sub-variant) · Bruun specimen.
+      uk: Krone 1898 (KM-797.2 Hede-14B, підваріант) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17261, p. 120 (Bruun-coll. 8443)
+  - id: km-798-1-chr-ix-1875
+    fuss: 30_thaler
+    phase: A
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Kroner
+    year_label: 1875, 1876
+    year_first: 1875
+    year_last: 1876
+    ruler: Christian IX.
+    catalog:
+      km: '798.1'
+      hede: 13A
+      sieg: '1.1'
+      schou: '1'
+      bruun_collection_id: '8310'
+      bruun_part: IV
+      bruun_lot_no: 17237
+      bruun_page: 116
+    metal: silver
+    weight_rough_g:
+      - value: 14.99
+        source: Bruun IV, lot 17237 (Bruun-coll. 8310, 1875)
+      - value: 15.01
+        source: Bruun IV, lot 17241 (Bruun-coll. 8329, 1876)
+    year_ranges:
+      - [1875, 1876]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Kroner 1875, 1876 (KM-798.1 Hede-13A) · zwei Bruun-Specimen · erste 2-Kroner-Serie der Krone-Reform.
+      en: 2 Kroner 1875, 1876 (KM-798.1 Hede-13A) · two Bruun specimens · first 2 Kroner series of the Krone reform.
+      uk: 2 Kroner 1875, 1876 (KM-798.1 Hede-13A) · два зразки Bruun · перша серія 2 Kroner Krone-реформи.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17237, p. 116 (Bruun-coll. 8310, 1875)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17241, p. 117 (Bruun-coll. 8329, 1876)
+  - id: km-798-2-chr-ix-1897
+    fuss: 30_thaler
+    phase: A
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Kroner
+    year_label: 1897, 1899
+    year_first: 1897
+    year_last: 1899
+    ruler: Christian IX.
+    catalog:
+      km: '798.2'
+      hede: 13B
+      sieg: '1.2'
+      schou: '1'
+      bruun_collection_id: '8434'
+      bruun_part: IV
+      bruun_lot_no: 17258
+      bruun_page: 120
+    metal: silver
+    weight_rough_g:
+      - value: 14.99
+        source: Bruun IV, lot 17258 (Bruun-coll. 8434, 1897)
+      - value: 15.00
+        source: Bruun IV, lot 17262 (Bruun-coll. 8451, 1899)
+    year_ranges:
+      - [1897, 1897]
+      - [1899, 1899]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Kroner 1897, 1899 (KM-798.2 Hede-13B, Untervariante zu KM-798.1) · zwei Bruun-Specimen.
+      en: 2 Kroner 1897, 1899 (KM-798.2 Hede-13B, sub-variant of KM-798.1) · two Bruun specimens.
+      uk: 2 Kroner 1897, 1899 (KM-798.2 Hede-13B, підваріант KM-798.1) · два зразки Bruun.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17258, p. 120 (Bruun-coll. 8434, 1897)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17262, p. 121 (Bruun-coll. 8451, 1899)
+  - id: km-799-chr-ix-1888
+    fuss: 30_thaler
+    phase: A
+    kind: gedenk
+    fraction: '2'
+    nominal: Commemorative 2 Kroner
+    year_label: '1888'
+    year_first: 1888
+    year_last: 1888
+    ruler: Christian IX.
+    catalog:
+      km: '799'
+      hede: '10'
+      sieg: '1'
+      schou: '1'
+      bruun_collection_id: '8385'
+      bruun_part: IV
+      bruun_lot_no: 17249
+      bruun_page: 118
+    metal: silver
+    weight_rough_g:
+      - value: 14.98
+        source: Bruun IV, lot 17249 (Bruun-coll. 8385)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Commemorative 2 Kroner 1888 (KM-799 Hede-10) · zur 25. Regierungsfeier Christians IX. · Bruun-Specimen.
+      en: Commemorative 2 Kroner 1888 (KM-799 Hede-10) · for the 25th anniversary of Christian IX's reign · Bruun specimen.
+      uk: Commemorative 2 Kroner 1888 (KM-799 Hede-10) · до 25-ї річниці правління Христіяна IX · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17249, p. 118 (Bruun-coll. 8385)
+  - id: km-800-chr-ix-1892
+    fuss: 30_thaler
+    phase: A
+    kind: gedenk
+    fraction: '2'
+    nominal: 2 Kroner
+    year_label: '1892'
+    year_first: 1892
+    year_last: 1892
+    ruler: Christian IX.
+    catalog:
+      km: '800'
+      hede: '11'
+      sieg: '2'
+      schou: '1'
+      bruun_collection_id: '8411'
+      bruun_part: IV
+      bruun_lot_no: 17254
+      bruun_page: 119
+    metal: silver
+    weight_rough_g:
+      - value: 15.01
+        source: Bruun IV, lot 17254 (Bruun-coll. 8411)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Kroner 1892 Gedenkmünze (KM-800 Hede-11) · zur Goldenen Hochzeit Christians IX. · Bruun-Specimen.
+      en: 2 Kroner 1892 commemorative (KM-800 Hede-11) · for the Golden Wedding of Christian IX · Bruun specimen.
+      uk: 2 Kroner 1892 памʼятна (KM-800 Hede-11) · до Золотого весілля Христіяна IX · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17254, p. 119 (Bruun-coll. 8411)
+  - id: km-802-chr-ix-1903
+    fuss: 30_thaler
+    phase: A
+    kind: gedenk
+    fraction: '2'
+    nominal: 2 Kroner
+    year_label: '1903'
+    year_first: 1903
+    year_last: 1903
+    ruler: Christian IX.
+    catalog:
+      km: '802'
+      hede: '12'
+      sieg: '3'
+      schou: '1'
+      bruun_collection_id: '8467'
+      bruun_part: IV
+      bruun_lot_no: 17265
+      bruun_page: 121
+    metal: silver
+    weight_rough_g:
+      - value: 14.98
+        source: Bruun IV, lot 17265 (Bruun-coll. 8467, regular)
+      - value: 14.97
+        source: Bruun IV, lot 17266 (Bruun-coll. 8468, "Experimental Commemorative" variant)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Kroner 1903 (KM-802 Hede-12) · zum 40. Regierungsjubiläum Christians IX. · zwei Bruun-Specimen (regulär + "Experimental Commemorative" Variante).
+      en: 2 Kroner 1903 (KM-802 Hede-12) · for Christian IX's 40-year reign jubilee · two Bruun specimens (regular + "Experimental Commemorative" variant).
+      uk: 2 Kroner 1903 (KM-802 Hede-12) · до 40-річчя правління Христіяна IX · два зразки Bruun (звичайний + "Experimental Commemorative" варіант).
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17265, p. 121 (Bruun-coll. 8467, regular)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17266, p. 121 (Bruun-coll. 8468, Experimental)
+  - id: km-803-fr-viii-1906
+    fuss: 30_thaler
+    phase: A
+    kind: gedenk
+    fraction: '2'
+    nominal: Commemorative 2 Kroner
+    year_label: '1906'
+    year_first: 1906
+    year_last: 1906
+    ruler: Frederik VIII.
+    catalog:
+      km: '803'
+      hede: '3'
+      sieg: '4'
+      schou: '1'
+      bruun_collection_id: '8472'
+      bruun_part: IV
+      bruun_lot_no: 17270
+      bruun_page: 122
+    metal: silver
+    weight_rough_g:
+      - value: 14.98
+        source: Bruun IV, lot 17270 (Bruun-coll. 8472)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Commemorative 2 Kroner 1906 (KM-803 Hede-3) · zur Thronbesteigung Frederiks VIII. nach dem Tod Christians IX. · Bruun-Specimen.
+      en: Commemorative 2 Kroner 1906 (KM-803 Hede-3) · for Frederik VIII's accession after Christian IX's death · Bruun specimen.
+      uk: Commemorative 2 Kroner 1906 (KM-803 Hede-3) · до сходження на престол Фредеріка VIII після смерті Христіяна IX · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17270, p. 122 (Bruun-coll. 8472)
+  # === Krone-Mønt Øre series 1874-1914 ===
+  - id: km-794-1-chr-ix-1874
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/6"
+    nominal: 5 Øre
+    year_label: 1874, 1882
+    year_first: 1874
+    year_last: 1882
+    ruler: Christian IX.
+    catalog:
+      km: '794.1'
+      hede: 17A
+      sieg: '1.1'
+      schou: '6'
+      bruun_collection_id: '8307'
+      bruun_part: IV
+      bruun_lot_no: 17236
+      bruun_page: 116
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 5 Øre 1874, 1882 (KM-794.1 Hede-17A) · zwei Bruun-Specimen · Krone-Mønt-Scheidemünze 1/20 Krone.
+      en: 5 Øre 1874, 1882 (KM-794.1 Hede-17A) · two Bruun specimens · Krone-Mønt 1/20 Krone petty coin.
+      uk: 5 Øre 1874, 1882 (KM-794.1 Hede-17A) · два зразки Bruun · розмінна монета Krone-Mønt 1/20 Krone.
+    year_ranges:
+      - [1874, 1874]
+      - [1882, 1882]
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17236, p. 116 (Bruun-coll. 8307, 1874)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17246, p. 118 (1882 specimen)
+  - id: km-794-2-chr-ix-1904
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/6"
+    nominal: 5 Øre
+    year_label: '1904'
+    year_first: 1904
+    year_last: 1904
+    ruler: Christian IX.
+    catalog:
+      km: '794.2'
+      hede: 17B
+      sieg: '1.2'
+      schou: '3'
+      bruun_collection_id: '8474'
+      bruun_part: IV
+      bruun_lot_no: 17268
+      bruun_page: 122
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 5 Øre 1904 (KM-794.2 Hede-17B, Untervariante) · Bruun-Specimen.
+      en: 5 Øre 1904 (KM-794.2 Hede-17B, sub-variant) · Bruun specimen.
+      uk: 5 Øre 1904 (KM-794.2 Hede-17B, підваріант) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17268, p. 122 (Bruun-coll. 8474)
+  - id: km-795-1-chr-ix-1874
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/12"
+    nominal: 10 Øre
+    year_label: 1874, 1884, 1891
+    year_first: 1874
+    year_last: 1891
+    ruler: Christian IX.
+    catalog:
+      km: '795.1'
+      hede: 16A
+      sieg: '9.1'
+      schou: '5'
+      bruun_collection_id: '8306'
+      bruun_part: IV
+      bruun_lot_no: 17235
+      bruun_page: 116
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 10 Øre 1874, 1884, 1891 (KM-795.1 Hede-16A) · drei Bruun-Specimen · Krone-Mønt-Scheidemünze 1/10 Krone.
+      en: 10 Øre 1874, 1884, 1891 (KM-795.1 Hede-16A) · three Bruun specimens · Krone-Mønt 1/10 Krone petty coin.
+      uk: 10 Øre 1874, 1884, 1891 (KM-795.1 Hede-16A) · три зразки Bruun · розмінна монета Krone-Mønt 1/10 Krone.
+    year_ranges:
+      - [1874, 1874]
+      - [1884, 1884]
+      - [1891, 1891]
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17235, p. 116 (Bruun-coll. 8306, 1874)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17247, p. 118 (1884 specimen)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17253, p. 119 (1891 specimen)
+  - id: km-195-1-chr-ix-1882
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/12"
+    nominal: 10 Øre
+    year_label: 1882, 1888
+    year_first: 1882
+    year_last: 1888
+    ruler: Christian IX.
+    catalog:
+      km: '195.1'
+      hede: 16A
+      sieg: '9.1'
+      schou: '1'
+      bruun_collection_id: '8345'
+      bruun_part: IV
+      bruun_lot_no: 17245
+      bruun_page: 118
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 10 Øre 1882, 1888 (KM-195.1 Hede-16A — Bruun-Katalog gibt KM-195.1 statt KM-795.1; vermutlich Krause-Variante oder Tippfehler im Katalog) · zwei Bruun-Specimen.
+      en: 10 Øre 1882, 1888 (KM-195.1 Hede-16A — Bruun catalogue gives KM-195.1 instead of KM-795.1; presumably a Krause variant or catalogue typo) · two Bruun specimens.
+      uk: 10 Øre 1882, 1888 (KM-195.1 Hede-16A — каталог Bruun дає KM-195.1 замість KM-795.1; ймовірно варіант Krause або типографічна помилка) · два зразки Bruun.
+    year_ranges:
+      - [1882, 1882]
+      - [1888, 1888]
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17245, p. 118 (Bruun-coll. 8345, 1882)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17250, p. 119 (1888 specimen)
+  - id: km-795-2-chr-ix-1897
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/12"
+    nominal: 10 Øre
+    year_label: 1897, 1903
+    year_first: 1897
+    year_last: 1903
+    ruler: Christian IX.
+    catalog:
+      km: '795.2'
+      hede: 16B
+      sieg: '9.1'
+      schou: '2'
+      bruun_collection_id: '8438'
+      bruun_part: IV
+      bruun_lot_no: 17259
+      bruun_page: 120
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 10 Øre 1897, 1903 (KM-795.2 Hede-16B, Untervariante zu KM-795.1) · zwei Bruun-Specimen.
+      en: 10 Øre 1897, 1903 (KM-795.2 Hede-16B, sub-variant of KM-795.1) · two Bruun specimens.
+      uk: 10 Øre 1897, 1903 (KM-795.2 Hede-16B, підваріант KM-795.1) · два зразки Bruun.
+    year_ranges:
+      - [1897, 1897]
+      - [1903, 1903]
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17259, p. 120 (Bruun-coll. 8438, 1897)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17267, p. 121 (1903 specimen)
+  - id: km-796-1-chr-ix-1891
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/24"
+    nominal: 25 Øre
+    year_label: '1891'
+    year_first: 1891
+    year_last: 1891
+    ruler: Christian IX.
+    catalog:
+      km: '796.1'
+      hede: 15A
+      sieg: '1.1'
+      schou: '1'
+      bruun_collection_id: '8401'
+      bruun_part: IV
+      bruun_lot_no: 17252
+      bruun_page: 119
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 25 Øre 1891 (KM-796.1 Hede-15A) · Bruun-Specimen.
+      en: 25 Øre 1891 (KM-796.1 Hede-15A) · Bruun specimen.
+      uk: 25 Øre 1891 (KM-796.1 Hede-15A) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17252, p. 119 (Bruun-coll. 8401)
+  - id: km-796-2-chr-ix-1894
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/24"
+    nominal: 25 Øre
+    year_label: 1894, 1905
+    year_first: 1894
+    year_last: 1905
+    ruler: Christian IX.
+    catalog:
+      km: '796.2'
+      hede: 15B
+      sieg: '1.2'
+      schou: '1'
+      bruun_collection_id: '8420'
+      bruun_part: IV
+      bruun_lot_no: 17256
+      bruun_page: 120
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 25 Øre 1894, 1905 (KM-796.2 Hede-15B, Untervariante zu KM-796.1) · zwei Bruun-Specimen.
+      en: 25 Øre 1894, 1905 (KM-796.2 Hede-15B, sub-variant of KM-796.1) · two Bruun specimens.
+      uk: 25 Øre 1894, 1905 (KM-796.2 Hede-15B, підваріант KM-796.1) · два зразки Bruun.
+    year_ranges:
+      - [1894, 1894]
+      - [1905, 1905]
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17256, p. 120 (Bruun-coll. 8420, 1894)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17269, p. 122 (1905 specimen)
+  - id: km-792-2-chr-ix-1894
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/192"
+    nominal: 1 Øre
+    year_label: '1894'
+    year_first: 1894
+    year_last: 1894
+    ruler: Christian IX.
+    catalog:
+      km: '792.2'
+      hede: 19B
+      sieg: '1.2'
+      schou: '5'
+      bruun_collection_id: '8421'
+      bruun_part: IV
+      bruun_lot_no: 17257
+      bruun_page: 120
+    metal: copper
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 1 Øre 1894 (KM-792.2 Hede-19B) · Bruun-Specimen.
+      en: 1 Øre 1894 (KM-792.2 Hede-19B) · Bruun specimen.
+      uk: 1 Øre 1894 (KM-792.2 Hede-19B) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17257, p. 120 (Bruun-coll. 8421)
+  - id: km-793-1-chr-ix-1887
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/96"
+    nominal: 2 Øre
+    year_label: '1887'
+    year_first: 1887
+    year_last: 1887
+    ruler: Christian IX.
+    catalog:
+      km: '793.1'
+      hede: 18A
+      sieg: '1.1'
+      schou: '1'
+      bruun_collection_id: '8377'
+      bruun_part: IV
+      bruun_lot_no: 17248
+      bruun_page: 118
+    metal: copper
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Øre 1887 (KM-793.1 Hede-18A) · Bruun-Specimen.
+      en: 2 Øre 1887 (KM-793.1 Hede-18A) · Bruun specimen.
+      uk: 2 Øre 1887 (KM-793.1 Hede-18A) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17248, p. 118 (Bruun-coll. 8377)
+  # === Frederik VIII (1906-1912) silver ===
+  - id: km-808-fr-viii-1911
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/24"
+    nominal: 25 Øre
+    year_label: '1911'
+    year_first: 1911
+    year_last: 1911
+    ruler: Frederik VIII.
+    catalog:
+      km: '808'
+      hede: '4'
+      sieg: '2'
+      schou: '2'
+      bruun_collection_id: '8504'
+      bruun_part: IV
+      bruun_lot_no: 17276
+      bruun_page: 124
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 25 Øre 1911 (KM-808 Hede-4) · Frederik VIII. Bruun-Specimen.
+      en: 25 Øre 1911 (KM-808 Hede-4) · Frederik VIII Bruun specimen.
+      uk: 25 Øre 1911 (KM-808 Hede-4) · Фредерік VIII Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17276, p. 124 (Bruun-coll. 8504)
+  - id: km-807-fr-viii-1911
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/12"
+    nominal: 10 Øre
+    year_label: '1911'
+    year_first: 1911
+    year_last: 1911
+    ruler: Frederik VIII.
+    catalog:
+      km: '807'
+      hede: '5'
+      sieg: '10.1'
+      schou: '3'
+      bruun_collection_id: '8505'
+      bruun_part: IV
+      bruun_lot_no: 17277
+      bruun_page: 124
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 10 Øre 1911 (KM-807 Hede-5) · Frederik VIII. Bruun-Specimen.
+      en: 10 Øre 1911 (KM-807 Hede-5) · Frederik VIII Bruun specimen.
+      uk: 10 Øre 1911 (KM-807 Hede-5) · Фредерік VIII Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17277, p. 124 (Bruun-coll. 8505)
+  # === Christian X (1912-1947) ===
+  - id: km-813-chr-x-1913
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/96"
+    nominal: 2 Øre
+    year_label: '1913'
+    year_first: 1913
+    year_last: 1913
+    ruler: Christian X.
+    catalog:
+      km: '813'
+      hede: 16A
+      sieg: '3.1'
+      schou: '5'
+      bruun_collection_id: '8515'
+      bruun_part: IV
+      bruun_lot_no: 17281
+      bruun_page: 124
+    metal: copper
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Øre 1913 (KM-813 Hede-16A) · Christian X. Bruun-Specimen.
+      en: 2 Øre 1913 (KM-813 Hede-16A) · Christian X Bruun specimen.
+      uk: 2 Øre 1913 (KM-813 Hede-16A) · Христіян X Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17281, p. 124 (Bruun-coll. 8515)
+  - id: km-814-1-chr-x-1913
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/6"
+    nominal: 5 Øre
+    year_label: '1913'
+    year_first: 1913
+    year_last: 1913
+    ruler: Christian X.
+    catalog:
+      km: '814.1'
+      hede: 14A
+      sieg: '3.1'
+      schou: '4'
+      bruun_collection_id: '8514'
+      bruun_part: IV
+      bruun_lot_no: 17280
+      bruun_page: 124
+    metal: copper
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 5 Øre 1913 (KM-814.1 Hede-14A) · Christian X. Bruun-Specimen.
+      en: 5 Øre 1913 (KM-814.1 Hede-14A) · Christian X Bruun specimen.
+      uk: 5 Øre 1913 (KM-814.1 Hede-14A) · Христіян X Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17280, p. 124 (Bruun-coll. 8514)
+  - id: km-815-1-chr-x-1914
+    fuss: 30_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/24"
+    nominal: 25 Øre
+    year_label: '1914'
+    year_first: 1914
+    year_last: 1914
+    ruler: Christian X.
+    catalog:
+      km: '815.1'
+      hede: 10A
+      sieg: '3.1'
+      schou: '2'
+      bruun_collection_id: '8520'
+      bruun_part: IV
+      bruun_lot_no: 17283
+      bruun_page: 125
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 25 Øre 1914 (KM-815.1 Hede-10A) · Christian X. Bruun-Specimen.
+      en: 25 Øre 1914 (KM-815.1 Hede-10A) · Christian X Bruun specimen.
+      uk: 25 Øre 1914 (KM-815.1 Hede-10A) · Христіян X Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17283, p. 125 (Bruun-coll. 8520)

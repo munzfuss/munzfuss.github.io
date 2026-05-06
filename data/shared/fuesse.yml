@@ -899,6 +899,15 @@ reichsdukatenfuss:
     "1": {soll_fein_g: 16.66667}        # 1 Vereinsthaler
     "2": {soll_fein_g: 33.33333}        # 2 Vereinsthaler
     "1/6": {soll_fein_g: 2.77778}       # Groschen (Preußen)
+    # Skandinavische Krone-Mønt sub-units (Denmark / Sweden / Norway 1873+).
+    # 1 Krone in DK = 7.5 g rough at .800 (= 6.0 g fine), tariff'd to 30-Thalerfuss
+    # via the gold-Krone-Goldmark parity (3 Krone = 4 Reichsmark). Exact fine-weight
+    # arithmetic differs from the strict 30-Thalerfuß silver standard above; these
+    # Krone-Mønt fractions are kept here as a convenience bucket for project tagging.
+    "1/12": {soll_fein_g: 0.5}          # 10 Øre Christian IX (KM-795 / KM-807)
+    "1/24": {soll_fein_g: 0.25}         # 25 Øre / 4 Skilling Rigsmønt — also fits 18_5_thaler
+    "1/96": {soll_fein_g: 0.0625}       # 2 Øre / 3 Skilling petty
+    "1/192": {soll_fein_g: 0.03125}     # 1 Øre — copper Krone-Mønt smallest
 
   events:
     first_adoption:
