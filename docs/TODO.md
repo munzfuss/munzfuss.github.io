@@ -73,6 +73,26 @@ candidates in DK+SH that did NOT enter the data. All are accounted for:
   - P4·17210 KM-758.1 Frederik VII 1854 4 Skilling Rigsmønt → already enriched km-x003-fr-vi-1854 in Phase 4a batch 7b
   - P4·17218 KM-cf.758.2 Frederik VII 1856 Copper Piefort 4 Skilling — already added as schou-piefort-fr-vii-1856 in Phase 4c batch 6
 
+**Bruun cross-match closing state (2026-05-06 after parser-fix + §9.3 cleanup):**
+TOTAL=783, A=763 (97%), B=11, D=9.
+
+- **B=11 residual noise** — multi-match cases where the *correct* candidate is
+  enriched but a *spurious* year-overlap candidate (e.g. Lübeck KM-27 1/192 Thaler
+  colliding with Danish KM-27 Speciedaler) lacks the Bruun citation, so cross_match's
+  `all()` semantic still flags the lot as B. The 11 residuals are documented and
+  not actionable without changing cross_match.py to use `any()`-semantic; left as
+  closing inventory:
+  - P1·1017, P3·11178 (KM-26 Hede-11 6 Daler Klippe 1604) → dk-tid-163410 ✓
+  - P1·1018, P4·17046 (KM-25 Hede-12 4 Daler Klippe 1604) → dk-tid-163409 ✓
+  - P1·1049, P2·13114, SH P2·13120, SH P4·17058 (KM-27 Speciedaler 1642–1647 Glückstadt) → km-27-chr-iv-1641/1644 ✓
+  - P2·13097 (KM-16 2 Speciedaler 1623 Glückstadt) → km-16-chr-iv-1623 ✓
+  - P2·13159 (KM-56 Ducat 1666 Glückstadt) → km-56-fr-iii-1666 ✓
+  - P4·17194 (KM-742 Speciedaler Frederik VII 1848 Accession) — no host coin in our YAML; KM-742 is a distinct Krause type from km-744 (1849). Genuine D-candidate that was mis-categorised B by ref-token noise.
+
+- **D=9 fall-throughs** — true non-matches (medieval / pattern / cross-bucket
+  mis-routings handled in this section, plus 1 oldenburg P3·12226 1/2 Mark
+  / 12 Grote 1658 awaiting Müntzfuß-classification of `oldenburg.yml`).
+
 **Done criterion**: this list is the closing inventory; no further fall-throughs from the
 4-PDF Bruun cross-match remain. Bruun Part V (when published) will run through the same
 pipeline and any new fall-throughs will be triaged similarly.
@@ -144,6 +164,28 @@ explicit decision that Bremen stays outside the project scope.
 ---
 
 ## Done
+
+### G. §9.3 cleanup of wrong Bruun-specimen attachments  *(closed 2026-05-06)*
+
+**Background.** When Phase 3 ran the original `phase3_enrich.py` without
+single-match filtering, multi-matched Bruun lots were broadcast to ALL
+candidate ids — attaching the same specimen to multiple coins, including ones
+whose KM (and Hede where comparable) demonstrably mismatched the lot's
+catalog refs. Per §9.3, different KM = different type, so these were silent
+data corruptions sitting in `denmark.yml` and `schleswig_holstein.yml`.
+
+**Outcome.** Audit (`scripts/oneoff/audit_wrong_bruun_attachments.py`)
+identified 58 mis-attachments across 42 coins. Strip
+(`strip_wrong_bruun_attachments.py`) cleared those attachments from
+`catalog.bruun_*`, `weight_rough_g[]`, and `sources[]`, then phase3b/3c
+re-enriched with §9.3 compatibility filtering baked in
+(`lot_compatible_with_coin()` is now called before any new spec is added
+to a host coin). Final audit reports 0 mis-attachments.
+
+**Closure commit:** `ffbf458` (DK+SH strip), `03b1c10` (parser fix
+prerequisite), `a5dd778` (Phase 3b/3c clean re-enrichment).
+
+---
 
 ### A. Verify continuous year-ranges for gaps  *(closed 2026-05-03)*
 
