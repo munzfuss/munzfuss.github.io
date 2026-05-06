@@ -1720,10 +1720,19 @@ h2[style] {{
   background: {badge_gold_bg};
   color: {badge_gold_fg};
 }}
+/* Book-money (giro) badge — same label as silver-anchored Bancovaluta but
+   the Bremen Pistolenwährung had a gold anchor, so we use a gold-tinted
+   variant to convey "ideelle Goldwährung — kein eigenes Goldminting". */
+.bx.giro_gold {{
+  background: {badge_gold_bg};
+  color: {badge_gold_fg};
+}}
 [data-theme="v1"] .bx {{ background: #d8d4ca; color: #3a3327; }}
 [data-theme="v1"] .bx.gold {{ background: #efdca8; color: #5c3d00; }}
+[data-theme="v1"] .bx.giro_gold {{ background: #efdca8; color: #5c3d00; }}
 [data-theme="v2"] .bx {{ background: #ddd6c1; color: #3a2818; }}
 [data-theme="v2"] .bx.gold {{ background: #f0d496; color: #5c3d00; }}
+[data-theme="v2"] .bx.giro_gold {{ background: #f0d496; color: #5c3d00; }}
 
 /* --- Fuss summary bar (acts as the <details> summary) -------------------- */
 
