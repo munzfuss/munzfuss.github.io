@@ -1,7 +1,7 @@
 """
 Stage 3 — classify every parsed lot into a territory bucket.
 
-Inputs:  scripts/cache/bruun/lots/{part1,part2,part3}.json
+Inputs:  scripts/cache/bruun/lots/*.json (all parts auto-discovered)
 Outputs: scripts/cache/bruun/scope.json
          — single dict: {bucket: [lots]} with `bucket` and `exclusions` fields
            added to each lot
@@ -160,8 +160,10 @@ def classify_extended(lot: dict) -> tuple[str, list[str]]:
 
 def main():
     all_lots = []
-    for slug in ["part1", "part2", "part3"]:
-        for lot in json.loads((LOTS_DIR / f"{slug}.json").read_text()):
+    # Auto-discover every part the lots/ directory has been populated with
+    for path in sorted(LOTS_DIR.glob("part*.json")):
+        slug = path.stem
+        for lot in json.loads(path.read_text()):
             lot["part"] = slug.replace("part", "").upper()
             all_lots.append(lot)
 

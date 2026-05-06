@@ -25,7 +25,8 @@ PARTS = [
     ("part1", "Bruun Part I (Sept 2024 — Copenhagen)"),
     ("part2", "Bruun Part II (Mar 2025 — Zurich)"),
     ("part3", "Bruun Part III (Oct 2025 — Zurich)"),
-    # Add ("part4", "...") when Part IV is published
+    ("part4", "Bruun Part IV (Mar 2026 — New York)"),
+    # Add ("part5", "...") when Part V is published
 ]
 
 

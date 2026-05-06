@@ -22,14 +22,19 @@ The text dumps + parsed lots are committed so future sessions don't re-parse
 the 125 MB of PDF on every refresh. Re-run any stage to regenerate the
 downstream artifacts.
 
-## Adding a new Bruun part (Part IV when published)
+## Adding a new Bruun part (Part V or beyond)
 
-1. Download the PDF to `/tmp/bruun_pdfs/part4.pdf`. URL pattern:
-   `https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_*_Part_IV*.pdf`
-   (also mirrored on `https://www.danskmoent.dk/pdf/...`)
-2. Add `("part4", "Bruun Part IV (...) ")` to the `PARTS` list at the top of
-   `01_extract_text.py`.
-3. Add `"part4"` to the loop in `02_parse_lots.py` and `03_classify_scope.py`.
+1. Download the PDF to `/tmp/bruun_pdfs/partN.pdf`. URLs are listed on
+   <https://stacksbowers.com/the-l-e-bruun-collection/> — the per-part
+   catalog covers are clickable images linking to PDFs at
+   `https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/`.
+   Download via Chrome MCP (Cloudflare-protected; WebFetch returns 403).
+2. Add the entry to two places:
+   - `("partN", "Bruun Part N (date — venue)")` in `PARTS` list of `01_extract_text.py`
+   - `"partN": [(lo, hi), ...]` in `PART_LOT_RANGES` of `02_parse_lots.py`
+     (the auction sale order tells you the lot ranges; e.g. Part IV is
+     Session I 17001-17291 + Session II 18xxx).
+3. Stages 02-04 auto-discover all `pages/*.txt` and `lots/*.json` files.
 4. Run the four stages:
    ```bash
    .venv/bin/python scripts/bruun_parser/01_extract_text.py
@@ -47,7 +52,7 @@ If you change the regex / classifier, you can re-run from any stage:
 - Improved territory classifier → re-run from `03_classify_scope.py`
 - New location `.yml` files added → re-run only `04_cross_match.py`
 
-## PDF download URLs (current as of Oct 2025)
+## PDF download URLs (current as of May 2026)
 
 ```bash
 mkdir -p /tmp/bruun_pdfs && cd /tmp/bruun_pdfs
@@ -60,10 +65,13 @@ curl -sSL \
 curl -sSL --user-agent "Mozilla/5.0" \
   -o part3.pdf \
   "https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf"
+curl -sSL --user-agent "Mozilla/5.0" \
+  -o part4.pdf \
+  "https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf"
 ```
 
-(Bruun Part I via Stack's Bowers requires the User-Agent header; Part II is
-mirrored on danskmoent.dk; Part III is on Stack's Bowers' direct URL.)
+(Stack's Bowers requires the User-Agent header; Part II is mirrored on
+danskmoent.dk and works without it.)
 
 ## Known parser limitations
 

@@ -1,8 +1,8 @@
 """
 Stage 2 — parse every lot from extracted page text.
 
-Inputs:  scripts/cache/bruun/pages/{part1,part2,part3}.txt
-Outputs: scripts/cache/bruun/lots/{part1,part2,part3}.json
+Inputs:  scripts/cache/bruun/pages/{partN}.txt for N in PART_LOT_RANGES below
+Outputs: scripts/cache/bruun/lots/{partN}.json
          — list of lot dicts with refs/year/mint/grade/weight/rarity
 
 Lot block format observed (Part I/II/III all the same):
@@ -43,6 +43,21 @@ LOTS_DIR.mkdir(parents=True, exist_ok=True)
 
 LOT_NUMBER_LINE = re.compile(r"^\s*(\d{4,5})\s*$")
 PAGE_HEADER = re.compile(r"========== PAGE (\d+) ==========")
+
+# Per-part lot number ranges (auction-sequence). Used to filter stray
+# digit-only lines from being mis-recognised as lot numbers. When a new
+# Bruun part is published, add its (slug → list of (lo, hi) ranges).
+PART_LOT_RANGES: dict[str, list[tuple[int, int]]] = {
+    "part1": [(1001, 1500)],                    # Sept 2024 Copenhagen   — 1001-1286
+    "part2": [(13001, 13500), (14001, 14500)],  # Mar 2025 Zurich Sess I+II — 13001-13263 / 14001-14287
+    "part3": [(11001, 11500), (12001, 12500)],  # Oct 2025 Zurich Sess I+II — 11001-11308 / 12001-12228
+    "part4": [(17001, 17500), (18001, 18500)],  # Mar 2026 NYC Sess I+II — 17001-17291 / 18xxx
+}
+
+
+def _in_lot_range(slug: str, lot_no: int) -> bool:
+    """True if `lot_no` falls inside one of `slug`'s declared auction ranges."""
+    return any(lo <= lot_no <= hi for lo, hi in PART_LOT_RANGES.get(slug, []))
 
 # Ref tokens — case-sensitive prefix; case-insensitive search (with hyphen optional)
 REF_PATTERNS = {
@@ -112,15 +127,8 @@ def parse_part(slug: str) -> list[dict]:
             # Likely a stray digit-only line; skip
             i += 1
             continue
-        # Lots numbered 1xxx in Part I (1001-1286)
-        # 13xxx + 14xxx in Part II (13001-13263, 14001-14287)
-        # 11xxx + 12xxx in Part III (11001-11308, 12001-12228)
-        # Filter implausibly small/large numbers
-        if not (
-            (slug == "part1" and 1001 <= lot_no <= 1500)
-            or (slug == "part2" and (13001 <= lot_no <= 13500 or 14001 <= lot_no <= 14500))
-            or (slug == "part3" and (11001 <= lot_no <= 11500 or 12001 <= lot_no <= 12500))
-        ):
+        # Filter implausibly small/large numbers — must fall in declared ranges
+        if not _in_lot_range(slug, lot_no):
             i += 1
             continue
 
@@ -136,11 +144,7 @@ def parse_part(slug: str) -> list[dict]:
                 m2 = LOT_NUMBER_LINE.match(ln2)
                 next_lot = int(m2.group(1))
                 # Heuristic: next lot if it's plausibly the next sequence number
-                if (
-                    (slug == "part1" and 1001 <= next_lot <= 1500 and next_lot > lot_no)
-                    or (slug == "part2" and (13001 <= next_lot <= 13500 or 14001 <= next_lot <= 14500) and next_lot > lot_no)
-                    or (slug == "part3" and (11001 <= next_lot <= 11500 or 12001 <= next_lot <= 12500) and next_lot > lot_no)
-                ):
+                if next_lot > lot_no and _in_lot_range(slug, next_lot):
                     break
             block_lines.append(ln2)
             j += 1
@@ -237,7 +241,7 @@ def parse_part(slug: str) -> list[dict]:
 
 
 def main():
-    for slug in ["part1", "part2", "part3"]:
+    for slug in PART_LOT_RANGES:
         print(f"=== {slug}")
         lots = parse_part(slug)
         out = LOTS_DIR / f"{slug}.json"

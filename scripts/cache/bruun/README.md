@@ -8,8 +8,8 @@ need to re-parse the 125 MB of Bruun PDFs (which are not committed).
 
 | Path | Size | Stage | What |
 |---|---:|---|---|
-| `pages/part{1,2,3}.txt` | ~500 KB each | 01 | Page-delimited plain text from each PDF — `========== PAGE N ==========` separators preserve page numbers for `bruun_page` citations |
-| `lots/part{1,2,3}.json` | ~330–570 KB | 02 | Parsed lot blocks: `{lot_no, page, region, year, mint, ruler, refs, weight_g, grade, rarity, body_excerpt, ...}` |
+| `pages/part{1,2,3,4}.txt` | ~225–500 KB each | 01 | Page-delimited plain text from each PDF — `========== PAGE N ==========` separators preserve page numbers for `bruun_page` citations |
+| `lots/part{1,2,3,4}.json` | ~150–570 KB | 02 | Parsed lot blocks: `{lot_no, page, region, year, mint, ruler, refs, weight_g, grade, rarity, body_excerpt, ...}` |
 | `scope.json` | 1.6 MB | 03 | All lots routed to territory bucket: denmark / schleswig_holstein / lubeck_bishopric / bremen_verden / hesse_kassel / osnabrueck / oldenburg / brunswick_lueneburg / OUT |
 | `cross_match.json` | 720 KB | 04 | Same as scope.json but each lot also carries `cat` (A/B/D) and `matched_ids` (which YAML coin(s) it matches, if any) |
 
