@@ -233,6 +233,15 @@ class CatalogRefs(_StrictBase):
     schou: str | None = None
     fr: str | None = None
     dav: str | None = None
+    # Bruun citation: collection-id is the stable cross-auction identifier (use as the
+    # primary "did this specimen exist in the L. E. Bruun collection?" reference).
+    # part + lot_no + page identify which catalogue and where to find it for manual
+    # re-inspection. `bruun_lot` (legacy single-field) is kept for back-compat —
+    # mirrors `bruun_collection_id` when both are populated.
+    bruun_collection_id: str | None = None
+    bruun_part: Literal["I", "II", "III", "IV", "V", "VI"] | None = None
+    bruun_lot_no: int | None = None
+    bruun_page: int | None = None
     bruun_lot: str | None = None
     numista: str | None = None
     others: list[str] = Field(default_factory=list)
