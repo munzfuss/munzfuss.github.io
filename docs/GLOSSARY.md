@@ -117,7 +117,7 @@ Keep literal German/Danish spelling across languages:
 |---|---|---|
 | Heiliges Römisches Reich (HRR) | Holy Roman Empire (HRE) | Священна Римська імперія (СРІ) |
 | **1537–1814** · Königreich Dänemark und Norwegen (Dänisch-norwegischer Verbund) | Royal Danish-Norwegian Realm (Denmark-Norway) | Королівство Данії і Норвегії (Дансько-норвезький союз) |
-| **1814–1864** · Dänischer Gesammtstaat (Helstaten) | Danish Unitary State (Helstaten) | Датська унітарна держава (Helstaten) |
+| **1814–1864** · Dänischer Gesammtstaat (Helstaten) | Danish Unitary State (Helstaten) | Данська унітарна держава (Helstaten) |
 | Schleswig-Holstein-Herzogthümer | Schleswig-Holstein duchies | Герцогства Шлезвіг-Гольштейн |
 | Königliche Holsteinische Antheil | Royal Danish portion of Holstein | Королівсько-данська частина Гольштейну |
 | Hansestadt | Hanseatic city | Ганзейське місто |
@@ -126,8 +126,8 @@ Keep literal German/Danish spelling across languages:
 **Notes:**
 - The Danish realm has two distinct period names that MUST NOT be conflated:
   - **1537–1814** (Reformation → Treaty of Kiel): «Königreich Dänemark und Norwegen» / «Royal Danish-Norwegian Realm» / «Королівство Данії і Норвегії». Used while Norway was part of the Danish dual monarchy. Acceptable shorthand: «Dänisch-norwegischer Verbund» / «Denmark-Norway» / «Дансько-норвезький союз».
-  - **1814–1864** (post-Kiel → Second Schleswig War): «Helstaten» — the period-Danish term for the post-Norway centralised state including Schleswig-Holstein, Iceland, Greenland, Faroe Islands. DE «Dänischer Gesammtstaat» (period-correct double-«mm») is the canonical German rendition; EN «Danish Unitary State» (preferred) or «Danish composite state»; UK «Датська унітарна держава». Always preserve the Danish word «Helstaten» in parentheses as a proper-noun anchor.
-- Avoid UK transliterations like «Гезамтштат» (DE→UK calque, awkward) or verbose «сукупно-державний устрій» — use «Датська унітарна держава (Helstaten)».
+  - **1814–1864** (post-Kiel → Second Schleswig War): «Helstaten» — the period-Danish term for the post-Norway centralised state including Schleswig-Holstein, Iceland, Greenland, Faroe Islands. DE «Dänischer Gesammtstaat» (period-correct double-«mm») is the canonical German rendition; EN «Danish Unitary State» (preferred) or «Danish composite state»; UK «Данська унітарна держава». Always preserve the Danish word «Helstaten» in parentheses as a proper-noun anchor.
+- Avoid UK transliterations like «Гезамтштат» (DE→UK calque, awkward) or verbose «сукупно-державний устрій» — use «Данська унітарна держава (Helstaten)».
 - Spell out HRR/СРІ in tooltips and prose where the abbreviation isn't already in context (reader may be unfamiliar). Acceptable in inline tags / short labels.
 
 ## Phase & period markers
