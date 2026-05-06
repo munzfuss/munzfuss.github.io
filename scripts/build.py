@@ -215,26 +215,28 @@ def build_location(
     coin_years = {}
     hover_zones = {}
     if loc.timeline:
-        # Auto-extend `events.first_mint.holstein` / `last_mint.holstein`
-        # from the actual SH coin spans so a freshly-added Bruun-era
-        # Speciedaler 1859 instantly shifts the mint layer right without
-        # needing a manual fuesse.yml edit. Other locations are no-ops.
+        # Auto-sync `events.first_mint.holstein` / `last_mint.holstein`
+        # to the actual SH coin spans so a freshly-added Bruun-era
+        # Speciedaler 1859 instantly shifts the mint layer right, and a
+        # curator-set patent year (e.g. 10½-Krone-Fuß first_mint=1644
+        # while the first physical strike is 1645) reflects the data,
+        # not the decree. Other locations are no-ops.
         mint_overrides = derive_holstein_mint_overrides(loc, fuesse)
         if mint_overrides:
             fuesse_for_bars = {**fuesse, **mint_overrides}
-            extensions = []
+            diffs = []
             for fid, new_f in mint_overrides.items():
                 old_lm = fuesse[fid].events.last_mint.holstein
                 new_lm = new_f.events.last_mint.holstein
                 old_fm = fuesse[fid].events.first_mint.holstein
                 new_fm = new_f.events.first_mint.holstein
                 if new_fm != old_fm or new_lm != old_lm:
-                    extensions.append(
+                    diffs.append(
                         f"{fid}: {old_fm}–{old_lm} → {new_fm}–{new_lm}"
                     )
-            if extensions:
-                print(f"   📐 Mint-event auto-extend ({len(extensions)} fuesse): "
-                      + "; ".join(extensions))
+            if diffs:
+                print(f"   📐 Mint-event auto-sync ({len(diffs)} fuesse): "
+                      + "; ".join(diffs))
         else:
             fuesse_for_bars = fuesse
         bar_layers = compute_bar_layers(

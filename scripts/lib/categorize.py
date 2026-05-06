@@ -261,11 +261,11 @@ def compute_coin_year_runs(
 
 
 def derive_holstein_mint_overrides(loc: Location, fuesse: dict) -> dict:
-    """Auto-extend `events.first_mint.holstein` / `last_mint.holstein` per
-    Fuß from the actual coins assigned to it on a Holstein-scope page.
+    """Auto-sync `events.first_mint.holstein` / `last_mint.holstein` per
+    Fuß to the actual coin span on a Holstein-scope page.
 
     Returns a NEW dict `{fuss_id -> Fuss-with-overridden-events}` — only
-    Fuß systems whose coin span actually exceeds the existing event range
+    Fuß systems whose synced span differs from the existing event range
     appear in the result; the rest of the global `fuesse` dict is left
     untouched. Callers should merge this dict over the original before
     handing it to `compute_bar_layers`.
@@ -275,17 +275,19 @@ def derive_holstein_mint_overrides(loc: Location, fuesse: dict) -> dict:
         `holstein` axis run through this — currently only
         `schleswig_holstein` (Schleswig + Holstein operated as one
         monetary unit; the schema's `holstein` scope means this).
-      * Override is **extending only** — never shrinks an existing
-        event's range. If `events.first_mint.holstein = 1640` and the
-        earliest SH coin is 1645, we keep 1640 (the curator knew minting
-        started in 1640 even if our oldest catalog entry is later).
+      * **Full sync** — the data is authoritative. If our YAML's earliest
+        SH-coin under a Fuß is 1645 but `events.first_mint.holstein` was
+        set to 1644 (the patent year, before any physical strike), we
+        sync down to 1645. Curator-set values that conceptually predate
+        the first strike (decree / adoption year) belong in
+        `first_adoption.holstein`, not `first_mint.holstein`.
       * Existing `None`s stay `None`. A Fuß whose curator explicitly
         marked `holstein = None` ("never minted in Holstein") is
         respected; we don't promote `None` to the data-derived range,
         even if a coin slipped into the SH yaml. That keeps the curated
         narrative authoritative. Stray cases surface elsewhere
         (audit_year_ranges etc.).
-      * `approx_holstein` clears when we extend — the data is now
+      * `approx_holstein` clears when we override — the data is
         empirical, not approximate.
     """
     if loc.id != "schleswig_holstein":
@@ -314,10 +316,11 @@ def derive_holstein_mint_overrides(loc: Location, fuesse: dict) -> dict:
         # (e.g. Copenhagen-only kronemont_chr_iv / kronemont_fine).
         if fm is None or fm.holstein is None or lm is None or lm.holstein is None:
             continue
-        new_fm_h = min(fm.holstein, cmin)
-        new_lm_h = max(lm.holstein, cmax)
+        # Data is authoritative for both endpoints — sync, don't merge.
+        new_fm_h = cmin
+        new_lm_h = cmax
         if new_fm_h == fm.holstein and new_lm_h == lm.holstein:
-            continue  # nothing to extend
+            continue  # already in sync
         # Pydantic v2: model_copy(deep=True) on the whole Fuss is the
         # cleanest way to avoid mutating the global registry.
         new_f = f.model_copy(deep=True)
