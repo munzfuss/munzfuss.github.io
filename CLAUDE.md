@@ -175,6 +175,45 @@ This rule applies equally to:
 
 **Self-check before declaring a web-research task done**: search the diff for the new `ref{N}` ids — they should appear at least twice (once in the references file defining the entry, once or more in the prose as `<sup>[{N}]</sup>` inline). If the ref appears only in the bibliography file, the inline-cite step was skipped; go back and add it. If the diff has prose changes but no new `ref{N}` and the change came from web research, the bibliography step was skipped; go back and add it.
 
+### 5a. Reference-style — bibliographic only, Wikipedia-style
+
+> **The `*-references.yml` files are bibliographies, not commentary. One source per entry, citation-only — no quotes, no analysis, no «this proves X».**
+
+A reference entry's job is to tell the reader **where to verify the claim**, full stop. Anything that interprets, weighs, or argues about what the source says belongs **in the prose where the source is cited**, not inside the bibliography slot. The shape of one entry:
+
+```yaml
+- id: ref{N}
+  content:
+    de: |
+      <b>Author surname, First name</b>: <i>Title</i> (Publisher, Year) —
+      <a href="https://example.com/url" target="_blank">example.com/url</a>.
+      Optional one-line scope note describing what the source attests
+      (≤ 140 chars, no quotes, no «proves X»).
+    en: …
+    uk: …
+```
+
+**Required content:**
+- Author / institution name (bold).
+- Title (italic).
+- Publisher and/or year for printed works; URL for online works.
+- Hyperlink with `target="_blank"`.
+- At most one sentence (≤ 140 chars) saying *what the source attests* — e.g. «source for the Speciedaler standard 25.28173 g», «attests the 1618 patent date».
+
+**Forbidden inside a ref body:**
+- Multi-sentence analysis, argumentation, or interpretation («establishes that …», «proves that …», «in other words: …»).
+- Long verbatim quotes (more than ~25 words). If a quote is the evidence, it goes in the prose where the ref is cited, with the ref pointer next to it.
+- Multi-source bundles. Each source gets its own `ref{N}` entry, even if the same prose paragraph cites three of them. Inline citations stack: `<sup><a href="#ref10">[10]</a><a href="#ref11">[11]</a><a href="#ref12">[12]</a></sup>`.
+- Cross-references between refs («see ref30», «contrasted with ref29»). Cross-talk goes in the prose.
+- Marketing / institutional fluff («the world's largest collection insured for 500 m DKK»).
+
+**Numbering and migration:**
+- Existing `ref{N}` ids are stable. When splitting a bundled ref into atomic sources, keep the lowest existing number with the dominant source and **append the new atomic refs at the end of the file** (next free `ref{N+1}`, `ref{N+2}`, …). Never renumber existing entries — every inline `<sup><a href="#ref{N}">` in `data/locations/*.yml` and `data/shared/fuesse.yml` would silently break.
+- When you split a bundle, update the inline citation in the prose to a stack of the new atomic refs at the same position: a single `<sup>[35]</sup>` becomes e.g. `<sup>[35][39][40]</sup>`.
+- When you trim analysis out of a ref body, the analysis usually already exists in the prose that cites the ref (the ref body was a duplicate). If it doesn't, move the analysis into the citing prose; never leave it in the ref slot.
+
+**Why this matters.** A reader scanning the references list expects «author + title + URL» — the same thing every academic encyclopaedia and Wikipedia article does. A 600-word analysis paragraph buried in slot 35 between slots 34 and 36 is invisible to that scan and indistinguishable from prose; it should *be* prose, with the citation hanging off it. Bundled refs make footnote stacks ambiguous (which of the five sources backs *this* sentence?). Atomic refs let the reader follow the exact source that backs each claim.
+
 ### 6. Kurantmünze vs. Scheidemünze distinction
 
 - **Kurantmünze** (vollwertig): nominal ≈ silver content. Issued by state without (or with minor) seigniorage. Full-value money.
