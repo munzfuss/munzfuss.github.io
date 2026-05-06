@@ -87,9 +87,10 @@ def classify_extended(lot: dict) -> tuple[str, list[str]]:
     full_classify_text = f"{meta}\n{body_head}"
 
     # -1. Lübeck (Bishopric) — issuer takes precedence over mint location (e.g. Lübeck Bishop
-    #     could mint at Bremervörde or Eutin or Kaltenhof — coin still belongs to Lübeck-Bishopric)
+    #     could mint at Bremervörde or Eutin or Kaltenhof — coin still belongs to Lübeck-Bishopric).
+    #     The `[\s\-]+` after "Bish" tolerates PDF line-break hyphenation ("Bish - opric").
     if (
-        re.search(r"Lübeck \(Bishop|Luebeck \(Bishop", full_classify_text, re.IGNORECASE)
+        re.search(r"L(?:ü|ue)beck\s*\(\s*Bish[\s\-]*opric", full_classify_text, re.IGNORECASE)
         or re.search(r"\bKaltenhof\b", full_classify_text, re.IGNORECASE)
     ):
         return ("lubeck_bishopric", excl)
