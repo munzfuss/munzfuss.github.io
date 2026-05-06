@@ -464,6 +464,24 @@ phases:
         de: "Mit dem Kurantmøntfod von 1726 entwickelt sich parallel zum Reichsdukatenfuß der <b>Courantdukat</b> — Dukat mit leichter Feingewichtsreduktion zur festen Kurs-Anbindung (2 Rigsdaler Courant = 1 Courantdukat, später 2½ Rigsdaler Courant). Altona-Münze wird erst 1771 eröffnet; Dukaten in dieser Phase werden in Kopenhagen bzw. Glückstadt für den gesamtstaatlichen Handel geprägt."
         en: "With the Kurantmøntfod of 1726 a <b>Courantdukat</b> grows up alongside the Reichsdukatenfuß — a ducat with slightly reduced fine weight, designed for a fixed exchange link (2 Rigsdaler Courant = 1 Courantdukat, later 2½ Rigsdaler Courant). The Altona mint is only opened in 1771; the ducats of this phase are struck in Copenhagen and Glückstadt for the trade of the composite state."
         uk: "З Kurantmøntfod 1726 паралельно до Reichsdukatenfuß виростає <b>Courantdukat</b> — дукат із трохи зниженою чистою вагою, призначений для фіксованої курсової привʼязки (2 Rigsdaler Courant = 1 Courantdukat, пізніше 2½ Rigsdaler Courant). Монетний двір в Альтоні відкриють лише 1771; дукати цієї фази карбують у Копенгагені й Glückstadt для торгівлі цілісної держави."
+    - id: C
+      year_from: 1771
+      year_to: 1813
+      from_label: "1771"
+      to_label: "5. Jan. 1813"
+      title:
+        de: "Christian d'Or und 12 Mark Courant Ducat — Altona-Münze + Kopenhagen"
+        en: "Christian d'Or and 12 Mark Courant Ducat — Altona mint + Copenhagen"
+        uk: "Christian d'Or і 12 Mark Courant Ducat — монетний двір Альтона + Копенгаген"
+    - id: D
+      year_from: 1813
+      year_to: 1871
+      from_label: "5. Jan. 1813"
+      to_label: "1871"
+      title:
+        de: "Frederik d'Or / 2 Frederik d'Or — fortgeführt trotz Staatsbankrott"
+        en: "Frederik d'Or / 2 Frederik d'Or — continued despite the state bankruptcy"
+        uk: "Frederik d'Or / 2 Frederik d'Or — продовжено попри державне банкрутство"
 
   9_thaler:
     - id: A
@@ -20313,3 +20331,658 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1155, p. 214 (Bruun-coll. 7937)
+
+  # === Phase 4c, batch 6 — Frederik VI (1808-1839) + Christian VIII (1839-1848) + Frederik VII (1848-1863)
+  # Excluded: P1·1002 Hans Goldgulden ND 1496-1497 (parser misdated to 1817, medieval per project window).
+  # Multi-spec merges: KM-735.1 Hede-4A Rigsbankdaler 1846+1847+1848 (3 specs);
+  #                    KM-744.1 Hede-4A Speciedaler 1849+1853 (2 specs).
+  # Note: parser ruler-tags "Christian VII" / "Hans" on post-1808 coins are misreads;
+  # corrected per actual coin date and reigning monarch.
+  - id: km-683-1-fr-vi-1813
+    fuss: 18_5_thaler
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Rigsbankdaler
+    year_label: '1813'
+    year_first: 1813
+    year_last: 1813
+    ruler: Frederik VI.
+    catalog:
+      km: '683.1'
+      hede: 24A
+      sieg: '26.1'
+      schou: '1'
+      bruun_collection_id: '8004'
+      bruun_part: I
+      bruun_lot_no: 1157
+      bruun_page: 217
+    metal: silver
+    weight_rough_g:
+      - value: 14.42
+        source: Bruun I, lot 1157 (Bruun-coll. 8004)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Rigsbankdaler 1813 (KM-683.1 Hede-24A) · Erstprägung nach dem Staatsbankrott und der Forordning vom 5. Jan. 1813 · Bruun-Specimen.
+      en: Rigsbankdaler 1813 (KM-683.1 Hede-24A) · first issue after the state bankruptcy and the Forordning of 5 Jan. 1813 · Bruun specimen.
+      uk: Rigsbankdaler 1813 (KM-683.1 Hede-24A) · перша емісія після державного банкрутства та Forordning 5 січня 1813 · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1157, p. 217 (Bruun-coll. 8004)
+  - id: km-683-2-fr-vi-1813
+    fuss: 18_5_thaler
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Rigsbankdaler
+    year_label: '1813'
+    year_first: 1813
+    year_last: 1813
+    ruler: Frederik VI.
+    catalog:
+      km: '683.2'
+      hede: 24B
+      sieg: '26.2'
+      schou: '2'
+      bruun_collection_id: '8005'
+      bruun_part: IV
+      bruun_lot_no: 17150
+      bruun_page: 91
+    metal: silver
+    weight_rough_g:
+      - value: 14.48
+        source: Bruun IV, lot 17150 (Bruun-coll. 8005)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Rigsbankdaler 1813 (KM-683.2 Hede-24B, Untervariante zu KM-683.1) · Bruun-Specimen.
+      en: Rigsbankdaler 1813 (KM-683.2 Hede-24B, sub-variant of KM-683.1) · Bruun specimen.
+      uk: Rigsbankdaler 1813 (KM-683.2 Hede-24B, підваріант KM-683.1) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17150, p. 91 (Bruun-coll. 8005)
+  - id: hede-19-fr-vi-1813
+    fuss: 18_5_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/12"
+    nominal: 12 Skilling Rigsbanktegn
+    year_label: '1813'
+    year_first: 1813
+    year_last: 1813
+    ruler: Frederik VI.
+    catalog:
+      hede: '19'
+      sieg: '13'
+      schou: '4'
+      bruun_collection_id: '8006'
+      bruun_part: IV
+      bruun_lot_no: 17151
+      bruun_page: 91
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 12 Skilling Rigsbanktegn 1813 (Hede-19) · Übergangsmünze des Rigsbanktegn-Systems · Bruun-Specimen.
+      en: 12 Skilling Rigsbanktegn 1813 (Hede-19) · transitional coin of the Rigsbanktegn system · Bruun specimen.
+      uk: 12 Skilling Rigsbanktegn 1813 (Hede-19) · перехідна монета системи Rigsbanktegn · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17151, p. 91 (Bruun-coll. 8006)
+  - id: hede-20-fr-vi-1813
+    fuss: 18_5_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/12"
+    nominal: 6 Skilling Rigsbanktegn
+    year_label: '1813'
+    year_first: 1813
+    year_last: 1813
+    ruler: Frederik VI.
+    catalog:
+      hede: '20'
+      sieg: '12.1'
+      schou: '6'
+      bruun_collection_id: '8007'
+      bruun_part: IV
+      bruun_lot_no: 17152
+      bruun_page: 91
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 6 Skilling Rigsbanktegn 1813 (Hede-20) · Bruun-Specimen.
+      en: 6 Skilling Rigsbanktegn 1813 (Hede-20) · Bruun specimen.
+      uk: 6 Skilling Rigsbanktegn 1813 (Hede-20) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17152, p. 91 (Bruun-coll. 8007)
+  - id: hede-18-fr-vi-1814
+    fuss: 18_5_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/6"
+    nominal: 16 Skilling Rigsbanktegn
+    year_label: '1814'
+    year_first: 1814
+    year_last: 1814
+    ruler: Frederik VI.
+    catalog:
+      hede: '18'
+      sieg: '14'
+      schou: '1'
+      bruun_collection_id: '8014'
+      bruun_part: IV
+      bruun_lot_no: 17154
+      bruun_page: 91
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 16 Skilling Rigsbanktegn 1814 (Hede-18) · Bruun-Specimen.
+      en: 16 Skilling Rigsbanktegn 1814 (Hede-18) · Bruun specimen.
+      uk: 16 Skilling Rigsbanktegn 1814 (Hede-18) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17154, p. 91 (Bruun-coll. 8014)
+  - id: hede-21-fr-vi-1815
+    fuss: 18_5_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/24"
+    nominal: 4 Skilling Rigsbanktegn
+    year_label: '1815'
+    year_first: 1815
+    year_last: 1815
+    ruler: Frederik VI.
+    catalog:
+      hede: '21'
+      sieg: '11'
+      schou: '1'
+      bruun_collection_id: '8023'
+      bruun_part: IV
+      bruun_lot_no: 17155
+      bruun_page: 91
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 4 Skilling Rigsbanktegn 1815 (Hede-21) · Bruun-Specimen.
+      en: 4 Skilling Rigsbanktegn 1815 (Hede-21) · Bruun specimen.
+      uk: 4 Skilling Rigsbanktegn 1815 (Hede-21) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17155, p. 91 (Bruun-coll. 8023)
+  - id: hede-22-fr-vi-1815
+    fuss: 18_5_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/24"
+    nominal: 3 Skilling Rigsbanktegn
+    year_label: '1815'
+    year_first: 1815
+    year_last: 1815
+    ruler: Frederik VI.
+    catalog:
+      hede: '22'
+      sieg: '10'
+      schou: '2'
+      bruun_collection_id: '8024'
+      bruun_part: IV
+      bruun_lot_no: 17156
+      bruun_page: 92
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 3 Skilling Rigsbanktegn 1815 (Hede-22) · Bruun-Specimen.
+      en: 3 Skilling Rigsbanktegn 1815 (Hede-22) · Bruun specimen.
+      uk: 3 Skilling Rigsbanktegn 1815 (Hede-22) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17156, p. 92 (Bruun-coll. 8024)
+  - id: hede-23-fr-vi-1815
+    fuss: 18_5_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/96"
+    nominal: 2 Skilling Rigsbanktegn
+    year_label: '1815'
+    year_first: 1815
+    year_last: 1815
+    ruler: Frederik VI.
+    catalog:
+      hede: '23'
+      sieg: '9'
+      schou: '3'
+      bruun_collection_id: '8025'
+      bruun_part: IV
+      bruun_lot_no: 17157
+      bruun_page: 92
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Skilling Rigsbanktegn 1815 (Hede-23) · Bruun-Specimen.
+      en: 2 Skilling Rigsbanktegn 1815 (Hede-23) · Bruun specimen.
+      uk: 2 Skilling Rigsbanktegn 1815 (Hede-23) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17157, p. 92 (Bruun-coll. 8025)
+  - id: km-706-2-fr-vi-1834
+    fuss: 18_5_thaler
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Rigsbankdaler
+    year_label: '1834'
+    year_first: 1834
+    year_last: 1834
+    ruler: Frederik VI.
+    catalog:
+      km: '706.2'
+      hede: 27B
+      sieg: '28.2'
+      schou: '6'
+      bruun_collection_id: '8095'
+      bruun_part: IV
+      bruun_lot_no: 17169
+      bruun_page: 97
+    metal: silver
+    weight_rough_g:
+      - value: 14.35
+        source: Bruun IV, lot 17169 (Bruun-coll. 8095)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Rigsbankdaler 1834 (KM-706.2 Hede-27B) · Bruun-Specimen (Bruun-Parser-Tag «Hans» ist Tippfehler — Münze ist Frederik VI.).
+      en: Rigsbankdaler 1834 (KM-706.2 Hede-27B) · Bruun specimen (Bruun parser-tag "Hans" is a misread — coin is Frederik VI).
+      uk: Rigsbankdaler 1834 (KM-706.2 Hede-27B) · Bruun-зразок (тег парсера Bruun «Hans» — помилка зчитування, монета належить Фредеріку VI).
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17169, p. 97 (Bruun-coll. 8095)
+  - id: km-695-4-fr-vi-1835
+    fuss: 9_25_thaler
+    phase: D
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Speciedaler
+    year_label: '1835'
+    year_first: 1835
+    year_last: 1835
+    ruler: Frederik VI.
+    catalog:
+      km: '695.4'
+      hede: 26C
+      sieg: '30.3'
+      schou: '3'
+      dav: '73'
+      bruun_collection_id: '8098'
+      bruun_part: IV
+      bruun_lot_no: 17170
+      bruun_page: 97
+    metal: silver
+    weight_rough_g:
+      - value: 28.95
+        source: Bruun IV, lot 17170 (Bruun-coll. 8098)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Speciedaler 1835 (KM-695.4 Hede-26C) · Bruun-Specimen.
+      en: Speciedaler 1835 (KM-695.4 Hede-26C) · Bruun specimen.
+      uk: Speciedaler 1835 (KM-695.4 Hede-26C) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17170, p. 97 (Bruun-coll. 8098)
+  - id: km-706-1-fr-vi-1835
+    fuss: 18_5_thaler
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: Rigsbankdaler (½ Speciedaler)
+    year_label: '1835'
+    year_first: 1835
+    year_last: 1835
+    ruler: Frederik VI.
+    catalog:
+      km: '706.1'
+      hede: 27A
+      sieg: '28.1'
+      schou: '6'
+      bruun_collection_id: '8099'
+      bruun_part: IV
+      bruun_lot_no: 17171
+      bruun_page: 97
+    metal: silver
+    weight_rough_g:
+      - value: 14.45
+        source: Bruun IV, lot 17171 (Bruun-coll. 8099)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Rigsbankdaler (½ Speciedaler) 1835 (KM-706.1 Hede-27A) · Bruun-Specimen.
+      en: Rigsbankdaler (½ Speciedaler) 1835 (KM-706.1 Hede-27A) · Bruun specimen.
+      uk: Rigsbankdaler (½ Speciedaler) 1835 (KM-706.1 Hede-27A) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17171, p. 97 (Bruun-coll. 8099)
+  - id: km-713-2-fr-vi-1838
+    fuss: reichsdukatenfuss
+    phase: D
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Frederik d'Or
+    year_label: '1838'
+    year_first: 1838
+    year_last: 1838
+    ruler: Frederik VI.
+    catalog:
+      km: '713.2'
+      hede: 5B
+      sieg: '36.2'
+      schou: '1'
+      fr: '288'
+      bruun_collection_id: '8104'
+      bruun_part: IV
+      bruun_lot_no: 17172
+      bruun_page: 97
+    metal: gold
+    weight_rough_g:
+      - value: 13.28
+        source: Bruun IV, lot 17172 (Bruun-coll. 8104)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Frederik d'Or 1838 (KM-713.2 Hede-5B) · Kopenhagener Goldprägung Frederiks VI. · Bruun-Specimen.
+      en: 2 Frederik d'Or 1838 (KM-713.2 Hede-5B) · Copenhagen gold issue of Frederik VI · Bruun specimen.
+      uk: 2 Frederik d'Or 1838 (KM-713.2 Hede-5B) · Копенгагенське золоте карбування Фредеріка VI · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17172, p. 97 (Bruun-coll. 8104)
+  - id: km-721-1-chr-viii-1841
+    fuss: 18_5_thaler
+    phase: A
+    kind: scheide
+    fraction: "1/24"
+    nominal: 4 Rigsbankskilling
+    year_label: '1841'
+    year_first: 1841
+    year_last: 1841
+    ruler: Christian VIII.
+    catalog:
+      km: '721.1'
+      hede: 8A
+      sieg: '8.1'
+      schou: '3'
+      bruun_collection_id: '8137'
+      bruun_part: IV
+      bruun_lot_no: 17176
+      bruun_page: 99
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 4 Rigsbankskilling 1841 (KM-721.1 Hede-8A) · Bruun-Specimen (Parser-Tag «Christian VII» ist Tippfehler — Münze ist Christian VIII.).
+      en: 4 Rigsbankskilling 1841 (KM-721.1 Hede-8A) · Bruun specimen (parser-tag "Christian VII" is a misread — coin is Christian VIII).
+      uk: 4 Rigsbankskilling 1841 (KM-721.1 Hede-8A) · Bruun-зразок (тег парсера «Christian VII» — помилка зчитування, монета належить Христіяну VIII).
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17176, p. 99 (Bruun-coll. 8137)
+  - id: km-720-1-chr-viii-1843
+    fuss: 9_25_thaler
+    phase: D
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Speciedaler
+    year_label: '1843'
+    year_first: 1843
+    year_last: 1843
+    ruler: Christian VIII.
+    catalog:
+      km: '720.1'
+      hede: 3D
+      sieg: '13.4'
+      schou: '2'
+      dav: '74'
+      bruun_collection_id: '8159'
+      bruun_part: IV
+      bruun_lot_no: 17183
+      bruun_page: 101
+    metal: silver
+    weight_rough_g:
+      - value: 28.85
+        source: Bruun IV, lot 17183 (Bruun-coll. 8159)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Speciedaler 1843 (KM-720.1 Hede-3D) · Bruun-Specimen.
+      en: Speciedaler 1843 (KM-720.1 Hede-3D) · Bruun specimen.
+      uk: Speciedaler 1843 (KM-720.1 Hede-3D) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17183, p. 101 (Bruun-coll. 8159)
+  - id: km-720-1-hede-3e-chr-viii-1845
+    fuss: 9_25_thaler
+    phase: D
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Speciedaler
+    year_label: '1845'
+    year_first: 1845
+    year_last: 1845
+    ruler: Christian VIII.
+    catalog:
+      km: '720.1'
+      hede: 3E
+      sieg: '13.6'
+      schou: '3'
+      bruun_collection_id: '8170'
+      bruun_part: IV
+      bruun_lot_no: 17187
+      bruun_page: 102
+    metal: silver
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Speciedaler 1845 (KM-720.1 Hede-3E, Untervariante zu KM-720.1 Hede-3D 1843) · Bruun-Specimen.
+      en: Speciedaler 1845 (KM-720.1 Hede-3E, sub-variant of KM-720.1 Hede-3D 1843) · Bruun specimen.
+      uk: Speciedaler 1845 (KM-720.1 Hede-3E, підваріант KM-720.1 Hede-3D 1843) · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17187, p. 102 (Bruun-coll. 8170)
+  - id: km-735-1-chr-viii-1846
+    fuss: 18_5_thaler
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Rigsbankdaler
+    year_label: 1846, 1847, 1848
+    year_first: 1846
+    year_last: 1848
+    ruler: Christian VIII.
+    catalog:
+      km: '735.1'
+      hede: 4A
+      sieg: '12.1'
+      schou: '3'
+      bruun_collection_id: '8175'
+      bruun_part: IV
+      bruun_lot_no: 17188
+      bruun_page: 102
+    metal: silver
+    weight_rough_g:
+      - value: 14.38
+        source: Bruun IV, lot 17188 (Bruun-coll. 8175, 1846 specimen, Schou-3)
+      - value: 14.38
+        source: Bruun IV, lot 17189 (Bruun-coll. 8181, 1847 specimen, Schou-5)
+      - value: 14.47
+        source: Bruun IV, lot 17193 (Bruun-coll. 8194, 1848 specimen, Schou-2)
+    year_ranges:
+      - [1846, 1848]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Rigsbankdaler 1846, 1847, 1848 (KM-735.1 Hede-4A) · drei Bruun-Specimen aufeinanderfolgender Jahre · 1848 Christian VIII.s letzter Rigsbankdaler (gestorben Januar 1848).
+      en: Rigsbankdaler 1846, 1847, 1848 (KM-735.1 Hede-4A) · three Bruun specimens from consecutive years · 1848 was Christian VIII's last Rigsbankdaler (he died January 1848).
+      uk: Rigsbankdaler 1846, 1847, 1848 (KM-735.1 Hede-4A) · три зразки Bruun послідовних років · 1848 — останній Rigsbankdaler Христіяна VIII (помер у січні 1848).
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17188, p. 102 (Bruun-coll. 8175, 1846 specimen)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17189, p. 102 (Bruun-coll. 8181, 1847 specimen)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17193, p. 103 (Bruun-coll. 8194, 1848 specimen)
+  - id: km-744-1-fr-vii-1849
+    fuss: 9_25_thaler
+    phase: D
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Speciedaler
+    year_label: 1849, 1853
+    year_first: 1849
+    year_last: 1853
+    ruler: Frederik VII.
+    catalog:
+      km: '744.1'
+      hede: 4A
+      sieg: '6.1'
+      schou: '1'
+      dav: '76'
+      bruun_collection_id: '8200'
+      bruun_part: I
+      bruun_lot_no: 1165
+      bruun_page: 227
+    metal: silver
+    weight_rough_g:
+      - value: 28.77
+        source: Bruun I, lot 1165 (Bruun-coll. 8200, 1849 specimen, Schou-1)
+      - value: 28.93
+        source: Bruun IV, lot 17199 (Bruun-coll. 8217, 1853 specimen, Schou-3)
+    year_ranges:
+      - [1849, 1849]
+      - [1853, 1853]
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Speciedaler 1849, 1853 (KM-744.1 Hede-4A) · zwei Bruun-Specimen unterschiedlicher Jahre · erste Frederik-VII.-Speciedaler-Serie.
+      en: Speciedaler 1849, 1853 (KM-744.1 Hede-4A) · two Bruun specimens from different years · Frederik VII's first Speciedaler series.
+      uk: Speciedaler 1849, 1853 (KM-744.1 Hede-4A) · два зразки Bruun різних років · перша серія Speciedaler Фредеріка VII.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1165, p. 227 (Bruun-coll. 8200, 1849 specimen)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17199, p. 105 (Bruun-coll. 8217, 1853 specimen)
+  - id: km-750-1-fr-vii-1850
+    fuss: reichsdukatenfuss
+    phase: D
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Frederik d'Or
+    year_label: '1850'
+    year_first: 1850
+    year_last: 1850
+    ruler: Frederik VII.
+    catalog:
+      km: '750.1'
+      hede: 1A
+      sieg: '16.1'
+      schou: '1'
+      fr: '291'
+      bruun_collection_id: '8203'
+      bruun_part: I
+      bruun_lot_no: 1166
+      bruun_page: 228
+    metal: gold
+    weight_rough_g:
+      - value: 13.29
+        source: Bruun I, lot 1166 (Bruun-coll. 8203)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: 2 Frederik d'Or 1850 (KM-750.1 Hede-1A) · erste Frederik-VII.-Goldprägung in Kopenhagen · Bruun-Specimen.
+      en: 2 Frederik d'Or 1850 (KM-750.1 Hede-1A) · Frederik VII's first Copenhagen gold issue · Bruun specimen.
+      uk: 2 Frederik d'Or 1850 (KM-750.1 Hede-1A) · перше Копенгагенське золоте карбування Фредеріка VII · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1166, p. 228 (Bruun-coll. 8203)
+  - id: km-760-1-fr-vii-1855
+    fuss: 18_5_thaler
+    phase: A
+    kind: kurant
+    fraction: '1'
+    nominal: 1 Rigsdaler
+    year_label: '1855'
+    year_first: 1855
+    year_last: 1855
+    ruler: Frederik VII.
+    catalog:
+      km: '760.1'
+      hede: 8A
+      sieg: '13.1'
+      schou: '4'
+      bruun_collection_id: '8232'
+      bruun_part: IV
+      bruun_lot_no: 17212
+      bruun_page: 109
+    metal: silver
+    weight_rough_g:
+      - value: 14.42
+        source: Bruun IV, lot 17212 (Bruun-coll. 8232)
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Rigsdaler 1855 (KM-760.1 Hede-8A) · Kopenhagener Prägung nach der Rigsmønt-Umbenennung 1854 · Bruun-Specimen.
+      en: Rigsdaler 1855 (KM-760.1 Hede-8A) · Copenhagen issue after the 1854 Rigsmønt renaming · Bruun specimen.
+      uk: Rigsdaler 1855 (KM-760.1 Hede-8A) · Копенгагенське карбування після перейменування на Rigsmønt 1854 · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17212, p. 109 (Bruun-coll. 8232)
+  - id: schou-piefort-fr-vii-1856
+    fuss: 18_5_thaler
+    phase: A
+    kind: gedenk
+    fraction: "1/24"
+    nominal: Copper Piefort 4 Skilling Rigsmønt
+    year_label: '1856'
+    year_first: 1856
+    year_last: 1856
+    ruler: Frederik VII.
+    catalog:
+      bruun_collection_id: '8254'
+      bruun_part: IV
+      bruun_lot_no: 17218
+      bruun_page: 111
+    metal: copper
+    issuing_entity: danish_realm
+    mint: Kopenhagen
+    note:
+      de: Copper Piefort 4 Skilling Rigsmønt 1856 · Doppelschröttling-Probe in Kupfer eines Skilling-Stempels · Bruun-Specimen.
+      en: Copper Piefort 4 Skilling Rigsmønt 1856 · double-thickness copper trial of a Skilling die · Bruun specimen.
+      uk: Copper Piefort 4 Skilling Rigsmønt 1856 · подвійно-товстий мідний пробний удар штемпеля Skilling · Bruun-зразок.
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17218, p. 111 (Bruun-coll. 8254)
