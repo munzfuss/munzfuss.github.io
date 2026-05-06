@@ -362,6 +362,7 @@ Reports chronology mismatches, orphan coins (phase doesn't exist), duplicate KM#
 - Conflicting sources on fineness
 - Whether a new variant deserves its own row or a note on existing row
 - Translation calls for specialized numismatic terms in UK (Ukrainian numismatic vocabulary is sparse)
+- **Never call `mcp__Claude_Preview__preview_stop`** without explicit user permission — even if the preview seems idle, finished, or redundant. The user runs the preview lifecycle; Claude does not stop it unilaterally. If a preview restart is needed (e.g. to pick up new files), ask first; if disk-space or memory pressure becomes an issue, surface it and let the user decide.
 
 Never invent translations for technical German numismatic terms without confirming with the user.
 
