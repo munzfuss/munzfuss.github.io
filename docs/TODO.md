@@ -79,14 +79,15 @@ pipeline and any new fall-throughs will be triaged similarly.
 
 ---
 
-### E. Promote 6 Bruun-seed territories into real location files  *(opened 2026-05-06)*
+### E. Müntzfuß-classify 7 promoted Bruun stub locations  *(opened 2026-05-06; updated 2026-05 after Phase 4b proper)*
 
 **Background.** Bruun parts I–IV ingest (cache in `scripts/cache/bruun/`) routed
-**37 in-scope coins** to 6 territories that we don't have location files for yet.
-Per-coin data (KM/Hede/Sieg/Lange/Fr/Dav refs, year, ruler, mint, weight, NGC
-grade, body excerpt, Bruun-page citation) is preserved in `data/seed/bruun/` so
-no information is lost. The Müntzfuß-system research was deliberately deferred —
-each territory uses its own Reichskreis or local standard that needs proper study.
+**38 in-scope coins** to 7 territories. They are NOW promoted to real location
+files (see commits 2026-05) with `fuss: seed_unsorted` placeholder; per-coin
+data (KM/Hede/Sieg/Lange/Fr/Dav refs, year, ruler, mint, weight, NGC grade,
+Bruun-page citation) is preserved. The Müntzfuß-system research is what's
+still pending — each territory uses its own Reichskreis or local standard that
+needs proper study.
 
 **Seed files & their Müntzfuß-systems to research:**
 

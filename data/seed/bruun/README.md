@@ -85,18 +85,33 @@ coins:
 
 ## Current contents (May 2026)
 
-| File | Coins | Notes |
+**All 7 seed files have been promoted to real location files** (see commit history
+around 2026-05). The directory is now empty by design — left in place as a
+landing zone for any future seed-imports from new Bruun parts.
+
+Promoted (and removed from this directory):
+
+| Now lives at | Coins | Status |
 |---|---:|---|
-| `lubeck_bishopric.yml` | 14 | Lübeck Bishopric (Eutin) — Holstein-Gottorp ruled prince-bishopric, NOT the city of Lübeck (which has its own `data/locations/lubeck.yml`). Coverage: Johann Adolf 1606-1608 (Steinbeck/Lübeck mints), August Friedrich 1683-1687 (Eutin/Kaltenhof), Christian August 1723-1724 (Eutin). |
-| `oldenburg.yml` | 10 | County / later Duchy of Oldenburg. Coverage: Anton Günther 1614-1667 (Jever Mint, mostly Talers + 1 Ducat). |
-| `bremen_verden.yml` | 6 | Archbishopric of Bremen-Verden — Bremervörde + Stade mints. NOT the city-state of Bremen. Coverage: Frederik III 1641 (as Archbishop), Karl X Gustav / Karl XI 1660-1674 (under Sweden after 1648), Johann Friedrich (Holstein-Gottorp) 1622 as prince-bishop. |
-| `brunswick_lueneburg.yml` | 4 | Brunswick-Wolfenbüttel — Christian IV's mainland Lower-Saxony territory. Coverage: 1627 Wolfenbüttel mint Ducat + Speciedaler + Reichstaler + Gutergroschen. |
-| `hesse_kassel.yml` | 2 | Landgraviate of Hesse-Kassel. Coverage: Frederik I 1737-1744 Ducat + 1/4 Ducat (Kassel Mint; same Frederik who was simultaneously King of Sweden 1720-1751). |
-| `lauenburg.yml` | 1 | Duchy of Saxe-Lauenburg under DK king (1815-1864) — own Konventionsfuß-style standard, separate from Schleswig-Holstein. Coverage: Frederik VI 1830 2/3 Taler from Altona Mint (4 051 pieces minted, Bruun catalogue). |
-| `osnabrueck.yml` | 1 | Prince-Bishopric of Osnabrück. Coverage: Franz Wilhelm von Wartenberg 1633 Taler Klippe (Osnabrück Mint, Thirty Years War period). |
+| `data/locations/lubeck_bishopric.yml`     | 15 | promoted with seed_unsorted Müntzfuß; proper classification deferred per docs/TODO.md item E |
+| `data/locations/oldenburg.yml`            | 10 | promoted with seed_unsorted; classification pending |
+| `data/locations/brunswick_lueneburg.yml`  |  6 | promoted with seed_unsorted; classification pending |
+| `data/locations/bremen_verden.yml`        |  6 | promoted with seed_unsorted; classification pending |
+| `data/locations/hesse_kassel.yml`         |  2 | promoted with seed_unsorted; classification pending |
+| `data/locations/lauenburg.yml`            |  1 | promoted with seed_unsorted; classification pending |
+| `data/locations/osnabrueck.yml`           |  1 | promoted with seed_unsorted; classification pending |
 
-Full upstream data: `scripts/cache/bruun/cross_match.json` (per-territory bucketed
-+ category A/B/D classification).
+Each promotion also created a sidecar `<location>-references.yml` and added a new
+`issuing_entity` to `data/i18n/issuing_entities.yml`. The build script's
+landing-page logic correctly hides locations with seed_unsorted coins, so the
+new stub locations don't appear on the landing page until proper Müntzfuß-
+classification is done (per docs/TODO.md item E).
 
-Generation script: `scripts/oneoff/seed_bruun_territories.py` (one-off — produced
-the YAML files in this directory by reading from the bruun cache).
+Full upstream data still cached: `scripts/cache/bruun/cross_match.json`
+(per-territory bucketed + category A/B/D classification).
+
+Generation scripts (one-off, gitignored):
+- `scripts/oneoff/seed_bruun_territories.py` — produced the original seed YAMLs
+  by reading from the bruun cache (Phase 4b deferred form, May 2026)
+- `scripts/oneoff/promote_seed_to_location.py` — promoted those seed YAMLs
+  into real `data/locations/*.yml` files (Phase 4b proper, May 2026)
