@@ -10,15 +10,21 @@ summary:
 # Section order beneath the timeline mirrors the timeline bar order
 # (top-to-bottom on the timeline = top-to-bottom in the section list).
 # `seed_unsorted` is kept last as the bulk-import catch-all.
-# Timeline-only bars without their own section (kronemont_fine,
-# 11_333_thaler, 18_5_thaler) are intentionally omitted here.
+# All Müntzfuß bars on the timeline have a corresponding section
+# below — including kronemont_fine, 11_333_thaler, 18_5_thaler,
+# which are currently coin-empty placeholders awaiting the future
+# Danish-Realm coin import (Copenhagen Speciekrone 1693–1771,
+# Rigsdaler Courant 1726–1813, Rigsbankdaler 1813–1875).
 fuss_order:
   - reichsdukatenfuss
   - 9_thaler
   - 9_25_thaler
   - kronemont_chr_iv
   - kronemont
+  - kronemont_fine
   - guldkrone
+  - 11_333_thaler
+  - 18_5_thaler
   - seed_unsorted
 
 # ---------------------------------------------------------------------
@@ -299,6 +305,22 @@ fuss_periods:
         <p>Значення Müntzfuß випливають з постанови 1671 р.: 22,272 г повної ваги × 10,5 = 233,856 г = 1 кельнська марка. Проба збігається з канонічною точкою Loth-Grän ⁴³⁄₆₄ = 10 Loth 12 Grän = .671875 (Numista наводить .671 як округлену форму). Зразки-приклади: N#111284, N#111285, N#108760, N#108735.</p>
         <p>Спеціальна література по ґлюкштадтській фазі: Sven Aagaard, <i>Christian V kronemønt — Glückstadt 1671–1696</i> (2022).</p>
 
+  kronemont_fine:
+    pdate_label:
+      de: 'Geltungsbereich: 1693 → 1771 (Kopenhagener Hauptmünze) · ältere Bestände kursierten biß zum Statsbankerot 5. Januar 1813'
+      en: 'Period of validity: 1693 → 1771 (Copenhagen royal mint) · older stocks remained in circulation until the Statsbankerot of 5 January 1813'
+      uk: 'Період дії: 1693 → 1771 (Копенгагенський королівський монетний двір) · старі запаси в обігу до Statsbankerot 5 січня 1813'
+    hintergrund:
+      de: |
+        <b>13-Krone-Fuß («Feine Krone»)</b> — Kopenhagener Sonderstandard, etabliert durch das <b>Reskript vom 31. Dezember 1692</b> Christians V.: aus einer feinen Cöllnischen Marck (233,856 g) sollten <b>13 Specieskronen</b> ausgeprägt werden, was einem Feingewicht von ≈ 14,98 g je Krone entspricht. Geprägt ausschließlich an der Kopenhagener Hauptmünze 1693–1771; läuft chronologisch parallel zur holsteinischen Glückstadter 10½-Krone-Fuß-Phase (1644–1696) und löst diese als Hauptträger der Krone-Tarifprägung in Dänemark ab. Im Gegensatz zur Glückstadter «Groben Krone» trägt die «Feine Krone» einen leicht höheren Feingehalt (≈ 14,98 g vs. 14,964 g) und verzichtet auf die Glückstadter Tradition der Tarif-Reduktionen — der ⅔-Speciedaler-Tarif aus 1670+ wird übernommen.<br>
+        <b>Hinweis:</b> derzeit liegen für diese Sektion noch keine katalogisierten Münzen im Datensatz vor; die Sektion ist als Platzhalter eingerichtet und wird bei künftiger Detail-Bearbeitung mit konkreten Belegtypen aus Hede / Bruun / IKMK København befüllt.
+      en: |
+        <b>13-Krone-Fuß («Fine Crown»)</b> — a Copenhagen-specific standard established by Christian V's <b>Reskript of 31 December 1692</b>: <b>13 Specieskronen</b> were to be struck from one fine Cologne mark (233.856 g), corresponding to a fine weight of ≈ 14.98 g per Krone. Struck exclusively at the Copenhagen royal mint 1693–1771; chronologically parallel to the Holstein-side Glückstadt 10½-Krone-Fuß phase (1644–1696), which it replaces as the principal vehicle of Krone tariff coinage in Denmark. Unlike the Glückstadt «Coarse Krone», the «Fine Crown» carries a slightly higher fine weight (≈ 14.98 g vs. 14.964 g) and dispenses with the Glückstadt tradition of tariff reductions — the ⅔-Speciedaler tariff from 1670 onward is carried forward.<br>
+        <b>Note:</b> no catalogued coins for this section are present in the dataset yet; the section is set up as a placeholder and will be populated with concrete reference types from Hede / Bruun / IKMK København in future detailed work.
+      uk: |
+        <b>13-Krone-Fuß («Тонка Крона»)</b> — копенгагенський особливий стандарт, встановлений <b>Рескриптом 31 грудня 1692 р.</b> Кристіана V: з однієї марки чистого срібла кельнської ваги (233,856 г) мали карбуватись <b>13 Specieskronen</b>, що дає чисту вагу ≈ 14,98 г на одну Krone. Карбувався виключно на Копенгагенському королівському монетному дворі 1693–1771; хронологічно паралельний гольштинській ґлюкштадтській фазі 10½-Krone-Fuß (1644–1696) і змінює її як головний носій тарифного карбування Krone в Данії. На відміну від ґлюкштадтської «Грубої Крони», «Тонка Крона» має дещо вищу чисту вагу (≈ 14,98 г проти 14,964 г) і відмовляється від ґлюкштадтської традиції тарифних знижень — тариф ⅔ Speciedaler з 1670+ зберігається.<br>
+        <b>Примітка:</b> наразі в наборі даних немає каталогізованих монет для цієї секції; секція налаштована як заготовка і буде наповнена конкретними еталонними типами з Hede / Bruun / IKMK København у майбутній детальній роботі.
+
   guldkrone:
     pdate_label:
       de: 'Geltungsbereich: 1657 → 1670 · 13 Jahre (Frederik-III.-Tarifregime; Glückstadt-Phase 1657–1660, Kopenhagen-Folgeprägung 1668)'
@@ -326,6 +348,38 @@ fuss_periods:
 # ---------------------------------------------------------------------
 # Phase definitions — grouped by fuss
 # ---------------------------------------------------------------------
+
+  11_333_thaler:
+    pdate_label:
+      de: 'Geltungsbereich: 15./31. Juli 1726 (Forordning Friedrichs IV., Kurantmøntfod) → 5. Januar 1813 (Statsbankerot, Forordning Friedrichs VI.) · ca. 87 Jahre als Hauptalltagswährung; Altbestände als Scheidemünzen biß zur Krone-Reform 1875'
+      en: 'Period of validity: 15/31 July 1726 (Forordning of Friedrich IV, Kurantmøntfod) → 5 January 1813 (Statsbankerot, Forordning of Friedrich VI) · ca. 87 years as main everyday currency; old stocks circulated as petty coinage until the Krone reform of 1875'
+      uk: 'Період дії: 15/31 липня 1726 (Forordning Фредеріка IV, Kurantmøntfod) → 5 січня 1813 (Statsbankerot, Forordning Фредеріка VI) · бл. 87 років як основна повсякденна валюта; старі запаси як розмінна монета до Krone-реформи 1875'
+    hintergrund:
+      de: |
+        <b>11⅓-Thaler-Fuß · Rigsdaler Courant</b> — etabliert durch die <b>Forordning vom 15./31. Juli 1726</b> Friedrichs IV. als <i>Kurantmøntfod</i> des dänisch-norwegischen Verbundes. Aus einer feinen Cöllnischen Marck (233,856 g) wurden 11⅓ Rigsdaler Courant ausgeprägt — Feingewicht ≈ 20,63 g pro Daler. <b>Hauptalltagswährung des Gesamtstaats</b> während fast des gesamten 18. Jahrhunderts; läuft im Königreich Dänemark/Norwegen biß zum Staatsbankrott am 5. Januar 1813 (Forordning Friedrichs VI.), als der Rigsbankdaler im 18½-Thaler-Fuß den Kurantfuß ablöst. <b>In Holstein</b> hingegen nur biß zur Schimmelmann-Reform vom 29. Februar 1788 in Geltung — danach wird der 9¼-Thaler-Fuß zur alleinigen Grundmünze der holsteinischen Courant-Nominale. Altbestände aus 1726–1813 zirkulierten ab 1813 noch jahrzehntelang als Scheidemünzen weiter, biß sie mit der Krone-Reform 1875 (Skandinavische Münzunion) endgültig aus dem Umlauf gezogen wurden.<br>
+        <b>Hinweis:</b> derzeit liegen für diese Sektion bereits einige bulk-importierte ucoin-Stücke im seed_unsorted-Bucket vor (z. B. Christian-VII.-4-Skilling-Dansk km-644-chr-v-1783); diese werden bei der nächsten Detail-Verifikationsrunde nach Hede/Bruun in 11_333_thaler verschoben. Die Sektion ist als Platzhalter eingerichtet.
+      en: |
+        <b>11⅓-Thaler-Fuß · Rigsdaler Courant</b> — established by Friedrich IV's <b>Forordning of 15/31 July 1726</b> as the <i>Kurantmøntfod</i> of the Danish-Norwegian composite state. From one fine Cologne mark (233.856 g) 11⅓ Rigsdaler Courant were struck — fine weight ≈ 20.63 g per daler. <b>Main everyday currency of the composite state</b> through most of the 18th century; in the Kingdom of Denmark/Norway it remained in force until the state bankruptcy of 5 January 1813 (Forordning of Friedrich VI), when the Rigsbankdaler on the 18½-Thaler-Fuß replaced the Kurantfuß. <b>In Holstein</b>, by contrast, it was in force only until the Schimmelmann reform of 29 February 1788 — afterwards the 9¼-Thaler-Fuß became the sole base coin of all Holstein Courant denominations. Old stocks from 1726–1813 continued in circulation as petty coinage for decades after 1813, until they were finally withdrawn by the Krone reform of 1875 (Scandinavian Monetary Union).<br>
+        <b>Note:</b> a few bulk-imported ucoin pieces sitting in the seed_unsorted bucket already belong to this standard (e.g. the Christian VII 4-Skilling Dansk km-644-chr-v-1783); they will be moved to 11_333_thaler in the next detailed verification round against Hede/Bruun. The section is set up as a placeholder.
+      uk: |
+        <b>11⅓-Thaler-Fuß · Rigsdaler Courant</b> — встановлений <b>Forordning 15/31 липня 1726</b> Фредеріка IV як <i>Kurantmøntfod</i> дансько-норвезького союзу. З однієї марки чистого срібла кельнської ваги (233,856 г) карбувалося 11⅓ Rigsdaler Courant — чиста вага ≈ 20,63 г на одного даллера. <b>Основна повсякденна валюта цілісної держави</b> впродовж майже всього XVIII ст.; у Королівстві Данії/Норвегії дія тривала до державного банкрутства 5 січня 1813 р. (Forordning Фредеріка VI), коли Rigsbankdaler у 18½-Thaler-Fuß замістив Kurantfuß. <b>У Гольштейні</b> ж — лише до реформи Шіммельмана 29 лютого 1788 р., після чого 9¼-Thaler-Fuß став єдиною базовою монетою всіх гольштинських Courant-номіналів. Старі запаси 1726–1813 ще десятиліттями кружляли як розмінна монета після 1813 — аж до Krone-реформи 1875 р. (Скандинавська монетна унія), коли їх остаточно вилучили з обігу.<br>
+        <b>Примітка:</b> кілька bulk-імпортованих ucoin-монет, що зараз перебувають у seed_unsorted-кошику, вже належать до цього стандарту (напр., Christian VII 4-Skilling Dansk km-644-chr-v-1783); вони будуть переміщені до 11_333_thaler у наступному раунді детальної верифікації за Hede/Bruun. Секція налаштована як заготовка.
+
+  18_5_thaler:
+    pdate_label:
+      de: 'Geltungsbereich: 5. Januar 1813 (Forordning Friedrichs VI., nach Statsbankerot) → Krone-Reform 1873–1875 · 1854 ohne Fußänderung in Rigsdaler Rigsmønt umbenannt'
+      en: 'Period of validity: 5 January 1813 (Forordning of Friedrich VI, after the Statsbankerot) → Krone reform 1873–1875 · renamed Rigsdaler Rigsmønt in 1854 without a change of standard'
+      uk: 'Період дії: 5 січня 1813 (Forordning Фредеріка VI, після Statsbankerot) → Krone-реформа 1873–1875 · 1854 перейменовано на Rigsdaler Rigsmønt без зміни стопи'
+    hintergrund:
+      de: |
+        <b>18½-Thaler-Fuß · Rigsbankdaler / Rigsdaler Rigsmønt</b> — Notreform Friedrichs VI. nach dem dänischen Staatsbankrott. Die <b>Forordning vom 5. Januar 1813</b> setzt den neuen Hauptstandard auf 18½ Rigsbankdaler aus einer feinen Cöllnischen Marck (233,856 g) — Feingewicht ≈ 12,64 g pro Daler. <b>§10 der Forordning</b> verankert ausdrücklich <b>1 Speciedaler = 2 Rigsbankdaler</b>, also eine glatte ½-Anteil-Anbindung an den 9¼-Thaler-Fuß. 1854 wird die Münze ohne Fußänderung in <b>Rigsdaler Rigsmønt</b> umbenannt; 1873–1875 ersetzt die <b>Krone</b> der Skandinavischen Münzunion (Schweden, Norwegen, Dänemark) den Rigsdaler. Hauptträger des dänischen Geldumlaufs in der zweiten Hälfte des 19. Jahrhunderts. In Schleswig-Holstein parallel zum 9¼-Thaler-Fuß als kleinerer Realsubstandard im Einsatz biß zur preußischen Annexion 24. August 1866.<br>
+        <b>Hinweis:</b> derzeit liegen für diese Sektion noch keine katalogisierten Münzen im Datensatz vor; die Sektion ist als Platzhalter eingerichtet und wird bei künftiger Detail-Bearbeitung mit Belegtypen aus Hede / Sieg / IKMK København befüllt.
+      en: |
+        <b>18½-Thaler-Fuß · Rigsbankdaler / Rigsdaler Rigsmønt</b> — Friedrich VI's emergency reform after the Danish state bankruptcy. The <b>Forordning of 5 January 1813</b> sets the new principal standard at 18½ Rigsbankdaler per fine Cologne mark (233.856 g) — fine weight ≈ 12.64 g per daler. <b>§10 of the Forordning</b> explicitly anchors <b>1 Speciedaler = 2 Rigsbankdaler</b>, a clean ½-share link to the 9¼-Thaler-Fuß. In 1854 the coin is renamed <b>Rigsdaler Rigsmønt</b> without any change of standard; in 1873–1875 the <b>Krone</b> of the Scandinavian Monetary Union (Sweden, Norway, Denmark) supersedes the Rigsdaler. The main carrier of the Danish money supply in the second half of the 19th century. In Schleswig-Holstein it ran in parallel with the 9¼-Thaler-Fuß as a lesser actual sub-standard until the Prussian annexation of 24 August 1866.<br>
+        <b>Note:</b> no catalogued coins for this section are present in the dataset yet; the section is set up as a placeholder and will be populated with reference types from Hede / Sieg / IKMK København in future detailed work.
+      uk: |
+        <b>18½-Thaler-Fuß · Rigsbankdaler / Rigsdaler Rigsmønt</b> — надзвичайна реформа Фредеріка VI після данського державного банкрутства. <b>Forordning 5 січня 1813</b> встановлює новий головний стандарт на 18½ Rigsbankdaler з однієї марки чистого срібла кельнської ваги (233,856 г) — чиста вага ≈ 12,64 г на даллер. <b>§10 Forordning</b> явно закріплює <b>1 Speciedaler = 2 Rigsbankdaler</b>, тобто чисту привʼязку ½-частки до 9¼-Thaler-Fuß. 1854 р. монета перейменовується на <b>Rigsdaler Rigsmønt</b> без зміни стопи; 1873–1875 рр. <b>Krone</b> Скандинавської монетної унії (Швеція, Норвегія, Данія) витісняє Rigsdaler. Головний носій данського грошового обігу в другій половині XIX ст. У Шлезвіг-Гольштейні діяв паралельно з 9¼-Thaler-Fuß як менший фактичний підстандарт до прусської анексії 24 серпня 1866 р.<br>
+        <b>Примітка:</b> наразі в наборі даних немає каталогізованих монет для цієї секції; секція налаштована як заготовка і буде наповнена еталонними типами з Hede / Sieg / IKMK København у майбутній детальній роботі.
 
   seed_unsorted:
     pdate_label:
@@ -478,6 +532,51 @@ phases:
           <b>Outside Holstein, included for completeness of the Frederik III tariff series:</b> the coin was struck in Copenhagen, so it does not belong to the core scope of this register. It is listed here because it is the only other known piece of the <i>Guldkrone</i> tariff series and historically supersedes the tariff regime of the Glückstadt phase 1657–1660.<br><br> <b>Standard relative to the Glückstadt form:</b> at the same fineness .917 the rough weight is reduced by ≈ 8.8 % (5.47 g instead of 5.996 g) — fine-silver equivalent falls in step. From a Cologne mark of raw alloy one now strikes ≈ 233.856 ÷ 5.47 ≈ 42.75 pieces per mark, versus 39 at Glückstadt. Since the form does not yield a clean integer and the tariff also fails to match the 22-carat rough weight (3 Specie ≈ 18 Mark Dansk), the coin physically belongs to its own standard — the Δ column accordingly flags it as «outside tolerance» against the canonical Glückstadt form.
         uk: |-
           <b>Поза Гольштейном, наведено для повноти тарифної серії Фредеріка III:</b> монету викарбувано в Копенгагені, тож вона не належить до основного скоупу цього реєстру. Включена тут, бо це єдина інша відома штука серії <i>Guldkrone</i> і вона історично змінює тарифний режим ґлюкштадтської фази 1657–1660.<br><br> <b>Стопа щодо ґлюкштадтської форми:</b> при тій же пробі .917 повна вага знижена на ≈ 8,8 % (5,47 г замість 5,996 г) — чистий срібно-золотий еквівалент пропорційно падає. З кельнської марки сплаву тепер виходить ≈ 233,856 ÷ 5,47 ≈ 42,75 штук на марку проти 39 у Glückstadt. Оскільки форма не дає круглого цілого числа й тариф теж не відповідає 22-каратному повному вагому (3 Specie ≈ 18 Mark Dansk), монета фізично належить до власної стопи — у стовпці Δ її буде відмічено як «поза допуском» щодо канонічної ґлюкштадтської форми.
+
+  kronemont_fine:
+    - id: A
+      year_from: 1693
+      year_to: 1771
+      from_label: '1693'
+      to_label: '1771'
+      title:
+        de: Christian V. → Christian VII. · Kopenhagener Hauptmünze · «Feine Krone»
+        en: Christian V → Christian VII · Copenhagen royal mint · «Fine Crown»
+        uk: Кристіан V → Кристіан VII · Копенгагенський королівський монетний двір · «Тонка Крона»
+      description:
+        de: 'Einzige Phase der dänischen «Feinen Krone»: nach dem Reskript Christians V. vom 31. Dezember 1692 werden 13 Specieskronen aus 1 feinen Cöllnischen Marck ausgeprägt — Feingewicht ≈ 14,98 g je Krone (gegenüber 14,964 g im Glückstadter 10½-Krone-Fuß). Geprägt ausschließlich an der Kopenhagener Hauptmünze 1693–1771 unter den Münzmeistern der jeweiligen Regenten (Christian V. biß 1699, Friedrich IV. 1699–1730, Christian VI. 1730–1746, Friedrich V. 1746–1766, Christian VII. 1766–1808). Tarif ⅔ Speciedaler durchgehend übernommen. Ältere Bestände kursierten biß zum Statsbankerot 5. Januar 1813.'
+        en: 'Sole phase of the Danish «Fine Crown»: per Christian V''s Reskript of 31 December 1692, 13 Specieskronen are struck from 1 fine Cologne mark — fine weight ≈ 14.98 g per Krone (versus 14.964 g in the Glückstadt 10½-Krone-Fuß). Struck exclusively at the Copenhagen royal mint 1693–1771 under the mintmasters of the respective regents (Christian V to 1699, Friedrich IV 1699–1730, Christian VI 1730–1746, Friedrich V 1746–1766, Christian VII 1766–1808). The ⅔-Speciedaler tariff is carried through unchanged. Older stocks remained in circulation until the Statsbankerot of 5 January 1813.'
+        uk: 'Єдина фаза данської «Тонкої Корони»: за Рескриптом Кристіана V від 31 грудня 1692 р. карбується 13 Specieskronen з 1 марки чистого срібла кельнської ваги — чиста вага ≈ 14,98 г на одну Krone (проти 14,964 г у ґлюкштадтському 10½-Krone-Fuß). Карбувалася виключно на Копенгагенському королівському монетному дворі 1693–1771 за монетмайстрів відповідних регентів (Кристіан V до 1699, Фредерік IV 1699–1730, Кристіан VI 1730–1746, Фредерік V 1746–1766, Кристіан VII 1766–1808). Тариф ⅔ Speciedaler зберігається без змін. Старі запаси в обігу до Statsbankerot 5 січня 1813.'
+
+  11_333_thaler:
+    - id: A
+      year_from: 1726
+      year_to: 1813
+      from_label: '15./31. Juli 1726'
+      to_label: '5. Januar 1813'
+      title:
+        de: Kurantmøntfod im dänisch-norwegischen Verbund · Hauptalltagswährung
+        en: Kurantmøntfod in the Danish-Norwegian composite state · main everyday currency
+        uk: Kurantmøntfod у дансько-норвезькому союзі · основна повсякденна валюта
+      description:
+        de: 'Etabliert durch die Forordning Friedrichs IV. vom 15./31. Juli 1726: 11⅓ Rigsdaler Courant aus 1 feinen Cöllnischen Marck — Feingewicht ≈ 20,63 g pro Daler. Hauptträger des dänisch-norwegischen Geldumlaufs während fast des gesamten 18. Jahrhunderts (Friedrich IV., Christian VI., Friedrich V., Christian VII., Friedrich VI.). Endet im Königreich Dänemark mit dem Statsbankerot vom 5. Januar 1813 (Forordning Friedrichs VI.); in Holstein hingegen bereits durch die Schimmelmann-Reform vom 29. Februar 1788 vom 9¼-Thaler-Fuß abgelöst. Altbestände 1726–1813 kursierten ab 1813 noch jahrzehntelang als Scheidemünzen biß zur Krone-Reform 1875.'
+        en: 'Established by Friedrich IV''s Forordning of 15/31 July 1726: 11⅓ Rigsdaler Courant from 1 fine Cologne mark — fine weight ≈ 20.63 g per daler. Principal vehicle of the Danish-Norwegian money supply through most of the 18th century (Friedrich IV, Christian VI, Friedrich V, Christian VII, Friedrich VI). In the Kingdom of Denmark it ends with the Statsbankerot of 5 January 1813 (Forordning of Friedrich VI); in Holstein it had already been replaced by the 9¼-Thaler-Fuß through the Schimmelmann reform of 29 February 1788. Old stocks from 1726–1813 continued in circulation as petty coinage for decades after 1813, until the Krone reform of 1875.'
+        uk: 'Встановлений Forordning Фредеріка IV від 15/31 липня 1726 р.: 11⅓ Rigsdaler Courant з 1 марки чистого срібла кельнської ваги — чиста вага ≈ 20,63 г на даллер. Основний носій дансько-норвезького грошового обігу впродовж майже всього XVIII ст. (Фредерік IV, Кристіан VI, Фредерік V, Кристіан VII, Фредерік VI). У Королівстві Данії дія тривала до Statsbankerot 5 січня 1813 (Forordning Фредеріка VI); у Гольштейні ж замінено на 9¼-Thaler-Fuß ще реформою Шіммельмана 29 лютого 1788 р. Старі запаси 1726–1813 ще десятиліттями кружляли як розмінна монета після 1813 — аж до Krone-реформи 1875.'
+
+  18_5_thaler:
+    - id: A
+      year_from: 1813
+      year_to: 1875
+      from_label: '5. Januar 1813'
+      to_label: '1873/1875'
+      title:
+        de: Rigsbankdaler → Rigsdaler Rigsmønt · Krone-Reform
+        en: Rigsbankdaler → Rigsdaler Rigsmønt · Krone reform
+        uk: Rigsbankdaler → Rigsdaler Rigsmønt · Krone-реформа
+      description:
+        de: 'Notreform Friedrichs VI. nach dem dänischen Staatsbankrott. Forordning vom 5. Januar 1813 setzt 18½ Rigsbankdaler aus 1 feinen Cöllnischen Marck (≈ 12,64 g fein pro Daler). §10 verankert ausdrücklich 1 Speciedaler = 2 Rigsbankdaler — eine glatte ½-Anteil-Anbindung an den 9¼-Thaler-Fuß, die den Übergang vom Kurantfuß logisch glättet. 1854 ohne Fußänderung in Rigsdaler Rigsmønt umbenannt; 1873–1875 ersetzt die Krone der Skandinavischen Münzunion (Schweden, Norwegen, Dänemark) den Rigsdaler.'
+        en: 'Friedrich VI''s emergency reform after the Danish state bankruptcy. The Forordning of 5 January 1813 sets 18½ Rigsbankdaler per fine Cologne mark (≈ 12.64 g fine per daler). §10 explicitly anchors 1 Speciedaler = 2 Rigsbankdaler — a clean ½-share link to the 9¼-Thaler-Fuß that smoothly carries the transition from the Kurantfuß. Renamed Rigsdaler Rigsmønt in 1854 without any change of standard; in 1873–1875 the Krone of the Scandinavian Monetary Union (Sweden, Norway, Denmark) supersedes the Rigsdaler.'
+        uk: 'Надзвичайна реформа Фредеріка VI після данського державного банкрутства. Forordning 5 січня 1813 встановлює 18½ Rigsbankdaler з 1 марки чистого срібла кельнської ваги (≈ 12,64 г чистого на даллер). §10 явно закріплює 1 Speciedaler = 2 Rigsbankdaler — чиста привʼязка ½-частки до 9¼-Thaler-Fuß, яка логічно згладжує перехід з Kurantfuß. 1854 р. перейменовується на Rigsdaler Rigsmønt без зміни стопи; 1873–1875 рр. Krone Скандинавської монетної унії (Швеція, Норвегія, Данія) заміщує Rigsdaler.'
 
   seed_unsorted:
     - id: A
