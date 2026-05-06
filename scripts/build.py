@@ -295,23 +295,31 @@ def build_landing(
     contact_email: str = "",
     german_fuesse: list[dict] | None = None,
     german_fuesse_references: dict | None = None,
+    include_seed: bool = False,
 ) -> None:
     tmpl = env.get_template("landing.html.j2")
     generated_date = datetime.now().strftime("%Y-%m-%d")
 
-    # Hide cards for locations that still have unsorted seed entries —
-    # any coin filed under the placeholder `seed_unsorted` Müntzfuß means
-    # the location has not yet been triaged into proper standards. The
-    # location's per-language pages still build (so existing URLs keep
-    # working), they just don't appear on the landing index until cleaned up.
-    visible_locations = [
-        loc for loc in locations
-        if not any(c.fuss == "seed_unsorted" for c in loc.coins)
-    ]
-    hidden = [loc.id for loc in locations if loc not in visible_locations]
-    if hidden:
-        print(f"🙈 Landing hides {len(hidden)} location(s) with unsorted "
-              f"seed entries: {', '.join(hidden)}")
+    # Locations with any `seed_unsorted` coin haven't been triaged into proper
+    # Müntzfuß standards. In production we hide them entirely from the landing
+    # (the per-location pages still build, so existing URLs keep working). In
+    # local builds (`--include-seed`, on by default when --base-url is empty)
+    # they appear on the landing too, with a muted 'seed' card variant so the
+    # researcher can navigate to them while iterating.
+    seed_ids = {
+        loc.id for loc in locations
+        if any(c.fuss == "seed_unsorted" for c in loc.coins)
+    }
+    if include_seed:
+        visible_locations = list(locations)
+        if seed_ids:
+            print(f"🌱 Landing shows {len(seed_ids)} seed location(s) "
+                  f"(local-build mode): {', '.join(sorted(seed_ids))}")
+    else:
+        visible_locations = [loc for loc in locations if loc.id not in seed_ids]
+        if seed_ids:
+            print(f"🙈 Landing hides {len(seed_ids)} location(s) with unsorted "
+                  f"seed entries: {', '.join(sorted(seed_ids))}")
 
     # Landing is generated per-language at /<lang>/index.html;
     # root / redirects to /de/ (or user's preferred language via JS — optional)
@@ -331,6 +339,7 @@ def build_landing(
 
         html = tmpl.render(
             locations=visible_locations,
+            seed_ids=seed_ids,
             ui=ui,
             theme=theme,
             lang=lang,
@@ -404,6 +413,15 @@ def parse_args():
     p.add_argument("--base-url", default="", help="URL prefix for assets and inter-page "
                    "links. Empty for user pages or root-served sites; '/repo-name' for "
                    "GitHub Pages project sites. Trailing slash stripped automatically.")
+    p.add_argument("--include-seed", dest="include_seed", action="store_true",
+                   default=None,
+                   help="Include locations that still have seed_unsorted coins on the "
+                        "landing page (rendered as cards with a 'seed' tag and muted "
+                        "styling). Default: auto-enable when --base-url is empty "
+                        "(local builds), suppress in production CI builds.")
+    p.add_argument("--no-include-seed", dest="include_seed", action="store_false",
+                   help="Force-hide seed locations from the landing page even on local "
+                        "builds (matches production behaviour).")
     return p.parse_args()
 
 
@@ -483,11 +501,20 @@ def main():
         load_local_env()
         contact_email = os.environ.get("CONTACT_EMAIL", "")
 
+        # Seed-locations on landing: explicit flag wins, otherwise auto-enable
+        # for local builds (no --base-url set) and disable for production CI
+        # (which always sets --base-url).
+        if args.include_seed is None:
+            include_seed = (base_url == "")
+        else:
+            include_seed = args.include_seed
+
         build_landing(locations, ui, theme, languages, env,
                       repo_url=args.repo_url, base_url=base_url,
                       contact_email=contact_email,
                       german_fuesse=german_fuesse,
-                      german_fuesse_references=german_fuesse_refs)
+                      german_fuesse_references=german_fuesse_refs,
+                      include_seed=include_seed)
 
     generate_assets(theme)
     

@@ -2324,6 +2324,45 @@ a.loc-card:hover {{
 [data-theme="v2"] .loc-card h3 {{ font-variant: normal; font-weight: 400; color: var(--text-primary); }}
 .loc-card p {{ margin: 0; font-size: 13px; color: var(--text-secondary); line-height: 1.55; }}
 
+/* Seed-card variant — locations whose Müntzfuß-classification is still
+   pending (any seed_unsorted coin present). Rendered only on local builds
+   via `--include-seed` (auto-on when --base-url is empty); production
+   builds drop them entirely. Visual language: muted amber palette borrowed
+   from the scheide subcategory tokens — same "work-in-progress / treat
+   with caution" connotation. Tokens injected as f-string values so the
+   colours follow whatever theme.yml defines (Atlas / Codex / Noir all
+   share the scheide token set). */
+a.loc-card--seed {{
+  background: {subcat_scheide_bg};
+  border-color: {subcat_scheide_border};
+  border-style: dashed;
+}}
+a.loc-card--seed:hover {{
+  border-color: {subcat_scheide_border};
+  background: {subcat_scheide_bg};
+  border-style: solid;
+}}
+.loc-card--seed h3 {{
+  color: {subcat_scheide_fg};
+}}
+[data-theme="v1"] .loc-card--seed h3 {{ color: {subcat_scheide_fg}; }}
+[data-theme="v2"] .loc-card--seed h3 {{ color: {subcat_scheide_fg}; }}
+.loc-seed-tag {{
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 1px 8px;
+  border-radius: 3px;
+  background: {subcat_scheide_bg};
+  border: 0.5px solid {subcat_scheide_border};
+  color: {subcat_scheide_fg};
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-variant: normal;
+  font-family: var(--font-body);
+}}
+
 /* --- Landing: German Müntzfüße overview ---------------------------------- */
 /* Catalogue rendered under the location cards on the landing page. Data
    from data/shared/german_fuesse.yml. The visual language deliberately

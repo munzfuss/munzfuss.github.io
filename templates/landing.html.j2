@@ -48,8 +48,10 @@
 
 <div class="loc-grid">
   {% for loc in locations %}
-  <a class="loc-card" href="../../{{ loc.id }}/{{ lang }}/">
+  {% set is_seed = (seed_ids is defined) and (loc.id in seed_ids) %}
+  <a class="loc-card{% if is_seed %} loc-card--seed{% endif %}" href="../../{{ loc.id }}/{{ lang }}/">
     <h3>{{ loc.name|t(lang) }}</h3>
+    {% if is_seed %}<span class="loc-seed-tag">{{ ui_get('landing.seed_tag') }}</span>{% endif %}
     <p>{{ loc.summary|t(lang) }}</p>
   </a>
   {% endfor %}
