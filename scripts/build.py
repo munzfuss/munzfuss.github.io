@@ -28,8 +28,9 @@ from pydantic import ValidationError
 sys.path.insert(0, str(Path(__file__).parent))
 
 from lib import i18n
-from lib.categorize import (
-    categorize, compute_bar_layers, compute_coin_year_runs,
+from lib.categorize import categorize
+from lib.timeline import (
+    compute_bar_layers, compute_coin_year_runs,
     compute_hover_zones, derive_holstein_mint_overrides,
 )
 from lib.compute import compute_location
