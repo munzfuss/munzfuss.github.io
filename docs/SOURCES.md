@@ -69,7 +69,18 @@ When researching a coin, consult sources in this order based on what you need:
 - Often agrees with Numista on KM# but disagrees with Hede on fineness/weight (independent reads of same primary catalogues)
 - Cloudflare-protected
 
-**Access:** WebFetch routinely returns 403 (Cloudflare-protected). ucoin.net is **not** a sanctioned Chrome-MCP / browser-extension / browser-console scraping target either — same posture as Numista: the site's ToS contains restrictions on automated access (noted in third-party scraping write-ups) and there is no public API for the numismatic catalogue (`ucoinpy` is for the unrelated uCoin cryptocurrency, not this site). When ucoin data is needed and WebFetch fails, ask the user to paste the relevant `/coin/<…>?tid=NNNNN` page text into chat rather than scraping. Treat as confirmation source only when the data IS reachable through the user-supplied path; never plan a workflow that depends on bulk Chrome-MCP scraping of ucoin pages.
+**Access:** WebFetch routinely returns 403 (Cloudflare-protected). No public API for the numismatic catalogue (`ucoinpy` is for the unrelated uCoin cryptocurrency, not this site). Chrome MCP is acceptable as a fallback for ucoin **catalogue pages** (`/coin/<…>?tid=NNNNN`) under the conditions below; for **personal-user pages** (collections, swaps, wishlists, user profiles) it is NOT acceptable — those carry separate consent expectations and our project doesn't need that data anyway.
+
+Acceptable-use conditions for catalogue Chrome-MCP fallback:
+- **Non-commercial research only** (this project is a scholarly numismatic register; that's the only use that this access policy covers)
+- **Low volume** — single-page or small-batch lookups, not bulk crawls. If a task needs more than ~10 ucoin pages in a session, stop and ask the user
+- **Rate limiting** — the natural pace of `browser_batch` sequences is fine; never parallelise dozens of `navigate` calls
+- **Attribution** — every ucoin-derived field already lands in a `sources: [{type: ucoin, ref: 'tid=NNNNN', url: ...}]` entry on the coin record; that's our contract with the source and it's non-negotiable
+- **Respect `robots.txt`** — if the file becomes reachable in future and disallows the path, the policy switches to ask-the-user
+
+When the Cloudflare challenge resolves (typically a 5–10 s wait after `navigate`, then re-issue `get_page_text`) the catalogue page is reachable. When all paths fail, fall back to asking the user to paste the relevant page text.
+
+The strict «no Chrome MCP» rule that briefly applied here was overly conservative — the third-party scraping write-up that motivated it (`geonode.com/blog/how-to-scrape-ucoin`) does NOT in fact quote any ToS clause forbidding research access, only speculates about it; and our use case (non-commercial research, catalogue specs only, attribution per coin) sits squarely inside the «conditionally acceptable» framework that write-up describes.
 
 **Use as:** confirmation source — when ucoin's weight/fineness/diameter agrees with our value, that counts as a confirmation suitable for `*_verified: true`. When ucoin disagrees, record the divergence via `measurement_alts`.
 
