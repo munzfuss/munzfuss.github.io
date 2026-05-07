@@ -113,14 +113,29 @@ accents:
 
 # Timeline bar palette — each bar ID pairs a gradient with an optional text override.
 # Bars reference these IDs via color_class in location YAML.
+#
+# `from_light` (optional): light-theme override for the layer end-colour.
+# Used pre-calibrated as-is on v1/v2 themes (skips the global 0.7
+# darkening factor applied to plain `from`). Reason: the cool-silver
+# `from` values carry a +28-channel blue offset that, on the cream
+# light-theme bg, rendered as a blue-grey indistinguishable from the
+# Krone-Mønt (krm) Prussian-blue palette — both groups merged into
+# one «cool dark» band on light pages. Replacing the silver `from`s
+# with NEUTRAL-grey values for light themes restores hue separation:
+# pure silvers read as neutral grey (the perceptually authentic
+# silver-content colour), while krm stays distinctly blue. Dark
+# themes are unaffected — they use `to`, not `from`.
 timeline_bars:
   # Cool-silver gradient sorted by Feinsilbergehalt (heaviest = lightest visually,
   # lightest = darkest visually); all five steps stay in the silver hue family.
-  rt:  { from: "#aab8c6", to: "#d4dde6" }   # 9-Thaler-Fuß    (25,98 g fein) — silv1, lightest
-  si:  { from: "#92a0ae", to: "#bcc6d2" }   # 9¼-Thaler-Fuß   (25,28 g fein) — silv2
-  kr:  { from: "#7a8896", to: "#a4aebc" }   # 11⅓-Thaler-Fuß  (20,63 g fein) — silv3
-  vt:  { from: "#62707e", to: "#8c96a4" }   # 30-Thaler-Fuß   (16,67 g fein) — silv4
-  rb:  { from: "#4a5866", to: "#747e8c" }   # 18½-Thaler-Fuß  (12,64 g fein) — silv5, darkest
+  # Light-theme `from_light` is pure neutral grey (no blue tint) — sorted by
+  # the same silver-content gradient (rt brightest, rb darkest) and chosen so
+  # rt clears WCAG 3:1 contrast against the cream page bg.
+  rt:  { from: "#aab8c6", to: "#d4dde6", from_light: "#818181" }  # 9-Thaler-Fuß    (25,98 g fein) — silv1, lightest
+  si:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#707070" }  # 9¼-Thaler-Fuß   (25,28 g fein) — silv2
+  kr:  { from: "#7a8896", to: "#a4aebc", from_light: "#5f5f5f" }  # 11⅓-Thaler-Fuß  (20,63 g fein) — silv3
+  vt:  { from: "#62707e", to: "#8c96a4", from_light: "#4e4e4e" }  # 30-Thaler-Fuß   (16,67 g fein) — silv4
+  rb:  { from: "#4a5866", to: "#747e8c", from_light: "#3e3e3e" }  # 18½-Thaler-Fuß  (12,64 g fein) — silv5, darkest
   sh:  { from: "#5a4d6d", to: "#8575b0" }
   krm: { from: "#1d3557", to: "#457b9d", fg: "#f0ece4" }   # Krone-Mønt-Familie (kronemont_chr_iv / kronemont / kronemont_fine) — preußisch-blaue Gamme
   rm:  { from: "#8a6d2a", to: "#d4a574", fg: "#1a1612", weight: 600 }

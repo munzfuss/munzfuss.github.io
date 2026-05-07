@@ -94,9 +94,21 @@ def _timeline_bars_css(bars: dict) -> str:
         # ordering (rt still the lightest silver, rb still the darkest);
         # the already-dark palettes (g, krm, rm, sh) absorb 30 %
         # darkening without becoming illegibly black.
-        DARKEN = 0.70
-        fr, fg, fb = _hex_to_rgb(conf["from"])
-        fr_d, fg_d, fb_d = int(fr * DARKEN), int(fg * DARKEN), int(fb * DARKEN)
+        #
+        # `from_light` (optional palette field): when present, it's
+        # used as-is on light themes WITHOUT the 0.7 darkening — the
+        # value is presumed pre-calibrated for cream bg. Currently
+        # used by the silver palettes (rt/si/kr/vt/rb) to substitute
+        # neutral-grey colours for the cool-blue `from` values, so
+        # pure silvers don't visually merge with the Krone-Mønt (krm)
+        # Prussian-blue family on light themes. See theme.yml comment
+        # for the per-palette rationale.
+        if "from_light" in conf:
+            fr_d, fg_d, fb_d = _hex_to_rgb(conf["from_light"])
+        else:
+            DARKEN = 0.70
+            fr, fg, fb = _hex_to_rgb(conf["from"])
+            fr_d, fg_d, fb_d = int(fr * DARKEN), int(fg * DARKEN), int(fb * DARKEN)
         out.append(
             f'[data-theme="v1"] .tl-bar-layer.{bar_id}, '
             f'[data-theme="v2"] .tl-bar-layer.{bar_id} {{ '
