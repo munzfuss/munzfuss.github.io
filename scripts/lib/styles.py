@@ -103,6 +103,23 @@ def _timeline_bars_css(bars: dict) -> str:
             f"--layer-bg: rgba({rt_r}, {rt_g}, {rt_b}, {alpha * 2:.4f}); }}"
         )
 
+    # Sole-kind opacity reduction. The 1/6-alpha-per-layer baseline was
+    # designed for 3 kinds (mint/status/circulation) × 2 scopes
+    # (anywhere/holstein) = 6 layers stacking to 100 % saturation under
+    # `mix-blend-mode: plus-lighter`. The «sole» kind (added later — used
+    # by 9¼-Thaler-Fuß for the 1788–1813 single-standard period under
+    # the Schimmelmann reform, and by Reichsgoldmünzfuß for the
+    # 1907–1914 sole-gold-standard window) is a 4th kind that pushes
+    # those zones past the 6-layer baseline (7/6 = 117 %), producing a
+    # washed-out white stripe on light themes that overpowers the rest
+    # of the bar. Halving the layer's opacity drops the sole zone to
+    # ~108 % saturation — perceptible as a subtle period-marker without
+    # the visual blowout. Palette-agnostic: applies to every bar's sole
+    # layer regardless of color_class.
+    out.append(
+        ".tl-bar-layer.tl-bar-layer-sole { opacity: 0.5; }"
+    )
+
     return "\n".join(out)
 
 
