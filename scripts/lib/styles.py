@@ -907,12 +907,19 @@ h2[style] {{
   z-index: 0;
 }}
 [data-theme="v1"] .tl-track {{
-  background: rgba(163, 124, 44, 0.05);
+  /* Bumped alpha 0.05 → 0.10 — at 0.05 the cream page bg bled through
+     the track too heavily on the Pistolen-Fuß / Courantdukatenfuß /
+     Guldkrone-Fuß rows (where the layered fill is short), making the
+     bar's own footprint visually indistinguishable from the page. */
+  background: rgba(163, 124, 44, 0.10);
   border: var(--hairline) solid var(--border-soft);
   border-radius: 2px;
 }}
 [data-theme="v2"] .tl-track {{
-  background: rgba(0,0,0,0.04);
+  /* Bumped alpha 0.04 → 0.08 for the same reason as v1 above — the
+     codex theme's near-black overlay needs a slightly heavier hand to
+     stay perceptible against the v2 cream page bg. */
+  background: rgba(0,0,0,0.08);
   border: 0;
   border-bottom: var(--hairline) solid var(--text-primary);
   border-radius: 0;
