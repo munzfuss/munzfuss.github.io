@@ -145,7 +145,12 @@ timeline_bars:
   # blue hue and silvers are achromatic — hue separation does the work
   # of distinguishing «tariff silver» from «pure silver».
   krm: { from: "#1d3557", to: "#457b9d", from_light: "#3a78b8", fg: "#f0ece4" }   # Krone-Mønt-Familie (kronemont_chr_iv / kronemont / kronemont_fine) — preußisch-blaue Gamme
-  rm:  { from: "#8a6d2a", to: "#d4a574", fg: "#1a1612", weight: 600 }
+  # `from_light` (warm bronze) lifts the Guldkrone-Fuß layer on Atlas/Codex —
+  # without it, plain `from × 0.7 = (96,76,29)` rendered as a near-black
+  # olive stripe on the cream paper, indistinguishable from the surrounding
+  # narrow bars. The mid-bronze stays in the warm-gold hue family of the
+  # `to` end so the bar still reads as «kein Pfennig-Gold sondern Tarif-Gold».
+  rm:  { from: "#8a6d2a", to: "#d4a574", from_light: "#a87838", fg: "#1a1612", weight: 600 }
   g:   { from: "#5c4a00", to: "#fcd34d", fg: "#1a1612", weight: 600 }
 
 typography:
