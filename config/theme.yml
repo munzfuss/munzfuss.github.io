@@ -137,7 +137,14 @@ timeline_bars:
   vt:  { from: "#62707e", to: "#8c96a4", from_light: "#4e4e4e" }  # 30-Thaler-Fuß   (16,67 g fein) — silv4
   rb:  { from: "#4a5866", to: "#747e8c", from_light: "#3e3e3e" }  # 18½-Thaler-Fuß  (12,64 g fein) — silv5, darkest
   sh:  { from: "#5a4d6d", to: "#8575b0" }
-  krm: { from: "#1d3557", to: "#457b9d", fg: "#f0ece4" }   # Krone-Mønt-Familie (kronemont_chr_iv / kronemont / kronemont_fine) — preußisch-blaue Gamme
+  # Krone-Mønt-Familie. `from_light` = #3a78b8 — clear sky-blue tone
+  # for the light themes, sourced to push the tariff-silver bars away
+  # from the merely-cold dark-navy reading they had with plain `from`
+  # darkening. The neutral-grey pure-silver palettes (rt-rb) are now
+  # at the same brightness band as krm, but krm is in the saturated-
+  # blue hue and silvers are achromatic — hue separation does the work
+  # of distinguishing «tariff silver» from «pure silver».
+  krm: { from: "#1d3557", to: "#457b9d", from_light: "#3a78b8", fg: "#f0ece4" }   # Krone-Mønt-Familie (kronemont_chr_iv / kronemont / kronemont_fine) — preußisch-blaue Gamme
   rm:  { from: "#8a6d2a", to: "#d4a574", fg: "#1a1612", weight: 600 }
   g:   { from: "#5c4a00", to: "#fcd34d", fg: "#1a1612", weight: 600 }
 
