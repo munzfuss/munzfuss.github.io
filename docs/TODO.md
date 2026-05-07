@@ -7,6 +7,36 @@
 
 ## Open
 
+### H. Coverage check for additional museum / catalogue APIs  *(opened 2026-05-07)*
+
+**Background.** IKMK Berlin (`ikmk.smb.museum`) was confirmed in
+2026-05 as a usable enrichment source: CC BY-SA 4.0 texts, PDM 1.0
+images, free unauthenticated JSON via
+`/object?id=<id>&download=json_ext`. Bulk cache job for SH+DK scope
+was run (~2.9k records). See `docs/IKMK_HARVEST.md`.
+
+The same shape of work is worth doing for the next two tiers of
+museum sources mentioned in CLAUDE.md §5 source hierarchy:
+
+- **Royal Coin Cabinet (Copenhagen)** — Den Kgl. Mønt- og
+  Medaillesamling at the National Museum of Denmark. Likely
+  candidate URL `samlinger.natmus.dk` or
+  `kongernessamling.dk` — confirm.
+- **British Museum** — has an unambiguous open API at
+  `https://www.britishmuseum.org/api/...` (Collections Online).
+  Numismatic department likely indexes Holstein, Hamburg, Lübeck
+  coins.
+
+**Done criterion.** For each: licensing posture confirmed, sample
+records fetched for known SH/DK coins, coverage estimate produced
+(N records in scope), comparison with IKMK overlap. Record findings
+in `docs/<MUSEUM>_HARVEST.md` similar to the IKMK one.
+
+**Estimated effort.** ~30 min per source for the probe; bulk cache
+~1 h each if API permits.
+
+---
+
 ### D. Triage `seed_unsorted` coins in denmark / hamburg / lubeck  *(opened 2026-05-04)*
 
 **Background.** After bulk-importing 581 ucoin entries into proper
