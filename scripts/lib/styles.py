@@ -853,9 +853,6 @@ h2[style] {{
   color: var(--accent);
 }}
 .tl-grid > div:nth-child(n+3) {{ border-top: var(--hairline) dotted var(--border-soft); }}
-/* Subtle zebra striping on the dark theme only — keeps long timelines parsable. */
-[data-theme="v3"] .tl-grid > div:nth-child(4n+1),
-[data-theme="v3"] .tl-grid > div:nth-child(4n+2) {{ background: rgba(255,255,255,0.014); }}
 
 /* Track per theme:
    v3 — dark recess with thin gold-warm border + faint inset glow
