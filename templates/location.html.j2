@@ -750,7 +750,15 @@
    and ALL phase blocks with their tables already expanded. The <summary> doubles
    as a stats bar — phase / coin / Grundwerte counts on the left, Details pill
    on the right (per design). #}
-{% if sg.nonempty_phases or (sp and sp.details) %}
+{# Show the collapsible details toggle only when this Müntzfuß has at
+   least one coin documented on this page. A fuss with curated `details`
+   text but no coins (e.g. kronemont_chr_iv on the SH page — a Kopenhagen-
+   only standard with no Holstein issues) renders only its header,
+   Grundwerte and closing summary; the details toggle is hidden because
+   there's no coin table for it to expand into. The details prose, when
+   it matters as standalone history, lives elsewhere — in `hintergrund`
+   or `closing`, both shown unconditionally. #}
+{% if sg.nonempty_phases %}
 {% set ph_n = sg.nonempty_phases|length %}
 {% set coin_n = sg.nonempty_phases|sum(attribute='total') if sg.nonempty_phases else 0 %}
 {# Distinct `nominal` strings across all coins of this fuss on this page.
