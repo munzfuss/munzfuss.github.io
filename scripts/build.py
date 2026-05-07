@@ -457,7 +457,7 @@ window.location.replace(base + '/' + target + '/');
 def generate_assets(theme: dict) -> None:
     assets_dir = SITE_DIR / "assets"
     assets_dir.mkdir(parents=True, exist_ok=True)
-    css = generate_css(theme, lang="de")
+    css = generate_css(theme)
     with open(assets_dir / "style.css", "w", encoding="utf-8") as f:
         f.write(css)
     print(f"🎨 CSS: site/assets/style.css ({len(css):,} bytes)")

@@ -196,12 +196,16 @@ def render_landing(
     )
 
 
-def generate_css(theme: dict, lang: str = "de") -> str:
-    """Build the redesigned three-theme stylesheet (Atlas / Codex / Noir).
+def generate_css(theme: dict) -> str:
+    """Build the three-theme stylesheet (Atlas / Codex / Noir).
 
-    Implementation lives in `styles.py` to keep this module focused on
-    template rendering. Theme.yml provides the dark-theme palette and
-    timeline-bar gradients; the light Atlas/Codex palettes are baked in
-    so users can switch themes without re-editing config.
+    Returns `prefix + styles.base.css` — the prefix is generated from
+    `theme.yml` (Noir palette tokens, per-`html[lang]` body line-height,
+    timeline-bar palette); the body lives as a static .css file alongside
+    `styles.py`. Atlas and Codex palettes are hardcoded inside the static
+    base — those themes don't read from theme.yml.
+
+    Output is language-agnostic; per-language line-height is selected via
+    `html[lang="…"] { --body-line-height: … }` rules in the prefix.
     """
-    return styles.build_css(theme, lang)
+    return styles.build_css(theme)
