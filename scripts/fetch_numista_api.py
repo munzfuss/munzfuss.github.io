@@ -6,8 +6,8 @@ Strategy:
 - For each, looks up cached `scripts/cache/numista/<nid>.json`. If absent,
   fetches from the API and caches the full JSON response.
 - Compiles `scripts/numista_refs.json` — the input expected by
-  `scripts/enrich_numista_refs.py` — keyed by nid, value = list of strings
-  in "Prefix# number" form (e.g. "KM# 12", "Weinm# 39").
+  `scripts/maintenance/enrich_numista_refs.py` — keyed by nid, value = list of
+  strings in "Prefix# number" form (e.g. "KM# 12", "Weinm# 39").
 
 Free-tier limit: 200 calls / 24h. We rate-limit to ~1 req/sec to stay polite
 even when a future location batch pushes total volume higher.
