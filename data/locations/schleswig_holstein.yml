@@ -16,8 +16,13 @@ summary:
 fuss_order:
   # Matches the timeline-bar order in `timeline.bars` below: Reichsdukatenfuß
   # opens the chronology as the imperial gold standard since 1559 and
-  # Reichsgoldmünzfuß closes it as the 1871-Goldmark.
+  # Reichsgoldmünzfuß closes it as the 1871-Goldmark. List order is
+  # additionally re-sorted in categorize() to follow the (sorted) timeline-
+  # bar order — so the bar's optional `order` field also drives the
+  # post-timeline list position.
   - reichsdukatenfuss
+  - courantdukatenfuss
+  - pistolenfuss
   - 9_thaler
   - 9_25_thaler
   - kronemont_chr_iv
@@ -27,6 +32,7 @@ fuss_order:
   - 11_333_thaler
   - 18_5_thaler
   - 30_thaler
+  - vereinsgoldmuenze
   - reichsgoldmuenzfuss
 
 # ---------------------------------------------------------------------

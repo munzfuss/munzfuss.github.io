@@ -657,8 +657,17 @@ def categorize(
     computed_coins: list[ComputedCoin],
     fuesse: dict[str, Fuss],
 ) -> LocationTree:
-    """Group computed coins by (fuss, phase, kind) respecting the location's preferred ordering."""
-    
+    """Group computed coins by (fuss, phase, kind) respecting the location's preferred ordering.
+
+    The post-timeline fuss list is rendered in the order of `location.fuss_order`,
+    re-sorted so it follows the (already-sorted) `location.timeline.bars` order.
+    Fuss-ids that have a timeline bar are placed in bar-position; ids without a
+    bar fall back to their `fuss_order` position (after the bar-tagged ones).
+    Result: the optional `order` field on TimelineBar drives both the timeline
+    and this list with a single source of truth — no need to keep `fuss_order`
+    and `bars` manually synchronised.
+    """
+
     # Index coins by (fuss, phase)
     from collections import defaultdict
     idx: dict[tuple[str, str], list[ComputedCoin]] = defaultdict(list)
@@ -667,7 +676,25 @@ def categorize(
 
     tree = LocationTree(location=location)
 
-    for fuss_id in location.fuss_order:
+    # Effective fuss order: sort `location.fuss_order` by timeline-bar
+    # position (bars are already sorted by their `order` field via the
+    # Timeline pydantic validator). Fuss without a corresponding bar
+    # keep their `fuss_order` position relative to each other and are
+    # placed AFTER the bar-tagged ones.
+    bar_position = {}
+    if location.timeline and location.timeline.bars:
+        bar_position = {b.id: i for i, b in enumerate(location.timeline.bars)}
+
+    def _fuss_sort_key(item):
+        original_idx, fuss_id = item
+        bar_idx = bar_position.get(fuss_id)
+        if bar_idx is not None:
+            return (0, bar_idx, original_idx)
+        return (1, original_idx, 0)
+
+    fuss_order_sorted = [fid for _, fid in sorted(enumerate(location.fuss_order), key=_fuss_sort_key)]
+
+    for fuss_id in fuss_order_sorted:
         if fuss_id not in fuesse:
             continue
         if fuss_id not in location.phases:
