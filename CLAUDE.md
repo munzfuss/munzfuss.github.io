@@ -541,7 +541,7 @@ See `docs/GLOSSARY.md` for German/Danish/Ukrainian numismatic term mappings.
 
 ## Tools and resources
 
-- **Numista** (`en.numista.com`): catalog numbers, rough weights. Rate-limited via HTTP 403; use browser console Promise.all for bulk queries.
+- **Numista** (`en.numista.com`): catalog numbers, rough weights. Access exclusively via the official API v3 (`https://api.numista.com/v3/...`) through `scripts/fetch_numista_api.py` and the per-piece cache under `scripts/cache/numista/<nid>.json`. See the «Numista API budget» section below for the per-session call cap. The catalogue web pages (HTML / Cloudflare-protected) are NOT a sanctioned scraping target — do not bypass via browser console, browser extension, or Chrome-MCP automation; ask the user to paste relevant content in chat if the API path is exhausted.
 - **IKMK Berlin** (`ikmk.smb.museum`): `/object?id={id}&download=json_ext` returns full record. Bulk scraping via browser console on the origin domain bypasses CORS.
 - **Bruun PDF** (Stack's Bowers Zürich 14-15 March 2025, Part II): the gold standard reference for Gottorp/Schleswig coinage. 356 pages. `danskmoent.dk` hosts the PDF.
 - **CoinVarieties, MGM Münzlexikon, Bobzin, danskmoent.dk**: supplementary academic sources.
@@ -563,9 +563,9 @@ When one tool returns 403/blocked/empty, **escalate to the next tier** rather th
 
 Use the **pdf-viewer MCP** (`mcp__pdf-viewer__display_pdf` to open, then `mcp__pdf-viewer__interact` to navigate / search / get_text / get_screenshot). Accepts both local file paths and HTTPS URLs. Most efficient for: searching by lot number across a 356-page Bruun catalogue, extracting Hede tables, getting a specific page screenshot for cross-reference. If the PDF tool is unavailable in this session, fall back to: WebFetch on a direct PDF URL → ask the user to provide the relevant page text.
 
-**Numista-specific:** WebFetch and Apify both routinely return 403 on Numista catalogue pages (mi=…, ru=…, large queries especially). Chrome MCP works reliably (Cloudflare challenge resolves automatically after ~5–10 s — wait once, then re-issue `get_page_text`). If a verification depends on Numista data and Apify is rate-limited, **switch to Chrome MCP immediately** — do not abandon the verification.
+**Numista-specific:** the catalogue web pages (Cloudflare-protected, frequent 403 from WebFetch/Apify) are **not** a sanctioned scraping target via Chrome MCP, browser console, or any other browser-automation route. Use the Numista API exclusively (see the dedicated «Numista API budget» section below); if the API quota is exhausted, ask the user to paste the relevant page content into chat rather than scraping the HTML. The fallback chain above (WebSearch / WebFetch / Apify / Chrome MCP) stays valid for OTHER public sources — Numista is the explicit exception.
 
-**Pattern for browser automation via Chrome MCP:** always batch actions with `browser_batch` (the runtime gives a system-reminder if you don't). Sequence: `list_connected_browsers` → `select_browser` → `tabs_context_mcp(createIfEmpty: true)` → then a single `browser_batch` with `[navigate, get_page_text]` per URL. For multi-page comparisons, one `browser_batch` per URL keeps the round trip count low.
+**Pattern for browser automation via Chrome MCP:** for non-Numista sources only — always batch actions with `browser_batch` (the runtime gives a system-reminder if you don't). Sequence: `list_connected_browsers` → `select_browser` → `tabs_context_mcp(createIfEmpty: true)` → then a single `browser_batch` with `[navigate, get_page_text]` per URL. For multi-page comparisons, one `browser_batch` per URL keeps the round trip count low.
 
 **General principle:** when a tool fails, the next sentence in your response should *not* be «I cannot verify». It should be «trying tier N+1». Only report «cannot verify» after the whole chain — including asking the user — has been exhausted.
 
@@ -582,9 +582,9 @@ The user is on a **rate-limited Numista API plan** (200 calls / 24h on the free 
 **While this rule is active: before issuing more than ~5 Numista API requests in a session, STOP and ask the user.** Phrase it as a budget request, not a fait accompli, and propose alternatives. Example:
 
 > «Для класифікації 70 коінів треба ~140 Numista API викликів (search + type fetch). У тебе ліміт квоти. Альтернативи:
-> (a) Скрапити кожний coin-page через Chrome MCP (повільно, але без квоти)
-> (b) Обробити лише 10 пріоритетних KM# і пропустити решту
-> (c) Витратити квоту і прийняти ~140 запитів
+> (a) Обробити лише 10 пріоритетних KM# і пропустити решту
+> (b) Витратити квоту і прийняти ~140 запитів
+> (c) Відкласти до наступного reset-у квоти
 > Як вирішиш?»
 
 **Never silently burn the quota.** Even if the script is technically correct and the data would be useful, the user needs to make the budget call. Cached requests in `scripts/cache/numista/<nid>.json` are free to re-read — only LIVE API calls count. So always check the cache first, and only ask permission for the new fetches.

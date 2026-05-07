@@ -124,4 +124,4 @@ if mismatches:
     for cid, pid, note in mismatches:
         print(f"    {cid:40s} /pieces{pid}.html  — {note}")
 if no_data:
-    print(f"\n  (no Numista metadata scraped for {len(no_data)} coins; run browser scraper on: {[pid for _,pid in no_data]})")
+    print(f"\n  (no Numista metadata fetched for {len(no_data)} coins; run `scripts/fetch_numista_api.py` to populate the API cache for: {[pid for _,pid in no_data]})")

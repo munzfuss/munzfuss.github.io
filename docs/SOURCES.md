@@ -69,7 +69,7 @@ When researching a coin, consult sources in this order based on what you need:
 - Often agrees with Numista on KM# but disagrees with Hede on fineness/weight (independent reads of same primary catalogues)
 - Cloudflare-protected
 
-**Access:** WebFetch returns 403; Chrome MCP works. Same pattern as Numista.
+**Access:** WebFetch returns 403; Chrome MCP works (note: Numista is *not* a sanctioned Chrome-MCP scraping target — see CLAUDE.md «Tools and resources» — but ucoin.net is fine for Chrome-MCP fallback when WebFetch fails).
 
 **Use as:** confirmation source — when ucoin's weight/fineness/diameter agrees with our value, that counts as a confirmation suitable for `*_verified: true`. When ucoin disagrees, record the divergence via `measurement_alts`.
 
