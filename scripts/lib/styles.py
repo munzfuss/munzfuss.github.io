@@ -83,11 +83,24 @@ def _timeline_bars_css(bars: dict) -> str:
         # on dark themes, more events = lighter (toward `to`); on
         # light themes, more events = darker (toward `from`) — both
         # conserve the «more saturation = more events» visual cue.
+        #
+        # `from` alone, however, isn't dark enough for the lightest
+        # silver palettes against the cream page — `rt` (9-Thaler-Fuß,
+        # heaviest silver, lightest in the gradient) lands at WCAG
+        # contrast ratio 1.76:1 on cream, well below the 3:1 readable
+        # threshold; `si` (9¼-Thaler-Fuß) sits at 2.33:1, borderline.
+        # Uniform 0.7 darkening of `from` brings every palette into
+        # ≥ 3:1 contrast on cream WITHOUT breaking the gradient
+        # ordering (rt still the lightest silver, rb still the darkest);
+        # the already-dark palettes (g, krm, rm, sh) absorb 30 %
+        # darkening without becoming illegibly black.
+        DARKEN = 0.70
         fr, fg, fb = _hex_to_rgb(conf["from"])
+        fr_d, fg_d, fb_d = int(fr * DARKEN), int(fg * DARKEN), int(fb * DARKEN)
         out.append(
             f'[data-theme="v1"] .tl-bar-layer.{bar_id}, '
             f'[data-theme="v2"] .tl-bar-layer.{bar_id} {{ '
-            f"--layer-bg: rgba({fr}, {fg}, {fb}, {alpha:.4f}); }}"
+            f"--layer-bg: rgba({fr_d}, {fg_d}, {fb_d}, {alpha:.4f}); }}"
         )
 
         # Fallback gradient kept for bars without layers (no events data).
