@@ -44,13 +44,21 @@ data/
 config/theme.yml                Colors, typography
 
 templates/                      Jinja2 HTML templates
+assets/                         Runtime static assets copied to site/assets/ (app.js)
 scripts/
 ├── build.py                    Single entry point: data → site/
-├── lib/                        Schema (Pydantic), compute, categorize, render
+├── lib/                        Schema (Pydantic), compute, categorize, timeline,
+│                               render, i18n, styles + static `style.base.css`
 ├── audit_*.py                  Idempotent audits (year ranges, ucoin-categorise,
-│                               numista cross-check, fuss anchors, source dedupe)
-├── enrich_*.py                 Cache-friendly enrichers (numista IDs, refs)
-├── cache/                      Cached source-tier responses (numista, ucoin)
+│                               numista cross-check, fuss anchors, ucoin links/data)
+├── fetch_numista_api.py        Cached Numista API v3 fetcher (200 calls/24h)
+├── enrich_from_numista.py      Merge cached Numista responses into coin entries
+├── build_ucoin_url_index.py    Rebuild the ucoin URL index from the local cache
+├── bruun_parser/               4-stage Bruun-PDF → JSON ingest pipeline
+├── cache/                      Cached source-tier responses (bruun, numista, ucoin)
+├── maintenance/                Lifecycle-bound utilities (committed, not on build
+│                               path) — translation cleanup, one-shot enrichers,
+│                               source-dedup, ucoin re-link. See README inside.
 └── oneoff/                     Gitignored — single-shot data migrations
 
 .github/workflows/deploy.yml    Auto-deploy on push to main

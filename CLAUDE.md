@@ -333,14 +333,23 @@ scripts/lib/
   schema.py                             # Pydantic models for validation
   compute.py                            # A → B: fein, delta, implied fuss
   categorize.py                         # B → C: group by phase, kind
-  render.py                             # C → HTML via Jinja2 + theme-driven CSS
+  timeline.py                           # bar_layers / coin_year_runs / hover_zones
+  render.py                             # C → HTML via Jinja2; CSS dispatch
+  styles.py                             # CSS prefix generator (theme tokens + bar palette)
+  style.base.css                        # Static CSS body (var(--*) refs)
   i18n.py                               # Translation resolution, number formatting
+  yaml_check.py                         # AST-level duplicate-key guard
+  env.py                                # local.env loader
+
+scripts/maintenance/                    # Committed lifecycle-bound utilities
+                                        # (translation cleanup, one-shot enrichers,
+                                        # dedup / relink passes — not on build path)
 
 site/                                   # .gitignored — build output
   index.html                            # Landing page (language-switchable)
   <lang>/index.html                     # e.g., de/index.html (locations index)
   <loc>/<lang>/index.html               # e.g., schleswig/de/index.html
-  assets/{style.css, app.js}
+  assets/{style.css, app.js}            # style.css = prefix + style.base.css concat
 
 .github/workflows/deploy.yml            # Auto-build + deploy on push to main
 ```
@@ -389,16 +398,29 @@ python scripts/build.py --validate-only    # runs schema validation, no renderin
 >
 > **What this prevents:** the «I thought you committed already» surprise — a session ending with 13 files modified, multiple unrelated tasks tangled together, and no git history showing the work in progress.
 
-### One-off / scratch scripts
+### Script directory layout
 
-Anything that runs **once** on a specific dataset and won't be replayed (data migrations, ad-hoc cleanups, one-time imports keyed to a particular ruler / mint / catalog) lives in **`scripts/oneoff/`** — gitignored. Do not commit it.
+Three tiers, picked by *recurrence pattern*:
 
-Truly reusable utilities (build steps, periodic enrichment passes, idempotent quality checks) go directly under `scripts/`. Tests:
+- **`scripts/`** — actively used by the build / research workflow.
+  Re-runnable, idempotent, useful right now: `build.py`, the `audit_*.py`
+  validators, `fetch_numista_api.py`, `enrich_from_numista.py`,
+  `build_ucoin_url_index.py`. Also library code under `scripts/lib/`.
+- **`scripts/maintenance/`** — lifecycle-bound utilities that aren't part of
+  the build flow but are kept for re-use when the same shape of work
+  recurs (next bulk import, next translation drift sweep, next ucoin
+  re-link). See `scripts/maintenance/README.md` for the per-script log.
+  **Committed** to the repo.
+- **`scripts/oneoff/`** — truly throwaway scratch (hardcoded inputs already
+  gone, data migrations consumed, one-time fixes). **Gitignored.** Past
+  examples (now deleted): `cleanup_sources.py`, `migrate_notes.py`,
+  `fix_wrong_numista_urls.py`, `add_new_coins.py` (Gottorp import).
 
-- *Could this run again next year on a different dataset?* → `scripts/`.
-- *Is the input data hardcoded / already gone / consumed?* → `scripts/oneoff/`.
+Decision tests for a new script:
 
-Past examples of one-off scripts (now removed): `cleanup_sources.py`, `migrate_notes.py`, `relocate_data_notes.py`, `fix_wrong_numista_urls.py`, `manual_translations.py`, `add_new_coins.py` (Gottorp Duchy import), etc. — all served their migration purpose and were dropped from the repo.
+- *Will this run regularly as part of build / audit / data refresh?* → `scripts/`.
+- *Will this run again on the next phase of similar work, but not on every build?* → `scripts/maintenance/`.
+- *Single-shot, hardcoded to data already gone / consumed?* → `scripts/oneoff/` (gitignored).
 
 ## Data editing workflow
 
@@ -463,7 +485,7 @@ Reports chronology mismatches, orphan coins (phase doesn't exist), duplicate KM#
 - Conflicting sources on fineness
 - Whether a new variant deserves its own row or a note on existing row
 - Translation calls for specialized numismatic terms in UK (Ukrainian numismatic vocabulary is sparse)
-- **Never call `mcp__Claude_Preview__preview_stop`** without explicit user permission — even if the preview seems idle, finished, or redundant. The user runs the preview lifecycle; Claude does not stop it unilaterally. If a preview restart is needed (e.g. to pick up new files), ask first; if disk-space or memory pressure becomes an issue, surface it and let the user decide.
+- **Never call `mcp__Claude_Preview__preview_stop`** unless the user has explicitly asked for it (in this turn or earlier in the same session) — even if the preview seems idle, finished, or redundant. The user runs the preview lifecycle; Claude does not stop it unilaterally. **Exception: when the user directly says «stop the preview», «перезапусти превʼю», «restart the preview», or any equivalent phrasing that names the preview AND a stop/restart action, that counts as the explicit permission this rule requires** — proceed with `preview_stop` (followed by `preview_start` for a restart) without asking again. The same applies to `location.reload()` via `preview_eval` when the user asks to reload / refresh the page. If the user mentions the preview but not a stop/restart action, ask first; if disk-space or memory pressure becomes an issue, surface it and let the user decide.
 
 Never invent translations for technical German numismatic terms without confirming with the user.
 
