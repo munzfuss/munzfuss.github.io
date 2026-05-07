@@ -72,6 +72,24 @@ def _timeline_bars_css(bars: dict) -> str:
             f"background: var(--layer-bg); }}"
         )
 
+        # Light-theme override (v1 atlas / v2 codex). With
+        # `mix-blend-mode: plus-lighter` the layer wrapper sums six
+        # 1/6-alpha layers into the full layer colour and composites
+        # that onto the track. On a CREAM track the lighter `to` end
+        # of each palette renders too close to the page bg — bars
+        # read as washed-out. Swapping in the DARKER `from` end gives
+        # the same additive-stacking semantics but with a medium-tone
+        # endpoint that contrasts properly against cream. Net effect:
+        # on dark themes, more events = lighter (toward `to`); on
+        # light themes, more events = darker (toward `from`) — both
+        # conserve the «more saturation = more events» visual cue.
+        fr, fg, fb = _hex_to_rgb(conf["from"])
+        out.append(
+            f'[data-theme="v1"] .tl-bar-layer.{bar_id}, '
+            f'[data-theme="v2"] .tl-bar-layer.{bar_id} {{ '
+            f"--layer-bg: rgba({fr}, {fg}, {fb}, {alpha:.4f}); }}"
+        )
+
         # Fallback gradient kept for bars without layers (no events data).
         out.append(
             f".tl-bar.{bar_id}:not(.tl-bar-layered) {{ background: linear-gradient(90deg, {conf['from']}, {conf['to']}); }}"
