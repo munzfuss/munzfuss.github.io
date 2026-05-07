@@ -381,6 +381,14 @@ class TimelineBar(_StrictBase):
     bar_label: I18nTextOptional | None = None
     bar_title: I18nTextOptional | None = None
     color_class: str = "si"   # CSS modifier: si, sh, rb, kr, krm, vt, rm, g
+    order: float | None = None
+    """Optional sort key for the timeline-bar order. When set, bars are
+    sorted by `order` ascending (stable sort — bars with equal `order`
+    keep their YAML insertion order); when unset, the bar falls back to
+    its YAML position. Use to inject a new bar into a specific position
+    without physically moving YAML blocks: assign an `order` between two
+    existing bars' position-indexes (or fractional, e.g. 1.5 to land
+    between positions 1 and 2)."""
     indented: bool = False    # render label with left padding (sub-entry)
     dashed: bool = False      # render bar with dashed border (derived standard)
     compact: bool = False     # render track half-height (non-Fuß, e.g. Theilung)
@@ -446,6 +454,16 @@ class Timeline(_StrictBase):
     sub-track. `denmark_only`: emit only `anywhere` scope layers; suppress
     every holstein-scope layer entirely. Used on the Denmark page where
     Holstein is not a separate track — anywhere = the Royal Danish view."""
+
+    @model_validator(mode="after")
+    def _sort_bars_by_order(self):
+        """Sort `bars` by their optional `order` field, stable.
+        Bars with no explicit `order` fall back to their YAML position;
+        bars with the same effective order preserve insertion order."""
+        indexed = list(enumerate(self.bars))
+        indexed.sort(key=lambda ib: (ib[1].order if ib[1].order is not None else ib[0], ib[0]))
+        self.bars = [b for _, b in indexed]
+        return self
 
 
 class Location(_StrictBase):

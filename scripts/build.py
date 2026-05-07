@@ -83,13 +83,23 @@ def load_german_fuesse() -> list[dict]:
     file is purely a presentation catalogue for the landing page and is not
     cross-referenced against the per-coin `coin.fuss` field. Returns empty
     list if the file is absent.
+
+    Entries may carry an optional `order: float` field. When set, entries
+    are sorted by `order` ascending (stable sort — entries with equal
+    `order` keep their YAML insertion order); when unset, the entry falls
+    back to its YAML position. Use to inject a new card into a specific
+    position without physically moving YAML blocks: assign an `order`
+    between two existing cards' position-indexes.
     """
     path = DATA_DIR / "shared" / "german_fuesse.yml"
     if not path.exists():
         return []
     with open(path, encoding="utf-8") as f:
         raw = yaml.safe_load(f) or {}
-    return raw.get("entries", [])
+    entries = raw.get("entries", [])
+    indexed = list(enumerate(entries))
+    indexed.sort(key=lambda ie: (ie[1].get("order") if ie[1].get("order") is not None else ie[0], ie[0]))
+    return [e for _, e in indexed]
 
 
 def load_german_fuesse_references() -> dict | None:

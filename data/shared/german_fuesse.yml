@@ -29,6 +29,15 @@
 #     title: {de, en, uk}
 #   - kind: phase_summary
 #     content: {de}               # short framed paragraph (rendered as .ps-block)
+#
+# Optional `order: float` per entry — sort key for the landing-page
+# render. When set, entries are sorted by `order` ascending (stable —
+# ties preserve YAML insertion order); when unset, the entry falls
+# back to its YAML position. Use to inject a card into a specific
+# slot without physically moving YAML blocks: pick an `order`
+# between two existing positions (e.g. `order: 1.5` to land between
+# positions 1 and 2). Same field is supported on `bars[*]` in
+# location YAMLs for the per-location timeline.
 
 entries:
 
