@@ -866,7 +866,14 @@ h2[style] {{
 .tl-label-link:hover {{
   color: var(--accent);
 }}
-.tl-grid > div:nth-child(n+3) {{ border-top: var(--hairline) dotted var(--border-soft); }}
+/* Inter-row dotted separator. Applies to every grid cell from row 2
+   onward (cells 3, 4, …) — `border-top` of row N+1 = visual separator
+   below row N. The trailing `:not(:nth-last-child(-n+2))` exempts the
+   final two cells (the empty-spacer + `.tl-axis` row): below the last
+   bar there is no further bar to separate from, so the dotted line is
+   noise. The axis row provides its own visual cue via `.tl-axis`'s
+   own `border-top` (solid, less specific — now no longer overridden). */
+.tl-grid > div:nth-child(n+3):not(:nth-last-child(-n+2)) {{ border-top: var(--hairline) dotted var(--border-soft); }}
 
 /* Track per theme:
    v3 — dark recess with thin gold-warm border + faint inset glow
