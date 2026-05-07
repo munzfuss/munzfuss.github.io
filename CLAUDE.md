@@ -139,6 +139,34 @@ Preferred terms (uk → register-correct German/English equivalents in parenthes
 - **«stope»** — does not exist in English, German, or Ukrainian. Use the actual term: «standard», «Müntzfuß», «стопа» (uk), or the language-appropriate noun. Never coin pseudo-Anglo hybrids from Slavic roots.
 - «емпіричні дані свідчать» / «джерела підтверджують» (de: «empirisch belegt», en: "the evidence shows") — NOT «факти кажуть»
 
+**Cyrillic-transliteration trap (mandatory check on every uk translation
+of a German term).** German numismatic vocabulary is dense with -ung,
+-ation, -fuß, Reichs-, Münz- compounds. A common failure mode is to
+mechanically Cyrillicise the German root and end up with a word that
+*sounds Slavic-shaped* but means nothing — or, worse, collides with
+an unrelated Ukrainian word. Two real cases that lived in the data
+through several sessions before being caught:
+
+- **«прягеа»** — fabricated via «Prägung» → fake-feminine «прягеа».
+  Looks like a noun, isn't one. Spread to 37 occurrences across 5
+  files before audit (commit `9860a43`). The actual Ukrainian term is
+  «карбування» (action) or «наклад» (quantitative figure).
+- **«Реймсько-»** — «Reichsweit standardisierte» mis-rendered as
+  «Реймсько-стандартизована». Reads as «Reims-» (the French city) — Reims
+  has nothing to do with the Wiener Münzvertrag. The actual rendering
+  is «загальноімперсько-стандартизована» (Reich-wide standardised) or
+  «імперсько-».
+
+Operational rule: before committing any uk translation of a German
+compound that looks unfamiliar, mentally test the result against
+**(a)** existing Ukrainian dictionaries — does the word actually
+exist? — and **(b)** does the resulting Cyrillic string accidentally
+look like an unrelated Ukrainian/Russian word (place name, common
+noun, etc.)? If either check fails, the translation is wrong even if
+the German source is rendered «correctly» phoneme-by-phoneme. Use a
+proper Ukrainian numismatic equivalent or — when no equivalent exists
+— keep the German period form intact (per the i18n policy below).
+
 When in doubt, ask: *would this phrase appear in a peer-reviewed numismatic article*? If no, rephrase.
 
 ### 3. Precision conventions
@@ -396,6 +424,8 @@ python scripts/build.py --validate-only    # runs schema validation, no renderin
 > 3. Verify the build still passes (`python scripts/build.py`).
 > 4. **Remind the user to push.** Never push autonomously — pushes go to public Pages and need explicit user approval. End the response with a one-liner like «N commits ready locally — `git push` when ready.»
 >
+> **Push permission grant.** A request from the user to push — phrased as «пуш», «push», «git push», «push it», «запушь», or any equivalent that names the push action — counts as explicit permission to push to `origin/main` for that turn. No follow-up confirmation is required; run `git push` and report the resulting refspec range. The push permission is per-turn and per-request — it does not pre-authorise future pushes elsewhere in the session.
+>
 > **What this prevents:** the «I thought you committed already» surprise — a session ending with 13 files modified, multiple unrelated tasks tangled together, and no git history showing the work in progress.
 
 ### Script directory layout
@@ -441,7 +471,11 @@ Non-translated fields (global identifiers):
 - Münzfuß names in technical form (`9¼-Fuß`) — displayed identically across languages
 - Numbers — localized by formatter, not translated per-row
 
-**Rule: NEVER translate coin denominations or Müntzfuß names.** They stay in their German / Latin / Danish period form across all three language pages, including inside running prose and Rechnungsfraktionen blocks.
+**Rule: NEVER translate coin denominations or Müntzfuß names in formal denomination references** — the «Rechnungs- und Kursbindungen» / «Розрахункові та курсові звʼязки» / «Accounting and exchange links» block, Grundwerte rows that name a specific denomination as the subject of a metric (e.g. «Feingewicht Vereinskrone»), structured key/value pairs, table column headers, etc. In those formal slots the period German / Latin / Danish form stays intact across DE / EN / UK.
+
+**Müntzfuß (-Fuß / -fod) standard names are stricter still — they NEVER translate, in ANY context** (formal block, flowing prose, headings, alike). «Reichsdukatenfuß» stays «Reichsdukatenfuß» on every page; «Kurantmøntfod» stays Danish; «9¼-Thaler-Fuß» stays the same compound. This is one tier above the denomination rule.
+
+**For coin denominations in flowing historical prose (description, hintergrund, closing, phase narrative), localised forms are acceptable** — «67 дукатів з повної Кельнської марки», «as trade gold, Hungarian and Venetian ducats also circulated», «угорські, венеційські й турецькі дукати того ж стандарту». The strict period-form rule applies to the formal accounting / specification slots, not to every single occurrence of the noun across the artefact. When the same denomination appears both in a Rechnungsfraktionen block (formal) and a description paragraph (prose) on the same page, the formal block uses the German period form and the prose uses whatever reads naturally in the target language.
 
 This includes (non-exhaustive):
 - **Coin denominations**: Thaler, Reichsthaler, Gulden, Kreutzer, Batzen, Pfennig, Heller, Groschen, Mariengroschen, Schilling, Sechsling, Dreiling, Marck, Mark, Skilling Danske, Kroneskilling, Krone, Dukat, Friedrichsdor, Pistole, Vereinsthaler, Vereinsmünze, Vereinsdoppeltaler, Doppelkrone, Conventionsthaler, Couranttaler, Speciedaler, Rigsdaler, Rigsbankdaler, Rigsbankskilling, Mark Banco / Marck Banco, Pfund Banco, Schilling Banco, Pfennig Banco, Sterntaler, Blutdollar — and any variant compound (e.g. «1 Reichsthaler Sch.-H. Courant», «1 Marck Courant», «½ Reichsthaler»).
@@ -485,7 +519,7 @@ Reports chronology mismatches, orphan coins (phase doesn't exist), duplicate KM#
 - Conflicting sources on fineness
 - Whether a new variant deserves its own row or a note on existing row
 - Translation calls for specialized numismatic terms in UK (Ukrainian numismatic vocabulary is sparse)
-- **Never call `mcp__Claude_Preview__preview_stop`** unless the user has explicitly asked for it (in this turn or earlier in the same session) — even if the preview seems idle, finished, or redundant. The user runs the preview lifecycle; Claude does not stop it unilaterally. **Exception: when the user directly says «stop the preview», «перезапусти превʼю», «restart the preview», or any equivalent phrasing that names the preview AND a stop/restart action, that counts as the explicit permission this rule requires** — proceed with `preview_stop` (followed by `preview_start` for a restart) without asking again. The same applies to `location.reload()` via `preview_eval` when the user asks to reload / refresh the page. If the user mentions the preview but not a stop/restart action, ask first; if disk-space or memory pressure becomes an issue, surface it and let the user decide.
+- **Never call `mcp__Claude_Preview__preview_stop`** unless the user has explicitly asked for it (in this turn or earlier in the same session) — even if the preview seems idle, finished, or redundant. The user runs the preview lifecycle; Claude does not stop it unilaterally. **Exception: when the user directly says «stop the preview», «перезапусти превʼю», «restart the preview», or any equivalent phrasing that names the preview AND a stop/restart action, that counts as the explicit permission this rule requires** — proceed with `preview_stop` (followed by `preview_start` for a restart) without asking again. **Specifically for «restart» / «перезапусти»: a restart is by definition stop + start, so a request to restart inherently authorises the stop step — no separate confirmation needed.** This restart-implies-stop logic is **scoped strictly to the restart phrasing** — it does not generalise to other words that could be construed as adjacent (e.g. «refresh the preview», «reset», «прибери» without «перезапусти»); for anything that isn't an explicit stop or restart request, the default no-stop rule still applies. The same applies to `location.reload()` via `preview_eval` when the user asks to reload / refresh the page. If the user mentions the preview but not a stop/restart action, ask first; if disk-space or memory pressure becomes an issue, surface it and let the user decide.
 
 Never invent translations for technical German numismatic terms without confirming with the user.
 

@@ -179,6 +179,113 @@ Target: current 180KB Schleswig HTML reproduced 1:1 by build script, then i18n (
 
 ---
 
+## 2026-05 — Closing-block invariant for every Müntzfuß on a location page
+
+Every fuss on a per-location page (every `fuss_periods.<id>` entry that
+renders) must carry both a `closing_label` and a `closing` text. The
+header-grundwerte-(details)-closing four-block structure is the
+canonical reading shape; a missing closing leaves the fuss entry
+truncated and inconsistent with its neighbours.
+
+**Reasoning:** a closing summary doubles as (a) a pointer to «what
+the reader should remember about this Müntzfuß on THIS location»,
+(b) a place to land the post-period demonetisation / continuation
+arc, and (c) a unit of structural symmetry across all fuss blocks
+on the page (reading rhythm). Audited on schleswig_holstein.yml in
+session that produced commit `bca7b15`; only `kronemont` (10½-Krone-Fuß)
+lacked the block. Filled. Audit script in the commit body.
+
+**Scope:** `data/locations/<loc>.yml` `fuss_periods.<fuss_id>.closing_label`
++ `closing` (DE/EN/UK each). Rendered by
+`templates/location.html.j2` lines around 890.
+
+**Validation:** Python one-liner
+```python
+fp = yaml.safe_load(open('data/locations/<loc>.yml'))['fuss_periods']
+missing = [f for f, sp in fp.items() if sp and (not sp.get('closing') or not sp.get('closing_label'))]
+```
+should return `[]`.
+
+---
+
+## 2026-05 — Hide details-toggle when a Müntzfuß has no coins on this page
+
+The collapsible `<details class="fuss-details">` toggle on each fuss
+block was previously emitted whenever the fuss had EITHER nonempty
+phases (≥ 1 coin documented) OR a curated `details` text block. This
+produced empty toggles on fuesse with rich historical context but no
+local coinage (e.g. `kronemont_chr_iv` on the SH page — Copenhagen-
+only standard, no Holstein issues).
+
+**Decision:** the toggle now requires `nonempty_phases` only. Fuesse
+with no coins on the location render their `header + grundwerte +
+closing` unconditionally, but the details toggle is skipped — no
+empty expandable section. Standalone history that previously lived
+inside the toggle body (`sp.details`) is preserved by promoting the
+content into the unconditional `closing` block when it matters as
+running history.
+
+**Reasoning:** an empty toggle showing «N Phasen, 0 monet» on click
+was misleading — the user clicks expecting coin tables, gets only
+prose. Hiding the toggle keeps the expectation contract intact.
+
+**Scope:** `templates/location.html.j2` line ~753, condition
+`{% if sg.nonempty_phases %}`. Affected fuss on the SH page at the
+time of decision: `kronemont_chr_iv` only.
+
+**Validation:** rendered HTML — `grep 'fuss-details" data-fuss=' site/<loc>/<lang>/index.html`
+should list only fuss-ids with ≥ 1 coin.
+
+---
+
+## 2026-05 — Light-theme palette via `from_light` override
+
+The timeline-bar layer rendering uses `mix-blend-mode: plus-lighter`
+and a per-palette `--layer-bg` colour. On dark themes the lighter
+palette `to` end at 1/6 alpha sums to the full saturated colour. On
+light themes that same setup washed out — adding a light colour to
+a cream backdrop produces near-white. The fix has three layers:
+
+1. **Light themes use `from` (darker palette end)** instead of `to` —
+   plus-lighter additivity now lifts the result toward a medium tone
+   that contrasts with cream rather than washes out (commit `cc622c4`).
+2. **Uniform 0.7 darkening of `from`** on light themes — without
+   it the lightest silvers (rt, si) failed WCAG 3:1 contrast against
+   cream (commit `32f2eae`).
+3. **Optional `from_light` override field per palette** — used pre-
+   calibrated as-is on light themes (skipping the 0.7 darkening).
+   Currently used by:
+   - the silver palettes (rt/si/kr/vt/rb) to substitute neutral-grey
+     values for the cool-blue `from` end, keeping pure silvers visually
+     distinct from the Krone-Mønt (krm) Prussian-blue family which
+     used to merge with them in the dark-blue band (commit `5f13802`)
+   - krm to lift the tariff-silver bars from cold dark navy into a
+     clearly sky-blue tone — same brightness band as the silvers but
+     in a saturated-blue hue, so hue separation does the work of
+     distinguishing «tariff silver» from «pure silver» (commit `f577f9f`)
+   - rm (Guldkrone-Fuß) to lift the warm-bronze from near-black olive
+     into a readable mid-bronze on cream (commit pulled from another
+     chat, see `theme.yml` palette comments)
+
+**Architectural rule:** any palette whose plain `from × 0.7` rendering
+fails contrast OR collides hue-with-another palette on the cream
+backdrop should declare `from_light` in `config/theme.yml`. The plain-
+`from` darkening is the fallback; `from_light` is the explicit override
+for palettes that need either a different hue (silvers → neutral) or
+a different brightness anchor (krm → sky-blue, rm → mid-bronze).
+
+**Scope:** `config/theme.yml#timeline_bars.<id>.from_light` (optional);
+`scripts/lib/styles.py` reads it in `_timeline_bars_css` and skips
+the 0.7 darken when present.
+
+**Validation:** WCAG contrast script (see commit `32f2eae` body) —
+every palette's effective light-theme colour should clear 3:1 against
+the cream page bg, and hue separation between the silvers (achroma)
+and krm (saturated blue) should be visible at 1.5× zoom on a cream
+canvas.
+
+---
+
 ## Decision template for future entries
 
 ```markdown
