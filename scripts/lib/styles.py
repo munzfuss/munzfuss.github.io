@@ -847,8 +847,21 @@ h2[style] {{
      last bar and the year axis. */
   word-break: break-word;
 }}
-[data-theme="v1"] .tl-label {{ font-family: var(--font-display); font-size: 15px; }}
-[data-theme="v2"] .tl-label {{ font-family: var(--font-display); font-variant: normal; font-weight: 400; font-size: 14.5px; font-style: italic; }}
+/* Theme-level overrides previously diverged the label rendering width
+   per theme:
+     • v1 bumped font-size to 15 px → labels rendered ~3 % wider than
+       v3, pushing the longer compound strings («Courantdukatenfuß ·
+       Ducat Courant», «Christian IV's kroner · тарифна монета») onto
+       a second line at the 240 px column.
+     • v2 dropped small-caps + switched to italic + reduced weight to
+       400 → italic Playfair lowercase renders substantially wider than
+       small-caps Cormorant, breaking parity even at the same px size.
+   Both removed: the base `.tl-label` rule (14.5 px small-caps weight 500
+   `var(--font-display)`) now applies uniformly. The display-font
+   variable still resolves to a different family per theme (Cormorant
+   on v1/v3, Playfair on v2) — that's intentional theme character —
+   but every other metric is shared, so all labels fit identically at
+   240 px on all three themes. */
 [data-theme="v3"] .tl-label {{ color: var(--text-primary); }}
 .tl-label-sub {{
   padding-left: 18px;
