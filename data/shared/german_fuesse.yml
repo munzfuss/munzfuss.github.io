@@ -30,14 +30,16 @@
 #   - kind: phase_summary
 #     content: {de}               # short framed paragraph (rendered as .ps-block)
 #
-# Optional `order: float` per entry — sort key for the landing-page
-# render. When set, entries are sorted by `order` ascending (stable —
-# ties preserve YAML insertion order); when unset, the entry falls
-# back to its YAML position. Use to inject a card into a specific
-# slot without physically moving YAML blocks: pick an `order`
-# between two existing positions (e.g. `order: 1.5` to land between
-# positions 1 and 2). Same field is supported on `bars[*]` in
-# location YAMLs for the per-location timeline.
+# Sort order on the landing page is CHRONOLOGICAL — by start year,
+# parsed from the `years_label.de` prefix (handles forms like
+# «1559 → 1871», «ca. 1600 → 1797», «18. Jh. → 1875»: a 4-digit
+# 1500–1999 year wins; otherwise an «NN. Jh.» century-form parses
+# to (NN-1) × 100). Per-entry escape hatch: an explicit
+# `year_from: int` field overrides the parser. Stable secondary
+# sort by YAML insertion order resolves ties. The `order: float`
+# mechanism that drives location-page timeline bars does NOT
+# apply here — the landing intentionally surfaces a chronological
+# view.
 
 entries:
 
@@ -45,7 +47,6 @@ entries:
 # 1. Reichsmüntzfuß · 9-Thaler-Fuß (1566)
 # ------------------------------------------------------------------
   - id: reichsmuentzfuss_9thaler
-    order: 4
     metal: silver
     years_label:
       de: "1566 → ca. 1700"
@@ -1236,7 +1237,6 @@ entries:
 #   - Phase C — ab 29. Febr. 1788 — Schleswig-Holsteinisch Courant · Schillingfuß
 # ------------------------------------------------------------------
   - id: thaler_specie_9_25
-    order: 19
     metal: silver
     years_label:
       de: "17. Jh. → 1868"
@@ -1661,7 +1661,6 @@ entries:
 # 13a. Vereinsgoldmünze · Krone und ½ Krone (1857, Wiener Münzvertrag)
 # ------------------------------------------------------------------
   - id: vereinsgoldmuenze
-    order: 17.5    # render before vereinsmuenzfuss (default position 18)
     metal: gold
     years_label:
       de: "1857 → 1874"

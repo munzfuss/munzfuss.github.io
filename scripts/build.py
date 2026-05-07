@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import sys
 from datetime import datetime
@@ -76,6 +77,34 @@ def load_issuing_entities() -> dict:
         return yaml.safe_load(f) or {}
 
 
+_YEAR_PARSE_4DIGIT = re.compile(r"\b(1[5-9]\d{2})\b")
+_YEAR_PARSE_CENTURY = re.compile(r"\b(\d{1,2})\.\s*Jh\.?")
+
+
+def _landing_year_from(entry: dict) -> int:
+    """Extract a chronological start year for landing-page sorting.
+
+    Order of precedence:
+      1. Explicit `year_from: int` on the entry (escape hatch).
+      2. First 4-digit year in the prefix of `years_label.de`
+         (the part before the `→` arrow).
+      3. Century-form `NN. Jh.` in the same prefix → (NN-1) * 100.
+      4. Fallback: 9999 (entry sorts last).
+    """
+    explicit = entry.get("year_from")
+    if isinstance(explicit, int):
+        return explicit
+    label = ((entry.get("years_label") or {}).get("de") or "")
+    prefix = re.split(r"\s*[→—\-]\s*", label, maxsplit=1)[0]
+    m = _YEAR_PARSE_4DIGIT.search(prefix)
+    if m:
+        return int(m.group(1))
+    m = _YEAR_PARSE_CENTURY.search(prefix)
+    if m:
+        return (int(m.group(1)) - 1) * 100
+    return 9999
+
+
 def load_german_fuesse() -> list[dict]:
     """Load the landing-page reference catalogue of German Müntzfüße.
 
@@ -84,12 +113,12 @@ def load_german_fuesse() -> list[dict]:
     cross-referenced against the per-coin `coin.fuss` field. Returns empty
     list if the file is absent.
 
-    Entries may carry an optional `order: float` field. When set, entries
-    are sorted by `order` ascending (stable sort — entries with equal
-    `order` keep their YAML insertion order); when unset, the entry falls
-    back to its YAML position. Use to inject a new card into a specific
-    position without physically moving YAML blocks: assign an `order`
-    between two existing cards' position-indexes.
+    Sorted by chronological start year (parsed from `years_label.de`
+    prefix, or taken from an optional explicit `year_from: int` field).
+    Stable secondary sort by YAML position keeps insertion order among
+    entries that resolve to the same year. The `order` mechanism that
+    drives location-page timeline bars does NOT apply here — the
+    landing intentionally surfaces a chronological view.
     """
     path = DATA_DIR / "shared" / "german_fuesse.yml"
     if not path.exists():
@@ -98,7 +127,7 @@ def load_german_fuesse() -> list[dict]:
         raw = yaml.safe_load(f) or {}
     entries = raw.get("entries", [])
     indexed = list(enumerate(entries))
-    indexed.sort(key=lambda ie: (ie[1].get("order") if ie[1].get("order") is not None else ie[0], ie[0]))
+    indexed.sort(key=lambda ie: (_landing_year_from(ie[1]), ie[0]))
     return [e for _, e in indexed]
 
 
