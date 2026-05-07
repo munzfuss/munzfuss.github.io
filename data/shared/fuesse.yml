@@ -1712,7 +1712,19 @@ vereinsgoldmuenze:
     de: Vereinsgoldmünze
     en: Vereinsgoldmünze
     uk: Vereinsgoldmünze
-  historical_name: Vereinskrone · ½ Vereinskrone
+  # No `historical_name` — the canonical period reference for this
+  # standard IS «Vereinsgoldmünze» itself (used by both the Wiener
+  # Münzvertrag of 24 January 1857 in primary sources and by every
+  # modern numismatic reference work — MGM Münzlexikon, Wikipedia DE
+  # «Krone (Vereinsgoldmünze)», Handelsmünze entry). Neither
+  # «Vereinsgoldmünzfuß» nor any -fuß-suffixed compound appears in
+  # those sources, so coining one would be a §0 invention. The
+  # previous historical_name «Vereinskrone · ½ Vereinskrone» listed
+  # the COIN denominations (Krone + ½ Krone), not an alternative
+  # standard name — that broke the pattern of every other Müntzfuß
+  # whose historical_name is a genuine alternative standard label
+  # (Reichsmüntzfuß, Speciesfuß, Kurantmøntfod etc.). Removed; the
+  # primary `name` carries the standard's reference function alone.
   metal: gold
   grid_unit_g: 500.0       # Pfund (metrisch, NICHT Cölln. Marck)
   grid_stops: 50           # 50 Vereinskronen je Pfund Feingold
