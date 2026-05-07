@@ -526,12 +526,30 @@
           {# Render the visual colour layers. They carry their tooltip part
              in `data-tt-part` (read by zone-rendering below), but no
              `data-tooltip` and no pointer-events — they don't trigger
-             ::after themselves. #}
+             ::after themselves.
+
+             Merged layers (`layer.kinds | length > 1` — when several
+             period × scope events share an identical span and were
+             collapsed in `categorize.py`) emit ONE visual `<div>` per
+             merged kind, all stacked at the same `[left, width]`. Each
+             div contributes its own 1/6 alpha through `mix-blend-mode:
+             plus-lighter`, restoring the additive saturation that an
+             unmerged layer set would have produced naturally. Without
+             this, a 3-kinds merge renders at 1/6 alpha while three
+             distinct-span layers would sum to 3/6 — making merged bars
+             appear visibly darker than non-merged bars even when their
+             period × scope coverage is identical. The merge is purely
+             a tooltip-deduplication concern; the visual must reflect
+             the underlying event count. #}
           {%- for layer in layers -%}
-            <div class="tl-bar-layer {{ bar.color_class }} tl-bar-layer-{{ layer.kind }} tl-bar-layer-{{ layer.scope }}{% if layer.first_approx %} tl-bar-layer-fade-start{% endif %}{% if layer.last_approx %} tl-bar-layer-fade-end{% endif %}"
-                 style="left:{{ layer.left_pct }}%;width:{{ layer.width_pct }}%"
-                 data-tt-part="{{ _tts.parts[loop.index0] }}"
-                 aria-hidden="true"></div>
+            {%- set _kinds = layer.kinds or [layer.kind] -%}
+            {%- set _tt_idx = loop.index0 -%}
+            {%- for _kind in _kinds -%}
+              <div class="tl-bar-layer {{ bar.color_class }} tl-bar-layer-{{ layer.kind }} tl-bar-layer-{{ layer.scope }}{% if layer.first_approx %} tl-bar-layer-fade-start{% endif %}{% if layer.last_approx %} tl-bar-layer-fade-end{% endif %}"
+                   style="left:{{ layer.left_pct }}%;width:{{ layer.width_pct }}%"
+                   data-tt-part="{{ _tts.parts[_tt_idx] }}"
+                   aria-hidden="true"></div>
+            {%- endfor -%}
           {%- endfor -%}
         {%- endif -%}
         {%- if zones -%}
