@@ -424,7 +424,7 @@ python scripts/build.py --validate-only    # runs schema validation, no renderin
 > 3. Verify the build still passes (`python scripts/build.py`).
 > 4. **Remind the user to push.** Never push autonomously — pushes go to public Pages and need explicit user approval. End the response with a one-liner like «N commits ready locally — `git push` when ready.»
 >
-> **Push permission grant.** A request from the user to push — phrased as «пуш», «push», «git push», «push it», «запушь», or any equivalent that names the push action — counts as explicit permission to push to `origin/main` for that turn. No follow-up confirmation is required; run `git push` and report the resulting refspec range. The push permission is per-turn and per-request — it does not pre-authorise future pushes elsewhere in the session.
+> **Push permission grant.** A request from the user to push — phrased as «пуш», «push», «git push», «push it», «запуш», or any equivalent that names the push action — counts as explicit permission to push to `origin/main` for that turn. No follow-up confirmation is required; run `git push` and report the resulting refspec range. The push permission is per-turn and per-request — it does not pre-authorise future pushes elsewhere in the session.
 >
 > **What this prevents:** the «I thought you committed already» surprise — a session ending with 13 files modified, multiple unrelated tasks tangled together, and no git history showing the work in progress.
 
