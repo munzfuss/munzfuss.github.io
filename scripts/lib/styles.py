@@ -797,7 +797,13 @@ h2[style] {{
 
 .tl-grid {{
   display: grid;
-  grid-template-columns: 240px 1fr;
+  /* 320 px (was 240) — small-caps display-font labels at 14.5px need
+     ~10 px / char; 240 px fit ≈ 24 chars, which broke the longer
+     label compositions onto a second line («Courantdukatenfuß · Ducat
+     Courant», «Guldkrone-Fuß · тарифна монета», «11⅓-Thaler-Fuß ·
+     Rigsdaler Courant»). 320 px holds ~32 chars on a single line —
+     enough for every current bar label across DE/EN/UK with ~5 % margin. */
+  grid-template-columns: 320px 1fr;
   gap: 0 18px;
   align-items: center;
   font-size: 13px;
