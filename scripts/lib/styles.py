@@ -822,7 +822,14 @@ h2[style] {{
   text-align: right;
   padding: 10px 6px 10px 2px;
   line-height: 1.2;
-  border-bottom: var(--hairline) dotted var(--border-soft);
+  /* Inter-row separator is drawn ONCE by the grid-level rule
+     `.tl-grid > div:nth-child(n+3)` (border-top dotted, full row
+     width). Don't add a redundant `border-bottom` here — for normal
+     bar rows the two would overlap and visually collapse, but at the
+     transition from the last bar row to the (shorter) axis-row the
+     two lines lock in at different y-positions because grid-row
+     heights differ, leaving a stray double-dashed band between the
+     last bar and the year axis. */
   word-break: break-word;
 }}
 [data-theme="v1"] .tl-label {{ font-family: var(--font-display); font-size: 15px; }}
