@@ -753,7 +753,12 @@
 {% if sg.nonempty_phases or (sp and sp.details) %}
 {% set ph_n = sg.nonempty_phases|length %}
 {% set coin_n = sg.nonempty_phases|sum(attribute='total') if sg.nonempty_phases else 0 %}
-{% set base_n = (sg.fuss.grundwerte.rows|length) if (sg.fuss.grundwerte and sg.fuss.grundwerte.rows) else 0 %}
+{# Distinct `nominal` strings across all coins of this fuss on this page.
+   Replaces an earlier `len(grundwerte.rows)` count — Grundwerte rows
+   describe the Müntzfuß's metric specs (Feingewicht, Tarif, Verbreitung
+   …), not denominations, and the previous «N базових величин» label
+   was confusing. Computed in `categorize.FussGroup.unique_nominals`. #}
+{% set nom_n = sg.unique_nominals %}
 <details class="fuss-details" data-fuss="{{ sg.fuss.id }}">
   <summary class="fuss-summary">
     <div class="fs-stats">
@@ -765,10 +770,10 @@
         <span class="fs-num">{{ coin_n }}</span>
         <span class="fs-lbl">{{ ui_get('fuss.stat.coins_logged') }}</span>
       </div>
-      {% if base_n %}
+      {% if nom_n %}
       <div class="fs-stat">
-        <span class="fs-num">{{ base_n }}</span>
-        <span class="fs-lbl">{{ ui_get('fuss.stat.base_values') }}</span>
+        <span class="fs-num">{{ nom_n }}</span>
+        <span class="fs-lbl">{{ ui_get('fuss.stat.nominal_one') if nom_n == 1 else ui_get('fuss.stat.nominal_many') }}</span>
       </div>
       {% endif %}
     </div>

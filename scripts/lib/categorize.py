@@ -63,6 +63,31 @@ class FussGroup:
     def nonempty_phases(self) -> list[PhaseGroup]:
         return [p for p in self.phases if p.nonempty]
 
+    @property
+    def unique_nominals(self) -> int:
+        """Count of distinct `nominal` strings across every coin in every
+        phase of this Fuss. Used by the per-fuss collapsible stat-bar
+        as a quick «how many denomination types belong to this Müntzfuß
+        on this page» summary.
+
+        Compares raw `coin.raw.nominal` strings — two coins with the
+        same inscription (e.g. two KM variants of «1 Thaler Species»
+        struck under different mintmasters) collapse to one nominal.
+        Coins with no nominal string (defensive null check) are skipped.
+        """
+        seen: set[str] = set()
+        for pg in self.phases:
+            for coin_list in (
+                pg.kurant_coins, pg.scheide_coins, pg.copper_coins,
+                pg.tarif_coins, pg.tarif_deviant_coins,
+                pg.tarif_subunit_coins, pg.gedenk_coins,
+            ):
+                for cc in coin_list:
+                    nom = getattr(cc.raw, "nominal", None)
+                    if nom:
+                        seen.add(nom)
+        return len(seen)
+
 
 @dataclass
 class LocationTree:

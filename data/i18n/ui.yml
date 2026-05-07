@@ -340,10 +340,21 @@ fuss.stat.coins_logged:
   de: "Münzen belegt"
   en: "Coins logged"
   uk: "монет задокументовано"
-fuss.stat.base_values:
-  de: "Grundwerte"
-  en: "Base values"
-  uk: "базових величин"
+# Used to be `fuss.stat.base_values` ("Grundwerte" — len(grundwerte.rows)).
+# Replaced with the count of DISTINCT `nominal` strings across all coins
+# in this Fuss on the current page — a denomination-type tally, not a
+# Grundwerte-row tally. Singular form for n == 1, plural otherwise. The
+# Ukrainian plural follows the «1 / 2-4 / 5+» rule but the «5+» genitive
+# form («номіналів») reads naturally for «1 номінал»-edge cases too — we
+# split _one / _many anyway for parity with `phase_one / phase_many`.
+fuss.stat.nominal_one:
+  de: "Nominal"
+  en: "denomination"
+  uk: "номінал"
+fuss.stat.nominal_many:
+  de: "Nominale"
+  en: "denominations"
+  uk: "номіналів"
 
 # Hero stats grid (top of every location page)
 hero.stat.zeitraum:
