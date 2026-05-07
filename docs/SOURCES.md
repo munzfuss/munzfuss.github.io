@@ -69,7 +69,7 @@ When researching a coin, consult sources in this order based on what you need:
 - Often agrees with Numista on KM# but disagrees with Hede on fineness/weight (independent reads of same primary catalogues)
 - Cloudflare-protected
 
-**Access:** WebFetch returns 403; Chrome MCP works (note: Numista is *not* a sanctioned Chrome-MCP scraping target — see CLAUDE.md «Tools and resources» — but ucoin.net is fine for Chrome-MCP fallback when WebFetch fails).
+**Access:** WebFetch routinely returns 403 (Cloudflare-protected). ucoin.net is **not** a sanctioned Chrome-MCP / browser-extension / browser-console scraping target either — same posture as Numista: the site's ToS contains restrictions on automated access (noted in third-party scraping write-ups) and there is no public API for the numismatic catalogue (`ucoinpy` is for the unrelated uCoin cryptocurrency, not this site). When ucoin data is needed and WebFetch fails, ask the user to paste the relevant `/coin/<…>?tid=NNNNN` page text into chat rather than scraping. Treat as confirmation source only when the data IS reachable through the user-supplied path; never plan a workflow that depends on bulk Chrome-MCP scraping of ucoin pages.
 
 **Use as:** confirmation source — when ucoin's weight/fineness/diameter agrees with our value, that counts as a confirmation suitable for `*_verified: true`. When ucoin disagrees, record the divergence via `measurement_alts`.
 
