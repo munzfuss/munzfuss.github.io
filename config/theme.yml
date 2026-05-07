@@ -114,13 +114,15 @@ accents:
 # Timeline bar palette — each bar ID pairs a gradient with an optional text override.
 # Bars reference these IDs via color_class in location YAML.
 timeline_bars:
-  rt:  { from: "#3f4955", to: "#6a7785" }   # Reichsthaler 9-Fuß — cool darker steel silver
-  si:  { from: "#6f7c8a", to: "#a8b3bf" }   # 9¼-Thaler-Fuß — cool lighter polished silver
+  # Cool-silver gradient sorted by Feinsilbergehalt (heaviest = lightest visually,
+  # lightest = darkest visually); all five steps stay in the silver hue family.
+  rt:  { from: "#aab8c6", to: "#d4dde6" }   # 9-Thaler-Fuß    (25,98 g fein) — silv1, lightest
+  si:  { from: "#92a0ae", to: "#bcc6d2" }   # 9¼-Thaler-Fuß   (25,28 g fein) — silv2
+  kr:  { from: "#7a8896", to: "#a4aebc" }   # 11⅓-Thaler-Fuß  (20,63 g fein) — silv3
+  vt:  { from: "#62707e", to: "#8c96a4" }   # 30-Thaler-Fuß   (16,67 g fein) — silv4
+  rb:  { from: "#4a5866", to: "#747e8c" }   # 18½-Thaler-Fuß  (12,64 g fein) — silv5, darkest
   sh:  { from: "#5a4d6d", to: "#8575b0" }
-  kr:  { from: "#54534d", to: "#82817a" }   # 11⅓-Thaler-Fuß — warm darker antique silver
-  rb:  { from: "#7c7a72", to: "#b0aea4" }   # 18½-Thaler-Fuß — warm lighter polished silver
   krm: { from: "#1d3557", to: "#457b9d", fg: "#f0ece4" }   # Krone-Mønt-Familie (kronemont_chr_iv / kronemont / kronemont_fine) — preußisch-blaue Gamme
-  vt:  { from: "#345a34", to: "#5a8a5a" }
   rm:  { from: "#8a6d2a", to: "#d4a574", fg: "#1a1612", weight: 600 }
   g:   { from: "#5c4a00", to: "#fcd34d", fg: "#1a1612", weight: 600 }
 
