@@ -9804,6 +9804,27 @@ coins:
     year_ranges:
       - [1694, 1694]
       - [1696, 1696]
+  # ─── Schauenburg-Pinneberg branch ─────────────────────────────────
+  # The Schauenburg dynasty ruled two geographically disjunct
+  # territories simultaneously:
+  #   • Grafschaft Pinneberg (Kreis Pinneberg, modern Schleswig-Holstein)
+  #   • Schaumburg proper (Stadthagen / Bückeburg, modern Niedersachsen)
+  # The 43 Schauenburg coins below carry `issuing_entity:
+  # schauenburg_pinneberg` because their numismatic context (Lange's
+  # SH-specific catalogue, KM grouping under SH volume) places them in
+  # our SH-territorial scope. However, IKMK Berlin lists 104 records
+  # for «Holstein-Schauenburg» (Ernst III, 1616-1622) under one
+  # dynastic prefix WITHOUT mint-city distinction — see
+  # `data/locations/holstein_schauenburg.yml` (bulk-seed location for
+  # the dynasty as a whole). Any of the 43 entries below MIGHT
+  # actually be Stadthagen-mint coinage that landed under
+  # Schauenburg-Pinneberg by inheritance of an earlier project
+  # decision; conversely, IKMK records that turn out to be Pinneberg-
+  # mint should eventually be promoted INTO this section.
+  # The mint-city disambiguation requires per-coin research via
+  # Weinmeister 1908 (ZfN 26) + Bei der Wieden 1961 («Fürst Ernst und
+  # seine Wirtschaftspolitik»). Until that's done both files coexist.
+  # ───────────────────────────────────────────────────────────────────
   - id: km-137112-otto-iv-1567
     fuss: 9_thaler
     phase: A
