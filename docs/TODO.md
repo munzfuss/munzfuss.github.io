@@ -7,6 +7,77 @@
 
 ## Open
 
+### I. Restructure `\n`-joined source labels in scalar metric fields  *(opened 2026-05-08)*
+
+**Background.** Several `weight_rough_g[].source` (and likely `fineness[].source` /
+`diameter_mm[].source`) entries use a YAML literal-block string with embedded
+`\n` to join multiple primary sources for the same value, e.g.:
+
+```yaml
+weight_rough_g:
+  - {value: 28.893, source: "Hede 39A\nNumista"}        # km-138-1
+  - {value: 6.642,  source: "Hede 2\nucoin"}            # planned for km-730 lift
+  - {value: 3.49,   source: "Hede 118\nNumista"}        # km-72 (just fixed in d77a404)
+```
+
+**Why this is the wrong shape for source data.** Source provenance is a
+*structured* claim («this value is independently attested by source A AND source B»).
+Burying it in a single newline-delimited string forces every consumer
+(audit scripts, future query/dedup tooling, schema-migration scripts) to
+re-parse the string to recover the constituent sources. We already hit this
+the day we wrote it: the orphan-weight audit script (`scripts/oneoff/audit_orphan_weight_sources.py`)
+had to special-case `[,;\n]` splitting to avoid false positives — that's
+exactly the parser-of-display-string anti-pattern.
+
+Render-side prose can join sources however it likes (`«Hede 2 + ucoin»`,
+inline `<sup>` stacks, etc.) — that's display logic. **Source-data fields
+should carry sources as arrays.**
+
+**Two-step:**
+
+1. **Analysis step (do first).** Decide the right shape. Options:
+   - (a) `source: ["Hede 2", "ucoin"]` — list of strings.
+   - (b) `source: [{type: hede, ref: "Hede 2"}, {type: ucoin}]` — structured per-token.
+   - (c) split into separate `weight_rough_g[]` entries, one per source —
+     same shape as the existing per-specimen Bruun rows already use, but
+     would create N rows with the same numeric value (a kind of dup,
+     though §9a-defensible if the sources genuinely measured / round
+     independently).
+   Each has trade-offs: (a) is the smallest schema change but still
+   stringly-typed; (b) is properly structured but requires schema +
+   render updates; (c) is most-§9a-aligned but inflates the table for
+   nominal/standard values that aren't really «multiple specimens».
+   Also decide: scope = only `weight_rough_g[].source`, or also any
+   other metric field that has a `.source` sub-field.
+
+2. **Decide rule placement.** Should this become a CLAUDE.md rule
+   (analogous to §9a multi-specimen merge — extend §9a, or add a new
+   sub-rule «source-data is structured, not stringly-joined») so future
+   edits don't reintroduce the pattern? Or one-shot fix only? If
+   one-shot, the danger is the next bulk-import that touches similar
+   data quietly re-emits the pattern.
+
+3. **Migration step (after analysis).** Sweep:
+   - `data/locations/*.yml` and `data/shared/*.yml` for `\n` inside
+     `.source` strings; convert per the chosen shape.
+   - Update `scripts/lib/schema.py` if the shape changes.
+   - Update `scripts/lib/render.py` (and templates) if the rendered form
+     needs adjustment.
+   - Update `scripts/oneoff/audit_orphan_weight_sources.py` to drop the
+     `\n`-splitting kludge.
+   - Update any bulk-import scripts (`scripts/oneoff/bulk_import_seed_locations.py`,
+     `scripts/maintenance/*`) that emit the legacy form.
+
+**Done criterion.** Zero remaining `"…\n…"` patterns inside any
+`.source` field. Audit script `audit_orphan_weight_sources.py` works
+without the `\n`-split hack. CLAUDE.md updated (or explicitly decided
+no rule needed) per the analysis output.
+
+**Estimated effort.** Analysis ~30 min; migration ~1 h depending on
+chosen shape.
+
+---
+
 ### H. Coverage check for additional museum / catalogue APIs  *(opened 2026-05-07)*
 
 **Background.** IKMK Berlin (`ikmk.smb.museum`) was confirmed in
