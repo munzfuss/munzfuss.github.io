@@ -4,10 +4,10 @@
 65 IKMK records (prefixes: Schleswig-Holstein-Sonderburg, Schleswig-Holstein-Gottorf, Schleswig-Holstein, Schleswig-Holstein-Glücksburg, in-scope 1566–1914) matched against `data/locations/schleswig_holstein.yml`.
 
 
-* **Strict match (catalogue-ref overlap)**: 41
+* **Strict match (catalogue-ref overlap)**: 42
 * **Fuzzy match (high-confidence same coin, score≥7)**: 0
 * **New Lange-# variant (IKMK has Lange # we don't catalogue)**: 23 specimens across **1 unique Lange #**
-* **Weak candidate (partial signal, score 4-6, no Lange#)**: 1
+* **Weak candidate (partial signal, score 4-6, no Lange#)**: 0
 * **No match**: 0
 
 
@@ -55,7 +55,8 @@
 | [18285112](https://ikmk.smb.museum/object?id=18285112) | 1619-1619 | `km-46-fr-iii-1617` | strict by lange 339c | — |
 | [18285113](https://ikmk.smb.museum/object?id=18285113) | 1619-1619 | `km-46-fr-iii-1617` | strict by lange 339c | — |
 | [18202375](https://ikmk.smb.museum/object?id=18202375) | 1623-1623 | `km-15-chr-iv-1623` | strict by lange 34e | — |
-| [18206321](https://ikmk.smb.museum/object?id=18206321) | 1664-1664 | `km-56-fr-iii-1666` | strict by lange 65 | inscription_obv, inscription_rev, catalog.hede, catalog.dav |
+| [18206321](https://ikmk.smb.museum/object?id=18206321) | 1664-1664 | `km-56-fr-iii-1666` | strict by lange 65 | catalog.dav |
+| [18219857](https://ikmk.smb.museum/object?id=18219857) | 1666-1666 | `km-56-fr-iii-1666` | strict by hede 144 | — |
 | [18206117](https://ikmk.smb.museum/object?id=18206117) | 1671-1671 | `bruun-14681-christian-glb-1672` | strict by lange 737 | — |
 
 ## New Lange-# variants (potential YAML additions)
@@ -67,10 +68,3 @@ Grouped by Lange # — 1 unique #s, 23 total specimens.
 | Lange # | specimens | year(s) | sample IKMK |
 |---|---:|---|---|
 | `Lange (cf-only)` | 23 | 1618,1619,1620,1621 | [18284398](https://ikmk.smb.museum/object?id=18284398), [18284404](https://ikmk.smb.museum/object?id=18284404), [18284691](https://ikmk.smb.museum/object?id=18284691) |
-
-## Weak candidates (score 4-6, no Lange #)
-
-
-| IKMK | year | nominal | best our coin | reason |
-|---|---|---|---|---|
-| [18219857](https://ikmk.smb.museum/object?id=18219857) | 1666-1666 | Dukat | `km-56-fr-iii-1666` | weak score=5 (year 1666≈1666, nominal 'dukat', weight 3.43≈3.48) |
