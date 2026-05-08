@@ -7,6 +7,53 @@
 
 ## Open
 
+### J. Bruun parser + cross-match: two latent bugs from km-165/KM-166 audit  *(opened 2026-05-09)*
+
+**Surfaced during.** Audit of `km-165-fr-iv-1698` (Schleswig-Holstein-Gottorp
+1 Mark 1698 Tönning, Lange-430A) revealed Bruun lot `III/12210` had been
+mis-attached as an orphan weight (22.0 g) to km-165 even though the lot is
+KM-**166** / Lange-**430AA** (the sister 2 Mark, separate Krause type per §9.3).
+The KM-166 type is genuinely missing from our YAML and has to be reconstructed
+from Bruun-cache data because the cross-matcher absorbed it into km-165 instead
+of spawning a new entry.
+
+Two underlying defects in `scripts/bruun_parser/` + `scripts/cache/bruun/cross_match.py`:
+
+1. **`refs`-extractor truncates double-letter catalog suffixes.**
+   Bruun lot 12210 body explicitly says «Lange-430AA», but the parsed
+   `refs` shows `{'Lange': '430A'}`. The regex stops after one trailing
+   letter (likely `Lange-(\d+\w)` style). All Lange-/Hede-/Sieg- variants
+   that use double-letter suffixes (e.g. AA, AB, BA) silently lose the
+   second letter. Risk: future bulk-cross-match operations alias different
+   types onto the same parsed catalog token.
+
+2. **`cross_match.py` single-match path doesn't gate on KM-token parity.**
+   When a Bruun lot finds exactly one candidate coin via the year + denom
+   + non-KM-token heuristic, the matcher emits `cat: A` and links the lot
+   to that coin without verifying `lot.refs.KM == coin.catalog.km`. The
+   §9.3 compatibility filter introduced in commit `a5dd778` fires only on
+   multi-match (`cat: B`/`D`) cases, so single-match KM-mismatches like
+   12210→km-165 (KM 166 vs 165) bypass the §9.3 cleanup entirely.
+
+**Done criterion:**
+  - Parser regex updated to capture full catalog suffix (e.g. `Lange-(\d+[A-Z]+)`),
+    re-run `scripts/bruun_parser/02_parse_lots.py`. Verify no other
+    Lange-AA/AB collapses exist by diffing the regenerated cache.
+  - `cross_match.py` extended so single-match path also calls
+    `lot_compatible_with_coin()` (or equivalent KM-token assertion) before
+    emitting `cat: A`. Re-run `scripts/bruun_parser/04_cross_match.py`.
+  - Audit pass: any newly-flagged D-cases (lots that lose their A-classification
+    after the parity check) get triaged like the original §9.3-cleanup
+    (commit `ffbf458`/`a5dd778`).
+  - Cross-check the four Bruun-PDF cache (parts I–IV) for any other
+    parser-truncated-suffix collisions; expected handful, not hundreds.
+
+**Estimated effort.** Parser regex + re-run cache: ~15 min. Match-logic
+update + re-run + audit triage: ~1 h depending on how many additional
+single-match-mismatches the parity check surfaces.
+
+---
+
 ### I. Restructure `\n`-joined source labels in scalar metric fields  *(opened 2026-05-08)*
 
 **Background.** Several `weight_rough_g[].source` (and likely `fineness[].source` /
