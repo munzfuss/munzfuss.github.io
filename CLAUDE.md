@@ -403,6 +403,46 @@ python scripts/build.py --debug            # also writes output/debug/*.json
 python scripts/build.py --validate-only    # runs schema validation, no rendering
 ```
 
+### Preview-mode auto-build (operational rule)
+
+> **When the preview server is running and this turn modified a file
+> that affects rendered output, run `python scripts/build.py` before
+> ending the turn.** Keeps the preview window in sync with the working
+> tree without the user having to ask.
+>
+> **How to detect preview is active.** The harness emits
+> `PostToolUse:Write hook additional context: A preview server is
+> running.` after any Write / Edit. If that reminder appears anywhere
+> in the turn — or if `mcp__Claude_Preview__*` tools are in scope —
+> treat preview as on.
+>
+> **Files that affect rendered output (build-trigger):**
+> - `data/locations/*.yml` — coin data, phases, references
+> - `data/shared/*.yml` — fuesse, mints
+> - `data/i18n/*.yml` — UI strings
+> - `templates/**.j2` — Jinja
+> - `config/theme.yml` — CSS theme tokens
+> - `scripts/build.py`, `scripts/lib/**` — build pipeline + `style.base.css`
+> - `assets/**` — copied verbatim into `site/assets/`
+>
+> **Files that do NOT trigger a rebuild:**
+> - `docs/**`, `CLAUDE.md`, `README.md`
+> - `scripts/maintenance/**`, `scripts/audit_*.py`, `scripts/oneoff/**`
+> - `scripts/cache/**` (read by maintenance scripts; not by `build.py`)
+> - `scripts/fetch_*.py`, `scripts/match_*.py`
+> - `requirements.txt`, `local.env`, `.gitignore`
+>
+> **Granularity.** Run the build ONCE at end of turn, not after every
+> Edit. If the turn has multiple edits across web-affecting files,
+> one build at the end covers them all.
+>
+> **When in doubt: build.** ~5-15 s of CPU cost beats the user
+> noticing a stale preview manually.
+>
+> **If validation / render fails**: surface the failure in the
+> response, don't silently retry. Schema-validation breaks usually
+> came from this turn's edits and need a fix.
+
 ## Git workflow
 
 - **main** = source of truth. Every push triggers GitHub Actions → build → deploy to Pages.
