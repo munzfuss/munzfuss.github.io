@@ -38,13 +38,24 @@ QUERIES = [
     "Schleswig-Holstein", "Holstein", "Schleswig",
     "Holstein-Sonderburg", "Holstein-Sonderburg-Glücksburg",
     "Sonderburg", "Augustenburg", "Plön", "Glücksburg", "Norburg",
+    "Schaumburg",
     # SH mints / cities
     "Glückstadt", "Altona", "Reinfeld", "Eutin", "Kiel", "Flensburg",
-    # Lübeck-bishopric (project scope)
+    "Itzehoe", "Pinneberg",
+    # Lauenburg territory + residences (project scope)
+    "Lauenburg", "Ratzeburg", "Mölln",
+    # Lübeck (Hansestadt) and Lübeck-Bishopric
     "Lübeck Bistum",
-    # Denmark + Norway (Danish-Norwegian crown)
+    # Bremen-Verden / Bremen archbishopric
+    "Bistum Bremen", "Bremen-Verden",
+    # Denmark + Norway royal mints (Danish-Norwegian crown)
     "Dänemark", "Denmark", "Norwegen", "Norge",
     "Kopenhagen", "Christiania", "Kongsberg",
+    "Ribe", "Odense", "Lund",
+    "Bergen",
+    # Major rulers with prolific Danish/SH coinage
+    # (broad — captures DK + Norwegen + SH-Gottorf 17th-c. coinage)
+    "Christian IV.", "Friedrich III.",
 ]
 
 
@@ -104,14 +115,33 @@ def discover() -> dict:
     return manifest
 
 
-def _fetch_one(opener, nid: str) -> bool:
+def _fetch_one(opener_holder: list, nid: str) -> bool:
+    """Fetch a single record, with retries + backoff for throttle/network errors.
+
+    `opener_holder` is a one-element list holding the current opener so we
+    can rebuild the session (fresh cookies, fresh socket) after a backoff.
+    """
     path = CACHE_DIR / f"{nid}.json"
     if path.exists():
         return False
     url = f"https://ikmk.smb.museum/object?id={nid}&download=json_ext"
-    body = opener.open(url, timeout=30).read()
-    path.write_bytes(body)
-    return True
+    last_err: Exception | None = None
+    backoffs = (2.0, 5.0, 15.0, 60.0)
+    for attempt, wait_after in enumerate(backoffs):
+        try:
+            body = opener_holder[0].open(url, timeout=60).read()
+            path.write_bytes(body)
+            return True
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, OSError) as exc:
+            last_err = exc
+            print(
+                f"  [{nid}] attempt {attempt + 1}/{len(backoffs)}: "
+                f"{type(exc).__name__} — backoff {wait_after}s",
+                file=sys.stderr,
+            )
+            time.sleep(wait_after)
+            opener_holder[0] = _make_session()
+    raise last_err  # type: ignore[misc]
 
 
 def fetch() -> None:
@@ -120,23 +150,21 @@ def fetch() -> None:
         sys.exit(1)
     manifest = json.loads(MANIFEST.read_text())
     ids: list[str] = manifest["ids"]
-    opener = _make_session()
+    opener_holder = [_make_session()]
     fetched = 0
     skipped = 0
     errors = 0
     t0 = time.time()
     for i, nid in enumerate(ids, start=1):
         try:
-            new = _fetch_one(opener, nid)
+            new = _fetch_one(opener_holder, nid)
         except urllib.error.HTTPError as exc:
             errors += 1
-            print(f"  [{nid}] HTTP {exc.code}", file=sys.stderr)
-            time.sleep(2.0)
+            print(f"  [{nid}] gave up: HTTP {exc.code}", file=sys.stderr)
             continue
         except Exception as exc:
             errors += 1
-            print(f"  [{nid}] {type(exc).__name__}: {exc}", file=sys.stderr)
-            time.sleep(2.0)
+            print(f"  [{nid}] gave up: {type(exc).__name__}: {exc}", file=sys.stderr)
             continue
         if new:
             fetched += 1
