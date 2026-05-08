@@ -66,10 +66,13 @@ PROJECT_LOCATION_MAP: dict[str, str] = {
     "Hamburg": "hamburg",
     # osnabrueck.yml
     "Osnabrück": "osnabrueck",
-    # Holstein-Schauenburg — historical predecessor (1110-1640) of the
-    # Schleswig-Holstein area; the post-1566 tail (1567-1640) sits in
-    # the project window but is not a current location file.
-    "Holstein-Schauenburg": "_pre1640_schauenburg",
+    # Holstein-Schauenburg — bulk-seed stub for the dynasty as a whole
+    # (commit 0b14f71). Pinneberg-branch (Kreis Pinneberg, modern SH)
+    # and Schaumburg-proper (Stadthagen / Bückeburg, modern Niedersachsen)
+    # both ruled by Ernst III in 1616-1622 — IKMK groups them under one
+    # dynastic prefix without mint-city distinction, so they live in
+    # holstein_schauenburg.yml until per-coin research splits them.
+    "Holstein-Schauenburg": "holstein_schauenburg",
 }
 
 

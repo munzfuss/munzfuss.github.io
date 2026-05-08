@@ -1,6 +1,6 @@
 # IKMK Berlin cache — issuer index
 
-Generated 2026-05-08T06:57:26Z from `scripts/cache/ikmk`. 
+Generated 2026-05-08T13:58:38Z from `scripts/cache/ikmk`. 
 Window 1566–1914.
 
 Total records: **6531**.
@@ -8,12 +8,6 @@ Total records: **6531**.
 
 ## Mapped to project locations
 
-
-### `_pre1640_schauenburg` — 104 in scope / 104 total
-
-| issuer | total | in scope | year_min | year_max | top mint | top nominal |
-|---|---:|---:|---:|---:|---|---|
-| Holstein-Schauenburg | 104 | 104 | 1616 | 1622 | Deutschland | Doppelschilling (1/16 Taler) |
 
 ### `bremen_verden` — 5 in scope / 44 total
 
@@ -27,6 +21,12 @@ Total records: **6531**.
 |---|---:|---:|---:|---:|---|---|
 | Dänemark | 43 | 26 | 1018 | 1990 | Dänemark | Denar (MA) |
 | Norwegen | 19 | 15 | 995 | 1669 | Norwegen | Taler |
+
+### `holstein_schauenburg` — 104 in scope / 104 total
+
+| issuer | total | in scope | year_min | year_max | top mint | top nominal |
+|---|---:|---:|---:|---:|---|---|
+| Holstein-Schauenburg | 104 | 104 | 1616 | 1622 | Deutschland | Doppelschilling (1/16 Taler) |
 
 ### `lauenburg` — 47 in scope / 47 total
 

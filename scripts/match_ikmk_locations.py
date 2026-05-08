@@ -1,78 +1,80 @@
-"""Match IKMK Berlin records mapped to schleswig_holstein.yml.
+"""Match IKMK Berlin records against project location YAMLs.
 
-For every IKMK record whose title-prefix is in
-``Schleswig-Holstein* / Holstein-Schauenburg`` (= 65 in-scope records
-per ``_index_by_issuer.json``), determine whether the same coin
-already exists in ``data/locations/schleswig_holstein.yml`` and what
-status applies.
+Generic per-location matcher. For each location whose IKMK title-prefix
+mapping is recorded in ``scripts/cache/ikmk/_index_by_issuer.json``
+(i.e. populated by ``scripts/audit_ikmk_index.py``), walk every IKMK
+record under those prefixes and bucket it against the location's
+``data/locations/<loc>.yml`` content.
 
-Match strategy (ordered):
+CLI::
 
-1. **Strict by Lange #** — most SH IKMK records cite Chr. Lange's
-   Sammlung schleswig-holsteinischer Münzen und Medaillen as the
-   primary catalogue. We carry Lange # in 144 / 321 SH coins. A
-   shared Lange-number-and-qualifier is a near-certain match.
-2. **Strict by Hede #** — fallback for Danish-mint Holstein coins.
-3. **Strict by Davenport #** — large silver / Speciedaler thalers.
-4. **Fuzzy (year + ruler-surname + nominal-token + weight ±2 %)** —
-   when none of the catalogue refs overlap.
+    python scripts/match_ikmk_locations.py                     # all mapped locations
+    python scripts/match_ikmk_locations.py schleswig_holstein  # one location
+    python scripts/match_ikmk_locations.py denmark lauenburg   # several
 
-Output:
+Buckets per IKMK record (ordered by signal strength):
 
-* ``scripts/cache/ikmk/_match_schleswig_holstein.json`` — machine
-  index. For each IKMK ID: status, our coin id (if matched), match
-  reason, and the diff of fields IKMK exposes that we lack
-  (inscription_obv / inscription_rev / diameter / additional refs).
-* ``scripts/cache/ikmk/_match_schleswig_holstein.md`` — readable
-  digest grouped by status.
+* **strict_match** — shared catalogue ref (Lange / Hede / Davenport /
+  Sieg / Schou). Most reliable.
+* **fuzzy_match** — high-confidence ``year + ruler-first-name +
+  nominal-token + weight ±3 %`` match without a catalogue overlap
+  (score ≥ 7).
+* **new_lange_variant** — IKMK has a Lange # we don't catalogue, but
+  ruler / year align with one of our coins. Likely a new sub-variant
+  worth adding to YAML.
+* **weak_candidate** — partial signal (year + one of ruler / nominal
+  / weight) without a catalogue overlap, score 4-6. Usually means we
+  have the coin under a different KM# variant we never linked
+  Lange # to, or it's a new specimen of an existing type.
+* **no_match** — neither catalogue overlap nor year-window candidate.
+
+Outputs (per location L)::
+
+    scripts/cache/ikmk/_match_<L>.json   machine record
+    scripts/cache/ikmk/_match_<L>.md     human digest
+
+Idempotent. Re-runs after extending IKMK cache or the YAMLs refresh
+both files.
 """
 
 from __future__ import annotations
 
+import argparse
 import json
-import os
 import re
 import sys
+from collections import defaultdict
 from pathlib import Path
 
 import yaml
 
 REPO = Path(__file__).resolve().parents[1]
 CACHE = REPO / "scripts" / "cache" / "ikmk"
-YAML_PATH = REPO / "data" / "locations" / "schleswig_holstein.yml"
+LOCATIONS = REPO / "data" / "locations"
 INDEX_PATH = CACHE / "_index_by_issuer.json"
-MATCH_JSON = CACHE / "_match_schleswig_holstein.json"
-MATCH_MD = CACHE / "_match_schleswig_holstein.md"
 
 
 # ---------- Catalogue-ref extraction from IKMK literatur -------------
 
-# Lange comes in two volume variants. Pattern handles both vol I (1908)
-# and vol II (1912), with optional "Vgl." (cf.) prefix and an optional
-# letter qualifier on the number (e.g. "339 B", "34 e").
 RE_LANGE = re.compile(
     r"(?P<cf>Vgl\.\s+)?Chr\.?\s*Lange'?s\s*,?\s*Sammlung[^()]*\((?P<year>1908|1912)\)"
-    r"[^N]*?Nr\.?\s*(?P<num>\d+)\s*(?P<q>[A-Za-z](?:\.\d+)?)?",
+    r"[\s\S]*?Nr\.?\s*(?P<num>\d+)\s*(?P<q>[A-Za-z](?:\.\d+)?)?",
     re.IGNORECASE,
 )
-
-# Hede catalogue (Danmarks og Norges mønter) — sometimes "H. Hede" or
-# bare "Hede". Numbers can carry a letter (39A, 153b).
 RE_HEDE = re.compile(
-    r"(?:H\.\s*)?Hede[^A-Za-z0-9]+(?:[^N]*?Nr\.?\s*)?(?P<num>\d+)(?P<q>[A-Z]?)\b",
+    r"(?:H\.\s*)?Hede[^A-Za-z0-9]+(?:[\s\S]*?Nr\.?\s*)?(?P<num>\d+)(?P<q>[A-Z]?)\b",
     re.IGNORECASE,
 )
-
-# Davenport European Crowns
 RE_DAV = re.compile(
-    r"Davenport[^N]*?Nr\.?\s*(?P<num>\d+)(?P<q>[A-Za-z]?)\b",
+    r"Davenport[\s\S]*?Nr\.?\s*(?P<num>\d+)(?P<q>[A-Za-z]?)\b",
     re.IGNORECASE,
 )
-
-# Aagaard Frederik III (the specific 2011 monograph cited by IKMK on
-# Glückstadt-mint Speciedaler issues).
-RE_AAGAARD = re.compile(
-    r"Aagaard[^A-Za-z0-9]+[^A-Za-z0-9]*(?:T\s*\d+\.\d+|(\d+(?:\.\d+)?))",
+RE_SIEG = re.compile(
+    r"\bSieg[^A-Za-z0-9]+(?:[\s\S]*?Nr\.?\s*)?(?P<num>\d+(?:\.\d+)?)(?P<q>[A-Z]?)\b",
+    re.IGNORECASE,
+)
+RE_SCHOU = re.compile(
+    r"\bSchou[^A-Za-z0-9]+(?:[\s\S]*?Nr\.?\s*)?(?P<num>\d+)(?P<q>[A-Z]?)\b",
     re.IGNORECASE,
 )
 
@@ -82,11 +84,9 @@ def _norm(num: str, q: str | None) -> str:
 
 
 def extract_refs(literatur: str) -> dict[str, list[dict]]:
-    """Return dict {catalogue_code: [{number, qualifier, cf}, ...]}."""
     refs: dict[str, list[dict]] = {}
     if not literatur:
         return refs
-    # Lange (with cf-flag)
     for m in RE_LANGE.finditer(literatur):
         refs.setdefault("lange", []).append({
             "vol": "I" if m.group("year") == "1908" else "II",
@@ -95,18 +95,20 @@ def extract_refs(literatur: str) -> dict[str, list[dict]]:
             "cf": bool(m.group("cf")),
             "norm": _norm(m.group("num"), m.group("q")),
         })
-    # Hede
     for m in RE_HEDE.finditer(literatur):
         refs.setdefault("hede", []).append({
-            "num": m.group("num"),
-            "q": m.group("q") or "",
             "norm": _norm(m.group("num"), m.group("q")),
         })
-    # Davenport
     for m in RE_DAV.finditer(literatur):
         refs.setdefault("dav", []).append({
-            "num": m.group("num"),
-            "q": (m.group("q") or "").strip(),
+            "norm": _norm(m.group("num"), m.group("q")),
+        })
+    for m in RE_SIEG.finditer(literatur):
+        refs.setdefault("sieg", []).append({
+            "norm": _norm(m.group("num"), m.group("q")),
+        })
+    for m in RE_SCHOU.finditer(literatur):
+        refs.setdefault("schou", []).append({
             "norm": _norm(m.group("num"), m.group("q")),
         })
     return refs
@@ -120,15 +122,13 @@ def _norm_ref(value) -> str:
 
 
 def index_our_coins(coins: list[dict]) -> dict[str, dict[str, list[dict]]]:
-    """Index our coins by lange / hede / dav / km — for strict lookup."""
-    index = {"lange": {}, "hede": {}, "dav": {}, "km": {}}
+    index = {k: {} for k in ("lange", "hede", "dav", "sieg", "schou", "km")}
     for c in coins:
         cat = c.get("catalog") or {}
-        for code in ("lange", "hede", "dav", "km"):
+        for code in index:
             v = cat.get(code)
             if v:
                 index[code].setdefault(_norm_ref(v), []).append(c)
-        # Also harvest "Lange# 80 A" forms from `others` list
         for o in cat.get("others") or []:
             mo = re.match(r"\s*Lange[#\s]*(\d+\s*[a-z]?)", str(o), re.IGNORECASE)
             if mo:
@@ -136,11 +136,56 @@ def index_our_coins(coins: list[dict]) -> dict[str, dict[str, list[dict]]]:
     return index
 
 
-# ---------- Main matching loop ---------------------------------------
+# ---------- Ruler-token matching (lightweight, location-agnostic) ----
+
+# Common monarchic / dynastic first names across the project's German /
+# Danish / Norwegian rulers.
+RULER_FIRST_NAMES = {
+    "johann", "hans", "christian", "friedrich", "frederick", "frederik",
+    "ernst", "adolf", "adolph", "philipp", "peter", "georg", "albrecht",
+    "carl", "karl", "joachim", "ferdinand", "rudolph", "rudolf", "magnus",
+    "otto", "heinrich", "herman", "hermann", "leopold", "wilhelm",
+    "wilhelmine", "marie", "anna", "maria", "elisabeth", "sophie", "sophia",
+    "alexander", "ulrich", "augustenburg", "just", "justus", "jobst",
+}
+
+# Dynastic / territorial-line tokens — pulled together for fuzzy
+# matching across all SH+DK+Lauenburg+Bremen-Verden+Lübeck contexts.
+DYNASTIC_LINES = {
+    "sonderburg": "sonderburg",
+    "gottorf": "gottorf", "gottorp": "gottorf",
+    "glücksburg": "glücksburg", "glucksburg": "glücksburg",
+    "plön": "plön", "ploen": "plön",
+    "augustenburg": "augustenburg",
+    "schaumburg": "schaumburg", "schauenburg": "schaumburg",
+    "pinneberg": "schaumburg",
+    "norburg": "norburg",
+    "lauenburg": "lauenburg",
+    "dänemark": "dänemark", "denmark": "dänemark",
+    "norwegen": "dänemark", "norway": "dänemark",
+    "lübeck": "lübeck", "luebeck": "lübeck",
+    "bremen": "bremen",
+    "holstein": "holstein",
+    "schleswig": "schleswig",
+}
+
+
+def _ruler_tokens(text: str) -> tuple[set[str], set[str]]:
+    text_l = text.lower()
+    first_names = set()
+    lines = set()
+    for tok in re.findall(r"[a-zäöü]{3,}", text_l):
+        if tok in RULER_FIRST_NAMES:
+            first_names.add(tok)
+        if tok in DYNASTIC_LINES:
+            lines.add(DYNASTIC_LINES[tok])
+    return first_names, lines
+
+
+# ---------- Per-record extraction + diff -----------------------------
 
 
 def _ikmk_summary(rec: dict) -> dict:
-    """Pull the comparable facts out of an IKMK record."""
     pers = rec.get("linked_persons_corporations") or {}
     ruler = ""
     if isinstance(pers, dict):
@@ -161,10 +206,6 @@ def _ikmk_summary(rec: dict) -> dict:
         if isinstance(m, dict):
             mint_place = m.get("place_name_de") or ""
             break
-    weight = rec.get("weight") or ""
-    diameter = rec.get("diameter") or ""
-    avers_leg = (rec.get("avers") or {}).get("leg_text") or ""
-    revers_leg = (rec.get("revers") or {}).get("leg_text") or ""
     return {
         "id": rec.get("ikmk_mds_id"),
         "title": rec.get("title"),
@@ -173,10 +214,10 @@ def _ikmk_summary(rec: dict) -> dict:
         "ruler": ruler,
         "nominal": nominal,
         "mint": mint_place,
-        "weight": weight,
-        "diameter": diameter,
-        "avers_leg": avers_leg,
-        "revers_leg": revers_leg,
+        "weight": rec.get("weight") or "",
+        "diameter": rec.get("diameter") or "",
+        "avers_leg": (rec.get("avers") or {}).get("leg_text") or "",
+        "revers_leg": (rec.get("revers") or {}).get("leg_text") or "",
         "literatur": rec.get("literatur") or "",
         "refs": extract_refs(rec.get("literatur") or ""),
         "permalink": rec.get("permalink"),
@@ -185,63 +226,27 @@ def _ikmk_summary(rec: dict) -> dict:
 
 
 def _diff_fields(ikmk: dict, ours: dict) -> dict:
-    """What does IKMK add that we lack on this coin?"""
-    diff = {}
+    diff: dict = {}
     if ikmk["avers_leg"] and not (ours.get("inscription_obv") or "").strip():
         diff["inscription_obv"] = ikmk["avers_leg"]
     if ikmk["revers_leg"] and not (ours.get("inscription_rev") or "").strip():
         diff["inscription_rev"] = ikmk["revers_leg"]
-    # diameter — IKMK string like "44 mm"
-    if ikmk["diameter"]:
-        ours_diam = ours.get("diameter_mm")
-        if ours_diam in (None, 0):
-            diff["diameter_mm"] = ikmk["diameter"]
-    # additional Lange / Hede / Dav refs we don't have
+    if ikmk["diameter"] and ours.get("diameter_mm") in (None, 0):
+        diff["diameter_mm"] = ikmk["diameter"]
     cat = ours.get("catalog") or {}
-    for code in ("lange", "hede", "dav"):
-        if ikmk["refs"].get(code) and not cat.get(code):
-            # Take the first non-cf entry
-            for r in ikmk["refs"][code]:
+    for code in ("lange", "hede", "dav", "sieg", "schou"):
+        entries = ikmk["refs"].get(code, [])
+        if entries and not cat.get(code):
+            for r in entries:
                 if not r.get("cf"):
                     diff[f"catalog.{code}"] = r["norm"]
                     break
     return diff
 
 
-RULER_FIRST_NAMES = {
-    "johann", "hans", "christian", "friedrich", "frederick", "frederik",
-    "ernst", "adolf", "philipp", "peter", "georg", "albrecht", "carl",
-    "karl", "joachim", "augustenburg", "just",
-}
-DYNASTIC_LINES = {
-    "sonderburg": "sonderburg",
-    "gottorf": "gottorf", "gottorp": "gottorf",
-    "glücksburg": "glücksburg", "glucksburg": "glücksburg",
-    "plön": "plön", "ploen": "plön",
-    "augustenburg": "augustenburg",
-    "schaumburg": "schaumburg", "schauenburg": "schaumburg",
-    "pinneberg": "schaumburg",  # Schaumburg-Pinneberg branch
-    "norburg": "norburg",
-    "lauenburg": "lauenburg",
-}
-
-
-def _ruler_tokens(text: str) -> tuple[set[str], set[str]]:
-    text_l = text.lower()
-    first_names = set()
-    lines = set()
-    for tok in re.findall(r"[a-zäöü]{3,}", text_l):
-        if tok in RULER_FIRST_NAMES:
-            first_names.add(tok)
-        if tok in DYNASTIC_LINES:
-            lines.add(DYNASTIC_LINES[tok])
-    return first_names, lines
-
-
 def _fuzzy_score(ikmk: dict, ours: dict) -> tuple[int, list[str]]:
     score = 0
     why = []
-    # year — IKMK year_start can be str
     try:
         iy = int(ikmk.get("year_start") or 0) or None
     except (TypeError, ValueError):
@@ -256,8 +261,6 @@ def _fuzzy_score(ikmk: dict, ours: dict) -> tuple[int, list[str]]:
     elif iy and oy and abs(iy - oy) <= 3:
         score += 1
         why.append(f"year {iy}~{oy}")
-    # Ruler — must overlap on (a) first name AND (b) dynastic line.
-    # Generic country tokens like "schleswig" alone don't count.
     i_first, i_line = _ruler_tokens(ikmk.get("ruler") or "")
     o_first, o_line = _ruler_tokens(ours.get("ruler") or "")
     shared_first = i_first & o_first
@@ -271,7 +274,6 @@ def _fuzzy_score(ikmk: dict, ours: dict) -> tuple[int, list[str]]:
     elif shared_line:
         score += 1
         why.append(f"ruler-line {sorted(shared_line)[0]}")
-    # Nominal — match a denomination word (≥5 chars to avoid junk)
     ours_nom = (ours.get("nominal") or "").lower()
     ikmk_nom = (ikmk.get("nominal") or "").lower()
     for tok in re.findall(r"[a-zäöüß]{5,}", ikmk_nom):
@@ -279,7 +281,6 @@ def _fuzzy_score(ikmk: dict, ours: dict) -> tuple[int, list[str]]:
             score += 1
             why.append(f"nominal '{tok}'")
             break
-    # Weight ±3 %
     try:
         wi = float(re.match(r"([\d.]+)", ikmk["weight"] or "").group(1))
         ow_raw = ours.get("weight_rough_g")
@@ -300,35 +301,41 @@ def _fuzzy_score(ikmk: dict, ours: dict) -> tuple[int, list[str]]:
     return score, why
 
 
-def main() -> int:
-    index = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
-    sh_prefixes = index["by_project_location"]["schleswig_holstein"]
-    schauen_prefixes = index["by_project_location"].get("_pre1640_schauenburg", [])
-    targets = list(sh_prefixes) + list(schauen_prefixes)
-    print(f"Target prefixes: {targets}")
+# ---------- Per-location driver --------------------------------------
+
+
+def match_one_location(loc_id: str, index: dict) -> dict | None:
+    by_loc = index["by_project_location"].get(loc_id) or []
+    if not by_loc:
+        print(f"[!] {loc_id}: no IKMK prefixes mapped (skipping)")
+        return None
+    yaml_path = LOCATIONS / f"{loc_id}.yml"
+    if not yaml_path.exists():
+        print(f"[!] {loc_id}: yaml missing: {yaml_path}")
+        return None
+    yml = yaml.safe_load(yaml_path.read_text(encoding="utf-8"))
+    our_coins = yml.get("coins", []) or []
+    our_idx = index_our_coins(our_coins)
 
     ikmk_ids: list[str] = []
-    for p in targets:
+    for p in by_loc:
         ikmk_ids.extend(index["issuers"][p]["ids_in_scope"])
-    print(f"IKMK records to match: {len(ikmk_ids)}")
 
-    # Load our SH coins
-    yml = yaml.safe_load(YAML_PATH.read_text(encoding="utf-8"))
-    our_coins = yml.get("coins", [])
-    our_idx = index_our_coins(our_coins)
-    print(f"Our SH coins: {len(our_coins)}  (lange={len(our_idx['lange'])} "
-          f"hede={len(our_idx['hede'])} dav={len(our_idx['dav'])} "
-          f"km={len(our_idx['km'])})")
+    print(f"\n=== {loc_id} ===")
+    print(f"  prefixes: {by_loc}")
+    print(f"  IKMK records: {len(ikmk_ids)}  | YAML coins: {len(our_coins)}  "
+          f"(lange={len(our_idx['lange'])} hede={len(our_idx['hede'])} "
+          f"dav={len(our_idx['dav'])} sieg={len(our_idx['sieg'])})")
 
     matches: list[dict] = []
     for nid in ikmk_ids:
         rec = json.loads((CACHE / f"{nid}.json").read_text(encoding="utf-8"))
         s = _ikmk_summary(rec)
 
-        # 1. Strict catalogue-ref match
+        # 1. Strict catalogue-ref match — Lange/Hede/Dav/Sieg/Schou
         ours_match = None
         match_reason = None
-        for code in ("lange", "hede", "dav"):
+        for code in ("lange", "hede", "dav", "sieg", "schou"):
             for ref in s["refs"].get(code, []):
                 if ref.get("cf"):
                     continue
@@ -341,14 +348,13 @@ def main() -> int:
                 break
 
         # 2. Fuzzy fallback
-        fuzzy_candidates: list[tuple[int, dict, list[str]]] = []
-        # Detect: IKMK has a Lange# but it's a NEW variant we don't have.
         ikmk_has_lange = bool(s["refs"].get("lange"))
         if not ours_match:
             try:
                 iy = int(s.get("year_start") or 0)
             except (TypeError, ValueError):
                 iy = 0
+            cands: list[tuple[int, dict, list[str]]] = []
             for c in our_coins:
                 try:
                     cy = int(c.get("year_first") or 0)
@@ -358,15 +364,11 @@ def main() -> int:
                     continue
                 score, why = _fuzzy_score(s, c)
                 if score >= 4:
-                    fuzzy_candidates.append((score, c, why))
-            fuzzy_candidates.sort(key=lambda x: -x[0])
-            if fuzzy_candidates:
-                top_score = fuzzy_candidates[0][0]
-                ours_match = fuzzy_candidates[0][1]
-                # Categorise:
-                # - new_lange_variant: IKMK has Lange# but it isn't ours → actual new type
-                # - fuzzy: high-confidence same-coin match without Lange#
-                # - weak: low-confidence partial overlap
+                    cands.append((score, c, why))
+            cands.sort(key=lambda x: -x[0])
+            if cands:
+                top_score = cands[0][0]
+                ours_match = cands[0][1]
                 if ikmk_has_lange:
                     tag = "new_lange_variant"
                 elif top_score >= 7:
@@ -375,7 +377,7 @@ def main() -> int:
                     tag = "weak"
                 match_reason = (
                     f"{tag} score={top_score} "
-                    f"({', '.join(fuzzy_candidates[0][2])})"
+                    f"({', '.join(cands[0][2])})"
                 )
 
         if ours_match:
@@ -415,15 +417,12 @@ def main() -> int:
             }
             matches.append(entry)
 
-    # Bucket
     strict = [m for m in matches if m.get("match_reason", "").startswith("strict")]
     fuzzy = [m for m in matches if m.get("match_reason", "").startswith("fuzzy")]
     new_var = [m for m in matches if m.get("match_reason", "").startswith("new_lange_variant")]
     weak = [m for m in matches if m.get("match_reason", "").startswith("weak")]
     unmatched = [m for m in matches if m["match_reason"] == "no_match"]
 
-    # For new-Lange-variants, group by Lange# to show unique-variant count
-    from collections import defaultdict
     lange_groups: dict[str, list[dict]] = defaultdict(list)
     for m in new_var:
         for r in m.get("ikmk_refs", {}).get("lange", []):
@@ -434,7 +433,7 @@ def main() -> int:
             lange_groups["(cf-only)"].append(m)
 
     out = {
-        "schleswig_holstein": {
+        loc_id: {
             "totals": {
                 "ikmk_records": len(matches),
                 "strict_match": len(strict),
@@ -442,7 +441,7 @@ def main() -> int:
                 "new_lange_variant": len(new_var),
                 "unique_new_lange_numbers": len(lange_groups),
                 "weak_candidate": len(weak),
-                "no_match (potential additions)": len(unmatched),
+                "no_match": len(unmatched),
             },
             "strict_matches": strict,
             "fuzzy_matches": fuzzy,
@@ -462,30 +461,26 @@ def main() -> int:
             "unmatched_records": unmatched,
         },
     }
-    MATCH_JSON.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"\nWrote {MATCH_JSON.relative_to(REPO)}")
+    out_json = CACHE / f"_match_{loc_id}.json"
+    out_json.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
 
     # Markdown digest
     md: list[str] = []
-    md.append("# IKMK ↔ schleswig_holstein.yml — match report\n")
+    md.append(f"# IKMK ↔ {loc_id}.yml — match report\n")
     md.append(
-        f"\n{len(matches)} IKMK records (Schleswig-Holstein-* + Holstein-Schauenburg "
-        "in scope 1566–1914) matched against `data/locations/schleswig_holstein.yml`.\n",
+        f"\n{len(matches)} IKMK records (prefixes: {', '.join(by_loc)}, "
+        f"in-scope 1566–1914) matched against `data/locations/{loc_id}.yml`.\n",
     )
     md.append(
         f"\n* **Strict match (catalogue-ref overlap)**: {len(strict)}\n"
         f"* **Fuzzy match (high-confidence same coin, score≥7)**: {len(fuzzy)}\n"
-        f"* **New Lange-# variant (IKMK has a Lange # we don't catalogue)**: "
+        f"* **New Lange-# variant (IKMK has Lange # we don't catalogue)**: "
         f"{len(new_var)} specimens across **{len(lange_groups)} unique Lange #**\n"
         f"* **Weak candidate (partial signal, score 4-6, no Lange#)**: {len(weak)}\n"
         f"* **No match**: {len(unmatched)}\n",
     )
-
     if strict:
         md.append("\n## Strict matches — enrichment candidates\n")
-        md.append("\nIKMK records sharing a Lange / Hede / Davenport reference with one ")
-        md.append("of our coins. The `ikmk_adds` column shows fields IKMK provides that ")
-        md.append("we currently lack on the matched coin.\n")
         md.append("\n| IKMK | year | our coin | reason | IKMK adds |")
         md.append("|---|---|---|---|---|")
         for m in strict:
@@ -494,7 +489,6 @@ def main() -> int:
                 f"| [{m['ikmk_id']}]({m['permalink']}) | {m['ikmk_year']} "
                 f"| `{m['our_coin_id']}` | {m['match_reason']} | {adds} |",
             )
-
     if fuzzy:
         md.append("\n## Fuzzy matches (score≥7) — likely correct, spot-check\n")
         md.append("\n| IKMK | year | our coin | reason | IKMK adds |")
@@ -505,25 +499,14 @@ def main() -> int:
                 f"| [{m['ikmk_id']}]({m['permalink']}) | {m['ikmk_year']} "
                 f"| `{m['our_coin_id']}` | {m['match_reason']} | {adds} |",
             )
-
     if new_var:
         md.append("\n## New Lange-# variants (potential YAML additions)\n")
         md.append(
-            "\nIKMK records that share ruler+year+line with one of our "
-            "coins but cite a Lange # we don't have catalogued. These "
-            "are *separate types* in Lange's classification — not "
-            "duplicates of our existing entries. Worth adding to YAML "
-            "as new coins (or, if Krause groups them under one KM #, "
-            "as Lange-sub-variant notes).\n",
-        )
-        md.append(
             f"\nGrouped by Lange # — {len(lange_groups)} unique #s, "
-            f"{len(new_var)} total specimens. Specimens of the same "
-            "Lange # are usually multiple physical coins of the same "
-            "type held in IKMK.\n",
+            f"{len(new_var)} total specimens.\n",
         )
-        md.append("\n| Lange # | specimens | year(s) | ruler-line | sample IKMK |")
-        md.append("|---|---:|---|---|---|")
+        md.append("\n| Lange # | specimens | year(s) | sample IKMK |")
+        md.append("|---|---:|---|---|")
         for lange, recs in sorted(lange_groups.items()):
             years = sorted({r["ikmk_year"].split("-")[0] for r in [
                 {"ikmk_year": rr["ikmk_year"]} for rr in recs
@@ -533,26 +516,12 @@ def main() -> int:
                 f"[{nid}](https://ikmk.smb.museum/object?id={nid})"
                 for nid in sample_ids
             )
-            # ruler from first record
-            ruler = recs[0].get("ikmk_ruler") or ""
-            line = ""
-            for tok in re.findall(r"[a-zäöü]{4,}", ruler.lower()):
-                if tok in DYNASTIC_LINES:
-                    line = DYNASTIC_LINES[tok]
-                    break
             md.append(
                 f"| `Lange {lange}` | {len(recs)} | {','.join(years)} "
-                f"| {line or '—'} | {sample_links} |",
+                f"| {sample_links} |",
             )
-
     if weak:
         md.append("\n## Weak candidates (score 4-6, no Lange #)\n")
-        md.append(
-            "\nPartial signal only — year + ruler-line. No Lange # in "
-            "IKMK literatur to cross-walk against. Manual research "
-            "needed; could be either an existing coin (we'd need to "
-            "look up by inscription / weight pattern) or a new entry.\n",
-        )
         md.append("\n| IKMK | year | nominal | best our coin | reason |")
         md.append("|---|---|---|---|---|")
         for m in weak:
@@ -561,31 +530,64 @@ def main() -> int:
                 f"| {m.get('ikmk_nominal','')[:25]} | `{m['our_coin_id']}` | "
                 f"{m['match_reason']} |",
             )
-
     if unmatched:
-        md.append("\n## Unmatched — potential new entries\n")
-        md.append("\nIKMK records with no Lange/Hede/Davenport overlap and no fuzzy ")
-        md.append("year+ruler+nominal+weight match in our YAML. These could be:\n")
-        md.append("\n* Coins we genuinely don't catalogue yet (real additions).")
-        md.append("\n* Coins we have under a different KM# variant where we never recorded the Lange #.")
-        md.append("\n* Specimens IKMK lists with sub-variant qualifiers we don't track.\n")
-        md.append("\n| IKMK | year | nominal | ruler | weight | Lange | Hede | Dav |")
-        md.append("|---|---|---|---|---|---|---|---|")
+        md.append("\n## No match — potential new entries or out-of-coverage\n")
+        md.append("\n| IKMK | year | nominal | ruler | weight | refs |")
+        md.append("|---|---|---|---|---|---|")
         for m in unmatched:
-            l = ",".join(r["norm"] for r in m["ikmk_refs"].get("lange", []) if not r.get("cf")) or "—"
-            h = ",".join(r["norm"] for r in m["ikmk_refs"].get("hede", [])) or "—"
-            d = ",".join(r["norm"] for r in m["ikmk_refs"].get("dav", [])) or "—"
+            r = m.get("ikmk_refs", {})
+            ref_str = " ".join(
+                f"{c}:{v[0]['norm']}"
+                for c, v in r.items() if v
+            ) or "—"
             md.append(
                 f"| [{m['ikmk_id']}]({m['permalink']}) | {m['ikmk_year']} "
-                f"| {m['ikmk_nominal'][:30]} | {m['ikmk_ruler'][:40]} "
-                f"| {m['ikmk_weight']} | {l} | {h} | {d} |",
+                f"| {m.get('ikmk_nominal','')[:20]} "
+                f"| {m.get('ikmk_ruler','')[:35]} "
+                f"| {m.get('ikmk_weight','')} | {ref_str[:60]} |",
             )
 
-    MATCH_MD.write_text("\n".join(md), encoding="utf-8")
-    print(f"Wrote {MATCH_MD.relative_to(REPO)}")
+    out_md = CACHE / f"_match_{loc_id}.md"
+    out_md.write_text("\n".join(md), encoding="utf-8")
     print(
-        f"\nSUMMARY: strict={len(strict)}  fuzzy={len(fuzzy)}  no_match={len(unmatched)}",
+        f"  → strict={len(strict)} fuzzy={len(fuzzy)} "
+        f"new_lange={len(new_var)} ({len(lange_groups)} unique) "
+        f"weak={len(weak)} no_match={len(unmatched)}",
     )
+    return out[loc_id]["totals"]
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument(
+        "locations", nargs="*",
+        help="Location IDs to match (default: all mapped in index)",
+    )
+    args = ap.parse_args()
+
+    index = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+    by_loc = index["by_project_location"]
+    locations = args.locations or sorted(by_loc.keys())
+    summaries = {}
+    for loc in locations:
+        s = match_one_location(loc, index)
+        if s is not None:
+            summaries[loc] = s
+
+    if summaries:
+        print("\n=== Coverage summary ===")
+        cols = ["records", "strict", "fuzzy", "new_lange (uniq)", "weak", "no_match"]
+        print(f"  {'location':25s} " + " ".join(f"{c:>15s}" for c in cols))
+        for loc, t in summaries.items():
+            print(
+                f"  {loc:25s} "
+                f"{t['ikmk_records']:>15d} "
+                f"{t['strict_match']:>15d} "
+                f"{t['fuzzy_match']:>15d} "
+                f"{t['new_lange_variant']:>10d} ({t['unique_new_lange_numbers']:>2d}) "
+                f"{t['weak_candidate']:>15d} "
+                f"{t['no_match']:>15d}",
+            )
     return 0
 
 
