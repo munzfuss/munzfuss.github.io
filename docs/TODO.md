@@ -7,6 +7,73 @@
 
 ## Open
 
+### K. Systematic Numista vs. Hede cross-check  *(opened 2026-05-09)*
+
+**Surfaced during.** Three independent investigations during the
+weight-spread audit (this session) found Numista publishing weights
+that disagree substantially with Hede authoritative specs (via
+danskmoent.dk):
+
+  | Coin | Numista weight | Hede spec | Δ |
+  |---|---:|---:|---:|
+  | km-79-chr-v-1693 (4 Skilling Dansk) | 1.224 g | 1.951 g (Hede 128) | +59 % |
+  | km-110-chr-v-1693 (1 Krone) | 21.98 g | 22.272 g (Hede 125 B) | +1 % |
+  | km-128-chr-v-1787 (10 Schilling Courant) | 8.428 g | 6.129 g (Hede 42) | −27 % |
+
+The km-79 and km-128 cases were egregious: Numista's value lined up
+with a *different* coin's weight (km-79: matches the 2-Skilling
+KM#78 spec; km-128: matches the 1/3-Speciedaler fein-weight of
+KM-130, suggesting denomination conflation). Numista's fineness on
+km-79 also showed a digit-swap error (.347 vs Hede's .437).
+
+In every case Hede + ucoin + (where present) Bruun agreed on the
+correct value, and Numista was the outlier. This is consistent with
+CLAUDE.md §5's «Numista — useful for catalog numbers and rough
+data, but user-edited, treat with some skepticism» — but the
+specific failure mode (denomination cross-contamination,
+digit-swap) suggests a population of similar errors across the
+Danish royal billon / Schilling-class corpus.
+
+**Background.** Hede covers Danish royal coinage 1541-1814
+exhaustively — every type has a `c{ruler}h{N}.htm` page on
+danskmoent.dk with `Bruttovægt`, `Finhed`, `Finvægt` figures and
+mintmaster + Schou refs. We have direct verification this URL
+pattern works (km-79 / km-110 / km-128). Hede sits at tier 2 of our
+source hierarchy (after coin inscription / museum); Numista at
+tier 5.
+
+**Done criterion.** Audit script
+`scripts/audit_numista_vs_hede.py` (to be written) that:
+
+  1. For every coin in `data/locations/*.yml` where `catalog.numista`
+     is set AND a Hede ref is known (either in `catalog.hede` or
+     parseable from sources), fetch the Numista cache + fetch the
+     Hede page (URL pattern `c{ruler}h{N}.htm` derivable from
+     ruler-era + Hede number).
+  2. Compare published weight + fineness. Flag spreads ≥ 5 % as
+     candidates for the per-coin Hede-correction pass.
+  3. Output a triage list (similar in shape to `_match_<loc>.md`):
+     coins where Numista is likely wrong, coins where they agree,
+     coins where Hede ref is missing and needs lookup.
+
+Then a second pass: for each flagged coin, apply the same
+correction shape used on km-79 / km-128 — Hede authoritative,
+ucoin/Bruun confirming, Numista retained-but-flagged with
+`(likely transcription error — see note)` source suffix.
+
+Note: the population is bounded by «coins with Hede ref». For
+locations where Hede applies (denmark, schleswig_holstein,
+lauenburg), that's most entries. For the SH-territorial-duchies
+(Sonderburg, Gottorf), Hede may not apply (Lange Vol II is the
+authority) — the audit must distinguish.
+
+**Estimated effort.** Audit-script + first triage report: ~1 h.
+Per-coin Hede-correction pass: ~5-10 min per coin × N flagged.
+Total depends on how many coins have the cross-contamination
+pattern — probably 20-50 SH/DK entries based on the sample so far.
+
+---
+
 ### J. Bruun parser + cross-match: two latent bugs from km-165/KM-166 audit  *(opened 2026-05-09)*
 
 **Surfaced during.** Audit of `km-165-fr-iv-1698` (Schleswig-Holstein-Gottorp
