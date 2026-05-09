@@ -294,6 +294,31 @@ Every coin must be in:
 
 Never shortcut this. Mis-placement has happened repeatedly and always produces confused conclusions.
 
+### 8a. Müntzfuß disambiguation when sources don't decide
+
+**When this rule applies — both conditions must hold:**
+
+1. The available sources (inscription, catalogue, ordinance per §5) do not directly establish which Müntzfuß the coin belongs to.
+2. The coin's year(s) fall within a window where two or more Müntzfüße were in force or could plausibly have been struck.
+
+If sources do decide, follow §8.1 — this rule does not apply, and inventing ambiguity where none exists is a §0 violation.
+
+**Filtering pipeline.** Apply each step in order against the candidate-fuss set; the first step that picks a unique fuss is the answer. Each step narrows the candidate set rather than producing the final decision on its own (except where stated).
+
+1. **Metal mismatch.** Drop any candidate fuss whose metal class doesn't match the coin's metal. A gold coin cannot belong to a silver-only fuss; a silver coin cannot belong to `reichsdukatenfuss`. Bimetal pairings (e.g. Pistolenfuß-paired silver coins, Vereinsmüntzfuß silver-tier paired to Vereinsgoldmünze) are handled per the relevant fuss definition.
+
+2. **Denomination-name mismatch.** Each fuss carries a characteristic denomination repertoire. If the coin's nominal is typical for fuss B but never appeared in fuss A, drop A. Soft signal — denomination drift across fusses does happen — but a clean nominal-name match still narrows the set quickly. Examples: «Rigsbankskilling» is characteristic of 18½-Thaler-Fuß; «Speciedaler» of 9¼-Thaler-Fuß and not 9-Thaler-Fuß; «Vereinsthaler» exclusively of Vereinsmüntzfuß.
+
+3. **Feingewicht (when fineness is specimen-attested) — Δ-from-Soll comparison.** Compute `Δ = (specimen_Feingewicht − Soll_Feingewicht) / Soll_Feingewicht` for each candidate fuss's Soll-value at this fraction. Coins typically run slightly under the standard (specimen variance + wear); a small fraction run slightly over (rarely beyond +2%, with rare exceptions for tariff coins or high-quality cabinet specimens). The candidate with the smallest |Δ| — and an absolute Δ within roughly ±2% — is the placement.
+
+4. **Bruttogewicht (when fineness is unknown) — pattern comparison.** Without specimen-attested fineness, Feingewicht can't be computed directly. Compare the raw weight against existing same-nominal entries already placed under each candidate fuss in this project's YAML — does the specimen's Bruttogewicht cluster with one fuss's typical band and not the other's? Use as the placement signal when the pattern is clean.
+
+5. **Fineness hint (when known but Feingewicht-Δ alone wasn't decisive).** Each fuss has a characteristic fineness signature for a given metal (e.g. .875 silver = 9¼-Thaler-Fuß; .896 gold = Pistolenfuß; .986 gold = Reichsdukatenfuß). Use as a supporting signal alongside steps 3-4 — never alone, since fineness drift, debasement, and specimen-tolerance can disrupt the signature.
+
+6. **Escalate to user** if steps 1-5 don't pick a unique candidate. Surface the data — coin id, year, metal, nominal, Bruttogewicht, fineness (if known), the surviving candidate fusses with their Soll-values + computed Δ — and wait for the placement decision. Do not silently assign per §0.
+
+**Scheidemünze residual.** When the specimen's Feingewicht (or Bruttogewicht-pattern at known typical fineness) is dramatically below every candidate's Soll for a full-Kurant of that fraction (typically > 20% under), the coin is not a full-Kurant of any candidate — it's a Scheidemünze per §6. Place under the *parent* full-Kurant fuss of the period (the established standard, not a contender new fuss) and mark `kind: scheide`. This handles deliberately-debased small-change tiers (Kipper-period Doppelschillinge, post-reform billon Skilling, etc.) where specimen variance can't explain the gap.
+
 ### 9. Coin inclusion criteria (source-agnostic)
 
 When deciding whether a coin entry belongs in a location's coin table — regardless of where it was sourced (Numista, Bruun, IKMK Berlin, Lange, MGM, hand-typed from a museum visit) — apply these three exclusions, and only these:
