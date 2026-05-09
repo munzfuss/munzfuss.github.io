@@ -3413,7 +3413,7 @@ coins:
     metal: silver
     fineness: 0.812
     weight_rough_g:
-      - {value: 1.57, source: 'Numista'}
+      - {value: 1.57, source: "Numista (likely Feingewicht in Bruttogewicht field — see note)"}
       - {value: 1.79, source: "ucoin tid 163618\nucoin tid 163623"}
     diameter_mm:
       - {value: 20.0, source: Numista}
@@ -3421,10 +3421,16 @@ coins:
     note:
       de: |-
         1/16 Reichs Thaler = 3 Skilling Lybsk · Christian IV. (Glückstadt 1641–1647, Legend-Typ II / Bust-Typ I) · Reverse-Legende «MON:NOV:GLUCKSTADT:(Datum)(Mzz.)», Wert «XVI E:REIC HSDA». Mzz. (f) = Simon Timpf 1641–1644, (h) = gekreuzte Hellebarden ab 1645. Lange# 48–51, 51A. Glückstadter Theilstück im 9¼-Fuß zu reduziertem Feingehalt .812.
+
+        Bruttogewicht-Diskrepanz zwischen den Quellen: Numista 1,57 g, ucoin (KM# 26.1 / 26.2) 1,79 g. Das rechnerische Soll-Brutto bei .812 Feingehalt beträgt 1,946 g (≈ Soll-Fein 1,580 g / 0,812); Numistas 1,57 g entspricht fast deckungsgleich dem Soll-Feingewicht und ist wahrscheinlich Feingewicht, das im Bruttogewichts-Feld eingetragen wurde. Ucoins 1,79 g liegt erwartungsgemäß als Bruttogewicht ≈ −8 % unter Soll.
       en: |-
         1/16 Reichs Thaler = 3 Skilling Lybsk · Christian IV (Glückstadt 1641–1647, legend type II / bust type I) · reverse legend «MON:NOV:GLUCKSTADT:(date)(mark)», value «XVI E:REIC HSDA». Mintmarks: (f) = Simon Timpf 1641–1644, (h) = crossed halberds from 1645. Lange# 48–51, 51A. Glückstadt sub-unit on the 9¼-Fuß at reduced fineness .812.
+
+        Gross-weight discrepancy between sources: Numista 1.57 g, ucoin (KM# 26.1 / 26.2) 1.79 g. The computed gross-weight standard at .812 fineness is 1.946 g (≈ Sollfein 1.580 g / 0.812); Numista's 1.57 g sits almost exactly on the fine-weight standard and is most likely a fine-weight value entered in the gross-weight field. Ucoin's 1.79 g sits ≈ −8 % below standard, consistent with a gross-weight reading.
       uk: |-
         1/16 Reichs Thaler = 3 Skilling Lybsk · Кристіан IV (Glückstadt 1641–1647, легенда тип II / бюст тип I) · легенда реверсу «MON:NOV:GLUCKSTADT:(дата)(монограма)», номінал «XVI E:REIC HSDA». Монограми: (f) = Simon Timpf 1641–1644, (h) = схрещені галебарди з 1645. Lange# 48–51, 51A. Ґлюкштатський підрозмінний номінал у 9¼-Fuß зі зниженою пробою .812.
+
+        Розходження повної ваги між джерелами: Numista 1,57 г, ucoin (KM# 26.1 / 26.2) 1,79 г. Розрахункове Soll-Brutto при пробі .812 = 1,946 г (≈ Soll-Fein 1,580 г / 0,812); значення 1,57 г з Numista майже точно збігається з Soll-Feingewicht і, найвірогідніше, є чистою вагою, помилково записаною у поле повної ваги. Ucoin'ове 1,79 г закономірно стоїть ≈ −8 % від Soll як повна вага.
     sources:
       - type: numista
         url: "https://en.numista.com/109009"
