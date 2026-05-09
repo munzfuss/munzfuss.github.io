@@ -4155,21 +4155,38 @@ coins:
     catalog:
       km: "79"
       numista: '87732'
+      hede: '128'
+      schou: 66-74 (1693), 44-45 (1694)
+      sieg: '131'
     metal: billon
     fineness:
-      - {value: 0.347, source: Numista}
-      - {value: 0.437, source: ucoin}
+      - value: 0.437
+        source: Hede 128 / danskmoent.dk
+      - value: 0.437
+        source: ucoin
+      - value: 0.347
+        source: Numista (likely transcription error — see note)
     weight_rough_g:
-      - {value: 1.224, source: Numista}
-      - {value: 1.95, source: ucoin}
+      - value: 1.951
+        source: Hede 128 / danskmoent.dk
+      - value: 1.95
+        source: ucoin
+      - value: 1.224
+        source: Numista (likely transcription error — see note)
     diameter_mm: 21.0
     note:
       de: |-
         4 Skilling Danske Christians V. · Obverse gekröntes C5-Monogramm mit geteiltem Datum «16 C5 93» und Glückstadt-Mzz. ⚒; Reverse «· IIII · SKILLING · DANSKE ·» um gekröntes ovales Wappenschild. 1/24 Speciedaler · Billon .347.
+
+        Numista N#87732 publiziert 1,224 g / Finhed 0,347 — beide Werte weichen erheblich von den in Hede 128 verzeichneten Standardspezifikationen (Bruttovægt 1,951 g, Finhed 0,437) und der ucoin-Bestätigung ab. Vermutlich Transkriptionsfehler bei Numista (Gewicht entspricht zufällig dem 2-Skilling-Stück KM#78; Finhed dürfte ein Ziffern-Tausch 0,347 ↔ 0,437 sein). Authoritativ ist Hede 128.
       en: |-
         4 Skilling Danske of Christian V · obverse a crowned C5 monogram with split date «16 C5 93» and Glückstadt mintmark ⚒; reverse «· IIII · SKILLING · DANSKE ·» around a crowned oval shield with the arms of Denmark. 1/24 Speciedaler · billon .347.
+
+        Numista N#87732 publishes 1.224 g / fineness 0.347 — both values diverge substantially from the standard specs in Hede 128 (Bruttovægt 1.951 g, Finhed 0.437) and the ucoin confirmation. Likely a Numista transcription error (weight coincidentally equals the 2-Skilling KM#78 spec; fineness appears to be a 0.347 ↔ 0.437 digit swap). Authoritative: Hede 128.
       uk: |-
         4 Skilling Danske Кристіана V · аверс — коронований монограм C5 із розділеним датою «16 C5 93» і ґлюкштатською монограмою ⚒; реверс «· IIII · SKILLING · DANSKE ·» навколо коронованого овального щита з гербом Данії. 1/24 Speciedaler · білон .347.
+
+        Numista N#87732 публікує 1,224 г / проба 0,347 — обидва значення істотно розходяться зі стандартними специфікаціями Hede 128 (Bruttovægt 1,951 г, Finhed 0,437) та підтвердженням ucoin. Імовірно помилка транскрипції в Numista (вага випадково збігається з 2-Skilling KM#78; проба, схоже, цифровий swap 0,347 ↔ 0,437). Авторитетно: Hede 128.
     sources:
       - type: numista
         url: "https://en.numista.com/87732"
@@ -4177,6 +4194,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-4-skilling-dansk-1693-1694/?tid=163587
         ref: ucoin
+      - type: web
+        url: https://www.danskmoent.dk/chr/c5h128.htm
+        ref: Hede 128 / danskmoent.dk
     issuing_entity: royal_holstein
     fineness_verified: true
 
