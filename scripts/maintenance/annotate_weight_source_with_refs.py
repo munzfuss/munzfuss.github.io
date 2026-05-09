@@ -139,18 +139,23 @@ _LANGE_NR = re.compile(r"Nr\.\s*(\d+(?:\s*[A-Za-z](?:/[A-Za-z\-]+)?)?)")
 
 def ikmk_refs_from_literatur(literatur: str | None) -> list[str]:
     """Extract a compact catalog-ref list from the IKMK ``literatur``
-    field. Currently emits the Lange tag with optional ``cf`` prefix.
+    field. Returns the Lange tag for confirmed-match specimens; returns
+    an empty list when IKMK marks the entry as ``Vgl.`` (vergleiche /
+    «compare to») — those specimens are *unindexed* in Lange and the
+    literatur only points to the closest known canonical entry, not a
+    catalog index of the specimen itself.
     """
     if not literatur:
         return []
-    is_cf = bool(re.search(r"\b(?:vgl\.|Vgl\.)\s+", literatur))
+    if re.search(r"\b(?:vgl\.|Vgl\.)\s+", literatur):
+        return []  # specimen is unindexed; the source only points at a similar known entry
     m = _LANGE_NR.search(literatur)
     if not m:
         return []
     raw = m.group(1).strip()
     # Normalise spacing: "535 a" → "535a", "542 c" → "542c"
     norm = re.sub(r"(\d+)\s+([A-Za-z])", r"\1\2", raw)
-    return [("cf " if is_cf else "") + "Lange " + norm]
+    return ["Lange " + norm]
 
 
 _REGION_PRIORITY: dict[str, list[str]] = {
@@ -212,12 +217,35 @@ def ucoin_refs(tid: str, idx: dict) -> list[str]:
 # ---------------------------------------------------------------------------
 
 
+_CF_LANGE_RE = re.compile(r"\(cf Lange [^);]+;\s*")
+_CF_LANGE_PURE_RE = re.compile(r"\s*\(cf Lange [^)]+\)")
+
+
+def strip_cf_lange(label: str) -> str:
+    """Remove ``(cf Lange ...)`` annotations from a previously-enriched
+    label. Used to retract incorrect index-style annotations on cf
+    specimens (which carry no catalog index of their own — see
+    ``ikmk_refs_from_literatur`` docstring).
+
+    Two shapes handled:
+
+    * ``... (cf Lange 339B)`` → ``...``
+    * ``... (cf Lange 533A/b; mule)`` → ``... (mule)``
+    """
+    # Strip "(cf Lange XYZ; " prefix when followed by other tokens
+    label = _CF_LANGE_RE.sub("(", label)
+    # Strip standalone "(cf Lange XYZ)" parens
+    label = _CF_LANGE_PURE_RE.sub("", label)
+    return label.rstrip()
+
+
 def rewrite_label(label: str, location: str, ucoin_idx: dict) -> tuple[str, str | None]:
     """Return (new_label, ref_token_added) for one source-label LINE.
 
     If the label is already enriched OR no refs are found, returns the
-    label unchanged with ``ref_token_added=None``.
+    label (possibly with cf-cleanup applied) and ``ref_token_added=None``.
     """
+    label = strip_cf_lange(label)
     if _ALREADY_ENRICHED.search(label):
         return label, None
     refs: list[str] = []
@@ -254,19 +282,21 @@ def rewrite_label(label: str, location: str, ucoin_idx: dict) -> tuple[str, str 
 
 
 def rewrite_multiline(label: str, location: str, ucoin_idx: dict) -> tuple[str, int]:
-    """Apply rewrite to each \\n-separated line independently."""
+    """Apply rewrite to each \\n-separated line independently. Returns
+    ``(new_label, n_lines_changed)`` — counts both ref-additions AND
+    cf-cleanup as changes so retractions also flow to disk."""
     if "\n" not in label:
-        new, added = rewrite_label(label, location, ucoin_idx)
-        return new, (1 if added else 0)
+        new, _ = rewrite_label(label, location, ucoin_idx)
+        return new, (1 if new != label else 0)
     lines = label.split("\n")
-    n_added = 0
+    n_changed = 0
     out_lines = []
     for ln in lines:
-        new_ln, added = rewrite_label(ln.strip(), location, ucoin_idx)
-        if added:
-            n_added += 1
+        new_ln, _ = rewrite_label(ln.strip(), location, ucoin_idx)
+        if new_ln != ln.strip():
+            n_changed += 1
         out_lines.append(new_ln)
-    return "\n".join(out_lines), n_added
+    return "\n".join(out_lines), n_changed
 
 
 # ---------------------------------------------------------------------------
