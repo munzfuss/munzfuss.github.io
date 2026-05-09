@@ -546,6 +546,18 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
         for g in cc.delta_groups:
             g.delta_pct = round(g.value / cc.soll_fein_g * 100, 3)
 
+    # Render order: when a row carries multiple readings, sort the three
+    # parallel columns (weight, weight_fein, delta) descending by value
+    # so the heaviest specimen sits on top. Δ inherits the same order
+    # since it is monotonic in fein-weight, which is monotonic in
+    # gross-weight when fineness is constant — the typical case. When
+    # fineness varies across alts the orders may differ; tooltips still
+    # carry the per-source provenance, so visual parallelism remains
+    # informative even when rows don't line up exactly.
+    cc.weight_groups.sort(key=lambda g: g.value, reverse=True)
+    cc.weight_fein_groups.sort(key=lambda g: g.value, reverse=True)
+    cc.delta_groups.sort(key=lambda g: g.value, reverse=True)
+
     # implied_fuss_groups: only entries where the corresponding source's
     # |delta_pct| > 2 — small deviations make implied ≈ declared and add no
     # information. Pre-filtered above; here we only need to group by the
