@@ -1,0 +1,571 @@
+"""Parse cached Hede HTML pages from danskmoent.dk into structured JSON.
+
+Each ``scripts/cache/hede/<basename>.htm`` is parsed into a sibling
+``<basename>.json`` capturing the typed fields useful for our project:
+
+  * Identity — ruler, hede volume code, hede numbers covered, nominal,
+    mint, page title.
+  * Years + rarity — list of dated specimens with rarity flag
+    («R» / «RR» / «RRR» / «S» / «Unik»).
+  * Specs — bruttovægt, finhed, finvægt / nettovægt, and the
+    «Marken fin udbragt til X speciedalere» quote (the period
+    Müntzfuß standard, with parsed numeric value + unit).
+  * Description — Forside / bagside / randskrift (obv / rev / edge).
+  * Catalog refs cited in the description (Hede, Schou, Sieg).
+  * Literatur — bibliography references.
+  * Eksemplarer — specimens listed by named collection
+    (Zinck-, Poulsen- etc.).
+  * Multi-entry pages (e.g. f3h62.htm covers Hede 61 + 62A/B + 63 + 64)
+    parse into a per-Hede `specs_by_hede` dict so each entry's spec
+    block is recoverable.
+
+Heuristics, not a strict grammar — danskmoent.dk's HTML is loose
+and fields evolve across pages. The raw text is kept in the JSON
+under `raw_text` as a fallback so consumers needing a field the
+parser missed can recover it without re-reading HTML.
+
+Usage::
+
+    python scripts/parse_hede.py [--force]
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from html import unescape
+from pathlib import Path
+
+CACHE_DIR = Path(__file__).resolve().parents[1] / "scripts" / "cache" / "hede"
+
+
+_TAG_RE = re.compile(r"<[^>]+>")
+_WS_RE = re.compile(r"[ \t]+")
+# Sentinel inserted at each <HR> position before tag-stripping so the
+# section-break is preserved in the normalised text. danskmoent.dk
+# pages use <HR> as the structural delimiter between cross-reference
+# spec sections and the page's own primary spec block (cf. f3h68.htm).
+_HR_SENTINEL = "§§HR§§"
+_HR_RE = re.compile(r"<HR\b[^>]*>", re.IGNORECASE)
+
+
+def _strip_html(html: str) -> str:
+    """Strip HTML tags, decode entities, normalise whitespace.
+
+    Inserts ``§§HR§§`` sentinels at every <HR> position so callers can
+    detect section boundaries in the otherwise-flat text.
+    """
+    text = _HR_RE.sub(f"\n{_HR_SENTINEL}\n", html)
+    text = _TAG_RE.sub("\n", text)
+    text = unescape(text)
+    text = _WS_RE.sub(" ", text)
+    text = re.sub(r"\n[ \t]+", "\n", text)
+    text = re.sub(r"\n{2,}", "\n", text)
+    return text.strip()
+
+
+# Spec line patterns. Page bodies use Danish field names with `,` as
+# decimal separator: «Bruttovægt: 29,232g» / «Finhed: 0,888» /
+# «Finvægt: 25,984g» (sometimes «Nettovægt:»). Parse these into
+# float gram / fineness values.
+_BRUTTO_RE = re.compile(r"Bruttovægt:\s*([\d,\.]+)\s*g", re.IGNORECASE)
+_FINHED_RE = re.compile(r"Finhed:\s*([\d,\.]+)", re.IGNORECASE)
+_FINVAEGT_RE = re.compile(r"(?:Finvægt|Nettovægt):\s*([\d,\.]+)\s*g", re.IGNORECASE)
+# «Marken fin udbragt til 9,288 speciedalere» / «9,000 daler» /
+# «10,793 dlr.» / «20,500 kroner» — value + unit on one line.
+_MARKEN_FIN_RE = re.compile(
+    r"Marken fin udbragt til\s+([\d,\.]+)\s+([A-Za-zæøåÆØÅ\.]+)",
+    re.IGNORECASE,
+)
+_HEDE_TITLE_RE = re.compile(r"\bHede\s*([\dA-Za-z\-,\s]+?)(?:\Z|\.|\n|$)")
+
+
+def _parse_decimal(s: str) -> float | None:
+    """Convert Danish-decimal string to float. «29,232» → 29.232."""
+    if not s:
+        return None
+    s = s.strip().replace(".", "").replace(",", ".")
+    try:
+        return float(s)
+    except ValueError:
+        return None
+
+
+def _ruler_volume(basename: str) -> tuple[str | None, str]:
+    """From `c4h115` / `f3h62` derive (ruler_label, volume_code)."""
+    m = re.match(r"^(c|f)(\d+)h", basename)
+    if not m:
+        return None, ""
+    letter, num = m.groups()
+    label_base = "Christian" if letter == "c" else "Frederik"
+    return f"{label_base} {num}.", f"{letter}{num}h"
+
+
+# Year + rarity inside parens: «1620, 1621 (R)» / «1663 (RR)» /
+# «1842, 1844, 1845 (S)» / «1662 (Unik)». Captures all year-tokens
+# along with the trailing rarity flag if present.
+_YEAR_BLOCK_RE = re.compile(
+    r"(\d{4}(?:[\s,]+\d{4})*)\s*"
+    r"(?:\(\s*(R{1,3}|S|Unik)\s*\))?",
+)
+
+
+def _extract_years(text: str) -> list[dict]:
+    out: list[dict] = []
+    for m in _YEAR_BLOCK_RE.finditer(text):
+        years = re.findall(r"\d{4}", m.group(1))
+        rarity = (m.group(2) or "").strip() or None
+        for y in years:
+            out.append({"year": int(y), "rarity": rarity})
+    # Dedup preserving first rarity per year
+    seen = {}
+    for e in out:
+        seen.setdefault(e["year"], e)
+    return list(seen.values())
+
+
+# Catalog refs cited inline (Hede 115, Schou 1, Sieg 140 etc.)
+_REFS_RE = re.compile(
+    r"\b(Hede|Schou|Sieg|Frederik|Galster|Bruun|Dav|Davenport|KM)\.?\s*"
+    r"([\d]+(?:[A-Za-z][\w\.]*)?(?:[\-/,]\s*\d+[A-Za-z]*)*)",
+    re.IGNORECASE,
+)
+
+
+def _extract_refs(text: str) -> dict[str, list[str]]:
+    refs: dict[str, list[str]] = {}
+    for m in _REFS_RE.finditer(text):
+        catalogue = m.group(1).capitalize()
+        # Normalise alias
+        if catalogue == "Davenport":
+            catalogue = "Dav"
+        num = re.sub(r"\s+", "", m.group(2))
+        bucket = refs.setdefault(catalogue, [])
+        if num not in bucket:
+            bucket.append(num)
+    return refs
+
+
+def _slice_after(text: str, marker: str) -> str | None:
+    """Return text after `marker` (case-insensitive) or None."""
+    m = re.search(re.escape(marker), text, re.IGNORECASE)
+    if not m:
+        return None
+    return text[m.end():].strip()
+
+
+def _slice_between(text: str, start_marker: str, end_marker: str) -> str | None:
+    """Return text between two markers."""
+    s = re.search(re.escape(start_marker), text, re.IGNORECASE)
+    if not s:
+        return None
+    rest = text[s.end():]
+    e = re.search(re.escape(end_marker), rest, re.IGNORECASE)
+    if e:
+        return rest[: e.start()].strip()
+    return rest.strip()
+
+
+def _extract_eksemplarer(text: str) -> dict[str, list[str]]:
+    """Pull «Eksemplar(er) fra <Collection>:» blocks.
+
+    Collections seen: Zincksamlingen, Poulsensamlingen,
+    Schousamlingen, Bruunsamlingen.
+    """
+    out: dict[str, list[str]] = {}
+    # Find all «Eksemplar(er) fra <name>:» headers and extract the
+    # list under each up to the next blank line / next header /
+    # «Litteratur:» / end.
+    pattern = re.compile(
+        r"Eksemplar(?:er)?\s+fra\s+(\w+(?:samlingen|amlingen|samling)?):"
+        r"(.*?)(?=Eksemplar(?:er)?\s+fra|Litteratur:|Tilbage til|$)",
+        re.IGNORECASE | re.DOTALL,
+    )
+    for m in pattern.finditer(text):
+        name = m.group(1).strip()
+        block = m.group(2).strip()
+        # Lines that look like specimen entries (contain a year or «Schou»)
+        items = []
+        for line in block.split("\n"):
+            line = line.strip()
+            if not line:
+                continue
+            # Skip Hede sub-headers («Hede 115A:») — they're part of
+            # the inner structure but the parsed list doesn't preserve
+            # the grouping today. The «Schou N» / year tokens stay.
+            if re.match(r"Hede\s+\d", line, re.IGNORECASE):
+                continue
+            items.append(line)
+        if items:
+            out[name] = items
+    return out
+
+
+def _extract_litteratur(text: str) -> list[str]:
+    body = _slice_after(text, "Litteratur:")
+    if not body:
+        return []
+    # Cut at next section header
+    body = re.split(
+        r"\n(?:Tilbage til|Eksemplar)",
+        body,
+        maxsplit=1,
+        flags=re.IGNORECASE,
+    )[0]
+    items = []
+    for line in body.split("\n"):
+        line = line.strip()
+        if not line:
+            continue
+        items.append(line)
+    return items
+
+
+def _extract_specs(text: str, basename: str = "") -> dict:
+    """Parse the spec block. When multiple spec blocks appear (multi-
+    entry pages like f3h62 covering Hede 61, 62AB, 63, 64), return
+    `by_hede` dict keyed by the Hede sub-tag preceding each block.
+
+    Edge-case: pages like f3h68.htm cross-reference sister-types
+    (Hede 61, 62AB, 63) AND repeat the page's own primary spec at
+    the bottom WITHOUT a preceding Hede tag. The unmarked block is
+    attributed to the page's primary Hede number derived from the
+    basename (e.g. `f3h68` → primary number `68`), so the index
+    correctly resolves the canonical `f3h68` lookup to its own
+    spec rather than the cross-reference.
+    """
+    bruttos = list(_BRUTTO_RE.finditer(text))
+    if not bruttos:
+        return {}
+
+    if len(bruttos) == 1:
+        return {"default": _spec_from_around(text, bruttos[0].start())}
+
+    # Derive the page's primary Hede number from basename so unmarked
+    # spec blocks fall back to it.
+    primary = ""
+    bm = re.match(r"^[cf]\d+h([\dA-Za-z]+)$", basename)
+    if bm:
+        primary = bm.group(1)
+
+    by_hede: dict[str, dict] = {}
+    for m in bruttos:
+        pos = m.start()
+        # Look back up to 400 chars OR until the most recent HR
+        # sentinel — whichever comes first. <HR> marks a section
+        # boundary on danskmoent.dk pages, so a Hede tag from the
+        # previous section must NOT be inherited by an unmarked spec
+        # block in a new section. f3h68.htm hits exactly this case:
+        # three cross-reference specs (Hede 61 / 62AB / 63) inside a
+        # TABLE, then an <HR>, then the page's own primary spec block
+        # whose Hede number («68») is only encoded in the basename.
+        window_start = max(0, pos - 400)
+        window = text[window_start: pos]
+        last_hr = window.rfind(_HR_SENTINEL)
+        if last_hr >= 0:
+            window = window[last_hr + len(_HR_SENTINEL):]
+        tag_m = re.findall(r"\bHede\s+(\d+[A-Za-z]*(?:[\-/,]\s*\d+[A-Za-z]*)*)", window)
+        tag = tag_m[-1] if tag_m else None
+        spec = _spec_from_around(text, pos)
+        if tag:
+            key = tag.replace(" ", "")
+            by_hede[key] = spec
+        elif primary and primary not in by_hede:
+            by_hede[primary] = spec
+        else:
+            by_hede.setdefault(f"unknown_{pos}", spec)
+    return {"by_hede": by_hede}
+
+
+def _spec_from_around(text: str, brutto_pos: int) -> dict:
+    """Extract a single spec block starting at the given Bruttovægt
+    position. Looks ahead up to ~400 chars OR until the next HR
+    sentinel — whichever comes first — to avoid bleeding fields from
+    a downstream cross-reference block into this one."""
+    window = text[brutto_pos: brutto_pos + 400]
+    next_hr = window.find(_HR_SENTINEL)
+    if next_hr >= 0:
+        window = window[:next_hr]
+    spec: dict = {}
+    if (m := _BRUTTO_RE.search(window)):
+        v = _parse_decimal(m.group(1))
+        if v is not None:
+            spec["bruttovægt_g"] = v
+    if (m := _FINHED_RE.search(window)):
+        v = _parse_decimal(m.group(1))
+        if v is not None:
+            spec["finhed"] = v
+    if (m := _FINVAEGT_RE.search(window)):
+        v = _parse_decimal(m.group(1))
+        if v is not None:
+            spec["finvægt_g"] = v
+    if (m := _MARKEN_FIN_RE.search(window)):
+        v = _parse_decimal(m.group(1))
+        unit = m.group(2).strip().rstrip(".")
+        if v is not None:
+            spec["marken_fin_udbragt_til"] = {"value": v, "unit": unit}
+    return spec
+
+
+# Header patterns. Page format conventions seen:
+#   <H1>Christian 5.<BR>1 Speciedaler 1683, Glückstadt</H1>
+#   <H1>Christian 4. - oversigt efter Hede</H1>  (overview, skipped)
+#   <H1>Christian 4., 4 Skilling, København</H1>
+# We extract `ruler / nominal / mint / years` from the H1 content.
+_H1_RE = re.compile(r"<H1[^>]*>(.*?)</H1>", re.IGNORECASE | re.DOTALL)
+_TITLE_TAG_RE = re.compile(r"<TITLE>(.*?)</TITLE>", re.IGNORECASE | re.DOTALL)
+
+
+def _parse_header(html: str) -> dict:
+    out: dict = {}
+    title_m = _TITLE_TAG_RE.search(html)
+    if title_m:
+        out["page_title"] = _strip_html(title_m.group(1)).strip()
+    h1_m = _H1_RE.search(html)
+    if not h1_m:
+        return out
+    h1 = _strip_html(h1_m.group(1))
+    out["h1"] = h1
+    # H1 typically has 2 lines: «Ruler.\nNominal Year, Mint»
+    parts = [p.strip() for p in h1.split("\n") if p.strip()]
+    if not parts:
+        return out
+    # Ruler line: ends with '.', e.g. «Christian 5.»
+    ruler_line = parts[0].rstrip(",").rstrip(".")
+    # Sometimes «Ruler., Nominal, Mint» on one line
+    if "," in parts[0]:
+        segs = [s.strip() for s in parts[0].split(",")]
+        out["ruler"] = segs[0].rstrip(".") + "."
+        if len(segs) > 1:
+            # Look for year tokens in remaining segs
+            rest_text = ", ".join(segs[1:])
+            yr_match = re.search(r"\d{4}(?:[\-,\s]+\d{4})*", rest_text)
+            if yr_match:
+                out["years"] = _extract_years(yr_match.group(0))
+                rest_text_no_yr = (
+                    rest_text[: yr_match.start()] + rest_text[yr_match.end():]
+                )
+            else:
+                rest_text_no_yr = rest_text
+            # Last comma-separated piece is usually the mint
+            rs = [s.strip() for s in rest_text_no_yr.split(",") if s.strip()]
+            if rs:
+                out["mint"] = rs[-1]
+                if len(rs) > 1:
+                    out["nominal"] = rs[0]
+    else:
+        out["ruler"] = ruler_line + "."
+    if len(parts) >= 2 and "nominal" not in out:
+        # Second line: «1 Speciedaler 1683, Glückstadt»
+        line = parts[1]
+        yr_match = re.search(r"\d{4}(?:[\-,\s]+\d{4})*", line)
+        if yr_match:
+            out["years"] = _extract_years(yr_match.group(0))
+            before = line[: yr_match.start()].strip().rstrip(",")
+            after = line[yr_match.end():].strip().lstrip(",")
+            out["nominal"] = before
+            if after:
+                out["mint"] = after.strip(",").strip()
+        else:
+            out["nominal"] = line
+    return out
+
+
+def _looks_like_overview(html: str) -> bool:
+    """Overview pages have «oversigt efter Hede» in H1 and a big TABLE
+    listing many entries — skip them in per-page parsing (we still
+    keep their raw HTML cached for human reference)."""
+    return bool(re.search(r"oversigt\s+efter\s+Hede", html, re.IGNORECASE))
+
+
+def parse_one(html: str, basename: str) -> dict:
+    text = _strip_html(html)
+    ruler_label, volume = _ruler_volume(basename)
+    out: dict = {
+        "id": basename,
+        "ruler_volume": volume,
+        "ruler_inferred": ruler_label,
+    }
+    # Header (ruler / nominal / mint / years)
+    header = _parse_header(html)
+    out.update({k: v for k, v in header.items() if k != "h1"})
+    if "ruler" not in out and ruler_label:
+        out["ruler"] = ruler_label
+
+    # Spec block(s)
+    specs = _extract_specs(text, basename)
+    if specs:
+        out["specs"] = specs
+
+    # Catalog refs
+    refs = _extract_refs(text)
+    if refs:
+        out["catalog_refs"] = refs
+
+    # Literatur
+    lit = _extract_litteratur(text)
+    if lit:
+        out["litteratur"] = lit
+
+    # Eksemplarer (specimen lists)
+    eks = _extract_eksemplarer(text)
+    if eks:
+        out["eksemplarer"] = eks
+
+    # Description heuristic — lines mentioning Forside / bagside /
+    # randskrift, before the first Bruttovægt block.
+    desc_match = re.search(
+        r"(Forside\s*:.*?)(?=Bruttovægt|Eksemplar|Litteratur|$)",
+        text,
+        re.DOTALL | re.IGNORECASE,
+    )
+    if desc_match:
+        desc = desc_match.group(1).strip()
+        # Strip the HR sentinel — useful internally for spec-block
+        # boundary detection but noise in human-readable prose.
+        desc = desc.replace(_HR_SENTINEL, "").strip()
+        # Trim long Mintmaster sub-variant tables (keep first 800 chars)
+        out["description"] = desc[:800]
+
+    # Hede number(s) covered — derive from filename + cross-check
+    # against page title's «Hede ...» phrase.
+    hm_filename = re.search(r"^[cf]\d+h([\d\-,A-Za-z\s]+?)(?:\.|note|$)", basename)
+    if hm_filename:
+        out["hede_numbers_filename"] = re.findall(r"\d+[A-Za-z]*", hm_filename.group(1))
+    title_str = out.get("page_title", "")
+    if "Hede" in title_str:
+        out["hede_numbers_title"] = re.findall(
+            r"\bHede\s*(\d+[A-Za-z]*(?:[\-,]\s*\d+[A-Za-z]*)*)",
+            title_str,
+        )
+
+    # Strip the HR sentinel from raw_text too — internal marker only.
+    out["raw_text"] = text.replace(_HR_SENTINEL, "").strip()
+    return out
+
+
+def _build_index(parsed_files: list[Path]) -> dict:
+    """Aggregate index: map composite Hede key («c4h28») → parsed file
+    + condensed summary of the most useful fields. Lets downstream
+    tooling (matcher, audit) look up by Hede key without re-loading
+    every per-page JSON.
+
+    When two parsed files claim the same composite key (e.g. a page
+    whose own primary Hede is 68 and another page that cross-
+    references Hede 68's sub-variant), the entry whose basename
+    matches the key wins — the «canonical» file for that Hede gets
+    priority over cross-references.
+    """
+    index: dict[str, dict] = {}
+    for f in parsed_files:
+        d = json.loads(f.read_text(encoding="utf-8"))
+        vol = d.get("ruler_volume", "")
+        # Page's own primary Hede number from basename — used both
+        # for canonical-file scoring below and as a fallback when the
+        # parsed JSON doesn't surface a number through the usual paths.
+        own_m = re.match(r"^[cf]\d+h(\w+)$", d["id"])
+        own_num = own_m.group(1).lower() if own_m else None
+        # Take the union of filename- and title-derived numbers
+        nums = set(d.get("hede_numbers_filename") or [])
+        nums.update(d.get("hede_numbers_title") or [])
+        # If specs has by_hede, those are also Hede sub-keys
+        if isinstance(d.get("specs"), dict) and "by_hede" in d["specs"]:
+            nums.update(d["specs"]["by_hede"].keys())
+        if not nums and own_num:
+            nums.add(own_num)
+        for n in nums:
+            key = f"{vol}{n.lower()}"
+            entry = {
+                "file": d["id"],
+                "ruler": d.get("ruler"),
+                "nominal": d.get("nominal"),
+                "mint": d.get("mint"),
+                "years": d.get("years") or [],
+            }
+            specs = d.get("specs") or {}
+            if "by_hede" in specs:
+                for sk, sv in specs["by_hede"].items():
+                    if sk.lower() == n.lower():
+                        entry["specs"] = sv
+                        break
+                else:
+                    entry["specs"] = next(iter(specs["by_hede"].values()), None)
+            elif "default" in specs:
+                entry["specs"] = specs["default"]
+            entry["catalog_refs"] = d.get("catalog_refs")
+            # Canonicality: a file whose basename's primary number
+            # matches the key always wins over cross-references that
+            # only mention this key.
+            is_canonical = (own_num == n.lower())
+            existing = index.get(key)
+            if existing is None:
+                index[key] = entry
+            elif is_canonical and not _is_canonical(existing, key, vol):
+                index[key] = entry
+    return index
+
+
+def _is_canonical(entry: dict, key: str, volume: str) -> bool:
+    """An index entry is canonical when its `file` basename's primary
+    number matches the lookup key (after the volume prefix is
+    stripped)."""
+    file_id = entry.get("file") or ""
+    if not file_id.startswith(volume):
+        return False
+    file_num = file_id[len(volume):].lower()
+    key_num = key[len(volume):].lower()
+    return file_num == key_num
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--force", action="store_true",
+                    help="Reparse pages even if .json sibling exists")
+    args = ap.parse_args()
+
+    parsed = 0
+    skipped = 0
+    overviews = 0
+    failed = 0
+    parsed_files: list[Path] = []
+    for f in sorted(CACHE_DIR.glob("*.htm")):
+        basename = f.stem
+        json_path = f.with_suffix(".json")
+        if json_path.exists() and not args.force:
+            skipped += 1
+            parsed_files.append(json_path)
+            continue
+        html = f.read_text(encoding="utf-8", errors="replace")
+        if _looks_like_overview(html):
+            overviews += 1
+            continue
+        try:
+            entry = parse_one(html, basename)
+        except Exception as exc:
+            failed += 1
+            print(f"  [{basename}] parse error: {exc}", file=sys.stderr)
+            continue
+        json_path.write_text(
+            json.dumps(entry, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        parsed += 1
+        parsed_files.append(json_path)
+
+    # Aggregate index
+    index = _build_index(parsed_files)
+    (CACHE_DIR / "_parsed_index.json").write_text(
+        json.dumps(index, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(f"Parsed: {parsed}")
+    print(f"Skipped (already parsed): {skipped}")
+    print(f"Overviews skipped (in-page parsing not implemented): {overviews}")
+    print(f"Failed: {failed}")
+    print(f"Aggregate index: {len(index)} composite Hede keys")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
