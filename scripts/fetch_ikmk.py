@@ -48,14 +48,49 @@ QUERIES = [
     "Lübeck Bistum",
     # Bremen-Verden / Bremen archbishopric
     "Bistum Bremen", "Bremen-Verden",
-    # Denmark + Norway royal mints (Danish-Norwegian crown)
+
+    # ============================================================
+    # Denmark proper, Danish-Norwegian crown, and Danish-controlled
+    # territories outside the Helstaten core (TODO L.2a).
+    #
+    # Discovery-budget discipline: IKMK quick_search does loose
+    # substring matching, so generic given-names («Hans», «Erik»)
+    # and short common toponyms («Island») return thousands of
+    # unrelated hits. Generic ruler ordinals («Friedrich I.»,
+    # «Friedrich II.» etc.) hit the 4000-result cap because every
+    # German prince ever called Friedrich shows up. We therefore
+    # restrict ruler-axis queries to the Danish kings whose reigns
+    # actually overlap our denmark.yml + sh.yml coin range — and
+    # skip pure given-name queries entirely.
+    # ============================================================
+
+    # Country / region — narrow umbrella
     "Dänemark", "Denmark", "Norwegen", "Norge",
-    "Kopenhagen", "Christiania", "Kongsberg",
-    "Ribe", "Odense", "Lund",
-    "Bergen",
-    # Major rulers with prolific Danish/SH coinage
-    # (broad — captures DK + Norwegen + SH-Gottorf 17th-c. coinage)
-    "Christian IV.", "Friedrich III.",
+    # Denmark proper mints (Kopenhagen pulls broadly; the rest are
+    # narrowly scoped or return 0 — fine to keep as canaries.)
+    "Kopenhagen", "Helsingør", "Roskilde", "Aalborg", "Viborg",
+    "Ribe", "Odense", "Malmö",
+    # Norway under the Danish crown (1397–1814)
+    "Christiania", "Kongsberg", "Bergen", "Trondheim", "Trondhjem",
+    # Faroe Islands (Danish since 1380)
+    "Färöer", "Færøerne",
+    # Greenland (Danish until 1953)
+    "Grönland", "Grønland",
+    # Danish India (Tranquebar trading colony, 1620–1845)
+    "Tranquebar", "Trankebar", "Dänisch-Indien",
+    # Danish West Indies (1672–1917, modern US Virgin Islands)
+    "Dänisch-Westindien", "Dansk Vestindien",
+    # Danish Gold Coast / Guinea (1659–1850, modern Ghana)
+    "Dänisch Guinea", "Goldküste",
+    # Danish kings whose reigns intersect our 1566-1914 window AND
+    # who don't share a given+ordinal with prolific German princes.
+    # Christian IV-X and Friedrich III/IV are the productive Danish
+    # ones; Friedrich I/II/V hit the 4000-cap because they collide
+    # with Pfalz/Prussia/HRE Friedrichs and aren't worth the noise.
+    "Christian IV.", "Christian V.", "Christian VI.",
+    "Christian VII.", "Christian VIII.", "Christian IX.", "Christian X.",
+    "Friedrich III.", "Friedrich IV.",
+    "Friedrich VI.", "Friedrich VII.",
 ]
 
 

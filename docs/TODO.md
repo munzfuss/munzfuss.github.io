@@ -43,17 +43,27 @@ listed order.
    scope; SH covered separately under (1a) and the older audit work).
    The four stages below run roughly in order — earlier stages enrich
    the per-coin data that later stages cross-check against:
-   - **2a. IKMK harvest expansion.** Re-run the IKMK bulk fetch with
-     a Kopenhagen / Christiania / Norwegen mint filter rather than
-     the original Holstein-context-scoped one. Target: several
-     hundred records in the «Dänemark» / «Norwegen» buckets, propor-
-     tional to denmark.yml's coin count. Implementation: extend
-     `scripts/audit_ikmk_index.py` (or its harvest twin) to broaden
-     the issuer/mint filter, fetch missing records via the IKMK
-     `/object?id=…&download=json_ext` API, regenerate
-     `scripts/cache/ikmk/_index_by_issuer.json`. Done criterion:
-     IKMK coverage proportional to YAML coin count + matcher's
-     `_match_denmark.json` totals reflect the expanded scope.
+   - **2a. IKMK harvest expansion. PARTIAL — IKMK ceiling reached
+     2026-05-10.** Ran a broader query set covering Denmark proper +
+     Danish-Norwegian-union mints + Danish-controlled territories
+     (Iceland, Faroe, Greenland, Tranquebar, Danish West Indies,
+     Danish Gold Coast) and Danish-king-ordinal queries (Christian
+     IV–X, Friedrich III/IV/VI/VII). The fetch added **548 new cache
+     records** (722 fetched − 174 ancient/Roman noise removed), but
+     only **6 routed to denmark** via the issuer-prefix mapping
+     (Trondheim — medieval, out of 1566–1914 scope window).
+     Final IKMK Denmark coverage: **68 records / 41 in-scope**
+     (vs 62 / 41 pre-expansion). The «several hundred» target is
+     not achievable through IKMK alone — IKMK Berlin is a German
+     museum and has limited Danish coverage (62 «Dänemark» + 19
+     «Norwegen» records exhausted; Tranquebar / Iceland / Faroe /
+     Greenland / Danish-Gold-Coast queries returned zero hits).
+     Remaining 542 cache records are non-Danish coins (Schleswig-
+     Holstein-related, Hessian Friedrich's, Brandenburg-Lüneburg,
+     etc.) that the broader ruler-axis queries pulled along with
+     Danish ones. Reaching «several hundred» requires alternative
+     catalogues — see TODO H for Royal Coin Cabinet Copenhagen +
+     British Museum API coverage check.
    - **2b. IKMK candidates processing + DK seed_unsorted triage
      (combined).** After (2a), run `match_ikmk_locations.py denmark`
      and walk the buckets per the same procedure as (1a). At the

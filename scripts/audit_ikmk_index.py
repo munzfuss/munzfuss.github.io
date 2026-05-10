@@ -54,9 +54,34 @@ PROJECT_LOCATION_MAP: dict[str, str] = {
     # lubeck_bishopric.yml — Lübeck-Bistum / Hochstift
     "Bistum Lübeck": "lubeck_bishopric",
     "Hochstift Lübeck": "lubeck_bishopric",
-    # denmark.yml — Danish & Danish-Norwegian crown
+    # denmark.yml — Danish & Danish-Norwegian crown + Danish-
+    # controlled territories of other states. Norwegian mints route
+    # to denmark.yml only for the Danish-Norwegian-union era
+    # (≤ 1814); IKMK records dated 1815+ under the «Norwegen»
+    # prefix are Sweden-Norway-union or independent-Norway issues
+    # and won't year-overlap any coin in our denmark.yml — the
+    # matcher's per-coin year-overlap check naturally filters
+    # them out without an extra gate here. Out-of-scope by year
+    # is already enforced by `_in_scope` against [1566, 1914].
     "Dänemark": "denmark",
     "Norwegen": "denmark",
+    # Iceland / Faroe / Greenland — Danish dependencies
+    "Island": "denmark",
+    "Färöer": "denmark",
+    "Faroe Islands": "denmark",
+    "Grönland": "denmark",
+    # Danish overseas trading colonies — coins struck for the
+    # Danish crown's territorial possessions outside the Helstaten
+    # core.
+    "Tranquebar": "denmark",
+    "Dänisch-Indien": "denmark",
+    "Dänisch-Westindien": "denmark",
+    "Dänisch Guinea": "denmark",
+    "Dänische Goldküste": "denmark",
+    # Medieval Norwegian Trondheim mints (under Danish-Norwegian
+    # crown 1397+); IKMK groups them under their own city prefix
+    # rather than the «Norwegen» country prefix.
+    "Trondheim": "denmark",
     # bremen_verden.yml + future bremen-archbishopric (TODO C)
     "Bremen": "bremen_verden",
     "Erzbistum Bremen": "bremen_verden",
