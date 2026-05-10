@@ -60,19 +60,25 @@ def _in_lot_range(slug: str, lot_no: int) -> bool:
     return any(lo <= lot_no <= hi for lo, hi in PART_LOT_RANGES.get(slug, []))
 
 # Ref tokens — case-sensitive prefix; case-insensitive search (with hyphen optional)
+#
+# Suffix-letter capture is `[A-Za-z]*` (zero-or-more) so multi-letter Krause /
+# Lange / Hede sub-variant suffixes (e.g. Lange-430AA, Hede-23AB) capture in
+# full. The earlier `[A-Za-z]?` pattern stopped after one letter and silently
+# collapsed «430AA» → «430A», which bridged distinct Krause types under the
+# same parsed token (TODO J item 1, surfaced via km-165 / KM-166 audit).
 REF_PATTERNS = {
-    "KM":      re.compile(r"\bKM[#\-]?\s*([A-Za-z]?\d+(?:\.\d+)?[A-Za-z]?(?:\.\d+)?)", re.IGNORECASE),
-    "Hede":    re.compile(r"\bHede[\-:]?\s*(\d+[A-Za-z]?(?:[\-/]\d+)?)", re.IGNORECASE),
-    "Sieg":    re.compile(r"\bSieg[\-:]?\s*(\d+(?:\.\d+)?[A-Za-z]?)", re.IGNORECASE),
-    "Lange":   re.compile(r"\bLange[\-:]?\s*(\d+[A-Za-z]?)", re.IGNORECASE),
-    "Bruun":   re.compile(r"\bBruun[\-:]?\s*(\d+[A-Za-z]?)", re.IGNORECASE),
-    "Fr":      re.compile(r"\bFr[\.\-:]?\s*(\d+[A-Za-z]?(?:\.\d+)?)", re.IGNORECASE),
-    "Schou":   re.compile(r"\bSchou[\-:]?\s*(\d+[A-Za-z]?(?:[\-/]\d+)?)", re.IGNORECASE),
+    "KM":      re.compile(r"\bKM[#\-]?\s*([A-Za-z]?\d+(?:\.\d+)?[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
+    "Hede":    re.compile(r"\bHede[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
+    "Sieg":    re.compile(r"\bSieg[\-:]?\s*(\d+(?:\.\d+)?[A-Za-z]*)", re.IGNORECASE),
+    "Lange":   re.compile(r"\bLange[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    "Bruun":   re.compile(r"\bBruun[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    "Fr":      re.compile(r"\bFr[\.\-:]?\s*(\d+[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
+    "Schou":   re.compile(r"\bSchou[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
     "Aagaard": re.compile(r"\bAagaard[\-:]?\s*(\d+(?:\.\d+)?(?:\s*\([^)]+\))?)", re.IGNORECASE),
-    "Dav":     re.compile(r"\bDav[\.\-:]?\s*(\d+[A-Za-z]?)", re.IGNORECASE),
-    "Brekke":  re.compile(r"\bBrekke[\-:]?\s*(\d+[A-Za-z]?)", re.IGNORECASE),
+    "Dav":     re.compile(r"\bDav[\.\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    "Brekke":  re.compile(r"\bBrekke[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Wilcke":  re.compile(r"\bWilcke[\-:]?\s*(\d+(?:\.\d+)?)", re.IGNORECASE),
-    "Pn":      re.compile(r"\b(Pn\d+[A-Za-z]?)\b"),
+    "Pn":      re.compile(r"\b(Pn\d+[A-Za-z]*)\b"),
 }
 
 YEAR_RE = re.compile(r"\b(1[5-9]\d{2}|20\d{2})\b")

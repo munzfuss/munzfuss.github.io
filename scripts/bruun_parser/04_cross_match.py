@@ -45,6 +45,21 @@ def first_token(ref_value):
     return norm_ref(re.split(r"[,;]\s*", s)[0].strip())
 
 
+def _collect_alt_km(others):
+    """Extract KM tokens from ``catalog.others`` (e.g. «KM# 73») so the
+    parity-check accepts coins that intentionally consolidate multiple
+    Krause numbers under one row (the Numista-duplicate pattern, e.g.
+    km-105 carrying KM# 73 as a synonym in `others`)."""
+    if not others:
+        return []
+    out = []
+    for o in others:
+        m = re.search(r"\bKM[#\-]?\s*([A-Za-z]?\d+(?:\.\d+)?[A-Za-z]*)", str(o))
+        if m:
+            out.append(m.group(1))
+    return out
+
+
 def load_our_coins():
     rows = []
     # Load every location file we currently have. New ones are auto-discovered.
@@ -55,6 +70,7 @@ def load_our_coins():
         loc = yaml.safe_load(path.read_text())
         for c in loc.get("coins", []):
             cat = c.get("catalog") or {}
+            others = cat.get("others") or []
             rows.append({
                 "loc": slug,
                 "id": c.get("id"),
@@ -69,6 +85,10 @@ def load_our_coins():
                 "metal": c.get("metal"),
                 "fineness": c.get("fineness"),
                 "km_raw": cat.get("km"), "km": first_token(cat.get("km")),
+                # Alternate KM tokens consolidated in `catalog.others`
+                # (Numista-duplicate / synonym pattern). Parity-check
+                # passes when the lot's KM matches any one of these.
+                "km_alts": _collect_alt_km(others),
                 "hede_raw": cat.get("hede"), "hede": first_token(cat.get("hede")),
                 "lange_raw": cat.get("lange"), "lange": first_token(cat.get("lange")),
                 "sieg_raw": cat.get("sieg"), "sieg": first_token(cat.get("sieg")),
@@ -97,10 +117,79 @@ def year_overlap(yf, yl, target):
     return (yf - 1) <= target <= (yl + 1)
 
 
+_KM_PARENT_RE = re.compile(r"^([A-Za-z]?\d+)")
+_HEDE_PARENT_RE = re.compile(r"^(\d+)")
+
+
+def _km_parent(km_str):
+    """Strip Krause sub-variant suffix to expose the parent KM number.
+
+    «KM 744.1» / «744.2» / «744» / «744A» all collapse to «744». The parent
+    number is the §9.3 compatibility axis: same parent → same Krause type
+    family, differing parents → different types that must not share a
+    specimen citation.
+    """
+    if km_str is None:
+        return None
+    s = norm_ref(str(km_str))
+    m = _KM_PARENT_RE.match(s)
+    if not m:
+        return None
+    # Drop optional leading letter (Pn-style coins) and trailing sub-suffix
+    parent = re.sub(r"\D+$", "", m.group(1))
+    return parent or None
+
+
+def _hede_parent(hede_str):
+    """Strip trailing letters / sub-suffix to expose the parent Hede number.
+
+    «Hede 164B» / «164C» / «164» all collapse to «164».
+    """
+    if hede_str is None:
+        return None
+    s = norm_ref(str(hede_str))
+    m = _HEDE_PARENT_RE.match(s)
+    return m.group(1) if m else None
+
+
+def lot_compatible_with_coin(lot, candidate):
+    """Apply the §9.3 KM-token parity check before linking a Bruun lot to
+    a candidate coin.
+
+    Rule:
+
+    * When both lot and candidate carry a KM token, their parent KM
+      numbers must match. (744 ↔ 744.1 ↔ 744.2 OK; 165 ↔ 166 NOT OK.)
+    * When KM is absent on either side, fall back to Hede parent
+      comparison. Pure Hede-only matches survive (the «hede-XXX-…»
+      schema in denmark.yml uses Hede as the primary axis).
+    * When neither axis has a comparable pair, return True — the
+      single-letter Lange / Sieg / Dav heuristic upstream is the only
+      signal we have, and demanding a parity check would reject every
+      Sonderburg / Holstein-territorial coin (Lange-only catalog).
+    """
+    refs = lot.get("refs", {})
+
+    lot_km = _km_parent(refs.get("KM"))
+    coin_kms = [_km_parent(candidate.get("km"))]
+    coin_kms.extend(_km_parent(k) for k in (candidate.get("km_alts") or []))
+    coin_kms = [k for k in coin_kms if k]
+    if lot_km and coin_kms:
+        return lot_km in coin_kms
+
+    lot_hede = _hede_parent(refs.get("Hede"))
+    coin_hede = _hede_parent(candidate.get("hede"))
+    if lot_hede and coin_hede:
+        return lot_hede == coin_hede
+
+    return True
+
+
 def match_lot(lot, indices):
     refs = lot.get("refs", {})
     year = lot.get("year")
     candidates = []
+    rejected = []  # for debug — candidates that the parity gate cut
     for ref_key, idx_key in [("KM", "km"), ("Hede", "hede"), ("Lange", "lange"),
                               ("Sieg", "sieg"), ("Fr", "fr"), ("Schou", "schou"),
                               ("Dav", "dav")]:
@@ -109,11 +198,18 @@ def match_lot(lot, indices):
             continue
         v_norm = norm_ref(v)
         for cand in indices[idx_key].get(v_norm, []):
-            if year_overlap(cand["year_first"], cand["year_last"], year):
-                candidates.append((cand, f"{ref_key}={v_norm}+year"))
+            if not year_overlap(cand["year_first"], cand["year_last"], year):
+                continue
+            if not lot_compatible_with_coin(lot, cand):
+                rejected.append((cand, f"{ref_key}={v_norm}+year (KM/Hede parity FAIL)"))
+                continue
+            candidates.append((cand, f"{ref_key}={v_norm}+year"))
     bruun_id = refs.get("Bruun")
     if bruun_id:
         for cand in indices["bruun_lot"].get(str(bruun_id), []):
+            if not lot_compatible_with_coin(lot, cand):
+                rejected.append((cand, f"Bruun-id={bruun_id} (KM/Hede parity FAIL)"))
+                continue
             candidates.append((cand, f"Bruun-id={bruun_id}"))
 
     seen = set()
@@ -125,6 +221,13 @@ def match_lot(lot, indices):
         deduped.append((cand, reason))
 
     if not deduped:
+        # If parity-gate cut some candidates, surface that in the reason so
+        # triage can spot them in the regenerated cross_match.json.
+        if rejected:
+            cut_reason = "parity-rejected: " + "; ".join(
+                f"{c['id']} ({r})" for c, r in rejected[:3]
+            )
+            return ("D", [], cut_reason)
         return ("D", [], "no match")
     has_bruun = all(c["bruun_lot"] or c["bruun_collection_id"] for c, _ in deduped)
     return ("A" if has_bruun else "B", [c for c, _ in deduped],
