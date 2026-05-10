@@ -369,6 +369,24 @@ If a specimen contributed neither, the merge is data-lossy — go back and add t
 
 **This rule applies to ANY data merge across sources** — Bruun is just the current trigger. ucoin + Numista + museum entries for the same KM should similarly merge into one entry with multi-source weight/grade/diameter data preserved as a list, never collapsed to a single representative value.
 
+**Intra-sub-variant thinning (counter-balance to over-collection).** §9a above guards against under-merging: each specimen carries a unique observation and must be preserved. The opposite failure mode is *over-collection from one resource*: when a single museum / catalogue holds many specimens of the *exact same* sub-variant, the intermediate weights between min and max contribute no additional information about the standard's variance envelope — they are noise from one source's holdings, not independent measurements. Apply the following thinning rule when both conditions hold:
+
+1. **One coin entry has ≥5 `weight_rough_g` entries from a single resource** (IKMK / Bruun / ucoin / Numista — counted per-resource, not in total).
+2. **Within that resource, those entries sub-group by published catalog index** (per the source's own classification — IKMK `literatur` field for Lange/Hede tag, Bruun `refs` for KM/Hede/Lange, ucoin `km` field with sub-suffix) **into one bucket of ≥5 specimens** sharing the same sub-variant tag.
+3. **Fineness is uniform or absent across that bucket** — same `fineness` value (or no fineness recorded). If the bucket includes multiple fineness readings, do not thin: the variance is informative.
+
+When all three hold, sort the bucket's entries by weight ascending, keep three:
+
+  - **min** — position 0 of the sorted list
+  - **middle by list position** — position `len // 2` (NOT the median value; the entry that sits at the middle index of the weight-sorted list, deterministic for tied weights via stable sort)
+  - **max** — position `len - 1`
+
+Discard the other entries along with their corresponding `sources[]` URLs. The retained three define the variance envelope; the discarded entries' specimen IDs are by-definition not numismatically distinguishing within that sub-variant (had any been distinguishing — e.g. mule, counterstamp, off-metal strike — IKMK / Bruun would have catalogued it as a separate sub-variant tag, breaking out of this bucket).
+
+Specimens that the source itself flags as singular — mules, off-metal strikes, counterstamped pieces, hand-curated annotations like `(mule)` or `(1620 cf Lange 534)` in our existing source labels — sit in their own one- or two-entry sub-variant buckets and are NOT eligible for thinning. The bucket size threshold (≥5) protects these single-specimen variants automatically.
+
+**Operational reuse.** When importing IKMK / Bruun specimens for a coin that already crosses the threshold (or whose import will cross it), apply the thinning at import time so the resulting YAML doesn't carry the noise. The maintenance script `scripts/maintenance/thin_intra_subvariant_specimens.py` encodes the canonical decisions per audit pass; the same shape — sort by weight, keep `[0, len//2, -1]`, drop the rest plus matched `sources[]` — generalises to any future bulk import. (Codified 2026-05-09 after a 20-specimen sweep across km-46 / km-5 / km-9.)
+
 **Source-data is structured, not stringly-joined.** When two or more independent sources attest the SAME numeric value (e.g. Hede and Numista both publish 28,893 g for a Speciedaler), each attestation is its own `FieldValue` entry that shares the value but carries one source label:
 
 ```yaml
