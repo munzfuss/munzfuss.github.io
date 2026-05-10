@@ -171,77 +171,6 @@ pattern — probably 20-50 SH/DK entries based on the sample so far.
 
 ---
 
-### I. Restructure `\n`-joined source labels in scalar metric fields  *(opened 2026-05-08)*
-
-**Background.** Several `weight_rough_g[].source` (and likely `fineness[].source` /
-`diameter_mm[].source`) entries use a YAML literal-block string with embedded
-`\n` to join multiple primary sources for the same value, e.g.:
-
-```yaml
-weight_rough_g:
-  - {value: 28.893, source: "Hede 39A\nNumista"}        # km-138-1
-  - {value: 6.642,  source: "Hede 2\nucoin"}            # planned for km-730 lift
-  - {value: 3.49,   source: "Hede 118\nNumista"}        # km-72 (just fixed in d77a404)
-```
-
-**Why this is the wrong shape for source data.** Source provenance is a
-*structured* claim («this value is independently attested by source A AND source B»).
-Burying it in a single newline-delimited string forces every consumer
-(audit scripts, future query/dedup tooling, schema-migration scripts) to
-re-parse the string to recover the constituent sources. We already hit this
-the day we wrote it: the orphan-weight audit script (`scripts/oneoff/audit_orphan_weight_sources.py`)
-had to special-case `[,;\n]` splitting to avoid false positives — that's
-exactly the parser-of-display-string anti-pattern.
-
-Render-side prose can join sources however it likes (`«Hede 2 + ucoin»`,
-inline `<sup>` stacks, etc.) — that's display logic. **Source-data fields
-should carry sources as arrays.**
-
-**Two-step:**
-
-1. **Analysis step (do first).** Decide the right shape. Options:
-   - (a) `source: ["Hede 2", "ucoin"]` — list of strings.
-   - (b) `source: [{type: hede, ref: "Hede 2"}, {type: ucoin}]` — structured per-token.
-   - (c) split into separate `weight_rough_g[]` entries, one per source —
-     same shape as the existing per-specimen Bruun rows already use, but
-     would create N rows with the same numeric value (a kind of dup,
-     though §9a-defensible if the sources genuinely measured / round
-     independently).
-   Each has trade-offs: (a) is the smallest schema change but still
-   stringly-typed; (b) is properly structured but requires schema +
-   render updates; (c) is most-§9a-aligned but inflates the table for
-   nominal/standard values that aren't really «multiple specimens».
-   Also decide: scope = only `weight_rough_g[].source`, or also any
-   other metric field that has a `.source` sub-field.
-
-2. **Decide rule placement.** Should this become a CLAUDE.md rule
-   (analogous to §9a multi-specimen merge — extend §9a, or add a new
-   sub-rule «source-data is structured, not stringly-joined») so future
-   edits don't reintroduce the pattern? Or one-shot fix only? If
-   one-shot, the danger is the next bulk-import that touches similar
-   data quietly re-emits the pattern.
-
-3. **Migration step (after analysis).** Sweep:
-   - `data/locations/*.yml` and `data/shared/*.yml` for `\n` inside
-     `.source` strings; convert per the chosen shape.
-   - Update `scripts/lib/schema.py` if the shape changes.
-   - Update `scripts/lib/render.py` (and templates) if the rendered form
-     needs adjustment.
-   - Update `scripts/oneoff/audit_orphan_weight_sources.py` to drop the
-     `\n`-splitting kludge.
-   - Update any bulk-import scripts (`scripts/oneoff/bulk_import_seed_locations.py`,
-     `scripts/maintenance/*`) that emit the legacy form.
-
-**Done criterion.** Zero remaining `"…\n…"` patterns inside any
-`.source` field. Audit script `audit_orphan_weight_sources.py` works
-without the `\n`-split hack. CLAUDE.md updated (or explicitly decided
-no rule needed) per the analysis output.
-
-**Estimated effort.** Analysis ~30 min; migration ~1 h depending on
-chosen shape.
-
----
-
 ### H. Coverage check for additional museum / catalogue APIs  *(opened 2026-05-07)*
 
 **Background.** IKMK Berlin (`ikmk.smb.museum`) was confirmed in
@@ -429,6 +358,32 @@ explicit decision that Bremen stays outside the project scope.
 ---
 
 ## Done
+
+### I. Restructure `\n`-joined source labels in scalar metric fields  *(closed 2026-05-10)*
+
+**Surfaced.** Multi-source attestations on a single value (e.g. `weight_rough_g: [{value: 28.893, source: "Hede 39A\nNumista"}]`) buried two independent citations in a `\n`-joined string. Audit / dedup / query code had to re-parse the display string with `re.split(r"[,;\n]", …)` — the parser-of-display-string anti-pattern.
+
+**Outcome — Option C (split into N entries with same value).** Each multi-source attestation now renders as one entry per source:
+
+```yaml
+weight_rough_g:
+  - {value: 28.893, source: "Hede 39A"}
+  - {value: 28.893, source: "Numista"}
+  - {value: 28.89,  source: ucoin}
+```
+
+The display pipeline (`compute.make_display_groups`) already groups list-form entries by rounded value, so two same-value entries collapse into ONE rendered span with both sources accumulated into the tooltip — visually identical to the joined form, structurally clean.
+
+**Implementation:**
+
+  - **Migration.** `scripts/maintenance/split_multisource_weight_entries.py` walks every coin's `weight_rough_g`, `fineness`, `diameter_mm` lists and splits any `\n`-joined source into separate entries. Idempotent — re-running on already-split data is a no-op. Applied: 40 new entries across 31 coins (4 in denmark, 36 in schleswig_holstein).
+  - **Compute fix (latent bug).** `compute.alts` previously hardcoded the alt-source tooltip prefix as «Обчислено з вагою × пробою з:» regardless of which input the alt actually overrode. After the migration this caused split alts that supply only a different weight reading (with fineness inherited from the scalar primary) to render under the «× пробою» prefix and visually duplicate the primary's «з вагою з:» prefix in the same tooltip. Fixed to mirror the primary-derived-source prefix logic — pick the prefix that reflects the actual override (weight only / fineness only / both).
+  - **Audit script.** `scripts/oneoff/audit_orphan_weight_sources.py` dropped its `[,;\n]`-split kludge in favour of a clean `[,;]`-only split (the comma/semicolon inline-join still appears in older entries; the `\n` form is gone for good).
+  - **CLAUDE.md.** Extended §9a with a «Source-data is structured, not stringly-joined» sub-rule so future edits don't reintroduce the pattern.
+
+**Verification.** Build still passes; rendered output visually identical except for the corrected alt-prefix labels (the latent bug fix). Re-running the migration finds zero remaining `\n`-joined source labels across the corpus.
+
+---
 
 ### J. Bruun parser + cross-match: two latent bugs from km-165/KM-166 audit  *(closed 2026-05-10)*
 

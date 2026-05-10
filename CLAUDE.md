@@ -369,6 +369,19 @@ If a specimen contributed neither, the merge is data-lossy — go back and add t
 
 **This rule applies to ANY data merge across sources** — Bruun is just the current trigger. ucoin + Numista + museum entries for the same KM should similarly merge into one entry with multi-source weight/grade/diameter data preserved as a list, never collapsed to a single representative value.
 
+**Source-data is structured, not stringly-joined.** When two or more independent sources attest the SAME numeric value (e.g. Hede and Numista both publish 28,893 g for a Speciedaler), each attestation is its own `FieldValue` entry that shares the value but carries one source label:
+
+```yaml
+weight_rough_g:
+  - {value: 28.893, source: "Hede 39A"}
+  - {value: 28.893, source: "Numista"}
+  - {value: 28.89,  source: ucoin}
+```
+
+Never collapse multi-source attestation into a single entry with a `\n`-joined source string (`"Hede 39A\nNumista"` is forbidden). The display pipeline already groups list-form entries by rounded value, so two same-value entries collapse into ONE rendered span with both sources accumulated into the tooltip — visually identical to the joined form, structurally clean. Audit / dedup / future query tooling can iterate entries directly without parser-of-display-string kludges.
+
+The same rule applies to `fineness[]` and `diameter_mm[]` source attribution — every list-form measurement field uses one entry per attestation. (Closed via TODO I, 2026-05-10. Migration script: `scripts/maintenance/split_multisource_weight_entries.py`.)
+
 ## Architecture overview
 
 ```

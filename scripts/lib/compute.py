@@ -529,7 +529,24 @@ def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
     for ca in cc.alts:
         if not (ca.weight_rough_g or ca.fineness):
             continue
-        alt_label = f"Обчислено з вагою × пробою з:\n{ca.source}"
+        # Mirror the primary-derived-source prefix logic: pick the
+        # prefix that reflects WHICH input(s) this alt actually
+        # overrides (weight only / fineness only / both). Without this
+        # alignment, alts that supply only a different weight reading
+        # (with fineness inherited from the scalar primary) would
+        # render under the «× пробою» prefix and visually duplicate
+        # the primary's «з вагою з:» prefix in the same tooltip after
+        # multi-source weight entries are split per source.
+        if ca.weight_rough_g is not None and ca.fineness is not None:
+            alt_label = f"Обчислено з вагою × пробою з:\n{ca.source}"
+        elif ca.weight_rough_g is not None:
+            alt_label = f"Обчислено з вагою з:\n{ca.source}"
+        elif ca.fineness is not None:
+            alt_label = f"Обчислено з пробою з:\n{ca.source}"
+        else:
+            # both inherited from primary — alt only overrides diameter
+            # or another non-derivation field; nothing to label here.
+            continue
         if ca.weight_fein_g is not None:
             fein_pairs.append((ca.weight_fein_g, alt_label))
         if ca.delta_g is not None:
