@@ -67,11 +67,24 @@ def _strip_html(html: str) -> str:
 
 # Spec line patterns. Page bodies use Danish field names with `,` as
 # decimal separator: «Bruttovægt: 29,232g» / «Finhed: 0,888» /
-# «Finvægt: 25,984g» (sometimes «Nettovægt:»). Parse these into
-# float gram / fineness values.
-_BRUTTO_RE = re.compile(r"Bruttovægt:\s*([\d,\.]+)\s*g", re.IGNORECASE)
-_FINHED_RE = re.compile(r"Finhed:\s*([\d,\.]+)", re.IGNORECASE)
-_FINVAEGT_RE = re.compile(r"(?:Finvægt|Nettovægt):\s*([\d,\.]+)\s*g", re.IGNORECASE)
+# «Finvægt: 25,984g» (sometimes «Nettovægt:»). Some pages publish a
+# per-year sub-spec («Finhed: 1560: 0,906, 1563: 0,937») — the
+# leading `YYYY:` prefix would be greedy-captured as the value
+# otherwise, so each spec regex tolerates one optional `YYYY:` token
+# between the label and the first capture group.
+_YEAR_PREFIX = r"(?:\s*\d{4}\s*:\s*)?"
+_BRUTTO_RE = re.compile(
+    r"Bruttovægt:\s*" + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
+    re.IGNORECASE,
+)
+_FINHED_RE = re.compile(
+    r"Finhed:\s*" + _YEAR_PREFIX + r"([0-9][,\.][0-9]+|[01](?![.,]\d{4}))",
+    re.IGNORECASE,
+)
+_FINVAEGT_RE = re.compile(
+    r"(?:Finvægt|Nettovægt):\s*" + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
+    re.IGNORECASE,
+)
 # «Marken fin udbragt til 9,288 speciedalere» / «9,000 daler» /
 # «10,793 dlr.» / «20,500 kroner» — value + unit on one line.
 _MARKEN_FIN_RE = re.compile(
@@ -357,8 +370,23 @@ def _parse_header(html: str) -> dict:
     else:
         out["ruler"] = ruler_line + "."
     if len(parts) >= 2 and "nominal" not in out:
-        # Second line: «1 Speciedaler 1683, Glückstadt»
+        # Second line: «1 Speciedaler 1683, Glückstadt» or
+        # «1 Speciedaler u. år (1670), København» (undated; year in
+        # parentheses). For the «u. år (YYYY)» pattern, fold the
+        # parenthesised year into the years field AND drop the whole
+        # «u. år (YYYY)» fragment from the nominal so the nominal
+        # comes out clean.
         line = parts[1]
+        # Normalise the U+FFFD mojibake that appears when the cached
+        # HTML has a non-UTF-8 byte (real cases: «3 Dukat U. �r
+        # (1699)» on f4h1). The å-char never survives the round-trip
+        # of an iso-8859-1 page decoded as utf-8, leaving �.
+        line = line.replace("�", "å")
+        undated = re.search(r"\bu\.?\s*å?r\.?\s*\(\s*(\d{4})\s*\)", line, re.IGNORECASE)
+        if undated:
+            out.setdefault("years", _extract_years(undated.group(1)))
+            line = (line[: undated.start()] + line[undated.end():]).strip()
+            line = re.sub(r"\s+,", ",", line).strip(" ,")
         yr_match = re.search(r"\d{4}(?:[\-,\s]+\d{4})*", line)
         if yr_match:
             out["years"] = _extract_years(yr_match.group(0))
@@ -368,7 +396,18 @@ def _parse_header(html: str) -> dict:
             if after:
                 out["mint"] = after.strip(",").strip()
         else:
-            out["nominal"] = line
+            # No year match — try splitting on the trailing comma to
+            # separate «Nominal, Mint» (typical after the «u. år
+            # (YYYY)» fragment was stripped above).
+            if "," in line:
+                segs = [s.strip() for s in line.split(",") if s.strip()]
+                if len(segs) >= 2:
+                    out["nominal"] = segs[0]
+                    out["mint"] = segs[-1]
+                else:
+                    out["nominal"] = line.strip(" ,")
+            else:
+                out["nominal"] = line
     return out
 
 
@@ -392,6 +431,29 @@ def parse_one(html: str, basename: str) -> dict:
     out.update({k: v for k, v in header.items() if k != "h1"})
     if "ruler" not in out and ruler_label:
         out["ruler"] = ruler_label
+
+    # Fallback year extraction. The header path only inspects the
+    # <H1>; many pages publish the year-rarity list in a paragraph
+    # immediately under the H1 (e.g. «1541 (R), 1544 (S), 1546 (RR)
+    # …»). When the header parse came back without years, scan the
+    # first ~600 chars of the body text after the title/H1 echo for
+    # the same year-block pattern. Cap at 1700 to avoid catching
+    # «Bruttovægt: 1,234 …» numerics.
+    if not out.get("years"):
+        # Skip the first line if it just echoes the H1 (ruler + nominal)
+        body_start = text
+        first_newline = text.find("\n")
+        if 0 < first_newline < 200:
+            body_start = text[first_newline:]
+        scan_window = body_start[:600]
+        year_candidates = _extract_years(scan_window)
+        # Reject the candidate list if it crosses into noise — a
+        # plausible year-block is contiguous and short. We accept up
+        # to 30 entries, restricted to 1450..(current_year-100) to
+        # filter parser noise.
+        plausible = [y for y in year_candidates if 1450 <= y["year"] <= 1950]
+        if plausible:
+            out["years"] = plausible
 
     # Spec block(s)
     specs = _extract_specs(text, basename)
