@@ -8,23 +8,32 @@ entry per sub-Hede when the page's joined nominal can be split on the
 comma-list pattern «X, Y, Z og W <Denom>»; otherwise the entry is
 skipped for manual review.
 
-Output is NOT auto-loaded by `scripts/build.py` (lives outside
-`data/locations/`). The seed is a starting point — the human reviewer
-pastes accepted entries into `denmark.yml` after a per-coin sanity
-check, ideally reclassifying the placeholder fuss/phase to the actual
-Müntzfuß window.
+The output is consumed by `scripts/build.py` as an auto-merged seed
+side-car for the location page (`data/locations/denmark.yml`) — see
+`scripts/build.py::_merge_seeds_into_raw`. The seed file is the
+canonical intermediate: filtering by year + mint happens HERE so the
+file the build reads is already scoped to what should ship.
 
-Conventions match the existing ucoin-derived bulk seed:
+Conventions match the existing ucoin-derived bulk block in
+`denmark.yml`:
   * id: `dk-hede-<volume><number>` (e.g. `dk-hede-c5h120`)
   * fuss: `seed_unsorted`, phase: `A` — the catch-all bucket
   * All `*_verified` flags set to `false`
   * sources: type=literature pointing to the danskmoent.dk URL
 
+The `--year-to` flag (default 1914 — the project's scope upper
+bound per CLAUDE.md) caps the seed at that year inclusive; entries
+whose `year_first` is after the cap are dropped. Stored in the
+seed file's header for traceability so the next reader knows what
+scope the file represents without re-running.
+
 Run:
     python scripts/maintenance/build_hede_denmark_seed.py
+    python scripts/maintenance/build_hede_denmark_seed.py --year-to 1900
 """
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import sys
@@ -62,6 +71,32 @@ DK_MINT_DE = {
 _ARABIC_TO_ROMAN = {
     1: "I", 2: "II", 3: "III", 4: "IV", 5: "V",
     6: "VI", 7: "VII", 8: "VIII", 9: "IX", 10: "X",
+}
+
+
+# Reign spans for Danish kings — used as a fallback year window when
+# Hede publishes an «u. år» (undated) entry that yields no parseable
+# year tokens. The seed needs year_first / year_last so the
+# `seed_unsorted` phase A cross-ref check passes (1500-1914 window);
+# anchoring the coin to its ruler's reign keeps the placeholder
+# honest and rolls into the right phase on promotion.
+_RULER_REIGN: dict[str, tuple[int, int]] = {
+    "c3h": (1534, 1559),  # Christian III.
+    "f2h": (1559, 1588),  # Frederik II.
+    "c4h": (1588, 1648),  # Christian IV.
+    "f3h": (1648, 1670),  # Frederik III.
+    "c5h": (1670, 1699),  # Christian V.
+    "f4h": (1699, 1730),  # Frederik IV.
+    "c6h": (1730, 1746),  # Christian VI.
+    "f5h": (1746, 1766),  # Frederik V.
+    "c7h": (1766, 1808),  # Christian VII.
+    "f6h": (1808, 1839),  # Frederik VI.
+    "c8h": (1839, 1848),  # Christian VIII.
+    "f7h": (1848, 1863),  # Frederik VII.
+    "c9h": (1863, 1906),  # Christian IX.
+    "f8h": (1906, 1912),  # Frederik VIII.
+    "c10h": (1912, 1947), # Christian X.
+    "f9h": (1947, 1972),  # Frederik IX.
 }
 
 
@@ -267,10 +302,19 @@ def _build_coin(
                 yr_seq.append(inner)
             cm["year_ranges"] = yr_seq
     else:
-        # Without years we still emit the row but flag year_label
-        # as «(?)» — placeholder; user must supply on review.
-        cm["year_label"] = "(?)"
-        cm["year_first"] = 0  # sentinel so YAML loads; user fixes
+        # Undated Hede entry («u. år» — uden årstal). Anchor to the
+        # ruler's reign window so the placeholder year_first sits
+        # inside seed_unsorted/A's [1500, 1914] cross-ref window AND
+        # is at least *plausible* for promotion. year_label keeps
+        # «u. å.» so the reader sees the entry is undated.
+        reign = _RULER_REIGN.get(hede_volume)
+        if reign:
+            cm["year_label"] = f"u. å. ({reign[0]}–{reign[1]})"
+            cm["year_first"] = reign[0]
+            cm["year_last"] = reign[1]
+        else:
+            cm["year_label"] = "u. å."
+            cm["year_first"] = 1500  # last-resort sentinel within phase A
     if ruler:
         cm["ruler"] = ruler
     cm["mint"] = mint_normalised
@@ -330,10 +374,45 @@ def _build_coin(
 
 
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument(
+        "--year-to", type=int, default=1914,
+        help=(
+            "Drop entries whose year_first is after this year (inclusive). "
+            "Default 1914 — the project's scope upper bound per CLAUDE.md. "
+            "Set higher to include modern issues (post-Reichsgoldmünzfuß-era)."
+        ),
+    )
+    args = ap.parse_args()
+    year_to = args.year_to
+
     parsed_files = sorted(p for p in HEDE_CACHE.glob("*.json") if not p.name.startswith("_"))
     if not parsed_files:
         print(f"No parsed JSON found in {HEDE_CACHE}", file=sys.stderr)
         return 1
+
+    # Load the aggregate canonical-resolution index built by
+    # parse_hede.py — composite Hede key («c4h111», «f3h68») →
+    # canonical file owning that key. Used to filter out duplicates:
+    # «c4h111» and «c4h111note» both describe Hede 111; only the
+    # canonical (c4h111) emits a seed entry. Multi-Hede pages like
+    # f3h68 only emit their own primary number, not the cross-
+    # referenced Hede 61 / 62AB / 63 specs (those belong to f3h62).
+    index_path = HEDE_CACHE / "_parsed_index.json"
+    if not index_path.exists():
+        print(f"Aggregate index missing — run parse_hede.py first", file=sys.stderr)
+        return 1
+    aggregate_idx = json.loads(index_path.read_text(encoding="utf-8"))
+    # file basename → set of Hede sub-numbers that file canonically owns
+    canonical_subs: dict[str, set[str]] = {}
+    for composite_key, summary in aggregate_idx.items():
+        # Extract the sub-Hede portion from composite key
+        # «c4h111» → «111», «f3h62ab» → «62ab», «c10h35» → «35».
+        m = re.match(r"^[cf]\d+h(.+)$", composite_key)
+        if not m:
+            continue
+        sub_num = m.group(1).lower()
+        canonical_subs.setdefault(summary["file"], set()).add(sub_num)
 
     coins: list[CommentedMap] = []
     stats = {
@@ -344,12 +423,22 @@ def main() -> int:
         "skipped_no_specs": 0,
         "skipped_no_nominal": 0,
         "skipped_multi_nominal_unparseable": 0,
+        "skipped_out_of_scope_year": 0,
+        "skipped_non_canonical": 0,
+        "skipped_cross_reference_subhede": 0,
     }
     skipped_mints: dict[str, int] = {}
 
     for p in parsed_files:
         d = json.loads(p.read_text(encoding="utf-8"))
         stats["considered"] += 1
+        # Skip files that aren't canonical for any Hede number (e.g.
+        # c4h111note — a footnote page where c4h111 owns the actual
+        # Hede 111 entry).
+        owned_subs = canonical_subs.get(d["id"], set())
+        if not owned_subs:
+            stats["skipped_non_canonical"] += 1
+            continue
         raw_mint = (d.get("mint") or "").strip().lstrip("),.;- ").strip()
         # Discard mojibake / parser-artifact mints (single digit, lone
         # punctuation, denomination-shaped strings).
@@ -392,6 +481,9 @@ def main() -> int:
                 stats["skipped_no_specs"] += 1
                 continue
             hede_number = nums[0]
+            if hede_number.lower() not in owned_subs:
+                stats["skipped_cross_reference_subhede"] += 1
+                continue
             coin = _build_coin(
                 hede_volume=hede_volume,
                 hede_number=hede_number,
@@ -401,6 +493,9 @@ def main() -> int:
             )
             if coin is None:
                 stats["skipped_no_nominal"] += 1
+                continue
+            if coin.get("year_first") and coin["year_first"] > year_to:
+                stats["skipped_out_of_scope_year"] += 1
                 continue
             coins.append(coin)
             stats["kept"] += 1
@@ -420,6 +515,9 @@ def main() -> int:
                 stats["skipped_multi_nominal_unparseable"] += 1
                 continue
             for (sub_num, sub_spec), nominal in zip(sub_items, nominal_parts):
+                if sub_num.lower() not in owned_subs:
+                    stats["skipped_cross_reference_subhede"] += 1
+                    continue
                 coin = _build_coin(
                     hede_volume=hede_volume,
                     hede_number=sub_num,
@@ -430,6 +528,9 @@ def main() -> int:
                 )
                 if coin is None:
                     stats["skipped_no_nominal"] += 1
+                    continue
+                if coin.get("year_first") and coin["year_first"] > year_to:
+                    stats["skipped_out_of_scope_year"] += 1
                     continue
                 coins.append(coin)
                 stats["kept"] += 1
@@ -457,6 +558,7 @@ def main() -> int:
     doc["status"] = "seed"
     doc["source"] = "Hede 1971 (danskmoent.dk cache)"
     doc["generated_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    doc["scope_year_to"] = year_to
     doc["coins"] = CommentedSeq(coins)
 
     header = (
@@ -464,19 +566,26 @@ def main() -> int:
         "# scripts/maintenance/build_hede_denmark_seed.py from the parsed\n"
         "# Hede cache (scripts/cache/hede/*.json).\n"
         "#\n"
-        "# NOT auto-loaded by scripts/build.py (lives outside data/locations/).\n"
-        "# Promotion path: paste accepted entries into the `coins:` block of\n"
-        "# data/locations/denmark.yml (alongside or replacing the existing\n"
-        "# seed_unsorted ucoin block), then reclassify each from fuss=seed_unsorted\n"
-        "# to the actual Müntzfuß window and flip *_verified flags after a\n"
-        "# per-coin sanity check against the source Hede page.\n"
+        "# Auto-merged into the location at build time by\n"
+        "# scripts/build.py::_merge_seeds_into_raw — any *.yml file under\n"
+        "# data/seed/<source>/<location_id>.yml whose name matches the\n"
+        "# location id is appended to the location's coins[] before the\n"
+        "# Location schema validates the result.\n"
         "#\n"
-        "# Conventions per the existing seed_unsorted block:\n"
+        "# Scoping happens HERE, not in the build: only entries with\n"
+        f"# year_first <= {year_to} (project scope per CLAUDE.md) are\n"
+        "# kept. The build trusts what's in the file and doesn't second-\n"
+        "# guess the cap; to change scope, re-run the generator with a\n"
+        "# different --year-to value.\n"
+        "#\n"
+        "# Conventions per the existing seed_unsorted block in\n"
+        "# data/locations/denmark.yml:\n"
         "#   * fuss=seed_unsorted, phase=A (catch-all bucket)\n"
         "#   * all *_verified flags false\n"
         "#   * source: type=literature pointing to danskmoent.dk URL\n"
         "#\n"
         f"# Total coins: {len(coins)}\n"
+        f"# Scope: year_first <= {year_to}\n"
         f"# Generated: {doc['generated_at']}\n"
     )
 

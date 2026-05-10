@@ -148,6 +148,47 @@ def load_german_fuesse_references() -> dict | None:
         return yaml.safe_load(f)
 
 
+SEEDS_DIR = DATA_DIR / "seed"
+
+
+def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
+    """Auto-merge `data/seed/<source>/<loc_id>.yml` coin lists into the
+    location's `raw['coins']` before schema validation.
+
+    Each top-level subdirectory under `data/seed/` represents a source
+    (e.g. `hede`, `bruun`); any *.yml file in that subdir whose stem
+    matches the location id is treated as a seed side-car for this
+    location and its `coins:` list is appended to the location's own
+    coins. The seed file is the canonical intermediate — scoping
+    (year cap, mint filter) happens at seed-generation time, not here;
+    the build trusts what the file contains.
+
+    Returns the list of (source_subdir_name, coin_count) tuples for
+    each merged file so the caller can print a one-line summary.
+
+    Schema validation happens AFTER the merge (the assembled
+    `raw['coins']` is what gets passed to `Location(**raw)`), so id
+    collisions, missing fuss / phase references, and year-vs-phase
+    range mismatches are caught there in one shot — no separate
+    seed-validation pass needed.
+    """
+    if not SEEDS_DIR.exists():
+        return []
+    merged: list[tuple[str, int]] = []
+    for source_dir in sorted(p for p in SEEDS_DIR.iterdir() if p.is_dir()):
+        seed_path = source_dir / f"{loc_id}.yml"
+        if not seed_path.exists():
+            continue
+        with open(seed_path, encoding="utf-8") as sf:
+            seed_doc = yaml.safe_load(sf) or {}
+        seed_coins = seed_doc.get("coins") or []
+        if not seed_coins:
+            continue
+        raw.setdefault("coins", []).extend(seed_coins)
+        merged.append((source_dir.name, len(seed_coins)))
+    return merged
+
+
 def load_locations(filter_id: str | None = None) -> list[Location]:
     locations = []
     for path in sorted((DATA_DIR / "locations").glob("*.yml")):
@@ -158,6 +199,11 @@ def load_locations(filter_id: str | None = None) -> list[Location]:
             continue
         with open(path, encoding="utf-8") as f:
             raw = yaml.safe_load(f)
+        seed_merges = _merge_seeds_into_raw(path.stem, raw)
+        if seed_merges:
+            parts = [f"{n} from {src}" for src, n in seed_merges]
+            print(f"   🌱 {path.stem}: merged {sum(n for _, n in seed_merges)} "
+                  f"seed coins ({', '.join(parts)})")
         try:
             loc = Location(**raw)
             # Attach references sidecar if present
@@ -169,7 +215,8 @@ def load_locations(filter_id: str | None = None) -> list[Location]:
                 loc._references_data = None
             locations.append(loc)
         except ValidationError as e:
-            print(f"❌ Schema errors in {path.name}:")
+            print(f"❌ Schema errors in {path.name}"
+                  f"{' (incl. seed merges)' if seed_merges else ''}:")
             print(e)
             raise
     return locations
