@@ -52,17 +52,41 @@ HEDE_CACHE = PROJECT / "scripts" / "cache" / "hede"
 OUT_DIR = PROJECT / "data" / "seed" / "hede"
 OUT_FILE = OUT_DIR / "denmark.yml"
 
-# Mints we accept into the Denmark seed (matches existing denmark.yml
-# convention of «Kopenhagen» across the seed_unsorted ucoin block).
-# Glückstadt / Altona / Flensborg / Haderslev / Rethwitsch belong to
-# the Schleswig-Holstein bucket and are filtered out; Christiansstad
-# is region-ambiguous (Skåne vs Christiania) and likewise skipped here.
+# Mints accepted into the Denmark seed. Hede 1971 («Danmarks og
+# Norges mønter») by definition only catalogues Danish-Norwegian
+# state coinage — every mint listed here is a Danish-royal mint,
+# even when located physically in Holstein (Glückstadt, Altona,
+# Flensborg, Haderslev, Rendsborg, Rethwitsch were all founded /
+# operated by the Danish crown). The Holstein-mint locations stay
+# in this set because the COIN'S political attribution is the
+# Danish state regardless of where the strike happened — and that's
+# what the Denmark page is documenting.
+#
+# Schleswig-Holstein-LOCAL issuers (Gottorp duchy, Sonderburg duchy,
+# Norburg-Plön, Glücksburg, Rantzau county, Schauenburg-Pinneberg)
+# are NOT in Hede — they're covered by Lange 1908/1912 and will get
+# their own seed pipeline pointed at schleswig_holstein.yml.
+#
+# Christiansstad is region-ambiguous (Skåne when Danish, post-1658
+# Swedish) and is left out to avoid silent mis-attribution.
 DK_MINT_DE = {
+    # Denmark proper
     "København": "Kopenhagen",
     "K�benhavn": "Kopenhagen",  # mojibake variant seen in some headers
+    "Kåbenhavn": "Kopenhagen",  # ditto, alt-decoding
     "Frederiksborg": "Frederiksborg",
     "Helsingør": "Helsingør",
+    # Danish-royal mints in the Holstein territories
+    "Glückstadt": "Glückstadt",
+    "Altona": "Altona",
+    "Flensborg": "Flensburg",
+    "Haderslev": "Hadersleben",
+    "Rendsborg": "Rendsburg",
+    "Rethwitsch": "Rethwisch",
+    # Combined-mint markings (issued at both, same standard)
     "København og Altona": "Kopenhagen und Altona",
+    "Altona og Poppenbüttel": "Altona und Poppenbüttel",
+    "Altona og Poppenbåttel": "Altona und Poppenbüttel",  # alt-decoding
 }
 
 # Roman numerals 1..10 for ruler-name rendering. Hede pages write
