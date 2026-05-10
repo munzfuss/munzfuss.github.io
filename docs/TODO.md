@@ -16,23 +16,70 @@ upstream completion (the territorial-attribution sweep before the
 data audit, etc.) — and should be worked through roughly in the
 listed order.
 
-1. **Process all IKMK candidates for SH and Denmark.** Run
-   `scripts/match_ikmk_locations.py` for both locations and walk the
-   produced `_match_<loc>.md` cards bucket-by-bucket: strict_match
-   (merge per §9a), fuzzy_match (visual confirm + merge), new_lange_variant
-   (decide: new entry or extend existing), weak_candidate (manual call),
-   no_match (defer). The Sonderburg-Sub-variant work this session
-   covered batches 1–4 of SH; the rest of the SH index plus the
-   entire DK index remain.
+1. **Process all IKMK candidates per location.**
+   - **1a. Schleswig-Holstein — DONE 2026-05-10.** All 65 IKMK records
+     in scope (prefixes Schleswig-Holstein-Sonderburg / -Gottorf /
+     -Glücksburg / plain SH) processed: 47 already cited in
+     `data/locations/schleswig_holstein.yml`, 2 added (commit
+     `eca82c0`: km-9 Lange 533A/a + 533A/b mule specimens after
+     §9a thinning), 16 deliberately skipped per §9a sub-variant
+     bucket overflow (intra-bucket noise — not a coverage gap).
+     Matcher hardening shipped along the way (commit `24a82e7`:
+     weight-sanity gate at 1.5× ratio, multi-letter+slash Lange-tag
+     regex, parent-fallback strict-ref lookup).
+   - **1b. Denmark — PENDING. Blocked by harvest expansion in (2a).**
+     Current IKMK scope for `denmark.yml` is only 41 records (26
+     under prefix «Dänemark» + 15 under «Norwegen») versus 468 coins
+     in the YAML. The IKMK Berlin cache holds 6,531 JSON files in
+     total, of which only this restrictive subset routes to the
+     denmark mapping in `_index_by_issuer.json`. The harvest filter
+     used for the original SH+DK pass was clearly Holstein-context-
+     scoped; for proper denmark coverage it has to be re-run with
+     a Kopenhagen / Christiania / Norwegen mint sweep across the
+     full 1566-1914 window. Matcher run + bucket triage is identical
+     in shape to (1a) but blocks on (2a).
 
-2. **Search for additional sources for the Danish coins; verify
-   that Hede / danskmoent.dk has been harvested successfully and
-   exhaustively.** danskmoent.dk indexes Hede catalog pages at
-   `c{ruler}h{N}.htm` (per-type) and `c{ruler}hede{N}.htm` /
-   `c{ruler}hede{N}.htm` overview pages. Confirm we have a cache
-   of every Hede page covering coins in our DK catalog (no missing
-   ruler-eras), and that the cross-link to YAML coins is wired
-   (a `catalog.hede` field where missing). Subsumes part of TODO K.
+2. **Multi-source enrichment pipeline for `denmark.yml`** (DK-only
+   scope; SH covered separately under (1a) and the older audit work).
+   The four stages below run roughly in order — earlier stages enrich
+   the per-coin data that later stages cross-check against:
+   - **2a. IKMK harvest expansion.** Re-run the IKMK bulk fetch with
+     a Kopenhagen / Christiania / Norwegen mint filter rather than
+     the original Holstein-context-scoped one. Target: several
+     hundred records in the «Dänemark» / «Norwegen» buckets, propor-
+     tional to denmark.yml's coin count. Implementation: extend
+     `scripts/audit_ikmk_index.py` (or its harvest twin) to broaden
+     the issuer/mint filter, fetch missing records via the IKMK
+     `/object?id=…&download=json_ext` API, regenerate
+     `scripts/cache/ikmk/_index_by_issuer.json`. Done criterion:
+     IKMK coverage proportional to YAML coin count + matcher's
+     `_match_denmark.json` totals reflect the expanded scope.
+   - **2b. IKMK candidates processing + DK seed_unsorted triage
+     (combined).** After (2a), run `match_ikmk_locations.py denmark`
+     and walk the buckets per the same procedure as (1a). At the
+     same time, walk the 422 `seed_unsorted` entries currently in
+     `denmark.yml` (per TODO D's DK part) and resolve their
+     Müntzfuß / phase / verification status. Combining both passes
+     maximises per-coin data density: an IKMK record that strict-
+     matches a seed entry can lift it out of `seed_unsorted` into
+     a real fuss with full provenance in one merge instead of two.
+   - **2c. Hede / danskmoent.dk exhaustive coverage check.** Verify
+     that `danskmoent.dk` Hede catalogue pages (URL pattern
+     `c{ruler}h{N}.htm` per-type, `c{ruler}hede{N}.htm` overview)
+     are cached for every ruler-era covering coins in `denmark.yml`,
+     and that every coin with a Hede equivalent carries a
+     `catalog.hede` field. Subsumes the original TODO K (systematic
+     Numista-vs-Hede divergence audit) — once Hede coverage is
+     wired, run the Numista-cross-check pass and apply per-coin
+     corrections per the established km-79 / km-128 / km-110 shape.
+   - **2d. Other-source enrichment (lower priority, post-Hede).**
+     Walk denmark.yml coins and pull additional readings from ucoin
+     (where SH-style URL index extends to DK), Numista (already
+     largely cached but un-merged on many coins), NumisBids, ma-
+     shops auction data, and any other accessible catalogue. Each
+     source becomes its own atomic step here once the Hede-pass
+     surfaces what's still under-documented. Order TBD when the
+     sub-items materialise.
 
 3. **Triage all remaining `seed_unsorted` coins in denmark.** The
    Bruun bulk import seeded coins under `seed_unsorted` when no
