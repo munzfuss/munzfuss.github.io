@@ -215,6 +215,62 @@ def main():
 
 Per-location rendering inside `build_location` calls `compute_location()` (A → B), then `categorize()` (B → C), then renders `location.html.j2` once per language.
 
+## Seed pipelines (external sources → location pages)
+
+When an external numismatic catalogue (Hede 1971, ucoin, Bruun, IKMK, …) contains coins that belong on a location page, the data passes through a fixed four-tier pipeline before reaching the rendered HTML. Each tier writes a file the next tier reads, so the transformation is inspectable at every step and re-runnable from any tier.
+
+```
+  ┌───────────────┐    ┌──────────────────┐    ┌─────────────────┐    ┌──────────────────┐    ┌──────────┐
+  │  Tier 0       │    │  Tier 1          │    │  Tier 2         │    │  Tier 3          │    │   HTML   │
+  │  raw fetch    │───▶│  typed parse     │───▶│  Coin-schema    │───▶│  build merge     │───▶│  (site/) │
+  │  (HTML / API) │    │  (per-page JSON) │    │  seed (YAML)    │    │  + render        │    │          │
+  └───────────────┘    └──────────────────┘    └─────────────────┘    └──────────────────┘    └──────────┘
+  scripts/fetch_*.py   scripts/parse_*.py   scripts/maintenance/    scripts/build.py
+  scripts/cache/       scripts/cache/       data/seed/<src>/<loc>.yml + canonical
+  <src>/<basename>     <src>/<basename>     ↑                       data/locations/<loc>.yml
+  .htm / .json         .json + _parsed_     filtering happens HERE
+                       index.json           (year cap, mint, dedup)
+```
+
+**Tier 0 — raw fetch.** `scripts/fetch_<source>.py` discovers + downloads pages from the source's published surface and caches each as `scripts/cache/<source>/<basename>.htm` (or `.json` for JSON APIs). Idempotent: skips already-cached files. The cache is the project's own copy of the source, so subsequent tiers can re-run without re-hitting the network.
+
+Concrete: `scripts/fetch_hede.py` runs `discover` (probes `/{ruler}hede{N}.htm` overviews and walks them for per-coin URLs) → `fetch` (downloads each unique URL). Writes `_manifest.json` for reproducibility.
+
+**Tier 1 — typed parse.** `scripts/parse_<source>.py` reads each cached page and emits a sibling `<basename>.json` with structured fields the project's tooling can query: ruler, mint, years + rarity, nominal, specs (Bruttovægt / Finhed / Finvægt / Marken-fin-udbragt-til), catalog refs (Hede, Schou, Sieg, …), litteratur, eksemplarer. A side-car `_parsed_index.json` aggregates a `composite_key → canonical_file` map so cross-references resolve cleanly.
+
+Concrete: `scripts/parse_hede.py` parses the 669 Hede pages into typed JSON (97% coverage on years, 100% on ruler + catalog refs, 74% on specs). Multi-Hede pages (one page covering Hede 61/62AB/63/64) get `specs.by_hede` keyed by the sub-Hede tag preceding each spec block.
+
+**Tier 2 — Coin-schema seed.** `scripts/maintenance/build_<source>_<location>_seed.py` filters the typed cache to a particular location's scope and shapes each accepted entry into a Coin-schema YAML record. Filtering decisions (year cap, mint set, canonical-resolution dedup, multi-nominal split rules) live HERE — at this tier, never in the build script. The output file IS the canonical intermediate the build reads; the build trusts what's in it.
+
+Concrete: `scripts/maintenance/build_hede_denmark_seed.py` consumes Tier-1 JSON + the aggregate index and writes `data/seed/hede/denmark.yml`. Three filters apply:
+- **Mint**: Danish royal mints only (København / Frederiksborg / Helsingør / Kbh+Altona). Glückstadt / Altona / Flensborg / Haderslev belong to a future `schleswig_holstein.yml` seed.
+- **Canonical resolution**: cross-reference sub-Hedes (e.g. f3h68's mention of Hede 61/62AB/63) emit only from the canonical owner (f3h62); footnote pages (c4h111note) emit nothing on top of c4h111.
+- **Year scope**: `--year-to <YEAR>` cap (default 1914 — project scope per CLAUDE.md). Stored in the seed file's header as `scope_year_to: <YEAR>` so a future reader knows the scope without re-running.
+
+**Tier 3 — build merge.** `scripts/build.py::_merge_seeds_into_raw(loc_id, raw)` runs once per location during `load_locations`. It scans `data/seed/*/<loc_id>.yml`, and any file whose stem matches the location id has its `coins:` list appended to the location's own coins **before** pydantic `Location(...)` validation. Duplicate ids, missing fuss / phase references, and chronology mismatches are caught in the existing schema check — no separate seed-validation pass.
+
+The build is silent for locations with no matching seed file. When a non-empty seed merge happens, the build prints one line summarising sources + counts, e.g.:
+
+```
+🌱 denmark: merged 373 seed coins (373 from hede)
+```
+
+**Rendering separation.** Seed coins land in the location's `seed_unsorted` fuss bucket but a **separate phase per source** keeps them visually distinct in the rendered HTML: ucoin seeds → `phase: A`, Hede seeds → `phase: hede`. The location's `phases.seed_unsorted` list defines one Phase entry per source with its own title (`Bulk-Seed · ucoin` / `Bulk-Seed · Hede 1971 (danskmoent.dk)`) so each pile renders in its own sub-section without intermixing rows.
+
+**Promotion path (out of seed → into a real Müntzfuß).** Once a seed coin is researched enough to assign a Müntzfuß and phase:
+1. Cut the YAML block from the seed file (or just leave it — the build is idempotent).
+2. Paste into `data/locations/<loc>.yml` under the chosen fuss + phase coin block.
+3. Drop `fuss: seed_unsorted` / `phase: <source>`; set the real fuss + phase.
+4. Cross-check the source page linked in `sources[0]`; flip `*_verified: true` field-by-field per CLAUDE.md §5.
+5. Re-run `python scripts/build.py --validate-only` to catch chronology / cross-ref drift.
+
+Seeds are append-only intake. Promotions move coins *out* of the seed bucket into proper periodisation; the seed file shrinks as more entries are properly classified, but never grows by hand-editing (only by re-running the generator).
+
+**Per-source documentation.** Each source's pipeline is described in detail in its own doc:
+- Hede 1971 (danskmoent.dk): `data/seed/hede/README.md` (filtering decisions + coverage stats + promotion-path checklist)
+- Bruun (Stack's Bowers Part II): `data/seed/bruun/README.md` (formerly active; now empty after all 7 territories were promoted)
+- ucoin (legacy bulk imports): `docs/IKMK_HARVEST.md` + `scripts/audit_ucoin_categories.py` docstring
+
 ## Data validation (build-time checks)
 
 Run via `python scripts/build.py --validate-only`.

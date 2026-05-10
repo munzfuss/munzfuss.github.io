@@ -285,7 +285,13 @@ def _build_coin(
     cm = CommentedMap()
     cm["id"] = coin_id
     cm["fuss"] = "seed_unsorted"
-    cm["phase"] = "A"
+    # Source-specific phase under seed_unsorted so the Hede-derived
+    # rows render in their own sub-section on the location page,
+    # cleanly separated from the older ucoin bulk block (phase=A).
+    # Both phases live inside seed_unsorted (the catch-all bucket
+    # awaiting Müntzfuß reclassification); the separation is
+    # cosmetic-but-honest about provenance, not analytical.
+    cm["phase"] = "hede"
     cm["kind"] = kind
     cm["nominal"] = nominal
     year_block = _build_year_fields(parsed.get("years") or [])
