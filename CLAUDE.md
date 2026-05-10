@@ -35,6 +35,37 @@ This rule **subsumes and reinforces** §4 (unconfirmed-data marker), §5 (source
 
 **The scholarly tone is not optional decoration.** A hedged guess presented in confident prose is worse than no entry at all — it pollutes the reference and silently corrupts every researcher who later cites it.
 
+### 0b. Hypothesis vs. fact — never collapse the two
+
+> **This is a scholarly numismatic study, not detective fiction.** A confident-sounding explanation for an observation must be backed by data you actually opened, not by what feels plausible from context. Hypotheses are legitimate tools — but they must be labelled as hypotheses, and the next move is always to try to prove or disprove them, not to ship them as conclusions.
+
+**The failure mode this rule guards against.** A surprising data point appears (two sources disagree, a number looks off, a value seems to defy the standard). The mind reaches for a satisfying explanation — «must be a typo», «probably an OCR error», «by analogy with X this is surely Y», «the parser likely truncated this». That explanation gets written into the rendered prose as if it were established. It feels like analysis. It is, in fact, a guess that bypassed verification.
+
+Concrete real example from this project (caught 2026-05-10): a 2-Speciedaler 1663 row carried two competing KM numbers — Bruun's auction catalogue printed «KM-240», Numista showed «KM-241» for the same physical type. The note prose was written explaining this as «Bruun-parser typo / OCR artefact». When the underlying `scripts/cache/bruun/lots/part4.json` was opened afterwards, the `body_excerpt` plainly read «Dav-3547; KM-240; Hede-62A; Sieg-80.1; ...»: Stack's Bowers' own auction catalogue had printed «KM-240». The parser captured this faithfully. The «typo» explanation was a hypothesis dressed as a conclusion — the actual story (Bruun cataloguer cited the 1-Speciedaler's KM number on the 2-Speciedaler lot, likely an «adjacent KM» mistake on Bruun's side, or an older Krause edition) only emerged after checking the body_excerpt + cross-referencing four other sources.
+
+**Required moves:**
+
+- **Before writing «X is because Y», verify Y from the actual data.** If Y is in a local cache, open the cache file. If Y is on a web page, fetch the page. If Y is the output of a script, run the script (or read its source). The verification step is the work; skipping it doesn't save time, it pollutes the artefact.
+- **Hedge markers are mandatory for unverified claims.** Use «hypothesis», «possibly», «I haven't verified this», «pending check against …», «припускаю», «гіпотеза». Confident phrasing — «this is …», «the cause is …», «the parser misread …» — is reserved for claims that have been verified.
+- **When data is missing, name the gap.** Never fill it with a plausible story. «Source X does not document this; status unknown until …» is honest. «X is probably …» without an explicit hypothesis label is not.
+- **After framing a hypothesis, attempt to prove or disprove it.** A hypothesis that survives a session without any verification effort isn't yet research output — it's just a thought. Either run the check or leave the question open with the gap labelled.
+- **When a hypothesis turns out wrong, fix the prior assertion publicly.** Don't quietly delete it; record what was claimed, what verification showed, and the correction. Future sessions reading the YAML / commit log need to see the trail to avoid repeating the mistake. (See e.g. the «Bruun-parser KM-typo» correction in commit `37f5b6d`.)
+
+**Forbidden:**
+
+- «It must be a typo / OCR artefact / cataloguer's error» — written into prose without checking the source PDF, cache record, or parser output to confirm.
+- «By analogy with X, this should be Y» — used as a final claim. Analogy generates hypotheses, not conclusions. The hypothesis still needs verification before it ships.
+- «Likely / probably / presumably / it seems that» — written into rendered prose without an explicit «hypothesis pending verification» marker. The rendered artefact carries verified claims only; speculation belongs in chat or in clearly-flagged verification notes.
+- «The parser is wrong» / «the source is incorrect» — claimed without diff'ing the parser output against the underlying text, or without cross-checking the suspect source against ≥2 independent peers.
+
+**Operational test before any analytical claim leaves your fingers:**
+
+1. Did I open the underlying data (cache file, source page, computed value, body_excerpt) to verify this *specific* claim?
+2. If no — am I labelling this explicitly as a hypothesis to be tested? Did I name what would prove or disprove it?
+3. If yes — does the data actually say what I'm about to claim, in those exact words?
+
+This rule complements §0 (no invention). §0 forbids unsourced claims in the rendered output; §0b forbids unverified analytical leaps regardless of where they appear — chat, prose, commit messages, audit notes. Together they enforce a single discipline: every claim is either verified-and-attributed, or labelled as the hypothesis it actually is.
+
 ### 0z. Three reader roles — always know who you're writing for
 
 > **Every line of text you produce has exactly one of three readers. Mis-identifying which one is the most common cause of voice violations on this project. Decide before you write, not after.**
