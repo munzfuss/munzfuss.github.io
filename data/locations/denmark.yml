@@ -3217,6 +3217,15 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '81'
+      hede: 115A
+      sieg: '45.1'
+      schou: '143'
+      others:
+        - Harck-18.2.1
+      bruun_collection_id: '5181'
+      bruun_part: IV
+      bruun_lot_no: 17051
+      bruun_page: 35
     metal: silver
     fineness: 0.86
     weight_rough_g: 1.051
@@ -3224,11 +3233,23 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-4-skilling-1620-1621/?tid=163016
         ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: 'Bruun Part IV, lot 17051, p. 35 (KM 81; Hede 115A; Sieg 45.1)'
     issuing_entity: danish_realm
     verified: false
     fineness_verified: false
     weight_rough_verified: false
     mint_verified: false
+    note:
+      de: '4 Skilling 1620-1621 («Kroneskilling») · Christian IV., Kopenhagen, Münzmeister Nicolaus Schwabe (Klee-Mzz.) · Hede c4h115 dokumentiert die Reverse-Aufschrift «1/36 krone», woher der Trivialname «Kroneskilling» — derselbe physische Typ wie die Hede-115 Hauptserie (Schwabe, ca. 9 330 Daler insgesamt). Bruun-Specimen NGC MS-63, höchstgradiertes Stück bei NGC für Datum + Typ.'
+        # Note: the Bruun parser extracts «4 Kroneskilling» from the lot
+        # meta-line; per Hede c4h115 this is the same coin as our «4 Skilling»
+        # row (synonyms in period nomenclature). Earlier audit briefly
+        # stripped the Bruun-citation under the assumption it was a
+        # different denomination tier — Hede 1957 confirms it is not.
+      en: '4 Skilling 1620-1621 («Kroneskilling») · Christian IV, Copenhagen, mintmaster Nicolaus Schwabe (clover privy mark) · Hede c4h115 documents the reverse legend «1/36 krone», whence the colloquial name «Kroneskilling» — the same physical type as Hede 115''s main series (Schwabe, c. 9,330 daler in total). Bruun specimen NGC MS-63, the highest NGC-graded piece for date + type.'
+      uk: '4 Skilling 1620-1621 («Kroneskilling») · Кристіан IV, Копенгаген, монетмайстер Nicolaus Schwabe (Mzz. конюшина) · Hede c4h115 фіксує реверс-легенду «1/36 krone», звідки тривіальна назва «Kroneskilling» — той самий фізичний тип, що й основна серія Hede 115 (Schwabe, бл. 9 330 далерів сукупно). Bruun-екземпляр NGC MS-63 — найвища NGC-оцінка для дати + типу.'
     verification_note:
       de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -6570,6 +6591,52 @@ coins:
       de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
+  - id: km-241-fr-iii-1663
+    fuss: 9_25_thaler
+    phase: A
+    kind: kurant
+    fraction: '2'
+    nominal: 2 Speciedaler
+    year_label: '1662-1664'
+    year_first: 1662
+    year_last: 1664
+    ruler: Frederik III.
+    mint: Kopenhagen
+    catalog:
+      km: '241'
+      hede: '62A'
+      sieg: '80.1'
+      schou: '11'
+      dav: '3547'
+      numista: '328513'
+      others:
+        - 'Aagaard-96.2'
+      bruun_collection_id: '6403'
+      bruun_part: IV
+      bruun_lot_no: 17073
+      bruun_page: 50
+    metal: silver
+    fineness: 0.875
+    fineness_verified: true
+    weight_rough_g:
+      - value: 57.55
+        source: 'Numista N#328513'
+      - value: 57.86
+        source: 'Bruun Part IV, lot 17073, p. 50 (KM 241; Hede 62A; Sieg 80.1)'
+    diameter_mm: 44.0
+    inscription_obv: 'FRID: III: D: G: REX: DAN: NOR: VAN: GOT'
+    inscription_rev: '✤ DOMINVS | PROVIDEBIT ✤ | 16 | 63 | I | S'
+    note:
+      de: '2 Speciedaler 1663 (Variante 1662 IS, 1663 IS, 1664 CH) · Frederik III., Kopenhagen, Münzmeister IS / CH · Davenport EC II 3547. Numista N#328513 katalogisiert KM 241; Bruun-Parser im Kache hat KM-Token als «240» extrahiert (Tippfehler / OCR-Artefakt — Greysheet und Numista führen die Prägung als KM 241). Obverse: «FRID: III: D: G: REX: DAN: NOR: VAN: GOT» um gekrönte und drapierte Brüstung Frederiks III. nach rechts; Reverse: gekröntes dreigeteiltes Wappen über Kreuz mit Wahlspruch «DOMINVS PROVIDEBIT». Numista-Spec: 57,55 g · .875 · 44 mm; Bruun-Specimen 6403 NGC AU Details — gewogen 57,86 g.'
+      en: '2 Speciedaler 1663 (variants 1662 IS, 1663 IS, 1664 CH) · Frederik III, Copenhagen, mintmasters IS / CH · Davenport EC II 3547. Numista N#328513 catalogues this as KM 241; the Bruun parser in our cache extracted the KM token as «240» (likely typo / OCR artefact — both Greysheet and Numista list the strike as KM 241). Obverse: «FRID: III: D: G: REX: DAN: NOR: VAN: GOT» around the crowned and draped bust of Frederik III facing right; reverse: crowned tripartite shield over cross with the motto «DOMINVS PROVIDEBIT». Numista spec: 57.55 g · .875 · 44 mm; Bruun specimen 6403, NGC AU Details — weighed 57.86 g.'
+      uk: '2 Speciedaler 1663 (варіанти 1662 IS, 1663 IS, 1664 CH) · Фредерік III, Копенгаген, монетмейстри IS / CH · Davenport EC II 3547. Numista N#328513 каталогізує це як KM 241; Bruun-парсер у нашому кеші витягнув KM-токен як «240» (ймовірна помилка / OCR-артефакт — Greysheet і Numista наводять цю емісію як KM 241). Аверс: «FRID: III: D: G: REX: DAN: NOR: VAN: GOT» навколо коронованого та задрапованого погруддя Фредеріка III праворуч; реверс: коронований триподілений щит над хрестом із гаслом «DOMINVS PROVIDEBIT». Numista-spec: 57,55 г · .875 · 44 мм; Bruun-екземпляр 6403 NGC AU Details — зважено 57,86 г.'
+    sources:
+      - type: numista
+        url: https://en.numista.com/328513
+        ref: 'Numista N#328513'
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: 'Bruun Part IV, lot 17073, p. 50 (KM 241; Hede 62A; Sieg 80.1)'
   - id: km-x013-fr-iii-1664
     fuss: 9_25_thaler
     phase: A
@@ -17215,6 +17282,83 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1033, p. 71
+  - id: km-79-chr-iv-1624
+    fuss: 9_25_thaler
+    phase: A
+    kind: kurant
+    fraction: '4'
+    nominal: 4 Speciedaler
+    year_label: '1624'
+    year_first: 1624
+    year_last: 1624
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      km: '79'
+      hede: '58'
+      sieg: '110'
+      schou: '1'
+      dav: '3521'
+      bruun_collection_id: '5364'
+      bruun_part: I
+      bruun_lot_no: 1031
+      bruun_page: 69
+    metal: silver
+    fineness: 0.888
+    weight_rough_g:
+      - value: 116.49
+        source: 'Bruun Part I, lot 1031, p. 69 (KM 79; Hede 58; Sieg 110)'
+    diameter_mm: 43.7
+    note:
+      de: '4 Speciedaler 1624 · Christian IV., Kopenhagen, Münzmeister Nicolaus Schwabe (Mzz. Klee, NS) · Davenport EC II 3521. CoinVarieties dokumentiert die Spezifikation als <b>115 g · .888</b> bei <b>43,7 mm</b> Durchmesser; das Stück wurde «mit den regulären Speciedaler-Stempeln, jedoch viermal so dick» geprägt. Christian IV. notierte am 31. März die Übergabe von 140 Speciedalern aus Schwabes Werkstatt aus norwegischem Silber — die Serie 1624 (1-, 2-, 3- und 4-Speciedaler) ist die erste dänisch-norwegische Prägung aus Kongsberger Silber (Werk gegründet Sommer 1623). Bruun-Specimen 5364 NGC EF Details — gewogen 116,49 g.'
+      en: '4 Speciedaler 1624 · Christian IV, Copenhagen, mintmaster Nicolaus Schwabe (clover privy mark, NS) · Davenport EC II 3521. CoinVarieties documents the specification as <b>115 g · .888</b> at <b>43.7 mm</b> diameter; the coin was «struck with regular Speciedaler dies but four times as thick». Christian IV recorded on 31 March receiving 140 Speciedalers from Schwabe struck from Norwegian silver — the 1624 series (1-, 2-, 3- and 4-Speciedaler) is the first Danish-Norwegian issue from Kongsberg silver (works established summer 1623). Bruun specimen 5364, NGC EF Details — weighed 116.49 g.'
+      uk: '4 Speciedaler 1624 · Кристіан IV, Копенгаген, монетмейстер Nicolaus Schwabe (Mzz. конюшина, NS) · Davenport EC II 3521. CoinVarieties фіксує специфікацію як <b>115 г · .888</b> при <b>43,7 мм</b>; монета «карбована регулярними штемпелями Speciedaler, але вчетверо товщою». Кристіан IV 31 березня записав отримання 140 Speciedaler-ів від Schwabe, карбованих із норвезького срібла — серія 1624 (1-, 2-, 3- і 4-Speciedaler) — перші дансько-норвезькі емісії зі срібла Конгсберга (копальню засновано влітку 1623). Bruun-екземпляр 5364 NGC EF Details — зважено 116,49 г.'
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: 'Bruun Part I, lot 1031, p. 69 (KM 79; Hede 58; Sieg 110)'
+      - type: web
+        url: https://coinvarieties.com/index.php/Denmark_1624-NS_4_speciedaler_Dav-3521
+        ref: CoinVarieties — Denmark 1624-NS 4-Speciedaler
+  - id: km-75-chr-iv-1624
+    fuss: 9_25_thaler
+    phase: A
+    kind: kurant
+    fraction: '3'
+    nominal: 3 Speciedaler
+    year_label: '1624'
+    year_first: 1624
+    year_last: 1624
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      km: '75'
+      hede: '57'
+      sieg: '109'
+      schou: '3'
+      dav: '3522'
+      bruun_collection_id: '5365'
+      bruun_part: IV
+      bruun_lot_no: 17054
+      bruun_page: 37
+    metal: silver
+    fineness: 0.888
+    fineness_verified: false
+    weight_rough_g:
+      - value: 86.94
+        source: 'Bruun Part IV, lot 17054, p. 37 (KM 75; Hede 57; Sieg 109)'
+    note:
+      de: '3 Speciedaler 1624 · Christian IV., Kopenhagen, Münzmeister Nicolaus Schwabe · Davenport EC II 3522 · Schwesterstück der 4-Speciedaler-Prägung 1624 (KM 79, Dav 3521): regulärer Speciedaler-Stempelsatz, jedoch dreifache Dicke. Teil der ersten dänisch-norwegischen Multiple-Speciedaler-Serie aus Kongsberger Silber 1624. Bruun-Specimen 5365 NGC AU Details — gewogen 86,94 g (≈ 3× 28,98 g Standard-Speciedaler).'
+      en: '3 Speciedaler 1624 · Christian IV, Copenhagen, mintmaster Nicolaus Schwabe · Davenport EC II 3522 · sister piece to the 4-Speciedaler 1624 strike (KM 79, Dav 3521): regular Speciedaler die-set struck triple-thick. Part of the first Danish-Norwegian multi-Speciedaler series from Kongsberg silver 1624. Bruun specimen 5365, NGC AU Details — weighed 86.94 g (≈ 3× 28.98 g standard Speciedaler).'
+      uk: '3 Speciedaler 1624 · Кристіан IV, Копенгаген, монетмейстер Nicolaus Schwabe · Davenport EC II 3522 · сестринський випуск до 4-Speciedaler 1624 (KM 79, Dav 3521): регулярний штемпельний набір Speciedaler, втричі товщий. Частина першої дансько-норвезької серії multi-Speciedaler зі срібла Конгсберга 1624. Bruun-екземпляр 5365 NGC AU Details — зважено 86,94 г (≈ 3× 28,98 г стандартного Speciedaler).'
+    sources:
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: 'Bruun Part IV, lot 17054, p. 37 (KM 75; Hede 57; Sieg 109)'
+    verification_note:
+      de: Feingehalt .888 aus paralleler 4-Speciedaler-Prägung übernommen (CoinVarieties); kein Hede / Schou-Direkt-Zitat.
+      en: Fineness .888 inherited from the parallel 4-Speciedaler strike (CoinVarieties); no direct Hede / Schou citation.
+      uk: Проба .888 успадкована від паралельної 4-Speciedaler емісії (CoinVarieties); прямого Hede / Schou цитування немає.
   - id: km-104-hede-56b-chr-iv-1627
     fuss: 9_25_thaler
     phase: A
