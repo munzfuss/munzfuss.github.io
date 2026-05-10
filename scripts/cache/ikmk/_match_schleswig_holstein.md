@@ -56,7 +56,7 @@
 | [18285113](https://ikmk.smb.museum/object?id=18285113) | 1619-1619 | `km-46-fr-iii-1617` | strict by lange 339c | — |
 | [18202375](https://ikmk.smb.museum/object?id=18202375) | 1623-1623 | `km-15-chr-iv-1623` | strict by lange 34e | — |
 | [18206321](https://ikmk.smb.museum/object?id=18206321) | 1664-1664 | `km-56-fr-iii-1666` | strict by lange 65 | catalog.dav |
-| [18219857](https://ikmk.smb.museum/object?id=18219857) | 1666-1666 | `km-56-fr-iii-1666` | strict by hede 144 | — |
+| [18219857](https://ikmk.smb.museum/object?id=18219857) | 1666-1666 | `km-56-fr-iii-1666` | strict by hede f3h144 | — |
 | [18206117](https://ikmk.smb.museum/object?id=18206117) | 1671-1671 | `bruun-14681-christian-glb-1672` | strict by lange 737 | — |
 
 ## New Lange-# variants (potential YAML additions)

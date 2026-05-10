@@ -146,11 +146,110 @@ def _norm_ref(value) -> str:
     return re.sub(r"\s+", "", str(value)).lower()
 
 
+# Hede 1971 publishes a separate catalogue volume per Danish king;
+# danskmoent.dk hosts entries under URLs keyed by ruler-prefix +
+# Hede number (c4h28 ≠ c5h28 ≠ f3h28). The bare Hede number is
+# therefore ambiguous across rulers, so the matcher's strict-by-hede
+# path uses a COMPOSITE key («c4h28») on both sides:
+#   * coin index: composed from `catalog.hede_volume + catalog.hede`.
+#   * IKMK record: derived from the record's title prefix
+#     («Dänemark: Christian IV.» → c4h) combined with the Hede
+#     number parsed from `literatur`.
+# Without this gate, the strict path collapses cross-ruler Hede
+# collisions (e.g. IKMK 18204859 = Christian VIII 1842 «Hede 1»
+# was wrongly strict-matched to our hede-1-chr-iv-1591 = Christian
+# IV 1591 «Hede 1» before the gate landed).
+_RULER_TO_VOLUME = [
+    ("Christian X", "c10h"), ("Christian IX", "c9h"),
+    ("Christian VIII", "c8h"), ("Christian VII", "c7h"),
+    ("Christian VI", "c6h"), ("Christian V", "c5h"),
+    ("Christian IV", "c4h"), ("Christian III", "c3h"),
+    ("Christian II", "c2h"), ("Christian I", "c1h"),
+    ("Frederik IX", "f9h"), ("Frederik VIII", "f8h"),
+    ("Frederik VII", "f7h"), ("Frederik VI", "f6h"),
+    ("Frederik V", "f5h"), ("Frederik IV", "f4h"),
+    ("Frederik III", "f3h"), ("Frederik II", "f2h"),
+    ("Frederik I", "f1h"),
+    ("Friedrich IX", "f9h"), ("Friedrich VIII", "f8h"),
+    ("Friedrich VII", "f7h"), ("Friedrich VI", "f6h"),
+    ("Friedrich V", "f5h"), ("Friedrich IV", "f4h"),
+    ("Friedrich III", "f3h"), ("Friedrich II", "f2h"),
+    ("Friedrich I", "f1h"),
+]
+
+
+def _ruler_to_hede_volume(text: str) -> str | None:
+    if not text:
+        return None
+    for needle, code in _RULER_TO_VOLUME:
+        if needle in text:
+            return code
+    return None
+
+
+def _ikmk_hede_volume(summary: dict) -> str | None:
+    """Derive the ruler-volume code from an IKMK record summary.
+
+    Tries (in order):
+      1. The summary's `ruler` field (extracted from
+         `linked_persons_corporations` Autorität / Münzherr).
+      2. The summary's `title` after the colon
+         («Dänemark: Christian IV.» → c4h).
+
+    Returns None when no Danish-king ruler can be identified — in
+    which case the strict-by-hede path skips the record (Hede
+    catalogue is per-ruler; without a ruler-volume on the IKMK
+    side we can't safely strict-match against our composite-key
+    index).
+
+    Also returns None for IKMK records whose country prefix is
+    «Norwegen»: Hede 1971 numbers Denmark and Norway sections
+    INDEPENDENTLY (page 30 «Hede 8» = FrIII Danish ½ Dukat;
+    page 115 «Hede 8 b» = FrIII Norwegian Taler — completely
+    different coins). Our denmark.yml indexes Danish-section
+    Hede; matching a Norwegian-section Hede to it would be a
+    cross-section false-positive of the same shape this fix
+    is designed to prevent."""
+    if not isinstance(summary, dict):
+        return None
+    title = summary.get("title") or ""
+    # Country prefix gate — Norwegen records have their own Hede
+    # numbering and must not match Danish-section index entries.
+    country_prefix = title.split(":", 1)[0].strip() if ":" in title else ""
+    if country_prefix.lower() in ("norwegen", "norge", "norway"):
+        return None
+    after_colon = title.split(":", 1)[1] if ":" in title else title
+    v = _ruler_to_hede_volume(after_colon)
+    if v:
+        return v
+    # Fallback: bare ruler name (rarely sufficient — accept only if
+    # the after-colon content is wholly a ruler ordinal expression
+    # we can resolve).
+    ruler = summary.get("ruler") or ""
+    if ruler:
+        v = _ruler_to_hede_volume(ruler)
+        if v:
+            return v
+    return None
+
+
 def index_our_coins(coins: list[dict]) -> dict[str, dict[str, list[dict]]]:
     index = {k: {} for k in ("lange", "hede", "dav", "sieg", "schou", "km")}
     for c in coins:
         cat = c.get("catalog") or {}
         for code in index:
+            if code == "hede":
+                # Composite key: «c4h28» = «{hede_volume}{hede_number}».
+                # When `hede_volume` is missing on the coin, fall back
+                # to bare number so the existing index doesn't drop
+                # entries that haven't been backfilled yet.
+                v = cat.get("hede")
+                if v:
+                    norm = _norm_ref(v)
+                    vol = cat.get("hede_volume")
+                    key = f"{_norm_ref(vol)}{norm}" if vol else norm
+                    index["hede"].setdefault(key, []).append(c)
+                continue
             v = cat.get(code)
             if v:
                 index[code].setdefault(_norm_ref(v), []).append(c)
@@ -427,11 +526,42 @@ def match_one_location(loc_id: str, index: dict) -> dict | None:
         # parent-tag level still resolve from IKMK records that publish
         # a fuller sub-variant. The `match_reason` keeps the IKMK form
         # so the reader sees which sub-variant the IKMK actually attests.
+        #
+        # Special-case Hede: lookup key is composite («c4h28») built
+        # from the ruler-volume on each side. IKMK volume comes from
+        # the record's title prefix; our coin's volume from the
+        # filled `catalog.hede_volume` field. When the IKMK record
+        # has no recoverable Danish-king ruler, the Hede strict path
+        # is skipped — the bare-number lookup that the previous
+        # version did was the source of cross-ruler false-positives
+        # (Christian VIII «Hede 1» wrongly hitting Christian IV
+        # «Hede 1»; see fill_hede_volume.py + audit_ikmk_index.py).
         ours_match = None
         match_reason = None
+        ikmk_hede_vol = _ikmk_hede_volume(s)
         for code in ("lange", "hede", "dav", "sieg", "schou"):
             for ref in s["refs"].get(code, []):
                 if ref.get("cf"):
+                    continue
+                if code == "hede":
+                    if not ikmk_hede_vol:
+                        continue  # can't disambiguate — skip
+                    composite = f"{ikmk_hede_vol}{ref['norm']}"
+                    lookup = our_idx[code].get(composite)
+                    if not lookup and "/" in ref["norm"]:
+                        lookup = our_idx[code].get(
+                            f"{ikmk_hede_vol}{ref['norm'].split('/', 1)[0]}"
+                        )
+                    if not lookup:
+                        parent = re.match(r"^(\d+(?:\.\d+)?)", ref["norm"])
+                        if parent and parent.group(1) != ref["norm"]:
+                            lookup = our_idx[code].get(
+                                f"{ikmk_hede_vol}{parent.group(1)}"
+                            )
+                    if lookup:
+                        ours_match = lookup[0]
+                        match_reason = f"strict by hede {ikmk_hede_vol}{ref['norm']}"
+                        break
                     continue
                 lookup = our_idx[code].get(ref["norm"])
                 if not lookup and "/" in ref["norm"]:

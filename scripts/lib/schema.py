@@ -229,6 +229,17 @@ class CatalogRefs(_StrictBase):
     km: str | None = None
     lange: str | None = None
     hede: str | None = None
+    # Ruler-volume code per danskmoent.dk URL convention. Hede 1971
+    # publishes a separate catalogue volume per Danish king, so
+    # «Hede 28» is ambiguous across rulers (Christian IV's c4h28
+    # is a different coin from Christian VII's c7h28). Storing the
+    # volume code explicitly lets the matcher and any future
+    # cross-source tooling disambiguate without re-deriving from
+    # `coin.ruler`. Codes follow the danskmoent.dk URL pattern:
+    # c{N}h for Christian {N}, f{N}h for Frederik {N}, etc. Keep
+    # `hede` as the bare number+suffix; the full reference is
+    # f"{hede_volume}{hede}" when both are set.
+    hede_volume: str | None = None
     sieg: str | None = None
     schou: str | None = None
     fr: str | None = None
