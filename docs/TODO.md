@@ -7,6 +7,103 @@
 
 ## Open
 
+### L. Schleswig-Holstein + Denmark consolidation campaign  *(opened 2026-05-10)*
+
+A coordinated multi-pass effort to bring the SH and Denmark locations
+to «published-quality» state before the next location takes priority.
+The nine sub-tasks below are tightly coupled — many depend on
+upstream completion (the territorial-attribution sweep before the
+data audit, etc.) — and should be worked through roughly in the
+listed order.
+
+1. **Process all IKMK candidates for SH and Denmark.** Run
+   `scripts/match_ikmk_locations.py` for both locations and walk the
+   produced `_match_<loc>.md` cards bucket-by-bucket: strict_match
+   (merge per §9a), fuzzy_match (visual confirm + merge), new_lange_variant
+   (decide: new entry or extend existing), weak_candidate (manual call),
+   no_match (defer). The Sonderburg-Sub-variant work this session
+   covered batches 1–4 of SH; the rest of the SH index plus the
+   entire DK index remain.
+
+2. **Search for additional sources for the Danish coins; verify
+   that Hede / danskmoent.dk has been harvested successfully and
+   exhaustively.** danskmoent.dk indexes Hede catalog pages at
+   `c{ruler}h{N}.htm` (per-type) and `c{ruler}hede{N}.htm` /
+   `c{ruler}hede{N}.htm` overview pages. Confirm we have a cache
+   of every Hede page covering coins in our DK catalog (no missing
+   ruler-eras), and that the cross-link to YAML coins is wired
+   (a `catalog.hede` field where missing). Subsumes part of TODO K.
+
+3. **Triage all remaining `seed_unsorted` coins in denmark.** The
+   Bruun bulk import seeded coins under `seed_unsorted` when no
+   confident phase / fuss could be assigned. Walk the list (already
+   tracked under TODO D for the broader hamburg+lubeck+denmark
+   scope, but bring the DK part to completion as part of this
+   campaign).
+
+4. **Move all genuinely-Danish coins from SH to denmark.** Royal-
+   Danish issues (Christian IV, Frederick III, Christian V, etc.)
+   minted in Copenhagen / Helsingør / Christiania currently living
+   in `data/locations/schleswig_holstein.yml` should migrate to
+   `data/locations/denmark.yml`. Cross-check `mint` and
+   `issuing_entity` fields; anything that is `royal_holstein` is a
+   deliberate SH-territorial issue (Glückstadt under Christian IV
+   stays in SH); anything that is plain Danish royal goes to DK.
+
+5. **Show all Denmark-related SH coins on the Danish page.** SH
+   coins issued by the Danish Crown for SH-territory (Glückstadt
+   Reichsthalers under ChrIV, Schleswig-Holstein-dänisch Mark/Marck
+   etc.) historically circulated as part of Danish coinage and a
+   reader on the DK page would expect to find them. Decide the
+   mechanism — preferably *not* a YAML copy. Options to consider:
+   (a) a Jinja-side cross-include that pulls a filtered view of
+   SH's `royal_holstein`-issuing coins into a new section on
+   `denmark/<lang>/index.html`; (b) extracting those coins into a
+   shared file `data/shared/dk_sh_dual_register.yml` and including
+   from both location pages. The end-reader sees one view per
+   location; the data lives once.
+
+6. **Move all SH-territorial coins from denmark to SH.** The
+   mirror of (4): any coins currently in `denmark.yml` that are
+   actually SH-territorial issues (e.g. struck in Altona by the
+   Danish Crown but for the duchies, not for the kingdom) belong
+   in `schleswig_holstein.yml`.
+
+7. **Verify that all SH and Denmark coins sit in the correct fuss,
+   category, and phase.** Walk every coin in both files and confirm
+   `fuss` (per §8.1 / §8a), `kind` (kurant / scheide / tarif /
+   gedenk per §6), and `phase` (per the location's phase definitions
+   and §8.2). The Sonderburg-Kipper rows on §8.1 boundaries are
+   particular candidates for review.
+
+8. **Per-coin data audit.** For every coin in both files, walk every
+   listed source and confirm that (a) the data published in the
+   source matches the data on the coin row, AND (b) every data
+   point on the coin row that the source documents is present.
+   Catches both transcription errors (Numista digit-swap pattern
+   from TODO K) and missed enrichments (source published a
+   diameter or fineness we didn't transcribe). Done criterion:
+   audit-script `scripts/audit_per_coin_sources.py` that flags
+   discrepancies, then per-row remediation pass.
+
+9. **Audit of all rendered prose.** All `note`, `description`,
+   `verification_note`, and phase-prose fields across both
+   `data/locations/schleswig_holstein.yml`,
+   `data/locations/denmark.yml`, and the matching
+   `*-references.yml` files. Check: register (CLAUDE.md §2a),
+   period orthography (§2), reader-voice vs analyst-voice (§0a /
+   §0z), no-invention (§0), inline-citation hygiene (§5), and
+   uk Cyrillic-transliteration trap (§2a). The corpus has
+   accumulated ~ a year of prose under varying voice discipline;
+   a sweep is overdue.
+
+**Estimated effort.** Each sub-task is a multi-hour to multi-day
+piece of work. Expected total: 1–2 weeks of focused sessions. Open
+sub-items as their own TODO letters once they reach the active
+working tier.
+
+---
+
 ### K. Systematic Numista vs. Hede cross-check  *(opened 2026-05-09)*
 
 **Surfaced during.** Three independent investigations during the
