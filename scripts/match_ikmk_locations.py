@@ -56,31 +56,56 @@ INDEX_PATH = CACHE / "_index_by_issuer.json"
 
 # ---------- Catalogue-ref extraction from IKMK literatur -------------
 
+# Sub-variant tail captures multi-letter + slash forms common in Lange /
+# Hede / Bruun catalogues — e.g. «533 A/b» (a die-mule), «430 AA»,
+# «99 Aa», «3746 var». The original regex captured only a single
+# trailing letter, silently truncating «A/b» → «A» and collapsing
+# distinct sub-variants under one key. The truncation was symmetric
+# with YAML normalisation so routing usually survived — but the
+# source-label fidelity needed for §9a sub-variant bucket discrimination
+# was lost. Mirrors the closed TODO J fix in scripts/bruun_parser.
+#
+# Each compiled regex gets its own copy of the named group `q`, which
+# is fine because they are separate compiled patterns (no group-name
+# collision across regexes).
+_TAIL = r"(?P<q>[A-Za-z]+(?:\s*/\s*[A-Za-z]+)*(?:\.\d+)?)?"
+
 RE_LANGE = re.compile(
     r"(?P<cf>Vgl\.\s+)?Chr\.?\s*Lange'?s\s*,?\s*Sammlung[^()]*\((?P<year>1908|1912)\)"
-    r"[\s\S]*?Nr\.?\s*(?P<num>\d+)\s*(?P<q>[A-Za-z](?:\.\d+)?)?",
+    r"[\s\S]*?Nr\.?\s*(?P<num>\d+)\s*" + _TAIL,
     re.IGNORECASE,
 )
 RE_HEDE = re.compile(
-    r"(?:H\.\s*)?Hede[^A-Za-z0-9]+(?:[\s\S]*?Nr\.?\s*)?(?P<num>\d+)(?P<q>[A-Z]?)\b",
+    r"(?:H\.\s*)?Hede[^A-Za-z0-9]+(?:[\s\S]*?Nr\.?\s*)?(?P<num>\d+)\s*"
+    + _TAIL + r"\b",
     re.IGNORECASE,
 )
 RE_DAV = re.compile(
-    r"Davenport[\s\S]*?Nr\.?\s*(?P<num>\d+)(?P<q>[A-Za-z]?)\b",
+    r"Davenport[\s\S]*?Nr\.?\s*(?P<num>\d+)\s*" + _TAIL + r"\b",
     re.IGNORECASE,
 )
 RE_SIEG = re.compile(
-    r"\bSieg[^A-Za-z0-9]+(?:[\s\S]*?Nr\.?\s*)?(?P<num>\d+(?:\.\d+)?)(?P<q>[A-Z]?)\b",
+    r"\bSieg[^A-Za-z0-9]+(?:[\s\S]*?Nr\.?\s*)?(?P<num>\d+(?:\.\d+)?)\s*"
+    + _TAIL + r"\b",
     re.IGNORECASE,
 )
 RE_SCHOU = re.compile(
-    r"\bSchou[^A-Za-z0-9]+(?:[\s\S]*?Nr\.?\s*)?(?P<num>\d+)(?P<q>[A-Z]?)\b",
+    r"\bSchou[^A-Za-z0-9]+(?:[\s\S]*?Nr\.?\s*)?(?P<num>\d+)\s*" + _TAIL + r"\b",
     re.IGNORECASE,
 )
 
 
 def _norm(num: str, q: str | None) -> str:
-    return f"{num}{(q or '').strip().lower()}"
+    """Normalise a catalogue ref to a lookup key.
+
+    Strips whitespace, lowercases. Preserves slash separators so multi-
+    letter sub-variant tails like «A/b» stay distinct from plain «A».
+    The strict-ref lookup path falls back to the root («533a/b» →
+    «533a») when an exact match misses, so YAML coins still resolve
+    from IKMK records carrying the fuller tag.
+    """
+    tail = re.sub(r"\s+", "", (q or "")).lower()
+    return f"{num}{tail}"
 
 
 def extract_refs(literatur: str) -> dict[str, list[dict]]:
@@ -225,6 +250,69 @@ def _ikmk_summary(rec: dict) -> dict:
     }
 
 
+# Mass-sanity gate threshold for fuzzy/cf-only candidate routing.
+# When IKMK and host both publish a weight, the ratio (IKMK / host_median)
+# must fall within [1/_WEIGHT_GATE, _WEIGHT_GATE]. 1.5 gives ±50%
+# headroom — comfortably covers normal specimen variance (±10-15%) and
+# Kipper-period debasement (up to ±25-30%) — while correctly rejecting
+# adjacent-fraction confusion: a 1/2 vs 1 or 1/16 vs 1/8 pairing has
+# ratio exactly 2.0, and those are distinct types deserving separate
+# YAML entries, not a cf-only merge. Discovered when a fuzzy cf-only
+# «Vgl. Lange 339 B» Doppelschilling cluster routed to km-49-fr-iii-1618
+# (Reichsthaler, ratio ~14×) because km-49's ruler spelling happened to
+# share more tokens with IKMK than the correct host km-46-fr-iii-1617
+# — see TODO L.1 audit, May 2026.
+_WEIGHT_GATE = 1.5
+
+
+def _ikmk_weight_g(ikmk: dict) -> float | None:
+    """Parse a leading numeric gram-value from an IKMK weight string."""
+    raw = ikmk.get("weight") or ""
+    m = re.match(r"\s*([\d.]+)", raw)
+    if not m:
+        return None
+    try:
+        return float(m.group(1))
+    except ValueError:
+        return None
+
+
+def _host_weights_g(ours: dict) -> list[float]:
+    """Collect numeric gram-values from a YAML coin's weight_rough_g."""
+    raw = ours.get("weight_rough_g")
+    if isinstance(raw, list):
+        out: list[float] = []
+        for entry in raw:
+            if isinstance(entry, dict):
+                v = entry.get("value")
+                if isinstance(v, (int, float)) and v > 0:
+                    out.append(float(v))
+        return out
+    if isinstance(raw, (int, float)) and raw > 0:
+        return [float(raw)]
+    return []
+
+
+def _weight_compatible(ikmk: dict, ours: dict) -> bool:
+    """Reject pairings where IKMK and host weights differ by > _WEIGHT_GATE×.
+
+    Returns True (allow) when either side lacks a numeric weight — the
+    gate only fires when both observations exist.
+    """
+    wi = _ikmk_weight_g(ikmk)
+    if wi is None:
+        return True
+    weights = _host_weights_g(ours)
+    if not weights:
+        return True
+    weights.sort()
+    median = weights[len(weights) // 2]
+    if median <= 0:
+        return True
+    ratio = wi / median
+    return (1.0 / _WEIGHT_GATE) <= ratio <= _WEIGHT_GATE
+
+
 def _diff_fields(ikmk: dict, ours: dict) -> dict:
     diff: dict = {}
     if ikmk["avers_leg"] and not (ours.get("inscription_obv") or "").strip():
@@ -332,7 +420,13 @@ def match_one_location(loc_id: str, index: dict) -> dict | None:
         rec = json.loads((CACHE / f"{nid}.json").read_text(encoding="utf-8"))
         s = _ikmk_summary(rec)
 
-        # 1. Strict catalogue-ref match — Lange/Hede/Dav/Sieg/Schou
+        # 1. Strict catalogue-ref match — Lange/Hede/Dav/Sieg/Schou.
+        # Tries the exact normalised key first, then a slash-stripped
+        # root («533a/b» → «533a»), then a trailing-letter root
+        # («3a» → «3», «339c» → «339») so YAML coins catalogued at the
+        # parent-tag level still resolve from IKMK records that publish
+        # a fuller sub-variant. The `match_reason` keeps the IKMK form
+        # so the reader sees which sub-variant the IKMK actually attests.
         ours_match = None
         match_reason = None
         for code in ("lange", "hede", "dav", "sieg", "schou"):
@@ -340,6 +434,12 @@ def match_one_location(loc_id: str, index: dict) -> dict | None:
                 if ref.get("cf"):
                     continue
                 lookup = our_idx[code].get(ref["norm"])
+                if not lookup and "/" in ref["norm"]:
+                    lookup = our_idx[code].get(ref["norm"].split("/", 1)[0])
+                if not lookup:
+                    parent = re.match(r"^(\d+(?:\.\d+)?)", ref["norm"])
+                    if parent and parent.group(1) != ref["norm"]:
+                        lookup = our_idx[code].get(parent.group(1))
                 if lookup:
                     ours_match = lookup[0]
                     match_reason = f"strict by {code} {ref['norm']}"
@@ -347,7 +447,11 @@ def match_one_location(loc_id: str, index: dict) -> dict | None:
             if ours_match:
                 break
 
-        # 2. Fuzzy fallback
+        # 2. Fuzzy fallback. Mass-sanity gate (_WEIGHT_GATE) rejects
+        # candidates whose host weight differs from the IKMK specimen
+        # by more than the threshold, which prevents cross-denomination
+        # cf-tag pollution (Doppelschilling ~2 g routing to Reichsthaler
+        # ~29 g via shared ruler / year tokens).
         ikmk_has_lange = bool(s["refs"].get("lange"))
         if not ours_match:
             try:
@@ -361,6 +465,8 @@ def match_one_location(loc_id: str, index: dict) -> dict | None:
                 except (TypeError, ValueError):
                     cy = 0
                 if iy and cy and abs(iy - cy) > 5:
+                    continue
+                if not _weight_compatible(s, c):
                     continue
                 score, why = _fuzzy_score(s, c)
                 if score >= 4:
