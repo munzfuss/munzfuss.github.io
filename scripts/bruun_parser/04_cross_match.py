@@ -97,8 +97,32 @@ def load_our_coins():
                 "dav_raw": cat.get("dav"), "dav": first_token(cat.get("dav")),
                 "bruun_lot": cat.get("bruun_lot"),
                 "bruun_collection_id": cat.get("bruun_collection_id"),
+                # Weight readings paired with their source labels, for the
+                # §9.1/§9.3 weight-sanity gate. The gate uses entries OTHER
+                # than the lot under inspection — including the lot's own
+                # weight in the reference set lets the contaminated reading
+                # vouch for itself (median collapses to the bad value).
+                "weights_pairs": _coin_weight_pairs(c.get("weight_rough_g")),
+                # Plain nominal string for the denomination-name parity gate.
+                "nominal": c.get("nominal"),
             })
     return rows
+
+
+def _coin_weight_pairs(raw):
+    """Flatten weight_rough_g to ``list[(float, source_str)]``. Sources can
+    be empty when the entry is a bare scalar."""
+    if isinstance(raw, list):
+        out = []
+        for entry in raw:
+            if isinstance(entry, dict):
+                v = entry.get("value")
+                if isinstance(v, (int, float)) and v > 0:
+                    out.append((float(v), str(entry.get("source") or "")))
+        return out
+    if isinstance(raw, (int, float)) and raw > 0:
+        return [(float(raw), "")]
+    return []
 
 
 def build_index(coins, key):
@@ -152,22 +176,200 @@ def _hede_parent(hede_str):
     return m.group(1) if m else None
 
 
-def lot_compatible_with_coin(lot, candidate):
-    """Apply the §9.3 KM-token parity check before linking a Bruun lot to
-    a candidate coin.
+_WEIGHT_GATE = 2.0  # max ratio between lot weight and coin median; rejects
+                    # cross-denomination contamination (Doppelschilling ~2 g
+                    # routing to Reichsthaler ~29 g), allows normal specimen
+                    # variance + adjacent-fraction sub-variants. Mirrors the
+                    # IKMK matcher's gate from match_ikmk_locations.py
+                    # (commit 555260c).
 
-    Rule:
+# Pn / off-metal / piefort markers in primary classification position.
+# When a Bruun-lot meta_line opens with one of these, the lot is a §9.1
+# pattern / off-metal strike that should never link to a regular
+# circulation coin. The gate scans only the head of the lot's
+# meta_line (post-country-prefix) so casual mentions deeper in the
+# body excerpt — e.g. «starlike pattern» — don't false-positive.
+_PN_HEAD_MARKERS = (
+    "gold off-metal", "silver off-metal", "off-metal strike",
+    "gold pattern", "silver pattern", "copper pattern",
+    "pattern strike", "trial strike", "essai",
+)
 
-    * When both lot and candidate carry a KM token, their parent KM
-      numbers must match. (744 ↔ 744.1 ↔ 744.2 OK; 165 ↔ 166 NOT OK.)
-    * When KM is absent on either side, fall back to Hede parent
-      comparison. Pure Hede-only matches survive (the «hede-XXX-…»
-      schema in denmark.yml uses Hede as the primary axis).
-    * When neither axis has a comparable pair, return True — the
-      single-letter Lange / Sieg / Dav heuristic upstream is the only
-      signal we have, and demanding a parity check would reject every
-      Sonderburg / Holstein-territorial coin (Lange-only catalog).
+
+def _is_pn_lot(lot):
+    """True if the lot's primary classification is a Pn-tier issue
+    (off-metal strike / pattern / trial / essai)."""
+    meta = (lot.get("meta_line") or "").strip()
+    if not meta:
+        return False
+    # Strip leading «COUNTRY .» / «COUNTRY,» prefix, then look at the head.
+    m = re.match(r"^[A-Z]+\s*[\.,]?\s*(.*)", meta)
+    head = (m.group(1) if m else meta)[:160].lower()
+    return any(marker in head for marker in _PN_HEAD_MARKERS)
+
+
+# Denomination synonyms — words that mean the same coin type across
+# Bruun's English meta-line and our YAML's mixed German/Ukrainian/English
+# nominal field. Each entry is a frozenset; two denom words are compatible
+# iff they belong to the same set.
+_DENOM_SYNONYMS = [
+    frozenset({"thaler", "taler", "speciedaler", "species", "speciesthaler",
+               "reichsthaler", "reichstaler", "reichsspeciedaler", "rigsdaler",
+               "rixdaler"}),
+    frozenset({"ducat", "dukat"}),
+    frozenset({"krone", "guldkrone"}),  # 1 Krone ≡ 4 Mark in Christian VI's reign,
+                                        # but «Mark» is its OWN type in earlier rules,
+                                        # so handled via per-coin alias not here
+    frozenset({"skilling"}),
+    frozenset({"kroneskilling"}),       # SEPARATE from skilling — Kronemont unit
+    frozenset({"sechsling"}),
+    frozenset({"dreiling"}),
+    frozenset({"søsling", "soesling", "sösling"}),
+    frozenset({"pfennig"}),
+    frozenset({"groschen"}),
+    frozenset({"piefort", "pieforte"}),
+    frozenset({"portugaloser"}),
+    frozenset({"mark"}),
+    frozenset({"hvid"}),
+    frozenset({"noble"}),
+]
+
+
+def _denom_group(word):
+    """Return the synonym set containing ``word`` (lowered), or None."""
+    w = word.lower().strip()
+    for grp in _DENOM_SYNONYMS:
+        if w in grp:
+            return grp
+    return None
+
+
+_DENOM_TOKEN_RE = re.compile(
+    r"\b(?:1[/⁄][24816]|[½¼⅛⅓⅔¾]|\d{1,2}(?:[/⁄][24816])?)?\s*"
+    r"(speciedaler|species(?:thaler)?|reichs(?:speciedaler|thaler|taler)?|"
+    r"thaler|taler|"
+    r"rigsdaler|rixdaler|"
+    r"kroneskilling|krone|guldkrone|"
+    r"sechsling|dreiling|søsling|soesling|sösling|"
+    r"ducat|dukat|"
+    r"skilling|"
+    r"piefort|pieforte|"
+    r"portugaloser|"
+    r"pfennig|groschen|hvid|noble|"
+    r"mark)\b",
+    re.IGNORECASE,
+)
+
+
+def _primary_denom(text):
+    """Extract the first denomination noun from a string (lot meta head
+    or coin nominal). Returns the lowered noun or None."""
+    if not text:
+        return None
+    m = _DENOM_TOKEN_RE.search(text)
+    if not m:
+        return None
+    return m.group(1).lower()
+
+
+def _denom_compatible(lot, candidate):
+    """Reject when lot meta's primary denomination noun and coin nominal's
+    primary denomination noun belong to DIFFERENT synonym sets (e.g.
+    Kroneskilling vs Skilling, Speciedaler vs Sechsling).
+
+    Pass-through when either side fails to parse a denom token — the
+    name-extraction is brittle on long meta lines, so a missed parse
+    should not gate out an otherwise-valid match.
     """
+    meta = (lot.get("meta_line") or "")
+    # Strip country prefix to focus on the coin classification head
+    m = re.match(r"^[A-Z]+\s*[\.,]?\s*(.*)", meta.strip())
+    head = (m.group(1) if m else meta)[:120]
+    lot_denom = _primary_denom(head)
+    nom_denom = _primary_denom(candidate.get("nominal") or "")
+    if not lot_denom or not nom_denom:
+        return True
+    g_lot = _denom_group(lot_denom)
+    g_nom = _denom_group(nom_denom)
+    if not g_lot or not g_nom:
+        return True
+    return g_lot == g_nom
+
+
+def _weight_compatible(lot, candidate):
+    """Lot/candidate weight magnitudes must agree within ``_WEIGHT_GATE``×.
+
+    Returns True (allow) when either side lacks a numeric weight — the
+    gate only fires when both observations exist. Excludes weight
+    readings whose source label mentions the LOT under inspection
+    (lot number or Bruun-collection-id), so a previously-attached
+    contaminated reading can't vouch for itself by collapsing the
+    coin's median onto the lot's own value.
+    """
+    lot_w = lot.get("weight_g")
+    if not isinstance(lot_w, (int, float)) or lot_w <= 0:
+        return True
+    pairs = candidate.get("weights_pairs") or []
+    if not pairs:
+        return True
+    lot_no = str(lot.get("lot_no") or "")
+    bruun_coll = str((lot.get("refs") or {}).get("Bruun") or "")
+    # Source-label tokens that identify THIS lot's contribution to the row
+    # so we can subtract it from the reference set.
+    lot_tokens = []
+    if lot_no:
+        lot_tokens.append(f"lot {lot_no}")
+        lot_tokens.append(f"lot_no: {lot_no}")
+    if bruun_coll:
+        lot_tokens.append(f"Bruun-coll. {bruun_coll}")
+        lot_tokens.append(f"bruun_collection_id: {bruun_coll}")
+    others = [v for v, src in pairs
+              if not any(tok in src for tok in lot_tokens)]
+    if not others:
+        return True
+    others.sort()
+    median = others[len(others) // 2]
+    if median <= 0:
+        return True
+    ratio = lot_w / median
+    return (1.0 / _WEIGHT_GATE) <= ratio <= _WEIGHT_GATE
+
+
+def lot_compatible_with_coin(lot, candidate):
+    """Apply §9.1 + §9.3 compatibility checks before linking a Bruun
+    lot to a candidate coin.
+
+    Three independent gates:
+
+    1. **§9.1 Pn-tier rejection.** If the lot's primary classification
+       is an off-metal strike / pattern / trial / essai, never link —
+       these belong to separate registers, not coin tables (cf.
+       CLAUDE.md §9 inclusion criteria).
+    2. **Weight-sanity (mass-magnitude).** When both lot and candidate
+       publish a weight, the ratio must fall within
+       ``[1/_WEIGHT_GATE, _WEIGHT_GATE]``. Catches cross-denomination
+       contamination where a same-KM token bridges different Krause
+       sub-volumes (e.g. KM-79 SH-Glückstadt 1 Sechsling ≈ 0.6 g vs
+       KM-79 Denmark 4-Speciedaler ≈ 116 g).
+    3. **§9.3 KM-token parity** (existing). Same-parent-KM only —
+       744 ↔ 744.1 ↔ 744.2 OK; 165 ↔ 166 NOT OK. Falls back to
+       parent-Hede when KM is absent. Accepts KMs listed in
+       ``catalog.others`` for the Numista-duplicate consolidation
+       pattern.
+    """
+    if _is_pn_lot(lot):
+        return False
+    if not _weight_compatible(lot, candidate):
+        return False
+    # Denom-name parity gate (`_denom_compatible`) was prototyped here
+    # but produced false-positives on the «4 Mark (Krone)» / «Species-
+    # Dukat» / «Courant Ducat (Rixdaler)» Bruun-double-naming patterns
+    # where the lot legitimately describes the same coin under two
+    # parallel names. Manual cleanup is the right tool for the
+    # remaining cross-volume KM-collisions; the helper stays in place
+    # for future targeted use (e.g. count-ratio + hard-incompatible-
+    # pairs check) but doesn't gate routing today.
+
     refs = lot.get("refs", {})
 
     lot_km = _km_parent(refs.get("KM"))
