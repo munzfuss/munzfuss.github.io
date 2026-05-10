@@ -694,6 +694,19 @@ phases:
         de: <p>Die <b>Hebræermønt</b> wird parallel in zwei Münzstätten geprägt — København (KM# 137, 1644–1646) und Glückstadt (KM# 32, 1645) — beide mit dem Tetragramm יהוה auf der Rückseite und beide bei .593 Feingehalt (gegen den Kronemønt-Standard .671 reduziert). Bei unverändertem Tarif von ⅓ Speciedaler steigt der kumulative Seigniorage-Aufschlag durch dieses zweite Debasement auf ca. +27,6 % (siehe Sondertabelle).</p><p>Parallel dazu Glückstadter 4-Marck-Danske-Serie unter Frederik III. (KM# A43, B43) am Standardfeingehalt .671 — die Norm­fortsetzung, die später die Christian-V.-Serie ablöst.</p>
         en: <p>The <b>Hebræermønt</b> is struck in parallel at two mints — Copenhagen (KM# 137, 1644–1646) and Glückstadt (KM# 32, 1645) — both bearing the Tetragrammaton יהוה on the reverse and both at .593 fineness (reduced from the Kronemønt standard of .671). At an unchanged tariff of ⅓ Speciedaler, this second debasement raises the cumulative seigniorage premium to about +27.6 % (see separate sub-table).</p><p>Alongside, the Glückstadt 4-Marck-Danske series under Frederik III (KM# A43, B43) at standard fineness .671 — the normative continuation that the Christian V series later carries forward.</p>
         uk: <p><b>Hebræermønt</b> карбується паралельно на двох монетних дворах — Копенгаген (KM# 137, 1644–1646) і Glückstadt (KM# 32, 1645) — обидва з тетраграматоном יהוה на реверсі та обидва на пробі .593 (знижено від стандартної kronemønt-проби .671). За незмінним тарифом ⅓ Speciedaler це другий шар debasement піднімає кумулятивну сеньйораж-надбавку до ~+27,6 % (див. окрему підтаблицю).</p><p>Паралельно — ґлюкштатська серія 4 Marck Danske за Фредеріка III (KM# A43, B43) на стандартній пробі .671 — нормативне продовження, яке пізніше підхоплює серія Кристіана V.</p>
+    - id: B
+      year_from: 1670
+      year_to: 1699
+      from_label: '1670'
+      to_label: '1699'
+      title:
+        de: 10½-Krone-Fuß · Christian-V.-Reihe (Krone und 2/4 Mark)
+        en: 10½-Krone-Fuß · Christian V series (Krone and 2/4 Mark)
+        uk: 10½-Krone-Fuß · серія Кристіана V (Krone і 2/4 Mark)
+      description:
+        de: 'Christian V. setzt den <b>10½-Krone-Fuß</b> ab 1670 in Kopenhagen-Reihen fort: 1 und 2 Krone sowie die parallel laufenden 2- und 4-Mark-Danske auf demselben Standard. Hede 1971 verzeichnet für diese Stücke jeweils <i>Marken fin udbragt til ≈ 10,4 daler / rd je Marck fein</i>, was den Müntzfuß identifiziert. Ende mit Christian V.s Tod 1699.'
+        en: 'Christian V continues the <b>10½-Krone-Fuß</b> from 1670 in Copenhagen series: 1 and 2 Krone plus the parallel 2- and 4-Mark Danske on the same standard. Hede 1971 records <i>Marken fin udbragt til ≈ 10.4 daler / rd per Marck fein</i> for these pieces, identifying the Müntzfuß. Series ends with Christian V''s death in 1699.'
+        uk: 'Кристіан V продовжує <b>10½-Krone-Fuß</b> з 1670 р. у копенгагенських серіях: 1 і 2 Krone та паралельні 2- і 4-Mark Danske на тому ж стандарті. Hede 1971 фіксує для цих монет <i>Marken fin udbragt til ≈ 10,4 daler / rd за марку чистого срібла</i> — це і визначає прив''язку. Серія завершується зі смертю Кристіана V у 1699 р.'
   guldkrone:
     - id: pre-A
       year_from: 1618
@@ -835,9 +848,9 @@ phases:
         uk: Збірна фаза для монет, авто-merge з Hede 1971 (через danskmoent.dk-кеш). Джерело — <code>data/seed/hede/denmark.yml</code>, генерує <code>scripts/maintenance/build_hede_denmark_seed.py</code> з типізованого Hede-кешу (<code>scripts/cache/hede/*.json</code>). При майбутній детальній роботі кожна монета перейде у власну Müntzfuß з коректною періодизацією.
 coins:
   - id: dk-tid-162984
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Hvid
     year_label: 1582-1583
     year_first: 1582
@@ -863,9 +876,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163001
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1582-1583
     year_first: 1582
@@ -891,9 +904,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163011
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1582-1585
     year_first: 1582
@@ -919,9 +932,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163030
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: 1582-1585
     year_first: 1582
@@ -971,7 +984,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163065
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -998,7 +1011,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163398
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Gulden
@@ -1026,9 +1039,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163012
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1594-1596
     year_first: 1594
@@ -1054,7 +1067,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163067
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 4 Mark
@@ -1081,7 +1094,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-173642
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -1108,7 +1121,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163068
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -1135,7 +1148,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163071
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -1163,9 +1176,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162972
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Penning
     year_label: '1602'
     year_first: 1602
@@ -1187,9 +1200,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162975
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Penning
     year_label: '1602'
     year_first: 1602
@@ -1211,9 +1224,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162976
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Penning
     year_label: '1602'
     year_first: 1602
@@ -1235,9 +1248,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162977
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Hvid
     year_label: '1602'
     year_first: 1602
@@ -1262,9 +1275,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162978
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Hvid
     year_label: '1602'
     year_first: 1602
@@ -1289,9 +1302,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162989
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Søsling
     year_label: '1602'
     year_first: 1602
@@ -1316,9 +1329,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163020
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: 1602-1609
     year_first: 1602
@@ -1354,7 +1367,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163043
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 1 Mark
@@ -1382,9 +1395,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163008
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1603-1613
     year_first: 1603
@@ -1410,9 +1423,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162990
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Søsling
     year_label: '1604'
     year_first: 1604
@@ -1437,7 +1450,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163059
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 2 Mark
@@ -1464,7 +1477,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163077
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 10 Ducat
@@ -1491,7 +1504,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163409
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 4 Daler
@@ -1534,7 +1547,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163410
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 6 Daler
@@ -1577,9 +1590,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162995
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1605-1616
     year_first: 1605
@@ -1605,9 +1618,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163021
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: 1606-1608
     year_first: 1606
@@ -1646,9 +1659,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163031
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: 1606-1609
     year_first: 1606
@@ -1674,9 +1687,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163033
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: '1606'
     year_first: 1606
@@ -1701,7 +1714,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163044
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 1 Mark
@@ -1728,7 +1741,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163045
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 1 Mark
@@ -1756,9 +1769,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162991
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Søsling
     year_label: '1606–1607'
     year_first: 1606
@@ -1786,7 +1799,7 @@ coins:
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     year_last: 1607
   - id: dk-tid-163046
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 1 Mark
@@ -1821,7 +1834,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163074
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -1859,9 +1872,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163022
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: 1608-1609
     year_first: 1608
@@ -1887,9 +1900,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163034
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: '1608'
     year_first: 1608
@@ -1914,7 +1927,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163069
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -1958,7 +1971,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163070
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -2022,7 +2035,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163405
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Gulden
@@ -2099,9 +2112,9 @@ coins:
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 51 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1611–1629). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 51 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1611–1629). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: dk-tid-162992
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Søsling
     year_label: '1611'
     year_first: 1611
@@ -2126,7 +2139,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163073
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -2202,9 +2215,9 @@ coins:
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 52 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1612–1618). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 52 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1612–1618). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: dk-tid-162986
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Hvid
     year_label: 1613-1614
     year_first: 1613
@@ -2230,9 +2243,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162993
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Søsling
     year_label: '1614'
     year_first: 1614
@@ -2257,9 +2270,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162996
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1615-1619
     year_first: 1615
@@ -2285,9 +2298,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163017
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: 1616-1619
     year_first: 1616
@@ -2313,9 +2326,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163019
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: 1616-1619
     year_first: 1616
@@ -2647,7 +2660,7 @@ coins:
       uk: "Монетний двір попередньо записано як Копенгаген — узгоджено з рештою 1618-ї Kronemønt-серії (km-57 ¼, km-58 ½, km-59 1, km-60 2 Krone, усі Копенгаген) та з Royal-Danish-Krause-індексом KM-DK# 56; Глюкштадт у 1618 р. не карбував Krone-фракцій. Прямий Mzm.-доказ за Hede/Wilcke ще очікується, звідси (?). Діаметр у ucoin не вказано."
 
   - id: dk-tid-163048
-    fuss: seed_unsorted
+    fuss: kronemont_chr_iv
     phase: A
     kind: kurant
     nominal: ½ Krone
@@ -2674,7 +2687,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163060
-    fuss: seed_unsorted
+    fuss: kronemont_chr_iv
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -2942,9 +2955,9 @@ coins:
     issuing_entity: danish_realm
     mint: Kopenhagen
   - id: dk-tid-162997
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1619-1623
     year_first: 1619
@@ -2970,9 +2983,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162999
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: '1619'
     year_first: 1619
@@ -2997,9 +3010,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163000
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: '1619'
     year_first: 1619
@@ -3024,9 +3037,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163014
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: '1619'
     year_first: 1619
@@ -3051,7 +3064,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163055
-    fuss: seed_unsorted
+    fuss: kronemont_chr_iv
     phase: A
     kind: kurant
     nominal: ½ Krone
@@ -3089,7 +3102,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163056
-    fuss: seed_unsorted
+    fuss: kronemont_chr_iv
     phase: A
     kind: kurant
     nominal: ½ Krone
@@ -3128,7 +3141,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163061
-    fuss: seed_unsorted
+    fuss: kronemont_chr_iv
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -3219,9 +3232,9 @@ coins:
     issuing_entity: danish_realm
     mint: Kopenhagen
   - id: dk-tid-163016
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: 1620-1621
     year_first: 1620
@@ -3269,9 +3282,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163026
-    fuss: seed_unsorted
+    fuss: 9_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: 1620-1621
     year_first: 1620
@@ -3373,9 +3386,9 @@ coins:
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 85 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1622–1623). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 85 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1622–1623). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: dk-tid-162994
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Søsling
     year_label: '1622'
     year_first: 1622
@@ -3397,9 +3410,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163027
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: 1622-1623
     year_first: 1622
@@ -3691,9 +3704,9 @@ coins:
     issuing_entity: danish_realm
     mint: Kopenhagen
   - id: dk-tid-162980
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Hvid
     year_label: 1624-1625
     year_first: 1624
@@ -3716,9 +3729,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-162998
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: '1624'
     year_first: 1624
@@ -3750,9 +3763,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163029
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: 1624-1625
     year_first: 1624
@@ -3778,9 +3791,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163039
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 16 Skilling
     year_label: 1624-1625
     year_first: 1624
@@ -3806,9 +3819,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163042
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 24 Skilling
     year_label: '1624'
     year_first: 1624
@@ -3830,7 +3843,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163057
-    fuss: seed_unsorted
+    fuss: kronemont_chr_iv
     phase: A
     kind: kurant
     nominal: ½ Krone
@@ -3868,7 +3881,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163062
-    fuss: seed_unsorted
+    fuss: kronemont_chr_iv
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -3896,9 +3909,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96456
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1624-1629
     year_first: 1624
@@ -3924,7 +3937,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97347
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: ½ Speciedaler
@@ -3968,7 +3981,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97357
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -4108,9 +4121,9 @@ coins:
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 110 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1628–1629). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 110 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1628–1629). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: dk-tid-96444
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: '1629'
     year_first: 1629
@@ -4135,9 +4148,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96445
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: '1629'
     year_first: 1629
@@ -4162,9 +4175,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96458
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1630-1632
     year_first: 1630
@@ -4190,9 +4203,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96990
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: 1630-1632
     year_first: 1630
@@ -4218,9 +4231,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97087
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: '1630'
     year_first: 1630
@@ -4245,9 +4258,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96429
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Søsling
     year_label: '1631'
     year_first: 1631
@@ -4372,7 +4385,7 @@ coins:
     issuing_entity: danish_realm
     mint: Kopenhagen
   - id: dk-tid-101246
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 2 Dukat
@@ -4421,9 +4434,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96446
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1644-1648
     year_first: 1644
@@ -4449,9 +4462,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96459
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1644-1648
     year_first: 1644
@@ -4477,9 +4490,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96991
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: 1644-1645
     year_first: 1644
@@ -4505,7 +4518,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97393
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ½ Dukat
@@ -4554,7 +4567,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97405
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -4646,7 +4659,7 @@ coins:
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 135 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1646). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 135 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1646). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: dk-tid-97358
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -4673,7 +4686,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97385
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ¼ Dukat
@@ -4755,7 +4768,7 @@ coins:
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 146 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1647). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 146 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1647). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: dk-tid-97359
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -4782,7 +4795,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97394
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ½ Dukat
@@ -4825,7 +4838,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97395
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ½ Dukat
@@ -4889,9 +4902,9 @@ coins:
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 174 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1648). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
     mint: Kopenhagen
   - id: dk-tid-96448
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1648-1653
     year_first: 1648
@@ -4917,9 +4930,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96460
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1648-1649
     year_first: 1648
@@ -4945,9 +4958,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96461
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1648-1651
     year_first: 1648
@@ -5011,7 +5024,7 @@ coins:
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 170 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1649–1650). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 170 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1649–1650). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: dk-tid-97360
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -5050,7 +5063,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97518
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -5099,7 +5112,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99106
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -5200,9 +5213,9 @@ coins:
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 183 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1651). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 183 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1651). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: dk-tid-96431
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Søsling
     year_label: '1651'
     year_first: 1651
@@ -5222,9 +5235,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96463
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: '1651'
     year_first: 1651
@@ -5249,9 +5262,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96987
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Hvid
     year_label: '1651'
     year_first: 1651
@@ -5273,8 +5286,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97147
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: B
     kind: kurant
     nominal: ½ Krone
     year_label: '1651'
@@ -5300,8 +5313,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97150
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: '1651'
@@ -5327,8 +5340,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97151
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: 1651-1652
@@ -5366,8 +5379,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99129
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: '1651'
@@ -5431,9 +5444,9 @@ coins:
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 188 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1652). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 188 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1652). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: dk-tid-96449
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1652-1655
     year_first: 1652
@@ -5459,8 +5472,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97152
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: 1652-1653
@@ -5487,7 +5500,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99090
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Mark
@@ -5514,9 +5527,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96464
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: '1653'
     year_first: 1653
@@ -5541,9 +5554,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96465
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1653-1655
     year_first: 1653
@@ -5569,7 +5582,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97325
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Kroner
@@ -5596,7 +5609,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97376
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -5623,7 +5636,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97519
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -5661,7 +5674,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97520
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -5699,7 +5712,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99091
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Mark
@@ -5726,7 +5739,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99092
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Mark
@@ -5754,9 +5767,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96466
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1654-1655
     year_first: 1654
@@ -5827,9 +5840,9 @@ coins:
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 204 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1655–1656). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 204 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1655–1656). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
   - id: dk-tid-96450
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: '1655'
     year_first: 1655
@@ -5854,7 +5867,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97327
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Kroner
@@ -5892,7 +5905,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97377
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -5936,7 +5949,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-171511
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 2 Dukat
@@ -5975,9 +5988,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96467
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1657-1664
     year_first: 1657
@@ -6003,7 +6016,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97328
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Kroner
@@ -6041,7 +6054,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97362
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -6080,7 +6093,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97378
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -6119,7 +6132,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97521
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -6157,7 +6170,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99093
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Mark
@@ -6185,7 +6198,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97397
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ½ Dukat
@@ -6234,7 +6247,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97387
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ¼ Dukat
@@ -6278,7 +6291,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97522
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -6332,9 +6345,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96452
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: '1661'
     year_first: 1661
@@ -6359,7 +6372,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99107
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -6398,7 +6411,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99115
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -6436,7 +6449,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-101247
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 2 Dukat
@@ -6483,7 +6496,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97379
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -6511,7 +6524,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97523
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -6539,7 +6552,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97363
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -6568,7 +6581,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97364
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -6701,7 +6714,7 @@ coins:
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 250 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1664). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
     mint_verified: false
   - id: dk-tid-101248
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 2 Dukat
@@ -6740,7 +6753,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-173650
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 4 Dukat
@@ -6778,9 +6791,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96468
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1664-1665
     year_first: 1664
@@ -6806,9 +6819,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96470
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1664-1667
     year_first: 1664
@@ -6834,9 +6847,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96451
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: '1665'
     year_first: 1665
@@ -6861,9 +6874,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96453
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1665-1668
     year_first: 1665
@@ -6889,9 +6902,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96472
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1665-1666
     year_first: 1665
@@ -6917,9 +6930,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96994
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: '1665'
     year_first: 1665
@@ -6944,8 +6957,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97148
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: C
     kind: kurant
     nominal: ½ Krone
     year_label: '1665'
@@ -6971,8 +6984,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97238
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: C
     kind: kurant
     nominal: 1 Krone
     year_label: '1665'
@@ -7009,7 +7022,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97356
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: ½ Speciedaler
@@ -7036,7 +7049,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97366
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -7064,7 +7077,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97380
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -7108,7 +7121,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97388
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ¼ Dukat
@@ -7136,7 +7149,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97524
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -7164,7 +7177,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99094
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Mark
@@ -7192,7 +7205,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97120
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 1 Mark
@@ -7219,8 +7232,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97239
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: C
     kind: kurant
     nominal: 1 Krone
     year_label: 1666-1669
@@ -7263,7 +7276,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99095
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Mark
@@ -7290,7 +7303,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99096
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Mark
@@ -7317,7 +7330,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99097
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Mark
@@ -7344,8 +7357,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99133
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: C
     kind: kurant
     nominal: 1 Krone
     year_label: '1666'
@@ -7382,8 +7395,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99134
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: C
     kind: kurant
     nominal: 1 Krone
     year_label: 1666-1670
@@ -7421,7 +7434,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-170108
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -7448,9 +7461,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96469
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1667-1670
     year_first: 1667
@@ -7476,9 +7489,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96996
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: 1667-1669
     year_first: 1667
@@ -7504,7 +7517,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97345
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: ⅛ Speciedaler
@@ -7531,7 +7544,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97367
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -7574,7 +7587,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97526
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -7618,9 +7631,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99064
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: '1667'
     year_first: 1667
@@ -7645,9 +7658,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99065
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1667-1669
     year_first: 1667
@@ -7673,7 +7686,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99098
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Mark
@@ -7701,7 +7714,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99108
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -7728,8 +7741,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99165
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: C
     kind: kurant
     nominal: 1 Krone
     year_label: 1667-1669
@@ -7811,7 +7824,7 @@ coins:
     issuing_entity: danish_realm
     fineness_verified: true
   - id: dk-tid-173653
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -7849,7 +7862,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97121
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 1 Mark
@@ -7876,7 +7889,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97368
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -7919,7 +7932,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97381
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -7963,7 +7976,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99099
-    fuss: seed_unsorted
+    fuss: kronemont
     phase: A
     kind: kurant
     nominal: 2 Mark
@@ -7991,8 +8004,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99167
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: C
     kind: kurant
     nominal: 1 Krone
     year_label: '1668'
@@ -8018,9 +8031,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97088
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: '1669'
     year_first: 1669
@@ -8045,7 +8058,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97369
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -8083,7 +8096,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97382
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -8110,7 +8123,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97398
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ½ Dukat
@@ -8148,7 +8161,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97527
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -8192,7 +8205,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99109
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -8230,7 +8243,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99110
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -8268,7 +8281,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99116
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -8311,8 +8324,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99166
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: C
     kind: kurant
     nominal: 1 Krone
     year_label: '1669'
@@ -8338,7 +8351,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97370
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -8386,7 +8399,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97383
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Speciedaler
@@ -8413,7 +8426,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97389
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ¼ Dukat
@@ -8451,7 +8464,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99111
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -8478,8 +8491,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-170107
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 2 Mark
     year_label: '1671'
@@ -8505,8 +8518,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97308
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: C
     kind: kurant
     nominal: 1 Krone
     year_label: 1671-1680
@@ -8533,7 +8546,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97528
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -8561,8 +8574,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99100
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 2 Mark
     year_label: '1671'
@@ -8588,8 +8601,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99168
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: C
     kind: kurant
     nominal: 1 Krone
     year_label: 1671-1674
@@ -8616,9 +8629,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97089
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: '1672'
     year_first: 1672
@@ -8643,8 +8656,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97122
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Mark
     year_label: 1672-1676
@@ -8671,7 +8684,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-101249
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 2 Dukat
@@ -8709,7 +8722,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97371
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -8747,8 +8760,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97123
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Mark
     year_label: '1675'
@@ -8774,8 +8787,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97332
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont_chr_iv
+    phase: C
     kind: kurant
     nominal: 2 Kroner
     year_label: '1675'
@@ -8801,7 +8814,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97372
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -8839,7 +8852,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97390
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ¼ Dukat
@@ -8877,7 +8890,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97399
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ½ Dukat
@@ -8915,7 +8928,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97530
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -8953,9 +8966,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96454
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1676-1681
     year_first: 1676
@@ -8981,8 +8994,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97310
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: 1676-1678
@@ -9009,7 +9022,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97391
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ¼ Dukat
@@ -9047,8 +9060,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97311
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: '1680'
@@ -9085,8 +9098,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97312
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: '1680'
@@ -9112,8 +9125,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97313
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: '1680'
@@ -9139,8 +9152,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97314
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: 1681-1682
@@ -9167,7 +9180,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97531
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -9211,8 +9224,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99101
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 2 Mark
     year_label: 1681-1682
@@ -9239,7 +9252,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97532
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -9277,8 +9290,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97315
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: 1684-1685
@@ -9305,8 +9318,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99102
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 2 Mark
     year_label: 1684-1685
@@ -9333,8 +9346,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97124
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Mark
     year_label: '1685'
@@ -9360,7 +9373,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97400
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ½ Dukat
@@ -9387,7 +9400,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97534
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -9414,9 +9427,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96435
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ½ Skilling
     year_label: '1686'
     year_first: 1686
@@ -9441,9 +9454,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96455
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: '1686'
     year_first: 1686
@@ -9468,9 +9481,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96984
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: '1686'
     year_first: 1686
@@ -9502,9 +9515,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96988
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Hvid
     year_label: '1686'
     year_first: 1686
@@ -9529,9 +9542,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96989
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Hvid
     year_label: '1686'
     year_first: 1686
@@ -9556,8 +9569,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97316
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: 1686-1689
@@ -9584,8 +9597,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99103
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 2 Mark
     year_label: '1686'
@@ -9611,7 +9624,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-173629
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 2 Dukat
@@ -9649,7 +9662,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97535
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -9676,7 +9689,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-173646
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 2 Dukat
@@ -9703,7 +9716,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97536
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -9730,8 +9743,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97317
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: '1690'
@@ -9757,8 +9770,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97319
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: 1690-1692
@@ -9801,7 +9814,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97538
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -9828,7 +9841,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97539
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -9855,8 +9868,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99104
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 2 Mark
     year_label: '1690'
@@ -9882,7 +9895,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-101250
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 2 Dukat
@@ -9909,8 +9922,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97125
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Mark
     year_label: 1691-1692
@@ -9937,8 +9950,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97335
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 2 Kroner
     year_label: '1691'
@@ -9964,8 +9977,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97339
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 3 Kroner
     year_label: '1691'
@@ -10002,7 +10015,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97373
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -10040,7 +10053,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97540
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -10068,7 +10081,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99074
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -10106,8 +10119,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99105
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 2 Mark
     year_label: 1691-1692
@@ -10134,7 +10147,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99075
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -10172,9 +10185,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96438
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ½ Skilling
     year_label: 1693-1696
     year_first: 1693
@@ -10197,9 +10210,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96986
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: '1693'
     year_first: 1693
@@ -10224,9 +10237,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97090
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: '1693'
     year_first: 1693
@@ -10251,8 +10264,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97126
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Mark
     year_label: 1693-1696
@@ -10279,8 +10292,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97320
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: 1693-1699
@@ -10307,8 +10320,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97338
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 2 Kroner
     year_label: 1693-1696
@@ -10346,8 +10359,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97340
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 3 Kroner
     year_label: 1693-1696
@@ -10390,8 +10403,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99118
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 2 Kroner
     year_label: 1693-1696
@@ -10434,8 +10447,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99169
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: 1693-1696
@@ -10462,7 +10475,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97392
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ¼ Dukat
@@ -10489,7 +10502,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97401
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ½ Dukat
@@ -10533,7 +10546,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97541
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -10572,7 +10585,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99076
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -10599,9 +10612,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97091
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: '1695'
     year_first: 1695
@@ -10626,9 +10639,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-96999
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: '1696'
     year_first: 1696
@@ -10653,7 +10666,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97402
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ½ Dukat
@@ -10680,7 +10693,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-97403
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: ½ Dukat
@@ -10718,7 +10731,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99077
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -10756,7 +10769,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99078
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -10783,8 +10796,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94124
-    fuss: seed_unsorted
-    phase: A
+    fuss: kronemont
+    phase: B
     kind: kurant
     nominal: 1 Krone
     year_label: 1699-1702
@@ -10822,7 +10835,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-99079
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -10860,9 +10873,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94103
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: 1700-1705
     year_first: 1700
@@ -10888,7 +10901,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94307
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -10926,7 +10939,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94308
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -10953,7 +10966,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94343
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 2 Dukat
@@ -10992,7 +11005,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94309
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -11030,7 +11043,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-101245
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 5 Dukat
@@ -11068,7 +11081,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94244
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Speciedaler
@@ -11095,7 +11108,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94310
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -11133,7 +11146,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94312
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -11177,7 +11190,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94316
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -11216,7 +11229,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94320
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -11260,9 +11273,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94112
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 12 Skilling
     year_label: 1710-1711
     year_first: 1710
@@ -11288,7 +11301,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94321
-    fuss: seed_unsorted
+    fuss: reichsdukatenfuss
     phase: A
     kind: kurant
     nominal: 1 Dukat
@@ -11316,9 +11329,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94097
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1711-1719
     year_first: 1711
@@ -11341,9 +11354,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94100
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1711-1726
     year_first: 1711
@@ -11371,7 +11384,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94133
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -11409,9 +11422,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94113
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 12 Skilling
     year_label: 1712-1719
     year_first: 1712
@@ -11439,9 +11452,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94118
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 16 Skilling
     year_label: 1713-1716
     year_first: 1713
@@ -11467,7 +11480,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94305
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 2 Rixdaler
@@ -11506,7 +11519,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94408
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
     kind: kurant
     nominal: 1 Rixdaler
@@ -11544,9 +11557,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94058
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ½ Skilling
     year_label: '1719'
     year_first: 1719
@@ -11568,9 +11581,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94114
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 12 Skilling
     year_label: '1719'
     year_first: 1719
@@ -11595,9 +11608,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94098
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1720-1723
     year_first: 1720
@@ -11620,9 +11633,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94117
-    fuss: seed_unsorted
+    fuss: 9_25_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 12 Skilling
     year_label: 1720-1722
     year_first: 1720
@@ -11648,7 +11661,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94134
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -11686,7 +11699,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94156
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -11752,9 +11765,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94101
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: 1727-1730
     year_first: 1727
@@ -11780,9 +11793,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94110
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: '1728'
     year_first: 1728
@@ -11814,9 +11827,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94111
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: 1729-1730
     year_first: 1729
@@ -11842,8 +11855,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94326
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1730'
@@ -11880,9 +11893,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94119
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 24 Skilling
     year_label: 1731-1732
     year_first: 1731
@@ -11908,7 +11921,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94157
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -11952,9 +11965,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94120
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 24 Skilling
     year_label: 1732-1743
     year_first: 1732
@@ -11991,8 +12004,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94327
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1732'
@@ -12029,9 +12042,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94099
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1735-1746
     year_first: 1735
@@ -12118,8 +12131,8 @@ coins:
       - [1738, 1738]
       - [1740, 1740]
   - id: dk-tid-94329
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: 1738-1740
@@ -12157,9 +12170,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94070
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ½ Skilling
     year_label: '1745'
     year_first: 1745
@@ -12181,8 +12194,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94334
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1746'
@@ -12219,8 +12232,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94335
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1746'
@@ -12246,8 +12259,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94336
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1746'
@@ -12273,8 +12286,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94337
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1746'
@@ -12311,8 +12324,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94364
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 2 Dukat
     year_label: '1746'
@@ -12349,8 +12362,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94365
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 2 Dukat
     year_label: '1746'
@@ -12433,7 +12446,7 @@ coins:
         ref: ucoin
     issuing_entity: danish_realm
   - id: dk-tid-94158
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -12471,7 +12484,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94159
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -12509,7 +12522,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94162
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 2 Kroner
@@ -12536,8 +12549,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94338
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1747'
@@ -12563,8 +12576,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94339
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1747'
@@ -12601,8 +12614,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94340
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1747'
@@ -12628,8 +12641,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94404
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 2 Dukat
     year_label: '1747'
@@ -12655,8 +12668,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94405
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 2 Dukat
     year_label: '1747'
@@ -12693,8 +12706,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94406
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 2 Dukat
     year_label: '1747'
@@ -12731,7 +12744,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94160
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -12769,7 +12782,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94161
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -12796,8 +12809,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94341
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1748'
@@ -12880,8 +12893,8 @@ coins:
         ref: Bruun Part IV, lot 17127, p. 82
     issuing_entity: danish_realm
   - id: dk-tid-94342
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1749'
@@ -12918,8 +12931,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-94407
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 2 Dukat
     year_label: '1749'
@@ -12945,9 +12958,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-78929
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1750-1761
     year_first: 1750
@@ -12973,9 +12986,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79086
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 24 Skilling
     year_label: 1750-1764
     year_first: 1750
@@ -13001,9 +13014,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-90640
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 24 Skilling
     year_label: '1750'
     year_first: 1750
@@ -13028,9 +13041,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-78763
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ½ Skilling
     year_label: 1751-1762
     year_first: 1751
@@ -13053,9 +13066,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-78770
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1751-1764
     year_first: 1751
@@ -13081,9 +13094,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79087
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 24 Skilling
     year_label: '1751'
     year_first: 1751
@@ -13119,8 +13132,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-101037
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: 1753-1756
@@ -13168,7 +13181,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-101040
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 12 Mark
@@ -13196,7 +13209,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-101043
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 12 Mark
@@ -13235,7 +13248,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-101044
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 12 Mark
@@ -13270,8 +13283,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-101038
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: B
     kind: kurant
     nominal: 1 Dukat
     year_label: '1758'
@@ -13308,9 +13321,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79082
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: '1763'
     year_first: 1763
@@ -13335,9 +13348,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79083
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: '1763'
     year_first: 1763
@@ -13373,9 +13386,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-78931
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: '1764'
     year_first: 1764
@@ -13400,8 +13413,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79161
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: 1 Speciedaler
     year_label: '1764'
@@ -13443,8 +13456,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79162
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: 1 Speciedaler
     year_label: '1764'
@@ -13470,8 +13483,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79163
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: 1 Speciedaler
     year_label: '1764'
@@ -13508,9 +13521,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79088
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 24 Skilling
     year_label: '1767'
     year_first: 1767
@@ -13546,8 +13559,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79164
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: 1 Speciedaler
     year_label: '1768–1769'
@@ -13585,8 +13598,8 @@ coins:
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     year_last: 1769
   - id: dk-tid-173631
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: 1 Speciedaler
     year_label: '1769'
@@ -13623,8 +13636,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79157
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: ¼ Speciedaler
     year_label: '1769'
@@ -13661,8 +13674,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79158
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: ½ Speciedaler
     year_label: '1769'
@@ -13699,8 +13712,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79159
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: ½ Speciedaler
     year_label: '1769'
@@ -13737,8 +13750,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79165
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: 1 Speciedaler
     year_label: '1769'
@@ -13780,7 +13793,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-101041
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 12 Mark
@@ -13818,7 +13831,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79092
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: ½ Krone
@@ -13845,7 +13858,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79156
-    fuss: seed_unsorted
+    fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -13883,8 +13896,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79166
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: 1 Speciedaler
     year_label: '1771'
@@ -13921,9 +13934,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-55898
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: "24 Skilling Danske"
     year_label: "1772–1775, 1783, 1788"
     year_first: 1772
@@ -13966,9 +13979,9 @@ coins:
       en: 'Moved here from the Schleswig-Holstein artefact — KM# 250 / Hede# 12A–12B / Brekke# 31–36 belong to the Christian VII <b>Norway</b> series (not the Denmark-side Hede 12, which is an Altona ½ Speciedaler); the ⚒ mintmark and Norwegian lion identify the mint as Kongsberg unambiguously, and the legend «DAN·NOR·VAN·GOT·REX» carries no Holstein reference. Filed under <code>gesamtstaat</code> within the Danish-Norwegian Realm (1537–1814); Müntzfuß classification 11⅓-Thaler-Fuß, Phase A — to be re-applied once <code>11_333_thaler</code> is built out as its own section in the Denmark file.'
       uk: 'Перенесено сюди зі Schleswig-Holstein-артефакту — KM# 250 / Hede# 12A–12B / Brekke# 31–36 належать до <b>норвезької</b> серії Кристіана VII (не данського Hede 12, який є альтонівським ½ Speciedaler); монетна позначка ⚒ та норвезький лев однозначно визначають Kongsberg як монетний двір, а легенда «DAN·NOR·VAN·GOT·REX» не містить покликань на Гольштейн. Числиться в <code>gesamtstaat</code> у межах Дансько-Норвезького союзу (1537–1814); класифікація — 11⅓-Thaler-Fuß, фаза A; її буде відновлено, щойно у файлі Данії розгорнуть власну секцію <code>11_333_thaler</code>.'
   - id: dk-tid-79084
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: 1773-1783
     year_first: 1773
@@ -13994,9 +14007,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79090
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 32 Skilling
     year_label: '1775'
     year_first: 1775
@@ -14021,9 +14034,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79091
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 32 Skilling
     year_label: '1775'
     year_first: 1775
@@ -14059,8 +14072,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79167
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: 1 Speciedaler
     year_label: 1776-1780
@@ -14087,8 +14100,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79168
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: 1 Speciedaler
     year_label: '1777'
@@ -14125,9 +14138,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79089
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 24 Skilling
     year_label: 1778-1783
     year_first: 1778
@@ -14153,9 +14166,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-78906
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1779-1782
     year_first: 1779
@@ -14181,8 +14194,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-101042
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: 12 Mark
     year_label: 1781-1785
@@ -14209,9 +14222,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-173579
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 8 Skilling
     year_label: '1782'
     year_first: 1782
@@ -14281,8 +14294,8 @@ coins:
         ref: ucoin
     issuing_entity: danish_realm
   - id: dk-tid-79160
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: B
     kind: kurant
     nominal: ½ Speciedaler
     year_label: '1786'
@@ -14308,8 +14321,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79169
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: C
     kind: kurant
     nominal: 1 Speciedaler
     year_label: 1795-1801
@@ -14336,8 +14349,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79093
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: C
     kind: kurant
     nominal: 1/15 Speciedaler
     year_label: 1796-1799
@@ -14371,9 +14384,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79553
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1801-1805
     year_first: 1801
@@ -14399,9 +14412,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79557
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: '1807'
     year_first: 1807
@@ -14426,7 +14439,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-126062
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
     kind: kurant
     nominal: ⅙ Rigsdaler
@@ -14453,9 +14466,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79526
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: 1808-1809
     year_first: 1808
@@ -14481,9 +14494,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79554
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1809-1810
     year_first: 1809
@@ -14506,9 +14519,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79555
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: 1810-1811
     year_first: 1810
@@ -14531,9 +14544,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79552
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling
     year_label: '1812'
     year_first: 1812
@@ -14555,9 +14568,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79556
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 3 Skilling
     year_label: '1812'
     year_first: 1812
@@ -14579,9 +14592,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-79558
-    fuss: seed_unsorted
+    fuss: 11_333_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 12 Skilling
     year_label: '1812'
     year_first: 1812
@@ -14610,9 +14623,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-81022
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 6 Skilling
     year_label: '1813'
     year_first: 1813
@@ -14634,9 +14647,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-81023
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 12 Skilling
     year_label: '1813'
     year_first: 1813
@@ -14658,9 +14671,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-81024
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 16 Skilling
     year_label: '1814'
     year_first: 1814
@@ -14682,9 +14695,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-81019
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Skilling
     year_label: '1815'
     year_first: 1815
@@ -14706,9 +14719,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-81020
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 3 Skilling
     year_label: '1815'
     year_first: 1815
@@ -14730,9 +14743,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-81021
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling
     year_label: '1815'
     year_first: 1815
@@ -14754,9 +14767,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70722
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Rigsbankskilling
     year_label: '1818'
     year_first: 1818
@@ -14778,9 +14791,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70745
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Rigsbankskilling
     year_label: '1818'
     year_first: 1818
@@ -14802,9 +14815,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70756
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 32 Rigsbankskilling
     year_label: '1820'
     year_first: 1820
@@ -14868,7 +14881,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70759
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
     kind: kurant
     nominal: 1 Rigsbankdaler
@@ -15035,7 +15048,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70760
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
     kind: kurant
     nominal: 1 Rigsbankdaler
@@ -15091,9 +15104,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70747
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Rigsbankskilling
     year_label: '1836'
     year_first: 1836
@@ -15118,9 +15131,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70749
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 3 Rigsbankskilling
     year_label: '1836'
     year_first: 1836
@@ -15145,9 +15158,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70752
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Rigsbankskilling
     year_label: '1836'
     year_first: 1836
@@ -15172,9 +15185,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70718
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ½ Rigsbankskilling
     year_label: '1838'
     year_first: 1838
@@ -15224,9 +15237,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70716
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ⅕ Rigsbankskilling
     year_label: '1842'
     year_first: 1842
@@ -15248,9 +15261,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70717
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ⅕ Rigsbankskilling
     year_label: '1842'
     year_first: 1842
@@ -15272,9 +15285,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70719
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ½ Rigsbankskilling
     year_label: '1842'
     year_first: 1842
@@ -15296,9 +15309,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70748
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 2 Rigsbankskilling
     year_label: '1842'
     year_first: 1842
@@ -15327,9 +15340,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70750
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 3 Rigsbankskilling
     year_label: '1842'
     year_first: 1842
@@ -15354,9 +15367,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70751
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 3 Rigsbankskilling
     year_label: '1842'
     year_first: 1842
@@ -15381,8 +15394,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-110651
-    fuss: seed_unsorted
-    phase: A
+    fuss: 9_25_thaler
+    phase: D
     kind: kurant
     nominal: 1 Speciedaler
     year_label: 1846-1848
@@ -15448,9 +15461,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70720
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ½ Rigsbankskilling
     year_label: '1852'
     year_first: 1852
@@ -15479,9 +15492,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70724
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Rigsbankskilling
     year_label: '1852'
     year_first: 1852
@@ -15548,9 +15561,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70725
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Rigsbankskilling
     year_label: '1853'
     year_first: 1853
@@ -15579,7 +15592,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70691
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
     kind: kurant
     nominal: 1 Rigsdaler
@@ -15607,9 +15620,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70685
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling Rigsmont
     year_label: 1856-1863
     year_first: 1856
@@ -15632,9 +15645,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70689
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 16 Skilling Rigsmont
     year_label: 1856-1858
     year_first: 1856
@@ -15667,9 +15680,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70682
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ½ Skilling Rigsmont
     year_label: '1857'
     year_first: 1857
@@ -15691,7 +15704,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70696
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
     kind: kurant
     nominal: 2 Rigsdaler
@@ -15719,9 +15732,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70686
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 1 Skilling Rigsmont
     year_label: 1867-1872
     year_first: 1867
@@ -15751,9 +15764,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70688
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: 4 Skilling Rigsmont
     year_label: 1867-1874
     year_first: 1867
@@ -15779,9 +15792,9 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-70684
-    fuss: seed_unsorted
+    fuss: 18_5_thaler
     phase: A
-    kind: kurant
+    kind: scheide
     nominal: ½ Skilling Rigsmont
     year_label: '1868'
     year_first: 1868
@@ -15841,7 +15854,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49671
-    fuss: seed_unsorted
+    fuss: reichsgoldmuenzfuss
     phase: A
     kind: kurant
     nominal: 10 Kroner
@@ -15869,7 +15882,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49677
-    fuss: seed_unsorted
+    fuss: reichsgoldmuenzfuss
     phase: A
     kind: kurant
     nominal: 20 Kroner
@@ -15897,7 +15910,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49544
-    fuss: seed_unsorted
+    fuss: reichsgoldmuenzfuss
     phase: A
     kind: kurant
     nominal: 1 Öre
@@ -15922,7 +15935,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49611
-    fuss: seed_unsorted
+    fuss: reichsgoldmuenzfuss
     phase: A
     kind: kurant
     nominal: 2 Öre
@@ -15947,7 +15960,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49627
-    fuss: seed_unsorted
+    fuss: reichsgoldmuenzfuss
     phase: A
     kind: kurant
     nominal: 5 Öre
@@ -15972,7 +15985,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49639
-    fuss: seed_unsorted
+    fuss: reichsgoldmuenzfuss
     phase: A
     kind: kurant
     nominal: 10 Öre
@@ -16000,7 +16013,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49653
-    fuss: seed_unsorted
+    fuss: reichsgoldmuenzfuss
     phase: A
     kind: kurant
     nominal: 25 Öre
@@ -16028,7 +16041,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49659
-    fuss: seed_unsorted
+    fuss: reichsgoldmuenzfuss
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -16056,7 +16069,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49663
-    fuss: seed_unsorted
+    fuss: reichsgoldmuenzfuss
     phase: A
     kind: kurant
     nominal: 2 Kroner
