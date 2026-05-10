@@ -57,40 +57,43 @@
   </td>
   <td class="c-w">
     {%- if coin.weight_groups -%}
+      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.weight_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=2, unit='') -%}
-        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}
-        {%- elif g.is_unanimous -%}{{ _txt }}
-        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}</span>
+        {%- set _q = _qmark if loop.last else '' -%}
+        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}{{ _q|safe }}
+        {%- elif g.is_unanimous -%}{{ _txt }}{{ _q|safe }}
+        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{{ _q|safe }}</span>
         {%- endif -%}
       {%- endfor -%}
-      {%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}
     {%- elif coin.raw.weight_rough_label -%}
-      {{ coin.raw.weight_rough_label|t(lang) }}
+      {{ coin.raw.weight_rough_label|t(lang) }}{%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-w">
     {%- if coin.weight_fein_groups -%}
+      {%- set _qmark -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.weight_fein_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=5, unit='') -%}
-        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}
-        {%- elif g.is_unanimous -%}{{ _txt }}
-        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}</span>
+        {%- set _q = _qmark if loop.last else '' -%}
+        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}{{ _q|safe }}
+        {%- elif g.is_unanimous -%}{{ _txt }}{{ _q|safe }}
+        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{{ _q|safe }}</span>
         {%- endif -%}
       {%- endfor -%}
-      {%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-d">
     {%- if coin.diameter_groups -%}
+      {%- set _qmark -%}{%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.diameter_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=1, unit='') -%}
-        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}
-        {%- elif g.is_unanimous -%}{{ _txt }}
-        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}</span>
+        {%- set _q = _qmark if loop.last else '' -%}
+        {%- if g.is_unanimous and not g.sources -%}{{ _txt }}{{ _q|safe }}
+        {%- elif g.is_unanimous -%}{{ _txt }}{{ _q|safe }}
+        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{{ _q|safe }}</span>
         {%- endif -%}
       {%- endfor -%}
-      {%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-mint">
@@ -118,6 +121,7 @@
          sources yield the same Δ (single group), drop both the
          alt-source styling AND the tooltip — same convention as the
          weight / fineness columns above (consensus = plain badge). #}
+      {%- set _qmark -%}{%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.delta_groups -%}
         {%- set dp = g.delta_pct if g.delta_pct is not none else 0 -%}
         {%- if dp < -1.0 -%}{%- set sd_cls = 'under-deep' -%}
@@ -125,13 +129,13 @@
         {%- elif dp <= 1.0 -%}{%- set sd_cls = 'over-mild' -%}
         {%- else -%}{%- set sd_cls = 'over-strong' -%}
         {%- endif -%}
+        {%- set _q = _qmark if loop.last else '' -%}
         {%- if g.is_unanimous or not g.sources -%}
-          <span class="sd {{ sd_cls }}">{{ fmt_delta(g.value, dp)|safe }}</span>
+          <span class="sd {{ sd_cls }}">{{ fmt_delta(g.value, dp)|safe }}{{ _q|safe }}</span>
         {%- else -%}
-          <span class="sd {{ sd_cls }} alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ fmt_delta(g.value, dp)|safe }}</span>
+          <span class="sd {{ sd_cls }} alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ fmt_delta(g.value, dp)|safe }}{{ _q|safe }}</span>
         {%- endif -%}
       {%- endfor -%}
-      {%- if coin.derived_unverified %} <span class="unverified" data-tooltip="{{ ui_get('marker.derived_unverified') }}">(?)</span>{% endif -%}
     {%- elif coin.raw.metal == 'copper' -%}
       <span class="sd-na" data-tooltip="{{ ui_get('marker.copper_nodelta') }}">—</span>
     {%- else -%}—{%- endif -%}
@@ -261,26 +265,28 @@
   </td>
   <td class="c-w">
     {%- if coin.weight_groups -%}
+      {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.weight_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=2, unit='') -%}
-        {%- if g.is_unanimous -%}{{ _txt }}
-        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}</span>
+        {%- set _q = _qmark if loop.last else '' -%}
+        {%- if g.is_unanimous -%}{{ _txt }}{{ _q|safe }}
+        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{{ _q|safe }}</span>
         {%- endif -%}
       {%- endfor -%}
-      {%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}
     {%- elif coin.raw.weight_rough_label -%}
-      {{ coin.raw.weight_rough_label|t(lang) }}
+      {{ coin.raw.weight_rough_label|t(lang) }}{%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-d">
     {%- if coin.diameter_groups -%}
+      {%- set _qmark -%}{%- if not coin.raw.diameter_mm_verified %} <span class="unverified">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.diameter_groups -%}
         {%- set _txt = fmt_num(g.value, decimals=1, unit='') -%}
-        {%- if g.is_unanimous -%}{{ _txt }}
-        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}</span>
+        {%- set _q = _qmark if loop.last else '' -%}
+        {%- if g.is_unanimous -%}{{ _txt }}{{ _q|safe }}
+        {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{{ _q|safe }}</span>
         {%- endif -%}
       {%- endfor -%}
-      {%- if not coin.raw.diameter_mm_verified %} <span class="unverified">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-mint">
