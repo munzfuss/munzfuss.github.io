@@ -20,6 +20,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        # NOTE: scripts/cache/ is a private submodule (munzfuss-harvest).
+        # The build doesn't read it — `python scripts/build.py` works only
+        # from data/ + templates/ + config/. So `submodules: false` (the
+        # default) is correct here: the Pages deploy stays unaffected by
+        # the harvest split. If a future step needs cache (e.g. nightly
+        # audit), add:
+        #   with:
+        #     submodules: true
+        #     token: ${{ secrets.HARVEST_DEPLOY_KEY }}
+        # plus a read-only deploy key configured on the harvest repo.
 
       - name: Setup Python
         uses: actions/setup-python@v5
