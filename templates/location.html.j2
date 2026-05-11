@@ -44,6 +44,7 @@
         'copper': {'de': 'Kupfer', 'en': 'Copper', 'uk': 'Мідь'}
       } -%}
       {{ metals[coin.raw.metal][lang] }}
+      {%- if not coin.raw.metal_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
       {%- if coin.fineness_groups -%}
         {%- for g in coin.fineness_groups %}
           {%- set _txt = '.' ~ ((g.value * 1000)|round|int) %}

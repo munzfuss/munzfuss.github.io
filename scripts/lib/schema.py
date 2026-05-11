@@ -312,6 +312,17 @@ class Coin(_StrictBase):
     mintmaster: str | None = None
     catalog: CatalogRefs = Field(default_factory=CatalogRefs)
     metal: Literal["silver", "gold", "billon", "copper"] | None = None
+    metal_verified: bool = Field(
+        True,
+        description=(
+            "True when the metal designation comes from a sourced field "
+            "(Numista composition, ucoin Composition, Hede / Lange / Sieg "
+            "per-coin record). False when inferred from project tier "
+            "convention (per CLAUDE.md §6: Krone-fod øre tier, sub-Skilling "
+            "Scheide → billon, etc.) without source verification. Render "
+            "layer surfaces a (?) marker next to the metal label when False."
+        ),
+    )
     fineness: float | list[FieldValue] | None = Field(
         None,
         description=(
