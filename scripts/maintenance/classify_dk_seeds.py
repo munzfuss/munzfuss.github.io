@@ -152,7 +152,6 @@ PHASES: dict[str, list[tuple[int, int, str]]] = {
     "30_thaler":          [(1873, 1947, "A")],
     "reichsgoldmuenzfuss":[(1873, 1914, "A")],
     "kronefod":           [(1873, 1914, "A")],
-    "kronefod_silver":    [(1873, 1914, "A")],
 }
 
 
@@ -331,7 +330,7 @@ def _classify_silver_by_year_and_nominal(coin: dict) -> tuple[str, str | None] |
     # under the same Mønlov 1873 framework.
     if 1873 <= year <= 1914 and any(t in nom_l for t in (
             "øre", "ore", "öre", "krone")):
-        return ("kronefod_silver", "A")
+        return ("kronefod", "A")
     return None
 
 
@@ -371,7 +370,7 @@ def _classify_scheidemuenze(coin: dict) -> tuple[str, str | None] | None:
     if 1813 <= year < 1874:
         return ("18_5_thaler", "A")
     if 1874 <= year <= 1914:
-        return ("kronefod_silver", "A")
+        return ("kronefod", "A")
     return None
 
 

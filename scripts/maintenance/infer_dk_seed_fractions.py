@@ -176,21 +176,20 @@ RULES: dict[str, list[tuple[str, callable]]] = {
         ("krone", _identity),
         ("kroner", _identity),
     ],
-    # ------- Krone-fod (Skandinavisk Møntunion, 1873-1914 gold) -------
+    # ------- Krone-fod (Skandinavisk Møntunion, 1873-1914) -------
+    # Single Müntzfuß with hierarchical metal tiers (per the project's
+    # «hierarchical metal tiers» convention — see
+    # docs/hierarchical_metal_tiers.md). One denomination ladder
+    # covers gold / silver Kurant / silver Scheide / bronze:
+    #   5 / 10 / 20 Kroner = gold (.900)
+    #   1 / 2 Kroner       = silver Kurant (.800)
+    #   25 øre             = silver Scheide (.600), fraction 1/4
+    #   10 øre             = silver Scheide (.400), fraction 1/10
+    #   5 / 2 / 1 øre       = bronze, fractions 1/20 / 1/50 / 1/100
     "kronefod": [
-        ("krone", _identity),                   # 5 Kroner / 10 Kroner / 20 Kroner
-        ("kroner", _identity),
-    ],
-    # ------- Krone-fod silver / copper auxiliaries -------
-    # 1, 2 Kroner = Kurant silver («1»/«2» fractions, .800).
-    # 25 øre = 1/4, 10 øre = 1/10, 5 / 2 / 1 øre = 1/20 / 1/50 / 1/100
-    # — see fuesse.yml::kronefod_silver.fractions for the per-
-    # denomination Soll-Fein values.
-    "kronefod_silver": [
-        ("krone", _identity),
+        ("krone", _identity),                   # 1/2/5/10/20 Kroner
         ("kroner", _identity),
         # Øre denominations: «N øre» → fraction = «1/(100/N)»
-        # 25 → 1/4, 10 → 1/10, 5 → 1/20, 2 → 1/50, 1 → 1/100
         ("øre",  lambda n: {1: "1/100", 2: "1/50", 5: "1/20",
                               10: "1/10", 25: "1/4", 50: "1/2"}.get(n, None)),
         ("ore",  lambda n: {1: "1/100", 2: "1/50", 5: "1/20",
