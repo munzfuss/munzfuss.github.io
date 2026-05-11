@@ -32,6 +32,8 @@ research workflow.
 | `enrich_numista_refs.py` | Merge per-piece catalog refs (KM#, Lange#, Hede#, Sieg#, …) from a cached Numista response into each coin's `catalog`. | Phase-2 of the Numista enrichment. |
 | `quality_pass.py` | Regex-based cleanup of EN/UK auto-translation artefacts (German leak-words, broken decimals, …). | Re-run after each bulk translation drift. |
 | `relink_ucoin.py` | Add provably-correct ucoin source URLs to existing coins — KM# + year overlap + denom-token agreement + weight/fineness within tolerance. | Phase-2 of the ucoin link-up. |
+| `ucoin_fetch_composition.py` | Driver for ucoin composition / weight / diameter / edge / shape / alignment harvest via Chrome MCP. **Halted 2026-05-11**: ucoin's URL slug routing changed and our heuristic `_url_index.json` no longer resolves correctly (returns unrelated modern Euro coins for our DK/Lübeck/HH slugs). The 98 committed entries in `_composition.json` predate the breakage and are reliable; the canonical-tid validator inside `MEGA_FETCH_TEMPLATE` documents the regression. Resume when either ucoin restores slug routing or a new lookup strategy (sitemap / site-search / JSON API) is identified. |
+| `ucoin_backfill_metal.py` | Apply harvested `_composition.json` to coin records: set `metal` (and `metal_verified`), set `fineness` (and `fineness_verified`) when missing, flag conflicts. | Re-run after each harvest expansion (currently sitting at 98 known-good entries). |
 
 ## Re-running
 
