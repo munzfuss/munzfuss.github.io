@@ -161,6 +161,43 @@ working tier.
 
 ---
 
+### M. ucoin harvest is missing the `Composition` field  *(opened 2026-05-11)*
+
+**Surfaced during.** The investigation of `dk-tid-163075` (KM# UC# 10,
+Frederik II 10 Ducat 1588) where user-side verification on the live
+ucoin page showed «Composition · Gold» that our local cache never
+carried. Our `scripts/cache/ucoin/_url_index.json` schema only stores
+`denom / diameter_mm / fineness / km / source / url / weight_g / year`
+— no metal / composition.
+
+**Impact.** Likely affects every ucoin-sourced coin that landed in
+`denmark.yml` (and other locations) with `metal: null` or with metal
+inferred from the nominal token. The Hede-classifier session
+yesterday left 2 denmark entries unclassified specifically because of
+the missing-metal gap (`10 Ducat 1588`, `3 Kroner 1726` — the latter
+turned out to be silver despite our gold inference; that's a separate
+ucoin-erratum case, not this gap).
+
+**Action.**
+
+1. Locate the original ucoin harvest script (`scripts/build_ucoin_url_index.py`
+   or similar) and add a `composition` field extraction from the
+   ucoin page HTML (the «Composition» label is one of ucoin's
+   standard table rows).
+2. Re-harvest the existing 4,000+ ucoin URL entries that lack
+   `composition`. Numista API-style quota does not apply here —
+   ucoin is HTML scraping; respect a polite rate limit (~1 req/sec)
+   per the ad-hoc policy in CLAUDE.md.
+3. Re-run `scripts/maintenance/classify_dk_seeds.py` after the
+   harvest — the metal-aware path will now classify several
+   previously-stuck entries.
+
+**Not blocking.** The current Denmark page renders correctly; this
+just leaves a handful of metal-tagged-by-inference entries that
+should be metal-tagged-by-source.
+
+---
+
 ### K. Systematic Numista vs. Hede cross-check  *(opened 2026-05-09)*
 
 **Surfaced during.** Three independent investigations during the
