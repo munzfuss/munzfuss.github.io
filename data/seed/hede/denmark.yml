@@ -22,12 +22,12 @@
 #   * all *_verified flags false
 #   * source: type=literature pointing to danskmoent.dk URL
 #
-# Total coins: 432
+# Total coins: 435
 # Scope: 1566 <= year_first <= 1914
-# Generated: 2026-05-11T12:35:06Z
+# Generated: 2026-05-11T12:55:46Z
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-05-11T12:35:06Z'
+generated_at: '2026-05-11T12:55:46Z'
 scope_year_from: 1566
 scope_year_to: 1914
 coins:
@@ -234,12 +234,9 @@ coins:
     phase: A
     kind: scheide
     nominal: 1 Skilling
-    year_label: 1582–1583, 1585
+    year_label: 1582–1583
     year_first: 1582
-    year_last: 1585
-    year_ranges:
-      - [1582, 1583]
-      - [1585, 1585]
+    year_last: 1583
     ruler: Frederik II.
     mint: Frederiksborg
     catalog:
@@ -265,34 +262,29 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/96
-  - id: dk-hede-c4h14
-    fuss: reichsdukatenfuss
-    phase: pre-A
-    kind: kurant
-    nominal: Ungersk Gylden
-    year_label: 1588, 1603–1604, 1607, 1625, 1919
+  - id: dk-hede-c4h167
+    fuss: 9_thaler
+    phase: A
+    kind: scheide
+    nominal: 4 Skilling Lybsk U.år
+    year_label: u. å. (1588–1648)
     year_first: 1588
-    year_last: 1919
-    year_ranges:
-      - [1588, 1588]
-      - [1603, 1604]
-      - [1607, 1607]
-      - [1625, 1625]
-      - [1919, 1919]
+    year_last: 1648
     ruler: Christian IV.
-    mint: Kopenhagen
+    mint: Glückstadt
     catalog:
-      hede: '14'
+      hede: '167'
       hede_volume: c4h
-      sieg: '143'
-    metal: gold
-    fineness: 0.972
-    weight_rough_g: 3.49
+      schou: 36-48
+      sieg: '168'
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 2.016
     sources:
       - type: literature
-        url: https://www.danskmoent.dk/chr/c4h14.htm
-        ref: Hede c4h14 (danskmoent.dk)
-    issuing_entity: danish_realm
+        url: https://www.danskmoent.dk/chr/c4h167.htm
+        ref: Hede c4h167 (danskmoent.dk)
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -301,6 +293,37 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/24
+  - id: dk-hede-c4h20
+    fuss: reichsdukatenfuss
+    phase: pre-A
+    kind: kurant
+    nominal: Guldmønt
+    year_label: u. å. (1588–1648)
+    year_first: 1588
+    year_last: 1648
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: '20'
+      hede_volume: c4h
+      schou: '8'
+      sieg: '159'
+    metal: gold
+    weight_rough_g: 22.64
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h20.htm
+        ref: Hede c4h20 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '1'
   - id: dk-hede-c4h8
     fuss: reichsdukatenfuss
     phase: A
@@ -615,43 +638,6 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
-  - id: dk-hede-c4h150
-    fuss: 9_thaler
-    phase: A
-    kind: scheide
-    nominal: 4 Skilling
-    year_label: 1600, 1644–1645, 1648, 1686
-    year_first: 1600
-    year_last: 1686
-    year_ranges:
-      - [1600, 1600]
-      - [1644, 1645]
-      - [1648, 1648]
-      - [1686, 1686]
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      hede: '150'
-      hede_volume: c4h
-      schou: 113-122,82-89
-      sieg: '53'
-    metal: billon
-    fineness: 0.25
-    weight_rough_g: 1.949
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h150.htm
-        ref: Hede c4h150 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/24
   - id: dk-hede-c4h48
     fuss: 9_thaler
     phase: A
@@ -815,6 +801,39 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/192
+  - id: dk-hede-c4h14
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    nominal: Ungersk Gylden
+    year_label: 1603–1604, 1607
+    year_first: 1603
+    year_last: 1607
+    year_ranges:
+      - [1603, 1604]
+      - [1607, 1607]
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: '14'
+      hede_volume: c4h
+      sieg: '143'
+    metal: gold
+    fineness: 0.972
+    weight_rough_g: 3.49
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h14.htm
+        ref: Hede c4h14 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c4h49
     fuss: 9_thaler
     phase: A
@@ -1127,77 +1146,6 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-c4h92
-    fuss: 9_thaler
-    phase: A
-    kind: kurant
-    nominal: 1 Mark
-    year_label: 1604, 1606–1607
-    year_first: 1604
-    year_last: 1607
-    year_ranges:
-      - [1604, 1604]
-      - [1606, 1607]
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      hede: '92'
-      hede_volume: c4h
-      schou: '1'
-      sieg: '72'
-    metal: silver
-    fineness: 0.888
-    weight_rough_g: 6.154
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h92.htm
-        ref: Hede c4h92 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/3
-  - id: dk-hede-c4h94
-    fuss: 9_thaler
-    phase: A
-    kind: scheide
-    nominal: 4 Skilling
-    year_label: 1604, 1606, 1608
-    year_first: 1604
-    year_last: 1608
-    year_ranges:
-      - [1604, 1604]
-      - [1606, 1606]
-      - [1608, 1608]
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      hede: '94'
-      hede_volume: c4h
-      schou: 18-19
-      sieg: '47'
-    metal: silver
-    fineness: 0.888
-    weight_rough_g: 1.462
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h94.htm
-        ref: Hede c4h94 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/24
   - id: dk-hede-c4h9
     fuss: reichsdukatenfuss
     phase: A
@@ -1289,6 +1237,38 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/12
+  - id: dk-hede-c4h92
+    fuss: 9_thaler
+    phase: A
+    kind: kurant
+    nominal: 1 Mark
+    year_label: 1606–1607
+    year_first: 1606
+    year_last: 1607
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: '92'
+      hede_volume: c4h
+      schou: '1'
+      sieg: '72'
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 6.154
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h92.htm
+        ref: Hede c4h92 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/3
   - id: dk-hede-c4h93
     fuss: 9_thaler
     phase: A
@@ -1321,35 +1301,41 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/12
-  - id: dk-hede-c4h20
-    fuss: reichsdukatenfuss
+  - id: dk-hede-c4h94
+    fuss: 9_thaler
     phase: A
-    kind: kurant
-    nominal: Guldmønt
-    year_label: '1607'
-    year_first: 1607
+    kind: scheide
+    nominal: 4 Skilling
+    year_label: 1606, 1608
+    year_first: 1606
+    year_last: 1608
+    year_ranges:
+      - [1606, 1606]
+      - [1608, 1608]
     ruler: Christian IV.
     mint: Kopenhagen
     catalog:
-      hede: '20'
+      hede: '94'
       hede_volume: c4h
-      schou: '8'
-      sieg: '159'
-    metal: gold
-    weight_rough_g: 22.64
+      schou: 18-19
+      sieg: '47'
+    metal: silver
+    fineness: 0.888
+    weight_rough_g: 1.462
     sources:
       - type: literature
-        url: https://www.danskmoent.dk/chr/c4h20.htm
-        ref: Hede c4h20 (danskmoent.dk)
+        url: https://www.danskmoent.dk/chr/c4h94.htm
+        ref: Hede c4h94 (danskmoent.dk)
     issuing_entity: danish_realm
     verified: false
+    fineness_verified: true
     weight_rough_verified: true
     mint_verified: false
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '1'
+    fraction: 1/24
   - id: dk-hede-c4h17
     fuss: reichsdukatenfuss
     phase: A
@@ -2494,76 +2480,6 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/48
-  - id: dk-hede-c4h28
-    fuss: guldkrone
-    phase: pre-A
-    kind: kurant
-    nominal: 2 Guldkrone
-    year_label: 1624, 1628–1629, 1641
-    year_first: 1624
-    year_last: 1641
-    year_ranges:
-      - [1624, 1624]
-      - [1628, 1629]
-      - [1641, 1641]
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      hede: '28'
-      hede_volume: c4h
-      sieg: '141'
-    metal: gold
-    fineness: 0.917
-    weight_rough_g: 5.996
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h28.htm
-        ref: Hede c4h28 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-c4h29
-    fuss: reichsdukatenfuss
-    phase: A
-    kind: kurant
-    nominal: 1 Rhinsk Gylden
-    year_label: 1624–1625, 1627–1628, 1632, 1641
-    year_first: 1624
-    year_last: 1641
-    year_ranges:
-      - [1624, 1625]
-      - [1627, 1628]
-      - [1632, 1632]
-      - [1641, 1641]
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      hede: '29'
-      hede_volume: c4h
-      schou: '2'
-      sieg: '142'
-    metal: gold
-    fineness: 0.76
-    weight_rough_g: 3.249
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h29.htm
-        ref: Hede c4h29 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c4h55
     fuss: 9_thaler
     phase: A
@@ -2809,6 +2725,41 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/16
+  - id: dk-hede-c4h29
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    nominal: 1 Rhinsk Gylden
+    year_label: 1625, 1627–1628, 1632
+    year_first: 1625
+    year_last: 1632
+    year_ranges:
+      - [1625, 1625]
+      - [1627, 1628]
+      - [1632, 1632]
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: '29'
+      hede_volume: c4h
+      schou: '2'
+      sieg: '142'
+    metal: gold
+    fineness: 0.76
+    weight_rough_g: 3.249
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h29.htm
+        ref: Hede c4h29 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c4h139
     fuss: 9_25_thaler
     phase: A
@@ -2904,6 +2855,36 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/16
+  - id: dk-hede-c4h28
+    fuss: guldkrone
+    phase: pre-A
+    kind: kurant
+    nominal: 2 Guldkrone
+    year_label: 1628–1629
+    year_first: 1628
+    year_last: 1629
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: '28'
+      hede_volume: c4h
+      sieg: '141'
+    metal: gold
+    fineness: 0.917
+    weight_rough_g: 5.996
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h28.htm
+        ref: Hede c4h28 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c4h144
     fuss: 9_25_thaler
     phase: A
@@ -3234,6 +3215,38 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/3
+  - id: dk-hede-c4h150
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    nominal: 4 Skilling
+    year_label: 1644–1645
+    year_first: 1644
+    year_last: 1645
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: '150'
+      hede_volume: c4h
+      schou: 113-122,82-89
+      sieg: '53'
+    metal: billon
+    fineness: 0.25
+    weight_rough_g: 1.949
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h150.htm
+        ref: Hede c4h150 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/24
   - id: dk-hede-c4h151
     fuss: 9_25_thaler
     phase: A
@@ -3304,41 +3317,6 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/96
-  - id: dk-hede-c4h154
-    fuss: reichsdukatenfuss
-    phase: A
-    kind: kurant
-    nominal: 1 Dukat
-    year_label: 1644–1646, 1648
-    year_first: 1644
-    year_last: 1648
-    year_ranges:
-      - [1644, 1646]
-      - [1648, 1648]
-    ruler: Christian IV.
-    mint: Glückstadt
-    catalog:
-      hede: '154'
-      hede_volume: c4h
-      schou: '7'
-      sieg: '185'
-    metal: gold
-    fineness: 0.979
-    weight_rough_g: 3.49
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h154.htm
-        ref: Hede c4h154 (danskmoent.dk)
-    issuing_entity: royal_holstein
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '1'
   - id: dk-hede-c4h177
     fuss: 9_25_thaler
     phase: A
@@ -3500,32 +3478,29 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/2
-  - id: dk-hede-c4h36
+  - id: dk-hede-c4h154
     fuss: reichsdukatenfuss
     phase: A
     kind: kurant
-    nominal: 1/4 Dukat
-    year_label: 1644, 1646–1648
-    year_first: 1644
-    year_last: 1648
-    year_ranges:
-      - [1644, 1644]
-      - [1646, 1648]
+    nominal: 1 Dukat
+    year_label: 1645–1646
+    year_first: 1645
+    year_last: 1646
     ruler: Christian IV.
-    mint: Kopenhagen
+    mint: Glückstadt
     catalog:
-      hede: '36'
+      hede: '154'
       hede_volume: c4h
-      schou: '10'
-      sieg: '127'
+      schou: '7'
+      sieg: '185'
     metal: gold
     fineness: 0.979
-    weight_rough_g: 0.873
+    weight_rough_g: 3.49
     sources:
       - type: literature
-        url: https://www.danskmoent.dk/chr/c4h36.htm
-        ref: Hede c4h36 (danskmoent.dk)
-    issuing_entity: danish_realm
+        url: https://www.danskmoent.dk/chr/c4h154.htm
+        ref: Hede c4h154 (danskmoent.dk)
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -3534,7 +3509,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/4
+    fraction: '1'
   - id: dk-hede-c4h165
     fuss: 9_25_thaler
     phase: A
@@ -3629,6 +3604,38 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/2
+  - id: dk-hede-c4h36
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    nominal: 1/4 Dukat
+    year_label: 1646–1648
+    year_first: 1646
+    year_last: 1648
+    ruler: Christian IV.
+    mint: Kopenhagen
+    catalog:
+      hede: '36'
+      hede_volume: c4h
+      schou: '10'
+      sieg: '127'
+    metal: gold
+    fineness: 0.979
+    weight_rough_g: 0.873
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h36.htm
+        ref: Hede c4h36 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/4
   - id: dk-hede-f5h3ab
     fuss: reichsdukatenfuss
     phase: A
@@ -3949,106 +3956,29 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/96
-  - id: dk-hede-f3h126
-    fuss: 9_25_thaler
-    phase: A
-    kind: scheide
-    nominal: 2 Skilling
-    year_label: 1648, 1651, 1654–1655
-    year_first: 1648
-    year_last: 1655
-    year_ranges:
-      - [1648, 1648]
-      - [1651, 1651]
-      - [1654, 1655]
-    ruler: Frederik III.
-    mint: Kopenhagen
-    catalog:
-      hede: '126'
-      hede_volume: f3h
-      schou: 22-25
-      sieg: '15'
-      fr: '3'
-    metal: billon
-    fineness: 0.281
-    weight_rough_g: 1.218
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h126.htm
-        ref: Hede f3h126 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/48
-  - id: dk-hede-f3h130
-    fuss: 9_25_thaler
-    phase: A
-    kind: scheide
-    nominal: 2 Skilling
-    year_label: 1648, 1653–1655
-    year_first: 1648
-    year_last: 1655
-    year_ranges:
-      - [1648, 1648]
-      - [1653, 1655]
-    ruler: Frederik III.
-    mint: Kopenhagen
-    catalog:
-      hede: '130'
-      hede_volume: f3h
-      schou: 76-79
-      sieg: '16'
-      fr: '3'
-    metal: billon
-    fineness: 0.281
-    weight_rough_g: 1.218
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h130.htm
-        ref: Hede f3h130 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/48
-  - id: dk-hede-f3h141
+  - id: dk-hede-f3h131
     fuss: 9_25_thaler
     phase: A
     kind: scheide
     nominal: 1 Skilling
-    year_label: 1648, 1665, 1667–1668
+    year_label: u. å. (1648–1670)
     year_first: 1648
-    year_last: 1668
-    year_ranges:
-      - [1648, 1648]
-      - [1665, 1665]
-      - [1667, 1668]
+    year_last: 1670
     ruler: Frederik III.
     mint: Kopenhagen
     catalog:
-      hede: '141'
+      hede: '131'
       hede_volume: f3h
-      schou: 152-154
-      sieg: '12'
+      schou: '39'
+      sieg: '6'
       fr: '3'
     metal: billon
     fineness: 0.156
     weight_rough_g: 0.913
     sources:
       - type: literature
-        url: https://www.danskmoent.dk/fr/f3h141.htm
-        ref: Hede f3h141 (danskmoent.dk)
+        url: https://www.danskmoent.dk/fr/f3h131.htm
+        ref: Hede f3h131 (danskmoent.dk)
     issuing_entity: danish_realm
     verified: false
     fineness_verified: true
@@ -4414,6 +4344,42 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '2'
+  - id: dk-hede-f3h126
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    nominal: 2 Skilling
+    year_label: 1651, 1654–1655
+    year_first: 1651
+    year_last: 1655
+    year_ranges:
+      - [1651, 1651]
+      - [1654, 1655]
+    ruler: Frederik III.
+    mint: Kopenhagen
+    catalog:
+      hede: '126'
+      hede_volume: f3h
+      schou: 22-25
+      sieg: '15'
+      fr: '3'
+    metal: billon
+    fineness: 0.281
+    weight_rough_g: 1.218
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f3h126.htm
+        ref: Hede f3h126 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/48
   - id: dk-hede-f3h86
     fuss: kronemont_chr_iv
     phase: B
@@ -4446,39 +4412,6 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/2
-  - id: dk-hede-f3h131
-    fuss: 9_25_thaler
-    phase: A
-    kind: scheide
-    nominal: 1 Skilling
-    year_label: 1652–1655
-    year_first: 1652
-    year_last: 1655
-    ruler: Frederik III.
-    mint: Kopenhagen
-    catalog:
-      hede: '131'
-      hede_volume: f3h
-      schou: '39'
-      sieg: '6'
-      fr: '3'
-    metal: billon
-    fineness: 0.156
-    weight_rough_g: 0.913
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f3h131.htm
-        ref: Hede f3h131 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/96
   - id: dk-hede-f3h89
     fuss: kronemont
     phase: A
@@ -4511,6 +4444,39 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/2
+  - id: dk-hede-f3h130
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    nominal: 2 Skilling
+    year_label: 1653–1655
+    year_first: 1653
+    year_last: 1655
+    ruler: Frederik III.
+    mint: Kopenhagen
+    catalog:
+      hede: '130'
+      hede_volume: f3h
+      schou: 76-79
+      sieg: '16'
+      fr: '3'
+    metal: billon
+    fineness: 0.281
+    weight_rough_g: 1.218
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f3h130.htm
+        ref: Hede f3h130 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/48
   - id: dk-hede-f3h52ab
     fuss: 9_25_thaler
     phase: A
@@ -5011,12 +4977,8 @@ coins:
     phase: A
     kind: kurant
     nominal: 1/2 Dukat
-    year_label: 1659, 1664
+    year_label: '1659'
     year_first: 1659
-    year_last: 1664
-    year_ranges:
-      - [1659, 1659]
-      - [1664, 1664]
     ruler: Frederik III.
     mint: Kopenhagen
     catalog:
@@ -5080,12 +5042,8 @@ coins:
     phase: A
     kind: kurant
     nominal: 1/4 Dukat
-    year_label: 1660, 1664
+    year_label: '1660'
     year_first: 1660
-    year_last: 1664
-    year_ranges:
-      - [1660, 1660]
-      - [1664, 1664]
     ruler: Frederik III.
     mint: Kopenhagen
     catalog:
@@ -5504,6 +5462,42 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/48
+  - id: dk-hede-f3h141
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    nominal: 1 Skilling
+    year_label: 1665, 1667–1668
+    year_first: 1665
+    year_last: 1668
+    year_ranges:
+      - [1665, 1665]
+      - [1667, 1668]
+    ruler: Frederik III.
+    mint: Kopenhagen
+    catalog:
+      hede: '141'
+      hede_volume: f3h
+      schou: 152-154
+      sieg: '12'
+      fr: '3'
+    metal: billon
+    fineness: 0.156
+    weight_rough_g: 0.913
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f3h141.htm
+        ref: Hede f3h141 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/96
   - id: dk-hede-f3h151
     fuss: 9_25_thaler
     phase: A
@@ -6704,6 +6698,68 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '2'
+  - id: dk-hede-c5h57
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    nominal: 1 Dukat U.år
+    year_label: u. å. (1670–1699)
+    year_first: 1670
+    year_last: 1699
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '57'
+      hede_volume: c5h
+      schou: '27'
+    metal: gold
+    fineness: 0.979
+    weight_rough_g: 3.49
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h57.htm
+        ref: Hede c5h57 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '1'
+  - id: dk-hede-c5h58
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    nominal: 2 Dukat U.år
+    year_label: u. å. (1670–1699)
+    year_first: 1670
+    year_last: 1699
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '58'
+      hede_volume: c5h
+      schou: '27'
+    metal: gold
+    fineness: 0.979
+    weight_rough_g: 6.981
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h57.htm
+        ref: Hede c5h58 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '2'
   - id: dk-hede-c5h60
     fuss: 9_25_thaler
     phase: A
@@ -6735,32 +6791,27 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
-  - id: dk-hede-c5h67
-    fuss: kronemont
-    phase: B
-    kind: kurant
-    nominal: 1 Krone
-    year_label: 1670–1674, 1677, 1680–1682
+  - id: dk-hede-c5h75
+    fuss: 9_25_thaler
+    phase: A
+    kind: scheide
+    nominal: 1 Skilling
+    year_label: u. å. (1670–1699)
     year_first: 1670
-    year_last: 1682
-    year_ranges:
-      - [1670, 1674]
-      - [1677, 1677]
-      - [1680, 1682]
+    year_last: 1699
     ruler: Christian V.
     mint: Kopenhagen
     catalog:
-      hede: '67'
+      hede: '75'
       hede_volume: c5h
-      schou: '16'
-      sieg: '34'
-    metal: silver
-    fineness: 0.671
-    weight_rough_g: 22.272
+      schou: '48'
+    metal: billon
+    fineness: 0.156
+    weight_rough_g: 0.921
     sources:
       - type: literature
-        url: https://www.danskmoent.dk/chr/c5h67.htm
-        ref: Hede c5h67 (danskmoent.dk)
+        url: https://www.danskmoent.dk/chr/c5h75.htm
+        ref: Hede c5h75 (danskmoent.dk)
     issuing_entity: danish_realm
     verified: false
     fineness_verified: true
@@ -6770,7 +6821,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '1'
+    fraction: 1/96
   - id: dk-hede-f3h120
     fuss: kronemont
     phase: B
@@ -6867,189 +6918,6 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/4
-  - id: dk-hede-c5h100
-    fuss: kronemont
-    phase: B
-    kind: kurant
-    nominal: 2 Krone
-    year_label: 1671, 1693–1696
-    year_first: 1671
-    year_last: 1696
-    year_ranges:
-      - [1671, 1671]
-      - [1693, 1696]
-    ruler: Christian V.
-    mint: Kopenhagen
-    catalog:
-      hede: '100'
-      hede_volume: c5h
-      schou: '24'
-      sieg: '52'
-    metal: silver
-    fineness: 0.833
-    weight_rough_g: 35.977
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h100.htm
-        ref: Hede c5h100 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '2'
-  - id: dk-hede-c5h104
-    fuss: kronemont
-    phase: B
-    kind: kurant
-    nominal: 4 Mark
-    year_label: 1671, 1690, 1693, 1696
-    year_first: 1671
-    year_last: 1696
-    year_ranges:
-      - [1671, 1671]
-      - [1690, 1690]
-      - [1693, 1693]
-      - [1696, 1696]
-    ruler: Christian V.
-    mint: Kopenhagen
-    catalog:
-      hede: '104'
-      hede_volume: c5h
-      schou: '37'
-      sieg: '22'
-    metal: silver
-    fineness: 0.833
-    weight_rough_g: 17.988
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h104.htm
-        ref: Hede c5h104 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '1'
-  - id: dk-hede-c5h105
-    fuss: kronemont
-    phase: B
-    kind: kurant
-    nominal: 2 Krone
-    year_label: 1671, 1690, 1693, 1696
-    year_first: 1671
-    year_last: 1696
-    year_ranges:
-      - [1671, 1671]
-      - [1690, 1690]
-      - [1693, 1693]
-      - [1696, 1696]
-    ruler: Christian V.
-    mint: Kopenhagen
-    catalog:
-      hede: '105'
-      hede_volume: c5h
-      schou: '26'
-      sieg: '25'
-    metal: silver
-    fineness: 0.833
-    weight_rough_g: 35.977
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h105.htm
-        ref: Hede c5h105 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '2'
-  - id: dk-hede-c5h106
-    fuss: kronemont
-    phase: B
-    kind: kurant
-    nominal: 2 Mark
-    year_label: 1671, 1690, 1693, 1696
-    year_first: 1671
-    year_last: 1696
-    year_ranges:
-      - [1671, 1671]
-      - [1690, 1690]
-      - [1693, 1693]
-      - [1696, 1696]
-    ruler: Christian V.
-    mint: Kopenhagen
-    catalog:
-      hede: '106'
-      hede_volume: c5h
-      schou: '53'
-      sieg: '23'
-    metal: silver
-    fineness: 0.833
-    weight_rough_g: 8.994
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h106.htm
-        ref: Hede c5h106 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/2
-  - id: dk-hede-c5h117
-    fuss: reichsdukatenfuss
-    phase: A
-    kind: kurant
-    nominal: 1 Dukat
-    year_label: 1671, 1680, 1685, 1696
-    year_first: 1671
-    year_last: 1696
-    year_ranges:
-      - [1671, 1671]
-      - [1680, 1680]
-      - [1685, 1685]
-      - [1696, 1696]
-    ruler: Christian V.
-    mint: Glückstadt
-    catalog:
-      hede: '117'
-      hede_volume: c5h
-      schou: '1'
-      sieg: '144'
-    metal: gold
-    fineness: 0.979
-    weight_rough_g: 3.49
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h117.htm
-        ref: Hede c5h117 (danskmoent.dk)
-    issuing_entity: royal_holstein
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '1'
   - id: dk-hede-c5h121
     fuss: kronemont
     phase: B
@@ -7076,41 +6944,6 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h121.htm
         ref: Hede c5h121 (danskmoent.dk)
-    issuing_entity: royal_holstein
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-c5h122
-    fuss: kronemont
-    phase: B
-    kind: kurant
-    nominal: 2 Marck
-    year_label: 1671, 1679–1682, 1696
-    year_first: 1671
-    year_last: 1696
-    year_ranges:
-      - [1671, 1671]
-      - [1679, 1682]
-      - [1696, 1696]
-    ruler: Christian V.
-    mint: Glückstadt
-    catalog:
-      hede: '122'
-      hede_volume: c5h
-      schou: '34'
-      sieg: '134'
-    metal: silver
-    fineness: 0.671
-    weight_rough_g: 11.136
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h122.htm
-        ref: Hede c5h122 (danskmoent.dk)
     issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
@@ -7155,17 +6988,49 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
+  - id: dk-hede-c5h67
+    fuss: kronemont
+    phase: B
+    kind: kurant
+    nominal: 1 Krone
+    year_label: 1671–1674, 1677, 1680–1682
+    year_first: 1671
+    year_last: 1682
+    year_ranges:
+      - [1671, 1674]
+      - [1677, 1677]
+      - [1680, 1682]
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '67'
+      hede_volume: c5h
+      schou: '16'
+      sieg: '34'
+    metal: silver
+    fineness: 0.671
+    weight_rough_g: 22.272
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h67.htm
+        ref: Hede c5h67 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '1'
   - id: dk-hede-c5h69
     fuss: kronemont
     phase: B
     kind: kurant
     nominal: 2 Mark
-    year_label: 1671, 1681–1682
+    year_label: '1671'
     year_first: 1671
-    year_last: 1682
-    year_ranges:
-      - [1671, 1671]
-      - [1681, 1682]
     ruler: Christian V.
     mint: Kopenhagen
     catalog:
@@ -7180,111 +7045,6 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h69.htm
         ref: Hede c5h69 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/2
-  - id: dk-hede-c5h70
-    fuss: kronemont
-    phase: B
-    kind: kurant
-    nominal: 1 Mark
-    year_label: 1671–1672, 1676
-    year_first: 1671
-    year_last: 1676
-    year_ranges:
-      - [1671, 1672]
-      - [1676, 1676]
-    ruler: Christian V.
-    mint: Kopenhagen
-    catalog:
-      hede: '70'
-      hede_volume: c5h
-      schou: '59'
-    metal: silver
-    fineness: 0.671
-    weight_rough_g: 5.568
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h70.htm
-        ref: Hede c5h70 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/4
-  - id: dk-hede-c5h80
-    fuss: kronemont
-    phase: B
-    kind: kurant
-    nominal: 2 Mark
-    year_label: 1671, 1684–1685
-    year_first: 1671
-    year_last: 1685
-    year_ranges:
-      - [1671, 1671]
-      - [1684, 1685]
-    ruler: Christian V.
-    mint: Kopenhagen
-    catalog:
-      hede: '80'
-      hede_volume: c5h
-      schou: '16'
-      sieg: '28'
-    metal: silver
-    fineness: 0.671
-    weight_rough_g: 11.136
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h80.htm
-        ref: Hede c5h80 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/2
-  - id: dk-hede-c5h83
-    fuss: kronemont
-    phase: B
-    kind: kurant
-    nominal: 2 Mark
-    year_label: 1671, 1686, 1689
-    year_first: 1671
-    year_last: 1689
-    year_ranges:
-      - [1671, 1671]
-      - [1686, 1686]
-      - [1689, 1689]
-    ruler: Christian V.
-    mint: Kopenhagen
-    catalog:
-      hede: '83'
-      hede_volume: c5h
-      schou: 18-19
-      sieg: '29'
-    metal: silver
-    fineness: 0.671
-    weight_rough_g: 11.136
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h83.htm
-        ref: Hede c5h83 (danskmoent.dk)
     issuing_entity: danish_realm
     verified: false
     fineness_verified: true
@@ -7330,6 +7090,40 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
+  - id: dk-hede-c5h70
+    fuss: kronemont
+    phase: B
+    kind: kurant
+    nominal: 1 Mark
+    year_label: 1672, 1676
+    year_first: 1672
+    year_last: 1676
+    year_ranges:
+      - [1672, 1672]
+      - [1676, 1676]
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '70'
+      hede_volume: c5h
+      schou: '59'
+    metal: silver
+    fineness: 0.671
+    weight_rough_g: 5.568
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h70.htm
+        ref: Hede c5h70 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/4
   - id: dk-hede-c5h71
     fuss: kronemont
     phase: B
@@ -7613,13 +7407,9 @@ coins:
     phase: A
     kind: scheide
     nominal: 2 Skilling
-    year_label: 1676–1678, 1680–1681, 1861
+    year_label: 1676–1677
     year_first: 1676
-    year_last: 1861
-    year_ranges:
-      - [1676, 1678]
-      - [1680, 1681]
-      - [1861, 1861]
+    year_last: 1677
     ruler: Christian V.
     mint: Kopenhagen
     catalog:
@@ -7644,31 +7434,29 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/48
-  - id: dk-hede-c5h75
-    fuss: 9_25_thaler
-    phase: A
-    kind: scheide
-    nominal: 1 Skilling
-    year_label: 1676–1677, 1680–1681
-    year_first: 1676
-    year_last: 1681
-    year_ranges:
-      - [1676, 1677]
-      - [1680, 1681]
+  - id: dk-hede-c5h122
+    fuss: kronemont
+    phase: B
+    kind: kurant
+    nominal: 2 Marck
+    year_label: 1679–1682
+    year_first: 1679
+    year_last: 1682
     ruler: Christian V.
-    mint: Kopenhagen
+    mint: Glückstadt
     catalog:
-      hede: '75'
+      hede: '122'
       hede_volume: c5h
-      schou: '48'
-    metal: billon
-    fineness: 0.156
-    weight_rough_g: 0.921
+      schou: '34'
+      sieg: '134'
+    metal: silver
+    fineness: 0.671
+    weight_rough_g: 11.136
     sources:
       - type: literature
-        url: https://www.danskmoent.dk/chr/c5h75.htm
-        ref: Hede c5h75 (danskmoent.dk)
-    issuing_entity: danish_realm
+        url: https://www.danskmoent.dk/chr/c5h122.htm
+        ref: Hede c5h122 (danskmoent.dk)
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -7677,7 +7465,41 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/96
+  - id: dk-hede-c5h117
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    nominal: 1 Dukat
+    year_label: 1680, 1685
+    year_first: 1680
+    year_last: 1685
+    year_ranges:
+      - [1680, 1680]
+      - [1685, 1685]
+    ruler: Christian V.
+    mint: Glückstadt
+    catalog:
+      hede: '117'
+      hede_volume: c5h
+      schou: '1'
+      sieg: '144'
+    metal: gold
+    fineness: 0.979
+    weight_rough_g: 3.49
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h117.htm
+        ref: Hede c5h117 (danskmoent.dk)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '1'
   - id: dk-hede-c5h124
     fuss: 9_25_thaler
     phase: A
@@ -7925,6 +7747,38 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
+  - id: dk-hede-c5h80
+    fuss: kronemont
+    phase: B
+    kind: kurant
+    nominal: 2 Mark
+    year_label: 1684–1685
+    year_first: 1684
+    year_last: 1685
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '80'
+      hede_volume: c5h
+      schou: '16'
+      sieg: '28'
+    metal: silver
+    fineness: 0.671
+    weight_rough_g: 11.136
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h80.htm
+        ref: Hede c5h80 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/2
   - id: dk-hede-c5h81
     fuss: kronemont
     phase: B
@@ -7990,6 +7844,41 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
+  - id: dk-hede-c5h83
+    fuss: kronemont
+    phase: B
+    kind: kurant
+    nominal: 2 Mark
+    year_label: 1686, 1689
+    year_first: 1686
+    year_last: 1689
+    year_ranges:
+      - [1686, 1686]
+      - [1689, 1689]
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '83'
+      hede_volume: c5h
+      schou: 18-19
+      sieg: '29'
+    metal: silver
+    fineness: 0.671
+    weight_rough_g: 11.136
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h83.htm
+        ref: Hede c5h83 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/2
   - id: dk-hede-c5h84
     fuss: 9_25_thaler
     phase: A
@@ -8335,12 +8224,8 @@ coins:
     phase: A
     kind: kurant
     nominal: 1 Dukat
-    year_label: 1690, 1922
+    year_label: '1690'
     year_first: 1690
-    year_last: 1922
-    year_ranges:
-      - [1690, 1690]
-      - [1922, 1922]
     ruler: Christian V.
     mint: Kopenhagen
     catalog:
@@ -8396,114 +8281,6 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
-  - id: dk-hede-c5h41
-    fuss: reichsdukatenfuss
-    phase: A
-    kind: kurant
-    nominal: 1 Dukat
-    year_label: 1690, 1694, 1696
-    year_first: 1690
-    year_last: 1696
-    year_ranges:
-      - [1690, 1690]
-      - [1694, 1694]
-      - [1696, 1696]
-    ruler: Christian V.
-    mint: Kopenhagen
-    catalog:
-      hede: '41'
-      hede_volume: c5h
-      schou: '6'
-      sieg: '68'
-    metal: gold
-    fineness: 0.979
-    weight_rough_g: 3.49
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h41.htm
-        ref: Hede c5h41 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '1'
-  - id: dk-hede-c5h42
-    fuss: reichsdukatenfuss
-    phase: A
-    kind: kurant
-    nominal: 3 Dukat
-    year_label: 1690, 1694, 1696
-    year_first: 1690
-    year_last: 1696
-    year_ranges:
-      - [1690, 1690]
-      - [1694, 1694]
-      - [1696, 1696]
-    ruler: Christian V.
-    mint: Kopenhagen
-    catalog:
-      hede: '42'
-      hede_volume: c5h
-      schou: '1'
-      sieg: '69'
-    metal: gold
-    fineness: 0.979
-    weight_rough_g: 6.981
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h42.htm
-        ref: Hede c5h42 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '3'
-  - id: dk-hede-c5h43
-    fuss: reichsdukatenfuss
-    phase: A
-    kind: kurant
-    nominal: 2 Dukat
-    year_label: 1690, 1694, 1696
-    year_first: 1690
-    year_last: 1696
-    year_ranges:
-      - [1690, 1690]
-      - [1694, 1694]
-      - [1696, 1696]
-    ruler: Christian V.
-    mint: Kopenhagen
-    catalog:
-      hede: '43'
-      hede_volume: c5h
-      schou: '1'
-      sieg: '69'
-    metal: gold
-    fineness: 0.979
-    weight_rough_g: 3.49
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c5h42.htm
-        ref: Hede c5h43 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '2'
   - id: dk-hede-c5h88
     fuss: kronemont
     phase: B
@@ -8912,6 +8689,38 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
+  - id: dk-hede-c5h100
+    fuss: kronemont
+    phase: B
+    kind: kurant
+    nominal: 2 Krone
+    year_label: 1693–1696
+    year_first: 1693
+    year_last: 1696
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '100'
+      hede_volume: c5h
+      schou: '24'
+      sieg: '52'
+    metal: silver
+    fineness: 0.833
+    weight_rough_g: 35.977
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h100.htm
+        ref: Hede c5h100 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '2'
   - id: dk-hede-c5h101
     fuss: kronemont
     phase: B
@@ -9005,6 +8814,111 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-c5h104
+    fuss: kronemont
+    phase: B
+    kind: kurant
+    nominal: 4 Mark
+    year_label: 1693, 1696
+    year_first: 1693
+    year_last: 1696
+    year_ranges:
+      - [1693, 1693]
+      - [1696, 1696]
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '104'
+      hede_volume: c5h
+      schou: '37'
+      sieg: '22'
+    metal: silver
+    fineness: 0.833
+    weight_rough_g: 17.988
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h104.htm
+        ref: Hede c5h104 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '1'
+  - id: dk-hede-c5h105
+    fuss: kronemont
+    phase: B
+    kind: kurant
+    nominal: 2 Krone
+    year_label: 1693, 1696
+    year_first: 1693
+    year_last: 1696
+    year_ranges:
+      - [1693, 1693]
+      - [1696, 1696]
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '105'
+      hede_volume: c5h
+      schou: '26'
+      sieg: '25'
+    metal: silver
+    fineness: 0.833
+    weight_rough_g: 35.977
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h105.htm
+        ref: Hede c5h105 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '2'
+  - id: dk-hede-c5h106
+    fuss: kronemont
+    phase: B
+    kind: kurant
+    nominal: 2 Mark
+    year_label: 1693, 1696
+    year_first: 1693
+    year_last: 1696
+    year_ranges:
+      - [1693, 1693]
+      - [1696, 1696]
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '106'
+      hede_volume: c5h
+      schou: '53'
+      sieg: '23'
+    metal: silver
+    fineness: 0.833
+    weight_rough_g: 8.994
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h106.htm
+        ref: Hede c5h106 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/2
   - id: dk-hede-c5h107
     fuss: kronemont
     phase: B
@@ -9472,6 +9386,111 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h35.htm
         ref: Hede c5h36 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '2'
+  - id: dk-hede-c5h41
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    nominal: 1 Dukat
+    year_label: 1694, 1696
+    year_first: 1694
+    year_last: 1696
+    year_ranges:
+      - [1694, 1694]
+      - [1696, 1696]
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '41'
+      hede_volume: c5h
+      schou: '6'
+      sieg: '68'
+    metal: gold
+    fineness: 0.979
+    weight_rough_g: 3.49
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h41.htm
+        ref: Hede c5h41 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '1'
+  - id: dk-hede-c5h42
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    nominal: 3 Dukat
+    year_label: 1694, 1696
+    year_first: 1694
+    year_last: 1696
+    year_ranges:
+      - [1694, 1694]
+      - [1696, 1696]
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '42'
+      hede_volume: c5h
+      schou: '1'
+      sieg: '69'
+    metal: gold
+    fineness: 0.979
+    weight_rough_g: 6.981
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h42.htm
+        ref: Hede c5h42 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '3'
+  - id: dk-hede-c5h43
+    fuss: reichsdukatenfuss
+    phase: A
+    kind: kurant
+    nominal: 2 Dukat
+    year_label: 1694, 1696
+    year_first: 1694
+    year_last: 1696
+    year_ranges:
+      - [1694, 1694]
+      - [1696, 1696]
+    ruler: Christian V.
+    mint: Kopenhagen
+    catalog:
+      hede: '43'
+      hede_volume: c5h
+      schou: '1'
+      sieg: '69'
+    metal: gold
+    fineness: 0.979
+    weight_rough_g: 3.49
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c5h42.htm
+        ref: Hede c5h43 (danskmoent.dk)
     issuing_entity: danish_realm
     verified: false
     fineness_verified: true
@@ -10116,12 +10135,9 @@ coins:
     phase: A
     kind: scheide
     nominal: 12 Skilling
-    year_label: 1710–1719, 1726
+    year_label: 1710–1719
     year_first: 1710
-    year_last: 1726
-    year_ranges:
-      - [1710, 1719]
-      - [1726, 1726]
+    year_last: 1719
     ruler: Frederik IV.
     mint: Kopenhagen
     catalog:
@@ -10435,12 +10451,8 @@ coins:
     phase: A
     kind: scheide
     nominal: 12 Skilling
-    year_label: 1716–1717, 1720
+    year_label: '1716'
     year_first: 1716
-    year_last: 1720
-    year_ranges:
-      - [1716, 1717]
-      - [1720, 1720]
     ruler: Frederik IV.
     mint: Rendsburg
     catalog:
@@ -10635,13 +10647,12 @@ coins:
     phase: A
     kind: kurant
     nominal: 1 Krone
-    year_label: 1724, 1726, 1923
+    year_label: 1724, 1726
     year_first: 1724
-    year_last: 1923
+    year_last: 1726
     year_ranges:
       - [1724, 1724]
       - [1726, 1726]
-      - [1923, 1923]
     ruler: Frederik IV.
     mint: Kopenhagen
     catalog:
@@ -10667,130 +10678,13 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
-  - id: dk-hede-c6h4
-    fuss: kronemont_fine
-    phase: A
-    kind: kurant
-    nominal: 1 Krone
-    year_label: 1726, 1731–1732, 1788, 1927
-    year_first: 1726
-    year_last: 1927
-    year_ranges:
-      - [1726, 1726]
-      - [1731, 1732]
-      - [1788, 1788]
-      - [1927, 1927]
-    ruler: Christian VI.
-    mint: Kopenhagen
-    catalog:
-      hede: '4'
-      hede_volume: c6h
-      schou: 1731,1
-      sieg: '5'
-    metal: silver
-    fineness: 0.671
-    weight_rough_g: 22.272
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c6h4.htm
-        ref: Hede c6h4 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '1'
-  - id: dk-hede-c6h8
-    fuss: 11_333_thaler
-    phase: A
-    kind: scheide
-    nominal: 1 Skilling
-    year_label: 1726, 1735, 1746, 1788, 1927
-    year_first: 1726
-    year_last: 1927
-    year_ranges:
-      - [1726, 1726]
-      - [1735, 1735]
-      - [1746, 1746]
-      - [1788, 1788]
-      - [1927, 1927]
-    ruler: Christian VI.
-    mint: Kopenhagen
-    catalog:
-      hede: '8'
-      hede_volume: c6h
-      schou: '3'
-      sieg: '2'
-    metal: billon
-    fineness: 0.187
-    weight_rough_g: 0.768
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c6h8.htm
-        ref: Hede c6h8 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/96
-  - id: dk-hede-c7h6
-    fuss: 9_25_thaler
-    phase: A
-    kind: kurant
-    nominal: 1 Speciedaler
-    year_label: 1726, 1768–1769, 1788, 1927
-    year_first: 1726
-    year_last: 1927
-    year_ranges:
-      - [1726, 1726]
-      - [1768, 1769]
-      - [1788, 1788]
-      - [1927, 1927]
-    ruler: Christian VII.
-    mint: Rethwisch
-    catalog:
-      hede: '6'
-      hede_volume: c7h
-      schou: '2'
-      sieg: '4'
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 28.893
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c7h6.htm
-        ref: Hede c7h6 (danskmoent.dk)
-    issuing_entity: royal_holstein
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '1'
   - id: dk-hede-f4h41
     fuss: kronemont_fine
     phase: A
     kind: kurant
     nominal: 3 Krone
-    year_label: 1726, 1788, 1927
+    year_label: '1726'
     year_first: 1726
-    year_last: 1927
-    year_ranges:
-      - [1726, 1726]
-      - [1788, 1788]
-      - [1927, 1927]
     ruler: Frederik IV.
     mint: Kopenhagen
     catalog:
@@ -10815,46 +10709,6 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-f5h37b
-    fuss: 11_333_thaler
-    phase: A
-    kind: scheide
-    nominal: 1 Skilling
-    year_label: 1726, 1751, 1755, 1761–1764, 1788, 1927
-    year_first: 1726
-    year_last: 1927
-    year_ranges:
-      - [1726, 1726]
-      - [1751, 1751]
-      - [1755, 1755]
-      - [1761, 1764]
-      - [1788, 1788]
-      - [1927, 1927]
-    ruler: Frederik V.
-    mint: Kopenhagen
-    catalog:
-      hede: 37b
-      hede_volume: f5h
-      schou: '3'
-      sieg: '2'
-      fr: '5'
-    metal: billon
-    fineness: 0.187
-    weight_rough_g: 0.768
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f5h37b.htm
-        ref: Hede f5h37b (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/96
   - id: dk-hede-f4h52
     fuss: 11_333_thaler
     phase: A
@@ -10892,8 +10746,8 @@ coins:
     phase: A
     kind: scheide
     nominal: 8 Skilling
-    year_label: 1728–1730
-    year_first: 1728
+    year_label: 1729–1730
+    year_first: 1729
     year_last: 1730
     ruler: Frederik IV.
     mint: Kopenhagen
@@ -10941,6 +10795,38 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c6h1.htm
         ref: Hede c6h1 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '1'
+  - id: dk-hede-c6h4
+    fuss: kronemont_fine
+    phase: A
+    kind: kurant
+    nominal: 1 Krone
+    year_label: 1731–1732
+    year_first: 1731
+    year_last: 1732
+    ruler: Christian VI.
+    mint: Kopenhagen
+    catalog:
+      hede: '4'
+      hede_volume: c6h
+      schou: 1731,1
+      sieg: '5'
+    metal: silver
+    fineness: 0.671
+    weight_rough_g: 22.272
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c6h4.htm
+        ref: Hede c6h4 (danskmoent.dk)
     issuing_entity: danish_realm
     verified: false
     fineness_verified: true
@@ -11049,6 +10935,41 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/4
+  - id: dk-hede-c6h8
+    fuss: 11_333_thaler
+    phase: A
+    kind: scheide
+    nominal: 1 Skilling
+    year_label: 1735, 1746
+    year_first: 1735
+    year_last: 1746
+    year_ranges:
+      - [1735, 1735]
+      - [1746, 1746]
+    ruler: Christian VI.
+    mint: Kopenhagen
+    catalog:
+      hede: '8'
+      hede_volume: c6h
+      schou: '3'
+      sieg: '2'
+    metal: billon
+    fineness: 0.187
+    weight_rough_g: 0.768
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c6h8.htm
+        ref: Hede c6h8 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/96
   - id: dk-hede-c6h3
     fuss: reichsdukatenfuss
     phase: B
@@ -11794,14 +11715,13 @@ coins:
     phase: A
     kind: scheide
     nominal: 2 Skilling
-    year_label: 1750, 1756, 1761, 1774
+    year_label: 1750, 1756, 1761
     year_first: 1750
-    year_last: 1774
+    year_last: 1761
     year_ranges:
       - [1750, 1750]
       - [1756, 1756]
       - [1761, 1761]
-      - [1774, 1774]
     ruler: Frederik V.
     mint: Kopenhagen
     catalog:
@@ -11827,6 +11747,43 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/48
+  - id: dk-hede-f5h37b
+    fuss: 11_333_thaler
+    phase: A
+    kind: scheide
+    nominal: 1 Skilling
+    year_label: 1751, 1755, 1761–1764
+    year_first: 1751
+    year_last: 1764
+    year_ranges:
+      - [1751, 1751]
+      - [1755, 1755]
+      - [1761, 1764]
+    ruler: Frederik V.
+    mint: Kopenhagen
+    catalog:
+      hede: 37b
+      hede_volume: f5h
+      schou: '3'
+      sieg: '2'
+      fr: '5'
+    metal: billon
+    fineness: 0.187
+    weight_rough_g: 0.768
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f5h37b.htm
+        ref: Hede f5h37b (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/96
   - id: dk-hede-f5h19
     fuss: reichsdukatenfuss
     phase: B
@@ -11967,95 +11924,14 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
-  - id: dk-hede-c7h12
-    fuss: 9_25_thaler
-    phase: B
-    kind: kurant
-    nominal: 1/2 Speciedaler
-    year_label: 1766, 1777, 1786, 1808, 1812
-    year_first: 1766
-    year_last: 1812
-    year_ranges:
-      - [1766, 1766]
-      - [1777, 1777]
-      - [1786, 1786]
-      - [1808, 1808]
-      - [1812, 1812]
-    ruler: Christian VII.
-    mint: Altona
-    catalog:
-      hede: '12'
-      hede_volume: c7h
-      schou: '2'
-      sieg: '29'
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 14.447
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c7h12.htm
-        ref: Hede c7h12 (danskmoent.dk)
-    issuing_entity: royal_holstein
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/2
-  - id: dk-hede-c7h15
-    fuss: 9_25_thaler
-    phase: B
-    kind: scheide
-    nominal: 1/15 Speciedaler
-    year_label: 1766, 1796–1797, 1799, 1808, 1812
-    year_first: 1766
-    year_last: 1812
-    year_ranges:
-      - [1766, 1766]
-      - [1796, 1797]
-      - [1799, 1799]
-      - [1808, 1808]
-      - [1812, 1812]
-    ruler: Christian VII.
-    mint: Altona
-    catalog:
-      hede: '15'
-      hede_volume: c7h
-      schou: '11'
-      sieg: '27'
-    metal: silver
-    fineness: 0.5
-    weight_rough_g: 3.37
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c7h15.htm
-        ref: Hede c7h15 (danskmoent.dk)
-    issuing_entity: royal_holstein
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/15
   - id: dk-hede-c7h26
     fuss: 11_333_thaler
     phase: A
     kind: scheide
     nominal: 32 Skilling
-    year_label: 1766, 1775, 1808, 1812
+    year_label: u. å. (1766–1808)
     year_first: 1766
-    year_last: 1812
-    year_ranges:
-      - [1766, 1766]
-      - [1775, 1775]
-      - [1808, 1808]
-      - [1812, 1812]
+    year_last: 1808
     ruler: Christian VII.
     mint: Kopenhagen
     catalog:
@@ -12071,119 +11947,6 @@ coins:
         url: https://www.danskmoent.dk/chr/c7h26.htm
         ref: Hede c7h26 (danskmoent.dk)
     issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-c7h30
-    fuss: 11_333_thaler
-    phase: A
-    kind: scheide
-    nominal: 8 Skilling
-    year_label: 1766, 1773, 1783, 1808, 1812
-    year_first: 1766
-    year_last: 1812
-    year_ranges:
-      - [1766, 1766]
-      - [1773, 1773]
-      - [1783, 1783]
-      - [1808, 1808]
-      - [1812, 1812]
-    ruler: Christian VII.
-    mint: Kopenhagen
-    catalog:
-      hede: '30'
-      hede_volume: c7h
-      schou: '3'
-      sieg: '14'
-    metal: silver
-    fineness: 0.562
-    weight_rough_g: 3.057
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c7h30.htm
-        ref: Hede c7h30 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/12
-  - id: dk-hede-c7h34
-    fuss: 11_333_thaler
-    phase: A
-    kind: scheide
-    nominal: 1 Skilling
-    year_label: 1766, 1779, 1782, 1808, 1812
-    year_first: 1766
-    year_last: 1812
-    year_ranges:
-      - [1766, 1766]
-      - [1779, 1779]
-      - [1782, 1782]
-      - [1808, 1808]
-      - [1812, 1812]
-    ruler: Christian VII.
-    mint: Kopenhagen
-    catalog:
-      hede: '34'
-      hede_volume: c7h
-      schou: '18'
-      sieg: '9'
-    metal: billon
-    fineness: 0.187
-    weight_rough_g: 0.768
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c7h34.htm
-        ref: Hede c7h34 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/96
-  - id: dk-hede-c7h40
-    fuss: 9_25_thaler
-    phase: B
-    kind: kurant
-    nominal: 2/3 Speciedaler
-    year_label: 1766, 1787, 1797, 1799, 1808
-    year_first: 1766
-    year_last: 1808
-    year_ranges:
-      - [1766, 1766]
-      - [1787, 1787]
-      - [1797, 1797]
-      - [1799, 1799]
-      - [1808, 1808]
-    ruler: Christian VII.
-    mint: Altona
-    catalog:
-      hede: '40'
-      hede_volume: c7h
-      schou: 7a
-      sieg: '41'
-    metal: silver
-    fineness: 0.875
-    weight_rough_g: 19.263
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c7h40.htm
-        ref: Hede c7h40 (danskmoent.dk)
-    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -12223,6 +11986,38 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/4
+  - id: dk-hede-c7h6
+    fuss: 9_25_thaler
+    phase: B
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_label: 1768–1769
+    year_first: 1768
+    year_last: 1769
+    ruler: Christian VII.
+    mint: Rethwisch
+    catalog:
+      hede: '6'
+      hede_volume: c7h
+      schou: '2'
+      sieg: '4'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 28.893
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c7h6.htm
+        ref: Hede c7h6 (danskmoent.dk)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '1'
   - id: dk-hede-c7h10
     fuss: 9_25_thaler
     phase: B
@@ -12480,6 +12275,41 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
+  - id: dk-hede-c7h30
+    fuss: 11_333_thaler
+    phase: A
+    kind: scheide
+    nominal: 8 Skilling
+    year_label: 1773, 1783
+    year_first: 1773
+    year_last: 1783
+    year_ranges:
+      - [1773, 1773]
+      - [1783, 1783]
+    ruler: Christian VII.
+    mint: Kopenhagen
+    catalog:
+      hede: '30'
+      hede_volume: c7h
+      schou: '3'
+      sieg: '14'
+    metal: silver
+    fineness: 0.562
+    weight_rough_g: 3.057
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c7h30.htm
+        ref: Hede c7h30 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/12
   - id: dk-hede-c7h33
     fuss: 11_333_thaler
     phase: A
@@ -12543,6 +12373,41 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/2
+  - id: dk-hede-c7h12
+    fuss: 9_25_thaler
+    phase: B
+    kind: kurant
+    nominal: 1/2 Speciedaler
+    year_label: 1777, 1786
+    year_first: 1777
+    year_last: 1786
+    year_ranges:
+      - [1777, 1777]
+      - [1786, 1786]
+    ruler: Christian VII.
+    mint: Altona
+    catalog:
+      hede: '12'
+      hede_volume: c7h
+      schou: '2'
+      sieg: '29'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 14.447
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c7h12.htm
+        ref: Hede c7h12 (danskmoent.dk)
+    issuing_entity: gesamtstaat
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/2
   - id: dk-hede-c7h28
     fuss: 11_333_thaler
     phase: A
@@ -12578,6 +12443,41 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/4
+  - id: dk-hede-c7h34
+    fuss: 11_333_thaler
+    phase: A
+    kind: scheide
+    nominal: 1 Skilling
+    year_label: 1779, 1782
+    year_first: 1779
+    year_last: 1782
+    year_ranges:
+      - [1779, 1779]
+      - [1782, 1782]
+    ruler: Christian VII.
+    mint: Kopenhagen
+    catalog:
+      hede: '34'
+      hede_volume: c7h
+      schou: '18'
+      sieg: '9'
+    metal: billon
+    fineness: 0.187
+    weight_rough_g: 0.768
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c7h34.htm
+        ref: Hede c7h34 (danskmoent.dk)
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/96
   - id: dk-hede-c7h29
     fuss: 11_333_thaler
     phase: A
@@ -12676,11 +12576,12 @@ coins:
     phase: B
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1787–1791, 1794–1796, 1799, 1801, 1804, 1807–1808
+    year_label: 1787–1788, 1790–1791, 1794–1796, 1799, 1801, 1804, 1807–1808
     year_first: 1787
     year_last: 1808
     year_ranges:
-      - [1787, 1791]
+      - [1787, 1788]
+      - [1790, 1791]
       - [1794, 1796]
       - [1799, 1799]
       - [1801, 1801]
@@ -12710,6 +12611,42 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
+  - id: dk-hede-c7h40
+    fuss: 9_25_thaler
+    phase: B
+    kind: kurant
+    nominal: 2/3 Speciedaler
+    year_label: 1787, 1797, 1799, 1808
+    year_first: 1787
+    year_last: 1808
+    year_ranges:
+      - [1787, 1787]
+      - [1797, 1797]
+      - [1799, 1799]
+      - [1808, 1808]
+    ruler: Christian VII.
+    mint: Altona
+    catalog:
+      hede: '40'
+      hede_volume: c7h
+      schou: 7a
+      sieg: '41'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 19.263
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c7h40.htm
+        ref: Hede c7h40 (danskmoent.dk)
+    issuing_entity: gesamtstaat
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c7h41
     fuss: 9_25_thaler
     phase: B
@@ -12787,14 +12724,13 @@ coins:
     phase: B
     kind: scheide
     nominal: 1/12 Speciedaler/5 Schilling Schleswig-holsteinischer Courant
-    year_label: 1787–1788, 1797, 1800–1801, 1849
+    year_label: 1787–1788, 1797, 1800–1801
     year_first: 1787
-    year_last: 1849
+    year_last: 1801
     year_ranges:
       - [1787, 1788]
       - [1797, 1797]
       - [1800, 1801]
-      - [1849, 1849]
     ruler: Christian VII.
     mint: Altona
     catalog:
@@ -12890,45 +12826,6 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-f6h3
-    fuss: pistolenfuss
-    phase: A
-    kind: kurant
-    nominal: 2 Frederik D'or
-    year_label: 1788, 1828–1830, 1833–1836, 1845, 1929
-    year_first: 1788
-    year_last: 1929
-    year_ranges:
-      - [1788, 1788]
-      - [1828, 1830]
-      - [1833, 1836]
-      - [1845, 1845]
-      - [1929, 1929]
-    ruler: Frederik VI.
-    mint: Altona
-    catalog:
-      hede: '3'
-      hede_volume: f6h
-      schou: '1'
-      sieg: '35'
-      fr: '6'
-    metal: gold
-    fineness: 0.896
-    weight_rough_g: 13.284
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f6h3.htm
-        ref: Hede f6h3 (danskmoent.dk)
-    issuing_entity: gesamtstaat
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '2'
   - id: dk-hede-c7h13
     fuss: 9_25_thaler
     phase: C
@@ -12964,6 +12861,41 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
+  - id: dk-hede-c7h15
+    fuss: 9_25_thaler
+    phase: C
+    kind: scheide
+    nominal: 1/15 Speciedaler
+    year_label: 1796–1797, 1799
+    year_first: 1796
+    year_last: 1799
+    year_ranges:
+      - [1796, 1797]
+      - [1799, 1799]
+    ruler: Christian VII.
+    mint: Altona
+    catalog:
+      hede: '15'
+      hede_volume: c7h
+      schou: '11'
+      sieg: '27'
+    metal: silver
+    fineness: 0.5
+    weight_rough_g: 3.37
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c7h15.htm
+        ref: Hede c7h15 (danskmoent.dk)
+    issuing_entity: gesamtstaat
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/15
   - id: dk-hede-c7h36
     fuss: 11_333_thaler
     phase: A
@@ -13036,13 +12968,12 @@ coins:
     phase: C
     kind: scheide
     nominal: 1/24 Speciedaler
-    year_label: 1809, 1812, 1929
+    year_label: 1809, 1812
     year_first: 1809
-    year_last: 1929
+    year_last: 1812
     year_ranges:
       - [1809, 1809]
       - [1812, 1812]
-      - [1929, 1929]
     ruler: Frederik VI.
     mint: Altona
     catalog:
@@ -13110,13 +13041,8 @@ coins:
     phase: A
     kind: scheide
     nominal: 8 Skilling
-    year_label: 1816, 1818–1819, 1929
+    year_label: '1816'
     year_first: 1816
-    year_last: 1929
-    year_ranges:
-      - [1816, 1816]
-      - [1818, 1819]
-      - [1929, 1929]
     ruler: Frederik VI.
     mint: Altona
     catalog:
@@ -13142,6 +13068,42 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: 1/12
+  - id: dk-hede-f6h3
+    fuss: pistolenfuss
+    phase: A
+    kind: kurant
+    nominal: 2 Frederik D'or
+    year_label: 1828–1830, 1833–1836
+    year_first: 1828
+    year_last: 1836
+    year_ranges:
+      - [1828, 1830]
+      - [1833, 1836]
+    ruler: Frederik VI.
+    mint: Altona
+    catalog:
+      hede: '3'
+      hede_volume: f6h
+      schou: '1'
+      sieg: '35'
+      fr: '6'
+    metal: gold
+    fineness: 0.896
+    weight_rough_g: 13.284
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f6h3.htm
+        ref: Hede f6h3 (danskmoent.dk)
+    issuing_entity: gesamtstaat
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '2'
   - id: dk-hede-f6h4
     fuss: pistolenfuss
     phase: A
@@ -13772,12 +13734,12 @@ coins:
     phase: A
     kind: kurant
     nominal: 20 Kroner
-    year_label: 1873, 1876–1877, 1890, 1900
+    year_label: 1873, 1876, 1890, 1900
     year_first: 1873
     year_last: 1900
     year_ranges:
       - [1873, 1873]
-      - [1876, 1877]
+      - [1876, 1876]
       - [1890, 1890]
       - [1900, 1900]
     ruler: Christian IX.
@@ -14216,12 +14178,12 @@ coins:
     phase: A
     kind: kurant
     nominal: 20 Kroner
-    year_label: 1913–1914, 1926–1927, 1930
+    year_label: 1913, 1926, 1930
     year_first: 1913
     year_last: 1930
     year_ranges:
-      - [1913, 1914]
-      - [1926, 1927]
+      - [1913, 1913]
+      - [1926, 1926]
       - [1930, 1930]
     ruler: Christian X.
     mint: Kopenhagen

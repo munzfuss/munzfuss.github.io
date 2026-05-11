@@ -131,6 +131,19 @@ _YEAR_BLOCK_RE = re.compile(
     r"(\d{4}(?:[\s,]+\d{4})*)\s*"
     r"(?:\(\s*(R{1,3}|S|Unik)\s*\))?",
 )
+
+# Section headers that mark the END of the year-rarity zone on a Hede
+# page. The year-rarity line lives between the H1 echo and the FIRST
+# of these markers; anything past one of them belongs to a different
+# section (specs, bibliography, specimen list, mintmaster) where
+# four-digit tokens are book years, weight/fineness numerics, etc. —
+# NOT coin minting years.
+_SECTION_BOUNDARY_RE = re.compile(
+    r"\b(?:Bruttov[æa]gt|Finhed|Finv[æa]gt|Marken\s+fin|"
+    r"Litteratur|Eksemplar(?:er)?\s+fra|M[øo]ntmesterm[æa]rke|"
+    r"M[øo]ntmester(?:\b|:)|Tilbage\s+til)",
+    re.IGNORECASE,
+)
 # Hede convention for «century-abbreviated» dating: «(15)46» means
 # 1546, «(15)63» means 1563, «(16)29» means 1629. Used heavily on
 # 16th-c. Christian III / Frederik II pages where the page H1
@@ -462,16 +475,33 @@ def parse_one(html: str, basename: str) -> dict:
     # <H1>; many pages publish the year-rarity list in a paragraph
     # immediately under the H1 (e.g. «1541 (R), 1544 (S), 1546 (RR)
     # …»). When the header parse came back without years, scan the
-    # first ~600 chars of the body text after the title/H1 echo for
-    # the same year-block pattern. Cap at 1700 to avoid catching
-    # «Bruttovægt: 1,234 …» numerics.
+    # body text after the title/H1 echo for the same year-block
+    # pattern — but stop AT the first specs / bibliography / specimen-
+    # list section header. Those sections legitimately carry year-
+    # shaped tokens that are NOT coin years:
+    #   * «Bruttovægt: 28,893g» / «Finhed: 0,875» — spec numerics
+    #   * «Wilcke, Julius: Kurantmønten 1726-1788, København 1927»
+    #     — book title + publication year in Litteratur
+    #   * «1768, Schou 2 / 1769, Schou 7» — specimen catalogue rows
+    #     (these years are usually a subset of the year-rarity line
+    #     above, but if a year appears ONLY here without a rarity, we
+    #     prefer not to elevate it without explicit signal)
+    # Stopping at the section boundary preserves the year-rarity line
+    # that lives between the H1 echo and the first spec marker.
     if not out.get("years"):
         # Skip the first line if it just echoes the H1 (ruler + nominal)
         body_start = text
         first_newline = text.find("\n")
         if 0 < first_newline < 200:
             body_start = text[first_newline:]
-        scan_window = body_start[:600]
+        section_m = _SECTION_BOUNDARY_RE.search(body_start)
+        if section_m:
+            scan_window = body_start[:section_m.start()]
+        else:
+            # No section marker found — fall back to the original
+            # 600-char cap to keep behaviour sane on pages with
+            # missing/non-standard structure.
+            scan_window = body_start[:600]
         year_candidates = _extract_years(scan_window)
         # Reject the candidate list if it crosses into noise — a
         # plausible year-block is contiguous and short. We accept up
