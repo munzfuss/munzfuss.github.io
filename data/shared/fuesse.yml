@@ -1419,6 +1419,10 @@ kronemont:
 # Stück — der Wechsel war eher symbolisch (Vertrauenswiederherstellung) als eine
 # echte Aufwertung. grid_stops = 233.856 ÷ 14.984 = 15.607.
 # -----------------------------------------------------------------------------
+    '4':
+      soll_fein_g: 59.856
+    '6':
+      soll_fein_g: 89.784
   events:
     first_adoption:
       anywhere: 1644
@@ -1562,6 +1566,8 @@ kronemont_fine:
 # 5,47 g — physikalisch ein anderer Müntzfuß und in dieser Definition NICHT
 # enthalten (Kopenhagen liegt außerhalb des Holstein-Verzeichnisses).
 # -----------------------------------------------------------------------------
+    '3':
+      soll_fein_g: 44.952
   events:
     first_adoption:
       anywhere: 1693
@@ -1825,11 +1831,11 @@ vereinsgoldmuenze:
       note: '1857 = Wiener Münzvertrag 24. Januar 1857 (in Kraft 1. Mai 1857) zwischen Österreich, Liechtenstein und Zollvereinsstaaten. Holstein-Adoption 1864 mit Wiener Frieden 30. Oktober 1864 / preußisch-österreichischer Verwaltung; eigene SH-Prägungen sind nicht dokumentiert (Altona 1863 geschlossen).'
     first_mint:
       anywhere: 1857
-      holstein: null
+      holstein:
       note: anywhere = erste Vereinskronen aus Hannover, Preußen u.a. holstein = null (keine eigenen SH-Prägungen — Altona-Münze 1863 geschlossen).
     last_mint:
       anywhere: 1871
-      holstein: null
+      holstein:
       note: 1871 = letzte Vereinskronen-Prägung in den Vertragsstaaten; mit Reichsgründung Mintage-Stop. Holstein hatte nie eigene Vereinskronen-Prägungen — `null` markiert die fehlende Holstein-Mint-Spur, sonst würde im Timeline-Render eine entartete 0-0-Schicht entstehen.
     std_end:
       anywhere: 1871
@@ -2123,19 +2129,19 @@ kronefod:
       (початок війни); монетна унія формально розпущена 1924 р.
   fractions:
     # Gold Hauptkurant — anchor tier
-    "20":     {soll_rau_g: 8.9606, soll_fein_g: 8.06452}    # 20 Kroner gold (.900) · 23 mm Ø
-    "10":     {soll_rau_g: 4.4803, soll_fein_g: 4.03226}    # 10 Kroner gold (.900) · 18.5 mm Ø
-    "5":      {soll_rau_g: 2.2402, soll_fein_g: 2.01613}    # 5 Kroner gold (.900) — Sweden / Norway
+    "20": {soll_rau_g: 8.9606, soll_fein_g: 8.06452}        # 20 Kroner gold (.900) · 23 mm Ø
+    "10": {soll_rau_g: 4.4803, soll_fein_g: 4.03226}        # 10 Kroner gold (.900) · 18.5 mm Ø
+    "5": {soll_rau_g: 2.2402, soll_fein_g: 2.01613}         # 5 Kroner gold (.900) — Sweden / Norway
     # Silver Kurant tier — .800 fineness, full-value companion
-    "2":      {soll_fein_g: 12.0}     # 2 Kroner silver (.800), 15 g rough
-    "1":      {soll_fein_g: 6.0}      # 1 Krone silver (.800), 7.5 g rough
+    "2": {soll_fein_g: 12.0}          # 2 Kroner silver (.800), 15 g rough
+    "1": {soll_fein_g: 6.0}           # 1 Krone silver (.800), 7.5 g rough
     # Silver Scheide tier — under-weight, .600 / .400 fineness
-    "1/4":    {soll_fein_g: 1.452}    # 25 øre silver (.600), 2.42 g rough
-    "1/10":   {soll_fein_g: 0.580}    # 10 øre silver (.400), 1.45 g rough
+    "1/4": {soll_fein_g: 1.452}       # 25 øre silver (.600), 2.42 g rough
+    "1/10": {soll_fein_g: 0.580}      # 10 øre silver (.400), 1.45 g rough
     # Bronze Scheide tier — no precious metal content
-    "1/20":   {soll_fein_g: 0.0}      # 5 øre bronze
-    "1/50":   {soll_fein_g: 0.0}      # 2 øre bronze
-    "1/100":  {soll_fein_g: 0.0}      # 1 øre bronze
+    "1/20": {soll_fein_g: 0.0}        # 5 øre bronze
+    "1/50": {soll_fein_g: 0.0}        # 2 øre bronze
+    "1/100": {soll_fein_g: 0.0}       # 1 øre bronze
   events:
     first_adoption:
       anywhere: 1873
