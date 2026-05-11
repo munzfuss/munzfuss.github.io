@@ -370,6 +370,13 @@ def _build_coin(
         cm["fineness"] = fineness
     if brutto is not None:
         cm["weight_rough_g"] = brutto
+    # Per CLAUDE.md §4: a value directly attested by an acceptable
+    # source is sufficient to flip its `*_verified` flag. Hede 1971
+    # publishes `finhed` and `bruttovægt_g` per page; both are
+    # source-attested. The overall `verified` flag stays false (it
+    # signals «full per-coin sanity check done», not «any source
+    # confirms any field»). `mint_verified` also stays false here —
+    # mint extraction is parser-heuristic and can drift.
 
     sources = CommentedSeq()
     src = CommentedMap()
@@ -382,10 +389,10 @@ def _build_coin(
     cm["issuing_entity"] = "danish_realm"
     cm["verified"] = False
     if fineness is not None:
-        cm["fineness_verified"] = False
+        cm["fineness_verified"] = True   # Hede page directly publishes
     if brutto is not None:
-        cm["weight_rough_verified"] = False
-    cm["mint_verified"] = False
+        cm["weight_rough_verified"] = True   # Hede page directly publishes
+    cm["mint_verified"] = False  # parser-heuristic; not flipped here
     vn = CommentedMap()
     vn["de"] = (
         "Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation "
