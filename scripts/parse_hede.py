@@ -159,8 +159,45 @@ def _expand_century_abbr(text: str) -> str:
     return _CENTURY_ABBR_RE.sub(lambda m: f"{m.group(1)}{m.group(2)}", text)
 
 
+# Hede year-range notations:
+#   «1874-75» (4-digit + 2-digit short)   → «1874, 1875»
+#   «1888-89» (4-digit + 2-digit short)   → «1888, 1889»
+#   «1903-05» (4-digit + 2-digit short)   → «1903, 1904, 1905»
+#   «1771-1786» (4-digit + 4-digit)       → «1771, 1772, …, 1786»
+# Without this expansion the year-block matcher only sees the
+# 4-digit endpoints («1874» but not «75» / «1771» but not «1786»),
+# silently dropping every mint year between them.
+_SHORT_RANGE_RE = re.compile(r"\b(\d{4})\s*-\s*(\d{2})\b(?!\d)")
+_LONG_RANGE_RE = re.compile(r"\b(\d{4})\s*-\s*(\d{4})\b")
+_RANGE_MAX_SPAN = 30  # implausibly long? leave the form alone
+
+
+def _expand_year_ranges(text: str) -> str:
+    """Expand Hede year-range notations into comma-lists so the
+    year-block matcher captures every year in the range."""
+    def _short(m):
+        a = int(m.group(1))
+        century = (a // 100) * 100
+        b_short = int(m.group(2))
+        b = century + b_short
+        if b < a:  # «1899-01» → cross-century, wrap forward
+            b += 100
+        if b - a > _RANGE_MAX_SPAN:
+            return m.group(0)
+        return ", ".join(str(y) for y in range(a, b + 1))
+    text = _SHORT_RANGE_RE.sub(_short, text)
+    def _long(m):
+        a, b = int(m.group(1)), int(m.group(2))
+        if b < a or b - a > _RANGE_MAX_SPAN:
+            return m.group(0)
+        return ", ".join(str(y) for y in range(a, b + 1))
+    text = _LONG_RANGE_RE.sub(_long, text)
+    return text
+
+
 def _extract_years(text: str) -> list[dict]:
     text = _expand_century_abbr(text)
+    text = _expand_year_ranges(text)
     out: list[dict] = []
     for m in _YEAR_BLOCK_RE.finditer(text):
         years = re.findall(r"\d{4}", m.group(1))
@@ -174,10 +211,15 @@ def _extract_years(text: str) -> list[dict]:
     return list(seen.values())
 
 
-# Catalog refs cited inline (Hede 115, Schou 1, Sieg 140 etc.)
+# Catalog refs cited inline (Hede 115, Schou 1, Sieg 140 etc.).
+# The number capture also accepts:
+#   * letter suffix     — «16A», «62AB»
+#   * dot sub-number    — «11.1», «11.2» (Sieg's mintmaster sub-class)
+#   * comma/dash chain  — «16,17», «250-1»
 _REFS_RE = re.compile(
     r"\b(Hede|Schou|Sieg|Frederik|Galster|Bruun|Dav|Davenport|KM)\.?\s*"
-    r"([\d]+(?:[A-Za-z][\w\.]*)?(?:[\-/,]\s*\d+[A-Za-z]*)*)",
+    r"([\d]+(?:\.\d+)*(?:[A-Za-z][\w\.]*)?"
+    r"(?:[\-/,]\s*\d+(?:\.\d+)*[A-Za-z]*)*)",
     re.IGNORECASE,
 )
 
@@ -375,9 +417,14 @@ def _parse_header(html: str) -> dict:
     if not h1_m:
         return out
     h1 = _strip_html(h1_m.group(1))
-    # Expand Hede century-abbreviation «(15)46» → «1546» before the
-    # year-block matcher and the nominal-vs-year/mint splitter run.
+    # Expand Hede century-abbreviation «(15)46» → «1546» AND year-range
+    # notations «1874-75» / «1771-1786» before the year-block matcher
+    # and the nominal-vs-year/mint splitter run. The H1's yr_match
+    # regex (line ~416 below) only accepts 4-digit on both sides of a
+    # dash, so without the expansion «1874-75» is captured as just
+    # «1874» — silently dropping every short-form 2-digit suffix.
     h1 = _expand_century_abbr(h1)
+    h1 = _expand_year_ranges(h1)
     out["h1"] = h1
     # H1 typically has 2 lines: «Ruler.\nNominal Year, Mint»
     parts = [p.strip() for p in h1.split("\n") if p.strip()]
@@ -457,6 +504,93 @@ def _looks_like_overview(html: str) -> bool:
     return bool(re.search(r"oversigt\s+efter\s+Hede", html, re.IGNORECASE))
 
 
+# Hede letter-grouped sub-variant pattern: a single page lists 2+
+# mintmaster/year sub-variants sharing the SAME specs but having
+# DIFFERENT year lists, Hede sub-letter suffixes and Sieg sub-numbers.
+# Example (c9h16, 10 Øre Christian IX):
+#
+#   A) 1874-75, 1882, 1884, 1886, 1888-89, 1891; CS (Hede 16A, Sieg 11.1)
+#   B) 1894, 1897, 1899, 1903-05; VBP (Hede 16B, Sieg 11.2)
+#
+# Distinct from the «multi-Hede page» case (specs.by_hede), where each
+# sub-Hede has its OWN spec block. Here the spec block is shared and
+# the only per-variant data is years + mintmaster + catalog sub-refs.
+_LETTER_GROUP_BLOCK_RE = re.compile(
+    r"^[ \t]*([A-Z])\)\s+"            # «A)» / «B)» at line start
+    r"([\s\S]+?)"                     # body — years + mm + refs (lazy)
+    r"(?=^[ \t]*[A-Z]\)|"             # ends at next letter-group …
+    r"^[ \t]*Bruttov[æa]gt|"          # … or the specs block …
+    r"^[ \t]*Litteratur|"             # … or the bibliography …
+    r"^[ \t]*Eksemplar|"              # … or the specimen list
+    r"\Z)",                           # … or end-of-text
+    re.MULTILINE,
+)
+# Within a letter-group body the catalog refs sit in a parenthesis at
+# the tail: «(Hede 16A, Sieg 11.1)». The mintmaster is the free token
+# between the year-list and that parenthesis (often on its own line as
+# in «...1891; \n CS \n (Hede 16A, Sieg 11.1)»).
+_LETTER_GROUP_REFS_RE = re.compile(r"\(([^()]+)\)\s*$")
+
+
+def _extract_letter_groups(text: str, page_hede: str) -> dict | None:
+    """Detect Hede letter-grouped sub-variants on a page whose specs
+    block is shared. Returns a dict keyed by letter («A», «B», …) with
+    per-letter years + catalog_refs + mintmaster, OR None if no
+    letter-group pattern is present on the page.
+
+    `page_hede` is the page's primary Hede number (e.g. «16» from
+    `c9h16`); a letter-group is only accepted if its catalog tail
+    contains «Hede {page_hede}{LETTER}» — without that anchor the
+    «A)» / «B)» pattern is just numbered prose and should be ignored.
+    """
+    blocks = list(_LETTER_GROUP_BLOCK_RE.finditer(text))
+    if len(blocks) < 2:
+        return None
+    out: dict[str, dict] = {}
+    for m in blocks:
+        letter = m.group(1)
+        body = m.group(2).strip()
+        # Catalog refs live in the tail parenthesis. Match the LAST
+        # parenthesised group so any inline parens earlier in the
+        # mintmaster description don't confuse the matcher.
+        refs_m = None
+        for inner in re.finditer(r"\(([^()]+)\)", body):
+            refs_m = inner
+        if not refs_m:
+            continue
+        refs_text = refs_m.group(1)
+        # Require the letter-anchored Hede ref («Hede 16A» when letter
+        # is «A» and page_hede is «16»). Without it, this is not a
+        # letter-group entry.
+        if not re.search(
+            rf"\bHede\s*{re.escape(page_hede)}{letter}\b",
+            refs_text,
+            re.IGNORECASE,
+        ):
+            continue
+        refs = _extract_refs(refs_text)
+        # Years: scan the body up to the tail parenthesis
+        years_text = body[: refs_m.start()]
+        years = _extract_years(years_text)
+        # Mintmaster: tail of years_text, last non-empty alphabetic
+        # token. The page tends to write «...; CS» or «...VBP» — a
+        # short uppercase initials block separated from the year list
+        # by «;» or newline.
+        mm_match = None
+        for mm_m in re.finditer(r"\b([A-ZÆØÅ]{1,5})\b", years_text):
+            mm_match = mm_m
+        mintmaster = mm_match.group(1) if mm_match else None
+        plausible_years = [y for y in years if 1450 <= y["year"] <= 1950]
+        if not plausible_years:
+            continue
+        out[letter] = {
+            "years": plausible_years,
+            "catalog_refs": refs,
+            "mintmaster": mintmaster,
+        }
+    return out if len(out) >= 2 else None
+
+
 def parse_one(html: str, basename: str) -> dict:
     text = _strip_html(html)
     ruler_label, volume = _ruler_volume(basename)
@@ -515,6 +649,19 @@ def parse_one(html: str, basename: str) -> dict:
     specs = _extract_specs(text, basename)
     if specs:
         out["specs"] = specs
+
+    # Letter-grouped sub-variants («A) ... (Hede XA, Sieg X.1) /
+    # B) ... (Hede XB, Sieg X.2)»). Only emit when the page has a
+    # SINGLE shared spec block (specs.default) — multi-Hede pages
+    # (specs.by_hede) carry their per-variant data via spec blocks
+    # instead.
+    if specs and "default" in specs:
+        # Page's primary Hede number from filename: «c9h16» → «16»
+        bm = re.match(r"^[cf]\d+h([\d]+)", basename)
+        if bm:
+            letter_groups = _extract_letter_groups(text, bm.group(1))
+            if letter_groups:
+                out["by_letter"] = letter_groups
 
     # Catalog refs
     refs = _extract_refs(text)
@@ -590,6 +737,23 @@ def _build_index(parsed_files: list[Path]) -> dict:
         # If specs has by_hede, those are also Hede sub-keys
         if isinstance(d.get("specs"), dict) and "by_hede" in d["specs"]:
             nums.update(d["specs"]["by_hede"].keys())
+        # by_letter pages contribute one Hede sub-key per letter
+        # variant («c9h16» with letters A,B → 16A, 16B). The bare
+        # numeric «16» key is dropped from the index for these pages
+        # so downstream lookups land on the per-letter entry that
+        # carries the actual year list + sub-Sieg ref.
+        if d.get("by_letter"):
+            letter_nums = set()
+            page_hede = own_num or ""
+            for letter in d["by_letter"].keys():
+                letter_nums.add(f"{page_hede}{letter}".lower())
+            # Drop the bare numeric key only if every letter-variant
+            # claims a Hede sub-letter that's actually present in the
+            # page's Hede catalog refs (defensive against partial
+            # detections).
+            if letter_nums and page_hede in nums:
+                nums.discard(page_hede)
+            nums.update(letter_nums)
         if not nums and own_num:
             nums.add(own_num)
         for n in nums:
@@ -612,6 +776,20 @@ def _build_index(parsed_files: list[Path]) -> dict:
             elif "default" in specs:
                 entry["specs"] = specs["default"]
             entry["catalog_refs"] = d.get("catalog_refs")
+            # by_letter override: when this key targets a per-letter
+            # sub-variant (e.g. «c9h16a»), prefer that variant's own
+            # years + catalog refs over the page-level aggregate.
+            by_letter = d.get("by_letter") or {}
+            if by_letter:
+                page_hede = (own_num or "").lower()
+                for letter, lv in by_letter.items():
+                    if n.lower() == f"{page_hede}{letter.lower()}":
+                        entry["years"] = lv.get("years") or []
+                        if lv.get("catalog_refs"):
+                            entry["catalog_refs"] = lv["catalog_refs"]
+                        if lv.get("mintmaster"):
+                            entry["mintmaster"] = lv["mintmaster"]
+                        break
             # Canonicality: a file whose basename's primary number
             # matches the key always wins over cross-references that
             # only mention this key.

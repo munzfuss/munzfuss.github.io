@@ -308,10 +308,17 @@ def _build_coin(
     spec: dict,
     nominal_override: str | None = None,
     mint_normalised: str,
+    years_override: list[dict] | None = None,
+    catalog_refs_override: dict | None = None,
 ) -> dict | None:
     """Assemble one Coin-schema dict from a parsed-page entry + a
     specific spec block. Returns None when essential fields are
-    missing or unrecoverable (e.g. nominal parse failure)."""
+    missing or unrecoverable (e.g. nominal parse failure).
+
+    Per-letter sub-variants (by_letter pages) pass `years_override` +
+    `catalog_refs_override` so each letter coin carries its own year
+    list + Hede/Sieg sub-numbers while sharing the page-level spec.
+    """
     nominal_raw = nominal_override or parsed.get("nominal") or ""
     # Strip trailing «, København» / «, Glückstadt» / «, Frederiksborg»
     # mint segments that the H1 parser absorbed into nominal.
@@ -339,7 +346,7 @@ def _build_coin(
     cm["phase"] = "hede"
     cm["kind"] = kind
     cm["nominal"] = nominal
-    year_block = _build_year_fields(parsed.get("years") or [])
+    year_block = _build_year_fields(years_override or parsed.get("years") or [])
     if year_block:
         cm["year_label"] = year_block["year_label"]
         cm["year_first"] = year_block["year_first"]
@@ -373,7 +380,7 @@ def _build_coin(
     catalog = CommentedMap()
     catalog["hede"] = hede_number
     catalog["hede_volume"] = hede_volume
-    refs = parsed.get("catalog_refs") or {}
+    refs = catalog_refs_override or parsed.get("catalog_refs") or {}
     if "Schou" in refs and refs["Schou"]:
         catalog["schou"] = refs["Schou"][0]
     if "Sieg" in refs and refs["Sieg"]:
@@ -549,6 +556,40 @@ def main() -> int:
                 stats["skipped_no_specs"] += 1
                 continue
             hede_number = nums[0]
+            # Letter-grouped sub-variants: when the page emits a
+            # by_letter block, generate one coin per letter with the
+            # SHARED spec but per-letter years + Hede sub-letter +
+            # sub-Sieg refs. The bare numeric Hede key (e.g. «16») is
+            # NOT emitted in this case — only the letter-suffixed keys
+            # («16A», «16B») which carry the actual data.
+            by_letter = d.get("by_letter") or {}
+            if by_letter:
+                for letter, lv in sorted(by_letter.items()):
+                    sub_hede = f"{hede_number}{letter}"
+                    if sub_hede.lower() not in owned_subs:
+                        stats["skipped_cross_reference_subhede"] += 1
+                        continue
+                    coin = _build_coin(
+                        hede_volume=hede_volume,
+                        hede_number=sub_hede,
+                        parsed=d,
+                        spec=spec,
+                        mint_normalised=mint_normalised,
+                        years_override=lv.get("years"),
+                        catalog_refs_override=lv.get("catalog_refs"),
+                    )
+                    if coin is None:
+                        stats["skipped_no_nominal"] += 1
+                        continue
+                    if coin.get("year_first") and (
+                        coin["year_first"] > year_to
+                        or coin["year_first"] < year_from
+                    ):
+                        stats["skipped_out_of_scope_year"] += 1
+                        continue
+                    coins.append(coin)
+                    stats["kept"] += 1
+                continue
             if hede_number.lower() not in owned_subs:
                 stats["skipped_cross_reference_subhede"] += 1
                 continue

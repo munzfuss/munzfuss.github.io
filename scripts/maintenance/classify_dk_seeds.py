@@ -95,8 +95,18 @@ def _get_mfu(coin: dict) -> tuple[float, str] | None:
     hede = cat.get("hede")
     if not vol or not hede:
         return None
-    key = f"{vol}{str(hede).lower()}"
-    mfu = _mfu_lookup().get(key)
+    lookup = _mfu_lookup()
+    hede_lc = str(hede).lower()
+    key = f"{vol}{hede_lc}"
+    mfu = lookup.get(key)
+    # Letter-grouped sub-variants (Hede «16A» / «125A»…) share the
+    # page-level MFU value with the bare numeric key («16» / «125»).
+    # Fall back to the bare-numeric key when the letter-suffixed lookup
+    # misses.
+    if mfu is None:
+        bare = re.match(r"^(\d+)[A-Za-z]+$", hede_lc)
+        if bare:
+            mfu = lookup.get(f"{vol}{bare.group(1)}")
     if mfu is None:
         return None
     v, unit = mfu
