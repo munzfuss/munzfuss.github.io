@@ -66,6 +66,8 @@ RULES: dict[str, list[tuple[str, callable]]] = {
         ("piaster", _fixed("1")),               # Tranquebar 1 Piaster
         ("krone", _fixed("1")),                 # «Krone» as 4-Mark unit
         ("kroner", _fixed("1")),
+        ("rigsdaler", _identity),               # post-1726 Rigsdaler == Speciedaler
+        ("rixdaler", _identity),                # older spelling (pre-1726 Rigsdaler)
         ("mark", lambda n: {1: "1/3", 2: "2/3", 4: "1", 6: "1",
                               8: "2", 12: "3", 16: "4"}.get(n, None)),
         ("skilling", lambda n: {1: "1/96", 2: "1/48", 4: "1/24",
@@ -96,7 +98,8 @@ RULES: dict[str, list[tuple[str, callable]]] = {
         ("rigsdaler", _identity),
         ("rixdaler", _identity),
         ("skilling", lambda n: {1: "1/96", 2: "1/48", 4: "1/24",
-                                  8: "1/12", 12: "1/8", 24: "1/4"}.get(n, None)),
+                                  8: "1/12", 12: "1/8", 24: "1/4",
+                                  32: "1/3"}.get(n, None)),
         ("søsling", _fixed("1/96")),
         ("hvid", _fixed("1/192")),
         ("penning", _fixed("1/192")),
@@ -108,10 +111,11 @@ RULES: dict[str, list[tuple[str, callable]]] = {
         ("rigsbankskilling", lambda n: {1: "1/96", 2: "1/96",
                                           3: "1/24", 4: "1/24",
                                           6: "1/12", 12: "1/12",
-                                          16: "1/6"}.get(n, None)),
+                                          16: "1/6", 32: "1/3"}.get(n, None)),
         ("skilling", lambda n: {1: "1/96", 2: "1/96", 4: "1/24",
                                   6: "1/12", 8: "1/12",
-                                  12: "1/12", 16: "1/6"}.get(n, None)),
+                                  12: "1/12", 16: "1/6",
+                                  32: "1/3"}.get(n, None)),
     ],
     # ------- 10½-Krone-Fuß (Christian V Krone + Frederik III) -------
     "kronemont": [
@@ -202,7 +206,7 @@ RULES: dict[str, list[tuple[str, callable]]] = {
 
 _NOMINAL_RE = re.compile(
     r"^\s*"
-    r"(?P<frac_num>1/\d+|⅛|¼|⅓|½|⅔|¾)?\s*"     # leading fraction («½ Speciedaler»)
+    r"(?P<frac_num>1/\d+|⅛|¼|⅓|½|⅔|¾|⅙|⅚|⅕|⅖|⅗|⅘|⅐|⅑|⅒)?\s*"  # leading fraction («½ Speciedaler»)
     r"(?P<count>\d+(?:[,\.]\d+)?)?\s*"          # count number («2 Speciedaler»)
     r"(?P<rest>.+?)\s*$",
 )
@@ -210,6 +214,9 @@ _NOMINAL_RE = re.compile(
 _FRACTION_UNICODE = {
     "½": "1/2", "¼": "1/4", "¾": "3/4",
     "⅓": "1/3", "⅔": "2/3", "⅛": "1/8",
+    "⅙": "1/6", "⅚": "5/6",
+    "⅕": "1/5", "⅖": "2/5", "⅗": "3/5", "⅘": "4/5",
+    "⅐": "1/7", "⅑": "1/9", "⅒": "1/10",
 }
 
 

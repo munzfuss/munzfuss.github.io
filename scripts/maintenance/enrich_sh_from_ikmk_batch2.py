@@ -164,7 +164,7 @@ NEW_ENTRY = {
     ],
     "fields": {
         "fuss": "9_thaler",
-        "phase": "A",
+        "phase": "I",
         "kind": "kurant",
         "nominal": "2 Schilling",
         "year_label": "1618",

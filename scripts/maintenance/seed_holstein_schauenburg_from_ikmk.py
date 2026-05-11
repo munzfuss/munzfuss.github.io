@@ -188,7 +188,7 @@ def build_coin_entry(rec: dict) -> dict:
     coin: dict = {
         "id": f"hs-ikmk-{nid}",
         "fuss": "seed_unsorted",
-        "phase": "A",
+        "phase": "I",
         "kind": kind_for_nominal(nominal_full),
         "nominal": nominal_short,
         "year_label": str(ys) if ys == ye else f"{ys}-{ye}",
