@@ -63,12 +63,9 @@ class FussGroup:
         return [p for p in self.phases if p.nonempty]
 
     @property
-    def nonempty(self) -> bool:
-        """True when at least one phase carries a coin. Catch-all
-        Müntzfüße (e.g. `seed_unsorted`) that finish a classification
-        pass empty are filtered out of the rendered tree on this
-        signal — saves a confusing empty «Bulk-Seed (unsortiert)»
-        section appearing on the page."""
+    def has_any_coin(self) -> bool:
+        """True when at least one phase carries a coin. Used by the
+        empty-catch-all filter — see `categorize()` below."""
         return any(p.nonempty for p in self.phases)
 
     @property
@@ -189,13 +186,20 @@ def categorize(
             
             sg.phases.append(pg)
 
-        # Skip Müntzfüße that finish the classification pass with
-        # zero coins anywhere (catch-all `seed_unsorted` after a
-        # full reclassification, or any other Fuß that holds no
-        # data on this page). Keeps stale empty sections out of
-        # the rendered HTML; the phase definitions themselves stay
-        # in `location.phases` as a safety-net for future imports.
-        if not sg.nonempty:
+        # Hide the `seed_unsorted` catch-all placeholder when it's
+        # empty — once a location's Bulk-seed has been fully
+        # classified, the placeholder section is just noise. The
+        # phase / fuss definitions themselves stay in
+        # `data/locations/<loc>.yml` as a safety-net for future
+        # seed imports that bring in unclassified coins (the block
+        # then re-appears automatically next build).
+        #
+        # Real Müntzfüße that were legally in force on the territory
+        # but where nothing was minted in this period stay visible —
+        # the absence of mintage is itself meaningful historical
+        # signal (e.g. a Müntzfuß formally adopted at a location
+        # but never struck there), not a reason to hide.
+        if fuss_id == "seed_unsorted" and not sg.has_any_coin:
             continue
         tree.fuesse.append(sg)
 
