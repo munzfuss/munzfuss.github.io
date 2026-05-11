@@ -72,17 +72,26 @@ def _strip_html(html: str) -> str:
 # leading `YYYY:` prefix would be greedy-captured as the value
 # otherwise, so each spec regex tolerates one optional `YYYY:` token
 # between the label and the first capture group.
+#
+# A small number of pages (~29 cached pages, mostly 17th-c. Frederik
+# III / Christian V gold and silver) drop the colon after the label
+# («Finhed 0,917», «Bruttovægt 5,990g»). The separator therefore
+# matches `[:\s]+` rather than the strict `:\s*` we used before.
 _YEAR_PREFIX = r"(?:\s*\d{4}\s*:\s*)?"
+# Allow `:`, `;`, or whitespace as the label/value separator —
+# a handful of pages use a semicolon (`Finhed; 0,875` on f4h34) or
+# drop the separator entirely (`Finhed 0,917` on f3h46).
+_SEP = r"[:;\s]+"
 _BRUTTO_RE = re.compile(
-    r"Bruttovægt:\s*" + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
+    r"Bruttovægt" + _SEP + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
     re.IGNORECASE,
 )
 _FINHED_RE = re.compile(
-    r"Finhed:\s*" + _YEAR_PREFIX + r"([0-9][,\.][0-9]+|[01](?![.,]\d{4}))",
+    r"Finhed" + _SEP + _YEAR_PREFIX + r"([0-9][,\.][0-9]+|[01](?![.,]\d{4}))",
     re.IGNORECASE,
 )
 _FINVAEGT_RE = re.compile(
-    r"(?:Finvægt|Nettovægt):\s*" + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
+    r"(?:Finvægt|Nettovægt)" + _SEP + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
     re.IGNORECASE,
 )
 # «Marken fin udbragt til 9,288 speciedalere» / «9,000 daler» /
