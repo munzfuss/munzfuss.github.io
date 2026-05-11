@@ -227,10 +227,27 @@ def _infer_metal(nominal: str, ruler: str | None, fineness: float | None) -> str
         return "silver"
     if any(tok.lower() in n for tok in _GOLD_NOMINAL_TOKENS):
         return "gold"
+    # Krone-fod (post-1873) has TIERED metal — gold only for 5/10/20
+    # Kroner (Hauptkurant), silver Kurant for 1/2 Kroner. The earlier
+    # «any «krone» + Krone-fod ruler → gold» rule mis-routed 2-Kroner
+    # silver commemoratives (Christian IX 1888 jubilee, Christian X
+    # 1912 tronskifte, etc.) to gold. Gate gold-routing on the
+    # specific gold-tier denominations.
     if re.search(r"\bkrone(r)?\b", n) and ruler in _KRONE_GOLD_RULERS:
-        return "gold"
+        if re.match(r"^(5|10|20)\s+kroner?\b", n):
+            return "gold"
+        # «1 Krone» / «2 Kroner» → silver Kurant tier of Krone-fod
+        return "silver"
+    # øre denominations — Krone-fod subsidiary tiers:
+    #   25 / 10 øre = silver Scheide (.600 / .400)
+    #   5 / 2 / 1 øre = bronze
+    if re.search(r"\bø?re\b", n):
+        m = re.match(r"^(\d+)\s+ø?re\b", n)
+        if m and int(m.group(1)) in (1, 2, 5):
+            return "copper"
+        return "silver"
     # Speciedaler / daler / rd / rigsdaler / rigsbankdaler / mark /
-    # skilling / hvid / øre — all silver or billon. Fineness gates
+    # skilling / hvid — all silver or billon. Fineness gates
     # billon below.
     if fineness is not None:
         if fineness < 0.30:
