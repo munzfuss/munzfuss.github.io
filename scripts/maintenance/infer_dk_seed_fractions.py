@@ -169,12 +169,34 @@ RULES: dict[str, list[tuple[str, callable]]] = {
         ("guldkrone", _identity),
         ("guldcrone", _identity),
     ],
-    # ------- Reichsgoldmünzfuß (post-1873 gold) -------
+    # ------- Reichsgoldmünzfuß (German 1871, gold) — kept for future
+    # Holstein-on-Reichsmark pages; Denmark's 1873-1914 gold is on
+    # kronefod, not this Fuß.
     "reichsgoldmuenzfuss": [
-        ("krone", _identity),                   # 10 Kroner / 20 Kroner
+        ("krone", _identity),
         ("kroner", _identity),
-        # Silver auxiliary (1, 2 Kroner / 25 Øre) — too many edge
-        # cases to map cleanly; leave for hand curation.
+    ],
+    # ------- Krone-fod (Skandinavisk Møntunion, 1873-1914 gold) -------
+    "kronefod": [
+        ("krone", _identity),                   # 5 Kroner / 10 Kroner / 20 Kroner
+        ("kroner", _identity),
+    ],
+    # ------- Krone-fod silver / copper auxiliaries -------
+    # 1, 2 Kroner = Kurant silver («1»/«2» fractions, .800).
+    # 25 øre = 1/4, 10 øre = 1/10, 5 / 2 / 1 øre = 1/20 / 1/50 / 1/100
+    # — see fuesse.yml::kronefod_silver.fractions for the per-
+    # denomination Soll-Fein values.
+    "kronefod_silver": [
+        ("krone", _identity),
+        ("kroner", _identity),
+        # Øre denominations: «N øre» → fraction = «1/(100/N)»
+        # 25 → 1/4, 10 → 1/10, 5 → 1/20, 2 → 1/50, 1 → 1/100
+        ("øre",  lambda n: {1: "1/100", 2: "1/50", 5: "1/20",
+                              10: "1/10", 25: "1/4", 50: "1/2"}.get(n, None)),
+        ("ore",  lambda n: {1: "1/100", 2: "1/50", 5: "1/20",
+                              10: "1/10", 25: "1/4", 50: "1/2"}.get(n, None)),
+        ("öre",  lambda n: {1: "1/100", 2: "1/50", 5: "1/20",
+                              10: "1/10", 25: "1/4", 50: "1/2"}.get(n, None)),
     ],
 }
 

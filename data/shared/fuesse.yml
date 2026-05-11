@@ -1963,6 +1963,167 @@ reichsgoldmuenzfuss:
       de: Deutsches Kaiserreich
       en: German Empire
       uk: Німецька імперія
+
+# -----------------------------------------------------------------------------
+# Krone-fod (Skandinavisk Møntunion) — Denmark / Sweden 1873, Norway 1875.
+# Distinct from Reichsgoldmünzfuß (German Empire 1871) — the gold parity
+# is mathematically related (8 Kroner = 9 Mark gold-fine equivalent), but
+# the standard is established by a separate Coinage Act (Møntloven of
+# 23 May 1873, effective 1 January 1875) on a separate denomination
+# ladder (5 / 10 / 20 Kroner gold), with its own auxiliary silver and
+# bronze coinage. See `docs/dk_kronefod_1873_research.md` for the
+# tagging-rationale + bibliography.
+# -----------------------------------------------------------------------------
+kronefod:
+  name:
+    de: Krone-Fuß · Skandinavische Müntzunion (Gold)
+    en: Krone-fod · Scandinavian Monetary Union (gold)
+    uk: Krone-fod · Скандинавська монетна унія (золото)
+  historical_name: Krone-fod
+  metal: gold
+  # Krone-fod is anchored directly in the metric system, not in the
+  # Cölln-Marck the older silver Fuesse use: 2480 Kroner per kilogram
+  # of fine gold (Møntloven §1, 1873). Grid-unit therefore is 1 kg
+  # fine gold expressed in grams.
+  grid_unit_g: 1000.0
+  grid_stops: 2480
+  fineness_standard: 0.9
+  fineness_display: "≈ 900 ‰ (90 % Au, 10 % Cu)"
+  description:
+    de: |-
+      Goldwährung der Skandinavischen Müntzunion, eingeführt durch das
+      dänische <b>Mønlov vom 23. Mai 1873</b>, wirksam zum 1. Januar 1875.
+      Parallel adoptiert in Schweden (1873) und in Norwegen (1875).
+      Definition: <b>2480 Kroner aus 1 kg Feingold</b> bei .900 Feingehalt
+      (90 % Gold, 10 % Kupfer) — d.h. 1 Krone = 0,4032 g fein. Reguläre
+      Gold-Stückelungen: 5, 10, 20 Kroner. Tarif gegenüber dem deutschen
+      Reichs-Goldmark fixiert über die Gold-Parität: 8 Kroner = 9 Mark.
+      Goldkonvertibilität ausgesetzt am 2. August 1914 (Beginn des
+      Ersten Weltkriegs); die Müntzunion formell aufgelöst 1924.
+    en: |-
+      Gold currency of the Scandinavian Monetary Union, introduced by
+      Denmark's <b>Coinage Act of 23 May 1873</b> (Møntloven), effective
+      1 January 1875. Adopted in parallel by Sweden (1873) and Norway
+      (1875). Definition: <b>2,480 Kroner per kg of fine gold</b> at
+      .900 fineness (90 % gold, 10 % copper) — i.e. 1 Krone = 0.4032 g
+      fine. Regular gold denominations: 5, 10, 20 Kroner. Tariff against
+      the German Reichsmark fixed by gold parity: 8 Kroner = 9 Mark.
+      Gold convertibility suspended on 2 August 1914 (outbreak of WWI);
+      the monetary union formally dissolved in 1924.
+    uk: |-
+      Золота валюта Скандинавської монетної унії, запроваджена данським
+      <b>Mønlov від 23 травня 1873</b>, чинна з 1 січня 1875. Паралельно
+      прийнята у Швеції (1873) і Норвегії (1875). Означення:
+      <b>2480 Krone з 1 кг чистого золота</b> за пробою .900 (90 %
+      золото, 10 % мідь) — тобто 1 Krone = 0,4032 г чистого. Регулярні
+      золоті номінали: 5, 10, 20 Krone. Тариф проти німецької Reichsmark
+      фіксований золотою паритетністю: 8 Krone = 9 Mark. Конвертованість
+      у золото призупинено 2 серпня 1914 (початок Першої світової війни);
+      монетна унія формально розпущена 1924.
+  fractions:
+    "5":  {soll_rau_g: 2.2402, soll_fein_g: 2.01613}    # 5 Kroner (struck Sweden / Norway only — Denmark didn't issue 5 Kr in this era)
+    "10": {soll_rau_g: 4.4803, soll_fein_g: 4.03226}    # 10 Kroner — Christian IX 1873-1900, Christian X 1908-1909, etc.
+    "20": {soll_rau_g: 8.9606, soll_fein_g: 8.06452}    # 20 Kroner — Christian IX 1873-1900, Frederik VIII 1908-1912, Christian X 1913-1917
+  events:
+    first_adoption:
+      anywhere: 1873
+      note: 'Skandinavisk Møntkonvention 5. Mai 1873 (Stockholm) + dänisches Mønlov 23. Mai 1873.'
+    first_mint:
+      anywhere: 1873
+      note: 'Erste Prägung 10/20 Kroner 1873 (Christian IX).'
+    std_end:
+      anywhere: 1914
+      note: 'Goldkonvertibilität ausgesetzt 2. August 1914 durch die Danmarks Nationalbank.'
+    demonetisation:
+      anywhere: 1924
+      note: 'Skandinavische Müntzunion formell aufgelöst 1924; danach Krone-Mønt national fortgeführt ohne gemeinsame Goldparität.'
+    anywhere_label:
+      de: Skandinavische Müntzunion
+      en: Scandinavian Monetary Union
+      uk: Скандинавська монетна унія
+
+# -----------------------------------------------------------------------------
+# Krone-fod silver/copper auxiliary tier — the silver Kurant
+# supplements (1 / 2 Kroner at .800) and the silver Scheidemünzen
+# (25 øre at .600, 10 øre at .400) plus copper-bronze petty coinage
+# (5 / 2 / 1 øre) struck under the same 1873 Mønlov. Fineness is NOT
+# uniform across the ladder — fineness_standard captures the .800
+# primary tier; lower-tier finenesses are documented per-coin and per-
+# fraction (soll_fein_g reflects the actual silver content of each
+# denomination). Copper/bronze coins live here too via the «kind:
+# scheide / metal: copper» path the renderer already supports.
+# -----------------------------------------------------------------------------
+kronefod_silver:
+  name:
+    de: Krone-Fuß · Skandinavische Müntzunion (Silber- und Kupfer-Auxiliare)
+    en: Krone-fod · Scandinavian Monetary Union (silver + copper auxiliaries)
+    uk: Krone-fod · Скандинавська монетна унія (срібні та мідні авксиліари)
+  historical_name: Krone-fod (sølv-Auxiliar)
+  metal: silver
+  # Auxiliary tier: the silver «high» group (2/1 Kroner) is at the
+  # .800 reference fineness; the silver «scheide» group (25/10 øre)
+  # descends to .600 / .400; the bronze group (5/2/1 øre) carries no
+  # silver. The grid_stops figure below reflects only the .800 high
+  # tier (1 kg fine ÷ 6 g fein per Krone ≈ 166.67 Kroner-of-fein-silver)
+  # — for the lower-tier denominations, soll_fein_g is set per
+  # fraction to reflect the actual silver content.
+  grid_unit_g: 1000.0
+  grid_stops: 166.667
+  fineness_standard: 0.8
+  fineness_display: "primary tier 800 ‰ silver (.600 on 25 øre, .400 on 10 øre, bronze on 5/2/1 øre)"
+  description:
+    de: |-
+      Silberne (und kupferne) Hilfsstückelungen der Krone-Mønt nach
+      <b>Mønlov vom 23. Mai 1873</b>. Hauptsächlich <b>2 Kroner (15 g rauh, .800)</b>
+      und <b>1 Krone (7,5 g rauh, .800)</b> als Silber-Kurant; <b>25 øre
+      (2,42 g, .600)</b> und <b>10 øre (1,45 g, .400)</b> als
+      Silber-Scheidemünzen; <b>5 / 2 / 1 øre (Bronze, 8 / 4 / 2 g)</b> als
+      Kupfer-Scheide. Die Feingehalts-Leiter (.800 → .400) ist
+      Strukturmerkmal des Mønlovs 1873 — Feingewichte pro Münze in den
+      einzelnen Fraktionen festgelegt.
+    en: |-
+      Silver (and copper) auxiliary denominations of the Krone-Mønt under
+      the <b>Coinage Act of 23 May 1873</b>. Primarily <b>2 Kroner (15 g
+      raw, .800)</b> and <b>1 Krone (7.5 g raw, .800)</b> as the silver
+      Kurant tier; <b>25 øre (2.42 g, .600)</b> and <b>10 øre (1.45 g,
+      .400)</b> as silver Scheidemünzen; <b>5 / 2 / 1 øre (bronze, 8 / 4 /
+      2 g)</b> as copper Scheide. The fineness ladder (.800 → .400) is a
+      structural feature of Mønlov 1873 — fine weights per denomination
+      set in each fraction below.
+    uk: |-
+      Срібні (і мідні) допоміжні номінали Krone-Mønt за <b>Mønlov
+      від 23 травня 1873</b>. Головно <b>2 Krone (15 г повної ваги,
+      .800)</b> і <b>1 Krone (7,5 г, .800)</b> як срібний Kurant-рівень;
+      <b>25 øre (2,42 г, .600)</b> і <b>10 øre (1,45 г, .400)</b> як
+      срібні Scheidemünzen; <b>5 / 2 / 1 øre (бронза, 8 / 4 / 2 г)</b> як
+      мідна Scheide. Сходи проб (.800 → .400) — структурна риса Mønlov
+      1873; ваги чистого срібла на монету задано пер-фрак­ційно нижче.
+  fractions:
+    "2":     {soll_fein_g: 12.0}     # 2 Kroner, 15 g × .800 = 12 g fein
+    "1":     {soll_fein_g: 6.0}      # 1 Krone, 7.5 g × .800 = 6 g fein
+    "1/4":   {soll_fein_g: 1.452}    # 25 øre, 2.42 g × .600 = 1.452 g fein
+    "1/10":  {soll_fein_g: 0.580}    # 10 øre, 1.45 g × .400 = 0.580 g fein
+    "1/20":  {soll_fein_g: 0.0}      # 5 øre, bronze (no silver content)
+    "1/50":  {soll_fein_g: 0.0}      # 2 øre, bronze
+    "1/100": {soll_fein_g: 0.0}      # 1 øre, bronze
+  events:
+    first_adoption:
+      anywhere: 1873
+      note: 'Mønlov 23. Mai 1873 (gemeinsam mit der Gold-Krone in der Krone-fod-Familie).'
+    first_mint:
+      anywhere: 1874
+      note: 'Erste Auxiliar-Prägungen 1874 (10/25 øre Christian IX in Kopenhagen).'
+    std_end:
+      anywhere: 1914
+      note: 'Suspendierung der Goldkonvertibilität führte auch die Silberauxiliare in eine reine Fiat-Phase über.'
+    demonetisation:
+      anywhere: 1924
+      note: 'Mit der Auflösung der Skandinavischen Müntzunion endet auch die gemeinsame Auxiliar-Konvention; dänische Krone-Mønt-Scheide läuft national weiter biß zu Material-Umstellungen ab 1920 (Cupro-Nickel) bzw. 1973 (Außerumlaufnahme der 1/2 øre).'
+    anywhere_label:
+      de: Skandinavische Müntzunion (Silber/Kupfer)
+      en: Scandinavian Monetary Union (silver/copper)
+      uk: Скандинавська монетна унія (срібло/мідь)
+
 seed_unsorted:
   name:
     de: Bulk-Seed (unsortiert)

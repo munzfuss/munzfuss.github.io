@@ -287,9 +287,50 @@ For pre-1873 background (already in our project's scope):
 
 ## Status
 
-**Research only — no implementation in this pass.** The findings
-above are sufficient to act on the user's prompt («save a thorough
-doc for later use»). The actual data-model change (split `kronefod`
-out from `reichsgoldmuenzfuss`) is a sizeable refactor that touches
-fuss definitions, denmark.yml's phase + fraction inventory, and the
-seed builder's gold classifier — out of scope for this session.
+**Implemented 2026-05-11.** The refactor described above is now live:
+
+- `data/shared/fuesse.yml` gains `kronefod` (gold, 5/10/20 Kr) and
+  `kronefod_silver` (silver Kurant 1/2 Kr + Scheide 25/10 øre +
+  bronze 5/2/1 øre).
+- `data/locations/denmark.yml` `fuss_order` now contains
+  `kronefod` and `kronefod_silver` in place of `reichsgoldmuenzfuss`
+  and `30_thaler`. Phase blocks for the two new fusses replaced the
+  old «tagging convention» ones.
+- 31 + 24 = 55 coins migrated across `data/locations/denmark.yml`
+  and `data/seed/hede/denmark.yml` via the migration script
+  `scripts/maintenance/migrate_dk_kronefod_refactor.py`. Two
+  fineness-mistagged silver-marked coins (actually gold 10/20 Kr)
+  were corrected in the process.
+- 14 fraction-strings were remapped from the old 30-Thaler-style
+  notation (1/12, 1/24, 1/96, 1/192) to the new Krone-anchored
+  notation (1/10, 1/4, 1/50, 1/100).
+- `scripts/maintenance/classify_dk_seeds.py` updated:
+  PHASES gains kronefod / kronefod_silver entries, gold-classifier
+  routes 1873-1914 «Krone» to kronefod, silver/billon/copper goes
+  to kronefod_silver via both the explicit Krone/Øre rule and the
+  Scheidemünze year-window fallback.
+- `scripts/maintenance/infer_dk_seed_fractions.py` gains
+  `kronefod` (5/10/20 Kr identity) and `kronefod_silver` (1/2 Kr
+  identity + per-N-Øre → 1/(100/N) for 25/10/5/2/1 øre).
+- `reichsgoldmuenzfuss` and `30_thaler` remain *defined* in
+  `fuesse.yml` but are no longer referenced by `denmark.yml` —
+  reserved for a future Holstein-under-Reichsmark page and for
+  Vereinsthaler-era coverage respectively.
+
+Final coin distribution on the Denmark page after the refactor:
+
+  reichsdukatenfuss    316
+  9_25_thaler          283
+  9_thaler             150
+  kronemont            117
+  18_5_thaler           64
+  11_333_thaler         60
+  kronemont_chr_iv      59
+  kronefod_silver       38   (was bucketed in 30_thaler)
+  kronemont_fine        27
+  pistolenfuss          21
+  kronefod              16   (was bucketed in reichsgoldmuenzfuss)
+  guldkrone              8
+  courantdukatenfuss     5
+
+Build clean across 12 locations × 3 languages.

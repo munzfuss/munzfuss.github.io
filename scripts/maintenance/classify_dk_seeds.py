@@ -151,6 +151,8 @@ PHASES: dict[str, list[tuple[int, int, str]]] = {
     "18_5_thaler":        [(1813, 1875, "A")],
     "30_thaler":          [(1873, 1947, "A")],
     "reichsgoldmuenzfuss":[(1873, 1914, "A")],
+    "kronefod":           [(1873, 1914, "A")],
+    "kronefod_silver":    [(1873, 1914, "A")],
 }
 
 
@@ -201,7 +203,7 @@ def _classify_gold(coin: dict) -> tuple[str, str | None] | None:
     nom_l = (coin.get("nominal") or "").lower()
     # Post-1873 Krone-fod gold (10/20 Kroner)
     if "krone" in nom_l and year >= 1873 and year <= 1914:
-        return ("reichsgoldmuenzfuss", "A")
+        return ("kronefod", "A")
     # Christian IV Esrum + Frederik III Guldkrone (1618-1670) — must
     # match BEFORE the generic «Guldkrone» check. Frederik II's «1
     # Guldkrone» 1563-1564 is NOT a Krone-fod piece (3.3 g @ .934,
@@ -321,13 +323,15 @@ def _classify_silver_by_year_and_nominal(coin: dict) -> tuple[str, str | None] |
     if any(t in nom_l for t in ("rigsbank", "rigsdaler", "rixdaler")) \
             and 1813 <= year <= 1874:
         return ("18_5_thaler", "A")
-    # Post-1873 Scandinavian Krone-fod era — any Krone, Øre, or silver
-    # auxiliary issue 1873-1914 binds to reichsgoldmuenzfuss (the
-    # gold parity that anchored the union; silver/copper auxiliaries
-    # circulate within the same Müntzfuß family).
+    # Post-1873 Scandinavian Krone-Mønt silver / billon / copper
+    # auxiliary issue (1/2 Kroner Kurant + 10/25 øre Scheide + 1/2/5
+    # øre bronze). The gold 10/20 Kroner are caught by the dedicated
+    # gold rule in `_classify_gold` and routed to `kronefod`; the
+    # silver / billon / copper auxiliaries land in `kronefod_silver`
+    # under the same Mønlov 1873 framework.
     if 1873 <= year <= 1914 and any(t in nom_l for t in (
             "øre", "ore", "öre", "krone")):
-        return ("reichsgoldmuenzfuss", "A")
+        return ("kronefod_silver", "A")
     return None
 
 
@@ -355,7 +359,7 @@ def _classify_scheidemuenze(coin: dict) -> tuple[str, str | None] | None:
     #   1625-1726  Speciedaler (9¼-Fuß; parallel Krone)   9_25_thaler/A
     #   1726-1813  Helstaten Courant (Forordning 1726)    11_333_thaler/A
     #   1813-1874  Rigsbankdaler (Statsbankerot reform)   18_5_thaler/A
-    #   1874-1914  Krone-fod (Münzunion 1873)             reichsgoldmuenzfuss/A
+    #   1874-1914  Krone-fod (Mønlov 1873)                kronefod_silver/A
     if 1541 <= year < 1566:
         return ("9_thaler", "pre-A")
     if 1566 <= year < 1622:
@@ -367,7 +371,7 @@ def _classify_scheidemuenze(coin: dict) -> tuple[str, str | None] | None:
     if 1813 <= year < 1874:
         return ("18_5_thaler", "A")
     if 1874 <= year <= 1914:
-        return ("reichsgoldmuenzfuss", "A")
+        return ("kronefod_silver", "A")
     return None
 
 

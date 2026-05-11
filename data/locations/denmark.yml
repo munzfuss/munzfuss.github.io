@@ -22,8 +22,8 @@ fuss_order:
   - guldkrone
   - 11_333_thaler
   - 18_5_thaler
-  - 30_thaler
-  - reichsgoldmuenzfuss
+  - kronefod
+  - kronefod_silver
   - seed_unsorted
 
 # ---------------------------------------------------------------------
@@ -467,9 +467,9 @@ fuss_periods:
       en: Bulk seed bucket — period of validity to be assigned per coin
       uk: Bulk-seed загальний кошик — період дії потрібно призначити per coin
     hintergrund:
-      de: Technischer Sammelbucket für bulk-importierte Münzen aus mehreren Quellen. Pro Quelle eine eigene Phase (<code>A</code> = ucoin-Bulk; <code>hede</code> = Hede 1971 via danskmoent.dk, automatisch via Build aus <code>data/seed/hede/denmark.yml</code> eingespeist). Bei künftiger Detail-Bearbeitung wandern die Stücke in den jeweils passenden eigentlichen Müntzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code> etc.).
-      en: Technical catch-all bucket for bulk-imported coins from several sources. One phase per source (<code>A</code> = ucoin bulk; <code>hede</code> = Hede 1971 via danskmoent.dk, auto-merged at build time from <code>data/seed/hede/denmark.yml</code>). On future detailed work the pieces move to their proper Münzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code>, etc.).
-      uk: Технічний загальний кошик для bulk-імпортованих монет із кількох джерел. Окрема фаза на джерело (<code>A</code> = ucoin-bulk; <code>hede</code> = Hede 1971 через danskmoent.dk, авто-merge при build з <code>data/seed/hede/denmark.yml</code>). При майбутній детальній роботі монети перейдуть у відповідну Müntzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code> тощо).
+      de: Technischer Sammelbucket für bulk-importierte Münzen aus mehreren Quellen. Pro Quelle eine eigene Phase (<code>A</code> = ucoin-Bulk; <code>hede</code> = Hede 1971 via danskmoent.dk, automatisch via Build aus <code>data/seed/hede/denmark.yml</code> eingespeist). Bei künftiger Detail-Bearbeitung wandern die Stücke in den jeweils passenden eigentlichen Müntzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>kronefod</code>, <code>reichsdukatenfuss</code> etc.).
+      en: Technical catch-all bucket for bulk-imported coins from several sources. One phase per source (<code>A</code> = ucoin bulk; <code>hede</code> = Hede 1971 via danskmoent.dk, auto-merged at build time from <code>data/seed/hede/denmark.yml</code>). On future detailed work the pieces move to their proper Münzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>kronefod</code>, <code>reichsdukatenfuss</code>, etc.).
+      uk: Технічний загальний кошик для bulk-імпортованих монет із кількох джерел. Окрема фаза на джерело (<code>A</code> = ucoin-bulk; <code>hede</code> = Hede 1971 через danskmoent.dk, авто-merge при build з <code>data/seed/hede/denmark.yml</code>). При майбутній детальній роботі монети перейдуть у відповідну Müntzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>kronefod</code>, <code>reichsdukatenfuss</code> тощо).
 phases:
   kronemont_chr_iv:
     - id: A
@@ -855,35 +855,35 @@ phases:
         en: 'Friedrich VI''s emergency reform after the Danish state bankruptcy. The Forordning of 5 January 1813 sets 18½ Rigsbankdaler per fine Cologne mark (≈ 12.64 g fine per daler). §10 explicitly anchors 1 Speciedaler = 2 Rigsbankdaler — a clean ½-share link to the 9¼-Thaler-Fuß that smoothly carries the transition from the Kurantfuß. Renamed Rigsdaler Rigsmønt in 1854 without any change of standard; in 1873–1875 the Krone of the Scandinavian Monetary Union (Sweden, Norway, Denmark) supersedes the Rigsdaler.'
         uk: 'Надзвичайна реформа Фредеріка VI після данського державного банкрутства. Forordning 5 січня 1813 встановлює 18½ Rigsbankdaler з 1 марки чистого срібла кельнської ваги (≈ 12,64 г чистого на даллер). §10 явно закріплює 1 Speciedaler = 2 Rigsbankdaler — чиста привʼязка ½-частки до 9¼-Thaler-Fuß, яка логічно згладжує перехід з Kurantfuß. 1854 р. перейменовується на Rigsdaler Rigsmønt без зміни стопи; 1873–1875 рр. Krone Скандинавської монетної унії (Швеція, Норвегія, Данія) заміщує Rigsdaler.'
 
-  30_thaler:
-    - id: A
-      year_from: 1873
-      year_to: 1947
-      from_label: 27. Mai 1873 (Skandinavische Münzunion)
-      to_label: 1947 (Christian X. †)
-      title:
-        de: "Skandinavische Krone-Mønt — 1 Krone = 100 Øre — Christian IX. → Christian X."
-        en: "Scandinavian Krone-Mønt — 1 Krone = 100 Øre — Christian IX → Christian X"
-        uk: "Скандинавська Krone-Mønt — 1 Krone = 100 Øre — Христіян IX → Христіян X"
-      description:
-        de: "Konvention vom 27. Mai 1873 zwischen Dänemark, Schweden (und 1875 Norwegen): einheitliche Krone-Goldwährung mit Silberscheidemünze (Krone-Mønt). 1 Krone = 100 Øre. <b>Hinweis zur Tagging-Konvention</b>: für die dänische Krone-Mønt wird in unserem Artefakt die Bezeichnung «30-Thaler-Fuß» (Reichs-Vereinsgesetz 1857) als Sammelschlüssel verwendet — die ältere 30-Thaler-Konvention läuft mit der Krone-Goldwährung zusammen, die Skandinavische Münzunion ist eine direkte Goldparität-Anpassung dazu (3 Krone = 4 Reichsmark). Eine separate <i>nordkrone</i>-Stope ist im Artefakt nicht angelegt; die Speziphika werden in den einzelnen Münznotizen vermerkt."
-        en: "Convention of 27 May 1873 between Denmark, Sweden (and Norway 1875): unified Krone gold currency with Krone-Mønt silver scheide. 1 Krone = 100 Øre. <b>Tagging convention note</b>: for the Danish Krone-Mønt our artefact uses the label «30-Thaler-Fuß» (Reichs-Vereinsgesetz 1857) as the bucket — the older 30-Thaler convention dovetails with the Krone gold currency, and the Scandinavian Monetary Union is a direct gold-parity alignment to it (3 Krone = 4 Reichsmark). A separate <i>nordkrone</i> standard is not maintained in the artefact; specifics are recorded in individual coin notes."
-        uk: "Конвенція 27 травня 1873 між Данією, Швецією (і 1875 Норвегією): єдина Krone-золота валюта з розмінною Krone-Mønt-срібною. 1 Krone = 100 Øre. <b>Примітка щодо тегування</b>: для данської Krone-Mønt у нашому артефакті використовується назва «30-Thaler-Fuß» (Райхс-Vereinsgesetz 1857) як збірний ключ — старіша 30-Thaler-конвенція поєднується зі Krone-золотою валютою, а Скандинавська монетна унія є прямою золотою паритетною прив'язкою до неї (3 Krone = 4 Reichsmark). Окрема <i>nordkrone</i>-стопа в артефакті не закладена; специфіка зазначена в нотатках до окремих монет."
-
-  reichsgoldmuenzfuss:
+  kronefod:
     - id: A
       year_from: 1873
       year_to: 1914
-      from_label: 27. Mai 1873 (Skandinavische Münzunion)
-      to_label: 1914 (1. Weltkrieg)
+      from_label: 23. Mai 1873 (Mønlov)
+      to_label: 2. Aug. 1914 (Goldkonvertibilität ausgesetzt)
       title:
         de: "Skandinavische Goldkrone — 10 Kroner / 20 Kroner — Christian IX. → Christian X."
         en: "Scandinavian Gold Krone — 10 Kroner / 20 Kroner — Christian IX → Christian X"
         uk: "Скандинавська золота Krone — 10 Kroner / 20 Kroner — Христіян IX → Христіян X"
       description:
-        de: "Goldparität der Skandinavischen Münzunion 27. Mai 1873: 1 Krone = 0,4032 g feines Gold; 2480 Krone aus 1 kg feinem Gold. Standardprägungen 10 Krone (4,48 g rauh, .9000) und 20 Krone (8,96 g rauh, .9000). <b>Tagging-Konvention</b>: Reichsgoldmünzfuß verwendet, da die Goldparität direkt an den Reichs-Goldmark angeknüpft ist (3 Krone = 4 Reichsmark). Standard läuft 1914 (Beginn 1. Weltkrieg, faktisch Aussetzung der Goldkonvertibilität) faktisch aus."
-        en: "Gold parity of the Scandinavian Monetary Union of 27 May 1873: 1 Krone = 0.4032 g fine gold; 2,480 Krone from 1 kg of fine gold. Standard issues 10 Krone (4.48 g rough, .9000) and 20 Krone (8.96 g rough, .9000). <b>Tagging convention</b>: Reichsgoldmünzfuß used as the bucket because the gold parity is directly anchored to the German Goldmark (3 Krone = 4 Reichsmark). The standard effectively ends in 1914 (start of WWI, de-facto suspension of gold convertibility)."
-        uk: "Золота паритетна прив'язка Скандинавської монетної унії 27 травня 1873: 1 Krone = 0,4032 г чистого золота; 2480 Krone з 1 кг чистого золота. Стандартні емісії 10 Krone (4,48 г повної ваги, .9000) і 20 Krone (8,96 г повної ваги, .9000). <b>Конвенція тегування</b>: Reichsgoldmünzfuß як bucket, бо золота паритетність прямо привʼязана до Reichs-Goldmark (3 Krone = 4 Reichsmark). Стандарт фактично припиняється 1914 (початок Першої світової війни, фактичне призупинення золотої конвертованості)."
+        de: 'Gold-Krone-Standard der Skandinavischen Müntzunion, eingeführt durch das dänische <b>Mønlov vom 23. Mai 1873</b>, wirksam zum 1. Januar 1875. <b>2480 Kroner aus 1 kg Feingold</b> bei .900 Feingehalt: 10 Kroner zu 4,4803 g rauh / 4,0322 g fein, 20 Kroner zu 8,9606 g rauh / 8,0645 g fein. Tarif gegenüber dem Reichs-Goldmark fixiert über die Goldparität (8 Kroner = 9 Mark). Die Skandinavische Müntzkonvention (Stockholm, 5. Mai 1873) bindet Dänemark und Schweden, Norwegen tritt 1875 bei. Goldkonvertibilität durch die Danmarks Nationalbank am <b>2. August 1914</b> ausgesetzt; die Müntzunion formell aufgelöst 1924.'
+        en: 'Gold Krone standard of the Scandinavian Monetary Union, introduced by the Danish <b>Coinage Act of 23 May 1873</b> (Mønlov), effective 1 January 1875. <b>2,480 Kroner per kg of fine gold</b> at .900 fineness: 10 Kroner at 4.4803 g raw / 4.0322 g fine, 20 Kroner at 8.9606 g raw / 8.0645 g fine. Tariff against the German Reichsmark fixed by gold parity (8 Kroner = 9 Mark). The Scandinavian Monetary Convention (Stockholm, 5 May 1873) binds Denmark and Sweden; Norway accedes in 1875. Gold convertibility suspended by Danmarks Nationalbank on <b>2 August 1914</b>; the monetary union formally dissolved in 1924.'
+        uk: 'Золотий Krone-стандарт Скандинавської монетної унії, запроваджений данським <b>Mønlov від 23 травня 1873</b>, чинним з 1 січня 1875. <b>2480 Krone з 1 кг чистого золота</b> за пробою .900: 10 Krone — 4,4803 г повної ваги / 4,0322 г чистого, 20 Krone — 8,9606 г повної ваги / 8,0645 г чистого. Тариф проти Reichs-Goldmark фіксований через золоту паритетність (8 Krone = 9 Mark). Скандинавська монетна конвенція (Стокгольм, 5 травня 1873) звʼязує Данію та Швецію; Норвегія приєднується 1875. Конвертованість у золото призупинено Danmarks Nationalbank <b>2 серпня 1914</b>; монетна унія формально розпущена 1924.'
+
+  kronefod_silver:
+    - id: A
+      year_from: 1873
+      year_to: 1914
+      from_label: 23. Mai 1873 (Mønlov)
+      to_label: 1914 (1. Weltkrieg)
+      title:
+        de: "Krone-Mønt-Auxiliare — 1/2 Kroner Kurant + 10/25 Øre Scheide + Kupfer 1/2/5 Øre"
+        en: "Krone-Mønt auxiliaries — 1/2 Kroner Kurant + 10/25 Øre scheide + copper 1/2/5 Øre"
+        uk: "Krone-Mønt-авксиліари — 1/2 Krone Kurant + 10/25 Øre Scheide + мідь 1/2/5 Øre"
+      description:
+        de: 'Silber- und Kupfer-Auxiliarstückelungen der Krone-Mønt nach demselben Mønlov 1873. Silber-Kurant <b>1 Krone (7,5 g rauh, .800)</b> und <b>2 Kroner (15 g rauh, .800)</b>; Silber-Scheidemünzen <b>25 øre (2,42 g, .600)</b> und <b>10 øre (1,45 g, .400)</b>; Kupfer-Scheide <b>5 / 2 / 1 øre (Bronze, 8 / 4 / 2 g)</b>. Die abgestufte Feingehalts-Leiter (.800 → .400 → Bronze) ist Strukturmerkmal des Mønlovs 1873 — pro Stückelung dokumentiert in <code>fuesse[kronefod_silver].fractions</code>.'
+        en: 'Silver and copper auxiliary denominations of the Krone-Mønt under the same Mønlov 1873. Silver Kurant <b>1 Krone (7.5 g raw, .800)</b> and <b>2 Kroner (15 g raw, .800)</b>; silver scheide <b>25 øre (2.42 g, .600)</b> and <b>10 øre (1.45 g, .400)</b>; copper scheide <b>5 / 2 / 1 øre (bronze, 8 / 4 / 2 g)</b>. The graded fineness ladder (.800 → .400 → bronze) is a structural feature of Mønlov 1873 — documented per denomination in <code>fuesse[kronefod_silver].fractions</code>.'
+        uk: 'Срібні й мідні допоміжні номінали Krone-Mønt за тим самим Mønlov 1873. Срібний Kurant <b>1 Krone (7,5 г повної ваги, .800)</b> і <b>2 Krone (15 г, .800)</b>; срібні Scheidemünzen <b>25 øre (2,42 г, .600)</b> і <b>10 øre (1,45 г, .400)</b>; мідна Scheide <b>5 / 2 / 1 øre (бронза, 8 / 4 / 2 г)</b>. Сходова шкала проб (.800 → .400 → бронза) — структурна риса Mønlov 1873; пер-номінально задокументовано в <code>fuesse[kronefod_silver].fractions</code>.'
 
   seed_unsorted:
     - id: A
@@ -16334,7 +16334,7 @@ coins:
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: '1'
   - id: dk-tid-49671
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod
     phase: A
     kind: kurant
     nominal: 10 Kroner
@@ -16345,7 +16345,7 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '790'
-    metal: silver
+    metal: gold
     fineness: 0.9
     weight_rough_g: 4.48
     sources:
@@ -16363,7 +16363,7 @@ coins:
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: '10'
   - id: dk-tid-49677
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod
     phase: A
     kind: kurant
     nominal: 20 Kroner
@@ -16374,7 +16374,7 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '791'
-    metal: silver
+    metal: gold
     fineness: 0.9
     weight_rough_g: 8.96
     sources:
@@ -16392,7 +16392,7 @@ coins:
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: '20'
   - id: dk-tid-49544
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod_silver
     phase: A
     kind: kurant
     nominal: 1 Öre
@@ -16417,7 +16417,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49611
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod_silver
     phase: A
     kind: kurant
     nominal: 2 Öre
@@ -16442,7 +16442,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49627
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod_silver
     phase: A
     kind: kurant
     nominal: 5 Öre
@@ -16467,7 +16467,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49639
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod_silver
     phase: A
     kind: kurant
     nominal: 10 Öre
@@ -16495,7 +16495,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49653
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod_silver
     phase: A
     kind: kurant
     nominal: 25 Öre
@@ -16523,7 +16523,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49659
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod_silver
     phase: A
     kind: kurant
     nominal: 1 Krone
@@ -16551,7 +16551,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-49663
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod_silver
     phase: A
     kind: kurant
     nominal: 2 Kroner
@@ -23928,8 +23928,8 @@ coins:
   # Routing:
   # - Pre-1873 Christian IX gold (Christian d'Or KM-773) → reichsdukatenfuss D
   # - Pre-1873 Christian IX silver (Rigsdaler/Skilling Rigsmønt) → 18_5_thaler A
-  # - 1873+ silver Krone-Mønt (Krone/2 Krone/Øre series) → 30_thaler A (Skand. Münzunion bucket)
-  # - 1873+ gold Krone (10/20 Kroner) → reichsgoldmuenzfuss A
+  # - 1873+ silver Krone-Mønt (Krone/2 Krone/Øre series) → kronefod_silver A (Skand. Müntzunion · Silber-Auxiliare)
+  # - 1873+ gold Krone (10/20 Kroner) → kronefod A (Skand. Müntzunion · Gold)
   # issuing_entity: gesamtstaat for pre-1864 (Helstaten); danish_realm for post-1864.
   # Multi-spec merges per §9a: KM-773.2 (1869+1870), KM-772.2 (1871+1872), KM-790.1 (4 yrs),
   # KM-791.1 (5 yrs), KM-790.2 (1898+1900), KM-810 (5 yrs Fr.VIII/Chr.X), KM-809 (1908+1909),
@@ -24087,7 +24087,7 @@ coins:
         ref: Bruun Part IV, lot 17230, p. 115
   # === Krone reform 1873 — gold series (Skandinavische Münzunion) ===
   - id: km-791-1-chr-ix-1873
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod
     phase: A
     kind: kurant
     fraction: '20'
@@ -24146,7 +24146,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1170, p. 233 (KM 791.1; Hede 8A; Sieg 1.1)
   - id: km-790-1-chr-ix-1873
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod
     phase: A
     kind: kurant
     fraction: '10'
@@ -24200,7 +24200,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17251, p. 119 (KM 790.1; Hede 9A; Sieg 1.1)
   - id: km-790-2-chr-ix-1898
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod
     phase: A
     kind: kurant
     fraction: '10'
@@ -24242,7 +24242,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17264, p. 121 (KM 790.2; Hede 9B; Sieg 1.2)
   - id: km-791-2-chr-ix-1900
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod
     phase: A
     kind: kurant
     fraction: '20'
@@ -24276,7 +24276,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17263, p. 121
   - id: km-810-fr-viii-1908
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod
     phase: A
     kind: kurant
     fraction: '20'
@@ -24333,7 +24333,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17278, p. 124 (KM 810; Hede 1; Sieg 2)
   - id: km-809-fr-viii-1908
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod
     phase: A
     kind: kurant
     fraction: '10'
@@ -24375,7 +24375,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17274, p. 123 (KM 809; Hede 2; Sieg 2)
   - id: km-816-chr-x-1913
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod
     phase: A
     kind: kurant
     fraction: '10'
@@ -24410,7 +24410,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17279, p. 124
   - id: km-817-1-chr-x-1914
-    fuss: reichsgoldmuenzfuss
+    fuss: kronefod
     phase: A
     kind: kurant
     fraction: '20'
@@ -24446,7 +24446,7 @@ coins:
         ref: Bruun Part IV, lot 17282, p. 125
   # === Krone reform 1873 — silver Krone-Mønt ===
   - id: km-797-1-chr-ix-1875
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: kurant
     fraction: '1'
@@ -24493,7 +24493,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17255, p. 119 (KM 797.1; Hede 14A; Sieg 1.1)
   - id: km-797-2-chr-ix-1898
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: kurant
     fraction: '1'
@@ -24527,7 +24527,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17261, p. 120
   - id: km-798-1-chr-ix-1875
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: kurant
     fraction: '2'
@@ -24568,7 +24568,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17241, p. 117 (KM 798.1; Hede 13A; Sieg 1.1)
   - id: km-798-2-chr-ix-1897
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: kurant
     fraction: '2'
@@ -24610,7 +24610,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17262, p. 121 (KM 798.2; Hede 13B; Sieg 1.2)
   - id: km-799-chr-ix-1888
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: gedenk
     fraction: '2'
@@ -24644,7 +24644,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17249, p. 118
   - id: km-800-chr-ix-1892
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: gedenk
     fraction: '2'
@@ -24678,7 +24678,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17254, p. 119
   - id: km-802-chr-ix-1903
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: gedenk
     fraction: '2'
@@ -24717,7 +24717,7 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17266, p. 121 (KM 802; Hede 12; Sieg 3)
   - id: km-803-fr-viii-1906
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: gedenk
     fraction: '2'
@@ -24752,10 +24752,10 @@ coins:
         ref: Bruun Part IV, lot 17270, p. 122
   # === Krone-Mønt Øre series 1874-1914 ===
   - id: km-794-1-chr-ix-1874
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/6"
+    fraction: "1/20"
     nominal: 5 Øre
     year_label: 1874, 1882
     year_first: 1874
@@ -24789,10 +24789,10 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17246, p. 118
   - id: km-794-2-chr-ix-1904
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/6"
+    fraction: "1/20"
     nominal: 5 Øre
     year_label: '1904'
     year_first: 1904
@@ -24820,10 +24820,10 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17268, p. 122
   - id: km-795-1-chr-ix-1874
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/12"
+    fraction: "1/10"
     nominal: 10 Øre
     year_label: 1874, 1884, 1891
     year_first: 1874
@@ -24861,10 +24861,10 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17253, p. 119
   - id: km-195-1-chr-ix-1882
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/12"
+    fraction: "1/10"
     nominal: 10 Øre
     year_label: 1882, 1888
     year_first: 1882
@@ -24898,10 +24898,10 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17250, p. 119
   - id: km-795-2-chr-ix-1897
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/12"
+    fraction: "1/10"
     nominal: 10 Øre
     year_label: 1897, 1903
     year_first: 1897
@@ -24935,10 +24935,10 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17267, p. 121
   - id: km-796-1-chr-ix-1891
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/24"
+    fraction: "1/4"
     nominal: 25 Øre
     year_label: '1891'
     year_first: 1891
@@ -24966,10 +24966,10 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17252, p. 119
   - id: km-796-2-chr-ix-1894
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/24"
+    fraction: "1/4"
     nominal: 25 Øre
     year_label: 1894, 1905
     year_first: 1894
@@ -25003,10 +25003,10 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17269, p. 122
   - id: km-792-2-chr-ix-1894
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/192"
+    fraction: "1/100"
     nominal: 1 Øre
     year_label: '1894'
     year_first: 1894
@@ -25034,10 +25034,10 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17257, p. 120
   - id: km-793-1-chr-ix-1887
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/96"
+    fraction: "1/50"
     nominal: 2 Øre
     year_label: '1887'
     year_first: 1887
@@ -25066,10 +25066,10 @@ coins:
         ref: Bruun Part IV, lot 17248, p. 118
   # === Frederik VIII (1906-1912) silver ===
   - id: km-808-fr-viii-1911
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/24"
+    fraction: "1/4"
     nominal: 25 Øre
     year_label: '1911'
     year_first: 1911
@@ -25097,10 +25097,10 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17276, p. 124
   - id: km-807-fr-viii-1911
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/12"
+    fraction: "1/10"
     nominal: 10 Øre
     year_label: '1911'
     year_first: 1911
@@ -25129,10 +25129,10 @@ coins:
         ref: Bruun Part IV, lot 17277, p. 124
   # === Christian X (1912-1947) ===
   - id: km-813-chr-x-1913
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/96"
+    fraction: "1/50"
     nominal: 2 Øre
     year_label: '1913'
     year_first: 1913
@@ -25160,10 +25160,10 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17281, p. 124
   - id: km-814-1-chr-x-1913
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/6"
+    fraction: "1/20"
     nominal: 5 Øre
     year_label: '1913'
     year_first: 1913
@@ -25191,10 +25191,10 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17280, p. 124
   - id: km-815-1-chr-x-1914
-    fuss: 30_thaler
+    fuss: kronefod_silver
     phase: A
     kind: scheide
-    fraction: "1/24"
+    fraction: "1/4"
     nominal: 25 Øre
     year_label: '1914'
     year_first: 1914
