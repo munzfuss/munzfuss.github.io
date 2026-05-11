@@ -122,9 +122,23 @@ _YEAR_BLOCK_RE = re.compile(
     r"(\d{4}(?:[\s,]+\d{4})*)\s*"
     r"(?:\(\s*(R{1,3}|S|Unik)\s*\))?",
 )
+# Hede convention for «century-abbreviated» dating: «(15)46» means
+# 1546, «(15)63» means 1563, «(16)29» means 1629. Used heavily on
+# 16th-c. Christian III / Frederik II pages where the page H1
+# encodes the year as «..., (15)46, Flensborg». The plain
+# `\d{4}` matcher above misses these, so we pre-expand them to
+# full 4-digit form before the year-block matcher runs.
+_CENTURY_ABBR_RE = re.compile(r"\(\s*(1[5-9])\s*\)\s*(\d{2})\b")
+
+
+def _expand_century_abbr(text: str) -> str:
+    """Rewrite Hede century-abbreviation «(15)46» → «1546» in place
+    so the downstream year-block matcher catches the year."""
+    return _CENTURY_ABBR_RE.sub(lambda m: f"{m.group(1)}{m.group(2)}", text)
 
 
 def _extract_years(text: str) -> list[dict]:
+    text = _expand_century_abbr(text)
     out: list[dict] = []
     for m in _YEAR_BLOCK_RE.finditer(text):
         years = re.findall(r"\d{4}", m.group(1))
@@ -339,6 +353,9 @@ def _parse_header(html: str) -> dict:
     if not h1_m:
         return out
     h1 = _strip_html(h1_m.group(1))
+    # Expand Hede century-abbreviation «(15)46» → «1546» before the
+    # year-block matcher and the nominal-vs-year/mint splitter run.
+    h1 = _expand_century_abbr(h1)
     out["h1"] = h1
     # H1 typically has 2 lines: «Ruler.\nNominal Year, Mint»
     parts = [p.strip() for p in h1.split("\n") if p.strip()]
