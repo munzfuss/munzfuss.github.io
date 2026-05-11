@@ -94,7 +94,11 @@
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-mint">
-    {%- if coin.raw.mint -%}{{ coin.raw.mint }}{%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- if coin.raw.mint -%}
+      {%- if coin.raw.mint is string -%}{{ coin.raw.mint }}
+      {%- else -%}{{ coin.raw.mint|join(', ') }}
+      {%- endif -%}
+      {%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-entity">
@@ -284,7 +288,11 @@
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-mint">
-    {%- if coin.raw.mint -%}{{ coin.raw.mint }}{%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
+    {%- if coin.raw.mint -%}
+      {%- if coin.raw.mint is string -%}{{ coin.raw.mint }}
+      {%- else -%}{{ coin.raw.mint|join(', ') }}
+      {%- endif -%}
+      {%- if not coin.raw.mint_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-entity">

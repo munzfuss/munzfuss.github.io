@@ -296,7 +296,18 @@ class Coin(_StrictBase):
         ),
     )
     ruler: str | None = None
-    mint: str | None = None
+    mint: str | list[str] | None = Field(
+        None,
+        description=(
+            "Mint city/cities where the coin was struck. A bare string for "
+            "single-mint coins (the common case); a list of strings when the "
+            "same type was struck IN PARALLEL at multiple mints (e.g. "
+            "['Altona', 'Kopenhagen', 'Kongsberg'] for Christian VII's 1 Skilling "
+            "1771). Each list entry may carry its own parenthetical mintmark / "
+            "mintmaster annotation, e.g. ['Altona (VS)', 'Kopenhagen']. The "
+            "render layer joins list entries with «, » for the mint column."
+        ),
+    )
     mint_verified: bool = True
     mintmaster: str | None = None
     catalog: CatalogRefs = Field(default_factory=CatalogRefs)

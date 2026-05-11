@@ -83,11 +83,40 @@ DK_MINT_DE = {
     "Haderslev": "Hadersleben",
     "Rendsborg": "Rendsburg",
     "Rethwitsch": "Rethwisch",
-    # Combined-mint markings (issued at both, same standard)
-    "København og Altona": "Kopenhagen und Altona",
-    "Altona og Poppenbüttel": "Altona und Poppenbüttel",
-    "Altona og Poppenbåttel": "Altona und Poppenbüttel",  # alt-decoding
+    # Danish-royal mints in the Norwegian realm (1380–1814).
+    # These are recognised as part of the Dansk Mønt corpus per
+    # Hede 1971's full title «Danmarks og Norges mønter»; coins
+    # struck at these mints carry Norwegian legends but are
+    # catalogued in the same registry. The issuing-entity tag is
+    # assigned downstream by retag_entities.py.
+    "Kongsberg": "Kongsberg",
+    "Christiania": "Christiania",
+    "Poppenbüttel": "Poppenbüttel",
 }
+
+
+# Split a multi-mint string («København og Kongsberg»,
+# «Altona, Kopenhagen, Kongsberg») into individual segments. Hede uses
+# Danish/German conjunctions «og» / «und» / «&» / «,» between mints.
+_MINT_SEP_RE = re.compile(r"\s+(?:og|und|and|&)\s+|\s*,\s*", re.IGNORECASE)
+
+
+def _normalize_mints(mint_clean: str) -> list[str] | None:
+    """Map a possibly multi-mint raw Hede string to a list of
+    canonical mint names. Returns the de-duplicated list in source
+    order, or None when no segment matches the DK/SH/NO mint set."""
+    parts = _MINT_SEP_RE.split(mint_clean)
+    out: list[str] = []
+    for part in parts:
+        part = part.strip(" (),;.").strip()
+        if not part:
+            continue
+        for canon, normalised in DK_MINT_DE.items():
+            if canon.lower() in part.lower():
+                if normalised not in out:
+                    out.append(normalised)
+                break
+    return out or None
 
 # Roman numerals 1..10 for ruler-name rendering. Hede pages write
 # «Christian 5.» / «Frederik 3.»; downstream YAML uses the standard
@@ -307,7 +336,7 @@ def _build_coin(
     parsed: dict,
     spec: dict,
     nominal_override: str | None = None,
-    mint_normalised: str,
+    mint_normalised: str | list[str],
     years_override: list[dict] | None = None,
     catalog_refs_override: dict | None = None,
 ) -> dict | None:
@@ -375,7 +404,12 @@ def _build_coin(
             cm["year_first"] = 1500  # last-resort sentinel within phase A
     if ruler:
         cm["ruler"] = ruler
-    cm["mint"] = mint_normalised
+    if isinstance(mint_normalised, list):
+        seq = CommentedSeq(mint_normalised)
+        seq.fa.set_flow_style()
+        cm["mint"] = seq
+    else:
+        cm["mint"] = mint_normalised
 
     catalog = CommentedMap()
     catalog["hede"] = hede_number
@@ -529,16 +563,18 @@ def main() -> int:
         mint_clean = re.sub(r"^\d+\s*,\s*", "", raw_mint)
         # Strip trailing punctuation
         mint_clean = mint_clean.rstrip(".;,)").strip()
-        # Match against DK mint set
-        mint_normalised = None
-        for canon, normalised in DK_MINT_DE.items():
-            if canon.lower() in mint_clean.lower():
-                mint_normalised = normalised
-                break
-        if mint_normalised is None:
+        # Match against DK / SH / Norway mint set. Multi-mint Hede
+        # strings («København og Kongsberg», «Altona, Kopenhagen,
+        # Kongsberg») return a list — preserved on the coin so every
+        # parallel-strike city renders in the table.
+        mints_list = _normalize_mints(mint_clean)
+        if not mints_list:
             stats["skipped_non_dk_mint"] += 1
             skipped_mints[mint_clean] = skipped_mints.get(mint_clean, 0) + 1
             continue
+        mint_normalised: str | list[str] = (
+            mints_list[0] if len(mints_list) == 1 else mints_list
+        )
 
         hede_volume = d.get("ruler_volume") or ""
         if not hede_volume:
