@@ -164,16 +164,37 @@ def _normalise_ruler(raw: str | None) -> str | None:
 # «Krone(r)» is ambiguous (Christian IV silver Kronemont vs Christian
 # IX/X gold Krone), so the rule layers on the ruler: «Krone(r)» is
 # gold only for Christian IX / Christian X / Frederik VIII / Frederik IX.
+#
+# Renaissance gold tokens — Hede's pre-1591 catalogue records
+# Christian III / Frederik II / early Christian IV gold via period
+# names: «Ungersk Gylden» (Hungarian ducat-pattern), «Rhinsk
+# Gylden» (Rhenish florin), «Goldgulden», «Portugaløser» (10-
+# Dukat presentation piece), «Rosenobel» (English-pattern rose
+# noble), «Guldmønt» (literally «gold-coin» when the type lacks a
+# proper denomination). All gold; specimens commonly run 3-35 g at
+# .75-.986 fineness.
+#
+# Sølvgylden («silver-gylden») is a specific Christian III tariff
+# coin in SILVER at ~29 g and ~.89 fineness — the «sølv» prefix
+# overrides the Gylden gold-marker.
 _GOLD_NOMINAL_TOKENS = (
     "Dukat", "dukat", "Pistole", "pistole",
     "d'or", "Frederik d'or", "Christian d'or",
-    "Guldkrone", "Kurantdukat",
+    "Guldkrone", "Guldcrone", "Guldmønt", "Guldmoent",
+    "Kurantdukat", "Speciedukat",
+    "Ungersk Gylden", "Rhinsk Gylden", "Goldgulden",
+    "Portugaløser", "Portugaloser",
+    "Rosenobel",
 )
 _KRONE_GOLD_RULERS = {"Christian IX.", "Christian X.", "Frederik VIII.", "Frederik IX."}
 
 
 def _infer_metal(nominal: str, ruler: str | None, fineness: float | None) -> str:
     n = (nominal or "").lower()
+    # «Sølvgylden» (Christian III's silver tariff piece) precedes the
+    # «Gylden» gold-marker check — explicit silver override.
+    if "sølvgylden" in n or "soelvgylden" in n:
+        return "silver"
     if any(tok.lower() in n for tok in _GOLD_NOMINAL_TOKENS):
         return "gold"
     if re.search(r"\bkrone(r)?\b", n) and ruler in _KRONE_GOLD_RULERS:

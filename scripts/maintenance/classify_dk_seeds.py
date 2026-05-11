@@ -132,19 +132,21 @@ def _phase_by_year(year: int, fuss_phases: list[tuple[int, int, str]]) -> str | 
 # Phase year-ranges per fuss, mirroring data/locations/denmark.yml.
 # Update here when adding/changing phases in denmark.yml.
 PHASES: dict[str, list[tuple[int, int, str]]] = {
-    "reichsdukatenfuss":  [(1564, 1588, "pre-A"), (1591, 1726, "A"),
+    "reichsdukatenfuss":  [(1546, 1588, "pre-A"), (1591, 1726, "A"),
                            (1726, 1771, "B"), (1771, 1813, "C"),
                            (1813, 1871, "D")],
     "courantdukatenfuss": [(1714, 1796, "A")],
     "pistolenfuss":       [(1771, 1870, "A")],
-    "9_thaler":           [(1566, 1625, "A"), (1648, 1683, "B")],
+    "9_thaler":           [(1541, 1565, "pre-A"), (1566, 1625, "A"),
+                           (1648, 1683, "B")],
     "9_25_thaler":        [(1622, 1726, "A"), (1726, 1788, "B"),
                            (1788, 1813, "C"), (1813, 1854, "D")],
     "kronemont_chr_iv":   [(1618, 1624, "A"), (1651, 1652, "B"),
                            (1665, 1675, "C")],
     "kronemont":          [(1644, 1669, "A"), (1670, 1699, "B")],
     "kronemont_fine":     [(1693, 1771, "A")],
-    "guldkrone":          [(1618, 1628, "pre-A"), (1668, 1668, "B")],
+    "guldkrone":          [(1618, 1628, "pre-A"), (1657, 1666, "A"),
+                           (1668, 1668, "B")],
     "11_333_thaler":      [(1726, 1813, "A")],
     "18_5_thaler":        [(1813, 1875, "A")],
     "30_thaler":          [(1873, 1947, "A")],
@@ -200,13 +202,17 @@ def _classify_gold(coin: dict) -> tuple[str, str | None] | None:
     # Post-1873 Krone-fod gold (10/20 Kroner)
     if "krone" in nom_l and year >= 1873 and year <= 1914:
         return ("reichsgoldmuenzfuss", "A")
-    # Christian IV / V Guldkrone (1618-1628, 1668) — must match BEFORE
-    # the generic «Guldkrone» check below or it will fall through.
+    # Christian IV Esrum + Frederik III Guldkrone (1618-1670) — must
+    # match BEFORE the generic «Guldkrone» check. Frederik II's «1
+    # Guldkrone» 1563-1564 is NOT a Krone-fod piece (3.3 g @ .934,
+    # closer to Goldgulden / Reichsdukat-pattern); those route to
+    # reichsdukatenfuss/pre-A via the catch-all gold rule further down.
     if "guldkrone" in nom_l or (("krone" in nom_l or "guldcrone" in nom_l)
                                   and 1618 <= year <= 1670):
-        ph = _phase_by_year(year, PHASES["guldkrone"])
-        if ph:
-            return ("guldkrone", ph)
+        if 1618 <= year <= 1670:
+            ph = _phase_by_year(year, PHASES["guldkrone"])
+            if ph:
+                return ("guldkrone", ph)
     # Pistole / Friedrich d'or / Christiansdor — pistolenfuss
     if any(t in nom_l for t in ("pistole", "d'or", "frederiksdor",
                                  "frederik d", "christiansdor", "christian d",
@@ -218,12 +224,25 @@ def _classify_gold(coin: dict) -> tuple[str, str | None] | None:
     # Plain Dukat / Ducat / Gylden / Gulden — Reichsdukatenfuss default.
     # «Ungersk Gylden» (Hungarian-pattern ducat) and «Rhinsk Gylden» both
     # fit Reichsdukatenfuss (same 67-Dukaten standard, .986 fineness).
-    if any(t in nom_l for t in ("dukat", "ducat", "gylden", "gulden")):
+    # «Portugaløser» (10-Dukat presentation piece, Hede's «Portuguese-
+    # pattern» gold), «Rosenobel» (English rose-noble pattern struck
+    # in Danish gold), «Guldmønt» (Hede's bare «gold coin» label when
+    # the type predates a settled denomination) — all gold pieces
+    # at Reichsdukat-family fineness.
+    # Final catch-all for Renaissance gold tokens. «guldkrone» is
+    # included here as a fall-through — Frederik II's 1563-1564
+    # «Guldkrone» (3.34 g, .934) is a Goldgulden-pattern piece that
+    # mathematically fits Reichsdukatenfuß-family rather than the
+    # later Krone-fod tariff coin (the Guldkrone earlier-block has
+    # already caught the 1618-1670 cases that DO belong to the
+    # Krone-fod fuss).
+    if any(t in nom_l for t in ("dukat", "ducat", "gylden", "gulden",
+                                  "portugaløser", "portugaloser",
+                                  "rosenobel", "guldmønt", "guldmoent",
+                                  "guldkrone", "guldcrone")):
         ph = _phase_by_year(year, PHASES["reichsdukatenfuss"])
         if ph:
             return ("reichsdukatenfuss", ph)
-        # Pre-1591 Renaissance Dukat — keep in seed (Reichsdukatenfuss
-        # window starts 1591 with the Reichsmünzordnung).
         return None
     return None
 
@@ -254,13 +273,34 @@ def _classify_silver_by_year_and_nominal(coin: dict) -> tuple[str, str | None] |
     if any(t in nom_l for t in ("krone", "mark")) and 1644 <= year <= 1669:
         return ("kronemont", "A")
     # Silver Mark / 2 Mark / 4 Mark — pre-Krone era (Christian IV /
-    # Frederik II) → 9_thaler/A.
+    # Frederik II) → 9_thaler/A. Earlier issues (Christian III)
+    # route to pre-A.
+    if "mark" in nom_l and 1541 <= year <= 1565:
+        return ("9_thaler", "pre-A")
     if "mark" in nom_l and 1566 <= year <= 1625:
         return ("9_thaler", "A")
+    # «Sølvgylden» / «Søsling Lybsk» — Christian III silver tariff
+    # and Lybsk small change. Same Speciedaler-class standard.
+    if any(t in nom_l for t in ("sølvgylden", "soelvgylden",
+                                  "søsling lybsk", "soesling lybsk")):
+        if 1541 <= year <= 1565:
+            return ("9_thaler", "pre-A")
+    # Christian IV silver Mark 1622-1670 (Kipper-era debasement
+    # «Hebræermønt» 1644-1646 at .593 fineness, etc.) — bucket into
+    # 9_25_thaler/A.
+    if "mark" in nom_l and 1622 <= year <= 1670:
+        return ("9_25_thaler", "A")
     # «12 Mark» 1747-1763 (Frederik V) — 12 Mark Danske ≡ 1 Reichsdaler
     # Specie, 9¼-Fuß. Caught by `mark` token + year ≥ 1726.
     if "mark" in nom_l and 1726 <= year <= 1813:
         return ("9_25_thaler", _phase_by_year(year, PHASES["9_25_thaler"]))
+    # Tranquebar / Asian-trade Piaster — silver Speciedaler-class
+    # trade dollar. Routes by year to nearest Specie standard.
+    if "piaster" in nom_l or "piastre" in nom_l:
+        if 1622 <= year < 1726:
+            return ("9_25_thaler", "A")
+        if 1726 <= year <= 1813:
+            return ("9_25_thaler", _phase_by_year(year, PHASES["9_25_thaler"]))
     # Silver Daler multi-units (3/4/6/8 Daler) under Christian IV —
     # 9-Fuß Speciedaler multiples (10 Daler Sterndaler etc.).
     if "daler" in nom_l and 1566 <= year <= 1625:
@@ -299,7 +339,8 @@ def _classify_scheidemuenze(coin: dict) -> tuple[str, str | None] | None:
     year = coin["year_first"]
     nom_l = (coin.get("nominal") or "").lower()
     scheide_token = any(t in nom_l for t in (
-        "skilling", "hvid", "søsling", "soesling", "penning", "rigsbankskilling",
+        "skilling", "hvid", "søsling", "soesling", "penning",
+        "rigsbankskilling", "denning", "sechsling", "dreiling",
     ))
     if not scheide_token:
         return None
@@ -315,6 +356,8 @@ def _classify_scheidemuenze(coin: dict) -> tuple[str, str | None] | None:
     #   1726-1813  Helstaten Courant (Forordning 1726)    11_333_thaler/A
     #   1813-1874  Rigsbankdaler (Statsbankerot reform)   18_5_thaler/A
     #   1874-1914  Krone-fod (Münzunion 1873)             reichsgoldmuenzfuss/A
+    if 1541 <= year < 1566:
+        return ("9_thaler", "pre-A")
     if 1566 <= year < 1622:
         return ("9_thaler", "A")
     if 1622 <= year < 1726:
