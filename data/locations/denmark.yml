@@ -520,6 +520,19 @@ phases:
   # 13-Krone-Fuß) is presented in full on the timeline. Empty phase
   # array is intentional — no Glückstadt or Tönning specimens.
   reichsdukatenfuss:
+    - id: pre-A
+      year_from: 1564
+      year_to: 1588
+      from_label: "1564"
+      to_label: "1588"
+      title:
+        de: "Frederik II. · Vorläufer-Goldprägung am Reichsdukatenstandard"
+        en: "Frederik II · predecessor gold issues at the Reichsdukat standard"
+        uk: "Фредерік II · попередня золота емісія за Reichsdukat-стандартом"
+      description:
+        de: 'Vor der regulären Christian-IV.-Serie ab 1591 verzeichnet Hede 1971 zwei Frederik-II.-Stücke am späteren Reichsdukatenfuß: das <b>1 Dukat 1564</b> (f2h4, 3,49 g rauh, .986 Feingehalt) und das <b>10 Ducat 1588</b> Sterbejahr-/Gedenkstück (ucoin tid 163075, 39,45 g rauh — vom 67-Dukaten-Standard abweichende Multi-Dukat-Gedenkprägung). Aufgenommen in diese Phase, weil Feingehalt und Denomination den Reichsdukatenstandard nach Reichsmünzordnung 1559/1571 spiegeln; eine eigene quellenbasierte Müntzfuß-Bestimmung bleibt für das 10-Ducat-Stück 1588 mangels Hede-Eintrag jedoch ausgesetzt (siehe Verifikationsnotiz).'
+        en: 'Before the regular Christian IV series starting in 1591, Hede 1971 records two Frederik II pieces at the later Reichsdukatenfuß standard: the <b>1 Dukat 1564</b> (f2h4, 3.49 g raw, .986 fineness) and the <b>10 Ducat 1588</b> death-year / commemorative strike (ucoin tid 163075, 39.45 g raw — a multi-Dukat memorial issue deviating from the 67-Dukaten standard). Bucketed in this phase because the fineness and denomination mirror the Reichsdukat standard per Reichsmünzordnung 1559/1571; a source-grounded Müntzfuß determination remains deferred for the 1588 10 Ducat in the absence of a Hede entry (see verification note).'
+        uk: 'До регулярної серії Кристіана IV з 1591 р. Hede 1971 фіксує два екземпляри Фредеріка II за пізнішим Reichsdukatenfuß-стандартом: <b>1 Dukat 1564</b> (f2h4, 3,49 г повної ваги, .986 проба) і <b>10 Ducat 1588</b> — рік смерті / мемор''яльна емісія (ucoin tid 163075, 39,45 г повної ваги — multi-Dukat-мемор''яльна емісія, що відхиляється від 67-Dukaten-стандарту). Розміщено в цій фазі, бо проба й номінал відповідають стандарту Reichsdukat за Reichsmünzordnung 1559/1571; джерельне підтвердження Müntzfuß для 1588 10 Ducat лишається відкладеним через відсутність запису в Hede (див. verification note).'
     - id: A
       year_from: 1591
       year_to: 1726
@@ -973,8 +986,8 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   - id: dk-tid-163075
-    fuss: seed_unsorted
-    phase: A
+    fuss: reichsdukatenfuss
+    phase: pre-A
     kind: kurant
     nominal: 10 Ducat
     year_label: '1588'
@@ -982,7 +995,8 @@ coins:
     ruler: Frederik II.
     mint: Kopenhagen
     catalog:
-      km: UC# 10
+      others:
+        - UC# 10
     metal: gold
     weight_rough_g: 39.45
     diameter_mm: 51.0
@@ -996,9 +1010,9 @@ coins:
     weight_rough_verified: false
     mint_verified: false
     verification_note:
-      de: 'Einzelquellen-Eintrag (ucoin tid 163075, <i>Composition: Gold</i> auf der ucoin-Seite direkt geprüft 2026-05). Unser <code>scripts/cache/ucoin/_url_index.json</code> trägt das Composition-Feld nicht — Harvest-Lücke, kein ucoin-Defekt. Hede 1971 verzeichnet kein Frederik-II.-10-Ducat-Stück; die nächste Multi-Dukat-Eintragung in der Frederik-II.-Reihe (f2h7a) ist der Portugaløser 1584 (35,20 g, Unik). Gewicht 39,45 g und Durchmesser 51 mm überschreiten den Reichsdukatenfuß-Standard für 10 Dukaten (~34,9 g, ~38 mm), passen aber zu einer einmaligen Trauer- oder Gedenkprägung anlässlich des Todes Frederiks II. am 4. April 1588. Müntzfuß-Zuordnung bleibt ausgesetzt bis ein Stand ardliteratur-Eintrag (Hede / Bruun / Galster) gefunden wird.'
-      en: 'Single-source entry (ucoin tid 163075, <i>Composition: Gold</i> verified directly on the ucoin page in 2026-05). Our <code>scripts/cache/ucoin/_url_index.json</code> does not carry the Composition field — harvest gap, not an ucoin defect. Hede 1971 carries no Frederik II 10 Ducat issue; the closest multi-Dukat entry in the Frederik II run (f2h7a) is the Portugaløser 1584 (35.20 g, unique). Weight 39.45 g and diameter 51 mm exceed the Reichsdukatenfuß standard for 10 Ducats (~34.9 g, ~38 mm), but match a one-off mourning or commemorative strike around the death of Frederik II on 4 April 1588. Müntzfuß placement deferred until a standard-literature entry (Hede / Bruun / Galster) is located.'
-      uk: 'Запис із одним джерелом (ucoin tid 163075, <i>Composition: Gold</i> перевірено безпосередньо на сторінці ucoin у 2026-05). Наш <code>scripts/cache/ucoin/_url_index.json</code> не містить поля Composition — це харвест-пропуск, не дефект ucoin. Hede 1971 не містить Frederik II 10 Ducat; найближчий multi-Dukat запис у серії Frederik II (f2h7a) — Portugaløser 1584 (35,20 г, унік). Вага 39,45 г і діаметр 51 мм перевищують Reichsdukatenfuß-стандарт для 10 дукатів (~34,9 г, ~38 мм), але вкладаються у разову траурно/мемор''яльну емісію довкола смерті Фредеріка II 4 квітня 1588 р. Призначення Müntzfuß відкладено до знаходження запису в стандартній літературі (Hede / Bruun / Galster).'
+      de: 'Einzelquellen-Eintrag. ucoin (tid 163075) gibt <i>Composition: Gold</i> direkt auf der Seite an (im 2026-05 nachgeprüft); unser <code>scripts/cache/ucoin/_url_index.json</code> trägt das Composition-Feld nicht — Harvest-Lücke, kein ucoin-Defekt. Kein Krause-Eintrag bekannt; ucoin verwendet die hauseigene Notation UC# 10 (in <code>catalog.others</code> erhalten). Hede 1971 verzeichnet kein Frederik-II.-10-Ducat-Stück; die nächste Multi-Dukat-Eintragung in der Frederik-II.-Reihe (f2h7a) ist der Portugaløser 1584 (35,20 g, Unik). Gewicht 39,45 g überschreitet den Reichsdukatenfuß-Standard für 10 Dukaten (~34,9 g) — passt zu einer einmaligen Trauer- oder Gedenkprägung anlässlich des Todes Frederiks II. am 4. April 1588. Phase <code>reichsdukatenfuss/pre-A</code> ist die nächste Müntzfuß-Heimat per Konvention (Gold, Reichsdukat-Standard-Familie); per-Münze-Verifikation per Hede / Bruun / Galster steht weiterhin aus.'
+      en: 'Single-source entry. ucoin (tid 163075) publishes <i>Composition: Gold</i> on the page itself (verified 2026-05); our <code>scripts/cache/ucoin/_url_index.json</code> doesn''t carry the Composition field — harvest gap, not an ucoin defect. No known Krause assignment; ucoin uses its in-house notation UC# 10 (kept in <code>catalog.others</code>). Hede 1971 carries no Frederik II 10 Ducat; the closest multi-Dukat entry in the Frederik II run (f2h7a) is the Portugaløser 1584 (35.20 g, unique). Weight 39.45 g exceeds the Reichsdukatenfuß standard for 10 Ducats (~34.9 g) — matches a one-off mourning or commemorative strike around the death of Frederik II on 4 April 1588. Phase <code>reichsdukatenfuss/pre-A</code> is the natural Müntzfuß bucket by convention (gold, Reichsdukat-standard family); per-coin verification against Hede / Bruun / Galster remains outstanding.'
+      uk: 'Запис із одним джерелом. ucoin (tid 163075) безпосередньо на сторінці подає <i>Composition: Gold</i> (перевірено 2026-05); наш <code>scripts/cache/ucoin/_url_index.json</code> не містить поля Composition — це харвест-пропуск, не дефект ucoin. Записа в Krause не відомо; ucoin використовує власну нотацію UC# 10 (збережено в <code>catalog.others</code>). Hede 1971 не містить Frederik II 10 Ducat; найближчий multi-Dukat запис у серії Frederik II (f2h7a) — Portugaløser 1584 (35,20 г, унік). Вага 39,45 г перевищує Reichsdukatenfuß-стандарт для 10 дукатів (~34,9 г) — це вкладається в разову траурно/мемор''яльну емісію довкола смерті Фредеріка II 4 квітня 1588 р. Фаза <code>reichsdukatenfuss/pre-A</code> — природний Müntzfuß-кошик за конвенцією (золото, сім''я Reichsdukat-стандарту); покоінна верифікація за Hede / Bruun / Galster досі очікується.'
   - id: dk-tid-163065
     fuss: 9_thaler
     phase: A

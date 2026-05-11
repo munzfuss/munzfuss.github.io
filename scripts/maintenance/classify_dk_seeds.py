@@ -132,8 +132,9 @@ def _phase_by_year(year: int, fuss_phases: list[tuple[int, int, str]]) -> str | 
 # Phase year-ranges per fuss, mirroring data/locations/denmark.yml.
 # Update here when adding/changing phases in denmark.yml.
 PHASES: dict[str, list[tuple[int, int, str]]] = {
-    "reichsdukatenfuss":  [(1591, 1726, "A"), (1726, 1771, "B"),
-                           (1771, 1813, "C"), (1813, 1871, "D")],
+    "reichsdukatenfuss":  [(1564, 1588, "pre-A"), (1591, 1726, "A"),
+                           (1726, 1771, "B"), (1771, 1813, "C"),
+                           (1813, 1871, "D")],
     "courantdukatenfuss": [(1714, 1796, "A")],
     "pistolenfuss":       [(1771, 1870, "A")],
     "9_thaler":           [(1566, 1625, "A")],
