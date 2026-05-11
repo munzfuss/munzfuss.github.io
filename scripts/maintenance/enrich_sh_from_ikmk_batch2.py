@@ -35,9 +35,11 @@ from pathlib import Path
 
 from ruamel.yaml import YAML
 
-REPO = Path(__file__).resolve().parents[2]
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.paths import IKMK_CACHE as IKMK, PROJECT_ROOT as REPO  # noqa: E402
+
 YML = REPO / "data" / "locations" / "schleswig_holstein.yml"
-IKMK = REPO / "scripts" / "cache" / "ikmk"
 
 
 # ---------- The hand-resolved batch ----------------------------------

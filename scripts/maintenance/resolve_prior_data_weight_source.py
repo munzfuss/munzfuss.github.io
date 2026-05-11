@@ -34,11 +34,17 @@ from pathlib import Path
 
 from ruamel.yaml import YAML
 
-REPO = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.paths import (  # noqa: E402
+    NUMISTA_CACHE,
+    UCOIN_CACHE,
+    BRUUN_CACHE,
+    PROJECT_ROOT as REPO,
+)
+
 LOCATIONS = REPO / "data" / "locations"
-NUMISTA_CACHE = REPO / "scripts" / "cache" / "numista"
-UCOIN_INDEX = REPO / "scripts" / "cache" / "ucoin" / "_url_index.json"
-BRUUN_DIR = REPO / "scripts" / "cache" / "bruun" / "lots"
+UCOIN_INDEX = UCOIN_CACHE / "_url_index.json"
+BRUUN_DIR = BRUUN_CACHE / "lots"
 
 TARGET_FILES = ["denmark.yml", "schleswig_holstein.yml"]
 WEIGHT_TOLERANCE_G = 0.005

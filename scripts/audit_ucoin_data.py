@@ -21,14 +21,16 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.paths import UCOIN_CACHE as CACHE_UCOIN, PROJECT_ROOT  # noqa: E402
 
-CACHE_UCOIN = Path("scripts/cache/ucoin")
-SCHLESWIG_HOLSTEIN = Path("data/locations/schleswig_holstein.yml")
+SCHLESWIG_HOLSTEIN = PROJECT_ROOT / "data" / "locations" / "schleswig_holstein.yml"
 OUT_JSON = CACHE_UCOIN / "_data_audit.json"
 
 

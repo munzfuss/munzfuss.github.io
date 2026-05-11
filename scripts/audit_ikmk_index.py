@@ -26,7 +26,9 @@ import time
 from collections import Counter
 from pathlib import Path
 
-CACHE_DIR = Path(__file__).resolve().parents[1] / "scripts" / "cache" / "ikmk"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.paths import IKMK_CACHE as CACHE_DIR  # noqa: E402
+
 INDEX_JSON = CACHE_DIR / "_index_by_issuer.json"
 INDEX_MD = CACHE_DIR / "_index_summary.md"
 

@@ -14,11 +14,15 @@ citations in our YAML).
 Re-run when a new Bruun part comes out (Part IV expected). Add the
 new entry to PARTS, drop the PDF in /tmp/bruun_pdfs/, run.
 """
+import sys
 from pypdf import PdfReader
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.paths import BRUUN_CACHE  # noqa: E402
+
 PDF_DIR = Path("/tmp/bruun_pdfs")
-OUT_DIR = Path(__file__).resolve().parents[2] / "scripts" / "cache" / "bruun" / "pages"
+OUT_DIR = BRUUN_CACHE / "pages"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 PARTS = [

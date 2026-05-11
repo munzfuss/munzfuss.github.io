@@ -28,11 +28,11 @@ import urllib.request
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from lib.env import load_local_env, require  # type: ignore  # noqa: E402
+from lib.paths import NUMISTA_CACHE as CACHE_DIR, PROJECT_ROOT  # noqa: E402
 
 from ruamel.yaml import YAML  # noqa: E402
 
-CACHE_DIR = pathlib.Path("scripts/cache/numista")
-OUT_REFS = pathlib.Path("scripts/numista_refs.json")
+OUT_REFS = PROJECT_ROOT / "scripts" / "numista_refs.json"
 # Per docs at https://en.numista.com/api/doc/index.php the canonical base is /v3
 # (the /api/v3 prefix also works but is undocumented).
 API_BASE = "https://api.numista.com/v3"

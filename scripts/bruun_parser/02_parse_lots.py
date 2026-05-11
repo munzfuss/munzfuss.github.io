@@ -32,11 +32,14 @@ We capture per lot:
 Re-run when stage 01 produces new pages/{partN}.txt files. The PARTS list at
 top of stage 03 should also be updated when a new part appears.
 """
+import sys
 from pathlib import Path
 import re
 import json
 
-CACHE_DIR = Path(__file__).resolve().parents[2] / "scripts" / "cache" / "bruun"
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.paths import BRUUN_CACHE as CACHE_DIR  # noqa: E402
+
 PAGES_DIR = CACHE_DIR / "pages"
 LOTS_DIR = CACHE_DIR / "lots"
 LOTS_DIR.mkdir(parents=True, exist_ok=True)

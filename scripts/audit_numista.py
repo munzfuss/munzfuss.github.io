@@ -14,11 +14,11 @@ import pathlib
 import re
 import sys
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from lib.paths import NUMISTA_CACHE as CACHE, PROJECT_ROOT  # noqa: E402
 from ruamel.yaml import YAML  # noqa: E402
 
-CACHE = pathlib.Path("scripts/cache/numista")
-SY = pathlib.Path("data/locations/schleswig_holstein.yml")
+SY = PROJECT_ROOT / "data" / "locations" / "schleswig_holstein.yml"
 
 # Tolerances for "contradiction" — small differences are reasonable specimen variation
 WEIGHT_TOL_REL = 0.05   # 5 %

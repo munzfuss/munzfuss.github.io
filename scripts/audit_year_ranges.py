@@ -23,15 +23,15 @@ import time
 import urllib.error
 import urllib.request
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from lib.env import load_local_env, require  # noqa: E402
+from lib.paths import NUMISTA_CACHE as CACHE_DIR, PROJECT_ROOT  # noqa: E402
 
 from ruamel.yaml import YAML  # noqa: E402
 from ruamel.yaml.comments import CommentedSeq  # noqa: E402
 
-CACHE_DIR = pathlib.Path("scripts/cache/numista")
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
-SCHLESWIG_HOLSTEIN_YML = pathlib.Path("data/locations/schleswig_holstein.yml")
+SCHLESWIG_HOLSTEIN_YML = PROJECT_ROOT / "data" / "locations" / "schleswig_holstein.yml"
 API_BASE = "https://api.numista.com/v3"
 RATE_LIMIT_S = 1.0  # seconds between live calls; free tier = 200/day
 

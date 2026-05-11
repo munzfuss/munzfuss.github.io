@@ -47,8 +47,9 @@ from ruamel.yaml.comments import CommentedMap, CommentedSeq
 # «and», kept lowercase per period-form usage).
 _NOMINAL_LOWERCASE_WORDS = {"og", "und", "and"}
 
-PROJECT = Path(__file__).resolve().parents[2]
-HEDE_CACHE = PROJECT / "scripts" / "cache" / "hede"
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.paths import HEDE_CACHE, PROJECT_ROOT as PROJECT  # noqa: E402
+
 OUT_DIR = PROJECT / "data" / "seed" / "hede"
 OUT_FILE = OUT_DIR / "denmark.yml"
 

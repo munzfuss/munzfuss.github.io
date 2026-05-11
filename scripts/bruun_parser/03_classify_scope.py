@@ -32,10 +32,13 @@ re-run.
 """
 import json
 import re
+import sys
 from pathlib import Path
 from collections import defaultdict, Counter
 
-CACHE_DIR = Path(__file__).resolve().parents[2] / "scripts" / "cache" / "bruun"
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.paths import BRUUN_CACHE as CACHE_DIR  # noqa: E402
+
 LOTS_DIR = CACHE_DIR / "lots"
 OUT_DIR = CACHE_DIR
 

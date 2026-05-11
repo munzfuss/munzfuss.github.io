@@ -34,13 +34,15 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from collections import Counter
 from pathlib import Path
 
 from ruamel.yaml import YAML
 
-REPO = Path(__file__).resolve().parents[2]
-IKMK_CACHE = REPO / "scripts" / "cache" / "ikmk"
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.paths import IKMK_CACHE, PROJECT_ROOT as REPO  # noqa: E402
+
 INDEX = IKMK_CACHE / "_index_by_issuer.json"
 LOC = REPO / "data" / "locations" / "holstein_schauenburg.yml"
 REF = REPO / "data" / "locations" / "holstein_schauenburg-references.yml"

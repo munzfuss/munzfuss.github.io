@@ -26,10 +26,13 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 import unicodedata
 from pathlib import Path
 
-CACHE = Path("scripts/cache/ucoin")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.paths import UCOIN_CACHE as CACHE  # noqa: E402
+
 OUT = CACHE / "_url_index.json"
 
 VULGAR_FRACTIONS = {

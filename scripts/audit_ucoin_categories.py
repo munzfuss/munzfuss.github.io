@@ -62,15 +62,20 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 import unicodedata
 from pathlib import Path
 
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.paths import (  # noqa: E402
+    UCOIN_CACHE as CACHE_UCOIN,
+    NUMISTA_CACHE as CACHE_NUMISTA,
+    PROJECT_ROOT,
+)
 
-CACHE_UCOIN = Path("scripts/cache/ucoin")
-CACHE_NUMISTA = Path("scripts/cache/numista")
-SCHLESWIG_HOLSTEIN = Path("data/locations/schleswig_holstein.yml")
+SCHLESWIG_HOLSTEIN = PROJECT_ROOT / "data" / "locations" / "schleswig_holstein.yml"
 OUT_JSON = CACHE_UCOIN / "_categorized_strict.json"
 
 HOLSTEIN_SOURCES = {"country_schleswig_holstein", "period_2939",

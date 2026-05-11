@@ -18,12 +18,15 @@ load_our_coins() (the loader globs all locations).
 """
 import json
 import re
+import sys
 import yaml
 from pathlib import Path
 from collections import defaultdict, Counter
 
-CACHE_DIR = Path(__file__).resolve().parents[2] / "scripts" / "cache" / "bruun"
-DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "locations"
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.paths import BRUUN_CACHE as CACHE_DIR, PROJECT_ROOT  # noqa: E402
+
+DATA_DIR = PROJECT_ROOT / "data" / "locations"
 OUT_DIR = CACHE_DIR
 
 

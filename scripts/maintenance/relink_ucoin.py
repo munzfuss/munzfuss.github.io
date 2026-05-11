@@ -36,15 +36,21 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 import unicodedata
 from pathlib import Path
 
 from ruamel.yaml import YAML
 from ruamel.yaml.comments import CommentedMap, CommentedSeq
 
-CACHE_UCOIN = Path("scripts/cache/ucoin")
-CACHE_NUMISTA = Path("scripts/cache/numista")
-SCHLESWIG_HOLSTEIN = Path("data/locations/schleswig_holstein.yml")
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.paths import (  # noqa: E402
+    UCOIN_CACHE as CACHE_UCOIN,
+    NUMISTA_CACHE as CACHE_NUMISTA,
+    PROJECT_ROOT,
+)
+
+SCHLESWIG_HOLSTEIN = PROJECT_ROOT / "data" / "locations" / "schleswig_holstein.yml"
 
 HOLSTEIN_SOURCES = {"country_schleswig_holstein", "period_2939",
                      "period_2995", "q_holstein_extras"}

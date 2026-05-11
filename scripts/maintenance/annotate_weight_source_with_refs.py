@@ -56,9 +56,10 @@ from pathlib import Path
 
 from ruamel.yaml import YAML
 
-PROJECT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.paths import HARVEST_ROOT as CACHE, PROJECT_ROOT as PROJECT  # noqa: E402
+
 DATA_DIR = PROJECT / "data" / "locations"
-CACHE = PROJECT / "scripts" / "cache"
 
 # Tokens that already mark a label as "enriched". We detect any one of
 # them adjacent to a number or hash to avoid false-positives on free

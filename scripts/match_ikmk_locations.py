@@ -48,8 +48,9 @@ from pathlib import Path
 
 import yaml
 
-REPO = Path(__file__).resolve().parents[1]
-CACHE = REPO / "scripts" / "cache" / "ikmk"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.paths import IKMK_CACHE as CACHE, PROJECT_ROOT as REPO  # noqa: E402
+
 LOCATIONS = REPO / "data" / "locations"
 INDEX_PATH = CACHE / "_index_by_issuer.json"
 

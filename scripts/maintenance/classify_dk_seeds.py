@@ -47,10 +47,11 @@ from pathlib import Path
 
 from ruamel.yaml import YAML
 
-PROJECT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.paths import HEDE_CACHE, PROJECT_ROOT as PROJECT  # noqa: E402
+
 LOC_FILE = PROJECT / "data" / "locations" / "denmark.yml"
 SEED_FILE = PROJECT / "data" / "seed" / "hede" / "denmark.yml"
-HEDE_CACHE = PROJECT / "scripts" / "cache" / "hede"
 
 
 # ---------------------------------------------------------------------------

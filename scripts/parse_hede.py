@@ -37,7 +37,8 @@ import sys
 from html import unescape
 from pathlib import Path
 
-CACHE_DIR = Path(__file__).resolve().parents[1] / "scripts" / "cache" / "hede"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.paths import HEDE_CACHE as CACHE_DIR  # noqa: E402
 
 
 _TAG_RE = re.compile(r"<[^>]+>")

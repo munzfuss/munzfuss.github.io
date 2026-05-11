@@ -39,7 +39,9 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-CACHE_DIR = Path(__file__).resolve().parents[1] / "scripts" / "cache" / "hede"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.paths import HEDE_CACHE as CACHE_DIR  # noqa: E402
+
 MANIFEST = CACHE_DIR / "_manifest.json"
 USER_AGENT = "Mozilla/5.0 (research; muentzfuesse project; serhii)"
 SLEEP_SECS = 0.4
