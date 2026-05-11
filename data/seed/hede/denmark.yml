@@ -9,10 +9,12 @@
 # Location schema validates the result.
 #
 # Scoping happens HERE, not in the build: only entries with
-# year_first <= 1914 (project scope per CLAUDE.md) are
-# kept. The build trusts what's in the file and doesn't second-
-# guess the cap; to change scope, re-run the generator with a
-# different --year-to value.
+# 1566 <= year_first <= 1914 (project scope per
+# CLAUDE.md; lower bound = Reichsmünzordnung 1566, upper bound
+# = end of precious-metal anchor era) are kept. The build trusts
+# what's in the file and doesn't second-guess the cap; to change
+# scope, re-run the generator with different --year-from /
+# --year-to values.
 #
 # Conventions per the existing seed_unsorted block in
 # data/locations/denmark.yml:
@@ -20,859 +22,15 @@
 #   * all *_verified flags false
 #   * source: type=literature pointing to danskmoent.dk URL
 #
-# Total coins: 458
-# Scope: year_first <= 1914
-# Generated: 2026-05-11T08:32:09Z
+# Total coins: 432
+# Scope: 1566 <= year_first <= 1914
+# Generated: 2026-05-11T12:35:06Z
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-05-11T08:32:09Z'
+generated_at: '2026-05-11T12:35:06Z'
+scope_year_from: 1566
 scope_year_to: 1914
 coins:
-  - id: dk-hede-c3h3
-    fuss: 9_thaler
-    phase: pre-A
-    kind: kurant
-    nominal: 1 Mark
-    year_label: 1541, 1544, 1546–1548, 1554–1555
-    year_first: 1541
-    year_last: 1555
-    year_ranges:
-      - [1541, 1541]
-      - [1544, 1544]
-      - [1546, 1548]
-      - [1554, 1555]
-    ruler: Christian III.
-    mint: Kopenhagen
-    catalog:
-      hede: '3'
-      hede_volume: c3h
-      schou: '3'
-      sieg: '38'
-    metal: silver
-    fineness: 0.906
-    weight_rough_g: 9.744
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h3.htm
-        ref: Hede c3h3 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/3
-  - id: dk-hede-c3h4
-    fuss: 9_thaler
-    phase: pre-A
-    kind: scheide
-    nominal: 8 Skilling
-    year_label: 1541, 1544
-    year_first: 1541
-    year_last: 1544
-    year_ranges:
-      - [1541, 1541]
-      - [1544, 1544]
-    ruler: Christian III.
-    mint: Kopenhagen
-    catalog:
-      hede: '4'
-      hede_volume: c3h
-      schou: '4'
-      sieg: '37'
-    metal: silver
-    fineness: 0.906
-    weight_rough_g: 4.872
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h4.htm
-        ref: Hede c3h4 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/12
-  - id: dk-hede-c3h5
-    fuss: 9_thaler
-    phase: pre-A
-    kind: scheide
-    nominal: 4 Skilling
-    year_label: 1541, 1544, 1546, 1554
-    year_first: 1541
-    year_last: 1554
-    year_ranges:
-      - [1541, 1541]
-      - [1544, 1544]
-      - [1546, 1546]
-      - [1554, 1554]
-    ruler: Christian III.
-    mint: Kopenhagen
-    catalog:
-      hede: '5'
-      hede_volume: c3h
-      schou: '9'
-      sieg: '36'
-    metal: silver
-    fineness: 0.906
-    weight_rough_g: 2.436
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h5.htm
-        ref: Hede c3h5 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/24
-  - id: dk-hede-c3h7
-    fuss: 9_thaler
-    phase: pre-A
-    kind: scheide
-    nominal: Hvid U.år
-    year_label: 1541, 1544
-    year_first: 1541
-    year_last: 1544
-    year_ranges:
-      - [1541, 1541]
-      - [1544, 1544]
-    ruler: Christian III.
-    mint: Kopenhagen
-    catalog:
-      hede: '7'
-      hede_volume: c3h
-      schou: 2-3
-      sieg: '32'
-    metal: billon
-    fineness: 0.25
-    weight_rough_g: 0.735
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h7.htm
-        ref: Hede c3h7 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/192
-  - id: dk-hede-f2h10
-    fuss: 9_thaler
-    phase: pre-A
-    kind: scheide
-    nominal: 8 Skilling
-    year_label: 1544, 1559–1561, 1563
-    year_first: 1544
-    year_last: 1563
-    year_ranges:
-      - [1544, 1544]
-      - [1559, 1561]
-      - [1563, 1563]
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '10'
-      hede_volume: f2h
-      schou: '123'
-      sieg: '11'
-      fr: '2'
-    metal: silver
-    fineness: 0.649
-    weight_rough_g: 4.872
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h10.htm
-        ref: Hede f2h10 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/12
-  - id: dk-hede-c3h16
-    fuss: 9_thaler
-    phase: pre-A
-    kind: kurant
-    nominal: 1 Sølvgylden
-    year_label: '1545'
-    year_first: 1545
-    ruler: Christian III.
-    mint: Flensburg
-    catalog:
-      hede: '16'
-      hede_volume: c3h
-      schou: 1-2
-      sieg: '49'
-    metal: silver
-    fineness: 0.89
-    weight_rough_g: 29.232
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h16.htm
-        ref: Hede c3h16 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-c3h21
-    fuss: 9_thaler
-    phase: pre-A
-    kind: scheide
-    nominal: 1 Søsling Lybsk
-    year_label: '1545'
-    year_first: 1545
-    ruler: Christian III.
-    mint: Flensburg
-    catalog:
-      hede: '21'
-      hede_volume: c3h
-      schou: 13-18
-      sieg: '44'
-    metal: silver
-    fineness: 0.406
-    weight_rough_g: 1.292
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h21.htm
-        ref: Hede c3h21 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/96
-  - id: dk-hede-c3h14
-    fuss: reichsdukatenfuss
-    phase: pre-A
-    kind: kurant
-    nominal: 1 Rhinsk Gylden
-    year_label: '1546'
-    year_first: 1546
-    ruler: Christian III.
-    mint: Flensburg
-    catalog:
-      hede: '14'
-      hede_volume: c3h
-      schou: '2'
-      sieg: '51'
-    metal: gold
-    fineness: 0.75
-    weight_rough_g: 3.278
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h15.htm
-        ref: Hede c3h14 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-c3h15
-    fuss: reichsdukatenfuss
-    phase: pre-A
-    kind: kurant
-    nominal: 2 Rhinsk Gylden
-    year_label: '1546'
-    year_first: 1546
-    ruler: Christian III.
-    mint: Flensburg
-    catalog:
-      hede: '15'
-      hede_volume: c3h
-      schou: '2'
-      sieg: '51'
-    metal: gold
-    fineness: 0.75
-    weight_rough_g: 6.556
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h15.htm
-        ref: Hede c3h15 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-c3h22
-    fuss: 9_thaler
-    phase: pre-A
-    kind: scheide
-    nominal: 1 Søsling Lybsk
-    year_label: 1546, 1550–1551, 1553–1554
-    year_first: 1546
-    year_last: 1554
-    year_ranges:
-      - [1546, 1546]
-      - [1550, 1551]
-      - [1553, 1554]
-    ruler: Christian III.
-    mint: Flensburg
-    catalog:
-      hede: '22'
-      hede_volume: c3h
-      schou: '12'
-      sieg: '45'
-    metal: silver
-    fineness: 0.406
-    weight_rough_g: 1.292
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h22.htm
-        ref: Hede c3h22 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/96
-  - id: dk-hede-c3h8
-    fuss: 9_thaler
-    phase: pre-A
-    kind: scheide
-    nominal: Penning
-    year_label: '1546'
-    year_first: 1546
-    ruler: Christian III.
-    mint: Kopenhagen
-    catalog:
-      hede: '8'
-      hede_volume: c3h
-      schou: '15'
-      sieg: '31'
-    metal: billon
-    fineness: 0.125
-    weight_rough_g: 0.305
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h8.htm
-        ref: Hede c3h8 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/192
-  - id: dk-hede-c3h19
-    fuss: 9_thaler
-    phase: pre-A
-    kind: kurant
-    nominal: 1 Sølvgylden
-    year_label: '1547'
-    year_first: 1547
-    ruler: Christian III.
-    mint: Flensburg
-    catalog:
-      hede: '19'
-      hede_volume: c3h
-      schou: 1-5
-      sieg: '50'
-    metal: silver
-    fineness: 0.89
-    weight_rough_g: 29.232
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h19.htm
-        ref: Hede c3h19 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-c3h20
-    fuss: 9_thaler
-    phase: pre-A
-    kind: kurant
-    nominal: 1/2 Sølvgylden
-    year_label: '1547'
-    year_first: 1547
-    ruler: Christian III.
-    mint: Flensburg
-    catalog:
-      hede: '20'
-      hede_volume: c3h
-      schou: 6-8
-      sieg: '48'
-    metal: silver
-    fineness: 0.89
-    weight_rough_g: 14.616
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h20.htm
-        ref: Hede c3h20 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/2
-  - id: dk-hede-c3h1
-    fuss: reichsdukatenfuss
-    phase: pre-A
-    kind: kurant
-    nominal: Ungersk Gylden
-    year_label: '1557'
-    year_first: 1557
-    ruler: Christian III.
-    mint: Kopenhagen
-    catalog:
-      hede: '1'
-      hede_volume: c3h
-      schou: '1'
-      sieg: '39'
-    metal: gold
-    fineness: 0.986
-    weight_rough_g: 3.49
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h1.htm
-        ref: Hede c3h1 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-c3h2
-    fuss: reichsdukatenfuss
-    phase: pre-A
-    kind: kurant
-    nominal: 2 Ungersk Gylden
-    year_label: '1557'
-    year_first: 1557
-    ruler: Christian III.
-    mint: Kopenhagen
-    catalog:
-      hede: '2'
-      hede_volume: c3h
-      sieg: '40'
-    metal: gold
-    fineness: 0.986
-    weight_rough_g: 6.981
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c3h2.htm
-        ref: Hede c3h2 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-f2h11
-    fuss: 9_thaler
-    phase: pre-A
-    kind: scheide
-    nominal: 2 Skilling
-    year_label: 1559–1563
-    year_first: 1559
-    year_last: 1563
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '11'
-      hede_volume: f2h
-      schou: '6'
-      sieg: '6'
-      fr: '2'
-    metal: silver
-    fineness: 0.312
-    weight_rough_g: 2.338
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h11.htm
-        ref: Hede f2h11 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/48
-  - id: dk-hede-f2h8
-    fuss: 9_thaler
-    phase: pre-A
-    kind: kurant
-    nominal: 3 Mark
-    year_label: 1560, 1563
-    year_first: 1560
-    year_last: 1563
-    year_ranges:
-      - [1560, 1560]
-      - [1563, 1563]
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '8'
-      hede_volume: f2h
-      schou: '1'
-      sieg: '63'
-      fr: '2'
-    metal: silver
-    fineness: 0.906
-    weight_rough_g: 29.232
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h8.htm
-        ref: Hede f2h8 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-f2h12
-    fuss: 9_thaler
-    phase: pre-A
-    kind: scheide
-    nominal: 1 Skilling
-    year_label: 1562–1563
-    year_first: 1562
-    year_last: 1563
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '12'
-      hede_volume: f2h
-      schou: '184'
-      sieg: '3'
-      fr: '2'
-    metal: billon
-    fineness: 0.187
-    weight_rough_g: 1.772
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h12.htm
-        ref: Hede f2h12 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/96
-  - id: dk-hede-f2h1
-    fuss: reichsdukatenfuss
-    phase: pre-A
-    kind: kurant
-    nominal: 1 Ungersk Gylden
-    year_label: '1563'
-    year_first: 1563
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '1'
-      hede_volume: f2h
-      schou: 1-2
-      sieg: '27'
-      fr: '2'
-    metal: gold
-    fineness: 0.986
-    weight_rough_g: 3.49
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h1.htm
-        ref: Hede f2h1 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-f2h14
-    fuss: 9_thaler
-    phase: pre-A
-    kind: scheide
-    nominal: 1 Mark
-    year_label: 1563–1565, 1570
-    year_first: 1563
-    year_last: 1570
-    year_ranges:
-      - [1563, 1565]
-      - [1570, 1570]
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '14'
-      hede_volume: f2h
-      schou: '10'
-      sieg: '16'
-      fr: '2'
-    metal: silver
-    fineness: 0.437
-    weight_rough_g: 6.878
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h14.htm
-        ref: Hede f2h14 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/3
-  - id: dk-hede-f2h15
-    fuss: 9_thaler
-    phase: pre-A
-    kind: scheide
-    nominal: 4 Skilling
-    year_label: '1563'
-    year_first: 1563
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '15'
-      hede_volume: f2h
-      schou: 133-134
-      sieg: '9'
-      fr: '2'
-    metal: silver
-    fineness: 0.437
-    weight_rough_g: 6.878
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h15.htm
-        ref: Hede f2h15 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: 1/24
-  - id: dk-hede-f2h2
-    fuss: reichsdukatenfuss
-    phase: pre-A
-    kind: kurant
-    nominal: 1 Guldkrone
-    year_label: '1563'
-    year_first: 1563
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '2'
-      hede_volume: f2h
-      schou: 1-2
-      sieg: '25'
-      fr: '2'
-    metal: gold
-    fineness: 0.934
-    weight_rough_g: 3.341
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h2.htm
-        ref: Hede f2h2 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-f2h3
-    fuss: reichsdukatenfuss
-    phase: pre-A
-    kind: kurant
-    nominal: 1 Rhinsk Gylden
-    year_label: '1563'
-    year_first: 1563
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '3'
-      hede_volume: f2h
-      schou: '3'
-      sieg: '23'
-      fr: '2'
-    metal: gold
-    fineness: 0.77
-    weight_rough_g: 3.248
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h3.htm
-        ref: Hede f2h3 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-f2h4
-    fuss: reichsdukatenfuss
-    phase: pre-A
-    kind: kurant
-    nominal: 1 Dukat
-    year_label: '1564'
-    year_first: 1564
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '4'
-      hede_volume: f2h
-      schou: '1'
-      sieg: '28'
-      fr: '2'
-    metal: gold
-    fineness: 0.986
-    weight_rough_g: 3.49
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h4.htm
-        ref: Hede f2h4 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '1'
-  - id: dk-hede-f2h5
-    fuss: reichsdukatenfuss
-    phase: pre-A
-    kind: kurant
-    nominal: 1 Guldkrone
-    year_label: '1564'
-    year_first: 1564
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '5'
-      hede_volume: f2h
-      schou: '2'
-      sieg: '26'
-      fr: '2'
-    metal: gold
-    fineness: 0.934
-    weight_rough_g: 3.341
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h5.htm
-        ref: Hede f2h5 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-f2h6
-    fuss: reichsdukatenfuss
-    phase: pre-A
-    kind: kurant
-    nominal: 1 Rhinsk Gylden
-    year_label: '1564'
-    year_first: 1564
-    ruler: Frederik II.
-    mint: Kopenhagen
-    catalog:
-      hede: '6'
-      hede_volume: f2h
-      schou: '3'
-      sieg: '24'
-      fr: '2'
-    metal: gold
-    fineness: 0.77
-    weight_rough_g: 3.248
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/fr/f2h6.htm
-        ref: Hede f2h6 (danskmoent.dk)
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-f2h30
     fuss: 9_thaler
     phase: A
@@ -899,7 +57,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f2h30.htm
         ref: Hede f2h30 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -931,7 +89,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f2h31.htm
         ref: Hede f2h31 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -1165,7 +323,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h8.htm
         ref: Hede c4h8 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -1194,7 +352,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h4.htm
         ref: Hede c4h4 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     weight_rough_verified: true
     mint_verified: false
@@ -1222,7 +380,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h5.htm
         ref: Hede c4h5 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     weight_rough_verified: true
     mint_verified: false
@@ -2541,7 +1699,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h173.htm
         ref: Hede c4h173 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -2858,7 +2016,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h169.htm
         ref: Hede c4h169 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -3129,7 +2287,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h156.htm
         ref: Hede c4h156 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -3165,7 +2323,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h160.htm
         ref: Hede c4h160 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -3196,7 +2354,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h161.htm
         ref: Hede c4h161 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -3228,7 +2386,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h170.htm
         ref: Hede c4h170 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -3641,7 +2799,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h172.htm
         ref: Hede c4h172 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -3704,7 +2862,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h174.htm
         ref: Hede c4h174 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -3930,7 +3088,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h163.htm
         ref: Hede c4h163 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -3965,7 +3123,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h176.htm
         ref: Hede c4h176 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -3996,7 +3154,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h178.htm
         ref: Hede c4h178 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -4171,7 +3329,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h154.htm
         ref: Hede c4h154 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -4202,7 +3360,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h177.htm
         ref: Hede c4h177 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -4399,7 +3557,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h165.htm
         ref: Hede c4h165 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -4430,7 +3588,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h166.htm
         ref: Hede c4h166 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -4461,7 +3619,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h179.htm
         ref: Hede c4h179 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -5740,7 +4898,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h145.htm
         ref: Hede f3h145 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -5773,7 +4931,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h149.htm
         ref: Hede f3h149 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -5805,7 +4963,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h150.htm
         ref: Hede f3h150 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -5907,7 +5065,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h153.htm
         ref: Hede f3h153 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -6142,7 +5300,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h148.htm
         ref: Hede f3h148 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -6368,7 +5526,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h151.htm
         ref: Hede f3h151 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -6401,7 +5559,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h152.htm
         ref: Hede f3h152 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -6726,7 +5884,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h144.htm
         ref: Hede f3h144 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -7882,7 +7040,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h117.htm
         ref: Hede c5h117 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -7918,7 +7076,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h121.htm
         ref: Hede c5h121 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -7953,7 +7111,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h122.htm
         ref: Hede c5h122 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -8162,7 +7320,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h115.htm
         ref: Hede c5h115 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -8541,7 +7699,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h124.htm
         ref: Hede c5h124 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -8694,7 +7852,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h118.htm
         ref: Hede c5h118 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -8725,7 +7883,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h120.htm
         ref: Hede c5h120 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -9714,7 +8872,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h125.htm
         ref: Hede c5h125 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -10030,7 +9188,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h126.htm
         ref: Hede c5h126 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -10060,7 +9218,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h128.htm
         ref: Hede c5h128 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -10221,7 +9379,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h127.htm
         ref: Hede c5h127 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -10252,7 +9410,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h130.htm
         ref: Hede c5h130 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -10673,7 +9831,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f4h58.htm
         ref: Hede f4h58 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -11163,7 +10321,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f4h59.htm
         ref: Hede f4h59 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -11199,7 +10357,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f4h63.htm
         ref: Hede f4h63 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -11298,7 +10456,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f4h62.htm
         ref: Hede f4h62 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -11362,7 +10520,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f4h61.htm
         ref: Hede f4h61 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -11611,7 +10769,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h6.htm
         ref: Hede c7h6 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -12837,7 +11995,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h12.htm
         ref: Hede c7h12 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -12875,7 +12033,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h15.htm
         ref: Hede c7h15 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13025,7 +12183,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h40.htm
         ref: Hede c7h40 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13086,7 +12244,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h10.htm
         ref: Hede c7h10 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13117,7 +12275,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h7.htm
         ref: Hede c7h7 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13148,7 +12306,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h8.htm
         ref: Hede c7h8 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13179,7 +12337,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h9.htm
         ref: Hede c7h9 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13312,7 +12470,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h5.htm
         ref: Hede c7h5 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13542,7 +12700,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h39.htm
         ref: Hede c7h39 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13579,7 +12737,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h41.htm
         ref: Hede c7h41 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13614,7 +12772,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h42.htm
         ref: Hede c7h42 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13651,7 +12809,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h43.htm
         ref: Hede c7h43 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13687,7 +12845,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h44.htm
         ref: Hede c7h44 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13723,7 +12881,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h45.htm
         ref: Hede c7h45 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13761,7 +12919,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h3.htm
         ref: Hede f6h3 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13827,7 +12985,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h36.htm
         ref: Hede c7h36 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13863,7 +13021,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h7.htm
         ref: Hede f6h7 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13899,7 +13057,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h16.htm
         ref: Hede f6h16 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13937,7 +13095,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h30.htm
         ref: Hede f6h30 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -13974,7 +13132,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h31.htm
         ref: Hede f6h31 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -14011,7 +13169,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h4.htm
         ref: Hede f6h4 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -14043,7 +13201,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h32.htm
         ref: Hede f6h32 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -14075,7 +13233,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h33.htm
         ref: Hede f6h33 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -14106,7 +13264,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h34.htm
         ref: Hede f6h34 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -14235,7 +13393,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c8h9.htm
         ref: Hede c8h9 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -14270,7 +13428,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c8h2.htm
         ref: Hede c8h2 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -14301,7 +13459,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c8h7.htm
         ref: Hede c8h7 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -14399,7 +13557,7 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f7h2.htm
         ref: Hede f7h2 (danskmoent.dk)
-    issuing_entity: danish_realm
+    issuing_entity: gesamtstaat
     verified: false
     fineness_verified: true
     weight_rough_verified: true
@@ -14720,6 +13878,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/4
   - id: dk-hede-c9h16
     fuss: kronefod
     phase: A
@@ -14762,6 +13921,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: 1/10
   - id: dk-hede-c9h13
     fuss: kronefod
     phase: A
@@ -14797,6 +13957,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '2'
   - id: dk-hede-c9h14
     fuss: kronefod
     phase: A
@@ -14832,6 +13993,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '1'
   - id: dk-hede-c9h10
     fuss: kronefod
     phase: A
@@ -14861,6 +14023,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '2'
   - id: dk-hede-c9h11
     fuss: kronefod
     phase: A
@@ -14890,6 +14053,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '2'
   - id: dk-hede-c9h12
     fuss: kronefod
     phase: A
@@ -14920,6 +14084,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '2'
   - id: dk-hede-f8h3
     fuss: kronefod
     phase: A
@@ -14950,6 +14115,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '2'
   - id: dk-hede-f8h1
     fuss: kronefod
     phase: A
@@ -15044,6 +14210,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+    fraction: '2'
   - id: dk-hede-c10h1
     fuss: kronefod
     phase: A

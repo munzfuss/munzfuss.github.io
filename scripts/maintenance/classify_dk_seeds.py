@@ -137,8 +137,7 @@ PHASES: dict[str, list[tuple[int, int, str]]] = {
                            (1813, 1871, "D")],
     "courantdukatenfuss": [(1714, 1796, "A")],
     "pistolenfuss":       [(1771, 1870, "A")],
-    "9_thaler":           [(1541, 1565, "pre-A"), (1566, 1625, "A"),
-                           (1648, 1683, "B")],
+    "9_thaler":           [(1566, 1625, "A"), (1648, 1683, "B")],
     "9_25_thaler":        [(1622, 1726, "A"), (1726, 1788, "B"),
                            (1788, 1813, "C"), (1813, 1854, "D")],
     "kronemont_chr_iv":   [(1618, 1624, "A"), (1651, 1652, "B"),
@@ -274,18 +273,11 @@ def _classify_silver_by_year_and_nominal(coin: dict) -> tuple[str, str | None] |
     if any(t in nom_l for t in ("krone", "mark")) and 1644 <= year <= 1669:
         return ("kronemont", "A")
     # Silver Mark / 2 Mark / 4 Mark — pre-Krone era (Christian IV /
-    # Frederik II) → 9_thaler/A. Earlier issues (Christian III)
-    # route to pre-A.
-    if "mark" in nom_l and 1541 <= year <= 1565:
-        return ("9_thaler", "pre-A")
+    # Frederik II) → 9_thaler/A. Pre-Reichsmünzordnung issues
+    # (year < 1566) are outside Denmark page scope; the seed builder
+    # filters them at ingest, so no routing rule is needed here.
     if "mark" in nom_l and 1566 <= year <= 1625:
         return ("9_thaler", "A")
-    # «Sølvgylden» / «Søsling Lybsk» — Christian III silver tariff
-    # and Lybsk small change. Same Speciedaler-class standard.
-    if any(t in nom_l for t in ("sølvgylden", "soelvgylden",
-                                  "søsling lybsk", "soesling lybsk")):
-        if 1541 <= year <= 1565:
-            return ("9_thaler", "pre-A")
     # Christian IV silver Mark 1622-1670 (Kipper-era debasement
     # «Hebræermønt» 1644-1646 at .593 fineness, etc.) — bucket into
     # 9_25_thaler/A.
@@ -358,9 +350,9 @@ def _classify_scheidemuenze(coin: dict) -> tuple[str, str | None] | None:
     #   1625-1726  Speciedaler (9¼-Fuß; parallel Krone)   9_25_thaler/A
     #   1726-1813  Helstaten Courant (Forordning 1726)    11_333_thaler/A
     #   1813-1874  Rigsbankdaler (Statsbankerot reform)   18_5_thaler/A
-    #   1874-1914  Krone-fod (Mønlov 1873)                kronefod_silver/A
-    if 1541 <= year < 1566:
-        return ("9_thaler", "pre-A")
+    #   1874-1914  Krone-fod (Mønlov 1873)                kronefod/A
+    # Pre-1566 issues fall outside Denmark page scope and are
+    # filtered at seed ingest, not here.
     if 1566 <= year < 1622:
         return ("9_thaler", "A")
     if 1622 <= year < 1726:

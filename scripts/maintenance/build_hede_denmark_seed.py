@@ -441,8 +441,18 @@ def main() -> int:
             "Set higher to include modern issues (post-Reichsgoldmünzfuß-era)."
         ),
     )
+    ap.add_argument(
+        "--year-from", type=int, default=1566,
+        help=(
+            "Drop entries whose year_first is before this year. Default 1566 "
+            "— the Reichsmünzordnung anchor, also the lower bound for the "
+            "Denmark page (pre-1566 Hede entries don't fit the 9-Thaler-Fuß "
+            "or any later standard documented on the page)."
+        ),
+    )
     args = ap.parse_args()
     year_to = args.year_to
+    year_from = args.year_from
 
     parsed_files = sorted(p for p in HEDE_CACHE.glob("*.json") if not p.name.startswith("_"))
     if not parsed_files:
@@ -552,7 +562,10 @@ def main() -> int:
             if coin is None:
                 stats["skipped_no_nominal"] += 1
                 continue
-            if coin.get("year_first") and coin["year_first"] > year_to:
+            if coin.get("year_first") and (
+                coin["year_first"] > year_to
+                or coin["year_first"] < year_from
+            ):
                 stats["skipped_out_of_scope_year"] += 1
                 continue
             coins.append(coin)
@@ -587,7 +600,10 @@ def main() -> int:
                 if coin is None:
                     stats["skipped_no_nominal"] += 1
                     continue
-                if coin.get("year_first") and coin["year_first"] > year_to:
+                if coin.get("year_first") and (
+                    coin["year_first"] > year_to
+                    or coin["year_first"] < year_from
+                ):
                     stats["skipped_out_of_scope_year"] += 1
                     continue
                 coins.append(coin)
@@ -616,6 +632,7 @@ def main() -> int:
     doc["status"] = "seed"
     doc["source"] = "Hede 1971 (danskmoent.dk cache)"
     doc["generated_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    doc["scope_year_from"] = year_from
     doc["scope_year_to"] = year_to
     doc["coins"] = CommentedSeq(coins)
 
@@ -631,10 +648,12 @@ def main() -> int:
         "# Location schema validates the result.\n"
         "#\n"
         "# Scoping happens HERE, not in the build: only entries with\n"
-        f"# year_first <= {year_to} (project scope per CLAUDE.md) are\n"
-        "# kept. The build trusts what's in the file and doesn't second-\n"
-        "# guess the cap; to change scope, re-run the generator with a\n"
-        "# different --year-to value.\n"
+        f"# {year_from} <= year_first <= {year_to} (project scope per\n"
+        "# CLAUDE.md; lower bound = Reichsmünzordnung 1566, upper bound\n"
+        "# = end of precious-metal anchor era) are kept. The build trusts\n"
+        "# what's in the file and doesn't second-guess the cap; to change\n"
+        "# scope, re-run the generator with different --year-from /\n"
+        "# --year-to values.\n"
         "#\n"
         "# Conventions per the existing seed_unsorted block in\n"
         "# data/locations/denmark.yml:\n"
@@ -643,7 +662,7 @@ def main() -> int:
         "#   * source: type=literature pointing to danskmoent.dk URL\n"
         "#\n"
         f"# Total coins: {len(coins)}\n"
-        f"# Scope: year_first <= {year_to}\n"
+        f"# Scope: {year_from} <= year_first <= {year_to}\n"
         f"# Generated: {doc['generated_at']}\n"
     )
 
