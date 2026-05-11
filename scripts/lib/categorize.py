@@ -63,6 +63,15 @@ class FussGroup:
         return [p for p in self.phases if p.nonempty]
 
     @property
+    def nonempty(self) -> bool:
+        """True when at least one phase carries a coin. Catch-all
+        Müntzfüße (e.g. `seed_unsorted`) that finish a classification
+        pass empty are filtered out of the rendered tree on this
+        signal — saves a confusing empty «Bulk-Seed (unsortiert)»
+        section appearing on the page."""
+        return any(p.nonempty for p in self.phases)
+
+    @property
     def unique_nominals(self) -> int:
         """Count of distinct `nominal` strings across every coin in every
         phase of this Fuss. Used by the per-fuss collapsible stat-bar
@@ -179,7 +188,15 @@ def categorize(
                     pg.gedenk_coins.append(cc)
             
             sg.phases.append(pg)
-        
+
+        # Skip Müntzfüße that finish the classification pass with
+        # zero coins anywhere (catch-all `seed_unsorted` after a
+        # full reclassification, or any other Fuß that holds no
+        # data on this page). Keeps stale empty sections out of
+        # the rendered HTML; the phase definitions themselves stay
+        # in `location.phases` as a safety-net for future imports.
+        if not sg.nonempty:
+            continue
         tree.fuesse.append(sg)
 
     return tree
