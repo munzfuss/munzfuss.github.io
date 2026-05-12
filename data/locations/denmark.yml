@@ -3250,46 +3250,6 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: 1/2
-  - id: dk-tid-163056
-    fuss: kronemont_chr_iv
-    phase: I
-    kind: kurant
-    nominal: ½ Krone
-    year_label: 1619-1621
-    year_first: 1619
-    year_last: 1621
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      km: 58a
-      bruun_collection_id: '5092'
-      bruun_part: II
-      bruun_lot_no: 13093
-      bruun_page: 74
-    metal: silver
-    fineness: 0.86
-    weight_rough_g:
-      - value: 9.46
-        source: ucoin
-      - value: 9.42
-        source: Bruun Part II, lot 13093, p. 74
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-2-krone-1619-1621/?tid=163056
-        ref: ucoin
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13093, p. 74
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-    fraction: 1/2
   - id: dk-tid-163061
     fuss: kronemont_chr_iv
     phase: I
@@ -3336,19 +3296,34 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17051
       bruun_page: 35
+      hede: 115A
+      sieg: '45.1'
+      schou: '143'
+      others:
+        - Harck-18.2.1
+      hede_volume: c4h
     metal: silver
-    fineness: 0.859
+    fineness:
+      - value: 0.859
+        source: Numista
+      - value: 0.86
+        source: ucoin
     weight_rough_g:
       - value: 1.051
         source: Numista
+      - value: 1.051
+        source: ucoin
     note:
-      de: 4 Kroneskilling Typ II — leichtere Variante 1620-1621 (1,05 g rau gegenüber Typ I 1,57 g) — mit der Zeit wurde die Silbermenge pro Kroneskilling näher an den strikten 1/96-Krone-Müntzfuß gebracht.
-      en: 4 Kroneskilling Type II — lighter variant of 1620-1621 (1.05 g rough vs. Type I 1.57 g) — over time the silver per Kroneskilling was brought closer to the strict 1/96-Krone standard.
-      uk: 4 Kroneskilling Тип II — легший варіант 1620-1621 (1,05 г повної ваги проти Типу I 1,57 г) — з часом срібло на Kroneskilling приведене ближче до строгої 1/96-Krone-стопи.
+      de: 4 Kroneskilling 1620-1621 — Typ-II-Variante (1,05 g rau gegenüber Typ I 1,57 g) · Christian IV., Kopenhagen, Münzmeister Nicolaus Schwabe (Klee-Mzz.) · Reverse-Aufschrift «1/36 krone», daher der Trivialname «Kroneskilling».
+      en: 4 Kroneskilling 1620-1621 — Type II variant (1.05 g rough vs Type I 1.57 g) · Christian IV, Copenhagen, mintmaster Nicolaus Schwabe (clover privy mark) · reverse legend «1/36 krone» — whence the colloquial name «Kroneskilling».
+      uk: 4 Kroneskilling 1620-1621 — варіант Тип II (1,05 г повної ваги проти Типу I 1,57 г) · Кристіан IV, Копенгаген, монетмайстер Nicolaus Schwabe (Mzz. конюшина) · реверс-легенда «1/36 krone», звідки тривіальна назва «Kroneskilling».
     sources:
       - type: numista
         url: https://en.numista.com/107774
         ref: Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-4-skilling-1620-1621/?tid=163016
+        ref: ucoin tid 163016
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17051, p. 35
@@ -3382,57 +3357,6 @@ coins:
         ref: Numista
     issuing_entity: danish_realm
     mint: Kopenhagen
-  - id: dk-tid-163016
-    fuss: 9_thaler
-    phase: I
-    kind: scheide
-    nominal: 4 Skilling
-    year_label: 1620-1621
-    year_first: 1620
-    year_last: 1621
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      km: '81'
-      hede: 115A
-      sieg: '45.1'
-      schou: '143'
-      others:
-        - Harck-18.2.1
-      bruun_collection_id: '5181'
-      bruun_part: IV
-      bruun_lot_no: 17051
-      bruun_page: 35
-      hede_volume: c4h
-    metal: silver
-    fineness: 0.86
-    weight_rough_g: 1.051
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-4-skilling-1620-1621/?tid=163016
-        ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: 'Bruun Part IV, lot 17051, p. 35'
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    note:
-      de: '4 Skilling 1620-1621 («Kroneskilling») · Christian IV., Kopenhagen, Münzmeister Nicolaus Schwabe (Klee-Mzz.) · Hede c4h115 dokumentiert die Reverse-Aufschrift «1/36 krone», woher der Trivialname «Kroneskilling» — derselbe physische Typ wie die Hede-115 Hauptserie (Schwabe, ca. 9 330 Daler insgesamt). Bruun-Specimen NGC MS-63, höchstgradiertes Stück bei NGC für Datum + Typ.'
-        # Note: the Bruun parser extracts «4 Kroneskilling» from the lot
-        # meta-line; per Hede c4h115 this is the same coin as our «4 Skilling»
-        # row (synonyms in period nomenclature). Earlier audit briefly
-        # stripped the Bruun-citation under the assumption it was a
-        # different denomination tier — Hede 1957 confirms it is not.
-      en: '4 Skilling 1620-1621 («Kroneskilling») · Christian IV, Copenhagen, mintmaster Nicolaus Schwabe (clover privy mark) · Hede c4h115 documents the reverse legend «1/36 krone», whence the colloquial name «Kroneskilling» — the same physical type as Hede 115''s main series (Schwabe, c. 9,330 daler in total). Bruun specimen NGC MS-63, the highest NGC-graded piece for date + type.'
-      uk: '4 Skilling 1620-1621 («Kroneskilling») · Кристіан IV, Копенгаген, монетмайстер Nicolaus Schwabe (Mzz. конюшина) · Hede c4h115 фіксує реверс-легенду «1/36 krone», звідки тривіальна назва «Kroneskilling» — той самий фізичний тип, що й основна серія Hede 115 (Schwabe, бл. 9 330 далерів сукупно). Bruun-екземпляр NGC MS-63 — найвища NGC-оцінка для дати + типу.'
-    verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-    fraction: 1/24
   - id: dk-tid-163026
     fuss: 9_thaler
     phase: I
@@ -3687,6 +3611,12 @@ coins:
       bruun_part: III
       bruun_lot_no: 11195
       bruun_page: 100
+      hede: '126'
+      sieg: '80'
+      schou: '63'
+      others:
+        - Harck-23.9
+      hede_volume: c4h
     metal: silver
     fineness:
       - {value: 0.859, source: Numista}
@@ -3698,9 +3628,9 @@ coins:
         source: Bruun Part III, lot 11195, p. 100
     diameter_mm: 31.0
     note:
-      de: ½ Krone mit offener Krone und stehender Königsdarstellung, 1624 — pendant zu km-96. Selber Tarif 1½ Speciedaler.
-      en: ½ Krone with open crown and standing king, 1624 — pendant to km-96. Same 1½ Speciedaler tariff.
-      uk: ½ Krone з відкритою короною та стоячим королем, 1624 — пара до km-96. Той самий тариф 1½ Speciedaler.
+      de: ½ Krone mit offener Krone und stehender Königsdarstellung, 1624 · Münzmeister Nicolaus Schwabe — pendant zu km-96, gleicher Tarif 1½ Speciedaler.
+      en: ½ Krone with open crown and standing king, 1624 · mintmaster Nicolaus Schwabe — pendant to km-96, same 1½ Speciedaler tariff.
+      uk: ½ Krone з відкритою короною та стоячим королем, 1624 · монетмайстер Nicolaus Schwabe — пара до km-96, той самий тариф 1½ Speciedaler.
     sources:
       - type: numista
         url: https://en.numista.com/197665
@@ -4006,45 +3936,6 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: 1/4
-  - id: dk-tid-163057
-    fuss: kronemont_chr_iv
-    phase: I
-    kind: kurant
-    nominal: ½ Krone
-    year_label: '1624'
-    year_first: 1624
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      km: '94'
-      bruun_collection_id: '5391'
-      bruun_part: III
-      bruun_lot_no: 11195
-      bruun_page: 100
-    metal: silver
-    fineness: 0.86
-    weight_rough_g:
-      - value: 9.46
-        source: ucoin
-      - value: 9.2
-        source: Bruun Part III, lot 11195, p. 100
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-2-krone-1624/?tid=163057
-        ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11195, p. 100
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-    fraction: 1/2
   - id: dk-tid-163062
     fuss: kronemont_chr_iv
     phase: I
@@ -12504,7 +12395,7 @@ coins:
     fraction: 1/96
     metal: billon
     metal_verified: false
-  - id: km-542-chr-v-1738
+  - id: km-542-chr-vi-1738
     fuss: reichsdukatenfuss
     phase: II
     kind: kurant
@@ -12525,6 +12416,8 @@ coins:
       bruun_lot_no: 1140
       bruun_page: 196
       hede_volume: c6h
+      sieg: '9'
+      schou: '1'
     metal: gold
     fineness:
       - {value: 0.979, source: "Hede 3"}
@@ -12538,11 +12431,9 @@ coins:
         source: Bruun Part I, lot 1140, p. 196
     diameter_mm: 21.0
     note:
-      de: |-
-        Standardprägung der Regierungszeit
-
-      en: Standardprägung the reign
-      uk: Standardprägung правління
+      de: '1 Dukat 1738, 1740 — Reverse: Fort Christiansborg, Avers: gekröntes Monogramm Christian VI. · Münzmeister Christian Wineke, Kopenhagen.'
+      en: '1 Ducat 1738, 1740 — reverse: Fort Christiansborg, obverse: crowned monogram of Christian VI · mintmaster Christian Wineke, Copenhagen.'
+      uk: '1 Dukat 1738, 1740 — реверс: форт Кристіансборг, аверс: коронована монограма Кристіана VI · монетмайстер Christian Wineke, Копенгаген.'
     sources:
       - type: numista
         url: "https://en.numista.com/82697"
@@ -12561,46 +12452,6 @@ coins:
     year_ranges:
       - [1738, 1738]
       - [1740, 1740]
-  - id: dk-tid-94329
-    fuss: reichsdukatenfuss
-    phase: II
-    kind: kurant
-    nominal: 1 Dukat
-    year_label: 1738-1740
-    year_first: 1738
-    year_last: 1740
-    ruler: Christian VI.
-    mint: Kopenhagen
-    catalog:
-      km: '542'
-      bruun_collection_id: '7585'
-      bruun_part: I
-      bruun_lot_no: 1140
-      bruun_page: 196
-    metal: gold
-    fineness: 0.98
-    weight_rough_g:
-      - value: 3.49
-        source: ucoin
-      - value: 3.47
-        source: Bruun Part I, lot 1140, p. 196
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-dukat-1738-1740/?tid=94329
-        ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1140, p. 196
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-    fraction: '1'
   - id: dk-tid-94070
     fuss: 11_333_thaler
     phase: I
@@ -13317,6 +13168,10 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17127
       bruun_page: 82
+      hede: '17'
+      sieg: '38'
+      schou: '2'
+      hede_volume: f5h
     metal: gold
     fineness:
       - {value: 0.986, source: Numista}
@@ -13328,9 +13183,9 @@ coins:
         source: Bruun Part IV, lot 17127, p. 82
     diameter_mm: 21.0
     note:
-      de: Reguläre Handelsprägung
-      en: Regular trade issue
-      uk: Регулярна торгова емісія
+      de: '1 Dukat 1749 — Reiterdukaten-Typ: Frederik V. zu Pferde auf dem Revers · Münzmeister Peter Nicolai van Hauen (VH), Stempelschneider Magnus Gustavus Arbien · Kopenhagen.'
+      en: '1 Ducat 1749 — equestrian Ducat: Frederik V on horseback on the reverse · mintmaster Peter Nicolai van Hauen (VH), engraver Magnus Gustavus Arbien · Copenhagen.'
+      uk: '1 Dukat 1749 — кінний дукат: Фредерік V на коні на реверсі · монетмайстер Peter Nicolai van Hauen (VH), штемпельщик Magnus Gustavus Arbien · Копенгаген.'
     sources:
       - type: numista
         url: "https://en.numista.com/82699"
@@ -13345,45 +13200,6 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17127, p. 82
     issuing_entity: danish_realm
-  - id: dk-tid-94342
-    fuss: reichsdukatenfuss
-    phase: II
-    kind: kurant
-    nominal: 1 Dukat
-    year_label: '1749'
-    year_first: 1749
-    ruler: Frederik V.
-    mint: Kopenhagen
-    catalog:
-      km: '577'
-      bruun_collection_id: '7639'
-      bruun_part: IV
-      bruun_lot_no: 17127
-      bruun_page: 82
-    metal: gold
-    fineness: 0.98
-    weight_rough_g:
-      - value: 3.49
-        source: ucoin
-      - value: 3.49
-        source: Bruun Part IV, lot 17127, p. 82
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-dukat-1749/?tid=94342
-        ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17127, p. 82
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-    fraction: '1'
   - id: dk-tid-94407
     fuss: reichsdukatenfuss
     phase: II
