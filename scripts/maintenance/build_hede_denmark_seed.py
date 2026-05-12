@@ -268,17 +268,38 @@ def _infer_kind(metal: str, nominal: str, ruler: str | None, fineness: float | N
     return "kurant"
 
 
-# Splits «1, 2, 3 og 4 Speciedaler» / «1 og 2 Dukat» into per-sub-Hede
-# nominals. Returns a list of full denomination strings (e.g.
-# ["1 Speciedaler", "2 Speciedaler", "3 Speciedaler", "4 Speciedaler"]).
+# Splits «1, 2, 3 og 4 Speciedaler» / «1 og 2 Dukat» / «1/2, 1 og 2
+# Dukat» / «1, 2, 5, 10 Dukat» (no «og») into per-sub-Hede nominals.
+# Returns a list of full denomination strings (e.g. ["1 Speciedaler",
+# "2 Speciedaler", "3 Speciedaler", "4 Speciedaler"]).
+#
+# Two patterns supported in the numeric prefix:
+#   - Comma/space/slash-separated list ending in «og N»
+#     («1, 2, 3 og 4 Speciedaler» — Hede's standard list format)
+#   - Plain comma-separated list without «og»
+#     («1, 2, 5, 10 Dukat» — used on f3h10)
+# Each number element may be a bare integer OR a fraction («1/2»).
+_NUM_TOKEN = r"\d+(?:/\d+)?"
 _NOMINAL_LIST_RE = re.compile(
-    r"^\s*(\d+(?:[\s,/]+\d+)*\s+og\s+\d+|\d+)\s+([A-Za-zæøåÆØÅ\.\- ]+?)(?:,.*)?$",
+    r"^\s*("                                 # group 1: numbers section
+    r"" + _NUM_TOKEN + r"(?:[\s,/]+" + _NUM_TOKEN + r")*(?:\s+og\s+" + _NUM_TOKEN + r")?"
+    r")\s+"
+    r"([A-Za-zæøåÆØÅ\.\- ]+?)(?:,.*)?$"        # group 2: denomination
 )
 
 
 def _split_multi_nominal(nominal: str, count_expected: int) -> list[str] | None:
     """Return per-sub-Hede nominals when nominal is a comma-list.
-    Returns None when the parse doesn't match `count_expected`."""
+    Returns None when the parse doesn't match `count_expected`.
+
+    Handles fraction multipliers (e.g. «1/2 Dukat») by capturing each
+    number token in `_NUM_TOKEN` form.
+
+    Special case: when nominal is a SINGLE denomination (just «1 Skilling»,
+    no «og» / multi-list) but count_expected > 1, treats the by_hede
+    entries as sub-letter variants of the same denomination and emits
+    the same nominal for each. This covers pages like c3h6 («1 Skilling»
+    with Hede 6A + 6B sub-letters)."""
     if not nominal:
         return None
     m = _NOMINAL_LIST_RE.match(nominal.strip())
@@ -288,7 +309,11 @@ def _split_multi_nominal(nominal: str, count_expected: int) -> list[str] | None:
     denom = m.group(2).strip()
     # Strip a trailing «, København» / similar embedded into denom.
     denom = re.split(r",\s*", denom, maxsplit=1)[0].strip()
-    nums = re.findall(r"\d+", numbers_part)
+    nums = re.findall(_NUM_TOKEN, numbers_part)
+    # Same-denomination sub-letter case: single multiplier, multiple
+    # by_hede entries — replicate the nominal for each.
+    if len(nums) == 1 and count_expected > 1:
+        return [f"{nums[0]} {denom}"] * count_expected
     if len(nums) != count_expected:
         return None
     return [f"{n} {denom}" for n in nums]

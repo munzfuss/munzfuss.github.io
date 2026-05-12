@@ -705,12 +705,16 @@ def _parse_header(html: str) -> dict:
                 )
             else:
                 rest_text_no_yr = rest_text
-            # Last comma-separated piece is usually the mint
+            # Last comma-separated piece is usually the mint; the
+            # remaining pieces form the (possibly multi-denomination)
+            # nominal. E.g. «1, 2, 3 og 4 speciedaler, København» splits
+            # into ['1','2','3 og 4 speciedaler','København'] → nominal
+            # «1, 2, 3 og 4 speciedaler», mint «København».
             rs = [s.strip() for s in rest_text_no_yr.split(",") if s.strip()]
             if rs:
                 out["mint"] = rs[-1]
                 if len(rs) > 1:
-                    out["nominal"] = rs[0]
+                    out["nominal"] = ", ".join(rs[:-1])
     else:
         out["ruler"] = ruler_line + "."
     if len(parts) >= 2 and "nominal" not in out:
@@ -742,11 +746,16 @@ def _parse_header(html: str) -> dict:
         else:
             # No year match — try splitting on the trailing comma to
             # separate «Nominal, Mint» (typical after the «u. år
-            # (YYYY)» fragment was stripped above).
+            # (YYYY)» fragment was stripped above). For multi-
+            # denomination headings like «1, 2, 3 og 4 Speciedaler,
+            # København», the LAST comma-segment is the mint and all
+            # the preceding ones are part of the denomination list
+            # — join them back so the nominal isn't truncated to
+            # «1».
             if "," in line:
                 segs = [s.strip() for s in line.split(",") if s.strip()]
                 if len(segs) >= 2:
-                    out["nominal"] = segs[0]
+                    out["nominal"] = ", ".join(segs[:-1])
                     out["mint"] = segs[-1]
                 else:
                     out["nominal"] = line.strip(" ,")
