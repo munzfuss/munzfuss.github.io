@@ -228,7 +228,15 @@ class FussPeriod(_StrictBase):
 class CatalogRefs(_StrictBase):
     km: str | None = None
     lange: str | None = None
-    hede: str | None = None
+    # `hede` (and parallel `sieg` / `schou`) accept a list form when the
+    # coin is a Krause-KM-canonical entry that spans multiple Hede sub-
+    # letters (mint-master / die-cutter variants Krause folds into one
+    # type). Example: KM-81 = Hede 115A / 115B / 115C / 115D. The list
+    # entries are positionally aligned with `sieg` / `schou` when those
+    # are also lists, so a renderer can pair them per-sub-letter when
+    # showing the breakdown. Scalar form remains the default for
+    # single-sub-letter coins.
+    hede: str | list[str] | None = None
     # Ruler-volume code per danskmoent.dk URL convention. Hede 1971
     # publishes a separate catalogue volume per Danish king, so
     # «Hede 28» is ambiguous across rulers (Christian IV's c4h28
@@ -240,7 +248,7 @@ class CatalogRefs(_StrictBase):
     # `hede` as the bare number+suffix; the full reference is
     # f"{hede_volume}{hede}" when both are set.
     hede_volume: str | None = None
-    sieg: str | None = None
+    sieg: str | list[str] | None = None
     # Sieg catalog number as printed in Holger Hede's "Danmarks og Norges
     # Mønter" 1964/1971 (via danskmoent.dk's Hede pages). The Sieg-
     # Møntkatalog is an annual catalogue (43rd ed in 2016 per Numista's
@@ -256,7 +264,7 @@ class CatalogRefs(_StrictBase):
     # finds the entry. The renderer only surfaces `(Hede-1971: X)` when
     # the two values differ.
     sieg_hede1971: str | None = None
-    schou: str | None = None
+    schou: str | list[str] | None = None
     # Schou catalog number as printed in Hede 1971 / danskmoent.dk
     # when it differs from the modern Schou citation (analogous to
     # `sieg_hede1971`). H. H. Schou's «Beskrivelse af de paa Den

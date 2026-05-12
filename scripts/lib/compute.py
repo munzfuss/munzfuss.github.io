@@ -278,9 +278,26 @@ def _compute_catalog_groups(coin: Coin) -> list[tuple[str, list[str]]]:
             # and the older one printed in Hede 1971 (via danskmoent.dk).
             alt_attr = f"{field_name}_hede1971"
             alt = getattr(cat, alt_attr, None)
-            # Some named fields hold composite "77.1, 77.2" or "77.1 / 77.2"
-            for part in re.split(r"\s*[,/]\s*", str(v)):
-                part = part.strip()
+            # Schema allows scalar OR list form for hede/sieg/schou
+            # (list = multi-sub-letter Krause-canonical entries; see
+            # CatalogRefs.hede docstring). For list form, iterate items
+            # directly. For scalar form, fall back to the legacy
+            # composite-string split ("77.1, 77.2" / "77.1 / 77.2")
+            # which serves entries that pack multiple Sieg or Dav refs
+            # into one string field. Schou values can contain internal
+            # commas (Hede prints "Schou 136-165, 59-61" for one sub-
+            # letter), so the comma-split is only safe on scalar legacy
+            # strings — list form is the structured replacement when
+            # multiple sub-letters need to be represented.
+            if isinstance(v, list):
+                parts = [str(p).strip() for p in v if p]
+            else:
+                parts = [
+                    p.strip()
+                    for p in re.split(r"\s*[,/]\s*", str(v))
+                    if p.strip()
+                ]
+            for part in parts:
                 if not part:
                     continue
                 # Append the Hede-1971 annotation on the FIRST sub-part only
