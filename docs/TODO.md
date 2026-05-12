@@ -7,6 +7,81 @@
 
 ## Open
 
+### R. Backfill canonical fineness on fineness-missing coins  *(opened 2026-05-13)*
+
+Many seed / partially-curated entries carry `fineness: null` (or
+omit the field entirely) because the source — Bruun lot, ucoin
+bulk, Hede page in the small minority of cases — published weight
+but no fineness reading. For these we can frequently INFER a
+canonical fineness from the Müntzfuß the coin belongs to and verify
+the assumption via Δ-from-Soll arithmetic, IF the coin's other
+fields (weight, year, nominal, ruler) pin it unambiguously to a
+single fuss.
+
+The procedure (already applied case-by-case to a handful of strict-
+single-fineness Category-1 fuesse — reichsdukatenfuss .9861,
+courantdukatenfuss .875, pistolenfuss .903 — see existing
+verification_note prose on those entries) per CLAUDE.md §4:
+
+  1. Identify the coin's intended Müntzfuß (sometimes obvious from
+     ruler + nominal + year; sometimes ambiguous → skip).
+  2. Pick the Müntzfuß's canonical anchor fineness if it has a
+     single dominant value (Category-1 fuesse). Skip multi-anchor
+     fuesse (Category-2/-3) — guessing wrong is worse than leaving
+     `fineness: null`.
+  3. Compute the implied Feingewicht = weight × anchor-fineness.
+  4. Compute Δ = (implied_fein − soll_fein) / soll_fein.
+     If |Δ| ≤ ±2 % (the project's specimen-tolerance envelope per
+     CLAUDE.md §4), set:
+       - `fineness: <canonical>`
+       - `fineness_verified: false`   (forces the `(?)` marker)
+       - `verification_note` explaining the inference + Δ value.
+     If |Δ| > ±2 %, the assumption is incompatible with the
+     sourced weight — leave `fineness: null`.
+
+Automation candidate (build it once, run sweepwise):
+
+`scripts/maintenance/backfill_canonical_fineness.py`
+  - Walks `data/locations/*.yml`.
+  - For every coin with `fineness: null` (or missing field), gathers
+    `fuss`, weight, nominal, year, ruler.
+  - Looks up canonical anchor fineness from `data/shared/fuesse.yml`
+    via a new explicit-anchor field per fuss (e.g. `fineness_anchor:
+    0.9861` for reichsdukatenfuss). For multi-anchor fuesse the
+    field is omitted → script skips.
+  - Computes Δ against the fraction's soll_fein in fuesse.yml.
+  - For coins passing the ±2 % gate, proposes the patch (dry-run by
+    default), printing the would-be note text. With `--apply`,
+    writes the change through ruamel.yaml preserving comments.
+
+Open design questions:
+
+  * **Where does `fineness_anchor` live?** Option A: a dedicated
+    field on `Fuss` in fuesse.yml (cleanest, schema-explicit).
+    Option B: inferred from `fineness_display` text (fragile —
+    «.875» vs «0.875» variants). Option A wins.
+  * **What categories qualify?** Category-1 (strict single fineness)
+    only: reichsdukatenfuss, courantdukatenfuss, pistolenfuss,
+    reichsgoldmuenzfuss, vereinsmuenzfuss-gold-side, possibly
+    18.5_thaler (.875 silver) etc. Need a per-fuss eligibility flag
+    or just rely on whether `fineness_anchor` is set.
+  * **What about coins where curated already has fineness but
+    fineness_verified=false?** Skip — they've already gone through
+    the procedure. The sweep targets `fineness: null` only.
+  * **Cross-check via Numista cache:** when a Numista entry exists
+    for the coin (`catalog.numista`) and publishes its own fineness,
+    that's a stronger signal than the canonical anchor. Prefer
+    Numista's value when present (with `fineness_verified: true`
+    and source-citation). Skip the canonical-anchor path for those.
+
+Scope: hundreds of coins potentially. The auto-suppress and merge
+work has already cleaned up most low-quality dupes; what remains is
+mostly seed-curated bulk that lacks fineness because the original
+source did. A single sweep pass + manual review of the proposed
+patches should close most of them.
+
+Defer to the same audit window as §N / §O / §P / §Q.
+
 ### Q. Pull Hede / Numista commentary material for coin notes  *(opened 2026-05-13)*
 
 The cached sources (`scripts/cache/hede/*.json` `description` + `raw_text`

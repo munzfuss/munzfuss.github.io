@@ -3963,7 +3963,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: 1/48
-  - id: dk-tid-97347
+  - id: km-100-chr-iv-1624
     fuss: 9_25_thaler
     phase: I
     kind: kurant
@@ -3975,38 +3975,64 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '100'
+      numista: '109973'
+      # Two mint-master sub-letters folded under KM-100 (= Numista
+      # 109973 «Bust type I» 1624-1634; covers Hede 59A + 59B):
+      # 59A NS (Nicolaus Schwabe), 1624, 1627, 1628; Schou 23-29
+      # range;
+      # 59B PG (P. Grüner), 1631 RRR, 1632 RRR, 1634 RR; Schou 9, 10.
+      # Hede 59C (HK, 1646) sits under the separate KM-135 entry.
+      hede:
+        - 59A
+        - 59B
+      hede_volume: c4h
+      sieg_hede1971: '108'
       bruun_collection_id: '5629'
       bruun_part: III
       bruun_lot_no: 11203
       bruun_page: 104
     metal: silver
-    fineness: 0.88
+    fineness:
+      - value: 0.881
+        source: "Hede c4h59 (Soll-Finhed)"
+      - value: 0.875
+        source: Numista 109973
+      - value: 0.88
+        source: ucoin
     weight_rough_g:
+      - value: 14.616
+        source: "Hede c4h59 (Soll-Bruttovægt)"
       - value: 14.62
         source: ucoin
       - value: 14.26
         source: Bruun Part II, lot 13112, p. 84
       - value: 14.49
         source: Bruun Part III, lot 11203, p. 104
+    note:
+      de: "½ Speciedaler 1624-1634 Christian IV. (Kopenhagen) — 9¼-Speciedaler-Fuß · zwei Müntzmeister-Varianten nach Hede 59 unter KM-100 zusammengefaßt: 59A NS-Mzz (Nicolaus Schwabe), 1624 + 1627 + 1628; 59B PG-Mzz (P. Grüner), 1631 RRR + 1632 RRR + 1634 RR · gemeinsame Bruttovægt 14,616g · Finhed 0,881 · Marken-fin 9,071 Speciedalere · Numista 109973 «Bust type I» bestätigt KM-100 für die 1624-1634-Spanne und gibt 0.875 Feinheit (Hede 0.881 mit kleiner Toleranz)."
+      en: "½ Speciedaler 1624-1634 Christian IV (Copenhagen) — 9¼ Speciedaler standard · two mint-master variants per Hede 59 folded under KM-100: 59A NS privy mark (Nicolaus Schwabe), 1624 + 1627 + 1628; 59B PG privy mark (P. Grüner), 1631 RRR + 1632 RRR + 1634 RR · shared Bruttovægt 14.616g · Finhed 0.881 · 9.071 Speciedalere per Marken-fein · Numista 109973 «Bust type I» confirms KM-100 for the 1624-1634 span and lists .875 fineness (Hede 0.881 within tolerance)."
+      uk: "½ Speciedaler 1624-1634 Кристіан IV (Копенгаген) — стандарт 9¼ Speciedaler · два варіанти монетмейстера за Hede 59 об'єднані під KM-100: 59A знак NS (Nicolaus Schwabe), 1624 + 1627 + 1628; 59B знак PG (P. Grüner), 1631 RRR + 1632 RRR + 1634 RR · спільний Bruttovægt 14,616г · Finhed 0,881 · 9,071 Speciedalere з Marken-fin · Numista 109973 «Bust type I» підтверджує KM-100 для 1624-1634 і подає пробу .875 (Hede 0,881 у межах толерантності)."
     sources:
+      - type: numista
+        url: https://en.numista.com/109973
+        ref: Numista 109973 (KM-100 ½ Speciedaler Bust type I 1624-1634)
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-2-speciedaler-1624-1634/?tid=97347
-        ref: ucoin
+        ref: ucoin tid 97347
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13112, p. 84
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11203, p. 104
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h59.htm
+        ref: "Hede c4h59 (danskmoent.dk)"
     issuing_entity: danish_realm
     verified: false
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: false
-    verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: 1/2
   - id: dk-tid-97357
     fuss: 9_25_thaler
@@ -4715,7 +4741,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: '1'
-  - id: km-x032-chr-iv-1646-half-spec
+  - id: km-135-chr-iv-1646
     fuss: 9_25_thaler
     phase: I
     kind: kurant
@@ -4727,32 +4753,49 @@ coins:
     ruler: "Christian IV."
     mint: "Kopenhagen"
     catalog:
-      others:
-        - "KM-DK# 135"
+      km: '135'
+      # Hede 59C (HK mintmaster, 1646, Schou 36, Sieg 108). Single-
+      # year late strike under Christian IV; Krause-DK gives KM-135
+      # specifically for this 1646 production while the earlier
+      # 1624-1634 sub-letters 59A+59B fall under the separate KM-100
+      # entry. Not currently in Numista cache.
+      hede:
+        - 59C
+      hede_volume: c4h
+      sieg_hede1971: '108'
     metal: silver
-    fineness: 0.88
+    fineness:
+      - value: 0.881
+        source: "Hede c4h59 (Soll-Finhed)"
+      - value: 0.88
+        source: ucoin
     weight_rough_g:
+      - value: 14.616
+        source: "Hede c4h59 (Soll-Bruttovægt)"
       - value: 14.62
         source: ucoin
     diameter_mm: 35.37
     note:
       de: |-
-        ½ Speciedaler Christians IV. (1646) — Theilstück zum km-27 (1 Speciedaler 1644–1648) im 9¼-Fuß. Sister-Sub-Fraktion zur frühen km-14 (½ Sp 1623). Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 135</b>; in Numista nicht katalogisiert.
+        ½ Speciedaler Christians IV. 1646 (Kopenhagen) — Hede 59C, Müntzmeister HK, Schou 36 · 9¼-Speciedaler-Fuß · Theilstück zum km-27 (1 Speciedaler 1644-1648) · späte Christian-IV.-Variante in der Hede-59-Familie, von Krause als eigene KM-135 separat von 59A+59B = KM-100 (1624-1634) geführt · Bruttovægt 14,616g · Finhed 0,881 · Marken-fin 9,071 Speciedalere · in Numista derzeit nicht katalogisiert.
       en: |-
-        ½ Speciedaler of Christian IV (1646) — sub-fraction of km-27 (1 Speciedaler 1644–1648) on the 9¼-Fuß. Sister sub-fraction to the earlier km-14 (½ Sp 1623). Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 135</b>; not catalogued by Numista.
+        ½ Speciedaler Christian IV 1646 (Copenhagen) — Hede 59C, mint-master HK, Schou 36 · 9¼ Speciedaler standard · sub-fraction of km-27 (1 Speciedaler 1644-1648) · late Christian IV variant within the Hede 59 family, given its own KM-135 by Krause-DK separate from 59A+59B = KM-100 (1624-1634) · Bruttovægt 14.616g · Finhed 0.881 · 9.071 Speciedalere per Marken-fein · not currently catalogued in Numista.
       uk: |-
-        ½ Speciedaler Кристіана IV (1646) — sub-фракція до km-27 (1 Speciedaler 1644–1648) у 9¼-Fuß. Сестринська sub-фракція до раніше доданого km-14 (½ Sp 1623). Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 135</b>; у Numista не каталогізовано.
+        ½ Speciedaler Кристіан IV 1646 (Копенгаген) — Hede 59C, монетмейстер HK, Schou 36 · стандарт 9¼ Speciedaler · sub-фракція до km-27 (1 Speciedaler 1644-1648) · пізній варіант Кристіана IV у родині Hede 59, який Krause-DK виносить в окремий KM-135 поза 59A+59B = KM-100 (1624-1634) · Bruttovægt 14,616г · Finhed 0,881 · 9,071 Speciedalere з Marken-fin · у Numista наразі не каталогізовано.
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-2-speciedaler-1646/?tid=170135
-        ref: ucoin
+        ref: ucoin tid 170135
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h59.htm
+        ref: "Hede c4h59 (danskmoent.dk)"
     issuing_entity: danish_realm
     fineness_verified: true
     mint_verified: false
     verification_note:
-      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 135 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1646). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
-      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 135 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1646). Mint still (?) — no direct Hede / Wilcke attestation.
-      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 135 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1646). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period + Hede c4h59 als königlich-dänische Kopenhagener Prägung re-attribuiert (1646). KM-135 ist Denmark-Register.
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period + Hede c4h59 re-attributed as a Royal Danish Copenhagen issue (1646). KM-135 is Denmark register.
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period + Hede c4h59 переатрибутовано як королівсько-данську копенгагенську монету (1646). KM-135 — Denmark-register.
   - id: dk-tid-97358
     fuss: 9_25_thaler
     phase: I
