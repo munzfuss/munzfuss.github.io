@@ -7,6 +7,46 @@
 
 ## Open
 
+### N. ucoin↔Krause KM-attribution conflicts (Denmark)  *(opened 2026-05-12)*
+
+Recurring pattern surfaced during the dedup-merge audit of denmark.yml:
+ucoin's bulk catalog (built from ucoin's user-edited TSV under
+`scripts/cache/ucoin/period_*.tsv`) assigns a KM number that
+disagrees with Krause-Denmark as verified by Bruun PDF + Hede.
+Per CLAUDE.md §5, Bruun is the higher-authority source (auction-
+catalog tier 3), so when ucoin's KM and Bruun's KM disagree on the
+same numeric value, Bruun wins and ucoin's KM-attribution is dropped.
+ucoin entry retains its non-KM data (weight, fineness, year,
+nominal, source URL) as a bulk-pending coin awaiting classification.
+
+Two cases resolved so far; pattern likely recurs across the ucoin
+period TSVs and warrants a broader sweep:
+
+* **KM 48** — *resolved 2026-05-12.* `dk-tid-162993` («1 Søsling
+  1614») had ucoin-assigned km=48. Bruun lot 13080 + Hede c4h48
+  attest KM-48 = ¼ Speciedaler 1602 Christian IV (= our
+  `km-48-chr-iv-1602`). km tag cleared on dk-tid-162993,
+  verification_note records the finding. Per-coin classification of
+  the 1614 Søsling type itself remains pending (Hede c4h skips
+  this year between c4h84 (1611) and c4h145 (1631), so the type
+  needs an independent source if it's to gain a Krause-edition KM
+  citation).
+* **KM 577** — *resolved 2026-05-12 alongside.* `dk-tid-78763`
+  («½ Skilling 1751-1762» 3.654 g) had ucoin-assigned km=577.
+  Bruun lot 17127 attests KM-577 = 1 Dukat 1749 Frederik V (= our
+  `km-577-1749`). Beyond the KM clash, ucoin's nominal+weight pair
+  (½ Skilling at 3.654 g) is itself numismatically implausible —
+  expected ½ Skilling weight under Frederik V is ~0.4 g. Both flagged
+  for follow-up: KM dropped, full re-classification of the underlying
+  coin remains pending.
+
+Open question: are these isolated ucoin-cataloger errors, or do they
+trace to an older Krause edition with different KM numbering? A
+sweep over `scripts/cache/ucoin/period_*.tsv` against Bruun-verified
+KMs in denmark.yml would surface the full set. Hold for now —
+follow-up audit pass when the higher-priority L-campaign items free
+up.
+
 ### L. Schleswig-Holstein + Denmark consolidation campaign  *(opened 2026-05-10)*
 
 A coordinated multi-pass effort to bring the SH and Denmark locations
