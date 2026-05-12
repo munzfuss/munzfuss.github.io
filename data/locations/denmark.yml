@@ -3032,6 +3032,9 @@ coins:
       - type: numista
         url: https://en.numista.com/109264
         ref: Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-skilling-1619/?tid=162999
+        ref: "ucoin tid 162999 (ucoin's recorded fineness .312 + weight 0.53g for this tid disagree with Numista's authoritative KM-65 = Silver .859 / 0.388g — ucoin user-edit data quality)"
     issuing_entity: danish_realm
     mint: Kopenhagen
   - id: km-68-chr-iv-1619
@@ -3093,11 +3096,12 @@ coins:
         ref: ucoin
     issuing_entity: danish_realm
     mint: Kopenhagen
-  - id: dk-tid-162997
+  - id: km-67-chr-iv-1619
     fuss: 9_thaler
     phase: I
     kind: scheide
-    nominal: 1 Skilling
+    fraction: 1/96
+    nominal: 1 Skilling Dansk
     year_label: 1619-1623
     year_first: 1619
     year_last: 1623
@@ -3105,79 +3109,94 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '67'
+      numista: '43532'
+      # All four Hede c4h119 sub-letters fold under KM-67 per user
+      # direction (single Krause type with mint-master variants):
+      # 119A korslagte køller (1619 S, Sieg-1971 32.1) — overlap with
+      # the KM-66 single-year emission;
+      # 119B fugl (1620-1623, Sieg-1971 32.2);
+      # 119C trekløver (1620-1622, Sieg-1971 32.3);
+      # 119D korslagte glødehager (1620-1622 R, Sieg-1971 32.4).
+      # All Billon .312, Brutto 0.523g, Marken-fin 14.906 daler — the
+      # 1 Skilling Dansk subdivision rate (not Kronemont's 10.793).
+      hede:
+        - 119A
+        - 119B
+        - 119C
+        - 119D
+      hede_volume: c4h
+      sieg_hede1971: '32.1'
     metal: billon
     fineness: 0.312
-    weight_rough_g: 0.53
+    weight_rough_g:
+      - value: 0.523
+        source: "Hede c4h119 / danskmoent.dk (Soll-Bruttovægt)"
+      - value: 0.532
+        source: Numista
+      - value: 0.53
+        source: ucoin
+    note:
+      de: "1 Skilling Dansk 1619-1623 — Billon-Variante (.312 Feinheit, 0,523g) mit gekröntem C4-Monogramm und RFP-Buchstaben in Dreiecksrahmen · vier Müntzmeister-Varianten nach Hede 119A-D unter KM-67 zusammengefaßt: 119A korslagte køller (1619 S, Sieg-1971 32.1), 119B fugl (1620-1623, Sieg-1971 32.2), 119C trekløver (1620-1622, Sieg-1971 32.3), 119D korslagte glødehager (1620-1622 R, Sieg-1971 32.4) · Marken-fin 14,906 daler · Literatur: Dahl, NNÅ 2003 «1 og 2 skillinger 1619-20»."
+      en: "1 Skilling Dansk 1619-1623 — Billon variant (.312 fineness, 0.523g) with crowned C4 monogram and RFP letters in a triangular frame · four mint-master variants per Hede 119A-D folded under KM-67: 119A crossed clubs (1619 S, Sieg-1971 32.1), 119B bird (1620-1623, Sieg-1971 32.2), 119C clover (1620-1622, Sieg-1971 32.3), 119D crossed fire-hooks (1620-1622 R, Sieg-1971 32.4) · 14.906 daler per Marken-fein · Literature: Dahl, NNÅ 2003 «1 og 2 skillinger 1619-20»."
+      uk: "1 Skilling Dansk 1619-1623 — варіант Billon (.312 проба, 0,523г) з коронованою монограмою C4 та літерами RFP у трикутній рамці · чотири варіанти монетмейстера за Hede 119A-D об'єднані під KM-67: 119A korslagte køller (1619 S, Sieg-1971 32.1), 119B fugl (1620-1623, Sieg-1971 32.2), 119C trekløver (1620-1622, Sieg-1971 32.3), 119D korslagte glødehager (1620-1622 R, Sieg-1971 32.4) · Marken-fin 14,906 daler · Література: Dahl, NNÅ 2003 «1 og 2 skillinger 1619-20»."
     sources:
+      - type: numista
+        url: https://en.numista.com/43532
+        ref: Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-skilling-1619-1623/?tid=162997
-        ref: ucoin
+        ref: ucoin tid 162997
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h119.htm
+        ref: "Hede c4h119 (danskmoent.dk)"
     issuing_entity: danish_realm
-    verified: false
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: false
     verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-    fraction: 1/96
-  - id: dk-tid-162999
+      de: Per-Münze-Verifikation per Schön / Bruun steht noch aus. KM ist Denmark-Register.
+      en: Per-coin verification against Schön / Bruun is still outstanding. KM is Denmark register.
+      uk: Покоінна верифікація за Schön / Bruun ще очікується. KM — Denmark-register.
+  - id: km-66-chr-iv-1619
     fuss: 9_thaler
     phase: I
     kind: scheide
-    nominal: 1 Skilling
-    year_label: '1619'
-    year_first: 1619
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      km: '65'
-    metal: billon
-    fineness: 0.312
-    weight_rough_g: 0.53
-    sources:
-      - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-skilling-1619/?tid=162999
-        ref: ucoin
-    issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: 1/96
-  - id: dk-tid-163000
-    fuss: 9_thaler
-    phase: I
-    kind: scheide
-    nominal: 1 Skilling
+    nominal: 1 Skilling Dansk
     year_label: '1619'
     year_first: 1619
+    year_last: 1619
     ruler: Christian IV.
     mint: Kopenhagen
     catalog:
       km: '66'
+      numista: '142853'
     metal: billon
     fineness: 0.312
-    weight_rough_g: 0.53
+    weight_rough_g:
+      - value: 0.52
+        source: Numista
+      - value: 0.53
+        source: ucoin
+    note:
+      de: "1 Skilling Dansk 1619 — Billon-Variante (.312 Feinheit, 0,52g) mit kleiner Kronenseite und Mzz am Legenden-Ende · einjährige Emission, Numista-attestiert über 142853 («small crown encircled by legend with mintmark at end»)."
+      en: "1 Skilling Dansk 1619 — Billon variant (.312 fineness, 0.52g) with small crown obverse and mintmark at end of legend · single-year issue, Numista-attested via 142853 («small crown encircled by legend with mintmark at end»)."
+      uk: "1 Skilling Dansk 1619 — варіант Billon (.312 проба, 0,52г) з малою короною на аверсі та знаком монетного двору в кінці легенди · однорічна емісія, атестована Numista через 142853 («small crown encircled by legend with mintmark at end»)."
     sources:
+      - type: numista
+        url: https://en.numista.com/142853
+        ref: Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-skilling-1619/?tid=163000
-        ref: ucoin
+        ref: ucoin tid 163000
     issuing_entity: danish_realm
-    verified: false
     fineness_verified: true
     weight_rough_verified: true
     mint_verified: false
     verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-    fraction: 1/96
+      de: Per-Münze-Verifikation per Hede / Schön / Bruun steht noch aus. KM ist Denmark-Register (nicht zu verwechseln mit SH-KM-66).
+      en: Per-coin verification against Hede / Schön / Bruun is still outstanding. KM is Denmark register (not to be confused with SH KM-66).
+      uk: Покоінна верифікація за Hede / Schön / Bruun ще очікується. KM — Denmark-register (не плутати з SH KM-66).
   - id: dk-tid-163014
     fuss: 9_thaler
     phase: I

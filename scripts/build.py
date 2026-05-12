@@ -275,6 +275,7 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
             "metal": cc.get("metal"),
             "cur_id": cc.get("id"),
             "weights": _weight_values(cc.get("weight_rough_g")),
+            "fineness": _weight_values(cc.get("fineness")),
         }
         for hn in hede_nums:
             if not hn:
@@ -355,10 +356,32 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
                 # Portugaloser citing the silver Hede sub-type whose
                 # die design it shares). Do NOT suppress the silver
                 # Hede entry — it's a separate coin.
+                #
+                # Fineness-similarity escape hatch: when both entries
+                # publish fineness within ±2% of each other, the metal
+                # label disagreement is almost certainly a labelling
+                # artefact (e.g. seed builder defaults `metal: silver`
+                # for any non-gold non-bronze entry, while a curator
+                # correctly tags `metal: billon` for fineness 0.312).
+                # Same metal content = same physical coin regardless
+                # of label — suppression proceeds.
+                cur_fin = info["fineness"]
+                seed_fin = _weight_values(coin.get("fineness") if isinstance(coin, dict) else None)
+                fineness_match = False
+                if cur_fin and seed_fin:
+                    cur_lo, cur_hi = min(cur_fin), max(cur_fin)
+                    seed_lo, seed_hi = min(seed_fin), max(seed_fin)
+                    if cur_hi > 0 and seed_hi > 0:
+                        # Compare midpoints with relative tolerance
+                        cur_mid = (cur_lo + cur_hi) / 2
+                        seed_mid = (seed_lo + seed_hi) / 2
+                        if abs(cur_mid - seed_mid) / max(cur_mid, seed_mid) < 0.02:
+                            fineness_match = True
                 if (
                     cur_metal
                     and seed_metal
                     and cur_metal != seed_metal
+                    and not fineness_match
                 ):
                     metal_mismatch_count += 1
                     kept.append(coin)
