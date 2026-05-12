@@ -17101,12 +17101,18 @@ coins:
     kind: kurant
     fraction: '1'
     nominal: Goldgulden (Ungersk Gylden)
-    year_label: '1593'
-    year_first: 1593
+    year_label: 1591–1593
+    year_first: 1591
     year_last: 1593
     ruler: Christian IV.
     catalog:
-      hede: 8B
+      # Hede groups two reverse-design variants under Hede 8 (NO-KM);
+      # per project policy «one coin = one entry», sub-letters folded:
+      # 8A 1591-92 (Slesvigs våben — Schou 7, 10-11), 8B 1593
+      # (Oldenborg + Delmenhorst — Schou 3-4, Sieg 1).
+      hede:
+        - 8A
+        - 8B
       sieg: '154.2'
       fr: '32'
       schou: '3'
@@ -17126,9 +17132,9 @@ coins:
     issuing_entity: royal_holstein
     mint: Haderslev
     note:
-      de: Goldgulden (Ungersk Gylden) 1593 (Hede-8B) · ungarisch-stylisierter Goldgulden · Münzzeichen Halbmond · Bruun-Specimen NGC AU Details—Cleaned.
-      en: Goldgulden (Ungersk Gylden) 1593 (Hede-8B) · Hungarian-style goldgulden · privy mark crescent · Bruun specimen NGC AU Details—Cleaned.
-      uk: Goldgulden (Ungersk Gylden) 1593 (Hede-8B) · золотий гульден угорського типу · знак монети півмісяць · Bruun-зразок NGC AU Details—Cleaned.
+      de: "Goldgulden (Ungersk Gylden) 1591-1593 — ungarisch-stylisierter Goldgulden · zwei Rückseiten-Varianten nach Hede 8 zusammengefaßt: 8A 1591 (Unik), 1592 (RRR) mit Slesvigs Wappen (Schou 7, 10-11, Sieg 1); 8B 1593 (RR) mit Oldenborg- und Delmenhorst-Wappen (Schou 3-4, Sieg 1) · Münzzeichen Halbmond · Bruun-Specimen ist 8B NGC AU Details—Cleaned."
+      en: "Goldgulden (Ungersk Gylden) 1591-1593 — Hungarian-style goldgulden · two reverse-design variants per Hede 8 folded: 8A 1591 (Unik), 1592 (RRR) with Schleswig arms (Schou 7, 10-11, Sieg 1); 8B 1593 (RR) with Oldenborg + Delmenhorst arms (Schou 3-4, Sieg 1) · privy mark crescent · Bruun specimen is 8B NGC AU Details—Cleaned."
+      uk: "Goldgulden (Ungersk Gylden) 1591-1593 — золотий гульден угорського типу · два варіанти реверсу за Hede 8 об'єднані: 8A 1591 (Unik), 1592 (RRR) з гербом Шлезвігу (Schou 7, 10-11, Sieg 1); 8B 1593 (RR) з гербами Ольденбурга + Дельменгорста (Schou 3-4, Sieg 1) · знак монети півмісяць · Bruun-зразок — 8B NGC AU Details—Cleaned."
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -17330,13 +17336,21 @@ coins:
     kind: scheide
     fraction: "1/3"
     nominal: 1 Mark
-    year_label: '1606'
+    year_label: 1606, 1607
     year_first: 1606
-    year_last: 1606
+    year_last: 1607
+    year_ranges:
+      - [1606, 1606]
+      - [1607, 1607]
     ruler: Christian IV.
     catalog:
       km: '33.1'
-      hede: 92A
+      # Two portrait-cut variants under KM-33.1 (Sieg-1971 72):
+      # 92A 1606 portrait breaks the ring at bottom (Schou 1);
+      # 92B 1607 portrait does not break ring (Schou 4-6).
+      hede:
+        - 92A
+        - 92B
       sieg: '65.1'
       schou: '1'
       bruun_collection_id: '4705'
@@ -17352,9 +17366,9 @@ coins:
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
-      de: Mark 1606 · Münzmeister Nicolaus Schwabe · Walzenprägung · Bruun-Specimen NGC Unc Details—Cleaned.
-      en: Mark 1606 · mintmaster Nicolaus Schwabe · roller-die struck · Bruun specimen NGC Unc Details—Cleaned.
-      uk: Mark 1606 · монетмейстер Nicolaus Schwabe · вальцеве карбування · Bruun-зразок NGC Unc Details—Cleaned.
+      de: "Mark 1606-1607 · Münzmeister Nicolaus Schwabe · Walzenprägung · zwei Porträt-Varianten unter KM-33.1: 92A 1606 mit Brustbild, das den Umschriftring unten bricht (Schou 1, Sieg 1971: 72); 92B 1607 ohne Ringbruch (Schou 4-6, Sieg 1971: 72) · Bruun-Specimen ist 92A NGC Unc Details—Cleaned."
+      en: "Mark 1606-1607 · mintmaster Nicolaus Schwabe · roller-die struck · two portrait variants under KM-33.1: 92A 1606 with bust breaking the legend ring at bottom (Schou 1, Sieg 1971: 72); 92B 1607 without ring break (Schou 4-6, Sieg 1971: 72) · Bruun specimen is 92A NGC Unc Details—Cleaned."
+      uk: "Mark 1606-1607 · монетмейстер Nicolaus Schwabe · вальцеве карбування · два портретних варіанти під KM-33.1: 92A 1606 з погруддям, що розриває кільце легенди знизу (Schou 1, Sieg 1971: 72); 92B 1607 без розриву кільця (Schou 4-6, Sieg 1971: 72) · Bruun-зразок — 92A NGC Unc Details—Cleaned."
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -17939,7 +17953,17 @@ coins:
     ruler: Christian IV.
     catalog:
       km: '104'
-      hede: 56B
+      # Three die-cutter / portrait variants of the 1627 production
+      # under KM-104 (Sieg-1971 124): 56A Schou 6-7, 2-3, 5-7, 10-12
+      # (Sieg 124.1, Schwabe); 56B Schou 8-9 (Sieg 124.2, BZ/FA) —
+      # Bruun anchor; 56C Schou 1-2, 3-4, 2 (Sieg 124.3). 56D (1647,
+      # Schou 8-9, Sieg 124.4) is a much-later issue on the same Hede
+      # base and is kept as a separate seed entry pending its own
+      # classification — see dk-hede-c4h56d.
+      hede:
+        - 56A
+        - 56B
+        - 56C
       sieg: '108.2'
       schou: '9'
       dav: '3523'
@@ -17960,9 +17984,9 @@ coins:
     mint: Kopenhagen
     mintmaster: BZ/FA
     note:
-      de: 2 Speciedaler 1627-BZ/FA (Hede-56B) · Münzmeister Nicolaus Schwabe · Stempelschneider Avers Balthazar Zwirner, Revers FA · Bruun-Specimen NGC AU Details—Cleaned.
-      en: 2 Speciedaler 1627-BZ/FA (Hede-56B) · mintmaster Nicolaus Schwabe · obverse engraver Balthazar Zwirner, reverse engraver FA · Bruun specimen NGC AU Details—Cleaned.
-      uk: 2 Speciedaler 1627-BZ/FA (Hede-56B) · монетмейстер Nicolaus Schwabe · різьбар аверсу Balthazar Zwirner, реверсу FA · Bruun-зразок NGC AU Details—Cleaned.
+      de: "2 Speciedaler 1627 · Münzmeister Nicolaus Schwabe · vier Stempelschneider-Varianten nach Hede 56A-D unter KM-104 zusammengefaßt (Bruun-Specimen ist 56B-BZ/FA, Stempelschneider Balthazar Zwirner Avers, FA Revers) · NGC AU Details—Cleaned."
+      en: "2 Speciedaler 1627 · mintmaster Nicolaus Schwabe · four die-cutter variants per Hede 56A-D folded under KM-104 (Bruun specimen is 56B-BZ/FA, engraver Balthazar Zwirner obverse, FA reverse) · NGC AU Details—Cleaned."
+      uk: "2 Speciedaler 1627 · монетмейстер Nicolaus Schwabe · чотири варіанти штемпельщика за Hede 56A-D об'єднані під KM-104 (Bruun-зразок — 56B-BZ/FA, різьбар Balthazar Zwirner аверс, FA реверс) · NGC AU Details—Cleaned."
     sources:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -19796,7 +19820,12 @@ coins:
     ruler: Frederik III.
     catalog:
       km: '204'
-      hede: 54A
+      # Two Hede sub-letters under KM-204 (Sieg-1971 73):
+      # 54A Schou 9 (Sieg 73.1, 1655+1656) — Bruun anchor;
+      # 54B Schou 10 (Sieg 73.2).
+      hede:
+        - 54A
+        - 54B
       sieg: '73.1'
       schou: '9'
       dav: '3544'
@@ -20593,7 +20622,13 @@ coins:
     year_last: 1666
     ruler: Frederik III.
     catalog:
-      hede: 112A
+      # Three Hede sub-letters under one Hede-1971 Sieg 58, all 4 Mark
+      # 1666 Krone (no Krause KM): 112A Schou 34, 112B Schou 35,
+      # 112C nicht bei Schou.
+      hede:
+        - 112A
+        - 112B
+        - 112C
       sieg: '58.1'
       schou: '34'
       dav: '6505'
@@ -20615,9 +20650,9 @@ coins:
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
-      de: 4 Mark (Krone) 1666 (Hede-112A) · Münzmeister Gotfred Krüger · seltener Einjahres-Typ · Bruun-Specimen NGC EF Details—Cleaned.
-      en: 4 Mark (Krone) 1666 (Hede-112A) · mintmaster Gotfred Krüger · scarce one-year type · Bruun specimen NGC EF Details—Cleaned.
-      uk: 4 Mark (Krone) 1666 (Hede-112A) · монетмейстер Gotfred Krüger · рідкісний однорічний тип · Bruun-зразок NGC EF Details—Cleaned.
+      de: "4 Mark (Krone) 1666 · Münzmeister Gotfred Krüger · seltener Einjahres-Typ · drei Stempelvarianten nach Hede 112A-C zusammengefaßt (Hede-1971 Sieg 58): 112A Schou 34 (Bruun-Specimen), 112B Schou 35, 112C nicht bei Schou · NGC EF Details—Cleaned."
+      en: "4 Mark (Krone) 1666 · mintmaster Gotfred Krüger · scarce one-year type · three die variants per Hede 112A-C folded (Hede-1971 Sieg 58): 112A Schou 34 (Bruun specimen), 112B Schou 35, 112C absent from Schou · NGC EF Details—Cleaned."
+      uk: "4 Mark (Krone) 1666 · монетмейстер Gotfred Krüger · рідкісний однорічний тип · три варіанти штемпеля за Hede 112A-C об'єднані (Hede-1971 Sieg 58): 112A Schou 34 (Bruun-зразок), 112B Schou 35, 112C відсутній у Schou · NGC EF Details—Cleaned."
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -20860,7 +20895,14 @@ coins:
     ruler: Frederik III.
     catalog:
       km: '300'
-      hede: 78A
+      # Two reverse-design variants under KM-300 (Sieg-1971 94):
+      # 78A De tre hovedvåbner i eet skjold (one combined shield, Schou 12,
+      # 1668 R + 1669 RRR) — Bruun anchor;
+      # 78B De tre hovedvåbner i hvert sit skjold (three separate shields,
+      # Schou 13, 1669 RR).
+      hede:
+        - 78A
+        - 78B
       sieg: '94.1'
       schou: '12'
       dav: '3559'
@@ -22571,13 +22613,24 @@ coins:
     kind: tarif
     fraction: '1'
     nominal: 1 Krone
-    year_label: '1699–1700'
-    year_first: 1699
-    year_last: 1700
+    year_label: 1693, 1694, 1695, 1699
+    year_first: 1693
+    year_last: 1699
+    year_ranges:
+      - [1693, 1695]
+      - [1699, 1699]
     ruler: Christian V.
     catalog:
       km: '428.1'
-      hede: 99A
+      # Three Hede sub-letters under KM-428.1, all 1693-1699 Krone:
+      # 99A 1693, 1694, 1695, 1699 (Schou 27-31/26-28/16/25-26/4,
+      # Sieg 51.1) — Bruun anchor; 99B 1693 with AMB.F. obverse mark
+      # (Schou 32-33, Sieg 51.2); 99C 1693 (Unik) with AMB.F. + reverse
+      # year MDCXCIII (Schou 34, Sieg 51.3).
+      hede:
+        - 99A
+        - 99B
+        - 99C
       sieg: '51.1'
       schou: '4'
       dav: '3648'
@@ -24197,13 +24250,23 @@ coins:
     kind: kurant
     fraction: '1'
     nominal: 1 Speciedaler
-    year_label: '1799'
-    year_first: 1799
-    year_last: 1799
+    year_label: 1795–1801
+    year_first: 1795
+    year_last: 1801
     ruler: Christian VII.
     catalog:
       km: '654'
-      hede: 13D
+      # Four die-cutter / portrait variants under KM-654 spanning
+      # 1795-1801 in Kopenhagen + Altona; Sieg-1971 33 base:
+      # 13A 1795, 1797, 1801 (Schou 3-4/2-4/2, Sieg 33.1);
+      # 13B 1796-1797 (Schou 2/1, Sieg 33.2);
+      # 13C 1798-1799 (Schou 1-2/1, Sieg 33.3);
+      # 13D 1799 (Schou 2, Sieg 33.4) — Bruun anchor.
+      hede:
+        - 13A
+        - 13B
+        - 13C
+        - 13D
       sieg: '25.4'
       schou: '2'
       dav: '1315'
@@ -24220,11 +24283,13 @@ coins:
       - value: 28.893
         source: Hede 13D / danskmoent.dk
     issuing_entity: danish_realm
-    mint: Kopenhagen
+    mint:
+      - Kopenhagen
+      - Altona
     note:
-      de: Speciedaler 1799 (KM-654 Hede-13D) · späte Christian-VII.-Speciedaler-Prägung in Kopenhagen · Bruun-Specimen.
-      en: Speciedaler 1799 (KM-654 Hede-13D) · late Christian VII Copenhagen Speciedaler issue · Bruun specimen.
-      uk: Speciedaler 1799 (KM-654 Hede-13D) · пізнє Копенгагенське карбування Speciedaler Христіяна VII · Bruun-зразок.
+      de: "Speciedaler 1795-1801 · späte Christian-VII.-Speciedaler-Serie (Kopenhagen + Altona) · vier Stempelvarianten nach Hede 13A-D unter KM-654 zusammengefaßt: 13A 1795, 1797, 1801; 13B 1796-97; 13C 1798-99; 13D 1799 (Bruun-Specimen)."
+      en: "Speciedaler 1795-1801 · late Christian VII Speciedaler series (Kopenhagen + Altona) · four die variants per Hede 13A-D folded under KM-654: 13A 1795, 1797, 1801; 13B 1796-97; 13C 1798-99; 13D 1799 (Bruun specimen)."
+      uk: "Speciedaler 1795-1801 · пізня серія Speciedaler Христіяна VII (Копенгаген + Альтона) · чотири варіанти штемпеля за Hede 13A-D об'єднані під KM-654: 13A 1795, 1797, 1801; 13B 1796-97; 13C 1798-99; 13D 1799 (Bruun-зразок)."
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -24776,13 +24841,18 @@ coins:
     kind: kurant
     fraction: '1'
     nominal: 1 Rigsbankdaler
-    year_label: 1846, 1847, 1848
-    year_first: 1846
-    year_last: 1849
+    year_label: 1844–1848
+    year_first: 1844
+    year_last: 1848
     ruler: Christian VIII.
     catalog:
       km: '735.1'
-      hede: 4A
+      # Two die-cutter variants under KM-735.1 (Sieg-1971 12) spanning
+      # 1844-1848: 4A 1846-1848 (Schou 2,4,3,5,2 — Sieg 12.1) — Bruun
+      # anchor; 4B 1844-1847 (Schou 5,5,6 — Sieg 12.2).
+      hede:
+        - 4A
+        - 4B
       sieg: '12.1'
       schou: '3'
       bruun_collection_id: '8175'
@@ -24802,13 +24872,13 @@ coins:
       - value: 14.447
         source: Hede 4A / danskmoent.dk
     year_ranges:
-      - [1846, 1849]
+      - [1844, 1848]
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
-      de: Rigsbankdaler 1846, 1847, 1848 (KM-735.1 Hede-4A) · drei Bruun-Specimen aufeinanderfolgender Jahre · 1848 Christian VIII.s letzter Rigsbankdaler (gestorben Januar 1848).
-      en: Rigsbankdaler 1846, 1847, 1848 (KM-735.1 Hede-4A) · three Bruun specimens from consecutive years · 1848 was Christian VIII's last Rigsbankdaler (he died January 1848).
-      uk: Rigsbankdaler 1846, 1847, 1848 (KM-735.1 Hede-4A) · три зразки Bruun послідовних років · 1848 — останній Rigsbankdaler Христіяна VIII (помер у січні 1848).
+      de: "Rigsbankdaler 1844-1848 · zwei Stempelvarianten unter KM-735.1: 4A 1846-1848 (Bruun-Specimen, drei aufeinanderfolgende Jahre) — 1848 Christian VIII.s letzter Rigsbankdaler (gestorben Januar 1848); 4B 1844-1847."
+      en: "Rigsbankdaler 1844-1848 · two die variants under KM-735.1: 4A 1846-1848 (Bruun specimens, three consecutive years) — 1848 was Christian VIII's last Rigsbankdaler (he died January 1848); 4B 1844-1847."
+      uk: "Rigsbankdaler 1844-1848 · два варіанти штемпеля під KM-735.1: 4A 1846-1848 (Bruun-зразки, три послідовні роки) — 1848 останній Rigsbankdaler Христіяна VIII (помер у січні 1848); 4B 1844-1847."
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -25106,13 +25176,18 @@ coins:
     kind: kurant
     fraction: '2'
     nominal: 2 Rigsdaler
-    year_label: 1871, 1872
-    year_first: 1871
+    year_label: 1864–1872
+    year_first: 1864
     year_last: 1872
     ruler: Christian IX.
     catalog:
       km: '772.2'
-      hede: 4B
+      # Two die-cutter variants under KM-772.2, Hede-1971 Sieg 4:
+      # 4A 1864, 1868 (Schou 1,1 — modern Sieg 5.1);
+      # 4B 1871-1872 (Schou 1,1 — modern Sieg 5.2) — Bruun anchor.
+      hede:
+        - 4A
+        - 4B
       sieg: '5.2'
       schou: '1'
       dav: '79'
@@ -25132,13 +25207,15 @@ coins:
       - value: 28.893
         source: Hede 4B / danskmoent.dk
     year_ranges:
+      - [1864, 1864]
+      - [1868, 1868]
       - [1871, 1872]
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
-      de: 2 Rigsdaler 1871, 1872 (KM-772.2 Hede-4B) · zwei Bruun-Specimen · letzte Rigsdaler-Prägungen vor der Krone-Reform 1873.
-      en: 2 Rigsdaler 1871, 1872 (KM-772.2 Hede-4B) · two Bruun specimens · final Rigsdaler issues before the 1873 Krone reform.
-      uk: 2 Rigsdaler 1871, 1872 (KM-772.2 Hede-4B) · два зразки Bruun · останні емісії Rigsdaler перед Krone-реформою 1873.
+      de: "2 Rigsdaler 1864-1872 · zwei Stempelvarianten unter KM-772.2 (Hede-1971 Sieg 4): 4A 1864, 1868; 4B 1871, 1872 (Bruun-Specimen — letzte Rigsdaler-Prägungen vor der Krone-Reform 1873)."
+      en: "2 Rigsdaler 1864-1872 · two die variants under KM-772.2 (Hede-1971 Sieg 4): 4A 1864, 1868; 4B 1871, 1872 (Bruun specimens — final Rigsdaler issues before the 1873 Krone reform)."
+      uk: "2 Rigsdaler 1864-1872 · два варіанти штемпеля під KM-772.2 (Hede-1971 Sieg 4): 4A 1864, 1868; 4B 1871, 1872 (Bruun-зразки — останні емісії Rigsdaler перед Krone-реформою 1873)."
     sources:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf

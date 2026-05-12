@@ -214,9 +214,16 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
     """
     if not SEEDS_DIR.exists():
         return []
-    # Pre-compute the suppression set + year map from the curated coins.
+    # Pre-compute the suppression set + year/metal map from the curated coins.
+    # We track the curated entry's metal because Hede refs frequently
+    # appear as «cf. silver companion» citations on gold Portugaloser /
+    # Ducat / Gold-Skilling entries — same Hede ref, different metal,
+    # different coin. The metal-match check below skips suppression
+    # whenever curated.metal differs from seed.metal, preventing those
+    # cf-citations from incorrectly hiding the actual silver Hede-page
+    # entry.
     curated_coins = raw.get("coins") or []
-    suppressed_ids: dict[str, int | None] = {}  # seed_id → curated year_first
+    suppressed_ids: dict[str, dict] = {}  # seed_id → {year, metal, cur_id}
     for cc in curated_coins:
         if not isinstance(cc, dict):
             continue
@@ -233,7 +240,11 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
             if not hn:
                 continue
             seed_id = _hede_seed_id(hv, str(hn))
-            suppressed_ids[seed_id] = cc.get("year_first")
+            suppressed_ids[seed_id] = {
+                "year_first": cc.get("year_first"),
+                "metal": cc.get("metal"),
+                "cur_id": cc.get("id"),
+            }
 
     merged: list[tuple[str, int]] = []
     for source_dir in sorted(p for p in SEEDS_DIR.iterdir() if p.is_dir()):
@@ -278,13 +289,31 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
         kept: list[dict] = []
         suppressed_count = 0
         year_mismatch_count = 0
+        metal_mismatch_count = 0
         for coin in seed_coins:
             cid = coin.get("id") if isinstance(coin, dict) else None
             if cid and cid in suppressed_ids:
+                info = suppressed_ids[cid]
+                cur_year = info["year_first"]
+                cur_metal = info["metal"]
                 seed_year = coin.get("year_first") if isinstance(coin, dict) else None
-                cur_year = suppressed_ids[cid]
+                seed_metal = coin.get("metal") if isinstance(coin, dict) else None
                 seed_label = (coin.get("year_label") or "").strip().lower() if isinstance(coin, dict) else ""
                 is_undated = seed_label.startswith("u.") or seed_label.startswith("u å")
+                # Metal-mismatch guard: when curated and seed disagree
+                # on metal, the Hede ref on the curated entry is almost
+                # certainly a «cf. companion» citation (e.g. a gold
+                # Portugaloser citing the silver Hede sub-type whose
+                # die design it shares). Do NOT suppress the silver
+                # Hede entry — it's a separate coin.
+                if (
+                    cur_metal
+                    and seed_metal
+                    and cur_metal != seed_metal
+                ):
+                    metal_mismatch_count += 1
+                    kept.append(coin)
+                    continue
                 if (
                     seed_year is not None
                     and cur_year is not None
@@ -301,6 +330,12 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
             print(
                 f"   ⚙  {loc_id}: suppressed {suppressed_count} {source_dir.name} "
                 f"seed coin(s) covered by curated Hede refs"
+            )
+        if metal_mismatch_count:
+            print(
+                f"   ℹ  {loc_id}: {metal_mismatch_count} {source_dir.name} seed "
+                f"coin(s) share a curated Hede ref but differ on metal "
+                f"(cf-companion citation pattern; both kept)"
             )
         if year_mismatch_count:
             print(
