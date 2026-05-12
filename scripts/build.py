@@ -151,6 +151,19 @@ def load_german_fuesse_references() -> dict | None:
 SEEDS_DIR = DATA_DIR / "seed"
 
 
+def _hede_seed_id(hede_volume: str, hede_number: str) -> str:
+    """Derive the seed coin id a Hede catalog ref would produce.
+
+    Mirrors the id-template used by
+    `scripts/maintenance/build_hede_denmark_seed.py`:
+    `dk-hede-<volume><number>` (e.g. `c4h` + `115A` → `dk-hede-c4h115a`).
+
+    Both volume and number are lowercased — Hede sub-letters are
+    case-insensitive across catalogs and seed ids are generated lowercase.
+    """
+    return f"dk-hede-{hede_volume.lower().strip()}{hede_number.lower().strip()}"
+
+
 def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
     """Auto-merge `data/seed/<source>/<loc_id>.yml` coin lists into the
     location's `raw['coins']` before schema validation.
@@ -163,8 +176,35 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
     (year cap, mint filter) happens at seed-generation time, not here;
     the build trusts what the file contains.
 
+    Hede-seed auto-suppression
+    --------------------------
+    When a curated location coin already references a Hede catalog
+    entry (catalog.hede + catalog.hede_volume), the corresponding
+    seed coin produced by the Hede generator is REDUNDANT — its data
+    has already been folded into the curated entry's sources. The
+    merge filters those out automatically:
+
+      1. Walk raw['coins'] (the curated location's own coins). For
+         each coin with both `catalog.hede` and `catalog.hede_volume`,
+         compute the seed-id template and add to a covered set.
+      2. When merging the hede seed, skip every seed coin whose id
+         appears in the covered set.
+
+    Edge cases:
+    - A curated coin may carry multiple Hede refs (rare; via list
+      form in catalog.hede). Each entry contributes one suppression.
+    - Year-mismatch safety: if covered-seed and would-be-suppressed
+      seed have `year_first` differing by >10 years, the suppression
+      is skipped and the pair is flagged (likely different sub-type
+      that happens to share a catalog hede; would be an unusual
+      curation, but better to surface than silently drop).
+    - Bruun-seed and other future seed sources don't carry the
+      `dk-hede-` id prefix and are unaffected — only the Hede seed
+      is auto-suppressed against curated Hede refs.
+
     Returns the list of (source_subdir_name, coin_count) tuples for
     each merged file so the caller can print a one-line summary.
+    `coin_count` is the NET count after suppression.
 
     Schema validation happens AFTER the merge (the assembled
     `raw['coins']` is what gets passed to `Location(**raw)`), so id
@@ -174,6 +214,27 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
     """
     if not SEEDS_DIR.exists():
         return []
+    # Pre-compute the suppression set + year map from the curated coins.
+    curated_coins = raw.get("coins") or []
+    suppressed_ids: dict[str, int | None] = {}  # seed_id → curated year_first
+    for cc in curated_coins:
+        if not isinstance(cc, dict):
+            continue
+        cat = cc.get("catalog") or {}
+        if not isinstance(cat, dict):
+            continue
+        hv = (cat.get("hede_volume") or "").strip()
+        hnum = cat.get("hede")
+        if not (hv and hnum):
+            continue
+        # Catalog.hede is typically a scalar string but tolerate list shape
+        hede_nums = hnum if isinstance(hnum, list) else [hnum]
+        for hn in hede_nums:
+            if not hn:
+                continue
+            seed_id = _hede_seed_id(hv, str(hn))
+            suppressed_ids[seed_id] = cc.get("year_first")
+
     merged: list[tuple[str, int]] = []
     for source_dir in sorted(p for p in SEEDS_DIR.iterdir() if p.is_dir()):
         seed_path = source_dir / f"{loc_id}.yml"
@@ -195,8 +256,61 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
             if isinstance(coin, dict):
                 for k in [k for k in coin if k.startswith("_")]:
                     coin.pop(k, None)
-        raw.setdefault("coins", []).extend(seed_coins)
-        merged.append((source_dir.name, len(seed_coins)))
+
+        # Auto-suppress seed coins whose Hede ref is already covered
+        # by a curated entry. Safety check: only suppress when years
+        # plausibly match (within 10 years) — large discrepancy means
+        # the curated entry probably describes a different sub-type
+        # that just happens to share a catalog hede number, and we
+        # want the dup to surface for manual review rather than
+        # silently merge.
+        #
+        # Exception: Hede pages occasionally describe yearless («u. å.»
+        # / «uden år») types whose canonical year is undefined on the
+        # coin itself. Seed entries inherit the parser's reign-range
+        # interpretation of u.år («u. å. (1670–1699)» → year_first
+        # 1670, year_last 1699), while curators attach a specific year
+        # from a Bruun specimen attribution. The year discrepancy is
+        # then an artefact of u.år interpretation, NOT evidence of
+        # different sub-types. When the seed's year_label opens with
+        # «u.» (Danish «uden»), the year-mismatch safety is bypassed
+        # and suppression proceeds.
+        kept: list[dict] = []
+        suppressed_count = 0
+        year_mismatch_count = 0
+        for coin in seed_coins:
+            cid = coin.get("id") if isinstance(coin, dict) else None
+            if cid and cid in suppressed_ids:
+                seed_year = coin.get("year_first") if isinstance(coin, dict) else None
+                cur_year = suppressed_ids[cid]
+                seed_label = (coin.get("year_label") or "").strip().lower() if isinstance(coin, dict) else ""
+                is_undated = seed_label.startswith("u.") or seed_label.startswith("u å")
+                if (
+                    seed_year is not None
+                    and cur_year is not None
+                    and abs(seed_year - cur_year) > 10
+                    and not is_undated
+                ):
+                    year_mismatch_count += 1
+                    kept.append(coin)
+                    continue
+                suppressed_count += 1
+                continue
+            kept.append(coin)
+        if suppressed_count:
+            print(
+                f"   ⚙  {loc_id}: suppressed {suppressed_count} {source_dir.name} "
+                f"seed coin(s) covered by curated Hede refs"
+            )
+        if year_mismatch_count:
+            print(
+                f"   ⚠  {loc_id}: {year_mismatch_count} {source_dir.name} seed "
+                f"coin(s) match a curated Hede ref but with year_first "
+                f">10y apart — kept both for manual review"
+            )
+
+        raw.setdefault("coins", []).extend(kept)
+        merged.append((source_dir.name, len(kept)))
     return merged
 
 
