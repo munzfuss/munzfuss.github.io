@@ -667,20 +667,38 @@ def main() -> int:
             stats["kept"] += 1
         elif "by_hede" in specs:
             by_hede = specs["by_hede"]
-            # Sort by brutto weight ascending so we can pair against
-            # an ordered nominal list («1, 2, 3 og 4 Speciedaler»).
-            sub_items = sorted(
-                by_hede.items(),
-                key=lambda kv: kv[1].get("bruttovægt_g", 0) or 0,
-            )
-            count = len(sub_items)
-            nominal_parts = _split_multi_nominal(d.get("nominal") or "", count)
-            if nominal_parts is None:
-                # Can't split cleanly — skip the whole page for
-                # manual review.
-                stats["skipped_multi_nominal_unparseable"] += 1
-                continue
-            for (sub_num, sub_spec), nominal in zip(sub_items, nominal_parts):
+            # Prefer the parser-emitted per-Hede nominal (one «nominal»
+            # field inside each by_hede spec). When ALL entries carry
+            # a nominal, we don't need the weight-sort multi-nominal
+            # split heuristic — use parser data directly. Falls back to
+            # the legacy split logic when nominals are absent (older
+            # cached parses or pages without a clear descriptive list).
+            entries_with_nominal = [
+                (sub_num, sub_spec, sub_spec.get("nominal"))
+                for sub_num, sub_spec in by_hede.items()
+            ]
+            if all(n for _, _, n in entries_with_nominal):
+                # Direct per-Hede emission with parser-attested nominals.
+                sub_items_paired = [
+                    ((sub_num, sub_spec), nominal)
+                    for sub_num, sub_spec, nominal in entries_with_nominal
+                ]
+            else:
+                # Legacy weight-sort + split fallback for pre-fix cache
+                # entries.
+                sub_items = sorted(
+                    by_hede.items(),
+                    key=lambda kv: kv[1].get("bruttovægt_g", 0) or 0,
+                )
+                count = len(sub_items)
+                nominal_parts = _split_multi_nominal(d.get("nominal") or "", count)
+                if nominal_parts is None:
+                    # Can't split cleanly — skip the whole page for
+                    # manual review.
+                    stats["skipped_multi_nominal_unparseable"] += 1
+                    continue
+                sub_items_paired = list(zip(sub_items, nominal_parts))
+            for (sub_num, sub_spec), nominal in sub_items_paired:
                 if sub_num.lower() not in owned_subs:
                     stats["skipped_cross_reference_subhede"] += 1
                     continue

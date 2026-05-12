@@ -103,6 +103,27 @@ _BRUTTO_RE = re.compile(
     r"Bruttovægt" + _SEP + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
     re.IGNORECASE,
 )
+
+# Known-typo overrides for danskmoent.dk pages that transcribe Hede ↔
+# denomination labels incorrectly (per cross-check against Bruun PDF
+# Stack's Bowers 2024-2026 auction citations + Hede 1971 book where
+# accessible). The map is keyed by basename; value is a permutation
+# applied to `by_hede` after standard extraction — swap the Hede tags
+# but keep the spec content.
+#
+# Example: c5h39 page literally reads:
+#   «1 Dukat\nHede 40, Schou 3, Sieg 107\nBruttovægt: 3,490g»
+#   «2 Dukat\nHede 39, Schou 2, Sieg 106\nBruttovægt: 6,981g»
+# But Bruun lot citations attest the canonical Hede ↔ nominal
+# assignment is:
+#   Hede 39 = 1 Dukat (KM-A433 per Bruun lot 13186, weight 3.49g)
+#   Hede 40 = 2 Dukat (per Bruun lot 17098, weight 6.94g)
+# i.e. the danskmoent page swapped the Hede labels.
+#
+# Each entry: basename → {bad_hede: good_hede, ...}
+_KNOWN_HEDE_TYPOS: dict[str, dict[str, str]] = {
+    "c5h39": {"39": "40", "40": "39"},
+}
 _FINHED_RE = re.compile(
     r"Finhed" + _SEP + _YEAR_PREFIX + r"([0-9][,\.][0-9]+|[01](?![.,]\d{4}))",
     re.IGNORECASE,
@@ -392,6 +413,11 @@ def _extract_specs(text: str, basename: str = "") -> dict:
     # supported: a line containing both a leading denomination AND a
     # Hede ref is treated as a single (label, Hede) pair.
     label_to_hede: dict[str, str] = {}
+    # Reverse mapping for emitting the per-Hede nominal in by_hede output.
+    # Distinct from label_to_hede so we can pick the FIRST-seen label (the
+    # canonical one from description list) rather than parens-stripped /
+    # prefix-only variants.
+    hede_to_nominal: dict[str, str] = {}
     # Descriptive section: until first HR sentinel OR first Bruttovægt
     descriptive_end = bruttos[0].start()
     if _HR_SENTINEL in text:
@@ -434,6 +460,7 @@ def _extract_specs(text: str, basename: str = "") -> dict:
         if hm and current_denom:
             hede_key = hm.group(1).replace(" ", "")
             label_to_hede.setdefault(current_denom, hede_key)
+            hede_to_nominal.setdefault(hede_key, current_denom)
 
     # Also support legacy «label\n- Hede X» pattern explicitly to handle
     # cases where the label is on a previous line and the Hede ref line
@@ -443,7 +470,9 @@ def _extract_specs(text: str, basename: str = "") -> dict:
         descriptive,
     ):
         norm = _normalise_label(desc_m.group(1))
-        label_to_hede.setdefault(norm, desc_m.group(2).replace(" ", ""))
+        hede_key = desc_m.group(2).replace(" ", "")
+        label_to_hede.setdefault(norm, hede_key)
+        hede_to_nominal.setdefault(hede_key, norm)
 
     # Store a parens-stripped «base prefix» for each mapping to help
     # match table-cell labels with slightly different parenthetical
@@ -530,8 +559,16 @@ def _extract_specs(text: str, basename: str = "") -> dict:
 
         if tag:
             key = tag.replace(" ", "")
+            # Attach the descriptive-list nominal to the spec when known.
+            # Lets downstream consumers (seed builder) use the per-Hede
+            # nominal directly instead of guessing via weight-sorted
+            # multi-nominal splits.
+            if key in hede_to_nominal:
+                spec = {**spec, "nominal": hede_to_nominal[key]}
             by_hede[key] = spec
         elif primary and primary not in by_hede:
+            if primary in hede_to_nominal:
+                spec = {**spec, "nominal": hede_to_nominal[primary]}
             by_hede[primary] = spec
         else:
             # No Hede attribution AND primary already covered. Most
@@ -549,6 +586,34 @@ def _extract_specs(text: str, basename: str = "") -> dict:
             if _PERIOD_VARIANT_RE.search(preamble):
                 continue
             by_hede.setdefault(f"unknown_{pos}", spec)
+    # Apply known-typo Hede label permutation for documented danskmoent
+    # transcription errors (see _KNOWN_HEDE_TYPOS docstring above).
+    typo_map = _KNOWN_HEDE_TYPOS.get(basename)
+    if typo_map:
+        corrected: dict[str, dict] = {}
+        for old_key, spec in by_hede.items():
+            new_key = typo_map.get(old_key, old_key)
+            # When swapping, also re-attach the correct nominal label from
+            # hede_to_nominal for the NEW key (the page's nominal label
+            # belonged to the WRONG Hede; after correction the same
+            # nominal still applies but to the corrected Hede number).
+            if new_key != old_key:
+                # Swap nominal too: spec's old «nominal» field reflected
+                # the page label which was on the WRONG Hede; the
+                # corrected coin should carry the correct nominal that
+                # the canonical Bruun citation attests for new_key.
+                # We re-source the nominal from hede_to_nominal[new_key]
+                # via the OTHER pre-existing entry's nominal (since both
+                # entries got swapped, the nominals also swap).
+                pass  # nominal stays attached to spec; after full swap
+                      # of by_hede dict, each spec is now associated
+                      # with the corrected Hede number — and its
+                      # original nominal label (from page) was correct
+                      # FOR THAT SPEC (= same physical coin), so the
+                      # mapping is now coherent.
+            corrected[new_key] = spec
+        by_hede = corrected
+
     # Period-variant consolidation may leave by_hede with exactly one
     # entry (e.g. c4h107 has 2 Bruttovægt blocks for pre-/post-reform
     # but only Hede 107 — second skipped). Downstream consumers (seed
