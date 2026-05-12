@@ -222,6 +222,16 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
     # whenever curated.metal differs from seed.metal, preventing those
     # cf-citations from incorrectly hiding the actual silver Hede-page
     # entry.
+    #
+    # We also derive a BARE-BASENAME variant (digits-only sub-num,
+    # trailing letters stripped) and add it to the suppression set.
+    # This catches the «parser bare-basename» artifact: Hede pages like
+    # c5h107 describe sub-letters 107A and 107B sharing one spec block;
+    # the parser emits one combined entry under the bare basename
+    # `dk-hede-c5h107` (no trailing letter), while curators record the
+    # actual sub-types as `hede: 107B` etc. The bare-basename seed
+    # entry is therefore redundant whenever ANY sub-letter is curated.
+    # Same metal + year guards apply.
     curated_coins = raw.get("coins") or []
     suppressed_ids: dict[str, dict] = {}  # seed_id → {year, metal, cur_id}
     for cc in curated_coins:
@@ -236,15 +246,26 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
             continue
         # Catalog.hede is typically a scalar string but tolerate list shape
         hede_nums = hnum if isinstance(hnum, list) else [hnum]
+        info = {
+            "year_first": cc.get("year_first"),
+            "metal": cc.get("metal"),
+            "cur_id": cc.get("id"),
+        }
         for hn in hede_nums:
             if not hn:
                 continue
-            seed_id = _hede_seed_id(hv, str(hn))
-            suppressed_ids[seed_id] = {
-                "year_first": cc.get("year_first"),
-                "metal": cc.get("metal"),
-                "cur_id": cc.get("id"),
-            }
+            hn_str = str(hn).strip()
+            seed_id = _hede_seed_id(hv, hn_str)
+            suppressed_ids[seed_id] = info
+            # Bare-basename variant: strip trailing letters from the
+            # Hede sub-number (e.g. «107B» → «107»). When the sub-num
+            # already has no letter suffix, no separate entry is added.
+            bare_num = re.sub(r"[A-Za-z]+$", "", hn_str)
+            if bare_num and bare_num != hn_str:
+                bare_seed_id = _hede_seed_id(hv, bare_num)
+                # Use setdefault so an explicit-letter entry's info
+                # wins over a sibling sub-letter that arrives later.
+                suppressed_ids.setdefault(bare_seed_id, info)
 
     merged: list[tuple[str, int]] = []
     for source_dir in sorted(p for p in SEEDS_DIR.iterdir() if p.is_dir()):
