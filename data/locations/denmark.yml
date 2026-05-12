@@ -13117,6 +13117,8 @@ coins:
     fineness:
       - {value: 0.986, source: Numista}
       - {value: 0.98, source: ucoin}
+      - value: 0.979
+        source: Hede 17 / danskmoent.dk
     weight_rough_g:
       - {value: 3.5, source: Numista}
       - {value: 3.49, source: ucoin}
@@ -13140,6 +13142,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17127, p. 82
+      - type: web
+        url: https://www.danskmoent.dk/fr/f5h17.htm
+        ref: Hede 17 / danskmoent.dk
     issuing_entity: danish_realm
   - id: dk-tid-94407
     fuss: reichsdukatenfuss
@@ -17166,6 +17171,8 @@ coins:
     weight_rough_g:
       - value: 3.45
         source: Bruun Part I, lot 1012, p. 46
+      - value: 3.49
+        source: Hede 8B / danskmoent.dk
     issuing_entity: royal_holstein
     mint: Haderslev
     note:
@@ -17182,12 +17189,15 @@ coins:
   #          kronemont_chr_iv phase A (1618-1624) for the silver Krone family;
   #          9_25_thaler phase A (1622-1726) for 1624+ Speciedalers.
   # Multi-spec merges per §9a: KM-15 Hede-74 (3 specs 1603), KM-133.1 (2 specs 1645).
-    fineness: 0.98611111
-    fineness_verified: false
-    verification_note:
-      de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss, Anker 0.9861) auf den kanonischen Stopa-Wert gesetzt; Δ -1.16% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.
-      en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -1.16% against the soll value sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.
-      uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss, якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -1.16% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h8.htm
+        ref: Hede 8B / danskmoent.dk
+    fineness:
+      - value: 0.98611111
+        source: curated (legacy scalar)
+      - value: 0.986
+        source: Hede 8B / danskmoent.dk
+    fineness_verified: true
   - id: km-48-chr-iv-1602
     fuss: 9_thaler
     phase: I
@@ -18089,6 +18099,8 @@ coins:
     weight_rough_g:
       - value: 17.62
         source: Bruun Part II, lot 13082, p. 68
+      - value: 17.649
+        source: Hede 10 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -18099,6 +18111,12 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13082, p. 68
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h10.htm
+        ref: Hede 10 / danskmoent.dk
+    fineness:
+      - value: 0.937
+        source: Hede 10 / danskmoent.dk
   - id: hede-14-chr-iv-1604
     fuss: reichsdukatenfuss
     phase: I
@@ -19082,6 +19100,8 @@ coins:
     weight_rough_g:
       - value: 1.68
         source: Bruun Part III, lot 11213, p. 109
+      - value: 1.745
+        source: Hede 6 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -19092,6 +19112,12 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11213, p. 109
+      - type: web
+        url: https://www.danskmoent.dk/fr/f3h6.htm
+        ref: Hede 6 / danskmoent.dk
+    fineness:
+      - value: 0.979
+        source: Hede 6 / danskmoent.dk
   - id: km-161-fr-iii-1648
     fuss: 9_25_thaler
     phase: I
@@ -20320,6 +20346,8 @@ coins:
     weight_rough_g:
       - value: 5.63
         source: Bruun Part I, lot 1084, p. 130
+      - value: 5.59
+        source: Hede 44 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -20330,6 +20358,12 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1084, p. 130
+      - type: web
+        url: https://www.danskmoent.dk/fr/f3h44.htm
+        ref: Hede 44 / danskmoent.dk
+    fineness:
+      - value: 0.917
+        source: Hede 44 / danskmoent.dk
   - id: km-271-fr-iii-1666
     fuss: kronemont
     phase: I
@@ -20437,6 +20471,8 @@ coins:
     weight_rough_g:
       - value: 6.94
         source: Bruun Part I, lot 1087, p. 133
+      - value: 6.981
+        source: Hede 31 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -20447,12 +20483,15 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1087, p. 133
-    fineness: 0.98611111
-    fineness_verified: false
-    verification_note:
-      de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss, Anker 0.9861) auf den kanonischen Stopa-Wert gesetzt; Δ -0.58% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.
-      en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -0.58% against the soll value sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.
-      uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss, якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -0.58% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
+      - type: web
+        url: https://www.danskmoent.dk/fr/f3h31.htm
+        ref: Hede 31 / danskmoent.dk
+    fineness:
+      - value: 0.98611111
+        source: curated (legacy scalar)
+      - value: 0.979
+        source: Hede 31 / danskmoent.dk
+    fineness_verified: true
   - id: km-294-hede-26a-fr-iii-1667
     fuss: reichsdukatenfuss
     phase: I
@@ -20769,6 +20808,8 @@ coins:
     weight_rough_g:
       - value: 6.95
         source: Bruun Part I, lot 1094, p. 140
+      - value: 6.981
+        source: Hede 38 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -20786,12 +20827,15 @@ coins:
   #          reichsdukatenfuss A for all gold.
   # Multi-spec merges: KM-340.1 Hede-2 Ducat (1672+1674, 3 specs); KM-317 Hede-63A Speciedaler 1671 (2 specs);
   #   KM-415.1 Hede-31A Ducat 1691+1692 (2 specs); KM-415.3 Hede-31C Ducat 1693+1696 (2 specs).
-    fineness: 0.98611111
-    fineness_verified: false
-    verification_note:
-      de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss, Anker 0.9861) auf den kanonischen Stopa-Wert gesetzt; Δ -0.44% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.
-      en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -0.44% against the soll value sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.
-      uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss, якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -0.44% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
+      - type: web
+        url: https://www.danskmoent.dk/fr/f3h38.htm
+        ref: Hede 38 / danskmoent.dk
+    fineness:
+      - value: 0.98611111
+        source: curated (legacy scalar)
+      - value: 0.979
+        source: Hede 38 / danskmoent.dk
+    fineness_verified: true
   - id: km-328-chr-v-1670
     fuss: reichsdukatenfuss
     phase: I
@@ -21549,6 +21593,8 @@ coins:
         source: Bruun Part III, lot 11247, p. 129
       - value: 3.45
         source: Bruun Part II, lot 13185, p. 137
+      - value: 3.49
+        source: Hede 31A / danskmoent.dk
     year_ranges:
       - [1691, 1692]
     issuing_entity: danish_realm
@@ -21564,12 +21610,15 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13185, p. 137
-    fineness: 0.98611111
-    fineness_verified: false
-    verification_note:
-      de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss, Anker 0.9861) auf den kanonischen Stopa-Wert gesetzt; Δ -0.87% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.
-      en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -0.87% against the soll value sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.
-      uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss, якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -0.87% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
+      - type: web
+        url: https://www.danskmoent.dk/chr/c5h31.htm
+        ref: Hede 31A / danskmoent.dk
+    fineness:
+      - value: 0.98611111
+        source: curated (legacy scalar)
+      - value: 0.979
+        source: Hede 31A / danskmoent.dk
+    fineness_verified: true
   - id: hede-94-chr-v-1691
     fuss: 9_25_thaler
     phase: I
@@ -21593,6 +21642,8 @@ coins:
     weight_rough_g:
       - value: 22.37
         source: Bruun Part II, lot 13184, p. 136
+      - value: 22.272
+        source: Hede 94 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -21603,6 +21654,12 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13184, p. 136
+      - type: web
+        url: https://www.danskmoent.dk/chr/c5h94.htm
+        ref: Hede 94 / danskmoent.dk
+    fineness:
+      - value: 0.671
+        source: Hede 94 / danskmoent.dk
   - id: km-420-chr-v-1692
     fuss: reichsdukatenfuss
     phase: I
@@ -21717,6 +21774,8 @@ coins:
     weight_rough_g:
       - value: 6.90
         source: Bruun Part IV, lot 17097, p. 66
+      - value: 6.981
+        source: Hede 38 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -21727,12 +21786,15 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17097, p. 66
-    fineness: 0.98611111
-    fineness_verified: false
-    verification_note:
-      de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss, Anker 0.9861) auf den kanonischen Stopa-Wert gesetzt; Δ -1.16% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.
-      en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -1.16% against the soll value sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.
-      uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss, якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -1.16% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
+      - type: web
+        url: https://www.danskmoent.dk/chr/c5h38.htm
+        ref: Hede 38 / danskmoent.dk
+    fineness:
+      - value: 0.98611111
+        source: curated (legacy scalar)
+      - value: 0.979
+        source: Hede 38 / danskmoent.dk
+    fineness_verified: true
   - id: hede-40-chr-v-1693
     fuss: reichsdukatenfuss
     phase: I
@@ -21757,6 +21819,8 @@ coins:
     weight_rough_g:
       - value: 6.94
         source: Bruun Part IV, lot 17098, p. 67
+      - value: 3.49
+        source: Hede 40 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -21767,12 +21831,15 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17098, p. 67
-    fineness: 0.98611111
-    fineness_verified: false
-    verification_note:
-      de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss, Anker 0.9861) auf den kanonischen Stopa-Wert gesetzt; Δ -0.58% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.
-      en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -0.58% against the soll value sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.
-      uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss, якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -0.58% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
+      - type: web
+        url: https://www.danskmoent.dk/chr/c5h39.htm
+        ref: Hede 40 / danskmoent.dk
+    fineness:
+      - value: 0.98611111
+        source: curated (legacy scalar)
+      - value: 0.979
+        source: Hede 40 / danskmoent.dk
+    fineness_verified: true
   - id: km-a433-chr-v-1693
     fuss: reichsdukatenfuss
     phase: I
@@ -21838,6 +21905,8 @@ coins:
     weight_rough_g:
       - value: 9.03
         source: Bruun Part III, lot 11249, p. 130
+      - value: 8.994
+        source: Hede 108 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -21848,6 +21917,12 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11249, p. 130
+      - type: web
+        url: https://www.danskmoent.dk/chr/c5h108.htm
+        ref: Hede 108 / danskmoent.dk
+    fineness:
+      - value: 0.833
+        source: Hede 108 / danskmoent.dk
   - id: km-424-2-chr-v-1693
     fuss: 9_25_thaler
     phase: I
@@ -22222,6 +22297,8 @@ coins:
     weight_rough_g:
       - value: 17.85
         source: Bruun Part III, lot 11255, p. 132
+      - value: 17.988
+        source: Hede 99A / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -22232,12 +22309,15 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11255, p. 132
-    fineness: 0.833333
-    fineness_verified: false
-    verification_note:
-      de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) auf den kanonischen Müntzfuß-Wert (kronemont_fine, Anker 0.8333) gesetzt; Δ -0.73% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz.
-      en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value (kronemont_fine, anchor 0.8333); Δ -0.73% against the soll value sits within the ±2 % specimen-tolerance envelope.
-      uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (kronemont_fine, якірна проба 0.8333); Δ -0.73% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
+      - type: web
+        url: https://www.danskmoent.dk/chr/c5h99.htm
+        ref: Hede 99A / danskmoent.dk
+    fineness:
+      - value: 0.833333
+        source: curated (legacy scalar)
+      - value: 0.833
+        source: Hede 99A / danskmoent.dk
+    fineness_verified: true
   - id: km-455-chr-v-1699
     fuss: reichsdukatenfuss
     phase: I
@@ -22263,6 +22343,8 @@ coins:
     weight_rough_g:
       - value: 3.46
         source: Bruun Part IV, lot 17108, p. 72
+      - value: 3.49
+        source: Hede 57 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -22273,12 +22355,15 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17108, p. 72
-    fineness: 0.98611111
-    fineness_verified: false
-    verification_note:
-      de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss, Anker 0.9861) auf den kanonischen Stopa-Wert gesetzt; Δ -0.87% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.
-      en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -0.87% against the soll value sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.
-      uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss, якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -0.87% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
+      - type: web
+        url: https://www.danskmoent.dk/chr/c5h57.htm
+        ref: Hede 57 / danskmoent.dk
+    fineness:
+      - value: 0.98611111
+        source: curated (legacy scalar)
+      - value: 0.979
+        source: Hede 57 / danskmoent.dk
+    fineness_verified: true
   - id: km-463-chr-v-1699
     fuss: reichsdukatenfuss
     phase: I
@@ -22603,6 +22688,8 @@ coins:
     weight_rough_g:
       - value: 6.93
         source: Bruun Part I, lot 1130, p. 184
+      - value: 6.981
+        source: Hede 13 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -22613,12 +22700,15 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1130, p. 184
-    fineness: 0.98611111
-    fineness_verified: false
-    verification_note:
-      de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss, Anker 0.9861) auf den kanonischen Stopa-Wert gesetzt; Δ -0.73% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.
-      en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -0.73% against the soll value sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.
-      uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss, якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -0.73% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
+      - type: web
+        url: https://www.danskmoent.dk/fr/f4h13.htm
+        ref: Hede 13 / danskmoent.dk
+    fineness:
+      - value: 0.98611111
+        source: curated (legacy scalar)
+      - value: 0.979
+        source: Hede 13 / danskmoent.dk
+    fineness_verified: true
   - id: km-486-fr-iv-1708
     fuss: reichsdukatenfuss
     phase: I
@@ -22860,6 +22950,8 @@ coins:
     weight_rough_g:
       - value: 5.20
         source: Bruun Part III, lot 11270, p. 139
+      - value: 5.197
+        source: Hede 46 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -22870,6 +22962,12 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11270, p. 139
+      - type: web
+        url: https://www.danskmoent.dk/fr/f4h46.htm
+        ref: Hede 46 / danskmoent.dk
+    fineness:
+      - value: 0.625
+        source: Hede 46 / danskmoent.dk
   - id: schou-10b-fr-iv-1713
     fuss: 9_25_thaler
     phase: I
@@ -23248,6 +23346,8 @@ coins:
     weight_rough_g:
       - value: 29.03
         source: Bruun Part I, lot 1145, p. 202
+      - value: 28.893
+        source: Hede 25 / danskmoent.dk
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
@@ -23258,6 +23358,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1145, p. 202
+      - type: web
+        url: https://www.danskmoent.dk/fr/f5h25.htm
+        ref: Hede 25 / danskmoent.dk
     fineness: 0.875
     fineness_verified: false
     verification_note:
