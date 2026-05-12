@@ -7,6 +7,91 @@
 
 ## Open
 
+### Q. Pull Hede / Numista commentary material for coin notes  *(opened 2026-05-13)*
+
+The cached sources (`scripts/cache/hede/*.json` `description` + `raw_text`
+fields; `scripts/cache/numista/*.json` `comments` + `obverse` /
+`reverse` `description`) carry **substantial narrative context** about
+the coins — mint-master identities, design motifs, historical
+circumstances (Borgerskabets Mønt 1629, Hebræermønt 1644-48,
+Pumphosenkrone 1665, etc.), reform-date attestations, literature
+pointers (NNUM articles, Wilcke, Aagaard, Harck) — that is currently
+under-used in our `coin.note` prose.
+
+Sweep tasks:
+
+* For every curated coin in `denmark.yml` + `schleswig_holstein.yml`
+  whose `catalog.hede` is set, open the corresponding
+  `scripts/cache/hede/<volume><number>.json`'s `raw_text` and look
+  for narrative content beyond bare specs: pages frequently embed
+  one-paragraph historical notes between the sub-letter list and
+  the Bruttovægt block.
+* Same pass for Numista: `comments` field on cached entries (where
+  populated) often holds mint-master + design-variant detail and
+  cross-pointers to danskmoent. Worth a per-entry «is there more in
+  here?» check.
+* Hede references commonly cite specific articles — `Aagaard og
+  Märcher 2016 NNUM 4`, `Wilcke 1923 NFM VI`, `Harck 2008 Numismatisk
+  Rapport 97` — those references should also flow into our
+  per-location `-references.yml` bibliography files with inline
+  `<sup>` citations from the coin notes, per CLAUDE.md §5.
+* Numista entries occasionally carry **mintage figures** in the
+  comments (curators noted «63,564 daler» for Schwabe 1628 etc.).
+  These are valuable economic-context data; should land in note as
+  a citation per §0 (no invention) — never inferred.
+
+Scope is large (1000+ coins across DK + SH). Probably best done in
+ruler-by-ruler passes (Christian IV first, then Frederik III, etc.)
+when there's no higher-priority work blocking.
+
+### P. Denmark issuing-entity audit — DK vs DK+ separation  *(opened 2026-05-13)*
+
+Two crown-level issuing entities currently live side-by-side in the
+denmark.yml taxonomy:
+
+* **`danish_realm` (DK)** — «Royal Danish Mint at Copenhagen
+  (Christiansborg, then Den Kongelige Mønt from 1739). Realm-wide
+  issues for the whole Danish monarchy including the duchies.»
+  (348 coins use this entity.)
+* **`gesamtstaat` (DK+)** — «Unified Danish Crown + duchies
+  (1773-1864). Mints at Altona, Copenhagen, Glückstadt strike for
+  the whole realm. Covers the 1813 Rigsbankdaler reform and the
+  1854 Rigsmønt reform.» (34 coins.)
+
+Both descriptions explicitly cover «realm-wide issues including the
+duchies». The semantic distinction is **temporal**: pre-1773 (DK,
+pre-Helstaten administrative split) vs post-1773 (DK+, Helstaten
+unified-state phase with multi-mint reform-era coinage).
+
+Separate territorial entities already cover the geographical
+dimension: `royal_holstein` (Kgl. Holstein-side, Glückstadt /
+Altona), `gottorp_duchy`, `sonderburg_duchy`, `norburg_plon_duchy`,
+`glucksburg_duchy`, `rantzau_county`, `schauenburg_pinneberg` for
+the Schleswig-Holstein side; `danish_norway` (NO) for the Norwegian
+realm. So DK / DK+ are crown-level only.
+
+**Audit questions:**
+
+1. Is the 1773 Helstaten administrative milestone strong enough to
+   warrant its own entity, or could it be a `helstaten: true` flag
+   on coins under a single `danish_realm` entity? The 1813
+   Rigsbankdaler reform is arguably the bigger watershed — Helstaten
+   only became fully unified-coinage state then.
+2. Are the **current 34 DK+ assignments** consistent with a strict
+   1773 cutoff? Edge cases: Altona-mint coins 1771 (KM-616 series)
+   — those are pre-Helstaten but Altona-side. Currently DK or DK+?
+3. Some Helstaten-era coins might be **under-assigned** to DK
+   instead of DK+ (curator drift). A consistency pass would help.
+4. **Recommendation** (my read): keep the split — 1773 is a
+   defensible historical milestone, and tilting one entity per
+   administrative phase IS the project's pattern (e.g.
+   `provisional_govt` for 1848-1849 transition). But document the
+   cutoff rule explicitly (entity description currently says
+   «1773-1864»; that's already the boundary). Then run a consistency
+   sweep to make sure existing assignments follow it.
+
+Defer to the same audit window as §N / §O when bandwidth opens.
+
 ### N. ucoin↔Krause KM-attribution conflicts (Denmark)  *(opened 2026-05-12)*
 
 Recurring pattern surfaced during the dedup-merge audit of denmark.yml:
