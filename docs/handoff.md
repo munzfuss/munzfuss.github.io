@@ -20,8 +20,9 @@
 **E1 NO-KM dedup audit on `data/locations/denmark.yml`** — methodology
 is per-case, with explicit «за / проти merge» analysis, source links
 provided up-front so the user can verify visually before any merge.
-Cases 1-8 of 46 done. Next: **case 9 — c4h Hede 79A/B/C/D** (2 Skilling
-Christian IV 1603-1618, billon — 4 mint-master sub-letters).
+Cases 1-9 of 46 done (case 9 = c4h79A/B/C/D folded into KM-16.1 + KM-16.2
+as two parallel merges, multi-source `weight_rough_g`/`fineness`
+preserved per §9a). Next: **case 10 — c4h84 [A B]**.
 
 The list of 46 cases is generated dynamically by the audit script
 (see «Helper queries» section below); the per-case order isn't fixed
@@ -29,7 +30,18 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
 
 ## Pending verifications awaiting user input
 
-1. **Case 8 retrospective rigor check** (in flight) — user pushed back
+1. **Seed audit snapshot** (post-case-9 cleanup) — 605 total Denmark
+   Hede-seed entries; 195 auto-suppressed, 9 metal-mismatch guard, 6
+   weight-mismatch guard, 1 year-mismatch guard, 394 wholly uncurated.
+   Of the 16 guard-survivors, 3 appear to be **false-positive weight-
+   guards triggered by outlier values in curated `weight_rough_g[]`
+   lists** (km-25 [.49], km-128 [8.428], hede-47 [6.93]); 1 metal-
+   mismatch (c5h128 → km-79 SH) may be a billon/silver labelling drift
+   that should have caught the fineness-similarity escape hatch but
+   didn't. Worth a focused turn before continuing per-case dedup.
+   Audit script: `scripts/oneoff/audit_seed_survivors.py` (gitignored).
+
+2. **Case 8 retrospective rigor check** (in flight) — user pushed back
    that case 8 (Hede 59 → KM-100 / KM-135) skipped the per-case «за /
    проти» discipline. I provided all KM-100 source links; awaiting
    user's verdict on whether the «Numista 109973 Bust type I =
