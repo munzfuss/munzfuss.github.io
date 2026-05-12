@@ -95,6 +95,7 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
 | §R | Backfill canonical fineness on `fineness: null` coins (Cat-1 fuesse) |
 | §S | Add page numbers to long-PDF / book refs (sweep pattern) |
 | §T | Keyword search across coins on a location page |
+| §U | Per-specimen Δ-computation needs explicit weight+fineness lineage |
 
 All entries carry their own design sketches in `docs/TODO.md`;
 this list exists only to anchor «what's open» on a quick read.

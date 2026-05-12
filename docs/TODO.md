@@ -7,6 +7,95 @@
 
 ## Open
 
+### U. Per-specimen Δ-computation needs explicit weight+fineness lineage  *(opened 2026-05-13)*
+
+When a coin entry carries **multi-source measurement fields** (weight
+from one source, fineness from another, often more than one value per
+field), the rendered Δ-from-Soll cell shows a single number — but the
+HTML doesn't disclose **which `(weight, fineness)` tuple** went into
+that number, nor which source backs each input.
+
+**The failure mode.** A Bruun lot publishes a specimen weight but no
+fineness. Numista publishes a fineness but no weight. Hede publishes
+both as Soll values. The build picks weight from Bruun and fineness
+from Hede (or Numista, or the canonical fuss anchor) and computes
+Δ = (w · f − Soll) / Soll. The reader sees the single Δ number and
+the tooltip showing the individual weight/fineness spans — but cannot
+trace which combination produced the Δ. If a future audit notices
+the Δ is off, there's no way to know without re-running the build
+whether the issue is the weight choice, the fineness choice, or the
+pairing logic.
+
+**Example (case 9 c4h Hede 79 → KM-DK# 16.1):**
+  - weight: 2.088 g (Hede Soll) + 1.78 g (ucoin observed) — Δ = −15%
+  - fineness: 0.296 (Hede) + 0.298 (ucoin) — Δ < 1%
+  - Soll for KM-16.1 in 9-Thaler-Fuß: 0.487 g fein → Soll weight at
+    canonical fineness ≈ 1.645 g (if .296) or matches Hede's
+    11.432 dlr / mark.
+
+Which pair did the build use? Hede×Hede gives Soll-match (effectively
+Δ ≈ 0). Bruun×Hede gives the −15% reading. ucoin×ucoin gives the
+−15% reading. The rendered cell shows one of those; the reader has
+no way to know.
+
+**Design sketch for the fix:**
+
+  1. **Build-time tagging of the chosen pair**. When `compute.py`
+     picks the «active» measurement for Δ-computation (whatever the
+     selection rule — first-source, source-priority, verified-wins,
+     etc.), record both inputs *and* their source labels into the
+     computed entry: `{w_value, w_source, f_value, f_source}`.
+  2. **Render the pair in the Δ tooltip.** Replace the single Δ
+     number's hover-tooltip («Soll-Feingewicht = X g; specimen = Y g»)
+     with an explicit triple-line block:
+     ```
+     Δ basis:
+       Gewicht  W g  ← <source1>
+       Probe    F   ← <source2>
+       gegen Soll-Feingewicht  S g (Fuß-Anker)
+     ```
+  3. **Audit-script support.** Extend `scripts/audit.py` to flag
+     entries where the active `(w, f)` pair sits at the worst-Δ
+     extreme of all possible pairings; that surfaces «we picked the
+     pessimistic combination» as a quality signal.
+
+**Open design questions:**
+
+  - **Selection rule for «active» (w, f)** — currently appears to be
+    «first in list» / source-order-of-write. Is that what we want?
+    Alternatives: (a) verified-wins (mirrors §4 merge precedence:
+    pick the entry with the strongest provenance for each field),
+    (b) Soll-match-wins (pick the pair closest to canonical Soll —
+    optimistic), (c) reader-toggleable (a dropdown «show Δ vs
+    Hede / Bruun / ucoin» that re-computes on the fly).
+  - **What to do when only one input has a single source.** No
+    ambiguity — render normally with the one source.
+  - **Cross-coin consistency.** Within one fuss/phase table, the
+    same selection rule should apply to all rows so the Δ column is
+    comparable. A reader-toggleable mode would need to apply
+    site-wide, not per row.
+
+**Why this matters.** Δ is the column that links data to standard —
+it's the numismatic claim the artefact makes. A Δ without provenance
+is a number the reader can't independently verify. The opaque-pairing
+problem silently degrades the artefact's scholarly weight (§0a
+«reader voice»: the rendered page makes a claim it can't show the
+sources for).
+
+**Out-of-scope (for first cut):**
+
+  - Per-specimen Δ (one row, multiple Δ values for each pair) —
+    visually overwhelming, defer.
+  - Re-pairing across multiple specimens with different mintmark
+    sub-variants (Hede 79A vs 79B might in theory have different
+    Soll if their target marks differ) — for c4h79 they share a
+    spec so this is moot, but the general case is a §8a problem.
+
+Defer concrete implementation until current dedup-audit pass closes —
+the audit will likely surface several more cases where this lineage
+gap matters, and we'll have a better sample to inform the selection
+rule.
+
 ### T. Keyword search across coins on a location page  *(opened 2026-05-13)*
 
 Long location pages (denmark.yml renders ~1100 coins; schleswig_holstein
