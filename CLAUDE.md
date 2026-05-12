@@ -3,6 +3,8 @@
 > **Read this file first on every session.** It contains non-negotiable principles and conventions developed over many research sessions. Supporting files: `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`, `docs/CONVENTIONS.md`, `docs/GLOSSARY.md`.
 >
 > **Also read `docs/TODO.md` at session start.** It tracks open audit items the user has flagged across sessions (continuous-year-range verification, etc.). Surface relevant TODO entries to the user when their current task touches on those topics, so we don't drift past them silently.
+>
+> **And read `docs/handoff.md` at session start.** Short-term session state — current focus, pending verifications awaiting user input, recently-changed surfaces, local-commit state. Distinct from `docs/TODO.md` (long-term audit items with full design context) and this file (stable conventions). Update at task / chapter boundaries; prune entries that no longer help the next session pick up cold.
 
 ## Mission
 
