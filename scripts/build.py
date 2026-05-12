@@ -184,6 +184,17 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
         seed_coins = seed_doc.get("coins") or []
         if not seed_coins:
             continue
+        # Strip generator-internal metadata fields that the seed
+        # toolchain uses but the Coin schema doesn't know about. The
+        # Coin schema is `extra="forbid"`, so unknown keys must be
+        # dropped before merge or validation fails. Currently only
+        # `_curation_holds` (see scripts/maintenance/build_*_seed.py),
+        # but any future underscore-prefixed seed-meta field follows
+        # the same convention.
+        for coin in seed_coins:
+            if isinstance(coin, dict):
+                for k in [k for k in coin if k.startswith("_")]:
+                    coin.pop(k, None)
         raw.setdefault("coins", []).extend(seed_coins)
         merged.append((source_dir.name, len(seed_coins)))
     return merged

@@ -27,9 +27,53 @@ whose `year_first` is after the cap are dropped. Stored in the
 seed file's header for traceability so the next reader knows what
 scope the file represents without re-running.
 
+Curation-preserving merge
+-------------------------
+
+The seed file is generator-output, but it accumulates HUMAN CURATION:
+every coin in the existing seed has at least `fuss` + `phase` set
+to a real classification (not `seed_unsorted` / `hede`), most also
+have `fraction` set, some have non-default `issuing_entity` or
+`kind`, and a handful have manually-customised nominal / catalog /
+note / sources fields.
+
+A naive rewrite would obliterate that curation every time the
+generator runs. To avoid that, the generator now MERGES its fresh
+output against the existing on-disk seed (when one is present):
+
+  * `CURATED_FIELDS` (fuss, phase, fraction, issuing_entity, kind,
+    note, mint_verified, verified) — if the existing entry has a
+    non-default value, that value is preserved; the fresh value is
+    discarded.
+  * `DEEP_MERGE_FIELDS` (catalog) — keys from the existing entry are
+    preserved, keys from fresh are added when not already present.
+    Lets curation add Bruun citation fields (km, dav, bruun_*) on
+    top of parser-derived Hede / Schou / Sieg defaults.
+  * Per-entry escape hatch: `_curation_holds: [field, ...]` — a
+    private meta-field on a coin entry listing additional field
+    names whose values should be preserved across regen. For the
+    rare cases where curation also customised a field outside
+    CURATED_FIELDS (e.g. cleaned up the nominal, switched to a
+    multi-source weight list).
+  * Everything else flows from fresh — so parser fixes, weight
+    refinements, and added sub-types all reach the seed
+    automatically without manual re-curation.
+  * New ids (in fresh but not existing) — added with default
+    `seed_unsorted` / `hede` (signals pending curation).
+  * Removed ids (in existing but not in fresh) — kept verbatim and
+    flagged as «orphan curated» in the run summary. The user may
+    decide to drop them manually; the generator never drops a
+    curated entry on its own (parser instability could otherwise
+    silently delete shipped data).
+
+`--no-merge` runs the legacy wholesale-rewrite behaviour (used by
+the dry-run / verification path; never recommended for the canonical
+seed file).
+
 Run:
     python scripts/maintenance/build_hede_denmark_seed.py
     python scripts/maintenance/build_hede_denmark_seed.py --year-to 1900
+    python scripts/maintenance/build_hede_denmark_seed.py --no-merge  # wholesale
 """
 from __future__ import annotations
 
@@ -52,6 +96,54 @@ from lib.paths import HEDE_CACHE, PROJECT_ROOT as PROJECT  # noqa: E402
 
 OUT_DIR = PROJECT / "data" / "seed" / "hede"
 OUT_FILE = OUT_DIR / "denmark.yml"
+
+
+# Fields whose existing-entry value is ALWAYS preserved across regen
+# when present (i.e. when the existing value differs from what the
+# fresh generator would emit). These represent human curation
+# decisions that the parser/cache cannot reconstruct:
+#   * fuss — which Müntzfuß this coin belongs to (default
+#     `seed_unsorted` signals pending curation; any other value is
+#     a curated decision)
+#   * phase — phase-within-fuss label (default `hede`; curated to
+#     I, II, III, pre-I, IV, …)
+#   * fraction — canonical Müntzfuß fraction this coin represents
+#   * issuing_entity — danish_realm / royal_holstein / gesamtstaat /
+#     provisional_govt — curatorial decision about political
+#     attribution that depends on context the parser doesn't see
+#   * kind — kurant / scheide / tarif / gedenk — economic-category
+#     classification per CLAUDE.md §6
+#   * note — historical / methodological annotations
+#   * mint_verified / verified — flags flipped after manual
+#     verification work; never auto-reset
+CURATED_FIELDS = frozenset({
+    "fuss",
+    "phase",
+    "fraction",
+    "issuing_entity",
+    "kind",
+    "note",
+    "mint_verified",
+    "verified",
+})
+
+# Fields whose VALUE is a dict that is DEEP-MERGED rather than
+# replaced. Keys present in the existing entry are preserved;
+# keys present in fresh but missing in existing are added.
+# `catalog` is the only such field in practice — curation often
+# adds Bruun citation keys (km, dav, bruun_collection_id,
+# bruun_part, bruun_lot_no, bruun_page) on top of the Hede /
+# Schou / Sieg keys the parser supplies.
+DEEP_MERGE_FIELDS = frozenset({
+    "catalog",
+})
+
+# Per-entry meta-field name. When set on a coin entry, lists
+# additional field names whose existing-entry value should be
+# preserved across regen even though they're not in CURATED_FIELDS.
+# Stripped from the output entry (private to the merge logic;
+# survives across regen because the merge writes it back).
+_CURATION_HOLDS_KEY = "_curation_holds"
 
 # Mints accepted into the Denmark seed. Hede 1971 («Danmarks og
 # Norges mønter») by definition only catalogues Danish-Norwegian
@@ -515,6 +607,140 @@ def _build_coin(
     return cm
 
 
+def _load_existing_seed() -> tuple[CommentedMap | None, dict[str, CommentedMap]]:
+    """Load the on-disk seed (if present) and index its coins by id.
+
+    Returns (root_doc, coins_by_id). Root_doc is None when no seed
+    exists yet (fresh project / first run). Coins_by_id is a dict
+    keyed by `coin.id` whose values are the ruamel CommentedMap
+    instances, preserving comments and key order for the entries
+    we'll carry through unchanged.
+    """
+    if not OUT_FILE.exists():
+        return None, {}
+    yaml = YAML(typ="rt")
+    yaml.preserve_quotes = True
+    doc = yaml.load(OUT_FILE.read_text(encoding="utf-8"))
+    if doc is None or "coins" not in doc:
+        return None, {}
+    by_id: dict[str, CommentedMap] = {}
+    for c in doc["coins"]:
+        cid = c.get("id")
+        if cid:
+            by_id[cid] = c
+    return doc, by_id
+
+
+def _merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
+    """Merge `fresh` (regenerator output) into `existing` (the curated
+    on-disk entry), per the rules documented in the module docstring.
+
+    The merge preserves the curated entry's identity (same id, same
+    container) and updates source-derived fields from fresh while
+    holding curated fields stable.
+    """
+    holds = set(existing.get(_CURATION_HOLDS_KEY) or [])
+    # CURATED_FIELDS are always preserved if present in existing; absence
+    # means the field simply hasn't been curated yet, so taking fresh's
+    # default value is the right move (typically a sentinel like
+    # `seed_unsorted` / `hede`).
+    # `_curation_holds` is stronger: it freezes the existing entry's
+    # STATE for that field — present-value stays, absence stays absent.
+    # Use this for the rare case where curation REMOVED a default field
+    # (e.g. f7h3 drops verification_note after manual verification) or
+    # REPLACED a parser-output (e.g. c4h52 cleans `2 Speciedaler 1603`
+    # to `2 Speciedaler`).
+    fresh_keys = set(fresh.keys())
+    existing_keys = set(existing.keys())
+
+    for key in fresh_keys:
+        if key == _CURATION_HOLDS_KEY:
+            continue  # never flows from fresh; survives via existing
+        if key in holds:
+            # Frozen field: existing state wins (present-or-absent).
+            # When the field is absent from existing, we explicitly do
+            # NOT inherit it from fresh — the curator removed it on
+            # purpose.
+            continue
+        if key in CURATED_FIELDS:
+            # Soft-curated field: existing wins if present, otherwise
+            # inherit the fresh default (which signals "needs curation"
+            # via the seed_unsorted/hede sentinels).
+            if key in existing_keys:
+                continue
+            existing[key] = fresh[key]
+            continue
+        if key in DEEP_MERGE_FIELDS:
+            # Deep-merge dict: existing keys win, fresh keys fill gaps.
+            ex_v = existing.get(key)
+            fr_v = fresh.get(key)
+            if isinstance(ex_v, dict) and isinstance(fr_v, dict):
+                for sub_k, sub_v in fr_v.items():
+                    if sub_k not in ex_v:
+                        ex_v[sub_k] = sub_v
+            elif ex_v is None and fr_v is not None:
+                existing[key] = fr_v
+            continue
+        # Default: fresh wins.
+        existing[key] = fresh[key]
+
+    # Drop existing-only keys ONLY if they're neither curated nor in
+    # the per-entry holds set. (E.g. if the fresh output stopped
+    # emitting some field that wasn't curated, the regen should also
+    # drop it from the merged entry — keeps the seed honest about
+    # what the parser currently produces.)
+    drop_candidates = existing_keys - fresh_keys
+    for key in drop_candidates:
+        if key == _CURATION_HOLDS_KEY:
+            continue
+        if key in CURATED_FIELDS or key in holds:
+            continue
+        del existing[key]
+
+    return existing
+
+
+def _merge_seed(coins_fresh: list[CommentedMap]) -> tuple[
+    list[CommentedMap], dict[str, int]
+]:
+    """Merge freshly-generated coins against the existing on-disk
+    seed. Returns (merged_coins, merge_stats).
+
+    Merge stats keys:
+      merged_existing — count of existing entries we merged fresh into
+      added_new       — count of fresh entries with no existing match
+      orphan_curated  — count of existing entries with no fresh match
+                        (curation may have shipped an entry the parser
+                        can't currently produce; we keep them and warn)
+    """
+    _, existing_by_id = _load_existing_seed()
+    fresh_by_id: dict[str, CommentedMap] = {c["id"]: c for c in coins_fresh}
+
+    stats = {"merged_existing": 0, "added_new": 0, "orphan_curated": 0}
+    out: list[CommentedMap] = []
+
+    # 1. For every fresh entry, either merge into existing or keep as-is.
+    for cid, fresh in fresh_by_id.items():
+        if cid in existing_by_id:
+            merged = _merge_one(existing_by_id[cid], fresh)
+            out.append(merged)
+            stats["merged_existing"] += 1
+        else:
+            out.append(fresh)
+            stats["added_new"] += 1
+
+    # 2. Orphan curated entries — present in existing but not fresh.
+    #    Keep them verbatim; the user may have curated an entry the
+    #    parser doesn't currently produce, and silent drop would be a
+    #    data-loss event.
+    orphan_ids = set(existing_by_id) - set(fresh_by_id)
+    for cid in sorted(orphan_ids):
+        out.append(existing_by_id[cid])
+        stats["orphan_curated"] += 1
+
+    return out, stats
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument(
@@ -534,9 +760,21 @@ def main() -> int:
             "or any later standard documented on the page)."
         ),
     )
+    ap.add_argument(
+        "--no-merge", action="store_true",
+        help=(
+            "Skip the curation-preserving merge against the existing "
+            "on-disk seed and overwrite wholesale with fresh output. "
+            "Destructive — only use for verification / dry-run paths "
+            "where you also pass a non-default output location. The "
+            "default behaviour merges (preserves curated fields, adds "
+            "new entries, keeps orphaned curated entries)."
+        ),
+    )
     args = ap.parse_args()
     year_to = args.year_to
     year_from = args.year_from
+    merge = not args.no_merge
 
     parsed_files = sorted(p for p in HEDE_CACHE.glob("*.json") if not p.name.startswith("_"))
     if not parsed_files:
@@ -750,6 +988,13 @@ def main() -> int:
             stats["skipped_no_specs"] += 1
             continue
 
+    # Curation-preserving merge (default) — fold fresh output into
+    # existing on-disk seed entries, preserving CURATED_FIELDS and
+    # deep-merging DEEP_MERGE_FIELDS. See module docstring for rules.
+    merge_stats: dict[str, int] | None = None
+    if merge:
+        coins, merge_stats = _merge_seed(coins)
+
     # Sort by year_first then by hede_volume+hede for stability.
     def _sort_key(c: CommentedMap) -> tuple:
         return (
@@ -785,6 +1030,19 @@ def main() -> int:
         "# location id is appended to the location's coins[] before the\n"
         "# Location schema validates the result.\n"
         "#\n"
+        "# Curation-preserving regeneration:\n"
+        "#   Re-running the generator is SAFE. The merge step folds\n"
+        "#   fresh parser output against the existing on-disk seed,\n"
+        "#   preserving curated fields (fuss, phase, fraction,\n"
+        "#   issuing_entity, kind, note, verified flags) and deep-\n"
+        "#   merging the catalog dict (Bruun citation keys added by\n"
+        "#   curation stay; Hede/Schou/Sieg keys flow from parser).\n"
+        "#   For per-entry edge cases (custom nominal, multi-source\n"
+        "#   weight list, etc.) add `_curation_holds: [field, …]` to\n"
+        "#   the entry — listed fields are preserved across regen.\n"
+        "#   New ids from cache appear with fuss=seed_unsorted +\n"
+        "#   phase=hede as a signal for pending curation.\n"
+        "#\n"
         "# Scoping happens HERE, not in the build: only entries with\n"
         f"# {year_from} <= year_first <= {year_to} (project scope per\n"
         "# CLAUDE.md; lower bound = Reichsmünzordnung 1566, upper bound\n"
@@ -793,10 +1051,12 @@ def main() -> int:
         "# scope, re-run the generator with different --year-from /\n"
         "# --year-to values.\n"
         "#\n"
-        "# Conventions per the existing seed_unsorted block in\n"
-        "# data/locations/denmark.yml:\n"
-        "#   * fuss=seed_unsorted, phase=A (catch-all bucket)\n"
-        "#   * all *_verified flags false\n"
+        "# Conventions for FRESH entries (uncurated):\n"
+        "#   * fuss=seed_unsorted, phase=hede (signals pending curation)\n"
+        "#   * all *_verified flags false (except the two parser-attested\n"
+        "#     ones: fineness_verified / weight_rough_verified, which are\n"
+        "#     flipped to true when the Hede page directly publishes\n"
+        "#     those values)\n"
         "#   * source: type=literature pointing to danskmoent.dk URL\n"
         "#\n"
         f"# Total coins: {len(coins)}\n"
@@ -813,6 +1073,18 @@ def main() -> int:
     print("Stats:")
     for k, v in stats.items():
         print(f"  {k:40s} {v:5d}")
+    if merge_stats is not None:
+        print()
+        print("Merge stats (curation-preserving):")
+        for k, v in merge_stats.items():
+            print(f"  {k:40s} {v:5d}")
+        if merge_stats.get("orphan_curated", 0):
+            print(
+                f"  ⚠ orphan_curated > 0: {merge_stats['orphan_curated']} "
+                f"existing entries have no fresh-regen match. They were "
+                f"KEPT verbatim (the parser may have temporarily lost a "
+                f"page); review with `git diff` if the count is unexpected."
+            )
     print()
     print(f"Top skipped non-DK mints (first 15):")
     for m, c in sorted(skipped_mints.items(), key=lambda kv: -kv[1])[:15]:
