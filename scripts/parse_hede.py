@@ -83,6 +83,22 @@ _YEAR_PREFIX = r"(?:\s*\d{4}\s*:\s*)?"
 # a handful of pages use a semicolon (`Finhed; 0,875` on f4h34) or
 # drop the separator entirely (`Finhed 0,917` on f3h46).
 _SEP = r"[:;\s]+"
+_PERIOD_VARIANT_RE = re.compile(
+    # Phrases that indicate the FOLLOWING Bruttovægt is a period
+    # variant of the preceding one (i.e. the same coin's standard
+    # after a weight/fineness reform), NOT a sibling Hede entry.
+    # Danish wording from danskmoent.dk pages:
+    #   «Ved forordning af [date] nedsat til:»   (reduced by decree)
+    #   «Senere nedsat til:»                     (later reduced)
+    #   «Udmøntningsformler:» + DD. month YYYY:  (coinage formulae list,
+    #                                              date-headed period blocks)
+    r"(?:Ved\s+forordning[^:]{0,80}\s+nedsat\s+til|"
+    r"Senere\s+nedsat\s+til|"
+    r"Udm[øo]ntningsformler|"
+    r"\d{1,2}\.\s*(?:januar|februar|marts|april|maj|juni|juli|august|"
+    r"september|oktober|november|december)\s+\d{4})\s*[:.]?",
+    re.IGNORECASE,
+)
 _BRUTTO_RE = re.compile(
     r"Bruttovægt" + _SEP + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
     re.IGNORECASE,
@@ -319,13 +335,25 @@ def _extract_specs(text: str, basename: str = "") -> dict:
     entry pages like f3h62 covering Hede 61, 62AB, 63, 64), return
     `by_hede` dict keyed by the Hede sub-tag preceding each block.
 
-    Edge-case: pages like f3h68.htm cross-reference sister-types
+    Edge-case 1: pages like f3h68.htm cross-reference sister-types
     (Hede 61, 62AB, 63) AND repeat the page's own primary spec at
     the bottom WITHOUT a preceding Hede tag. The unmarked block is
     attributed to the page's primary Hede number derived from the
     basename (e.g. `f3h68` → primary number `68`), so the index
     correctly resolves the canonical `f3h68` lookup to its own
     spec rather than the cross-reference.
+
+    Edge-case 2 (multi-coin TABLE layout — c4h46, c4h58, c5h39, etc.):
+    pages of the «1 og 2 X»-style document multiple denominations
+    in a top-of-page description list, then repeat each label with
+    its spec block inside a TABLE below. Crude «last Hede tag in
+    400-char lookback» picks the WRONG sibling's tag because the
+    table-cell spec block has no Hede tag of its own, and the wider
+    lookback sees both siblings' tags. Fix: pre-extract a
+    «denomination-label → Hede» map from the description-list lines
+    (which have the «<label> - Hede X» format), then for each
+    table-cell spec block match its immediately preceding denomination
+    label against the map.
     """
     bruttos = list(_BRUTTO_RE.finditer(text))
     if not bruttos:
@@ -341,31 +369,185 @@ def _extract_specs(text: str, basename: str = "") -> dict:
     if bm:
         primary = bm.group(1)
 
+    # Pre-pass: build a «denomination-label → Hede» map from the
+    # descriptive section of the page (before the first HR sentinel,
+    # or before the first spec block, whichever comes first). Multiple
+    # patterns are supported because danskmoent's descriptive lists
+    # are heterogeneous:
+    #
+    #   A. dash-form (c4h46):
+    #        «1 Speciedaler 1597\n- Hede 46, Schou 2, Sieg 112»
+    #
+    #   B. parenthetical-form (c4h58):
+    #        «3 Speciedaler\n1624 (R), 1627 (Unik), 1628 (Unik).\n
+    #         (Hede 57, Schou hhv. 3-4, 4 og 9, Sieg 125)»
+    #
+    #   C. inline-form (c5h42):
+    #        «2 Dukat 1694, 1696. (Hede 42, Schou hhv. 3-4 og 3, Sieg 69)»
+    #
+    # Strategy: scan the descriptive section line by line. Track the
+    # most recent line that looks like a denomination label (e.g.
+    # «1 Dukat», «3 Speciedaler»). When a Hede ref is encountered,
+    # associate it with the current denomination. Inline-form is also
+    # supported: a line containing both a leading denomination AND a
+    # Hede ref is treated as a single (label, Hede) pair.
+    label_to_hede: dict[str, str] = {}
+    # Descriptive section: until first HR sentinel OR first Bruttovægt
+    descriptive_end = bruttos[0].start()
+    if _HR_SENTINEL in text:
+        hr_pos = text.find(_HR_SENTINEL)
+        if 0 < hr_pos < descriptive_end:
+            descriptive_end = hr_pos
+    descriptive = text[:descriptive_end]
+    # Denomination label regex: line starts with «N <Denomination>»
+    # (N = integer or fraction; Denomination = capitalised word).
+    # Optionally trailed by a single 4-digit year (e.g. «1 Speciedaler
+    # 1603»). The year is INCLUDED in the captured label when present
+    # so table-cell labels that repeat the year can match the
+    # descriptive-list labels exactly.
+    DENOM_LABEL_RE = re.compile(
+        r"^\s*(\d+(?:/\d+)?(?:\s*[½¼¾⅓⅔⅙⅛])?|[½¼¾⅓⅔⅙⅛])"
+        r"\s+([A-Za-zæøåöäüßẞ][\w]*(?:\s+[A-Za-zæøåöäüßẞ][\w]*)*?)"
+        r"(\s+\d{4}(?:[,–\-]\d{4})?)?"  # optional trailing year(s)
+        r"(?=\s*$|\s*[,.;:]|\s*\(|\s*\-\s*Hede)",
+        re.MULTILINE,
+    )
+    HEDE_REF_RE = re.compile(
+        r"\bHede\s+(\d+[A-Za-z]*(?:[\-/,]\s*\d+[A-Za-z]*)*)",
+    )
+
+    def _normalise_label(s: str) -> str:
+        return re.sub(r"\s+", " ", s.lower()).strip()
+
+    current_denom: str | None = None
+    for line in descriptive.split("\n"):
+        line_s = line.strip()
+        if not line_s:
+            continue
+        # Try denomination label at start of line
+        m = DENOM_LABEL_RE.match(line_s)
+        if m:
+            denom_label = (m.group(1) + " " + m.group(2) + (m.group(3) or "")).strip()
+            current_denom = _normalise_label(denom_label)
+        # Find Hede ref anywhere in this line
+        hm = HEDE_REF_RE.search(line_s)
+        if hm and current_denom:
+            hede_key = hm.group(1).replace(" ", "")
+            label_to_hede.setdefault(current_denom, hede_key)
+
+    # Also support legacy «label\n- Hede X» pattern explicitly to handle
+    # cases where the label is on a previous line and the Hede ref line
+    # starts with «-» (avoiding the DENOM_LABEL_RE/inline-only path).
+    for desc_m in re.finditer(
+        r"(?<=\n)([^\n]+?)\s*\n\s*-\s*Hede\s+(\d+[A-Za-z]*(?:[\-/,]\s*\d+[A-Za-z]*)*)",
+        descriptive,
+    ):
+        norm = _normalise_label(desc_m.group(1))
+        label_to_hede.setdefault(norm, desc_m.group(2).replace(" ", ""))
+
+    # Store a parens-stripped «base prefix» for each mapping to help
+    # match table-cell labels with slightly different parenthetical
+    # year qualifiers (e.g. «2 Speciedaler 1597 (R), 1600 (RR)» in
+    # description vs «2 Speciedaler 1597, 1600» in table).
+    for orig in list(label_to_hede.keys()):
+        base = re.sub(r"\s*\([^)]+\)", "", orig).strip()
+        if base != orig:
+            label_to_hede.setdefault(base, label_to_hede[orig])
+
+    def _label_to_hede(label_text: str) -> str | None:
+        """Best-effort match of a table-cell label against the
+        description-list mapping. Tries exact match, then base-prefix
+        match, then leading-N-words match."""
+        norm = re.sub(r"\s+", " ", label_text.lower()).strip()
+        if norm in label_to_hede:
+            return label_to_hede[norm]
+        # Try base (parens stripped)
+        base = re.sub(r"\s*\([^)]+\)", "", norm).strip()
+        if base in label_to_hede:
+            return label_to_hede[base]
+        # Try sub-prefix match (label_to_hede key starts with the
+        # table-cell label or vice versa). Useful when years differ
+        # slightly between description list and table cell, or when
+        # the description list omits the year present in the table.
+        # Match by leading-token shared prefix; require the prefix to
+        # uniquely identify one Hede in the map.
+        for k, v in label_to_hede.items():
+            k_tokens = k.split()
+            n_tokens = norm.split()
+            common = 0
+            for a, b in zip(k_tokens, n_tokens):
+                if a == b: common += 1
+                else: break
+            # ≥2 tokens match (multiplier + denomination, e.g. «1 speciedaler»)
+            # is enough as long as the prefix uniquely picks ONE Hede number.
+            if common >= 2:
+                prefix = " ".join(n_tokens[:common])
+                matches = {vv for kk, vv in label_to_hede.items()
+                           if " ".join(kk.split()[:common]) == prefix}
+                if len(matches) == 1:
+                    return v
+        return None
+
     by_hede: dict[str, dict] = {}
     for m in bruttos:
         pos = m.start()
-        # Look back up to 400 chars OR until the most recent HR
-        # sentinel — whichever comes first. <HR> marks a section
-        # boundary on danskmoent.dk pages, so a Hede tag from the
-        # previous section must NOT be inherited by an unmarked spec
-        # block in a new section. f3h68.htm hits exactly this case:
-        # three cross-reference specs (Hede 61 / 62AB / 63) inside a
-        # TABLE, then an <HR>, then the page's own primary spec block
-        # whose Hede number («68») is only encoded in the basename.
-        window_start = max(0, pos - 400)
-        window = text[window_start: pos]
-        last_hr = window.rfind(_HR_SENTINEL)
-        if last_hr >= 0:
-            window = window[last_hr + len(_HR_SENTINEL):]
-        tag_m = re.findall(r"\bHede\s+(\d+[A-Za-z]*(?:[\-/,]\s*\d+[A-Za-z]*)*)", window)
-        tag = tag_m[-1] if tag_m else None
         spec = _spec_from_around(text, pos)
+        tag = None
+
+        # Edge-case 2: look back ~150 chars for an immediate denomination
+        # label (the line right before the Bruttovægt). Match against the
+        # pre-built description-list map.
+        label_window_start = max(0, pos - 150)
+        label_window = text[label_window_start: pos]
+        # Look at the last non-empty line before the Bruttovægt
+        lines = [l.strip() for l in label_window.split("\n") if l.strip()]
+        for candidate in reversed(lines):
+            # Skip lines that look like spec fields, parenthetical comments,
+            # or HR sentinels
+            if (candidate.startswith("Bruttovægt") or candidate.startswith("Finhed")
+                or candidate.startswith("Finvægt") or candidate.startswith("Marken")
+                or candidate.startswith(_HR_SENTINEL) or candidate.startswith("-")):
+                continue
+            matched = _label_to_hede(candidate)
+            if matched:
+                tag = matched
+                break
+            # If candidate isn't in label map, try only the FIRST
+            # candidate (immediate parent line) — don't keep climbing
+            break
+
+        # Edge-case 1 fallback: original «look-back for Hede tag» heuristic.
+        # Apply only if denomination-label lookup didn't resolve.
+        if not tag:
+            window_start = max(0, pos - 400)
+            window = text[window_start: pos]
+            last_hr = window.rfind(_HR_SENTINEL)
+            if last_hr >= 0:
+                window = window[last_hr + len(_HR_SENTINEL):]
+            tag_m = re.findall(
+                r"\bHede\s+(\d+[A-Za-z]*(?:[\-/,]\s*\d+[A-Za-z]*)*)", window)
+            tag = tag_m[-1] if tag_m else None
+
         if tag:
             key = tag.replace(" ", "")
             by_hede[key] = spec
         elif primary and primary not in by_hede:
             by_hede[primary] = spec
         else:
+            # No Hede attribution AND primary already covered. Most
+            # often this is a period-variant continuation of the
+            # preceding spec block — e.g. «Ved forordning af 5. april
+            # 1618 nedsat til: Bruttovægt: 2,206g» on c4h100. The
+            # original implementation stored these under «unknown_N»
+            # keys, which polluted downstream consumers with phantom
+            # Hede entries. Detect period-variant trigger phrases
+            # between the previous Bruttovægt and this one; if found,
+            # skip this spec (consumer keeps the first one). Otherwise
+            # fall back to «unknown_N» so the data isn't silently lost.
+            window_start = max(0, pos - 400)
+            preamble = text[window_start: pos]
+            if _PERIOD_VARIANT_RE.search(preamble):
+                continue
             by_hede.setdefault(f"unknown_{pos}", spec)
     return {"by_hede": by_hede}
 
