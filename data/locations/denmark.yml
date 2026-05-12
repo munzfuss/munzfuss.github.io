@@ -18470,7 +18470,7 @@ coins:
       de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss, Anker 0.9861) auf den kanonischen Stopa-Wert gesetzt; Δ +0.39% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.
       en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ +0.39% against the soll value sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.
       uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss, якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ +0.39% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
-  - id: km-73-hede-26a-chr-iv-1619
+  - id: km-73-chr-iv-1619
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
@@ -18482,10 +18482,17 @@ coins:
     ruler: Christian IV.
     catalog:
       km: '73'
-      hede: 26A
+      # Two mint-master sub-letters folded under KM-73 (Numista 420365
+      # also groups both): 26A trekløver Mzz (Nicolaus Schwabe), Schou 4,
+      # Sieg 133.1; 26B korslagte køller Mzz (Johan Post), Schou 3,
+      # Sieg 133.2. Bruttovægt/Finhed shared per danskmoent c4h26.
+      hede:
+        - 26A
+        - 26B
       sieg: '133.1'
       schou: '4'
       fr: '55'
+      numista: '420365'
       bruun_collection_id: '5069'
       bruun_part: I
       bruun_lot_no: 1026
@@ -18494,52 +18501,32 @@ coins:
     metal: gold
     weight_rough_g:
       - value: 2.95
-        source: Bruun Part I, lot 1026, p. 63
+        source: "Bruun Part I, lot 1026, p. 63 (Hede 26A specimen 5069, Schwabe)"
+      - value: 2.68
+        source: "Bruun Part II, lot 13094, p. 75 (Hede 26B specimen 5110, Post)"
+      - value: 2.97
+        source: "Numista 420365"
+      - value: 2.973
+        source: "Hede c4h26 (danskmoent.dk)"
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
-      de: Gold Krone 1619 (Hede-26A) · Münzmeister Nicolaus Schwabe · von drei registrierten Exemplaren UNIKAT in Privatbesitz · Bruun-Specimen NGC AU-58.
-      en: Gold Krone 1619 (Hede-26A) · mintmaster Nicolaus Schwabe · of three registered examples UNIQUE in private hands · Bruun specimen NGC AU-58.
-      uk: Gold Krone 1619 (Hede-26A) · монетмейстер Nicolaus Schwabe · з трьох зареєстрованих зразків УНІКАЛЬНИЙ у приватному володінні · Bruun-зразок NGC AU-58.
+      de: "Gold Krone 1619 · zwei Münzmeister-Varianten nach Hede 26 unter KM-73 zusammengefaßt (Numista 420365 ebenso): 26A trekløver-Mzz (Münzmeister Nicolaus Schwabe), Schou 4, Sieg 133.1 — von drei registrierten Exemplaren UNIKAT in Privatbesitz; 26B korslagte køller-Mzz (Münzmeister Johan Post), Schou 3, Sieg 133.2 — vermutlich 3 in Privatbesitz · Bruun-Specimen für 26A (NGC AU-58) und 26B (NGC AU-50) · Literatur: Wilcke 1923, NFM VI s.277-283."
+      en: "Gold Krone 1619 · two mint-master variants per Hede 26 folded under KM-73 (Numista 420365 also groups both): 26A trekløver privy mark (mintmaster Nicolaus Schwabe), Schou 4, Sieg 133.1 — of three registered examples UNIQUE in private hands; 26B crossed-clubs privy mark (mintmaster Johan Post), Schou 3, Sieg 133.2 — 3 believed in private hands · Bruun specimens for both 26A (NGC AU-58) and 26B (NGC AU-50) · Literature: Wilcke 1923, NFM VI pp.277-283."
+      uk: "Gold Krone 1619 · два варіанти монетмейстера за Hede 26 об'єднані під KM-73 (Numista 420365 також групує обидва): 26A trekløver Mzz (монетмейстер Nicolaus Schwabe), Schou 4, Sieg 133.1 — з трьох зареєстрованих УНІКАЛЬНИЙ у приватному володінні; 26B korslagte køller Mzz (монетмейстер Johan Post), Schou 3, Sieg 133.2 — 3 ймовірно у приватних колекціях · Bruun-зразки обох: 26A (NGC AU-58) та 26B (NGC AU-50) · Литература: Wilcke 1923, NFM VI с.277-283."
     sources:
+      - type: numista
+        url: https://en.numista.com/420365
+        ref: "Numista 420365 (KM-73 Gold Krone Christian IV, both 26A+26B)"
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1026, p. 63
-  - id: km-73-hede-26b-chr-iv-1619
-    fuss: reichsdukatenfuss
-    phase: I
-    kind: kurant
-    fraction: '1'
-    nominal: Gold Krone
-    year_label: '1619'
-    year_first: 1619
-    year_last: 1619
-    ruler: Christian IV.
-    catalog:
-      km: '73'
-      hede: 26B
-      sieg: '133.2'
-      schou: '3'
-      fr: '55'
-      bruun_collection_id: '5110'
-      bruun_part: II
-      bruun_lot_no: 13094
-      bruun_page: 75
-      hede_volume: c4h
-    metal: gold
-    weight_rough_g:
-      - value: 2.68
-        source: Bruun Part II, lot 13094, p. 75
-    issuing_entity: danish_realm
-    mint: Kopenhagen
-    note:
-      de: Gold Krone 1619 (Hede-26B, Privy Mark gekreuzte Keulen) · Münzmeister Johan Post · außerordentlich selten, davon vermutlich 3 in Privatbesitz · Bruun-Specimen NGC AU-50.
-      en: Gold Krone 1619 (Hede-26B, privy mark crossed clubs) · mintmaster Johan Post · exceedingly rare, of which 3 are believed to be in private hands · Bruun specimen NGC AU-50.
-      uk: Gold Krone 1619 (Hede-26B, знак схрещених булав) · монетмейстер Johan Post · надзвичайно рідкісний, з яких 3 ймовірно в приватних колекціях · Bruun-зразок NGC AU-50.
-    sources:
+        ref: "Bruun Part I, lot 1026, p. 63 (Hede 26A, Schwabe)"
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13094, p. 75
+        ref: "Bruun Part II, lot 13094, p. 75 (Hede 26B, Post)"
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h26.htm
+        ref: "Hede c4h26 (danskmoent.dk)"
   - id: km-74-1-hede-25b-chr-iv-1619
     fuss: reichsdukatenfuss
     phase: I
@@ -20714,7 +20701,7 @@ coins:
       - value: 0.979
         source: Hede 31 / danskmoent.dk
     fineness_verified: true
-  - id: km-294-hede-26a-fr-iii-1667
+  - id: km-294-fr-iii-1667
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
@@ -20726,74 +20713,62 @@ coins:
     ruler: Frederik III.
     catalog:
       km: '294'
-      hede: 26A
+      # Two Hede sub-letters folded under KM-294 (Numista 568145 also
+      # groups under bare Hede 26): same mint-master and engraver, sub-
+      # letters distinguish privy-mark presence and an overdate die:
+      # 26A Mzz kløver (RR), Schou 6, Sieg 124.1; 26B without Mzz (RRR)
+      # struck with an overdate 1667/6 die, Schou 7, Sieg 124.2 (Fr-
+      # catalogue lists only the 26A under Fr-104; 26B is Fr-unlisted).
+      hede:
+        - 26A
+        - 26B
       sieg: '124.1'
       schou: '6'
       fr: '104'
+      numista: '568145'
       bruun_collection_id: '6574'
       bruun_part: I
       bruun_lot_no: 1089
       bruun_page: 135
       others:
-        - "Aagaard-53.1"
+        - "Fr-unlisted for 26B (cf. 104)"
+        - "Aagaard-52.1 / 53.1"
       hede_volume: f3h
     metal: gold
     weight_rough_g:
       - value: 3.48
-        source: Bruun Part I, lot 1089, p. 135
+        source: "Bruun Part I, lot 1089, p. 135 (Hede 26A specimen 6574, Mzz kløver)"
+      - value: 3.41
+        source: "Bruun Part IV, lot 17076, p. 53 (Hede 26B specimen 6575, ohne Mzz, 1667/6 overdate)"
+      - value: 3.5
+        source: "Numista 568145"
+      - value: 3.49
+        source: "Hede f3h26 (danskmoent.dk)"
     issuing_entity: danish_realm
     mint: Kopenhagen
     note:
-      de: Ducat 1667 (Hede-26A, Privy Mark Klee) · Münzmeister Frederik Caspar Herbach · Stempelschneider Jeremias Hercules · ÄUSSERST SELTEN · Bruun-Specimen NGC MS-61.
-      en: Ducat 1667 (Hede-26A, privy mark clover) · mintmaster Frederik Caspar Herbach · engraver Jeremias Hercules · EXTREMELY RARE · Bruun specimen NGC MS-61.
-      uk: Ducat 1667 (Hede-26A, знак конюшина) · монетмейстер Frederik Caspar Herbach · різьбар Jeremias Hercules · НАДЗВИЧАЙНО РІДКІСНИЙ · Bruun-зразок NGC MS-61.
+      de: "1 Ducat 1667 · Münzmeister Frederik Caspar Herbach · Stempelschneider Jeremias Hercules · zwei Sub-Varianten nach Hede 26 unter KM-294 zusammengefaßt (Numista 568145 ebenso, unter bare Hede 26): 26A mit Privy Mark Klee (RR, Schou 6, Sieg 124.1) — ÄUSSERST SELTEN; 26B ohne Privy Mark + Überprägung 1667/6 (RRR, Schou 7, Sieg 124.2) — vermutlich UNIKAT in Privatbesitz · Bruun-Specimen für 26A (NGC MS-61) und 26B (NGC MS-63)."
+      en: "1 Ducat 1667 · mintmaster Frederik Caspar Herbach · engraver Jeremias Hercules · two sub-variants per Hede 26 folded under KM-294 (Numista 568145 also groups under bare Hede 26): 26A with privy mark clover (RR, Schou 6, Sieg 124.1) — EXTREMELY RARE; 26B without privy mark + overdate 1667/6 (RRR, Schou 7, Sieg 124.2) — apparently UNIQUE in private hands · Bruun specimens for both 26A (NGC MS-61) and 26B (NGC MS-63)."
+      uk: "1 Ducat 1667 · монетмейстер Frederik Caspar Herbach · різьбар Jeremias Hercules · два підваріанти за Hede 26 об'єднані під KM-294 (Numista 568145 також групує під bare Hede 26): 26A зі знаком конюшини (RR, Schou 6, Sieg 124.1) — НАДЗВИЧАЙНО РІДКІСНИЙ; 26B без знаку + overdate 1667/6 (RRR, Schou 7, Sieg 124.2) — ймовірно УНІКАЛЬНИЙ у приватному володінні · Bruun-зразки обох: 26A (NGC MS-61) та 26B (NGC MS-63)."
     sources:
+      - type: numista
+        url: https://en.numista.com/568145
+        ref: "Numista 568145 (KM-294 1 Ducat Frederik III 1667)"
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1089, p. 135
+        ref: "Bruun Part I, lot 1089, p. 135 (Hede 26A, Mzz kløver)"
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: "Bruun Part IV, lot 17076, p. 53 (Hede 26B, ohne Mzz, 1667/6 overdate)"
+      - type: web
+        url: https://www.danskmoent.dk/fr/f3h26.htm
+        ref: "Hede f3h26 (danskmoent.dk)"
     fineness: 0.98611111
     fineness_verified: false
     verification_note:
       de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss, Anker 0.9861) auf den kanonischen Stopa-Wert gesetzt; Δ -0.30% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.
       en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -0.30% against the soll value sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.
       uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss, якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -0.30% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
-  - id: km-294-hede-26b-fr-iii-1667
-    fuss: reichsdukatenfuss
-    phase: I
-    kind: kurant
-    fraction: '1'
-    nominal: 1 Ducat
-    year_label: 1667/6
-    year_first: 1667
-    year_last: 1667
-    ruler: Frederik III.
-    catalog:
-      km: '294'
-      hede: 26B
-      sieg: '124.2'
-      schou: '7'
-      bruun_collection_id: '6575'
-      bruun_part: IV
-      bruun_lot_no: 17076
-      bruun_page: 53
-      others:
-        - "Fr-unlisted (cf. 104)"
-        - "Aagaard-52.1"
-      hede_volume: f3h
-    metal: gold
-    weight_rough_g:
-      - value: 3.41
-        source: Bruun Part IV, lot 17076, p. 53
-    issuing_entity: danish_realm
-    mint: Kopenhagen
-    note:
-      de: Ducat 1667/6 (Hede-26B, Untervariante zu Hede-26A) · Münzmeister Frederik Caspar Herbach · Stempelschneider Jeremias Hercules · vermutlich UNIKAT in Privatbesitz · Bruun-Specimen NGC MS-63.
-      en: Ducat 1667/6 (Hede-26B, sub-variant of Hede-26A) · mintmaster Frederik Caspar Herbach · engraver Jeremias Hercules · apparently UNIQUE in private ownership · Bruun specimen NGC MS-63.
-      uk: Ducat 1667/6 (Hede-26B, підваріант Hede-26A) · монетмейстер Frederik Caspar Herbach · різьбар Jeremias Hercules · мабуть УНІКАЛЬНИЙ у приватному володінні · Bruun-зразок NGC MS-63.
-    sources:
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17076, p. 53
   - id: km-292-fr-iii-1667
     fuss: 9_25_thaler
     phase: I
