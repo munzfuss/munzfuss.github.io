@@ -614,6 +614,38 @@ def _extract_specs(text: str, basename: str = "") -> dict:
             corrected[new_key] = spec
         by_hede = corrected
 
+    # Page-shape override for the f3h68 hybrid pattern. This is the
+    # only page in the cache where the descriptive section enumerates
+    # 4 page-own sub-types (Hede 68A, 68B, 69, 70 — 1/2/3 Speciedaler
+    # 1665-1667) while the spec TABLE re-uses cross-reference labels
+    # (Hede 61 = 1 Spd, 62AB = 2 Spd, 63 = 63 — sibling types from
+    # the canonical f3h62 page at the SAME 9¼-Speciedaler standard).
+    # The bottom block (after second <HR>) duplicates the 1-Speciedaler
+    # spec without a label, so basename fallback captures it as «68» —
+    # a Hede number that doesn't exist as a coin type.
+    #
+    # Standard extraction therefore produces by_hede = {61, 62AB, 63,
+    # 68} — all four keys are bogus relative to what the page actually
+    # documents. The override discards them and rebuilds by_hede with
+    # the 4 page-own sub-types, mapping each to the spec for its
+    # denomination (Hede 68A and 68B both share the 1-Speciedaler
+    # spec; 69 takes the 2-Spd spec; 70 takes the 3-Spd spec).
+    if basename == "f3h68" and set(by_hede.keys()) >= {"61", "62AB", "63"}:
+        spec_1spd = by_hede.get("61") or by_hede.get("68")
+        spec_2spd = by_hede.get("62AB")
+        spec_3spd = by_hede.get("63")
+        if spec_1spd and spec_2spd and spec_3spd:
+            def _with_nominal(spec: dict, nom: str) -> dict:
+                out = {k: v for k, v in spec.items() if k != "nominal"}
+                out["nominal"] = nom
+                return out
+            by_hede = {
+                "68A": _with_nominal(spec_1spd, "1 speciedaler"),
+                "68B": _with_nominal(spec_1spd, "1 speciedaler"),
+                "69":  _with_nominal(spec_2spd, "2 speciedaler"),
+                "70":  _with_nominal(spec_3spd, "3 speciedaler"),
+            }
+
     # Period-variant consolidation may leave by_hede with exactly one
     # entry (e.g. c4h107 has 2 Bruttovægt blocks for pre-/post-reform
     # but only Hede 107 — second skipped). Downstream consumers (seed
@@ -1116,10 +1148,15 @@ def main() -> int:
         parsed += 1
         parsed_files.append(json_path)
 
-    # Aggregate index
+    # Aggregate index. `sort_keys=True` keeps the on-disk output
+    # deterministic across runs — without it, dict insertion order
+    # (which varies with filesystem listing / re-parse subsets) would
+    # rewrite most of the file on every run even when the actual
+    # entries are unchanged. Stable order makes regenerated indices
+    # produce minimal diffs in the submodule.
     index = _build_index(parsed_files)
     (CACHE_DIR / "_parsed_index.json").write_text(
-        json.dumps(index, ensure_ascii=False, indent=2),
+        json.dumps(index, ensure_ascii=False, indent=2, sort_keys=True),
         encoding="utf-8",
     )
     print(f"Parsed: {parsed}")
