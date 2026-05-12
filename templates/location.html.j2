@@ -41,7 +41,9 @@
         'silver': {'de': 'Silber', 'en': 'Silver', 'uk': 'Срібло'},
         'gold':   {'de': 'Gold',   'en': 'Gold',   'uk': 'Золото'},
         'billon': {'de': 'Billon', 'en': 'Billon', 'uk': 'Білон'},
-        'copper': {'de': 'Kupfer', 'en': 'Copper', 'uk': 'Мідь'}
+        'copper': {'de': 'Kupfer', 'en': 'Copper', 'uk': 'Мідь'},
+        'lead':   {'de': 'Blei',   'en': 'Lead',   'uk': 'Свинець'},
+        'bronze': {'de': 'Bronze', 'en': 'Bronze', 'uk': 'Бронза'}
       } -%}
       {{ metals[coin.raw.metal][lang] }}
       {%- if not coin.raw.metal_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}

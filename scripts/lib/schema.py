@@ -335,7 +335,7 @@ class Coin(_StrictBase):
     mint_verified: bool = True
     mintmaster: str | None = None
     catalog: CatalogRefs = Field(default_factory=CatalogRefs)
-    metal: Literal["silver", "gold", "billon", "copper"] | None = None
+    metal: Literal["silver", "gold", "billon", "copper", "lead", "bronze"] | None = None
     metal_verified: bool = Field(
         True,
         description=(
