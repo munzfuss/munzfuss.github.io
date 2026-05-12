@@ -7,6 +7,105 @@
 
 ## Open
 
+### T. Keyword search across coins on a location page  *(opened 2026-05-13)*
+
+Long location pages (denmark.yml renders ~1100 coins; schleswig_holstein
+~320; growing) lack a primary discovery affordance for the coin table —
+the reader has to scroll through fuesse / phases or use the browser's
+native Ctrl-F (which matches blindly without coin-row awareness). A
+purpose-built keyword search would let the reader jump directly to
+any coin matching a query like «1 Speciedaler 1727», «KM 81», «Hede 115»,
+«Schwabe», «Glückstadt», «Kroneskilling», etc.
+
+Design sketch (to be refined):
+
+**Search fields per coin** — pre-indexed at build time, fields concatenated
+into one searchable haystack per row:
+
+  - `nominal` (period-form, current rendering form)
+  - `year_label`, `year_first`, `year_last`, all years in `year_ranges`
+  - `ruler` (full canonical form + abbreviated variants — «Christian IV.»
+    matches «c4», «Chr.IV», «Chr. IV», etc.)
+  - `mint` (city name + alternative spellings — «Kopenhagen» / «København»
+    / «Copenhagen»)
+  - `catalog.km` (all KMs in the list; both DK and SH register tokens
+    if cross-register), `catalog.hede` (all sub-letters), `catalog.sieg`,
+    `catalog.schou`, `catalog.fr`, `catalog.dav`, `catalog.numista`,
+    `catalog.others`, `catalog.bruun_*`
+  - `fuss` + `phase` ids (lets queries like «kronemont_chr_iv» find all
+    entries in that phase)
+  - `note` text (per-language — search index respects the page's
+    rendered language)
+  - mint-master names / Mzz privy marks if mentioned in the note
+    («Schwabe», «trekløver», «korslagte køller»)
+
+**Index format** — JSON blob embedded near `</body>` (lean: one entry
+per coin with id + concatenated lowercased haystack + 3-letter prefixes
+for fuzzy first-letter matching). Or a JSON sidecar loaded lazily on
+search-button click for slimmer initial page bytes. ~1100 coins × ~200
+chars each ≈ 220 KB raw, ~50 KB gzipped — acceptable inline.
+
+**UI options:**
+
+  (a) **In-page filter**: top-of-table search input that hides non-
+      matching rows + highlights matches; closing the search restores
+      full table. Mobile-friendly. The natural surface for the
+      «I have a specific coin in mind» case.
+  (b) **Anchored search panel**: floating button (bottom-right, near
+      the back-to-top button) that opens a modal with the input +
+      result list (id, nominal, year). Click jumps to the row +
+      highlights. Better for navigation-style queries («show me all
+      coins matching X»).
+  (c) **Both** — keyboard shortcut `/` (or `Ctrl-K`) opens the modal,
+      while the table itself can also be filtered inline.
+
+**Accessibility:**
+  - Search input keyboard-focusable + visible label
+  - Empty-state handling («no matches found»)
+  - Reset / clear button
+  - Result count shown («3 of 1107 coins match»)
+  - Live-region announce for screen readers
+
+**Edge cases to think through:**
+
+  - Period-form vs modern-form denominations: a user typing «Speciedaler»
+    should match entries showing «Speciedaler» / «Specie-Daler» /
+    «Speciesthaler» / Danish «Speciemønt» variants. The index should
+    fold these to a canonical lowercase form.
+  - Numeric matching: «KM 81» / «KM-81» / «KM#81» / «km81» / «KM 081»
+    should all hit the same row. Normalise both query and index.
+  - Cyrillic / German ruler-name variants («Christian IV», «Кристіан IV»,
+    «Chrystian IV»). Page language probably dictates which form to
+    index, but accent-folding helps.
+  - Should `verification_note` text be searchable? Probably no — it's
+    methodological scaffolding, not coin content.
+
+**Out-of-scope (for first cut):**
+
+  - Fuzzy / typo-tolerant matching (Levenshtein etc.) — initial release
+    is substring-match on normalised tokens.
+  - Search across multiple locations from one page — single-page-scope
+    only. The landing page may eventually want global search, but that's
+    a separate concern.
+  - Saved searches / shareable URLs (`?q=…`) — nice-to-have, defer.
+
+**Implementation rough plan:**
+
+  1. Build-time: extend `scripts/lib/render.py` to compute the per-coin
+     search haystack and emit a `<script id="coin-search-index"
+     type="application/json">…</script>` block in the rendered HTML.
+  2. Client-side: extend `assets/app.js` with a search module that
+     hydrates the index on first focus, applies a filter on
+     keypress (debounced), toggles row visibility via a CSS class.
+  3. Template: a new `<input>` in the location header (or just before
+     the first fuss block); plus a `[no-match]` placeholder row.
+  4. CSS: `.coin-row[hidden-by-search]` rule (display:none) +
+     highlight-match span styling.
+
+Defer concrete prototyping until a user pain-point trigger surfaces;
+the implementation isn't large but the design space (UI form factor,
+multilingual normalisation) deserves a focused turn.
+
 ### S. Add page numbers to long-PDF / book refs  *(opened 2026-05-13)*
 
 Per Wikipedia / academic citation convention, bibliography entries
