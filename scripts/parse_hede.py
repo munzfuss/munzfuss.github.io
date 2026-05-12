@@ -549,6 +549,16 @@ def _extract_specs(text: str, basename: str = "") -> dict:
             if _PERIOD_VARIANT_RE.search(preamble):
                 continue
             by_hede.setdefault(f"unknown_{pos}", spec)
+    # Period-variant consolidation may leave by_hede with exactly one
+    # entry (e.g. c4h107 has 2 Bruttovægt blocks for pre-/post-reform
+    # but only Hede 107 — second skipped). Downstream consumers (seed
+    # builder) treat single-entry by_hede as a multi-Hede page and try
+    # to split the page nominal across N entries, failing on single
+    # denominations like «1/2 Krone». Emit as `default` instead so the
+    # data shape matches the page's reality (one coin, one spec).
+    if len(by_hede) == 1:
+        only_spec = next(iter(by_hede.values()))
+        return {"default": only_spec}
     return {"by_hede": by_hede}
 
 
