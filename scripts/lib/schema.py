@@ -241,7 +241,31 @@ class CatalogRefs(_StrictBase):
     # f"{hede_volume}{hede}" when both are set.
     hede_volume: str | None = None
     sieg: str | None = None
+    # Sieg catalog number as printed in Holger Hede's "Danmarks og Norges
+    # Mønter" 1964/1971 (via danskmoent.dk's Hede pages). The Sieg-
+    # Møntkatalog is an annual catalogue (43rd ed in 2016 per Numista's
+    # SIEG literature record) with renumbering between editions, so the
+    # number printed in Hede 1971 (= the Sieg edition contemporaneous
+    # with that monograph, c. 1960s-1970s) systematically differs from
+    # the number printed in modern auction catalogues like Stack's
+    # Bowers Bruun PDF 2024-2026. Typical offset ≈ +16 across the
+    # Christian IV silver section (c4h*); other ranges vary. We keep
+    # `sieg` as the modern reference for cross-checking against current
+    # auction citations, and `sieg_hede1971` records the older number
+    # so a researcher cross-checking against Hede 1971 / danskmoent.dk
+    # finds the entry. The renderer only surfaces `(Hede-1971: X)` when
+    # the two values differ.
+    sieg_hede1971: str | None = None
     schou: str | None = None
+    # Schou catalog number as printed in Hede 1971 / danskmoent.dk
+    # when it differs from the modern Schou citation (analogous to
+    # `sieg_hede1971`). H. H. Schou's «Beskrivelse af de paa Den
+    # Kongelige Mønt- og Medaillesamling forefundne mønter» (1926-1929)
+    # is itself stable — but Hede 1971 sometimes prints a Schou range
+    # like «3,31» where modern citations give the per-coin Schou number
+    # (e.g. «3» for one sub-variant); this field preserves the Hede
+    # 1971 reading.
+    schou_hede1971: str | None = None
     fr: str | None = None
     dav: str | None = None
     # Bruun citation: collection-id is the stable cross-auction identifier (use as the

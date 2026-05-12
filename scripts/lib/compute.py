@@ -272,10 +272,27 @@ def _compute_catalog_groups(coin: Coin) -> list[tuple[str, list[str]]]:
     for field_name, label in _NAMED_FIELDS:
         v = getattr(cat, field_name, None)
         if v:
+            # Companion *_hede1971 field: if set AND differs from the
+            # primary value, append "(Hede-1971: X)" to the rendered
+            # token so the reader sees both the modern Sieg/Schou ref
+            # and the older one printed in Hede 1971 (via danskmoent.dk).
+            alt_attr = f"{field_name}_hede1971"
+            alt = getattr(cat, alt_attr, None)
             # Some named fields hold composite "77.1, 77.2" or "77.1 / 77.2"
             for part in re.split(r"\s*[,/]\s*", str(v)):
-                if part.strip():
-                    add(label, part.strip())
+                part = part.strip()
+                if not part:
+                    continue
+                # Append the Hede-1971 annotation on the FIRST sub-part only
+                # (avoids polluting every comma-split fragment with the same
+                # annotation). The annotation suppresses itself if alt ==
+                # primary (i.e. both editions agree on the number).
+                if alt and str(alt).strip() and str(alt).strip() != part:
+                    rendered = f"{part} (Hede-1971: {str(alt).strip()})"
+                    add(label, rendered)
+                    alt = None  # consumed; subsequent parts plain
+                else:
+                    add(label, part)
 
     # Others list — parse each
     plain_lines: list[str] = []
