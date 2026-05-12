@@ -55,6 +55,14 @@ output against the existing on-disk seed (when one is present):
     rare cases where curation also customised a field outside
     CURATED_FIELDS (e.g. cleaned up the nominal, switched to a
     multi-source weight list).
+  * `_VERIFIABLE_FIELDS` (fineness / weight_rough_g / diameter_mm /
+    mint) — verified-wins-over-unverified rule per CLAUDE.md §4:
+    when both candidates carry a value, and the EXISTING side is
+    source-attested (`*_verified: true`) while FRESH is unverified
+    (`(?)` marker — flag absent or false), the existing value
+    survives. The unverified fresh reading must NOT overwrite a
+    curated, source-cited one — this guards against parser /
+    canonical-anchor regressions clobbering hard-won citations.
   * Everything else flows from fresh — so parser fixes, weight
     refinements, and added sub-types all reach the seed
     automatically without manual re-curation.
@@ -159,6 +167,24 @@ DEEP_MERGE_FIELDS = frozenset({
 # Stripped from the output entry (private to the merge logic;
 # survives across regen because the merge writes it back).
 _CURATION_HOLDS_KEY = "_curation_holds"
+
+# Verifiable measurement fields paired with the boolean flag that
+# tracks «is this value source-attested or just inferred?». The
+# verified-wins-over-unverified rule below uses this pairing.
+#
+# Per CLAUDE.md §4, `*_verified: false` (or absent) means the value
+# renders with the `(?)` marker — it's a placeholder / canonical-
+# anchor / curator-inferred reading, NOT a direct source attestation.
+# When two merge candidates disagree on a field's value AND the
+# existing one is source-attested (`*_verified: true`) while the
+# fresh-regen one is unverified, the existing source-attested value
+# wins — fresh's `(?)`-marked value MUST NOT overwrite a sourced one.
+_VERIFIABLE_FIELDS = {
+    "fineness": "fineness_verified",
+    "weight_rough_g": "weight_rough_verified",
+    "diameter_mm": "diameter_mm_verified",
+    "mint": "mint_verified",
+}
 
 # Mints accepted into the Denmark seed. Hede 1971 («Danmarks og
 # Norges mønter») by definition only catalogues Danish-Norwegian
@@ -696,6 +722,24 @@ def _merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
             elif ex_v is None and fr_v is not None:
                 existing[key] = fr_v
             continue
+        if key in _VERIFIABLE_FIELDS:
+            # Verified-wins-over-unverified rule (per CLAUDE.md §4):
+            # when both candidates have a value for a measurement
+            # field (fineness / weight / diameter / mint), and the
+            # EXISTING side is source-attested (`*_verified: true`)
+            # while FRESH is unverified (`(?)` marker — absent flag
+            # or false), keep the source-attested existing value. The
+            # fresh regen's inferred / canonical-anchor reading must
+            # NOT overwrite a curated, source-cited one.
+            verified_flag = _VERIFIABLE_FIELDS[key]
+            existing_verified = bool(existing.get(verified_flag))
+            fresh_verified = bool(fresh.get(verified_flag))
+            if (
+                key in existing_keys
+                and existing_verified
+                and not fresh_verified
+            ):
+                continue
         # Default: fresh wins.
         existing[key] = fresh[key]
 
