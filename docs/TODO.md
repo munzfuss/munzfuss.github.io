@@ -7,6 +7,45 @@
 
 ## Open
 
+### S. Add page numbers to long-PDF / book refs  *(opened 2026-05-13)*
+
+Per Wikipedia / academic citation convention, bibliography entries
+pointing to long PDFs or multi-chapter books should specify which
+page or section the cited claim sits on. Our scope-note sentence
+in `*-references.yml` (per CLAUDE.md §5a, ≤ 140 chars) is the right
+place — short quote + page hint together: `«<i>verbatim quote</i>»
+(S. 14)`. Without page hints the reader has to skim the whole PDF
+to verify a single date / number.
+
+One case fixed so far:
+
+* **`denmark-references.yml::ref21`** (Abildgren 2004, 32 pp.) —
+  added page hints + verbatim quotes for the two claims the entry
+  backs: 2 August 1914 gold-suspension (p. 14) + 1 January 1927
+  pre-war-parity return (p. 17). The PDF text was extracted via
+  `pypdf` from the cached `webfetch-*.pdf`; for other long PDFs
+  the same procedure works.
+
+Sweep tasks:
+
+* Walk all `*-references.yml` files. For each entry whose URL
+  points to a PDF and the document is >10 pages, OR whose URL
+  points to a multi-chapter book / monograph, check whether the
+  scope note carries a page hint.
+* If not, open the source (PDF viewer / pypdf / pdftotext) and
+  locate the specific page(s) where the cited claim is made.
+  Append page hint + ideally a short verbatim quote (≤ 25 words
+  per quote per CLAUDE.md mandatory copyright requirements) to
+  the scope note.
+* Special cases: Bruun PDFs (350+ pages) — page hints are
+  essential. Hede 1971 paper book — chapter or page if accessible.
+  Wikisource / Wikipedia — anchor + paragraph hint works
+  (those don't have «pages»).
+
+The sweep is incremental and can be picked up entry-by-entry when
+that entry's prose is being edited anyway (e.g. when a coin's note
+gets the `<sup>[N]</sup>` citation added).
+
 ### R. Backfill canonical fineness on fineness-missing coins  *(opened 2026-05-13)*
 
 Many seed / partially-curated entries carry `fineness: null` (or
