@@ -164,6 +164,30 @@ def _hede_seed_id(hede_volume: str, hede_number: str) -> str:
     return f"dk-hede-{hede_volume.lower().strip()}{hede_number.lower().strip()}"
 
 
+def _weight_values(w) -> list[float]:
+    """Extract numeric weights from `weight_rough_g`.
+
+    The field tolerates two shapes per project schema:
+      * scalar float                       — `weight_rough_g: 14.447`
+      * list of {value, source} dicts      — `weight_rough_g: [{value: 14.4, source: ...}, ...]`
+    Returns the list of all numeric values, used by the auto-suppress
+    weight-mismatch guard.
+    """
+    if w is None:
+        return []
+    if isinstance(w, (int, float)):
+        return [float(w)]
+    if isinstance(w, list):
+        out: list[float] = []
+        for item in w:
+            if isinstance(item, dict) and isinstance(item.get("value"), (int, float)):
+                out.append(float(item["value"]))
+            elif isinstance(item, (int, float)):
+                out.append(float(item))
+        return out
+    return []
+
+
 def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
     """Auto-merge `data/seed/<source>/<loc_id>.yml` coin lists into the
     location's `raw['coins']` before schema validation.
@@ -250,6 +274,7 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
             "year_first": cc.get("year_first"),
             "metal": cc.get("metal"),
             "cur_id": cc.get("id"),
+            "weights": _weight_values(cc.get("weight_rough_g")),
         }
         for hn in hede_nums:
             if not hn:
@@ -311,14 +336,17 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
         suppressed_count = 0
         year_mismatch_count = 0
         metal_mismatch_count = 0
+        weight_mismatch_count = 0
         for coin in seed_coins:
             cid = coin.get("id") if isinstance(coin, dict) else None
             if cid and cid in suppressed_ids:
                 info = suppressed_ids[cid]
                 cur_year = info["year_first"]
                 cur_metal = info["metal"]
+                cur_weights = info["weights"]
                 seed_year = coin.get("year_first") if isinstance(coin, dict) else None
                 seed_metal = coin.get("metal") if isinstance(coin, dict) else None
+                seed_weights = _weight_values(coin.get("weight_rough_g") if isinstance(coin, dict) else None)
                 seed_label = (coin.get("year_label") or "").strip().lower() if isinstance(coin, dict) else ""
                 is_undated = seed_label.startswith("u.") or seed_label.startswith("u å")
                 # Metal-mismatch guard: when curated and seed disagree
@@ -335,6 +363,21 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
                     metal_mismatch_count += 1
                     kept.append(coin)
                     continue
+                # Weight-mismatch guard: same Hede ref + same metal but
+                # weights differ by >25% indicates different denominations
+                # (e.g. ½ Speciedaler 14.4g vs 24 Skilling 9.17g — both
+                # claim hede sub-letter «12A» across Krause-Denmark /
+                # Krause-Norway register volumes, but they're physically
+                # different coins). Weight ratio min/max < 0.75 → skip.
+                if cur_weights and seed_weights:
+                    cur_lo, cur_hi = min(cur_weights), max(cur_weights)
+                    seed_lo, seed_hi = min(seed_weights), max(seed_weights)
+                    overall_min = min(cur_lo, seed_lo)
+                    overall_max = max(cur_hi, seed_hi)
+                    if overall_max > 0 and (overall_min / overall_max) < 0.75:
+                        weight_mismatch_count += 1
+                        kept.append(coin)
+                        continue
                 if (
                     seed_year is not None
                     and cur_year is not None
@@ -357,6 +400,13 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
                 f"   ℹ  {loc_id}: {metal_mismatch_count} {source_dir.name} seed "
                 f"coin(s) share a curated Hede ref but differ on metal "
                 f"(cf-companion citation pattern; both kept)"
+            )
+        if weight_mismatch_count:
+            print(
+                f"   ℹ  {loc_id}: {weight_mismatch_count} {source_dir.name} seed "
+                f"coin(s) share a curated Hede ref but weights differ "
+                f">25% (cross-register KM clash or different denomination; "
+                f"both kept)"
             )
         if year_mismatch_count:
             print(
