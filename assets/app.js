@@ -409,4 +409,97 @@
     if (!zone) return;
     unifyZoneWidths(zone);
   });
+
+  /* ------------------------------------------------------------------ *
+   *  Back-to-top button                                                 *
+   *                                                                     *
+   *  Injected via JS (no template change). Appears once the user has    *
+   *  scrolled past max(viewport-height, 15 % of page height). Click     *
+   *  triggers a fast smooth scroll to the top. Throttled via rAF.       *
+   *                                                                     *
+   *  The threshold matches the user's spec:                             *
+   *    «max(1 екран по висоті, 15 % всього скрола чи сторінки)»         *
+   *  Computed lazily on each scroll event because page height can       *
+   *  change (e.g. <details> expansions, lazy-loaded content).           *
+   * ------------------------------------------------------------------ */
+  (function () {
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btt-button";
+    btn.setAttribute("aria-label", "Scroll to top");
+    btn.setAttribute("title", "Scroll to top");
+    btn.innerHTML =
+      '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+      '<polyline points="6 14 12 8 18 14"></polyline>' +
+      "</svg>";
+    document.body.appendChild(btn);
+
+    var prefersReducedMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* Compute the show-threshold: max(viewport-height, 15% of page height). */
+    function threshold() {
+      var viewportH = window.innerHeight || document.documentElement.clientHeight;
+      var pageH = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.offsetHeight
+      );
+      return Math.max(viewportH, pageH * 0.15);
+    }
+
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+      if (y > threshold()) {
+        btn.classList.add("is-visible");
+      } else {
+        btn.classList.remove("is-visible");
+      }
+    }
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(update);
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+
+    /* Fast smooth-scroll to top. Browser's behavior:'smooth' implementation
+       gets sluggish on very long pages — implement a custom ease-out animation
+       with a capped duration so the visual is always quick. */
+    function scrollToTop() {
+      var startY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      if (startY <= 0) return;
+
+      if (prefersReducedMotion) {
+        window.scrollTo(0, 0);
+        return;
+      }
+
+      /* Duration scales mildly with distance — long pages don't ALL get
+         capped at one fixed time (feels disconnected on huge scrolls),
+         but the scaling is sub-linear: 600 ms for 4 viewports, 900 ms
+         for 16 viewports. Hard cap at 900 ms. */
+      var viewportH = window.innerHeight || 800;
+      var viewports = startY / viewportH;
+      var duration = Math.min(900, 300 + 150 * Math.sqrt(viewports));
+
+      var t0 = performance.now();
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+      function step(now) {
+        var elapsed = now - t0;
+        var k = Math.min(1, elapsed / duration);
+        var y = startY * (1 - easeOutCubic(k));
+        window.scrollTo(0, y);
+        if (k < 1) window.requestAnimationFrame(step);
+      }
+      window.requestAnimationFrame(step);
+    }
+    btn.addEventListener("click", scrollToTop);
+  })();
 })();
