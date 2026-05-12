@@ -2654,6 +2654,17 @@ coins:
     catalog:
       km: '59'
       numista: '80227'
+      # 1618 strikes of Hede 106A (trekløver Mzz, Schwabe) and 106B
+      # (korslagte køller Mzz) — pre-5-April-1619-reform standard with
+      # Bruttovægt 18,766g. KM-59 anchors this pre-reform variant; the
+      # post-reform 1619-1622 strikes (lighter Bruttovægt 18,909g) move
+      # to KM-59a. Hede 106C and 106D are post-reform only and don't
+      # appear here. Sieg-1971 base 90: 106A=90.1, 106B=90.2.
+      hede:
+        - 106A
+        - 106B
+      hede_volume: c4h
+      sieg_hede1971: '90.1'
       others:
         - Dav EC II# 3517
         - Dav EC II# 3517a
@@ -2661,14 +2672,16 @@ coins:
     fineness:
       - {value: 0.859, source: Numista}
       - {value: 0.86, source: ucoin}
+      - {value: 0.859, source: "Hede c4h106 (pre-reform)"}
     weight_rough_g:
       - {value: 18.766, source: Numista}
       - {value: 18.77, source: ucoin}
+      - {value: 18.766, source: "Hede c4h106 (pre-1619 Bruttovægt)"}
     diameter_mm: 40.0
     note:
-      de: Originalprägung der Corona-Danica-Reform 1618 in København — Tarif 1½ Speciedaler. Voller Feingehalt .859 (im Vergleich zu späteren Kronemønt-Prägungen .671 noch hoch); Seigniorage-Aufschlag dennoch ca. +125 % über Silberwert.
-      en: Original Corona Danica reform issue of 1618, struck in Copenhagen — tariff 1½ Speciedaler. Still at full fineness .859 (later Kronemønt issues drop to .671); seigniorage premium nevertheless ca. +125 % above silver content.
-      uk: Оригінальне карбування реформи Corona Danica 1618 в Копенгагені — тариф 1½ Speciedaler. Ще на повній пробі .859 (пізніші kronemønt-карбування — .671); попри це сеньйораж-надбавка близько +125 % над срібною вартістю.
+      de: "Originalprägung der Corona-Danica-Reform 1618 in København — Tarif 1½ Speciedaler · Voller Feingehalt .859 (im Vergleich zu späteren Kronemønt-Prägungen .671 noch hoch); Seigniorage-Aufschlag dennoch ca. +125 % über Silberwert · zwei Münzmeister-Varianten nach Hede 106 unter KM-59 (1618 vor der Umstellung des udmøntningsforhold am 5. April 1619): 106A trekløver-Mzz (Schwabe, Sieg-1971: 90.1); 106B korslagte køller-Mzz (Sieg-1971: 90.2) · Literatur: Harck, Numismatisk Rapport 97 (2008) s.7-29."
+      en: "Original Corona Danica reform issue of 1618, struck in Copenhagen — tariff 1½ Speciedaler · Still at full fineness .859 (later Kronemønt issues drop to .671); seigniorage premium nevertheless ca. +125 % above silver content · two mint-master variants per Hede 106 folded under KM-59 (1618 strikes before the udmøntningsforhold reform of 5 April 1619): 106A trekløver privy mark (Schwabe, Sieg-1971: 90.1); 106B crossed-clubs privy mark (Sieg-1971: 90.2) · Literature: Harck, Numismatisk Rapport 97 (2008) pp.7-29."
+      uk: "Оригінальне карбування реформи Corona Danica 1618 в Копенгагені — тариф 1½ Speciedaler · Ще на повній пробі .859 (пізніші kronemønt-карбування — .671); попри це сеньйораж-надбавка близько +125 % над срібною вартістю · два варіанти монетмейстера за Hede 106 об'єднані під KM-59 (емісії 1618 р. до реформи udmøntningsforhold 5 квітня 1619): 106A trekløver Mzz (Schwabe, Sieg-1971: 90.1); 106B korslagte køller Mzz (Sieg-1971: 90.2) · Литература: Harck, Numismatisk Rapport 97 (2008) с.7-29."
     sources:
       - type: numista
         url: https://en.numista.com/80227
@@ -2676,6 +2689,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1618/?tid=163060
         ref: ucoin
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h106.htm
+        ref: "Hede c4h106 (danskmoent.dk)"
     issuing_entity: danish_realm
     mint: Kopenhagen
   - id: km-60-chr-iv-1618
@@ -2931,20 +2947,37 @@ coins:
     catalog:
       km: 59a
       numista: '70513'
+      # Post-5-April-1619 udmøntningsforhold reform: lighter Bruttovægt
+      # 18,909g (vs pre-reform 18,766g under KM-59), same fineness .859.
+      # Four mint-master sub-letters per Hede 106 fold under KM-59a:
+      # 106A trekløver Mzz (Schwabe, Sieg-1971 90.1) — 1619-1622 strikes,
+      # 1622 Unik; 106B korslagte køller (Sieg-1971 90.2) — 1619-1620
+      # strikes; 106C fugl Mzz (Sieg-1971 90.3) — 1620-1621; 106D ibskal
+      # Mzz (Sieg-1971 90.4) — 1620 RR.
+      hede:
+        - 106A
+        - 106B
+        - 106C
+        - 106D
+      hede_volume: c4h
+      sieg_hede1971: '90.1'
       others:
         - Dav EC II# 3517
     metal: silver
     fineness:
       - {value: 0.859, source: Numista}
       - {value: 0.86, source: ucoin}
+      - {value: 0.859, source: "Hede c4h106 (post-reform)"}
     weight_rough_g:
       - value: 18.91
         source: Numista, ucoin
+      - value: 18.909
+        source: "Hede c4h106 (post-1619 Bruttovægt)"
     diameter_mm: 40.0
     note:
-      de: 1 Krone, Spätprägung der Corona-Danica-Serie 1619–1622 unter dem ursprünglichen Tarif 1½ Speciedaler; formelle Tarifsenkung erst 1625. Feingehalt unverändert .859. KM# 59a (Variante zu km-59 = 1618).
-      en: 1 Krone, late strike of the Corona Danica series 1619–1622 under the original 1½ Speciedaler tariff; the formal tariff cut only came in 1625. Fineness unchanged at .859. KM# 59a (variant of km-59 = 1618).
-      uk: 1 Krone, пізня емісія серії Corona Danica 1619–1622 під оригінальним тарифом 1½ Speciedaler; формальне зниження тарифу лише 1625. Проба незмінна .859. KM# 59a (варіант до km-59 = 1618).
+      de: "1 Krone, Spätprägung der Corona-Danica-Serie 1619–1622 unter dem ursprünglichen Tarif 1½ Speciedaler · formelle Tarifsenkung erst 1625 · Feingehalt unverändert .859, jedoch Bruttovægt nach Reform 5. April 1619 erhöht auf 18,909g (KM-59 vor der Reform: 18,766g) · vier Münzmeister-Varianten nach Hede 106 unter KM-59a: 106A trekløver-Mzz (Schwabe, Sieg-1971 90.1) — 1619-1622 inkl. Unik 1622; 106B korslagte køller (Sieg-1971 90.2) — 1619-1620 RR; 106C fugl-Mzz (Sieg-1971 90.3) — 1620-1621; 106D ibskal-Mzz (Sieg-1971 90.4) — 1620 RR · Literatur: Harck, Numismatisk Rapport 97 (2008) s.7-29."
+      en: "1 Krone, late strike of the Corona Danica series 1619–1622 under the original 1½ Speciedaler tariff · formal tariff cut only came in 1625 · fineness unchanged at .859 but Bruttovægt rose to 18.909g after the 5 April 1619 reform (pre-reform under KM-59: 18.766g) · four mint-master variants per Hede 106 folded under KM-59a: 106A trekløver privy mark (Schwabe, Sieg-1971 90.1) — 1619-1622 incl. 1622 Unik; 106B crossed-clubs (Sieg-1971 90.2) — 1619-1620 RR; 106C bird privy mark (Sieg-1971 90.3) — 1620-1621; 106D scallop privy mark (Sieg-1971 90.4) — 1620 RR · Literature: Harck, Numismatisk Rapport 97 (2008) pp.7-29."
+      uk: "1 Krone, пізня емісія серії Corona Danica 1619–1622 під оригінальним тарифом 1½ Speciedaler · формальне зниження тарифу лише 1625 · проба незмінна .859, але Bruttovægt після реформи 5 квітня 1619 збільшено до 18,909г (до реформи KM-59: 18,766г) · чотири варіанти монетмейстера за Hede 106 об'єднані під KM-59a: 106A trekløver Mzz (Schwabe, Sieg-1971 90.1) — 1619-1622 включно з 1622 Unik; 106B korslagte køller (Sieg-1971 90.2) — 1619-1620 RR; 106C fugl Mzz (Sieg-1971 90.3) — 1620-1621; 106D ibskal Mzz (Sieg-1971 90.4) — 1620 RR · Литература: Harck, Numismatisk Rapport 97 (2008) с.7-29."
     sources:
       - type: numista
         url: https://en.numista.com/70513
@@ -2952,6 +2985,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1619-1622/?tid=163061
         ref: ucoin
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h106.htm
+        ref: "Hede c4h106 (danskmoent.dk)"
     issuing_entity: danish_realm
     mint: Kopenhagen
   - id: km-65-chr-iv-1619
