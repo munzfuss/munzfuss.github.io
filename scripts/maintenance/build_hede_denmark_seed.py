@@ -98,6 +98,21 @@ OUT_DIR = PROJECT / "data" / "seed" / "hede"
 OUT_FILE = OUT_DIR / "denmark.yml"
 
 
+# Hede entries representing proof / trial / pattern strikes (Danish
+# «Prøvemønt», «Probe», unique-specimen-only museum holdings) that the
+# project explicitly excludes per CLAUDE.md §9 — they were not struck
+# for circulation, so they don't belong in the location's coin table.
+# Each entry is the Hede page id as cached under scripts/cache/hede/
+# (e.g. `c4h20`). The skip happens early in the seed-build loop so
+# the entries never reach the curation-merge step.
+_KNOWN_PROOF_PATTERNS: set[str] = {
+    # Christian IV.
+    "c4h20",   # «Guldmønt U.år» Kbh, Hede 20 / Schou 8 / Sieg 159 —
+               # Prøvemønt efter engelsk forbillede; Unik in
+               # Den Kgl. Mønt- og Medaillesamling København.
+}
+
+
 # Fields whose existing-entry value is ALWAYS preserved across regen
 # when present (i.e. when the existing value differs from what the
 # fresh generator would emit). These represent human curation
@@ -816,12 +831,18 @@ def main() -> int:
         "skipped_out_of_scope_year": 0,
         "skipped_non_canonical": 0,
         "skipped_cross_reference_subhede": 0,
+        "skipped_proof_pattern": 0,
     }
     skipped_mints: dict[str, int] = {}
 
     for p in parsed_files:
         d = json.loads(p.read_text(encoding="utf-8"))
         stats["considered"] += 1
+        # Skip known proof / trial / pattern strikes — CLAUDE.md §9
+        # explicitly excludes them from the location coin table.
+        if d["id"] in _KNOWN_PROOF_PATTERNS:
+            stats["skipped_proof_pattern"] += 1
+            continue
         # Skip files that aren't canonical for any Hede number (e.g.
         # c4h111note — a footnote page where c4h111 owns the actual
         # Hede 111 entry).
