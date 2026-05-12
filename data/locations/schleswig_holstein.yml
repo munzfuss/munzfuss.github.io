@@ -4,6 +4,7 @@
 # soll values from fuesse.yml.
 
 id: schleswig_holstein
+km_register: SH
 name:
   de: Schleswig-Holstein
   en: Schleswig-Holstein
@@ -3148,35 +3149,67 @@ coins:
     ruler: "Christian IV."
     mint: "Glückstadt"
     catalog:
-      km: "25"
+      # Same physical coin appears in TWO Krause volumes:
+      #   KM-25 in the Denmark register (Numista 199146, issuer
+      #     «Glückstadt, City of»),
+      #   KM-87 in the Schleswig-Holstein register (Numista 301740,
+      #     issuer «Schleswig and Holstein, Danish duchies of»).
+      # Hede 178 covers both sub-letters (178A trekløver+ST Mzz 1640-43;
+      # 178B to korslagte glødehager Mzz 1644-48). Page is SH-scoped so
+      # KM-87 renders bare (matches page register); KM-25 renders with
+      # «KM-DK#» prefix + tooltip (cross-register).
+      km:
+        - {value: '25', register: DK}
+        - {value: '87', register: SH}
       numista: '199146'
+      hede:
+        - 178A
+        - 178B
+      hede_volume: c4h
+      sieg_hede1971: '161'
     metal: billon
-    fineness: 0.312
+    fineness:
+      - value: 0.312
+        source: "Hede c4h178"
+      - value: 0.312
+        source: Numista 199146
     weight_rough_g:
-      - {value: 0.76, source: Numista}
-      - {value: 0.7, source: ucoin}
+      - value: 0.704
+        source: "Hede c4h178 (Soll-Bruttovægt, shared by both sub-letters)"
+      - value: 0.76
+        source: Numista 199146
+      - value: 0.7
+        source: ucoin tid 163580
+      - value: 0.49
+        source: "Numista 301740 (KM-87) — anomalous (≈ -30 % vs Hede Brutto 0.704g; likely user-edit error in Numista)"
     diameter_mm: 17.0
     note:
       de: |-
-        1 Søsling Lybsk = 6 Pfennig = ½ Skilling Lybsk = 1/96 Speciedaler · Christian IV. (Glückstadt 1640–1648) · späterer Søsling-Typ als KM# 10. Billon-Scheidemünze, Feingehalt .312 — unterwertig.
+        1 Søsling Lybsk = 6 Pfennig = ½ Skilling Lybsk = 1/96 Speciedaler · Christian IV. (Glückstadt 1640-1648) · zwei Müntzmeister-Varianten nach Hede 178 unter dieser Einheits-Karte zusammengefaßt: 178A fjer+ST Mzz (1640 R + 1641-1643), 178B to korslagte glødehager (1644-1647 + 1648 Unik) · Billon-Scheidemünze, Feingehalt .312 — unterwertig · Bruttovægt 0,704g · Marken-fin 11,066 daler · die selbe Münze erscheint in zwei Krause-Bänden: KM-DK# 25 (Denmark, Numista 199146) und KM-SH# 87 (Schleswig-Holstein, Numista 301740, Spezifikation 0,49g dort wahrscheinlich fehlerhaft).
       en: |-
-        1 Søsling Lybsk = 6 Pfennig = ½ Skilling Lybsk = 1/96 Speciedaler · Christian IV (Glückstadt 1640–1648) · later Søsling type than KM# 10. Billon petty coin, fineness .312 — underweight.
+        1 Søsling Lybsk = 6 Pfennig = ½ Skilling Lybsk = 1/96 Speciedaler · Christian IV (Glückstadt 1640-1648) · two mint-master variants per Hede 178 folded under one card: 178A fjer+ST privy mark (1640 R + 1641-1643), 178B crossed fire-hooks (1644-1647 + 1648 Unik) · Billon petty coin, fineness .312 — underweight · Bruttovægt 0.704g · 11.066 daler per Marken-fein · the same coin appears in two Krause volumes: KM-DK# 25 (Denmark, Numista 199146) and KM-SH# 87 (Schleswig-Holstein, Numista 301740, where the 0.49g weight reading is most likely a user-edit error).
       uk: |-
-        1 Søsling Lybsk = 6 Pfennig = ½ Skilling Lybsk = 1/96 Speciedaler · Кристіан IV (Glückstadt 1640–1648) · пізніший тип Søsling, ніж KM# 10. Білонна розмінна монета, проба .312 — неповновагова.
+        1 Søsling Lybsk = 6 Pfennig = ½ Skilling Lybsk = 1/96 Speciedaler · Кристіан IV (Glückstadt 1640-1648) · два варіанти монетмейстера за Hede 178 об'єднані в одну картку: 178A fjer+ST Mzz (1640 R + 1641-1643), 178B to korslagte glødehager (1644-1647 + 1648 Unik) · білонна розмінна монета, проба .312 — неповновагова · Bruttovægt 0,704г · Marken-fin 11,066 daler · та сама монета фігурує у двох Krause-томах: KM-DK# 25 (Денмарк, Numista 199146) та KM-SH# 87 (Шлезвіг-Гольштейн, Numista 301740, де вага 0,49г найімовірніше помилка користувача-редактора Numista).
     sources:
       - type: numista
         url: "https://en.numista.com/199146"
-        ref: "Numista"
+        ref: "Numista 199146 (KM-25 DK volume)"
+      - type: numista
+        url: https://en.numista.com/301740
+        ref: "Numista 301740 (KM-87 SH volume)"
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-sosling-1640-1648/?tid=163580
-        ref: ucoin
+        ref: ucoin tid 163580
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h178.htm
+        ref: "Hede c4h178 (danskmoent.dk)"
     issuing_entity: royal_holstein
     fineness_verified: true
 
     verification_note:
-      de: 'TODO-A-Audit (2026-05-03) gegen Numista _issues.json: alle 9 Jahre von 1640 bis 1648 explizit aufgeführt, keine Gap-Marker — Zeitraum als continuous bestätigt.'
-      en: 'TODO A audit (2026-05-03) against Numista _issues.json: all 9 years from 1640 to 1648 explicitly enumerated, no gap markers — range confirmed as continuous.'
-      uk: 'Аудит TODO A (2026-05-03) проти Numista _issues.json: усі 9 років від 1640 до 1648 явно перелічено, без gap-маркерів — діапазон підтверджено як continuous.'
+      de: 'TODO-A-Audit (2026-05-03) gegen Numista _issues.json: alle 9 Jahre von 1640 bis 1648 explizit aufgeführt, keine Gap-Marker — Zeitraum als continuous bestätigt. KM-DK# 25 und KM-SH# 87 zusammengeführt nach Hede-Cross-Reference (Numista 301740 zitiert «Hede#178B» explizit, bestätigt die Identifikation als dieselbe Münze in zwei Krause-Registern).'
+      en: 'TODO A audit (2026-05-03) against Numista _issues.json: all 9 years from 1640 to 1648 explicitly enumerated, no gap markers — range confirmed as continuous. KM-DK# 25 and KM-SH# 87 merged via Hede cross-reference (Numista 301740 explicitly cites «Hede#178B», confirming identification as the same coin in two Krause registers).'
+      uk: 'Аудит TODO A (2026-05-03) проти Numista _issues.json: усі 9 років від 1640 до 1648 явно перелічено, без gap-маркерів — діапазон підтверджено як continuous. KM-DK# 25 та KM-SH# 87 об''єднані через Hede cross-reference (Numista 301740 явно цитує «Hede#178B», що підтверджує ідентифікацію як одна монета у двох Krause-реєстрах).'
   - id: km-A4-chr-iv-1617
     fuss: 9_thaler
     phase: I
@@ -9588,38 +9621,6 @@ coins:
     fineness: 0.888
     fineness_verified: true
     mint: Glückstadt
-  - id: km-87-chr-iv-1642
-    fuss: 9_25_thaler
-    phase: I
-    kind: scheide
-    fraction: 1/96
-    nominal: 1 Sechsling
-    year_label: 1642, 1644
-    year_first: 1642
-    year_last: 1644
-    ruler: Christian IV. (Kgr. Dänemark, Glückstadt)
-    catalog:
-      km: '87'
-      numista: '301740'
-      hede: 178B
-      hede_volume: c4h
-    metal: silver
-    weight_rough_g:
-      - value: 0.49
-        source: Numista
-    note:
-      de: 1 Sechsling = 1/96 Thaler · Christian IV. (Kgr. Dänemark, Glückstadt), 1642-1644
-      en: 1 Sechsling = 1/96 Thaler · Christian IV of Denmark (Glückstadt mint), 1642-1644
-      uk: 1 Sechsling = 1/96 Thaler · Кристіан IV (король Данії, Глюкштадт), 1642-1644
-    sources:
-      - type: numista
-        url: https://en.numista.com/catalogue/pieces301740.html
-        ref: Numista
-    issuing_entity: royal_holstein
-    mint: Glückstadt
-    year_ranges:
-      - [1642, 1642]
-      - [1644, 1644]
   - id: km-90-fr-iii-dk-1658
     fuss: 9_25_thaler
     phase: I

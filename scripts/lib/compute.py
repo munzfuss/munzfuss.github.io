@@ -152,9 +152,12 @@ class ComputedCoin:
     within_remedium: bool | None = None    # |delta_pct| ≤ 1.0
     implied_fuss: float | None = None     # actual Münzfuß back-computed from metal content
     has_manual_implied: bool = False      # true if fuss_refs already documents an "Ist-Wert" note
-    # Catalog refs grouped by prefix; each group is (label, [values]).
+    # Catalog refs grouped by prefix; each group is (label, [values], tooltip).
     # Rendered in template, one group per line: "KM# 77, 77.1, 77.2".
-    catalog_groups: list[tuple[str, list[str]]] = field(default_factory=list)
+    # `tooltip` is set on register-qualified KM prefixes («KM-DK#»,
+    # «KM-SH#») to explain which Krause register volume the number
+    # belongs to. None for bare prefixes.
+    catalog_groups: list[tuple[str, list[str], str | None]] = field(default_factory=list)
     # True if any input (weight_rough or fineness) is unverified, in which case
     # ALL derived values (weight_fein, delta, implied_fuss) inherit the (?)
     # marker — they sit on a non-primary base.
@@ -208,15 +211,29 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
     ("bruun_lot", "Bruun"),
 ]
 
+# Register tooltip text per Krause register code. Used by
+# _compute_catalog_groups when emitting register-prefixed KM tokens.
+# Mirrors the Numista «issuer» semantics for the major Scandinavian
+# / German-states Krause volumes our project touches.
+_KM_REGISTER_TOOLTIP: dict[str, str] = {
+    "DK": "Krause-Mishler — Denmark volume",
+    "SH": "Krause-Mishler — Schleswig-Holstein volume",
+    "NO": "Krause-Mishler — Norway volume",
+}
+
+
 # Render priority: lower = earlier. Unknown prefixes get a mid-rank.
 _PREFIX_PRIORITY: dict[str, int] = {
     # `KM#` (no suffix) defaults to the territorial Krause-Mishler register
     # for the location being documented (Schleswig-Holstein for our base).
-    # `KM-DK#` is the Royal Danish Krause-Mishler register — same publisher,
-    # different territorial scope. Several Glückstadt issues appear in BOTH
-    # registers under different numbers (e.g. our km-358 = SH-KM# 358 =
-    # DK-KM# 71), so the suffix is needed for unambiguous citation.
-    "KM": 10, "KM-DK": 11, "Hede": 20, "Sieg": 30, "Schou": 40, "Lange": 50,
+    # `KM-DK#` / `KM-SH#` / etc. are per-volume Krause-Mishler registers —
+    # same publisher, different territorial scope. Several Glückstadt
+    # issues appear in BOTH registers under different numbers (e.g. our
+    # km-25 = DK-KM# 25 = SH-KM# 87), so the suffix is needed for
+    # unambiguous citation. See KMRef in schema.py for the per-entry
+    # register tagging.
+    "KM": 10, "KM-DK": 11, "KM-SH": 12, "KM-NO": 13,
+    "Hede": 20, "Sieg": 30, "Schou": 40, "Lange": 50,
     "Fr": 60,
     "Dav": 70,
     "Dav EC II": 71, "Dav EC III": 72, "Dav EC IV": 73, "Dav ECT": 74,
@@ -246,10 +263,19 @@ def _parse_ref(s: str) -> tuple[str | None, str]:
     return m.group(1).strip(), m.group(2).strip()
 
 
-def _compute_catalog_groups(coin: Coin) -> list[tuple[str, list[str]]]:
-    """Build a list of (prefix, [values]) groups in render priority order.
+def _compute_catalog_groups(
+    coin: Coin, location_km_register: str | None = None,
+) -> list[tuple[str, list[str], str | None]]:
+    """Build a list of (prefix, [values], tooltip) groups in render priority order.
 
     - Named fields (cat.km, cat.lange, ...) become groups by canonical label.
+    - `catalog.km` carries optional register tags (per-list-entry KMRef or
+      scalar default). When a KM entry's register equals
+      `location_km_register` (or is unset and that's the default), it emits
+      under the bare «KM» prefix. When the register differs, it emits under
+      a register-qualified prefix («KM-DK», «KM-SH») with a tooltip. A
+      multi-entry KM list always uses qualified prefixes to keep the
+      individual numbers unambiguous.
     - cat.others entries: 'PREFIX# value' lands in a group keyed by PREFIX.
     - cat.numista becomes the trailing 'N#' group.
     - Within each group, values are deduped (preserving order).
@@ -257,19 +283,62 @@ def _compute_catalog_groups(coin: Coin) -> list[tuple[str, list[str]]]:
     """
     cat = coin.catalog
     groups: dict[str, list[str]] = {}
+    group_tooltip: dict[str, str | None] = {}
     order: list[str] = []  # first-seen order for tie-breaking
 
-    def add(prefix: str, value: str):
+    def add(prefix: str, value: str, tooltip: str | None = None):
         if not value:
             return
         if prefix not in groups:
             groups[prefix] = []
             order.append(prefix)
+            group_tooltip[prefix] = tooltip
         if value not in groups[prefix]:
             groups[prefix].append(value)
 
-    # Named fields
+    # KM field: register-aware. Bare «KM» prefix when entry's register
+    # matches the page's default (or is unset); register-qualified
+    # «KM-<REG>» with tooltip when it doesn't. Multi-entry lists always
+    # render qualified so every number is unambiguous.
+    km_raw = getattr(cat, "km", None)
+    if km_raw is not None:
+        # Normalise to list of (value, register-or-None) tuples
+        from .schema import KMRef  # avoid circular at module load
+        if isinstance(km_raw, list):
+            km_items: list[tuple[str, str | None]] = []
+            for item in km_raw:
+                if isinstance(item, KMRef):
+                    km_items.append((item.value, item.register))
+                else:
+                    km_items.append((str(item), None))
+        else:
+            # Scalar: split on composite "77.1 / 77.2" / "77.1, 77.2"
+            km_items = [
+                (p.strip(), None)
+                for p in re.split(r"\s*[,/]\s*", str(km_raw))
+                if p.strip()
+            ]
+        # Multi-entry list → all qualified; single-entry uses register
+        # only if it differs from page default.
+        force_qualified = len(km_items) > 1
+        for value, register in km_items:
+            effective_register = register or location_km_register
+            qualify = force_qualified or (
+                register is not None
+                and location_km_register is not None
+                and register != location_km_register
+            )
+            if qualify and effective_register:
+                prefix = f"KM-{effective_register}"
+                tooltip = _KM_REGISTER_TOOLTIP.get(effective_register)
+                add(prefix, value, tooltip)
+            else:
+                add("KM", value)
+
+    # Named fields (km handled above with register logic)
     for field_name, label in _NAMED_FIELDS:
+        if field_name == "km":
+            continue
         v = getattr(cat, field_name, None)
         if v:
             # Companion *_hede1971 field: if set AND differs from the
@@ -358,19 +427,21 @@ def _compute_catalog_groups(coin: Coin) -> list[tuple[str, list[str]]]:
         groups[p] = sorted(set(groups[p]), key=value_key)
 
     sorted_prefixes = sorted(groups.keys(), key=sort_key)
-    out: list[tuple[str, list[str]]] = [(p, groups[p]) for p in sorted_prefixes]
+    out: list[tuple[str, list[str], str | None]] = [
+        (p, groups[p], group_tooltip.get(p)) for p in sorted_prefixes
+    ]
 
     if plain_lines:
-        out.append(("", plain_lines))
+        out.append(("", plain_lines, None))
 
     return out
 
 
-def _compute_coin(coin: Coin, fuss: Fuss) -> ComputedCoin:
+def _compute_coin(coin: Coin, fuss: Fuss, location_km_register: str | None = None) -> ComputedCoin:
     cc = ComputedCoin(raw=coin, fuss=fuss)
 
     # Catalog groups for the «Каталог» column
-    cc.catalog_groups = _compute_catalog_groups(coin)
+    cc.catalog_groups = _compute_catalog_groups(coin, location_km_register)
 
     # Normalise measurement fields to (value, source) lists. Scalar form
     # → single (value, None) reading; list form → one entry per source.
@@ -643,5 +714,8 @@ def compute_location(
         if coin.fuss not in fuesse:
             # Should have been caught in validation, but guard anyway
             continue
-        computed.append(_compute_coin(coin, fuesse[coin.fuss]))
+        computed.append(_compute_coin(
+            coin, fuesse[coin.fuss],
+            location_km_register=location.km_register,
+        ))
     return computed

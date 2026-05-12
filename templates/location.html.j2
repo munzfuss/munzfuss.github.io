@@ -23,9 +23,9 @@
   {%- endif -%}</td>
   <td>{{ coin.raw.ruler|ruler(lang) }}</td>
   <td class="c-km">
-    {%- for prefix, vals in coin.catalog_groups -%}
+    {%- for prefix, vals, tooltip in coin.catalog_groups -%}
       {%- if prefix -%}
-        <span class="cat-group"><span class="cat-prefix">{{ prefix }}#</span> {{ vals | join(', ') }}</span>
+        <span class="cat-group"><span class="cat-prefix"{% if tooltip %} data-tooltip="{{ tooltip }}"{% endif %}>{{ prefix }}#</span> {{ vals | join(', ') }}</span>
       {%- else -%}
         {%- for v in vals -%}
           <span class="cat-group cat-plain">{{ v }}</span>
@@ -246,9 +246,9 @@
   {%- endif -%}</td>
   <td>{{ coin.raw.ruler|ruler(lang) }}</td>
   <td class="c-km">
-    {%- for prefix, vals in coin.catalog_groups -%}
+    {%- for prefix, vals, tooltip in coin.catalog_groups -%}
       {%- if prefix -%}
-        <span class="cat-group"><span class="cat-prefix">{{ prefix }}#</span> {{ vals | join(', ') }}</span>
+        <span class="cat-group"><span class="cat-prefix"{% if tooltip %} data-tooltip="{{ tooltip }}"{% endif %}>{{ prefix }}#</span> {{ vals | join(', ') }}</span>
       {%- else -%}
         {%- for v in vals -%}
           <span class="cat-group cat-plain">{{ v }}</span>

@@ -225,8 +225,43 @@ class FussPeriod(_StrictBase):
     closing_label: I18nTextOptional | None = None  # small uppercase .tlb inside .terr
 
 
+class KMRef(_StrictBase):
+    """A Krause-Mishler reference with an optional register tag.
+
+    Krause publishes regional volumes with independent numbering
+    (Denmark vs Schleswig-Holstein vs Norway vs German States…) —
+    KM-25 in the Denmark volume is unrelated to KM-25 in the SH
+    volume. When ONE coin appears in MULTIPLE Krause volumes under
+    DIFFERENT numbers (e.g. a Glückstadt issue catalogued both as
+    DK-KM-25 and SH-KM-87), every list entry needs its own register
+    tag so the renderer can disambiguate.
+
+    The `register` value is short region code: `DK` (Denmark), `SH`
+    (Schleswig-Holstein), `NO` (Norway), `DE-*` (German states by
+    sub-region). `None` means «inherit the page's default register»
+    (see Location.km_register). The compute layer's rendering rule:
+
+      * Single list entry with implicit register (= None or equals
+        page's default) → bare «KM#» prefix.
+      * Single list entry with non-default register → «KM-<reg>#»
+        prefix + tooltip.
+      * Multiple list entries → every token «KM-<reg>#» + tooltip
+        (so the reader can read off which catalog volume each
+        number lives in).
+    """
+    value: str
+    register: str | None = None
+
+
 class CatalogRefs(_StrictBase):
-    km: str | None = None
+    # `km` accepts three shapes:
+    #   * scalar string (e.g. `'73'`) — single KM in the page's default
+    #     register
+    #   * list of strings — multi-KM (same coin in multiple Krause
+    #     volumes), all rendered with page's default register
+    #   * list of KMRef objects — multi-KM with per-entry register tags
+    # See KMRef docstring for the cross-register rendering rules.
+    km: str | list[str | KMRef] | None = None
     lange: str | None = None
     # `hede` (and parallel `sieg` / `schou`) accept a list form when the
     # coin is a Krause-KM-canonical entry that spans multiple Hede sub-
@@ -538,6 +573,15 @@ class Location(_StrictBase):
     name: I18nText
     summary: I18nText
     fuss_order: list[str]
+    # Default Krause-Mishler register for this location. Determines
+    # which KM references render BARE («KM#») vs PREFIXED («KM-DK#»,
+    # «KM-SH#»). When a coin's `catalog.km` is a scalar string OR a
+    # single-entry KMRef whose `register` equals this value (or is
+    # None), it renders bare. Cross-register or multi-KM entries
+    # always render with explicit prefix + tooltip. Typical values:
+    # 'DK' for denmark.yml, 'SH' for schleswig_holstein.yml. Leave
+    # unset for locations where the distinction doesn't apply yet.
+    km_register: str | None = None
     timeline: Timeline | None = None
     fuss_periods: dict[str, FussPeriod] = Field(default_factory=dict)  # fuss_id → per-location framing
     phases: dict[str, list[Phase]] = Field(default_factory=dict)  # fuss_id → [Phase]

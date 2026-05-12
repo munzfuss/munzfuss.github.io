@@ -238,6 +238,34 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
     """
     if not SEEDS_DIR.exists():
         return []
+    # Cross-location coverage: a Hede catalog entry may be curated in a
+    # DIFFERENT location yaml than the one whose seed it sits in.
+    # Concrete case: dk-hede-c4h178a/b (Glückstadt 1640-48 Søsling) sit
+    # in `data/seed/hede/denmark.yml` (seed builder is denmark-named)
+    # but the curated entry lives in `schleswig_holstein.yml` (per the
+    # «move Glückstadt issues to SH yaml» convention). Without cross-
+    # scan, those seed entries render as duplicates on the denmark
+    # page even though they're covered elsewhere.
+    #
+    # Build a unified coverage set by scanning ALL location yamls' coins
+    # for catalog.hede + catalog.hede_volume refs and adding the derived
+    # seed-id (plus bare-basename variant) to the suppression set,
+    # merged with the current location's own coverage.
+    extra_curated_for_coverage: list[dict] = []
+    locations_dir = DATA_DIR / "locations"
+    if locations_dir.exists():
+        for other_path in sorted(locations_dir.glob("*.yml")):
+            if other_path.stem.endswith("-references"):
+                continue
+            if other_path.stem == loc_id:
+                # Skip current location — its coverage comes from raw['coins'] below
+                continue
+            with open(other_path, encoding="utf-8") as of:
+                other_doc = yaml.safe_load(of) or {}
+            for oc in other_doc.get("coins") or []:
+                if isinstance(oc, dict):
+                    extra_curated_for_coverage.append(oc)
+
     # Pre-compute the suppression set + year/metal map from the curated coins.
     # We track the curated entry's metal because Hede refs frequently
     # appear as «cf. silver companion» citations on gold Portugaloser /
@@ -256,7 +284,7 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
     # actual sub-types as `hede: 107B` etc. The bare-basename seed
     # entry is therefore redundant whenever ANY sub-letter is curated.
     # Same metal + year guards apply.
-    curated_coins = raw.get("coins") or []
+    curated_coins = (raw.get("coins") or []) + extra_curated_for_coverage
     suppressed_ids: dict[str, dict] = {}  # seed_id → {year, metal, cur_id}
     for cc in curated_coins:
         if not isinstance(cc, dict):
