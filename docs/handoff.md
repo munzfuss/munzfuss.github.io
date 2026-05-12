@@ -108,6 +108,7 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
 | §S | Add page numbers to long-PDF / book refs (sweep pattern) |
 | §T | Keyword search across coins on a location page |
 | §U | Per-specimen Δ-computation needs explicit weight+fineness lineage |
+| §V | Numista / ucoin cache coverage audit (no auto-merge pipeline yet) |
 
 All entries carry their own design sketches in `docs/TODO.md`;
 this list exists only to anchor «what's open» on a quick read.

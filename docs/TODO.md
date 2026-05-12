@@ -7,6 +7,128 @@
 
 ## Open
 
+### V. Numista / ucoin cache coverage audit (no auto-merge pipeline yet)  *(opened 2026-05-13)*
+
+Of our four research caches, only **Hede** has an end-to-end seed-
+generation + auto-suppression pipeline (`scripts/maintenance/build_*_seed.py`
+emits `data/seed/hede/<loc>.yml`; `_merge_seeds_into_raw` in
+`scripts/build.py` folds it against curated `catalog.hede` refs). The
+other three caches are accumulated but consumed ad-hoc:
+
+  - **Numista** (`scripts/cache/numista/*.json`, ≈ 683 entries; ≈ 385
+    mention Denmark): fetched via `scripts/fetch_numista_api.py`, used
+    via `scripts/enrich_from_numista.py` to enrich existing curated
+    entries that already carry a `catalog.numista` ref. **No
+    discovery path**: Numista records not yet linked to a curated
+    entry sit cold in the cache.
+  - **ucoin** (`scripts/cache/ucoin/_url_index.json`, ≈ 6 300 entries
+    across all covered countries; `period_*.tsv` for 11 period
+    buckets): the only ucoin → curated linkage is hand-attaching a
+    `dk-tid-NNNNN` id (or `sources[].url` ucoin URL) on a curated
+    entry. **No discovery path** either.
+  - **IKMK Berlin** (`scripts/cache/ikmk/*.json`, 7 000+ entries):
+    fetched via `scripts/fetch_ikmk.py`, used as source attestation
+    when the user manually attaches the IKMK ID. **No discovery
+    path**.
+
+Live numbers (counted over `data/locations/*.yml` 2026-05-13):
+
+  - Curated entries citing a ucoin tid: **704 unique tids**.
+  - Curated entries citing a Numista nid (`en.numista.com/N` or
+    `N#NNN` form): **130 unique nids**.
+
+So at most ~ 11 % (704 / 6300) of cached ucoin entries are linked to
+curated coins, and ~ 19 % (130 / 683) of cached Numista entries.
+The remainder — most of the cache — is invisible to the build and
+to the researcher unless they happen to query the cache directly.
+
+**Failure modes the gap is producing:**
+
+  1. **Duplicate work**: a session sees a coin missing from the page,
+     fetches it fresh from Numista (burns API quota — see CLAUDE.md
+     «Numista API budget» rule), unaware the JSON is already on disk.
+  2. **Silent under-coverage of locations**: cached ucoin/Numista
+     entries for known KM types are ready to be promoted to curated
+     entries but no audit surfaces «which Krause coins for Denmark
+     have a cached ucoin record but no curated entry yet?».
+  3. **Stale data drift**: when Numista updates a published value
+     (weight, fineness, year range), our cache may have a newer copy
+     than our curated entries — but we only notice when a session
+     manually re-checks. No automatic divergence flag.
+
+**Design sketch — two-step, audit-first then optional pipeline:**
+
+Step 1: **Coverage audit script** (`scripts/audit_cache_coverage.py`).
+  - For each cache (Numista, ucoin, IKMK), build a set of
+    cache-record-ids.
+  - For each `data/locations/*.yml`, extract the set of cited ids
+    per cache.
+  - Print three lists per cache:
+      (a) **Linked** — in cache AND in curated.
+      (b) **Cache-only** — in cache, NOT in curated. Candidates
+          for promotion-to-curated, scoped to the cache-record's
+          country / period.
+      (c) **Curated-only** — in curated, NOT in cache. Indicates
+          a stale cache or a fetch that failed; flag for re-fetch.
+  - Country / mint filter: limit to Denmark, Schleswig-Holstein, etc.
+  - Output formats: human-readable summary (counts + sample lines)
+    + JSON sidecar for downstream tooling.
+
+Step 2: **Seed generator** (mirror Hede's pattern; defer until
+audit shows the gap is worth automating).
+  - `scripts/maintenance/build_ucoin_seed.py` reads cache + emits
+    `data/seed/ucoin/<loc>.yml` for cache-only records that map to
+    the location's country.
+  - `_merge_seeds_into_raw` extended with a parallel auto-suppress
+    path that compares `sources[].url` ucoin URLs (or a dedicated
+    `catalog.ucoin: 'NNNNNN'` field, easier to compare).
+  - Same metal / weight / year guards as the Hede path.
+  - Numista seed analogous: `scripts/maintenance/build_numista_seed.py`
+    + `_merge_seeds_into_raw` extension for `catalog.numista` refs.
+
+**Open design questions:**
+
+  * **Where does `catalog.ucoin` live in the schema?** Currently
+    ucoin linkage is implicit via `sources[].url`. A first-class
+    `catalog.ucoin: 'NNNNNN'` field would make suppress / dedup
+    queries trivial. Migration cost: walk every curated entry whose
+    `sources[].url` matches `ucoin.net/.*tid=NNNNNN`, lift the
+    id into the new catalog field.
+  * **Numista discovery scope** — the cache covers ALL countries we've
+    ever queried, including non-Northern-German states. Seed
+    generation must scope by country/region so a Russian or French
+    coin doesn't leak into a Danish seed yml.
+  * **IKMK is harder** — IKMK records are individual specimens, not
+    coin types. A single coin type can have N IKMK specimens. Coverage
+    audit is meaningful; seed-style promotion isn't (we'd never want
+    one curated row per IKMK specimen). The IKMK case is multi-source
+    weight enrichment, not discovery — already handled per §9a.
+  * **Promotion priority signal** — when a cache-only Numista record
+    matches a known KM number not yet curated, promotion is easy
+    (assign KM + fold). When the cache record has no KM reference,
+    promotion needs the per-case methodology (case 9 style). The
+    audit should rank cache-only records by how well they map to
+    known curated infrastructure.
+
+**Why this matters now.** The Hede dedup audit is closing
+(case 9 of 46 done; bare-basename siblings being processed per-case).
+When that's done, the next obvious quality lift is the cache-only
+gap — there are hundreds of cached Numista / ucoin entries for KMs
+that already exist on our pages but have no source citation, and
+some that point at types we haven't yet documented at all. Adding
+those is the highest-yield work after dedup.
+
+**Out-of-scope (for first cut):**
+
+  - Live cache re-fetch / sync (separate concern; respects API budget).
+  - Bruun coverage — Bruun is already cross-matched via
+    `scripts/cache/bruun/cross_match.json` and surfaced via TODO §F
+    «Bruun fall-throughs». Don't duplicate.
+
+Defer concrete implementation until current dedup audit closes — the
+cache-only set won't shrink fast in the meantime, and the dedup work
+is informing what the audit output should rank by.
+
 ### U. Per-specimen Δ-computation needs explicit weight+fineness lineage  *(opened 2026-05-13)*
 
 When a coin entry carries **multi-source measurement fields** (weight
