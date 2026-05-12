@@ -2815,44 +2815,61 @@ coins:
       en: "Mint provisionally recorded as Copenhagen — consistent with the rest of the 1618 Kronemønt series (km-57 ¼, km-58 ½, km-59 1, km-60 2 Krone, all Copenhagen) and with the Royal Danish Krause index KM-DK# 56; Glückstadt struck no Krone fractions in 1618. Direct mint attestation via Hede/Wilcke still pending, hence (?). Diameter not given by ucoin."
       uk: "Монетний двір попередньо записано як Копенгаген — узгоджено з рештою 1618-ї Kronemønt-серії (km-57 ¼, km-58 ½, km-59 1, km-60 2 Krone, усі Копенгаген) та з Royal-Danish-Krause-індексом KM-DK# 56; Глюкштадт у 1618 р. не карбував Krone-фракцій. Прямий Mzm.-доказ за Hede/Wilcke ще очікується, звідси (?). Діаметр у ucoin не вказано."
 
-  - id: km-x029-chr-iv-1619
-    fuss: 9_thaler
+  - id: km-69-chr-iv-1619
+    fuss: kronemont_chr_iv
     phase: I
-    kind: scheide
+    kind: tarif_subunit
     fraction: "1/48"
-    nominal: 2 Skilling
+    nominal: 2 Kroneskilling
     year_label: "1619–1621"
     year_first: 1619
     year_last: 1621
     ruler: "Christian IV."
     mint: "Kopenhagen"
     catalog:
-      others:
-        - "KM-DK# 69"
+      km: '69'
+      # Two mint-master sub-letters folded under KM-69 (Denmark Krause
+      # register; do NOT confuse with Schleswig-Holstein KM-69 =
+      # Numista 301813 = 1/16 Thaler Frederick III Gottorp — same
+      # number, different register volume, different coin).
+      # Hede 116 sub-letters: 116A korslagte køller Mzz (1619, 1621 RRR;
+      # Ernst NNÅ 1949 considers the 1621 variant a tvepræg / double-
+      # strike), Schou 140-141, 79; 116B fugl Mzz (1620), Schou 186-188.
+      # Both share Sieg-1971 base 40.
+      hede:
+        - 116A
+        - 116B
+      hede_volume: c4h
+      sieg_hede1971: '40'
     metal: silver
-    fineness: 0.86
+    fineness: 0.859
     weight_rough_g:
+      - value: 0.525
+        source: "Hede c4h116 / danskmoent.dk (Soll-Bruttovægt)"
       - value: 0.53
         source: ucoin
     diameter_mm: 13.5
     note:
       de: |-
-        2 Skilling Christians IV. (1619–1621) — 1/48 Speciedaler in dänischer Theilung (Sk Danske-Konvention: 96 Sk Danske = 1 Sp). Sehr leichtes Stück (0,53 g) bei .86 Feinheit. Mzm. nicht eindeutig — vorerst als Glückstadt eingetragen. <b>KM-DK# 69</b>; in Numista nicht katalogisiert.
+        2 Kroneskilling 1619-1621 — Kronemont-Subdivision (Reverse «1/48 Speciedaler» entspricht «1/18 Krone» Tarif) · post-1619-Reform-Standard (Bruttovægt 0,525g, Finhed 0,859, Finvægt 0,451g, Marken-fin 10,793 daler — gleiches Verhältnis wie KM-81 / KM-82) · zwei Müntzmeister-Varianten nach Hede 116 unter KM-69: 116A korslagte køller (Sieg-1971 40, 1619 + 1621 RRR), 116B fugl (Sieg-1971 40, 1620) · 1621-Variante von 116A nach Ernst (NNÅ 1949) ein tvepræg (Doppelschlag-Anomalie) · Literatur: Dahl, NNÅ 2003; Ernst, NNÅ 1949 «Johan Post».
       en: |-
-        2 Skilling of Christian IV (1619–1621) — 1/48 Speciedaler in the Danish subdivision (Sk Danske convention: 96 Sk Danske = 1 Sp). Very light piece (0.53 g) at .86 fineness. Mint not unambiguous — provisionally entered as Glückstadt. <b>KM-DK# 69</b>; not catalogued by Numista.
+        2 Kroneskilling 1619-1621 — Kronemont subdivision (reverse «1/48 Speciedaler» equals «1/18 Krone» tariff) · post-1619-reform standard (Bruttovægt 0.525g, Finhed 0.859, Finvægt 0.451g, Marken-fein 10.793 daler — same ratio as KM-81 / KM-82) · two mint-master variants per Hede 116 folded under KM-69: 116A crossed clubs (Sieg-1971 40, 1619 + 1621 RRR), 116B bird (Sieg-1971 40, 1620) · the 1621 variant of 116A per Ernst (NNÅ 1949) is a tvepræg (double-strike anomaly) · Literature: Dahl, NNÅ 2003; Ernst, NNÅ 1949 «Johan Post».
       uk: |-
-        2 Skilling Кристіана IV (1619–1621) — 1/48 Speciedaler у данському поділі (конвенція Sk Danske: 96 Sk Danske = 1 Sp). Дуже легка монета (0,53 г) при пробі .86. Монетний двір неоднозначний — попередньо внесено як Глюкштадт. <b>KM-DK# 69</b>; у Numista не каталогізовано.
+        2 Kroneskilling 1619-1621 — Kronemont-субподіл (реверс «1/48 Speciedaler» відповідає тарифу «1/18 Krone») · стандарт після реформи 5 квітня 1619 (Bruttovægt 0,525г, Finhed 0,859, Finvægt 0,451г, Marken-fin 10,793 daler — той самий коефіцієнт як у KM-81 / KM-82) · два варіанти монетмейстера за Hede 116 об'єднані під KM-69: 116A korslagte køller (Sieg-1971 40, 1619 + 1621 RRR), 116B fugl (Sieg-1971 40, 1620) · 1621-варіант 116A за Ernst (NNÅ 1949) — tvepræg (аномалія подвійного штемпеля) · Література: Dahl, NNÅ 2003; Ernst, NNÅ 1949 «Johan Post».
     sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-skilling-1619-1621/?tid=163005
         ref: ucoin
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h116.htm
+        ref: "Hede c4h116 (danskmoent.dk)"
     issuing_entity: danish_realm
     fineness_verified: true
     mint_verified: false
     verification_note:
-      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 69 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1619–1621). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
-      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 69 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1619–1621). Mint still (?) — no direct Hede / Wilcke attestation.
-      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 69 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1619–1621). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+      de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period und Hede c4h116 / danskmoent.dk als königlich-dänische Kopenhagener Kronemont-Prägung re-attribuiert (1619–1621). KM-69 ist Denmark-Register (nicht zu verwechseln mit Schleswig-Holstein KM-69 = 1/16 Thaler Frederik III. Gottorp 1623-1628).
+      en: Mint originally recorded as Glückstadt; on later audit against ucoin Period and Hede c4h116 / danskmoent.dk re-attributed as a Royal Danish Copenhagen Kronemont issue (1619–1621). KM-69 here is the Denmark register (not to be confused with Schleswig-Holstein KM-69 = 1/16 Thaler Frederick III Gottorp 1623-1628).
+      uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period і Hede c4h116 / danskmoent.dk переатрибутовано як королівсько-данську копенгагенську Kronemont-монету (1619–1621). KM-69 тут — Denmark-register (не плутати з Schleswig-Holstein KM-69 = 1/16 Thaler Frederik III Gottorp 1623-1628).
   - id: km-x030-chr-iv-1619
     fuss: 9_thaler
     phase: I
