@@ -47,6 +47,42 @@ KMs in denmark.yml would surface the full set. Hold for now —
 follow-up audit pass when the higher-priority L-campaign items free
 up.
 
+### O. Numista weight typos vs Hede Bruttovægt  *(opened 2026-05-12)*
+
+Adjacent pattern to §N: Numista entries occasionally publish a
+«weight» field that's closer to Hede's Finvægt (fine-silver content)
+than to Hede's Bruttovægt (gross-coin standard). Numista's own
+convention is Brutto (confirmed via control-case KM-81 / Hede 115:
+Numista 1.051g matches Hede Bruttovægt exactly). Where Numista
+deviates by ~10-15% from Hede's Brutto, the most parsimonious
+explanation is a user-edit error — the editor entered Finvægt by
+mistake.
+
+One case resolved so far:
+
+* **KM-82 / Hede 114** (8 Kroneskilling Christian IV 1620-1621) —
+  *resolved 2026-05-12.* Hede Bruttovægt 2.101g (passes three
+  independent checks: internal arithmetic 2.101 × 0.859 = 1.806
+  matches published Finvægt; silver-proportional 2× sister-denom
+  KM-81 = 2 × 1.051 = 2.102; marken-fin formula gives the correct
+  1/12 daler face value matching curator's `fraction: 1/12`).
+  Numista/ucoin 1.85g is 12% low — likely Finvægt-mistake. Hede
+  value now primary on km-82-chr-iv-1620; Numista 1.85g kept as
+  second reading with annotated explanation.
+
+Pattern hypothesis: small-denomination scheidemünze entries on
+Numista are more prone to this confusion because Brutto and Finvægt
+are visually close and the source pages (often danskmoent Hede)
+publish both side-by-side. Larger denominations (where Brutto and
+Finvægt differ by a clear factor) are less affected — see KM-81
+control case.
+
+Open question: how many other Numista DK entries have this
+inversion? A sweep over `scripts/cache/numista/*.json` comparing
+`weight` vs Hede's published Brutto for each entry (filtered to
+those that also cite Hede in catalog refs) would surface the full
+list. Hold for now — defer to the same audit window as §N.
+
 ### L. Schleswig-Holstein + Denmark consolidation campaign  *(opened 2026-05-10)*
 
 A coordinated multi-pass effort to bring the SH and Denmark locations

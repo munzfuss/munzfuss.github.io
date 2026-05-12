@@ -3307,50 +3307,46 @@ coins:
     catalog:
       km: '82'
       numista: '142858'
+      # Five mint-master sub-letters folded under KM-82 per Hede 114
+      # (all 1620-1621 post-1619-reform strikes, Sieg-1971 base 64):
+      # 114A trekløver Mzz (Schwabe, Sieg 64.1) — 1620, 1621;
+      # 114B korslagte køller (Sieg 64.2) — 1620 R;
+      # 114C fugl Mzz (Sieg 64.3) — 1620, 1621;
+      # 114D korslagte glødehager (Sieg 64.4) — 1620, 1621;
+      # 114E ibskal (Johan Post — usikkert, Sieg 64.5) — 1620 R, the
+      # most-disputed Kronemønt rarity per Fornitz in Bruun Rasmussen
+      # auktion 752 (2005).
+      hede:
+        - 114A
+        - 114B
+        - 114C
+        - 114D
+        - 114E
+      hede_volume: c4h
+      sieg_hede1971: '64.1'
     metal: silver
     fineness: 0.859
     weight_rough_g:
+      - value: 2.101
+        source: "Hede c4h114 / danskmoent.dk (Soll-Bruttovægt)"
       - value: 1.85
-        source: Numista
+        source: "Numista 142858, ucoin tid 163026 (user-edited; likely typo — value ≈ Hede Finvægt 1.806g, not Brutto. Sister Hede 115 / KM-81 confirms Numista's actual Brutto convention via 1.051g match)"
     note:
-      de: 8 Kroneskilling Typ II — größtes Kroneskilling-Stück; 1,85 g rau gegenüber 1/12-Krone-Soll 1,56 g rau, also nur leicht über dem Krone-Müntzfuß (Typ-II-Reform brachte die Subeinheiten näher an den nominellen Tarif).
-      en: 8 Kroneskilling Type II — largest Kroneskilling piece; 1.85 g rough vs. 1/12-Krone soll 1.56 g rough, only slightly above the Krone standard (the Type-II reform brought the sub-units closer to the nominal tariff).
-      uk: 8 Kroneskilling Тип II — найбільша Kroneskilling-монета; 1,85 г повної ваги проти 1/12-Krone soll 1,56 г, лише трохи вище Krone-стопи (реформа Типу II наблизила субодиниці до номінального тарифу).
+      de: "8 Kroneskilling 1620-1621 — größtes Kroneskilling-Stück, Reverse «1/18 krone» · fünf Münzmeister-Varianten nach Hede 114A-E unter KM-82 zusammengefaßt: 114A trekløver (Schwabe, Sieg-1971 64.1), 114B korslagte køller (Sieg-1971 64.2), 114C fugl (Sieg-1971 64.3), 114D korslagte glødehager (Sieg-1971 64.4), 114E ibskal (Johan Post — usikkert, Sieg-1971 64.5, eine der umstrittensten Christian-IV-Raritäten) · Bruttovægt 2,101g · Finvægt 1,806g · Marken-fin 10,793 daler · Numista/ucoin 1,85g vermutlich Schreibfehler (≈ Finvægt statt Brutto) · Literatur: Fornitz in Bruun Rasmussen auktion 752 (2005)."
+      en: "8 Kroneskilling 1620-1621 — largest Kroneskilling piece, reverse «1/18 krone» · five mint-master variants per Hede 114A-E folded under KM-82: 114A trekløver (Schwabe, Sieg-1971 64.1), 114B crossed clubs (Sieg-1971 64.2), 114C bird (Sieg-1971 64.3), 114D crossed fire-hooks (Sieg-1971 64.4), 114E scallop (Johan Post — uncertain, Sieg-1971 64.5, one of the most-disputed Christian IV rarities) · Bruttovægt 2.101g · Finvægt 1.806g · 10.793 daler per Marken-fein · Numista/ucoin 1.85g likely typo (≈ Finvægt, not Brutto) · Literature: Fornitz in Bruun Rasmussen auktion 752 (2005)."
+      uk: "8 Kroneskilling 1620-1621 — найбільша Kroneskilling-монета, реверс «1/18 krone» · п'ять варіантів монетмейстера за Hede 114A-E об'єднані під KM-82: 114A trekløver (Schwabe, Sieg-1971 64.1), 114B korslagte køller (Sieg-1971 64.2), 114C fugl (Sieg-1971 64.3), 114D korslagte glødehager (Sieg-1971 64.4), 114E ibskal (Johan Post — usikkert, Sieg-1971 64.5, одна з найбільш дискусійних рідкостей Christian IV) · Bruttovægt 2,101г · Finvægt 1,806г · 10,793 daler з Marken-fin · Numista/ucoin 1,85г ймовірно typo (≈ Finvægt, не Brutto) · Література: Fornitz в каталозі Bruun Rasmussen аукціон 752 (2005)."
     sources:
       - type: numista
         url: https://en.numista.com/142858
         ref: Numista
-    issuing_entity: danish_realm
-    mint: Kopenhagen
-  - id: dk-tid-163026
-    fuss: 9_thaler
-    phase: I
-    kind: scheide
-    nominal: 8 Skilling
-    year_label: 1620-1621
-    year_first: 1620
-    year_last: 1621
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      km: '82'
-    metal: silver
-    fineness: 0.86
-    weight_rough_g: 1.85
-    sources:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-8-skilling-1620-1621/?tid=163026
-        ref: ucoin
+        ref: ucoin tid 163026
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h114.htm
+        ref: "Hede c4h114 (danskmoent.dk)"
     issuing_entity: danish_realm
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    mint_verified: false
-    verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-    fraction: 1/12
+    mint: Kopenhagen
   - id: km-x016-chr-iv-1622
     fuss: 9_25_thaler
     phase: I
