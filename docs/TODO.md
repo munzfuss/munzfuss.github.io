@@ -394,10 +394,11 @@ no way to know.
        Probe    F   ← <source2>
        gegen Soll-Feingewicht  S g (Fuß-Anker)
      ```
-  3. **Audit-script support.** Extend `scripts/audit.py` to flag
-     entries where the active `(w, f)` pair sits at the worst-Δ
-     extreme of all possible pairings; that surfaces «we picked the
-     pessimistic combination» as a quality signal.
+  3. **Audit-script support.** Add a new audit (either a new section
+     in `scripts/audit_health.py` or a dedicated `scripts/audit_*.py`)
+     to flag entries where the active `(w, f)` pair sits at the
+     worst-Δ extreme of all possible pairings; that surfaces «we
+     picked the pessimistic combination» as a quality signal.
 
 **Open design questions:**
 

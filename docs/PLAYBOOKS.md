@@ -1009,8 +1009,8 @@ inflation).
 - User knows how many commits await push.
 
 **Related rules.** CLAUDE.md «Read this file first on every
-session», «Preview-mode auto-build», «Commit cadence + push
-reminder», «Push permission grant».
+session», «Preview lifecycle» (+ PB-11), «Commit cadence + push
+permission».
 
 ---
 
@@ -1106,7 +1106,7 @@ submodule-pointer bump waiting to be committed in main; step 2 above
 fixes it.
 
 **Push-permission rule still applies.** Per CLAUDE.md «Commit cadence
-+ push reminder»: never push autonomously. Both `git push` calls above
++ push permission»: never push autonomously. Both `git push` calls above
 require the user's explicit «пуш» / «push» grant. The grant covers
 the turn — for the harvest two-step, that means one grant authorises
 both pushes (submodule first, main second), since they together form
@@ -1114,7 +1114,7 @@ the «atomic harvest commit» from the user's perspective.
 
 **Related rules.** CLAUDE.md «Harvest cache» pointer; ARCHITECTURE.md
 «Harvest cache (submodule)» section (canonical architectural
-description); CLAUDE.md «Commit cadence + push reminder» (governs
+description); CLAUDE.md «Commit cadence + push permission» (governs
 both pushes).
 
 ---

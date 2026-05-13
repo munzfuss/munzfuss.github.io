@@ -35,7 +35,7 @@ Build mathematically-verified, historically accurate reference artifacts documen
 - When a source confirms only part of a claim, write only that part. Hede c5h120 confirms a 9-Fuß Speciedaler from 1683 — write "Speciedaler 1683 (Glückstadt) nach 9-Fuß, Hede 120". Do not extend.
 - When in doubt, say so explicitly in the prose: «Auflage und Anlaß sind in den vorliegenden Quellen nicht angegeben» / «mintage and circumstance are not given in the available sources». An explicit gap is more useful than a confident fiction.
 
-This rule **subsumes and reinforces** §4 (unconfirmed-data marker), §5 (source hierarchy), §2a (academic register), and the "Inventing sources" anti-pattern. When those rules and this one say similar things, this one is the canonical statement; the others are specific applications.
+This rule **subsumes and reinforces** §4 (unconfirmed-data marker), §5 (source hierarchy), and §2a (academic register). When those rules and this one say similar things, this one is the canonical statement; the others are specific applications.
 
 **The scholarly tone is not optional decoration.** A hedged guess presented in confident prose is worse than no entry at all — it pollutes the reference and silently corrupts every researcher who later cites it.
 
@@ -206,6 +206,7 @@ When in doubt, ask: *would this phrase appear in a peer-reviewed numismatic arti
 
 ### 3. Precision conventions
 
+- **Store the source's literal value, never round at YAML-write time.** All numbers in YAML must be traceable. If the source says `3.46 g`, store `3.46` not `3.5`; if Numista publishes `28.893 g`, store `28.893` not `28.89`. Display-time rounding for layout is the build script's job (per the «5-decimal precision» rule below); YAML data carries the source's number unaltered.
 - **Decimal separator**: comma in DE (`25,28173 g`), period in EN (`25.28173 g`), comma in UK (`25,28173 г`). The build script handles this via i18n formatter; YAML stores numbers as JSON numbers (`25.28173`).
 - **5-decimal precision** for all Feingewicht calculations that appear in text. Internal computation uses full float precision.
 - **`=` vs `≈` vs `Kurs`**: strict distinction. `=` for exact mathematical identity; `≈` for approximations ≤0.1%; `Kurs` for historically-set exchange rates that need not reflect metal content.
@@ -497,7 +498,7 @@ config/theme.yml                  # Colors, typography, dimensions
 templates/{landing,location}.html.j2  # Jinja2 templates
 ```
 
-The build pipeline is **`scripts/build.py`** + `scripts/lib/*` (read-only for normal data edits — see ARCHITECTURE.md §«Build script» if you need to modify). **`scripts/cache/`** is a git submodule (`munzfuss-harvest` private repo) holding raw + parsed fetches; the build does NOT read it — only fetchers / parsers / audits / maintenance scripts do (see «Harvest submodule workflow» below). **`site/`** is gitignored build output — never hand-edit; fixes belong in templates or data.
+The build pipeline is **`scripts/build.py`** + `scripts/lib/*` (read-only for normal data edits — see ARCHITECTURE.md §«Build script» if you need to modify). **`scripts/cache/`** is a git submodule (`munzfuss-harvest` private repo) holding raw + parsed fetches; the build does NOT read it — only fetchers / parsers / audits / maintenance scripts do (see «Harvest cache» below). **`site/`** is gitignored build output — never hand-edit; fixes belong in templates or data.
 
 **Never edit `output/debug/` or `site/` manually. Always edit `data/` and rebuild.**
 
@@ -515,8 +516,8 @@ python scripts/build.py --validate-only    # runs schema validation, no renderin
 
 The Claude Preview MCP serves a live preview against the rendered output. Two operational rules govern Claude's interaction with it; both are documented in **`docs/PLAYBOOKS.md` PB-11 «Preview-mode lifecycle»**:
 
-- **Auto-build at end-of-turn** — when preview is running AND this turn modified a build-trigger file (`data/**`, `templates/**`, `scripts/build.py`, `scripts/lib/**`, `config/theme.yml`, `assets/**`), run `python scripts/build.py` once before ending the turn. PB-11 §«Auto-build» has the full trigger-file list + detection heuristic.
-- **Never call `preview_stop` unilaterally** — the user owns the preview lifecycle. Explicit-permission phrasings («stop / restart / перезапусти превʼю» that names the preview AND a stop / restart action) authorise the call; «refresh / reset» do NOT. The «restart implies stop» rule is scoped strictly to restart phrasings. PB-11 §«Stop / restart» carries the full rule.
+- **Auto-build at end-of-turn** — when preview is running AND this turn modified a build-trigger file (`data/**`, `templates/**`, `scripts/build.py`, `scripts/lib/**`, `config/theme.yml`, `assets/**`), run `python scripts/build.py` once before ending the turn. PB-11 §«Auto-build at end-of-turn» has the full trigger-file list + detection heuristic.
+- **Never call `preview_stop` unilaterally** — the user owns the preview lifecycle. Explicit-permission phrasings («stop / restart / перезапусти превʼю» that names the preview AND a stop / restart action) authorise the call; «refresh / reset» do NOT. The «restart implies stop» rule is scoped strictly to restart phrasings. PB-11 §«Stop / restart — never unilateral» carries the full rule.
 
 ## Git workflow
 
