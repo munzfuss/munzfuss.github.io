@@ -11,31 +11,64 @@ Open entries split into three priority tiers:
 
 - **High priority** — the user has explicitly flagged these as
   most-important on a specific date. New high-priority work goes
-  here only on direct user direction («з найвищим пріоритетом» or
-  equivalent). Keep this section short — when more than ~10 entries
+  here **only on direct user direction** («з найвищим пріоритетом»
+  or equivalent). Keep this section short — when more than ~10 entries
   pile up, promote/demote to maintain scannability.
-- **Normal priority** (default) — every new TODO entry lands here
-  unless the user marked it as high or low. Sorted newest-at-top
-  within the section (entries opened today appear before entries
-  opened yesterday).
+- **Normal priority** (default) — **every new TODO entry lands here
+  unless the user explicitly says otherwise.** No priority annotation
+  from the user = Normal. Other tiers (High / Low) only when the user
+  emphasises the priority directly in chat (e.g. «з найвищим
+  пріоритетом», «низький пріоритет», «не зараз», equivalents).
 - **Low priority** — deferred items. Things we're not abandoning
   but consciously postponing (external blockers, big-bang refactors
   pending decisions, ideas worth recording but not now). Move
   entries here when they survive several sessions without progress
-  AND have no near-term trigger to act on them.
+  AND have no near-term trigger to act on them, OR when the user
+  explicitly says «низький / low / не зараз».
 
-Optional inline markers in entry titles (used selectively, currently
-only on High-priority entries while we trial the convention):
+### Ordering within a category
 
-- 🟢 **ready** — no decision needed, can start immediately.
-- 🟡 **needs decision** — blocked on user verdict before any action.
-- 🔵 **per-case ongoing** — long-running grind, advances one case at
-  a time.
-- 🔴 **paused** — external blocker (rate-limit, source unavailable).
+**New entries are appended to the END of their category** — chronological
+order (oldest at top of section, newest at bottom). Do NOT insert at
+the top of the section. Rationale: append-only writes preserve
+session-trail / git-blame archaeology and match how a backlog is
+naturally consumed (oldest pending first). Existing entries that
+predate this convention may sit in reverse-chronological order; that
+quirk is grandfathered, but every NEW entry follows the append rule.
 
-Effort estimate in title: `*(est: small | medium | large | many sessions)*`.
-Small ≈ <30 min in one session, medium ≈ ~1 h, large ≈ multi-hour,
-many sessions ≈ stretches across days/weeks.
+### Mandatory annotations on every new entry
+
+The seven currently-flagged High-priority entries (§AA-§AG) carry a
+trial set of inline markers. Going forward, **every new entry — in
+any tier — must include both**:
+
+- **A status emoji at the start of the title**, picked from:
+  - 🟢 **ready** — no decision needed, can start immediately.
+  - 🟡 **needs decision** — blocked on user verdict before any action.
+  - 🔵 **per-case ongoing** — long-running grind, advances one case
+    at a time.
+  - 🔴 **paused** — external blocker (rate-limit, source unavailable,
+    paid quota exhausted, etc.).
+- **An effort estimate in the title**: `*(est: small | medium |
+  large | many sessions)*`. Small ≈ <30 min, medium ≈ ~1 h,
+  large ≈ multi-hour, many sessions ≈ stretches across days/weeks.
+
+### Optional annotations (use when applicable)
+
+- **Type tag** in the title: `*(type: audit | sweep | script |
+  research | feature | tooling | decision)*`. Helps cross-cutting
+  filtering — e.g. «all script-tasks I could pick up» — orthogonal
+  to priority.
+- **Dependency markers** in the body: `*(blocks: §X)*` /
+  `*(blocked-by: §Y)*`. Surfaces coupling between entries when one
+  must complete before another can start.
+- **Last-touched marker** in the title: when an entry survives multiple
+  sessions without progress, append `*(last touched YYYY-MM-DD)*`. An
+  entry whose last-touched date is >14 days old AND has no recent
+  partial-progress note is a candidate for either advancement, low-
+  priority demotion, or closure as stale.
+
+### Progress logging
 
 When work begins on an entry, log progress in `docs/handoff.md`
 (short-term state) and commit-by-commit in git history. When the
@@ -44,7 +77,28 @@ SHA. When work happens but the entry isn't closed, update its body
 in-place with the progress + remaining scope, and add a date marker
 to the title (`*(opened YYYY-MM-DD, partial progress YYYY-MM-DD)*`).
 
+### «Pending decision» summary
+
+When the High-priority section accumulates ≥2 entries marked 🟡 (needs
+decision), surface them as a short bulleted list right under the
+`## High priority` heading so the user sees on first glance what
+verdicts are awaited. Inline format:
+
+> **Awaiting your verdict before any action**: §AB (Daler-Klippe
+> placement: new Fuß vs redefine fractions), §AC (9-Fuß-Familie
+> scope: per-case vs family-wide).
+
+Drop the summary block when only 0–1 🟡 entries remain.
+
 ## High priority
+
+> **Awaiting your verdict before any action**: **§AB** (Daler-Klippe
+> placement — new Fuß `daler_tarif_gold` vs redefine fractions in
+> `reichsdukatenfuss`), **§AC** (9-Fuß Speciedaler family scope —
+> per-case vs family-wide 1624-1683 consolidation). User indicated
+> 2026-05-13: «поки що нічого з цим не роби, я вивчу питання і
+> повернусь» — both deferred until user studies the question and
+> comes back.
 
 ### AG. 🟢 Long-form refs page-hint compliance (residual after §S closure)  *(opened 2026-05-13)* *(est: small)*
 
