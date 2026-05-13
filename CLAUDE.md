@@ -483,59 +483,23 @@ The same rule applies to `fineness[]` and `diameter_mm[]` source attribution —
 
 ## Architecture overview
 
+Full pipeline (Layer A source → Layer B computed → Layer C categorised → Layer HTML), schema (Pydantic models), build-script anatomy, seed pipelines, GitHub Actions deploy: **`docs/ARCHITECTURE.md`**.
+
+What a session edits by hand:
+
 ```
-data/shared/fuesse.yml                  # Mathematical definitions of Münzfüße (global)
-data/locations/<loc>.yml                # Per-location: phases + coins (inline i18n)
-data/locations/<loc>-references.yml     # Bibliography sidecar (refs cited inline as [N])
-data/i18n/ui.yml                        # UI strings (column headers, badges, buttons)
-data/i18n/issuing_entities.yml          # Issuing-entity (kingdom / duchy) metadata
+data/shared/fuesse.yml            # Münzfüße definitions (global)
+data/locations/<loc>.yml          # Per-location: phases + coins (inline i18n)
+data/locations/<loc>-references.yml   # Bibliography sidecar
+data/i18n/{ui,issuing_entities}.yml   # UI strings + entity metadata
 
-config/theme.yml                        # Colors, typography, dimensions
-
-templates/landing.html.j2               # Homepage — location cards
-templates/location.html.j2              # Per-location/per-language page
-
-scripts/build.py                        # Single entry point: data → site/
-scripts/lib/
-  schema.py                             # Pydantic models for validation
-  compute.py                            # A → B: fein, delta, implied fuss
-  categorize.py                         # B → C: group by phase, kind
-  timeline.py                           # bar_layers / coin_year_runs / hover_zones
-  render.py                             # C → HTML via Jinja2; CSS dispatch
-  styles.py                             # CSS prefix generator (theme tokens + bar palette)
-  style.base.css                        # Static CSS body (var(--*) refs)
-  i18n.py                               # Translation resolution, number formatting
-  yaml_check.py                         # AST-level duplicate-key guard
-  env.py                                # local.env loader
-
-scripts/maintenance/                    # Committed lifecycle-bound utilities
-                                        # (translation cleanup, one-shot enrichers,
-                                        # dedup / relink passes — not on build path)
-
-scripts/cache/                          # ← Git submodule (munzfuss-harvest, private)
-                                        # Raw + parsed fetch cache: bruun/, hede/,
-                                        # ikmk/, numista/, ucoin/. NOT read by
-                                        # scripts/build.py — only by fetchers,
-                                        # parsers, audits, and maintenance scripts.
-                                        # See «Harvest submodule workflow» below.
-
-site/                                   # .gitignored — build output
-  index.html                            # Landing page (language-switchable)
-  <lang>/index.html                     # e.g., de/index.html (locations index)
-  <loc>/<lang>/index.html               # e.g., schleswig/de/index.html
-  assets/{style.css, app.js}            # style.css = prefix + style.base.css concat
-
-.github/workflows/deploy.yml            # Auto-build + deploy on push to main
+config/theme.yml                  # Colors, typography, dimensions
+templates/{landing,location}.html.j2  # Jinja2 templates
 ```
 
-## Build pipeline (A → B → C → HTML)
+The build pipeline is **`scripts/build.py`** + `scripts/lib/*` (read-only for normal data edits — see ARCHITECTURE.md §«Build script» if you need to modify). **`scripts/cache/`** is a git submodule (`munzfuss-harvest` private repo) holding raw + parsed fetches; the build does NOT read it — only fetchers / parsers / audits / maintenance scripts do (see «Harvest submodule workflow» below). **`site/`** is gitignored build output — never hand-edit; fixes belong in templates or data.
 
-- **A (source)** = raw YAML in `data/`. Hand-edited. Minimal fields: what's on the coin, weight_rough, fineness, fuss, phase, source.
-- **B (computed, in-memory)** = A + derived fields: weight_fein, soll_fein, delta_g, delta_pct, implied_fuss. Computed by `compute.py`. Debug output optional → `output/debug/<loc>.computed.json`.
-- **C (categorized, in-memory)** = B grouped by fuss → phase → kind (kurant/scheide). Sorted by year_first. Build script walks this tree.
-- **HTML** = Jinja2 templates render C. One HTML per (location, language).
-
-Never edit B or C manually. Never edit site/ HTML manually. Always edit `data/` and rebuild.
+**Never edit `output/debug/` or `site/` manually. Always edit `data/` and rebuild.**
 
 ## Build command
 
@@ -797,13 +761,16 @@ This project began as iterative research in claude.ai chat. Three legacy HTML ar
 
 ## Tools and resources
 
-- **Numista** (`en.numista.com`): catalog numbers, rough weights. Two access modes, kept strictly separate:
-  - **Bulk / programmatic** — exclusively via the official API v3 (`https://api.numista.com/v3/...`) through `scripts/fetch_numista_api.py` and the per-piece cache under `scripts/cache/numista/<nid>.json`. See the «Numista API budget» section below for the per-session call cap.
-  - **Ad-hoc verification of a single coin page** — Chrome MCP `navigate` + read what's on screen is fine. That's regular user browsing, NOT the «substantial or repeated extraction» Numista's ToS §9.1 / §12.2 forbid. Useful for: confirming a single fineness / weight / Years field when the API quota is tight, sanity-checking what the page actually shows when our cache disagrees with reality, picking up the rare data point not exposed via the API. The line is: don't loop `fetch()` over IDs, don't dump catalogue lists, don't paginate search results en masse — do open one URL, look at what's there, close it. If you find yourself touching more than ~3-5 Numista pages in a row through Chrome MCP, that's no longer ad-hoc: stop and switch to API (or ask the user about the quota).
-- **IKMK Berlin** (`ikmk.smb.museum`): `/object?id={id}&download=json_ext` returns full record. Bulk scraping via browser console on the origin domain bypasses CORS.
-- **Bruun PDF** (Stack's Bowers Zürich 14-15 March 2025, Part II): the gold standard reference for Gottorp/Schleswig coinage. 356 pages. `danskmoent.dk` hosts the PDF.
-- **CoinVarieties, MGM Münzlexikon, Bobzin, danskmoent.dk**: supplementary academic sources.
-- **Offline (paper only)**: Lange 1908/12, Sieg-Møntkatalog 2018, Storgaard 2001 — cited by Bruun/Numista, rarely accessible digitally.
+Per-source quirks, access policies, URL patterns, and known-issues log live in **`docs/SOURCES.md`**. Highlights:
+
+- **Numista** (`en.numista.com`) — `docs/SOURCES.md §1.1`. Two strictly separate access modes: bulk via API v3 only (see «Numista API budget» rule below); ad-hoc single-page verification via Chrome MCP fine. §13.1 carries known-issues quirks.
+- **IKMK Berlin** (`ikmk.smb.museum`) — `docs/SOURCES.md §8.1`. JSON endpoint pattern + bulk-fetch workflow.
+- **Bruun PDFs** (Stack's Bowers L. E. Bruun Collection, 4 PDFs) — `docs/SOURCES.md §1.3` + §13.3 known-issues.
+- **Hede / Wilcke / NNUM** (via danskmoent.dk) — `docs/SOURCES.md §2 + §3` + §13.4 known-issues.
+- **MGM Münzlexikon, Bobzin, lex.dk, Wikipedia** — `docs/SOURCES.md §6` (encyclopaedic web sources).
+- **Paper-only** (Lange 1908/12, Sieg-Møntkatalog, Storgaard 2001, Aagaard) — `docs/SOURCES.md §4 + §5`.
+
+The **«Quick reference matrix» at `docs/SOURCES.md §0`** maps each common research task (find a Hede page, verify a Krause KM#, look up a Stempelvariante, etc.) to the right source.
 
 ## Project audit tooling
 
