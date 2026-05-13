@@ -2,6 +2,191 @@
 
 Chronological log of significant analytical and architectural decisions made during research. Each entry explains what was decided and why, so future sessions (human or AI) can understand the reasoning without re-deriving it.
 
+Entries are ordered newest-first within each month. CLAUDE.md carries the resulting **rules** and `docs/PLAYBOOKS.md` carries the **procedures**; this file carries the **rationale** — why this and not the alternatives.
+
+---
+
+## 2026-05-13 — Doc-infrastructure trio: handoff.md + SOURCES.md §13 + PLAYBOOKS.md
+
+Introduced three companion files alongside CLAUDE.md to break a single growing mega-file into role-separated documents:
+
+- **`docs/handoff.md`** — short-term state (current focus, pending verifications, local-commit state). Distinct from `docs/TODO.md` (long-term audit items with full design context) and CLAUDE.md (stable conventions). Updated at task / chapter boundaries; entries pruned when they stop helping the next session pick up cold. Introduced commit `da3b7e2`.
+- **`docs/SOURCES.md` §13** — dated known-issues log per source. Numista weight typos, ucoin Cloudflare gates, Bruun cataloguer KM-copy mistakes, Hede silver-spec-on-gold-strike trap. Each entry already cost a session of detective work the first time; the log's job is to make the second encounter a 30 s recognition rather than another 30 min investigation. Introduced commit `b2d7809`.
+- **`docs/PLAYBOOKS.md`** — executable procedures for recurrent tasks (per-case Hede dedup merge, ucoin Composition harvest, web-research citation cycle, Müntzfuß disambiguation, …). Self-contained: relevant CLAUDE.md rules reproduced inline with section pointer, so the playbook executes cold without flipping files. Introduced commit `390a4c1`.
+
+**Reasoning.** CLAUDE.md had grown to ~50 KB and was mixing three concerns: immutable rules (forbidden patterns, required conventions), procedural how-to (the case-by-case dedup methodology, the citation cycle, the seed-import flow), and ephemeral session state (what was I doing last time?). Trying to maintain all three in one file produced two failure modes — (a) session-state polluting the rules section over time, and (b) procedural detail bloating the rules into unreadability. The split: **CLAUDE.md = WHAT to do / not do (immutable)**, **PLAYBOOKS = HOW to do it (executable)**, **handoff = WHERE we are right now (ephemeral)**, **SOURCES §13 = WHAT'S BROKEN in sources (dated errata)**, **DECISIONS = WHY this and not the alternative (this file)**.
+
+**Alternatives considered.** (1) Keep everything in CLAUDE.md — rejected because the file already exceeded the threshold where humans (and the next session's AI) reliably read it through. (2) Use `docs/CONVENTIONS.md` and `docs/ARCHITECTURE.md` only — rejected because those exist but skew architectural / project-wide, not procedural. (3) Embed playbooks as code-block templates inside CLAUDE.md — rejected because templates need versioning + cross-refs that markdown sections handle but inline blocks don't.
+
+**Scope.** CLAUDE.md header lists all five companion files in its «read at session start» reminder, plus an explicit «rules vs procedures vs rationale» pointer paragraph. handoff.md session-start checklist (PB-8) names the read order.
+
+**Validation.** A new session opening cold should be able to: (a) understand the rules from CLAUDE.md, (b) find the procedure for the current task in PLAYBOOKS.md by PB-N, (c) recognise a known source quirk in SOURCES.md §13 in under 30 seconds, (d) understand the WHY of any non-obvious project choice from DECISIONS.md. If a procedural step recurs across three sessions without a PB-N entry, the playbooks file is under-served and the rule is to add one.
+
+---
+
+## 2026-05-13 — Pattern B: «one Krause KM = one entry» for Hede sub-letters
+
+When a Krause volume publishes a single KM# that subsumes multiple Hede sub-letter variants (e.g. KM-DK# 16.1 covers Hede 79A + 79B, both Christian IV 1603-1613 2 Skilling; KM-DK# 16.2 covers Hede 79C + 79D, both 1618), our model is ONE curated coin entry per Krause# with `catalog.hede` as a LIST of the sub-letters, NOT one entry per Hede sub-letter.
+
+The structural test: Hede's web edition publishes a SINGLE specification card (Bruttovægt / Finhed / Finvægt / iconography description) for the entire Hede# — sub-letters share the spec and differ only by mintmaster mintmark (trefoil vs crossed glødehager vs crossed køller, etc.). Krause assigns one KM# per design / mint / mintmaster *cluster*, not per individual mintmark variant. When the cluster boundaries coincide, the merge is canonical.
+
+**Reasoning.** Krause-Mishler's stated cataloguing principle (CLAUDE.md §9 caveat) is «a separate KM# per design / mint / mintmaster / fineness variant by design». In practice Krause groups some mintmark variants under one KM# because the design is identical and the variants are sub-detail. Hede, by contrast, breaks them out by sub-letter to preserve mintmaster-level provenance. Our project's purpose is the **Müntzfuß standard analysis** — at that level, mintmark variants share everything (Bruttovægt, Finhed, Soll-fein, Δ-from-Soll) and should render as one row. The structural alternative — one row per sub-letter — would produce 2-4 visually-identical rows differing only by a one-character sub-letter, with no analytical signal added.
+
+**Alternatives considered.** (1) Pattern A: one curated entry per Hede sub-letter, with each carrying the same Krause# and a different `catalog.hede` scalar. Rejected: produces redundant near-identical rows. (2) Pattern C: drop the sub-letter detail entirely and store only the bare `hede: '79'`. Rejected: loses Sieg sub-numbering (Sieg 38.1, 38.2, 38.3, 38.4 differ per sub-letter) and forfeits the mintmaster-level provenance Hede publishes. (3) Status quo (mixed): the seed builder emits per-sub-letter, the curator decides per-case. Rejected because it pushes the decision to per-case judgment instead of declaring a project-wide convention.
+
+**Scope.** Schema accepts `catalog.hede` as `str | list[str]`. The build's `_merge_seeds_into_raw` auto-suppresses all seed entries whose Hede ref is in the list (plus bare-basename variants). All 46 Hede-dedup audit cases follow this pattern; cases 1-9 closed under it as of 2026-05-13.
+
+**Validation.** Render check: when KM# X folds sub-letters Y/Z, the rendered page shows ONE row with the Hede column as «Hede X · Y, Z» (or a comma-list per locale). Seed-suppress count increases by the number of folded sub-letters after merge. See PB-1 for the executable procedure.
+
+Closed via the case-9 commit `6d7a087` and the preceding case 7+8 merges. The «Pattern B» / «Model A» terminology is internal project shorthand — not period-attested numismatic vocabulary.
+
+---
+
+## 2026-05-13 — `KMRef {value, register}` schema for cross-volume KM disambiguation
+
+Krause-Mishler numbering restarts within each country / region. `KM-25` in the Krause-Denmark volume is an entirely different coin from `KM-25` in the Krause-Schleswig-Holstein volume. The same physical Christian IV 1640-48 Glückstadt 1-Søsling carries BOTH KM-DK# 25 AND KM-SH# 87 — one physical coin, two Krause catalogue numbers from two Krause volumes.
+
+The schema now models `catalog.km` as `str | list[str | KMRef]`, where `KMRef = {value: str, register: 'DK' | 'SH' | 'NO' | 'DE'}`. Each location yaml declares a default `km_register` (e.g. `km_register: 'DK'` for `denmark.yml`). Rendering: bare «KM#» when the value matches the page default; qualified «KM-DK#» / «KM-SH#» + tooltip («Krause-Mishler — Denmark volume» / «Krause-Mishler — Schleswig-Holstein volume») when cross-register or multi-list.
+
+**Reasoning.** The naïve approach — string-prefix the value as `'KM-DK# 25'` — works for display but breaks programmatic comparison. A reader scanning two coins to check «do they share a Krause#?» can't easily detect that `'KM-DK# 25'` and `'25'` (the bare value) refer to the same Denmark-volume entry. Likewise the auto-suppress logic needs to compare `catalog.km` values across coins; string-prefixed values defeat that comparison. Structuring `{value, register}` keeps the comparable scalar (`value`) separate from the render-time qualifier (`register`), and downstream code accesses one or the other deliberately.
+
+**Alternatives considered.** (1) Single-string prefix («KM-DK#») — rejected as above. (2) Separate fields `catalog.km_dk` and `catalog.km_sh` — rejected because it scales poorly with future volumes (KM-NO, KM-DE, …) and forces schema migrations every time a new volume is touched. (3) Implicit register from `issuing_entity` — rejected because cross-volume coins (the very case this solves) have one issuing entity but TWO Krause volumes referencing them, so the entity can't carry the disambiguation.
+
+**Scope.** `scripts/lib/schema.py` Coin/Location models; `scripts/lib/compute.py` `_compute_catalog_groups` for the qualified-render output tuple `(prefix, values, tooltip)`; `templates/location.html.j2` tooltip rendering; `_KM_REGISTER_TOOLTIP` map in compute.py.
+
+**Validation.** Two test cases: `km-25-chr-iv-1640` (Schleswig-Holstein page, list-form catalog.km with both DK and SH registers — should render bare «KM# 87» for the page-default SH + qualified «KM-DK# 25» with tooltip for the cross-register Denmark entry). `km-100-chr-iv-1624` (Denmark page, single DK register — should render bare «KM# 100»). Case 7 (Hede 178 → KM-25 + KM-87) was the canonical motivating example, closed in commit `cea6b5d` (the SH/Denmark register split was the same atomic change).
+
+---
+
+## 2026-05-13 — Verified-wins-over-unverified merge-conflict rule (CLAUDE.md §4)
+
+When two candidates are being merged into one resulting entry — whether automatically (seed regeneration merge, auto-suppress fold, cross-location coverage scan) or manually (Pattern B consolidation of two curated entries) — and they disagree on the value of a measurement field (`fineness`, `weight_rough_g`, `diameter_mm`, `mint`, etc.), the **source-attested value WINS over the `(?)`-marked one**. The unverified candidate's value MUST NOT propagate to the result.
+
+Concrete example: a curated entry carrying `fineness: 0.875` + `fineness_verified: true` (Numista-cited) being merged with a seed entry carrying `fineness: 0.88889` + `fineness_verified: false` (canonical-anchor-inferred) yields a merged entry with `fineness: 0.875` + `fineness_verified: true`. The canonical-anchor inferred reading is dropped because it has weaker provenance than the source-cited one.
+
+**Reasoning.** Before this rule, the implicit merge behavior was «freshest wins» — the most recent merge re-writes whatever was there. That collapsed under a real case: seed regeneration with new canonical-anchor inference was over-writing previously-curated source-attested values, silently degrading provenance. The rule formalises §0 (no invention) at the merge boundary: a value with a recorded source has stronger truth-claim than a value derived from heuristic inference, and at any merge step the stronger claim must prevail.
+
+This rule applies regardless of which side is «existing» vs «fresh» in any specific merge path; **verification status drives the precedence**, not the YAML order. The seed builder's `_merge_one` encodes this directly via `_VERIFIABLE_FIELDS = {"fineness": "fineness_verified", "weight_rough_g": "weight_rough_verified", "diameter_mm": "diameter_mm_verified", "mint": "mint_verified"}`. Per-case manual merges follow the same principle by convention.
+
+**Alternatives considered.** (1) «Freshest wins» (status quo before this rule) — rejected per above. (2) «Existing wins» — would prevent ANY auto-update including legitimate corrections. (3) «User-prompt on conflict» — rejected for being too noisy on the routine cases (most conflicts are between identical values); the prompt should fire only at TRUE conflicts that fail the verification-precedence test, and even then, verification status almost always picks a clear winner.
+
+**Scope.** `scripts/maintenance/build_hede_denmark_seed.py::_merge_one`; CLAUDE.md §4 explicit codification; cleanup commit `3d22c43` purged 45 «curated (legacy scalar)» placeholder fineness entries that violated the rule retroactively.
+
+**Validation.** Audit pass: any coin with `fineness_verified: true` should have a `fineness.source` that names a primary or secondary tier source (Numista N#, Hede c{vol}h{N}, ucoin tid, IKMK id, Bruun lot). A `fineness_verified: true` paired with a generic «curated» / «canonical» / «inferred» source label is a regression — go find the real source or flip to `fineness_verified: false`.
+
+---
+
+## 2026-05-13 — ucoin-wins-over-inferred in metal backfill (Case 2 auto-replace)
+
+When the ucoin backfill (`scripts/maintenance/ucoin_backfill_metal.py`) encounters a coin whose `metal_verified: false` (inferred from Müntzfuß convention — e.g. «sub-Skilling Scheide tier under 9¼-Thaler → billon») AND ucoin's `Composition` field source-attests a different metal (e.g. «Copper» for KM-86 1 Hvid 1624-25), ucoin's reading replaces ours automatically and flips `metal_verified: true`. Previously the script flagged this as `metal_mismatch` and left both unchanged; the new behavior auto-applies per the verified-wins precedence (above).
+
+Concrete cases from the 2026-05-13 backfill:
+- 3 × billon → copper for sub-Skilling Pennings (KM-5, KM-6, KM-86): our inference was correct «small denomination, low fineness» but the actual composition is pure copper, not billon.
+- 2 × silver → gold for Daler-class issues (4 Daler 1604, 6 Daler 1604): these are gold-strike commemorative issues, our inference defaulted silver.
+- 1 × billon → silver for Søsling 1622 (dk-tid-162994): the Søsling is normally billon but this sub-type is silver per ucoin.
+
+**Reasoning.** Pre-rule behavior put 6+ entries into `metal_mismatch: []` for manual review per session, with the review consistently concluding «yes, take ucoin's value». That's the verified-wins rule fighting against itself — a deterministic outcome being routed through manual review. Auto-applying matches the §4 rule and eliminates the friction; the `metal_disagree_with_source` bucket remains for the genuine edge case where ucoin disagrees with a `metal_verified: true` entry (which then requires actual judgment).
+
+**Alternatives considered.** (1) Keep manual-review prompt — rejected per above. (2) Auto-apply also when our `metal_verified: true` — rejected because that would allow ucoin to over-write source-attested values, violating verified-wins. (3) Special-case copper vs billon (since the project taxonomy puts <50 % silver in `billon`) — rejected as overly clever; the rule is simpler and the mapping in `map_composition` handles the «Silver (Billon) 0.XXX» → `billon` case explicitly.
+
+**Scope.** `scripts/maintenance/ucoin_backfill_metal.py` Case 2 branch; new `metal_replaced` stat bucket distinct from `metal_confirmed` and `metal_mismatch`. Default for absent `metal_verified` flipped from `True` → `False` in the same change (project convention is explicit `true` only when a source attests).
+
+**Validation.** Inspect each `metal_replaced` entry in the run report — the change should be sensible (matches Krause-volume / Hede-period expectations) and the ucoin-reading should be a documented Composition string on the live ucoin page (not a parser artefact). Commit `703617e` documented the first batch of 6 replacements with the cases enumerated.
+
+---
+
+## 2026-05-13 — Mandatory page hints for long-form refs (CLAUDE.md §5a)
+
+Bibliography entries pointing to works ≥ 10 pages (PDF book, multi-chapter monograph, auction catalogue, periodical issue, multi-volume Konversationslexikon, scanned ordinance gazette) MUST carry a **concrete** page reference in the scope note. Forms accepted: `(S. 14)`, `Band 11, S. 890–891`, `Kap. 4, S. 123–125`, `§ 5, S. 12`. Approximate ranges («ca. S. 14–25», «im ersten Kapitel», «passim», «throughout») are explicitly forbidden.
+
+A Wikisource exception applies: when a Wikisource page transcribes per-page from a print original, cite the print pagination — «MKL 1888, Band 11, S. 890–891» — even though the URL is a wiki page. Pure wiki-only articles use a section anchor.
+
+**Reasoning.** Three long-form refs in the project pointed to ≥ 32-page documents without page hints — Soetbeer 1869 (91 pp), Meyers Konversationslexikon 1888 Münzfuß article (Band 11, multi-page), and the Bruun Stack's Bowers 4-PDF umbrella ref. The reader following any of those `<sup>[N]</sup>` would have to skim hundreds of pages to verify the cited claim. That's a citation that fails at its primary job. The bare Wikipedia-style citation convention (which our refs explicitly model on) treats page hints as required for book-length sources; CLAUDE.md §5a was previously silent on it.
+
+A separate failure-mode the rule guards against: **citation false positives**. The Bruun umbrella ref was cited inline for the verbatim Plakat-1782 quote on the courantdukatenfuss-Phase-II prose. Full text search across all 4 cached Bruun PDFs returned 0 hits for the quote. The Bruun catalogues don't contain ordinance verbatim quotes; the actual source of the Plakat quote is danskmoent.dk's Christian-7 ordinance article. The umbrella ref had been silently mis-citing — and would not have been caught if the rule had required page hints, because Bruun's intro pages wouldn't have the quote either, and the missing page hint would have flagged that.
+
+**Alternatives considered.** (1) Recommend page hints, don't require — rejected because soft conventions decay over time. (2) Require page hints only for PDFs > 50 pages — rejected as drawing the threshold too high (MKL articles are typically 1-2 pages in a multi-volume work and still need the volume + page locator). (3) Require verbatim quote without page hint — rejected because the quote alone doesn't help the reader locate the source page.
+
+**Scope.** CLAUDE.md §5a new sub-section «Mandatory page hints for long-form sources»; sweep applied to three existing refs (SH ref38 repurposed from Bruun umbrella to danskmoent.dk ordinance source — commit `91be769`; fuss-shared ref7 Meyers added Band-11-S-890 — same commit; fuss-shared ref12 Soetbeer added S. 4). TODO §S closed in the same change.
+
+**Validation.** Audit pass: any ref whose URL points to archive.org / a PDF / Wikisource / a multi-volume monograph SHOULD have a page-hint pattern (`S. NN`, `pp. NN`, `Band NN, S. NN`, `Kap. NN`) in the scope note. The audit script in `scripts/oneoff/audit_seed_survivors.py` style is the right shape for an `audit_refs_page_hints.py` (TODO entry candidate).
+
+---
+
+## 2026-05-12 — Seed auto-suppression: cross-location coverage + bare-basename + mismatch guards
+
+The build's `_merge_seeds_into_raw` filter (introduced earlier) suppresses Hede seed entries whose ref is already covered by a curated entry's `catalog.hede`. Three additions accumulated through 2026-05-12 to make the filter robust against real curation patterns:
+
+**Cross-location coverage scan.** The auto-suppress now walks ALL `data/locations/*.yml` files to build the coverage set, not just the location whose seed is being merged. The motivating case: `dk-hede-c4h178a` / `c4h178b` (Glückstadt 1640-48 Søsling) sit in `data/seed/hede/denmark.yml` (the seed builder is denmark-named because Hede is a Danish catalogue) but the curated entry lives in `schleswig_holstein.yml` (per the «Glückstadt issues move to SH yaml» convention). Without the cross-location scan, both seed entries would render as duplicates on the denmark page even though they're covered elsewhere.
+
+**Bare-basename variant.** Hede pages like `c5h107` describe sub-letters 107A and 107B sharing one spec block; the parser sometimes emits a combined entry under the bare basename `dk-hede-c5h107` (no trailing letter). When ANY sub-letter is curated, the bare basename should also auto-suppress. The fix: in addition to the explicit-letter seed id (e.g. `dk-hede-c5h107b`), also add the bare-basename id (`dk-hede-c5h107`) to the suppression set via `setdefault` (so explicit-letter info wins over bare-basename info on conflict).
+
+**Mismatch guards.** Three safety layers prevent silent merge of unrelated coins:
+- *Metal mismatch:* when curated and seed disagree on metal, the Hede ref on the curated entry is almost certainly a «cf. silver companion» citation (e.g. a gold Portugaloser citing the silver Hede sub-type whose die design it shares). Do NOT suppress the silver Hede entry — it's a separate coin.
+- *Weight mismatch:* same Hede ref + same metal but weights differ > 25 % indicates different denominations (e.g. ½ Speciedaler 14.4 g vs 24 Skilling 9.17 g — both might claim Hede sub-letter «12A» across Krause-Denmark / Krause-Norway register volumes, but they're physically different coins).
+- *Year mismatch:* > 10 years apart with the «u. å.» (uden år) exception bypass — yearless Hede types whose canonical year is undefined on the coin itself inherit the parser's reign-range interpretation; the year discrepancy is then an artefact of u.år interpretation, not evidence of different sub-types.
+
+**Reasoning.** Each layer caught a real failure case in production:
+- Cross-location coverage: Glückstadt Søslinge were rendering on the Denmark page as duplicates of the SH page's curated entries.
+- Bare-basename: Hede 107 spec card was producing a phantom row for «107» (no letter) alongside the curated 107B entry.
+- Metal mismatch: Hede 156 silver coin was auto-suppressed by the curated gold-Portugaloser cf-citation, losing the silver entry entirely.
+- Weight mismatch: Hede 12A cross-Krause-volume collision was being silently merged as one coin.
+
+Without the guards, the filter would either over-suppress (hiding real distinct coins) or under-suppress (showing duplicates). The three layers together get the filter to ~99 % accuracy on the 605 Denmark seed entries (16 of 605 still flagged for manual review; all four classes of legitimate keep are documented in `scripts/oneoff/audit_seed_survivors.py` output).
+
+**Alternatives considered.** (1) A single «metal + weight + year» combined check — rejected because each axis has its own escape-hatch logic (fineness-similarity for metal, u.år for year). (2) Configurable thresholds in YAML — rejected as premature; the current thresholds (25 % weight, 10 y year, 2 % fineness similarity) match observed envelopes. (3) Manual curator approval per suppression — rejected as too noisy; the guards already keep the ambiguous cases visible for review.
+
+**Scope.** `scripts/build.py::_merge_seeds_into_raw`. Suppress / guard counters surface in the build log:
+```
+⚙  denmark: suppressed 195 hede seed coin(s) covered by curated Hede refs
+ℹ  denmark: 9 hede seed coin(s) share a curated Hede ref but differ on metal (cf-companion citation pattern; both kept)
+ℹ  denmark: 6 hede seed coin(s) share a curated Hede ref but weights differ >25% (cross-register KM clash or different denomination; both kept)
+⚠  denmark: 1 hede seed coin(s) match a curated Hede ref but with year_first >10y apart — kept both for manual review
+```
+
+**Validation.** `scripts/oneoff/audit_seed_survivors.py` re-runs the suppression logic read-only and bucketise the survivors: auto-suppressed / metal-mismatch / weight-mismatch / year-mismatch / uncurated. The audit script's accuracy mirrors the build's; if they disagree, the build is canonical and the audit script is the regression to fix.
+
+---
+
+## 2026-05-10 — Multi-source attestation list shape (§9a Option C)
+
+Multi-source attestations on a single measurement value now use one list-entry per source — never a `\n`-joined source label string. When Hede and Numista both publish 28.893 g for a Speciedaler, the YAML encodes it as:
+
+```yaml
+weight_rough_g:
+  - {value: 28.893, source: "Hede 39A"}
+  - {value: 28.893, source: "Numista"}
+  - {value: 28.89,  source: ucoin}
+```
+
+The forbidden alternative — `{value: 28.893, source: "Hede 39A\nNumista"}` — buried two independent citations in a `\n`-joined string that downstream audit / dedup / query tooling had to re-parse with `re.split(r"[,;\n]", …)`.
+
+**Reasoning.** The parser-of-display-string anti-pattern: code reading the structured field had to undo the display-time string-joining to recover the underlying multi-source attestation. That's the structure leaking into the data. Option C (split into N entries with same value) treats each attestation as its own record; downstream code iterates entries directly. The display pipeline groups list-entries by rounded value at render time, so two same-value entries collapse into ONE rendered span with both sources accumulated into the tooltip — visually identical to the joined form, structurally clean.
+
+**Alternatives considered.** (1) Option A — keep `\n`-joined and parse at every read site (status quo). Rejected. (2) Option B — multi-source as `[sources: [...]]` list inside one value-record: `{value: 28.893, sources: ["Hede 39A", "Numista"]}`. Rejected because the natural reverse-grouping (one source → many values when an auction publishes multiple specimens with the same source) couldn't share the schema — Option B and the multi-specimen-per-source shape would be two incompatible structures. Option C is the same shape for both axes.
+
+**Scope.** TODO I closed 2026-05-10. Migration script `scripts/maintenance/split_multisource_weight_entries.py` did the one-pass conversion. Schema accepts both list and scalar for `weight_rough_g` / `fineness` / `diameter_mm` — list when multi-attested, scalar (legacy) when single-source. The migration converted all existing multi-source attestations to list-form; new coins follow list-form per CLAUDE.md §9a.
+
+**Validation.** No `\n` characters in `source:` field values across `data/locations/*.yml`. The display tooltip renders one source per line as before; the underlying structure is now machine-iterable.
+
+---
+
+## 2026-05-09 — §0z three reader roles + §0b hypothesis vs fact
+
+Two new top-level rules added to CLAUDE.md:
+
+**§0z. Three reader roles — always know who you're writing for.** Every line of text has exactly one of three readers: (1) AI / future-self / other agents (docs, commit messages, code comments), (2) the user (chat replies, deliberation questions), (3) the end-reader (rendered HTML — numismatist using the page as reference). Mis-targeting is the most common cause of voice violations. The forbidden pattern: project-internal rationale leaks into role-3 surfaces — phrases like «our card», «this artefact», «classification pending», «Beleg für die drei numerischen Synonyme im `name`-Feld unserer Vereinsmünzfuß-Karte» (real example caught during the session). The end-reader has no concept of «our card» or a «name field»; the sentence breaks the role boundary.
+
+**§0b. Hypothesis vs. fact — never collapse the two.** A confident-sounding explanation for an observation must be backed by data you actually opened, not by what feels plausible. Before writing «X is because Y», verify Y from the actual data (cache file, source page, parser output). Hedge markers («hypothesis», «припускаю», «pending verification») are mandatory for unverified claims. When data is missing, name the gap explicitly; never fill it with a plausible story. The motivating case: a 2-Speciedaler 1663 row carried two KM numbers (Bruun: KM-240, Numista: KM-241). The prose was written claiming «Bruun-parser typo / OCR artefact» — a guess dressed as a conclusion. Opening `scripts/cache/bruun/lots/part4.json` plainly showed `body_excerpt: "Dav-3547; KM-240; Hede-62A; Sieg-80.1"` — Stack's Bowers' own catalogue had printed «KM-240». The «typo» explanation bypassed verification.
+
+**Reasoning.** Both rules formalise patterns that had silently corrupted prose over multiple sessions. The earlier rules (§0 «no invention», §2a «academic register») addressed the *substance* of false claims; §0b addresses the *epistemic move* that produces them (guessing dressed as analysis), and §0z addresses the *audience confusion* that lets project-meta language leak past role boundaries. Together they tighten the discipline: claim → verify → label. If unverified, label as hypothesis. If wrong role, cut or rewrite.
+
+**Alternatives considered.** (1) Strengthen §0 alone — rejected because §0 forbids invention but doesn't catch the hypothesis-as-conclusion failure mode where the claim is *plausibly* sourceable but never actually was. (2) Add a single combined «epistemic rigor» rule — rejected because §0b and §0z address different mechanics (the hypothesis-fact collapse is about reasoning; the three-roles split is about audience). They share spirit but need separate operational tests.
+
+**Scope.** CLAUDE.md §0z and §0b (top of the rules section, after §0). Both rules carry concrete worked examples from the project's own history (the «KM-240 vs KM-241» case for §0b; the «Beleg für die … `name`-Feld unserer … Karte» case for §0z). Future-session test: every analytical claim that lands in prose must pass the §0b «did I open the underlying data?» check; every sentence in rendered artefact prose must pass the §0z «which role am I writing for?» check.
+
+**Validation.** Audit pass candidate (TODO entry): a `scripts/audit_prose.py` linter that catches forbidden phrases — «we», «our», «this artefact», «our card», hedge words without hypothesis markers («likely», «probably», «presumably»). Until that linter exists, the rule is honor-system but reinforced by review.
+
 ---
 
 ## 2026-05 — Landing-page filter for unsorted-seed locations
