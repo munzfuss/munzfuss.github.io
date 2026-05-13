@@ -1362,6 +1362,44 @@ Comparator for two coins X, Y:
 
 ---
 
+### AK. Flip `mint_verified` to true for seed entries whose Hede source explicitly states the mint  *(opened 2026-05-13)*
+
+**Surfaced.** User flagged `dk-hede-f2h31` (Hede# 31 / Sieg# 32.1 / Schou# 27 / Fr# 2 — 1 Søsling Lybsk 1566, Frederik II): currently `mint: Flensburg` + `mint_verified: false` → renders as «Flensburg (?)» in the table. But the Hede source page (https://www.danskmoent.dk/fr/f2h31.htm) explicitly names «Flensborg» (Danish spelling of the same German «Flensburg»). The mint IS source-attested; the `(?)` marker is wrong.
+
+**Root cause.** `scripts/maintenance/build_hede_denmark_seed.py:633` sets `cm["mint_verified"] = False` as a parser-heuristic default («not flipped here»). The post-build sweep that flips the flag against the actual Hede page text never happened systematically — so today, **604 seed entries in `data/seed/hede/denmark.yml` carry `mint_verified: false`** (count via `audit_health.py` data-completeness section), even though the majority of them have an explicitly-stated mint in the Hede source.
+
+**Distribution of those 604 (top 12 by mint label):**
+
+| mint | count |
+|---|---:|
+| Kopenhagen | 479 |
+| Glückstadt | 47 |
+| Altona | 33 |
+| (Kopenhagen, Altona) — joint | 18 |
+| Frederiksborg | 5 |
+| Rethwisch | 5 |
+| Hadersleben | 4 |
+| Flensburg | 3 |
+| Rendsburg | 3 |
+| (Kopenhagen, Kongsberg) — joint | 3 |
+| Helsingør | 2 |
+| (Altona, Poppenbüttel) — joint | 2 |
+
+Most of these are post-1660 Kopenhagen issues where the Hede page lists «Kjøbenhavn» as the mint by name + cites the mintmaster initials. Pre-1660 issues from Glückstadt, Flensburg, Hadersleben likewise carry explicit mint statements on Hede pages.
+
+**Plan.**
+
+  1. **Starting case `dk-hede-f2h31`**: open the cited danskmoent.dk page, confirm «Flensborg» appears as mint, flip `mint_verified: false → true` in seed. The German form «Flensburg» stays in the YAML (per `data/i18n` policy: mint names use standard academic spellings identical across languages; «Flensborg» on the Danish page is the same place).
+  2. **Sweep the other Flensburg / Hadersleben / Rethwisch / Frederiksborg / Rendsburg / Helsingør entries** (~22 entries) — each carries an explicit mint in the source page. Flip the flag.
+  3. **Joint-mint entries** ((Kopenhagen, Altona), (Kopenhagen, Kongsberg), (Altona, Poppenbüttel)): the seed records a tuple because the source attests two mint locations. Confirm against Hede page, then flip if the joint statement matches.
+  4. **Kopenhagen / Glückstadt / Altona buckets** (~559 entries combined): sample 10 entries per bucket, confirm each Hede page explicitly states the mint, then batch-flip the bucket. The fast path: write a one-off `scripts/oneoff/flip_mint_verified_from_hede.py` that parses each seed entry's Hede cache JSON (`scripts/cache/hede/<hede_volume><hede_num>.json`) for the canonical mint string and flips the flag when source attests.
+  5. **Reserved cases**: any seed entry where the Hede page does NOT state the mint (or the parser-heuristic guessed wrong) stays `mint_verified: false`. These are the legitimate `(?)` rendering — not all 604 are bogus.
+  6. **Audit follow-up**: add a section to `audit_health.py` (or extend the seed-state section) that flags «mint_verified=false entries where the Hede cache contains the mint string verbatim» — surfaces remaining sweep candidates without re-running the full builder.
+
+**Quick win.** The 22 non-Kopenhagen/Glückstadt/Altona entries (Flensburg, Hadersleben, Rendsburg, etc.) are the most visible `(?)`-rendered cases on smaller-mint coin pages — fixing those first cleans the most obvious incorrect markers; the large Kopenhagen bulk can follow when the scripted sweep is in place.
+
+---
+
 ## Done
 
 ### S. Add page numbers to long-PDF / book refs  *(opened 2026-05-13, closed 2026-05-13)*
