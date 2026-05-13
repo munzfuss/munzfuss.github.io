@@ -7,6 +7,18 @@
 
 ## Open
 
+### AH. Re-evaluate «Numista API budget» rule on 2026-06-01  *(opened 2026-05-13)*
+
+**Surfaced.** CLAUDE.md «Numista API budget — ASK before bulk-fetching (May 2026 only)» is explicitly time-scoped: «applies through May 2026 only». The user's monthly quota resets June 1 and the rule may be relaxed or dropped.
+
+**Plan.** On the first session in June 2026 (or whenever the current date crosses 2026-05-31, whichever comes first):
+
+  1. Open CLAUDE.md and locate the «Numista API budget» section.
+  2. Ask the user the simple binary: «June reset has landed — keep the ≤5-calls-then-ASK rule, or relax it / drop entirely?»
+  3. Either remove the section, soften it («ASK if planning > ~50 calls»), or re-scope it to «June 2026 only» with the same self-deletion mechanism.
+
+**Why this is here.** The rule's own preamble already instructs «ask the user whether this rule still stands before applying it» when today's date is past 2026-05-31, but a TODO entry surfaces the reminder regardless of whether the rule is about to be applied — useful if the next session doesn't immediately reach for the Numista API.
+
 ### AG. Long-form refs page-hint compliance (residual after §S closure)  *(opened 2026-05-13)*
 
 **Surfaced.** §S sweep (closed 2026-05-13) added the mandatory-page-hint rule (CLAUDE.md §5a) and fixed 4 specific refs. New refs added between then and now (or future refs) need the rule enforced. The pre-commit hook doesn't currently lint refs; the rule is honor-system.

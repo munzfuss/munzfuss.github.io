@@ -1,5 +1,12 @@
 # Data layout — separating cache from code
 
+> **Archived 2026-05-13.** Option A (separate sibling repo mounted as a
+> submodule at `scripts/cache/`) has since been implemented. See
+> `.gitmodules`, `CLAUDE.md` «Harvest submodule workflow», and
+> `docs/DECISIONS.md`. This document is preserved as the historical
+> record of the analysis that led to the decision; it is no longer
+> active guidance.
+
 ## Problem statement
 
 The repo currently mixes three categories of files in a single tree:

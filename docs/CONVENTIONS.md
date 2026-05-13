@@ -85,8 +85,10 @@ description:
 Each language follows its own orthographic conventions:
 
 ### `de` (German) — period-correct
-- Müntz (not Münz), biß (not bis), Marck (not Mark where historical)
-- Cöllnische Marck, Thaler, Courant, Pfund Banco
+> Full orthography table + register rules: **CLAUDE.md §2 + §2a**. The full forbidden-forms table (Müntz/not Münz, biß/not bis, Marck/not Mark, Cöllnische Marck/not Kölnische Mark, etc.) is canonical there; the «Cyrillic-transliteration trap» check for uk renderings of German compounds also lives there. Keep the rendered output academic-register (§2a) — no colloquialisms, no editorial exclamations, no first-person voice.
+
+Quick illustrative anchors:
+- Müntz, biß, Marck, Cöllnische Marck, Thaler, Courant, Pfund Banco
 - Danish terms preserved: Rigsdaler, Kurantmøntfod, Forordning
 - Historical place spellings: Tönning, Altona, Glückstadt
 

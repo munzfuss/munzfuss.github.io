@@ -754,12 +754,12 @@ UI strings (column headers, navigation, buttons) live in `data/i18n/ui.yml`.
 
 ## Anti-patterns to avoid
 
+> Many of these are restatements of §0–§9a above; keep this section for the patterns NOT covered there. Items related to source invention (§0), silent rounding (§3 precision conventions), and the verification marker (§4) belong upstream; do not duplicate.
+
 1. **Mental reframing of user requests.** If the user says "don't change X", don't change X even if a "better" change seems obvious.
-2. **Inventing sources.** If unsure, say `verified: false` and `verification_note: "not found in online sources"`.
-3. **Rounding silently.** All numbers in YAML must be traceable. If the source says 3.46 g, store 3.46 not 3.5.
-4. **Fixing YAML in one place while leaving equivalent issue elsewhere.** E.g., don't rename KM# 82's nominal without checking KM# 42.1 for the same pattern.
-5. **Leaving HTML hand-edits in site/.** site/ is regenerable. If the fix belongs there, it belongs in the template or data.
-6. **Proposing a coin-merge without checking metal/composition first.** When suggesting that a ucoin/Numista entry is the same coin as an existing base entry (i.e. fold-as-alt), **metal must be a hard filter** before nominal/year/weight overlap. Two coins of the same denom + year + ruler but different metals (gold vs silver, billon vs copper) are NEVER the same type — they're related issues at most. Pre-screen scripts that match by year + denom token overlap will produce false positives if they ignore composition; always include the metal field in the comparison output and flag mismatches as automatic disqualifiers, not «similar candidates worth checking». Same applies to fineness mismatches beyond ~2 % — different fineness usually means different Krause sub-variant.
+2. **Fixing YAML in one place while leaving equivalent issue elsewhere.** E.g., don't rename KM# 82's nominal without checking KM# 42.1 for the same pattern.
+3. **Leaving HTML hand-edits in site/.** site/ is regenerable. If the fix belongs there, it belongs in the template or data.
+4. **Proposing a coin-merge without checking metal/composition first.** When suggesting that a ucoin/Numista entry is the same coin as an existing base entry (i.e. fold-as-alt), **metal must be a hard filter** before nominal/year/weight overlap. Two coins of the same denom + year + ruler but different metals (gold vs silver, billon vs copper) are NEVER the same type — they're related issues at most. Pre-screen scripts that match by year + denom token overlap will produce false positives if they ignore composition; always include the metal field in the comparison output and flag mismatches as automatic disqualifiers, not «similar candidates worth checking». Same applies to fineness mismatches beyond ~2 % — different fineness usually means different Krause sub-variant.
 
 ## Checking your work
 
@@ -771,11 +771,11 @@ python scripts/build.py                    # builds successfully
 git diff data/                             # sanity check on changes
 ```
 
-After non-trivial changes, run the structural audit script:
+After non-trivial changes, run the project-health dashboard:
 ```bash
-python scripts/audit.py schleswig
+.venv/bin/python scripts/audit_health.py --fast
 ```
-Reports chronology mismatches, orphan coins (phase doesn't exist), duplicate KM# entries, and Kurant/Scheide imbalances.
+Reports schema validation, per-location coin counts, seed state, cache freshness, prose lint, i18n consistency, TODOs, git state, specimen-thinning candidates. See «Project audit tooling» below for the full audit suite.
 
 ## When to ask the user
 
@@ -789,17 +789,11 @@ Never invent translations for technical German numismatic terms without confirmi
 
 ## Prior work (context)
 
-This project began as iterative research in claude.ai chat. Before this build pipeline existed, three main HTML artifacts were hand-built:
+This project began as iterative research in claude.ai chat. Three legacy HTML artifacts (Schleswig-Holstein, Pan-German Münzfüße overview, Lübeck coin catalog 1749–1810) preserve the analytical content from that phase. They are read-only references that the build pipeline does not consume directly; their data is progressively migrated into YAML.
 
-1. **Schleswig-Holstein** (180KB, 86 coins across 7 Münzfüße, 1618–1873). This is the fidelity target for the first build — `data/locations/schleswig_holstein.yml` + build pipeline should reproduce it structurally.
-2. **Pan-German Münzfüße overview** (`reference/muenzfuesse_v5.html`, 57KB, 18 Münzfuß cards ca. 1566–1875). The source material for expanding `data/shared/fuesse.yml` and for future locations (Bremen, Hamburg, Lübeck, etc.).
-3. **Lübeck coin catalog 1749–1810** (`reference/lubeck_1750_1850_verified_complete.html`, 18KB). Numista + IKMK Berlin data for Lübeck coins. Source material for future `data/locations/lubeck.yml`.
-
-See `reference/README.md` for details on these legacy HTML files and how to use them.
-
-See `docs/DECISIONS.md` for the specific analytical decisions (e.g., why KM# 73 Stapelholmer Schanze is classified as 1698-reduced, why Bremen's 1840 silver Münzfuß reconstruction uses 71/72 fineness, etc.)
-
-See `docs/GLOSSARY.md` for German/Danish/Ukrainian numismatic term mappings.
+- **`reference/README.md`** — descriptions of the three artifacts, their schema, and migration status.
+- **`docs/DECISIONS.md`** — specific analytical decisions (e.g. why KM# 73 Stapelholmer Schanze is classified as 1698-reduced, why Bremen's 1840 silver Münzfuß reconstruction uses 71/72 fineness, etc.).
+- **`docs/GLOSSARY.md`** — German / Danish / Ukrainian numismatic term mappings.
 
 ## Tools and resources
 
