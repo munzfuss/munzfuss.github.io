@@ -34,7 +34,12 @@ SIDECAR = UCOIN_CACHE / "_composition.json"
 
 
 def map_composition(text: str) -> tuple[str | None, float | None]:
-    """Map ucoin composition string to (metal_enum, fineness)."""
+    """Map ucoin composition string to (metal_enum, fineness).
+
+    Handles ucoin's «Silver (Billon) X.XXX» / «Gold (Electrum) X.XXX»
+    bracketed-qualifier forms by stripping the bracket before parsing
+    the metal token + fineness number.
+    """
     t = text.strip().lower()
     if not t:
         return None, None
@@ -43,7 +48,22 @@ def map_composition(text: str) -> tuple[str | None, float | None]:
         return "copper", None
     if t.startswith("copper") and "nickel" not in t:
         return "copper", None
-    # Match «Gold X.XXX» / «Silver X.XXX»
+    # Bracketed qualifier — «Silver (Billon) 0.166» / «Gold (Electrum) 0.500»
+    # The (qualifier) overrides the leading metal label for our taxonomy
+    # since ucoin uses (Billon) / (Electrum) precisely to flag low-fineness
+    # silver / electrum-gold variants distinct from the bare metal class.
+    bracket = re.match(r"^(gold|silver)\s*\((billon|electrum)\)\s*([\d.]+)?", t)
+    if bracket:
+        outer, inner, fin = bracket.group(1), bracket.group(2), bracket.group(3)
+        try:
+            f = float(fin) if fin else None
+        except ValueError:
+            f = None
+        if inner == "billon":
+            return "billon", f
+        if inner == "electrum":
+            return "gold", f  # electrum = gold-silver alloy → keep gold
+    # Match bare «Gold X.XXX» / «Silver X.XXX»
     m = re.match(r"^(gold|silver|billon|electrum)(?:\s+([\d.]+))?", t)
     if m:
         kw, fin = m.group(1), m.group(2)
@@ -98,23 +118,35 @@ def process_file(path: Path, sidecar: dict, stats: dict) -> int:
             stats["unknown_composition"].append((c.get("id"), sidecar[tid].get("composition")))
             continue
         cur_metal = c.get("metal")
-        cur_verified = c.get("metal_verified", True)
+        # Default to False when field absent: project convention is that
+        # `metal_verified: true` is set explicitly when a source attests
+        # the metal; absence means inferred from heuristics (sub-Skilling
+        # → billon, etc.) and unconfirmed. Defaulting to True would
+        # silently treat all legacy entries without the flag as source-
+        # attested, blocking ucoin-driven correction below.
+        cur_verified = bool(c.get("metal_verified", False))
         # Case 1: metal missing → set + verify
         if cur_metal is None:
             c["metal"] = ucoin_metal
             c["metal_verified"] = True
             stats["metal_set"].append((c.get("id"), ucoin_metal))
             touched += 1
-        # Case 2: metal present + unverified inference → confirm or flag
+        # Case 2: metal present + unverified inference → confirm or
+        # replace with ucoin's source-attested value (per CLAUDE.md §4
+        # «verified-wins-over-unverified» — our inferred value yields
+        # to a source-cited reading; ucoin is the cited source here).
         elif not cur_verified:
             if cur_metal == ucoin_metal:
                 c["metal_verified"] = True
                 stats["metal_confirmed"].append((c.get("id"), ucoin_metal))
                 touched += 1
             else:
-                stats["metal_mismatch"].append(
-                    (c.get("id"), f"ours={cur_metal} ucoin={ucoin_metal}")
+                c["metal"] = ucoin_metal
+                c["metal_verified"] = True
+                stats["metal_replaced"].append(
+                    (c.get("id"), f"was={cur_metal} (inferred) → {ucoin_metal} (ucoin)")
                 )
+                touched += 1
         # Case 3: metal present + verified — only flag if disagrees
         elif cur_metal != ucoin_metal:
             stats["metal_disagree_with_source"].append(
@@ -137,7 +169,8 @@ def main():
         raise SystemExit(f"No sidecar at {SIDECAR}; run ucoin_fetch_composition.py first")
     sidecar = json.loads(SIDECAR.read_text())
     stats = {
-        "metal_set": [], "metal_confirmed": [], "metal_mismatch": [],
+        "metal_set": [], "metal_confirmed": [], "metal_replaced": [],
+        "metal_mismatch": [],
         "metal_disagree_with_source": [], "fineness_set": [],
         "unknown_composition": [],
     }
