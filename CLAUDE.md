@@ -234,6 +234,8 @@ In that case write the canonical value and mark **`<field>_verified: false`** wi
 
 ### 5. Source hierarchy
 
+> **Source-quirks log.** Before investing time in re-diagnosing a surprising answer from any source listed below, scan `docs/SOURCES.md` §13 «Known-issues log». Every entry there cost a session of detective work the first time round; the next session that hits the same pattern should recognise it from the log in 30 s rather than 30 min. When you encounter a new source quirk that took > 15 min to figure out, ADD it to §13 before closing the session.
+
 In descending order of authority:
 
 1. **Coin inscription itself** (from IKMK, museum catalog, or high-resolution photo)

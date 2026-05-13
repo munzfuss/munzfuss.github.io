@@ -457,4 +457,130 @@ These are **paper-only**, accessible only via specialist libraries:
 - `docs/altona.md` — Wikipedia DE «Königliche Münze zu Altona», Schleswig-Holsteinische Speciesbank
 - `data/locations/*-references.yml` and `data/shared/german_fuesse-references.yml` — bibliography slots for all of the above with verbatim quotes
 
+---
+
+## 13. Known-issues log — dated errata + quirks of the day
+
+> **Purpose.** Every time a source publishes a wrong value, changes its
+> URL scheme, gates behind a new bot-protection layer, or reveals an
+> idiosyncratic cataloguing convention, log it here with a date. The
+> goal is to **stop re-discovering the same quirks**: each entry below
+> already cost a session of detective work, and the next session that
+> hits the same pattern should recognise it in 30 s rather than 30 min.
+>
+> **Format per entry:**
+> - Bold one-line description with date.
+> - Specific case (coin id, URL, lot number, page) so the entry is
+>   verifiable.
+> - Diagnosis (what's actually wrong / different from naive read).
+> - Workaround / decision (what we did + what future sessions should do).
+> - Optional citation of the commit or audit that closed the case.
+>
+> **When to add an entry.** Anytime you spend > 15 min figuring out why
+> a source gives a surprising answer. Even if the explanation feels
+> obvious in hindsight — that hindsight is exactly what future-you
+> won't have.
+>
+> **When NOT to add.** Trivial typos in a single coin record that get
+> fixed inline. The threshold is «would another session hit this same
+> pattern again». Pattern-level quirks belong here; per-coin one-offs
+> belong in commit messages / coin `verification_note`.
+
+### 13.1 Numista (en.numista.com)
+
+**Numista 301740 publishes 0.49 g for Christian-IV Søsling 1640-48 — anomalous (2026-05-03 / 2026-05-13).**
+Numista has two entries for the same physical coin under different Krause-volume registers:
+- N# 199146 (KM-DK# 25, issuer «Glückstadt, City of») publishes weight 0.76 g — within Hede c4h178 envelope (Soll 0.704 g).
+- N# 301740 (KM-SH# 87, issuer «Schleswig and Holstein, Danish duchies») publishes 0.49 g — **Δ ≈ −30 %, outside any specimen-variance band**. The same coin record at Numista carries a Hede#178B note in its body, so the catalogue knows it's the same type as the Hede entry; the 0.49 g reading is a user-edit error on the KM-SH side only.
+*Diagnosis.* Numista's per-tid records are user-edited; cross-volume coins (Krause-Denmark + Krause-SH for one physical coin) get parallel records that drift independently. Always cross-check both KM-volume records before trusting either.
+*Decision.* Both readings preserved in `weight_rough_g[]` per §9a (user instruction 2026-05-13: «якщо вага відрізняється, це просто такий артефакт з джерела»). The reader sees the variance; no «error» commentary in role-3 prose. — commit `8b4cab1`.
+
+**Numista 108979 publishes 8.428 g for ⅙ Speciedaler 10-Schilling SH Courant — 38 % over Hede Soll (2026-05-13).**
+KM-128 Christian VII 1787-96 ⅙ Speciedaler has Hede c7h42 Bruttovægt 6.129 g, Finhed 0.687, Finvægt 4.214 g. Three sources cluster (Hede 6.129 / ucoin 6.13 / Bruun Part II lot 13246 6.10). Numista 108979 publishes 8.428 g standalone.
+*Diagnosis.* **8.428 ≈ Finvægt × 2.** Most likely the cataloguer typed Feinvægt × 2 into the weight field, OR confused with the adjacent denomination KM-130 ⅓ Speciedaler. Pure Numista user-edit artefact, not a real specimen weight.
+*Decision.* Preserved with attribution; Numista N# stays as authoritative type-id for catalogue lookup independent of the weight cell. — commit `8b4cab1`.
+
+**Numista cache (pre-2026-05-11) lacked the `Composition` field entirely (2026-05-11).**
+Our `scripts/cache/ucoin/_url_index.json` schema only stored `denom / diameter_mm / fineness / km / source / url / weight_g / year`. Discovered via investigation of `dk-tid-163075` (10 Ducat 1588) whose ucoin page shows «Composition · Gold» but our local cache never captured it.
+*Decision.* Built the dedicated `_composition.json` sidecar via `scripts/maintenance/ucoin_fetch_composition.py`; now stores composition + finer dimensions (thickness, edge_type, shape, alignment). See §13.2 for the resulting ucoin-harvest saga.
+
+### 13.2 ucoin (en.ucoin.net)
+
+**ucoin slug-redirect-to-euro-cents is a RATE-LIMIT signal, not URL breakage (2026-05-13).**
+Initial hypothesis (logged 2026-05-11 in `scripts/maintenance/ucoin_fetch_composition.py` header) was that ucoin restructured slugs and our heuristic-generated `_url_index.json` URLs no longer resolve. Symptom: pages built like `/coin/<slug>/?tid=<tid>` return HTTP 200 with a `<link rel=canonical>` pointing at a DIFFERENT tid — typically modern Euro-area pieces (50-euro-cent Ireland, 1-euro Italy, 1-euro Portugal). The canonical-tid validation guard correctly rejects these.
+*Actual diagnosis (clarified 2026-05-13).* It's ucoin's anti-abuse rate-limit. After ~50 cumulative requests from one session-cookie ucoin starts serving wrong-tid canonical pages. Cookie clear resets the counter — and confirms it's rate-limit, not URL routing.
+*Threshold measured 2026-05-13:*
+| Pacing | First failure | Sustained ok | Effective rate |
+|---|---|---|---|
+| 2.5 s | req 37 | 36 in ~1.8 min | ~20 req/min |
+| 10 s  | req 52 | 51 in ~9.4 min | ~5.4 req/min |
+| 20 s  | session ended at req 42 with margin | 42 in ~14 min | ~3 req/min |
+Slower pacing extends the ceiling marginally but the ~50-request session-cookie cap dominates.
+*Decision.* `scripts/maintenance/ucoin_fetch_composition.py` keeps the canonical-tid guard (catches the bad-tid pages 100 %). Operational pattern: ≤ 45 fetches per cookie-cycle at 20 s pacing, then user clears cookies before resuming. The original «slug breakage» note in the script header is incorrect post-mortem — sluts ARE correct, the redirect is the rate-limit symptom. — commits `6db67f4`, `b4d925b`.
+
+**Cloudflare bot-protection kicks in after sustained day-of activity (2026-05-13).**
+After three productive sessions and ~130 cumulative requests in one day, session 4 was met with **HTTP 403 + Cloudflare «Just a moment… Performing security verification»** on every same-origin fetch. The page returns 200 in browser-with-JS but the verification challenge needs to complete; our `fetch()` from JS doesn't pass it. Cookie clear does NOT fix this — possibly makes it worse, since the `cf_clearance` cookie that proves prior challenge-pass is also wiped, forcing re-challenge with a now-suspect fingerprint.
+*Decision.* On Cloudflare challenge, stop the harvest. Three resume paths: (a) wait ~24 h for IP cooldown, (b) user navigates to ucoin in a normal browser to manually complete the challenge — resulting `cf_clearance` cookie may pass through to automated requests, (c) switch network egress (VPN). The harvest is mechanical; pacing rule + canonical-tid guard preserves correctness; the bottleneck is anti-abuse throughput. — commit `bc4db51`, see TODO §M for the resumption playbook.
+
+### 13.3 Bruun PDFs (Stack's Bowers L. E. Bruun Collection)
+
+**Bruun cataloguer copies adjacent KM-number from sister-lot (2026-05-10).**
+2-Speciedaler 1663 (Frederik III) `body_excerpt` from `scripts/cache/bruun/lots/part4.json`: «<i>Dav-3547; KM-240; Hede-62A; Sieg-80.1</i>». The actual KM# for the 2-Speciedaler 1663 is **KM-241**; KM-240 is the 1-Speciedaler of the same year. Our parser captured the catalogue's printed text faithfully — the cataloguer at Stack's Bowers cited the 1-Speciedaler's KM number on the 2-Speciedaler lot, likely an «adjacent KM» editorial mistake, OR Bruun used an older Krause edition with different numbering.
+*Diagnosis.* Bruun's specimen-level data (weight, grade, mintmaster, photo) is highly reliable. Bruun's catalogue-cross-references (KM#, Hede#, Sieg#) are mostly reliable but **NOT verbatim-authoritative** — cross-check against Numista + Hede before adopting Bruun-quoted catalogue numbers as canonical. Our initial reaction («it's a parser typo / OCR artefact») was a §0b violation — we wrote that as a confident claim before opening the cache file to check. — commit `37f5b6d`.
+*Decision.* When Bruun's quoted KM disagrees with Numista AND Hede, trust the latter; record Bruun's verbatim in `note` as a documented divergence.
+
+**Bruun catalogue intros DO NOT contain Plakat-2-December-1782 verbatim quote (2026-05-13).**
+SH-references.yml::ref38 was a Stack's Bowers Bruun umbrella ref bundling all 4 PDFs. The only inline citation `<sup>[38]</sup>` (in courantdukatenfuss Phase II prose) backed the «<i>Gold aus der rauen Marck zu 75 Stück bei 21 Karat ausprägen</i>» quote — the verbatim Plakat 1782 wording. Full text search across all 4 cached Bruun PDF page-texts (`scripts/cache/bruun/pages/part*.txt`) returned 0 hits for «Plakat», «Brandon», «75 Stück», «21 carats».
+*Diagnosis.* The quote's actual source is danskmoent.dk's «Møntforordninger m.v. under Christian 7.» article (lifted into `german_fuesse-references.yml::ref38`). The SH ref38 was a mis-citation — probably a copy-paste artefact when adding refs to the SH page. Bruun PDFs are auction catalogues with specimen-level descriptions; they don't quote primary-source ordinances from the 1780s.
+*Decision.* Repurposed SH ref38 to mirror the danskmoent.dk source; Bruun stays cited inline in per-coin `sources[]` arrays with full part + lot + page detail (which is where Bruun's signal lives). Bibliography-level Bruun umbrella was dead weight (per CLAUDE.md §5a). — commit `91be769`.
+
+**The pdf-viewer MCP doesn't work on the Bruun PDFs (2026-05-10).**
+The 4 PDFs are 29-44 MB each. `mcp__pdf-viewer__display_pdf` returns a viewUUID but `interact` calls fail with `Viewer never connected for viewUUID … (no poll within 8s)`. The 8-second poll timeout is too tight for the iframe to finish loading.
+*Decision.* Use the `curl → pypdf` pattern documented in §1.3 above (download, extract via `PdfReader`, search by lot number, clean up). Page mapping for the most-cited Karl-Friedrich-Tönning + Christian-V-Glückstadt lots is preserved in §1.3.
+
+### 13.4 Hede catalogue (danskmoent.dk per-coin pages)
+
+**Hede silver-spec card describes a gold off-strike sub-variant inline — risk of wrong-metal weight (2026-05-13).**
+Hede c4h47 (Frederik IV «16 Skilling 1713 København») publishes Bruttovægt 5.197 g, Finhed 0.625 (silver), Finvægt 2.247 g. The page's `description` field documents three Zincksamlingen specimens: «1713, Schou 1» (regular silver 16 Skilling), **«1713, Guldafslag, Schou 1a»** (gold off-strike), «1714, Schou 5», … The page text plainly states: «Dobbelte dukater prægedes med stempler til 16- og 12-skillingsmønter» — gold double ducats struck with 16- and 12-skilling dies.
+The trap: a curator who reads only the spec card and not the description ingests «Hede 47 = 5.197 g + 0.625 fineness» onto a `metal: gold` entry that's actually the Guldafslag (Schou 1a) sub-variant — copying SILVER specs onto a GOLD coin. Confirmed in Bruun Part I lot 1133 (the gold Schou 1a specimen): weight 6.93 g, «<i>gold planchet struck to a Double Ducat weight standard with the dies customarily used for a 16 Skilling</i>».
+*Diagnosis.* Hede's web edition embeds gold-off-strike variants inside the silver type's page when the dies are shared. The spec card is for the silver type only; gold-strike weights follow the Double-Ducat standard (~6.9 g), not the spec-card value.
+*Decision.* When a Hede page lists «Guldafslag» / «Sølvafslag» / «cf.» variants in the Zincksamlingen list AND our coin matches one of those (by Schou sub-letter 1a, 1b, etc.), TREAT THE SPEC CARD AS WRONG-METAL — fetch the actual specimen weight from Bruun/IKMK and the canonical-anchor fineness from the relevant Müntzfuß. — commit `b0aa746` (the actual hede-47 case got converted from gold off-strike to silver Hede 47 per user direction; the lesson generalises).
+
+**Hede sub-letter convention = mintmaster/mintmark variants within one type, shared spec (carry-over from research).**
+A Hede page like c4h79 publishes ONE Bruttovægt / Finhed / Finvægt set for the entire type, then lists sub-letters A/B/C/D each with their own year-range + mintmark + Schou sub-cluster + Sieg sub-number. The sub-letters share the spec; they differ only by **monetary-officer iconography** (trefoil vs crossed gloves vs crossed clubs, etc.). Krause typically lumps these under one KM# but occasionally splits by year-window (e.g. KM-16.1 covers Hede 79A+B 1603-1613, KM-16.2 covers 79C+D 1618).
+*Decision.* Per «one Krause KM = one entry» (Pattern B): fold all sub-letters sharing a Krause# into one curated entry with `catalog.hede: [79A, 79B]`. Case 9 closed by `6d7a087`.
+
+### 13.5 Bobzin (hagen-bobzin.de)
+
+**Hamburger Bankfuß: «1769 Hamburger 27⅝ / 1777 Altonaer 27¾» conflicts with Soetbeer 1869 (carry-over).**
+Bobzin's table at <https://www.hagen-bobzin.de/hobby/muenzverein_wendisch.html> lists the Hamburger Bankfuß and Altonaer Bankfuß as two distinct standards with adoption dates 1769 and 1777 respectively. Soetbeer 1869 (Period-Hauptquelle, in `german_fuesse-references.yml::ref12`, S. 4) documents only ONE Hamburger Bankfuß at 27¾ M.B. / Cöllnische Marck and references no 1777 transition.
+*Diagnosis.* Bobzin most likely conflates Hamburg's bid/ask spread (27⅝ M.B. on Ankauf, 27¾ M.B. on Verkauf — both from the 1770 Hamburg Bankreform) with two separate Banco-Füße, and dates the Altona bank's founding to 1777 instead of 1776.
+*Decision.* For the 1726 Lübisch-Hamburger 34-Marck-Fuß, Bobzin remains reliable. For the 1769/1777 split, prefer Soetbeer 1869 (period primary source, Hamburg Commerz-Deputation archivist) + Meyers 1888/1907. The «two Bankfüße» rendition does NOT enter our prose. See ref8 caveat in `german_fuesse-references.yml`.
+
+### 13.6 Cross-source: Krause register volumes (KM# inflation)
+
+**Same physical coin can carry two different KM numbers across Krause-volume registers (carry-over).**
+Krause-Mishler numbering restarts within each country / region. `KM-25` in the Krause-Denmark volume is an entirely different coin from `KM-25` in the Krause-Schleswig-Holstein volume. The same physical Christian-IV Glückstadt 1640-48 Søsling carries **KM-DK# 25** AND **KM-SH# 87** — same coin, two catalogue numbers from two different Krause editions.
+*Decision.* Schema-level support via `KMRef {value, register}` (see `scripts/lib/schema.py`). Locations have a default `km_register` (`'DK'` for denmark.yml, `'SH'` for schleswig_holstein.yml). Render: bare «KM#» when single-entry in the page's default register; qualified «KM-DK#» / «KM-SH#» + tooltip when cross-register or multi-list. Same caveat applies to Hede / Sieg / Lange / Behrens — each catalogue's numbering is internal to that catalogue, and bare-numeric collisions are coincidences unless ruler + nominal + composition + year also align. — see CLAUDE.md §9 caveat «same KM# across different issuers / catalogues is NOT automatically the same type».
+
+---
+
+## 14. Operational status snapshot
+
+Last reviewed: 2026-05-13.
+
+| Source | Cache | Last fresh | Status | Notes |
+|---|---|---|---|---|
+| **Numista API** | `scripts/cache/numista/*.json` (683 entries) | 2026-05-12 | OK | Monthly quota active until May 2026; ask before > 5 live calls. |
+| **ucoin composition** | `scripts/cache/ucoin/_composition.json` (219 entries) | 2026-05-13 | **paused** | Cloudflare challenge active; resume per §13.2 once cleared. |
+| **ucoin URL index** | `scripts/cache/ucoin/_url_index.json` (~6 300 entries) | 2026-05-11 | OK for fetched, slugs validated on-fetch via canonical-tid guard. |
+| **Bruun parsed lots** | `scripts/cache/bruun/lots/part{1,2,3,4}.json` | 2026-05-10 | OK | All 4 parts cached; pdf-viewer MCP unusable, use pypdf via curl-to-/tmp. |
+| **Bruun page texts** | `scripts/cache/bruun/pages/part{1,2,3,4}.txt` | 2026-05-10 | OK | Used for full-text searches over auction-intro material. |
+| **Hede HTML+JSON** | `scripts/cache/hede/*.{htm,json}` (~1 360 entries) | 2026-05-12 | OK | Comprehensive; per-coin re-parse via `scripts/parse_hede.py --force` if parser changes. |
+| **IKMK Berlin** | `scripts/cache/ikmk/*.json` (~7 000 entries) | 2026-05-11 | OK | Direct WebFetch on `?download=json_ext` works; no rate-limit observed. |
+
+When the «Status» column shows anything other than `OK`, the affected harvest pipeline is blocked and TODO entries reference the recovery procedure.
+
+---
+
 When citing a new source for the first time, **add a ref-slot** in the appropriate references file (per CLAUDE.md §5 «Source hierarchy» / «Web-sourced facts → bibliography entry + inline `<sup>` citation, IMMEDIATELY»).
