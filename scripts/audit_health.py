@@ -316,6 +316,37 @@ def section_caches() -> Section:
     return Section("Caches", rows)
 
 
+def section_i18n() -> Section:
+    r = subprocess.run([VENV_PY, "scripts/audit_i18n.py", "--json"],
+                       cwd=ROOT, capture_output=True, text=True)
+    if r.returncode not in (0, 1):
+        return Section("Cross-lang i18n", [Row("audit_i18n.py", "FAIL", "fail", r.stderr[:80])])
+    try:
+        d = json.loads(r.stdout)
+    except json.JSONDecodeError:
+        return Section("Cross-lang i18n", [Row("audit_i18n.py", "JSON parse error", "fail")])
+    s = d["summary"]
+    rows = [
+        Row("Errors", s["error"], "ok" if s["error"] == 0 else "warn",
+            "TODO §X cleanup" if s["error"] > 10 else ""),
+        Row("Warnings", s["warning"], "ok" if s["warning"] == 0 else ""),
+    ]
+    if s["error"] + s["warning"] > 0:
+        by_rule = {}
+        for h in d["hits"]:
+            by_rule.setdefault(h["rule"], {"e": 0, "w": 0})
+            by_rule[h["rule"]]["e" if h["severity"] == "error" else "w"] += 1
+        rule_names = {"R1": "missing translation", "R2": "<sup> count mismatch",
+                      "R3": "catalog-ref divergence", "R4": "length ratio extreme",
+                      "R5": "Müntzfuß name translated"}
+        for rule in sorted(by_rule):
+            v = by_rule[rule]
+            label = f"  {rule} {rule_names.get(rule, '')}"
+            value = f"{v['e']}E / {v['w']}W"
+            rows.append(Row(label, value))
+    return Section("Cross-lang i18n", rows)
+
+
 def section_prose_lint() -> Section:
     r = subprocess.run([VENV_PY, "scripts/audit_prose.py", "--json"],
                        cwd=ROOT, capture_output=True, text=True)
@@ -470,6 +501,7 @@ SECTIONS = {
     "seed": ("Seed state (Hede)", lambda args: section_seed_state()),
     "caches": ("Caches", lambda args: section_caches()),
     "prose": ("Prose lint", lambda args: section_prose_lint()),
+    "i18n": ("Cross-lang i18n", lambda args: section_i18n()),
     "todos": ("TODOs", lambda args: section_todos()),
     "git": ("Git", lambda args: section_git()),
 }

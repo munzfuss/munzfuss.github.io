@@ -7,6 +7,22 @@
 
 ## Open
 
+### X. Fix cross-language inconsistencies surfaced by `scripts/audit_i18n.py`  *(opened 2026-05-13)*
+
+**Surfaced.** New cross-language detector `scripts/audit_i18n.py` (commit ahead) checks DE/EN/UK triples for 5 structural divergences:
+
+  - **R1 missing translation** (35 errors) — entries where DE is filled but EN or UK is empty. All 35 sit in `data/locations/schleswig_holstein-references.yml` where many `entries[N].content.en` / `.uk` are stubs awaiting incremental translation (the file header notes this convention). Either complete the translations or convert the empty placeholders to a deliberate «(translation pending)» canonical marker that the linter recognises as accepted.
+  - **R3 catalog-ref divergence** (33 warnings) — KM / Hede / Sieg / Lange numbers that appear in one language's text but not another's. Most cases are legitimate (one language renders «Hede-59» as a compound while another mentions only «59A»), but each warrants a glance — sometimes a real divergence (e.g. DE forgot to mention a Hede sub-number that the EN version cites).
+  - **R5 Müntzfuß name translation** (8 errors) — UK notes use «-стопа» suffix translating «-Fuß» (forbidden per CLAUDE.md i18n policy: «Müntzfuß standard names NEVER translate, in ANY context»). Fix: replace «Krone-стопа» / «9¼-стопа» → keep period German form intact («Krone-Fuß» / «9¼-Thaler-Fuß»).
+
+**Plan.**
+
+  1. **R5 Müntzfuß-name fixes** (8 errors, mechanical): grep for «-стопа» / «-стопи» / «-стопу» in `coins[].note.uk` across all locations; replace each with the period German form intact.
+  2. **R1 missing-translation strategy**: decide between (a) actually completing the 35 incremental translations, or (b) introducing an `incremental_translation: true` flag at the entry level that the linter recognises as deliberate-pending. Option (a) is more work but aligns with the «all three languages should be filled in role-3 prose» convention; option (b) preserves the existing file's «add incrementally» comment.
+  3. **R3 catalog-ref glance**: per-case review of the 33 warnings; most resolve to legitimate phrasing differences but real divergences (DE-side gap) should be fixed.
+
+Once the project starts clean (or with documented residual warnings), wire `audit_i18n.py` into the same pre-commit hook as `audit_prose.py`.
+
 ### W. Clean up §0z violations surfaced by `scripts/audit_prose.py`  *(opened 2026-05-13)*
 
 **Surfaced.** The new prose-linter `scripts/audit_prose.py` (commit ahead) catches forbidden patterns per CLAUDE.md §0a/§0z/§2a/§2/§0b across all `data/**/*.yml` rendered-prose surfaces. First run reports **873 hits across 8 files** — most are real violations, not false positives.
