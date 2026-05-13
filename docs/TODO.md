@@ -5,21 +5,48 @@
 > forgotten across sessions. When an item is done, move it to the
 > "Done" section at the bottom (with the commit SHA) so we have a record.
 
-## Open
+## How to use this file
 
-### AH. Re-evaluate «Numista API budget» rule on 2026-06-01  *(opened 2026-05-13)*
+Open entries split into three priority tiers:
 
-**Surfaced.** CLAUDE.md «Numista API budget — ASK before bulk-fetching (May 2026 only)» is explicitly time-scoped: «applies through May 2026 only». The user's monthly quota resets June 1 and the rule may be relaxed or dropped.
+- **High priority** — the user has explicitly flagged these as
+  most-important on a specific date. New high-priority work goes
+  here only on direct user direction («з найвищим пріоритетом» or
+  equivalent). Keep this section short — when more than ~10 entries
+  pile up, promote/demote to maintain scannability.
+- **Normal priority** (default) — every new TODO entry lands here
+  unless the user marked it as high or low. Sorted newest-at-top
+  within the section (entries opened today appear before entries
+  opened yesterday).
+- **Low priority** — deferred items. Things we're not abandoning
+  but consciously postponing (external blockers, big-bang refactors
+  pending decisions, ideas worth recording but not now). Move
+  entries here when they survive several sessions without progress
+  AND have no near-term trigger to act on them.
 
-**Plan.** On the first session in June 2026 (or whenever the current date crosses 2026-05-31, whichever comes first):
+Optional inline markers in entry titles (used selectively, currently
+only on High-priority entries while we trial the convention):
 
-  1. Open CLAUDE.md and locate the «Numista API budget» section.
-  2. Ask the user the simple binary: «June reset has landed — keep the ≤5-calls-then-ASK rule, or relax it / drop entirely?»
-  3. Either remove the section, soften it («ASK if planning > ~50 calls»), or re-scope it to «June 2026 only» with the same self-deletion mechanism.
+- 🟢 **ready** — no decision needed, can start immediately.
+- 🟡 **needs decision** — blocked on user verdict before any action.
+- 🔵 **per-case ongoing** — long-running grind, advances one case at
+  a time.
+- 🔴 **paused** — external blocker (rate-limit, source unavailable).
 
-**Why this is here.** The rule's own preamble already instructs «ask the user whether this rule still stands before applying it» when today's date is past 2026-05-31, but a TODO entry surfaces the reminder regardless of whether the rule is about to be applied — useful if the next session doesn't immediately reach for the Numista API.
+Effort estimate in title: `*(est: small | medium | large | many sessions)*`.
+Small ≈ <30 min in one session, medium ≈ ~1 h, large ≈ multi-hour,
+many sessions ≈ stretches across days/weeks.
 
-### AG. Long-form refs page-hint compliance (residual after §S closure)  *(opened 2026-05-13)*
+When work begins on an entry, log progress in `docs/handoff.md`
+(short-term state) and commit-by-commit in git history. When the
+entry is fully closed, move it to `## Done` with the closing commit
+SHA. When work happens but the entry isn't closed, update its body
+in-place with the progress + remaining scope, and add a date marker
+to the title (`*(opened YYYY-MM-DD, partial progress YYYY-MM-DD)*`).
+
+## High priority
+
+### AG. 🟢 Long-form refs page-hint compliance (residual after §S closure)  *(opened 2026-05-13)* *(est: small)*
 
 **Surfaced.** §S sweep (closed 2026-05-13) added the mandatory-page-hint rule (CLAUDE.md §5a) and fixed 4 specific refs. New refs added between then and now (or future refs) need the rule enforced. The pre-commit hook doesn't currently lint refs; the rule is honor-system.
 
@@ -30,7 +57,7 @@
 
 **Scope.** Refs files: ~12 total. Long-form refs subset: ~10-15 entries by rough estimate. Walking + flag run takes < 5 s.
 
-### AF. Hede silver-spec-card-for-gold-strike audit (sister-to-c4h47 sweep)  *(opened 2026-05-13)*
+### AF. 🟢 Hede silver-spec-card-for-gold-strike audit (sister-to-c4h47 sweep)  *(opened 2026-05-13)* *(est: medium)*
 
 **Surfaced.** During the c4h47 fix (silver Hede 47 spec card with Guldafslag Schou 1a sub-variant in Zincksamlingen list — caught 2026-05-13, commit `b0aa746`). The pattern: a Hede page primarily catalogues the silver mother coin, but the description / Zincksamlingen list mentions a Guldafslag (gold off-strike) sub-variant with a different Schou number (e.g. Schou «1» for silver, «1a» for gold). A curator who reads only the spec card and ingests Bruttovægt/Finhed onto a `metal: gold` entry produces a silver-fineness gold coin — exactly the c4h47 trap.
 
@@ -44,7 +71,7 @@ Documented in `docs/SOURCES.md` §13.4.
 
 **Real precedent:** c4h47 (Frederik IV 16 Skilling 1713 silver page; Bruun-attested gold off-strike Schou 1a at Double-Ducat weight ~6.93 g, not the silver spec-card 5.197 g). The Schou 1a variant signature is what catches the pattern.
 
-### AE. Build-guard survivors audit — metal/weight/year mismatch guards on seed-merge  *(opened 2026-05-13)*
+### AE. 🟢 Build-guard survivors audit — metal/weight/year mismatch guards on seed-merge  *(opened 2026-05-13)* *(est: small)*
 
 **Surfaced.** Latest build reports persistent guard-survivors that were left for manual review:
 
@@ -54,7 +81,7 @@ Documented in `docs/SOURCES.md` §13.4.
 
 **Plan.** One-off audit script (or extension of `audit_seed_survivors.py`) that, for each guard-survivor, surfaces the curated+seed pair side-by-side with the exact mismatch metric (metal labels, weight delta %, year delta) and a recommended action (legitimate-keep / false-positive-fix / mark status_404). Then close the false positives individually.
 
-### AD. Hede sub-letter Pattern B fold buckets — 38 remaining  *(opened 2026-05-13)*
+### AD. 🔵 Hede sub-letter Pattern B fold buckets — 38 remaining  *(opened 2026-05-13)* *(est: many sessions)*
 
 **Surfaced.** The 46-case NO-KM dedup audit (Pattern B per CLAUDE.md §9 caveat + PB-1) closed cases 1-9 manually; ~38 Hede-page sub-letter sibling buckets remain in the seed yaml as separate per-sub-letter entries waiting to be folded under a single Krause# parent.
 
@@ -75,7 +102,7 @@ Documented in `docs/SOURCES.md` §13.4.
 
 **Closed so far (commits):** case 9 = c4h79 (`6d7a087`), case 8 = c4h59/Hede-59 (`4d59131`), case 7 = c4h178/Krause cross-volume (`cea6b5d` family). 4 done, 38 remaining.
 
-### AC. 9-Fuß Speciedaler family sister entries — sweep beyond user's 1646-1651 explicit list  *(opened 2026-05-13)*
+### AC. 🟡 9-Fuß Speciedaler family sister entries — sweep beyond user's 1646-1651 explicit list  *(opened 2026-05-13)* *(est: medium)*
 
 **Surfaced.** While processing the user's 2026-05-13 «Hede 56D / 48 / 50AB / 55 → 9-Fuß» direction (commit `950c6ec` moved 5 entries), audit identified additional curated entries with the SAME Marken-fin 9.0/9.071 Hede attestation that suggests they too belong in 9_thaler (not 9_25_thaler), but were OUTSIDE the user's strict 1646-1651 scope:
 
@@ -89,7 +116,7 @@ Documented in `docs/SOURCES.md` §13.4.
 
 **Decision needed before action.** Per-case methodology says no automated expansion. But analytically the cluster is internally coherent.
 
-### AB. Daler-Klippe 1604 Reichsdukatenfuß placement — fraction-vs-anchor mismatch  *(opened 2026-05-13)*
+### AB. 🟡 Daler-Klippe 1604 Reichsdukatenfuß placement — fraction-vs-anchor mismatch  *(opened 2026-05-13)* *(est: medium)*
 
 **Surfaced.** While fixing dk-hede-c4h12 silver→gold (commit `b971756`) and the family-wide 1604 Daler-Klippe seed entries (commit `b041b44`). Currently the 1604 Christian IV Daler-Klippe series (4 / 6 / 8 Daler tariff Klippen) sits under `reichsdukatenfuss` with the Daler-tariff number as the `fraction` label (`fraction: '4'`, `'6'`, `'8'`). Δ-from-Soll comparison shows the specimen-fein values don't match the Reichsdukatenfuß anchor (1 Reichsdukat = 3.44 g fein @ 0.986):
 
@@ -106,7 +133,7 @@ Consistent ~-41 % deficit suggests the Daler-tariff coins follow a DIFFERENT-anc
 
 Either way the prose / category presentation needs to acknowledge that «Daler-Klippe» is a parallel gold-tariff line, not a Reichsdukatenfuß sub-family.
 
-### AA. Seed `fraction` field audit — systematic sweep  *(opened 2026-05-13)*
+### AA. 🔵 Seed `fraction` field audit — systematic sweep  *(opened 2026-05-13)* *(est: large)*
 
 **Surfaced.** Two recent fixes (`93b2f6e` for dk-hede-f3h48 wrong `fraction: '1'` on a 1/6 Speciedaler coin; `2e3e1a9` for dk-hede-f2h30 wrong `fraction: '1/96'` on a Skilling Lybsk coin) revealed broader seed-yaml `fraction` field issues. The auto-render math (Soll-fein × fraction) silently produces wrong Δ values when the field is missing or wrong, since the renderer just multiplies whatever's in the field.
 
@@ -140,6 +167,112 @@ All three should be `fuss: 9_thaler` + appropriate fraction (1/4, 1/12, 2 respec
   Run a one-off sweep: walk `data/seed/hede/denmark.yml`, for every entry where `fraction` is `None` OR where `fraction` is inconsistent with the nominal text (e.g. nominal «1/6 Speciedaler» but fraction `'1'`, or nominal «3 Skilling» but fraction `'1/4'`), flag for review. The «nominal X/N but fraction=1» pattern was already swept (commit `93b2f6e` found ONE bug, f3h48); the broader «nominal X/N but fraction != 1/N» and «fraction: None» patterns are still open.
 
 **Plan.** `scripts/audit_seed_fractions.py` — script walks seed yaml, cross-references nominal-text against fraction value, flags discrepancies. Run, review output, fix per-case.
+
+## Normal priority
+
+### AK. Flip `mint_verified` to true for seed entries whose Hede source explicitly states the mint  *(opened 2026-05-13)*
+
+**Surfaced.** User flagged `dk-hede-f2h31` (Hede# 31 / Sieg# 32.1 / Schou# 27 / Fr# 2 — 1 Søsling Lybsk 1566, Frederik II): currently `mint: Flensburg` + `mint_verified: false` → renders as «Flensburg (?)» in the table. But the Hede source page (https://www.danskmoent.dk/fr/f2h31.htm) explicitly names «Flensborg» (Danish spelling of the same German «Flensburg»). The mint IS source-attested; the `(?)` marker is wrong.
+
+**Root cause.** `scripts/maintenance/build_hede_denmark_seed.py:633` sets `cm["mint_verified"] = False` as a parser-heuristic default («not flipped here»). The post-build sweep that flips the flag against the actual Hede page text never happened systematically — so today, **604 seed entries in `data/seed/hede/denmark.yml` carry `mint_verified: false`** (count via `audit_health.py` data-completeness section), even though the majority of them have an explicitly-stated mint in the Hede source.
+
+**Distribution of those 604 (top 12 by mint label):**
+
+| mint | count |
+|---|---:|
+| Kopenhagen | 479 |
+| Glückstadt | 47 |
+| Altona | 33 |
+| (Kopenhagen, Altona) — joint | 18 |
+| Frederiksborg | 5 |
+| Rethwisch | 5 |
+| Hadersleben | 4 |
+| Flensburg | 3 |
+| Rendsburg | 3 |
+| (Kopenhagen, Kongsberg) — joint | 3 |
+| Helsingør | 2 |
+| (Altona, Poppenbüttel) — joint | 2 |
+
+Most of these are post-1660 Kopenhagen issues where the Hede page lists «Kjøbenhavn» as the mint by name + cites the mintmaster initials. Pre-1660 issues from Glückstadt, Flensburg, Hadersleben likewise carry explicit mint statements on Hede pages.
+
+**Plan.**
+
+  1. **Starting case `dk-hede-f2h31`**: open the cited danskmoent.dk page, confirm «Flensborg» appears as mint, flip `mint_verified: false → true` in seed. The German form «Flensburg» stays in the YAML (per `data/i18n` policy: mint names use standard academic spellings identical across languages; «Flensborg» on the Danish page is the same place).
+  2. **Sweep the other Flensburg / Hadersleben / Rethwisch / Frederiksborg / Rendsburg / Helsingør entries** (~22 entries) — each carries an explicit mint in the source page. Flip the flag.
+  3. **Joint-mint entries** ((Kopenhagen, Altona), (Kopenhagen, Kongsberg), (Altona, Poppenbüttel)): the seed records a tuple because the source attests two mint locations. Confirm against Hede page, then flip if the joint statement matches.
+  4. **Kopenhagen / Glückstadt / Altona buckets** (~559 entries combined): sample 10 entries per bucket, confirm each Hede page explicitly states the mint, then batch-flip the bucket. The fast path: write a one-off `scripts/oneoff/flip_mint_verified_from_hede.py` that parses each seed entry's Hede cache JSON (`scripts/cache/hede/<hede_volume><hede_num>.json`) for the canonical mint string and flips the flag when source attests.
+  5. **Reserved cases**: any seed entry where the Hede page does NOT state the mint (or the parser-heuristic guessed wrong) stays `mint_verified: false`. These are the legitimate `(?)` rendering — not all 604 are bogus.
+  6. **Audit follow-up**: add a section to `audit_health.py` (or extend the seed-state section) that flags «mint_verified=false entries where the Hede cache contains the mint string verbatim» — surfaces remaining sweep candidates without re-running the full builder.
+
+**Quick win.** The 22 non-Kopenhagen/Glückstadt/Altona entries (Flensburg, Hadersleben, Rendsburg, etc.) are the most visible `(?)`-rendered cases on smaller-mint coin pages — fixing those first cleans the most obvious incorrect markers; the large Kopenhagen bulk can follow when the scripted sweep is in place.
+
+---
+
+### AJ. Year-aware coin sort comparator (single year vs range, range vs range)  *(opened 2026-05-13)*
+
+**Surfaced.** User direction 2026-05-13. The web-rendered per-phase tables currently sort coins by `(year_first, id)` lexicographically (`scripts/lib/categorize.py:158`). When the table mixes single-year coins with multi-year-range coins (`year_label: "1646, 1648"`, `"1603-1613"`, `"1646, 1648-1651"`, etc.), the naive sort produces awkward orderings. The user's three-case rule virtually merges N range segments into one big interval `[min, max]` across all segments, then compares cases as follows.
+
+**Comparator rule (canonical statement — destination CLAUDE.md or scripts/lib docstring per final implementation choice).**
+
+Pre-step: each coin's effective year-span is `[span_min, span_max]` where
+  - single year `Y` → `[Y, Y]`,
+  - any range or comma-list (`year_ranges: [[a,b], [c,d], …]`) → `[min(a, c, …), max(b, d, …)]`.
+
+A coin is **single-year** when `span_min == span_max` AND the source `year_label` carries one numeric year only (not a range that happens to be length-1).
+
+A coin is **range-coin** otherwise.
+
+Comparator for two coins X, Y:
+
+  1. **Both single-year** — compare `span_min` (= the year). If equal, fall back to a stable tiebreaker (`id`).
+  2. **One single-year, one range** — compare the single coin's year against the range coin's `span_min`. If equal, **single-year wins (sorts before range)**. (User's wording: «екземпляр1 йде раніше в списку за екземпляр2».)
+  3. **Both range-coins** — compare `span_min` first; if equal, compare `span_max`. If both equal, stable tiebreaker (`id`).
+
+**Implementation site.** `scripts/lib/categorize.py:158` — replace the `key=lambda c: (c.raw.year_first, c.raw.id)` lambda with a `functools.cmp_to_key`-wrapped comparator implementing the three cases above. The `Coin` schema already carries `year_first` + `year_last` + `year_ranges` + the structural distinction between single-year (`year_ranges` length 1 with `a==b`) and range-coins (everything else), so no schema change.
+
+**Plan.**
+
+  1. Add the `cmp_year_aware(c1, c2)` function in `scripts/lib/categorize.py` (or extract to a helper in `compute.py` if cleaner). Cover the three cases + the «single wins ties with range at the same min» exception.
+  2. Replace the existing `coins_in_phase.sort(...)` call.
+  3. Verify the rendered table for a Denmark phase that has a mix (e.g. Christian IV phases with several range-coins like KM-44 1608-1621 + single-year specimens) before / after the change.
+  4. Codify the rule in CLAUDE.md or a scripts/lib/categorize.py docstring so future schema-additions (e.g. multi-disjoint-range coins) don't silently regress.
+  5. Add an audit-section in `audit_health.py` to spot inversion cases (current sort puts a range-coin with `min=1646` before a single-year `1646` — should be the other way after fix).
+
+---
+
+### AI. Apply Intra-sub-variant thinning to coins with > 4 Bruun specimens  *(opened 2026-05-13)*
+
+**Surfaced.** User direction 2026-05-13, surfaced by `dk-tid-163070` (1 Speciedaler 1608-1621 Christian IV, KM-44, Denmark): 7 `weight_rough_g` entries total, of which **6 from Bruun PDF lots** (Parts I-IV). The `audit_health.py` §«Specimen thinning (§9a)» «Bucket candidates ≥5» signal classifies entries by source token and flags any (coin × resource) bucket of ≥5; currently it lists 5 SH IKMK buckets, but doesn't yet flag Bruun-source clusters because the existing CLAUDE.md §9a thinning rule was codified for IKMK over-collection from one Stempelvariante (Berlin holds N specimens of the same Lange-sub-type → only min / middle / max are informative).
+
+**The issue for Bruun.** When a single coin has > 4 Bruun specimens from across Parts I-IV, the intermediate weights between min and max similarly contribute no additional information about the standard's variance envelope — they are noise from over-sampling Bruun's auction-catalogue holdings. Same shape as IKMK over-collection, different resource.
+
+**Rule update.** Extend CLAUDE.md §9a «Intra-sub-variant thinning» to explicitly cover Bruun in the bucket-threshold rule. Current §9a wording — «when one coin entry has ≥5 `weight_rough_g` entries from a *single resource* (most often IKMK Berlin) within a single Stempelvariante sub-group» — already nominally covers Bruun, but the canonical decisions in `scripts/maintenance/thin_intra_subvariant_specimens.py` are all IKMK. The two adjustments needed:
+
+  1. **Lower threshold for Bruun specifically: > 4 Bruun specimens.** The user's framing «де bruun джерел > 4» suggests the threshold for Bruun should be > 4 (i.e. ≥ 5 — consistent with the general rule), not stricter. Treat as same threshold; the canonical text just needs to name Bruun explicitly alongside IKMK so the rule isn't read as IKMK-only.
+  2. **Sub-variant grouping for Bruun.** IKMK's `literatur` field carries the Lange sub-variant tag; Bruun lot records carry an analog signal in the `refs` field (Hede sub-letter, Lange sub-letter, sometimes Schou). Define the sub-variant bucket for Bruun-source thinning as «entries sharing the same Hede-sub-letter OR same Lange-sub-letter». Without this grouping rule, the bucket would over-aggregate (e.g. 6 Bruun lots split across 3 Hede sub-letters of 2 each — none of the buckets crosses the threshold, no thinning).
+
+**Action.**
+
+  1. Extend CLAUDE.md §9a's text to name Bruun explicitly alongside IKMK + describe the Bruun sub-variant tag source (Hede/Lange sub-letter from the `refs` field).
+  2. Sweep all coins in `data/locations/*.yml` where Bruun-source `weight_rough_g` entries ≥ 5 within one sub-variant. For each, apply min / middle-by-index / max preserving the `bruun_collection_id` / `bruun_part` / `bruun_lot_no` / `bruun_page` citation for retained entries; discard intermediate entries plus their matching `sources[]` URLs (per the existing §9a operational shape).
+  3. Encode the decisions in `scripts/maintenance/thin_intra_subvariant_specimens.py` (extend `DROPS` dict; the function `_filter_coin` already handles Bruun source-strings since they share the «Bruun II, lot 11304» shape with IKMK's «IKMK Berlin, Inv. NNNN»).
+  4. Re-run `audit_health.py --section thin` to confirm zero Bruun bucket-flags remain (or document why a given bucket legitimately stays — different sub-variants in same Hede page).
+
+**Starting case: `dk-tid-163070`.** Inspect the 6 Bruun entries' Hede sub-letter + Lange sub-letter from their `bruun_part` + `bruun_lot_no`; group by sub-variant; apply min/middle/max per sub-variant bucket of ≥ 5.
+
+---
+
+### AH. Re-evaluate «Numista API budget» rule on 2026-06-01  *(opened 2026-05-13)*
+
+**Surfaced.** CLAUDE.md «Numista API budget — ASK before bulk-fetching (May 2026 only)» is explicitly time-scoped: «applies through May 2026 only». The user's monthly quota resets June 1 and the rule may be relaxed or dropped.
+
+**Plan.** On the first session in June 2026 (or whenever the current date crosses 2026-05-31, whichever comes first):
+
+  1. Open CLAUDE.md and locate the «Numista API budget» section.
+  2. Ask the user the simple binary: «June reset has landed — keep the ≤5-calls-then-ASK rule, or relax it / drop entirely?»
+  3. Either remove the section, soften it («ASK if planning > ~50 calls»), or re-scope it to «June 2026 only» with the same self-deletion mechanism.
+
+**Why this is here.** The rule's own preamble already instructs «ask the user whether this rule still stands before applying it» when today's date is past 2026-05-31, but a TODO entry surfaces the reminder regardless of whether the rule is about to be applied — useful if the next session doesn't immediately reach for the Numista API.
 
 ### Z. Evaluate numismaster.com as a project resource  *(opened 2026-05-13)*
 
@@ -696,6 +829,42 @@ realm. So DK / DK+ are crown-level only.
 
 Defer to the same audit window as §N / §O when bandwidth opens.
 
+### O. Numista weight typos vs Hede Bruttovægt  *(opened 2026-05-12)*
+
+Adjacent pattern to §N: Numista entries occasionally publish a
+«weight» field that's closer to Hede's Finvægt (fine-silver content)
+than to Hede's Bruttovægt (gross-coin standard). Numista's own
+convention is Brutto (confirmed via control-case KM-81 / Hede 115:
+Numista 1.051g matches Hede Bruttovægt exactly). Where Numista
+deviates by ~10-15% from Hede's Brutto, the most parsimonious
+explanation is a user-edit error — the editor entered Finvægt by
+mistake.
+
+One case resolved so far:
+
+* **KM-82 / Hede 114** (8 Kroneskilling Christian IV 1620-1621) —
+  *resolved 2026-05-12.* Hede Bruttovægt 2.101g (passes three
+  independent checks: internal arithmetic 2.101 × 0.859 = 1.806
+  matches published Finvægt; silver-proportional 2× sister-denom
+  KM-81 = 2 × 1.051 = 2.102; marken-fin formula gives the correct
+  1/12 daler face value matching curator's `fraction: 1/12`).
+  Numista/ucoin 1.85g is 12% low — likely Finvægt-mistake. Hede
+  value now primary on km-82-chr-iv-1620; Numista 1.85g kept as
+  second reading with annotated explanation.
+
+Pattern hypothesis: small-denomination scheidemünze entries on
+Numista are more prone to this confusion because Brutto and Finvægt
+are visually close and the source pages (often danskmoent Hede)
+publish both side-by-side. Larger denominations (where Brutto and
+Finvægt differ by a clear factor) are less affected — see KM-81
+control case.
+
+Open question: how many other Numista DK entries have this
+inversion? A sweep over `scripts/cache/numista/*.json` comparing
+`weight` vs Hede's published Brutto for each entry (filtered to
+those that also cite Hede in catalog refs) would surface the full
+list. Hold for now — defer to the same audit window as §N.
+
 ### N. ucoin↔Krause KM-attribution conflicts (Denmark)  *(opened 2026-05-12)*
 
 Recurring pattern surfaced during the dedup-merge audit of denmark.yml:
@@ -736,41 +905,134 @@ KMs in denmark.yml would surface the full set. Hold for now —
 follow-up audit pass when the higher-priority L-campaign items free
 up.
 
-### O. Numista weight typos vs Hede Bruttovægt  *(opened 2026-05-12)*
+### M. ucoin Composition harvest — partial progress, paused on Cloudflare bot-protection  *(opened 2026-05-11, partial progress 2026-05-13, paused 2026-05-13)*
 
-Adjacent pattern to §N: Numista entries occasionally publish a
-«weight» field that's closer to Hede's Finvægt (fine-silver content)
-than to Hede's Bruttovægt (gross-coin standard). Numista's own
-convention is Brutto (confirmed via control-case KM-81 / Hede 115:
-Numista 1.051g matches Hede Bruttovægt exactly). Where Numista
-deviates by ~10-15% from Hede's Brutto, the most parsimonious
-explanation is a user-edit error — the editor entered Finvægt by
-mistake.
+**Paused 2026-05-13 end of day.** After three productive sessions
+(121 new sidecar entries + 178 metal-field updates across denmark /
+lubeck / schleswig_holstein), a fourth session attempt was met with
+**HTTP 403 + Cloudflare «Just a moment…» bot-protection challenge**
+on every same-origin fetch, even after the user cleared cookies.
+Cloudflare's challenge appears to be IP + browser-fingerprint based,
+not pure cookie-state — once tripped, cookie-clear forces a re-
+challenge instead of resetting it, and our automated fetcher cannot
+solve the JS challenge.
 
-One case resolved so far:
+**Resume conditions (any one suffices):**
 
-* **KM-82 / Hede 114** (8 Kroneskilling Christian IV 1620-1621) —
-  *resolved 2026-05-12.* Hede Bruttovægt 2.101g (passes three
-  independent checks: internal arithmetic 2.101 × 0.859 = 1.806
-  matches published Finvægt; silver-proportional 2× sister-denom
-  KM-81 = 2 × 1.051 = 2.102; marken-fin formula gives the correct
-  1/12 daler face value matching curator's `fraction: 1/12`).
-  Numista/ucoin 1.85g is 12% low — likely Finvægt-mistake. Hede
-  value now primary on km-82-chr-iv-1620; Numista 1.85g kept as
-  second reading with annotated explanation.
+  1. **Wait for Cloudflare cooldown** — typically 24h of quiet
+     traffic from our IP. Re-attempt next session with 20-30 s
+     pacing and ≤ 30 fetches per cookie-cycle to stay well under
+     the underlying request ceiling.
+  2. **Pass the Cloudflare challenge manually in the browser** —
+     user navigates to ucoin in their normal browser window, waits
+     for the «Performing security verification» page to clear,
+     accepts any «I'm human» prompt; the resulting `cf_clearance`
+     cookie may pass through to subsequent automated requests.
+  3. **Different network egress** — VPN or alternative IP, but
+     introduces its own complications.
 
-Pattern hypothesis: small-denomination scheidemünze entries on
-Numista are more prone to this confusion because Brutto and Finvægt
-are visually close and the source pages (often danskmoent Hede)
-publish both side-by-side. Larger denominations (where Brutto and
-Finvægt differ by a clear factor) are less affected — see KM-81
-control case.
+**Resume tomorrow (2026-05-14 or later)** with option 1 / 2; see
+the existing rate-limit analysis above for pacing guidance.
 
-Open question: how many other Numista DK entries have this
-inversion? A sweep over `scripts/cache/numista/*.json` comparing
-`weight` vs Hede's published Brutto for each entry (filtered to
-those that also cite Hede in catalog refs) would surface the full
-list. Hold for now — defer to the same audit window as §N.
+
+
+**Original surface (2026-05-11).** The investigation of `dk-tid-163075`
+(KM# UC# 10, Frederik II 10 Ducat 1588) where user-side verification
+on the live ucoin page showed «Composition · Gold» that our local
+cache never carried. The `scripts/cache/ucoin/_url_index.json` schema
+only stored `denom / diameter_mm / fineness / km / source / url /
+weight_g / year` — no metal / composition.
+
+**Progress 2026-05-13 (this session).** Wrote a careful sequential
+Chrome-MCP fetcher (2.5 s pacing, CONCURRENCY=1, canonical-tid
+validation rejects bad-slug pages serving unrelated coins). Probed
+~80 ucoin URLs cited by unverified Denmark coins:
+
+  * **36 successful fetches** — sidecar now has 134 entries with
+    real Composition / weight / diameter data (was 98).
+  * **45 slug_mismatch failures** — marked `status_404` in sidecar
+    so future runs skip them.
+
+Ran `scripts/maintenance/ucoin_backfill_metal.py` (with three logic
+fixes — see commit `703617e`): 93 metal fields touched across
+denmark / lubeck / schleswig_holstein.
+
+  * `metal_confirmed: 87` — inference agreed with ucoin → flipped
+    `metal_verified: true`.
+  * `metal_replaced: 6` — ours wrong, ucoin source-attests:
+      - 3 billon → copper for sub-Skilling Pennings (KM-5, KM-6, KM-86)
+      - 2 silver → gold for Daler-class issues (4 Daler 1604,
+        6 Daler 1604)
+      - 1 billon → copper for KM-86 (the user's surfacing case)
+  * `metal_disagree_with_source: 0` — no verified entries collided.
+
+Backfill script fixes carried by the same commit:
+  * `Silver (Billon) X.XXX` parser bug (was returning `silver`+None
+    instead of `billon`+X.XXX) — fixed via dedicated bracketed-form
+    regex.
+  * Default for absent `metal_verified` flipped from `True` → `False`
+    (project convention is explicit `true` on source-attested).
+  * Case-2 disagreement now replaces with ucoin's reading (verified-
+    wins-over-unverified per CLAUDE.md §4) rather than just flagging.
+
+**Root cause clarified 2026-05-13 (post-cookie-clear retry).** The
+«slug_mismatch» symptom is ucoin's RATE-LIMIT mechanism, NOT slug-
+routing breakage. After a session crosses the limit ucoin starts
+serving the canonical page for whichever slug the requester arrives
+at NEXT but with a different tid in the canonical link — the page
+appears valid but isn't for the requested tid. The canonical-tid
+validation guard catches it correctly.
+
+User cleared cookies → ucoin became responsive again. All 45 tids
+previously marked status_404 from session 1 (the 2.5 s pacing burst)
+were re-fetched successfully on session 2.
+
+**Threshold measured 2026-05-13:**
+
+| pacing | first failure | sustained | per-min rate |
+|---|---|---|---|
+| 2.5 s | req 37 | ~36 ok in 1.8 min | ~20 req/min |
+| 10 s | req 52 | 51 ok in 9.4 min | ~5.4 req/min |
+
+The slower-pacing run got further before the wall, but the absolute
+ceiling appears to be ~50 cumulative requests per session-cookie.
+Once tripped, every request returns the wrong-tid page until cookies
+are cleared (or, presumably, time passes — duration not measured).
+
+**Practical pipeline (still semi-manual, requires the user):**
+
+  1. Run a session of ≤ 45 fetches at 10 s pacing.
+  2. Watch for `slug_mismatch_*` cluster (≥ 3 consecutive on the same
+     batch) — that's the rate-limit signal.
+  3. Pause harvest; ask the user to clear `en.ucoin.net` cookies.
+  4. Resume from where we stopped.
+
+**Status after 2026-05-13 sessions (combined):**
+
+  * Sidecar: 185 entries with data (was 98 → 134 → 185).
+  * Backfill applied 51 more fields this session (134 of these were
+    in the earlier 93). Cumulative: 144 metal/verified fields touched
+    across denmark + lubeck + schleswig_holstein.
+  * 5 tids still rate-limited at end of session 2 (97085 / 97086 /
+    96444 / 96445 / 96458) — left as uncached for next cookie-cycle.
+  * Remaining uncached (next sessions): ~520, all expected to fetch
+    cleanly given a fresh cookie state per ~45-request batch.
+
+**Remaining work.** ~520 ucoin URLs to harvest via repeated cookie-
+cycle sessions (~12 sessions × 45 fetches × 10 s = ~90 minutes of
+fetcher time, plus cookie-clear inter-session). The harvest is
+mechanical; pacing rule + canonical-tid guard ensures correctness.
+A semi-automated cookie-rotation would eliminate the user's manual
+cookie-clear step (deferred — needs investigation of whether ucoin
+session lifetime is just the JSESSIONID cookie or something else).
+
+**Not blocking page renders.** Denmark / lubeck / schleswig_holstein
+pages render correctly; ~93 metal fields are now `verified: true`
+(major improvement on legacy inference). The remaining gap affects
+~530 mostly-Danish entries whose metal is still inferred from
+Müntzfuß convention.
+
+---
 
 ### L. Schleswig-Holstein + Denmark consolidation campaign  *(opened 2026-05-10)*
 
@@ -926,135 +1188,6 @@ working tier.
 
 ---
 
-### M. ucoin Composition harvest — partial progress, paused on Cloudflare bot-protection  *(opened 2026-05-11, partial progress 2026-05-13, paused 2026-05-13)*
-
-**Paused 2026-05-13 end of day.** After three productive sessions
-(121 new sidecar entries + 178 metal-field updates across denmark /
-lubeck / schleswig_holstein), a fourth session attempt was met with
-**HTTP 403 + Cloudflare «Just a moment…» bot-protection challenge**
-on every same-origin fetch, even after the user cleared cookies.
-Cloudflare's challenge appears to be IP + browser-fingerprint based,
-not pure cookie-state — once tripped, cookie-clear forces a re-
-challenge instead of resetting it, and our automated fetcher cannot
-solve the JS challenge.
-
-**Resume conditions (any one suffices):**
-
-  1. **Wait for Cloudflare cooldown** — typically 24h of quiet
-     traffic from our IP. Re-attempt next session with 20-30 s
-     pacing and ≤ 30 fetches per cookie-cycle to stay well under
-     the underlying request ceiling.
-  2. **Pass the Cloudflare challenge manually in the browser** —
-     user navigates to ucoin in their normal browser window, waits
-     for the «Performing security verification» page to clear,
-     accepts any «I'm human» prompt; the resulting `cf_clearance`
-     cookie may pass through to subsequent automated requests.
-  3. **Different network egress** — VPN or alternative IP, but
-     introduces its own complications.
-
-**Resume tomorrow (2026-05-14 or later)** with option 1 / 2; see
-the existing rate-limit analysis above for pacing guidance.
-
-
-
-**Original surface (2026-05-11).** The investigation of `dk-tid-163075`
-(KM# UC# 10, Frederik II 10 Ducat 1588) where user-side verification
-on the live ucoin page showed «Composition · Gold» that our local
-cache never carried. The `scripts/cache/ucoin/_url_index.json` schema
-only stored `denom / diameter_mm / fineness / km / source / url /
-weight_g / year` — no metal / composition.
-
-**Progress 2026-05-13 (this session).** Wrote a careful sequential
-Chrome-MCP fetcher (2.5 s pacing, CONCURRENCY=1, canonical-tid
-validation rejects bad-slug pages serving unrelated coins). Probed
-~80 ucoin URLs cited by unverified Denmark coins:
-
-  * **36 successful fetches** — sidecar now has 134 entries with
-    real Composition / weight / diameter data (was 98).
-  * **45 slug_mismatch failures** — marked `status_404` in sidecar
-    so future runs skip them.
-
-Ran `scripts/maintenance/ucoin_backfill_metal.py` (with three logic
-fixes — see commit `703617e`): 93 metal fields touched across
-denmark / lubeck / schleswig_holstein.
-
-  * `metal_confirmed: 87` — inference agreed with ucoin → flipped
-    `metal_verified: true`.
-  * `metal_replaced: 6` — ours wrong, ucoin source-attests:
-      - 3 billon → copper for sub-Skilling Pennings (KM-5, KM-6, KM-86)
-      - 2 silver → gold for Daler-class issues (4 Daler 1604,
-        6 Daler 1604)
-      - 1 billon → copper for KM-86 (the user's surfacing case)
-  * `metal_disagree_with_source: 0` — no verified entries collided.
-
-Backfill script fixes carried by the same commit:
-  * `Silver (Billon) X.XXX` parser bug (was returning `silver`+None
-    instead of `billon`+X.XXX) — fixed via dedicated bracketed-form
-    regex.
-  * Default for absent `metal_verified` flipped from `True` → `False`
-    (project convention is explicit `true` on source-attested).
-  * Case-2 disagreement now replaces with ucoin's reading (verified-
-    wins-over-unverified per CLAUDE.md §4) rather than just flagging.
-
-**Root cause clarified 2026-05-13 (post-cookie-clear retry).** The
-«slug_mismatch» symptom is ucoin's RATE-LIMIT mechanism, NOT slug-
-routing breakage. After a session crosses the limit ucoin starts
-serving the canonical page for whichever slug the requester arrives
-at NEXT but with a different tid in the canonical link — the page
-appears valid but isn't for the requested tid. The canonical-tid
-validation guard catches it correctly.
-
-User cleared cookies → ucoin became responsive again. All 45 tids
-previously marked status_404 from session 1 (the 2.5 s pacing burst)
-were re-fetched successfully on session 2.
-
-**Threshold measured 2026-05-13:**
-
-| pacing | first failure | sustained | per-min rate |
-|---|---|---|---|
-| 2.5 s | req 37 | ~36 ok in 1.8 min | ~20 req/min |
-| 10 s | req 52 | 51 ok in 9.4 min | ~5.4 req/min |
-
-The slower-pacing run got further before the wall, but the absolute
-ceiling appears to be ~50 cumulative requests per session-cookie.
-Once tripped, every request returns the wrong-tid page until cookies
-are cleared (or, presumably, time passes — duration not measured).
-
-**Practical pipeline (still semi-manual, requires the user):**
-
-  1. Run a session of ≤ 45 fetches at 10 s pacing.
-  2. Watch for `slug_mismatch_*` cluster (≥ 3 consecutive on the same
-     batch) — that's the rate-limit signal.
-  3. Pause harvest; ask the user to clear `en.ucoin.net` cookies.
-  4. Resume from where we stopped.
-
-**Status after 2026-05-13 sessions (combined):**
-
-  * Sidecar: 185 entries with data (was 98 → 134 → 185).
-  * Backfill applied 51 more fields this session (134 of these were
-    in the earlier 93). Cumulative: 144 metal/verified fields touched
-    across denmark + lubeck + schleswig_holstein.
-  * 5 tids still rate-limited at end of session 2 (97085 / 97086 /
-    96444 / 96445 / 96458) — left as uncached for next cookie-cycle.
-  * Remaining uncached (next sessions): ~520, all expected to fetch
-    cleanly given a fresh cookie state per ~45-request batch.
-
-**Remaining work.** ~520 ucoin URLs to harvest via repeated cookie-
-cycle sessions (~12 sessions × 45 fetches × 10 s = ~90 minutes of
-fetcher time, plus cookie-clear inter-session). The harvest is
-mechanical; pacing rule + canonical-tid guard ensures correctness.
-A semi-automated cookie-rotation would eliminate the user's manual
-cookie-clear step (deferred — needs investigation of whether ucoin
-session lifetime is just the JSESSIONID cookie or something else).
-
-**Not blocking page renders.** Denmark / lubeck / schleswig_holstein
-pages render correctly; ~93 metal fields are now `verified: true`
-(major improvement on legacy inference). The remaining gap affects
-~530 mostly-Danish entries whose metal is still inferred from
-Müntzfuß convention.
-
----
-
 ### K. Systematic Numista vs. Hede cross-check  *(opened 2026-05-09)*
 
 **Surfaced during.** Three independent investigations during the
@@ -1152,48 +1285,6 @@ in `docs/<MUSEUM>_HARVEST.md` similar to the IKMK one.
 
 ---
 
-### D. Triage `seed_unsorted` coins in denmark / hamburg / lubeck  *(opened 2026-05-04)*
-
-**Background.** After bulk-importing 581 ucoin entries into proper
-location files (commit `1abbef8`), three locations carry coins under
-the placeholder `seed_unsorted` Müntzfuß:
-
-- `data/locations/denmark.yml`     — 422 seed entries (years 1582–1875)
-- `data/locations/hamburg.yml`     —  80 seed entries (years 1726–1873)
-- `data/locations/lubeck.yml`      —  79 seed entries (years 1620–1797)
-
-Each seed entry carries raw ucoin data (km, denom, year, fineness,
-weight, diameter, url, tid) plus best-effort heuristic inference for
-ruler/mint/metal. Every value flagged `verified: false`.
-
-**Done criterion (per location).** All seed entries reclassified into
-their proper Müntzfuß and gain `verified: true` for source-attested
-fields. The location automatically reappears on the landing page once
-its `seed_unsorted` count reaches zero — the build script
-(`scripts/build.py::build_landing`) hides any location with even a
-single seed entry, then re-checks on every build. No template/config
-edit needed when the threshold is crossed.
-
-**Recommended order.**
-
-1. **Hamburg (80, smallest)** — needs new Hamburg-specific Müntzfüße
-   defined in `data/shared/fuesse.yml` first (Bankthaler / Speciesthaler /
-   Mark-Courant standards). Triage by ucoin Period + Hede equivalents.
-2. **Lübeck (79)** — needs Wendisch-Lübisch Münzfüße defined (the
-   existing 11_333_thaler proxy is incorrect for most Lübeck coins).
-   The 1 already-curated entry (km-168-1-1752) is the model.
-3. **Denmark (422, largest)** — most coins fit existing fuesse:
-   - period_2940 (Speciedaler 1582-1624) → 9_25_thaler / 9_thaler
-   - period_1147 (Rigsdaler 1625-1699) → 9_25_thaler / kronemont
-   - period_1115 (Rigsdaler 1699-1749) → 9_25_thaler / reichsdukatenfuss
-   - period_846  (Rigsdaler 1750-1812) → 11_333_thaler / 18_5_thaler
-   - period_647  (Rigsbankdaler 1813-1854) → 18_5_thaler
-   - period_646  (Rigsdaler rigsmønt 1854-1873) → 30_thaler
-   - period_374  (Christian IX 1873-1906) → reichsgoldmuenzfuss
-   Some need new Royal Danish standards added (Kurantmøntfod 1726+).
-
----
-
 ### F. Bruun fall-throughs documented for posterity  *(opened 2026-05-06)*
 
 After Phase 4c + Phase 3 completed, the Bruun cross-match shows 11 fall-through
@@ -1278,6 +1369,48 @@ coins live in proper `data/locations/` files with correct fuss-classification.
 
 ---
 
+### D. Triage `seed_unsorted` coins in denmark / hamburg / lubeck  *(opened 2026-05-04)*
+
+**Background.** After bulk-importing 581 ucoin entries into proper
+location files (commit `1abbef8`), three locations carry coins under
+the placeholder `seed_unsorted` Müntzfuß:
+
+- `data/locations/denmark.yml`     — 422 seed entries (years 1582–1875)
+- `data/locations/hamburg.yml`     —  80 seed entries (years 1726–1873)
+- `data/locations/lubeck.yml`      —  79 seed entries (years 1620–1797)
+
+Each seed entry carries raw ucoin data (km, denom, year, fineness,
+weight, diameter, url, tid) plus best-effort heuristic inference for
+ruler/mint/metal. Every value flagged `verified: false`.
+
+**Done criterion (per location).** All seed entries reclassified into
+their proper Müntzfuß and gain `verified: true` for source-attested
+fields. The location automatically reappears on the landing page once
+its `seed_unsorted` count reaches zero — the build script
+(`scripts/build.py::build_landing`) hides any location with even a
+single seed entry, then re-checks on every build. No template/config
+edit needed when the threshold is crossed.
+
+**Recommended order.**
+
+1. **Hamburg (80, smallest)** — needs new Hamburg-specific Müntzfüße
+   defined in `data/shared/fuesse.yml` first (Bankthaler / Speciesthaler /
+   Mark-Courant standards). Triage by ucoin Period + Hede equivalents.
+2. **Lübeck (79)** — needs Wendisch-Lübisch Münzfüße defined (the
+   existing 11_333_thaler proxy is incorrect for most Lübeck coins).
+   The 1 already-curated entry (km-168-1-1752) is the model.
+3. **Denmark (422, largest)** — most coins fit existing fuesse:
+   - period_2940 (Speciedaler 1582-1624) → 9_25_thaler / 9_thaler
+   - period_1147 (Rigsdaler 1625-1699) → 9_25_thaler / kronemont
+   - period_1115 (Rigsdaler 1699-1749) → 9_25_thaler / reichsdukatenfuss
+   - period_846  (Rigsdaler 1750-1812) → 11_333_thaler / 18_5_thaler
+   - period_647  (Rigsbankdaler 1813-1854) → 18_5_thaler
+   - period_646  (Rigsdaler rigsmønt 1854-1873) → 30_thaler
+   - period_374  (Christian IX 1873-1906) → reichsgoldmuenzfuss
+   Some need new Royal Danish standards added (Kurantmøntfod 1726+).
+
+---
+
 ### C. Bremen-Archbishopric Frederick (II/III) coinage 1641–1643  *(opened 2026-05-03)*
 
 **Surfaced during.** Cross-check of the 3 Numista issuer-list pages
@@ -1308,97 +1441,9 @@ explicit decision that Bremen stays outside the project scope.
 
 ---
 
-### AI. Apply Intra-sub-variant thinning to coins with > 4 Bruun specimens  *(opened 2026-05-13)*
+## Low priority
 
-**Surfaced.** User direction 2026-05-13, surfaced by `dk-tid-163070` (1 Speciedaler 1608-1621 Christian IV, KM-44, Denmark): 7 `weight_rough_g` entries total, of which **6 from Bruun PDF lots** (Parts I-IV). The `audit_health.py` §«Specimen thinning (§9a)» «Bucket candidates ≥5» signal classifies entries by source token and flags any (coin × resource) bucket of ≥5; currently it lists 5 SH IKMK buckets, but doesn't yet flag Bruun-source clusters because the existing CLAUDE.md §9a thinning rule was codified for IKMK over-collection from one Stempelvariante (Berlin holds N specimens of the same Lange-sub-type → only min / middle / max are informative).
-
-**The issue for Bruun.** When a single coin has > 4 Bruun specimens from across Parts I-IV, the intermediate weights between min and max similarly contribute no additional information about the standard's variance envelope — they are noise from over-sampling Bruun's auction-catalogue holdings. Same shape as IKMK over-collection, different resource.
-
-**Rule update.** Extend CLAUDE.md §9a «Intra-sub-variant thinning» to explicitly cover Bruun in the bucket-threshold rule. Current §9a wording — «when one coin entry has ≥5 `weight_rough_g` entries from a *single resource* (most often IKMK Berlin) within a single Stempelvariante sub-group» — already nominally covers Bruun, but the canonical decisions in `scripts/maintenance/thin_intra_subvariant_specimens.py` are all IKMK. The two adjustments needed:
-
-  1. **Lower threshold for Bruun specifically: > 4 Bruun specimens.** The user's framing «де bruun джерел > 4» suggests the threshold for Bruun should be > 4 (i.e. ≥ 5 — consistent with the general rule), not stricter. Treat as same threshold; the canonical text just needs to name Bruun explicitly alongside IKMK so the rule isn't read as IKMK-only.
-  2. **Sub-variant grouping for Bruun.** IKMK's `literatur` field carries the Lange sub-variant tag; Bruun lot records carry an analog signal in the `refs` field (Hede sub-letter, Lange sub-letter, sometimes Schou). Define the sub-variant bucket for Bruun-source thinning as «entries sharing the same Hede-sub-letter OR same Lange-sub-letter». Without this grouping rule, the bucket would over-aggregate (e.g. 6 Bruun lots split across 3 Hede sub-letters of 2 each — none of the buckets crosses the threshold, no thinning).
-
-**Action.**
-
-  1. Extend CLAUDE.md §9a's text to name Bruun explicitly alongside IKMK + describe the Bruun sub-variant tag source (Hede/Lange sub-letter from the `refs` field).
-  2. Sweep all coins in `data/locations/*.yml` where Bruun-source `weight_rough_g` entries ≥ 5 within one sub-variant. For each, apply min / middle-by-index / max preserving the `bruun_collection_id` / `bruun_part` / `bruun_lot_no` / `bruun_page` citation for retained entries; discard intermediate entries plus their matching `sources[]` URLs (per the existing §9a operational shape).
-  3. Encode the decisions in `scripts/maintenance/thin_intra_subvariant_specimens.py` (extend `DROPS` dict; the function `_filter_coin` already handles Bruun source-strings since they share the «Bruun II, lot 11304» shape with IKMK's «IKMK Berlin, Inv. NNNN»).
-  4. Re-run `audit_health.py --section thin` to confirm zero Bruun bucket-flags remain (or document why a given bucket legitimately stays — different sub-variants in same Hede page).
-
-**Starting case: `dk-tid-163070`.** Inspect the 6 Bruun entries' Hede sub-letter + Lange sub-letter from their `bruun_part` + `bruun_lot_no`; group by sub-variant; apply min/middle/max per sub-variant bucket of ≥ 5.
-
----
-
-### AJ. Year-aware coin sort comparator (single year vs range, range vs range)  *(opened 2026-05-13)*
-
-**Surfaced.** User direction 2026-05-13. The web-rendered per-phase tables currently sort coins by `(year_first, id)` lexicographically (`scripts/lib/categorize.py:158`). When the table mixes single-year coins with multi-year-range coins (`year_label: "1646, 1648"`, `"1603-1613"`, `"1646, 1648-1651"`, etc.), the naive sort produces awkward orderings. The user's three-case rule virtually merges N range segments into one big interval `[min, max]` across all segments, then compares cases as follows.
-
-**Comparator rule (canonical statement — destination CLAUDE.md or scripts/lib docstring per final implementation choice).**
-
-Pre-step: each coin's effective year-span is `[span_min, span_max]` where
-  - single year `Y` → `[Y, Y]`,
-  - any range or comma-list (`year_ranges: [[a,b], [c,d], …]`) → `[min(a, c, …), max(b, d, …)]`.
-
-A coin is **single-year** when `span_min == span_max` AND the source `year_label` carries one numeric year only (not a range that happens to be length-1).
-
-A coin is **range-coin** otherwise.
-
-Comparator for two coins X, Y:
-
-  1. **Both single-year** — compare `span_min` (= the year). If equal, fall back to a stable tiebreaker (`id`).
-  2. **One single-year, one range** — compare the single coin's year against the range coin's `span_min`. If equal, **single-year wins (sorts before range)**. (User's wording: «екземпляр1 йде раніше в списку за екземпляр2».)
-  3. **Both range-coins** — compare `span_min` first; if equal, compare `span_max`. If both equal, stable tiebreaker (`id`).
-
-**Implementation site.** `scripts/lib/categorize.py:158` — replace the `key=lambda c: (c.raw.year_first, c.raw.id)` lambda with a `functools.cmp_to_key`-wrapped comparator implementing the three cases above. The `Coin` schema already carries `year_first` + `year_last` + `year_ranges` + the structural distinction between single-year (`year_ranges` length 1 with `a==b`) and range-coins (everything else), so no schema change.
-
-**Plan.**
-
-  1. Add the `cmp_year_aware(c1, c2)` function in `scripts/lib/categorize.py` (or extract to a helper in `compute.py` if cleaner). Cover the three cases + the «single wins ties with range at the same min» exception.
-  2. Replace the existing `coins_in_phase.sort(...)` call.
-  3. Verify the rendered table for a Denmark phase that has a mix (e.g. Christian IV phases with several range-coins like KM-44 1608-1621 + single-year specimens) before / after the change.
-  4. Codify the rule in CLAUDE.md or a scripts/lib/categorize.py docstring so future schema-additions (e.g. multi-disjoint-range coins) don't silently regress.
-  5. Add an audit-section in `audit_health.py` to spot inversion cases (current sort puts a range-coin with `min=1646` before a single-year `1646` — should be the other way after fix).
-
----
-
-### AK. Flip `mint_verified` to true for seed entries whose Hede source explicitly states the mint  *(opened 2026-05-13)*
-
-**Surfaced.** User flagged `dk-hede-f2h31` (Hede# 31 / Sieg# 32.1 / Schou# 27 / Fr# 2 — 1 Søsling Lybsk 1566, Frederik II): currently `mint: Flensburg` + `mint_verified: false` → renders as «Flensburg (?)» in the table. But the Hede source page (https://www.danskmoent.dk/fr/f2h31.htm) explicitly names «Flensborg» (Danish spelling of the same German «Flensburg»). The mint IS source-attested; the `(?)` marker is wrong.
-
-**Root cause.** `scripts/maintenance/build_hede_denmark_seed.py:633` sets `cm["mint_verified"] = False` as a parser-heuristic default («not flipped here»). The post-build sweep that flips the flag against the actual Hede page text never happened systematically — so today, **604 seed entries in `data/seed/hede/denmark.yml` carry `mint_verified: false`** (count via `audit_health.py` data-completeness section), even though the majority of them have an explicitly-stated mint in the Hede source.
-
-**Distribution of those 604 (top 12 by mint label):**
-
-| mint | count |
-|---|---:|
-| Kopenhagen | 479 |
-| Glückstadt | 47 |
-| Altona | 33 |
-| (Kopenhagen, Altona) — joint | 18 |
-| Frederiksborg | 5 |
-| Rethwisch | 5 |
-| Hadersleben | 4 |
-| Flensburg | 3 |
-| Rendsburg | 3 |
-| (Kopenhagen, Kongsberg) — joint | 3 |
-| Helsingør | 2 |
-| (Altona, Poppenbüttel) — joint | 2 |
-
-Most of these are post-1660 Kopenhagen issues where the Hede page lists «Kjøbenhavn» as the mint by name + cites the mintmaster initials. Pre-1660 issues from Glückstadt, Flensburg, Hadersleben likewise carry explicit mint statements on Hede pages.
-
-**Plan.**
-
-  1. **Starting case `dk-hede-f2h31`**: open the cited danskmoent.dk page, confirm «Flensborg» appears as mint, flip `mint_verified: false → true` in seed. The German form «Flensburg» stays in the YAML (per `data/i18n` policy: mint names use standard academic spellings identical across languages; «Flensborg» on the Danish page is the same place).
-  2. **Sweep the other Flensburg / Hadersleben / Rethwisch / Frederiksborg / Rendsburg / Helsingør entries** (~22 entries) — each carries an explicit mint in the source page. Flip the flag.
-  3. **Joint-mint entries** ((Kopenhagen, Altona), (Kopenhagen, Kongsberg), (Altona, Poppenbüttel)): the seed records a tuple because the source attests two mint locations. Confirm against Hede page, then flip if the joint statement matches.
-  4. **Kopenhagen / Glückstadt / Altona buckets** (~559 entries combined): sample 10 entries per bucket, confirm each Hede page explicitly states the mint, then batch-flip the bucket. The fast path: write a one-off `scripts/oneoff/flip_mint_verified_from_hede.py` that parses each seed entry's Hede cache JSON (`scripts/cache/hede/<hede_volume><hede_num>.json`) for the canonical mint string and flips the flag when source attests.
-  5. **Reserved cases**: any seed entry where the Hede page does NOT state the mint (or the parser-heuristic guessed wrong) stays `mint_verified: false`. These are the legitimate `(?)` rendering — not all 604 are bogus.
-  6. **Audit follow-up**: add a section to `audit_health.py` (or extend the seed-state section) that flags «mint_verified=false entries where the Hede cache contains the mint string verbatim» — surfaces remaining sweep candidates without re-running the full builder.
-
-**Quick win.** The 22 non-Kopenhagen/Glückstadt/Altona entries (Flensburg, Hadersleben, Rendsburg, etc.) are the most visible `(?)`-rendered cases on smaller-mint coin pages — fixing those first cleans the most obvious incorrect markers; the large Kopenhagen bulk can follow when the scripted sweep is in place.
-
----
+_None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
 
