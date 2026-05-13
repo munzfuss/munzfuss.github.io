@@ -559,7 +559,7 @@ python scripts/build.py --validate-only    # runs schema validation, no renderin
 - **Commit messages MUST be in English only** (subject + body), regardless of the language used in the chat conversation. Project communication may be in Ukrainian, but git history is English-only.
 - Commit small, commit often. YAML diffs are readable.
 
-### Commit cadence + push reminder (operational rule)
+### Commit cadence + push permission (operational rule)
 
 > **Commit at every atomic task boundary.** When a discrete task finishes — a bug fix lands, a prose passage is rewritten, a new field is added, a research finding is integrated — create a commit immediately. Do not let modified files accumulate across multiple unrelated tasks; that turns the eventual commit into an archaeology problem and destroys reviewable history.
 >
@@ -568,39 +568,15 @@ python scripts/build.py --validate-only    # runs schema validation, no renderin
 > - Touches one or a few related files. If a single change spans 6+ files across unrelated subsystems, it's probably 2-3 atomic tasks bundled together — split.
 > - Builds cleanly on its own (`python scripts/build.py --validate-only` passes).
 >
-> **At the end of every chat task that produced changes:**
-> 1. Run `git status` to see what's uncommitted.
-> 2. Group the changes into atomic commits (one per logical task) and create them with conventional-prefix messages (`data:`, `template:`, etc.).
-> 3. Verify the build still passes (`python scripts/build.py`).
-> 4. **Remind the user to push.** Never push autonomously — pushes go to public Pages and need explicit user approval. End the response with a one-liner like «N commits ready locally — `git push` when ready.»
+> **End-of-task procedure (build → atomic commits → handoff / SOURCES § 13 / daily note updates → push reminder)**: `docs/PLAYBOOKS.md` PB-8 «Session lifecycle» § «Session end».
+>
+> **Never push autonomously** — pushes go to public Pages and need explicit user approval. End the response with a one-liner like «N commits ready locally — `git push` when ready.»
 >
 > **Push permission grant.** A request from the user to push — phrased as «пуш», «push», «git push», «push it», «запуш», or any equivalent that names the push action — counts as explicit permission to push to `origin/main` for that turn. No follow-up confirmation is required; run `git push` and report the resulting refspec range. The push permission is per-turn and per-request — it does not pre-authorise future pushes elsewhere in the session.
->
-> **What this prevents:** the «I thought you committed already» surprise — a session ending with 13 files modified, multiple unrelated tasks tangled together, and no git history showing the work in progress.
 
 ### Script directory layout
 
-Three tiers, picked by *recurrence pattern*:
-
-- **`scripts/`** — actively used by the build / research workflow.
-  Re-runnable, idempotent, useful right now: `build.py`, the `audit_*.py`
-  validators, `fetch_numista_api.py`, `enrich_from_numista.py`,
-  `build_ucoin_url_index.py`. Also library code under `scripts/lib/`.
-- **`scripts/maintenance/`** — lifecycle-bound utilities that aren't part of
-  the build flow but are kept for re-use when the same shape of work
-  recurs (next bulk import, next translation drift sweep, next ucoin
-  re-link). See `scripts/maintenance/README.md` for the per-script log.
-  **Committed** to the repo.
-- **`scripts/oneoff/`** — truly throwaway scratch (hardcoded inputs already
-  gone, data migrations consumed, one-time fixes). **Gitignored.** Past
-  examples (now deleted): `cleanup_sources.py`, `migrate_notes.py`,
-  `fix_wrong_numista_urls.py`, `add_new_coins.py` (Gottorp import).
-
-Decision tests for a new script:
-
-- *Will this run regularly as part of build / audit / data refresh?* → `scripts/`.
-- *Will this run again on the next phase of similar work, but not on every build?* → `scripts/maintenance/`.
-- *Single-shot, hardcoded to data already gone / consumed?* → `scripts/oneoff/` (gitignored).
+Three tiers under `scripts/` picked by recurrence pattern (active build path / lifecycle-bound utilities / throwaway scratch). Tier definitions + decision tests for new scripts: **`docs/CONVENTIONS.md` §«Script directory layout»**. Per-script inventory of the maintenance tier: **`scripts/maintenance/README.md`**.
 
 ## Harvest cache
 

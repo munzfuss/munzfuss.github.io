@@ -259,3 +259,17 @@ Common build-time errors and their meaning:
 - `UnknownFraction: fraction '3/7' not in fuesse[9_25_thaler].fractions` — need to add this fraction to shared fuss definition or it's a data error
 
 When in doubt, run `python scripts/build.py --validate-only` and read the full error.
+
+## Script directory layout
+
+Three tiers under `scripts/`, picked by *recurrence pattern*:
+
+- **`scripts/`** — actively used by the build / research workflow. Re-runnable, idempotent, useful right now: `build.py`, the `audit_*.py` validators, `fetch_numista_api.py`, `enrich_from_numista.py`, `build_ucoin_url_index.py`. Also library code under `scripts/lib/`.
+- **`scripts/maintenance/`** — lifecycle-bound utilities that aren't part of the build flow but are kept for re-use when the same shape of work recurs (next bulk import, next translation drift sweep, next ucoin re-link). See `scripts/maintenance/README.md` for the per-script log. **Committed** to the repo.
+- **`scripts/oneoff/`** — truly throwaway scratch (hardcoded inputs already gone, data migrations consumed, one-time fixes). **Gitignored.** Past examples (now deleted): `cleanup_sources.py`, `migrate_notes.py`, `fix_wrong_numista_urls.py`, `add_new_coins.py` (Gottorp import).
+
+Decision tests for a new script:
+
+- *Will this run regularly as part of build / audit / data refresh?* → `scripts/`.
+- *Will this run again on the next phase of similar work, but not on every build?* → `scripts/maintenance/`.
+- *Single-shot, hardcoded to data already gone / consumed?* → `scripts/oneoff/` (gitignored).
