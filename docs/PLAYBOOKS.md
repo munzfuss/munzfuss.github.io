@@ -926,11 +926,27 @@ inflation).
    freshness snapshot. If a source-quirk is relevant to the day's
    work, you should recognise it before you stumble into it.
 
-5. **Run `git status` + `git log --oneline -10`.** What's
+5. **Glance at `docs/DECISIONS.md` newest entries + the latest
+   `docs/notes/YYYY-MM-DD.md`.** Recent rationale + recent context.
+   The notes file matching yesterday's date (or the most recent
+   project-work day) carries the analytical narrative behind any
+   handoff threads that look puzzling.
+
+6. **Optional: run `.venv/bin/python scripts/audit_health.py --fast`**
+   for a one-shot project-health dashboard (build clean? cache fresh?
+   prose / i18n hits? commits ahead origin?). Recommended when
+   starting a multi-step task; skip for trivial one-off tweaks.
+
+7. **Run `git status` + `git log --oneline -10`.** What's
    committed, what's pending push, what's modified-but-uncommitted.
    This reveals work-in-progress from the previous session.
 
-6. **Note auto-mode state.** If the session started under «Auto
+8. **First-time-on-this-clone-only: `./scripts/install_hooks.sh`**
+   to enable the pre-commit hook (build-validate + advisory
+   prose/i18n lint). Idempotent; safe to re-run. Check via
+   `git config --get core.hooksPath` — should print `.githooks`.
+
+9. **Note auto-mode state.** If the session started under «Auto
    mode active», execute autonomously per the rule banner. If not,
    confirm with the user before non-trivial changes.
 

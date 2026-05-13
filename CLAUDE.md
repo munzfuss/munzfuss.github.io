@@ -788,6 +788,15 @@ See `docs/GLOSSARY.md` for German/Danish/Ukrainian numismatic term mappings.
 - **CoinVarieties, MGM Münzlexikon, Bobzin, danskmoent.dk**: supplementary academic sources.
 - **Offline (paper only)**: Lange 1908/12, Sieg-Møntkatalog 2018, Storgaard 2001 — cited by Bruun/Numista, rarely accessible digitally.
 
+## Project audit tooling
+
+Four scripts cover the project's mechanical-quality checks. Use them at session start (`audit_health.py`), at session end (`audit_prose.py` / `audit_i18n.py`), and continuously via the pre-commit hook.
+
+- **`scripts/audit_health.py`** — one-shot project-health dashboard with 9 sections (build / data completeness / per-location coin count / Hede seed state / cache freshness / prose lint / cross-lang i18n / TODOs / git). Run `.venv/bin/python scripts/audit_health.py --fast` for a ~5 s «morning briefing» before starting multi-step work; drop `--fast` for the full build-validation pass. `--json` for machine-readable; `--section A,B,C` to slice.
+- **`scripts/audit_prose.py`** — single-language linter for CLAUDE.md §0a / §0z / §2a / §2 / §0b violations across `data/**/*.yml` rendered-prose surfaces. `--rule '§N'` / `--language X` / `--location <NAME>` / `--staged` filters; `--json` output.
+- **`scripts/audit_i18n.py`** — cross-language consistency detector for DE/EN/UK triples. Catches missing translations, citation-count mismatches, catalog-ref divergences, length-ratio extremes, and the Müntzfuß-name-translation trap.
+- **`.githooks/pre-commit`** — runs `build.py --validate-only` (hard block on failure) + `audit_prose.py --staged` + `audit_i18n.py` (advisory) on every commit. **Install once per clone via `./scripts/install_hooks.sh`** — sets `git config core.hooksPath .githooks`. Bypass per-commit with `git commit --no-verify`. See `.githooks/README.md` for the «advisory now, block later» promotion path post §W / §X cleanups.
+
 ## Tool fallback chain — never stop on first failure
 
 When one tool returns 403/blocked/empty, **escalate to the next tier** rather than giving up. Do not report «source X is blocked, can't verify» until you have tried the entire chain. The user has explicitly asked Claude to remember this and use the next tool when one fails.

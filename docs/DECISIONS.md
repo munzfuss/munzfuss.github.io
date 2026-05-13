@@ -6,6 +6,40 @@ Entries are ordered newest-first within each month. CLAUDE.md carries the result
 
 ---
 
+## 2026-05-13 — Project audit tooling: prose / i18n / health + pre-commit hook
+
+Four scripts + one hook, all introduced on 2026-05-13 after the doc-infrastructure trio (below) was already in place:
+
+- **`scripts/audit_prose.py`** (commit `5d7a1b2`) — single-language linter for CLAUDE.md §0a / §0z / §2a / §2 / §0b violations. ~50 patterns across DE / EN / UK. First run on the project: 873 hits (663 errors, 210 warnings); ~85% real violations.
+- **`scripts/audit_health.py`** (commit `9b5480c`) — one-shot project-health dashboard, 9 sections aggregating build / data / seed / cache / prose / i18n / TODOs / git metrics. Run at session start for «morning briefing».
+- **`scripts/audit_i18n.py`** (commit `5000d98`) — cross-language consistency detector with 5 rules (missing translation, `<sup>` count mismatch, catalog-ref divergence, length ratio extreme, Müntzfuß-name translation). First run: 76 hits (43 errors, 33 warnings).
+- **`.githooks/pre-commit`** (commit `98201b3`) — runs `build.py --validate-only` (hard block) + `audit_prose.py --staged` (advisory) + `audit_i18n.py` (advisory) on every commit. Installed via `./scripts/install_hooks.sh` (sets `core.hooksPath`).
+
+**Reasoning.** The CLAUDE.md rules (§0a / §0z / §2a / §2 / §0b voice and orthography rules; i18n policy on Müntzfuß name translation) had been honor-system — caught at review time, often after they'd lived in committed prose for sessions. The new linters mechanise the catching at write-time. The dashboard consolidates the «do we still build cleanly? is the cache fresh? are there new violations?» check into one command. The pre-commit hook is the per-commit enforcement layer — currently advisory on the lint side (because the baseline carries 663+43 ERRORs that need separate cleanup before the hook can hard-block lint failures), hard-block on build validation immediately.
+
+**Alternatives considered.** (1) A single mega-linter combining prose + i18n + structural checks — rejected because the three concerns have different operational scopes (single-language voice vs cross-language consistency vs structural build-validity) and different failure semantics (advisory while baseline carries debt vs hard-block always for build). (2) Run linters only in CI, skip the pre-commit hook — rejected because the YAML-indent-flatten trap that bit us in May 2026 would have committed cleanly under that policy and only failed at push time. (3) Block on lint errors immediately — rejected because the 663-error baseline (introduced by earlier auto-tooling that didn't know about §0z yet) would have prevented any commit until cleanup completed. Promotion to hard-block deferred to after TODO §W + §X cleanups close.
+
+**Scope.** Five tools accessible from session-start (audit_health) through write-time (prose / i18n) through commit-time (pre-commit hook). The hook is opt-in per clone via `install_hooks.sh` (idempotent, sets `core.hooksPath = .githooks`).
+
+**Validation.** Self-tests: each tool runs cleanly on a `--location lauenburg` (smallest location, no known issues) and reports 0 hits. The pre-commit hook ran on its own introducing commit and printed «pre-commit: checks complete» — the meta-self-host property confirms end-to-end wiring.
+
+Future: TODO §W (prose cleanup) + TODO §X (i18n cleanup) close the baselines; then the hook's two advisory checks promote to hard-block by removing `|| true` fallbacks and adding `-e` to the shebang.
+
+## 2026-05-13 — Daily notes archive (`docs/notes/YYYY-MM-DD.md`)
+
+Introduced the daily reasoning archive (commit `c7b49ec`) as the immutable complement to `docs/handoff.md`. Pairing semantics:
+
+- **`handoff.md` — forward-looking, mutable.** Rewritten each session. At any moment reflects «what does the NEXT session need to know to pick up cold?». Yesterday's open threads get pruned once resolved.
+- **`docs/notes/YYYY-MM-DD.md` — backward-looking, immutable.** When yesterday's pending verification gets resolved today, the handoff row goes away — but the original reasoning of «why was this pending? what did we examine?» stays in yesterday's note, forever findable.
+
+**Reasoning.** Five-file doc tree before notes/: CLAUDE.md (rules), PLAYBOOKS (procedures), DECISIONS (rationale), SOURCES (sources + quirks), TODO (audit items), handoff (ephemeral). Each is append-only or item-moves-Open-to-Done — none preserves the per-session analytical narrative. When a TODO closes, the closure note in `## Done` captures WHAT and WHY broadly; it doesn't preserve the per-session «we examined X, considered Y, ruled out Z» reasoning. Without daily notes, that reasoning lived only in chat history which gets compacted away. Adding the dated archive fills the gap with minimal new convention.
+
+**Alternatives considered.** (1) Append per-session reasoning to handoff.md and let it grow — rejected because handoff is by-design forward-looking and gets pruned, so historical reasoning would disappear within ~5 sessions. (2) Use `--allow-empty` commits with detailed messages as the per-session journal — rejected because git log is the wrong UX for narrative reading; commit messages serve a different purpose (per-change explanation, not per-session reasoning). (3) Auto-generate from chat transcripts — rejected because transcript content varies wildly in quality + needs human selection to be useful; the dated-file convention with a structured template (topic / what happened / insights / open threads / references) is the right shape.
+
+**Scope.** `docs/notes/README.md` documents the convention; `docs/notes/2026-05-13.md` is the first real note. PB-8 step 4a wires the notes update into session-end ritual. CLAUDE.md header lists `docs/notes/YYYY-MM-DD.md` in supporting-files row.
+
+**Validation.** Sessions opening cold can `ls docs/notes/` to scan when the project was actively worked on; `grep -l "<keyword>" docs/notes/` finds notes mentioning a topic; opening the dated file matching a TODO's «opened YYYY-MM-DD» marker recovers the original analytical context.
+
 ## 2026-05-13 — Doc-infrastructure trio: handoff.md + SOURCES.md §13 + PLAYBOOKS.md
 
 Introduced three companion files alongside CLAUDE.md to break a single growing mega-file into role-separated documents:
@@ -171,21 +205,42 @@ The forbidden alternative — `{value: 28.893, source: "Hede 39A\nNumista"}` —
 
 ---
 
-## 2026-05-09 — §0z three reader roles + §0b hypothesis vs fact
+## 2026-05-10 — §0b hypothesis vs fact (CLAUDE.md addition)
 
-Two new top-level rules added to CLAUDE.md:
+**§0b. Hypothesis vs. fact — never collapse the two.** A confident-sounding explanation for an observation must be backed by data you actually opened, not by what feels plausible. Before writing «X is because Y», verify Y from the actual data (cache file, source page, parser output). Hedge markers («hypothesis», «припускаю», «pending verification») are mandatory for unverified claims. When data is missing, name the gap explicitly; never fill it with a plausible story.
 
-**§0z. Three reader roles — always know who you're writing for.** Every line of text has exactly one of three readers: (1) AI / future-self / other agents (docs, commit messages, code comments), (2) the user (chat replies, deliberation questions), (3) the end-reader (rendered HTML — numismatist using the page as reference). Mis-targeting is the most common cause of voice violations. The forbidden pattern: project-internal rationale leaks into role-3 surfaces — phrases like «our card», «this artefact», «classification pending», «Beleg für die drei numerischen Synonyme im `name`-Feld unserer Vereinsmünzfuß-Karte» (real example caught during the session). The end-reader has no concept of «our card» or a «name field»; the sentence breaks the role boundary.
+**Motivating case (commit `37f5b6d`, 2026-05-10).** A 2-Speciedaler 1663 row carried two KM numbers (Bruun cited «KM-240», Numista cited «KM-241» for the same physical type). The note prose was written claiming «Bruun-parser typo / OCR artefact» — a guess dressed as a conclusion. Opening `scripts/cache/bruun/lots/part4.json` plainly showed `body_excerpt: "Dav-3547; KM-240; Hede-62A; Sieg-80.1; …"` — Stack's Bowers' own auction catalogue had printed «KM-240». The «typo» explanation bypassed verification entirely.
 
-**§0b. Hypothesis vs. fact — never collapse the two.** A confident-sounding explanation for an observation must be backed by data you actually opened, not by what feels plausible. Before writing «X is because Y», verify Y from the actual data (cache file, source page, parser output). Hedge markers («hypothesis», «припускаю», «pending verification») are mandatory for unverified claims. When data is missing, name the gap explicitly; never fill it with a plausible story. The motivating case: a 2-Speciedaler 1663 row carried two KM numbers (Bruun: KM-240, Numista: KM-241). The prose was written claiming «Bruun-parser typo / OCR artefact» — a guess dressed as a conclusion. Opening `scripts/cache/bruun/lots/part4.json` plainly showed `body_excerpt: "Dav-3547; KM-240; Hede-62A; Sieg-80.1"` — Stack's Bowers' own catalogue had printed «KM-240». The «typo» explanation bypassed verification.
+**Reasoning.** §0 forbids invention (no claim without a source). §0b addresses the adjacent failure mode: the *epistemic move* of dressing a hypothesis as a conclusion. The claim might in fact be sourceable, but if no one actually opened the source to verify it, writing it as a confident statement still silently corrupts the rendered artefact. The fix: open the data; if you didn't, label as hypothesis-pending-verification or remove.
 
-**Reasoning.** Both rules formalise patterns that had silently corrupted prose over multiple sessions. The earlier rules (§0 «no invention», §2a «academic register») addressed the *substance* of false claims; §0b addresses the *epistemic move* that produces them (guessing dressed as analysis), and §0z addresses the *audience confusion* that lets project-meta language leak past role boundaries. Together they tighten the discipline: claim → verify → label. If unverified, label as hypothesis. If wrong role, cut or rewrite.
+**Alternatives considered.** (1) Strengthen §0 alone — rejected because §0 catches «no source» but not «source not yet opened». (2) Bundle into a single «epistemic rigor» mega-rule — kept §0b separate because the operational test («did I open the underlying data for THIS specific claim?») is distinct from §0 («does a source exist for this claim?»).
 
-**Alternatives considered.** (1) Strengthen §0 alone — rejected because §0 forbids invention but doesn't catch the hypothesis-as-conclusion failure mode where the claim is *plausibly* sourceable but never actually was. (2) Add a single combined «epistemic rigor» rule — rejected because §0b and §0z address different mechanics (the hypothesis-fact collapse is about reasoning; the three-roles split is about audience). They share spirit but need separate operational tests.
+**Scope.** CLAUDE.md §0b. The Bruun-KM-240 worked example sits in the rule body for future-session recognition. The linter `scripts/audit_prose.py` (added 2026-05-13) catches the surface symptom — hedge words without hypothesis markers — but the discipline itself is honor-system: «before writing the claim, did I open the data?».
 
-**Scope.** CLAUDE.md §0z and §0b (top of the rules section, after §0). Both rules carry concrete worked examples from the project's own history (the «KM-240 vs KM-241» case for §0b; the «Beleg für die … `name`-Feld unserer … Karte» case for §0z). Future-session test: every analytical claim that lands in prose must pass the §0b «did I open the underlying data?» check; every sentence in rendered artefact prose must pass the §0z «which role am I writing for?» check.
+**Validation.** Every analytical claim in prose passes the §0b «did I open the underlying data?» check. When the answer is no, label as hypothesis and name the verification step that would close it.
 
-**Validation.** Audit pass candidate (TODO entry): a `scripts/audit_prose.py` linter that catches forbidden phrases — «we», «our», «this artefact», «our card», hedge words without hypothesis markers («likely», «probably», «presumably»). Until that linter exists, the rule is honor-system but reinforced by review.
+## 2026-05-06 — §0z three reader roles (CLAUDE.md addition)
+
+**§0z. Three reader roles — always know who you're writing for.** Every line of text has exactly one of three readers:
+
+  (1) **AI / future-self / other agents** — docs, commit messages, code comments. Density / jargon OK; assumes project context.
+  (2) **The user (Serhii)** — chat replies, deliberation questions. Direct, expert register; assumes numismatic context but not project-internal terminology.
+  (3) **The end-reader** — rendered HTML on the per-location pages. A numismatist or historian using the artefact as a finished reference work. NEVER sees the chat or the commits; experience is exclusively the rendered page.
+
+The most common mis-targeting failure: project-internal rationale leaks into role-3 surfaces. Concrete examples caught in cleanup: «Beleg für die drei numerischen Synonyme im `name`-Feld unserer Vereinsmünzfuß-Karte» (citation that explains an internal project-decision instead of backing a historical fact); «Drei Datierungs-Anker — bewusst getrennt halten: 1667 / ~1700 / 1738. Die einzelne Standard-Karte zeigt …» (project-decision narration about how *we* visualise the data); «Konventionscouranttaler — die Bezeichnung der MÜNZE …, nicht ein eigener Müntzfuß-Name» (classification rationale that's useful to us, invisible noise to the reader).
+
+**Reasoning.** §0a (reader voice vs analyst voice) addressed *style*. §0z addresses the *decision procedure* — which voice applies to this surface, before opening the YAML. The rule provides a two-question operational test:
+
+  (a) Which role am I writing for right now?
+  (b) Would a member of any other role be confused or misled by this sentence?
+
+If a sentence references «our card», «our `name` field», `CLAUDE.md` paths, or any project-decision rationale — and it's destined for role-3 — it's mis-targeted. Cut, or move the underlying historical fact to prose without the project-meta wrapper.
+
+**Alternatives considered.** (1) Strengthen §0a's prose checklist — kept §0a but added §0z as the prerequisite decision-procedure. §0a says *how* the voice should sound; §0z says *how to decide* which voice applies. (2) Per-field voice annotations in YAML schema — rejected as too verbose; the role is determinable from the file path alone (data/locations/*.yml = role-3 by default).
+
+**Scope.** CLAUDE.md §0z. Initial cleanup pass (commit `2dd14b1`) stripped 600+ project-meta leaks from reader-facing surfaces — verification_notes citing «our taxonomy», Fuß-card descriptions referencing «unsere Karte», etc. The linter `scripts/audit_prose.py` enforces §0z mechanically via the «CLAUDE.md / docs/TODO / `\`data/…\`` / `\`scripts/…\``-in-prose» pattern matchers.
+
+**Validation.** Every sentence in rendered-artefact prose passes the §0z «which role am I writing for?» check. The `scripts/audit_prose.py` linter's §0z rule catches the common surface symptoms; the discipline itself is honor-system at write-time.
 
 ---
 
