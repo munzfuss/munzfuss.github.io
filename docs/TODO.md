@@ -7,6 +7,23 @@
 
 ## Open
 
+### Z. Evaluate numismaster.com as a project resource  *(opened 2026-05-13)*
+
+User flagged <https://numismaster.com/> for review. Check whether the site offers material we don't already cover via Bruun PDFs / Numista / ucoin / IKMK / danskmoent.dk — typical questions to answer before deciding inclusion:
+
+  - **Coverage scope.** Does it have Danish / Schleswig-Holstein / Hamburg / Lübeck / German-states content from 1559-1914? Sample 5-10 lookups against our existing curated KMs (e.g. KM-25 SH 1640 Søsling, KM-86 DK 1624-25 1 Hvid, KM-130 SH 1787 ⅓ Specie) — does numismaster surface them with usable data?
+  - **Data quality vs Numista.** Is it primary-source-curated (museum-grade) or user-edited (Numista-tier)? Sister-site of Numismatic News (Krause Publications heritage) — likely Krause-derived which OVERLAPS our existing Krause-via-Numista coverage rather than adding new signal.
+  - **Access policy.** Robots.txt, ToS, scraping framework. Most Krause-heritage sites are commercial; check whether catalogue lookups are gated behind subscription or open.
+  - **Cross-source corroboration value.** Even if data overlaps Numista, an independent Krause-rooted source can break Numista-user-edit ties on contested weights / KM-numbers (the kind of cases logged in `docs/SOURCES.md` §13.1).
+  - **Existing precedent.** We already have CoinFactsWiki (referenced from SH ref `coinfactswiki.com`), CoinVarieties, Greysheet — comparable tier. Numismaster fits the same neighbourhood; the question is whether it's strictly additive.
+
+Outcome buckets:
+  - (a) STRONG ADD — surfaces data we lack → integrate into source hierarchy (CLAUDE.md §5) at appropriate tier + `docs/SOURCES.md` entry.
+  - (b) WEAK ADD — corroboration value only → mention in SOURCES.md «aggregators» section without elevating in the §5 tier list.
+  - (c) SKIP — pure Krause-restatement → note in SOURCES.md as «evaluated, redundant» so future sessions don't re-evaluate.
+
+Defer the evaluation until a session that touches a piece of contested data (a weight outlier, a KM-attribution conflict) — that's when independent corroboration is most useful and the evaluation pays off immediately. Until then, NOT used.
+
 ### Y. Fuß-event vs coin-data span audit (timeline-bar accuracy)  *(opened 2026-05-13)*
 
 **Surfaced during.** Verifying that timeline bars («Standard / Karbung / im Umlauf» — status / mint / circulation layers) on the Denmark + SH pages reflect the post-2026-05-13 data state. The `guldkrone` Fuß was the clear case from this session's «latest findings» — its anywhere-axis events were extended from 1655 → 1618 to match the Christian-IV Guldkrone unification (commits `6f8fe18` + `4b28b8e` + `e050128`). While doing that walk, two PRE-EXISTING mismatches surfaced — not from this session's work, worth their own audit pass:
