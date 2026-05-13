@@ -13,6 +13,7 @@ What it reports
   [Per-location count]   coins per location yaml
   [Seed state (Hede)]    suppress / guard-survivor / uncurated counts
   [Caches]               sidecar entries + freshness per source
+  [Specimen thinning]    §9a bucket ≥5 candidates + same-weight dups
   [Prose lint]           audit_prose.py error/warning rollup
   [TODOs]                Open / Closed / pending-verification counts
   [Git]                  branch state, ahead-count, last commit
@@ -377,6 +378,91 @@ def section_prose_lint() -> Section:
     return Section("Prose lint", rows)
 
 
+def section_specimen_thinning() -> Section:
+    """Detect §9a «Intra-sub-variant thinning» candidates without
+    consulting external caches.
+
+    Two signals, both surfaced from YAML `weight_rough_g[].source`
+    strings alone:
+
+    (a) **Bucket candidates ≥5**: any coin entry that holds ≥5
+        `weight_rough_g` entries attributed to a single resource
+        (IKMK / Bruun / ucoin / Numista). Raw signal — could mean one
+        over-collected sub-variant (true thinning target) or several
+        small sub-variant buckets summed together (legitimate).
+        Inspect via `scripts/maintenance/thin_intra_subvariant_specimens.py`.
+
+    (b) **Same-weight duplicates** (§9a degenerate-thin sub-rule):
+        ≥2 entries from one resource on one coin sharing the same
+        weight at 2-decimal precision. Always a thin candidate —
+        no measurement signal added by the duplicate.
+    """
+    from collections import defaultdict
+
+    RESOURCE_PATTERNS = [
+        ("IKMK",    re.compile(r"IKMK\s*Berlin|ikmk\.smb",                   re.I)),
+        ("Bruun",   re.compile(r"Bruun\s+(I|II|III|IV)\b|bruun-coll\.",      re.I)),
+        ("Numista", re.compile(r"Numista|N#\d|numista\.com",                  re.I)),
+        ("ucoin",   re.compile(r"ucoin\.net|ucoin\b",                         re.I)),
+    ]
+    def classify(text: str) -> str | None:
+        if not text: return None
+        for name, pat in RESOURCE_PATTERNS:
+            if pat.search(text): return name
+        return None
+
+    bucket_flags: list[tuple[str, str, str, int]] = []
+    sameweight_flags: list[tuple[str, str, str, float, int]] = []
+
+    for p in sorted((DATA / "locations").glob("*.yml")):
+        if p.stem.endswith("-references"): continue
+        doc = yaml.safe_load(p.read_text()) or {}
+        for coin in (doc.get("coins") or []):
+            cid = coin.get("id", "?")
+            wrg = coin.get("weight_rough_g")
+            if not isinstance(wrg, list): continue
+            by_resource: dict[str, list[tuple[Any, str]]] = defaultdict(list)
+            for entry in wrg:
+                src = entry.get("source", "") if isinstance(entry, dict) else ""
+                r = classify(src)
+                if r:
+                    by_resource[r].append((entry.get("value"), src))
+            for resource, entries in by_resource.items():
+                if len(entries) >= 5:
+                    bucket_flags.append((p.stem, cid, resource, len(entries)))
+                seen_w: dict[float, int] = defaultdict(int)
+                for v, _ in entries:
+                    if v is None: continue
+                    try:
+                        seen_w[round(float(v), 2)] += 1
+                    except (TypeError, ValueError):
+                        continue
+                for w, n in seen_w.items():
+                    if n >= 2:
+                        sameweight_flags.append((p.stem, cid, resource, w, n))
+
+    rows = [
+        Row("Bucket candidates ≥5", len(bucket_flags),
+            "warn" if bucket_flags else "ok",
+            "thin_intra_subvariant_specimens.py" if bucket_flags else ""),
+        Row("Same-weight duplicates", len(sameweight_flags),
+            "warn" if sameweight_flags else "ok",
+            "§9a degenerate-thin sub-rule" if sameweight_flags else ""),
+    ]
+    # Per-coin breakdown when flagged
+    for loc, cid, resource, n in bucket_flags[:8]:
+        rows.append(Row(f"  {cid}", f"{n} from {resource}", "",
+                        f"{loc}"))
+    if len(bucket_flags) > 8:
+        rows.append(Row("  …", f"+{len(bucket_flags) - 8} more", ""))
+    for loc, cid, resource, w, n in sameweight_flags[:8]:
+        rows.append(Row(f"  {cid}", f"{n}× {w:.2f} g {resource}", "",
+                        f"{loc}"))
+    if len(sameweight_flags) > 8:
+        rows.append(Row("  …", f"+{len(sameweight_flags) - 8} more", ""))
+    return Section("Specimen thinning (§9a)", rows)
+
+
 def section_todos() -> Section:
     text = (ROOT / "docs" / "TODO.md").read_text()
     # Open entries: under `## Open`, before `## Done`
@@ -500,6 +586,7 @@ SECTIONS = {
     "perloc": ("Per-location coin count", lambda args: section_per_location()),
     "seed": ("Seed state (Hede)", lambda args: section_seed_state()),
     "caches": ("Caches", lambda args: section_caches()),
+    "thin": ("Specimen thinning (§9a)", lambda args: section_specimen_thinning()),
     "prose": ("Prose lint", lambda args: section_prose_lint()),
     "i18n": ("Cross-lang i18n", lambda args: section_i18n()),
     "todos": ("TODOs", lambda args: section_todos()),
