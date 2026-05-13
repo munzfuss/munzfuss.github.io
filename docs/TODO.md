@@ -707,40 +707,76 @@ working tier.
 
 ---
 
-### M. ucoin harvest is missing the `Composition` field  *(opened 2026-05-11)*
+### M. ucoin Composition harvest — partial progress, blocked on slug-routing breakage  *(opened 2026-05-11, partial progress 2026-05-13)*
 
-**Surfaced during.** The investigation of `dk-tid-163075` (KM# UC# 10,
-Frederik II 10 Ducat 1588) where user-side verification on the live
-ucoin page showed «Composition · Gold» that our local cache never
-carried. Our `scripts/cache/ucoin/_url_index.json` schema only stores
-`denom / diameter_mm / fineness / km / source / url / weight_g / year`
-— no metal / composition.
+**Original surface (2026-05-11).** The investigation of `dk-tid-163075`
+(KM# UC# 10, Frederik II 10 Ducat 1588) where user-side verification
+on the live ucoin page showed «Composition · Gold» that our local
+cache never carried. The `scripts/cache/ucoin/_url_index.json` schema
+only stored `denom / diameter_mm / fineness / km / source / url /
+weight_g / year` — no metal / composition.
 
-**Impact.** Likely affects every ucoin-sourced coin that landed in
-`denmark.yml` (and other locations) with `metal: null` or with metal
-inferred from the nominal token. The Hede-classifier session
-yesterday left 2 denmark entries unclassified specifically because of
-the missing-metal gap (`10 Ducat 1588`, `3 Kroner 1726` — the latter
-turned out to be silver despite our gold inference; that's a separate
-ucoin-erratum case, not this gap).
+**Progress 2026-05-13 (this session).** Wrote a careful sequential
+Chrome-MCP fetcher (2.5 s pacing, CONCURRENCY=1, canonical-tid
+validation rejects bad-slug pages serving unrelated coins). Probed
+~80 ucoin URLs cited by unverified Denmark coins:
 
-**Action.**
+  * **36 successful fetches** — sidecar now has 134 entries with
+    real Composition / weight / diameter data (was 98).
+  * **45 slug_mismatch failures** — marked `status_404` in sidecar
+    so future runs skip them.
 
-1. Locate the original ucoin harvest script (`scripts/build_ucoin_url_index.py`
-   or similar) and add a `composition` field extraction from the
-   ucoin page HTML (the «Composition» label is one of ucoin's
-   standard table rows).
-2. Re-harvest the existing 4,000+ ucoin URL entries that lack
-   `composition`. Numista API-style quota does not apply here —
-   ucoin is HTML scraping; respect a polite rate limit (~1 req/sec)
-   per the ad-hoc policy in CLAUDE.md.
-3. Re-run `scripts/maintenance/classify_dk_seeds.py` after the
-   harvest — the metal-aware path will now classify several
-   previously-stuck entries.
+Ran `scripts/maintenance/ucoin_backfill_metal.py` (with three logic
+fixes — see commit `703617e`): 93 metal fields touched across
+denmark / lubeck / schleswig_holstein.
 
-**Not blocking.** The current Denmark page renders correctly; this
-just leaves a handful of metal-tagged-by-inference entries that
-should be metal-tagged-by-source.
+  * `metal_confirmed: 87` — inference agreed with ucoin → flipped
+    `metal_verified: true`.
+  * `metal_replaced: 6` — ours wrong, ucoin source-attests:
+      - 3 billon → copper for sub-Skilling Pennings (KM-5, KM-6, KM-86)
+      - 2 silver → gold for Daler-class issues (4 Daler 1604,
+        6 Daler 1604)
+      - 1 billon → copper for KM-86 (the user's surfacing case)
+  * `metal_disagree_with_source: 0` — no verified entries collided.
+
+Backfill script fixes carried by the same commit:
+  * `Silver (Billon) X.XXX` parser bug (was returning `silver`+None
+    instead of `billon`+X.XXX) — fixed via dedicated bracketed-form
+    regex.
+  * Default for absent `metal_verified` flipped from `True` → `False`
+    (project convention is explicit `true` on source-attested).
+  * Case-2 disagreement now replaces with ucoin's reading (verified-
+    wins-over-unverified per CLAUDE.md §4) rather than just flagging.
+
+**Blocked from here.** Of 576 unverified-with-ucoin coins remaining,
+only 1 is in the sidecar with usable data; 46 are cached as 404
+(slug-broken); 529 are uncached. Four broader probes confirmed
+~78 % slug_mismatch rate across the 1611+ Christian IV range AND
+across spread samples (Frederik III 1651/1665, Christian V 1693/94,
+Christian VII 1779, Hamburg 1783, Frederik IV 1705 — all 0/8). The
+~22 % success rate is concentrated in the 1582-1607 Christian IV
+sub-range where heuristic-generated slugs happen to coincide with
+ucoin's current slugs.
+
+**Required for resumption.** Rebuild `scripts/cache/ucoin/_url_index.json`
+from a fresh source. Options to investigate:
+
+  1. **ucoin sitemap walk** — if `https://en.ucoin.net/sitemap.xml` or
+     similar exists with current per-tid URLs, harvest those.
+  2. **Catalogue-page scrape** — Denmark catalogue listing pages
+     (`/catalog/denmark/` or per-period `/period/NNNN/`) probably
+     list coins with their CURRENT slugs. Scrape those, build new
+     `_url_index.json`.
+  3. **Search-by-tid endpoint discovery** — try various
+     `/find/?tid=N` / `/search/?q=tid:N` forms; the four obvious
+     candidates probed 2026-05-13 all returned 404, but a deeper
+     scan of ucoin's site structure might surface one.
+
+**Not blocking page renders.** Denmark / lubeck / schleswig_holstein
+pages render correctly; ~93 metal fields are now `verified: true`
+(major improvement on legacy inference). The remaining gap affects
+~530 mostly-Danish entries whose metal is still inferred from
+Müntzfuß convention.
 
 ---
 

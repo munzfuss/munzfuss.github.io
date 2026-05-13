@@ -30,7 +30,17 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
 
 ## Pending verifications awaiting user input
 
-1. **Seed audit snapshot** (post-case-9 cleanup) — 605 total Denmark
+1. **ucoin Composition harvest** (partial, 2026-05-13) — 36 successful
+   fetches added (sidecar 98 → 134); 45 slug_mismatch marked
+   `status_404`. Backfill applied: 87 metal_confirmed + 6
+   metal_replaced (3 billon→copper sub-Skilling Pennings inc. KM-86
+   1 Hvid, 2 silver→gold Daler-class). **Blocked** for the remaining
+   529 uncached entries: ~78% slug-routing breakage rate observed
+   across broad probes — `_url_index.json` is stale; resumption needs
+   a fresh URL discovery pipeline (sitemap walk / catalogue-page
+   scrape / tid-search endpoint). See TODO §M for full details.
+
+2. **Seed audit snapshot** (post-case-9 cleanup) — 605 total Denmark
    Hede-seed entries; 195 auto-suppressed, 9 metal-mismatch guard, 6
    weight-mismatch guard, 1 year-mismatch guard, 394 wholly uncurated.
    Of the 16 guard-survivors, 3 appear to be **false-positive weight-
