@@ -7,6 +7,128 @@
 
 ## Open
 
+### AG. Long-form refs page-hint compliance (residual after §S closure)  *(opened 2026-05-13)*
+
+**Surfaced.** §S sweep (closed 2026-05-13) added the mandatory-page-hint rule (CLAUDE.md §5a) and fixed 4 specific refs. New refs added between then and now (or future refs) need the rule enforced. The pre-commit hook doesn't currently lint refs; the rule is honor-system.
+
+**Plan.**
+
+  1. Build a one-pass audit script `scripts/audit_refs_page_hints.py` that walks all `data/locations/*-references.yml` + `data/shared/*-references.yml`, for each entry whose URL points at a long-form work (≥10 pages — heuristic: PDF / archive.org / Wikisource transcribing a multi-page article / Konversationslexikon Band-and-page format / Hede paper book), check the scope-note for a literal page reference (`S. NN`, `pp. NN`, `Band NN, S. NN`, `Kap. NN`, `§ NN, S. NN`). Flag entries missing it.
+  2. Optionally wire into `audit_health.py` as a new section, and into the pre-commit hook as advisory (eventually hard-block once the baseline clears).
+
+**Scope.** Refs files: ~12 total. Long-form refs subset: ~10-15 entries by rough estimate. Walking + flag run takes < 5 s.
+
+### AF. Hede silver-spec-card-for-gold-strike audit (sister-to-c4h47 sweep)  *(opened 2026-05-13)*
+
+**Surfaced.** During the c4h47 fix (silver Hede 47 spec card with Guldafslag Schou 1a sub-variant in Zincksamlingen list — caught 2026-05-13, commit `b0aa746`). The pattern: a Hede page primarily catalogues the silver mother coin, but the description / Zincksamlingen list mentions a Guldafslag (gold off-strike) sub-variant with a different Schou number (e.g. Schou «1» for silver, «1a» for gold). A curator who reads only the spec card and ingests Bruttovægt/Finhed onto a `metal: gold` entry produces a silver-fineness gold coin — exactly the c4h47 trap.
+
+Documented in `docs/SOURCES.md` §13.4.
+
+**Plan — `scripts/audit_hede_offstrike.py`:**
+
+  1. Walk all Hede cache pages (`scripts/cache/hede/*.json`).
+  2. For each page where `description` or `eksemplarer` contains «Guldafslag» / «Sølvafslag» / «cf.» / «medaljonprægning» (off-strike markers) AND the spec card publishes a silver fineness (< 0.95), flag as «silver-spec page with gold-strike sub-variant».
+  3. Cross-reference our curated entries: for each flagged Hede page, list all `coins[]` with `catalog.hede` matching that page AND `metal: gold`. These are the c4h47-trap victims — the entry references the silver page but is itself a gold strike, so the spec-card values are likely wrong-metal.
+
+**Real precedent:** c4h47 (Frederik IV 16 Skilling 1713 silver page; Bruun-attested gold off-strike Schou 1a at Double-Ducat weight ~6.93 g, not the silver spec-card 5.197 g). The Schou 1a variant signature is what catches the pattern.
+
+### AE. Build-guard survivors audit — metal/weight/year mismatch guards on seed-merge  *(opened 2026-05-13)*
+
+**Surfaced.** Latest build reports persistent guard-survivors that were left for manual review:
+
+  - **9 metal-mismatch kept** — auto-suppress's metal-mismatch guard preserves seed entries whose Hede ref is also referenced by a curated entry but at a different metal (the «cf-companion citation» pattern: gold Portugaloser citing the silver Hede sub-type whose die design it shares). Most are legitimate cf-citations and the keep is correct. ONE outlier surfaced by audit (`dk-hede-c5h128` → `km-79-chr-v-1693` SH): seed says silver, curated says billon. The fineness-similarity escape hatch in `_merge_seeds_into_raw` (CLAUDE.md §4 + `scripts/build.py`) should have caught this billon/silver labelling drift — but didn't. **Investigate why.**
+  - **5 weight-mismatch kept** — the > 25 % weight-ratio guard fires when curated `weight_rough_g[]` carries an outlier value pulling the min/max ratio below 0.75. False-positive cases identified earlier: km-25 list has `.49g` outlier (Numista 301740 documented anomaly); km-128 has `8.428g` outlier (Numista N#108979 transcription error noted in prose); hede-47 has `6.93g` outlier (Bruun gold-strike specimen — now resolved by silver-conversion). The outlier values are factually documented multi-source attestations per §9a and stay in the data, but the guard's «keep both» behaviour is over-protective. Possible fix: tighten the guard to ignore values explicitly attributed to suspect sources (e.g. exclude weight entries whose source contains «likely transcription error» / «anomalous» / etc.) when computing min/max.
+  - **2 year-mismatch kept** — `dk-hede-f6h30` (1816 seed vs `km-154a-fr-vi-1831` SH curated, |Δ|=15 y) and a new one introduced after the c4h99 fold (year_first 1614 on c4h99B/C/D vs 1612 on km-52 — |Δ|=2, within ±10y, so this shouldn't be firing — likely a build off-by-one or comparison-with-bare-basename issue). Investigate.
+
+**Plan.** One-off audit script (or extension of `audit_seed_survivors.py`) that, for each guard-survivor, surfaces the curated+seed pair side-by-side with the exact mismatch metric (metal labels, weight delta %, year delta) and a recommended action (legitimate-keep / false-positive-fix / mark status_404). Then close the false positives individually.
+
+### AD. Hede sub-letter Pattern B fold buckets — 38 remaining  *(opened 2026-05-13)*
+
+**Surfaced.** The 46-case NO-KM dedup audit (Pattern B per CLAUDE.md §9 caveat + PB-1) closed cases 1-9 manually; ~38 Hede-page sub-letter sibling buckets remain in the seed yaml as separate per-sub-letter entries waiting to be folded under a single Krause# parent.
+
+**Remaining buckets** (per `scripts/oneoff/audit_seed_survivors.py` output, ordered by Hede volume):
+
+  c4h: 84[A,B], 93[A,B], 100[A,B], 107[A,B,C]
+  c5h: 67[A,B], 69[A,B], 90[A,B,C], 93[A,B], 95[A,B,C], 125[A,B], 126[A,B], 127[A,B]
+  c6h: 6[A,B], 7[A,B]
+  c7h: 11[A-D], 33[A-C], 39[B-G] (six sub-letters!), 40[A,B], 41[A-D]
+  c8h: 8[ba,bb]    ← parser-quirk «sub-sub-letter»
+  f2h: 30[A,B]
+  f3h: 15[A,B], 79[A,B], 97[A,B], 108[A,B], 110[A,B], 122[A-C], 126[A,B], 130[A,B], 134[A-C], 138[A-D], 141[A,B]
+  f4h: 43[A,B]
+  f5h: 34[A,B], 36[A-C], 37[ba,bb]   ← parser-quirk
+  f6h: 4[A,B]
+
+**Procedure.** PB-1 per case (gather sources up-front → за/проти merge → user verdict → execute). User direction 2026-05-12: «без автоматичних батчів».
+
+**Closed so far (commits):** case 9 = c4h79 (`6d7a087`), case 8 = c4h59/Hede-59 (`4d59131`), case 7 = c4h178/Krause cross-volume (`cea6b5d` family). 4 done, 38 remaining.
+
+### AC. 9-Fuß Speciedaler family sister entries — sweep beyond user's 1646-1651 explicit list  *(opened 2026-05-13)*
+
+**Surfaced.** While processing the user's 2026-05-13 «Hede 56D / 48 / 50AB / 55 → 9-Fuß» direction (commit `950c6ec` moved 5 entries), audit identified additional curated entries with the SAME Marken-fin 9.0/9.071 Hede attestation that suggests they too belong in 9_thaler (not 9_25_thaler), but were OUTSIDE the user's strict 1646-1651 scope:
+
+  - `km-135-chr-iv-1646` (½ Sp 1646, Hede c4h59C, Marken-fin 9.071) — currently 9_25_thaler.
+  - `km-161-fr-iii-1648` (¼ Sp Klippe 1648, Hede f3h47, Marken-fin 9.071) — currently 9_25_thaler.
+  - `km-159-fr-iii-1648` (1/12 Sp 1648, Hede f3h49, Marken-fin 9.071) — currently 9_25_thaler.
+  - `km-34-chr-iv-1646` (½ Sp 1646, Hede c4h165, Marken-fin 9.0) — SH yaml, currently 9_25_thaler.
+  - **Earlier 1624-1634 cluster** — `km-100-chr-iv-1624` (Hede c4h59A+B), `km-104-hede-56b-chr-iv-1627` and `km-104-hede-56c-chr-iv-1631` (Hede c4h56A+B+C / 56C). Same Marken-fin 9.071 attestation per c4h56 / c4h59 default specs, but predates 1646-1651 entirely.
+
+**Question.** Should all 9.0/9.071-Marken-fin entries (Christian IV 1624 onward + Frederik III 1648-1651 + Glückstadt continuations f3h148 1664-1666 / c5h120 1683) consolidate under `9_thaler` per Hede attestation, treating the 1646-1651 cluster as ONE member of a 60-year «9-Fuß-Speciedaler-Familie»? Or keep the per-case approval discipline and only move entries the user explicitly nods at?
+
+**Decision needed before action.** Per-case methodology says no automated expansion. But analytically the cluster is internally coherent.
+
+### AB. Daler-Klippe 1604 Reichsdukatenfuß placement — fraction-vs-anchor mismatch  *(opened 2026-05-13)*
+
+**Surfaced.** While fixing dk-hede-c4h12 silver→gold (commit `b971756`) and the family-wide 1604 Daler-Klippe seed entries (commit `b041b44`). Currently the 1604 Christian IV Daler-Klippe series (4 / 6 / 8 Daler tariff Klippen) sits under `reichsdukatenfuss` with the Daler-tariff number as the `fraction` label (`fraction: '4'`, `'6'`, `'8'`). Δ-from-Soll comparison shows the specimen-fein values don't match the Reichsdukatenfuß anchor (1 Reichsdukat = 3.44 g fein @ 0.986):
+
+  - 4 Daler (Hede c4h12): specimen 8.12 g fein vs Reichsdukatenfuß-«4» Soll 13.77 g → Δ -41 %.
+  - 6 Daler (Hede c4h11): specimen 12.17 g fein vs Reichsdukatenfuß-«6» Soll 20.65 g → Δ -41 %.
+  - 8 Daler (Hede c4h10): specimen 16.55 g fein vs Reichsdukatenfuß-«8» Soll 27.54 g → Δ -40 %.
+
+Consistent ~-41 % deficit suggests the Daler-tariff coins follow a DIFFERENT-anchor gold standard (a project-internal «Daler-Tarif-Gold-Fuß» perhaps) — they don't fit Reichsdukatenfuß-«N» where N is Reichsdukaten count.
+
+**Two paths.**
+
+  (a) Create a new Fuß family (`daler_tarif_gold` or similar) with its own anchor + fractions matching the Christian IV 1604 Daler-Klippe series Soll-fein values per Hede.
+  (b) Keep current Reichsdukatenfuß placement but redefine the «4 / 6 / 8» fractions to use Daler-tariff Soll-fein (NOT Reichsdukaten-N) so the Δ-from-Soll calc shows ~0 % instead of -41 %.
+
+Either way the prose / category presentation needs to acknowledge that «Daler-Klippe» is a parallel gold-tariff line, not a Reichsdukatenfuß sub-family.
+
+### AA. Seed `fraction` field audit — systematic sweep  *(opened 2026-05-13)*
+
+**Surfaced.** Two recent fixes (`93b2f6e` for dk-hede-f3h48 wrong `fraction: '1'` on a 1/6 Speciedaler coin; `2e3e1a9` for dk-hede-f2h30 wrong `fraction: '1/96'` on a Skilling Lybsk coin) revealed broader seed-yaml `fraction` field issues. The auto-render math (Soll-fein × fraction) silently produces wrong Δ values when the field is missing or wrong, since the renderer just multiplies whatever's in the field.
+
+**Cluster 1 — Skilling-Lybsk seed entries** (9 entries spanning different Müntzfuß eras):
+
+| Seed | Year | Era | Current fraction |
+|---|---|---|---|
+| `dk-hede-c4h167` 4 Sk Lybsk u.år | 1588 | pre-Kipper | `'1/24'` (1 Sk = 1/96 Sp?) |
+| `dk-hede-c4h170` 3 Sk Lybsk | 1623 | transition | `None` |
+| `dk-hede-c4h172` 6 Sk Lybsk | 1625 | post-Kipper | `'1/16'` |
+| `dk-hede-c4h176` 3 Sk Lybsk | 1640 | post-Kipper | `None` |
+| `dk-hede-c4h177` 3 Sk Lybsk | 1644 | post-Kipper | `None` |
+| `dk-hede-f3h149` 3 Sk Lybsk Døtgen | 1658 | Frederik III | `None` |
+| `dk-hede-f3h151` 6 Sk Lybsk | 1665 | Frederik III | `'1/16'` |
+| `dk-hede-f3h152` 3 Sk Lybsk Døtgen | 1665 | Frederik III | `None` |
+| `dk-hede-c5h124` 3 Sk Lybsk | 1680 | Christian V | `None` |
+| `dk-hede-c7h45` 2 Sechsling | 1787 | Schimmelmann | `None` |
+
+Each era has its own Lybsk-to-Speciedaler ratio (pre-Kipper 1 Sk Lybsk = 1/32 Sp, post-Kipper 1/48, Schimmelmann 1/60 Schilling-Schl-Hol-Courant). Per-entry case work needed.
+
+**Cluster 2 — f3h48 1648 sisters with missing/wrong fraction** (same 9-Fuß-Speciedaler-Familie as f3h48):
+
+  - `dk-hede-f3h47` (¼ Sp 1648) — `fuss: seed_unsorted`, `fraction: None`.
+  - `dk-hede-f3h49` (1/12 Sp 1648) — `fuss: seed_unsorted`, `fraction: None`.
+  - `dk-hede-f3h51` (2 Sp 1649) — `fuss: seed_unsorted`, `fraction: None`.
+
+All three should be `fuss: 9_thaler` + appropriate fraction (1/4, 1/12, 2 respectively). Pattern matches the f3h48 fix.
+
+**Cluster 3 — General seed-yaml `fraction` field audit:**
+
+  Run a one-off sweep: walk `data/seed/hede/denmark.yml`, for every entry where `fraction` is `None` OR where `fraction` is inconsistent with the nominal text (e.g. nominal «1/6 Speciedaler» but fraction `'1'`, or nominal «3 Skilling» but fraction `'1/4'`), flag for review. The «nominal X/N but fraction=1» pattern was already swept (commit `93b2f6e` found ONE bug, f3h48); the broader «nominal X/N but fraction != 1/N» and «fraction: None» patterns are still open.
+
+**Plan.** `scripts/audit_seed_fractions.py` — script walks seed yaml, cross-references nominal-text against fraction value, flags discrepancies. Run, review output, fix per-case.
+
 ### Z. Evaluate numismaster.com as a project resource  *(opened 2026-05-13)*
 
 User flagged <https://numismaster.com/> for review. Check whether the site offers material we don't already cover via Bruun PDFs / Numista / ucoin / IKMK / danskmoent.dk — typical questions to answer before deciding inclusion:
