@@ -121,6 +121,7 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
 | §V | Numista / ucoin cache coverage audit (no auto-merge pipeline yet) |
 | §W | Clean up §0z violations surfaced by scripts/audit_prose.py (873 hits, 663 errors) |
 | §X | Fix cross-language inconsistencies surfaced by scripts/audit_i18n.py (76 hits, 43 errors) |
+| §Y | Fuß-event vs coin-data span audit (timeline-bar accuracy) — kronemont_chr_iv + 9_thaler-SH outliers |
 
 All entries carry their own design sketches in `docs/TODO.md`;
 this list exists only to anchor «what's open» on a quick read.

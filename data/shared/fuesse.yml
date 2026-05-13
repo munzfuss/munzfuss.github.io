@@ -1697,12 +1697,13 @@ guldkrone:
     "2": {soll_rau_g: 11.99262, soll_fein_g: 10.99342}    # «2 Guldkrone» (Christian IV Hede 25/28 series 1619-1648; Tarifmünze-naming per Hede c4h25 Pålydende — Δ exposes ~50 % Krone-unit-redefinition-seigniorage relative to Frederik III's post-1648 Guldkrone-unit)
   events:
     first_adoption:
-      anywhere: 1655
+      anywhere: 1618
       holstein: 1657
-      note: 'anywhere first-adoption 1655 = first Frederik III Guldkrone struck at Copenhagen royal mint (Hede 1957 «Frederik III''s guldkroner»: «<i>møntet i København 1655 og i Glückstadt 1657, 1659 og 1660</i>»). H first-adoption 1657 = first Glückstadt issue. Was previously set to 1657 anywhere, treating Glückstadt as the originator, but Hede authoritatively dates Copenhagen 1655 as the first Frederik III Guldkrone — the Glückstadt phase 1657-1660 is the holstein-scope sub-set, not the anywhere-scope start. Note: the Guldkrone Tarif-Logik already starts under Christian IV in 1618 (parallel to the silver Corona Danica) and runs at least until 1628 — Ingvardson & Märcher 2010 «Christian 4.s guldmønt fra Esrum Møllegård» (peer-reviewed in Danefæ, Nationalmuseet 2010, pp. 254-257) document three Christian IV double Guldkroner (Hede 28) of 1628 from the Esrum hoard. Christian-IV-Guldkroner served as court gifts and mercenary pay rather than everyday currency, so the «mass production» first_adoption stays at the Frederik III 1655 København issue; the Christian IV 1618-1628 phase is documented separately in `docs/krone_muentzfuesse.md` and on the Christian-IV-Phase prose blocks of denmark.yml / schleswig_holstein.yml.'
+      note: 'anywhere first-adoption 1618 = Christian IV Guldkrone Tarif-Logik (Hede c4h25 «1 Guldkrone (= 2 Speciedaler)» parallel to the silver Corona Danica), earliest documented Royal Danish issue: km-74-1-hede-25b-chr-iv-1619 Hede 25B Helsingør 1618-1619. After 2026-05-13 the project unified the Christian IV Hede 25/28 series (1618-1648, mass and ceremonial mintage) and the Frederik III 1655-1668 series under one Fuß — they share the canonical Guldkrone-Tarif against the Speciedaler. Earlier the anywhere axis was set to 1655 to narrate «mass production», but per CLAUDE.md §0 the bar reflects what the data attests, not a periodisation overlay — the actual span starts 1618. Ingvardson & Märcher 2010 «Christian 4.s guldmønt fra Esrum Møllegård» (Danefæ, Nationalmuseet 2010, pp. 254-257) documents three Christian IV double Guldkroner (Hede 28) of 1628 from the Esrum hoard. H first-adoption 1657 = first Glückstadt issue under Frederik III (km-40-2-fr-iii-1657; no Christian IV Holstein-mint Guldkrone is documented — all Christian IV strikes are København / Helsingør).'
     first_mint:
-      anywhere: 1655
+      anywhere: 1618
       holstein: 1657
+      note: 'anywhere first-mint 1618 = first dated Christian IV Guldkrone (Hede 25B, Helsingør). H first-mint 1657 unchanged: first Frederik III Glückstadt Guldkrone.'
     last_mint:
       anywhere: 1668
       holstein: 1660

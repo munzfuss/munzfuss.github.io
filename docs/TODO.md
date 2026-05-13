@@ -7,6 +7,32 @@
 
 ## Open
 
+### Y. Fuß-event vs coin-data span audit (timeline-bar accuracy)  *(opened 2026-05-13)*
+
+**Surfaced during.** Verifying that timeline bars («Standard / Karbung / im Umlauf» — status / mint / circulation layers) on the Denmark + SH pages reflect the post-2026-05-13 data state. The `guldkrone` Fuß was the clear case from this session's «latest findings» — its anywhere-axis events were extended from 1655 → 1618 to match the Christian-IV Guldkrone unification (commits `6f8fe18` + `4b28b8e` + `e050128`). While doing that walk, two PRE-EXISTING mismatches surfaced — not from this session's work, worth their own audit pass:
+
+**Mismatch 1: `kronemont_chr_iv` last_mint vs DK data**
+
+  - `events.last_mint.anywhere = 1652`
+  - DK coin span: 1618-1675 (11 post-1652 entries, ruler Frederik III + Christian V).
+
+The 11 entries are all `verified: false` seed-bucket coins (`dk-tid-97148` through `dk-tid-97332`). Christian IV's Kronemønt (`kronemont_chr_iv` fuss-id) ended formally in 1644 when Frederik III introduced the post-Kipper Krone (`kronemont` fuss-id). The 11 entries probably belong under `kronemont` (Frederik III/Christian V 1644-1696) or `kronemont_fine` (1693-1771), not under `kronemont_chr_iv`. Bulk-import heuristic mis-classification.
+
+Fix: re-classify each via PB-4 Müntzfuß-disambiguation (data/locations/denmark.yml:dk-tid-97148/97238/97239/99133/99134/99165/99166/99167/99168/97308/97332).
+
+**Mismatch 2: `9_thaler` SH last_mint vs SH data**
+
+  - `events.last_mint.anywhere = 1667`
+  - SH coin span: 1567-1683 (single 1683 entry).
+
+`km-105-chr-v-1683` (Christian V Glückstadt Krone). Two readings:
+  - (a) The 1683 strike is mis-classified — it's actually `kronemont` not `9_thaler`. Likely; Glückstadt was minting under the post-Kipper Kronemønt by then.
+  - (b) Glückstadt continued 9-Fuß longer than Royal Danish mainland, and the 1683 strike is the actual Holstein-axis last_mint. Less likely but possible; the SH events block already has its own `last_mint.holstein = 1629` which the SH page auto-syncs (via `derive_holstein_mint_overrides`) to match real data.
+
+Fix: open `km-105-chr-v-1683`, verify against Hede / Bruun / Numista which Fuß it actually belongs to.
+
+**Scope.** Walking the per-Fuß event boundaries against actual coin-data spans across all locations is a one-time audit; the regression should be wired into `scripts/audit_health.py` afterwards as a section so future Fuß-event drift surfaces in the dashboard. Today's check covers only Denmark + Schleswig-Holstein.
+
 ### X. Fix cross-language inconsistencies surfaced by `scripts/audit_i18n.py`  *(opened 2026-05-13)*
 
 **Surfaced.** New cross-language detector `scripts/audit_i18n.py` (commit ahead) checks DE/EN/UK triples for 5 structural divergences:
