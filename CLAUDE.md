@@ -229,7 +229,7 @@ year_label: '1646, 1648'              # comma-separated discrete years
 - **Parenthesised qualifiers** — `(1677-1678)`, `(?)`, `(estimated)`. Parens never appear in `year_label`.
 - **Range modifiers in prose form** — «1671 oder 1672», «1646/47», «1646 to 1648». Use plain dash / en-dash: «1671-1672» / «1646-1647» / «1646-1648».
 
-**The unverified-field marker `(?)` is the renderer's job, not the data's job.** The renderer adds the (?) span only for fields whose per-field `*_verified` flag is `false`. To express «this coin's year is uncertain» as a project decision, the path is either (a) keep the structural year_label clean and explain in note prose, or (b) add a new per-field `year_verified` flag with proper schema + render support — never inline-annotate the structured field.
+**The unverified-field marker `(?)` is the renderer's job, not the data's job.** The renderer adds the (?) span only for fields whose per-field `*_verified` flag is `false`. For year-level uncertainty, set `year_verified: false` on the coin (default `true`) — the renderer auto-emits `(?)` next to the year_label, same mechanism as `metal_verified` / `fineness_verified` / `weight_rough_verified` / `diameter_mm_verified` / `mint_verified`. Typical case: undated Klippen / counterstrikes / «ND» issues where the year column carries an attribution-only estimate. The `year_label` itself stays clean («1606», not «ca. 1606» / «1606 (?)»).
 
 **When a year-format edge case feels contested** — e.g. a coin truly has no readable year and the attribution range is wide — ask the user before committing a non-conformant format. The «hard rule + escape hatch» pattern from §0a applies here too.
 

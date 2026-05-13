@@ -20,6 +20,7 @@
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
     {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
+    {%- if not coin.raw.year_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
   {%- endif -%}</td>
   <td>{{ coin.raw.ruler|ruler(lang) }}</td>
   <td class="c-km">
@@ -243,6 +244,7 @@
   <td class="c-year">{%- if coin.raw.year_label -%}
     {%- set parts = coin.raw.year_label.split(',') -%}
     {%- for p in parts %}<span class="yr-chunk">{{ p.strip() }}{% if not loop.last %},{% endif %}</span>{% endfor -%}
+    {%- if not coin.raw.year_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
   {%- endif -%}</td>
   <td>{{ coin.raw.ruler|ruler(lang) }}</td>
   <td class="c-km">

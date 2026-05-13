@@ -349,6 +349,22 @@ class Coin(_StrictBase):
     year_label: str
     year_first: int
     year_last: int | None = None
+    year_verified: bool = Field(
+        True,
+        description=(
+            "True when the coin's year is attested by the coin's own "
+            "inscription (the inscription IS the source per CLAUDE.md §5 "
+            "tier 1) OR by a catalogue's exact dating. False when the "
+            "year is an attribution-only estimate (typical for undated "
+            "Klippen / counterstrikes / no-date issues where Bruun / "
+            "Hede gives «ca. NNNN» or «ND»). Render layer surfaces a "
+            "(?) marker next to the year column when False — analogous "
+            "to the `*_verified` flags for metal / fineness / weight / "
+            "diameter / mint. The `year_label` field itself stays plain "
+            "decimal per §3a; the uncertainty is expressed via this "
+            "flag, NOT by inlining «(?)» / «ca.» / «ND» into the label."
+        ),
+    )
     year_ranges: list[list[int]] | None = Field(
         None,
         description=(
