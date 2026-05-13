@@ -1716,7 +1716,7 @@ coins:
     fraction: '4'
     metal_verified: true
   - id: dk-tid-163410
-    fuss: 9_thaler
+    fuss: reichsdukatenfuss
     phase: I
     kind: kurant
     nominal: 6 Daler
@@ -1726,12 +1726,16 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '26'
+      hede: '11'
+      sieg: '147'
+      schou: '2'
+      fr: '45'
       bruun_collection_id: '4667'
       bruun_part: I
       bruun_lot_no: 1017
       bruun_page: 51
     metal: gold
-    fineness: 0.925
+    fineness: 0.923
     weight_rough_g:
       - value: 13.18
         source: ucoin
@@ -1740,6 +1744,9 @@ coins:
       - value: 13.05
         source: Bruun Part III, lot 11178, p. 94
     sources:
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h11.htm
+        ref: Hede 11 / danskmoent.dk
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-6-daler-1604/?tid=163410
         ref: ucoin
@@ -1750,15 +1757,19 @@ coins:
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11178, p. 94
     issuing_entity: danish_realm
-    verified: false
+    verified: true
     fineness_verified: true
     weight_rough_verified: true
-    mint_verified: false
+    mint_verified: true
     verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
+      de: 'Sieg-Edition: Bruun (2024) zitiert Sieg-147; Hede c4h11 (online) zitiert Sieg-153 — vermutlich verschiedene Sieg-Ausgaben (Sieg-1971 vs Sieg-2018). Im Catalog beibehalten ist Sieg-147 nach Bruun; eine spätere Quellensichtung sollte die richtige Sieg-Ausgabe für jeden Eintrag fixieren.'
+      en: 'Sieg edition: Bruun (2024) cites Sieg-147; Hede c4h11 (online) cites Sieg-153 — likely two different Sieg editions (Sieg-1971 vs Sieg-2018). The catalog retains Sieg-147 per Bruun; a later source review should pin down the correct Sieg edition per entry.'
+      uk: 'Sieg-видання: Bruun (2024) цитує Sieg-147; Hede c4h11 (online) цитує Sieg-153 — імовірно різні видання Sieg (Sieg-1971 vs Sieg-2018). У каталозі лишено Sieg-147 за Bruun; пізніший перегляд джерел має зафіксувати правильне Sieg-видання.'
     metal_verified: true
+    note:
+      de: '6 Daler Klippe 1604 — Christian IV., Kopenhagen, Münzmeister Nicolaus Schwabe. Auflage 143 Exemplare (Bruun); EXCESSIVELY RARE. Goldlegierung (Hede c4h11: Bruttovægt 13,175 g · Finhed 0,923 · Finvægt 12,169 g). Der 6-Daler-Tarifkurs entsprach 3,5 Dukaten Reichsstandard (≈ 12,05 g Feingold; Tarifmünze).'
+      en: '6 Daler Klippe 1604 — Christian IV, Copenhagen Mint, mintmaster Nicolaus Schwabe. Mintage 143 specimens (Bruun); EXCESSIVELY RARE. Gold alloy (Hede c4h11: Bruttovægt 13.175 g · Finhed 0.923 · Finvægt 12.169 g). The 6-Daler tariff corresponded to 3.5 Ducats at the Imperial standard (≈ 12.05 g fine gold; Tarifmünze).'
+      uk: '6 Daler Klippe 1604 — Кристіан IV, Копенгаген, монетмайстер Nicolaus Schwabe. Тираж 143 екземпляри (Bruun); EXCESSIVELY RARE. Золотий сплав (Hede c4h11: Bruttovægt 13,175 г · Finhed 0,923 · Finvægt 12,169 г). Тарифний номінал 6 Daler відповідав 3,5 дукатам імперського стандарту (≈ 12,05 г чистого золота; Tarifmünze).'
   - id: dk-tid-162995
     fuss: 9_thaler
     phase: I
