@@ -106,10 +106,11 @@ Drop the summary block when only 0–1 🟡 entries remain.
 
 **Plan.**
 
-  1. Build a one-pass audit script `scripts/audit_refs_page_hints.py` that walks all `data/locations/*-references.yml` + `data/shared/*-references.yml`, for each entry whose URL points at a long-form work (≥10 pages — heuristic: PDF / archive.org / Wikisource transcribing a multi-page article / Konversationslexikon Band-and-page format / Hede paper book), check the scope-note for a literal page reference (`S. NN`, `pp. NN`, `Band NN, S. NN`, `Kap. NN`, `§ NN, S. NN`). Flag entries missing it.
-  2. Optionally wire into `audit_health.py` as a new section, and into the pre-commit hook as advisory (eventually hard-block once the baseline clears).
+  1. Build a one-pass audit script `scripts/audit_refs_page_hints.py` that walks all `data/locations/*-references.yml` + `data/shared/*-references.yml`. For each entry whose ref points at a long-form work (≥10 pages), check the scope-note for a literal page reference (`S. NN`, `pp. NN`, `Band NN, S. NN`, `Kap. NN`, `§ NN, S. NN`). Flag entries missing it.
+  2. **Paper-only refs treated identically** (per CLAUDE.md §5a clarification 2026-05-13). A ref to an offline paper source without page hint is a bad citation by construction (if neither author nor user read the book, citing it is dishonest). The legitimate path: paper sources arrive via a digital secondary that itself cites the paper with a page number; the page number carries over. If the secondary cites paper without a page, the chain is broken and we DROP the paper ref entirely. No «exempt because offline» tier.
+  3. Optionally wire into `audit_health.py` as a new section, and into the pre-commit hook as advisory (eventually hard-block once the baseline clears).
 
-**Scope.** Refs files: ~12 total. Long-form refs subset: ~10-15 entries by rough estimate. Walking + flag run takes < 5 s.
+**Scope** (verified 2026-05-13 via full scan of 128 refs in 12 files): **1 candidate** missing page-hint: `lubeck-references.yml:ref3` Behrens 1905 — paper-only, no URL, no page hint. Per the new §5a paper-only rule: either find a digital secondary that cites Behrens with a page, or drop the ref. Walking + flag run takes < 5 s.
 
 ### AF. 🟢 Hede silver-spec-card-for-gold-strike audit (sister-to-c4h47 sweep)  *(opened 2026-05-13)* *(est: medium)*
 
@@ -121,19 +122,24 @@ Documented in `docs/SOURCES.md` §13.4.
 
   1. Walk all Hede cache pages (`scripts/cache/hede/*.json`).
   2. For each page where `description` or `eksemplarer` contains «Guldafslag» / «Sølvafslag» / «cf.» / «medaljonprægning» (off-strike markers) AND the spec card publishes a silver fineness (< 0.95), flag as «silver-spec page with gold-strike sub-variant».
-  3. Cross-reference our curated entries: for each flagged Hede page, list all `coins[]` with `catalog.hede` matching that page AND `metal: gold`. These are the c4h47-trap victims — the entry references the silver page but is itself a gold strike, so the spec-card values are likely wrong-metal.
+  3. Cross-reference our curated entries: for each flagged Hede page, list all `coins[]` with `catalog.hede` matching that page AND `metal: gold`. These are the c4h47-trap victims.
 
-**Real precedent:** c4h47 (Frederik IV 16 Skilling 1713 silver page; Bruun-attested gold off-strike Schou 1a at Double-Ducat weight ~6.93 g, not the silver spec-card 5.197 g). The Schou 1a variant signature is what catches the pattern.
+**Resolution per CLAUDE.md §9 exclusion #3 (off-strike single specimens — added 2026-05-13).** Single-specimen off-metal strikes (Guldafslag of a silver mother coin, Sølvafslag of a gold mother coin, presentation strikes, off-metal proofs) are explicitly EXCLUDED from the location's coin table. They were not minted for circulation. So a script-flagged candidate is NOT a «fix the metal/fineness» case — it's a «**delete the entire entry**» case: the off-strike doesn't belong in our table at all; the silver mother coin (separately curated) stays.
+
+**Surface candidates → user verdict per case** (no auto-fix). Each candidate gets «delete entry?» / «keep but reclassify as separate Hede sub-letter?» / «not actually off-strike, false flag — restore» verdict from user. Same shape as the per-case PB-1 pattern.
+
+**Real precedent:** c4h47 (Frederik IV 16 Skilling 1713 silver page; Bruun-attested gold off-strike Schou 1a at Double-Ducat weight ~6.93 g, not the silver spec-card 5.197 g). The Schou 1a variant signature is what catches the pattern. Per new §9 rule, the prior fix («silver-convert the gold entry») is wrong; the correct fix would have been to drop the off-strike entry entirely. Revisit c4h47 as part of this sweep.
 
 ### AE. 🟢 Build-guard survivors audit — metal/weight/year mismatch guards on seed-merge  *(opened 2026-05-13)* *(est: small)*
 
-**Surfaced.** Latest build reports persistent guard-survivors that were left for manual review:
+**Surfaced.** Latest build reports persistent guard-survivors:
 
-  - **9 metal-mismatch kept** — auto-suppress's metal-mismatch guard preserves seed entries whose Hede ref is also referenced by a curated entry but at a different metal (the «cf-companion citation» pattern: gold Portugaloser citing the silver Hede sub-type whose die design it shares). Most are legitimate cf-citations and the keep is correct. ONE outlier surfaced by audit (`dk-hede-c5h128` → `km-79-chr-v-1693` SH): seed says silver, curated says billon. The fineness-similarity escape hatch in `_merge_seeds_into_raw` (CLAUDE.md §4 + `scripts/build.py`) should have caught this billon/silver labelling drift — but didn't. **Investigate why.**
-  - **5 weight-mismatch kept** — the > 25 % weight-ratio guard fires when curated `weight_rough_g[]` carries an outlier value pulling the min/max ratio below 0.75. False-positive cases identified earlier: km-25 list has `.49g` outlier (Numista 301740 documented anomaly); km-128 has `8.428g` outlier (Numista N#108979 transcription error noted in prose); hede-47 has `6.93g` outlier (Bruun gold-strike specimen — now resolved by silver-conversion). The outlier values are factually documented multi-source attestations per §9a and stay in the data, but the guard's «keep both» behaviour is over-protective. Possible fix: tighten the guard to ignore values explicitly attributed to suspect sources (e.g. exclude weight entries whose source contains «likely transcription error» / «anomalous» / etc.) when computing min/max.
-  - **2 year-mismatch kept** — `dk-hede-f6h30` (1816 seed vs `km-154a-fr-vi-1831` SH curated, |Δ|=15 y) and a new one introduced after the c4h99 fold (year_first 1614 on c4h99B/C/D vs 1612 on km-52 — |Δ|=2, within ±10y, so this shouldn't be firing — likely a build off-by-one or comparison-with-bare-basename issue). Investigate.
+  - **9 metal-mismatch kept** — auto-suppress's metal-mismatch guard preserves seed entries whose Hede ref is also referenced by a curated entry but at a different metal (the «cf-companion citation» pattern). Most are legitimate cf-citations and the keep is correct. ONE outlier (`dk-hede-c5h128` → `km-79-chr-v-1693` SH): seed says silver, curated says billon, fineness 0.437 on both — fineness-similarity escape hatch in `_merge_seeds_into_raw` (CLAUDE.md §4 + `scripts/build.py:408-416`) should match (Δ=0%) but doesn't. **Investigate `_weight_values()` for list-form fineness extraction; likely fixable.**
+  - **2 year-mismatch kept** — confirmed legitimate via guard-replication scan 2026-05-13: `dk-hede-c4h55` (1624) vs `dk-tid-97358` (1646) Δ=22y; `dk-hede-c4h167` (1588) vs `km-85-chr-iv-1640` (SH, 1640) Δ=52y. **Earlier suspicion of off-by-one on c4h99B/C/D vs km-52 — FALSE ALARM**: those pairs are |Δ|=2 which is within the ±10y window and guard correctly suppresses them. Drop the c4h99 sub-point from this entry.
 
-**Plan.** One-off audit script (or extension of `audit_seed_survivors.py`) that, for each guard-survivor, surfaces the curated+seed pair side-by-side with the exact mismatch metric (metal labels, weight delta %, year delta) and a recommended action (legitimate-keep / false-positive-fix / mark status_404). Then close the false positives individually.
+**Plan.** One-off fix for c5h128 escape-hatch + the c4h99 false-alarm note correction. Quick.
+
+**Out of scope here — moved to §AL.** The 5 weight-mismatch survivors require a richer data model than a guard-string-match: rather than tightening the guard to grep for «likely transcription error» in free-text source labels, we want a structured `anomaly` field on weight/fineness/diameter list-form entries with three states (confirmed source error / acceptable variance / unconfirmed outlier). Guard then operates on that structured field. Tracked as §AL — see Normal priority section below.
 
 ### AD. 🔵 Hede sub-letter Pattern B fold buckets — 38 remaining  *(opened 2026-05-13)* *(est: many sessions)*
 
@@ -1492,6 +1498,55 @@ new location target, this is the seed list.
 **Done criterion.** Bremen location file created with these 3 coins
 (plus whatever else the bremen.yml scoping work surfaces) — OR an
 explicit decision that Bremen stays outside the project scope.
+
+---
+
+### AL. 🟡 Structured `anomaly` field on list-form weight / fineness / diameter entries  *(opened 2026-05-13)* *(est: medium)*
+
+**Surfaced.** User direction 2026-05-13 while answering §AE design question: the existing weight-mm guard tightening would benefit from a structured field instead of free-text source-string parsing («likely transcription error»). User identified three real cases that need distinct handling:
+
+  - **Numista recorded Feingewicht as Bruttogewicht** — confirmed cataloguer error in source. Should be excluded from min/max guard computation.
+  - **Wide-but-legitimate specimen variance** — large weight spread across surviving specimens, all real. Should remain in min/max.
+  - **Unusual specimen of unknown status** — value is non-standard but we don't yet know if it's an error or genuine outlier. Conservative inclusion in min/max with future review.
+
+**Proposed shape — naming open for discussion.** Add an `anomaly` field (optional) to each list-form entry under `weight_rough_g[]` / `fineness[]` / `diameter_mm[]`:
+
+```yaml
+weight_rough_g:
+  - value: 6.93
+    source: Bruun Part I, lot 1133
+    anomaly: source_error    # explicit: known mis-recording in catalogue
+  - value: 5.20
+    source: Hede c4h47
+    # no anomaly = normal entry, included in min/max
+  - value: 5.19
+    source: Numista
+    anomaly: source_error    # Numista mis-transcribed Feingewicht as Bruttogewicht
+```
+
+**Enum options (3 candidates per slot — pick one set):**
+
+| User's draft | Option A (concise) | Option B (descriptive) |
+|---|---|---|
+| `probably_source_error` | `source_error` | `confirmed_source_error` |
+| `acceptable_anomaly` | `wide_variance` | `legitimate_specimen_variance` |
+| `unknown` | `unverified` | `unconfirmed_outlier` |
+
+**My (claude's) recommendation.** Option A — concise enough for YAML readability, semantically distinct. Field name `anomaly` is short and self-explanatory. Drop «probably» from `source_error` because by the time we tag it, we're confident enough to act on it (the «probably» implicitness lives in the broader research practice, not in the structured tag).
+
+**Guard logic update (`scripts/build.py` weight-mm and metal-mm guards).** When computing min/max for the weight-ratio < 0.75 check, **exclude entries with `anomaly: source_error`**. `wide_variance` and `unverified` entries stay in min/max — the first because they reflect real specimen spread, the second because we don't yet have grounds to drop them.
+
+**Schema update (`scripts/lib/schema.py`).** Add `anomaly: Literal["source_error", "wide_variance", "unverified"] | None = None` to the list-form measurement entry models.
+
+**Migration step.** Existing `weight_rough_g[]` entries with source-strings containing «likely transcription error» / «anomalous» / «mis-transcribed» — convert to `anomaly: source_error` on the offending entry; keep the human-readable note in `source` text. Sweep `data/locations/*.yml` for the 5 known weight-mm survivors (TODO §AE inventory) + any matching free-text markers.
+
+**Action.**
+
+  1. Confirm field name + enum values (3 strings) with user.
+  2. Add to `scripts/lib/schema.py`.
+  3. Update guard logic in `scripts/build.py` `_merge_seeds_into_raw`.
+  4. Migrate ~5 known entries from free-text marker to structured field.
+  5. Add an audit-section in `audit_health.py` that flags entries with free-text anomaly markers in source-strings (so the next surface case gets caught early).
 
 ---
 
