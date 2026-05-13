@@ -748,29 +748,56 @@ Backfill script fixes carried by the same commit:
   * Case-2 disagreement now replaces with ucoin's reading (verified-
     wins-over-unverified per CLAUDE.md §4) rather than just flagging.
 
-**Blocked from here.** Of 576 unverified-with-ucoin coins remaining,
-only 1 is in the sidecar with usable data; 46 are cached as 404
-(slug-broken); 529 are uncached. Four broader probes confirmed
-~78 % slug_mismatch rate across the 1611+ Christian IV range AND
-across spread samples (Frederik III 1651/1665, Christian V 1693/94,
-Christian VII 1779, Hamburg 1783, Frederik IV 1705 — all 0/8). The
-~22 % success rate is concentrated in the 1582-1607 Christian IV
-sub-range where heuristic-generated slugs happen to coincide with
-ucoin's current slugs.
+**Root cause clarified 2026-05-13 (post-cookie-clear retry).** The
+«slug_mismatch» symptom is ucoin's RATE-LIMIT mechanism, NOT slug-
+routing breakage. After a session crosses the limit ucoin starts
+serving the canonical page for whichever slug the requester arrives
+at NEXT but with a different tid in the canonical link — the page
+appears valid but isn't for the requested tid. The canonical-tid
+validation guard catches it correctly.
 
-**Required for resumption.** Rebuild `scripts/cache/ucoin/_url_index.json`
-from a fresh source. Options to investigate:
+User cleared cookies → ucoin became responsive again. All 45 tids
+previously marked status_404 from session 1 (the 2.5 s pacing burst)
+were re-fetched successfully on session 2.
 
-  1. **ucoin sitemap walk** — if `https://en.ucoin.net/sitemap.xml` or
-     similar exists with current per-tid URLs, harvest those.
-  2. **Catalogue-page scrape** — Denmark catalogue listing pages
-     (`/catalog/denmark/` or per-period `/period/NNNN/`) probably
-     list coins with their CURRENT slugs. Scrape those, build new
-     `_url_index.json`.
-  3. **Search-by-tid endpoint discovery** — try various
-     `/find/?tid=N` / `/search/?q=tid:N` forms; the four obvious
-     candidates probed 2026-05-13 all returned 404, but a deeper
-     scan of ucoin's site structure might surface one.
+**Threshold measured 2026-05-13:**
+
+| pacing | first failure | sustained | per-min rate |
+|---|---|---|---|
+| 2.5 s | req 37 | ~36 ok in 1.8 min | ~20 req/min |
+| 10 s | req 52 | 51 ok in 9.4 min | ~5.4 req/min |
+
+The slower-pacing run got further before the wall, but the absolute
+ceiling appears to be ~50 cumulative requests per session-cookie.
+Once tripped, every request returns the wrong-tid page until cookies
+are cleared (or, presumably, time passes — duration not measured).
+
+**Practical pipeline (still semi-manual, requires the user):**
+
+  1. Run a session of ≤ 45 fetches at 10 s pacing.
+  2. Watch for `slug_mismatch_*` cluster (≥ 3 consecutive on the same
+     batch) — that's the rate-limit signal.
+  3. Pause harvest; ask the user to clear `en.ucoin.net` cookies.
+  4. Resume from where we stopped.
+
+**Status after 2026-05-13 sessions (combined):**
+
+  * Sidecar: 185 entries with data (was 98 → 134 → 185).
+  * Backfill applied 51 more fields this session (134 of these were
+    in the earlier 93). Cumulative: 144 metal/verified fields touched
+    across denmark + lubeck + schleswig_holstein.
+  * 5 tids still rate-limited at end of session 2 (97085 / 97086 /
+    96444 / 96445 / 96458) — left as uncached for next cookie-cycle.
+  * Remaining uncached (next sessions): ~520, all expected to fetch
+    cleanly given a fresh cookie state per ~45-request batch.
+
+**Remaining work.** ~520 ucoin URLs to harvest via repeated cookie-
+cycle sessions (~12 sessions × 45 fetches × 10 s = ~90 minutes of
+fetcher time, plus cookie-clear inter-session). The harvest is
+mechanical; pacing rule + canonical-tid guard ensures correctness.
+A semi-automated cookie-rotation would eliminate the user's manual
+cookie-clear step (deferred — needs investigation of whether ucoin
+session lifetime is just the JSESSIONID cookie or something else).
 
 **Not blocking page renders.** Denmark / lubeck / schleswig_holstein
 pages render correctly; ~93 metal fields are now `verified: true`
