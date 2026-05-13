@@ -707,7 +707,36 @@ working tier.
 
 ---
 
-### M. ucoin Composition harvest — partial progress, blocked on slug-routing breakage  *(opened 2026-05-11, partial progress 2026-05-13)*
+### M. ucoin Composition harvest — partial progress, paused on Cloudflare bot-protection  *(opened 2026-05-11, partial progress 2026-05-13, paused 2026-05-13)*
+
+**Paused 2026-05-13 end of day.** After three productive sessions
+(121 new sidecar entries + 178 metal-field updates across denmark /
+lubeck / schleswig_holstein), a fourth session attempt was met with
+**HTTP 403 + Cloudflare «Just a moment…» bot-protection challenge**
+on every same-origin fetch, even after the user cleared cookies.
+Cloudflare's challenge appears to be IP + browser-fingerprint based,
+not pure cookie-state — once tripped, cookie-clear forces a re-
+challenge instead of resetting it, and our automated fetcher cannot
+solve the JS challenge.
+
+**Resume conditions (any one suffices):**
+
+  1. **Wait for Cloudflare cooldown** — typically 24h of quiet
+     traffic from our IP. Re-attempt next session with 20-30 s
+     pacing and ≤ 30 fetches per cookie-cycle to stay well under
+     the underlying request ceiling.
+  2. **Pass the Cloudflare challenge manually in the browser** —
+     user navigates to ucoin in their normal browser window, waits
+     for the «Performing security verification» page to clear,
+     accepts any «I'm human» prompt; the resulting `cf_clearance`
+     cookie may pass through to subsequent automated requests.
+  3. **Different network egress** — VPN or alternative IP, but
+     introduces its own complications.
+
+**Resume tomorrow (2026-05-14 or later)** with option 1 / 2; see
+the existing rate-limit analysis above for pacing guidance.
+
+
 
 **Original surface (2026-05-11).** The investigation of `dk-tid-163075`
 (KM# UC# 10, Frederik II 10 Ducat 1588) where user-side verification
