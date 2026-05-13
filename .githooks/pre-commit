@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+# .githooks/pre-commit — sanity checks before committing.
+#
+# Install once per clone: ./scripts/install_hooks.sh
+# Bypass (per-commit):    git commit --no-verify
+#
+# What this hook does
+# -------------------
+#
+#   1. Build validation (HARD BLOCK on failure) — runs
+#      `scripts/build.py --validate-only` when the commit touches
+#      build-relevant files (data/, templates/, scripts/lib/,
+#      scripts/build.py, config/theme.yml).
+#
+#   2. Prose lint (ADVISORY) — runs `scripts/audit_prose.py --staged`
+#      on staged YAML files; reports new ERROR-tier hits but does
+#      not block. After the §W cleanup the project clears its
+#      baseline, then this can be promoted to BLOCK.
+#
+#   3. Cross-language i18n (ADVISORY) — runs `scripts/audit_i18n.py`
+#      globally; reports total errors. Doesn't block. After the
+#      §X cleanup, can be promoted to BLOCK.
+#
+# The hook is fast — it only runs the heavy checks when the commit
+# actually touches relevant files. Docs-only commits skip the build
+# step entirely.
+
+set -uo pipefail
+
+cd "$(git rev-parse --show-toplevel)"
+
+# Pick a python interpreter — prefer the project venv.
+if [ -x ".venv/bin/python" ]; then
+    PYTHON=".venv/bin/python"
+elif command -v python3 >/dev/null 2>&1; then
+    PYTHON="python3"
+else
+    echo "✗ pre-commit: no python interpreter found"
+    exit 1
+fi
+
+# Colour helpers — disabled when not a tty (git often pipes stdout).
+if [ -t 1 ]; then
+    C_GREEN=$'\033[1;32m'; C_RED=$'\033[1;31m'; C_YELL=$'\033[1;33m'
+    C_DIM=$'\033[2m'; C_RST=$'\033[0m'
+else
+    C_GREEN=""; C_RED=""; C_YELL=""; C_DIM=""; C_RST=""
+fi
+
+# Collect the staged file set once.
+STAGED=$(git diff --cached --name-only --diff-filter=ACMR)
+if [ -z "$STAGED" ]; then
+    # Nothing staged (rare — usually means --allow-empty or amend with no
+    # changes). Skip all checks; let git proceed.
+    exit 0
+fi
+
+# ---------------------------------------------------------------------------
+# Check 1: Build validation
+# ---------------------------------------------------------------------------
+
+BUILD_RELEVANT=$(echo "$STAGED" | grep -E '^(data/|templates/|scripts/lib/|scripts/build\.py$|config/theme\.yml$|assets/)' || true)
+
+if [ -n "$BUILD_RELEVANT" ]; then
+    echo "▶ Build validation..."
+    BUILD_LOG=$(mktemp -t precommit-build.XXXXXX)
+    if ! "$PYTHON" scripts/build.py --validate-only > "$BUILD_LOG" 2>&1; then
+        echo "${C_RED}✗ Build validation FAILED.${C_RST}"
+        echo "Last lines of output:"
+        tail -25 "$BUILD_LOG" | sed 's/^/    /'
+        echo
+        echo "Full log: $BUILD_LOG"
+        echo "Fix the build error before committing, or bypass with: git commit --no-verify"
+        exit 1
+    fi
+    rm -f "$BUILD_LOG"
+    echo "  ${C_GREEN}✓${C_RST} build validation clean"
+fi
+
+# ---------------------------------------------------------------------------
+# Check 2: Prose lint on staged YAMLs (advisory)
+# ---------------------------------------------------------------------------
+
+STAGED_YAML=$(echo "$STAGED" | grep -E '^data/.*\.yml$' || true)
+
+if [ -n "$STAGED_YAML" ]; then
+    echo "▶ Prose lint (staged YAMLs)..."
+    PROSE_LOG=$(mktemp -t precommit-prose.XXXXXX)
+    if "$PYTHON" scripts/audit_prose.py --staged --json > "$PROSE_LOG" 2>&1; then
+        # Exit 0 = no ERRORs introduced in staged files.
+        WARN=$("$PYTHON" -c "import json,sys;d=json.load(open('$PROSE_LOG'));print(d['summary']['warning'])" 2>/dev/null || echo 0)
+        if [ "$WARN" = "0" ]; then
+            echo "  ${C_GREEN}✓${C_RST} no prose violations in staged files"
+        else
+            echo "  ${C_YELL}⚠${C_RST} $WARN warning(s) in staged files (advisory)"
+        fi
+    else
+        # Exit 1 = errors introduced.
+        ERR=$("$PYTHON" -c "import json,sys;d=json.load(open('$PROSE_LOG'));print(d['summary']['error'])" 2>/dev/null || echo "?")
+        echo "  ${C_YELL}⚠${C_RST} $ERR prose error(s) in staged files — ADVISORY (TODO §W cleanup pending)"
+        echo "    (run \`$PYTHON scripts/audit_prose.py --staged\` for detail)"
+    fi
+    rm -f "$PROSE_LOG"
+fi
+
+# ---------------------------------------------------------------------------
+# Check 3: Cross-language i18n (advisory; full scan)
+# ---------------------------------------------------------------------------
+
+if [ -n "$STAGED_YAML" ]; then
+    echo "▶ Cross-language i18n (full scan)..."
+    I18N_LOG=$(mktemp -t precommit-i18n.XXXXXX)
+    "$PYTHON" scripts/audit_i18n.py --json > "$I18N_LOG" 2>&1 || true
+    ERR=$("$PYTHON" -c "import json,sys;d=json.load(open('$I18N_LOG'));print(d['summary']['error'])" 2>/dev/null || echo 0)
+    WARN=$("$PYTHON" -c "import json,sys;d=json.load(open('$I18N_LOG'));print(d['summary']['warning'])" 2>/dev/null || echo 0)
+    if [ "$ERR" = "0" ] && [ "$WARN" = "0" ]; then
+        echo "  ${C_GREEN}✓${C_RST} no cross-language inconsistencies"
+    else
+        echo "  ${C_YELL}⚠${C_RST} $ERR error(s) + $WARN warning(s) project-wide — ADVISORY (TODO §X cleanup pending)"
+    fi
+    rm -f "$I18N_LOG"
+fi
+
+echo "${C_DIM}pre-commit: checks complete${C_RST}"
