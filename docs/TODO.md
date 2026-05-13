@@ -7,56 +7,6 @@
 
 ## Open
 
-### AJ. Year-aware coin sort comparator (single year vs range, range vs range)  *(opened 2026-05-13)*
-
-**Surfaced.** User direction 2026-05-13. The web-rendered per-phase tables currently sort coins by `(year_first, id)` lexicographically (`scripts/lib/categorize.py:158`). When the table mixes single-year coins with multi-year-range coins (`year_label: "1646, 1648"`, `"1603-1613"`, `"1646, 1648-1651"`, etc.), the naive sort produces awkward orderings. The user's three-case rule virtually merges N range segments into one big interval `[min, max]` across all segments, then compares cases as follows.
-
-**Comparator rule (canonical statement — destination CLAUDE.md or scripts/lib docstring per final implementation choice).**
-
-Pre-step: each coin's effective year-span is `[span_min, span_max]` where
-  - single year `Y` → `[Y, Y]`,
-  - any range or comma-list (`year_ranges: [[a,b], [c,d], …]`) → `[min(a, c, …), max(b, d, …)]`.
-
-A coin is **single-year** when `span_min == span_max` AND the source `year_label` carries one numeric year only (not a range that happens to be length-1).
-
-A coin is **range-coin** otherwise.
-
-Comparator for two coins X, Y:
-
-  1. **Both single-year** — compare `span_min` (= the year). If equal, fall back to a stable tiebreaker (`id`).
-  2. **One single-year, one range** — compare the single coin's year against the range coin's `span_min`. If equal, **single-year wins (sorts before range)**. (User's wording: «екземпляр1 йде раніше в списку за екземпляр2».)
-  3. **Both range-coins** — compare `span_min` first; if equal, compare `span_max`. If both equal, stable tiebreaker (`id`).
-
-**Implementation site.** `scripts/lib/categorize.py:158` — replace the `key=lambda c: (c.raw.year_first, c.raw.id)` lambda with a `functools.cmp_to_key`-wrapped comparator implementing the three cases above. The `Coin` schema already carries `year_first` + `year_last` + `year_ranges` + the structural distinction between single-year (`year_ranges` length 1 with `a==b`) and range-coins (everything else), so no schema change.
-
-**Plan.**
-
-  1. Add the `cmp_year_aware(c1, c2)` function in `scripts/lib/categorize.py` (or extract to a helper in `compute.py` if cleaner). Cover the three cases + the «single wins ties with range at the same min» exception.
-  2. Replace the existing `coins_in_phase.sort(...)` call.
-  3. Verify the rendered table for a Denmark phase that has a mix (e.g. Christian IV phases with several range-coins like KM-44 1608-1621 + single-year specimens) before / after the change.
-  4. Codify the rule in CLAUDE.md or a scripts/lib/categorize.py docstring so future schema-additions (e.g. multi-disjoint-range coins) don't silently regress.
-  5. Add an audit-section in `audit_health.py` to spot inversion cases (current sort puts a range-coin with `min=1646` before a single-year `1646` — should be the other way after fix).
-
-### AI. Apply Intra-sub-variant thinning to coins with > 4 Bruun specimens  *(opened 2026-05-13)*
-
-**Surfaced.** User direction 2026-05-13, surfaced by `dk-tid-163070` (1 Speciedaler 1608-1621 Christian IV, KM-44, Denmark): 7 `weight_rough_g` entries total, of which **6 from Bruun PDF lots** (Parts I-IV). The `audit_health.py` §«Specimen thinning (§9a)» «Bucket candidates ≥5» signal classifies entries by source token and flags any (coin × resource) bucket of ≥5; currently it lists 5 SH IKMK buckets, but doesn't yet flag Bruun-source clusters because the existing CLAUDE.md §9a thinning rule was codified for IKMK over-collection from one Stempelvariante (Berlin holds N specimens of the same Lange-sub-type → only min / middle / max are informative).
-
-**The issue for Bruun.** When a single coin has > 4 Bruun specimens from across Parts I-IV, the intermediate weights between min and max similarly contribute no additional information about the standard's variance envelope — they are noise from over-sampling Bruun's auction-catalogue holdings. Same shape as IKMK over-collection, different resource.
-
-**Rule update.** Extend CLAUDE.md §9a «Intra-sub-variant thinning» to explicitly cover Bruun in the bucket-threshold rule. Current §9a wording — «when one coin entry has ≥5 `weight_rough_g` entries from a *single resource* (most often IKMK Berlin) within a single Stempelvariante sub-group» — already nominally covers Bruun, but the canonical decisions in `scripts/maintenance/thin_intra_subvariant_specimens.py` are all IKMK. The two adjustments needed:
-
-  1. **Lower threshold for Bruun specifically: > 4 Bruun specimens.** The user's framing «де bruun джерел > 4» suggests the threshold for Bruun should be > 4 (i.e. ≥ 5 — consistent with the general rule), not stricter. Treat as same threshold; the canonical text just needs to name Bruun explicitly alongside IKMK so the rule isn't read as IKMK-only.
-  2. **Sub-variant grouping for Bruun.** IKMK's `literatur` field carries the Lange sub-variant tag; Bruun lot records carry an analog signal in the `refs` field (Hede sub-letter, Lange sub-letter, sometimes Schou). Define the sub-variant bucket for Bruun-source thinning as «entries sharing the same Hede-sub-letter OR same Lange-sub-letter». Without this grouping rule, the bucket would over-aggregate (e.g. 6 Bruun lots split across 3 Hede sub-letters of 2 each — none of the buckets crosses the threshold, no thinning).
-
-**Action.**
-
-  1. Extend CLAUDE.md §9a's text to name Bruun explicitly alongside IKMK + describe the Bruun sub-variant tag source (Hede/Lange sub-letter from the `refs` field).
-  2. Sweep all coins in `data/locations/*.yml` where Bruun-source `weight_rough_g` entries ≥ 5 within one sub-variant. For each, apply min / middle-by-index / max preserving the `bruun_collection_id` / `bruun_part` / `bruun_lot_no` / `bruun_page` citation for retained entries; discard intermediate entries plus their matching `sources[]` URLs (per the existing §9a operational shape).
-  3. Encode the decisions in `scripts/maintenance/thin_intra_subvariant_specimens.py` (extend `DROPS` dict; the function `_filter_coin` already handles Bruun source-strings since they share the «Bruun II, lot 11304» shape with IKMK's «IKMK Berlin, Inv. NNNN»).
-  4. Re-run `audit_health.py --section thin` to confirm zero Bruun bucket-flags remain (or document why a given bucket legitimately stays — different sub-variants in same Hede page).
-
-**Starting case: `dk-tid-163070`.** Inspect the 6 Bruun entries' Hede sub-letter + Lange sub-letter from their `bruun_part` + `bruun_lot_no`; group by sub-variant; apply min/middle/max per sub-variant bucket of ≥ 5.
-
 ### AH. Re-evaluate «Numista API budget» rule on 2026-06-01  *(opened 2026-05-13)*
 
 **Surfaced.** CLAUDE.md «Numista API budget — ASK before bulk-fetching (May 2026 only)» is explicitly time-scoped: «applies through May 2026 only». The user's monthly quota resets June 1 and the rule may be relaxed or dropped.
@@ -1355,6 +1305,60 @@ new location target, this is the seed list.
 **Done criterion.** Bremen location file created with these 3 coins
 (plus whatever else the bremen.yml scoping work surfaces) — OR an
 explicit decision that Bremen stays outside the project scope.
+
+---
+
+### AI. Apply Intra-sub-variant thinning to coins with > 4 Bruun specimens  *(opened 2026-05-13)*
+
+**Surfaced.** User direction 2026-05-13, surfaced by `dk-tid-163070` (1 Speciedaler 1608-1621 Christian IV, KM-44, Denmark): 7 `weight_rough_g` entries total, of which **6 from Bruun PDF lots** (Parts I-IV). The `audit_health.py` §«Specimen thinning (§9a)» «Bucket candidates ≥5» signal classifies entries by source token and flags any (coin × resource) bucket of ≥5; currently it lists 5 SH IKMK buckets, but doesn't yet flag Bruun-source clusters because the existing CLAUDE.md §9a thinning rule was codified for IKMK over-collection from one Stempelvariante (Berlin holds N specimens of the same Lange-sub-type → only min / middle / max are informative).
+
+**The issue for Bruun.** When a single coin has > 4 Bruun specimens from across Parts I-IV, the intermediate weights between min and max similarly contribute no additional information about the standard's variance envelope — they are noise from over-sampling Bruun's auction-catalogue holdings. Same shape as IKMK over-collection, different resource.
+
+**Rule update.** Extend CLAUDE.md §9a «Intra-sub-variant thinning» to explicitly cover Bruun in the bucket-threshold rule. Current §9a wording — «when one coin entry has ≥5 `weight_rough_g` entries from a *single resource* (most often IKMK Berlin) within a single Stempelvariante sub-group» — already nominally covers Bruun, but the canonical decisions in `scripts/maintenance/thin_intra_subvariant_specimens.py` are all IKMK. The two adjustments needed:
+
+  1. **Lower threshold for Bruun specifically: > 4 Bruun specimens.** The user's framing «де bruun джерел > 4» suggests the threshold for Bruun should be > 4 (i.e. ≥ 5 — consistent with the general rule), not stricter. Treat as same threshold; the canonical text just needs to name Bruun explicitly alongside IKMK so the rule isn't read as IKMK-only.
+  2. **Sub-variant grouping for Bruun.** IKMK's `literatur` field carries the Lange sub-variant tag; Bruun lot records carry an analog signal in the `refs` field (Hede sub-letter, Lange sub-letter, sometimes Schou). Define the sub-variant bucket for Bruun-source thinning as «entries sharing the same Hede-sub-letter OR same Lange-sub-letter». Without this grouping rule, the bucket would over-aggregate (e.g. 6 Bruun lots split across 3 Hede sub-letters of 2 each — none of the buckets crosses the threshold, no thinning).
+
+**Action.**
+
+  1. Extend CLAUDE.md §9a's text to name Bruun explicitly alongside IKMK + describe the Bruun sub-variant tag source (Hede/Lange sub-letter from the `refs` field).
+  2. Sweep all coins in `data/locations/*.yml` where Bruun-source `weight_rough_g` entries ≥ 5 within one sub-variant. For each, apply min / middle-by-index / max preserving the `bruun_collection_id` / `bruun_part` / `bruun_lot_no` / `bruun_page` citation for retained entries; discard intermediate entries plus their matching `sources[]` URLs (per the existing §9a operational shape).
+  3. Encode the decisions in `scripts/maintenance/thin_intra_subvariant_specimens.py` (extend `DROPS` dict; the function `_filter_coin` already handles Bruun source-strings since they share the «Bruun II, lot 11304» shape with IKMK's «IKMK Berlin, Inv. NNNN»).
+  4. Re-run `audit_health.py --section thin` to confirm zero Bruun bucket-flags remain (or document why a given bucket legitimately stays — different sub-variants in same Hede page).
+
+**Starting case: `dk-tid-163070`.** Inspect the 6 Bruun entries' Hede sub-letter + Lange sub-letter from their `bruun_part` + `bruun_lot_no`; group by sub-variant; apply min/middle/max per sub-variant bucket of ≥ 5.
+
+---
+
+### AJ. Year-aware coin sort comparator (single year vs range, range vs range)  *(opened 2026-05-13)*
+
+**Surfaced.** User direction 2026-05-13. The web-rendered per-phase tables currently sort coins by `(year_first, id)` lexicographically (`scripts/lib/categorize.py:158`). When the table mixes single-year coins with multi-year-range coins (`year_label: "1646, 1648"`, `"1603-1613"`, `"1646, 1648-1651"`, etc.), the naive sort produces awkward orderings. The user's three-case rule virtually merges N range segments into one big interval `[min, max]` across all segments, then compares cases as follows.
+
+**Comparator rule (canonical statement — destination CLAUDE.md or scripts/lib docstring per final implementation choice).**
+
+Pre-step: each coin's effective year-span is `[span_min, span_max]` where
+  - single year `Y` → `[Y, Y]`,
+  - any range or comma-list (`year_ranges: [[a,b], [c,d], …]`) → `[min(a, c, …), max(b, d, …)]`.
+
+A coin is **single-year** when `span_min == span_max` AND the source `year_label` carries one numeric year only (not a range that happens to be length-1).
+
+A coin is **range-coin** otherwise.
+
+Comparator for two coins X, Y:
+
+  1. **Both single-year** — compare `span_min` (= the year). If equal, fall back to a stable tiebreaker (`id`).
+  2. **One single-year, one range** — compare the single coin's year against the range coin's `span_min`. If equal, **single-year wins (sorts before range)**. (User's wording: «екземпляр1 йде раніше в списку за екземпляр2».)
+  3. **Both range-coins** — compare `span_min` first; if equal, compare `span_max`. If both equal, stable tiebreaker (`id`).
+
+**Implementation site.** `scripts/lib/categorize.py:158` — replace the `key=lambda c: (c.raw.year_first, c.raw.id)` lambda with a `functools.cmp_to_key`-wrapped comparator implementing the three cases above. The `Coin` schema already carries `year_first` + `year_last` + `year_ranges` + the structural distinction between single-year (`year_ranges` length 1 with `a==b`) and range-coins (everything else), so no schema change.
+
+**Plan.**
+
+  1. Add the `cmp_year_aware(c1, c2)` function in `scripts/lib/categorize.py` (or extract to a helper in `compute.py` if cleaner). Cover the three cases + the «single wins ties with range at the same min» exception.
+  2. Replace the existing `coins_in_phase.sort(...)` call.
+  3. Verify the rendered table for a Denmark phase that has a mix (e.g. Christian IV phases with several range-coins like KM-44 1608-1621 + single-year specimens) before / after the change.
+  4. Codify the rule in CLAUDE.md or a scripts/lib/categorize.py docstring so future schema-additions (e.g. multi-disjoint-range coins) don't silently regress.
+  5. Add an audit-section in `audit_health.py` to spot inversion cases (current sort puts a range-coin with `min=1646` before a single-year `1646` — should be the other way after fix).
 
 ---
 
