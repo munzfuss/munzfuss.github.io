@@ -795,9 +795,9 @@ phases:
   guldkrone:
     - id: pre-I
       year_from: 1618
-      year_to: 1628
+      year_to: 1648
       from_label: '1618'
-      to_label: '1628 (Esrum)'
+      to_label: '1648 (Hede 25 series end)'
       title:
         de: Christian-IV.-Vorgängerphase · Hofgeschenk und Soldzahlung
         en: Christian IV predecessor phase · court gift and mercenary pay
@@ -5382,6 +5382,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: '1'
+    metal_verified: true
   - id: dk-tid-97518
     fuss: reichsdukatenfuss
     phase: I
@@ -5432,6 +5433,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: '1'
+    metal_verified: true
   - id: dk-tid-99106
     fuss: 9_25_thaler
     phase: I
@@ -5460,6 +5462,7 @@ coins:
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
       uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
     fraction: '1'
+    metal_verified: true
   - id: km-x027-fr-iii-1651
     fuss: 9_25_thaler
     phase: I
@@ -5496,6 +5499,7 @@ coins:
       de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 176 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1651). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 176 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1651). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 176 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1651). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+    metal_verified: true
   - id: km-x022-fr-iii-1651
     fuss: kronemont
     phase: I
@@ -5534,6 +5538,7 @@ coins:
       de: Mzm. ursprünglich als Glückstadt erfaßt; bei späterer Auditierung gegen ucoin Period (Rigsdaler 1625-1699 bzw. Speciedaler 1582-1624 — Royal Danish Copenhagen) und KM-DK# 183 (Royal-Danish-Krause-Index ohne SH-Pendant) als königlich-dänische Kopenhagener Prägung re-attribuiert (1651). Mzm. weiterhin (?) — kein direkter Hede/Wilcke-Beleg.
       en: Mint originally recorded as Glückstadt; on later audit against ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) and KM-DK# 183 (Royal Danish Krause index with no SH counterpart), re-attributed as a Royal Danish Copenhagen issue (1651). Mint still (?) — no direct Hede / Wilcke attestation.
       uk: Монетний двір спочатку записано як Глюкштадт; під час подальшого аудиту проти ucoin Period (Rigsdaler 1625-1699 / Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 183 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано як королівсько-данську копенгагенську монету (1651). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke немає.
+    metal_verified: true
   - id: dk-tid-96431
     fuss: 9_25_thaler
     phase: I
@@ -5557,8 +5562,8 @@ coins:
       en: 'Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding. Metal not directly attested; inferred from Müntzfuß convention: sub-Skilling Scheide tier under 9_25_thaler.'
       uk: 'Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються. Метал не засвідчено джерелом; виведено з конвенції стандарту: sub-Skilling Scheide tier under 9_25_thaler.'
     fraction: 1/96
-    metal: billon
-    metal_verified: false
+    metal: copper
+    metal_verified: true
   - id: dk-tid-96463
     fuss: 9_25_thaler
     phase: I
@@ -18854,11 +18859,11 @@ coins:
         url: https://www.danskmoent.dk/chr/c4h26.htm
         ref: "Hede c4h26 (danskmoent.dk)"
   - id: km-74-1-hede-25b-chr-iv-1619
-    fuss: reichsdukatenfuss
-    phase: I
-    kind: kurant
+    fuss: guldkrone
+    phase: pre-I
+    kind: tarif
     fraction: '2'
-    nominal: Gold 2 Krone
+    nominal: 2 Guldkrone
     year_label: '1618–1619'
     year_first: 1618
     year_last: 1619
@@ -18897,12 +18902,16 @@ coins:
     fineness:
       - value: 0.917
         source: Hede 25B / danskmoent.dk
+    verification_note:
+      de: 'Hede c4h25 verzeichnet die Hede-25-Serie verbatim als «Pålydende: 2 Guldkrone» (Hede 25B · Bruttovægt 5,996 g · Finhed 0,917 · Finvægt 5,496 g — identisch mit unserer guldkrone-Fuß-Soll). Christian-IV-Guldkroner sind Tarifmünzen: Pålydende «2 Guldkrone» (Christian-IV-Krone-Einheit) entspricht dem bullion-Inhalt 1 Guldkrone-fein unter Frederik III.s nachfolgender Krone-Einheit-Reform. Fraktion «2» bezeichnet den Hede-Pålydende-Tarif; die Δ-Spalte zeigt rund −50 % als die durch die Krone-Einheits-Umdefinition entstandene Seigniorage (Christian-IV-Krone = ½ Frederik-III-Krone in Tarifeinheiten). Vorher fälschlich unter reichsdukatenfuß × 2 (= 2 Dukaten Ducat-fein); Bullionfeingehalt .917 ≠ Reichsdukat .986 — kein Fit. Projekt-Dokumentation `fuesse.yml` `guldkrone.events.first_adoption.note` zitiert bereits Ingvardson & Märcher 2010 zur Christian-IV-Predecessor-Continuity.'
+      en: "Hede c4h25 records the Hede 25 series verbatim as «Pålydende: 2 Guldkrone» (Hede 25B · Bruttovægt 5.996 g · Finhed 0.917 · Finvægt 5.496 g — identical to our guldkrone-Fuß Soll). Christian IV Guldkroner are Tarifmünzen: the «2 Guldkrone» Pålydende (in Christian IV's Krone unit) corresponds to 1 Guldkrone fein-content under Frederik III's later Krone unit reform. Fraction «2» reflects the Hede Pålydende tariff; the Δ column shows ~−50 % as the seigniorage arising from the Krone-unit redefinition (Christian IV's Krone = ½ Frederik III's Krone in tariff terms). Previously misplaced under reichsdukatenfuss × 2 (= 2 Ducats fein); bullion fineness .917 ≠ Reichsdukat .986 — no fit. The project's own `fuesse.yml` `guldkrone.events.first_adoption.note` already cites Ingvardson & Märcher 2010 on Christian IV predecessor continuity."
+      uk: 'Hede c4h25 verbatim класифікує серію Hede 25 як «Pålydende: 2 Guldkrone» (Hede 25B · Bruttovægt 5,996 г · Finhed 0,917 · Finvægt 5,496 г — ідентично нашій guldkrone-Fuß-Soll). Christian-IV-Guldkroner — Tarifmünzen: Pålydende «2 Guldkrone» (в одиниці Krone Кристіана IV) відповідає 1 Guldkrone fein-вмісту під одиницею Krone Frederik III післяреформеною. Фракція «2» означає Hede-Pålydende-тариф; колонка Δ показує ~−50 % як сеньйораж від переозначення Krone-одиниці (Krone Кристіана IV = ½ Krone Frederik III у тарифних одиницях). Раніше помилково під reichsdukatenfuss × 2 (= 2 Ducats фейн); проба .917 ≠ .986 Reichsdukat-стандарту — не вписується. У `fuesse.yml` `guldkrone.events.first_adoption.note` уже цитується Ingvardson & Märcher 2010 щодо continuity Christian-IV-предтечі.'
   - id: km-74-1-hede-25c-chr-iv-1621
-    fuss: reichsdukatenfuss
-    phase: I
-    kind: kurant
+    fuss: guldkrone
+    phase: pre-I
+    kind: tarif
     fraction: '2'
-    nominal: 2 Gold Krone
+    nominal: 2 Guldkrone
     year_label: '1621'
     year_first: 1621
     year_last: 1621
@@ -18949,6 +18958,10 @@ coins:
     fineness:
       - value: 0.917
         source: Hede 25C / danskmoent.dk
+    verification_note:
+      de: 'Hede c4h25 verzeichnet die Hede-25-Serie verbatim als «Pålydende: 2 Guldkrone» (Hede 25C · Bruttovægt 5,996 g · Finhed 0,917 · Finvægt 5,496 g — identisch mit unserer guldkrone-Fuß-Soll). Christian-IV-Guldkroner sind Tarifmünzen: Pålydende «2 Guldkrone» (Christian-IV-Krone-Einheit) entspricht dem bullion-Inhalt 1 Guldkrone-fein unter Frederik III.s nachfolgender Krone-Einheit-Reform. Fraktion «2» bezeichnet den Hede-Pålydende-Tarif; die Δ-Spalte zeigt rund −50 % als die durch die Krone-Einheits-Umdefinition entstandene Seigniorage (Christian-IV-Krone = ½ Frederik-III-Krone in Tarifeinheiten). Vorher fälschlich unter reichsdukatenfuß × 2 (= 2 Dukaten Ducat-fein); Bullionfeingehalt .917 ≠ Reichsdukat .986 — kein Fit. Projekt-Dokumentation `fuesse.yml` `guldkrone.events.first_adoption.note` zitiert bereits Ingvardson & Märcher 2010 zur Christian-IV-Predecessor-Continuity.'
+      en: "Hede c4h25 records the Hede 25 series verbatim as «Pålydende: 2 Guldkrone» (Hede 25C · Bruttovægt 5.996 g · Finhed 0.917 · Finvægt 5.496 g — identical to our guldkrone-Fuß Soll). Christian IV Guldkroner are Tarifmünzen: the «2 Guldkrone» Pålydende (in Christian IV's Krone unit) corresponds to 1 Guldkrone fein-content under Frederik III's later Krone unit reform. Fraction «2» reflects the Hede Pålydende tariff; the Δ column shows ~−50 % as the seigniorage arising from the Krone-unit redefinition (Christian IV's Krone = ½ Frederik III's Krone in tariff terms). Previously misplaced under reichsdukatenfuss × 2 (= 2 Ducats fein); bullion fineness .917 ≠ Reichsdukat .986 — no fit. The project's own `fuesse.yml` `guldkrone.events.first_adoption.note` already cites Ingvardson & Märcher 2010 on Christian IV predecessor continuity."
+      uk: 'Hede c4h25 verbatim класифікує серію Hede 25 як «Pålydende: 2 Guldkrone» (Hede 25C · Bruttovægt 5,996 г · Finhed 0,917 · Finvægt 5,496 г — ідентично нашій guldkrone-Fuß-Soll). Christian-IV-Guldkroner — Tarifmünzen: Pålydende «2 Guldkrone» (в одиниці Krone Кристіана IV) відповідає 1 Guldkrone fein-вмісту під одиницею Krone Frederik III післяреформеною. Фракція «2» означає Hede-Pålydende-тариф; колонка Δ показує ~−50 % як сеньйораж від переозначення Krone-одиниці (Krone Кристіана IV = ½ Krone Frederik III у тарифних одиницях). Раніше помилково під reichsdukatenfuss × 2 (= 2 Ducats фейн); проба .917 ≠ .986 Reichsdukat-стандарту — не вписується. У `fuesse.yml` `guldkrone.events.first_adoption.note` уже цитується Ingvardson & Märcher 2010 щодо continuity Christian-IV-предтечі.'
   - id: hede-156-chr-iv-1623
     fuss: reichsdukatenfuss
     phase: I
@@ -19046,11 +19059,11 @@ coins:
       - value: 0.76
         source: Hede 29 / danskmoent.dk
   - id: km-111-hede-28-chr-iv-1628
-    fuss: reichsdukatenfuss
-    phase: I
-    kind: kurant
+    fuss: guldkrone
+    phase: pre-I
+    kind: tarif
     fraction: '2'
-    nominal: 2 Gold Krone (Borgerskabets Mønt)
+    nominal: 2 Guldkrone
     year_label: '1628'
     year_first: 1628
     year_last: 1628
@@ -19096,12 +19109,16 @@ coins:
     fineness:
       - value: 0.917
         source: Hede 28 / danskmoent.dk
+    verification_note:
+      de: 'Hede c4h25 verzeichnet die Hede-25-Serie verbatim als «Pålydende: 2 Guldkrone» (Hede 28 · Bruttovægt 5,996 g · Finhed 0,917 · Finvægt 5,496 g — identisch mit unserer guldkrone-Fuß-Soll). Christian-IV-Guldkroner sind Tarifmünzen: Pålydende «2 Guldkrone» (Christian-IV-Krone-Einheit) entspricht dem bullion-Inhalt 1 Guldkrone-fein unter Frederik III.s nachfolgender Krone-Einheit-Reform. Fraktion «2» bezeichnet den Hede-Pålydende-Tarif; die Δ-Spalte zeigt rund −50 % als die durch die Krone-Einheits-Umdefinition entstandene Seigniorage (Christian-IV-Krone = ½ Frederik-III-Krone in Tarifeinheiten). Vorher fälschlich unter reichsdukatenfuß × 2 (= 2 Dukaten Ducat-fein); Bullionfeingehalt .917 ≠ Reichsdukat .986 — kein Fit. Projekt-Dokumentation `fuesse.yml` `guldkrone.events.first_adoption.note` zitiert bereits Ingvardson & Märcher 2010 zur Christian-IV-Predecessor-Continuity.'
+      en: "Hede c4h25 records the Hede 25 series verbatim as «Pålydende: 2 Guldkrone» (Hede 28 · Bruttovægt 5.996 g · Finhed 0.917 · Finvægt 5.496 g — identical to our guldkrone-Fuß Soll). Christian IV Guldkroner are Tarifmünzen: the «2 Guldkrone» Pålydende (in Christian IV's Krone unit) corresponds to 1 Guldkrone fein-content under Frederik III's later Krone unit reform. Fraction «2» reflects the Hede Pålydende tariff; the Δ column shows ~−50 % as the seigniorage arising from the Krone-unit redefinition (Christian IV's Krone = ½ Frederik III's Krone in tariff terms). Previously misplaced under reichsdukatenfuss × 2 (= 2 Ducats fein); bullion fineness .917 ≠ Reichsdukat .986 — no fit. The project's own `fuesse.yml` `guldkrone.events.first_adoption.note` already cites Ingvardson & Märcher 2010 on Christian IV predecessor continuity."
+      uk: 'Hede c4h25 verbatim класифікує серію Hede 25 як «Pålydende: 2 Guldkrone» (Hede 28 · Bruttovægt 5,996 г · Finhed 0,917 · Finvægt 5,496 г — ідентично нашій guldkrone-Fuß-Soll). Christian-IV-Guldkroner — Tarifmünzen: Pålydende «2 Guldkrone» (в одиниці Krone Кристіана IV) відповідає 1 Guldkrone fein-вмісту під одиницею Krone Frederik III післяреформеною. Фракція «2» означає Hede-Pålydende-тариф; колонка Δ показує ~−50 % як сеньйораж від переозначення Krone-одиниці (Krone Кристіана IV = ½ Krone Frederik III у тарифних одиницях). Раніше помилково під reichsdukatenfuss × 2 (= 2 Ducats фейн); проба .917 ≠ .986 Reichsdukat-стандарту — не вписується. У `fuesse.yml` `guldkrone.events.first_adoption.note` уже цитується Ingvardson & Märcher 2010 щодо continuity Christian-IV-предтечі.'
   - id: km-74-2-hede-25d-chr-iv-1628
-    fuss: reichsdukatenfuss
-    phase: I
-    kind: kurant
+    fuss: guldkrone
+    phase: pre-I
+    kind: tarif
     fraction: '2'
-    nominal: Gold 2 Krone
+    nominal: 2 Guldkrone
     year_label: '1628'
     year_first: 1628
     year_last: 1628
@@ -19142,12 +19159,16 @@ coins:
     fineness:
       - value: 0.917
         source: Hede 25D / danskmoent.dk
+    verification_note:
+      de: 'Hede c4h25 verzeichnet die Hede-25-Serie verbatim als «Pålydende: 2 Guldkrone» (Hede 25D · Bruttovægt 5,996 g · Finhed 0,917 · Finvægt 5,496 g — identisch mit unserer guldkrone-Fuß-Soll). Christian-IV-Guldkroner sind Tarifmünzen: Pålydende «2 Guldkrone» (Christian-IV-Krone-Einheit) entspricht dem bullion-Inhalt 1 Guldkrone-fein unter Frederik III.s nachfolgender Krone-Einheit-Reform. Fraktion «2» bezeichnet den Hede-Pålydende-Tarif; die Δ-Spalte zeigt rund −50 % als die durch die Krone-Einheits-Umdefinition entstandene Seigniorage (Christian-IV-Krone = ½ Frederik-III-Krone in Tarifeinheiten). Vorher fälschlich unter reichsdukatenfuß × 2 (= 2 Dukaten Ducat-fein); Bullionfeingehalt .917 ≠ Reichsdukat .986 — kein Fit. Projekt-Dokumentation `fuesse.yml` `guldkrone.events.first_adoption.note` zitiert bereits Ingvardson & Märcher 2010 zur Christian-IV-Predecessor-Continuity.'
+      en: "Hede c4h25 records the Hede 25 series verbatim as «Pålydende: 2 Guldkrone» (Hede 25D · Bruttovægt 5.996 g · Finhed 0.917 · Finvægt 5.496 g — identical to our guldkrone-Fuß Soll). Christian IV Guldkroner are Tarifmünzen: the «2 Guldkrone» Pålydende (in Christian IV's Krone unit) corresponds to 1 Guldkrone fein-content under Frederik III's later Krone unit reform. Fraction «2» reflects the Hede Pålydende tariff; the Δ column shows ~−50 % as the seigniorage arising from the Krone-unit redefinition (Christian IV's Krone = ½ Frederik III's Krone in tariff terms). Previously misplaced under reichsdukatenfuss × 2 (= 2 Ducats fein); bullion fineness .917 ≠ Reichsdukat .986 — no fit. The project's own `fuesse.yml` `guldkrone.events.first_adoption.note` already cites Ingvardson & Märcher 2010 on Christian IV predecessor continuity."
+      uk: 'Hede c4h25 verbatim класифікує серію Hede 25 як «Pålydende: 2 Guldkrone» (Hede 25D · Bruttovægt 5,996 г · Finhed 0,917 · Finvægt 5,496 г — ідентично нашій guldkrone-Fuß-Soll). Christian-IV-Guldkroner — Tarifmünzen: Pålydende «2 Guldkrone» (в одиниці Krone Кристіана IV) відповідає 1 Guldkrone fein-вмісту під одиницею Krone Frederik III післяреформеною. Фракція «2» означає Hede-Pålydende-тариф; колонка Δ показує ~−50 % як сеньйораж від переозначення Krone-одиниці (Krone Кристіана IV = ½ Krone Frederik III у тарифних одиницях). Раніше помилково під reichsdukatenfuss × 2 (= 2 Ducats фейн); проба .917 ≠ .986 Reichsdukat-стандарту — не вписується. У `fuesse.yml` `guldkrone.events.first_adoption.note` уже цитується Ingvardson & Märcher 2010 щодо continuity Christian-IV-предтечі.'
   - id: km-74-2-hede-25a-chr-iv-1628
-    fuss: reichsdukatenfuss
-    phase: I
-    kind: kurant
+    fuss: guldkrone
+    phase: pre-I
+    kind: tarif
     fraction: '2'
-    nominal: 2 Gold Krone
+    nominal: 2 Guldkrone
     year_label: '1628'
     year_first: 1628
     year_last: 1628
@@ -19188,6 +19209,10 @@ coins:
     fineness:
       - value: 0.917
         source: Hede 25A / danskmoent.dk
+    verification_note:
+      de: 'Hede c4h25 verzeichnet die Hede-25-Serie verbatim als «Pålydende: 2 Guldkrone» (Hede 25A · Bruttovægt 5,996 g · Finhed 0,917 · Finvægt 5,496 g — identisch mit unserer guldkrone-Fuß-Soll). Christian-IV-Guldkroner sind Tarifmünzen: Pålydende «2 Guldkrone» (Christian-IV-Krone-Einheit) entspricht dem bullion-Inhalt 1 Guldkrone-fein unter Frederik III.s nachfolgender Krone-Einheit-Reform. Fraktion «2» bezeichnet den Hede-Pålydende-Tarif; die Δ-Spalte zeigt rund −50 % als die durch die Krone-Einheits-Umdefinition entstandene Seigniorage (Christian-IV-Krone = ½ Frederik-III-Krone in Tarifeinheiten). Vorher fälschlich unter reichsdukatenfuß × 2 (= 2 Dukaten Ducat-fein); Bullionfeingehalt .917 ≠ Reichsdukat .986 — kein Fit. Projekt-Dokumentation `fuesse.yml` `guldkrone.events.first_adoption.note` zitiert bereits Ingvardson & Märcher 2010 zur Christian-IV-Predecessor-Continuity.'
+      en: "Hede c4h25 records the Hede 25 series verbatim as «Pålydende: 2 Guldkrone» (Hede 25A · Bruttovægt 5.996 g · Finhed 0.917 · Finvægt 5.496 g — identical to our guldkrone-Fuß Soll). Christian IV Guldkroner are Tarifmünzen: the «2 Guldkrone» Pålydende (in Christian IV's Krone unit) corresponds to 1 Guldkrone fein-content under Frederik III's later Krone unit reform. Fraction «2» reflects the Hede Pålydende tariff; the Δ column shows ~−50 % as the seigniorage arising from the Krone-unit redefinition (Christian IV's Krone = ½ Frederik III's Krone in tariff terms). Previously misplaced under reichsdukatenfuss × 2 (= 2 Ducats fein); bullion fineness .917 ≠ Reichsdukat .986 — no fit. The project's own `fuesse.yml` `guldkrone.events.first_adoption.note` already cites Ingvardson & Märcher 2010 on Christian IV predecessor continuity."
+      uk: 'Hede c4h25 verbatim класифікує серію Hede 25 як «Pålydende: 2 Guldkrone» (Hede 25A · Bruttovægt 5,996 г · Finhed 0,917 · Finvægt 5,496 г — ідентично нашій guldkrone-Fuß-Soll). Christian-IV-Guldkroner — Tarifmünzen: Pålydende «2 Guldkrone» (в одиниці Krone Кристіана IV) відповідає 1 Guldkrone fein-вмісту під одиницею Krone Frederik III післяреформеною. Фракція «2» означає Hede-Pålydende-тариф; колонка Δ показує ~−50 % як сеньйораж від переозначення Krone-одиниці (Krone Кристіана IV = ½ Krone Frederik III у тарифних одиницях). Раніше помилково під reichsdukatenfuss × 2 (= 2 Ducats фейн); проба .917 ≠ .986 Reichsdukat-стандарту — не вписується. У `fuesse.yml` `guldkrone.events.first_adoption.note` уже цитується Ingvardson & Märcher 2010 щодо continuity Christian-IV-предтечі.'
   - id: km-51-hede-23b-chr-iv-1629
     fuss: reichsdukatenfuss
     phase: I
@@ -19329,11 +19354,11 @@ coins:
       en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -0.30% against the soll value sits within the ±2 % specimen-tolerance envelope, so the assumed value contradicts no sourced datum.
       uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss, якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -0.30% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
   - id: km-74-2-hede-25e-chr-iv-1648
-    fuss: reichsdukatenfuss
-    phase: I
-    kind: kurant
+    fuss: guldkrone
+    phase: pre-I
+    kind: tarif
     fraction: '2'
-    nominal: 2 Gold Krone
+    nominal: 2 Guldkrone
     year_label: '1648'
     year_first: 1648
     year_last: 1648
@@ -19373,6 +19398,10 @@ coins:
     fineness:
       - value: 0.917
         source: Hede 25E / danskmoent.dk
+    verification_note:
+      de: 'Hede c4h25 verzeichnet die Hede-25-Serie verbatim als «Pålydende: 2 Guldkrone» (Hede 25E · Bruttovægt 5,996 g · Finhed 0,917 · Finvægt 5,496 g — identisch mit unserer guldkrone-Fuß-Soll). Christian-IV-Guldkroner sind Tarifmünzen: Pålydende «2 Guldkrone» (Christian-IV-Krone-Einheit) entspricht dem bullion-Inhalt 1 Guldkrone-fein unter Frederik III.s nachfolgender Krone-Einheit-Reform. Fraktion «2» bezeichnet den Hede-Pålydende-Tarif; die Δ-Spalte zeigt rund −50 % als die durch die Krone-Einheits-Umdefinition entstandene Seigniorage (Christian-IV-Krone = ½ Frederik-III-Krone in Tarifeinheiten). Vorher fälschlich unter reichsdukatenfuß × 2 (= 2 Dukaten Ducat-fein); Bullionfeingehalt .917 ≠ Reichsdukat .986 — kein Fit. Projekt-Dokumentation `fuesse.yml` `guldkrone.events.first_adoption.note` zitiert bereits Ingvardson & Märcher 2010 zur Christian-IV-Predecessor-Continuity.'
+      en: "Hede c4h25 records the Hede 25 series verbatim as «Pålydende: 2 Guldkrone» (Hede 25E · Bruttovægt 5.996 g · Finhed 0.917 · Finvægt 5.496 g — identical to our guldkrone-Fuß Soll). Christian IV Guldkroner are Tarifmünzen: the «2 Guldkrone» Pålydende (in Christian IV's Krone unit) corresponds to 1 Guldkrone fein-content under Frederik III's later Krone unit reform. Fraction «2» reflects the Hede Pålydende tariff; the Δ column shows ~−50 % as the seigniorage arising from the Krone-unit redefinition (Christian IV's Krone = ½ Frederik III's Krone in tariff terms). Previously misplaced under reichsdukatenfuss × 2 (= 2 Ducats fein); bullion fineness .917 ≠ Reichsdukat .986 — no fit. The project's own `fuesse.yml` `guldkrone.events.first_adoption.note` already cites Ingvardson & Märcher 2010 on Christian IV predecessor continuity."
+      uk: 'Hede c4h25 verbatim класифікує серію Hede 25 як «Pålydende: 2 Guldkrone» (Hede 25E · Bruttovægt 5,996 г · Finhed 0,917 · Finvægt 5,496 г — ідентично нашій guldkrone-Fuß-Soll). Christian-IV-Guldkroner — Tarifmünzen: Pålydende «2 Guldkrone» (в одиниці Krone Кристіана IV) відповідає 1 Guldkrone fein-вмісту під одиницею Krone Frederik III післяреформеною. Фракція «2» означає Hede-Pålydende-тариф; колонка Δ показує ~−50 % як сеньйораж від переозначення Krone-одиниці (Krone Кристіана IV = ½ Krone Frederik III у тарифних одиницях). Раніше помилково під reichsdukatenfuss × 2 (= 2 Ducats фейн); проба .917 ≠ .986 Reichsdukat-стандарту — не вписується. У `fuesse.yml` `guldkrone.events.first_adoption.note` уже цитується Ingvardson & Märcher 2010 щодо continuity Christian-IV-предтечі.'
   - id: km-166-fr-iii-1648
     fuss: reichsdukatenfuss
     phase: I
@@ -20833,11 +20862,11 @@ coins:
       - value: 0.979
         source: Hede 40C / danskmoent.dk
   - id: km-278-fr-iii-1666
-    fuss: reichsdukatenfuss
+    fuss: guldkrone
     phase: I
-    kind: kurant
-    fraction: '2'
-    nominal: Gold Krone
+    kind: tarif
+    fraction: '1'
+    nominal: 1 Guldkrone
     year_label: '1666'
     year_first: 1666
     year_last: 1666
@@ -20877,6 +20906,10 @@ coins:
     fineness:
       - value: 0.917
         source: Hede 44 / danskmoent.dk
+    verification_note:
+      de: 'Hede f3h44 verzeichnet diesen Typ verbatim als «Pålydende: 1 Guldkrone» (Bruttovægt 5,590 g · Finhed 0,917 · Finvægt 5,126 g · København 1666). Späte Frederik-III-Guldkrone der Kopenhagen-Folgeprägung nach Glückstadt 1657-1660; leichte Untergewichtigkeit (Δ −6 %) typisch für die 1666er Spät-ausgabe. Vorher fälschlich unter reichsdukatenfuß × 2; Bullion-Feingehalt .917 ≠ Reichsdukat .986 — kein Fit. Sister-Stücke km-40-2-fr-iii-1657 (Glückstadt Hede 145B) und km-303-fr-iii-1668 (Kopenhagen) bereits korrekt unter guldkrone-Fuß × 1 kind=tarif.'
+      en: 'Hede f3h44 records this type verbatim as «Pålydende: 1 Guldkrone» (Bruttovægt 5.590 g · Finhed 0.917 · Finvægt 5.126 g · København 1666). Late Frederik III Guldkrone, Copenhagen continuation after the Glückstadt 1657-1660 mass-issue; slight under-weight (Δ −6 %) typical for the 1666 late issue. Previously misplaced under reichsdukatenfuss × 2; bullion fineness .917 ≠ Reichsdukat .986 — no fit. Sister entries km-40-2-fr-iii-1657 (Glückstadt Hede 145B) and km-303-fr-iii-1668 (Copenhagen) were already correctly placed under guldkrone × 1 kind=tarif.'
+      uk: 'Hede f3h44 verbatim класифікує цей тип як «Pålydende: 1 Guldkrone» (Bruttovægt 5,590 г · Finhed 0,917 · Finvægt 5,126 г · København 1666). Пізня Frederik-III-Guldkrone, копенгагенське продовження після ґлюкштадтського масового 1657-1660; легке під-вага (Δ −6 %) типове для 1666 пізнього випуску. Раніше помилково під reichsdukatenfuss × 2; проба .917 ≠ .986 Reichsdukat — не вписується. Sister-записи km-40-2-fr-iii-1657 (Glückstadt Hede 145B) і km-303-fr-iii-1668 (Копенгаген) вже були правильно під guldkrone × 1 kind=tarif.'
   - id: km-271-fr-iii-1666
     fuss: kronemont
     phase: I
