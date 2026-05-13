@@ -11,14 +11,12 @@
 
 **Surfaced during.** Verifying that timeline bars («Standard / Karbung / im Umlauf» — status / mint / circulation layers) on the Denmark + SH pages reflect the post-2026-05-13 data state. The `guldkrone` Fuß was the clear case from this session's «latest findings» — its anywhere-axis events were extended from 1655 → 1618 to match the Christian-IV Guldkrone unification (commits `6f8fe18` + `4b28b8e` + `e050128`). While doing that walk, two PRE-EXISTING mismatches surfaced — not from this session's work, worth their own audit pass:
 
-**Mismatch 1: `kronemont_chr_iv` last_mint vs DK data**
+**Mismatch 1: `kronemont_chr_iv` last_mint vs DK data — RESOLVED 2026-05-13**
 
   - `events.last_mint.anywhere = 1652`
-  - DK coin span: 1618-1675 (11 post-1652 entries, ruler Frederik III + Christian V).
+  - DK coin span had been 1618-1675 (11 post-1652 entries, ruler Frederik III + Christian V).
 
-The 11 entries are all `verified: false` seed-bucket coins (`dk-tid-97148` through `dk-tid-97332`). Christian IV's Kronemønt (`kronemont_chr_iv` fuss-id) ended formally in 1644 when Frederik III introduced the post-Kipper Krone (`kronemont` fuss-id). The 11 entries probably belong under `kronemont` (Frederik III/Christian V 1644-1696) or `kronemont_fine` (1693-1771), not under `kronemont_chr_iv`. Bulk-import heuristic mis-classification.
-
-Fix: re-classify each via PB-4 Müntzfuß-disambiguation (data/locations/denmark.yml:dk-tid-97148/97238/97239/99133/99134/99165/99166/99167/99168/97308/97332).
+Per PB-4 Δ-from-Soll comparison: all 11 entries computed to specimen-fein within ±0.5% of `kronemont` (10½-Krone-Fuß) Soll, vs ~-8% from `kronemont_chr_iv` Soll. Re-classified `kronemont_chr_iv → kronemont` with phase I (Frederik III 1665-1669, 8 entries) or phase II (Christian V 1671-1675, 3 entries). Closed via commit ahead. Verified: kronemont_chr_iv data span now 1618-1652 exactly matching events; kronemont coin count 54 → 65.
 
 **Mismatch 2: `9_thaler` SH last_mint vs SH data**
 
