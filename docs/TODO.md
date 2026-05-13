@@ -130,16 +130,15 @@ Documented in `docs/SOURCES.md` §13.4.
 
 **Real precedent:** c4h47 (Frederik IV 16 Skilling 1713 silver page; Bruun-attested gold off-strike Schou 1a at Double-Ducat weight ~6.93 g, not the silver spec-card 5.197 g). The Schou 1a variant signature is what catches the pattern. Per new §9 rule, the prior fix («silver-convert the gold entry») is wrong; the correct fix would have been to drop the off-strike entry entirely. Revisit c4h47 as part of this sweep.
 
-### AE. 🟢 Build-guard survivors audit — metal/weight/year mismatch guards on seed-merge  *(opened 2026-05-13)* *(est: small)*
+### AE. 🟢 Build-guard survivors audit — metal/weight/year mismatch guards on seed-merge  *(opened 2026-05-13, closure-pending 2026-05-13)* *(est: small)*
 
-**Surfaced.** Latest build reports persistent guard-survivors:
+**Surfaced.** Latest build reports persistent guard-survivors. Investigated 2026-05-13:
 
-  - **9 metal-mismatch kept** — auto-suppress's metal-mismatch guard preserves seed entries whose Hede ref is also referenced by a curated entry but at a different metal (the «cf-companion citation» pattern). Most are legitimate cf-citations and the keep is correct. ONE outlier (`dk-hede-c5h128` → `km-79-chr-v-1693` SH): seed says silver, curated says billon, fineness 0.437 on both — fineness-similarity escape hatch in `_merge_seeds_into_raw` (CLAUDE.md §4 + `scripts/build.py:408-416`) should match (Δ=0%) but doesn't. **Investigate `_weight_values()` for list-form fineness extraction; likely fixable.**
-  - **2 year-mismatch kept** — confirmed legitimate via guard-replication scan 2026-05-13: `dk-hede-c4h55` (1624) vs `dk-tid-97358` (1646) Δ=22y; `dk-hede-c4h167` (1588) vs `km-85-chr-iv-1640` (SH, 1640) Δ=52y. **Earlier suspicion of off-by-one on c4h99B/C/D vs km-52 — FALSE ALARM**: those pairs are |Δ|=2 which is within the ±10y window and guard correctly suppresses them. Drop the c4h99 sub-point from this entry.
+  - **9 metal-mismatch kept** — 8 are legitimate cf-companion citations (gold Portugaloser citing the silver Hede sub-type whose dies it shares). ONE outlier — `dk-hede-c5h128` (silver) → `km-79-chr-v-1693` SH (billon, same fineness 0.437) — has identical fineness but escape hatch in `scripts/build.py:408-416` doesn't fire. **Root cause identified**: SH curated `fineness[]` includes outlier value 0.347 (Numista, tagged «likely transcription error») which pulls midpoint to 0.392 vs seed 0.437 → 10.3% delta, exceeds 2% threshold. The fix needs a structured way to exclude tagged-anomalous values from the min/max computation — moved to §AL.
+  - **5 weight-mismatch kept** — analogous root cause. Curated `weight_rough_g[]` lists include outlier values (km-25 .49g Numista anomaly, km-128 8.428g Numista transcription error, hede-47 6.93g Bruun gold-strike — now resolved) that pull the 25%-ratio guard. Same anomaly-field redesign needed — moved to §AL.
+  - **2 year-mismatch kept** — confirmed legitimate via guard-replication scan 2026-05-13: `dk-hede-c4h55` (1624) vs `dk-tid-97358` (1646) Δ=22y; `dk-hede-c4h167` (1588) vs `km-85-chr-iv-1640` (SH, 1640) Δ=52y. Earlier suspicion of off-by-one on c4h99B/C/D vs km-52 — FALSE ALARM (Δ=2y within ±10y window, guard correctly suppresses them).
 
-**Plan.** One-off fix for c5h128 escape-hatch + the c4h99 false-alarm note correction. Quick.
-
-**Out of scope here — moved to §AL.** The 5 weight-mismatch survivors require a richer data model than a guard-string-match: rather than tightening the guard to grep for «likely transcription error» in free-text source labels, we want a structured `anomaly` field on weight/fineness/diameter list-form entries with three states (confirmed source error / acceptable variance / unconfirmed outlier). Guard then operates on that structured field. Tracked as §AL — see Normal priority section below.
+**Closure.** No standalone fix in §AE; all three sub-investigations point at the same root cause (anomaly-outlier handling) which §AL will address structurally. Year-mm sub-investigation surfaced no action — guard is working correctly on the legitimate pairs. §AE is now a documentation entry recording the diagnosis; **mark Done after §AL lands** (since §AL closure subsumes the practical fixes).
 
 ### AD. 🔵 Hede sub-letter Pattern B fold buckets — 38 remaining  *(opened 2026-05-13)* *(est: many sessions)*
 
