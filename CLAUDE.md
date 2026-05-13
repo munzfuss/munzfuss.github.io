@@ -1,6 +1,6 @@
 # Numismatic Münzfüße Project — Claude Code Context
 
-> **Read this file first on every session.** It contains non-negotiable principles and conventions developed over many research sessions. Supporting files: `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`, `docs/CONVENTIONS.md`, `docs/GLOSSARY.md`, `docs/SOURCES.md` (per-source quirks log), `docs/PLAYBOOKS.md` (step-by-step procedures for recurrent tasks).
+> **Read this file first on every session.** It contains non-negotiable principles and conventions developed over many research sessions. Supporting files: `docs/ARCHITECTURE.md`, `docs/DECISIONS.md`, `docs/CONVENTIONS.md`, `docs/GLOSSARY.md`, `docs/SOURCES.md` (per-source quirks log), `docs/PLAYBOOKS.md` (step-by-step procedures for recurrent tasks), `docs/notes/YYYY-MM-DD.md` (immutable daily reasoning archive).
 >
 > **Rules vs procedures split.** `CLAUDE.md` carries IMMUTABLE RULES — what is forbidden, what is required, what conventions apply. `docs/PLAYBOOKS.md` carries EXECUTABLE PROCEDURES — how to actually do recurrent tasks (per-case Hede dedup merge, ucoin Composition harvest session, web-research citation cycle, Müntzfuß disambiguation, adding a Bruun specimen, adding a new location, cross-Krause-volume KM-collision handling, session lifecycle, closing a TODO). When you find yourself asking «what's the procedure for X?», check `docs/PLAYBOOKS.md` PB-N first.
 >

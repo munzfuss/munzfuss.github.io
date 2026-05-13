@@ -955,6 +955,26 @@ inflation).
 4. **Add to `docs/SOURCES.md` §13** any new source quirk that cost
    > 15 min to figure out.
 
+4a. **Append to `docs/notes/YYYY-MM-DD.md`** (today's daily note).
+    Create the file if it doesn't exist for today's date. Capture:
+    - the session's topic (one-line heading),
+    - what happened (high-level prose, not commit-by-commit),
+    - insights / observations that aren't strong enough for TODO /
+      DECISIONS / §13 yet,
+    - open threads at session end (forward-pointers),
+    - references (commit SHAs, TODO §X added/closed, decisions
+      logged, §13.Y additions, PB-N additions).
+
+    The daily note is immutable once committed — the forward-
+    pointing version of «what's pending?» lives in `handoff.md`;
+    the immutable archive of «what was the reasoning?» lives in
+    the dated note. See `docs/notes/README.md` for the convention
+    + worked examples.
+
+    If the session didn't touch any project-work (only chatted /
+    explored / answered questions), no note needed. Empty notes
+    are forbidden.
+
 5. **Close completed TODOs.** Move from `## Open` to `## Done` with
    a closure note that summarises the work + cites the commit SHA.
    Match the existing template (see closed TODOs I, J, K, S in
