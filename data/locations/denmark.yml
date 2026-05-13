@@ -1617,6 +1617,7 @@ coins:
     fuss: 9_thaler
     phase: I
     kind: kurant
+    fraction: 1/2
     nominal: 2 Mark
     year_label: '1604'
     year_first: 1604
@@ -1624,22 +1625,34 @@ coins:
     mint: Kopenhagen
     catalog:
       km: '23'
+      hede: '76'
+      sieg: '82'
     metal: silver
     fineness: 0.65
-    weight_rough_g: 16.58
+    weight_rough_g:
+      - value: 18.37
+        source: Numista
+      - value: 16.58
+        source: ucoin
     sources:
+      - type: numista
+        url: https://en.numista.com/catalogue/pieces111384.html
+        ref: Numista
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h76.htm
+        ref: Hede 76 / danskmoent.dk
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-mark-1604/?tid=163059
         ref: ucoin
     issuing_entity: danish_realm
-    verified: false
+    verified: true
     fineness_verified: true
     weight_rough_verified: true
-    mint_verified: false
+    mint_verified: true
     verification_note:
-      de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-      en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-      uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
+      de: 'Reckoning 2 Mark = 1/2 Speciesdaler nach Wikipedia DE «Speciestaler»: «seit vor 1619 Speciesdaler (4 Rigsmarker zu 20 Skillinger Currentmönt) im 9 1/4 Taler-Fuß» — d. h. 4 Mark Danske = 1 Speciedaler pre-Corona-Danica (1604 vor der späteren Umstellung auf 6 Mark = 1 Speciedaler im Krone-Zeitalter ab 1644). Hede c4h76 und das danskmoent.dk-Index «2mark.htm» bestätigen Hede 76 / Sieg 82 / Schou 13-16 als KM-23-Typ-Klassifikation; Total-Auflage 424 Daler-equivalent. Gewichtsspread Numista 18,37 g vs ucoin 16,58 g (≈ 10 %) typisch für einen 424-Daler-Kleintirage — beide Werte als Specimen-Belege in weight_rough_g aufgeführt. Δ unter 1/2 × 9-Fuß: Numista -8,7 %, ucoin -17 %; Numista-Wert paßt besser zu der Norm für eine Kleinauflage Christians IV. vor der Kipper-Zeit.'
+      en: "Reckoning «2 Mark = 1/2 Speciedaler» per Wikipedia DE «Speciestaler»: «seit vor 1619 Speciesdaler (4 Rigsmarker zu 20 Skillinger Currentmönt) im 9 1/4 Taler-Fuß» — i.e. 4 Mark Danske = 1 Speciedaler pre-Corona-Danica (1604 predates the shift to 6 Mark = 1 Speciedaler under the Krone era from 1644). Hede c4h76 and the danskmoent.dk «2mark.htm» index confirm Hede 76 / Sieg 82 / Schou 13-16 as the KM-23 type classification; total mintage 424 Daler-equivalent. Weight spread Numista 18.37 g vs ucoin 16.58 g (≈ 10 %) is typical for a 424-Daler small mintage — both values preserved as specimen attestations in weight_rough_g. Δ under 1/2 × 9-Fuß: Numista -8.7 %, ucoin -17 %; Numista's value matches the norm for a small pre-Kipper Christian IV emission better."
+      uk: 'Reckoning «2 Mark = 1/2 Speciedaler» згідно Wikipedia DE «Speciestaler»: «seit vor 1619 Speciesdaler (4 Rigsmarker zu 20 Skillinger Currentmönt) im 9 1/4 Taler-Fuß» — тобто 4 Mark Danske = 1 Speciedaler до Corona Danica (1604 — до пізнішого переходу на 6 Mark = 1 Speciedaler у Krone-епосі з 1644). Hede c4h76 та danskmoent.dk-індекс «2mark.htm» підтверджують Hede 76 / Sieg 82 / Schou 13-16 як KM-23-тип; повний тираж 424 Daler-equivalent. Розкид ваги Numista 18,37 g vs ucoin 16,58 g (≈ 10 %) типовий для малого тиражу 424 Daler — обидва значення збережено як specimen-attestation у weight_rough_g. Δ під 1/2 × 9-Fuß: Numista -8,7 %, ucoin -17 %; Numista-значення краще пасує до норми малотиражного pre-Kipper Christian-IV-карбування.'
     metal_verified: true
   - id: dk-tid-163077
     fuss: reichsdukatenfuss
