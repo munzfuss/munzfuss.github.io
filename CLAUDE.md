@@ -602,83 +602,12 @@ Decision tests for a new script:
 - *Will this run again on the next phase of similar work, but not on every build?* → `scripts/maintenance/`.
 - *Single-shot, hardcoded to data already gone / consumed?* → `scripts/oneoff/` (gitignored).
 
-## Harvest submodule workflow
+## Harvest cache
 
-`scripts/cache/` is a **git submodule** pointing to a separate **private** repo
-(`munzfuss/munzfuss-harvest`). The submodule carries the regenerable artefacts
-of network fetches and PDF parses (Hede HTML+JSON, IKMK JSON, Numista JSON,
-Bruun parsed lots, ucoin URL index). The main repo stays slim; the build
-pipeline doesn't read this cache — only fetchers / parsers / audits /
-maintenance scripts do.
+`scripts/cache/` is a git submodule (private repo `munzfuss-harvest`). The build pipeline does NOT read it — only fetchers / parsers / audits / maintenance scripts do. Pages deploys are unaffected (CI doesn't pull the submodule).
 
-### First clone on a new machine
-
-```bash
-git clone --recursive https://github.com/munzfuss/munzfuss.github.io.git
-```
-
-Already cloned without `--recursive`? Initialise the submodule after the fact:
-
-```bash
-git submodule update --init
-```
-
-The submodule URL is HTTPS to a private repo, so the first clone will prompt
-for GitHub credentials (or use SSH if you've set up SSH agent).
-
-### Build doesn't need the submodule
-
-`python scripts/build.py` (validation, render, full build) does NOT read
-`scripts/cache/`. The build pipeline works on a clone WITHOUT the submodule
-initialised — `scripts/cache/` is just an empty directory. The CI deploy
-workflow (`.github/workflows/deploy.yml`) uses `actions/checkout@v4` with
-the default `submodules: false`, so Pages deploys are unaffected by the
-harvest split.
-
-Only these workflows need the submodule:
-
-- Re-parsing Hede (`scripts/parse_hede.py`)
-- Re-fetching from any source (`scripts/fetch_*.py`)
-- Running audits (`scripts/audit_*.py`)
-- Most `scripts/maintenance/*` lifecycle scripts
-
-### Committing cache changes
-
-When a session changes cache contents (typical trigger: `parse_hede.py
---force` after a parser fix updates 100+ Hede JSON files), the workflow is:
-
-```bash
-# 1. Commit cache changes in the submodule first.
-cd scripts/cache
-git add <changed files>
-git commit -m "harvest(<source>): <what changed>"
-git push
-
-# 2. Bump the submodule pointer in the main repo.
-cd ../..
-git add scripts/cache       # records the new commit SHA the submodule points at
-git commit -m "build: bump harvest submodule (<reason>)"
-git push
-```
-
-Both steps are atomic from the main repo's perspective: the bump-pointer
-commit in main always references a commit that already exists on the
-harvest remote. **Push the submodule first, then push main** — otherwise
-collaborators (or CI, if it ever starts pulling the submodule) would see
-a dangling pointer.
-
-Conventional-prefix messages:
-- Inside `scripts/cache/`: `harvest(<source>):` (e.g. `harvest(hede):`,
-  `harvest(numista):`, `harvest(ikmk):`).
-- Inside main bumping the pointer: `build: bump harvest submodule ...`.
-
-### When in doubt, build runs
-
-If a session that changed cache files forgets the two-step commit dance,
-the symptom is: `git status` in main shows `modified: scripts/cache (new
-commits)` even after pushing the cache contents. That's just the
-submodule-pointer bump waiting to be committed in main. Step 2 above
-fixes it.
+- **First clone on a new machine, build doesn't need the submodule, what workflows do need it**: `docs/ARCHITECTURE.md` §«Harvest cache (submodule)».
+- **Committing harvest changes — the submodule-first-then-bump-pointer dance + symptom diagnosis when `git status` shows `modified: scripts/cache (new commits)`**: `docs/PLAYBOOKS.md` PB-10 «Committing harvest cache changes».
 
 ## Data editing workflow
 

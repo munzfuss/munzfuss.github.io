@@ -1056,3 +1056,65 @@ fixed, the design decision is made and implemented).
 **Related rules.** CLAUDE.md «Commit messages MUST be in English».
 
 ---
+
+## PB-10. Committing harvest cache changes
+
+**When this fires.** A session touched files under `scripts/cache/`
+(usual triggers: `parse_hede.py --force` after a parser fix updates
+100+ Hede JSONs; `fetch_ikmk.py` adds new museum records; ucoin
+composition harvest writes to `_composition.json`; Bruun parser
+update rewrites `lots/part*.json`). The main repo's `git status` then
+shows `modified: scripts/cache (new commits)` — that's the submodule
+pointer waiting to be bumped.
+
+Architectural background: `scripts/cache/` is a private-repo
+submodule (see `docs/ARCHITECTURE.md` §«Harvest cache»). It carries
+regenerable fetch / parse artefacts; the build pipeline doesn't read
+it; only fetchers / parsers / audits / maintenance scripts do.
+
+**The two-step commit dance.** Push the submodule FIRST, then bump
+the pointer in main. Otherwise collaborators (or CI, if it ever
+starts pulling the submodule) see a dangling pointer.
+
+```bash
+# 1. Commit cache changes in the submodule first.
+cd scripts/cache
+git add <changed files>
+git commit -m "harvest(<source>): <what changed>"
+git push
+
+# 2. Bump the submodule pointer in the main repo.
+cd ../..
+git add scripts/cache       # records the new commit SHA the submodule points at
+git commit -m "build: bump harvest submodule (<reason>)"
+git push
+```
+
+**Conventional-prefix messages.**
+
+- Inside `scripts/cache/`: `harvest(<source>):` (e.g.
+  `harvest(hede):`, `harvest(numista):`, `harvest(ikmk):`,
+  `harvest(ucoin):`, `harvest(bruun):`).
+- Inside main bumping the pointer: `build: bump harvest submodule
+  (<one-line reason>)`.
+
+**Symptom diagnosis — when in doubt, this runs.** If a session that
+changed cache files forgets the two-step dance, the symptom is
+`git status` in main shows `modified: scripts/cache (new commits)`
+even after pushing the cache contents. That's just the
+submodule-pointer bump waiting to be committed in main; step 2 above
+fixes it.
+
+**Push-permission rule still applies.** Per CLAUDE.md «Commit cadence
++ push reminder»: never push autonomously. Both `git push` calls above
+require the user's explicit «пуш» / «push» grant. The grant covers
+the turn — for the harvest two-step, that means one grant authorises
+both pushes (submodule first, main second), since they together form
+the «atomic harvest commit» from the user's perspective.
+
+**Related rules.** CLAUDE.md «Harvest cache» pointer; ARCHITECTURE.md
+«Harvest cache (submodule)» section (canonical architectural
+description); CLAUDE.md «Commit cadence + push reminder» (governs
+both pushes).
+
+---

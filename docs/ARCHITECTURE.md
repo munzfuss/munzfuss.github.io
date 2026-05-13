@@ -312,6 +312,39 @@ Decision precedence:
 
 After every bulk-import or manual coin addition, re-run the categoriser; the dropped count grows and the active buckets re-stabilise.
 
+## Harvest cache (submodule)
+
+`scripts/cache/` is a **git submodule** pointing at a separate **private** repo (`munzfuss/munzfuss-harvest`). The submodule carries the regenerable artefacts of network fetches and PDF parses (Hede HTML+JSON, IKMK JSON, Numista JSON, Bruun parsed lots, ucoin URL index). The main repo stays slim; the build pipeline doesn't read this cache — only fetchers / parsers / audits / maintenance scripts do.
+
+### First clone on a new machine
+
+```bash
+git clone --recursive https://github.com/munzfuss/munzfuss.github.io.git
+```
+
+Already cloned without `--recursive`? Initialise the submodule after the fact:
+
+```bash
+git submodule update --init
+```
+
+The submodule URL is HTTPS to a private repo, so the first clone will prompt for GitHub credentials (or use SSH if you've set up SSH agent).
+
+### Build doesn't need the submodule
+
+`python scripts/build.py` (validation, render, full build) does NOT read `scripts/cache/`. The build pipeline works on a clone WITHOUT the submodule initialised — `scripts/cache/` is just an empty directory. The CI deploy workflow (`.github/workflows/deploy.yml`) uses `actions/checkout@v4` with the default `submodules: false`, so Pages deploys are unaffected by the harvest split.
+
+Only these workflows need the submodule:
+
+- Re-parsing Hede (`scripts/parse_hede.py`)
+- Re-fetching from any source (`scripts/fetch_*.py`)
+- Running audits (`scripts/audit_*.py`)
+- Most `scripts/maintenance/*` lifecycle scripts
+
+### Committing harvest changes — see PB-10
+
+When a session changes cache contents (typical trigger: `parse_hede.py --force` after a parser fix updates 100+ Hede JSON files), follow the two-step submodule-first-then-pointer-bump dance documented in **`docs/PLAYBOOKS.md` PB-10 «Committing harvest cache changes»**.
+
 ## GitHub Actions (deploy)
 
 ```yaml
