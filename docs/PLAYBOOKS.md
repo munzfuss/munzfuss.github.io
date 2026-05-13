@@ -1118,3 +1118,86 @@ description); CLAUDE.md «Commit cadence + push reminder» (governs
 both pushes).
 
 ---
+
+## PB-11. Preview-mode lifecycle — auto-build + stop / restart
+
+The Claude Preview MCP runs a live preview server against the
+project's rendered output. Two operational concerns: keep the preview
+in sync with this turn's edits (auto-build), and respect that the
+user — not Claude — owns the preview lifecycle (stop / restart).
+
+### Auto-build at end-of-turn
+
+**Rule.** When the preview server is running AND this turn modified a
+file that affects rendered output, run `python scripts/build.py`
+before ending the turn. This keeps the preview window in sync with
+the working tree without the user having to ask.
+
+**How to detect preview is active.** The harness emits
+`PostToolUse:Write hook additional context: A preview server is
+running.` after any Write / Edit. If that reminder appears anywhere
+in the turn — or if `mcp__Claude_Preview__*` tools are in scope —
+treat preview as on.
+
+**Files that affect rendered output (build-trigger):**
+- `data/locations/*.yml` — coin data, phases, references
+- `data/shared/*.yml` — fuesse, mints
+- `data/i18n/*.yml` — UI strings
+- `templates/**.j2` — Jinja
+- `config/theme.yml` — CSS theme tokens
+- `scripts/build.py`, `scripts/lib/**` — build pipeline + `style.base.css`
+- `assets/**` — copied verbatim into `site/assets/`
+
+**Files that do NOT trigger a rebuild:**
+- `docs/**`, `CLAUDE.md`, `README.md`
+- `scripts/maintenance/**`, `scripts/audit_*.py`, `scripts/oneoff/**`
+- `scripts/cache/**` (read by maintenance scripts; not by `build.py`)
+- `scripts/fetch_*.py`, `scripts/match_*.py`
+- `requirements.txt`, `local.env`, `.gitignore`
+
+**Granularity.** Run the build ONCE at end of turn, not after every
+Edit. If the turn has multiple edits across web-affecting files,
+one build at the end covers them all.
+
+**When in doubt: build.** ~5-15 s of CPU cost beats the user noticing
+a stale preview manually.
+
+**If validation / render fails**: surface the failure in the response,
+don't silently retry. Schema-validation breaks usually came from this
+turn's edits and need a fix.
+
+### Stop / restart — never unilateral
+
+**Rule.** **Never call `mcp__Claude_Preview__preview_stop`** unless
+the user has explicitly asked for it (in this turn or earlier in the
+same session) — even if the preview seems idle, finished, or
+redundant. The user runs the preview lifecycle; Claude does not stop
+it unilaterally.
+
+**Exception (explicit-permission phrasings).** When the user directly
+says «stop the preview», «перезапусти превʼю», «restart the preview»,
+or any equivalent phrasing that names the preview AND a stop/restart
+action, that counts as the explicit permission this rule requires —
+proceed with `preview_stop` (followed by `preview_start` for a
+restart) without asking again.
+
+**Restart implies stop.** Specifically for «restart» / «перезапусти»:
+a restart is by definition stop + start, so a request to restart
+inherently authorises the stop step — no separate confirmation
+needed. This restart-implies-stop logic is **scoped strictly to the
+restart phrasing** — it does not generalise to other words that could
+be construed as adjacent (e.g. «refresh the preview», «reset»,
+«прибери» without «перезапусти»); for anything that isn't an explicit
+stop or restart request, the default no-stop rule still applies.
+
+**Page reload — same shape.** The same applies to `location.reload()`
+via `preview_eval` when the user asks to reload / refresh the page.
+
+**Ambiguous mentions.** If the user mentions the preview but not a
+stop/restart action, ask first; if disk-space or memory pressure
+becomes an issue, surface it and let the user decide.
+
+**Related rules.** CLAUDE.md «Preview lifecycle» pointer; CLAUDE.md
+«Build command».
+
+---

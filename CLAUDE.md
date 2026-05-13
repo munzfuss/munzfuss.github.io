@@ -511,45 +511,12 @@ python scripts/build.py --debug            # also writes output/debug/*.json
 python scripts/build.py --validate-only    # runs schema validation, no rendering
 ```
 
-### Preview-mode auto-build (operational rule)
+### Preview lifecycle
 
-> **When the preview server is running and this turn modified a file
-> that affects rendered output, run `python scripts/build.py` before
-> ending the turn.** Keeps the preview window in sync with the working
-> tree without the user having to ask.
->
-> **How to detect preview is active.** The harness emits
-> `PostToolUse:Write hook additional context: A preview server is
-> running.` after any Write / Edit. If that reminder appears anywhere
-> in the turn — or if `mcp__Claude_Preview__*` tools are in scope —
-> treat preview as on.
->
-> **Files that affect rendered output (build-trigger):**
-> - `data/locations/*.yml` — coin data, phases, references
-> - `data/shared/*.yml` — fuesse, mints
-> - `data/i18n/*.yml` — UI strings
-> - `templates/**.j2` — Jinja
-> - `config/theme.yml` — CSS theme tokens
-> - `scripts/build.py`, `scripts/lib/**` — build pipeline + `style.base.css`
-> - `assets/**` — copied verbatim into `site/assets/`
->
-> **Files that do NOT trigger a rebuild:**
-> - `docs/**`, `CLAUDE.md`, `README.md`
-> - `scripts/maintenance/**`, `scripts/audit_*.py`, `scripts/oneoff/**`
-> - `scripts/cache/**` (read by maintenance scripts; not by `build.py`)
-> - `scripts/fetch_*.py`, `scripts/match_*.py`
-> - `requirements.txt`, `local.env`, `.gitignore`
->
-> **Granularity.** Run the build ONCE at end of turn, not after every
-> Edit. If the turn has multiple edits across web-affecting files,
-> one build at the end covers them all.
->
-> **When in doubt: build.** ~5-15 s of CPU cost beats the user
-> noticing a stale preview manually.
->
-> **If validation / render fails**: surface the failure in the
-> response, don't silently retry. Schema-validation breaks usually
-> came from this turn's edits and need a fix.
+The Claude Preview MCP serves a live preview against the rendered output. Two operational rules govern Claude's interaction with it; both are documented in **`docs/PLAYBOOKS.md` PB-11 «Preview-mode lifecycle»**:
+
+- **Auto-build at end-of-turn** — when preview is running AND this turn modified a build-trigger file (`data/**`, `templates/**`, `scripts/build.py`, `scripts/lib/**`, `config/theme.yml`, `assets/**`), run `python scripts/build.py` once before ending the turn. PB-11 §«Auto-build» has the full trigger-file list + detection heuristic.
+- **Never call `preview_stop` unilaterally** — the user owns the preview lifecycle. Explicit-permission phrasings («stop / restart / перезапусти превʼю» that names the preview AND a stop / restart action) authorise the call; «refresh / reset» do NOT. The «restart implies stop» rule is scoped strictly to restart phrasings. PB-11 §«Stop / restart» carries the full rule.
 
 ## Git workflow
 
@@ -652,9 +619,10 @@ Reports schema validation, per-location coin counts, seed state, cache freshness
 - Conflicting sources on fineness
 - Whether a new variant deserves its own row or a note on existing row
 - Translation calls for specialized numismatic terms in UK (Ukrainian numismatic vocabulary is sparse)
-- **Never call `mcp__Claude_Preview__preview_stop`** unless the user has explicitly asked for it (in this turn or earlier in the same session) — even if the preview seems idle, finished, or redundant. The user runs the preview lifecycle; Claude does not stop it unilaterally. **Exception: when the user directly says «stop the preview», «перезапусти превʼю», «restart the preview», or any equivalent phrasing that names the preview AND a stop/restart action, that counts as the explicit permission this rule requires** — proceed with `preview_stop` (followed by `preview_start` for a restart) without asking again. **Specifically for «restart» / «перезапусти»: a restart is by definition stop + start, so a request to restart inherently authorises the stop step — no separate confirmation needed.** This restart-implies-stop logic is **scoped strictly to the restart phrasing** — it does not generalise to other words that could be construed as adjacent (e.g. «refresh the preview», «reset», «прибери» without «перезапусти»); for anything that isn't an explicit stop or restart request, the default no-stop rule still applies. The same applies to `location.reload()` via `preview_eval` when the user asks to reload / refresh the page. If the user mentions the preview but not a stop/restart action, ask first; if disk-space or memory pressure becomes an issue, surface it and let the user decide.
 
 Never invent translations for technical German numismatic terms without confirming with the user.
+
+For the **preview lifecycle (stop / restart) rule**, see «Preview lifecycle» above and `docs/PLAYBOOKS.md` PB-11 — preview-stop is governed by a dedicated rule, not by the «ask when in doubt» reflex.
 
 ## Prior work (context)
 
