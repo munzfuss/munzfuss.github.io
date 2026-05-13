@@ -291,6 +291,23 @@ A reference entry's job is to tell the reader **where to verify the claim**, ful
 - Publisher and/or year for printed works; URL for online works.
 - Hyperlink with `target="_blank"`.
 - At most one sentence (≤ 140 chars) saying *what the source attests* — e.g. «source for the Speciedaler standard 25.28173 g», «attests the 1618 patent date».
+- **Concrete page hint** when the source is a long-form work (see «Mandatory page hints» below).
+
+**Mandatory page hints for long-form sources.** When the URL or work points to a document of **≥10 pages** — PDF book, multi-chapter monograph, auction catalogue, periodical issue, multi-volume Konversationslexikon, scanned ordinance gazette — the scope note MUST carry a **concrete** page reference to the cited claim. The ref body without a page hint is invalid for these sources.
+
+Forms accepted (use whichever fits the underlying work's pagination scheme):
+- `«verbatim quote» (S. 14)` — short quote + page, the canonical form.
+- `Band 11, S. 890–891` — for multi-volume works name the volume + pages.
+- `Kap. 4, S. 123–125` — chapter + pages when the work is chapter-based.
+- `§ 5, S. 12` — paragraph + page in legal / ordinance texts.
+
+**Approximate ranges, vague descriptors, and «irgendwo im Buch» are forbidden.** Specifically NOT acceptable: «ca. S. 14–25», «im ersten Kapitel», «ungefähr Mitte», «passim», «throughout», «зокрема в книзі». The reader who follows the ref must land on the exact line of the claim, not skim the whole work.
+
+**Wikisource / Wikipedia exception.** If the underlying print source has page numbers, those still go in the scope note (Wikisource transcribes per-page, so «MKL 1888, Band 11, S. 890–891» applies even though the URL is a wiki page). Pure wiki-only articles (no print original) use the section anchor instead, e.g. «Abschnitt ‹Geschichte›» / «section ‹History›».
+
+**Catalogue-of-catalogues / umbrella refs are forbidden.** A single `ref{N}` listing «Stack's Bowers Part I PDF + Part II PDF + Part III PDF + Part IV PDF» is a bundle and violates the «Multi-source bundles» rule below. Each PDF / part is its own work and gets its own atomic ref when cited inline. Catalogue-level «for reference» bibliography entries that no inline `<sup>[N]</sup>` points to are dead weight — the per-claim `sources[].ref` arrays on coin entries already document citations with full part + lot + page detail, that's where the catalogue surfaces.
+
+**Operational test before committing a ref to a long-form source.** Look at the scope-note string. Does a page reference appear as a literal number? If no — do the page-finding step now (pypdf / pdftotext / WebFetch of archive.org's djvu text / pdf-viewer MCP / Wikisource page-marker scan). Skipping it silently regresses §0 — the reader cannot verify the claim without re-skimming hundreds of pages, which means the citation has failed at its primary job.
 
 **Forbidden inside a ref body:**
 - Multi-sentence analysis, argumentation, or interpretation («establishes that …», «proves that …», «in other words: …»).

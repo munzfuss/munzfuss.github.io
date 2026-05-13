@@ -317,45 +317,6 @@ Defer concrete prototyping until a user pain-point trigger surfaces;
 the implementation isn't large but the design space (UI form factor,
 multilingual normalisation) deserves a focused turn.
 
-### S. Add page numbers to long-PDF / book refs  *(opened 2026-05-13)*
-
-Per Wikipedia / academic citation convention, bibliography entries
-pointing to long PDFs or multi-chapter books should specify which
-page or section the cited claim sits on. Our scope-note sentence
-in `*-references.yml` (per CLAUDE.md §5a, ≤ 140 chars) is the right
-place — short quote + page hint together: `«<i>verbatim quote</i>»
-(S. 14)`. Without page hints the reader has to skim the whole PDF
-to verify a single date / number.
-
-One case fixed so far:
-
-* **`denmark-references.yml::ref21`** (Abildgren 2004, 32 pp.) —
-  added page hints + verbatim quotes for the two claims the entry
-  backs: 2 August 1914 gold-suspension (p. 14) + 1 January 1927
-  pre-war-parity return (p. 17). The PDF text was extracted via
-  `pypdf` from the cached `webfetch-*.pdf`; for other long PDFs
-  the same procedure works.
-
-Sweep tasks:
-
-* Walk all `*-references.yml` files. For each entry whose URL
-  points to a PDF and the document is >10 pages, OR whose URL
-  points to a multi-chapter book / monograph, check whether the
-  scope note carries a page hint.
-* If not, open the source (PDF viewer / pypdf / pdftotext) and
-  locate the specific page(s) where the cited claim is made.
-  Append page hint + ideally a short verbatim quote (≤ 25 words
-  per quote per CLAUDE.md mandatory copyright requirements) to
-  the scope note.
-* Special cases: Bruun PDFs (350+ pages) — page hints are
-  essential. Hede 1971 paper book — chapter or page if accessible.
-  Wikisource / Wikipedia — anchor + paragraph hint works
-  (those don't have «pages»).
-
-The sweep is incremental and can be picked up entry-by-entry when
-that entry's prose is being edited anyway (e.g. when a coin's note
-gets the `<sup>[N]</sup>` citation added).
-
 ### R. Backfill canonical fineness on fineness-missing coins  *(opened 2026-05-13)*
 
 Many seed / partially-curated entries carry `fineness: null` (or
@@ -1037,6 +998,21 @@ explicit decision that Bremen stays outside the project scope.
 ---
 
 ## Done
+
+### S. Add page numbers to long-PDF / book refs  *(opened 2026-05-13, closed 2026-05-13)*
+
+**Surfaced.** Bibliography entries pointing to long PDFs / books were sometimes citing a single claim without naming the page — forcing the reader to skim hundreds of pages to verify. CLAUDE.md §5a recommended a scope note (≤ 140 chars) but the page-hint requirement was implicit, and an audit-sweep across the project's references files turned up three entries lacking concrete pages plus one umbrella ref that bundled four Bruun PDFs under one slot (violating the «atomic refs» rule).
+
+**Sweep done in one pass (audit + fixes):**
+
+* `schleswig_holstein-references.yml::ref38` — was a Stack's Bowers Bruun-collection umbrella (4 PDFs, 350+ pp each, no page hints). The only inline `<sup>[38]</sup>` citation in SH yaml backs the verbatim Plakat 1782 quote; full text-search across all four cached Bruun PDFs (`scripts/cache/bruun/pages/part*.txt`) confirms that phrase is NOT in Bruun. Repurposed ref38 to mirror `german_fuesse-references.yml::ref38` (danskmoent.dk Christian 7 ordinances) — the actual source. Bruun stays cited inline in per-coin `sources[]` arrays with full part + lot + page detail; bibliography-level Bruun umbrella was dead weight.
+* `german_fuesse-references.yml::ref7` — Meyers Konversationslexikon 1888 Müntzfuß (Wikisource). Located the article in the underlying print original: Band 11, S. 890–891. Page hint added to scope note in all three languages.
+* `german_fuesse-references.yml::ref12` — Adolf Soetbeer's *Denkschrift betreffend deutsche Münzeinigung* (1869, 91 pp). Located the verbatim Bankvaluta quote via archive.org's djvu text search: page 4. Page hint added.
+* `denmark-references.yml::ref21` — Abildgren 2004 (32 pp) was already fixed in an earlier session (commit `8cb9a7a`): p. 14 (1914 gold-suspension) + p. 17 (1927 parity return). Listed here for completeness.
+
+**Rule strengthened (CLAUDE.md §5a):** added a «Mandatory page hints for long-form sources» sub-section that makes concrete page references **required** for any ref whose underlying work is ≥10 pages — PDF book, multi-chapter monograph, auction catalogue, periodical issue, multi-volume Konversationslexikon, scanned ordinance gazette. Approximate ranges, vague descriptors («passim», «ungefähr Mitte», «im ersten Kapitel»), and umbrella-of-PDFs refs are now explicitly forbidden. The rule lists acceptable forms (`(S. 14)` / `Band 11, S. 890–891` / `Kap. 4, S. 123–125` / `§ 5, S. 12`) plus the Wikisource exception (use the underlying print source's pagination when transcribed; section anchor for pure wiki-only articles).
+
+Future refs are caught by the rule at write-time; the sweep is no longer needed as a recurring TODO.
 
 ### I. Restructure `\n`-joined source labels in scalar metric fields  *(closed 2026-05-10)*
 

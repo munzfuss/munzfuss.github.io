@@ -105,7 +105,6 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
 | §P | Denmark DK vs DK+ entity audit (1773 Helstaten cutoff) |
 | §Q | Pull Hede / Numista commentary material into coin notes |
 | §R | Backfill canonical fineness on `fineness: null` coins (Cat-1 fuesse) |
-| §S | Add page numbers to long-PDF / book refs (sweep pattern) |
 | §T | Keyword search across coins on a location page |
 | §U | Per-specimen Δ-computation needs explicit weight+fineness lineage |
 | §V | Numista / ucoin cache coverage audit (no auto-merge pipeline yet) |
