@@ -210,6 +210,29 @@ When in doubt, ask: *would this phrase appear in a peer-reviewed numismatic arti
 - **5-decimal precision** for all Feingewicht calculations that appear in text. Internal computation uses full float precision.
 - **`=` vs `≈` vs `Kurs`**: strict distinction. `=` for exact mathematical identity; `≈` for approximations ≤0.1%; `Kurs` for historically-set exchange rates that need not reflect metal content.
 
+### 3a. `year_label` field — plain decimal years only
+
+The `coins[].year_label` field accepts **only plain decimal years or year-ranges** (the «Рік(роки)» column on the rendered page). Allowed shapes:
+
+```yaml
+year_label: '1603'                    # single year
+year_label: '1603-1613'               # closed range (en-dash / hyphen)
+year_label: '1603–1605, 1607–1609, 1611, 1613'   # mixed list (the canonical multi-year form)
+year_label: '1646, 1648'              # comma-separated discrete years
+```
+
+**Forbidden in `year_label`** (anything that is not a bare numeric year or range):
+
+- **«(?)» inline marker** — `1606 (?)`, `1670-1699 (?)`, etc. The (?) marker is rendered automatically for fields that carry per-field verification flags (`metal_verified` / `fineness_verified` / `weight_rough_verified` / `diameter_mm_verified` / `mint_verified`); the year column has no equivalent flag and no auto-render path, so inline (?) on `year_label` is a category error (puts the uncertainty marker on the wrong substrate).
+- **Roman numerals** — `MDCIII (1603)`, `MDCXLVI`. The coin's literal inscription belongs in `note` prose, not in the structured year field.
+- **«ca.» / «ND» / «c.» / «approximately» / «ungefähr»** — any approximation or numismatic-shorthand prefix. The year_label is structural data, not editorial commentary. If the year is genuinely approximate, encode it as the best-attested decimal year + explain the uncertainty in `note` prose («Datierung ungefähr — die einzige Quelle datiert das Stück auf ca. 1606»).
+- **Parenthesised qualifiers** — `(1677-1678)`, `(?)`, `(estimated)`. Parens never appear in `year_label`.
+- **Range modifiers in prose form** — «1671 oder 1672», «1646/47», «1646 to 1648». Use plain dash / en-dash: «1671-1672» / «1646-1647» / «1646-1648».
+
+**The unverified-field marker `(?)` is the renderer's job, not the data's job.** The renderer adds the (?) span only for fields whose per-field `*_verified` flag is `false`. To express «this coin's year is uncertain» as a project decision, the path is either (a) keep the structural year_label clean and explain in note prose, or (b) add a new per-field `year_verified` flag with proper schema + render support — never inline-annotate the structured field.
+
+**When a year-format edge case feels contested** — e.g. a coin truly has no readable year and the attribution range is wide — ask the user before committing a non-conformant format. The «hard rule + escape hatch» pattern from §0a applies here too.
+
 ### 4. Unconfirmed data marker `(?)`
 
 When a value is estimated, unverified, or based on analogy rather than a primary source, mark the field as unverified. In YAML: `verified: false` with a `verification_note`. The build script renders this as `(?)` with a tooltip.
