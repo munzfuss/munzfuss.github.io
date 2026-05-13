@@ -1,6 +1,6 @@
 # Session handoff
 
-> **Read at session start, alongside `CLAUDE.md` + `docs/TODO.md`.**
+> **Read at session start, alongside `CLAUDE.md` + `docs/TODO.md` + `docs/SOURCES.md` §13-§14 + `docs/PLAYBOOKS.md`.**
 >
 > Short-term state for the next agent (or future-me) to pick up cold:
 > *what was I doing, what's next, what's blocking, what's freshly
