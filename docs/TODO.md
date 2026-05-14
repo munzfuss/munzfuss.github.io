@@ -1770,14 +1770,6 @@ Per-coin fein 7.495 g = 2.18 Reichsdukaten ≈ ~2 silver Daler at 12:1 gold-silv
 
 **Plan**: research tariff via danskmoent.dk + Bobzin; document in umbrella dossier; decide Fuß placement; move c4h23 / c4h24 / c4h23b from `seed_unsorted` to the resolved Fuß.
 
-### AY. 🟢 Investigate Frederik II 3 Mark gold (f2h8) — one-off classification  *(opened 2026-05-14)* *(est: small)*
-
-**Surfaced.** Umbrella research dossier §1.4: Hede f2h8 is **a 3 Mark coin in GOLD**, 1560 / 1563, fineness 0.906, brutto 29.232 g, fein **26.491 g**. This is unique — a heavy gold piece not part of the Bremerholm tri-standard (Ungersk Gylden / Guldkrone / Rhinsk Gylden), not part of any later Christian IV series.
-
-The 26.49 g fein figure is close to one Cölln. Marck fein × 1/9 (= 25.98 g) or thereabouts — possibly an experimental piece testing a **heavy gold denomination tied to silver Daler value via gold-silver ratio**. At 1560s gold-silver ratio ~11:1, this piece would have melt-value ≈ 290 g silver = ~33 Skilling Danske of silver-equivalent — far above its 3 Mark face value (= 48 Skilling Danske face, since 1 Mark = 16 Skilling pre-1602 reform). Tariff coin or prestige Schaumünze?
-
-**Plan**: research via danskmoent.dk + Galster + period source. Document tariff if any; classify as «one-off» / new sub-Fuß / Schaumünze. Could be part of a tiny series we haven't catalogued.
-
 ---
 
 ## Low priority
@@ -1785,6 +1777,37 @@ The 26.49 g fein figure is close to one Cölln. Marck fein × 1/9 (= 25.98 g) or
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
+
+### AY. f2h8 «3 Mark» classification — silver Speciedaler, not gold one-off  *(opened 2026-05-14, closed 2026-05-14)*
+
+**Surfaced.** Initial framing in `docs/research/danish_royal_gold_1560_1648.md` and §AU promotion treated Hede f2h8 («3 Mark» 1560, 1563, brutto 29.232 g, finhed 0.906/0.937, fein 26.491/27.405 g) as a **«heavy gold one-off»** requiring classification investigation — possibly Schaumünze or proto-Daler-gold.
+
+**Investigation result** (2026-05-14, via Hede f2h8 raw text extraction):
+
+> «I katalogerne rubriceres denne mønt normalt som **1 speciedaler**.»
+> «1560 (Hede 8A): finhed 0.906, fein 26.491 g, Marken-fin 8.827 speciedaler»
+> «1563 (Hede 8B): finhed 0.937, fein 27.405 g, Marken-fin 8.533 speciedaler»
+> «Mønten synes slået for **privat regning**.»
+> «**Guldafslag** (RRR; Schou 6) 10 Dukat.»
+
+So f2h8 is **a SILVER 1 Speciedaler**, not gold:
+
+  - Catalogues classify as «1 speciedaler» (silver).
+  - «III MARCK DANSKE» reverse legend is the nominal-account label (1 Speciedaler = 3 Mark Danske under Christian-III pre-1602 convention).
+  - **Privately minted** (private account, not state ordonnance) — only 16 specimens of 1560 sub-letter.
+  - Hede sub-letter split: 8A (1560) Marken-fin 8.827 = identical to Christian-III-1541 base standard (c3h3 Hede 3A); 8B (1563) Marken-fin 8.533 = slightly heavier private mintmaster's choice.
+  - **Guldafslag** (gold off-strike, 10 Dukat face) is RRR single specimen — per CLAUDE.md §9 exclusion #3 (off-strike single specimens), out of circulation register.
+
+Per **Aagaard, Sven**: *Privat udmøntede speciedalere 1560 og 1563 under Frederik II samt 1590 og 1596(?) under Christian IV* (NNUM 2/2009, pp. 47-54), f2h8 belongs to a small set of privately-minted speciedalere from Frederik II and Christian IV reigns, also covering Christian IV's c4h43 «1 Speciedaler 1590».
+
+**Closed** (commit `<this commit SHA>`):
+
+  - Seed entry split from single `dk-hede-f2h8` (incorrectly `metal: gold, nominal: 3 Mark`) into **`dk-hede-f2h8a` (1560)** + **`dk-hede-f2h8b` (1563)** — both `metal: silver, nominal: 1 Speciedaler`, fineness 0.906 / 0.937 respectively. `verification_note` explains the privately-minted context, the Marken-fin distinction, and the Guldafslag off-strike exclusion per §9.3.
+  - Both stay in `seed_unsorted` for Fuß placement — they belong to the **Christian-III-Daler-fod silver tradition** documented in `docs/research/christian_iii_danish_coinage_1534_1572.md` §8 Phase A, classification deferred until that broader silver-Fuß design lands.
+  - Build merged 411 seed coins (was 410, +1 from f2h split).
+  - Research dossiers `danish_royal_gold_1560_1648.md` and `christian_iii_danish_coinage_1534_1572.md` both updated (commit `7d99174`) with the correct f2h8 framing.
+
+---
 
 ### AU. Promote Frederik II gold 1563-64 from Hede cache to seed  *(opened 2026-05-14, closed 2026-05-14)*
 
