@@ -1677,6 +1677,47 @@ weight_rough_g:
 
 ---
 
+### AT. 🟢 Surface `bruun_collection_id` as a rendered catalog ref («Bruun-NNNN»)  *(opened 2026-05-14)* *(est: small)*
+
+**Surfaced.** User direction 2026-05-14, while compiling the §AB Daler-Klippe dossier (which extensively cited Bruun-4666 / 4667 / 4670 as the canonical specimen catalog references). The Bruun catalogues («L. E. Bruun Collection · A Corpus of Scandinavian Coins», Stack's Bowers Zürich Part I-IV 2025) print every coin under a stable `Bruun-NNNN` collection index alongside KM-/Hede-/Sieg-/Schou- catalog refs. Our coin data captures this in `catalog.bruun_collection_id`, but the renderer does not currently surface it in the rendered catalog-ref column — only `bruun_lot` (legacy single-field auction reference) is listed in `scripts/lib/compute.py:203-212` `_NAMED_FIELDS`.
+
+**Concrete gap.** `_NAMED_FIELDS` (compute.py:203):
+
+```python
+_NAMED_FIELDS: list[tuple[str, str]] = [
+    ("km", "KM"), ("hede", "Hede"), ("sieg", "Sieg"), ("schou", "Schou"),
+    ("lange", "Lange"), ("fr", "Fr"), ("dav", "Dav"),
+    ("bruun_lot", "Bruun"),  # ← legacy, often empty/missing
+]
+```
+
+Missing: `("bruun_collection_id", "Bruun-coll")` (or similar label). Example coins where the data IS present but unrendered:
+
+  - `denmark::km-27-chr-iv-1604` (8 Daler Klippe) — `bruun_collection_id: '4666'`
+  - `denmark::dk-tid-163410` (6 Daler) — `bruun_collection_id: '4667'`
+  - `denmark::dk-tid-163409` (4 Daler) — `bruun_collection_id: '4670'`
+
+These have «Bruun-4666 / 4667 / 4670» in the source Bruun catalogue text but not in our rendered table.
+
+**User direction**: surface as a rendered catalog ref **«нарівні або в others»** — either inline as a first-class catalog ref alongside KM / Hede / Sieg, OR in the `others` list. Both are acceptable; the inline route mirrors how Stack's Bowers prints these.
+
+**Plan.**
+
+  1. **Decide placement** (inline vs others). The inline route is recommended: Bruun-NNNN is a stable cross-referenceable specimen-collection index (every Bruun-published coin has one), not a one-off auction marker (which is what `bruun_lot` would be). Treat it like KM / Hede / Sieg in render priority.
+  2. **Add to `_NAMED_FIELDS`** in `scripts/lib/compute.py:203`. Suggested entry:
+     ```python
+     ("bruun_collection_id", "Bruun-coll"),
+     ```
+     Or shorter label «Bruun» (collides with current `bruun_lot` slot — resolve by either dropping the legacy entry or renaming).
+  3. **Resolve overlap with legacy `bruun_lot`**. Check whether any curated coin currently uses `bruun_lot` without `bruun_collection_id` — if so, decide migration strategy (back-fill bruun_collection_id, or keep both). The schema docstring (schema.py:317-323) already notes `bruun_lot` is legacy single-field, mirrors `bruun_collection_id` when both populated.
+  4. **Verify rendered output**: rebuild denmark.html + schleswig_holstein.html, spot-check Daler-Klippe rows (km-27, dk-tid-163409, dk-tid-163410) for «Bruun-4666» etc. appearing in the catalog-ref column with correct tooltip.
+  5. **Update CLAUDE.md i18n policy section** if needed: «Bruun-NNNN» format should be consistent across DE / EN / UK (catalog refs are non-translated identifiers per the policy).
+  6. **Optional**: audit script in `audit_health.py` that lists Bruun-curated entries lacking a `bruun_collection_id` — surfaces missing data that the new rendering would expose.
+
+**Cross-references.** §AN (Bruun cross-citation noise) flags three coins where `bruun_collection_id` might be mis-attributed by the Bruun parser — fix §AT renderer first so the data state becomes visible, then resolve §AN as actual data correctness work.
+
+---
+
 ## Low priority
 
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
