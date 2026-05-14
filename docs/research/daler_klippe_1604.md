@@ -25,17 +25,20 @@ minting formulas in the **Møntordning of 1602** (main reform 25 June
 Daler is NOT in the ordinance and is documented in only a single
 specimen — likely a private / experimental strike.
 
-**Tariff (face value)**: 6 Daler = 3.5 Hungarian Gulden (≡ 3.5
-Reichsdukaten at 0.986 fineness, since «Ungersk gylden» of this era
-had the same metric). This sets **1 Daler 1604 ≡ 0.583 Dukat ≡ 2.005 g
-fein gold**, in parallel with the 1602 silver Daler tariff at **66
-Skilling Danske**.
+**Ordinance-defined exchange rate** (Def 2 «tariff» — see §2.5
+terminology): 6 Daler = 3.5 Hungarian Gulden (≡ 3.5 Reichsdukaten
+at 0.986 fineness, since «Ungersk gylden» of this era had the same
+metric). This sets **1 Daler 1604 ≡ 0.583 Dukat ≡ 2.005 g fein gold**,
+in parallel with the 1602 silver Daler rate at **66 Skilling Danske**.
 
-**Actual gold content**: matches the tariff within +1.1 to +3.0 %
-across the three ordinance-defined denominations. The coins are
-**par-metal at the tariff value, not seigniorage-driven**. State
-spends a small premium on prestige (largest denomination = highest
-premium); not a commercial coinage.
+**Actual gold content**: matches the stated gold-rate within +1.1 to
++3.0 % across the three ordinance-defined denominations. The coins
+are **par-metal at the stated rate**, with a small prestige premium.
+**NOT Tarifmünze in the Def 1 / Krone-Mønt sense** (no face-value-
+above-metal-value seigniorage spread). Note however that the stated
+gold-rate itself sits about 7 % below commodity gold-silver par
+(see §2.5) — that 7 % is embedded in the rate, not in the metal
+content.
 
 **Purpose** (explicit, contemporary documentation): *«kom ikke til
 at få større betydning i handel og vandel»* — these gold coins did
@@ -45,13 +48,17 @@ circulation alongside the silver Daler and Reichsdukaten of the
 period.
 
 **Position within Christian IV's reign**: part of a broader pattern
-of state-gold-tariff Klippen issued by Christian IV throughout 1590–
+of state-issued presentation gold by Christian IV throughout 1590–
 1648. Per Wilcke II, the lineage includes Prinsens Daler 1590,
 Schwabe's coronation coins 1596, the 1604 Daler-Klippe set
 (this study), 1608–1611 Kalmar War Sovereigns / Rosenobles, and
 1618+ Guldkrone (Hede 25 / 28 etc.). These coins share a class:
 ordinance-issued, small-mintage, presentation-function, with
-ordinance-defined fiat-value but no significant seigniorage spread.
+ordinance-defined fiat values. Whether each issue's metal content
+matches its stated rate (par-metal) or falls short (true Tarifmünze
+with seigniorage spread) varies — Krone-Mønt 1618 silver Krone is
+the clearest Tarifmünze in this lineage; the 1604 Daler-Klippe is
+par-metal at the stated rate.
 
 ---
 
@@ -224,6 +231,29 @@ its note rather than excluded from the table.
 
 ### 2.5 Per-Daler economics — the key analytical step
 
+#### Terminology — two senses of «tariff»
+
+The word «tariff» in numismatic literature carries two distinct
+meanings, which must be kept apart to discuss these coins:
+
+**(Def 1) «Tariff coin» / Tarifmünze** — strict sense: a coin whose
+ordinance-defined face value exceeds its metal value, generating
+seigniorage profit for the state on the spread. **Krone-Mønt 1618
+silver Krone** is the canonical example for this project (face = 3
+Mark = 1.5 Speciedaler, silver content less than 1.5 silver-
+Speciedaler would carry at par).
+
+**(Def 2) «Tariff» as ordinance-defined exchange rate** — broader
+sense: any fixed ratio between a coin's face value and another
+currency unit, set by ordinance, without implying any seigniorage
+spread. Bruun's «6 Daler = 3.5 Hungarian Gulden» is a tariff in
+this sense.
+
+A coin can carry a tariff (Def 2) without being a tariff coin
+(Def 1). The 1604 Daler-Klippe is exactly that case.
+
+#### The math — par-metal against the stated gold-tariff
+
 If 1 Daler 1604 = 0.583 Dukat (tariff from Bruun verbatim) and 1
 Reichsdukat = 3.44 g fein gold (canonical Reichsdukatenfuß spec),
 then the per-Daler tariff metal content is:
@@ -251,11 +281,48 @@ tariff is 2.005 g.
 | 3 Daler | 1.75 × 3.44 = 6.02 | ? | (unknown) | ? |
 
 **Δ is consistently positive** (+1.1 to +3.0 %) — actual gold
-content exceeds the tariff by a small margin. The state pays a
-**slight premium** of pure gold above the face-value tariff,
-inversely correlated to denomination (bigger coin = bigger
-premium). This is opposite to commercial tariff coins (Krone-Mønt
-where face value > metal value), where state earns seigniorage.
+content **exceeds** the stated gold-tariff by a small margin. State
+pays a slight premium of pure gold above the face-value tariff,
+inversely correlated to denomination (bigger coin = bigger premium).
+**Par-metal at the gold-tariff level**, with a prestige premium.
+**No seigniorage** in the Def 1 sense — these are NOT Tarifmünze.
+
+#### The other angle — silver-equivalent commodity ratio
+
+A second framing exists and is worth surfacing for completeness.
+If 1604 silver Daler ≈ 9-Fuß Reichsthaler standard (25.98 g fein
+silver) and contemporary gold-silver ratio ≈ 12:1, then 1 silver
+Daler ≡ 25.98 / 12 = **2.165 g fein gold equivalent at commodity
+par**.
+
+The gold Daler-Klippe carries **2.005 g fein per Daler-face** — about
+**7.4 % below** the commodity-par gold equivalent of 1 silver Daler.
+A holder who melts the 6 Daler-Klippe (12.04 g gold tariff / 12.17 g
+actual) and tries to sell as bullion would get gold worth ~5.6
+silver Daler in commodity terms, not 6.
+
+So there IS an implicit seigniorage of ~7 % when measured against
+commodity gold-silver ratio — but this seigniorage is **embedded in
+the gold-tariff itself** (the «3.5 Hungarian Gulden» tariff already
+prices the gold below the silver-equivalent), not in the
+metal-content side. Against the stated gold-tariff, the coins are
+par-metal +1-3 % prestige premium.
+
+Which framing is correct depends on the question:
+
+- **«Does the metal match the stated tariff?»** → YES, par +1-3 %.
+- **«Could a holder convert at commodity ratio?»** → NO, ~7 % short
+  vs commodity gold-silver par.
+- **«Is this a tariff coin in the strict Def 1 sense?»** → NO at the
+  gold-tariff level; weakly YES (~7 % spread) if measured against
+  commodity gold-silver ratio.
+
+For the project's classification purposes the **gold-tariff framing
+is decisive** (it's what Bruun records as the contemporary face-value
+relationship). The 1604 Daler-Klippe is **par-metal at the gold-
+tariff, NOT a Tarifmünze in the Krone-Mønt sense**. The implicit ~7 %
+commodity seigniorage is a side-effect of the gold-tariff itself,
+not the coin's structural character.
 
 ### 2.6 Fineness anomaly — non-Fuß behaviour
 
@@ -297,41 +364,122 @@ mintmaster under the 1602 ordinance. His medal-making background
 Klippen format — Klippen were closer to medallic presentation
 pieces than to circulation coinage.
 
-Schwabe's earlier work for Christian IV — including the 1596
-coronation coins (per Wilcke II) — established the precedent for
-court gold issues. The 1604 set continues that pattern at a state
-level via royal ordinance.
+**Schwabe was NOT involved in the Haderslev 1591–1593 gold series**
+(see §4.1) — those were under Andreas Metzner during the regency of
+Queen Dowager Sophie, four years before Schwabe arrived at the
+royal court. Schwabe's earlier work for Christian IV — including
+the 1596 coronation coins (per Wilcke II) — was as court medalist,
+not yet as mintmaster. The 1604 Daler-Klippe is therefore Schwabe's
+first mintmaster-level state ordinance gold output, distinct from
+the prior Haderslev sub-tradition under Metzner.
 
 ---
 
-## 4. Pattern context — Christian IV's gold tariff Klippen across 1590–1648
+## 4. Pattern context — Christian IV's ordinance-issued gold tradition (1591–1648)
 
-Per Wilcke II references (danskmoent.dk/wilcke/w2ref.htm), Christian
-IV's reign exhibits a continuous tradition of state-gold-tariff
-Klippen / presentation gold issues:
+Per Wilcke II references (danskmoent.dk/wilcke/w2ref.htm) and our
+own Hede cache inventory (2026-05-14), Christian IV's long reign
+1588–1648 exhibits **two distinct sub-traditions** of state-issued
+ordinance gold, separated by political phase, mint, and mintmaster:
 
-| Year | Issue | Function |
-|---|---|---|
-| 1590 | «Prinsens Daler» | Prince's daler (pre-coronation) |
-| 1596 | Schwabe's coronation coins | Schwabe royal-court output |
-| **1604–1605** | **Daler-Klippe Hede 10–13** | **State tariff per 1602 ordinance** |
-| 1608–1611 | Gold Sovereigns / Riders (Rosenobles) | Kalmar War finance |
-| 1618+ | Guldkrone (Hede 25, 28) | Corona Danica tariff |
+### 4.1 Pre-1604 sub-tradition — Haderslev 1591–1593 (regency period)
 
-These share the class:
-- Ordinance-issued (not opportunistic mint output)
-- Small mintages (typically <1000 specimens per type)
-- Court-mint origin (Copenhagen, Schwabe and successors)
-- Non-commercial purpose (presentation, gift, military / royal use)
-- Variable fineness optimised per denomination
+During the **regency of Queen Dowager Sophie** (Christian IV minor,
+1588–1596), state gold was struck at the **Haderslev mint** in the
+Duchy of Schleswig-Holstein, NOT at Copenhagen. Mintmaster:
+**Andreas Metzner** (mark: crescent moon). Schwabe was not yet
+involved (royal court 1595, Copenhagen mintmaster only 1602).
 
-The 1604 Daler-Klippe set is **the most explicitly tariff-defined**
-of this lineage (Bruun lot 1017's «3.5 Hungarian Guldens» quote
-gives us a clean fiat parity). The Guldkrone 1618+ extends the
-pattern with a different tariff scale (1 Guldkrone = 3.5 Speciedaler
-under Frederik III phase). The 1604 series is therefore an **early
-sibling**, not a direct precursor — same logical class, different
-tariff scale and slightly different format (more medallic).
+Documented in our seed yaml (`data/seed/hede/denmark.yml`) + cached
+Hede pages:
+
+| Hede | Nominal | Years | Notes |
+|---|---|---|---|
+| c4h1 | 1 + 1/2 Portugaloser | 1591–1592 (RR / Unik) | Curated as `hede-1-chr-iv-1591` |
+| c4h3 | 1/4 Portugaloser | 1592 | Curated as `hede-3-chr-iv-1592` |
+| c4h4 | 2 Portugaloser | 1592 | Seed only |
+| c4h5 | 1 Portugaloser | 1592 | Seed only (metal-mm guard survivor — see §AN) |
+| c4h6 | 1/2 Portugaloser | 1592–1593 (RRR) | Curated as `hede-6-chr-iv-1592` |
+| c4h7 | 1/4 Portugaloser | 1592–1593 (Unik / RRR) | Seed only |
+| c4h8 | 1 Ungersk Gylden | 1591–1593 (Unik / RRR / RR) | Seed (sub-letters c4h8a / c4h8b), fineness 0.986 |
+
+**Political context**: Harck (2011), as cited in Hede page c4h1,
+describes the Haderslev series as «**Et forsvarsskrift for
+enkedronning Sofie**» — a defense memorandum for the Queen Dowager.
+The gold was issued to assert Sophie's monetary regalia / dynastic
+position during the minority. Not a circulation series; not even
+broadly Hofgeschenk. Specific political instrument.
+
+**Bibliographic anchor**: Ernst, Axel — *Guldudmøntningen i
+Haderslev 1591–1593*, NNUM 1953 p. 198 (cited in Hede c4h10 and
+c4h13). Paper-only; per §5a paper rule needs page hint via digital
+secondary or DROP from refs.
+
+«1590 Prinsens Daler» referenced in Wilcke II precedes our cached
+data; we don't have a specific Hede entry for 1590. May refer
+informally to the start of the Haderslev series (1591) or to a
+distinct 1590 Frederik II-era piece naming Christian IV as crown
+prince. Unresolved without Wilcke I direct access.
+
+### 4.2 Copenhagen sub-tradition — Christian IV's mature reign 1604–1648
+
+After 1596 coronation, Schwabe's 1602 appointment as Copenhagen
+mintmaster, and the 1602 Møntordning, state gold output shifts to
+**Copenhagen royal mint** under **Schwabe** (later successors):
+
+| Year | Issue | Function | Hede |
+|---|---|---|---|
+| 1596 | Schwabe coronation coins | Court coronation output | (Wilcke II ref; not in cache) |
+| **1604–1605** | **Daler-Klippe 8/6/4/3 Daler** | **State-defined gold per 1602 ordinance** | **c4h10–c4h13 (this study)** |
+| 1603–1611 | Ungersk Gylden Copenhagen | Copenhagen Hungarian-Gulden continuation | c4h14, c4h15, c4h17, c4h18 |
+| 1605 | 1 Portugaloser u.år Copenhagen | Single Copenhagen Portugaloser | c4h9 |
+| 1611–1629 | Rosenobel / 1/2 Rosenobel | Kalmar War + later gold | c4h23, c4h24 |
+| 1619+ | Guldkrone 1 + 2 Guldkrone | Corona Danica ordinance | c4h25–c4h28 |
+| 1644–1648 | Dukat / 2 Dukat / 1/2 Dukat / 1/4 Dukat | Late Reichsdukatenfuß proper | c4h32–c4h40, c4h154 |
+
+This is the **mature Copenhagen sub-tradition** to which the 1604
+Daler-Klippe belongs. Within this phase, the issues split further
+by Fuß:
+
+- **Reichsdukatenfuß**: Ungersk Gylden, Portugaloser-Copenhagen,
+  late 1644+ Dukat series — all at 0.972–0.986 fineness.
+- **Guldkrone (Corona Danica)**: 1619+ Guldkrone at 0.917 fineness,
+  tariff 1 Guldkrone = ~3.5 Speciedaler (later phase).
+- **1604 Daler-Klippe**: our subject — variable fineness 0.833–
+  0.937, tariff 6 Daler = 3.5 Hungarian Gulden.
+
+The 1604 Daler-Klippe is **distinct from both** Reichsdukatenfuß and
+Guldkrone in fineness regime and tariff scale. Its closest
+analogues are Hede c4h9 (Portugaloser u.år 1605, single Copenhagen
+piece following the 1604 series) and the Rosenobel series 1611–1629
+(c4h23/c4h24, fineness 0.833, similar Klippe-style) — these may
+form a small sub-cluster of «par-metal ordinance-defined
+presentation gold» within the Copenhagen sub-tradition, parallel
+to the standardised Reichsdukatenfuß output.
+
+### 4.3 Position of the 1604 Daler-Klippe in the broader tradition
+
+The 1604 Daler-Klippe is **the most explicitly ordinance-rate-
+defined** of Christian IV's gold issues (Bruun lot 1017's «3.5
+Hungarian Guldens» quote gives us a clean Def-2 exchange rate).
+The 1618+ Guldkrone extends ordinance-defined gold issuance with a
+different rate (1 Guldkrone = 3.5 Speciedaler under Frederik III
+phase) and exhibits true Def-1 Tarifmünze character in the silver
+Krone half of Krone-Mønt.
+
+The 1604 series sits **between** the regency-Haderslev sub-tradition
+(politically motivated, Metzner / Sophie) and the mature Copenhagen
+Reichsdukatenfuß + Guldkrone phase. It is the **first major
+state-defined gold output of Christian IV's mature reign**, under
+his own ordinance, his own appointed mintmaster (Schwabe), at the
+royal mint — but with a distinct fineness regime that doesn't fit
+later phases.
+
+«Ordinance-issued gold» rather than «gold-tariff Klippen» is the
+cleaner umbrella term for this lineage, avoiding the Def 1 / Def 2
+ambiguity around «tariff». Within that umbrella, the 1604 set is
+neither a Reichsdukatenfuß piece nor a Krone-Mønt piece — it's its
+own ordinance-defined Klippe series.
 
 ---
 
@@ -473,8 +621,8 @@ Curated coin IDs in our data:
   considered completely unobtainable.»
   <https://auctions.stacksbowers.com/> (Part II catalogue)
 - **Part I lot 1017** (6 Daler Klippe, Bruun-4667) — **canonical
-  tariff statement** verbatim: «At the time the value of 6 Daler
-  corresponded to 3.5 Ducats (Hungarian Guldens).»
+  exchange-rate statement** verbatim: «At the time the value of 6
+  Daler corresponded to 3.5 Ducats (Hungarian Guldens).»
 - **Part I lot 1018** (4 Daler Klippe, Bruun-4670) — verbatim:
   «Minted by Nicolaus Schwabe in only 588 examples.
   VERY RARE» —
@@ -539,15 +687,18 @@ Curated coin IDs in our data:
    per the 8 September 1602 supplement); the 3 Daler is NOT in the
    ordinance.
 
-2. **The tariff** (face value) ratio is established by Bruun's
-   verbatim catalogue note for the 6 Daler: «6 Daler = 3.5 Hungarian
-   Gulden» — i.e. 1 Daler = 0.583 Dukat = 2.005 g fein gold at par
-   to 1604 gold-silver ratios.
+2. **The ordinance-defined exchange rate** (Def 2 «tariff») is
+   established by Bruun's verbatim catalogue note for the 6 Daler:
+   «6 Daler = 3.5 Hungarian Gulden» — i.e. 1 Daler = 0.583 Dukat =
+   2.005 g fein gold. The rate sits about 7 % below commodity
+   gold-silver par for the 1604 silver Daler standard — that 7 % is
+   embedded in the stated rate, not in the metal content.
 
-3. **The actual gold content** exceeds the tariff by +1.1 to +3.0 %
-   across the three ordinance-defined coins, demonstrating these are
-   **par-metal coins with a small prestige premium**, NOT
-   seigniorage-spread tariff coins of the Krone-Mønt class.
+3. **The actual gold content** exceeds the stated rate by +1.1 to
+   +3.0 % across the three ordinance-defined coins, demonstrating
+   these are **par-metal coins with a small prestige premium at the
+   stated rate**, NOT Def-1 Tarifmünze in the Krone-Mønt sense (face
+   value above metal value at par).
 
 4. **Function**: presentation pieces, Hofgeschenk, royal gift —
    documented explicitly by Galster («kom ikke til at få større
@@ -555,9 +706,10 @@ Curated coin IDs in our data:
    (61–691 specimens per type).
 
 5. **Position in Christian IV's reign**: part of a continuous
-   1590–1648 tradition of state-gold-tariff Klippen by ordinance.
-   Direct sibling, not precursor, to the 1618+ Guldkrone (Hede 25/28
-   et al.) — different tariff scale, similar function and lineage.
+   1590–1648 tradition of state-issued ordinance-defined presentation
+   gold (court-mint Klippen by royal patent). Direct sibling, not
+   precursor, to the 1618+ Guldkrone (Hede 25/28 et al.) — different
+   ordinance rate, similar function and lineage.
 
 6. **Fuß placement**: the current `reichsdukatenfuss` is wrong
    (systematic −40 % Δ). The proper home is an **own category** for
@@ -586,7 +738,7 @@ Curated coin IDs in our data:
 - **Verbatim-quote refs sweep** (§AS) — refs for the bibliography
   block above need to be transcribed into `*-references.yml` with
   the canonical verbatim quotes captured here. Direct sources to
-  promote: Bruun lot 1017 (tariff statement), Galster (1602 reform
+  promote: Bruun lot 1017 (exchange-rate statement), Galster (1602 reform
   date and non-commercial purpose statement), Hede c4h13 (3 Daler
   not-in-ordinance note).
 
