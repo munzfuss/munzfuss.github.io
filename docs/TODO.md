@@ -1718,6 +1718,84 @@ These have «Bruun-4666 / 4667 / 4670» in the source Bruun catalogue text but n
 
 ---
 
+### AU. 🟢 Promote Frederik II gold 1563-64 from Hede cache to seed/curated  *(opened 2026-05-14)* *(est: small)*
+
+**Surfaced.** Umbrella research dossier `docs/research/danish_royal_gold_1560_1648.md` §1 documents Frederik II's full 1563-64 gold issuance from the Bremerholm goldsmith workshop:
+
+  - **f2h1** 1 Ungersk Gylden 1563 (Reichsdukatenfuß proper, 0.986, fein 3.442 g)
+  - **f2h2** 1 Guldkrone 1563 (4 860 stk by Hans Willers, distinct standard 0.934)
+  - **f2h3** 1 Rhinsk Gylden 1563 (Rhenish-Gulden standard 0.77, fein 2.500 g)
+  - **f2h4** 1 Dukat 1564 (Reichsdukatenfuß proper, 0.986)
+  - **f2h5** 1 Guldkrone 1564 (continues 0.934)
+  - **f2h6** 1 Rhinsk Gylden 1564 (continues 0.77)
+  - **f2h8** 3 Mark gold 1560 / 1563 (one-off heavy gold, 0.906, 26.49 g fein)
+
+**None of these are in our seed yaml currently.** Hede cache has them; needs seed-builder run (`scripts/maintenance/build_hede_denmark_seed.py`) extended to cover Frederik II volume + manual curation per coin.
+
+**Dependency**: Fuß-classification questions resolved by §AV (Guldkrone-fod design) + §AW (Rhinsk-Gylden-Fuß spawn) + §AY (3 Mark one-off classification) before promotion can land. Or land in `seed_unsorted` first, classify later.
+
+### AV. 🟡 Frederik-II-Guldkrone-fod 1563-64 — separate Fuß or phase under `guldkrone`?  *(opened 2026-05-14)* *(est: small)*
+
+**Surfaced.** Umbrella research dossier §3.5 / §5.1: Frederik II's 1563-64 Guldkrone (Hede f2h2, f2h5) at fineness 0.934 / fein 3.120 g per piece is **distinct** from Christian IV's 1619-1648 Guldkrone (0.917 / fein 2.725 g) and Frederik III's 1657-1668 Guldkrone (per project's existing `guldkrone` Fuß). 55-year gap with NO Guldkrone strikes between 1564 and 1619. NOT a continuous standard.
+
+**Two design options:**
+
+  (a) Create separate Fuß **`f2_guldkrone_fod`** (1563-64 only), retain existing `guldkrone` for Christian IV 1619+ / Frederik III 1657+ phases.
+  (b) Add a third phase to the existing `guldkrone` Fuß for the 1563-64 case, named «Frederik II Guldkrone-fod» — but the 0.934 → 0.917 metric break makes phase modelling awkward (different soll-fein per fraction).
+
+**Recommend (a)** for cleaner classification. Implementation: add new Fuß entry to `data/shared/fuesse.yml` with anchor based on 233.856 / 3.120 ≈ 75 Guldkrone per Cölln. Marck fein (round-number convention candidate).
+
+**Pending user verdict** on (a) vs (b) before §AU Frederik II seed promotion can use it.
+
+### AW. 🟢 Spawn new Fuß `rhinsk_gylden_fod` for 1563-1632 Rhinsk Gylden track  *(opened 2026-05-14)* *(est: medium)*
+
+**Surfaced.** Umbrella research dossier §3.6 / §5.1: a separate **Rhinsk Gylden / Rhenish-Gulden** standard runs through Danish royal coinage at fineness 0.76-0.77 (fein 2.47-2.50 g per piece). Appearances:
+
+  - **f2h3** 1 Rhinsk Gylden 1563 (Frederik II)
+  - **f2h6** 1 Rhinsk Gylden 1564 (Frederik II)
+  - **c4h29** 1 Rhinsk Gylden 1625, 1627, 1628, 1632 (Christian IV)
+
+69-year span; continuous standard within ~0.01 fineness variance. NOT Reichsdukatenfuß (0.986); NOT Guldkrone (0.917-0.934). German Rhenish Gulden tradition adopted by Danish royal mint for German-trade contexts.
+
+**Historical tariff**: traditionally 1 Rhinsk Gylden ≈ 0.7-0.75 Reichsdukat (worth less fein than Dukat). Needs confirmation from period source.
+
+**Plan**:
+
+  1. Define `rhinsk_gylden_fod` in `data/shared/fuesse.yml` with anchor based on 2.5 g fein per piece and 0.77 standard fineness.
+  2. Spawn phases for Frederik II (1563-64) and Christian IV (1625-1632) periods.
+  3. Promote f2h3 / f2h6 / c4h29 from seed (currently c4h29 sits in `seed_unsorted`, f2h3/f2h6 not yet in seed — depends on §AU).
+  4. Add to landing-page Müntzfüße overview.
+
+### AX. 🟢 Investigate Rosenobel 1611-1629 tariff value + Fuß placement  *(opened 2026-05-14)* *(est: medium)*
+
+**Surfaced.** Umbrella research dossier §3.4 / §5.1: Christian IV's Rosenobel series (Hede c4h23, c4h24) at fineness **0.833** — same as 4 Daler 1604 (c4h12) — has unclear tariff value:
+
+  - **c4h23** 1 Rosenobel 1611, 1612, 1613, 1627, 1629 — brutto 8.994 g, fein 7.495 g
+  - **c4h24** 1/2 Rosenobel 1611 — brutto 4.497 g, fein 3.748 g (clean half)
+
+Historical context: **Kalmar War 1611-1613** — Rosenobel issued for war finance (Soldzahlung). Continental imitation of English Noble (originally 6s 8d face value).
+
+Per-coin fein 7.495 g = 2.18 Reichsdukaten ≈ ~2 silver Daler at 12:1 gold-silver ratio. Suggests tariff ~2 Speciedaler / Daler, but needs external source confirmation.
+
+**Two open questions**:
+
+  1. **What was the contemporary tariff?** Need WebFetch / Wilcke I / Bobzin / contemporary Danish ordinance. Likely 2 or 3 Speciedaler face value.
+  2. **Fuß placement** depends on tariff:
+     - If tariff = par-metal commercial coin → fits some Fuß family (probably not Reichsdukatenfuß given 0.833 fineness)
+     - If tariff = ordinance presentation gold (Klippen format) → own Fuß or grouping with the 0.833 «par-metal Klippen sub-cluster» (4 Daler 1604 also at 0.833)
+
+**Plan**: research tariff via danskmoent.dk + Bobzin; document in umbrella dossier; decide Fuß placement; move c4h23 / c4h24 / c4h23b from `seed_unsorted` to the resolved Fuß.
+
+### AY. 🟢 Investigate Frederik II 3 Mark gold (f2h8) — one-off classification  *(opened 2026-05-14)* *(est: small)*
+
+**Surfaced.** Umbrella research dossier §1.4: Hede f2h8 is **a 3 Mark coin in GOLD**, 1560 / 1563, fineness 0.906, brutto 29.232 g, fein **26.491 g**. This is unique — a heavy gold piece not part of the Bremerholm tri-standard (Ungersk Gylden / Guldkrone / Rhinsk Gylden), not part of any later Christian IV series.
+
+The 26.49 g fein figure is close to one Cölln. Marck fein × 1/9 (= 25.98 g) or thereabouts — possibly an experimental piece testing a **heavy gold denomination tied to silver Daler value via gold-silver ratio**. At 1560s gold-silver ratio ~11:1, this piece would have melt-value ≈ 290 g silver = ~33 Skilling Danske of silver-equivalent — far above its 3 Mark face value (= 48 Skilling Danske face, since 1 Mark = 16 Skilling pre-1602 reform). Tariff coin or prestige Schaumünze?
+
+**Plan**: research via danskmoent.dk + Galster + period source. Document tariff if any; classify as «one-off» / new sub-Fuß / Schaumünze. Could be part of a tiny series we haven't catalogued.
+
+---
+
 ## Low priority
 
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._

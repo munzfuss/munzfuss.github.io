@@ -415,11 +415,13 @@ Haderslev 1591–1593*, NNUM 1953 p. 198 (cited in Hede c4h10 and
 c4h13). Paper-only; per §5a paper rule needs page hint via digital
 secondary or DROP from refs.
 
-«1590 Prinsens Daler» referenced in Wilcke II precedes our cached
-data; we don't have a specific Hede entry for 1590. May refer
-informally to the start of the Haderslev series (1591) or to a
-distinct 1590 Frederik II-era piece naming Christian IV as crown
-prince. Unresolved without Wilcke I direct access.
+«1590 Prinsens Daler» referenced in Wilcke II — **resolved 2026-05-14**
+via the umbrella research note `docs/research/danish_royal_gold_1560_1648.md`
+§6: this refers to **Hede c4h43, a SILVER 1 Speciedaler 1590** (brutto
+29.232 g, finhed 0.937, fein 27.405 g) — a proto-Speciedaler at
+pre-9-Fuß silver standard, NOT a gold piece. It's a regency-era
+princely silver Daler before formal 1596 coronation. Was wrong-metal
+confusion in my earlier §4 framing.
 
 ### 4.2 Copenhagen sub-tradition — Christian IV's mature reign 1604–1648
 
