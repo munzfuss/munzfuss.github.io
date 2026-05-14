@@ -118,41 +118,139 @@ Denmark at the time: 1 Dukat ≈ 1 Reichsthaler = silver equivalent at
 gold-silver ratio. Likely par-metal commercial gold for international
 trade settlement.
 
-**0.934 «Frederik-II-Guldkrone-fod» (Guldkrone 1563-64 only)**
+**0.934 «Frederik-II-Guldkrone-fod» (Guldkrone 1563-64 only) — French écu d'or imitation**
 
-Distinct standard. Per-coin fein: 3.120 g. NOT 3.44 g (Reichsdukat).
-NOT 3.67 g (theoretical Cölln. Mark 233.856 / 64 if 64 Guldkrone per
-Mark). The 3.120 g fein figure is the **Krone-fod** standard
-(unverified what Mark-fein divisor produces it):
+Per **Galster** (*Danske efterligninger af fremmed mønt fra nyere
+tid*, Nationalmuseets Arbejdsmark 1959, p. 108), the Frederik II
+Guldkrone is an explicit imitation of the French gold coin:
 
-  - 233.856 g fein per Cölln. Marck ÷ 3.120 g per Guldkrone = **74.95
-    Guldkrone per Marck fein**. Not an obvious round number — could be
-    «75 Guldkrone per Marck fein» convention with slight specimen
-    variance.
+> «Navnet var hentet fra den franske guldmønt, der var hovedguldmønt
+> i Vesteuropa.»
+>
+> «i Nyrnberg 1551 værdsattes til 22 1/3 Karat, 70 stk. på den
+> kølnske mark.»
 
-The 0.934 fineness ≈ 22½-Karat (22.5/24 = 0.9375 — within specimen
-variance). 22-Karat gold ≈ 0.9166, 23-Karat ≈ 0.9583. Likely a
-deliberate 22½-Karat alloy chosen for the «Crown» series.
+Translation: «The name was taken from the French gold coin, which
+was the principal gold coin of Western Europe. … In Nuremberg 1551
+[the French écu] was assayed at 22⅓ Karat, 70 pieces per Cölln.
+Mark.»
 
-**Connection to Christian IV's later Guldkrone (1619+)**: different
-fineness (0.917 vs 0.934), different fein per piece (2.725 g vs
-3.120 g). NOT a continuous standard. Christian IV's 1618 Corona
-Danica patent reset the Guldkrone parameters.
+**Standard parameters** (per Nuremberg 1551 assay):
+- Fineness: **22⅓ Karat = 0.9305** (22.333/24)
+- **70 pieces per Cölln. Mark fein** → 233.856 / 70 = **3.341 g brutto
+  per piece** → fein = 3.341 × 0.9305 = **3.108 g per piece**.
 
-**0.77 Rhinsk Gylden (Rhinsk standard)**
+**Frederik II 1563-64 matches the French standard within specimen
+tolerance:**
+- Brutto **3.341 g** (matches the 70-per-Marck calculation EXACTLY)
+- Finhed **0.934** (≈ 22⅓-karat; 22.5/24 = 0.9375 vs 22.333/24 =
+  0.9305 — measured value sits between the two within specimen
+  variance)
+- Fein **3.120 g** (matches French standard 3.108 g)
+- 233.856 / 3.120 ≈ **74.95 Guldkrone per Marck fein** (effective at
+  measured fineness)
 
-Rhinsk Gulden = Rhenish Gulden = post-1559 imperial-tier gold at
-deliberately-lower fineness vs. Reichsdukat. 0.77 ≈ 18.5-karat. Used
-in German-imperial trade alongside the 0.986 Dukat. Mintage was
-likely small (specific German-trade-oriented series).
+**Reverse legend confirms model**: Hede f2h5 page records the legend
+«I GOLT KRONE 1564» — explicit «Gold Crown» branding tying to French
+écu lineage.
 
-**0.906 / 26.49 g fein 3 Mark (one-off heavy gold)**
+**Mintages**: f2h2 1563 = 4 860 stk (Hans de Willers / «Johan fra
+Vilna», København); f2h5 1564 = 600 stk (Köppelin + Hammer,
+Bremerholm).
 
-f2h8 is unique — «3 Mark» in gold at 0.906 fineness, 26.49 g fein,
-struck 1560 and 1563. Not a denomination-set member; isolated piece.
-The 26.49 g fein is close to one Cölln. Marck fein × 1/9 (= 25.98 g)
-or thereabouts — possibly an experimental piece testing a heavy gold
-denomination tied to silver Daler value via gold-silver ratio.
+**Discontinuity with later Guldkrone** (Christian IV 1619+ at
+fineness 0.917, fein 2.725 g per piece): the Christian IV standard
+is NOT the French écu — fineness ~1.8 % lower, per-piece fein ~12.7 %
+lower. Christian IV's 1618 Corona Danica patent reset the Guldkrone
+parameters away from the French écu base; the Frederik II 1563-64
+standard is **a discrete sub-phase**.
+
+**0.77 Rhinsk Gylden — Imperial Rhenish Gulden imitation**
+
+Per **Galster** (same 1959 article, applied to Christian IV's
+1625-32 Rhinsk Gylden c4h29 with retrospective reference to the
+Imperial model):
+
+> «kejser Ferdinands gylden af 1559, der holdt 18 1/2 karat eller
+> 2.504g fint guld»
+
+Translation: «Emperor Ferdinand's gulden of 1559, which held 18½
+karat or 2.504 g of fine gold.»
+
+**Standard parameters** (Emperor Ferdinand I, Augsburger
+Reichsmüntzordnung 1559 Imperial Reichsgulden):
+- Fineness: **18½ Karat = 0.770** (18.5/24)
+- Fein per piece: **2.504 g**
+- 233.856 / 2.504 ≈ **93.4 pieces per Cölln. Mark fein**
+
+**Frederik II 1563-64 matches the Imperial standard exactly:**
+- f2h3 (1563) + f2h6 (1564): finhed 0.770, fein **2.500 g** — within
+  rounding of Galster's 2.504 g.
+
+**Christian III 1546 sub-variant** (c3h15, Flensborg, 17 years
+pre-Ferdinand-1559-standard): finhed **0.750**, fein **2.458 g** —
+~2 % below the eventual Augsburger 1559 standard. Likely follows
+an EARLIER Imperial Rhenish Gulden standard (pre-Ferdinand). The
+1546 issue is therefore **a pre-Augsburger-Reichsmüntzordnung
+variant** rather than a deviation from the 1559 standard.
+
+**Christian IV 1625-1632 sub-variant** (c4h29, København): finhed
+**0.760**, fein **2.470 g** — ~1.4 % below the 1559 standard. Slight
+debasement within the same Imperial-Reichsgulden family. Likely
+reflects post-war debasement during/after Kalmar War (1611-1613).
+
+**Time frames**: Christian III 1546 (Flensborg only, c3h15) →
+Frederik II 1563-64 (København, f2h3/f2h6) → Frederik II 1584
+(Frederiksborg, f2h7g — specs not in cache) → Christian IV
+1625-1632 (København, c4h29). Intermittent issuance over **86 years**
+(1546-1632), each at a slightly different fineness but within the
+Imperial Reichsgulden tradition.
+
+**Origin of the type name**: «Rhinsk Gylden» = «Rhenish Gulden» =
+Imperial Reichsgulden as established by the Mainz-Köln-Trier
+electoral Münzverein in the Rhineland. The 14th-15th century
+Rhenish Gulden was a continental gold-coinage anchor; the
+Augsburger Reichsmüntzordnung 1559 under Ferdinand I codified the
+standard at 18½-karat for the Holy Roman Empire. Danish royal mint
+adopted the imitation explicitly for German-trade purposes.
+
+**0.906 / 26.49 g fein «3 Mark» (Hede f2h8) — CORRECTION 2026-05-14: silver speciedaler, not gold**
+
+Earlier framing of f2h8 as «3 Mark in gold one-off» was incorrect.
+Per Hede f2h8 raw text:
+
+> «I katalogerne rubriceres denne mønt normalt som **1 speciedaler**.»
+> «1560 (Hede 8A): finhed 0.906, fein 26.491 g, Marken-fin 8.827
+> speciedaler»
+> «1563 (Hede 8B): finhed 0.937, fein 27.405 g, Marken-fin 8.533
+> speciedaler»
+> «Mønten synes slået for **privat regning**.»
+
+This is a **SILVER 1 Speciedaler** privately minted under Frederik
+II at the **same Marken-fin 8.827** as Christian III's 1541 silver
+state-issue base (Hede 3A — see `christian_iii_danish_coinage_1534_1572.md`
+§4.1). The 1560 sub-letter (Hede 8A) matches the 1541 standard; the
+1563 sub-letter (Hede 8B) is slightly heavier (Marken-fin 8.533 =
+27.405 g per Daler, an even purer silver Daler).
+
+The «3 MARCK DANSKE» legend on the reverse is the nominal-account
+label (1 Speciedaler = 3 Mark Danske under Christian III's pre-1602
+convention); the coin is economically a silver speciedaler, not a
+gold piece.
+
+A **Guldafslag** (gold off-strike) at the «10 Dukat» face value is
+recorded as Schou 6 RRR — single specimen, per CLAUDE.md §9
+exclusion #3 (off-strike single specimens excluded from circulation
+register). The gold off-strike is therefore NOT a gold-Fuß candidate.
+
+f2h8 belongs to the **Christian-III-Daler-fod silver tradition**
+(see `christian_iii_danish_coinage_1534_1572.md` §8 Phase A),
+specifically the privately-minted speciedaler series documented in
+**Aagaard, Sven**: *Privat udmøntede speciedalere 1560 og 1563
+under Frederik II samt 1590 og 1596(?) under Christian IV* (NNUM
+2/2009, pp. 47-54). Same article links f2h8 to Hede c4h43 «1
+Speciedaler 1590» — the «1590 Prinsens Daler» Wilcke II reference
+covered in §6 of this dossier.
 
 ---
 
@@ -354,15 +452,28 @@ predecessor phase» our existing data describes.
 ### 3.6 Christian IV Rhinsk Gylden 1625-1632
 
 Hede c4h29: Christian IV 1 Rhinsk Gylden 1625, 1627, 1628, 1632.
-Brutto 3.249 g, finhed 0.76, fein 2.47 g. **Same standard as
-Frederik II 1563-64 Rhinsk Gylden** (0.77, fein 2.5 g — slight
-specimen variation). German Rhenish Gulden continues through
-Christian IV's reign for German trade context.
+Brutto 3.249 g, finhed 0.76, fein 2.47 g.
 
-**Standard**: 0.76-0.77 fineness Rhenish Gulden. Distinct from
-Reichsdukatenfuß; distinct from Guldkrone-fod; distinct from
-Daler-Klippe / Rosenobel. **Own standard** — call it
-«rhinsk_gylden_fod» or «Rhenish-Gulden-Fuß».
+**Standard**: same Imperial Reichsgulden family as Frederik II
+1563-64 (§1.4 above) — the Augsburger Reichsmüntzordnung 1559
+Ferdinand I standard (18½-karat = 0.770, 2.504 g fein per piece).
+The Christian IV 1625-1632 fineness sits at **0.76** — about 1.4 %
+below the Ferdinand 1559 canonical figure. Per-piece fein 2.47 g
+vs 2.504 g standard = ~1.4 % deficit. Within the same Imperial
+Reichsgulden family but with a slight Kalmar-War-era debasement
+adjustment.
+
+**Distinct from**: Reichsdukatenfuß (0.986); Frederik-II-Guldkrone-
+fod / French écu lineage (0.934); Daler-Klippe / Rosenobel (0.833).
+
+**Time-frame summary** (Imperial Reichsgulden family in Danish
+royal mintage): Christian III 1546 Flensborg (c3h15, fineness
+0.750 — pre-Ferdinand-1559 standard) → Frederik II 1563-64
+København (f2h3/f2h6, 0.770 — Ferdinand-1559 standard match) →
+Frederik II 1584 Frederiksborg (f2h7g, specs not in cache) →
+Christian IV 1625-1632 København (c4h29, 0.760 — slight post-1559
+debasement). 86-year intermittent imitation of the Imperial
+standard.
 
 ---
 
@@ -422,18 +533,36 @@ Daler-Klippe / Rosenobel. **Own standard** — call it
 1. **Frederik II Guldkrone 1563-64 vs Christian IV Guldkrone 1619+**:
    different fineness (0.934 vs 0.917), different per-coin fein
    (3.120 vs 2.725 g), 55-year gap with NO Guldkrone strikes between.
-   These are NOT a continuous standard. Two options:
-   - (a) Create separate Fuß `f2_guldkrone_fod` (1563-64 only) +
-     keep existing `guldkrone` for 1619+ (Christian IV / Frederik III).
+   These are NOT a continuous standard.
+   **Foreign-model evidence** (Galster 1959, §1.4 above): Frederik II
+   1563-64 is a direct **imitation of the French écu d'or** at the
+   Nuremberg-1551-assayed standard (22⅓-karat, 70 pieces/Cölln. Mark
+   = 3.341 g brutto / 3.108 g fein per piece). Christian IV 1619+ is
+   NOT at this standard — fineness ~1.8 % lower, per-piece fein ~12.7 %
+   lower. Two options:
+   - (a) Create separate Fuß `f2_guldkrone_fod` (1563-64 only),
+     historical_name «French écu d'or imitation per Nuremberg 1551
+     assay» + keep existing `guldkrone` for 1619+ (Christian IV /
+     Frederik III on its own ~22-karat Corona Danica standard).
    - (b) Add a phase to the existing `guldkrone` Fuß for the 1563-64
-     case, named «Frederik II Guldkrone-fod» as a phase rather than
-     a separate Fuß — but the metric break (0.934 → 0.917) makes
-     phase modelling awkward.
+     case, named «Frederik II Guldkrone-fod (French écu imitation)»
+     as a phase rather than a separate Fuß — but the metric break
+     (0.934 → 0.917, 3.108g → 2.725g per piece) makes phase modelling
+     awkward.
 
-2. **Rhinsk Gylden** is its own Fuß family — appears in both Frederik
-   II (1563-64) and Christian IV (1625-1632) data. **New Fuß
-   `rhinsk_gylden_fod` recommended**. Tariff: traditionally 1 Rhinsk
-   Gylden ≈ 0.7-0.75 Reichsdukat (worth less in fein than Dukat).
+2. **Rhinsk Gylden** is its own Fuß family — direct imitation of the
+   **Imperial Reichsgulden** as established by Augsburger
+   Reichsmüntzordnung 1559 under Emperor Ferdinand I (per Galster
+   1959, §1.4 above): 18½-karat = 0.770 fineness, 2.504 g fein per
+   piece, 93.4 pieces per Cölln. Mark fein. Appears in Christian III
+   1546 Flensborg (c3h15, 0.750 — pre-Ferdinand-1559 sub-standard),
+   Frederik II 1563-64 (f2h3, f2h6, 0.770 — Ferdinand-1559 par
+   match), Christian IV 1625-1632 (c4h29, 0.760 — post-1559 slight
+   debasement). **New Fuß `rhinsk_gylden_fod` recommended**, with
+   historical_name «Imperial Reichsgulden imitation per Augsburger
+   Reichsmüntzordnung 1559». Tariff: traditionally 1 Rhinsk Gylden ≈
+   0.7-0.75 Reichsdukat (worth less in fein than Dukat — 2.504 g vs
+   3.442 g, ratio 0.727).
 
 3. **Rosenobel + 0.833 par-metal Klippen sub-cluster**: spans
    1604-1629 (4 Daler 1604 + Rosenobel 1611-1629). Same fineness,
@@ -585,16 +714,38 @@ spawn their own TODO entries:
   for en datering af hans portrætmønter uden årstal*. Paper-only.
 - **Ernst, Axel** (1953): *Guldudmøntningen i Haderslev 1591-1593*,
   NNUM 1953 page 198.
-- **Galster** (1956), **NNÅ 1957-58** — cited on Hede f2h2 (Frederik
-  II Guldkrone literature), not directly accessible.
+- **Galster, Georg** (1959): *Danske efterligninger af fremmed mønt
+  fra nyere tid* (Danish imitations of foreign coin from the modern
+  period), Nationalmuseets Arbejdsmark 1959 p. 108. Establishes the
+  foreign models cited in §1.4 above: **Guldkrone = French écu d'or**
+  (Nuremberg 1551 assay: 22⅓ Karat, 70 pieces per Cölln. Mark fein,
+  3.341 g brutto / 3.108 g fein per piece); **Rhinsk Gylden =
+  Imperial Reichsgulden** (kejser Ferdinands gylden af 1559, 18½
+  Karat, 2.504 g fein per piece). Paper-only — partial digital
+  transcript at <https://www.danskmoent.dk/galster/galsfre2.htm>.
+- **Galster, Georg** (1956): *Frederik II's guldkrone 1563*, NNUM
+  1956 pp. 1-3. Cited on Hede f2h2 page. Paper-only.
+- **Aagaard, Sven** (2009): *Privat udmøntede speciedalere 1560 og
+  1563 under Frederik II samt 1590 og 1596(?) under Christian IV*,
+  NNUM 2/2009 pp. 47-54. Establishes f2h8 (and Christian IV's c4h43
+  «1 Speciedaler 1590») as **privately-minted silver speciedalere**,
+  not state-ordinance gold pieces. Paper-only.
+- **Wilcke, Julius**: *Speciedaleren (3 Mark) 1563*, in *Daler, Mark
+  og Kroner 1481-1914* pp. 76-78. Cited on Hede f2h8 page. Paper-only.
+- **NNÅ 1957-58** — pp. 129 (Frederik II Guldkrone), 134 (f2h8
+  Guldafslag note).
 - **Wilcke I + II** — *Møntvæsenet under Frederik II / Christian IV
   / Frederik III* — paper-only with partial digital references.
 
-### Companion dossier
+### Companion dossiers
 
 - **`docs/research/daler_klippe_1604.md`** — deep dive on the
   1604-05 Daler-Klippe specifically. Reading it first is recommended
   for §AB context.
+- **`docs/research/christian_iii_danish_coinage_1534_1572.md`** —
+  Christian III's reign (1534-1559) + early Frederik II silver up
+  to the 1572 Speciedaler cutover. Complements this gold-focused
+  umbrella with the silver-side history.
 
 ---
 

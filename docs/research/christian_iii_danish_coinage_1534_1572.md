@@ -128,7 +128,14 @@ following Christian III gold issues. Mintmaster varies by location.
 - **Rhinsk Gylden** (c3h15): 1 piece = 2.458 g fein at 0.750
   fineness. 233.856 / 2.458 ≈ **95.14 Rhinsk Gylden per Cölln. Marck
   fein** — matches the standard 95-pieces-per-Marck Rhenish Gulden
-  convention.
+  convention. The 0.750 fineness sits **pre-Augsburger
+  Reichsmüntzordnung 1559**: when the imperial standard was
+  subsequently codified at 18½-karat (0.770) under Emperor Ferdinand
+  I in 1559, Danish Rhinsk Gylden adopted that exact figure (see
+  Frederik II 1563-64 entries f2h3/f2h6 in §5.1 below). Christian
+  III's 1546 issue is therefore a **pre-1559 Imperial Rhenish Gulden
+  variant** — at the earlier (slightly lower-fineness) imperial
+  standard that the 1559 Augsburger ordonnance superseded.
 
 **Rarity** per Hede pages:
 - c3h1 Ungersk Gylden 1557: RR
@@ -248,20 +255,90 @@ recap:
 | f2h4 | 1 Dukat | 1564 | 3.490 g | 0.986 | 3.442 g |
 | f2h5 | 1 Guldkrone | 1564 | 3.341 g | 0.934 | 3.120 g |
 | f2h6 | 1 Rhinsk Gylden | 1564 | 3.248 g | 0.770 | 2.500 g |
-| f2h8 | 3 Mark (gold) | 1560, 1563 | 29.232 g | 0.906 | 26.491 g |
+| f2h8 | «3 Mark» (catalogued as 1 Speciedaler, SILVER) | 1560, 1563 | 29.232 g | 0.906/0.937 | 26.491/27.405 g |
 
-Mintmasters: **Hans Willers** (c. 4860 stk Guldkrone, per Hede
-f2h2), Hans Köpelin, Laudris Hammer (per f2flens). Mint:
+Mintmasters: **Hans Willers** / «Johan fra Vilna» (4 860 stk
+Guldkrone f2h2 1563, 2 259 stk Rhinsk Gylden f2h3 1563), **Hans
+Köpelin + Laurits Hammer** (600 stk Guldkrone f2h5 1564 on
+Bremerholm; «Laudris Hammer» variant spelling per f2flens). Mint:
 Bremerholm goldsmith workshop, København.
+
+**Foreign-model evidence** (per Galster: *Danske efterligninger af
+fremmed mønt fra nyere tid*, Nationalmuseets Arbejdsmark 1959,
+p. 108):
+
+- **Guldkrone f2h2 / f2h5**: direct imitation of the **French écu
+  d'or** («Navnet var hentet fra den franske guldmønt, der var
+  hovedguldmønt i Vesteuropa»). Standard per Nuremberg 1551 assay:
+  22⅓ Karat (0.9305 fineness), 70 pieces per Cölln. Mark fein =
+  3.341 g brutto / 3.108 g fein per piece. Hede measurements (3.341
+  g brutto / 0.934 finhed / 3.120 g fein) match the French standard
+  within specimen tolerance. The reverse legend «I GOLT KRONE
+  1564» (per Hede f2h5 page) confirms the foreign-coin branding.
+
+- **Rhinsk Gylden f2h3 / f2h6**: direct imitation of the **Imperial
+  Reichsgulden** (kejser Ferdinands gylden af 1559 per Galster).
+  Standard: 18½ Karat (0.770 fineness), 2.504 g fein per piece =
+  93.4 pieces per Cölln. Mark fein. Hede measurements (3.248 g
+  brutto / 0.770 finhed / 2.500 g fein) match the Imperial standard
+  exactly. The Augsburger Reichsmüntzordnung 1559 under Emperor
+  Ferdinand I codified this Gulden parameter; Frederik II's 1563-64
+  Rhinsk Gylden is the **Danish par-imitation of the 1559 imperial
+  standard** — 17 years after Christian III's 1546 Flensborg
+  Rhinsk Gylden (c3h15) which sat at the slightly-lower 0.750
+  fineness pre-1559 imperial sub-standard.
 
 Continuity with Christian III gold:
 - Ungersk Gylden 1563-1564: continues Christian III 1557 standard
-  (same brutto, finhed, fein).
-- Rhinsk Gylden 1563-1564: continues Christian III 1546 standard
-  (fineness 0.770 vs 0.750 — slight upward adjustment).
+  (same brutto, finhed, fein) — Reichsdukatenfuß proper.
+- Rhinsk Gylden 1563-1564: **adopts post-1559 Augsburger
+  Reichsmüntzordnung Imperial Reichsgulden standard** (Ferdinand I
+  1559, 0.770) — fineness adjustment upward from Christian III
+  1546's 0.750 pre-1559 standard.
 - Guldkrone: appears as a new type in Frederik II's reign (no
-  Christian III Guldkrone in our cache).
-- 3 Mark gold f2h8: one-off, no Christian III predecessor.
+  Christian III Guldkrone in our cache); direct French écu d'or
+  imitation per Nuremberg 1551 assay standard.
+
+**Hede f2h8 — important re-classification** (2026-05-14 finding):
+
+Earlier framing of f2h8 as «3 Mark gold one-off» was incorrect.
+Per Hede f2h8 raw text:
+
+> «I katalogerne rubriceres denne mønt normalt som **1 speciedaler**.»
+> «1560 (Hede 8A): finhed 0.906, fein 26.491 g, Marken-fin 8.827 speciedaler»
+> «1563 (Hede 8B): finhed 0.937, fein 27.405 g, Marken-fin 8.533 speciedaler»
+> «Mønten synes slået for **privat regning**.»
+> «Guldafslag (RRR; Schou 6) 10 Dukat.»
+
+Translation: «In catalogues this coin is normally classified as 1
+speciedaler. … The coin appears to have been struck for private
+account. … Gold off-strike (RRR; Schou 6) 10 Dukat.»
+
+So f2h8 is:
+- **A SILVER 1 Speciedaler** with «III MARCK DANSKE» reverse
+  legend (the nominal-account label, since 1 Speciedaler = 3 Mark
+  Danske under Christian III's pre-1602 convention).
+- **Privately minted** (not state-ordinance issue) — only 16
+  specimens of 1560 sub-letter.
+- Marken-fin **8.827 speciedaler** (1560 Hede 8A) — **identical to
+  Christian III 1541 base standard** (c3h3 Hede 3A).
+- Marken-fin **8.533 speciedaler** (1563 Hede 8B) — slightly
+  heavier (27.405 g per Daler).
+- **Guldafslag (gold off-strike) at «10 Dukat» face value** is a
+  RRR single-specimen sub-variant; per CLAUDE.md §9 exclusion #3
+  (off-strike single specimens), this gold piece is OUT of
+  circulation-coin register.
+
+Per **Aagaard, Sven**: *Privat udmøntede speciedalere 1560 og 1563
+under Frederik II samt 1590 og 1596(?) under Christian IV* (NNUM
+2/2009, pp. 47-54), f2h8 is one of a small set of privately-minted
+speciedalere from Frederik II and Christian IV reigns; the article
+also covers Christian IV's Hede c4h43 «1 Speciedaler 1590» — the
+same coin Wilcke II referred to as «1590 Prinsens Daler».
+
+f2h8 therefore belongs in the **Christian-III-Daler-fod silver
+tradition** (§8 Phase A below), at the **1541 marken-fin 8.827
+parameter** — not in any separate gold-Fuß category.
 
 ### 5.2 Silver 1559–1563 (pre-Syvårskrigen)
 
@@ -610,6 +687,45 @@ III) and `https://www.danskmoent.dk/fr/f2h<N>.htm` (Frederik II).
 - **Grandjean** — page 184 (c3h1). Paper-only.
 - **Galster, Georg** — *Flensborg Mønt*, Sønderborg 1967, pp. 14-26
   (c3h16). Paper-only.
+- **Galster, Georg** — *Danske efterligninger af fremmed mønt fra
+  nyere tid* (Danish imitations of foreign coin from the modern
+  period), in: Nationalmuseets Arbejdsmark 1959, p. 108. Cited on
+  Hede f2h2 / f2h3 / f2h5 / f2h6 pages. Establishes the foreign
+  models for Guldkrone (French écu d'or, 22⅓-karat, 70 pieces per
+  Cölln. Mark per Nuremberg 1551 assay) and Rhinsk Gylden (Imperial
+  Reichsgulden, Ferdinand I 1559 Augsburger Reichsmüntzordnung
+  standard, 18½-karat, 2.504 g fein per piece). Paper-only — partial
+  digital transcripts on danskmoent.dk (galsfre2.htm pages).
+- **Galster, Georg** — *Frederik II's guldkrone 1563*, NNUM 1956
+  pp. 1-3. Cited on Hede f2h2 page. Paper-only — partial detail in
+  Galster 1959 successor article above.
+- **Aagaard, Sven** — *Privat udmøntede speciedalere 1560 og 1563
+  under Frederik II samt 1590 og 1596(?) under Christian IV*, NNUM
+  2/2009 pp. 47-54. Cited on Hede f2h8 page (and likely on c4h43
+  «1 Speciedaler 1590»). Establishes f2h8 as **privately minted
+  silver speciedaler**, not state-issue. Paper-only.
+- **Wilcke, Julius** — *Speciedaleren (3 Mark) 1563*, in *Daler,
+  Mark og Kroner 1481-1914*, pp. 76-78. Cited on Hede f2h8 page.
+  Documents the 1563 «3 Mark» speciedaler as privately struck.
+  Paper-only.
+- **NNÅ 1957-58 p. 134** — note on f2h8 Guldafslag (gold off-strike
+  at 10 Dukat face value); RRR rarity.
+- **NNÅ 1957-58 p. 129** — note on Frederik II's 1563 Guldkrone.
+
+### danskmoent.dk article pages
+
+- **f2flens.htm** — *Frederik 2. og hans mønter. I* — overview of
+  Frederik II coinage, includes Bremerholm tri-standard description.
+  <https://www.danskmoent.dk/f2flens.htm>
+- **galsfre2.htm** — *Danske efterligninger af fremmed mønt fra
+  nyere tid* (Galster 1959 transcript, partial). Includes the
+  Guldkrone = French écu and Rhinsk Gylden = Ferdinand I 1559
+  parameter passages.
+  <https://www.danskmoent.dk/galster/galsfre2.htm>
+- **galshist.htm** — Galster's Danish coinage historical overview.
+  Includes the 1541 Møntordning and «first daler 1518» quotes used
+  in §1 and §2.1 above.
+  <https://www.danskmoent.dk/galster/galshist.htm>
 
 ### Online news / blog references
 
