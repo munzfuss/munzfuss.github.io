@@ -1718,22 +1718,6 @@ These have «Bruun-4666 / 4667 / 4670» in the source Bruun catalogue text but n
 
 ---
 
-### AU. 🟢 Promote Frederik II gold 1563-64 from Hede cache to seed/curated  *(opened 2026-05-14)* *(est: small)*
-
-**Surfaced.** Umbrella research dossier `docs/research/danish_royal_gold_1560_1648.md` §1 documents Frederik II's full 1563-64 gold issuance from the Bremerholm goldsmith workshop:
-
-  - **f2h1** 1 Ungersk Gylden 1563 (Reichsdukatenfuß proper, 0.986, fein 3.442 g)
-  - **f2h2** 1 Guldkrone 1563 (4 860 stk by Hans Willers, distinct standard 0.934)
-  - **f2h3** 1 Rhinsk Gylden 1563 (Rhenish-Gulden standard 0.77, fein 2.500 g)
-  - **f2h4** 1 Dukat 1564 (Reichsdukatenfuß proper, 0.986)
-  - **f2h5** 1 Guldkrone 1564 (continues 0.934)
-  - **f2h6** 1 Rhinsk Gylden 1564 (continues 0.77)
-  - **f2h8** 3 Mark gold 1560 / 1563 (one-off heavy gold, 0.906, 26.49 g fein)
-
-**None of these are in our seed yaml currently.** Hede cache has them; needs seed-builder run (`scripts/maintenance/build_hede_denmark_seed.py`) extended to cover Frederik II volume + manual curation per coin.
-
-**Dependency**: Fuß-classification questions resolved by §AV (Guldkrone-fod design) + §AW (Rhinsk-Gylden-Fuß spawn) + §AY (3 Mark one-off classification) before promotion can land. Or land in `seed_unsorted` first, classify later.
-
 ### AV. 🟡 Frederik-II-Guldkrone-fod 1563-64 — separate Fuß or phase under `guldkrone`?  *(opened 2026-05-14)* *(est: small)*
 
 **Surfaced.** Umbrella research dossier §3.5 / §5.1: Frederik II's 1563-64 Guldkrone (Hede f2h2, f2h5) at fineness 0.934 / fein 3.120 g per piece is **distinct** from Christian IV's 1619-1648 Guldkrone (0.917 / fein 2.725 g) and Frederik III's 1657-1668 Guldkrone (per project's existing `guldkrone` Fuß). 55-year gap with NO Guldkrone strikes between 1564 and 1619. NOT a continuous standard.
@@ -1801,6 +1785,30 @@ The 26.49 g fein figure is close to one Cölln. Marck fein × 1/9 (= 25.98 g) or
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
+
+### AU. Promote Frederik II gold 1563-64 from Hede cache to seed  *(opened 2026-05-14, closed 2026-05-14)*
+
+**Surfaced.** Umbrella research dossier `docs/research/danish_royal_gold_1560_1648.md` §1 documents Frederik II's full 1563-64 gold issuance from the Bremerholm goldsmith workshop (f2h1–f2h8, none of which were in our seed yaml at time of opening).
+
+**Dependency resolved**: project scope extended 1566→1559 (Augsburger Reichsmünzordnung anchor) in commit `7bfd80c` — opens room for pre-1566 entries. Per dossier's «classify later» fallback path, all 7 entries land in `seed_unsorted` for now; Fuß classification deferred to §AV (Guldkrone-fod), §AW (Rhinsk Gylden), §AY (3 Mark one-off).
+
+**Closed**: 7 seed entries added in commit `<this commit SHA>` to `data/seed/hede/denmark.yml` as `dk-hede-f2h1` through `dk-hede-f2h8` (skipping f2h7 which isn't a gold issue in our cache):
+
+  - `dk-hede-f2h1`: 1 Ungersk Gylden 1563, fineness 0.986, fein 3.442 g
+  - `dk-hede-f2h2`: 1 Guldkrone 1563, fineness 0.934, fein 3.120 g (4860 stk by Hans Willers)
+  - `dk-hede-f2h3`: 1 Rhinsk Gylden 1563, fineness 0.77, fein 2.500 g
+  - `dk-hede-f2h4`: 1 Dukat 1564, fineness 0.986, fein 3.442 g
+  - `dk-hede-f2h5`: 1 Guldkrone 1564, fineness 0.934, fein 3.120 g (Bremerholm)
+  - `dk-hede-f2h6`: 1 Rhinsk Gylden 1564, fineness 0.77, fein 2.500 g
+  - `dk-hede-f2h8`: 3 Mark gold 1560/1563, fineness 0.906, fein 26.491 g (one-off, see §AY)
+
+All entries: `fuss: seed_unsorted`, `phase: hede`, `metal: gold`, `mint: Kopenhagen`, `ruler: Frederik II.`, `verified: false`, fineness + weight verified (Hede direct). Catalog refs include hede/hede_volume/schou/sieg/fr per cache. Build merged 410 seed coins (was 403, +7) — clean.
+
+Total seed coins increased 605 → 612; scope 1559-1914.
+
+Next steps tracked separately: §AV (Guldkrone-fod design), §AW (Rhinsk Gylden Fuß), §AY (3 Mark classification) — all use these seed entries as input.
+
+---
 
 ### AC. 9-Fuß Speciedaler family sister entries — family-wide consolidation  *(opened 2026-05-13, closed 2026-05-14)*
 
