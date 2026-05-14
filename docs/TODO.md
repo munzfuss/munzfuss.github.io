@@ -97,23 +97,32 @@ Drop the summary block when only 0–1 🟡 entries remain.
 > - **§AM** (DROP 5 gold off-strike entries per CLAUDE.md §9.3) — per-case verdict per candidate (PB-1 style).
 > - **§AQ** (Seed-merge data augmentation policy — field selection + conflict resolution naming).
 
-### AF. 🟢 Hede silver-spec-card-for-gold-strike audit (sister-to-c4h47 sweep)  *(opened 2026-05-13)* *(est: medium)*
+### AF. 🟢 Hede off-strike audit — bidirectional sweep done, 3 victims surface into §AM  *(opened 2026-05-13, updated 2026-05-15)* *(est: small — followups under §AM)*
 
-**Surfaced.** During the c4h47 fix (silver Hede 47 spec card with Guldafslag Schou 1a sub-variant in Zincksamlingen list — caught 2026-05-13, commit `b0aa746`). The pattern: a Hede page primarily catalogues the silver mother coin, but the description / Zincksamlingen list mentions a Guldafslag (gold off-strike) sub-variant with a different Schou number (e.g. Schou «1» for silver, «1a» for gold). A curator who reads only the spec card and ingests Bruttovægt/Finhed onto a `metal: gold` entry produces a silver-fineness gold coin — exactly the c4h47 trap.
+**Surfaced.** During the c4h47 fix (silver Hede 47 spec card with Guldafslag Schou 1a sub-variant in Zincksamlingen list — caught 2026-05-13, commit `b0aa746`). The pattern: a Hede page primarily catalogues the silver mother coin, but the description / Zincksamlingen list mentions a Guldafslag (gold off-strike) sub-variant with a different Schou number (e.g. Schou «1» for silver, «1a» for gold). A curator who reads only the spec card and ingests Bruttovægt/Finhed onto a `metal: gold` entry produces a silver-fineness gold coin — exactly the c4h47 trap. Symmetric case (gold mother coin + Sølvafslag silver off-strike → curated `metal: silver` ingesting gold fineness) is the bidirectional sister; both directions exist in real Hede data (e.g. f3h36 «10 Dukat» 0.979 with Sølvafslag, f4h27-29 «Guldjeton» with Sølvafslag).
 
 Documented in `docs/SOURCES.md` §13.4.
 
-**Plan — `scripts/audit_hede_offstrike.py`:**
+**Implementation — `scripts/audit_hede_offstrike.py`** (initial 2026-05-13 commit `f61e312`; enhanced 2026-05-15):
 
   1. Walk all Hede cache pages (`scripts/cache/hede/*.json`).
-  2. For each page where `description` or `eksemplarer` contains «Guldafslag» / «Sølvafslag» / «cf.» / «medaljonprægning» (off-strike markers) AND the spec card publishes a silver fineness (< 0.95), flag as «silver-spec page with gold-strike sub-variant».
-  3. Cross-reference our curated entries: for each flagged Hede page, list all `coins[]` with `catalog.hede` matching that page AND `metal: gold`. These are the c4h47-trap victims.
+  2. Off-strike markers: «Guldafslag», «Sølvafslag», «medaljonprægning», «cf. Hede N».
+  3. **Spec-card metal extraction — schema-aware** (2026-05-15 fix): walks both `specs.default.finhed` AND `specs.by_hede.<num>.finhed`. The initial version only checked `specs.default`, missing 18 pages (~45 % of flag-worthy ones) where Hede combines several catalogue numbers on one page and stores per-sub specs under `by_hede` — including f3h62 + f3h68 referenced by §AM candidates.
+  4. **Nominal-text fallback** for pages with no finhed published anywhere (`f4h27-29` Guldjeton, `f6h10` Prøvemønt-in-copper): gold tokens (Dukat / Pistole / Goldgulden / Portugaløser / Guldjeton / Guldkrone / Rosenobel / Sovereign / Ungersk gylden), silver tokens (Speciedaler / Rigsdaler / Mark / Skilling / Daler / Krone). Ambiguous nominals → `spec_card_metal: "unknown"` (not cross-referenced).
+  5. **Cross-ref**: for each flagged page, look up curated `coins[]` whose `(catalog.hede_volume, catalog.hede)` matches any of the page's legitimate-reference numbers (filename num + by_hede sub-numbers) AND whose `metal` is opposite the spec-card metal.
+  6. **Self-test mode** (`--self-test`): synthesises one silver-spec-card + Guldafslag victim, one gold-spec-card + Sølvafslag victim, and one nominal-text-fallback victim, asserts each is flagged. Proves bidirectional logic without depending on live data.
 
-**Resolution per CLAUDE.md §9 exclusion #3 (off-strike single specimens — added 2026-05-13).** Single-specimen off-metal strikes (Guldafslag of a silver mother coin, Sølvafslag of a gold mother coin, presentation strikes, off-metal proofs) are explicitly EXCLUDED from the location's coin table. They were not minted for circulation. So a script-flagged candidate is NOT a «fix the metal/fineness» case — it's a «**delete the entire entry**» case: the off-strike doesn't belong in our table at all; the silver mother coin (separately curated) stays.
+**Scan result 2026-05-15:** 40 flagged pages (silver-mother 22 with Guldafslag, gold-mother 18 with Sølvafslag). 3 curated victims surfaced in `denmark.yml`:
 
-**Surface candidates → user verdict per case** (no auto-fix). Each candidate gets «delete entry?» / «keep but reclassify as separate Hede sub-letter?» / «not actually off-strike, false flag — restore» verdict from user. Same shape as the per-case PB-1 pattern.
+  - `denmark::hede-61-fr-iii-1662` — gold Portugaloser referencing f3h62 (silver Speciedaler page) [also tracked as §AM candidate 2]
+  - `denmark::hede-61-4ducat-fr-iii-1663` — gold 4 Ducats referencing f3h62 [§AM candidate 3]
+  - `denmark::hede-68a-fr-iii-1665` — gold 5 Ducats referencing f3h68 (silver Speciedaler page) [§AM candidate 4]
 
-**Real precedent:** c4h47 (Frederik IV 16 Skilling 1713 silver page; Bruun-attested gold off-strike Schou 1a at Double-Ducat weight ~6.93 g, not the silver spec-card 5.197 g). The Schou 1a variant signature is what catches the pattern. Per new §9 rule, the prior fix («silver-convert the gold entry») is wrong; the correct fix would have been to drop the off-strike entry entirely. Revisit c4h47 as part of this sweep.
+All 3 are subsumed by §AM (DROP gold off-strike entries per §9.3). The remaining 2 §AM candidates (hede-156-chr-iv-1623, hede-80b-fr-iii-1668) reference Hede pages whose cache text contains NO off-strike markers — §AM needs re-investigation for those two (the §AM body was written before the §AF cache-driven cross-check).
+
+**Resolution per CLAUDE.md §9 exclusion #3.** Single-specimen off-metal strikes are EXCLUDED from the location coin table. Each victim → «delete entry» (not «convert metal/fineness»). Per-case verdict tracked under §AM (PB-1 style).
+
+**Closure (2026-05-15).** §AF can close once §AM resolves the 3 confirmed candidates. Script lives as ongoing guard — re-run anytime via `.venv/bin/python scripts/audit_hede_offstrike.py` (curated sweep) or `--hede-only` (Hede-page-only inventory) or `--self-test` (logic sanity check). Future Hede cache updates / curated additions should re-trigger the audit to catch regressions before commit. Wiring into pre-commit / `audit_health.py` not yet done — possible follow-up if regressions show up.
 
 ### AE. 🟢 Build-guard survivors audit — metal/weight/year mismatch guards on seed-merge  *(opened 2026-05-13, closure-pending 2026-05-13)* *(est: small)*
 
@@ -216,11 +225,13 @@ All three should be `fuss: 9_thaler` + appropriate fraction (1/4, 1/12, 2 respec
 
 **Candidates (5):**
 
-  1. `denmark::hede-156-chr-iv-1623` — Portugaloser (10 Ducats), references Hede 156 silver Speciedaler page. Hede text «cf. Schou 16/35».
-  2. `denmark::hede-61-fr-iii-1662` — Portugaloser (10 Ducats), references Hede 61. Hede page **f3h62** explicit «Guldafslag: 10 Dukat, 5 Dukat og 4 Dukat».
-  3. `denmark::hede-61-4ducat-fr-iii-1663` — 4 Ducats, same f3h62 Guldafslag list.
-  4. `denmark::hede-68a-fr-iii-1665` — 5 Ducats, references Hede 68. Hede page **f3h68** explicit «Guldafslag 20 Dukat 1665, 12 Dukat 1665 og 5 Dukat 1665».
-  5. `denmark::hede-80b-fr-iii-1668` — 10 Ducats (Portugaloser), references Hede 80 silver Speciedaler page.
+  1. `denmark::hede-156-chr-iv-1623` — Portugaloser (10 Ducats), references Hede 156 silver Speciedaler page. Hede text «cf. Schou 16/35». **§AF cross-check 2026-05-15 — UNCONFIRMED**: c4h156.json cache contains no Guldafslag/Sølvafslag/«cf.\\s*Hede» markers. The Schou cross-ref in §AM body alone doesn't match the off-strike pattern. Re-investigate before DROP.
+  2. `denmark::hede-61-fr-iii-1662` — Portugaloser (10 Ducats), references Hede 61. Hede page **f3h62** explicit «Guldafslag: 10 Dukat, 5 Dukat og 4 Dukat». **§AF cross-check 2026-05-15 — CONFIRMED**.
+  3. `denmark::hede-61-4ducat-fr-iii-1663` — 4 Ducats, same f3h62 Guldafslag list. **§AF cross-check 2026-05-15 — CONFIRMED**.
+  4. `denmark::hede-68a-fr-iii-1665` — 5 Ducats, references Hede 68. Hede page **f3h68** explicit «Guldafslag 20 Dukat 1665, 12 Dukat 1665 og 5 Dukat 1665». **§AF cross-check 2026-05-15 — CONFIRMED**.
+  5. `denmark::hede-80b-fr-iii-1668` — 10 Ducats (Portugaloser), references Hede 80 silver Speciedaler page. **§AF cross-check 2026-05-15 — UNCONFIRMED**: f3h80.json cache contains no off-strike markers. Re-investigate before DROP.
+
+**§AF audit confirms 3 of 5** (cases 2/3/4). Cases 1 and 5 lack cache evidence for the Guldafslag claim — either the §AM body cited the wrong Hede page, or the cache is incomplete for those pages. Verify against the actual `danskmoent.dk` HTML before DROP. Cases 2/3/4 are ready for user verdict.
 
 **Verdict needed per case** (PB-1 style):
   - «DROP entry» — confirmed off-strike, delete from yaml. Silver seed entry then promotes via Hede coverage.
