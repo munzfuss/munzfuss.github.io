@@ -22,12 +22,12 @@
 #   phase=hede as a signal for pending curation.
 #
 # Scoping happens HERE, not in the build: only entries with
-# 1566 <= year_first <= 1914 (project scope per
-# CLAUDE.md; lower bound = Reichsmünzordnung 1566, upper bound
-# = end of precious-metal anchor era) are kept. The build trusts
-# what's in the file and doesn't second-guess the cap; to change
-# scope, re-run the generator with different --year-from /
-# --year-to values.
+# 1559 <= year_first <= 1914 (project scope per
+# CLAUDE.md; lower bound = Augsburger Reichsmünzordnung 1559,
+# upper bound = end of precious-metal anchor era) are kept. The
+# build trusts what's in the file and doesn't second-guess the
+# cap; to change scope, re-run the generator with different
+# --year-from / --year-to values.
 #
 # Conventions for FRESH entries (uncurated):
 #   * fuss=seed_unsorted, phase=hede (signals pending curation)
@@ -38,12 +38,12 @@
 #   * source: type=literature pointing to danskmoent.dk URL
 #
 # Total coins: 605
-# Scope: 1566 <= year_first <= 1914
+# Scope: 1559 <= year_first <= 1914
 # Generated: 2026-05-12T21:07:13Z
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
 generated_at: '2026-05-12T21:07:13Z'
-scope_year_from: 1566
+scope_year_from: 1559
 scope_year_to: 1914
 coins:
   - id: dk-hede-f2h30a

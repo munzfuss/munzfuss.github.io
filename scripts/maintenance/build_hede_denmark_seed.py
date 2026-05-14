@@ -811,12 +811,13 @@ def main() -> int:
         ),
     )
     ap.add_argument(
-        "--year-from", type=int, default=1566,
+        "--year-from", type=int, default=1559,
         help=(
-            "Drop entries whose year_first is before this year. Default 1566 "
-            "— the Reichsmünzordnung anchor, also the lower bound for the "
-            "Denmark page (pre-1566 Hede entries don't fit the 9-Thaler-Fuß "
-            "or any later standard documented on the page)."
+            "Drop entries whose year_first is before this year. Default 1559 "
+            "— the Augsburger Reichsmünzordnung anchor, project lower bound "
+            "per CLAUDE.md mission statement. Frederik II's 1559-1588 reign "
+            "covers the early Bremerholm gold tradition (Hede f2h*) that "
+            "informs the gold-Klippen lineage Christian IV extended 1591+."
         ),
     )
     ap.add_argument(
