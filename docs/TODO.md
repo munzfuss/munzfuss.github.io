@@ -97,21 +97,6 @@ Drop the summary block when only 0–1 🟡 entries remain.
 > - **§AM** (DROP 5 gold off-strike entries per CLAUDE.md §9.3) — per-case verdict per candidate (PB-1 style).
 > - **§AQ** (Seed-merge data augmentation policy — field selection + conflict resolution naming).
 
-### AG. 🟢 Long-form refs page-hint compliance (residual after §S closure)  *(opened 2026-05-13)* *(est: small)*
-
-**Surfaced.** §S sweep (closed 2026-05-13) added the mandatory-page-hint rule (CLAUDE.md §5a) and fixed 4 specific refs. New refs added between then and now (or future refs) need the rule enforced. The pre-commit hook doesn't currently lint refs; the rule is honor-system.
-
-**Plan.**
-
-  1. Build a one-pass audit script `scripts/audit_refs_page_hints.py` that walks all `data/locations/*-references.yml` + `data/shared/*-references.yml`. For each entry whose ref points at a **paginated** source (book / PDF / multi-volume work / paginated periodical / paper book), check the scope-note for a literal page reference (`S. NN`, `pp. NN`, `Band NN, S. NN`, `Kap. NN`, `§ NN, S. NN`). Flag entries missing it.
-  2. **Paper-only refs treated identically** (per CLAUDE.md §5a clarification 2026-05-13). A ref to an offline paper source without page hint is a bad citation by construction. The legitimate path: paper sources arrive via a digital secondary that itself cites the paper with a page number; the page number carries over. If the secondary cites paper without a page, the chain is broken and we DROP the paper ref entirely. No «exempt because offline» tier.
-  3. **Scope narrowing (user clarification 2026-05-14)**: page-hint requirement applies ONLY to sources that have pages at all. Single-page web articles (danskmoent.dk/artikler/*.htm, lex.dk, Wikipedia HTML without print original, NNUM articles via danskmoent transcript pages, etc.) HAVE no pages; the verbatim-quote-as-locator rule (§AS) handles those instead.
-  4. Optionally wire into `audit_health.py` as a new section, and into the pre-commit hook as advisory.
-
-**Scope** (re-verified 2026-05-14 after rule narrowing): **1 paginated source missing page-hint**: `lubeck-references.yml:ref3` Behrens 1905 (Berlin 1905 paper book — needs page hint or DROP). The other 8 previously-flagged candidates (denmark:ref6/ref10/ref18/ref20; sh:ref29/ref30/ref38; german_fuesse:ref38) are single-page web articles — page-hint not required; the verbatim-quote-as-locator requirement applies and is tracked in §AS instead.
-
-**Audit-script update needed**: tighten LONGFORM_PATTERN to detect actually-paginated sources only (drop the «{city} {year}» Berlin-1905-style match that catches non-paginated «Christian 5 (1670-1699)» phrases; keep «.pdf», «archive.org», «wikisource per-page transcribing print original», multi-volume encyclopaedia hosts).
-
 ### AF. 🟢 Hede silver-spec-card-for-gold-strike audit (sister-to-c4h47 sweep)  *(opened 2026-05-13)* *(est: medium)*
 
 **Surfaced.** During the c4h47 fix (silver Hede 47 spec card with Guldafslag Schou 1a sub-variant in Zincksamlingen list — caught 2026-05-13, commit `b0aa746`). The pattern: a Hede page primarily catalogues the silver mother coin, but the description / Zincksamlingen list mentions a Guldafslag (gold off-strike) sub-variant with a different Schou number (e.g. Schou «1» for silver, «1a» for gold). A curator who reads only the spec card and ingests Bruttovægt/Finhed onto a `metal: gold` entry produces a silver-fineness gold coin — exactly the c4h47 trap.
@@ -1937,6 +1922,24 @@ What MUST NOT appear in these surfaces:
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
+
+### AG. Long-form refs page-hint compliance — last paginated survivor dropped  *(opened 2026-05-13, closed 2026-05-15)*
+
+**Original scope.** After §S closure (2026-05-13) the page-hint rule (CLAUDE.md §5a) was enforced on all known paginated refs except one residual: `lubeck-references.yml:ref3` — Behrens 1905 «Münzen und Medaillen der Stadt und des Bistums Lübeck» (Berlin 1905, paper-only book, 290 pp, paginated). Per §5a strict «paper-only refs need page hint OR DROP, no exempt tier».
+
+**Investigation 2026-05-14 / 15.** Behrens 1905 not digitally accessible at acceptable granularity — HathiTrust gated, Google Books snippet-only, archive.org search yielded no matching scan. Without a page hint and without a digital secondary citing the paper with a page number, the ref violates §5a by construction.
+
+**Resolution — superseded by §BB rewrite.** During the Reichsdukatenfuß historical-framing rewrite (commits `4715097` 2026-05-15 + `a96911e` 2026-05-15), both inline `<sup>[3]</sup>` citations of Behrens were removed: the new framing prose cites general imperial-gold-standard sources (MGM Reichsdukat ref5, Wikipedia DE «Lübeck» ref6, Wikipedia DE «Münzgesetz» ref7, Museum Rantzau ref8, MGM Handelsdukat ref9) — none requiring Behrens. ref3 became an orphan; per §5a «no orphaned refs» the entry was dropped from `lubeck-references.yml` (commit pending).
+
+**Side benefits of the drop.** Two pre-existing errors in the ref3 body are eliminated automatically:
+  - Author name «Hans Behrens» → should be «Heinrich Behrens».
+  - Title «Münzen und Medaillen der Stadt Lübeck» → missing «und des Bistums».
+
+**Audit-script status.** The pre-flagged 8 other refs (denmark:ref6/ref10/ref18/ref20; sh:ref29/ref30/ref38; german_fuesse:ref38) are single-page web articles per the 2026-05-14 rule-narrowing — not paginated, page-hint not applicable. They're covered by §AS (verbatim-quote-as-locator) instead. The `scripts/audit_refs_page_hints.py` step originally in the §AG plan was never built — current §AG-scope work was resolved without it, and §AS implementation will cover the broader ref-compliance audit.
+
+**Closure (2026-05-15).** Zero paginated refs in the project now missing page hint. Future paginated-source additions are governed by §5a (honor-system until the pre-commit lint lands).
+
+---
 
 ### AY. f2h8 «3 Mark» classification — silver Speciedaler, not gold one-off  *(opened 2026-05-14, closed 2026-05-14)*
 
