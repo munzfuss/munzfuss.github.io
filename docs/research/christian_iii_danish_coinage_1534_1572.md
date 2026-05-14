@@ -105,6 +105,61 @@ operate outside its framework.
 Source: danskmoent.dk Hede page `c3hede`
 (<https://www.danskmoent.dk/chr/c3hede.htm>).
 
+### 2.3 Kong Hans gold coinage 1496–~1500 — first Danish gold
+
+Predates Christian III by ~30-50 years. Per **Wilcke 6: Kong Hans'
+rhinske Guldgylden** (<https://www.danskmoent.dk/wilcke/w6a.htm>)
+and **Wilcke 7: Kong Hans' Møntreformer**
+(<https://www.danskmoent.dk/wilcke/w7hans.htm>):
+
+**Hans was the absolute first Danish king to mint gold coins in any
+significant volume.** No earlier Danish king (Christian I 1448-1481,
+or before) is documented as minting gold. The reform sequence:
+
+- **1496 Dobbeltnobel / Guldreal**: Hans' first gold coin overall.
+  ~15 g brutto, valued at **6 Rhinsk Gylden** per piece. Image
+  caption in Wilcke 7: «Kong Hans' Dobbeltnobel eller Guldreal 1496
+  (6 r. g.)». The «Guldreal» name parallels contemporary continental
+  Spanish/Portuguese «real» gold types.
+
+- **Møntordningen af 4. December 1497**: the authorising legal
+  text. Per Wilcke 7: «Kong Hans mønte ret rhinske Gylden» (Kong
+  Hans minted proper Rhine guilders). Codifies cutover to Rhinsk
+  Gylden as the standard Danish gold tier.
+
+- **1497 Hans Rhinsk Gylden** (per Hvitfeldt, *Danmarks Riges
+  Krønicke* 1599, cited via Wilcke 6): «the king had 150 000
+  Rhinish gulden minted for the Swedish campaign in 1497».
+  Following Stockholm's surrender that same year, Hans issued a
+  Swedish mint ordinance (4-5 December 1497). Two mintmark
+  variants:
+
+  | Variant | Brutto | Fineness | Per Cölln. Mark |
+  |---|---:|---:|---:|
+  | With 2 Beams | **3.278 g** | **17¾ Karat = 0.740** | 71⅓ or 72 |
+  | With Star / Nettle leaf | **3.278 g** | **17 Karat = 0.708** | 71⅓ or 72 |
+
+- **~1500 Hans Rhinsk Gylden** (additional batch for Ditmarsken war).
+
+**Foreign model**: «Rhenish Princes' Gulden of 1490» (the
+4-electorate Rhineland Münzverein, 71⅓ pieces per Cölln. Mark,
+**18½ Karat = 0.770 fineness**). Hans' issues sat 0.75-1.5 karat
+below the electoral standard — slight state-seigniorage debasement
+for war finance.
+
+**Connection to Christian III 1546 c3h15 (§3.2)**: the same physical
+brutto-weight metric (3.278 g) carries forward unchanged. Fineness
+adjusts upward from Hans (0.708-0.740) to Christian III (0.750) to
+Frederik II 1563-64 (0.770, par to Augsburger 1559) — progressive
+return to the electoral standard the 1490 Princes' Gulden defined.
+
+**Gap 1500-1533 in our cache**: no Hede entries for Christian II
+(1513-1523) or Frederik I (1523-1533) Rhinsk Gylden. Either no
+issues in those reigns or not catalogued in our current Hede
+volume coverage. **Open research item** for future Hans-cache
+harvest (h*h volume prefix not currently present in
+`scripts/cache/hede/`).
+
 ---
 
 ## 3. Christian III gold inventory 1545–1559
@@ -136,6 +191,40 @@ following Christian III gold issues. Mintmaster varies by location.
   III's 1546 issue is therefore a **pre-1559 Imperial Rhenish Gulden
   variant** — at the earlier (slightly lower-fineness) imperial
   standard that the 1559 Augsburger ordonnance superseded.
+
+  **NOT the first Danish Rhinsk Gylden.** Per **Wilcke 6: Kong Hans'
+  rhinske Guldgylden** (<https://www.danskmoent.dk/wilcke/w6a.htm>)
+  + **Wilcke 7: Kong Hans' Møntreformer**
+  (<https://www.danskmoent.dk/wilcke/w7hans.htm>), Danish Rhinsk
+  Gylden minting starts **49 years earlier** under **Kong Hans
+  (1483-1513)**:
+
+  - **Hans 1496**: Dobbeltnobel / Guldreal (~15 g brutto, valued at
+    6 Rhinsk Gylden) — first Danish gold coin overall.
+  - **Møntordningen af 4. December 1497**: codifies Danish Rhinsk
+    Gylden cutover. Per Wilcke 7: «Kong Hans mønte ret rhinske
+    Gylden».
+  - **1497 Hans Rhinsk Gylden**, ~150 000 stk per Hvitfeldt
+    (*Danmarks Riges Krønicke* 1599) for Swedish campaign. Two
+    mintmark variants: «With 2 Beams» (17¾ Karat = 0.740) and
+    «With Star / Nettle leaf» (17 Karat = 0.708); both at brutto
+    3.278 g, 71⅓-72 pieces per Cölln. Mark — physical metric
+    identical to c3h15 1546.
+  - **~1500 Hans**: additional batch for Ditmarsken war.
+
+  Hans' foreign model was the «Rhenish Princes' Gulden of 1490»
+  (4-electorate Rhineland Münzverein, 71⅓ pieces per Cölln. Mark,
+  18½ Karat / 0.770). Hans' issues sat ¾–1½ karat below the
+  electoral standard (state seigniorage for war finance). Christian
+  I (1448-1481) and earlier Danish kings did NOT mint gold coins;
+  Hans is the absolute first.
+
+  **Gap 1500–1533** between Hans' Rhinsk Gylden and Christian III's
+  1546 Flensborg issue: no Rhinsk Gylden under Christian II
+  (1513-1523) or Frederik I (1523-1533) is captured in our Hede
+  cache. Possibly minted in those reigns but not currently
+  catalogued, or actually a gap in royal Danish gold issuance during
+  the Reformation-era turbulence (1517-1536). Open research item.
 
 **Rarity** per Hede pages:
 - c3h1 Ungersk Gylden 1557: RR
@@ -660,6 +749,28 @@ Notes:
   «Rigsdaler Species» term first appearing under Christian VII;
   Speciedaler standard formalisation history.
   <https://en.wikipedia.org/wiki/Danish_rigsdaler>
+
+- **danskmoent.dk Wilcke 6 — Kong Hans' rhinske Guldgylden**.
+  Canonical reference for FIRST Danish Rhinsk Gylden minting under
+  Kong Hans 1497 (§2.3 above). Quote: «Kong Hans was the first
+  Danish king to mint gold coins and larger silver coins of any
+  significance». Two mintmark variants (2-Beams 17¾-Karat, Star
+  17-Karat) at 3.278g brutto. Foreign model: Rhenish Princes'
+  Gulden of 1490 (71⅓ per Cölln. Mark, 18½ Karat).
+  <https://www.danskmoent.dk/wilcke/w6a.htm>
+
+- **danskmoent.dk Wilcke 7 — Kong Hans' Møntreformer
+  Gyldenregning**. Context for 1496 Dobbeltnobel / Guldreal (first
+  Danish gold coin overall) + 1497 Rhinsk Gylden ordonnance.
+  Quote: «Kong Hans' Dobbeltnobel eller Guldreal 1496 (6 r. g.)»;
+  «Møntordningen af 4. December 1497»; «Kong Hans mønte ret rhinske
+  Gylden».
+  <https://www.danskmoent.dk/wilcke/w7hans.htm>
+
+- **Hvitfeldt (Arild)**: *Danmarks Riges Krønicke* (1599) — cited
+  via Wilcke 6 for the **150 000 stk** Rhinsk Gylden mintage figure
+  for Hans' 1497 Swedish campaign. Primary historical source for
+  Danish 16th-century numismatic history; paper-only.
 
 ### Hede catalogue pages (local cache `scripts/cache/hede/c3h*.json`,
 `f2h*.json`)

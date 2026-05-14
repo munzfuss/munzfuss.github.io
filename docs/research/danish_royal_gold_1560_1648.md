@@ -33,7 +33,7 @@ Rhenish Gulden), some Klippen-format presentation pieces.
 | **0.833** | **par-metal Klippen sub-cluster** | 1604–1629 | c4h12 (4 Daler 1604); c4h23, c4h24 (Rosenobel 1611-1629) |
 | **0.937 / 0.923** | **Daler-Klippe 1604 own standard** | 1604–1605 only | c4h10 (8 Daler), c4h11 (6 Daler) — see §AB dossier |
 | **0.906** | Heavy-Mark gold piece (one-off) | 1560/1563 | f2h8 (3 Mark gold, 26.49g fein) |
-| **0.77** | **Rhinsk Gylden (German tradition)** | 1563–1632 | f2h3, f2h6 (Frederik II); c4h29 (Christian IV 1625-1632) |
+| **0.77** | **Rhinsk Gylden (Imperial Reichsgulden tradition)** | 1497–1632 (Hans 1497 → C4 1632; intermittent) | Hans 1497 (per Wilcke 6, predates cache); c3h15 1546 Christian III Flensborg (0.750); f2h3, f2h6 Frederik II 1563-64 (0.770); c4h29 Christian IV 1625-1632 (0.760) |
 
 **Key insights:**
 - The **Klippen format itself** is Frederik-II-1563-vintage, not Christian-IV-1604. Frederik II's Bremerholm workshop struck «curious gold clippings» (per danskmoent.dk/f2flens.htm) during Syvårskrigen — gold Klippen for war finance / Soldzahlung.
@@ -187,32 +187,77 @@ Reichsmüntzordnung 1559 Imperial Reichsgulden):
 - f2h3 (1563) + f2h6 (1564): finhed 0.770, fein **2.500 g** — within
   rounding of Galster's 2.504 g.
 
-**Christian III 1546 sub-variant** (c3h15, Flensborg, 17 years
-pre-Ferdinand-1559-standard): finhed **0.750**, fein **2.458 g** —
-~2 % below the eventual Augsburger 1559 standard. Likely follows
-an EARLIER Imperial Rhenish Gulden standard (pre-Ferdinand). The
-1546 issue is therefore **a pre-Augsburger-Reichsmüntzordnung
-variant** rather than a deviation from the 1559 standard.
+**Earliest Danish Rhinsk Gylden — Kong Hans 1497** (predates our
+Hede cache by 49 years):
+
+The Danish Rhinsk Gylden tradition starts **49 years before** our
+earliest cached entry (Christian III 1546). Per **Wilcke 6: Kong
+Hans' rhinske Guldgylden** (<https://www.danskmoent.dk/wilcke/w6a.htm>):
+
+> «Kong Hans was the first Danish king to mint gold coins and larger
+> silver coins of any significance.» (No earlier Danish king —
+> including Christian I 1448-1481 — minted gold in any significant
+> volume.)
+
+Authorising legal text: **Møntordningen af 4. December 1497** —
+codifies the Danish Rhinsk Gylden cutover. Per Wilcke 7
+(<https://www.danskmoent.dk/wilcke/w7hans.htm>): «Kong Hans mønte
+ret rhinske Gylden» (Kong Hans minted proper Rhine guilders).
+
+Per **Hvitfeldt (Arild, *Danmarks Riges Krønicke* 1599)** cited via
+Wilcke: «the king had **150 000 Rhinish gulden minted for the
+Swedish campaign in 1497**». Additional batch ~1500 for the
+Ditmarsken war.
+
+Kong Hans Rhinsk Gylden parameters (per Wilcke 6):
+
+| Variant (mintmark) | Brutto | Fineness | Per Cölln. Mark |
+|---|---:|---:|---:|
+| With 2 Beams | 3.278 g | 17¾ Karat (0.740) | ~71⅓ to 72 |
+| With Star / Nettle leaf | 3.278 g | 17 Karat (0.708) | ~71⅓ to 72 |
+
+**Foreign model for Hans**: «**Rhenish Princes' Gulden of 1490**» (the
+4-electorate Rhineland Münzverein standard — 71⅓ pieces per Cölln.
+Mark, 18½ karat 0.770). Hans' issues sat ¾–1½ karat below the
+electoral standard — slight state-seigniorage debasement for war
+finance. **The eventual Augsburger 1559 codification under Ferdinand
+I returns to the 1490 electoral standard 18½-karat / 0.770 figure**;
+Hans' 1497 issue is therefore an earlier-and-debased step within the
+same Reichsgulden lineage.
+
+**Christian III 1546 sub-variant** (c3h15, Flensborg, 49 years after
+Hans, 13 years pre-Ferdinand-1559-standard): finhed **0.750**, fein
+**2.458 g**, brutto **3.278 g** — same physical metric as Hans'
+1497, slight fineness uplift (0.750 vs Hans' 0.708-0.740). Still
+below the eventual Augsburger 1559 standard.
 
 **Christian IV 1625-1632 sub-variant** (c4h29, København): finhed
 **0.760**, fein **2.470 g** — ~1.4 % below the 1559 standard. Slight
 debasement within the same Imperial-Reichsgulden family. Likely
 reflects post-war debasement during/after Kalmar War (1611-1613).
 
-**Time frames**: Christian III 1546 (Flensborg only, c3h15) →
-Frederik II 1563-64 (København, f2h3/f2h6) → Frederik II 1584
-(Frederiksborg, f2h7g — specs not in cache) → Christian IV
-1625-1632 (København, c4h29). Intermittent issuance over **86 years**
-(1546-1632), each at a slightly different fineness but within the
-Imperial Reichsgulden tradition.
+**Full time frame** (incorporating Hans): **136 years of Danish
+Rhinsk Gylden minting** (1497-1632), intermittent:
+
+  - **1497 Hans** (Møntordning 4 Dec 1497, 150 000 stk Swedish-campaign batch + ~1500 Ditmarsken batch). Mint: København. Fineness 17–17¾ Karat (0.708-0.740).
+  - **~1500 Hans** (Ditmarsken war additional batch). Same parameters.
+  - **~1500-1533 gap**: no Rhinsk Gylden in Hede cache for Christian II (1513-1523) or Frederik I (1523-1533) reigns — possibly issued but not catalogued here, or not minted in these reigns. **Open research item** for future deep dive.
+  - **1546 Christian III** (Flensborg only, c3h15, 0.750).
+  - **1563-64 Frederik II** (København, f2h3/f2h6, 0.770 par-Ferdinand-1559).
+  - **1584 Frederik II** (Frederiksborg, f2h7g — specs not in cache).
+  - **1625-1632 Christian IV** (København, c4h29, 0.760).
 
 **Origin of the type name**: «Rhinsk Gylden» = «Rhenish Gulden» =
 Imperial Reichsgulden as established by the Mainz-Köln-Trier
 electoral Münzverein in the Rhineland. The 14th-15th century
-Rhenish Gulden was a continental gold-coinage anchor; the
-Augsburger Reichsmüntzordnung 1559 under Ferdinand I codified the
-standard at 18½-karat for the Holy Roman Empire. Danish royal mint
-adopted the imitation explicitly for German-trade purposes.
+Rhenish Gulden was a continental gold-coinage anchor; the 1490
+Rhenish Princes' Gulden codified a 71⅓-per-Cölln.-Mark / 18½-karat
+standard adopted continent-wide. Hans 1497 adopted the type for
+Danish mintage (with slight debasement). The Augsburger
+Reichsmüntzordnung 1559 under Ferdinand I re-codified the same
+standard for the Holy Roman Empire; Danish royal mint continued the
+imitation explicitly for German-trade purposes through Christian
+IV's reign.
 
 **0.906 / 26.49 g fein «3 Mark» (Hede f2h8) — CORRECTION 2026-05-14: silver speciedaler, not gold**
 
@@ -467,13 +512,17 @@ adjustment.
 fod / French écu lineage (0.934); Daler-Klippe / Rosenobel (0.833).
 
 **Time-frame summary** (Imperial Reichsgulden family in Danish
-royal mintage): Christian III 1546 Flensborg (c3h15, fineness
-0.750 — pre-Ferdinand-1559 standard) → Frederik II 1563-64
-København (f2h3/f2h6, 0.770 — Ferdinand-1559 standard match) →
-Frederik II 1584 Frederiksborg (f2h7g, specs not in cache) →
-Christian IV 1625-1632 København (c4h29, 0.760 — slight post-1559
-debasement). 86-year intermittent imitation of the Imperial
-standard.
+royal mintage): **Kong Hans 1497 København + ~1500** (Møntordning
+4 Dec 1497, 17-17¾ Karat / 0.708-0.740, 150 000 + additional stk;
+predates our cache, see §1.4 above) → ~1500-1533 gap (Christian II
++ Frederik I reigns; Rhinsk Gylden not in Hede cache for these
+reigns) → Christian III 1546 Flensborg (c3h15, fineness 0.750 —
+pre-Ferdinand-1559 standard) → Frederik II 1563-64 København
+(f2h3/f2h6, 0.770 — Ferdinand-1559 standard match) → Frederik II
+1584 Frederiksborg (f2h7g, specs not in cache) → Christian IV
+1625-1632 København (c4h29, 0.760 — slight post-1559 debasement).
+**136-year intermittent imitation** of the Imperial standard
+(1497-1632).
 
 ---
 
@@ -702,6 +751,19 @@ spawn their own TODO entries:
   <https://www.danskmoent.dk/galster/galshist.htm>
 - **danskmoent.dk Wilcke II references** (Møntordning 25 June 1602):
   <https://www.danskmoent.dk/wilcke/w2ref.htm>
+- **danskmoent.dk Wilcke 6: Kong Hans' rhinske Guldgylden** —
+  canonical reference for the FIRST Danish Rhinsk Gylden (Hans 1497,
+  Møntordning 4 December 1497). Documents the 150 000 stk Swedish-
+  campaign mintage, two mintmark variants (2-Beams 17¾-Karat, Star
+  17-Karat), and the «Rhenish Princes' Gulden 1490» foreign model.
+  <https://www.danskmoent.dk/wilcke/w6a.htm>
+- **danskmoent.dk Wilcke 7: Kong Hans' Møntreformer Gyldenregning**
+  — 1496 Dobbeltnobel / Guldreal (first Danish gold coin) + 1497
+  Rhinsk Gylden ordonnance context.
+  <https://www.danskmoent.dk/wilcke/w7hans.htm>
+- **Hvitfeldt (Arild)**: *Danmarks Riges Krønicke* (1599) — cited
+  via Wilcke 6 for the 150 000 stk mintage figure for Hans' 1497
+  Rhinsk Gylden Swedish-campaign issue. Primary source.
 - **danskmoent.dk 1mkklip1563.htm** (1563 Mark Klipping in Royal
   Collection): <https://www.danskmoent.dk/artikler/1mkklip1563.htm>
 
