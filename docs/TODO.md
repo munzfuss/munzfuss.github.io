@@ -94,11 +94,8 @@ Drop the summary block when only 0–1 🟡 entries remain.
 
 > **Awaiting your verdict before any action**: **§AB** (Daler-Klippe
 > placement — new Fuß `daler_tarif_gold` vs redefine fractions in
-> `reichsdukatenfuss`), **§AC** (9-Fuß Speciedaler family scope —
-> per-case vs family-wide 1624-1683 consolidation). User indicated
-> 2026-05-13: «поки що нічого з цим не роби, я вивчу питання і
-> повернусь» — both deferred until user studies the question and
-> comes back.
+> `reichsdukatenfuss`). User indicated 2026-05-13: «поки що нічого
+> з цим не роби, я вивчу питання і повернусь».
 
 ### AG. 🟢 Long-form refs page-hint compliance (residual after §S closure)  *(opened 2026-05-13)* *(est: small)*
 
@@ -160,20 +157,6 @@ Documented in `docs/SOURCES.md` §13.4.
 **Procedure.** PB-1 per case (gather sources up-front → за/проти merge → user verdict → execute). User direction 2026-05-12: «без автоматичних батчів».
 
 **Closed so far (commits):** case 9 = c4h79 (`6d7a087`), case 8 = c4h59/Hede-59 (`4d59131`), case 7 = c4h178/Krause cross-volume (`cea6b5d` family). 4 done, 38 remaining.
-
-### AC. 🟡 9-Fuß Speciedaler family sister entries — sweep beyond user's 1646-1651 explicit list  *(opened 2026-05-13)* *(est: medium)*
-
-**Surfaced.** While processing the user's 2026-05-13 «Hede 56D / 48 / 50AB / 55 → 9-Fuß» direction (commit `950c6ec` moved 5 entries), audit identified additional curated entries with the SAME Marken-fin 9.0/9.071 Hede attestation that suggests they too belong in 9_thaler (not 9_25_thaler), but were OUTSIDE the user's strict 1646-1651 scope:
-
-  - `km-135-chr-iv-1646` (½ Sp 1646, Hede c4h59C, Marken-fin 9.071) — currently 9_25_thaler.
-  - `km-161-fr-iii-1648` (¼ Sp Klippe 1648, Hede f3h47, Marken-fin 9.071) — currently 9_25_thaler.
-  - `km-159-fr-iii-1648` (1/12 Sp 1648, Hede f3h49, Marken-fin 9.071) — currently 9_25_thaler.
-  - `km-34-chr-iv-1646` (½ Sp 1646, Hede c4h165, Marken-fin 9.0) — SH yaml, currently 9_25_thaler.
-  - **Earlier 1624-1634 cluster** — `km-100-chr-iv-1624` (Hede c4h59A+B), `km-104-hede-56b-chr-iv-1627` and `km-104-hede-56c-chr-iv-1631` (Hede c4h56A+B+C / 56C). Same Marken-fin 9.071 attestation per c4h56 / c4h59 default specs, but predates 1646-1651 entirely.
-
-**Question.** Should all 9.0/9.071-Marken-fin entries (Christian IV 1624 onward + Frederik III 1648-1651 + Glückstadt continuations f3h148 1664-1666 / c5h120 1683) consolidate under `9_thaler` per Hede attestation, treating the 1646-1651 cluster as ONE member of a 60-year «9-Fuß-Speciedaler-Familie»? Or keep the per-case approval discipline and only move entries the user explicitly nods at?
-
-**Decision needed before action.** Per-case methodology says no automated expansion. But analytically the cluster is internally coherent.
 
 ### AB. 🟡 Daler-Klippe 1604 Reichsdukatenfuß placement — fraction-vs-anchor mismatch  *(opened 2026-05-13)* *(est: medium)*
 
@@ -1554,6 +1537,24 @@ weight_rough_g:
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
+
+### AC. 9-Fuß Speciedaler family sister entries — family-wide consolidation  *(opened 2026-05-13, closed 2026-05-14)*
+
+**Surfaced.** While processing the user's 2026-05-13 «Hede 56D / 48 / 50AB / 55 → 9-Fuß» direction (commit `950c6ec` moved 5 entries), audit identified additional curated entries with the SAME Marken-fin 9.0/9.071 Hede attestation that suggested they too belonged in 9_thaler, but were outside the user's strict 1646-1651 scope.
+
+**Decision (user direction 2026-05-14).** «якщо Хеде вказує що "marken_fin: 9.071 speciedalere" то це не може бути 9.25-талер, це 9-талер але трішки погіршена версія». Per-candidate Δ-verification confirmed uniform pattern across all 7 candidates: Δ to 9_thaler ≈ −0.9 % (cluster-typical specimen variance) vs Δ to 9_25_thaler ≈ +1.9 to +2.7 % (worse fit, over Soll). Family-wide consolidation justified by Hede source attestation, not derived hypothesis.
+
+**Moved 7 entries** (commit `6dd15a1`):
+
+  - denmark: km-100-chr-iv-1624 (½ Sp 1624-1634, Hede 59A+B); km-104-hede-56b-chr-iv-1627 (2 Sp 1627, Hede 56A+B+C); km-104-hede-56c-chr-iv-1631 (2 Sp 1631, Hede 56C); km-135-chr-iv-1646 (½ Sp 1646, Hede 59C); km-161-fr-iii-1648 (¼ Sp Klippe 1648, Hede f3h47); km-159-fr-iii-1648 (1/12 Sp 1648, Hede f3h49).
+  - schleswig_holstein: km-34-chr-iv-1646 (½ Sp 1646, Hede 165).
+
+**Phase boundary updates** to accommodate migration:
+
+  - denmark 9_thaler/II: year_from 1646→1624. Title trimmed from «Späte 9-Fuß-Speciedaler-Familie» to «9-Fuß-Speciedaler-Familie» (phase now covers full 1624-1683 span). Description rewritten to introduce the Christian IV 1624-1648 cluster at the top + retain Frederik III / Glückstadt narrative.
+  - SH 9_thaler/II: year_from 1683→1646. Title appended «(1645/46 + 1683)».
+
+---
 
 ### S. Add page numbers to long-PDF / book refs  *(opened 2026-05-13, closed 2026-05-13)*
 
