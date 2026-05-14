@@ -7,24 +7,41 @@
 
 ## How to use this file
 
-Open entries split into three priority tiers:
+Open entries split into four priority tiers:
 
-- **High priority** — the user has explicitly flagged these as
-  most-important on a specific date. New high-priority work goes
-  here **only on direct user direction** («з найвищим пріоритетом»
-  or equivalent). Keep this section short — when more than ~10 entries
-  pile up, promote/demote to maintain scannability.
+- **Highest priority** — exceptional, drop-other-work items. Only on
+  direct user direction with the explicit **«найвищий»** marker
+  («з найвищим пріоритетом», «highest priority», equivalents). These
+  block everything else: when a Highest entry is open, no other tier's
+  work should ship until it is resolved or explicitly demoted. Keep
+  this section to ≤2 entries — if it grows past that, the «blocks
+  everything» semantic dilutes. Default state: empty.
+- **High priority** — important and emphasised by the user, but NOT
+  «найвищий». Triggers: «високий пріоритет», «важливо», «зроби це
+  скоріше», equivalents. These are scheduled-next in normal session
+  rotation — they do not block other work, but get picked up before
+  Normal-tier items. Keep ≤10 entries.
 - **Normal priority** (default) — **every new TODO entry lands here
   unless the user explicitly says otherwise.** No priority annotation
-  from the user = Normal. Other tiers (High / Low) only when the user
-  emphasises the priority directly in chat (e.g. «з найвищим
-  пріоритетом», «низький пріоритет», «не зараз», equivalents).
+  from the user = Normal. Other tiers (Highest / High / Low) only when
+  the user emphasises the priority directly in chat.
 - **Low priority** — deferred items. Things we're not abandoning
   but consciously postponing (external blockers, big-bang refactors
   pending decisions, ideas worth recording but not now). Move
   entries here when they survive several sessions without progress
   AND have no near-term trigger to act on them, OR when the user
   explicitly says «низький / low / не зараз».
+
+**Trigger-phrase mapping (Ukrainian → tier):**
+
+| User says | Tier |
+|---|---|
+| «найвищий», «з найвищим пріоритетом», «critical», «blocker», «p0» | **Highest** |
+| «високий», «важливо», «зроби скоріше», «high», «soon» | **High** |
+| (no priority mention) | **Normal** |
+| «низький», «low», «не зараз», «deferred» | **Low** |
+
+When ambiguous (e.g. user says «важливе питання» without explicit tier), default to Normal and surface the question — don't auto-escalate.
 
 ### Ordering within a category
 
@@ -79,16 +96,78 @@ to the title (`*(opened YYYY-MM-DD, partial progress YYYY-MM-DD)*`).
 
 ### «Pending decision» summary
 
-When the High-priority section accumulates ≥2 entries marked 🟡 (needs
-decision), surface them as a short bulleted list right under the
-`## High priority` heading so the user sees on first glance what
-verdicts are awaited. Inline format:
+When the Highest- or High-priority section accumulates ≥2 entries marked
+🟡 (needs decision), surface them as a short bulleted list right under
+the section heading so the user sees on first glance what verdicts are
+awaited. Inline format:
 
 > **Awaiting your verdict before any action**: §AB (Daler-Klippe
 > placement: new Fuß vs redefine fractions), §AC (9-Fuß-Familie
 > scope: per-case vs family-wide).
 
-Drop the summary block when only 0–1 🟡 entries remain.
+Drop the summary block when only 0–1 🟡 entries remain in that tier.
+The summary is per-tier — a Highest-tier summary stays under
+`## Highest priority`, a High-tier one under `## High priority`.
+
+## Highest priority
+
+> **Empty most of the time.** Items here block all other work. Add
+> only on explicit user direction with the «найвищий» marker (see «How
+> to use this file»). Demote to High once the blocker semantic is no
+> longer warranted.
+
+### BC. 🟡 Denmark timeline start year — decide anchor + cover 1541→1566 gap  *(opened 2026-05-15)* *(est: many sessions)*
+
+**Surfaced.** User direction 2026-05-15, after praising the §8 «Three observable monetary phases» analysis in `docs/research/christian_iii_danish_coinage_1534_1572.md`. The mission scope was provisionally extended from «1559–1914» to «ca. 1559–1914» based on the Augsburger Reichsmüntzordnung 19. August 1559 anchor — but the user correctly pushed back: «здається що ми не можемо зважати на авгсбурзький ордонанс відносно данії, тому що це німецька тема». The Augsburger anchor is a Holy-Roman-Empire event; for the Danish-Norwegian realm the analogous foundational ordinance is Christian III's **Møntordning of 1541** (Galster, *Danske mønter* — danskmoent.dk/galster/galshist.htm).
+
+CLAUDE.md mission line was edited to «ca. 1559–1914» during the §AU promotion work; that edit stands pending the resolution of this entry. The Denmark-specific start-year picture is what needs settling.
+
+**The decision.** What year does Denmark's coverage **start** on this project?
+
+Three candidate anchors, in chronological order:
+
+  1. **1534** — Grevens fejde (Count's Feud civil war) start. Århus + Roskilde war-finance Klippinger (2 Mark, 8/4/2 Skilling) are documented from 1534-1536 per `christian_iii_danish_coinage_1534_1572.md` §9. Earliest *documented Danish coinage by us* in this window, but pre-Reformation, pre-Møntordning — extreme-emergency war finance, not a standard.
+  2. **1536** — Reformation in Denmark. End of Catholic regime, start of Christian III's effective reign. Still no Møntordning — the 1534-1536 Klippinger continue / wind down. No formal standard yet.
+  3. **1541** *(recommended)* — Christian III's Møntordning. The Galster-attested foundational ordinance: «*1 Daler = 3 Mark Danske*». Establishes Phase A («Christian-III standard era 1541-1559» per dossier §8): 1 Daler ≈ 26.5 g fein at København 1541-1543 (mf 8.827), debasing to 24.7 g 1544-1555. This is the Danish equivalent of the imperial Augsburger 1559 / Reichsabschied 1566 framework — a sovereign-decree standard.
+
+**Lean recommendation:** **1541** for the Denmark timeline. Rationale: it's the first formal Danish ordinance establishing a counted standard (Daler = 3 Mark); the 1534-1536 Klippinger are emergency war finance without a formula and would force the timeline to include pre-standard «no-Fuß» entries which break the artefact's organising principle (every coin sits in a Fuß). The Reformation 1536 is a political/religious event without a numismatic anchor and adds nothing the 1541 ordinance doesn't already encode.
+
+**If 1541 is accepted, the gap to fill 1541→1566 is significant** — currently zero coins in `data/locations/denmark.yml` from this window, and the only Müntzfuß family covering anything close (`9_thaler`) starts 1566 with Reichsmüntzordnung. The dossier §8 maps three distinct phase patterns inside 1541-1572 (the upper end overshoots our gap), and Phase A alone (1541-1559) has **five identifiable sub-standards** across two mints:
+
+  | Phase | Period | Mint | 1 Daler in g fein | mf | Notes |
+  |---|---|---|---|---|---|
+  | A1 | 1541-1543 | København | ~26.5 | 8.827 | Møntordning baseline |
+  | A2 | 1544-1555 | København | ~24.7 | 9.481 | 7% debasement |
+  | A3 | 1545-1547 | Flensborg | ~26.0 | 8.982 | sølvgylden |
+  | A4 | 1545-1554 | Flensborg | ~25.2 | 9.287 | søsling lybsk, near-imperial |
+  | A5 | 1559-1563 | København | progressive | (varies) | early F2 small-change drift |
+
+Plus **gold tracks** running through this window:
+  - **Ungersk Gylden** (Hungarian-style gold gulden, Christian III) — c3h15-c3h17 era, 67/Cölln. Mark of 22-23 karat.
+  - **Rhinsk Gylden** (Imperial Reichsgulden, Ferdinand 1559 standard from 1559+) — c3h15 already in our seed but its place in this window needs phase confirmation.
+  - **Guldkrone** (per §AV — Frederik II 1563-1564) — starts in Phase B but spans into our existing Guldkrone-Fuß work.
+
+**Sub-tasks (sequenced):**
+
+  1. **Decide the start year** (user verdict). If 1541, edit CLAUDE.md mission line: «ca. 1559–1914» → «ca. 1541–1914» (with footnote / `mission_lower_bound` note explaining the Danish-vs-imperial dual-anchor rationale).
+  2. **Inventory all Hede pages 1541-1566** (Christian III + early Frederik II) via `scripts/cache/hede/c3h*.json` + `f2h*.json`. Cross-check against `christian_iii_danish_coinage_1534_1572.md` §3-7 (already enumerated). Mark which are in seed already (per existing `data/seed/hede/denmark.yml`) and which are gaps.
+  3. **Define new Müntzfüße in `data/shared/fuesse.yml`** for the patterns in the table above. Candidates:
+     - **`christian_iii_dalerfod`** — Phase A standard (1 Daler = 3 Mark Danske; baseline mf 8.827, debasing across 1541-1559). Per-phase metric variation handled via phase entries.
+     - **`klipping_fod`** *(provisional name)* — Phase B war-debasement standard 1563-1570 (1 Daler ≈ 9 g fein, mf 25.904). May overlap with existing 9_thaler family at the heavy-debasement end — needs disambiguation.
+     - Foreign-imitation gold: **`ungersk_gylden_fod`** for Hungarian-style gold gulden — possibly merge into existing Reichsdukatenfuß ancestry research or stand alone (decision-pending — see §AW for the analogous Rhinsk Gylden case).
+  4. **Add `fuss_periods` blocks** to `data/locations/denmark.yml` for Phase A1-A5 + Phase B, with sourced `hintergrund` and per-phase historical framing (per §BB convention — no parameters, no specific issuances in the prose).
+  5. **Promote seed-Hede coins** in this window to curated entries with proper `fuss` + `phase` assignment.
+  6. **Update timeline visualisation** to start at the chosen year (probably 1541).
+
+**Cross-references:**
+  - **§BA** (Galster-based Fuß/phase refinement) — covers boundary years and mintmasters; §BC supplies the upstream «what phases exist at all» map for the pre-1566 window. §BA's per-Fuß rewrite should consume §BC's output where the 1541-1566 window overlaps.
+  - **§AZ** (Harvest pre-Christian-III Hede pages: Hans 1483-1513, Frederik I 1523-1533, Christian II 1513-1523) — provides cache material for any earlier-than-1541 candidates. If the user picks 1534 as anchor, §AZ's harvest may also be needed for the 1534-1541 Klipping window (Århus + Roskilde 1534-1536). If 1541 stays the anchor, §AZ stays out of scope for §BC.
+  - **§AU** (Frederik II gold 1563-64 promotion, closed) — already covers part of the 1559-1566 boundary on the gold side; §BC's Phase A/B silver work should align with §AU's gold-track phase assignments.
+  - **§AV / §AW / §AX** (Guldkrone-fod, Rhinsk-Gylden-fod, Rosenobel placement — all pending decisions) — gold-side framework for this window; §BC's silver-side framework should land in parallel so the two metals' phases align by year.
+  - **`docs/research/christian_iii_danish_coinage_1534_1572.md`** — the existing dossier this entry is built on. §8 is the phase map; §3-7 are per-period coin enumerations; §9 is mints/mintmasters; §10 is sources.
+  - **`docs/research/danish_royal_gold_1560_1648.md`** — the gold-side companion dossier covering the same 1560-onwards window.
+
+**Why this is Highest priority.** The Denmark page's lower bound is currently structurally undefined — coins from 1541-1566 cannot be added until the phase-and-Fuß framework exists. Every other Denmark-related TODO (§BA, §BB phases-for-Denmark, §AD Hede sub-letter folds in the c3h/f2h range, §AZ, §AV/AW/AX) is implicitly blocked: doing them on the existing «9_thaler from 1566» framework either bakes-in an incorrect lower bound or forces redoing the work after §BC lands. The audit-tooling fronts (§AL anomaly field, §AS verbatim-quote sweep, §BB Fuß-description sweep) are independent and can proceed in parallel.
 
 ## High priority
 
