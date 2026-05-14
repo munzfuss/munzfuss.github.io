@@ -1816,6 +1816,68 @@ Our `scripts/cache/hede/` currently has **no Hans / Christian II / Frederik I pa
 
 ---
 
+### BA. 🟢 Refine Fuß / phase descriptions + boundary years from Galster galshist  *(opened 2026-05-15)* *(est: large)*
+
+**Surfaced.** User direction 2026-05-15 after capturing the full Galster *Danske mønter* historical overview into `docs/research/sources/galster_galshist.md` (commit `1a8ac6b`). The Galster 1965 article (excerpt pp. 23-43) is dense with dated events, mintmaster attributions, ordnance specifics, and metric details that can refine our existing Fuß / phase prose in both `data/shared/fuesse.yml` and per-location `data/locations/*.yml`. Sweep the captured source against existing rendered-prose and tighten where Galster's account adds detail, corrects a date, or clarifies a tariff relationship.
+
+**Specific Galster passages worth mining** (non-exhaustive):
+
+  - **1541 Møntordning + 1544 daler-at-head reform**: «Ved møntordningen af 20. sept. 1541 reorganiseredes møntvæsenet… 1544 blev daleren stillet i spidsen for det danske møntsystem, således at der herefter gik 3 mark på en daler. Denne sloges 8 stk. på den 14 1/2 lødige kølnske mark.» — explicit 1541 Marken-fin 8 stk @ 14½-lødig.
+  - **Flensborg royal mint 1545-54**: «Kongen anlagde derfor en ny kongelig mønt i Flensborg, hvorfra der i årene 1545-54 udgik rhinske gylden, dalere og mindre sølvmønt.» — dates Christian III Flensborg operation precisely.
+  - **Syvårskrigen 1563-1570 Klipping debasement**: «1563-4 måtte Poul Fechtel levere over 3 millioner mark i klippinge til tomark, mark, fire- og toskilling» + «den nye, runde mønt… bar stadig årstallet 1563, men var endnu ringere end før» + «daleren, der ved krigens afslutning gjaldt 4 mark (mod 3 mark 1563)» — explicit Daler-tariff drift 3 mark→4 mark across the war.
+  - **1572 Elfsborgs løsen Speciedaler**: «150000 daler, som Sverige måtte udrede i Elfsborgs løsen, blev slået til dalere 1572… Lødigheden var lidt ringere (14 lødig i stedet for 14 4/18)» — precise lødighed for 1572 issue.
+  - **1582 Møntordning**: «efter mange års håbløs forvirring måtte man i møntordningen af 1582 vende tilbage til 'mønten, som før gik' og dele daleren i 4 mark» — establishes 1582 cutover 3 mark→4 mark = 1 daler.
+  - **Frederiksborg coin press 1582-85**: Paul Gulden imported from Danzig with new coin press; «portugaløser, rosenobel, dobbeldukat, engelot, guldkrone, guldgylden og ungersk gylden» as wedding-gift set for Sophie, FS monogram, single surviving set.
+  - **1602 Møntordning**: «1602 sætte daleren til 66 skilling, men i den nye møntordning benyttede kongen lejligheden til at udnytte møntregalet og nedsætte lødigheden» — clarifies 1602 reform context (sequel to 1580 Hamborg 33 skill. lybsk = 66 skill. dansk lead).
+  - **1607 Helsingør forpagtning**: Hans Fleming (Dutch) took mint in lease; first instance of mint farming. Affects mint attribution for any Helsingør entries.
+  - **1608 efterligninger of West European trade coins**: «nederlandske 'løvedaler', der kun skulle være 50 2/3 skilling værd», sovereigns, breddalere — context for our gold-track imitations.
+  - **Christian IV Daler-tariff escalation**: «1609 sattes daleren til 68 skilling, 1610 til 74 skilling, 1616 til 80 skilling» — explicit yearly tariff figures.
+  - **1618 Krone-mønt introduction**: «Fra 1. maj 1618 indførtes kronen, der skulle gå for 1 1/2 daler… der sloges i regnskabsåret 1618-9 for ca. 154.000 daler i den nye kronemønt, hvorved kongen kunne beregne sig en indtægt på ca. 11 %» — precise 11 % seigniorage figure for 1618 Krone-mønt.
+  - **1619 Kroneskilling 1/64 daler = 1/96 krone**: explicit subdivision.
+  - **Glückstadt mint anlagt 1616** + Frederiksborg 1620-23 ringholdige 8-/12-skillinger.
+  - **1625 final daler fixation at 6 mark = 16 skilling, held to 1813 statsbankerot**: «Daleren blev endelig fastsat til 6 mark – 16 skilling, en værdi som blev fastholdt lige til statsbankerotten 1813.»
+  - **1626-29 Kejserkrigen** gold issues: «rhinsk gylden, guldkroner og rosenobler» + Norway silver.
+  - **1644-48 Torstenssonkrigen Ulfeldter/Hebræer mønt** + Caspar Herbach brilledukater (Norwegian gold).
+  - **1648 kongens kroning 23 november**: firkantet udkastningsmønt in gold and silver.
+  - **1671 Christian V Møntordning 22. marts**: «det faste værdimål gennem århundreder var speciedaleren, hvis indhold af fint sølv var sunket lidt fra Christian IIIs tid fra 27.405 g til 25.128 g. Den blev nu fastlagt på 8 3/32 stk. på den 14-lødige mark, d.v.s. 25.281 g, og dette blev varigt til 1873.» — **canonical 1671 Speciedaler standard codification**, 25.281 g fein, held 202 years.
+  - **1692 Møntordning 31. december**: 100 000 rigsdaler in kroner + markstykker, plus 5000 rigsdaler in halvskillinger (kobber). Anton Meibusch introduces improved technique.
+  - **1694-5 8-skillinger in Lykstad + København**: 9-lødige, 76½ stk per Cölln. Mark — became main coin for Kurantmøntfod, joined by Lybæk + Hamborg (4 schilling lybsk).
+  - **1709-1713 Store nordiske krig**: over 6⅓ million daler in ringholdige war-mønt; Kurantdukater introduced (face 2 rd. kurant = 12 mark but less worth).
+  - **1726 nedsættelser**: 16 skill. → 15 skill., 12 skill. → 10 skill., 2 skill. proportional. 1727 Kurantdukater 12 mark → 11 mark.
+  - **1731 24-skilling (rigsort)** introduced as main Kurant coin under Christian VI; remained until 1855.
+  - **1736 Kurantbanken** established.
+  - **1757 Kurantdukater indkaldt**.
+  - **1764-5 170 000 specier slået svarende til Hamborg banco**.
+  - **1771 (1775) Christiand'or** after French Louisd'or, for foreign payments.
+  - **1776 specie-vs-kurant 4:5 ratio fixed**: 1 specie = 1 rd. 22 sk. kurant.
+  - **1788 Schleswig-Holstein Speciebank in Altona** + 9¼-Fuß codification («9 1/4 speciedlr. på marken fin»).
+  - **1791 Dansk-norske speciebank** + 11 July 1794 forordning equalising kongerigerne with hertugdømmerne.
+  - **1813 Statsbankerot + Rigsbankdaler 18½ stk = 6 mark = 16 skilling per Cölln. Marck fein**: «18 1/2 stk. – 6 mark – 16 skilling af en kølnsk mark fint sølv». 1818 Nationalbanken replaces Rigsbanken.
+  - **1826-70 Frederikd'or / Christiand'or in Altona**: 21½ karat, 35 5/24 stk på marken brutto.
+  - **1854 rigsbankmønten → rigsmønt rename**.
+  - **1865 latinske møntunion** + **1871 Tyskland guldmøntfod** → **1873 Skandinavian møntunion 27. maj** (Danmark + Sverige; Norge tiltrådt 16 oct 1875). 10-krone weight 4.4803 g, 20-krone 8.9606 g; krone subdivision 100 øre.
+  - **Skillemønt 1873**: 2 + 1 kr at 15 + 7½ g (fein 12 + 6 g); 25 + 10 øre at 2.42 + 1.45 g (fein 1.45 + 0.58 g); 5/2/1 øre bronze.
+  - **1917 25/10 øre → kobbernikkel** (WWI metal-prices); bronze → jern.
+  - **1924 särskillemønt**: kobberaluminiumnikkel for 2+1 kr, kobbernikkel for 25/10 øre.
+  - **1941 øremønt → zink** (WWII).
+
+**Plan.**
+
+  1. Walk `data/shared/fuesse.yml` Fuß entries (especially 9_thaler, 9_25_thaler, 18_5_thaler, guldkrone, kronemont*, reichsdukatenfuss, kronefod). For each, cross-check description / hintergrund prose against Galster facts. Where Galster gives a date or parameter we don't yet have, add. Where we differ, verify and reconcile.
+  2. Walk `data/locations/denmark.yml`, `schleswig_holstein.yml`, `hamburg.yml`, `lubeck.yml` phase descriptions. Update boundary years (e.g. 1582 daler→4 mark cutover, 1671 Speciedaler codification, 1813 Statsbankerot). Add mintmaster attributions where missing (Povl Fechtel 1541-, Hans Delhusen, Paul Gulden 1582-85 Frederiksborg, Nicolaus Schwabe 1602, Hans Fleming 1607 Helsingør, Anton Meibusch 1692+, Caspar Herbach Norwegian brilledukater, Schimmelmann 1764-5, Freund Altona 1826-70).
+  3. Verbatim-quote anchors per CLAUDE.md §5a — when adding/refining facts from Galster, cite the local capture via `docs/research/sources/galster_galshist.md` with the relevant Danish-language verbatim passage. New `*-references.yml` entries (or extend existing Galster-citing refs) where the prose now backs additional claims.
+  4. **Cross-reference §AS** (verbatim-quote sweep) — many Galster-derived refs will need quote-as-locator per the new §5a rule.
+
+**Scope assessment**: large. The Galster article spans 800 → 1914+ with dozens of dated events; not all are project-relevant (medieval pre-Reformation, post-1914 papermøntfod). Project-relevant window 1541-1914 has ~25-30 dated events worth integrating. Per-Fuß / per-location prose updates likely 50-100 small edits across many files. Suggest splitting into per-Fuß sub-passes or per-location sub-passes to avoid one monster commit.
+
+**Cross-references.**
+
+  - Source capture: `docs/research/sources/galster_galshist.md` (full Galster text, 489 lines).
+  - Research dossiers using Galster: `daler_klippe_1604.md`, `danish_royal_gold_1560_1648.md`, `christian_iii_danish_coinage_1534_1572.md`.
+  - §AS (verbatim-quote sweep) — interacts with this entry; new refs added under §BA should comply with §AS quote-as-locator convention.
+
+---
+
 ## Low priority
 
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
