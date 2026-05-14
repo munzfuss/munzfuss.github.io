@@ -161,22 +161,34 @@ Documented in `docs/SOURCES.md` §13.4.
 
 **Closed so far (commits):** case 9 = c4h79 (`6d7a087`), case 8 = c4h59/Hede-59 (`4d59131`), case 7 = c4h178/Krause cross-volume (`cea6b5d` family). 4 done, 38 remaining.
 
-### AB. 🟡 Daler-Klippe 1604 Reichsdukatenfuß placement — fraction-vs-anchor mismatch  *(opened 2026-05-13)* *(est: medium)*
+### AB. 🟡 Daler-Klippe 1604 placement — par-metal presentation gold, NOT Reichsdukatenfuß  *(opened 2026-05-13, deep-researched 2026-05-14)* *(est: medium)*
 
-**Surfaced.** While fixing dk-hede-c4h12 silver→gold (commit `b971756`) and the family-wide 1604 Daler-Klippe seed entries (commit `b041b44`). Currently the 1604 Christian IV Daler-Klippe series (4 / 6 / 8 Daler tariff Klippen) sits under `reichsdukatenfuss` with the Daler-tariff number as the `fraction` label (`fraction: '4'`, `'6'`, `'8'`). Δ-from-Soll comparison shows the specimen-fein values don't match the Reichsdukatenfuß anchor (1 Reichsdukat = 3.44 g fein @ 0.986):
+**Surfaced.** While fixing dk-hede-c4h12 silver→gold (commit `b971756`) and the family-wide 1604 Daler-Klippe seed entries (commit `b041b44`). Currently the 1604 Christian IV Daler-Klippe series (8 / 6 / 4 / 3 Daler) sits under `reichsdukatenfuss` with bare-denomination fractions; Δ-from-Reichsdukatenfuß-Soll is systematically −40 to −41 % — the coins are **not** Reichsdukatenfuß.
 
-  - 4 Daler (Hede c4h12): specimen 8.12 g fein vs Reichsdukatenfuß-«4» Soll 13.77 g → Δ -41 %.
-  - 6 Daler (Hede c4h11): specimen 12.17 g fein vs Reichsdukatenfuß-«6» Soll 20.65 g → Δ -41 %.
-  - 8 Daler (Hede c4h10): specimen 16.55 g fein vs Reichsdukatenfuß-«8» Soll 27.54 g → Δ -40 %.
+**Full evidence dossier**: `docs/research/daler_klippe_1604.md` (compiled 2026-05-14, includes ordinance text references, Bruun verbatim tariff statement, Hede specs, Galster context, computed economics, Wilcke II pattern analysis). Read that first before resuming the TODO.
 
-Consistent ~-41 % deficit suggests the Daler-tariff coins follow a DIFFERENT-anchor gold standard (a project-internal «Daler-Tarif-Gold-Fuß» perhaps) — they don't fit Reichsdukatenfuß-«N» where N is Reichsdukaten count.
+**Key findings (TL;DR from the dossier):**
 
-**Two paths.**
+  - **Tariff** (face value, from Bruun lot 1017 verbatim): «At the time the value of 6 Daler corresponded to 3.5 Ducats (Hungarian Guldens)». Sets 1 Daler 1604 = 0.583 Dukat = 2.005 g fein gold; consistent with 1602 silver-Daler tariff at 66 Skilling Danske.
+  - **Actual gold content** vs tariff: 8 Daler +3.0 %, 6 Daler +1.1 %, 4 Daler +1.2 %. **Par-metal with small prestige premium**, NOT seigniorage-spread tariff coins. State pays slight excess for prestige; this is opposite to commercial tariff coins (Krone-Mønt) where face value > metal value.
+  - **Function**: explicit non-commercial — Galster verbatim «kom ikke til at få større betydning i handel og vandel». Hofgeschenk, royal gifts, presentation pieces. Mintages 61-588 stk per type.
+  - **Variable fineness per denomination** (0.833 / 0.923 / 0.937 across 4/6/8 Daler) breaks any single-Fuß contract.
+  - **Pattern context**: part of Christian IV's continuous 1590-1648 tradition of state-gold-tariff Klippen by ordinance (Prinsens Daler 1590, Schwabe coronation 1596, 1604 Daler-Klippe, 1608-11 Kalmar-War Sovereigns, 1618+ Guldkrone). Direct sibling to Guldkrone, not precursor.
 
-  (a) Create a new Fuß family (`daler_tarif_gold` or similar) with its own anchor + fractions matching the Christian IV 1604 Daler-Klippe series Soll-fein values per Hede.
-  (b) Keep current Reichsdukatenfuß placement but redefine the «4 / 6 / 8» fractions to use Daler-tariff Soll-fein (NOT Reichsdukaten-N) so the Δ-from-Soll calc shows ~0 % instead of -41 %.
+**Terminology correction** (user direction 2026-05-14): my earlier name `tariff_gold_klippen` is WRONG. These coins are tariff-DEFINED (fiat value set by ordinance) but NOT «tariff coins» in the seigniorage-spread sense (no spread between face and metal). The word «tariff» collides with established `kind: tarif` for Krone-Mønt. Better naming candidates emphasising the par-metal character:
 
-Either way the prose / category presentation needs to acknowledge that «Daler-Klippe» is a parallel gold-tariff line, not a Reichsdukatenfuß sub-family.
+  - **`daler_klippen_1604`** — narrowest, scope-limited to documented set (recommended for starter)
+  - `chr4_gold_klippen` — broader, requires Wilcke I research to confirm 1608-11 / 1618+ compatibility
+  - `forordning_1602_guld` — references the specific ordinance
+
+**3 Daler retention** (confirmed 2026-05-14): keep Hede 13 in the series with the «not in 1602 ordinance, only single specimen known» status flagged in the coin's `note` (per dossier §2.4). Don't exclude.
+
+**Open question** — Fuß schema fit: variable fineness across denominations + one-shot 1604 issue + no obvious Cölln. Mark fein integer division break the «sustained Münzfuß» abstraction. Two paths:
+
+  (a) Shoehorn into a Fuß slot for now (cosmetic correct in coin table; `historical_name` documents it's not a real Fuß). Lower effort, unblocks coin placement.
+  (b) Schema-level refactor for non-Fuß coin entries (model these as ordinance-defined gold-tariff pieces without a Fuß-fraction relationship). Higher effort, more honest.
+
+**Pending decisions:** (1) starter Fuß name (lean `daler_klippen_1604`); (2) shoehorn (a) vs schema refactor (b); (3) verbatim-quote refs sweep — promote Bruun lot 1017 «6 Daler = 3.5 Ducats» quote + Galster «kom ikke til at få større betydning» quote into `denmark-references.yml` as §AS-style entries.
 
 ### AA. 🔵 Seed `fraction` field audit — systematic sweep  *(opened 2026-05-13)* *(est: large)*
 
