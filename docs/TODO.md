@@ -1878,6 +1878,60 @@ Our `scripts/cache/hede/` currently has **no Hans / Christian II / Frederik I pa
 
 ---
 
+### BB. 🟢 Fuß descriptions — historical framing only, no parameters / specific issuances  *(opened 2026-05-15)* *(est: large)*
+
+**Surfaced.** User direction 2026-05-15 during §AG resolution. The current convention for Fuß descriptions across location files is heterogeneous: most phase `description` blocks and `fuss_periods.<fuss>.hintergrund` blocks bleed concrete parameters (fineness ‰, weight g, formula `Marck ÷ N`) and specific catalogue-issuance references (Behrens 641a–647, KM-XXX die groups, specific year groups) into prose. Per the user's articulation:
+
+> «В описі стопи має бути історичний рамковий огляд, без параметрів стопи/монет і без конкретних карбувань, лише загально про стопу.»
+
+**Principle (the rule going forward).**
+
+Phase `description` and Fuß-level `hintergrund` prose convey **historical framing of the standard at this location**:
+
+- *What* the Fuß is — its place in the imperial / Danish / regional mint tradition.
+- *When* and under *what authority* it was codified (ordinance, treaty, royal decree).
+- *Why* this location adopted / left it (Hanseatic affiliation, Danish-realm membership, currency-union accession, etc.).
+- Broader trade / accounting context.
+
+What MUST NOT appear in these surfaces:
+
+- **Concrete metric parameters** — `986 1/9 ‰ Feingold`, `233.856 g ÷ 67 = 3.4419 g`, `888 8/9 ‰`, raw-vs-fine arithmetic. These belong in the Grundwerte / bar-title metric blocks and per-coin notes.
+- **Specific catalogue-issuance references** — `Behrens 641a–647`, `KM-191, 195, 198, 205`, «vier dokumentierte Stempelgruppen». These belong in `coins[].note` and `coins[].catalog`.
+- **Specific year groups bound to specific issuances** — «Jahrgänge 1789–1801, alle nach demselben Standard». Period years for the phase live in `pdate_label` and `year_from` / `year_to`; the prose stays general.
+
+**Pilot — Lübeck Reichsdukatenfuß done as exemplar (this session, commit pending).** Phase description (`phases.reichsdukatenfuss[0].description`) + Fuß-level `hintergrund` (`fuss_periods.reichsdukatenfuss.hintergrund`) rewritten as historical framing — codification by Augsburger Reichsmünzordnung 1559, role through Reichszeitalter to 1871, North/Baltic trade-coin context, Lübeck's adoption as Hanseatic city. Behrens-641a–647 detail removed; ref3 (Behrens) inline `<sup>` citation dropped. Use this as the reference shape for the sweep.
+
+**Side effect on §AG**: with Lübeck's only two inline cites of ref3 (Behrens) now removed, the §AG «Behrens page-hint missing» concern is moot for Lübeck. §AG can close as obsoleted IF the orphaned `ref3` entry in `lubeck-references.yml` is also dropped (separate small cleanup). Pre-existing Behrens-author-name error («Hans» → «Heinrich») becomes moot if the entry is deleted.
+
+**Scope.** Every Fuß across every location file:
+
+  | File | Fuß surfaces (phase × hintergrund) |
+  |---|---|
+  | `lubeck.yml` | 4 Füße (11_333_thaler, 9_thaler, reichsdukatenfuss ✓, seed_unsorted) |
+  | `hamburg.yml` | ~5 Füße |
+  | `denmark.yml` | ~10 Füße (incl. guldkrone, kronemont*, kurantmøntfod, rigsbankdaler etc.) |
+  | `schleswig_holstein.yml` | ~12 Füße (multi-phase 9¼ and others) |
+  | `holstein_schauenburg.yml`, `lubeck_bishopric.yml`, `oldenburg.yml`, `hesse_kassel.yml`, `bremen_verden.yml`, `osnabrueck.yml`, `lauenburg.yml`, `brunswick_lueneburg.yml` | per-location sweep |
+
+≈ 60–80 total surfaces (description + hintergrund × Füße × locations). Per-surface effort: ~5-15 min — read current prose, identify parameters + specific issuances, rewrite as historical framing, drop orphaned inline refs, move concrete data into a coin note if not already present.
+
+**Action.**
+
+  1. Audit script `scripts/audit_fuss_description_framing.py` — heuristic detection of «parameter bleed» in phase `description` + `hintergrund`: regex-match for `‰`, decimal-gram patterns (`\d+,\d+ g`), formula patterns (`÷ \d+`), catalog-ref tokens (`Behrens \d+`, `KM-\d+`, `Hede \d+`, `Sieg \d+`, etc.). Output baseline count per location.
+  2. Per-location sweep — one location per session, ~10-20 surfaces per sitting.
+  3. For each surface: rewrite as historical framing per principle above. Move concrete data to coin notes where it's not already there; drop orphaned inline refs from the prose.
+  4. Refs becoming orphaned after the sweep: handle case-by-case — either delete (if their only use was this surface), or keep (if they back content elsewhere).
+  5. Wire the audit into pre-commit (advisory) so future Fuß-description additions don't re-introduce parameter bleed.
+
+**Cross-references.**
+
+  - **§BA** (Galster-based refinement) is the *content accuracy* pass — boundary years, mintmasters, parameter corrections. §BB is the *structural role* pass — what kind of statement belongs in this prose slot. Independent but synergistic; one location can run §BA + §BB together for a single coherent rewrite.
+  - **§AG** (Behrens page-hint compliance) — Lübeck portion obsoleted by the §BB pilot rewrite. If §BB lands across all locations and removes all Behrens inline cites, §AG closes entirely.
+  - **§AS** (verbatim-quote-as-locator) — refs that survive the §BB sweep still need the §AS quote requirement. Coordinate so refs aren't quote-cited under §AS then dropped under §BB on the next session.
+  - **CLAUDE.md §0z** (three reader roles) — supports the principle: Fuß descriptions are role-3 (end-reader) surfaces; the parameter / catalog-issuance detail belongs in role-3 coin-note surfaces, not in role-3 framing surfaces. Same role, different sub-purpose.
+
+---
+
 ## Low priority
 
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
