@@ -313,15 +313,18 @@ A reference entry's job is to tell the reader **where to verify the claim**, ful
     uk: …
 ```
 
-**Required content:**
+**Required content (every entry):**
 - Author / institution name (bold).
 - Title (italic).
 - Publisher and/or year for printed works; URL for online works.
-- Hyperlink with `target="_blank"`.
-- At most one sentence (≤ 140 chars) saying *what the source attests* — e.g. «source for the Speciedaler standard 25.28173 g», «attests the 1618 patent date».
-- **Concrete page hint** when the source is a long-form work (see «Mandatory page hints» below).
+- Hyperlink with `target="_blank"` for online sources.
+- **A verbatim quote** (≤ 25 words, in quotation marks) of the exact passage the citation backs. **Mandatory** — this is the citation's locator: the reader sees what claim the ref backs without re-reading the source. Standard academic practice (Chicago Manual, MLA) and especially important for unpaginated web sources where the quote IS the only locator. (Clarification 2026-05-14: «посилання завжди на якийсь конкретний уривок з тексту».)
+- **Concrete page hint** when the source has pagination (see «Mandatory page hints» below). NOT required for unpaginated single-page web articles — the verbatim quote serves as the locator there.
+- Optional ≤ 80 chars of additional scope context outside the quote — but the quote alone is usually enough.
 
-**Mandatory page hints for long-form sources.** When the URL or work points to a document of **≥10 pages** — PDF book, multi-chapter monograph, auction catalogue, periodical issue, multi-volume Konversationslexikon, scanned ordinance gazette — the scope note MUST carry a **concrete** page reference to the cited claim. The ref body without a page hint is invalid for these sources.
+**Mandatory page hints for paginated sources.** When the source HAS pagination — PDF book, multi-chapter monograph, auction catalogue, periodical issue (each issue paginated), multi-volume Konversationslexikon (volume + page), scanned ordinance gazette, paper book — the ref body MUST carry a **concrete** page reference to the cited claim alongside the verbatim quote.
+
+The rule applies whenever the source itself has page numbers, regardless of whether the URL exposes them. **It does NOT apply** to single-page web articles (danskmoent.dk/artikler/*.htm, lex.dk entries, Wikipedia HTML articles without print original, etc.) — those have no pages to cite; the required verbatim quote alone serves as locator.
 
 Forms accepted (use whichever fits the underlying work's pagination scheme):
 - `«verbatim quote» (S. 14)` — short quote + page, the canonical form.
@@ -341,7 +344,7 @@ Forms accepted (use whichever fits the underlying work's pagination scheme):
 
 **Forbidden inside a ref body:**
 - Multi-sentence analysis, argumentation, or interpretation («establishes that …», «proves that …», «in other words: …»).
-- Long verbatim quotes (more than ~25 words). If a quote is the evidence, it goes in the prose where the ref is cited, with the ref pointer next to it.
+- **Long quotes** — more than ~25 words. The required verbatim quote (above) caps at ~25 words to serve as locator, not evidence. Longer evidentiary quotes go in the prose where the ref is cited, with the ref pointer next to them.
 - Multi-source bundles. Each source gets its own `ref{N}` entry, even if the same prose paragraph cites three of them. Inline citations stack: `<sup><a href="#ref10">[10]</a><a href="#ref11">[11]</a><a href="#ref12">[12]</a></sup>`.
 - Cross-references between refs («see ref30», «contrasted with ref29»). Cross-talk goes in the prose.
 - Marketing / institutional fluff («the world's largest collection insured for 500 m DKK»).

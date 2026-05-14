@@ -103,11 +103,14 @@ Drop the summary block when only 0–1 🟡 entries remain.
 
 **Plan.**
 
-  1. Build a one-pass audit script `scripts/audit_refs_page_hints.py` that walks all `data/locations/*-references.yml` + `data/shared/*-references.yml`. For each entry whose ref points at a long-form work (≥10 pages), check the scope-note for a literal page reference (`S. NN`, `pp. NN`, `Band NN, S. NN`, `Kap. NN`, `§ NN, S. NN`). Flag entries missing it.
-  2. **Paper-only refs treated identically** (per CLAUDE.md §5a clarification 2026-05-13). A ref to an offline paper source without page hint is a bad citation by construction (if neither author nor user read the book, citing it is dishonest). The legitimate path: paper sources arrive via a digital secondary that itself cites the paper with a page number; the page number carries over. If the secondary cites paper without a page, the chain is broken and we DROP the paper ref entirely. No «exempt because offline» tier.
-  3. Optionally wire into `audit_health.py` as a new section, and into the pre-commit hook as advisory (eventually hard-block once the baseline clears).
+  1. Build a one-pass audit script `scripts/audit_refs_page_hints.py` that walks all `data/locations/*-references.yml` + `data/shared/*-references.yml`. For each entry whose ref points at a **paginated** source (book / PDF / multi-volume work / paginated periodical / paper book), check the scope-note for a literal page reference (`S. NN`, `pp. NN`, `Band NN, S. NN`, `Kap. NN`, `§ NN, S. NN`). Flag entries missing it.
+  2. **Paper-only refs treated identically** (per CLAUDE.md §5a clarification 2026-05-13). A ref to an offline paper source without page hint is a bad citation by construction. The legitimate path: paper sources arrive via a digital secondary that itself cites the paper with a page number; the page number carries over. If the secondary cites paper without a page, the chain is broken and we DROP the paper ref entirely. No «exempt because offline» tier.
+  3. **Scope narrowing (user clarification 2026-05-14)**: page-hint requirement applies ONLY to sources that have pages at all. Single-page web articles (danskmoent.dk/artikler/*.htm, lex.dk, Wikipedia HTML without print original, NNUM articles via danskmoent transcript pages, etc.) HAVE no pages; the verbatim-quote-as-locator rule (§AS) handles those instead.
+  4. Optionally wire into `audit_health.py` as a new section, and into the pre-commit hook as advisory.
 
-**Scope** (verified 2026-05-13 via full scan of 128 refs in 12 files): **1 candidate** missing page-hint: `lubeck-references.yml:ref3` Behrens 1905 — paper-only, no URL, no page hint. Per the new §5a paper-only rule: either find a digital secondary that cites Behrens with a page, or drop the ref. Walking + flag run takes < 5 s.
+**Scope** (re-verified 2026-05-14 after rule narrowing): **1 paginated source missing page-hint**: `lubeck-references.yml:ref3` Behrens 1905 (Berlin 1905 paper book — needs page hint or DROP). The other 8 previously-flagged candidates (denmark:ref6/ref10/ref18/ref20; sh:ref29/ref30/ref38; german_fuesse:ref38) are single-page web articles — page-hint not required; the verbatim-quote-as-locator requirement applies and is tracked in §AS instead.
+
+**Audit-script update needed**: tighten LONGFORM_PATTERN to detect actually-paginated sources only (drop the «{city} {year}» Berlin-1905-style match that catches non-paginated «Christian 5 (1670-1699)» phrases; keep «.pdf», «archive.org», «wikisource per-page transcribing print original», multi-volume encyclopaedia hosts).
 
 ### AF. 🟢 Hede silver-spec-card-for-gold-strike audit (sister-to-c4h47 sweep)  *(opened 2026-05-13)* *(est: medium)*
 
@@ -303,6 +306,42 @@ Current behavior: when curated coin matches seed by Hede ref AND no guard fires 
 **Resolution path:** when §AL anomaly-field design lands, tag the `8.428` entry with `anomaly: source_error`. Guard logic in `build.py` will exclude it from min/max computation; ratio normalises; seed properly suppresses.
 
 **Paused** until §AL has user verdict on field name + enum values (3 candidates per state listed in §AL body). No standalone action — this entry exists solely to track that c7h42 is a known case that the §AL implementation must cover when it lands.
+
+### AS. 🔵 Verbatim-quote-as-locator sweep across all refs  *(opened 2026-05-14)* *(est: large)*
+
+**Surfaced.** User direction 2026-05-14: «треба вказати точну цитату з ресурсу який власне і означає посилання, адже посилання завжди на якийсь конкретний уривок з тексту. проаналізуй чи це стандартна практика для посилань». Verified — standard academic practice (Chicago Manual, MLA, Wikipedia citations) supports / encourages short verbatim quotes as identifying locators in footnotes/endnotes; especially essential for unpaginated web sources where the quote IS the only locator.
+
+**Rule updated in CLAUDE.md §5a** (same commit that spawns this entry):
+
+  - Every ref body must carry a verbatim quote (≤ 25 words, in quotation marks) of the exact passage the citation backs. Locator function — the reader sees what claim the ref backs without re-reading the source.
+  - Page-hint requirement scoped to paginated sources only; unpaginated single-page web articles use the quote as locator instead.
+
+**Sweep workload (128 existing refs across 12 files):** every ref needs verification that it carries a verbatim quote, and the quote needs to come from the actual cited passage (not invented). Per-file inventory:
+
+  | File | Refs |
+  |---|---:|
+  | `german_fuesse-references.yml` | 47 |
+  | `schleswig_holstein-references.yml` | 38 |
+  | `denmark-references.yml` | 28 |
+  | `holstein_schauenburg-references.yml` | 4 |
+  | `lubeck-references.yml` | 4 |
+  | others (single-entry files) | 7 |
+
+**Plan.**
+
+  1. **Audit script first** — `scripts/audit_refs_quotes.py`: walk every ref body, look for `«…»` / `"…"` / `‹…›` quote markers, flag refs without one. Output baseline missing-quote count + per-file breakdown. Expected: most or all 128 refs currently lack the quote (the old rule didn't require it — quotes lived in the citing prose, not the ref body).
+  2. **Per-ref sweep** — for each flagged ref:
+     a. Open the source URL (or paper-via-secondary).
+     b. Identify the passage that backs the inline citation (find where the prose cites the ref via `<sup>[N]</sup>`; the cited claim points to a specific source passage).
+     c. Extract a ≤ 25-word verbatim quote of that passage.
+     d. Insert into ref body in all three languages — quote stays in source language; surrounding scaffolding (publisher, year, scope) translates.
+  3. **Wire into pre-commit / audit_health** — after baseline sweep complete, `audit_refs_quotes.py` runs as advisory (eventually hard-block once 0 missing).
+  4. **Update CLAUDE.md examples** in §5a with the new shape (quote inline, page-hint conditional).
+  5. **Existing «forbidden long quotes (>25 words)» clause** stays — the 25-word cap remains binding; the rule shift is only «quote is now REQUIRED, not OPTIONAL».
+
+**Per-ref effort:** ≈ 2-5 min each (open source, locate passage, extract quote, translate scaffolding). 128 refs ≈ 4-10 hours total. Per-session bite: 10-20 refs at a time.
+
+**Cross-references:** §AG (page-hint sweep) overlaps for paginated sources — there the quote AND page-hint are both required; for unpaginated sources only quote applies. §AS may consume / supersede §AG once both rules are universally enforced.
 
 ## Normal priority
 
