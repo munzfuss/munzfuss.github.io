@@ -92,10 +92,10 @@ Drop the summary block when only 0–1 🟡 entries remain.
 
 ## High priority
 
-> **Awaiting your verdict before any action**: **§AB** (Daler-Klippe
-> placement — new Fuß `daler_tarif_gold` vs redefine fractions in
-> `reichsdukatenfuss`). User indicated 2026-05-13: «поки що нічого
-> з цим не роби, я вивчу питання і повернусь».
+> **Awaiting your verdict before any action**:
+> - **§AB** (Daler-Klippe placement — new Fuß `daler_tarif_gold` vs redefine fractions). Deferred 2026-05-13: «поки що нічого з цим не роби, я вивчу питання і повернусь».
+> - **§AM** (DROP 5 gold off-strike entries per CLAUDE.md §9.3) — per-case verdict per candidate (PB-1 style).
+> - **§AQ** (Seed-merge data augmentation policy — field selection + conflict resolution naming).
 
 ### AG. 🟢 Long-form refs page-hint compliance (residual after §S closure)  *(opened 2026-05-13)* *(est: small)*
 
@@ -209,6 +209,100 @@ All three should be `fuss: 9_thaler` + appropriate fraction (1/4, 1/12, 2 respec
   Run a one-off sweep: walk `data/seed/hede/denmark.yml`, for every entry where `fraction` is `None` OR where `fraction` is inconsistent with the nominal text (e.g. nominal «1/6 Speciedaler» but fraction `'1'`, or nominal «3 Skilling» but fraction `'1/4'`), flag for review. The «nominal X/N but fraction=1» pattern was already swept (commit `93b2f6e` found ONE bug, f3h48); the broader «nominal X/N but fraction != 1/N» and «fraction: None» patterns are still open.
 
 **Plan.** `scripts/audit_seed_fractions.py` — script walks seed yaml, cross-references nominal-text against fraction value, flags discrepancies. Run, review output, fix per-case.
+
+### AM. 🟡 DROP 5 gold off-strike entries per CLAUDE.md §9 exclusion #3  *(opened 2026-05-14)* *(est: small)*
+
+**Surfaced.** Metal-mm guard-survivor investigation 2026-05-14. Five curated gold entries in `denmark.yml` reference a silver Hede page where the Hede description explicitly lists «Guldafslag» (gold off-strike) variants. Per the new §9 exclusion #3 (added 2026-05-13), single-specimen off-metal strikes are NOT minted for circulation and don't belong in the location's coin table.
+
+**Candidates (5):**
+
+  1. `denmark::hede-156-chr-iv-1623` — Portugaloser (10 Ducats), references Hede 156 silver Speciedaler page. Hede text «cf. Schou 16/35».
+  2. `denmark::hede-61-fr-iii-1662` — Portugaloser (10 Ducats), references Hede 61. Hede page **f3h62** explicit «Guldafslag: 10 Dukat, 5 Dukat og 4 Dukat».
+  3. `denmark::hede-61-4ducat-fr-iii-1663` — 4 Ducats, same f3h62 Guldafslag list.
+  4. `denmark::hede-68a-fr-iii-1665` — 5 Ducats, references Hede 68. Hede page **f3h68** explicit «Guldafslag 20 Dukat 1665, 12 Dukat 1665 og 5 Dukat 1665».
+  5. `denmark::hede-80b-fr-iii-1668` — 10 Ducats (Portugaloser), references Hede 80 silver Speciedaler page.
+
+**Verdict needed per case** (PB-1 style):
+  - «DROP entry» — confirmed off-strike, delete from yaml. Silver seed entry then promotes via Hede coverage.
+  - «KEEP — actually own coin with own Hede number» — rare; not single-specimen off-strike.
+  - «SPECIAL — record as separate presentation register» — out of current project scope; defer.
+
+### AN. 🟢 Investigate Bruun cross-citation noise (3 cases)  *(opened 2026-05-14)* *(est: small)*
+
+**Surfaced.** Metal-mm guard-survivor investigation 2026-05-14. Three Bruun-curated silver Reichstaler entries in non-Danish locations carry `catalog.hede` references pointing at Danish Hede gold-tier catalogue pages. Strongly suggests Bruun-parser mis-attribution of the `hede` field for these specific records.
+
+**Cases:**
+
+  1. `brunswick_lueneburg::bruun-5536-christian-1627` (silver Reichstaler/Speciedaler) → `catalog.hede: c4h5` (Danish 1 Portugaløser GOLD)
+  2. `bremen_verden::bruun-5942-frederik-1641` (silver Reichstaler/Speciedaler) → `catalog.hede: f3h1` (Danish 2 Dukat GOLD)
+  3. `bremen_verden::bruun-5941-frederik-1641` (silver 2 Speciedaler) → `catalog.hede: f3h2` (Danish 3 Dukat GOLD)
+
+**Investigation steps:**
+
+  1. Open each `bruun-<id>` cache lot record in `scripts/cache/bruun/lots/part*.json`. Check `body_excerpt` — does the auction lot text actually cite Hede c4h5 / f3h1 / f3h2, or was the Hede ref auto-injected by the parser from an adjacent unrelated lot?
+  2. If the auction text DOES cite Hede c4h5 (etc.), it's probably a Bruun cataloguer's «cf.» mention, not a categorical attribution. Strip `catalog.hede` from the curated coin and record as a comment in `note` («Bruun cataloguer noted cf. Hede c4h5 — different metal, different lineage, not the same type»).
+  3. If the auction text does NOT cite it — Bruun parser bug. Fix in `scripts/parse_bruun.py` (or wherever the catalog-ref extraction lives) and re-run; remove erroneous refs.
+
+### AO. 🟢 c5h128 silver/billon labelling — same fineness, different label  *(opened 2026-05-14)* *(est: small)*
+
+**Surfaced.** Metal-mm guard-survivor investigation 2026-05-14. Seed `dk-hede-c5h128` labels `metal: silver`, curated `sh::km-79-chr-v-1693` labels `metal: billon`. Both publish fineness 0.437 — same physical material (silver alloy at fineness <0.5 = «billon» in numismatic convention; «silver» on the Hede page is just the parent-language label).
+
+**Two paths:**
+
+  (a) **Forward fix in seed builder.** Update `scripts/maintenance/build_hede_denmark_seed.py:633` to map silver-fineness<0.5 → billon at seed-generation time. Re-run builder to regenerate seed yaml. ~5 LoC.
+  (b) **Guard amendment.** Update `scripts/build.py` `_merge_seeds_into_raw` metal-mm guard to treat silver/billon as equivalent when both fineness values are <0.5. Backward-compatible; no seed re-gen needed. ~3 LoC.
+
+Either eliminates the metal-mm guard fire on c5h128 (and any future similar cases). Recommendation: (a) cleaner long-term, but (b) less invasive. Pick one, implement.
+
+### AP. 🟢 Fix `audit_hede_offstrike.py` specs walk bug  *(opened 2026-05-14)* *(est: small)*
+
+**Surfaced.** §AF script bug found 2026-05-14 during metal-mm investigation. Script hardcodes:
+
+```python
+default_spec = specs.get("default") or {}
+finhed = default_spec.get("finhed")
+```
+
+But multi-sub-letter Hede pages store specs under `specs.by_hede` (or `specs.A` / `specs.B` etc.) — the lookup returns None and the page is skipped from flagging entirely.
+
+**Verified missed cases**: `f3h62` (has «Guldafslag: 10 Dukat, 5 Dukat og 4 Dukat»), `f3h68` (has «Guldafslag 20 Dukat 1665, 12 Dukat 1665 og 5 Dukat 1665») — both have `specs.keys() = ['by_hede']`, `finhed = None`. Both skipped by current script. The 5 §AM candidates would have been caught if the script worked correctly.
+
+**Fix:** walk all sub-keys of `specs.*`, take the first numeric `finhed` found. ~10 LoC. Re-run to catch missed cases (should now flag the 5 §AM candidates + verify no other similar mis-flagged Hede pages exist).
+
+### AQ. 🟡 Seed-merge data augmentation — replace suppression with field-wise merge  *(opened 2026-05-14)* *(est: medium)*
+
+**Surfaced.** During metal-mm investigation 2026-05-14, user identified a systemic policy gap in `build.py` `_merge_seeds_into_raw`:
+
+> «Тут загалом теж не ясно, адже жоден не повинен бути suppressed, має бути мердж з доповненням або набору даних, або лише посилання на джерело якщо дані однакові.»
+
+Current behavior: when curated coin matches seed by Hede ref AND no guard fires → seed entry is **fully suppressed** (not rendered, not merged into curated). Seed's `sources[]` URLs, alternative weight readings, fineness alts are silently lost.
+
+**Correct semantic — field-wise merge:**
+
+  1. When curated has data parity with seed → merge `seed.sources[]` into `curated.sources[]` as additional confirmation citations (deduplicate by URL).
+  2. When curated lacks a field that seed publishes → append to list per §9a multi-specimen merge rule (the field value becomes a new entry in `curated.<field>[]`).
+  3. When values disagree but guards don't fire → just URL augmentation (curated value wins; seed source URL added).
+  4. When guards fire → existing keep-both behavior preserved (signal that human review needed).
+
+**Implementation steps:**
+
+  1. Modify `_merge_seeds_into_raw` in `scripts/build.py` to perform field-wise merge before deciding to suppress. Add helper `_merge_seed_into_curated(seed, curated)` that performs the merge in-place on the curated dict.
+  2. **No per-coin data file changes** — merging happens at build time; data files keep current shapes.
+  3. Add `--debug` output showing per-coin merge stats (N seed sources added, N field values appended).
+  4. Update §0a / §9a documentation references where they describe suppression.
+
+**Design questions:**
+  - Which fields auto-merge? Proposed: `sources[]`, `weight_rough_g[]`, `fineness[]`, `diameter_mm[]`. NOT auto-merge: `nominal`, `fuss`, `phase`, `kind`, `metal`, `mint` (curator-level fields, conflicts indicate real issues).
+  - Conflict resolution: curated always wins on scalar / curator-level fields. Seed contributes only as augmentation.
+  - Per-source dedup: when seed and curated share an existing `sources[]` URL, skip adding duplicate.
+
+### AR. 🔴 c7h42 8.428g Numista typo cleanup — pending §AL  *(opened 2026-05-14)* *(est: small once §AL lands)*
+
+**Surfaced.** §AE weight-mm guard-survivor investigation 2026-05-13 / 2026-05-14. Single confirmed weight-mm pair: `dk-hede-c7h42` seed vs `sh::km-128-chr-v-1787` curated. Curated `weight_rough_g[]` carries outlier `8.428` g (Numista N#108979 transcription error, already noted as such in coin's `note` text); cluster around 6.129 g. Min/max ratio 0.724 < 0.75 → weight-mm guard fires → keep both.
+
+**Resolution path:** when §AL anomaly-field design lands, tag the `8.428` entry with `anomaly: source_error`. Guard logic in `build.py` will exclude it from min/max computation; ratio normalises; seed properly suppresses.
+
+**Paused** until §AL has user verdict on field name + enum values (3 candidates per state listed in §AL body). No standalone action — this entry exists solely to track that c7h42 is a known case that the §AL implementation must cover when it lands.
 
 ## Normal priority
 
