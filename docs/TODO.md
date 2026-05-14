@@ -355,6 +355,55 @@ Current behavior: when curated coin matches seed by Hede ref AND no guard fires 
 
 **Cross-references:** §AG (page-hint sweep) overlaps for paginated sources — there the quote AND page-hint are both required; for unpaginated sources only quote applies. §AS may consume / supersede §AG once both rules are universally enforced.
 
+### AL. 🟡 Structured `anomaly` field on list-form weight / fineness / diameter entries  *(opened 2026-05-13, promoted to High 2026-05-15)* *(est: medium)*
+
+**Promoted to High 2026-05-15.** Originally filed under Normal, but blocks two High-priority entries: §AR (🔴 paused «pending §AL») and §AE (closure-pending — practical fixes for the 9 metal-mm + 5 weight-mm guard survivors all subsumed under §AL implementation). Until §AL lands, both stay frozen — so its effective priority is the maximum of its dependents.
+
+**Surfaced.** User direction 2026-05-13 while answering §AE design question: the existing weight-mm guard tightening would benefit from a structured field instead of free-text source-string parsing («likely transcription error»). User identified three real cases that need distinct handling:
+
+  - **Numista recorded Feingewicht as Bruttogewicht** — confirmed cataloguer error in source. Should be excluded from min/max guard computation.
+  - **Wide-but-legitimate specimen variance** — large weight spread across surviving specimens, all real. Should remain in min/max.
+  - **Unusual specimen of unknown status** — value is non-standard but we don't yet know if it's an error or genuine outlier. Conservative inclusion in min/max with future review.
+
+**Proposed shape — naming open for discussion.** Add an `anomaly` field (optional) to each list-form entry under `weight_rough_g[]` / `fineness[]` / `diameter_mm[]`:
+
+```yaml
+weight_rough_g:
+  - value: 6.93
+    source: Bruun Part I, lot 1133
+    anomaly: source_error    # explicit: known mis-recording in catalogue
+  - value: 5.20
+    source: Hede c4h47
+    # no anomaly = normal entry, included in min/max
+  - value: 5.19
+    source: Numista
+    anomaly: source_error    # Numista mis-transcribed Feingewicht as Bruttogewicht
+```
+
+**Enum options (3 candidates per slot — pick one set):**
+
+| User's draft | Option A (concise) | Option B (descriptive) |
+|---|---|---|
+| `probably_source_error` | `source_error` | `confirmed_source_error` |
+| `acceptable_anomaly` | `wide_variance` | `legitimate_specimen_variance` |
+| `unknown` | `unverified` | `unconfirmed_outlier` |
+
+**My (claude's) recommendation.** Option A — concise enough for YAML readability, semantically distinct. Field name `anomaly` is short and self-explanatory. Drop «probably» from `source_error` because by the time we tag it, we're confident enough to act on it (the «probably» implicitness lives in the broader research practice, not in the structured tag).
+
+**Guard logic update (`scripts/build.py` weight-mm and metal-mm guards).** When computing min/max for the weight-ratio < 0.75 check, **exclude entries with `anomaly: source_error`**. `wide_variance` and `unverified` entries stay in min/max — the first because they reflect real specimen spread, the second because we don't yet have grounds to drop them.
+
+**Schema update (`scripts/lib/schema.py`).** Add `anomaly: Literal["source_error", "wide_variance", "unverified"] | None = None` to the list-form measurement entry models.
+
+**Migration step.** Existing `weight_rough_g[]` entries with source-strings containing «likely transcription error» / «anomalous» / «mis-transcribed» — convert to `anomaly: source_error` on the offending entry; keep the human-readable note in `source` text. Sweep `data/locations/*.yml` for the 5 known weight-mm survivors (TODO §AE inventory) + any matching free-text markers.
+
+**Action.**
+
+  1. Confirm field name + enum values (3 strings) with user.
+  2. Add to `scripts/lib/schema.py`.
+  3. Update guard logic in `scripts/build.py` `_merge_seeds_into_raw`.
+  4. Migrate ~5 known entries from free-text marker to structured field.
+  5. Add an audit-section in `audit_health.py` that flags entries with free-text anomaly markers in source-strings (so the next surface case gets caught early).
+
 ## Normal priority
 
 ### AK. Flip `mint_verified` to true for seed entries whose Hede source explicitly states the mint  *(opened 2026-05-13)*
@@ -1625,55 +1674,6 @@ new location target, this is the seed list.
 **Done criterion.** Bremen location file created with these 3 coins
 (plus whatever else the bremen.yml scoping work surfaces) — OR an
 explicit decision that Bremen stays outside the project scope.
-
----
-
-### AL. 🟡 Structured `anomaly` field on list-form weight / fineness / diameter entries  *(opened 2026-05-13)* *(est: medium)*
-
-**Surfaced.** User direction 2026-05-13 while answering §AE design question: the existing weight-mm guard tightening would benefit from a structured field instead of free-text source-string parsing («likely transcription error»). User identified three real cases that need distinct handling:
-
-  - **Numista recorded Feingewicht as Bruttogewicht** — confirmed cataloguer error in source. Should be excluded from min/max guard computation.
-  - **Wide-but-legitimate specimen variance** — large weight spread across surviving specimens, all real. Should remain in min/max.
-  - **Unusual specimen of unknown status** — value is non-standard but we don't yet know if it's an error or genuine outlier. Conservative inclusion in min/max with future review.
-
-**Proposed shape — naming open for discussion.** Add an `anomaly` field (optional) to each list-form entry under `weight_rough_g[]` / `fineness[]` / `diameter_mm[]`:
-
-```yaml
-weight_rough_g:
-  - value: 6.93
-    source: Bruun Part I, lot 1133
-    anomaly: source_error    # explicit: known mis-recording in catalogue
-  - value: 5.20
-    source: Hede c4h47
-    # no anomaly = normal entry, included in min/max
-  - value: 5.19
-    source: Numista
-    anomaly: source_error    # Numista mis-transcribed Feingewicht as Bruttogewicht
-```
-
-**Enum options (3 candidates per slot — pick one set):**
-
-| User's draft | Option A (concise) | Option B (descriptive) |
-|---|---|---|
-| `probably_source_error` | `source_error` | `confirmed_source_error` |
-| `acceptable_anomaly` | `wide_variance` | `legitimate_specimen_variance` |
-| `unknown` | `unverified` | `unconfirmed_outlier` |
-
-**My (claude's) recommendation.** Option A — concise enough for YAML readability, semantically distinct. Field name `anomaly` is short and self-explanatory. Drop «probably» from `source_error` because by the time we tag it, we're confident enough to act on it (the «probably» implicitness lives in the broader research practice, not in the structured tag).
-
-**Guard logic update (`scripts/build.py` weight-mm and metal-mm guards).** When computing min/max for the weight-ratio < 0.75 check, **exclude entries with `anomaly: source_error`**. `wide_variance` and `unverified` entries stay in min/max — the first because they reflect real specimen spread, the second because we don't yet have grounds to drop them.
-
-**Schema update (`scripts/lib/schema.py`).** Add `anomaly: Literal["source_error", "wide_variance", "unverified"] | None = None` to the list-form measurement entry models.
-
-**Migration step.** Existing `weight_rough_g[]` entries with source-strings containing «likely transcription error» / «anomalous» / «mis-transcribed» — convert to `anomaly: source_error` on the offending entry; keep the human-readable note in `source` text. Sweep `data/locations/*.yml` for the 5 known weight-mm survivors (TODO §AE inventory) + any matching free-text markers.
-
-**Action.**
-
-  1. Confirm field name + enum values (3 strings) with user.
-  2. Add to `scripts/lib/schema.py`.
-  3. Update guard logic in `scripts/build.py` `_merge_seeds_into_raw`.
-  4. Migrate ~5 known entries from free-text marker to structured field.
-  5. Add an audit-section in `audit_health.py` that flags entries with free-text anomaly markers in source-strings (so the next surface case gets caught early).
 
 ---
 
