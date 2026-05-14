@@ -1772,6 +1772,50 @@ Per-coin fein 7.495 g = 2.18 Reichsdukaten ≈ ~2 silver Daler at 12:1 gold-silv
 
 ---
 
+### AZ. 🟢 Harvest pre-Christian-III Hede pages (Hans 1483-1513, Frederik I 1523-1533, Christian II 1513-1523)  *(opened 2026-05-14)* *(est: medium)*
+
+**Surfaced.** Research thread 2026-05-14 (`docs/research/danish_royal_gold_1560_1648.md` §1.4 + `docs/research/christian_iii_danish_coinage_1534_1572.md` §2.3) established that Danish gold coinage starts under **Kong Hans 1496-1500** — 49 years before our earliest cached entry (Christian III 1546). Per **Wilcke 6: Kong Hans' rhinske Guldgylden** (<https://www.danskmoent.dk/wilcke/w6a.htm>), Hans was the first Danish king to mint gold coins in any significant volume. Pre-Hans (Christian I 1448-1481 and earlier) — no gold coinage.
+
+Our `scripts/cache/hede/` currently has **no Hans / Christian II / Frederik I pages** — coverage starts at `c3h*` (Christian III). This is a 49-year cache-coverage gap that blocks scholarly documentation of the early Danish gold lineage.
+
+**URL pattern observed on danskmoent.dk** (per 2026-05-14 WebFetch of `1rhingyl.htm`):
+
+  - Reign-overview pages: `hans.htm`, `f1.htm`, `c2.htm`, `c3.htm`, `f2.htm`, `c4.htm`
+  - Per-coin Hede pages: `<dir>/<reign>h<N>.htm` where `<dir>` is `chr` for Christians, `fr` for Frederiks (and presumably some path for Hans — needs verification).
+  - Per-coin Galster pages: `<dir>/<reign>g<N>.htm` (Galster numbering parallel to Hede).
+  - **Frederik I confirmed**: 2 Rhinsk Gylden variants under pattern `fr/f1g59.htm` etc.
+  - **Christian II**: NOT in the Rhinsk Gylden link list (no Rhinsk Gylden under his reign — confirms the 1500-1533 gap hypothesis).
+
+**Concrete known entries** (verified 2026-05-14):
+
+  - **Hans 1496 Dobbeltnobel / Guldreal** (first Danish gold, ~15 g brutto, 6 Rhinsk Gylden face value).
+  - **Hans 1497 Rhinsk Gylden** (per Møntordningen 4 Dec 1497; per Hvitfeldt 150 000 stk Swedish-campaign batch). Two mintmark variants: «With 2 Beams» (17¾ Karat, 0.740) and «With Star/Nettle leaf» (17 Karat, 0.708); brutto 3.278 g; 71⅓-72 per Cölln. Mark.
+  - **Hans ~1500 Rhinsk Gylden** (additional Ditmarsken-war batch, same parameters).
+  - **Frederik I Rhinsk Gylden 1523-1533** (2 variants, per danskmoent `1rhingyl.htm` link list). Parameters not yet captured.
+  - Other Hans / Frederik I silver / billon — likely substantial; needs full inventory.
+
+**Plan.**
+
+  1. **Map URL space** — fetch danskmoent.dk reign-overview pages (`hans.htm`, `c2.htm`, `f1.htm`) to enumerate all per-coin Hede / Galster pages under each reign. Document URL patterns.
+  2. **Extend parse_hede.py** (or current fetcher) to handle Hans / Christian II / Frederik I volume URLs. Likely needs new prefix mappings if Hans pages don't fit `chr/c<N>h*.htm` or `fr/f<N>h*.htm` patterns.
+  3. **Harvest cache** — fetch + parse pages into `scripts/cache/hede/h*h*.json`, `c2h*.json`, `f1h*.json` (or whatever filename convention emerges).
+  4. **Update seed builder** — `scripts/maintenance/build_hede_denmark_seed.py` line 272 `_RULER_REIGN` table currently has `f2h: (1559, 1588)` etc. Add new entries for Hans (1483-1513), Christian II (1513-1523), Frederik I (1523-1533). Verify scope-filter (currently `scope_year_from: 1559` per commit `7bfd80c`) covers all — Hans pages start 1496 which is within 1559-bound (per CLAUDE.md scope 1559+ per commit `7bfd80c`); need to extend if we want pre-1559 in seed.
+  5. **Re-run seed builder** to regenerate `data/seed/hede/denmark.yml` with Hans/F1 entries. Hans entries will land at top by year_first sort.
+  6. **Cross-reference back to dossiers** — update `christian_iii_danish_coinage_1534_1572.md` §2.3 + `danish_royal_gold_1560_1648.md` §1.4 with the now-cached Hans entry IDs; close the «Open research item» notes about the 1500-1533 gap (we'll have data to confirm or refute).
+  7. **Spawn follow-up TODOs** for Fuß-placement of Hans Rhinsk Gylden (within §AW `rhinsk_gylden_fod` Fuß), Hans Nobles (own gold type?), Frederik I gold (might fit Reichsdukatenfuß or Imperial Reichsgulden).
+
+**Dependencies.**
+
+  - **Scope-anchor question** (§AV / §AW / §AY-style design decisions) needs resolution before promoting Hans/F1 entries from seed to curated. For now, seed lands them in `seed_unsorted` as default.
+  - **Project scope** currently 1559+ per commit `7bfd80c`. Extending to cover Hans 1496+ requires scope adjustment — either roll back to «Christian III 1541 Møntordning» (as discussed in research thread 2026-05-14) or further back to encompass Hans 1496. **Open decision** awaiting user direction.
+
+**Cross-references.**
+
+  - Research dossiers: `docs/research/danish_royal_gold_1560_1648.md` §1.4, `docs/research/christian_iii_danish_coinage_1534_1572.md` §2.3.
+  - Web sources to anchor: Wilcke 6 (<https://www.danskmoent.dk/wilcke/w6a.htm>), Wilcke 7 (<https://www.danskmoent.dk/wilcke/w7hans.htm>), Hvitfeldt 1599 (cited via Wilcke 6).
+
+---
+
 ## Low priority
 
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
