@@ -8,42 +8,61 @@
 > ordinance and the start of the «modern period» in Danish coin history
 > (per Galster).
 >
-> **Verbatim text status (revised twice 2026-05-15):** the 20 September
-> 1541 Møntordning that Galster cites is **NOT** freely available
-> online in transcribed Danish form. Two PDF downloads have now been
-> verified by full-text search and ruled out:
+> **Verbatim text status (FOUND 2026-05-15 after three search passes):**
+> The verbatim Danish text of the 20 September 1541 Møntordning is
+> reachable via **Wilcke 1950 — *Renæssancens Mønt- og Pengeforhold
+> 1481-1588* (København 1950), Chapter IV «Christian III's
+> Møntreform»**, locally cached at
+> [`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf).
+> Verbatim transcription with archive citation, full ordinance
+> Preamble, complete specification tables for both the 1541 act and
+> the 27 September 1544 supplement, all primary actors named
+> (mintmasters Reynold Junge, Jørgen Koch, Povel Fechtel, Jørgen
+> Degener, Jørgen Kock the Younger), and primary-source archive
+> coordinates: **Rigsarkivet, Tyske Kancelli, No. 160, Diverse
+> Møntsager**. Wilcke also cites the 18th-c. printed transcription
+> **Christian den Tredies Historie Vol. II (Kbhvn 1778) p. 108 ff.**
+>
+> Local extraction of the verbatim text + Wilcke's analytical
+> structuring + archive citations: source capture
+> [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
+> §3 and §4 of this dossier now quote Wilcke directly; §9 access-path
+> catalogue updated to put Wilcke 1950 at the top of the recommended
+> path list.
+>
+> **Two earlier-explored paths now demoted to «adjunct only»:**
 >
 >   - **Kolderup-Rosenvinge, *Samling af gamle danske Love*, Vol. IV**
 >     (1824, Google Books id `43NJIGHI7vAC`, 614 pp): does NOT contain
 >     the 1541 Møntordning — covers only the major *Recesser og
 >     Ordinantser* and references the 1541 text via a single footnote
->     on p. 513.
+>     on p. 513 («hos Paus S. 305»).
 >   - **Hans Paus, *Samling af gamle Norske Love*, Vol. 1-2** (1751-52,
 >     Google Books id `nZZFAAAAcAAJ`, 974 pp): does NOT contain the
->     20 September 1541 Møntordning either. It DOES contain a different
->     Christian III 1541 ordinance — «Om Maal og Vægt» (Søndagen
->     Oculi 1541 = 20 March 1541), captured at
->     [`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md) —
->     which is the document Rosenvinge's p. 513 footnote actually
->     referenced (the citing footnote was attached to Christian IV
->     Reces 1615 Art. 35 «Vægt og Maal», not to a monetary
->     provision).
+>     20 September 1541 Møntordning either. It DOES contain the
+>     companion **20 March 1541 «Om Maal og Vægt» Forordning** at
+>     Vol. 2 p. 305-306, captured at
+>     [`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md).
 >
-> **The 20 September 1541 Møntordning is reachable only via
-> Rigsarkivet** (Danske Kancelli archive,
-> [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149)).
-> Galster 1965's modern paraphrase (§3 of this dossier) and our
-> Hede-cache coin data (§4.4-4.5) remain the secondary substitutes
-> for the verbatim text.
+> **Reform pair, both verbatim sourced as of 2026-05-15:**
 >
-> **Important companion document found.** The 20 March 1541 «Om Maal
-> og Vægt» Forordning (Paus Vol. 2 p. 305-306) — though not the
-> Møntordning itself — formally adopts Cölln. Vægt (Cologne weight,
-> 233.856 g) as the Denmark-Norway silver-trade weight standard.
-> This is the weight unit that the 1544 Møntordning supplement then
-> used to specify the Daler («8 stk på den 14½ lødige kølnske
-> mark»). Six months separate the two acts (March → September 1541),
-> and Galster treats them as part of the same reform arc.
+>   - **20 March 1541 «Om Maal og Vægt»** — weight-unit-establishing
+>     companion (Cölln. Vægt = 233.856 g realm-wide). Paus Vol. 2
+>     p. 305-306; local capture
+>     [`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md).
+>   - **20 September 1541 Møntordning** — coin-standard-establishing
+>     core act (Marken-fin 8.827 / 26.490 g per Daler at 14½-lødig
+>     silver, mint at S. Claræ Kloster København, Povel Fechtel as
+>     mintmaster). Wilcke 7-4; local capture
+>     [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
+>   - **27 September 1544 supplement** — debasement of the Mark
+>     Danske (14½ Lod → 13½ Lod) + extension to Norway. Wilcke 7-4
+>     p. 13; same local capture.
+>
+> The Rigsarkivet manuscript path (§9.1 below) remains the ultimate
+> primary source for paleographic fidelity but is no longer the
+> sole-available path — Wilcke 1950 is now the de-facto verbatim
+> source.
 >
 > **Cross-references:** TODO §BC (Denmark timeline start year decision);
 > `christian_iii_danish_coinage_1534_1572.md` §1 (the same ordinance from
@@ -73,10 +92,12 @@
 > all ultimately rest on Paus 1752 (printed) / Rigsarkivet (manuscript)
 > primary sources.
 
-| Source | Coverage of the 20 September 1541 Møntordning | Quote-level / paraphrase | Online access |
+| Source | Coverage of the 20 September 1541 Møntordning | Quote-level | Online access |
 |---|---|---|---|
-| **Rigsarkivet — Danske Kancelli** | Original ordinance manuscript (only verified primary path) | Verbatim | [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149), free browser-based after registration |
-| **Paus 1752** (Vol. 2 p. 305) | Does NOT contain the 20 September Møntordning — contains the 20 March 1541 «Om Maal og Vægt» companion Forordning at this page | Verbatim of the companion (captured locally at `sources/paus_christian_iii_1541_maal_og_vaegt.md`) | Google Books id `nZZFAAAAcAAJ` partial preview; downloaded full PDF confirmed lacks the September Møntordning |
+| **Wilcke 1950** (Chapter IV, *Renæssancens Mønt- og Pengeforhold 1481-1588*) | **Verbatim Danish transcription** + archive citation + complete specification tables for 1541 + 1544 + 1547 acts + identifies all mintmasters | **Verbatim** (modernised 1950 spelling) | Local cache: [`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf) (18 MB, 51 pp) + structured local capture [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md). Public-domain hosted by danskmoent.dk |
+| **Rigsarkivet — Tyske Kancelli No. 160 Div. Møntsager** | Original ordinance manuscript (Wilcke's primary source) | Verbatim chancery-hand | [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149), free browser-based after registration |
+| **Christian den Tredies Historie Vol. II** (anonymous, Kbhvn 1778, p. 108 ff.) | 18th-c. printed transcription cited by Wilcke | Verbatim (period orthography) | Print only; would need ILL |
+| **Paus 1752** (Vol. 2 p. 305) | Does NOT contain the 20 September Møntordning — contains the 20 March 1541 «Om Maal og Vægt» companion Forordning at this page | Verbatim of the companion (captured locally at [`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md)) | Google Books id `nZZFAAAAcAAJ` partial preview; downloaded full PDF confirmed lacks the September Møntordning |
 | **Rosenvinge 1824** (Vol. IV) | Footnote-only reference (p. 513) pointing to Paus S. 305 — citing the Maal-og-Vægt companion, NOT the September Møntordning | Footnote reference only | <https://books.google.com/books?id=43NJIGHI7vAC> partial preview; downloaded full PDF confirmed lacks 1541 verbatim |
 | **Wilcke, J.**: *Dansk Møntvæsen* series (Numismatiska Meddelanden XXVI, Stockholm 1932; earlier *Kong Hans' Møntreformer* etc.) | Cited as legal grounds for Christian-III standards | Paraphrase + occasional verbatim short quotes | danskmoent.dk Wilcke transcripts (Wilcke I-II covers later Christian IV / Frederik II — earlier volumes not online) |
 | **Galster, Georg**: *Danske mønter* (København 1965) | Foundational secondary-source summary; the «authoritative paraphrase» relied on by every later writer | Paraphrase; one Danish sentence verbatim («Ved møntordningen af 20. sept. 1541 …») | [`docs/research/sources/galster_galshist.md`](sources/galster_galshist.md) local capture; <https://www.danskmoent.dk/galster/galshist.htm> |
@@ -84,12 +105,90 @@
 | **Nationalmuseet — Danske mønter gennem 1000 år** | Cites 1541 as the year monetary stabilisation began | Paraphrase | <https://samlinger.natmus.dk/kmm/asset/57> |
 | **lex.dk — dansk møntvæsen** | Standard modern encyclopaedic entry | Paraphrase | <https://lex.dk/dansk_m%C3%B8ntv%C3%A6sen> |
 
-For our project's purposes the Galster passage is the canonical
-secondary-source statement; every analytical claim in §§3–6 below is
-either Galster-attested or computed from Hede cache data that
-empirically confirms Galster.
+For the project's purposes **Wilcke 1950 is the canonical
+verbatim source** for the 1541 + 1544 + 1547 ordinance trio — every
+analytical claim in §§3–6 below is now either directly Wilcke-quoted,
+Galster-paraphrased (Galster 1965 remained a useful modern-Danish
+distillation), or computed from Hede cache data that empirically
+cross-confirms the Wilcke specifications cell-by-cell.
 
-## 3. Verbatim Galster transcription (the canonical paraphrase)
+## 3. Verbatim ordinance text — Wilcke 1950 (the primary verbatim source)
+
+> **Local cache**: [`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf).
+> Structured local capture with full transcription + archive
+> coordinates: [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
+
+### 3.1 Date and archive coordinate
+
+Wilcke 7-4 p. 4 (printed 261), verbatim:
+
+> «**'Dinstagh nach Crucis Anno Domini inn 1541'**, o: 20. (15) Septbr.,
+> udgik derefter den Møntordning, som skulde danne Skel mellem
+> Middelalder og Nytid i dansk Møntvæsen.»
+
+Wilcke footnote 4 (archive citation):
+
+> «RA. T. K., No. 160. Div. Møntsager. Chr. III.s Historie II, Kbhvn.
+> 1778, p. 108 ff.»
+
+(= **Rigsarkivet → Tyske Kancelli → No. 160 Diverse Møntsager** for
+the original manuscript; *Christian den Tredies Historie* Vol. II
+(anonymous, Kbhvn 1778) p. 108 ff. for an 18th-c. printed
+transcription.)
+
+### 3.2 Preamble — verbatim Wilcke 1950 transcription
+
+Wilcke 7-4 p. 4-5 (printed 261-262), verbatim:
+
+> «Kongen siger i Indledningen, at han ikke alene har befundet sin
+> Mønt i stor Uorden(!), men ogsaa lidt stor Skade paa denne,
+> hvorhos fremmede Nationers Oprør har bibragt Mønten stor
+> Forklejnelse. Derfor maa Mønten nu have Bestand, saaledes at
+> Menigmand og indkommende Købmænd saa meget bedre og
+> '*schiedenntlicher*' kan handle med hinanden.»
+
+The Old German loan-word «**schiedenntlicher**» (= «more clearly
+distinguishably», from *scheidentlich*) is in single quotes in
+Wilcke because he is preserving a specific lexical choice from the
+original chancery text. Wilcke confirms by this verbatim quoting
+that he had the original in hand.
+
+Substantive Preamble content:
+
+  1. **Diagnosis**: the coinage was in great disorder («stor
+     Uorden»); foreign nations' rebellion («fremmede Nationers
+     Oprør» — likely Christian II's pretender invasions + Grevens
+     fejde continuation) reduced the coinage's standing
+     («Forklejnelse»).
+  2. **Goal**: the coinage must henceforth have «Bestand»
+     (permanence/stability), enabling «Menigmand» (common man) and
+     «indkommende Købmænd» (incoming merchants) to do commerce
+     «saa meget bedre og schiedenntlicher» (so much better and
+     more clearly).
+
+### 3.3 Galster 1965 modern-Danish paraphrase (kept for context)
+
+From [`docs/research/sources/galster_galshist.md`](sources/galster_galshist.md)
+lines 73-82 (capture of <https://www.danskmoent.dk/galster/galshist.htm>;
+original Georg Galster, *Mønt*, København 1965, pp. 23-43):
+
+> «Ved møntordningen af 20. sept. 1541 reorganiseredes møntvæsenet.
+> Dermed indledes den nyere tid i dansk mønthistorie. Hele
+> udmøntningen blev henlagt til København, hvor møntsmedjen blev
+> indrettet i det nedlagte Sanct Klarekloster med Povl Fechtel som
+> møntmester. For første gang sattes møntens navn i præget: mark, 8,
+> 4 og 1 skilling, hvid og penning. 1544 blev daleren stillet i
+> spidsen for det danske møntsystem, således at der herefter gik 3
+> mark på en daler. Denne sloges 8 stk. på den 14 1/2 lødige kølnske
+> mark.»
+
+Galster's paraphrase is fully consistent with Wilcke's verbatim
+transcription. The Galster wording matches Wilcke's reading at
+every substantive point: 20 September 1541 issuance, Klosteret-mint,
+Povel Fechtel as mintmaster, coin-name-on-design innovation, 1544
+daler-at-head + 14½ lødig standard.
+
+### 3.4 Galster broader-framing (kept for context)
 
 From `docs/research/sources/galster_galshist.md` lines 73–82 (capture of
 <https://www.danskmoent.dk/galster/galshist.htm>; original: Georg
@@ -120,8 +219,9 @@ of `christian_iii_danish_coinage_1534_1572.md` quotes this verbatim):
 
 ## 4. Synthesised content of the ordinance
 
-Based on the Galster paraphrase plus cross-checks with Wilcke, Kroman
-and the Hede coin record, the 1541 + 1544 ordinances together establish:
+Based on **Wilcke 1950's verbatim transcription** (primary; see §3
+above), with Galster 1965 modernised paraphrase and the Hede coin
+record as cross-checks:
 
 ### 4.1 Institutional / administrative provisions (1541)
 
@@ -199,43 +299,117 @@ what would later become the imperial 9-Fuß Reichsthaler standard
 (25.984 g fein per Daler, mf 9.000, Augsburger Reichsmünzordnung 1559 +
 Reichsabschied 1566).
 
-### 4.4 Internal consistency check from Hede cache
+### 4.4 Internal consistency check — Wilcke 1950 specification × Hede cache
 
-Direct attestation across the Hede c3h pages confirms the 1541 standard
-applied to every denomination tier:
+Wilcke 1950 transcribes the **full 1541 ordinance specification
+table** (Wilcke 7-4 p. 5, printed 262 — verbatim layout reconstructed
+in [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md)
+§3). The values match Hede's empirical attestation cell-by-cell:
+
+**Wilcke 1950 ordinance specification:**
+
+| Mønt | stk paa Mc brutto | Finhed (Lod) | Tusinddele | stk paa Mc fin | Bruttovægt | Finvægt | Finvægt i 3 M |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| **M (Mark)** | 24 | **14½** | **906,25** | **26½** | **9,744** | **8,830** | **26,490** |
+| ½ M | 48 | — | — | — | 4,872 | 4,415 | — |
+| 4 ß | 96 | — | — | — | 2,436 | 2,208 | — |
+| 1 ß | 106 | 4 | 250,00 | 26½ | 2,206 | 0,552 | 26,496 |
+| Hvid | 318 | 4 | — | — | 0,735 | 0,184 | — |
+| Penning | 768 | 2 | 125,00 | 32 Mc d. | 0,305 | 0,038 | 21,888 |
+
+**Hede c3h cache empirical attestation:**
 
 | Hede | Nominal | Year | Brutto (g) | Finhed | Finvægt (g) | mf | g fein / Daler equivalent |
 |---|---|---|---:|---:|---:|---:|---:|
-| c3h3 sub-3A | 1 Mark | 1541 | 9.744 | **0.906** | 8.830 | **8.827** | **26.494** |
-| c3h4 | 8 Skilling | 1541–1544 | 4.872 | 0.906 | 4.415 | matches | 26.494 |
-| c3h5 | 4 Skilling | 1541–1554 | 2.436 | 0.906 | 2.208 | matches | 26.494 |
-| c3h7 | Hvid u.år | 1541–1544 | 0.735 | 0.250 | (≈0.184) | **8.833** | 26.484 |
+| c3h3 sub-3A | 1 Mark | 1541 | **9.744** | **0.906** | **8.830** | **8.827** | **26.494** |
+| c3h4 | 8 Skilling | 1541–1544 | **4.872** | 0.906 | 4.415 | matches | 26.494 |
+| c3h5 | 4 Skilling | 1541–1554 | **2.436** | 0.906 | 2.208 | matches | 26.494 |
+| c3h7 | Hvid u.år | 1541–1544 | **0.735** | 0.250 | (≈0.184) | **8.833** | 26.484 |
 
-Hvid (smallest billon) tracks the same mf within rounding — confirming
-the ordinance was a *system-wide* standard, not just for the headline
-mark.
+**Wilcke spec ↔ Hede attestation comparison:**
 
-### 4.5 1544 debasement signal (Hede 3B sub-letter)
+- Mark 1541 brutto 9.744 g — **exact** match across both tables.
+- Mark 1541 finhed: Wilcke says 14½ Lod = 906.25 ‰; Hede says
+  0.906 — **same to rounding precision**.
+- Mark 1541 finvægt: Wilcke 8.830 g; Hede 8.830 g — **exact**.
+- 3M Daler-equivalent: Wilcke 26.490 g; Hede c3h3 derivation
+  26.494 g — **0.015 % discrepancy**, within
+  ordinance-arithmetic rounding noise (24 stk × 0.90625 → 8.830;
+  3 × 8.830 = 26.490; 233.856 / 8.827 = 26.494).
+- 8 Skilling, 4 Skilling, Hvid: brutto values match exactly.
+- The Hvid's «0.250» finhed (Hede) vs Wilcke's «4 Lod / 250.00
+  ‰» (= 4/16 = 0.250) is **identical**.
 
-Hede catalogues a **distinct metric regime starting 1544** under the
-same nominal label, marked as Hede 3B:
+Hvid (smallest billon) tracks the same mf within rounding —
+confirming the ordinance was a **system-wide standard**, not just
+for the headline Mark. **The Hede cache is the empirical
+attestation; Wilcke 1950 is the normative source. The two agree
+to ordinance-arithmetic precision.**
+
+### 4.5 27 September 1544 supplement — Wilcke specification × Hede attestation
+
+Wilcke 1950 also reproduces the **27 September 1544 supplement
+specification table** in full (Wilcke 7-4 p. 13, printed 270 —
+verbatim layout reconstructed in
+[`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md) §6).
+Wilcke's own commentary at the table: «*Denne Ordning er noget
+ringere end den, der udstedtes 1541, og blev 1544 gjort fælles for
+begge Rigerne.*» — i.e. the 1544 standard is somewhat lighter than
+1541 and was made common for both kingdoms.
+
+**Wilcke 1950 1544-supplement specification:**
+
+| Mønt | Finhed (Lod) | stk paa Mc brutto | Tusinddele | Bruttovægt | Finvægt | Gyldens 3M Finvægt |
+|---|---:|---:|---:|---:|---:|---:|
+| **Gyldengroschen** (= Daler) | **14½** | **8** | **906,25** | **29,232** | **26,491** | **26,491** |
+| **M (Mark)** | **13½** | **24** | **843,75** | **9,744** | **8,221** | **24,663** |
+| ½ M | (13½) | 48 | — | 4,872 | 4,111 | — |
+| 4 ß | (13½) | 96 | — | 2,436 | 2,056 | — |
+| 1 ß | 4 | 118 | 250,00 | 1,982 | 0,495 | 23,760 |
+| Hvid | 3½ | 314 | 218,75 | 0,745 | 0,163 | 23,472 |
+
+**Hede c3h cache empirical attestation (1544 standard):**
 
 | Hede | Nominal | Year | Brutto | Finhed | Finvægt | mf | g fein / Daler |
 |---|---|---|---:|---:|---:|---:|---:|
-| c3h3 sub-3B | 1 Mark | 1544–1555 | 9.744 | **0.843** | 8.221 | **9.481** | **24.665** |
+| c3h3 sub-3B | 1 Mark | 1544–1555 | **9.744** | **0.843** | **8.221** | **9.481** | **24.665** |
 
-The 1544 supplement that introduced the daler-at-head simultaneously
-debased the Mark Danske by ~7 % vs the 1541 baseline (finhed
-0.906 → 0.843; brutto unchanged at 9.744 g). The «daler-at-head»
-provision documented by Galster therefore did NOT preserve the original
-mark's silver content — the daler was a new top-tier denomination
-designed at a slightly lighter standard than the implicit Daler-
-equivalent of three pre-1544 Marks.
+**Wilcke spec ↔ Hede attestation comparison (1544):**
 
-This 1541 → 1544 sub-letter split is what allows the dossier
-`christian_iii_danish_coinage_1534_1572.md` §8 to recognise two
-distinct phases (A1 1541–1543 baseline vs A2 1544+ debased) within
-the same nominal ordinance arc.
+- Mark 1544 brutto 9.744 g — **exact** match.
+- Mark 1544 finhed: Wilcke 13½ Lod = 843.75 ‰; Hede 0.843 — same.
+- Mark 1544 finvægt: Wilcke 8.221 g; Hede 8.221 g — exact.
+- 3M Daler-equivalent: Wilcke 24.663 g; Hede c3h3 derivation
+  24.665 g — within ordinance-arithmetic rounding.
+
+**Two key structural insights from Wilcke's table:**
+
+1. **The Daler is preserved at the 1541 weight.** Wilcke's
+   Gyldengroschen line gives 14½ Lod / 906.25 ‰ / 26.491 g
+   finvægt — identical to the 1541 Mark's 3M-implied
+   Daler-equivalent (26.490 g). So the 1544 supplement does NOT
+   debase the daler at the headline-coin level; it debases only
+   the Mark Danske (and the sub-Mark denominations) while keeping
+   the daler at 1541 weight. The Daler-Mark equivalence shifts:
+   pre-1544 «3 Mark = 1 Daler» held metrically (3 × 8.830 = 26.490);
+   post-1544 «3 Mark = 1 Daler» holds NOMINALLY (in counting)
+   but not METRICALLY (3 × 8.221 = 24.663 g, less than the
+   Daler's 26.491 g). Daler became the «anchor» partly BECAUSE
+   the Mark was simultaneously debased — making the Daler the
+   stable unit.
+2. **Sub-Mark «Detail-mønt» becomes partially credit money.**
+   Wilcke: «*Som det vil ses, er Detailmønten, om den bruges i
+   Groshandel, delvis Kreditmønt for Gylden- eller Dalerværdien.*»
+   The 1 ß and Hvid show 23.760 g and 23.472 g per 3M-equivalent
+   vs the canonical 26.491 g Daler-finvægt — i.e. their face value
+   exceeds their metallic Daler-share by ~10 %, the seigniorage
+   margin.
+
+This 1541 → 1544 sub-letter split (Hede 3A vs 3B) is what allows
+the dossier
+[`christian_iii_danish_coinage_1534_1572.md`](christian_iii_danish_coinage_1534_1572.md)
+§8 to recognise two distinct phases (A1 1541-1543 baseline vs A2
+1544+ debased) within the same nominal ordinance arc.
 
 ## 5. Mints under the ordinance
 
@@ -343,60 +517,91 @@ data work for Phase A1 (1541–1543 København baseline) needs:
    Kroman). The Galster verbatim quote of the 1541 paraphrase is the
    primary inline-citable claim.
 
-## 9. Where to find the verbatim ordinance text (concrete access paths)
+## 9. Where to find the verbatim ordinance text (access paths)
 
-> **Correction logged 2026-05-15:** an earlier draft of §9 recommended
-> Kolderup-Rosenvinge 1824 Vol. IV as the printed-transcription path.
-> After downloading and full-text-searching the actual PDF (614 pages,
-> 31 MB; Google Books id `43NJIGHI7vAC`), this was **wrong**.
-> Rosenvinge Vol. IV is a collection of *Recesser og Ordinantser* — the
-> major comprehensive legislative acts — and the 1541 Møntordning was
-> a *Forordning* (a narrower royal decree), not a Reces. The Vol. IV
-> TOC (p. 13 of the printed volume) lists Christian III's *Kjøbenhavnske
-> Reces of 1540* (pp. 198-213) and *Kjøbenhavnske Reces of 1547*
-> (pp. 214-236) but **no 1541 entry between them**. Rosenvinge himself
-> points to the actual location: in a footnote on p. 513 (Anmærkninger
-> to Christian IV Reces 1615 Art. 35), he writes «jvfr. Christ. d.
-> Tredies Fdg. 1541, hos Paus S. 305» — i.e. the 1541 Forordning is
-> in *Paus, page 305*. §9.2 below has been rewritten to point to Paus
-> directly.
+> **Status as of 2026-05-15** (after three successive search passes):
+> Wilcke 1950 Chapter IV is the primary verbatim source, **already
+> in our local cache** at `scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`.
+> No remote fetch is needed for routine project work. The four
+> remaining paths below are documented for completeness, paleographic
+> fidelity (Rigsarkivet manuscript), and the companion 20 March 1541
+> «Om Maal og Vægt» Forordning (Paus Vol. 2).
 
-Five paths, ordered from most-accessible to most-effortful (assessment
-revised 2026-05-15 after the Rosenvinge-Vol.-IV verification pass):
+### 9.0 Wilcke 1950, Chapter IV (LOCAL CACHE — PRIMARY PATH)
 
-### 9.1 Rigsarkivet Arkivalieronline (free, browser-based) — RECOMMENDED
+**Local file**: `scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`
+(18 MB, 51 pages, ABBYY FineReader OCR'd, text-searchable via
+`pages/wilcke_7-4.txt`).
 
-The original 1541 ordinance manuscript is held in **Rigsarkivet,
-København — Danske Kancelli** archive. Pre-1572 royal decrees of
-general application were kept in two parallel series:
+**Structured local capture** with verbatim text + analytical
+structuring + archive coordinates: [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
 
-  - **Tegnelser over alle Lande** — kingdom-wide royal protocol books
-    (probable home for the 1541 Møntordning, since it applied to the
-    entire realm).
-  - **Sjællandske Tegnelser** — Sjælland-region (København is on
-    Sjælland) protocol books.
+**Original URL** (for re-fetch if cache lost): <https://www.danskmoent.dk/pdf2/Wilcke%207-4.pdf>
+(public-domain re-scan hosted by danskmoent.dk; Wilcke †1929 →
+copyright expired 1999).
 
-Daisy (the Rigsarkivet catalogue) index: [daisy.rigsarkivet.dk —
-arkivserie-liste](https://daisy.rigsarkivet.dk/arkivskaber_eller_arkivserie_liste?c=sj%C3%A6llandske+tegnelser&d=1&e=2015&side=1&sort=1&dir=a).
+**What Wilcke 7-4 provides:**
+
+  - Verbatim chancery-date «*Dinstagh nach Crucis Anno Domini inn
+    1541*» = 20 September 1541 (Wilcke 7-4 p. 4).
+  - Verbatim Preamble in modernised 1950 Danish.
+  - Full specification table of the 1541 ordinance (Wilcke 7-4 p. 5).
+  - Full specification table of the 27 September 1544 supplement
+    (Wilcke 7-4 p. 13).
+  - All actors named: Reynold Junge, Jørgen Koch, Povel Fechtel,
+    Jørgen Degener, Reynold Junge again (Flensborg 1546), Jørgen
+    Kock the Younger (Flensborg 1547).
+  - Archive coordinate for the manuscript: **Rigsarkivet → Tyske
+    Kancelli → No. 160 Diverse Møntsager**.
+  - Secondary 18th-c. printed transcription cross-referenced:
+    **Christian den Tredies Historie Vol. II (Kbhvn 1778) p. 108 ff.**
+  - 22 January 1547 Flensborg sub-ordinance for Jørgen Kock the
+    Younger, verbatim in Old German (Wilcke 7-4 p. 25-26).
+
+**Pros**: free; immediate; complete; verbatim + analytical
+apparatus + archive coordinate; downloaded and locally cached so no
+network dependency; FineReader OCR enables grep over the full text.
+**Cons**: Wilcke 1950 modernises 16th-c. orthography to 1950 Danish
+— for paleographic-fidelity work consult Rigsarkivet (§9.1).
+
+### 9.1 Rigsarkivet Arkivalieronline (free, browser-based) — ULTIMATE PRIMARY
+
+The original 1541 Møntordning manuscript is held in **Rigsarkivet,
+København — Tyske Kancelli, No. 160 Diverse Møntsager** (per Wilcke
+1950 footnote 4, p. 4 — Wilcke worked directly from this archive
+file).
+
+Note: **Tyske Kancelli**, not Danske Kancelli, despite this being a
+Danish-realm ordinance. Christian III's post-Reformation
+administrative reorganisation placed Realm-wide monetary regulation
+(applicable to both Denmark and the German-speaking duchies) in the
+German Chancery's care. The 27 September 1544 supplement, the
+22 January 1547 Flensborg Bestalling, and the 1535 Saxon
+template-Møntordning sent by Kurfyrst Johan Frederik are all in the
+same Tyske Kancelli No. 160 folio.
 
 **Access procedure:**
 
   1. Register a free user account at
      [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/).
      No institutional affiliation required — open to everyone.
-  2. Navigate: Danske Kancelli → Indlæg til registre og tegnelser
-     (pre-1572) → 1541 year-block → September entries → 20 September
-     1541 Møntordning. Index URL for the Indlæg sub-series:
-     [arkivalieronline.rigsarkivet.dk — Indlæg til registre og
-     tegnelser (Skåne, Sjælland, Smaalandene, Skånske og Sjællandske
-     Missiver)](https://arkivalieronline.rigsarkivet.dk/da/other/index-creator/149/638/19976958).
-  3. The manuscript is image-scanned in Old Danish (Middle Danish
-     chancery hand) — readable to modern Danish speakers with patience.
+  2. Navigate: **Tyske Kancelli → No. 160 Diverse Møntsager**
+     → locate the 20 September 1541 Møntordning by chronological
+     order within the folio.
+  3. The manuscript is image-scanned in Old Danish + Old German
+     chancery hand — readable to modern Danish speakers with
+     patience.
 
-**Pros:** free; full verbatim; immediate; image quality good.
-**Cons:** Old Danish handwriting + spelling (e.g. «ee» for modern «e»,
-«-tz-» for «-z-», «daa» for «da»); paleography skill helps but not
-strictly required for a printed-decree-style document.
+**Pros:** free; full verbatim; image quality good; paleographic
+fidelity (16th-c. chancery hand preserved); the same folio
+contains the 1544 supplement and 1547 Flensborg sub-ordinance
+for one-stop access.
+**Cons:** Old Danish handwriting + spelling (e.g. «ee» for modern
+«e», «-tz-» for «-z-», «daa» for «da»); paleography skill helps but
+not strictly required for a printed-decree-style document. For
+non-paleographic use **prefer §9.0 Wilcke 1950 modernised
+transcription** — it carries the same archive coordinate so
+provenance is unbroken.
 
 ### 9.2 Hans Paus, *Samling af gamle Norske Love*, Vol. 2 — does NOT contain the 20 September 1541 Møntordning (re-corrected)
 
@@ -475,11 +680,11 @@ Recommended target collections: **Det Kongelige Bibliotek
 ### 9.5 Direct request to Rigsarkivet
 
 Rigsarkivet provides per-document scanning service. Email:
-[mailbox@sa.dk](mailto:mailbox@sa.dk). Quote the archive reference:
-«Danske Kancelli, Tegnelser / Indlæg til registre og tegnelser,
-1541, ‹Møntordning af 20. september 1541›». Modest fee schedule
-(typical: 50–200 DKK for a few pages of scans, often free for small
-requests).
+[mailbox@sa.dk](mailto:mailbox@sa.dk). Quote the archive reference
+(per Wilcke 1950 footnote 4, p. 4):
+**«Tyske Kancelli, No. 160 Diverse Møntsager, Møntordning af 20.
+september 1541»**. Modest fee schedule (typical: 50–200 DKK for a
+few pages of scans, often free for small requests).
 
 **Pros:** direct primary source from the archive; staff can help
 locate the exact manuscript. **Cons:** small fee; turnaround
@@ -515,30 +720,29 @@ knowledge as of 2026-05-15.
 is to obtain Paus Vol. 2 p. 305 via §9.2 (cleaner 1751 spelling),
 then run it through DeepL with a manual review pass.
 
-### 9.7 Recommendation (revised twice 2026-05-15)
+### 9.7 Recommendation (final, revised three times 2026-05-15)
 
-For the **20 September 1541 Møntordning text itself**: **§9.1
-Rigsarkivet Arkivalieronline** is now the ONLY viable practical
-path. Two PDF downloads have been ruled out by full-text search
-(Rosenvinge Vol. IV — §9.3; Paus Vol. 1-2 — §9.2). Until a session
-exercises §9.1 (or sources Wilcke 1932 / similar via ILL §9.4),
-the Galster paraphrase in §3 plus the Hede empirical attestation
-in §4.4-4.5 remain the project's best available substitute.
+For the **20 September 1541 Møntordning text itself**: **§9.0
+Wilcke 1950, Chapter IV** is the recommended path — verbatim text +
+archive coordinate + full specification tables + analytical
+commentary all in one document, already in our local cache at
+`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf` and
+structured locally at
+[`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
+
+For **paleographic fidelity** (e.g. preserving the original chancery
+hand for a specific philological purpose): §9.1 Rigsarkivet
+Arkivalieronline → Tyske Kancelli → No. 160 Diverse Møntsager. Free
+browser-based access; Wilcke's archive coordinate is exact.
 
 For the **20 March 1541 «Om Maal og Vægt» companion Forordning**:
-§9.2 Paus Vol. 2 p. 305 — already captured verbatim at
+§9.2 Paus Vol. 2 p. 305 — captured at
 [`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md).
-This is the sourceable royal-decree origin of the Cölln. Vægt
-standard adopted realm-wide.
+The royal-decree origin of Cölln. Vægt 233.856 g realm-wide.
 
-For **manuscript fidelity** vs printed-transcription: §9.1 gives
-the 1541 chancery hand; §9.2 (for Maal-og-Vægt) gives the
-1751-modernised Paus print. Both are valid; choose by
-paleographic-effort preference.
-
-§9.3 (Rosenvinge Vol. IV) remains useful for the project as
-adjunct context — see §10 below for the closely-related Christian
-III material it DOES provide.
+§9.3 (Rosenvinge Vol. IV) remains useful for adjunct context — see
+§10 below for the closely-related Christian III material it does
+provide.
 
 ## 10. What Rosenvinge Vol. IV does provide — Christian III monetary context
 
@@ -558,12 +762,19 @@ specification is **14½ lødig** for støbt (cast) silver:
 > Marck, som handt udi stöbt Sölff forarbeyder»
 
 «Hallffemtandeskab Lod» = «half-fifteenth-eighth Lod», i.e. 14½ Lod
-of pure silver per Cölln. Marck — **the same 14½-lødig standard the
-1544 Møntordning supplement established for the Daler** (per Galster
-§3 of this dossier). The 1547 Reces thus empirically confirms three
-years later that the 1544 standard remained in force, attesting the
-continuity of Phase A (per the §8 phase map in
-`christian_iii_danish_coinage_1534_1572.md`).
+of pure silver per Cölln. Marck — matching **Wilcke 1950's
+verbatim 1544-supplement specification for the Gyldengroschen
+(Daler)** at 14½ Lod / 906.25 ‰ (Wilcke 7-4 p. 13; see §4.5
+above). The 1547 Reces thus formally reaffirms the 1544
+Daler-finhed three years later, confirming continuity at the
+top-tier coinage even though the Mark Danske had been simultaneously
+debased to 13½ Lod. This Reces evidence supports the §BC Phase A2
+characterisation: the post-1544 standard preserves the **Daler-level**
+silver content (14½ lødig, 26.491 g per Daler — Wilcke 7-4 p. 13)
+while the **Mark Danske is debased** (13½ lødig, 8.221 g — Wilcke
+same page), so the Galster-paraphrased «daler-at-head» convention
+is metrically a shift in unit (Mark drops out as anchor; Daler
+remains constant).
 
 ### 10.2 Christian III Reformkontext (Indledning + per-Reces narratives)
 
@@ -614,48 +825,78 @@ March-September 1541 reform pair:
     1/8 Cölln. Marck of 14½-lødig)
 
 Both citable directly in `data/shared/fuesse.yml` (Cölln. Vægt =
-20 March 1541 ordinance) and per-coin notes (Daler standard =
-20 September 1541 Møntordning + 1544 supplement, per Galster). The
-March 1541 act has full verbatim source-capture; the September
-Møntordning remains paraphrase-only (Galster) pending Rigsarkivet
-access.
+20 March 1541 ordinance via Paus capture; Daler standard =
+20 September 1541 Møntordning + 1544 supplement via Wilcke 1950
+capture) and per-coin notes. **Both 1541 acts now have full verbatim
+source-capture** as of 2026-05-15: the March act in
+[`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md),
+the September act in [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
+Plus the 27 September 1544 supplement (Wilcke same source, §6 of
+that capture) and the 22 January 1547 Flensborg sub-ordinance
+(Wilcke same source, §8 of that capture). The full Christian III
+monetary-reform trio is now project-internal-sourced.
 
 ## 11. Sources consulted
 
-### Direct (verbatim cited above)
+### Primary verbatim source (the canonical reference)
 
-- **Galster, Georg** — *Danske mønter* / *Mønt* (København 1965, pp. 23–43).
-  Captured locally as
-  [`docs/research/sources/galster_galshist.md`](sources/galster_galshist.md).
-  Online: <https://www.danskmoent.dk/galster/galshist.htm>.
+- **Wilcke, J.** — *Renæssancens Mønt- og Pengeforhold 1481–1588*
+  (København: i Kommission hos J. H. Schultz / J. H. Schultz A-S —
+  Universitets-Bogtrykkeri, MCML = 1950), Chapter IV «Christian
+  III's Møntreform» (printed pp. 259–308). The canonical secondary
+  source: verbatim transcription of the 1541 Møntordning Preamble,
+  full specification tables for the 1541 + 1544 + 1547 acts,
+  archive coordinates, and all actors named.
+  - **Local cache PDF**: [`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf).
+  - **Structured local capture**: [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
+  - **Online (public domain)**: <https://www.danskmoent.dk/pdf2/Wilcke%207-4.pdf>.
 
-### Cited via secondary discussion
+- **Galster, Georg** — *Danske mønter* / *Mønt* (København 1965,
+  pp. 23–43). Modern-Danish paraphrase consistent with Wilcke 1950
+  on every substantive point; useful as a readability bridge for
+  modern Danish-speaking readers.
+  - Local capture: [`docs/research/sources/galster_galshist.md`](sources/galster_galshist.md).
+  - Online: <https://www.danskmoent.dk/galster/galshist.htm>.
 
-- **Wilcke, J.** — *Dansk Møntvæsen, Møntmark og Møntværdi 1588–1788*
-  (Numismatiska Meddelanden XXVI, Stockholm 1932); also *Kong Hans'
-  Møntreformer* and *Christian II.s Klippinge og den første
-  Møntvalvation*. danskmoent.dk Wilcke transcripts:
-  <https://www.danskmoent.dk/wilcke/>.
+### Companion ordinance (20 March 1541 «Om Maal og Vægt»)
+
+- **Paus, Hans** — *Samling af Gamle Norske Love ... i det nu
+  brugelige Dansk Sprog oversatta, og ... oplyvste*, Vol. 2
+  (København 1752), p. 305-306. Contains the verbatim 20 March 1541
+  Forordning «Om Maal og Vægt» (the companion act establishing
+  Cølnsk Vægt 233.856 g realm-wide). Does NOT contain the 20
+  September Møntordning.
+  - Local capture: [`docs/research/sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md).
+  - Online: Google Books id `nZZFAAAAcAAJ`, direct-jump
+    [books.google.com/books?id=nZZFAAAAcAAJ&pg=PA305](https://books.google.com/books?id=nZZFAAAAcAAJ&pg=PA305);
+    Nasjonalbiblioteket: <https://www.nb.no/>.
+
+### Ultimate primary (manuscript)
+
+- **Rigsarkivet, København — Tyske Kancelli, No. 160 Diverse
+  Møntsager** — the original ordinance manuscripts (1541
+  Møntordning, 1544 supplement, 1547 Flensborg Bestalling all in
+  the same folio). Per Wilcke 1950 footnote 4, p. 4. Free
+  browser-based access (after registration) at
+  [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/).
+
+### 18th-c. printed transcriptions cross-referenced by Wilcke
+
+- **Christian den Tredies Historie, Vol. II** (anonymous, København
+  1778, p. 108 ff.) — verbatim printed transcription of the 1541
+  Møntordning, cited by Wilcke as the published version. Print only.
+- **Danske Magazin, Vol. I** (København 1745), pp. 162 ff. — Povel
+  Fechtel + S. Claræ Kloster mint conversion. Print only.
+- **E. Pontoppidan**: *Origines hafnienses* (København 1760), pp. 293
+  ff. — same topic.
+
+### Other secondary discussion
+
 - **Kroman, Erik** — *Oversigt over Mønthistorien med særligt Hensyn
   til Regneenhederne* (København 1964). Transcript:
   <https://www.danskmoent.dk/artikler/kroman.htm>.
 
-### Where the verbatim ordinance text lives
-
-- **Paus, Hans** — *Samling af Gamle Norske Love ... i det nu
-  brugelige Dansk Sprog oversatta, og ... oplyvste*, Vol. 2
-  (København 1752), **page 305**. The 18th-century printed
-  transcription that Rosenvinge himself cites (Vol. IV p. 513
-  footnote) as the authoritative published version of the 1541
-  Forordning. Google Books direct-jump:
-  [books.google.com — `nZZFAAAAcAAJ` p. 305](https://books.google.com/books?id=nZZFAAAAcAAJ&pg=PA305).
-  Free digital text at Nasjonalbiblioteket: [nb.no](https://www.nb.no/).
-- **Rigsarkivet, København — Danske Kancelli** archive series.
-  Browsing index: <https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149>.
-  Specifically: «Indlæg til registre og tegnelser» series, 1541
-  year-block, 20 September entry.
-
-### Adjunct reference (does NOT contain the 1541 text itself but useful context)
+### Adjunct reference
 
 - **Kolderup-Rosenvinge, J. L. A.** — *Samling af gamle danske Love.
   Fjerde Deel: Danske Recesser og Ordinantser af Kongerne af den

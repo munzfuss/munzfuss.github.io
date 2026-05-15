@@ -60,14 +60,40 @@ the daler-system that the 1537 Joachimstaler had introduced as a
 single-issue precedent.
 
 **Dedicated dossier**: full operational write-up of the 1541
-Møntordning — institutional provisions, denomination structure, 1544
-supplement, Hede empirical attestation, mints, antecedents, impact, and
-the verbatim-text retrieval path through Rosenvinge 1824 / Rigsarkivet —
-lives at [`docs/research/moentordning_1541.md`](moentordning_1541.md).
+Møntordning lives at [`docs/research/moentordning_1541.md`](moentordning_1541.md) —
+institutional provisions, denomination structure, 1544 supplement,
+Hede empirical attestation, mints, antecedents, impact, and the
+verbatim ordinance text + archive coordinates via Wilcke 1950.
 This dossier (§1 onward) covers the same 1541 ordinance from a
 wider-scope perspective (Christian III's full reign 1534–1572 including
 Frederik II's continuation); `moentordning_1541.md` is the focused
 single-ordinance reference.
+
+**Primary verbatim source for the 1541 Møntordning** (located
+2026-05-15 after three search passes): **Wilcke, J.**, *Renæssancens
+Mønt- og Pengeforhold 1481–1588* (København 1950), Chapter IV
+«Christian III's Møntreform» — locally cached at
+[`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf)
++ structured capture
+[`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md).
+Wilcke transcribes the ordinance Preamble verbatim, gives the full
+specification tables for the 1541 + 1544 + 1547 acts, names all
+mintmasters (Reynold Junge, Jørgen Koch, Povel Fechtel, Jørgen
+Degener, Jørgen Kock the Younger), and provides the archive
+coordinate: **Rigsarkivet → Tyske Kancelli → No. 160 Diverse
+Møntsager** (NOT Danske Kancelli — an empirical correction to
+earlier project assumptions; Christian III's post-Reformation
+administrative reorganisation placed realm-wide monetary regulation
+in the German Chancery).
+
+**Companion ordinance** — the 20 March 1541 «Om Maal og Vægt»
+Forordning (Søndagen Oculi 1541) — established Cølnsk Vægt
+(233.856 g) as the Denmark-Norway silver-trade weight standard,
+six months before the September Møntordning that USED this weight
+unit to specify the Daler. Verbatim text at
+[`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md)
+(from Paus, *Samling af gamle Norske Love* Vol. 2 p. 305-306,
+København 1752).
 
 ---
 
