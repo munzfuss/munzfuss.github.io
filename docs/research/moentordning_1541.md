@@ -284,20 +284,51 @@ the system:
 - **1 Daler = 3 Mark Danske = 48 Skilling.**
 - **Minting standard**: «8 stk. på den 14 ½ lødige kølnske mark» —
   i.e. eight Daler from one Cölln. Mark (233.856 g) of 14½-lødig
-  silver. The Lødighedsgrad 14½ translates to fineness 14½ / 16 =
-  0.90625, conventionally rounded to **0.906** on Hede pages.
-- **Marken-fin (mf)** ≡ daler-per-Cölln.-Mark-fein:
-  mf = 8 / (14½ / 16) = 8 × 16 / 14½ = 128 / 14½ ≈ **8.828**.
-  Hede explicitly publishes **mf 8.827** on c3h3-3A and c3h4 / c3h5 —
-  the tiny rounding gap between 8.828 and 8.827 is within the
-  expected period-arithmetic precision.
-- **Per-Daler silver content**: 233.856 g / 8.827 ≈ **26.494 g fein**.
-- **Per-Mark silver content**: 26.494 / 3 ≈ **8.83 g fein**.
+  silver alloy. The Lødighedsgrad 14½ translates to fineness 14½ /
+  16 = 0.90625, conventionally rounded to **0.906** on Hede pages.
 
-This places Christian III's 1544-codified Daler **~2 % HEAVIER** than
-what would later become the imperial 9-Fuß Reichsthaler standard
-(25.984 g fein per Daler, mf 9.000, Augsburger Reichsmünzordnung 1559 +
-Reichsabschied 1566).
+**Two units of measurement for the same standard.** Period
+legal-decree text and modern numismatic literature describe this
+standard with two different reference quantities for the Cölln.
+Mark. These are NOT contradictory — they are algebraic restatements
+of the same physical specification:
+
+  | Reference unit | Formulation | Why |
+  |---|---|---|
+  | **alloy-Mark @ 14½ lødig** | «8 stk per 14½-lødig Cölln. Marck» (Galster's quote of the 1544 act) | Period mint-floor operational formula. Assayer receives silver alloy, weighs it in Cölln. Marck, verifies fineness at 14½ Lod, divides into 8 — produces Daler brutto. |
+  | **fein-Mark** (= 233.856 g pure silver) | «**mf 8.827**» — Marken-fin tariff (Hede c3h3-3A, c3h4, c3h5 explicit) | Modern numismatic standardised measure. Independent of fineness; enables direct comparison across standards (1541 mf 8.827 vs 1544 Mark mf 9.481 vs 1566 imperial 9-Fuß mf 9.000). |
+
+Algebraic equivalence:
+
+  ```
+  mf = (Daler per alloy-Mark) / fineness
+     = 8 / (14½ / 16)
+     = 8 × 16 / 14.5
+     = 128 / 14.5
+     = 8.82758...
+     ≈ 8.827          ← Hede c3h3-3A explicit value (cell-for-cell match)
+  ```
+
+The tiny gap between the algebraic 8.8276 and the Hede-published
+8.827 is rounding precision, not a substantive discrepancy.
+
+**Derived per-Daler / per-Mark silver content** (both formulations
+give the same result):
+
+- **Per-Daler silver content**:
+  - Via alloy formula: 233.856 g × 14.5/16 / 8 = **26.491 g fein**
+  - Via mf: 233.856 g / 8.827 = **26.494 g fein** (rounding-noise
+    different)
+  - Wilcke 1950 1544-supplement table publishes: **26.491 g fein**
+    per Gyldengroschen — agrees with the alloy-formula derivation.
+- **Per-Mark silver content** (1541 baseline; in 1544 the Mark
+  Danske is separately debased — see §4.5 below):
+  - Mark 1541: 26.491 / 3 ≈ **8.83 g fein** (Wilcke explicit: 8.830 g)
+
+This places Christian III's 1544-codified Daler **~2 % HEAVIER**
+than what would later become the imperial 9-Fuß Reichsthaler
+standard (25.984 g fein per Daler, mf 9.000, Augsburger
+Reichsmünzordnung 1559 + Reichsabschied 1566).
 
 ### 4.4 Internal consistency check — Wilcke 1950 specification × Hede cache
 
