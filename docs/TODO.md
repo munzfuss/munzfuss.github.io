@@ -172,86 +172,7 @@ Likely answer is (a) — the dual-zone is the seed of an enduring lineage and de
 6. Add the 4 new bibliography entries to `denmark-references.yml` with verbatim quotes + page hints per §5a.
 7. Build clean + sample-review three coins per phase against the rendered page.
 
-**Definition of done.** The Denmark page renders a non-empty 1514-1566 section with at least 6 placed coins, a `christian_iii_dalerfod` Fuß card with full metric block + sourced hintergrund, and the dual-track Flensborg phase (if (a)) wired up. The 26+ new c3h seed entries auto-suppress against the curated phase blocks per the `_merge_seeds_into_raw` rule. Pre-1541 sub-window coverage (Christian II 1513-1523 + Frederik I 1523-1533) depends on §AZ Hede catalog extension landing first.
-
----
-
-### BI. 🟢 Denmark-track anchor rescope 1541 → 1514 — Christian II Lovkompleks  *(opened 2026-05-15)* *(est: medium)* *(type: scope decision + multi-file rescope)*
-
-**Surfaced.** User direction 2026-05-15 with explicit «найвищий» marker. Session-derived finding: per Wilcke 1950 p. 183-186 verbatim + Numista currency-taxonomy independent corroboration, the **structural** anchor of post-medieval Danish-Norwegian monetary history is the **Christian II Lovkompleks of 1514-1515**, not Christian III's 1541 Møntordning. The 1541 act is a Christian-III-specific silver reform within an already-established gold framework from 1514; 1514 is the first comprehensive DK+Norge legal act for both metals.
-
-**Verbatim Wilcke 1950 p. 183-186** (transcribed during this session):
-
-> «*1514 fik »Myntemester Dienis udi Malmo« Brev efter Rigsraadets Raad og Samtykke paa at mønte: Nobel 23½ Karat fint nobel Guld 16 Stkr. paa [Marken]…*»
->
-> «*I Virkeligheden er Møntordningen fra Sommeren 1514 et velment Forsøg …*»
->
-> «*Samtidig udstedtes 3. August 1514 en Møntordning for Norge*»
->
-> «*Efter disse Dateringer er det overvejende sandsynligt, at Møntordningen fra Sommeren 1514, den norske Forordning af 3. August 1514, Kvitteringen fra Paasketid 1515 og det sjællandske Aabne Brev af 24. August 1515 udgør et samlet Lovkompleks om samme Mønt*»
-
-**The 1514-1515 Lovkompleks** (Wilcke's own term) — four acts in one law-complex:
-1. **Sommeren 1514** — Møntordning DK (Dienis Malmö Brev)
-2. **3 August 1514** — Møntordning Norge (extension to Norway under Kalmar Union)
-3. **Paasketid 1515** — Kvittering (compliance receipt)
-4. **24 August 1515** — Sjælland åbent Brev (Sjælland-specific renewal)
-
-Constitutional legitimacy: «Rigsrådets Raad og Samtykke» (Council of the Realm's counsel and consent). First time gold (Nobler 23½K 16/Mark, Rhinsk Gylden 18K 72/Mark) and silver (Skilling fractions) are formally specified in a single coherent legal package for both kingdoms.
-
-**Why 1514 beats 1541 as anchor:**
-
-| Criterion | 1541 (current) | **1514 (proposed)** |
-|---|---|---|
-| Resets BOTH metals | NO (silver only) | **YES** (gold + silver in one package) |
-| Covers DK + Norge | DK only formally | **YES** (3 Aug 1514 explicit Norge act) |
-| Anchor type | Legal | **Legal** (matches all project anchors) |
-| Numista currency taxonomy | (n/a) | **Matches** «Gulden (1513-1572)» boundary |
-| Müntzfüße cut mid-stream | No (silver-only resets) | **No — clean for all metals** |
-| Resets gold lineage (Nobler / Goldgulden / Rhinsk Gylden) | NO (continues from 1514) | **YES** — first formal Danish gold-standard spec |
-| Resets silver Daler tradition | YES (1541 Møntordning) | (1514 has Skilling-only silver; Daler emerges 1518 within Christian II's reign — same Lovkompleks era) |
-
-**1541 is now correctly positioned as the THIRD major Danish-Norwegian Møntordning** (after 1514 Christian II + Frederik I de-facto continuations 1524-1531), not the FIRST.
-
-**Scope — STRICTLY Denmark-track only.** Schleswig-Holstein and all German-jurisdiction pages remain at their existing 1559/1566 anchor. The dual-anchor mission decision (CLAUDE.md mission section) stays intact for the German track; only the **Denmark-Norway lower bound** moves 1541 → 1514. Specifically:
-
-- **Touch**: `data/locations/denmark.yml` (header, summary, timeline), `data/seed/hede/denmark.yml`, `scripts/maintenance/build_hede_denmark_seed.py` (--year-from default), `CLAUDE.md` mission statement (DK-track line only), `docs/handoff.md` (current focus), `docs/research/moentordning_1541.md` (reframe as third Møntordning in Lovkompleks lineage), `docs/research/denmark_fuesse_year_boundaries.md` (reichsdukat year_from update).
-- **DO NOT touch**: `data/locations/schleswig_holstein.yml`, `data/locations/holstein_schauenburg.yml`, `data/locations/lauenburg.yml`, `data/locations/bremen_verden.yml`, `data/locations/oldenburg.yml`, `data/locations/lubeck*.yml`, `data/locations/hamburg*.yml`, `data/locations/lubeck_bishopric.yml`, `data/locations/osnabrueck.yml`, `data/locations/hesse_kassel.yml`, `data/locations/brunswick_lueneburg.yml`. All German-track + Schleswig-Holstein keep their 1559/1566 anchor unchanged. The Schleswig-Holstein dual-jurisdiction nuance (under Danish crown 1460-1864) does NOT trigger a SH rescope — its anchor stays per existing project decision.
-
-**Operational sub-tasks:**
-
-1. **CLAUDE.md mission statement** — change «Denmark-Norway realm: lower bound **1541**» line to «Denmark-Norway realm: lower bound **1514** (Christian II Lovkompleks: Sommeren 1514 DK + 3 Aug 1514 Norge + 24 Aug 1515 Sjælland åbent Brev — per Wilcke 1950 p. 183-186)». Keep the German lands 1559/1566 line **unchanged**. Keep the Schleswig-Holstein dual-jurisdiction note **unchanged**.
-
-2. **`data/locations/denmark.yml`** — `year_from: 1541` → `year_from: 1514` on the top-level location block AND on the timeline `bars.year_from`. Update summary deck prose to reference Christian II 1514 Lovkompleks as the opening anchor + Christian III 1541 as the major mid-period silver reform.
-
-3. **`data/seed/hede/denmark.yml`** — `scope_year_from: 1541` → `scope_year_from: 1514`. Regenerate via the seed builder.
-
-4. **`scripts/maintenance/build_hede_denmark_seed.py`** — `--year-from` default 1541 → 1514. Update help text. Note: Hede 1957 itself starts at Christian III (1534+) and has NO pre-Christian-III ruler sections — there is no «Hede-extension» path for Christian II / Frederik I. The seed coverage 1514-1540 will be **EMPTY** until a separate data-import task ingests Galster 1959-1960 + Jensen-Skjoldager 2021 as a NEW source family (NOT in §BI's scope — separate follow-up TODO §AZ).
-
-5. **`docs/handoff.md`** — Current focus section: rewrite to reflect 1514 anchor + open 1514-1540 sub-window as next sub-task under §BF.
-
-6. **`docs/research/moentordning_1541.md`** — header annotation update: «*This dossier covers Christian III's 1541 Møntordning specifically, which is the THIRD major Danish-Norwegian Møntordning in the Christian-II-Lovkompleks-1514 lineage. For the broader anchor context see §BI.*» No body rewrite — the dossier remains accurate for what it documents.
-
-7. **`docs/research/denmark_fuesse_year_boundaries.md`** — update reichsdukat section to reflect Christian II 1514 as the verified first formal Danish gold-standard spec (Nobler 23½K 16/Mark = `233.856 / 16 = 14.616g brutto` per Nobel; this is DOUBLE-Nobel weight ≠ single-Goldgulden, BUT establishes the 23½K fineness as the gold-standard floor that 1531 Goldgulden 3.49g `.986` adheres to). The «verified .986 Goldgulden 1531» remains the earliest verified-finhed Goldgulden-class strike; 1514 is the earlier legal-act anchor.
-
-8. **§BF rescope** — §BF's «1541-1566 gap» becomes «1514-1566 gap». Section header updates. Add scope-note about pre-1541 Hede coverage gap.
-
-**Out of scope.** 
-
-- **Erik VII (1397-1439) Lund gold piece** (Numista N#426966, 9.85g, finhed unverified). Pre-1481, Kalmar-Union-era outlier. The 1514 anchor cleanly excludes it. Stays as research-doc context (`denmark_fuesse_year_boundaries.md` §Pre-Hans), does NOT enter coin tables.
-- **Hans (1481-1513) gold issues** (Goldgulden N#355730, 3 Noble / 2 Noble / Noble, Rhinsk Gylden) — pre-1514 by Hans's death year. **Excluded** by the 1514 anchor.
-- **Galster + Jensen-Skjoldager catalog import** for Christian II + Frederik I — necessary to populate the 1514-1540 sub-window with actual coin data, but separate follow-up task (Normal priority §AZ). NOT a Hede extension — Hede 1957 doesn't cover these rulers.
-
-**Sibling TODO created on §BI close** (do NOT create proactively now):
-> «Galster + Jensen-Skjoldager catalog import — Christian II + Frederik I. NEW source family (NOT Hede extension; Hede 1957 doesn't cover pre-Christian-III rulers). Primary sources: Galster 1959-1960 paper monograph + Jensen-Skjoldager 2021 «Tronraneren» + danskmoent.dk Galster-page series `/fr/f1g*.htm` (Frederik I confirmed via `f1g46.htm`) + Numista cross-refs. Cache architecture verdict needed: new `scripts/cache/galster/` vs reuse hede/ with source-detection. Scope: Christian II 1513-1523 + Frederik I 1523-1533, both metals.»
-
-**Cross-references.**
-
-- **§BF** (1541-1566 gap, now «1514-1566 gap») — sequence: §BI must complete BEFORE §BF data-edit begins. §BI is the anchor decision; §BF is the data population.
-- **§BD** (Danish Müntzfuß names `-fod` vs `-Fuß`) — independent; can proceed in parallel.
-- **§BE** (Danish translation for DK/SH) — uses same DK-track anchor decision once it lands.
-- **CLAUDE.md mission statement** — direct edit target; German-track 1559/1566 line stays unchanged.
-
-**Definition of done.** All five primary touchpoints (CLAUDE.md mission, denmark.yml header/timeline + summary, seed `scope_year_from`, seed builder `--year-from` default, denmark_fuesse_year_boundaries.md reichsdukat section) updated to 1514 anchor; rendered Denmark page header / timeline shows `1514-1914`; §BF entry rescoped + sub-task list expanded; sibling TODO §AZ opened for Galster + Jensen-Skjoldager catalog import. **NO changes to any German or Schleswig-Holstein file.** Build clean + sample-rendered DE/EN/UK Denmark page confirmed.
+**Definition of done.** The Denmark page renders a non-empty 1514-1566 section with at least 6 placed coins, a `christian_iii_dalerfod` Fuß card with full metric block + sourced hintergrund, and the dual-track Flensborg phase (if (a)) wired up. The 26+ new c3h seed entries auto-suppress against the curated phase blocks per the `_merge_seeds_into_raw` rule. Pre-1541 sub-window coverage (Christian II 1513-1523 + Frederik I 1523-1533) depends on §AZ Galster + Jensen-Skjoldager catalog import landing first.
 
 ## High priority
 
@@ -2223,7 +2144,44 @@ _None at the moment. This section is reserved for entries we consciously postpon
 
 ## Done
 
+### BI. Denmark-track anchor rescope 1541 → 1514 — Christian II Lovkompleks  *(opened 2026-05-15, closed 2026-05-16)*
+
+**Decision (user direction 2026-05-16):** Denmark-Norway track lower bound moves from Christian III's 1541 Møntordning to the **Christian II Lovkompleks of 1514-1515** — the four-act legal package per Wilcke 1950 p. 183-186 verbatim:
+
+  - **Sommeren 1514** — Møntordning DK (Dienis Malmö Brev, both metals: Nobler 23½ Karat 16/Mark + Rhinsk Gylden 18 Karat 72/Mark + Skilling fractions, with Rigsrådets Raad og Samtykke)
+  - **3 August 1514** — Møntordning Norge (extension under Kalmar Union)
+  - **Paasketid 1515** — Kvittering (compliance receipt)
+  - **24 August 1515** — Sjælland åbent Brev (Sjælland renewal)
+
+First comprehensive Danish-Norwegian legal act covering both metals + both kingdoms. Independently corroborated by Numista's currency-taxonomy boundary («Penning 825-1513 → Gulden 1513-1572»). Christian III's 1541 Møntordning is now correctly positioned as the THIRD major Danish-Norwegian Møntordning in this Lovkompleks lineage.
+
+**Scope STRICTLY Denmark-track only** — Schleswig-Holstein and all German-jurisdiction pages remain at their existing 1559/1566 anchor per §BI's explicit scope-restriction.
+
+**Closure deliverables** (commit `ab9e552` + `c0687a7`):
+
+  - CLAUDE.md mission statement: Denmark-Norway lower bound line rewritten 1541→1514 with full Lovkompleks citation. German lands 1559/1566 line unchanged.
+  - `data/locations/denmark.yml`: top-level + timeline `year_from: 1541→1514`; summary deck rewritten (DE/EN/UK) — Christian II 1514 Lovkompleks as opening anchor, 1541 Møntordning as mid-period silver reform.
+  - `scripts/maintenance/build_hede_denmark_seed.py`: `--year-from` default 1541→1514 + extended help text (notes Hede 1957 has no pre-Christian-III coverage; 1514-1540 sub-window empty until §AZ Galster import lands).
+  - `data/seed/hede/denmark.yml`: regenerated — `scope_year_from: 1514`.
+  - `docs/handoff.md`: Current focus rewritten; §AZ scope confirmed.
+  - `docs/research/moentordning_1541.md`: header status-update banner — dossier remains accurate for the 1541 Møntordning specifically but is no longer the project-anchor dossier; positioned as the THIRD Møntordning in the Lovkompleks lineage.
+  - `docs/research/denmark_fuesse_year_boundaries.md`: reichsdukat section reworked — 1514 = project anchor (legal); 1531 = first verified .986 strike; summary table extended.
+  - `docs/TODO.md`: §BF rescoped «1541-1566 gap» → «1514-1566 gap»; §AZ rescoped (Hans + Erik VII excluded as pre-1514 outliers; Christian II + Frederik I 1514+ in scope).
+
+**Render verified**: Denmark page DE/EN/UK shows `1514–1914` in H1, deck, timeline, hero-stats — all consistent. NO changes to any German or Schleswig-Holstein file.
+
+**Cleanup note (commit `c0687a7`)**: §BJ (created during §BI closure as «Hede catalog extension») was discovered to be a duplicate of existing §AZ + structurally wrong (Hede 1957 doesn't catalogue pre-Christian-III rulers). §BJ deleted; §AZ rescoped per §BI anchor decision; «Hede catalog extension» language replaced with «Galster + Jensen-Skjoldager catalog import (new source family)» across all affected files.
+
+**Follow-ups still open** (separate TODOs):
+
+  - **§BF** (Denmark 1514-1566 gap data population) — remains in Highest priority. Sequenced after §BI; ready to start.
+  - **§AZ** (Galster + Jensen-Skjoldager catalog import for Christian II + Frederik I) — in Normal priority. Unblocks §BF pre-1541 sub-window when it lands.
+
+---
+
 ### BC. Denmark timeline start year — DECIDED: dual-anchor 1541 (Denmark) / 1559 (German lands)  *(opened 2026-05-15, closed 2026-05-15)*
+
+**Note 2026-05-16**: superseded by §BI — the Denmark anchor moved further back from 1541 to 1514 (Christian II Lovkompleks). §BC's original decision stands as the first step of the eventual two-step anchor move; §BI is the final state.
 
 **Decision (user direction 2026-05-15):**
 
