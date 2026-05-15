@@ -9,17 +9,25 @@
 > (per Galster).
 >
 > **Verbatim text status (as of 2026-05-15):** the actual ordinance text
-> is **NOT** freely available online in transcribed form. Surviving
-> printed transcription: Kolderup-Rosenvinge, *Samling af gamle danske
-> Love*, Vol. IV — *Danske Recesser og Ordinantser af Kongerne af den
-> Oldenborgske Stamme* (København 1824); original archived in
-> **Rigsarkivet, København — Danske Kancelli** series, browsable via
+> is **NOT** freely available online in transcribed Danish form, but
+> two paths reach the verbatim source: (a) **Hans Paus, *Samling af
+> Gamle Norske Love*, Vol. 2 page 305** (København 1752) — the 18th-c.
+> printed transcription that Kolderup-Rosenvinge himself cites as the
+> authoritative published version (Rosenvinge 1824 Vol. IV p. 513
+> footnote: «*jvfr. Christ. d. Tredies Fdg. 1541, hos Paus S. 305*»);
+> (b) the **original manuscript at Rigsarkivet, København — Danske
+> Kancelli** archive, browsable for free at
 > [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149).
-> Every modern numismatic study cited below paraphrases or summarises
-> Rosenvinge / the archive; none reproduce the verbatim ordinance text
-> as a primary-text excerpt. This dossier consolidates the paraphrased
-> consensus across those secondary sources plus our own Hede-cache
-> coin data that empirically attests the ordinance's parameters.
+> See §9 for the full access-path catalogue. The earlier (now-corrected)
+> assumption that Rosenvinge 1824 Vol. IV contains the 1541 text was
+> wrong — Vol. IV covers only major *Recesser*, not narrower
+> *Forordninger*, and full-text search of the 614-page Vol. IV PDF
+> confirms zero 1541 verbatim content. Every modern numismatic study
+> cited below paraphrases or summarises Paus / Rosenvinge / the
+> archive; none reproduce the verbatim ordinance text. This dossier
+> consolidates the paraphrased consensus across those secondary
+> sources plus our own Hede-cache coin data that empirically attests
+> the ordinance's parameters.
 >
 > **Cross-references:** TODO §BC (Denmark timeline start year decision);
 > `christian_iii_danish_coinage_1534_1572.md` §1 (the same ordinance from
@@ -46,12 +54,14 @@
 
 > **Reading order**: Galster 1965 → Wilcke 1927/1932 → Kroman 1964 →
 > Nationalmuseet / lex.dk modern entries. Each level cites the previous;
-> all ultimately rest on Rosenvinge 1824 / Rigsarkivet primary documents.
+> all ultimately rest on Paus 1752 (printed) / Rigsarkivet (manuscript)
+> primary sources.
 
 | Source | Coverage of 1541 | Quote-level / paraphrase | Online access |
 |---|---|---|---|
-| **Rosenvinge 1824** (Vol. IV) | Primary-text transcription | Verbatim ordinance text | Print only; Google Books snippet view |
-| **Rigsarkivet — Danske Kancelli** | Original ordinance manuscript | Verbatim | [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149), session-based browsing |
+| **Paus 1752** (Vol. 2 p. 305) | Printed transcription of the verbatim Danish text | Verbatim ordinance text | Google Books id `nZZFAAAAcAAJ` partial preview; Nasjonalbiblioteket digital text |
+| **Rigsarkivet — Danske Kancelli** | Original ordinance manuscript | Verbatim | [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149), free browser-based after registration |
+| **Rosenvinge 1824** (Vol. IV) | Secondary cross-reference only — does NOT reproduce the 1541 text; points to Paus S. 305 | Footnote reference only | <https://books.google.com/books?id=43NJIGHI7vAC> partial preview; downloaded full PDF confirmed lacks 1541 verbatim |
 | **Wilcke, J.**: *Dansk Møntvæsen* series (Numismatiska Meddelanden XXVI, Stockholm 1932; earlier *Kong Hans' Møntreformer* etc.) | Cited as legal grounds for Christian-III standards | Paraphrase + occasional verbatim short quotes | danskmoent.dk Wilcke transcripts (Wilcke I-II covers later Christian IV / Frederik II — earlier volumes not online) |
 | **Galster, Georg**: *Danske mønter* (København 1965) | Foundational secondary-source summary; the «authoritative paraphrase» relied on by every later writer | Paraphrase; one Danish sentence verbatim («Ved møntordningen af 20. sept. 1541 …») | [`docs/research/sources/galster_galshist.md`](sources/galster_galshist.md) local capture; <https://www.danskmoent.dk/galster/galshist.htm> |
 | **Kroman, Erik**: *Oversigt over Mønthistorien med særligt Hensyn til Regneenhederne* (1964) | Cites 1541 + 1544 ordinances as the implementation milestones | Paraphrase | <https://www.danskmoent.dk/artikler/kroman.htm> |
@@ -319,8 +329,24 @@ data work for Phase A1 (1541–1543 København baseline) needs:
 
 ## 9. Where to find the verbatim ordinance text (concrete access paths)
 
+> **Correction logged 2026-05-15:** an earlier draft of §9 recommended
+> Kolderup-Rosenvinge 1824 Vol. IV as the printed-transcription path.
+> After downloading and full-text-searching the actual PDF (614 pages,
+> 31 MB; Google Books id `43NJIGHI7vAC`), this was **wrong**.
+> Rosenvinge Vol. IV is a collection of *Recesser og Ordinantser* — the
+> major comprehensive legislative acts — and the 1541 Møntordning was
+> a *Forordning* (a narrower royal decree), not a Reces. The Vol. IV
+> TOC (p. 13 of the printed volume) lists Christian III's *Kjøbenhavnske
+> Reces of 1540* (pp. 198-213) and *Kjøbenhavnske Reces of 1547*
+> (pp. 214-236) but **no 1541 entry between them**. Rosenvinge himself
+> points to the actual location: in a footnote on p. 513 (Anmærkninger
+> to Christian IV Reces 1615 Art. 35), he writes «jvfr. Christ. d.
+> Tredies Fdg. 1541, hos Paus S. 305» — i.e. the 1541 Forordning is
+> in *Paus, page 305*. §9.2 below has been rewritten to point to Paus
+> directly.
+
 Five paths, ordered from most-accessible to most-effortful (assessment
-updated 2026-05-15 after exploring each):
+revised 2026-05-15 after the Rosenvinge-Vol.-IV verification pass):
 
 ### 9.1 Rigsarkivet Arkivalieronline (free, browser-based) — RECOMMENDED
 
@@ -356,62 +382,96 @@ arkivserie-liste](https://daisy.rigsarkivet.dk/arkivskaber_eller_arkivserie_list
 «-tz-» for «-z-», «daa» for «da»); paleography skill helps but not
 strictly required for a printed-decree-style document.
 
-### 9.2 Kolderup-Rosenvinge 1824, Vol. IV — printed transcription
+### 9.2 Hans Paus, *Samling af gamle Norske Love*, Vol. 2 page 305 — printed transcription (CORRECTED)
 
-**Citation:** Kolderup-Rosenvinge, J. L. A.: *Samling af gamle danske
-Love. Fjerde Deel: Danske Recesser og Ordinantser af Kongerne af den
-Oldenborgske Stamme* (København: Deichmann, 1824).
+**Citation:** Paus, Hans: *Samling af Gamle Norske Love ... i det nu
+brugelige Dansk Sprog oversatta, og ... oplyvste* (København:
+Kongelige Universitets-Bogtrykker, 1751–1752, 2 volumes). Hans Paus
+(1710–1770) was a Norwegian-Danish jurist and sorenskriver; this is
+his only major published work, a translated-into-contemporary-Danish
+collection that despite the «Norwegian laws» title also collects
+Danish royal decrees that applied across the Danmark-Norge dual realm
+(including Christian III's 1541 Møntordning, which applied
+realm-wide).
+
+Rosenvinge's explicit cross-reference on Vol. IV p. 513 confirms the
+1541 Forordning is at **Vol. 2 page 305** of Paus's edition.
 
 **Online indexes located (2026-05-15):**
 
 | Repository | Vol. | Access | URL |
 |---|---|---|---|
-| Google Books | IV / Del 4 | Indexed; partial browser preview; full PDF download gated for non-US IPs | <https://books.google.com/books?id=43NJIGHI7vAC> |
-| Google Books (alt) | uncertain volume | Indexed; partial preview | <https://books.google.com/books?id=LUVDAQAAMAAJ> |
-| Google Books (alt) | uncertain volume | Indexed; partial preview | <https://books.google.com/books?id=q4hIAAAAYAAJ> |
-| HathiTrust | Multi-volume catalog record | Catalog only; full view requires US-institutional login | <https://catalog.hathitrust.org/Record/008596122> |
-| Internet Archive | Vol. 1 (medieval, not Vol. IV) | Full view | <https://archive.org/details/samlingafgamled00sunegoog> |
-| DPLA | Generic catalog record | Catalog only | <https://dp.la/item/32289f970ed2df313e1a2dd8b7463003> |
+| Google Books | Bind 2 | Indexed; partial in-browser preview; full PDF download gated | <https://books.google.com/books?id=nZZFAAAAcAAJ&pg=PA305> (direct jump to p. 305) |
+| Google Books | Bind 1 | Indexed; partial preview | <https://books.google.com/books?id=DZZFAAAAcAAJ> |
+| Google Books | Bind 1-2 combined | Indexed; partial preview | <https://books.google.com/books?id=IJZFAAAAcAAJ> |
+| Nasjonalbiblioteket (Norge) | Full | Free digital text per Store norske leksikon: «fritt tilgjengelig hos Nasjonalbiblioteket» | [nb.no](https://www.nb.no/) — search «Hans Paus Samling af gamle Norske Love» |
+| Justismuseet / DigitaltMuseum | Print | Catalogue record only | <https://digitaltmuseum.no/021025924843/bok> |
 
-**Access procedure:** open the Google Books URL in a browser; use
-«Search inside this book» (top of book preview UI) for «1541» — Google
-will jump to the relevant pages and show inline snippets that may
-include the verbatim ordinance text. Pages are browseable in-preview
-even when full PDF download is gated. For Ukraine-IP visitors,
-google.com.ua redirect happens automatically; same content.
+**Access procedure:** open `nb.no` and search for «Hans Paus Samling
+af gamle Norske Love» — the Norwegian National Library hosts the
+full digital text without registration for public-domain works.
+Alternatively, Google Books partial preview at the direct-jump URL
+(`pg=PA305`) lands on the exact page; Google snippets and
+in-browser-preview pages around it may show the 1541 Forordning
+verbatim Danish text. The text is in Paus's modernised 1751 Danish
+spelling — cleaner and more legible than the manuscript chancery
+hand of §9.1, but one paleographic generation removed from the 1541
+original.
 
-**Pros:** printed text (cleaner than the manuscript handwriting); fully
-edited with notes by Rosenvinge. **Cons:** partial preview only; full
-PDF gated; printed in 1824 with fraktur-style typography may render
-imperfectly on screen.
+**Pros:** printed text (clean typography); Paus's 1751 modernisation
+of spelling makes the Danish almost as readable as 19th-century
+Danish; Vol. 2 p. 305 is the exact location per Rosenvinge.
+**Cons:** Google Books PDF download gated for non-US IPs; nb.no
+content may require Norwegian IP for some items.
 
-### 9.3 Inter-library loan (ILL)
+### 9.3 Kolderup-Rosenvinge 1824, Vol. IV — does NOT contain the 1541 Møntordning
 
-The Rosenvinge 1824 Vol. IV exists in held collections at:
-**Det Kongelige Bibliotek (København)**, **Lund Universitet** (Sweden),
-**Aarhus Universitet**, and major Scandinavian university libraries.
-A Ukrainian institutional library (Kyiv National University,
-Vernadsky National Library) can request a digital scan or microfilm
-copy via standard ILL procedures.
+**Status: NOT a viable path for the 1541 ordinance text itself.**
+Vol. IV (Google Books id `43NJIGHI7vAC`, 614 pp) was downloaded and
+full-text-searched 2026-05-15. Results:
 
-**Pros:** full text, complete with editorial apparatus, no
-access restrictions once received. **Cons:** 1-3 weeks turnaround;
-may require library affiliation; potential modest fee.
+  - The volume's TOC (p. 13) lists Christian III's Kjøbenhavnske
+    Reces of 1540 (pp. 198-213), Kjøbenhavnske Reces of 1547
+    (pp. 214-236), Odenseske Reces of 1539 (pp. 190-197). No 1541
+    entry. The volume scope is *Recesser og Ordinantser* (major
+    comprehensive legislative acts); the 1541 Møntordning was a
+    *Forordning* (narrower royal decree), out of scope.
+  - The only mention of «1541» in the entire 614-page volume is
+    Rosenvinge's footnote on p. 513 (Anmærkninger to Chr. IV Reces
+    1615 Art. 35): «*KildenerReces 1615 Art. 35, jvfr. Christ. d.
+    Tredies Fdg. 1541, hos Paus S. 305.*» — cross-reference only;
+    he does not reproduce the 1541 text.
 
-### 9.4 Direct request to Rigsarkivet
+Vol. IV does, however, contain **closely-related Christian III
+monetary material** that the project's other §BC work will use —
+documented in §11 below.
+
+### 9.4 Inter-library loan (ILL)
+
+Both Paus Vol. 2 (1752) and the underlying Rigsarkivet manuscript
+are obtainable via standard ILL through any Ukrainian institutional
+library (KNU Shevchenko, Vernadsky National Library, etc.).
+Recommended target collections: **Det Kongelige Bibliotek
+(København)**, **Nasjonalbiblioteket (Oslo)**, **Lund Universitet
+(Sweden)**, **Aarhus Universitet**.
+
+**Pros:** full text, complete; no access restrictions once received.
+**Cons:** 1-3 weeks turnaround; potential modest fee.
+
+### 9.5 Direct request to Rigsarkivet
 
 Rigsarkivet provides per-document scanning service. Email:
 [mailbox@sa.dk](mailto:mailbox@sa.dk). Quote the archive reference:
 «Danske Kancelli, Tegnelser / Indlæg til registre og tegnelser,
 1541, ‹Møntordning af 20. september 1541›». Modest fee schedule
-(typical: 50–200 DKK for a few pages of scans, free for small
+(typical: 50–200 DKK for a few pages of scans, often free for small
 requests).
 
 **Pros:** direct primary source from the archive; staff can help
 locate the exact manuscript. **Cons:** small fee; turnaround
 1-2 weeks.
 
-### 9.5 Translation status (any language)
+### 9.6 Translation status (any language)
 
 **No published translation** of the 1541 Møntordning exists in
 English, German, modern Danish, Ukrainian, or other language to our
@@ -420,42 +480,92 @@ knowledge as of 2026-05-15.
   - The Old Danish text is readable to modern Danish speakers with
     moderate effort (similar reading-distance to e.g. early-modern
     English Shakespeare for an English speaker).
+  - **Paus 1751 Vol. 2 p. 305** (per §9.2) is the closest thing to a
+    «translated» version — Paus modernised the 16th-c. spelling to
+    1751 contemporary Danish, halving the paleographic distance
+    between original and a modern reader. But it is still in Danish,
+    not in any other modern language.
   - **Galster 1965** (the canonical secondary source quoted in §3
-    above) is the closest thing to a Danish-language «modern
-    interpretation»: it paraphrases the ordinance's substantive
-    provisions in modern Danish without quoting the legal text
-    verbatim.
+    above) is the modern-Danish *paraphrase* of the substantive
+    provisions, not a verbatim translation.
   - **Wilcke 1932** occasionally renders Danish legal phrases into
     German in his analytical commentary; not a systematic translation.
   - **Machine translation** (DeepL, Google Translate) of the verbatim
-    Old Danish text works moderately well; archaic spelling and
+    Danish text (either Paus 1751 modernised spelling or the original
+    1541 manuscript) works moderately well; archaic spelling and
     Latin loan-words may need manual review, but the substantive
     content (denominations, fineness specifications, mintmaster
     appointments) translates cleanly.
 
 **If a translated working text is needed:** the most practical path
-is to obtain the verbatim Danish via §9.1 or §9.2, then run it
-through DeepL with a manual paleography pass to normalise the
-archaic spelling first.
+is to obtain Paus Vol. 2 p. 305 via §9.2 (cleaner 1751 spelling),
+then run it through DeepL with a manual review pass.
 
-### 9.6 Recommendation
+### 9.7 Recommendation (revised)
 
-For **most-practical access** with **least effort**: §9.1 Rigsarkivet
-Arkivalieronline. Free, immediate, verbatim primary source. The
-Old-Danish handwriting is the main barrier but the document is
-short (~1-2 manuscript pages of chancery hand for a typical ordinance
-of this period); a Danish speaker can transcribe and translate it
-in 1-2 hours.
+For **most-practical printed-transcription access**: **§9.2** (Paus
+Vol. 2 p. 305) — open Google Books direct-jump URL
+[books.google.com/books?id=nZZFAAAAcAAJ&pg=PA305](https://books.google.com/books?id=nZZFAAAAcAAJ&pg=PA305)
+in a browser, OR search nb.no for the Nasjonalbiblioteket digital
+copy. Page-level browsing should be available; if Google Books
+shows the page as snippet-only, fall through to nb.no.
 
-For **convenience over fidelity**: §9.2 Google Books partial
-preview (no registration needed; in-browser reading; gives the
-1824-printed Danish text which is cleaner than the manuscript).
+For **manuscript fidelity** (the original chancery document):
+**§9.1** Rigsarkivet Arkivalieronline. Free, immediate, verbatim
+primary source. Old-Danish chancery handwriting is the main barrier
+but the document is short.
 
-Until either path is exercised, this dossier's §3–§4 paraphrased
-synthesis from Galster / Wilcke / Kroman is the project's best
-available substitute.
+For **scholarly editorial apparatus** (footnotes, philological
+notes): **§9.4 ILL** for Paus Vol. 2 print copy.
 
-## 10. Sources consulted
+§9.3 (Rosenvinge Vol. IV) remains useful for the project even
+though it does not contain the 1541 ordinance — see §11 below for
+the closely-related Christian III material it DOES provide.
+
+## 10. What Rosenvinge Vol. IV does provide — Christian III monetary context
+
+Even though Vol. IV does not contain the 1541 Møntordning verbatim,
+the volume — downloaded and full-text-searched 2026-05-15 — is useful
+for the project's §BC work in two specific ways:
+
+### 10.1 Christian III Kjøbenhavnske Reces of 1547 §22 (pp. 232-233)
+
+The 1547 Reces — the next major comprehensive Christian III legislative
+act after 1541 — contains in its §22 (silver- and gold-smith regulation)
+a verbatim statement of the post-1544 silver standard. The fineness
+specification is **14½ lødig** for støbt (cast) silver:
+
+> «leffwere XV Lodt puurt Sølff udi huer lødig Marck, som hand fran
+> seg andtworder, oc hallffemtandeLod puurtSøllff udi huer lödig
+> Marck, som handt udi stöbt Sölff forarbeyder»
+
+«Hallffemtandeskab Lod» = «half-fifteenth-eighth Lod», i.e. 14½ Lod
+of pure silver per Cölln. Marck — **the same 14½-lødig standard the
+1544 Møntordning supplement established for the Daler** (per Galster
+§3 of this dossier). The 1547 Reces thus empirically confirms three
+years later that the 1544 standard remained in force, attesting the
+continuity of Phase A (per the §8 phase map in
+`christian_iii_danish_coinage_1534_1572.md`).
+
+### 10.2 Christian III Reformkontext (Indledning + per-Reces narratives)
+
+The Indledning and per-Reces narratives in Vol. IV (especially pp.
+157-236 covering the 1536-1547 Christian III Recesser) provide
+substantial period-political context for the 1541 + 1544 Møntordninger:
+Reformation-Reces 30 October 1536 (the religious foundation); the
+Kjøbenhavnske Reces 1536 (general settlement post-Grevens fejde);
+Kjøbenhavnske Reces 1537 (early consolidation); Odenseske Reces 1539
+(continued reform); Kjøbenhavnske Reces 1540 (immediate antecedent to
+the 1541 Møntordning, including the Wilcke-quoted «III Mark Danske»
+exchange ceiling for Rhinsk Gylden/Jochimsdaler per §6 of this dossier).
+The 1541 Møntordning fits into the Christian III «order-restoration»
+arc explicitly traced through these documents.
+
+For §BC implementation, Vol. IV is therefore a useful adjunct source
+even though the verbatim 1541 text must come from Paus Vol. 2 (§9.2)
+or Rigsarkivet (§9.1).
+
+## 11. Sources consulted
 
 ### Direct (verbatim cited above)
 
@@ -477,11 +587,31 @@ available substitute.
 
 ### Where the verbatim ordinance text lives
 
-- **Kolderup-Rosenvinge, J. L. A.** — *Samling af gamle danske Love*,
-  Vol. IV (København: Deichmann, 1824). Print. Google Books entry:
-  [books.google.com — `LUVDAQAAMAAJ`](https://books.google.com/books?id=LUVDAQAAMAAJ).
+- **Paus, Hans** — *Samling af Gamle Norske Love ... i det nu
+  brugelige Dansk Sprog oversatta, og ... oplyvste*, Vol. 2
+  (København 1752), **page 305**. The 18th-century printed
+  transcription that Rosenvinge himself cites (Vol. IV p. 513
+  footnote) as the authoritative published version of the 1541
+  Forordning. Google Books direct-jump:
+  [books.google.com — `nZZFAAAAcAAJ` p. 305](https://books.google.com/books?id=nZZFAAAAcAAJ&pg=PA305).
+  Free digital text at Nasjonalbiblioteket: [nb.no](https://www.nb.no/).
 - **Rigsarkivet, København — Danske Kancelli** archive series.
   Browsing index: <https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149>.
+  Specifically: «Indlæg til registre og tegnelser» series, 1541
+  year-block, 20 September entry.
+
+### Adjunct reference (does NOT contain the 1541 text itself but useful context)
+
+- **Kolderup-Rosenvinge, J. L. A.** — *Samling af gamle danske Love.
+  Fjerde Deel: Danske Recesser og Ordinantser af Kongerne af den
+  Oldenborgske Stamme* (København: Deichmann, 1824). Google Books id
+  [`43NJIGHI7vAC`](https://books.google.com/books?id=43NJIGHI7vAC).
+  614 pages downloaded and full-text searched 2026-05-15;
+  confirmed: contains Christian III Kjøbenhavnske Reces 1547 §22
+  with the 14½-lødig silver fineness specification (§10.1 of this
+  dossier) plus the surrounding Reformation-Reces narrative; but
+  does NOT contain the 1541 Møntordning verbatim. Cross-references
+  the 1541 Forordning at p. 513 footnote pointing to Paus S. 305.
 
 ### Encyclopaedic context (modern)
 
