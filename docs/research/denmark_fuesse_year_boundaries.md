@@ -187,7 +187,9 @@ specific Fuß comes up for handling.
 
 | Boundary | Year | Type | Source |
 |---|---|---|---|
-| **Start** | **1531** | First Danish mintage at the Reichsdukatenfuß metric | **Frederik I 1531 Ungersk Gylden** (Galster 46 / Schou 1 / Jensen-Skjoldager T-41/45), brutto 3.49 g, finhed 0.986 (23⅛ K), fein 3.44 g, mint København or Malmø (the mint distinction not certainly recorded). Predates Augsburger Reichsmünzordnung (19 August **1559**) by 28 years; predates Christian III's c3h1 1557 entry in our project Hede cache by 26 years. Source: danskmoent.dk/fr/f1g46.htm (consolidates Galster + Schou + Jensen-Skjoldager attribution). lex.dk «dukat» (Jørgen Steen Jensen, Nationalmuseet): «*I Danmark kom der første gang i 1531 en guldmønt af vægt som en dukat*» — refers precisely to this Frederik I 1531 issue. |
+| **Start (verified, dukat-metric)** | **1531** | First Danish mintage at the Reichsdukatenfuß metric (verified .986) | **Frederik I 1531 Ungersk Gylden** (Galster 46 / Schou 1 / Jensen-Skjoldager T-41/45), brutto 3.49 g, finhed 0.986 (23⅛ K), fein 3.44 g, mint København or Malmø (the mint distinction not certainly recorded). Predates Augsburger Reichsmünzordnung (19 August **1559**) by 28 years; predates Christian III's c3h1 1557 entry in our project Hede cache by 26 years. Source: danskmoent.dk/fr/f1g46.htm + Numista N#428864 (Fr# 11, Galster UU# 46). lex.dk «dukat» (Jørgen Steen Jensen, Nationalmuseet): «*I Danmark kom der første gang i 1531 en guldmønt af vægt som en dukat*» — refers precisely to this Frederik I 1531 issue. |
+| (Earlier Goldgulden candidates, finhed UNVERIFIED) | **1481–1513** | First Danish «Goldgulden» catalog entry — finhed not recorded | **John I (Hans) Goldgulden** (Numista N#355730, Fr# 4), ND 1481–1513, brutto 3.3 g, finhed NOT recorded. Legend «MONET AVREA REGNI DACIE». Cataloguer's metric attribution to dukat-fineness depends on physical-specimen assay not currently in hand. HYPOTHESIS pending finhed verification. |
+| (Earlier Goldgulden, Frederik I 1527) | **1527** | Frederik I 1 Goldgulden Malmö — finhed not recorded | Numista N#433743, Fr# 10, brutto 3.28 g, mint Malmö, legend «MON AVR MAL 1527». Predates the 1531 Frederik I issue by 4 years; might be at the same Reichsdukatenfuß metric, but Numista records no fineness. UNVERIFIED. |
 | **End** | **1802** | Last Danish mintage | Last Altona Reichsdukat per Galster (galsfre2.htm): «*den sidste 1802*». Final Altona issues: 1791, 1792, 1794, 1802. Last København Kurantdukat (21-karat variant): 1785. |
 | (External anchor) | (1871 / 1873) | Imperial / Danish reform | Imperial: Münzgesetz 4 December 1871 (Reichsgoldmark introduction). Danish: Møntloven af 23 May 1873 (gold-Krone reform, effective 1 January 1875). Denmark ceased Reichsdukat mintage 71 years before the 1873 Krone reform. |
 
@@ -211,7 +213,32 @@ Initial pass (this file's original draft) listed **1557** as the start year, bas
 | Frederik I | 1532 | Nobel | ~7.78 | ~0.979 | Dukat fineness at half-noble weight — not a Reichsdukat |
 | Christian III | 1557 | Ungersk Gylden (c3h1) | 3.49 | 0.986 | Reichsdukatenfuß continuation |
 
-**Pre-Hans rulers** (Erik of Pomerania 1396–1439, Christopher of Bavaria 1440–1448, Christian I 1448–1481): no gold issues documented in Wilcke 1950 — Hans is universally identified as «første Møntreformator» on the gold front (Wilcke p. 145ff).
+**Pre-Hans rulers** — Christopher of Bavaria (1440–1448) and Christian I (1448–1481): no gold issues documented in any source consulted. The 41-year gap 1440–1481 has zero attested Danish royal gold mintage.
+
+**Erik VII (Erik of Pommern, 1397–1439) — NEW finding 2026-05-15** (correcting earlier dossier claim that «*no gold under Erik of Pomerania*»):
+
+| Parameter | Value |
+|---|---|
+| Issuer | Denmark · Eric VII (Erik of Pommern) (1397–1439, Kalmar Union) |
+| Mint | **Lund** (legend «HONETA LVNDENS») |
+| Years | ND 1397–1439 |
+| Weight | **9.85 g** |
+| Diameter | 23 mm |
+| Fineness | Not recorded by Numista — UNVERIFIED |
+| Catalog refs | Numista N#426966, NO Friedberg# (outside the standard catalog) |
+| Photo source | Nationalmuseet i København (CC BY-SA 4.0) |
+| Obverse legend | «ERICVS REX D S N» (Erik King of Denmark / Sueciae / Norvegiae — invokes Kalmar Union) |
+| Reverse legend | «HONETA LVNDENS» (Lund Mint) |
+
+**Metric classification** — 9.85 g does NOT match any standard XV-c. gold denomination:
+  - NOT Reichsdukatenfuß / Florentine fiorino (~3.5 g)
+  - NOT English Noble (~7.78 g) or Sovereign (~15 g)
+  - NOT Rhenish Gulden (~3.25 g)
+  - Likely a sui-generis Kalmar-Union-period Danish gold piece, possibly ~3× Goldgulden equivalent or a «Storgylden» Lund-mint denomination. Galster's Lund-mint volume would be the primary attestation; absence of Friedberg# suggests rarity and likely unique-specimen status in the Nationalmuseet i København cabinet.
+
+**Implication for the project**: Erik VII is the **earliest documented Danish royal gold issuer**, predating Hans (1481–1513) by 42–82 years. Wilcke 1950's framing of Hans as «første Møntreformator» on gold was a **synthesis simplification**, not a primary-source-attested statement of Hans-as-first. Numista's catalog cross-checked against Nationalmuseet attribution gives the Erik VII Lund issue clear standing as an earlier-than-Hans Danish gold mintage — though metric-classification remains open.
+
+**§0b discipline note**: our previous dossiers (`christian_iii_danish_coinage_1534_1572.md` §3, `danish_royal_gold_1560_1648.md`) both repeated the «no pre-Hans gold» claim based on Wilcke alone. The claim was **hypothesis dressed as fact** — Numista + Nationalmuseet evidence falsifies it. The error is recorded here publicly per §0b discipline; companion dossiers will be updated in a follow-up commit when the per-Fuß verification pass for `reichsdukat` reaches the Erik-VII section.
 
 ### Earliest-vs-codification design question
 
