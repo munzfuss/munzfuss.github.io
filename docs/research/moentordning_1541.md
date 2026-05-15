@@ -8,26 +8,42 @@
 > ordinance and the start of the «modern period» in Danish coin history
 > (per Galster).
 >
-> **Verbatim text status (as of 2026-05-15):** the actual ordinance text
-> is **NOT** freely available online in transcribed Danish form, but
-> two paths reach the verbatim source: (a) **Hans Paus, *Samling af
-> Gamle Norske Love*, Vol. 2 page 305** (København 1752) — the 18th-c.
-> printed transcription that Kolderup-Rosenvinge himself cites as the
-> authoritative published version (Rosenvinge 1824 Vol. IV p. 513
-> footnote: «*jvfr. Christ. d. Tredies Fdg. 1541, hos Paus S. 305*»);
-> (b) the **original manuscript at Rigsarkivet, København — Danske
-> Kancelli** archive, browsable for free at
-> [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149).
-> See §9 for the full access-path catalogue. The earlier (now-corrected)
-> assumption that Rosenvinge 1824 Vol. IV contains the 1541 text was
-> wrong — Vol. IV covers only major *Recesser*, not narrower
-> *Forordninger*, and full-text search of the 614-page Vol. IV PDF
-> confirms zero 1541 verbatim content. Every modern numismatic study
-> cited below paraphrases or summarises Paus / Rosenvinge / the
-> archive; none reproduce the verbatim ordinance text. This dossier
-> consolidates the paraphrased consensus across those secondary
-> sources plus our own Hede-cache coin data that empirically attests
-> the ordinance's parameters.
+> **Verbatim text status (revised twice 2026-05-15):** the 20 September
+> 1541 Møntordning that Galster cites is **NOT** freely available
+> online in transcribed Danish form. Two PDF downloads have now been
+> verified by full-text search and ruled out:
+>
+>   - **Kolderup-Rosenvinge, *Samling af gamle danske Love*, Vol. IV**
+>     (1824, Google Books id `43NJIGHI7vAC`, 614 pp): does NOT contain
+>     the 1541 Møntordning — covers only the major *Recesser og
+>     Ordinantser* and references the 1541 text via a single footnote
+>     on p. 513.
+>   - **Hans Paus, *Samling af gamle Norske Love*, Vol. 1-2** (1751-52,
+>     Google Books id `nZZFAAAAcAAJ`, 974 pp): does NOT contain the
+>     20 September 1541 Møntordning either. It DOES contain a different
+>     Christian III 1541 ordinance — «Om Maal og Vægt» (Søndagen
+>     Oculi 1541 = 20 March 1541), captured at
+>     [`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md) —
+>     which is the document Rosenvinge's p. 513 footnote actually
+>     referenced (the citing footnote was attached to Christian IV
+>     Reces 1615 Art. 35 «Vægt og Maal», not to a monetary
+>     provision).
+>
+> **The 20 September 1541 Møntordning is reachable only via
+> Rigsarkivet** (Danske Kancelli archive,
+> [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149)).
+> Galster 1965's modern paraphrase (§3 of this dossier) and our
+> Hede-cache coin data (§4.4-4.5) remain the secondary substitutes
+> for the verbatim text.
+>
+> **Important companion document found.** The 20 March 1541 «Om Maal
+> og Vægt» Forordning (Paus Vol. 2 p. 305-306) — though not the
+> Møntordning itself — formally adopts Cölln. Vægt (Cologne weight,
+> 233.856 g) as the Denmark-Norway silver-trade weight standard.
+> This is the weight unit that the 1544 Møntordning supplement then
+> used to specify the Daler («8 stk på den 14½ lødige kølnske
+> mark»). Six months separate the two acts (March → September 1541),
+> and Galster treats them as part of the same reform arc.
 >
 > **Cross-references:** TODO §BC (Denmark timeline start year decision);
 > `christian_iii_danish_coinage_1534_1572.md` §1 (the same ordinance from
@@ -57,11 +73,11 @@
 > all ultimately rest on Paus 1752 (printed) / Rigsarkivet (manuscript)
 > primary sources.
 
-| Source | Coverage of 1541 | Quote-level / paraphrase | Online access |
+| Source | Coverage of the 20 September 1541 Møntordning | Quote-level / paraphrase | Online access |
 |---|---|---|---|
-| **Paus 1752** (Vol. 2 p. 305) | Printed transcription of the verbatim Danish text | Verbatim ordinance text | Google Books id `nZZFAAAAcAAJ` partial preview; Nasjonalbiblioteket digital text |
-| **Rigsarkivet — Danske Kancelli** | Original ordinance manuscript | Verbatim | [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149), free browser-based after registration |
-| **Rosenvinge 1824** (Vol. IV) | Secondary cross-reference only — does NOT reproduce the 1541 text; points to Paus S. 305 | Footnote reference only | <https://books.google.com/books?id=43NJIGHI7vAC> partial preview; downloaded full PDF confirmed lacks 1541 verbatim |
+| **Rigsarkivet — Danske Kancelli** | Original ordinance manuscript (only verified primary path) | Verbatim | [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149), free browser-based after registration |
+| **Paus 1752** (Vol. 2 p. 305) | Does NOT contain the 20 September Møntordning — contains the 20 March 1541 «Om Maal og Vægt» companion Forordning at this page | Verbatim of the companion (captured locally at `sources/paus_christian_iii_1541_maal_og_vaegt.md`) | Google Books id `nZZFAAAAcAAJ` partial preview; downloaded full PDF confirmed lacks the September Møntordning |
+| **Rosenvinge 1824** (Vol. IV) | Footnote-only reference (p. 513) pointing to Paus S. 305 — citing the Maal-og-Vægt companion, NOT the September Møntordning | Footnote reference only | <https://books.google.com/books?id=43NJIGHI7vAC> partial preview; downloaded full PDF confirmed lacks 1541 verbatim |
 | **Wilcke, J.**: *Dansk Møntvæsen* series (Numismatiska Meddelanden XXVI, Stockholm 1932; earlier *Kong Hans' Møntreformer* etc.) | Cited as legal grounds for Christian-III standards | Paraphrase + occasional verbatim short quotes | danskmoent.dk Wilcke transcripts (Wilcke I-II covers later Christian IV / Frederik II — earlier volumes not online) |
 | **Galster, Georg**: *Danske mønter* (København 1965) | Foundational secondary-source summary; the «authoritative paraphrase» relied on by every later writer | Paraphrase; one Danish sentence verbatim («Ved møntordningen af 20. sept. 1541 …») | [`docs/research/sources/galster_galshist.md`](sources/galster_galshist.md) local capture; <https://www.danskmoent.dk/galster/galshist.htm> |
 | **Kroman, Erik**: *Oversigt over Mønthistorien med særligt Hensyn til Regneenhederne* (1964) | Cites 1541 + 1544 ordinances as the implementation milestones | Paraphrase | <https://www.danskmoent.dk/artikler/kroman.htm> |
@@ -382,47 +398,45 @@ arkivserie-liste](https://daisy.rigsarkivet.dk/arkivskaber_eller_arkivserie_list
 «-tz-» for «-z-», «daa» for «da»); paleography skill helps but not
 strictly required for a printed-decree-style document.
 
-### 9.2 Hans Paus, *Samling af gamle Norske Love*, Vol. 2 page 305 — printed transcription (CORRECTED)
+### 9.2 Hans Paus, *Samling af gamle Norske Love*, Vol. 2 — does NOT contain the 20 September 1541 Møntordning (re-corrected)
 
-**Citation:** Paus, Hans: *Samling af Gamle Norske Love ... i det nu
-brugelige Dansk Sprog oversatta, og ... oplyvste* (København:
-Kongelige Universitets-Bogtrykker, 1751–1752, 2 volumes). Hans Paus
-(1710–1770) was a Norwegian-Danish jurist and sorenskriver; this is
-his only major published work, a translated-into-contemporary-Danish
-collection that despite the «Norwegian laws» title also collects
-Danish royal decrees that applied across the Danmark-Norge dual realm
-(including Christian III's 1541 Møntordning, which applied
-realm-wide).
+**Status: NOT a viable path for the 20 September 1541 Møntordning
+text.** Paus Vol. 1-2 PDF (Google Books id `nZZFAAAAcAAJ`, 974
+pages, 63 MB) downloaded 2026-05-15 and full-text-searched: no
+matches for «Klarekloster», «Bremerholm», «Fechtel», «Septemb. 1541»,
+or any liturgical-Sunday-name equivalent of 20 September. Paus's
+collection is curated for items affecting Norway specifically; the
+20 September 1541 Møntordning's København-administrative focus may
+be the reason it's excluded.
 
-Rosenvinge's explicit cross-reference on Vol. IV p. 513 confirms the
-1541 Forordning is at **Vol. 2 page 305** of Paus's edition.
+**What Paus Vol. 2 p. 305-306 DOES contain.** A different Christian
+III 1541 Forordning — «**Om Maal og Vægt**», dated Søndagen Oculi
+1541 = 20 March 1541 — captured verbatim at
+[`docs/research/sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md).
+This is the document Rosenvinge's Vol. IV p. 513 footnote actually
+references (the citing footnote sits under Christian IV Reces 1615
+**Art. 35 «Vægt og Maal»**, not under a monetary provision —
+mismatch with the Møntordning's substance gave it away).
 
-**Online indexes located (2026-05-15):**
+The 20 March 1541 «Om Maal og Vægt» Forordning is the **companion
+act** to the 20 September 1541 Møntordning — they were issued six
+months apart and Galster treats them as part of the same reform
+arc. «Om Maal og Vægt» formally adopts **Cölln. Vægt** (233.856 g)
+as the Denmark-Norway silver-trade weight standard; the September
+Møntordning then USED this established weight unit to specify the
+Daler. For the project this is significant in its own right — it's
+the sourceable royal-decree origin of the `grid_unit_g: 233.856`
+constant underlying every Müntzfuß in `data/shared/fuesse.yml`.
+
+**Online indexes for Paus (kept here for the Maal-og-Vægt
+companion):**
 
 | Repository | Vol. | Access | URL |
 |---|---|---|---|
-| Google Books | Bind 2 | Indexed; partial in-browser preview; full PDF download gated | <https://books.google.com/books?id=nZZFAAAAcAAJ&pg=PA305> (direct jump to p. 305) |
+| Google Books | Bind 1-2 combined | Indexed; partial in-browser preview; full PDF download gated | <https://books.google.com/books?id=nZZFAAAAcAAJ&pg=PA305> (jump to «Om Maal og Vægt» p. 305) |
 | Google Books | Bind 1 | Indexed; partial preview | <https://books.google.com/books?id=DZZFAAAAcAAJ> |
-| Google Books | Bind 1-2 combined | Indexed; partial preview | <https://books.google.com/books?id=IJZFAAAAcAAJ> |
-| Nasjonalbiblioteket (Norge) | Full | Free digital text per Store norske leksikon: «fritt tilgjengelig hos Nasjonalbiblioteket» | [nb.no](https://www.nb.no/) — search «Hans Paus Samling af gamle Norske Love» |
-| Justismuseet / DigitaltMuseum | Print | Catalogue record only | <https://digitaltmuseum.no/021025924843/bok> |
-
-**Access procedure:** open `nb.no` and search for «Hans Paus Samling
-af gamle Norske Love» — the Norwegian National Library hosts the
-full digital text without registration for public-domain works.
-Alternatively, Google Books partial preview at the direct-jump URL
-(`pg=PA305`) lands on the exact page; Google snippets and
-in-browser-preview pages around it may show the 1541 Forordning
-verbatim Danish text. The text is in Paus's modernised 1751 Danish
-spelling — cleaner and more legible than the manuscript chancery
-hand of §9.1, but one paleographic generation removed from the 1541
-original.
-
-**Pros:** printed text (clean typography); Paus's 1751 modernisation
-of spelling makes the Danish almost as readable as 19th-century
-Danish; Vol. 2 p. 305 is the exact location per Rosenvinge.
-**Cons:** Google Books PDF download gated for non-US IPs; nb.no
-content may require Norwegian IP for some items.
+| Google Books | combined | Indexed; partial preview | <https://books.google.com/books?id=IJZFAAAAcAAJ> |
+| Nasjonalbiblioteket (Norge) | Full digital text | Free, per Store norske leksikon | [nb.no](https://www.nb.no/) — search «Hans Paus Samling af gamle Norske Love» |
 
 ### 9.3 Kolderup-Rosenvinge 1824, Vol. IV — does NOT contain the 1541 Møntordning
 
@@ -501,26 +515,30 @@ knowledge as of 2026-05-15.
 is to obtain Paus Vol. 2 p. 305 via §9.2 (cleaner 1751 spelling),
 then run it through DeepL with a manual review pass.
 
-### 9.7 Recommendation (revised)
+### 9.7 Recommendation (revised twice 2026-05-15)
 
-For **most-practical printed-transcription access**: **§9.2** (Paus
-Vol. 2 p. 305) — open Google Books direct-jump URL
-[books.google.com/books?id=nZZFAAAAcAAJ&pg=PA305](https://books.google.com/books?id=nZZFAAAAcAAJ&pg=PA305)
-in a browser, OR search nb.no for the Nasjonalbiblioteket digital
-copy. Page-level browsing should be available; if Google Books
-shows the page as snippet-only, fall through to nb.no.
+For the **20 September 1541 Møntordning text itself**: **§9.1
+Rigsarkivet Arkivalieronline** is now the ONLY viable practical
+path. Two PDF downloads have been ruled out by full-text search
+(Rosenvinge Vol. IV — §9.3; Paus Vol. 1-2 — §9.2). Until a session
+exercises §9.1 (or sources Wilcke 1932 / similar via ILL §9.4),
+the Galster paraphrase in §3 plus the Hede empirical attestation
+in §4.4-4.5 remain the project's best available substitute.
 
-For **manuscript fidelity** (the original chancery document):
-**§9.1** Rigsarkivet Arkivalieronline. Free, immediate, verbatim
-primary source. Old-Danish chancery handwriting is the main barrier
-but the document is short.
+For the **20 March 1541 «Om Maal og Vægt» companion Forordning**:
+§9.2 Paus Vol. 2 p. 305 — already captured verbatim at
+[`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md).
+This is the sourceable royal-decree origin of the Cölln. Vægt
+standard adopted realm-wide.
 
-For **scholarly editorial apparatus** (footnotes, philological
-notes): **§9.4 ILL** for Paus Vol. 2 print copy.
+For **manuscript fidelity** vs printed-transcription: §9.1 gives
+the 1541 chancery hand; §9.2 (for Maal-og-Vægt) gives the
+1751-modernised Paus print. Both are valid; choose by
+paleographic-effort preference.
 
-§9.3 (Rosenvinge Vol. IV) remains useful for the project even
-though it does not contain the 1541 ordinance — see §11 below for
-the closely-related Christian III material it DOES provide.
+§9.3 (Rosenvinge Vol. IV) remains useful for the project as
+adjunct context — see §10 below for the closely-related Christian
+III material it DOES provide.
 
 ## 10. What Rosenvinge Vol. IV does provide — Christian III monetary context
 
@@ -562,8 +580,45 @@ The 1541 Møntordning fits into the Christian III «order-restoration»
 arc explicitly traced through these documents.
 
 For §BC implementation, Vol. IV is therefore a useful adjunct source
-even though the verbatim 1541 text must come from Paus Vol. 2 (§9.2)
-or Rigsarkivet (§9.1).
+even though the verbatim 1541 Møntordning text must come from
+Rigsarkivet (§9.1).
+
+### 10.3 Companion Forordning: «Om Maal og Vægt» 20 March 1541 (Paus Vol. 2 p. 305-306)
+
+The 20 September 1541 Møntordning is preceded by **six months** by
+Christian III's «Om Maal og Vægt» Forordning of 20 March 1541
+(Søndagen Oculi 1541) — captured verbatim from Paus Vol. 2
+p. 305-306 at
+[`docs/research/sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md).
+Key substantive provision for the project:
+
+> «**…skal veyes ret Cølnsk Vægt**, eftersom det er Brug og
+> Sædvane her udi vort Rige Danmark og andre omliggende Lande og
+> Søe-Stæder…»
+
+This is the **royal-decree origin of Cölln. Vægt (233.856 g) as
+the Danish realm silver-trade weight standard** — the unit
+underlying every Müntzfuß in `data/shared/fuesse.yml`
+(`grid_unit_g: 233.856`). The Forordning adopts it realm-wide for
+Norway (matching prior Danish + Baltic-Sea practice) by sovereign
+decree.
+
+The 20 September 1541 Møntordning then USES this established
+Cölln. Vægt: the 1544 supplement specifies «8 stk på den 14½
+lødige kølnske mark» — eight Daler from one Cölln. Mark fein at
+14½-lødig silver. The two Forordninger thus form a coherent
+March-September 1541 reform pair:
+
+  - **20 March 1541** — establish the WEIGHT UNIT (Cölln. Vægt)
+  - **20 September 1541** — establish the COIN STANDARD (Daler =
+    1/8 Cölln. Marck of 14½-lødig)
+
+Both citable directly in `data/shared/fuesse.yml` (Cölln. Vægt =
+20 March 1541 ordinance) and per-coin notes (Daler standard =
+20 September 1541 Møntordning + 1544 supplement, per Galster). The
+March 1541 act has full verbatim source-capture; the September
+Møntordning remains paraphrase-only (Galster) pending Rigsarkivet
+access.
 
 ## 11. Sources consulted
 
