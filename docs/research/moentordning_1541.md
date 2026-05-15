@@ -95,7 +95,7 @@
 | Source | Coverage of the 20 September 1541 Møntordning | Quote-level | Online access |
 |---|---|---|---|
 | **Wilcke 1950** (Chapter IV, *Renæssancens Mønt- og Pengeforhold 1481-1588*) | **Verbatim Danish transcription** + archive citation + complete specification tables for 1541 + 1544 + 1547 acts + identifies all mintmasters | **Verbatim** (modernised 1950 spelling) | Local cache: [`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf) (18 MB, 51 pp) + structured local capture [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md). Public-domain hosted by danskmoent.dk |
-| **Rigsarkivet — Tyske Kancelli, Slesvig-Holsten-Lauenburgske Kancelli, I.A.A. (-1670), Diverse Møntsager, nr. 160** | Original ordinance manuscript (Wilcke's primary source) | Verbatim chancery-hand | **Verified direct URL** (2026-05-15): [arkivalieronline.rigsarkivet.dk/en/other/index-creator/150/997781/20018028](https://arkivalieronline.rigsarkivet.dk/en/other/index-creator/150/997781/20018028) — free browser-based after registration |
+| **Rigsarkivet — Tyske Kancelli, Slesvig-Holsten-Lauenburgske Kancelli, I.A.A. (-1670), Diverse Møntsager, nr. 160** | Original ordinance manuscripts (Wilcke's primary source) — full 219-page folio **now locally cached 2026-05-15** | Verbatim chancery-hand (image-scan) | **LOCAL CACHE**: [`scripts/cache/rigsarkivet/tk_160_diverse_moentsager/`](../../scripts/cache/rigsarkivet/tk_160_diverse_moentsager/) (219 pages, ~110 MB JPEG, 150 DPI 3345×2440). Source-capture analysis: [`sources/rigsarkivet_tk_160_diverse_moentsager.md`](sources/rigsarkivet_tk_160_diverse_moentsager.md). Original web access: [arkivalieronline.rigsarkivet.dk/en/other/index-creator/150/997781/20018028](https://arkivalieronline.rigsarkivet.dk/en/other/index-creator/150/997781/20018028) |
 | **Christian den Tredies Historie Vol. II** (anonymous, Kbhvn 1778, p. 108 ff.) | 18th-c. printed transcription cited by Wilcke | Verbatim (period orthography) | Print only; would need ILL |
 | **Paus 1752** (Vol. 2 p. 305) | Does NOT contain the 20 September Møntordning — contains the 20 March 1541 «Om Maal og Vægt» companion Forordning at this page | Verbatim of the companion (captured locally at [`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md)) | Google Books id `nZZFAAAAcAAJ` partial preview; downloaded full PDF confirmed lacks the September Møntordning |
 | **Rosenvinge 1824** (Vol. IV) | Footnote-only reference (p. 513) pointing to Paus S. 305 — citing the Maal-og-Vægt companion, NOT the September Møntordning | Footnote reference only | <https://books.google.com/books?id=43NJIGHI7vAC> partial preview; downloaded full PDF confirmed lacks 1541 verbatim |
@@ -595,7 +595,38 @@ network dependency; FineReader OCR enables grep over the full text.
 **Cons**: Wilcke 1950 modernises 16th-c. orthography to 1950 Danish
 — for paleographic-fidelity work consult Rigsarkivet (§9.1).
 
-### 9.1 Rigsarkivet Arkivalieronline (free, browser-based) — ULTIMATE PRIMARY
+### 9.1 Rigsarkivet Arkivalieronline (FOLIO NOW LOCALLY CACHED — 2026-05-15)
+
+> **Update 2026-05-15**: the full 219-page folio is **already locally
+> cached** at
+> [`scripts/cache/rigsarkivet/tk_160_diverse_moentsager/`](../../scripts/cache/rigsarkivet/tk_160_diverse_moentsager/).
+> All four Christian III monetary-reform documents (1535 Saxon
+> template pp. 8-15, 1541 Møntordning pp. 16-22, 1541 Mintmaster's +
+> Warden's Oaths pp. 23-24, 1544 supplement pp. 25-27, 1547 Flensborg
+> Bestalling pp. 28-29) accessible as high-res JPEG (~3345×2440 px,
+> 150 DPI). Full folio-structure analysis with page-to-document
+> mapping in
+> [`sources/rigsarkivet_tk_160_diverse_moentsager.md`](sources/rigsarkivet_tk_160_diverse_moentsager.md).
+> The §A category «Verbatim body articles» prog­raphy gap previously
+> identified is now closable from local images.
+
+> **API access pattern (discovered 2026-05-15 from the viewer's JS).**
+> The Arkivalieronline image-viewer is a JavaScript SPA — static
+> fetch returns only the HTML shell. The underlying REST API at
+> **`api.rigsarkivet.dk`** returns JSON metadata and JPEG images
+> **without authentication**:
+>
+>   - `GET /ao/v1/billedviser/ep-beskrivelse?epid={epid}&Sprog=da` →
+>     archive creator + series description.
+>   - `GET /ao/v1/billedviser/indeks-bs?bsid={bsid}` → page-by-page
+>     inventory (key + title + folder flag).
+>   - `GET /ao/v1/billedviser/billed-reference-lister?bsid={bsid}` →
+>     SA_GUIDs + SA_URLs arrays.
+>   - `GET /ao/v1/images/{guid}` → the actual JPEG.
+>
+> For folio T.K. nr. 160: `epid=20018028`, `bsid=275170`, page-N guid =
+> `52825512+N` (verified for pages 1-219). Full caching script in
+> [`sources/rigsarkivet_tk_160_diverse_moentsager.md`](sources/rigsarkivet_tk_160_diverse_moentsager.md) §1.
 
 > **Verification path traced 2026-05-15** (after the user pushed back
 > on earlier guess-paths): the original 1541 Møntordning manuscript
