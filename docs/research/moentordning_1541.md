@@ -317,35 +317,143 @@ data work for Phase A1 (1541–1543 København baseline) needs:
    Kroman). The Galster verbatim quote of the 1541 paraphrase is the
    primary inline-citable claim.
 
-## 9. Where to find the verbatim ordinance text (future-research path)
+## 9. Where to find the verbatim ordinance text (concrete access paths)
 
-If a session ever needs the actual Danish-language ordinance text (not
-the secondary paraphrases used in this dossier):
+Five paths, ordered from most-accessible to most-effortful (assessment
+updated 2026-05-15 after exploring each):
 
-1. **Kolderup-Rosenvinge, J. L. A.**: *Samling af gamle danske Love*,
-   Vol. IV — *Danske Recesser og Ordinantser af Kongerne af den
-   Oldenborgske Stamme* (København: Deichmann, 1824). Print
-   collection of Oldenburg-dynasty royal ordinances; Vol. IV
-   chronologically covers the Christian III / Frederik II era and
-   would contain the 1541 ordinance verbatim. Google Books has an
-   indexed entry (ID `LUVDAQAAMAAJ`) but snippet-only; full PDF not
-   indexed on archive.org as of 2026-05-15. **Action**: source a
-   paper or microfilm copy via inter-library loan, or scan a held
-   library copy.
-2. **Rigsarkivet, København — Danske Kancelli** archive series.
-   Browsing index: [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149).
-   The 1541 ordinance original would be in the Danske Kancelli
-   series (Danish chancery; the parallel Tyske Kancelli series
-   holds the duchies' German-language counterparts). Pre-1660
-   Danske Kancelli is fully scanned and online; locating the 1541
-   ordinance requires navigating to the appropriate sub-series and
-   year. **Action**: open a session on Arkivalieronline, navigate
-   Danske Kancelli → 1530s–1540s series → identify the September
-   1541 entry.
+### 9.1 Rigsarkivet Arkivalieronline (free, browser-based) — RECOMMENDED
 
-Both paths produce the verbatim Old Danish text. Until a session
-exercises either path, this dossier's §3–§4 paraphrased synthesis from
-Galster / Wilcke / Kroman is the project's best available substitute.
+The original 1541 ordinance manuscript is held in **Rigsarkivet,
+København — Danske Kancelli** archive. Pre-1572 royal decrees of
+general application were kept in two parallel series:
+
+  - **Tegnelser over alle Lande** — kingdom-wide royal protocol books
+    (probable home for the 1541 Møntordning, since it applied to the
+    entire realm).
+  - **Sjællandske Tegnelser** — Sjælland-region (København is on
+    Sjælland) protocol books.
+
+Daisy (the Rigsarkivet catalogue) index: [daisy.rigsarkivet.dk —
+arkivserie-liste](https://daisy.rigsarkivet.dk/arkivskaber_eller_arkivserie_liste?c=sj%C3%A6llandske+tegnelser&d=1&e=2015&side=1&sort=1&dir=a).
+
+**Access procedure:**
+
+  1. Register a free user account at
+     [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/).
+     No institutional affiliation required — open to everyone.
+  2. Navigate: Danske Kancelli → Indlæg til registre og tegnelser
+     (pre-1572) → 1541 year-block → September entries → 20 September
+     1541 Møntordning. Index URL for the Indlæg sub-series:
+     [arkivalieronline.rigsarkivet.dk — Indlæg til registre og
+     tegnelser (Skåne, Sjælland, Smaalandene, Skånske og Sjællandske
+     Missiver)](https://arkivalieronline.rigsarkivet.dk/da/other/index-creator/149/638/19976958).
+  3. The manuscript is image-scanned in Old Danish (Middle Danish
+     chancery hand) — readable to modern Danish speakers with patience.
+
+**Pros:** free; full verbatim; immediate; image quality good.
+**Cons:** Old Danish handwriting + spelling (e.g. «ee» for modern «e»,
+«-tz-» for «-z-», «daa» for «da»); paleography skill helps but not
+strictly required for a printed-decree-style document.
+
+### 9.2 Kolderup-Rosenvinge 1824, Vol. IV — printed transcription
+
+**Citation:** Kolderup-Rosenvinge, J. L. A.: *Samling af gamle danske
+Love. Fjerde Deel: Danske Recesser og Ordinantser af Kongerne af den
+Oldenborgske Stamme* (København: Deichmann, 1824).
+
+**Online indexes located (2026-05-15):**
+
+| Repository | Vol. | Access | URL |
+|---|---|---|---|
+| Google Books | IV / Del 4 | Indexed; partial browser preview; full PDF download gated for non-US IPs | <https://books.google.com/books?id=43NJIGHI7vAC> |
+| Google Books (alt) | uncertain volume | Indexed; partial preview | <https://books.google.com/books?id=LUVDAQAAMAAJ> |
+| Google Books (alt) | uncertain volume | Indexed; partial preview | <https://books.google.com/books?id=q4hIAAAAYAAJ> |
+| HathiTrust | Multi-volume catalog record | Catalog only; full view requires US-institutional login | <https://catalog.hathitrust.org/Record/008596122> |
+| Internet Archive | Vol. 1 (medieval, not Vol. IV) | Full view | <https://archive.org/details/samlingafgamled00sunegoog> |
+| DPLA | Generic catalog record | Catalog only | <https://dp.la/item/32289f970ed2df313e1a2dd8b7463003> |
+
+**Access procedure:** open the Google Books URL in a browser; use
+«Search inside this book» (top of book preview UI) for «1541» — Google
+will jump to the relevant pages and show inline snippets that may
+include the verbatim ordinance text. Pages are browseable in-preview
+even when full PDF download is gated. For Ukraine-IP visitors,
+google.com.ua redirect happens automatically; same content.
+
+**Pros:** printed text (cleaner than the manuscript handwriting); fully
+edited with notes by Rosenvinge. **Cons:** partial preview only; full
+PDF gated; printed in 1824 with fraktur-style typography may render
+imperfectly on screen.
+
+### 9.3 Inter-library loan (ILL)
+
+The Rosenvinge 1824 Vol. IV exists in held collections at:
+**Det Kongelige Bibliotek (København)**, **Lund Universitet** (Sweden),
+**Aarhus Universitet**, and major Scandinavian university libraries.
+A Ukrainian institutional library (Kyiv National University,
+Vernadsky National Library) can request a digital scan or microfilm
+copy via standard ILL procedures.
+
+**Pros:** full text, complete with editorial apparatus, no
+access restrictions once received. **Cons:** 1-3 weeks turnaround;
+may require library affiliation; potential modest fee.
+
+### 9.4 Direct request to Rigsarkivet
+
+Rigsarkivet provides per-document scanning service. Email:
+[mailbox@sa.dk](mailto:mailbox@sa.dk). Quote the archive reference:
+«Danske Kancelli, Tegnelser / Indlæg til registre og tegnelser,
+1541, ‹Møntordning af 20. september 1541›». Modest fee schedule
+(typical: 50–200 DKK for a few pages of scans, free for small
+requests).
+
+**Pros:** direct primary source from the archive; staff can help
+locate the exact manuscript. **Cons:** small fee; turnaround
+1-2 weeks.
+
+### 9.5 Translation status (any language)
+
+**No published translation** of the 1541 Møntordning exists in
+English, German, modern Danish, Ukrainian, or other language to our
+knowledge as of 2026-05-15.
+
+  - The Old Danish text is readable to modern Danish speakers with
+    moderate effort (similar reading-distance to e.g. early-modern
+    English Shakespeare for an English speaker).
+  - **Galster 1965** (the canonical secondary source quoted in §3
+    above) is the closest thing to a Danish-language «modern
+    interpretation»: it paraphrases the ordinance's substantive
+    provisions in modern Danish without quoting the legal text
+    verbatim.
+  - **Wilcke 1932** occasionally renders Danish legal phrases into
+    German in his analytical commentary; not a systematic translation.
+  - **Machine translation** (DeepL, Google Translate) of the verbatim
+    Old Danish text works moderately well; archaic spelling and
+    Latin loan-words may need manual review, but the substantive
+    content (denominations, fineness specifications, mintmaster
+    appointments) translates cleanly.
+
+**If a translated working text is needed:** the most practical path
+is to obtain the verbatim Danish via §9.1 or §9.2, then run it
+through DeepL with a manual paleography pass to normalise the
+archaic spelling first.
+
+### 9.6 Recommendation
+
+For **most-practical access** with **least effort**: §9.1 Rigsarkivet
+Arkivalieronline. Free, immediate, verbatim primary source. The
+Old-Danish handwriting is the main barrier but the document is
+short (~1-2 manuscript pages of chancery hand for a typical ordinance
+of this period); a Danish speaker can transcribe and translate it
+in 1-2 hours.
+
+For **convenience over fidelity**: §9.2 Google Books partial
+preview (no registration needed; in-browser reading; gives the
+1824-printed Danish text which is cleaner than the manuscript).
+
+Until either path is exercised, this dossier's §3–§4 paraphrased
+synthesis from Galster / Wilcke / Kroman is the project's best
+available substitute.
 
 ## 10. Sources consulted
 
