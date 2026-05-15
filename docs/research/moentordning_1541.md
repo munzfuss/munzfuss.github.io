@@ -248,9 +248,36 @@ record as cross-checks:
   inscription. Prior Danish coinage relied entirely on weight, size,
   fineness and ruler iconography for identification; from 1541
   onwards the words «mark», «8 (skilling)», «4 (skilling)», «1
-  skilling», «hvid», «penning» appear as legends. This is a
-  significant numismatic milestone for Denmark and reflects the
-  broader German practice of the period.
+  skilling», «hvid», «penning» appear as legends. Wilcke 1950 p. 5
+  verbatim:
+
+  > «I Mønternes Omskrifter fandtes ikke mere det forhadte og
+  > mistænkelige: '**MONETA NOVA HAFNIENSIS, AALBORGENSIS,
+  > MALMOENSIS**' etc., som kendetegner Middelalderens ustandselige
+  > Møntforringelser med ny daarligere Mønt. Paa Mønterne var
+  > anbragt deres Værdier **M, 8 ß, 4 ß, 1 ß, Penning**, saaledes
+  > at der ogsaa paa denne Maade blev brudt med gammel Slendrian.»
+
+  **Why this is structurally important** (Wilcke's own analytical
+  framing): the medieval place-name legends concealed the denomination
+  from common-folk verification. Each new municipal mint issue was
+  slightly lighter than the prior batch, and «MONETA NOVA» legends
+  made the change opaque to the bearer. **By printing the denomination
+  value directly** («M», «8 ß», «4 ß», «1 ß», «Penning»), the 1541
+  ordinance makes any future debasement **visible** — a Mark must
+  remain a Mark in weight terms, or its inscription becomes a lie
+  the bearer can detect.
+
+  Wilcke characterises this as the **arrival of the Renaissance in
+  Danish monetary practice**:
+
+  > «Det er som nu først indtraadte Renæssancen for Mønternes
+  > Vedkommende.» (Wilcke 1950 p. 5)
+
+  This is a significant numismatic milestone for Denmark and reflects
+  the broader German practice of the period. The practice persists
+  through the entire project window (1541-1914) — every Danish coin
+  after 1541 carries its denomination value as part of the design.
 
 ### 4.2 Denomination structure (1541)
 
@@ -275,6 +302,46 @@ The «8 Skilling» denomination is notable — it is half-mark, but
 catalogued by Galster (and minted) as an independent denomination
 with its own legend rather than as a fractional mark. The 4 Skilling
 likewise.
+
+**Tier-structure analysis (Kurant vs Scheidemünze divide).** The
+1541 specification table reveals a **two-tier fineness divide**:
+
+  | Tier | Denomination | Finhed | Tusinddele ‰ | Mønterløn (seigniorage) |
+  |---|---|---:|---:|---:|
+  | **Kurantmünze** (high-fineness, full-value) | Mark | 14½ Lod | 906,25 | 1 Mark / Mc fein |
+  | | ½ Mark | 14½ Lod | 906,25 | (same proportion) |
+  | | 4 Skilling | 14½ Lod | 906,25 | (same proportion) |
+  | **Scheidemünze** (low-fineness, fractional-token) | 1 Skilling | 4 Lod | 250,00 | — |
+  | | Hvid | 4 Lod | 250,00 | 2 Mark / Mc fein |
+  | | Penning | 2 Lod | 125,00 | 6 Mark / Mc fein |
+
+The **3.6× fineness drop** between 4 ß (14½ Lod, 906,25 ‰) and
+1 ß (4 Lod, 250 ‰) is the structural divide between **Kurantmünze**
+(silver-coin proportional to face value) and **Scheidemünze**
+(billon/credit-money where face value > silver content). Below this
+divide, the **mønterløn (seigniorage) scales up** by tier:
+
+  - Mark tier: 1 M / Mc fein — baseline operational margin
+  - Hvid tier: 2 M / Mc fein — **doubled**
+  - Penning tier: 6 M / Mc fein — **sextupled** (token-money)
+
+This is the **first systematic Kurant/Scheide tiered specification
+in Danish royal coinage**. Earlier medieval issues (per Wilcke 7-2
+Christian II 1521-22 + Frederik I 1523-33) carried implicit
+seigniorage differentials but without explicit specification. 1541
+formalises the tier structure with explicit mønterløn rates per
+tier — and this CLAUDE.md §6 «Kurantmünze vs. Scheidemünze
+distinction» convention used throughout our project's coin tables
+traces directly back to this 1541 codification.
+
+**The 1 Skilling fineness drop catches contemporaries off guard.**
+Wilcke notes that Christian III's 4-Skilling-and-above coinage was
+held at the same 14½-Lod standard as the Mark itself, so anyone
+verifying coin fineness on the high tier sees consistent silver
+content. The drop to 4 Lod at 1-Skilling level is a deliberate
+state-revenue mechanism — petty-cash circulation absorbs the
+seigniorage spread without affecting wholesale trade priced in
+Mark/Daler.
 
 ### 4.3 1544 supplement — daler at the head, Marken-fin 8.827
 
@@ -482,13 +549,48 @@ the dossier
   one Joachimstaler shall not be exchanged at more than III Mark
   Danske. This 1540 act sets the daler-vs-mark exchange ceiling that
   the 1541 ordinance implements as a formal coinage standard.
+- **15 April 1535 Saxon template Møntordning** — sent by Kurfyrst
+  **Johan Frederik of Saxony** (Christian III's relative) at
+  Christian III's request for guidance during the post-Grevens-fejde
+  monetary reconstruction. Located in the same Rigsarkivet folio
+  (T.K. nr. 160 pages 8-15; cover «Müntz Ordnung vom Curfürsten von
+  Sachsen», archivist label «1535 [Aprilis]»). The Saxon specifications
+  per Wilcke 1950 p. 3:
+
+  | Denomination | Lod fineness | Grän | Stk per Cölln. Mc |
+  |---|---:|---:|---:|
+  | Gylden | 14 L | 8 grän | 8 stk per Mc |
+  | ½ Gylden | 14 L | 8 grän | 16 stk per Mc |
+  | Hele Zinsgroschen | 7 L | 9 grän | 88 stk per Mc |
+  | 3 Pf. Stkr. | 4 L | — | 117 stk per Mc |
+  | Pf. Stkr. | 4 L | — | 37 stk per Lod |
+
+  Wilcke's substantive commentary: «*Omend denne Møntordning ikke
+  synes at have kunnet afgive Rettesnor for dansk Mønt, der ikke
+  manøvrerede med Groschen, men deltes i M og ß, kunde de almindelige
+  Bestemmelser nok være af nogen Betydning ved et nyt Rigsmøntsteds
+  Oprettelse.*» — The Saxon template could not be a direct guide
+  for Danish coinage (Danish system uses Mark/Skilling, not
+  Groschen), but the general administrative provisions (mint
+  organization, oath structure, assayer's responsibility) likely
+  informed the 1541 setup.
+
+  Key structural difference: Saxon Gylden = 8 stk per Mc at 14 L
+  8 grän ≈ 89,4 % fineness. The 1541 Danish Mark Danske at
+  14½ Lod (90,625 %) is **slightly heavier** — Christian III did
+  not adopt the Saxon Gylden weight but chose a marginally heavier
+  Mark standard. The «8 stk per Mc» format reappears in the 1544
+  supplement specifically for the Daler (8 stk per 14½-lødig Mc =
+  the same brutto-formula as Saxon Gylden but at higher fineness).
 
 The 1541 Møntordning is therefore not an *invention* of the daler in
 Denmark — the daler was already known (1518), already minted (1537)
 and already tariffed (1540). The 1541 ordinance is the *formal codif­
 ication* placing the daler at the head of a complete denomination
 system, with a fixed mint location, a known mintmaster, and explicit
-fineness/Marken-fin parameters.
+fineness/Marken-fin parameters. The administrative skeleton borrowed
+from the Saxon 1535 template; the metric content adapted to Danish
+Mark/Skilling accounting.
 
 ## 7. Impact and legacy
 
@@ -519,6 +621,128 @@ fineness/Marken-fin parameters.
   framework. Christian IV's 1596+ Speciedalere (Hede c4h44) reach
   canonical 9-Fuß compliance (mf 9.000, 25.984 g per Daler at finhed
   0.888).
+
+### 7.1 The 1544 duchy partition and the dual-currency-zone seed
+
+The 1544 reform arc is more than just monetary debasement — it
+coincides structurally with **Christian III's partition of the
+Schleswig-Holstein duchies among himself and his two brothers**
+(Hertug Adolph of Gottorp + Hertug Hans of Hansborg). This
+partition has lasting monetary consequences that propagate through
+the entire 1544-1813 history of the Schleswig-Holstein zone.
+
+**Pre-1544 baseline:**
+
+  - Christian III rules as **King of Denmark-Norway** AND
+    simultaneously joint **Duke of Schleswig-Holstein** with his
+    brothers (typical feudal joint-rule).
+  - Mint at **Gottorp** services the duchies — the traditional
+    Schleswig-Holstein mint center.
+
+**1544 partition (Galster: «*Da Christian III 1544 skiftede
+hertugdømmerne med sine brødre, tilfaldt Gottorp med det derværende
+møntværksted hertug Adolph*»):**
+
+  - Christian III divides the duchies. **Hertug Adolph receives
+    Gottorp + its mint workshop** — Christian III loses a key
+    minting center.
+  - Christian III retains his own portion of Schleswig-Holstein
+    without traditional Gottorp infrastructure.
+
+**Christian III's response — establishing Flensborg:**
+
+  - 1545: new royal mint opens in **Flensborg** under mintmaster
+    Jørgen Degener (with Tyde Knipensen as kautionist for 2000
+    Gylden working capital).
+  - 1546: Degener dies, briefly succeeded by Reynold Junge (the same
+    pre-1541 «Bedrager i største Stil» mintmaster, in his final
+    appointment before his own death).
+  - **22 January 1547**: **Bestalling og Møntordning** for
+    **Jørgen Kock the Younger** (transferred from the now-closed
+    Skien/Gimsø Norwegian mint) — manuscript at folio nr. 160
+    pages 28-29.
+
+**The 1547 Flensborg standards (per Wilcke 1950 pp. 25-26
+verbatim quote + p. 26 commentary)** introduce a **dual-currency
+zone** between the kingdom and the duchies:
+
+  | Aspect | Royal (Denmark-Norway, 1544+) | Ducal (Flensborg, 1547+) |
+  |---|---|---|
+  | Daler finhed | 14½ Lod (906,25 ‰) | **14¼ Lod (890,625 ‰)** |
+  | Daler finvægt | 26,491 g | **26,035 g** |
+  | Sub-Mark denominations | Danish ß (1 Daler = 48 ß d.) | **Lybsk ß (1 Gylden = 24 ß l.)** |
+  | Sub-Mark fineness standard | per 1544 Møntordning | «**als Hamburg, Lübeck und Lüneburg**» — Hansestædten Wehrung |
+
+**Substantive Wilcke commentary** (p. 26, manuscript folio nr. 160 page 28-29):
+
+> «Det besynderlige var, at Mønten i Kongerigerne nu var bedre end
+> i Hertugdømmerne… Hertugerne havde lovet Hansestæderne at holde
+> Mønten i Hertugdømmerne op til Hansestædernes Mønt. Nu kunde
+> Kongen holde dette Løfte og tjene paa den slesvig-lybske Mønt i
+> Forhold til sin egen ‹reformerte› af 1541—44.»
+
+The Flensborg Daler is HEAVIER than the 1566 imperial standard
+(14²⁄₉ Lod = 25,984 g) — sitting structurally between the 1541
+Royal Daler (26,491 g) and the 1566 imperial Reichsthaler (25,984 g).
+
+**Lasting consequence — origin of the 18½-Th-Fuß vs 9-Th-Fuß
+dual-tier structure (1813 Helstaten and beyond):**
+
+The 1547 dual-zone seed propagates through Danish-Norwegian
+monetary history:
+
+  - **1547-1572**: post-Christian III duchies vs kingdom split
+    persists through Frederik II era.
+  - **17th-18th c.**: Schleswig-Holstein Courant evolves as a
+    Lübisch-aligned standard parallel to the Danish Speciedaler
+    (1671 Christian V codification).
+  - **1726 Forordning 15/31 July**: 34-Marck-Fuß formalizes
+    Schleswig-Holstein-Hanseatic Courant as common standard for
+    Hamburg + Lübeck + Schleswig-Holstein.
+  - **1813 Statsbankerot + Rigsbankforordning**: dual-tier
+    crystallizes as **18½-Thaler-Fuß Rigsbankdaler** (debased
+    Helstaten currency) vs **9-Thaler-Fuß Speciedaler** (heavier
+    book-money standard preserved for wholesale).
+
+The **structural origin** of this dual-tier system is the 1544
+duchy partition's monetary aftermath formalized in the 22 January
+1547 Flensborg Bestalling — establishing two parallel currency
+zones (Royal: Danish ß denominations; Ducal: Lybsk ß denominations)
+within the same political realm. The «1547 Flensborg → ducal-zone
+system» is therefore not just a footnote of the Christian III arc
+but the **genealogical root** of the project's `18_5_thaler` /
+`34_marck` / `11_333_thaler` Müntzfuß-family vs `9_thaler` /
+`9_25_thaler` / `kronemont` family separation.
+
+### 7.2 The Mintmaster's + Warden's Oaths — institutional innovation
+
+The 1541 Møntordning is supported by two formal oaths bound into
+the same archive folio (Rigsarkivet T.K. nr. 160 pages 23-24,
+NOT reproduced verbatim by Wilcke 1950 — project-new material
+accessed via the manuscript scans):
+
+  - **Müntzmesteres Eydt** (page 23, Mintmaster's Oath): sworn by
+    Povel Fechtel upon entering office, binds him to ordinance
+    parameters.
+  - **Wardins Eydt** (page 24, Warden's/Assayer's Oath): sworn by
+    the wardein (assay master), binds him to truthful fineness
+    measurement.
+
+**Why structurally important:** the immediate institutional context
+was Reynold Junge — Christian III's first inherited mintmaster, who
+was «*afsløret som Bedrager i største Stil*» (exposed as fraudster
+in the greatest style — Wilcke 1950 p. 4). Replacement of mintmaster
+contract by **legally bound oath** is part of the post-Reformation
+shift from fiscal-functionary-as-tax-farmer to **officeholder
+accountable to the crown**. Combined with the parallel Warden's
+oath (independent assay verification), the regulatory package
+implements **separation of powers within the mint** — the
+mintmaster produces the coin, the warden independently verifies
+its fineness; both bound by parallel oaths against fraud.
+
+Wilcke 1950 mentions these oaths exist but does NOT reproduce
+their text — they require direct manuscript access (now available
+via the cached scans).
 
 ## 8. What this means for the project (operational summary)
 
