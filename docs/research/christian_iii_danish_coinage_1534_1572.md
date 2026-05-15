@@ -59,6 +59,16 @@ Joachimstaler in 1537 (per Galster). The 1541 ordonnance codified
 the daler-system that the 1537 Joachimstaler had introduced as a
 single-issue precedent.
 
+**Dedicated dossier**: full operational write-up of the 1541
+Møntordning — institutional provisions, denomination structure, 1544
+supplement, Hede empirical attestation, mints, antecedents, impact, and
+the verbatim-text retrieval path through Rosenvinge 1824 / Rigsarkivet —
+lives at [`docs/research/moentordning_1541.md`](moentordning_1541.md).
+This dossier (§1 onward) covers the same 1541 ordinance from a
+wider-scope perspective (Christian III's full reign 1534–1572 including
+Frederik II's continuation); `moentordning_1541.md` is the focused
+single-ordinance reference.
+
 ---
 
 ## 2. Pre-1541 Danish coinage tradition
