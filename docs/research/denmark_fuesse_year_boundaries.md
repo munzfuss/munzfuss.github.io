@@ -183,15 +183,48 @@ specific Fuß comes up for handling.
 
 ## 5. `reichsdukat` / `reichsdukatenfuss` — Reichsdukatenfuß in Denmark
 
+**Start verified 2026-05-15** (deeper research pass — see «Pre-1557 verification» below).
+
 | Boundary | Year | Type | Source |
 |---|---|---|---|
-| **Start** | **1557** | First Danish mintage (predates imperial codification) | Christian III Ungersk Gylden (c3h1/c3h2), brutto 3.49 g, finhed 0.986, fein 3.442 g = canonical Reichsdukat metric. The Augsburger Reichsmünzordnung was issued 19 August **1559** by Ferdinand I — the 1557 Danish issue conforms metrically to the pre-existing pan-European Hungarian-Gulden tradition that Augsburger 1559 later codified. **No Danish-side legal-act adoption before 1559 found.** |
+| **Start** | **1531** | First Danish mintage at the Reichsdukatenfuß metric | **Frederik I 1531 Ungersk Gylden** (Galster 46 / Schou 1 / Jensen-Skjoldager T-41/45), brutto 3.49 g, finhed 0.986 (23⅛ K), fein 3.44 g, mint København or Malmø (the mint distinction not certainly recorded). Predates Augsburger Reichsmünzordnung (19 August **1559**) by 28 years; predates Christian III's c3h1 1557 entry in our project Hede cache by 26 years. Source: danskmoent.dk/fr/f1g46.htm (consolidates Galster + Schou + Jensen-Skjoldager attribution). lex.dk «dukat» (Jørgen Steen Jensen, Nationalmuseet): «*I Danmark kom der første gang i 1531 en guldmønt af vægt som en dukat*» — refers precisely to this Frederik I 1531 issue. |
 | **End** | **1802** | Last Danish mintage | Last Altona Reichsdukat per Galster (galsfre2.htm): «*den sidste 1802*». Final Altona issues: 1791, 1792, 1794, 1802. Last København Kurantdukat (21-karat variant): 1785. |
 | (External anchor) | (1871 / 1873) | Imperial / Danish reform | Imperial: Münzgesetz 4 December 1871 (Reichsgoldmark introduction). Danish: Møntloven af 23 May 1873 (gold-Krone reform, effective 1 January 1875). Denmark ceased Reichsdukat mintage 71 years before the 1873 Krone reform. |
 
-**Confidence: start HIGH (first Danish strike), end HIGH (last Danish strike).**
+**Confidence: start HIGH** (verified across danskmoent.dk Frederik-I-Galster page + lex.dk «dukat» + Wilcke 1950 corroboration); **end HIGH** (last Danish strike documented).
 
-**Project's existing bar `reichsdukatenfuss`** has `year_to: 1871`
+### Pre-1557 verification (added 2026-05-15)
+
+Initial pass (this file's original draft) listed **1557** as the start year, based on the project's Hede cache (no `f1h*` Hede pages currently cached). User pushback: «*чи покривають ті роки наші дані?*» triggered a deeper search that surfaced the earlier Frederik I issue.
+
+**Pre-1531 evidence (none at Reichsdukatenfuß metric — HIGH confidence):**
+
+| Ruler | Year | Coin | Brutto g | Finhed | Standard family |
+|---|---|---|---:|---:|---|
+| Kong Hans | 1496 | Dobbeltnobel/Guldreal | ~15 | 0.995 (23⅞ K) | English Sovereign / Maximilian-I-Großgulden |
+| Kong Hans | ~1497–1500 | Rhinsk Gylden | 3.249 | 0.750 (18 K) | Rhenish Gulden tradition — dukat *weight*, NOT dukat fineness |
+| Christian II | ~1514 | (Db.) Guldreal | 14.616 | ≈0.958 (23 K) | Sovereign metric |
+| Frederik I | 1524 | (Db.) Nobler | 14.616 | 0.979 (23⅛ K) | Dukat fineness at DOUBLE-noble weight — not a Reichsdukat |
+| Frederik I | 1527 | Rhinsk Gylden (Malmø) | 3.249 | 0.750 (18 K) | Rhenish — fineness too low |
+| **Frederik I** | **1531** | **Ungersk Gylden (København or Malmø)** | **3.49** | **0.986 (23⅛ K)** | **Reichsdukatenfuß — exact** |
+| Frederik I | 1531 | Rhinsk Gylden (Gottorp) | 3.249 | 0.750 (18 K) | Rhenish — fineness too low |
+| Frederik I | 1532 | Nobel | ~7.78 | ~0.979 | Dukat fineness at half-noble weight — not a Reichsdukat |
+| Christian III | 1557 | Ungersk Gylden (c3h1) | 3.49 | 0.986 | Reichsdukatenfuß continuation |
+
+**Pre-Hans rulers** (Erik of Pomerania 1396–1439, Christopher of Bavaria 1440–1448, Christian I 1448–1481): no gold issues documented in Wilcke 1950 — Hans is universally identified as «første Møntreformator» on the gold front (Wilcke p. 145ff).
+
+### Earliest-vs-codification design question
+
+Three legitimate `year_from` candidates remain:
+- **1531** — first Danish strike at Reichsdukatenfuß metric (Frederik I 1531 Ungersk Gylden). Danish-track-correct.
+- **1557** — first Danish strike covered by our Hede cache (Christian III c3h1). Data-coverage-correct.
+- **1559** — imperial codification (Augsburger Reichsmünzordnung). Imperial-framework-correct.
+
+User verdict pending. Recommendation: **1531** as the data-correct Danish-track anchor, with the understanding that the project's Hede cache will need an `f1h*` extension to include Frederik I's gold issues for completeness (separate data-import task).
+
+### Imperial vs Danish-track `year_to` decision
+
+Project's existing bar `reichsdukatenfuss` has `year_to: 1871`
 (imperial Münzgesetz anchor). This is conservative — it covers the
 empire-wide formal end. Per Denmark-track logic, **`year_to: 1802`**
 would be data-track-correct (last Danish strike). The choice is a
@@ -205,14 +238,22 @@ under Christian VII, KM#650, 1791–1802) · empire-wide ends with the
 Coinage Act of 4 December 1871*». If we move `year_to` to 1802, the
 bar_title needs rewriting to drop the imperial-end reference.
 
-**Verification gaps:**
-  - The «1557 first Danish issue» fact rests on the Hede c3h1/c3h2
-    cache — needs cross-check against Galster or Wilcke for
-    confirmation that no earlier Danish Ungersk Gylden / Reichsdukat
-    exists (Kong Hans 1497 Rhinsk Gylden is a different type, not a
-    Reichsdukat).
-  - No primary verification of the 1802 «last Altona Reichsdukat»
-    date — Galster is secondary. The Hede page for KM#650 would
+### Verification gaps (still open)
+
+  - **Frederik I gold catalog import**: our Hede cache has no `f1h*`
+    pages. Galster 46 / Schou 1 / Jensen-Skjoldager T-41/45 attest
+    the 1531 Ungersk Gylden via danskmoent.dk/fr/f1g46.htm. Adding
+    `f1g46` to the project would let the coin enter the curated DK
+    table — separate data-import task, not blocking the
+    `year_from: 1531` decision itself.
+  - **Mint distinction for the 1531 issue**: Galster does not
+    cleanly separate København vs Malmø for Frederik I 1531
+    Ungersk Gylden. Jørgen Koch operated Malmø; Anders Bilde
+    operated København. Both are documented at the same time
+    striking other gold types; the 1531 Ungersk Gylden mint
+    attribution remains uncertain.
+  - **No primary verification of the 1802 «last Altona Reichsdukat»
+    date** — Galster is secondary. The Hede page for KM#650 would
     be the primary anchor.
 
 ---
@@ -225,8 +266,8 @@ bar_title needs rewriting to drop the imperial-end reference.
 | `flensborg_fod` | 1547 | 1571 | 24 yr | HIGH | PROBABLE |
 | `rhinsk_gylden_fod` | 1497 | 1632 | 135 yr | HIGH | HIGH |
 | `f2_guldkrone_fod` | 1563 | 1564 | 2 yr | PROBABLE | PROBABLE |
-| `reichsdukat` (Danish-track) | 1557 | 1802 | 245 yr | HIGH | HIGH |
-| `reichsdukat` (imperial-framework) | 1557 | 1871 | 314 yr | HIGH | HIGH |
+| `reichsdukat` (Danish-track, verified 2026-05-15) | **1531** | 1802 | 271 yr | HIGH | HIGH |
+| `reichsdukat` (imperial-framework) | 1559 | 1871 | 312 yr | HIGH | HIGH |
 
 ---
 
