@@ -116,6 +116,62 @@ The summary is per-tier — a Highest-tier summary stays under
 > to use this file»). Demote to High once the blocker semantic is no
 > longer warranted.
 
+### BF. 🟢 Denmark 1541-1566 gap — Müntzfüße + coin promotion for the new lower-bound window  *(opened 2026-05-15)* *(est: large)* *(type: research-applied + data)*
+
+**Surfaced.** User direction 2026-05-15 with explicit «найвищий» marker. The dual-anchor scope decision (§BC closed 2026-05-15) extended the Denmark page's lower bound from 1559 to **1541** (Christian III's Møntordning, 20 September). The seed builder's `--year-from` default was updated (1559 → 1541) and ~26 new c3h Hede entries flowed into `data/seed/hede/denmark.yml` covering Christian III + early Frederik II — but none of them are placed yet. The page renders the new (1541–1914) range in its header/timeline, but the 1541-1566 phase block of the Denmark page is structurally **empty of curated Müntzfüße + coins**. Closing this gap is the Highest-priority blocker for the Denmark-track research front.
+
+**Underlying research is already done.** Two long-form dossiers cover this period in detail:
+
+- `docs/research/moentordning_1541.md` — full primary-source capture of the spring 20 March 1541 «Om Maal og Vægt» Forordning + autumn 20 September 1541 Møntordning + 1544 supplement + 1547 Flensborg Bestalling. Includes Marken-fin / Cølnsk-Vægt arithmetic, denomination tables, dual-zone (Lybsk vs Danish) currency seed of 1547, mintmaster's oaths.
+- `docs/research/christian_iii_danish_coinage_1534_1572.md` — context for Christian-III-Daler-fod silver, gold one-offs, and the transition toward Frederik II's 9-Fuß alignment.
+
+Primary-source captures: `docs/research/sources/wilcke_1950_christian_iii_moentreform.md`, `paus_christian_iii_1541_maal_og_vaegt.md`, `rigsarkivet_tk_160_diverse_moentsager.md`.
+
+**Scope.** Four operational sub-tasks (from the §BC closure note, now promoted under §BF):
+
+1. **Define new Müntzfuß `christian_iii_dalerfod`** in `data/shared/fuesse.yml`. Canonical metric: mf 8.827, 26.494 g fein per Daler, fineness 0.906 (14½ Lod), sourced to Wilcke 1950 + Rigsarkivet T.K. nr. 160 + Paus 1752. Per §BD this should probably be the Danish-form name from the start (`dalerfod` not `christian_iii_thaler_fuss`).
+2. **Add `fuss_periods.christian_iii_dalerfod`** block to `data/locations/denmark.yml` with phases:
+   - **A1 (1541–1543)** — København baseline, mf 8.827 unchanged.
+   - **A2 (1544–1555)** — København debased per the 27 September 1544 supplement (mf 9.481 per dossier §4.5).
+   - **A3 / A4 (1547+)** — Flensborg dual-zone (see decision below).
+3. **Promote seed coins**:
+   - **Phase A1**: c3h3-3A, c3h4, c3h5, c3h7 (København 1541-1543 baseline issues).
+   - **Phase A2**: c3h3-3B (København 1544+ debased).
+   - **Phase A3/A4**: c3h21, c3h22 (Flensborg 1545–1554 lybsk-aligned søsling), plus any 1547+ Bestalling-anchored Flensborg Daler.
+   - Any other c3h / f2h entries currently in seed_unsorted that fall in this window.
+4. **References** — new entries in `denmark-references.yml`:
+   - Wilcke 1950 «Renæssancens Mønt» (Kap. 7-4 verbatim).
+   - Galster 1965 (Danish numismatic synthesis).
+   - Paus 1752 «Samling af Gamle Norske Love» Vol. II (verbatim transcript of «Om Maal og Vægt»).
+   - Rigsarkivet T.K. nr. 160 «Diverse møntsager 1523-1619» (folio reference per the captured archive coordinate).
+
+**Open design question — Flensborg post-1544 track (Phase A3 / A4).** Per `moentordning_1541.md` §7.1 the 1547 Flensborg dual-zone is the *genealogical seed* of the later `18_5_thaler` / `34_marck` family (Lybsk-aligned debased sub-Mark) vs `9_thaler` / Speciedaler family (heavier daler track). Two architectures:
+
+- **(a) Separate Müntzfuß `christian_iii_flensborg_fod`** for the Lybsk-aligned sub-Mark + 14¼ Lod Daler. Clean genealogy: A1/A2 are København, A3/A4 are Flensborg. Two parallel Müntzfüße for the same monarch.
+- **(b) Same `christian_iii_dalerfod` Fuß with mint-tag differentiation** — A3/A4 phases marked as Flensborg-specific within the single Fuß. Simpler structurally but conflates two genuinely distinct standards.
+
+Likely answer is (a) — the dual-zone is the seed of an enduring lineage and deserves its own Fuß slot. User verdict requested before the data edit.
+
+**Cross-references.**
+
+- **§BD** (Danish Müntzfuß names) — the new `dalerfod` / `flensborg_fod` IDs should land in the Danish convention from day one. Sequencing §BD verdict before §BF data edit avoids immediate rename churn.
+- **§BB** (Fuß descriptions — historical framing only) — `christian_iii_dalerfod` `hintergrund` prose follows the §BB rule (historical framing, no parameter bleed).
+- **§AY** (Frederik II 3-Mark one-off) — sits at the boundary of this window (1560/1563); coordinate with §BF if the 1560s F2 seed entries land in the same pass.
+- **§AV / §AW** (Guldkrone-fod, Rhinsk Gylden) — earlier Christian I / Hans gold entries; design decisions interact with the broader 1541-window architecture.
+- **§BE** (Danish translation for DK/SH) — every new field added under §BF will eventually need a `da:` translation. Either add `da:` upfront (if §BE is also accepted) or accept the rework.
+
+**Action sequence.**
+
+1. User decides on (a) vs (b) for Flensborg.
+2. User decides §BD architecture (jurisdiction-aware naming) at least at policy level — affects whether new IDs are `christian_iii_dalerfod` (Danish form) or `christian_iii_thaler_fuss` (German form).
+3. Define Müntzfuß / Müntzfüße in `fuesse.yml` with sourced metrics + hintergrund prose.
+4. Add `fuss_periods` block(s) to `denmark.yml` with phase boundaries + descriptions.
+5. Promote seed coins into curated entries with `fuss:` + `phase:` set; preserve all per-specimen multi-source data (§9a).
+6. Add the 4 new bibliography entries to `denmark-references.yml` with verbatim quotes + page hints per §5a.
+7. Build clean + sample-review three coins per phase against the rendered page.
+
+**Definition of done.** The Denmark page renders a non-empty 1541-1566 section with at least 6 placed coins, a `christian_iii_dalerfod` Fuß card with full metric block + sourced hintergrund, and the dual-track Flensborg phase (if (a)) wired up. The 26+ new c3h seed entries auto-suppress against the curated phase blocks per the `_merge_seeds_into_raw` rule.
+
 ## High priority
 
 > **Awaiting your verdict before any action**:
