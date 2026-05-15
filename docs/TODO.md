@@ -172,6 +172,87 @@ Likely answer is (a) — the dual-zone is the seed of an enduring lineage and de
 
 **Definition of done.** The Denmark page renders a non-empty 1541-1566 section with at least 6 placed coins, a `christian_iii_dalerfod` Fuß card with full metric block + sourced hintergrund, and the dual-track Flensborg phase (if (a)) wired up. The 26+ new c3h seed entries auto-suppress against the curated phase blocks per the `_merge_seeds_into_raw` rule.
 
+**Scope note (added 2026-05-15)**: per §BI decision, Denmark's lower-bound anchor moves from 1541 to **1514** (Christian II Lovkompleks). §BF's «1541-1566 gap» rescopes to «1514-1566 gap» once §BI lands. The four sub-tasks (christian_iii_dalerfod definition, fuss_periods block, seed promotion, references) remain — they cover the **1541-1566 portion** of the broader 1514-1566 window. The pre-1541 portion (Christian II 1513-1523 + Frederik I 1523-1533) becomes its own sub-task after §BI's Hede cache extension lands.
+
+---
+
+### BI. 🟢 Denmark-track anchor rescope 1541 → 1514 — Christian II Lovkompleks  *(opened 2026-05-15)* *(est: medium)* *(type: scope decision + multi-file rescope)*
+
+**Surfaced.** User direction 2026-05-15 with explicit «найвищий» marker. Session-derived finding: per Wilcke 1950 p. 183-186 verbatim + Numista currency-taxonomy independent corroboration, the **structural** anchor of post-medieval Danish-Norwegian monetary history is the **Christian II Lovkompleks of 1514-1515**, not Christian III's 1541 Møntordning. The 1541 act is a Christian-III-specific silver reform within an already-established gold framework from 1514; 1514 is the first comprehensive DK+Norge legal act for both metals.
+
+**Verbatim Wilcke 1950 p. 183-186** (transcribed during this session):
+
+> «*1514 fik »Myntemester Dienis udi Malmo« Brev efter Rigsraadets Raad og Samtykke paa at mønte: Nobel 23½ Karat fint nobel Guld 16 Stkr. paa [Marken]…*»
+>
+> «*I Virkeligheden er Møntordningen fra Sommeren 1514 et velment Forsøg …*»
+>
+> «*Samtidig udstedtes 3. August 1514 en Møntordning for Norge*»
+>
+> «*Efter disse Dateringer er det overvejende sandsynligt, at Møntordningen fra Sommeren 1514, den norske Forordning af 3. August 1514, Kvitteringen fra Paasketid 1515 og det sjællandske Aabne Brev af 24. August 1515 udgør et samlet Lovkompleks om samme Mønt*»
+
+**The 1514-1515 Lovkompleks** (Wilcke's own term) — four acts in one law-complex:
+1. **Sommeren 1514** — Møntordning DK (Dienis Malmö Brev)
+2. **3 August 1514** — Møntordning Norge (extension to Norway under Kalmar Union)
+3. **Paasketid 1515** — Kvittering (compliance receipt)
+4. **24 August 1515** — Sjælland åbent Brev (Sjælland-specific renewal)
+
+Constitutional legitimacy: «Rigsrådets Raad og Samtykke» (Council of the Realm's counsel and consent). First time gold (Nobler 23½K 16/Mark, Rhinsk Gylden 18K 72/Mark) and silver (Skilling fractions) are formally specified in a single coherent legal package for both kingdoms.
+
+**Why 1514 beats 1541 as anchor:**
+
+| Criterion | 1541 (current) | **1514 (proposed)** |
+|---|---|---|
+| Resets BOTH metals | NO (silver only) | **YES** (gold + silver in one package) |
+| Covers DK + Norge | DK only formally | **YES** (3 Aug 1514 explicit Norge act) |
+| Anchor type | Legal | **Legal** (matches all project anchors) |
+| Numista currency taxonomy | (n/a) | **Matches** «Gulden (1513-1572)» boundary |
+| Müntzfüße cut mid-stream | No (silver-only resets) | **No — clean for all metals** |
+| Resets gold lineage (Nobler / Goldgulden / Rhinsk Gylden) | NO (continues from 1514) | **YES** — first formal Danish gold-standard spec |
+| Resets silver Daler tradition | YES (1541 Møntordning) | (1514 has Skilling-only silver; Daler emerges 1518 within Christian II's reign — same Lovkompleks era) |
+
+**1541 is now correctly positioned as the THIRD major Danish-Norwegian Møntordning** (after 1514 Christian II + Frederik I de-facto continuations 1524-1531), not the FIRST.
+
+**Scope — STRICTLY Denmark-track only.** Schleswig-Holstein and all German-jurisdiction pages remain at their existing 1559/1566 anchor. The dual-anchor mission decision (CLAUDE.md mission section) stays intact for the German track; only the **Denmark-Norway lower bound** moves 1541 → 1514. Specifically:
+
+- **Touch**: `data/locations/denmark.yml` (header, summary, timeline), `data/seed/hede/denmark.yml`, `scripts/maintenance/build_hede_denmark_seed.py` (--year-from default), `CLAUDE.md` mission statement (DK-track line only), `docs/handoff.md` (current focus), `docs/research/moentordning_1541.md` (reframe as third Møntordning in Lovkompleks lineage), `docs/research/denmark_fuesse_year_boundaries.md` (reichsdukat year_from update).
+- **DO NOT touch**: `data/locations/schleswig_holstein.yml`, `data/locations/holstein_schauenburg.yml`, `data/locations/lauenburg.yml`, `data/locations/bremen_verden.yml`, `data/locations/oldenburg.yml`, `data/locations/lubeck*.yml`, `data/locations/hamburg*.yml`, `data/locations/lubeck_bishopric.yml`, `data/locations/osnabrueck.yml`, `data/locations/hesse_kassel.yml`, `data/locations/brunswick_lueneburg.yml`. All German-track + Schleswig-Holstein keep their 1559/1566 anchor unchanged. The Schleswig-Holstein dual-jurisdiction nuance (under Danish crown 1460-1864) does NOT trigger a SH rescope — its anchor stays per existing project decision.
+
+**Operational sub-tasks:**
+
+1. **CLAUDE.md mission statement** — change «Denmark-Norway realm: lower bound **1541**» line to «Denmark-Norway realm: lower bound **1514** (Christian II Lovkompleks: Sommeren 1514 DK + 3 Aug 1514 Norge + 24 Aug 1515 Sjælland åbent Brev — per Wilcke 1950 p. 183-186)». Keep the German lands 1559/1566 line **unchanged**. Keep the Schleswig-Holstein dual-jurisdiction note **unchanged**.
+
+2. **`data/locations/denmark.yml`** — `year_from: 1541` → `year_from: 1514` on the top-level location block AND on the timeline `bars.year_from`. Update summary deck prose to reference Christian II 1514 Lovkompleks as the opening anchor + Christian III 1541 as the major mid-period silver reform.
+
+3. **`data/seed/hede/denmark.yml`** — `scope_year_from: 1541` → `scope_year_from: 1514`. Regenerate via the seed builder.
+
+4. **`scripts/maintenance/build_hede_denmark_seed.py`** — `--year-from` default 1541 → 1514. Update help text. Note: our Hede cache currently has no c2h* (Christian II) or f1h* (Frederik I) pages — they were never harvested because Hede 1957 itself starts at Christian III. The seed coverage 1514-1540 will be **EMPTY** until a separate data-import task adds c2h*/f1h* via Galster + Wilcke + Numista sources (NOT in §BI's scope — separate follow-up TODO).
+
+5. **`docs/handoff.md`** — Current focus section: rewrite to reflect 1514 anchor + open 1514-1540 sub-window as next sub-task under §BF.
+
+6. **`docs/research/moentordning_1541.md`** — header annotation update: «*This dossier covers Christian III's 1541 Møntordning specifically, which is the THIRD major Danish-Norwegian Møntordning in the Christian-II-Lovkompleks-1514 lineage. For the broader anchor context see §BI.*» No body rewrite — the dossier remains accurate for what it documents.
+
+7. **`docs/research/denmark_fuesse_year_boundaries.md`** — update reichsdukat section to reflect Christian II 1514 as the verified first formal Danish gold-standard spec (Nobler 23½K 16/Mark = `233.856 / 16 = 14.616g brutto` per Nobel; this is DOUBLE-Nobel weight ≠ single-Goldgulden, BUT establishes the 23½K fineness as the gold-standard floor that 1531 Goldgulden 3.49g `.986` adheres to). The «verified .986 Goldgulden 1531» remains the earliest verified-finhed Goldgulden-class strike; 1514 is the earlier legal-act anchor.
+
+8. **§BF rescope** — §BF's «1541-1566 gap» becomes «1514-1566 gap». Section header updates. Add scope-note about pre-1541 Hede coverage gap.
+
+**Out of scope.** 
+
+- **Erik VII (1397-1439) Lund gold piece** (Numista N#426966, 9.85g, finhed unverified). Pre-1481, Kalmar-Union-era outlier. The 1514 anchor cleanly excludes it. Stays as research-doc context (`denmark_fuesse_year_boundaries.md` §Pre-Hans), does NOT enter coin tables.
+- **Hans (1481-1513) gold issues** (Goldgulden N#355730, 3 Noble / 2 Noble / Noble, Rhinsk Gylden) — pre-1514 by Hans's death year. **Excluded** by the 1514 anchor.
+- **Hede c2h* / f1h* extension** — necessary to populate the 1514-1540 sub-window with actual coin data, but separate follow-up task (Normal priority).
+
+**Sibling TODO created on §BI close** (do NOT create proactively now):
+> «Hede catalog extension — import c2h* (Christian II) + f1h* (Frederik I) coin pages from danskmoent.dk + Galster (paper). Sources: f1g46.htm series confirmed; c2g* series exists at danskmoent.dk; check Galster vol. 1959-1960 for any pre-1534 pages Hede 1957 itself omitted. Scope: Christian II 1513-1523 + Frederik I 1523-1533, both metals.»
+
+**Cross-references.**
+
+- **§BF** (1541-1566 gap, now «1514-1566 gap») — sequence: §BI must complete BEFORE §BF data-edit begins. §BI is the anchor decision; §BF is the data population.
+- **§BD** (Danish Müntzfuß names `-fod` vs `-Fuß`) — independent; can proceed in parallel.
+- **§BE** (Danish translation for DK/SH) — uses same DK-track anchor decision once it lands.
+- **CLAUDE.md mission statement** — direct edit target; German-track 1559/1566 line stays unchanged.
+
+**Definition of done.** All five primary touchpoints (CLAUDE.md mission, denmark.yml header/timeline + summary, seed `scope_year_from`, seed builder `--year-from` default, denmark_fuesse_year_boundaries.md reichsdukat section) updated to 1514 anchor; rendered Denmark page header / timeline shows `1514-1914`; §BF entry rescoped + sub-task list expanded; sibling TODO opened for c2h*/f1h* Hede import. **NO changes to any German or Schleswig-Holstein file.** Build clean + sample-rendered DE/EN/UK Denmark page confirmed.
+
 ## High priority
 
 > **Awaiting your verdict before any action**:
@@ -481,6 +562,29 @@ weight_rough_g:
   3. Update guard logic in `scripts/build.py` `_merge_seeds_into_raw`.
   4. Migrate ~5 known entries from free-text marker to structured field.
   5. Add an audit-section in `audit_health.py` that flags entries with free-text anomaly markers in source-strings (so the next surface case gets caught early).
+
+### BG. 🟢 Harvest Norway-specific Hede pages (norge/ subfolder pattern)  *(opened 2026-05-15)* *(est: medium)* *(type: research + script)*
+
+**Surfaced.** Hede 1971 = «Danmarks **og Norges** mønter 1541-1814». Our cache (2026-05-10 harvest, 689 files across 21 overviews c3..c10 + f2..f9) covers only the Danish-royal c/f-prefix URL pattern (`c{N}hede.htm` / `f{N}hede.htm` + per-coin `chr/c{N}h{M}.htm` / `fr/f{N}h{M}.htm`). Norway-specific issues live in a separate `norge/` subfolder pattern observed on the pre-1541 Hans page (`norge/hansg151.htm` — Bergen Hvid). Analogous `norge/c{N}h{M}.htm` and/or `norge/{ruler}hede.htm` overviews for post-1541 monarchs are likely uncaptured.
+
+**Why now.** The mission anchor was recently extended to cover the full Hede 1971 scope (1541-1814) including Norwegian double-monarchy mints (Christiania / Kongsberg). Without the norge/ subtree we are blind to Norwegian Hede entries when audits or seed-builds ask «does Hede attest this Norway-mint coin?».
+
+**Done criterion.**
+1. Extend `scripts/fetch_hede.py` to probe `norge/`-prefixed overview pages (`norge/c{N}hede.htm`, `norge/f{N}hede.htm`, plus suffix variants `…hede1.htm` … `…hede11.htm`) for each post-1541 monarch `c3..c10` + `f2..f9`.
+2. Walk the discovered overviews and harvest per-coin pages under `norge/`.
+3. Regenerate `scripts/cache/hede/_manifest.json`.
+4. Spot-check 3-5 records against curated Norwegian Hede references in our YAML (if any) to confirm parsability via existing `parse_hede.py`.
+5. Commit cache changes via the submodule workflow (harvest repo first, then main-repo pointer bump).
+
+### BH. 🟢 Hede cache completeness audit — verify nothing was missed in the 2026-05-10 harvest  *(opened 2026-05-15)* *(est: small)* *(type: audit)*
+
+**Surfaced.** While investigating §BG (Norwegian Hede) we revisited the existing cache shape (21 overviews c3..c10 + f2..f9, 689 coin pages). Per-overview link totals match the manifest, suggesting the Danish-royal cache is internally consistent — but the 5-day gap since the 2026-05-10 fetch + the discovery of the missed `norge/` subfolder pattern warrant a fresh end-to-end audit before we declare «Hede coverage = complete».
+
+**Done criterion.**
+1. Re-run `scripts/fetch_hede.py discover` (or equivalent) to refresh `_manifest.json` against the live site.
+2. Diff the fresh manifest against the committed one: any new overview URLs OR new per-coin links not previously captured → fetch them.
+3. Cross-reference Hede 1971 + 1977 extension printed indices (if accessible — paper or scan) against the cache to confirm scope coverage; surface any gaps as separate TODOs.
+4. Document closure in this entry's body (count delta, any new pages, scope-gaps flagged for follow-up).
 
 ## Normal priority
 
