@@ -3,11 +3,22 @@
 > **⚠️ STATUS: PRELIMINARY, NOT FULLY VERIFIED.**
 >
 > The dates collected below are the result of a **single-session
-> reconnaissance pass** (2026-05-15) drawing on our research dossiers
-> (`moentordning_1541.md`, `christian_iii_danish_coinage_1534_1572.md`,
-> `danish_royal_gold_1560_1648.md`), the Wilcke 1950 local cache, and
-> a handful of targeted web fetches against danskmoent.dk and
-> Wikipedia DE/DA.
+> reconnaissance pass** (2026-05-15 + 2026-05-16 extensions) drawing
+> on our research dossiers (`moentordning_1541.md`,
+> `christian_iii_danish_coinage_1534_1572.md`,
+> `danish_royal_gold_1560_1648.md`), the Wilcke 1950 local cache,
+> Numista catalog browsing via Chrome MCP, and a handful of targeted
+> web fetches against danskmoent.dk and Wikipedia DE/DA.
+>
+> **Anchor-decision note 2026-05-16 (per §BI)**: the Denmark-track
+> project anchor moved from 1541 to **1514** (Christian II Lovkompleks
+> per Wilcke 1950 p. 183-186 verbatim). This file's per-Fuß
+> boundaries continue to reflect the historical first-mintage / first-
+> ordinance dates as documented — but the **project's lower-bound
+> anchor** is now 1514 across CLAUDE.md mission, `denmark.yml`, seed
+> builder, etc. Müntzfüße whose start predates 1514 (Rhinsk Gylden,
+> Nobel/Guldreal) remain documented here for the Hans-era context but
+> sit outside the project's data-coverage window.
 >
 > **No date below is yet binding.** Each Müntzfuß needs its OWN
 > dedicated verification pass — opening the primary ordinance text,
@@ -183,17 +194,20 @@ specific Fuß comes up for handling.
 
 ## 5. `reichsdukat` / `reichsdukatenfuss` — Reichsdukatenfuß in Denmark
 
-**Start verified 2026-05-15** (deeper research pass — see «Pre-1557 verification» below).
+**Start verified 2026-05-15 → re-anchored 2026-05-16** (per §BI Denmark-track anchor decision).
 
 | Boundary | Year | Type | Source |
 |---|---|---|---|
-| **Start (verified, dukat-metric)** | **1531** | First Danish mintage at the Reichsdukatenfuß metric (verified .986) | **Frederik I 1531 Ungersk Gylden** (Galster 46 / Schou 1 / Jensen-Skjoldager T-41/45), brutto 3.49 g, finhed 0.986 (23⅛ K), fein 3.44 g, mint København or Malmø (the mint distinction not certainly recorded). Predates Augsburger Reichsmünzordnung (19 August **1559**) by 28 years; predates Christian III's c3h1 1557 entry in our project Hede cache by 26 years. Source: danskmoent.dk/fr/f1g46.htm + Numista N#428864 (Fr# 11, Galster UU# 46). lex.dk «dukat» (Jørgen Steen Jensen, Nationalmuseet): «*I Danmark kom der første gang i 1531 en guldmønt af vægt som en dukat*» — refers precisely to this Frederik I 1531 issue. |
-| (Earlier Goldgulden candidates, finhed UNVERIFIED) | **1481–1513** | First Danish «Goldgulden» catalog entry — finhed not recorded | **John I (Hans) Goldgulden** (Numista N#355730, Fr# 4), ND 1481–1513, brutto 3.3 g, finhed NOT recorded. Legend «MONET AVREA REGNI DACIE». Cataloguer's metric attribution to dukat-fineness depends on physical-specimen assay not currently in hand. HYPOTHESIS pending finhed verification. |
-| (Earlier Goldgulden, Frederik I 1527) | **1527** | Frederik I 1 Goldgulden Malmö — finhed not recorded | Numista N#433743, Fr# 10, brutto 3.28 g, mint Malmö, legend «MON AVR MAL 1527». Predates the 1531 Frederik I issue by 4 years; might be at the same Reichsdukatenfuß metric, but Numista records no fineness. UNVERIFIED. |
+| **Start (project anchor 2026-05-16)** | **1514** | First formal Danish gold-standard spec (Lovkompleks) | **Christian II Møntordning af Sommeren 1514** (Wilcke 1950 p. 183-186 verbatim) — Dienis-Malmö-Brev specifies **Nobler 23½ Karat 16 Stkr./Marken + Rhinsk Gylden 18 Karat 72 Stkr./Marken**, with Rigsrådets Raad og Samtykke. First formal Danish gold-fineness law. The Nobler at 23½ Karat = 0.979 fineness establishes the ≥23-Karat upper-band that the later Reichsdukatenfuß coins (.986) adhere to. The 1514 Nobler is DOUBLE-noble weight (~14.6 g brutto at 16/Mark) — not yet a single-Goldgulden, but the fineness anchor of the Reichsdukatenfuß family is set here. |
+| (Earliest single-Goldgulden, finhed UNVERIFIED) | **1481–1513** | First Danish «Goldgulden» catalog entry — predates 1514 anchor | **John I (Hans) Goldgulden** (Numista N#355730, Fr# 4), ND 1481–1513, brutto 3.3 g, finhed NOT recorded. Legend «MONET AVREA REGNI DACIE». **Sits outside the 1514 project anchor** — Hans-era context only, not in project data window. |
+| (Earliest single-Goldgulden, post-anchor) | **1527** | Frederik I 1 Goldgulden Malmö — finhed not recorded | Numista N#433743, Fr# 10, brutto 3.28 g, mint Malmö, legend «MON AVR MAL 1527». First post-1514 single-Goldgulden in Denmark, but Numista records no fineness. UNVERIFIED metric. |
+| **First verified .986 strike** | **1531** | First Danish mintage at the verified Reichsdukatenfuß metric (verified .986) | **Frederik I 1531 Ungersk Gylden** (Galster 46 / Schou 1 / Jensen-Skjoldager T-41/45), brutto 3.49 g, finhed 0.986 (23⅛ K), fein 3.44 g, mint København or Malmø. Source: danskmoent.dk/fr/f1g46.htm + Numista N#428864 (Fr# 11, Galster UU# 46). lex.dk «dukat» (Jørgen Steen Jensen, Nationalmuseet): «*I Danmark kom der første gang i 1531 en guldmønt af vægt som en dukat*». First single-Goldgulden in Denmark at canonical Reichsdukatenfuß metric. |
 | **End** | **1802** | Last Danish mintage | Last Altona Reichsdukat per Galster (galsfre2.htm): «*den sidste 1802*». Final Altona issues: 1791, 1792, 1794, 1802. Last København Kurantdukat (21-karat variant): 1785. |
 | (External anchor) | (1871 / 1873) | Imperial / Danish reform | Imperial: Münzgesetz 4 December 1871 (Reichsgoldmark introduction). Danish: Møntloven af 23 May 1873 (gold-Krone reform, effective 1 January 1875). Denmark ceased Reichsdukat mintage 71 years before the 1873 Krone reform. |
 
-**Confidence: start HIGH** (verified across danskmoent.dk Frederik-I-Galster page + lex.dk «dukat» + Wilcke 1950 corroboration); **end HIGH** (last Danish strike documented).
+**Confidence: start HIGH** (Christian II Lovkompleks 1514 — Wilcke 1950 verbatim primary citation, per §BI anchor decision); **first verified .986 HIGH** (Frederik I 1531 Galster 46); **end HIGH** (last Danish strike documented).
+
+**Note on 1514 vs 1531 distinction**: 1514 is the **legal anchor** (Christian II ordinance sets the 23½K-fineness floor and authorises Goldgulden / Nobler / Rhinsk Gylden mintage). 1531 is the **first verified .986-finhed Goldgulden strike**. Both are Reichsdukatenfuß-class — 1514 establishes the legal framework, 1531 is the first specimen-attested coin at the canonical 67/Mark fein metric. The project's data-window opens at 1514 per §BI; the project's earliest curated coin would be the 1531 Frederik I Goldgulden (subject to the c2h*/f1h* Hede import sibling-TODO; until that lands, the project Hede cache earliest is c3h1 1557).
 
 ### Pre-1557 verification (added 2026-05-15)
 
@@ -240,14 +254,14 @@ Initial pass (this file's original draft) listed **1557** as the start year, bas
 
 **§0b discipline note**: our previous dossiers (`christian_iii_danish_coinage_1534_1572.md` §3, `danish_royal_gold_1560_1648.md`) both repeated the «no pre-Hans gold» claim based on Wilcke alone. The claim was **hypothesis dressed as fact** — Numista + Nationalmuseet evidence falsifies it. The error is recorded here publicly per §0b discipline; companion dossiers will be updated in a follow-up commit when the per-Fuß verification pass for `reichsdukat` reaches the Erik-VII section.
 
-### Earliest-vs-codification design question
+### Earliest-vs-codification design question — RESOLVED 2026-05-16 via §BI
 
-Three legitimate `year_from` candidates remain:
-- **1531** — first Danish strike at Reichsdukatenfuß metric (Frederik I 1531 Ungersk Gylden). Danish-track-correct.
-- **1557** — first Danish strike covered by our Hede cache (Christian III c3h1). Data-coverage-correct.
-- **1559** — imperial codification (Augsburger Reichsmünzordnung). Imperial-framework-correct.
+Earlier draft listed four candidates; §BI anchor decision (2026-05-16) selects **1514** as the project-wide anchor on the basis that:
 
-User verdict pending. Recommendation: **1531** as the data-correct Danish-track anchor, with the understanding that the project's Hede cache will need an `f1h*` extension to include Frederik I's gold issues for completeness (separate data-import task).
+- **1514** Christian II Lovkompleks is the **first formal Danish gold-standard ordinance** with Rigsrådets Raad og Samtykke. Establishes the legal framework for the entire Goldgulden / Nobler / Rhinsk Gylden lineage. Independently corroborated by Numista's currency-taxonomy boundary («Penning 825-1513 → Gulden 1513-1572»). Wilcke 1950 p. 183-186 verbatim. **PROJECT ANCHOR.**
+- 1531 — first verified .986 Goldgulden strike (Frederik I, Galster 46). **First specimen-attested Reichsdukatenfuß coin in Denmark.** Sits 17 years inside the 1514 project window.
+- 1557 — first Hede-cached entry (c3h1 Christian III Ungersk Gylden). **Current data-coverage start in our cache**, pending c2h*/f1h* import.
+- 1559 — imperial codification (Augsburger Reichsmünzordnung). **Imperial framework**, not Danish anchor.
 
 ### Imperial vs Danish-track `year_to` decision
 
@@ -293,7 +307,8 @@ bar_title needs rewriting to drop the imperial-end reference.
 | `flensborg_fod` | 1547 | 1571 | 24 yr | HIGH | PROBABLE |
 | `rhinsk_gylden_fod` | 1497 | 1632 | 135 yr | HIGH | HIGH |
 | `f2_guldkrone_fod` | 1563 | 1564 | 2 yr | PROBABLE | PROBABLE |
-| `reichsdukat` (Danish-track, verified 2026-05-15) | **1531** | 1802 | 271 yr | HIGH | HIGH |
+| `reichsdukat` (project anchor, §BI 2026-05-16) | **1514** | 1802 | 288 yr | HIGH | HIGH |
+| `reichsdukat` (first verified .986 strike) | 1531 | 1802 | 271 yr | HIGH | HIGH |
 | `reichsdukat` (imperial-framework) | 1559 | 1871 | 312 yr | HIGH | HIGH |
 
 ---

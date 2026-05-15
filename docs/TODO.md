@@ -116,9 +116,11 @@ The summary is per-tier — a Highest-tier summary stays under
 > to use this file»). Demote to High once the blocker semantic is no
 > longer warranted.
 
-### BF. 🟢 Denmark 1541-1566 gap — Müntzfüße + coin promotion for the new lower-bound window  *(opened 2026-05-15)* *(est: large)* *(type: research-applied + data)*
+### BF. 🟢 Denmark 1514-1566 gap — Müntzfüße + coin promotion for the new lower-bound window  *(opened 2026-05-15, rescoped 2026-05-16 per §BI)* *(est: large)* *(type: research-applied + data)*
 
-**Surfaced.** User direction 2026-05-15 with explicit «найвищий» marker. The dual-anchor scope decision (§BC closed 2026-05-15) extended the Denmark page's lower bound from 1559 to **1541** (Christian III's Møntordning, 20 September). The seed builder's `--year-from` default was updated (1559 → 1541) and ~26 new c3h Hede entries flowed into `data/seed/hede/denmark.yml` covering Christian III + early Frederik II — but none of them are placed yet. The page renders the new (1541–1914) range in its header/timeline, but the 1541-1566 phase block of the Denmark page is structurally **empty of curated Müntzfüße + coins**. Closing this gap is the Highest-priority blocker for the Denmark-track research front.
+**Surfaced.** User direction 2026-05-15 with explicit «найвищий» marker. The dual-anchor scope decision (§BC closed 2026-05-15) initially extended the Denmark page's lower bound from 1559 to 1541; §BI (2026-05-16) re-anchored further back to **1514** (Christian II Lovkompleks per Wilcke 1950 p. 183-186 verbatim). The seed builder's `--year-from` default is now 1514 and ~26 c3h Hede entries (Christian III + early Frederik II) sit in `data/seed/hede/denmark.yml` — but none of them are placed yet. The page renders the new (1514–1914) range in its header/timeline, but the 1514-1566 phase block of the Denmark page is structurally **empty of curated Müntzfüße + coins**. Closing this gap is the Highest-priority blocker for the Denmark-track research front.
+
+**Note on pre-1541 sub-window**: the 1514-1540 portion (Christian II 1513-1523 + Frederik I 1523-1533) needs Hede cache extension via `c2h*` + `f1h*` import (sibling TODO §BJ — see below). Until that import lands, §BF's data-coverage stays at Christian III 1541+ from the existing Hede cache.
 
 **Underlying research is already done.** Two long-form dossiers cover this period in detail:
 
@@ -170,9 +172,7 @@ Likely answer is (a) — the dual-zone is the seed of an enduring lineage and de
 6. Add the 4 new bibliography entries to `denmark-references.yml` with verbatim quotes + page hints per §5a.
 7. Build clean + sample-review three coins per phase against the rendered page.
 
-**Definition of done.** The Denmark page renders a non-empty 1541-1566 section with at least 6 placed coins, a `christian_iii_dalerfod` Fuß card with full metric block + sourced hintergrund, and the dual-track Flensborg phase (if (a)) wired up. The 26+ new c3h seed entries auto-suppress against the curated phase blocks per the `_merge_seeds_into_raw` rule.
-
-**Scope note (added 2026-05-15)**: per §BI decision, Denmark's lower-bound anchor moves from 1541 to **1514** (Christian II Lovkompleks). §BF's «1541-1566 gap» rescopes to «1514-1566 gap» once §BI lands. The four sub-tasks (christian_iii_dalerfod definition, fuss_periods block, seed promotion, references) remain — they cover the **1541-1566 portion** of the broader 1514-1566 window. The pre-1541 portion (Christian II 1513-1523 + Frederik I 1523-1533) becomes its own sub-task after §BI's Hede cache extension lands.
+**Definition of done.** The Denmark page renders a non-empty 1514-1566 section with at least 6 placed coins, a `christian_iii_dalerfod` Fuß card with full metric block + sourced hintergrund, and the dual-track Flensborg phase (if (a)) wired up. The 26+ new c3h seed entries auto-suppress against the curated phase blocks per the `_merge_seeds_into_raw` rule. Pre-1541 sub-window coverage (Christian II 1513-1523 + Frederik I 1523-1533) depends on §BJ Hede catalog extension landing first.
 
 ---
 
@@ -2199,6 +2199,55 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 - **CLAUDE.md §i18n** — current policy is DE / EN / UK only. Adding `da` to selected pages needs the policy to acknowledge per-location language sets.
 - **`data/i18n/ui.yml`** — the existing 3-lang UI-string convention may need a structural revision (e.g. nullable `da:` field, or a separate `ui_da.yml` overlay).
 - **Templates** — language-switcher chip implementation determines whether the `da` chip appears on landing / German-jurisdiction pages (probably hidden when the page itself has no Danish content).
+
+---
+
+### BJ. 🟢 Hede catalog extension — c2h* (Christian II) + f1h* (Frederik I) gold + silver pages  *(opened 2026-05-16)* *(est: medium)* *(type: data import)*
+
+**Surfaced.** §BI Denmark-track anchor rescope 1541 → 1514 (Christian II Lovkompleks) opens a 1514-1540 sub-window where the project Hede cache currently has zero coverage. Hede 1957 itself starts at Christian III (1534+); pre-1534 issues (Hans + Christian II + early Frederik I) are catalogued by Galster 1959-1960 + Jensen-Skjoldager 2021 (*Tronraneren*) + danskmoent.dk's `fr/f1g*.htm` page series for Frederik I. Christian II's gold (Nobler 1516-1518, Db. Guldreal ~1514) and Frederik I's gold (Goldgulden 1527/1531, Rhinsk Gylden 1527/1531, Nobler 1524/1532) need to enter the project as curated coins.
+
+**Scope.** Import pages and minimal metric specs for:
+
+- **Christian II 1513-1523** — c2h* prefix:
+  - Db. Guldreal ~1514 (per Wilcke p. 184 ordinance)
+  - 1 Noble 1516-1518 (Numista N# — surface via Numista catalog browse)
+  - Any other documented Christian II gold or silver coinage with brutto / finhed records
+
+- **Frederik I 1523-1533** — f1h* prefix:
+  - 1 Db. Nobel 1524 (Wilcke p. 187)
+  - 1 Goldgulden Malmö 1527 (Numista N#433743, Fr# 10) — finhed currently unverified
+  - 1 Rhinsk Gylden Malmö 1527 (Wilcke p. 216)
+  - 1 Goldgulden 1531 København or Malmö (Numista N#428864, Fr# 11, Galster 46, finhed .986 verified)
+  - 1 Rhinsk Gylden Gottorp 1531 (Wilcke p. 216-217)
+  - 1 Nobel 1532 (Wilcke p. 217)
+  - Silver coinage (Skilling subdivisions 1527-1532) — secondary priority
+
+**Sources.**
+
+- **danskmoent.dk Frederik-I-Galster page** (`/f1galst.htm`) — full Galster-number index of Frederik I issues with cross-references to Schou, Jensen-Skjoldager.
+- **danskmoent.dk `/fr/f1g*.htm` series** — per-coin Galster pages (e.g. `f1g46.htm` for the 1531 Goldgulden).
+- **Numista entries** for c2h-equivalent and f1h-equivalent gold (verified during 2026-05-16 session).
+- **Wilcke 1950** specification tabel p. 4-5 + body coverage p. 183-220.
+- **Jensen-Skjoldager 2021** *Tronraneren* — modern monograph cited by danskmoent.dk Galster pages.
+
+**Action plan.**
+
+1. **Survey** — list every documented Christian II + Frederik I issue with year, denomination, brutto, finhed (where attested), Galster + Schou + Jensen-Skjoldager + Numista N#. Use Numista catalog (`/catalogue/index.php?e=danemark...&p=1&q=200` first page covers pre-Hans through Christian II) + danskmoent.dk Galster index as primary surface.
+2. **Cache shape** — create `scripts/cache/hede/c2h*.json` + `f1h*.json` parsed sidecars matching the existing Hede cache shape (`nominal`, `mint`, `ruler`, `years`, `specs.default.{brutto, finhed, finvægt}`, `litteratur`, `catalog_refs`).
+3. **Seed regeneration** — re-run `scripts/maintenance/build_hede_denmark_seed.py` to pull the new entries into `data/seed/hede/denmark.yml`. With the 1514 anchor in place, all c2h*/f1h* entries with year_first ≥ 1514 will flow into seed_unsorted automatically.
+4. **§BF unblock** — once seed has pre-1541 entries, §BF can promote them into the proper Müntzfuß phases (christian_iii_dalerfod precursors, rhinsk_gylden_fod, etc.).
+
+**Out of scope.**
+- **Hans (1481-1513) gold** — sits BEFORE the 1514 project anchor. Numista entries (Goldgulden N#355730, Noble series N#428914 etc., Rhinsk Gylden) stay as research-doc context but do not enter the project Hede cache.
+- **Erik VII Lund (1397-1439)** — pre-anchor outlier. Research-doc only.
+
+**Cross-references.**
+- **§BI** (anchor rescope 1541 → 1514) — §BJ unblocks the 1514-1540 sub-window §BI exposed.
+- **§BF** (1514-1566 gap) — §BJ provides the pre-1541 data §BF needs for its pre-Christian-III sub-task.
+- **§AV** (Guldkrone-fod design) + **§AW** (Rhinsk Gylden Fuß) — interact with §BJ when Frederik I 1527/1531 Rhinsk Gylden enters the seed.
+- **§BD** (Danish Müntzfuß names `-fod`) — applies to any new Fuß IDs created from §BJ data.
+
+**Definition of done.** Christian II + Frederik I gold (and key silver) coin pages exist as parsed sidecars in `scripts/cache/hede/c2h*.json` + `f1h*.json`; seed regenerated with non-empty 1514-1540 sub-window; §BF unblocked for pre-1541 phase work.
 
 ---
 

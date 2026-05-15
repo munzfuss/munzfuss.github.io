@@ -17,30 +17,45 @@
 
 ## Current focus
 
-**Mission temporal scope — dual anchor decision finalised 2026-05-15.**
-Denmark-Norway track lower bound = **1541** (both Christian III
-ordinances: spring 20 March «Om Maal og Vægt» + autumn 20 September
-Møntordning); German-lands track lower bound = **1559 (1566)**
-(Augsburger Reichsmüntzordnung). TODO §BC closed; CLAUDE.md mission
-statement updated; `--year-from` default in seed builder updated
-1559→1541. Next operational fronts (new normal-priority TODOs):
+**Mission temporal scope — Denmark-track anchor rescoped 1541 → 1514
+on 2026-05-16 per §BI.** Denmark-Norway track lower bound = **1514**
+(Christian II Lovkompleks: Møntordning af Sommeren 1514 Kopenhagen +
+Møntordning af 3. August 1514 for Norge + Kvittering Paasketid 1515 +
+Sjælland åbent Brev af 24. August 1515 — per Wilcke 1950 p. 183-186
+verbatim); German-lands track unchanged at **1559 (1566)** (Augsburger
+Reichsmüntzordnung). The 1541 Møntordning is now correctly framed as
+the THIRD major Danish-Norwegian Møntordning in the Christian-II-
+Lovkompleks lineage, not the first. TODO §BC closed; §BI in progress;
+CLAUDE.md mission statement updated; `--year-from` default in seed
+builder updated 1541→1514; seed regenerated; denmark.yml header /
+timeline / summary deck rewritten. **Schleswig-Holstein + all German-
+jurisdiction pages NOT touched** — they keep their 1559/1566 anchor
+unchanged per §BI's explicit scope-restriction.
 
-1. Define `christian_iii_dalerfod` Müntzfuß in `data/shared/fuesse.yml`
-   (mf 8.827, 26.494 g fein per Daler, fineness 0.906, sourced to
-   Wilcke 1950 + Rigsarkivet T.K. nr. 160 manuscript).
-2. Add `fuss_periods.christian_iii_dalerfod` to `data/locations/denmark.yml`
-   with phases A1 (1541-1543 København baseline) + A2 (1544-1555
-   København debased).
-3. Promote seed-coins c3h3-3A, c3h4, c3h5, c3h7 → phase A1;
-   c3h3-3B → phase A2.
-4. **Open design question**: Flensborg post-1544 track (Phase A3/A4)
-   — separate `christian_iii_flensborg_fod` Müntzfuß for Lybsk-aligned
-   sub-Mark + 14¼ Lod Daler, OR same Fuß with mint differentiation.
-   Per `moentordning_1541.md` §7.1 the 1547 Flensborg dual-zone is
-   genealogical seed of later `18_5_thaler` / `34_marck` family vs
-   `9_thaler` family — likely deserves its own Fuß.
-5. New refs in `denmark-references.yml`: Wilcke 1950, Galster 1965,
-   Paus 1752, Rigsarkivet T.K. nr. 160 with verbatim quotes per §5a.
+**§BI residual sub-tasks** (still in progress):
+- Update `denmark_fuesse_year_boundaries.md` reichsdukat section to
+  reference 1514 Lovkompleks as the verified first formal Danish
+  gold-standard spec (Nobler 23½K 16/Mark establishes 23½K floor).
+- Update `moentordning_1541.md` header annotation: position as
+  Christian-III's-third Møntordning in Lovkompleks lineage.
+- Update §BF scope-note: «1541-1566 gap» becomes «1514-1566 gap».
+- Open sibling TODO for c2h*/f1h* Hede catalog extension (Christian II
+  1513-1523 + Frederik I 1523-1533 coverage — empty 1514-1540 sub-
+  window until that import lands).
+
+**§BF Denmark 1541-1566 gap (now «1514-1566 gap»)** sequenced AFTER
+§BI lands. Original §BF four operational sub-tasks remain valid for
+the 1541-1566 portion (christian_iii_dalerfod definition + fuss_periods
+A1/A2 + seed-coin promotion c3h3-3A/3B + c3h4/5/7 + 4 new refs); the
+pre-1541 portion (Christian II 1513-1523 + Frederik I 1523-1533)
+becomes a fifth sub-task pending the c2h*/f1h* Hede import.
+
+**Open §BF design question — Flensborg post-1544 track (Phase A3/A4)**:
+separate `christian_iii_flensborg_fod` Müntzfuß for Lybsk-aligned
+sub-Mark + 14¼ Lod Daler, OR same Fuß with mint differentiation. Per
+`moentordning_1541.md` §7.1 the 1547 Flensborg dual-zone is the
+genealogical seed of later `18_5_thaler` / `34_marck` family vs
+`9_thaler` family — likely deserves its own Fuß. Verdict pending.
 
 **E1 NO-KM dedup audit on `data/locations/denmark.yml`** (parallel
 front, separate from §BC follow-up) — methodology is per-case, with

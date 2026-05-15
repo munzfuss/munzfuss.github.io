@@ -2,11 +2,22 @@
 
 > **Type:** analytical research dossier.
 >
-> **Anchor for:** Danish numismatic project — the 1541 ordinance is the
-> foundational standard. Per user direction 2026-05-15, this dossier
-> documents the **Denmark-Norway-track lower bound of the project's
-> mission temporal scope** (CLAUDE.md «Mission temporal scope — dual
-> anchor by jurisdiction»). The Denmark anchor is the *complete* 1541
+> **⚠ STATUS UPDATE 2026-05-16 (per §BI):** the Denmark-Norway-track
+> project anchor has moved from 1541 to **1514** (Christian II
+> Lovkompleks). Christian III's 1541 Møntordning is now correctly
+> positioned as the **THIRD major Danish-Norwegian Møntordning** in
+> the Lovkompleks-1514 lineage, not the first. The first is the
+> Christian II Lovkompleks 1514-1515 (Møntordning af Sommeren 1514
+> Kopenhagen + Norge-Forordning 3. August 1514 + Sjælland åbent Brev
+> 24. August 1515 — per Wilcke 1950 p. 183-186 verbatim). This
+> dossier remains accurate for what it documents — Christian III's
+> specific 1541 reform — but is no longer the project-anchor dossier.
+> The project-anchor narrative is summarised in CLAUDE.md mission
+> statement and `docs/research/denmark_fuesse_year_boundaries.md`.
+>
+> **Anchor for:** Danish numismatic project — the 1541 ordinance is
+> Christian III's major silver-track reform within the broader 1514
+> Lovkompleks lineage. The Denmark anchor is the *complete* 1541
 > reform — both Christian III ordinances together: the spring **«Om
 > Maal og Vægt» Forordning of 20 March 1541** (establishing Cølnsk
 > Vægt) AND the autumn **Møntordning of 20 September 1541** (this
