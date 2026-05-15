@@ -95,7 +95,7 @@
 | Source | Coverage of the 20 September 1541 Møntordning | Quote-level | Online access |
 |---|---|---|---|
 | **Wilcke 1950** (Chapter IV, *Renæssancens Mønt- og Pengeforhold 1481-1588*) | **Verbatim Danish transcription** + archive citation + complete specification tables for 1541 + 1544 + 1547 acts + identifies all mintmasters | **Verbatim** (modernised 1950 spelling) | Local cache: [`scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`](../../scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf) (18 MB, 51 pp) + structured local capture [`sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md). Public-domain hosted by danskmoent.dk |
-| **Rigsarkivet — Tyske Kancelli No. 160 Div. Møntsager** | Original ordinance manuscript (Wilcke's primary source) | Verbatim chancery-hand | [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/da/other/other-collection/149), free browser-based after registration |
+| **Rigsarkivet — Tyske Kancelli, Slesvig-Holsten-Lauenburgske Kancelli, I.A.A. (-1670), Diverse Møntsager, nr. 160** | Original ordinance manuscript (Wilcke's primary source) | Verbatim chancery-hand | **Verified direct URL** (2026-05-15): [arkivalieronline.rigsarkivet.dk/en/other/index-creator/150/997781/20018028](https://arkivalieronline.rigsarkivet.dk/en/other/index-creator/150/997781/20018028) — free browser-based after registration |
 | **Christian den Tredies Historie Vol. II** (anonymous, Kbhvn 1778, p. 108 ff.) | 18th-c. printed transcription cited by Wilcke | Verbatim (period orthography) | Print only; would need ILL |
 | **Paus 1752** (Vol. 2 p. 305) | Does NOT contain the 20 September Møntordning — contains the 20 March 1541 «Om Maal og Vægt» companion Forordning at this page | Verbatim of the companion (captured locally at [`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md)) | Google Books id `nZZFAAAAcAAJ` partial preview; downloaded full PDF confirmed lacks the September Møntordning |
 | **Rosenvinge 1824** (Vol. IV) | Footnote-only reference (p. 513) pointing to Paus S. 305 — citing the Maal-og-Vægt companion, NOT the September Møntordning | Footnote reference only | <https://books.google.com/books?id=43NJIGHI7vAC> partial preview; downloaded full PDF confirmed lacks 1541 verbatim |
@@ -597,10 +597,25 @@ network dependency; FineReader OCR enables grep over the full text.
 
 ### 9.1 Rigsarkivet Arkivalieronline (free, browser-based) — ULTIMATE PRIMARY
 
-The original 1541 Møntordning manuscript is held in **Rigsarkivet,
-København — Tyske Kancelli, No. 160 Diverse Møntsager** (per Wilcke
-1950 footnote 4, p. 4 — Wilcke worked directly from this archive
-file).
+> **Verification path traced 2026-05-15** (after the user pushed back
+> on earlier guess-paths): the original 1541 Møntordning manuscript
+> is held in **Rigsarkivet, København**, in this exact hierarchy:
+>
+>   - Archive-creator (collection 150): **Tyske Kancelli — Indenrigske Afdeling**
+>   - Sub-creator: **Slesvig-Holsten-Lauenburgske Kancelli**
+>   - Sub-classification: **I.A.A. (-1670)** (= Indenrigske Afdeling A, pre-1670)
+>   - Series: **Diverse Møntsager** (1523-1619)
+>   - Shelf-mark: **nr. 160** (per Wilcke 1950 footnote 4, p. 4)
+>
+> **Verified direct URL** for the «Diverse Møntsager» 1523-1619 folio
+> (HTML title bar of the page confirms the full archive path):
+>
+>   <https://arkivalieronline.rigsarkivet.dk/en/other/index-creator/150/997781/20018028>
+>
+> (Replace `/en/` with `/da/` for the Danish-language interface.)
+>
+> The folio's parent-creator landing page (Tyske Kancelli Indenrigske)
+> is at <https://arkivalieronline.rigsarkivet.dk/en/other/other-collection/150>.
 
 Note: **Tyske Kancelli**, not Danske Kancelli, despite this being a
 Danish-realm ordinance. Christian III's post-Reformation
@@ -609,24 +624,52 @@ administrative reorganisation placed Realm-wide monetary regulation
 German Chancery's care. The 27 September 1544 supplement, the
 22 January 1547 Flensborg Bestalling, and the 1535 Saxon
 template-Møntordning sent by Kurfyrst Johan Frederik are all in the
-same Tyske Kancelli No. 160 folio.
+same Tyske Kancelli I.A.A. nr. 160 folio.
 
 **Access procedure:**
 
   1. Register a free user account at
-     [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/).
+     [www.rigsarkivet.dk/arkivalieronline](https://www.rigsarkivet.dk/arkivalieronline/).
      No institutional affiliation required — open to everyone.
-  2. Navigate: **Tyske Kancelli → No. 160 Diverse Møntsager**
-     → locate the 20 September 1541 Møntordning by chronological
-     order within the folio.
-  3. The manuscript is image-scanned in Old Danish + Old German
+  2. Navigate directly to the verified folio URL above
+     (`...index-creator/150/997781/20018028`).
+  3. Within the folio's image-viewer, locate the 20 September
+     1541 Møntordning by chronological order. The folio spans
+     1523-1619 so all four target documents (1535 Saxon template,
+     1541 Møntordning, 1544 supplement, 1547 Flensborg Bestalling)
+     sit within range.
+  4. The manuscripts are image-scanned in Old Danish + Old German
      chancery hand — readable to modern Danish speakers with
-     patience.
+     patience; non-paleographic use prefers §9.0 Wilcke 1950
+     modernised transcription instead.
+
+**What the dynamic page shows** (visible only after browser-based
+navigation, not via static fetch):
+  - Individual scan thumbnails per archive page
+  - Page-by-page image viewer with zoom + download
+  - PDF download of selected page ranges
+
+**Caveat — earlier guess-paths in this dossier (now corrected).**
+Two prior versions of §9.1 contained these errors before the
+2026-05-15 verification pass:
+
+  - «Danske Kancelli → Indlæg til registre og tegnelser» — WRONG
+    (Danske, not Tyske; and «Indlæg til registre og tegnelser» is a
+    different series).
+  - URL `arkivalieronline.rigsarkivet.dk/da/other/other-collection/149`
+    — WRONG (collection 149 is something else; the correct
+    Indenrigske Afdeling collection is 150).
+  - The actual archive coordinate, **Tyske Kancelli /
+    Slesvig-Holsten-Lauenburgske Kancelli / Diverse Møntsager
+    nr. 160** (per Wilcke 1950 footnote 4, p. 4), was always
+    correctly cited in the dossier — but the Arkivalieronline
+    URL pattern that targets it was guessed rather than verified
+    until 2026-05-15.
 
 **Pros:** free; full verbatim; image quality good; paleographic
 fidelity (16th-c. chancery hand preserved); the same folio
-contains the 1544 supplement and 1547 Flensborg sub-ordinance
-for one-stop access.
+contains the 1544 supplement, 1547 Flensborg sub-ordinance, and
+the 1535 Saxon template for one-stop access.
 **Cons:** Old Danish handwriting + spelling (e.g. «ee» for modern
 «e», «-tz-» for «-z-», «daa» for «da»); paleography skill helps but
 not strictly required for a printed-decree-style document. For
@@ -904,12 +947,15 @@ monetary-reform trio is now project-internal-sourced.
 
 ### Ultimate primary (manuscript)
 
-- **Rigsarkivet, København — Tyske Kancelli, No. 160 Diverse
-  Møntsager** — the original ordinance manuscripts (1541
+- **Rigsarkivet, København — Tyske Kancelli, Slesvig-Holsten-Lauenburgske
+  Kancelli, I.A.A. (-1670), Diverse Møntsager, nr. 160** — the
+  original ordinance manuscripts (1535 Saxon template, 1541
   Møntordning, 1544 supplement, 1547 Flensborg Bestalling all in
   the same folio). Per Wilcke 1950 footnote 4, p. 4. Free
-  browser-based access (after registration) at
-  [arkivalieronline.rigsarkivet.dk](https://arkivalieronline.rigsarkivet.dk/).
+  browser-based access (after registration) at the **verified
+  direct URL**:
+  <https://arkivalieronline.rigsarkivet.dk/en/other/index-creator/150/997781/20018028>
+  (replace `/en/` with `/da/` for Danish interface).
 
 ### 18th-c. printed transcriptions cross-referenced by Wilcke
 
