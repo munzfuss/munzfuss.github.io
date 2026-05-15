@@ -3,10 +3,27 @@
 > **Type:** analytical research dossier.
 >
 > **Anchor for:** Danish numismatic project — the 1541 ordinance is the
-> foundational standard underlying the Phase-A coverage gap 1541→1566
-> identified in TODO §BC. Christian III's first formal monetary
-> ordinance and the start of the «modern period» in Danish coin history
-> (per Galster).
+> foundational standard. Per user direction 2026-05-15, this dossier
+> documents the **Denmark-Norway-track lower bound of the project's
+> mission temporal scope** (CLAUDE.md «Mission temporal scope — dual
+> anchor by jurisdiction»). The Denmark anchor is the *complete* 1541
+> reform — both Christian III ordinances together: the spring **«Om
+> Maal og Vægt» Forordning of 20 March 1541** (establishing Cølnsk
+> Vægt) AND the autumn **Møntordning of 20 September 1541** (this
+> dossier's primary subject — establishing the denomination structure,
+> mint at Klarekloster, Povel Fechtel as mintmaster, mintmaster +
+> warden oaths).
+>
+> Companion Forordning capture (March 1541):
+> [`sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md).
+>
+> The German-lands track of the project uses a different anchor:
+> **1559** (Augsburger Reichsmüntzordnung) / **1566** (Reichsabschied
+> formal adoption). Locations like Lübeck, Hamburg, Bremen-Verden,
+> Schleswig-Holstein-as-duchy use the German anchor; Denmark uses
+> the 1541 anchor documented here. Schleswig-Holstein post-1813
+> follows Danish track via Helstaten Rigsbankdaler / Speciedaler
+> structure.
 >
 > **Verbatim text status (FOUND 2026-05-15 after three search passes):**
 > The verbatim Danish text of the 20 September 1541 Møntordning is

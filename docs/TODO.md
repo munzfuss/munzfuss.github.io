@@ -116,62 +116,6 @@ The summary is per-tier — a Highest-tier summary stays under
 > to use this file»). Demote to High once the blocker semantic is no
 > longer warranted.
 
-### BC. 🟡 Denmark timeline start year — decide anchor + cover 1541→1566 gap  *(opened 2026-05-15)* *(est: many sessions)*
-
-**Surfaced.** User direction 2026-05-15, after praising the §8 «Three observable monetary phases» analysis in `docs/research/christian_iii_danish_coinage_1534_1572.md`. The mission scope was provisionally extended from «1559–1914» to «ca. 1559–1914» based on the Augsburger Reichsmüntzordnung 19. August 1559 anchor — but the user correctly pushed back: «здається що ми не можемо зважати на авгсбурзький ордонанс відносно данії, тому що це німецька тема». The Augsburger anchor is a Holy-Roman-Empire event; for the Danish-Norwegian realm the analogous foundational ordinance is Christian III's **Møntordning of 1541** (Galster, *Danske mønter* — danskmoent.dk/galster/galshist.htm).
-
-CLAUDE.md mission line was edited to «ca. 1559–1914» during the §AU promotion work; that edit stands pending the resolution of this entry. The Denmark-specific start-year picture is what needs settling.
-
-**The decision.** What year does Denmark's coverage **start** on this project?
-
-Three candidate anchors, in chronological order:
-
-  1. **1534** — Grevens fejde (Count's Feud civil war) start. Århus + Roskilde war-finance Klippinger (2 Mark, 8/4/2 Skilling) are documented from 1534-1536 per `christian_iii_danish_coinage_1534_1572.md` §9. Earliest *documented Danish coinage by us* in this window, but pre-Reformation, pre-Møntordning — extreme-emergency war finance, not a standard.
-  2. **1536** — Reformation in Denmark. End of Catholic regime, start of Christian III's effective reign. Still no Møntordning — the 1534-1536 Klippinger continue / wind down. No formal standard yet.
-  3. **1541** *(recommended)* — Christian III's Møntordning. The Galster-attested foundational ordinance: «*1 Daler = 3 Mark Danske*». Establishes Phase A («Christian-III standard era 1541-1559» per dossier §8): 1 Daler ≈ 26.5 g fein at København 1541-1543 (mf 8.827), debasing to 24.7 g 1544-1555. This is the Danish equivalent of the imperial Augsburger 1559 / Reichsabschied 1566 framework — a sovereign-decree standard.
-
-**Lean recommendation:** **1541** for the Denmark timeline. Rationale: it's the first formal Danish ordinance establishing a counted standard (Daler = 3 Mark); the 1534-1536 Klippinger are emergency war finance without a formula and would force the timeline to include pre-standard «no-Fuß» entries which break the artefact's organising principle (every coin sits in a Fuß). The Reformation 1536 is a political/religious event without a numismatic anchor and adds nothing the 1541 ordinance doesn't already encode.
-
-**If 1541 is accepted, the gap to fill 1541→1566 is significant** — currently zero coins in `data/locations/denmark.yml` from this window, and the only Müntzfuß family covering anything close (`9_thaler`) starts 1566 with Reichsmüntzordnung. The dossier §8 maps three distinct phase patterns inside 1541-1572 (the upper end overshoots our gap), and Phase A alone (1541-1559) has **five identifiable sub-standards** across two mints:
-
-  | Phase | Period | Mint | 1 Daler in g fein | mf | Notes |
-  |---|---|---|---|---|---|
-  | A1 | 1541-1543 | København | ~26.5 | 8.827 | Møntordning baseline |
-  | A2 | 1544-1555 | København | ~24.7 | 9.481 | 7% debasement |
-  | A3 | 1545-1547 | Flensborg | ~26.0 | 8.982 | sølvgylden |
-  | A4 | 1545-1554 | Flensborg | ~25.2 | 9.287 | søsling lybsk, near-imperial |
-  | A5 | 1559-1563 | København | progressive | (varies) | early F2 small-change drift |
-
-Plus **gold tracks** running through this window:
-  - **Ungersk Gylden** (Hungarian-style gold gulden, Christian III) — c3h15-c3h17 era, 67/Cölln. Mark of 22-23 karat.
-  - **Rhinsk Gylden** (Imperial Reichsgulden, Ferdinand 1559 standard from 1559+) — c3h15 already in our seed but its place in this window needs phase confirmation.
-  - **Guldkrone** (per §AV — Frederik II 1563-1564) — starts in Phase B but spans into our existing Guldkrone-Fuß work.
-
-**Sub-tasks (sequenced):**
-
-  1. **Decide the start year** (user verdict). If 1541, edit CLAUDE.md mission line: «ca. 1559–1914» → «ca. 1541–1914» (with footnote / `mission_lower_bound` note explaining the Danish-vs-imperial dual-anchor rationale).
-  2. **Inventory all Hede pages 1541-1566** (Christian III + early Frederik II) via `scripts/cache/hede/c3h*.json` + `f2h*.json`. Cross-check against `christian_iii_danish_coinage_1534_1572.md` §3-7 (already enumerated). Mark which are in seed already (per existing `data/seed/hede/denmark.yml`) and which are gaps.
-  3. **Define new Müntzfüße in `data/shared/fuesse.yml`** for the patterns in the table above. Candidates:
-     - **`christian_iii_dalerfod`** — Phase A standard (1 Daler = 3 Mark Danske; baseline mf 8.827, debasing across 1541-1559). Per-phase metric variation handled via phase entries.
-     - **`klipping_fod`** *(provisional name)* — Phase B war-debasement standard 1563-1570 (1 Daler ≈ 9 g fein, mf 25.904). May overlap with existing 9_thaler family at the heavy-debasement end — needs disambiguation.
-     - Foreign-imitation gold: **`ungersk_gylden_fod`** for Hungarian-style gold gulden — possibly merge into existing Reichsdukatenfuß ancestry research or stand alone (decision-pending — see §AW for the analogous Rhinsk Gylden case).
-  4. **Add `fuss_periods` blocks** to `data/locations/denmark.yml` for Phase A1-A5 + Phase B, with sourced `hintergrund` and per-phase historical framing (per §BB convention — no parameters, no specific issuances in the prose).
-  5. **Promote seed-Hede coins** in this window to curated entries with proper `fuss` + `phase` assignment.
-  6. **Update timeline visualisation** to start at the chosen year (probably 1541).
-
-**Cross-references:**
-  - **§BA** (Galster-based Fuß/phase refinement) — covers boundary years and mintmasters; §BC supplies the upstream «what phases exist at all» map for the pre-1566 window. §BA's per-Fuß rewrite should consume §BC's output where the 1541-1566 window overlaps.
-  - **§AZ** (Harvest pre-Christian-III Hede pages: Hans 1483-1513, Frederik I 1523-1533, Christian II 1513-1523) — provides cache material for any earlier-than-1541 candidates. If the user picks 1534 as anchor, §AZ's harvest may also be needed for the 1534-1541 Klipping window (Århus + Roskilde 1534-1536). If 1541 stays the anchor, §AZ stays out of scope for §BC.
-  - **§AU** (Frederik II gold 1563-64 promotion, closed) — already covers part of the 1559-1566 boundary on the gold side; §BC's Phase A/B silver work should align with §AU's gold-track phase assignments.
-  - **§AV / §AW / §AX** (Guldkrone-fod, Rhinsk-Gylden-fod, Rosenobel placement — all pending decisions) — gold-side framework for this window; §BC's silver-side framework should land in parallel so the two metals' phases align by year.
-  - **`docs/research/christian_iii_danish_coinage_1534_1572.md`** — the existing dossier this entry is built on. §8 is the phase map; §3-7 are per-period coin enumerations; §9 is mints/mintmasters; §10 is sources.
-  - **`docs/research/moentordning_1541.md`** (created 2026-05-15) — focused single-ordinance dossier for the 1541 + 1544 ordinances. Quotes Wilcke 1950 (primary verbatim source) + Galster 1965 (modern-Danish paraphrase), attests parameters from Hede c3h cache empirically with Wilcke-spec ↔ Hede attestation cross-table. §8 of this dossier maps directly to the §BC sub-task list (proposed `christian_iii_dalerfod` Fuß with mf 8.827 etc.). Verbatim text now project-internal — no external fetch needed.
-  - **`docs/research/sources/wilcke_1950_christian_iii_moentreform.md`** (created 2026-05-15) — structured verbatim capture of Wilcke 1950 Chapter IV «Christian III's Møntreform», the canonical secondary source. Contains the ordinance Preamble, full specification tables for 1541 + 1544 + 1547 acts, all mintmasters named, archive coordinate **Rigsarkivet → Tyske Kancelli → No. 160 Diverse Møntsager**. Backed by local PDF at `scripts/cache/wilcke/renaessancens_moent_1950/wilcke_7-4.pdf`.
-  - **`docs/research/sources/paus_christian_iii_1541_maal_og_vaegt.md`** (created 2026-05-15) — companion ordinance: 20 March 1541 «Om Maal og Vægt» Forordning establishing Cølnsk Vægt 233.856 g realm-wide. Verbatim text from Paus Vol. 2 p. 305-306 (København 1752).
-  - **`docs/research/danish_royal_gold_1560_1648.md`** — the gold-side companion dossier covering the same 1560-onwards window.
-
-**Why this is Highest priority.** The Denmark page's lower bound is currently structurally undefined — coins from 1541-1566 cannot be added until the phase-and-Fuß framework exists. Every other Denmark-related TODO (§BA, §BB phases-for-Denmark, §AD Hede sub-letter folds in the c3h/f2h range, §AZ, §AV/AW/AX) is implicitly blocked: doing them on the existing «9_thaler from 1566» framework either bakes-in an incorrect lower bound or forces redoing the work after §BC lands. The audit-tooling fronts (§AL anomaly field, §AS verbatim-quote sweep, §BB Fuß-description sweep) are independent and can proceed in parallel.
-
 ## High priority
 
 > **Awaiting your verdict before any action**:
@@ -2015,6 +1959,45 @@ What MUST NOT appear in these surfaces:
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
+
+### BC. Denmark timeline start year — DECIDED: dual-anchor 1541 (Denmark) / 1559 (German lands)  *(opened 2026-05-15, closed 2026-05-15)*
+
+**Decision (user direction 2026-05-15):**
+
+> «наше дослідження для німецьких земель стартує з 1559 (1566) років
+> (авгсбурзький ордонанс), а для данії — з 1541 (Møntordning, той що
+> весняний і той що осінній)»
+
+The Denmark timeline start year is **1541**, anchored by Christian
+III's *complete* monetary-reform pair (both ordinances together):
+
+  - **Spring 1541** — «Om Maal og Vægt» Forordning of Søndagen Oculi 1541 = **20 March 1541**. Establishes Cølnsk Vægt (Cölln. Mark = 233.856 g) as Denmark-Norway realm-wide silver-trade weight unit. Verbatim text: [`docs/research/sources/paus_christian_iii_1541_maal_og_vaegt.md`](sources/paus_christian_iii_1541_maal_og_vaegt.md).
+  - **Autumn 1541** — Møntordning of Dinstag nach Crucis 1541 = **20 September 1541**. Establishes centralised mint (Klarekloster, København), Povel Fechtel as mintmaster, 6-denomination structure (Mark, ½M, 4ß, 1ß, Hvid, Penning) with explicit fineness + brutto-weight per denomination, mønterløn schedule, mintmaster + warden oaths. Verbatim primary source: [`docs/research/sources/wilcke_1950_christian_iii_moentreform.md`](sources/wilcke_1950_christian_iii_moentreform.md); manuscript scans: [`docs/research/sources/rigsarkivet_tk_160_diverse_moentsager.md`](sources/rigsarkivet_tk_160_diverse_moentsager.md).
+
+The German-lands timeline retains its existing anchor: **1559** (Augsburger Reichsmüntzordnung) / **1566** (Reichsabschied formal adoption) — start of standardised imperial coinage. CLAUDE.md mission statement updated to reflect the dual-jurisdiction anchor (same commit as this closure).
+
+**Why dual anchors and not single «whichever is earlier»**: the two jurisdictions had structurally independent monetary frameworks until Helstaten 1813. German cities (Lübeck, Hamburg, Schleswig-Holstein as duchy, Bremen-Verden, etc.) followed imperial Reichsthaler / Reichsdukat hierarchy seeded 1559. Denmark followed Daler / Mark Danske hierarchy seeded by Christian III 1541. Schleswig-Holstein has dual jurisdictional status post-1864 (Danish 1813-1864, Prussian 1864-1914) — the location's phase periodisation reflects this lineage.
+
+**Closure deliverables** (all in this commit batch):
+
+  - CLAUDE.md mission statement: «ca. 1559–1914» → dual-anchor explicit.
+  - `scripts/maintenance/build_hede_denmark_seed.py` `--year-from` default: 1559 → 1541.
+  - `data/seed/hede/denmark.yml` `scope_year_from`: 1559 → 1541.
+  - `docs/research/moentordning_1541.md` header marks the dossier as the project's Denmark anchor reference.
+  - `docs/research/christian_iii_danish_coinage_1534_1572.md` header marks the wider dossier as the Denmark anchor period documentation.
+  - `docs/handoff.md` records the decision.
+
+**§BC sub-tasks remain open** (now demoted from §BC to follow-up TODOs in this Done note):
+
+  1. **`christian_iii_dalerfod` Müntzfuß** in `data/shared/fuesse.yml` — canonical metric mf 8.827 / Cölln. Mark 233.856 g / per-Daler 26.494 g fein / fineness 0.906. **NOT YET DONE** — separate normal-priority TODO.
+  2. **`fuss_periods.christian_iii_dalerfod`** in `data/locations/denmark.yml` with phases A1 (1541-1543 København baseline) + A2 (1544-1555 København debased). **NOT YET DONE**.
+  3. **Seed-coin promotion**: c3h3-3A, c3h4, c3h5, c3h7 (Mark, 8 Sk, 4 Sk, Hvid u.år) → phase A1; c3h3-3B → phase A2. **NOT YET DONE**.
+  4. **Flensborg Phase A3/A4**: sub-phase decision (separate Müntzfuß for Lybsk-aligned Flensborg track vs same Fuß with mint differentiation). Per §7.1 of moentordning_1541.md the 1547 Flensborg dual-zone is the genealogical seed of later `18_5_thaler` / `34_marck` family vs `9_thaler` family — likely deserves its own Müntzfuß. **NOT YET DONE — open design question for next session**.
+  5. **References** in `denmark-references.yml` for Wilcke 1950, Galster 1965, Paus 1752, Rigsarkivet folio — **NOT YET DONE**.
+
+These five operational tasks should be tracked as new normal-priority TODOs going forward.
+
+---
 
 ### AG. Long-form refs page-hint compliance — last paginated survivor dropped  *(opened 2026-05-13, closed 2026-05-15)*
 

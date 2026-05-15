@@ -10,7 +10,16 @@
 
 ## Mission
 
-Build mathematically-verified, historically accurate reference artifacts documenting coinage standards (*Münzfüße*) of North German cities and territories, ca. 1559–1914 (lower bound = Augsburger Reichsmünzordnung 1559, formal start of standardised imperial coinage; upper bound = end of precious-metal anchor era). Output: static HTML pages hosted on GitHub Pages, one per location, in three languages (DE/EN/UK), with a landing page linking them.
+Build mathematically-verified, historically accurate reference artifacts documenting coinage standards (*Münzfüße*) of North German cities and territories + the Danish-Norwegian realm. Output: static HTML pages hosted on GitHub Pages, one per location, in three languages (DE/EN/UK), with a landing page linking them.
+
+**Mission temporal scope — dual anchor by jurisdiction:**
+
+- **German lands** (Lübeck, Hamburg, Schleswig-Holstein-as-duchies, Bremen-Verden, Oldenburg, Brunswick-Lüneburg, Lauenburg, Hesse-Kassel, Osnabrück, Holstein-Schauenburg, Lübeck-Bishopric): lower bound **1559** (Augsburger Reichsmünzordnung) / **1566** (Reichsabschied formal adoption) — start of standardised imperial coinage.
+- **Denmark-Norway realm**: lower bound **1541** — both Christian III ordinances together: the spring **«Om Maal og Vægt» Forordning of 20 March 1541** (establishing Cølnsk Vægt as realm weight unit) AND the autumn **Møntordning of 20 September 1541** (formal denomination + mintmaster + Klarekloster mint, Marken-fin 8.827). Full dossier at `docs/research/moentordning_1541.md`; primary-source captures at `docs/research/sources/wilcke_1950_christian_iii_moentreform.md` + `paus_christian_iii_1541_maal_og_vaegt.md` + `rigsarkivet_tk_160_diverse_moentsager.md`.
+
+Upper bound (both jurisdictions): **1914** — end of precious-metal anchor era.
+
+Schleswig-Holstein has dual jurisdictional status post-1864: as ducal jurisdiction under Danish-Helstaten 1813-1864 it follows the Danish track (Rigsbankdaler / Speciedaler); as Prussian province 1864-1914 it follows the German track. The location's phase periodisation reflects this dual lineage.
 
 **Primary researcher:** Serhii (Ukrainian, expert-level numismatist). Communication in Ukrainian (ти-form). Expects direct, precise answers — no hedging, no self-abasement. Catches analytical errors; challenges conceptual weaknesses; trust is earned through accuracy.
 

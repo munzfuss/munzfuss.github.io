@@ -17,12 +17,38 @@
 
 ## Current focus
 
-**E1 NO-KM dedup audit on `data/locations/denmark.yml`** — methodology
-is per-case, with explicit «за / проти merge» analysis, source links
-provided up-front so the user can verify visually before any merge.
-Cases 1-9 of 46 done (case 9 = c4h79A/B/C/D folded into KM-16.1 + KM-16.2
-as two parallel merges, multi-source `weight_rough_g`/`fineness`
-preserved per §9a). Next: **case 10 — c4h84 [A B]**.
+**Mission temporal scope — dual anchor decision finalised 2026-05-15.**
+Denmark-Norway track lower bound = **1541** (both Christian III
+ordinances: spring 20 March «Om Maal og Vægt» + autumn 20 September
+Møntordning); German-lands track lower bound = **1559 (1566)**
+(Augsburger Reichsmüntzordnung). TODO §BC closed; CLAUDE.md mission
+statement updated; `--year-from` default in seed builder updated
+1559→1541. Next operational fronts (new normal-priority TODOs):
+
+1. Define `christian_iii_dalerfod` Müntzfuß in `data/shared/fuesse.yml`
+   (mf 8.827, 26.494 g fein per Daler, fineness 0.906, sourced to
+   Wilcke 1950 + Rigsarkivet T.K. nr. 160 manuscript).
+2. Add `fuss_periods.christian_iii_dalerfod` to `data/locations/denmark.yml`
+   with phases A1 (1541-1543 København baseline) + A2 (1544-1555
+   København debased).
+3. Promote seed-coins c3h3-3A, c3h4, c3h5, c3h7 → phase A1;
+   c3h3-3B → phase A2.
+4. **Open design question**: Flensborg post-1544 track (Phase A3/A4)
+   — separate `christian_iii_flensborg_fod` Müntzfuß for Lybsk-aligned
+   sub-Mark + 14¼ Lod Daler, OR same Fuß with mint differentiation.
+   Per `moentordning_1541.md` §7.1 the 1547 Flensborg dual-zone is
+   genealogical seed of later `18_5_thaler` / `34_marck` family vs
+   `9_thaler` family — likely deserves its own Fuß.
+5. New refs in `denmark-references.yml`: Wilcke 1950, Galster 1965,
+   Paus 1752, Rigsarkivet T.K. nr. 160 with verbatim quotes per §5a.
+
+**E1 NO-KM dedup audit on `data/locations/denmark.yml`** (parallel
+front, separate from §BC follow-up) — methodology is per-case, with
+explicit «за / проти merge» analysis, source links provided up-front
+so the user can verify visually before any merge. Cases 1-9 of 46
+done (case 9 = c4h79A/B/C/D folded into KM-16.1 + KM-16.2 as two
+parallel merges, multi-source `weight_rough_g`/`fineness` preserved
+per §9a). Next: **case 10 — c4h84 [A B]**.
 
 The list of 46 cases is generated dynamically by the audit script
 (see «Helper queries» section below); the per-case order isn't fixed

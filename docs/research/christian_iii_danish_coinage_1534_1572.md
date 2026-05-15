@@ -7,13 +7,19 @@
 > reign (1559–1572) up to the symbolic 1572 «Elfsborgs løsen»
 > Speciedaler cutover.
 >
-> **No project-classification recommendations** — this document is
-> purely the historical-numismatic substrate. Conclusions about Fuß
-> categories, scope anchors, seed promotion, or naming conventions
-> are deliberately omitted; they belong to future TODO entries when
-> the question is reopened.
+> **Project-scope anchor** (decided 2026-05-15, per TODO §BC closure):
+> the **1541 Møntordning is the Denmark-Norway-track lower bound of
+> the project's mission temporal scope** (CLAUDE.md «Mission temporal
+> scope — dual anchor by jurisdiction»). The Denmark anchor is the
+> complete 1541 reform — both Christian III ordinances together:
+> spring «Om Maal og Vægt» Forordning of 20 March 1541 +
+> autumn Møntordning of 20 September 1541. This dossier covers
+> the wider context (1534-1572 silver) — for the focused single-
+> ordinance analytical dossier see
+> [`moentordning_1541.md`](moentordning_1541.md). The German-lands
+> track uses a separate 1559/1566 Augsburger anchor.
 >
-> **Companion**: `docs/research/danish_royal_gold_1560_1648.md`
+> **Companion**: [`docs/research/danish_royal_gold_1560_1648.md`](danish_royal_gold_1560_1648.md)
 > covers Danish royal gold 1560–1648 (overlaps for 1560–1572 gold
 > data; this doc adds silver + Christian III pre-1559 context).
 

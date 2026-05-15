@@ -811,13 +811,15 @@ def main() -> int:
         ),
     )
     ap.add_argument(
-        "--year-from", type=int, default=1559,
+        "--year-from", type=int, default=1541,
         help=(
-            "Drop entries whose year_first is before this year. Default 1559 "
-            "— the Augsburger Reichsmünzordnung anchor, project lower bound "
-            "per CLAUDE.md mission statement. Frederik II's 1559-1588 reign "
-            "covers the early Bremerholm gold tradition (Hede f2h*) that "
-            "informs the gold-Klippen lineage Christian IV extended 1591+."
+            "Drop entries whose year_first is before this year. Default 1541 "
+            "— Christian III's Møntordning anchor (both 1541 acts: spring «Om "
+            "Maal og Vægt» 20 March establishing Cølnsk Vægt, autumn Møntordning "
+            "20 September establishing the denomination structure + Klarekloster "
+            "mint + Povel Fechtel). Project lower bound for Denmark-Norway per "
+            "CLAUDE.md mission statement (German-lands track uses 1559 Augsburger "
+            "Reichsmüntzordnung anchor instead — dual-jurisdiction anchor model)."
         ),
     )
     ap.add_argument(
