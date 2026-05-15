@@ -1954,6 +1954,94 @@ What MUST NOT appear in these surfaces:
 
 ---
 
+### BD. 🟡 Danish-jurisdiction Müntzfuß names — switch German -Fuß to Danish -fod where authoritative sources do  *(opened 2026-05-15)* *(est: large)* *(type: research + refactor)*
+
+**Surfaced.** User direction 2026-05-15 after Denmark-page summary cleanup. While arguing that «-Fuß is pan-German and accepted in Danish numismatics», the assertion was challenged and verified against the two main Danish-language authorities. The result inverted the assumption:
+
+| Source | `-fod` (Danish) compounds | `-Fuß` / `-fuss` |
+|---|---|---|
+| **Wilcke 1950** «Renæssancens Mønt» | 27 (Møntfod, Sølvmøntfod, Guldmøntfod, Markmøntfod, Rigsmøntfod, Dobbeltmøntfod, **Dalerfod**, …) | **0** |
+| **Galster on danskmoent.dk** | 7 (kronefoden, kurantmøntfoden, **9¼ speciemøntfod**, guldmøntfod, dobbeltmøntfod, papirmøntfod, …) | **0** |
+
+The form «Dalerfod» in Wilcke is decisive — he uses it for the imperial 1559/1566 Reichsthaler standard («en Dalerfod 8 Stkr. paa 1 M 14 Lod 4 Gren fint Sølv af Vægt 29,232 gr.»), so the eponymous «9-Thaler-Fuß» in our schema has a direct period-Danish form *Dalerfod* (or *9-Dalersmøntfod* / *9-speciemøntfod* per Galster).
+
+**Inventory of mismatched names on Denmark page** (and partially Schleswig-Holstein):
+
+| Current schema ID + name | Danish authoritative form |
+|---|---|
+| `reichsdukatenfuss` / Reichsdukatenfuß | Rigsdukatfod (proposed) — Wilcke uses bare «Dukat»; no compound coined in Galster |
+| `pistolenfuss` / Pistolenfuß | Pistolfod (proposed; not directly attested in Wilcke/Galster either) |
+| `9_thaler` / 9-Thaler-Fuß | Dalerfod (Wilcke verbatim) / 9-Dalersmøntfod / 9-speciemøntfod (Galster idiom) |
+| `9_25_thaler` / 9¼-Thaler-Fuß | **9¼-speciemøntfod** (Galster verbatim) |
+| `11_333_thaler` / 11⅓-Thaler-Fuß | 11⅓-Dalersmøntfod (extrapolated from Galster pattern) |
+| `18_5_thaler` / 18½-Thaler-Fuß | **Rigsbankdalerfod** (Wilcke + Galster both attest the formal name) |
+| `kurantmoentfod` / Kurantmøntfod | ✓ already Danish |
+| `kronefod` / Kronefod | ✓ already Danish |
+| `guldkrone` / Guldkrone | ✓ already Danish |
+| `kronemont*` / Kronemønt | ✓ already Danish (-mønt suffix) |
+| `courantdukatenfuss` / Courantdukatenfuß | Kurantdukatfod (proposed; not directly attested) |
+
+**Design decision needed before action.** The Müntzfuß is a *global mathematical construct* per CLAUDE.md §7 — `reichsdukatenfuss` is the same standard whether it appears on Lübeck (German jurisdiction, name `Reichsdukatenfuß` is canonical) or on Denmark (Danish jurisdiction, name `Rigsdukatfod` is the period form). Two architectures:
+
+- **(a) Per-jurisdiction display name override.** Keep `reichsdukatenfuss` as the global ID + German canonical name; add an optional `display_name_da` (or per-jurisdiction `display_names: {danish_realm: "Rigsdukatfod"}`) on the Fuß definition; render the Danish form on Denmark + the Danish portions of Schleswig-Holstein. German pages keep «Reichsdukatenfuß».
+- **(b) Global rename + per-location inline alternative.** Pick one canonical name globally (likely keep German for Reichsdukatenfuß since the standard is named after the Reichsmünzordnung) and just sprinkle the Danish synonym into the deck / hintergrund prose on Denmark («…umfaßt das Korpus der Møntfødder — Rigsdukatfod (= Reichsdukatenfuß), …»). Lower-cost, lower-rigour.
+
+User verdict requested on (a) vs (b) before any data edit. Once chosen:
+
+1. Confirm proposed Danish names against a third source (Sieg-Møntkatalog if accessible; Lange volumes are German so not helpful here).
+2. For (a): extend `data/shared/fuesse.yml` schema with `display_names` map; update `scripts/build.py` renderer to consult the location's `km_register` / realm to pick the right form; sweep all Danish-jurisdiction surfaces (page deck, fuss section titles, bar titles, hintergrund prose).
+3. For (b): inline-prose-only sweep across `data/locations/denmark.yml` + Danish phases of `data/locations/schleswig_holstein.yml`.
+4. Cross-check against §BB: Fuß descriptions are role-3 framing prose, so the rename interacts with that rewrite. Coordinate so one Fuß isn't framed-rewritten under §BB and then name-rewritten under §BD on the next session.
+
+**Out of scope.** Don't touch schema IDs (`reichsdukatenfuss` etc.) — those are internal identifiers, not user-facing. Renaming IDs would cascade across every coin entry's `fuss:` reference field and is not worth the churn.
+
+**Cross-references.**
+
+- **§BB** (Fuß descriptions framing) — both touch the same prose surfaces; coordinate or sequence.
+- **§BE** (Danish translation for DK + SH pages) — natural co-traveller; if we add a `da:` language, the Danish Fuß names are the obvious lexical anchor for the rest of the translation pass.
+- **CLAUDE.md §i18n** «Müntzfuß standard names NEVER translate» — current rule has an implicit assumption that the period-correct name is always German. §BD challenges that assumption for Danish-jurisdiction surfaces; the policy may need a paragraph carving out the jurisdiction-aware reading.
+
+---
+
+### BE. 🟡 Add Danish (da) translation to Denmark + Schleswig-Holstein pages  *(opened 2026-05-15)* *(est: many sessions)* *(type: feature + translation)*
+
+**Surfaced.** User direction 2026-05-15. The Denmark page covers the dansk-norske realm; the Schleswig-Holstein page covers a duchy that sat under the Danish crown 1460–1864 and is heavily Danish in primary sources (Wilcke, Galster, Hede, Sieg, danskmoent.dk). Yet the rendered artefact only ships DE / EN / UK. Adding **Danish (`da`)** for these two pages aligns the language coverage with the source language of the historical record and serves the natural reader audience for Danish-Norwegian numismatic content.
+
+**Scope.** Two location files: `data/locations/denmark.yml` + `data/locations/schleswig_holstein.yml`. Plus all sidecar / shared surfaces that surface on those pages:
+
+- Per-location prose: `summary.da`, every phase's `description.da`, every `fuss_periods.<f>.hintergrund.da`, every coin's `note.da` + `verification_note.da`.
+- References: `denmark-references.yml` + `schleswig_holstein-references.yml` — add `da:` content for every `ref{N}`.
+- Shared issuing entities used by these pages (`data/i18n/issuing_entities.yml`): add `da:` for any entity surfacing on DK / SH.
+- UI strings: `data/i18n/ui.yml` — extend with a `da:` column for column headers, button captions, section titles. (Possibly scope the UI-language only to DK + SH pages — landing + German-jurisdiction pages stay 3-lang.)
+- Templates: `templates/location.html.j2` (+ landing if a Danish chip surfaces there) — add `da` to the language-switcher chip set, conditional on page.
+- Build script: `scripts/build.py` — extend the per-location language loop to include `da` when the location opts in via a new `languages: [de, en, uk, da]` field (default `[de, en, uk]`).
+
+**Estimated volume.** Denmark page = ~1125 coins (each with note + many with verification_note) + ~12 Füße × phase descriptions + summary + references (~45 refs). Schleswig-Holstein page = ~similar order of magnitude. Roughly **2000–3000 translatable text blocks** total. At ~5-10 surfaces per session for careful translation, this is many sessions of work.
+
+**Design decisions needed.**
+
+1. **Translator's hand.** Claude does the bulk; user reviews. Per CLAUDE.md «Never invent translations for technical German numismatic terms without confirming with the user» — Danish numismatic vocabulary is closer to source for the Danish-jurisdiction content (most of these terms came *from* Danish), so the risk is lower than for UK. Still, sample-review the first phase / first 10 coins before committing the pass.
+2. **Compositionality with §BD.** Danish-form Müntzfuß names (`Rigsdukatfod`, `9¼-speciemøntfod`, etc. — see §BD) are the natural anchor lexicon for the Danish translation. Sequence §BD before §BE so the translation lands with consistent terminology, or accept some churn if they run in parallel.
+3. **Schleswig-Holstein dual-jurisdiction nuance.** SH was under Danish crown 1460–1864 + Prussian province 1864–1914. The Danish translation is unambiguous for the Danish-track Füße (Speciedaler, Kurantmøntfod, Rigsbankdalerfod), but for the Prussian period (Vereinsmünzfuß, Reichsgoldmünzfuß) the Danish language is no longer the source register — period sources for 1864–1914 SH coinage are German. Decide: do we translate the Prussian-era SH content into Danish too (artificial but consistent), or scope `da:` translation only to the Danish-track phases? Probable answer — translate everything, since the reader switches the whole page at once.
+4. **Per-language UI-string subset.** If `da` is added only to DK + SH, the landing-page chip set needs conditional rendering (3 chips on most pages, 4 on DK + SH). User-facing language switcher UX needs a verdict before implementation.
+
+**Action plan (post-decision).**
+
+1. **Foundation pass** — extend `Location` schema to support per-page `languages: [...]`; extend `data/i18n/ui.yml` with `da:` column (UI chrome); extend `templates/location.html.j2` to render the `da` chip when present.
+2. **Reference sidecar pass** — add `da:` to `denmark-references.yml` + `schleswig_holstein-references.yml` (smaller volume, ~45 + ~40 entries).
+3. **Page-level prose pass** — `summary.da`, fuss `hintergrund.da`, phase `description.da` (medium volume, ~50 surfaces per page).
+4. **Coin-level prose pass** — every coin's `note.da` + `verification_note.da` (largest volume, ~2000 surfaces). Done per-phase / per-fuss in batches; sample-reviewed.
+5. **Shared issuing-entities pass** — extend `data/i18n/issuing_entities.yml` Danish realm + Holstein duchies entities with `da:` labels + tooltips.
+
+**Cross-references.**
+
+- **§BD** (Danish Müntzfuß names) — sequence so the lexicon is settled before the translation pass starts. Otherwise the Danish prose has to be revised mid-stream when the Fuß names change.
+- **CLAUDE.md §i18n** — current policy is DE / EN / UK only. Adding `da` to selected pages needs the policy to acknowledge per-location language sets.
+- **`data/i18n/ui.yml`** — the existing 3-lang UI-string convention may need a structural revision (e.g. nullable `da:` field, or a separate `ui_da.yml` overlay).
+- **Templates** — language-switcher chip implementation determines whether the `da` chip appears on landing / German-jurisdiction pages (probably hidden when the page itself has no Danish content).
+
+---
+
 ## Low priority
 
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
