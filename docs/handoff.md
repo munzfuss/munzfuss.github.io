@@ -39,16 +39,17 @@ unchanged per §BI's explicit scope-restriction.
 - Update `moentordning_1541.md` header annotation: position as
   Christian-III's-third Møntordning in Lovkompleks lineage.
 - Update §BF scope-note: «1541-1566 gap» becomes «1514-1566 gap».
-- Open sibling TODO for c2h*/f1h* Hede catalog extension (Christian II
-  1513-1523 + Frederik I 1523-1533 coverage — empty 1514-1540 sub-
-  window until that import lands).
+- Open sibling TODO for **Galster + Jensen-Skjoldager catalog import**
+  (Christian II 1513-1523 + Frederik I 1523-1533 coverage — empty
+  1514-1540 sub-window until that import lands). NOT a Hede extension
+  — Hede 1957 itself does not catalogue pre-Christian-III rulers.
 
 **§BF Denmark 1541-1566 gap (now «1514-1566 gap»)** sequenced AFTER
 §BI lands. Original §BF four operational sub-tasks remain valid for
 the 1541-1566 portion (christian_iii_dalerfod definition + fuss_periods
 A1/A2 + seed-coin promotion c3h3-3A/3B + c3h4/5/7 + 4 new refs); the
 pre-1541 portion (Christian II 1513-1523 + Frederik I 1523-1533)
-becomes a fifth sub-task pending the c2h*/f1h* Hede import.
+becomes a fifth sub-task pending §AZ (Galster + Jensen-Skjoldager catalog import — new source family, not a Hede extension).
 
 **Open §BF design question — Flensborg post-1544 track (Phase A3/A4)**:
 separate `christian_iii_flensborg_fod` Müntzfuß for Lybsk-aligned

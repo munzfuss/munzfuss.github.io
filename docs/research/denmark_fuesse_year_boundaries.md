@@ -207,11 +207,11 @@ specific Fuß comes up for handling.
 
 **Confidence: start HIGH** (Christian II Lovkompleks 1514 — Wilcke 1950 verbatim primary citation, per §BI anchor decision); **first verified .986 HIGH** (Frederik I 1531 Galster 46); **end HIGH** (last Danish strike documented).
 
-**Note on 1514 vs 1531 distinction**: 1514 is the **legal anchor** (Christian II ordinance sets the 23½K-fineness floor and authorises Goldgulden / Nobler / Rhinsk Gylden mintage). 1531 is the **first verified .986-finhed Goldgulden strike**. Both are Reichsdukatenfuß-class — 1514 establishes the legal framework, 1531 is the first specimen-attested coin at the canonical 67/Mark fein metric. The project's data-window opens at 1514 per §BI; the project's earliest curated coin would be the 1531 Frederik I Goldgulden (subject to the c2h*/f1h* Hede import sibling-TODO; until that lands, the project Hede cache earliest is c3h1 1557).
+**Note on 1514 vs 1531 distinction**: 1514 is the **legal anchor** (Christian II ordinance sets the 23½K-fineness floor and authorises Goldgulden / Nobler / Rhinsk Gylden mintage). 1531 is the **first verified .986-finhed Goldgulden strike**. Both are Reichsdukatenfuß-class — 1514 establishes the legal framework, 1531 is the first specimen-attested coin at the canonical 67/Mark fein metric. The project's data-window opens at 1514 per §BI; the project's earliest curated coin would be the 1531 Frederik I Goldgulden — subject to §AZ Galster + Jensen-Skjoldager catalog import landing. Until §AZ lands, the project's earliest Hede-cached entry is c3h1 1557 (Hede 1957 monograph itself does not cover pre-Christian-III rulers).
 
 ### Pre-1557 verification (added 2026-05-15)
 
-Initial pass (this file's original draft) listed **1557** as the start year, based on the project's Hede cache (no `f1h*` Hede pages currently cached). User pushback: «*чи покривають ті роки наші дані?*» triggered a deeper search that surfaced the earlier Frederik I issue.
+Initial pass (this file's original draft) listed **1557** as the start year, based on the project's Hede cache. User pushback: «*чи покривають ті роки наші дані?*» triggered a deeper search that surfaced the earlier Frederik I 1531 issue catalogued by Galster 46 — outside Hede 1957's own scope (Hede 1957 starts at Christian III; pre-Christian-III rulers are catalogued separately in Galster 1959-1960 + Jensen-Skjoldager 2021, sibling §AZ).
 
 **Pre-1531 evidence (none at Reichsdukatenfuß metric — HIGH confidence):**
 
@@ -260,7 +260,7 @@ Earlier draft listed four candidates; §BI anchor decision (2026-05-16) selects 
 
 - **1514** Christian II Lovkompleks is the **first formal Danish gold-standard ordinance** with Rigsrådets Raad og Samtykke. Establishes the legal framework for the entire Goldgulden / Nobler / Rhinsk Gylden lineage. Independently corroborated by Numista's currency-taxonomy boundary («Penning 825-1513 → Gulden 1513-1572»). Wilcke 1950 p. 183-186 verbatim. **PROJECT ANCHOR.**
 - 1531 — first verified .986 Goldgulden strike (Frederik I, Galster 46). **First specimen-attested Reichsdukatenfuß coin in Denmark.** Sits 17 years inside the 1514 project window.
-- 1557 — first Hede-cached entry (c3h1 Christian III Ungersk Gylden). **Current data-coverage start in our cache**, pending c2h*/f1h* import.
+- 1557 — first Hede-cached entry (c3h1 Christian III Ungersk Gylden). **Current data-coverage start in our cache**, pending §AZ Galster + Jensen-Skjoldager catalog import (Hede 1957 itself doesn't extend earlier).
 - 1559 — imperial codification (Augsburger Reichsmünzordnung). **Imperial framework**, not Danish anchor.
 
 ### Imperial vs Danish-track `year_to` decision
@@ -281,12 +281,15 @@ bar_title needs rewriting to drop the imperial-end reference.
 
 ### Verification gaps (still open)
 
-  - **Frederik I gold catalog import**: our Hede cache has no `f1h*`
-    pages. Galster 46 / Schou 1 / Jensen-Skjoldager T-41/45 attest
-    the 1531 Ungersk Gylden via danskmoent.dk/fr/f1g46.htm. Adding
-    `f1g46` to the project would let the coin enter the curated DK
-    table — separate data-import task, not blocking the
-    `year_from: 1531` decision itself.
+  - **Frederik I + Christian II catalog import** (§AZ): Hede 1957
+    monograph does NOT cover pre-Christian-III rulers, so this is
+    not a Hede-extension task but a new-source-family import from
+    Galster 1959-1960 + Jensen-Skjoldager 2021 (cited inline at
+    danskmoent.dk/fr/f1g*.htm series). Adding these into the project
+    cache (architecture TBD per §AZ) would let Frederik I 1531
+    Goldgulden and Christian II Nobler / Db. Guldreal enter the
+    curated DK table — separate data-import task, not blocking the
+    `year_from: 1514` anchor decision itself.
   - **Mint distinction for the 1531 issue**: Galster does not
     cleanly separate København vs Malmø for Frederik I 1531
     Ungersk Gylden. Jørgen Koch operated Malmø; Anders Bilde

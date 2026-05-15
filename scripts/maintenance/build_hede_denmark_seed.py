@@ -824,9 +824,10 @@ def main() -> int:
             "Denmark-Norway per CLAUDE.md mission statement (German-lands track "
             "uses 1559 Augsburger Reichsmüntzordnung anchor instead — dual-"
             "jurisdiction anchor model). Note: Hede 1957 itself starts at "
-            "Christian III (1534+) and has no c2h*/f1h* coverage — the 1514-"
-            "1540 sub-window will be empty until that catalog extension lands "
-            "as a separate data-import task."
+            "Christian III (1534+) and does NOT catalogue pre-Christian-III "
+            "rulers — the 1514-1540 sub-window will be empty until a "
+            "separate Galster + Jensen-Skjoldager catalog import lands "
+            "(sibling TODO §BJ). NOT a Hede extension."
         ),
     )
     ap.add_argument(
