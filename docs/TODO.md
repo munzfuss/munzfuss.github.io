@@ -175,121 +175,6 @@ Likely answer is (a) — the dual-zone is the seed of an enduring lineage and de
 **Definition of done.** The Denmark page renders a non-empty 1514-1566 section with at least 6 placed coins, a `christian_iii_dalerfod` Fuß card with full metric block + sourced hintergrund, and the dual-track Flensborg phase (if (a)) wired up. The 26+ new c3h seed entries auto-suppress against the curated phase blocks per the `_merge_seeds_into_raw` rule. Pre-1541 sub-window coverage (Christian II 1513-1523 + Frederik I 1523-1533) depends on §AZ Galster + Jensen-Skjoldager catalog import landing first.
 
 ---
-
-### BJ. 🟢 Survey alternative-to-Hede sources for the 1514-1541 sub-window  *(opened 2026-05-16)* *(est: medium)* *(type: research / source-survey)*
-
-**Surfaced.** User direction 2026-05-16 with explicit «найвищий» marker. §BI Denmark-track anchor rescope to 1514 opened a 1514-1540 sub-window that Hede 1957 itself does NOT cover (Hede starts at Christian III, 1534+). §AZ exists as the implementation-side TODO (Galster + Jensen-Skjoldager catalog import) but BEFORE committing to a specific source family we need a **source-survey research pass**: what works exist, which have machine-readable data, what's coverage / quality / cost trade-off for each.
-
-**Scope.** A research-only investigation. NOT a data-import (that's §AZ). NOT an architecture decision (cache directory vs Hede-reuse — that follows from this survey). Output is a written assessment in `docs/research/denmark_pre_1541_source_survey.md` (or a comparable scratchwork file) summarising each candidate source with:
-
-  - Coverage span (which rulers, which years, which metals)
-  - Machine-readable accessibility (web-hosted with parseable HTML / paper-only / image-only / API / etc.)
-  - Reference-numbering scheme + cross-refs to other works
-  - Known gaps or quirks
-  - Acquisition cost (free / paid / requires print copy)
-  - Verbatim sample of one entry (to show data shape)
-
-**Sources to survey** (non-exhaustive — add as discovered):
-
-1. **Galster 1959-1960** paper monograph — separate Danish numismatic catalog cataloguing pre-Christian-III + early-Christian-III issues with Galster-numbers (e.g. Galster UU# 46 = Frederik I 1531 Goldgulden). The danskmoent.dk site hosts a derived series at `/fr/f1g*.htm` (Frederik I confirmed via `f1g46.htm`) + `/c3/c3g*.htm` (likely) for Christian III + plausibly a Christian II series. Has an index page `/f1galst.htm`.
-2. **Jensen-Skjoldager 2021** *Tronraneren* — modern monograph cited extensively by danskmoent.dk Galster pages (e.g. «Jensen/Skjoldager: Tronraneren (2021) s. 218-222»). Print-only? Online preview unclear.
-3. **Schou** (Schou-numbering) — older Danish numismatic catalog cross-referenced by both Galster and Jensen-Skjoldager. Status unclear (paper? hosted?).
-4. **Sieg-Møntkatalog** — modern Danish-Norwegian price catalog widely cross-referenced (e.g. «SIEG# C2-3, C2-4» on Numista). Print-only but possibly with online companion data.
-5. **Numista** (`en.numista.com/catalogue/...`) — already verified during 2026-05-16 Chrome MCP browse: covers Christian II + Frederik I + Christian III with year, brutto, finhed (where attested), diameter, Fr#, Galster UU#, SIEG#, MB#, Hede#, Lange#, N# cross-refs. Sample inventory provided by user in this session (38+ entries 1513-1559). **Highest accessibility but secondary source** — cross-references to Galster/SIEG remain primary attribution.
-6. **ucoin.net** — already used elsewhere in project (per CLAUDE.md §5 source hierarchy «same tier as Numista»). May have parallel coverage of pre-1541 issues. Status pending survey.
-7. **numismaster.com** — user-suggested. Status pending survey (commercial site, may require subscription).
-8. **lex.dk** (Den Store Danske, Nationalmuseet) — encyclopaedic; useful for type-context but limited per-coin data. Already established as a source.
-9. **Nationalmuseet i København online catalog** — Many Numista photos credit «Nationalmuseet i København (CC BY-SA 4.0)» suggesting an accessible museum catalog.
-10. **Münzkabinett — Staatliche Museen zu Berlin** — IKMK Berlin, already in our source list. Likely has Hans / Christian II / Frederik I specimens with full per-item specs.
-11. **MB#** — Münzkabinett Berlin? Or different work? Cross-referenced on Numista (e.g. «MB# 45», «MB# 10», «MB# 36»). Needs identification.
-12. **Lange#** — Lange (Holstein) cross-references appear (e.g. «Lange# 21-22»). Our project already has Lange in source hierarchy.
-13. **Fr#** — Friedberg «Gold Coins of the World» — already noted (Fr# 4 Hans Goldgulden, Fr# 11 Frederik I 1531). Print-only standard.
-
-**Numista inventory snapshot for the record** (user-provided 2026-05-16; preserves the catalog data that would otherwise be lost between sessions). Currency «Gulden (1513-1572)» with conversion «576 Penning = 288 Blaffert = 144 Hvid = 96 Søsling = 48 Skilling = 3 Mark = 1 Gylden/Gulden • 3.5 Gylden/Gulden = 1 Dukat».
-
-| N# | Issuer | Year | Type | Metal / Composition | Weight | Refs |
-|---|---|---|---|---|---:|---|
-| 264676 | Christian II / Christian III | ND 1513-1559 | Blaffert | Billon .250 | 0.46 g | SIEG# C2-1, MB# 45 |
-| 153125 | Christian II | 1514-1515 | 1 Skilling (Malmo, type 1) | Billon .375 | 2.37 g | SIEG# C2-3, C2-4 |
-| 301237 | Frederik I | 1514-1522 | 2 Schillings (Husum, portrait 1) | Silver .750 | 3.27 g | SIEG# F1-43,1/.2, MB# 10 |
-| 301239 | Frederik I | ND 1514-1522 | 2 Schillings (Husum, portrait 2) | Silver .750 | 3.32 g | SIEG# F1-43,2, MB# 10 |
-| 428876 | Christian II | 1516-1518 | 1 Noble | Gold | 14.53 g | Fr# 6 |
-| 297656 | Christian II | ND 1518-1522 | 18 Penning «Klippingar» | Billon .208 | 2.15 g | SIEG# C2-8 |
-| 108782 | Christian II | 1518-1523 | 1 Sølvgylden (Malmo) | Silver .875 | 23.68 g | SIEG# C2-9, Dav EC I# 8220 |
-| 152267 | Frederik I | 1523-1524 | Lejrskilling / 10 Hvid | Billon .250 | 4.10 g | SIEG# F1-22 |
-| 153173 | Frederik I | ND 1523-1532 | 8 Skilling / Halvmark (Malmo) | Silver .875 | 3.63 g | SIEG# F1-26 |
-| 153257 | Frederik I | 1523-1533 | 2 Schillings (Gottorp) | Billon .484 | 4.06 g | SIEG# F1-43,5, MB# 10 |
-| 301177 | Frederik I | 1524 | 1 Søsling (type 3, date in legend) | Silver | 1.88 g | SIEG# F1-10.4 |
-| 301174 | Frederik I | 1524 | 1 Søsling (type 3, date over shield) | Silver | 1.98 g | SIEG# F1-10.2/.3 |
-| 433743 | Frederik I | 1527 | 1 Goldgulden | Gold | 3.28 g | Fr# 10 |
-| 476713 | Frederik I | 1529 | 1 Mark | Silver .875 | 10.45 g | Galster UU# 53, SIEG# F1-27 |
-| 476705 | Frederik I | 1531 | ½ Sølvgylden | Silver | 14.26 g | Galster UU# 50 |
-| 428864 | Frederik I | 1531 | 1 Goldgulden | Gold .986 | 3.49 g | Fr# 11, Galster UU# 46 |
-| 152639 | Frederik I | 1532 | 8 Skilling / Halvmark (Copenhagen) | Silver .875 | 5.28 g | SIEG# F1-25 |
-| 476708 | Frederik I | 1532 | ¼ Sølvgylden | Silver | 7 g | Galster UU# 52, SIEG# F1-29 |
-| 476697 | Frederik I | 1532 | ½ Sølvgylden (Pillars on obv) | Silver | 14.98 g | Galster UU# 48 |
-| 476698 | Frederik I | 1532 | ½ Sølvgylden (Statues on obv) | Silver | 14.98 g | Galster UU# 48 |
-| 476687 | Frederik I | 1532 | 1 Sølvgylden | Silver | 37.751 g | Galster UU# 47 |
-| 476691 | Frederik I | 1532 | 1½ Sølvgylden | Silver | 45.58 g | Galster UU# 48 |
-| 428544 | Frederik I | 1532 | 1 Noble | Gold .979 | 14.375 g | Fr# 12, Galster UU# 45 |
-| 461448 | Christian III | ND 1534 | 1 Ducat (Gottorp) | Gold .764 | 3.19 g | Fr# 16, Galster UU# 130, SIEG# C3-22 |
-| 153825 | Christian III | 1534-1537 | 2 Schillings (Gottorp) | Billon .473 | 3.54 g | SIEG# C3-21, MB# 36, Lange# 21-22 |
-| 476671 | Christian III | 1535 | 4 Skilling Klipping | Silver | 1.51 g | Galster UU# 94, SIEG# C3-1 |
-| 476674 | Christian III | 1535 | 4 Skilling (Aarhus, heavy) | Billon .3125 | 3.71 g | SIEG# C3-16.1, Galster UU# 95A |
-| 301375 | Christian III | 1535 | 4 Skilling (Aarhus, light) | Billon .250 | 3.06 g | SIEG# C3-16.2, Galster UU# 95B |
-| 474591 | Christian III | 1535 | 4 Skilling (Copenhagen) | Billon .219 | 3.15 g | SIEG# C3-7, Galster UU# 104 |
-| 476659 | Christian III | 1535 | 4 Skilling (Ribe) | Billon .219 | 3.15 g | SIEG# C3-19, Galster UU# 107 |
-| 152059 | Christian III | 1535 | 4 Skilling (Roskilde) | Billon .250 | 3.06 g | SIEG# C3-12, Galster UU# 99 |
-| 476670 | Christian III | 1535 | 8 Skilling Klipping | Silver | 3.32 g | Galster UU# 93, SIEG# C3-2 |
-| 476681 | Christian III | 1535 | 1 Mark (Roskilde) | Billon .406 | 7.19 g | SIEG# C3-13, Galster UU# 98 |
-| 476668 | Christian III | 1535 | 2 Mark Klipping | Billon .437 | 14.38 g | Galster UU# 92A/92B, SIEG# C3-3/C3-4 |
-| 476678 | Christian III | 1535 | 2 Mark | Billon .406 | 14.38 g | SIEG# C3-14, Galster UU# 97 |
-| 84844 | Christian III | 1536 | 1 Skilling (Copenhagen) | Billon .156 | 1.15 g | SIEG# C3-5, Galster UU# 106 |
-| 474604 | Christian III | 1536 | 1 Skilling (Ribe) | Billon .156 | 1.15 g | SIEG# C3-17, Galster UU# 109 |
-| 476676 | Christian III | 1536 | 2 Skilling (Aarhus) | Billon .187 | 1.75 g | SIEG# C3-15, Galster UU# 96 |
-| 152060 | Christian III | 1536 | 2 Skilling (Copenhagen) | Billon .187 | 1.75 g | SIEG# C3-3, Galster UU# 105 |
-| 476662 | Christian III | 1536 | 2 Skilling (Ribe) | Billon .187 | 1.75 g | SIEG# C3-18, Galster UU# 108 |
-| 476684 | Christian III | 1536 | 2 Skilling (Roskilde) | Billon .187 | 1.75 g | SIEG# C3-11, Galster UU# 100 |
-| 474581 | Christian III | 1537 | ½ Joachimstaler | Silver .906 | 14.38 g | SIEG# C3-8, Galster UU# 103 |
-| 474577 | Christian III | 1537 | 1 Joachimstaler | Silver .906 | 28.75 g | SIEG# C3-10, Galster UU# 102 |
-| 474583 | Christian III | 1537 | 1 Joachimstaler | Silver .906 | 36.31 g | SIEG# C3-9, Galster UU# 101 |
-| 474250 | Christian III | 1541 | 4 Skilling | Silver .906 | 2.436 g | SIEG# C3-36.1, Hede# 5A |
-| 474248 | Christian III | 1541 | 8 Skilling | Silver .906 | 4.872 g | SIEG# C3-37.1, Hede# 4A |
-| 474245 | Christian III | 1541 | 1 Mark | Silver .906 | 9.744 g | SIEG# C3-38.1, Hede# 3A |
-| 386681 | Christian III | 1541 | 2 Ducats | Gold | 6.741 g | N# 386681 only |
-
-**Observations from the inventory** (worth flagging early in the survey):
-
-- **SIEG#** appears in nearly every entry — likely the **densest single cross-reference** for pre-Hede coverage.
-- **Galster UU#** appears in most Frederik I (1532+) and Christian III pre-1541 entries — confirmed as the second-densest reference.
-- **MB#** appears only on a few entries — needs identification (Münzkabinett Berlin? Manfred Bahr?).
-- **Hede#** appears starting Christian III 1541 (c3h3, c3h4, c3h5, c3h7, c3h8) — confirms Hede 1957 starts at the 1541 Møntordning issues.
-- **Pre-1541 gold coverage**: Christian II Noble (1516-1518), Frederik I Goldgulden (1527, 1531), Frederik I Noble (1532), Christian III Gottorp Ducat (1534). 1541 has 2 Ducats (N#386681) but no Hede# attached — possibly a Numista-only catalog entry.
-- **Mint diversity in 1535-1536**: Aarhus, Copenhagen, Ribe, Roskilde — Grevens Fejde war-finance mints. Each gets distinct SIEG + Galster UU numbers.
-- **Joachimstaler 1537** — Christian III's pre-1541 daler attempt at three weight tiers (14.38g + 28.75g + 36.31g). Three SIEG + Galster numbers each.
-
-**Action plan.**
-
-1. **Web-survey pass via Chrome MCP** (no API calls) — visit each candidate source's pre-1541 Denmark coverage, document URL patterns + per-coin data shape + cross-reference density.
-2. **Identify «MB#»** reference — likely Münzkabinett Berlin but verify; trace to the publication / catalog this numbering scheme belongs to.
-3. **Identify Christian II Galster series at danskmoent.dk** — survey `/c2g*.htm`, `/chr/c2g*.htm`, or whatever the path pattern is. Numista's Christian II entries cite Galster UU# in some cases (e.g. N#476671 «Galster UU# 94») which suggests Galster does cover Christian II.
-4. **Compare per-source coverage** for the same coin — pick 3 sample coins (e.g. Frederik I 1531 Goldgulden, Christian II 1516-1518 Noble, Christian III 1534 Gottorp Ducat) and document what each source provides for each.
-5. **Write `docs/research/denmark_pre_1541_source_survey.md`** with the comparison + acquisition cost + accessibility recommendation.
-6. **Feed survey conclusions into §AZ** — once we know which source(s) are machine-readable + cover what, §AZ's cache-architecture decision (option a vs option b) follows.
-
-**Out of scope.**
-- **Actual data import** — that's §AZ.
-- **Pre-1514 sources** (Hans, Erik VII) — those are pre-anchor per §BI.
-- **Schleswig-Holstein duchy mints** (Gottorp etc.) — those follow SH-page rules (1559/1566 anchor); SH-specific catalog questions are not part of §BJ.
-
-**Cross-references.**
-
-- **§BI** (anchor decision) — surfaced the 1514-1540 gap §BJ surveys.
-- **§AZ** (implementation TODO for Galster + Jensen-Skjoldager catalog import) — §BJ feeds into §AZ's architecture decision.
-- **§BF** (1514-1566 gap data population) — eventually consumes §AZ's output, which depends on §BJ's survey.
-
-**Definition of done.** `docs/research/denmark_pre_1541_source_survey.md` exists with: (a) per-source coverage assessment for ~5+ candidate sources, (b) sample-coin data-shape comparison across sources, (c) recommendation for which source(s) §AZ should ingest, (d) MB# identification resolved, (e) Christian II Galster URL pattern at danskmoent.dk identified or ruled out, (f) Numista inventory snapshot preserved for future-session reference.
-
 ## High priority
 
 > **Awaiting your verdict before any action**:
@@ -2259,6 +2144,33 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
+
+### BJ. Survey alternative-to-Hede sources for the 1514-1541 sub-window  *(opened 2026-05-16, closed 2026-05-16)*
+
+**Output**: `docs/research/denmark_pre_1541_source_survey.md` (commit `ce17488`). Comprehensive survey of 14 sources covering Denmark + Norway + Schleswig-Holstein 1514-1541 coinage. All six §BJ Definition-of-done criteria satisfied.
+
+**Three-tier harvest plan for §AZ (the implementation TODO)**:
+
+  - **Tier 1 — local-cache enrichment (zero web cost)**: Bruun parsed lots (38 pre-1541 specimens already in `scripts/cache/bruun/lots/part{1-4}.json` with full Sieg/Schou/Galster/Fr/Lange/Dav cross-refs); Wilcke 1950 ordinance-level master tables (chapters 7-2 + 7-3 + 7-4 already in local TXT cache).
+  - **Tier 2 — danskmoent.dk Galster harvest**: confirmed URL patterns `c2galst.htm` (Christian II index, HTTP 200) + `f1galst.htm` (Frederik I index, HTTP 200) + per-coin pages `chr/c2g<N>.htm`, `fr/f1g<N>.htm`, `norge/n<r>g<N>.htm`. Per-coin data shape uniform (Bruttovægt + Finhed + Finvægt + cross-refs + Litteratur). `c3galst.htm` does NOT exist (HTTP 404) — Christian III pre-1541 needs per-coin enumeration via `chr/c3g<N>.htm`. New cache directory `scripts/cache/danskmoent/galster/` recommended. ~50-80 pages estimated.
+  - **Tier 3 — Numista Chrome MCP enrichment (LAST per user direction)**: ~50 pre-1541 entries; cross-validates Tier 1+2; no API calls.
+
+**Cross-reference key resolved**:
+
+  - **MB#** = Swedish-specific (Tingström / Stiernstedt), **NOT Münzkabinett Berlin** — appears only on Swedish Riksdaler 1534 lot in entire Bruun corpus.
+  - **Sieg#** = densest single cross-ref (37/38 pre-1541 Bruun lots).
+  - **Schou 1926** = Schou's «Beskrivelse af danske og norske mønter 1448-1814 og danske mønter 1815-1923» — predecessor to Hede, comprehensive Danish + Norwegian coverage. Bio at `https://www.danskmoent.dk/schou.htm`.
+  - **Sømod** = third Danish cross-ref spine (column on `c2galst.htm`).
+  - **Schive 1865** = primary Norwegian reference (Schive XV.7-9, XVI.1, etc.).
+  - **Lange 1908-12** = primary Schleswig-Holstein reference.
+  - **Jensen-Skjoldager «Tronraneren» 2021** = primary Frederik I die-variant authority.
+  - **Hede#** at pre-1541: only `c3h3-3A` (Mark 1541, Bruun-4282) onwards — Hede starts at 1541 Møntordning.
+
+**Two background agents stalled (600s watchdog) but contributed key clues before stalling**: `c2njj.htm` (Christian II historical article on danskmoent.dk) discovered; Schou 1926 Internet Archive availability confirmed by one agent (specific Archive.org URL needs follow-up).
+
+**Sibling TODO ready**: §AZ now has concrete architecture (Tier 1-3) and is unblocked for implementation. §BF pre-1541 sub-window depends on §AZ.
+
+---
 
 ### BI. Denmark-track anchor rescope 1541 → 1514 — Christian II Lovkompleks  *(opened 2026-05-15, closed 2026-05-16)*
 
