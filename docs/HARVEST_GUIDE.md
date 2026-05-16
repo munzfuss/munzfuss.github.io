@@ -38,7 +38,7 @@ For per-coin coverage of a new scope (location × period):
 | 1 | Wilcke 1950 (`scripts/cache/wilcke/.../pages/wilcke_*.txt`) | local | ordinance specs (no per-coin) | Master spec tables hand-extract into `fuesse.yml` |
 | 2 | danskmoent.dk Galster | urllib | 79 | Uniform HTML, easy regex parse |
 | 2 | Numista per-coin HTML | urllib + 30s pauses | 56 | NOT the v3 API — distinct route, no quota |
-| 3 | NumisMaster MC_NNNNN | urllib for known IDs; Chrome MCP for search | 3 (sample) | Hub vs leaf IDs; JS-rendered search; pre-Krause «MB#» numbering |
+| 3 | NumisMaster MC_NNNNN | urllib for `/MC_<N>` per-coin pages; **Chrome MCP required for enumeration** (filter state is JS-only — see «Per-source playbook → NumisMaster» for corrected topology) | 3 (sample) + 30 (§BI Phase-1b SH-cluster proof) | Pre-Krause «MB#» numbering; URL/POST keyword filters are server-IGNORED; sidebar checkbox click + SEARCH button submit is the ONLY filter mechanism |
 | ✗ | ucoin.net | Cloudflare-blocked anonymously | (deferred) | §M ucoin harvest tracks ~50-req/session limit |
 
 Total §AZ harvest: **176 entries across 4 active sources**.
@@ -244,40 +244,100 @@ See PB-10 for full diagnosis when `git status` shows `modified: scripts/cache (n
 - Obverse / Reverse: `<h3>Obverse</h3>` block with description + Script + Lettering + Translation
 - King names have whitespace padding + parenthesised native form: «Frederick I                    (Frederik I)» — collapse whitespace + strip parens
 
-### NumisMaster MC_NNNNN (added 2026-05-16)
+### NumisMaster MC_NNNNN (added 2026-05-16, revised 2026-05-16 Phase-1b)
 
-**Scope**: KM-based commercial catalog. Pre-1604 sparse, but Schleswig-Holstein-duchy uses pre-Krause «MB#» (Madai-Bach) numbering.
+**Scope**: KM-based commercial catalog (Librios-hosted, formerly Krause Standard Catalog of World Coins). Pre-1604 sparse, but Schleswig-Holstein-duchy uses pre-Krause «MB#» (Madai-Bach) numbering.
 
-**Result**: 3 entries (initial sample), full sub-territory walk deferred.
+**Result so far**:
+- §AZ pre-1541 sample: 3 cached `MC_<N>.html` entries
+- §BI Phase-1b proof-of-concept (2026-05-16): 30 MC_IDs + 101 KM#/denom/year-inventory for SH-cluster (HG-Rendsborg + GLÜCKSTADT accumulated filter); see `scripts/cache/numismaster/mc_index.json` + `_walks/leaf_sh_cluster_p*.txt`
 
-- Scripts: `scripts/parse_numismaster_pre1541.py`, `scripts/maintenance/build_numismaster_pre1541_seed.py` (no fetcher — pages added on demand)
-- Cache: `scripts/cache/numismaster/denmark_pre_1541/MC_<N>.html` + `.json`
+- Scripts: `scripts/parse_numismaster_pre1541.py`, `scripts/maintenance/build_numismaster_pre1541_seed.py` (per-coin parse + seed; no fetcher yet — to be added during full Phase-1b/2 closure)
+- Cache: `scripts/cache/numismaster/denmark_pre_1541/MC_<N>.html` + `.json` (legacy §AZ subdir; new sub-scopes per `docs/research/numismaster_dk_sh_1514_1914_harvest_surface.md` §7)
+- Discovery artifacts: `scripts/cache/numismaster/_walks/` (raw page-text dumps per Chrome-MCP-walked search-result page) + `mc_index.json` (consolidated MC_ID inventory per filter)
 
-**URL patterns** (DO NOT confuse hub vs leaf IDs):
-- **Per-coin page**: `https://numismaster.com/MC_<N>` — PUBLIC, full data (only price columns are subscription-gated)
-- **Search results**: `https://numismaster.com/?id=-<facet_id>&advancedsearch=true&pageno=N` — JS-rendered, requires Chrome MCP for MC_ link extraction
+#### Topology (CORRECTED post-§BI Phase-1a)
 
-**Catalog hierarchy**:
-- **Hub IDs** (geographic intro pages, NOT coin lists):
-  - `-1005793` = DENMARK
-  - `-1006970` = NORWAY
-  - `-1005794` = GLÜCKSTADT
-- **Leaf IDs** (coin search results):
-  - `-10012282` = HOLSTEIN-GOTTORP-RENDSBORG (search results visible)
-  - 600+ unique sub-territory IDs discovered under Denmark hub
-- Distinguishing: leaf-ID page has MC_NNNNN coin entries via Chrome MCP `find`; hub-ID page has «century intro», maps, geographic links
+**Three distinct URL roles** — confusion in the original §AZ playbook led to weeks of wrong assumptions; record the corrected mental model:
 
-**Per-coin data shape**:
-- Country / Catalog # (KM# or MB# Madai-Bach pre-Krause) / Political period / Coinage entity / Denomination / Date / Ruler / Mint
+1. **Geographic hub URLs** — `/?id=-<facet_id>` for `<facet_id>` like `-1005793` DK, `-1005794` GLÜCKSTADT, `-1005795` HOLSTEIN-GOTTORP-RENDSBORG, `-1006970` NORWAY, etc.
+   - Renders: a full-page **country selector** (alphabetic, ~742 countries listed) + a heading naming the chosen country + **decorative «N-th Pattern: A»** rows (16th-21st Pattern) + occasional «Intro NN: Denmark XX Century» link to an article page (`?id=NNNNNNN` positive integer)
+   - **«A»-letter rows are visually-styled placeholders, NOT links.** Click test 2026-05-16 confirmed inert (no JS handler, no URL change).
+   - **NO coin list.** This page is decoration; it cannot enumerate coins by itself.
+   - Sub-territory cascading: some countries (DENMARK) show indented sub-territory links (GLÜCKSTADT, HG-RENDSBORG) but these only lead to that sub-territory's *own* decorative hub.
+
+2. **Global coins-search facet** — `/?id=-10012282` OR `/coins` (these are aliases). This is the ONE coin-search interface site-wide.
+   - First load: shows promotional content + Featured dealers + 18 «featured coins» (random-rotation, NOT a search result)
+   - Has a **keyword textbox** and a left-sidebar **«Refine by» panel** with two checkbox groups: **Country** + **Composition**
+   - Initial country list shows only ~5 entries (alphabetical: AACHEN, AALEN, AARGAU, ABANO TERME, ABKHAZIA) + **`+ SHOW MORE`** button
+   - One click of «Show more» expands to the **FULL ~742-country list at once** (not paginated by 5 as appears) — the button toggles to «Show less». All checkboxes become DOM-accessible.
+   - Each country checkbox has DOM-name `N<facet_id>//` (matching the hub facet ID without the «-» sign). E.g. `N1005795//` = HOLSTEIN-GOTTORP-RENDSBORG (matches hub `-1005795`).
+   - **Clicking a country checkbox triggers two visible effects**: (a) the country list collapses back to first 5 items, (b) a **yellow `SEARCH` button appears at the bottom of the sidebar** + a `Reset search` link beside it.
+   - **`SEARCH` button MUST be clicked** for the filter to apply. The checkbox click alone doesn't filter the page.
+
+3. **Search-results page** — `/?id=-10012282&advancedsearch=true&pageno=N` (post-SEARCH-click). The `&advancedsearch=true` flag + `&pageno=N` reveal filtered results.
+   - URL after SEARCH click ALSO carries `&searchid=<NN>` — the session-bound search ID. The pagination URL form is `?advancedsearch=true&id=-10012282&searchid=<NN>&pageno=<P>` (server returns a "Next" link in this shape).
+   - Filter state lives in the SERVER-side session associated with the cookie; it's NOT encoded in the URL. Two consequences:
+     1. Direct urllib GET to `?id=-10012282&advancedsearch=true&pageno=N` without the matching session cookie returns the un-filtered 18-featured-coins page (the same random rotation).
+     2. Across paginations within a Chrome MCP session, navigation by `&pageno=N` works fine (session-cookie keeps filter); but the `&searchid=NN` value may change on every page navigation (search-id is regenerated; pagination still works because the cookie holds the live filter).
+
+#### What does NOT work (failed probes — DO NOT retry)
+
+- **URL keyword/searchstr/country/q params** (`?id=-10012282&keyword=schleswig`, `?id=-10012282&country=denmark`, etc.) — server returns HTTP 200 with the **rotating 18-featured-coin sample**, regardless of param. The param is accepted into the action URL but the filter is not applied server-side.
+- **ASP.NET form POST-back** with `__VIEWSTATE` + `__VIEWSTATEGENERATOR` + session-cookie + `ROW0LIBRIOS2SEARCHFIELD[Full text]=schleswig` — also returns the 18-featured-coin sample. Verified by fetching one MC_ID from the response: country = KHIVA (Central Asian khanate, not SH). The form-POST mechanism alone doesn't carry the filter — the JS-driven sidebar AJAX is the only filter mechanism.
+- **`/sitemap.xml`** — returns the 404 SPA shell HTML (182 KB), not an XML sitemap.
+- **«A» century-pattern links on geographic-hub pages** — visually-styled placeholders with NO JS handler. Click is inert.
+
+#### Catalog hierarchy (CORRECTED)
+
+The original §AZ playbook said «`-10012282` = HOLSTEIN-GOTTORP-RENDSBORG (search results visible)». **WRONG.** `-10012282` is the global coins-search facet; the «HG-Rendsborg results» the §AZ author saw came from a session-cookie that already had HG-Rendsborg country-filter active from a prior interactive browse.
+
+The «600+ unique sub-territory IDs discovered under Denmark hub» claim was also misleading — DK hub `-1005793` shows only TWO inline sub-territory links (GLÜCKSTADT + HG-Rendsborg). The country-filter sidebar contains ~742 entries total across all countries; each entry has a facet ID matching its hub ID. There is no hidden 600+ DK-only hierarchy.
+
+#### Per-coin data shape (`/MC_<N>` URL)
+
+- Country / Catalog # (KM# OR MB# Madai-Bach pre-Krause) / Political period / Coinage entity / Denomination / Date / Ruler / Mint
 - Composition / Mass / Fineness / Actual weight (fein) / Melt value
 - Obverse + Reverse descriptions + legend transcriptions (Latin)
 - General note with cross-refs (Sch# Schou, L# Lange, Fr# Friedberg)
 
-**Workflow**:
-1. Chrome MCP navigate to leaf-ID search URL: `/?id=-<facet>&advancedsearch=true&pageno=1`
-2. `find` tool: query for «coin entries with year ranges 1500-1550» → returns MC_NNNNN IDs with year context
-3. For pre-window MC_NNNNN IDs, fetch `https://numismaster.com/MC_<N>` via Python urllib (works fine — no Cloudflare gate on per-coin pages)
-4. Parse + seed
+This is the only NumisMaster URL we directly fetch via Python urllib — it IS public and works without Chrome MCP. The complexity is purely in **enumerating which MC_NNNNN to fetch**, which is the JS-sidebar-filter problem above.
+
+#### Workflow (CORRECTED, full enumeration mechanic)
+
+Chrome MCP is REQUIRED for enumeration (filter state is client-JS, not URL or POST).
+
+```
+Per country filter:
+  1. Navigate to https://numismaster.com/coins
+  2. (If session has stale filters) click Reset search OR re-navigate to /coins
+  3. find "Show more under Country sidebar" → click that button to expand the full ~742-country list
+  4. find "<COUNTRY-NAME> country checkbox" → returns ref for that checkbox (e.g. ref_3106 for HOLSTEIN-GOTTORP-RENDSBORG)
+  5. computer.scroll_to ref → computer.left_click ref → the checkbox flags + list collapses
+  6. find "Search submit button" → returns ref of the yellow Search button at bottom of sidebar
+  7. computer.left_click that ref → page reloads to /?id=-10012282&advancedsearch=true&pageno=1 with filter active
+  8. Verify by inspecting the «Search results for "" <COUNTRY-NAME> ×» header + result count
+  9. Extract MC_NNNNN list:
+     a. get_page_text → captures KM# + denom + year + country_label per card in the rendered text (one card = 4 text lines)
+     b. find "all coin result card links with MC_ hrefs" → returns up to 20 MC_ID hrefs (capped by find tool)
+     c. For remaining cards on page (cards 21-25 of 25-per-page), use scroll_to bottom + a more-specific find query («cards after KM# <N> with MC_ hrefs» using known KM#s from get_page_text), OR read_page with high max_chars after scrolling
+  10. Paginate via direct URL nav: /?advancedsearch=true&id=-10012282&searchid=<keep_using_one_searchid_per_filter>&pageno=2, 3, … (session-cookie preserves filter state across pageno navigations)
+  11. Continue until result count exhausted («Results 101 — 101 of 101 matches»)
+
+After all in-scope country filters walked:
+  12. Consolidate mc_index.json with: filter → entries[{mc_id, km, denom, year_first, year_last, country_label}]
+  13. Phase 4 fetch: for each MC_ID in mc_index, urllib GET /MC_<N>, write raw HTML + .meta.json to scripts/cache/numismaster/<sub_scope>/
+```
+
+**Accumulated-filter trick**: clicking a SECOND country checkbox without resetting first **ADDs** that country to the filter (OR-filter). Useful for sub-scope batches (e.g. SH-cluster = HG + GLÜCKSTADT + SCHLESWIG-HOLSTEIN in one walk, then sort by country_label at parse time). Per-card country_label in the result HTML self-identifies which filter the card matched.
+
+#### Pitfalls
+
+- **`find` tool caps at 20 matches.** A 25-card page needs 2 find calls (first 20 + remainder). The remainder needs a query specific enough to skip the first 20 — e.g. include known last-card's KM# value from get_page_text.
+- **`read_page` is viewport-bound** (~9 cards visible at default zoom). Use `computer.scroll` + re-read to capture cards below the fold.
+- **`searchid=<NN>` changes per page navigation.** Use the Next link's `searchid` value (read via read_page on the Next anchor) for subsequent paginations within the same filter session, OR just rely on the session-cookie binding and use any searchid value that arrives in the URL.
+- **30s pacing** still applies — NumisMaster's tolerance to Chrome-MCP-driven rapid clicks is not benchmarked; conservative pace recommended for the per-coin urllib bulk-fetch phase (Phase 4).
+- **MC_ID anchor lost** when find caps out — the KM# + denom + year captured via get_page_text is durable cache data, but without the MC_ID anchor the urllib /MC_<N> fetch can't run. Make MC_ID extraction the gating step for considering a page «walked».
 
 **Pre-Krause «MB#» numbering**: Madai-Bach catalog covers Schleswig-Holstein-duchy 16th-17th c. coins NOT covered by KM. Both KM and MB appear on NumisMaster pages with the same UI («Catalog #: MB# 33»).
 
