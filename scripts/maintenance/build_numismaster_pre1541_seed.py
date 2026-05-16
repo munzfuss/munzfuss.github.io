@@ -27,6 +27,7 @@ import ruamel.yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import NUMISMASTER_CACHE, PROJECT_ROOT  # noqa: E402
+from lib.seed_merge import merge_seed  # noqa: E402
 
 # §AZ pre-1541 subdir under the canonical NumisMaster cache root.
 # See lib/paths.py for the full layout planned at Phase-1b/2 completion.
@@ -180,6 +181,15 @@ def collect() -> list[dict]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument(
+        "--no-merge",
+        action="store_true",
+        help=(
+            "Skip the curation-preserving merge against the existing on-disk "
+            "seed and overwrite wholesale with fresh output. Destructive — only "
+            "use for verification / dry-run paths."
+        ),
+    )
     args = ap.parse_args()
     entries = collect()
     entries.sort(key=lambda e: (e.get("year_first", 9999), e.get("id", "")))
@@ -187,6 +197,19 @@ def main() -> int:
     if args.dry_run:
         return 0
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+    # Merge fresh-generated entries against existing on-disk seed, preserving
+    # curated decisions (CURATED_FIELDS) + dict deep-merges (catalog) +
+    # verified-wins (measurements) + per-entry holds. See scripts/lib/seed_merge.py.
+    if not args.no_merge:
+        entries, merge_stats = merge_seed(entries, OUT_PATH)
+        print(
+            f"Merge against existing {OUT_PATH.name}: "
+            f"merged_existing={merge_stats['merged_existing']}, "
+            f"added_new={merge_stats['added_new']}, "
+            f"orphan_curated={merge_stats['orphan_curated']}"
+        )
+
     yaml = ruamel.yaml.YAML()
     yaml.preserve_quotes = True
     yaml.width = 200

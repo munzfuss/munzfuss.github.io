@@ -33,6 +33,7 @@ import ruamel.yaml
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 from lib.paths import GALSTER_CACHE  # noqa: E402
+from lib.seed_merge import merge_seed  # noqa: E402
 
 OUT_PATH = PROJECT_ROOT / "data" / "seed" / "galster" / "denmark_pre_1541.yml"
 
@@ -200,6 +201,15 @@ def collect_entries() -> list[dict]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument(
+        "--no-merge",
+        action="store_true",
+        help=(
+            "Skip the curation-preserving merge against the existing on-disk "
+            "seed and overwrite wholesale with fresh output. Destructive — only "
+            "use for verification / dry-run paths."
+        ),
+    )
     args = ap.parse_args()
 
     print(f"Collecting Galster pre-1541 entries from {GALSTER_CACHE}...")
@@ -221,6 +231,19 @@ def main() -> int:
         return 0
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+    # Merge fresh-generated entries against existing on-disk seed, preserving
+    # curated decisions (CURATED_FIELDS) + dict deep-merges (catalog) +
+    # verified-wins (measurements) + per-entry holds. See scripts/lib/seed_merge.py.
+    if not args.no_merge:
+        entries, merge_stats = merge_seed(entries, OUT_PATH)
+        print(
+            f"\nMerge against existing {OUT_PATH.name}: "
+            f"merged_existing={merge_stats['merged_existing']}, "
+            f"added_new={merge_stats['added_new']}, "
+            f"orphan_curated={merge_stats['orphan_curated']}"
+        )
+
     yaml = ruamel.yaml.YAML()
     yaml.preserve_quotes = True
     yaml.width = 200
