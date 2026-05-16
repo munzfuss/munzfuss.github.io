@@ -67,6 +67,19 @@ BRUUN_CACHE: Path = HARVEST_ROOT / "bruun"
 # (Hede 1957 doesn't catalogue Christian II / Frederik I / Christian III
 # pre-1541). URL patterns: chr/c2g<N>.htm, fr/f1g<N>.htm, norge/n<r>g<N>.htm.
 GALSTER_CACHE: Path = HARVEST_ROOT / "danskmoent" / "galster"
+# NumisMaster (Librios) commercial catalogue — added 2026-05-16 per §AZ
+# Tier 3 + Phase 1b full inventory walk. Layout under HARVEST_ROOT/numismaster:
+#   denmark_pre_1541/MC_<N>.html + .json  — legacy §AZ subdir (3 entries)
+#   <sub_scope>/MC_<N>.html + .meta.json  — future Phase 4 urllib fetch output
+#       (sub_scope ∈ {schleswig_holstein, denmark, norway})
+#   mc_index.json                          — consolidated MC_NNNNN inventory
+#                                            per country_filter (Phase 1b output)
+#   _walks/                                — raw Chrome-MCP-walked page-text
+#                                            dumps per filtered search-result
+#                                            page; provenance for mc_index +
+#                                            input for downstream MC_ID
+#                                            extraction not yet anchored
+NUMISMASTER_CACHE: Path = HARVEST_ROOT / "numismaster"
 
 
 def refresh() -> None:
@@ -78,7 +91,7 @@ def refresh() -> None:
     before doing any actual cache I/O so the eager resolution at import-
     time is already correct.
     """
-    global HARVEST_ROOT, HEDE_CACHE, IKMK_CACHE, NUMISTA_CACHE, UCOIN_CACHE, BRUUN_CACHE, GALSTER_CACHE
+    global HARVEST_ROOT, HEDE_CACHE, IKMK_CACHE, NUMISTA_CACHE, UCOIN_CACHE, BRUUN_CACHE, GALSTER_CACHE, NUMISMASTER_CACHE
     HARVEST_ROOT = _resolve_harvest_root()
     HEDE_CACHE = HARVEST_ROOT / "hede"
     IKMK_CACHE = HARVEST_ROOT / "ikmk"
@@ -86,3 +99,4 @@ def refresh() -> None:
     UCOIN_CACHE = HARVEST_ROOT / "ucoin"
     BRUUN_CACHE = HARVEST_ROOT / "bruun"
     GALSTER_CACHE = HARVEST_ROOT / "danskmoent" / "galster"
+    NUMISMASTER_CACHE = HARVEST_ROOT / "numismaster"

@@ -26,7 +26,14 @@ import sys
 from html import unescape
 from pathlib import Path
 
-CACHE_DIR = Path(__file__).resolve().parent / "cache" / "numismaster" / "denmark_pre_1541"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.paths import NUMISMASTER_CACHE  # noqa: E402
+
+# §AZ pre-1541 subdir under the canonical NumisMaster cache root. Future
+# Phase-1b/2 sub-scopes (schleswig_holstein/, denmark/, norway/) live as
+# siblings under NUMISMASTER_CACHE; this parser is the legacy pre-1541
+# entry point that the Phase-5 rename will generalise.
+CACHE_DIR = NUMISMASTER_CACHE / "denmark_pre_1541"
 
 _TAG_RE = re.compile(r"<[^>]+>")
 _WS_RE = re.compile(r"\s+")

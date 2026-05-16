@@ -25,8 +25,12 @@ from pathlib import Path
 
 import ruamel.yaml
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-CACHE_DIR = PROJECT_ROOT / "scripts" / "cache" / "numismaster" / "denmark_pre_1541"
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from lib.paths import NUMISMASTER_CACHE, PROJECT_ROOT  # noqa: E402
+
+# §AZ pre-1541 subdir under the canonical NumisMaster cache root.
+# See lib/paths.py for the full layout planned at Phase-1b/2 completion.
+CACHE_DIR = NUMISMASTER_CACHE / "denmark_pre_1541"
 OUT_PATH = PROJECT_ROOT / "data" / "seed" / "numismaster" / "denmark_pre_1541.yml"
 
 YEAR_FROM = 1514
