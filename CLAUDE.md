@@ -567,6 +567,7 @@ Three tiers under `scripts/` picked by recurrence pattern (active build path / l
 
 - **First clone on a new machine, build doesn't need the submodule, what workflows do need it**: `docs/ARCHITECTURE.md` §«Harvest cache (submodule)».
 - **Committing harvest changes — the submodule-first-then-bump-pointer dance + symptom diagnosis when `git status` shows `modified: scripts/cache (new commits)`**: `docs/PLAYBOOKS.md` PB-10 «Committing harvest cache changes».
+- **Building a NEW harvester (per-source fetcher + parser + seed builder + cache shape)**: `docs/HARVEST_GUIDE.md` — canonical reference capturing the patterns established during §AZ (Bruun + Wilcke + danskmoent.dk Galster + Numista HTML + NumisMaster MC_NNNNN), the tool fallback chain, common pitfalls (Python urllib em-dash UA encoding, Numista API-vs-HTML routes, harness bash sleep restrictions, JS-rendered SPA discovery via Chrome MCP), per-source playbook (URL patterns + data-shape + parser-quality benchmarks), and decision tree for picking the right access strategy. Read this BEFORE adding a new source so the next session doesn't re-discover what's already figured out.
 
 ## Data editing workflow
 

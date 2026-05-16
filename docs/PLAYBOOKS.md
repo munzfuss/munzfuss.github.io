@@ -1115,7 +1115,17 @@ the «atomic harvest commit» from the user's perspective.
 **Related rules.** CLAUDE.md «Harvest cache» pointer; ARCHITECTURE.md
 «Harvest cache (submodule)» section (canonical architectural
 description); CLAUDE.md «Commit cadence + push permission» (governs
-both pushes).
+both pushes); **`docs/HARVEST_GUIDE.md`** is the canonical reference
+for building a new harvester end-to-end (fetcher + parser + seed
+builder + cache shape + decision tree for picking the right access
+strategy). Read HARVEST_GUIDE.md FIRST when adding a new source —
+it captures the patterns established during the §AZ four-source
+pre-1541 harvest (Bruun + Wilcke + danskmoent.dk Galster + Numista
+HTML + NumisMaster MC_NNNNN) so the next session doesn't re-discover
+the URL patterns, the parser-quality benchmarks, the Cloudflare
+rate-limit constants, or the common pitfalls (Python urllib em-dash
+header encoding, Numista API-vs-HTML distinction, harness bash sleep
+restrictions, JS-rendered SPA discovery via Chrome MCP).
 
 ---
 
