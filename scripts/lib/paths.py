@@ -62,6 +62,11 @@ IKMK_CACHE: Path = HARVEST_ROOT / "ikmk"
 NUMISTA_CACHE: Path = HARVEST_ROOT / "numista"
 UCOIN_CACHE: Path = HARVEST_ROOT / "ucoin"
 BRUUN_CACHE: Path = HARVEST_ROOT / "bruun"
+# danskmoent.dk Galster page series — added 2026-05-16 per §AZ Tier 2.
+# Hosts Galster-numbered per-coin pages for pre-Christian-III rulers
+# (Hede 1957 doesn't catalogue Christian II / Frederik I / Christian III
+# pre-1541). URL patterns: chr/c2g<N>.htm, fr/f1g<N>.htm, norge/n<r>g<N>.htm.
+GALSTER_CACHE: Path = HARVEST_ROOT / "danskmoent" / "galster"
 
 
 def refresh() -> None:
@@ -73,10 +78,11 @@ def refresh() -> None:
     before doing any actual cache I/O so the eager resolution at import-
     time is already correct.
     """
-    global HARVEST_ROOT, HEDE_CACHE, IKMK_CACHE, NUMISTA_CACHE, UCOIN_CACHE, BRUUN_CACHE
+    global HARVEST_ROOT, HEDE_CACHE, IKMK_CACHE, NUMISTA_CACHE, UCOIN_CACHE, BRUUN_CACHE, GALSTER_CACHE
     HARVEST_ROOT = _resolve_harvest_root()
     HEDE_CACHE = HARVEST_ROOT / "hede"
     IKMK_CACHE = HARVEST_ROOT / "ikmk"
     NUMISTA_CACHE = HARVEST_ROOT / "numista"
     UCOIN_CACHE = HARVEST_ROOT / "ucoin"
     BRUUN_CACHE = HARVEST_ROOT / "bruun"
+    GALSTER_CACHE = HARVEST_ROOT / "danskmoent" / "galster"
