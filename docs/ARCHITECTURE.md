@@ -333,6 +333,40 @@ The `fuss: seed_unsorted` + `phase: <source>` combination is the **phase-3 marke
 
 Direct typing of coin specs into `data/locations/*.yml` without one of those two provenance trails is forbidden. Audit: `scripts/audit_prose.py` + `scripts/audit_health.py` flag entries lacking source attribution.
 
+### Manual-override preservation (mandatory across ALL phases)
+
+> **Rule.** Manual overrides of individual fields on existing entries are PERMITTED at every phase. When a curator edits a value in a generated file (e.g. corrects a `fineness`, fixes a `year_first`, switches an `issuing_entity`), **the generator MUST preserve that edit across subsequent regenerations**. The script never blindly overwrites curated data.
+
+This invariant applies to ALL phase-transition scripts:
+- **Phase 2 → 3 seed builders** (`scripts/maintenance/build_<src>_<loc>_seed.py`)
+- **Phase 4 batch promotion scripts** (`scripts/oneoff/*.py` that touch `data/locations/*.yml`)
+- **Audit / cleanup scripts** that modify YAML in place (e.g. `scripts/maintenance/thin_intra_subvariant_specimens.py`, `scripts/maintenance/split_multisource_weight_entries.py`)
+
+The reason: curation is expensive (multi-session research, source-verification rounds, peer-reviewed prose). A naive rewrite that obliterates curated values forces re-doing weeks of work — exactly the failure mode this rule guards against.
+
+**Reference implementation: `scripts/maintenance/build_hede_denmark_seed.py`** (4-mechanism merge). Any new seed builder must implement at minimum the first three:
+
+1. **`CURATED_FIELDS`** — field-allowlist whose EXISTING value is ALWAYS preserved when present. Reference set: `{fuss, phase, fraction, issuing_entity, kind, note, mint_verified, verified}`. These encode human classification decisions the parser cannot reconstruct (which Münzfuß, which Phase, which kind=kurant/scheide/tarif/gedenk, etc.). Default placeholder values (`fuss: seed_unsorted` / `phase: <source>`) flow through normally; non-default values are sticky.
+
+2. **`DEEP_MERGE_FIELDS`** — dict-valued fields where existing keys survive AND fresh keys are added. Reference set: `{catalog}`. Lets curation add Bruun / KM / Dav cross-refs on top of parser-derived Hede / Schou / Sieg defaults, without losing either side.
+
+3. **`_VERIFIABLE_FIELDS`** — verified-wins-over-unverified rule per CLAUDE.md §4. Pairs measurement fields with their `*_verified` flags: `{fineness: fineness_verified, weight_rough_g: weight_rough_verified, diameter_mm: diameter_mm_verified, mint: mint_verified}`. When merging, an EXISTING source-attested value (`*_verified: true`) beats a FRESH `(?)`-marked (unverified, parser-inferred) value. The unverified reading must NOT overwrite a curated, source-cited one — guards against parser regressions clobbering hard-won citations.
+
+4. **`_curation_holds: [<field-name>, ...]`** — per-entry escape hatch, optional. Private meta-field on a coin entry listing additional field names whose existing value should be preserved across regen even though they're not in `CURATED_FIELDS`. Use for one-off cases where curation customised a field outside the standard allowlist (e.g. cleaned up a `nominal`, switched to a multi-source `weight_rough_g[]` list shape). Stripped from rendered output; survives across regen because the merge writes it back.
+
+**Orphan handling:** ids present in the existing seed but absent from fresh regen are KEPT verbatim and flagged as «orphan curated» in the run summary. The generator NEVER auto-deletes a curated entry — parser instability could otherwise silently drop shipped data. The curator decides manually whether each orphan stays or goes.
+
+**Wholesale-write builders (existing technical debt):**
+- ✓ `build_hede_denmark_seed.py` — full 4-mechanism merge (reference implementation)
+- ✗ `build_bruun_denmark_seed.py` — wholesale write (acceptable today: no curation has occurred yet; all entries still `fuss: seed_unsorted`)
+- ✗ `build_galster_denmark_seed.py` — same
+- ✗ `build_numismaster_pre1541_seed.py` — same
+- ✗ `build_numista_pre1541_seed.py` — same
+
+**Upgrade trigger:** any of the 4 wholesale-write seeds must be promoted to merge-aware BEFORE the curator starts assigning fuss/phase to entries in it. Failure to upgrade in time = loss of curation on the next regen. The reference implementation in `build_hede_denmark_seed.py` is ~150 lines (the `_merge_one` + `_merge_seed` functions + the four constants); porting to a sibling builder is mostly mechanical.
+
+**For Phase-4 batch promotion scripts** (`scripts/oneoff/*.py`): when modifying existing entries in `data/locations/<loc>.yml`, use ruamel.yaml's round-trip mode (`YAML(typ='rt')`) to preserve comments + key order + ONLY touch the fields the script's intent dictates. Never serialise-and-rewrite the whole entry — that pattern is what destroys manual customisations.
+
 ### Rendering separation
 
 Seed coins land in the location's `seed_unsorted` fuss bucket but a **separate phase per source** keeps them visually distinct in the rendered HTML: ucoin seeds → `phase: A`, Hede seeds → `phase: hede`. The location's `phases.seed_unsorted` list defines one Phase entry per source with its own title (`Bulk-Seed · ucoin` / `Bulk-Seed · Hede 1971 (danskmoent.dk)`) so each pile renders in its own sub-section without intermixing rows.

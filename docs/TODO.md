@@ -552,6 +552,30 @@ weight_rough_g:
 4. Dedup report: for each MC_ID, cross-check existing curated coin entries by KM# / MB# / Schou# / Lange# / Hede# / Sieg# inside the same country-scope. Output `numismaster_dedup_report.json` for user review before seed-promotion (§BF).
 5. Preserve Librios-internal codes (`PL...`, `CG...`) verbatim under `numismaster_political_period_id` / `numismaster_coinage_entity_id` — don't try to decode.
 
+### BL. 🟢 Upgrade 4 wholesale-write seed builders to merge-aware (preserve manual overrides)  *(opened 2026-05-16)* *(est: medium)* *(type: script refactor)*
+
+**Surfaced.** Per `docs/ARCHITECTURE.md` §«Manual-override preservation»: when a curator manually edits a field on an existing seed entry (corrects `fineness`, fixes `year_first`, switches `issuing_entity`, …), the seed-regenerator MUST preserve that edit on subsequent runs. Today only `scripts/maintenance/build_hede_denmark_seed.py` implements the full 4-mechanism merge (`CURATED_FIELDS` + `DEEP_MERGE_FIELDS` + `_VERIFIABLE_FIELDS` + `_curation_holds` per-entry escape hatch).
+
+The 4 sibling builders are **wholesale-write** — re-running them would obliterate any curation in their seed files. This is **acceptable TODAY** because the curator hasn't yet started promoting these entries from `fuss: seed_unsorted` to real Müntzfüße. The **upgrade trigger** is the curator's first manual override on any of these seeds.
+
+| Builder | Seed file | Current state | Risk |
+|---|---|---|:---:|
+| `scripts/maintenance/build_bruun_denmark_seed.py` | `data/seed/bruun/denmark_pre_1541.yml` (76 coins) | wholesale-write | 🟡 acceptable until curation starts |
+| `scripts/maintenance/build_galster_denmark_seed.py` | `data/seed/galster/denmark_pre_1541.yml` (79 coins) | wholesale-write | 🟡 same |
+| `scripts/maintenance/build_numismaster_pre1541_seed.py` | `data/seed/numismaster/denmark_pre_1541.yml` (3 coins, eventually expands per §BK) | wholesale-write | 🟡 same; §BK rename to `build_numismaster_seed.py` is a natural integration point |
+| `scripts/maintenance/build_numista_pre1541_seed.py` | `data/seed/numista/denmark_pre_1541.yml` (56 coins) | wholesale-write | 🟡 same |
+
+**Done criterion.** Each of the 4 builders ports the merge-aware pattern from `build_hede_denmark_seed.py`:
+1. Read existing seed file (if present) via `ruamel.yaml` round-trip.
+2. Apply `_merge_one(existing, fresh)` per coin id: `CURATED_FIELDS` always preserved when existing has non-default value, `DEEP_MERGE_FIELDS.catalog` deep-merged, `_VERIFIABLE_FIELDS` verified-wins rule applied, `_curation_holds` listed fields preserved verbatim.
+3. Orphan ids (in existing but not fresh) kept verbatim, flagged «orphan curated» in run summary.
+4. `--no-merge` flag for legacy wholesale rewrite (dry-run / verification path only).
+5. Validate: run the builder twice in succession, second run should produce zero diff vs first run.
+
+**Per CLAUDE.md** «Manual-override preservation rule» (Architecture overview section): curators may edit individual fields at any phase; phase-transition scripts MUST preserve those edits. The reference implementation pattern is the Hede builder; porting to siblings is ~150 lines of mechanical change per builder.
+
+**Done as a precondition for §BK + future §BF promotion work.** Don't merge §BK (numismaster Phase 5 parse + seed) without §BL on the NumisMaster builder first — otherwise the first curation cycle wipes the work.
+
 ## Normal priority
 
 ### AK. Flip `mint_verified` to true for seed entries whose Hede source explicitly states the mint  *(opened 2026-05-13)*

@@ -510,6 +510,8 @@ Full pipeline (Layer A source → Layer B computed → Layer C categorised → L
 
 Scripts drive every phase transition. **Hand-typing data into a later phase without provenance from the earlier phase is forbidden — this is exactly the §0 «no invention» rule's bypass case.** The cache-backing audit recipe (`docs/ARCHITECTURE.md` §«PHASE_AUDIT») can verify any seed file traces 100% to Phase-1 cache provenance; when adding a new source, run the audit before declaring the seed «done».
 
+**Manual-override preservation rule** (mandatory across all phases). Curators MAY edit individual fields on existing entries (correct a fineness, fix a year_first, switch an issuing_entity, …) at any phase. Phase-transition scripts MUST preserve those edits across regenerations — never blindly overwrite curated data. The reference implementation pattern is `scripts/maintenance/build_hede_denmark_seed.py` with its `CURATED_FIELDS` allowlist + `DEEP_MERGE_FIELDS` dict-merge + `_VERIFIABLE_FIELDS` verified-wins rule + `_curation_holds: [field, …]` per-entry escape hatch. Full mechanic + technical-debt list (4 sibling builders still wholesale-write, acceptable until they receive curation) in `docs/ARCHITECTURE.md` §«Manual-override preservation». A wholesale-write builder MUST be upgraded to merge-aware BEFORE the curator starts assigning real `fuss`/`phase` to its entries — failure = loss of curation on next regen.
+
 `docs/HARVEST_GUIDE.md` covers Phase 1 (harvest) in depth — per-source playbooks, tool fallback chain, JS-SPA browser-state pitfalls. Phases 2-4 live in `docs/ARCHITECTURE.md`.
 
 What a session edits by hand:
