@@ -539,10 +539,60 @@ For the Schleswig-Holstein scope «всі ці герцогства незале
 - **JS sidebar walk** in Chrome MCP — tolerant of `<1s` between actions for the same session (search-results page navigation between paginated URLs). The bottleneck is `get_page_text` + `find` op latency, not server throttling.
 - **Chrome extension disconnect** observed once mid-batch (transient service worker restart). Reconnect happens automatically within ~8s. Retry batch from the failed action.
 
-#### Phase 4 + Phase 5 (deferred — runs from local cache, no NumisMaster traffic)
+#### Phase 4 — urllib bulk fetch (§BJ, 2026-05-16/17)
 
-- **Phase 4 — urllib bulk fetch** of `/MC_<N>.html` for every in-window MC_ID in `mc_index.json`. Writes raw HTML + sibling `.meta.json` (HTTP headers + timestamp). Estimated 15-17 hours overnight background run for ~1900 entries × 30s pace.
-- **Phase 5 — parse + seed**: rename `parse_numismaster_pre1541.py` → `parse_numismaster.py`, generalise to all eras (KM# + MB# + FR# + C# extraction, Krause-volume disambiguation per CLAUDE.md §9 caveat). Emit `data/seed/numismaster/{schleswig_holstein,denmark,norway}.yml`. Dedup against curated `data/locations/*.yml` happens HERE, not at cache-acquisition time.
+Phase 3 (scope filter) + Phase 4 (urllib bulk fetch) live in `scripts/fetch_numismaster.py`:
+
+```bash
+# Phase 3 — generate per-sub-scope mc_to_fetch.json from mc_index.json
+python scripts/fetch_numismaster.py --filter-scope
+
+# Phase 4 — bulk fetch one sub-scope (foreground; ~4.7h for SH at 30s pacing)
+python scripts/fetch_numismaster.py --fetch schleswig_holstein --pacing 30
+
+# Background-friendly invocation:
+PYTHONUNBUFFERED=1 nohup .venv/bin/python scripts/fetch_numismaster.py \
+  --fetch schleswig_holstein --pacing 30 > /tmp/fetch_sh.log 2>&1 &
+```
+
+**URL gotcha** caught 2026-05-16: per-coin pages are served at `https://numismaster.com/MC_<N>` — **NO `.html` suffix** (404 on `MC_<N>.html`). The HTML body returns under the bare-N URL.
+
+**Per-MC artifacts (byte-for-byte, no parsing at fetch time):**
+
+```
+scripts/cache/numismaster/<sub_scope>/
+├── MC_<N>.html          ← urlopen(...).read() body verbatim
+├── MC_<N>.meta.json     ← {status, headers, html_bytes, fetched_at}
+├── _manifest.json       ← incremental {fetched, errors} (crash-safe resume)
+└── mc_to_fetch.json     ← Phase-3 output (per-sub-scope MC list + filter context)
+```
+
+**Pacing**: 30s between requests as a politeness default; benchmarked on burst-test (Phase 1b Chrome MCP) at 30+ rapid sequential requests without 403, so the 30s is conservative-not-required. ~15-17h overnight for the full 1892-MC chain (561 SH + 987 DK + 344 Norway).
+
+**Sub-scope order**: A. `schleswig_holstein` (561, smallest) → B. `denmark` (987) → C. `norway` (344). Sweden-CII closed as 0-entry negative finding (§BI). Each sub-scope's `_manifest.json` is independent — fetches resume from `manifest.fetched` after crash without re-fetching.
+
+**Chaining sub-scopes**: a small monitor poll-loop watches the running fetch's PID, auto-launches the next sub-scope when it exits. Recipe (drop-in for any session that needs to chain):
+
+```bash
+# In Monitor: when SH process exits, launch DK
+if ! pgrep -f "fetch_numismaster.py --fetch schleswig_holstein" >/dev/null; then
+  cd /Users/serg/projects/muentzfuesse
+  PYTHONUNBUFFERED=1 nohup .venv/bin/python scripts/fetch_numismaster.py \
+    --fetch denmark --pacing 30 > /tmp/fetch_dk.log 2>&1 &
+fi
+```
+
+**Mandatory User-Agent**: `Mozilla/5.0 (compatible; muentzfuesse-research/1.0; non-commercial scholarly use)` — ASCII-only (em-dash anywhere crashes urllib's Latin-1 encoding) + identifies the project for accurate referrer tracking.
+
+#### Phase 5 — parse + seed (§BK, 2026-05-17)
+
+`scripts/parse_numismaster.py` walks `scripts/cache/numismaster/<sub_scope>/MC_*.html` → sibling `MC_<N>.parsed.json` with structured field extraction (country / catalog_number / political_period / coinage_entity / denomination / year / ruler / mint / composition / mass / fineness / actual_weight / obverse / reverse + cross-refs Sch/L/Fr/KM/MB/Sieg/Hede/Bruun/Schive). Idempotent; `--force` re-parses already-parsed files.
+
+`scripts/maintenance/build_numismaster_seed.py --sub-scope <name>` reads parsed JSONs → emits `data/seed/numismaster/<sub_scope>.yml` with Coin-schema-clean entries (`fuss: seed_unsorted`, `phase: numismaster`). Per-sub-scope year window: SH 1514-1864, DK 1514-1914, Norway 1608-1814.
+
+**Schema-clean filtering**: NumisMaster's extra-vocabulary refs (mb / schive / numismaster_mc / Bruun-number) are preserved on `MC_<N>.parsed.json` but dropped from the seed YAML (Coin schema forbids them). Enrichment fields (political_period, obverse/reverse descriptions, general_note) live on the seed YAML under `_`-prefixed keys; `scripts/build.py`'s seed-merger strips them before validation, so they're visible to human curators without tripping the strict schema downstream.
+
+**Seed activation prerequisite**: emitting the per-sub-scope seed YAML requires the target location (`data/locations/<sub_scope>.yml`) to declare `seed_unsorted` phase config with a `numismaster` phase entry — see `data/locations/denmark.yml` `phases.seed_unsorted.id=hede` for the analogous Hede setup. Without that location-side prep, build validation fails on «no phases defined for fuss 'seed_unsorted'». Location prep is a §BF promotion-prep step, not part of §BK's mechanical-pipeline scope.
 
 ### ucoin.net (deferred per §M)
 
