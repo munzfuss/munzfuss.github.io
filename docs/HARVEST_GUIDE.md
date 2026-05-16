@@ -38,7 +38,7 @@ For per-coin coverage of a new scope (location × period):
 | 1 | Wilcke 1950 (`scripts/cache/wilcke/.../pages/wilcke_*.txt`) | local | ordinance specs (no per-coin) | Master spec tables hand-extract into `fuesse.yml` |
 | 2 | danskmoent.dk Galster | urllib | 79 | Uniform HTML, easy regex parse |
 | 2 | Numista per-coin HTML | urllib + 30s pauses | 56 | NOT the v3 API — distinct route, no quota |
-| 3 | NumisMaster MC_NNNNN | urllib for `/MC_<N>` per-coin pages; **Chrome MCP required for enumeration** (filter state is JS-only — see «Per-source playbook → NumisMaster» for corrected topology) | 3 (sample) + 30 (§BI Phase-1b SH-cluster proof) | Pre-Krause «MB#» numbering; URL/POST keyword filters are server-IGNORED; sidebar checkbox click + SEARCH button submit is the ONLY filter mechanism |
+| 3 | NumisMaster MC_NNNNN | urllib for `/MC_<N>` per-coin pages (public, no auth); **Chrome MCP + JS console required for enumeration** (filter state is client-JS in session cookies — see «Per-source playbook → NumisMaster» for corrected topology + canonical JS recipes) | 3 (§AZ pre-1541 sample) + ~1900 in-window text-dumped + 101 MC_IDs anchored in `mc_index.json` (Phase 1b 2-session run 2026-05-16) | All 4 sub-scopes inventoried: SH-cluster 562/562 ✅ / DK 1591-1914 ✅ / Norge 1608-1813 ✅ / Sweden Christian II = 0 entries (negative finding) ✅. Pre-Krause MB#/FR#/C# numbering schemes; URL+POST keyword filters server-IGNORED (only JS-sidebar AJAX filters); cookie state cross-contaminates without JS-console clear between walks |
 | ✗ | ucoin.net | Cloudflare-blocked anonymously | (deferred) | §M ucoin harvest tracks ~50-req/session limit |
 
 Total §AZ harvest: **176 entries across 4 active sources**.
@@ -124,12 +124,39 @@ Long leading `sleep N` commands are blocked by the harness. Solutions:
 
 ### Chrome MCP JS-blocked queries
 
-`javascript_tool` calls that return cookie/query-string data are blocked by the extension. Use:
+`javascript_tool` calls that return cookie/query-string data are blocked by the extension. The block is on the RETURN VALUE, not the operation — clearing cookies, clicking elements, dispatching events all work fine when the JS doesn't return any cookie/query-string content as the last expression.
+
+For READ operations (read DOM, find elements):
 - `find` tool (semantic NL query)
 - `read_page` tool (accessibility-tree)
 - `get_page_text` (plain text)
 
 For URL/href extraction from rendered DOM: `read_page` with `ref_id` of the link element → returns the href attribute.
+
+For WRITE / state-changing operations (click, scroll, clear cookies, dispatch events): `javascript_tool` works — just ensure the last expression returns a non-cookie-shaped status string (e.g. `"clicked, checked=" + el.checked` works; `"name=" + el.name + " value=" + el.value` is blocked because `value=` looks like query-string).
+
+### JS-SPA browser-state cross-contamination
+
+A common failure mode with JS-driven catalog sites (NumisMaster, ucoin.net, others): **session cookies + sessionStorage + localStorage accumulate filter/checkbox state across walks**. Subsequent country-filter additions cross-contaminate (a SECOND country selection ORs with the first instead of replacing it). UI «Reset» buttons typically clear only the SUBMITTED filter view, not the underlying session-cookie state.
+
+The canonical clearing recipe (JS console via Chrome MCP `javascript_tool`):
+
+```javascript
+document.cookie.split(";").forEach(c => {
+  const eqPos = c.indexOf("=");
+  const name = eqPos > -1 ? c.substring(0, eqPos).trim() : c.trim();
+  document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+  document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=" + location.hostname;
+  document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=." + location.hostname;
+});
+sessionStorage.clear();
+localStorage.clear();
+"cleared";
+```
+
+After running, RE-NAVIGATE to the entry-point URL (e.g. `/coins`) to force the SPA to re-initialize from the now-clean state. Verify default state appears (e.g. on NumisMaster: 5-country default list + «+ SHOW MORE» button visible, instead of pre-expanded list with cross-territory filters active).
+
+**When to clear**: between every distinct country/filter walk where the session previously had different filters active. Symptoms of contamination: result counts that don't match per-filter walks (e.g. SH-cluster 562 + DK 1308 + Norge 560 → expect ~2400 if all OR'd, observe 2430 due to accumulator state).
 
 ### Background-task progress tracking
 
@@ -244,102 +271,266 @@ See PB-10 for full diagnosis when `git status` shows `modified: scripts/cache (n
 - Obverse / Reverse: `<h3>Obverse</h3>` block with description + Script + Lettering + Translation
 - King names have whitespace padding + parenthesised native form: «Frederick I                    (Frederik I)» — collapse whitespace + strip parens
 
-### NumisMaster MC_NNNNN (added 2026-05-16, revised 2026-05-16 Phase-1b)
+### NumisMaster MC_NNNNN (Librios catalog — full Phase 1b complete 2026-05-16)
 
-**Scope**: KM-based commercial catalog (Librios-hosted, formerly Krause Standard Catalog of World Coins). Pre-1604 sparse, but Schleswig-Holstein-duchy uses pre-Krause «MB#» (Madai-Bach) numbering.
+**Scope**: KM-based commercial catalog (Librios-hosted, formerly Krause Standard Catalog of World Coins). Pre-1604 sparse but covered via pre-Krause numbering schemes (MB# Madai-Bach for SH-duchy / FR# Friedberg for gold).
 
-**Result so far**:
-- §AZ pre-1541 sample: 3 cached `MC_<N>.html` entries
-- §BI Phase-1b proof-of-concept (2026-05-16): 30 MC_IDs + 101 KM#/denom/year-inventory for SH-cluster (HG-Rendsborg + GLÜCKSTADT accumulated filter); see `scripts/cache/numismaster/mc_index.json` + `_walks/leaf_sh_cluster_p*.txt`
+#### Coverage achieved (2026-05-16 two-session Phase 1b run)
 
-- Scripts: `scripts/parse_numismaster_pre1541.py`, `scripts/maintenance/build_numismaster_pre1541_seed.py` (per-coin parse + seed; no fetcher yet — to be added during full Phase-1b/2 closure)
-- Cache: `scripts/cache/numismaster/denmark_pre_1541/MC_<N>.html` + `.json` (legacy §AZ subdir; new sub-scopes per `docs/research/numismaster_dk_sh_1514_1914_harvest_surface.md` §7)
-- Discovery artifacts: `scripts/cache/numismaster/_walks/` (raw page-text dumps per Chrome-MCP-walked search-result page) + `mc_index.json` (consolidated MC_ID inventory per filter)
+| Sub-scope | NumisMaster total | In-window inventoried | Pages walked | Status |
+|---|---:|---:|---:|---|
+| **A. SH 9 cadet filters** (1514-1864) | 562 | 562 | 23 of 23 | ✅ COMPLETE |
+| **B. DENMARK** (1514-1914) | 1308 (catalog 1591-2025) | ~1000 | 40 of 53 | ✅ in-window COMPLETE |
+| **C. NORWAY** under DK rule (1514-1814) | 560 (catalog 1608-2024) | ~340 | 14 of 23 | ✅ in-window COMPLETE |
+| **D. SWEDEN** Christian II (1514-1523) | 954 (catalog 1573+) | **0** | 1 | ✅ CLOSED (negative finding) |
 
-#### Topology (CORRECTED post-§BI Phase-1a)
+**Total ~1900 in-mission entries** text-dumped to `scripts/cache/numismaster/_walks/`. **101 MC_IDs** anchored in `mc_index.json` (HG-Rendsborg + GLÜCKSTADT). Remaining ~1800 need MC_ID extraction before Phase 4 urllib fetch.
 
-**Three distinct URL roles** — confusion in the original §AZ playbook led to weeks of wrong assumptions; record the corrected mental model:
+#### Catalog floors per country (discovered empirically)
 
-1. **Geographic hub URLs** — `/?id=-<facet_id>` for `<facet_id>` like `-1005793` DK, `-1005794` GLÜCKSTADT, `-1005795` HOLSTEIN-GOTTORP-RENDSBORG, `-1006970` NORWAY, etc.
-   - Renders: a full-page **country selector** (alphabetic, ~742 countries listed) + a heading naming the chosen country + **decorative «N-th Pattern: A»** rows (16th-21st Pattern) + occasional «Intro NN: Denmark XX Century» link to an article page (`?id=NNNNNNN` positive integer)
-   - **«A»-letter rows are visually-styled placeholders, NOT links.** Click test 2026-05-16 confirmed inert (no JS handler, no URL change).
-   - **NO coin list.** This page is decoration; it cannot enumerate coins by itself.
-   - Sub-territory cascading: some countries (DENMARK) show indented sub-territory links (GLÜCKSTADT, HG-RENDSBORG) but these only lead to that sub-territory's *own* decorative hub.
+- **Denmark**: 1591 (Frederik II FR# 32 Guilder). Pre-1591 era NOT in NumisMaster.
+- **Norway**: 1608 (Christian IV KM# 4 Lion Dalar). Pre-1608 Norway NOT in NumisMaster.
+- **Sweden**: 1573 (MB# 9001 2 Öre, Johan III) — single isolated entry; then jump to 1601+ Karl IX KM# 1+. **NO Christian II era 1514-1523 entries.**
+- **Schleswig-Holstein cadet**: 1514 (MB# 10 2 Schilling Frederik I); covered by 9 distinct country filters listed below.
+- **Schaumburg-Pinneberg**: 1538 (MB# 2 Pfennig); the Holstein-Schauenburg cadet rolls up under SCHAUMBURG-PINNEBERG, not as a separate filter.
 
-2. **Global coins-search facet** — `/?id=-10012282` OR `/coins` (these are aliases). This is the ONE coin-search interface site-wide.
-   - First load: shows promotional content + Featured dealers + 18 «featured coins» (random-rotation, NOT a search result)
-   - Has a **keyword textbox** and a left-sidebar **«Refine by» panel** with two checkbox groups: **Country** + **Composition**
-   - Initial country list shows only ~5 entries (alphabetical: AACHEN, AALEN, AARGAU, ABANO TERME, ABKHAZIA) + **`+ SHOW MORE`** button
-   - One click of «Show more» expands to the **FULL ~742-country list at once** (not paginated by 5 as appears) — the button toggles to «Show less». All checkboxes become DOM-accessible.
-   - Each country checkbox has DOM-name `N<facet_id>//` (matching the hub facet ID without the «-» sign). E.g. `N1005795//` = HOLSTEIN-GOTTORP-RENDSBORG (matches hub `-1005795`).
-   - **Clicking a country checkbox triggers two visible effects**: (a) the country list collapses back to first 5 items, (b) a **yellow `SEARCH` button appears at the bottom of the sidebar** + a `Reset search` link beside it.
-   - **`SEARCH` button MUST be clicked** for the filter to apply. The checkbox click alone doesn't filter the page.
+For pre-catalog-floor coverage use other sources: `Bruun PDFs`, `Galster pages on danskmoent.dk`, `Schive 1865` (Norway), `Wilcke 1950` (ordinance specs).
 
-3. **Search-results page** — `/?id=-10012282&advancedsearch=true&pageno=N` (post-SEARCH-click). The `&advancedsearch=true` flag + `&pageno=N` reveal filtered results.
-   - URL after SEARCH click ALSO carries `&searchid=<NN>` — the session-bound search ID. The pagination URL form is `?advancedsearch=true&id=-10012282&searchid=<NN>&pageno=<P>` (server returns a "Next" link in this shape).
-   - Filter state lives in the SERVER-side session associated with the cookie; it's NOT encoded in the URL. Two consequences:
-     1. Direct urllib GET to `?id=-10012282&advancedsearch=true&pageno=N` without the matching session cookie returns the un-filtered 18-featured-coins page (the same random rotation).
-     2. Across paginations within a Chrome MCP session, navigation by `&pageno=N` works fine (session-cookie keeps filter); but the `&searchid=NN` value may change on every page navigation (search-id is regenerated; pagination still works because the cookie holds the live filter).
+#### Scripts + cache layout
+
+```
+scripts/
+├── parse_numismaster_pre1541.py            # parser (per §AZ); rename → parse_numismaster.py at Phase 5
+├── maintenance/build_numismaster_pre1541_seed.py   # seed builder (per §AZ); rename → build_numismaster_seed.py at Phase 5
+└── cache/numismaster/                       # submodule
+    ├── mc_index.json                        # 101 MC_IDs (HG-Rendsborg + GLÜCKSTADT); pending ~1800 more
+    ├── denmark_pre_1541/                    # legacy §AZ subdir (3 MC_<N>.html)
+    └── _walks/                              # raw page-text dumps per Chrome-MCP-walked page
+        ├── _phase_1a_findings.md            # topology + failed-probes log
+        ├── _phase_1b_FINAL_complete.md      # final coverage summary
+        ├── _phase_1b_sh_cluster_complete.md # SH 9-filter confirmation
+        ├── hub_-1005793_DK.txt              # hub-walk snapshots
+        ├── hub_-1005795_HG.txt
+        ├── hub_-10012282_coins_search.txt
+        ├── leaf_holstein_gottorp_rendsborg_p1.txt
+        ├── leaf_sh_cluster_*.txt            # 23-page SH walk
+        ├── leaf_denmark_clean_p*.txt        # 40-page DK clean walk
+        ├── leaf_norway_clean_p01_p15.txt    # 14-page Norge clean walk
+        └── leaf_sweden_p1.txt               # Sweden negative finding
+```
+
+#### Three URL roles (corrected mental model)
+
+The original §AZ playbook misread the topology. The actual structure:
+
+1. **Geographic hub URLs** — `/?id=-<facet_id>` for `-1005793` DK / `-1005794` GLÜCKSTADT / `-1005795` HG-Rendsborg / `-1006970` Norge / etc.
+   - Renders full alphabetic country selector (~742 countries) + active-country heading + decorative «N-th Pattern: A» rows (16th-21st) + occasional «Intro NN: <Country> XX Century» article link (`?id=NNNNNNN` POSITIVE integer).
+   - «A»-letter rows are visually-styled placeholders, **NOT links** (click test 2026-05-16 confirmed inert).
+   - **NO coin list**. Decorative only.
+   - Indented sub-territory entries (e.g. GLÜCKSTADT + HG-Rendsborg under DENMARK in the selector) link to the sub-territory's OWN decorative hub. No path to coin enumeration from here.
+
+2. **Global coins-search facet** — `/?id=-10012282` OR `/coins` (aliases). The ONE coin-search interface site-wide.
+   - First load: promotional banner + 18 «featured coins» (random rotation, NOT a search result).
+   - «Refine by» sidebar panel with two checkbox groups: **Country** (~742 entries) + **Composition** (~30 metals).
+   - Default country list shows 5 entries (alphabetical AACHEN…ABKHAZIA) + **`+ SHOW MORE`** button.
+   - One click of «Show more» expands to the **FULL ~742-country list at once** — button toggles to «Show less». All checkboxes become DOM-accessible (`document.querySelectorAll('input[type="checkbox"]').length ≈ 2114` after expansion, including ~742 country + composition + page chrome).
+   - Each country checkbox carries DOM-name `N<facet_id>//` matching the hub facet ID without «-» sign (e.g. `N1005795//` = HG-Rendsborg).
+   - Clicking a country checkbox: (a) collapses the list back to first 5, (b) reveals yellow `SEARCH` button at the bottom of sidebar + `Reset search` link.
+   - **`SEARCH` button MUST be clicked** for filter to apply — checkbox click alone doesn't refresh results.
+
+3. **Search-results page** — `/?id=-10012282&advancedsearch=true&pageno=N` (post-SEARCH-click). Renders 25 result cards per page + Prev/Next + filter chips + `Sort by:` dropdown.
+   - URL also carries `&searchid=<NN>` after SEARCH click — session-bound search ID. Pagination URL form: `?advancedsearch=true&id=-10012282&searchid=<NN>&pageno=<P>`.
+   - **Filter state lives in the SERVER-side session associated with the cookie, NOT encoded in URL**. Direct urllib GET without matching session cookie returns the un-filtered 18-featured-coins page.
+   - Within a Chrome MCP session, navigation by `&pageno=N` works fine (session-cookie preserves filter); `&searchid=NN` may regenerate per page nav (pagination still works because the cookie holds the live filter).
+   - Cards render: country_label + KM/FR#/MB#/C# + denom + year_range as 4-line blocks in `get_page_text`.
+
+#### Workflow (CANONICAL — proven through 2026-05-16 Phase 1b)
+
+**Step 0: Clear stale session cookies** (mandatory between distinct country walks)
+
+The «Reset search» link in the sidebar only clears the SUBMITTED filter UI state — session cookies retain accumulated checkbox state from previous walks. Without explicit cookie clearing, subsequent filter additions cross-contaminate (the «562 SH-cluster + 1308 DK + 560 Norge» combined-count problem documented in `_phase_1b_session_2_handoff.md`).
+
+The reliable clearing technique uses JS console — bypass UI animation issues:
+
+```javascript
+// Tool: javascript_tool({action:"javascript_exec", tabId, text: ...})
+document.cookie.split(";").forEach(c => {
+  const eqPos = c.indexOf("=");
+  const name = eqPos > -1 ? c.substring(0, eqPos).trim() : c.trim();
+  document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+  document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=" + location.hostname;
+  document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=." + location.hostname;
+});
+sessionStorage.clear();
+localStorage.clear();
+"cleared";
+```
+
+Verify by navigating `/coins` and checking that the sidebar shows the default 5-country list (AACHEN…ABKHAZIA) with NO active filter chips. **A clean state ALWAYS shows `+ SHOW MORE`** (not «Show less»).
+
+**Step 1: Expand country list via JS** (the canonical Show More click)
+
+```javascript
+const buttons = document.querySelectorAll('button');
+let sm = null;
+for (const b of buttons) {
+  if (b.textContent.trim().toLowerCase().includes('show more')) { sm = b; break; }
+}
+if (sm) sm.click();
+"step1=" + (sm ? "done" : "no");
+```
+
+Wait ~2s for the DOM repaint.
+
+**Step 2: Click the target country checkbox via JS** (more reliable than Chrome MCP `find`+`scroll_to`+`left_click` which can fail when scroll_to collapses the list)
+
+```javascript
+const inputs = document.querySelectorAll('input[type="checkbox"]');
+let target = null;
+for (const inp of inputs) {
+  const label = (inp.closest('li')?.textContent || inp.parentElement?.textContent || '').trim();
+  if (label === 'DENMARK') { target = inp; break; }  // or NORWAY / SWEDEN / etc.
+}
+if (target) {
+  target.scrollIntoView({block:'center'});
+  target.click();
+  "clicked, checked=" + target.checked;
+}
+```
+
+The click auto-submits (URL transitions to `/?id=-10012282&advancedsearch=true&pageno=1`). Wait ~5s for AJAX result render.
+
+**Step 3: Verify match count** (use Chrome MCP `find` for the «Results X – Y of Z matches» element)
+
+```
+find "Results count text X of Y matches" → expect element like '"of 1308"' for DK
+```
+
+Also check active filter chips via `find "active filter chips at top of results"` — confirm only the target country is active.
+
+**Step 4: Set Sort=Date ascending** (front-loads in-window entries, lets you stop early at year > upper-bound)
+
+```javascript
+const selects = document.querySelectorAll('select');
+let sortSel = null;
+for (const s of selects) {
+  const opts = Array.from(s.options).map(o => o.text);
+  if (opts.includes('Date') && opts.includes('Relevance')) { sortSel = s; break; }
+}
+if (sortSel) {
+  for (const o of sortSel.options) {
+    if (o.text === 'Date') { sortSel.value = o.value; break; }
+  }
+  sortSel.dispatchEvent(new Event('change', {bubbles: true}));
+  "sort changed";
+}
+```
+
+**Caveat**: setting Sort via `form_input` on the dropdown ref (instead of JS) can DROP the filter state — total result count jumps from filtered (e.g. 1308) to unfiltered (60000). The JS-event-dispatch approach above preserves filter state. Wait ~5s after Sort change.
+
+**Step 5: Paginate via URL** — for each page N=1..MAX:
+
+```
+navigate /?id=-10012282&advancedsearch=true&pageno=N
+wait 4s
+get_page_text
+```
+
+Each page renders 25 cards. The `get_page_text` output is a structured block where each card occupies exactly 4 consecutive lines:
+```
+COUNTRY_LABEL
+KM# 87 (or FR# / MB# / C#)
+Denomination
+year_first - year_last
+```
+
+**Stop at mission upper-bound year**: when `year_first` exceeds your window (DK 1914, Norge 1814, Sweden 1523), stop paginating — Sort=Date ascending guarantees remaining pages are out-of-window.
+
+**Step 6 (deferred): MC_ID extraction via `find` tool**
+
+Per-card MC_NNNNN hrefs are extracted via Chrome MCP `find`:
+```
+find "all coin result card links with MC_ hrefs on this page"
+```
+
+**Pitfall**: `find` caps at 20 results per call. A 25-card page needs **2-3 find calls** with KM-token-batched queries to pick up the trailing 5. Example: after the first 20 are captured, query «result card MC_ hrefs for KM# 44, KM# Pn4, KM# 2.1, KM# 5.4» using the known KM tokens from the page text. **MC_ID extraction is the gating step for considering a page «walked»** — without MC_NNNNN anchor, the Phase 4 urllib `/MC_<N>.html` fetch can't run.
+
+Each in-window MC_ID gets recorded in `mc_index.json`:
+```json
+{"mc_id": 66629, "km": "7", "denom": "1/2 Ducat", "year_first": 1719, "year_last": 1719, "country_label": "HOLSTEIN-GOTTORP-RENDSBORG"}
+```
 
 #### What does NOT work (failed probes — DO NOT retry)
 
-- **URL keyword/searchstr/country/q params** (`?id=-10012282&keyword=schleswig`, `?id=-10012282&country=denmark`, etc.) — server returns HTTP 200 with the **rotating 18-featured-coin sample**, regardless of param. The param is accepted into the action URL but the filter is not applied server-side.
-- **ASP.NET form POST-back** with `__VIEWSTATE` + `__VIEWSTATEGENERATOR` + session-cookie + `ROW0LIBRIOS2SEARCHFIELD[Full text]=schleswig` — also returns the 18-featured-coin sample. Verified by fetching one MC_ID from the response: country = KHIVA (Central Asian khanate, not SH). The form-POST mechanism alone doesn't carry the filter — the JS-driven sidebar AJAX is the only filter mechanism.
+- **URL keyword/searchstr/country/q params** (`?id=-10012282&keyword=schleswig`, `&country=denmark`, `&q=…`, `&searchstr=…`) — server returns HTTP 200 with the rotating 18-featured-coin sample, regardless of param. The params are accepted into the form action URL but the filter is NOT applied server-side.
+- **ASP.NET form POST-back** with `__VIEWSTATE` + `__VIEWSTATEGENERATOR` + session-cookie + `ROW0LIBRIOS2SEARCHFIELD[Full text]=schleswig` — also returns the 18-featured-coin sample. Verified by fetching one MC_ID from the POST response: country = KHIVA (Central Asian khanate, NOT SH). The form-POST mechanism alone doesn't carry the filter — the JS-driven sidebar AJAX is the only filter mechanism.
 - **`/sitemap.xml`** — returns the 404 SPA shell HTML (182 KB), not an XML sitemap.
 - **«A» century-pattern links on geographic-hub pages** — visually-styled placeholders with NO JS handler. Click is inert.
+- **«Reset search» link as cookie clear** — clears submitted-filter UI state only; session cookies retain accumulated checkbox state from previous walks. USE THE JS COOKIE-CLEAR INCANTATION INSTEAD.
+- **Chrome MCP `form_input` on Sort dropdown** — can DROP the active country filter (result count jumps to unfiltered 60000). Use JS `select.value = ...; select.dispatchEvent(new Event('change', {bubbles:true}))` instead.
+- **Chrome MCP `scroll_to` ref + `left_click` on country checkbox** — sometimes scrolls past the target (scrolls the row off-screen by the time the click fires) or collapses the list mid-action. The JS-direct-click pattern (Step 2 above) is more reliable.
 
-#### Catalog hierarchy (CORRECTED)
+#### Sub-territory rollup (for SH-scope harvest)
 
-The original §AZ playbook said «`-10012282` = HOLSTEIN-GOTTORP-RENDSBORG (search results visible)». **WRONG.** `-10012282` is the global coins-search facet; the «HG-Rendsborg results» the §AZ author saw came from a session-cookie that already had HG-Rendsborg country-filter active from a prior interactive browse.
+For the Schleswig-Holstein scope «всі ці герцогства незалежно від влади», 9 NumisMaster country filters cover the full inventory:
 
-The «600+ unique sub-territory IDs discovered under Denmark hub» claim was also misleading — DK hub `-1005793` shows only TWO inline sub-territory links (GLÜCKSTADT + HG-Rendsborg). The country-filter sidebar contains ~742 entries total across all countries; each entry has a facet ID matching its hub ID. There is no hidden 600+ DK-only hierarchy.
+| Country filter | Facet ID | Entries | Era |
+|---|---|---:|---|
+| HOLSTEIN-GOTTORP-RENDSBORG | -1005795 | 4 | 1716-1720 |
+| GLÜCKSTADT | -1005794 | 97 | 1617-1719 |
+| SCHAUMBURG-PINNEBERG | (TBD) | ~167 | 1538-1640 |
+| SCHLESWIG-HOLSTEIN-GLUCKSBURG | (TBD) | 4 | 1632-1762 |
+| SCHLESWIG-HOLSTEIN-GOTTORP | N1006246 | 176 | 1590-1753 |
+| SCHLESWIG-HOLSTEIN-NORBURG | (TBD) | 4 | 1676-1676 |
+| SCHLESWIG-HOLSTEIN-PLOEN | N1006248 | 20 | 1677-1761 |
+| SCHLESWIG-HOLSTEIN-SONDERBURG | N1006249 | 25 | 1604-1627 |
+| SCHLESWIG-HOLSTEIN (main) | (TBD) | 65 | 1514-1923 |
+| **Total accumulated** | | **562** | |
+
+**Cadet lines NOT separate filters in NumisMaster** (rolled up under the above):
+- HOLSTEIN-PLON → SCHLESWIG-HOLSTEIN-PLOEN
+- HOLSTEIN-SCHAUENBURG → SCHAUMBURG-PINNEBERG (cadet line of Schaumburg)
+- HOLSTEIN-SONDERBURG-PLON → SCHLESWIG-HOLSTEIN-SONDERBURG
+- HOLSTEIN-SONDERBURG-BECK → likely SCHLESWIG-HOLSTEIN-SONDERBURG
+- LÜBECK-BISHOPRIC-IN-HG-FAMILY → no separate entry; covered via Hede / Lange in other sources
+
+#### Critical findings on filter independence
+
+**DK filter does NOT auto-roll-up SH sub-territories** (contradicts initial reading):
+- DK alone clean = 1308 entries (all labeled «DENMARK»)
+- SH-cluster 9 filters = 562 entries (each labeled with its own SH sub-territory)
+- Combined when all simultaneously active = 1308 + 562 = 1870 entries (NO overlap deduplication)
+- The earlier 1870 figure observed before cookie clearing was DK + SH summed with both filter sets active in the session-cookie at once.
+
+**Accumulated-filter trick**: clicking a SECOND country checkbox without resetting first **ADDs** that country to the filter (OR-filter). Useful for sub-scope batches — walk SH-cluster as one accumulated 9-filter set (562 entries across 23 pages), then sort by `country_label` at parse time. Per-card country_label in the result self-identifies which filter the card matched.
 
 #### Per-coin data shape (`/MC_<N>` URL)
 
-- Country / Catalog # (KM# OR MB# Madai-Bach pre-Krause) / Political period / Coinage entity / Denomination / Date / Ruler / Mint
-- Composition / Mass / Fineness / Actual weight (fein) / Melt value
-- Obverse + Reverse descriptions + legend transcriptions (Latin)
-- General note with cross-refs (Sch# Schou, L# Lange, Fr# Friedberg)
+- **Country** / **Catalog #** (KM# OR MB# Madai-Bach OR FR# Friedberg OR C# Christensen) / **Political period** (Librios PL-NNNNNN code) / **Coinage entity** (Librios CG-NNNNNN code)
+- **Denomination** / **Date** (year range string) / **Ruler** / **Mint**
+- **Composition** / **Mass** / **Fineness** / **Actual weight (fein)** / **Melt value**
+- **Obverse** + **Reverse** descriptions + legend transcriptions (Latin)
+- **General note** with cross-refs (Sch# Schou, L# Lange, Fr# Friedberg, Hede, Dav, etc.)
 
-This is the only NumisMaster URL we directly fetch via Python urllib — it IS public and works without Chrome MCP. The complexity is purely in **enumerating which MC_NNNNN to fetch**, which is the JS-sidebar-filter problem above.
+**Public route**: `https://numismaster.com/MC_<N>` works via Python urllib direct fetch (no Cloudflare gate, no auth needed). Only price columns are subscription-gated — the catalog data is fully public.
 
-#### Workflow (CORRECTED, full enumeration mechanic)
+**Pre-Krause numbering schemes** seen alongside KM#:
+- **MB#** (Madai-Bach): SH-duchy pre-1604 (e.g. MB# 22 Witten Frederik I 1516)
+- **FR#** (Friedberg): gold coins esp. Portugaloser (e.g. FR# 32 DK Guilder 1591)
+- **C#** (Christensen or chapter ref): rare; seen on SCHLESWIG-HOLSTEIN-PLOEN C# 25 Ducat 1760
+- **KM# Pn*** / **KM# Tn***: pattern strikes / token notgeld — exclude per CLAUDE.md §9.1 / §9.2 at parse phase
+- **KM# A###** / **B###** / **C###**: variant suffixes for sub-types (e.g. A40.3 = variant of KM# 40)
 
-Chrome MCP is REQUIRED for enumeration (filter state is client-JS, not URL or POST).
+#### Pacing + rate-limit notes
 
-```
-Per country filter:
-  1. Navigate to https://numismaster.com/coins
-  2. (If session has stale filters) click Reset search OR re-navigate to /coins
-  3. find "Show more under Country sidebar" → click that button to expand the full ~742-country list
-  4. find "<COUNTRY-NAME> country checkbox" → returns ref for that checkbox (e.g. ref_3106 for HOLSTEIN-GOTTORP-RENDSBORG)
-  5. computer.scroll_to ref → computer.left_click ref → the checkbox flags + list collapses
-  6. find "Search submit button" → returns ref of the yellow Search button at bottom of sidebar
-  7. computer.left_click that ref → page reloads to /?id=-10012282&advancedsearch=true&pageno=1 with filter active
-  8. Verify by inspecting the «Search results for "" <COUNTRY-NAME> ×» header + result count
-  9. Extract MC_NNNNN list:
-     a. get_page_text → captures KM# + denom + year + country_label per card in the rendered text (one card = 4 text lines)
-     b. find "all coin result card links with MC_ hrefs" → returns up to 20 MC_ID hrefs (capped by find tool)
-     c. For remaining cards on page (cards 21-25 of 25-per-page), use scroll_to bottom + a more-specific find query («cards after KM# <N> with MC_ hrefs» using known KM#s from get_page_text), OR read_page with high max_chars after scrolling
-  10. Paginate via direct URL nav: /?advancedsearch=true&id=-10012282&searchid=<keep_using_one_searchid_per_filter>&pageno=2, 3, … (session-cookie preserves filter state across pageno navigations)
-  11. Continue until result count exhausted («Results 101 — 101 of 101 matches»)
+- **No documented Cloudflare gate on `/MC_<N>` per-coin pages** during Phase 1b — burst-tested with 30+ rapid sequential get_page_text via Chrome MCP without 403. Conservative 30s pacing recommended for Phase 4 urllib bulk fetch (out of politeness; not benchmarked as necessary).
+- **JS sidebar walk** in Chrome MCP — tolerant of `<1s` between actions for the same session (search-results page navigation between paginated URLs). The bottleneck is `get_page_text` + `find` op latency, not server throttling.
+- **Chrome extension disconnect** observed once mid-batch (transient service worker restart). Reconnect happens automatically within ~8s. Retry batch from the failed action.
 
-After all in-scope country filters walked:
-  12. Consolidate mc_index.json with: filter → entries[{mc_id, km, denom, year_first, year_last, country_label}]
-  13. Phase 4 fetch: for each MC_ID in mc_index, urllib GET /MC_<N>, write raw HTML + .meta.json to scripts/cache/numismaster/<sub_scope>/
-```
+#### Phase 4 + Phase 5 (deferred — runs from local cache, no NumisMaster traffic)
 
-**Accumulated-filter trick**: clicking a SECOND country checkbox without resetting first **ADDs** that country to the filter (OR-filter). Useful for sub-scope batches (e.g. SH-cluster = HG + GLÜCKSTADT + SCHLESWIG-HOLSTEIN in one walk, then sort by country_label at parse time). Per-card country_label in the result HTML self-identifies which filter the card matched.
-
-#### Pitfalls
-
-- **`find` tool caps at 20 matches.** A 25-card page needs 2 find calls (first 20 + remainder). The remainder needs a query specific enough to skip the first 20 — e.g. include known last-card's KM# value from get_page_text.
-- **`read_page` is viewport-bound** (~9 cards visible at default zoom). Use `computer.scroll` + re-read to capture cards below the fold.
-- **`searchid=<NN>` changes per page navigation.** Use the Next link's `searchid` value (read via read_page on the Next anchor) for subsequent paginations within the same filter session, OR just rely on the session-cookie binding and use any searchid value that arrives in the URL.
-- **30s pacing** still applies — NumisMaster's tolerance to Chrome-MCP-driven rapid clicks is not benchmarked; conservative pace recommended for the per-coin urllib bulk-fetch phase (Phase 4).
-- **MC_ID anchor lost** when find caps out — the KM# + denom + year captured via get_page_text is durable cache data, but without the MC_ID anchor the urllib /MC_<N> fetch can't run. Make MC_ID extraction the gating step for considering a page «walked».
-
-**Pre-Krause «MB#» numbering**: Madai-Bach catalog covers Schleswig-Holstein-duchy 16th-17th c. coins NOT covered by KM. Both KM and MB appear on NumisMaster pages with the same UI («Catalog #: MB# 33»).
+- **Phase 4 — urllib bulk fetch** of `/MC_<N>.html` for every in-window MC_ID in `mc_index.json`. Writes raw HTML + sibling `.meta.json` (HTTP headers + timestamp). Estimated 15-17 hours overnight background run for ~1900 entries × 30s pace.
+- **Phase 5 — parse + seed**: rename `parse_numismaster_pre1541.py` → `parse_numismaster.py`, generalise to all eras (KM# + MB# + FR# + C# extraction, Krause-volume disambiguation per CLAUDE.md §9 caveat). Emit `data/seed/numismaster/{schleswig_holstein,denmark,norway}.yml`. Dedup against curated `data/locations/*.yml` happens HERE, not at cache-acquisition time.
 
 ### ucoin.net (deferred per §M)
 
