@@ -7,7 +7,19 @@
 > pitfalls, and the per-source playbook for each existing harvester so
 > future sessions don't re-discover what's already figured out.
 >
+> **Pipeline context: this guide covers Phase 1 (HARVEST) of the
+> project's 4-phase external-source data pipeline.** The full pipeline
+> (HARVEST → SYNTHESIS → SEED → CURATED) is documented in
+> `docs/ARCHITECTURE.md` §«Data pipeline — 4 phases». Read that first if
+> you're new to the project — it explains why we cache widely, where
+> filters apply, and what the «no synthesis without cache» rule means in
+> practice. This Harvest Guide drills into Phase 1 specifics: per-source
+> playbooks, tool fallback chain, JS-SPA browser-state pitfalls.
+>
 > Companion docs:
+> - `docs/ARCHITECTURE.md` §«Data pipeline — 4 phases» — canonical
+>   4-phase mental model (HARVEST/SYNTHESIS/SEED/CURATED) + the
+>   `PHASE_AUDIT` cache-backing audit recipe
 > - `docs/SOURCES.md` — per-source policy + known-issues log
 > - `docs/research/denmark_pre_1541_source_survey.md` — canonical
 >   example of a source-survey pass

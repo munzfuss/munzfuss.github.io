@@ -6,11 +6,19 @@
 > a quick-reference matrix mapping coin theme / period / location
 > to the right place to look first.
 >
+> **Pipeline context.** Every source listed here is consumed via the
+> project's 4-phase data pipeline (HARVEST → SYNTHESIS → SEED →
+> CURATED) documented in `docs/ARCHITECTURE.md` §«Data pipeline — 4
+> phases». This file describes the **sources themselves** (what they
+> cover, how to read them); `docs/HARVEST_GUIDE.md` covers per-source
+> Phase-1 mechanics (URL patterns, tool fallback chains, JS-SPA
+> pitfalls); `docs/ARCHITECTURE.md` covers Phases 2-4 (parse, seed,
+> curated promotion) including the `PHASE_AUDIT` recipe for verifying
+> every seed entry traces to Phase-1 cache provenance.
+>
 > Operational tool-mechanics (WebSearch → WebFetch → Apify → Chrome
 > MCP escalation chain, Numista API quota rules) live in `CLAUDE.md`
-> sections «Tool fallback chain» and «Numista API budget». This file
-> covers the **sources themselves**: their content, biases, gaps,
-> and how to read them.
+> sections «Tool fallback chain» and «Numista API budget».
 
 ---
 

@@ -501,6 +501,17 @@ The same rule applies to `fineness[]` and `diameter_mm[]` source attribution —
 
 Full pipeline (Layer A source → Layer B computed → Layer C categorised → Layer HTML), schema (Pydantic models), build-script anatomy, seed pipelines, GitHub Actions deploy: **`docs/ARCHITECTURE.md`**.
 
+**External-source data pipeline — 4 phases (mandatory, no shortcuts).** Every byte of external coin data flowing into the project from any catalogue / archive / scraped source passes through the 4-phase pipeline in `docs/ARCHITECTURE.md` §«Data pipeline — 4 phases»:
+
+  1. **HARVEST** — `scripts/fetch_<source>.py` → `scripts/cache/<source>/*.{htm,pdf,json}` (raw, widest data, submodule)
+  2. **SYNTHESIS** — `scripts/parse_<source>.py` → `scripts/cache/<source>/*.json` typed sidecars + `_parsed_index.json` (one file per source entry, broader than project scope on purpose)
+  3. **SEED** — `scripts/maintenance/build_<source>_<location>_seed.py` → `data/seed/<source>/<location>.yml` (filtered to project scope, Coin-schema, renders as `seed_unsorted` on web)
+  4. **CURATED** — promote seed entries into real Müntzfuß + Phase in `data/locations/<location>.yml`, with §9a multi-specimen merge / §9.4 dedup against existing curated entries
+
+Scripts drive every phase transition. **Hand-typing data into a later phase without provenance from the earlier phase is forbidden — this is exactly the §0 «no invention» rule's bypass case.** The cache-backing audit recipe (`docs/ARCHITECTURE.md` §«PHASE_AUDIT») can verify any seed file traces 100% to Phase-1 cache provenance; when adding a new source, run the audit before declaring the seed «done».
+
+`docs/HARVEST_GUIDE.md` covers Phase 1 (harvest) in depth — per-source playbooks, tool fallback chain, JS-SPA browser-state pitfalls. Phases 2-4 live in `docs/ARCHITECTURE.md`.
+
 What a session edits by hand:
 
 ```
