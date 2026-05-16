@@ -104,6 +104,31 @@ URL pattern: https://numismaster.com/MC_<N>
 | `-1005794` | GLÜCKSTADT | **hub** | Geographic; expected to roll up into leafs (Royal-DK-in-Glückstadt vs HG-Glückstadt) |
 | `-10012282` | HOLSTEIN-GOTTORP-RENDSBORG | **leaf** | Search results visible; 3 MB#-numbered entries 1514-1541 sample |
 
+### 2.3.5 — UPDATE 2026-05-16 Phase-1b proof-of-concept
+
+After Chrome MCP enumeration in this session:
+
+- **9 SH-scope country checkboxes** discovered in the universal coin-search sidebar (post «Show More» expand):
+  - `N1005794` GLÜCKSTADT ✓ walked
+  - `N1005795` HOLSTEIN-GOTTORP-RENDSBORG ✓ walked
+  - `N<TBD>` SCHAUMBURG-PINNEBERG — checkbox clicked, results in current 268-match accumulator pending walk
+  - `N<TBD>` SCHLESWIG-HOLSTEIN-GLUCKSBURG ⏳ pending
+  - `N<TBD>` SCHLESWIG-HOLSTEIN-GOTTORP ⏳ pending
+  - `N<TBD>` SCHLESWIG-HOLSTEIN-NORBURG ⏳ pending
+  - `N<TBD>` SCHLESWIG-HOLSTEIN-PLOEN ⏳ pending
+  - `N<TBD>` SCHLESWIG-HOLSTEIN-SONDERBURG ⏳ pending
+  - `N<TBD>` SCHLESWIG-HOLSTEIN (main) ⏳ pending
+
+- **HOLSTEIN-PLON, HOLSTEIN-SCHAUENBURG, HOLSTEIN-SONDERBURG-PLON, HOLSTEIN-SONDERBURG-BECK, LÜBECK-BISHOPRIC-IN-HG-FAMILY** are NOT separate country checkboxes in NumisMaster — they're rolled up under the SCHLESWIG-HOLSTEIN-* sub-territories or under SCHAUMBURG-PINNEBERG.
+
+- **101 MC_IDs cached** in `scripts/cache/numismaster/mc_index.json` for HG-Rendsborg + GLÜCKSTADT.
+
+- **Working enumeration recipe** (per page, ~5 Chrome MCP ops): navigate `&pageno=N` → `find «card MC_ hrefs for KM# <first-10-tokens>»` (returns ~10-20 cards) → `find «card MC_ hrefs for KM# <middle-10-tokens>»` (next batch) → `find «card MC_ hrefs for KM# <tail-5-tokens>»` (last 5) → consolidate into mc_index.json. Each search page reliably has 25 cards (or fewer on last page); 2-3 find queries cover all 25.
+
+- **Scale realised**: 9-country SH-scope accumulator currently at 268 matches × 10 pages. Adding remaining 6 SCHLESWIG-HOLSTEIN-* sub-territories may double this. DK alone is expected 1500-3000 entries (60-120 pages). Norway 400-800 (16-32 pages). Sweden filter-to-Christian-II final 10-30 of in-scope (1 page after post-walk filter).
+
+**Time estimate for full Phase 1b closure: 2-3 more dedicated Chrome-MCP-bound sessions** (each ~1.5-2 hours of agent time), totalling ~4-6 hours.
+
 ### 2.3 Known per-coin MC_ IDs (3, all SH duchy)
 
 | MC_ID | Country | Cat# | Denom | Year | Ruler | Cached in §AZ |
