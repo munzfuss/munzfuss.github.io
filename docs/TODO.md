@@ -508,22 +508,9 @@ weight_rough_g:
 3. Cross-reference Hede 1971 + 1977 extension printed indices (if accessible — paper or scan) against the cache to confirm scope coverage; surface any gaps as separate TODOs.
 4. Document closure in this entry's body (count delta, any new pages, scope-gaps flagged for follow-up).
 
-### BI. 🟢 NumisMaster harvest Phase 1+2 — catalog walk + MC_ID enumeration  *(opened 2026-05-16)* *(est: medium)* *(type: research + script + Chrome MCP)*
-
-**Surfaced.** Surface document `docs/research/numismaster_dk_sh_1514_1914_harvest_surface.md` accepted 2026-05-16. NumisMaster catalog topology has hub IDs (geographic intro, no coin list) vs leaf IDs (search results listing MC_NNNNN per-coin entries). The 4 known facet IDs from §AZ (DK -1005793, Norge -1006970, Glückstadt -1005794, HG-Rendsborg leaf -10012282) cover < 1% of the projected ~30-45 leafs in scope.
-
-**Done criterion.** Staged sub-scope walk in order A. Schleswig-Holstein → B. Denmark → C. Norway → D. Sweden under Christian II:
-
-1. Phase 1 (catalog walk via Chrome MCP) — navigate each hub `https://numismaster.com/?id=<hub_id>`, capture all sub-territory / sub-period leaf-IDs via `read_page` + `find`. SH probed via BOTH DK-hub link list AND `?searchstr=SCHLESWIG&advancedsearch=true`. Sweden-CII probed via `?searchstr=Christian+II+Sweden&advancedsearch=true` filtered to 1514-1523. Cache every visited page as raw snapshot under `scripts/cache/numismaster/_walks/hub_<id>.{txt,snapshot.json}`. Writes `scripts/cache/numismaster/leafs.json`.
-2. Phase 2 (per-leaf MC_ID enumeration via Chrome MCP) — for each confirmed leaf, paginate `?id=<leaf>&advancedsearch=true&pageno=N` until exhausted. Apply year-range + ruler filters per sub-scope (SH 1514-1864; DK 1514-1914; Norge 1514-1814; Sweden 1514-1523 + ruler=Christian II). Cache every paginated page as raw snapshot under `_walks/leaf_<id>_p<N>.{txt,snapshot.json}`. Writes `scripts/cache/numismaster/mc_index.json`.
-3. Stage gate before §BJ Phase 4 starts: user reviews `leafs.json` count + per-leaf MC_ID totals, confirms scope is complete (any leafs surprisingly empty or surprisingly huge surfaced for verification).
-4. **No dedup against `data/locations/*.yml` in this phase** — full enumeration of in-window MC_IDs only.
-
-**Scripts to add.** `scripts/fetch_numismaster.py` with sub-commands `--walk-hubs` (Phase 1) + `--enum-leafs` (Phase 2). New cache shape under `scripts/cache/numismaster/<sub_scope>/` + `_walks/`.
-
 ### BJ. 🟢 NumisMaster harvest Phase 3+4 — scope filter + bulk raw-HTML cache fetch  *(opened 2026-05-16)* *(est: large)* *(type: script + background)* *(depends on §BI)*
 
-**Surfaced.** Companion to §BI; runs after §BI hands off `mc_index.json`. Goal: populate `scripts/cache/numismaster/<sub_scope>/MC_<N>.html` for every in-window MC_ID with FULL RAW HTML preserved verbatim. Estimated 2500-5300 fetches before-dedup; staged in batches per sub-scope.
+**Surfaced.** Companion to §BI; runs after §BI hands off `mc_index.json`. Goal: populate `scripts/cache/numismaster/<sub_scope>/MC_<N>.html` for every in-window MC_ID with FULL RAW HTML preserved verbatim. **§BI closed 2026-05-16 with 1981 anchored MC_IDs** (commit `1d41e0d` in submodule) — gate now open; ~15-17 hours of background fetch budget at 30s pacing.
 
 **Done criterion.**
 
@@ -2212,6 +2199,29 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
+
+### BI. NumisMaster harvest Phase 1+2 — catalog walk + MC_ID enumeration  *(opened 2026-05-16, closed 2026-05-16)*
+
+**Closed.** Chrome MCP catalog walk + per-filter MC_ID enumeration COMPLETE. `scripts/cache/numismaster/mc_index.json` now anchors **1981 MC_IDs across 12 filters** (commit `1d41e0d` in `munzfuss-harvest` submodule):
+
+  - **A. Schleswig-Holstein cluster** (9 cadet-line filters, all in scope per user 2026-05-16): HOLSTEIN-GOTTORP-RENDSBORG (4) + GLÜCKSTADT (96, carried over from Phase 1a) + SH-GLUCKSBURG (4) + SH-NORBURG (4) + SH-PLOEN (20) + SH-SONDERBURG (25) + SCHLESWIG-HOLSTEIN main (65) + SCHAUMBURG-PINNEBERG (167, includes HOLSTEIN-SCHAUENBURG roll-up) + SH-GOTTORP (176) = **561 MCs total**.
+  - **B. DENMARK** with Sort=Date ASC: walked pages 1-40 (1000 cards spanning 1591-1919); 987 retained after `year_first <= 1914` filter. NumisMaster reports 1308 total Denmark entries; pages 41-53 (1915-2024) skipped as out-of-mission. NumisMaster Denmark floor confirmed at 1591.
+  - **C. NORWAY** with Sort=Date ASC: walked all 23 pages (560 cards spanning 1608-2024); 433 retained after `year_first <= 1914` filter. NumisMaster Norway floor confirmed at 1608 (KM_4 Lion Dalar). Post-1814 entries kept for cross-boundary completeness; §BK applies stricter `<=1814` filter to Norway-track entries.
+  - **D. SWEDEN under Christian II 1514-1523**: NumisMaster Sweden floor = 1573 → ZERO entries for the Danish-Swedish union era. Sub-scope D closed as negative finding.
+
+**Process artifacts** captured in `scripts/cache/numismaster/_walks/` (28+ files): per-filter `leaf_*_p<N>.txt` raw page-text dumps + `_phase_1b_findings.md`, `_phase_1b_*` process docs.
+
+**Canonical NumisMaster walk recipe** (codified at `docs/HARVEST_GUIDE.md` NumisMaster section, commit `be9ccf8`):
+  1. JS-console clear cookies + sessionStorage + localStorage between walks.
+  2. Navigate `/coins`, click «Show more» to expand the 742-country sidebar.
+  3. JS-direct `input.click()` on the target filter checkbox (matching label text exactly).
+  4. JS-direct `sel.value = 'mc_basedate//'; sel.dispatchEvent(new Event('change', {bubbles:true}))` for Sort=Date.
+  5. Paginate via `?id=-10012282&advancedsearch=true&pageno=N`; iterate `.iossearchresult` wrapper elements (DOM order = visual rank order via `id="iossearchresultN"`).
+  6. Compact extraction (`mc,year_first,year_last` per line) keeps each page's JS return under the tool output cap.
+
+**Next**: §BJ (urllib /MC_<N>.html bulk fetch) now unblocked. ~1981 MC HTML pages to fetch (after Norway-track post-1814 filter narrows further). ~15-17 hours background fetch budget at 30s pacing.
+
+---
 
 ### BJ. Survey alternative-to-Hede sources for the 1514-1541 sub-window  *(opened 2026-05-16, closed 2026-05-16)*
 
