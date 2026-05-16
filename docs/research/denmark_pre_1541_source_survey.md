@@ -188,8 +188,13 @@ Mints active in the window (per Wilcke 1950 + Bruun lot data):
 ### 14. ucoin.net + numismaster.com
 
 - **ucoin.net**: blocked by Cloudflare on anonymous fetch (HTTP 403). Project already has §M (ucoin Composition harvest) tracking ~490 uncached URLs — pre-1541 coverage status unverified. Likely thinner than Numista.
-- **numismaster.com**: commercial, KM-based. KM numbering for Denmark begins ~1604 → pre-1541 sparse-to-zero.
-- **Recommendation**: deprioritize both for §AZ.
+- **numismaster.com** (probed 2026-05-16 via Chrome MCP + Python urllib):
+  - Krause-Mishler-based commercial catalog. Site tagline: «Expert pricing for U.S. coins, world coins and more with KM numbers.»
+  - **Public HTML pages render skeleton/marketing content only** — actual coin data is behind a paid subscription (4 «Subscribe» mentions + 4 «Log in» mentions on the sample coin page `/coins/coins-10012282`). Body has no Denmark / KM / year tokens for anonymous fetchers.
+  - Search form is AJAX-driven and either silently fails or returns results requiring authenticated session.
+  - **KM numbering for Denmark begins ~1604** — pre-1541 coverage sparse-to-zero even with subscription per §BJ original prediction.
+  - Verdict 2026-05-16: **NOT a usable source for §AZ**. Documented as negative finding; no harvester built.
+- **Recommendation**: skip both for §AZ. ucoin defer to §M when Cloudflare cooldown allows; NumisMaster permanently out of scope (paywalled + non-overlapping window).
 
 ## Cross-reference key (resolved)
 
