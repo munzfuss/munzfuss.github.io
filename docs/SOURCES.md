@@ -21,6 +21,7 @@ When researching a coin, consult sources in this order based on what you need:
 | Need | First source | Second source | Third source |
 |---|---|---|---|
 | **Specimen-level catalogue (KM, Hede, Sieg, Lange, Fr, Schou, Aagaard, weight, NGC grade)** | Bruun PDF (Stack's Bowers Part I/II/III) | Numista N# page | ucoin tid page |
+| **Pre-Krause «MB#» / Schleswig-Holstein-duchy 16th c. (1500-1604, before KM numbering begins for Denmark)** | NumisMaster MC_NNNNN page (§1.4) | danskmoent.dk Galster (`/chr/c2g*.htm`, `/fr/f1g*.htm`) | Bruun PDF (for specimen-level corroboration) |
 | **Hede# verbatim text + sub-variant ranges (Christian IV / V / Frederik III/IV/V/VI / Christian VI/VII)** | danskmoent.dk/chr/c{4,5,7}h{N}.htm | Hede 1957 NNUM articles via danskmoent.dk/artikler/ | (paper) Hede 1978 |
 | **Müntzfuß spec / mint history / standards taxonomy (Reichsthaler, Konventionsthaler, Specie, Krone, Kurant)** | Wikipedia DE (Reichstaler / Speciestaler / Leipziger Fuß / Konventionstaler / Sächsische Münzgeschichte / Zinnaer Münzfuß / Augsburger Reichsmünzordnung / Corona Danica) | Bobzin (hagen-bobzin.de) | Meyers eLexikon (elexikon.ch) |
 | **Period-correct German numismatic vocabulary** | MGM Münzlexikon (mgmindex.de) | Schrötter, *Wörterbuch der Münzkunde* (paper, 1930) | DeWiki (dewiki.de) |
@@ -156,6 +157,45 @@ Then clean up `/tmp/bruun_part*.pdf` after the verification session.
 - p.311 lot 14240 → Bruun-14593 (Karl Friedrich, 1712-BH, KM-203, Lange-cf. 447, Fr-unlisted)
 
 **When Bruun and Numista disagree, Bruun wins.** Stack's Bowers had specimen in hand and expert curation; Numista is user-edited.
+
+### 1.4 NumisMaster — `numismaster.com`
+
+**Coverage:** Krause-Mishler-based commercial catalogue (formerly the *Standard Catalog of World Coins* book series, North American Coins and Price, U.S. Coin Digest). Active Interest Media, Inc. Site tagline: «Expert pricing for U.S. coins, world coins and more with KM numbers.» **Pre-1604 KM# coverage for Denmark is sparse-to-zero (Krause numbering for Denmark begins ~1604)** — but **pre-Krause Schleswig-Holstein-duchy coins use «MB#» (Madai-Bach) numbering** which IS catalogued.
+
+**Strengths (vs Numista):**
+- Authoritative KM# attribution (commercial editorial process, not user-edited)
+- «MB#» pre-Krause numbering for Schleswig-Holstein 1500s coins that Numista often lacks
+- Cross-references inline (Schou, Lange, Friedberg, KM, MB)
+- Obverse + Reverse legend transcriptions (Latin)
+- Political-period attribution («Duchy», «Trade Coinage», «Standard Coinage» tags) useful for issuing-entity classification
+
+**Weaknesses & gotchas:**
+- **Catalog data is public; «Value information in US Dollars» price columns are subscription-gated.** Coin specs (Country, Catalog #, Date, Composition, Mass, Obverse / Reverse, General Note, Cross-refs) render publicly for anonymous fetchers.
+- **Search form is JS-rendered AJAX paywall.** Submitting from `/coins` page does not navigate to result URLs anonymously; the form-submit response is empty stub. Search must be accessed via direct URL pattern (see below) and rendered via Chrome MCP for MC_ link discovery.
+- **Hub vs leaf ID confusion**:
+  - **Hub IDs** (geographic intro pages, NOT coin lists): `-1005793` = DENMARK, `-1006970` = NORWAY, `-1005794` = GLÜCKSTADT
+  - **Leaf IDs** (actual coin search results with MC_ links visible after JS-render): e.g. `-10012282` = HOLSTEIN-GOTTORP-RENDSBORG
+  - 600+ unique sub-territory IDs discovered under the Denmark hub via Chrome MCP refinement panel
+- Numbering hierarchy: each per-coin page has a stable `MC_NNNNN` identifier, distinct from the catalogue's KM#/MB#.
+
+**Access pattern:**
+
+1. **Per-coin pages (PUBLIC, urllib works fine)**: `https://numismaster.com/MC_<N>` renders full specs. No Cloudflare gate on per-coin URLs. Direct Python urllib with polite ASCII-only User-Agent works.
+2. **Search results (Chrome MCP required)**: `https://numismaster.com/?id=-<facet_id>&advancedsearch=true&pageno=<N>`. JS-rendered MC_NNNNN links appear after page load; Chrome MCP `find` tool extracts them. Python urllib fetches the raw HTML but the MC_ links live in JS-rendered DOM, not server-rendered HTML.
+3. **WebFetch**: catalog navigation returns skeleton without coin data (Marketing-only). Per-coin MC_ URLs return full data.
+
+**Acceptable-use** (per CLAUDE.md «non-commercial scholarly register» framing):
+- Non-commercial research only
+- Per-coin pages via urllib at polite pacing (30 s pauses recommended; site has no documented rate limit but be conservative)
+- Search-form discovery via Chrome MCP — same as our ucoin acceptable-use framework
+- Attribution: every NumisMaster-derived field lands in `sources: [{type: literature, url: numismaster.com/MC_<N>, ref: '...'}]`
+
+**Use as:** secondary cross-reference for **MB# pre-Krause Schleswig-Holstein duchy coins** (16th-17th century pre-Christian-IV) + **KM# for 1604-1900 Danish coinage** when validating Bruun/Hede attributions. For pre-1541 specifically, NumisMaster's per-territory coverage is sparse — confirmed §AZ Tier 4 (2026-05-16) found only 3 in-scope entries from Holstein-Gottorp-Rendsborg search; full sub-territory walk for additional MB_ entries deferred. The 3 found cross-validate Bruun + Galster on shared Fr# 16 Goldgulden 1535 → same coin in three sources.
+
+**Project scripts:**
+- `scripts/parse_numismaster_pre1541.py` — MC_<N>.html → JSON sidecar
+- `scripts/maintenance/build_numismaster_pre1541_seed.py` — JSON → seed YAML
+- Cache: `scripts/cache/numismaster/<scope>/MC_<N>.html` + `.json`
 
 ---
 
@@ -563,6 +603,34 @@ Bobzin's table at <https://www.hagen-bobzin.de/hobby/muenzverein_wendisch.html> 
 Krause-Mishler numbering restarts within each country / region. `KM-25` in the Krause-Denmark volume is an entirely different coin from `KM-25` in the Krause-Schleswig-Holstein volume. The same physical Christian-IV Glückstadt 1640-48 Søsling carries **KM-DK# 25** AND **KM-SH# 87** — same coin, two catalogue numbers from two different Krause editions.
 *Decision.* Schema-level support via `KMRef {value, register}` (see `scripts/lib/schema.py`). Locations have a default `km_register` (`'DK'` for denmark.yml, `'SH'` for schleswig_holstein.yml). Render: bare «KM#» when single-entry in the page's default register; qualified «KM-DK#» / «KM-SH#» + tooltip when cross-register or multi-list. Same caveat applies to Hede / Sieg / Lange / Behrens — each catalogue's numbering is internal to that catalogue, and bare-numeric collisions are coincidences unless ruler + nominal + composition + year also align. — see CLAUDE.md §9 caveat «same KM# across different issuers / catalogues is NOT automatically the same type».
 
+### 13.7 NumisMaster (numismaster.com)
+
+**Public catalog data, paywalled price columns (2026-05-16).**
+Initial probe of numismaster.com via Chrome MCP suggested entire site was paywall-gated (4× «Subscribe» + 4× «Log in» mentions on the `/coins/coins-10012282` sample page; search-form `Submit` button silently failed without authentication). The `/coins` landing page renders a marketing skeleton with no coin entries. First documented as a negative finding in `docs/research/denmark_pre_1541_source_survey.md` §14.
+*Subsequent discovery.* User-supplied `MC_NNNNN` URL pattern (e.g. `https://numismaster.com/MC_66629`) reveals: **per-coin pages render full catalog data publicly** — Country / Catalog # / Political period / Coinage entity / Denomination / Date / Ruler / Mint / Composition / Mass / Fineness / Actual weight / Obverse + Reverse descriptions with Latin legend transcriptions / General Note with Sch# / L# / Fr# / KM# cross-refs. **Only the «Value information in US Dollars» price table is subscription-gated.** Survey doc corrected post-discovery; current §1.4 reflects the actual access split.
+*Decision.* Per-coin pages → direct Python urllib with polite ASCII-only User-Agent. Search results → Chrome MCP only (JS-rendered MC_ links don't appear in server-rendered HTML).
+
+**Hub vs leaf ID distinction (2026-05-16).**
+NumisMaster's catalogue hierarchy uses negative IDs in the `?id=-NNNNNNN&advancedsearch=true&pageno=N` URL parameter. NOT all negative IDs render coin lists:
+- **Hub IDs** = geographic intro pages, NOT coin lists: `-1005793` = DENMARK, `-1006970` = NORWAY, `-1005794` = GLÜCKSTADT. Their JS-rendered content is century-tag links + maps + sub-territory navigation.
+- **Leaf IDs** = actual coin search results with MC_NNNNN links: e.g. `-10012282` = HOLSTEIN-GOTTORP-RENDSBORG. The Chrome MCP `find` tool surfaces coin entries with year-range context.
+- 600+ unique sub-territory IDs discovered under the Denmark hub via `<a href="/?id=-..."` extraction.
+*Diagnosis trap.* Anonymous urllib probe of a hub-ID returns 442 KB body with «Please wait a moment while we find what you are looking for…» placeholder + sub-territory navigation links. No coin data. The first session that hits this concludes «NumisMaster has no Denmark data» — a category error. The data is on **leaf-ID pages**, which require Chrome MCP for MC_ link extraction.
+*Decision.* When sampling a NumisMaster catalogue branch: navigate to the search URL via Chrome MCP, look for «coin entries with year ranges» via `find` tool. Empty find = hub-ID; populated find = leaf-ID. Walk leaf-IDs systematically.
+
+**Pre-Krause «MB#» numbering for Schleswig-Holstein-duchy 16th c. (2026-05-16).**
+KM (Krause-Mishler) numbering for Denmark begins ~1604 (Christian IV reign). Pre-1604 Schleswig-Holstein-duchy coins are catalogued under **MB# (Madai-Bach)** numbering — a pre-Krause scheme that Krause adopted for back-compatibility on legacy 16th-17th c. duchy issues. NumisMaster MC_NNNNN pages for pre-1541 SH coins show e.g. «Catalog #: MB# 33» (Christian III 6 Pfennig 1534-1554, MC_167727) with Sch# 1357 + L# 23, 23AB cross-refs.
+*Diagnosis trap.* A session that only knows KM# might assume NumisMaster has no pre-1604 coverage. In reality MB# fills the pre-Krause gap for SH-duchy issues. §AZ Tier 4 (2026-05-16) found 3 in-scope MB#-numbered entries from a single Holstein-Gottorp-Rendsborg search. Full sub-territory walk for additional MB_ entries deferred to future enrichment session.
+*Decision.* When parsing NumisMaster `Catalog #:` field, branch on the prefix: `KM#` → catalog.km; `MB#` → catalog.mb. Schema-level support via the seed builder. Pre-1604 SH coins default to `issuing_entity: schleswig_holstein_duchy` based on the «Political period: Duchy» tag.
+
+**`numismaster.com` URL pattern alphabet.**
+- `/MC_<N>` — public per-coin page, full data (urllib OK)
+- `/?id=-<facet>&advancedsearch=true&pageno=<N>` — JS-rendered search results (Chrome MCP)
+- `/coins` — search form landing page, no results without form submit
+- `/coins/coins-<N>` — redirects back to `/coins` (legacy/dead URL pattern, ignore)
+- `/api/...` — does not exist (no public API)
+- `/sitemap.xml` — 404, no public sitemap
+
 ---
 
 ## 14. Operational status snapshot
@@ -578,6 +646,9 @@ Last reviewed: 2026-05-13.
 | **Bruun page texts** | `scripts/cache/bruun/pages/part{1,2,3,4}.txt` | 2026-05-10 | OK | Used for full-text searches over auction-intro material. |
 | **Hede HTML+JSON** | `scripts/cache/hede/*.{htm,json}` (~1 360 entries) | 2026-05-12 | OK | Comprehensive; per-coin re-parse via `scripts/parse_hede.py --force` if parser changes. |
 | **IKMK Berlin** | `scripts/cache/ikmk/*.json` (~7 000 entries) | 2026-05-11 | OK | Direct WebFetch on `?download=json_ext` works; no rate-limit observed. |
+| **danskmoent.dk Galster** | `scripts/cache/danskmoent/galster/*.{htm,json}` (110 pages) | 2026-05-16 | OK | Pre-Christian-III gap (Hede starts 1541); 79 entries for §AZ 1514-1541 window. Indexes `/c2galst.htm` + `/f1galst.htm`; per-coin `chr/c2g*.htm`, `fr/f1g*.htm`, `norge/n<r>g*.htm`. No `/c3galst.htm` (Christian III pre-1541 needs per-Galster# probing). |
+| **Numista HTML (denmark_pre_1541)** | `scripts/cache/numista/denmark_pre_1541/*.{html,json}` (56 pages) | 2026-05-16 | OK | NOT the v3 API — direct HTML route at `en.numista.com/<N>`. Polite 30s pauses, ASCII-only User-Agent. 47 DK + 8 Norway for §AZ Tier 3. |
+| **NumisMaster MC_** | `scripts/cache/numismaster/denmark_pre_1541/*.{html,json}` (3 pages) | 2026-05-16 | sample | Initial §AZ Tier 4 harvest of 3 Holstein-Gottorp-Rendsborg pre-1541 entries (MB#22 / MB#33 / MB#39). Full sub-territory walk for additional MB_ entries deferred. Per-coin pages public via urllib; search-form needs Chrome MCP. |
 
 When the «Status» column shows anything other than `OK`, the affected harvest pipeline is blocked and TODO entries reference the recovery procedure.
 
