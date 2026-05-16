@@ -508,6 +508,50 @@ weight_rough_g:
 3. Cross-reference Hede 1971 + 1977 extension printed indices (if accessible — paper or scan) against the cache to confirm scope coverage; surface any gaps as separate TODOs.
 4. Document closure in this entry's body (count delta, any new pages, scope-gaps flagged for follow-up).
 
+### BI. 🟢 NumisMaster harvest Phase 1+2 — catalog walk + MC_ID enumeration  *(opened 2026-05-16)* *(est: medium)* *(type: research + script + Chrome MCP)*
+
+**Surfaced.** Surface document `docs/research/numismaster_dk_sh_1514_1914_harvest_surface.md` accepted 2026-05-16. NumisMaster catalog topology has hub IDs (geographic intro, no coin list) vs leaf IDs (search results listing MC_NNNNN per-coin entries). The 4 known facet IDs from §AZ (DK -1005793, Norge -1006970, Glückstadt -1005794, HG-Rendsborg leaf -10012282) cover < 1% of the projected ~30-45 leafs in scope.
+
+**Done criterion.** Staged sub-scope walk in order A. Schleswig-Holstein → B. Denmark → C. Norway → D. Sweden under Christian II:
+
+1. Phase 1 (catalog walk via Chrome MCP) — navigate each hub `https://numismaster.com/?id=<hub_id>`, capture all sub-territory / sub-period leaf-IDs via `read_page` + `find`. SH probed via BOTH DK-hub link list AND `?searchstr=SCHLESWIG&advancedsearch=true`. Sweden-CII probed via `?searchstr=Christian+II+Sweden&advancedsearch=true` filtered to 1514-1523. Cache every visited page as raw snapshot under `scripts/cache/numismaster/_walks/hub_<id>.{txt,snapshot.json}`. Writes `scripts/cache/numismaster/leafs.json`.
+2. Phase 2 (per-leaf MC_ID enumeration via Chrome MCP) — for each confirmed leaf, paginate `?id=<leaf>&advancedsearch=true&pageno=N` until exhausted. Apply year-range + ruler filters per sub-scope (SH 1514-1864; DK 1514-1914; Norge 1514-1814; Sweden 1514-1523 + ruler=Christian II). Cache every paginated page as raw snapshot under `_walks/leaf_<id>_p<N>.{txt,snapshot.json}`. Writes `scripts/cache/numismaster/mc_index.json`.
+3. Stage gate before §BJ Phase 4 starts: user reviews `leafs.json` count + per-leaf MC_ID totals, confirms scope is complete (any leafs surprisingly empty or surprisingly huge surfaced for verification).
+4. **No dedup against `data/locations/*.yml` in this phase** — full enumeration of in-window MC_IDs only.
+
+**Scripts to add.** `scripts/fetch_numismaster.py` with sub-commands `--walk-hubs` (Phase 1) + `--enum-leafs` (Phase 2). New cache shape under `scripts/cache/numismaster/<sub_scope>/` + `_walks/`.
+
+### BJ. 🟢 NumisMaster harvest Phase 3+4 — scope filter + bulk raw-HTML cache fetch  *(opened 2026-05-16)* *(est: large)* *(type: script + background)* *(depends on §BI)*
+
+**Surfaced.** Companion to §BI; runs after §BI hands off `mc_index.json`. Goal: populate `scripts/cache/numismaster/<sub_scope>/MC_<N>.html` for every in-window MC_ID with FULL RAW HTML preserved verbatim. Estimated 2500-5300 fetches before-dedup; staged in batches per sub-scope.
+
+**Done criterion.**
+
+1. Phase 3 (scope filter, Python local) — apply year-range + ruler filter from `mc_index.json` per §1.1 of the surface document. NO dedup against curated. Writes `mc_to_fetch.json` per sub-scope. Reports `len(mc_to_fetch)` so batches can be sized.
+2. Phase 4 (urllib bulk fetch, background) — for each MC_ID in `mc_to_fetch.json`:
+   - ASCII-only User-Agent (mandatory per `docs/HARVEST_GUIDE.md` «Common pitfalls»).
+   - 30s pauses between requests, conservative <50-per-session pacing.
+   - Write `urllib.request.urlopen(...).read()` byte-for-byte to `scripts/cache/numismaster/<sub_scope>/MC_<N>.html` — **NO parsing, NO stripping, NO truncation**.
+   - Write `MC_<N>.meta.json` with HTTP `status` + `headers` dict + `fetched_at` wall-clock timestamp.
+   - Update per-sub-scope `_manifest.json` incrementally so resumption after crash is possible.
+3. Stage gate per sub-scope: after each sub-scope completes Phase 4, user reviews `_manifest.json` for fetch-failure count + cache size before next sub-scope launches.
+4. **Sub-scope order**: A. Schleswig-Holstein (small + already partially cached) → B. Denmark (largest, most-tested cache shape) → C. Norway → D. Sweden-CII.
+5. Closure: every in-window MC_ID listed in `mc_to_fetch.json` has a corresponding `MC_<N>.html` + `MC_<N>.meta.json` pair on disk; manifests reconciled. **No parsing, no seed, no curated-dedup** — those are §BK.
+
+**Scripts to add.** Extend `scripts/fetch_numismaster.py` with `--filter-scope` (Phase 3) + `--fetch` (Phase 4) sub-commands.
+
+### BK. 🟢 NumisMaster Phase 5 — parse + seed (from local cache only, no NumisMaster traffic)  *(opened 2026-05-16)* *(est: medium)* *(type: parser + seed)* *(depends on §BJ)*
+
+**Surfaced.** Final phase of the NumisMaster harvest chain. After §BJ closes the cache, parser + seed-builder run locally against `scripts/cache/numismaster/<sub_scope>/MC_<N>.html` with NO further NumisMaster fetches. Dedup against curated `data/locations/*.yml` happens here, not at cache-acquisition time.
+
+**Done criterion.**
+
+1. Rename + generalise `scripts/parse_numismaster_pre1541.py` → `scripts/parse_numismaster.py`. Add KM# parser (was MB#-only), full cross-ref extraction (Sch, L, Fr, Sieg, Hede, Bruun, KM, MB), Krause-volume disambiguation per CLAUDE.md §9 caveat.
+2. Rename + generalise `scripts/maintenance/build_numismaster_pre1541_seed.py` → `scripts/maintenance/build_numismaster_seed.py` with `--sub-scope` flag.
+3. Emit `data/seed/numismaster/{schleswig_holstein,denmark,norway,sweden_christian_ii}.yml`.
+4. Dedup report: for each MC_ID, cross-check existing curated coin entries by KM# / MB# / Schou# / Lange# / Hede# / Sieg# inside the same country-scope. Output `numismaster_dedup_report.json` for user review before seed-promotion (§BF).
+5. Preserve Librios-internal codes (`PL...`, `CG...`) verbatim under `numismaster_political_period_id` / `numismaster_coinage_entity_id` — don't try to decode.
+
 ## Normal priority
 
 ### AK. Flip `mint_verified` to true for seed entries whose Hede source explicitly states the mint  *(opened 2026-05-13)*
