@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
-"""§BK NumisMaster Phase 5 — sub-scope seed builder.
+"""§BK NumisMaster Phase 5 — location-keyed seed builder.
 
-Reads `scripts/cache/numismaster/<sub_scope>/MC_<N>.parsed.json` files (output of
-`scripts/parse_numismaster.py`) and emits `data/seed/numismaster/<sub_scope>.yml`
-with Coin-schema entries marked `fuss: seed_unsorted`, `phase: numismaster`.
+Reads `scripts/cache/numismaster/<cache>/MC_<N>.parsed.json` files (output of
+`scripts/parse_numismaster.py`) and emits one seed file per project LOCATION
+under `data/seed/numismaster/<location>.yml`, with Coin-schema entries marked
+`fuss: seed_unsorted`, `phase: numismaster`.
 
-Sub-scope mapping:
-  schleswig_holstein   → data/seed/numismaster/schleswig_holstein.yml
-  denmark              → data/seed/numismaster/denmark.yml
-  norway               → data/seed/numismaster/norway.yml
-  denmark_pre_1541     → handled by legacy `build_numismaster_pre1541_seed.py`
-                          (kept for backwards compat; not re-emitted here)
+Locations and their cache composition (CACHE_WINDOW per cache + LOCATION_CACHES
+roll-up):
 
-Year-window filter applied per sub-scope (mission scope):
-  schleswig_holstein   1514 ≤ year_first ≤ 1864 (Schleswig-Holstein Danish-jurisdiction)
-  denmark              1514 ≤ year_first ≤ 1914
-  norway               1608 ≤ year_first ≤ 1814 (Danish-rule era only)
+  data/seed/numismaster/schleswig_holstein.yml
+    ← cache/numismaster/schleswig_holstein/ (1514-1864, SH Danish-jurisdiction)
+
+  data/seed/numismaster/denmark.yml
+    ← cache/numismaster/denmark/ (1514-1914, project upper bound)
+    ← cache/numismaster/norway/  (1608-1814, Norge under Danish rule only)
+       — both fold into denmark.yml because the Denmark-Norway realm is a
+         single coinage jurisdiction (Danish crown), same as how Hede 1971
+         covers both under «Danmarks og Norges mønter».
+
+Sweden-Christian-II is 0 entries (§BI negative finding) — no seed emitted.
 
 Curation preservation: merge-aware via `scripts/lib/seed_merge.py` (§BL). Existing
 `fuss`/`phase`/`fraction`/`issuing_entity`/`kind`/`note`/`*_verified` flags on
@@ -23,8 +27,8 @@ on-disk entries survive regeneration. Pass `--no-merge` for legacy wholesale
 rewrite (verification / dry-run only).
 
 Run:
-    .venv/bin/python scripts/maintenance/build_numismaster_seed.py --sub-scope schleswig_holstein
-    .venv/bin/python scripts/maintenance/build_numismaster_seed.py --sub-scope denmark
+    .venv/bin/python scripts/maintenance/build_numismaster_seed.py --location schleswig_holstein
+    .venv/bin/python scripts/maintenance/build_numismaster_seed.py --location denmark
     .venv/bin/python scripts/maintenance/build_numismaster_seed.py --all
 """
 from __future__ import annotations
@@ -43,11 +47,21 @@ from lib.seed_merge import merge_seed  # noqa: E402
 
 SEED_ROOT = PROJECT_ROOT / "data" / "seed" / "numismaster"
 
-# (year_from, year_to) inclusive — drop entries whose year_first falls outside.
-SUB_SCOPE_WINDOW: dict[str, tuple[int, int]] = {
+# Per-CACHE-DIR year window applied to entries from that cache:
+#   schleswig_holstein  1514-1864 (Danish-jurisdiction SH end)
+#   denmark             1514-1914 (project upper bound)
+#   norway              1608-1814 (Danish-rule era only; NumisMaster floor 1608)
+CACHE_WINDOW: dict[str, tuple[int, int]] = {
     "schleswig_holstein": (1514, 1864),
     "denmark": (1514, 1914),
     "norway": (1608, 1814),
+}
+
+# Per-LOCATION cache-dir composition — multiple sub-scopes can fold into one
+# location (the Denmark-Norway realm covers both DK and NO Danish-rule entries).
+LOCATION_CACHES: dict[str, list[str]] = {
+    "schleswig_holstein": ["schleswig_holstein"],
+    "denmark": ["denmark", "norway"],  # DK + Norge-under-Danish-rule both → denmark.yml
 }
 
 # Map NumisMaster `country` strings → project `issuing_entity` tag. The 9 SH
@@ -94,15 +108,15 @@ def detect_metal(comp: str | None, denom: str | None) -> str:
     return "silver"
 
 
-def _coin_id(sub_scope: str, mc: int) -> str:
+def _coin_id(location: str, mc: int) -> str:
     """Stable coin id used as the merge anchor. Format: `<location>-numismaster-<mc>`
-    where <location> is the sub-scope dir name (schleswig_holstein / denmark / norway).
+    where <location> is the target seed file (schleswig_holstein / denmark).
     The legacy `denmark_pre_1541` seed uses `dk-numismaster-<mc>` — kept distinct
     so the new general seed doesn't clash."""
-    return f"{sub_scope}-numismaster-{mc}"
+    return f"{location}-numismaster-{mc}"
 
 
-def build_entry(data: dict, sub_scope: str, year_from: int, year_to: int) -> dict | None:
+def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict | None:
     yf = data.get("year_first")
     yl = data.get("year_last")
     if yf is None:
@@ -113,7 +127,7 @@ def build_entry(data: dict, sub_scope: str, year_from: int, year_to: int) -> dic
     mc = data.get("numismaster_id")
     if mc is None:
         return None
-    cid = _coin_id(sub_scope, mc)
+    cid = _coin_id(location, mc)
 
     composition = data.get("composition") or ""
     metal = detect_metal(composition, data.get("denomination"))
@@ -149,12 +163,23 @@ def build_entry(data: dict, sub_scope: str, year_from: int, year_to: int) -> dic
 
     issuing = COUNTRY_TO_ISSUING_ENTITY.get((data.get("country") or "").upper())
     if issuing is None:
-        # Fallback by sub-scope (rare — keeps un-recognised country strings safe)
+        # Fallback by target-location (rare — keeps un-recognised country strings safe).
+        # SH location → SH duchy; denmark location → danish_realm default (NO Norge
+        # entries override via COUNTRY_TO_ISSUING_ENTITY[NORWAY] → norwegian_realm).
         issuing = {
             "schleswig_holstein": "schleswig_holstein_duchy",
             "denmark": "danish_realm",
-            "norway": "norwegian_realm",
-        }.get(sub_scope, "danish_realm")
+        }.get(location, "danish_realm")
+
+    # Fineness sanity-check — Coin.fineness schema enforces [0, 1] (decimal
+    # fraction). NumisMaster occasionally concatenates Composition + Fineness
+    # into one «Composition» field («Silver Fineness: 40.7»), so the parser
+    # mis-reads the gross mass as fineness on those records. Drop out-of-range
+    # fineness values to keep the seed schema-clean; curators can backfill from
+    # the parsed.json or primary sources later.
+    raw_fineness = data.get("fineness")
+    if raw_fineness is not None and (raw_fineness < 0 or raw_fineness > 1):
+        raw_fineness = None
 
     entry: dict = {
         "id": cid,
@@ -170,11 +195,11 @@ def build_entry(data: dict, sub_scope: str, year_from: int, year_to: int) -> dic
         "mint": data.get("mint"),
         "catalog": catalog,
         "metal": metal,
-        "fineness": data.get("fineness"),
+        "fineness": raw_fineness,
         "weight_rough_g": data.get("mass_g"),
         "issuing_entity": issuing,
         "verified": False,
-        "fineness_verified": data.get("fineness") is not None,
+        "fineness_verified": raw_fineness is not None,
         "weight_rough_verified": data.get("mass_g") is not None,
         "mint_verified": bool(data.get("mint")),
         "sources": [
@@ -234,39 +259,53 @@ def build_entry(data: dict, sub_scope: str, year_from: int, year_to: int) -> dic
     return entry
 
 
-def collect(sub_scope: str, year_from: int, year_to: int) -> list[dict]:
-    cache_dir = NUMISMASTER_CACHE / sub_scope
+def collect_from_cache(cache_name: str, location: str) -> tuple[list[dict], int]:
+    """Walk one cache dir's parsed.json files → build entries for `location`.
+    Applies CACHE_WINDOW[cache_name] year-range filter. Returns (entries, scanned)."""
+    year_from, year_to = CACHE_WINDOW[cache_name]
+    cache_dir = NUMISMASTER_CACHE / cache_name
     entries: list[dict] = []
+    scanned = 0
     for json_path in sorted(cache_dir.glob("MC_*.parsed.json")):
+        scanned += 1
         try:
             data = json.loads(json_path.read_text())
         except json.JSONDecodeError as e:
             print(f"  [{json_path.name}] parse error: {e}", file=sys.stderr)
             continue
-        entry = build_entry(data, sub_scope, year_from, year_to)
+        entry = build_entry(data, location, year_from, year_to)
         if entry:
             entries.append(entry)
-    return entries
+    return entries, scanned
 
 
-def build_seed(sub_scope: str, no_merge: bool, dry_run: bool) -> int:
-    if sub_scope not in SUB_SCOPE_WINDOW:
-        print(f"ERROR: unknown sub-scope '{sub_scope}'. Valid: {list(SUB_SCOPE_WINDOW)}", file=sys.stderr)
+def build_seed(location: str, no_merge: bool, dry_run: bool) -> int:
+    if location not in LOCATION_CACHES:
+        print(f"ERROR: unknown location '{location}'. Valid: {list(LOCATION_CACHES)}", file=sys.stderr)
         return 2
-    year_from, year_to = SUB_SCOPE_WINDOW[sub_scope]
-    out_path = SEED_ROOT / f"{sub_scope}.yml"
+    out_path = SEED_ROOT / f"{location}.yml"
+    caches = LOCATION_CACHES[location]
 
-    entries = collect(sub_scope, year_from, year_to)
-    entries.sort(key=lambda e: (e.get("year_first", 9999), e.get("id", "")))
-    print(f"  [{sub_scope}] in-window entries: {len(entries)} ({year_from}-{year_to})")
+    all_entries: list[dict] = []
+    total_scanned = 0
+    cache_summary: list[str] = []
+    for cache_name in caches:
+        entries, scanned = collect_from_cache(cache_name, location)
+        all_entries.extend(entries)
+        total_scanned += scanned
+        yf, yt = CACHE_WINDOW[cache_name]
+        cache_summary.append(f"{cache_name}({yf}-{yt}):{len(entries)}/{scanned}")
+
+    all_entries.sort(key=lambda e: (e.get("year_first", 9999), e.get("id", "")))
+    print(f"  [{location}] from caches → {', '.join(cache_summary)} = {len(all_entries)} total entries")
     if dry_run:
         return 0
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     if not no_merge:
-        entries, stats = merge_seed(entries, out_path)
+        all_entries, stats = merge_seed(all_entries, out_path)
         print(
-            f"  [{sub_scope}] merge: merged_existing={stats['merged_existing']}, "
+            f"  [{location}] merge: merged_existing={stats['merged_existing']}, "
             f"added_new={stats['added_new']}, orphan_curated={stats['orphan_curated']}"
         )
 
@@ -275,35 +314,38 @@ def build_seed(sub_scope: str, no_merge: bool, dry_run: bool) -> int:
     yaml.width = 200
     yaml.indent(mapping=2, sequence=4, offset=2)
 
+    scope_note = (
+        f"§BK NumisMaster seed for location `{location}`. Krause-Mishler-based "
+        f"commercial catalogue (Librios). Caches consumed: {', '.join(caches)}. "
+        f"Per-cache year windows: " + ", ".join(
+            f"{c}={CACHE_WINDOW[c][0]}-{CACHE_WINDOW[c][1]}" for c in caches
+        ) + ". Per-coin verification against primary sources (Hede / Sieg / "
+        "Lange / Wilcke / Schive) before §BF promotion. Krause numbering is "
+        "per-country — see CLAUDE.md §9 caveat on cross-volume KM# collisions."
+    )
+
     out = {
         "status": "seed",
         "source": "NumisMaster (numismaster.com per-coin HTML MC_NNNNN pages)",
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "scope_year_from": year_from,
-        "scope_year_to": year_to,
-        "sub_scope": sub_scope,
-        "scope_note": (
-            f"§BK NumisMaster sub-scope `{sub_scope}` ({year_from}-{year_to}). "
-            "Krause-Mishler-based commercial catalogue (Librios). Per-coin "
-            "verification against primary sources before §BF promotion. Krause "
-            "numbering is per-country — see CLAUDE.md §9 caveat on cross-volume "
-            "KM# collisions."
-        ),
-        "coins": entries,
+        "location": location,
+        "caches": list(caches),
+        "scope_note": scope_note,
+        "coins": all_entries,
     }
     with out_path.open("w") as f:
         yaml.dump(out, f)
-    print(f"  [{sub_scope}] wrote {out_path.relative_to(PROJECT_ROOT)} ({len(entries)} entries)")
+    print(f"  [{location}] wrote {out_path.relative_to(PROJECT_ROOT)} ({len(all_entries)} entries)")
     return 0
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     g = ap.add_mutually_exclusive_group(required=True)
-    g.add_argument("--sub-scope", choices=tuple(SUB_SCOPE_WINDOW.keys()),
-                   help="Build seed for one sub-scope")
+    g.add_argument("--location", choices=tuple(LOCATION_CACHES.keys()),
+                   help="Build seed for one location")
     g.add_argument("--all", action="store_true",
-                   help="Build seeds for every sub-scope")
+                   help="Build seeds for every location")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument(
         "--no-merge",
@@ -316,10 +358,10 @@ def main() -> int:
     )
     args = ap.parse_args()
 
-    scopes = list(SUB_SCOPE_WINDOW.keys()) if args.all else [args.sub_scope]
+    locations = list(LOCATION_CACHES.keys()) if args.all else [args.location]
     rc = 0
-    for scope in scopes:
-        rc = build_seed(scope, args.no_merge, args.dry_run) or rc
+    for loc in locations:
+        rc = build_seed(loc, args.no_merge, args.dry_run) or rc
     return rc
 
 
