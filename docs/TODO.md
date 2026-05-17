@@ -487,6 +487,29 @@ weight_rough_g:
 
 (§BG closed — see `## Done` section below.)
 
+### BM. 🟢 IKMK Berlin completeness audit — DK extraction + SH coverage verification  *(opened 2026-05-17)* *(est: small)* *(type: audit + data)*
+
+**Surfaced.** Phase-1 raw-cache coverage table (2026-05-17) showed IKMK as a small-but-non-zero source for Denmark (41 records via `_match_denmark.json`) but with **0 actually cited in `data/locations/denmark.yml`** — an extraction gap. For Schleswig-Holstein the situation is the opposite: `_match_schleswig_holstein.json` shows 42 strict matches + 23 new-Lange-variants (65 IKMK records total), of which 32 are already cited in `schleswig_holstein.yml` — so 10 strict-matched IKMK records + 23 new-Lange-variants remain potentially unintegrated.
+
+IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mostly ancient Greek + Roman + Ottoman), so the absolute counts are small. But each IKMK record is **museum-grade primary attestation** with weight, fineness, photograph, and inscription transcription — exactly the data we'd otherwise cite via auction catalogues. Letting 41 DK records sit uncited is a §5 «source hierarchy» violation (museum catalogue > auction catalogue per the CLAUDE.md hierarchy).
+
+**Why now.** Cheap to verify (the `_match_*.json` index already lists candidates with `ikmk_id` + `ikmk_year` + `ikmk_nominal`); no new fetch required. If we don't capture these citations now, future curators may unknowingly re-cite the same coin from a weaker source (auction lot) and miss the museum primary attestation.
+
+**Done criterion.**
+
+1. **DK extraction.** For each of the 41 IKMK records in `_match_denmark.json`:
+     - Strict matches (5): add IKMK as `sources[type=museum]` ref on the matching curated coin entry.
+     - Fuzzy matches (13): manual review — likely same coin, confirm + cite as strict.
+     - Weak candidates (23): more careful manual review — may be sibling KM-variant or different sub-type. If it's a NEW coin not in denmark.yml, add as a new curated entry sourced from IKMK; otherwise skip / annotate.
+     - Aim: ≥18 strict+fuzzy citations added; the 23 weak-candidates resolved (cited or annotated as «not a match» in a follow-up note).
+2. **SH coverage verification.** Of the 65 IKMK SH records:
+     - The 10 strict-matches NOT yet cited in `schleswig_holstein.yml` — add IKMK as `sources[type=museum]` ref. Quick check: maybe they're already cited under a different IKMK id format (e.g. `permalink` URL not raw id).
+     - The 23 new-Lange-variants collapse to «1 unique new Lange number» per the index totals — investigate that one outlier: is it a genuinely new SH coin worth adding, or is it noise from the matching heuristic?
+3. **Non-DK / non-SH IKMK with mission-scope relevance.** Spot-check the IKMK cache for entries that match other in-mission locations we haven't indexed (`_match_bremen_verden.json` / `_match_holstein_schauenburg.json` / `_match_lauenburg.json` / `_match_lubeck.json` / `_match_osnabrueck.json` already exist) — confirm each is processed similarly. Surface any gap as separate sub-TODOs.
+4. **Document closure** in this entry's body: count delta per location, list of IKMK ids cited / annotated / skipped.
+
+---
+
 ### BH. 🟢 Hede cache completeness audit — verify danskmoent.dk fully harvested, including non-DK content  *(opened 2026-05-15, expanded 2026-05-17 per user)* *(est: small-medium)* *(type: audit)*
 
 **Surfaced.** Hede 1971 (DK realm) + §BG (Norge sub-catalogue, closed 2026-05-17) gave us 836 cached pages covering Denmark + Norway-under-Danish-rule. Coverage is now visually excellent (566 Hede entries in 1608-1814 alone, see Phase-1 coverage table 2026-05-17). But two open questions remain before declaring Hede source «100% mirrored»:
