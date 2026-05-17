@@ -244,6 +244,54 @@ Bundle takes the audit-completeness cluster (§BH Hede + §BM IKMK + §BN Bruun 
 > - **§AM** (DROP 5 gold off-strike entries per CLAUDE.md §9.3) — per-case verdict per candidate (PB-1 style).
 > - **§AQ** (Seed-merge data augmentation policy — field selection + conflict resolution naming).
 
+### BP. 🟢 Schleswig-Holstein page — review correctness of DK+ vs RH separation  *(opened 2026-05-17)* *(est: small-medium)* *(type: curation policy + data)*
+
+**Surfaced.** User direction 2026-05-17 — review whether the SH page's issuing-entity taxonomy correctly separates `gesamtstaat` (DK+) from `royal_holstein` (RH), and whether keeping them as distinct entities on the SH page is logical.
+
+**Current state on `data/locations/schleswig_holstein.yml`** (323 curated coins, distribution):
+
+  | Entity | Abbrev | Count | Coverage |
+  |---|---|---:|---|
+  | `gottorp_duchy` | HG | 103 | Holstein-Gottorp side (Schleswig, Husum, Tönning mints) |
+  | `royal_holstein` | RH | 83 | Königlich-Holsteinische Anteil (Glückstadt, Altona-pre-Helstaten) |
+  | `gesamtstaat` | DK+ | 59 | Helstaten-unified-state era (1773-1864 / Rigsbankdaler reform) |
+  | `schauenburg_pinneberg` | SP | 43 | Pre-1640 Schauenburg county |
+  | `sonderburg_duchy` | SD | 16 | Sonderburg cadet line |
+  | `norburg_plon_duchy` | NP | 7 | Norburg / Plön cadet |
+  | `rantzau_county` | RZ | 6 | Rantzau county 1650-1726 |
+  | `glucksburg_duchy` | GB | 3 | Glücksburg cadet |
+  | `provisional_govt` | PG | 2 | 1848-1850 Provisional Government |
+  | (no entity) | — | 1 | needs audit |
+
+**The audit question.** RH and DK+ both cover «Danish-crown-side» SH coinage, but at different historical phases:
+
+  - **RH (royal_holstein)**: pre-1773 Danish-king-as-Duke-of-Holstein issues. Mints: primarily Glückstadt (1619-1750), pre-Helstaten Altona. Inscription typically names Holstein (HOLSTEINS, HOLST.) or the duchy explicitly.
+  - **DK+ (gesamtstaat)**: 1773-1864 Helstaten-unified-state era. Mints: Altona + København + Glückstadt strike for the whole realm under unified Müntzfuß. Inscription typically «DANSKE» realm-wide.
+
+**Open questions for this audit:**
+
+  1. **Is DK+ presence on the SH page conceptually correct?** Helstaten DK+ coins are realm-wide legal tender; they circulate in SH but they're a *Danish realm* issue, not a *Holstein-territorial* issue. Should they appear on the SH page at all, or only on denmark.yml? Currently each DK+ coin may live on BOTH pages (if dual-cited), which risks double-counting.
+  2. **Where does the RH→DK+ boundary actually fall?** Currently per §P the boundary is the 1773 Helstaten administrative milestone. But the 1813 Rigsbankdaler reform is arguably the stronger watershed for SH-coinage (because that's when Holstein-Glückstadt mint effectively transitions to all-realm Rigsbankdaler issues). Audit existing 59 DK+ assignments on SH page for consistency.
+  3. **What about Altona-mint coins 1771?** Pre-1773 Altona issues — currently HG-tagged (Holstein-Gottorp), RH-tagged, or DK+? Probably should be RH (still pre-Helstaten royal-Holstein-side), but spot-check the 1771 KM# 616-series assignments to confirm.
+  4. **Schleswig-1814-1864 Helstaten era**: Schleswig was Danish (not German imperial) jurisdiction throughout. Coins minted at Altona for the realm: DK+ or specifically Schleswig-marked variants tagged differently? Currently all Helstaten-era SH-mint coins are DK+ — verify against inscription content.
+
+**Recommendation direction** (preliminary, subject to user review):
+  - **Option A — Keep DK+ as SH-page entity**: argument is that Altona-mint Helstaten-era coins are SH-territory production, distinct from København-mint Helstaten coins which would only land on denmark.yml. The mint location is the territorial anchor.
+  - **Option B — Drop DK+ from SH page**: argument is that DK+ is a *realm-level* entity (per its description: «for the whole realm»), so it conceptually belongs only on denmark.yml. SH-mint Helstaten coins would re-tag as RH-late or a new `royal_holstein_helstaten` sub-entity.
+  - **Option C — Status quo, document explicitly**: keep current 59 DK+ + 83 RH split, but add a clarifying note to the SH location header explaining the dual-coverage rule (a coin can appear on both DK and SH pages when it's Helstaten-era + SH-mint).
+
+**Done criterion.**
+
+  1. Enumerate the 59 DK+ coins on SH page → tabulate by mint, year, KM# / Hede ref. Identify any that should be RH instead (pre-1773 misfiles).
+  2. Enumerate the 83 RH coins → tabulate by mint, year. Identify any Helstaten-era (post-1773) that should be DK+ instead.
+  3. Cross-check overlap with denmark.yml: how many DK+ coin ids appear on BOTH pages? Document the dual-coverage policy.
+  4. Decide Option A / B / C with user (or hybrid). If A or C: write the rule into `schleswig_holstein.yml` location summary so future curators apply it consistently. If B: migrate 59 entries to RH (or a new `royal_holstein_helstaten` sub-entity) and remove DK+ from the SH page entirely.
+  5. Document closure with count delta + policy rule.
+
+**Cross-references.**
+
+  - **§P** (Denmark issuing-entity audit, DK vs DK+ separation on denmark.yml) — same gesamtstaat boundary question but from the DK-page angle. §BP focuses on the SH-page side. Resolve §P first (it sets the 1773 boundary) → then §BP applies that boundary on SH page.
+
 ### AF. 🟢 Hede off-strike audit — bidirectional sweep done, 3 victims surface into §AM  *(opened 2026-05-13, updated 2026-05-15)* *(est: small — followups under §AM)*
 
 **Surfaced.** During the c4h47 fix (silver Hede 47 spec card with Guldafslag Schou 1a sub-variant in Zincksamlingen list — caught 2026-05-13, commit `b0aa746`). The pattern: a Hede page primarily catalogues the silver mother coin, but the description / Zincksamlingen list mentions a Guldafslag (gold off-strike) sub-variant with a different Schou number (e.g. Schou «1» for silver, «1a» for gold). A curator who reads only the spec card and ingests Bruttovægt/Finhed onto a `metal: gold` entry produces a silver-fineness gold coin — exactly the c4h47 trap. Symmetric case (gold mother coin + Sølvafslag silver off-strike → curated `metal: silver` ingesting gold fineness) is the bidirectional sister; both directions exist in real Hede data (e.g. f3h36 «10 Dukat» 0.979 with Sølvafslag, f4h27-29 «Guldjeton» with Sølvafslag).
