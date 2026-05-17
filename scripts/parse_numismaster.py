@@ -84,6 +84,10 @@ def _normalise_year_string(s: str) -> str:
       * «(1)617» / «(1)619»  → «1617» / «1619»  (century-abbreviation form
         seen on Frederik I / Christian III pre-1559 Schleswig-Holstein
         pages where the actual coin's engraving says «(15)63» or «(1)617»).
+      * «(15)Z5» / «(15)Z6»  → «1525» / «1526»  (century-abbreviation form
+        WITH Z→2 substitution in the YY tail — same Z glyph as «15Z3»
+        but the price-table column header uses the parenthesised form
+        when the century digits are abbreviated on the coin engraving).
       * «16Z8» / «1Z28»      → «1628» / «1228»  (Z is a literal engraving
         glyph used on some 17th-c. Schleswig-Holstein-Gottorp coins as a
         variant for the digit 2 — confirmed on MC_167311's reverse legend
@@ -93,13 +97,40 @@ def _normalise_year_string(s: str) -> str:
         could be coin-value labels but not years; leave non-year strings
         alone via the date-string scope of this function (caller decides
         when to apply).
+      * «ND(ca1523)» / «ca. 1523» / «circa 1523» → injects spaces around
+        the 4-digit year token so the downstream `\\b(1[5-9]\\d{2})\\b`
+        extractor catches it (the «a» in «ca» is a \\w-char and would
+        otherwise eat the leading word-boundary). The «ND(…)» / «ca»
+        prefix conveys a numismatic uncertainty («No Date, circa year»)
+        that we lose at this stage — coins surfaced via this path should
+        still carry `year_verified: false` if curators want to flag the
+        attribution-only year. Today we leave verification to the curator
+        and just ensure the year token isn't silently dropped.
     """
     if not s:
         return s
-    # Expand «(1)YY» / «(15)YY» / «(16)YY» — capture century group + 2-digit tail.
-    s = re.sub(r"\(\s*(1[5-9]?)\s*\)\s*(\d{2})", lambda m: (m.group(1) if len(m.group(1)) == 2 else "1") + m.group(2), s)
+    # Expand «(1)YY» / «(15)YY» / «(16)YY» — capture century group + 2-digit
+    # tail, with optional Z→2 substitution inside the tail («(15)Z5» → «1525»).
+    def _expand_parenthesised_century(m):
+        century = m.group(1) if len(m.group(1)) == 2 else "1"
+        tail = m.group(2).replace("Z", "2").replace("z", "2")
+        return century + tail
+    s = re.sub(
+        r"\(\s*(1[5-9]?)\s*\)\s*([\dZz]{2})",
+        _expand_parenthesised_century,
+        s,
+    )
     # Some pages use the bare form «(1)617» = «1617» (single «1» + 3 digits).
     s = re.sub(r"\(\s*1\s*\)\s*(\d{3})", r"1\1", s)
+    # «ND(ca1523)» / «(ca1523)» / «c.1523» / «ca. 1523» / «circa 1523» →
+    # inject spaces around the year so the downstream \b extractor matches.
+    # Restricted to plausible mint-year range 1[5-9]\d{2} to avoid collateral.
+    s = re.sub(
+        r"\b(?:ca|circa|c)\.?\s*(1[5-9]\d{2})\b",
+        r" \1 ",
+        s,
+        flags=re.IGNORECASE,
+    )
     # Replace Z→2 only INSIDE 4-digit year tokens of shape `1[56789]Z[0-9]` /
     # `1[56789][0-9]Z` / `1Z[0-9]{2}` (anchor on the «1» + century to avoid
     # corrupting unrelated text). Conservative: must be exactly 4 chars with

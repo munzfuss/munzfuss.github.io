@@ -35,6 +35,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -63,6 +64,44 @@ LOCATION_CACHES: dict[str, list[str]] = {
     "schleswig_holstein": ["schleswig_holstein"],
     "denmark": ["denmark", "norway"],  # DK + Norge-under-Danish-rule both → denmark.yml
 }
+
+# NumisMaster `coinage_entity` values that mark the entry as out-of-scope for the
+# project's circulation-coin register. Per CLAUDE.md §9.1 (patterns / trial
+# strikes — «not struck for circulation») and §9.2 (exonumia — tokens, jetons,
+# credit-markers belong to separate registers). Membership is checked against
+# the `coinage_entity` value with its trailing « CGNNNNNN» id stripped.
+EXCLUDED_COINAGE_ENTITIES: frozenset[str] = frozenset({
+    "Patterns",                 # §9.1 pattern strikes (Pn-prefix KMs)
+    "Trial Strikes",            # §9.1 trial / probe strikes (TS-prefix KMs)
+    "Token Coinage",            # §9.2 exonumia — local tokens
+    "Gutschriftsmarke Coinage", # §9.2 exonumia — credit-marker tokens
+})
+
+
+# Mixed-fraction denomination normaliser: «1-1/2 Pfennig» / «1 1/2 Specie Daler»
+# → «1½ Pfennig» / «1½ Specie Daler». NumisMaster stores mixed fractions in the
+# ASCII «N-1/2» or «N 1/2» form; the rendered output uses the typographic ½
+# ligature consistent with the rest of the corpus («1½ Thaler», «2½ Schilling»).
+# Bare halves («1/2 Skilling») are left alone — they are correctly read as
+# half-X, not 1½, and existing numismatic literature renders them either way.
+_MIXED_FRAC_RE = re.compile(r"^(\d+)[\-\s]1/2(?=\s)")
+
+
+def _normalize_denomination(d: str | None) -> str | None:
+    """Apply mixed-fraction normalisation («N-1/2 X» / «N 1/2 X» → «N½ X»)."""
+    if not d:
+        return d
+    return _MIXED_FRAC_RE.sub(r"\1½", d)
+
+
+def _coinage_entity_excluded(raw: str | None) -> bool:
+    """True if the parsed `coinage_entity` falls in EXCLUDED_COINAGE_ENTITIES.
+    Strips the trailing « CGNNNNNN» id NumisMaster appends to the human name."""
+    if not raw:
+        return False
+    name = raw.rsplit(" CG", 1)[0] if " CG" in raw else raw
+    return name in EXCLUDED_COINAGE_ENTITIES
+
 
 # Map NumisMaster `country` strings → project `issuing_entity` tag. The 9 SH
 # cadet-line countries map to schleswig_holstein_duchy (consistent with how
@@ -116,12 +155,57 @@ def _coin_id(location: str, mc: int) -> str:
     return f"{location}-numismaster-{mc}"
 
 
+def _group_consecutive_years(years: list[int]) -> list[tuple[int, int]]:
+    """Collapse a sorted year list into consecutive-run [first, last] ranges.
+
+    Example
+    -------
+    [1514, 1520, 1522, 1523, 1524, 1533]
+      → [(1514, 1514), (1520, 1520), (1522, 1524), (1533, 1533)]
+
+    The result drives both the rendered `year_label` (e.g. «1514, 1520, 1522–1524,
+    1533») and the structured `year_ranges` field (timeline visualisation). Per
+    CLAUDE.md §3a the canonical year_label form uses en-dash between range
+    endpoints; this helper enforces that shape upstream of the YAML write so
+    consumers don't have to re-parse.
+    """
+    if not years:
+        return []
+    sorted_ys = sorted(set(years))
+    out: list[tuple[int, int]] = []
+    cur_start = cur_end = sorted_ys[0]
+    for y in sorted_ys[1:]:
+        if y == cur_end + 1:
+            cur_end = y
+            continue
+        out.append((cur_start, cur_end))
+        cur_start = cur_end = y
+    out.append((cur_start, cur_end))
+    return out
+
+
+def _format_year_label(ranges: list[tuple[int, int]]) -> str:
+    """Format a list of consecutive-year ranges as the canonical year_label string
+    («1514, 1520, 1522–1524, 1533»), per CLAUDE.md §3a. Single-year ranges render
+    as bare years; multi-year ranges use en-dash."""
+    parts: list[str] = []
+    for a, b in ranges:
+        parts.append(str(a) if a == b else f"{a}–{b}")
+    return ", ".join(parts)
+
+
 def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict | None:
     yf = data.get("year_first")
     yl = data.get("year_last")
     if yf is None:
         return None
     if (yl or yf) < year_from or yf > year_to:
+        return None
+
+    # CLAUDE.md §9 exclusions — patterns, trial strikes, tokens, exonumia
+    # never enter the circulation-coin register. NumisMaster's own
+    # `coinage_entity` taxonomy carries the signal directly.
+    if _coinage_entity_excluded(data.get("coinage_entity")):
         return None
 
     mc = data.get("numismaster_id")
@@ -198,13 +282,17 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
         # present — the broader `date_raw` range («1632 - 1642») is an
         # editorial summary that may bracket years where no specimens are
         # actually documented in the table. We anchor on the table values.
-        if len(dates_explicit) == 1:
-            year_label = str(dates_explicit[0])
-        else:
-            year_label = ", ".join(str(y) for y in dates_explicit)
-        year_ranges = [[y, y] for y in dates_explicit]
-        yf = dates_explicit[0]
-        yl = dates_explicit[-1]
+        #
+        # Consecutive attested years collapse into a single range entry
+        # (e.g. 1522, 1523, 1524 → 1522–1524) per CLAUDE.md §3a canonical
+        # year_label form. Both `year_label` and `year_ranges` reflect the
+        # grouped shape so the timeline visualisation also draws one bar
+        # per run instead of N bars per individual year.
+        grouped = _group_consecutive_years(dates_explicit)
+        year_label = _format_year_label(grouped)
+        year_ranges = [[a, b] for a, b in grouped]
+        yf = grouped[0][0]
+        yl = grouped[-1][1]
     else:
         # Single-year collapse: «1628 - 1628» → «1628»
         if yf is not None and yl is not None and yf == yl:
@@ -225,7 +313,7 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
         "fuss": "seed_unsorted",
         "phase": "numismaster",
         "kind": "kurant",
-        "nominal": data.get("denomination"),
+        "nominal": _normalize_denomination(data.get("denomination")),
         "year_label": year_label,
         "year_first": yf,
         "year_last": yl if yl is not None else yf,
@@ -246,11 +334,7 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
             {
                 "type": "literature",
                 "url": data.get("url"),
-                "ref": (
-                    f"NumisMaster MC_{mc} — "
-                    f"{data.get('country', '?')} {data.get('catalog_number', '')} "
-                    f"{data.get('denomination', '')} {data.get('date_raw', '')}".strip()
-                ),
+                "ref": "NumisMaster",
             }
         ],
         "verification_note": {
