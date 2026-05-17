@@ -100,7 +100,18 @@ _PERIOD_VARIANT_RE = re.compile(
     re.IGNORECASE,
 )
 _BRUTTO_RE = re.compile(
-    r"Bruttovægt" + _SEP + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
+    # Two label variants accepted:
+    #   `Bruttovægt: 29,232g`   — standard form used on most Danish-royal pages
+    #   `Vægt: 22,272g`         — shorter form used on (a) Norge sub-catalogue
+    #                              pages (56/167 = ~33%) and (b) many older
+    #                              Danish pages (97 in the cached corpus,
+    #                              mostly Christian IV / V silver and copper)
+    # The `\bV` word-boundary alternative prevents matching `Bruttovægt`
+    # twice (once via Brutto, once via the V tail) — Brutto matches first
+    # because Python regex evaluates alternation left-to-right; the V
+    # branch only fires when «Vægt» stands alone (preceded by non-word
+    # char, e.g. start-of-line `<LI>` or newline).
+    r"(?:Bruttovægt|\bVægt)" + _SEP + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
     re.IGNORECASE,
 )
 
@@ -185,7 +196,12 @@ _YEAR_BLOCK_RE = re.compile(
 # four-digit tokens are book years, weight/fineness numerics, etc. —
 # NOT coin minting years.
 _SECTION_BOUNDARY_RE = re.compile(
-    r"\b(?:Bruttov[æa]gt|Finhed|Finv[æa]gt|Marken\s+fin|"
+    # Matches the labels that begin the spec block on a Hede page. The
+    # year-rarity zone on the page is everything BETWEEN the H1 echo and
+    # the first of these markers. Includes both `Bruttovægt` (the
+    # standard label) and `Vægt` (the shorter form used on Norge sub-
+    # catalogue pages + many older Danish pages — see `_BRUTTO_RE`).
+    r"\b(?:Bruttov[æa]gt|V[æa]gt|Finhed|Finv[æa]gt|Marken\s+fin|"
     r"Litteratur|Eksemplar(?:er)?\s+fra|M[øo]ntmesterm[æa]rke|"
     r"M[øo]ntmester(?:\b|:)|Tilbage\s+til)",
     re.IGNORECASE,
@@ -780,9 +796,26 @@ def _parse_header(html: str) -> dict:
             out["years"] = _extract_years(yr_match.group(0))
             before = line[: yr_match.start()].strip().rstrip(",")
             after = line[yr_match.end():].strip().lstrip(",")
-            out["nominal"] = before
-            if after:
-                out["mint"] = after.strip(",").strip()
+            # Standard Danish H1 layout: «<nominal> <year>, <mint>». In that
+            # case `before` is the bare nominal and `after` is the mint.
+            #
+            # Norge H1 layout (e.g. nf3h66): «<nominal>, <mint> <year>» — the
+            # mint precedes the year and `after` is empty. When `after` is
+            # empty AND `before` carries a comma, split `before` on its LAST
+            # comma: trailing segment = mint, preceding segments = nominal.
+            # The «preceding segments» join preserves multi-denom labels like
+            # «1, 2, 3 og 4 Speciedaler» without truncating to «1».
+            if not after and "," in before:
+                segs = [s.strip() for s in before.split(",") if s.strip()]
+                if len(segs) >= 2:
+                    out["nominal"] = ", ".join(segs[:-1])
+                    out["mint"] = segs[-1]
+                else:
+                    out["nominal"] = before
+            else:
+                out["nominal"] = before
+                if after:
+                    out["mint"] = after.strip(",").strip()
         else:
             # No year match — try splitting on the trailing comma to
             # separate «Nominal, Mint» (typical after the «u. år
