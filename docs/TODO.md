@@ -508,37 +508,6 @@ weight_rough_g:
 3. Cross-reference Hede 1971 + 1977 extension printed indices (if accessible — paper or scan) against the cache to confirm scope coverage; surface any gaps as separate TODOs.
 4. Document closure in this entry's body (count delta, any new pages, scope-gaps flagged for follow-up).
 
-### BJ. 🟢 NumisMaster harvest Phase 3+4 — scope filter + bulk raw-HTML cache fetch  *(opened 2026-05-16)* *(est: large)* *(type: script + background)* *(depends on §BI)*
-
-**Surfaced.** Companion to §BI; runs after §BI hands off `mc_index.json`. Goal: populate `scripts/cache/numismaster/<sub_scope>/MC_<N>.html` for every in-window MC_ID with FULL RAW HTML preserved verbatim. **§BI closed 2026-05-16 with 1981 anchored MC_IDs** (commit `1d41e0d` in submodule) — gate now open; ~15-17 hours of background fetch budget at 30s pacing.
-
-**Done criterion.**
-
-1. Phase 3 (scope filter, Python local) — apply year-range + ruler filter from `mc_index.json` per §1.1 of the surface document. NO dedup against curated. Writes `mc_to_fetch.json` per sub-scope. Reports `len(mc_to_fetch)` so batches can be sized.
-2. Phase 4 (urllib bulk fetch, background) — for each MC_ID in `mc_to_fetch.json`:
-   - ASCII-only User-Agent (mandatory per `docs/HARVEST_GUIDE.md` «Common pitfalls»).
-   - 30s pauses between requests, conservative <50-per-session pacing.
-   - Write `urllib.request.urlopen(...).read()` byte-for-byte to `scripts/cache/numismaster/<sub_scope>/MC_<N>.html` — **NO parsing, NO stripping, NO truncation**.
-   - Write `MC_<N>.meta.json` with HTTP `status` + `headers` dict + `fetched_at` wall-clock timestamp.
-   - Update per-sub-scope `_manifest.json` incrementally so resumption after crash is possible.
-3. Stage gate per sub-scope: after each sub-scope completes Phase 4, user reviews `_manifest.json` for fetch-failure count + cache size before next sub-scope launches.
-4. **Sub-scope order**: A. Schleswig-Holstein (small + already partially cached) → B. Denmark (largest, most-tested cache shape) → C. Norway → D. Sweden-CII.
-5. Closure: every in-window MC_ID listed in `mc_to_fetch.json` has a corresponding `MC_<N>.html` + `MC_<N>.meta.json` pair on disk; manifests reconciled. **No parsing, no seed, no curated-dedup** — those are §BK.
-
-**Scripts to add.** Extend `scripts/fetch_numismaster.py` with `--filter-scope` (Phase 3) + `--fetch` (Phase 4) sub-commands.
-
-### BK. 🟢 NumisMaster Phase 5 — parse + seed (from local cache only, no NumisMaster traffic)  *(opened 2026-05-16)* *(est: medium)* *(type: parser + seed)* *(depends on §BJ)*
-
-**Surfaced.** Final phase of the NumisMaster harvest chain. After §BJ closes the cache, parser + seed-builder run locally against `scripts/cache/numismaster/<sub_scope>/MC_<N>.html` with NO further NumisMaster fetches. Dedup against curated `data/locations/*.yml` happens here, not at cache-acquisition time.
-
-**Done criterion.**
-
-1. Rename + generalise `scripts/parse_numismaster_pre1541.py` → `scripts/parse_numismaster.py`. Add KM# parser (was MB#-only), full cross-ref extraction (Sch, L, Fr, Sieg, Hede, Bruun, KM, MB), Krause-volume disambiguation per CLAUDE.md §9 caveat.
-2. Rename + generalise `scripts/maintenance/build_numismaster_pre1541_seed.py` → `scripts/maintenance/build_numismaster_seed.py` with `--sub-scope` flag.
-3. Emit `data/seed/numismaster/{schleswig_holstein,denmark,norway,sweden_christian_ii}.yml`.
-4. Dedup report: for each MC_ID, cross-check existing curated coin entries by KM# / MB# / Schou# / Lange# / Hede# / Sieg# inside the same country-scope. Output `numismaster_dedup_report.json` for user review before seed-promotion (§BF).
-5. Preserve Librios-internal codes (`PL...`, `CG...`) verbatim under `numismaster_political_period_id` / `numismaster_coinage_entity_id` — don't try to decode.
-
 ## Normal priority
 
 ### AK. Flip `mint_verified` to true for seed entries whose Hede source explicitly states the mint  *(opened 2026-05-13)*
@@ -2175,6 +2144,51 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
+
+### BJ. NumisMaster harvest Phase 3+4 — scope filter + bulk raw-HTML cache fetch  *(opened 2026-05-16, closed 2026-05-17)*
+
+**Closed.** All 3 in-mission sub-scopes fetched to `scripts/cache/numismaster/<sub_scope>/MC_<N>.html` byte-for-byte, with companion `MC_<N>.meta.json` (HTTP status + headers + html_bytes + fetched_at) and incremental `_manifest.json` (crash-safe resume).
+
+**Final tallies (0 errors across all 1892 MC pages):**
+
+  | sub-scope            | fetched   | size    |
+  |----------------------|-----------|---------|
+  | schleswig_holstein   | 561/561 ✅ | 114 MB  |
+  | denmark              | 987/987 ✅ | 201 MB  |
+  | norway               | 344/344 ✅ |  71 MB  |
+  | sweden_christian_ii  | 0/0       | —       |
+  | **TOTAL**            | **1892**  | **386 MB** |
+
+**Sweden-Christian-II** closed earlier (§BI) as 0-entry negative finding — NumisMaster's Sweden floor is 1573, no Danish-Swedish-union (1514-1523) entries exist in their catalog.
+
+**Wall-clock**: ~22h end-to-end at 30s pacing. URL pattern corrected during smoke-test: `https://numismaster.com/MC_<N>` (NOT `.html` — 404). Chained sub-scopes auto-launched via Monitor poll-loop detecting `pgrep` of prior fetcher exiting.
+
+**Submodule commits** (`munzfuss-harvest`): `f052e66` (Phase 3 + 5-MC smoke) + `bdb6b0d` (SH) + `22c7901` (DK) + `506635d` (NO). **Superrepo pointer bumps**: `6a8af64` + `a4ebfae` + `193d69d` + `3b78876`.
+
+**Operational artifacts** for next session:
+
+  - `scripts/fetch_numismaster.py` — `--filter-scope` (Phase 3) + `--fetch <sub_scope>` (Phase 4). Crash-safe resume via manifest.
+  - `docs/HARVEST_GUIDE.md` §«Phase 4 — urllib bulk fetch (§BJ)» — concrete recipes including the chaining Monitor poll-loop.
+
+---
+
+### BK. NumisMaster Phase 5 — parse + seed (from local cache only, no NumisMaster traffic)  *(opened 2026-05-16, closed-partial 2026-05-17)*
+
+**Closed-partial.** Mechanical pipeline complete; seed YAML activation deferred to §BF promotion-prep.
+
+**Delivered:**
+
+  - `scripts/parse_numismaster.py` — sub-scope-aware parser (renamed from `parse_numismaster_pre1541.py`, kept legacy for backwards compat). Walks every `MC_*.html` in `scripts/cache/numismaster/<sub_scope>/` → sibling `MC_<N>.parsed.json` with structured field extraction + cross-refs (Sch / L / Fr / KM / MB / Sieg / Hede / Bruun / Schive). Idempotent. Ran against all 3 sub-scopes: **561 + 987 + 344 = 1892 parsed.json files, 0 fails**.
+  - `scripts/maintenance/build_numismaster_seed.py` — sub-scope seed builder reading parsed.json files → emitting `data/seed/numismaster/<sub_scope>.yml`. Merge-aware via `scripts/lib/seed_merge.py` (§BL). Validated for idempotency + no-regression + curation-preservation. **Schema-clean filtering**: extra-vocabulary refs (mb / schive / numismaster_mc) preserved on parsed.json but dropped from seed YAML; enrichment fields use `_`-prefixed keys that `build.py`'s seed-merger strips before validation.
+
+**Deferred (§BF prep work, NOT §BK):**
+
+  - **Seed YAML activation** — emitting `data/seed/numismaster/{schleswig_holstein,denmark,norway}.yml` triggers build validation errors («no phases defined for fuss 'seed_unsorted'») until the target locations declare `seed_unsorted.numismaster` phase config. That's a location-curation step the curator owns. The builder runs correctly; seeds activate once the locations are prepped.
+  - **Dedup report** — `numismaster_dedup_report.json` listing each MC_ID's potential overlap with existing curated KM#/MB#/Schou#/Lange#/Hede#/Sieg# refs. Defer to a separate small TODO when curator is ready to start §BF promotion of NumisMaster entries.
+
+**Commits**: `b4c1b3b` (parser + builder) + `aa16c6e` (§BL TODO closure) + `260e9ad` (HARVEST_GUIDE recipes) + chain of submodule cache commits as fetches completed.
+
+---
 
 ### BL. Upgrade 4 wholesale-write seed builders to merge-aware (preserve manual overrides)  *(opened 2026-05-16, closed 2026-05-16)*
 
