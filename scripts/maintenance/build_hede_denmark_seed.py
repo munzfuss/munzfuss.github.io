@@ -225,6 +225,9 @@ DK_MINT_DE = {
     # assigned downstream by retag_entities.py.
     "Kongsberg": "Kongsberg",
     "Christiania": "Christiania",
+    "Gimsø": "Gimsø",       # Christian III Norge silver mint (pre-1559),
+                              # «Gimsø Kloster» on Skien fjord — added 2026-05-17 per §BG
+                              # to capture 4 Hede Norge entries (nc3h1-4).
     "Poppenbüttel": "Poppenbüttel",
 }
 
