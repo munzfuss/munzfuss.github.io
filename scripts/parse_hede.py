@@ -153,13 +153,21 @@ def _parse_decimal(s: str) -> float | None:
 
 
 def _ruler_volume(basename: str) -> tuple[str | None, str]:
-    """From `c4h115` / `f3h62` derive (ruler_label, volume_code)."""
-    m = re.match(r"^(c|f)(\d+)h", basename)
+    """From `c4h115` / `f3h62` / `nc5h42` (Norge) derive (ruler_label, volume_code).
+
+    Norge-prefixed basenames (`n` prefix) get a Norge-tagged volume code
+    (`nc5h42` → `nc5h`). This keeps the composite key for the Norge sub-
+    catalogue distinct from the Danish one (Danish c5h42 vs Norge nc5h42 are
+    physically different Hede entries — same Hede number under separate
+    Danish-royal and Norwegian-royal volumes of the same monarch's reign).
+    The ruler_label stays the monarch's name (he ruled both kingdoms in
+    personal union)."""
+    m = re.match(r"^(n?)(c|f)(\d+)h", basename)
     if not m:
         return None, ""
-    letter, num = m.groups()
+    norge_prefix, letter, num = m.groups()
     label_base = "Christian" if letter == "c" else "Frederik"
-    return f"{label_base} {num}.", f"{letter}{num}h"
+    return f"{label_base} {num}.", f"{norge_prefix}{letter}{num}h"
 
 
 # Year + rarity inside parens: «1620, 1621 (R)» / «1663 (RR)» /
@@ -386,7 +394,7 @@ def _extract_specs(text: str, basename: str = "") -> dict:
     # Derive the page's primary Hede number from basename so unmarked
     # spec blocks fall back to it.
     primary = ""
-    bm = re.match(r"^[cf]\d+h([\dA-Za-z]+)$", basename)
+    bm = re.match(r"^n?[cf]\d+h([\dA-Za-z]+)$", basename)
     if bm:
         primary = bm.group(1)
 
@@ -956,7 +964,7 @@ def parse_one(html: str, basename: str) -> dict:
     # instead.
     if specs and "default" in specs:
         # Page's primary Hede number from filename: «c9h16» → «16»
-        bm = re.match(r"^[cf]\d+h([\d]+)", basename)
+        bm = re.match(r"^n?[cf]\d+h([\d]+)", basename)
         if bm:
             letter_groups = _extract_letter_groups(text, bm.group(1))
             if letter_groups:
@@ -994,7 +1002,7 @@ def parse_one(html: str, basename: str) -> dict:
 
     # Hede number(s) covered — derive from filename + cross-check
     # against page title's «Hede ...» phrase.
-    hm_filename = re.search(r"^[cf]\d+h([\d\-,A-Za-z\s]+?)(?:\.|note|$)", basename)
+    hm_filename = re.search(r"^n?[cf]\d+h([\d\-,A-Za-z\s]+?)(?:\.|note|$)", basename)
     if hm_filename:
         out["hede_numbers_filename"] = re.findall(r"\d+[A-Za-z]*", hm_filename.group(1))
     title_str = out.get("page_title", "")
@@ -1028,7 +1036,7 @@ def _build_index(parsed_files: list[Path]) -> dict:
         # Page's own primary Hede number from basename — used both
         # for canonical-file scoring below and as a fallback when the
         # parsed JSON doesn't surface a number through the usual paths.
-        own_m = re.match(r"^[cf]\d+h(\w+)$", d["id"])
+        own_m = re.match(r"^n?[cf]\d+h(\w+)$", d["id"])
         own_num = own_m.group(1).lower() if own_m else None
         # Take the union of filename- and title-derived numbers
         nums = set(d.get("hede_numbers_filename") or [])

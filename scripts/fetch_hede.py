@@ -62,7 +62,10 @@ OVERVIEW_PARTS = [""] + [str(n) for n in range(1, 12)]
 
 # Patterns observed live: per-coin pages live either at the root
 # (e.g. /c4h115.htm) or under /chr/ (Christian) or /fr/ (Frederik)
-# subfolder (e.g. /chr/c5h120.htm, /fr/f3h62.htm). Overviews use
+# subfolder (e.g. /chr/c5h120.htm, /fr/f3h62.htm) or under /norge/
+# (Norway-specific entries, e.g. /norge/nc5h42.htm — the «n» prefix
+# distinguishes Norge basenames from Danish ones, so no collision when
+# both flatten to `<basename>.htm` in the cache). Overviews use
 # relative HREFs without leading slash («HREF="chr/c4h101.htm"»),
 # so the leading slash is optional in the capture.
 
@@ -99,15 +102,21 @@ def _extract_links(html: str) -> set[str]:
 
     Accepts markdown link form (paren after `]`), bare anchor href,
     and relative URLs. Filters to per-coin patterns (cNhM.htm /
-    fNhM.htm) under root or /chr/ /fr/ subfolders. Returns paths
-    normalised with a leading slash so the manifest is stable.
+    fNhM.htm) under root or /chr/, /fr/, /norge/ subfolders. Returns
+    paths normalised with a leading slash so the manifest is stable.
     """
     out: set[str] = set()
     # Markdown / HTML href patterns. The leading slash is optional in
     # the capture because overview pages use relative HREFs.
+    # Per-coin paths take one of three shapes:
+    #   root            cNhM.htm | fNhM.htm
+    #   chr/ | fr/      chr/cNhM.htm | fr/fNhM.htm
+    #   norge/          norge/n<ruler><N>.htm  (Norway sub-catalogue,
+    #                   filename starts with `n` so it doesn't collide
+    #                   with Danish entries when flattened to basename)
     for pat in (
-        r'href=["\']((?:https?://(?:www\.)?danskmoent\.dk)?/?((?:chr/|fr/)?(?:c|f)\d+h[\w\-]*\.htm))["\']',
-        r'\(((?:https?://(?:www\.)?danskmoent\.dk)?/?((?:chr/|fr/)?(?:c|f)\d+h[\w\-]*\.htm))\)',
+        r'href=["\']((?:https?://(?:www\.)?danskmoent\.dk)?/?((?:chr/|fr/|norge/)?n?(?:c|f)\d+h[\w\-]*\.htm))["\']',
+        r'\(((?:https?://(?:www\.)?danskmoent\.dk)?/?((?:chr/|fr/|norge/)?n?(?:c|f)\d+h[\w\-]*\.htm))\)',
     ):
         for m in re.finditer(pat, html, re.IGNORECASE):
             path = m.group(2)
@@ -118,7 +127,11 @@ def _extract_links(html: str) -> set[str]:
             if re.search(r"hede\d*\.htm$", path, re.IGNORECASE):
                 continue
             # Skip references to other catalogues (harck/c4hvide, etc.)
-            if "/" in path and not path.startswith(("chr/", "fr/")):
+            if "/" in path and not path.startswith(("chr/", "fr/", "norge/")):
+                continue
+            # Filter: leading `n` (norge prefix) only allowed under norge/
+            basename = path.rsplit("/", 1)[-1]
+            if basename.startswith("n") and not path.startswith("norge/"):
                 continue
             out.add("/" + path)
     return out

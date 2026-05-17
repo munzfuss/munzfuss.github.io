@@ -867,8 +867,9 @@ def main() -> int:
     canonical_subs: dict[str, set[str]] = {}
     for composite_key, summary in aggregate_idx.items():
         # Extract the sub-Hede portion from composite key
-        # «c4h111» → «111», «f3h62ab» → «62ab», «c10h35» → «35».
-        m = re.match(r"^[cf]\d+h(.+)$", composite_key)
+        # «c4h111» → «111», «f3h62ab» → «62ab», «c10h35» → «35»,
+        # «nc5h42» → «42» (Norge — same shape, optional `n` prefix).
+        m = re.match(r"^n?[cf]\d+h(.+)$", composite_key)
         if not m:
             continue
         sub_num = m.group(1).lower()
@@ -943,7 +944,7 @@ def main() -> int:
             nums = d.get("hede_numbers_filename") or d.get("hede_numbers_title") or []
             if not nums:
                 # Derive from id («c5h120» → «120»)
-                m = re.match(r"^[cf]\d+h(\w+)$", d["id"])
+                m = re.match(r"^n?[cf]\d+h(\w+)$", d["id"])
                 nums = [m.group(1)] if m else []
             if not nums:
                 stats["skipped_no_specs"] += 1

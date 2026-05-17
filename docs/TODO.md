@@ -485,18 +485,7 @@ weight_rough_g:
   4. Migrate ~5 known entries from free-text marker to structured field.
   5. Add an audit-section in `audit_health.py` that flags entries with free-text anomaly markers in source-strings (so the next surface case gets caught early).
 
-### BG. 🟢 Harvest Norway-specific Hede pages (norge/ subfolder pattern)  *(opened 2026-05-15)* *(est: medium)* *(type: research + script)*
-
-**Surfaced.** Hede 1971 = «Danmarks **og Norges** mønter 1541-1814». Our cache (2026-05-10 harvest, 689 files across 21 overviews c3..c10 + f2..f9) covers only the Danish-royal c/f-prefix URL pattern (`c{N}hede.htm` / `f{N}hede.htm` + per-coin `chr/c{N}h{M}.htm` / `fr/f{N}h{M}.htm`). Norway-specific issues live in a separate `norge/` subfolder pattern observed on the pre-1541 Hans page (`norge/hansg151.htm` — Bergen Hvid). Analogous `norge/c{N}h{M}.htm` and/or `norge/{ruler}hede.htm` overviews for post-1541 monarchs are likely uncaptured.
-
-**Why now.** The mission anchor was recently extended to cover the full Hede 1971 scope (1541-1814) including Norwegian double-monarchy mints (Christiania / Kongsberg). Without the norge/ subtree we are blind to Norwegian Hede entries when audits or seed-builds ask «does Hede attest this Norway-mint coin?».
-
-**Done criterion.**
-1. Extend `scripts/fetch_hede.py` to probe `norge/`-prefixed overview pages (`norge/c{N}hede.htm`, `norge/f{N}hede.htm`, plus suffix variants `…hede1.htm` … `…hede11.htm`) for each post-1541 monarch `c3..c10` + `f2..f9`.
-2. Walk the discovered overviews and harvest per-coin pages under `norge/`.
-3. Regenerate `scripts/cache/hede/_manifest.json`.
-4. Spot-check 3-5 records against curated Norwegian Hede references in our YAML (if any) to confirm parsability via existing `parse_hede.py`.
-5. Commit cache changes via the submodule workflow (harvest repo first, then main-repo pointer bump).
+(§BG closed — see `## Done` section below.)
 
 ### BH. 🟢 Hede cache completeness audit — verify nothing was missed in the 2026-05-10 harvest  *(opened 2026-05-15)* *(est: small)* *(type: audit)*
 
@@ -2144,6 +2133,26 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
+
+### BG. Harvest Norway-specific Hede pages (norge/ subfolder pattern)  *(opened 2026-05-15, closed 2026-05-17)*
+
+**Closed.** Hede 1971 Norway sub-catalogue now mirrored in our cache. The `norge/n<ruler>h<N>.htm` filename pattern was already linked from the existing Danish-royal overviews (c{N}hede{P}.htm / f{N}hede{P}.htm) — `fetch_hede.py`'s `_extract_links` regex was the only blocker.
+
+**Delivered (commit `4c69ce5` in submodule):**
+
+  - `scripts/fetch_hede.py` — `_extract_links` regex extended to accept `norge/n<ruler>{N}h{M}.htm`. The `n` filename prefix marks Norge entries; basenames stay collision-free with Danish counterparts when flattened to cache.
+  - `scripts/parse_hede.py` — 4 basename regexes patched to accept the optional `n?` prefix. Norge entries derive `ruler_volume: nc5h` (Christian V Norge), distinct from Danish `c5h`. Aggregate `_parsed_index.json` rebuilt with 1105 composite keys (was 952).
+  - `scripts/maintenance/build_hede_denmark_seed.py` — 2 composite-key regexes patched. Norge entries land in `data/seed/hede/denmark.yml` under id `dk-hede-nc{N}h{M}`. 114 Norge entries materialised, growing total Hede seed from 639 → 753 coins.
+  - `scripts/cache/hede/` (submodule): 167 new `nc<ruler>h<N>.htm` + parsed `.json` files. Discover/fetch: 167/167 success, 0 errors.
+
+**Spot-check passed:** `nc7h12.json` (Christian VII Norge Hede 12 = 24 Skilling Kongsberg, fineness 0.562, marken-fin **11.333 rd**) exactly matches the curator's annotation on `dk-tid-55898` in denmark.yml (KM# 250, Hede 12A–12B, Brekke 31–36, 1772-1788, Kongsberg, 11⅓-Thaler-Fuß).
+
+**Known follow-up gaps** (not blockers for §BG closure):
+
+  - 53 Norge pages skip seed emission (no parseable spec block, non-DK mints like «Gimsø» / «Bergen» missing from `DK_MINT_DE` whitelist, or no canonical-Hede match). Cache + per-page JSON cover all 167 entries; refinement is a separate small TODO.
+  - `dk-tid-55898` curated entry uses `hede_volume: c7h` rather than the Norge-aware `nc7h` — a curator-side data-consistency follow-up to decide on Norge vs Danish ambiguity in the `hede_volume` field.
+
+---
 
 ### BJ. NumisMaster harvest Phase 3+4 — scope filter + bulk raw-HTML cache fetch  *(opened 2026-05-16, closed 2026-05-17)*
 
