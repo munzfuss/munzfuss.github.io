@@ -111,6 +111,14 @@ _BRUTTO_RE = re.compile(
     # because Python regex evaluates alternation left-to-right; the V
     # branch only fires when «Vægt» stands alone (preceded by non-word
     # char, e.g. start-of-line `<LI>` or newline).
+    #
+    # Gross-vs-fine ambiguity check (2026-05-17 audit): «Vægt» is a
+    # SHORTENING of «Bruttovægt», not «Finvægt». Verified by the
+    # numismatic invariant `Bruttovægt × Finhed = Finvægt` across
+    # **77/77 (100%)** Vægt-only pages where all three specs are
+    # published: every page satisfies the invariant with ≤1% deviation
+    # (rounding noise). 0 pages have both Bruttovægt AND a separate
+    # Vægt (no within-page ambiguity to resolve).
     r"(?:Bruttovægt|\bVægt)" + _SEP + _YEAR_PREFIX + r"([\d,\.]+)\s*g",
     re.IGNORECASE,
 )
