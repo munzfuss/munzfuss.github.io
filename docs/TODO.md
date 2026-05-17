@@ -487,15 +487,25 @@ weight_rough_g:
 
 (§BG closed — see `## Done` section below.)
 
-### BH. 🟢 Hede cache completeness audit — verify nothing was missed in the 2026-05-10 harvest  *(opened 2026-05-15)* *(est: small)* *(type: audit)*
+### BH. 🟢 Hede cache completeness audit — verify danskmoent.dk fully harvested, including non-DK content  *(opened 2026-05-15, expanded 2026-05-17 per user)* *(est: small-medium)* *(type: audit)*
 
-**Surfaced.** While investigating §BG (Norwegian Hede) we revisited the existing cache shape (21 overviews c3..c10 + f2..f9, 689 coin pages). Per-overview link totals match the manifest, suggesting the Danish-royal cache is internally consistent — but the 5-day gap since the 2026-05-10 fetch + the discovery of the missed `norge/` subfolder pattern warrant a fresh end-to-end audit before we declare «Hede coverage = complete».
+**Surfaced.** Hede 1971 (DK realm) + §BG (Norge sub-catalogue, closed 2026-05-17) gave us 836 cached pages covering Denmark + Norway-under-Danish-rule. Coverage is now visually excellent (566 Hede entries in 1608-1814 alone, see Phase-1 coverage table 2026-05-17). But two open questions remain before declaring Hede source «100% mirrored»:
+
+  1. **Did we miss any Danish-royal overview / per-coin pages?** The §BG closure proved that `norge/` subtree had been invisible to the discover regex; what other URL-subspace might still be invisible? E.g. uncovered Hede sub-suffix patterns (overview part-numbers 11+, undated «u. år» dedicated pages, joint-issue cross-reference sub-pages), older rulers we haven't probed (Hans pre-1513, Erik VII, Christoffer of Bayern — danskmoent.dk has scattered Hede mentions outside the c1..c10 / f1..f9 backbone).
+
+  2. **Does danskmoent.dk cover OTHER countries/regions beyond Denmark + its possessions?** And if yes — are any of those relevant to our mission scope (Schleswig-Holstein-as-Danish-duchy, Hamburg-as-Danish-tariff-counter, Sweden under Christian II)? Quick visual scan of the site root (`https://www.danskmoent.dk/index.htm`) is the cheapest answer — if there's a Swedish / Norwegian-independent / Holstein-Lange page subtree, we should at least know it exists.
+
+**Why now.** Phase-1 coverage table (2026-05-17) shows Hede as the project's densest single source for 1541-1914 (768 DK+NO entries). A 5-10% gap in Hede coverage would translate to dozens of missing reference coins on per-location pages. Cheap to verify; expensive to discover later via a one-off curator query.
 
 **Done criterion.**
-1. Re-run `scripts/fetch_hede.py discover` (or equivalent) to refresh `_manifest.json` against the live site.
-2. Diff the fresh manifest against the committed one: any new overview URLs OR new per-coin links not previously captured → fetch them.
-3. Cross-reference Hede 1971 + 1977 extension printed indices (if accessible — paper or scan) against the cache to confirm scope coverage; surface any gaps as separate TODOs.
-4. Document closure in this entry's body (count delta, any new pages, scope-gaps flagged for follow-up).
+
+1. **Danish-royal subtree completeness.** Re-run `scripts/fetch_hede.py discover` against the live site. Diff the fresh manifest against the committed `_manifest.json`: any new overview URLs OR new per-coin links not previously captured → fetch them. Special probes:
+     - `c{N}hede{P}.htm` for `P` in `12..15` (current cap is 11; cheap to bump).
+     - `chr/c{N}h{M}.htm` / `fr/f{N}h{M}.htm` for `M` going past each ruler's known highest cached number + 50 (catch unreferenced sub-pages).
+     - `hans/`, `erik/`, `christofer/`, `c2/` (Christian II) — pre-Christian-III rulers' subtrees probed in §AZ context already; verify the `_manifest.json` mentions them.
+2. **Non-DK subtree probe.** Spider `https://www.danskmoent.dk/index.htm` and `/oversigt.htm` (whatever the live nav-root is). Inventory every distinct path-subfolder (`sverige/`, `kongeriket/`, `tyskland/`, etc.) — fetch each subfolder's index page → identify which (if any) cover a region in our mission scope. Surface findings here; if a non-DK subtree is in-scope (e.g. Schleswig-Holstein dedicated pages we missed because the SH coverage came from Lange, not Hede), open a separate harvest TODO.
+3. **Cross-reference Hede 1971 + 1977 extension printed indices** (paper or scan, if accessible) against the cache. Count delta per ruler — Hede's printed Hede-numbers per king are well-defined; missing any printed-index entry from our cache = a gap. Surface gaps as separate sub-TODOs.
+4. **Document closure** in this entry's body: count delta, any new pages, list of non-DK subtrees found + scope-relevance assessment.
 
 ## Normal priority
 
