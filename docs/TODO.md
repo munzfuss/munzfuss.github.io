@@ -180,7 +180,7 @@ Likely answer is (a) — the dual-zone is the seed of an enduring lineage and de
 
   | Source | DK+NO cached | Earliest cached | Audit window (DK) | Audit window (Norge) | Pre-floor entries | Status |
   |---|---:|---:|---|---|---:|---|
-  | **Numista** | 340 (range 1602-2008) | 1602 | **1514-1602** | 1514-1602 (same as DK) | **0** | ⏳ pending (BO.1) |
+  | **Numista** | 342 (range 1514-2008, was 1602-2008) | 1514 (was 1602) | **1514-1602** | 1514-1602 (same as DK) | **≥ 2 (≥ 2 DK, NO not yet audited)** | 🟡 partial 2026-05-18 (BO.1 — DK harvest delta confirmed +2; ruler-walk blocked by Cloudflare; NO + alt-issuers deferred) |
   | **NumisMaster** | 1331 (range 1591-1914) | DK 1591 / Norge 1608 | **1514-1591** | **1514-1608** | **0** | ✅ closed 2026-05-17 (BO.2 negative finding) |
   | **ucoin** | 530 (range 1582-1875) | 1582 | **1514-1582** | 1514-1582 (same as DK) | **0** | ⏳ pending (BO.3) |
 
@@ -193,18 +193,39 @@ Until we **prove (a) per source**, we have an unaudited dark zone in the Phase-1
 
 **Why «найвищий».** The pre-1591 sub-window is the project's least-covered era. §BF (Denmark 1514-1566) is already Highest-priority blocked on this very gap. Closing the audit question — even with a negative «(a) confirmed» finding per source — is a precondition for declaring the 1514-1591 cache «mirrored». User direction 2026-05-17 with explicit «найвищий» marker.
 
-#### BO.1 — Numista 1514-1602 audit (DK + Norge)  *(est: small)*
+#### BO.1 — Numista 1514-1602 audit (DK + Norge)  🟡 **PARTIAL closure 2026-05-18** *(est: small → escalated to medium-large by Cloudflare blocker)*
 
 **Audit window**: 1514-1602 for both Denmark and Norway (Numista floor is identical for both — 1602).
 
-**Approach.** Numista API v3 supports `min_year` / `max_year` filters on type-search. Cost is ~5-10 API calls (well within the May 2026 budget guard — see CLAUDE.md «Numista API budget»). User-permission required before bulk-fetch per the guard.
+**Executed via Chrome MCP** (user direction 2026-05-17 — «не через апі, а через chrome mcp, роби довгі паузи між викликами рандом 31..60с»). 24 catalogue-search calls + 3 per-type page fetches over 25 minutes with 31-75 s pauses between each.
 
-**Steps.**
+**Findings (Denmark) — partial closure, harvest gap confirmed:**
 
-  1. Ask user for Numista API budget approval (≤10 calls) before starting (CLAUDE.md May-2026 rule).
-  2. Query `/types?country=denmark&max_year=1601` and `/types?country=norway&max_year=1601` — record total-count. (1601 inclusive because Numista's floor 1602 means we want entries strictly before that.)
-  3. If count > 0: examine the first ~10 candidates. Are they in our existing cache (we may have them under a non-DK issuer label)? If not, fetch + cache + bucket per Phase-1 period grid.
-  4. Document closure: «Numista DK 1514-1601 count = N (per Numista API). Our cache has X; gap = N - X. Resolution: …» (same for Norge).
+  1. **2 dated pre-1602 DK types confirmed AND harvested into cache** (both previously absent — cache earliest was 1602):
+       - **N# 153125** — 1 Skilling - Christian II (Malmö; type 1) 1514-1515 — Billon .375, 2.37 g, ⌀ 26.8 mm — SIEG# C2-3, C2-4 — written to `scripts/cache/numista/153125.json` with `_harvested_via: chrome_mcp_html`.
+       - **N# 301237** — 2 Schillings - Frederik I (Husum; portrait first type) 1514-1522 — Silver .750, 3.27 g, ⌀ 28.6 mm — SIEG# F1-43,1, F1-43,2 + MB# 10 — written to `scripts/cache/numista/301237.json`. Lettering identifies as DUCAL coin («FREDERICVS D HOLSACIE» = Frederik Duke of Holstein) struck pre-1523 before he became Danish king. Numista files under «Denmark» issuer tag retroactively per his later kingship. Cross-references §BP (DK+ vs RH separation on SH page) — exactly the kind of cross-tagged DK / SH duchy entry that motivates that debate.
+
+  2. **Year-filter sweep 1514, 1515, 1517, 1519, 1524, 1529, 1534, 1539, 1544, 1549, 1554, 1559, 1564, 1569, 1574, 1579, 1584, 1589, 1591, 1594, 1599, 1601, 1602** (single-year filter `a=YYYY` per Numista form): year 1514 returned the 2 types above; all other 22 years returned 0 results.
+
+  3. **Critical caveat — Numista's `a=year` filter is unreliable for «No Date» specimens.** Verified via NID 54915 (cached: «1 Søsling - Christian IV first type», cache says `min_year=max_year=1602`): the live Numista page shows «Date: ND (1602)» — i.e. the coin is undated, the 1602 is an attribution year. The `a=1602` filter returned **0 results** despite NID 54915 clearly belonging to the danemark issuer with year 1602. The filter appears to match on dated-specimen records only, NOT on `min_year`/`max_year` type metadata. **Implication:** my year-sweep almost certainly under-counts; any pre-1602 DK type whose specimens are all undated (the common case for pre-1650 small change) is invisible to this filter. The true count of Numista pre-1602 DK types is `≥ 2`, ceiling unknown.
+
+  4. **Ruler-filter walk blocked by Cloudflare.** Attempted `?mode=avance&e=danemark&ru=2385` (Christian II) to enumerate by reign instead — Cloudflare 5-second challenge fired and did not auto-resolve in 75 s; URL became «BLOCKED: Cookie/query string data». 3-min cooldown + soft-reentry via plain `denmark-1.html` did clear the block, but subsequent attempts to access the linked «See N coins and medals» pages (which use the same `ru=` form internally) would re-trigger the block per the user's «жорсткі фільтри» warning. The ruler-detail page (`/catalogue/ruler.php?id=436`) itself loads fine but only shows 5-6 coin previews per category — full 131-entry DK Christian IV list is only reachable through the Cloudflare-protected listing URL.
+
+  5. **Cache provenance.** Both newly-cached files (153125, 301237) carry explicit `_harvested_via: "chrome_mcp_html"` + `_audit_context` markers distinguishing them from API-shaped entries. The full cache shape is partial vs API-shaped entries — sufficient for `category: coin`, `issuer: danemark`, `min_year` / `max_year` indexing in the existing seed-builder pipeline; not sufficient for fields the seed builder doesn't currently consume from the API path (acceptable trade-off given the chrome_mcp source).
+
+**Findings (Norway) — NOT yet attempted** because the DK sweep alone consumed the session's safe Cloudflare budget. NO sweep deferred to a future session under a different IP or a longer warm-up window. Expected pattern given DK results: ≥ 0 dated pre-1602 NO types via `a=` filter (Norway's coinage 1514-1608 was minimal — primarily Olav Engelbrektsson's late-medieval Trondheim issues; few dated specimens survive).
+
+**Alternative-issuer probe (Hanseatic / Kalmar / Holy Roman) — NOT yet attempted** for the same Cloudflare-budget reason.
+
+**Definition of done remaining**:
+  - Norway 1514-1601 sweep (deferred).
+  - Alternative-issuer probe (deferred).
+  - Decision on whether to fully enumerate pre-1602 DK ruler-walk via:
+       (a) **API approach** (≤5-10 calls; rejected in current session per user direction «не через апі»; revisit when May-2026 budget guard relaxes in June 2026), OR
+       (b) **Chrome MCP from a different IP** (e.g. user-machine VPN OFF if currently ON), OR
+       (c) **Manual NID-fetch per cache gap** — only when a specific NID is suspected (e.g. via Hede / Bruun cross-reference yielding a Numista N# we haven't cached).
+
+**Phase-1 coverage-table impact**: Numista DK row reclassified from «0 pre-floor» to «≥2 pre-floor entries, harvested; full enumeration pending». Numista NO row remains «0 pre-floor (not yet audited)».
 
 #### BO.2 — NumisMaster 1514-1591 (DK) + 1514-1608 (Norge) audit  ✅ **CLOSED 2026-05-17** *(est: small-medium)*
 
