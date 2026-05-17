@@ -178,11 +178,11 @@ Likely answer is (a) — the dual-zone is the seed of an enduring lineage and de
 
 **Surfaced.** Phase-1 raw-cache coverage table (2026-05-17) showed all three commercial / community catalogues with **zero entries before their respective earliest-cached year** for Denmark + Norge. Each source has a different floor; the audit window per source is from the mission lower bound **1514** up to (but excluding) the source's earliest-cached year:
 
-  | Source | DK+NO cached | Earliest cached | Audit window (DK) | Audit window (Norge) | Pre-floor entries |
-  |---|---:|---:|---|---|---:|
-  | **Numista** | 340 (range 1602-2008) | 1602 | **1514-1602** | 1514-1602 (same as DK) | **0** |
-  | **NumisMaster** | 1331 (range 1591-1914) | DK 1591 / Norge 1608 | **1514-1591** | **1514-1608** | **0** |
-  | **ucoin** | 530 (range 1582-1875) | 1582 | **1514-1582** | 1514-1582 (same as DK) | **0** |
+  | Source | DK+NO cached | Earliest cached | Audit window (DK) | Audit window (Norge) | Pre-floor entries | Status |
+  |---|---:|---:|---|---|---:|---|
+  | **Numista** | 340 (range 1602-2008) | 1602 | **1514-1602** | 1514-1602 (same as DK) | **0** | ⏳ pending (BO.1) |
+  | **NumisMaster** | 1331 (range 1591-1914) | DK 1591 / Norge 1608 | **1514-1591** | **1514-1608** | **0** | ✅ closed 2026-05-17 (BO.2 negative finding) |
+  | **ucoin** | 530 (range 1582-1875) | 1582 | **1514-1582** | 1514-1582 (same as DK) | **0** | ⏳ pending (BO.3) |
 
 Two possibilities for each source:
 
@@ -206,21 +206,20 @@ Until we **prove (a) per source**, we have an unaudited dark zone in the Phase-1
   3. If count > 0: examine the first ~10 candidates. Are they in our existing cache (we may have them under a non-DK issuer label)? If not, fetch + cache + bucket per Phase-1 period grid.
   4. Document closure: «Numista DK 1514-1601 count = N (per Numista API). Our cache has X; gap = N - X. Resolution: …» (same for Norge).
 
-#### BO.2 — NumisMaster 1514-1591 (DK) + 1514-1608 (Norge) audit  *(est: small-medium)*
+#### BO.2 — NumisMaster 1514-1591 (DK) + 1514-1608 (Norge) audit  ✅ **CLOSED 2026-05-17** *(est: small-medium)*
 
 **Audit window**: **DK 1514-1591** + **Norge 1514-1608**. DK floor confirmed at 1591 via Phase-1b Sort=Date ASC walk (page-1 row-1); Norge floor confirmed at 1608 (KM_4 Lion Dalar). Both bear separate audit because the country filters are independent on NumisMaster.
 
-**Approach.** Phase-1b's Sort=Date ASC walk per country filter confirmed the per-country floors. Audit gap: did we miss alternative country tags that might carry pre-floor DK or pre-1608 Norge coins?
+**Closure (2026-05-17) — Option (a) confirmed: NumisMaster genuinely does not catalogue DK pre-1591 / Norge pre-1608 entries under any alternative country tag.**
 
-**Steps.**
+Procedure:
+  1. **Full country-filter enumeration** via Chrome MCP — opened numismaster.com `/coins` search facet, cleared cookies (canonical JS-console recipe), expanded the country filter dropdown. The full alphabetical list of 2100 unique country labels was enumerated. Filtered candidates by regex `DENMARK|NORWAY|NORGE|HANSE|HOLSTEIN|SCHLESWIG|HOLY|GERMAN|KALMAR|SCANDIN|NORTH|HAMBURG|LUBECK|EUROPE|UNITED|REICH|EMPIRE`. **Already walked** in Phase 1b: DENMARK, NORWAY, SCHLESWIG-HOLSTEIN + 5 cadets (GLUCKSBURG / GOTTORP / NORBURG / PLOEN / SONDERBURG) + HOLSTEIN-GOTTORP-RENDSBORG + SCHAUMBURG-PINNEBERG. **Notable absences**: NO «HANSE TOWNS», NO «HANSEATIC», NO «DENMARK-NORWAY», NO «DENMARK-NORWAY-SCHLESWIG-HOLSTEIN», NO «KALMAR UNION», NO «HOLY ROMAN EMPIRE» (only «GERMANY - EMPIRE» = 1871+ Reichsgoldmünzen era, well outside our pre-1608 audit window).
+  2. **Local cache cross-check (SH-cluster pre-1591 reality)** — scanned `scripts/cache/numismaster/schleswig_holstein/MC_*.json`: 42 entries with first-year token 1514-1590. Country-tag distribution: SCHLESWIG-HOLSTEIN: 23, SCHAUMBURG-PINNEBERG: 15, SCHLESWIG-HOLSTEIN-GOTTORP: 4. Rulers: Adolf I (Gottorp), Christian III, Johann Adolf, etc. — all SH-cluster dukes. Christian III's SH-territorial coins are correctly under SH-tagged catalog records, not under DENMARK; his Danish-realm issues simply do not exist in NumisMaster's catalogue before 1591 (Krause-Mishler-based system, sparse pre-1604 KM coverage as predicted in §BO surfacing note option (a)).
+  3. **Hanseatic candidate tags inspected**: HAMBURG (416 entries) — Sort=Date ASC dropped filter (known §BI bug), but default-sort row 1 of page 1 returned 1908-1923 Hamburg KM# entries. No DK-issue content. LÜBECK — same pattern (individual Hanseatic city, no DK-tagged content). Neither is a container for joint-issue Christian II / Frederik I era coins.
 
-  1. Via Chrome MCP, navigate to numismaster.com `/coins` index. Clear cookies (per canonical recipe). Probe candidate alternative country tags for Danish-realm + Norwegian-realm pre-floor entries:
-       - HANSE TOWNS / HANSEATIC (joint-issue Christian II coins could be here)
-       - DENMARK-NORWAY-SCHLESWIG-HOLSTEIN (combined entity that may exist)
-       - SCHLESWIG-HOLSTEIN (already walked; verify the 561 SH entries include any DK-issue-Christian-III pre-1559 we might mis-tag)
-       - Any other country filter starting with «DEN…» / «NOR…» / containing «KING» in label
-  2. For any alternative tag that surfaces pre-floor entries: enumerate MC_IDs via existing `mc_index.json` workflow, fetch HTML, parse, add to seed.
-  3. Document closure: «NumisMaster DK 1514-1591 + Norge 1514-1608: floors confirmed under canonical country filters; alternative tags probed = …; new entries found = …»
+**Result.** The 9 SH-cluster country filters already walked in §BI (562 entries) **exhaust NumisMaster's Danish-jurisdiction pre-floor surface area**. No alternative country tag exists; no pre-1591 DK or pre-1608 Norge entries are recoverable from NumisMaster. Pre-floor count for Danish-realm and Norwegian-realm on NumisMaster: **N = 0, confirmed**.
+
+Phase-1 coverage table updated accordingly — NumisMaster row's «Pre-floor entries» column is the documented negative finding, not an unaudited dark zone.
 
 #### BO.3 — ucoin 1514-1582 audit (DK + Norge)  *(est: medium)*
 
