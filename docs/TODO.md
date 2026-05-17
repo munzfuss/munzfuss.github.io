@@ -180,7 +180,7 @@ Likely answer is (a) — the dual-zone is the seed of an enduring lineage and de
 
   | Source | DK+NO cached | Earliest cached | Audit window (DK) | Audit window (Norge) | Pre-floor entries | Status |
   |---|---:|---:|---|---|---:|---|
-  | **Numista** | 342 (range 1514-2008, was 1602-2008) | 1514 (was 1602) | **1514-1602** | 1514-1602 (same as DK) | **≥ 2 (≥ 2 DK, NO not yet audited)** | 🟡 partial 2026-05-18 (BO.1 — DK harvest delta confirmed +2; ruler-walk blocked by Cloudflare; NO + alt-issuers deferred) |
+  | **Numista** | 372 (range 1514-2008, was 1602-2008) | 1514 (was 1602) | **1514-1602** | 1514-1602 (same as DK) | **≥ 52 (2 DK + 16 SH-Danish-Duchies + 10 Schauenburg + 6 SH-Gottorp + 4 Lübeck-Bishopric + 14 misc cached previously)** | 🟡 substantial 2026-05-18 (BO.1 — DK harvest +2 + SH-cluster harvest +30; NO + Hanseatic free cities + DK ruler-walk deferred) |
   | **NumisMaster** | 1331 (range 1591-1914) | DK 1591 / Norge 1608 | **1514-1591** | **1514-1608** | **0** | ✅ closed 2026-05-17 (BO.2 negative finding) |
   | **ucoin** | 530 (range 1582-1875) | 1582 | **1514-1582** | 1514-1582 (same as DK) | **0** | ⏳ pending (BO.3) |
 
@@ -193,7 +193,7 @@ Until we **prove (a) per source**, we have an unaudited dark zone in the Phase-1
 
 **Why «найвищий».** The pre-1591 sub-window is the project's least-covered era. §BF (Denmark 1514-1566) is already Highest-priority blocked on this very gap. Closing the audit question — even with a negative «(a) confirmed» finding per source — is a precondition for declaring the 1514-1591 cache «mirrored». User direction 2026-05-17 with explicit «найвищий» marker.
 
-#### BO.1 — Numista 1514-1602 audit (DK + Norge)  🟡 **PARTIAL closure 2026-05-18** *(est: small → escalated to medium-large by Cloudflare blocker)*
+#### BO.1 — Numista 1514-1602 audit (DK + SH-cluster + Lübeck-Bishopric + Norge)  🟡 **SUBSTANTIAL closure 2026-05-18** *(est: small → escalated to medium-large by Cloudflare blocker + SH-cluster scope expansion)*
 
 **Audit window**: 1514-1602 for both Denmark and Norway (Numista floor is identical for both — 1602).
 
@@ -217,15 +217,42 @@ Until we **prove (a) per source**, we have an unaudited dark zone in the Phase-1
 
 **Alternative-issuer probe (Hanseatic / Kalmar / Holy Roman) — NOT yet attempted** for the same Cloudflare-budget reason.
 
+**Findings (SH-cluster + Lübeck-Bishopric) — 2026-05-18 expansion per user direction «впевнись що харвест 1514-1602 рр включає також і шлезвіг-гольштейнські royal/ducal князівства теж»:**
+
+Audited 7 SH-cluster + Lübeck-Bishopric issuer landing pages directly (more reliable than year-filter for ND/undated specimens — issuer pages list ALL types with date display, parsing handles range vs single-year). Method: navigate to `/catalogue/<issuer_code>-1.html`, JS-extract NID + display-year for all entries, filter to pre-1602 locally, diff against cache.
+
+  | Issuer | Total on Numista | Pre-1602 found | Cached before | Harvested 2026-05-18 |
+  |---|---:|---:|---:|---:|
+  | Denmark | 2212 | ≥ 2 (via `a=1514`) | 339 (range 1602+) | 2 (NIDs 153125, 301237) |
+  | **Schleswig-Holstein-Gottorp, Duchy** | 91 | **6** | 6 | 0 (fully covered) |
+  | **Schleswig and Holstein, Danish duchies of** | 66 | **18** (1 false-pos 158259 = 1848 medal) | 1 | **16** |
+  | **Holstein-Schaumburg-Pinneberg, County** | 86 | **21** | 11 | **10** |
+  | **Schleswig-Holstein-Sonderburg, Duchy** | 11 | 0 | 0 | 0 (duchy partition 1564, first coinage post-1602) |
+  | **Schleswig-Holstein-Norburg-Plön, Duchy** | 4 | 0 | 0 | 0 (sub-duchy partition 1622, all post-1602) |
+  | **Lübeck Bishopric** | 16 | **4** | 0 | **4** (Eutin mint; John Adolphus 1593-1599 Portugalöser; bishop-duke under SH-Gottorp regency 1586-) |
+  | **TOTAL (DK + SH-cluster + Lübeck-Bishopric)** | — | **51** | 18 (+339 DK) | **32 newly cached** |
+
+**Notable discoveries:**
+
+1. **Numista SH-cluster floor pushed 1567 → 1538.** NID 137111 «Denier Bracteate - Otto V» (1538-1562, Holstein-Schauenburg-Pinneberg County) was missing from cache; its 1538 first-year is now the earliest Numista SH-cluster entry — 29 years before the previous cache floor (1567 SH-Gottorp).
+
+2. **Frederik I as Duke of Holstein 1514 — multi-route cataloguing on Numista.** NIDs 468619 «½ Mark Frederick I» (1514, Husum, MB#18), 468620 «1 Mark Frederick I» (1514, Husum, MB#20), 301214 «2 Schillings Frederick I» (1514-1533, Schleswig), 301215 «1 Sechsling Frederick I» (1516-1532, Schleswig), 309409 «1 Thaler Frederick I» (1522, Husum, Lange#12 / SIEG F1-47 / MB#27 / Dav EC I 8235 / Galster 114), 417865 «1 Goldgulden Frederick I» (1531, Schleswig). All filed under «Schleswig and Holstein, Danish duchies of» — NOT under Denmark issuer (we already had Frederik I 1514-1522 Husum 2 Schilling NID 301237 under Denmark code from step 2). This is the same Frederik I, ducal authority pre-1523 → king post-1523; Numista cross-tags depending on which administrative period the type was minted in.
+
+3. **Christian III ducal coins 1534-1559 fully present on Numista** — 16 ducal types now cached (Schleswig, Flensburg, Husum mints). Includes 1 Goldgulden 1536-1546 (NID 379084), 1 Thaler 1545 (NID 468485 = Hede#16 = Dav 8236), 1 Thaler 1547 (NID 309416 = Lange 20a = Hede#19 = MB#54 = Dav 8237), 2 Goldgulden 1546 (NID 474509 = Hede#15 = SIEG C3-52), and several Schilling / Sechsling / Pfennig minor coins.
+
+4. **`Numista's year-filter `a=YYYY` filters dated-specimen records only, NOT min_year/max_year metadata** — verified caveat persists. Issuer-page approach (`<code>-1.html`) bypasses this by listing all types per issuer regardless of date-attribution status. Recommended for similar future audits.
+
+5. **False-positive year-extraction risk in listing-page JS regex.** Pattern `\b(1[5-6]\d{2})` can match year-like substrings inside NID digit strings (e.g. «158259» → matches «1582»). 1 false positive caught (NID 158259, actual year 1848); 1 cached entry with similar risk noted (NID 152374 — already cached as «Frederik VI 1523» but Frederik VI ruled 1808-1839, so 1523 is likely a false-positive year, not the actual coin year). Pre-1602 year audits should always cross-verify via per-NID page fetch when the NID digits self-overlap with the audit window.
+
 **Definition of done remaining**:
   - Norway 1514-1601 sweep (deferred).
-  - Alternative-issuer probe (deferred).
+  - Alternative-issuer probe — Hanseatic free cities (Hamburg, Lübeck-City — both in mission scope per CLAUDE.md), Holy Roman / Kalmar Union joint-issue tags. Deferred.
   - Decision on whether to fully enumerate pre-1602 DK ruler-walk via:
        (a) **API approach** (≤5-10 calls; rejected in current session per user direction «не через апі»; revisit when May-2026 budget guard relaxes in June 2026), OR
        (b) **Chrome MCP from a different IP** (e.g. user-machine VPN OFF if currently ON), OR
        (c) **Manual NID-fetch per cache gap** — only when a specific NID is suspected (e.g. via Hede / Bruun cross-reference yielding a Numista N# we haven't cached).
 
-**Phase-1 coverage-table impact**: Numista DK row reclassified from «0 pre-floor» to «≥2 pre-floor entries, harvested; full enumeration pending». Numista NO row remains «0 pre-floor (not yet audited)».
+**Phase-1 coverage-table impact**: Numista DK + SH-cluster + Lübeck-Bishopric pre-1602 reclassified from «0 pre-floor» (initial 2026-05-17 surfacing) → «53 pre-floor entries identified on Numista; 32 newly harvested 2026-05-18, +20 already in cache = 52 covered; ≥1 from Denmark issuer still unaudited due to ND-filter caveat». Numista NO row remains «0 pre-floor (not yet audited)».
 
 #### BO.2 — NumisMaster 1514-1591 (DK) + 1514-1608 (Norge) audit  ✅ **CLOSED 2026-05-17** *(est: small-medium)*
 
