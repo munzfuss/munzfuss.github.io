@@ -487,6 +487,57 @@ weight_rough_g:
 
 (§BG closed — see `## Done` section below.)
 
+### BN. 🟢 Bruun extraction completeness — verify all DK + possessions Bruun lots harvested into seed / curated  *(opened 2026-05-17)* *(est: medium-large)* *(type: audit + seed-build + data)*
+
+**Surfaced.** Phase-1 raw-cache coverage table (2026-05-17) showed Bruun as the project's single deepest source for the Denmark-Norway realm (1238 unique DK+NO coll-ids cached across Parts I-IV). But on-disk extraction shape:
+
+  - **38 entries** in `data/seed/bruun/denmark_pre_1541.yml` (Bruun seed limited to 1514-1541 sub-window per §AZ Tier-1 design).
+  - **367 DK+NO coll-ids cited** in `data/locations/*.yml` (manual curation work, e.g. `bruun-8082-frederik-1830` on lauenburg.yml).
+  - **871 DK+NO coll-ids NOT cited anywhere** in our YAMLs — that's **70% of the Bruun DK+NO corpus uncited**.
+
+For Schleswig-Holstein-mint lots specifically (Glückstadt / Altona / Sonderburg / Schleswig / Husum / Rendsburg / Plön / etc. mentioned in lot `mint` field or `body_excerpt`):
+
+  - **225 lots** mention an SH-mint
+  - **129 cited (57%)** + **96 uncited (43%)**
+
+Per-period DK+NO Bruun coverage (1238 lots with year):
+
+  | Period | Bruun cached | Bruun cited (rough) |
+  |---|---:|---:|
+  | 1514-1541 | 53 | 38 in seed + ~10 curated ≈ 48 |
+  | 1541-1582 | 35 | ~12 cited |
+  | 1582-1591 | 3 | ~2 cited |
+  | 1591-1608 | 52 | ~25 cited |
+  | 1608-1814 | 795 | ~245 cited |
+  | 1814-1914 | 185 | ~85 cited |
+
+Each Bruun lot carries weight + grade (NGC/PCGS) + auction provenance — strong primary-source citations per CLAUDE.md §5. Leaving 871 lots uncited is the equivalent of having a museum catalogue open on the desk and never looking at it.
+
+**Why now.** Two complementary pipeline paths exist already:
+
+  - `scripts/maintenance/build_bruun_denmark_seed.py` — produces `data/seed/bruun/denmark_pre_1541.yml`. The script is scoped to pre-1541 only. Generalising to a full `data/seed/bruun/denmark.yml` (or split DK / Norge / SH per-location) would auto-fold the 1200+ uncited lots into our seed-merge pipeline at next build.
+  - `scripts/lib/seed_merge.py` (§BL) makes the merge-aware regen safe — curated `fuss`/`note` flips survive.
+
+So the mechanical pipeline is ready; the gap is purely «no seed file exists for post-1541 Bruun».
+
+**Done criterion.**
+
+1. **Audit lay-out.** Enumerate the 1238 DK+NO Bruun lots → per-period bucket × per-location (DK vs Norge vs SH-by-mint) breakdown. Output: `docs/research/bruun_extraction_audit.md` so the next session sees the gap structure at a glance.
+2. **Generalise the seed builder.** Rename `build_bruun_denmark_seed.py` → `build_bruun_seed.py` with `--location` flag (matching the §BK pattern for NumisMaster). Emit:
+     - `data/seed/bruun/denmark.yml` (post-1541 DK + Norge-under-Danish-rule, since both fold into the Denmark-Norway realm per existing convention).
+     - `data/seed/bruun/schleswig_holstein.yml` (lots where mint OR body_excerpt mentions an SH mint — region tag in Bruun is sometimes wrong, body_excerpt is ground truth).
+     - Keep the legacy `denmark_pre_1541.yml` until curation is fully migrated.
+3. **Location-side prep** (per §BK pattern):
+     - `data/locations/denmark.yml` already has `seed_unsorted.numismaster` + `seed_unsorted.hede`; add `seed_unsorted.bruun` phase with appropriate `hintergrund` text.
+     - `data/locations/schleswig_holstein.yml` already has `seed_unsorted.numismaster` from §BK; add `seed_unsorted.bruun` phase.
+4. **Build verification.** Run `build.py --validate-only` → 0 errors. Spot-check 3-5 seed entries against the original Bruun lot data (verify weight, year, mint match).
+5. **Spot-check SH overlap.** Of the 225 SH-mint Bruun lots, 129 are cited — verify the 129 citations point at the same coll-id (no parser-bug shifting Bruun-id to wrong location). Surface mis-attributions as separate sub-TODOs.
+6. **Document closure** with count delta (new seed entries added, manual curations preserved, any conflicts surfaced).
+
+**Sequence note.** §BN is independent of §BM (IKMK) and §BH (Hede audit) — can run in any order. But it does benefit from §BL (merge-aware seed builders, closed 2026-05-16) — without §BL this would risk wiping the 367 already-curated Bruun citations on first regen.
+
+---
+
 ### BM. 🟢 IKMK Berlin completeness audit — DK extraction + SH coverage verification  *(opened 2026-05-17)* *(est: small)* *(type: audit + data)*
 
 **Surfaced.** Phase-1 raw-cache coverage table (2026-05-17) showed IKMK as a small-but-non-zero source for Denmark (41 records via `_match_denmark.json`) but with **0 actually cited in `data/locations/denmark.yml`** — an extraction gap. For Schleswig-Holstein the situation is the opposite: `_match_schleswig_holstein.json` shows 42 strict matches + 23 new-Lange-variants (65 IKMK records total), of which 32 are already cited in `schleswig_holstein.yml` — so 10 strict-matched IKMK records + 23 new-Lange-variants remain potentially unintegrated.
