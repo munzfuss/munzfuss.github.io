@@ -311,6 +311,12 @@ class CatalogRefs(_StrictBase):
     schou_hede1971: str | None = None
     fr: str | None = None
     dav: str | None = None
+    # Madai-Bach pre-Krause numbering for Schleswig-Holstein duchy coins
+    # (used by NumisMaster on entries pre-1604 where KM# was never assigned;
+    # appears as «MB# 27» on the source page's catalog-number field). String
+    # form to preserve sub-letter variants («27A», «B43») the way other
+    # catalog refs do.
+    mb: str | None = None
     # Bruun citation: collection-id is the stable cross-auction identifier (use as the
     # primary "did this specimen exist in the L. E. Bruun collection?" reference).
     # part + lot_no + page identify which catalogue and where to find it for manual

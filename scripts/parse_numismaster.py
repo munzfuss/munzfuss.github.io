@@ -78,14 +78,100 @@ def pull(text: str, key: str, until: str) -> str | None:
     return m.group(1).strip() if m else None
 
 
+def _normalise_year_string(s: str) -> str:
+    """Normalise NumisMaster date strings before year-token extraction:
+
+      * «(1)617» / «(1)619»  → «1617» / «1619»  (century-abbreviation form
+        seen on Frederik I / Christian III pre-1559 Schleswig-Holstein
+        pages where the actual coin's engraving says «(15)63» or «(1)617»).
+      * «16Z8» / «1Z28»      → «1628» / «1228»  (Z is a literal engraving
+        glyph used on some 17th-c. Schleswig-Holstein-Gottorp coins as a
+        variant for the digit 2 — confirmed on MC_167311's reverse legend
+        «Value '1Z8' in cartouche»; the Date field then shows the year
+        with the same Z glyph, e.g. «16Z8»).
+      * «1Z8» / «1Z2»        → same Z→2 rule applies to short tokens that
+        could be coin-value labels but not years; leave non-year strings
+        alone via the date-string scope of this function (caller decides
+        when to apply).
+    """
+    if not s:
+        return s
+    # Expand «(1)YY» / «(15)YY» / «(16)YY» — capture century group + 2-digit tail.
+    s = re.sub(r"\(\s*(1[5-9]?)\s*\)\s*(\d{2})", lambda m: (m.group(1) if len(m.group(1)) == 2 else "1") + m.group(2), s)
+    # Some pages use the bare form «(1)617» = «1617» (single «1» + 3 digits).
+    s = re.sub(r"\(\s*1\s*\)\s*(\d{3})", r"1\1", s)
+    # Replace Z→2 only INSIDE 4-digit year tokens of shape `1[56789]Z[0-9]` /
+    # `1[56789][0-9]Z` / `1Z[0-9]{2}` (anchor on the «1» + century to avoid
+    # corrupting unrelated text). Conservative: must be exactly 4 chars with
+    # at least one Z and one or more digits, starting with `1`.
+    def _z_to_two(m):
+        tok = m.group(0)
+        return tok.replace("Z", "2").replace("z", "2")
+    s = re.sub(r"\b1[5-9Zz]\d?[ZzD0-9]\d\b|\b1[5-9Zz][0-9Zz][0-9Zz]\b", _z_to_two, s)
+    return s
+
+
 def parse_year_range(date_str: str | None) -> tuple[int | None, int | None]:
     if not date_str:
         return None, None
-    nums = re.findall(r"\b(\d{4})\b", date_str)
+    nums = re.findall(r"\b(\d{4})\b", _normalise_year_string(date_str))
     if not nums:
         return None, None
     years = [int(n) for n in nums]
     return min(years), max(years)
+
+
+def parse_dates_table(text: str, date_raw: str | None = None) -> list[int]:
+    """Extract the per-year list from the «Value information in US Dollars» Date
+    table. NumisMaster publishes individual mint years in this table (e.g.
+    «Date 1632 / 1636 / 1642» for a coin whose Date range is 1632-1642),
+    which is finer-grained than the Date range field. Returns sorted unique
+    list of 4-digit years.
+
+    The Value-information section is bounded by:
+      - START: «Value information» marker
+      - END: «Related coins» (NumisMaster lists OTHER coins of the same
+        country / ruler in a sidebar that contains LOTS of years — must
+        NOT bleed into our per-coin date list)
+
+    A defensive year-window filter is applied using the Date-range field
+    (parsed-page date_raw) when present: any year that falls outside
+    [year_first-1, year_last+1] is dropped. This handles the rare case
+    where the section boundary marker is missing on a malformed page.
+
+    Pages occasionally use «(1)617» (century-abbreviation), so we run the
+    same normaliser as parse_year_range before extracting tokens.
+    """
+    # Locate the section start
+    m = re.search(r"\bValue information\b", text)
+    if not m:
+        return []
+    # Capture everything between the marker and the «Related coins» sidebar.
+    # Starting AT the marker (not past it) so the first year token — which
+    # appears in the first row of the price table, immediately after the
+    # column-header line «Date Mintage VG8 F12 …» — is included.
+    tail = text[m.end():]
+    end = re.search(
+        r"\b(?:Related coins|Notes|Subscription|Back to|Permalink|"
+        r"Tilbage til|Copyright|Connect with us|About Us)\b", tail,
+    )
+    if end:
+        tail = tail[:end.start()]
+    tail = _normalise_year_string(tail)
+    # Year tokens — keep only plausible mint-year range (1500-1925)
+    ys = {int(y) for y in re.findall(r"\b(1[5-9]\d{2})\b", tail) if 1500 <= int(y) <= 1925}
+
+    # Defensive window filter: when the Date-range field is parseable, drop
+    # any extracted year > 1 yr outside [year_first, year_last] — that's
+    # almost certainly bleed-through from a Related-coins block that the
+    # boundary regex above didn't catch (e.g. malformed page lacking the
+    # standard end-marker).
+    if date_raw and ys:
+        yf, yl = parse_year_range(date_raw)
+        if yf is not None and yl is not None:
+            lo, hi = yf - 1, yl + 1
+            ys = {y for y in ys if lo <= y <= hi}
+    return sorted(ys)
 
 
 def _clean_ruler(raw: str | None) -> str | None:
@@ -105,7 +191,10 @@ def _clean_ruler(raw: str | None) -> str | None:
 
 def _clean_mint(raw: str | None) -> str | None:
     """Trim «N/A» (with optional trailing «Event: …» bleed-through) → None.
-    For real mint values, drop any bleed-in past «Event:» if present."""
+    For real mint values: drop bleed-in past «Event:», then strip the
+    trailing « Mint» suffix («Husum Mint» → «Husum») since the place name
+    is what we care about — the word «Mint» is a NumisMaster UI suffix,
+    not part of the historical mint name."""
     if not raw:
         return None
     s = raw.strip()
@@ -117,44 +206,60 @@ def _clean_mint(raw: str | None) -> str | None:
     s = m[0].strip()
     if not s or s.upper() == "N/A":
         return None
-    return s
+    # Strip trailing « Mint» suffix: «Husum Mint» → «Husum», «Copenhagen
+    # Mint» → «Copenhagen», etc. Only the literal trailing word; an
+    # embedded « Mint » in a multi-word mint name is left alone (none
+    # observed, but defensive).
+    s = re.sub(r"\s+Mint\s*$", "", s, flags=re.IGNORECASE).strip()
+    return s or None
 
 
 def parse_references(text: str) -> dict:
     """Extract cross-references from «General note» / page body. Catalogues
     covered: Schou (Sch#), Lange (L#), Friedberg (Fr#), Krause-Mishler (KM#),
-    Madai-Bach (MB#), Sieg, Hede, Bruun, Schive (Norway).
+    Madai-Bach (MB#), Sieg, Hede, Bruun, Schive (Norway), Davenport (Dav#).
+
+    Each ref captures the FULL token sequence — range («358CI-358CIII») or
+    comma-list («339, 339C») — as a single string. Downstream consumers can
+    parse / explode the range / list as needed; we keep the source's
+    transcription so the curator sees the same shape on the seed.
     """
     refs: dict = {}
-    # Schou — «Sch#1357» / «Sch. 1357»
-    m = re.search(r"\bSch[#.]?\s*(\d+[A-Za-z]?)", text)
+    # Token-list helper: «<NUM>[<letter-suffix>]» possibly chained via
+    # comma/dash with another «<NUM>[<letter-suffix>]». Greedy.
+    _LIST_OR_RANGE = r"(\d+[A-Za-z]*(?:\s*[,\-/]\s*\d+[A-Za-z]*)*)"
+
+    # Schou — «Sch#1357», «Sch. 1357», «Sch#1, 2»
+    m = re.search(r"\bSch[#.]?\s*" + _LIST_OR_RANGE, text)
     if m:
-        refs["schou"] = m.group(1)
-    # Lange — «L#23», «L#23, 23AB»
-    m = re.search(r"\bL[#.]?\s*(\d+[A-Za-z, ]*\d?[A-Za-z]?)", text)
+        refs["schou"] = re.sub(r"\s+", "", m.group(1)).replace(",", ", ")
+    # Lange — «L#23», «L#23, 23AB», «L#358CI-358CIII»
+    m = re.search(r"\bL[#.]?\s*" + _LIST_OR_RANGE, text)
     if m:
-        refs["lange"] = m.group(1).strip(", ")
-    # Friedberg — «Fr#16», «Fr. 16»
-    m = re.search(r"\bFr\.?\s*#?\s*(\d+[a-zA-Z]?)", text)
+        refs["lange"] = re.sub(r"\s+", "", m.group(1)).replace(",", ", ").replace("-", "-")
+    # Friedberg — «Fr#16», «Fr. 16», «Fr#16, 17»
+    m = re.search(r"\bFr\.?\s*#?\s*" + _LIST_OR_RANGE, text)
     if m:
-        refs["friedberg"] = m.group(1)
-    # Krause-Mishler — «KM 75», «KM#75»
+        refs["friedberg"] = re.sub(r"\s+", "", m.group(1)).replace(",", ", ")
+    # Krause-Mishler — «KM 75», «KM#75». KM rarely uses commas in NumisMaster
+    # (single sub-num usually); kept on single-token regex to avoid catching
+    # adjacent unrelated numbers.
     m = re.search(r"\bKM\s*#?\s*([\w\.]+)", text)
     if m and m.group(1) not in ("Mishler",):
         refs["km"] = m.group(1).rstrip(".,;")
-    # Madai-Bach — «MB#33» (pre-Krause SH duchy numbering)
-    m = re.search(r"\bMB\s*#?\s*(\d+[A-Za-z]?)", text)
+    # Madai-Bach — «MB#33», «MB#A43» (pre-Krause SH duchy numbering)
+    m = re.search(r"\bMB\s*#?\s*([A-Za-z]?\d+[A-Za-z]*)", text)
     if m:
         refs["mb"] = m.group(1)
-    # Sieg — «Sieg 39» / «Sieg#39»
-    m = re.search(r"\bSieg\s*#?\s*(\d+[A-Za-z.]?)", text)
+    # Sieg — «Sieg 39», «Sieg#39», «Sieg#39, 40»
+    m = re.search(r"\bSieg\s*#?\s*" + _LIST_OR_RANGE, text)
     if m:
-        refs["sieg"] = m.group(1).rstrip(".")
-    # Hede — «Hede 39A» / «Hede#39A»
-    m = re.search(r"\bHede\s*#?\s*(\d+[A-Za-z]?)", text)
+        refs["sieg"] = re.sub(r"\s+", "", m.group(1)).replace(",", ", ").rstrip(".")
+    # Hede — «Hede 39A», «Hede#39A», «Hede#39A, 39B»
+    m = re.search(r"\bHede\s*#?\s*" + _LIST_OR_RANGE, text)
     if m:
-        refs["hede"] = m.group(1)
-    # Bruun — «Bruun 8149» (rare in NumisMaster, common in auction notes)
+        refs["hede"] = re.sub(r"\s+", "", m.group(1)).replace(",", ", ")
+    # Bruun — «Bruun 8149»
     m = re.search(r"\bBruun\s*#?\s*(\d+[A-Za-z]?)", text)
     if m:
         refs["bruun"] = m.group(1)
@@ -162,6 +267,10 @@ def parse_references(text: str) -> dict:
     m = re.search(r"\bSchive\s+([IVXLCDM]+\.[\d\-,A-Za-z ]+?)(?:[;.]|\s*$)", text)
     if m:
         refs["schive"] = m.group(1).strip()
+    # Davenport — «Dav#8235», «Dav. #8235», «Dav 8235»
+    m = re.search(r"\bDav\.?\s*#?\s*(\d+[A-Za-z]?)", text)
+    if m:
+        refs["dav"] = m.group(1)
     return refs
 
 
@@ -242,12 +351,18 @@ def parse_page(html_path: Path, sub_scope: str) -> dict:
     mint = _clean_mint(mint_raw)
 
     # General note + refs. References live in either «General note: Ref. …» or as
-    # standalone in the page body.
+    # standalone in the page body. Run parse_references against BOTH the general
+    # note AND the catalog_number prefix (so an MB# or Dav# that lives only in
+    # the Catalog # field is captured even when no General note is present).
     general_note = (
         pull(text, "General note", "Value information")
         or pull(text, "Details General note", "Value information")
     )
-    refs = parse_references(general_note or text)
+    ref_corpus_parts = [s for s in (general_note, catalog_no) if s]
+    refs = parse_references("\n".join(ref_corpus_parts)) if ref_corpus_parts else {}
+
+    # «Value information» Date table — per-year list (finer than the date range)
+    dates_explicit = parse_dates_table(text, date_raw=date_raw)
 
     return {
         "source_file": html_path.name,
@@ -262,6 +377,7 @@ def parse_page(html_path: Path, sub_scope: str) -> dict:
         "date_raw": date_raw,
         "year_first": yf,
         "year_last": yl,
+        "dates_explicit": dates_explicit,
         "ruler": ruler,
         "mint": mint,
         "composition": composition,

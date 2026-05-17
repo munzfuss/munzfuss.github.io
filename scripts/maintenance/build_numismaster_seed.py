@@ -133,14 +133,14 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
     metal = detect_metal(composition, data.get("denomination"))
 
     # Catalog refs — schema-clean subset only. Coin.catalog (CatalogRefs)
-    # accepts: km, lange, hede, sieg, schou, fr, dav, bruun_collection_id,
+    # accepts: km, lange, hede, sieg, schou, fr, dav, mb, bruun_collection_id,
     # bruun_part, bruun_lot_no, bruun_page, bruun_lot, numista. NumisMaster's
-    # extra-vocabulary refs (mb / schive / numismaster_mc / generic bruun-
-    # number) are dropped here — the canonical raw record lives in
+    # extra-vocabulary refs (schive / numismaster_mc / generic bruun-number)
+    # are dropped here — the canonical raw record lives in
     # `MC_<N>.parsed.json`, so curators who want them open the cache. The
     # parser's `friedberg` key maps to schema `fr`.
     _ALLOWED_CATALOG_KEYS = {
-        "km", "lange", "hede", "sieg", "schou", "fr", "dav",
+        "km", "lange", "hede", "sieg", "schou", "fr", "dav", "mb",
         "bruun_collection_id", "bruun_part", "bruun_lot_no", "bruun_page",
         "bruun_lot", "numista",
     }
@@ -151,11 +151,10 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
         if len(parts) == 2:
             prefix = parts[0].strip().lower()
             value = parts[1].strip()
-            if prefix == "km":
-                catalog["km"] = value
+            if prefix in _ALLOWED_CATALOG_KEYS:
+                catalog[prefix] = value
             elif prefix == "fr":
                 catalog["fr"] = value
-            # MB# / other prefixes are not in schema; carried only on the parsed JSON
     for k, v in (data.get("catalog_refs") or {}).items():
         key = "fr" if k == "friedberg" else k
         if key in _ALLOWED_CATALOG_KEYS:
@@ -181,16 +180,56 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
     if raw_fineness is not None and (raw_fineness < 0 or raw_fineness > 1):
         raw_fineness = None
 
+    # Build year_label + year_ranges. Preference order:
+    #   1. `dates_explicit` from the «Value information» table — per-year
+    #      precision (e.g. 1632, 1636, 1642 for an entry whose Date range
+    #      is 1632-1642). When available, render as comma-list and emit
+    #      per-year `year_ranges` so the rendering layer can show the
+    #      discrete-year shape rather than the bracketing range.
+    #   2. Otherwise fall back to date_raw. Collapse single-year ranges:
+    #      «1628 - 1628» → «1628» (else the rendered «1628 - 1628» reads
+    #      as a 1-year range, which is incorrect for what is actually a
+    #      single dated coin).
+    dates_explicit = data.get("dates_explicit") or []
+    if dates_explicit:
+        # dates_explicit is the per-coin attested year list from the
+        # NumisMaster «Value information» price table. It is the
+        # SOURCE OF TRUTH for year_first / year_last / year_ranges when
+        # present — the broader `date_raw` range («1632 - 1642») is an
+        # editorial summary that may bracket years where no specimens are
+        # actually documented in the table. We anchor on the table values.
+        if len(dates_explicit) == 1:
+            year_label = str(dates_explicit[0])
+        else:
+            year_label = ", ".join(str(y) for y in dates_explicit)
+        year_ranges = [[y, y] for y in dates_explicit]
+        yf = dates_explicit[0]
+        yl = dates_explicit[-1]
+    else:
+        # Single-year collapse: «1628 - 1628» → «1628»
+        if yf is not None and yl is not None and yf == yl:
+            year_label = str(yf)
+        else:
+            year_label = data.get("date_raw")
+        year_ranges = [[yf, yl if yl is not None else yf]]
+
+    # metal_verified: when NumisMaster's «Composition» field is explicitly
+    # populated (most pages), the metal classification is source-attested;
+    # flip the flag to true so the (?) marker doesn't render. Pages whose
+    # composition is None (or where our detect_metal heuristic guessed
+    # from denomination tokens) keep metal_verified absent / false.
+    metal_attested = bool(data.get("composition"))
+
     entry: dict = {
         "id": cid,
         "fuss": "seed_unsorted",
         "phase": "numismaster",
         "kind": "kurant",
         "nominal": data.get("denomination"),
-        "year_label": data.get("date_raw"),
+        "year_label": year_label,
         "year_first": yf,
         "year_last": yl if yl is not None else yf,
-        "year_ranges": [[yf, yl if yl is not None else yf]],
+        "year_ranges": year_ranges,
         "ruler": data.get("ruler"),
         "mint": data.get("mint"),
         "catalog": catalog,
@@ -199,6 +238,7 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
         "weight_rough_g": data.get("mass_g"),
         "issuing_entity": issuing,
         "verified": False,
+        "metal_verified": metal_attested,
         "fineness_verified": raw_fineness is not None,
         "weight_rough_verified": data.get("mass_g") is not None,
         "mint_verified": bool(data.get("mint")),
