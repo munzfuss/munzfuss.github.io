@@ -174,6 +174,68 @@ Likely answer is (a) — the dual-zone is the seed of an enduring lineage and de
 
 **Definition of done.** The Denmark page renders a non-empty 1514-1566 section with at least 6 placed coins, a `christian_iii_dalerfod` Fuß card with full metric block + sourced hintergrund, and the dual-track Flensborg phase (if (a)) wired up. The 26+ new c3h seed entries auto-suppress against the curated phase blocks per the `_merge_seeds_into_raw` rule. Pre-1541 sub-window coverage (Christian II 1513-1523 + Frederik I 1523-1533) depends on §AZ Galster + Jensen-Skjoldager catalog import landing first.
 
+### BO. 🟢 Verify pre-1591 absence on Numista, NumisMaster, ucoin (3 sub-tasks)  *(opened 2026-05-17, user-marked «найвищий»)* *(est: medium)* *(type: audit + harvest)*
+
+**Surfaced.** Phase-1 raw-cache coverage table (2026-05-17) showed all three commercial / community catalogues with **zero entries pre-1591** for Denmark + Norge:
+
+  | Source | DK+NO cached | Earliest cached | Pre-1591 entries |
+  |---|---:|---:|---:|
+  | **Numista** | 340 (range 1602-2008) | 1602 | **0** |
+  | **NumisMaster** | 1331 (range 1591-1914) | 1591 (DK) / 1608 (NO) | **0** |
+  | **ucoin** | 530 (range 1582-1875) | 1582 | **0** |
+
+Two possibilities for each source:
+
+  (a) **Platform genuinely doesn't catalogue pre-1591 DK** — Krause-Mishler-based platforms (NumisMaster, Numista catalog-num system) have known sparse pre-1604 KM coverage; this is consistent with what we'd expect.
+  (b) **Our harvest missed them** — e.g. we used a date filter that auto-cut pre-1591; or a country tag we didn't probe (e.g. «HANSE TOWNS» wrapping joint-issue Christian II coins; or «SCHLESWIG-HOLSTEIN» pre-cadet entries that NumisMaster files under that tag rather than DENMARK).
+
+Until we **prove (a) per source**, we have an unaudited dark zone in the Phase-1 coverage table. For the §BF Denmark 1514-1566 gap (currently dependent on §AZ Galster + Jensen-Skjoldager paper-track only), even a single (b)-case recovery would tighten the source pool.
+
+**Why «найвищий».** The pre-1591 sub-window is the project's least-covered era. §BF (Denmark 1514-1566) is already Highest-priority blocked on this very gap. Closing the audit question — even with a negative «(a) confirmed» finding per source — is a precondition for declaring the 1514-1591 cache «mirrored». User direction 2026-05-17 with explicit «найвищий» marker.
+
+#### BO.1 — Numista pre-1591 audit  *(est: small)*
+
+**Approach.** Numista API v3 supports `min_year` / `max_year` filters on type-search. Cost is ~5-10 API calls (well within the May 2026 budget guard — see CLAUDE.md «Numista API budget»). User-permission required before bulk-fetch per the guard.
+
+**Steps.**
+
+  1. Ask user for Numista API budget approval (≤10 calls) before starting (CLAUDE.md May-2026 rule).
+  2. Query `/types?country=denmark&max_year=1591` and `/types?country=norway&max_year=1591` — record total-count.
+  3. If count > 0: examine the first ~10 candidates. Are they in our existing cache (we may have them under a non-DK issuer label)? If not, fetch + cache + bucket per Phase-1 period grid.
+  4. Document closure: «Numista pre-1591 DK count = N (per Numista API). Our cache has X; gap = N - X. Resolution: …»
+
+#### BO.2 — NumisMaster pre-1591 audit  *(est: small-medium)*
+
+**Approach.** Sort=Date ASC walk of DENMARK filter on Phase 1b (2026-05-16) confirmed page-1 row-1 = 1591. That's strong evidence for (a) UNDER that specific country filter. Audit gap: did we miss alternative country tags that might carry pre-1591 DK coins?
+
+**Steps.**
+
+  1. Via Chrome MCP, navigate to numismaster.com `/coins` index. Clear cookies (per canonical recipe). Probe candidate alternative country tags for Danish-realm pre-1591 entries:
+       - HANSE TOWNS / HANSEATIC (joint-issue Christian II coins could be here)
+       - DENMARK-NORWAY-SCHLESWIG-HOLSTEIN (combined entity that may exist)
+       - SCHLESWIG-HOLSTEIN (already walked; verify the 561 SH entries include any DK-issue-Christian-III pre-1559 we might mis-tag)
+       - Any other country filter starting with «DEN…» / «NOR…» / containing «KING» in label
+  2. For any alternative tag that surfaces pre-1591 DK entries: enumerate MC_IDs via existing `mc_index.json` workflow, fetch HTML, parse, add to seed.
+  3. Document closure: «NumisMaster DK pre-1591: floor confirmed 1591 under DENMARK filter; alternative tags probed = …; new entries found = …»
+
+#### BO.3 — ucoin pre-1582 audit  *(est: medium)*
+
+**Approach.** ucoin is Cloudflare-blocked since the §M batch — Chrome MCP required. Existing cache has 530 DK entries 1582-1875. Verify whether ucoin's `tid` enumeration skips pre-1582 or whether we just didn't fetch them.
+
+**Steps.**
+
+  1. Via Chrome MCP, navigate to `https://en.ucoin.net/coins/denmark/`. Look at the «Earliest» year filter on the catalogue page (ucoin typically has a year-range slider).
+  2. If pre-1582 entries exist: enumerate `tid` ids via the catalogue listing (Chrome MCP page text + paginate). Compare against our `_url_index.json` keys — anything new?
+  3. Same for `/coins/norway/`.
+  4. If gaps found: per-tid fetch via Chrome MCP (since urllib is Cloudflare-blocked). Cap at 50 per session per the existing ucoin rate-limit budget.
+  5. Document closure: «ucoin DK earliest = YYYY (per catalogue UI); our cache = 1582; gap = N entries; status = (fetched / blocked / not-yet-fetched)»
+
+**Definition of done.** Each of BO.1, BO.2, BO.3 has either:
+  - Pre-1591 (or pre-1582 for ucoin) entries found + harvested into cache + reflected in Phase-1 coverage table, OR
+  - A documented negative finding («(a) platform-side limitation: confirmed N=0 via X verification step») recorded in this entry's body.
+
+Bundle takes the audit-completeness cluster (§BH Hede + §BM IKMK + §BN Bruun + §BO this) to «100% verified» across all 7 raw sources.
+
 ---
 ## High priority
 
