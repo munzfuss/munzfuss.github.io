@@ -254,14 +254,21 @@ class KMRef(_StrictBase):
 
 
 class CatalogRefs(_StrictBase):
-    # `km` accepts three shapes:
+    # `km` accepts four shapes:
     #   * scalar string (e.g. `'73'`) — single KM in the page's default
     #     register
+    #   * dict `{<register>: <km>}` (V2, per V2_PIPELINE.md §4) — explicit
+    #     per-register namespacing for a coin catalogued in multiple Krause
+    #     volumes. Build assembly's `resolve_km_for_location()` picks the
+    #     entry whose register matches the current display location. Keys
+    #     match `data/locations/<loc>.yml::km_register` casing (`'dk'`,
+    #     `'sh'`, …) — lookup is case-insensitive.
     #   * list of strings — multi-KM (same coin in multiple Krause
     #     volumes), all rendered with page's default register
     #   * list of KMRef objects — multi-KM with per-entry register tags
-    # See KMRef docstring for the cross-register rendering rules.
-    km: str | list[str | KMRef] | None = None
+    # See KMRef docstring for the cross-register rendering rules; see
+    # V2_PIPELINE.md §4 for the dict-form rationale.
+    km: str | dict[str, str] | list[str | KMRef] | None = None
     lange: str | None = None
     # `hede` (and parallel `sieg` / `schou`) accept a list form when the
     # coin is a Krause-KM-canonical entry that spans multiple Hede sub-
@@ -349,7 +356,18 @@ class FussRef(_StrictBase):
 class Coin(_StrictBase):
     id: str
     fuss: str = Field(..., description="FK to shared/fuesse.yml")
-    phase: str = Field(..., description="FK to location.phases[fuss]")
+    phase: str | dict[str, str] = Field(
+        ...,
+        description=(
+            "FK to location.phases[fuss]. Scalar string for the 90% case "
+            "(coin sits in the same phase on every display page it surfaces "
+            "on). Dict `{loc_id: phase_id}` (V2, per V2_PIPELINE.md §5) when "
+            "the same coin lives in different local periodisations across "
+            "the display pages of multi-consumer entity files. The build "
+            "assembly's `resolve_phase_for_location()` picks the matching "
+            "key at render time."
+        ),
+    )
     kind: Literal["kurant", "scheide", "tarif", "tarif_subunit", "gedenk"]
     nominal: str = Field(..., description="Literal inscription or closest transcription")
     year_label: str
@@ -448,7 +466,18 @@ class Coin(_StrictBase):
                     raise ValueError(f"fineness FieldValue.value must be in [0, 1], got {val}")
         return v
     fraction: str | None = Field(None, description="E.g., '1/12' — lookup key in fuss.fractions")
-    issuing_entity: str | None = Field(None, description="FK to data/i18n/issuing_entities.yml — political entity that struck the coin")
+    issuing_entity: str | list[str] | None = Field(
+        None,
+        description=(
+            "FK to data/i18n/issuing_entities.yml — political entity that "
+            "struck the coin. Scalar form is the 90% case. List form (V2, "
+            "per V2_PIPELINE.md §3.10) for joint-jurisdiction coins (e.g. "
+            "Altona+Kopenhagen mint → `[danish_realm, royal_holstein]`). "
+            "Each list element must be a known entity tag; list non-empty, "
+            "no duplicates. Per the home-file rule, the coin is stored in "
+            "the entity file matching the alphabetically-first element."
+        ),
+    )
     fuss_refs: list[FussRef] = Field(default_factory=list,
         description="Multi-rank Fuß labels (for dual- or triple-denominated coins)")
     inscription_obv: str | None = None
@@ -457,6 +486,49 @@ class Coin(_StrictBase):
     sources: list[Source] = Field(default_factory=list)
     verified: bool = True
     verification_note: I18nText | None = None
+    # ---- V2 fields (per V2_PIPELINE.md §3) -------------------------------
+    # composed_of / promoted_to encode the bidirectional seed↔curated link
+    # set up in Phase 6. `composed_of` is the authoritative side (curator
+    # writes it); `promoted_to` is derived by `relink_promoted_v2.py`.
+    composed_of: list[str] | None = Field(
+        None,
+        description=(
+            "V2 bidirectional link (curated side): list of seed ids that "
+            "this curated coin rolled up. Build assembly drops seed entries "
+            "whose `promoted_to` is set so they don't render duplicate."
+        ),
+    )
+    promoted_to: str | None = Field(
+        None,
+        description=(
+            "V2 bidirectional link (seed side): pointer back to the curated "
+            "coin id that subsumes this seed entry. Derived by "
+            "`relink_promoted_v2.py` from curated `composed_of` lists."
+        ),
+    )
+    # ---- V2 migration bookkeeping (temporary; cleaned at Phase 9 flip) ----
+    # The migration script adds three extra keys per V2 coin yaml:
+    #   - `v1_home_location` — source `data/locations/<loc>.yml` stem
+    #   - `_migration_note` — human-readable «how was this derived» note
+    #   - `_migration_dup_origin_id` — id collision back-reference
+    # These are NOT modelled on Coin; they're stripped from the dict by
+    # the Phase 4 build assembly (`_assemble_v2_location` /
+    # `_strip_v2_breadcrumbs`) before instantiating the Coin. Keeping them
+    # outside the schema avoids polluting the model with throwaway fields
+    # AND avoids pydantic v2's private-attribute trap on underscore names.
+    # Cleaned at Phase 9 promotion.
+    # ----------------------------------------------------------------------
+
+    @field_validator("issuing_entity")
+    @classmethod
+    def _validate_issuing_entity_list(cls, v):
+        if not isinstance(v, list):
+            return v
+        if not v:
+            raise ValueError("issuing_entity list must be non-empty")
+        if len(set(v)) != len(v):
+            raise ValueError(f"issuing_entity list has duplicates: {v}")
+        return v
 
     @model_validator(mode="after")
     def _check_year_ranges(self):
