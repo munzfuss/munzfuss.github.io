@@ -2125,11 +2125,17 @@ coins:
     bruun_lot_no: 11266
     bruun_page: 136
     hede_volume: f4h
+    sieg: '57'
   metal: gold
   fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
   fineness:
   - value: 0.979
     source: '2'
+  - value: 0.979
+    source: hede
   weight_rough_g:
   - value: 3.418
     source: Hede 57B
@@ -2139,6 +2145,8 @@ coins:
     source: Bruun Part III, lot 11266, p. 136
   - value: 3.45
     source: Bruun Part II, lot 13206, p. 151
+  - value: 3.49
+    source: hede
   - value: 3.49
     source: ucoin
   diameter_mm:
@@ -2160,6 +2168,9 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 11266, p. 136
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f4h57.htm
+    ref: Hede f4h57B (danskmoent.dk)
   note:
     de: '1 Dukat Friedrichs IV. (Glückstadt) · Obverse Panzerbüste mit Locken «FRID • IV • D • G • | DAN • N • V • G • REX
       •»; Reverse Krone und Devise «DOMINUS • MIHI • ADIUTOR • » («Der Herr ist mein Helfer») mit Glückstadt-Mzz. Zwei Untertypen:
@@ -2173,7 +2184,13 @@ coins:
       • V • G • REX •»; реверс корона над девізом «DOMINUS • MIHI • ADIUTOR • » («Господь — мій помічник») з ґлюкштатською
       монограмою. Два суб-типи: KM# 2.1 (Type 1, дата під короною) і KM# 2.2 (Type 2, менший обладунок із датою під бюстом).
       Ґлюкштатська практична проба .979 (Hede 57B).'
-  composed_of: []
+  verification_note:
+    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
+      danskmoent.dk.'
+    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  composed_of:
+  - unified-dk-hede-f4h57b
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -5301,18 +5318,39 @@ coins:
     bruun_page: 93
     hede_volume: f6h
   metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.687
+    source: numismaster
   weight_rough_g:
   - value: 6.07
     source: Bruun Part IV, lot 17161, p. 93
+  - value: 6.129
+    source: numismaster
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17161, p. 93
+  - type: literature
+    url: https://numismaster.com/MC_66038
+    ref: NumisMaster
   note:
     de: 32 Rigsbankskilling 1820 (KM-690.2) · Scheide-Untervariante zur KM-690.1 1818
     en: 32 Rigsbankskilling 1820 (KM-690.2) · petty sub-variant of KM-690.1 1818
     uk: 32 Rigsbankskilling 1820 (KM-690.2) · розмінний підваріант KM-690.1 1818
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-denmark-numismaster-66038
   v1_home_location: schleswig_holstein
   _migration_note: auto-mapped from gesamtstaat
 - fuss: 9_25_thaler
@@ -6514,10 +6552,10 @@ coins:
   ruler: Frederik VII.
   issuing_entity: royal_holstein
   id: km-761-1-fr-vii-1855
-  year_first: 1855
+  year_first: 1854
   year_last: 1856
   year_ranges:
-  - - 1855
+  - - 1854
     - 1856
   year_label: 1855, 1856
   mint: Altona
@@ -6533,13 +6571,21 @@ coins:
     bruun_page: 229
     hede_volume: f7h
   metal: silver
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
   fineness:
   - value: 0.875
     source: '761'
+  - value: 0.875
+    source: numismaster
   weight_rough_g:
   - value: 28.78
     source: Bruun Part IV, lot 17219, p. 111
+  - value: 28.893
+    source: numismaster
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -6547,6 +6593,9 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17219, p. 111
+  - type: literature
+    url: https://numismaster.com/MC_66089
+    ref: NumisMaster
   note:
     de: 2 Rigsdaler 1855, 1856 (KM-761.1) · zwei Bruun-Specimina (1855 Bruun-coll. 8234 Part I lot 1167; 1856 Bruun-coll.
       8249 Part IV lot 17219).
@@ -6561,7 +6610,8 @@ coins:
       anchor 0.875); Δ -0.39% against the soll value sits within the ±2 % specimen-tolerance envelope.
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (18_5_thaler,
       якірна проба 0.875); Δ -0.39% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  composed_of: []
+  composed_of:
+  - unified-denmark-numismaster-66089
   v1_home_location: schleswig_holstein
   _migration_note: auto-mapped from gesamtstaat
 - fuss: kronemont
@@ -7760,9 +7810,11 @@ coins:
   ruler: Frederik IV.
   issuing_entity: royal_holstein
   id: km-x008-fr-iv-1719
-  year_first: 1719
+  year_first: 1711
   year_last: 1720
   year_ranges:
+  - - 1711
+    - 1713
   - - 1719
     - 1720
   year_label: 1719, 1720
@@ -7770,15 +7822,26 @@ coins:
   catalog:
     others:
     - KM-DK# 5
+    hede: '63'
+    hede_volume: f4h
+    schou: '12'
+    sieg: '58'
+    fr: '4'
   metal: billon
   fineness_verified: true
+  weight_rough_verified: true
   mint_verified: false
+  verified: false
   fineness:
+  - value: 0.187
+    source: hede
   - value: 0.187
     source: x008
   weight_rough_g:
   - value: 0.76
     source: ucoin
+  - value: 0.769
+    source: hede
   diameter_mm:
   - value: 15.5
     source: x008
@@ -7786,6 +7849,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-skilling-1719-1720/?tid=169251
     ref: ucoin
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f4h63.htm
+    ref: Hede f4h63 (danskmoent.dk)
   note:
     de: 1 Skilling Frederiks IV. von Dänemark · interimistische Prägung für die <b>besetzten Gottorpschen Lande</b> nach der
       dänischen Eroberung Schleswigs 1713 (während des Großen Nordischen Krieges) und vor der formellen Annektierung 1721
@@ -7807,7 +7873,8 @@ coins:
       mints (Schleswig).
     uk: Монетний двір як «Рендсбург» за ucoin period name (1716–1720); рекомендована верифікація за Hede/Bruun — можливі також
       інші ґотторпські двори (Шлезвіг).
-  composed_of: []
+  composed_of:
+  - unified-dk-hede-f4h63
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -7940,20 +8007,34 @@ coins:
   catalog:
     others:
     - KM-DK# 8
+    hede: '60'
+    hede_volume: f4h
+    schou: '1'
+    sieg: '61'
+    fr: '4'
   metal: gold
   fineness_verified: true
+  weight_rough_verified: true
   diameter_mm_verified: false
   mint_verified: false
+  verified: false
   fineness:
+  - value: 0.979
+    source: hede
   - value: 0.979
     source: x012
   weight_rough_g:
+  - value: 3.49
+    source: hede
   - value: 3.5
     source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-dukat-1718-1719/?tid=169254
     ref: ucoin
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f4h60.htm
+    ref: Hede f4h60 (danskmoent.dk)
   note:
     de: 1 Dukat Frederiks IV. von Dänemark · interimistische Goldprägung für die besetzten Gottorpschen Lande 1718–1719 (siehe
       km-x008). ucoin-Periode «Holstein-Gottorp-Rendsburg (1716–1720)» — Münzstätte vermutlich <b>Rendsburg</b>. <b>KM-DK#
@@ -7971,5 +8052,6 @@ coins:
     de: Diameter nicht in ucoin angegeben; Mzm. als Rendsburg geschätzt nach ucoin-Periodename — Verifikation empfohlen.
     en: Diameter not given by ucoin; mint estimated as Rendsburg per ucoin period name — verification recommended.
     uk: Діаметр у ucoin не вказано; монетний двір як Рендсбург оцінено за ucoin period name — рекомендована верифікація.
-  composed_of: []
+  composed_of:
+  - unified-dk-hede-f4h60
   v1_home_location: schleswig_holstein
