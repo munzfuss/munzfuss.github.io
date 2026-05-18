@@ -1,12 +1,13 @@
 # V2 Pipeline — entity-keyed refactoring plan
 
-> **Status (2026-05-18):** Planning approved in principle. Not yet implemented.
-> Three decisions resolved 2026-05-18 (see §7a): `issuing_entity: str | list[str]`
-> schema for joint-jurisdiction coins, full `gesamtstaat` migration decision
-> tree (§3.1), home-file rule for multi-entity coins (§3.10). Four pending
-> decision-points still owed (§7). When work starts: branch `feat/v2-pipeline`,
-> atomic commits per phase, V1 stays fully functional in parallel under
-> unchanged URLs.
+> **Status (2026-05-18):** Planning approved, all pending decisions resolved
+> (see §7a). Implementation starts on branch `feat/v2-pipeline`, atomic
+> commits per phase, V1 stays fully functional in parallel under unchanged
+> URLs. The seven resolved decisions cover: `issuing_entity: str | list[str]`
+> (§3.10), `gesamtstaat` migration decision tree (§3.1), home-file rule
+> for multi-entity coins (§3.10), `catalog.km: str | dict[str, str]` (§4),
+> `coin.phase: str | dict[str, str]` (§5), share V1 Jinja template,
+> audit hard-blocks pre-commit from Phase 7 onwards.
 
 ## 1. Why
 
@@ -588,17 +589,9 @@ archive V1 to data/_archive_v1_*`
 9.4. Rollback safety: archive directories retained ≥2 weeks. Emergency
 rollback = `mv data/_archive_v1_locations data/locations` + revert.
 
-## 7. Pending decisions (need user input before Phase 0 starts)
+## 7. Pending decisions
 
-1. **`catalog.km` schema shape** — dict `{dk: ..., sh: ...}` or namespaced
-   fields `km_dk` / `km_sh`. **Recommended: dict** (extensible, fewer
-   schema fields).
-2. **Phase resolution shape** — scalar-or-dict on `coin.phase`.
-   **Recommended: scalar default + dict explicit override.**
-3. **V2 templates** — share `templates/location.html.j2` with V1 initially,
-   fork only if V2 needs different visual semantics. **Recommended: share.**
-4. **Audit verbosity** — advisory pre-commit vs hard-block. **Recommended:
-   advisory until V2 stable, promote to hard-block at Phase 9.**
+All decisions resolved as of 2026-05-18. See §7a.
 
 ## 7a. Resolved decisions (no further input needed)
 
@@ -611,6 +604,21 @@ rollback = `mv data/_archive_v1_locations data/locations` + revert.
   «unknown-mint fallback» pending decision).
 - **Home-file rule for multi-entity coins** — alphabetical-first list element
   per §3.10; build assembly does inverse-index pass for secondary entities.
+- **`catalog.km` schema shape** — dict `{dk: ..., sh: ...}` (resolved
+  2026-05-18, recommended option taken). Schema: `catalog.km: str | dict[str, str]`.
+  Bare string inherits the home location's `km_register`; dict form names
+  registers explicitly for cross-volume coins per §4.
+- **`coin.phase` shape** — scalar default + dict explicit override (resolved
+  2026-05-18, recommended option taken). Schema: `coin.phase: str | dict[str, str]`.
+  90 % of coins use scalar; rare per-location overrides use dict
+  `{denmark: A, schleswig_holstein: B}` per §5.
+- **V2 templates** — share `templates/location.html.j2` with V1 initially
+  (resolved 2026-05-18, recommended option taken). Fork only if visual
+  semantics genuinely diverge. Reduces drift while V1 + V2 co-exist.
+- **Audit verbosity** — hard-block from Phase 7 onwards (resolved 2026-05-18).
+  `scripts/audit_v2.py` blocks `git commit` once added to pre-commit (advisory
+  phase skipped per user direction). Stricter than the recommendation in
+  the original §7.4 — user opted for cleaner V2 invariants from the start.
 
 ## 8. Cross-references
 
