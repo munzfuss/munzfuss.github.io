@@ -571,13 +571,13 @@ Phase 3.2 / Phase 4 scripts MUST produce hosts that pass this audit (no silent d
 
 ### Transitional state (pre-Phase 9)
 
-Currently `data/v2/curated/` holds the bootstrap-migrated output (1317 V1 curated coins folded into entity-keyed files via `migrate_curated_to_v2.py` on 2026-05-18). Once Phase 3.2 + Phase 4 land + the first full-cycle reprocess passes the V1↔V2 diff, this directory renames to `data/v2/final/` and the bootstrap migrate script retires.
+Currently `data/v2/curated/` holds the bootstrap-migrated output (1317 V1 curated coins folded into entity-keyed files via `bootstrap_v2_final_from_v1.py` on 2026-05-18). Once Phase 3.2 + Phase 4 land + the first full-cycle reprocess passes the V1↔V2 diff, this directory renames to `data/v2/final/` and the bootstrap migrate script retires.
 
 Until then, `data/v2/curated/` serves as «Phase 4 equivalent» for V1-migrated coins, alongside `data/v2/seed/` which serves as «Phase 3.1 output» via the post-processor. The pipeline mechanics (merge, idempotency, link audit) are already in place; what remains is the explicit Phase 3.2 + Phase 4 scripts that derive `seed_unified/` and `final/` from upstream phases automatically.
 
 Post-Phase 9 (promotion):
 - Each V1 builder gains a `--v2` flag (or sibling V2 builder) so Phase 3.1 derives directly from parser cache without going through V1 seed yamls
-- `migrate_curated_to_v2.py` retires (V1 archives off to `data/_archive_v1_*/`)
+- `bootstrap_v2_final_from_v1.py` retires (V1 archives off to `data/_archive_v1_*/`)
 - `data/v2/*` → `data/*` (V2 becomes the primary)
 - `seed_v2_regroup.py` retires (replaced by native V2 builders)
 

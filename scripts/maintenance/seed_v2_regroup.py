@@ -69,7 +69,7 @@ from lib.seed_merge import merge_seed  # noqa: E402
 
 def _ruamel_to_dict(c):
     """ruamel.yaml round-trip types → plain Python equivalents (recursive).
-    Mirrors the helper in migrate_curated_to_v2; needed because seed_merge
+    Mirrors the helper in bootstrap_v2_final_from_v1; needed because seed_merge
     returns CommentedMap entries that pyyaml.dump can't serialise.
     """
     from ruamel.yaml.comments import CommentedMap, CommentedSeq

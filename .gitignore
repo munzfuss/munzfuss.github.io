@@ -37,3 +37,10 @@ scripts/numista_refs.json
 # once on a specific dataset and won't be re-applied lives here. Truly reusable
 # utilities go directly under scripts/.
 scripts/oneoff/
+
+# V2 pipeline diagnostic output (regenerable on every script run).
+# `match_uncertainty/<entity>.yml` lists low-confidence merge candidates
+# the auto-merger couldn't auto-route — for investigation only, not
+# curator input (decisions go into `data/v2/merge_decisions/` instead).
+# See docs/V2_PIPELINE.md §5.2.
+data/v2/match_uncertainty/

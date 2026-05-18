@@ -4,10 +4,10 @@
 For each `data/locations/<loc>.yml`:
   1. Read the V1 yaml.
   2. Drop the `coins:` block (coin data now lives in
-     `data/v2/curated/<entity>.yml` per Phase 1; surfaces on the page via
+     `data/v2/final/<entity>.yml` per Phase 1; surfaces on the page via
      Phase 5 assembly).
   3. Add `consumes_entities: [entity_id, ...]` auto-derived from the
-     `source_locations` field of every `data/v2/curated/<entity>.yml` —
+     `source_locations` field of every `data/v2/final/<entity>.yml` —
      i.e. invert the «which V1 locations contributed coins to this entity»
      map into «which entities contribute coins to this location».
   4. Write `data/v2/locations/<loc>.yml`.
@@ -40,7 +40,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 LOCATIONS = ROOT / "data" / "locations"
-V2_CURATED = ROOT / "data" / "v2" / "curated"
+V2_FINAL = ROOT / "data" / "v2" / "final"
 V2_LOCATIONS = ROOT / "data" / "v2" / "locations"
 
 
@@ -49,10 +49,10 @@ def _load_yaml(p: Path) -> dict:
 
 
 def _build_location_to_entities_map() -> dict[str, list[str]]:
-    """Walk data/v2/curated/*.yml and invert each entity's per-coin
+    """Walk data/v2/final/*.yml and invert each entity's per-coin
     v1_home_location into {loc: sorted_entity_list}."""
     inv: dict[str, set[str]] = defaultdict(set)
-    for entity_file in V2_CURATED.glob("*.yml"):
+    for entity_file in V2_FINAL.glob("*.yml"):
         d = _load_yaml(entity_file)
         eid = d.get("id")
         if eid is None:

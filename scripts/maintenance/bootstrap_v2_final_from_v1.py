@@ -3,7 +3,7 @@
 
 Reads every `data/locations/<loc>.yml`, applies the §3.1 decision tree
 from `docs/V2_PIPELINE.md`, and writes per-political-entity files to
-`data/v2/curated/<entity>.yml`.
+`data/v2/final/<entity>.yml`.
 
 §3.1 decision tree summary:
   1. `issuing_entity` already set to something OTHER than `gesamtstaat`
@@ -28,8 +28,8 @@ Migration report categories:
   - Coin-id collisions across V1 locations (manual reconciliation needed)
 
 Usage:
-  scripts/maintenance/migrate_curated_to_v2.py --dry-run     # report only
-  scripts/maintenance/migrate_curated_to_v2.py --apply       # merge into V2 files
+  scripts/maintenance/bootstrap_v2_final_from_v1.py --dry-run     # report only
+  scripts/maintenance/bootstrap_v2_final_from_v1.py --apply       # merge into V2 files
 
 The --apply step is IDEMPOTENT — it folds fresh V1-derived coins against
 existing V2 yamls via `lib.seed_merge.merge_seed`. CURATED_FIELDS ({fuss,
@@ -60,7 +60,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 LOCATIONS = ROOT / "data" / "locations"
-V2_CURATED = ROOT / "data" / "v2" / "curated"
+V2_FINAL = ROOT / "data" / "v2" / "final"
 I18N_ENTITIES = ROOT / "data" / "i18n" / "issuing_entities.yml"
 
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -275,7 +275,7 @@ def _process_coin(
 
 
 def _emit_entity_file(entity_id: str, coins: list[dict], source_locations: list[str]) -> str:
-    """Render one `data/v2/curated/<entity>.yml`."""
+    """Render one `data/v2/final/<entity>.yml`."""
     today = date.today().isoformat()
     payload = {
         "id": entity_id,
@@ -316,7 +316,7 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", default=True,
                         help="Report only — do NOT write V2 files (default)")
     parser.add_argument("--apply", action="store_true",
-                        help="WIPE data/v2/curated/ and write fresh V2 files")
+                        help="WIPE data/v2/final/ and write fresh V2 files")
     parser.add_argument("--json-report", type=Path, default=None,
                         help="Write machine-readable migration report to this path")
     args = parser.parse_args()
@@ -399,7 +399,7 @@ def main() -> int:
         print("\n--- DRY RUN — no files written. Re-run with --apply to commit. ---")
         return 0
 
-    V2_CURATED.mkdir(parents=True, exist_ok=True)
+    V2_FINAL.mkdir(parents=True, exist_ok=True)
 
     # Group source-locations per entity for the header field.
     source_locs_per_entity: dict[str, list[str]] = defaultdict(list)
@@ -422,7 +422,7 @@ def main() -> int:
     # owns those orphan files. The migrate run only touches entities the
     # current V1 data produces.
     for ent, fresh_coins in by_entity.items():
-        path = V2_CURATED / f"{ent}.yml"
+        path = V2_FINAL / f"{ent}.yml"
         merged_coins, stats = merge_seed(fresh_coins, path)
         for k in merge_totals:
             merge_totals[k] += stats.get(k, 0)
@@ -434,7 +434,7 @@ def main() -> int:
             encoding="utf-8",
         )
 
-    print(f"\n✓ Wrote {len(by_entity)} entity file(s) to {V2_CURATED}")
+    print(f"\n✓ Wrote {len(by_entity)} entity file(s) to {V2_FINAL}")
     print(f"  merge: merged_existing={merge_totals['merged_existing']}, "
           f"added_new={merge_totals['added_new']}, "
           f"orphan_curated={merge_totals['orphan_curated']}")

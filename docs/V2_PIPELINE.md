@@ -122,51 +122,147 @@ Each builder is idempotent + merge-aware via `lib.seed_merge.merge_seed()`.
 
 ### 5.2 Cross-source merge to unified seed
 
-For each entity, a separate script `merge_seeds_cross_source.py` reads
+For each entity, `scripts/maintenance/merge_seeds_cross_source.py` reads
 all `data/v2/seed/<source>/<entity>.yml` files and produces
 `data/v2/seed_unified/<entity>.yml` with **one entry per physical coin**,
 enriched with data from every source that catalogued it.
 
-Merge rules:
-- **Confident auto-merge**: same `catalog.km` + same `catalog.hede` +
-  same `ruler` + overlapping `year_first` → script collapses to one
-  entry with multi-source `weight_rough_g[]` / `fineness[]` /
-  `diameter_mm[]` lists and combined `sources[]`
-- **Low-confidence pair**: e.g. same KM but different rulers, or
-  KM-canonical match but inconsistent weights → script surfaces for
-  **curator decision**:
-  - Curator confirms «yes, same coin» → adds a merge declaration
-  - Curator confirms «no, different coins» → adds a no-merge declaration
-    so the script doesn't keep asking
-  - Curator improves the auto-merge rules so the case fires automatically
-- **Manual merge declarations** live in `data/v2/merge_decisions/<entity>.yml`
-  — one file per entity listing explicit `merge: [seed_id_a, seed_id_b]`
-  pairs and `no_merge: [seed_id_a, seed_id_b]` exclusions. The merger
-  reads these on every run; curator updates this file ONLY.
+#### Match-strategy hierarchy
 
-**Phase 3 output guarantees:**
+A pair of seed entries are candidates for the same physical coin per
+this hierarchy (strict primary signals first; loose fallback signals
+break ties):
+
+**Primary signals (strict — all must match for confident auto-merge):**
+
+1. **Metal** — with a normalisation rule: some sources tag billon as
+   «silver» (debased silver alloys < 50% fineness). The matcher
+   normalises both sides via {silver, billon} equivalence when fineness
+   is low enough to imply billon; otherwise strict metal-class equality.
+2. **Nominal** — verbatim string equality after normalisation
+   (whitespace, dash variants, period-spelling per CLAUDE.md §2 e.g.
+   «Müntze» ↔ «Münze»).
+3. **Catalog index chain** — the full set of catalog references on
+   both sides cross-checked. Important caveats:
+   - **KM numbering restarts per location** (DK volume's KM-75 ≠ SH
+     volume's KM-75). Match KM only when `km_register` (or implied
+     register from same entity) agrees.
+   - **Hede numbering restarts per ruler** (`c4h120` ≠ `c7h120`). Match
+     Hede only when `hede_volume` agrees.
+   - Sieg, Schou, Lange, Galster, MB also follow per-author or
+     per-volume scopes.
+   - **Cross-reference chain**: seed A has `km: '25'`, seed B has
+     `hede: '39A'`. If a known lookup table or another seed entry shows
+     KM-25 ↔ Hede-39A, the match propagates.
+4. **Ruler** — verbatim or canonical-form equality. Same physical coin
+   never has two rulers (joint-rule cases are exceptions handled
+   case-by-case, surfaced for curator).
+
+**Fallback signals (loose — used to confirm or disambiguate, not as
+sole match criterion):**
+
+5. **Year-range overlap** — sources sometimes disagree on which dated
+   years a series was struck (Numista publishes per-year mintages;
+   Hede may list as a date-range «1771-1783»). Overlap ≥1 year is
+   enough for the fallback signal.
+6. **Fineness** — when both sides attest fineness, Δ within ±5 % is
+   confirmation. Disagreement beyond that → match downgraded to
+   low-confidence.
+7. **Mint** — useful to confirm but not required (some sources omit
+   mint; multi-mint joint issues match on all listed mints).
+
+#### Confidence outcomes
+
+- **All primary signals match** + **at least one fallback signal
+  consistent** → **confident auto-merge**. Script collapses to one
+  unified entry; per-source data preserved via multi-source
+  `weight_rough_g[]` / `fineness[]` / `diameter_mm[]` lists and
+  union `sources[]`.
+- **All primary match** but **fallback disagrees** (e.g. KM+Hede+
+  ruler align, but specimen fineness differs by 10 %) → **low-
+  confidence**. Surface for curator decision.
+- **Primary partial match** (e.g. same nominal + ruler but no
+  catalog-ref overlap) → **low-confidence candidate**, surface.
+- **Primary mismatch** → no merge; seeds remain separate.
+
+#### Curator decision surface
+
+Two artefacts:
+
+- **`data/v2/merge_decisions/<entity>.yml`** — checked into git. Curator
+  authoritative decisions:
+  ```yaml
+  merges:
+    - members: [dk-hede-c4h156, dk-numismaster-MC_12345]
+      reason: "Same Christian IV 2 Mark per Schou 11 + Sieg 22 cross-ref"
+  no_merges:
+    - members: [dk-hede-c4h45, dk-bruun-1234]
+      reason: "Same KM-25 but year ranges 1591-1593 vs 1605-1610 differ —
+               separate types"
+  ```
+  Preferred path: extend the auto-merge rules in
+  `merge_seeds_cross_source.py` so the case fires automatically.
+  Decision files are the escape hatch.
+
+- **`data/v2/match_uncertainty/<entity>.yml`** — gitignored.
+  `merge_seeds_cross_source.py --apply` writes low-confidence candidate
+  pairs here for inspection. The file is NOT a curator input — it's a
+  diagnostic showing «which seed pairs the pipeline isn't routing
+  anywhere yet, and why». Investigator decides per-pair:
+  - «yes, same coin» → add to `merge_decisions/<entity>.yml::merges`
+  - «no, different coin» → add to `merge_decisions/<entity>.yml::no_merges`
+  - «the auto-rule should have caught this» → fix the rule
+
+#### Output guarantees
+
 - Every coin in `data/v2/seed_unified/<entity>.yml` has at least one
   source-attested weight (or `weight_rough_g: null` flagged for review)
 - `composed_of: [seed_ids]` records the per-source seeds that fed this
   unified entry — full audit trail
 - `fuss: seed_unsorted` for every entry — Phase 4 hasn't run yet
+- The `match_uncertainty/<entity>.yml` is regenerated on every run
+  (gitignored, not stable across runs)
 
-## 6. Phase 4 — Classification to Müntzfuß (final)
+## 6. Phase 4 — absorb into final
 
-For each unified seed entry from Phase 3, classify into a Müntzfuß +
-phase via `scripts/maintenance/classify_to_fuss_v2.py`:
+**Reframed (2026-05-18 user direction):** V1 final yamls
+(`data/locations/<loc>.yml`) carry years of completed §9a merges +
+fuss/phase classifications by the V1 author. The 2026-05-18 bootstrap
+migration mapped those onto `data/v2/final/<entity>.yml` — that's
+already V2's Phase 4 starting state. Going forward, Phase 4 is
+**«absorb new seed_unified entries into existing V2 final foundation»**,
+NOT «classify from scratch».
 
-- **Confident auto-classify**: apply CLAUDE.md §8a Müntzfuß-disambiguation
-  pipeline (metal-mismatch → mint-name-mismatch → Δ-from-Soll → Brutto-
-  gewicht pattern → fineness hint). Where unique candidate emerges →
-  assign automatically.
-- **Low-confidence**: surface for curator decision, written into
-  `data/v2/classification_decisions/<entity>.yml` (analogous to
-  `merge_decisions/`). Curator records `assign: {coin_id: {fuss: X,
-  phase: Y}}` for ambiguous coins; or updates the auto-classify rules.
+`scripts/maintenance/absorb_seeds_into_final_v2.py` (to-be-built)
+reads `data/v2/seed_unified/<entity>.yml` and matches each entry
+against `data/v2/final/<entity>.yml`:
 
-Phase 4 output: `data/v2/final/<entity>.yml` — coins distributed across
-their Müntzfüße + phases, ready for render.
+- **Match found** (expected for ≥95% of cases): §9a-style enrichment of
+  existing final entry. Adds new seeds to `composed_of`, folds new
+  specimens into `weight_rough_g[]` / `fineness[]` / `diameter_mm[]`
+  lists, union `sources[]`. The existing entry's `fuss` / `phase` /
+  `kind` are NOT changed — V1 foundation is immutable through this
+  path (foundation-immutability rule, deferred for refinement; for now
+  strict).
+
+- **No match** (genuinely new physical coin not in V1): apply CLAUDE.md
+  §8a Müntzfuß-disambiguation pipeline (metal → denom name → Δ-from-Soll
+  → Brutto-pattern → fineness signature):
+  - **Confident** (Δ_min < 2 % AND Δ_runner_up > 5 %) → assign
+    `fuss` / `phase` / `kind` automatically, add to final
+  - **Low-confidence** → write to
+    `data/v2/classification_decisions/<entity>.yml::pending`. Curator
+    records `assign: {coin_id: {fuss, phase, kind, fraction, ...}}`
+    or extends auto-classifier rules so the case fires next run.
+
+The match strategy (which existing final entry does this seed_unified
+entry correspond to?) reuses the same hierarchy as §5.2 — primary
+metal/nominal/catalog-chain/ruler signals; fallback years/fineness/mint.
+
+Phase 4 also auto-detects **cross-page periodisation mismatch**: when
+a coin's `issuing_entity` is list-form (multi-entity) and the involved
+consumer pages have different `phases:` definitions for the same fuss,
+emit dict-form `phase: {<loc>: <phase_id>, ...}` automatically.
 
 **Curator decisions for Phase 4 live in script rules + decision files,
 NEVER as hand-edits on individual coin yamls.**
@@ -288,7 +384,7 @@ Landed:
   and `catalog.km`, `composed_of` + `promoted_to`
 - [x] Build assembly: two-pass walk + per-coin phase pre-filter,
   CLI flags `--v1-only` / `--v2-only`
-- [x] Idempotent merge-aware regen for migrate_curated_to_v2,
+- [x] Idempotent merge-aware regen for bootstrap_v2_final_from_v1,
   seed_v2_regroup, init_v2_locations
 - [x] Bidirectional `composed_of` ↔ `promoted_to` link
   (`relink_promoted_v2.py`) + data-loss audit
@@ -311,7 +407,7 @@ Pending:
 Deferred to Phase 9 (promotion):
 - [ ] Native `--v2` flag on V1 builders (replaces seed_v2_regroup
   post-processor)
-- [ ] Retirement of `migrate_curated_to_v2.py` (V1 archives off)
+- [ ] Retirement of `bootstrap_v2_final_from_v1.py` (V1 archives off)
 - [ ] Promotion `mv data/v2/* data/`, archive V1, update CI
 
 ## 13. Promotion-gate criteria (Phase 9)

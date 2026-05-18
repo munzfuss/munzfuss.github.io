@@ -44,7 +44,7 @@ import yaml
 import ruamel.yaml
 
 ROOT = Path(__file__).resolve().parents[2]
-V2_CURATED = ROOT / "data" / "v2" / "curated"
+V2_FINAL = ROOT / "data" / "v2" / "final"
 V2_SEED = ROOT / "data" / "v2" / "seed"
 
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -85,12 +85,12 @@ def _ruamel_to_dict(c):
 
 
 def _build_composed_of_index() -> dict[str, str]:
-    """Walks data/v2/curated/*.yml and returns {seed_id: curated_id}
+    """Walks data/v2/final/*.yml and returns {seed_id: curated_id}
     for every (curated, seed) pair declared via `composed_of`."""
     seed_to_curated: dict[str, str] = {}
     duplicates: list[tuple[str, str, str]] = []  # seed_id, curated_a, curated_b
 
-    for path in sorted(V2_CURATED.glob("*.yml")):
+    for path in sorted(V2_FINAL.glob("*.yml")):
         doc = _load_yaml(path)
         for c in doc.get("coins") or []:
             cid = c.get("id")
@@ -239,7 +239,7 @@ def _integrity_audit(
 
     # Pre-load curated by id
     curated_by_id: dict[str, dict] = {}
-    for path in sorted(V2_CURATED.glob("*.yml")):
+    for path in sorted(V2_FINAL.glob("*.yml")):
         doc = _load_yaml(path)
         for c in doc.get("coins") or []:
             cid = c.get("id")

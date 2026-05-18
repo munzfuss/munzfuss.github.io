@@ -45,7 +45,7 @@ TEMPLATE_DIR = REPO_ROOT / "templates"
 SITE_DIR = REPO_ROOT / "site"
 DEBUG_DIR = REPO_ROOT / "output" / "debug"
 
-V2_CURATED_DIR = DATA_DIR / "v2" / "curated"
+V2_FINAL_DIR = DATA_DIR / "v2" / "final"
 V2_SEED_DIR = DATA_DIR / "v2" / "seed"
 V2_LOCATIONS_DIR = DATA_DIR / "v2" / "locations"
 
@@ -479,24 +479,24 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
 # V2 entity-keyed assembly (per docs/V2_PIPELINE.md §4 / §2.1)
 # =============================================================================
 
-_V2_CURATED_CACHE: dict[str, list[dict]] | None = None
+_V2_FINAL_CACHE: dict[str, list[dict]] | None = None
 
 
 def _load_v2_curated() -> dict[str, list[dict]]:
-    """Load every `data/v2/curated/<entity>.yml` once per process and return
+    """Load every `data/v2/final/<entity>.yml` once per process and return
     {entity_id: [coin_dict, ...]}. Each coin dict is the raw YAML value
     BEFORE pydantic instantiation (so dict-form phase / km can still be
     resolved per assembling location)."""
-    global _V2_CURATED_CACHE
-    if _V2_CURATED_CACHE is not None:
-        return _V2_CURATED_CACHE
+    global _V2_FINAL_CACHE
+    if _V2_FINAL_CACHE is not None:
+        return _V2_FINAL_CACHE
     cache: dict[str, list[dict]] = {}
-    if V2_CURATED_DIR.exists():
-        for path in sorted(V2_CURATED_DIR.glob("*.yml")):
+    if V2_FINAL_DIR.exists():
+        for path in sorted(V2_FINAL_DIR.glob("*.yml")):
             with open(path, encoding="utf-8") as f:
                 doc = yaml.safe_load(f) or {}
             cache[doc.get("id", path.stem)] = doc.get("coins", []) or []
-    _V2_CURATED_CACHE = cache
+    _V2_FINAL_CACHE = cache
     return cache
 
 
