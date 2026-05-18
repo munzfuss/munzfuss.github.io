@@ -203,6 +203,34 @@ session — search for «E1 NO-KM entirely-pending cases» if context
 is preserved, or regenerate by walking the `dup_pairs_denmark.txt`
 buckets.
 
+## V2 pipeline refactor — planning saved (2026-05-18)
+
+A multi-session refactor was scoped + agreed in principle during the
+2026-05-17 / 2026-05-18 sessions: re-key Phase 3 (SEED) and Phase 4
+(CURATED) data files from `<location>.yml` to `<political_entity>.yml`,
+with display pages declaring `consumes_entities: [...]` and Phase 5
+(MERGED) assembling per-page from N entity files. **V1 stays the live
+source of truth** during the refactor; V2 lives in `data/v2/` and
+renders to `site/v2/<loc>/<lang>/`. Promotion to main only on explicit
+user «фліпай V2».
+
+Full plan → **`docs/V2_PIPELINE.md`** (10 phases, 5 user-confirmed
+decisions, 5 pending decisions awaiting user input before Phase 0
+starts, effort estimate ~10-12 sessions with 3 user-pause points).
+
+Not yet started — nothing committed to a `feat/v2-pipeline` branch.
+Before starting:
+- Resolve 5 pending decisions in §7 of V2_PIPELINE.md (`catalog.km`
+  schema shape, phase resolution scalar-or-dict, template fork
+  policy, `gesamtstaat` unknown-mint fallback, audit verbosity)
+- Confirm `coin.issuing_entity` coverage in V1 curated coins is
+  complete (Phase 0.2 audit)
+
+Anything touching `_merge_seeds_into_raw` in `scripts/build.py`, the
+Hede cross-location coverage hack, the location-keyed assumption in
+seed builders, or the `data/seed/<source>/<location>.yml` filename
+pattern needs to consider whether the change collides with V2.
+
 ## Quirks / known traps
 
 * **ruamel.yaml round-trip on `denmark.yml`**: re-dumping the whole
