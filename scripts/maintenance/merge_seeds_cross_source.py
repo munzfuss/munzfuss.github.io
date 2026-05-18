@@ -1,0 +1,902 @@
+#!/usr/bin/env python3
+"""V2 Phase 3.2 — cross-source merge of per-resource seeds into one
+unified seed entry per physical coin.
+
+Input  : data/v2/seed/<source>/<entity>.yml         (per-resource seeds)
+Output : data/v2/seed_unified/<entity>.yml          (cross-source merged)
+         data/v2/match_uncertainty/<entity>.yml     (gitignored — low-confidence)
+
+Per docs/V2_PIPELINE.md §5.2, the matcher applies a strict-primary +
+loose-fallback signal hierarchy:
+
+  PRIMARY (all must match for confident auto-merge):
+    1. Metal — with billon/silver normalisation when fineness < 0.5
+    2. Nominal — verbatim string equality after period-spelling normalise
+    3. Catalog index chain — refs cross-checked respecting scopes:
+         KM restarts per Krause volume (use entity context)
+         Hede restarts per ruler (use catalog.hede_volume)
+         Sieg, Schou, Lange, Galster, MB also per-author/per-volume
+    4. Ruler — canonical-form equality
+
+  FALLBACK (loose — break ties, never sole signal):
+    5. Year-range overlap (≥1 year)
+    6. Fineness within ±5 %
+    7. Mint overlap
+
+Decisions:
+  - All 4 primary match + ≥1 fallback consistent + 0 fallback inconsistent
+      → confident auto-merge
+  - All primary match + fallback disagrees (e.g. weights inconsistent)
+      → low-confidence (surface for curator)
+  - ≥3 primary match + remaining primary missing-not-disagreeing
+      → low-confidence candidate
+  - Primary mismatch → no_match
+
+Curator decision surfaces:
+  - data/v2/merge_decisions/<entity>.yml   (committed; authoritative)
+      merges: list of {members: [seed_ids], reason: "..."}
+      no_merges: list of {members: [seed_a, seed_b], reason: "..."}
+  - data/v2/match_uncertainty/<entity>.yml (gitignored; diagnostic only)
+
+Idempotent — fresh re-runs on unchanged input produce zero file changes
+(deterministic id ordering + sorted output).
+
+Unified entry id rule (V2_PIPELINE.md §5.2 authority-based):
+  Priority order for source-id prefixes: dk-hede- > dk-bruun- >
+  dk-numismaster- > dk-numista- > dk-galster-. The unified entry's id
+  is `unified-<top-authority-member-id>`. Prefix prevents collision
+  with the seed-side id; remains readable for debugging.
+
+Usage:
+  scripts/maintenance/merge_seeds_cross_source.py --dry-run    # report only
+  scripts/maintenance/merge_seeds_cross_source.py --apply      # write outputs
+  scripts/maintenance/merge_seeds_cross_source.py --entity X   # one entity
+"""
+
+from __future__ import annotations
+
+import argparse
+import re
+import sys
+from collections import Counter, defaultdict
+from datetime import date
+from pathlib import Path
+
+import yaml
+
+ROOT = Path(__file__).resolve().parents[2]
+V2_SEED = ROOT / "data" / "v2" / "seed"
+V2_SEED_UNIFIED = ROOT / "data" / "v2" / "seed_unified"
+V2_MERGE_DECISIONS = ROOT / "data" / "v2" / "merge_decisions"
+V2_MATCH_UNCERTAINTY = ROOT / "data" / "v2" / "match_uncertainty"
+
+
+# ---------------------------------------------------------------------------
+# Authority order — V2_PIPELINE.md §5.2 choice (a) confirmed by user
+# ---------------------------------------------------------------------------
+
+_ID_AUTHORITY_ORDER = [
+    "dk-hede-",          # Hede 1971 (primary scholarly DK)
+    "dk-bruun-",         # Stack's Bowers Bruun auction
+    "dk-numismaster-",   # Krause-Mishler canonical
+    "dk-numista-",       # community Numista
+    "dk-galster-",       # Galster pre-1541
+]
+
+
+def _authority_score(coin_id: str) -> int:
+    """Higher = more authority. Used to choose unified id."""
+    if not coin_id:
+        return -1
+    for i, prefix in enumerate(_ID_AUTHORITY_ORDER):
+        if coin_id.startswith(prefix):
+            return len(_ID_AUTHORITY_ORDER) - i
+    return 0
+
+
+# ---------------------------------------------------------------------------
+# Field normalisation
+# ---------------------------------------------------------------------------
+
+
+def _normalise_metal(metal, fineness):
+    """billon/silver collapse when fineness < 0.5 (per §5.2 primary rule 1)."""
+    if metal is None:
+        return None
+    m = str(metal).lower()
+    # Pull a representative fineness value
+    f_val = None
+    if isinstance(fineness, (int, float)):
+        f_val = float(fineness)
+    elif isinstance(fineness, list):
+        vals = [
+            e.get("value") for e in fineness
+            if isinstance(e, dict) and isinstance(e.get("value"), (int, float))
+        ]
+        if vals:
+            f_val = min(vals)
+    if m == "silver" and f_val is not None and f_val < 0.5:
+        return "billon"
+    return m
+
+
+def _normalise_nominal(nominal):
+    if not nominal:
+        return ""
+    s = str(nominal).lower().strip()
+    s = s.replace("müntze", "münze")
+    s = re.sub(r"[‒–—]+", "-", s)
+    s = re.sub(r"\s+", " ", s)
+    return s
+
+
+def _normalise_ruler(ruler):
+    if not ruler:
+        return ""
+    s = str(ruler).split("(")[0].split(",")[0].strip()
+    return s.lower()
+
+
+def _catalog_refs(coin: dict) -> dict[str, str]:
+    """Return dict of {scope_key: ref_value} for every catalog ref.
+    Keys encode scope so cross-volume / cross-ruler collisions don't false-match.
+    Keys:
+      'km'                          — when bare string (assumes entity-scope context)
+      'km/{register}'               — when dict-form {dk: ..., sh: ...}
+      'hede/{volume}'               — when hede_volume set
+      'hede'                        — when hede_volume absent (rare, fallback)
+      'sieg', 'schou', 'lange', etc.
+    """
+    cat = coin.get("catalog") or {}
+    refs: dict[str, str] = {}
+
+    km = cat.get("km")
+    if km is not None:
+        if isinstance(km, dict):
+            for reg, v in km.items():
+                refs[f"km/{reg.lower()}"] = str(v).strip()
+        else:
+            refs["km"] = str(km).strip()
+
+    hede = cat.get("hede")
+    if hede is not None:
+        vol = (cat.get("hede_volume") or "").strip()
+        key = f"hede/{vol}" if vol else "hede"
+        if isinstance(hede, list):
+            # list-form Hede — match if ANY sub-letter overlaps
+            refs[key] = "|".join(sorted(str(h).strip() for h in hede))
+        else:
+            refs[key] = str(hede).strip()
+
+    for field in ("sieg", "schou", "lange", "fr", "dav", "mb",
+                  "jensen_skjoldager", "schive", "skaare", "friedberg",
+                  "davenport"):
+        val = cat.get(field)
+        if val is None:
+            continue
+        if isinstance(val, list):
+            refs[field] = "|".join(sorted(str(v).strip() for v in val))
+        else:
+            refs[field] = str(val).strip()
+
+    # Galster is special — has a volume too
+    galster = cat.get("galster")
+    if galster is not None:
+        vol = (cat.get("galster_volume") or "").strip()
+        key = f"galster/{vol}" if vol else "galster"
+        refs[key] = str(galster).strip()
+
+    return refs
+
+
+def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
+    """Returns (state, has_overlap):
+      state ∈ {'agree', 'disagree', 'no_overlap'}
+      has_overlap: True if any shared key
+    """
+    shared = set(refs_a) & set(refs_b)
+    if not shared:
+        return ("no_overlap", False)
+    for k in shared:
+        # For list-encoded refs (separated by "|"), match if sets overlap
+        va, vb = refs_a[k], refs_b[k]
+        sa = set(va.split("|"))
+        sb = set(vb.split("|"))
+        if not (sa & sb):
+            return ("disagree", True)
+    return ("agree", True)
+
+
+def _year_first(coin):
+    return coin.get("year_first")
+
+
+def _year_last(coin):
+    return coin.get("year_last") or coin.get("year_first")
+
+
+def _years_overlap(a, b):
+    af, al = _year_first(a), _year_last(a)
+    bf, bl = _year_first(b), _year_last(b)
+    if af is None or bf is None:
+        return None
+    return max(af, bf) <= min(al, bl)
+
+
+def _fineness_repr(coin) -> float | None:
+    f = coin.get("fineness")
+    if isinstance(f, (int, float)):
+        return float(f)
+    if isinstance(f, list):
+        vals = [
+            e.get("value") for e in f
+            if isinstance(e, dict) and isinstance(e.get("value"), (int, float))
+        ]
+        if vals:
+            return sum(vals) / len(vals)
+    return None
+
+
+def _fineness_within(a, b, tol=0.05):
+    fa = _fineness_repr(a)
+    fb = _fineness_repr(b)
+    if fa is None or fb is None:
+        return None
+    return abs(fa - fb) <= tol
+
+
+def _normalise_mints(mint) -> set[str]:
+    if mint is None:
+        return set()
+    mints = mint if isinstance(mint, list) else [mint]
+    out = set()
+    for m in mints:
+        if isinstance(m, str):
+            base = re.sub(r"\s*\([^)]*\)\s*$", "", m).strip().lower()
+            if base:
+                out.add(base)
+    return out
+
+
+def _mints_overlap(a, b):
+    ma = _normalise_mints(a.get("mint"))
+    mb = _normalise_mints(b.get("mint"))
+    if not (ma and mb):
+        return None
+    return bool(ma & mb)
+
+
+# ---------------------------------------------------------------------------
+# Match algorithm
+# ---------------------------------------------------------------------------
+
+
+def match_pair(coin_a: dict, coin_b: dict) -> dict:
+    """Apply §5.2 hierarchy. Returns:
+        {'decision': 'confident' | 'low_confidence' | 'no_match',
+         'primary': {metal, nominal, catalog, ruler},
+         'fallback': {years, fineness, mint},
+         'why': [str, ...]}
+    Primary booleans: True (match), False (mismatch), None (cannot evaluate).
+    """
+    primary = {}
+    fallback = {}
+    why = []
+
+    # Metal
+    ma = _normalise_metal(coin_a.get("metal"), coin_a.get("fineness"))
+    mb = _normalise_metal(coin_b.get("metal"), coin_b.get("fineness"))
+    if ma and mb:
+        primary["metal"] = (ma == mb)
+        if not primary["metal"]:
+            why.append(f"metal: {ma} ≠ {mb}")
+            return {"decision": "no_match", "primary": primary,
+                    "fallback": fallback, "why": why}
+    else:
+        primary["metal"] = None
+
+    # Nominal
+    na = _normalise_nominal(coin_a.get("nominal"))
+    nb = _normalise_nominal(coin_b.get("nominal"))
+    if na and nb:
+        primary["nominal"] = (na == nb)
+        if not primary["nominal"]:
+            why.append(f"nominal: {coin_a.get('nominal')!r} ≠ {coin_b.get('nominal')!r}")
+            return {"decision": "no_match", "primary": primary,
+                    "fallback": fallback, "why": why}
+    else:
+        primary["nominal"] = None
+
+    # Catalog chain
+    refs_a = _catalog_refs(coin_a)
+    refs_b = _catalog_refs(coin_b)
+    chain_state, has_overlap = _catalog_chain_consistent(refs_a, refs_b)
+    if chain_state == "disagree":
+        why.append(f"catalog disagree: {refs_a} vs {refs_b}")
+        primary["catalog"] = False
+        return {"decision": "no_match", "primary": primary,
+                "fallback": fallback, "why": why}
+    if chain_state == "agree":
+        primary["catalog"] = True
+    else:
+        # no_overlap: one or both sides lack catalog refs that intersect.
+        # NOT a mismatch — can't be evaluated. Tri-state primary signal.
+        primary["catalog"] = None
+
+    # Ruler
+    ra = _normalise_ruler(coin_a.get("ruler"))
+    rb = _normalise_ruler(coin_b.get("ruler"))
+    if ra and rb:
+        primary["ruler"] = (ra == rb)
+        if not primary["ruler"]:
+            why.append(f"ruler: {ra!r} ≠ {rb!r}")
+    else:
+        primary["ruler"] = None
+
+    # Fallback signals
+    fallback["years"] = _years_overlap(coin_a, coin_b)
+    fallback["fineness"] = _fineness_within(coin_a, coin_b)
+    fallback["mint"] = _mints_overlap(coin_a, coin_b)
+
+    # Confidence calc
+    primary_true = sum(1 for v in primary.values() if v is True)
+    primary_unknown = sum(1 for v in primary.values() if v is None)
+    primary_false = sum(1 for v in primary.values() if v is False)
+
+    fallback_true = sum(1 for v in fallback.values() if v is True)
+    fallback_false = sum(1 for v in fallback.values() if v is False)
+
+    if primary_false:
+        return {"decision": "no_match", "primary": primary,
+                "fallback": fallback, "why": why or ["primary signal disagreed"]}
+
+    # All available primary signals agree (no False); some may be None
+    # (not evaluable — e.g. catalog no_overlap when refs come from
+    # different cataloguing systems, or metal not stated). Decision:
+    #
+    #   CONFIDENT  — primary_true ≥ 3 AND fallback_true ≥ 1 AND no fallback_false
+    #   LOW_CONF   — primary_true == 4 AND fallback_false > 0
+    #                (catalog/ruler/nominal/metal all match but specimen
+    #                 weight or year disagrees — curator inspect)
+    #   LOW_CONF   — primary_true ≥ 2 AND fallback_true ≥ 1 AND no fallback_false
+    #   NO_MATCH   — everything else
+    if primary_true == 4 and fallback_false > 0:
+        why.append(f"all 4 primary match but fallback disagrees: {fallback}")
+        return {"decision": "low_confidence", "primary": primary,
+                "fallback": fallback, "why": why}
+
+    if fallback_false > 0:
+        why.append(f"fallback disagrees ({fallback}), primary_true={primary_true}")
+        return {"decision": "no_match", "primary": primary,
+                "fallback": fallback, "why": why}
+
+    if primary_true >= 3 and fallback_true >= 1:
+        return {"decision": "confident", "primary": primary,
+                "fallback": fallback, "why": [f"primary_true={primary_true}/4, fallback_true={fallback_true}"]}
+
+    if primary_true >= 2 and fallback_true >= 1:
+        why.append(f"primary_true={primary_true} (<3) — review")
+        return {"decision": "low_confidence", "primary": primary,
+                "fallback": fallback, "why": why}
+
+    return {"decision": "no_match", "primary": primary,
+            "fallback": fallback, "why": why or [f"insufficient signals (primary_true={primary_true}, fallback_true={fallback_true})"]}
+
+
+# ---------------------------------------------------------------------------
+# Union-Find with explicit no-merge support
+# ---------------------------------------------------------------------------
+
+
+class UnionFind:
+    def __init__(self):
+        self.parent: dict[str, str] = {}
+        self.no_merge: set[frozenset] = set()
+
+    def find(self, x):
+        self.parent.setdefault(x, x)
+        while self.parent[x] != x:
+            self.parent[x] = self.parent[self.parent[x]]
+            x = self.parent[x]
+        return x
+
+    def can_union(self, x, y) -> bool:
+        return frozenset({x, y}) not in self.no_merge
+
+    def union(self, x, y) -> bool:
+        if not self.can_union(x, y):
+            return False
+        rx, ry = self.find(x), self.find(y)
+        if rx == ry:
+            return False
+        # Stable root choice: lexicographically smaller wins
+        if rx < ry:
+            self.parent[ry] = rx
+        else:
+            self.parent[rx] = ry
+        return True
+
+    def add_no_merge(self, x, y):
+        self.no_merge.add(frozenset({x, y}))
+
+    def classes(self) -> dict[str, list[str]]:
+        groups: dict[str, list[str]] = defaultdict(list)
+        for k in self.parent:
+            groups[self.find(k)].append(k)
+        return dict(groups)
+
+
+# ---------------------------------------------------------------------------
+# Unified entry construction
+# ---------------------------------------------------------------------------
+
+
+def _collect_field_list(members: list[dict], field: str) -> list[dict]:
+    """For weight_rough_g / fineness / diameter_mm — collect ALL readings
+    from every member as multi-source list entries. Dedupe by (value, source)
+    so re-runs are deterministic."""
+    seen: set[tuple] = set()
+    out: list[dict] = []
+    for m in members:
+        val = m.get(field)
+        if val is None:
+            continue
+        if isinstance(val, (int, float)):
+            # bare-number form — synthesise source from member id
+            entry = {"value": float(val), "source": _source_label_from_id(m.get("id"))}
+            key = (entry["value"], entry["source"])
+            if key not in seen:
+                seen.add(key)
+                out.append(entry)
+        elif isinstance(val, list):
+            for item in val:
+                if not isinstance(item, dict):
+                    continue
+                v = item.get("value")
+                if not isinstance(v, (int, float)):
+                    continue
+                entry = {"value": float(v), "source": item.get("source", "?")}
+                key = (entry["value"], entry["source"])
+                if key not in seen:
+                    seen.add(key)
+                    out.append(entry)
+    # Deterministic order: by value, then source
+    out.sort(key=lambda e: (e["value"], e["source"]))
+    return out
+
+
+def _source_label_from_id(coin_id: str | None) -> str:
+    if not coin_id:
+        return "?"
+    if coin_id.startswith("dk-hede-"):
+        return "hede"
+    if coin_id.startswith("dk-bruun-"):
+        return "bruun"
+    if coin_id.startswith("dk-numismaster-"):
+        return "numismaster"
+    if coin_id.startswith("dk-numista-"):
+        return "numista"
+    if coin_id.startswith("dk-galster-"):
+        return "galster"
+    return coin_id.split("-")[1] if "-" in coin_id else "?"
+
+
+def _collect_sources(members: list[dict]) -> list[dict]:
+    seen_urls: set[str] = set()
+    out: list[dict] = []
+    for m in members:
+        for s in m.get("sources") or []:
+            if not isinstance(s, dict):
+                continue
+            url = s.get("url", "")
+            ref = s.get("ref", "")
+            key = (url, ref, s.get("type", ""))
+            if key in seen_urls:
+                continue
+            seen_urls.add(key)
+            out.append(s)
+    return out
+
+
+def _collect_mints(members: list[dict]) -> str | list[str] | None:
+    mints_set: list[str] = []
+    seen: set[str] = set()
+    for m in members:
+        mint = m.get("mint")
+        if mint is None:
+            continue
+        mints = mint if isinstance(mint, list) else [mint]
+        for mt in mints:
+            if isinstance(mt, str) and mt not in seen:
+                seen.add(mt)
+                mints_set.append(mt)
+    if not mints_set:
+        return None
+    if len(mints_set) == 1:
+        return mints_set[0]
+    return sorted(mints_set)
+
+
+def _deep_merge_catalog(members: list[dict]) -> dict:
+    """Catalog refs accumulated across members. Top-authority wins on key
+    conflicts (different values for the same key)."""
+    sorted_members = sorted(members, key=lambda c: -_authority_score(c.get("id", "")))
+    out: dict = {}
+    for m in sorted_members:
+        cat = m.get("catalog") or {}
+        for k, v in cat.items():
+            if k not in out:
+                out[k] = v
+    return out
+
+
+def build_unified(members: list[dict], unified_id: str) -> dict:
+    """Construct one unified entry from N member seed entries."""
+    sorted_members = sorted(members, key=lambda c: -_authority_score(c.get("id", "")))
+    primary = sorted_members[0]
+
+    composed_of = sorted(set(m["id"] for m in members if m.get("id")))
+
+    # Start from primary's fields (preserves nominal, ruler, year_label, etc.)
+    out: dict = {}
+
+    # Field order: id first, then schema fields per typical V2 yaml
+    out["id"] = unified_id
+    out["fuss"] = primary.get("fuss", "seed_unsorted")
+    out["phase"] = primary.get("phase", "unified")
+    out["kind"] = primary.get("kind", "kurant")
+
+    for k in ("fraction", "nominal", "year_label", "year_first", "year_last",
+              "year_ranges", "year_verified", "ruler", "mintmaster"):
+        v = primary.get(k)
+        if v is not None:
+            out[k] = v
+
+    # Multi-mint union
+    mint = _collect_mints(members)
+    if mint is not None:
+        out["mint"] = mint
+
+    # Catalog deep-merge
+    out["catalog"] = _deep_merge_catalog(members)
+
+    # Metal + verification flags from primary
+    if primary.get("metal"):
+        out["metal"] = primary["metal"]
+    for k in ("metal_verified", "fineness_verified", "weight_rough_verified",
+              "diameter_mm_verified", "mint_verified"):
+        if k in primary:
+            out[k] = primary[k]
+
+    # Multi-source measurement lists
+    fine = _collect_field_list(members, "fineness")
+    if fine:
+        out["fineness"] = fine
+    weights = _collect_field_list(members, "weight_rough_g")
+    if weights:
+        out["weight_rough_g"] = weights
+    diameters = _collect_field_list(members, "diameter_mm")
+    if diameters:
+        out["diameter_mm"] = diameters
+
+    # Sources union
+    sources = _collect_sources(members)
+    if sources:
+        out["sources"] = sources
+
+    # Note: prefer primary's note (highest authority); could merge in future
+    if primary.get("note"):
+        out["note"] = primary["note"]
+
+    # issuing_entity — from primary (already classified by regroup)
+    if primary.get("issuing_entity"):
+        out["issuing_entity"] = primary["issuing_entity"]
+
+    # Audit trail
+    out["composed_of"] = composed_of
+
+    return out
+
+
+def _unified_id_for_class(members: list[dict]) -> str:
+    """Pick the unified id per §5.2 authority rule: top-authority member's id
+    with `unified-` prefix."""
+    sorted_members = sorted(members, key=lambda c: -_authority_score(c.get("id", "")))
+    primary = sorted_members[0]
+    return f"unified-{primary['id']}"
+
+
+# ---------------------------------------------------------------------------
+# Decision file I/O
+# ---------------------------------------------------------------------------
+
+
+def _load_decisions(entity_id: str) -> dict:
+    """Load explicit merge_decisions/<entity>.yml if present.
+    Returns {merges: [{members, reason}], no_merges: [...]}"""
+    path = V2_MERGE_DECISIONS / f"{entity_id}.yml"
+    if not path.exists():
+        return {"merges": [], "no_merges": []}
+    doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return {
+        "merges": doc.get("merges", []) or [],
+        "no_merges": doc.get("no_merges", []) or [],
+    }
+
+
+# ---------------------------------------------------------------------------
+# Per-entity processing
+# ---------------------------------------------------------------------------
+
+
+def _load_seeds_for_entity(entity_id: str) -> list[dict]:
+    """Walk data/v2/seed/<source>/<entity>.yml across all sources.
+    Returns flat list of coin dicts; each dict has its `id` for identification."""
+    coins: list[dict] = []
+    if not V2_SEED.exists():
+        return coins
+    for src_dir in sorted(V2_SEED.iterdir()):
+        if not src_dir.is_dir():
+            continue
+        path = src_dir / f"{entity_id}.yml"
+        if not path.exists():
+            continue
+        doc = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        for c in doc.get("coins") or []:
+            if isinstance(c, dict) and c.get("id"):
+                coins.append(c)
+    return coins
+
+
+def process_entity(entity_id: str) -> dict:
+    """Returns:
+      {
+        'entity_id': str,
+        'seeds_count': int,
+        'unified_entries': [unified_coin_dict, ...],
+        'unified_count': int,
+        'confident_merges': [{members, score}, ...],
+        'low_confidence_pairs': [{members, why, signals}, ...],
+        'forced_merges': [{members, reason}, ...],
+        'forced_no_merges': [{members, reason}, ...],
+      }
+    """
+    seeds = _load_seeds_for_entity(entity_id)
+    decisions = _load_decisions(entity_id)
+
+    seeds_by_id: dict[str, dict] = {c["id"]: c for c in seeds}
+    uf = UnionFind()
+    # Ensure all ids are in uf so singleton classes show up.
+    for cid in seeds_by_id:
+        uf.find(cid)
+
+    # 1. Apply explicit no_merges first (so auto-rules can't override).
+    forced_no_merges: list[dict] = []
+    for entry in decisions["no_merges"]:
+        members = entry.get("members") or []
+        for i in range(len(members)):
+            for j in range(i + 1, len(members)):
+                uf.add_no_merge(members[i], members[j])
+        forced_no_merges.append(entry)
+
+    # 2. Apply explicit merges (overrides auto-rules).
+    forced_merges: list[dict] = []
+    for entry in decisions["merges"]:
+        members = entry.get("members") or []
+        for i in range(1, len(members)):
+            uf.union(members[0], members[i])
+        forced_merges.append(entry)
+
+    # 3. Auto-merge pass over all (n*(n-1)/2) pairs.
+    confident_merges: list[dict] = []
+    low_confidence: list[dict] = []
+    ids = sorted(seeds_by_id)
+    for i in range(len(ids)):
+        for j in range(i + 1, len(ids)):
+            a_id, b_id = ids[i], ids[j]
+            # Skip if explicit no_merge
+            if not uf.can_union(a_id, b_id):
+                continue
+            # Skip if already in same class via earlier merge
+            if uf.find(a_id) == uf.find(b_id):
+                continue
+            result = match_pair(seeds_by_id[a_id], seeds_by_id[b_id])
+            if result["decision"] == "confident":
+                uf.union(a_id, b_id)
+                confident_merges.append({
+                    "members": [a_id, b_id],
+                    "primary": result["primary"],
+                    "fallback": result["fallback"],
+                })
+            elif result["decision"] == "low_confidence":
+                low_confidence.append({
+                    "members": [a_id, b_id],
+                    "primary": result["primary"],
+                    "fallback": result["fallback"],
+                    "why": result["why"],
+                })
+
+    # 4. Build unified entries from equivalence classes
+    classes = uf.classes()
+    unified_entries: list[dict] = []
+    for class_root, member_ids in sorted(classes.items()):
+        member_coins = [seeds_by_id[mid] for mid in sorted(member_ids)]
+        unified_id = _unified_id_for_class(member_coins)
+        unified = build_unified(member_coins, unified_id)
+        unified_entries.append(unified)
+
+    # Deterministic order
+    unified_entries.sort(key=lambda u: u["id"])
+
+    return {
+        "entity_id": entity_id,
+        "seeds_count": len(seeds),
+        "unified_entries": unified_entries,
+        "unified_count": len(unified_entries),
+        "confident_merges": confident_merges,
+        "low_confidence_pairs": low_confidence,
+        "forced_merges": forced_merges,
+        "forced_no_merges": forced_no_merges,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Output writers
+# ---------------------------------------------------------------------------
+
+
+def _emit_unified_yaml(entity_id: str, unified_entries: list[dict],
+                       seeds_count: int) -> str:
+    today = date.today().isoformat()
+    header = (
+        f"# V2 seed_unified for political entity `{entity_id}`.\n"
+        f"# Generated {today} by scripts/maintenance/merge_seeds_cross_source.py\n"
+        f"# from data/v2/seed/<source>/{entity_id}.yml across all sources.\n"
+        f"#\n"
+        f"# Input: {seeds_count} per-source seed entries.\n"
+        f"# Output: {len(unified_entries)} unified entries (one per physical coin).\n"
+        f"#\n"
+        f"# Each unified entry's `composed_of` lists the per-source seeds\n"
+        f"# it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,\n"
+        f"# `fineness[]`, `diameter_mm[]` are multi-source lists preserving\n"
+        f"# every reading per CLAUDE.md §9a. `sources[]` is the union.\n\n"
+    )
+    payload = {
+        "id": entity_id,
+        "generated_at": today,
+        "coins": unified_entries,
+    }
+    return header + yaml.dump(payload, sort_keys=False, allow_unicode=True,
+                              default_flow_style=False, width=120)
+
+
+def _emit_match_uncertainty(entity_id: str, low_conf: list[dict]) -> str:
+    today = date.today().isoformat()
+    header = (
+        f"# Match uncertainty for entity `{entity_id}` — gitignored diagnostic.\n"
+        f"# Regenerated {today} by merge_seeds_cross_source.py.\n"
+        f"#\n"
+        f"# These pairs reached low-confidence under §5.2 match hierarchy.\n"
+        f"# DO NOT edit this file — it's overwritten on every run.\n"
+        f"# Curator decisions go into data/v2/merge_decisions/{entity_id}.yml:\n"
+        f"#   - confirm merge → add `members: [...]` to `merges:`\n"
+        f"#   - confirm distinct → add to `no_merges:`\n"
+        f"#   - rule should auto-handle → extend the matcher in\n"
+        f"#     scripts/maintenance/merge_seeds_cross_source.py\n\n"
+    )
+    payload = {
+        "entity_id": entity_id,
+        "generated_at": today,
+        "low_confidence_pairs": low_conf,
+    }
+    return header + yaml.dump(payload, sort_keys=False, allow_unicode=True,
+                              default_flow_style=False, width=120)
+
+
+# ---------------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------------
+
+
+def _all_entities() -> list[str]:
+    """All entity ids that have at least one seed yaml."""
+    seen: set[str] = set()
+    if not V2_SEED.exists():
+        return []
+    for src_dir in V2_SEED.iterdir():
+        if not src_dir.is_dir():
+            continue
+        for p in src_dir.glob("*.yml"):
+            seen.add(p.stem)
+    return sorted(seen)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--dry-run", action="store_true", default=True,
+                        help="Report only — do NOT write outputs (default)")
+    parser.add_argument("--apply", action="store_true",
+                        help="Write data/v2/seed_unified/ + data/v2/match_uncertainty/")
+    parser.add_argument("--entity", help="Process only this entity")
+    parser.add_argument("--verbose", "-v", action="store_true",
+                        help="Show all low-confidence pairs (default: top 10 per entity)")
+    args = parser.parse_args()
+    if args.apply:
+        args.dry_run = False
+
+    entities = [args.entity] if args.entity else _all_entities()
+    if not entities:
+        print("No V2 seed files found under data/v2/seed/.")
+        return 0
+
+    print(f"Processing {len(entities)} entit(y/ies)...\n")
+
+    totals = Counter()
+    for ent in entities:
+        result = process_entity(ent)
+        totals["seeds"] += result["seeds_count"]
+        totals["unified"] += result["unified_count"]
+        totals["confident_merges"] += len(result["confident_merges"])
+        totals["low_confidence"] += len(result["low_confidence_pairs"])
+        totals["forced_merges"] += len(result["forced_merges"])
+        totals["forced_no_merges"] += len(result["forced_no_merges"])
+
+        reduction = result["seeds_count"] - result["unified_count"]
+        line = (f"{ent:36s}  "
+                f"seeds:{result['seeds_count']:4d}  → "
+                f"unified:{result['unified_count']:4d}  "
+                f"(−{reduction:3d})  "
+                f"conf:{len(result['confident_merges']):3d}  "
+                f"lowconf:{len(result['low_confidence_pairs']):3d}")
+        if result["forced_merges"] or result["forced_no_merges"]:
+            line += (f"  forced:{len(result['forced_merges'])}/"
+                     f"{len(result['forced_no_merges'])}")
+        print(line)
+
+        if args.verbose and result["low_confidence_pairs"]:
+            for pair in result["low_confidence_pairs"][:5]:
+                print(f"    ? {pair['members']}: {pair['why']}")
+            if len(result["low_confidence_pairs"]) > 5:
+                print(f"    ? ... and {len(result['low_confidence_pairs']) - 5} more")
+
+        if args.apply:
+            V2_SEED_UNIFIED.mkdir(parents=True, exist_ok=True)
+            (V2_SEED_UNIFIED / f"{ent}.yml").write_text(
+                _emit_unified_yaml(ent, result["unified_entries"],
+                                   result["seeds_count"]),
+                encoding="utf-8",
+            )
+            if result["low_confidence_pairs"]:
+                V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
+                (V2_MATCH_UNCERTAINTY / f"{ent}.yml").write_text(
+                    _emit_match_uncertainty(ent, result["low_confidence_pairs"]),
+                    encoding="utf-8",
+                )
+            else:
+                # Clean up stale uncertainty file
+                stale = V2_MATCH_UNCERTAINTY / f"{ent}.yml"
+                if stale.exists():
+                    stale.unlink()
+
+    print()
+    print(f"=== Totals ===")
+    print(f"  Per-source seeds total:     {totals['seeds']:>5d}")
+    print(f"  Unified entries total:      {totals['unified']:>5d}")
+    print(f"  Reduction (merges):         {totals['seeds'] - totals['unified']:>5d}")
+    print(f"  Confident auto-merges:      {totals['confident_merges']:>5d}")
+    print(f"  Low-confidence pairs:       {totals['low_confidence']:>5d}")
+    print(f"  Forced merges (decisions):  {totals['forced_merges']:>5d}")
+    print(f"  Forced no_merges (decisions): {totals['forced_no_merges']:>3d}")
+
+    if args.dry_run:
+        print("\n--- DRY RUN — no files written. Re-run with --apply to commit. ---")
+    else:
+        print(f"\n✓ Wrote unified yamls to {V2_SEED_UNIFIED}/")
+        print(f"  Match uncertainty diagnostics to {V2_MATCH_UNCERTAINTY}/ "
+              f"(gitignored)")
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
