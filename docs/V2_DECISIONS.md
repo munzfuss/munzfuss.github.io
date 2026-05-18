@@ -368,6 +368,31 @@
 - **Effect on backlog (danish_realm)**: 383 low-confidence pairs → 20 residual (94.8% recovery). 0 confident merges → 136 confident merges. The 20 residual pairs are all coins whose year span touches a real-or-anomaly multi-ruler year (1648 / 1670 / 1606+1610 / etc.) — exactly the cases the user wanted to leave null. 0 fake-conflict noise in the merge_conflicts log.
 - **Encoded in**: `scripts/maintenance/merge_seeds_cross_source.py` (`_build_reign_index`, `_infer_ruler`, `_normalise_ruler` extension, `match_pair` reign_index parameter, `process_entity` index construction, `build_unified` conflict-log normalisation); `scripts/maintenance/absorb_seeds_into_final_v2.py` (stale-purge + `stale_purged` stat). Future entities (royal_holstein, gottorp_duchy, schauenburg_pinneberg, etc.) get the benefit automatically — the index is rebuilt per-entity in `process_entity`.
 
+### D36 — Curator merge decisions: smart override that doesn't block future enrichments
+
+- **Decision (2026-05-18)**: When the auto-matcher cannot decide a pair (genuine numismatic ambiguity — e.g. NumisMaster's rolled-up multi-reign record vs Hede's per-reign split), the curator writes an explicit verdict in `data/v2/merge_decisions/<entity>.yml` with two surfaces:
+  - `merges: [{members: [id_a, id_b], reason: ...}]` — force these into one unified class
+  - `no_merges: [{members: [id_a, id_b], reason: ...}]` — forbid these from ever uniting
+- **Smart-override mechanic (union-find semantics)**: both surfaces are loaded in the merger's pre-pass before any auto-rule fires. They land as union-find operations:
+  - A `merges` entry calls `uf.union(a, b)` directly, creating an equivalence class. Crucially, the class is NOT closed — future auto-merge calls that confidently match ANY class member transitively pull the new coin in. If a Numista record next month auto-matches with `dk-hede-nc5h41` per the §5.2 hierarchy, it lands in the same class as `denmark-numismaster-110665` automatically — the curator's existing merge does not block legitimate enrichments.
+  - A `no_merges` entry calls `uf.add_no_merge(a, b)` — registers a forbidden pair. The cross-class no_match check in `UnionFind.union` refuses any merge (direct or transitive) that would put both ids in the same class. Concretely: if I declared `no_merges: [nm-X, hede-Y]` and later a Numista entry auto-matches BOTH nm-X and hede-Y, the union-find blocks the second join, leaving nm-X and hede-Y in separate classes per curator intent.
+- **Decision file is the durable record**: the file is checked into git and re-read on every Phase 3.2 run. The pipeline never «remembers» curator decisions out-of-band; they live in the file. Removing an entry removes the override.
+- **First real case (2026-05-18)**: `data/v2/merge_decisions/danish_norway.yml` declares the verdict on the 2 ambiguous NumisMaster rollup cases the user reviewed:
+  - **NM-110665 4 Mark ↔ nc5h41** = SAME coin (CHR V 1670-1674); **nf3h66** = SEPARATE (FR III 1669)
+  - **NM-86229 8 Skilling ↔ nc6h2** = SAME coin (CHR VI 1730-1735); **nf4h17** = SEPARATE (FR IV 1727-1730); **nf4h16** = SEPARATE (FR IV 1727)
+
+  Result: 2 forced merges applied + 3 no_merge constraints registered → `low_confidence_pairs: 0` for danish_norway. A side-effect of removing nf4h16 from contention: NM-86228 (a different NumisMaster MC#) auto-matched into the nf4h16 class confidently per the relaxed-threshold rules, picking up a new cross-source enrichment that the old «nf4h16 in unresolved low-conf cluster» state had been hiding.
+
+- **Mental model for future curator entries**:
+  1. Identify a coin pair the auto-matcher left as low_confidence or surfaced as ambiguous multi-candidate.
+  2. Open both source URLs, confirm same-or-different physical type.
+  3. Write the appropriate `merges` / `no_merges` entry with a reason that names the URLs, the catalog refs, and the numismatic rationale.
+  4. Re-run `merge_seeds_cross_source.py --apply` → `absorb_seeds_into_final_v2.py --apply` → `relink_promoted_v2.py --apply`.
+  5. Verify the unified entries reflect the curator intent and audit_v2 passes.
+
+- **Pipeline-wide consequence**: the curator's authority surface is now fully expressed in two files per entity (`merge_decisions/<entity>.yml` + `classification_decisions/<entity>.yml` per D29). Coin-level fields stay script-derived per D24; only decisions on grouping + Müntzfuß-assignment need explicit curator input. Anything else should be a matcher-rule extension, not a per-entry override.
+- **Encoded in**: `scripts/maintenance/merge_seeds_cross_source.py` — `_load_decisions` (already present from D22), `process_entity` (forced_merges / forced_no_merges application path). `data/v2/merge_decisions/danish_norway.yml` (first real curator entry).
+
 ### D35 — Norge misclassification fix + Frederick normaliser + strict DK-realm + weight-anchor
 
 - **Decision (2026-05-18)**: Four further fixes to the Phase 3.2 matcher take the global low-confidence backlog from D34's 2 residual on danish_realm to **28 across 7 distinct null-side coins across danish_realm + danish_norway**. The new pairs surface because V2 seeds were rerouted from the Norge-misclassification fix below — they were always there, just hidden by the wrong-entity grouping.

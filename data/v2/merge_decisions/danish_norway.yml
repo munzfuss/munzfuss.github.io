@@ -1,0 +1,83 @@
+# Curator merge decisions — entity `danish_norway`.
+#
+# Two decision surfaces, both authoritative over the auto-matcher:
+#
+#   merges:    force these member-ids into one unified class
+#   no_merges: forbid these member pairs from ever uniting
+#
+# Both lists are loaded by `merge_seeds_cross_source.py::_load_decisions`
+# on every Phase 3.2 run and applied via union-find:
+#
+#   • A `merges` entry unconditionally unites its members. Other coins
+#     that auto-match any class member then join the class transitively
+#     — curator's decision does NOT block legitimate enrichments. If a
+#     Numista entry comes in next month that confidently matches our
+#     forced merge target, it auto-joins the same class.
+#
+#   • A `no_merges` entry registers a forbidden pair. The union-find
+#     refuses any auto-merge that would put both members in the same
+#     class (direct OR transitive). The pair stays in separate classes
+#     forever until the curator removes the constraint.
+#
+# IDs reference V2 seed-layer entries (`data/v2/seed/<src>/<entity>.yml`).
+# When the matcher iterates pairs, it consults this file FIRST — the
+# explicit decisions land in union-find before any auto-rule fires.
+
+merges:
+  - members:
+      - denmark-numismaster-110665
+      - dk-hede-nc5h41
+    reason: |
+      Curator decision 2026-05-18. Both records describe the SAME
+      physical coin type: 4 Mark Christiania 1670-1680 under Christian V,
+      22.272 g rough × .672 fineness. NumisMaster's MC_110665 records
+      the type's full circulation span (1669-1680) as one entry per
+      its rollup convention; Hede nc5h41 catalogues the same type's
+      Christian-V portion at danskmoent.dk/norge/nc5h41.htm. The 1669
+      year that NumisMaster includes is covered by the separate Hede
+      nf3h66 entry (Frederik III); see no_merges below.
+
+  - members:
+      - denmark-numismaster-86229
+      - dk-hede-nc6h2
+    reason: |
+      Curator decision 2026-05-18. Both records describe the SAME
+      physical coin type: 8 Skilling Kongsberg 1730-1735 under
+      Christian VI, 3.668 g rough × .468 fineness. NumisMaster's
+      MC_86229 rollup covers 1727-1735 as one entry; Hede nc6h2
+      (danskmoent.dk/norge/nc6h2.htm) catalogues the Christian-VI
+      portion. The 1727-1730 years that NumisMaster includes are
+      covered by the separate Hede nf4h16 + nf4h17 entries (Frederik
+      IV); see no_merges below.
+
+no_merges:
+  - members:
+      - denmark-numismaster-110665
+      - dk-hede-nf3h66
+    reason: |
+      Curator decision 2026-05-18. Hede nf3h66 (Frederik III 4 Mark
+      Christiania 1669, danskmoent.dk/norge/nf3h66.htm) is a SEPARATE
+      physical type from NumisMaster's MC_110665 — different reign,
+      different obverse portrait. NumisMaster groups by Krause KM-96
+      which spans both reigns; Hede splits per ruler. Cataloguing
+      conventions diverge, but the underlying types are distinct.
+
+  - members:
+      - denmark-numismaster-86229
+      - dk-hede-nf4h17
+    reason: |
+      Curator decision 2026-05-18. Hede nf4h17 (Frederik IV 8 Skilling
+      Kongsberg 1727-1730, danskmoent.dk/norge/nf4h17.htm) is a
+      SEPARATE physical type from NumisMaster's MC_86229 — different
+      reign, different obverse portrait. NumisMaster's KM-224 rollup
+      spans both reigns; Hede splits per ruler.
+
+  - members:
+      - denmark-numismaster-86229
+      - dk-hede-nf4h16
+    reason: |
+      Curator decision 2026-05-18. Hede nf4h16 (Frederik IV 8 Skilling
+      Kongsberg 1727 only, danskmoent.dk/norge/nf4h16.htm) is a
+      SEPARATE physical type from NumisMaster's MC_86229 — different
+      reign, different obverse portrait. NumisMaster's KM-224 rollup
+      spans both reigns; Hede splits per ruler.

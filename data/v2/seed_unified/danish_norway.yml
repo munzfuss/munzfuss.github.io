@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 480 per-source seed entries.
-# Output: 439 unified entries (one per physical coin).
+# Output: 438 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1801,22 +1801,19 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110662
-- id: unified-denmark-numismaster-110665
+- id: unified-denmark-numismaster-110666
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
   nominal: 4 Mark
-  year_first: 1669
-  year_last: 1680
+  year_first: 1670
+  year_last: 1671
   year_ranges:
-  - - 1669
-    - 1674
-  - - 1676
-    - 1680
-  year_label: 1669–1674, 1676–1680
+  - - 1670
+    - 1671
+  year_label: 1670–1671
   catalog:
-    km: '96'
-    dav: '3662'
+    km: 96a
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -1827,11 +1824,11 @@ coins:
   - value: 0.672
     source: numismaster
   weight_rough_g:
-  - value: 22.27
+  - value: 21.26
     source: numismaster
   sources:
   - type: literature
-    url: https://numismaster.com/MC_110665
+    url: https://numismaster.com/MC_110666
     ref: NumisMaster
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
@@ -1842,7 +1839,7 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   issuing_entity: danish_norway
   composed_of:
-  - denmark-numismaster-110665
+  - denmark-numismaster-110666
 - id: unified-denmark-numismaster-110667
   fuss: seed_unsorted
   phase: numismaster
@@ -8331,45 +8328,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-86227
-- id: unified-denmark-numismaster-86229
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 8 Skilling
-  year_first: 1727
-  year_last: 1735
-  year_ranges:
-  - - 1727
-    - 1735
-  year_label: 1727–1735
-  catalog:
-    km: '224'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.468
-    source: numismaster
-  weight_rough_g:
-  - value: 3.67
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_86229
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-86229
 - id: unified-denmark-numismaster-86233
   fuss: seed_unsorted
   phase: numismaster
@@ -11364,19 +11322,22 @@ coins:
   phase: hede
   kind: kurant
   nominal: 4 Mark
-  year_first: 1670
-  year_last: 1674
+  year_first: 1669
+  year_last: 1680
   year_ranges:
-  - - 1670
+  - - 1669
     - 1674
+  - - 1676
+    - 1680
   year_label: 1670–1674
   ruler: Christian V.
   mint: Christiania
   catalog:
-    km: 96a
+    km: '96'
     hede: '41'
     hede_volume: nc5h
     schou: '38'
+    dav: '3662'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -11389,13 +11350,13 @@ coins:
   - value: 0.672
     source: numismaster
   weight_rough_g:
-  - value: 21.26
+  - value: 22.27
     source: numismaster
   - value: 22.272
     source: hede
   sources:
   - type: literature
-    url: https://numismaster.com/MC_110666
+    url: https://numismaster.com/MC_110665
     ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h41.htm
@@ -11407,7 +11368,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_norway
   composed_of:
-  - denmark-numismaster-110666
+  - denmark-numismaster-110665
   - dk-hede-nc5h41
 - id: unified-dk-hede-nc5h42
   fuss: seed_unsorted
@@ -13072,19 +13033,21 @@ coins:
   phase: hede
   kind: scheide
   nominal: 8 Skilling
-  year_first: 1730
+  year_first: 1727
   year_last: 1735
   year_ranges:
-  - - 1730
+  - - 1727
     - 1735
   year_label: 1730–1735
   ruler: Christian VI.
   mint: Kongsberg
   catalog:
+    km: '224'
     hede: '2'
     hede_volume: nc6h
     schou: '2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -13092,10 +13055,17 @@ coins:
   fineness:
   - value: 0.468
     source: hede
+  - value: 0.468
+    source: numismaster
   weight_rough_g:
   - value: 3.668
     source: hede
+  - value: 3.67
+    source: numismaster
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_86229
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc6h2.htm
     ref: Hede nc6h2 (danskmoent.dk)
@@ -13106,6 +13076,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_norway
   composed_of:
+  - denmark-numismaster-86229
   - dk-hede-nc6h2
 - id: unified-dk-hede-nc6h3
   fuss: seed_unsorted
