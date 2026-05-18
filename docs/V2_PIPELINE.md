@@ -1,12 +1,19 @@
 # V2 Pipeline — entity-keyed refactoring plan
 
 > **Status (2026-05-18):** Architecture refined to 4-phase fully-automated
-> pipeline; V1 reframed as **verification anchor** (not bootstrap input).
-> Implementation in flight on branch `feat/v2-pipeline`. Phases 1, 2,
-> partial 3, partial 4 + supporting infrastructure (schema, build
-> pipeline, idempotent merge-aware regen, bidirectional link) landed.
-> Outstanding: native Phase 3 cross-source merger, Phase 4 auto-classifier,
-> first full-cycle reprocess + V1-vs-V2 diff verification.
+> pipeline; V1 reframed as **foundation** (V1 final yamls become V2 final
+> starting state; V2 accumulates enrichments on top). Implementation in
+> flight on branch `feat/v2-pipeline`. Phases 1, 2, 3.1, 3.2 + supporting
+> infrastructure (schema, build pipeline, idempotent merge-aware regen,
+> bidirectional link, mint→entity classifier, cross-source merger with
+> data-accumulation invariant) landed. Outstanding: Phase 4
+> absorb-into-final, audit_v2.py, V1↔V2 enrichments audit, first
+> full-cycle reprocess.
+>
+> **Canonical decisions journal: [`docs/V2_DECISIONS.md`](V2_DECISIONS.md).**
+> 28 decisions D1-D28 + 4 deferred DF1-DF4, each with rationale + code
+> locations. Update D<N> entries there first; this plan document
+> describes the model.
 
 ## 1. Why
 

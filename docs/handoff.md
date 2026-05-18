@@ -18,15 +18,17 @@
 ## Current focus
 
 **V2 entity-keyed refactor — architecture refined 2026-05-18 to
-4-phase fully-automated pipeline with V1 reframed as VERIFICATION
-ANCHOR (not bootstrap input).** Curator no longer edits coin fields
-by hand; curator input is restricted to (a) which entities the project
-supports, (b) Phase 3 merge confirmations, (c) Phase 4 classification
-confirmations — all encoded in script rules or explicit decision
-files. Worktree branch `feat/v2-pipeline` is the V2 working line.
-Detailed plan: `docs/V2_PIPELINE.md`. Detailed architecture:
-`docs/ARCHITECTURE.md` §«V2 entity-keyed pipeline». All other
-workstreams below paused during V2 unless user redirects.
+4-phase fully-automated pipeline with V1 reframed as FOUNDATION
+(V1 final yamls become V2 final starting state; V2 accumulates
+enrichments on top, never overwrites).** Curator no longer edits
+coin fields by hand; curator input is restricted to (a) which entities
+the project supports, (b) Phase 3 merge confirmations, (c) Phase 4
+classification confirmations — all encoded in script rules or
+explicit decision files. Worktree branch `feat/v2-pipeline`.
+**Canonical decisions journal: `docs/V2_DECISIONS.md`** (28 + 4
+deferred). Detailed plan: `docs/V2_PIPELINE.md`. Detailed
+architecture: `docs/ARCHITECTURE.md` §«V2 entity-keyed pipeline».
+All other workstreams below paused during V2 unless user redirects.
 
 **Mission temporal scope — Denmark-track anchor rescoped 1541 → 1514
 on 2026-05-16 per §BI.** Denmark-Norway track lower bound = **1514**
