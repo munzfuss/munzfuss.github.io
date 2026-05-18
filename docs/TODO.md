@@ -289,6 +289,68 @@ Phase-1 coverage table updated accordingly — NumisMaster row's «Pre-floor ent
 
 Bundle takes the audit-completeness cluster (§BH Hede + §BM IKMK + §BN Bruun + §BO this) to «100% verified» across all 7 raw sources.
 
+#### BO.5 — Numista DK 1602-1914 main-window coverage audit + harvest  🔵 **IN PROGRESS — paused after batch 1/6** *(opened 2026-05-18, est: medium-large)*
+
+**Surfaced** by user direction 2026-05-18 «впевнись що в нашому нуміста кеші вже є всі монети по данії в 1602-1914 рр які є на нуміста». BO.1 / .2 / .3 addressed the pre-floor era; BO.5 addresses the main mission window (1602-1914 = Numista DK floor through pre-WWI end of precious-metal era).
+
+**Audit result (2026-05-18, refined with user's URL filter):**
+
+URL pattern: `https://en.numista.com/catalogue/index.php?e=danemark&st=1-2-3-47-154-5-54&cat=y&o=y` (coin subcategories only, excludes patterns/trial strikes/banknotes/medals/tokens, sort by year asc). Walked 5 pages (200/page; pages 1-4 in-window for 1602-1914, page 5 = 2006-2025 out of scope).
+
+  | Metric | Value |
+  |---|---:|
+  | Total Numista DK coin types (e=danemark + st-filter, all eras) | 868 |
+  | In-window [1602, 1914] | **547** |
+  | Cache intersection (already harvested) | 335 |
+  | **MISSING — needs harvest** | **212** |
+  | Coverage % | 61.2 % |
+
+The 212-NID gap is documented in `scripts/cache/numista/_BO5_audit_2026-05-18.json` (full per-NID list, decade distribution, per-batch breakdown).
+
+**Decade distribution of the 212 missing** (gives a sense of which eras still need work):
+
+  | Decade | Missing | Note |
+  |---|---:|---|
+  | 1600s | 35 | Christian IV early reign |
+  | 1610s | 9 | |
+  | 1790s-1810s | ~30 | Frederik VI / Speciedaler→Rigsbankdaler reforms |
+  | 1820s-1860s | ~60 | Christian VIII / Frederik VII era |
+  | 1870s-1914 | ~25 | Christian IX / Frederik VIII / Christian X Krone era pre-WWI |
+  | Other 17th-18th | ~50 | Christian V / Frederik IV / V / VI minor coinage |
+
+**Harvest strategy (decided 2026-05-18 with user):** option (b) — split into sessions of 40 NIDs each via Chrome MCP per-NID page fetches with 31-60s random pauses. Five batches of 40 + one tail batch of 12 = 6 sessions, ~50-55 min real time per session.
+
+  | Batch | Status | NIDs | Year-range covered | Commit |
+  |---|---|---:|---|---|
+  | **1** | ✅ DONE 2026-05-18 | 40 (4139…54912) | 1602-1923 (mostly Christian IX / Frederik VIII / Christian X Krone era + 1602 Christian IV Penning/Hvid family + Frederik IV/V silver Skilling) | `a3d03a6` (submodule) |
+  | **2** | ⏳ pending | 40 (55301…111300) | TBD when run |
+  | **3** | ⏳ pending | 40 (111312…181629) | TBD when run |
+  | **4** | ⏳ pending | 40 (182700…366728) | TBD when run |
+  | **5** | ⏳ pending | 40 (372940…468777) | TBD when run |
+  | **6** | ⏳ pending | 12 (468831…577419) | TBD when run |
+
+Per-batch NID lists live in `scripts/cache/numista/_BO5_audit_2026-05-18.json` under `harvest_progress.batches.batch_N.nids` — drop-in resume-friendly format.
+
+**Cloudflare risk profile (empirical, 2026-05-17/18 across two harvest sessions):**
+
+- Per-NID `/catalogue/pieces<N>.html` URL: **low risk**, survived 70+ sequential fetches across two days (BO.1 SH-cluster 30 fetches + BO.5 batch 1 40 fetches) with 0 trips at 31-60s pacing.
+- Listing pages (`/<code>-1.html`, `?e=...`): **medium risk**, 2-3 trips during enumeration phase, each requiring 3-4 min cooldown.
+- `?ru=` ruler filter URL: **high risk** — fires on first call.
+
+The per-NID route is the safe one for incremental harvest. Listing-page enumeration only fires when scoping (BO.5's discovery phase is done).
+
+**Pause rationale (2026-05-18):** user direction «зробимо тимчасову паузу щоб не було лімітів» after batch 1 completed (40 fetches in ~52 min). The cumulative Numista access budget is finite and the user wants to spread the load across more days rather than burn it in one session. Per-NID fetches do not have a hard quota but they do contribute to Cloudflare's daily anti-abuse heuristic for our IP.
+
+**Resume procedure:**
+
+1. Read `scripts/cache/numista/_BO5_audit_2026-05-18.json` → `harvest_progress.batches.batch_<N>.nids` for the next pending batch.
+2. Use the JS extractor pattern from `docs/HARVEST_GUIDE.md §«Per-NID HTML fetcher»` (unchanged template).
+3. Save via `/tmp/save_numista.py` (Python helper writes to `scripts/cache/numista/<nid>.json` with `_harvested_via: "chrome_mcp_html"` marker).
+4. Per batch end: stage all 40 new cache files in submodule, commit with «numista: §BO.5 batch N/6 — ...», push submodule, update this entry's batch-progress table.
+5. After final batch (6/6): write the seed-builder pipeline for chrome_mcp_html-harvested entries OR fold into existing Numista parser depending on how the data shape compares with API entries.
+
+**Definition of done.** All 212 NIDs cached in `scripts/cache/numista/` with `_harvested_via: "chrome_mcp_html"` marker. Phase-1 coverage table updated to reflect 100% DK 1602-1914 coverage. Final BO.5 closure note replaces this in-progress entry.
+
 ---
 ## High priority
 
