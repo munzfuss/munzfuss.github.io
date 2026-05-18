@@ -67,11 +67,12 @@ def resolve_km_for_location(km, km_register: str, coin_id: str | None = None):
     return km
 
 
-# Migration breadcrumb keys produced by `migrate_curated_to_v2.py`. The
-# Phase 4 build assembly strips these from each coin dict before
-# instantiating the pydantic Coin model.
+# Migration breadcrumb keys produced by `migrate_curated_to_v2.py` and
+# `seed_v2_regroup.py`. The Phase 4 build assembly strips these from
+# each coin dict before instantiating the pydantic Coin model.
 V2_MIGRATION_BREADCRUMB_KEYS = (
-    "v1_home_location",
+    "v1_home_location",       # migrate_curated_to_v2.py — curated coin's source location yaml
+    "v1_seed_location",       # seed_v2_regroup.py — seed coin's source V1 location-yaml
     "_migration_note",
     "_migration_dup_origin_id",
 )

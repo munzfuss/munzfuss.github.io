@@ -542,6 +542,10 @@ def _resolve_dict_fields_per_location(coin: dict, loc_id: str, km_register: str 
         strip_v2_breadcrumbs,
     )
     out = strip_v2_breadcrumbs(coin)
+    # Strip underscore-prefixed seed-generator metadata fields. Coin
+    # schema is `extra='forbid'`; V1's `_merge_seeds_into_raw` applies
+    # the same strip at line ~347. V2 mirrors here for consistency.
+    out = {k: v for k, v in out.items() if not k.startswith("_")}
     cid = out.get("id")
 
     phase = out.get("phase")
