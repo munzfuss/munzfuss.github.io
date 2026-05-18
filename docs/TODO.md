@@ -351,7 +351,59 @@ The per-NID route is the safe one for incremental harvest. Listing-page enumerat
 
 **Definition of done.** All 212 NIDs cached in `scripts/cache/numista/` with `_harvested_via: "chrome_mcp_html"` marker. Phase-1 coverage table updated to reflect 100% DK 1602-1914 coverage. Final BO.5 closure note replaces this in-progress entry.
 
-#### BR — ucoin DK-realm 1514-1914 coverage audit  🟡 **AUDIT DONE, harvest paused** *(opened 2026-05-18, est: medium-large; offline analysis only — no Chrome MCP calls this session)*
+#### BR — ucoin DK-realm 1514-1914 coverage audit  🔵 **AUDIT DONE + batch 1 of N harvested (40 NIDs)** *(opened 2026-05-18, est: medium-large)*
+
+**Update 2026-05-18 (post-pause resume):**
+
+Per user direction «починай, бажано відсортовано по даті», resumed live ucoin harvest after the offline audit. Earliest gap = Norway under DK rule (ucoin period_id=2399 «Speciedaler 1648-1699», 153 total entries) — started chronologically there.
+
+**Batch 1/N done (commit `4a323ea` in submodule):**
+- **40 TIDs harvested** from p2399 page 1 (48 candidates, 40 in batch + 8 spillover to next batch)
+- All 40 canonical-TID validations **PASSED** (no «random euro-cent» rate-limit defence fired)
+- Coverage: Frederick III 1648-1670 + Christian V 1670-1699, ½/1/2/4/8/12/16-skilling + 1-mark denominations
+- Save format: `scripts/cache/ucoin/<tid>.json` per-TID files with `_verified: true` + `_canonical_tid` + `_harvested_via: chrome_mcp_html` markers
+- Save script: `/tmp/save_ucoin.py` aborts with exit code 2 on canonical-tid mismatch — prevents overwriting cache with the wrong-coin-served-as-defence-response
+
+**Platform-floor confirmations (this session's discovery):**
+
+  | Platform | DK floor | NO floor | SH floor |
+  |---|---|---|---|
+  | **Numista** | 1602 | 1602 | 1567 (SH-Gottorp) — varies by SH-issuer code |
+  | **NumisMaster** | 1591 | 1608 | 1538 (Holstein-Schauenburg) |
+  | **ucoin** | **1582** ✓ | **1648** ✓ | **1787-1851** ✓ (only 15 entries total) |
+
+→ This **closes §BO.1 step 3 «Norway 1514-1601 sweep»** with a clean negative finding: all three commercial / community catalogues have a platform floor for Norway between 1602 and 1648 — no pre-1602 Norge data is recoverable from any of them. The §BF Denmark 1514-1566 gap remains paper-only (Galster / Jensen-Skjoldager) per the original audit.
+
+**Remaining BR scope (revised after floor discovery):**
+
+  | Scope | Total on ucoin | Cached | Remaining | Batches needed (40/each) |
+  |---|---:|---:|---:|---:|
+  | NO period 2399 (1648-1699 Speciedaler) | 153 | 40 | **113** | ~3 |
+  | NO period 2400 (1699-1745 Speciedaler) | unknown | 0 | ? | ? |
+  | NO period 1041 (1746-1812 Rigsdaler) | unknown | 0 | ? | ? |
+  | NO period 883 (1813-1815 Rigsbankdaler) | unknown | 0 | ? (1813-1814 portion only) | ~1 |
+  | DK period 374 (Christian IX 1873-1906) | unknown | 9 | known partial harvest | ~1-2 |
+  | DK period 373 (Frederik VIII 1906-1912) | unknown | 0 | ? | ~1 |
+  | DK period 220 (Christian X 1912-1947, in-window 1912-1914) | unknown | 0 | ? | small |
+
+Estimated total remaining harvest: **~250-400 TIDs** across **6-10 batches**.
+
+**Rate-limit budget tracking:** session 1 (2026-05-18 12:08-13:18, ~70 min) consumed ~45 cumulative ucoin fetches with zero canonical-TID failures. Per `docs/SOURCES.md §13.2`, the cookie-cycle cap is ~50 fetches at 20s pacing; at our 31-60s pacing we made 45 without trip — comfortable margin. **Each future session should cap at ≤45 ucoin fetches to stay below the ceiling.**
+
+**Resume procedure for future sessions:**
+
+1. **Enumerate next batch** if not already known: visit listing page (`/catalog/?country=norway&period=<P>&page=<N>`) via Chrome MCP, extract TID-to-slug mapping (one navigation, low Cloudflare risk).
+2. **Per-TID fetch loop** — for each TID in batch:
+   - Sleep 31-60 s random
+   - Navigate `/coin/<slug>/?tid=<TID>`
+   - Run the JS extractor (template in `HARVEST_GUIDE.md §«Numista catalogue enumeration»` is similar; ucoin uses inline-space label-value format vs Numista's tab-separated — adapt the `get(label)` regex from `/(?:^|\n)<label>\s+([^\n]+)/`)
+   - **Mandatory canonical-tid check**: extract `link[rel=canonical]` href, parse `tid=NN`, compare against requested TID
+   - On mismatch: ABORT batch immediately, alert user — rate-limit defence has fired. Do NOT save the file.
+   - On match: pipe JSON to `/tmp/save_ucoin.py` (exit 2 on mismatch)
+3. **Per batch end**: stage all new `scripts/cache/ucoin/<tid>.json` files in submodule, commit + push, bump pointer in main.
+4. **Hard cap**: ≤45 ucoin fetches per session to stay under the rate-limit cookie cap. 40-batch sessions plus a few enumeration calls fits comfortably.
+
+**Definition of done** (revised post-audit): all Norway 1648-1814 TIDs cached + DK 1873-1914 Krone era completed. SH 1787-1851 already complete (15/15). Pre-1648 NO + pre-1582 DK + pre-1787 SH + post-1851 SH confirmed as platform-floor (not data gaps).
 
 **Surfaced** by user direction 2026-05-18 «проаналізуй так само що ще лишилось по ucoin для данії і її підконтрольних територій в рамках 1514-1914». Counterpart to BO.5's Numista audit, scoped to the DK realm (Denmark + Norway under DK 1514-1814 + Schleswig-Holstein duchies). Hamburg + Lübeck are separately in mission scope but are NOT «DK-controlled» — noted in passing for completeness.
 
