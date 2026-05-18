@@ -404,12 +404,22 @@ def compute_coin_year_runs(
             f, l = (c.year_first, yl) if yl >= c.year_first else (yl, c.year_first)
             ranges_iter = [(f, l)]
         years_ent = by_fuss_year_ent.setdefault(c.fuss, {})
-        ent = c.issuing_entity  # may be None
+        # V2: `issuing_entity` can be a list (joint-jurisdiction coins
+        # per V2_PIPELINE.md §3.10). Each element is recorded as a
+        # separate ent-key in the year map so the «shared» rule (≥2
+        # distinct entities in one year) fires naturally for joint-
+        # mint years. Scalar form (V1 + 90% V2) is recorded once.
+        ie = c.issuing_entity  # may be None or str or list[str]
+        if isinstance(ie, list):
+            ents_for_year = list(ie) if ie else [None]
+        else:
+            ents_for_year = [ie]
         for first, last in ranges_iter:
             for y in range(first, last + 1):
                 if tl_year_from <= y <= tl_year_to:
                     ent_map = years_ent.setdefault(y, {})
-                    ent_map.setdefault(ent, set()).add(c.id)
+                    for ent in ents_for_year:
+                        ent_map.setdefault(ent, set()).add(c.id)
 
     def _state_for(ent_map: dict) -> str:
         """A year is `entity_id` if it has exactly one distinct entity

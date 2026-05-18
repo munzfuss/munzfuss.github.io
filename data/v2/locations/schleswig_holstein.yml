@@ -14,9 +14,19 @@ summary:
   uk: Герцогства Шлезвіг і Гольштейн, 1559–1914 — королівсько-гольштинська частка (Glückstadt) і герцогство Шлезвіг-Гольштейн-Ґотторп
     (Шлезвіг, Tönning), доповнені Зондербурзькою, Норборзькою, Ґлюксбурзькою, Шауенбург-Піннебергською та Рантцауською побічними
     лініями. Від Авґсбурзького імперського монетного ордонансу до прусської анексії 1866 та запровадження Reichsmark 1871.
+# `danish_realm` is intentionally NOT consumed here despite 15 V1 SH-page
+# coins now living in `danish_realm.yml`. Consuming it would surface the
+# full 696-coin Danish realm catalogue (kronefod era, pre-Augsburg coinage,
+# etc.) for which SH has no phase definitions. Instead:
+#   - 11 multi-entity Helstaten-era joint-mint coins (Altona+Kopenhagen)
+#     carry `issuing_entity: [danish_realm, royal_holstein]` and surface
+#     here via the §3.10 inverse-index pass against `royal_holstein`.
+#   - 4 single-Kopenhagen Helstaten-era V1-SH coins (km-743 / km-770 /
+#     km-x001 / km-x002) are migration «consistency-pass candidates»
+#     (§3.1 step 4) — currently scalar `danish_realm`, only on V2 DK.
+#     Manual review may re-tag them to list-form for V2 SH coverage.
 consumes_entities:
 - _deprecated_gesamtstaat
-- danish_realm
 - glucksburg_duchy
 - gottorp_duchy
 - norburg_plon_duchy

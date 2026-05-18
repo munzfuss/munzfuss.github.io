@@ -45,6 +45,10 @@ TEMPLATE_DIR = REPO_ROOT / "templates"
 SITE_DIR = REPO_ROOT / "site"
 DEBUG_DIR = REPO_ROOT / "output" / "debug"
 
+V2_CURATED_DIR = DATA_DIR / "v2" / "curated"
+V2_SEED_DIR = DATA_DIR / "v2" / "seed"
+V2_LOCATIONS_DIR = DATA_DIR / "v2" / "locations"
+
 DEFAULT_LANGS = ["de", "en", "uk"]
 
 
@@ -471,6 +475,258 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
     return merged
 
 
+# =============================================================================
+# V2 entity-keyed assembly (per docs/V2_PIPELINE.md §4 / §2.1)
+# =============================================================================
+
+_V2_CURATED_CACHE: dict[str, list[dict]] | None = None
+
+
+def _load_v2_curated() -> dict[str, list[dict]]:
+    """Load every `data/v2/curated/<entity>.yml` once per process and return
+    {entity_id: [coin_dict, ...]}. Each coin dict is the raw YAML value
+    BEFORE pydantic instantiation (so dict-form phase / km can still be
+    resolved per assembling location)."""
+    global _V2_CURATED_CACHE
+    if _V2_CURATED_CACHE is not None:
+        return _V2_CURATED_CACHE
+    cache: dict[str, list[dict]] = {}
+    if V2_CURATED_DIR.exists():
+        for path in sorted(V2_CURATED_DIR.glob("*.yml")):
+            with open(path, encoding="utf-8") as f:
+                doc = yaml.safe_load(f) or {}
+            cache[doc.get("id", path.stem)] = doc.get("coins", []) or []
+    _V2_CURATED_CACHE = cache
+    return cache
+
+
+def _load_v2_seed_entries() -> list[dict]:
+    """Load every `data/v2/seed/<source>/<entity>.yml`, flatten into a single
+    list of coin dicts. Empty until Phase 3 lands. Each coin dict carries a
+    `_v2_seed_source` field (added here) so the inverse-index step can
+    track provenance."""
+    out: list[dict] = []
+    if not V2_SEED_DIR.exists():
+        return out
+    for source_dir in sorted(V2_SEED_DIR.iterdir()):
+        if not source_dir.is_dir():
+            continue
+        for path in sorted(source_dir.glob("*.yml")):
+            with open(path, encoding="utf-8") as f:
+                doc = yaml.safe_load(f) or {}
+            for c in doc.get("coins", []) or []:
+                c = dict(c)
+                c["_v2_seed_source"] = source_dir.name
+                out.append(c)
+    return out
+
+
+def _normalise_ie_to_list(ie) -> list[str]:
+    """Return a list of entity tags from a scalar-or-list `issuing_entity`."""
+    if ie is None:
+        return []
+    if isinstance(ie, list):
+        return list(ie)
+    return [ie]
+
+
+def _resolve_dict_fields_per_location(coin: dict, loc_id: str, km_register: str | None) -> dict:
+    """Return a shallow copy of `coin` where dict-form `phase` and
+    `catalog.km` are resolved to the scalar value matching `loc_id` /
+    `km_register`. Migration breadcrumbs (`v1_home_location`,
+    `_migration_note`, `_migration_dup_origin_id`) are stripped. The
+    returned dict is ready for `Coin(**dict)` instantiation."""
+    from lib.v2_resolver import (
+        resolve_phase_for_location,
+        resolve_km_for_location,
+        strip_v2_breadcrumbs,
+    )
+    out = strip_v2_breadcrumbs(coin)
+    cid = out.get("id")
+
+    phase = out.get("phase")
+    if isinstance(phase, dict):
+        out = {**out, "phase": resolve_phase_for_location(phase, loc_id, cid)}
+
+    catalog = out.get("catalog")
+    if isinstance(catalog, dict):
+        km = catalog.get("km")
+        if isinstance(km, dict):
+            resolved_km = resolve_km_for_location(km, km_register or "", cid)
+            out = {**out, "catalog": {**catalog, "km": resolved_km}}
+
+    return out
+
+
+def _assemble_v2_location(loc_id: str, raw: dict) -> int:
+    """Populate `raw['coins']` from V2 entity-keyed curated + seed files.
+
+    Per V2_PIPELINE.md §4.2 two-pass walk:
+
+      Pass 1 — direct membership. Walk each entity file `<ent>.yml` for
+      `ent in consumes_entities` and pick up every coin that lives there.
+
+      Pass 2 — inverse index for multi-entity coins. Scan ALL entity
+      files; surface any coin whose list-form `issuing_entity` intersects
+      with `consumes_entities` AND whose id wasn't seen in Pass 1. This
+      handles the case where a multi-entity coin lives in an entity file
+      NOT consumed by this location, but the coin's list contains an
+      entity that IS consumed.
+
+    Seed entries with non-null `promoted_to` are dropped (the curated
+    entry already represents them).
+
+    Dict-form `phase` and `catalog.km` are resolved per the current
+    location at assembly time. V2 migration breadcrumbs are stripped.
+
+    Returns the number of coins assembled.
+    """
+    consumes_entities = raw.get("consumes_entities") or []
+    if not consumes_entities:
+        return 0
+    consumes_set = set(consumes_entities)
+
+    km_register = raw.get("km_register")
+    by_entity = _load_v2_curated()
+    seed_entries = _load_v2_seed_entries()
+
+    assembled: list[dict] = []
+    seen_ids: set[str] = set()
+
+    # ---- Pass 1: direct membership ---------------------------------------
+    for ent in consumes_entities:
+        for coin in by_entity.get(ent, []):
+            cid = coin.get("id")
+            if not cid or cid in seen_ids:
+                continue
+            if coin.get("promoted_to"):
+                continue
+            assembled.append(_resolve_dict_fields_per_location(coin, loc_id, km_register))
+            seen_ids.add(cid)
+
+    # ---- Pass 2: inverse-index for multi-entity coins --------------------
+    for ent, coins in by_entity.items():
+        if ent in consumes_set:
+            continue  # already handled in Pass 1
+        for coin in coins:
+            cid = coin.get("id")
+            if not cid or cid in seen_ids:
+                continue
+            ie_list = _normalise_ie_to_list(coin.get("issuing_entity"))
+            if not (set(ie_list) & consumes_set):
+                continue
+            if coin.get("promoted_to"):
+                continue
+            assembled.append(_resolve_dict_fields_per_location(coin, loc_id, km_register))
+            seen_ids.add(cid)
+
+    # ---- Seed entries (Phase 3 output; empty until then) ----------------
+    for coin in seed_entries:
+        cid = coin.get("id")
+        if not cid or cid in seen_ids:
+            continue
+        ie_list = _normalise_ie_to_list(coin.get("issuing_entity"))
+        if not (set(ie_list) & consumes_set):
+            continue
+        if coin.get("promoted_to"):
+            continue
+        # Strip seed-side bookkeeping field before pydantic instantiation.
+        c = {k: v for k, v in coin.items() if k != "_v2_seed_source"}
+        assembled.append(_resolve_dict_fields_per_location(c, loc_id, km_register))
+        seen_ids.add(cid)
+
+    # ---- Per-coin pre-filter: phase definition must exist on this page ----
+    # An entity file may legitimately carry coins whose `fuss` or `phase` is
+    # not defined on this consumer's location yaml — e.g. Christian-IV
+    # Haderslev coins (reichsdukatenfuss Phase I 1591-1593) live in
+    # royal_holstein.yml; DK page accommodates them via wide Phase-I range,
+    # but the SH page's reichsdukatenfuss Phase I starts at 1600. Rather
+    # than hard-fail the whole V2 build on this mismatch, we drop the coin
+    # from this specific assembly with a one-line summary. The coin is NOT
+    # lost — it surfaces on the OTHER consumer pages whose phase definitions
+    # do accommodate it. Users iterating in Phase 8 can either widen this
+    # page's phase ranges OR re-tag the coin's phase as dict-form
+    # `{denmark: I, schleswig_holstein: II}` per V2_PIPELINE.md §5.
+    phases_map = raw.get("phases") or {}
+    kept: list[dict] = []
+    dropped: list[tuple[str, str]] = []
+    for c in assembled:
+        fuss = c.get("fuss")
+        phase = c.get("phase")  # already scalar after _resolve_dict_fields
+        cid = c.get("id")
+        if fuss not in phases_map:
+            dropped.append((cid, f"fuss '{fuss}' not on this page"))
+            continue
+        ph_defs = phases_map[fuss] or []
+        ph_ids = {p.get("id") if isinstance(p, dict) else getattr(p, "id", None) for p in ph_defs}
+        if phase not in ph_ids:
+            dropped.append((cid, f"phase '{phase}' not defined for fuss '{fuss}'"))
+            continue
+        # Year-range sanity: phase entry has year_from/year_to envelope.
+        year_first = c.get("year_first")
+        if year_first is not None:
+            match = next((p for p in ph_defs
+                          if (p.get("id") if isinstance(p, dict) else getattr(p, "id", None)) == phase), None)
+            if match is not None:
+                yf = match.get("year_from") if isinstance(match, dict) else getattr(match, "year_from", None)
+                yt = match.get("year_to") if isinstance(match, dict) else getattr(match, "year_to", None)
+                if yf is not None and yt is not None and (year_first < yf - 1 or year_first > yt + 1):
+                    dropped.append((cid, f"year_first {year_first} outside phase {phase} [{yf}, {yt}]"))
+                    continue
+        kept.append(c)
+
+    if dropped:
+        print(f"   ⚠  v2/{loc_id}: dropped {len(dropped)} coin(s) — not compatible "
+              f"with this page's phase definitions:")
+        for cid, why in dropped[:5]:
+            print(f"      • {cid}: {why}")
+        if len(dropped) > 5:
+            print(f"      • ... and {len(dropped) - 5} more (use phase dict-form per "
+                  f"V2_PIPELINE.md §5 to render on both DK + SH)")
+
+    raw["coins"] = kept
+    # consumes_entities was a V2-only sidecar field — `Location` allows
+    # extras (`model_config.extra='allow'`), so it survives the
+    # instantiation as `_consumes_entities`-style metadata. No strip needed.
+    return len(kept)
+
+
+def load_v2_locations(filter_id: str | None = None) -> list[Location]:
+    """Phase 4.2 V2 location loader. Reads `data/v2/locations/<loc>.yml`
+    (display-meta only, no coins), assembles coins via
+    `_assemble_v2_location()`, then validates as `Location`. Returns
+    [] if `data/v2/locations/` is empty (V2 build is a no-op then)."""
+    if not V2_LOCATIONS_DIR.exists():
+        return []
+    locations = []
+    for path in sorted(V2_LOCATIONS_DIR.glob("*.yml")):
+        if path.stem.endswith("-references"):
+            continue
+        if filter_id and path.stem != filter_id:
+            continue
+        with open(path, encoding="utf-8") as f:
+            raw = yaml.safe_load(f) or {}
+        n_assembled = _assemble_v2_location(path.stem, raw)
+        if n_assembled:
+            print(f"   🌱 v2/{path.stem}: assembled {n_assembled} coin(s) "
+                  f"from {len(raw.get('consumes_entities') or [])} entity file(s)")
+        try:
+            loc = Location(**raw)
+            # Attach references sidecar from V1 (V2 shares references with V1).
+            v1_ref_path = DATA_DIR / "locations" / f"{path.stem}-references.yml"
+            if v1_ref_path.exists():
+                with open(v1_ref_path, encoding="utf-8") as rf:
+                    loc._references_data = yaml.safe_load(rf)
+            else:
+                loc._references_data = None
+            locations.append(loc)
+        except ValidationError as e:
+            print(f"❌ V2 schema errors in v2/{path.name}:")
+            print(e)
+            raise
+    return locations
+
+
 def load_locations(filter_id: str | None = None) -> list[Location]:
     locations = []
     for path in sorted((DATA_DIR / "locations").glob("*.yml")):
@@ -561,8 +817,16 @@ def build_location(
     repo_url: str = "",
     issuing_entities: dict | None = None,
     base_url: str = "",
+    output_root: Path | None = None,
 ) -> None:
-    print(f"🏛️  Building {loc.id} ({len(loc.coins)} coins)")
+    """Render one location to `<output_root>/<loc.id>/<lang>/index.html`.
+    `output_root` defaults to the V1 site/ directory; V2 passes
+    site/v2/ to write under that subtree (per V2_PIPELINE.md §3.8).
+    The template + assembly logic is shared between V1 and V2 — only
+    the output path branches."""
+    if output_root is None:
+        output_root = SITE_DIR
+    print(f"🏛️  Building {loc.id} ({len(loc.coins)} coins) → {output_root.relative_to(REPO_ROOT)}/")
     
     computed = compute_location(loc, fuesse)
     if debug:
@@ -574,9 +838,17 @@ def build_location(
     # The filter strip in the template iterates the global registry but
     # SKIPS entries not in this set, so a chip with no coins to toggle
     # (e.g. `prussian_province` in schleswig_holstein.yml) doesn't render at all.
-    active_entity_ids = {
-        c.issuing_entity for c in loc.coins if c.issuing_entity is not None
-    }
+    # V2: `coin.issuing_entity` may be a list of strings (joint-jurisdiction
+    # coins per V2_PIPELINE.md §3.10) — flatten the list into individual tags.
+    active_entity_ids = set()
+    for c in loc.coins:
+        ie = c.issuing_entity
+        if ie is None:
+            continue
+        if isinstance(ie, list):
+            active_entity_ids.update(ie)
+        else:
+            active_entity_ids.add(ie)
 
     # Pre-compute the up-to-six period × scope layers for each timeline bar.
     # Empty when this location has no timeline (e.g. lubeck stub).
@@ -672,7 +944,7 @@ def build_location(
             fmt_date=lambda d, l=lang: i18n.fmt_date(d, l),
         )
 
-        out_dir = SITE_DIR / loc.id / lang
+        out_dir = output_root / loc.id / lang
         out_dir.mkdir(parents=True, exist_ok=True)
         out_file = out_dir / "index.html"
         with open(out_file, "w", encoding="utf-8") as f:
@@ -821,6 +1093,16 @@ def parse_args():
     p.add_argument("--no-include-seed", dest="include_seed", action="store_false",
                    help="Force-hide seed locations from the landing page even on local "
                         "builds (matches production behaviour).")
+    # V2 pipeline flags (per docs/V2_PIPELINE.md §4.1). Default behaviour:
+    # build V1 always; build V2 additionally if data/v2/locations/ is
+    # non-empty. Output goes to site/v2/<loc>/<lang>/ alongside the V1
+    # site/<loc>/<lang>/.
+    p.add_argument("--v1-only", dest="v1_only", action="store_true",
+                   help="Suppress the V2 build path even when data/v2/locations/ "
+                        "is populated.")
+    p.add_argument("--v2-only", dest="v2_only", action="store_true",
+                   help="Skip the V1 build path; only build site/v2/<loc>/<lang>/. "
+                        "Useful for fast V2 iteration when V1 is unchanged.")
     return p.parse_args()
 
 
@@ -863,16 +1145,38 @@ def main():
     # Load locations
     locations = load_locations(filter_id=args.location)
     print(f"   Locations: {len(locations)} ({', '.join(l.id for l in locations)})")
+
+    # V2 — load entity-keyed locations + assemble coins per consumes_entities.
+    # Mode:
+    #   * default        — V1 + V2 (if data/v2/locations/ non-empty)
+    #   * --v1-only      — V1 alone
+    #   * --v2-only      — V2 alone
+    if args.v1_only and args.v2_only:
+        print("\n❌ --v1-only and --v2-only are mutually exclusive.")
+        sys.exit(1)
+    v2_enabled = (not args.v1_only) and V2_LOCATIONS_DIR.exists() and any(V2_LOCATIONS_DIR.glob("*.yml"))
+    v2_locations: list[Location] = []
+    if v2_enabled:
+        print()
+        print("📦 Loading V2 entity-keyed locations...")
+        v2_locations = load_v2_locations(filter_id=args.location)
+        print(f"   V2 locations: {len(v2_locations)} "
+              f"({', '.join(l.id for l in v2_locations)})")
     print()
-    
+
     # Schema + cross-ref validation
     print("🔍 Validating cross-references...")
     if not cross_ref_check(locations, fuesse):
-        print("\n❌ Validation failed. Fix errors above and rerun.")
+        print("\n❌ V1 validation failed. Fix errors above and rerun.")
         sys.exit(1)
-    print("   ✓ All cross-references OK")
+    print("   ✓ V1 cross-references OK")
+    if v2_enabled and v2_locations:
+        if not cross_ref_check(v2_locations, fuesse):
+            print("\n❌ V2 validation failed. Fix errors above and rerun.")
+            sys.exit(1)
+        print("   ✓ V2 cross-references OK")
     print()
-    
+
     if args.validate_only:
         print("✅ Validation-only mode. No rendering performed.")
         return
@@ -887,11 +1191,21 @@ def main():
     # Render
     languages = [args.lang] if args.lang else DEFAULT_LANGS
     env = build_env(str(TEMPLATE_DIR))
-    
-    for loc in locations:
-        build_location(loc, fuesse, theme, ui, languages, env,
-                       debug=args.debug, repo_url=args.repo_url,
-                       issuing_entities=issuing_entities, base_url=base_url)
+
+    if not args.v2_only:
+        for loc in locations:
+            build_location(loc, fuesse, theme, ui, languages, env,
+                           debug=args.debug, repo_url=args.repo_url,
+                           issuing_entities=issuing_entities, base_url=base_url)
+
+    if v2_enabled and v2_locations:
+        print()
+        print(f"📦 Rendering V2 pages → {(SITE_DIR / 'v2').relative_to(REPO_ROOT)}/")
+        for loc in v2_locations:
+            build_location(loc, fuesse, theme, ui, languages, env,
+                           debug=args.debug, repo_url=args.repo_url,
+                           issuing_entities=issuing_entities, base_url=base_url,
+                           output_root=SITE_DIR / "v2")
 
     if len(locations) > 1 or not args.location:
         # Pull contact email from local.env (or process env). Falls back to

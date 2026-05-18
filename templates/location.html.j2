@@ -106,10 +106,20 @@
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-entity">
-    {%- set ent = issuing_entities.get(coin.raw.issuing_entity) if coin.raw.issuing_entity else None -%}
-    {%- if ent -%}
-      <span class="ent-badge ent-{{ coin.raw.issuing_entity }}" data-tooltip="{{ ((ent.name|t(lang)) ~ ' — ' ~ ((ent.description|t(lang))|striptags if ent.description else '')) | nb_dashes }}">{{ ent.abbrev }}</span>
-    {%- else -%}—{%- endif -%}
+    {# V2 issuing_entity may be a list (joint-jurisdiction coins per V2_PIPELINE.md
+       §3.10). Render one badge per entity in order; scalar shows a single badge. #}
+    {%- set ie_raw = coin.raw.issuing_entity -%}
+    {%- if ie_raw is none -%}—
+    {%- else -%}
+      {%- if ie_raw is string -%}{%- set ie_tags = [ie_raw] -%}
+      {%- else -%}{%- set ie_tags = ie_raw -%}{%- endif -%}
+      {%- for tag in ie_tags -%}
+        {%- set ent = issuing_entities.get(tag) -%}
+        {%- if ent -%}
+          <span class="ent-badge ent-{{ tag }}" data-tooltip="{{ ((ent.name|t(lang)) ~ ' — ' ~ ((ent.description|t(lang))|striptags if ent.description else '')) | nb_dashes }}">{{ ent.abbrev }}</span>{% if not loop.last %} {% endif %}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
   </td>
   <td class="c-note">{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-soll">
@@ -301,10 +311,19 @@
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-entity">
-    {%- set ent = issuing_entities.get(coin.raw.issuing_entity) if coin.raw.issuing_entity else None -%}
-    {%- if ent -%}
-      <span class="ent-badge ent-{{ coin.raw.issuing_entity }}" data-tooltip="{{ ent.name|t(lang) }}">{{ ent.abbrev }}</span>
-    {%- else -%}—{%- endif -%}
+    {# V2 list-form aware (same shape as the silver coin_row macro above). #}
+    {%- set ie_raw = coin.raw.issuing_entity -%}
+    {%- if ie_raw is none -%}—
+    {%- else -%}
+      {%- if ie_raw is string -%}{%- set ie_tags = [ie_raw] -%}
+      {%- else -%}{%- set ie_tags = ie_raw -%}{%- endif -%}
+      {%- for tag in ie_tags -%}
+        {%- set ent = issuing_entities.get(tag) -%}
+        {%- if ent -%}
+          <span class="ent-badge ent-{{ tag }}" data-tooltip="{{ ent.name|t(lang) }}">{{ ent.abbrev }}</span>{% if not loop.last %} {% endif %}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
   </td>
   <td class="c-note">{{ (coin.raw.note|t(lang))|safe if coin.raw.note else '' }}</td>
   <td class="c-ref">
