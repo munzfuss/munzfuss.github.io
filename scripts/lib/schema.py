@@ -438,9 +438,10 @@ class Coin(_StrictBase):
             "single-mint coins (the common case); a list of strings when the "
             "same type was struck IN PARALLEL at multiple mints (e.g. "
             "['Altona', 'Kopenhagen', 'Kongsberg'] for Christian VII's 1 Skilling "
-            "1771). Each list entry may carry its own parenthetical mintmark / "
-            "mintmaster annotation, e.g. ['Altona (VS)', 'Kopenhagen']. The "
-            "render layer joins list entries with «, » for the mint column."
+            "1771). Mintmaster initials NEVER live in this field — they go in "
+            "the dedicated `mintmaster` field (per user policy 2026-05-18 / "
+            "V2_DECISIONS D32). The render layer joins list entries with «, » "
+            "for the mint column."
         ),
     )
     mint_verified: bool = True

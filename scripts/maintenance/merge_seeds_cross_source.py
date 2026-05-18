@@ -72,16 +72,17 @@ V2_MATCH_UNCERTAINTY = ROOT / "data" / "v2" / "match_uncertainty"
 
 
 # ---------------------------------------------------------------------------
-# cf-form detection — user policy 2026-05-18
+# cf-form + unlisted detection — user policy 2026-05-18
 # ---------------------------------------------------------------------------
-# «cf. X» catalog references point at a similar OTHER coin, not at this
-# entry's own catalogue index, so they don't belong in catalog columns.
-# Filter at ingest in _deep_merge_catalog to prevent future seeds from
-# re-introducing them. Matches both scalar field values («cf. 445») and
-# list-form entries («KM-cf. 15», «Fr-unlisted (cf. 101)»).
-_SCALAR_CF_RE = re.compile(r"^\s*cf\.?\s*\S", re.IGNORECASE)
+# «cf. X» refs point at a similar OTHER coin, not at this entry's own
+# catalogue index. «X-unlisted» is a negative claim («this coin is NOT
+# in catalogue X»). Neither belongs in catalog columns. Filter at
+# ingest in _deep_merge_catalog so future seeds carrying either shape
+# (e.g. Bruun harvester reading Stack's-Bowers «Fr-cf. 3089» / Lange's
+# «KM-unlisted») don't re-introduce them.
+_SCALAR_CF_RE = re.compile(r"^\s*(?:cf\.?\s*\S|unlisted\s*$)", re.IGNORECASE)
 _OTHERS_CF_RE = re.compile(
-    r"^\s*[A-Za-zÄÖÜäöüß][\w./\- ]*?(?:[-\s]+cf\.?(?:\s|\d)|\bunlisted\b.*\bcf\.?\s)",
+    r"^\s*[A-Za-zÄÖÜäöüß][\w./\- ]*?(?:[-\s]+cf\.?(?:\s|\d)|[-\s]+unlisted\b)",
     re.IGNORECASE,
 )
 
