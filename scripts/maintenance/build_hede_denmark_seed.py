@@ -500,7 +500,20 @@ _DANSKMOENT_BASE = "https://www.danskmoent.dk"
 
 def _danskmoent_url(basename: str) -> str:
     """Reconstruct the per-coin URL from a cache basename.
-    Christian pages live under /chr/, Frederik under /fr/."""
+
+    Path conventions on danskmoent.dk:
+      • `/chr/c{N}h{num}.htm`   — Christian N main-realm Hede page
+      • `/fr/f{N}h{num}.htm`    — Frederik N main-realm Hede page
+      • `/norge/nc{N}h{num}.htm`, `/norge/nf{N}h{num}.htm`
+                                 — Norge sub-catalogue (personal-union
+                                   Norwegian volume of the same monarch's
+                                   reign); leading `n` marker
+    Fallback to bare root path for any unmatched basename (manifest
+    contains a few entries like `f4hkr5.htm` that don't fit the
+    standard volume pattern).
+    """
+    if basename.startswith(("nc", "nf")):
+        return f"{_DANSKMOENT_BASE}/norge/{basename}.htm"
     if basename.startswith("c"):
         return f"{_DANSKMOENT_BASE}/chr/{basename}.htm"
     if basename.startswith("f"):
