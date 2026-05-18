@@ -21,6 +21,15 @@
 #      globally; reports total errors. Doesn't block. After the
 #      §X cleanup, can be promoted to BLOCK.
 #
+#   4. V2 invariants (HARD BLOCK on failure) — runs
+#      `scripts/audit_v2.py` when the commit touches V2 paths
+#      (data/v2/, scripts/maintenance/{seed_v2,merge_seeds,
+#      absorb_seeds,relink_promoted,bootstrap_v2}*.py,
+#      scripts/build.py, scripts/lib/{schema,v2_resolver,
+#      v2_entity_classify,seed_merge}.py). Per V2_DECISIONS.md D26:
+#      audit hard-blocks pre-commit (stricter than the originally-
+#      recommended advisory mode, per user direction §7.4).
+#
 # The hook is fast — it only runs the heavy checks when the commit
 # actually touches relevant files. Docs-only commits skip the build
 # step entirely.
@@ -119,6 +128,28 @@ if [ -n "$STAGED_YAML" ]; then
         echo "  ${C_YELL}⚠${C_RST} $ERR error(s) + $WARN warning(s) project-wide — ADVISORY (TODO §X cleanup pending)"
     fi
     rm -f "$I18N_LOG"
+fi
+
+# ---------------------------------------------------------------------------
+# Check 4: V2 invariants (hard block per D26)
+# ---------------------------------------------------------------------------
+
+V2_RELEVANT=$(echo "$STAGED" | grep -E '^(data/v2/|scripts/maintenance/(seed_v2|merge_seeds|absorb_seeds|relink_promoted|bootstrap_v2)|scripts/build\.py$|scripts/lib/(schema|v2_resolver|v2_entity_classify|seed_merge)\.py$)' || true)
+
+if [ -n "$V2_RELEVANT" ]; then
+    echo "▶ V2 invariants audit (per D26 hard-block)..."
+    V2_LOG=$(mktemp -t precommit-v2audit.XXXXXX)
+    if ! "$PYTHON" scripts/audit_v2.py --quick > "$V2_LOG" 2>&1; then
+        echo "${C_RED}✗ V2 invariants audit FAILED.${C_RST}"
+        echo "Last lines of output:"
+        tail -30 "$V2_LOG" | sed 's/^/    /'
+        echo
+        echo "Full log: $V2_LOG"
+        echo "Fix the V2 invariant violation, or bypass with: git commit --no-verify"
+        exit 1
+    fi
+    rm -f "$V2_LOG"
+    echo "  ${C_GREEN}✓${C_RST} V2 invariants pass (I1, I2, I3, I5 in --quick mode)"
 fi
 
 echo "${C_DIM}pre-commit: checks complete${C_RST}"

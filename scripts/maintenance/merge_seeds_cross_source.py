@@ -915,6 +915,13 @@ def build_unified(members: list[dict], unified_id: str,
     out["fuss"] = _take_first_non_none(sorted_members, "fuss") or "seed_unsorted"
     out["phase"] = _take_first_non_none(sorted_members, "phase") or "unified"
     out["kind"] = _take_first_non_none(sorted_members, "kind") or "kurant"
+    # `nominal` is schema-required. Some Galster pre-1541 seed entries
+    # come with empty-string nominal (parser couldn't extract) — gap-fill
+    # to '(?)' placeholder so schema validates; curator inspects pending
+    # list and fills in real nominal via classification_decisions or by
+    # fixing the parser.
+    out["nominal"] = _take_first_non_none(sorted_members, "nominal") or "(?)"
+    # `year_label` similar — synthesise from year_first/_last below if absent.
 
     # year_ranges + year_first/_last — UNION across members per
     # data-accumulation principle. The widest combined range envelope

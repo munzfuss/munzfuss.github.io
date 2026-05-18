@@ -370,6 +370,16 @@ def _build_v2_seed_groups(
             sanitised = _sanitise_coin(coin, report)
             if entity is not None:
                 sanitised["issuing_entity"] = entity
+            else:
+                # Coin lands in the `_unclassified` synthetic bucket — its
+                # ORIGINAL issuing_entity (typically the legacy V1-seed
+                # tag like `schleswig_holstein_duchy` that didn't survive
+                # the mint-classifier) MUST be replaced with the synthetic
+                # bucket tag, otherwise it leaks into audit_v2.py's I5
+                # check as «unknown entity» AND the home-file rule
+                # check (I1) sees a mismatch between filename
+                # (`_unclassified`) and tag (`schleswig_holstein_duchy`).
+                sanitised["issuing_entity"] = "_unclassified"
             sanitised["v1_seed_location"] = v1_loc
             by_entity[home].append(sanitised)
 
@@ -519,10 +529,22 @@ def main() -> int:
         out_dir.mkdir(parents=True, exist_ok=True)
         for entity_id, coins in sorted(by_entity.items()):
             out_path = out_dir / f"{entity_id}.yml"
-            merged_coins, stats = merge_seed(coins, out_path)
-            for k in merge_totals:
-                merge_totals[k] += stats.get(k, 0)
-            plain_coins = [_ruamel_to_dict(c) for c in merged_coins]
+            # Synthetic buckets (`_unclassified` etc.) bypass merge_seed:
+            # they hold coins where the mint-classifier couldn't determine
+            # an entity, so the «existing curated issuing_entity» preserved
+            # by merge_seed would be the LEGACY seed-side tag
+            # (`schleswig_holstein_duchy`, etc.) we want to override with
+            # the synthetic bucket marker (`_unclassified`). Direct write
+            # is correct for the synthetic bucket since none of its data
+            # is curator-edited — it's purely an «escape hatch»
+            # collection awaiting classification decisions.
+            if entity_id.startswith("_"):
+                plain_coins = coins
+            else:
+                merged_coins, stats = merge_seed(coins, out_path)
+                for k in merge_totals:
+                    merge_totals[k] += stats.get(k, 0)
+                plain_coins = [_ruamel_to_dict(c) for c in merged_coins]
             out_path.write_text(
                 _emit_v2_seed_file(src, entity_id, plain_coins),
                 encoding="utf-8",
