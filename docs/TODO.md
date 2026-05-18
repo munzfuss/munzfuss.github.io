@@ -351,6 +351,63 @@ The per-NID route is the safe one for incremental harvest. Listing-page enumerat
 
 **Definition of done.** All 212 NIDs cached in `scripts/cache/numista/` with `_harvested_via: "chrome_mcp_html"` marker. Phase-1 coverage table updated to reflect 100% DK 1602-1914 coverage. Final BO.5 closure note replaces this in-progress entry.
 
+#### BR — ucoin DK-realm 1514-1914 coverage audit  🟡 **AUDIT DONE, harvest paused** *(opened 2026-05-18, est: medium-large; offline analysis only — no Chrome MCP calls this session)*
+
+**Surfaced** by user direction 2026-05-18 «проаналізуй так само що ще лишилось по ucoin для данії і її підконтрольних територій в рамках 1514-1914». Counterpart to BO.5's Numista audit, scoped to the DK realm (Denmark + Norway under DK 1514-1814 + Schleswig-Holstein duchies). Hamburg + Lübeck are separately in mission scope but are NOT «DK-controlled» — noted in passing for completeness.
+
+**Method** — pure offline audit. Inspected `scripts/cache/ucoin/_url_index.json` (705 cached TIDs) + 15 per-period-or-country TSV harvest manifests (`period_*.tsv`, `country_*.tsv`). No live Chrome MCP calls to ucoin per user pause directive («зробимо тимчасову паузу щоб не було лімітів») + the pre-existing §M Cloudflare block since 2026-05-13.
+
+**Cache coverage state (DK-realm + asides), per era × country:**
+
+  | Era | Denmark | Norway | SH-duchies | (Hamburg) | (Lübeck) |
+  |---|---:|---:|---:|---:|---:|
+  | 1514-1581 | **0** 🔴 | 0 | 0 | 0 | 0 |
+  | 1582-1601 | 12 ✓ | **0** 🔴 | 0 | 0 | 0 |
+  | 1602-1648 | 123 ✓ | **0** 🔴 | 0 | 0 | 23 ✓ |
+  | 1649-1699 | 206 ✓ | **0** 🔴 | 0 | 0 | 19 ✓ |
+  | 1700-1749 | 66 ✓ | **0** 🔴 | 0 | 20 ✓ | 22 ✓ |
+  | 1750-1812 | 54 ✓ | **0** 🔴 | 10 ✓ | 39 ✓ | 15 ✓ |
+  | 1813-1854 | 52 ✓ | **0** 🔴 (DK rule ended 1814; rest is Sweden) | 6 ✓ | 17 ✓ | 0 |
+  | 1855-1872 | 8 ✓ | n/a | **0** 🔴 | 4 ✓ | 0 |
+  | 1873-1914 | **9** 🔴 (paused mid-harvest §M) | n/a | **0** 🔴 | 0 🔴 | 0 🔴 |
+  | **Total** | **530** | **0** | **16** | **80** | **79** |
+
+**Cached for the DK-realm + SH-duchies subset (this audit's primary scope)**: **546 entries**.
+
+**Critical gaps (priority order):**
+
+1. 🔴 **Norway 1514-1814 — 0 entries, never enumerated.** Mission scope explicitly includes Norway under Danish rule. Likely 30-80 types on ucoin (Kongsberg/Christiania mints, Christian IV Speciedaler family, Frederik III-Christian VII Skilling, Frederik VI Rigsbankdaler). **No TSV harvest file ever attempted for Norway.**
+
+2. 🔴 **Denmark 1514-1581 — 0 entries.** Earliest cached DK is 1582 (from `period_2940` «Speciedaler 1582-1624»). Whether ucoin catalogues pre-1582 is unverified — may be a platform-floor (similar to Numista's 1602 floor, NumisMaster's 1591 floor) OR a harvest gap. **Probe needed to disambiguate.**
+
+3. 🔴 **Denmark 1873-1914 Krone era — only 9 entries.** `period_374` TSV header explicitly says «only 1873-1875 overlap» — meaning the §M-era harvest (2026-05-13) deliberately paused after 1875 due to ucoin rate-limits. **This is a KNOWN deferred harvest**, complementary to BO.5 batch 1 Numista work just completed (which fetched 30+ Christian IX/Frederik VIII/Christian X NIDs from Numista).
+
+4. 🟡 **Schleswig-Holstein duchies 1514-1788 — 0 entries.** Only 16 SH cached, all post-1787 Speciesbank-reform era. SH-Gottorp ducal coinage 1564-1773 + Christian III/Frederik II ducal coinage entirely missing.
+
+5. 🟡 **SH 1855-1914 — 0 entries.** Both pre-1864 Helstaten era + post-1864 Reichsmark era missing.
+
+**Asides (not «DK-controlled» but in mission scope per CLAUDE.md):**
+- Hamburg pre-1700: 0 cached (earliest 1713). Hamburg post-1872: 0 (Reichsgoldmünzfuß era missing).
+- Lübeck pre-1620: 0. Lübeck post-1854: 0.
+
+**Rough scale estimate (offline-only — needs live verification):** total ucoin types for DK-realm 1514-1914 likely **700-1000**, of which **546 cached** = roughly **25-40 % real gap**. Norway is the dominant unknown.
+
+**No batches yet defined** — harvest plan deferred. Once user lifts the «pause to avoid rate limits» directive, the resume procedure is:
+
+1. Visit `en.ucoin.net/coins/norway/` via Chrome MCP to confirm catalogue exists + estimate type count
+2. Probe ucoin SH country page for period_ids covering pre-1788 era
+3. Identify ucoin period_id for Christian IX 1873-1906 post-1875 + Frederik VIII + Christian X
+4. Once scopes are sized, build per-batch harvest plan similar to BO.5 (40 TIDs/session via Chrome MCP, ucoin-specific pacing: ≤45 TIDs per cookie-cycle at 20s pacing per `docs/SOURCES.md §13.2`)
+5. Save through `scripts/maintenance/ucoin_fetch_composition.py`-equivalent flow with canonical-tid guard against the slug-redirect rate-limit symptom
+
+**Constraints** per `docs/SOURCES.md §13.2`:
+- Cloudflare blocked since §M 2026-05-13 (need user-side browser challenge-pass for `cf_clearance` cookie, OR ≥24 h IP cooldown, OR VPN egress switch)
+- ~50-request session-cookie cap before bad-tid canonical-redirect symptoms
+
+**Full audit summary** with per-bucket counts, harvest strategy per scope, and next-action checklist saved at `scripts/cache/ucoin/_BR_audit_2026-05-18.json`.
+
+**Definition of done.** Norway 1514-1814 harvested (or verified-empty), DK 1514-1581 + 1873-1914 closed, SH pre-1788 + post-1855 closed. Phase-1 coverage table updated. BR closure note replaces this in-progress entry.
+
 ---
 ## High priority
 
