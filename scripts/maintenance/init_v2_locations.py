@@ -97,13 +97,33 @@ def main() -> int:
     print("=" * 70)
 
     targets = []
+    preserved_overrides: list[str] = []
     for path in sorted(LOCATIONS.glob("*.yml")):
         if path.name.endswith("-references.yml"):
             continue
         loc_id = path.stem
         v1_doc = _load_yaml(path)
         v1_coins_count = len(v1_doc.get("coins") or [])
-        consumes = loc_to_entities.get(loc_id, [])
+        auto_consumes = loc_to_entities.get(loc_id, [])
+
+        # Preserve manual consumes_entities overrides from existing V2 yaml.
+        # First run: file doesn't exist → use auto-derived list.
+        # Subsequent runs: keep whatever the curator set (matches the
+        # init_v2_locations docstring's «idempotent re-run» promise).
+        existing_v2 = V2_LOCATIONS / f"{loc_id}.yml"
+        consumes = auto_consumes
+        if existing_v2.exists():
+            try:
+                existing = _load_yaml(existing_v2)
+                if existing.get("consumes_entities") is not None:
+                    consumes = existing["consumes_entities"]
+                    if sorted(consumes) != sorted(auto_consumes):
+                        preserved_overrides.append(
+                            f"{loc_id}: preserved {consumes} "
+                            f"(auto would be {auto_consumes})"
+                        )
+            except Exception:
+                pass  # corrupt existing file → use auto-derived
 
         v2_doc = _strip_coins(v1_doc)
         # consumes_entities goes near the top, after id/km_register/name/summary,
@@ -130,6 +150,12 @@ def main() -> int:
 
         targets.append((loc_id, ordered, v1_coins_count, consumes))
         print(f"  {loc_id:30s}  v1 coins: {v1_coins_count:>4d}  →  consumes: {consumes}")
+
+    if preserved_overrides:
+        print(f"\n--- Manual consumes_entities preserved from existing V2 yamls "
+              f"({len(preserved_overrides)}) ---")
+        for line in preserved_overrides:
+            print(f"  {line}")
 
     if args.dry_run:
         print("\n--- DRY RUN — no files written. Re-run with --apply to commit. ---")

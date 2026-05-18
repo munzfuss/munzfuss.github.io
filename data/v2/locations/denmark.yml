@@ -1915,3 +1915,56 @@ phases:
         і Норвегія під данською короною (1608–1814) консолідовані в одному seed. Джерело — <code>data/seed/numismaster/denmark.yml</code>,
         генерує <code>scripts/maintenance/build_numismaster_seed.py</code> з покоінних HTML-кешів <code>scripts/cache/numismaster/{denmark,norway}/MC_*.html</code>.
         Покоінна верифікація проти первинних джерел (Hede / Sieg / Wilcke / Schive) перед §BF-промоцією.
+  - id: bruun
+    year_from: 1500
+    year_to: 1914
+    from_label: (?)
+    to_label: (?)
+    title:
+      de: Bulk-Seed · Bruun (Stack's Bowers L. E. Bruun Coll.)
+      en: Bulk seed · Bruun (Stack's Bowers L. E. Bruun Collection)
+      uk: Bulk-seed · Bruun (Stack's Bowers L. E. Bruun Collection)
+    description:
+      de: Sammelphase für die aus den Stack's Bowers L. E. Bruun-Auktionskatalogen (Parts I-IV, 2024-2026) bulk-importierten
+        Stücke. Quelle ist <code>data/seed/bruun/denmark*.yml</code>, generiert aus den per-Lot-Parser-Caches unter <code>scripts/cache/bruun/lots/part*.json</code>.
+        Per-Münze-Verifikation gegen Hede / Sieg / Schou vor Promotion.
+      en: Catch-all phase for coins bulk-imported from the Stack's Bowers L. E. Bruun auction catalogues (Parts I-IV, 2024-2026).
+        Source is <code>data/seed/bruun/denmark*.yml</code>, generated from the per-lot parser caches under <code>scripts/cache/bruun/lots/part*.json</code>.
+        Per-coin verification against Hede / Sieg / Schou before promotion.
+      uk: Збірна фаза для монет, bulk-імпортованих з Stack's Bowers L. E. Bruun auction catalogues (Parts I-IV, 2024-2026).
+        Джерело — <code>data/seed/bruun/denmark*.yml</code>, генерується з покоінних parser-кешів <code>scripts/cache/bruun/lots/part*.json</code>.
+        Покоінна верифікація проти Hede / Sieg / Schou перед промоцією.
+  - id: galster
+    year_from: 1500
+    year_to: 1914
+    from_label: (?)
+    to_label: (?)
+    title:
+      de: Bulk-Seed · Galster (Den danske Mønt)
+      en: Bulk seed · Galster (Den danske Mønt)
+      uk: Bulk-seed · Galster (Den danske Mønt)
+    description:
+      de: Sammelphase für die aus dem Galster-Katalog (Christian II. + Frederik I., 1514-1533) bulk-importierten Stücke. Quelle
+        ist <code>data/seed/galster/denmark*.yml</code>. Schließt die Lücke der pre-Christian-III.-Müntzordnungen (1514-1540)
+        im DK-Realm.
+      en: Catch-all phase for coins bulk-imported from the Galster catalogue (Christian II + Frederik I, 1514-1533). Source
+        is <code>data/seed/galster/denmark*.yml</code>. Closes the pre-Christian III Møntordning gap (1514-1540) in the DK
+        realm.
+      uk: Збірна фаза для монет, bulk-імпортованих з каталогу Galster (Кристіан II + Фредерік I, 1514-1533). Джерело — <code>data/seed/galster/denmark*.yml</code>.
+        Закриває проміжок до Christian-III-Møntordning (1514-1540) у DK-реалмі.
+  - id: numista
+    year_from: 1500
+    year_to: 1914
+    from_label: (?)
+    to_label: (?)
+    title:
+      de: Bulk-Seed · Numista
+      en: Bulk seed · Numista
+      uk: Bulk-seed · Numista
+    description:
+      de: Sammelphase für die aus Numista (API v3) bulk-importierten Stücke — gezielter Single-Page-Verifikation aus dem Numista-Katalog.
+        Quelle ist <code>data/seed/numista/denmark*.yml</code>.
+      en: Catch-all phase for coins bulk-imported from Numista (API v3) — targeted single-page verification against the Numista
+        catalogue. Source is <code>data/seed/numista/denmark*.yml</code>.
+      uk: Збірна фаза для монет, bulk-імпортованих з Numista (API v3) — точкова single-page-верифікація проти каталогу Numista.
+        Джерело — <code>data/seed/numista/denmark*.yml</code>.

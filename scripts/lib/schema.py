@@ -318,6 +318,31 @@ class CatalogRefs(_StrictBase):
     schou_hede1971: str | None = None
     fr: str | None = None
     dav: str | None = None
+    # Galster — primary Danish-medieval catalogue (Georg Galster's series of
+    # «Mønter fra ...» publications). Used by the V2 galster pre-1541 seed.
+    # `galster_volume` parallels `hede_volume` — the per-ruler / per-series
+    # volume code where bare `galster` numbers would otherwise collide
+    # across publications.
+    galster: str | None = None
+    galster_volume: str | None = None
+    # Jensen-Skjoldager catalogue — Norwegian medieval (pre-1481) supplemental
+    # to Galster, used in galster + bruun seeds for Norwegian-tier coinage.
+    jensen_skjoldager: str | None = None
+    # Schive — Norwegian C. I. Schive «Norges Mynter til Henrik III».
+    # Older but still cited for Norwegian medieval coinage.
+    schive: str | None = None
+    # Skaare — Kolbjørn Skaare, «Coins and Coinage in Viking-Age Norway»
+    # (1976) / «Norges mynthistorie» (1995). Modern Norwegian reference.
+    skaare: str | None = None
+    # Friedberg — Robert Friedberg «Gold Coins of the World». Global gold
+    # reference; cited for Danish-Norwegian gold issues.
+    friedberg: str | None = None
+    # Davenport (full name; the existing `dav` field stores the same
+    # Davenport European Crowns reference but is the short alias used by
+    # the V1 main builder. `davenport` is the long-form variant emitted
+    # by some seed parsers — accepting both lets us avoid renaming during
+    # sanitisation.)
+    davenport: str | None = None
     # Madai-Bach pre-Krause numbering for Schleswig-Holstein duchy coins
     # (used by NumisMaster on entries pre-1604 where KM# was never assigned;
     # appears as «MB# 27» on the source page's catalog-number field). String
