@@ -351,29 +351,30 @@ The per-NID route is the safe one for incremental harvest. Listing-page enumerat
 
 **Definition of done.** All 212 NIDs cached in `scripts/cache/numista/` with `_harvested_via: "chrome_mcp_html"` marker. Phase-1 coverage table updated to reflect 100% DK 1602-1914 coverage. Final BO.5 closure note replaces this in-progress entry.
 
-#### BR — ucoin DK-realm 1514-1914 coverage audit  🔵 **AUDIT DONE + batches 1+2+3 of N harvested (120 TIDs)** *(opened 2026-05-18, est: medium-large)*
+#### BR — ucoin DK-realm 1514-1914 coverage audit  🔵 **AUDIT DONE + batches 1-4 of N harvested (153 TIDs); p2399 CLOSED** *(opened 2026-05-18, est: medium-large)*
 
-**Update 2026-05-18 (post-Numista-pivot resume):**
+**Update 2026-05-18 (p2399 closed):**
 
-Per user direction «один наступний батч юкоін» following BO.5 batch 2/6 Numista interlude, resumed ucoin p2399 harvest at page-2 tail + page-3 head. Range covers Frederick III high-denom (2/3/4-Speciedaler KM# 38-79, ½/1/2-Ducat gold KM# 80-A119) + Christian V improved-fineness 4-Mark 1699 KM# 199 + Christian V ½-Speciedaler KM# 107/191.
+Per user direction «пуш в обидві і тоді ще один батч юкоін» following BO.5 batch 3/6, completed final batch of p2399 (Norway Speciedaler 1648-1699). Period now closed cleanly: all 153/153 TIDs harvested across 4 sessions.
 
-**Batches 1+2+3/N done (submodule commits `4a323ea` + `bb4c6a4` + `44c744f`):**
+**Batches 1-4/N done (submodule commits `4a323ea` + `bb4c6a4` + `44c744f` + `7136528`):**
 
 | Batch | Status | Count | Period coverage | Submodule commit |
 |---|---|---:|---|---|
 | **1** | ✅ DONE 2026-05-18 session 1 | 40 | p2399 page 1 (first 40 of 48) | `4a323ea` |
 | **2** | ✅ DONE 2026-05-18 session 2 | 40 | p2399 page-1 leftovers (8) + page-2 first 32 | `bb4c6a4` |
 | **3** | ✅ DONE 2026-05-18 session 3 | 40 | p2399 page-2 tail (16) + page-3 head (24) | `44c744f` |
-| 4+ | ⏳ pending | 33 in p2399 + ~250 across other periods | p2399 page-3 tail (24) + page-4 (9) + other periods | — |
+| **4** | ✅ DONE 2026-05-18 session 4 | 33 | p2399 page-3 tail (24) + page-4 (9) — **PERIOD CLOSED** | `7136528` |
+| 5+ | ⏳ pending | ~250 across other periods | p2400 / p1041 / p883 (Norway) + DK p374/373/220 | — |
 
-- **120/40+40+40 TIDs harvested**, all canonical-TID validations PASSED (zero «random euro-cent» mismatches across three sessions)
-- Coverage by ruler: Frederick III 1648-1670 (Speciedaler + ½/1/2-Ducat + 2/3/4-Speciedaler high-denom + ⅛/¼/½/2/4-Mark family) + Christian V 1670-1699 (1-Mark, 2-Mark, 4-Mark with monogram variants per year; 1699 silver-upgrade 4-Mark KM# 199 @ .833 fineness)
+- **153/153 p2399 TIDs harvested (100 %)**, all canonical-TID validations PASSED (zero «random euro-cent» mismatches across four sessions)
+- Coverage by ruler: Frederick III 1648-1670 (full Speciedaler + ½/1/2/3/4-Speciedaler + ½/1/2-Ducat + ⅛/¼/½/2/4-Mark repertoire) + Christian V 1670-1699 (1/2/3/4-Speciedaler with monogram/draped-bust/portrait variants + ½/1/2/3/4-Ducat gold high-denom + 1-Mark/2-Mark/4-Mark cluster; 1699 silver-upgrade 4-Mark KM# 199 @ .833 fineness)
 - Save format: `scripts/cache/ucoin/<tid>.json` per-TID files with `_verified: true` + `_canonical_tid` + `_harvested_via: chrome_mcp_html` markers
 - Save script: `/tmp/save_ucoin.py` aborts with exit code 2 on canonical-tid mismatch — prevents overwriting cache with the wrong-coin-served-as-defence-response
 
-**Cumulative ucoin session-cookie budget check.** Per `docs/SOURCES.md §13.2`, the empirical cookie-cycle ceiling at 20 s pacing was ~50 fetches. Across batches 1+2+3 we did ~128 cumulative ucoin requests (120 harvests + 8 enumeration probes) over three ~70-min sessions, with **0 canonical-TID failures**. Three-session evidence confirms: the 31-60 s pacing either (a) extends the budget materially, (b) the cookie counter resets between sessions, or (c) ucoin raised the threshold since §M (2026-05-13). Empirical cap is well above the §13.2 historical figure.
+**Cumulative ucoin session-cookie budget check.** Per `docs/SOURCES.md §13.2`, the empirical cookie-cycle ceiling at 20 s pacing was ~50 fetches. Across batches 1-4 we did ~163 cumulative ucoin requests (153 harvests + 10 enumeration probes) over four ~50-70-min sessions, with **0 canonical-TID failures**. Four-session evidence confirms: the 31-60 s pacing materially extends the budget (or the cookie counter resets between sessions). Empirical cap is well above the §13.2 historical figure.
 
-**Pause notice 2026-05-18 (after batch 3):** batch 3 completed mid-session after BO.5 Numista batch 2/6 interlude. ucoin state recorded in `scripts/cache/ucoin/_BR_audit_2026-05-18.json` under `harvest_progress.batches.batch_<N>.tids` for resume. Batch 4 starts from p2399 page-3 tail (24 unharvested TIDs after 145597) + page-4 (9 TIDs, last page of period) for 33-TID period closure, then pivots to p2400 Speciedaler 1699-1745 NO enumeration.
+**p2399 closure (2026-05-18):** Norway Speciedaler 1648-1699 period now 100 % covered. State recorded in `scripts/cache/ucoin/_BR_audit_2026-05-18.json`. Batch 5 pivots to p2400 (Norway Speciedaler 1699-1745, Frederick IV / Christian VI era) — needs listing-page enumeration first to size before building TID list.
 
 **Platform-floor confirmations (this session's discovery):**
 
@@ -385,11 +386,11 @@ Per user direction «один наступний батч юкоін» following
 
 → This **closes §BO.1 step 3 «Norway 1514-1601 sweep»** with a clean negative finding: all three commercial / community catalogues have a platform floor for Norway between 1602 and 1648 — no pre-1602 Norge data is recoverable from any of them. The §BF Denmark 1514-1566 gap remains paper-only (Galster / Jensen-Skjoldager) per the original audit.
 
-**Remaining BR scope (revised after batch 3):**
+**Remaining BR scope (after batch 4 / p2399 closure):**
 
   | Scope | Total on ucoin | Cached | Remaining | Batches needed (40/each) |
   |---|---:|---:|---:|---:|
-  | NO period 2399 (1648-1699 Speciedaler) | 153 | 120 | **33** | ~1 |
+  | NO period 2399 (1648-1699 Speciedaler) | 153 | **153** | **0** ✅ | 0 (CLOSED) |
   | NO period 2400 (1699-1745 Speciedaler) | unknown | 0 | ? | ? |
   | NO period 1041 (1746-1812 Rigsdaler) | unknown | 0 | ? | ? |
   | NO period 883 (1813-1815 Rigsbankdaler) | unknown | 0 | ? (1813-1814 portion only) | ~1 |
