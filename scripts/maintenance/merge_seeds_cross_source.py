@@ -251,9 +251,19 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         else:
             refs[key] = str(hede).strip()
 
+    # Per-publication catalog identifiers — each is unique within its own
+    # scope. Disagreement on any of these = different physical coins.
+    # `numista` + `bruun_collection_id` included: same physical coin
+    # generally has one Numista N# and one Bruun collection-id; two
+    # records with different IDs = different specimens (Bruun) or sub-
+    # variants (Numista) and should NOT auto-merge without curator
+    # decision via merge_decisions/<entity>.yml.
+    #
+    # Bruun_part / bruun_lot_no / bruun_page are SPECIMEN-level — two
+    # lots can be the same type; excluded from match comparison.
     for field in ("sieg", "schou", "lange", "fr", "dav", "mb",
                   "jensen_skjoldager", "schive", "skaare", "friedberg",
-                  "davenport"):
+                  "davenport", "numista", "bruun_collection_id"):
         val = cat.get(field)
         if val is None:
             continue
@@ -475,6 +485,19 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None) -> dict
 
 
 class UnionFind:
+    """Union-Find with explicit no-merge that respects TRANSITIVITY:
+    when A↔B and A↔C are confident merges but B↔C is no_match, the
+    transitive union {A, B, C} would silently override B↔C's no_match.
+    To prevent this, union(x, y) checks every cross-class member pair
+    for a registered no_merge constraint; if any pair conflicts, the
+    union is refused.
+
+    This means processing order matters: register all no_merges FIRST
+    (matcher pass for no_match decisions), then process confident
+    unions. A confident union that violates a no_merge stays separate
+    + surfaces in match_uncertainty via the unmerged pair.
+    """
+
     def __init__(self):
         self.parent: dict[str, str] = {}
         self.no_merge: set[frozenset] = set()
@@ -489,21 +512,41 @@ class UnionFind:
     def can_union(self, x, y) -> bool:
         return frozenset({x, y}) not in self.no_merge
 
-    def union(self, x, y) -> bool:
-        if not self.can_union(x, y):
-            return False
+    def _class_members(self, root: str) -> list[str]:
+        return [k for k in self.parent if self.find(k) == root]
+
+    def union(self, x, y) -> tuple[bool, frozenset | None]:
+        """Returns (succeeded, conflicting_pair_or_None).
+        On no_merge violation, returns (False, frozenset({a, b}))
+        so caller can log which pair blocked the transitive union."""
         rx, ry = self.find(x), self.find(y)
         if rx == ry:
-            return False
+            return (False, None)
+        # Direct pair check
+        if not self.can_union(x, y):
+            return (False, frozenset({x, y}))
+        # Cross-class check: any member of rx's class has a no_merge
+        # with any member of ry's class?
+        if self.no_merge:
+            members_x = self._class_members(rx)
+            members_y = self._class_members(ry)
+            for mx in members_x:
+                for my in members_y:
+                    if frozenset({mx, my}) in self.no_merge:
+                        return (False, frozenset({mx, my}))
         # Stable root choice: lexicographically smaller wins
         if rx < ry:
             self.parent[ry] = rx
         else:
             self.parent[rx] = ry
-        return True
+        return (True, None)
 
     def add_no_merge(self, x, y):
         self.no_merge.add(frozenset({x, y}))
+        # Touch both ids so they appear as singleton classes if not
+        # subsequently merged with anything else.
+        self.find(x)
+        self.find(y)
 
     def classes(self) -> dict[str, list[str]]:
         groups: dict[str, list[str]] = defaultdict(list)
@@ -603,58 +646,217 @@ def _collect_mints(members: list[dict]) -> str | list[str] | None:
     return sorted(mints_set)
 
 
-def _deep_merge_catalog(members: list[dict]) -> dict:
-    """Catalog refs accumulated across members. Top-authority wins on key
-    conflicts (different values for the same key)."""
+def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
+    str | dict | None, list[tuple[str, str, str]]
+]:
+    """Merge `catalog.km` across members into MAXIMAL representation:
+    every distinct register-value pair is preserved. Handles bare-form
+    + dict-form mixture across sources without losing cross-volume info.
+
+    Example: hede.km = "75" (bare, danish_realm entity → infer dk),
+             numismaster.km = {dk: "75", sh: "29"}
+    Output:  km = {dk: "75", sh: "29"}   ← cross-volume sh="29" preserved
+    (was being silently lost before this fix — see commit message).
+
+    Returns (merged_km, conflicts). conflicts is a list of
+    (scope_key, top_auth_value, conflicting_value) — items where two
+    members disagreed on the same register's KM. Top-auth wins for the
+    merged output; conflicts are surfaced for diagnostic logging.
+    """
+    sorted_members = sorted(members, key=lambda c: -_authority_score(c.get("id", "")))
+    by_register: dict[str, str] = {}
+    bare_value: str | None = None
+    conflicts: list[tuple[str, str, str]] = []
+
+    for m in sorted_members:
+        km = (m.get("catalog") or {}).get("km")
+        if km is None:
+            continue
+        if isinstance(km, dict):
+            for reg, val in km.items():
+                reg_norm = reg.lower()
+                val_str = str(val).strip()
+                if reg_norm in by_register and by_register[reg_norm] != val_str:
+                    conflicts.append((f"km/{reg_norm}", by_register[reg_norm], val_str))
+                    continue
+                by_register.setdefault(reg_norm, val_str)
+        else:
+            val_str = str(km).strip()
+            register = _ENTITY_TO_KM_REGISTER.get(entity_id or "")
+            if register:
+                if register in by_register and by_register[register] != val_str:
+                    conflicts.append((f"km/{register}", by_register[register], val_str))
+                    continue
+                by_register.setdefault(register, val_str)
+            elif bare_value is None:
+                bare_value = val_str
+            elif bare_value != val_str:
+                conflicts.append(("km", bare_value, val_str))
+
+    # Output shape — preserve maximal info:
+    #   - cross-volume known → dict-form
+    #   - single register known + no other inputs → bare-form (compact, V1-compat)
+    #   - only bare-without-register input → bare-form
+    if by_register:
+        if len(by_register) == 1:
+            # Single register — emit bare to stay V1-compat. The
+            # entity-aware scoping rebuilds the register at match time.
+            return next(iter(by_register.values())), conflicts
+        return dict(by_register), conflicts
+    return bare_value, conflicts
+
+
+def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
+                        ) -> tuple[dict, list]:
+    """Catalog refs accumulated across members. Special-cases KM to
+    preserve cross-volume info via `_merge_km_field`. Other catalog
+    refs: top-authority wins on key collisions (matcher already
+    confirmed catalog overlap agrees, so this case only fires for
+    NON-overlapping refs that one source has and another doesn't).
+
+    Returns (merged_catalog, conflicts).
+    """
     sorted_members = sorted(members, key=lambda c: -_authority_score(c.get("id", "")))
     out: dict = {}
+    all_conflicts: list[tuple[str, str, str]] = []
+
+    # Special-handle km to preserve cross-volume info
+    km, km_conflicts = _merge_km_field(members, entity_id)
+    if km is not None:
+        out["km"] = km
+    all_conflicts.extend(km_conflicts)
+
+    # Other catalog fields: gap-fill from top-authority down
     for m in sorted_members:
         cat = m.get("catalog") or {}
         for k, v in cat.items():
+            if k == "km":
+                continue  # already handled
             if k not in out:
                 out[k] = v
-    return out
+            elif out[k] != v:
+                all_conflicts.append((f"catalog.{k}", str(out[k]), str(v)))
+
+    return out, all_conflicts
 
 
-def build_unified(members: list[dict], unified_id: str) -> dict:
-    """Construct one unified entry from N member seed entries."""
+def _take_first_non_none(members: list[dict], field: str):
+    """Return the first non-None / non-empty value across members
+    (already sorted top-authority first). Gap-fills from lower-authority
+    sources when top-authority lacks the field — no data loss when
+    upper has None and lower has a real value."""
+    for m in members:
+        v = m.get(field)
+        if v is None:
+            continue
+        if isinstance(v, str) and not v.strip():
+            continue
+        return v
+    return None
+
+
+def _or_merge_verified(members: list[dict], field: str) -> bool | None:
+    """OR-merge for verification flags: if ANY source attests (True),
+    the unified entry is `True`. False otherwise (no source confirmed)."""
+    seen_any_attestation = False
+    seen_any_value = False
+    for m in members:
+        if field in m:
+            seen_any_value = True
+            if bool(m[field]):
+                seen_any_attestation = True
+                break
+    if not seen_any_value:
+        return None
+    return seen_any_attestation
+
+
+def build_unified(members: list[dict], unified_id: str,
+                  entity_id: str | None = None
+                  ) -> tuple[dict, list]:
+    """Construct one unified entry from N member seed entries.
+
+    Returns (unified_coin_dict, conflicts).
+    `conflicts` lists scalar / catalog conflicts where members disagreed
+    on a non-list field's value (top-auth wins for the output value but
+    caller can log for visibility).
+
+    Data-preservation rules per user direction («жодні дані не повинні
+    бути перетерті, лише змерджені»):
+
+      - Multi-source measurements (weight_rough_g, fineness, diameter_mm)
+        → multi-source list with every reading preserved (`_collect_field_list`).
+      - Sources → union, deduped by (url, ref, type).
+      - Mint → union (list-form if multi-mint across members).
+      - Catalog refs → max representation via `_deep_merge_catalog` —
+        cross-volume KM preserved as dict-form, other refs gap-filled
+        top-authority first.
+      - Scalar text fields (nominal, ruler, year_label, year_first,
+        year_last, year_ranges, mintmaster, fraction, kind, note,
+        verification_note, inscription_obv, inscription_rev, metal):
+        → `_take_first_non_none` walks members top-authority first;
+        lower-authority's value fills gap when top-authority has None.
+        On real conflict (both have non-None DIFFERENT values), top-auth
+        wins; conflict logged.
+      - Verification flags (metal_verified, fineness_verified,
+        weight_rough_verified, diameter_mm_verified, mint_verified):
+        → `_or_merge_verified` — any source attests → True. (A source's
+        confirmation is never lost when its peer says False.)
+    """
     sorted_members = sorted(members, key=lambda c: -_authority_score(c.get("id", "")))
-    primary = sorted_members[0]
-
     composed_of = sorted(set(m["id"] for m in members if m.get("id")))
+    conflicts: list[tuple[str, str, str]] = []
 
-    # Start from primary's fields (preserves nominal, ruler, year_label, etc.)
-    out: dict = {}
+    out: dict = {"id": unified_id}
 
-    # Field order: id first, then schema fields per typical V2 yaml
-    out["id"] = unified_id
-    out["fuss"] = primary.get("fuss", "seed_unsorted")
-    out["phase"] = primary.get("phase", "unified")
-    out["kind"] = primary.get("kind", "kurant")
+    # Required schema fields (must have a value)
+    out["fuss"] = _take_first_non_none(sorted_members, "fuss") or "seed_unsorted"
+    out["phase"] = _take_first_non_none(sorted_members, "phase") or "unified"
+    out["kind"] = _take_first_non_none(sorted_members, "kind") or "kurant"
 
-    for k in ("fraction", "nominal", "year_label", "year_first", "year_last",
-              "year_ranges", "year_verified", "ruler", "mintmaster"):
-        v = primary.get(k)
+    # Scalar text fields — gap-fill across members
+    for field in ("fraction", "nominal", "year_label", "year_first", "year_last",
+                  "year_ranges", "ruler", "mintmaster",
+                  "inscription_obv", "inscription_rev"):
+        v = _take_first_non_none(sorted_members, field)
         if v is not None:
-            out[k] = v
+            out[field] = v
+            # Log conflicts when ≥2 distinct values exist across members
+            seen: list[str] = [v if isinstance(v, str) else str(v)]
+            for m in sorted_members[1:]:
+                mv = m.get(field)
+                if mv is None:
+                    continue
+                mv_repr = mv if isinstance(mv, str) else str(mv)
+                if mv_repr != seen[0] and mv_repr not in seen:
+                    seen.append(mv_repr)
+                    conflicts.append((field, seen[0], mv_repr))
 
     # Multi-mint union
     mint = _collect_mints(members)
     if mint is not None:
         out["mint"] = mint
 
-    # Catalog deep-merge
-    out["catalog"] = _deep_merge_catalog(members)
+    # Catalog deep-merge (entity-aware KM)
+    cat, cat_conflicts = _deep_merge_catalog(members, entity_id)
+    if cat:
+        out["catalog"] = cat
+    conflicts.extend(cat_conflicts)
 
-    # Metal + verification flags from primary
-    if primary.get("metal"):
-        out["metal"] = primary["metal"]
-    for k in ("metal_verified", "fineness_verified", "weight_rough_verified",
-              "diameter_mm_verified", "mint_verified"):
-        if k in primary:
-            out[k] = primary[k]
+    # Metal — gap-fill
+    metal = _take_first_non_none(sorted_members, "metal")
+    if metal:
+        out["metal"] = metal
 
-    # Multi-source measurement lists
+    # Verification flags — OR-merge (any source attests counts)
+    for field in ("metal_verified", "fineness_verified", "weight_rough_verified",
+                  "diameter_mm_verified", "mint_verified", "verified",
+                  "year_verified"):
+        v = _or_merge_verified(sorted_members, field)
+        if v is not None:
+            out[field] = v
+
+    # Multi-source measurement lists (every reading preserved)
     fine = _collect_field_list(members, "fineness")
     if fine:
         out["fineness"] = fine
@@ -670,18 +872,23 @@ def build_unified(members: list[dict], unified_id: str) -> dict:
     if sources:
         out["sources"] = sources
 
-    # Note: prefer primary's note (highest authority); could merge in future
-    if primary.get("note"):
-        out["note"] = primary["note"]
+    # Notes — gap-fill (next non-None from lower authority if primary lacks)
+    note = _take_first_non_none(sorted_members, "note")
+    if note is not None:
+        out["note"] = note
+    vnote = _take_first_non_none(sorted_members, "verification_note")
+    if vnote is not None:
+        out["verification_note"] = vnote
 
-    # issuing_entity — from primary (already classified by regroup)
-    if primary.get("issuing_entity"):
-        out["issuing_entity"] = primary["issuing_entity"]
+    # issuing_entity — gap-fill (regroup classifier already set on every member)
+    ie = _take_first_non_none(sorted_members, "issuing_entity")
+    if ie is not None:
+        out["issuing_entity"] = ie
 
     # Audit trail
     out["composed_of"] = composed_of
 
-    return out
+    return out, conflicts
 
 
 def _unified_id_for_class(members: list[dict]) -> str:
@@ -756,7 +963,8 @@ def process_entity(entity_id: str) -> dict:
     for cid in seeds_by_id:
         uf.find(cid)
 
-    # 1. Apply explicit no_merges first (so auto-rules can't override).
+    # 1. Apply explicit no_merges first (curator decisions take precedence
+    #    over any auto-rule).
     forced_no_merges: list[dict] = []
     for entry in decisions["no_merges"]:
         members = entry.get("members") or []
@@ -765,32 +973,26 @@ def process_entity(entity_id: str) -> dict:
                 uf.add_no_merge(members[i], members[j])
         forced_no_merges.append(entry)
 
-    # 2. Apply explicit merges (overrides auto-rules).
-    forced_merges: list[dict] = []
-    for entry in decisions["merges"]:
-        members = entry.get("members") or []
-        for i in range(1, len(members)):
-            uf.union(members[0], members[i])
-        forced_merges.append(entry)
-
-    # 3. Auto-merge pass over all (n*(n-1)/2) pairs.
-    confident_merges: list[dict] = []
+    # 2. PRE-PASS: run matcher on every pair, register no_match pairs in
+    #    union-find BEFORE attempting any union. This guarantees that
+    #    transitive merges (A↔B, A↔C both confident, B↔C no_match) DO
+    #    NOT silently override the B↔C no_match — union() refuses any
+    #    cross-class merge that would put a no_merge pair in the same
+    #    class.
+    confident_pairs: list[dict] = []
     low_confidence: list[dict] = []
     ids = sorted(seeds_by_id)
     for i in range(len(ids)):
         for j in range(i + 1, len(ids)):
             a_id, b_id = ids[i], ids[j]
-            # Skip if explicit no_merge
             if not uf.can_union(a_id, b_id):
                 continue
-            # Skip if already in same class via earlier merge
-            if uf.find(a_id) == uf.find(b_id):
-                continue
             result = match_pair(seeds_by_id[a_id], seeds_by_id[b_id], entity_id)
-            if result["decision"] == "confident":
-                uf.union(a_id, b_id)
-                confident_merges.append({
-                    "members": [a_id, b_id],
+            if result["decision"] == "no_match":
+                uf.add_no_merge(a_id, b_id)
+            elif result["decision"] == "confident":
+                confident_pairs.append({
+                    "a": a_id, "b": b_id,
                     "primary": result["primary"],
                     "fallback": result["fallback"],
                 })
@@ -802,14 +1004,54 @@ def process_entity(entity_id: str) -> dict:
                     "why": result["why"],
                 })
 
+    # 3. Apply explicit merges (curator wins over auto-rules, but still
+    #    respects already-recorded no_match — curator must explicitly
+    #    add the conflicting pair to `merges:` to override, in which case
+    #    they must ALSO remove the implicit no_match by their reasoning).
+    forced_merges: list[dict] = []
+    for entry in decisions["merges"]:
+        members = entry.get("members") or []
+        for i in range(1, len(members)):
+            uf.union(members[0], members[i])
+        forced_merges.append(entry)
+
+    # 4. Apply confident auto-merges. union() now refuses any merge
+    #    that would create a class containing a no_match pair.
+    confident_merges: list[dict] = []
+    transitivity_blocks: list[dict] = []
+    for cp in confident_pairs:
+        ok, blocking = uf.union(cp["a"], cp["b"])
+        if ok:
+            confident_merges.append({
+                "members": [cp["a"], cp["b"]],
+                "primary": cp["primary"],
+                "fallback": cp["fallback"],
+            })
+        elif blocking:
+            transitivity_blocks.append({
+                "would_merge": [cp["a"], cp["b"]],
+                "blocked_by_no_match": sorted(blocking),
+            })
+
     # 4. Build unified entries from equivalence classes
     classes = uf.classes()
     unified_entries: list[dict] = []
+    merge_conflicts: list[dict] = []  # data-loss visibility: per-unified conflicts
     for class_root, member_ids in sorted(classes.items()):
         member_coins = [seeds_by_id[mid] for mid in sorted(member_ids)]
         unified_id = _unified_id_for_class(member_coins)
-        unified = build_unified(member_coins, unified_id)
+        unified, conflicts = build_unified(member_coins, unified_id, entity_id)
         unified_entries.append(unified)
+        if conflicts and len(member_coins) > 1:
+            merge_conflicts.append({
+                "unified_id": unified_id,
+                "members": sorted(member_ids),
+                # Convert tuples → dicts so yaml.safe_load can read them back
+                "field_conflicts": [
+                    {"field": f, "top_authority_value": t, "other_value": o}
+                    for (f, t, o) in conflicts
+                ],
+            })
 
     # Deterministic order
     unified_entries.sort(key=lambda u: u["id"])
@@ -823,6 +1065,8 @@ def process_entity(entity_id: str) -> dict:
         "low_confidence_pairs": low_confidence,
         "forced_merges": forced_merges,
         "forced_no_merges": forced_no_merges,
+        "merge_conflicts": merge_conflicts,
+        "transitivity_blocks": transitivity_blocks,
     }
 
 
@@ -856,24 +1100,38 @@ def _emit_unified_yaml(entity_id: str, unified_entries: list[dict],
                               default_flow_style=False, width=120)
 
 
-def _emit_match_uncertainty(entity_id: str, low_conf: list[dict]) -> str:
+def _emit_match_uncertainty(entity_id: str, low_conf: list[dict],
+                             merge_conflicts: list[dict] | None = None,
+                             transitivity_blocks: list[dict] | None = None) -> str:
     today = date.today().isoformat()
     header = (
         f"# Match uncertainty for entity `{entity_id}` — gitignored diagnostic.\n"
         f"# Regenerated {today} by merge_seeds_cross_source.py.\n"
         f"#\n"
-        f"# These pairs reached low-confidence under §5.2 match hierarchy.\n"
+        f"# Two sections (both surface data the auto-merger couldn't handle\n"
+        f"# without losing information):\n"
+        f"#\n"
+        f"# 1. low_confidence_pairs — seed-pairs that look LIKE same coin\n"
+        f"#    but matcher's primary signals were insufficient to confirm.\n"
+        f"#    Resolution: add to merge_decisions/{entity_id}.yml::merges\n"
+        f"#    OR extend matcher rules.\n"
+        f"#\n"
+        f"# 2. merge_conflicts — successful merges where scalar fields\n"
+        f"#    DISAGREED across members (top-authority value kept in\n"
+        f"#    unified entry; lower-authority value would be lost without\n"
+        f"#    this log). Resolution: either accept top-auth, OR widen\n"
+        f"#    the unified schema to preserve both, OR fix the parser\n"
+        f"#    that emitted the wrong value.\n"
+        f"#\n"
         f"# DO NOT edit this file — it's overwritten on every run.\n"
-        f"# Curator decisions go into data/v2/merge_decisions/{entity_id}.yml:\n"
-        f"#   - confirm merge → add `members: [...]` to `merges:`\n"
-        f"#   - confirm distinct → add to `no_merges:`\n"
-        f"#   - rule should auto-handle → extend the matcher in\n"
-        f"#     scripts/maintenance/merge_seeds_cross_source.py\n\n"
+        f"# Curator decisions go into data/v2/merge_decisions/{entity_id}.yml.\n\n"
     )
     payload = {
         "entity_id": entity_id,
         "generated_at": today,
         "low_confidence_pairs": low_conf,
+        "merge_conflicts": merge_conflicts or [],
+        "transitivity_blocks": transitivity_blocks or [],
     }
     return header + yaml.dump(payload, sort_keys=False, allow_unicode=True,
                               default_flow_style=False, width=120)
@@ -926,6 +1184,7 @@ def main() -> int:
         totals["low_confidence"] += len(result["low_confidence_pairs"])
         totals["forced_merges"] += len(result["forced_merges"])
         totals["forced_no_merges"] += len(result["forced_no_merges"])
+        totals["merge_conflicts"] += len(result.get("merge_conflicts", []))
 
         reduction = result["seeds_count"] - result["unified_count"]
         line = (f"{ent:36s}  "
@@ -933,7 +1192,8 @@ def main() -> int:
                 f"unified:{result['unified_count']:4d}  "
                 f"(−{reduction:3d})  "
                 f"conf:{len(result['confident_merges']):3d}  "
-                f"lowconf:{len(result['low_confidence_pairs']):3d}")
+                f"lowconf:{len(result['low_confidence_pairs']):3d}  "
+                f"conflicts:{len(result.get('merge_conflicts', [])):3d}")
         if result["forced_merges"] or result["forced_no_merges"]:
             line += (f"  forced:{len(result['forced_merges'])}/"
                      f"{len(result['forced_no_merges'])}")
@@ -952,14 +1212,19 @@ def main() -> int:
                                    result["seeds_count"]),
                 encoding="utf-8",
             )
-            if result["low_confidence_pairs"]:
+            if (result["low_confidence_pairs"] or result.get("merge_conflicts")
+                    or result.get("transitivity_blocks")):
                 V2_MATCH_UNCERTAINTY.mkdir(parents=True, exist_ok=True)
                 (V2_MATCH_UNCERTAINTY / f"{ent}.yml").write_text(
-                    _emit_match_uncertainty(ent, result["low_confidence_pairs"]),
+                    _emit_match_uncertainty(
+                        ent,
+                        result["low_confidence_pairs"],
+                        result.get("merge_conflicts"),
+                        result.get("transitivity_blocks"),
+                    ),
                     encoding="utf-8",
                 )
             else:
-                # Clean up stale uncertainty file
                 stale = V2_MATCH_UNCERTAINTY / f"{ent}.yml"
                 if stale.exists():
                     stale.unlink()
@@ -971,6 +1236,7 @@ def main() -> int:
     print(f"  Reduction (merges):         {totals['seeds'] - totals['unified']:>5d}")
     print(f"  Confident auto-merges:      {totals['confident_merges']:>5d}")
     print(f"  Low-confidence pairs:       {totals['low_confidence']:>5d}")
+    print(f"  Merge conflicts (logged):   {totals['merge_conflicts']:>5d}")
     print(f"  Forced merges (decisions):  {totals['forced_merges']:>5d}")
     print(f"  Forced no_merges (decisions): {totals['forced_no_merges']:>3d}")
 
