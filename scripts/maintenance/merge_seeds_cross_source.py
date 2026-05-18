@@ -239,7 +239,13 @@ def _normalise_ruler(ruler):
     # Strip trailing dots, normalise whitespace
     s = re.sub(r"\.+$", "", s).strip()
     s = re.sub(r"\s+", " ", s)
-    return s.lower()
+    s = s.lower()
+    # English / parser-artefact spelling normalisations. The Danish
+    # form is «Frederik» (no `c` before `k`); some sources / parsers
+    # render it «Frederick» which fragments index attestation. Same
+    # for «Christian» (no variant) — kept for symmetry future-proof.
+    s = re.sub(r"\bfrederick\b", "frederik", s)
+    return s
 
 
 def _coin_years(coin: dict) -> set[int]:
@@ -394,7 +400,19 @@ def _attestation_ruler(coin: dict) -> str | None:
     return _normalise_ruler(coin.get("ruler")) or None
 
 
-def _build_reign_index(coins: list[dict]) -> dict[int, set[str]]:
+# Entities where the ruler is unambiguously a Danish-monarchy king
+# (Danish-Norwegian personal union 1380-1814, plus Holstein-Glückstadt
+# under Danish sovereignty 1544+). For these we apply STRICT reign
+# filtering: an attestation whose normalised ruler isn't in
+# `_DK_RULER_REIGNS` is dropped entirely (treated as parser-anomaly
+# bad data). Real example caught 2026-05-18: NumisMaster MC pages
+# for Danish 1809-1810 coins of Frederik VI rendered as «Frederick IX»
+# (FR IX reigned 1947-1972, never could have signed 1809 coins) —
+# visual VI / IX confusion in their data entry.
+_DK_REALM_ENTITIES = frozenset({"danish_realm", "danish_norway", "royal_holstein"})
+
+
+def _build_reign_index(coins: list[dict], entity_id: str | None = None) -> dict[int, set[str]]:
     """Build `{year → set(normalised_rulers)}` index from coins of ONE
     entity that DO carry an attested ruler. Per CLAUDE.md §0 / D33 the
     inference downstream is conservative: it ONLY fires when a year
@@ -428,6 +446,7 @@ def _build_reign_index(coins: list[dict]) -> dict[int, set[str]]:
     user direction 2026-05-18.
     """
     raw: dict[int, set[str]] = {}
+    strict_dk = entity_id in _DK_REALM_ENTITIES
     for c in coins:
         # Pick the authoritative ruler for this attestation: Hede →
         # volume-canonical (immune to seed-field mislabels); other
@@ -435,12 +454,14 @@ def _build_reign_index(coins: list[dict]) -> dict[int, set[str]]:
         rn = _attestation_ruler(c)
         if not rn:
             continue
-        # Reign-window for this ruler — drops parser-anomaly years like
-        # «Frederik V in 1646» (FR V reigned 1746-1766) regardless of
-        # source. Hede uses volume-derived window; non-Hede uses the
-        # ruler-name-keyed table. Both feed off the same Wilcke 1950 /
-        # Hede 1957 reign chronology.
         reign_window = _DK_RULER_REIGNS.get(rn)
+        if strict_dk and reign_window is None:
+            # Strict DK-realm filter: a ruler-name not in the Danish
+            # royal chronology (e.g. NumisMaster's «Frederick IX» on
+            # an 1809 coin) is parser-anomaly bad data. Drop the
+            # entire attestation rather than letting it poison the
+            # year's ruler-set.
+            continue
         for y in _coin_years(c):
             if reign_window is not None:
                 lo, hi = reign_window
@@ -1523,7 +1544,7 @@ def process_entity(entity_id: str) -> dict:
     # single ruler. Transition / co-regent years carry multi-element
     # sets and stay null per user direction («краще null ніж
     # неправдивий nonull»).
-    reign_index = _build_reign_index(seeds)
+    reign_index = _build_reign_index(seeds, entity_id)
 
     seeds_by_id: dict[str, dict] = {c["id"]: c for c in seeds}
     uf = UnionFind()
@@ -1632,29 +1653,87 @@ def process_entity(entity_id: str) -> dict:
                     })
                     break
 
+    def _coin_weight(coin: dict) -> float | None:
+        w = coin.get("weight_rough_g")
+        if isinstance(w, (int, float)):
+            return float(w)
+        if isinstance(w, list):
+            for item in w:
+                if isinstance(item, dict) and isinstance(item.get("value"), (int, float)):
+                    return float(item["value"])
+        return None
+
     for (null_id, field), candidates in null_attribute_coins.items():
         values_attested = {c["attested_value"] for c in candidates}
+        winning_candidates = candidates
+        winning_value = None
+
         if len(values_attested) == 1:
+            # Unique attested value across all candidates — promote all.
+            winning_value = next(iter(values_attested))
+        else:
+            # Multiple distinct attested values for this null field.
+            # Weight tie-breaker: if the null-coin has a recorded weight
+            # AND exactly ONE candidate's weight matches within ±2%, the
+            # weight uniquely identifies the matching type — promote ONLY
+            # that pair, leave the others as low_confidence. Same-weight
+            # across different nominals is essentially impossible in
+            # numismatic practice (1 Gulden ≈ 30g, ½ Gulden ≈ 15g — the
+            # weight IS the denomination signature).
+            null_coin = seeds_by_id.get(null_id)
+            if null_coin is None:
+                continue
+            null_weight = _coin_weight(null_coin)
+            if null_weight is None or null_weight <= 0:
+                continue
+            weight_matched = []
             for c in candidates:
-                a_id, b_id = c["pair"]["members"]
-                key = (a_id, b_id)
-                if key not in pairs_to_promote:
-                    primary = dict(c["pair"]["primary"])
-                    primary[field] = True
-                    pairs_to_promote[key] = {
-                        "a": a_id, "b": b_id,
-                        "primary": primary,
-                        "fallback": c["pair"]["fallback"],
-                        "why": c["pair"]["why"] + [
-                            f"promoted: single cross-source candidate's {field} attestation is consistent ({next(iter(values_attested))!r})"
-                        ],
-                    }
+                other_id = next(
+                    iid for iid in c["pair"]["members"] if iid != null_id
+                )
+                other_coin = seeds_by_id.get(other_id)
+                if other_coin is None:
+                    continue
+                ow = _coin_weight(other_coin)
+                if ow is None or ow <= 0:
+                    continue
+                if abs(ow - null_weight) / null_weight < 0.02:
+                    weight_matched.append(c)
+            if len(weight_matched) != 1:
+                continue
+            winning_candidates = weight_matched
+            winning_value = weight_matched[0]["attested_value"]
+
+        for c in winning_candidates:
+            a_id, b_id = c["pair"]["members"]
+            key = (a_id, b_id)
+            if key not in pairs_to_promote:
+                primary = dict(c["pair"]["primary"])
+                primary[field] = True
+                why_lines = list(c["pair"]["why"])
+                if len(values_attested) == 1:
+                    why_lines.append(
+                        f"promoted: single cross-source candidate's {field} attestation is consistent ({winning_value!r})"
+                    )
                 else:
-                    # Already promoted by another field — combine the
-                    # field flags so primary_true reflects both.
-                    pairs_to_promote[key]["primary"][field] = True
+                    why_lines.append(
+                        f"promoted: weight tie-breaker uniquely selects {field}={winning_value!r} (weight {null_weight} ± 2 %)"
+                    )
+                pairs_to_promote[key] = {
+                    "a": a_id, "b": b_id,
+                    "primary": primary,
+                    "fallback": c["pair"]["fallback"],
+                    "why": why_lines,
+                }
+            else:
+                pairs_to_promote[key]["primary"][field] = True
+                if len(values_attested) == 1:
                     pairs_to_promote[key]["why"].append(
-                        f"promoted: single cross-source candidate's {field} attestation is consistent ({next(iter(values_attested))!r})"
+                        f"promoted: single cross-source candidate's {field} attestation is consistent ({winning_value!r})"
+                    )
+                else:
+                    pairs_to_promote[key]["why"].append(
+                        f"promoted: weight tie-breaker uniquely selects {field}={winning_value!r} (weight {null_weight} ± 2 %)"
                     )
 
     if pairs_to_promote:

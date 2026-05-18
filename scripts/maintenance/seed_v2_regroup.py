@@ -242,8 +242,18 @@ def _normalise_entity_for_coin(coin: dict) -> tuple[str | list[str] | None, dict
          choice wins). Seed-side aliases (`norwegian_realm`) are remapped.
       2. Catch-all seed tags (`gesamtstaat`, `schleswig_holstein_duchy`)
          → mint-driven classification per §3.1.
-      3. Otherwise → mint-driven classification.
-      4. Unresolvable → None (caller routes to `_unclassified`).
+      3. **Mint-authoritative override**: when the explicit tag is a
+         canonical V2 entity BUT the coin's `mint` field unambiguously
+         points to a DIFFERENT canonical entity (e.g. Hede Norge
+         supplement `nc4h12` tagged `danish_realm` by the V1 builder
+         but minted at Christiania → `danish_norway`), the mint wins.
+         This catches V1-builder defaults that overgeneralised a
+         locale to one entity without sub-mint nuance. Curator can
+         still pin a specific entity via curated final yamls; this
+         only affects the SEED routing path.
+      4. Otherwise existing canonical tag preserved verbatim.
+      5. No explicit tag → mint classifier.
+      6. Unresolvable → None (caller routes to `_unclassified`).
     Also returns a per-coin diagnostic dict for the report.
     """
     explicit = coin.get("issuing_entity")
@@ -262,11 +272,25 @@ def _normalise_entity_for_coin(coin: dict) -> tuple[str | list[str] | None, dict
         diag["resolved"] = entity
         return entity, diag
 
-    # Step 3: real canonical V2 tag from V1 — preserve verbatim.
+    # Step 3: Mint-authoritative override. When the V1 explicit tag
+    # is canonical AND the mint classifier returns a DIFFERENT
+    # canonical entity, prefer the mint's answer. Detects the V1
+    # «catch-all denmark-volume tag for Hede Norge supplement
+    # entries» class of misclassification, plus future similar cases.
+    if isinstance(explicit, str) and explicit:
+        mint_entity = classify_mint_to_entity(coin.get("mint"))
+        if isinstance(mint_entity, str) and mint_entity != explicit:
+            diag = classify_mint_diagnostics(coin.get("mint"))
+            diag["source"] = "mint_override"
+            diag["from"] = explicit
+            diag["to"] = mint_entity
+            return mint_entity, diag
+
+    # Step 4: real canonical V2 tag from V1 — preserve verbatim.
     if explicit:
         return explicit, {"source": "explicit", "raw_mint": coin.get("mint")}
 
-    # Step 4: no explicit tag → mint classifier.
+    # Step 5: no explicit tag → mint classifier.
     diag = classify_mint_diagnostics(coin.get("mint"))
     entity = classify_mint_to_entity(coin.get("mint"))
     diag["source"] = "mint_classifier"
