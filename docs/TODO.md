@@ -351,7 +351,7 @@ The per-NID route is the safe one for incremental harvest. Listing-page enumerat
 
 **Definition of done.** All 212 NIDs cached in `scripts/cache/numista/` with `_harvested_via: "chrome_mcp_html"` marker. Phase-1 coverage table updated to reflect 100% DK 1602-1914 coverage. Final BO.5 closure note replaces this in-progress entry.
 
-#### BR — ucoin DK-realm 1514-1914 coverage audit  🔵 **AUDIT DONE + batches 1-5 of N harvested (193 TIDs); p2399 CLOSED, p2939 SH-Glückstadt 40/50** *(opened 2026-05-18, est: medium-large)*
+#### BR — ucoin DK-realm 1514-1914 coverage audit  🔵 **AUDIT DONE + batches 1-6 of N harvested (219 TIDs); p2399 + p2939 + SH-country CLOSED — SH probe COMPLETE** *(opened 2026-05-18, est: medium-large)*
 
 **Update 2026-05-18 (p2399 closed):**
 
@@ -366,7 +366,8 @@ Per user direction «пуш в обидві і тоді ще один батч �
 | **3** | ✅ DONE 2026-05-18 session 3 | 40 | p2399 page-2 tail (16) + page-3 head (24) | `44c744f` |
 | **4** | ✅ DONE 2026-05-18 session 4 | 33 | p2399 page-3 tail (24) + page-4 (9) — **PERIOD CLOSED** | `7136528` |
 | **5** | ✅ DONE 2026-05-18 session 5 | 40 | p2939 SH-Glückstadt (1617-1694) Christian IV + Frederick III + Christian V; first 40 of 50 sorted by year asc | `4f6d77a` |
-| 6+ | ⏳ pending | ~240 across other periods | p2939 tail (10) + SH-country (16) + p2400 / p1041 / p883 (Norway) + DK p374/373/220 | — |
+| **6** | ✅ DONE 2026-05-19 session 6 | 26 | p2939 tail (10 TIDs Christian V 1693-1696 + Frederik IV 1702-1716 — **p2939 CLOSED 50/50**) + country=schleswig_holstein (16 TIDs Christian VII 1787-1808 + Frederik VI 1809-1839 + Provisional Govt 1850-1851 — **SH-country CLOSED 16/16**); user-requested SH probe COMPLETE | `ab67784` |
+| 7+ | ⏳ pending | ~210 across other periods | p2400 / p1041 / p883 (Norway 1699-1814) + DK p374/373/220 (1873-1914) | — |
 
 - **153/153 p2399 TIDs harvested (100 %)**, all canonical-TID validations PASSED (zero «random euro-cent» mismatches across four sessions)
 - Coverage by ruler: Frederick III 1648-1670 (full Speciedaler + ½/1/2/3/4-Speciedaler + ½/1/2-Ducat + ⅛/¼/½/2/4-Mark repertoire) + Christian V 1670-1699 (1/2/3/4-Speciedaler with monogram/draped-bust/portrait variants + ½/1/2/3/4-Ducat gold high-denom + 1-Mark/2-Mark/4-Mark cluster; 1699 silver-upgrade 4-Mark KM# 199 @ .833 fineness)
@@ -387,19 +388,21 @@ Per user direction «пуш в обидві і тоді ще один батч �
 
 → This **closes §BO.1 step 3 «Norway 1514-1601 sweep»** with a clean negative finding: all three commercial / community catalogues have a platform floor for Norway between 1602 and 1648 — no pre-1602 Norge data is recoverable from any of them. The §BF Denmark 1514-1566 gap remains paper-only (Galster / Jensen-Skjoldager) per the original audit.
 
-**Remaining BR scope (after batch 5 / SH-Glückstadt 40 done):**
+**Remaining BR scope (after batch 6 / SH probe CLOSED):**
 
   | Scope | Total on ucoin | Cached | Remaining | Batches needed (40/each) |
   |---|---:|---:|---:|---:|
   | NO period 2399 (1648-1699 Speciedaler) | 153 | **153** | **0** ✅ | 0 (CLOSED) |
-  | DK period 2939 (SH-Glückstadt 1617-1773) | 50 | 40 | **10** | ~⅓ (combine with SH-country) |
-  | DK country=schleswig_holstein (1787-1851) | 16 | 0 | **16** | ~½ |
+  | DK period 2939 (SH-Glückstadt 1617-1773) | 50 | **50** | **0** ✅ | 0 (CLOSED batches 5+6) |
+  | DK country=schleswig_holstein (1787-1851) | 16 | **16** | **0** ✅ | 0 (CLOSED batch 6) |
   | NO period 2400 (1699-1745 Speciedaler) | unknown | 0 | ? | ? |
   | NO period 1041 (1746-1812 Rigsdaler) | unknown | 0 | ? | ? |
   | NO period 883 (1813-1815 Rigsbankdaler) | unknown | 0 | ? (1813-1814 portion only) | ~1 |
   | DK period 374 (Christian IX 1873-1906) | unknown | 9 | known partial harvest | ~1-2 |
   | DK period 373 (Frederik VIII 1906-1912) | unknown | 0 | ? | ~1 |
   | DK period 220 (Christian X 1912-1947, in-window 1912-1914) | unknown | 0 | ? | small |
+
+**Negative finding (2026-05-19):** ucoin's SH country listing has no entries past 1851 (Provisional Government era end). 1851-1864 SH-duchy coverage (Frederik VII Helstaten era pre-Prussian annexation) is **ucoin platform-floor**, not a harvest gap. The «1851-1864» portion of the user-requested probe is empirically empty.
 
 Estimated total remaining harvest: **~250-400 TIDs** across **6-10 batches**.
 
