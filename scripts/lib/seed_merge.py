@@ -61,6 +61,17 @@ CURATED_FIELDS = frozenset({
     "note",
     "mint_verified",
     "verified",
+    # V2 bidirectional seed↔curated link (Phase 6) — both fields are
+    # curator-maintained or relink-script-derived audit trail of the
+    # §9a multi-specimen merge. They MUST persist across regen so that:
+    #   - a curated coin with `composed_of: [seed_a, seed_b]` keeps that
+    #     list when V2 curated regen runs;
+    #   - a seed coin with `promoted_to: <curated_id>` keeps the pointer
+    #     when V2 seed regroup runs (build assembly drops it from
+    #     rendering, so losing the pointer would re-surface the seed as
+    #     duplicate of its curated host).
+    "composed_of",
+    "promoted_to",
 })
 
 # Deep-merged dict fields: existing keys win, fresh fills gaps.

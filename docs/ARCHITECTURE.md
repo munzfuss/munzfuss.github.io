@@ -420,7 +420,9 @@ Each source's pipeline specifics live in `docs/HARVEST_GUIDE.md` §«Per-source 
 
 > **Canonical statement of the V2 data pipeline.** Re-keys Phase 3 (SEED) and Phase 4 (CURATED) from `<location>.yml` files to `<political_entity>.yml` files. Display pages declare `consumes_entities: [...]` and a new in-memory Phase 5 (MERGED) assembles per-page from N entity files at render time. Detailed plan + decisions: `docs/V2_PIPELINE.md`.
 >
-> Until the explicit «фліпай V2» promotion (Phase 9), **V1 remains the live source of truth** and the rendered live site. V2 lives alongside V1 in `data/v2/` and renders to `site/v2/<loc>/<lang>/`. Both build in one `python scripts/build.py` run.
+> Until the explicit «фліпай V2» promotion (Phase 9), **V1 remains the live rendered site** at unchanged URLs. V2 lives alongside V1 in `data/v2/` and renders to `site/v2/<loc>/<lang>/`. Both build in one `python scripts/build.py` run.
+>
+> **V1 curated is FROZEN after the 2026-05-18 bootstrap migration.** Going forward, only raw harvest + typed parser output evolve (`scripts/cache/<src>/`). V2 curated (`data/v2/curated/<entity>.yml`) is the curator's primary edit surface. Re-running `migrate_curated_to_v2.py` is unnecessary during normal operation; it remains idempotent + merge-aware for safety in case a V1 fix is needed during transition.
 
 ### V2 pipeline shape — strict one-way, script-driven, idempotent
 
@@ -463,40 +465,68 @@ V2 scripts using `merge_seed`:
 
 | Script | Targets | Idempotent? |
 |---|---|---|
-| `scripts/maintenance/migrate_curated_to_v2.py` | `data/v2/curated/<entity>.yml` | ✓ |
-| `scripts/maintenance/seed_v2_regroup.py` | `data/v2/seed/<source>/<entity>.yml` | ✓ |
+| `scripts/maintenance/migrate_curated_to_v2.py` | `data/v2/curated/<entity>.yml` | ✓ (one-shot bootstrap, V1 frozen post 2026-05-18) |
+| `scripts/maintenance/seed_v2_regroup.py` | `data/v2/seed/<source>/<entity>.yml` | ✓ (regular re-run on harvest cycles) |
 | `scripts/maintenance/init_v2_locations.py` | `data/v2/locations/<loc>.yml` | ✓ (preserves manual `consumes_entities` per existing-V2-yaml read-back) |
+| `scripts/maintenance/relink_promoted_v2.py` | `data/v2/seed/<source>/<entity>.yml` | ✓ (Phase 6 — derives `promoted_to` from curator-written `composed_of`) |
 
-**Why this matters.** When a harvest session adds new raw cache (`scripts/cache/<source>/`), re-running the chain `parse_*.py → seed_v2_regroup.py → migrate_curated_to_v2.py → build.py` propagates the new data through to `site/v2/` automatically. Curator edits at any phase are preserved. No phase wipes its output directory; no overwrite of hand-curated values.
+**Why this matters.** When a harvest session adds new raw cache (`scripts/cache/<source>/`), re-running the chain `parse_*.py → seed_v2_regroup.py → relink_promoted_v2.py → build.py` propagates the new data through to `site/v2/` automatically. Curator edits at any phase are preserved. No phase wipes its output directory; no overwrite of hand-curated values.
 
 ### Script inventory + when to re-run each
 
 After **new harvest data** (`scripts/cache/<src>/` updated):
 1. `scripts/parse_<src>.py` — re-typify the new cache entries (V1 + V2 share parser cache)
-2. `scripts/maintenance/build_<src>_<loc>_seed.py` (V1 builder) — refreshes V1 seed
-3. `scripts/maintenance/seed_v2_regroup.py --apply` — regroups V1 seeds into V2 entity-keyed seed
-4. `python scripts/build.py` — renders both V1 + V2
+2. `scripts/maintenance/build_<src>_<loc>_seed.py` (V1 builder) — refreshes V1 seed; merge-aware regen preserves V1-side curation
+3. `scripts/maintenance/seed_v2_regroup.py --apply` — regroups V1 seeds into V2 entity-keyed seed; merge-aware
+4. `scripts/maintenance/relink_promoted_v2.py --apply` — propagates curator-written `composed_of` to `promoted_to` on the seed side (Phase 6 bidirectional link)
+5. `python scripts/build.py` — renders both V1 + V2
 
-After **V1 curated edits** (`data/locations/<loc>.yml` updated):
-1. `scripts/maintenance/migrate_curated_to_v2.py --apply` — folds V1 changes into V2 curated; preserves V2-side curator edits per CURATED_FIELDS
+After **V2 curator edits** (`data/v2/curated/<entity>.yml` updated with §9a merge, fuss/phase changes, etc.):
+1. `scripts/maintenance/relink_promoted_v2.py --apply` — picks up new `composed_of` entries, sets `promoted_to` on referenced seeds
 2. `python scripts/build.py` — re-renders V2
+
+After **V1 curated edits** (rare — V1 frozen post 2026-05-18):
+1. `scripts/maintenance/migrate_curated_to_v2.py --apply` — folds V1 changes into V2 curated; preserves V2-side curator edits per CURATED_FIELDS
+2. `scripts/maintenance/relink_promoted_v2.py --apply`
+3. `python scripts/build.py`
 
 After **V1 phase definition / `phases:` block changes**:
 1. `scripts/maintenance/init_v2_locations.py --apply` — re-derives V2 display-meta; preserves manual `consumes_entities` overrides
 2. `python scripts/build.py`
 
+### Merge audit trail — Phase 6 bidirectional link
+
+> **Every Phase 4 §9a multi-specimen merge IS recorded in the data, not just in commit messages.**
+
+The `composed_of` ↔ `promoted_to` link encodes every merge that has happened:
+
+- **Curated side** (`data/v2/curated/<entity>.yml`): curator writes `composed_of: [seed_id, ...]` listing every seed entry absorbed into a canonical coin entry during §9a merge.
+- **Seed side** (`data/v2/seed/<source>/<entity>.yml`): `promoted_to: <curated_id>` points back to the curated home. Build assembly drops seeds with `promoted_to != None` from rendering (otherwise they'd render duplicate alongside the curated host).
+- **Derivation**: `scripts/maintenance/relink_promoted_v2.py` walks all curated `composed_of` lists and sets the back-pointers on seeds. Idempotent. Catches stale links automatically (composed_of removed → promoted_to cleared on next run).
+
+**Data-loss invariant** — when a curated entry claims to absorb a seed, the curated entry must carry the seed's data. `relink_promoted_v2.py --audit` flags every potential loss:
+
+- Weight readings present in seed but not in curated `weight_rough_g[]`
+- Fineness values present in seed but not in curated
+- Source URLs present in seed but not in curated `sources[]`
+
+The audit is advisory (curator may have intentionally rewritten a source ref, summarised a per-specimen weight into a list-form average, etc.), but every flagged item must be reviewed before the merge is considered complete. The promoted_to / composed_of linkage means upstream phases (regroup, parser refresh) can re-emit seed data freely — re-runs preserve the link, and the curated host retains the data the seed contributed.
+
+**Orphan handling.** A coin id whose curated entry vanished (or whose composed_of no longer mentions it) becomes a stale seed with `promoted_to: <curated_id>` pointing nowhere. `relink_promoted_v2.py` detects + clears these on the next run. Conversely, a `composed_of` ref to a seed id that doesn't exist (parser dropped it, or curator wrote a typo) is flagged with «composed_of references N non-existent seed id(s)». No silent data loss.
+
 ### Transitional state (pre-Phase 9)
 
 `seed_v2_regroup.py` is a **post-processor** over V1's location-keyed seed yamls — a pragmatic bridge while V1 builders are still the canonical entry point for parser-output classification. Once V2 is promoted (Phase 9), each `build_<src>_<loc>_seed.py` will gain a `--v2` flag (or get split into a sibling `build_<src>_seed_v2.py`) so V2 derives directly from parser cache without going through V1 seeds. The merge-aware idempotency invariant carries over unchanged — only the input source shifts (V1 yaml → parser JSON).
 
-`migrate_curated_to_v2.py` similarly runs as one-shot bootstrap from V1 curated; post-Phase-9 it retires (V2 curated becomes the curator's primary surface; `data/locations/` archives off to `data/_archive_v1_locations/`).
+`migrate_curated_to_v2.py` ran as one-shot bootstrap on 2026-05-18. V1 curated is now frozen — only raw harvest + parser cache evolve. The migrate script remains idempotent + merge-aware in case a V1 fix is needed during transition; post-Phase 9 it retires (V2 curated becomes the curator's primary surface; `data/locations/` archives off to `data/_archive_v1_locations/`).
 
 ### Reference docs
 
 - `docs/V2_PIPELINE.md` — full plan with 7 resolved decisions, phase-by-phase execution, effort estimates
-- `scripts/lib/seed_merge.py` — 4-mechanism merge module (CURATED_FIELDS / DEEP_MERGE_FIELDS / _VERIFIABLE_FIELDS / _curation_holds)
+- `scripts/lib/seed_merge.py` — 4-mechanism merge module (CURATED_FIELDS / DEEP_MERGE_FIELDS / _VERIFIABLE_FIELDS / _curation_holds); `composed_of` + `promoted_to` are in CURATED_FIELDS so the bidirectional link survives every regen
 - `scripts/lib/v2_resolver.py` — per-location dict-form resolvers (`phase`, `catalog.km`) + V2 migration breadcrumb strip-set
 - `scripts/lib/v2_entity_classify.py` — mint → entity classification table (V2_PIPELINE.md §3.1 extended)
+- `scripts/maintenance/relink_promoted_v2.py` — Phase 6 bidirectional link materialiser + data-loss audit
 - `data/v2/README.md` — directory layout + key conventions recap
 
 ## Data validation (build-time checks)
