@@ -1,6 +1,6 @@
 status: seed
 source: danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)
-generated_at: '2026-05-16T09:01:42Z'
+generated_at: '2026-05-18T18:28:56Z'
 scope_year_from: 1514
 scope_year_to: 1541
 scope_note: §AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian II + Frederik I + Christian III pre-1541 (Hede 1957 doesn't catalogue these). Parallel source to data/seed/bruun/ (Tier 1)
@@ -305,7 +305,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '1 Sølvgylden'
     year_label: 1516, 1518, 1523
     year_first: 1516
     year_last: 1523
@@ -342,7 +342,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '1 Skilling'
     year_label: 1516, 1517
     year_first: 1516
     year_last: 1517
@@ -355,7 +355,7 @@ coins:
       galster: '41'
       schou: hhv.
       galster_volume: c2g
-    metal: silver
+    metal: billon
     fineness: 0.375
     weight_rough_g: 2.61
     issuing_entity: danish_realm
@@ -377,6 +377,39 @@ coins:
     additional_litteratur:
       - 'Wilcke, Julius: Renæssancens Mønt- og Pengeforhold 1481-1588, København 1950 side 158ff'
     finvaegt_g: 0.98
+  - id: dk-galster-c2galst
+    fuss: seed_unsorted
+    phase: galster
+    kind: kurant
+    nominal: '- oversigt efter Galster'
+    year_label: 1516, 1518
+    year_first: 1516
+    year_last: 1518
+    year_ranges:
+      -   - 1516
+          - 1518
+    ruler: Christian II
+    mint: Malmø
+    catalog: {}
+    metal: silver
+    fineness:
+    weight_rough_g:
+    issuing_entity: danish_realm
+    verified: false
+    fineness_verified: false
+    weight_rough_verified: false
+    mint_verified: true
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/c2galst.htm
+        ref: Galster ? (?) — danskmoent.dk c2galst.htm
+    verification_note:
+      de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen.
+        Cross-references aus dem H1 + Beschreibungsblock automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+      en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog).
+        Cross-references from H1 + description block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+      uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1
+        + блоку опису витягнуто автоматично (Schou, Sieg, Jensen-Skjoldager, Schive, тощо).'
   - id: dk-galster-f1g-121
     fuss: seed_unsorted
     phase: galster
@@ -417,7 +450,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '2 Skilling'
     year_label: '1523'
     year_first: 1523
     year_last: 1523
@@ -430,7 +463,7 @@ coins:
       galster: 124A-C
       schou: varia
       galster_volume: f1g
-    metal: silver
+    metal: billon
     fineness: 0.469
     weight_rough_g: 4.17
     issuing_entity: danish_realm
@@ -530,7 +563,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '14 Penning'
     year_label: '1524'
     year_first: 1524
     year_last: 1524
@@ -544,7 +577,7 @@ coins:
       schou: 4-5
       jensen_skjoldager: F-51
       galster_volume: f1g
-    metal: silver
+    metal: billon
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -609,7 +642,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '14 Penning'
     year_label: 1524, 1525
     year_first: 1524
     year_last: 1525
@@ -621,7 +654,7 @@ coins:
     catalog:
       galster: '62'
       galster_volume: f1g
-    metal: silver
+    metal: billon
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -687,7 +720,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '1 Hvid'
     year_label: '1524'
     year_first: 1524
     year_last: 1524
@@ -700,7 +733,7 @@ coins:
       galster: '64'
       schou: '133'
       galster_volume: f1g
-    metal: silver
+    metal: billon
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -725,7 +758,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '14 Penning'
     year_label: '1524'
     year_first: 1524
     year_last: 1524
@@ -733,11 +766,11 @@ coins:
       -   - 1524
           - 1524
     ruler: Frederik I
-    mint:
+    mint: Landskrone
     catalog:
       galster: '65'
       galster_volume: f1g
-    metal: silver
+    metal: billon
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -762,7 +795,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: Søsling , Landskrone
+    nominal: Søsling
     year_label: '1524'
     year_first: 1524
     year_last: 1524
@@ -770,11 +803,11 @@ coins:
       -   - 1524
           - 1524
     ruler: Frederik I
-    mint:
+    mint: Landskrone
     catalog:
       galster: 66A-B
       galster_volume: f1g
-    metal: gold
+    metal: billon
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -801,7 +834,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: Søsling, Landskrone
+    nominal: Søsling
     year_label: 1524, 1525
     year_first: 1524
     year_last: 1525
@@ -809,11 +842,11 @@ coins:
       -   - 1524
           - 1525
     ruler: Frederik I
-    mint:
+    mint: Landskrone
     catalog:
       galster: 66C
       galster_volume: f1g
-    metal: gold
+    metal: billon
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -1095,7 +1128,7 @@ coins:
       -   - 1525
           - 1525
     ruler: Christian II
-    mint:
+    mint: Landskrone
     catalog:
       galster: '80'
       galster_volume: c2g
@@ -1203,7 +1236,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '1 Skilling'
     year_label: '1525'
     year_first: 1525
     year_last: 1525
@@ -1215,7 +1248,7 @@ coins:
     catalog:
       galster: '55'
       galster_volume: f1g
-    metal: silver
+    metal: billon
     fineness: 0.319
     weight_rough_g: 2.4
     issuing_entity: danish_realm
@@ -1241,7 +1274,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '1 Skilling'
     year_label: 1525, 1531
     year_first: 1525
     year_last: 1531
@@ -1253,7 +1286,7 @@ coins:
     catalog:
       galster: '61'
       galster_volume: f1g
-    metal: silver
+    metal: billon
     fineness: 0.319
     weight_rough_g: 2.4
     issuing_entity: danish_realm
@@ -1322,7 +1355,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '1 Rhinsk gylden, Malm�'
     year_label: '1527'
     year_first: 1527
     year_last: 1527
@@ -1335,7 +1368,7 @@ coins:
       galster: '59'
       schou: 1-3
       galster_volume: f1g
-    metal: silver
+    metal: gold
     fineness: 0.75
     weight_rough_g: 3.19
     issuing_entity: danish_realm
@@ -1362,7 +1395,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '1/2 eller 1 Mark'
     year_label: '1529'
     year_first: 1529
     year_last: 1529
@@ -1559,7 +1592,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '1 Rhinsk gylden'
     year_label: '1531'
     year_first: 1531
     year_last: 1531
@@ -1572,7 +1605,7 @@ coins:
       galster: '122'
       schou: 1-4
       galster_volume: f1g
-    metal: silver
+    metal: gold
     fineness: 0.75
     weight_rough_g: 3.19
     issuing_entity: danish_realm
@@ -1678,7 +1711,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: 'Halv Sølvgylden'
     year_label: '1531'
     year_first: 1531
     year_last: 1531
@@ -1798,7 +1831,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '1 1/2 Sølvgylden'
     year_label: '1532'
     year_first: 1532
     year_last: 1532
@@ -1837,7 +1870,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: 'Halv Sølvgylden'
     year_label: '1532'
     year_first: 1532
     year_last: 1532
@@ -1878,7 +1911,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '1/4 Sølvgylden'
     year_label: '1532'
     year_first: 1532
     year_last: 1532
@@ -1917,7 +1950,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '4 Skilling'
     year_label: '1532'
     year_first: 1532
     year_last: 1532
@@ -1929,7 +1962,7 @@ coins:
     catalog:
       galster: '54'
       galster_volume: f1g
-    metal: silver
+    metal: billon
     fineness: 0.875
     weight_rough_g:
     issuing_entity: danish_realm
@@ -1954,7 +1987,7 @@ coins:
     fuss: seed_unsorted
     phase: galster
     kind: kurant
-    nominal: ''
+    nominal: '2 Mark klipping ; prægested ukendt'
     year_label: '1532'
     year_first: 1532
     year_last: 1532

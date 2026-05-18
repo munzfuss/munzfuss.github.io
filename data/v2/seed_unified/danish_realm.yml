@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 1540 per-source seed entries.
-# Output: 1408 unified entries (one per physical coin).
+# Output: 1413 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -26777,7 +26777,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: 1 Sølvgylden
   year_first: 1516
   year_last: 1523
   year_ranges:
@@ -26857,7 +26857,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: 1 Skilling
   year_first: 1516
   year_last: 1517
   year_ranges:
@@ -26870,7 +26870,7 @@ coins:
     galster: '41'
     schou: hhv.
     galster_volume: c2g
-  metal: silver
+  metal: billon
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
@@ -26907,6 +26907,7 @@ coins:
   year_last: 1525
   year_label: '1525'
   ruler: Christian II
+  mint: Landskrone
   catalog:
     galster: '80'
     galster_volume: c2g
@@ -28110,11 +28111,49 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-f1g-46
+- id: unified-dk-galster-f1g-48
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 1/2 Sølvgylden
+  year_first: 1532
+  year_last: 1532
+  year_label: '1532'
+  ruler: Frederik I
+  mint: København eller Malmø
+  catalog:
+    galster: '48'
+    galster_volume: f1g
+  metal: silver
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 45.58
+    source: galster
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g48.htm
+    ref: Galster 48 (f1g) — danskmoent.dk fr_f1g48.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-48
 - id: unified-dk-galster-f1g-49
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: Halv Sølvgylden
   year_first: 1532
   year_last: 1532
   year_label: '1532'
@@ -28147,6 +28186,42 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-f1g-49
+- id: unified-dk-galster-f1g-50
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: Halv Sølvgylden
+  year_first: 1531
+  year_last: 1531
+  year_label: '1531'
+  ruler: Frederik I
+  mint: København eller Malmø
+  catalog:
+    galster: '50'
+    schou: '4'
+    galster_volume: f1g
+  metal: silver
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g50.htm
+    ref: Galster 50 (f1g) — danskmoent.dk fr_f1g50.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-50
 - id: unified-dk-galster-f1g-51
   fuss: seed_unsorted
   phase: galster
@@ -28186,7 +28261,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: 1/4 Sølvgylden
   year_first: 1532
   year_last: 1532
   year_label: '1532'
@@ -28219,11 +28294,51 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-f1g-52
+- id: unified-dk-galster-f1g-53
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1/2 eller 1 Mark
+  year_first: 1529
+  year_last: 1529
+  year_label: '1529'
+  ruler: Frederik I
+  mint: København
+  catalog:
+    schou: '1'
+    jensen_skjoldager: T-31/35
+    galster: '53'
+    galster_volume: f1g
+  metal: silver
+  fineness_verified: true
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.875
+    source: galster
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g53.htm
+    ref: Galster 53 (f1g) — danskmoent.dk fr_f1g53.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-53
 - id: unified-dk-galster-f1g-54
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: 4 Skilling
   year_first: 1532
   year_last: 1532
   year_label: '1532'
@@ -28232,7 +28347,7 @@ coins:
   catalog:
     galster: '54'
     galster_volume: f1g
-  metal: silver
+  metal: billon
   fineness_verified: true
   weight_rough_verified: false
   mint_verified: true
@@ -28261,7 +28376,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: 1 Skilling
   year_first: 1525
   year_last: 1525
   year_label: '1525'
@@ -28270,7 +28385,7 @@ coins:
   catalog:
     galster: '55'
     galster_volume: f1g
-  metal: silver
+  metal: billon
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
@@ -28298,6 +28413,43 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-f1g-55
+- id: unified-dk-galster-f1g-56
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 14 Penning
+  year_first: 1524
+  year_last: 1524
+  year_label: '1524'
+  ruler: Frederik I
+  mint: København
+  catalog:
+    galster: '56'
+    schou: 4-5
+    jensen_skjoldager: F-51
+    galster_volume: f1g
+  metal: billon
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g56.htm
+    ref: Galster 56 (f1g) — danskmoent.dk fr_f1g56.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-56
 - id: unified-dk-galster-f1g-57
   fuss: seed_unsorted
   phase: galster
@@ -28337,7 +28489,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: 1 Rhinsk gylden, Malm�
   year_first: 1527
   year_last: 1527
   year_label: '1527'
@@ -28347,7 +28499,7 @@ coins:
     galster: '59'
     schou: 1-3
     galster_volume: f1g
-  metal: silver
+  metal: gold
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
@@ -28379,7 +28531,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: 1 Skilling
   year_first: 1525
   year_last: 1531
   year_ranges:
@@ -28391,7 +28543,7 @@ coins:
   catalog:
     galster: '61'
     galster_volume: f1g
-  metal: silver
+  metal: billon
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
@@ -28419,6 +28571,44 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-f1g-61
+- id: unified-dk-galster-f1g-62
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 14 Penning
+  year_first: 1524
+  year_last: 1525
+  year_ranges:
+  - - 1524
+    - 1525
+  year_label: 1524, 1525
+  ruler: Frederik I
+  mint: Malmø
+  catalog:
+    galster: '62'
+    galster_volume: f1g
+  metal: billon
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g62.htm
+    ref: Galster 62 (f1g) — danskmoent.dk fr_f1g62.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-62
 - id: unified-dk-galster-f1g-63
   fuss: seed_unsorted
   phase: galster
@@ -28461,7 +28651,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: 1 Hvid
   year_first: 1524
   year_last: 1524
   year_label: '1524'
@@ -28471,7 +28661,7 @@ coins:
     galster: '64'
     schou: '133'
     galster_volume: f1g
-  metal: silver
+  metal: billon
   fineness_verified: false
   weight_rough_verified: false
   mint_verified: true
@@ -28497,15 +28687,16 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: 14 Penning
   year_first: 1524
   year_last: 1524
   year_label: '1524'
   ruler: Frederik I
+  mint: Landskrone
   catalog:
     galster: '65'
     galster_volume: f1g
-  metal: silver
+  metal: billon
   fineness_verified: false
   weight_rough_verified: false
   mint_verified: false
@@ -28531,15 +28722,16 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: Søsling , Landskrone
+  nominal: Søsling
   year_first: 1524
   year_last: 1524
   year_label: '1524'
   ruler: Frederik I
+  mint: Landskrone
   catalog:
     galster: 66A-B
     galster_volume: f1g
-  metal: gold
+  metal: billon
   fineness_verified: false
   weight_rough_verified: false
   mint_verified: false
@@ -28565,7 +28757,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: Søsling, Landskrone
+  nominal: Søsling
   year_first: 1524
   year_last: 1525
   year_ranges:
@@ -28573,10 +28765,11 @@ coins:
     - 1525
   year_label: 1524, 1525
   ruler: Frederik I
+  mint: Landskrone
   catalog:
     galster: 66C
     galster_volume: f1g
-  metal: gold
+  metal: billon
   fineness_verified: false
   weight_rough_verified: false
   mint_verified: false
@@ -55068,19 +55261,14 @@ coins:
   year_last: 1524
   year_label: '1524'
   ruler: Frederick I
-  mint: København
   catalog:
     numista: '301174'
     sieg: F1-10.2
-    galster: '56'
-    schou: 4-5
-    jensen_skjoldager: F-51
-    galster_volume: f1g
   metal: silver
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: true
+  mint_verified: false
   verified: false
   weight_rough_g:
   - value: 1.98
@@ -55089,9 +55277,6 @@ coins:
   - value: 20.7
     source: numista
   sources:
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f1g56.htm
-    ref: Galster 56 (f1g) — danskmoent.dk fr_f1g56.htm
   - type: literature
     url: https://en.numista.com/301174
     ref: Numista N#301174 — 1 Søsling - Frederik I (lettering type 3; date over shield)
@@ -55107,7 +55292,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   issuing_entity: danish_realm
   composed_of:
-  - dk-galster-f1g-56
   - dk-numista-301174
 - id: unified-dk-numista-301177
   fuss: seed_unsorted
@@ -55115,23 +55299,17 @@ coins:
   kind: kurant
   nominal: 1 Sosling (1⁄96)
   year_first: 1524
-  year_last: 1525
-  year_ranges:
-  - - 1524
-    - 1525
+  year_last: 1524
   year_label: '1524'
   ruler: Frederick I
-  mint: Malmø
   catalog:
     numista: '301177'
     sieg: F1-10.4
-    galster: '62'
-    galster_volume: f1g
   metal: silver
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: true
+  mint_verified: false
   verified: false
   weight_rough_g:
   - value: 1.88
@@ -55140,9 +55318,6 @@ coins:
   - value: 20.21
     source: numista
   sources:
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f1g62.htm
-    ref: Galster 62 (f1g) — danskmoent.dk fr_f1g62.htm
   - type: literature
     url: https://en.numista.com/301177
     ref: Numista N#301177 — 1 Søsling - Frederik I (lettering type 3; date in legend)
@@ -55158,7 +55333,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   issuing_entity: danish_realm
   composed_of:
-  - dk-galster-f1g-62
   - dk-numista-301177
 - id: unified-dk-numista-301375
   fuss: seed_unsorted
@@ -56265,29 +56439,22 @@ coins:
   year_last: 1532
   year_label: '1532'
   ruler: Frederick I
-  mint: København eller Malmø
   catalog:
     numista: '476691'
     galster: '48'
-    galster_volume: f1g
   metal: silver
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: true
+  mint_verified: false
   verified: false
   weight_rough_g:
-  - value: 45.58
-    source: galster
   - value: 45.58
     source: numista
   diameter_mm:
   - value: 41.0
     source: numista
   sources:
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f1g48.htm
-    ref: Galster 48 (f1g) — danskmoent.dk fr_f1g48.htm
   - type: literature
     url: https://en.numista.com/476691
     ref: Numista N#476691 — 1½ Sølvgylden - Frederick I
@@ -56303,7 +56470,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   issuing_entity: danish_realm
   composed_of:
-  - dk-galster-f1g-48
   - dk-numista-476691
 - id: unified-dk-numista-476697
   fuss: seed_unsorted
@@ -56396,17 +56562,14 @@ coins:
   year_last: 1531
   year_label: '1531'
   ruler: Frederick I
-  mint: København eller Malmø
   catalog:
     numista: '476705'
     galster: '50'
-    schou: '4'
-    galster_volume: f1g
   metal: silver
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: true
+  mint_verified: false
   verified: false
   weight_rough_g:
   - value: 14.26
@@ -56415,9 +56578,6 @@ coins:
   - value: 40.0
     source: numista
   sources:
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f1g50.htm
-    ref: Galster 50 (f1g) — danskmoent.dk fr_f1g50.htm
   - type: literature
     url: https://en.numista.com/476705
     ref: Numista N#476705 — ½ Sølvgylden - Frederik I
@@ -56433,7 +56593,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   issuing_entity: danish_realm
   composed_of:
-  - dk-galster-f1g-50
   - dk-numista-476705
 - id: unified-dk-numista-476708
   fuss: seed_unsorted
@@ -56486,23 +56645,17 @@ coins:
   year_last: 1529
   year_label: '1529'
   ruler: Frederick I
-  mint: København
   catalog:
     numista: '476713'
     galster: '53'
     sieg: F1-27
-    schou: '1'
-    jensen_skjoldager: T-31/35
-    galster_volume: f1g
   metal: silver
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: true
+  mint_verified: false
   verified: false
   fineness:
-  - value: 0.875
-    source: galster
   - value: 0.875
     source: numista
   weight_rough_g:
@@ -56512,9 +56665,6 @@ coins:
   - value: 32.0
     source: numista
   sources:
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f1g53.htm
-    ref: Galster 53 (f1g) — danskmoent.dk fr_f1g53.htm
   - type: literature
     url: https://en.numista.com/476713
     ref: Numista N#476713 — 1 Mark - Frederik I
@@ -56530,7 +56680,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   issuing_entity: danish_realm
   composed_of:
-  - dk-galster-f1g-53
   - dk-numista-476713
 - id: unified-dk-numista-84844
   fuss: seed_unsorted

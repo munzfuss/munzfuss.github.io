@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 11 per-source seed entries.
-# Output: 10 unified entries (one per physical coin).
+# Output: 11 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -58,7 +58,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: 1 Rhinsk gylden
   year_first: 1531
   year_last: 1531
   year_label: '1531'
@@ -68,7 +68,7 @@ coins:
     galster: '122'
     schou: 1-4
     galster_volume: f1g
-  metal: silver
+  metal: gold
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
@@ -96,6 +96,48 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - dk-galster-f1g-122
+- id: unified-dk-galster-f1g-124
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 2 Skilling
+  year_first: 1523
+  year_last: 1523
+  year_label: '1523'
+  ruler: Frederik I
+  mint: Gottorp
+  catalog:
+    galster: 124A-C
+    schou: varia
+    galster_volume: f1g
+  metal: billon
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.469
+    source: galster
+  weight_rough_g:
+  - value: 4.17
+    source: galster
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g124.htm
+    ref: Galster 124 (f1g) — danskmoent.dk fr_f1g124.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - dk-galster-f1g-124
 - id: unified-dk-galster-f1g-126
   fuss: seed_unsorted
   phase: galster
@@ -139,7 +181,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: (?)
+  nominal: 2 Mark klipping ; prægested ukendt
   year_first: 1532
   year_last: 1532
   year_label: '1532'
@@ -188,9 +230,6 @@ coins:
     numista: '153257'
     sieg: F1-43
     mb: '10'
-    galster: 124A-C
-    schou: varia
-    galster_volume: f1g
   metal: billon
   fineness_verified: true
   weight_rough_verified: true
@@ -198,22 +237,15 @@ coins:
   mint_verified: true
   verified: false
   fineness:
-  - value: 0.469
-    source: galster
   - value: 0.484
     source: numista
   weight_rough_g:
   - value: 4.06
     source: numista
-  - value: 4.17
-    source: galster
   diameter_mm:
   - value: 30.33
     source: numista
   sources:
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f1g124.htm
-    ref: Galster 124 (f1g) — danskmoent.dk fr_f1g124.htm
   - type: literature
     url: https://en.numista.com/153257
     ref: Numista N#153257 — 2 Schillings - Frederik I (Gottorp; year above shield)
@@ -229,7 +261,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   issuing_entity: gottorp_duchy
   composed_of:
-  - dk-galster-f1g-124
   - dk-numista-153257
 - id: unified-dk-numista-153825
   fuss: seed_unsorted
