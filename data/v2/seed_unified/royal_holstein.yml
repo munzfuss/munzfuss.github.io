@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 169 per-source seed entries.
-# Output: 169 unified entries (one per physical coin).
+# Output: 167 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3339,26 +3339,35 @@ coins:
   ruler: Frederik IV.
   mint: Glückstadt
   catalog:
+    km: '1'
     hede: '58'
     hede_volume: f4h
     schou: '9'
     sieg: '55'
     fr: '4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.562
     source: hede
+  - value: 0.562
+    source: numismaster
   weight_rough_g:
   - value: 3.057
     source: hede
+  - value: 3.057
+    source: numismaster
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h58.htm
     ref: Hede f4h58 (danskmoent.dk)
+  - type: literature
+    url: https://numismaster.com/MC_85855
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -3367,6 +3376,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-hede-f4h58
+  - schleswig_holstein-numismaster-85855
 - id: unified-dk-hede-f4h59
   fuss: 9_25_thaler
   phase: I
@@ -3382,26 +3392,35 @@ coins:
   ruler: Frederik IV.
   mint: Glückstadt
   catalog:
+    km: '4'
     hede: '59'
     hede_volume: f4h
     schou: '9'
     sieg: '54'
     fr: '4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.329
     source: hede
+  - value: 0.329
+    source: numismaster
   weight_rough_g:
   - value: 1.106
     source: hede
+  - value: 1.106
+    source: numismaster
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h59.htm
     ref: Hede f4h59 (danskmoent.dk)
+  - type: literature
+    url: https://numismaster.com/MC_85852
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -3410,6 +3429,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-hede-f4h59
+  - schleswig_holstein-numismaster-85852
 - id: unified-dk-hede-f4h61
   fuss: reichsdukatenfuss
   phase: I
@@ -5058,88 +5078,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-66636
-- id: unified-schleswig_holstein-numismaster-85852
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Skilling
-  year_first: 1714
-  year_last: 1716
-  year_ranges:
-  - - 1714
-    - 1716
-  year_label: 1714–1716
-  ruler: Frederik IV
-  mint: Glückstadt
-  catalog:
-    km: '4'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.329
-    source: numismaster
-  weight_rough_g:
-  - value: 1.106
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_85852
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-85852
-- id: unified-schleswig_holstein-numismaster-85855
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 8 Skilling
-  year_first: 1702
-  year_last: 1705
-  year_ranges:
-  - - 1702
-    - 1705
-  year_label: 1702–1705
-  ruler: Frederik IV
-  mint: Glückstadt
-  catalog:
-    km: '1'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.562
-    source: numismaster
-  weight_rough_g:
-  - value: 3.057
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_85855
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-85855
 - id: unified-schleswig_holstein-numismaster-85856
   fuss: seed_unsorted
   phase: numismaster
