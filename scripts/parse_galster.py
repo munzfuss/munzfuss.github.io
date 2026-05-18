@@ -55,10 +55,23 @@ def _parse_header_h1(text: str) -> dict:
     """The H1 line carries ruler + denomination + year + sometimes mint.
 
     Typical shapes (real samples from cache):
-      «Frederik 1., 1 Ungersk gylden 1531»
-      «Christian 2., 1 Nobel, Malmø 1516 (RRR), 1518 (RRR)»
-      «Christian 3., 2 Mark 1535»
-      «Frederik 1., 1 Mark 1514, Husum»
+      «Frederik 1., 1 Ungersk gylden 1531»                  — ruler + denom on H1
+      «Christian 2., 1 Nobel, Malmø 1516 (RRR), 1518 (RRR)» — ruler + denom + mint + years on H1
+      «Christian 3., 2 Mark 1535»                            — ruler + denom + year
+      «Frederik 1., 1 Mark 1514, Husum»                      — ruler + denom + year + mint
+
+    Pre-modern Danish pages (Galster 47-65, Christian II nobler, etc.)
+    sometimes have a BARE-RULER H1 («Frederik 1.») followed by a
+    body line that carries the denomination + mint + year:
+      «## Frederik 1.»
+      «»
+      «1/4 Sølvgylden, København 1532»
+      «»
+      «Forside: ...»
+
+    The parser handles both shapes by checking the H1 itself first,
+    then falling back to the FIRST non-empty body line after the H1
+    when no denomination text was extracted from the H1.
     """
     out: dict = {}
     # Pick the FIRST H1 that contains a ruler keyword — H2/H3 sections
@@ -76,8 +89,18 @@ def _parse_header_h1(text: str) -> dict:
     out["h1"] = h1
 
     # Year sometimes lives on the line BELOW the H1 (e.g. c2g37: «1516 (RRR), 1518 (RRR). Forside: ...»)
-    body_idx = text.find(h1)
-    body_after = text[body_idx + len(h1):body_idx + len(h1) + 200] if body_idx >= 0 else ""
+    # Use the FULL `## h1` marker so we don't mis-locate the position
+    # via a pre-H1 title that happens to contain the same ruler name
+    # («Frederik 1., Galster 47 og 48 \n\n## Frederik 1.\n\n…»).
+    h1_marker = f"## {h1}"
+    body_idx = text.find(h1_marker)
+    if body_idx >= 0:
+        start = body_idx + len(h1_marker)
+        body_after = text[start:start + 300]
+    else:
+        # Fallback to bare h1 lookup (older pre-normalised text shape)
+        body_idx = text.find(h1)
+        body_after = text[body_idx + len(h1):body_idx + len(h1) + 300] if body_idx >= 0 else ""
 
     # Pull ruler from start
     rm = re.match(r"(Christian|Frederik|Hans|Margrethe|Erik|Olav|Olaf)\s+(\d+|I+|II|III|IV|VII?)\.?", h1)
@@ -90,6 +113,26 @@ def _parse_header_h1(text: str) -> dict:
         rest = h1[rm.end():].lstrip(", .").strip()
     else:
         rest = h1
+
+    # Bare-ruler H1 («Frederik 1.» with no denom): use the first non-
+    # empty body line after the H1 as the «extended header». The first
+    # «Forside:» / spec-block boundary stops the search so we don't
+    # accidentally pull in description prose.
+    if not rest:
+        for body_line in re.split(r"\n+", body_after.strip()):
+            bl = body_line.strip().rstrip(":.").strip()
+            if not bl:
+                continue
+            # Stop at the first descriptive section marker
+            if re.match(
+                r"^(Forside|Bagside|Randskrift|Inskription|Litteratur|"
+                r"Bruttov[æe]gt|Finhed|Finv[æe]gt|Eksempl|Diameter|"
+                r"Tilbage|Afslag|" + _HR_SENTINEL + ")",
+                bl, re.IGNORECASE
+            ):
+                break
+            rest = bl
+            break
 
     # First, strip rarity-flag noise so year detection works on clean text
     rest_clean = re.sub(r"\s*\([RU][RRSU]*\)", "", rest)
@@ -115,17 +158,29 @@ def _parse_header_h1(text: str) -> dict:
     rest_clean = re.sub(r"\s*,\s*$", "", rest_clean).strip(" ,.")
 
     # Try to peel off a trailing mint name from denomination — this allows
-    # both denomination and mint to be retained
-    mint_pattern = re.search(
-        r"[, ]+(København|Kobenhavn|Malmø|Malmö|Malmo|Husum|Gottorp|Roskilde|"
+    # both denomination and mint to be retained. Capture compound forms
+    # «<mint> eller <mint>» (e.g. «København eller Malmø» — common for
+    # pre-modern Danish royal coinage struck at multiple mints) so the
+    # full mint label survives rather than fragmenting into denom-tail.
+    _MINT_WORD = (
+        r"(?:København|Kobenhavn|Malmø|Malmö|Malmo|Husum|Gottorp|Roskilde|"
         r"Aarhus|Ribe|Bergen|Oslo|Visby|Stockholm|Flensborg|Landskrona|"
-        r"Helsingør|Lund)\s*$",
+        r"Landskrone|Helsingør|Lund)"
+    )
+    mint_pattern = re.search(
+        rf"[, ]+({_MINT_WORD}(?:\s+eller\s+{_MINT_WORD})?)\s*$",
         rest_clean,
         re.IGNORECASE,
     )
     if mint_pattern:
         out["mint_from_h1"] = mint_pattern.group(1)
         rest_clean = rest_clean[: mint_pattern.start()].rstrip(", .")
+
+    # Trim trailing descriptive clauses introduced by « - <commentary>»
+    # («4 Skilling - tidligere anset for en halv mark (8 Skilling)»
+    # → «4 Skilling»). The dash separator distinguishes a numismatic
+    # remark from the denomination noun itself.
+    rest_clean = re.split(r"\s+-\s+", rest_clean, maxsplit=1)[0].strip(", .")
 
     out["denomination"] = rest_clean.strip(", .")
     return out
@@ -136,8 +191,8 @@ def _parse_mint_line(text: str) -> str | None:
     # Mint is on a short line after the H1, before «Forside:».
     m = re.search(
         r"(København|Kobenhavn|Malmø|Malmö|Malmo|Husum|Gottorp|Roskilde|Aarhus|"
-        r"Ribe|Bergen|Oslo|Visby|Stockholm|Flensborg|Landskrona|Helsingør|Lund|"
-        r"Kalundborg|Kgs\.\s*Lyngby)\s*(?:eller\s+([A-Za-zÆØÅæøå]+))?",
+        r"Ribe|Bergen|Oslo|Visby|Stockholm|Flensborg|Landskrona|Landskrone|"
+        r"Helsingør|Lund|Kalundborg|Kgs\.\s*Lyngby)\s*(?:eller\s+([A-Za-zÆØÅæøå]+))?",
         text,
     )
     if m:
@@ -229,6 +284,59 @@ def _parse_inscription(text: str) -> str | None:
     return None
 
 
+# Sub-section pattern for multi-Galster pages. E.g. `fr_f1g48.htm`
+# documents BOTH Galster 47 (1 Sølvgylden, 28.5g) AND Galster 48 (1½
+# Sølvgylden, 45.58g) as two sub-sections under one shared H1. The body
+# carries:
+#   « 1 Sølvgylden (RRR)\nGalster 47, Schou 4, ...\n• Bruttovægt: ca. 28,5g\n\n
+#     1 1/2 Sølvgylden (Unik)\nGalster 48, Schou 2, ...\n• Bruttovægt: 45,58g»
+# We pick the sub-section whose Galster-number matches the page's
+# filename-derived number (parsed downstream).
+_SUBSECTION_RE = re.compile(
+    r"^\s*([\d/½¼¾⅓⅔⅙⅛\s]+\s*[A-Za-zÆØÅæøåü][^\n(]+?)\s*(?:\([^)]+\))?\s*\n"
+    r"Galster\s+(\d+\w*)",
+    re.MULTILINE,
+)
+
+
+def _parse_subsections(text: str, galster_num: str | None) -> dict:
+    """When the page hosts multiple Galster-number sub-sections, pick
+    the one whose number matches the cache filename (`galster_num`).
+    Returns {denomination, bruttovaegt_g, finhed, finvaegt_g} extracted
+    from that sub-section, or empty dict when no sub-sections detected.
+    """
+    if not galster_num:
+        return {}
+    matches = list(_SUBSECTION_RE.finditer(text))
+    if len(matches) < 2:
+        return {}
+    target = None
+    for i, m in enumerate(matches):
+        if m.group(2).strip().lower() == galster_num.strip().lower():
+            # Section body = from this match's start to the next match's
+            # start (or to the next HR sentinel / end of relevant block).
+            start = m.start()
+            end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+            hr_pos = text.find(_HR_SENTINEL, start, end)
+            if hr_pos != -1:
+                end = hr_pos
+            target = (m.group(1).strip(", ."), text[start:end])
+            break
+    if not target:
+        return {}
+    denom, body = target
+    out: dict = {"denomination": denom}
+    for pat, key in _SPEC_PATTERNS:
+        m = re.search(pat, body, re.IGNORECASE)
+        if m:
+            val = m.group(1).replace(",", ".").strip()
+            try:
+                out[key] = float(val) if key.endswith(("_g", "_mm")) else val
+            except ValueError:
+                out[key] = m.group(1).strip()
+    return out
+
+
 def parse_page(html_path: Path) -> dict:
     """Parse a single Galster page into structured data."""
     html = html_path.read_text(encoding="utf-8", errors="replace")
@@ -242,13 +350,35 @@ def parse_page(html_path: Path) -> dict:
     litt = _parse_litteratur(text)
     inscription = _parse_inscription(text)
 
+    # Filename-derived Galster number — needed BEFORE sub-section
+    # detection so multi-Galster pages can target the specific entry.
+    galster_num: str | None = None
+    fm = re.search(r"_(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
+    if fm:
+        galster_num = fm.group(2)
+    fm2 = re.search(r"^norge_n(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
+    if fm2:
+        galster_num = fm2.group(2)
+
+    # If the page hosts multiple Galster-number sub-sections, the
+    # H1-derived denomination/specs may describe the page-WIDE topic
+    # («Sølvgylden samt Halvanden Sølvgylden») rather than this
+    # specific entry's denomination. Override with the targeted
+    # sub-section when matched.
+    sub = _parse_subsections(text, galster_num)
+    denomination = sub.get("denomination") or header.get("denomination")
+    if sub:
+        for spec_key in ("bruttovaegt_g", "finhed", "finvaegt_g", "diameter_mm"):
+            if spec_key in sub:
+                specs[spec_key] = sub[spec_key]
+
     out: dict = {
         "source_file": html_path.name,
         "source_url_hint": (
             "https://www.danskmoent.dk/" + html_path.name.replace("_", "/")
         ),
         "ruler": header.get("ruler"),
-        "denomination": header.get("denomination"),
+        "denomination": denomination,
         "year_label": header.get("year_label"),
         "mint": mint,
         "description": desc,
