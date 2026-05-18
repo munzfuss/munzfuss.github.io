@@ -213,6 +213,40 @@ sources:
     note: "Lange: Skandinaviske Mønter 1908/12 (offline)"
 ```
 
+### Source-ref label shape (rendered as link text in the «Джерела» column)
+
+The `ref` field on a `sources[]` entry is the LINK LABEL that appears in the coin's «Джерела» column. Keep it minimal — describing the coin in the label is the `note` field's job, not the link's.
+
+**Default shape: bare resource name.**
+
+```yaml
+sources:
+  - type: numista
+    url: https://en.numista.com/420365
+    ref: Numista                 # ← just the resource name
+```
+
+**When the coin has ≥2 sources from the SAME resource (same domain) — disambiguate via the resource's own per-record identifier:**
+
+| Resource | Disambiguator | Label shape |
+|---|---|---|
+| Numista | N# (page id) | `Numista 420365` |
+| ucoin.net | `tid` query param | `ucoin tid 162999` |
+| Bruun PDFs (Stack's Bowers) | Bruun collection-id + part / lot | `Bruun Part II, lot 14465` (already standard via Bruun seed builder) |
+| IKMK Berlin | object id | `IKMK Berlin 18218478` |
+| danskmoent.dk (Hede / Galster / Wilcke) | Hede / Galster catalog basename | `Hede c4h26 (danskmoent.dk)`, `Galster 47 (f1g)` |
+
+**Forbidden:** descriptive prose appended to the link label. Example caught 2026-05-19:
+
+```yaml
+ref: "Numista 420365 (KM-73 Gold Krone Christian IV, both 26A+26B)"   # ✗ NO
+ref: "Numista 420365"                                                  # ✓ YES
+```
+
+The `(KM-73 Gold Krone Christian IV, both 26A+26B)` part is coin-describing prose — it belongs in the coin's `note` (probably already there), not glued onto a link label. Each character that appears in `ref` lands in the rendered «Джерела» cell verbatim — keep it tight.
+
+**Future refinement (tracked in `docs/TODO.md` §BR)** — for sources whose URLs land on different sub-letters / sub-variants of the same coin (e.g. Bruun lots 1026 and 13094 are both citations to Hede 26A and 26B respectively), the link label should show the sub-index that distinguishes them (`Bruun Part I — Hede 26A` / `Bruun Part II — Hede 26B`) rather than the bare resource page-id. The bare-id is correct when the sub-index is the same as the resource page-id (Numista's N# is itself the disambiguator); the sub-index form helps when the resource records sub-variants under one umbrella id.
+
 ## Cross-references
 
 When a coin's note refers to another coin, use its ID:

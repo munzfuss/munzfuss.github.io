@@ -316,6 +316,38 @@ Bundle takes the audit-completeness cluster (§BH Hede + §BM IKMK + §BN Bruun 
 - All «only-DK, should-also-SH» cases either moved or surfaced via consumes_entities.
 - The opposite direction (SH coins missing on DK) is OUT OF SCOPE for this task — only the DK→SH leak is the user's concern.
 
+### BR. 🟡 Source-ref labels: use distinguishing sub-index when ≥2 same-resource links carry different sub-variants  *(opened 2026-05-19)* *(est: small)* *(type: convention refinement)*
+
+**Surfaced.** User direction 2026-05-19. The default convention (just codified in `docs/CONVENTIONS.md` §«Source-ref label shape») is:
+- Single source of a resource: label = bare resource name («Numista»)
+- Multiple same-resource sources: label = resource + resource's page-id («Numista 199146», «ucoin tid 162999», «Bruun Part II, lot 14465»)
+
+That rule covers «which of ≥2 same-resource sources is this link». But it ignores a STRONGER semantic distinction available in many ≥2-same-resource cases: **the resources themselves point at different SUB-VARIANTS of the coin** (different Hede sub-letters, different Krause-volume sub-numbers, different mintmaster die variants). When the sub-index IS the actual distinguishing axis, the label should expose it instead of the bare page-id.
+
+**Examples of the pattern this TODO addresses:**
+
+- Cross-Krause-volume single coin (currently labelled `Numista 199146` / `Numista 301740` after the §«link-label shape» cleanup — concrete pair caught 2026-05-19): two Numista entries for the SAME physical coin, one under «KM-25 DK volume» and one under «KM-87 SH volume». Better label: `Numista (KM-DK 25)` / `Numista (KM-SH 87)` — the cross-volume KM is the distinguisher.
+- Hede sub-letters folded under one Numista entry: `Numista 568145` covers BOTH Hede 26A and 26B (Frederik III 1667 1 Ducat); when paired with two Bruun lots — one citing Hede 26A and one citing 26B — Bruun's labels should expose the Hede sub-letter (`Bruun (Hede 26A)` / `Bruun (Hede 26B)`).
+- Bruun part vs lot when both labels collide.
+
+**Why this matters.** The «Джерела» column on the rendered page is the reader's primary tool for jumping between cited sources. When labels show only `Numista 199146` vs `Numista 301740`, the reader has to OPEN both to learn which is the DK-volume vs SH-volume citation. Showing the sub-index inline turns the «click to learn» step into «read once» — same information surface, lower friction.
+
+**Algorithm sketch** (to be implemented in `_compute_coin` or render layer):
+
+1. Per coin, group `sources[]` by resource (numista / ucoin / bruun / hede / etc.).
+2. For each group with ≥2 entries:
+   a. Walk each source's `ref` (or compute from URL) and identify the resource's «page id» (Numista N#, ucoin tid, Bruun lot-no, Hede basename).
+   b. Walk the COIN's `catalog` field (or related ref fields) and look for sub-indices that vary across the same-resource sources — Krause register (`km` dict-form), Hede sub-letters (`hede` list-form), Dav sub-variant (LS455/LS456), mintmaster initials.
+   c. If exactly ONE sub-index axis differs across the group AND each source maps cleanly to one sub-index value → use the sub-index as the label suffix (`Numista (KM-DK 25)`); otherwise fall back to page-id (`Numista 199146`).
+3. Single-source groups stay at the bare resource name as today.
+
+**Definition of done.**
+- `_compute_coin` (or the renderer that emits the «Джерела» column) detects ≥2-same-resource groups + walks the coin's catalog for distinguishing sub-indices.
+- The 4 concrete cases identified during the 2026-05-19 cleanup (`Numista 199146`/`301740` cross-volume KM, `Numista 568145` Hede 26A/26B fold, the two `ucoin tid 97085`/`97086` pairs if applicable, the `Numista 420365` 26A+26B fold) render with sub-index labels instead of bare page-ids.
+- Idempotent: re-running the renderer on the same data produces identical labels.
+- Single-source groups behaviour unchanged.
+- CONVENTIONS.md §«Source-ref label shape» updated to describe the auto-derived sub-index labels (the manually-curated «(KM-25 DK volume)»-style suffixes are no longer needed — render layer computes them).
+
 ---
 ## High priority
 
