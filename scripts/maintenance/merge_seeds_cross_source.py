@@ -72,6 +72,21 @@ V2_MATCH_UNCERTAINTY = ROOT / "data" / "v2" / "match_uncertainty"
 
 
 # ---------------------------------------------------------------------------
+# cf-form detection — user policy 2026-05-18
+# ---------------------------------------------------------------------------
+# «cf. X» catalog references point at a similar OTHER coin, not at this
+# entry's own catalogue index, so they don't belong in catalog columns.
+# Filter at ingest in _deep_merge_catalog to prevent future seeds from
+# re-introducing them. Matches both scalar field values («cf. 445») and
+# list-form entries («KM-cf. 15», «Fr-unlisted (cf. 101)»).
+_SCALAR_CF_RE = re.compile(r"^\s*cf\.?\s*\S", re.IGNORECASE)
+_OTHERS_CF_RE = re.compile(
+    r"^\s*[A-Za-zÄÖÜäöüß][\w./\- ]*?(?:[-\s]+cf\.?(?:\s|\d)|\bunlisted\b.*\bcf\.?\s)",
+    re.IGNORECASE,
+)
+
+
+# ---------------------------------------------------------------------------
 # Authority order — V2_PIPELINE.md §5.2 choice (a) confirmed by user
 # ---------------------------------------------------------------------------
 
@@ -748,6 +763,18 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
     }
     # `others` is already list-form; just union.
 
+    # Defensive filter — drop cf-form values (user policy 2026-05-18):
+    # «cf. X» references point at a similar OTHER coin, not at this entry's
+    # own catalogue index, so they don't belong in catalog columns. Skip at
+    # ingest time so future seeds carrying cf don't leak through.
+    def _is_cf(value: str) -> bool:
+        v = value.strip()
+        if _SCALAR_CF_RE.match(v):
+            return True
+        if _OTHERS_CF_RE.match(v):
+            return True
+        return False
+
     # Collect distinct values per field across members
     per_field_values: dict[str, list[str]] = defaultdict(list)
     for m in sorted_members:
@@ -761,6 +788,8 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
             else:
                 value_list = [str(v).strip()] if str(v).strip() else []
             for val in value_list:
+                if _is_cf(val):
+                    continue
                 if val not in per_field_values[k]:
                     per_field_values[k].append(val)
 

@@ -348,6 +348,14 @@
 - **Rationale**: V2 covers ALL data, not just V1's active set. The pre-1541 drafts are valid harvested data; V2's sanitisation handles their non-canonical-schema fields (moves catalog-refs to nested `catalog:`, drops non-schema keys, coerces broken types like `bruun_part: 3 → 'III'`).
 - **Encoded in**: `scripts/maintenance/seed_v2_regroup.py` (no V1-location filter); V2_PIPELINE.md §11 «Resolved decisions».
 
+### D31 — «cf. X» refs don't belong in catalog index columns
+
+- **Decision (2026-05-18)**: «cf. X» catalog references — both list-form (`catalog.others: ['KM-cf. 15', 'Lange-cf. 264a', 'KM-unlisted (cf. 136)']`) and scalar-form (`catalog.lange: 'cf. 445'`, `catalog.fr: 'cf. 3088'`) — are stripped from final yaml catalog fields. A «cf.» reference points at a similar OTHER coin, not at the entry's own catalogue index, so it doesn't belong in the catalog-column.
+- **Rationale (user, 2026-05-18)**: «KM-cf. 15 (silver) / Sieg-cf. 183.1 (silver) — такі cf посилання не потрібно писати в стовпці каталожних індексів, це ж індекс іншої схожої монети, не цієї, тому сюди воно не належить». The cf-relation, when historically load-bearing, lives in `note` prose where it's clearly framed as «closest-related reference is X (cf.)» — not as a positive index for THIS coin.
+- **One-shot cleanup**: `scripts/oneoff/strip_cf_catalog_refs.py` — applied 2026-05-18 across V1 `data/locations/*.yml` (frozen but structural rule applies retroactively) and V2 `data/v2/final/*.yml`. 54 strips total: 24 in V2 final, 30 in V1 final. Three notes (gottorp km-189-karl-fr-1705 / km-203-karl-fr-1712 in both V1 and V2) had explanatory prose («Daher unsere catalog-Felder Lange "cf. 445"…») referencing the now-deleted fields; rewritten to keep the cf-relation as prose («Closest-related references are Lange 445 and Fr 3089 (cf.)») without referring to a catalog field.
+- **Defensive filter**: `_deep_merge_catalog` in `merge_seeds_cross_source.py` (also used by `absorb_seeds_into_final_v2.py`) drops cf-form values at ingest time via `_SCALAR_CF_RE` + `_OTHERS_CF_RE`. Currently no seed carries cf, but the filter prevents regression if a future Bruun-style harvester picks up Stack's-Bowers «Fr-cf. 3089» verbatim.
+- **Encoded in**: `scripts/oneoff/strip_cf_catalog_refs.py` (one-shot cleanup); `scripts/maintenance/merge_seeds_cross_source.py::_deep_merge_catalog` (defensive filter); `CLAUDE.md` §«Anti-patterns to avoid» (after this decision lands, future sessions inherit the rule via the index entry below).
+
 ---
 
 ## Deferred decisions
