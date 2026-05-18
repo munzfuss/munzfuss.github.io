@@ -29,10 +29,21 @@ Migration report categories:
 
 Usage:
   scripts/maintenance/migrate_curated_to_v2.py --dry-run     # report only
-  scripts/maintenance/migrate_curated_to_v2.py --apply       # write V2 files
+  scripts/maintenance/migrate_curated_to_v2.py --apply       # merge into V2 files
 
-The --apply step WIPES `data/v2/curated/*.yml` before writing. Designed to
-be re-runnable: edit V1, re-run migration, regenerate V2.
+The --apply step is IDEMPOTENT — it folds fresh V1-derived coins against
+existing V2 yamls via `lib.seed_merge.merge_seed`. CURATED_FIELDS ({fuss,
+phase, fraction, issuing_entity, kind, note, mint_verified, verified})
+survive across re-runs, so V2-side curator edits persist when V1 fixes
+flow back through. Orphan curated entries (in V2 but no longer in V1)
+stay verbatim. Per-entry escape hatch: add `_curation_holds: [field,
+…]` to any V2 entry to freeze additional fields.
+
+Entity files that exist in V2 but aren't produced by the current V1
+data (e.g. `_deprecated_gesamtstaat.yml` after a coin's mint correction
+re-routes it to a real entity) are LEFT ALONE — the migrate run only
+touches entities the current V1 data emits. Stale orphan files can be
+deleted manually.
 """
 
 from __future__ import annotations
@@ -51,6 +62,9 @@ ROOT = Path(__file__).resolve().parents[2]
 LOCATIONS = ROOT / "data" / "locations"
 V2_CURATED = ROOT / "data" / "v2" / "curated"
 I18N_ENTITIES = ROOT / "data" / "i18n" / "issuing_entities.yml"
+
+sys.path.insert(0, str(ROOT / "scripts"))
+from lib.seed_merge import merge_seed  # noqa: E402
 
 
 # §3.1 mint→entity lookup. Keys are normalised mint prefixes (after stripping
@@ -386,9 +400,6 @@ def main() -> int:
         return 0
 
     V2_CURATED.mkdir(parents=True, exist_ok=True)
-    # Wipe any existing v2 curated yaml (regenerable artefact).
-    for p in V2_CURATED.glob("*.yml"):
-        p.unlink()
 
     # Group source-locations per entity for the header field.
     source_locs_per_entity: dict[str, list[str]] = defaultdict(list)
@@ -396,15 +407,58 @@ def main() -> int:
         for c in coins:
             source_locs_per_entity[ent].append(c.get("v1_home_location"))
 
-    for ent, coins in by_entity.items():
+    # IDEMPOTENT MERGE: per-entity, fold fresh-derived coins against the
+    # existing on-disk yaml via `lib.seed_merge.merge_seed`. CURATED_FIELDS
+    # ({fuss, phase, fraction, issuing_entity, kind, note, mint_verified,
+    # verified}) survive across re-runs — curator's V2-side edits persist
+    # even when V1 changes flow back through. Orphan curated entries
+    # (in V2 but no longer in V1) stay verbatim — no silent data loss.
+    # See `docs/ARCHITECTURE.md §«Manual-override preservation»`.
+    merge_totals = {"merged_existing": 0, "added_new": 0, "orphan_curated": 0}
+    fresh_entities = set(by_entity.keys())
+
+    # If an existing V2 entity file ISN'T in fresh_entities at all (e.g.
+    # _deprecated_gesamtstaat after km-120 fix), leave it alone — curator
+    # owns those orphan files. The migrate run only touches entities the
+    # current V1 data produces.
+    for ent, fresh_coins in by_entity.items():
         path = V2_CURATED / f"{ent}.yml"
+        merged_coins, stats = merge_seed(fresh_coins, path)
+        for k in merge_totals:
+            merge_totals[k] += stats.get(k, 0)
+        # `merge_seed` returns ruamel.yaml CommentedMap instances for the
+        # merged-existing entries; we want plain dicts for emit. Convert.
+        plain_coins = [_ruamel_to_dict(c) for c in merged_coins]
         path.write_text(
-            _emit_entity_file(ent, coins, source_locs_per_entity[ent]),
+            _emit_entity_file(ent, plain_coins, source_locs_per_entity[ent]),
             encoding="utf-8",
         )
 
     print(f"\n✓ Wrote {len(by_entity)} entity file(s) to {V2_CURATED}")
+    print(f"  merge: merged_existing={merge_totals['merged_existing']}, "
+          f"added_new={merge_totals['added_new']}, "
+          f"orphan_curated={merge_totals['orphan_curated']}")
     return 0
+
+
+def _ruamel_to_dict(c):
+    """ruamel.yaml round-trip types → plain Python equivalents (recursive).
+    PyYAML's dumper doesn't know ruamel's CommentedMap / CommentedSeq /
+    *ScalarString wrappers and emits `!!python/object/...` tags otherwise.
+    Convert before write."""
+    from ruamel.yaml.comments import CommentedMap, CommentedSeq
+    from ruamel.yaml.scalarstring import ScalarString
+    if isinstance(c, CommentedMap):
+        return {str(k): _ruamel_to_dict(v) for k, v in c.items()}
+    if isinstance(c, CommentedSeq):
+        return [_ruamel_to_dict(v) for v in c]
+    if isinstance(c, ScalarString):
+        return str(c)
+    if isinstance(c, dict):
+        return {k: _ruamel_to_dict(v) for k, v in c.items()}
+    if isinstance(c, list):
+        return [_ruamel_to_dict(v) for v in c]
+    return c
 
 
 if __name__ == "__main__":

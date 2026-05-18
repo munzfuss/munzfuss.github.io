@@ -16,9 +16,17 @@ become V2 builders proper.
 
 Usage:
   scripts/maintenance/seed_v2_regroup.py --dry-run    # report only (default)
-  scripts/maintenance/seed_v2_regroup.py --apply      # wipe + rewrite data/v2/seed/
+  scripts/maintenance/seed_v2_regroup.py --apply      # merge into V2 seed files
 
-The --apply step WIPES `data/v2/seed/<source>/*.yml` before writing.
+The --apply step is IDEMPOTENT — it folds fresh regrouped coins against
+existing `data/v2/seed/<source>/<entity>.yml` via
+`lib.seed_merge.merge_seed`. CURATED_FIELDS ({fuss, phase, fraction,
+issuing_entity, kind, note, mint_verified, verified}) survive across
+re-runs, so curator triage on seed entries (e.g. moving from
+`seed_unsorted` to a real fuss/phase) persists when V1 seeds get
+re-harvested. Orphan curated entries (in V2 but no longer in V1)
+stay verbatim — no silent data loss. Per-entry escape hatch: add
+`_curation_holds: [field, …]` to any V2 seed entry.
 
 Outputs one yaml per (source, entity) pair:
   data/v2/seed/hede/danish_realm.yml
@@ -56,6 +64,27 @@ from lib.v2_entity_classify import (  # noqa: E402
     classify_mint_diagnostics,
 )
 from lib.schema import Coin, CatalogRefs  # noqa: E402
+from lib.seed_merge import merge_seed  # noqa: E402
+
+
+def _ruamel_to_dict(c):
+    """ruamel.yaml round-trip types → plain Python equivalents (recursive).
+    Mirrors the helper in migrate_curated_to_v2; needed because seed_merge
+    returns CommentedMap entries that pyyaml.dump can't serialise.
+    """
+    from ruamel.yaml.comments import CommentedMap, CommentedSeq
+    from ruamel.yaml.scalarstring import ScalarString
+    if isinstance(c, CommentedMap):
+        return {str(k): _ruamel_to_dict(v) for k, v in c.items()}
+    if isinstance(c, CommentedSeq):
+        return [_ruamel_to_dict(v) for v in c]
+    if isinstance(c, ScalarString):
+        return str(c)
+    if isinstance(c, dict):
+        return {k: _ruamel_to_dict(v) for k, v in c.items()}
+    if isinstance(c, list):
+        return [_ruamel_to_dict(v) for v in c]
+    return c
 
 # Canonical schema field sets — sanitisation rejects everything else.
 _COIN_FIELDS: set[str] = set(Coin.model_fields.keys())
@@ -475,27 +504,35 @@ def main() -> int:
         print("\n--- DRY RUN — no files written. Re-run with --apply to commit. ---")
         return 0
 
-    # Write phase
-    if SEED_V2.exists():
-        for src_dir in [d for d in SEED_V2.iterdir() if d.is_dir()]:
-            if args.source and src_dir.name != args.source:
-                continue
-            for p in src_dir.glob("*.yml"):
-                p.unlink()
-
+    # IDEMPOTENT MERGE: per-(source, entity), fold fresh-regrouped coins
+    # against existing data/v2/seed/<source>/<entity>.yml via
+    # `lib.seed_merge.merge_seed`. CURATED_FIELDS survive across re-runs —
+    # curator's triage on seed entries (moving from `seed_unsorted` to a
+    # real fuss/phase) persists when V1 seeds get re-harvested. Orphan
+    # curated entries (in V2 seed but no longer in V1) stay verbatim —
+    # no silent data loss. Per-entry escape hatch: `_curation_holds`.
+    # See `docs/ARCHITECTURE.md §«Manual-override preservation»`.
     files_written = 0
+    merge_totals = {"merged_existing": 0, "added_new": 0, "orphan_curated": 0}
     for src, by_entity in overall_groups.items():
         out_dir = SEED_V2 / src
         out_dir.mkdir(parents=True, exist_ok=True)
         for entity_id, coins in sorted(by_entity.items()):
             out_path = out_dir / f"{entity_id}.yml"
+            merged_coins, stats = merge_seed(coins, out_path)
+            for k in merge_totals:
+                merge_totals[k] += stats.get(k, 0)
+            plain_coins = [_ruamel_to_dict(c) for c in merged_coins]
             out_path.write_text(
-                _emit_v2_seed_file(src, entity_id, coins),
+                _emit_v2_seed_file(src, entity_id, plain_coins),
                 encoding="utf-8",
             )
             files_written += 1
 
     print(f"\n✓ Wrote {files_written} V2 seed file(s) under {SEED_V2}")
+    print(f"  merge: merged_existing={merge_totals['merged_existing']}, "
+          f"added_new={merge_totals['added_new']}, "
+          f"orphan_curated={merge_totals['orphan_curated']}")
     return 0
 
 
