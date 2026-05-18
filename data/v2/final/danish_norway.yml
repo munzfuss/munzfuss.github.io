@@ -3,12 +3,14 @@ source_locations:
 - denmark
 migrated_from_v1: '2026-05-18'
 coins:
-- id: dk-tid-55898
-  fuss: 11_333_thaler
+- fuss: 11_333_thaler
   phase: I
   kind: scheide
   nominal: 24 Skilling Danske
-  year_label: 1772–1775, 1783, 1788
+  ruler: Christian VII.
+  issuing_entity: danish_norway
+  fraction: 1/4
+  id: dk-tid-55898
   year_first: 1772
   year_last: 1788
   year_ranges:
@@ -18,7 +20,7 @@ coins:
     - 1783
   - - 1788
     - 1788
-  ruler: Christian VII.
+  year_label: 1772–1775, 1783, 1788
   mint: Kongsberg
   catalog:
     km: '250'
@@ -29,11 +31,22 @@ coins:
     - Brekke# 31–36
     hede_volume: c7h
   metal: silver
-  fineness: 0.562
+  fineness:
+  - value: 0.562
+    source: tid
   weight_rough_g:
   - value: 9.17
     source: Numista
-  diameter_mm: 29.0
+  diameter_mm:
+  - value: 29.0
+    source: tid
+  sources:
+  - type: web
+    url: https://www.coinsbook.net/coins/silver-coin-24-skilling-danske-christian-vii-17440
+    ref: coinsbook.net
+  - type: numista
+    url: https://en.numista.com/55898
+    ref: Numista
   note:
     de: 'Norwegische Reichsprägung des dänisch-norwegischen Verbundes, Müntzstätte <b>Kongsberg</b> (Mzz. ⚒ — gekreuzte Bergmannshämmer),
       Münzmeister Johann Heinrich Madelung (<b>IHM</b>, 1772–1775) und Hans Jacob Arnold Branth (<b>HIAB</b>, 1783, 1788).
@@ -53,14 +66,6 @@ coins:
       COUR·M [рік] [монограма монетмайстра] ⚒» · легенда аверса: «D·G·DAN·NOR·VAN·GOT·REX·» (королівський титул реалмової
       корони, без покликання на Гольштейн). Нумізматичне позначення <b>«Rigsort»</b> (= ¼ Rigsdaler Courant) є <u>історіографічне
       прізвисько</u>, <i>не вигравірувано на монеті</i>. Перевірка: 5,15354 × 4 = 20,61416 ≈ 20,63435 г ✓ проти 11⅓-Thaler-Fuß.'
-  sources:
-  - type: web
-    url: https://www.coinsbook.net/coins/silver-coin-24-skilling-danske-christian-vii-17440
-    ref: coinsbook.net
-  - type: numista
-    url: https://en.numista.com/55898
-    ref: Numista
-  issuing_entity: danish_norway
   verification_note:
     de: Aus dem Schleswig-Holstein-Artefakt hierher verlegt — KM# 250 / Hede# 12A–12B / Brekke# 31–36 gehören zur Christian-VII.-<b>Norge</b>-Serie
       (nicht zur Dänemark-Hede 12, die eine Altona ½ Speciedaler darstellt), Mzz. ⚒ und Norwegischer Löwe weisen die Müntzstätte
@@ -77,6 +82,5 @@ coins:
       однозначно визначають Kongsberg як монетний двір, а легенда «DAN·NOR·VAN·GOT·REX» не містить покликань на Гольштейн.
       Числиться в <code>gesamtstaat</code> у межах Дансько-Норвезького союзу (1537–1814); класифікація — 11⅓-Thaler-Fuß, фаза
       A; її буде відновлено, щойно у файлі Данії розгорнуть власну секцію <code>11_333_thaler</code>.
-  fraction: 1/4
-  v1_home_location: denmark
   composed_of: []
+  v1_home_location: denmark
