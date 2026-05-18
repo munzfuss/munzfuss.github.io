@@ -289,7 +289,7 @@ Phase-1 coverage table updated accordingly — NumisMaster row's «Pre-floor ent
 
 Bundle takes the audit-completeness cluster (§BH Hede + §BM IKMK + §BN Bruun + §BO this) to «100% verified» across all 7 raw sources.
 
-#### BO.5 — Numista DK 1602-1914 main-window coverage audit + harvest  🔵 **IN PROGRESS — batches 1+2/6 done (80 NIDs); paused after batch 2** *(opened 2026-05-18, est: medium-large)*
+#### BO.5 — Numista DK 1602-1914 main-window coverage audit + harvest  🔵 **IN PROGRESS — batches 1+2+3/6 done (120 NIDs, 56.6 %)** *(opened 2026-05-18, est: medium-large)*
 
 **Surfaced** by user direction 2026-05-18 «впевнись що в нашому нуміста кеші вже є всі монети по данії в 1602-1914 рр які є на нуміста». BO.1 / .2 / .3 addressed the pre-floor era; BO.5 addresses the main mission window (1602-1914 = Numista DK floor through pre-WWI end of precious-metal era).
 
@@ -324,10 +324,10 @@ The 212-NID gap is documented in `scripts/cache/numista/_BO5_audit_2026-05-18.js
   |---|---|---:|---|---|
   | **1** | ✅ DONE 2026-05-18 | 40 (4139…54912) | 1602-1923 (mostly Christian IX / Frederik VIII / Christian X Krone era + 1602 Christian IV Penning/Hvid family + Frederik IV/V silver Skilling) | `a3d03a6` (submodule) |
   | **2** | ✅ DONE 2026-05-18 | 40 (55301…111300) | Christian V 8/12-Skilling 1683-1684 + SH-Glückstadt 24-Skilling 1762 + Norge Speciedaler + Frederik VI/VII Rigsbankdaler 1820s-1850s + Frederik III 4-Mark-Dansk Type IIA-V (KM# 194.2-194.5, Dav 3572-3574A) | `a33390b` (submodule) |
-  | **3** | ⏳ pending | 40 (111312…181629) | TBD when run |
-  | **4** | ⏳ pending | 40 (182700…366728) | TBD when run |
-  | **5** | ⏳ pending | 40 (372940…468777) | TBD when run |
-  | **6** | ⏳ pending | 12 (468831…577419) | TBD when run |
+  | **3** | ✅ DONE 2026-05-18 | 40 (111312…181629) | Christian IV 1591-1648 silver+gold repertoire (4-Daler Klippe KM# 25, 1-Speciedaler bust-I/II KM# 102/135, 3-Speciedaler KM# 75, Rhinsk Gylden KM# 108, 8-Skilling KM# 31, 1-Mark Helsingør KM# 36) + Frederik III commemorative Victory-over-Swedes Krone (KM# 222/225) + 4-Mark KM# 186/187 + 1-Speciedaler KM# 212 + 2-Ducats Ship I/II (KM# 216.1/216.2) + ½-Krone KM# 267 + Christian V East-India 1-Speciedaler KM# 317/319 + 4-Mark KM# 359.1/401.1-4 + Frederik V Coronation/Accession KM# 546/562/563 + Christian VII Christian-d'Or KM# 629 + Albertsdaler KM# 640 + Gianelli 1-Speciedaler KM# 654 + Frederik VI 2-Frederik-d'Or KM# 713 | `4068959` (submodule) |
+  | **4** | ⏳ pending | 40 (182700…366728) | TBD when run | — |
+  | **5** | ⏳ pending | 40 (372940…468777) | TBD when run | — |
+  | **6** | ⏳ pending | 12 (468831…577419) | TBD when run | — |
 
 Per-batch NID lists live in `scripts/cache/numista/_BO5_audit_2026-05-18.json` under `harvest_progress.batches.batch_N.nids` — drop-in resume-friendly format.
 
@@ -339,7 +339,7 @@ Per-batch NID lists live in `scripts/cache/numista/_BO5_audit_2026-05-18.json` u
 
 The per-NID route is the safe one for incremental harvest. Listing-page enumeration only fires when scoping (BO.5's discovery phase is done).
 
-**Pause rationale (2026-05-18, refreshed after batch 2):** user direction «зробимо тимчасову паузу щоб не було лімітів» after batch 1; reaffirmed after batch 2 with «запиши стан і що лишилось для наступних сесій, бо зараз зробимо паузу на юкоін і переключимось знову на нуміста на 1 батч» (1 Numista batch then pause again). The cumulative Numista access budget is finite and the user wants to spread the load across more days rather than burn it in one session. Per-NID fetches do not have a hard quota but they do contribute to Cloudflare's daily anti-abuse heuristic for our IP. Across batches 1+2 (80 total fetches over two sessions ~52 min each) **0 Cloudflare trips fired** at 31-60 s pacing.
+**Pause rationale (2026-05-18, refreshed after batch 3):** user direction «зробимо тимчасову паузу щоб не було лімітів» after batch 1; reaffirmed after batch 2 with «запиши стан і що лишилось для наступних сесій, бо зараз зробимо паузу на юкоін і переключимось знову на нуміста на 1 батч» (1 Numista batch then pause again); resumed after BR batch 3 with «тепер ще один нуміста батч» (sequenced single-batch alternation between platforms). The cumulative Numista access budget is finite and the user wants to spread the load across more days rather than burn it in one session. Per-NID fetches do not have a hard quota but they do contribute to Cloudflare's daily anti-abuse heuristic for our IP. Across batches 1+2+3 (120 total fetches over three sessions ~50-52 min each) **0 Cloudflare trips fired** at 31-60 s pacing — three-session empirical confirmation that the per-NID HTML route plus pacing is sustainable.
 
 **Resume procedure:**
 
