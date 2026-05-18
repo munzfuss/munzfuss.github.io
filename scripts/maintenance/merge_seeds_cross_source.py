@@ -708,34 +708,92 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
 
 def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
                         ) -> tuple[dict, list]:
-    """Catalog refs accumulated across members. Special-cases KM to
-    preserve cross-volume info via `_merge_km_field`. Other catalog
-    refs: top-authority wins on key collisions (matcher already
-    confirmed catalog overlap agrees, so this case only fires for
-    NON-overlapping refs that one source has and another doesn't).
+    """Catalog refs accumulated across members per CLAUDE.md
+    «Data-accumulation principle». Special-cases KM via `_merge_km_field`
+    (cross-volume preservation). For other refs that schema declares as
+    `str | list[str]`, accumulates distinct values into list-form when
+    members disagree — no silent data loss.
 
-    Returns (merged_catalog, conflicts).
+    Top-authority value comes FIRST in the list (preserves display
+    preference); distinct lower-auth values append in authority order.
+
+    Returns (merged_catalog, conflicts). `conflicts` only logs cases
+    where two members disagreed on a STRICTLY single-value field (e.g.
+    bruun_part Literal — can't list-form).
     """
     sorted_members = sorted(members, key=lambda c: -_authority_score(c.get("id", "")))
     out: dict = {}
     all_conflicts: list[tuple[str, str, str]] = []
 
-    # Special-handle km to preserve cross-volume info
+    # KM — special-case cross-volume merge
     km, km_conflicts = _merge_km_field(members, entity_id)
     if km is not None:
         out["km"] = km
     all_conflicts.extend(km_conflicts)
 
-    # Other catalog fields: gap-fill from top-authority down
+    # Fields that schema lets us accumulate to list-form
+    # (per CatalogRefs `str | list[str]` declaration). Distinct values
+    # across members are PRESERVED.
+    _LIST_FORM_FIELDS = {
+        "hede", "hede_volume", "sieg", "schou", "fr", "dav",
+        "galster", "galster_volume", "jensen_skjoldager",
+        "schive", "skaare", "friedberg", "davenport",
+        "mb", "bruun_collection_id", "bruun_lot", "numista", "lange",
+    }
+    # Fields that stay single-value (specimen-level or strict literal).
+    # Conflict = log; top-auth wins for output.
+    _SINGLE_VALUE_FIELDS = {
+        "bruun_part", "bruun_lot_no", "bruun_page",
+        "sieg_hede1971", "schou_hede1971",
+    }
+    # `others` is already list-form; just union.
+
+    # Collect distinct values per field across members
+    per_field_values: dict[str, list[str]] = defaultdict(list)
     for m in sorted_members:
         cat = m.get("catalog") or {}
         for k, v in cat.items():
-            if k == "km":
-                continue  # already handled
-            if k not in out:
-                out[k] = v
-            elif out[k] != v:
-                all_conflicts.append((f"catalog.{k}", str(out[k]), str(v)))
+            if k == "km" or v is None:
+                continue
+            # Normalise to list of string values for comparison + accumulation
+            if isinstance(v, list):
+                value_list = [str(x).strip() for x in v if x is not None and str(x).strip()]
+            else:
+                value_list = [str(v).strip()] if str(v).strip() else []
+            for val in value_list:
+                if val not in per_field_values[k]:
+                    per_field_values[k].append(val)
+
+    # Emit per-field output
+    for k, values in per_field_values.items():
+        if not values:
+            continue
+        if k in _LIST_FORM_FIELDS:
+            # str when single value (V1-compatible compact form);
+            # list[str] when ≥2 distinct (data accumulation).
+            out[k] = values[0] if len(values) == 1 else values
+        elif k == "others":
+            # `others: list[str]` — always list, union deduped
+            out[k] = values
+        elif k in _SINGLE_VALUE_FIELDS:
+            # Single-value forced (schema constraint). Top-auth wins.
+            out[k] = values[0]
+            if len(values) > 1:
+                for extra in values[1:]:
+                    all_conflicts.append((f"catalog.{k}", values[0], extra))
+        else:
+            # Unknown field — defensive: keep first non-None
+            out[k] = values[0]
+            if len(values) > 1:
+                for extra in values[1:]:
+                    all_conflicts.append((f"catalog.{k}", values[0], extra))
+
+    # `bruun_lot_no` is int in schema, `bruun_page` is int — re-cast when
+    # values are numeric strings (pydantic would accept str→int coercion
+    # but writing the YAML cleanly is nicer)
+    for k in ("bruun_lot_no", "bruun_page"):
+        if k in out and isinstance(out[k], str) and out[k].isdigit():
+            out[k] = int(out[k])
 
     return out, all_conflicts
 
@@ -753,6 +811,50 @@ def _take_first_non_none(members: list[dict], field: str):
             continue
         return v
     return None
+
+
+def _union_year_ranges(members: list[dict]) -> list[list[int]] | None:
+    """UNION year_ranges across members per data-accumulation principle.
+    Combines all `year_ranges` entries (and also synthesised entries
+    from each member's `year_first..year_last` when explicit ranges
+    are absent), de-overlaps, returns sorted non-overlapping list.
+
+    Example:
+      Member A: year_ranges = [[1591, 1593]]
+      Member B: year_ranges = [[1591,1591], [1595,1595]]
+      Result:   [[1591, 1593], [1595, 1595]]
+                (1591-1593 absorbs B's 1591; 1595 stands alone)
+
+    Returns None when no member has any year info.
+    """
+    pairs: list[tuple[int, int]] = []
+    for m in members:
+        yr = m.get("year_ranges")
+        if isinstance(yr, list) and yr:
+            for r in yr:
+                if isinstance(r, (list, tuple)) and len(r) == 2:
+                    try:
+                        pairs.append((int(r[0]), int(r[1])))
+                    except (TypeError, ValueError):
+                        continue
+        else:
+            yf, yl = m.get("year_first"), m.get("year_last")
+            if isinstance(yf, int):
+                pairs.append((yf, int(yl) if isinstance(yl, int) else yf))
+
+    if not pairs:
+        return None
+
+    # De-overlap / merge adjacent or overlapping pairs
+    pairs.sort()
+    merged: list[list[int]] = []
+    for first, last in pairs:
+        if merged and first <= merged[-1][1] + 1:
+            # Overlap or adjacent — extend
+            merged[-1][1] = max(merged[-1][1], last)
+        else:
+            merged.append([first, last])
+    return merged
 
 
 def _or_merge_verified(members: list[dict], field: str) -> bool | None:
@@ -814,9 +916,34 @@ def build_unified(members: list[dict], unified_id: str,
     out["phase"] = _take_first_non_none(sorted_members, "phase") or "unified"
     out["kind"] = _take_first_non_none(sorted_members, "kind") or "kurant"
 
-    # Scalar text fields — gap-fill across members
-    for field in ("fraction", "nominal", "year_label", "year_first", "year_last",
-                  "year_ranges", "ruler", "mintmaster",
+    # year_ranges + year_first/_last — UNION across members per
+    # data-accumulation principle. The widest combined range envelope
+    # drives year_first/_last; year_ranges keeps the de-overlapped
+    # detail so per-year specimen markers in the timeline reflect every
+    # source's recorded minting year.
+    union_yr = _union_year_ranges(members)
+    if union_yr is not None:
+        if len(union_yr) == 1 and union_yr[0][0] == union_yr[0][1]:
+            # Single-year — drop year_ranges (V1-compat: omit when trivial)
+            out["year_first"] = union_yr[0][0]
+            out["year_last"] = union_yr[0][1]
+        else:
+            out["year_first"] = min(r[0] for r in union_yr)
+            out["year_last"] = max(r[1] for r in union_yr)
+            out["year_ranges"] = union_yr
+    # year_label — top-auth wins for display (synthesise if missing
+    # but year info exists)
+    year_label = _take_first_non_none(sorted_members, "year_label")
+    if year_label is not None:
+        out["year_label"] = year_label
+    elif "year_first" in out and "year_last" in out:
+        if out["year_first"] == out["year_last"]:
+            out["year_label"] = str(out["year_first"])
+        else:
+            out["year_label"] = f"{out['year_first']}-{out['year_last']}"
+
+    # Other scalar text fields — gap-fill across members (log conflicts)
+    for field in ("fraction", "nominal", "ruler", "mintmaster",
                   "inscription_obv", "inscription_rev"):
         v = _take_first_non_none(sorted_members, field)
         if v is not None:

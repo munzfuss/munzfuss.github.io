@@ -514,6 +514,25 @@ Scripts drive every phase transition. **Hand-typing data into a later phase with
 
 **Manual-override preservation rule** (mandatory across all phases). Curators MAY edit individual fields on existing entries (correct a fineness, fix a year_first, switch an issuing_entity, …) at any phase. Phase-transition scripts MUST preserve those edits across regenerations — never blindly overwrite curated data. The reference implementation pattern is `scripts/maintenance/build_hede_denmark_seed.py` with its `CURATED_FIELDS` allowlist + `DEEP_MERGE_FIELDS` dict-merge + `_VERIFIABLE_FIELDS` verified-wins rule + `_curation_holds: [field, …]` per-entry escape hatch. Full mechanic + technical-debt list (4 sibling builders still wholesale-write, acceptable until they receive curation) in `docs/ARCHITECTURE.md` §«Manual-override preservation». A wholesale-write builder MUST be upgraded to merge-aware BEFORE the curator starts assigning real `fuss`/`phase` to its entries — failure = loss of curation on next regen.
 
+**Data-accumulation principle** (mandatory across pipeline transitions, user-confirmed 2026-05-18). **Pipeline phases ACCUMULATE data; nothing is silently lost.** When the cross-source merger or any phase-transition script encounters two records describing the same physical coin (per §5.2 match hierarchy), the unified output PRESERVES every distinct value across:
+
+- **Catalog refs** (numista, hede, sieg, bruun_collection_id, lange, fr, dav, galster, friedberg, davenport, jensen_skjoldager, schive, skaare, mb, etc.) — `str | list[str]` schema; when two members carry different values, output is list-form with both preserved. Same physical coin can have multiple Numista N#s, multiple Bruun collection-ids, etc.
+- **year_ranges** — UNION across members (combine + de-overlap). Hede's `[[1591, 1593]]` + Numismaster's per-year `[[1591,1591], [1592,1592], [1593,1593], [1595,1595]]` → `[[1591, 1593], [1595, 1595]]`. The richer breakdown wins.
+- **weight_rough_g / fineness / diameter_mm** — multi-source lists per §9a (every reading per source preserved).
+- **sources** — union (deduped by url+ref+type).
+- **mint** — union (list-form if multi-mint).
+
+**Display layer FILTERS for presentation** (one canonical name, primary catalog ref, summary year-range) — that's a render-time concern. The underlying data retains all variants for audit, future re-display, or rule refinement. The filter is configurable; the data is not.
+
+**Scalar text fields without an established synonym list** (nominal, ruler, etc.) — top-authority wins for the OUTPUT, but conflicts MUST be surfaced in `data/v2/match_uncertainty/<entity>.yml::merge_conflicts` so the discarded variant is not silently lost from project records. Note: a synonyms list for nominal canonicalisation does not yet exist; building one is a Phase 8 consistency-pass task.
+
+**Why this matters.** Pipeline scripts that silently overwrite when merging violate this invariant. Any data-loss case must be either: (a) fixed in code to accumulate, (b) surfaced via `match_uncertainty/` for visibility, or (c) explicitly accepted by curator decision in `merge_decisions/` / `classification_decisions/`. Silent loss is the failure mode — accumulation is the default.
+
+Reference implementations:
+- `scripts/maintenance/merge_seeds_cross_source.py::_merge_km_field` — cross-volume KM accumulation
+- `scripts/maintenance/merge_seeds_cross_source.py::build_unified` — multi-source measurement lists + year_ranges union
+- `scripts/lib/seed_merge.py::merge_seed` — orphan-curated preservation
+
 `docs/HARVEST_GUIDE.md` covers Phase 1 (harvest) in depth — per-source playbooks, tool fallback chain, JS-SPA browser-state pitfalls. Phases 2-4 live in `docs/ARCHITECTURE.md`.
 
 What a session edits by hand:

@@ -315,51 +315,54 @@ class CatalogRefs(_StrictBase):
     # like «3,31» where modern citations give the per-coin Schou number
     # (e.g. «3» for one sub-variant); this field preserves the Hede
     # 1971 reading.
+    # Per CLAUDE.md «Data-accumulation principle»: every catalog ref
+    # below accepts `str | list[str]`. When the cross-source merger
+    # encounters two members with different values for the same ref
+    # (e.g. two distinct Numista N#s describing the same physical
+    # coin), it emits list-form to preserve both. Render layer picks
+    # one for display; data layer keeps everything. Same goes for
+    # legacy V1-singleton refs — list-form is opt-in via merger.
     schou_hede1971: str | None = None
-    fr: str | None = None
-    dav: str | None = None
+    fr: str | list[str] | None = None
+    dav: str | list[str] | None = None
     # Galster — primary Danish-medieval catalogue (Georg Galster's series of
-    # «Mønter fra ...» publications). Used by the V2 galster pre-1541 seed.
-    # `galster_volume` parallels `hede_volume` — the per-ruler / per-series
-    # volume code where bare `galster` numbers would otherwise collide
-    # across publications.
-    galster: str | None = None
-    galster_volume: str | None = None
+    # «Mønter fra ...» publications). `galster_volume` parallels
+    # `hede_volume` — the per-ruler / per-series volume code where bare
+    # `galster` numbers would otherwise collide across publications.
+    galster: str | list[str] | None = None
+    galster_volume: str | list[str] | None = None
     # Jensen-Skjoldager catalogue — Norwegian medieval (pre-1481) supplemental
     # to Galster, used in galster + bruun seeds for Norwegian-tier coinage.
-    jensen_skjoldager: str | None = None
+    jensen_skjoldager: str | list[str] | None = None
     # Schive — Norwegian C. I. Schive «Norges Mynter til Henrik III».
-    # Older but still cited for Norwegian medieval coinage.
-    schive: str | None = None
+    schive: str | list[str] | None = None
     # Skaare — Kolbjørn Skaare, «Coins and Coinage in Viking-Age Norway»
-    # (1976) / «Norges mynthistorie» (1995). Modern Norwegian reference.
-    skaare: str | None = None
+    # (1976) / «Norges mynthistorie» (1995).
+    skaare: str | list[str] | None = None
     # Friedberg — Robert Friedberg «Gold Coins of the World». Global gold
     # reference; cited for Danish-Norwegian gold issues.
-    friedberg: str | None = None
-    # Davenport (full name; the existing `dav` field stores the same
-    # Davenport European Crowns reference but is the short alias used by
-    # the V1 main builder. `davenport` is the long-form variant emitted
-    # by some seed parsers — accepting both lets us avoid renaming during
-    # sanitisation.)
-    davenport: str | None = None
+    friedberg: str | list[str] | None = None
+    # Davenport (long-form variant emitted by some seed parsers;
+    # `dav` short alias used by the V1 main builder).
+    davenport: str | list[str] | None = None
     # Madai-Bach pre-Krause numbering for Schleswig-Holstein duchy coins
     # (used by NumisMaster on entries pre-1604 where KM# was never assigned;
-    # appears as «MB# 27» on the source page's catalog-number field). String
-    # form to preserve sub-letter variants («27A», «B43») the way other
-    # catalog refs do.
-    mb: str | None = None
-    # Bruun citation: collection-id is the stable cross-auction identifier (use as the
-    # primary "did this specimen exist in the L. E. Bruun collection?" reference).
-    # part + lot_no + page identify which catalogue and where to find it for manual
-    # re-inspection. `bruun_lot` (legacy single-field) is kept for back-compat —
-    # mirrors `bruun_collection_id` when both are populated.
-    bruun_collection_id: str | None = None
+    # appears as «MB# 27» on the source page's catalog-number field).
+    mb: str | list[str] | None = None
+    # Bruun citation. collection-id IS list-form: same physical coin
+    # type can appear in MULTIPLE Bruun lots (different specimens) with
+    # their own collection ids — the merger preserves every distinct id.
+    # part / lot_no / page are specimen-level — top-auth wins for the
+    # display tuple but the per-member detail lives in `sources[]`.
+    bruun_collection_id: str | list[str] | None = None
     bruun_part: Literal["I", "II", "III", "IV", "V", "VI"] | None = None
     bruun_lot_no: int | None = None
     bruun_page: int | None = None
-    bruun_lot: str | None = None
-    numista: str | None = None
+    bruun_lot: str | list[str] | None = None
+    # Numista N#: list-form when two N#s describe the same physical
+    # coin (rare but happens — sub-variants Numista chose to split that
+    # other sources merge).
+    numista: str | list[str] | None = None
     others: list[str] = Field(default_factory=list)
 
 
