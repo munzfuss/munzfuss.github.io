@@ -73,6 +73,14 @@ danish_norway:
     uk: "Норвезький реалм данcько-норвезької особистої унії (1380–1814, Кальмарська унія з 1397). Монетні двори Хрістіанія (Сріблярство Конгсберг із 1623, окремий двір із 1628) і Конгсберг (заснований 1624 після відкриття срібної жили; головний двір із 1686, монетна позначка ⚒). Окреме реалмове карбування за данcько-норвезьким стандартом — той самий Müntzfuß, що в Королівстві Данія, але норвезькі легенди й геральдика. Кільський мир 14 січня 1814 відокремлює Норвегію від Данії."
 
 gesamtstaat:
+  _deprecated: true
+  # Retired by the V2 entity-keyed pipeline (per docs/V2_PIPELINE.md §3.1).
+  # Replaced by mint-driven classification: single mint → scalar entity
+  # (royal_holstein / danish_realm / danish_norway); joint mint → list-form
+  # `issuing_entity: [danish_realm, royal_holstein]` etc. Existing V1 coins
+  # are migrated automatically by scripts/maintenance/migrate_curated_to_v2.py.
+  # Manual review required for `gesamtstaat`-tagged coins whose mint is
+  # unknown or outside {Altona, Kopenhagen, Kongsberg/Christiania}.
   abbrev: "DK+"
   name:
     de: "Dänische Monarchie · Königreich Dänemark und Norwegen (1773–1814) → Dänischer Gesammtstaat (Helstaten, 1814–1864)"
