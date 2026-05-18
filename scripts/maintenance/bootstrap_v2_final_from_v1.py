@@ -442,23 +442,11 @@ def main() -> int:
 
 
 def _ruamel_to_dict(c):
-    """ruamel.yaml round-trip types → plain Python equivalents (recursive).
-    PyYAML's dumper doesn't know ruamel's CommentedMap / CommentedSeq /
-    *ScalarString wrappers and emits `!!python/object/...` tags otherwise.
-    Convert before write."""
-    from ruamel.yaml.comments import CommentedMap, CommentedSeq
-    from ruamel.yaml.scalarstring import ScalarString
-    if isinstance(c, CommentedMap):
-        return {str(k): _ruamel_to_dict(v) for k, v in c.items()}
-    if isinstance(c, CommentedSeq):
-        return [_ruamel_to_dict(v) for v in c]
-    if isinstance(c, ScalarString):
-        return str(c)
-    if isinstance(c, dict):
-        return {k: _ruamel_to_dict(v) for k, v in c.items()}
-    if isinstance(c, list):
-        return [_ruamel_to_dict(v) for v in c]
-    return c
+    """Delegate to lib.v2_resolver.ruamel_to_plain — handles ALL ruamel
+    scalar wrappers (ScalarString / ScalarFloat / ScalarInt / ScalarBoolean)
+    via module-name introspection + primitive downcast."""
+    from lib.v2_resolver import ruamel_to_plain
+    return ruamel_to_plain(c)
 
 
 if __name__ == "__main__":

@@ -47,6 +47,7 @@
   - [D27 — Worktree branch = `feat/v2-pipeline`](#d27--worktree-branch--featv2-pipeline)
   - [D28 — Pre-1541 drafts flow through V2 normally](#d28--pre-1541-drafts-flow-through-v2-normally)
   - [D29 — Phase 4 «absorb» = match + accumulate; §8a auto-classify deferred](#d29--phase-4-absorb--match--accumulate-8a-auto-classify-deferred)
+  - [D30 — Synthetic-bucket entities bypass merge_seed in regroup](#d30--synthetic-bucket-entities-bypass-merge_seed-in-regroup)
 - [Deferred decisions](#deferred-decisions)
 
 ---
@@ -324,6 +325,12 @@
 - **Decision (2026-05-18)**: V2 work lives on branch `feat/v2-pipeline`. The Claude worktree branch was renamed from `claude/sleepy-murdock-593353` → `feat/v2-pipeline` on 2026-05-18.
 - **Rationale**: Aligns with the V2_PIPELINE.md plan's branch name; clearer to humans inspecting branches.
 - **Encoded in**: git branch rename + handoff.md.
+
+### D30 — Synthetic-bucket entities bypass merge_seed in regroup
+
+- **Decision (2026-05-18, discovered during Step D audit landing)**: entity IDs starting with `_` (e.g. `_unclassified`, `_deprecated_gesamtstaat`) are SYNTHETIC BUCKETS for coins the mint-classifier couldn't route. They hold purely-uncurated escape-hatch data; merge_seed's CURATED_FIELDS preservation would WRONGLY preserve legacy seed-side tags (`schleswig_holstein_duchy`) on those entries instead of letting the regroup script replace them with the synthetic-bucket marker (`_unclassified`).
+- **Implementation**: `seed_v2_regroup.py` checks `if entity_id.startswith("_")` → direct yaml write (no merge_seed). Coin lands in `_unclassified.yml` with `issuing_entity: "_unclassified"` (overriding any legacy V1 seed-side tag) — satisfies the home-file rule (D5) AND the entity-tag membership audit (I5 in audit_v2.py) which tolerates `_`-prefixed synthetic tags.
+- **Encoded in**: `scripts/maintenance/seed_v2_regroup.py` (synthetic-bucket bypass branch).
 
 ### D29 — Phase 4 «absorb» = match + accumulate; §8a auto-classify deferred
 

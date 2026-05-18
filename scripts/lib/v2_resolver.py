@@ -78,6 +78,38 @@ V2_MIGRATION_BREADCRUMB_KEYS = (
 )
 
 
+def ruamel_to_plain(c):
+    """ruamel.yaml round-trip types → plain Python equivalents (recursive).
+    Handles CommentedMap / CommentedSeq / Scalar* wrappers across str /
+    int / float / bool. Used by all V2 maintenance scripts after
+    `seed_merge.merge_seed()` returns CommentedMap entries that pyyaml's
+    dumper can't serialise without `!!python/object/...` tag pollution.
+    """
+    from ruamel.yaml.comments import CommentedMap, CommentedSeq
+    if isinstance(c, CommentedMap):
+        return {str(k): ruamel_to_plain(v) for k, v in c.items()}
+    if isinstance(c, CommentedSeq):
+        return [ruamel_to_plain(v) for v in c]
+    # ruamel-wrapped scalars (ScalarString / ScalarFloat / ScalarInt /
+    # ScalarBoolean) inherit from str / float / int / bool respectively.
+    # Detect by module name + downcast to primitive.
+    if (hasattr(c, "__class__")
+            and getattr(c.__class__, "__module__", "").startswith("ruamel.")):
+        if isinstance(c, bool):
+            return bool(c)
+        if isinstance(c, int):
+            return int(c)
+        if isinstance(c, float):
+            return float(c)
+        if isinstance(c, str):
+            return str(c)
+    if isinstance(c, dict):
+        return {k: ruamel_to_plain(v) for k, v in c.items()}
+    if isinstance(c, list):
+        return [ruamel_to_plain(v) for v in c]
+    return c
+
+
 def strip_v2_breadcrumbs(coin: dict) -> dict:
     """Return a shallow copy of `coin` with the V2 migration breadcrumb
     keys removed (so the dict passes `Coin._StrictBase` extra='forbid').

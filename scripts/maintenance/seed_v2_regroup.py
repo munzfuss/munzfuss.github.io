@@ -68,23 +68,9 @@ from lib.seed_merge import merge_seed  # noqa: E402
 
 
 def _ruamel_to_dict(c):
-    """ruamel.yaml round-trip types → plain Python equivalents (recursive).
-    Mirrors the helper in bootstrap_v2_final_from_v1; needed because seed_merge
-    returns CommentedMap entries that pyyaml.dump can't serialise.
-    """
-    from ruamel.yaml.comments import CommentedMap, CommentedSeq
-    from ruamel.yaml.scalarstring import ScalarString
-    if isinstance(c, CommentedMap):
-        return {str(k): _ruamel_to_dict(v) for k, v in c.items()}
-    if isinstance(c, CommentedSeq):
-        return [_ruamel_to_dict(v) for v in c]
-    if isinstance(c, ScalarString):
-        return str(c)
-    if isinstance(c, dict):
-        return {k: _ruamel_to_dict(v) for k, v in c.items()}
-    if isinstance(c, list):
-        return [_ruamel_to_dict(v) for v in c]
-    return c
+    """Delegate to lib.v2_resolver.ruamel_to_plain."""
+    from lib.v2_resolver import ruamel_to_plain
+    return ruamel_to_plain(c)
 
 # Canonical schema field sets — sanitisation rejects everything else.
 _COIN_FIELDS: set[str] = set(Coin.model_fields.keys())

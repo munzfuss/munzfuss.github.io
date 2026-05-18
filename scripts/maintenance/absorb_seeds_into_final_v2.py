@@ -85,22 +85,9 @@ def _load_yaml(p: Path) -> dict:
 
 
 def _ruamel_to_dict(c):
-    """ruamel.yaml round-trip types → plain Python (mirrors helpers in
-    other V2 scripts so merge_seed-returned CommentedMap entries serialise
-    cleanly via pyyaml.dump)."""
-    from ruamel.yaml.comments import CommentedMap, CommentedSeq
-    from ruamel.yaml.scalarstring import ScalarString
-    if isinstance(c, CommentedMap):
-        return {str(k): _ruamel_to_dict(v) for k, v in c.items()}
-    if isinstance(c, CommentedSeq):
-        return [_ruamel_to_dict(v) for v in c]
-    if isinstance(c, ScalarString):
-        return str(c)
-    if isinstance(c, dict):
-        return {k: _ruamel_to_dict(v) for k, v in c.items()}
-    if isinstance(c, list):
-        return [_ruamel_to_dict(v) for v in c]
-    return c
+    """Delegate to lib.v2_resolver.ruamel_to_plain."""
+    from lib.v2_resolver import ruamel_to_plain
+    return ruamel_to_plain(c)
 
 
 def _entities_with_seed_unified() -> list[str]:
