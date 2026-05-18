@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 1801 per-source seed entries.
-# Output: 1796 unified entries (one per physical coin).
+# Output: 1798 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -49933,8 +49933,6 @@ coins:
     hede: 36A
     hede_volume: f5h
     sieg: '3'
-    schou: '22'
-    fr: '5'
   metal: silver
   fineness_verified: true
   weight_rough_verified: true
@@ -49949,17 +49947,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f5h36.htm
     ref: Hede f5h36A (danskmoent.dk)
-  - type: literature
-    url: https://www.danskmoent.dk/nf5h3.htm
-    ref: Hede nf5h3 (danskmoent.dk)
-  - type: literature
-    url: https://www.danskmoent.dk/nf5h3.htm
-    ref: Hede nf5hunknown_281 (danskmoent.dk)
   issuing_entity: danish_realm
   composed_of:
   - dk-hede-f5h36a
-  - dk-hede-nf5h3
-  - dk-hede-nf5hunknown_281
 - id: unified-dk-hede-f5h36b
   fuss: 11_333_thaler
   phase: I
@@ -56299,6 +56289,45 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-hede-nf5h2
+- id: unified-dk-hede-nf5h3
+  fuss: seed_unsorted
+  phase: hede
+  kind: scheide
+  nominal: 2 Skilling
+  year_label: 1747, 1756, 1761–1764
+  year_first: 1747
+  year_last: 1764
+  year_ranges:
+  - - 1747
+    - 1747
+  - - 1756
+    - 1756
+  - - 1761
+    - 1764
+  ruler: Frederik V.
+  mint: Kongsberg
+  catalog:
+    hede: '3'
+    hede_volume: nf5h
+    schou: '22'
+    fr: '5'
+  metal: silver
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  fineness:
+  - value: 0.343
+    source: hede
+  weight_rough_g:
+  - value: 1.218
+    source: hede
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/nf5h3.htm
+    ref: Hede nf5h3 (danskmoent.dk)
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-hede-nf5h3
 - id: unified-dk-hede-nf5h4
   fuss: seed_unsorted
   phase: hede
@@ -56331,6 +56360,45 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-hede-nf5h4
+- id: unified-dk-hede-nf5hunknown_281
+  fuss: seed_unsorted
+  phase: hede
+  kind: scheide
+  nominal: 2 Skilling
+  year_label: 1747, 1756, 1761–1764
+  year_first: 1747
+  year_last: 1764
+  year_ranges:
+  - - 1747
+    - 1747
+  - - 1756
+    - 1756
+  - - 1761
+    - 1764
+  ruler: Frederik V.
+  mint: Kongsberg
+  catalog:
+    hede: unknown_281
+    hede_volume: nf5h
+    schou: '22'
+    fr: '5'
+  metal: silver
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  fineness:
+  - value: 0.343
+    source: hede
+  weight_rough_g:
+  - value: 1.218
+    source: hede
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/nf5h3.htm
+    ref: Hede nf5hunknown_281 (danskmoent.dk)
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-hede-nf5hunknown_281
 - id: unified-dk-hede-nf5hunknown_387
   fuss: seed_unsorted
   phase: hede

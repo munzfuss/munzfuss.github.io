@@ -95,6 +95,65 @@ def _authority_score(coin_id: str) -> int:
 
 
 # ---------------------------------------------------------------------------
+# Catalog-ref scoping
+# ---------------------------------------------------------------------------
+#
+# User-confirmed (chat 2026-05-18):
+#   «KM різних локацій стартують з 1 (Ш-Г vs данія, наприклад) і тому може
+#    бути клеш, внутрішньо треба розрізняти це КМ данії чи КМ Ш-Г.
+#    Хеде теж клешить але per ruler — Хеде#1 рулера_1 і Хеде#1 рулера_2
+#    це різні монети, як і KM-DK# 1 ≠ KM-SH# 1.»
+#
+# Within-entity matching: per-entity loop isolates KM volumes naturally
+# (danish_realm coins compare only among themselves; royal_holstein
+# coins likewise). But two failure modes survive within ONE entity:
+#
+#   1. Mixing bare-form `catalog.km: '75'` with dict-form
+#      `catalog.km: {dk: '75'}` inside one entity. Same physical KM but
+#      different dict-keys (`km` vs `km/dk`) → false no_overlap.
+#      FIX: entity-aware register inference — translate bare KM to
+#      `km/<inferred_register>` based on entity's natural Krause volume.
+#
+#   2. Bare-form `catalog.hede: '156'` (no `hede_volume`) within one
+#      entity that spans multiple rulers. Christian IV's Hede-156 and
+#      Frederik III's Hede-156 would false-match on bare key.
+#      FIX: ruler-aware scoping — when `hede_volume` is absent, derive
+#      scope from the coin's `ruler` field (normalised). Always present
+#      from any non-trivial source; if both sides lack ruler too, fall
+#      back to bare `hede` key (still risky but rare in practice).
+
+_ENTITY_TO_KM_REGISTER: dict[str, str] = {
+    # Danish-realm tracks Krause's «Denmark» volume
+    "danish_realm": "dk",
+    "danish_norway": "no",       # Krause has separate Norway volume
+    # SH territory — Krause «German States — Schleswig-Holstein»
+    "royal_holstein": "sh",
+    "gottorp_duchy": "sh",
+    "schauenburg_pinneberg": "sh",
+    "sonderburg_duchy": "sh",
+    "norburg_plon_duchy": "sh",
+    "glucksburg_duchy": "sh",
+    "rantzau_county": "sh",
+    "provisional_govt": "sh",
+    "holstein_schauenburg_county": "sh",
+    # Other German entities — each has its own Krause volume, keep
+    # registers explicit so cross-entity bleed (rare) doesn't false-match
+    "fuerstbisthum_luebeck": "de-fbl",
+    "hanseatic_hamburg": "de-hh",
+    "hanseatic_lubeck": "de-hl",
+    "erzbisthum_bremen_verden": "de-bv",
+    "herzogtum_braunschweig_lueneburg": "de-bl",
+    "herzogtum_sachsen_lauenburg": "de-sl",
+    "grafschaft_oldenburg": "de-old",
+    "hochstift_osnabrueck": "de-osnabr",
+    "landgrafschaft_hessen_kassel": "de-hk",
+    # No register — bare KM remains ambiguous within these synthetic buckets
+    # "_unclassified": None,
+    # "_deprecated_gesamtstaat": None,
+}
+
+
+# ---------------------------------------------------------------------------
 # Field normalisation
 # ---------------------------------------------------------------------------
 
@@ -137,15 +196,25 @@ def _normalise_ruler(ruler):
     return s.lower()
 
 
-def _catalog_refs(coin: dict) -> dict[str, str]:
+def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
     """Return dict of {scope_key: ref_value} for every catalog ref.
-    Keys encode scope so cross-volume / cross-ruler collisions don't false-match.
-    Keys:
-      'km'                          — when bare string (assumes entity-scope context)
-      'km/{register}'               — when dict-form {dk: ..., sh: ...}
-      'hede/{volume}'               — when hede_volume set
-      'hede'                        — when hede_volume absent (rare, fallback)
-      'sieg', 'schou', 'lange', etc.
+    Keys encode scope so cross-volume / cross-ruler collisions don't
+    false-match (per user reminder: KM-DK#1 ≠ KM-SH#1; Hede#1 of
+    Christian IV ≠ Hede#1 of Christian VII).
+
+    Scope-key shape:
+      'km/{register}' — for KM. Dict-form contributes one key per
+                        register. Bare-form maps to the entity's
+                        default register (`_ENTITY_TO_KM_REGISTER`)
+                        OR drops to bare `'km'` when entity has no
+                        mapping.
+      'hede/{ruler}'  — for Hede. Derived from coin's `ruler` field
+                        (normalised) when present, else from
+                        `catalog.hede_volume` lookup. Falls back to
+                        bare `'hede'` only when both unavailable.
+      Single-source refs (sieg/schou/lange/galster_volume/fr/dav/mb/
+        jensen_skjoldager/schive/skaare/friedberg/davenport) — verbatim
+        field name (publication-stable scope, no ruler clash).
     """
     cat = coin.get("catalog") or {}
     refs: dict[str, str] = {}
@@ -156,14 +225,28 @@ def _catalog_refs(coin: dict) -> dict[str, str]:
             for reg, v in km.items():
                 refs[f"km/{reg.lower()}"] = str(v).strip()
         else:
-            refs["km"] = str(km).strip()
+            # Bare KM — infer register from entity context.
+            register = _ENTITY_TO_KM_REGISTER.get(entity_id or "")
+            if register:
+                refs[f"km/{register}"] = str(km).strip()
+            else:
+                refs["km"] = str(km).strip()
 
     hede = cat.get("hede")
     if hede is not None:
+        # Scope = ruler-canonical first (preferred since ruler field is
+        # the authoritative «which king's Hede catalog» signal); fall
+        # back to hede_volume code from URL; finally bare-key.
+        ruler_norm = _normalise_ruler(coin.get("ruler"))
         vol = (cat.get("hede_volume") or "").strip()
-        key = f"hede/{vol}" if vol else "hede"
+        if ruler_norm:
+            scope = ruler_norm
+        elif vol:
+            scope = vol
+        else:
+            scope = ""
+        key = f"hede/{scope}" if scope else "hede"
         if isinstance(hede, list):
-            # list-form Hede — match if ANY sub-letter overlaps
             refs[key] = "|".join(sorted(str(h).strip() for h in hede))
         else:
             refs[key] = str(hede).strip()
@@ -179,7 +262,6 @@ def _catalog_refs(coin: dict) -> dict[str, str]:
         else:
             refs[field] = str(val).strip()
 
-    # Galster is special — has a volume too
     galster = cat.get("galster")
     if galster is not None:
         vol = (cat.get("galster_volume") or "").strip()
@@ -271,13 +353,17 @@ def _mints_overlap(a, b):
 # ---------------------------------------------------------------------------
 
 
-def match_pair(coin_a: dict, coin_b: dict) -> dict:
+def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None) -> dict:
     """Apply §5.2 hierarchy. Returns:
         {'decision': 'confident' | 'low_confidence' | 'no_match',
          'primary': {metal, nominal, catalog, ruler},
          'fallback': {years, fineness, mint},
          'why': [str, ...]}
     Primary booleans: True (match), False (mismatch), None (cannot evaluate).
+
+    `entity_id` is used to scope bare-form catalog refs (KM register
+    inference per `_ENTITY_TO_KM_REGISTER`) — both coins are assumed
+    to belong to the same entity (matcher is per-entity).
     """
     primary = {}
     fallback = {}
@@ -307,9 +393,9 @@ def match_pair(coin_a: dict, coin_b: dict) -> dict:
     else:
         primary["nominal"] = None
 
-    # Catalog chain
-    refs_a = _catalog_refs(coin_a)
-    refs_b = _catalog_refs(coin_b)
+    # Catalog chain (entity-aware scoping for bare KM + ruler-aware for Hede)
+    refs_a = _catalog_refs(coin_a, entity_id)
+    refs_b = _catalog_refs(coin_b, entity_id)
     chain_state, has_overlap = _catalog_chain_consistent(refs_a, refs_b)
     if chain_state == "disagree":
         why.append(f"catalog disagree: {refs_a} vs {refs_b}")
@@ -700,7 +786,7 @@ def process_entity(entity_id: str) -> dict:
             # Skip if already in same class via earlier merge
             if uf.find(a_id) == uf.find(b_id):
                 continue
-            result = match_pair(seeds_by_id[a_id], seeds_by_id[b_id])
+            result = match_pair(seeds_by_id[a_id], seeds_by_id[b_id], entity_id)
             if result["decision"] == "confident":
                 uf.union(a_id, b_id)
                 confident_merges.append({
