@@ -206,10 +206,176 @@ def _normalise_nominal(nominal):
 
 
 def _normalise_ruler(ruler):
+    """Canonicalise a ruler string for cross-source comparison.
+
+    Variants normalised to the same form (so reign-index queries +
+    cross-source matcher hits don't fragment over spelling artefacts):
+
+      «Christian IV.»     →  «christian iv»
+      «Christian IV»      →  «christian iv»
+      «Christian IV. (1588-1648)»  →  «christian iv»
+      «Christian VII, der …»  →  «christian vii»
+      «Frederik IV 1699 - 1730»  →  «frederik iv»  (NumisMaster reign-bleed)
+      «Christian VII 1766 - 1808 Issuer: Danish …»  →  «christian vii»  (NumisMaster Issuer-bleed)
+      «Friedrich III. von Schleswig-Holstein-Gottorp»  →  «friedrich iii»
+
+    Returns lowercased, trailing-period-stripped, single-spaced.
+    """
     if not ruler:
         return ""
-    s = str(ruler).split("(")[0].split(",")[0].strip()
+    s = str(ruler)
+    # Drop parenthetical reign annotations, e.g. «(1588-1648)»
+    s = s.split("(")[0]
+    # Drop comma-tail descriptive epithets, e.g. «Christian VII, der …»
+    s = s.split(",")[0]
+    # Drop «Issuer:» bleed-through from NumisMaster pages
+    s = re.split(r"\s+Issuer\s*:", s, maxsplit=1)[0]
+    # Drop trailing «1699 - 1730» reign-year tail (NumisMaster mass-pollution
+    # already handled by parse_numismaster._clean_ruler, but defensive here
+    # so older seeds + future sources stay normalised)
+    s = re.sub(r"\s+\d{4}\s*-\s*\d{0,4}\s*$", "", s)
+    # Drop «von <house>» / «af <kingdom>» trailing peerage
+    s = re.split(r"\s+(?:von|af|of|zu)\s+", s, maxsplit=1)[0]
+    # Strip trailing dots, normalise whitespace
+    s = re.sub(r"\.+$", "", s).strip()
+    s = re.sub(r"\s+", " ", s)
     return s.lower()
+
+
+def _coin_years(coin: dict) -> set[int]:
+    """All years this coin's type was attested for, expanded from either
+    `year_ranges: [[lo, hi], ...]` or `year_first`..`year_last`.
+
+    Used by `_build_reign_index` (which years does this coin's ruler
+    cover?) and by `_infer_ruler` (which years does this coin claim,
+    so we can look up the unambiguous ruler?).
+    """
+    years: set[int] = set()
+    yr = coin.get("year_ranges")
+    if isinstance(yr, list) and yr:
+        for r in yr:
+            if isinstance(r, (list, tuple)) and len(r) == 2:
+                try:
+                    lo, hi = int(r[0]), int(r[1])
+                    if hi < lo:
+                        lo, hi = hi, lo
+                    years.update(range(lo, hi + 1))
+                except (TypeError, ValueError):
+                    continue
+    else:
+        yf, yl = coin.get("year_first"), coin.get("year_last")
+        if isinstance(yf, int):
+            yl_int = yl if isinstance(yl, int) else yf
+            if yl_int < yf:
+                yf, yl_int = yl_int, yf
+            years.update(range(yf, yl_int + 1))
+    return years
+
+
+def _build_reign_index(coins: list[dict]) -> dict[int, set[str]]:
+    """Build `{year → set(normalised_rulers)}` index from coins of ONE
+    entity that DO carry an attested ruler. Per CLAUDE.md §0 / D33 the
+    inference downstream is conservative: it ONLY fires when a year
+    maps to a singleton ruler set in this index.
+
+    The index is built in two passes:
+
+    1. **Raw attestation pass** — each coin's `(year, ruler)` pair
+       contributes to the raw index. Years where multiple distinct
+       rulers are attested across the corpus (real transition years
+       like 1648 / 1670 / 1808 + data anomalies where some source
+       mislabelled a ruler) end up with a multi-element set.
+
+    2. **Contiguous-reign gap-fill pass** — for any year `y` between
+       the min and max attested years that is NOT covered by step 1,
+       look at the closest preceding attested year `p` and closest
+       following attested year `n`. When BOTH `index[p]` and
+       `index[n]` are the SAME singleton set `{R}`, fill `y` with
+       `{R}`. Rationale: if the reign-corpus says CHR IV alone in
+       1605 and CHR IV alone in 1612, the gap years 1606-1611 are
+       unambiguously also CHR IV — no seed coin happens to be dated
+       to those in-between years, but the bracket guarantees no king
+       changed in the interval. The two-sided bracket ensures the
+       fill never extends past either end of a reign.
+
+    Transition years (king-A dies + king-B crowned in same calendar
+    year), separatist / co-regent windows, and any year where two
+    different ruler labels were attested across the corpus end up with
+    a multi-element set — `_infer_ruler` returns None for those and
+    leaves the ruler null. Better null than a false attribution per
+    user direction 2026-05-18.
+    """
+    raw: dict[int, set[str]] = {}
+    for c in coins:
+        rn = _normalise_ruler(c.get("ruler"))
+        if not rn:
+            continue
+        for y in _coin_years(c):
+            raw.setdefault(y, set()).add(rn)
+
+    if not raw:
+        return raw
+
+    extended = dict(raw)
+    known = sorted(raw)
+    min_y, max_y = known[0], known[-1]
+    # Build a sparse lookup for prev/next attested year per gap year.
+    # Walk forward through the year range once, tracking the most-recent
+    # singleton-attested year on the left; for each gap year, look ahead
+    # to the next singleton-attested year on the right.
+    last_singleton: tuple[int, str] | None = None
+    next_singleton_after: dict[int, tuple[int, str]] = {}
+    next_known: tuple[int, str] | None = None
+    for y in range(max_y, min_y - 1, -1):
+        if y in raw and len(raw[y]) == 1:
+            next_known = (y, next(iter(raw[y])))
+        if next_known is not None:
+            next_singleton_after[y] = next_known
+    for y in range(min_y, max_y + 1):
+        if y in raw and len(raw[y]) == 1:
+            last_singleton = (y, next(iter(raw[y])))
+            continue
+        if y in raw:
+            # multi-attest year — never gap-fill, never advance singleton
+            continue
+        next_pair = next_singleton_after.get(y + 1)
+        if last_singleton is None or next_pair is None:
+            continue
+        # Both bracket years attest the same single ruler with no
+        # multi-attest year in between (we'd have hit `continue` above
+        # before reaching this y).
+        if last_singleton[1] == next_pair[1]:
+            extended[y] = {last_singleton[1]}
+    return extended
+
+
+def _infer_ruler(coin: dict, reign_index: dict[int, set[str]]) -> str | None:
+    """Look up the coin's year(s) in the entity-scoped reign index.
+
+    Returns the inferred normalised ruler ONLY when the union of ruler
+    sets across every year in this coin's span is exactly one — i.e.
+    when EVERY year the coin covers attests the SAME single ruler and
+    no transition / separatism / data conflict exists. In every other
+    case (multi-ruler year, year missing from index, no year data on
+    the coin) returns None.
+
+    This is intentionally conservative — see D33's «better null than
+    a false attribution» constraint.
+    """
+    years = _coin_years(coin)
+    if not years:
+        return None
+    seen: set[str] = set()
+    for y in years:
+        rulers = reign_index.get(y)
+        if not rulers:
+            return None
+        seen.update(rulers)
+        if len(seen) > 1:
+            return None
+    if len(seen) == 1:
+        return next(iter(seen))
+    return None
 
 
 def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
@@ -379,7 +545,8 @@ def _mints_overlap(a, b):
 # ---------------------------------------------------------------------------
 
 
-def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None) -> dict:
+def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
+               reign_index: dict[int, set[str]] | None = None) -> dict:
     """Apply §5.2 hierarchy. Returns:
         {'decision': 'confident' | 'low_confidence' | 'no_match',
          'primary': {metal, nominal, catalog, ruler},
@@ -390,6 +557,16 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None) -> dict
     `entity_id` is used to scope bare-form catalog refs (KM register
     inference per `_ENTITY_TO_KM_REGISTER`) — both coins are assumed
     to belong to the same entity (matcher is per-entity).
+
+    `reign_index` (D33) is an optional `{year → set(rulers)}` map for
+    THIS entity, built from members that DO have an attested ruler.
+    When either coin's `ruler` is null, the matcher falls back to
+    looking up its year(s) in the index — but ONLY adopts the inferred
+    value when the union of rulers across every covered year is
+    exactly one (transition / co-regent years leave the ruler null per
+    user direction). The inference is reported in `why` as
+    «ruler inferred: <name> (year(s) X)» so a curator audit can trace
+    the chain.
     """
     primary = {}
     fallback = {}
@@ -435,9 +612,20 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None) -> dict
         # NOT a mismatch — can't be evaluated. Tri-state primary signal.
         primary["catalog"] = None
 
-    # Ruler
+    # Ruler — direct values first; reign-index inference (D33) when null.
     ra = _normalise_ruler(coin_a.get("ruler"))
     rb = _normalise_ruler(coin_b.get("ruler"))
+    if reign_index:
+        if not ra:
+            inferred_a = _infer_ruler(coin_a, reign_index)
+            if inferred_a:
+                ra = inferred_a
+                why.append(f"ruler_a inferred: {inferred_a!r} from year(s) {sorted(_coin_years(coin_a))}")
+        if not rb:
+            inferred_b = _infer_ruler(coin_b, reign_index)
+            if inferred_b:
+                rb = inferred_b
+                why.append(f"ruler_b inferred: {inferred_b!r} from year(s) {sorted(_coin_years(coin_b))}")
     if ra and rb:
         primary["ruler"] = (ra == rb)
         if not primary["ruler"]:
@@ -979,21 +1167,35 @@ def build_unified(members: list[dict], unified_id: str,
         else:
             out["year_label"] = f"{out['year_first']}-{out['year_last']}"
 
-    # Other scalar text fields — gap-fill across members (log conflicts)
+    # Other scalar text fields — gap-fill across members (log conflicts).
+    # `ruler` uses _normalise_ruler equivalence to suppress pure-punctuation
+    # variants («Frederik IV.» vs «Frederik IV») from the conflict log:
+    # those are NOT real disagreements about who the ruler was, just
+    # different spelling conventions across sources. The merger preserves
+    # the top-authority spelling verbatim in `out[field]` — only the
+    # conflict log is normalised.
     for field in ("fraction", "nominal", "ruler", "mintmaster",
                   "inscription_obv", "inscription_rev"):
         v = _take_first_non_none(sorted_members, field)
         if v is not None:
             out[field] = v
             # Log conflicts when ≥2 distinct values exist across members
+            def _conflict_key(val):
+                s = val if isinstance(val, str) else str(val)
+                if field == "ruler":
+                    return _normalise_ruler(s)
+                return s
             seen: list[str] = [v if isinstance(v, str) else str(v)]
+            seen_keys: set[str] = {_conflict_key(seen[0])}
             for m in sorted_members[1:]:
                 mv = m.get(field)
                 if mv is None:
                     continue
                 mv_repr = mv if isinstance(mv, str) else str(mv)
-                if mv_repr != seen[0] and mv_repr not in seen:
+                mv_key = _conflict_key(mv_repr)
+                if mv_key not in seen_keys:
                     seen.append(mv_repr)
+                    seen_keys.add(mv_key)
                     conflicts.append((field, seen[0], mv_repr))
 
     # Multi-mint union
@@ -1121,6 +1323,14 @@ def process_entity(entity_id: str) -> dict:
     seeds = _load_seeds_for_entity(entity_id)
     decisions = _load_decisions(entity_id)
 
+    # D33 reign index — built ONCE per entity from members that DO
+    # carry an attested ruler. Used by `match_pair` to fill ruler=null
+    # gaps when (and ONLY when) a coin's covered year(s) attest a
+    # single ruler. Transition / co-regent years carry multi-element
+    # sets and stay null per user direction («краще null ніж
+    # неправдивий nonull»).
+    reign_index = _build_reign_index(seeds)
+
     seeds_by_id: dict[str, dict] = {c["id"]: c for c in seeds}
     uf = UnionFind()
     # Ensure all ids are in uf so singleton classes show up.
@@ -1151,7 +1361,8 @@ def process_entity(entity_id: str) -> dict:
             a_id, b_id = ids[i], ids[j]
             if not uf.can_union(a_id, b_id):
                 continue
-            result = match_pair(seeds_by_id[a_id], seeds_by_id[b_id], entity_id)
+            result = match_pair(seeds_by_id[a_id], seeds_by_id[b_id], entity_id,
+                                reign_index=reign_index)
             if result["decision"] == "no_match":
                 uf.add_no_merge(a_id, b_id)
             elif result["decision"] == "confident":

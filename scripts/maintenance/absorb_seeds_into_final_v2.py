@@ -244,6 +244,23 @@ def process_entity(entity_id: str) -> dict:
     final_entries: list[dict] = final_doc.get("coins") or []
     final_by_id = {f["id"]: f for f in final_entries if f.get("id")}
 
+    # PURGE stale composed_of entries — when the cross-source merger
+    # consolidates two previously-separate unified entries into one
+    # (e.g. unified-denmark-numismaster-65046 + unified-dk-hede-c4h134
+    # → unified-dk-hede-c4h134 after D33 ruler-inference unlocks the
+    # merge), the old unified id no longer exists in seed_unified.
+    # Without this purge those stale ids linger in final.composed_of
+    # and trip audit_v2 I2 «composed_of references unknown id». The
+    # replacement unified id gets added by the normal match-pair pass
+    # below, so we don't lose information — just drop dangling refs.
+    purged_count = 0
+    for fid, fc in final_by_id.items():
+        original_composed = fc.get("composed_of") or []
+        kept = [cid for cid in original_composed if cid in unified_by_id]
+        if len(kept) != len(original_composed):
+            fc["composed_of"] = kept
+            purged_count += len(original_composed) - len(kept)
+
     # Build: already-absorbed unified ids (across all final composed_of lists)
     already_absorbed: dict[str, str] = {}
     for fid, fc in final_by_id.items():
@@ -314,6 +331,7 @@ def process_entity(entity_id: str) -> dict:
         "already_absorbed": already_in,
         "newly_absorbed": sum(len(v) for v in new_links.values()),
         "genuinely_new": len(unmatched),
+        "stale_purged": purged_count,
         "unmatched_unified_ids": unmatched,
         "multi_match_warnings": multi_match,
         "enrichment_conflicts": enrichment_conflicts,
@@ -416,6 +434,7 @@ def main() -> int:
         totals["already_absorbed"] += result["already_absorbed"]
         totals["newly_absorbed"] += result["newly_absorbed"]
         totals["genuinely_new"] += result["genuinely_new"]
+        totals["stale_purged"] += result.get("stale_purged", 0)
         totals["multi_match"] += len(result["multi_match_warnings"])
         totals["enrichment_conflicts"] += len(result["enrichment_conflicts"])
 
@@ -479,6 +498,7 @@ def main() -> int:
     print(f"  Already absorbed (prev runs):    {totals['already_absorbed']:>5d}")
     print(f"  Newly absorbed this run:         {totals['newly_absorbed']:>5d}")
     print(f"  Genuinely new (pending):         {totals['genuinely_new']:>5d}")
+    print(f"  Stale composed_of refs purged:   {totals['stale_purged']:>5d}")
     print(f"  Multi-match warnings:            {totals['multi_match']:>5d}")
     print(f"  Enrichment conflicts (logged):   {totals['enrichment_conflicts']:>5d}")
 
