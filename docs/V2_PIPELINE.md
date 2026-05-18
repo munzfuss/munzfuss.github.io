@@ -10,7 +10,7 @@
 > entries currently in `pending` is a follow-up.
 >
 > **Canonical decisions journal: [`docs/V2_DECISIONS.md`](V2_DECISIONS.md).**
-> 36 decisions D1-D36 + 4 deferred DF1-DF4, each with rationale + code
+> 37 decisions D1-D37 + 4 deferred DF1-DF4, each with rationale + code
 > locations. Update D<N> entries there first; this plan document
 > describes the model.
 

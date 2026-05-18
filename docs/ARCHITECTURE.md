@@ -418,7 +418,7 @@ Each source's pipeline specifics live in `docs/HARVEST_GUIDE.md` §«Per-source 
 
 ## V2 entity-keyed pipeline (in-flight refactor)
 
-> **Canonical decisions journal: [`V2_DECISIONS.md`](V2_DECISIONS.md).** Every architectural decision (36 + 4 deferred) listed with rationale + code locations. Read that file first to understand WHY the pipeline is shaped this way; the section below describes WHAT it is.
+> **Canonical decisions journal: [`V2_DECISIONS.md`](V2_DECISIONS.md).** Every architectural decision (37 + 4 deferred) listed with rationale + code locations. Read that file first to understand WHY the pipeline is shaped this way; the section below describes WHAT it is.
 >
 > **Canonical statement of the V2 data pipeline.** 4 fully-automated
 > phases produce `data/v2/final/<entity>.yml` from harvested raw data.

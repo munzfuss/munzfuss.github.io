@@ -368,6 +368,29 @@
 - **Effect on backlog (danish_realm)**: 383 low-confidence pairs → 20 residual (94.8% recovery). 0 confident merges → 136 confident merges. The 20 residual pairs are all coins whose year span touches a real-or-anomaly multi-ruler year (1648 / 1670 / 1606+1610 / etc.) — exactly the cases the user wanted to leave null. 0 fake-conflict noise in the merge_conflicts log.
 - **Encoded in**: `scripts/maintenance/merge_seeds_cross_source.py` (`_build_reign_index`, `_infer_ruler`, `_normalise_ruler` extension, `match_pair` reign_index parameter, `process_entity` index construction, `build_unified` conflict-log normalisation); `scripts/maintenance/absorb_seeds_into_final_v2.py` (stale-purge + `stale_purged` stat). Future entities (royal_holstein, gottorp_duchy, schauenburg_pinneberg, etc.) get the benefit automatically — the index is rebuilt per-entity in `process_entity`.
 
+### D37 — Bulk-promote pending unified into final for empty-foundation entities
+
+- **Decision (2026-05-19)**: When a V2 entity has NO V1 foundation at all — every unified entry is by definition «genuinely new» because there's nothing to potentially conflict with — the curator can assert this once via a top-level `bulk_promote_pending: true` flag in `data/v2/classification_decisions/<entity>.yml`. The absorb script then promotes ALL pending unified entries directly into the entity's `final/<entity>.yml` as initial foundation entries.
+- **Motivation**: The default absorb path («match unified ↔ existing final via §5.2 hierarchy → enrich on match, route to pending on no-match») is correct when V1 foundation entries already cover the entity's scope. For freshly-created V2 entities (D35 Norge fix created `danish_norway` with zero V1 foundation; every unified entry lands in pending) the path produces a curator backlog of 100% of the unified entries — pointless friction. User direction 2026-05-19: «цих одразу можна запускати далі бо категорії не було і не повинно бути конфліктів».
+- **Mechanic**:
+  1. Curator sets `bulk_promote_pending: true` at the top of `classification_decisions/<entity>.yml`.
+  2. `_bulk_promote_flag(entity_id)` reads the flag during `process_entity`.
+  3. After the normal match-pass collects `unmatched_unified_ids`, the bulk-promote pass appends each as a new final entry with `composed_of: [<self-id>]` — self-promote marker that distinguishes V2-native foundation from V1-bootstrap-foundation (which has `composed_of: []`).
+  4. Promoted entries go through `_enrich_final_entry(unified, [unified], entity_id)` so the on-disk field layout matches every other final entry's canonical shape — guarantees idempotency on re-runs (verified: `diff` after 2nd `--apply` run = 0).
+  5. `unmatched_unified_ids` becomes `[]` after promotion; `classification_decisions/<entity>.yml` rewrites with empty `pending: []` and the flag preserved.
+- **Fields the promoted entries carry**: everything the unified entry had — `nominal`, `ruler`, `year_first/_last/_ranges`, `metal`, `fineness`, `weight_rough_g`, `mint`, `mintmaster`, `catalog`, `sources`, `note`, `verified` flags. The classification-needing fields stay placeholders:
+  - `fuss: seed_unsorted` (the sentinel for «no Müntzfuß assigned yet»)
+  - `phase: <source-tag>` (`hede` / `numismaster` / `numista` / `bruun` / `galster` — derived from the seed authority)
+  - `kind`: usually `kurant` (the seed builder's default; curator can refine)
+- **Render behaviour**: coins with `fuss: seed_unsorted` skip soll/delta computation in the build (per `_compute_coin`); they don't render on any location page until a real `fuss` is assigned. The bulk-promote thus makes the entries «present in foundation, ready for classification» without polluting rendered output.
+- **Path forward (deferred for these entries)**:
+  - §8a auto-classifier (not yet built) will read the foundation, evaluate `fuss` candidates per metal + nominal + fineness + Δ-vs-Soll, and write `fuss/phase` in-place.
+  - Or curator pins explicit values via `classification_decisions/<entity>.yml::assignments` per-coin entries.
+  - Or the curator creates a display location (`data/v2/locations/norway.yml`) declaring `consumes_entities: [danish_norway]` so the entries surface on rendered pages once classified.
+- **First real case (2026-05-19)**: `data/v2/classification_decisions/danish_norway.yml` set `bulk_promote_pending: true`; 438 unified entries promoted into `data/v2/final/danish_norway.yml` (439 total — the existing dk-tid-55898 from V1 stays unchanged). `pending: []` cleared. audit_v2 --quick: 0 violations.
+- **Future enrichment correctness**: bulk-promoted entries become normal foundation. Future seed_unified passes' new unified entries match against them via the existing `match_pair` (`§5.2 hierarchy`) — `fuss/phase` fields are NOT in the matcher's primary or fallback signals, so placeholder values don't affect match correctness. New cross-source enrichments accumulate into existing bulk-promoted entries normally.
+- **Encoded in**: `scripts/maintenance/absorb_seeds_into_final_v2.py` — `_bulk_promote_flag`, `process_entity` (bulk-promote pass after normal match-loop), `_emit_classification_decisions` (preserves the flag on rewrite). `data/v2/classification_decisions/danish_norway.yml` (first real curator entry).
+
 ### D36 — Curator merge decisions: smart override that doesn't block future enrichments
 
 - **Decision (2026-05-18)**: When the auto-matcher cannot decide a pair (genuine numismatic ambiguity — e.g. NumisMaster's rolled-up multi-reign record vs Hede's per-reign split), the curator writes an explicit verdict in `data/v2/merge_decisions/<entity>.yml` with two surfaces:

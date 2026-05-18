@@ -219,6 +219,29 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
 # ---------------------------------------------------------------------------
 
 
+def _bulk_promote_flag(entity_id: str) -> bool:
+    """Curator-decision flag: when `bulk_promote_pending: true` is set
+    at the top of `data/v2/classification_decisions/<entity>.yml`, any
+    unified entry that doesn't match an existing V1-foundation entry
+    is promoted DIRECTLY into the final yaml as a new foundation entry
+    (instead of landing in `pending`).
+
+    Use case (D37): an entity that has NO V1 foundation at all — every
+    unified entry is by definition «genuinely new», no conflict is
+    possible because there's nothing to conflict with. The curator
+    asserts this by setting the flag once; future runs honour it
+    automatically and idempotently. New entries promoted on each run
+    inherit `fuss: seed_unsorted` + the source-tag placeholder phase;
+    classification to a real Müntzfuß is deferred to §8a auto-classify
+    or curator `assignments:` entries.
+    """
+    path = V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml"
+    if not path.exists():
+        return False
+    doc = _load_yaml(path)
+    return bool(doc.get("bulk_promote_pending"))
+
+
 def process_entity(entity_id: str) -> dict:
     """Returns:
       {
@@ -229,6 +252,7 @@ def process_entity(entity_id: str) -> dict:
         'already_absorbed': int,
         'newly_absorbed': int,
         'genuinely_new': int,
+        'bulk_promoted': int,           # entries auto-promoted to final under D37
         'unmatched_unified_ids': [...],
         'multi_match_warnings': [{unified_id, candidates}, ...],
         'enrichment_conflicts': [{final_id, members, conflicts}, ...],
@@ -243,6 +267,8 @@ def process_entity(entity_id: str) -> dict:
     final_doc = _load_yaml(final_path)
     final_entries: list[dict] = final_doc.get("coins") or []
     final_by_id = {f["id"]: f for f in final_entries if f.get("id")}
+
+    bulk_promote = _bulk_promote_flag(entity_id)
 
     # PURGE stale composed_of entries — when the cross-source merger
     # consolidates two previously-separate unified entries into one
@@ -323,6 +349,38 @@ def process_entity(entity_id: str) -> dict:
                 ],
             })
 
+    # D37 BULK-PROMOTE PENDING: when the curator-decision flag is set,
+    # the unmatched unified entries (= no V1-foundation conflict possible
+    # because there IS no V1 foundation, by assertion) become the
+    # entity's INITIAL foundation. Each unified entry's data is written
+    # into final verbatim, with the `composed_of` audit-trail listing
+    # the unified id itself (a self-promote — distinguishes a bulk-
+    # promoted entry from a V1-bootstrap-foundation entry that has
+    # `composed_of: []`).
+    bulk_promoted: list[str] = []
+    if bulk_promote:
+        for uid in unmatched:
+            unified = unified_by_id.get(uid)
+            if not unified:
+                continue
+            # Bake the promoted entry's `composed_of` to include the
+            # self-id so subsequent runs recognise it as already-
+            # absorbed (via the `already_absorbed` index built from
+            # final.composed_of at the top of process_entity). Then
+            # route through `_enrich_final_entry` so the output has
+            # the SAME canonical field layout as V1-foundation entries
+            # — guarantees idempotency on re-runs.
+            promoted_stub = dict(unified)
+            promoted_stub["composed_of"] = [uid]
+            enriched, _ = _enrich_final_entry(
+                promoted_stub, [promoted_stub], entity_id
+            )
+            enriched_entries.append(enriched)
+            bulk_promoted.append(uid)
+        # Promoted entries are no longer «pending»
+        unmatched = []
+        multi_match = []  # bulk-promote subsumes multi-match decisions
+
     return {
         "entity_id": entity_id,
         "unified_total": len(unified_entries),
@@ -331,6 +389,7 @@ def process_entity(entity_id: str) -> dict:
         "already_absorbed": already_in,
         "newly_absorbed": sum(len(v) for v in new_links.values()),
         "genuinely_new": len(unmatched),
+        "bulk_promoted": len(bulk_promoted),
         "stale_purged": purged_count,
         "unmatched_unified_ids": unmatched,
         "multi_match_warnings": multi_match,
@@ -387,17 +446,20 @@ def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
         f"# `pending:` section; existing `assignments:` entries are\n"
         f"# preserved.\n\n"
     )
-    # Try to preserve existing assignments
+    # Try to preserve existing assignments + the D37 bulk_promote_pending flag
     existing = _load_yaml(V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml")
     existing_assignments = existing.get("assignments") or []
-    payload = {
+    bulk_flag = bool(existing.get("bulk_promote_pending"))
+    payload: dict = {
         "entity_id": entity_id,
         "generated_at": today,
-        "assignments": existing_assignments,
-        "pending": [{"unified_id": uid, "status": "no_match_in_final"}
-                     for uid in unmatched_ids],
-        "multi_match_warnings": multi_match,
     }
+    if bulk_flag:
+        payload["bulk_promote_pending"] = True
+    payload["assignments"] = existing_assignments
+    payload["pending"] = [{"unified_id": uid, "status": "no_match_in_final"}
+                          for uid in unmatched_ids]
+    payload["multi_match_warnings"] = multi_match
     return header + yaml.dump(payload, sort_keys=False, allow_unicode=True,
                               default_flow_style=False, width=120)
 
@@ -434,6 +496,7 @@ def main() -> int:
         totals["already_absorbed"] += result["already_absorbed"]
         totals["newly_absorbed"] += result["newly_absorbed"]
         totals["genuinely_new"] += result["genuinely_new"]
+        totals["bulk_promoted"] += result.get("bulk_promoted", 0)
         totals["stale_purged"] += result.get("stale_purged", 0)
         totals["multi_match"] += len(result["multi_match_warnings"])
         totals["enrichment_conflicts"] += len(result["enrichment_conflicts"])
@@ -446,6 +509,8 @@ def main() -> int:
             f"abs(new):{result['newly_absorbed']:3d}  "
             f"new_coins:{result['genuinely_new']:3d}"
         )
+        if result.get("bulk_promoted"):
+            line += f"  bulk_promote:{result['bulk_promoted']}"
         if result["multi_match_warnings"]:
             line += f"  multi:{len(result['multi_match_warnings'])}"
         if result["enrichment_conflicts"]:
@@ -479,10 +544,20 @@ def main() -> int:
                 encoding="utf-8",
             )
 
-            # Write classification_decisions pending list (always — regenerated)
-            if result["unmatched_unified_ids"] or result["multi_match_warnings"]:
+            # Write classification_decisions pending list (always — regenerated).
+            # Also rewrite when the file ALREADY EXISTS even if pending is
+            # now empty — bulk-promote (D37) clears the pending list and
+            # we need to drop stale entries from the previous run. The
+            # existing-assignments + bulk_promote_pending flag are preserved
+            # by `_emit_classification_decisions` reading the prior file.
+            existing_decisions_path = V2_CLASSIFICATION_DECISIONS / f"{ent}.yml"
+            if (
+                result["unmatched_unified_ids"]
+                or result["multi_match_warnings"]
+                or existing_decisions_path.exists()
+            ):
                 V2_CLASSIFICATION_DECISIONS.mkdir(parents=True, exist_ok=True)
-                (V2_CLASSIFICATION_DECISIONS / f"{ent}.yml").write_text(
+                existing_decisions_path.write_text(
                     _emit_classification_decisions(
                         ent,
                         result["unmatched_unified_ids"],
@@ -497,6 +572,7 @@ def main() -> int:
     print(f"  Final entries after run:         {totals['final_total_after']:>5d}")
     print(f"  Already absorbed (prev runs):    {totals['already_absorbed']:>5d}")
     print(f"  Newly absorbed this run:         {totals['newly_absorbed']:>5d}")
+    print(f"  Bulk-promoted (D37):             {totals['bulk_promoted']:>5d}")
     print(f"  Genuinely new (pending):         {totals['genuinely_new']:>5d}")
     print(f"  Stale composed_of refs purged:   {totals['stale_purged']:>5d}")
     print(f"  Multi-match warnings:            {totals['multi_match']:>5d}")
