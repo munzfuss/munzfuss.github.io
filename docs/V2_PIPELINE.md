@@ -1,9 +1,12 @@
 # V2 Pipeline — entity-keyed refactoring plan
 
 > **Status (2026-05-18):** Planning approved in principle. Not yet implemented.
-> Pending decision-points still owed by user (see §«Pending decisions» at
-> bottom). When work starts: branch `feat/v2-pipeline`, atomic commits per
-> phase, V1 stays fully functional in parallel under unchanged URLs.
+> Three decisions resolved 2026-05-18 (see §7a): `issuing_entity: str | list[str]`
+> schema for joint-jurisdiction coins, full `gesamtstaat` migration decision
+> tree (§3.1), home-file rule for multi-entity coins (§3.10). Four pending
+> decision-points still owed (§7). When work starts: branch `feat/v2-pipeline`,
+> atomic commits per phase, V1 stays fully functional in parallel under
+> unchanged URLs.
 
 ## 1. Why
 
@@ -77,22 +80,46 @@ declared in `consumes_entities`.
 These are settled (per chat transcripts 2026-05-17 / 2026-05-18). When work
 starts, no need to re-litigate.
 
-### 3.1. `gesamtstaat` entity retired
+### 3.1. `gesamtstaat` entity retired — replaced by mint-driven classification (multi-entity list when joint)
 
 Post-1813 Helstaten coins were going to need a `gesamtstaat` (DK+) entity for
-realm-wide circulation. **Decision: redundant.** Classify by mint:
+realm-wide circulation. **Decision: redundant.** Classify by the mint(s) at
+which the coin was struck:
 
-- Altona mint → `royal_holstein` (feeds DK + SH pages)
-- Kopenhagen mint → `danish_realm` (feeds DK page)
-- Joint Altona+Kopenhagen issue → single entry, primary mint determines
-  classification; the secondary mint goes into the coin's `mint` field as a
-  list
+| Coin mint(s) | Resulting `issuing_entity` |
+|--------------|----------------------------|
+| Altona only (or other SH mint) | `royal_holstein` (scalar) |
+| Kopenhagen only | `danish_realm` (scalar) |
+| Kongsberg / Christiania only | `danish_norway` (scalar) |
+| **Altona + Kopenhagen (joint)** | `[danish_realm, royal_holstein]` (list — §3.10) |
+| **Kopenhagen + Kongsberg / Christiania** | `[danish_norway, danish_realm]` (list) |
+| **Altona + Kopenhagen + Kongsberg** | `[danish_norway, danish_realm, royal_holstein]` (list) |
+| mint missing / unknown + `gesamtstaat` tag | leave as `_deprecated_gesamtstaat` + warn — manual review |
 
-This works because every Helstaten-era coin had a clear mint attribution; no
-information is lost by avoiding the `gesamtstaat` synthetic tag. Migration
-script will re-map existing `issuing_entity: gesamtstaat` records to either
-`royal_holstein` or `danish_realm` based on the coin's `mint` field. Unknown
-mint → warn, leave as `_deprecated_gesamtstaat` for manual review.
+Joint-mint coins explicitly become multi-entity (per §3.10's `str | list[str]`
+schema) — surfacing on all consumer pages of any tagged entity. No information
+is lost by retiring the `gesamtstaat` synthetic tag.
+
+**Migration script (`scripts/maintenance/migrate_curated_to_v2.py`) decision
+tree:**
+
+1. Coin already tagged with a non-`gesamtstaat` `issuing_entity` (scalar or
+   list) → **preserve as-is**. The curator's existing choice wins; not
+   re-evaluated by the script. (Consistency-pass for non-`gesamtstaat`
+   joint-mint coins that should arguably also be list-form is left as a
+   separate manual review — flagged in the migration report.)
+2. Tagged `gesamtstaat` → apply the mint→entity lookup table above. Result is
+   scalar when single mint resolves to single entity; list when multiple mints
+   resolve to ≥2 distinct entities. Always add
+   `_migration_note: 'auto-mapped from gesamtstaat'` for traceability.
+3. List ordering convention: **alphabetical by entity id** for determinism
+   (`danish_norway` < `danish_realm` < `royal_holstein`). This is *not*
+   historical primacy — the first list element is just the «home file» for
+   storage purposes (per §3.10's primary-home rule); render-time consumers
+   match ANY list element against their `consumes_entities`.
+4. Unknown / missing mint on a `gesamtstaat` entry → leave as
+   `_deprecated_gesamtstaat`, flag in migration report. Manual review
+   resolves these individually.
 
 ### 3.2. `pre_1541` sub-window files retired
 
@@ -138,14 +165,29 @@ royal_holstein, since DK king is also SH duke post-1773 reunification).
 Two distinct curated entries in two entity files only when the coin
 genuinely had two issuing authorities (rare; treated case-by-case).
 
-### 3.5. Multi-mint joint issues = one entry
+### 3.5. Multi-mint joint issues = one entry with multi-entity tag
 
-Coins struck in parallel at Altona and Kopenhagen for realm-wide
-circulation (typical post-Rigsmønt 1854) stay as ONE entry. The
-`issuing_entity` is decided by the dominant mint or by analysis; the
-secondary mint is recorded in the `mint` field (list-form when needed).
-Render-time may eventually need a `mint_per_location` resolver — deferred
-until concrete cases arise.
+Coins struck in parallel at multiple mints across different political
+jurisdictions stay as ONE entry but receive a **list-form `issuing_entity`**
+(per §3.10) covering each jurisdiction. Examples:
+
+- 14 V1 coins with `mint: [Altona, Kopenhagen]` (Rigsbankdaler / Rigsmønt
+  era 1813-1864 Speciedaler) → `issuing_entity: [danish_realm, royal_holstein]`
+- `km-616-chr-v-1771` Skilling Dansk 1771-1783 with `mint: [Altona,
+  Kopenhagen, Kongsberg]` → `issuing_entity: [danish_norway, danish_realm,
+  royal_holstein]`
+- A type struck only at Altona + Kongsberg (no Kopenhagen) →
+  `issuing_entity: [danish_norway, royal_holstein]`
+
+The coin entry lives in **one** entity file (the first-alphabetical entity
+in the list — §3.10's «home file» rule), and surfaces on every display page
+whose `consumes_entities` intersects with the coin's `issuing_entity` list.
+The `mint` field continues to carry the full mint list for display.
+
+A future `mint_per_location` resolver remains deferred — for now the same
+`mint` list renders identically on both pages; if SH page should hide
+Kopenhagen mint markers and DK page should hide Altona ones, that's a
+render-time enhancement.
 
 ### 3.6. Norway page deferred
 
@@ -187,6 +229,73 @@ Don't build V2 from scratch — start by copying V1's curated coins
 through a migration script. The curation work already invested in
 `data/locations/<loc>.yml` is preserved; V2's job is restructure not
 re-curation.
+
+### 3.10. `issuing_entity` schema = `str | list[str]`
+
+Coin schema's `issuing_entity` field is extended from scalar `str` to
+`str | list[str]` to support joint-jurisdiction coins (§3.5).
+
+```yaml
+# 90% case — single-jurisdiction coin
+- id: dk-curated-km-242-1683
+  issuing_entity: royal_holstein
+
+# joint-jurisdiction coin — Altona + Kopenhagen mint
+- id: dk-curated-km-720-1840
+  issuing_entity: [danish_realm, royal_holstein]
+  mint: [Altona, Kopenhagen]
+```
+
+**Home-file rule.** A multi-entity coin lives in **exactly one** entity
+file — the file whose name matches the **first element** of the
+`issuing_entity` list (alphabetical-ordering convention per §3.1). So
+`[danish_realm, royal_holstein]` → coin entry lives in
+`data/v2/curated/danish_realm.yml`. The other listed entities
+(`royal_holstein` in this example) DO NOT duplicate the entry in their
+own files; they're a render-time consumer-matching signal only.
+
+**Build assembly matching rule.** When a display location with
+`consumes_entities: [...]` is assembled, the assembly walks each entity
+file declared in `consumes_entities` AND surfaces any coin whose
+`issuing_entity` list intersects with `consumes_entities` — even if the
+coin lives in an entity file NOT consumed by the location. Concrete:
+
+- SH page declares `consumes_entities: [royal_holstein, gottorp_duchy, ...]`
+- A joint Altona+Kopenhagen coin lives in `danish_realm.yml` with
+  `issuing_entity: [danish_realm, royal_holstein]`
+- Assembly walks SH's consumed entity files (NOT including
+  `danish_realm.yml`)... so it misses the coin? **No** — the assembly
+  also scans the «foreign» entity files referenced by any
+  multi-entity coin whose secondary tags include a consumed entity.
+
+To make this efficient, the build assembly performs an **inverse index**
+pass: for every entity in `consumes_entities`, scan ALL entity files
+(not just the matching one) for coins whose `issuing_entity` list
+contains this entity. Cost: one full pass over `data/v2/curated/`
+per build, cached per session.
+
+**Dedup.** A coin id is unique across the entire `data/v2/curated/` tree.
+The home-file rule guarantees this: each id appears in exactly one
+entity file. Multiple consumes_entities matching the same coin do not
+double-render — assembly dedups by coin id at the end.
+
+**Validator** (`scripts/lib/schema.py`):
+
+```python
+class Coin(BaseModel):
+    issuing_entity: str | list[str] | None = Field(...)
+
+    @model_validator(mode='after')
+    def _check_issuing_entity(self):
+        if isinstance(self.issuing_entity, list):
+            if not self.issuing_entity:
+                raise ValueError("issuing_entity list must be non-empty")
+            if len(set(self.issuing_entity)) != len(self.issuing_entity):
+                raise ValueError("issuing_entity list has duplicates")
+            # All elements must be known entity tags (cross-checked against
+            # data/i18n/issuing_entities.yml at startup)
+        return self
+```
 
 ## 4. Catalog KM cross-state — concrete model
 
@@ -257,9 +366,22 @@ shared/i18n from V1 (single source of truth for globals).
 - Mark `gesamtstaat` with `_deprecated: true`
 
 1.2. Migration script `scripts/maintenance/migrate_curated_to_v2.py`:
+
 - Reads all `data/locations/<loc>.yml` coin entries
-- For each: lookup `issuing_entity` tag; re-map `gesamtstaat` per §3.1
-- Group by entity, write `data/v2/curated/<entity>.yml` with structure:
+- For each: apply the §3.1 decision tree:
+  - `issuing_entity ∈ {gesamtstaat}` → apply mint→entity lookup; produce
+    scalar OR list-form per §3.10 (Altona+Kopenhagen → list, single mint →
+    scalar)
+  - `issuing_entity` already set to something other than `gesamtstaat` →
+    preserve verbatim (curator's call)
+  - Mint missing/unknown on `gesamtstaat` → `_deprecated_gesamtstaat`, flag
+    for manual review
+- **Home-file determination** for multi-entity coin: first element of
+  `issuing_entity` list (alphabetical per §3.10) is the entity-file the coin
+  is written to. The other listed entities don't get a duplicate entry —
+  build assembly inverse-index handles the multi-page surfacing.
+- Group coins by home entity, write `data/v2/curated/<entity>.yml`:
+
   ```yaml
   id: <entity_tag>
   source_locations: [<loc1>, <loc2>, ...]
@@ -267,11 +389,23 @@ shared/i18n from V1 (single source of truth for globals).
   coins:
     - id: ...
       # ... V1 fields preserved verbatim
-      v1_home_location: <original_loc>   # for backtrace
-      composed_of: []                    # filled in Phase 6
+      issuing_entity: royal_holstein                    # scalar (90%)
+      # OR for joint-jurisdiction:
+      # issuing_entity: [danish_realm, royal_holstein]  # list (10%)
+      v1_home_location: <original_loc>                  # for backtrace
+      composed_of: []                                   # filled in Phase 6
+      _migration_note: 'auto-mapped from gesamtstaat'   # when applicable
   ```
-- Conflict resolution: same coin id in two locations under same entity →
-  merge per CLAUDE.md §9a multi-specimen rule
+
+- Conflict resolution: same coin id in two V1 locations under same entity →
+  merge per CLAUDE.md §9a multi-specimen rule.
+- **Migration report** lists by-category:
+  - N coins re-mapped `gesamtstaat → <scalar>`
+  - M coins re-mapped `gesamtstaat → [list]`
+  - K coins left `_deprecated_gesamtstaat` (unknown mint) for manual review
+  - L coins with non-`gesamtstaat` joint-mint tag that arguably should be
+    list-form (flagged for separate consistency-pass decision, NOT
+    auto-converted)
 
 1.3. Dry-run + user review (counts per entity, sample entries).
 1.4. Real run + commit: `v2: migrate V1 curated coins → entity-keyed files`
@@ -319,13 +453,23 @@ all become merge-aware).
 - V2 path: `site/v2/<loc>/<lang>/index.html`
 
 4.2. New function `_assemble_v2_location(loc_id, raw)`:
-- Reads `consumes_entities` from raw
-- For each entity: reads `data/v2/curated/<entity>.yml` + iterates
-  `data/v2/seed/<source>/<entity>.yml` for every source dir
+- Reads `consumes_entities: [ent1, ent2, ...]` from raw
+- **Two-pass walk** to support multi-entity `issuing_entity` per §3.10:
+  - **Pass 1** — read coin entries that LIVE in any of the consumed
+    entity files: walk `data/v2/curated/<ent>.yml` for each `ent in
+    consumes_entities`
+  - **Pass 2** — inverse index for coins that live in OTHER entity files
+    but whose `issuing_entity` list includes one of our consumed
+    entities: walk ALL `data/v2/curated/*.yml` (cached per build),
+    surface any coin where `issuing_entity` list intersects with
+    `consumes_entities` AND coin id not already seen in Pass 1
+- Same two-pass for `data/v2/seed/<source>/<entity>.yml` (seed entries
+  also support list-form `issuing_entity` in V2; this affects how seed
+  coins surface on multiple location pages)
 - Resolves phase + km-register per current location (§4 + §5 schema
   extensions)
 - Drops seed entries with non-null `promoted_to`
-- Returns assembled coin list
+- Returns assembled coin list (deduped by id at end)
 
 4.3. Landing-page V2 beta link in `templates/landing.html.j2`.
 4.4. Commit: `v2: build pipeline + assembly function`
@@ -340,10 +484,13 @@ class CatalogRefs(BaseModel):
 
 class Coin(BaseModel):
     phase: str | dict[str, str] | None = None
+    issuing_entity: str | list[str] | None = None     # §3.10 — multi-entity
     composed_of: list[str] | None = None
     promoted_to: str | None = None
     # ... rest same
 ```
+Validators per §3.10: list form non-empty, no duplicates, each element
+matches a known tag in `data/i18n/issuing_entities.yml`.
 
 5.2. Resolvers in `scripts/lib/v2_resolver.py`:
 - `resolve_phase_for_location(coin, loc_id)`
@@ -367,16 +514,27 @@ class Coin(BaseModel):
 ### Phase 7 — V2 audit (~1 session)
 
 7.1. `scripts/audit_v2.py`:
-- Every curated coin in `<entity>.yml` has `issuing_entity` matching
-  filename
+- **Home-file rule** (§3.10): every curated coin in `<entity>.yml` has
+  `issuing_entity` that, when normalised to list form, has its
+  alphabetically-first element matching the filename.
+- **Multi-entity validity**: each element of `issuing_entity` list (when
+  list-form) is a known entity tag from `data/i18n/issuing_entities.yml`;
+  list is non-empty; no duplicates.
+- **Mint vs entity consistency** with multi-entity awareness:
+  - Coin with `mint: [Altona, Kopenhagen]` SHOULD have multi-entity
+    `issuing_entity` covering both jurisdictions → flag if not (warning,
+    not error — curator may intentionally have narrower entity-tag)
+  - Coin with single mint AND list-form `issuing_entity` of 2+ items →
+    flag for review (rare; usually scalar form is right)
 - Every `composed_of` ref exists in seed files
 - Every `promoted_to` ref exists in curated files
-- Mint vs entity consistency (with multi-mint awareness — Altona+Kopenhagen
-  coin can sit under either entity without flag)
 - Catalog km-register sanity (dict keys ⊆ {dk, sh, ...} for known
   registers)
-- Cross-entity duplicate detection (same catalog ref in two entity files
-  → flag for review)
+- Cross-entity duplicate detection (same coin id in two entity files →
+  HARD ERROR; violates §3.10 home-file rule)
+- Same catalog ref (e.g. `catalog.hede`) appearing in two entity files →
+  warning (could be legitimate cross-volume catalogue, but usually
+  indicates a missed merge)
 
 7.2. Integration:
 - Add to pre-commit hook as advisory
@@ -439,11 +597,20 @@ rollback = `mv data/_archive_v1_locations data/locations` + revert.
    **Recommended: scalar default + dict explicit override.**
 3. **V2 templates** — share `templates/location.html.j2` with V1 initially,
    fork only if V2 needs different visual semantics. **Recommended: share.**
-4. **`gesamtstaat` unknown-mint fallback** — warn + leave as
-   `_deprecated_gesamtstaat`, no silent classification. **Recommended:
-   warn-and-defer.**
-5. **Audit verbosity** — advisory pre-commit vs hard-block. **Recommended:
+4. **Audit verbosity** — advisory pre-commit vs hard-block. **Recommended:
    advisory until V2 stable, promote to hard-block at Phase 9.**
+
+## 7a. Resolved decisions (no further input needed)
+
+- **`issuing_entity` schema** — `str | list[str]` per §3.10 (resolved
+  2026-05-18). Multi-entity list for joint Altona+Kopenhagen, Kopenhagen+
+  Kongsberg, and three-mint Altona+Kopenhagen+Kongsberg cases.
+- **`gesamtstaat` migration** — full decision tree in §3.1; multi-entity
+  list output replaces single-entity pick. Unknown-mint cases tagged
+  `_deprecated_gesamtstaat` for manual review (this absorbed the earlier
+  «unknown-mint fallback» pending decision).
+- **Home-file rule for multi-entity coins** — alphabetical-first list element
+  per §3.10; build assembly does inverse-index pass for secondary entities.
 
 ## 8. Cross-references
 

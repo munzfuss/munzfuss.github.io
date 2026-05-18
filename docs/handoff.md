@@ -214,15 +214,25 @@ source of truth** during the refactor; V2 lives in `data/v2/` and
 renders to `site/v2/<loc>/<lang>/`. Promotion to main only on explicit
 user «фліпай V2».
 
-Full plan → **`docs/V2_PIPELINE.md`** (10 phases, 5 user-confirmed
-decisions, 5 pending decisions awaiting user input before Phase 0
+Full plan → **`docs/V2_PIPELINE.md`** (10 phases, 8 user-confirmed
+decisions, 4 pending decisions awaiting user input before Phase 0
 starts, effort estimate ~10-12 sessions with 3 user-pause points).
+
+**Resolved 2026-05-18** (added to V2_PIPELINE.md §7a):
+- `issuing_entity` schema = `str | list[str]` — joint
+  Altona+Kopenhagen / Kopenhagen+Kongsberg / three-mint coins get
+  list-form tag instead of one-entity pick (§3.10)
+- Full `gesamtstaat` migration decision tree with multi-entity output
+  for joint-mint cases (§3.1)
+- Home-file rule for multi-entity coins — alphabetical-first list
+  element; build assembly does inverse-index pass for secondary
+  entities (§3.10)
 
 Not yet started — nothing committed to a `feat/v2-pipeline` branch.
 Before starting:
-- Resolve 5 pending decisions in §7 of V2_PIPELINE.md (`catalog.km`
-  schema shape, phase resolution scalar-or-dict, template fork
-  policy, `gesamtstaat` unknown-mint fallback, audit verbosity)
+- Resolve 4 remaining pending decisions in §7 of V2_PIPELINE.md
+  (`catalog.km` schema shape, phase resolution scalar-or-dict,
+  template fork policy, audit verbosity)
 - Confirm `coin.issuing_entity` coverage in V1 curated coins is
   complete (Phase 0.2 audit)
 
