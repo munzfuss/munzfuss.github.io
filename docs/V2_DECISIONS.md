@@ -46,6 +46,7 @@
   - [D26 — Phase 7 audit hard-blocks pre-commit](#d26--phase-7-audit-hard-blocks-pre-commit)
   - [D27 — Worktree branch = `feat/v2-pipeline`](#d27--worktree-branch--featv2-pipeline)
   - [D28 — Pre-1541 drafts flow through V2 normally](#d28--pre-1541-drafts-flow-through-v2-normally)
+  - [D29 — Phase 4 «absorb» = match + accumulate; §8a auto-classify deferred](#d29--phase-4-absorb--match--accumulate-8a-auto-classify-deferred)
 - [Deferred decisions](#deferred-decisions)
 
 ---
@@ -323,6 +324,16 @@
 - **Decision (2026-05-18)**: V2 work lives on branch `feat/v2-pipeline`. The Claude worktree branch was renamed from `claude/sleepy-murdock-593353` → `feat/v2-pipeline` on 2026-05-18.
 - **Rationale**: Aligns with the V2_PIPELINE.md plan's branch name; clearer to humans inspecting branches.
 - **Encoded in**: git branch rename + handoff.md.
+
+### D29 — Phase 4 «absorb» = match + accumulate; §8a auto-classify deferred
+
+- **Decision (2026-05-18)**: `absorb_seeds_into_final_v2.py` (Step B) implements two paths for unified seed entries:
+  1. **Match** against existing final foundation → enrich (composed_of expansion + multi-source data accumulation per D17-D21). Foundation-immutable fields (D29-foundation list below) stay verbatim.
+  2. **No match** → surface to `data/v2/classification_decisions/<entity>.yml::pending` for curator review.
+- §8a Müntzfuß-disambiguation auto-classifier is **deferred** for the MVP. Curator either explicitly assigns (`assignments:`) or the matcher rules get extended so the coin absorbs into an existing final entry next run.
+- **Foundation-immutable fields** (frozenset in absorb script): `fuss, phase, kind, fraction, nominal, ruler, mintmaster, issuing_entity`. Per DF1 these never change during absorb; if a curator wants Phase 4 to reclassify a V1-bootstrapped entry, that's explicit `classification_decisions/` action, not automatic.
+- **Direct yaml write (not merge_seed)**: absorb writes the enriched coin list directly to `data/v2/final/<entity>.yml` because `merge_seed` treats empty `composed_of: []` on existing entries as «present» under CURATED_FIELDS preservation, which would block legitimate composed_of updates. Foundation preservation handled by `_FOUNDATION_IMMUTABLE_FIELDS` field-copy from existing entry; orphan curator data preserved by reading + enriching every existing entry (no entry dropped).
+- **Encoded in**: `scripts/maintenance/absorb_seeds_into_final_v2.py`.
 
 ### D28 — Pre-1541 drafts flow through V2 normally
 
