@@ -289,6 +289,33 @@ Phase-1 coverage table updated accordingly — NumisMaster row's «Pre-floor ent
 
 Bundle takes the audit-completeness cluster (§BH Hede + §BM IKMK + §BN Bruun + §BO this) to «100% verified» across all 7 raw sources.
 
+### BQ. 🟢 DK ↔ SH coverage parity audit — every Schleswig-Holstein coin on the Denmark page must also surface on the SH page  *(opened 2026-05-18)* *(est: medium)* *(type: data-audit + curation-move)*
+
+**Surfaced.** User direction 2026-05-18 with explicit «найвищий» marker: «впевнитись що всі Ш-Г монети на сторінці Данії також listed на сторінці Ш-Г, якщо ні то перенеси».
+
+**Context.** Many coins struck for the Danish-Helstaten era (1813–1864) carry SH relevance — minted at Altona, denominated in Schleswig-Holstein Courant, or otherwise tied to the duchy's jurisdiction — yet currently surface only on the Denmark display page. With V2's entity-keyed pipeline (D2/D3) a coin's `issuing_entity` is the home file, and `consumes_entities` on the display location drives the render-time assembly. Two failure modes the audit looks for:
+
+1. **Wrong `issuing_entity`** — a coin tagged `danish_realm` or `gesamtstaat` whose mint + denomination clearly point at the royal_holstein / gesamtstaat duchy jurisdiction. Fix: re-tag and (if needed) move home file.
+2. **Right entity but display page misses it** — `schleswig_holstein.yml::consumes_entities` doesn't list the entity that owns the coin. Fix: add the entity to `consumes_entities` on the SH display page.
+
+**Audit steps.**
+1. Enumerate every coin currently rendered on the Denmark page (`site/v2/denmark/de/index.html` — or read from `data/v2/final/danish_realm.yml` + any other entities Denmark consumes).
+2. For each, check: does the same coin (by canonical id / catalog ref) also surface on the SH page?
+3. If NO, decide per coin:
+   - **Move home**: coin truly belongs to a SH-specific entity (royal_holstein / gottorp_duchy / etc.). Update `issuing_entity` accordingly; re-run absorb pipeline.
+   - **Add to consumes**: coin's home stays where it is, but SH page should consume that entity. Extend `data/v2/locations/schleswig_holstein.yml::consumes_entities`.
+   - **Skip**: coin is genuinely Denmark-only (no SH jurisdictional tie). Document the negative finding.
+
+**Special attention to:**
+- Christian VIII / Frederik VII Rigsbankdaler / Rigsbankskilling 1842-1855 — dual-denominated «X Rigsbankskilling = Y Schilling Courant» types currently mostly tagged `gesamtstaat`. Where do they render now? Both pages? Just one?
+- Altona-mint coins under royal-Danish rulers (Frederik VI / Christian VIII / Frederik VII). Altona was an SH-mint town; these likely belong to royal_holstein not danish_realm.
+- The km-735 / km-726-2 / km-733 / km-734 / km-737 / km-743 / km-761 cluster — multi-mint (Altona + Kopenhagen) gesamtstaat / royal_holstein entries that just received the mintmaster cleanup (D32). Verify both pages list them.
+
+**Definition of done.**
+- Diff report: per-coin {coin_id, current home, surfaces-on-DK, surfaces-on-SH, decision}.
+- All «only-DK, should-also-SH» cases either moved or surfaced via consumes_entities.
+- The opposite direction (SH coins missing on DK) is OUT OF SCOPE for this task — only the DK→SH leak is the user's concern.
+
 ---
 ## High priority
 
