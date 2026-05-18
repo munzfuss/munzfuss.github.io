@@ -418,13 +418,44 @@ Each source's pipeline specifics live in `docs/HARVEST_GUIDE.md` §«Per-source 
 
 ## V2 entity-keyed pipeline (in-flight refactor)
 
-> **Canonical decisions journal: [`V2_DECISIONS.md`](V2_DECISIONS.md).** Every architectural decision (28 + 4 deferred) listed with rationale + code locations. Read that file first to understand WHY the pipeline is shaped this way; the section below describes WHAT it is.
+> **Canonical decisions journal: [`V2_DECISIONS.md`](V2_DECISIONS.md).** Every architectural decision (30 + 4 deferred) listed with rationale + code locations. Read that file first to understand WHY the pipeline is shaped this way; the section below describes WHAT it is.
 >
 > **Canonical statement of the V2 data pipeline.** 4 fully-automated
 > phases produce `data/v2/final/<entity>.yml` from harvested raw data.
 > Display pages declare `consumes_entities: [...]` and the build
 > assembly produces per-location output at render time. Detailed plan
 > + decisions: `docs/V2_PIPELINE.md`.
+
+### Pipeline at a glance
+
+```
+Phase 1 HARVEST                fetch_<src>.py        → scripts/cache/<src>/*.{htm,pdf,json}
+       ↓
+Phase 2 SYNTHESIS              parse_<src>.py        → scripts/cache/<src>/*.json
+       ↓
+Phase 3.1 per-source SEED      seed_v2_regroup.py    → data/v2/seed/<src>/<entity>.yml
+       ↓
+Phase 3.2 cross-source MERGE   merge_seeds_cross_    → data/v2/seed_unified/<entity>.yml
+                               source.py               + data/v2/match_uncertainty/  (gitignored)
+       ↓
+Phase 4 absorb into FINAL      absorb_seeds_into_    → data/v2/final/<entity>.yml
+                               final_v2.py             + data/v2/classification_decisions/
+       ↓
+Phase 4b BIDIRECTIONAL LINK    relink_promoted_v2.py → data/v2/seed/<src>/<entity>.yml
+                                                       (promoted_to set per seed entry)
+       ↓
+Render                         build.py              → site/v2/<loc>/<lang>/index.html
+```
+
+Bootstrap (one-shot, 2026-05-18, V1 frozen post-bootstrap):
+
+```
+data/locations/<loc>.yml  ──[bootstrap_v2_final_from_v1.py]──▶  data/v2/final/<entity>.yml
+data/locations/<loc>.yml  ──[init_v2_locations.py]──────────▶  data/v2/locations/<loc>.yml
+                                                                 (display-meta + consumes_entities)
+```
+
+Every script is idempotent + merge-aware per D25; every transition preserves data per D17 «Data-accumulation principle». Audit (`scripts/audit_v2.py`) hard-blocks pre-commit on V2 path touches per D26.
 >
 > **V1 is reframed as a verification anchor**, not a bootstrap input.
 > V1 curated (`data/locations/`) is frozen after the 2026-05-18 bootstrap.

@@ -1,19 +1,48 @@
 # V2 Pipeline — entity-keyed refactoring plan
 
-> **Status (2026-05-18):** Architecture refined to 4-phase fully-automated
-> pipeline; V1 reframed as **foundation** (V1 final yamls become V2 final
-> starting state; V2 accumulates enrichments on top). Implementation in
-> flight on branch `feat/v2-pipeline`. Phases 1, 2, 3.1, 3.2 + supporting
-> infrastructure (schema, build pipeline, idempotent merge-aware regen,
-> bidirectional link, mint→entity classifier, cross-source merger with
-> data-accumulation invariant) landed. Outstanding: Phase 4
-> absorb-into-final, audit_v2.py, V1↔V2 enrichments audit, first
-> full-cycle reprocess.
+> **Status (2026-05-18):** Full 4-phase pipeline + all five maintenance
+> scripts + audit + bidirectional link + idempotent merge-aware regen
+> landed. End-to-end verified with `audit_v2.py` (0 violations across
+> all 6 invariants I1-I6). V1 reframed as **foundation** (V1 final
+> yamls become V2 final starting state; V2 accumulates enrichments on
+> top). Branch `feat/v2-pipeline`. Pending: Phase 9 promotion (explicit
+> «фліпай V2» user signal); §8a auto-classify for the ~2361 unified
+> entries currently in `pending` is a follow-up.
 >
 > **Canonical decisions journal: [`docs/V2_DECISIONS.md`](V2_DECISIONS.md).**
-> 28 decisions D1-D28 + 4 deferred DF1-DF4, each with rationale + code
+> 30 decisions D1-D30 + 4 deferred DF1-DF4, each with rationale + code
 > locations. Update D<N> entries there first; this plan document
 > describes the model.
+
+## Pipeline at a glance
+
+```
+Phase 1 HARVEST                fetch_<src>.py        → scripts/cache/<src>/*.{htm,pdf,json}
+       ↓
+Phase 2 SYNTHESIS              parse_<src>.py        → scripts/cache/<src>/*.json
+       ↓
+Phase 3.1 per-source SEED      seed_v2_regroup.py    → data/v2/seed/<src>/<entity>.yml
+       ↓
+Phase 3.2 cross-source MERGE   merge_seeds_cross_    → data/v2/seed_unified/<entity>.yml
+                               source.py               + data/v2/match_uncertainty/  (gitignored)
+       ↓
+Phase 4 absorb into FINAL      absorb_seeds_into_    → data/v2/final/<entity>.yml
+                               final_v2.py             + data/v2/classification_decisions/
+       ↓
+Phase 4b BIDIRECTIONAL LINK    relink_promoted_v2.py → data/v2/seed/<src>/<entity>.yml
+                                                       (promoted_to set per seed entry)
+       ↓
+Render                         build.py              → site/v2/<loc>/<lang>/index.html
+```
+
+**Bootstrap** (one-shot, 2026-05-18, V1 frozen post-bootstrap):
+```
+data/locations/<loc>.yml  ──[bootstrap_v2_final_from_v1.py]──▶  data/v2/final/<entity>.yml
+data/locations/<loc>.yml  ──[init_v2_locations.py]──────────▶  data/v2/locations/<loc>.yml
+                                                                 (display-meta + consumes_entities)
+```
+
+**Read this file before touching ANY V2 script.** The diagram is the canonical reference for which output each script writes; every script is idempotent + merge-aware per D25; every transition preserves data per D17 «Data-accumulation principle».
 
 ## 1. Why
 

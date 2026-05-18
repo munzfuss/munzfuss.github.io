@@ -7,7 +7,38 @@ render time.
 
 Full design + decisions → `docs/V2_PIPELINE.md`.
 Full architecture → `docs/ARCHITECTURE.md` §«V2 entity-keyed pipeline».
-**Canonical decisions journal** → `docs/V2_DECISIONS.md` (28 architectural decisions D1-D28 + 4 deferred DF1-DF4, each with rationale + code locations).
+**Canonical decisions journal** → `docs/V2_DECISIONS.md` (30 architectural decisions D1-D30 + 4 deferred DF1-DF4, each with rationale + code locations).
+
+## Pipeline at a glance
+
+```
+Phase 1 HARVEST                fetch_<src>.py        → scripts/cache/<src>/*.{htm,pdf,json}
+       ↓
+Phase 2 SYNTHESIS              parse_<src>.py        → scripts/cache/<src>/*.json
+       ↓
+Phase 3.1 per-source SEED      seed_v2_regroup.py    → data/v2/seed/<src>/<entity>.yml
+       ↓
+Phase 3.2 cross-source MERGE   merge_seeds_cross_    → data/v2/seed_unified/<entity>.yml
+                               source.py               + data/v2/match_uncertainty/  (gitignored)
+       ↓
+Phase 4 absorb into FINAL      absorb_seeds_into_    → data/v2/final/<entity>.yml
+                               final_v2.py             + data/v2/classification_decisions/
+       ↓
+Phase 4b BIDIRECTIONAL LINK    relink_promoted_v2.py → data/v2/seed/<src>/<entity>.yml
+                                                       (promoted_to set per seed entry)
+       ↓
+Render                         build.py              → site/v2/<loc>/<lang>/index.html
+```
+
+Bootstrap (one-shot, 2026-05-18, V1 frozen post-bootstrap):
+
+```
+data/locations/<loc>.yml  ──[bootstrap_v2_final_from_v1.py]──▶  data/v2/final/<entity>.yml
+data/locations/<loc>.yml  ──[init_v2_locations.py]──────────▶  data/v2/locations/<loc>.yml
+                                                                 (display-meta + consumes_entities)
+```
+
+Every script is idempotent + merge-aware per D25; every transition preserves data per D17 «Data-accumulation principle». Audit (`scripts/audit_v2.py`) hard-blocks pre-commit on V2 path touches per D26.
 
 ## Layout
 
@@ -23,8 +54,10 @@ data/v2/
 
 **Current transitional state** (pre-Phase 9):
 - `seed/<source>/<entity>.yml` ← populated by `seed_v2_regroup.py` (post-processor over V1 seeds). Post-Phase 9, replaced by native V2 builders consuming parser cache directly.
-- `curated/<entity>.yml` ← bootstrap-migrated from V1 curated on 2026-05-18. Will be regenerated as `final/<entity>.yml` by Phase 4 auto-classifier once it lands.
-- `seed_unified/`, `final/`, `merge_decisions/`, `classification_decisions/` directories not yet present — created when Phase 3.2 + Phase 4 scripts ship.
+- `seed_unified/<entity>.yml` ← populated by `merge_seeds_cross_source.py`. One unified entry per physical coin, multi-source data accumulated.
+- `final/<entity>.yml` ← bootstrap-migrated from V1 curated on 2026-05-18 (via `bootstrap_v2_final_from_v1.py`). Subsequent enrichments arrive via `absorb_seeds_into_final_v2.py`.
+- `classification_decisions/<entity>.yml` ← created lazily by Phase 4 when an unmatched seed_unified entry needs curator action.
+- `match_uncertainty/<entity>.yml` ← gitignored diagnostic: same-class candidates that Phase 3.2 declined to merge (review-only).
 
 V1 (`data/locations/`, `data/seed/<src>/<loc>.yml`) is **frozen** post 2026-05-18 — it serves as a **verification anchor** that V2's reprocessing of the same source data must reproduce (~1:1) before promotion (Phase 9). It continues to render the live site at unchanged URLs until promotion.
 
