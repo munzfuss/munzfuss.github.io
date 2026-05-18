@@ -18,12 +18,14 @@
 ## Current focus
 
 **V2 entity-keyed refactor in flight (2026-05-18 session).** Phases 0,
-1, 2, 4, 5 landed; V2 renders to `site/v2/<loc>/<lang>/` alongside V1.
-Phase 3 (seed builders), Phase 6 (bidirectional link), Phase 7
-(`audit_v2.py`) deferred to follow-up sessions. Phase 8 = user review
-iteration; Phase 9 = explicit «фліпай V2» promotion. Detailed status in
-the **«V2 pipeline refactor»** section near the bottom of this file.
-All other workstreams below paused during V2 unless user redirects.
+1, 2, 3 (seed regrouper), 4, 5 landed; V2 renders to
+`site/v2/<loc>/<lang>/` alongside V1. Phase 6 (bidirectional link),
+Phase 7 (`audit_v2.py`) deferred to follow-up sessions. Phase 8 = user
+review iteration (km-120 already addressed; 5+ open punch-list items);
+Phase 9 = explicit «фліпай V2» promotion. Worktree branch
+`feat/v2-pipeline` is the V2 working line. Detailed status in the
+**«V2 pipeline refactor»** section near the bottom of this file. All
+other workstreams below paused during V2 unless user redirects.
 
 **Mission temporal scope — Denmark-track anchor rescoped 1541 → 1514
 on 2026-05-16 per §BI.** Denmark-Norway track lower bound = **1514**
@@ -229,22 +231,24 @@ V2_PIPELINE.md §7a):
 - `audit_v2.py` hard-blocks pre-commit from Phase 7 onwards (stricter
   than the original §7.4 «advisory» recommendation)
 
-**Phases completed this session (5 commits on the worktree branch):**
+**Phases completed this session (8 commits on the worktree branch):**
 
 | Phase | What |
 |---|---|
 | 0 | Skeleton `data/v2/{seed,curated,locations}/`, audit + V1-side fix for 3 coins missing `issuing_entity`, V2_PIPELINE.md decision-update |
-| 1 | `scripts/maintenance/migrate_curated_to_v2.py` — 1317 V1 curated coins → 21 entity files. 11 list-form joint-mint, 1 `_deprecated_gesamtstaat` (Tower Hill manual review), 1 dup-collision split (km-683-1 DK + SH), 3 joint-mint scalar candidates flagged |
+| 1 | `scripts/maintenance/migrate_curated_to_v2.py` — 1317 V1 curated coins → 20 entity files. 11 list-form joint-mint, 1 dup-collision split (km-683-1 DK + SH), 3 joint-mint scalar candidates flagged |
 | 2 | `scripts/maintenance/init_v2_locations.py` — 12 V2 location display-meta files with auto-derived `consumes_entities` |
 | 5 | Schema: `Coin.issuing_entity: str | list[str]`, `Coin.phase: str | dict[str, str]`, `CatalogRefs.km: + dict[str, str]`, `Coin.composed_of` + `Coin.promoted_to`. New `scripts/lib/v2_resolver.py` |
 | 4 | `scripts/build.py` `--v1-only` / `--v2-only` flags + `_assemble_v2_location()` two-pass (direct + inverse-index) + per-coin phase pre-filter. Timeline + template updated for list-form `issuing_entity` |
+| km-120 fix | V1 mint correction (`Royal Mint (Tower Hill)` → `Altona` per Numista N#31895) + V2 regen → `_deprecated_gesamtstaat.yml` retired |
+| 3 | `scripts/lib/v2_entity_classify.py` (mint → entity classifier) + `scripts/maintenance/seed_v2_regroup.py` (V1 seed yamls → V2 entity-keyed seed yamls). hede 884 + numismaster 1667 = 2551 seeds regrouped; bruun/galster/numista currently only have pre_1541 draft files which V1 doesn't load (and V2 skips). |
 
-**Build results — V1 + V2 co-existence works:**
-- `site/<loc>/<lang>/`: V1 unchanged (DK 2502 coins curated+seed, SH 842)
-- `site/v2/<loc>/<lang>/`: V2 curated-only (DK 808, SH 320 — no seed
-  yet, Phase 3 deferred)
-- Pre-filter drops 21 coins on V2 DK + 5 on V2 SH (cross-page-phase
-  incompatibility, see commit message of Phase 4)
+**Build results — V1 + V2 co-existence works (after Phase 3 seeds landed):**
+- `site/<loc>/<lang>/`: V1 unchanged (DK 2502, SH 842)
+- `site/v2/<loc>/<lang>/`: V2 curated + entity-keyed seeds (DK 2914, SH 485)
+- Pre-filter drops 22 coins on V2 DK + 12 on V2 SH (cross-page-phase
+  incompatibility — SH-page Phase II/III Helstaten coins rendering on DK;
+  Haderslev 1591-1593 outside SH reichsdukatenfuss Phase I)
 
 **Outstanding manual decisions for user in Phase 8 (V1 → V2 visual review):**
 1. `km-120-chr-v-1787` (Christian VII 2-Sechsling, Tower Hill London mint)
@@ -271,11 +275,21 @@ V2_PIPELINE.md §7a):
    [1600, 1726]. Either widen SH Phase I year_from to 1591 (or 1559
    per German-lands anchor), or accept those don't show on SH.
 
+**Phase 3 follow-ups (within Phase 8 user-review iteration):**
+- `data/v2/seed/numismaster/_unclassified.yml` holds 429 numismaster
+  coins tagged `schleswig_holstein_duchy` without mint. Per-coin review
+  to decide which entity (gottorp_duchy default? royal_holstein? sub-
+  duchy?) — or extend the mint classifier with year + ruler awareness.
+- 347-coin SH visibility deficit vs V1: numismaster/schleswig_holstein
+  seed coins whose explicit `issuing_entity` is `danish_realm` (V1 tag
+  preserved) now render only on V2 DK, not V2 SH. Re-tag selectively
+  to `[danish_realm, royal_holstein]` if SH visibility desired (per
+  V2_PIPELINE.md §3.5 joint-jurisdiction).
+- When bruun/galster/numista pre-1541 seeds get promoted to active V1
+  set (after §AZ Galster + Jensen-Skjoldager catalog import), re-run
+  `seed_v2_regroup.py --apply` to pick them up.
+
 **Deferred phases (follow-up sessions):**
-- **Phase 3** — `--v2` flag on 5 seed builders (hede / bruun / galster /
-  numista / numismaster) + `bruun / galster / numista / numismaster_pre1541`
-  become merge-aware (§BL TODO closes in the process). Until this lands,
-  V2 has zero seed coins — only curated.
 - **Phase 6** — `scripts/maintenance/relink_promoted_v2.py` derives
   `seed.promoted_to` from curated `composed_of` lists.
 - **Phase 7** — `scripts/audit_v2.py` covering home-file rule,
