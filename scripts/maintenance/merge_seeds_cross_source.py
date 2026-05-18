@@ -272,6 +272,128 @@ def _coin_years(coin: dict) -> set[int]:
     return years
 
 
+# ---------------------------------------------------------------------------
+# Hede-volume reign windows — per-volume parser-anomaly filter for D33
+# ---------------------------------------------------------------------------
+# danskmoent.dk Hede catalog is organised by ruler-volumes: `c4h*` is the
+# Christian IV volume, `f3h*` is Frederik III, etc. The volume code is
+# the parser's canonical attribution of WHICH ruler a Hede entry
+# documents — it's encoded in the URL path and never ambiguous. The
+# `year_first` / `year_last` fields, by contrast, occasionally suffer
+# parser-anomalies (an OCR-or-regex glitch reads 1746 as 1646, or a
+# type-continuity range overshoots the issuing ruler's death-year by
+# decades — captured 2026-05-18 audit found 11 such cases).
+#
+# When building the D33 reign index, we use this table to drop
+# (year, ruler) attestations whose year falls OUTSIDE the volume's
+# documented reign window — the bad year never poisons the index,
+# while genuinely-attested in-window years contribute as normal. The
+# seed itself stays untouched (parser-fix is a separate task; this is
+# a defensive filter at the merger layer).
+#
+# Window endpoints are inclusive on both sides. Transition years (king
+# A dies + king B crowned same calendar year) appear in BOTH adjacent
+# windows by design — both rulers can legitimately have struck coins
+# in that year, so multi-ruler attestation is the correct outcome.
+#
+# Source: Wilcke 1950 / Hede 1957 (Danish royal reign chronology) — a
+# well-established historical record, not invented; per CLAUDE.md §0
+# this category of attested historical knowledge is a valid source.
+# Hede volume codes (`c4h`, `f3h`, …) carry both the ruler attribution
+# (encoded in the volume letter + roman-numeral integer) AND the reign
+# window. Together they let the D33 reign-index construction:
+#   (a) OVERRIDE the seed's `ruler` field with the volume-canonical
+#       label when they disagree (real cases captured 2026-05-18:
+#       `dk-hede-c9h1a` has ruler="Christian VIII." but volume=`c9h`
+#       means Christian IX — the page's catalog scope is authoritative);
+#   (b) FILTER per-year attestations to the ruler's actual reign window
+#       (real cases captured 2026-05-18: `dk-hede-f5h3ab` parsed year
+#       1646 for a Frederik V coin — FR V reigned 1746-1766; the
+#       attestation is dropped so it doesn't poison the index).
+#
+# The reign window is also exposed by ruler-name (`_DK_RULER_REIGNS`)
+# so non-Hede sources (NumisMaster, Numista, Bruun, Galster) can use
+# the SAME filter when their seed's `ruler` field attests a king for
+# a year outside that king's reign (captured 2026-05-18:
+# `denmark-numismaster-165534` attests Frederik III for year 1633 —
+# FR III reigned 1648-1670, that 1633 attestation is wrong).
+#
+# Source: Wilcke 1950 / Hede 1957 (Danish royal reign chronology) — a
+# well-established historical record, not invented; per CLAUDE.md §0
+# this category of attested historical knowledge is a valid source.
+# (Reign windows scoped to the Danish realm. Other entities like
+# `gottorp_duchy`, `schauenburg_pinneberg` use entirely different
+# ruler timelines and would need their own tables when D33 fires for
+# those — currently they have ≤3 cross-source low-confidence pairs,
+# so the Danish table covers the 99 %+ case.)
+_HEDE_VOLUME_TO_RULER: dict[str, str] = {
+    "c2h": "christian ii",
+    "f1h": "frederik i",
+    "c3h": "christian iii",
+    "f2h": "frederik ii",
+    "c4h": "christian iv",
+    "f3h": "frederik iii",
+    "c5h": "christian v",
+    "f4h": "frederik iv",
+    "c6h": "christian vi",
+    "f5h": "frederik v",
+    "c7h": "christian vii",
+    "f6h": "frederik vi",
+    "c8h": "christian viii",
+    "f7h": "frederik vii",
+    "c9h": "christian ix",
+    "f8h": "frederik viii",
+    "c10h": "christian x",
+}
+
+_DK_RULER_REIGNS: dict[str, tuple[int, int]] = {
+    "christian ii": (1513, 1523),
+    "frederik i": (1523, 1533),
+    "christian iii": (1534, 1559),
+    "frederik ii": (1559, 1588),
+    "christian iv": (1588, 1648),
+    "frederik iii": (1648, 1670),
+    "christian v": (1670, 1699),
+    "frederik iv": (1699, 1730),
+    "christian vi": (1730, 1746),
+    "frederik v": (1746, 1766),
+    "christian vii": (1766, 1808),
+    "frederik vi": (1808, 1839),
+    "christian viii": (1839, 1848),
+    "frederik vii": (1848, 1863),
+    "christian ix": (1863, 1906),
+    "frederik viii": (1906, 1912),
+    "christian x": (1912, 1947),
+}
+
+
+def _hede_volume_to_ruler(coin: dict) -> str | None:
+    """Map the coin's Hede volume code to its canonical normalised
+    ruler label. The `n` prefix (Norge sub-catalogue) is stripped first
+    since the same monarch ruled both kingdoms in personal union.
+    Returns None for non-Hede entries or Hede entries lacking a parsed
+    volume code.
+    """
+    vol = ((coin.get("catalog") or {}).get("hede_volume") or "").strip().lstrip("n")
+    if not vol:
+        return None
+    return _HEDE_VOLUME_TO_RULER.get(vol)
+
+
+def _attestation_ruler(coin: dict) -> str | None:
+    """Pick the authoritative normalised-ruler attestation for an
+    index-building pass:
+      • Hede sources → derive from `hede_volume` code (parser-canonical,
+        immune to ruler-field mislabels);
+      • Non-Hede sources → fall back to `_normalise_ruler(coin.ruler)`.
+    Returns None when neither path yields a ruler.
+    """
+    rn = _hede_volume_to_ruler(coin)
+    if rn:
+        return rn
+    return _normalise_ruler(coin.get("ruler")) or None
+
+
 def _build_reign_index(coins: list[dict]) -> dict[int, set[str]]:
     """Build `{year → set(normalised_rulers)}` index from coins of ONE
     entity that DO carry an attested ruler. Per CLAUDE.md §0 / D33 the
@@ -307,10 +429,23 @@ def _build_reign_index(coins: list[dict]) -> dict[int, set[str]]:
     """
     raw: dict[int, set[str]] = {}
     for c in coins:
-        rn = _normalise_ruler(c.get("ruler"))
+        # Pick the authoritative ruler for this attestation: Hede →
+        # volume-canonical (immune to seed-field mislabels); other
+        # sources → seed's `ruler` field. See `_attestation_ruler`.
+        rn = _attestation_ruler(c)
         if not rn:
             continue
+        # Reign-window for this ruler — drops parser-anomaly years like
+        # «Frederik V in 1646» (FR V reigned 1746-1766) regardless of
+        # source. Hede uses volume-derived window; non-Hede uses the
+        # ruler-name-keyed table. Both feed off the same Wilcke 1950 /
+        # Hede 1957 reign chronology.
+        reign_window = _DK_RULER_REIGNS.get(rn)
         for y in _coin_years(c):
+            if reign_window is not None:
+                lo, hi = reign_window
+                if y < lo or y > hi:
+                    continue
             raw.setdefault(y, set()).add(rn)
 
     if not raw:
@@ -352,30 +487,67 @@ def _build_reign_index(coins: list[dict]) -> dict[int, set[str]]:
 def _infer_ruler(coin: dict, reign_index: dict[int, set[str]]) -> str | None:
     """Look up the coin's year(s) in the entity-scoped reign index.
 
-    Returns the inferred normalised ruler ONLY when the union of ruler
-    sets across every year in this coin's span is exactly one — i.e.
-    when EVERY year the coin covers attests the SAME single ruler and
-    no transition / separatism / data conflict exists. In every other
-    case (multi-ruler year, year missing from index, no year data on
-    the coin) returns None.
+    Resolves to a single inferred ruler under the «singleton-anchored
+    + transition-tolerant» rule:
 
-    This is intentionally conservative — see D33's «better null than
-    a false attribution» constraint.
+    1. Walk every year in the coin's covered span. Each year contributes
+       its ruler-set from the index (singleton, multi-element, or
+       missing).
+    2. Years where the index is missing the year entirely → return None
+       (genuine ignorance — better null than guess).
+    3. Collect the set of SINGLETON rulers across the coin's years
+       (`singletons`) and the list of MULTI-ELEMENT ruler-sets
+       (`multi_sets`).
+    4. Require ≥1 singleton anchor — if every year touches a transition
+       year only, the coin is genuinely ambiguous and the inference
+       returns None. This handles real single-year-on-transition coins
+       (e.g. a 1648 1/4 Speciedaler can be CHR IV's or FR III's; we
+       refuse to pick).
+    5. All singletons must agree on one ruler R. If two years attest
+       different singletons, the coin crosses reigns → None.
+    6. Every multi-ruler year's set must CONTAIN R. This allows a
+       coin whose span includes a transition year (e.g. 1667-1670
+       with all of 1667-1669 attesting FR III alone and 1670
+       attesting both CHR V + FR III) to confidently infer FR III —
+       the transition year's set is a superset of the singleton.
+       But disallows inferring R when a multi-set excludes R
+       (meaning we're conflating two reigns).
+    7. With all checks passed, return R.
+
+    Per user direction 2026-05-18 «краще мати null і продовжити
+    шукати правду ніж поставити неправдивий nonull value».
     """
     years = _coin_years(coin)
     if not years:
         return None
-    seen: set[str] = set()
+
+    singletons: set[str] = set()
+    multi_sets: list[set[str]] = []
     for y in years:
         rulers = reign_index.get(y)
         if not rulers:
             return None
-        seen.update(rulers)
-        if len(seen) > 1:
+        if len(rulers) == 1:
+            singletons.add(next(iter(rulers)))
+        else:
+            multi_sets.append(set(rulers))
+
+    if not singletons:
+        # All covered years are multi-ruler (transition-only span) —
+        # genuinely ambiguous, stay null.
+        return None
+    if len(singletons) > 1:
+        # Span crosses two distinct reigns — can't pick one.
+        return None
+
+    R = next(iter(singletons))
+    for s in multi_sets:
+        if R not in s:
+            # A multi-set in the span excludes our singleton ruler —
+            # the coin's coverage doesn't cohere around a single
+            # reign; stay null.
             return None
-    if len(seen) == 1:
-        return next(iter(seen))
-    return None
+    return R
 
 
 def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
@@ -1321,6 +1493,28 @@ def process_entity(entity_id: str) -> dict:
       }
     """
     seeds = _load_seeds_for_entity(entity_id)
+    # Drop synthetic «catalog-overview» entries the parser sometimes
+    # emits when a catalog index page (rather than a coin page) gets
+    # processed as if it were a real entry. Their `nominal` field
+    # carries page-title fragments like «- oversigt efter Galster» /
+    # «overview of Y» — clearly not a numismatic denomination. The
+    # seed file itself is left untouched (fix belongs in the parser,
+    # tracked separately); we just skip them here so they don't
+    # generate spurious low-confidence pairs against real coins.
+    def _is_overview_page(c: dict) -> bool:
+        nom = (c.get("nominal") or "").strip()
+        if not nom:
+            return False
+        nom_lower = nom.lower()
+        return (
+            nom_lower.startswith("-")  # catalog-overview title prefix
+            or "oversigt" in nom_lower
+            or "overview" in nom_lower
+        )
+    pre_filter_count = len(seeds)
+    seeds = [c for c in seeds if not _is_overview_page(c)]
+    overview_dropped = pre_filter_count - len(seeds)
+
     decisions = _load_decisions(entity_id)
 
     # D33 reign index — built ONCE per entity from members that DO
@@ -1378,6 +1572,98 @@ def process_entity(entity_id: str) -> dict:
                     "fallback": result["fallback"],
                     "why": result["why"],
                 })
+
+    # 2b. POST-PRE-PASS: Single-candidate promotion for null primary
+    # signals (`ruler`, `nominal`).
+    #
+    # When a coin's `ruler` is null AND its D33 reign-index inference
+    # also returns None (single-year-on-transition like 1648 or 1670),
+    # OR its `nominal` is null (parser-gap on Galster / Bruun / etc.),
+    # `match_pair` leaves the pair as low_confidence even though the
+    # other side carries an attested value — primary_true stalls at 2.
+    # To recover safely without inviting cross-reign / cross-type
+    # mismerges, scan the low_confidence pairs FOR EACH null-attribute
+    # coin and check whether every cross-source candidate attests THE
+    # SAME value for that field. When the candidate set's union is
+    # exactly one, promote ALL of that coin's low_confidence pairs to
+    # confident — the other side has uniquely identified the missing
+    # attribute. When the union has >1 distinct values (e.g. a 1648
+    # 1/4 Speciedaler with both CHR IV and FR III Hede candidates),
+    # it's genuinely ambiguous and stays low_confidence for curator
+    # review.
+    def _attested_value(coin: dict, field: str) -> str | None:
+        if field == "ruler":
+            return _attestation_ruler(coin)
+        if field == "nominal":
+            return _normalise_nominal(coin.get("nominal")) or None
+        return None
+
+    def _coin_self_value(coin: dict, field: str) -> str | None:
+        if field == "ruler":
+            return _normalise_ruler(coin.get("ruler")) or None
+        if field == "nominal":
+            return _normalise_nominal(coin.get("nominal")) or None
+        return None
+
+    pairs_to_promote: dict[tuple[str, str], dict] = {}
+    null_attribute_coins: dict[tuple[str, str], list[dict]] = defaultdict(list)
+    for lcp in low_confidence:
+        a_id, b_id = lcp["members"]
+        for field in ("ruler", "nominal"):
+            # The pair must be at the «one null one attested» pattern
+            # for this specific field — primary[field] is None in the
+            # matcher's output.
+            if lcp["primary"].get(field) is not False and lcp["primary"].get(field) is not True:
+                # field is None (or absent) on the pair
+                for null_side, attested_side in [(a_id, b_id), (b_id, a_id)]:
+                    if _coin_self_value(seeds_by_id[null_side], field):
+                        continue
+                    # For ruler: skip if the index would have inferred it
+                    # (those would already be confident). For nominal:
+                    # no inference path, all genuine nulls qualify.
+                    if field == "ruler" and _infer_ruler(seeds_by_id[null_side], reign_index):
+                        continue
+                    attested = _attested_value(seeds_by_id[attested_side], field)
+                    if not attested:
+                        continue
+                    null_attribute_coins[(null_side, field)].append({
+                        "pair": lcp,
+                        "attested_value": attested,
+                    })
+                    break
+
+    for (null_id, field), candidates in null_attribute_coins.items():
+        values_attested = {c["attested_value"] for c in candidates}
+        if len(values_attested) == 1:
+            for c in candidates:
+                a_id, b_id = c["pair"]["members"]
+                key = (a_id, b_id)
+                if key not in pairs_to_promote:
+                    primary = dict(c["pair"]["primary"])
+                    primary[field] = True
+                    pairs_to_promote[key] = {
+                        "a": a_id, "b": b_id,
+                        "primary": primary,
+                        "fallback": c["pair"]["fallback"],
+                        "why": c["pair"]["why"] + [
+                            f"promoted: single cross-source candidate's {field} attestation is consistent ({next(iter(values_attested))!r})"
+                        ],
+                    }
+                else:
+                    # Already promoted by another field — combine the
+                    # field flags so primary_true reflects both.
+                    pairs_to_promote[key]["primary"][field] = True
+                    pairs_to_promote[key]["why"].append(
+                        f"promoted: single cross-source candidate's {field} attestation is consistent ({next(iter(values_attested))!r})"
+                    )
+
+    if pairs_to_promote:
+        promoted_keys = set(pairs_to_promote.keys())
+        confident_pairs.extend(pairs_to_promote.values())
+        low_confidence = [
+            lcp for lcp in low_confidence
+            if tuple(lcp["members"]) not in promoted_keys
+        ]
 
     # 3. Apply explicit merges (curator wins over auto-rules, but still
     #    respects already-recorded no_match — curator must explicitly
