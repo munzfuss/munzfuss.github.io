@@ -289,7 +289,7 @@ Phase-1 coverage table updated accordingly — NumisMaster row's «Pre-floor ent
 
 Bundle takes the audit-completeness cluster (§BH Hede + §BM IKMK + §BN Bruun + §BO this) to «100% verified» across all 7 raw sources.
 
-#### BO.5 — Numista DK 1602-1914 main-window coverage audit + harvest  🔵 **IN PROGRESS — batches 1+2+3/6 done (120 NIDs, 56.6 %)** *(opened 2026-05-18, est: medium-large)*
+#### BO.5 — Numista DK 1602-1914 main-window coverage audit + harvest  🔵 **IN PROGRESS — batches 1-4/6 done (160 NIDs, 75.5 %)** *(opened 2026-05-18, est: medium-large)*
 
 **Surfaced** by user direction 2026-05-18 «впевнись що в нашому нуміста кеші вже є всі монети по данії в 1602-1914 рр які є на нуміста». BO.1 / .2 / .3 addressed the pre-floor era; BO.5 addresses the main mission window (1602-1914 = Numista DK floor through pre-WWI end of precious-metal era).
 
@@ -325,7 +325,7 @@ The 212-NID gap is documented in `scripts/cache/numista/_BO5_audit_2026-05-18.js
   | **1** | ✅ DONE 2026-05-18 | 40 (4139…54912) | 1602-1923 (mostly Christian IX / Frederik VIII / Christian X Krone era + 1602 Christian IV Penning/Hvid family + Frederik IV/V silver Skilling) | `a3d03a6` (submodule) |
   | **2** | ✅ DONE 2026-05-18 | 40 (55301…111300) | Christian V 8/12-Skilling 1683-1684 + SH-Glückstadt 24-Skilling 1762 + Norge Speciedaler + Frederik VI/VII Rigsbankdaler 1820s-1850s + Frederik III 4-Mark-Dansk Type IIA-V (KM# 194.2-194.5, Dav 3572-3574A) | `a33390b` (submodule) |
   | **3** | ✅ DONE 2026-05-18 | 40 (111312…181629) | Christian IV 1591-1648 silver+gold repertoire (4-Daler Klippe KM# 25, 1-Speciedaler bust-I/II KM# 102/135, 3-Speciedaler KM# 75, Rhinsk Gylden KM# 108, 8-Skilling KM# 31, 1-Mark Helsingør KM# 36) + Frederik III commemorative Victory-over-Swedes Krone (KM# 222/225) + 4-Mark KM# 186/187 + 1-Speciedaler KM# 212 + 2-Ducats Ship I/II (KM# 216.1/216.2) + ½-Krone KM# 267 + Christian V East-India 1-Speciedaler KM# 317/319 + 4-Mark KM# 359.1/401.1-4 + Frederik V Coronation/Accession KM# 546/562/563 + Christian VII Christian-d'Or KM# 629 + Albertsdaler KM# 640 + Gianelli 1-Speciedaler KM# 654 + Frederik VI 2-Frederik-d'Or KM# 713 | `4068959` (submodule) |
-  | **4** | ⏳ pending | 40 (182700…366728) | TBD when run | — |
+  | **4** | ✅ DONE 2026-05-18 | 40 (182700…366728) | Christian IV high-denom 10-Ducats Fr# 68 + Rosenobel KM# 51 + 1-Piastre East-India KM# 117 + Speciedaler-Copenhagen-rect-arms KM# 44 (Dav 3514A) + Frederiksborg 12-Skilling KM# 85 + Hvid KM# 63.2 + Frederik III 1-Speciedaler 13-province KM# 169 + 2-Gold-Krone KM# 279 + Cross-monogram 2-Ducats KM# 243/295/326/PnB16/PnD16 + Largesse 1-/2-Ducat Klippe KM# 163/164 + ½-Portugaloser KM# PnG16 + Christian V Plain-monogram 2-Mark KM# 329.2 + Thin-monogram-Type2 4-Mark KM# 386.2 + 1-Ducat KM# 374.2/412.2 + 2-Ducats KM# 439 + Frederik IV Accession 3-Krone KM# 449 + Coronation 2-Ducats KM# 461 + ½-Ducat KM# 452 + 2-Ducats KM# 475/A488 + SH ½-Dukat Rendsburg KM# 7 + Frederik V Accession 1-/2-Ducats KM# 547/553 + 1-Krone KM# A571 + Christian VII 1-Piastre Asiatic KM# 638 + Christian IX 2-Christians-d'Or KM# 773 | `fcffa68` (submodule) |
   | **5** | ⏳ pending | 40 (372940…468777) | TBD when run | — |
   | **6** | ⏳ pending | 12 (468831…577419) | TBD when run | — |
 
