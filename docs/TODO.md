@@ -351,18 +351,28 @@ The per-NID route is the safe one for incremental harvest. Listing-page enumerat
 
 **Definition of done.** All 212 NIDs cached in `scripts/cache/numista/` with `_harvested_via: "chrome_mcp_html"` marker. Phase-1 coverage table updated to reflect 100% DK 1602-1914 coverage. Final BO.5 closure note replaces this in-progress entry.
 
-#### BR — ucoin DK-realm 1514-1914 coverage audit  🔵 **AUDIT DONE + batch 1 of N harvested (40 NIDs)** *(opened 2026-05-18, est: medium-large)*
+#### BR — ucoin DK-realm 1514-1914 coverage audit  🔵 **AUDIT DONE + batches 1+2 of N harvested (80 NIDs; ucoin paused)** *(opened 2026-05-18, est: medium-large)*
 
 **Update 2026-05-18 (post-pause resume):**
 
 Per user direction «починай, бажано відсортовано по даті», resumed live ucoin harvest after the offline audit. Earliest gap = Norway under DK rule (ucoin period_id=2399 «Speciedaler 1648-1699», 153 total entries) — started chronologically there.
 
-**Batch 1/N done (commit `4a323ea` in submodule):**
-- **40 TIDs harvested** from p2399 page 1 (48 candidates, 40 in batch + 8 spillover to next batch)
-- All 40 canonical-TID validations **PASSED** (no «random euro-cent» rate-limit defence fired)
-- Coverage: Frederick III 1648-1670 + Christian V 1670-1699, ½/1/2/4/8/12/16-skilling + 1-mark denominations
+**Batches 1+2/N done (commits `4a323ea` + `bb4c6a4` in submodule):**
+
+| Batch | Status | Count | Period coverage | Submodule commit |
+|---|---|---:|---|---|
+| **1** | ✅ DONE 2026-05-18 session 1 | 40 | p2399 page 1 (first 40 of 48) | `4a323ea` |
+| **2** | ✅ DONE 2026-05-18 session 2 | 40 | p2399 page-1 leftovers (8) + page-2 first 32 | `bb4c6a4` |
+| 3+ | ⏳ pending | 73 in p2399 + ~250 across other periods | p2399 page-2 tail (16) + p2399 pages 3-4 + other periods | — |
+
+- **80/40+40 TIDs harvested**, all canonical-TID validations PASSED (zero «random euro-cent» mismatches across both sessions)
+- Coverage by ruler: Frederick III 1648-1670 (Speciedaler/⅛/¼/½/2/4-Mark family) + Christian V 1670-1699 (1-Mark and 2-Mark families with multiple monogram variants per year)
 - Save format: `scripts/cache/ucoin/<tid>.json` per-TID files with `_verified: true` + `_canonical_tid` + `_harvested_via: chrome_mcp_html` markers
 - Save script: `/tmp/save_ucoin.py` aborts with exit code 2 on canonical-tid mismatch — prevents overwriting cache with the wrong-coin-served-as-defence-response
+
+**Cumulative ucoin session-cookie budget check.** Per `docs/SOURCES.md §13.2`, the empirical cookie-cycle ceiling at 20 s pacing was ~50 fetches. Across batches 1+2 we did ~86 cumulative ucoin requests (80 harvests + 6 enumeration probes) over two ~70-min sessions, with **0 canonical-TID failures**. Either (a) the 31-60 s pacing extends the budget materially, or (b) the cookie-cycle reset between «sessions» (different conversation context) effectively gives a fresh counter, or (c) ucoin raised the threshold since §M (2026-05-13). Whichever explanation, the empirical cap is much higher in current conditions than §13.2 documented.
+
+**Pause notice 2026-05-18 (after batch 2):** user direction «зробимо паузу на юкоін і переключимось знову на нуміста на 1 батч» — switching back to BO.5 Numista DK batch 2 for one session before resuming ucoin. ucoin state recorded in `scripts/cache/ucoin/_BR_audit_2026-05-18.json` under `harvest_progress.batches.batch_<N>.tids` for resume.
 
 **Platform-floor confirmations (this session's discovery):**
 
