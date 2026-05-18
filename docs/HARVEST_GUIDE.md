@@ -269,19 +269,295 @@ See PB-10 for full diagnosis when `git status` shows `modified: scripts/cache (n
 - Scripts: `scripts/fetch_numista_pre1541.py`, `scripts/parse_numista_pre1541.py`, `scripts/maintenance/build_numista_pre1541_seed.py`
 - Cache: `scripts/cache/numista/denmark_pre_1541/n<N>.html` + `.json`
 - URL pattern: `https://en.numista.com/<N>` direct per-coin page
-- Catalog browse: `/catalogue/index.php?e=<country>&...&p=<N>&q=<per_page>` (use Chrome MCP)
+- Catalog browse: see «Numista catalogue enumeration» below
 
 **N# list compilation**:
-1. Browse catalog page via Chrome MCP → `find` tool for coin links
-2. Capture hrefs via `read_page` with `ref_id`
-3. Hardcode N# list in the fetcher script
-4. Run with 30s pauses + ASCII-only UA
+1. Use catalogue enumeration (below) to get all NIDs in scope
+2. Run fetcher with 30s pauses + ASCII-only UA against `/catalogue/pieces<N>.html`
+3. Parse via the Chrome MCP JS extractor pattern (TAB-separated Features table)
 
 **Parser data shape**:
 - `<th>Field</th><td>Value</td>` table for Features
-- References: `<a class="fiche_catalogue">SIEG</a>#&#8239;C2-1` style
+- The per-NID page renders Feature labels with **TAB separator** to value (`Issuer\tDenmark\n`), NOT newlines. Regex must handle tab-or-space separator: `(?:^|\\n)<Label>[\\t ]+([^\\n]+)`
+- «Mint» is a SECTION (label on its own line, value on next line: `\nMint\nHusum, Germany\n`) — separate regex pattern
+- References: `<a class="fiche_catalogue">SIEG</a>#&#8239;C2-1` style; in extracted innerText this collapses to `SIEG# C2-1`
 - Obverse / Reverse: `<h3>Obverse</h3>` block with description + Script + Lettering + Translation
 - King names have whitespace padding + parenthesised native form: «Frederick I                    (Frederik I)» — collapse whitespace + strip parens
+
+### Numista catalogue enumeration via `/catalogue/index.php` (added 2026-05-18, §BO.5)
+
+**Scope**: enumerate ALL coin types for a given country/issuer + year-range to find what's on Numista vs what's in cache. Use this BEFORE the per-NID fetcher to compile a complete NID list — replaces the fragile «browse + find tool + hardcode» approach from §AZ.
+
+#### The canonical URL form
+
+```
+https://en.numista.com/catalogue/index.php
+  ?e=danemark                     # issuer code (see «Issuer code zoo» below)
+  &r=                             # search query text, empty
+  &st=1-2-3-47-154-5-54           # category subtype filter (HYPHEN-separated)
+  &cat=y                          # use this catalogue (sticky from form submission)
+  &im1=&im2=&ru=&ie=&no=&v=&cu=
+  &a=&dg=&i=&b=&m=&f=&t=&t2=&w=   # all empty (other form fields, see «Form field map»)
+  &mt=&u=&c=&wi=&sw=
+  &p=1                            # page number (1-indexed)
+  &q=200                          # results per page (10, 20, 50, 100, 200)
+  &o=y                            # sort order (y = year asc; see «Sort orders»)
+```
+
+**Minimal version** (drops empties, keeps only what matters):
+```
+?e=danemark&st=1-2-3-47-154-5-54&cat=y&p=1&q=200&o=y
+```
+
+#### Issuer code zoo (`e=` parameter)
+
+| Form value | Numista UI label | Scope |
+|---|---|---|
+| `danemark` | «Denmark» (issuer) | Kingdom of Denmark only — narrow |
+| `denmark` | «Denmark (section)» | Country section incl. Greenland, Faroes, notgeld — broad |
+| `schleswig_holstein_gottorp_duchy` | Duchy SH-Gottorp | Per-issuer landing |
+| `schleswig_holstein_danish_duchies` | «Schleswig and Holstein, Danish duchies of» | Joint-rule pre-1564 partition |
+| `holstein_schauenburg_county` | Holstein-Schaumburg-Pinneberg County | The notgeld parent for some SH coverage |
+| `lubeck_bishopric` | Bishopric of Lübeck | Eutin mint, SH-Gottorp regency 1586+ |
+
+The issuer landing page URL form `<code>-1.html` is equivalent to `?e=<code>` — the dash-1 is page-1 of the same listing. Direct landing-page form is more compact for casual browse; query-string form is required for filter parameters.
+
+**`e=danemark` vs `e=denmark`** — both work but scope differs:
+- `e=danemark` = «Denmark» issuer = JUST Kingdom of Denmark types
+- `e=denmark` = «Denmark section» = country root incl. Greenland, Faroes, notgeld
+- Cross-check the resulting page title: «Items from Denmark» (issuer) vs «Items from Denmark (section)» (root).
+
+#### Category subtype filter (`st=` parameter) — THE key noise reducer
+
+Numista organises items into a tree: **parent categories** (Coins=147, Tokens=150, Medals=149, Banknotes=148, Paper exonumia=143) → **subtypes** (Standard circulation=1, Non-circulating=2, Trade coinage=3, Patterns/Trial strikes=4, etc.).
+
+**`st=` accepts a HYPHEN-separated list of subtype IDs.** Without it, the listing returns ALL categories including banknotes/tokens/medals — for a 2212-entry «Denmark section» dump, ≈ 75% of rows are noise relative to a coin-only audit.
+
+**The canonical coin-only set for the project (excludes patterns/trial strikes per CLAUDE.md §9.1):**
+```
+st=1-2-3-47-154-5-54
+```
+Translates to: Standard circulation (1) + Non-circulating (2) + Trade coinage (3) + Commemorative (47) + Banks/Mints/Companies coinage (154) + Mint set (5) + Other coin variants (54). EXCLUDES subtype 4 (patterns / trial strikes — §9.1) and other out-of-scope subtypes.
+
+For DK section this reduces 2212 → **868 entries** (a 60 % noise drop). Use this filter for any coin-coverage audit.
+
+To find the numeric IDs for other category sets: visit a country landing page (e.g. `denmark-1.html`), inspect the «Coins ▾ Tokens ▾ Medals ▾» dropdowns — each `<label>` wraps `<input type="checkbox" value="NN">` where `value=NN` is the subtype ID. Document IDs you discover here.
+
+#### Sort orders (`o=` parameter)
+
+| Value | Sort by | Best for |
+|---|---|---|
+| `o=y` | **Year ascending** | Enumeration audits — chronological order lets you stop early once year > window |
+| `o=v` | Face value | Default catalogue browse |
+| `o=r` | Ruling authority | Per-reign exploration |
+| `o=t` | Type | Group by denomination |
+| `o=k` | Reference (KM#, Hede#, …) | Catalogue-cross-reference audits |
+
+The `tri=date_asc` legacy parameter from the form's option list is broken — gives ~26 partial results when combined with `ct=coin`. **Always use `o=y` for date-ascending instead.**
+
+#### Form field map (full list, what each accepts)
+
+From the catalogue search form (`#catalogue_search`):
+
+| Field | Type | Meaning | Notes |
+|---|---|---|---|
+| `e` | text/select | Issuer code | See «Issuer code zoo» |
+| `r` | text | Search query (free text) | Empty for catalogue enumeration |
+| `st` | hidden | Category-subtype filter | Hyphen-separated IDs, see above |
+| `cat` | hidden | Search context | `y` for catalogue (sticky) |
+| `ru` | select | Ruler | Numeric ID per Numista's internal ruler table; **CAUTION**: triggers Cloudflare more aggressively than other params (see «Cloudflare risk levels») |
+| `ie` | select | Issuing entity (org) | E.g. national bank, mint |
+| `no` | text | N# direct lookup | Single coin by N# |
+| `v` | text | Face value | Numeric |
+| `cu` | select | Currency period | E.g. Krone, Speciedaler |
+| `a` | text | **Year (single)** | **Filter matches DATED-specimen records only**, NOT type metadata — see «Year-filter gotcha» |
+| `dg` | text | Diameter (mm) | Single value |
+| `i` | text | Image search ID | Reverse-image lookup |
+| `b`, `m`, `f` | select | Composition/metal/finish | |
+| `t`, `t2` | text | **Diameter range** (NOT year range — common confusion) | `t=` min mm, `t2=` max mm |
+| `w` | text | Weight (g) | Single value |
+| `mt`, `mi` | select | Mint name / mint identifier | |
+| `u` | text | User-collection filter | |
+| `c`, `wi`, `sw` | radio | Collection / wishlist / swap status | `c=y/n` etc. |
+
+#### Year-filter gotcha (the big one)
+
+The `a=YYYY` filter does **NOT** match by `min_year`/`max_year` type-range metadata. It matches the **per-specimen Date column** entries that have a literal year value (NOT «ND (year)»).
+
+Concrete example (NID 54915 «1 Søsling - Christian IV first type»):
+- Type metadata: `min_year=1602, max_year=1602`
+- Per-specimen Date column: `ND (1602)` — the «1602» is an attribution year, the specimen is undated
+- `?a=1602` returns **0 results** — the filter ignores the type's `min_year` and the ND specimen
+- `?a=1958` returns NID 14546 correctly (specimen Date = «1958» literal)
+
+**Implication**: any pre-modern coin where specimens are predominantly undated (most pre-1650 small change is ND) will be **invisible** to the `a=` filter. Year-filter-based audits structurally undercount.
+
+**The fix**: use issuer-page enumeration (`<code>-1.html` or `?e=<code>&p=N&q=200`) with **client-side year filtering on the row's display year**. This catches both dated AND ND-attributed specimens because the listing page shows both forms in the row text.
+
+#### Cloudflare risk levels per URL form
+
+Empirically established 2026-05-17/18 (~80 catalogue calls across two sessions):
+
+| URL form | Cloudflare risk | Notes |
+|---|---|---|
+| `/<NID>` direct per-coin page | **Low** | 30+ sequential calls survived without trip at 31-60 s pacing |
+| `<issuer-code>-1.html` issuer landing | Low-medium | 12-page paginated walks succeeded at 45 s pacing |
+| `?e=<code>&st=...&p=N&q=200` query-string form | Low-medium | Similar to landing page; the form params don't escalate |
+| `?ru=<id>` ruler filter | **High** | Single call tripped Cloudflare in §BO.1 step 1; required 3-min cooldown + soft re-entry. Avoid for bulk enumeration |
+| `tri=date_asc` legacy sort | Buggy + risky | Returns 26 partial results, possibly triggers anti-abuse heuristic for the malformed response |
+
+**Mitigation pattern when Cloudflare fires:**
+1. Stop all Numista access for **3-5 minutes minimum**.
+2. Soft re-entry: navigate to the plain issuer-landing page (`denmark-1.html`) without any filter parameters.
+3. Once that loads cleanly, gradually re-introduce filters one at a time over the next 5-10 min.
+4. If a particular parameter (e.g. `ru=`) consistently re-triggers Cloudflare, drop it and use a different access route.
+
+#### Pagination + extraction recipe (proven through §BO.5, 2026-05-18)
+
+```
+Step 1: Enumerate via catalogue/index.php with full filter
+
+  url = `https://en.numista.com/catalogue/index.php?` +
+        `e=${ISSUER}&st=1-2-3-47-154-5-54&cat=y&p=${P}&q=200&o=y`
+
+  Page count visible in the «Pages: 1 - 2 - 3 ...» row at top of results
+  (also in total / 200 — round up). For DK section: 5 pages = 868 entries.
+
+Step 2: Per page, extract via Chrome MCP JS
+
+  Walk all anchors matching numista.com/<N>$, climb to nearest parent
+  containing «N# <N>», extract row's display year + category from the
+  inner text. The PARENT-CLIMB regex needs to handle long rows (Date
+  tables for dated specimens can push row text past 800 chars):
+
+  for (let i=0; i<6; i++) {  // depth 6 not 5 — some rows nest deeper
+    parent = parent.parentElement;
+    const txt = parent.innerText || '';
+    if (txt.includes('N# ' + nid) || txt.match(new RegExp('N#\\s*'+nid+'\\b'))) {
+      // match works regardless of txt.length — DO NOT add length cap
+      // (a 50-800 char cap loses ~60% of rows on pages with dated-specimen tables)
+      ...
+    }
+  }
+
+  Year regex: /(?:ND\s*\()?(\d{3,4})(?:\s*[-–]\s*(\d{4}))?/
+  (catches both «1602» and «ND (1602)» and «1602-1648» forms)
+
+  CAUTION: year regex `\b(1[5-7]\d{2})\b` can FALSE-POSITIVE on NID digits
+  themselves — e.g. NID «158259» has substring «1582» that matches as
+  «year 1582». Solution: scope the regex to a section of the row text
+  AFTER the year column (e.g. after «\n» following the title), or
+  cross-verify suspect NIDs with a single per-NID page fetch before
+  treating them as in-window.
+
+Step 3: Chunk-extract NIDs to bypass Chrome MCP output truncation
+
+  Chrome MCP's javascript_tool truncates output around 1.3 KB per call.
+  For a 200-entry page, slice the result array in halves or thirds:
+
+    window._dkP1 = result;
+    return result.length;             // first call: count only
+    // next call: result.slice(0, 80).join(',')
+    // next call: result.slice(80, 160).join(',')
+    // ...
+
+  Save each chunk to /tmp/<audit>/page_NN.txt for later Python diff.
+
+Step 4: Local diff against scripts/cache/numista/
+
+  cached = {f.stem for f in Path('scripts/cache/numista').glob('*.json')
+            if not f.stem.endswith('_issues') and not f.stem.startswith('_')}
+  in_window = {nid for nid, yr in entries if AUDIT_LO <= yr <= AUDIT_HI}
+  missing   = in_window - cached
+```
+
+#### Per-NID HTML fetcher (extends §AZ pattern)
+
+Once the NID list is compiled, fetch per-NID HTML pages with the JS extractor below. This works at low Cloudflare risk (per-NID pages are «cheap» from Cloudflare's POV vs filtered listings).
+
+```javascript
+function extract() {
+  const main = document.querySelector('main') || document.body;
+  const txt = main.innerText;
+  const title = document.querySelector('h1')?.textContent?.trim() || '';
+  const nid = parseInt(txt.match(/N#(\d+)/)?.[1] || '0');
+
+  // TAB-separated label-value: «Issuer\tDenmark\n»
+  const get = (label) => {
+    const m = txt.match(new RegExp('(?:^|\\n)' + label + '[\\t ]+([^\\n]+)', 'm'));
+    return m ? m[1].trim() : null;
+  };
+
+  // SECTION-style: «Mint\nHusum, Germany\n»
+  const getSection = (label) => {
+    const m = txt.match(new RegExp('(?:^|\\n)' + label + '\\s*\\n([^\\n]+)', 'm'));
+    return m ? m[1].trim() : null;
+  };
+
+  // Multi-label fallback for ruler (King | Duke | Bishop | Count | Emperor | Queen)
+  const getMulti = (...labels) => {
+    for (const l of labels) {
+      const v = get(l);
+      if (v) return v;
+    }
+    return null;
+  };
+
+  const yearsRaw = get('Years') || get('Year');
+  let min_year = null, max_year = null;
+  if (yearsRaw) {
+    const m = yearsRaw.match(/(\d{4})(?:\s*-\s*(\d{4}))?/);
+    if (m) {
+      min_year = parseInt(m[1]);
+      max_year = m[2] ? parseInt(m[2]) : min_year;
+    }
+  }
+
+  const composition = get('Composition');
+  let fineness = null;
+  if (composition) {
+    const fm = composition.match(/\((\.\d+)\)/) || composition.match(/(\.\d+)/);
+    if (fm) fineness = parseFloat(fm[1]);
+  }
+
+  return {
+    id: nid, title,
+    issuer_text: get('Issuer'),
+    ruler_text: getMulti('King', 'Duke', 'Ruler', 'Bishop', 'Count', 'Emperor', 'Queen'),
+    type: get('Type'),
+    years_text: yearsRaw, min_year, max_year,
+    value_text: get('Value'), currency: get('Currency'),
+    composition_text: composition, fineness,
+    weight_g: parseFloat(get('Weight')?.match(/([\d.]+)\s*g/)?.[1] || 'NaN') || null,
+    diameter_mm: parseFloat(get('Diameter')?.match(/([\d.]+)\s*mm/)?.[1] || 'NaN') || null,
+    shape: get('Shape'), technique: get('Technique'),
+    demonetized: get('Demonetized'),
+    references_text: get('References'),
+    mint_text: getSection('Mint'),
+  };
+}
+```
+
+Save extracted JSON to `scripts/cache/numista/<nid>.json` with `_harvested_via: "chrome_mcp_html"` + `_audit_context: "<audit-task-id>"` markers distinguishing these from API-shaped entries.
+
+#### Closed-loop audit recipe (canonical workflow for «is X complete?» questions)
+
+1. **Enumerate**: walk `?e=<code>&st=1-2-3-47-154-5-54&o=y` pages, extract NID + display-year per row
+2. **Filter**: keep NIDs whose row year falls in `[AUDIT_LO, AUDIT_HI]`
+3. **Diff**: compare against `scripts/cache/numista/*.json` stems
+4. **Spot-check**: for 1-2 missing NIDs, fetch the per-NID page to confirm year + category + scope-fit
+5. **Report**: present `(found, cached, missing)` triple + decade distribution + a few sample missing entries
+6. **Harvest decision**: per-NID Chrome MCP fetch (60-75 s each) OR Numista API (≤10 calls but quota-bound) OR defer
+
+This pattern proven through:
+- §BO.1 (DK pre-1602 + SH-cluster + Lübeck-Bishopric audit, 30 new types harvested)
+- §BO.5 (DK 1602-1914 audit, 547 in-window, 335 cached, 212 missing identified)
+
+For the per-issuer landing URL form (no filter params), see also «Numista per-coin HTML route» above — the two approaches are complementary, with this one preferred for any audit that needs to ENUMERATE rather than fetch a known NID set.
+
+#### Known issues
+
+See `docs/SOURCES.md §13.1` for the running log of Numista-specific data quirks (anomalous weights, cross-Krause-volume drift, parse traps).
 
 ### NumisMaster MC_NNNNN (Librios catalog — full Phase 1b complete 2026-05-16)
 

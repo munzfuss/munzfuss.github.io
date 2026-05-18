@@ -59,10 +59,16 @@ When researching a coin, consult sources in this order based on what you need:
 - Sometimes **swaps Lange#-attribution between sister-types** when sub-variants differ on obverse only — saw this with KM# 188 (N# 319169 vs 319272 disagreed with Bruun on which is Lange-444 vs Lange-444A). When Bruun and Numista disagree, **Bruun wins** (specimen-level expert classification).
 
 **Access pattern (in order of preference):**
-1. **Chrome MCP** — `mcp__Claude_in_Chrome__navigate` + `javascript_tool` to extract `document.querySelector('main').innerText`. Cloudflare may challenge first request; wait ~5-10 s and retry. **Use this by default.**
+1. **Chrome MCP** — `mcp__Claude_in_Chrome__navigate` + `javascript_tool` to extract `document.querySelector('main').innerText`. Cloudflare may challenge first request; wait ~5-10 s and retry. **Use this by default.** For catalogue enumeration (vs single-NID fetch), follow the canonical URL pattern in `docs/HARVEST_GUIDE.md §«Numista catalogue enumeration via /catalogue/index.php»` — it documents the right `st=`, `o=`, `e=`, pagination, and JS-extractor patterns proven through §BO.1 + §BO.5.
 2. **WebFetch** — returns 403 most of the time. Skip.
 3. **Apify rag-web-browser** — sometimes works, sometimes 403. Try if Chrome MCP unavailable.
 4. **Numista REST API** (`api.numista.com/v3/...`) — works reliably but **counts against quota**. Free tier = 200/24h, monthly cap mentioned in CLAUDE.md as «scarce in May 2026». **Always ask the user before any bulk-fetch >5 calls.** Cached responses live in `scripts/cache/numista/<nid>.json` and are free to re-read.
+
+**Catalogue enumeration vs per-NID fetch — two complementary routes:**
+- **Per-NID fetch** (`https://en.numista.com/<N>` or `/catalogue/pieces<N>.html`): when you already have a known NID list, just need the per-coin data. Low Cloudflare risk; survives long sessions.
+- **Catalogue enumeration** (`/catalogue/index.php?e=<code>&st=...&p=N&q=200&o=y`): when you need to DISCOVER NIDs in scope (coverage audits, gap detection). Medium-low Cloudflare risk if filtered properly; avoid `?ru=` parameter which fires the challenge. Full URL form documented in `HARVEST_GUIDE.md`.
+
+Known quirks (year-filter only matches dated specimens, NID-digit false-positive risk, `e=danemark` vs `e=denmark` scope difference, etc.): see §13.1 below.
 
 ### 1.2 ucoin — `en.ucoin.net`
 
@@ -570,6 +576,41 @@ KM-128 Christian VII 1787-96 ⅙ Speciedaler has Hede c7h42 Bruttovægt 6.129 g,
 **Numista cache (pre-2026-05-11) lacked the `Composition` field entirely (2026-05-11).**
 Our `scripts/cache/ucoin/_url_index.json` schema only stored `denom / diameter_mm / fineness / km / source / url / weight_g / year`. Discovered via investigation of `dk-tid-163075` (10 Ducat 1588) whose ucoin page shows «Composition · Gold» but our local cache never captured it.
 *Decision.* Built the dedicated `_composition.json` sidecar via `scripts/maintenance/ucoin_fetch_composition.py`; now stores composition + finer dimensions (thickness, edge_type, shape, alignment). See §13.2 for the resulting ucoin-harvest saga.
+
+**Numista catalogue search `a=YYYY` year filter matches DATED specimens only — undated coins invisible (2026-05-18).**
+The `/catalogue/index.php?...&a=YYYY` URL parameter filters per **specimen-level Date column entries that carry a literal year**, NOT by the type's `min_year`/`max_year` metadata. Concrete proof: NID 54915 «1 Søsling Christian IV first type» has `min_year=max_year=1602` in our cache but its per-specimen Date column reads «ND (1602)» (undated, attribution year). `?a=1602` returns **0 results** despite the type existing. `?a=1958` for NID 14546 (literal 1958 specimen) returns it correctly.
+*Diagnosis.* Numista's search index keys off per-specimen Date entries; types whose specimens are all undated (the common case for pre-1650 small change) are completely invisible to `a=`. The §BO.1 step 2 sweep undercounted dramatically because of this.
+*Decision.* For coverage audits, **use issuer-landing-page enumeration** (`<code>-1.html` or `?e=<code>&p=N&q=200`) with client-side year filtering on the row's display year. The listing page renders both dated AND ND-attributed specimens in row text, so client-side parsing catches both. See `docs/HARVEST_GUIDE.md` §«Numista catalogue enumeration» for the full pattern. — commit `8b60f2e`.
+
+**Numista `?ru=` ruler filter trips Cloudflare aggressively (2026-05-17).**
+Per-issuer + ruler combination URLs like `?mode=avance&e=danemark&ru=2385` (Christian II) fire Cloudflare's challenge on the FIRST call from a session where other parameters worked fine. The `ru=` parameter appears more weighted in Numista's anti-abuse heuristic than other form fields. Once tripped, requires 3-min cooldown + soft re-entry via plain landing page (`denmark-1.html`) before resuming.
+*Diagnosis.* Probably a combination of (a) the parameter being relatively uncommon for human catalogue browsing (most users click ruler-page links rather than constructing `?ru=` URLs), (b) ruler-filter results are server-rendered with more JOIN cost, making them a high-leverage target for bot defence.
+*Decision.* **Avoid `?ru=` for bulk enumeration.** Use issuer-landing-page pagination (low risk) + client-side ruler filtering on row text instead. Per-NID `/N` page fetches survive at low risk even after long sessions. — see HARVEST_GUIDE.md §«Cloudflare risk levels per URL form».
+
+**Numista listing-page year regex false-positives on NID digit strings (2026-05-18).**
+The simple year regex `\b(1[5-7]\d{2})\b` applied to a coin-row's innerText can match year-shaped substrings INSIDE the NID number itself. Concrete case: NID 158259 «Medal — Start of conflicts between Schleswig-Holstein and Denmark» — the substring «1582» inside «158259» matched the regex, classifying a 1848 medal as a 1582 SH-Danish-Duchies pre-1602 coin. Saved a bogus cache file that had to be deleted. NID 152374 has the same risk («1523» substring) but was already in cache with incorrect min_year=1523 from an earlier API harvest — actual year 1808-1839 (Frederik VI era).
+*Diagnosis.* `\b` word-boundary doesn't help here because the year-shaped substring is at the start/middle of a digit run. The regex matches the first 4-digit year-shaped chunk in the row text — for some rows that's the NID itself (especially when `N# 158259` appears earlier in the row than the actual year column).
+*Decision.* (a) Constrain the year-extraction regex to a section of the row text AFTER the title (e.g. after first `\n` past the title), OR (b) cross-verify suspect NIDs whose digit string overlaps the audit window via a single per-NID page fetch before treating them as in-window. The `_BO5_audit_2026-05-18.json` summary documents which audit-result NIDs are at risk. — commit `8b60f2e`.
+
+**`st=` category-subtype filter is the key noise reducer for coverage audits (2026-05-18).**
+The catalogue URL accepts `?st=1-2-3-47-154-5-54` (hyphen-separated subtype IDs) to filter the listing to coin subtypes only — excluding banknotes, tokens, medals, AND patterns/trial strikes (subtype 4, out of project scope per CLAUDE.md §9.1). For DK section this reduces the full listing 2212 → 868 entries (60 % noise drop) and yields the «in-scope coin types only» that we actually want to audit against cache.
+*Discovery context.* User direction 2026-05-18 («тут ти можеш повимикати ті entries які нас не цікавлять і цим звузити пошук») pointed at the UI filter checkboxes, leading to the URL-parameter discovery. The category subtype IDs are visible by inspecting `<label><input type=checkbox value=NN>` elements on any issuer landing page.
+*Decision.* Use `st=1-2-3-47-154-5-54` as the canonical coin-only filter for ALL future coverage audits. Documented in HARVEST_GUIDE.md §«Category subtype filter». Initial §BO.5 audit (without `st=`) over-counted the 1602-1914 gap by 42 entries (254 → 212 after refilter); those 42 were patterns/trial strikes that we wouldn't have harvested anyway. — commit `8b60f2e`.
+
+**`e=denmark` vs `e=danemark` are different scopes — DON'T conflate (2026-05-18).**
+The two issuer-code values look similar but resolve to different catalogue scopes:
+- `e=danemark` = «Denmark» as a numismatic ISSUER (Kingdom of Denmark coinage only, narrow)
+- `e=denmark` = «Denmark (section)» = country root including Greenland, Faroes, Schleswig duchies via cross-tagging, notgeld
+The page title disambiguates: «Items from Denmark» (issuer) vs «Items from Denmark (section)» (root). Initial §BO.5 audit used the broader `e=denmark` and got 2212 entries; refined audit used `e=danemark` and got 868 (after `st=` filter). Both are valid for different audit goals — use `e=danemark` when you want strict Kingdom-of-Denmark scope, `e=denmark` when you want all DK-realm-affiliated tags.
+*Decision.* Document the distinction; default to `e=danemark` for our project (we already handle SH-cluster separately under their own issuer codes per §BO.1). — codified in HARVEST_GUIDE.md §«Issuer code zoo». commit `8b60f2e`.
+
+**Numista's `tri=date_asc` legacy sort parameter is broken — use `o=y` instead (2026-05-18).**
+The form's `tri=date_asc` value (visible as a legacy option in the underlying form definition) produces ~26 partial results when combined with `ct=coin` — apparently a bug where only entries without a normalised currency-period anchor surface. Sometimes triggers Cloudflare on the malformed response.
+*Decision.* Always use `o=y` (sort by year ascending) for date-ordered enumeration. Documented in HARVEST_GUIDE.md §«Sort orders». — commit `8b60f2e`.
+
+**`t` and `t2` URL parameters are DIAMETER range, NOT year range (common confusion, 2026-05-18).**
+The form fields `t` and `t2` look like they might be «year from / year to» — they're not. They're **diameter range** (mm). The catalogue page header confirms by rendering «Length or diameter: <t> × Width: <t2>» when both are set. Numista's catalogue search has NO year-range parameter, only single-year `a=`. For range audits, use issuer-landing pagination + client-side year filtering.
+*Decision.* Documented in HARVEST_GUIDE.md §«Form field map» with explicit «NOT year range» warning. — commit `8b60f2e`.
 
 ### 13.2 ucoin (en.ucoin.net)
 
