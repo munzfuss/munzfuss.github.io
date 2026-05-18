@@ -1,651 +1,329 @@
 # V2 Pipeline — entity-keyed refactoring plan
 
-> **Status (2026-05-18):** Planning approved, all pending decisions resolved
-> (see §7a). Implementation starts on branch `feat/v2-pipeline`, atomic
-> commits per phase, V1 stays fully functional in parallel under unchanged
-> URLs. The seven resolved decisions cover: `issuing_entity: str | list[str]`
-> (§3.10), `gesamtstaat` migration decision tree (§3.1), home-file rule
-> for multi-entity coins (§3.10), `catalog.km: str | dict[str, str]` (§4),
-> `coin.phase: str | dict[str, str]` (§5), share V1 Jinja template,
-> audit hard-blocks pre-commit from Phase 7 onwards.
+> **Status (2026-05-18):** Architecture refined to 4-phase fully-automated
+> pipeline; V1 reframed as **verification anchor** (not bootstrap input).
+> Implementation in flight on branch `feat/v2-pipeline`. Phases 1, 2,
+> partial 3, partial 4 + supporting infrastructure (schema, build
+> pipeline, idempotent merge-aware regen, bidirectional link) landed.
+> Outstanding: native Phase 3 cross-source merger, Phase 4 auto-classifier,
+> first full-cycle reprocess + V1-vs-V2 diff verification.
 
 ## 1. Why
 
-The current V1 pipeline (documented in `docs/ARCHITECTURE.md` §«Data pipeline
-— 4 phases») keys seed files by display **location**:
+The V1 pipeline keys seed and curated files by display **location** —
+`data/seed/<source>/<location>.yml`, `data/locations/<location>.yml`.
+That assumption breaks for issues whose authority feeds multiple display
+pages (Glückstadt-minted royal-Danish coins → both the Denmark page and
+the Schleswig-Holstein page; Norway-under-Danish coins → the Denmark
+page and a future Norway page).
+
+V1 patches this with a cross-location coverage hack in `build.py` for
+the Hede source only; every other source either gets manually duplicated
+across location yamls or only appears on one page.
+
+V2 fixes this at the architecture level — seed AND final coin files are
+keyed by **political entity** (`issuing_entity`), and each display page
+declares which entities it consumes. One canonical entry, N rendered
+surfaces. The build assembly inverts at render time.
+
+But the rename is only the surface change. The deeper rework is the
+**fully automated, one-way, idempotent pipeline** with curator input
+restricted to **decisions** (merge confirmations, classification
+confirmations) — not data edits.
+
+## 2. The 4-phase pipeline
 
 ```
-data/seed/<source>/<location>.yml
+  Phase 1                Phase 2                Phase 3                  Phase 4                  Render
+  ═══════════════        ════════════════       ══════════════════        ══════════════════       ═════════════
+  raw fetch              typed parse            seed per entity ×         final per entity         per-location
+  per resource           per resource           resource + cross-         (fuss-distributed)       assembly
+                                                source merge
+
+  Output:                Output:                Output:                   Output:                  Output:
+  scripts/cache/         scripts/cache/         data/v2/seed/             data/v2/final/           site/v2/<loc>/
+   <src>/<basename>.htm   <src>/<basename>.json  <src>/<entity>.yml        <entity>.yml             <lang>/index.html
+   <src>/<basename>.pdf   <src>/_parsed_index    + data/v2/seed_unified/  (was data/v2/
+                                                 <entity>.yml              curated/ in transitional
+                                                 (cross-source merged)     bootstrap state)
+
+  Driver:                Driver:                Drivers:                  Driver:                  Driver:
+  fetch_<src>.py         parse_<src>.py         build_<src>_seed_v2.py    classify_to_fuss_v2.py   build.py
+                                                + merge_seeds_cross_      (script + curator        (consumes_entities
+                                                 source.py                 decisions where           assembly)
+                                                                           ambiguous)
 ```
 
-That assumption breaks when a coin's issuing authority feeds **multiple display
-pages**:
-
-- A Glückstadt 1622 8-Schilling struck under Royal-Danish authority over
-  Holstein circulates in both the Denmark realm and the Schleswig-Holstein
-  duchies. The same physical type belongs on **both** the `denmark` page and
-  the `schleswig_holstein` page.
-- A Speciedaler struck for Norge-under-Danish-rule belongs on both the
-  `denmark` page (as part of the Danish-Norwegian realm) and — eventually —
-  a future `norway` page.
-
-V1 patches this with a cross-location coverage hack in `build.py:241-259` for
-the Hede source only. For every other source (Bruun, Galster, Numista,
-NumisMaster) the curator would need to **duplicate the entry** in two location
-YAMLs — or accept that the coin shows on one page but not the other.
-
-V2 fixes this at the architecture level: seed AND curated files key by
-**political entity** (`issuing_entity`), and each display page declares which
-entities it consumes. One curated entry, N rendered surfaces.
-
-## 2. Conceptual model — 5-phase pipeline
-
-| Phase | Directory | File granularity | Editable? | Generated by |
-|-------|-----------|------------------|-----------|--------------|
-| 1 HARVEST | `scripts/cache/<source>/` | per resource entry (URL/lot/coin) | no | fetcher |
-| 2 SYNTHESIS | `scripts/cache/<source>/*.json` | per resource entry, typed | no | parser |
-| 3 SEED | `data/v2/seed/<source>/<entity>.yml` | **per political entity**, one per source | semi (autoflow + curator soft-edits) | `build_<source>_seed.py --v2` |
-| **4 CURATED** | `data/v2/curated/<entity>.yml` | **per political entity**, merged across sources | yes (primary curator edits) | manual + relink script |
-| **5 MERGED** | (in-memory, not on disk) | per display location | no | `build.py --v2` |
-
-Phases 1-2 are unchanged from V1 (source-keyed organisation is right for
-those — fetchers don't know about our political taxonomy). Phases 3, 4, 5 are
-the structural change.
-
-### 2.1. Why entity-keyed Phase 4 is the key idea
-
-V1 forces the curator to write a coin entry into ONE location YAML and then
-hope the cross-location coverage hack catches it on other pages. V2 inverts:
-the curator writes the coin entry into ONE entity file (e.g.
-`royal_holstein.yml`), and the build assembles it onto whichever display
-pages declare `consumes_entities: [..., royal_holstein, ...]`.
-
-This eliminates:
-- The Hede-specific cross-location coverage hack
-- The risk of editing a coin in one location's yaml and forgetting to
-  duplicate to a sibling page that should also surface it
-- The §9a multi-specimen-merge work being duplicated across two location
-  files when the same KM is curated on both
-
-### 2.2. Phase 5 is a build artefact, NOT editable
-
-`site/v2/<location>/<lang>/index.html` is produced by `build.py --v2` at
-render time. There is no `data/v2/locations/<location>.yml` with `coins:` —
-display-meta only (summary, fuss_order, phases definitions, timeline.bars,
-consumes_entities list). The coins are assembled into the in-memory
-`raw['coins']` dict by `_assemble_v2_location()` from the entity files
-declared in `consumes_entities`.
-
-## 3. User-confirmed decisions
-
-These are settled (per chat transcripts 2026-05-17 / 2026-05-18). When work
-starts, no need to re-litigate.
-
-### 3.1. `gesamtstaat` entity retired — replaced by mint-driven classification (multi-entity list when joint)
-
-Post-1813 Helstaten coins were going to need a `gesamtstaat` (DK+) entity for
-realm-wide circulation. **Decision: redundant.** Classify by the mint(s) at
-which the coin was struck:
-
-| Coin mint(s) | Resulting `issuing_entity` |
-|--------------|----------------------------|
-| Altona only (or other SH mint) | `royal_holstein` (scalar) |
-| Kopenhagen only | `danish_realm` (scalar) |
-| Kongsberg / Christiania only | `danish_norway` (scalar) |
-| **Altona + Kopenhagen (joint)** | `[danish_realm, royal_holstein]` (list — §3.10) |
-| **Kopenhagen + Kongsberg / Christiania** | `[danish_norway, danish_realm]` (list) |
-| **Altona + Kopenhagen + Kongsberg** | `[danish_norway, danish_realm, royal_holstein]` (list) |
-| mint missing / unknown + `gesamtstaat` tag | leave as `_deprecated_gesamtstaat` + warn — manual review |
-
-Joint-mint coins explicitly become multi-entity (per §3.10's `str | list[str]`
-schema) — surfacing on all consumer pages of any tagged entity. No information
-is lost by retiring the `gesamtstaat` synthetic tag.
-
-**Migration script (`scripts/maintenance/migrate_curated_to_v2.py`) decision
-tree:**
-
-1. Coin already tagged with a non-`gesamtstaat` `issuing_entity` (scalar or
-   list) → **preserve as-is**. The curator's existing choice wins; not
-   re-evaluated by the script. (Consistency-pass for non-`gesamtstaat`
-   joint-mint coins that should arguably also be list-form is left as a
-   separate manual review — flagged in the migration report.)
-2. Tagged `gesamtstaat` → apply the mint→entity lookup table above. Result is
-   scalar when single mint resolves to single entity; list when multiple mints
-   resolve to ≥2 distinct entities. Always add
-   `_migration_note: 'auto-mapped from gesamtstaat'` for traceability.
-3. List ordering convention: **alphabetical by entity id** for determinism
-   (`danish_norway` < `danish_realm` < `royal_holstein`). This is *not*
-   historical primacy — the first list element is just the «home file» for
-   storage purposes (per §3.10's primary-home rule); render-time consumers
-   match ANY list element against their `consumes_entities`.
-4. Unknown / missing mint on a `gesamtstaat` entry → leave as
-   `_deprecated_gesamtstaat`, flag in migration report. Manual review
-   resolves these individually.
-
-### 3.2. `pre_1541` sub-window files retired
-
-The `denmark_pre_1541.yml` files in V1 seed dirs were a temporary harvest
-artefact when we extended the DK lower bound from 1541 → 1514 (Christian II
-Lovkompleks). In V2 they merge into the regular entity-keyed files
-(`danish_realm.yml` etc.). German lower bound stays 1559/1566 (unchanged).
-
-### 3.3. Bidirectional seed↔curated link via IDs
-
-Each seed entry has a unique id with source prefix (`dk-hede-c5h120`,
-`dk-bruun-p4-l11304`, `dk-numista-67890`, `dk-mc-66629`). Promotion is
-tracked both ways:
-
-- **Curated entry** has `composed_of: [seed_id, ...]` — list of seed entries
-  that this curated entry rolled up.
-- **Seed entry** has `promoted_to: <curated_id>` — pointer to the curated
-  entry. Set automatically by `relink_promoted_v2.py` from the
-  `composed_of` lists, so the curator only writes to one side.
-
-At assembly time (Phase 5), seed entries with non-null `promoted_to` are
-dropped — they would otherwise render duplicate of the curated entry.
-
-### 3.4. One curated entry per coin — cross-volume KM stays a single entry
-
-KM-numbering is per-Krause-volume: KM-75 in the Denmark volume is a
-different coin from KM-75 in the Schleswig-Holstein volume. But a coin can
-legitimately be catalogued under TWO KM numbers (one in each volume) when
-Krause indexed it in both. This is **one entry**, not two:
-
-```yaml
-- id: dk-curated-kge-1773-vereinigungstaler
-  catalog:
-    km:
-      dk: '<dk-volume-km>'
-      sh: '<sh-volume-km>'
-    hede: ...
-```
-
-The home entity is determined by issuing authority (1773 Vereinigungstaler =
-royal_holstein, since DK king is also SH duke post-1773 reunification).
-
-Two distinct curated entries in two entity files only when the coin
-genuinely had two issuing authorities (rare; treated case-by-case).
-
-### 3.5. Multi-mint joint issues = one entry with multi-entity tag
-
-Coins struck in parallel at multiple mints across different political
-jurisdictions stay as ONE entry but receive a **list-form `issuing_entity`**
-(per §3.10) covering each jurisdiction. Examples:
-
-- 14 V1 coins with `mint: [Altona, Kopenhagen]` (Rigsbankdaler / Rigsmønt
-  era 1813-1864 Speciedaler) → `issuing_entity: [danish_realm, royal_holstein]`
-- `km-616-chr-v-1771` Skilling Dansk 1771-1783 with `mint: [Altona,
-  Kopenhagen, Kongsberg]` → `issuing_entity: [danish_norway, danish_realm,
-  royal_holstein]`
-- A type struck only at Altona + Kongsberg (no Kopenhagen) →
-  `issuing_entity: [danish_norway, royal_holstein]`
-
-The coin entry lives in **one** entity file (the first-alphabetical entity
-in the list — §3.10's «home file» rule), and surfaces on every display page
-whose `consumes_entities` intersects with the coin's `issuing_entity` list.
-The `mint` field continues to carry the full mint list for display.
-
-A future `mint_per_location` resolver remains deferred — for now the same
-`mint` list renders identically on both pages; if SH page should hide
-Kopenhagen mint markers and DK page should hide Altona ones, that's a
-render-time enhancement.
-
-### 3.6. Norway page deferred
-
-No `data/v2/locations/norway.yml` will be created in this refactor. The
-`danish_norway` entity is single-consumer for now (denmark page only). If
-a `norway.yml` is ever added, it just declares `consumes_entities:
-[danish_norway, norway_independent]` and the existing assembly mechanic
-handles it without further changes.
-
-### 3.7. Manual override in multi-consumer files — unlikely scenario
-
-User confirmed (2026-05-18) that the previously-feared «curator edits a
-coin's fineness on the DK page but forgets to update on the SH page»
-problem doesn't actually arise in practice:
-
-1. Canonical-anchor fineness inferred from standard — set once in the
-   single entity file, applies to both pages
-2. `note` — set once in the entity file, applies to both pages
-3. Source-errata flag — set once in the entity file, applies to both pages
-
-There's no realistic scenario where a coin needs different field values
-for different display pages. The exception is `phase` (per §3.8) and
-catalog ref disambiguation (per §3.4) — both already designed with the
-right indirection.
-
-### 3.8. V2 lives in parallel, old data + URLs preserved
-
-**Critical constraint:** during the entire refactor, V1 remains 100%
-functional. V2 files live in `data/v2/`. V2 pages render to
-`site/v2/<location>/<lang>/index.html`. The landing page gets a beta link
-to V2 pages. The user reviews V2 against V1 over multiple sessions,
-iterates fixes, and only when satisfied flips V2 to main (Phase 9 in §6
-below). Until that flip, V1 is the source of truth and the live site.
-
-### 3.9. V2 data starts from V1 curated copies
-
-Don't build V2 from scratch — start by copying V1's curated coins
-(already merged, classified, sourced) into the new V2 entity files
-through a migration script. The curation work already invested in
-`data/locations/<loc>.yml` is preserved; V2's job is restructure not
-re-curation.
-
-### 3.10. `issuing_entity` schema = `str | list[str]`
-
-Coin schema's `issuing_entity` field is extended from scalar `str` to
-`str | list[str]` to support joint-jurisdiction coins (§3.5).
-
-```yaml
-# 90% case — single-jurisdiction coin
-- id: dk-curated-km-242-1683
-  issuing_entity: royal_holstein
-
-# joint-jurisdiction coin — Altona + Kopenhagen mint
-- id: dk-curated-km-720-1840
-  issuing_entity: [danish_realm, royal_holstein]
-  mint: [Altona, Kopenhagen]
-```
-
-**Home-file rule.** A multi-entity coin lives in **exactly one** entity
-file — the file whose name matches the **first element** of the
-`issuing_entity` list (alphabetical-ordering convention per §3.1). So
-`[danish_realm, royal_holstein]` → coin entry lives in
-`data/v2/curated/danish_realm.yml`. The other listed entities
-(`royal_holstein` in this example) DO NOT duplicate the entry in their
-own files; they're a render-time consumer-matching signal only.
-
-**Build assembly matching rule.** When a display location with
-`consumes_entities: [...]` is assembled, the assembly walks each entity
-file declared in `consumes_entities` AND surfaces any coin whose
-`issuing_entity` list intersects with `consumes_entities` — even if the
-coin lives in an entity file NOT consumed by the location. Concrete:
-
-- SH page declares `consumes_entities: [royal_holstein, gottorp_duchy, ...]`
-- A joint Altona+Kopenhagen coin lives in `danish_realm.yml` with
-  `issuing_entity: [danish_realm, royal_holstein]`
-- Assembly walks SH's consumed entity files (NOT including
-  `danish_realm.yml`)... so it misses the coin? **No** — the assembly
-  also scans the «foreign» entity files referenced by any
-  multi-entity coin whose secondary tags include a consumed entity.
-
-To make this efficient, the build assembly performs an **inverse index**
-pass: for every entity in `consumes_entities`, scan ALL entity files
-(not just the matching one) for coins whose `issuing_entity` list
-contains this entity. Cost: one full pass over `data/v2/curated/`
-per build, cached per session.
-
-**Dedup.** A coin id is unique across the entire `data/v2/curated/` tree.
-The home-file rule guarantees this: each id appears in exactly one
-entity file. Multiple consumes_entities matching the same coin do not
-double-render — assembly dedups by coin id at the end.
-
-**Validator** (`scripts/lib/schema.py`):
-
-```python
-class Coin(BaseModel):
-    issuing_entity: str | list[str] | None = Field(...)
-
-    @model_validator(mode='after')
-    def _check_issuing_entity(self):
-        if isinstance(self.issuing_entity, list):
-            if not self.issuing_entity:
-                raise ValueError("issuing_entity list must be non-empty")
-            if len(set(self.issuing_entity)) != len(self.issuing_entity):
-                raise ValueError("issuing_entity list has duplicates")
-            # All elements must be known entity tags (cross-checked against
-            # data/i18n/issuing_entities.yml at startup)
-        return self
-```
-
-## 4. Catalog KM cross-state — concrete model
-
-Schema extension for `catalog.km`:
-
-```python
-class CatalogRefs(BaseModel):
-    km: str | dict[str, str] | None = None
-    # ...
-```
-
-When `km` is a bare string: register is inherited from the home location's
-`km_register` field (e.g. `'242'` in `denmark.yml` means DK-volume KM-242).
-
-When `km` is a dict: explicit per-register namespacing — the curated entry
-asserts both registers. Build assembly's `resolve_km_for_location()` picks
-the entry whose register matches the current display location.
-
-Example for Helstaten-era Altona issue catalogued in both volumes:
-
-```yaml
-- id: dk-curated-helstaten-rigsbankdaler-1842
-  catalog:
-    km:
-      dk: '722'    # Krause Denmark volume
-      sh: '155'    # Krause SH volume
-    hede: '12'     # Hede unambiguous (single-catalogue)
-  issuing_entity: royal_holstein
-  mint: Altona
-```
-
-When rendered on `denmark` (km_register: DK), the table shows `KM# 722`.
-When rendered on `schleswig_holstein` (km_register: SH), shows `KM# 155`.
-
-## 5. Phase resolution — scalar-or-dict
-
-Schema extension for `coin.phase`:
-
-```python
-phase: str | dict[str, str] | None = None
-```
-
-Scalar `phase: A` — applies to all consumer locations of this entity (90%
-case).
-
-Dict `phase: {denmark: A, schleswig_holstein: B}` — explicit per-location
-override for rare cases where the same coin sits in different local
-periodisations on different pages (e.g. when DK and SH define their
-phases differently for the same shared fuss). Build assembly resolves at
-render time.
-
-## 6. Detailed execution plan
-
-### Phase 0 — preparation (~1 session)
-
-0.1. `git checkout -b feat/v2-pipeline`
-0.2. Audit `coin.issuing_entity` coverage across `data/locations/*.yml`. Fix
-gaps in V1 (separate atomic commit, not part of V2 refactor).
-0.3. Create skeleton: `mkdir -p data/v2/{seed,curated,locations}`. V2 reads
-shared/i18n from V1 (single source of truth for globals).
-0.4. Commit: `v2: skeleton directories + audit issuing_entity coverage`
-
-### Phase 1 — migrate V1 curated → V2 entity files (~2 sessions)
-
-1.1. Extend `data/i18n/issuing_entities.yml`:
-- Audit which entity tags exist in V1 `coin.issuing_entity` values
-- Add missing entities
-- Mark `gesamtstaat` with `_deprecated: true`
-
-1.2. Migration script `scripts/maintenance/migrate_curated_to_v2.py`:
-
-- Reads all `data/locations/<loc>.yml` coin entries
-- For each: apply the §3.1 decision tree:
-  - `issuing_entity ∈ {gesamtstaat}` → apply mint→entity lookup; produce
-    scalar OR list-form per §3.10 (Altona+Kopenhagen → list, single mint →
-    scalar)
-  - `issuing_entity` already set to something other than `gesamtstaat` →
-    preserve verbatim (curator's call)
-  - Mint missing/unknown on `gesamtstaat` → `_deprecated_gesamtstaat`, flag
-    for manual review
-- **Home-file determination** for multi-entity coin: first element of
-  `issuing_entity` list (alphabetical per §3.10) is the entity-file the coin
-  is written to. The other listed entities don't get a duplicate entry —
-  build assembly inverse-index handles the multi-page surfacing.
-- Group coins by home entity, write `data/v2/curated/<entity>.yml`:
-
-  ```yaml
-  id: <entity_tag>
-  source_locations: [<loc1>, <loc2>, ...]
-  migrated_from_v1: '<date>'
-  coins:
-    - id: ...
-      # ... V1 fields preserved verbatim
-      issuing_entity: royal_holstein                    # scalar (90%)
-      # OR for joint-jurisdiction:
-      # issuing_entity: [danish_realm, royal_holstein]  # list (10%)
-      v1_home_location: <original_loc>                  # for backtrace
-      composed_of: []                                   # filled in Phase 6
-      _migration_note: 'auto-mapped from gesamtstaat'   # when applicable
-  ```
-
-- Conflict resolution: same coin id in two V1 locations under same entity →
-  merge per CLAUDE.md §9a multi-specimen rule.
-- **Migration report** lists by-category:
-  - N coins re-mapped `gesamtstaat → <scalar>`
-  - M coins re-mapped `gesamtstaat → [list]`
-  - K coins left `_deprecated_gesamtstaat` (unknown mint) for manual review
-  - L coins with non-`gesamtstaat` joint-mint tag that arguably should be
-    list-form (flagged for separate consistency-pass decision, NOT
-    auto-converted)
-
-1.3. Dry-run + user review (counts per entity, sample entries).
-1.4. Real run + commit: `v2: migrate V1 curated coins → entity-keyed files`
-
-**Pause point — user reviews migration result.**
-
-### Phase 2 — V2 locations display-meta (~1 session)
-
-2.1. Script `scripts/maintenance/init_v2_locations.py` copies
-`data/locations/<loc>.yml` → `data/v2/locations/<loc>.yml`, drops `coins:`,
-adds `consumes_entities: [...]`.
-
-2.2. `consumes_entities` lists derived from migration output (helper:
-which entity tags appeared in which `v1_home_location`). User confirms
-cross-consumer additions (`royal_holstein` → DK+SH, `danish_norway` →
-DK).
-
-2.3. Commit: `v2: locations display-meta files with consumes_entities`
-
-### Phase 3 — Phase 3 seed builders entity-keyed output (~2-3 sessions)
-
-For each `scripts/maintenance/build_<source>_<loc>_seed.py`:
-
-3.1. Add `--v2` CLI flag (default: V1 behaviour, unchanged).
-3.2. With `--v2`: classify each parsed entry by political entity (per-source
-heuristics — table in §3.2 of original plan), group by entity, write to
-`data/v2/seed/<source>/<entity>.yml`.
-3.3. Use `lib/seed_merge.merge_seed()` for merge-aware regen (V2 forks an
-opportunity to close §BL TODO — bruun / galster / numista / numismaster_pre1541
-all become merge-aware).
-
-3.4. Commit per source:
-- `v2: hede builder entity-keyed output`
-- `v2: bruun builder entity-keyed + merge-aware`
-- `v2: galster builder entity-keyed + merge-aware`
-- `v2: numista builder entity-keyed + merge-aware`
-- `v2: numismaster builder entity-keyed output` (already merge-aware)
-
-### Phase 4 — V2 build pipeline (~2 sessions)
-
-4.1. `scripts/build.py` extensions:
-- CLI flags `--v2` / `--v1-only`
-- Default: build V1 always; build V2 additionally if `data/v2/locations/`
-  non-empty
-- V2 path: `site/v2/<loc>/<lang>/index.html`
-
-4.2. New function `_assemble_v2_location(loc_id, raw)`:
-- Reads `consumes_entities: [ent1, ent2, ...]` from raw
-- **Two-pass walk** to support multi-entity `issuing_entity` per §3.10:
-  - **Pass 1** — read coin entries that LIVE in any of the consumed
-    entity files: walk `data/v2/curated/<ent>.yml` for each `ent in
-    consumes_entities`
-  - **Pass 2** — inverse index for coins that live in OTHER entity files
-    but whose `issuing_entity` list includes one of our consumed
-    entities: walk ALL `data/v2/curated/*.yml` (cached per build),
-    surface any coin where `issuing_entity` list intersects with
-    `consumes_entities` AND coin id not already seen in Pass 1
-- Same two-pass for `data/v2/seed/<source>/<entity>.yml` (seed entries
-  also support list-form `issuing_entity` in V2; this affects how seed
-  coins surface on multiple location pages)
-- Resolves phase + km-register per current location (§4 + §5 schema
-  extensions)
-- Drops seed entries with non-null `promoted_to`
-- Returns assembled coin list (deduped by id at end)
-
-4.3. Landing-page V2 beta link in `templates/landing.html.j2`.
-4.4. Commit: `v2: build pipeline + assembly function`
-
-### Phase 5 — Phase + catalog-KM schema (~1-2 sessions)
-
-5.1. Extend `scripts/lib/schema.py`:
-```python
-class CatalogRefs(BaseModel):
-    km: str | dict[str, str] | None = None
-    # ... rest same
-
-class Coin(BaseModel):
-    phase: str | dict[str, str] | None = None
-    issuing_entity: str | list[str] | None = None     # §3.10 — multi-entity
-    composed_of: list[str] | None = None
-    promoted_to: str | None = None
-    # ... rest same
-```
-Validators per §3.10: list form non-empty, no duplicates, each element
-matches a known tag in `data/i18n/issuing_entities.yml`.
-
-5.2. Resolvers in `scripts/lib/v2_resolver.py`:
-- `resolve_phase_for_location(coin, loc_id)`
-- `resolve_km_for_location(coin, km_register)`
-- (deferred) `resolve_mint_for_location(coin, loc_id)`
-
-5.3. Commit: `v2: schema + resolvers for phase / km-register`
-
-### Phase 6 — bidirectional seed↔curated link (~1 session)
-
-6.1. Add `composed_of` + `promoted_to` to schema (already in 5.1).
-6.2. Both fields go into `CURATED_FIELDS` allowlist in `lib/seed_merge.py`.
-6.3. Maintenance script `scripts/maintenance/relink_promoted_v2.py`:
-- Walks `data/v2/curated/*.yml`
-- For each coin's `composed_of: [seed_id, ...]`, sets `promoted_to:
-  <curated_id>` on each referenced seed entry across all sources
-- Audit warns on broken links / one-sided links
-
-6.4. Commit: `v2: seed retirement bidirectional links + relink script`
-
-### Phase 7 — V2 audit (~1 session)
-
-7.1. `scripts/audit_v2.py`:
-- **Home-file rule** (§3.10): every curated coin in `<entity>.yml` has
-  `issuing_entity` that, when normalised to list form, has its
-  alphabetically-first element matching the filename.
-- **Multi-entity validity**: each element of `issuing_entity` list (when
-  list-form) is a known entity tag from `data/i18n/issuing_entities.yml`;
-  list is non-empty; no duplicates.
-- **Mint vs entity consistency** with multi-entity awareness:
-  - Coin with `mint: [Altona, Kopenhagen]` SHOULD have multi-entity
-    `issuing_entity` covering both jurisdictions → flag if not (warning,
-    not error — curator may intentionally have narrower entity-tag)
-  - Coin with single mint AND list-form `issuing_entity` of 2+ items →
-    flag for review (rare; usually scalar form is right)
-- Every `composed_of` ref exists in seed files
-- Every `promoted_to` ref exists in curated files
-- Catalog km-register sanity (dict keys ⊆ {dk, sh, ...} for known
-  registers)
-- Cross-entity duplicate detection (same coin id in two entity files →
-  HARD ERROR; violates §3.10 home-file rule)
-- Same catalog ref (e.g. `catalog.hede`) appearing in two entity files →
-  warning (could be legitimate cross-volume catalogue, but usually
-  indicates a missed merge)
-
-7.2. Integration:
-- Add to pre-commit hook as advisory
-- Add `--section v2` to `audit_health.py`
-
-7.3. Commit: `v2: audit script + pre-commit integration`
-
-### Phase 8 — user review iteration (~unknown, mandatory pause)
-
-8.1. Build both versions:
-```bash
-.venv/bin/python scripts/build.py
-# Renders: site/<loc>/<lang>/ (V1) + site/v2/<loc>/<lang>/ (V2)
-```
-
-8.2. User reviews `site/v2/...` against `site/<loc>/...`:
-- DK page: royal_holstein + danish_realm + danish_norway coins surface
-- SH page: same royal_holstein coins appear (deduped from DK side)
-- Counts per entity match V1 totals
-- Phases render correctly
-- KM registers resolve correctly
-
-8.3. Iterate fixes. No promotion until user gives green light.
-
-**Acceptance criteria for Phase 9:**
-- Zero coins disappear vs V1
-- Multi-consumer coins live once in entity file, render twice
-- No regressions in phase / fuss / catalog refs
-- `site/v2/` builds without warnings
-- Audit passes
-
-### Phase 9 — promotion V2 → main (explicit user go-ahead)
-
-9.1. Wait for user: «V2 готова, фліпай»
-9.2. Flip procedure:
-```bash
-mv data/locations data/_archive_v1_locations
-mv data/v2/locations data/locations
-mv data/seed data/_archive_v1_seed
-mv data/v2/seed data/seed
-mv data/v2/curated data/curated
-mv site/v2/* site/
-rmdir site/v2
-# remove --v2 / --v1-only flags from build.py; rename _assemble_v2_location
-# back to _assemble_location
-```
-
-9.3. Commit + push (with explicit user approval): `v2: promote to main;
-archive V1 to data/_archive_v1_*`
-
-9.4. Rollback safety: archive directories retained ≥2 weeks. Emergency
-rollback = `mv data/_archive_v1_locations data/locations` + revert.
-
-## 7. Pending decisions
-
-All decisions resolved as of 2026-05-18. See §7a.
-
-## 7a. Resolved decisions (no further input needed)
-
-- **`issuing_entity` schema** — `str | list[str]` per §3.10 (resolved
-  2026-05-18). Multi-entity list for joint Altona+Kopenhagen, Kopenhagen+
-  Kongsberg, and three-mint Altona+Kopenhagen+Kongsberg cases.
-- **`gesamtstaat` migration** — full decision tree in §3.1; multi-entity
-  list output replaces single-entity pick. Unknown-mint cases tagged
-  `_deprecated_gesamtstaat` for manual review (this absorbed the earlier
-  «unknown-mint fallback» pending decision).
-- **Home-file rule for multi-entity coins** — alphabetical-first list element
-  per §3.10; build assembly does inverse-index pass for secondary entities.
-- **`catalog.km` schema shape** — dict `{dk: ..., sh: ...}` (resolved
-  2026-05-18, recommended option taken). Schema: `catalog.km: str | dict[str, str]`.
-  Bare string inherits the home location's `km_register`; dict form names
-  registers explicitly for cross-volume coins per §4.
-- **`coin.phase` shape** — scalar default + dict explicit override (resolved
-  2026-05-18, recommended option taken). Schema: `coin.phase: str | dict[str, str]`.
-  90 % of coins use scalar; rare per-location overrides use dict
-  `{denmark: A, schleswig_holstein: B}` per §5.
-- **V2 templates** — share `templates/location.html.j2` with V1 initially
-  (resolved 2026-05-18, recommended option taken). Fork only if visual
-  semantics genuinely diverge. Reduces drift while V1 + V2 co-exist.
-- **Audit verbosity** — hard-block from Phase 7 onwards (resolved 2026-05-18).
-  `scripts/audit_v2.py` blocks `git commit` once added to pre-commit (advisory
-  phase skipped per user direction). Stricter than the recommendation in
-  the original §7.4 — user opted for cleaner V2 invariants from the start.
-
-## 8. Cross-references
-
-- `CLAUDE.md` — project conventions, voice rules, source hierarchy
-- `docs/ARCHITECTURE.md` §«Data pipeline — 4 phases» — V1 model V2 extends
-- `docs/ARCHITECTURE.md` §«Manual-override preservation» — merge mechanics
-  V2 inherits via `lib/seed_merge.py`
-- `data/i18n/issuing_entities.yml` — taxonomy V2 keys on
-- `scripts/lib/seed_merge.py` — reference merge logic
-- `scripts/maintenance/build_hede_denmark_seed.py` — reference merge-aware
-  builder pattern
-
-## 9. Effort summary
-
-| Phase | Effort | Pause type |
-|-------|--------|-----------|
-| 0 | low | autonomous |
-| 1 | medium | **user review** |
-| 2 | low | autonomous |
-| 3 | high (×4 builders) | autonomous |
-| 4 | high | autonomous |
-| 5 | medium | autonomous |
-| 6 | medium | autonomous |
-| 7 | medium | autonomous |
-| 8 | unknown | **user review iterate** |
-| 9 | low | **explicit go-ahead** |
-
-Total ~10-12 sessions with 3 user-pause points. No phase pushes to main
-without an explicit user-issued «push» permission per CLAUDE.md commit
-cadence rules.
+**Each phase is fully script-driven. The curator never edits coin fields
+by hand.** Curator input is restricted to two decision moments:
+
+- **Phase 3 — merge confirmations**: «entry A and entry B describe the
+  same physical coin» (declared so the script enriches both into one
+  unified entry)
+- **Phase 4 — classification confirmations**: «this coin belongs to
+  Müntzfuß X, phase Y» (declared so the script assigns it; or update
+  the auto-classify rules to cover the case)
+
+Every phase output is **idempotent + merge-aware**: re-running on
+unchanged input produces zero file changes; existing curator decisions
+persist; orphan entries (in V2 but no longer in fresh input) stay
+verbatim — no silent data loss.
+
+## 3. Phase 1 — HARVEST
+
+**Unchanged from V1.** `scripts/fetch_<source>.py` writes raw artifacts
+to `scripts/cache/<source>/` (HTML, PDF, JSON from APIs). Idempotent
+(skips already-cached files). Output preserves «what the source actually
+said» without project-scope filtering.
+
+Details: `docs/HARVEST_GUIDE.md`.
+
+## 4. Phase 2 — SYNTHESIS (typed data)
+
+**Unchanged from V1.** `scripts/parse_<source>.py` converts raw cache
+into typed JSON sidecars (`scripts/cache/<source>/<basename>.json`)
+plus aggregate `_parsed_index.json` cross-reference table. One file per
+resource entry, mirroring the cache layout. Output preserves all entries
+from the source — no year/mint/scope filters yet.
+
+User control here: **which fields are typed** (driven by what's in the
+parser code, refined as needed when new field shapes appear in the
+cache).
+
+## 5. Phase 3 — SEED + cross-source merge
+
+**Two sub-steps**, both script-driven:
+
+### 5.1 Per-resource seed building
+
+For each (source, entity) pair, a builder reads the typed parsed cache
+and writes `data/v2/seed/<source>/<entity>.yml`. The builder:
+
+- Filters by **project scope** (years, denominations, drops patterns +
+  off-strikes per CLAUDE.md §9)
+- Classifies by **political entity** via mint → entity lookup
+  (`scripts/lib/v2_entity_classify.py`; see §10.1)
+- Filters by **active entity set** (which political entities the project
+  is currently supporting — controlled by `data/i18n/issuing_entities.yml`)
+- Applies type coercion + field sanitisation (drops non-schema fields
+  with diagnostic, normalises shapes like `bruun_part: 3 → 'III'`)
+- Writes entries as raw seed data, **all with `fuss: seed_unsorted`** —
+  no Müntzfuß assigned yet (that's Phase 4's job)
+
+Each builder is idempotent + merge-aware via `lib.seed_merge.merge_seed()`.
+
+**Curator control here:**
+- The active entity set (`data/i18n/issuing_entities.yml`)
+- The mint → entity classifier rules (`scripts/lib/v2_entity_classify.py`)
+- Project scope filters (years, denomination exclusions) — embedded in
+  the builder
+- All «curator decisions» are encoded as **rules in scripts**, never as
+  hand-edits to seed yaml entries
+
+### 5.2 Cross-source merge to unified seed
+
+For each entity, a separate script `merge_seeds_cross_source.py` reads
+all `data/v2/seed/<source>/<entity>.yml` files and produces
+`data/v2/seed_unified/<entity>.yml` with **one entry per physical coin**,
+enriched with data from every source that catalogued it.
+
+Merge rules:
+- **Confident auto-merge**: same `catalog.km` + same `catalog.hede` +
+  same `ruler` + overlapping `year_first` → script collapses to one
+  entry with multi-source `weight_rough_g[]` / `fineness[]` /
+  `diameter_mm[]` lists and combined `sources[]`
+- **Low-confidence pair**: e.g. same KM but different rulers, or
+  KM-canonical match but inconsistent weights → script surfaces for
+  **curator decision**:
+  - Curator confirms «yes, same coin» → adds a merge declaration
+  - Curator confirms «no, different coins» → adds a no-merge declaration
+    so the script doesn't keep asking
+  - Curator improves the auto-merge rules so the case fires automatically
+- **Manual merge declarations** live in `data/v2/merge_decisions/<entity>.yml`
+  — one file per entity listing explicit `merge: [seed_id_a, seed_id_b]`
+  pairs and `no_merge: [seed_id_a, seed_id_b]` exclusions. The merger
+  reads these on every run; curator updates this file ONLY.
+
+**Phase 3 output guarantees:**
+- Every coin in `data/v2/seed_unified/<entity>.yml` has at least one
+  source-attested weight (or `weight_rough_g: null` flagged for review)
+- `composed_of: [seed_ids]` records the per-source seeds that fed this
+  unified entry — full audit trail
+- `fuss: seed_unsorted` for every entry — Phase 4 hasn't run yet
+
+## 6. Phase 4 — Classification to Müntzfuß (final)
+
+For each unified seed entry from Phase 3, classify into a Müntzfuß +
+phase via `scripts/maintenance/classify_to_fuss_v2.py`:
+
+- **Confident auto-classify**: apply CLAUDE.md §8a Müntzfuß-disambiguation
+  pipeline (metal-mismatch → mint-name-mismatch → Δ-from-Soll → Brutto-
+  gewicht pattern → fineness hint). Where unique candidate emerges →
+  assign automatically.
+- **Low-confidence**: surface for curator decision, written into
+  `data/v2/classification_decisions/<entity>.yml` (analogous to
+  `merge_decisions/`). Curator records `assign: {coin_id: {fuss: X,
+  phase: Y}}` for ambiguous coins; or updates the auto-classify rules.
+
+Phase 4 output: `data/v2/final/<entity>.yml` — coins distributed across
+their Müntzfüße + phases, ready for render.
+
+**Curator decisions for Phase 4 live in script rules + decision files,
+NEVER as hand-edits on individual coin yamls.**
+
+## 7. Render — assembly per display location
+
+`scripts/build.py` reads `data/v2/locations/<loc>.yml` (display-meta +
+`consumes_entities: [...]`) and assembles in-memory `raw['coins']` from
+`data/v2/final/<entity>.yml` files. Two-pass walk per V2_PIPELINE.md §10.4:
+
+- **Pass 1**: direct entity-membership (coins that live in a consumed
+  entity file)
+- **Pass 2**: inverse-index for multi-entity coins (whose list-form
+  `issuing_entity` intersects with `consumes_entities` even when the
+  home file isn't directly consumed)
+
+Per-coin pre-filter drops coins whose `fuss` / `phase` / `year_first`
+doesn't fit this page's phase definitions. Output:
+`site/v2/<location>/<lang>/index.html`. Same Jinja template as V1.
+
+## 8. V1 as verification anchor
+
+V1 (`data/locations/<loc>.yml`, `data/seed/<source>/<location>.yml`) is
+**frozen** after the 2026-05-18 bootstrap. It evolves only via new
+harvest → new typed data → automatic Phase 2 → Phase 3 → Phase 4. V2's
+job is to **reproduce V1's classifications** through the automated
+pipeline using the same source data.
+
+**First full-cycle run.** When Phases 3 + 4 are fully implemented, the
+pipeline reprocesses ALL existing data (not just newly-harvested
+records). The result should map ~1:1 onto V1 curated:
+
+- Same coins → same Müntzfuß + phase assignments
+- Same multi-specimen merges → same composed_of structure
+- Same mint → entity classifications
+
+**Divergence is signal**:
+- V2 finds something V1 missed (genuinely new from pre-1541 sources etc.)
+- V2 classifies something differently → either V1 was wrong, V2's rules
+  are wrong, or there's legitimate ambiguity needing a decision
+- V2 misses something V1 had → script gap to fix
+
+A diff script (`scripts/maintenance/diff_v1_v2_curated.py`, to-be-built)
+compares V1 curated against V2 final and lists every divergence for
+review. Phase 9 promotion gate: «diff is zero or fully explained».
+
+## 9. Curator role
+
+**Curator never edits fields on coin entries.** Three legitimate
+decision surfaces:
+
+1. **Active entity set** — `data/i18n/issuing_entities.yml`. Decides
+   which political entities the project currently supports.
+2. **Phase 3 merge decisions** — `data/v2/merge_decisions/<entity>.yml`.
+   Explicit `merge` / `no_merge` declarations for cases the
+   cross-source-merge script can't auto-decide.
+3. **Phase 4 classification decisions** —
+   `data/v2/classification_decisions/<entity>.yml`. Explicit
+   `assign: {coin_id: {fuss, phase, ...}}` for cases the auto-classifier
+   can't determine.
+
+In every case, **the preferred path is to update the script's rules**
+so the case becomes auto-handled. The decision files are the escape
+hatch when generalising a rule isn't yet practical.
+
+## 10. Cross-references
+
+- **Schema**: `scripts/lib/schema.py` — `Coin.issuing_entity: str | list[str]`,
+  `Coin.phase: str | dict[str, str]`, `CatalogRefs.km: str | dict[str, str]`
+- **Entity classifier**: `scripts/lib/v2_entity_classify.py` — mint →
+  entity table extended over §3.1
+- **Merge mechanism**: `scripts/lib/seed_merge.py` — 4-mechanism merge
+  (CURATED_FIELDS, DEEP_MERGE_FIELDS, _VERIFIABLE_FIELDS, _curation_holds)
+- **Resolvers**: `scripts/lib/v2_resolver.py` — per-location dict-form
+  resolvers for `phase` + `catalog.km`
+- **Build assembly**: `scripts/build.py::_assemble_v2_location`
+- **Bidirectional link**: `scripts/maintenance/relink_promoted_v2.py` —
+  `composed_of` ↔ `promoted_to` materialiser + data-loss audit
+- **Detailed architecture**: `docs/ARCHITECTURE.md` §«V2 entity-keyed pipeline»
+
+## 11. Resolved decisions (no further input needed)
+
+Locked in across previous planning rounds:
+
+- **`issuing_entity` schema** = `str | list[str]` (joint-jurisdiction
+  multi-mint coins use list form; alphabetical-first element is home file
+  per home-file rule)
+- **`gesamtstaat` migration** = mint-driven decision tree
+  (Altona → royal_holstein, Kopenhagen → danish_realm, Kongsberg/
+  Christiania → danish_norway; multi-mint → alphabetical list)
+- **Home-file rule** for multi-entity coins — alphabetical-first list
+  element; build assembly inverse-index pass for secondary entities
+- **`catalog.km` schema** = `str | dict[str, str]` (dict form for
+  cross-Krause-volume coins)
+- **`coin.phase` schema** = `str | dict[str, str]` (scalar default;
+  dict override for per-location phase differences on multi-consumer
+  coins)
+- **V2 templates** share `templates/location.html.j2` with V1 (fork
+  only on demand)
+- **Pre-1541 absorption** — V1's pre_1541 draft seeds (bruun / galster /
+  numista) flow into V2 normally. V2 takes over their scope.
+- **V1 freeze** — `data/locations/`, `data/seed/<src>/<loc>.yml` get
+  no new edits. Only new harvest + parser output evolve. V2 is the
+  forward-going surface; V1 is verification anchor.
+- **Curator-edits-via-rules** — curator never edits coin fields by
+  hand. Decisions go into rules (preferred) or explicit decision files
+  (escape hatch).
+- **Audit hard-block** from Phase 7 onwards — `audit_v2.py` blocks
+  pre-commit (stricter than the originally-recommended advisory mode).
+
+## 12. Implementation status
+
+Landed:
+- [x] Phase 1, Phase 2 — unchanged from V1, shared
+- [x] Phase 3.1 (per-resource seed entity-keyed output) — via
+  `scripts/maintenance/seed_v2_regroup.py` post-processor over V1 seeds.
+  Native `--v2` builders post-Phase 9 will replace the post-processor.
+- [x] Schema extensions: list-form `issuing_entity`, dict-form `phase`
+  and `catalog.km`, `composed_of` + `promoted_to`
+- [x] Build assembly: two-pass walk + per-coin phase pre-filter,
+  CLI flags `--v1-only` / `--v2-only`
+- [x] Idempotent merge-aware regen for migrate_curated_to_v2,
+  seed_v2_regroup, init_v2_locations
+- [x] Bidirectional `composed_of` ↔ `promoted_to` link
+  (`relink_promoted_v2.py`) + data-loss audit
+- [x] Mint → entity classifier
+  (`scripts/lib/v2_entity_classify.py`)
+
+Pending:
+- [ ] Phase 3.2 — cross-source merge to `data/v2/seed_unified/<entity>.yml`
+  (script + merge_decisions file format)
+- [ ] Phase 4 — fuss classification to `data/v2/final/<entity>.yml`
+  (script + classification_decisions file format; §8a integration)
+- [ ] Directory rename `data/v2/curated/` → `data/v2/final/` (after
+  Phase 4 lands; until then `curated/` holds the bootstrap-migrated
+  state that serves as «Phase 4 equivalent» for V1-migrated coins)
+- [ ] `audit_v2.py` — home-file rule, bidirectional link integrity,
+  cross-entity duplicate detection. Hard-block from this point.
+- [ ] `diff_v1_v2_curated.py` — V1 anchor vs V2 final comparator
+- [ ] First full-cycle reprocess + V1-vs-V2 diff review
+
+Deferred to Phase 9 (promotion):
+- [ ] Native `--v2` flag on V1 builders (replaces seed_v2_regroup
+  post-processor)
+- [ ] Retirement of `migrate_curated_to_v2.py` (V1 archives off)
+- [ ] Promotion `mv data/v2/* data/`, archive V1, update CI
+
+## 13. Promotion-gate criteria (Phase 9)
+
+V2 ready for promotion when:
+
+1. V1 vs V2 final diff is **zero or fully explained** (every
+   divergence has a recorded reason — V1 bug, V2 rule gap, legitimate
+   ambiguity with curator-confirmed decision)
+2. All curator decisions encoded in script rules OR explicit decision
+   files (no orphan hand-edits)
+3. `audit_v2.py` passes hard-block on every invariant
+4. Visual review of `site/v2/<loc>/<lang>/` for every location matches
+   or exceeds `site/<loc>/<lang>/`
+5. Explicit user signal «фліпай V2»
