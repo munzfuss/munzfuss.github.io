@@ -226,7 +226,7 @@ sources:
     ref: Numista                 # ← just the resource name
 ```
 
-**When the coin has ≥2 sources from the SAME resource (same domain) — disambiguate via the resource's own per-record identifier:**
+**Domain / resource name comes FIRST.** When the label needs more than the bare resource name (multiple sources from the same resource, or a domain that hosts multiple catalogues like danskmoent.dk → Hede / Galster / Wilcke / NNUM), the resource name leads and the catalog-ref / page-id / lot-id follows in parens (or after a comma for Bruun's standard tuple form):
 
 | Resource | Disambiguator | Label shape |
 |---|---|---|
@@ -234,18 +234,32 @@ sources:
 | ucoin.net | `tid` query param | `ucoin tid 162999` |
 | Bruun PDFs (Stack's Bowers) | Bruun collection-id + part / lot | `Bruun Part II, lot 14465` (already standard via Bruun seed builder) |
 | IKMK Berlin | object id | `IKMK Berlin 18218478` |
-| danskmoent.dk (Hede / Galster / Wilcke) | Hede / Galster catalog basename | `Hede c4h26 (danskmoent.dk)`, `Galster 47 (f1g)` |
+| danskmoent.dk (Hede / Galster / Wilcke) | catalog basename in parens AFTER the domain | `danskmoent.dk (Hede c4h26)`, `danskmoent.dk (Galster 47)`, `danskmoent.dk (Wilcke 1923)` |
 
-**Forbidden:** descriptive prose appended to the link label. Example caught 2026-05-19:
+**Forbidden #1 — catalog-ref FIRST, domain in parens.** Example caught 2026-05-19:
 
 ```yaml
-ref: "Numista 420365 (KM-73 Gold Krone Christian IV, both 26A+26B)"   # ✗ NO
-ref: "Numista 420365"                                                  # ✓ YES
+ref: Hede c4h26 (danskmoent.dk)        # ✗ NO — reads as «Hede» being the resource and «danskmoent.dk» as a sub-detail
+ref: danskmoent.dk (Hede c4h26)        # ✓ YES — domain (the actual link target) first, catalog ref as disambiguator
 ```
 
-The `(KM-73 Gold Krone Christian IV, both 26A+26B)` part is coin-describing prose — it belongs in the coin's `note` (probably already there), not glued onto a link label. Each character that appears in `ref` lands in the rendered «Джерела» cell verbatim — keep it tight.
+Why: the LINK target is the domain. A reader scanning the «Джерела» column sees a list of where they can go — the domain is the navigation atom. The catalog ref tells them WHICH page on that domain.
 
-**Future refinement (tracked in `docs/TODO.md` §BR)** — for sources whose URLs land on different sub-letters / sub-variants of the same coin (e.g. Bruun lots 1026 and 13094 are both citations to Hede 26A and 26B respectively), the link label should show the sub-index that distinguishes them (`Bruun Part I — Hede 26A` / `Bruun Part II — Hede 26B`) rather than the bare resource page-id. The bare-id is correct when the sub-index is the same as the resource page-id (Numista's N# is itself the disambiguator); the sub-index form helps when the resource records sub-variants under one umbrella id.
+**Forbidden #2 — descriptive prose in the parenthetical.** Examples caught 2026-05-19:
+
+```yaml
+ref: "Numista 420365 (KM-73 Gold Krone Christian IV, both 26A+26B)"    # ✗ NO
+ref: "Numista 420365"                                                   # ✓ YES (or `Numista (KM-DK 73)` per §BR once auto-derived)
+
+ref: "Bruun Part IV, lot 17076, p. 53 (Hede 26B, ohne Mzz, 1667/6 overdate)"   # ✗ NO
+ref: "Bruun Part IV, lot 17076, p. 53 (Hede 26B)"                              # ✓ YES — keep ONLY the sub-index disambiguator
+```
+
+Parenthetical content rule: **sub-index disambiguator ONLY**. When the same resource has ≥2 sources on one coin and they differ on a sub-variant axis (Hede sub-letter A/B/C, Krause KM cross-volume, Dav sub-variant), the parens carry that exact sub-index — nothing else. Mintmaster initials, overdate markers, die-variant prose, grade qualifiers, RR / Unik rarity flags — all belong in the coin's `note` field, never in the link label.
+
+The `(KM-73 Gold Krone Christian IV, both 26A+26B)` part of the rejected Numista label was coin-describing prose. The `(Hede 26B, ohne Mzz, 1667/6 overdate)` part of the rejected Bruun label is mostly coin-describing — only `Hede 26B` is the actual sub-index that distinguishes this Bruun lot from its peer (`Bruun Part I, lot 1089` = Hede 26A). The `ohne Mzz, 1667/6 overdate` clauses must move to `note` if they aren't already there.
+
+**Future refinement (tracked in `docs/TODO.md` §BR)** — render-time auto-derivation of the sub-index portion. The convention above describes the manually-curated form; once §BR lands, the curator drops the manual sub-index entirely and the renderer computes it from `catalog.km` dict-form / `catalog.hede` list-form / `_compute_coin` cross-source group analysis.
 
 ## Cross-references
 

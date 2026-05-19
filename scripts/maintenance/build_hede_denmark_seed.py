@@ -636,7 +636,11 @@ def _build_coin(
     src = CommentedMap()
     src["type"] = "literature"
     src["url"] = _danskmoent_url(parsed["id"])
-    src["ref"] = f"Hede {hede_volume}{hede_number} (danskmoent.dk)"
+    # Domain-first label per CONVENTIONS.md §«Source-ref label shape»:
+    # the domain (the actual link target) leads, the catalog basename
+    # follows in parens as sub-resource disambiguator. Reads as «which
+    # domain → which page on it», the natural navigation order.
+    src["ref"] = f"danskmoent.dk (Hede {hede_volume}{hede_number})"
     sources.append(src)
     cm["sources"] = sources
 

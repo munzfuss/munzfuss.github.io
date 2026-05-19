@@ -348,6 +348,31 @@ That rule covers «which of ≥2 same-resource sources is this link». But it ig
 - Single-source groups behaviour unchanged.
 - CONVENTIONS.md §«Source-ref label shape» updated to describe the auto-derived sub-index labels (the manually-curated «(KM-25 DK volume)»-style suffixes are no longer needed — render layer computes them).
 
+### BS. 🟡 Coin-table row-height — note's tall content blows up row-height; hover should overlay  *(opened 2026-05-19)* *(est: small-medium)* *(type: layout / CSS)*
+
+**Surfaced.** User direction 2026-05-19: «для рядків в таблиці монет на веб-сторінці, зараз виходить так що висота рядка визначається висотою найвищого значення в будь-який комірці таблиці. треба зробити щоб висота рядка таблиці рахувалась незважаючи на висоту поля note, а коли hover на такий рядок (у якого note менший за висоту рядка) то поле note стає видимим на всю свою висоту перекриваючи рядки знизу.»
+
+**Current behaviour.** Each coin-table row's height = `max(height_of_each_cell)`. Long `note` content (multi-sentence DE/EN/UK paragraphs with Bruun quotes, transition rationale, Krause sub-variant breakdown, etc.) forces the entire row to grow — every other cell pads with whitespace. On the rendered Müntzfuß tables (Reichsdukatenfuß, 9-Thaler-Fuß, etc.) this produces 200-400-pixel rows interspersed with normal 40-60-pixel rows, breaking visual rhythm.
+
+**Desired behaviour.**
+- Row height = computed from the OTHER cells (year / nominal / metal / fineness / weight / catalog / mint), ignoring note's full content. The note cell renders to the row's «normal» height with overflow clipped (CSS `max-height` + `overflow: hidden` + a fade-out gradient or «…» indicator).
+- On row hover (or possibly on click for mobile), the note cell EXPANDS to its full content height. The expanded note overlays the rows below it (via CSS `position: absolute` from the cell with a high `z-index`, or `position: sticky` within the row). The rest of the table layout doesn't shift — only the note temporarily covers the rows immediately beneath.
+- Mobile / no-hover devices: tap to toggle expanded state on a per-row basis.
+
+**Implementation notes (sketch).**
+- The note column already lives in a `<td class="note-cell">` or similar; add CSS `max-height: var(--row-normal-h)` + `overflow: hidden` for default state.
+- On hover: `max-height: none; position: absolute; left: <col-x>; top: <row-y>; z-index: 10; background: var(--bg)` to overlay.
+- The «normal» row height should come from the OTHER cells' natural height; setting `max-height` on the note cell achieves this without explicit row-height pinning.
+- Smooth `transition: max-height 0.2s ease-out` for the hover expansion.
+- Test on a known-heavy page (Lübeck phases with long bar_title prose, Denmark phases with Hebræermønt 1644 historical context, Schleswig-Holstein km-735 / km-743 etc.).
+
+**Definition of done.**
+- Coin tables on every rendered location page have visually-uniform row heights regardless of note content length.
+- Hover (or tap on mobile) reveals the full note content as an overlay.
+- The `note-cell`'s collapsed state shows a clear «more content» affordance (gradient fade, ellipsis, or small icon).
+- No layout-shift on hover — overlapping rows stay in place underneath the expanded note.
+- Tested across DE/EN/UK (note lengths vary by language).
+
 ---
 ## High priority
 
