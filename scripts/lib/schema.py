@@ -80,6 +80,40 @@ class FieldValue(_StrictBase):
     source: str = Field(..., min_length=1)
 
 
+class HedeMuentzfussYield(_StrictBase):
+    """Hede 1971 per-page «Marken fin udbragt til N <UNIT>» quote — the
+    explicit Müntzfuß ratio Hede attested for this coin.
+
+    Hede pages publish this quantity in the spec block right after
+    Finvægt (e.g. «Bruttovægt 28,893 g · Finhed 0,875 · Finvægt 25,281 g
+    · Marken fin udbragt til 9,250 speciedaler»). The (value, unit) pair
+    identifies the Müntzfuß directly — 9.25 speciedaler ≡ 9¼-Speciedaler-
+    Fuß, 11.333 rigsdaler_kurant ≡ 11⅓-Kurantmøntfod, 18.5 rigsbankdaler
+    ≡ 18½-Rigsbankdaler-Fuß. The §8a auto-classifier consumes this field
+    as the primary classification signal; absence falls back to fineness/
+    weight-Δ math against fuss Soll values.
+
+    Populated by `build_hede_denmark_seed.py` from the parser's
+    `marken_fin_udbragt_til` spec key; empty when Hede didn't publish
+    the ratio for that page.
+    """
+    value: float = Field(..., gt=0,
+        description="The N in «udbragt til N» (parsed from Danish decimal notation).")
+    unit: str = Field(..., min_length=1,
+        description=(
+            "Canonical denominator unit: 'speciedaler' / 'rigsdaler' / "
+            "'rigsdaler_kurant' / 'rigsbankdaler' / 'piastre'."
+        ))
+    basis: str | None = Field(None,
+        description="'fin' (fine Mark) or 'rauh' (gross Mark). Hede uses 'fin' on virtually all pages.")
+    unit_raw: str | None = Field(None,
+        description=(
+            "Verbatim unit token from the page (e.g. 'daler', 'dlr', 'rd.kr', "
+            "'speciedalere') when it differs from the canonical form. Kept "
+            "for audit / debugging — downstream consumers use `unit`."
+        ))
+
+
 # =============================================================================
 # Shared: fuesse.yml
 # =============================================================================
@@ -480,6 +514,22 @@ class Coin(_StrictBase):
         description="Same form as fineness — scalar or list of FieldValue.",
     )
     diameter_mm_verified: bool = True
+
+    hede_muentzfuss_yield: HedeMuentzfussYield | None = Field(
+        None,
+        description=(
+            "Hede 1971 per-page «Marken fin udbragt til N speciedaler/"
+            "rd.kr/...» quote — the explicit Müntzfuß ratio attested by "
+            "Hede for this coin. Authoritative classification signal: "
+            "the (value, unit) pair maps to a project Müntzfuß "
+            "directly (9.25 speciedaler → 9¼-Speciedaler-Fuß, 11.333 "
+            "rigsdaler_kurant → 11⅓-Kurantmøntfod, 18.5 rigsbankdaler "
+            "→ 18½-Rigsbankdaler-Fuß, etc.). Populated by "
+            "build_hede_denmark_seed.py from `marken_fin_udbragt_til` "
+            "in the parsed Hede sidecar; absent when the Hede page "
+            "didn't quote the ratio."
+        ),
+    )
 
     @field_validator("fineness", mode="before")
     @classmethod

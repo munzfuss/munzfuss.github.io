@@ -1483,6 +1483,15 @@ def build_unified(members: list[dict], unified_id: str,
     if ie is not None:
         out["issuing_entity"] = ie
 
+    # Hede-attested Müntzfuß ratio (per-page «Marken fin udbragt til N
+    # speciedaler/rd.kr/...» quote). Only ONE source publishes this —
+    # the Hede 1971 catalogue via danskmoent.dk pages — so authority-
+    # ordering doesn't apply; take whichever member carries it. Pass-
+    # through the dict verbatim.
+    yld = _take_first_non_none(sorted_members, "hede_muentzfuss_yield")
+    if yld is not None:
+        out["hede_muentzfuss_yield"] = yld
+
     # Audit trail
     out["composed_of"] = composed_of
 

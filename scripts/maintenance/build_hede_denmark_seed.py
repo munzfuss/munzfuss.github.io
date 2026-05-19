@@ -638,6 +638,26 @@ def _build_coin(
         cm["fineness"] = fineness
     if brutto is not None:
         cm["weight_rough_g"] = brutto
+
+    # Müntzfuß yield («Marken fin udbragt til N speciedaler/rd.kr/...»)
+    # — per-Hede attested ratio of fine-silver Mark to N units of the
+    # era's accounting denomination. Authoritative input for the §8a
+    # auto-classifier: each canonical Müntzfuß in `data/shared/fuesse.yml`
+    # has an identifying N-per-Mark-fein ratio (9¼ → 9.25 speciedaler,
+    # 11⅓ → 11.333 rigsdaler-kurant, 18½ → 18.5 rigsbankdaler, etc.).
+    # When this field is present, classification is direct lookup; when
+    # absent, fallback to fineness/weight-Δ math against fuss Soll.
+    yld = spec.get("marken_fin_udbragt_til") if spec else None
+    if yld and yld.get("value") is not None and yld.get("unit"):
+        ym = CommentedMap()
+        ym["value"] = yld["value"]
+        ym["unit"] = yld["unit"]
+        if yld.get("basis"):
+            ym["basis"] = yld["basis"]
+        if yld.get("unit_raw") and yld.get("unit_raw") != yld.get("unit"):
+            ym["unit_raw"] = yld["unit_raw"]
+        cm["hede_muentzfuss_yield"] = ym
+
     # Per CLAUDE.md §4: a value directly attested by an acceptable
     # source is sufficient to flip its `*_verified` flag. Hede 1971
     # publishes `finhed` and `bruttovægt_g` per page; both are

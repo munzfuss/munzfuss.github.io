@@ -152,11 +152,52 @@ _FINVAEGT_RE = re.compile(
     re.IGNORECASE,
 )
 # «Marken fin udbragt til 9,288 speciedalere» / «9,000 daler» /
-# «10,793 dlr.» / «20,500 kroner» — value + unit on one line.
+# «10,793 dlr.» / «Marken rauh udbragt til 9,000 daler» — value + unit on one line.
+# Captures basis (fin / rauh) + value + raw unit. Per-Hede line right
+# after Finvægt in the spec block.
 _MARKEN_FIN_RE = re.compile(
-    r"Marken fin udbragt til\s+([\d,\.]+)\s+([A-Za-zæøåÆØÅ\.]+)",
+    r"Marken\s+(fin|rauh?)\s+udbragt\s+til\s+([\d,\.]+)\s+([A-Za-zæøåÆØÅ\.]+)",
     re.IGNORECASE,
 )
+
+# Unit normalisation: Danish numismatic «daler» nomenclature varies by
+# century but ALL the abbreviations / spellings below map to one of
+# four canonical denominator-units that match our Müntzfuß catalogue:
+#
+#   speciedaler   — silver-Mark standard ratio («Marken fin udbragt til
+#                   9,25 speciedalere» ≡ 9¼-Speciedaler-Fuß). Hede uses
+#                   «daler» as the generic word for the era's prevailing
+#                   silver-Mark coin (Christian III / IV / V «daler» all
+#                   mean the contemporary speciedaler-class issue).
+#   rigsdaler     — Rigsdaler currency unit (RD), distinct accounting
+#                   denominator (post-1625 Danish state account unit).
+#   rigsbankdaler — Post-1813 Rigsbankdaler reform standard.
+#   piastre       — Asiatic / overseas trade coin (rare; 1 case in cache).
+_UNIT_CANONICAL: dict[str, str] = {
+    "daler":           "speciedaler",
+    "dalere":          "speciedaler",
+    "dlr":             "speciedaler",
+    "speciedaler":     "speciedaler",
+    "speciedalere":    "speciedaler",
+    "spdl":            "speciedaler",
+    "rd":              "rigsdaler",
+    "rdl":             "rigsdaler",
+    "rdlr":            "rigsdaler",
+    "rigsdaler":       "rigsdaler",
+    "rigsdalere":      "rigsdaler",
+    # Rigsdaler-Kurant — post-1726 Kurantmøntfod accounting unit
+    # («rd.kr» = rigsdaler kurant, fictional silver-Mark-based reckoning
+    # at 2/3 the value of a speciedaler). The Christian VI / VII era
+    # «10,4 rd.kr» = canonical Kurantmøntfod ratio.
+    "rd.kr":           "rigsdaler_kurant",
+    "rd.kur":          "rigsdaler_kurant",
+    "rdk":             "rigsdaler_kurant",
+    "rigsdaler_kurant": "rigsdaler_kurant",
+    "rigsbankdaler":   "rigsbankdaler",
+    "rigsbankdalere":  "rigsbankdaler",
+    "rbdlr":           "rigsbankdaler",
+    "piastre":         "piastre",
+}
 _HEDE_TITLE_RE = re.compile(r"\bHede\s*([\dA-Za-z\-,\s]+?)(?:\Z|\.|\n|$)")
 
 
@@ -790,10 +831,19 @@ def _spec_from_around(text: str, brutto_pos: int) -> dict:
         if v is not None:
             spec["finvægt_g"] = v
     if (m := _MARKEN_FIN_RE.search(window)):
-        v = _parse_decimal(m.group(1))
-        unit = m.group(2).strip().rstrip(".")
+        # groups: 1 = basis (fin/rauh), 2 = decimal value, 3 = unit-raw
+        basis_raw = m.group(1).lower()
+        v = _parse_decimal(m.group(2))
+        unit_raw = m.group(3).strip().rstrip(".").lower()
         if v is not None:
-            spec["marken_fin_udbragt_til"] = {"value": v, "unit": unit}
+            basis = "rauh" if basis_raw.startswith("rau") else "fin"
+            unit_canonical = _UNIT_CANONICAL.get(unit_raw, unit_raw)
+            spec["marken_fin_udbragt_til"] = {
+                "value": v,
+                "unit": unit_canonical,
+                "unit_raw": unit_raw,
+                "basis": basis,
+            }
     return spec
 
 

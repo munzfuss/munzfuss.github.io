@@ -200,6 +200,13 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         if v is not None:
             out[field] = v
 
+    # Hede-attested Müntzfuß ratio — pass-through dict from whichever
+    # member carries it (only Hede sources publish it; no conflict
+    # resolution needed across multiple sources).
+    yld = _take_first_non_none(members, "hede_muentzfuss_yield")
+    if yld is not None:
+        out["hede_muentzfuss_yield"] = yld
+
     # composed_of: union of final's existing + new members (deterministic order)
     existing_composed = list(final_entry.get("composed_of") or [])
     member_ids = [m["id"] for m in members if m.get("id") and m["id"] != final_entry["id"]]
