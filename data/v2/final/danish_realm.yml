@@ -27863,9 +27863,13 @@ coins:
   ruler: Frederik IV.
   issuing_entity: danish_realm
   id: km-499-fr-iv-1710
-  year_first: 1710
+  year_first: 1700
   year_last: 1710
-  year_label: '1710'
+  year_ranges:
+  - - 1700
+    - 1710
+  year_label: 1700-1710
+  year_verified: false
   mint: Kopenhagen
   catalog:
     km: '499'
@@ -27879,32 +27883,59 @@ coins:
     bruun_page: 79
     hede_volume: f4h
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
   fineness:
+  - value: 0.979
+    source: numismaster
   - value: 0.98611111
     source: '499'
   weight_rough_g:
   - value: 6.95
     source: Bruun Part IV, lot 17119, p. 79
+  - value: 6.981
+    source: numismaster
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17119, p. 79
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f4h25.htm
+    ref: danskmoent.dk (Hede f4h24)
+  - type: literature
+    url: https://numismaster.com/MC_65899
+    ref: NumisMaster
   note:
-    de: 2 Ducat 1710 (KM-499 Hede-24) · Bruun-Specimen.
-    en: 2 Ducat 1710 (KM-499 Hede-24) · Bruun specimen.
-    uk: 2 Ducat 1710 (KM-499 Hede-24) · Bruun-зразок.
+    de: 2 Dukat «Reiter-Typ» (KM-499, Hede-24, Schou-3, Sieg-31, Fr-239) — undatierte Repräsentationsausgabe Frederik IV.
+      unter Münzmeister Christian Wineke d. J. (tätig vor ca. 1710). Bruun-Katalog charakterisiert sie als <i>excessively
+      rare equestrian type</i>; Hede gibt nur «u. år» an, Bruun präzisiert «ND (before 1710)». In Gold erscheint die Serie
+      als ½ / 1 / 2 Dukat sowie als Silber-«afslag» (Schou-14a).
+    en: 2 Dukat «equestrian type» (KM-499, Hede-24, Schou-3, Sieg-31, Fr-239) — undated presentation strike of Frederik IV
+      under mint-master Christian Wineke the Younger (active before ~1710). Bruun catalogue characterises it as «excessively
+      rare equestrian type»; Hede gives only «u. år» (undated), Bruun adds «ND (before 1710)». The series exists in gold as
+      ½ / 1 / 2 Dukat plus silver «afslag» (Schou-14a).
+    uk: 2 Дукат «коннотатний тип» (KM-499, Hede-24, Schou-3, Sieg-31, Fr-239) — недатована презентаційна емісія Фредеріка
+      IV за монетмайстра Christian Wineke d. J. (активний до ~1710). Bruun-каталог характеризує її як <i>excessively rare
+      equestrian type</i>; Hede подає лише «u. år» (без року), Bruun уточнює «ND (before 1710)». Серія існує в золоті як ½
+      / 1 / 2 Дукат плюс срібний «afslag» (Schou-14a).
   verification_note:
     de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss,
       Anker 0.9861) auf den kanonischen Müntzfuß-Wert gesetzt; Δ -0.44% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen
-      Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum.
+      Spezimen-Toleranz, also widerspricht der angenommene Wert keinem belegten Datum. Jahr nicht auf der Münze (u. år) —
+      Datierungsfenster 1700–1710 ist attributiv (Wineke d. J. + Bruun-«before 1710»).
     en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value for strict-single-fineness
       Category-1 standards (reichsdukatenfuss, anchor 0.9861); Δ -0.44% against the soll value sits within the ±2 % specimen-tolerance
-      envelope, so the assumed value contradicts no sourced datum.
+      envelope, so the assumed value contradicts no sourced datum. Year absent from the coin (u. år) — date window 1700–1710
+      is attributive (Wineke the Younger's tenure + Bruun's «before 1710»).
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss,
       якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -0.44% проти Soll лежить у смузі ±2 % допустимої
-      специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
-  composed_of: []
+      специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику. Рік на монеті відсутній
+      (u. år) — вікно датування 1700–1710 атрибутивне (термін Wineke d. J. + Bruun-«before 1710»).
+  composed_of:
+  - unified-denmark-numismaster-65899
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
