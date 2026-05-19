@@ -222,13 +222,14 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
 def _bulk_promote_mode(entity_id: str) -> str | None:
     """Curator-decision flag — returns the promote mode or None.
 
-    Three accepted shapes of `bulk_promote_pending` in
+    Four accepted shapes of `bulk_promote_pending` in
     `data/v2/classification_decisions/<entity>.yml`:
 
-      bulk_promote_pending: true                      → mode "all"  (D37)
-      bulk_promote_pending: all                       → mode "all"
-      bulk_promote_pending: no_basic_peer_only        → mode "no_basic_peer_only"  (D39)
-      (absent or false)                               → None  (no auto-promote)
+      bulk_promote_pending: true                          → "all"  (D37)
+      bulk_promote_pending: all                           → "all"
+      bulk_promote_pending: no_basic_peer_only            → "no_basic_peer_only"  (D39)
+      bulk_promote_pending: no_match_primary_disagrees    → "no_match_primary_disagrees"  (D40)
+      (absent or false)                                   → None  (no auto-promote)
 
     Mode "all" (D37): promote EVERY unmatched unified entry. Use when
     the entity has no V1 foundation at all — no conflict is possible
@@ -236,13 +237,23 @@ def _bulk_promote_mode(entity_id: str) -> str | None:
 
     Mode "no_basic_peer_only" (D39): promote ONLY unified entries
     whose metal+nominal combination has NO peer in the existing
-    foundation. Skips the «matcher-recoverable» cases (D/E/H/C
-    categories — catalog or ruler disagreement, fallback signal
-    mismatch) which would create foundation duplicates if promoted.
-    Use when the entity has SOME V1 foundation but many genuinely
-    new types (V1 didn't cover them); the unsafe-to-promote
-    «possible-duplicate» cases stay in pending for per-coin curator
-    review or matcher improvement.
+    foundation. The most conservative mode — keeps every «matcher-
+    recoverable» case (D/E/H/C categories) in pending for review.
+
+    Mode "no_match_primary_disagrees" (D40): superset of D39. Promotes
+    a unified entry when EITHER (a) no basic peer exists OR (b) every
+    basic peer's match_pair returned `decision: no_match` with an
+    explicit primary-signal disagreement (`catalog: False` ≡ different
+    KM/Hede/Sieg number → genuinely different sub-variant, OR `ruler:
+    False` ≡ different reign attribution → genuinely different type).
+    Keeps `low_confidence` cases (almost-match) AND `no_match` cases
+    where only fallback signals disagreed (suspicious — primary is
+    True/None for all peers) in pending for curator review.
+
+    Promoting D + E cases is safe because the matcher's explicit
+    primary disagreement is itself a confident signal of «different
+    coin» — the same numismatic catalog logic that distinguishes KM-
+    DK#92 from KM-DK#107 as separate 1625 16-Skilling sub-variants.
     """
     path = V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml"
     if not path.exists():
@@ -253,6 +264,8 @@ def _bulk_promote_mode(entity_id: str) -> str | None:
         return "all"
     if val == "no_basic_peer_only":
         return "no_basic_peer_only"
+    if val == "no_match_primary_disagrees":
+        return "no_match_primary_disagrees"
     return None
 
 
@@ -269,6 +282,48 @@ def _has_basic_peer(unified: dict, finals: list[dict], entity_id: str | None) ->
         if pri.get("metal") is True and pri.get("nominal") is True:
             return True
     return False
+
+
+def _all_basic_peers_no_match_primary(unified: dict, finals: list[dict],
+                                       entity_id: str | None) -> bool | None:
+    """Return True if EVERY basic-peer (metal+nominal match) returns
+    `decision: no_match` AND at least one peer's no_match was caused
+    by an EXPLICIT primary-signal disagreement (`catalog: False` or
+    `ruler: False`). Returns False if any peer returned `confident`
+    or `low_confidence`, OR if every peer's no_match was caused by
+    fallback-only disagreement (H-category — primary all True/None
+    but secondary signals diverged).
+
+    Returns None when there are no basic peers at all — the caller
+    falls back to the `no_basic_peer_only` check.
+
+    Used by bulk_promote mode «no_match_primary_disagrees» (D40) to
+    safely promote D + E category pending entries (different sub-
+    variant by explicit catalog/ruler signal) while keeping H + C
+    category entries in pending for curator review.
+    """
+    saw_basic_peer = False
+    saw_primary_disagreement = False
+    for f in finals:
+        result = match_pair(unified, f, entity_id)
+        pri = result.get("primary") or {}
+        # Skip non-basic-peers (metal/nominal not both True)
+        if not (pri.get("metal") is True and pri.get("nominal") is True):
+            continue
+        saw_basic_peer = True
+        decision = result.get("decision")
+        if decision != "no_match":
+            # confident OR low_confidence — NOT safe to promote
+            return False
+        # decision == "no_match" — check primary disagreement
+        if pri.get("catalog") is False or pri.get("ruler") is False:
+            saw_primary_disagreement = True
+    if not saw_basic_peer:
+        return None  # caller falls back to no_basic_peer_only
+    # All basic peers said no_match. Safe iff at least one had primary
+    # disagreement (D/E category). Pure fallback-only disagreement
+    # (H category) is NOT promotable — keep pending for review.
+    return saw_primary_disagreement
 
 
 def process_entity(entity_id: str) -> dict:
@@ -403,6 +458,26 @@ def process_entity(entity_id: str) -> dict:
                 if _has_basic_peer(unified, existing_finals_for_peer_check, entity_id):
                     bulk_skipped.append(uid)
                     continue
+            # Mode «no_match_primary_disagrees» (D40): superset of D39.
+            # Promote when EITHER no basic peer exists OR every basic
+            # peer's match_pair returned `no_match` with explicit
+            # primary-signal disagreement (catalog False ≡ different
+            # KM/Hede sub-variant, ruler False ≡ different reign).
+            # Keeps `low_confidence` AND fallback-only-disagreement
+            # cases in pending for curator review.
+            elif bulk_promote_mode == "no_match_primary_disagrees":
+                primary_disagreement = _all_basic_peers_no_match_primary(
+                    unified, existing_finals_for_peer_check, entity_id
+                )
+                if primary_disagreement is False:
+                    # Basic peer exists but matcher didn't say
+                    # «definitively different by primary signal»
+                    # (H or C category) — skip for curator review.
+                    bulk_skipped.append(uid)
+                    continue
+                # primary_disagreement is True (D/E case — safe promote)
+                # OR None (no basic peer — falls through to promote,
+                # same path as D39 «no_basic_peer_only»).
             # Bake the promoted entry's `composed_of` to include the
             # self-id so subsequent runs recognise it as already-
             # absorbed (via the `already_absorbed` index built from

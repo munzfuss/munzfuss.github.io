@@ -434,6 +434,42 @@
 - **Path forward for the 583 pending**: matcher-rule improvements per category — D fixes a catalog-ref normalisation gap (e.g. KM with sub-variant suffix); E fixes a ruler inference (reign-index per D33); H surfaces a fallback-signal disagreement (e.g. weight class drift); C captures a near-confident match below the threshold. Each pending entry needs either (a) a matcher-rule fix that promotes it on next absorb, (b) a curator `assignments:` entry that classifies it explicitly, or (c) confirmation it IS genuinely new and the foundation peer is a different type (rare).
 - **Encoded in**: `scripts/maintenance/absorb_seeds_into_final_v2.py` — `_bulk_promote_mode`, `_has_basic_peer`, `process_entity` (bulk-promote loop with mode branch), `_emit_classification_decisions` (writer preserves string value). 8 classification_decisions files carry the flag.
 
+### D40 — Bulk-promote `no_match_primary_disagrees` mode (D39 extension)
+
+- **Decision (2026-05-19)**: Add a fourth `bulk_promote_pending` mode that supersedes D39's «no_basic_peer_only» for entities whose pending backlog contains many «genuinely different sub-variant» cases that the matcher correctly declined to merge:
+
+  - `bulk_promote_pending: no_match_primary_disagrees` → mode «no_match_primary_disagrees» (D40)
+
+  Promotes a unified entry when EITHER (a) no basic peer (metal+nominal match) exists in foundation, OR (b) every basic peer's `match_pair` returned `decision: no_match` with at least one peer showing explicit primary-signal disagreement (`catalog: False` ≡ different KM/Hede/Sieg number → different sub-variant; `ruler: False` ≡ different reign attribution → different type). Keeps `low_confidence` decisions AND pure fallback-only disagreement cases in `pending` for curator review.
+
+- **Motivation**: A 2026-05-19 categorisation pass of the 583 D39-leftover pending entries showed the dominant failure mode was D-category «catalog disagree» (459 = 78%) — entries with a basic peer but with EXPLICIT catalog refs that disagree. Concrete example: `unified-denmark-numismaster-117919` (NumisMaster MC for «16 Skilling 1625 KM-DK#107») vs foundation's `dk-tid-163039` («16 Skilling 1624-1625 KM-DK#92»). Same metal + same nominal + overlapping years — but DIFFERENT KM numbers. Krause-Mishler explicitly catalogues these as distinct sub-variants (different mint / mintmaster / die variant); merging them would conflate two real numismatic types into one. The matcher's «no_match: catalog disagree» response is correct — these aren't duplicates, they're new types that V2 should ingest as separate foundation entries.
+
+- **Mechanic**:
+  1. `_bulk_promote_mode` accepts a fourth string value `"no_match_primary_disagrees"`.
+  2. `_all_basic_peers_no_match_primary(unified, finals, entity_id)` iterates basic peers and returns:
+     - `None` — no basic peer at all (caller treats as D39's «no basic peer» case → promote)
+     - `True` — every basic peer returned `decision: no_match` AND at least one had `primary["catalog"] is False` or `primary["ruler"] is False` (D + E category) → safe to promote
+     - `False` — at least one peer returned `confident` / `low_confidence` (the C category, possible-duplicate), OR every peer's no_match was caused by fallback-only disagreement with primary all True/None (H category — suspicious, primary matches but year/weight diverged) → keep pending
+  3. Bulk-promote loop branches on mode; D40 falls through to D39's promote path when peer-check is `True` or `None`.
+
+- **Iterative convergence**: D40 is iterative — each absorb run promotes the «safely-different» cases, which become part of foundation; subsequent runs revisit remaining pending entries against the larger foundation. Some H-cases turn into D/E-cases when matched against the newly-promoted entries (different ruler now visible after multiple peers exist). 2026-05-19 first application: 1st run 490 promoted + 99 pending; 2nd run 59 more promoted + 40 pending; 3rd+ runs converged at 0 promoted / 40 pending. Total drain: **543 of 583 (93%)** across 5 entities. Stable convergence verified via 3 consecutive idempotent runs.
+
+- **Why not just D37 mode «all»**: mode «all» would also promote H + C cases — including coins where the matcher said «primary signals match, fallback is suspicious» (H). Those are exactly the cases that MIGHT be duplicates (e.g. same coin with one source having sparser data). Keeping them in pending preserves curator visibility while D40 drains the «definitively different» 93% subset.
+
+- **First real cases (2026-05-19)**: 9 entities flipped from `no_basic_peer_only` to `no_match_primary_disagrees`. Per-entity drain after convergence:
+  - **danish_realm**: 386 promoted, 39 still pending (down from 474)
+  - **royal_holstein**: 50 promoted, 1 still pending (down from 55)
+  - **gottorp_duchy**: 25 promoted, 0 pending (fully drained from 25)
+  - **schauenburg_pinneberg**: 26 promoted, 0 pending (fully drained from 26)
+  - **sonderburg_duchy**: 3 promoted, 0 pending (fully drained from 3)
+  - Others (norburg_plon_duchy / holstein_schauenburg_county / glucksburg_duchy / danish_norway): no change (D39 already fully drained on previous run)
+
+  audit_v2 --quick: 0 violations. build --validate-only: clean.
+
+- **Path forward for the remaining 40 pending**: H-category (primary True/None across all peers but fallback signals diverged) cases need either (a) a matcher rule that confidently UN-merges via stronger fallback weighting, OR (b) per-coin curator `assignments:` entries that classify them explicitly, OR (c) confirmation they're genuinely-new types with too-sparse data for the matcher to distinguish. Most of the 39 danish_realm leftovers fall in a recurring «Krone 16NN with year+fineness divergence vs Christian V 1691 Krone foundation» cluster — likely Christian IV / Frederik III era Krone variants whose NumisMaster ruler field is null. A targeted ruler-inference enhancement (extend D33 to NumisMaster entries via year→reign mapping when ruler is null and year is solidly in one reign) would unlock most of these.
+
+- **Encoded in**: `scripts/maintenance/absorb_seeds_into_final_v2.py` — `_bulk_promote_mode` (4 modes), `_all_basic_peers_no_match_primary` (D40 peer-check helper), `process_entity` (bulk-promote loop branches). 9 classification_decisions files carry `bulk_promote_pending: no_match_primary_disagrees`.
+
 ### D36 — Curator merge decisions: smart override that doesn't block future enrichments
 
 - **Decision (2026-05-18)**: When the auto-matcher cannot decide a pair (genuine numismatic ambiguity — e.g. NumisMaster's rolled-up multi-reign record vs Hede's per-reign split), the curator writes an explicit verdict in `data/v2/merge_decisions/<entity>.yml` with two surfaces:
