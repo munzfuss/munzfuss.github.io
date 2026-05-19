@@ -1047,7 +1047,34 @@ def _source_label_from_id(coin_id: str | None) -> str:
 
 
 def _collect_sources(members: list[dict]) -> list[dict]:
-    seen_urls: set[str] = set()
+    """Union members' source lists with smart de-duplication.
+
+    Two regimes by URL shape:
+
+    * **Single-page sources** (each URL == one cited record): URL is
+      the primary identity; multiple entries with the same URL but
+      different `ref` / `type` labels are RE-LABELS of the same
+      citation, NOT distinct references. Dedupe by URL alone, keep
+      the first occurrence. Covers `danskmoent.dk/*.htm`,
+      `en.numista.com/<id>`, `en.ucoin.net/coin/.../?tid=<n>`,
+      `numismaster.com/MC_<n>`, `numista.com/`, IKMK `ikmk.smb.museum/`.
+    * **Multi-record sources** (one URL hosts many citations, with
+      `ref` carrying the per-citation discriminator — page / lot / etc.):
+      dedupe by (URL, ref, type) — keep distinct refs even when URL
+      collides. Covers Bruun PDFs (Stack's Bowers catalogues — one
+      PDF, hundreds of lots), institutional library PDFs.
+
+    Triggers for the «single-page» regime: known host substrings.
+    Anything else falls through to the strict (url, ref, type) key.
+    """
+    _SINGLE_PAGE_HOSTS = (
+        "danskmoent.dk",
+        "en.numista.com",
+        "en.ucoin.net",
+        "numismaster.com",
+        "ikmk.smb.museum",
+    )
+    seen_keys: set[tuple] = set()
     out: list[dict] = []
     for m in members:
         for s in m.get("sources") or []:
@@ -1055,10 +1082,14 @@ def _collect_sources(members: list[dict]) -> list[dict]:
                 continue
             url = s.get("url", "")
             ref = s.get("ref", "")
-            key = (url, ref, s.get("type", ""))
-            if key in seen_urls:
+            stype = s.get("type", "")
+            if any(host in url for host in _SINGLE_PAGE_HOSTS):
+                key = ("url", url)
+            else:
+                key = ("trip", url, ref, stype)
+            if key in seen_keys:
                 continue
-            seen_urls.add(key)
+            seen_keys.add(key)
             out.append(s)
     return out
 

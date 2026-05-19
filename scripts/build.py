@@ -597,6 +597,61 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
     assembled: list[dict] = []
     seen_ids: set[str] = set()
 
+    # Pre-compute the «already-absorbed» set: every V1 seed coin id
+    # represented in foundation via the absorb chain. The chain is
+    # two-level:
+    #   foundation.composed_of → unified id (e.g. `unified-dk-hede-f6h15`)
+    #   unified.composed_of    → V1 seed id (e.g. `dk-hede-f6h15`)
+    # The seed-pass below iterates V1 seed ids; without resolving the
+    # chain we'd re-add absorbed seeds as duplicate rows on the
+    # rendered page (user report 2026-05-19: f6h15 rendered twice as
+    # identical «1 Skilling 1812» rows — same coin, both via
+    # foundation entry AND raw V1 seed).
+    absorbed_seed_ids: set[str] = set()
+    # Level 1: unified ids in foundation.composed_of (covers self-
+    # promoted D37/D39/D40 entries where unified id == seed-derived id).
+    for ent_coins in by_entity.values():
+        for c in ent_coins:
+            for cid_composed in (c.get("composed_of") or []):
+                absorbed_seed_ids.add(cid_composed)
+    # Level 2: walk every unified entry's own composed_of for the V1
+    # seed ids underlying it.
+    v2_unified_dir = DATA_DIR / "v2" / "seed_unified"
+    if v2_unified_dir.exists():
+        for path in sorted(v2_unified_dir.glob("*.yml")):
+            with open(path, encoding="utf-8") as f:
+                udoc = yaml.safe_load(f) or {}
+            for uc in (udoc.get("coins") or []):
+                uid = uc.get("id")
+                if uid not in absorbed_seed_ids:
+                    continue
+                for seed_id in (uc.get("composed_of") or []):
+                    absorbed_seed_ids.add(seed_id)
+
+    # Level 3: catalog-ref coverage. A V2 final entry may carry a
+    # `catalog.hede + catalog.hede_volume` ref WITHOUT explicit
+    # composed_of linkage (the entry was curated independently of the
+    # seed pipeline, predating the unified→absorb chain — common for
+    # Christian-IV-era Guldkrone / Speciedaler entries). In those
+    # cases the matching seed id (`dk-hede-<volume><number>`) is still
+    # the «same coin» from the reader's perspective and should be
+    # suppressed in the seed-pass to avoid the curator-entry +
+    # Bulk-seed-row duplicate pair on the rendered page (user report
+    # 2026-05-19: c4h25 sub-letters rendered 5× under Guldkrone-Fuß
+    # AND 5× under Bulk-seed).
+    for ent_coins in by_entity.values():
+        for c in ent_coins:
+            cat = c.get("catalog") or {}
+            hede_volume = cat.get("hede_volume")
+            hede_num = cat.get("hede")
+            if not (hede_volume and hede_num):
+                continue
+            # Handle list-form catalog.hede (curated coin may list multiple sub-letters)
+            hede_values = hede_num if isinstance(hede_num, list) else [hede_num]
+            for hv in hede_values:
+                seed_id = f"dk-hede-{hede_volume}{str(hv).lower()}"
+                absorbed_seed_ids.add(seed_id)
+
     # ---- Pass 1: direct membership ---------------------------------------
     for ent in consumes_entities:
         for coin in by_entity.get(ent, []):
@@ -624,10 +679,15 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
             assembled.append(_resolve_dict_fields_per_location(coin, loc_id, km_register))
             seen_ids.add(cid)
 
-    # ---- Seed entries (Phase 3 output; empty until then) ----------------
+    # ---- Seed entries (Phase 3 output) ---------------------------------
+    # Skip any seed entry already represented in a foundation entry's
+    # composed_of (it's the same coin via the unified→foundation
+    # absorb chain; rendering both produces a visible duplicate row).
     for coin in seed_entries:
         cid = coin.get("id")
         if not cid or cid in seen_ids:
+            continue
+        if cid in absorbed_seed_ids:
             continue
         ie_list = _normalise_ie_to_list(coin.get("issuing_entity"))
         if not (set(ie_list) & consumes_set):
