@@ -219,27 +219,56 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
 # ---------------------------------------------------------------------------
 
 
-def _bulk_promote_flag(entity_id: str) -> bool:
-    """Curator-decision flag: when `bulk_promote_pending: true` is set
-    at the top of `data/v2/classification_decisions/<entity>.yml`, any
-    unified entry that doesn't match an existing V1-foundation entry
-    is promoted DIRECTLY into the final yaml as a new foundation entry
-    (instead of landing in `pending`).
+def _bulk_promote_mode(entity_id: str) -> str | None:
+    """Curator-decision flag — returns the promote mode or None.
 
-    Use case (D37): an entity that has NO V1 foundation at all — every
-    unified entry is by definition «genuinely new», no conflict is
-    possible because there's nothing to conflict with. The curator
-    asserts this by setting the flag once; future runs honour it
-    automatically and idempotently. New entries promoted on each run
-    inherit `fuss: seed_unsorted` + the source-tag placeholder phase;
-    classification to a real Müntzfuß is deferred to §8a auto-classify
-    or curator `assignments:` entries.
+    Three accepted shapes of `bulk_promote_pending` in
+    `data/v2/classification_decisions/<entity>.yml`:
+
+      bulk_promote_pending: true                      → mode "all"  (D37)
+      bulk_promote_pending: all                       → mode "all"
+      bulk_promote_pending: no_basic_peer_only        → mode "no_basic_peer_only"  (D39)
+      (absent or false)                               → None  (no auto-promote)
+
+    Mode "all" (D37): promote EVERY unmatched unified entry. Use when
+    the entity has no V1 foundation at all — no conflict is possible
+    because there's nothing to conflict with.
+
+    Mode "no_basic_peer_only" (D39): promote ONLY unified entries
+    whose metal+nominal combination has NO peer in the existing
+    foundation. Skips the «matcher-recoverable» cases (D/E/H/C
+    categories — catalog or ruler disagreement, fallback signal
+    mismatch) which would create foundation duplicates if promoted.
+    Use when the entity has SOME V1 foundation but many genuinely
+    new types (V1 didn't cover them); the unsafe-to-promote
+    «possible-duplicate» cases stay in pending for per-coin curator
+    review or matcher improvement.
     """
     path = V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml"
     if not path.exists():
-        return False
+        return None
     doc = _load_yaml(path)
-    return bool(doc.get("bulk_promote_pending"))
+    val = doc.get("bulk_promote_pending")
+    if val is True or val == "all":
+        return "all"
+    if val == "no_basic_peer_only":
+        return "no_basic_peer_only"
+    return None
+
+
+def _has_basic_peer(unified: dict, finals: list[dict], entity_id: str | None) -> bool:
+    """Return True if any final entry shares the unified's
+    metal AND nominal (the strict «basic peer» check per
+    `_compute_coin`'s match-pair primary signals). Used by
+    bulk_promote mode «no_basic_peer_only» to safely promote
+    only the «genuinely new type» subset of pending entries.
+    """
+    for f in finals:
+        result = match_pair(unified, f, entity_id)
+        pri = result.get("primary") or {}
+        if pri.get("metal") is True and pri.get("nominal") is True:
+            return True
+    return False
 
 
 def process_entity(entity_id: str) -> dict:
@@ -268,7 +297,7 @@ def process_entity(entity_id: str) -> dict:
     final_entries: list[dict] = final_doc.get("coins") or []
     final_by_id = {f["id"]: f for f in final_entries if f.get("id")}
 
-    bulk_promote = _bulk_promote_flag(entity_id)
+    bulk_promote_mode = _bulk_promote_mode(entity_id)
 
     # PURGE stale composed_of entries — when the cross-source merger
     # consolidates two previously-separate unified entries into one
@@ -358,11 +387,22 @@ def process_entity(entity_id: str) -> dict:
     # promoted entry from a V1-bootstrap-foundation entry that has
     # `composed_of: []`).
     bulk_promoted: list[str] = []
-    if bulk_promote:
+    bulk_skipped: list[str] = []  # mode="no_basic_peer_only" — peer-exists cases stay pending
+    if bulk_promote_mode is not None:
+        existing_finals_for_peer_check = list(final_by_id.values())
         for uid in unmatched:
             unified = unified_by_id.get(uid)
             if not unified:
                 continue
+            # Mode «no_basic_peer_only» (D39): only promote when the
+            # unified entry has NO metal+nominal peer in foundation.
+            # Skips D/E/H/C-category cases where promoting would
+            # silently duplicate an existing foundation entry whose
+            # auto-match was blocked by a fixable signal disagreement.
+            if bulk_promote_mode == "no_basic_peer_only":
+                if _has_basic_peer(unified, existing_finals_for_peer_check, entity_id):
+                    bulk_skipped.append(uid)
+                    continue
             # Bake the promoted entry's `composed_of` to include the
             # self-id so subsequent runs recognise it as already-
             # absorbed (via the `already_absorbed` index built from
@@ -377,9 +417,11 @@ def process_entity(entity_id: str) -> dict:
             )
             enriched_entries.append(enriched)
             bulk_promoted.append(uid)
-        # Promoted entries are no longer «pending»
-        unmatched = []
-        multi_match = []  # bulk-promote subsumes multi-match decisions
+        # Update pending lists. Skipped entries (mode "no_basic_peer_only"
+        # with a matchable peer) stay in unmatched for curator review.
+        unmatched = bulk_skipped
+        if bulk_promote_mode == "all":
+            multi_match = []  # mode «all» subsumes multi-match decisions
 
     return {
         "entity_id": entity_id,
@@ -446,16 +488,23 @@ def _emit_classification_decisions(entity_id: str, unmatched_ids: list[str],
         f"# `pending:` section; existing `assignments:` entries are\n"
         f"# preserved.\n\n"
     )
-    # Try to preserve existing assignments + the D37 bulk_promote_pending flag
+    # Try to preserve existing assignments + the bulk_promote_pending flag.
+    # Critical: PRESERVE the original value verbatim — D37 carries
+    # `bulk_promote_pending: true` (mode "all"), D39 carries
+    # `bulk_promote_pending: no_basic_peer_only` (mode "no_basic_peer_only").
+    # Collapsing to `bool(...)` silently downgrades D39 → D37 on the
+    # next run because `True` round-trips as YAML `true`, which the
+    # `_bulk_promote_mode` reader maps to mode "all" (bug observed
+    # 2026-05-19, see V2_DECISIONS D39 note).
     existing = _load_yaml(V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml")
     existing_assignments = existing.get("assignments") or []
-    bulk_flag = bool(existing.get("bulk_promote_pending"))
+    bulk_value = existing.get("bulk_promote_pending")
     payload: dict = {
         "entity_id": entity_id,
         "generated_at": today,
     }
-    if bulk_flag:
-        payload["bulk_promote_pending"] = True
+    if bulk_value:
+        payload["bulk_promote_pending"] = bulk_value
     payload["assignments"] = existing_assignments
     payload["pending"] = [{"unified_id": uid, "status": "no_match_in_final"}
                           for uid in unmatched_ids]

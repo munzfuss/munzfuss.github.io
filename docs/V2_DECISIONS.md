@@ -415,6 +415,25 @@
 - **Future enrichment correctness**: bulk-promoted entries become normal foundation. Future seed_unified passes' new unified entries match against them via the existing `match_pair` (`§5.2 hierarchy`) — `fuss/phase` fields are NOT in the matcher's primary or fallback signals, so placeholder values don't affect match correctness. New cross-source enrichments accumulate into existing bulk-promoted entries normally.
 - **Encoded in**: `scripts/maintenance/absorb_seeds_into_final_v2.py` — `_bulk_promote_flag`, `process_entity` (bulk-promote pass after normal match-loop), `_emit_classification_decisions` (preserves the flag on rewrite). `data/v2/classification_decisions/danish_norway.yml` (first real curator entry).
 
+### D39 — Bulk-promote `no_basic_peer_only` mode (D37 hardening)
+
+- **Decision (2026-05-19)**: Extend D37's bulk-promote flag with a second mode that only promotes pending entries that have NO metal+nominal peer in the entity's existing foundation. Two accepted shapes:
+  - `bulk_promote_pending: true` → mode «all» (original D37: promote every unmatched, used for empty-foundation entities)
+  - `bulk_promote_pending: no_basic_peer_only` → mode «no_basic_peer_only» (D39: promote only the safely-«genuinely new» subset; D/E/H/C-category cases where a basic peer EXISTS stay in `pending` for curator review or matcher improvement)
+- **Motivation**: After running cross-source merge for the 8 entities with non-empty V1 foundation (`danish_realm`, `royal_holstein`, `gottorp_duchy`, `schauenburg_pinneberg`, `sonderburg_duchy`, `norburg_plon_duchy`, `holstein_schauenburg_county`, `glucksburg_duchy`), the absorb pass surfaces 1746 unmatched unified entries. Splitting by category:
+  - **N (no basic peer)** — 535 entries: nothing in foundation shares metal+nominal → genuinely new types → safe to bulk-promote.
+  - **D / E / H / C (catalog disagree / ruler disagree / fallback disagree / low-conf-near)** — 583 entries: a metal+nominal peer EXISTS in foundation, but match_pair declined a confident match due to a fixable signal disagreement → silent promotion would create a duplicate.
+  - Pure D37 mode «all» would conflate the two categories; D39 mode «no_basic_peer_only» splits them.
+- **Mechanic**:
+  1. `_bulk_promote_mode(entity_id)` returns `None` / `"all"` / `"no_basic_peer_only"` from the flag value.
+  2. `_has_basic_peer(unified, finals, entity_id)` returns True iff any final entry shares the unified's metal AND nominal per `match_pair`'s primary signals.
+  3. Bulk-promote loop in `process_entity` skips entries with a basic peer when mode is `"no_basic_peer_only"`; skipped entries stay in `unmatched` → routed to `pending` for curator review.
+  4. Skipped entries remain visible in `data/v2/classification_decisions/<entity>.yml::pending` exactly as before — surfaces the matcher-improvement / curator-decision backlog without silently duplicating data.
+- **Bug fixed alongside (writer round-trip)**: The `_emit_classification_decisions` writer originally collapsed the flag to literal `True` via `bool(existing.get("bulk_promote_pending"))`, which silently downgraded `no_basic_peer_only` → `true` (mode «all») on the first absorb run. After the fix, the writer preserves the original string value verbatim. Verified: 2nd `--apply` run is idempotent (`Bulk-promoted: 0`, `Newly absorbed: 0`, `Final entries after run` unchanged).
+- **First real cases (2026-05-19)**: 8 entities flagged with `bulk_promote_pending: no_basic_peer_only`. 1st absorb run promoted **535** N-category entries into final; **583** D/E/H/C-category entries stay in `pending`. audit_v2 --quick: 0 violations. Per-entity breakdown — danish_realm: 0 promoted / 474 pending; royal_holstein: 265 / 55; gottorp_duchy: 135 / 25; schauenburg_pinneberg: 73 / 26; sonderburg_duchy: 22 / 3; norburg_plon_duchy: 21 / 0; holstein_schauenburg_county: 16 / 0; glucksburg_duchy: 3 / 0.
+- **Path forward for the 583 pending**: matcher-rule improvements per category — D fixes a catalog-ref normalisation gap (e.g. KM with sub-variant suffix); E fixes a ruler inference (reign-index per D33); H surfaces a fallback-signal disagreement (e.g. weight class drift); C captures a near-confident match below the threshold. Each pending entry needs either (a) a matcher-rule fix that promotes it on next absorb, (b) a curator `assignments:` entry that classifies it explicitly, or (c) confirmation it IS genuinely new and the foundation peer is a different type (rare).
+- **Encoded in**: `scripts/maintenance/absorb_seeds_into_final_v2.py` — `_bulk_promote_mode`, `_has_basic_peer`, `process_entity` (bulk-promote loop with mode branch), `_emit_classification_decisions` (writer preserves string value). 8 classification_decisions files carry the flag.
+
 ### D36 — Curator merge decisions: smart override that doesn't block future enrichments
 
 - **Decision (2026-05-18)**: When the auto-matcher cannot decide a pair (genuine numismatic ambiguity — e.g. NumisMaster's rolled-up multi-reign record vs Hede's per-reign split), the curator writes an explicit verdict in `data/v2/merge_decisions/<entity>.yml` with two surfaces:
