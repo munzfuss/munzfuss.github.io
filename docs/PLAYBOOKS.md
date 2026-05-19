@@ -1105,6 +1105,61 @@ even after pushing the cache contents. That's just the
 submodule-pointer bump waiting to be committed in main; step 2 above
 fixes it.
 
+**Detached-HEAD recovery after a submodule commit.** When you `cd
+scripts/cache && git commit`, the commit can land on a **detached
+HEAD** if the submodule was pointing at an SHA (not a branch tip) at
+the time it was checked out — which is the normal state of a Git
+submodule. `git log --oneline` shows the new commit; `git branch
+--show-current` is empty; `git status` says `HEAD detached from
+<sha>`. The new commit is real but it's not attached to `main`, so a
+naïve `git push` from the submodule rejects the push («refusing to
+update checked out branch» on the remote OR no upstream).
+
+To recover without losing work:
+
+```bash
+# Inside scripts/cache, after the commit lands on detached HEAD:
+git checkout main                # detaches HEAD warning — that's fine
+git reset --hard <new-commit-sha>  # forwards main to the new commit
+git log -2 --oneline             # verify the new commit is now on main
+# Then back to main repo for the pointer bump (step 2 above).
+```
+
+The `git reset --hard` here is safe **only** because the SHA we're
+resetting to is the commit we just made on detached HEAD — same
+file content as the working tree. If unsure, `git branch tmp
+<new-sha>` first as a safety belt before the reset. Triggered by
+parallel-session timing where another agent advanced `origin/main`
+between our submodule checkout and our commit; the «detached HEAD»
+state is the symptom of the divergence.
+
+**Recovery from a parallel-session rebase collision.** When another
+agent has pushed pointer bumps on `main` that we haven't seen, our
+two-step dance will reject at step 2 («! [rejected] main → main
+(fetch first)»). Standard recovery is `git pull --rebase` — but if
+the main-repo conflict is on the **submodule pointer line itself**
+(both branches advanced the pointer to different SHAs), the rebase
+fails on each pointer-bump commit in turn, asserting stale base
+SHAs. Recovery pattern:
+
+```bash
+# Main repo:
+git rebase --abort
+git reset --hard origin/main             # accept incoming branch state
+git submodule update --init              # pull submodule pointer to main's state
+# Now manually advance the submodule to OUR new harvest commit:
+cd scripts/cache && git checkout main && git reset --hard <our-cache-sha>
+cd ../..
+# One consolidated pointer-bump commit — preserves OUR cache work
+# while accepting upstream's data/* commits:
+git add scripts/cache && git commit -m "cache: bump submodule (post-rebase consolidation)"
+```
+
+This loses the per-batch granularity of multiple pointer-bumps that
+might have been waiting locally, but the submodule history preserves
+the per-batch detail in full. Triggered 2026-05-19 during BO.6 v2
+work, see commit `16ccfe1`.
+
 **Push-permission rule still applies.** Per CLAUDE.md «Commit cadence
 + push permission»: never push autonomously. Both `git push` calls above
 require the user's explicit «пуш» / «push» grant. The grant covers
