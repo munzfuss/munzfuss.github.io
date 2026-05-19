@@ -368,6 +368,41 @@ def _strip_non_mint_year_refs(text: str) -> str:
     return text
 
 
+def _narrow_to_first_year_sentence(text: str) -> str:
+    """Truncate `text` at the period terminating the FIRST sentence that
+    contains a 4-digit year. Hede pages place the mint-year-rarity line
+    as a single sentence at the top of the body — anything after that
+    first period is descriptive prose (Forside/Bagside, mintmaster
+    biography, historical context) and its year tokens are not mint
+    years.
+
+    The function expands century-abbreviated «(15)46» first so the
+    year-detection step sees the same shape as `_extract_years`. It
+    does NOT strip non-mint refs here — that's `_extract_years`'s job
+    on the narrowed window.
+
+    Returns the unchanged text when no period follows the first year
+    (very rare: H1-echo-only pages), so downstream logic still has a
+    window to work with."""
+    expanded = _expand_century_abbr(text)
+    expanded = _expand_year_ranges(expanded)
+    # Find the first 4-digit year in the expanded form
+    ym = re.search(r"\b\d{4}\b", expanded)
+    if not ym:
+        return text
+    # The "sentence end" is the first « . » that is followed by either
+    # a newline OR whitespace + capital letter — i.e. genuine sentence
+    # break, not the decimal-like «1.5» (unlikely in year zone) or an
+    # abbreviation. We also break on a newline that doesn't itself
+    # continue the year list (line followed by non-digit, non-rarity
+    # token).
+    sentence_end_re = re.compile(r"\.\s+(?=[A-ZÆØÅa-zæøå])|\.\s*\n|\n[A-ZÆØÅ][a-zæøåA-ZÆØÅ]+:|\Z")
+    sm = sentence_end_re.search(expanded, ym.end())
+    if not sm:
+        return text
+    return expanded[: sm.end()]
+
+
 def _extract_years(text: str) -> list[dict]:
     text = _expand_century_abbr(text)
     text = _expand_year_ranges(text)
@@ -1189,6 +1224,18 @@ def parse_one(html: str, basename: str) -> dict:
             # 600-char cap to keep behaviour sane on pages with
             # missing/non-standard structure.
             scan_window = body_start[:600]
+        # Restrict year extraction to the FIRST sentence containing a
+        # year-block. Hede pages put the year-rarity line as a single
+        # sentence right after the H1 echo («1808, 1809, 1810 (Unik),
+        # 1819 (Unik).»). The prose that follows can include years
+        # that are NOT mint years — biographical notes (e.g. «Michael
+        # Flor virkede ... til 1816»), historical context («I 1643-44
+        # hærgede den svenske hær»), legal-act dates («Ved forordning
+        # 1648»), bibliographic refs, etc. The `_strip_non_mint_year_refs`
+        # pre-filter handles the common cases; this scope tightening
+        # adds a structural belt-and-braces by capping extraction at
+        # the first year-sentence's terminating period.
+        scan_window = _narrow_to_first_year_sentence(scan_window)
         year_candidates = _extract_years(scan_window)
         # Reject the candidate list if it crosses into noise — a
         # plausible year-block is contiguous and short. We accept up
