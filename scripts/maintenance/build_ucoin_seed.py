@@ -1,41 +1,49 @@
 #!/usr/bin/env python3
-"""ucoin V1 seed builder — emits location-keyed `data/seed/ucoin/<location>.yml`.
+"""ucoin V2-native seed builder — emits entity-keyed
+`data/v2/seed/ucoin/<entity>.yml` directly, skipping the V1→V2
+regroup indirection.
 
 Closes the V2 pipeline gap surfaced by the 2026-05-19 coverage audit:
 99 V1 `dk-tid-*` curator entries (ucoin source) lived only in
-`data/locations/denmark.yml` and never reached V2 because no
-ucoin-→-V1-seed builder existed (NumisMaster / Hede / Bruun / Galster /
-Numista all had builders; ucoin did not). 715 V1 location-level
-sources.type=ucoin attestations total; without this builder they bypass
-seed_v2_regroup + merge_seeds_cross_source entirely.
+`data/locations/*.yml` and never reached V2 because no ucoin builder
+existed. 715 V1 location-level sources.type=ucoin attestations total;
+without this builder they bypass merge_seeds_cross_source entirely.
 
 INPUT — two sources merged per tid (cache when present, V1 fills gaps):
   1. `scripts/cache/ucoin/<tid>.json` — recent Chrome-MCP-harvested
      ucoin pages. ~329 entries as of 2026-05-19, mostly post-§BR-1
      batches (Norway / Denmark Speciedaler-era).
-  2. `data/locations/*.yml` `*-tid-*` entries — pre-cache V1 curator
-     ucoin attestations. Carried over as authoritative when no cache
-     backs them; cache overrides specific fields when both exist.
+  2. `data/locations/*.yml` `*-tid-*` / `km-x*` entries (anything with
+     `sources.type=ucoin`) — pre-cache V1 curator ucoin attestations.
+     Carried over as authoritative when no cache backs them; cache
+     overrides specific fields when both exist.
 
-OUTPUT — one V1 seed yaml per project location:
-  data/seed/ucoin/denmark.yml             (URL=denmark + URL=norway → Danish realm)
-  data/seed/ucoin/schleswig_holstein.yml  (URL=schleswig_holstein)
-  data/seed/ucoin/hamburg.yml             (URL=hamburg)
-  data/seed/ucoin/lubeck.yml              (URL=lubeck)
+OUTPUT — V2 entity-keyed seed yamls (CLAUDE.md «V2 entity-keyed
+pipeline» — V1 is frozen, V2 is the canonical line for NEW sources):
+  data/v2/seed/ucoin/danish_realm.yml
+  data/v2/seed/ucoin/danish_norway.yml
+  data/v2/seed/ucoin/royal_holstein.yml
+  data/v2/seed/ucoin/hanseatic_hamburg.yml
+  data/v2/seed/ucoin/hanseatic_lubeck.yml
 
-After running this builder, `scripts/maintenance/seed_v2_regroup.py --apply`
-picks up the new `data/seed/ucoin/*` and produces
-`data/v2/seed/ucoin/<entity>.yml`. The cross-source merger then
-matches ucoin entries against Hede / Bruun / NumisMaster by KM ref +
-year + metal etc., so ucoin attestations enrich unified entries.
+Per CLAUDE.md V2 architecture, classification by `issuing_entity` is
+done by the builder itself rather than indirected through V1 seed +
+`seed_v2_regroup.py`. The other 5 builders (Hede / Bruun / NumisMaster
+/ Numista / Galster) still use the V1→V2 indirection for backward-
+compatibility with V1 location renders; new source builders go
+V2-native directly.
 
-Schema follows the NumisMaster builder's pattern: Coin-shape with
-`fuss: seed_unsorted`, `phase: ucoin`. issuing_entity inferred from
-URL country token. Curation-preserving merge via `lib/seed_merge.py`.
+After running this builder, `scripts/maintenance/merge_seeds_cross_source.py
+--apply` matches ucoin entries against Hede / Bruun / NumisMaster by
+KM ref + year + metal, enriching unified entries.
+
+Schema: Coin-shape with `fuss: seed_unsorted`, `phase: ucoin`,
+`issuing_entity` per URL country + V1 curator placement.
+Curation-preserving merge via `lib/seed_merge.py`.
 
 Run:
     .venv/bin/python scripts/maintenance/build_ucoin_seed.py --all
-    .venv/bin/python scripts/maintenance/build_ucoin_seed.py --location denmark
+    .venv/bin/python scripts/maintenance/build_ucoin_seed.py --entity danish_realm
 """
 from __future__ import annotations
 
@@ -53,27 +61,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import PROJECT_ROOT, UCOIN_CACHE  # noqa: E402
 from lib.seed_merge import merge_seed  # noqa: E402
 
-SEED_ROOT = PROJECT_ROOT / "data" / "seed" / "ucoin"
+V2_SEED_ROOT = PROJECT_ROOT / "data" / "v2" / "seed" / "ucoin"
 V1_LOCATIONS = PROJECT_ROOT / "data" / "locations"
 
 
-# URL country token → V1 location file (where the entries land in the
-# location-keyed V1 seed). Mirrors NumisMaster's LOCATION_CACHES roll-up
-# pattern: denmark.yml absorbs both DK + NO (Danish-Norway realm is one
-# coinage jurisdiction).
-URL_COUNTRY_TO_LOCATION: dict[str, str] = {
-    "denmark": "denmark",
-    "norway": "denmark",           # Norge under Danish rule folds in
-    "schleswig_holstein": "schleswig_holstein",
-    "hamburg": "hamburg",
-    "lubeck": "lubeck",
-}
-
-# URL country token → V2 issuing_entity. Norge gets danish_norway;
-# Schleswig-Holstein gets royal_holstein as default (the most-common
-# Danish-king-as-Holstein-duke coinage); curators promote to a specific
-# Holstein cadet line (gottorp_duchy / sonderburg_duchy / etc.) on
-# per-entry basis if the source supports it.
+# URL country token → V2 issuing_entity. The ucoin URL slug is the
+# strongest signal for the political-entity classification, mirroring
+# the role NumisMaster's `country` field plays for that source. V1
+# curator placement (per `_collect_v1_ucoin_entries` below) overrides
+# URL country when they disagree — e.g. a Rendsburg-mint coin filed
+# under «denmark» on ucoin.net but curated into SH location yaml
+# stays in the SH-corresponding entity.
 URL_COUNTRY_TO_ENTITY: dict[str, str] = {
     "denmark": "danish_realm",
     "norway": "danish_norway",
@@ -82,15 +80,62 @@ URL_COUNTRY_TO_ENTITY: dict[str, str] = {
     "lubeck": "hanseatic_lubeck",
 }
 
-# Per-location year windows. ucoin coverage is broad (medieval through
-# modern) but the project mission spans 1514-1914 with Schleswig-Holstein
-# duchy ending 1864. Per CLAUDE.md «Mission temporal scope».
-LOCATION_WINDOW: dict[str, tuple[int, int]] = {
-    "denmark": (1514, 1914),
-    "schleswig_holstein": (1514, 1864),
-    "hamburg": (1559, 1914),
-    "lubeck": (1559, 1914),
+# V1 location yaml stem → default V2 entity for the V1-carry-over path.
+# Used when a V1 ucoin entry's URL country and its V1 location file
+# disagree (rare but happens — SH curator using denmark-URL coins for
+# Rendsburg mint). V1 location placement is curator-authoritative.
+V1_LOC_TO_ENTITY: dict[str, str] = {
+    "denmark": "danish_realm",
+    "schleswig_holstein": "royal_holstein",
+    "hamburg": "hanseatic_hamburg",
+    "lubeck": "hanseatic_lubeck",
 }
+
+# Per-entity year windows. ucoin coverage is broad (medieval through
+# modern) but the project mission spans 1514-1914 with sub-entity
+# windows reflecting their actual political existence. Per CLAUDE.md
+# «Mission temporal scope». Windows must cover ALL entities that V1
+# ucoin curator entries use (`gesamtstaat`, `provisional_govt`, …),
+# else V1 carry-overs with those tags fall back to a default entity
+# and trigger I1 home-file invariant violations downstream.
+ENTITY_WINDOW: dict[str, tuple[int, int]] = {
+    "danish_realm": (1514, 1914),
+    "danish_norway": (1514, 1914),
+    "royal_holstein": (1514, 1864),
+    "provisional_govt": (1848, 1851),    # 1848 revolution SH gov't
+    "hanseatic_hamburg": (1559, 1914),
+    "hanseatic_lubeck": (1559, 1914),
+}
+
+# `gesamtstaat` is DEPRECATED per docs/V2_DECISIONS.md — mint-driven
+# classification replaces it (Altona/Glückstadt → royal_holstein,
+# Kopenhagen → danish_realm, Kongsberg → danish_norway; joint mints
+# → list-form). V1 ucoin curator entries that still carry
+# `issuing_entity: gesamtstaat` get remapped via mint per the helper
+# below; mint-less entries fall back to V1 location classification.
+_DEPRECATED_ENTITIES = frozenset({"gesamtstaat"})
+
+
+def _mint_to_entity(mint) -> str | list[str] | None:
+    """Map mint(s) → V2 issuing_entity per mint-driven classification.
+    Single mint → scalar entity; joint → sorted list. None when missing."""
+    def _classify_one(s: str) -> str | None:
+        s0 = s.split(" (")[0]
+        if "Altona" in s0 or "Glückstadt" in s0:
+            return "royal_holstein"
+        if "Kongsberg" in s0 or "Christiania" in s0:
+            return "danish_norway"
+        if "Kopenhagen" in s0 or "København" in s0:
+            return "danish_realm"
+        return None
+    if isinstance(mint, list):
+        ents = sorted({e for m in mint if (e := _classify_one(str(m)))})
+        if not ents:
+            return None
+        return ents[0] if len(ents) == 1 else ents
+    if isinstance(mint, str):
+        return _classify_one(mint)
+    return None
 
 
 _MIXED_FRAC_RE = re.compile(r"^(\d+)[\-\s]1/2(?=\s)")
@@ -246,7 +291,7 @@ def _parse_km_ref(refs_text: str | None, refs_list: list | None) -> dict:
     return catalog
 
 
-def _build_entry_from_cache(cache: dict, location: str) -> dict | None:
+def _build_entry_from_cache(cache: dict, entity: str) -> dict | None:
     """Synthesise one seed entry from a cache JSON record.
 
     Returns None when the entry is out-of-scope (year window) or lacks
@@ -259,20 +304,23 @@ def _build_entry_from_cache(cache: dict, location: str) -> dict | None:
         if not ys:
             return None
         yf, yl = ys[0], ys[-1]
-    year_from, year_to = LOCATION_WINDOW.get(location, (1500, 1920))
+    year_from, year_to = ENTITY_WINDOW.get(entity, (1500, 1920))
     if (yl or yf) < year_from or yf > year_to:
         return None
 
     tid = cache.get("tid")
     if tid is None:
         return None
-    # ID prefix mirrors V1 convention: dk-tid-*, hb-tid-*, lu-tid-*, sh-tid-*
+    # ID prefix mirrors V1 convention: dk-tid-* / sh-tid-* / hb-tid-* /
+    # lu-tid-* — keyed on the V1-style territorial code so V1 location
+    # renders that still read ucoin source attestations recognise the id.
     prefix = {
-        "denmark": "dk",
-        "schleswig_holstein": "sh",
-        "hamburg": "hb",
-        "lubeck": "lu",
-    }.get(location, "tid")
+        "danish_realm": "dk",
+        "danish_norway": "dk",  # Norge under Danish rule shares dk- prefix
+        "royal_holstein": "sh",
+        "hanseatic_hamburg": "hb",
+        "hanseatic_lubeck": "lu",
+    }.get(entity, "tid")
     cid = f"{prefix}-tid-{tid}"
 
     composition = cache.get("composition_text") or ""
@@ -296,9 +344,10 @@ def _build_entry_from_cache(cache: dict, location: str) -> dict | None:
         year_label = str(yf) if yf == yl else f"{yf}-{yl}"
         year_ranges = [[yf, yl if yl is not None else yf]]
 
-    # ucoin URL country may differ from `location` (NO folds into denmark.yml)
-    url_country = _url_country_token(cache.get("url")) or "denmark"
-    issuing = URL_COUNTRY_TO_ENTITY.get(url_country, "danish_realm")
+    # issuing_entity is THE entity slot the entry lands in. Since we
+    # already pre-filtered cache entries by target entity in `build_seed`,
+    # the entry's `issuing_entity` matches the file it's being written to.
+    issuing = entity
 
     metal_attested = bool(cache.get("composition_text"))
 
@@ -365,7 +414,7 @@ def _build_entry_from_cache(cache: dict, location: str) -> dict | None:
     return entry
 
 
-def _build_entry_from_v1(v1_coin: dict, location: str) -> dict | None:
+def _build_entry_from_v1(v1_coin: dict, entity: str) -> dict | None:
     """Carry over a V1 location-yaml *-tid-* entry as a seed-shaped entry.
 
     Used when no cache record exists for the tid (older V1 imports). The
@@ -380,7 +429,7 @@ def _build_entry_from_v1(v1_coin: dict, location: str) -> dict | None:
     yl = v1_coin.get("year_last")
     if yf is None:
         return None
-    year_from, year_to = LOCATION_WINDOW.get(location, (1500, 1920))
+    year_from, year_to = ENTITY_WINDOW.get(entity, (1500, 1920))
     if (yl or yf) < year_from or yf > year_to:
         return None
 
@@ -410,7 +459,11 @@ def _build_entry_from_v1(v1_coin: dict, location: str) -> dict | None:
         "metal": v1_coin.get("metal") or "silver",
         "fineness": v1_coin.get("fineness"),
         "weight_rough_g": v1_coin.get("weight_rough_g"),
-        "issuing_entity": v1_coin.get("issuing_entity") or "danish_realm",
+        # Always use the entity resolved by `_collect_v1_ucoin_entries`
+        # — it has already applied the deprecated-entity → mint-driven
+        # remap. Taking `v1_coin.issuing_entity` directly would leak
+        # the deprecated `gesamtstaat` tag back into V2 seed.
+        "issuing_entity": entity,
         "verified": False,
         "metal_verified": v1_coin.get("metal_verified", False),
         "fineness_verified": v1_coin.get("fineness_verified", False),
@@ -426,21 +479,21 @@ def _build_entry_from_v1(v1_coin: dict, location: str) -> dict | None:
     return entry
 
 
-def _collect_v1_tid_entries() -> dict[str, tuple[str, dict]]:
-    """Walk V1 location yamls; return {tid_key: (location, coin_dict)}.
+def _collect_v1_ucoin_entries() -> dict[str, tuple[str, dict]]:
+    """Walk V1 location yamls; return {tid_key: (v2_entity, coin_dict)}.
 
     Maps every V1 curator entry with a ucoin source attestation to its
-    (location, coin) pair. `tid_key` is the numeric tid extracted from
-    the FIRST ucoin source URL; entries lacking a parseable tid use
-    their `id` as the key (so the entry still flows through the seed
-    builder even when the URL has no tid query string).
+    target V2 entity + the V1 coin dict. The V2 entity is derived from
+    the V1 location file (curator placement is authoritative) plus the
+    V1 entry's own `issuing_entity` field when present.
 
-    Both naming conventions are accepted:
-      - `*-tid-{N}` ids from the bulk-import phase (dk-tid-, hb-tid-,
-        lu-tid-)
-      - `km-x{N}-*` curator-named ids where the curator used a non-
-        standard Krause-DK volume number instead of a standard KM ref
-        (these still have a ucoin URL in `sources`)
+    `tid_key` is the numeric tid extracted from the FIRST ucoin source
+    URL; entries lacking a parseable tid use their `id` as the key.
+
+    Both V1 id conventions are accepted:
+      - `*-tid-{N}` ids from the bulk-import phase
+      - `km-x{N}-*` / curator-named ids where the curator used a non-
+        standard Krause-DK ref but the entry has a ucoin source URL
     """
     out: dict[str, tuple[str, dict]] = {}
     for path in sorted(V1_LOCATIONS.glob("*.yml")):
@@ -452,11 +505,10 @@ def _collect_v1_tid_entries() -> dict[str, tuple[str, dict]]:
             continue
         if not isinstance(doc, dict):
             continue
-        location = path.stem
+        v1_loc = path.stem
         for c in (doc.get("coins") or []):
             if not isinstance(c, dict):
                 continue
-            cid = c.get("id") or ""
             srcs = c.get("sources") or []
             ucoin_src = next(
                 (s for s in srcs
@@ -465,39 +517,49 @@ def _collect_v1_tid_entries() -> dict[str, tuple[str, dict]]:
             )
             if ucoin_src is None:
                 continue
-            # Try to extract tid from URL (?tid=NNNN) — preferred key for
-            # cache↔V1 matching. Fall back to id when URL has no tid.
+            # Entity classification (priority order):
+            #   1. If V1 issuing_entity is DEPRECATED (gesamtstaat etc.),
+            #      remap via mint-driven rule per V2_DECISIONS.md.
+            #   2. If V1 has explicit issuing_entity (live tag), honour it.
+            #   3. Otherwise fall back to V1 location stem → V2 entity.
+            v1_ie = c.get("issuing_entity")
+            if isinstance(v1_ie, list) and v1_ie:
+                v1_ie = v1_ie[0]
+            entity = None
+            if isinstance(v1_ie, str) and v1_ie in _DEPRECATED_ENTITIES:
+                # Mint-driven remap. Falls through to V1_LOC_TO_ENTITY
+                # when mint info is absent/unknown.
+                remapped = _mint_to_entity(c.get("mint"))
+                if isinstance(remapped, str) and remapped in ENTITY_WINDOW:
+                    entity = remapped
+                elif isinstance(remapped, list):
+                    # Joint-mint: pick alphabetically-first as home file.
+                    entity = remapped[0]
+            if entity is None and isinstance(v1_ie, str) and v1_ie in ENTITY_WINDOW:
+                entity = v1_ie
+            if entity is None:
+                entity = V1_LOC_TO_ENTITY.get(v1_loc, "danish_realm")
+            cid = c.get("id") or ""
             url = ucoin_src.get("url") or ""
             m_url = re.search(r"\?tid=(\d+)", url)
-            if m_url:
-                key = m_url.group(1)
-            else:
-                key = cid  # fallback: dedupe by V1 id
-            out[key] = (location, c)
+            key = m_url.group(1) if m_url else cid
+            out[key] = (entity, c)
     return out
 
 
-def build_seed(location: str, no_merge: bool, dry_run: bool,
+def build_seed(entity: str, no_merge: bool, dry_run: bool,
                v1_tid_global: dict | None = None) -> int:
-    if location not in URL_COUNTRY_TO_LOCATION.values():
-        print(f"ERROR: unknown location '{location}'", file=sys.stderr)
+    if entity not in ENTITY_WINDOW:
+        print(f"ERROR: unknown entity '{entity}'", file=sys.stderr)
         return 2
-    out_path = SEED_ROOT / f"{location}.yml"
+    out_path = V2_SEED_ROOT / f"{entity}.yml"
 
-    # V1 LOCATION ASSIGNMENT IS CURATOR DECISION — overrides URL-country.
-    # A V1 SH-curator-yaml entry whose ucoin URL says denmark stays in SH
-    # (Rendsburg mint coins are SH-duchy regardless of how ucoin.net files
-    # them). Conversely, if a tid exists in V1 SH AND has cache data, the
-    # cache record lands in SH too — NOT denmark — to avoid splitting one
-    # physical coin across two location seed files.
-    #
-    # The global V1 tid index is built once across all locations and
-    # threaded through; this lets us know «tid X is curated to location
-    # Y» when deciding where the cache-only record should land.
+    # V1 curator placement OVERRIDES URL-country derivation. A V1 SH-
+    # curator-yaml entry whose ucoin URL says denmark stays in the SH-
+    # corresponding entity (royal_holstein). When V1 has no explicit
+    # placement for a tid, fall back to URL-country mapping.
     if v1_tid_global is None:
-        v1_tid_global = _collect_v1_tid_entries()
-
-    relevant_url_countries = {k for k, v in URL_COUNTRY_TO_LOCATION.items() if v == location}
+        v1_tid_global = _collect_v1_ucoin_entries()
 
     cache_by_tid: dict[str, dict] = {}
     for json_path in sorted(UCOIN_CACHE.glob("*.json")):
@@ -506,47 +568,41 @@ def build_seed(location: str, no_merge: bool, dry_run: bool,
         except json.JSONDecodeError:
             continue
         tid = str(data.get("tid") or json_path.stem)
-        # If V1 places this tid in a SPECIFIC location, honour that
-        # placement and skip when it doesn't match THIS location.
+        # Determine target entity: V1 curator placement first, then URL.
         if tid in v1_tid_global:
-            v1_loc, _ = v1_tid_global[tid]
-            if v1_loc != location:
-                continue
+            v1_entity, _ = v1_tid_global[tid]
+            target_entity = v1_entity
         else:
-            # Cache-only entry — fall back to URL-country mapping.
             url_country = _url_country_token(data.get("url"))
-            if url_country not in relevant_url_countries:
-                continue
+            target_entity = URL_COUNTRY_TO_ENTITY.get(url_country)
+        if target_entity != entity:
+            continue
         cache_by_tid[tid] = data
 
-    # V1 entries for THIS location
-    v1_for_location = {tid: coin for tid, (loc, coin) in v1_tid_global.items() if loc == location}
+    # V1 carry-overs for THIS entity
+    v1_for_entity = {
+        tid: coin for tid, (ent, coin) in v1_tid_global.items() if ent == entity
+    }
 
-    # Union of tids: cache + V1
-    all_tids = set(cache_by_tid) | set(v1_for_location)
+    all_tids = set(cache_by_tid) | set(v1_for_entity)
 
     entries: list[dict] = []
     counts = {"from_cache": 0, "from_v1": 0, "skipped_oob": 0}
     for tid in sorted(all_tids, key=lambda t: int(t) if t.isdigit() else 0):
         cache = cache_by_tid.get(tid)
-        v1 = v1_for_location.get(tid)
+        v1 = v1_for_entity.get(tid)
         entry = None
         if cache:
-            entry = _build_entry_from_cache(cache, location)
+            entry = _build_entry_from_cache(cache, entity)
             if entry and v1:
-                # When V1 has a CUSTOM id (e.g. `km-x012-fr-iv-1718`),
-                # preserve it instead of the synthesised `dk-tid-{tid}`.
-                # The V1 id is the curator's anchor for promotion in
-                # `data/locations/`; switching it silently would break
-                # any cross-references that point at the V1 id.
+                # Preserve V1's custom id (e.g. `km-x012-fr-iv-1718`)
+                # over the synthesised `dk-tid-{tid}` — the V1 id is
+                # the curator's anchor in `data/locations/`.
                 v1_id = v1.get("id") or ""
                 if v1_id and not v1_id.startswith(("dk-tid-", "hb-tid-",
                                                    "lu-tid-", "sh-tid-")):
                     entry["id"] = v1_id
-                # Merge V1's curator-set fields onto cache entry. We do NOT
-                # adopt V1's fuss/phase here (cross-source merger handles
-                # foundation re-derivation); we DO adopt richer catalog,
-                # multi-spec weight_rough_g, and verified flags.
+                # Merge V1's curator catalog refs onto cache entry.
                 v1_cat = v1.get("catalog") or {}
                 for k, v in v1_cat.items():
                     if k in {"km", "lange", "hede", "sieg", "schou", "fr",
@@ -557,7 +613,7 @@ def build_seed(location: str, no_merge: bool, dry_run: bool,
             if entry:
                 counts["from_cache"] += 1
         elif v1:
-            entry = _build_entry_from_v1(v1, location)
+            entry = _build_entry_from_v1(v1, entity)
             if entry:
                 counts["from_v1"] += 1
         if entry is None:
@@ -567,7 +623,7 @@ def build_seed(location: str, no_merge: bool, dry_run: bool,
 
     entries.sort(key=lambda e: (e.get("year_first", 9999), e.get("id", "")))
     print(
-        f"  [{location}] cache={len(cache_by_tid)} v1={len(v1_for_location)} "
+        f"  [{entity}] cache={len(cache_by_tid)} v1={len(v1_for_entity)} "
         f"→ {len(entries)} entries (from_cache={counts['from_cache']}, "
         f"from_v1={counts['from_v1']}, skipped_oob={counts['skipped_oob']})"
     )
@@ -578,7 +634,7 @@ def build_seed(location: str, no_merge: bool, dry_run: bool,
     if not no_merge:
         entries, stats = merge_seed(entries, out_path)
         print(
-            f"  [{location}] merge: merged_existing={stats['merged_existing']}, "
+            f"  [{entity}] merge: merged_existing={stats['merged_existing']}, "
             f"added_new={stats['added_new']}, orphan_curated={stats['orphan_curated']}"
         )
 
@@ -588,47 +644,47 @@ def build_seed(location: str, no_merge: bool, dry_run: bool,
     yaml_out.indent(mapping=2, sequence=4, offset=2)
 
     scope_note = (
-        f"ucoin seed for location `{location}`. User-edited coin catalogue "
+        f"ucoin V2 seed for entity `{entity}`. User-edited coin catalogue "
         f"(ucoin.net), tier-equivalent to Numista per CLAUDE.md §5.6. "
         f"Pulls from `scripts/cache/ucoin/<tid>.json` recent harvests plus "
-        f"V1 location-yaml carry-overs (pre-cache curator imports). Per-coin "
-        "verification against primary sources (Hede / Sieg / Lange / Wilcke / "
-        "NumisMaster / Bruun) before §BF promotion."
+        f"V1 location-yaml carry-overs (pre-cache curator imports). "
+        "Entity classification: V1 curator placement first; URL-country "
+        "fallback for cache-only entries. Per-coin verification against "
+        "primary sources (Hede / Sieg / Lange / Wilcke / NumisMaster / "
+        "Bruun) before §BF promotion."
     )
     out = {
         "status": "seed",
         "source": "ucoin (ucoin.net per-coin pages, harvested via Chrome MCP)",
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "location": location,
+        "entity": entity,
         "scope_note": scope_note,
         "coins": entries,
     }
     with out_path.open("w") as f:
         yaml_out.dump(out, f)
-    print(f"  [{location}] wrote {out_path.relative_to(PROJECT_ROOT)} ({len(entries)} entries)")
+    print(f"  [{entity}] wrote {out_path.relative_to(PROJECT_ROOT)} ({len(entries)} entries)")
     return 0
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     g = ap.add_mutually_exclusive_group(required=True)
-    locations = sorted(set(URL_COUNTRY_TO_LOCATION.values()))
-    g.add_argument("--location", choices=tuple(locations),
-                   help="Build seed for one location")
+    entities = sorted(ENTITY_WINDOW.keys())
+    g.add_argument("--entity", choices=tuple(entities),
+                   help="Build seed for one V2 entity")
     g.add_argument("--all", action="store_true",
-                   help="Build seeds for every location")
+                   help="Build seeds for every V2 entity")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--no-merge", action="store_true",
                     help="Skip curation-preserving merge (wholesale overwrite).")
     args = ap.parse_args()
 
-    locs = locations if args.all else [args.location]
-    # Build the V1 tid index ONCE — used by every location to know which
-    # tids the curator has already placed in a specific location seed.
-    v1_tid_global = _collect_v1_tid_entries()
+    ents = entities if args.all else [args.entity]
+    v1_tid_global = _collect_v1_ucoin_entries()
     rc = 0
-    for loc in locs:
-        rc = build_seed(loc, args.no_merge, args.dry_run, v1_tid_global) or rc
+    for ent in ents:
+        rc = build_seed(ent, args.no_merge, args.dry_run, v1_tid_global) or rc
     return rc
 
 
