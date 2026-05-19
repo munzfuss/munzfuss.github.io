@@ -289,6 +289,17 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
     # entry is therefore redundant whenever ANY sub-letter is curated.
     # Same metal + year guards apply.
     curated_coins = (raw.get("coins") or []) + extra_curated_for_coverage
+    # Direct id-match suppression set — covers V1-curator entries that
+    # share the SAME id with a seed coin (e.g. dk-tid-XXX exists in V1
+    # location yaml AND the new ucoin seed builder carries it over with
+    # the same id). The Hede-catalog-ref suppression below is a
+    # superset that catches cross-id shape; this trivial id-match pass
+    # handles the dk-tid-* / km-x* / hb-tid-* / lu-tid-* cases where
+    # seed and curated agree on the literal id.
+    curated_ids = {
+        cc.get("id") for cc in curated_coins
+        if isinstance(cc, dict) and cc.get("id")
+    }
     suppressed_ids: dict[str, dict] = {}  # seed_id → {year, metal, cur_id}
     for cc in curated_coins:
         if not isinstance(cc, dict):
@@ -372,6 +383,13 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
         weight_mismatch_count = 0
         for coin in seed_coins:
             cid = coin.get("id") if isinstance(coin, dict) else None
+            # Trivial duplicate: seed coin shares an id with an already-
+            # present curated coin. The curated entry is the canonical
+            # one (it carries the curator's fuss/phase assignment + may
+            # have multi-source enrichment); drop the seed copy.
+            if cid and cid in curated_ids:
+                suppressed_count += 1
+                continue
             if cid and cid in suppressed_ids:
                 info = suppressed_ids[cid]
                 cur_year = info["year_first"]
