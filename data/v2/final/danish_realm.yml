@@ -2514,21 +2514,29 @@ coins:
   fraction: 1/12
   id: dk-tid-163027
   year_first: 1622
-  year_last: 1623
+  year_last: 1625
   year_ranges:
   - - 1622
     - 1623
+  - - 1625
+    - 1625
   year_label: 1622-1623
-  mint: Kopenhagen
+  mint: Frederiksborg
   catalog:
     km: '84'
+    hede: '122'
+    hede_volume: c4h
+    schou: '12'
+    sieg: '65'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
+  - value: 0.888
+    source: hede
   - value: 0.888
     source: numismaster
   - value: 0.888
@@ -2536,6 +2544,8 @@ coins:
   weight_rough_g:
   - value: 2.0
     source: tid
+  - value: 2.016
+    source: hede
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-8-skilling-1622-1623/?tid=163027
@@ -2543,11 +2553,28 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_65123
     ref: NumisMaster
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c4h122.htm
+    ref: danskmoent.dk (Hede c4h122)
+  note:
+    de: 8 Skilling Christian IV. der <i>Frederiksborg</i>-Münze (königliche NE-Sjælland-Münze, aktiv während der Kipper-Wipperzeit
+      1620er). Mint-Zuordnung nach Hede c4h122 («8 Skilling, Frederiksborg» im Seitentitel); ucoin und NumisMaster führen
+      kein Mint-Feld für KM-84 — das vorher in dieser Einrichtung gesetzte «Kopenhagen» war ein projekt-interner Default (Flag
+      <code>mint_verified</code> war <code>false</code>), nicht quellen-attestiert.
+    en: 8 Skilling Christian IV from the <i>Frederiksborg</i> mint (the royal NE-Zealand mint, active during the Kipper-Wipperzeit
+      of the 1620s). Mint attribution per Hede c4h122 («8 Skilling, Frederiksborg» in the page title); ucoin and NumisMaster
+      do not provide a mint field for KM-84 — the previously assumed «Kopenhagen» in this entry was a project-internal default
+      (flag <code>mint_verified</code> was <code>false</code>), not source-attested.
+    uk: 8 Skilling Christian IV з <i>Frederiksborg</i>-монетного двору (королівський монетний двір у NE-Зеландії, активний
+      під час Kipper-Wipperzeit 1620-х). Атрибуція mint за Hede c4h122 («8 Skilling, Frederiksborg» у заголовку сторінки);
+      ucoin і NumisMaster не подають mint-поля для KM-84 — попередньо встановлений «Kopenhagen» був проєктним default-ом (флаг
+      <code>mint_verified</code> мав значення <code>false</code>), не засвідченим джерелом.
   verification_note:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of: []
+  composed_of:
+  - unified-dk-hede-c4h122
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
