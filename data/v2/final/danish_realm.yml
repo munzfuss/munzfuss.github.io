@@ -2473,16 +2473,22 @@ coins:
   - - 1608
     - 1609
   year_label: 1608-1609
-  mint: Kopenhagen
+  mint: Helsingør
   catalog:
     km: '41'
+    hede: '97'
+    hede_volume: c4h
+    schou: 121-131
+    sieg: '48'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
+  - value: 0.888
+    source: hede
   - value: 0.888
     source: numismaster
   - value: 0.888
@@ -2490,6 +2496,8 @@ coins:
   weight_rough_g:
   - value: 1.46
     source: tid
+  - value: 1.462
+    source: hede
   - value: 1.462
     source: numismaster
   sources:
@@ -2499,11 +2507,28 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_65089
     ref: NumisMaster
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c4h97.htm
+    ref: danskmoent.dk (Hede c4h97)
+  note:
+    de: 4 Skilling Christian IV. der <i>Helsingør</i>-Münze (königliche Sundzoll-Münzstätte am Øresund, aktiv um die Wende
+      des 17. Jahrhunderts). Mint-Zuordnung nach Hede c4h97 («Christian 4., 4 Skilling, Helsingør» im Seitentitel); ucoin
+      und NumisMaster führen kein Mint-Feld für KM-41 — das vorher in dieser Einrichtung gesetzte «Kopenhagen» war ein projekt-interner
+      Default (Flag <code>mint_verified</code> war <code>false</code>), nicht quellen-attestiert.
+    en: 4 Skilling Christian IV from the <i>Helsingør</i> mint (the royal Sound-toll mint at the Øresund, active around the
+      turn of the 17th century). Mint attribution per Hede c4h97 («Christian 4., 4 Skilling, Helsingør» in the page title);
+      ucoin and NumisMaster do not provide a mint field for KM-41 — the previously assumed «Kopenhagen» in this entry was
+      a project-internal default (flag <code>mint_verified</code> was <code>false</code>), not source-attested.
+    uk: 4 Skilling Christian IV з <i>Helsingør</i>-монетного двору (королівський монетний двір на Зундській митниці біля Ересунну,
+      активний на зламі XVII ст.). Атрибуція mint за Hede c4h97 («Christian 4., 4 Skilling, Helsingør» у заголовку сторінки);
+      ucoin і NumisMaster не подають mint-поля для KM-41 — попередньо встановлений «Kopenhagen» був проєктним default-ом (флаг
+      <code>mint_verified</code> мав значення <code>false</code>), не засвідченим джерелом.
   verification_note:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of: []
+  composed_of:
+  - unified-dk-hede-c4h97
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
