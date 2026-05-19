@@ -249,7 +249,7 @@ Why: the LINK target is the domain. A reader scanning the «Джерела» col
 
 ```yaml
 ref: "Numista 420365 (KM-73 Gold Krone Christian IV, both 26A+26B)"    # ✗ NO
-ref: "Numista 420365"                                                   # ✓ YES (or `Numista (KM-DK 73)` per §BR once auto-derived)
+ref: "Numista 420365"                                                   # ✓ YES (or `Numista (KM-DK 73)` per §BU once auto-derived)
 
 ref: "Bruun Part IV, lot 17076, p. 53 (Hede 26B, ohne Mzz, 1667/6 overdate)"   # ✗ NO
 ref: "Bruun Part IV, lot 17076, p. 53 (Hede 26B)"                              # ✓ YES — keep ONLY the sub-index disambiguator
@@ -259,7 +259,7 @@ Parenthetical content rule: **sub-index disambiguator ONLY**. When the same reso
 
 The `(KM-73 Gold Krone Christian IV, both 26A+26B)` part of the rejected Numista label was coin-describing prose. The `(Hede 26B, ohne Mzz, 1667/6 overdate)` part of the rejected Bruun label is mostly coin-describing — only `Hede 26B` is the actual sub-index that distinguishes this Bruun lot from its peer (`Bruun Part I, lot 1089` = Hede 26A). The `ohne Mzz, 1667/6 overdate` clauses must move to `note` if they aren't already there.
 
-**Future refinement (tracked in `docs/TODO.md` §BR)** — render-time auto-derivation of the sub-index portion. The convention above describes the manually-curated form; once §BR lands, the curator drops the manual sub-index entirely and the renderer computes it from `catalog.km` dict-form / `catalog.hede` list-form / `_compute_coin` cross-source group analysis.
+**Future refinement (tracked in `docs/TODO.md` §BU)** — render-time auto-derivation of the sub-index portion. The convention above describes the manually-curated form; once §BU lands, the curator drops the manual sub-index entirely and the renderer computes it from `catalog.km` dict-form / `catalog.hede` list-form / `_compute_coin` cross-source group analysis.
 
 ## Cross-references
 

@@ -316,7 +316,9 @@ Bundle takes the audit-completeness cluster (§BH Hede + §BM IKMK + §BN Bruun 
 - All «only-DK, should-also-SH» cases either moved or surfaced via consumes_entities.
 - The opposite direction (SH coins missing on DK) is OUT OF SCOPE for this task — only the DK→SH leak is the user's concern.
 
-### BR. 🟡 Source-ref labels: use distinguishing sub-index when ≥2 same-resource links carry different sub-variants  *(opened 2026-05-19)* *(est: small)* *(type: convention refinement)*
+### BU. 🟡 Source-ref labels: use distinguishing sub-index when ≥2 same-resource links carry different sub-variants  *(opened 2026-05-19)* *(est: small)* *(type: convention refinement)*
+
+**Note on section number** — opened as §BR locally on 2026-05-19, renumbered §BU at merge-time (2026-05-19) because §BR was already taken on main for the ucoin DK-realm coverage audit (opened 2026-05-18, see «In progress» below).
 
 **Surfaced.** User direction 2026-05-19. The default convention (just codified in `docs/CONVENTIONS.md` §«Source-ref label shape») is:
 - Single source of a resource: label = bare resource name («Numista»)
@@ -408,6 +410,198 @@ That rule covers «which of ≥2 same-resource sources is this link». But it ig
 - V1 seeds carry canonical V2 `issuing_entity` values directly.
 - `_SEED_ENTITY_REMAP` can drop the `norwegian_realm` → `danish_norway` entry (or keep it as defensive belt-and-braces — curator's call).
 - D38 entry in V2_DECISIONS.md extended with «and applied to Hede / Bruun / Galster / Numista builders 2026-XX-XX».
+
+#### BO.5 — Numista DK 1602-1914 main-window coverage audit + harvest  🔵 **IN PROGRESS — batches 1-5/6 done (200 NIDs, 94.3 %)** *(opened 2026-05-18, est: medium-large)*
+
+**Surfaced** by user direction 2026-05-18 «впевнись що в нашому нуміста кеші вже є всі монети по данії в 1602-1914 рр які є на нуміста». BO.1 / .2 / .3 addressed the pre-floor era; BO.5 addresses the main mission window (1602-1914 = Numista DK floor through pre-WWI end of precious-metal era).
+
+**Audit result (2026-05-18, refined with user's URL filter):**
+
+URL pattern: `https://en.numista.com/catalogue/index.php?e=danemark&st=1-2-3-47-154-5-54&cat=y&o=y` (coin subcategories only, excludes patterns/trial strikes/banknotes/medals/tokens, sort by year asc). Walked 5 pages (200/page; pages 1-4 in-window for 1602-1914, page 5 = 2006-2025 out of scope).
+
+  | Metric | Value |
+  |---|---:|
+  | Total Numista DK coin types (e=danemark + st-filter, all eras) | 868 |
+  | In-window [1602, 1914] | **547** |
+  | Cache intersection (already harvested) | 335 |
+  | **MISSING — needs harvest** | **212** |
+  | Coverage % | 61.2 % |
+
+The 212-NID gap is documented in `scripts/cache/numista/_BO5_audit_2026-05-18.json` (full per-NID list, decade distribution, per-batch breakdown).
+
+**Decade distribution of the 212 missing** (gives a sense of which eras still need work):
+
+  | Decade | Missing | Note |
+  |---|---:|---|
+  | 1600s | 35 | Christian IV early reign |
+  | 1610s | 9 | |
+  | 1790s-1810s | ~30 | Frederik VI / Speciedaler→Rigsbankdaler reforms |
+  | 1820s-1860s | ~60 | Christian VIII / Frederik VII era |
+  | 1870s-1914 | ~25 | Christian IX / Frederik VIII / Christian X Krone era pre-WWI |
+  | Other 17th-18th | ~50 | Christian V / Frederik IV / V / VI minor coinage |
+
+**Harvest strategy (decided 2026-05-18 with user):** option (b) — split into sessions of 40 NIDs each via Chrome MCP per-NID page fetches with 31-60s random pauses. Five batches of 40 + one tail batch of 12 = 6 sessions, ~50-55 min real time per session.
+
+  | Batch | Status | NIDs | Year-range covered | Commit |
+  |---|---|---:|---|---|
+  | **1** | ✅ DONE 2026-05-18 | 40 (4139…54912) | 1602-1923 (mostly Christian IX / Frederik VIII / Christian X Krone era + 1602 Christian IV Penning/Hvid family + Frederik IV/V silver Skilling) | `a3d03a6` (submodule) |
+  | **2** | ✅ DONE 2026-05-18 | 40 (55301…111300) | Christian V 8/12-Skilling 1683-1684 + SH-Glückstadt 24-Skilling 1762 + Norge Speciedaler + Frederik VI/VII Rigsbankdaler 1820s-1850s + Frederik III 4-Mark-Dansk Type IIA-V (KM# 194.2-194.5, Dav 3572-3574A) | `a33390b` (submodule) |
+  | **3** | ✅ DONE 2026-05-18 | 40 (111312…181629) | Christian IV 1591-1648 silver+gold repertoire (4-Daler Klippe KM# 25, 1-Speciedaler bust-I/II KM# 102/135, 3-Speciedaler KM# 75, Rhinsk Gylden KM# 108, 8-Skilling KM# 31, 1-Mark Helsingør KM# 36) + Frederik III commemorative Victory-over-Swedes Krone (KM# 222/225) + 4-Mark KM# 186/187 + 1-Speciedaler KM# 212 + 2-Ducats Ship I/II (KM# 216.1/216.2) + ½-Krone KM# 267 + Christian V East-India 1-Speciedaler KM# 317/319 + 4-Mark KM# 359.1/401.1-4 + Frederik V Coronation/Accession KM# 546/562/563 + Christian VII Christian-d'Or KM# 629 + Albertsdaler KM# 640 + Gianelli 1-Speciedaler KM# 654 + Frederik VI 2-Frederik-d'Or KM# 713 | `4068959` (submodule) |
+  | **4** | ✅ DONE 2026-05-18 | 40 (182700…366728) | Christian IV high-denom 10-Ducats Fr# 68 + Rosenobel KM# 51 + 1-Piastre East-India KM# 117 + Speciedaler-Copenhagen-rect-arms KM# 44 (Dav 3514A) + Frederiksborg 12-Skilling KM# 85 + Hvid KM# 63.2 + Frederik III 1-Speciedaler 13-province KM# 169 + 2-Gold-Krone KM# 279 + Cross-monogram 2-Ducats KM# 243/295/326/PnB16/PnD16 + Largesse 1-/2-Ducat Klippe KM# 163/164 + ½-Portugaloser KM# PnG16 + Christian V Plain-monogram 2-Mark KM# 329.2 + Thin-monogram-Type2 4-Mark KM# 386.2 + 1-Ducat KM# 374.2/412.2 + 2-Ducats KM# 439 + Frederik IV Accession 3-Krone KM# 449 + Coronation 2-Ducats KM# 461 + ½-Ducat KM# 452 + 2-Ducats KM# 475/A488 + SH ½-Dukat Rendsburg KM# 7 + Frederik V Accession 1-/2-Ducats KM# 547/553 + 1-Krone KM# A571 + Christian VII 1-Piastre Asiatic KM# 638 + Christian IX 2-Christians-d'Or KM# 773 | `fcffa68` (submodule) |
+  | **5** | ✅ DONE 2026-05-19 | 40 (372940…468777) | Christian IV gold high-denom (2-Goldgulden KM# 46 Fr# 36 .972, ¼-/½-Rosenobel KM# 50.1/50.2/Fr# 49, 1-/¼-/½-Ducat KM# 149/150/152/153, ¼-Portugaloser KM# 114, 3-Daler Klippe KM# 24, 8-Daler Klippe KM# 27 Fr# 44 .937, 2-Gold-Kronen KM# 111, 4-Speciedaler bust-I KM# 79 Dav 3521) + Frederik III gold cluster (½-Portugaloser KM# Pn10/Pn13 Fr# 106, 1-/2-/3-/4-/5-/6-/10-Ducat range KM# 217.1/217.2/252/253/265.2/314/Pn10/PnF16, Largesse 3-/4-Ducat Klippe KM# 165/166, 1-Gold-Crown KM# 206.1/206.2 Fr# 120) + Christian V gold (KM# 328/396/458, 4-Mark Pattern KM# Pn30) + Frederik IV Coronation 3-/4-Ducats KM# 461-464 + 2-Ducats KM# 498 1710-1711 + 3-Ducats KM# 472 | `b8e3cab` (submodule) |
+  | **6** | ⏳ pending | 12 (468831…577419) | TBD when run | — |
+
+Per-batch NID lists live in `scripts/cache/numista/_BO5_audit_2026-05-18.json` under `harvest_progress.batches.batch_N.nids` — drop-in resume-friendly format.
+
+**Cloudflare risk profile (empirical, 2026-05-17/18 across two harvest sessions):**
+
+- Per-NID `/catalogue/pieces<N>.html` URL: **low risk**, survived 70+ sequential fetches across two days (BO.1 SH-cluster 30 fetches + BO.5 batch 1 40 fetches) with 0 trips at 31-60s pacing.
+- Listing pages (`/<code>-1.html`, `?e=...`): **medium risk**, 2-3 trips during enumeration phase, each requiring 3-4 min cooldown.
+- `?ru=` ruler filter URL: **high risk** — fires on first call.
+
+The per-NID route is the safe one for incremental harvest. Listing-page enumeration only fires when scoping (BO.5's discovery phase is done).
+
+**Pause rationale (2026-05-18, refreshed after batch 3):** user direction «зробимо тимчасову паузу щоб не було лімітів» after batch 1; reaffirmed after batch 2 with «запиши стан і що лишилось для наступних сесій, бо зараз зробимо паузу на юкоін і переключимось знову на нуміста на 1 батч» (1 Numista batch then pause again); resumed after BR batch 3 with «тепер ще один нуміста батч» (sequenced single-batch alternation between platforms). The cumulative Numista access budget is finite and the user wants to spread the load across more days rather than burn it in one session. Per-NID fetches do not have a hard quota but they do contribute to Cloudflare's daily anti-abuse heuristic for our IP. Across batches 1+2+3 (120 total fetches over three sessions ~50-52 min each) **0 Cloudflare trips fired** at 31-60 s pacing — three-session empirical confirmation that the per-NID HTML route plus pacing is sustainable.
+
+**Resume procedure:**
+
+1. Read `scripts/cache/numista/_BO5_audit_2026-05-18.json` → `harvest_progress.batches.batch_<N>.nids` for the next pending batch.
+2. Use the JS extractor pattern from `docs/HARVEST_GUIDE.md §«Per-NID HTML fetcher»` (unchanged template).
+3. Save via `/tmp/save_numista.py` (Python helper writes to `scripts/cache/numista/<nid>.json` with `_harvested_via: "chrome_mcp_html"` marker).
+4. Per batch end: stage all 40 new cache files in submodule, commit with «numista: §BO.5 batch N/6 — ...», push submodule, update this entry's batch-progress table.
+5. After final batch (6/6): write the seed-builder pipeline for chrome_mcp_html-harvested entries OR fold into existing Numista parser depending on how the data shape compares with API entries.
+
+**Definition of done.** All 212 NIDs cached in `scripts/cache/numista/` with `_harvested_via: "chrome_mcp_html"` marker. Phase-1 coverage table updated to reflect 100% DK 1602-1914 coverage. Final BO.5 closure note replaces this in-progress entry.
+
+#### BR — ucoin DK-realm 1514-1914 coverage audit  🔵 **AUDIT DONE + batches 1-7 of N harvested (259 TIDs); p2399 + p2939 + SH-country CLOSED + DK Krone era 1873-1914 CLOSED** *(opened 2026-05-18, est: medium-large)*
+
+**Update 2026-05-18 (p2399 closed):**
+
+Per user direction «пуш в обидві і тоді ще один батч юкоін» following BO.5 batch 3/6, completed final batch of p2399 (Norway Speciedaler 1648-1699). Period now closed cleanly: all 153/153 TIDs harvested across 4 sessions.
+
+**Batches 1-5/N done (submodule commits `4a323ea` + `bb4c6a4` + `44c744f` + `7136528` + `4f6d77a`):**
+
+| Batch | Status | Count | Period coverage | Submodule commit |
+|---|---|---:|---|---|
+| **1** | ✅ DONE 2026-05-18 session 1 | 40 | p2399 page 1 (first 40 of 48) | `4a323ea` |
+| **2** | ✅ DONE 2026-05-18 session 2 | 40 | p2399 page-1 leftovers (8) + page-2 first 32 | `bb4c6a4` |
+| **3** | ✅ DONE 2026-05-18 session 3 | 40 | p2399 page-2 tail (16) + page-3 head (24) | `44c744f` |
+| **4** | ✅ DONE 2026-05-18 session 4 | 33 | p2399 page-3 tail (24) + page-4 (9) — **PERIOD CLOSED** | `7136528` |
+| **5** | ✅ DONE 2026-05-18 session 5 | 40 | p2939 SH-Glückstadt (1617-1694) Christian IV + Frederick III + Christian V; first 40 of 50 sorted by year asc | `4f6d77a` |
+| **6** | ✅ DONE 2026-05-19 session 6 | 26 | p2939 tail (10 TIDs Christian V 1693-1696 + Frederik IV 1702-1716 — **p2939 CLOSED 50/50**) + country=schleswig_holstein (16 TIDs Christian VII 1787-1808 + Frederik VI 1809-1839 + Provisional Govt 1850-1851 — **SH-country CLOSED 16/16**); user-requested SH probe COMPLETE | `ab67784` |
+| **7** | ✅ DONE 2026-05-19 session 7 | 40 | DK Krone era 1873-1914 **CLOSED** (23 TIDs: p374 Christian IX 9/9 circulation KM# 790-798, p373 Frederik VIII 7/7 KM# 804-810, p220 Christian X 1912-1914 in-window 7/7 KM# 812-818) + NO p2400 head (17 TIDs Frederik IV 1699-1730 era KM# 200.1-224) | `37a228c` |
+| 8+ | ⏳ pending | ~200 across other periods | NO p2400 tail (6) + p1041 + p883 (1746-1814) + p374 commemoratives (3) + Holstein-Gottorp-Rendsburg 1716-1720 | — |
+
+- **153/153 p2399 TIDs harvested (100 %)**, all canonical-TID validations PASSED (zero «random euro-cent» mismatches across four sessions)
+- Coverage by ruler: Frederick III 1648-1670 (full Speciedaler + ½/1/2/3/4-Speciedaler + ½/1/2-Ducat + ⅛/¼/½/2/4-Mark repertoire) + Christian V 1670-1699 (1/2/3/4-Speciedaler with monogram/draped-bust/portrait variants + ½/1/2/3/4-Ducat gold high-denom + 1-Mark/2-Mark/4-Mark cluster; 1699 silver-upgrade 4-Mark KM# 199 @ .833 fineness)
+- Save format: `scripts/cache/ucoin/<tid>.json` per-TID files with `_verified: true` + `_canonical_tid` + `_harvested_via: chrome_mcp_html` markers
+- Save script: `/tmp/save_ucoin.py` aborts with exit code 2 on canonical-tid mismatch — prevents overwriting cache with the wrong-coin-served-as-defence-response
+
+**Cumulative ucoin session-cookie budget check.** Per `docs/SOURCES.md §13.2`, the empirical cookie-cycle ceiling at 20 s pacing was ~50 fetches. Across batches 1-4 we did ~163 cumulative ucoin requests (153 harvests + 10 enumeration probes) over four ~50-70-min sessions, with **0 canonical-TID failures**. Four-session evidence confirms: the 31-60 s pacing materially extends the budget (or the cookie counter resets between sessions). Empirical cap is well above the §13.2 historical figure.
+
+**p2399 closure (2026-05-18):** Norway Speciedaler 1648-1699 period now 100 % covered. State recorded in `scripts/cache/ucoin/_BR_audit_2026-05-18.json`. Batch 5 pivots to p2400 (Norway Speciedaler 1699-1745, Frederick IV / Christian VI era) — needs listing-page enumeration first to size before building TID list.
+
+**Platform-floor confirmations (this session's discovery):**
+
+  | Platform | DK floor | NO floor | SH floor |
+  |---|---|---|---|
+  | **Numista** | 1602 | 1602 | 1567 (SH-Gottorp) — varies by SH-issuer code |
+  | **NumisMaster** | 1591 | 1608 | 1538 (Holstein-Schauenburg) |
+  | **ucoin** | **1582** ✓ | **1648** ✓ | **1787-1851** ✓ (only 15 entries total) |
+
+→ This **closes §BO.1 step 3 «Norway 1514-1601 sweep»** with a clean negative finding: all three commercial / community catalogues have a platform floor for Norway between 1602 and 1648 — no pre-1602 Norge data is recoverable from any of them. The §BF Denmark 1514-1566 gap remains paper-only (Galster / Jensen-Skjoldager) per the original audit.
+
+**Remaining BR scope (after batch 7 / DK Krone era CLOSED):**
+
+  | Scope | Total on ucoin | Cached | Remaining | Batches needed (40/each) |
+  |---|---:|---:|---:|---:|
+  | NO period 2399 (1648-1699 Speciedaler) | 153 | **153** | **0** ✅ | 0 (CLOSED) |
+  | DK period 2939 (SH-Glückstadt 1617-1773) | 50 | **50** | **0** ✅ | 0 (CLOSED) |
+  | DK country=schleswig_holstein (1787-1851) | 16 | **16** | **0** ✅ | 0 (CLOSED) |
+  | DK period 374 circulation (Christian IX 1873-1906) | 9 | **9** | **0** ✅ | 0 (CLOSED) |
+  | DK period 374 commemoratives | 3 | 0 | 3 | ~⅛ |
+  | DK period 373 (Frederik VIII 1906-1912) | 7 | **7** | **0** ✅ | 0 (CLOSED) |
+  | DK period 220 (Christian X 1912-1914 in-window) | 7 | **7** | **0** ✅ | 0 (CLOSED) |
+  | NO period 2400 (1699-1745 Speciedaler) | 23 | 17 | **6** | ~⅙ |
+  | NO period 1041 (1746-1812 Rigsdaler) | unknown | 0 | ? | ? |
+  | NO period 883 (1813-1815 Rigsbankdaler) | unknown | 0 | ? (1813-1814 portion only) | ~1 |
+  | DK Holstein-Gottorp-Rendsburg (1716-1720, newly discovered) | unknown | 0 | ? | small |
+
+**Negative finding (2026-05-19):** ucoin's SH country listing has no entries past 1851 (Provisional Government era end). 1851-1864 SH-duchy coverage (Frederik VII Helstaten era pre-Prussian annexation) is **ucoin platform-floor**, not a harvest gap. The «1851-1864» portion of the user-requested probe is empirically empty.
+
+Estimated total remaining harvest: **~250-400 TIDs** across **6-10 batches**.
+
+**Rate-limit budget tracking:** session 1 (2026-05-18 12:08-13:18, ~70 min) consumed ~45 cumulative ucoin fetches with zero canonical-TID failures. Per `docs/SOURCES.md §13.2`, the cookie-cycle cap is ~50 fetches at 20s pacing; at our 31-60s pacing we made 45 without trip — comfortable margin. **Each future session should cap at ≤45 ucoin fetches to stay below the ceiling.**
+
+**Resume procedure for future sessions:**
+
+1. **Enumerate next batch** if not already known: visit listing page (`/catalog/?country=norway&period=<P>&page=<N>`) via Chrome MCP, extract TID-to-slug mapping (one navigation, low Cloudflare risk).
+2. **Per-TID fetch loop** — for each TID in batch:
+   - Sleep 31-60 s random
+   - Navigate `/coin/<slug>/?tid=<TID>`
+   - Run the JS extractor (template in `HARVEST_GUIDE.md §«Numista catalogue enumeration»` is similar; ucoin uses inline-space label-value format vs Numista's tab-separated — adapt the `get(label)` regex from `/(?:^|\n)<label>\s+([^\n]+)/`)
+   - **Mandatory canonical-tid check**: extract `link[rel=canonical]` href, parse `tid=NN`, compare against requested TID
+   - On mismatch: ABORT batch immediately, alert user — rate-limit defence has fired. Do NOT save the file.
+   - On match: pipe JSON to `/tmp/save_ucoin.py` (exit 2 on mismatch)
+3. **Per batch end**: stage all new `scripts/cache/ucoin/<tid>.json` files in submodule, commit + push, bump pointer in main.
+4. **Hard cap**: ≤45 ucoin fetches per session to stay under the rate-limit cookie cap. 40-batch sessions plus a few enumeration calls fits comfortably.
+
+**Definition of done** (revised post-audit): all Norway 1648-1814 TIDs cached + DK 1873-1914 Krone era completed. SH 1787-1851 already complete (15/15). Pre-1648 NO + pre-1582 DK + pre-1787 SH + post-1851 SH confirmed as platform-floor (not data gaps).
+
+**Surfaced** by user direction 2026-05-18 «проаналізуй так само що ще лишилось по ucoin для данії і її підконтрольних територій в рамках 1514-1914». Counterpart to BO.5's Numista audit, scoped to the DK realm (Denmark + Norway under DK 1514-1814 + Schleswig-Holstein duchies). Hamburg + Lübeck are separately in mission scope but are NOT «DK-controlled» — noted in passing for completeness.
+
+**Method** — pure offline audit. Inspected `scripts/cache/ucoin/_url_index.json` (705 cached TIDs) + 15 per-period-or-country TSV harvest manifests (`period_*.tsv`, `country_*.tsv`). No live Chrome MCP calls to ucoin per user pause directive («зробимо тимчасову паузу щоб не було лімітів») + the pre-existing §M Cloudflare block since 2026-05-13.
+
+**Cache coverage state (DK-realm + asides), per era × country:**
+
+  | Era | Denmark | Norway | SH-duchies | (Hamburg) | (Lübeck) |
+  |---|---:|---:|---:|---:|---:|
+  | 1514-1581 | **0** 🔴 | 0 | 0 | 0 | 0 |
+  | 1582-1601 | 12 ✓ | **0** 🔴 | 0 | 0 | 0 |
+  | 1602-1648 | 123 ✓ | **0** 🔴 | 0 | 0 | 23 ✓ |
+  | 1649-1699 | 206 ✓ | **0** 🔴 | 0 | 0 | 19 ✓ |
+  | 1700-1749 | 66 ✓ | **0** 🔴 | 0 | 20 ✓ | 22 ✓ |
+  | 1750-1812 | 54 ✓ | **0** 🔴 | 10 ✓ | 39 ✓ | 15 ✓ |
+  | 1813-1854 | 52 ✓ | **0** 🔴 (DK rule ended 1814; rest is Sweden) | 6 ✓ | 17 ✓ | 0 |
+  | 1855-1872 | 8 ✓ | n/a | **0** 🔴 | 4 ✓ | 0 |
+  | 1873-1914 | **9** 🔴 (paused mid-harvest §M) | n/a | **0** 🔴 | 0 🔴 | 0 🔴 |
+  | **Total** | **530** | **0** | **16** | **80** | **79** |
+
+**Cached for the DK-realm + SH-duchies subset (this audit's primary scope)**: **546 entries**.
+
+**Critical gaps (priority order):**
+
+1. 🔴 **Norway 1514-1814 — 0 entries, never enumerated.** Mission scope explicitly includes Norway under Danish rule. Likely 30-80 types on ucoin (Kongsberg/Christiania mints, Christian IV Speciedaler family, Frederik III-Christian VII Skilling, Frederik VI Rigsbankdaler). **No TSV harvest file ever attempted for Norway.**
+
+2. 🔴 **Denmark 1514-1581 — 0 entries.** Earliest cached DK is 1582 (from `period_2940` «Speciedaler 1582-1624»). Whether ucoin catalogues pre-1582 is unverified — may be a platform-floor (similar to Numista's 1602 floor, NumisMaster's 1591 floor) OR a harvest gap. **Probe needed to disambiguate.**
+
+3. 🔴 **Denmark 1873-1914 Krone era — only 9 entries.** `period_374` TSV header explicitly says «only 1873-1875 overlap» — meaning the §M-era harvest (2026-05-13) deliberately paused after 1875 due to ucoin rate-limits. **This is a KNOWN deferred harvest**, complementary to BO.5 batch 1 Numista work just completed (which fetched 30+ Christian IX/Frederik VIII/Christian X NIDs from Numista).
+
+4. 🟡 **Schleswig-Holstein duchies 1514-1788 — 0 entries.** Only 16 SH cached, all post-1787 Speciesbank-reform era. SH-Gottorp ducal coinage 1564-1773 + Christian III/Frederik II ducal coinage entirely missing.
+
+5. 🟡 **SH 1855-1914 — 0 entries.** Both pre-1864 Helstaten era + post-1864 Reichsmark era missing.
+
+**Asides (not «DK-controlled» but in mission scope per CLAUDE.md):**
+- Hamburg pre-1700: 0 cached (earliest 1713). Hamburg post-1872: 0 (Reichsgoldmünzfuß era missing).
+- Lübeck pre-1620: 0. Lübeck post-1854: 0.
+
+**Rough scale estimate (offline-only — needs live verification):** total ucoin types for DK-realm 1514-1914 likely **700-1000**, of which **546 cached** = roughly **25-40 % real gap**. Norway is the dominant unknown.
+
+**No batches yet defined** — harvest plan deferred. Once user lifts the «pause to avoid rate limits» directive, the resume procedure is:
+
+1. Visit `en.ucoin.net/coins/norway/` via Chrome MCP to confirm catalogue exists + estimate type count
+2. Probe ucoin SH country page for period_ids covering pre-1788 era
+3. Identify ucoin period_id for Christian IX 1873-1906 post-1875 + Frederik VIII + Christian X
+4. Once scopes are sized, build per-batch harvest plan similar to BO.5 (40 TIDs/session via Chrome MCP, ucoin-specific pacing: ≤45 TIDs per cookie-cycle at 20s pacing per `docs/SOURCES.md §13.2`)
+5. Save through `scripts/maintenance/ucoin_fetch_composition.py`-equivalent flow with canonical-tid guard against the slug-redirect rate-limit symptom
+
+**Constraints** per `docs/SOURCES.md §13.2`:
+- Cloudflare blocked since §M 2026-05-13 (need user-side browser challenge-pass for `cf_clearance` cookie, OR ≥24 h IP cooldown, OR VPN egress switch)
+- ~50-request session-cookie cap before bad-tid canonical-redirect symptoms
+
+**Full audit summary** with per-bucket counts, harvest strategy per scope, and next-action checklist saved at `scripts/cache/ucoin/_BR_audit_2026-05-18.json`.
+
+**Definition of done.** Norway 1514-1814 harvested (or verified-empty), DK 1514-1581 + 1873-1914 closed, SH pre-1788 + post-1855 closed. Phase-1 coverage table updated. BR closure note replaces this in-progress entry.
 
 ---
 ## High priority
