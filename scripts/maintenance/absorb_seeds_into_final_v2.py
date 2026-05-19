@@ -157,7 +157,30 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         else:
             authoritative_yr = _union_year_ranges(members)
     else:
-        authoritative_yr = _union_year_ranges(members)
+        # Curator foundation with seed_unified composed_of members.
+        # The foundation's stored `year_first/year_last/year_ranges`
+        # are themselves OUTPUTS of prior absorb-run unions, so they
+        # can carry years from a stale seed_unified state (e.g.
+        # parser-bug years that have since been removed). Re-derive
+        # cleanly: when seed_unified members exist, use ONLY them
+        # for the year-ranges union — they accumulate everything
+        # attested across all current sources. Curator intent that
+        # genuinely needs to override (rare) is expressible via
+        # `_curation_holds: {year_ranges: "reason"}` on the V1 entry.
+        # When no seed_unified members exist (pure-curator entry,
+        # composed_of empty), preserve foundation's own year info.
+        seed_unified_members = members[1:]
+        if seed_unified_members:
+            holds = final_entry.get("_curation_holds")
+            holds_keys = set(holds.keys() if isinstance(holds, dict)
+                             else (holds or []))
+            if "year_ranges" in holds_keys or "year_first" in holds_keys:
+                # Curator explicitly froze year data — preserve via union
+                authoritative_yr = _union_year_ranges(members)
+            else:
+                authoritative_yr = _union_year_ranges(seed_unified_members)
+        else:
+            authoritative_yr = _union_year_ranges(members)
     if authoritative_yr is not None:
         if len(authoritative_yr) == 1 and authoritative_yr[0][0] == authoritative_yr[0][1]:
             out["year_first"] = authoritative_yr[0][0]
