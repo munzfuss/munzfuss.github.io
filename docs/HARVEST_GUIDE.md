@@ -870,13 +870,38 @@ fi
 
 **Seed activation prerequisite**: emitting the per-sub-scope seed YAML requires the target location (`data/locations/<sub_scope>.yml`) to declare `seed_unsorted` phase config with a `numismaster` phase entry — see `data/locations/denmark.yml` `phases.seed_unsorted.id=hede` for the analogous Hede setup. Without that location-side prep, build validation fails on «no phases defined for fuss 'seed_unsorted'». Location prep is a §BF promotion-prep step, not part of §BK's mechanical-pipeline scope.
 
-### ucoin.net (deferred per §M)
+### ucoin.net — active via Chrome MCP, 31-60 s pacing
 
-**Scope**: user-edited catalog overlapping Numista coverage.
+**Scope**: user-edited catalog overlapping Numista coverage. Same tier as Numista per CLAUDE.md §5 (confirmation source for weight/fineness/diameter; flips `*_verified: true` when it agrees).
 
-**Status**: Cloudflare-blocked on anonymous fetches (HTTP 403). Project's §M (ucoin Composition harvest) tracks ~490 uncached URLs. Resume conditions: ~24h cooldown, IP switch, or manual Cloudflare-challenge pass via normal browser.
+**Status — current (2026-05-18 onward)**: harvest is ACTIVE via Chrome MCP routed through the user's already-logged-in Chrome session. The May 2026 «deferred / Cloudflare-blocked» framing applies only to ANONYMOUS fetches (Python urllib, WebFetch, Apify) — those still hit 403. Chrome MCP in the user-session reliably bypasses both the 403 and the 2026-05-13-era «~50-request session cap» observed under tight (2.5-20 s) pacing. BR audit ran 563 fetches across batches 1-16 (May 18-19) at 31-60 s random pacing — **0 canonical-TID failures, 0 Cloudflare 403s**.
 
-Per-session limit: ~50 cumulative requests at any pacing 2.5-20 s.
+**Operational pattern (canonical):**
+
+```bash
+# Between fetches:
+SLEEP=$((RANDOM % 30 + 31)); sleep $SLEEP
+
+# Per-TID fetch (after enumeration has produced /tmp/<batch>_slugs.json):
+# 1. browser_batch: navigate + javascript_tool extracting fields
+# 2. Bash heredoc piping extracted JSON to /tmp/save_ucoin.py
+# 3. save_ucoin.py enforces _verified=true via canonical-tid check;
+#    exits 2 + refuses to write if requested_tid != canonical_tid
+```
+
+**Listing-page enumeration (Phase 1 of any batch):**
+1. Navigate to `/catalog/?country=<X>&period=<P>&page=<N>`.
+2. Extract via `a[href*="/coin/"]` + `a.href` (NOT `a.getAttribute('href')` — see SOURCES.md §13.2 «Cloudflare query-string blackout»).
+3. Use a `TARGET` Set filter to extract ONLY the uncached TIDs you'll fetch — keeps the JSON round-trip small enough to escape tool-output truncation.
+4. Save to `/tmp/<batch>_slugs.json` (heredoc from Bash) — `window.<global>` doesn't survive navigation.
+
+**Per-TID DOM = TAB-separated label/value pairs, NOT newline-separated** — extractor regex MUST use `\t` not `\n`. Decimal separator is comma («22,27»). See SOURCES.md §13.2 for the `g(label)` helper template.
+
+**Slug collapse trap.** When listing extraction shows ≥ 2 TIDs sharing a slug stem (e.g. 5 TIDs all returning «denmark-1-krone-1675»), only the LOWEST TID in the cluster routes correctly via that bare slug; the rest 404. ucoin's canonical URLs use numeric suffixes (`-2`, `-3`) that the listing-anchor stripping discards. Defer affected TIDs to per-coin search rather than guessing the suffix. — see SOURCES.md §13.2 «listing-page slug collapse».
+
+**Per-session budget (current).** Pragmatic 40-TID batches at 31-60 s pacing = 25-40 min wall time per commit cycle. No upper bound established — sustained 100+ fetch days work fine in user session.
+
+**Anonymous-route status (unchanged).** Python urllib, WebFetch, Apify all still 403 on ucoin. If a tool other than Chrome MCP needs to pull ucoin data, the only escape paths are: (a) wait 24 h for IP cooldown then retry, (b) ride the user's `cf_clearance` cookie if it's exposed to the script, (c) VPN egress switch. For our research flow, Chrome MCP via user session is the answer — no longer experimental.
 
 ## Cache directory conventions
 
