@@ -185,9 +185,22 @@ RULES: list[tuple[re.Pattern, str, str, set[str], str]] = [
     (re.compile(r"\bРеймсько-", re.IGNORECASE),
      "error", "§2a", {"uk"},
      "wrong rendering of «Reichsweit-»; use «загальноімперсько-» / «імперсько-»"),
-    (re.compile(r"\b(stope)\b", re.IGNORECASE),
-     "error", "§2a", {"en"},
-     "non-word; use «standard» / «Müntzfuß»"),
+    # Forbidden pseudo-Anglo-Slavic word «stope/stopa» — across EN/DE/UK
+    # scopes. Catches all common shapes seen in the project:
+    #   EN: «stope», «per-stope», «stopa-anchor»
+    #   DE: «Stopa-Wert», «-Stope» / «-Stopen» compound suffixes,
+    #       «Reduzierungsstope», standalone «Stopa» / «Stope»
+    # Ukrainian «стопа» (Cyrillic) is the only legitimate form — the
+    # pattern won't match Cyrillic because `\b...\b` + ASCII letters.
+    (re.compile(r"\b(?:stope|stopa)(?:-\w+)?\b", re.IGNORECASE),
+     "error", "§2a", {"en", "de"},
+     "non-word «stope/stopa» — use «standard» / «Müntzfuß» / «-Fuß» / Cyrillic «стопа» (uk)"),
+    (re.compile(r"\b\w+-[Ss]top[ae]n?\b"),
+     "error", "§2a", {"en", "de"},
+     "compound with «-Stope/-Stopa/-Stopen» suffix — use «-Fuß» / «-Müntzfuß»"),
+    (re.compile(r"\bReduzierungsstope\b", re.IGNORECASE),
+     "error", "§2a", {"de"},
+     "non-word compound; use «Reduzierungs-Müntzfuß» or «reduzierter Müntzfuß»"),
 
     # ------------------------------------------------------------------
     # §2a — sensationalist intensifiers

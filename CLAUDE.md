@@ -516,7 +516,7 @@ Scripts drive every phase transition. **Hand-typing data into a later phase with
 
 **Curation rationale rule** (mandatory when adding `_curation_holds`). The `_curation_holds` field is per-entry escape hatch listing fields whose state must survive regen. Two shapes accepted (`merge_seed` reads both via `set(...)` on the keys):
 - **List form** (legacy, backward-compatible): `_curation_holds: [fineness, fineness_verified]` — bare field names, no rationale.
-- **Dict form (PREFERRED for new edits)**: `_curation_holds: {fineness: "Wilcke 1950 stopa-anchor per §4", fineness_verified: ~}` — value is free-text rationale (or `null` to freeze without commentary).
+- **Dict form (PREFERRED for new edits)**: `_curation_holds: {fineness: "Canonical Müntzfuß-anchor per §4 (Wilcke 1950)", fineness_verified: ~}` — value is free-text rationale (or `null` to freeze without commentary).
 
 When you ADD a new hold during a curation pass, ALWAYS use dict-form with a written reason. Future sessions reading the YAML without this conversation's context need to know WHY a field was frozen — otherwise the override becomes an undocumented black-box (the «archaeological reconstruction» problem). Reasons should explain:
 - What was changed (the new value or the «absent» state)

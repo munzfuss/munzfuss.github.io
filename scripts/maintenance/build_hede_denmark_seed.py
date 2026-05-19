@@ -59,9 +59,9 @@ output against the existing on-disk seed (when one is present):
 
       Dict form (PREFERRED — carries «why» rationale per field):
         _curation_holds:
-          fineness: "Canonical .98611111 stopa-anchor per CLAUDE.md §4"
+          fineness: "Canonical .98611111 Müntzfuß-anchor per CLAUDE.md §4"
           fineness_verified: ~                  # null = freeze without commentary
-          verification_note: "Extended with stopa-anchor rationale"
+          verification_note: "Extended with Müntzfuß-anchor rationale"
 
     Used when curation also customised a field outside CURATED_FIELDS
     (cleaned up the nominal, switched to a multi-source weight list,

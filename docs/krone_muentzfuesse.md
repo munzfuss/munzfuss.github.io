@@ -37,7 +37,7 @@ Die folgende Tabelle ist die Hede-1957-Synopsis, verbatim aus
 | **Fine kroner (13-Fuß)** | 13 je 13⅓-lødig (.833) Marck = 17,988 g rau / **14,984 g fein** | 1693–1771 | ⅔ Specie |
 | **Guldkrone (Gold)** | ≈ 39 je 22-Karat (.917) Marck = 5,996 g rau / **5,498 g fein** (ältere Form) | 1655–1668 | 3½ → 3 Specie |
 
-> Diese drei Silber-Krone-Stopen unterscheiden sich physikalisch
+> Diese drei Silber-Krone-Füße unterscheiden sich physikalisch
 > deutlich (Feingehalt, Raugewicht), tragen aber alle denselben
 > Krone-Namen und folgten alle derselben Tarif-Logik. Wer die
 > Krone-Mønt-Familie als ein einziges System darstellt, kollabiert
@@ -365,7 +365,7 @@ In Reihenfolge der Verlässlichkeit für unsere Anwendung:
 
 | ID | Quelle | URL | Belegt |
 |---|---|---|---|
-| **Hede-Krone** | Holger Hede, «Kronemønten 1618–1771», NNUM 1957, S. 129–134 | `danskmoent.dk/artikler/hedekron.htm` | Hede-Formeln aller drei Silber-Krone-Stopen; Datierung 1618–1652 / 1649-NO-1652-DK-1732 / 1693-1771; Reskript 31. Dezember 1692 verbatim; Forordning 22. März 1671 verbatim; Sonderemissionen 1665, 1675, 1699, 1746 |
+| **Hede-Krone** | Holger Hede, «Kronemønten 1618–1771», NNUM 1957, S. 129–134 | `danskmoent.dk/artikler/hedekron.htm` | Hede-Formeln aller drei Silber-Krone-Füße; Datierung 1618–1652 / 1649-NO-1652-DK-1732 / 1693-1771; Reskript 31. Dezember 1692 verbatim; Forordning 22. März 1671 verbatim; Sonderemissionen 1665, 1675, 1699, 1746 |
 | **Hede-Guldkrone** | Holger Hede, «Frederik III's guldkroner», NNUM 1957 | `danskmoent.dk/artikler/f3guldkr.htm` | Datierung Kopenhagen 1655 + Glückstadt 1657, 1659, 1660; zwei Müntzformeln; Forordning 2. Januar 1658; Commerce Collegium 14. Februar 1671 verbatim; Königliche Resolution 2. September 1701 verbatim |
 | **lex.dk** | Den Store Danske / lex.dk «dansk møntvæsen» | `lex.dk/dansk_m%C3%B8ntv%C3%A6sen` | 1692 Krone-zu-Kurant-Übergang verbatim; Møntloven 1873 verbatim |
 | **W-CoronaDanica** | Wikipedia DE «Corona Danica» | `de.wikipedia.org/wiki/Corona_Danica` | Christian-IV.-personnelle Phase 1618-1624/25; Frederik-III.-Fortsetzung ab 1651 (16,25 g → 14,964 g); Tarifgeschichte 1½ → 1⅓ Specie 1625 |
