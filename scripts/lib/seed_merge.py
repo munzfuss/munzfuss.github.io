@@ -22,10 +22,28 @@ fresh)` applies the 4-mechanism merge:
      (`*_verified: true`) while FRESH is unverified (`(?)` marker — absent flag
      or false), the source-attested existing value wins.
 
-  4. **`_curation_holds`** — per-entry escape hatch. List of field names whose
+  4. **`_curation_holds`** — per-entry escape hatch. Field names whose
      EXISTING state (present-or-absent) is frozen across regen. Stronger than
      CURATED_FIELDS — used when the curator REMOVED a default field, or
      REPLACED a parser-output verbatim.
+
+     **Two accepted shapes** (both yield the same set of frozen field
+     names via `set(...)` parsing; freeze semantics identical):
+
+       List form (legacy, bare field list — backward-compatible):
+         _curation_holds: [fineness, fineness_verified, verification_note]
+
+       Dict form (PREFERRED — carries «why» rationale per field):
+         _curation_holds:
+           fineness: "Wilcke 1950 places c4h120 at .8889, not Hede's later .875"
+           fineness_verified: ~                     # null = freeze without commentary
+           verification_note: "removed — see fineness reason"
+
+     The dict-form values are documentary only (free-text or `null`);
+     `merge_seed` consumes only the keys via `set(_curation_holds)`.
+     Curator authoring a NEW hold SHOULD use dict-form with a reason
+     so future sessions understand the manual override without
+     archaeological reconstruction.
 
 Reference implementation: `scripts/maintenance/build_hede_denmark_seed.py`. This
 module extracts the same logic for sibling builders (bruun / galster /

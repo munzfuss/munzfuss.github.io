@@ -49,12 +49,26 @@ output against the existing on-disk seed (when one is present):
     preserved, keys from fresh are added when not already present.
     Lets curation add Bruun citation fields (km, dav, bruun_*) on
     top of parser-derived Hede / Schou / Sieg defaults.
-  * Per-entry escape hatch: `_curation_holds: [field, ...]` — a
-    private meta-field on a coin entry listing additional field
-    names whose values should be preserved across regen. For the
-    rare cases where curation also customised a field outside
-    CURATED_FIELDS (e.g. cleaned up the nominal, switched to a
-    multi-source weight list).
+  * Per-entry escape hatch: `_curation_holds` — a private meta-field
+    on a coin entry naming additional fields whose values should be
+    preserved across regen. Two accepted shapes (both yield the same
+    frozen-field set via `set(...)` parsing):
+
+      List form (legacy, bare names — backward-compatible):
+        _curation_holds: [fineness, fineness_verified, verification_note]
+
+      Dict form (PREFERRED — carries «why» rationale per field):
+        _curation_holds:
+          fineness: "Canonical .98611111 stopa-anchor per CLAUDE.md §4"
+          fineness_verified: ~                  # null = freeze without commentary
+          verification_note: "Extended with stopa-anchor rationale"
+
+    Used when curation also customised a field outside CURATED_FIELDS
+    (cleaned up the nominal, switched to a multi-source weight list,
+    dropped a default verification_note after manual confirmation).
+    Curator authoring a NEW hold SHOULD use dict-form with a reason
+    so future sessions understand the manual override without
+    archaeological reconstruction.
   * `_VERIFIABLE_FIELDS` (fineness / weight_rough_g / diameter_mm /
     mint) — verified-wins-over-unverified rule per CLAUDE.md §4:
     when both candidates carry a value, and the EXISTING side is
@@ -1135,8 +1149,10 @@ def main() -> int:
         "#   merging the catalog dict (Bruun citation keys added by\n"
         "#   curation stay; Hede/Schou/Sieg keys flow from parser).\n"
         "#   For per-entry edge cases (custom nominal, multi-source\n"
-        "#   weight list, etc.) add `_curation_holds: [field, …]` to\n"
-        "#   the entry — listed fields are preserved across regen.\n"
+        "#   weight list, etc.) add `_curation_holds: {field: \"why\",\n"
+        "#   …}` to the entry — listed fields are preserved across\n"
+        "#   regen. Dict-form with «why» reasons preferred over bare\n"
+        "#   list form so future sessions know the rationale.\n"
         "#   New ids from cache appear with fuss=seed_unsorted +\n"
         "#   phase=hede as a signal for pending curation.\n"
         "#\n"

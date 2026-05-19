@@ -16,8 +16,10 @@
 #   merging the catalog dict (Bruun citation keys added by
 #   curation stay; Hede/Schou/Sieg keys flow from parser).
 #   For per-entry edge cases (custom nominal, multi-source
-#   weight list, etc.) add `_curation_holds: [field, …]` to
-#   the entry — listed fields are preserved across regen.
+#   weight list, etc.) add `_curation_holds: {field: "why",
+#   …}` to the entry — listed fields are preserved across
+#   regen. Dict-form with «why» reasons preferred over bare
+#   list form so future sessions know the rationale.
 #   New ids from cache appear with fuss=seed_unsorted +
 #   phase=hede as a signal for pending curation.
 #
@@ -39,10 +41,10 @@
 #
 # Total coins: 884
 # Scope: 1514 <= year_first <= 1914
-# Generated: 2026-05-18T18:45:40Z
+# Generated: 2026-05-19T07:13:29Z
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-05-18T18:45:40Z'
+generated_at: '2026-05-19T07:13:29Z'
 scope_year_from: 1514
 scope_year_to: 1914
 coins:
@@ -2012,9 +2014,10 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c4h5
-    # Curation: set canonical fineness 0.98611111 + extended
-    # verification_note per CLAUDE.md §4 (Category-1 stopa anchor).
-    _curation_holds: [fineness, fineness_verified, verification_note]
+    _curation_holds:
+      fineness: "Set to canonical .98611111 (Reichsdukatenfuß Category-1 stopa anchor, CLAUDE.md §4) — supersedes Hede page default."
+      fineness_verified: "Flipped true once canonical anchor adopted; flag must persist across regen."
+      verification_note: "Extended with Category-1 stopa-anchor rationale; freeze so default regen text doesn't overwrite."
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
@@ -2580,9 +2583,9 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c4h52
-    # Curation: nominal cleaned («2 Speciedaler 1603» → «2 Speciedaler»),
-    # source ref annotated with parser-fix history.
-    _curation_holds: [nominal, sources]
+    _curation_holds:
+      nominal: "Cleaned «2 Speciedaler 1603» → «2 Speciedaler» (parser inadvertently appended the H1 year); freeze so regen doesn't re-introduce the «1603» tail."
+      sources: "Source ref annotated with parser-fix history; freeze so regen doesn't restore the un-annotated default."
     fuss: 9_thaler
     phase: I
     kind: kurant
@@ -13467,9 +13470,11 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c5h55
-    # Curation: appended «U.år» (= "uden år", Danish for undated) +
-    # explicit year_label range; parser doesn't track undated status.
-    _curation_holds: [nominal, year_label, year_first, year_last]
+    _curation_holds:
+      nominal: "Appended «U.år» (= uden år, Danish for undated) — parser doesn't track undated status; freeze so regen doesn't strip the marker."
+      year_label: "Explicit year_label range overriding parser's u.år-derived interpretation; freeze."
+      year_first: "Curator-set per source attribution; freeze so regen doesn't reset to u.år placeholder."
+      year_last: "Same — curator-set per source attribution."
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
@@ -13563,8 +13568,11 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c5h58
-    # Curation: appended «U.år» (undated) + explicit year_label range.
-    _curation_holds: [nominal, year_label, year_first, year_last]
+    _curation_holds:
+      nominal: "Appended «U.år» (= uden år, undated) — parser doesn't track undated status; freeze marker."
+      year_label: "Explicit year_label range overriding parser's u.år-derived interpretation; freeze."
+      year_first: "Curator-set per source attribution; freeze."
+      year_last: "Curator-set per source attribution; freeze."
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
@@ -18614,14 +18622,8 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c5h43
-    # Curation: danskmoent c5h42 page labels this entry «3 Dukat» but
-    # publishes its Bruttovægt as 3,490g — that's a 1-Dukat-shaped
-    # weight, NOT a 3-Dukat (which would be ~10,5g). Curator overrode
-    # to «2 Dukat» pending source-resolution; cataloging (Schou 1 /
-    # Sieg 69) is itself mismatched and needs separate investigation.
-    # `nominal` held so regen doesn't restore the page's «3 Dukat»
-    # label that contradicts the weight.
-    _curation_holds: [nominal]
+    _curation_holds:
+      nominal: "danskmoent c5h42 labels «3 Dukat» but Bruttovægt 3.490g = 1-Dukat-shaped (3-Dukat would be ~10.5g). Curator overrode to «2 Dukat» pending source-resolution (Schou 1 / Sieg 69 mismatch needs separate investigation). Freeze so regen doesn't restore page's contradictory «3 Dukat» label."
     fuss: reichsdukatenfuss
     phase: I
     kind: kurant
@@ -26447,10 +26449,10 @@ coins:
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '1'
   - id: dk-hede-f7h3
-    # Curation: switched weight_rough_g to multi-source list (§9a),
-    # added Bruun auction source, dropped default verification_note
-    # after manual confirmation.
-    _curation_holds: [weight_rough_g, sources, verification_note]
+    _curation_holds:
+      weight_rough_g: "Switched to multi-source list per §9a (parser emits scalar from danskmoent; curator added Bruun auction reading)."
+      sources: "Added Bruun auction source on top of parser's danskmoent literature ref; freeze so regen doesn't drop Bruun entry."
+      verification_note: "Dropped default after manual confirmation — freeze ABSENT-state so regen doesn't re-add the «pending» boilerplate."
     fuss: 9_25_thaler
     phase: IV
     kind: kurant
