@@ -91,7 +91,24 @@ RARITY_RE = re.compile(
     r"\b(EXTREMELY RARE|UNIQUE|VERY RARE|EXCESSIVELY RARE|EXTRAORDINARILY RARE|RARE|R{2,5})\b",
     re.IGNORECASE,
 )
-PATTERN_RE = re.compile(r"\b(Pattern|Probe|Essai|Trial|Pn\d+|Probestrike)\b", re.IGNORECASE)
+PATTERN_RE = re.compile(
+    # Krause / English pattern markers
+    r"\b(Pattern|Probe|Probestrike|Essai|Trial(?:\s+Strike)?|Pn\d+|"
+    # Double-thickness die trial (French «Piéfort» / Danish-numismatic
+    # «Piefort» / English-prose «Piedfort») — extra-thick planchet used
+    # for collectors' presentation of a circulation die. Per CLAUDE.md
+    # §9.1 these are trial strikes, not coins.
+    r"Piefort|Piedfort|Pi[ée]fort|"
+    # Off-metal strikes — Danish numismatic terms for «trial of a die
+    # in a metal other than the circulation issue» (silver trial of a
+    # gold die, etc.). Per CLAUDE.md §9.3 these are off-strike single
+    # specimens, not circulating coins.
+    r"S[øo]lvafslag|Guldafslag|Kroneafslag|"
+    # Generic «off-metal strike» phrasing seen in Stack's Bowers catalogue
+    # prose (Bruun catalogue uses this on cross-metal trial entries).
+    r"off[\- ]metal\s+strike)\b",
+    re.IGNORECASE,
+)
 MEDAL_RE = re.compile(r"\b(Medal(?:lion)?|Jeton|Token|Medaille)\b", re.IGNORECASE)
 
 # First metadata line shape: "REGION_TOKEN. <denomination_year>. <mint>. <ruler>. <grade>."

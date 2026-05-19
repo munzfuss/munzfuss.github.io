@@ -238,6 +238,16 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     if region not in REALM_REGIONS:
         return None
 
+    # CLAUDE.md §9.1 — patterns / trial strikes / off-metal strikes never
+    # reach the seed. The Phase 2 parser (`scripts/bruun_parser/02_parse_lots.py`)
+    # sets `is_pattern: true` on lots whose meta/body matches the trial-strike
+    # regex (Pattern / Probe / Essai / Pn-ref / Piefort / Piedfort / Sølvafslag
+    # / Guldafslag / off-metal strike); the seed builder consumes that flag —
+    # per the linear-pipeline principle, Phase 3 reads only Phase 2 output, no
+    # re-parsing of body text here.
+    if lot.get("is_pattern"):
+        return None
+
     meta = lot.get("meta_line") or ""
     body = lot.get("body_excerpt") or ""
     refs = lot.get("refs") or {}
@@ -349,6 +359,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
 
 def collect_entries() -> list[dict]:
     entries: list[dict] = []
+    trial_skipped: list[tuple[int, int, str]] = []  # (part, lot_no, denomination)
     for part in (1, 2, 3, 4):
         path = CACHE_DIR / f"part{part}.json"
         if not path.exists():
@@ -357,11 +368,27 @@ def collect_entries() -> list[dict]:
         data = json.loads(path.read_text())
         added = 0
         for lot in data:
+            # Diagnostic — count §9.1 trial-strike suppressions for IN-SCOPE
+            # lots only (out-of-scope-anyway trials make for thousands of
+            # uninteresting noise; we only care about the ones the seed
+            # would otherwise have admitted).
+            if lot.get("is_pattern"):
+                year = parse_year(lot)
+                region = (lot.get("region") or "").strip()
+                if year is not None and YEAR_FROM <= year <= YEAR_TO and region in REALM_REGIONS:
+                    denom_hint = (lot.get("meta_line") or "")[:70]
+                    trial_skipped.append((part, lot.get("lot_no", 0), denom_hint))
             entry = build_coin_entry(part, lot)
             if entry:
                 entries.append(entry)
                 added += 1
         print(f"  part{part}: {added} entries added (from {len(data)} total lots)")
+    if trial_skipped:
+        print(f"\n  Trial-strike filter (§9.1) suppressed {len(trial_skipped)} in-scope lot(s):")
+        for part, lot_no, hint in trial_skipped[:10]:
+            print(f"    part{part} lot {lot_no} — {hint}")
+        if len(trial_skipped) > 10:
+            print(f"    … and {len(trial_skipped) - 10} more")
     return entries
 
 
