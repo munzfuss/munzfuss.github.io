@@ -63,6 +63,7 @@ from lib.seed_merge import merge_seed  # noqa: E402
 # Both files share the same data-accumulation conventions (D17-D21).
 from maintenance.merge_seeds_cross_source import (  # noqa: E402
     match_pair,
+    _build_reign_index,
     _collect_field_list,
     _collect_sources,
     _collect_mints,
@@ -269,15 +270,20 @@ def _bulk_promote_mode(entity_id: str) -> str | None:
     return None
 
 
-def _has_basic_peer(unified: dict, finals: list[dict], entity_id: str | None) -> bool:
+def _has_basic_peer(unified: dict, finals: list[dict], entity_id: str | None,
+                    reign_index: dict | None = None) -> bool:
     """Return True if any final entry shares the unified's
     metal AND nominal (the strict «basic peer» check per
     `_compute_coin`'s match-pair primary signals). Used by
     bulk_promote mode «no_basic_peer_only» to safely promote
     only the «genuinely new type» subset of pending entries.
+
+    `reign_index` (D33 / D41) is forwarded to `match_pair` so that
+    coins with `ruler: None` get year→reign inference applied
+    consistently with the merger's pre-pass behaviour.
     """
     for f in finals:
-        result = match_pair(unified, f, entity_id)
+        result = match_pair(unified, f, entity_id, reign_index=reign_index)
         pri = result.get("primary") or {}
         if pri.get("metal") is True and pri.get("nominal") is True:
             return True
@@ -285,7 +291,8 @@ def _has_basic_peer(unified: dict, finals: list[dict], entity_id: str | None) ->
 
 
 def _all_basic_peers_no_match_primary(unified: dict, finals: list[dict],
-                                       entity_id: str | None) -> bool | None:
+                                       entity_id: str | None,
+                                       reign_index: dict | None = None) -> bool | None:
     """Return True if EVERY basic-peer (metal+nominal match) returns
     `decision: no_match` AND at least one peer's no_match was caused
     by an EXPLICIT primary-signal disagreement (`catalog: False` or
@@ -301,11 +308,13 @@ def _all_basic_peers_no_match_primary(unified: dict, finals: list[dict],
     safely promote D + E category pending entries (different sub-
     variant by explicit catalog/ruler signal) while keeping H + C
     category entries in pending for curator review.
+
+    `reign_index` (D33 / D41) is forwarded to `match_pair`.
     """
     saw_basic_peer = False
     saw_primary_disagreement = False
     for f in finals:
-        result = match_pair(unified, f, entity_id)
+        result = match_pair(unified, f, entity_id, reign_index=reign_index)
         pri = result.get("primary") or {}
         # Skip non-basic-peers (metal/nominal not both True)
         if not (pri.get("metal") is True and pri.get("nominal") is True):
@@ -354,6 +363,22 @@ def process_entity(entity_id: str) -> dict:
 
     bulk_promote_mode = _bulk_promote_mode(entity_id)
 
+    # D41 — reign-index ruler inference, extended from Phase 3.2 to
+    # Phase 4 absorb. The merger pre-pass (`merge_seeds_cross_source.py`)
+    # builds a `{year → set(rulers)}` index from members that DO carry
+    # an attested ruler and uses it to infer ruler on null-ruler coins
+    # via singleton-year lookup (D33). Until D41 the absorb script did
+    # NOT forward that index into its `match_pair` calls, so the H-case
+    # pending entries that the merger's pre-pass had inferred ruler on
+    # were still treated as ruler=None in absorb's match — losing the
+    # inference at the Phase 3.2 → Phase 4 boundary. Building the index
+    # here from BOTH unified + foundation entries (both carry attested
+    # rulers) and forwarding to every match_pair / _has_basic_peer /
+    # _all_basic_peers_no_match_primary call restores the inference.
+    reign_index = _build_reign_index(
+        list(unified_entries) + list(final_entries), entity_id
+    )
+
     # PURGE stale composed_of entries — when the cross-source merger
     # consolidates two previously-separate unified entries into one
     # (e.g. unified-denmark-numismaster-65046 + unified-dk-hede-c4h134
@@ -393,7 +418,7 @@ def process_entity(entity_id: str) -> dict:
         # Find match against final entries (per §5.2 hierarchy)
         candidates = []
         for fid, fc in final_by_id.items():
-            result = match_pair(unified, fc, entity_id)
+            result = match_pair(unified, fc, entity_id, reign_index=reign_index)
             if result["decision"] == "confident":
                 candidates.append(fid)
         if not candidates:
@@ -455,7 +480,8 @@ def process_entity(entity_id: str) -> dict:
             # silently duplicate an existing foundation entry whose
             # auto-match was blocked by a fixable signal disagreement.
             if bulk_promote_mode == "no_basic_peer_only":
-                if _has_basic_peer(unified, existing_finals_for_peer_check, entity_id):
+                if _has_basic_peer(unified, existing_finals_for_peer_check,
+                                   entity_id, reign_index=reign_index):
                     bulk_skipped.append(uid)
                     continue
             # Mode «no_match_primary_disagrees» (D40): superset of D39.
@@ -467,7 +493,8 @@ def process_entity(entity_id: str) -> dict:
             # cases in pending for curator review.
             elif bulk_promote_mode == "no_match_primary_disagrees":
                 primary_disagreement = _all_basic_peers_no_match_primary(
-                    unified, existing_finals_for_peer_check, entity_id
+                    unified, existing_finals_for_peer_check,
+                    entity_id, reign_index=reign_index,
                 )
                 if primary_disagreement is False:
                     # Basic peer exists but matcher didn't say

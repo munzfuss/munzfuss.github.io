@@ -470,6 +470,26 @@
 
 - **Encoded in**: `scripts/maintenance/absorb_seeds_into_final_v2.py` — `_bulk_promote_mode` (4 modes), `_all_basic_peers_no_match_primary` (D40 peer-check helper), `process_entity` (bulk-promote loop branches). 9 classification_decisions files carry `bulk_promote_pending: no_match_primary_disagrees`.
 
+### D41 — D33 ruler-inference extended to Phase 4 absorb
+
+- **Decision (2026-05-19)**: D33 built the `{year → set(rulers)}` reign-index and ruler-inference machinery, but only the Phase 3.2 merger (`merge_seeds_cross_source.py::build_unified`) constructed + forwarded it to `match_pair`. Phase 4 absorb (`absorb_seeds_into_final_v2.py::process_entity`) called `match_pair` WITHOUT `reign_index`, so coins with `ruler: None` that the merger had inferred a ruler for were treated as ruler-unknown again at the absorb stage. D41 builds the same index in absorb and forwards it to every `match_pair` call (main match-pass loop + `_has_basic_peer` + `_all_basic_peers_no_match_primary`).
+
+- **Motivation**: After D40 drained 543 of the 583 D/E pending entries, the 40 stable-pending residual contained two distinct shapes (categorisation pass 2026-05-19):
+  - **6 cases** — NumisMaster MC entries with `ruler: null` whose year unambiguously maps to one reign. Example: `unified-denmark-numismaster-117920` («16 Skilling 1644, km=136.1»). The reign-index built from the corpus says `reign_index[1644] = {christian iv}` (singleton). With reign_index forwarded, `match_pair` infers ruler=Christian IV; suddenly the foundation peer `km-x033-chr-iv-1644-sixteen` (which has explicit `ruler: Christian IV.`) reaches `decision: confident` and gets absorbed. These 6 are the EASY unlock — pure inference plumbing, no semantic change.
+  - **33 cases** — coins with ruler already attested but `low_confidence` decision on at least one peer (e.g. `unified-denmark-numismaster-41815` 10 Øre 1894-1905 Christian IX km=795.2 vs foundation km-795-2-chr-ix-1897 km=795.2: catalog matches, ruler matches, fineness matches, but `mint: False` — likely mint-normalisation gap «Kopenhagen» / «Copenhagen» / null). These need a different intervention (mint normaliser fix or per-coin curator `merges:` decision); D41 does NOT unlock them.
+
+- **Mechanic**:
+  1. Import `_build_reign_index` from `merge_seeds_cross_source` alongside the already-imported `match_pair`.
+  2. In `process_entity`, build the index from BOTH `unified_entries` AND `final_entries` (both carry attested rulers — foundation has the V1-migrated ruler data, unified has cross-source-merged data). Single call: `reign_index = _build_reign_index(list(unified_entries) + list(final_entries), entity_id)`.
+  3. `_has_basic_peer` and `_all_basic_peers_no_match_primary` signatures gain a `reign_index: dict | None = None` keyword parameter. Both forward to `match_pair(..., reign_index=reign_index)`.
+  4. Three call sites in `process_entity` updated to pass `reign_index=reign_index`: the main match-pass loop (line 405), the D39 `_has_basic_peer` call (line 483), the D40 `_all_basic_peers_no_match_primary` call (line 494-495).
+
+- **First real result (2026-05-19)**: 1st `--apply` run after D41 absorbed **6 newly-matched** entries (the forecast 6 in the categorisation pass). `Already absorbed (prev runs): 1373 → 2501` includes both the absorb cascade and the new D41 hits. Pending: **40 → 34** (-6 = 15% of the post-D40 residual). 2nd run idempotent (`Newly absorbed: 0`). audit_v2 --quick: 0 violations.
+
+- **Path forward for the remaining 34**: 33 in danish_realm + 1 in royal_holstein. All are H-category (primary all True/None, fallback disagrees on mint or year-range) — typical pattern is «same KM#, same ruler, same fineness, but mint divergence». Likely paths: (a) `_normalise_mints` enhancement to handle Kopenhagen/Copenhagen/null gracefully; (b) per-coin curator `merge_decisions/<entity>.yml::merges` entries flagging «this NumisMaster MC = this foundation Hede coin». Tracked as a follow-up beyond §AZ Phase 4.
+
+- **Encoded in**: `scripts/maintenance/absorb_seeds_into_final_v2.py` — import `_build_reign_index`, `process_entity` builds the index once, all three match-pair call sites forward it. The merger's reign-index implementation (`_build_reign_index`, `_infer_ruler`, normalisers) is REUSED VERBATIM from `merge_seeds_cross_source.py`; D41 is purely a plumbing extension, no algorithmic change.
+
 ### D36 — Curator merge decisions: smart override that doesn't block future enrichments
 
 - **Decision (2026-05-18)**: When the auto-matcher cannot decide a pair (genuine numismatic ambiguity — e.g. NumisMaster's rolled-up multi-reign record vs Hede's per-reign split), the curator writes an explicit verdict in `data/v2/merge_decisions/<entity>.yml` with two surfaces:
