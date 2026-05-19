@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 369 per-source seed entries.
-# Output: 355 unified entries (one per physical coin).
+# Output: 354 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -6498,28 +6498,39 @@ coins:
   year_label: 1716–1720
   fraction: 1/8
   ruler: Frederik IV.
-  mint: Rendsburg
+  mint:
+  - Rendsborg
+  - Rendsburg
   catalog:
+    km: '6'
     hede: '62'
     hede_volume: f4h
     schou: '9'
     sieg: '59'
     fr: '4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.562
     source: hede
+  - value: 0.562
+    source: numismaster
   weight_rough_g:
   - value: 3.898
     source: hede
+  - value: 3.898
+    source: numismaster
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h62.htm
     ref: danskmoent.dk (Hede f4h62)
+  - type: literature
+    url: https://numismaster.com/MC_66626
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -6528,6 +6539,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-hede-f4h62
+  - schleswig_holstein-numismaster-66626
 - id: unified-dk-hede-f4h63
   fuss: seed_unsorted
   phase: hede
@@ -9670,46 +9682,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-187160
-- id: unified-schleswig_holstein-numismaster-66626
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 12 Skilling
-  year_first: 1716
-  year_last: 1720
-  year_ranges:
-  - - 1716
-    - 1720
-  year_label: 1716–1720
-  mint: Rendsborg
-  catalog:
-    km: '6'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.562
-    source: numismaster
-  weight_rough_g:
-  - value: 3.898
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_66626
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-66626
 - id: unified-schleswig_holstein-numismaster-66629
   fuss: seed_unsorted
   phase: numismaster
