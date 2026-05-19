@@ -4341,6 +4341,7 @@ coins:
     numista: N# 190127
     fr: '4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
@@ -4351,7 +4352,11 @@ coins:
     source: hede
   - value: 0.671
     source: tid
+  - value: 0.993
+    source: numismaster
   weight_rough_g:
+  - value: 45.287
+    source: numismaster
   - value: 66.816
     source: Hede 1971 (f4h41 Soll-Brutto)
   - value: 66.816
@@ -4379,30 +4384,40 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h41.htm
     ref: danskmoent.dk (Hede f4h41)
+  - type: literature
+    url: https://numismaster.com/MC_65367
+    ref: NumisMaster
+  note:
+    de: '3 Krone 1726 Frederik IV. (KM-525, Hede 41, Schou 2, Sieg 22, Fr 4, Dav 1293) — Repräsentationsausgabe in zwei Stempel-Varianten
+      dokumentiert: Hede 1971 (f4h41), Numista (N# 190127), Bruun Part I lot 1136 und ucoin (tid 173635) führen die <b>Umlauf-Variante</b>
+      (Silber 0,671 ≈ 10 Loth, Bruttogewicht ≈ 67 g); NumisMaster MC_65367 verzeichnet eine <b>höher-feine Variante</b> (Silber
+      0,993, Bruttogewicht 45,287 g, mintage 86 für 1726). Beide Lesungen sind auf der Feinsilber-Achse äquivalent — 67 g
+      × .671 ≈ 44,8 g fein vs 45,287 g × .993 ≈ 45,0 g fein (Δ ≈ 0,3 % innerhalb Spezimen-Toleranz). Krause-Mishler katalogisiert
+      beide Varianten unter einem einzigen KM-525 ohne Sub-Index. Akkumulierte <code>fineness</code>- und <code>weight_rough_g</code>-Listen
+      bewahren alle Lesungen mit Quellenattribution — der Leser sieht beide Stempel-Varianten mit Provenienz.'
+    en: '3 Krone 1726 Frederik IV (KM-525, Hede 41, Schou 2, Sieg 22, Fr 4, Dav 1293) — presentation issue documented in two
+      strike variants: Hede 1971 (f4h41), Numista (N# 190127), Bruun Part I lot 1136 and ucoin (tid 173635) record the <b>circulation
+      variant</b> (silver 0.671 ≈ 10 Loth, gross weight ≈ 67 g); NumisMaster MC_65367 records a <b>higher-fineness variant</b>
+      (silver 0.993, gross weight 45.287 g, mintage 86 for 1726). The two readings are equivalent on the fine-silver axis
+      — 67 g × .671 ≈ 44.8 g fine vs 45.287 g × .993 ≈ 45.0 g fine (Δ ≈ 0.3 % within specimen tolerance). Krause-Mishler catalogues
+      both variants under a single KM-525 without sub-index. The accumulated <code>fineness</code> and <code>weight_rough_g</code>
+      lists preserve every reading with source attribution — the reader sees both strike variants with provenance.'
+    uk: '3 Krone 1726 Frederik IV (KM-525, Hede 41, Schou 2, Sieg 22, Fr 4, Dav 1293) — презентаційна емісія задокументована
+      у двох штемпель-варіантах: Hede 1971 (f4h41), Numista (N# 190127), Bruun Part I lot 1136 та ucoin (tid 173635) подають
+      <b>обігову варіанту</b> (срібло 0,671 ≈ 10 Loth, повна вага ≈ 67 г); NumisMaster MC_65367 подає <b>вищу-проби варіанту</b>
+      (срібло 0,993, повна вага 45,287 г, mintage 86 за 1726). Обидва значення еквівалентні по осі чистого срібла — 67 г ×
+      .671 ≈ 44,8 г чистого vs 45,287 г × .993 ≈ 45,0 г чистого (Δ ≈ 0,3 % у межах допусків специмена). Krause-Mishler катологує
+      обидва варіанти під єдиним KM-525 без sub-індексу. Акумульовані списки <code>fineness</code> і <code>weight_rough_g</code>
+      зберігають усі значення з джерельною атрибуцією — читач бачить обидва штемпель-варіанти з provenance.'
   verification_note:
-    de: 'ucoin (tid 173635) verzeichnet <i>Composition · Silver .993, 45,29 g</i>. Hede 1971 (f4h41), Numista (N# 190127)
-      und Bruun Part I lot 1136 dokumentieren übereinstimmend die <b>kronemont-Umlaufprägung</b>: Silber .671 Feingehalt,
-      ≈ 67 g rauh. Beide Datenpunkte sind <i>kompatibel auf der Feinsilber-Achse</i>: 67 g × .671 ≈ 44,8 g fein vs 45,29 g
-      × .993 ≈ 45,0 g fein — identisches Silbergewicht in zwei verschiedenen Legierungs-Formaten. Die ucoin-Daten entsprechen
-      also nicht der Umlaufprägung, sondern höchstwahrscheinlich einem <b>sølvafslag</b> (Nahrein-Silber-Abschlag) derselben
-      Stempel — ein bekanntes Phänomen bei Sonderprägungen des 18. Jahrhunderts. Müntzfuß-Zuordnung kronemont/C gilt für die
-      Umlauf-Variante (Hede 41); falls ein eindeutiger sølvafslag dokumentiert werden soll, wäre eine separate Sub-Eintragung
-      mit fineness .993 / weight 45,29 g angebracht.'
-    en: 'ucoin (tid 173635) records <i>Composition · Silver .993, 45.29 g</i>. Hede 1971 (f4h41), Numista (N# 190127) and
-      Bruun Part I lot 1136 jointly document the <b>kronemont currency strike</b>: silver .671 fineness, ≈ 67 g raw. The two
-      readings are <i>compatible on the fine-silver axis</i>: 67 g × .671 ≈ 44.8 g fine vs 45.29 g × .993 ≈ 45.0 g fine —
-      identical silver content in two different alloy formats. ucoin''s data therefore does not describe the currency strike
-      but most likely a <b>sølvafslag</b> (near-pure silver off-strike) from the same dies — a known 18th-century phenomenon
-      for special issues. Müntzfuß placement kronemont/C applies to the currency variant (Hede 41); a dedicated sub-entry
-      would be appropriate if a documented sølvafslag is to be carried at fineness .993 / weight 45.29 g.'
-    uk: 'ucoin (tid 173635) подає <i>Composition · Silver .993, 45,29 г</i>. Hede 1971 (f4h41), Numista (N# 190127) і Bruun
-      Part I lot 1136 одностайно фіксують <b>обігову kronemont-емісію</b>: срібло проби .671, ≈ 67 г повної ваги. Обидва набори
-      даних <i>збігаються по осі чистого срібла</i>: 67 г × .671 ≈ 44,8 г чистого vs 45,29 г × .993 ≈ 45,0 г чистого — той
-      самий вміст чистого срібла у двох різних варіантах сплаву. Тобто дані ucoin описують не обігову емісію, а найімовірніше
-      <b>sølvafslag</b> (near-pure silver off-strike) тим самим штемпелем — відоме явище для спеціальних випусків XVIII ст.
-      Прив''язка kronemont/C стосується обігової варіанти (Hede 41); якщо потрібно фіксувати документований sølvafslag, варто
-      завести окремий sub-запис із fineness .993 / weight 45,29 г.'
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-denmark-numismaster-65367
   - unified-dk-hede-f4h41
   v1_home_location: denmark
 - fuss: 9_thaler
@@ -13313,21 +13328,18 @@ coins:
     url: https://www.danskmoent.dk/chr/c5h110.htm
     ref: danskmoent.dk (Hede c5h110)
   note:
-    de: "8 Skilling Christian V. 1693 (KM-423, Hede 110, Schou 64-65, Sieg 13) — Scheidemünze nach
-      dem 9¼-Speciedaler-Fuß-Standard. Mint <i>København</i> per Hede c5h110 attestiert. Drei Quellen,
-      zwei Feingehaltsangaben: Hede 1971 und NumisMaster melden <b>0,833</b> (10 Loth Silber); ucoin
-      (tid 97090) meldet <b>0,671</b> (≈ 8 Loth). Die akkumulierte <code>fineness</code>-Liste bewahrt
-      alle drei Lesungen mit Quellenattribution — der Leser sieht die Divergenz mit Provenienz."
-    en: "8 Skilling Christian V 1693 (KM-423, Hede 110, Schou 64-65, Sieg 13) — Scheidemünze under
-      the 9¼-Speciedaler-Fuß standard. Mint <i>København</i> attested per Hede c5h110. Three sources,
-      two fineness readings: Hede 1971 and NumisMaster report <b>0.833</b> (10-Loth silver); ucoin
-      (tid 97090) reports <b>0.671</b> (≈ 8 Loth). The accumulated <code>fineness</code> list preserves
-      all three readings with source attribution — the reader sees the divergence with provenance."
-    uk: "8 Skilling Christian V 1693 (KM-423, Hede 110, Schou 64-65, Sieg 13) — Scheidemünze за
-      стандартом 9¼-Speciedaler-Fuß. Mint <i>København</i> засвідчено за Hede c5h110. Три джерела,
-      два значення проби: Hede 1971 і NumisMaster подають <b>0,833</b> (10-Loth срібло); ucoin (tid
-      97090) подає <b>0,671</b> (≈ 8 Loth). Акумульований список <code>fineness</code> зберігає всі
-      три значення з джерельною атрибуцією — читач бачить розбіжність з provenance."
+    de: '8 Skilling Christian V. 1693 (KM-423, Hede 110, Schou 64-65, Sieg 13) — Scheidemünze nach dem 9¼-Speciedaler-Fuß-Standard.
+      Mint <i>København</i> per Hede c5h110 attestiert. Drei Quellen, zwei Feingehaltsangaben: Hede 1971 und NumisMaster melden
+      <b>0,833</b> (10 Loth Silber); ucoin (tid 97090) meldet <b>0,671</b> (≈ 8 Loth). Die akkumulierte <code>fineness</code>-Liste
+      bewahrt alle drei Lesungen mit Quellenattribution — der Leser sieht die Divergenz mit Provenienz.'
+    en: '8 Skilling Christian V 1693 (KM-423, Hede 110, Schou 64-65, Sieg 13) — Scheidemünze under the 9¼-Speciedaler-Fuß
+      standard. Mint <i>København</i> attested per Hede c5h110. Three sources, two fineness readings: Hede 1971 and NumisMaster
+      report <b>0.833</b> (10-Loth silver); ucoin (tid 97090) reports <b>0.671</b> (≈ 8 Loth). The accumulated <code>fineness</code>
+      list preserves all three readings with source attribution — the reader sees the divergence with provenance.'
+    uk: '8 Skilling Christian V 1693 (KM-423, Hede 110, Schou 64-65, Sieg 13) — Scheidemünze за стандартом 9¼-Speciedaler-Fuß.
+      Mint <i>København</i> засвідчено за Hede c5h110. Три джерела, два значення проби: Hede 1971 і NumisMaster подають <b>0,833</b>
+      (10-Loth срібло); ucoin (tid 97090) подає <b>0,671</b> (≈ 8 Loth). Акумульований список <code>fineness</code> зберігає
+      всі три значення з джерельною атрибуцією — читач бачить розбіжність з provenance.'
   verification_note:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
