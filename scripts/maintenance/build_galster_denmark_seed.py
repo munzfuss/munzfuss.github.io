@@ -184,6 +184,7 @@ def build_entry(data: dict) -> dict | None:
 
 def collect_entries() -> list[dict]:
     entries: list[dict] = []
+    skipped_shape = 0
     for json_path in sorted(GALSTER_CACHE.glob("*.json")):
         if json_path.name.startswith("_"):
             continue
@@ -192,9 +193,18 @@ def collect_entries() -> list[dict]:
         except json.JSONDecodeError as e:
             print(f"  [{json_path.name}] JSON parse error: {e}", file=sys.stderr)
             continue
+        # Skip non-coin pages flagged by the per-shape parser
+        # (`scripts/lib/galster_parsers/{reign_index,article}.py`).
+        # These carry `skip: True` + `skip_reason` and are not coin
+        # data — they exist as JSON sidecars purely for cache audit.
+        if data.get("skip"):
+            skipped_shape += 1
+            continue
         entry = build_entry(data)
         if entry:
             entries.append(entry)
+    if skipped_shape:
+        print(f"  Skipped {skipped_shape} non-coin page(s) (article / reign_index)")
     return entries
 
 
