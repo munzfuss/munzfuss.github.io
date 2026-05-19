@@ -306,9 +306,72 @@ def _expand_year_ranges(text: str) -> str:
     return text
 
 
+# Year references that are NOT mint years and must be stripped before
+# the year-block matcher runs. Danish numismatic prose on Hede pages
+# routinely mentions legal-act dates («forordning af 21. marts 1648»,
+# «slået efter møntordning 1544») and historical narratives («svenske
+# hærs hærgen i Jylland 1643-44», «Trediveårskrigen 1618-48»). Without
+# this filter the body-scan path treats every 4-digit year token as a
+# mint year, polluting the per-coin year_label.
+_NON_MINT_YEAR_PATTERNS = [
+    # Legal-act references — «forordning <date> YYYY», «møntordning YYYY»,
+    # «patent af YYYY», «reskript YYYY». The capture extends through the
+    # year that follows so the year is removed from the scan window.
+    re.compile(
+        r"\b(?:m[øo]ntordning(?:en)?|m[øo]ntreform(?:en)?|m[øo]ntreskript(?:et)?|"
+        r"forordning(?:en)?|patent(?:et)?|plakat(?:en)?|reskript(?:et)?|"
+        r"lov(?:en)?|m[øo]ntlov(?:en)?)"
+        r"(?:\s+(?:af|fra|under))?"
+        r"(?:\s+\d{1,2}\.?\s*\w+)?"   # «21. marts» date head
+        r"\s+(\d{4})(?:\s*-\s*\d{2,4})?",
+        re.IGNORECASE,
+    ),
+    # Historical-narrative references — «i 1643-44», «under 1620erne».
+    # Targeted to common Danish narrative prepositions to keep the rule
+    # conservative; mint-year contexts almost never use these forms.
+    re.compile(
+        r"\b(?:hærg(?:en|ede)|krig(?:en)?|indtrængen|Syvaarskrig(?:en)?|"
+        r"Trediveårskrig(?:en)?|Niårskrig(?:en)?|Skånsk(?:e)?\s+krig)\b"
+        r"[^.]{0,80}?\b(\d{4})(?:\s*-\s*\d{2,4})?",
+        re.IGNORECASE,
+    ),
+    # Bibliographic refs — «NNUM 2017», «Numismatisk Rapport 62, 1999».
+    # These usually live in Litteratur sections (past the section boundary)
+    # but defensive coverage helps when Litteratur is missing.
+    re.compile(
+        r"\b(?:NNUM|Numismatisk\s+Rapport|Hede\s+1971|Wilcke\s+\d+)\b"
+        r"[^.]{0,60}?\b(\d{4})\b",
+        re.IGNORECASE,
+    ),
+]
+
+
+def _strip_non_mint_year_refs(text: str) -> str:
+    """Remove legal-act / historical-narrative year references from a
+    scan window so the year-block matcher doesn't pick up their years.
+
+    The patterns target the «keyword … YYYY» shape — for each match we
+    blank out the captured year(s) only (replace with a single space),
+    preserving the surrounding prose so other extractors that share the
+    window (refs, mintmaster) aren't disrupted."""
+    def _blank_year(m: re.Match) -> str:
+        # Replace just the year span with whitespace
+        full = m.group(0)
+        year_span = m.span(1)
+        # Offset within `full` to compute the year position
+        match_start = m.start()
+        rel_start = year_span[0] - match_start
+        rel_end = year_span[1] - match_start
+        return full[:rel_start] + (" " * (rel_end - rel_start)) + full[rel_end:]
+    for pat in _NON_MINT_YEAR_PATTERNS:
+        text = pat.sub(_blank_year, text)
+    return text
+
+
 def _extract_years(text: str) -> list[dict]:
     text = _expand_century_abbr(text)
     text = _expand_year_ranges(text)
+    text = _strip_non_mint_year_refs(text)
     out: list[dict] = []
     for m in _YEAR_BLOCK_RE.finditer(text):
         years = re.findall(r"\d{4}", m.group(1))
@@ -993,9 +1056,25 @@ _LETTER_GROUP_BLOCK_RE = re.compile(
     r"^[ \t]*([A-Z])\)\s+"            # «A)» / «B)» at line start
     r"([\s\S]+?)"                     # body — years + mm + refs (lazy)
     r"(?=^[ \t]*[A-Z]\)|"             # ends at next letter-group …
-    r"^[ \t]*Bruttov[æa]gt|"          # … or the specs block …
-    r"^[ \t]*Litteratur|"             # … or the bibliography …
-    r"^[ \t]*Eksemplar|"              # … or the specimen list
+    # Same section-boundary set as `_SECTION_BOUNDARY_RE`. Without the
+    # comprehensive list, pages whose specs use the bare `Vægt:` form
+    # (instead of `Bruttovægt:`) let the letter-block body engulf the
+    # spec values + any trailing prose. The last parenthesised group
+    # in such an over-long body usually fails the «Hede {ref}{letter}»
+    # anchor check (e.g. it's an «(Aagaard, NNUM 2017 side 74)»
+    # bibliography paren), and the whole letter-group is dropped —
+    # f2h9 c4h25-style pages then have NO per-letter years extracted.
+    r"^[ \t]*Bruttov[æa]gt|"          # spec — full form
+    r"^[ \t]*V[æa]gt|"                # spec — bare form (many pre-1700)
+    r"^[ \t]*Finhed|"
+    r"^[ \t]*Finv[æa]gt|"
+    r"^[ \t]*Marken\s+fin|"           # «Marken fin udbragt til …»
+    r"^[ \t]*Litteratur|"             # bibliography
+    r"^[ \t]*Eksemplar|"              # specimen list (Bondes / Zincksamlingen)
+    r"^[ \t]*M[øo]ntmesterm[æa]rke|"
+    r"^[ \t]*M[øo]ntmester(?:\b|:)|"
+    r"^[ \t]*Bem[æa]rk|"              # explanatory annotation paragraphs
+    r"^[ \t]*Tilbage|"                # «Tilbage til Dansk Mønts forside»
     r"\Z)",                           # … or end-of-text
     re.MULTILINE,
 )
@@ -1125,17 +1204,34 @@ def parse_one(html: str, basename: str) -> dict:
         out["specs"] = specs
 
     # Letter-grouped sub-variants («A) ... (Hede XA, Sieg X.1) /
-    # B) ... (Hede XB, Sieg X.2)»). Only emit when the page has a
-    # SINGLE shared spec block (specs.default) — multi-Hede pages
-    # (specs.by_hede) carry their per-variant data via spec blocks
-    # instead.
-    if specs and "default" in specs:
+    # B) ... (Hede XB, Sieg X.2)»). Extract for BOTH shapes:
+    #   * `specs.default` (single shared spec) — emits as `by_letter`
+    #     and the builder generates one coin per letter with shared
+    #     spec + per-letter years.
+    #   * `specs.by_hede` (per-sub-letter specs already present) —
+    #     emits per-letter years into the corresponding `by_hede`
+    #     entry so the builder gets per-Hede years instead of the
+    #     page-aggregate (which may include legal-act years like
+    #     «møntordning 1544» that are NOT mint years for the sub-letter).
+    if specs:
         # Page's primary Hede number from filename: «c9h16» → «16»
         bm = re.match(r"^n?[cf]\d+h([\d]+)", basename)
         if bm:
             letter_groups = _extract_letter_groups(text, bm.group(1))
             if letter_groups:
-                out["by_letter"] = letter_groups
+                if "default" in specs:
+                    out["by_letter"] = letter_groups
+                elif "by_hede" in specs:
+                    # Attach per-letter years to matching by_hede sub-spec.
+                    # Match by Hede sub-letter — «A» → key like «9A», «9a».
+                    page_hede = bm.group(1)
+                    for letter, lv in letter_groups.items():
+                        sub_key = f"{page_hede}{letter}"
+                        # by_hede keys may be upper / lower case
+                        for k in list(specs["by_hede"].keys()):
+                            if k.lower() == sub_key.lower():
+                                specs["by_hede"][k]["years"] = lv["years"]
+                                break
 
     # Catalog refs
     refs = _extract_refs(text)

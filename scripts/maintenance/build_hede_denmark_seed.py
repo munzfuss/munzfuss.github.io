@@ -1102,6 +1102,13 @@ def main() -> int:
                 # when the parser couldn't pull per-Hede data (older
                 # cached parses or label-format variants).
                 sub_refs = sub_spec.get("catalog_refs")
+                # Per-Hede years (parser emits when letter-block matched
+                # for `specs.by_hede` shape). Falls back to the page-
+                # aggregate `parsed["years"]` inside `_build_coin` only
+                # when sub_spec has no per-letter year attestation —
+                # avoids leaking legal-act years («møntordning 1544»)
+                # from the page-scan into every sub-letter row.
+                sub_years = sub_spec.get("years")
                 coin = _build_coin(
                     hede_volume=hede_volume,
                     hede_number=sub_num,
@@ -1110,6 +1117,7 @@ def main() -> int:
                     nominal_override=nominal,
                     mint_normalised=mint_normalised,
                     catalog_refs_override=sub_refs,
+                    years_override=sub_years,
                 )
                 if coin is None:
                     stats["skipped_no_nominal"] += 1
