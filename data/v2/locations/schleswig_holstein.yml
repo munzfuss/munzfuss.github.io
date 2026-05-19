@@ -1375,6 +1375,79 @@ phases:
         Ґлюкштадт) разом. Джерело — <code>data/seed/numismaster/schleswig_holstein.yml</code>, генерує <code>scripts/maintenance/build_numismaster_seed.py</code>
         з покоінного HTML-кешу <code>scripts/cache/numismaster/schleswig_holstein/MC_*.html</code>. Покоінна верифікація проти
         первинних джерел (Lange / Hede / Sieg / Wilcke) перед §BF-промоцією.
+  - id: hede
+    year_from: 1500
+    year_to: 1864
+    from_label: (?)
+    to_label: (?)
+    title:
+      de: Bulk-Seed · Hede 1971 (danskmoent.dk)
+      en: Bulk seed · Hede 1971 (danskmoent.dk)
+      uk: Bulk-seed · Hede 1971 (danskmoent.dk)
+    description:
+      de: Sammelphase für die aus Hede 1971 (via danskmoent.dk-Cache) bulk-importierten Schleswig-Holstein-Stücke der königlichen
+        Linie — königliche Glückstadt-Münzstätte und SH-Königliche-Anteil-Prägungen unter dänischer Krone (royal_holstein).
+        Quelle ist <code>data/seed/hede/denmark*.yml</code> — gefiltert auf <code>royal_holstein</code> beim Build-Assembly.
+      en: Catch-all phase for Schleswig-Holstein royal-line coins bulk-imported from Hede 1971 (via the danskmoent.dk cache)
+        — royal Glückstadt mint and SH-royal-share strikes under the Danish crown (royal_holstein). Source is <code>data/seed/hede/denmark*.yml</code>
+        — filtered on <code>royal_holstein</code> at build-assembly time.
+      uk: Збірна фаза для шлезвіг-гольштинських монет королівської лінії, bulk-імпортованих з Hede 1971 (через danskmoent.dk-кеш)
+        — королівський Ґлюкштадт і SH-королівська-частка під данською короною (royal_holstein). Джерело — <code>data/seed/hede/denmark*.yml</code>,
+        фільтр на <code>royal_holstein</code> під час build-assembly.
+  - id: galster
+    year_from: 1500
+    year_to: 1864
+    from_label: (?)
+    to_label: (?)
+    title:
+      de: Bulk-Seed · Galster (Den danske Mønt)
+      en: Bulk seed · Galster (Den danske Mønt)
+      uk: Bulk-seed · Galster (Den danske Mønt)
+    description:
+      de: Sammelphase für die aus dem Galster-Katalog bulk-importierten Schleswig-Holstein-Stücke der königlichen Linie und
+        der Gottorp-Linie (Frederik I. als Herzog vor 1523). Quelle ist <code>data/seed/galster/denmark*.yml</code> mit Filterung
+        per Issuing-Entity beim Build-Assembly.
+      en: Catch-all phase for Schleswig-Holstein coins bulk-imported from the Galster catalogue — royal-line and Gottorp-line
+        coins (Frederik I as duke before 1523). Source is <code>data/seed/galster/denmark*.yml</code> with issuing-entity
+        filtering at build-assembly time.
+      uk: Збірна фаза для шлезвіг-гольштинських монет, bulk-імпортованих з каталогу Galster — королівська лінія та лінія Ґотторп
+        (Фредерік I як герцог до 1523). Джерело — <code>data/seed/galster/denmark*.yml</code> з фільтруванням за issuing-entity
+        під час build-assembly.
+  - id: bruun
+    year_from: 1500
+    year_to: 1864
+    from_label: (?)
+    to_label: (?)
+    title:
+      de: Bulk-Seed · Bruun (Stack's Bowers L. E. Bruun Coll.)
+      en: Bulk seed · Bruun (Stack's Bowers L. E. Bruun Collection)
+      uk: Bulk-seed · Bruun (Stack's Bowers L. E. Bruun Collection)
+    description:
+      de: Sammelphase für die aus den Stack's Bowers L. E. Bruun-Auktionskatalogen (Parts I-IV, 2024-2026) bulk-importierten
+        Schleswig-Holstein-Stücke der königlichen Linie. Quelle ist <code>data/seed/bruun/denmark*.yml</code> — gefiltert
+        auf <code>royal_holstein</code> beim Build-Assembly.
+      en: Catch-all phase for Schleswig-Holstein royal-line coins bulk-imported from the Stack's Bowers L. E. Bruun auction
+        catalogues (Parts I-IV, 2024-2026). Source is <code>data/seed/bruun/denmark*.yml</code> — filtered on <code>royal_holstein</code>
+        at build-assembly time.
+      uk: Збірна фаза для шлезвіг-гольштинських монет королівської лінії, bulk-імпортованих з аукційних каталогів Stack's Bowers
+        L. E. Bruun (Parts I-IV, 2024-2026). Джерело — <code>data/seed/bruun/denmark*.yml</code>, фільтр на <code>royal_holstein</code>
+        під час build-assembly.
+  - id: numista
+    year_from: 1500
+    year_to: 1864
+    from_label: (?)
+    to_label: (?)
+    title:
+      de: Bulk-Seed · Numista
+      en: Bulk seed · Numista
+      uk: Bulk-seed · Numista
+    description:
+      de: Sammelphase für die aus Numista (API v3) bulk-importierten Schleswig-Holstein-Stücke — gezielter Single-Page-Verifikation
+        aus dem Numista-Katalog. Quelle ist <code>data/seed/numista/{denmark,schleswig_holstein}*.yml</code>.
+      en: Catch-all phase for Schleswig-Holstein coins bulk-imported from Numista (API v3) — targeted single-page verification
+        against the Numista catalogue. Source is <code>data/seed/numista/{denmark,schleswig_holstein}*.yml</code>.
+      uk: Збірна фаза для шлезвіг-гольштинських монет, bulk-імпортованих з Numista (API v3) — точкова single-page-верифікація
+        проти каталогу Numista. Джерело — <code>data/seed/numista/{denmark,schleswig_holstein}*.yml</code>.
   9_thaler:
   - id: I
     year_from: 1566
