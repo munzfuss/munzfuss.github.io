@@ -38,6 +38,33 @@ YEAR_FROM = 1514
 YEAR_TO = 1541
 
 
+def _group_consecutive_years(years: list[int]) -> list[tuple[int, int]]:
+    """Collapse a sorted year list into consecutive-run [first, last] ranges.
+    Mirrors `build_numismaster_seed.py::_group_consecutive_years`."""
+    if not years:
+        return []
+    sorted_ys = sorted(set(years))
+    out: list[tuple[int, int]] = []
+    cur_start = cur_end = sorted_ys[0]
+    for y in sorted_ys[1:]:
+        if y == cur_end + 1:
+            cur_end = y
+            continue
+        out.append((cur_start, cur_end))
+        cur_start = cur_end = y
+    out.append((cur_start, cur_end))
+    return out
+
+
+def _format_year_label(ranges: list[tuple[int, int]]) -> str:
+    """Canonical year_label string per CLAUDE.md §3a: en-dash inside ranges,
+    comma-space between range entries."""
+    parts: list[str] = []
+    for a, b in ranges:
+        parts.append(str(a) if a == b else f"{a}–{b}")
+    return ", ".join(parts)
+
+
 def detect_metal(comp: str | None, denom: str | None) -> str:
     if comp:
         c = comp.lower()
@@ -99,16 +126,36 @@ def build_entry(data: dict) -> dict | None:
         # entries are Danish-royal-Holstein coinage → royal_holstein.
         issuing = "royal_holstein"
 
+    # Prefer per-year breakdown from the «Value information» table when
+    # available — Mirror of the main builder's preference order. Otherwise
+    # fall back to the broader date_raw range as a single year_ranges entry.
+    dates_explicit = data.get("dates_explicit") or []
+    if dates_explicit:
+        grouped = _group_consecutive_years(dates_explicit)
+        year_label = _format_year_label(grouped)
+        year_ranges = [[a, b] for a, b in grouped]
+        yf = grouped[0][0]
+        yl = grouped[-1][1]
+    else:
+        # Single-year collapse: «1628 - 1628» → «1628»
+        if yl is None or yl == yf:
+            year_label = str(yf)
+            year_ranges = [[yf, yf]]
+            yl = yf
+        else:
+            year_label = f"{yf}–{yl}"
+            year_ranges = [[yf, yl]]
+
     entry: dict = {
         "id": cid,
         "fuss": "seed_unsorted",
         "phase": "numismaster",
         "kind": "kurant",
         "nominal": data.get("denomination"),
-        "year_label": data.get("date_raw"),
+        "year_label": year_label,
         "year_first": yf,
-        "year_last": yl if yl is not None else yf,
-        "year_ranges": [[yf, yl if yl is not None else yf]],
+        "year_last": yl,
+        "year_ranges": year_ranges,
         "ruler": data.get("ruler"),
         "mint": data.get("mint"),
         "catalog": catalog,
@@ -117,6 +164,11 @@ def build_entry(data: dict) -> dict | None:
         "weight_rough_g": data.get("mass_g"),
         "issuing_entity": issuing,
         "verified": False,
+        # metal_verified: true when NumisMaster's «Composition» field is
+        # explicitly attested («Silver», «Billon», «Copper», …) — mirrors
+        # the same flag the main builder sets. Skipped when composition
+        # is None (detect_metal then guessed from denomination tokens).
+        "metal_verified": bool(data.get("composition")),
         "fineness_verified": data.get("fineness") is not None,
         "weight_rough_verified": data.get("mass_g") is not None,
         "mint_verified": bool(data.get("mint")),
@@ -173,7 +225,11 @@ def build_entry(data: dict) -> dict | None:
 
 def collect() -> list[dict]:
     entries: list[dict] = []
-    for json_path in sorted(CACHE_DIR.glob("MC_*.json")):
+    # Read parser output ONLY — `.parsed.json`. The bare `MC_*.json` glob
+    # would also match stale `.json` files left over from an earlier parser
+    # version that wrote to the bare suffix; reading those re-injects the
+    # old parser's bugs (e.g. truncated `lange: "23, 2"` for L#23, 23AB).
+    for json_path in sorted(CACHE_DIR.glob("MC_*.parsed.json")):
         try:
             data = json.loads(json_path.read_text())
         except json.JSONDecodeError as e:
