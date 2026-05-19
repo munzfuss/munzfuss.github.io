@@ -578,44 +578,6 @@ def main() -> int:
     print(f"  Multi-match warnings:            {totals['multi_match']:>5d}")
     print(f"  Enrichment conflicts (logged):   {totals['enrichment_conflicts']:>5d}")
 
-    # Orphan-output cleanup: when an entity no longer has a backing
-    # `data/v2/seed_unified/<entity>.yml` (upstream re-routes — D38
-    # country→entity remap, D35 mint-override, etc. — emptied the
-    # entity), delete its stale `data/v2/final/<entity>.yml` and
-    # `data/v2/classification_decisions/<entity>.yml`. Foundation
-    # entries that were V1-bootstrap-migrated to that entity would
-    # be silently dropped — but those entries should have been
-    # re-routed to their correct entity by the upstream fix and
-    # absorbed there. If a foundation entry sits in an orphan-entity
-    # final yaml, that's a SIGNAL of incomplete upstream migration,
-    # not a reason to keep the stale file. Audit_v2 I1 (home-file
-    # rule) catches mis-routed entries on a separate pass.
-    orphan_final: list[Path] = []
-    orphan_decisions: list[Path] = []
-    if not args.entity and V2_FINAL.exists():
-        current = set(entities)
-        for p in V2_FINAL.glob("*.yml"):
-            if p.stem not in current:
-                orphan_final.append(p)
-                if args.apply:
-                    p.unlink()
-    if not args.entity and V2_CLASSIFICATION_DECISIONS.exists():
-        current = set(entities)
-        for p in V2_CLASSIFICATION_DECISIONS.glob("*.yml"):
-            if p.stem not in current:
-                orphan_decisions.append(p)
-                if args.apply:
-                    p.unlink()
-    if orphan_final or orphan_decisions:
-        print()
-        print("=== Orphan output files ===")
-        for p in orphan_final:
-            verb = "deleted" if args.apply else "would delete"
-            print(f"  {verb}: {p}")
-        for p in orphan_decisions:
-            verb = "deleted" if args.apply else "would delete"
-            print(f"  {verb}: {p}")
-
     if args.dry_run:
         print("\n--- DRY RUN — no files written. Re-run with --apply to commit. ---")
     else:

@@ -1980,41 +1980,6 @@ def main() -> int:
     print(f"  Forced merges (decisions):  {totals['forced_merges']:>5d}")
     print(f"  Forced no_merges (decisions): {totals['forced_no_merges']:>3d}")
 
-    # Orphan-output cleanup: delete `data/v2/seed_unified/<entity>.yml`
-    # AND `data/v2/match_uncertainty/<entity>.yml` for ANY entity that
-    # no longer has a backing V2 seed file. Catches the case where an
-    # upstream re-route (D38 country→entity remap; D35 mint-override;
-    # etc.) leaves a source entity empty of coins → its seed file is
-    # no longer emitted → without this cleanup the previous run's
-    # seed_unified/<entity>.yml lingers as silent stale data that
-    # downstream absorb / build picks up as if those coins still
-    # belong to that entity.
-    orphan_unified: list[Path] = []
-    orphan_uncertainty: list[Path] = []
-    if not args.entity and V2_SEED_UNIFIED.exists():
-        current = set(entities)
-        for p in V2_SEED_UNIFIED.glob("*.yml"):
-            if p.stem not in current:
-                orphan_unified.append(p)
-                if args.apply:
-                    p.unlink()
-    if not args.entity and V2_MATCH_UNCERTAINTY.exists():
-        current = set(entities)
-        for p in V2_MATCH_UNCERTAINTY.glob("*.yml"):
-            if p.stem not in current:
-                orphan_uncertainty.append(p)
-                if args.apply:
-                    p.unlink()
-    if orphan_unified or orphan_uncertainty:
-        print()
-        print("=== Orphan output files ===")
-        for p in orphan_unified:
-            verb = "deleted" if args.apply else "would delete"
-            print(f"  {verb}: {p}")
-        for p in orphan_uncertainty:
-            verb = "deleted" if args.apply else "would delete"
-            print(f"  {verb}: {p}")
-
     if args.dry_run:
         print("\n--- DRY RUN — no files written. Re-run with --apply to commit. ---")
     else:
