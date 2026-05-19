@@ -127,6 +127,28 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
 
 ## Recent state changes (this session)
 
+* **D39 — bulk_promote `no_basic_peer_only` mode + writer-bug fix**
+  (2026-05-19). Extends D37 with a second mode that promotes ONLY
+  unmatched unified entries with no metal+nominal peer in foundation;
+  D/E/H/C-category cases (catalog/ruler/fallback disagree, low-conf
+  near) stay in pending. Writer-bug fixed alongside:
+  `_emit_classification_decisions` previously collapsed the flag to
+  literal `True` via `bool(...)`, silently downgrading D39 →
+  D37-mode-all on the first absorb. 1st `--apply`: 535 N-cases
+  promoted across 8 entities, 583 D/E/H/C stay pending. 2nd
+  `--apply`: idempotent (0 newly absorbed, 0 newly promoted).
+  audit_v2 --quick: 0 violations. See V2_DECISIONS D39 for full
+  per-entity breakdown.
+* **D38 — NumisMaster builder routes country → canonical V2 entity**
+  (2026-05-19). `COUNTRY_TO_ISSUING_ENTITY` mapping refactored to use
+  9 canonical V2 entities directly (instead of legacy
+  `schleswig_holstein_duchy` alias). Per-cadet-line routing:
+  `royal_holstein` / `gottorp_duchy` / `schauenburg_pinneberg` /
+  `sonderburg_duchy` / `norburg_plon_duchy` / `glucksburg_duchy`.
+  Cascading rebuild: 426 `_unclassified` entries re-routed, V2
+  unified regenerated, V2 final absorb-pass surfaces new pending
+  for curator review. TODO §BT lists the 4 remaining builders
+  (Hede/Bruun/Galster/Numista pre1541) that need similar treatment.
 * **Per-case dedup methodology established** (user direction): each
   case gets full source links provided up-front, «за / проти merge»
   written out, user verifies visually before action. Auto-batching
@@ -183,11 +205,18 @@ this list exists only to anchor «what's open» on a quick read.
 
 ## Local commit state
 
-* **Main repo**: ~4 commits ahead of `origin/main` not pushed (user
-  has not granted push permission this turn). Last push was earlier
-  this session at commit `4d59131`. Newest commits cover case 8 +
-  TODO §R, ref21 page hints + TODO §S, verified-wins rule + CLAUDE.md
-  §4 update, 45-entry legacy cleanup.
+* **Main repo**: working tree clean. Recent commits on
+  `feat/v2-pipeline` not pushed (user has not granted push
+  permission this turn):
+  - `05b5b5e` data(v2): D39 first application — 535 N-cases bulk-promoted across 8 entities
+  - `a092e56` build(v2): D39 — bulk_promote `no_basic_peer_only` mode + writer-bug fix
+  - `6884789` data(v2): manually delete 3 stale _unclassified files
+  - `8bc0075` Revert "build+data(v2): orphan-output cleanup ..."
+  - `f1d530a` data+build: sweep «stope/stopa» non-word per CLAUDE.md §2a
+  - `503ba0a` todo: §BT — D38-style consistency cleanup for remaining 4 seed builders
+  - `b0e4d44` build+docs: _curation_holds dict-form carries «why» rationale
+  - `706e3c5` data(v2): rebuild NumisMaster seeds + regrouped V2 + absorb after D38
+  - `494b85b` build(v2): D38 — NumisMaster builder maps country to canonical V2 entity
 * **Submodule `scripts/cache/`**: clean, no pending submodule
   commits.
 
