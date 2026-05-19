@@ -373,6 +373,42 @@ That rule covers «which of ≥2 same-resource sources is this link». But it ig
 - No layout-shift on hover — overlapping rows stay in place underneath the expanded note.
 - Tested across DE/EN/UK (note lengths vary by language).
 
+### BT. 🟡 D38-style consistency cleanup for remaining seed builders (Hede / Bruun / Galster / Numista pre1541)  *(opened 2026-05-19)* *(est: small)* *(type: builder consistency)*
+
+**Surfaced.** D38 (2026-05-19) refactored `build_numismaster_seed.py` + `build_numismaster_pre1541_seed.py` to emit canonical V2 `issuing_entity` tags directly from cache `country` fields — the linear-pipeline principle says cache-derived entity hints belong at the per-source builder layer (Phase 3.1a), not the regroup classifier (Phase 3.1b). Four sibling builders still use the legacy patterns:
+
+| Builder | Current state | Functional? | What's wrong per D38 principle |
+|---|---|---|---|
+| `build_hede_denmark_seed.py` | Line 647: hardcoded `cm["issuing_entity"] = "danish_realm"` for ALL ~885 entries | ✓ regroup rescues via D35 mint-override (Christiania→danish_norway, Glückstadt→royal_holstein) | Builder ignores mint info it already has; rebuild produces wrong entity tag that regroup must fix |
+| `build_bruun_denmark_seed.py` | Line 280: `"norwegian_realm" if is_norway else "danish_realm"` (binary, ignores region detail) | ✓ regroup remaps `norwegian_realm` → `danish_norway` via `_SEED_ENTITY_REMAP` | Uses defunct alias; SH-region Bruun lots also default to danish_realm |
+| `build_galster_denmark_seed.py` | Line 80: `detect_issuing_entity` returns `"norwegian_realm"` for sub_realm=norway | ✓ regroup remaps | Same legacy alias |
+| `build_numista_pre1541_seed.py` | Line 70: `"norwegian_realm"` if "norway" in issuer text | ✓ regroup remaps | Same legacy alias |
+
+**Functional impact:** zero — pipeline outputs correct V2 entity files via the regroup-layer compensations (D35 mint-override + `_SEED_ENTITY_REMAP`).
+
+**Architectural impact:** builders not doing their full job. Following D38 principle, each per-source builder should emit the canonical V2 `issuing_entity` tag directly — regroup remains a thin fan-out shim without source-specific knowledge.
+
+**Plan (mechanical, ~30 minutes total):**
+
+1. **Hede builder**: import `classify_mint_to_entity` from `lib.v2_entity_classify`; replace the hardcoded `danish_realm` with `classify_mint_to_entity(coin.get("mint")) or "danish_realm"`. Edge cases: Norge entries (mint=Christiania/Kongsberg/Oslo/Bergen) → `danish_norway`; Glückstadt/Altona → `royal_holstein`; `n*h` volume basenames with no mint default to `danish_norway` (volume code is parser-canonical for Norge).
+
+2. **Bruun builder**: use lot's `region` field directly: `NORWAY` → `danish_norway`; `DENMARK` → call `classify_mint_to_entity(mint)` for Glückstadt/Altona/etc. routing; `SCHLESWIG-HOLSTEIN` → `royal_holstein` (Bruun's regional grouping for SH lots).
+
+3. **Galster builder**: replace `"norwegian_realm"` with `"danish_norway"`; call `classify_mint_to_entity(mint)` for non-Norway entries.
+
+4. **Numista pre1541 builder**: replace `"norwegian_realm"` with `"danish_norway"`; consider extending to use Numista's `issuer.code` / `issuer.name` for richer routing (e.g. county-level rulers).
+
+5. **Rebuild each affected seed with `--no-merge`** to overwrite legacy aliases. Safe for all 4 because V1 seeds are auto-generated (no curator-direct edits documented). Verify via:
+   - `grep "issuing_entity:" data/seed/<src>/*.yml | sort | uniq -c` — no `norwegian_realm`, no `schleswig_holstein_duchy`
+   - Re-run regroup; `_unclassified` stays 0
+   - Re-run merger + absorb; pipeline idempotent
+
+**Definition of done.**
+- All 4 builders import `classify_mint_to_entity` (or use cache-derived source-specific signal); no hardcoded entity defaults or legacy aliases remain in builder code.
+- V1 seeds carry canonical V2 `issuing_entity` values directly.
+- `_SEED_ENTITY_REMAP` can drop the `norwegian_realm` → `danish_norway` entry (or keep it as defensive belt-and-braces — curator's call).
+- D38 entry in V2_DECISIONS.md extended with «and applied to Hede / Bruun / Galster / Numista builders 2026-XX-XX».
+
 ---
 ## High priority
 
