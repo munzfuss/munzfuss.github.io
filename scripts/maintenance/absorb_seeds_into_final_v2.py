@@ -126,18 +126,54 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
            if k in _FOUNDATION_IMMUTABLE_FIELDS}
     out["id"] = final_entry["id"]
 
-    # year_ranges UNION across members (D19)
-    union_yr = _union_year_ranges(members)
-    if union_yr is not None:
-        if len(union_yr) == 1 and union_yr[0][0] == union_yr[0][1]:
-            out["year_first"] = union_yr[0][0]
-            out["year_last"] = union_yr[0][1]
+    # year_ranges UNION across members (D19), with a refresh path for
+    # pure-absorbed foundations:
+    # When `final_entry` is itself a `unified-*` foundation whose
+    # composed_of references a SINGLE seed_unified member with the same
+    # id (i.e. the foundation IS just a pulled-through seed_unified copy
+    # from a previous absorb run, no curator additions), trust the
+    # seed_unified member's year_ranges directly. Otherwise — curator-
+    # composed foundation with N>=2 members or a foreign id — union
+    # across all members so curator-attested years and seed-attested
+    # years both survive.
+    final_id = final_entry.get("id") or ""
+    composed = final_entry.get("composed_of") or []
+    pure_absorbed = (
+        final_id.startswith("unified-")
+        and len(composed) == 1
+        and composed[0] == final_id
+    )
+    seed_member = None
+    if pure_absorbed and len(members) >= 2:
+        # `members` is [final_entry, seed_unified_member]. Pick the
+        # seed_unified one (member with the matching id, NOT the final
+        # entry itself) and use its year_ranges as authoritative.
+        seed_member = next(
+            (m for m in members[1:] if m.get("id") == final_id),
+            None,
+        )
+        if seed_member is not None:
+            authoritative_yr = _union_year_ranges([seed_member])
         else:
-            out["year_first"] = min(r[0] for r in union_yr)
-            out["year_last"] = max(r[1] for r in union_yr)
-            out["year_ranges"] = union_yr
-    # year_label — foundation wins (preserves V1 display formatting)
-    if final_entry.get("year_label") is not None:
+            authoritative_yr = _union_year_ranges(members)
+    else:
+        authoritative_yr = _union_year_ranges(members)
+    if authoritative_yr is not None:
+        if len(authoritative_yr) == 1 and authoritative_yr[0][0] == authoritative_yr[0][1]:
+            out["year_first"] = authoritative_yr[0][0]
+            out["year_last"] = authoritative_yr[0][1]
+        else:
+            out["year_first"] = min(r[0] for r in authoritative_yr)
+            out["year_last"] = max(r[1] for r in authoritative_yr)
+            out["year_ranges"] = authoritative_yr
+    # year_label:
+    # For pure-absorbed foundations, the seed_unified member's
+    # year_label is the source of truth (it tracks the fresh parser
+    # output). For curator foundations, preserve curator display
+    # formatting unless we re-derive from year_first/year_last above.
+    if pure_absorbed and seed_member is not None and seed_member.get("year_label"):
+        out["year_label"] = seed_member["year_label"]
+    elif final_entry.get("year_label") is not None and not pure_absorbed:
         out["year_label"] = final_entry["year_label"]
     elif "year_first" in out and "year_last" in out:
         out["year_label"] = (str(out["year_first"]) if out["year_first"] == out["year_last"]
