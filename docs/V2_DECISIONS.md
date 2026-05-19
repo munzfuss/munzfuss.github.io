@@ -368,6 +368,30 @@
 - **Effect on backlog (danish_realm)**: 383 low-confidence pairs → 20 residual (94.8% recovery). 0 confident merges → 136 confident merges. The 20 residual pairs are all coins whose year span touches a real-or-anomaly multi-ruler year (1648 / 1670 / 1606+1610 / etc.) — exactly the cases the user wanted to leave null. 0 fake-conflict noise in the merge_conflicts log.
 - **Encoded in**: `scripts/maintenance/merge_seeds_cross_source.py` (`_build_reign_index`, `_infer_ruler`, `_normalise_ruler` extension, `match_pair` reign_index parameter, `process_entity` index construction, `build_unified` conflict-log normalisation); `scripts/maintenance/absorb_seeds_into_final_v2.py` (stale-purge + `stale_purged` stat). Future entities (royal_holstein, gottorp_duchy, schauenburg_pinneberg, etc.) get the benefit automatically — the index is rebuilt per-entity in `process_entity`.
 
+### D38 — Per-source builders write canonical V2 entity tag via cache hints; classifier doesn't reach back to cache
+
+- **Decision (2026-05-19)**: Entity classification from cache-derived hints (NumisMaster `country`, Bruun `region`, Numista `issuer`) lives at the **Phase 3.1a per-source builder layer**, NOT in the classifier (`lib/v2_entity_classify.py`). The builder reads cache (which it already does for every other field) and emits a canonical V2 `issuing_entity` tag directly in the V1 seed yaml. `seed_v2_regroup.py` then consumes the canonical tag through Tier-1 of `_normalise_entity_for_coin` («canonical V2 tag from V1 — preserve verbatim») — no cache-walk at the regroup layer.
+- **Rationale**: linear pipeline principle. Phase N reads only Phase N-1's output. Having Phase 3.1b (regroup) reach back into Phase 2 cache breaks the layering and creates a hidden dependency. User direction 2026-05-19: «у нас же лінійний пайплайн, це має бути у того скрипта який такі ентіті з попередньої фази перетягує в наступну».
+- **Refactor mechanic (NumisMaster, first real case)**: `build_numismaster_seed.py::COUNTRY_TO_ISSUING_ENTITY` was a 9-row table with the legacy `schleswig_holstein_duchy` catch-all on every SH cadet-line country, plus `norwegian_realm` (defunct alias). Rewritten to map each `country` value DIRECTLY to its canonical V2 entity:
+  - `DENMARK` → `danish_realm`
+  - `NORWAY` / `NORW AY` → `danish_norway`
+  - `SWEDEN` → `danish_realm` (Christian II 1514-1523 only, Danish-rule scope)
+  - `GLUCKSTADT` / `GLÜCKSTADT` → `royal_holstein` (Danish king's Holstein mint)
+  - `SCHLESWIG-HOLSTEIN` (generic) → `royal_holstein`
+  - `SCHLESWIG-HOLSTEIN-GOTTORP` / `HOLSTEIN-GOTTORP-RENDSBORG` → `gottorp_duchy`
+  - `SCHLESWIG-HOLSTEIN-SONDERBURG` → `sonderburg_duchy`
+  - `SCHLESWIG-HOLSTEIN-PLOEN` / `SCHLESWIG-HOLSTEIN-NORBURG` → `norburg_plon_duchy`
+  - `SCHLESWIG-HOLSTEIN-GLUCKSBURG` → `glucksburg_duchy`
+  - `SCHAUMBURG-PINNEBERG` → `schauenburg_pinneberg`
+- Same fix applied to `build_numismaster_pre1541_seed.py` — pre-1541 SH-tagged entries route to `royal_holstein` (the SH cadet lines didn't exist yet — Christian III split happened 1544+).
+- **Effect on backlog**: 426 `_unclassified` entries → **0**. Routing breakdown of the rerouted MCs (V2 seed/numismaster/):
+  - `danish_realm: 805`, `danish_norway: 289`, `royal_holstein: 247`, `gottorp_duchy: 164`, `schauenburg_pinneberg: 99`, `sonderburg_duchy: 25`, `norburg_plon_duchy: 22`, `holstein_schauenburg_county: 16`, `glucksburg_duchy: 3`.
+  - 27 entries that previously sat in `_unclassified.yml` (entity unknown → no foundation peer possible) found V1-foundation matches in their newly-correct entity files and auto-absorbed.
+  - Remaining `_unclassified.yml` for ANY source: **0 files** (the file got fully consumed; regroup no longer generates one).
+- **Wholesale rebuild was needed because `issuing_entity` lives in `CURATED_FIELDS`** in `lib/seed_merge.py` — the merge-preserves-existing rule would have kept old `schleswig_holstein_duchy` tags. `--no-merge` flag (auto-output rebuild path) wipes + writes fresh. For per-source NumisMaster builders this is safe: V1 NumisMaster seeds are AUTO-GENERATED, never curator-edited (curator edits flow into V2 final via `assignments` / `merge_decisions`).
+- **Cache-fields available for future cache→entity inference at the builder layer (other sources)**: NumisMaster also has `political_period` (PL-codes — more granular than country) and `coinage_entity` (CG-codes — sub-categorisation). Bruun lots have `region` per lot (DENMARK / NORWAY / GERMANY / SCHLESWIG-HOLSTEIN). Numista API has `issuer.code` / `.name`; Numista HTML has `issuer_text`. Each is a candidate for the same builder-layer entity-tag pattern — apply when the per-source builder is touched next.
+- **Encoded in**: `scripts/maintenance/build_numismaster_seed.py::COUNTRY_TO_ISSUING_ENTITY`; `scripts/maintenance/build_numismaster_pre1541_seed.py` (same logic, smaller scope). `seed_v2_regroup.py::_normalise_entity_for_coin` UNCHANGED — Tier-1 already preserved canonical V2 tags, the fix was upstream at the builder.
+
 ### D37 — Bulk-promote pending unified into final for empty-foundation entities
 
 - **Decision (2026-05-19)**: When a V2 entity has NO V1 foundation at all — every unified entry is by definition «genuinely new» because there's nothing to potentially conflict with — the curator can assert this once via a top-level `bulk_promote_pending: true` flag in `data/v2/classification_decisions/<entity>.yml`. The absorb script then promotes ALL pending unified entries directly into the entity's `final/<entity>.yml` as initial foundation entries.

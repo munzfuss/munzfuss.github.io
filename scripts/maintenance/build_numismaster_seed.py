@@ -103,23 +103,45 @@ def _coinage_entity_excluded(raw: str | None) -> bool:
     return name in EXCLUDED_COINAGE_ENTITIES
 
 
-# Map NumisMaster `country` strings → project `issuing_entity` tag. The 9 SH
-# cadet-line countries map to schleswig_holstein_duchy (consistent with how
-# the existing curated seed treats Holstein-Gottorp-Rendsborg).
+# Map NumisMaster `country` strings → canonical V2 `issuing_entity` tag.
+# Replaced the legacy `schleswig_holstein_duchy` catch-all with per-line
+# canonical entities (D38, 2026-05-19) — NumisMaster's `country` field
+# is THE authoritative signal for which Holstein cadet line struck the
+# coin. Each value maps directly to its V2 entity per
+# `data/i18n/issuing_entities.yml`.
+#
+# Holstein cadet lines (independent ducal coinage):
+#   GOTTORP        → gottorp_duchy
+#   SONDERBURG     → sonderburg_duchy
+#   PLOEN, NORBURG → norburg_plon_duchy
+#   GLUCKSBURG     → glucksburg_duchy
+#   SCHAUMBURG-PINNEBERG → schauenburg_pinneberg
+#
+# Danish-king-as-Holstein-duke:
+#   GLUCKSTADT     → royal_holstein  (Danish king's Holstein mint)
+#   SCHLESWIG-HOLSTEIN (generic) → royal_holstein  (royal Holstein
+#                                  coinage absent specific cadet-line
+#                                  attribution)
+#   HOLSTEIN-GOTTORP-RENDSBORG → gottorp_duchy  (Rendsborg was a
+#                                Gottorp mint pre-1721)
 COUNTRY_TO_ISSUING_ENTITY: dict[str, str] = {
+    # Danish realm + personal-union extensions
     "DENMARK": "danish_realm",
-    "NORWAY": "norwegian_realm",
-    "NORW AY": "norwegian_realm",  # observed parser variant
-    "SWEDEN": "danish_realm",       # only Christian-II 1514-1523 in mission scope (= Danish-rule)
-    "SCHLESWIG-HOLSTEIN": "schleswig_holstein_duchy",
-    "SCHLESWIG-HOLSTEIN-GLUCKSBURG": "schleswig_holstein_duchy",
-    "SCHLESWIG-HOLSTEIN-GOTTORP": "schleswig_holstein_duchy",
-    "SCHLESWIG-HOLSTEIN-NORBURG": "schleswig_holstein_duchy",
-    "SCHLESWIG-HOLSTEIN-PLOEN": "schleswig_holstein_duchy",
-    "SCHLESWIG-HOLSTEIN-SONDERBURG": "schleswig_holstein_duchy",
-    "SCHAUMBURG-PINNEBERG": "schleswig_holstein_duchy",
-    "HOLSTEIN-GOTTORP-RENDSBORG": "schleswig_holstein_duchy",
-    "GLUCKSTADT": "schleswig_holstein_duchy",
+    "NORWAY": "danish_norway",
+    "NORW AY": "danish_norway",  # observed parser variant
+    "SWEDEN": "danish_realm",     # only Christian-II 1514-1523 in mission scope (= Danish-rule)
+    # Danish-king-as-Holstein-duke (royal Holstein coinage)
+    "GLUCKSTADT": "royal_holstein",
+    "GLÜCKSTADT": "royal_holstein",  # parser sometimes preserves umlaut
+    "SCHLESWIG-HOLSTEIN": "royal_holstein",
+    # Independent Holstein cadet lines
+    "SCHLESWIG-HOLSTEIN-GOTTORP": "gottorp_duchy",
+    "HOLSTEIN-GOTTORP-RENDSBORG": "gottorp_duchy",
+    "SCHLESWIG-HOLSTEIN-SONDERBURG": "sonderburg_duchy",
+    "SCHLESWIG-HOLSTEIN-PLOEN": "norburg_plon_duchy",
+    "SCHLESWIG-HOLSTEIN-NORBURG": "norburg_plon_duchy",
+    "SCHLESWIG-HOLSTEIN-GLUCKSBURG": "glucksburg_duchy",
+    "SCHAUMBURG-PINNEBERG": "schauenburg_pinneberg",
 }
 
 

@@ -85,12 +85,19 @@ def build_entry(data: dict) -> dict | None:
                 catalog[prefix] = value
     catalog.update(data.get("catalog_refs") or {})
 
+    # Canonical V2 issuing_entity from NumisMaster `country` (D38, 2026-05-19).
+    # Pre-1541 mission scope is mostly Christian II / Frederik I Danish royal
+    # coinage; the Schleswig-Holstein cadet lines didn't yet exist (formed
+    # 1544+ with Christian III's split). Map the few SH attestations to
+    # `royal_holstein` (the Danish king's Holstein duchy era).
     issuing = "danish_realm"
     country = (data.get("country") or "").upper()
     if "NORWAY" in country:
-        issuing = "norwegian_realm"
+        issuing = "danish_norway"
     elif "SCHLESWIG-HOLSTEIN" in country or "HOLSTEIN" in country:
-        issuing = "schleswig_holstein_duchy"
+        # Pre-1544 → no Holstein cadet lines yet. SH-tagged pre-1541
+        # entries are Danish-royal-Holstein coinage → royal_holstein.
+        issuing = "royal_holstein"
 
     entry: dict = {
         "id": cid,

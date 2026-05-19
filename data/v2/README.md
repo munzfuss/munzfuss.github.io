@@ -7,7 +7,7 @@ render time.
 
 Full design + decisions → `docs/V2_PIPELINE.md`.
 Full architecture → `docs/ARCHITECTURE.md` §«V2 entity-keyed pipeline».
-**Canonical decisions journal** → `docs/V2_DECISIONS.md` (37 architectural decisions D1-D37 + 4 deferred DF1-DF4, each with rationale + code locations).
+**Canonical decisions journal** → `docs/V2_DECISIONS.md` (38 architectural decisions D1-D38 + 4 deferred DF1-DF4, each with rationale + code locations).
 
 ## Pipeline at a glance
 
