@@ -3,16 +3,24 @@ source_locations:
 - schleswig_holstein
 migrated_from_v1: '2026-05-18'
 coins:
-- id: km-11-hans-jr-sonderb-1620
-  fuss: 9_thaler
+- fuss: 9_thaler
   phase: I
   kind: scheide
   fraction: 1/30
   nominal: 2 Schilling Lübisch
-  year_label: 1620-1621, 1623, 1625
+  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-11-hans-jr-sonderb-1620
   year_first: 1620
   year_last: 1625
-  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  year_ranges:
+  - - 1620
+    - 1621
+  - - 1623
+    - 1623
+  - - 1625
+    - 1625
+  year_label: 1620-1621, 1623, 1625
   catalog:
     km: '11'
     lange: 542c
@@ -21,36 +29,24 @@ coins:
     - Lange# 542 c
     - Lange# 542 d
   metal: silver
+  weight_rough_verified: true
+  diameter_mm_verified: true
   weight_rough_g:
-  - value: 1.01
-    source: Numista
-  - value: 0.88
-    source: IKMK Berlin, Inv. 18284714
-  - value: 0.9
-    source: IKMK Berlin, Inv. 18284712
+  - value: 0.76
+    source: IKMK Berlin, Inv. 18284717
   - value: 0.8
     source: IKMK Berlin, Inv. 18284715
   - value: 0.88
+    source: IKMK Berlin, Inv. 18284714
+  - value: 0.88
     source: IKMK Berlin, Inv. 18284716
-  - value: 0.76
-    source: IKMK Berlin, Inv. 18284717
-  issuing_entity: sonderburg_duchy
-  note:
-    de: '2 Schilling Lübisch = 1/30 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1620-1625
-
-
-      Sub-Stempelvarianten Lange 542 c und 542 d (Vorderseiten-Aufschriftvarianten des Reuterpfennigs) durch vier weitere
-      IKMK-Stücke belegt; Numista N#151528 fasst beide unter KM#11 zusammen.'
-    en: '2 Schilling Lübisch = 1/30 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1620-1625
-
-
-      Sub-die-variants Lange 542 c and 542 d (Reuterpfennig obverse legend variants) attested by four further IKMK specimens;
-      Numista N#151528 groups both under KM#11.'
-    uk: '2 Schilling Lübisch = 1/30 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1620-1625
-
-
-      Штемпельні підваріанти Lange 542 c та 542 d (варіанти аверсного напису Reuterpfennig''а) задокументовані чотирма додатковими
-      IKMK-екземплярами; Numista N#151528 об''єднує обидва під KM#11.'
+  - value: 0.9
+    source: IKMK Berlin, Inv. 18284712
+  - value: 1.01
+    source: Numista
+  diameter_mm:
+  - value: 15.0
+    source: '11'
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151528.html
@@ -75,28 +71,37 @@ coins:
     url: https://ikmk.smb.museum/object?id=18284717
     ref: IKMK Berlin, Inv. 18284717
     note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-  year_ranges:
-  - - 1620
-    - 1621
-  - - 1623
-    - 1623
-  - - 1625
-    - 1625
   inscription_obv: IOHANS / VAN GOTT / GNA ERWE / ZV NORWE / HER ZV SC/HL HOL
-  diameter_mm: 15.0
-  diameter_mm_verified: true
-  weight_rough_verified: true
-  v1_home_location: schleswig_holstein
+  note:
+    de: '2 Schilling Lübisch = 1/30 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1620-1625
+
+
+      Sub-Stempelvarianten Lange 542 c und 542 d (Vorderseiten-Aufschriftvarianten des Reuterpfennigs) durch vier weitere
+      IKMK-Stücke belegt; Numista N#151528 fasst beide unter KM#11 zusammen.'
+    en: '2 Schilling Lübisch = 1/30 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1620-1625
+
+
+      Sub-die-variants Lange 542 c and 542 d (Reuterpfennig obverse legend variants) attested by four further IKMK specimens;
+      Numista N#151528 groups both under KM#11.'
+    uk: '2 Schilling Lübisch = 1/30 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1620-1625
+
+
+      Штемпельні підваріанти Lange 542 c та 542 d (варіанти аверсного напису Reuterpfennig''а) задокументовані чотирма додатковими
+      IKMK-екземплярами; Numista N#151528 об''єднує обидва під KM#11.'
   composed_of: []
-- id: km-12-hans-jr-sonderb-1622
-  fuss: 9_25_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_25_thaler
   phase: I
   kind: scheide
   fraction: 1/15
   nominal: 4 Schilling Lübisch
-  year_label: '1622'
-  year_first: 1622
   ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-12-hans-jr-sonderb-1622
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mint: Reinfeld
   catalog:
     km: '12'
     lange: '539'
@@ -105,54 +110,55 @@ coins:
   weight_rough_g:
   - value: 2.19
     source: Numista
-  issuing_entity: sonderburg_duchy
-  note:
-    de: 4 Schilling Lübisch = 1/15 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
-    en: 4 Schilling Lübisch = 1/15 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
-    uk: 4 Schilling Lübisch = 1/15 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1622
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151529.html
     ref: Numista
-  mint: Reinfeld
-  v1_home_location: schleswig_holstein
+  note:
+    de: 4 Schilling Lübisch = 1/15 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
+    en: 4 Schilling Lübisch = 1/15 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
+    uk: 4 Schilling Lübisch = 1/15 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1622
   composed_of: []
-- id: km-16-hans-jr-sonderb-1622
-  fuss: 9_25_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_25_thaler
   phase: I
   kind: gedenk
   fraction: 1/4
   nominal: ¼ Thaler
-  year_label: '1622'
-  year_first: 1622
   ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-16-hans-jr-sonderb-1622
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mint: Reinfeld
   catalog:
     km: '16'
     lange: '546'
     numista: '131934'
   metal: silver
-  issuing_entity: sonderburg_duchy
-  note:
-    de: ¼ Thaler (Gedenk) · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
-    en: ¼ Thaler (Gedenk) · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
-    uk: ¼ Thaler (Gedenk) · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1622
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces131934.html
     ref: Numista
-  mint: Reinfeld
-  v1_home_location: schleswig_holstein
+  note:
+    de: ¼ Thaler (Gedenk) · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
+    en: ¼ Thaler (Gedenk) · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
+    uk: ¼ Thaler (Gedenk) · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1622
   composed_of: []
-- id: km-17-hans-jr-sonderb-1622
-  fuss: 9_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_thaler
   phase: I
   kind: kurant
   fraction: 1/2
   nominal: ½ Reichsthaler
-  year_label: '1622'
+  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-17-hans-jr-sonderb-1622
   year_first: 1622
   year_last: 1622
-  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  year_label: '1622'
+  mint: Reinfeld
   catalog:
     km: '17'
     sieg: '20'
@@ -165,27 +171,28 @@ coins:
   weight_rough_g:
   - value: 14.19
     source: Bruun Part II, lot 14246, p. 315
-  issuing_entity: sonderburg_duchy
-  mint: Reinfeld
-  note:
-    de: ½ Reichsthaler · Reinfelder Münze unter Münzmeister Tobias Reinhardt
-    en: ½ Reichsthaler · Reinfeld mint under mintmaster Tobias Reinhardt
-    uk: ½ Reichsthaler · Райнфельдське карбування під монетмейстером Tobias Reinhardt
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14246, p. 315
-  v1_home_location: schleswig_holstein
+  note:
+    de: ½ Reichsthaler · Reinfelder Münze unter Münzmeister Tobias Reinhardt
+    en: ½ Reichsthaler · Reinfeld mint under mintmaster Tobias Reinhardt
+    uk: ½ Reichsthaler · Райнфельдське карбування під монетмейстером Tobias Reinhardt
   composed_of: []
-- id: km-18-hans-jr-sonderb-1622
-  fuss: 9_25_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_25_thaler
   phase: I
   kind: kurant
   fraction: '1'
   nominal: 1 Thaler
-  year_label: '1622'
-  year_first: 1622
   ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-18-hans-jr-sonderb-1622
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mint: Reinfeld
   catalog:
     km: '18'
     lange: 529a
@@ -202,11 +209,6 @@ coins:
     source: Numista
   - value: 28.56
     source: Bruun Part II, lot 14242, p. 312
-  issuing_entity: sonderburg_duchy
-  note:
-    de: 1 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
-    en: 1 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
-    uk: 1 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1622
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151530.html
@@ -214,19 +216,24 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14242, p. 312
-  mint: Reinfeld
-  v1_home_location: schleswig_holstein
+  note:
+    de: 1 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
+    en: 1 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
+    uk: 1 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1622
   composed_of: []
-- id: km-20-hans-jr-sonderb-1622
-  fuss: 9_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_thaler
   phase: I
   kind: kurant
   fraction: '1'
   nominal: 1 Reichsthaler
-  year_label: '1622'
+  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-20-hans-jr-sonderb-1622
   year_first: 1622
   year_last: 1622
-  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  year_label: '1622'
+  mint: Reinfeld
   catalog:
     km: '20'
     sieg: '15.2'
@@ -237,39 +244,42 @@ coins:
     bruun_lot_no: 14243
     bruun_page: 312
   metal: silver
+  fineness_verified: false
+  fineness:
+  - value: 0.88889
+    source: '20'
   weight_rough_g:
   - value: 28.65
     source: Bruun Part II, lot 14243, p. 312
-  issuing_entity: sonderburg_duchy
-  mint: Reinfeld
-  note:
-    de: Reichsthaler 1622-TR · Münzmeister Tobias Reinhardt
-    en: Reichsthaler 1622-TR · mintmaster Tobias Reinhardt
-    uk: Reichsthaler 1622-TR · монетмейстер Tobias Reinhardt
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14243, p. 312
-  fineness: 0.88889
-  fineness_verified: false
+  note:
+    de: Reichsthaler 1622-TR · Münzmeister Tobias Reinhardt
+    en: Reichsthaler 1622-TR · mintmaster Tobias Reinhardt
+    uk: Reichsthaler 1622-TR · монетмейстер Tobias Reinhardt
   verification_note:
-    de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) auf den kanonischen Müntzfuß-Wert (9_thaler, 
-      Anker 0.8889) gesetzt; Δ -1.99% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz.
-    en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value 
-      (9_thaler, anchor 0.8889); Δ -1.99% against the soll value sits within the ±2 % specimen-tolerance envelope.
-    uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту
-      (9_thaler, якірна проба 0.8889); Δ -1.99% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  v1_home_location: schleswig_holstein
+    de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) auf den kanonischen Müntzfuß-Wert (9_thaler, Anker
+      0.8889) gesetzt; Δ -1.99% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz.
+    en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value (9_thaler,
+      anchor 0.8889); Δ -1.99% against the soll value sits within the ±2 % specimen-tolerance envelope.
+    uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_thaler,
+      якірна проба 0.8889); Δ -1.99% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
   composed_of: []
-- id: km-21-hans-jr-sonderb-1622
-  fuss: 9_25_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_25_thaler
   phase: I
   kind: gedenk
   fraction: '1'
   nominal: 1 Thaler
-  year_label: '1622'
-  year_first: 1622
   ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-21-hans-jr-sonderb-1622
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mint: Reinfeld
   catalog:
     km: '21'
     lange: '544'
@@ -281,16 +291,15 @@ coins:
     bruun_lot_no: 14245
     bruun_page: 314
   metal: silver
+  fineness_verified: false
+  fineness:
+  - value: 0.875
+    source: '21'
   weight_rough_g:
   - value: 28.43
     source: Numista
   - value: 28.62
     source: Bruun Part II, lot 14245, p. 314
-  issuing_entity: sonderburg_duchy
-  note:
-    de: 1 Thaler (Gedenk) · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
-    en: 1 Thaler (Gedenk) · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
-    uk: 1 Thaler (Gedenk) · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1622
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151531.html
@@ -298,28 +307,31 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14245, p. 314
-  mint: Reinfeld
-  fineness: 0.875
-  fineness_verified: false
+  note:
+    de: 1 Thaler (Gedenk) · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
+    en: 1 Thaler (Gedenk) · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
+    uk: 1 Thaler (Gedenk) · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1622
   verification_note:
-    de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) auf den kanonischen Müntzfuß-Wert (9_25_thaler,
-      Anker 0.875) gesetzt; Δ -1.60% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz.
-    en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value 
-      (9_25_thaler, anchor 0.875); Δ -1.60% against the soll value sits within the ±2 % specimen-tolerance envelope.
-    uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту
-      (9_25_thaler, якірна проба 0.875); Δ -1.60% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  v1_home_location: schleswig_holstein
+    de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) auf den kanonischen Müntzfuß-Wert (9_25_thaler, Anker
+      0.875) gesetzt; Δ -1.60% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz.
+    en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value (9_25_thaler,
+      anchor 0.875); Δ -1.60% against the soll value sits within the ±2 % specimen-tolerance envelope.
+    uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_25_thaler,
+      якірна проба 0.875); Δ -1.60% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
   composed_of: []
-- id: km-23-hans-jr-sonderb-1622
-  fuss: 9_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_thaler
   phase: I
   kind: kurant
   fraction: '2'
   nominal: 2 Reichsthaler
-  year_label: '1622'
+  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-23-hans-jr-sonderb-1622
   year_first: 1622
   year_last: 1622
-  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  year_label: '1622'
+  mint: Reinfeld
   catalog:
     km: '23'
     sieg: '22'
@@ -330,39 +342,41 @@ coins:
     bruun_lot_no: 14244
     bruun_page: 313
   metal: silver
+  fineness_verified: false
+  fineness:
+  - value: 0.88889
+    source: '23'
   weight_rough_g:
   - value: 57.48
     source: Bruun Part II, lot 14244, p. 313
-  issuing_entity: sonderburg_duchy
-  mint: Reinfeld
-  note:
-    de: 2 Reichsthaler · Reinfelder Doppeltaler unter Tobias Reinhardt · in dieser Erhaltung selten.
-    en: 2 Reichsthaler · Reinfeld double taler under Tobias Reinhardt · rare in this state.
-    uk: 2 Reichsthaler · райнфельдський подвійний талер під Tobias Reinhardt · рідкісний в цьому стані.
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14244, p. 313
-  fineness: 0.88889
-  fineness_verified: false
+  note:
+    de: 2 Reichsthaler · Reinfelder Doppeltaler unter Tobias Reinhardt · in dieser Erhaltung selten.
+    en: 2 Reichsthaler · Reinfeld double taler under Tobias Reinhardt · rare in this state.
+    uk: 2 Reichsthaler · райнфельдський подвійний талер під Tobias Reinhardt · рідкісний в цьому стані.
   verification_note:
-    de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) auf den kanonischen Müntzfuß-Wert (9_thaler, 
-      Anker 0.8889) gesetzt; Δ -1.68% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz.
-    en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value 
-      (9_thaler, anchor 0.8889); Δ -1.68% against the soll value sits within the ±2 % specimen-tolerance envelope.
-    uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту
-      (9_thaler, якірна проба 0.8889); Δ -1.68% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  v1_home_location: schleswig_holstein
+    de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) auf den kanonischen Müntzfuß-Wert (9_thaler, Anker
+      0.8889) gesetzt; Δ -1.68% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen Spezimen-Toleranz.
+    en: Fineness not directly attested. Per project convention (CLAUDE.md §4) set to the canonical Müntzfuß value (9_thaler,
+      anchor 0.8889); Δ -1.68% against the soll value sits within the ±2 % specimen-tolerance envelope.
+    uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_thaler,
+      якірна проба 0.8889); Δ -1.68% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
   composed_of: []
-- id: km-25-alex-sonderb-1625
-  fuss: 9_25_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_25_thaler
   phase: I
   kind: scheide
   fraction: 1/16
   nominal: 1 Düttchen
-  year_label: '1625'
-  year_first: 1625
   ruler: Alexander von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-25-alex-sonderb-1625
+  year_first: 1625
+  year_last: 1625
+  year_label: '1625'
   catalog:
     km: '25'
     lange: 559a
@@ -371,27 +385,28 @@ coins:
   weight_rough_g:
   - value: 1.44
     source: Numista
-  issuing_entity: sonderburg_duchy
-  note:
-    de: 1 Düttchen = 1/16 Thaler · Alexander von Schleswig-Holstein-Sonderburg, 1625
-    en: 1 Düttchen = 1/16 Thaler · Alexander, Duke of Schleswig-Holstein-Sonderburg, 1625
-    uk: 1 Düttchen = 1/16 Thaler · Александр Гольштейн-Зондербург, 1625
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151534.html
     ref: Numista
-  v1_home_location: schleswig_holstein
+  note:
+    de: 1 Düttchen = 1/16 Thaler · Alexander von Schleswig-Holstein-Sonderburg, 1625
+    en: 1 Düttchen = 1/16 Thaler · Alexander, Duke of Schleswig-Holstein-Sonderburg, 1625
+    uk: 1 Düttchen = 1/16 Thaler · Александр Гольштейн-Зондербург, 1625
   composed_of: []
-- id: km-26-alex-sonderb-1626
-  fuss: 9_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_thaler
   phase: I
   kind: kurant
   fraction: '1'
   nominal: 1 Reichsthaler
-  year_label: '1626'
+  ruler: Alexander von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-26-alex-sonderb-1626
   year_first: 1626
   year_last: 1626
-  ruler: Alexander von Schleswig-Holstein-Sonderburg
+  year_label: '1626'
+  mint: Reinfeld
   catalog:
     km: '26'
     sieg: '2'
@@ -405,30 +420,30 @@ coins:
   weight_rough_g:
   - value: 28.52
     source: Bruun Part II, lot 14247, p. 316
-  issuing_entity: sonderburg_duchy
-  mint: Reinfeld
-  note:
-    de: Reichsthaler 1626 · erste eigene Prägung Alexanders nach dem Tod Hans d. J. (1622) · Münzort Reinfelder oder 
-      Sonderburg laut Bruun-Beschreibung
-    en: Reichsthaler 1626 · Alexander's first own issue after Hans the Younger's death (1622) · Reinfeld or Sonderburg 
-      mint per Bruun catalogue
-    uk: Reichsthaler 1626 · перше власне карбування Александра після смерті Ганса Молодшого (1622) · Райнфельд або 
-      Зондербург за каталогом Bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14247, p. 316
-  v1_home_location: schleswig_holstein
+  note:
+    de: Reichsthaler 1626 · erste eigene Prägung Alexanders nach dem Tod Hans d. J. (1622) · Münzort Reinfelder oder Sonderburg
+      laut Bruun-Beschreibung
+    en: Reichsthaler 1626 · Alexander's first own issue after Hans the Younger's death (1622) · Reinfeld or Sonderburg mint
+      per Bruun catalogue
+    uk: Reichsthaler 1626 · перше власне карбування Александра після смерті Ганса Молодшого (1622) · Райнфельд або Зондербург
+      за каталогом Bruun
   composed_of: []
-- id: km-28-alex-sonderb-1627
-  fuss: 9_25_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_25_thaler
   phase: I
   kind: gedenk
   fraction: '1'
   nominal: 1 Thaler
-  year_label: '1627'
-  year_first: 1627
   ruler: Alexander von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-28-alex-sonderb-1627
+  year_first: 1627
+  year_last: 1627
+  year_label: '1627'
   catalog:
     km: '28'
     lange: '560'
@@ -440,86 +455,92 @@ coins:
     bruun_lot_no: 12212
     bruun_page: 263
   metal: silver
-  issuing_entity: sonderburg_duchy
-  note:
-    de: 1 Thaler (Gedenk) · Alexander von Schleswig-Holstein-Sonderburg, 1627
-    en: 1 Thaler (Gedenk) · Alexander, Duke of Schleswig-Holstein-Sonderburg, 1627
-    uk: 1 Thaler (Gedenk) · Александр Гольштейн-Зондербург, 1627
+  weight_rough_g:
+  - value: 27.26
+    source: Bruun Part III, lot 12212, p. 263
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151536.html
     ref: Numista
   - type: auction
-    url: 
-      https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12212, p. 263
-  weight_rough_g:
-  - value: 27.26
-    source: Bruun Part III, lot 12212, p. 263
-  v1_home_location: schleswig_holstein
+  note:
+    de: 1 Thaler (Gedenk) · Alexander von Schleswig-Holstein-Sonderburg, 1627
+    en: 1 Thaler (Gedenk) · Alexander, Duke of Schleswig-Holstein-Sonderburg, 1627
+    uk: 1 Thaler (Gedenk) · Александр Гольштейн-Зондербург, 1627
   composed_of: []
-- id: km-3-hans-jr-sonderb-1604
-  fuss: 9_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_thaler
   phase: I
   kind: scheide
   fraction: 1/16
   nominal: 2 Schilling
-  year_label: '1604'
-  year_first: 1604
   ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-3-hans-jr-sonderb-1604
+  year_first: 1604
+  year_last: 1604
+  year_label: '1604'
   catalog:
     km: '3'
     lange: '531'
     numista: '151521'
   metal: silver
-  issuing_entity: sonderburg_duchy
-  note:
-    de: 2 Schilling = 1/16 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1604
-    en: 2 Schilling = 1/16 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1604
-    uk: 2 Schilling = 1/16 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1604
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151521.html
     ref: Numista
-  v1_home_location: schleswig_holstein
+  note:
+    de: 2 Schilling = 1/16 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1604
+    en: 2 Schilling = 1/16 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1604
+    uk: 2 Schilling = 1/16 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1604
   composed_of: []
-- id: km-4-hans-jr-sonderb-1618
-  fuss: 9_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_thaler
   phase: I
   kind: scheide
   fraction: 1/30
   nominal: 2 Schilling Lübisch
-  year_label: 1618-1622
+  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-4-hans-jr-sonderb-1618
   year_first: 1618
   year_last: 1622
-  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  year_ranges:
+  - - 1618
+    - 1622
+  year_label: 1618-1622
+  mint: Reinfeld
   catalog:
     km: '4'
     lange: '540'
     numista: '151523'
   metal: silver
-  issuing_entity: sonderburg_duchy
-  note:
-    de: 2 Schilling Lübisch = 1/30 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1618-1622
-    en: 2 Schilling Lübisch = 1/30 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1618-1622
-    uk: 2 Schilling Lübisch = 1/30 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1618-1622
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151523.html
     ref: Numista
-  mint: Reinfeld
-  v1_home_location: schleswig_holstein
+  note:
+    de: 2 Schilling Lübisch = 1/30 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1618-1622
+    en: 2 Schilling Lübisch = 1/30 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1618-1622
+    uk: 2 Schilling Lübisch = 1/30 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1618-1622
   composed_of: []
-- id: km-5-hans-jr-sonderb-1618
-  fuss: 9_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_thaler
   phase: I
   kind: scheide
   fraction: 1/16
   nominal: 2 Schilling
-  year_label: 1618-1619
+  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-5-hans-jr-sonderb-1618
   year_first: 1618
   year_last: 1619
-  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  year_ranges:
+  - - 1618
+    - 1619
+  year_label: 1618-1619
   catalog:
     km: '5'
     lange: '535'
@@ -530,43 +551,34 @@ coins:
     - Lange# 536a
     - Lange# 536b
   metal: silver
+  weight_rough_verified: true
+  diameter_mm_verified: true
   weight_rough_g:
-  - value: 2.08
-    source: Numista
-  - value: 2.05
-    source: IKMK Berlin, Inv. 18284698
-  - value: 2.35
-    source: IKMK Berlin, Inv. 18284699
-  - value: 2.16
-    source: IKMK Berlin, Inv. 18284700
+  - value: 1.63
+    source: IKMK Berlin, Inv. 18284704
+  - value: 1.87
+    source: IKMK Berlin, Inv. 18284710
   - value: 1.9
     source: IKMK Berlin, Inv. 18284701
   - value: 1.93
     source: IKMK Berlin, Inv. 18284707
   - value: 1.94
     source: IKMK Berlin, Inv. 18284709
-  - value: 1.87
-    source: IKMK Berlin, Inv. 18284710
   - value: 2.03
     source: IKMK Berlin, Inv. 18284703
-  - value: 1.63
-    source: IKMK Berlin, Inv. 18284704
+  - value: 2.05
+    source: IKMK Berlin, Inv. 18284698
+  - value: 2.08
+    source: Numista
+  - value: 2.16
+    source: IKMK Berlin, Inv. 18284700
   - value: 2.34
     source: IKMK Berlin, Inv. 18284705
-  issuing_entity: sonderburg_duchy
-  note:
-    de: '2 Schilling = 1/16 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1618-1619
-
-
-      Stempelvarianten unter dem KM#5-Typ dokumentiert: Lange 535a/535b (1618), 536a/536b (1619) — IKMK Berlin.'
-    en: '2 Schilling = 1/16 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1618-1619
-
-
-      Die-variants under the KM#5 type documented: Lange 535a/535b (1618), 536a/536b (1619) — IKMK Berlin.'
-    uk: '2 Schilling = 1/16 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1618-1619
-
-
-      Задокументовані штемпелі під типом KM#5: Lange 535a/535b (1618), 536a/536b (1619) — IKMK Berlin.'
+  - value: 2.35
+    source: IKMK Berlin, Inv. 18284699
+  diameter_mm:
+  - value: 23.0
+    source: '5'
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151525.html
@@ -611,23 +623,38 @@ coins:
     url: https://ikmk.smb.museum/object?id=18284705
     ref: IKMK Berlin, Inv. 18284705
     note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-  weight_rough_verified: true
   inscription_obv: IOHAN D G HAERES NOR
   inscription_rev: D SCHL E H C I O E D 19
-  diameter_mm: 23.0
-  diameter_mm_verified: true
-  v1_home_location: schleswig_holstein
+  note:
+    de: '2 Schilling = 1/16 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1618-1619
+
+
+      Stempelvarianten unter dem KM#5-Typ dokumentiert: Lange 535a/535b (1618), 536a/536b (1619) — IKMK Berlin.'
+    en: '2 Schilling = 1/16 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1618-1619
+
+
+      Die-variants under the KM#5 type documented: Lange 535a/535b (1618), 536a/536b (1619) — IKMK Berlin.'
+    uk: '2 Schilling = 1/16 Thaler · Йоганн (Ганс Молодший) Гольштейн-Зондербург, 1618-1619
+
+
+      Задокументовані штемпелі під типом KM#5: Lange 535a/535b (1618), 536a/536b (1619) — IKMK Berlin.'
   composed_of: []
-- id: km-9-hans-jr-sonderb-1619
-  fuss: 9_thaler
+  v1_home_location: schleswig_holstein
+- fuss: 9_thaler
   phase: I
   kind: scheide
   fraction: 1/16
   nominal: 2 Schilling
-  year_label: 1619-1620
+  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: km-9-hans-jr-sonderb-1619
   year_first: 1619
   year_last: 1620
-  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  year_ranges:
+  - - 1619
+    - 1620
+  year_label: 1619-1620
+  mint: Reinfeld
   catalog:
     km: '9'
     lange: 533a
@@ -637,7 +664,84 @@ coins:
     - Lange# 533 A/b
     - Lange# 534
   metal: silver
-  issuing_entity: sonderburg_duchy
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  weight_rough_g:
+  - value: 1.48
+    source: IKMK Berlin, Inv. 18284399
+  - value: 1.71
+    source: IKMK Berlin, Inv. 18284693
+  - value: 1.77
+    source: IKMK Berlin, Inv. 18284404 (mule)
+  - value: 1.82
+    source: IKMK Berlin, Inv. 18284402
+  - value: 1.82
+    source: IKMK Berlin, Inv. 18284691
+  - value: 1.83
+    source: IKMK Berlin, Inv. 18284692
+  - value: 1.99
+    source: IKMK Berlin, Inv. 18284400
+  - value: 2.06
+    source: IKMK Berlin, Inv. 18284696
+  - value: 2.07
+    source: IKMK Berlin, Inv. 18284401
+  - value: 2.21
+    source: IKMK Berlin, Inv. 18284403
+  - value: 2.25
+    source: IKMK Berlin, Inv. 18284697 (1620 cf Lange 534)
+  diameter_mm:
+  - value: 23.0
+    source: '9'
+  sources:
+  - type: numista
+    url: https://en.numista.com/catalogue/pieces151527.html
+    ref: Numista
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284403
+    ref: IKMK Berlin, Inv. 18284403
+    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284692
+    ref: IKMK Berlin, Inv. 18284692
+    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284693
+    ref: IKMK Berlin, Inv. 18284693
+    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284399
+    ref: IKMK Berlin, Inv. 18284399
+    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284400
+    ref: IKMK Berlin, Inv. 18284400
+    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284404
+    ref: IKMK Berlin, Inv. 18284404
+    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess; Stempel-Mule (Matthias-II-Reverse)'
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284401
+    ref: IKMK Berlin, Inv. 18284401
+    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284691
+    ref: IKMK Berlin, Inv. 18284691
+    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284697
+    ref: IKMK Berlin, Inv. 18284697
+    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess; Stempel-Variante 1620 (cf Lange 534)'
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284402
+    ref: IKMK Berlin, Inv. 18284402
+    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284696
+    ref: IKMK Berlin, Inv. 18284696
+    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  inscription_obv: IOHA D G - HAE NOR
+  inscription_rev: DVX SL HOL CO OL ET D 619
   note:
     de: '2 Schilling = 1/16 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1619-1620
 
@@ -690,105 +794,28 @@ coins:
       Штемпельний варіант 1620 року під KM#9 (Numista N#151527 покриває 1619-1620): Lange II 534 — IKMK 18284697 фіксує коротку
       легенду av. «IO D G - H NO» / rev. «DVX SL HOL CO O E D 620», що відповідає коротко-штемпельній родині 1619-х (Lange
       533a base), лише з датою 620.'
-  sources:
-  - type: numista
-    url: https://en.numista.com/catalogue/pieces151527.html
-    ref: Numista
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18284403
-    ref: IKMK Berlin, Inv. 18284403
-    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18284692
-    ref: IKMK Berlin, Inv. 18284692
-    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18284693
-    ref: IKMK Berlin, Inv. 18284693
-    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18284399
-    ref: IKMK Berlin, Inv. 18284399
-    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18284400
-    ref: IKMK Berlin, Inv. 18284400
-    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18284404
-    ref: IKMK Berlin, Inv. 18284404
-    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess; Stempel-Mule (Matthias-II-Reverse)'
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18284401
-    ref: IKMK Berlin, Inv. 18284401
-    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18284691
-    ref: IKMK Berlin, Inv. 18284691
-    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18284697
-    ref: IKMK Berlin, Inv. 18284697
-    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess; Stempel-Variante 1620 (cf Lange 534)'
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18284402
-    ref: IKMK Berlin, Inv. 18284402
-    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18284696
-    ref: IKMK Berlin, Inv. 18284696
-    note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
-  mint: Reinfeld
-  inscription_obv: IOHA D G - HAE NOR
-  inscription_rev: DVX SL HOL CO OL ET D 619
-  diameter_mm: 23.0
-  diameter_mm_verified: true
-  weight_rough_g:
-  - value: 2.21
-    source: IKMK Berlin, Inv. 18284403
-  - value: 1.83
-    source: IKMK Berlin, Inv. 18284692
-  - value: 1.71
-    source: IKMK Berlin, Inv. 18284693
-  - value: 1.48
-    source: IKMK Berlin, Inv. 18284399
-  - value: 1.99
-    source: IKMK Berlin, Inv. 18284400
-  - value: 1.77
-    source: IKMK Berlin, Inv. 18284404 (mule)
-  - value: 2.07
-    source: IKMK Berlin, Inv. 18284401
-  - value: 1.82
-    source: IKMK Berlin, Inv. 18284691
-  - value: 2.25
-    source: IKMK Berlin, Inv. 18284697 (1620 cf Lange 534)
-  - value: 1.82
-    source: IKMK Berlin, Inv. 18284402
-  - value: 2.06
-    source: IKMK Berlin, Inv. 18284696
-  weight_rough_verified: true
-  v1_home_location: schleswig_holstein
   composed_of: []
+  v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
   kind: kurant
   nominal: 2 Schilling
-  year_label: '1618'
+  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
+  issuing_entity: sonderburg_duchy
+  id: lange-532-hans-jr-sonderb-1618
   year_first: 1618
   year_last: 1618
-  ruler: Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg
-  mint:
-  metal: silver
-  fineness:
-  fineness_verified: false
-  issuing_entity: sonderburg_duchy
-  verified: false
-  mint_verified: false
-  id: lange-532-hans-jr-sonderb-1618
+  year_label: '1618'
   catalog:
     lange: '532'
     others:
     - Lange# 532b
+  metal: silver
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
   weight_rough_g:
   - value: 1.79
     source: IKMK Berlin, Inv. 18284272
@@ -796,15 +823,13 @@ coins:
     source: IKMK Berlin, Inv. 18284395
   - value: 2.01
     source: IKMK Berlin, Inv. 18284396
-  - value: 2.26
-    source: IKMK Berlin, Inv. 18284397
   - value: 2.24
     source: IKMK Berlin, Inv. 18284398
-  weight_rough_verified: true
-  diameter_mm: 24.0
-  diameter_mm_verified: true
-  inscription_obv: IOHAN D G HAERES NORWG
-  inscription_rev: D SCHL E HO C I OL E D 1618
+  - value: 2.26
+    source: IKMK Berlin, Inv. 18284397
+  diameter_mm:
+  - value: 24.0
+    source: '532'
   sources:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18284272
@@ -826,6 +851,8 @@ coins:
     url: https://ikmk.smb.museum/object?id=18284398
     ref: IKMK Berlin, Inv. 18284398
     note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  inscription_obv: IOHAN D G HAERES NORWG
+  inscription_rev: D SCHL E HO C I OL E D 1618
   note:
     de: '2 Schilling (Doppelschilling = 1/16 Taler) 1618 · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg · Reinfeld
       (MM Tobias Reinhardt) · Lange (1912) Nr. 532 / 532 B — gleicher Avers-Typ wie KM#5 (Lange 535), aber abweichender Revers;
@@ -849,11 +876,11 @@ coins:
       (IOHAN D G HAERES NORWG) та реверсом OL E D, з контрамаркою (Gegenstempel); (г) Lange 532 B з довгою аверсною легендою
       та реверсом O E D (замість OL E D), з контрамаркою.'
   verification_note:
-    de: Stempel-/Reverstyp-Variante des Hans-Sonderburg 2-Schilling 1618; im Krause-Verzeichnis nicht separat 
-      klassifiziert. Per-Münze-Verifikation und KM-Zuordnung stehen aus.
-    en: Die / reverse-type variant of the Hans-Sonderburg 2-Schilling 1618; not separately classified in Krause. 
-      Per-coin verification and KM assignment outstanding.
-    uk: Штемпельний / реверс-варіант 2-Schilling 1618 Hans-Sonderburg; у Krause-каталозі не виділений окремо. Покоінна 
-      верифікація та призначення KM очікуються.
-  v1_home_location: schleswig_holstein
+    de: Stempel-/Reverstyp-Variante des Hans-Sonderburg 2-Schilling 1618; im Krause-Verzeichnis nicht separat klassifiziert.
+      Per-Münze-Verifikation und KM-Zuordnung stehen aus.
+    en: Die / reverse-type variant of the Hans-Sonderburg 2-Schilling 1618; not separately classified in Krause. Per-coin
+      verification and KM assignment outstanding.
+    uk: Штемпельний / реверс-варіант 2-Schilling 1618 Hans-Sonderburg; у Krause-каталозі не виділений окремо. Покоінна верифікація
+      та призначення KM очікуються.
   composed_of: []
+  v1_home_location: schleswig_holstein

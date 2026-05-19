@@ -868,6 +868,7 @@ coins:
     schou: '20'
     sieg: '36'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -877,11 +878,15 @@ coins:
     source: '120'
   - value: 0.25
     source: hede
+  - value: 0.25
+    source: numismaster
   weight_rough_g:
   - value: 1.499
     source: Numista
   - value: 1.499
     source: hede
+  - value: 1.499
+    source: numismaster
   - value: 1.5
     source: ucoin
   diameter_mm:
@@ -897,6 +902,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h45.htm
     ref: danskmoent.dk (Hede c7h45)
+  - type: literature
+    url: https://numismaster.com/MC_120079
+    ref: NumisMaster
   note:
     de: '2 Sechsling = 1 Schilling Courant; <b>keine 1-Schilling-Müntze</b> geprägt — Folge der Lübisch-Hanseat. Tradition.
       Auflagen 1787 = 761 000; 1796 = 538 000; 1799 = 960 000; 1800 = 480 000<sup><a href="#ref41">[41]</a></sup>.
@@ -1887,14 +1895,23 @@ coins:
     - Jaeg 6 NWD# 13
     - C# 22
   metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
   fineness:
   - value: 0.5
     source: '154'
+  - value: 0.5
+    source: numismaster
   weight_rough_g:
   - value: 4.21
     source: ucoin
   - value: 4.214
     source: Numista
+  - value: 4.214
+    source: numismaster
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces142102.html
@@ -1905,6 +1922,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/schleswig_holstein-16-schilling-1816-1818/?tid=90766
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_120077
+    ref: NumisMaster
   note:
     de: 'Reverse-Legende: <b>«*16* REICHS=BANK SCHILLING. [Jahr]. [MM]»</b> + Münzmeisterinitialen (MF, CB). · 16 RBS = 1/6
       Rigsbankdaler = 5 Sch.C. = 1/12 Thaler Species'
@@ -1912,7 +1932,15 @@ coins:
       1/6 Rigsbankdaler = 5 Sch.C. = 1/12 Thaler Species'
     uk: 'Легенда реверса: <b>«*16* REICHS=BANK SCHILLING. [рік]. [MM]»</b> + ініціали монетмайстера (MF, CB). · 16 RBS = 1/6
       Rigsbankdaler = 5 Sch.C. = 1/12 Thaler Species'
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-schleswig_holstein-numismaster-120077
   v1_home_location: schleswig_holstein
   _migration_note: auto-mapped from gesamtstaat
 - fuss: 18_5_thaler
@@ -1947,9 +1975,16 @@ coins:
     bruun_page: 176
     hede_volume: f6h
   metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
   fineness:
   - value: 0.5
     source: 154a
+  - value: 0.5
+    source: numismaster
   weight_rough_g:
   - value: 4.21
     source: ucoin
@@ -1957,6 +1992,8 @@ coins:
     source: Hede 30
   - value: 4.214
     source: Numista
+  - value: 4.214
+    source: numismaster
   - value: 4.3
     source: Bruun Part II, lot 13262, p. 176
   diameter_mm:
@@ -1978,6 +2015,9 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17173, p. 97
+  - type: literature
+    url: https://numismaster.com/MC_120078
+    ref: NumisMaster
   note:
     de: 'Reverse-Legende: <b>«*16* REICHS=BANK SCHILLING. [Jahr]. I.F.F.»</b>. Spätere Variante zu KM# 154 unter Frederik
       VI. (reg. biß 3. Dez. 1839) · Münzmeister Johann Friedrich Freund (I.F.F.). · 16 RBS = 1/6 Rigsbankdaler = 5 Sch.C.
@@ -1990,7 +2030,15 @@ coins:
     uk: 'Легенда реверса: <b>«*16* REICHS=BANK SCHILLING. [рік]. I.F.F.»</b>. Пізніший варіант KM# 154 за Фредеріка VI (правив
       до 3 грудня 1839) · монетмайстер Johann Friedrich Freund (I.F.F.). · 16 RBS = 1/6 Rigsbankdaler = 5 Sch.C. = 1/12 Thaler
       Species'
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-schleswig_holstein-numismaster-120078
   v1_home_location: schleswig_holstein
   _migration_note: auto-mapped from gesamtstaat
 - fuss: 9_25_thaler
@@ -2014,8 +2062,13 @@ coins:
     bruun_part: II
     bruun_lot_no: 13097
     bruun_page: 77
+    dav: '3667'
   metal: silver
+  metal_verified: true
   fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
   fineness:
   - value: 0.875
     source: '16'
@@ -2031,6 +2084,9 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13097, p. 77
+  - type: literature
+    url: https://numismaster.com/MC_93026
+    ref: NumisMaster
   note:
     de: '2 Speciedaler Christians IV. (Glückstadt 1623, Mzz. ♔) · Obverse stehende Königsfigur in voller Rüstung, linke Hand
       am Schwertknauf, rechte auf gekröntem Wappenschild «CHRISTIANVS·4·D:G:DAN:NOR:V:G:R:»; Reverse stehende Fortuna auf
@@ -2051,7 +2107,8 @@ coins:
       anchor 0.875); Δ +0.51% against the soll value sits within the ±2 % specimen-tolerance envelope.
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_25_thaler,
       якірна проба 0.875); Δ +0.51% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  composed_of: []
+  composed_of:
+  - unified-schleswig_holstein-numismaster-93026
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -2764,8 +2821,11 @@ coins:
   ruler: Christian IV.
   issuing_entity: royal_holstein
   id: km-28-chr-iv-1641
-  year_first: 1641
+  year_first: 1640
   year_last: 1641
+  year_ranges:
+  - - 1640
+    - 1641
   year_label: '1641'
   mint: Glückstadt
   catalog:
@@ -2778,8 +2838,13 @@ coins:
     bruun_part: I
     bruun_lot_no: 1041
     bruun_page: 79
+    dav: '3669'
   metal: silver
+  metal_verified: true
   fineness_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
   fineness:
   - value: 0.888
     source: '28'
@@ -2801,6 +2866,9 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
     ref: Bruun Part I, lot 1041, p. 79
+  - type: literature
+    url: https://numismaster.com/MC_93027
+    ref: NumisMaster
   note:
     de: 2 Speciedaler Christians IV. (Glückstadt 1641, King-bust-Typ 2) · Mzz. ST = Simon Timpf · Obverse großes gekröntes
       und geharnischtes Brustbild über Trennlinie, Wappenschild Dänemarks darunter, mit Devise «REGNA FIRMAT PIETAS»; Reverse
@@ -2813,7 +2881,15 @@ coins:
     uk: 2 Speciedaler Кристіана IV (Glückstadt 1641, бюст-тип 2) · монограма ST = Сімон Тімпф · аверс — великий коронований
       і броньований бюст над лінією, нижче — герб Данії, з девізом «REGNA FIRMAT PIETAS»; реверс — Фортуна на глобусі з бандероллю,
       «MON:NOV:GLUCK STATDENSIS:1641». Davenport EC II# 3669, Lange# 33. Ґлюкштатський Speciedaler у 9¼-Fuß.
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-schleswig_holstein-numismaster-93027
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
   phase: I
@@ -2955,10 +3031,12 @@ coins:
   issuing_entity: royal_holstein
   id: km-30-1-chr-iv-1641
   year_first: 1641
-  year_last: 1642
+  year_last: 1645
   year_ranges:
   - - 1641
     - 1642
+  - - 1645
+    - 1645
   year_label: 1641-1642
   mint: Glückstadt
   catalog:
@@ -2966,15 +3044,23 @@ coins:
     lange: '52'
     numista: '109448'
   metal: silver
+  metal_verified: true
   fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
   fineness:
   - value: 0.812
     source: '30'
+  - value: 0.812
+    source: numismaster
   weight_rough_g:
   - value: 4.87
     source: ucoin
   - value: 4.872
     source: Numista
+  - value: 4.872
+    source: numismaster
   diameter_mm:
   - value: 29.0
     source: '30'
@@ -2985,6 +3071,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-8-skilling-lybsk-1641-1645/?tid=163647
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_92989
+    ref: NumisMaster
   note:
     de: 8 Skilling Lybsk = 1 Mark = 1/6 Speciedaler · Christian IV. (Glückstadt 1641–1642, Typ 1) · Mzz. (f) = ST-Monogramm
       Simon Timpf · Lange# 52. Glückstadter Theilstück im 9¼-Fuß zu reduziertem Feingehalt .812.
@@ -2992,7 +3081,15 @@ coins:
       of Simon Timpf · Lange# 52. Glückstadt sub-unit on the 9¼-Fuß at reduced fineness .812.
     uk: 8 Skilling Lybsk = 1 Mark = 1/6 Speciedaler · Кристіан IV (Glückstadt 1641–1642, тип 1) · монограма (f) = ST-монограма
       Сімона Тімпфа · Lange# 52. Ґлюкштатський підрозмінний номінал у 9¼-Fuß зі зниженою пробою .812.
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-schleswig_holstein-numismaster-92989
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -3011,15 +3108,23 @@ coins:
     lange: '53'
     numista: '107815'
   metal: silver
+  metal_verified: true
   fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
   fineness:
   - value: 0.812
     source: '30'
+  - value: 0.812
+    source: numismaster
   weight_rough_g:
   - value: 4.87
     source: ucoin
   - value: 4.872
     source: Numista
+  - value: 4.872
+    source: numismaster
   diameter_mm:
   - value: 29.0
     source: '30'
@@ -3030,6 +3135,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-8-skilling-lybsk-1641-1645/?tid=163647
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_92990
+    ref: NumisMaster
   note:
     de: 8 Skilling Lybsk = 1 Mark = 1/6 Speciedaler · Christian IV. (Glückstadt 1642, Typ 2) · Mzz. ST = Simon Timpf · Lange#
       53. Stempelvariante zu KM# 30.1. Glückstadter Theilstück im 9¼-Fuß zu reduziertem Feingehalt .812.
@@ -3037,7 +3145,15 @@ coins:
       Lange# 53. Die variant of KM# 30.1. Glückstadt sub-unit on the 9¼-Fuß at reduced fineness .812.
     uk: 8 Skilling Lybsk = 1 Mark = 1/6 Speciedaler · Кристіан IV (Glückstadt 1642, тип 2) · монограма ST = Сімон Тімпф ·
       Lange# 53. Штемпельна варіація до KM# 30.1. Ґлюкштатський підрозмінний номінал у 9¼-Fuß зі зниженою пробою .812.
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-schleswig_holstein-numismaster-92990
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -3119,6 +3235,7 @@ coins:
     - '166'
     - '167'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3128,11 +3245,15 @@ coins:
     source: '31'
   - value: 0.812
     source: hede
+  - value: 0.812
+    source: numismaster
   weight_rough_g:
   - value: 1.785
     source: Numista
   - value: 1.785
     source: hede
+  - value: 1.785
+    source: numismaster
   - value: 1.79
     source: ucoin
   diameter_mm:
@@ -3151,6 +3272,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h177.htm
     ref: danskmoent.dk (Hede c4h177)
+  - type: literature
+    url: https://numismaster.com/MC_92983
+    ref: NumisMaster
   note:
     de: 3 Skilling Lybsk = 1/16 Speciedaler («Landgeld») · Christian IV. (Glückstadt 1644) · Lange# 54. Glückstadter Theilstück
       im 9¼-Fuß zu reduziertem Feingehalt .812; etwas schwerer als die parallelen 1/16-Reichsthaler-Stücke desselben Münzfußes.
@@ -6720,8 +6844,14 @@ coins:
     km: '78'
     numista: '108662'
   metal: billon
+  metal_verified: true
   fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
   fineness:
+  - value: 0.343
+    source: numismaster
   - value: 0.343
     source: ucoin
   - value: 0.344
@@ -6731,6 +6861,8 @@ coins:
     source: Numista
   - value: 1.22
     source: ucoin
+  - value: 1.224
+    source: numismaster
   diameter_mm:
   - value: 19.3
     source: '78'
@@ -6741,6 +6873,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-skilling-dansk-1693-1694/?tid=163586
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_92973
+    ref: NumisMaster
   note:
     de: 2 Skilling Danske Christians V. · Obverse gekröntes C5-Monogramm zwischen den geteilten Datumsziffern «16 C5 94»;
       Reverse «* II * SKILLING DANSKE * *» mit Mzz. ⚒ (gekreuzte Hämmer/Glödehager = Glückstadt). 1/48 Speciedaler · Billon
@@ -6755,7 +6890,15 @@ coins:
       II * SKILLING DANSKE * *» з монограмою ⚒ (схрещені молоти / glødehager = Glückstadt). 1/48 Speciedaler · білон .344.
       · <em>Фактичний вміст чистого срібла 0,385 г на ~10 % нижче пізнішого поділу 11⅓-Fuß (2/96 RCour = 0,430 г) і на ~27
       % нижче Speciedaler-поділу (2/96 Sp = 0,527 г) — типове Scheide-зниження на попереднику Kurantmøntfod-стандарту.</em>
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-schleswig_holstein-numismaster-92973
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -6815,12 +6958,18 @@ coins:
     sieg: '131'
     hede_volume: c5h
   metal: billon
+  metal_verified: true
   fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
   fineness:
   - value: 0.347
     source: Numista (likely transcription error — see note)
   - value: 0.437
     source: Hede 128 / danskmoent.dk
+  - value: 0.437
+    source: numismaster
   - value: 0.437
     source: ucoin
   weight_rough_g:
@@ -6830,6 +6979,8 @@ coins:
     source: ucoin
   - value: 1.951
     source: Hede 128 / danskmoent.dk
+  - value: 1.951
+    source: numismaster
   diameter_mm:
   - value: 21.0
     source: '79'
@@ -6843,6 +6994,9 @@ coins:
   - type: web
     url: https://www.danskmoent.dk/chr/c5h128.htm
     ref: Hede 128 / danskmoent.dk
+  - type: literature
+    url: https://numismaster.com/MC_92974
+    ref: NumisMaster
   note:
     de: '4 Skilling Danske Christians V. · Obverse gekröntes C5-Monogramm mit geteiltem Datum «16 C5 93» und Glückstadt-Mzz.
       ⚒; Reverse «· IIII · SKILLING · DANSKE ·» um gekröntes ovales Wappenschild. 1/24 Speciedaler · Billon .347.
@@ -6868,7 +7022,15 @@ coins:
       Numista N#87732 публікує 1,224 г / проба 0,347 — обидва значення істотно розходяться зі стандартними специфікаціями
       Hede 128 (Bruttovægt 1,951 г, Finhed 0,437) та підтвердженням ucoin. Імовірно помилка транскрипції в Numista (вага випадково
       збігається з 2-Skilling KM#78; проба, схоже, цифровий swap 0,347 ↔ 0,437). Авторитетно: Hede 128.'
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-schleswig_holstein-numismaster-92974
   v1_home_location: schleswig_holstein
 - fuss: kronemont
   phase: II
@@ -7568,6 +7730,7 @@ coins:
   year_label: '1625'
   mint: Glückstadt
   catalog:
+    km: '18'
     others:
     - ucoin UC# 18
     hede: '172'
@@ -7575,6 +7738,7 @@ coins:
     schou: 35-44
     sieg: '169'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -7583,12 +7747,16 @@ coins:
   - value: 0.888
     source: hede
   - value: 0.888
+    source: numismaster
+  - value: 0.888
     source: x002
   weight_rough_g:
   - value: 2.92
     source: ucoin
   - value: 2.923
     source: hede
+  - value: 2.923
+    source: numismaster
   diameter_mm:
   - value: 20.0
     source: x002
@@ -7599,6 +7767,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h172.htm
     ref: danskmoent.dk (Hede c4h172)
+  - type: literature
+    url: https://numismaster.com/MC_92988
+    ref: NumisMaster
   note:
     de: 6 Skilling Lybsk = 1/8 Speciedaler · Christian IV. (Glückstadt 1625) · Reverse «6Z5 / VI SCHI / LLING / LVBS» (1625,
       VI Schilling Lübisch), Obverse «CHRIS D G» mit Krone und königlichem Wappen. Glückstadter Theilstück im 9¼-Fuß zur Standard-Feinheit
@@ -7726,21 +7897,48 @@ coins:
   year_label: '1620'
   mint: Glückstadt
   catalog:
+    km: '8.1'
     others:
     - KM-DK# 8
   metal: silver
+  metal_verified: true
   fineness_verified: true
+  weight_rough_verified: true
   diameter_mm_verified: false
+  mint_verified: false
+  verified: false
   fineness:
+  - value: 0.888
+    source: numismaster
   - value: 0.888
     source: x005
   weight_rough_g:
+  - value: 1.008
+    source: numismaster
   - value: 1.01
     source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-skilling-lybsk-1620/?tid=163588
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_92977
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_92978
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_92979
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_92980
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_92981
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_92982
+    ref: NumisMaster
   note:
     de: 2 Skilling Lybsk = 1/24 Speciedaler · Christian IV. (Glückstadt 1620, früheste dokumentierte Glückstädter Sk-Lybsk-Stufe
       in der Reichsmüntzfuß-Phase 1617–1622). <b>Reichsmünzordnung-Standard-Feingehalt .888</b>; rohes Gewicht 1,01 g entspricht
@@ -7758,7 +7956,13 @@ coins:
     de: Durchmesser nicht in ucoin angegeben; Hede-/Bruun-Verifikation empfohlen.
     en: Diameter not given by ucoin; Hede/Bruun verification recommended.
     uk: Діаметр у ucoin не вказано; рекомендована верифікація за Hede/Bruun.
-  composed_of: []
+  composed_of:
+  - unified-schleswig_holstein-numismaster-92977
+  - unified-schleswig_holstein-numismaster-92978
+  - unified-schleswig_holstein-numismaster-92979
+  - unified-schleswig_holstein-numismaster-92980
+  - unified-schleswig_holstein-numismaster-92981
+  - unified-schleswig_holstein-numismaster-92982
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
@@ -7773,16 +7977,25 @@ coins:
   year_label: '1620'
   mint: Glückstadt
   catalog:
+    km: '9.1'
     others:
     - KM-DK# 9
   metal: silver
+  metal_verified: true
   fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
   fineness:
+  - value: 0.888
+    source: numismaster
   - value: 0.888
     source: x007
   weight_rough_g:
   - value: 1.93
     source: ucoin
+  - value: 2.016
+    source: numismaster
   diameter_mm:
   - value: 18.0
     source: x007
@@ -7790,6 +8003,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-4-skilling-lybsk-1620/?tid=163638
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_92985
+    ref: NumisMaster
   note:
     de: 4 Skilling Lybsk = 1/12 Speciedaler · Christian IV. (Glückstadt 1620, doppelte Theilung des km-x005 = 2 Sk Lybsk-Schwesterstücks).
       Reichsmünzordnung-Feingehalt .888; rohes Gewicht 1,93 g ≈ 2 × 1,01 g (km-x005). Im Schleswig-Holstein-Register nicht
@@ -7800,7 +8016,15 @@ coins:
     uk: 4 Skilling Lybsk = 1/12 Speciedaler · Кристіан IV (Glückstadt 1620, подвійний поділ сестринської монети km-x005 =
       2 Sk Lybsk). Reichsmünzordnung-проба .888; груба вага 1,93 г ≈ 2 × 1,01 г (km-x005). У шлезвіг-гольштинському KM-реєстрі
       не зафіксовано, лише як <b>KM-DK# 9</b> у данському Royal-реєстрі. ucoin запис tid 163638; у Numista не каталогізовано.
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-schleswig_holstein-numismaster-92985
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
