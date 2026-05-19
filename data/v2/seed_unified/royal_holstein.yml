@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 369 per-source seed entries.
-# Output: 354 unified entries (one per physical coin).
+# Output: 353 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -7472,14 +7472,19 @@ coins:
   year_last: 1554
   year_ranges:
   - - 1534
+    - 1534
+  - - 1545
+    - 1546
+  - - 1554
     - 1554
-  year_label: 1534 - 1554
+  year_label: 1534, 1545–1546, 1554
   ruler: Christian III
   catalog:
     mb: '33'
     schou: '1357'
-    lange: 23, 2
+    lange: 23, 23AB
   metal: silver
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: false
@@ -7504,6 +7509,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numismaster-167727
+  - schleswig_holstein-numismaster-167727
 - id: unified-dk-numismaster-167729
   fuss: seed_unsorted
   phase: numismaster
@@ -7511,7 +7517,7 @@ coins:
   nominal: Witten
   year_first: 1516
   year_last: 1516
-  year_label: 1516 - 1516
+  year_label: '1516'
   ruler: Friedrich I
   catalog:
     mb: '22'
@@ -7526,9 +7532,6 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_167729
     ref: NumisMaster MC_167729 — SCHLESWIG-HOLSTEIN MB# 22 Witten 1516 - 1516
-  - type: literature
-    url: https://numismaster.com/MC_167729
-    ref: NumisMaster
   verification_note:
     de: 'NumisMaster-Seed (§AZ Tier 4): Krause-Mishler-basiertes kommerzielles Katalog. Pre-1604 KM-Nummerierung sparse —
       die meisten Pre-1541 Schleswig-Holstein-Herzogthum-Münzen kommen mit «MB#»-Nummerierung (Madai-Bach, vor-Krause). Per-Münze-Verifikation
@@ -7550,7 +7553,7 @@ coins:
   nominal: Goldgulden
   year_first: 1535
   year_last: 1535
-  year_label: 1535 - 1535
+  year_label: '1535'
   ruler: Christian III
   catalog:
     mb: '39'
@@ -7566,9 +7569,6 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_167745
     ref: NumisMaster MC_167745 — SCHLESWIG-HOLSTEIN MB# 39 Goldgulden 1535 - 1535
-  - type: literature
-    url: https://numismaster.com/MC_167745
-    ref: NumisMaster
   verification_note:
     de: 'NumisMaster-Seed (§AZ Tier 4): Krause-Mishler-basiertes kommerzielles Katalog. Pre-1604 KM-Nummerierung sparse —
       die meisten Pre-1541 Schleswig-Holstein-Herzogthum-Münzen kommen mit «MB#»-Nummerierung (Madai-Bach, vor-Krause). Per-Münze-Verifikation
@@ -8646,49 +8646,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-167726
-- id: unified-schleswig_holstein-numismaster-167727
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 6 Pfennig
-  year_first: 1534
-  year_last: 1554
-  year_ranges:
-  - - 1534
-    - 1534
-  - - 1545
-    - 1546
-  - - 1554
-    - 1554
-  year_label: 1534, 1545–1546, 1554
-  ruler: Christian III
-  catalog:
-    mb: '33'
-    schou: '1357'
-    lange: 23, 23AB
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 1.0
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167727
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-167727
 - id: unified-schleswig_holstein-numismaster-167728
   fuss: seed_unsorted
   phase: numismaster
