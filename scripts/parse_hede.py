@@ -589,6 +589,15 @@ def _extract_specs(text: str, basename: str = "") -> dict:
                 r"\bHede\s+(\d+[A-Za-z]*(?:[\-/,]\s*\d+[A-Za-z]*)*)", window)
             tag = tag_m[-1] if tag_m else None
 
+        # Extract per-Hede catalog refs from the immediate label window —
+        # multi-coin pages (f4h25 covering Hede 23/24/25, etc.) have a
+        # «<denom><BR>Hede N, Schou X, Sieg Y» label line right before
+        # each Bruttovægt spec block. Without this, the seed builder
+        # falls back to page-level aggregated `catalog_refs` and applies
+        # them indiscriminately to every sub-Hede entry — observed bug
+        # on 68 multi-Hede pages.
+        per_hede_refs = _extract_per_hede_refs(label_window, tag) if tag else None
+
         if tag:
             key = tag.replace(" ", "")
             # Attach the descriptive-list nominal to the spec when known.
@@ -597,6 +606,8 @@ def _extract_specs(text: str, basename: str = "") -> dict:
             # multi-nominal splits.
             if key in hede_to_nominal:
                 spec = {**spec, "nominal": hede_to_nominal[key]}
+            if per_hede_refs:
+                spec = {**spec, "catalog_refs": per_hede_refs}
             by_hede[key] = spec
         elif primary and primary not in by_hede:
             if primary in hede_to_nominal:
@@ -689,6 +700,71 @@ def _extract_specs(text: str, basename: str = "") -> dict:
         only_spec = next(iter(by_hede.values()))
         return {"default": only_spec}
     return {"by_hede": by_hede}
+
+
+def _extract_per_hede_refs(label_window: str, hede_tag: str) -> dict:
+    """Extract catalog refs (Schou / Sieg / Fr) for ONE Hede number
+    from its immediate label line.
+
+    Multi-coin pages (e.g. f4h25.htm covering Hede 23+24+25) have a
+    label line of the shape «<denom> Hede N, Schou X, Sieg Y, Fr Z»
+    right before each Bruttovægt spec block. The flat
+    `parsed["catalog_refs"]` AGGREGATES refs across every sub-Hede
+    on the page — applying them indiscriminately to all sub-entries
+    is the seed-builder bug observed on 68 multi-Hede pages (2026-05-19
+    f4h25 audit). This helper extracts refs for ONE Hede tag from its
+    own label line, scoped to the segment starting at «Hede N» and
+    ending at the next «Hede M» reference (or end of window).
+
+    Returns a dict in the same shape as `parsed["catalog_refs"]`:
+    `{"Schou": [...], "Sieg": [...], "Fr": [...]}`, or empty dict
+    when no per-Hede refs are visible in the window.
+    """
+    if not label_window or not hede_tag:
+        return {}
+    # Find «Hede {tag}» anchor in the window — tolerate whitespace
+    # variations + match the SPECIFIC tag (not a sibling).
+    pattern = rf"\bHede\s+{re.escape(hede_tag)}\b"
+    m = re.search(pattern, label_window)
+    if not m:
+        return {}
+    # Segment: from this Hede anchor to the next Hede anchor (or end).
+    seg_start = m.end()
+    next_hede = re.search(r"\bHede\s+\d", label_window[seg_start:])
+    if next_hede:
+        segment = label_window[seg_start: seg_start + next_hede.start()]
+    else:
+        segment = label_window[seg_start:]
+    # Bound to label end — stop at Bruttovægt / Finhed / spec-block
+    # markers so the segment doesn't bleed into the spec block proper.
+    for stop_marker in ("Bruttov", "Finhed", "Finv", _HR_SENTINEL):
+        idx = segment.find(stop_marker)
+        if idx >= 0:
+            segment = segment[:idx]
+
+    refs: dict = {}
+    # Schou — possibly multiple comma-separated values («Schou 13-15»
+    # or «Schou 2-3» or «Schou 1 og 6»).
+    schou_matches = re.findall(
+        r"\bSchou\s+([\d]+[A-Za-z]?(?:[\-/]\d+[A-Za-z]?)*(?:\s+og\s+\d+[A-Za-z]?)*)",
+        segment,
+    )
+    if schou_matches:
+        # Flatten «1 og 6» → ['1', '6']? Keep as single string for now
+        # (consistent with parser's flat catalog_refs shape).
+        refs["Schou"] = [s.strip() for s in schou_matches]
+    # Sieg — single ref typically «Sieg 30» or «Sieg 31.1»
+    sieg_match = re.search(
+        r"\bSieg\s+(\d+(?:\.\d+)?[A-Za-z]?)", segment
+    )
+    if sieg_match:
+        refs["Sieg"] = [sieg_match.group(1).strip()]
+    # Fr (Friedberg) — gold-coin catalog, occasionally per-Hede on the
+    # ducat / krone pages.
+    fr_match = re.search(r"\bFr\.?\s+(\d+[A-Za-z]?)", segment)
+    if fr_match:
+        refs["Fr"] = [fr_match.group(1).strip()]
+    return refs
 
 
 def _spec_from_around(text: str, brutto_pos: int) -> dict:

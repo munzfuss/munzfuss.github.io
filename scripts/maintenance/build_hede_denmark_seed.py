@@ -1076,6 +1076,12 @@ def main() -> int:
                 if sub_num.lower() not in owned_subs:
                     stats["skipped_cross_reference_subhede"] += 1
                     continue
+                # Per-Hede catalog refs (Schou / Sieg / Fr) — parser
+                # extracts them from each sub-Hede's label line when
+                # present. Falls back to page-aggregated refs only
+                # when the parser couldn't pull per-Hede data (older
+                # cached parses or label-format variants).
+                sub_refs = sub_spec.get("catalog_refs")
                 coin = _build_coin(
                     hede_volume=hede_volume,
                     hede_number=sub_num,
@@ -1083,6 +1089,7 @@ def main() -> int:
                     spec=sub_spec,
                     nominal_override=nominal,
                     mint_normalised=mint_normalised,
+                    catalog_refs_override=sub_refs,
                 )
                 if coin is None:
                     stats["skipped_no_nominal"] += 1
