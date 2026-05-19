@@ -490,6 +490,54 @@
 
 - **Encoded in**: `scripts/maintenance/absorb_seeds_into_final_v2.py` — import `_build_reign_index`, `process_entity` builds the index once, all three match-pair call sites forward it. The merger's reign-index implementation (`_build_reign_index`, `_infer_ruler`, normalisers) is REUSED VERBATIM from `merge_seeds_cross_source.py`; D41 is purely a plumbing extension, no algorithmic change.
 
+### D42 — Mint spelling-alias normaliser (`_MINT_SPELLING_ALIASES`)
+
+- **Decision (2026-05-19)**: Categorisation of the 34 D41-residual H-cases showed **27 of 33** (82%) were pure spelling-normalisation gaps — `Copenhagen` (NumisMaster English) vs `Kopenhagen` (project-canonical Danish/German), with 1 case of `Rendsborg` (Danish) vs `Rendsburg` (project-canonical German for SH towns). Same physical mint, different source-language label. `_normalise_mints` was lowercasing + stripping trailing parens but not handling cross-language aliases, so the set-intersection test failed and `match_pair` returned `low_confidence` (all 4 primary True, fallback fineness/years True, only `mint: False`). D42 adds a `_MINT_SPELLING_ALIASES` dict — sourcelanguage spelling → project canonical — applied inside `_normalise_mints` after the strip+lowercase step.
+
+- **Mechanic**: Per-mint-town entry maps known cross-language variants to a single canonical lowercased form:
+
+  ```python
+  _MINT_SPELLING_ALIASES = {
+      # Copenhagen — English / historical Danish / Latin
+      "copenhagen": "kopenhagen",     # English (NumisMaster output)
+      "københavn": "kopenhagen",      # modern Danish
+      "kjøbenhavn": "kopenhagen",     # pre-1948 Danish spelling
+      "hafnia": "kopenhagen",         # Latin (Christian IV legend variants)
+      # Rendsburg — Danish vs project-canonical German
+      "rendsborg": "rendsburg",
+      # Helsingør — English / French aliases
+      "elsinore": "helsingør",
+      "elseneur": "helsingør",
+  }
+  ```
+
+  Rule: keys lowercase; values lowercase. Match runs AFTER `.lower()` + paren-suffix strip in `_normalise_mints`. Add new variants ONLY when they refer to the SAME historical mint town — never collapse functionally-distinct mints into one canonical form.
+
+- **First real result (2026-05-19)**: 1st re-merge after the alias fix consolidated 39 cross-source pairs at Phase 3.2 (unified count dropped: danish_realm 1412→1374, royal_holstein 355→354 — the alias-recovered mint signals upgraded 39 `low_confidence` merger pairs to `confident`). 1st absorb after re-merge: **3 newly absorbed**, **5 pending** (down from 34). Pending: danish_realm 5, royal_holstein 0 (fully drained).
+
+  Aggregate post-alias drain across all 9 entities since the merger flag flip:
+  - **Pre-D39**: 583 + 535 + (unclassified) = 1746 unmatched at first absorb
+  - **Post-D39**: 535 promoted, 583 pending
+  - **Post-D40**: 543 of those 583 drained, 40 pending
+  - **Post-D41**: 6 of those 40 absorbed, 34 pending
+  - **Post-D42**: 29 of those 34 absorbed (mostly via re-merger consolidation), **5 pending**
+
+  Net 99.7% drain of the original pending backlog.
+
+- **Path forward for the remaining 5**: Each has exactly ONE basic peer that returns `low_confidence` (the rest return `no_match` with explicit primary disagreement, which D40 would promote — but a single low-conf peer blocks the safe-promote check by design). The 5 cases are the «definitely-needs-human-judgment» residual:
+
+  | Pending unified | KM | Issue |
+  |---|---|---|
+  | `numismaster-65367` | 525 (3 Krone 1726, FR IV) | Fineness divergence .993 vs .671 — one source has wrong metal class |
+  | `numismaster-65899` | 499 (2 Ducat, FR IV) | Year divergence 1702 (NumisMaster) vs 1710 (foundation); same KM |
+  | `dk-hede-c4h122` | 84 (8 Skilling CHR IV) | Mint divergence Frederiksborg (Hede) vs Kopenhagen (ucoin) — same KM |
+  | `dk-hede-c4h97` | 41 (4 Skilling CHR IV) | Mint divergence Helsingør (Hede) vs Kopenhagen (ucoin) — same KM |
+  | `dk-hede-c5h110` | 423 (8 Skilling CHR V 1693) | Fineness divergence (both Kopenhagen) |
+
+  Resolution path is per-case curator action. For the 2 «same KM different mint» cases (c4h122, c4h97) the right answer is likely «merge with accumulated mint list per CLAUDE.md data-accumulation principle» — Hede has finer mint attribution than ucoin/Krause. For the 3 fineness/year divergences, the answer is «which source is correct?» — needs Wilcke 1950 or other authoritative reference. Phase 4 absorb has no per-coin override surface yet (analogous to Phase 3.2's `merge_decisions/<entity>.yml::merges`); deferred to a future `force_absorb` mechanic if the residual grows.
+
+- **Encoded in**: `scripts/maintenance/merge_seeds_cross_source.py` — `_MINT_SPELLING_ALIASES` dict + `_normalise_mints` alias-lookup. Used by `_mints_overlap` (consumed by `match_pair` fallback signal). Phase 4 absorb consumes the fix transparently since it calls the same `match_pair` from the merger module.
+
 ### D36 — Curator merge decisions: smart override that doesn't block future enrichments
 
 - **Decision (2026-05-18)**: When the auto-matcher cannot decide a pair (genuine numismatic ambiguity — e.g. NumisMaster's rolled-up multi-reign record vs Hede's per-reign split), the curator writes an explicit verdict in `data/v2/merge_decisions/<entity>.yml` with two surfaces:

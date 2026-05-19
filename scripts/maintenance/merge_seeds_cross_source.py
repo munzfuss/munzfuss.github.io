@@ -712,6 +712,40 @@ def _fineness_within(a, b, tol=0.05):
     return abs(fa - fb) <= tol
 
 
+# Mint spelling aliases — map source-specific variants to a single
+# project-canonical lowercased form so cross-source mint comparison
+# doesn't false-fail on language / orthography. Each entry: source
+# spelling (lowercase) → canonical spelling (lowercase).
+#
+# Discovered 2026-05-19 during D40 H-case categorisation: 27 of 33
+# residual pending entries were «Copenhagen» (NumisMaster English) vs
+# «Kopenhagen» (project-canonical Danish/German). 1 case was
+# «Rendsborg» (Danish) vs «Rendsburg» (project-canonical German for SH
+# towns). Pure normaliser gap, not actual mint divergence.
+#
+# When extending: keep map-keys lowercase. Match is applied after
+# `lower()` + paren-suffix stripping in `_normalise_mints`. Add
+# variants ONLY when they refer to the SAME historical mint town —
+# never collapse functionally-distinct mints into one canonical form.
+_MINT_SPELLING_ALIASES = {
+    # Copenhagen — English / historical Danish / Latin → project canonical
+    # (German-Danish «Kopenhagen» is the convention per CLAUDE.md §2 / §i18n
+    # «mint names use standard academic spellings, identical across languages»;
+    # the «Kopenhagen» form is what V1 foundation entries carry).
+    "copenhagen": "kopenhagen",
+    "københavn": "kopenhagen",
+    "kjøbenhavn": "kopenhagen",       # historical Danish (pre-1948 spelling)
+    "hafnia": "kopenhagen",            # Latin (Christian IV / Frederik III legends)
+    # Rendsburg — Danish vs German for the Schleswig-Holstein town.
+    # Project convention: German spelling for SH mints (consistent with
+    # other SH towns like Flensburg, Eckernförde, Husum).
+    "rendsborg": "rendsburg",
+    # Helsingør — English «Elsinore» variant
+    "elsinore": "helsingør",
+    "elseneur": "helsingør",           # French (rare, appears in old auction catalogues)
+}
+
+
 def _normalise_mints(mint) -> set[str]:
     if mint is None:
         return set()
@@ -720,8 +754,13 @@ def _normalise_mints(mint) -> set[str]:
     for m in mints:
         if isinstance(m, str):
             base = re.sub(r"\s*\([^)]*\)\s*$", "", m).strip().lower()
-            if base:
-                out.add(base)
+            if not base:
+                continue
+            # Apply spelling-alias canonicalisation so cross-source
+            # comparison doesn't false-fail on English/Danish/German
+            # variants of the same mint town.
+            base = _MINT_SPELLING_ALIASES.get(base, base)
+            out.add(base)
     return out
 
 
