@@ -13278,26 +13278,62 @@ coins:
   mint: Kopenhagen
   catalog:
     km: '423'
+    hede: '110'
+    hede_volume: c5h
+    schou: 64-65
+    sieg: '13'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.671
     source: tid
+  - value: 0.833
+    source: hede
+  - value: 0.833
+    source: numismaster
   weight_rough_g:
   - value: 2.24
+    source: numismaster
+  - value: 2.24
     source: tid
+  - value: 2.248
+    source: hede
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-8-skilling-1693/?tid=97090
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_65131
+    ref: NumisMaster
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c5h110.htm
+    ref: danskmoent.dk (Hede c5h110)
+  note:
+    de: 8 Skilling Christian V. 1693 (KM-423, Hede 110, Schou 64-65, Sieg 13) — Scheidemünze nach dem 9¼-Speciedaler-Fuß-Standard.
+      Mint <i>København</i> per Hede c5h110 attestiert. Feingehalt-Konflikt zwischen den Quellen — Hede 1971 und NumisMaster
+      melden unabhängig <b>0,833</b> (10 Loth Silber, typisch für Christian V. Scheidemünze der Periode); ucoin (tid 97090)
+      meldet <b>0,671</b> — Ausreißer-Wert ohne Hede-Korrespondenz, vermutlich Contributor-Eingabefehler. Die akkumulierte
+      <code>fineness</code>-Liste bewahrt alle drei Lesungen mit Quellenattribution.
+    en: 8 Skilling Christian V 1693 (KM-423, Hede 110, Schou 64-65, Sieg 13) — Scheidemünze under the 9¼-Speciedaler-Fuß standard.
+      Mint <i>København</i> attested per Hede c5h110. Fineness conflict across sources — Hede 1971 and NumisMaster independently
+      report <b>0.833</b> (10-Loth silver, characteristic Christian V Scheidemünze fineness of the period); ucoin (tid 97090)
+      reports <b>0.671</b> — outlier value with no Hede correspondence, presumably a contributor data-entry error. The accumulated
+      <code>fineness</code> list preserves all three readings with source attribution.
+    uk: 8 Skilling Christian V 1693 (KM-423, Hede 110, Schou 64-65, Sieg 13) — Scheidemünze за стандартом 9¼-Speciedaler-Fuß.
+      Mint <i>København</i> засвідчено за Hede c5h110. Конфлікт проби між джерелами — Hede 1971 і NumisMaster незалежно подають
+      <b>0,833</b> (10-Loth срібло, характерна проба Christian V Scheidemünze тогочасного періоду); ucoin (tid 97090) подає
+      <b>0,671</b> — викидове значення без Hede-відповідника, ймовірно contributor-помилка введення. Акумульований список
+      <code>fineness</code> зберігає всі три значення з джерельною атрибуцією.
   verification_note:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of: []
+  composed_of:
+  - unified-dk-hede-c5h110
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
