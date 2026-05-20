@@ -57,26 +57,50 @@ class DisplayGroup:
     sources: list[str]          # ordered, deduped source labels
     is_unanimous: bool = False  # True when this is the SOLE group in its field
     delta_pct: float | None = None  # context for derived-value groups
+    display_decimals: int | None = None  # adaptive decimals when default rounding
+                                          # would collapse distinct groups into
+                                          # identical-looking text (None → use
+                                          # template-default precision)
 
 
 def make_display_groups(
     pairs: list[tuple[float, str | None]],
     precision: int,
 ) -> list[DisplayGroup]:
-    """Group (value, source) pairs by their display-precision rounded
-    value. Each unique display value → one DisplayGroup whose `sources`
-    list combines every contributing source label. When all pairs round
-    to the same display value, the single returned group has
-    `is_unanimous=True` so the renderer can drop tooltip+styling
-    (consensus = plain text)."""
+    """Group (value, source) pairs by their semantically-distinct value.
+
+    Two-level grouping precision: source values are grouped at the
+    FINER precision `precision + 2` so cross-source attestations that
+    differ at the source-publish level (e.g. Hede 2,386 g vs
+    NumisMaster 2,39 g — both round to 2.39 at 2 decimals but are
+    distinct readings) get separate groups. The `precision` argument
+    drives downstream DISPLAY rounding; grouping is finer so
+    distinguishable readings aren't collapsed into one tooltip.
+
+    When all pairs collapse to the same finer-precision key, the
+    single returned group has `is_unanimous=True` and the renderer
+    can drop tooltip+styling (consensus = plain text).
+
+    Each DisplayGroup carries the canonical raw value (first member);
+    the template applies its own `decimals=<precision>` formatting.
+    When two groups display the same rounded value (e.g. 2.39 and
+    2.39 — both ≤2-decimal projections of 2.386 and 2.390), the
+    template's adaptive-decimals helper can still distinguish via
+    tooltip + alt-source styling.
+    """
     if not pairs:
         return []
+    # Finer-precision key so distinguishable source readings don't
+    # collapse: weight (precision=2) → grouped at 4 decimals;
+    # fineness (precision=3) → grouped at 5; diameter (precision=1)
+    # → grouped at 3.
+    group_precision = precision + 2
     groups: dict[float, list[tuple[float, str | None]]] = {}
     order: list[float] = []
     for v, src in pairs:
         if v is None:
             continue
-        key = round(v, precision)
+        key = round(v, group_precision)
         if key not in groups:
             groups[key] = []
             order.append(key)
@@ -97,6 +121,27 @@ def make_display_groups(
                     srcs.append(tok)
         out.append(DisplayGroup(value=canonical, sources=srcs,
                                 is_unanimous=is_unanimous))
+
+    # Adaptive display-decimals: when groups are SEMANTICALLY distinct
+    # at the finer grouping precision but would collapse to identical
+    # text at the template's default decimals (e.g. 2.386 and 2.390
+    # both → «2.39» at decimals=2), bump per-group `display_decimals`
+    # to the lowest precision that distinguishes them. Otherwise the
+    # user sees two visually-identical spans and the source-divergence
+    # signal is lost on the rendered table (only the tooltip would
+    # carry the info, and tooltips are mouse-only).
+    if not is_unanimous and len(out) >= 2:
+        canonicals = [g.value for g in out]
+        # Find the smallest decimals p >= `precision` such that
+        # rounding all canonicals to p yields the same number of
+        # distinct values as the group count itself.
+        for p in range(precision, group_precision + 1):
+            rounded = [round(v, p) for v in canonicals]
+            if len(set(rounded)) == len(out):
+                if p > precision:
+                    for g in out:
+                        g.display_decimals = p
+                break
     return out
 
 

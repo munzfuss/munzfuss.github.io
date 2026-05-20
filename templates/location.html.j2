@@ -50,7 +50,13 @@
       {%- if not coin.raw.metal_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
       {%- if coin.fineness_groups -%}
         {%- for g in coin.fineness_groups %}
-          {%- set _txt = '.' ~ ((g.value * 1000)|round|int) %}
+          {%- set _dec = g.display_decimals if g.display_decimals is not none else 3 -%}
+          {%- if _dec <= 3 -%}
+            {%- set _txt = '.' ~ ((g.value * 1000)|round|int) %}
+          {%- else -%}
+            {%- set _scale = 10 ** _dec -%}
+            {%- set _txt = '.' ~ ((g.value * _scale)|round|int) %}
+          {%- endif %}
           {%- if g.is_unanimous %} {{ _txt }}
           {%- else %} <span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}</span>
           {%- endif %}
@@ -63,7 +69,8 @@
     {%- if coin.weight_groups -%}
       {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.weight_groups -%}
-        {%- set _txt = fmt_num(g.value, decimals=2, unit='') -%}
+        {%- set _dec = g.display_decimals if g.display_decimals is not none else 2 -%}
+        {%- set _txt = fmt_num(g.value, decimals=_dec, unit='') -%}
         {%- if g.is_unanimous and not g.sources -%}{{ _txt }}{{ _qmark|safe }}
         {%- elif g.is_unanimous -%}{{ _txt }}{{ _qmark|safe }}
         {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{{ _qmark|safe }}</span>
@@ -89,7 +96,8 @@
     {%- if coin.diameter_groups -%}
       {%- set _qmark -%}{%- if not coin.raw.diameter_mm_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.diameter_groups -%}
-        {%- set _txt = fmt_num(g.value, decimals=1, unit='') -%}
+        {%- set _dec = g.display_decimals if g.display_decimals is not none else 1 -%}
+        {%- set _txt = fmt_num(g.value, decimals=_dec, unit='') -%}
         {%- if g.is_unanimous and not g.sources -%}{{ _txt }}{{ _qmark|safe }}
         {%- elif g.is_unanimous -%}{{ _txt }}{{ _qmark|safe }}
         {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{{ _qmark|safe }}</span>
@@ -282,7 +290,8 @@
     {%- if coin.weight_groups -%}
       {%- set _qmark -%}{%- if not coin.raw.weight_rough_verified %} <span class="unverified">(?)</span>{% endif -%}{%- endset -%}
       {%- for g in coin.weight_groups -%}
-        {%- set _txt = fmt_num(g.value, decimals=2, unit='') -%}
+        {%- set _dec = g.display_decimals if g.display_decimals is not none else 2 -%}
+        {%- set _txt = fmt_num(g.value, decimals=_dec, unit='') -%}
         {%- if g.is_unanimous -%}{{ _txt }}{{ _qmark|safe }}
         {%- else %}<span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}{{ _qmark|safe }}</span>
         {%- endif -%}
