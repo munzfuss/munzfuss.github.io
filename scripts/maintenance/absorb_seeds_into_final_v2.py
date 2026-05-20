@@ -386,9 +386,21 @@ def _bulk_promote_mode(entity_id: str) -> str | None:
     coin» — the same numismatic catalog logic that distinguishes KM-
     DK#92 from KM-DK#107 as separate 1625 16-Skilling sub-variants.
     """
+    # Default mode = "no_basic_peer_only" (post-2026-05-20 D43).
+    # V1 is frozen, V2 is the canonical pipeline going forward — new
+    # coins flowing through harvest → seed → seed_unified MUST land in
+    # V2 final automatically, otherwise they're invisible to the
+    # rendered page. The old default (None = «stuck in pending») was a
+    # bootstrap-era safety that doesn't apply to steady-state V2.
+    # `no_basic_peer_only` is the safe choice: promotes only when NO
+    # existing peer at all (no metal+nominal collision) — the
+    # «genuinely new coin» case. Cases where the matcher found peers
+    # but couldn't decide (D/E/H/C ambiguities) still land in pending
+    # for curator review.
+    DEFAULT_MODE = "no_basic_peer_only"
     path = V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml"
     if not path.exists():
-        return None
+        return DEFAULT_MODE
     doc = _load_yaml(path)
     val = doc.get("bulk_promote_pending")
     if val is True or val == "all":
@@ -397,7 +409,11 @@ def _bulk_promote_mode(entity_id: str) -> str | None:
         return "no_basic_peer_only"
     if val == "no_match_primary_disagrees":
         return "no_match_primary_disagrees"
-    return None
+    # Explicit `false` / `none` keeps None (curator opts out); absence
+    # falls through to the new default.
+    if val in (False, "false", "none"):
+        return None
+    return DEFAULT_MODE
 
 
 def _has_basic_peer(unified: dict, finals: list[dict], entity_id: str | None,
