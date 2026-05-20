@@ -103,14 +103,16 @@ def coin_id(galster_number: str | None, ruler_volume: str | None, source_file: s
 
 _GALSTER_MINTS_RE = re.compile(
     r",\s*("
-    r"Ålborg|Aalborg|Malmø|Malmoe|Malmö|"
+    # Danish mints (incl. mojibake variants K�benhavn / Malm� /
+    # Gl�ckstadt / Helsing�r / �rhus from iso-8859 → utf-8 conversion)
+    r"Ålborg|Aalborg|Malmø|Malmoe|Malmö|Malm[?�]|"
     r"Ronneby|Hamar|Bergen|Oslo|Christiania|"
-    r"København|Kjøbenhavn|Copenhagen|"
-    r"Roskilde|Aarhus|Århus|Ribe|Lund|Visby|"
-    r"Husum|Gottorp|Glückstadt|Gluckstadt|"
+    r"København|Kjøbenhavn|K[?�]benhavn|Kj[?�]benhavn|Copenhagen|"
+    r"Roskilde|Aarhus|Århus|[?�]rhus|Ribe|Lund|Visby|"
+    r"Husum|Gottorp|Glückstadt|Gluckstadt|Gl[?�]ckstadt|"
     r"Trondheim|Nidaros|Stockholm|Vasteras|"
-    r"Lübeck|Hamburg|Schwerin|Rendsburg|"
-    r"Helsingør|Helsingor"
+    r"Lübeck|L[?�]beck|Hamburg|Schwerin|Rendsburg|"
+    r"Helsingør|Helsingor|Helsing[?�]r"
     r")(\s*\(\?\))?\s*$",
     re.IGNORECASE,
 )
@@ -125,34 +127,61 @@ _SHAPE_DESCRIPTORS_RE = re.compile(
 )
 
 
+_GALSTER_MINT_PREFIX_RE = re.compile(
+    r"^("
+    # Same set as _GALSTER_MINTS_RE for reversed «<Mint>, <denom>» order
+    r"Ålborg|Aalborg|Malmø|Malmoe|Malmö|Malm[?�]|"
+    r"Ronneby|Hamar|Bergen|Oslo|Christiania|"
+    r"København|Kjøbenhavn|K[?�]benhavn|Kj[?�]benhavn|Copenhagen|"
+    r"Roskilde|Aarhus|Århus|[?�]rhus|Ribe|Lund|Visby|"
+    r"Husum|Gottorp|Glückstadt|Gluckstadt|Gl[?�]ckstadt|"
+    r"Trondheim|Nidaros|Stockholm|Vasteras|"
+    r"Lübeck|L[?�]beck|Hamburg|Schwerin|Rendsburg|"
+    r"Helsingør|Helsingor|Helsing[?�]r"
+    r")\s*,\s*",
+    re.IGNORECASE,
+)
+
+
 def _split_nominal_mint(nominal: str | None, source_mint: str | None
                         ) -> tuple[str | None, str | None, str | None]:
-    """Detect «<nominal>, <mint>[ (?)]» pattern and split.
+    """Detect mint embedded in the nominal field and split it out.
+
+    Two patterns recognised:
+      A. Trailing form  «<denom>, <mint>[ (?)]»  (most common)
+      B. Leading form   «<mint>, <denom>»          (rarer; Galster
+         occasionally orders mint first when the mint is the page's
+         primary identifier)
 
     Returns (clean_nominal, mint, shape_hint). When the nominal carries
-    a mint suffix, the in-nominal mint is treated as the page-title-
-    attested authority and is preferred over `source_mint` (which is
-    parser-heuristic-derived from elsewhere on the page and sometimes
-    wrong, e.g. defaults to «København»). Also strips coin-shape
-    descriptors («klipping») from nominal.
+    a mint, the in-nominal mint is treated as the page-title-attested
+    authority and overrides source_mint (which is parser-heuristic-
+    derived and sometimes wrong). Also strips coin-shape descriptors
+    («klipping») from nominal.
     """
     if not nominal:
         return (nominal, source_mint, None)
     s = str(nominal).strip()
+    # Collapse double-comma artefacts: «1 Hvid, , Ålborg» → «1 Hvid, Ålborg»
+    s = re.sub(r",\s*,\s*", ", ", s)
     extracted_mint = None
+    # A. Trailing form
     m = _GALSTER_MINTS_RE.search(s)
     if m:
         extracted_mint = m.group(1)
-        # Strip mint segment from nominal (canonicalised via parens
-        # tail too if present).
         s = _GALSTER_MINTS_RE.sub("", s).rstrip(" ,")
+    # B. Leading form (only when trailing pattern didn't fire)
+    if not extracted_mint:
+        m_lead = _GALSTER_MINT_PREFIX_RE.match(s)
+        if m_lead:
+            extracted_mint = m_lead.group(1)
+            s = _GALSTER_MINT_PREFIX_RE.sub("", s).strip()
     shape_hint = None
     sm = _SHAPE_DESCRIPTORS_RE.search(s)
     if sm:
         shape_hint = sm.group(1).lower()
         s = _SHAPE_DESCRIPTORS_RE.sub("", s).rstrip(" ,")
-    # Prefer the title-attested mint over the parser-heuristic source_mint:
-    # the page-title explicit «, <Mint>» suffix is authoritative.
+    # Prefer the title-attested mint over the parser-heuristic source_mint
     mint_value = extracted_mint or source_mint
     return (s or None, mint_value, shape_hint)
 
@@ -270,6 +299,20 @@ def collect_entries() -> list[dict]:
         # These carry `skip: True` + `skip_reason` and are not coin
         # data — they exist as JSON sidecars purely for cache audit.
         if data.get("skip"):
+            skipped_shape += 1
+            continue
+        # Additional safety filter: filenames prefixed with `ernst_` /
+        # `artikler_` are danskmoent.dk narrative ARTICLE pages, not
+        # coin-catalog pages. The cache parser sometimes mis-classifies
+        # these as `page_shape: standard` when the article happens to
+        # parse cleanly (e.g. ernst_f1g50ern reads as a single-coin
+        # description). They describe specific specimens of coins that
+        # are already represented in their canonical Galster pages
+        # (f1g-50 covers ernst_f1g50ern; f1g-71 + f1g-74 cover
+        # ernst_14p1524's two coins). Filtering them at the builder
+        # level prevents phantom unified entries.
+        source_file = data.get("source_file") or json_path.name
+        if source_file.startswith(("ernst_", "artikler_")):
             skipped_shape += 1
             continue
         entry = build_entry(data)

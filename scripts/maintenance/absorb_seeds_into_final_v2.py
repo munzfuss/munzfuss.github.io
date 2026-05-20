@@ -64,6 +64,7 @@ from lib.v2_seed_writer import (  # noqa: E402
     _normalise_nominal,
     _canonicalise_mint,
     _normalise_catalog,
+    _extract_mint_from_nominal,
 )
 
 # Reuse match-strategy + enrichment helpers from Phase 3.2.
@@ -458,6 +459,30 @@ def process_entity(entity_id: str) -> dict:
             continue
         if isinstance(fe, dict):
             raw_nom = fe.get("nominal")
+            # Placeholder-nominal adoption: when foundation carries a
+            # literal «(?)» (or empty) nominal AND the matching unified
+            # entry now publishes a real nominal (e.g. after a builder
+            # fix supplied title-derived value), adopt that nominal.
+            # Foundation-immutable per DF1 normally — but a placeholder
+            # is by definition unset; replacing it isn't a curator
+            # override, it's a gap-fill.
+            fid = fe.get("id")
+            if (raw_nom in ("(?)", "", None)
+                    and fid and fid in unified_by_id):
+                ue = unified_by_id[fid]
+                ue_nom = ue.get("nominal")
+                if ue_nom and ue_nom not in ("(?)", ""):
+                    fe["nominal"] = ue_nom
+                    raw_nom = ue_nom
+            # Mint-from-nominal extraction first (so the string-level
+            # normaliser sees the clean nominal).
+            nom_after_mint, mint_after_split = _extract_mint_from_nominal(
+                raw_nom, fe.get("mint"))
+            if nom_after_mint != raw_nom:
+                fe["nominal"] = nom_after_mint
+                raw_nom = nom_after_mint
+            if mint_after_split != fe.get("mint"):
+                fe["mint"] = mint_after_split
             new_nom = _normalise_nominal(raw_nom)
             if new_nom is not None and new_nom != raw_nom:
                 fe["nominal"] = new_nom
@@ -487,19 +512,28 @@ def process_entity(entity_id: str) -> dict:
     # Stale-foundation purge: when a V1-bootstrap foundation entry has
     # been merged AWAY by the cross-source merger (its source seed id
     # now belongs to a different unified entry's composed_of), the
-    # foundation copy is a stale duplicate. Two shapes:
+    # foundation copy is a stale duplicate. Three shapes:
     #   A. `unified-X` foundation where the cross-source merger has
     #      consolidated `X` into a different unified entry.
     #   B. `X` foundation (V1-direct bootstrap, e.g. `dk-tid-70722`)
     #      where `X` now appears as a source-seed in some unified's
     #      composed_of, but `X` itself is not a unified entry id.
-    # Both shapes need purging — the consolidated unified entry's
+    #   C. Article-page foundations (`*-ernst_*`, `*-artikler_*` —
+    #      danskmoent.dk narrative articles ABOUT coins, not coin-
+    #      catalog pages themselves). The cache parser correctly
+    #      marks these `skip: true`; historical V2 final foundations
+    #      from before the skip rule landed persist as phantoms. The
+    #      coins these articles describe are already covered by the
+    #      canonical Galster pages (f1g-71 Ribe / f1g-74 Ålborg cover
+    #      ernst_14p1524's two coins; f1g-50 covers ernst_f1g50ern).
+    # All three shapes need purging — the consolidated unified entry's
     # final wrapper subsumes the original V1-foundation data via its
     # composed_of seed-id membership; leaving the orphan foundation
     # results in DUPLICATE coin rows (caught 2026-05-20 audit on
     # KM# 688 / 696 / Tn6 — V1 ucoin foundation + NumisMaster unified
     # appearing as two rows in seed_unsorted).
     stale_foundation_dropped = 0
+    article_page_dropped = 0
     # Build: source seed id → its current unified host
     seed_to_unified: dict[str, str] = {}
     for uid, ue in unified_by_id.items():
@@ -512,6 +546,29 @@ def process_entity(entity_id: str) -> dict:
             surviving_finals.append(fe)
             continue
         composed = fe.get("composed_of") or []
+        # «Effectively empty» composed_of: either truly empty OR a
+        # self-link (foundation points only to itself, which is a
+        # V1-bootstrap artefact, not a real cross-source composition).
+        composed_real = [c for c in composed if c != fid]
+        # Shape C: article-page foundation. Check sources[] for known
+        # article-page URL paths (danskmoent.dk /ernst/ / /artikler/).
+        # The cache parser marks these `skip: true`; the canonical
+        # Galster catalog pages cover their coins. Pure narrative
+        # foundations have empty composed_of (no source seed entry)
+        # or a self-link only.
+        if not composed_real:
+            srcs = fe.get("sources") or []
+            is_article = False
+            for s in srcs:
+                if not isinstance(s, dict):
+                    continue
+                url = str(s.get("url") or "")
+                if "/ernst/" in url or "/artikler/" in url:
+                    is_article = True
+                    break
+            if is_article:
+                article_page_dropped += 1
+                continue
         # Shape A: `unified-X` foundation
         if (fid.startswith("unified-")
                 and fid not in unified_by_id):
@@ -536,6 +593,9 @@ def process_entity(entity_id: str) -> dict:
     if stale_foundation_dropped:
         print(f"  [{entity_id}] stale-foundation purge: "
               f"{stale_foundation_dropped} entries dropped (merged into peers)")
+    if article_page_dropped:
+        print(f"  [{entity_id}] article-page purge: "
+              f"{article_page_dropped} entries dropped (narrative articles)")
     final_entries = surviving_finals
     final_by_id = {f["id"]: f for f in final_entries if f.get("id")}
 

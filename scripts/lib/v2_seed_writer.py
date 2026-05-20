@@ -66,11 +66,12 @@ _BARE_DENOMINATION_NOUNS = frozenset({
     # Danish core
     "ducat", "dukat", "thaler", "speciedaler", "specie daler",
     "krone", "skilling", "mark", "søsling", "hvid", "penning",
-    "denning",
+    "denning", "dobbelthvid", "firehvid", "treskilling",
+    "joachimstaler",
     # German + Hanseatic
     "pfennig", "schilling", "sechsling", "dreiling", "groschen",
     "goldgulden", "gulden", "portugaløser", "rosenobel", "nobel",
-    "reichsthaler", "kronenthaler",
+    "reichsthaler", "kronenthaler", "rhinsk gylden", "sølvgylden",
     # Rigsdaler-era
     "rigsdaler", "rigsbankdaler", "rigsbankskilling",
     # Gold sub-denominations
@@ -399,6 +400,66 @@ def _normalise_catalog(catalog: dict | None) -> tuple[dict | None, int]:
     return catalog, changes
 
 
+# Danish numismatic mints that occasionally bleed into the nominal
+# field from source page-title concatenation. Used by
+# `_extract_mint_from_nominal` to detect both trailing form («4
+# Skilling, København») and leading form («Oslo, Skilling») and route
+# the mint to its dedicated field. Includes mojibake variants from
+# iso-8859 → utf-8 conversion artefacts in the danskmoent.dk cache.
+_NOMINAL_MINT_PATTERN = (
+    r"Ålborg|Aalborg|Malmø|Malmoe|Malmö|Malm[?�]|"
+    r"Ronneby|Hamar|Bergen|Oslo|Christiania|"
+    r"København|Kjøbenhavn|K[?�]benhavn|Kj[?�]benhavn|Copenhagen|"
+    r"Roskilde|Aarhus|Århus|[?�]rhus|Ribe|Lund|Visby|"
+    r"Husum|Gottorp|Glückstadt|Gluckstadt|Gl[?�]ckstadt|"
+    r"Trondheim|Nidaros|Stockholm|Vasteras|"
+    r"Lübeck|L[?�]beck|Hamburg|Schwerin|Rendsburg|"
+    r"Helsingør|Helsingor|Helsing[?�]r"
+)
+_NOMINAL_MINT_TRAILING_RE = re.compile(
+    r",\s*(" + _NOMINAL_MINT_PATTERN + r")(\s*\(\?\))?\s*$",
+    re.IGNORECASE,
+)
+_NOMINAL_MINT_LEADING_RE = re.compile(
+    r"^(" + _NOMINAL_MINT_PATTERN + r")\s*,\s*",
+    re.IGNORECASE,
+)
+_NOMINAL_SHAPE_RE = re.compile(
+    r"[,\s]+\(?(klipping|klippe|firkant)\)?\s*$",
+    re.IGNORECASE,
+)
+
+
+def _extract_mint_from_nominal(nominal, source_mint
+                                ) -> tuple[str | None, str | None]:
+    """Split «<denom>, <mint>» / «<mint>, <denom>» — return (clean_nominal,
+    mint). Mint extracted from nominal takes precedence over source_mint
+    (the in-nominal mint is the page-title-attested authority). Also
+    strips coin-shape descriptors («klipping»). When no mint found in
+    nominal, returns (nominal, source_mint) unchanged."""
+    if not nominal:
+        return (nominal, source_mint)
+    s = str(nominal).strip()
+    # Collapse double-comma artefacts (e.g. «1 Hvid, , Ålborg»)
+    s = re.sub(r",\s*,\s*", ", ", s)
+    extracted_mint = None
+    # Trailing form
+    m = _NOMINAL_MINT_TRAILING_RE.search(s)
+    if m:
+        extracted_mint = m.group(1)
+        s = _NOMINAL_MINT_TRAILING_RE.sub("", s).rstrip(" ,")
+    # Leading form (only when trailing didn't fire)
+    if not extracted_mint:
+        m_lead = _NOMINAL_MINT_LEADING_RE.match(s)
+        if m_lead:
+            extracted_mint = m_lead.group(1)
+            s = _NOMINAL_MINT_LEADING_RE.sub("", s).strip()
+    # Coin-shape descriptor stripping
+    s = _NOMINAL_SHAPE_RE.sub("", s).rstrip(" ,")
+    mint_value = extracted_mint or source_mint
+    return (s or None, mint_value)
+
+
 def _is_out_of_scope_nominal(nominal) -> bool:
     """Return True when the nominal indicates an out-of-scope trade coin
     (East India Piastre / Rupee / Fanam / Cash). User-confirmed
@@ -487,6 +548,17 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         if _is_out_of_scope_catalog(c.get("catalog")):
             stats["out_of_scope_km_filtered"] += 1
             continue
+        # Extract embedded mint from nominal («4 Skilling, København»
+        # → nominal=«4 Skilling», mint=«København») BEFORE the string-
+        # level normaliser, so the mint goes to its dedicated field
+        # instead of staying in the rendered nominal text.
+        nom_after_mint, mint_after_split = _extract_mint_from_nominal(
+            nominal, c.get("mint"))
+        if nom_after_mint != nominal:
+            c["nominal"] = nom_after_mint
+            nominal = nom_after_mint
+        if mint_after_split != c.get("mint"):
+            c["mint"] = mint_after_split
         new_nom = _normalise_nominal(nominal)
         if new_nom is not None and new_nom != nominal:
             c["nominal"] = new_nom
@@ -679,6 +751,15 @@ def write_v2_seed(
                 # Without this, hygiene rule changes leave a long tail
                 # of un-normalised entries from prior builds.
                 nominal = c.get("nominal")
+                # Mint-from-nominal extraction
+                nom_after_mint, mint_after_split = _extract_mint_from_nominal(
+                    nominal, c.get("mint"))
+                if nom_after_mint != nominal:
+                    c["nominal"] = nom_after_mint
+                    nominal = nom_after_mint
+                    file_normalised += 1
+                if mint_after_split != c.get("mint"):
+                    c["mint"] = mint_after_split
                 new_nom = _normalise_nominal(nominal)
                 if new_nom is not None and new_nom != nominal:
                     c["nominal"] = new_nom

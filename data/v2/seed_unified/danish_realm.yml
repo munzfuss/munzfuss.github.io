@@ -2,8 +2,8 @@
 # Generated 2026-05-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 2078 per-source seed entries.
-# Output: 1481 unified entries (one per physical coin).
+# Input: 2077 per-source seed entries.
+# Output: 1480 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -25674,7 +25674,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: 1 Joachimstaler, København
+  nominal: 1 Joachimstaler
   year_first: 1537
   year_last: 1537
   year_label: '1537'
@@ -25718,7 +25718,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: 1 Joachimstaler, København
+  nominal: 1 Joachimstaler
   year_first: 1537
   year_last: 1537
   year_label: '1537'
@@ -25762,11 +25762,12 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: ½ Joachimstaler, København
+  nominal: ½ Joachimstaler
   year_first: 1537
   year_last: 1537
   year_label: '1537'
   ruler: Christian III
+  mint: Kopenhagen
   catalog:
     galster: '103'
     galster_volume: c3g
@@ -25774,7 +25775,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.906
@@ -25803,11 +25804,12 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: 4 Skilling, København
+  nominal: 4 Skilling
   year_first: 1535
   year_last: 1535
   year_label: '1535'
   ruler: Christian III
+  mint: Kopenhagen
   catalog:
     galster: '104'
     galster_volume: c3g
@@ -25815,7 +25817,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.219
@@ -26363,39 +26365,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-c3g-99
-- id: unified-dk-galster-ernst_f1g50ern
-  fuss: seed_unsorted
-  phase: galster
-  kind: kurant
-  nominal: Dansk Halv-Sølvgylden
-  year_first: 1531
-  year_last: 1531
-  year_label: '1531'
-  mint: Kopenhagen
-  catalog:
-    galster: 50ern
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/ernst/f1g50ern.htm
-    ref: Galster 50ern (?) — danskmoent.dk ernst_f1g50ern.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-galster-ernst_f1g50ern
 - id: unified-dk-galster-f1g-45
   fuss: seed_unsorted
   phase: galster
@@ -26823,7 +26792,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: 1 Rhinsk gylden, Malmø
+  nominal: 1 Rhinsk gylden
   year_first: 1527
   year_last: 1527
   year_label: '1527'
