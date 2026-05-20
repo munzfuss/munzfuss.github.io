@@ -902,10 +902,16 @@ def build_location(
     output_root: Path | None = None,
 ) -> None:
     """Render one location to `<output_root>/<loc.id>/<lang>/index.html`.
-    `output_root` defaults to the V1 site/ directory; V2 passes
-    site/v2/ to write under that subtree (per V2_PIPELINE.md §3.8).
-    The template + assembly logic is shared between V1 and V2 — only
-    the output path branches."""
+
+    Post-2026-05-20 routing (D44):
+    - V2 pages → `site/<loc>/<lang>/index.html` (default; output_root=SITE_DIR)
+    - V1 pages → `site/v1/<loc>/<lang>/index.html` (subtree; explicit
+      output_root=SITE_DIR/v1)
+
+    V2 became the default URL after the cross-source pipeline matured;
+    V1 remains accessible via the /v1/ prefix so existing links keep
+    working. The template + assembly logic is shared between V1 and V2
+    — only the output path branches."""
     if output_root is None:
         output_root = SITE_DIR
     print(f"🏛️  Building {loc.id} ({len(loc.coins)} coins) → {output_root.relative_to(REPO_ROOT)}/")
@@ -1046,6 +1052,7 @@ def build_landing(
     german_fuesse: list[dict] | None = None,
     german_fuesse_references: dict | None = None,
     include_seed: bool = False,
+    output_root: Path | None = None,
 ) -> None:
     tmpl = env.get_template("landing.html.j2")
     generated_date = datetime.now().strftime("%Y-%m-%d")
@@ -1107,7 +1114,8 @@ def build_landing(
             t=lambda v, l=lang: i18n.t(v, l),
             fmt_date=lambda d, l=lang: i18n.fmt_date(d, l),
         )
-        out_dir = SITE_DIR / lang
+        root = output_root if output_root is not None else SITE_DIR
+        out_dir = root / lang
         out_dir.mkdir(parents=True, exist_ok=True)
         with open(out_dir / "index.html", "w", encoding="utf-8") as f:
             f.write(html)
@@ -1117,11 +1125,20 @@ def build_landing(
     # Priority: 1) lang cookie set by app.js on previous visit
     #           2) browser preference (navigator.language)
     #           3) fallback to 'en'
+    # The redirect-base prefix is `(base_url + output_root-suffix)`:
+    # for the V2 default landing root=SITE_DIR → empty suffix; for the
+    # V1 landing root=SITE_DIR/v1 → suffix «/v1». Tooltip on each click
+    # in app.js still works because output is per-tree.
+    root = output_root if output_root is not None else SITE_DIR
+    rel_root_suffix = ""
+    if output_root is not None and output_root != SITE_DIR:
+        rel_root_suffix = "/" + output_root.relative_to(SITE_DIR).as_posix()
+    redirect_base = base_url + rel_root_suffix
     root_html = f"""<!DOCTYPE html><html><head>
 <meta charset="UTF-8">
 <title>Müntzfüße</title>
 <script>
-const base = {base_url!r};
+const base = {redirect_base!r};
 const langs = ['de', 'en', 'uk'];
 const m = document.cookie.match(/(?:^|;\\s*)lang=([a-z]{{2}})/);
 const cookieLang = m ? m[1] : null;
@@ -1131,9 +1148,9 @@ if (langs.includes(cookieLang)) target = cookieLang;
 else if (langs.includes(browserLang)) target = browserLang;
 window.location.replace(base + '/' + target + '/');
 </script>
-<noscript><meta http-equiv="refresh" content="0; url={base_url}/en/"></noscript>
-</head><body><p>Loading… <a href="{base_url}/en/">English</a> · <a href="{base_url}/de/">Deutsch</a> · <a href="{base_url}/uk/">Українська</a></p></body></html>"""
-    with open(SITE_DIR / "index.html", "w", encoding="utf-8") as f:
+<noscript><meta http-equiv="refresh" content="0; url={redirect_base}/en/"></noscript>
+</head><body><p>Loading… <a href="{redirect_base}/en/">English</a> · <a href="{redirect_base}/de/">Deutsch</a> · <a href="{redirect_base}/uk/">Українська</a></p></body></html>"""
+    with open(root / "index.html", "w", encoding="utf-8") as f:
         f.write(root_html)
 
 
@@ -1175,16 +1192,17 @@ def parse_args():
     p.add_argument("--no-include-seed", dest="include_seed", action="store_false",
                    help="Force-hide seed locations from the landing page even on local "
                         "builds (matches production behaviour).")
-    # V2 pipeline flags (per docs/V2_PIPELINE.md §4.1). Default behaviour:
-    # build V1 always; build V2 additionally if data/v2/locations/ is
-    # non-empty. Output goes to site/v2/<loc>/<lang>/ alongside the V1
-    # site/<loc>/<lang>/.
+    # V2 pipeline flags (per docs/V2_PIPELINE.md §4.1). Default behaviour
+    # post-2026-05-20 (D44): V2 is DEFAULT (rendered at site/<loc>/<lang>/);
+    # V1 falls back to site/v1/<loc>/<lang>/ subtree but still builds
+    # alongside whenever data/v2/locations/ is populated.
     p.add_argument("--v1-only", dest="v1_only", action="store_true",
                    help="Suppress the V2 build path even when data/v2/locations/ "
-                        "is populated.")
+                        "is populated. V1 still moves to site/v1/<loc>/<lang>/.")
     p.add_argument("--v2-only", dest="v2_only", action="store_true",
-                   help="Skip the V1 build path; only build site/v2/<loc>/<lang>/. "
-                        "Useful for fast V2 iteration when V1 is unchanged.")
+                   help="Skip the V1 build path; only build site/<loc>/<lang>/ "
+                        "(V2 default). Useful for fast V2 iteration when V1 "
+                        "is unchanged.")
     return p.parse_args()
 
 
@@ -1274,20 +1292,25 @@ def main():
     languages = [args.lang] if args.lang else DEFAULT_LANGS
     env = build_env(str(TEMPLATE_DIR))
 
+    # URL routing post-2026-05-20 (D44): V2 is the DEFAULT — V2 pages
+    # land at `site/<loc>/<lang>/index.html`. V1 pages move to the
+    # `site/v1/<loc>/<lang>/index.html` subtree so existing references
+    # remain reachable but no longer occupy the root path.
     if not args.v2_only:
+        print(f"📦 Rendering V1 pages → {(SITE_DIR / 'v1').relative_to(REPO_ROOT)}/")
         for loc in locations:
             build_location(loc, fuesse, theme, ui, languages, env,
                            debug=args.debug, repo_url=args.repo_url,
-                           issuing_entities=issuing_entities, base_url=base_url)
+                           issuing_entities=issuing_entities, base_url=base_url,
+                           output_root=SITE_DIR / "v1")
 
     if v2_enabled and v2_locations:
         print()
-        print(f"📦 Rendering V2 pages → {(SITE_DIR / 'v2').relative_to(REPO_ROOT)}/")
+        print(f"📦 Rendering V2 pages (default) → {SITE_DIR.relative_to(REPO_ROOT)}/")
         for loc in v2_locations:
             build_location(loc, fuesse, theme, ui, languages, env,
                            debug=args.debug, repo_url=args.repo_url,
-                           issuing_entities=issuing_entities, base_url=base_url,
-                           output_root=SITE_DIR / "v2")
+                           issuing_entities=issuing_entities, base_url=base_url)
 
     if len(locations) > 1 or not args.location:
         # Pull contact email from local.env (or process env). Falls back to
@@ -1304,12 +1327,29 @@ def main():
         else:
             include_seed = args.include_seed
 
-        build_landing(locations, ui, theme, languages, env,
+        # Default landing → V2 location list (V2 is root after D44).
+        # Falls back to V1 location list when V2 is disabled / empty.
+        default_landing_locs = (
+            v2_locations if (v2_enabled and v2_locations) else locations
+        )
+        build_landing(default_landing_locs, ui, theme, languages, env,
                       repo_url=args.repo_url, base_url=base_url,
                       contact_email=contact_email,
                       german_fuesse=german_fuesse,
                       german_fuesse_references=german_fuesse_refs,
                       include_seed=include_seed)
+
+        # V1 landing at site/v1/<lang>/index.html so V1 location pages'
+        # home-link («../../index.html») has a target. Only emitted when
+        # V1 was actually built (i.e. --v2-only NOT set).
+        if not args.v2_only:
+            build_landing(locations, ui, theme, languages, env,
+                          repo_url=args.repo_url, base_url=base_url,
+                          contact_email=contact_email,
+                          german_fuesse=german_fuesse,
+                          german_fuesse_references=german_fuesse_refs,
+                          include_seed=include_seed,
+                          output_root=SITE_DIR / "v1")
 
     generate_assets(theme)
     
