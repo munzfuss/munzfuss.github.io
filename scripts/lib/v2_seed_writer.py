@@ -106,12 +106,70 @@ def write_v2_seed(
     src_dir = V2_SEED_ROOT / source_name
     src_dir.mkdir(parents=True, exist_ok=True)
 
+    # Cross-entity dup-purge: when a fresh build re-classifies a coin
+    # from entity A to entity B (e.g. mint reading refined → previously
+    # `royal_holstein` now `gottorp_duchy`), the OLD entry in A's seed
+    # file must be removed, else the same id appears in two files and
+    # the cross-source merger sees a phantom duplicate. Walk every
+    # existing seed file under this source, collect ids that this fresh
+    # build now places under a DIFFERENT entity, drop them from their
+    # stale home.
+    fresh_id_to_entity: dict[str, str] = {}
+    for entity, ents in by_entity.items():
+        for c in ents:
+            cid = c.get("id")
+            if cid:
+                fresh_id_to_entity[cid] = entity
+    purged_per_file: dict[str, int] = {}
+    if not dry_run and not no_merge:
+        import ruamel.yaml as _ruyaml
+        purge_yaml = _ruyaml.YAML(typ="rt")
+        purge_yaml.preserve_quotes = True
+        purge_yaml.width = 200
+        purge_yaml.indent(mapping=2, sequence=4, offset=2)
+        for existing_path in sorted(src_dir.glob("*.yml")):
+            stale_entity_name = existing_path.stem
+            if stale_entity_name == "_unclassified":
+                # _unclassified entries that fresh build now classifies
+                # to a real entity must also be removed from the bucket.
+                pass
+            with existing_path.open() as f:
+                existing_doc = purge_yaml.load(f)
+            if not isinstance(existing_doc, dict):
+                continue
+            existing_coins = existing_doc.get("coins") or []
+            kept = []
+            purged = 0
+            for c in existing_coins:
+                if not isinstance(c, dict):
+                    kept.append(c)
+                    continue
+                cid = c.get("id")
+                if cid and cid in fresh_id_to_entity:
+                    new_entity = fresh_id_to_entity[cid]
+                    if new_entity != stale_entity_name:
+                        purged += 1
+                        continue
+                kept.append(c)
+            if purged:
+                existing_doc["coins"] = kept
+                with existing_path.open("w") as f:
+                    purge_yaml.dump(existing_doc, f)
+                purged_per_file[existing_path.name] = purged
+
     stats = {
         "entities_written": [],
         "per_entity": {},
         "unclassified_count": len(unclassified),
+        "cross_entity_purged": sum(purged_per_file.values()),
     }
 
+    if purged_per_file:
+        print(f"\n[{source_name}] cross-entity dup-purge: "
+              f"{sum(purged_per_file.values())} stale entries removed "
+              f"from {len(purged_per_file)} file(s)")
+        for fname, n in sorted(purged_per_file.items()):
+            print(f"  - {fname}: {n} entries dropped (re-classified)")
     print(f"\n[{source_name}] grouping → {len(by_entity)} entities, "
           f"{len(unclassified)} unclassified")
     for entity in sorted(by_entity.keys()):

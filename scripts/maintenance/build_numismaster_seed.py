@@ -44,9 +44,7 @@ import ruamel.yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import NUMISMASTER_CACHE, PROJECT_ROOT  # noqa: E402
-from lib.seed_merge import merge_seed  # noqa: E402
-
-SEED_ROOT = PROJECT_ROOT / "data" / "seed" / "numismaster"
+from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
 # Per-CACHE-DIR year window applied to entries from that cache:
 #   schleswig_holstein  1514-1864 (Danish-jurisdiction SH end)
@@ -425,73 +423,47 @@ def collect_from_cache(cache_name: str, location: str) -> tuple[list[dict], int]
     return entries, scanned
 
 
-def build_seed(location: str, no_merge: bool, dry_run: bool) -> int:
-    if location not in LOCATION_CACHES:
-        print(f"ERROR: unknown location '{location}'. Valid: {list(LOCATION_CACHES)}", file=sys.stderr)
-        return 2
-    out_path = SEED_ROOT / f"{location}.yml"
-    caches = LOCATION_CACHES[location]
-
+def build_seed(no_merge: bool, dry_run: bool) -> int:
+    """V2-native: walk every cache once, classify each coin by issuing_entity
+    (set per-coin via COUNTRY_TO_ISSUING_ENTITY map at build_entry time),
+    delegate to shared `write_v2_seed` for grouping + per-entity output."""
     all_entries: list[dict] = []
-    total_scanned = 0
     cache_summary: list[str] = []
-    for cache_name in caches:
-        entries, scanned = collect_from_cache(cache_name, location)
+    for cache_name in CACHE_WINDOW.keys():
+        # collect_from_cache wants a `location` arg used only for fallback
+        # entity assignment (rare); pass a sensible default based on cache
+        # name so unrecognised `country` strings still route reasonably.
+        fallback_location = {
+            "schleswig_holstein": "schleswig_holstein",
+        }.get(cache_name, "denmark")
+        entries, scanned = collect_from_cache(cache_name, fallback_location)
         all_entries.extend(entries)
-        total_scanned += scanned
         yf, yt = CACHE_WINDOW[cache_name]
         cache_summary.append(f"{cache_name}({yf}-{yt}):{len(entries)}/{scanned}")
 
-    all_entries.sort(key=lambda e: (e.get("year_first", 9999), e.get("id", "")))
-    print(f"  [{location}] from caches → {', '.join(cache_summary)} = {len(all_entries)} total entries")
-    if dry_run:
-        return 0
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-
-    if not no_merge:
-        all_entries, stats = merge_seed(all_entries, out_path)
-        print(
-            f"  [{location}] merge: merged_existing={stats['merged_existing']}, "
-            f"added_new={stats['added_new']}, orphan_curated={stats['orphan_curated']}"
-        )
-
-    yaml = ruamel.yaml.YAML()
-    yaml.preserve_quotes = True
-    yaml.width = 200
-    yaml.indent(mapping=2, sequence=4, offset=2)
-
+    print(f"  from caches → {', '.join(cache_summary)} = {len(all_entries)} total entries")
     scope_note = (
-        f"§BK NumisMaster seed for location `{location}`. Krause-Mishler-based "
-        f"commercial catalogue (Librios). Caches consumed: {', '.join(caches)}. "
-        f"Per-cache year windows: " + ", ".join(
-            f"{c}={CACHE_WINDOW[c][0]}-{CACHE_WINDOW[c][1]}" for c in caches
+        "§BK NumisMaster seed — Krause-Mishler-based commercial catalogue "
+        f"(Librios). Caches consumed: {', '.join(CACHE_WINDOW.keys())}. "
+        "Per-cache year windows: " + ", ".join(
+            f"{c}={CACHE_WINDOW[c][0]}-{CACHE_WINDOW[c][1]}" for c in CACHE_WINDOW
         ) + ". Per-coin verification against primary sources (Hede / Sieg / "
         "Lange / Wilcke / Schive) before §BF promotion. Krause numbering is "
         "per-country — see CLAUDE.md §9 caveat on cross-volume KM# collisions."
     )
-
-    out = {
-        "status": "seed",
-        "source": "NumisMaster (numismaster.com per-coin HTML MC_NNNNN pages)",
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "location": location,
-        "caches": list(caches),
-        "scope_note": scope_note,
-        "coins": all_entries,
-    }
-    with out_path.open("w") as f:
-        yaml.dump(out, f)
-    print(f"  [{location}] wrote {out_path.relative_to(PROJECT_ROOT)} ({len(all_entries)} entries)")
+    write_v2_seed(
+        all_entries,
+        source_name="numismaster",
+        source_label="NumisMaster (numismaster.com per-coin HTML MC_NNNNN pages)",
+        scope_note=scope_note,
+        dry_run=dry_run,
+        no_merge=no_merge,
+    )
     return 0
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    g = ap.add_mutually_exclusive_group(required=True)
-    g.add_argument("--location", choices=tuple(LOCATION_CACHES.keys()),
-                   help="Build seed for one location")
-    g.add_argument("--all", action="store_true",
-                   help="Build seeds for every location")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument(
         "--no-merge",
@@ -502,13 +474,13 @@ def main() -> int:
             "use for verification / dry-run paths."
         ),
     )
+    # `--all` and `--location` retained as no-op flags for backward compat
+    # with shell scripts that still pass them; the new builder walks every
+    # cache regardless.
+    ap.add_argument("--all", action="store_true", help="(no-op; kept for compat)")
+    ap.add_argument("--location", help="(no-op; kept for compat)")
     args = ap.parse_args()
-
-    locations = list(LOCATION_CACHES.keys()) if args.all else [args.location]
-    rc = 0
-    for loc in locations:
-        rc = build_seed(loc, args.no_merge, args.dry_run) or rc
-    return rc
+    return build_seed(args.no_merge, args.dry_run)
 
 
 if __name__ == "__main__":

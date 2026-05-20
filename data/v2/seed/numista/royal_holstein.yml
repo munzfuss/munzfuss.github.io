@@ -1,96 +1,117 @@
-# V2 seed for political entity `royal_holstein` from source `numista`.
-# Generated 2026-05-19 by scripts/maintenance/seed_v2_regroup.py from
-# `data/seed/numista/*.yml`. Each coin retains its V1 seed-id;
-# `v1_seed_location` records the V1 location-yaml it lived in;
-# `issuing_entity` is added by the regrouper (scalar or list per §3.10).
-#
-# Coins: 2
-
-id: royal_holstein
-source: numista
-regrouped_from_v1: '2026-05-19'
+status: seed
+source: Numista en.numista.com per-coin HTML catalog (1514-1541 Denmark sub-window)
+generated_at: '2026-05-20T09:18:08Z'
+entity: royal_holstein
+scope_note: '§AZ Tier 3 — Numista HTML-scrape enrichment. Parallel source to v2/seed/bruun/ (Tier 1) + v2/seed/galster/ (Tier 2). Distinctive contribution: per-specimen diameter, photo credit to specimen-holding
+  institution (Münzkabinett Berlin / Nationalmuseet i København), obverse + reverse lettering with Latin → English translations, and Numista rarity-index as a popular-availability indicator. Numista is
+  user-edited — cross-references (SIEG, Galster, Schou, Fr, MB) require primary-source verification before §BF promotion.'
+scope_year_from: 1514
+scope_year_to: 1541
 coins:
-- id: dk-numista-301237
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 2 Skilling (1⁄24)
-  year_label: 1514-1522
-  year_first: 1514
-  year_last: 1522
-  year_ranges:
-  - - 1514
-    - 1522
-  ruler: Frederick I
-  mint: Husum
-  catalog:
-    numista: '301237'
-    sieg: F1-43
-    mb: '10'
-  metal: silver
-  fineness: 0.75
-  weight_rough_g: 3.27
-  diameter_mm: 28.6
-  issuing_entity: royal_holstein
-  verified: false
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  sources:
-  - type: literature
-    url: https://en.numista.com/301237
-    ref: Numista N#301237 — 2 Schillings - Frederik I (Husum; portrait first type)
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  v1_seed_location: denmark_pre_1541
-- id: dk-numista-301239
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 2 Skilling (1⁄24)
-  year_label: 1514-1522
-  year_first: 1514
-  year_last: 1522
-  year_ranges:
-  - - 1514
-    - 1522
-  ruler: Frederick I
-  mint: Husum
-  catalog:
-    numista: '301239'
-    sieg: F1-43
-    mb: '10'
-  metal: silver
-  fineness: 0.75
-  weight_rough_g: 3.32
-  diameter_mm: 29.4
-  issuing_entity: royal_holstein
-  verified: false
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  sources:
-  - type: literature
-    url: https://en.numista.com/301239
-    ref: Numista N#301239 — 2 Schillings - Frederik I (Husum; portrait second type)
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  v1_seed_location: denmark_pre_1541
+  - id: dk-numista-301237
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Skilling (1⁄24)
+    year_label: 1514-1522
+    year_first: 1514
+    year_last: 1522
+    year_ranges:
+      -   - 1514
+          - 1522
+    ruler: Frederick I
+    mint: Husum
+    catalog:
+      numista: '301237'
+      sieg: F1-43
+      mb: '10'
+    metal: silver
+    fineness: 0.75
+    weight_rough_g: 3.27
+    diameter_mm: 28.6
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    sources:
+      - type: literature
+        url: https://en.numista.com/301237
+        ref: Numista N#301237 — 2 Schillings - Frederik I (Husum; portrait first type)
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references
+        (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+    photo_credit: Fritz Rudolf Künker GmbH & Co. KG, Osnabrück and Lübke & Wiedemann KG, Leonberg Features Issuer Denmark King Frederick I (Frederik I)
+    technique: Hammered
+    reverse:
+      description: Shield with arms of Schleswig inside a beaded circle. Legend outside
+      script: Latin
+      lettering: ''
+      translation: New coin of Schleswig
+    obverse:
+      description: Full armored standing figure of King Frederik I with both arms down and a mace or a sword in left hand, at limbs height (portrait has beard). Holstein arms on the tassets. King 
+        figure is partially within a beaded circle, with legend outside.
+      script: Latin
+      lettering: ''
+      translation: Frederik (I) Duke of Holstein
+    numista_title: 2 Schillings - Frederik I (Husum; portrait first type)
+    numista_rarity_index: 91
+    shape: Round (irregular)
+  - id: dk-numista-301239
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Skilling (1⁄24)
+    year_label: 1514-1522
+    year_first: 1514
+    year_last: 1522
+    year_ranges:
+      -   - 1514
+          - 1522
+    ruler: Frederick I
+    mint: Husum
+    catalog:
+      numista: '301239'
+      sieg: F1-43
+      mb: '10'
+    metal: silver
+    fineness: 0.75
+    weight_rough_g: 3.32
+    diameter_mm: 29.4
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    sources:
+      - type: literature
+        url: https://en.numista.com/301239
+        ref: Numista N#301239 — 2 Schillings - Frederik I (Husum; portrait second type)
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references
+        (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+    photo_credit: Fritz Rudolf Künker GmbH & Co. KG, Osnabrück and Lübke & Wiedemann KG, Leonberg Features Issuer Denmark King Frederick I (Frederik I)
+    technique: Hammered
+    reverse:
+      description: Shield with arms of Schleswig inside a beaded circle. Legend outside
+      script: Latin
+      lettering: ''
+    obverse:
+      description: Full armored standing figure of King Frederik I with both arms down and a mace or a sword in left hand, at limbs height (portrait has no beard and seems younger than type 1, in 
+        addition is a little bit turned to the right). Holstein arms on the tassets. King figure is partially within a beaded circle, with legend outside.
+      script: Latin
+      lettering: ''
+      translation: Frederik (I) Duke of Holstein
+    numista_title: 2 Schillings - Frederik I (Husum; portrait second type)
+    numista_rarity_index: 91
+    shape: Round (irregular)

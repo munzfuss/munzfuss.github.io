@@ -20,19 +20,15 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
-
-import ruamel.yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import NUMISMASTER_CACHE, PROJECT_ROOT  # noqa: E402
-from lib.seed_merge import merge_seed  # noqa: E402
+from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
 # §AZ pre-1541 subdir under the canonical NumisMaster cache root.
 # See lib/paths.py for the full layout planned at Phase-1b/2 completion.
 CACHE_DIR = NUMISMASTER_CACHE / "denmark_pre_1541"
-OUT_PATH = PROJECT_ROOT / "data" / "seed" / "numismaster" / "denmark_pre_1541.yml"
 
 YEAR_FROM = 1514
 YEAR_TO = 1541
@@ -96,7 +92,10 @@ def build_entry(data: dict) -> dict | None:
     composition = data.get("composition") or ""
     metal = detect_metal(composition, data.get("denomination"))
 
-    catalog: dict = {"numismaster_mc": str(mc)}
+    # `numismaster_mc` is a non-schema audit anchor. Carry it as
+    # underscore-prefixed top-level field so `_merge_seeds_into_raw`
+    # strips it at validation time; not inside `catalog` (schema strict).
+    catalog: dict = {}
     if data.get("catalog_number"):
         # «MB# 33» → mb=33; «KM# 7» → km=7
         cat = data["catalog_number"]
@@ -159,6 +158,7 @@ def build_entry(data: dict) -> dict | None:
         "ruler": data.get("ruler"),
         "mint": data.get("mint"),
         "catalog": catalog,
+        "_numismaster_mc": str(mc),
         "metal": metal,
         "fineness": data.get("fineness"),
         "weight_rough_g": data.get("mass_g"),
@@ -257,33 +257,11 @@ def main() -> int:
     entries = collect()
     entries.sort(key=lambda e: (e.get("year_first", 9999), e.get("id", "")))
     print(f"Total entries: {len(entries)}")
-    if args.dry_run:
-        return 0
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-
-    # Merge fresh-generated entries against existing on-disk seed, preserving
-    # curated decisions (CURATED_FIELDS) + dict deep-merges (catalog) +
-    # verified-wins (measurements) + per-entry holds. See scripts/lib/seed_merge.py.
-    if not args.no_merge:
-        entries, merge_stats = merge_seed(entries, OUT_PATH)
-        print(
-            f"Merge against existing {OUT_PATH.name}: "
-            f"merged_existing={merge_stats['merged_existing']}, "
-            f"added_new={merge_stats['added_new']}, "
-            f"orphan_curated={merge_stats['orphan_curated']}"
-        )
-
-    yaml = ruamel.yaml.YAML()
-    yaml.preserve_quotes = True
-    yaml.width = 200
-    yaml.indent(mapping=2, sequence=4, offset=2)
-    out = {
-        "status": "seed",
-        "source": "NumisMaster (numismaster.com per-coin HTML MC_NNNNN pages)",
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "scope_year_from": YEAR_FROM,
-        "scope_year_to": YEAR_TO,
-        "scope_note": (
+    write_v2_seed(
+        entries,
+        source_name="numismaster",
+        source_label="NumisMaster (numismaster.com per-coin HTML MC_NNNNN pages)",
+        scope_note=(
             "§AZ Tier 4 — NumisMaster HTML-scrape. Krause-Mishler-based "
             "commercial catalog. Pre-1604 KM coverage sparse, but pre-1541 "
             "Schleswig-Holstein-duchy coins are catalogued under «MB#» (pre-"
@@ -292,11 +270,13 @@ def main() -> int:
             "search). Full Schleswig-Holstein sub-territory walk for additional "
             "MB_ entries deferred to future enrichment session."
         ),
-        "coins": entries,
-    }
-    with OUT_PATH.open("w") as f:
-        yaml.dump(out, f)
-    print(f"Wrote {OUT_PATH.relative_to(PROJECT_ROOT)} ({len(entries)} entries)")
+        dry_run=args.dry_run,
+        no_merge=args.no_merge,
+        extra_top_level={
+            "scope_year_from": YEAR_FROM,
+            "scope_year_to": YEAR_TO,
+        },
+    )
     return 0
 
 

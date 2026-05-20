@@ -50,10 +50,22 @@ import ruamel.yaml
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 CACHE_DIR = PROJECT_ROOT / "scripts" / "cache" / "bruun" / "lots"
-OUT_PATH = PROJECT_ROOT / "data" / "seed" / "bruun" / "denmark_pre_1541.yml"
 
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
-from lib.seed_merge import merge_seed  # noqa: E402
+from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
+from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+
+
+def _classify_entity(mint, is_norway: bool):
+    """Bruun lot → V2 issuing_entity. Prefers central mint→entity
+    classifier; falls back to Norway-flag / `danish_realm` default."""
+    if mint:
+        result = classify_mint_to_entity(mint)
+        if result:
+            return result
+    if is_norway:
+        return "danish_norway"
+    return "danish_realm"
 
 # Region filter — Bruun parser produced "NORW AY" with internal space
 REALM_REGIONS = {"DENMARK", "NORW AY", "NORWAY", "DENMARK-NORWAY"}
@@ -287,7 +299,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         "metal": metal,
         "fineness": None,  # not in Bruun lot data; comes from spec tables (Wilcke)
         "weight_rough_g": lot.get("weight_g"),
-        "issuing_entity": "norwegian_realm" if is_norway else "danish_realm",
+        "issuing_entity": _classify_entity(mint, is_norway),
         "verified": False,
         "fineness_verified": False,
         "weight_rough_verified": bool(lot.get("weight_g")),
@@ -422,45 +434,23 @@ def main() -> int:
     print(f"By mint: {dict(by_mint.most_common())}")
     print(f"By metal: {dict(by_metal.most_common())}")
 
-    if args.dry_run:
-        return 0
-
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-
-    # Merge fresh-generated entries against existing on-disk seed, preserving
-    # curated decisions (CURATED_FIELDS) + dict deep-merges (catalog) +
-    # verified-wins (measurements) + per-entry holds. See scripts/lib/seed_merge.py.
-    if not args.no_merge:
-        entries, merge_stats = merge_seed(entries, OUT_PATH)
-        print(
-            f"\nMerge against existing {OUT_PATH.name}: "
-            f"merged_existing={merge_stats['merged_existing']}, "
-            f"added_new={merge_stats['added_new']}, "
-            f"orphan_curated={merge_stats['orphan_curated']}"
-        )
-
-    yaml = ruamel.yaml.YAML()
-    yaml.preserve_quotes = True
-    yaml.width = 200
-    yaml.indent(mapping=2, sequence=4, offset=2)
-
-    out = {
-        "status": "seed",
-        "source": "Stack's Bowers L. E. Bruun Collection (parts I-IV, 2024-2026)",
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "scope_year_from": YEAR_FROM,
-        "scope_year_to": YEAR_TO,
-        "scope_note": (
+    write_v2_seed(
+        entries,
+        source_name="bruun",
+        source_label="Stack's Bowers L. E. Bruun Collection (parts I-IV, 2024-2026)",
+        scope_note=(
             "§AZ Tier 1 — Bruun corpus pre-1541 realm lots, covers the gap "
-            "Hede 1957 doesn't catalogue (Christian II + Frederik I + "
+            "Hede 1971 doesn't catalogue (Christian II + Frederik I + "
             "Christian III pre-1541 Møntordning). NOT a substitute for the "
-            "Hede seed at data/seed/hede/denmark.yml; parallel source."
+            "Hede seed at v2/seed/hede/; parallel source."
         ),
-        "coins": entries,
-    }
-    with OUT_PATH.open("w") as f:
-        yaml.dump(out, f)
-    print(f"\nWrote {OUT_PATH.relative_to(PROJECT_ROOT)} ({len(entries)} entries)")
+        dry_run=args.dry_run,
+        no_merge=args.no_merge,
+        extra_top_level={
+            "scope_year_from": YEAR_FROM,
+            "scope_year_to": YEAR_TO,
+        },
+    )
     return 0
 
 

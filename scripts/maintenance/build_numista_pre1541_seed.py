@@ -19,17 +19,13 @@ import argparse
 import json
 import re
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
-
-import ruamel.yaml
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 CACHE_DIR = PROJECT_ROOT / "scripts" / "cache" / "numista" / "denmark_pre_1541"
-OUT_PATH = PROJECT_ROOT / "data" / "seed" / "numista" / "denmark_pre_1541.yml"
 
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
-from lib.seed_merge import merge_seed  # noqa: E402
+from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
 YEAR_FROM = 1514
 YEAR_TO = 1541
@@ -64,10 +60,20 @@ def detect_metal(comp: dict, value_text: str | None) -> str:
     return "silver"
 
 
-def detect_issuing_entity(data: dict) -> str:
+def detect_issuing_entity(data: dict):
+    """Returns V2 issuing_entity (scalar or list-form). Uses centralised
+    mint→entity classifier with sub-realm fallback for entries lacking
+    explicit mint info. Norway → `danish_norway` (V2-canonical),
+    NOT legacy `norwegian_realm`."""
+    mint = data.get("mint") or data.get("mint_text")
+    if mint:
+        from lib.v2_entity_classify import classify_mint_to_entity
+        result = classify_mint_to_entity(mint)
+        if result:
+            return result
     issuer = (data.get("issuer") or "").lower()
     if "norway" in issuer:
-        return "norwegian_realm"
+        return "danish_norway"
     return "danish_realm"
 
 
@@ -98,11 +104,21 @@ def build_entry(data: dict) -> dict | None:
     metal = detect_metal(composition, value.get("raw"))
     fineness = composition.get("fineness")
 
+    # Filter to schema-allowed catalog keys (per scripts/lib/schema.py
+    # CatalogRefs model). Numista's per-coin `references` block can
+    # carry non-schema entries (`brekke`, `thesen`, `aajt`, etc.) that
+    # Pydantic's strict-extra=forbid rejects on Location load.
+    _ALLOWED = {
+        "km", "lange", "hede", "sieg", "schou", "fr", "dav", "mb",
+        "bruun_collection_id", "bruun_part", "bruun_lot_no", "bruun_page",
+        "bruun_lot", "numista", "hede_volume", "galster", "friedberg",
+    }
     catalog: dict = {
         "numista": str(nid),
     }
     for k, v in references.items():
-        catalog[k] = v
+        if k in _ALLOWED:
+            catalog[k] = v
 
     sources_list: list[dict] = [
         {
@@ -225,36 +241,13 @@ def main() -> int:
     print(f"By metal: {dict(by_metal.most_common())}")
     print(f"By realm: {dict(by_realm.most_common())}")
 
-    if args.dry_run:
-        return 0
-
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-
-    # Merge fresh-generated entries against existing on-disk seed, preserving
-    # curated decisions (CURATED_FIELDS) + dict deep-merges (catalog) +
-    # verified-wins (measurements) + per-entry holds. See scripts/lib/seed_merge.py.
-    if not args.no_merge:
-        entries, merge_stats = merge_seed(entries, OUT_PATH)
-        print(
-            f"\nMerge against existing {OUT_PATH.name}: "
-            f"merged_existing={merge_stats['merged_existing']}, "
-            f"added_new={merge_stats['added_new']}, "
-            f"orphan_curated={merge_stats['orphan_curated']}"
-        )
-
-    yaml = ruamel.yaml.YAML()
-    yaml.preserve_quotes = True
-    yaml.width = 200
-    yaml.indent(mapping=2, sequence=4, offset=2)
-    out = {
-        "status": "seed",
-        "source": "Numista en.numista.com per-coin HTML catalog (1514-1541 Denmark sub-window)",
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "scope_year_from": YEAR_FROM,
-        "scope_year_to": YEAR_TO,
-        "scope_note": (
+    write_v2_seed(
+        entries,
+        source_name="numista",
+        source_label="Numista en.numista.com per-coin HTML catalog (1514-1541 Denmark sub-window)",
+        scope_note=(
             "§AZ Tier 3 — Numista HTML-scrape enrichment. Parallel source "
-            "to data/seed/bruun/ (Tier 1) + data/seed/galster/ (Tier 2). "
+            "to v2/seed/bruun/ (Tier 1) + v2/seed/galster/ (Tier 2). "
             "Distinctive contribution: per-specimen diameter, photo credit "
             "to specimen-holding institution (Münzkabinett Berlin / "
             "Nationalmuseet i København), obverse + reverse lettering with "
@@ -263,11 +256,13 @@ def main() -> int:
             "cross-references (SIEG, Galster, Schou, Fr, MB) require "
             "primary-source verification before §BF promotion."
         ),
-        "coins": entries,
-    }
-    with OUT_PATH.open("w") as f:
-        yaml.dump(out, f)
-    print(f"\nWrote {OUT_PATH.relative_to(PROJECT_ROOT)} ({len(entries)} entries)")
+        dry_run=args.dry_run,
+        no_merge=args.no_merge,
+        extra_top_level={
+            "scope_year_from": YEAR_FROM,
+            "scope_year_to": YEAR_TO,
+        },
+    )
     return 0
 
 
