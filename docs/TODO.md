@@ -2785,7 +2785,18 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 - **`data/i18n/ui.yml`** — the existing 3-lang UI-string convention may need a structural revision (e.g. nullable `da:` field, or a separate `ui_da.yml` overlay).
 - **Templates** — language-switcher chip implementation determines whether the `da` chip appears on landing / German-jurisdiction pages (probably hidden when the page itself has no Danish content).
 
-### BX. 🟡 Integrate auto_classify_seed_unsorted.py as canonical Phase 4 step in V2 pipeline  *(opened 2026-05-20)* *(est: small-medium)* *(type: pipeline + docs)*
+### BX. 🟢 Integrate auto_classify_seed_unsorted.py as canonical Phase 4 step in V2 pipeline  *(opened 2026-05-20, substantially closed 2026-05-21)* *(est: small-medium)* *(type: pipeline + docs)*
+
+**Progress 2026-05-21 — wrapper + canonical docs landed.** Core integration done:
+- `scripts/run_v2_pipeline.sh` (new) chains Phase 3.2 → 4 absorb → 4 classify → 6 relink → build in canonical order. Dry-run by default; `--apply` mutates. `--skip-build` for data-only runs.
+- `docs/ARCHITECTURE.md` §«Phase 4 — Classification to Müntzfuß (final)» rewritten to describe the actual two-stage process (`absorb_seeds_into_final_v2.py` + `auto_classify_seed_unsorted.py`) and reference the wrapper. «to-be-built» annotation dropped for `merge_seeds_cross_source.py` (already existed) + `classify_to_fuss_v2.py` (was the placeholder name for `auto_classify_seed_unsorted.py`).
+- ARCHITECTURE.md pipeline diagram + script-inventory chain (post-harvest re-run section) updated to name the wrapper.
+
+**Remaining (optional polish, not blocking):**
+- PB-12 playbook entry «Post-harvest V2 pipeline re-run» — operator-facing procedure for `run_v2_pipeline.sh` usage scenarios (after new harvest cache, after curator decision file edits, before push verification). Low priority — wrapper's `--help` covers basic usage.
+- Pre-commit hook advisory check — flag staged `data/v2/final/*.yml` changes that introduce new `fuss: seed_unsorted` entries the classifier would auto-resolve. Decision (a) in original plan; deferred — workflow needs to prove the manual approach is error-prone first.
+
+
 
 **Surfaced.** User direction 2026-05-20: «цей процес має бути складовою частиною нашого пайплайну даних на v2 (уже основній версії)». The §8a auto-classifier (`scripts/maintenance/auto_classify_seed_unsorted.py`) currently sits in the `scripts/maintenance/` ad-hoc tier and is invoked manually. Per `docs/ARCHITECTURE.md` §«Phase 4 — Classification to Müntzfuß (final)» (line 541), a script with this exact responsibility is documented as **`classify_to_fuss_v2.py` (to-be-built)** — the existing `auto_classify_seed_unsorted.py` IS that script under a different name, just not yet canonicalised in the pipeline orchestration.
 

@@ -490,13 +490,16 @@ Every script is idempotent + merge-aware per D25; every transition preserves dat
    <src>/<basename>.pdf     <src>/_parsed_index     data/v2/seed_unified/    (curator-readable,        + data/v2/locations/
                                                     <entity>.yml             never hand-edited)        <loc>.yml display-meta
 
-  Driver:                  Driver:                  Drivers:                  Driver:                  Driver:
-  fetch_<src>.py           parse_<src>.py           build_<src>_seed_v2.py    classify_to_fuss_v2.py   scripts/build.py
-                                                    + merge_seeds_cross_      (consumes Phase 3        (consumes_entities
-                                                     source.py                 + classification_         assembly + §3.10
-                                                    (curator input via         decisions/<entity>.yml    inverse-index)
-                                                     merge_decisions/         escape-hatch file)
-                                                     <entity>.yml)
+  Driver:                  Driver:                  Drivers:                  Drivers:                 Driver:
+  fetch_<src>.py           parse_<src>.py           build_<src>_seed_v2.py    absorb_seeds_into_       scripts/build.py
+                                                    + merge_seeds_cross_       final_v2.py             (consumes_entities
+                                                     source.py                + auto_classify_seed_     assembly + §3.10
+                                                    (curator input via         unsorted.py             inverse-index)
+                                                     merge_decisions/         (curator input via
+                                                     <entity>.yml)             classification_
+                                                                               decisions/<entity>.yml)
+
+  All Phase 3.2+4 phases chained via scripts/run_v2_pipeline.sh
 ```
 
 Where the curator can intervene (decision files, NEVER field-edits):
@@ -532,7 +535,7 @@ Shared mechanism: `lib/seed_merge.merge_seed()` (see §«Manual-override preserv
 
 **Transitional state (pre-Phase-9):** `scripts/maintenance/seed_v2_regroup.py` is the current driver — a **post-processor** over V1's location-keyed seed yamls. Post-Phase 9, each V1 builder gains a `--v2` flag (or sibling `build_<src>_seed_v2.py`) so V2 derives directly from parser cache.
 
-**3b. Cross-source merge to unified seed.** `scripts/maintenance/merge_seeds_cross_source.py` (to-be-built) reads all `data/v2/seed/<source>/<entity>.yml` files for one entity and produces `data/v2/seed_unified/<entity>.yml` — one entry per physical coin, enriched from every source that catalogued it:
+**3b. Cross-source merge to unified seed.** `scripts/maintenance/merge_seeds_cross_source.py` reads all `data/v2/seed/<source>/<entity>.yml` files for one entity and produces `data/v2/seed_unified/<entity>.yml` — one entry per physical coin, enriched from every source that catalogued it:
 
 - **Confident auto-merge**: same `catalog.km` + same `catalog.hede` + same `ruler` + overlapping `year_first` → collapse to one entry. Multi-source `weight_rough_g[]` / `fineness[]` / `diameter_mm[]` lists preserve every reading per CLAUDE.md §9a multi-specimen rule. `sources[]` is the union.
 - **Low-confidence pair**: surfaces for curator decision via `data/v2/merge_decisions/<entity>.yml`. Curator writes `merge: [seed_a, seed_b]` (confirm) or `no_merge: [seed_a, seed_b]` (explicit reject so the script doesn't keep asking). Or updates auto-merge rules to generalise the case.
@@ -540,13 +543,13 @@ Shared mechanism: `lib/seed_merge.merge_seed()` (see §«Manual-override preserv
 
 ### Phase 4 — Classification to Müntzfuß (final)
 
-`scripts/maintenance/classify_to_fuss_v2.py` (to-be-built) reads `data/v2/seed_unified/<entity>.yml` and produces `data/v2/final/<entity>.yml` with each coin assigned to its Müntzfuß + phase:
+Phase 4 is implemented as a two-stage process:
 
-- **Confident auto-classify**: applies CLAUDE.md §8a Müntzfuß-disambiguation pipeline (metal mismatch → mint-name mismatch → Δ-from-Soll → Bruttogewicht pattern → fineness hint). Where a unique candidate emerges, assigns automatically.
-- **Low-confidence**: surfaces for curator decision via `data/v2/classification_decisions/<entity>.yml`. Curator writes `assign: {coin_id: {fuss, phase, fraction, kind, ...}}` — or updates the auto-classify rules to cover the pattern.
-- §6 (kind kurant/scheide/tarif/gedenk) is also auto-determined here from nominal + fineness + fuss-Soll comparison.
+1. **Absorb into V2 final foundation** — `scripts/maintenance/absorb_seeds_into_final_v2.py` reads `data/v2/seed_unified/<entity>.yml` + the V1-bootstrap `data/v2/final/<entity>.yml` foundation. For each unified entry: find matching final entry via §5.2 hierarchy → ENRICH the final entry (union year_ranges, multi-source measurement lists, sources). Genuinely-new coins surface in `data/v2/classification_decisions/<entity>.yml` for curator review. Existing final entries are mutated in place additively (D3 «foundation frozen except for additive enrichment»).
 
-`data/v2/final/<entity>.yml` is the final per-entity dataset that the build consumes. It is **never hand-edited** — all of its content is derived from upstream phases + decision files.
+2. **Classify seed_unsorted into real Müntzfuß** — `scripts/maintenance/auto_classify_seed_unsorted.py` mutates `data/v2/final/<entity>.yml` in place. For each entry with `fuss: seed_unsorted`, applies the §8a Müntzfuß-disambiguation pipeline (Hede yield → era-anchor (post-1873 kronefod / post-1813 18_5_thaler) → fineness/weight-Δ math). Low-confidence cases surface for curator decision via `classification_decisions/<entity>.yml`. §6 kind (kurant/scheide/tarif/gedenk) auto-determined from nominal + metal + fuss-Soll comparison.
+
+Both scripts chain via `scripts/run_v2_pipeline.sh --apply` (see «Script inventory + when to re-run each» below). `data/v2/final/<entity>.yml` is **never hand-edited** — all of its content is derived from upstream phases + decision files. Per-coin metadata (fineness, sources, etc.) flows from Phases 1-3; fuss/phase classification flows from this Phase 4.
 
 ### Render — assembly per display location
 
@@ -571,10 +574,14 @@ A diff script (`scripts/maintenance/diff_v1_v2_final.py`, to-be-built) compares 
 After **new harvest data** (`scripts/cache/<src>/` updated):
 1. `scripts/parse_<src>.py` — re-typify the new cache entries (V1 + V2 share parser cache)
 2. `scripts/maintenance/build_<src>_<loc>_seed.py` (V1 builder) + V2 equivalent — refresh per-resource seeds; merge-aware
-3. `scripts/maintenance/merge_seeds_cross_source.py --apply` (Phase 3.2) — re-merges cross-source per entity
-4. `scripts/maintenance/classify_to_fuss_v2.py --apply` (Phase 4) — re-classifies seed_unified → final
-5. `scripts/maintenance/relink_promoted_v2.py --apply` — bidirectional link audit
-6. `python scripts/build.py` — renders both V1 + V2
+3. **`scripts/run_v2_pipeline.sh --apply`** — chains all V2 phases in canonical order:
+   - Phase 3.2: `merge_seeds_cross_source.py --apply` (cross-source merge → seed_unified)
+   - Phase 4 absorb: `absorb_seeds_into_final_v2.py --apply` (unified → final foundation)
+   - Phase 4 classify: `auto_classify_seed_unsorted.py --apply` (resolve seed_unsorted → real fuss+phase)
+   - Phase 6 relink: `relink_promoted_v2.py --apply` (bidirectional seed↔curated links)
+   - Build: `scripts/build.py` (renders V2 default at `/` + V1 fallback at `/v1/`)
+
+Pass `--skip-build` to run the data phases without rendering. Run without `--apply` for a dry-run preview of all phases (no mutations, no build).
 
 After **curator decision file edits** (`data/v2/merge_decisions/` or `classification_decisions/`):
 1. Re-run from the corresponding phase script
