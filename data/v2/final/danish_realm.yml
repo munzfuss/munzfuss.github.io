@@ -31,6 +31,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -46,6 +47,9 @@ coins:
   - value: 3.49
     source: hede
   - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
     source: ucoin
   sources:
   - type: ucoin
@@ -85,6 +89,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -92,6 +97,9 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
     source: ucoin
   sources:
   - type: ucoin
@@ -132,6 +140,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -145,6 +154,9 @@ coins:
   - value: 3.118
     source: numismaster
   - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
     source: ucoin
   sources:
   - type: ucoin
@@ -190,6 +202,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -197,6 +210,9 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
     source: ucoin
   sources:
   - type: ucoin
@@ -240,6 +256,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -247,6 +264,9 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
     source: ucoin
   sources:
   - type: ucoin
@@ -524,9 +544,10 @@ coins:
   catalog:
     km: '750'
   metal: gold
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -535,9 +556,15 @@ coins:
   weight_rough_g:
   - value: 13.28
     source: ucoin
+  diameter_mm:
+  - value: 27.1
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-d-or-1850-1863/?tid=130482
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-dor-1850-1863/?tid=130482
     ref: ucoin
   verification_note:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
@@ -565,7 +592,7 @@ coins:
     bruun_lot_no: 1168
     bruun_page: 231
   metal: gold
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -585,6 +612,9 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
     ref: Bruun Part I, lot 1168, p. 231
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-dor-1869/?tid=130483
+    ref: ucoin
   verification_note:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -955,9 +985,7 @@ coins:
   year_first: 1602
   year_last: 1602
   year_label: '1602'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '7'
   metal: copper
@@ -1250,9 +1278,7 @@ coins:
   year_first: 1604
   year_last: 1604
   year_label: '1604'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '22'
   metal: billon
@@ -1293,9 +1319,7 @@ coins:
   year_first: 1607
   year_last: 1607
   year_label: 1606–1607
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '40'
   metal: billon
@@ -1336,9 +1360,7 @@ coins:
   year_first: 1611
   year_last: 1611
   year_label: '1611'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '47'
   metal: billon
@@ -1379,9 +1401,7 @@ coins:
   year_first: 1614
   year_last: 1614
   year_label: '1614'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '48'
   metal: billon
@@ -1902,9 +1922,7 @@ coins:
   year_first: 1606
   year_last: 1606
   year_label: '1606'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '31'
   metal: silver
@@ -1946,7 +1964,6 @@ coins:
   year_last: 1608
   year_label: '1608'
   mint:
-  - Denmark, Helsingør
   - Helsingør
   - Kopenhagen
   catalog:
@@ -1989,9 +2006,7 @@ coins:
   year_first: 1624
   year_last: 1624
   year_label: '1624'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '93'
   metal: silver
@@ -2211,9 +2226,7 @@ coins:
   year_first: 1619
   year_last: 1619
   year_label: '1619'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '72'
     bruun_collection_id: '5070'
@@ -2259,9 +2272,7 @@ coins:
   year_first: 1604
   year_last: 1604
   year_label: '1604'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '23'
     hede: '76'
@@ -2377,9 +2388,7 @@ coins:
   year_first: 1596
   year_last: 1596
   year_label: '1596'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: UC# 7
   metal: silver
@@ -2420,9 +2429,7 @@ coins:
   year_first: 1597
   year_last: 1597
   year_label: '1597'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: UC# 8
   metal: silver
@@ -2563,9 +2570,7 @@ coins:
   year_first: 1611
   year_last: 1611
   year_label: '1611'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '148'
     bruun_collection_id: '5849'
@@ -2623,9 +2628,7 @@ coins:
   year_first: 1607
   year_last: 1607
   year_label: '1607'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '147'
     bruun_collection_id: '5846'
@@ -2683,9 +2686,7 @@ coins:
   year_first: 1588
   year_last: 1588
   year_label: '1588'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     others:
     - UC# 10
@@ -2745,9 +2746,7 @@ coins:
   year_first: 1604
   year_last: 1604
   year_label: '1604'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: UC# 11
   metal: gold
@@ -2879,9 +2878,7 @@ coins:
   year_first: 1604
   year_last: 1604
   year_label: '1604'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '25'
     hede: '12'
@@ -2950,9 +2947,7 @@ coins:
   year_first: 1604
   year_last: 1604
   year_label: '1604'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '26'
     hede: '11'
@@ -3057,9 +3052,7 @@ coins:
   year_first: 1671
   year_last: 1671
   year_label: '1671'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '329.2'
     hede: 69A
@@ -3216,6 +3209,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -3234,6 +3228,9 @@ coins:
     source: ucoin
   - value: 7.0
     source: Bruun Part I, lot 1109, p. 158
+  diameter_mm:
+  - value: 25.0
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-dukat-1687/?tid=173629
@@ -3494,6 +3491,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -3509,6 +3507,9 @@ coins:
   - value: 6.981
     source: hede
   - value: 6.981
+    source: ucoin
+  diameter_mm:
+  - value: 24.0
     source: ucoin
   sources:
   - type: ucoin
@@ -3741,13 +3742,17 @@ coins:
   catalog:
     km: '767'
   metal: billon
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
   - value: 1.9
+    source: ucoin
+  diameter_mm:
+  - value: 15.6
     source: ucoin
   sources:
   - type: ucoin
@@ -3778,13 +3783,17 @@ coins:
   catalog:
     km: '776'
   metal: billon
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
   - value: 1.9
+    source: ucoin
+  diameter_mm:
+  - value: 15.68
     source: ucoin
   sources:
   - type: ucoin
@@ -3797,8 +3806,7 @@ coins:
       attested; inferred from Müntzfuß convention: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
     uk: 'Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються. Метал не засвідчено джерелом;
       виведено з конвенції стандарту: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-  composed_of:
-  - unified-dk-tid-70684
+  composed_of: []
   v1_home_location: denmark
 - fuss: 18_5_thaler
   phase: I
@@ -3818,13 +3826,17 @@ coins:
   catalog:
     km: '763'
   metal: billon
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
   - value: 3.8
+    source: ucoin
+  diameter_mm:
+  - value: 21.5
     source: ucoin
   sources:
   - type: ucoin
@@ -3884,8 +3896,7 @@ coins:
       attested; inferred from Müntzfuß convention: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
     uk: 'Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються. Метал не засвідчено джерелом;
       виведено з конвенції стандарту: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-  composed_of:
-  - unified-dk-tid-70686
+  composed_of: []
   v1_home_location: denmark
 - fuss: 18_5_thaler
   phase: I
@@ -3905,9 +3916,10 @@ coins:
   catalog:
     km: '775'
   metal: billon
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -3915,6 +3927,9 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 1.74
+    source: ucoin
+  diameter_mm:
+  - value: 16.5
     source: ucoin
   sources:
   - type: ucoin
@@ -3945,9 +3960,10 @@ coins:
   catalog:
     km: '760'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -3955,6 +3971,9 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 14.45
+    source: ucoin
+  diameter_mm:
+  - value: 32.5
     source: ucoin
   sources:
   - type: ucoin
@@ -4726,6 +4745,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -4738,6 +4758,8 @@ coins:
   weight_rough_g:
   - value: 2.75
     source: numismaster
+  - value: 2.75
+    source: ucoin
   - value: 2.751
     source: Numista, ucoin
   - value: 2.751
@@ -4802,14 +4824,22 @@ coins:
     - 1762
   year_label: 1751-1762
   mint: Kopenhagen
+  catalog:
+    km: '577'
   metal: billon
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 3.65
+    source: ucoin
   - value: 3.654
+    source: ucoin
+  diameter_mm:
+  - value: 20.5
     source: ucoin
   sources:
   - type: ucoin
@@ -4853,6 +4883,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -4870,6 +4901,9 @@ coins:
   - value: 2.751
     source: hede
   - value: 2.751
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
     source: ucoin
   sources:
   - type: ucoin
@@ -4915,6 +4949,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -4932,6 +4967,11 @@ coins:
   - value: 3.057
     source: numismaster
   - value: 3.057
+    source: ucoin
+  - value: 3.06
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
     source: ucoin
   sources:
   - type: ucoin
@@ -5035,6 +5075,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -5052,6 +5093,11 @@ coins:
   - value: 3.057
     source: numismaster
   - value: 3.057
+    source: ucoin
+  - value: 3.06
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
     source: ucoin
   sources:
   - type: ucoin
@@ -6288,227 +6334,6 @@ coins:
       виведено з конвенції стандарту: 11⅓-Thaler-Fuß Skilling Courant (sub-Rigsdaler Scheide).'
   composed_of:
   - unified-dk-tid-79558
-  v1_home_location: denmark
-- fuss: 18_5_thaler
-  phase: I
-  kind: scheide
-  nominal: 2 Skilling
-  ruler: Frederik VI.
-  issuing_entity: danish_realm
-  fraction: 1/96
-  id: dk-tid-81019
-  year_first: 1815
-  year_last: 1815
-  year_label: '1815'
-  mint: Kopenhagen
-  catalog:
-    km: Tn4
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 2.5
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-skilling-1815/?tid=81019
-    ref: ucoin
-  verification_note:
-    de: 'Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus. Metall nicht direkt belegt;
-      aus Münzfuß-Konvention abgeleitet: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    en: 'Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding. Metal not directly
-      attested; inferred from Müntzfuß convention: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    uk: 'Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються. Метал не засвідчено джерелом;
-      виведено з конвенції стандарту: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-  composed_of:
-  - unified-dk-tid-81019
-  v1_home_location: denmark
-- fuss: 18_5_thaler
-  phase: I
-  kind: scheide
-  nominal: 3 Skilling
-  ruler: Frederik VI.
-  issuing_entity: danish_realm
-  id: dk-tid-81020
-  year_first: 1815
-  year_last: 1815
-  year_label: '1815'
-  mint: Kopenhagen
-  catalog:
-    km: Tn5
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 3.75
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-3-skilling-1815/?tid=81020
-    ref: ucoin
-  verification_note:
-    de: 'Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus. Metall nicht direkt belegt;
-      aus Münzfuß-Konvention abgeleitet: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    en: 'Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding. Metal not directly
-      attested; inferred from Müntzfuß convention: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    uk: 'Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються. Метал не засвідчено джерелом;
-      виведено з конвенції стандарту: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-  composed_of:
-  - unified-dk-tid-81020
-  v1_home_location: denmark
-- fuss: 18_5_thaler
-  phase: I
-  kind: scheide
-  nominal: 4 Skilling
-  ruler: Frederik VI.
-  issuing_entity: danish_realm
-  fraction: 1/24
-  id: dk-tid-81021
-  year_first: 1815
-  year_last: 1815
-  year_label: '1815'
-  mint: Kopenhagen
-  catalog:
-    km: Tn6
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 4.8
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-skilling-1815/?tid=81021
-    ref: ucoin
-  verification_note:
-    de: 'Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus. Metall nicht direkt belegt;
-      aus Münzfuß-Konvention abgeleitet: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    en: 'Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding. Metal not directly
-      attested; inferred from Müntzfuß convention: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    uk: 'Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються. Метал не засвідчено джерелом;
-      виведено з конвенції стандарту: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-  composed_of:
-  - unified-dk-tid-81021
-  v1_home_location: denmark
-- fuss: 18_5_thaler
-  phase: I
-  kind: scheide
-  nominal: 6 Skilling
-  ruler: Frederik VI.
-  issuing_entity: danish_realm
-  fraction: 1/12
-  id: dk-tid-81022
-  year_first: 1813
-  year_last: 1813
-  year_label: '1813'
-  mint: Kopenhagen
-  catalog:
-    km: Tn1
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 7.31
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-6-skilling-1813/?tid=81022
-    ref: ucoin
-  verification_note:
-    de: 'Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus. Metall nicht direkt belegt;
-      aus Münzfuß-Konvention abgeleitet: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    en: 'Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding. Metal not directly
-      attested; inferred from Müntzfuß convention: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    uk: 'Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються. Метал не засвідчено джерелом;
-      виведено з конвенції стандарту: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-  composed_of:
-  - unified-dk-tid-81022
-  v1_home_location: denmark
-- fuss: 18_5_thaler
-  phase: I
-  kind: scheide
-  nominal: 12 Skilling
-  ruler: Frederik VI.
-  issuing_entity: danish_realm
-  fraction: 1/12
-  id: dk-tid-81023
-  year_first: 1813
-  year_last: 1813
-  year_label: '1813'
-  mint: Kopenhagen
-  catalog:
-    km: Tn2
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 10.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-12-skilling-1813/?tid=81023
-    ref: ucoin
-  verification_note:
-    de: 'Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus. Metall nicht direkt belegt;
-      aus Münzfuß-Konvention abgeleitet: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    en: 'Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding. Metal not directly
-      attested; inferred from Müntzfuß convention: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    uk: 'Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються. Метал не засвідчено джерелом;
-      виведено з конвенції стандарту: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-  composed_of:
-  - unified-dk-tid-81023
-  v1_home_location: denmark
-- fuss: 18_5_thaler
-  phase: I
-  kind: scheide
-  nominal: 16 Skilling
-  ruler: Frederik VI.
-  issuing_entity: danish_realm
-  fraction: 1/6
-  id: dk-tid-81024
-  year_first: 1814
-  year_last: 1814
-  year_label: '1814'
-  mint: Kopenhagen
-  catalog:
-    km: Tn3
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 14.12
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-16-skilling-1814/?tid=81024
-    ref: ucoin
-  verification_note:
-    de: 'Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus. Metall nicht direkt belegt;
-      aus Münzfuß-Konvention abgeleitet: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    en: 'Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding. Metal not directly
-      attested; inferred from Müntzfuß convention: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-    uk: 'Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються. Метал не засвідчено джерелом;
-      виведено з конвенції стандарту: 18½-Thaler-Fuß Rigsbankskilling / Skilling Rigsmønt (post-1813 Scheide).'
-  composed_of:
-  - unified-dk-tid-81024
   v1_home_location: denmark
 - fuss: 11_333_thaler
   phase: I
@@ -8944,9 +8769,7 @@ coins:
   year_first: 1665
   year_last: 1665
   year_label: '1665'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '184.3'
   metal: silver
@@ -9615,6 +9438,8 @@ coins:
     source: numismaster
   - value: 0.557
     source: ucoin
+  - value: 0.56
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-hvid-1686/?tid=96988
@@ -9684,9 +9509,7 @@ coins:
   year_first: 1665
   year_last: 1665
   year_label: '1665'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '257'
   metal: billon
@@ -9833,9 +9656,7 @@ coins:
   year_first: 1669
   year_last: 1669
   year_label: '1669'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '305'
     hede: '121'
@@ -10054,6 +9875,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -10065,6 +9887,9 @@ coins:
   - value: 2.24
     source: numismaster
   - value: 3.05
+    source: ucoin
+  diameter_mm:
+  - value: 21.1
     source: ucoin
   sources:
   - type: ucoin
@@ -10269,6 +10094,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -10286,6 +10112,9 @@ coins:
   - value: 5.568
     source: ucoin
   - value: 5.57
+    source: ucoin
+  diameter_mm:
+  - value: 26.3
     source: ucoin
   sources:
   - type: ucoin
@@ -10327,9 +10156,10 @@ coins:
   catalog:
     km: '424'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -10337,6 +10167,9 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 5.57
+    source: ucoin
+  diameter_mm:
+  - value: 24.5
     source: ucoin
   sources:
   - type: ucoin
@@ -10905,9 +10738,7 @@ coins:
   year_first: 1680
   year_last: 1680
   year_label: '1680'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '367'
   metal: silver
@@ -10994,9 +10825,10 @@ coins:
   catalog:
     km: '386'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -11004,6 +10836,9 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 22.27
+    source: ucoin
+  diameter_mm:
+  - value: 39.1
     source: ucoin
   sources:
   - type: ucoin
@@ -11056,6 +10891,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -11077,6 +10913,9 @@ coins:
   - value: 22.272
     source: numismaster
   - value: 22.272
+    source: ucoin
+  diameter_mm:
+  - value: 39.3
     source: ucoin
   sources:
   - type: ucoin
@@ -11131,9 +10970,7 @@ coins:
   year_first: 1653
   year_last: 1653
   year_label: '1653'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '195'
   metal: silver
@@ -11170,9 +11007,7 @@ coins:
   year_first: 1655
   year_last: 1655
   year_label: '1655'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '210'
     bruun_collection_id: '6180'
@@ -11222,9 +11057,7 @@ coins:
   year_first: 1657
   year_last: 1657
   year_label: '1657'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '211'
     bruun_collection_id: '6224'
@@ -11274,9 +11107,7 @@ coins:
   year_first: 1675
   year_last: 1675
   year_label: '1675'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '351'
   metal: silver
@@ -11321,9 +11152,10 @@ coins:
   catalog:
     km: '408'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -11331,6 +11163,9 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 44.54
+    source: ucoin
+  diameter_mm:
+  - value: 38.0
     source: ucoin
   sources:
   - type: ucoin
@@ -11365,9 +11200,10 @@ coins:
     bruun_lot_no: 13188
     bruun_page: 140
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -11378,6 +11214,9 @@ coins:
     source: ucoin
   - value: 36.17
     source: Bruun Part II, lot 13188, p. 140
+  diameter_mm:
+  - value: 34.74
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-kroner-1693-1696/?tid=97338
@@ -11411,7 +11250,7 @@ coins:
     bruun_lot_no: 11248
     bruun_page: 130
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11460,9 +11299,10 @@ coins:
     bruun_lot_no: 1118
     bruun_page: 168
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -11475,6 +11315,9 @@ coins:
     source: Bruun Part I, lot 1118, p. 168
   - value: 54.43
     source: Bruun Part IV, lot 17100, p. 68
+  diameter_mm:
+  - value: 36.0
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-3-kroner-1693-1696/?tid=97340
@@ -11539,9 +11382,7 @@ coins:
   year_first: 1665
   year_last: 1665
   year_label: '1665'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '260'
   metal: silver
@@ -12335,9 +12176,7 @@ coins:
   year_first: 1653
   year_last: 1653
   year_label: '1653'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '196'
     hede: 53AB
@@ -12465,9 +12304,7 @@ coins:
   year_first: 1670
   year_last: 1670
   year_label: '1670'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '324'
     dav: 3629A
@@ -12751,9 +12588,7 @@ coins:
   year_first: 1676
   year_last: 1676
   year_label: '1676'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '360'
     bruun_collection_id: '6838'
@@ -13775,6 +13610,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -13796,6 +13632,9 @@ coins:
   - value: 3.49
     source: hede
   - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 23.0
     source: ucoin
   sources:
   - type: ucoin
@@ -13902,6 +13741,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -13915,6 +13755,9 @@ coins:
   - value: 3.49
     source: hede
   - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 22.0
     source: ucoin
   sources:
   - type: ucoin
@@ -14124,6 +13967,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -14142,6 +13986,13 @@ coins:
     source: ucoin
   - value: 3.5
     source: Bruun Part I, lot 1117, p. 167
+  diameter_mm:
+  - value: 15.8
+    source: ucoin
+  - value: 17.6
+    source: ucoin
+  - value: 21.5
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-dukat-1694-1696/?tid=97541
@@ -14364,6 +14215,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -14382,6 +14234,9 @@ coins:
     source: ucoin
   - value: 3.71
     source: Bruun Part I, lot 1112, p. 162
+  diameter_mm:
+  - value: 22.3
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-dukat-1691/?tid=99074
@@ -14625,6 +14480,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -14640,6 +14496,9 @@ coins:
   - value: 3.49
     source: hede
   - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
     source: ucoin
   sources:
   - type: ucoin
@@ -14873,9 +14732,7 @@ coins:
   year_first: 1666
   year_last: 1666
   year_label: '1666'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '267'
   metal: silver
@@ -14916,9 +14773,7 @@ coins:
   year_first: 1666
   year_last: 1666
   year_label: '1666'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '268'
   metal: silver
@@ -14966,9 +14821,7 @@ coins:
   year_first: 1666
   year_last: 1666
   year_label: '1666'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '269'
   metal: silver
@@ -15206,9 +15059,7 @@ coins:
   year_first: 1649
   year_last: 1649
   year_label: '1649'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '169'
     hede: '50'
@@ -15561,9 +15412,7 @@ coins:
   year_first: 1661
   year_last: 1661
   year_label: '1661'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '239'
     bruun_collection_id: '6368'
@@ -15621,9 +15470,7 @@ coins:
   year_first: 1669
   year_last: 1669
   year_label: '1669'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '311'
     bruun_collection_id: '6693'
@@ -15697,9 +15544,10 @@ coins:
     bruun_lot_no: 1116
     bruun_page: 166
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -15711,6 +15559,9 @@ coins:
   - value: 35.57
     source: Bruun Part III, lot 11254, p. 132
   - value: 35.98
+    source: ucoin
+  diameter_mm:
+  - value: 25.0
     source: ucoin
   sources:
   - type: ucoin
@@ -15966,9 +15817,7 @@ coins:
   year_first: 1668
   year_last: 1668
   year_label: '1668'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '299'
   metal: silver
@@ -16086,6 +15935,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -16107,6 +15957,9 @@ coins:
   - value: 17.99
     source: ucoin
   - value: 17.998
+    source: ucoin
+  diameter_mm:
+  - value: 24.6
     source: ucoin
   sources:
   - type: ucoin
@@ -18792,9 +18645,7 @@ coins:
   year_first: 1618
   year_last: 1618
   year_label: '1618'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '16.2'
     hede:
@@ -24804,8 +24655,6 @@ coins:
   year_last: 1785
   year_ranges:
   - - 1778
-    - 1779
-  - - 1781
     - 1785
   year_label: 1778-1779, 1781-1785
   mint:
@@ -24815,15 +24664,18 @@ coins:
     km: '631'
     numista: '42563'
   metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: false
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.343
     source: ucoin
   weight_rough_g:
+  - value: 1.18
+    source: ucoin
   - value: 1.181
     source: Numista, ucoin
   diameter_mm:
@@ -25124,17 +24976,17 @@ coins:
   year_label: 1813, 1818–1819
   mint:
   - Altona
-  - Altona (683.2 IC)
   - Kopenhagen
-  - Kopenhagen (683.1 M)
   catalog:
     km: 683.1 / 683.2
-    hede: 24 Sieg 26.1
-    schou: 1 Bruun 8025
+    hede: '24'
+    schou: '1'
     numista: '22803'
     others:
     - KM# 683
+    - Bruun# 8025
     hede_volume: f6h
+    sieg: '26.1'
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -25315,14 +25167,16 @@ coins:
   - Kopenhagen
   catalog:
     km: '695'
-    hede: 26 Sieg 30
-    schou: 3 Dav 73
+    hede: '26'
+    schou: '3'
     bruun_lot: '8110'
     numista: '22190'
     others:
     - Dav EC IV# 73
     - Dav ECT# 73
     hede_volume: f6h
+    sieg: '30'
+    dav: '73'
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -25387,9 +25241,7 @@ coins:
   year_first: 1619
   year_last: 1619
   year_label: '1619'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '70'
     numista: '302666'
@@ -26738,8 +26590,6 @@ coins:
   year_last: 1863
   year_ranges:
   - - 1854
-    - 1856
-  - - 1863
     - 1863
   year_label: 1854–1856, 1863
   mint:
@@ -26755,9 +26605,10 @@ coins:
     - Dav ECT# 77
     hede_volume: f7h
   metal: silver
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: false
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -27761,9 +27612,7 @@ coins:
   year_first: 1903
   year_last: 1903
   year_label: '1903'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '802'
     hede: '12'
@@ -27863,9 +27712,7 @@ coins:
   year_first: 1906
   year_last: 1906
   year_label: '1906'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '803'
     hede: '3'
@@ -28612,9 +28459,7 @@ coins:
   year_first: 1624
   year_last: 1624
   year_label: '1624'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '99'
     numista: '143473'
@@ -28951,9 +28796,10 @@ coins:
     bruun_lot_no: 17213
     bruun_page: 110
   metal: silver
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: false
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -28989,8 +28835,7 @@ coins:
     de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
     en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
     uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  composed_of:
-  - unified-km-x002-fr-vi-1854
+  composed_of: []
   v1_home_location: schleswig_holstein
   _migration_note: auto-mapped from gesamtstaat
 - fuss: 18_5_thaler
@@ -29007,8 +28852,6 @@ coins:
   year_last: 1856
   year_ranges:
   - - 1854
-    - 1854
-  - - 1856
     - 1856
   year_label: 1854, 1856
   mint:
@@ -29024,9 +28867,10 @@ coins:
     others:
     - KM# 758
   metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: false
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -29035,6 +28879,8 @@ coins:
   weight_rough_g:
   - value: 1.85
     source: Numista, ucoin
+  - value: 1.85
+    source: ucoin
   diameter_mm:
   - value: 17.0
     source: ucoin
@@ -29126,9 +28972,7 @@ coins:
   year_first: 1648
   year_last: 1648
   year_label: '1648'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '174'
     others:
@@ -29396,9 +29240,7 @@ coins:
   year_first: 1651
   year_last: 1651
   year_label: '1651'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '183'
     others:
@@ -29464,9 +29306,7 @@ coins:
   year_first: 1652
   year_last: 1652
   year_label: '1652'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '188'
     others:
@@ -29655,9 +29495,7 @@ coins:
   year_first: 1618
   year_last: 1618
   year_label: '1618'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '63'
     others:
@@ -30000,9 +29838,7 @@ coins:
   year_first: 1637
   year_last: 1637
   year_label: '1637'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '124'
     others:
@@ -31702,9 +31538,7 @@ coins:
   year_first: 1622
   year_last: 1622
   year_label: '1622'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '45'
   metal: silver
@@ -32032,9 +31866,7 @@ coins:
   year_first: 1651
   year_last: 1651
   year_label: '1651'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '175'
   metal: copper
@@ -32329,9 +32161,7 @@ coins:
   year_first: 1651
   year_last: 1651
   year_label: '1651'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '176'
     others:
@@ -32374,9 +32204,7 @@ coins:
   year_first: 1651
   year_last: 1651
   year_label: '1651'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '177'
   metal: copper
@@ -32918,9 +32746,7 @@ coins:
   year_first: 1629
   year_last: 1629
   year_label: '1629'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '113.1'
   metal: silver
@@ -32964,9 +32790,7 @@ coins:
   year_first: 1629
   year_last: 1629
   year_label: '1629'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '113.2'
   metal: silver
@@ -33221,9 +33045,7 @@ coins:
   year_first: 1655
   year_last: 1655
   year_label: '1655'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '184.2'
   metal: silver
@@ -33307,9 +33129,7 @@ coins:
   year_first: 1661
   year_last: 1661
   year_label: '1661'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: A185
   metal: silver
@@ -33899,9 +33719,7 @@ coins:
   year_first: 1666
   year_last: 1666
   year_label: '1666'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '266'
   metal: silver
@@ -33949,9 +33767,7 @@ coins:
   year_first: 1668
   year_last: 1668
   year_label: '1668'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '297'
   metal: silver
@@ -34331,9 +34147,7 @@ coins:
   year_first: 1618
   year_last: 1618
   year_label: '1618'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '56'
     others:
@@ -34370,7 +34184,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65208
-  - unified-km-x031-chr-iv-1618-eighth
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -34380,9 +34193,7 @@ coins:
   year_first: 1618
   year_last: 1618
   year_label: '1618'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '57'
     numista: '142680'
@@ -34422,7 +34233,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65211
-  - unified-km-57-chr-iv-1618
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -34432,9 +34242,7 @@ coins:
   year_first: 1624
   year_last: 1624
   year_label: '1624'
-  mint:
-  - Denmark, Frederiksborg
-  - Frederiksborg
+  mint: Frederiksborg
   catalog:
     km: '94'
     numista: '197665'
@@ -34484,7 +34292,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65216
-  - unified-km-94-chr-iv-1624
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -34530,9 +34337,7 @@ coins:
   year_first: 1665
   year_last: 1665
   year_label: '1665'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '258'
   metal: silver
@@ -34569,7 +34374,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65227
-  - unified-dk-tid-97148
 - fuss: 11_333_thaler
   phase: I
   kind: kurant
@@ -34735,9 +34539,7 @@ coins:
   year_first: 1667
   year_last: 1667
   year_label: '1667'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '286'
   metal: silver
@@ -34772,7 +34574,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65373
-  - unified-dk-tid-97345
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -35399,9 +35200,7 @@ coins:
   year_first: 1646
   year_last: 1646
   year_label: '1646'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '142'
     dav: '3536'
@@ -35452,9 +35251,7 @@ coins:
   year_first: 1647
   year_last: 1647
   year_label: '1647'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '143'
     dav: 3536A
@@ -35919,9 +35716,7 @@ coins:
   year_first: 1663
   year_last: 1663
   year_label: '1663'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '248'
     dav: '3549'
@@ -36264,9 +36059,7 @@ coins:
   year_first: 1667
   year_last: 1667
   year_label: '1667'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '290'
     dav: '3556'
@@ -36535,9 +36328,7 @@ coins:
   year_first: 1669
   year_last: 1669
   year_label: '1669'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '309'
     dav: '3565'
@@ -36590,9 +36381,7 @@ coins:
   year_first: 1670
   year_last: 1670
   year_label: '1670'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '321'
     dav: '3628'
@@ -36677,9 +36466,7 @@ coins:
   year_first: 1674
   year_last: 1674
   year_label: '1674'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '349'
     dav: '3630'
@@ -36776,6 +36563,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -36790,6 +36578,9 @@ coins:
     source: ucoin
   - value: 28.8
     source: Bruun Part I, lot 1113, p. 163
+  diameter_mm:
+  - value: 41.5
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65480
@@ -37050,6 +36841,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -37060,9 +36852,14 @@ coins:
   weight_rough_g:
   - value: 28.87
     source: Bruun Part I, lot 1149, p. 207
+  - value: 28.89
+    source: ucoin
   - value: 28.893
     source: numismaster
   - value: 28.893
+    source: ucoin
+  diameter_mm:
+  - value: 40.0
     source: ucoin
   sources:
   - type: literature
@@ -48065,9 +47862,7 @@ coins:
   - - 1618
     - 1621
   year_label: 1618–1621
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '58'
     hede: 107A
@@ -48121,7 +47916,6 @@ coins:
     unit_raw: daler
   composed_of:
   - unified-dk-hede-c4h107a
-  - unified-km-58-chr-iv-1618
 - fuss: seed_unsorted
   phase: hede
   kind: tarif
@@ -48193,7 +47987,6 @@ coins:
     unit_raw: daler
   composed_of:
   - unified-dk-hede-c4h107b
-  - unified-km-58a-chr-iv-1619
 - fuss: seed_unsorted
   phase: hede
   kind: tarif
@@ -48634,7 +48427,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-c4h35
-  - unified-dk-tid-97393
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -48694,7 +48486,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-c4h36
-  - unified-dk-tid-97385
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -48706,9 +48497,7 @@ coins:
   year_first: 1647
   year_last: 1647
   year_label: '1647'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '151'
     hede: '38'
@@ -48753,7 +48542,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-c4h38
-  - unified-dk-tid-97394
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -48765,9 +48553,7 @@ coins:
   year_first: 1647
   year_last: 1647
   year_label: '1647'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '152'
     hede: '40'
@@ -48808,7 +48594,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-c4h40
-  - unified-dk-tid-97395
 - fuss: 9_thaler
   phase: I
   kind: scheide
@@ -49217,6 +49002,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -49232,6 +49018,9 @@ coins:
   - value: 1.75
     source: tid
   - value: 1.75
+    source: ucoin
+  diameter_mm:
+  - value: 18.0
     source: ucoin
   sources:
   - type: literature
@@ -49315,6 +49104,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -49332,6 +49122,9 @@ coins:
   - value: 1.745
     source: hede
   - value: 1.75
+    source: ucoin
+  diameter_mm:
+  - value: 15.6
     source: ucoin
   sources:
   - type: literature
@@ -49459,9 +49252,7 @@ coins:
   year_first: 1675
   year_last: 1675
   year_label: '1675'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '354'
     hede: '5'
@@ -49502,7 +49293,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-c5h5
-  - unified-dk-tid-97399
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -49528,6 +49318,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -49544,6 +49335,9 @@ coins:
     source: ucoin
   - value: 1.83
     source: Bruun Part IV, lot 17109, p. 73
+  diameter_mm:
+  - value: 17.5
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h49.htm
@@ -49684,9 +49478,7 @@ coins:
   year_first: 1675
   year_last: 1675
   year_label: '1675'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '353'
     hede: '6'
@@ -49731,7 +49523,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-c5h6
-  - unified-dk-tid-97390
 - fuss: 9_25_thaler
   phase: I
   kind: scheide
@@ -49773,6 +49564,8 @@ coins:
   - value: 0.668
     source: tid
   - value: 0.668
+    source: ucoin
+  - value: 0.67
     source: ucoin
   sources:
   - type: literature
@@ -50117,28 +49910,41 @@ coins:
   year_last: 1872
   year_ranges:
   - - 1867
-    - 1867
-  - - 1869
     - 1872
   year_label: 1867, 1869–1872
   mint: Kopenhagen
   catalog:
+    km: '774'
     hede: '6'
     hede_volume: c9h
     schou: '3'
     sieg: '2'
+    bruun_collection_id: '8296'
+    bruun_part: IV
+    bruun_lot_no: 17228
+    bruun_page: 114
   metal: silver
   metal_verified: true
+  fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
   - value: 3.897
     source: hede
+  - value: 3.97
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c9h6.htm
     ref: danskmoent.dk (Hede c9h6)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-skilling-rigsmont-1867-1872/?tid=70686
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -50158,22 +49964,33 @@ coins:
   year_label: '1868'
   mint: Kopenhagen
   catalog:
+    km: '776'
     hede: '7'
     hede_volume: c9h
     schou: '2'
     sieg: '1'
   metal: silver
   metal_verified: true
+  fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 1.9
+    source: ucoin
   - value: 1.949
     source: hede
+  diameter_mm:
+  - value: 15.68
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c9h7.htm
     ref: danskmoent.dk (Hede c9h7)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-skilling-rigsmont-1868/?tid=70684
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -50631,7 +50448,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-f3h15a
-  - unified-dk-tid-97397
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -50777,7 +50593,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-f3h19
-  - unified-dk-tid-97387
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -50956,12 +50771,7 @@ coins:
   issuing_entity: danish_realm
   id: unified-dk-hede-f3h40b
   year_first: 1665
-  year_last: 1668
-  year_ranges:
-  - - 1665
-    - 1665
-  - - 1668
-    - 1668
+  year_last: 1665
   year_label: '1665'
   mint: Kopenhagen
   catalog:
@@ -51004,7 +50814,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-f3h40b
-  - unified-dk-tid-97388
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -51016,9 +50825,7 @@ coins:
   year_first: 1669
   year_last: 1669
   year_label: '1669'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '312'
     hede: '41'
@@ -51064,7 +50871,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-f3h41
-  - unified-dk-tid-97398
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -51076,9 +50882,7 @@ coins:
   year_first: 1670
   year_last: 1670
   year_label: '1670'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '325'
     hede: '42'
@@ -51124,7 +50928,6 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-f3h42
-  - unified-dk-tid-97389
 - fuss: 9_thaler
   phase: II
   kind: kurant
@@ -51187,9 +50990,7 @@ coins:
   year_first: 1651
   year_last: 1651
   year_label: '1651'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '179'
     hede: '86'
@@ -51243,7 +51044,6 @@ coins:
     unit_raw: rd
   composed_of:
   - unified-dk-hede-f3h86
-  - unified-dk-tid-97147
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -51841,10 +51641,16 @@ coins:
     schou: 6,6
     sieg: '12'
     fr: '7'
+    numista: '22115'
+    bruun_collection_id: '8231'
+    bruun_part: IV
+    bruun_lot_no: 17213
+    bruun_page: 110
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -51852,11 +51658,18 @@ coins:
     source: hede
   - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
+  - value: 7.22
+    source: ucoin
   - value: 7.224
     source: hede
   - value: 7.224
     source: numismaster
+  diameter_mm:
+  - value: 28.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66043
@@ -51864,6 +51677,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f7h9.htm
     ref: danskmoent.dk (Hede f7h9)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-rigsdaler-1854-1855/?tid=70690
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -60478,9 +60294,7 @@ coins:
   year_first: 1912
   year_last: 1912
   year_label: '1912'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '811'
     hede: '3'
@@ -66518,9 +66332,7 @@ coins:
   year_first: 1651
   year_last: 1651
   year_label: '1651'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '180'
     dav: '3567'
@@ -66569,9 +66381,7 @@ coins:
   year_first: 1651
   year_last: 1651
   year_label: '1651'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '181'
     dav: 3567A
@@ -67083,9 +66893,7 @@ coins:
   year_first: 1665
   year_last: 1665
   year_label: '1665'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '331'
     bruun_collection_id: '6446'
@@ -67137,9 +66945,7 @@ coins:
   year_first: 1666
   year_last: 1666
   year_label: '1666'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '270'
     dav: '3579'
@@ -67617,9 +67423,7 @@ coins:
   year_first: 1669
   year_last: 1669
   year_label: '1669'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '306'
     dav: '3584'
@@ -68032,6 +67836,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -68044,6 +67849,9 @@ coins:
     source: ucoin
   - value: 22.272
     source: numismaster
+  diameter_mm:
+  - value: 38.7
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65308
@@ -69223,6 +69031,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -69238,6 +69047,9 @@ coins:
   - value: 3.12
     source: Bruun Part II, lot 13228, p. 162
   - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
     source: ucoin
   sources:
   - type: literature
@@ -71855,7 +71667,6 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-c4h59a
-  - unified-km-100-chr-iv-1624
 - fuss: 9_25_thaler
   phase: I
   kind: kurant
@@ -72758,6 +72569,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -72774,6 +72586,9 @@ coins:
     source: ucoin
   - value: 6.981
     source: hede
+  diameter_mm:
+  - value: 25.0
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h26.htm
@@ -72965,6 +72780,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -72985,6 +72801,9 @@ coins:
     source: hede
   - value: 22.272
     source: numismaster
+  diameter_mm:
+  - value: 40.6
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h67.htm
@@ -73335,6 +73154,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -73355,6 +73175,9 @@ coins:
     source: hede
   - value: 22.272
     source: numismaster
+  diameter_mm:
+  - value: 38.0
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h90.htm
@@ -73462,6 +73285,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -73477,6 +73301,9 @@ coins:
   - value: 5.568
     source: numismaster
   - value: 5.57
+    source: ucoin
+  diameter_mm:
+  - value: 25.7
     source: ucoin
   sources:
   - type: literature
@@ -74450,6 +74277,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -74469,6 +74297,11 @@ coins:
   - value: 0.768
     source: tid
   - value: 0.768
+    source: ucoin
+  - value: 0.77
+    source: ucoin
+  diameter_mm:
+  - value: 15.0
     source: ucoin
   sources:
   - type: literature
@@ -74615,9 +74448,7 @@ coins:
   year_first: 1888
   year_last: 1888
   year_label: '1888'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '799'
     hede: '10'
@@ -74680,9 +74511,7 @@ coins:
   year_first: 1892
   year_last: 1892
   year_label: '1892'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '800'
     hede: '11'
@@ -77130,14 +76959,20 @@ coins:
     source: hede
   - value: 0.98
     source: tid
+  - value: 0.98
+    source: ucoin
   weight_rough_g:
   - value: 0.87
     source: tid
+  - value: 0.87
+    source: ucoin
   - value: 0.873
     source: hede
   diameter_mm:
   - value: 15.0
     source: tid
+  - value: 15.0
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f3h40.htm
@@ -78967,6 +78802,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -78987,6 +78823,9 @@ coins:
     source: Bruun Part I, lot 1147, p. 204
   - value: 3.5
     source: Bruun Part IV, lot 17131, p. 84
+  diameter_mm:
+  - value: 21.0
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f5h19.htm
@@ -79034,6 +78873,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -79049,6 +78889,11 @@ coins:
   - value: 0.768
     source: numismaster
   - value: 0.768
+    source: ucoin
+  - value: 0.77
+    source: ucoin
+  diameter_mm:
+  - value: 15.0
     source: ucoin
   sources:
   - type: literature
@@ -82634,9 +82479,7 @@ coins:
   year_first: 1664
   year_last: 1664
   year_label: '1664'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '217.2'
     bruun_collection_id: '6412'
@@ -82680,9 +82523,7 @@ coins:
   year_first: 1668
   year_last: 1668
   year_label: '1668'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '233'
     bruun_collection_id: '6642'
@@ -83453,14 +83294,15 @@ coins:
   year_ranges:
   - - 1864
     - 1872
-  year_label: 1864-1872
+  year_label: 1864–1872
   mint: Kopenhagen
   catalog:
     km: '772'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -83468,6 +83310,9 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 28.89
+    source: ucoin
+  diameter_mm:
+  - value: 39.5
     source: ucoin
   sources:
   - type: ucoin
@@ -83491,12 +83336,12 @@ coins:
   year_ranges:
   - - 1750
     - 1761
-  year_label: 1750-1761
+  year_label: 1750–1761
   mint: Kopenhagen
   catalog:
     km: '579'
   metal: billon
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -83506,6 +83351,8 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 1.218
+    source: ucoin
+  - value: 1.22
     source: ucoin
   sources:
   - type: ucoin
@@ -83529,21 +83376,27 @@ coins:
   year_ranges:
   - - 1750
     - 1764
-  year_label: 1750-1764
+  year_label: 1750–1764
   mint: Kopenhagen
   catalog:
     km: '582'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.563
     source: ucoin
   weight_rough_g:
+  - value: 9.17
+    source: ucoin
   - value: 9.171
+    source: ucoin
+  diameter_mm:
+  - value: 30.4
     source: ucoin
   sources:
   - type: ucoin
@@ -84468,12 +84321,14 @@ coins:
   - Kopenhagen
   catalog:
     km: 683.1 / 683.2
-    hede: 24 Sieg 26.1
-    schou: 1 Bruun 8025
+    hede: '24'
+    schou: '1'
     numista: '22803'
     others:
     - KM# 683
+    - Bruun# 8025
     hede_volume: f6h
+    sieg: '26.1'
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -84539,14 +84394,16 @@ coins:
   - Kopenhagen
   catalog:
     km: '695'
-    hede: 26 Sieg 30
-    schou: 3 Dav 73
+    hede: '26'
+    schou: '3'
     bruun_lot: '8110'
     numista: '22190'
     others:
     - Dav EC IV# 73
     - Dav ECT# 73
     hede_volume: f6h
+    sieg: '30'
+    dav: '73'
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -86963,9 +86820,7 @@ coins:
   year_first: 1669
   year_last: 1669
   year_label: '1669'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '308'
     bruun_collection_id: '6697'
@@ -87007,9 +86862,7 @@ coins:
   year_first: 1619
   year_last: 1619
   year_label: '1619'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '71'
     others:
@@ -87213,9 +87066,7 @@ coins:
   year_first: 1646
   year_last: 1646
   year_label: '1646'
-  mint:
-  - Denmark, Copenhagen
-  - Kopenhagen
+  mint: Kopenhagen
   catalog:
     km: '135'
     hede: 59C
@@ -87247,8 +87098,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-km-135-chr-iv-1646
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -87354,14 +87204,15 @@ coins:
   year_ranges:
   - - 1693
     - 1699
-  year_label: 1693-1699
+  year_label: 1693–1699
   mint: Kopenhagen
   catalog:
     km: '428'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
@@ -87369,6 +87220,9 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 17.99
+    source: ucoin
+  diameter_mm:
+  - value: 35.0
     source: ucoin
   sources:
   - type: ucoin
@@ -87380,3 +87234,254 @@ coins:
     uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
   composed_of:
   - unified-dk-tid-97320
+- fuss: seed_unsorted
+  phase: ucoin
+  kind: scheide
+  nominal: 16 Skilling rigsmønt
+  ruler: Frederick VII
+  issuing_entity: danish_realm
+  id: unified-dk-tid-70689
+  year_first: 1856
+  year_last: 1858
+  year_ranges:
+  - - 1856
+    - 1858
+  year_label: 1856–1858
+  catalog:
+    km: '765'
+    bruun_collection_id: '8251'
+    bruun_part: IV
+    bruun_lot_no: 17220
+    bruun_page: 111
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.5
+    source: ucoin
+  weight_rough_g:
+  - value: 3.9
+    source: ucoin
+  diameter_mm:
+  - value: 22.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-16-skilling-rigsmont-1856-1858/?tid=70689
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of:
+  - unified-dk-tid-70689
+- fuss: seed_unsorted
+  phase: ucoin
+  kind: scheide
+  nominal: ½ Skilling
+  ruler: Christian V
+  issuing_entity: danish_realm
+  id: unified-dk-tid-96435
+  year_first: 1686
+  year_last: 1686
+  year_label: '1686'
+  catalog:
+    km: '381'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.158
+    source: ucoin
+  weight_rough_g:
+  - value: 0.67
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-skilling-1686/?tid=96435
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of: []
+- fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Dukat
+  ruler: Christian V
+  issuing_entity: danish_realm
+  id: unified-dk-tid-97400
+  year_first: 1685
+  year_last: 1685
+  year_label: '1685'
+  catalog:
+    km: '355'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.98
+    source: ucoin
+  weight_rough_g:
+  - value: 1.75
+    source: ucoin
+  diameter_mm:
+  - value: 18.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-dukat-1685/?tid=97400
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of: []
+- fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Dukat
+  ruler: Christian V
+  issuing_entity: danish_realm
+  id: unified-dk-tid-97401
+  year_first: 1694
+  year_last: 1696
+  year_ranges:
+  - - 1694
+    - 1696
+  year_label: 1694-1696
+  catalog:
+    km: '437'
+    bruun_collection_id: '7211'
+    bruun_part: II
+    bruun_lot_no: 13190
+    bruun_page: 141
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.98
+    source: ucoin
+  weight_rough_g:
+  - value: 1.75
+    source: ucoin
+  diameter_mm:
+  - value: 15.6
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-dukat-1694-1696/?tid=97401
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of: []
+- fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Dukat
+  ruler: Christian V
+  issuing_entity: danish_realm
+  id: unified-dk-tid-97402
+  year_first: 1696
+  year_last: 1696
+  year_label: '1696'
+  catalog:
+    km: '441'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.98
+    source: ucoin
+  weight_rough_g:
+  - value: 1.75
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-dukat-1696/?tid=97402
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of: []
+- fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Dukat
+  ruler: Christian V
+  issuing_entity: danish_realm
+  id: unified-dk-tid-97403
+  year_first: 1696
+  year_last: 1696
+  year_label: '1696'
+  catalog:
+    km: '442'
+    bruun_collection_id: '7263'
+    bruun_part: IV
+    bruun_lot_no: 17109
+    bruun_page: 73
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.98
+    source: ucoin
+  weight_rough_g:
+  - value: 1.75
+    source: ucoin
+  diameter_mm:
+  - value: 17.5
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-dukat-1696/?tid=97403
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of: []

@@ -1012,8 +1012,8 @@ coins:
   mint: Altona
   catalog:
     km: '130'
-    hede: 41A Sieg 43.1
-    schou: 7 Lange 135
+    hede: 41A
+    schou: '7'
     bruun_lot: '7870'
     lange: '135'
     numista: '60090'
@@ -1023,6 +1023,7 @@ coins:
     - AKS# 5
     - Jaeg 6 NWD# 8
     - C# 9
+    - Sieg# 43.1
     hede_volume: c7h
   metal: silver
   fineness:
@@ -1116,8 +1117,8 @@ coins:
   mint: Altona
   catalog:
     km: '135'
-    hede: 40A Sieg 44
-    schou: 5/6 Lange 132
+    hede: 40A
+    schou: 5/6
     bruun_lot: 7867/7869
     lange: '132'
     numista: '188236'
@@ -2921,23 +2922,24 @@ coins:
   year_label: '1771'
   mint:
   - Altona
-  - Altona (.1)
   - Kopenhagen
-  - Kopenhagen (.2, .3)
   catalog:
     km: 615.1/2/3
     numista: '44799'
     others:
     - KM# 615
   metal: copper
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
   - value: 5.846
     source: Numista, ucoin
+  - value: 5.85
+    source: ucoin
   diameter_mm:
   - value: 24.5
     source: ucoin
@@ -2968,14 +2970,7 @@ coins:
   issuing_entity: royal_holstein
   id: km-616-chr-v-1771
   year_first: 1771
-  year_last: 1783
-  year_ranges:
-  - - 1771
-    - 1771
-  - - 1779
-    - 1779
-  - - 1783
-    - 1783
+  year_last: 1771
   year_label: 1771, 1779, 1783
   mint:
   - Altona
@@ -2991,14 +2986,17 @@ coins:
     - C# 47
     hede_volume: c7h
   metal: copper
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
   - value: 11.7
     source: Numista, ucoin
+  - value: 11.7
+    source: ucoin
   diameter_mm:
   - value: 29.0
     source: ucoin
@@ -4149,6 +4147,8 @@ coins:
   fineness:
   - value: 0.979
     source: hede
+  - value: 0.979
+    source: ucoin
   - value: 0.98611111
     source: ucoin
   weight_rough_g:
@@ -4156,6 +4156,8 @@ coins:
     source: Bruun Part II, lot 13212, p. 154
   - value: 1.745
     source: hede
+  - value: 1.75
+    source: ucoin
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -15840,9 +15842,7 @@ coins:
   year_first: 1719
   year_last: 1719
   year_label: '1719'
-  mint:
-  - Denmark, Rendsburg
-  - Rendsburg
+  mint: Rendsburg
   catalog:
     km: '7'
   metal: gold
@@ -15868,8 +15868,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-km-x011-fr-iv-1719-half
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -15934,13 +15933,15 @@ coins:
   year_label: 1787-1808
   catalog:
     km: '130'
-    hede: 41A Sieg 43.1
-    schou: 7 Lange 135
+    hede: 41A
+    schou: '7'
     bruun_lot: '7870'
     lange: '135'
     numista: '60090'
     sieg: '43'
     hede_volume: c7h
+    others:
+    - Sieg# 43.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -15985,8 +15986,8 @@ coins:
   year_label: 1787-1808
   catalog:
     km: '135'
-    hede: 40A Sieg 44
-    schou: 5/6 Lange 132
+    hede: 40A
+    schou: 5/6
     bruun_lot: 7867/7869
     lange: '132'
     numista: '188236'

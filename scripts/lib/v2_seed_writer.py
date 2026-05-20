@@ -236,6 +236,131 @@ def _normalise_nominal(raw):
     return s
 
 
+# Known catalog prefix → schema-field map. Used by `_normalise_catalog`
+# to split jammed field values like «hede: "24 Sieg 26.1"» into the
+# correct per-prefix fields. Prefixes without a dedicated field fall
+# back to `catalog.others` as «Prefix# Value».
+_CATALOG_PREFIX_TO_FIELD: dict[str, str] = {
+    "Hede": "hede",
+    "Sieg": "sieg",
+    "Schou": "schou",
+    "Lange": "lange",
+    "Fr": "fr",
+    "Dav": "dav",
+    "Galster": "galster",
+    "Friedberg": "friedberg",
+    "Davenport": "davenport",
+    "MB": "mb",
+    "Skaare": "skaare",
+    "Schive": "schive",
+    "Jensen-Skjoldager": "jensen_skjoldager",
+}
+
+# Recognise these as «next-catalog-ref» when scanning a jammed value.
+# Order matters: longer prefixes first (so «KM-DK» beats «KM», «Dav EC»
+# beats «Dav», etc.).
+_KNOWN_CATALOG_PREFIXES = tuple(sorted({
+    "KM-DK", "KM-SH", "KM-NO", "KM",
+    "Hede", "Sieg", "Schou", "Lange", "Fr", "Dav",
+    "Bruun", "Galster", "Friedberg", "Davenport", "MB",
+    "AKS", "Behr", "Brockmann", "Bahrf", "Bobzin", "Hofmann",
+    "Jaeg", "Aagaard", "Saur", "Diakov", "Uzd", "Bit",
+    "Brekke", "Hauberg", "Fb", "J", "N", "C", "Weinm",
+    "Schön", "Skaare", "Schive", "Jensen-Skjoldager",
+    "NWD",
+}, key=len, reverse=True))
+
+# Regex to detect a jammed «<value> <NextPrefix> <next_value>» pattern
+# inside a scalar catalog-ref field. The next_value can have decimals
+# («26.1»), letter suffixes («14a»), slashes («5/6»), or hyphens.
+_JAMMED_CATALOG_RE = re.compile(
+    r"^(?P<own>\S+(?:\s*[A-Za-z]+\s*)?)\s+"
+    r"(?P<next_prefix>" + "|".join(re.escape(p) for p in _KNOWN_CATALOG_PREFIXES) + r")"
+    r"\s+(?P<next_value>[\d./\-]+[A-Za-z]?(?:\s*[,/]\s*[\d./\-]+[A-Za-z]?)*)\s*$"
+)
+
+
+def _normalise_catalog(catalog: dict | None) -> tuple[dict | None, int]:
+    """Detect and split jammed catalog-ref values.
+
+    V1-foundation entries sometimes packed multiple catalog refs into
+    a single field (e.g. `hede: "24 Sieg 26.1"` should be
+    `hede: "24"` + `sieg: "26.1"`). This function walks each named
+    catalog field, detects the «<own_value> <NextPrefix> <next_value>»
+    pattern, peels off the trailing ref, and routes it to the
+    appropriate destination (dedicated field if known, else
+    `catalog.others`).
+
+    Returns `(normalised_catalog, changes_count)`. When `catalog` is
+    None or has no jammed fields, returns the input unchanged with
+    count = 0.
+    """
+    if not isinstance(catalog, dict):
+        return catalog, 0
+    changes = 0
+
+    def _split_one(val: str, field: str) -> str | None:
+        """Process a single scalar value. Returns the cleaned own value,
+        OR None when no split fired. Side-effects: route the peeled ref
+        to its destination field / others."""
+        nonlocal changes
+        m = _JAMMED_CATALOG_RE.match(val.strip())
+        if not m:
+            return None
+        own = m.group("own").strip()
+        next_prefix = m.group("next_prefix")
+        next_value = m.group("next_value").strip()
+        dest_field = _CATALOG_PREFIX_TO_FIELD.get(next_prefix)
+        if dest_field and dest_field != field:
+            existing = catalog.get(dest_field)
+            if existing is None or existing == "":
+                catalog[dest_field] = next_value
+            elif isinstance(existing, str) and existing == next_value:
+                pass
+            elif isinstance(existing, list) and next_value in existing:
+                pass
+            else:
+                others = catalog.setdefault("others", [])
+                if isinstance(others, list):
+                    token = f"{next_prefix}# {next_value}"
+                    if token not in others:
+                        others.append(token)
+        else:
+            others = catalog.setdefault("others", [])
+            if isinstance(others, list):
+                token = f"{next_prefix}# {next_value}"
+                if token not in others:
+                    others.append(token)
+        changes += 1
+        return own
+
+    # Iterate over CURRENT field list — appending to `others` doesn't
+    # need to be re-scanned (its format is already «Prefix# Value»).
+    for field in list(_CATALOG_PREFIX_TO_FIELD.values()):
+        val = catalog.get(field)
+        if isinstance(val, str):
+            cleaned = _split_one(val, field)
+            if cleaned is not None:
+                catalog[field] = cleaned
+        elif isinstance(val, list):
+            # List-form (data-accumulation per CLAUDE.md): scan each
+            # entry; replace jammed ones with the cleaned own value.
+            # Dedupe — if cleaning produces duplicates, drop.
+            new_list: list = []
+            for item in val:
+                if isinstance(item, str):
+                    cleaned = _split_one(item, field)
+                    new_item = cleaned if cleaned is not None else item
+                    if new_item not in new_list:
+                        new_list.append(new_item)
+                else:
+                    new_list.append(item)
+            if new_list != list(val):
+                # Replace; preserve scalar shape if list collapsed to one
+                catalog[field] = new_list[0] if len(new_list) == 1 else new_list
+    return catalog, changes
+
+
 def _is_out_of_scope_nominal(nominal) -> bool:
     """Return True when the nominal indicates an out-of-scope trade coin
     (East India Piastre / Rupee / Fanam / Cash). User-confirmed
@@ -248,13 +373,64 @@ def _is_out_of_scope_nominal(nominal) -> bool:
     return any(tok in n for tok in _OUT_OF_SCOPE_NOMINAL_TOKENS)
 
 
+# Krause-catalog prefix tokens that mark an entry as exonumia /
+# non-circulation per CLAUDE.md §9.1-§9.2:
+#   Tn* — Token Coinage (private / merchant tokens)
+#   Pn* — Pattern strikes
+#   TS* — Trial Strikes
+#   E*  — Essais (experimental strikes)
+# All four are filtered identically: not struck for circulation,
+# belong to exonumia register, not the project's coin table.
+_OUT_OF_SCOPE_KM_PREFIXES: tuple[str, ...] = ("Tn", "Pn", "TS", "E")
+
+
+def _is_out_of_scope_catalog(catalog) -> bool:
+    """Return True when `catalog.km` carries a Krause exonumia prefix
+    (Tn / Pn / TS / E). Per §9.1-§9.2 these are not circulation coins
+    and don't belong in any seed. Handles scalar and list-form km."""
+    if not isinstance(catalog, dict):
+        return False
+    km = catalog.get("km")
+    if km is None:
+        return False
+    candidates: list[str] = []
+    if isinstance(km, str):
+        candidates.append(km)
+    elif isinstance(km, list):
+        for item in km:
+            if isinstance(item, str):
+                candidates.append(item)
+            elif isinstance(item, dict):
+                v = item.get("value")
+                if isinstance(v, str):
+                    candidates.append(v)
+    elif isinstance(km, dict):
+        # dict-form {register: value} per V2_PIPELINE.md §4
+        for v in km.values():
+            if isinstance(v, str):
+                candidates.append(v)
+    for value in candidates:
+        v = value.strip()
+        for prefix in _OUT_OF_SCOPE_KM_PREFIXES:
+            if v.startswith(prefix) and len(v) > len(prefix):
+                # Require digit immediately after prefix to avoid
+                # matching legitimate KMs whose number starts with these
+                # letters (none exist in our scope but defensive check).
+                if v[len(prefix)].isdigit():
+                    return True
+    return False
+
+
 def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, int]]:
-    """Run mint + nominal normalisation in-place and filter out coins
-    whose nominal puts them out-of-scope. Returns (kept, stats)."""
+    """Run mint + nominal + catalog normalisation in-place and filter
+    out coins whose nominal puts them out-of-scope. Returns
+    (kept, stats)."""
     stats = {
         "mint_normalised": 0,
         "nominal_normalised": 0,
+        "catalog_split": 0,
         "out_of_scope_filtered": 0,
+        "out_of_scope_km_filtered": 0,
     }
     kept: list[dict] = []
     for c in coins:
@@ -265,6 +441,9 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         if _is_out_of_scope_nominal(nominal):
             stats["out_of_scope_filtered"] += 1
             continue
+        if _is_out_of_scope_catalog(c.get("catalog")):
+            stats["out_of_scope_km_filtered"] += 1
+            continue
         new_nom = _normalise_nominal(nominal)
         if new_nom is not None and new_nom != nominal:
             c["nominal"] = new_nom
@@ -274,6 +453,11 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         if new_mint != mint and not (new_mint is None and mint in (None, "")):
             c["mint"] = new_mint
             stats["mint_normalised"] += 1
+        catalog = c.get("catalog")
+        if isinstance(catalog, dict):
+            _, n_split = _normalise_catalog(catalog)
+            if n_split:
+                stats["catalog_split"] += n_split
         kept.append(c)
     return kept, stats
 
@@ -404,7 +588,12 @@ def write_v2_seed(
                 # already-stored entries from prior builds need to be
                 # purged from existing seed yamls — otherwise merge_seed's
                 # orphan-curated mechanism preserves them indefinitely.
+                # Same logic applies to Krause exonumia prefixes
+                # (Tn / Pn / TS / E) per CLAUDE.md §9.1-§9.2.
                 if _is_out_of_scope_nominal(c.get("nominal")):
+                    out_of_scope_dropped += 1
+                    continue
+                if _is_out_of_scope_catalog(c.get("catalog")):
                     out_of_scope_dropped += 1
                     continue
                 cid = c.get("id")
@@ -429,6 +618,11 @@ def write_v2_seed(
                 if (new_mint != mint
                         and not (new_mint is None and mint in (None, ""))):
                     c["mint"] = new_mint
+                catalog = c.get("catalog")
+                if isinstance(catalog, dict):
+                    _, n_cat = _normalise_catalog(catalog)
+                    if n_cat:
+                        file_normalised += 1
                 kept.append(c)
             if purged or out_of_scope_dropped or file_normalised:
                 existing_doc["coins"] = kept

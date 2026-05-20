@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 334 per-source seed entries.
-# Output: 288 unified entries (one per physical coin).
+# Output: 287 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -5092,6 +5092,7 @@ coins:
   ruler: Frederik IV.
   mint: Rendsburg
   catalog:
+    km: '7'
     hede: '61'
     hede_volume: f4h
     schou: '2'
@@ -5101,18 +5102,25 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.979
     source: hede
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 1.745
     source: hede
+  - value: 1.75
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h61.htm
     ref: danskmoent.dk (Hede f4h61)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-dukat-1719/?tid=169253
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -5121,6 +5129,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-hede-f4h61
+  - km-x011-fr-iv-1719-half
 - id: unified-dk-hede-f4h62
   fuss: 9_25_thaler
   phase: I
@@ -5974,7 +5983,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 søsling
+  nominal: 1 Søsling
   year_first: 1623
   year_last: 1626
   year_ranges:
@@ -6020,7 +6029,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 dreiling
+  nominal: 1 Dreiling
   year_first: 1787
   year_last: 1787
   year_label: '1787'
@@ -6066,7 +6075,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 sechsling
+  nominal: 1 Sechsling
   year_first: 1787
   year_last: 1787
   year_label: '1787'
@@ -6162,7 +6171,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 5 schilling
+  nominal: 5 Schilling
   year_first: 1787
   year_last: 1801
   year_ranges:
@@ -6219,7 +6228,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 10 schilling
+  nominal: 10 Schilling
   year_first: 1787
   year_last: 1796
   year_ranges:
@@ -6281,7 +6290,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: ⅓ speciedaler
+  nominal: ⅓ Speciedaler
   year_first: 1787
   year_last: 1808
   year_ranges:
@@ -6291,13 +6300,15 @@ coins:
   ruler: Christian VII
   catalog:
     km: '130'
-    hede: 41A Sieg 43.1
-    schou: 7 Lange 135
+    hede: 41A
+    schou: '7'
     bruun_lot: '7870'
     lange: '135'
     numista: '60090'
     sieg: '43'
     hede_volume: c7h
+    others:
+    - Sieg# 43.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6332,7 +6343,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: ⅔ speciedaler
+  nominal: ⅔ Speciedaler
   year_first: 1787
   year_last: 1808
   year_ranges:
@@ -6342,8 +6353,8 @@ coins:
   ruler: Christian VII
   catalog:
     km: '135'
-    hede: 40A Sieg 44
-    schou: 5/6 Lange 132
+    hede: 40A
+    schou: 5/6
     bruun_lot: 7867/7869
     lange: '132'
     numista: '188236'
@@ -6383,7 +6394,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 speciedaler
+  nominal: 1 Speciedaler
   year_first: 1787
   year_last: 1808
   year_ranges:
@@ -6483,7 +6494,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 8 schilling
+  nominal: 8 Schilling
   year_first: 1816
   year_last: 1819
   year_ranges:
@@ -6536,7 +6547,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 16 schilling
+  nominal: 16 Schilling
   year_first: 1816
   year_last: 1818
   year_ranges:
@@ -6577,7 +6588,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 16 schilling
+  nominal: 16 Schilling
   year_first: 1831
   year_last: 1839
   year_ranges:
@@ -6626,7 +6637,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 2 skilling dansk
+  nominal: 2 Skilling dansk
   year_first: 1627
   year_last: 1627
   year_label: '1627'
@@ -6667,7 +6678,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 ducat
+  nominal: 1 Ducat
   year_first: 1705
   year_last: 1706
   year_ranges:
@@ -6719,7 +6730,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 speciedaler
+  nominal: 1 Speciedaler
   year_first: 1629
   year_last: 1630
   year_ranges:
@@ -6769,7 +6780,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 søsling
+  nominal: 1 Søsling
   year_first: 1640
   year_last: 1648
   year_ranges:
@@ -6818,7 +6829,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1/16 speciedaler
+  nominal: 1/16 Speciedaler
   year_first: 1640
   year_last: 1641
   year_ranges:
@@ -6864,7 +6875,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1/16 speciedaler
+  nominal: 1/16 Speciedaler
   year_first: 1641
   year_last: 1646
   year_ranges:
@@ -6910,7 +6921,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 2 speciedaler
+  nominal: 2 Speciedaler
   year_first: 1640
   year_last: 1641
   year_ranges:
@@ -6965,7 +6976,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 ducat
+  nominal: 1 Ducat
   year_first: 1640
   year_last: 1646
   year_ranges:
@@ -7016,7 +7027,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 8 skilling
+  nominal: 8 Skilling
   year_first: 1711
   year_last: 1713
   year_ranges:
@@ -7070,7 +7081,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 8 skilling lybsk
+  nominal: 8 Skilling lybsk
   year_first: 1641
   year_last: 1645
   year_ranges:
@@ -7115,7 +7126,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: scheide
-  nominal: 2 skilling
+  nominal: 2 Skilling
   year_first: 1676
   year_last: 1681
   year_ranges:
@@ -7168,7 +7179,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 søsling
+  nominal: 1 Søsling
   year_first: 1658
   year_last: 1660
   year_ranges:
@@ -7212,7 +7223,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1/16 speciedaler
+  nominal: 1/16 Speciedaler
   year_first: 1658
   year_last: 1659
   year_ranges:
@@ -7257,7 +7268,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1/16 speciedaler
+  nominal: 1/16 Speciedaler
   year_first: 1665
   year_last: 1667
   year_ranges:
@@ -7303,7 +7314,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: ⅛ speciedaler
+  nominal: ⅛ Speciedaler
   year_first: 1665
   year_last: 1665
   year_label: '1665'
@@ -7358,7 +7369,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 ducat
+  nominal: 1 Ducat
   year_first: 1666
   year_last: 1669
   year_ranges:
@@ -7420,7 +7431,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1/16 speciedaler
+  nominal: 1/16 Speciedaler
   year_first: 1667
   year_last: 1670
   year_ranges:
@@ -7474,39 +7485,40 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: scheide
-  nominal: ½ Skilling Dansk
+  nominal: ½ Skilling
   year_first: 1771
   year_last: 1771
   year_label: '1771'
-  ruler: Christian VII.
-  mint:
-  - Altona (.1)
-  - Kopenhagen (.2, .3)
+  ruler: Christian VII
   catalog:
     km: 615.1/2/3
     numista: '44799'
     others:
     - KM# 615
   metal: copper
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
-  - value: 5.846
-    source: Numista, ucoin
+  - value: 5.85
+    source: ucoin
+  diameter_mm:
+  - value: 24.5
+    source: ucoin
   sources:
-  - type: numista
-    url: https://en.numista.com/catalogue/pieces44799.html
-    ref: Numista
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-2-skilling-1771/?tid=78766
     ref: ucoin
   verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   issuing_entity: royal_holstein
   composed_of:
   - km-615-1-2-3-chr-v-1771
@@ -7514,22 +7526,11 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: scheide
-  nominal: 1 Skilling Dansk
+  nominal: 1 Skilling
   year_first: 1771
-  year_last: 1783
-  year_ranges:
-  - - 1771
-    - 1771
-  - - 1779
-    - 1779
-  - - 1783
-    - 1783
-  year_label: 1771, 1779, 1783
-  ruler: Christian VII.
-  mint:
-  - Altona
-  - Kongsberg
-  - Kopenhagen
+  year_last: 1771
+  year_label: '1771'
+  ruler: Christian VII
   catalog:
     km: '616'
     hede: '37'
@@ -7540,25 +7541,29 @@ coins:
     - C# 47
     hede_volume: c7h
   metal: copper
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
   - value: 11.7
-    source: Numista, ucoin
+    source: ucoin
+  diameter_mm:
+  - value: 29.0
+    source: ucoin
   sources:
-  - type: numista
-    url: https://en.numista.com/catalogue/pieces958.html
-    ref: Numista
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-skilling-1771/?tid=78775
     ref: ucoin
   verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   issuing_entity: royal_holstein
   composed_of:
   - km-616-chr-v-1771
@@ -7566,7 +7571,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 4 mark dansk
+  nominal: 4 Mark dansk
   year_first: 1671
   year_last: 1682
   year_ranges:
@@ -7617,7 +7622,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 ducat
+  nominal: 1 Ducat
   year_first: 1672
   year_last: 1676
   year_ranges:
@@ -7668,7 +7673,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 2 mark dansk
+  nominal: 2 Mark dansk
   year_first: 1679
   year_last: 1682
   year_ranges:
@@ -7797,7 +7802,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1/16 speciedaler
+  nominal: 1/16 Speciedaler
   year_first: 1680
   year_last: 1680
   year_label: '1680'
@@ -7905,7 +7910,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 ducat
+  nominal: 1 Ducat
   year_first: 1680
   year_last: 1685
   year_ranges:
@@ -7956,7 +7961,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 ducat
+  nominal: 1 Ducat
   year_first: 1682
   year_last: 1682
   year_label: '1682'
@@ -8238,7 +8243,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 speciedaler
+  nominal: 1 Speciedaler
   year_first: 1682
   year_last: 1682
   year_label: '1682'
@@ -8281,7 +8286,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 4 mark dansk
+  nominal: 4 Mark dansk
   year_first: 1692
   year_last: 1694
   year_ranges:
@@ -8330,7 +8335,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 2 skilling dansk
+  nominal: 2 Skilling dansk
   year_first: 1693
   year_last: 1694
   year_ranges:
@@ -8375,7 +8380,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 4 skilling dansk
+  nominal: 4 Skilling dansk
   year_first: 1693
   year_last: 1694
   year_ranges:
@@ -8424,7 +8429,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 2 mark dansk
+  nominal: 2 Mark dansk
   year_first: 1693
   year_last: 1696
   year_ranges:
@@ -8469,7 +8474,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 4 mark dansk
+  nominal: 4 Mark dansk
   year_first: 1694
   year_last: 1696
   year_ranges:
@@ -8517,7 +8522,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 8 skilling dansk
+  nominal: 8 Skilling dansk
   year_first: 1694
   year_last: 1697
   year_ranges:
@@ -8562,7 +8567,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 ducat
+  nominal: 1 Ducat
   year_first: 1645
   year_last: 1646
   year_ranges:
@@ -8624,7 +8629,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 4 mark dansk
+  nominal: 4 Mark dansk
   year_first: 1659
   year_last: 1660
   year_ranges:
@@ -8673,7 +8678,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 4 mark dansk
+  nominal: 4 Mark dansk
   year_first: 1659
   year_last: 1660
   year_ranges:
@@ -8721,7 +8726,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1/16 speciedaler
+  nominal: 1/16 Speciedaler
   year_first: 1623
   year_last: 1625
   year_ranges:
@@ -8765,7 +8770,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 skilling dansk
+  nominal: 1 Skilling dansk
   year_first: 1694
   year_last: 1694
   year_label: '1694'
@@ -8806,7 +8811,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 2 skilling lybsk
+  nominal: 2 Skilling lybsk
   year_first: 1620
   year_last: 1620
   year_label: '1620'
@@ -8839,44 +8844,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - km-x005-chr-iv-1620
-- id: unified-km-x011-fr-iv-1719-half
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1/2 dukat
-  year_first: 1719
-  year_last: 1719
-  year_label: '1719'
-  ruler: Frederick IV
-  mint: Denmark, Rendsburg
-  catalog:
-    km: '7'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: ucoin
-  weight_rough_g:
-  - value: 1.75
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-2-dukat-1719/?tid=169253
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - km-x011-fr-iv-1719-half
 - id: unified-schleswig_holstein-numismaster-117986
   fuss: seed_unsorted
   phase: numismaster
@@ -12774,7 +12741,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 1 sechsling
+  nominal: 1 Sechsling
   year_first: 1850
   year_last: 1850
   year_label: '1850'

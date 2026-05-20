@@ -60,8 +60,10 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from lib.seed_merge import merge_seed  # noqa: E402
 from lib.v2_seed_writer import (  # noqa: E402
     _is_out_of_scope_nominal,
+    _is_out_of_scope_catalog,
     _normalise_nominal,
     _canonicalise_mint,
+    _normalise_catalog,
 )
 
 # Reuse match-strategy + enrichment helpers from Phase 3.2.
@@ -443,7 +445,10 @@ def process_entity(entity_id: str) -> dict:
     out_of_scope_final_dropped = 0
     kept_finals: list[dict] = []
     for fe in final_entries:
-        if isinstance(fe, dict) and _is_out_of_scope_nominal(fe.get("nominal")):
+        if isinstance(fe, dict) and (
+            _is_out_of_scope_nominal(fe.get("nominal"))
+            or _is_out_of_scope_catalog(fe.get("catalog"))
+        ):
             out_of_scope_final_dropped += 1
             continue
         if isinstance(fe, dict):
@@ -456,6 +461,9 @@ def process_entity(entity_id: str) -> dict:
             if (new_mint != raw_mint
                     and not (new_mint is None and raw_mint in (None, ""))):
                 fe["mint"] = new_mint
+            cat = fe.get("catalog")
+            if isinstance(cat, dict):
+                _normalise_catalog(cat)
         kept_finals.append(fe)
     final_entries = kept_finals
     final_by_id = {f["id"]: f for f in final_entries if f.get("id")}

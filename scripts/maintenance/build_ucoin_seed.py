@@ -60,6 +60,7 @@ import yaml
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import PROJECT_ROOT, UCOIN_CACHE  # noqa: E402
 from lib.seed_merge import merge_seed  # noqa: E402
+from lib.v2_seed_writer import _apply_pre_write_hygiene  # noqa: E402
 
 V2_SEED_ROOT = PROJECT_ROOT / "data" / "v2" / "seed" / "ucoin"
 V1_LOCATIONS = PROJECT_ROOT / "data" / "locations"
@@ -636,6 +637,20 @@ def build_seed(entity: str, no_merge: bool, dry_run: bool,
         print(
             f"  [{entity}] merge: merged_existing={stats['merged_existing']}, "
             f"added_new={stats['added_new']}, orphan_curated={stats['orphan_curated']}"
+        )
+
+    # Pre-write hygiene — out-of-scope filter + nominal/mint/catalog
+    # normalisation. Applied AFTER merge_seed so orphan-curated entries
+    # also benefit retroactively when hygiene rules tighten.
+    entries, hygiene_stats = _apply_pre_write_hygiene(entries)
+    if any(hygiene_stats.values()):
+        print(
+            f"  [{entity}] hygiene: "
+            f"out_of_scope_filtered={hygiene_stats['out_of_scope_filtered']}, "
+            f"out_of_scope_km_filtered={hygiene_stats.get('out_of_scope_km_filtered', 0)}, "
+            f"nominal_normalised={hygiene_stats['nominal_normalised']}, "
+            f"mint_normalised={hygiene_stats['mint_normalised']}, "
+            f"catalog_split={hygiene_stats['catalog_split']}"
         )
 
     yaml_out = ruamel.yaml.YAML()
