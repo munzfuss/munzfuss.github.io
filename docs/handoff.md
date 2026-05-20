@@ -125,6 +125,117 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
    correct (sample-checked hede-44). User asked for verification
    before any push. ⇒ Awaiting «OK to push» or further checks.
 
+## Harvest coverage state — ucoin + Numista (2026-05-20)
+
+> **For the next harvest session**: detailed snapshot of where every
+> ucoin period and Numista bucket stands. Full per-NID gap manifests
+> live in `scripts/cache/{ucoin,numista}/_BR_audit-2_2026-05-20.json`
+> + `_BO6_audit_2026-05-20.json`. Don't re-enumerate — use the gap
+> lists directly. Period IDs map to `?country=X&period=N` URLs on
+> ucoin.net catalog. **31 local commits ready to push** at session-
+> handover snapshot (`af737ee` → `dad58eb`).
+
+### ucoin — 15 of 15 periods verified (BR audit-2 complete)
+
+✅ **Verified clean (10 periods, exact page-by-page match):**
+
+| Period | Era | Cached / Total |
+|---|---|---:|
+| DK p2940 Speciedaler 1582-1624 | Christian IV pre-Kipper | 83 / 83 |
+| DK p2939 Glückstadt 1617-1773 | DK-rule Glückstadt mint | 50 / 50 |
+| DK p2995 HG-Rendsburg 1716-1720 | Holstein-Gottorp under F4 | 4 / 4 |
+| DK p374 Christian IX 1873-1906 | Krone-era memorials | 9 / 9 |
+| DK p373 Frederik VIII 1906-1912 | Krone-era full reign | 7 / 7 |
+| DK p646 Rigsdaler rigsmønt 1854-1873 | F7 → C9 | 13 / 13 |
+| NO p2399 Speciedaler 1648-1699 | F3 + Christian V | 153 / 153 |
+| NO p2400 Speciedaler 1699-1745 | F4 + C6 | 23 / 23 |
+| NO p1041 Rigsdaler 1746-1812 | F5 → F6 | 32 / 32 |
+| NO p883 Rigsbankdaler 1813-1815 | NO under DK 1813-1814 only | 2 / 2 |
+| SH-cluster `?country=schleswig_holstein` | Speciesbank-era SH 1787-1839 | 15 / 15 |
+
+🔵 **In-scope subset clear (1 period):**
+
+| Period | In-scope cached | Out-of-scope uncached |
+|---|---:|---:|
+| DK p220 Christian X 1912-1947 | 7 (1912-1914 window, all major denoms) | 23 (post-1914 OOS — Margrethe II era; no fetch needed) |
+
+⚠️ **Real gap periods (4) — 150 TIDs total**:
+
+| Period | Era | Cached / Total | Gap | Priority |
+|---|---|---:|---:|:---:|
+| DK p1147 Rigsdaler 1625-1699 | C4 late + F3 + Christian V | 201 / 211 | **10** | A — near-closure |
+| DK p846 Rigsdaler 1750-1812 | F5 → C7 → F6 early | 20 / 54 | **34** | B — ongoing |
+| **DK p1115 Rigsdaler 1699-1749** | **F4 → Christian VI** | **0 / 59** | **59** | **C — FULL UNTOUCHED** |
+| **DK p647 Rigsbankdaler 1813-1854** | **Helstaten F6 → C8** | **1 / 48** | **47** | **D — NEAR-FULL UNTOUCHED** |
+
+**ucoin gap details**:
+- p1147: 4 known on page 1 (`96989`, `96438`, `96455`, `96986` — Skilling/Hvid Scheide); 6 more need page-2-5 re-enum to identify
+- p846: 34 TIDs listed in audit-2 manifest (8/24/4/2-Skilling + 1-Mark + 8-Skilling Bornholm Speciesbank + 1/6-Rigsdaler family)
+- p1115: 59 TIDs listed in audit-2 manifest (Frederik IV + Christian VI Reichsdukatenfuß-era — Speciedaler + Krone + Dukat + Skilling)
+- p647: 47 TIDs listed in audit-2 manifest (Frederik VI Rigsbankdaler post-1813 reform + Christian VIII 1839-1848)
+- All four gap manifests in `scripts/cache/ucoin/_BR_audit-2_2026-05-20.json` under `NEW_GAPS_DISCOVERED`
+
+### Numista — 8 of 8 buckets enumerated (BO.6 v3 complete)
+
+✅ **Verified clean (5 buckets, 671 NIDs):**
+
+| Bucket | In-scope / Cached | Status |
+|---|---:|---|
+| DK p2 (1617-1671) | 200 / 200 | ✅ CLOSED (prior BO.5) |
+| DK p3 (1671-1791) | 200 / 200 | ✅ CLOSED (prior BO.5) |
+| DK p4 (1791-1914) | 124 / 104 (+20 Margrethe II false-pos OOS) | ✅ effectively CLOSED |
+| SH cluster (5 issuers) | 67 / 67 | ✅ CLOSED batches A+B |
+| DK p1 (1513-1617) | 139 / 125 | 🔵 14 left (last leg — batch K closes it) |
+
+⏳ **Untouched (3 buckets, 471 NIDs — all NO):**
+
+| Bucket | Era | Gap | Pages | URL filter |
+|---|---|---:|---:|---|
+| NO p2 (1513-1657) | C2 Oslo → F3 early | 193 | 1 | `?e=norvege&st=1-2-3-47-154-5-54&cat=y&p=2&q=200&s=c&o=y` |
+| NO p3 (1657-1697) | F3 mid → C5 Kongsberg | 200 | 1 | `&p=3` |
+| NO p4 (1697-1814) | C5 late → F6 1813 | 77 | 1 | `&p=4` (78 in-scope, only N#487340 cached) |
+
+**Numista gap details**:
+- DK p1: 14 NIDs listed in `_BO6_gaps_manifest_2026-05-19.json::denmark_gaps_by_page.p1.gap` (filter to uncached — 14 of 93 original)
+- NO p2-p4 in-scope NID lists in `_BO6_audit_2026-05-20.json::in_scope_buckets.norway`
+- Real Phase 2 Numista gap = **14 (DK p1) + 470 (NO p2-4) = 484 NIDs**
+
+### Headline numbers post-audit-2
+
+| Resource | Cache total | In-scope cached | Real gap | % done |
+|---|---:|---:|---:|---:|
+| **ucoin** | 660 TIDs (incl. 4 batch 25 + audit verification) | 656 / 807 | **150** | **81%** |
+| **Numista** | 1058 NIDs | 697 / 1181 | **484** | **59%** |
+
+### Recommended next-session work order
+
+1. **ucoin p1147 closure** — 10 TIDs (4 known + re-enum p2-5 for remaining 6). Closes the DK Rigsdaler 1625-1699 bucket entirely.
+2. **ucoin p846 closure** — 34 TIDs of Frederik V → Christian VII Skilling/Mark Convention era. Mostly 8-Skilling + 1/6-Rigsdaler variants.
+3. **Numista DK p1 closure** — 14 NIDs to close pre-1617 DK Reichsdukatenfuß gold + post-1572 First Speciedaler.
+4. **ucoin p1115 OPEN** — 59 NEW TIDs (FULL bucket; Frederik IV + Christian VI Reichsdukatenfuß-era).
+5. **ucoin p647 OPEN** — 47 NEW TIDs (Frederik VI Helstaten + Christian VIII 1839-1848).
+6. **Numista NO p2-p4** — 470 NIDs across 3 pages (largest single remaining bucket).
+
+### Audit cache files (canonical references)
+
+- `scripts/cache/ucoin/_BR_audit-2_2026-05-20.json` — full per-period enumeration verification, ALL gap TID lists
+- `scripts/cache/numista/_BO6_audit_2026-05-20.json` — full per-bucket enumeration with in-scope NID lists for DK p1-p4 + NO p2-p4 + SH cluster
+- `scripts/cache/numista/_BO6_gaps_manifest_2026-05-19.json` — original BO.6 v2 explicit gap lists (still valid for SH-cluster + DK p1)
+
+### Technical lessons captured this session (in SOURCES.md §13)
+
+- §13.2 ucoin: listing-page slug-collapse trap (`?text-content-filter` solution), `\t`-separated DOM table layout, comma decimal separator, `a.href` vs `a.getAttribute('href')` Cloudflare query-string blackout, `window.<global>` doesn't survive navigation
+- §13.1 Numista: per-NID DOM = HTML `<table>` rows + `<th>`/`<td>` extraction beats innerText regex; listing-page year-regex false-positives (DK p4 = 20 Margrethe II false-pos caught)
+- PB-10 (PLAYBOOKS): detached-HEAD recovery + parallel-session rebase collision recovery
+
+### Source-quirks pinpointed this session
+
+- ucoin systematic ruler-misattribution: 4 instances flagged in `_audit_context` for seed corrections (KM-260 «Christian IV» 1665 → actually F3; KM-308 1669 «C5» → actually F3; KM-324 ND-1670 «F3» → actually C5; KM-631 1778-1785 «C9» → actually C7; KM-598 1764 «C9» → actually F5)
+- DK p846 «sidecar 86» was inflated — actual listing total = 54 (SH-Holstein cross-leak in §M-era sidecar)
+- DK p4 «20-NID gap» = all Margrethe II post-1972 false-positives (year-regex matched historic refs in modern descriptions) — effectively CLOSED
+
+---
+
 ## Recent state changes (this session)
 
 * **D39 — bulk_promote `no_basic_peer_only` mode + writer-bug fix**
