@@ -2,8 +2,8 @@
 # Generated 2026-05-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 2066 per-source seed entries.
-# Output: 1503 unified entries (one per physical coin).
+# Input: 2078 per-source seed entries.
+# Output: 1496 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1732,18 +1732,25 @@ coins:
   year_last: 1745
   year_label: '1745'
   ruler: Christian VI
+  mint: Kopenhagen
   catalog:
     km: '545'
   metal: copper
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 3.654
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_58024
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-skilling-1745/?tid=94070
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -1754,6 +1761,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-58024
+  - dk-tid-94070
 - id: unified-denmark-numismaster-58025
   fuss: seed_unsorted
   phase: numismaster
@@ -2898,10 +2906,10 @@ coins:
   year_last: 1696
   year_ranges:
   - - 1693
-    - 1694
-  - - 1696
     - 1696
   year_label: 1693–1694, 1696
+  ruler: Christian V.
+  mint: Kopenhagen
   catalog:
     km: '421.1'
   metal: copper
@@ -2913,10 +2921,15 @@ coins:
   weight_rough_g:
   - value: 3.654
     source: numismaster
+  - value: 3.654
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_64984
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-skilling-1693-1696/?tid=96438
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -2927,6 +2940,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-64984
+  - dk-tid-96438
 - id: unified-denmark-numismaster-64985
   fuss: seed_unsorted
   phase: numismaster
@@ -3856,6 +3870,7 @@ coins:
   year_last: 1812
   year_label: '1812'
   ruler: Frederik VI
+  mint: Kopenhagen
   catalog:
     km: '671'
   metal: copper
@@ -3867,10 +3882,15 @@ coins:
   weight_rough_g:
   - value: 0.78
     source: numismaster
+  - value: 0.78
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65032
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-skilling-1812/?tid=79552
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -3881,6 +3901,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65032
+  - dk-tid-79552
 - id: unified-denmark-numismaster-65035
   fuss: seed_unsorted
   phase: numismaster
@@ -4388,18 +4409,25 @@ coins:
     - 1810
   year_label: 1809–1810
   ruler: Frederik VI
+  mint: Kopenhagen
   catalog:
     km: '663'
   metal: copper
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 5.5
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65084
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-skilling-1809-1810/?tid=79554
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -4410,6 +4438,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65084
+  - dk-tid-79554
 - id: unified-denmark-numismaster-65085
   fuss: seed_unsorted
   phase: numismaster
@@ -4422,18 +4451,25 @@ coins:
     - 1811
   year_label: 1810–1811
   ruler: Frederik VI
+  mint: Kopenhagen
   catalog:
     km: '670'
   metal: copper
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 4.9
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65085
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-skilling-1810-1811/?tid=79555
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -4444,6 +4480,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65085
+  - dk-tid-79555
 - id: unified-denmark-numismaster-65086
   fuss: seed_unsorted
   phase: numismaster
@@ -4453,6 +4490,7 @@ coins:
   year_last: 1812
   year_label: '1812'
   ruler: Frederik VI
+  mint: Kopenhagen
   catalog:
     km: '672'
   metal: copper
@@ -4464,10 +4502,15 @@ coins:
   weight_rough_g:
   - value: 2.44
     source: numismaster
+  - value: 2.44
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65086
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-3-skilling-1812/?tid=79556
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -4478,6 +4521,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65086
+  - dk-tid-79556
 - id: unified-denmark-numismaster-65087
   fuss: seed_unsorted
   phase: numismaster
@@ -19970,12 +20014,17 @@ coins:
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 3.65
+    source: ucoin
   - value: 3.654
     source: numismaster
   sources:
   - type: literature
     url: https://numismaster.com/MC_65981
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-rigsbankskilling-1842/?tid=70719
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -19986,6 +20035,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65981
+  - dk-tid-70719
 - id: unified-denmark-numismaster-65983
   fuss: seed_unsorted
   phase: numismaster
@@ -19995,8 +20045,13 @@ coins:
   year_last: 1852
   year_label: '1852'
   ruler: Frederik VII
+  mint: Kopenhagen
   catalog:
     km: '753'
+    bruun_collection_id: '8210'
+    bruun_part: IV
+    bruun_lot_no: 17197
+    bruun_page: 104
   metal: copper
   metal_verified: true
   fineness_verified: false
@@ -20004,12 +20059,20 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 3.65
+    source: ucoin
   - value: 3.654
     source: numismaster
   sources:
   - type: literature
     url: https://numismaster.com/MC_65983
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-rigsbankskilling-1852/?tid=70720
+    ref: ucoin
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17197, p. 104
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -20020,6 +20083,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65983
+  - dk-tid-70720
 - id: unified-denmark-numismaster-65986
   fuss: seed_unsorted
   phase: numismaster
@@ -20151,6 +20215,7 @@ coins:
   year_last: 1818
   year_label: '1818'
   ruler: Frederik VI
+  mint: Kopenhagen
   catalog:
     km: '688'
   metal: copper
@@ -20162,10 +20227,15 @@ coins:
   weight_rough_g:
   - value: 7.308
     source: numismaster
+  - value: 7.31
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65991
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1818/?tid=70722
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -20176,6 +20246,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65991
+  - dk-tid-70722
 - id: unified-denmark-numismaster-65992
   fuss: seed_unsorted
   phase: numismaster
@@ -20274,6 +20345,10 @@ coins:
   mint: Kopenhagen
   catalog:
     km: '754'
+    bruun_collection_id: '8208'
+    bruun_part: IV
+    bruun_lot_no: 17196
+    bruun_page: 104
   metal: copper
   metal_verified: true
   fineness_verified: false
@@ -20281,12 +20356,20 @@ coins:
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 7.3
+    source: ucoin
   - value: 7.308
     source: numismaster
   sources:
   - type: literature
     url: https://numismaster.com/MC_65994
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1852/?tid=70724
+    ref: ucoin
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17196, p. 104
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -20297,6 +20380,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65994
+  - dk-tid-70724
 - id: unified-denmark-numismaster-65995
   fuss: seed_unsorted
   phase: numismaster
@@ -20306,18 +20390,32 @@ coins:
   year_last: 1853
   year_label: '1853'
   ruler: Frederik VII
+  mint: Kopenhagen
   catalog:
     km: '756'
+    bruun_collection_id: '8215'
+    bruun_part: IV
+    bruun_lot_no: 17200
+    bruun_page: 105
   metal: copper
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 7.18
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65995
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1853/?tid=70725
+    ref: ucoin
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17200, p. 105
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -20328,6 +20426,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65995
+  - dk-tid-70725
 - id: unified-denmark-numismaster-65998
   fuss: seed_unsorted
   phase: numismaster
@@ -20411,6 +20510,7 @@ coins:
   year_last: 1818
   year_label: '1818'
   ruler: Frederik VI
+  mint: Kopenhagen
   catalog:
     km: '689'
   metal: copper
@@ -20422,10 +20522,15 @@ coins:
   weight_rough_g:
   - value: 14.616
     source: numismaster
+  - value: 14.62
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66003
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-rigsbankskilling-1818/?tid=70745
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -20436,6 +20541,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-66003
+  - dk-tid-70745
 - id: unified-denmark-numismaster-66005
   fuss: seed_unsorted
   phase: numismaster
@@ -20494,6 +20600,10 @@ coins:
   mint: Kopenhagen
   catalog:
     km: '728'
+    bruun_collection_id: '8142'
+    bruun_part: IV
+    bruun_lot_no: 17178
+    bruun_page: 99
   metal: copper
   metal_verified: true
   fineness_verified: false
@@ -20503,10 +20613,18 @@ coins:
   weight_rough_g:
   - value: 14.616
     source: numismaster
+  - value: 14.62
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66007
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-rigsbankskilling-1842/?tid=70748
+    ref: ucoin
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17178, p. 99
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -20517,6 +20635,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-66007
+  - dk-tid-70748
 - id: unified-denmark-numismaster-66008
   fuss: seed_unsorted
   phase: numismaster
@@ -22988,6 +23107,252 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-66221
+- id: unified-denmark-numismaster-66277
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 6 Skilling
+  year_first: 1813
+  year_last: 1813
+  year_label: '1813'
+  ruler: Frederik VI.
+  mint: Kopenhagen
+  catalog:
+    km: Tn1
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 7.0
+    source: numismaster
+  - value: 7.31
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_66277
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-6-skilling-1813/?tid=81022
+    ref: ucoin
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: danish_realm
+  composed_of:
+  - denmark-numismaster-66277
+  - dk-tid-81022
+- id: unified-denmark-numismaster-66282
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 2 Skilling
+  year_first: 1815
+  year_last: 1815
+  year_label: '1815'
+  ruler: Frederik VI.
+  mint: Kopenhagen
+  catalog:
+    km: Tn4
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.5
+    source: numismaster
+  - value: 2.5
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_66282
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-skilling-1815/?tid=81019
+    ref: ucoin
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: danish_realm
+  composed_of:
+  - denmark-numismaster-66282
+  - dk-tid-81019
+- id: unified-denmark-numismaster-66283
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 3 Skilling
+  year_first: 1815
+  year_last: 1815
+  year_label: '1815'
+  ruler: Frederik VI.
+  mint: Kopenhagen
+  catalog:
+    km: Tn5
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 3.75
+    source: numismaster
+  - value: 3.75
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_66283
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-3-skilling-1815/?tid=81020
+    ref: ucoin
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: danish_realm
+  composed_of:
+  - denmark-numismaster-66283
+  - dk-tid-81020
+- id: unified-denmark-numismaster-66285
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 4 Skilling
+  year_first: 1815
+  year_last: 1815
+  year_label: '1815'
+  ruler: Frederik VI.
+  mint: Kopenhagen
+  catalog:
+    km: Tn6
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 4.8
+    source: ucoin
+  - value: 9.75
+    source: numismaster
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_66285
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-skilling-1815/?tid=81021
+    ref: ucoin
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: danish_realm
+  composed_of:
+  - denmark-numismaster-66285
+  - dk-tid-81021
+- id: unified-denmark-numismaster-66287
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 12 Skilling
+  year_first: 1813
+  year_last: 1813
+  year_label: '1813'
+  ruler: Frederik VI.
+  mint: Kopenhagen
+  catalog:
+    km: Tn2
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 10.0
+    source: numismaster
+  - value: 10.0
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_66287
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-12-skilling-1813/?tid=81023
+    ref: ucoin
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: danish_realm
+  composed_of:
+  - denmark-numismaster-66287
+  - dk-tid-81023
+- id: unified-denmark-numismaster-66289
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 16 Skilling
+  year_first: 1814
+  year_last: 1814
+  year_label: '1814'
+  ruler: Frederik VI.
+  mint: Kopenhagen
+  catalog:
+    km: Tn3
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 14.12
+    source: ucoin
+  - value: 15.0
+    source: numismaster
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_66289
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-16-skilling-1814/?tid=81024
+    ref: ucoin
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: danish_realm
+  composed_of:
+  - denmark-numismaster-66289
+  - dk-tid-81024
 - id: unified-denmark-numismaster-66301
   fuss: seed_unsorted
   phase: numismaster
@@ -63302,258 +63667,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-70718
-- id: unified-dk-tid-70719
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: ½ Rigsbankskilling
-  year_first: 1842
-  year_last: 1842
-  year_label: '1842'
-  ruler: Christian VIII.
-  mint: Kopenhagen
-  catalog:
-    km: '725'
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 3.65
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-2-rigsbankskilling-1842/?tid=70719
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-70719
-- id: unified-dk-tid-70720
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: ½ Rigsbankskilling
-  year_first: 1852
-  year_last: 1852
-  year_label: '1852'
-  ruler: Frederik VII.
-  mint: Kopenhagen
-  catalog:
-    km: '753'
-    bruun_collection_id: '8210'
-    bruun_part: IV
-    bruun_lot_no: 17197
-    bruun_page: 104
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 3.65
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-2-rigsbankskilling-1852/?tid=70720
-    ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17197, p. 104
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-70720
-- id: unified-dk-tid-70722
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 1 Rigsbankskilling
-  year_first: 1818
-  year_last: 1818
-  year_label: '1818'
-  ruler: Frederik VI.
-  mint: Kopenhagen
-  catalog:
-    km: '688'
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 7.31
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1818/?tid=70722
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-70722
-- id: unified-dk-tid-70724
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 1 Rigsbankskilling
-  year_first: 1852
-  year_last: 1852
-  year_label: '1852'
-  ruler: Frederik VII.
-  mint: Kopenhagen
-  catalog:
-    km: '754'
-    bruun_collection_id: '8208'
-    bruun_part: IV
-    bruun_lot_no: 17196
-    bruun_page: 104
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 7.3
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1852/?tid=70724
-    ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17196, p. 104
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-70724
-- id: unified-dk-tid-70725
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 1 Rigsbankskilling
-  year_first: 1853
-  year_last: 1853
-  year_label: '1853'
-  ruler: Frederik VII.
-  mint: Kopenhagen
-  catalog:
-    km: '756'
-    bruun_collection_id: '8215'
-    bruun_part: IV
-    bruun_lot_no: 17200
-    bruun_page: 105
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 7.18
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1853/?tid=70725
-    ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17200, p. 105
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-70725
-- id: unified-dk-tid-70745
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 2 Rigsbankskilling
-  year_first: 1818
-  year_last: 1818
-  year_label: '1818'
-  ruler: Frederik VI.
-  mint: Kopenhagen
-  catalog:
-    km: '689'
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 14.62
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-rigsbankskilling-1818/?tid=70745
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-70745
-- id: unified-dk-tid-70748
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 2 Rigsbankskilling
-  year_first: 1842
-  year_last: 1842
-  year_label: '1842'
-  ruler: Christian VIII.
-  mint: Kopenhagen
-  catalog:
-    km: '728'
-    bruun_collection_id: '8142'
-    bruun_part: IV
-    bruun_lot_no: 17178
-    bruun_page: 99
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 14.62
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-rigsbankskilling-1842/?tid=70748
-    ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17178, p. 99
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-70748
 - id: unified-dk-tid-70756
   fuss: seed_unsorted
   phase: ucoin
@@ -64124,38 +64237,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-79526
-- id: unified-dk-tid-79552
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 1 Skilling
-  year_first: 1812
-  year_last: 1812
-  year_label: '1812'
-  ruler: Frederik VI.
-  mint: Kopenhagen
-  catalog:
-    km: '671'
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 0.78
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-skilling-1812/?tid=79552
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-79552
 - id: unified-dk-tid-79553
   fuss: seed_unsorted
   phase: ucoin
@@ -64194,108 +64275,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-79553
-- id: unified-dk-tid-79554
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 2 Skilling
-  year_first: 1809
-  year_last: 1810
-  year_ranges:
-  - - 1809
-    - 1810
-  year_label: 1809-1810
-  ruler: Frederik VI.
-  mint: Kopenhagen
-  catalog:
-    km: '663'
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 5.5
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-skilling-1809-1810/?tid=79554
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-79554
-- id: unified-dk-tid-79555
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 2 Skilling
-  year_first: 1810
-  year_last: 1811
-  year_ranges:
-  - - 1810
-    - 1811
-  year_label: 1810-1811
-  ruler: Frederik VI.
-  mint: Kopenhagen
-  catalog:
-    km: '670'
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 4.9
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-skilling-1810-1811/?tid=79555
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-79555
-- id: unified-dk-tid-79556
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 3 Skilling
-  year_first: 1812
-  year_last: 1812
-  year_label: '1812'
-  ruler: Frederik VI.
-  mint: Kopenhagen
-  catalog:
-    km: '672'
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 2.44
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-3-skilling-1812/?tid=79556
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-79556
 - id: unified-dk-tid-79558
   fuss: seed_unsorted
   phase: ucoin
@@ -64367,38 +64346,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-94058
-- id: unified-dk-tid-94070
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: ½ Skilling
-  year_first: 1745
-  year_last: 1745
-  year_label: '1745'
-  ruler: Christian VI.
-  mint: Kopenhagen
-  catalog:
-    km: '545'
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 3.654
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-2-skilling-1745/?tid=94070
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-94070
 - id: unified-dk-tid-94124
   fuss: seed_unsorted
   phase: ucoin
@@ -64897,41 +64844,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-94408
-- id: unified-dk-tid-96438
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: ½ Skilling
-  year_first: 1693
-  year_last: 1696
-  year_ranges:
-  - - 1693
-    - 1696
-  year_label: 1693-1696
-  ruler: Christian V.
-  mint: Kopenhagen
-  catalog:
-    km: '421.1'
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 3.654
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-2-skilling-1693-1696/?tid=96438
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-96438
 - id: unified-dk-tid-96448
   fuss: seed_unsorted
   phase: ucoin

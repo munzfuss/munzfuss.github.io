@@ -71,8 +71,14 @@ LOCATION_CACHES: dict[str, list[str]] = {
 EXCLUDED_COINAGE_ENTITIES: frozenset[str] = frozenset({
     "Patterns",                 # §9.1 pattern strikes (Pn-prefix KMs)
     "Trial Strikes",            # §9.1 trial / probe strikes (TS-prefix KMs)
-    "Token Coinage",            # §9.2 exonumia — local tokens
-    "Gutschriftsmarke Coinage", # §9.2 exonumia — credit-marker tokens
+    "Gutschriftsmarke Coinage", # §9.2 exonumia — credit-marker tokens (no denomination)
+    # NOTE: «Token Coinage» (Tn-prefix KMs) is NOT excluded — Krause's
+    # Tn range covers crown-issued small-change emergency / Scheide
+    # coinage in our scope (Christian VI, Frederik VI). When such a Tn
+    # piece carries a denomination + period weight/composition, it
+    # belongs in the table as a Scheidemünze. Per-case classification
+    # (Müntzfuß + phase) is curator's decision. See v2_seed_writer.py
+    # `_OUT_OF_SCOPE_KM_PREFIXES` for the parallel rationale.
 })
 
 

@@ -374,20 +374,24 @@ def _is_out_of_scope_nominal(nominal) -> bool:
 
 
 # Krause-catalog prefix tokens that mark an entry as exonumia /
-# non-circulation per CLAUDE.md §9.1-§9.2:
-#   Tn* — Token Coinage (private / merchant tokens)
-#   Pn* — Pattern strikes
-#   TS* — Trial Strikes
-#   E*  — Essais (experimental strikes)
-# All four are filtered identically: not struck for circulation,
-# belong to exonumia register, not the project's coin table.
-_OUT_OF_SCOPE_KM_PREFIXES: tuple[str, ...] = ("Tn", "Pn", "TS", "E")
+# non-circulation per CLAUDE.md §9.1: trial strikes / pattern strikes
+# («Pn*», «TS*»), essais («E*»). Tokens («Tn*») are NOT filtered here:
+# Krause's Tn prefix covers a range of issues from private merchant
+# tokens to crown-issued small-change with full denomination markings
+# (e.g. Christian VI / Frederik VI 1814-1815 token coinage — KM# Tn1-Tn6
+# in Denmark). When such a Tn-piece carries a denomination + period-
+# correct weight/composition attested by an acceptable source (per
+# §5), it belongs in the catalogue as a Scheidemünze. Filtering on
+# bare Tn prefix would silently drop legitimate circulation-adjacent
+# small-change coinage. Per-case classification (which Müntzfuß +
+# phase + kind) is the curator's call, not a hard-block at hygiene.
+_OUT_OF_SCOPE_KM_PREFIXES: tuple[str, ...] = ("Pn", "TS")
 
 
 def _is_out_of_scope_catalog(catalog) -> bool:
-    """Return True when `catalog.km` carries a Krause exonumia prefix
-    (Tn / Pn / TS / E). Per §9.1-§9.2 these are not circulation coins
-    and don't belong in any seed. Handles scalar and list-form km."""
+    """Return True when `catalog.km` carries a Krause non-circulation
+    prefix (Pn = Pattern, TS = Trial Strike). Tn = Token deliberately
+    NOT filtered — see _OUT_OF_SCOPE_KM_PREFIXES docstring above."""
     if not isinstance(catalog, dict):
         return False
     km = catalog.get("km")

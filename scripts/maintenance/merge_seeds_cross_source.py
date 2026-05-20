@@ -842,15 +842,33 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     fallback = {}
     why = []
 
-    # Metal
+    # Metal — verified-wins rule (CLAUDE.md §4, extended 2026-05-19
+    # operational consequence #1: a `metal_verified: false` value
+    # cannot DISPROVE a merge). Without this rule, a builder-inferred
+    # billon guess on a Tn-token blocks the merge with a source-attested
+    # copper reading from NumisMaster.
     ma = _normalise_metal(coin_a.get("metal"), coin_a.get("fineness"))
     mb = _normalise_metal(coin_b.get("metal"), coin_b.get("fineness"))
+    a_metal_verified = bool(coin_a.get("metal_verified"))
+    b_metal_verified = bool(coin_b.get("metal_verified"))
     if ma and mb:
-        primary["metal"] = (ma == mb)
-        if not primary["metal"]:
-            why.append(f"metal: {ma} ≠ {mb}")
+        if ma == mb:
+            primary["metal"] = True
+        elif a_metal_verified and b_metal_verified:
+            # Both sides attest a metal — genuine disagreement, no merge
+            primary["metal"] = False
+            why.append(f"metal: {ma} ≠ {mb} (both attested)")
             return {"decision": "no_match", "primary": primary,
                     "fallback": fallback, "why": why}
+        else:
+            # At least one side is unverified (builder-inferred guess).
+            # Don't let an unverified value disprove a verified one.
+            primary["metal"] = None
+            why.append(
+                f"metal: {ma}({'✓' if a_metal_verified else '?'}) vs "
+                f"{mb}({'✓' if b_metal_verified else '?'}) — unverified "
+                "side ignored per §4"
+            )
     else:
         primary["metal"] = None
 
@@ -1262,6 +1280,39 @@ def _collect_mints(members: list[dict]) -> str | list[str] | None:
     return sorted(mints_set)
 
 
+def _collect_metal(members: list[dict]) -> str | None:
+    """Pick metal across unified members per verified-wins precedence.
+
+    Per CLAUDE.md §4 «verified-wins-over-unverified» applied to metal:
+    a `metal_verified: False` value is typically a builder inference
+    (ucoin builder maps Müntzfuß → metal, NumisMaster builder maps
+    composition → metal). When two builders disagree on metal AND only
+    one side is `metal_verified: True`, the verified side wins.
+
+    Precedence (mirrors `_collect_mints`):
+      Tier 1: ANY member has `metal_verified: True`
+              → use the highest-_authority_score member among those
+      Tier 2: All members unverified
+              → fall back to first non-None metal among the highest-
+              authority-scored members
+      Tier 3: No metal anywhere → None
+    """
+    # Tier 1: verified attestations
+    verified = [m for m in members if bool(m.get("metal_verified")) and m.get("metal")]
+    if verified:
+        verified_sorted = sorted(
+            verified, key=lambda c: -_authority_score(c.get("id", "")))
+        return verified_sorted[0].get("metal")
+    # Tier 2: highest-authority unverified
+    sorted_members = sorted(
+        members, key=lambda c: -_authority_score(c.get("id", "")))
+    for m in sorted_members:
+        v = m.get("metal")
+        if v:
+            return v
+    return None
+
+
 def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
     str | dict | None, list[tuple[str, str, str]]
 ]:
@@ -1621,8 +1672,8 @@ def build_unified(members: list[dict], unified_id: str,
         out["catalog"] = cat
     conflicts.extend(cat_conflicts)
 
-    # Metal — gap-fill
-    metal = _take_first_non_none(sorted_members, "metal")
+    # Metal — verified-wins (CLAUDE.md §4 / consequence #2).
+    metal = _collect_metal(members)
     if metal:
         out["metal"] = metal
 

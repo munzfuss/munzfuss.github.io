@@ -2,8 +2,8 @@
 # Generated 2026-05-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 703 per-source seed entries.
-# Output: 469 unified entries (one per physical coin).
+# Input: 705 per-source seed entries.
+# Output: 470 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -7614,6 +7614,42 @@ coins:
   composed_of:
   - denmark-numismaster-110818
   - dk-tid-145789
+- id: unified-denmark-numismaster-110875
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 16 Skilling
+  year_first: 1689
+  year_last: 1689
+  year_label: '1689'
+  catalog:
+    km: Tn2
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.672
+    source: numismaster
+  weight_rough_g:
+  - value: 5.57
+    source: numismaster
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110875
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-110875
 - id: unified-denmark-numismaster-122238
   fuss: seed_unsorted
   phase: numismaster
@@ -13271,6 +13307,7 @@ coins:
   ruler: Christian V.
   mint: Christiania
   catalog:
+    km: Tn1
     hede: '63'
     hede_volume: nc5h
     schou: '19'
@@ -13283,10 +13320,17 @@ coins:
   fineness:
   - value: 0.672
     source: hede
+  - value: 0.672
+    source: numismaster
   weight_rough_g:
   - value: 4.176
     source: hede
+  - value: 4.18
+    source: numismaster
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110874
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h63.htm
     ref: danskmoent.dk (Hede nc5h63)
@@ -13302,6 +13346,7 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
+  - denmark-numismaster-110874
   - dk-hede-nc5h63
 - id: unified-dk-hede-nc5h67
   fuss: seed_unsorted

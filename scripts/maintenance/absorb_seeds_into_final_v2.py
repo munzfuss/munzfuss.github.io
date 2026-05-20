@@ -74,6 +74,7 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     _collect_field_list,
     _collect_sources,
     _collect_mints,
+    _collect_metal,
     _deep_merge_catalog,
     _union_year_ranges,
     _take_first_non_none,
@@ -226,8 +227,12 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         out["catalog"] = cat
     conflicts.extend(cat_conflicts)
 
-    # Metal — foundation wins (gap-fill from unified if final lacks)
-    metal = _take_first_non_none(members, "metal")
+    # Metal — verified-wins (CLAUDE.md §4): when foundation carries an
+    # unverified builder-inferred metal (e.g. ucoin's billon-by-
+    # Müntzfuß-default) and a composed_of member attests verified
+    # copper/silver/gold, the verified value wins. Without this rule
+    # foundation's wrong inference outranks a real source attestation.
+    metal = _collect_metal(members)
     if metal:
         out["metal"] = metal
 
@@ -466,6 +471,38 @@ def process_entity(entity_id: str) -> dict:
                 _normalise_catalog(cat)
         kept_finals.append(fe)
     final_entries = kept_finals
+
+    # Stale-foundation purge: when a V1-bootstrap foundation entry
+    # `unified-X` has been merged AWAY by the cross-source merger
+    # (its source seed id `X` now belongs to a different unified
+    # entry's composed_of in seed_unified), the foundation copy is
+    # a stale duplicate. Detection: foundation id no longer exists
+    # as a unified entry AND its source id (strip `unified-` prefix)
+    # appears in some OTHER unified entry's composed_of.
+    stale_foundation_dropped = 0
+    # Build: source seed id → its current unified host
+    seed_to_unified: dict[str, str] = {}
+    for uid, ue in unified_by_id.items():
+        for sid in ue.get("composed_of") or []:
+            seed_to_unified[sid] = uid
+    surviving_finals: list[dict] = []
+    for fe in final_entries:
+        fid = fe.get("id") if isinstance(fe, dict) else None
+        if not fid:
+            surviving_finals.append(fe)
+            continue
+        if (fid.startswith("unified-")
+                and fid not in unified_by_id):
+            source_id = fid[len("unified-"):]
+            new_host = seed_to_unified.get(source_id)
+            if new_host and new_host != fid:
+                stale_foundation_dropped += 1
+                continue
+        surviving_finals.append(fe)
+    if stale_foundation_dropped:
+        print(f"  [{entity_id}] stale-foundation purge: "
+              f"{stale_foundation_dropped} entries dropped (merged into peers)")
+    final_entries = surviving_finals
     final_by_id = {f["id"]: f for f in final_entries if f.get("id")}
 
     bulk_promote_mode = _bulk_promote_mode(entity_id)
