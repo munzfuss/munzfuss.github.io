@@ -1,27 +1,33 @@
 #!/usr/bin/env python3
-"""build_bruun_denmark_seed.py — generate `data/seed/bruun/denmark_pre_1541.yml`
+"""build_bruun_denmark_seed.py — generate Bruun V2 seed entries
 from parsed Bruun-corpus lots.
 
-Scope: §AZ Tier 1 (per `docs/research/denmark_pre_1541_source_survey.md`).
-Hede 1957 monograph does NOT catalogue pre-Christian-III rulers; Bruun
-PDFs are the primary specimen-attestation source for the 1514-1541
-sub-window the §BI anchor rescope opened. This script transforms the
-already-parsed Bruun lot JSON (`scripts/cache/bruun/lots/part{1-4}.json`)
-into project-shaped seed entries that §BF can promote into curated
-`data/locations/denmark.yml` coin entries.
+Scope: the FULL project window for Danish-realm + Norway-under-Danish-
+rule coins (1514-1914). Bruun's L. E. Bruun Collection (Stack's Bowers
+2024-2026, 4 parts) is one of the canonical specimen attestations
+for Danish numismatics — every period from Christian II's Lovkompleks
+through Christian X's Krone-era. Pre-1541 was the original §BI anchor
+scope; expanded to the full window 2026-05-20 (rationale: V2 needs
+cross-source attestation parity with V1, which carried Bruun citations
+on Christian IV-era + later Speciedaler / Krone / Rigsbankdaler issues
+that the pre-1541 window excluded — leading to 62 Bruun-citation
+losses on stale-foundation purge).
 
-This does NOT touch Hede-derived seed (`data/seed/hede/denmark.yml`) —
-Bruun-seed is a parallel source. Both are consumed by §BF.
+This transforms the already-parsed Bruun lot JSON
+(`scripts/cache/bruun/lots/part{1-4}.json`) into project-shaped seed
+entries that the cross-source merger consolidates with parallel
+Hede / Numista / NumisMaster / ucoin attestations.
 
-Scope filter: 1514 ≤ year ≤ 1541 AND region ∈ {DENMARK, NORW AY,
+Scope filter: 1514 ≤ year ≤ 1914 AND region ∈ {DENMARK, NORW AY,
 DENMARK-NORWAY}. Excludes:
-  - Pre-1514 (Hans + Erik VII outside §BI anchor)
-  - 1541+ Christian III post-Møntordning (already covered by hede-seed)
-  - Sweden under Christian II (Kalmar Union political, but treated as
-    out-of-realm for our seed; mints Stockholm 1535 under Christian III
-    pre-king phase ARE kept since Christian III claimed Sweden)
+  - Pre-1514 (Hans + Erik VII outside Christian II Lovkompleks anchor)
+  - Post-1914 (post-precious-metal-anchor era per CLAUDE.md mission scope)
+  - Sweden / other non-realm regions (Kalmar Union political residue
+    treated as out-of-realm; Christian II 1535 Stockholm IS kept since
+    he claimed Sweden)
 
-Output schema mirrors `data/seed/hede/denmark.yml` for parser compatibility:
+Output schema mirrors the other V2 seed sources for cross-source
+merger compatibility:
   - id: `dk-bruun-<bruun-coll-id>` (or `dk-bruun-pt<N>-<lot-no>` if no coll-id)
   - catalog: dict of all attested cross-refs from lot.refs
   - sources: Bruun-lot citation block + Stack's Bowers auction reference
@@ -70,9 +76,12 @@ def _classify_entity(mint, is_norway: bool):
 # Region filter — Bruun parser produced "NORW AY" with internal space
 REALM_REGIONS = {"DENMARK", "NORW AY", "NORWAY", "DENMARK-NORWAY"}
 
-# Year window (per §BI anchor)
+# Year window — full project scope (was 1514-1541 pre-2026-05-20 per the
+# original §BI anchor; expanded to 1514-1914 to recover the 62 lost
+# Bruun citations on Christian IV-era Speciedaler / 17-18th c Krone /
+# Rigsbankdaler / Krone-era entries from V1).
 YEAR_FROM = 1514
-YEAR_TO = 1541
+YEAR_TO = 1914
 
 # Map Bruun ref-key to project catalog field. Keys NOT present in
 # `CatalogRefs` schema (lott, delzanno, sm, hagander, appelgren,
@@ -376,23 +385,15 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     if mintmaster:
         entry["mintmaster"] = mintmaster
 
-    # Rarity flag
-    rarity = parse_rarity(lot.get("rarity"))
-    if rarity:
-        entry["rarity"] = rarity
-
-    # NGC grade as a per-specimen quality flag
-    if lot.get("grade"):
-        entry["ngc_grade"] = lot.get("grade")
-
-    # Bruun-citation fast-lookup anchor
-    bruun_id = refs.get("Bruun")
-    if bruun_id:
-        entry["bruun_collection_id"] = bruun_id
-        entry["bruun_part"] = part
-        entry["bruun_lot_no"] = lot.get("lot_no")
-        if lot.get("page"):
-            entry["bruun_page"] = lot["page"]
+    # Per-specimen quality flags (rarity, NGC grade) are NOT in the
+    # Coin schema top-level — they describe individual specimens not
+    # the coin type. They appear in the Bruun citation `sources[*].ref`
+    # text already (Stack's Bowers prints rarity inline) and don't
+    # need separate fields.
+    # bruun_collection_id / bruun_part / bruun_lot_no / bruun_page
+    # belong in catalog (already populated above via REF_FIELDS map);
+    # don't duplicate at coin top-level. Schema-strict validation
+    # would reject them otherwise.
 
     return entry
 

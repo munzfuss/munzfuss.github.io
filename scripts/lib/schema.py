@@ -303,7 +303,7 @@ class CatalogRefs(_StrictBase):
     # See KMRef docstring for the cross-register rendering rules; see
     # V2_PIPELINE.md §4 for the dict-form rationale.
     km: str | dict[str, str] | list[str | KMRef] | None = None
-    lange: str | None = None
+    lange: str | list[str] | None = None
     # `hede` (and parallel `sieg` / `schou`) accept a list form when the
     # coin is a Krause-KM-canonical entry that spans multiple Hede sub-
     # letters (mint-master / die-cutter variants Krause folds into one

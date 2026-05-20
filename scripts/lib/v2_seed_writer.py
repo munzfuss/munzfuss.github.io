@@ -221,6 +221,13 @@ def _normalise_nominal(raw):
         "",
         s,
     ).strip(" ,")
+    # Strip bare trailing 4-digit year (no comma): «1 Speciedaler 1597»
+    # → «1 Speciedaler». Source page titles often append the year to
+    # the denomination header; that year already lives in `year_first` /
+    # `year_label`, so duplicating it in the nominal field clutters the
+    # rendered text + breaks cross-source nominal-matching when sources
+    # differ on year suffix presence.
+    s = re.sub(r"\s+\d{4}(?:[-–]\d{4})?\s*$", "", s).strip()
     # Strip Numista value_text trailing decorations:
     #   «(Dukaten)» — German translation hint of the same denomination
     #   «(7)» — Numista category number

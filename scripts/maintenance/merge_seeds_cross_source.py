@@ -720,9 +720,17 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     # than coin types themselves. Bruun-collection-id is specimen-level
     # by Bruun's own cataloguing convention (every physical specimen has
     # its own collection id even when of the same coin type) — see §9a.
+    # `sieg` is also added: between Hede 1971's printing and modern Sieg-
+    # Møntkatalog editions, numbering has shifted (e.g. Hede prints
+    # Sieg-112 while modern catalogues use Sieg-96 for the same coin
+    # type — see schema.CatalogRefs.sieg_hede1971 docstring). The
+    # disagreement is a printing-edition artefact, not a coin-type
+    # identity signal — the «what coin is this» question is answered
+    # by Hede / Galster / KM / Dav (parent type-level refs), and Sieg
+    # follows whichever edition each source happened to cite.
     SUB_VARIANT_REFS = {
         "schou", "nmd", "aagaard", "schive", "skjoldager",
-        "bruun_collection_id",
+        "bruun_collection_id", "sieg",
     }
 
     def _numeric_core(v: str) -> str:
@@ -754,16 +762,24 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
             disagreeing.append(k)
     if not disagreeing:
         return ("agree", True)
-    # Tolerance: ≥2 non-sub-variant refs agree AND every disagreement is
-    # a sub-variant field → still agree (Schou-only disagreement on
-    # otherwise-identical Galster + Dav + Sieg → same coin).
+    # Tolerance: at least ONE type-level (non-sub-variant) ref agrees
+    # AND every disagreement is a sub-variant field → still agree.
+    # Type-level agreement (Hede, Galster, KM, Dav, Davenport, Fr,
+    # Lange) establishes coin-type identity; sub-variant disagreements
+    # (Schou, Sieg, NMD, Aagaard, Schive, Skjoldager, bruun_collection_
+    # id) are die-variants / specimens / catalogue-edition splits.
+    # Concrete cases:
+    #   - Hede agrees + Schou differs → same coin (Schou = die-variants)
+    #   - Hede agrees + Sieg differs → same coin (Sieg-1971 vs modern)
+    #   - Galster agrees + Schou + bruun_coll_id differ → same coin
+    #     (multi-specimen merge per §9a)
     non_subvariant_agree = [
         k for k in agreeing if k not in SUB_VARIANT_REFS
     ]
     non_subvariant_disagree = [
         k for k in disagreeing if k not in SUB_VARIANT_REFS
     ]
-    if (len(non_subvariant_agree) >= 2
+    if (len(non_subvariant_agree) >= 1
             and not non_subvariant_disagree):
         return ("agree", True)
     return ("disagree", True)
