@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
-"""build_galster_denmark_seed.py — generate `data/seed/galster/denmark_pre_1541.yml`
-from parsed Galster page sidecars at `scripts/cache/danskmoent/galster/*.json`.
+"""build_galster_denmark_seed.py — V2-native Galster seed builder.
+
+Walks parsed Galster page sidecars at `scripts/cache/danskmoent/galster/*.json`
+and writes entity-keyed V2 seed yamls directly to
+`data/v2/seed/galster/<entity>.yml`.
 
 §AZ Tier 2 (per `docs/research/denmark_pre_1541_source_survey.md`). The
 parsed Galster JSON sidecars carry per-page data (ruler, denomination,
 year, mint, catalog refs, Bruttovægt + Finhed + Finvægt where attested,
-inscription, Litteratur). This script walks those sidecars and emits a
-project-shaped seed YAML for the 1514-1541 sub-window.
+inscription, Litteratur). The 1514-1541 sub-window is the project's
+pre-Hede gap (Hede 1971 starts Christian III 1541).
 
-Parallel to `data/seed/bruun/denmark_pre_1541.yml` (Tier 1) +
-`data/seed/hede/denmark.yml` (existing main seed). §BF promotes entries
-from any of the three into curated `data/locations/denmark.yml` entries
-during its data-population phase.
+V2-native (per CLAUDE.md «V2 entity-keyed pipeline» — V1 frozen):
+output goes directly to `data/v2/seed/galster/<entity>.yml`, NOT through
+the V1→V2 `seed_v2_regroup.py` indirection. Each coin's `issuing_entity`
+(scalar or list-form) determines its home file via `lib.v2_seed_writer`.
 
 Scope filter: 1514 ≤ year ≤ 1541. Norway sub-pages (norge_*.json) and
 Schleswig-Holstein lots are INCLUDED (per §BI «realm» scope).
@@ -25,17 +28,13 @@ import argparse
 import json
 import re
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
-
-import ruamel.yaml
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 from lib.paths import GALSTER_CACHE  # noqa: E402
-from lib.seed_merge import merge_seed  # noqa: E402
-
-OUT_PATH = PROJECT_ROOT / "data" / "seed" / "galster" / "denmark_pre_1541.yml"
+from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
+from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
 YEAR_FROM = 1514
 YEAR_TO = 1541
@@ -75,9 +74,20 @@ def detect_metal(denom: str | None) -> str:
     return "silver"
 
 
-def detect_issuing_entity(sub_realm: str | None, mint: str | None) -> str:
+def detect_issuing_entity(sub_realm: str | None, mint: str | None):
+    """Returns V2 issuing_entity (scalar or list-form for joint mints).
+
+    Uses the centralised `classify_mint_to_entity` (lib/v2_entity_classify.py)
+    so the mapping table is single-source-of-truth across all V2 builders.
+    Falls back by `sub_realm` when the mint is missing or unclassified —
+    keeps Norway-realm coins under `danish_norway` even when the page
+    doesn't name a specific Norge mint."""
+    if mint:
+        result = classify_mint_to_entity(mint)
+        if result:
+            return result
     if sub_realm == "norway":
-        return "norwegian_realm"
+        return "danish_norway"
     return "danish_realm"
 
 
@@ -237,44 +247,27 @@ def main() -> int:
     print(f"By realm:  {dict(by_realm.most_common())}")
     print(f"By metal:  {dict(by_metal.most_common())}")
 
-    if args.dry_run:
-        return 0
-
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-
-    # Merge fresh-generated entries against existing on-disk seed, preserving
-    # curated decisions (CURATED_FIELDS) + dict deep-merges (catalog) +
-    # verified-wins (measurements) + per-entry holds. See scripts/lib/seed_merge.py.
-    if not args.no_merge:
-        entries, merge_stats = merge_seed(entries, OUT_PATH)
-        print(
-            f"\nMerge against existing {OUT_PATH.name}: "
-            f"merged_existing={merge_stats['merged_existing']}, "
-            f"added_new={merge_stats['added_new']}, "
-            f"orphan_curated={merge_stats['orphan_curated']}"
-        )
-
-    yaml = ruamel.yaml.YAML()
-    yaml.preserve_quotes = True
-    yaml.width = 200
-    yaml.indent(mapping=2, sequence=4, offset=2)
-    out = {
-        "status": "seed",
-        "source": "danskmoent.dk Galster-page series (Christian II + Frederik I indexes + Christian III pre-1541)",
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "scope_year_from": YEAR_FROM,
-        "scope_year_to": YEAR_TO,
-        "scope_note": (
-            "§AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian "
-            "II + Frederik I + Christian III pre-1541 (Hede 1957 doesn't "
-            "catalogue these). Parallel source to data/seed/bruun/ (Tier 1) "
-            "and data/seed/hede/ (existing main). §BF promotion uses all three."
+    scope_note = (
+        "§AZ Tier 2 — danskmoent.dk Galster-page harvest. Covers Christian "
+        "II + Frederik I + Christian III pre-1541 (Hede 1971 doesn't "
+        "catalogue these). Parallel source to v2/seed/bruun/ (Tier 1) "
+        "and v2/seed/hede/ (existing main). §BF promotion uses all three."
+    )
+    write_v2_seed(
+        entries,
+        source_name="galster",
+        source_label=(
+            "danskmoent.dk Galster-page series (Christian II + Frederik I "
+            "indexes + Christian III pre-1541)"
         ),
-        "coins": entries,
-    }
-    with OUT_PATH.open("w") as f:
-        yaml.dump(out, f)
-    print(f"\nWrote {OUT_PATH.relative_to(PROJECT_ROOT)} ({len(entries)} entries)")
+        scope_note=scope_note,
+        dry_run=args.dry_run,
+        no_merge=args.no_merge,
+        extra_top_level={
+            "scope_year_from": YEAR_FROM,
+            "scope_year_to": YEAR_TO,
+        },
+    )
     return 0
 
 
