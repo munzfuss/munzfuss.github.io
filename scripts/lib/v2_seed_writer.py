@@ -166,6 +166,24 @@ def _normalise_nominal(raw):
     for bad, good in _NOMINAL_MOJIBAKE_FIXES:
         if bad in s:
             s = s.replace(bad, good)
+    # Strip trailing year-status markers — «uden år» metadata that
+    # accidentally entered the nominal field via parser greed. The
+    # year-status belongs in `year_label` (rendered as «u. å.»);
+    # nominal should hold ONLY the denomination noun. Patterns
+    # observed (Hede pages, mostly Christian IV / Frederik III
+    # undated gold strikes):
+    #   «1 Portugaløser U.år»     → «1 Portugaløser»
+    #   «1/2 Dukat U.år (ca 1648)» → «1/2 Dukat»
+    #   «1 Søsling u.år»          → «1 Søsling»
+    #   «..., u. år (-32)?»       → «...»  (strip from comma onward)
+    # Anchored at end so we don't accidentally strip a denomination
+    # named «UR» or similar (none exist in Danish numismatics).
+    s = re.sub(
+        r"[,\s]+[Uu]\.?\s*[åÅaA]?\.?\s*[Rr]?\.?(?:\s*\((?:[^)]*\)|[^)]*$))?\s*\??$",
+        "",
+        s,
+        flags=re.IGNORECASE,
+    ).strip(" ,")
     # Fraction typography: «1 1/2» / «1-1/2» → «1½»; «1/2» → «½»; etc.
     s = re.sub(r"(\d)\s*[\-\s]\s*1/2\b", r"\1½", s)
     s = re.sub(r"(\d)\s*[\-\s]\s*1/4\b", r"\1¼", s)

@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 334 per-source seed entries.
-# Output: 300 unified entries (one per physical coin).
+# Output: 299 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1133,7 +1133,7 @@ coins:
   fuss: 9_thaler
   phase: I
   kind: scheide
-  nominal: 4 Skilling Lybsk U.år
+  nominal: 4 Skilling Lybsk
   year_first: 1588
   year_last: 1648
   year_ranges:
@@ -1144,6 +1144,7 @@ coins:
   ruler: Christian IV.
   mint: Glückstadt
   catalog:
+    km: '9'
     hede: '167'
     hede_volume: c4h
     schou: 36-48
@@ -1152,18 +1153,29 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.888
     source: hede
+  - value: 0.888
+    source: x007
   weight_rough_g:
+  - value: 1.93
+    source: x007
   - value: 2.016
     source: hede
+  diameter_mm:
+  - value: 18.0
+    source: x007
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h167.htm
     ref: danskmoent.dk (Hede c4h167)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-skilling-lybsk-1620/?tid=163638
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -1177,11 +1189,12 @@ coins:
     unit_raw: daler
   composed_of:
   - dk-hede-c4h167
+  - km-x007-chr-iv-1620
 - id: unified-dk-hede-c4h169
   fuss: 9_thaler
   phase: I
   kind: kurant
-  nominal: 1 Denning U.år
+  nominal: 1 Denning
   year_first: 1619
   year_last: 1619
   year_label: '1619'
@@ -8756,47 +8769,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - km-x005-chr-iv-1620
-- id: unified-km-x007-chr-iv-1620
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 4 skilling lybsk
-  year_first: 1620
-  year_last: 1620
-  year_label: '1620'
-  ruler: Christian IV
-  catalog:
-    km: '9'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.888
-    source: x007
-  weight_rough_g:
-  - value: 1.93
-    source: x007
-  diameter_mm:
-  - value: 18.0
-    source: x007
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-skilling-lybsk-1620/?tid=163638
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - km-x007-chr-iv-1620
 - id: unified-km-x011-fr-iv-1719-half
   fuss: seed_unsorted
   phase: ucoin
