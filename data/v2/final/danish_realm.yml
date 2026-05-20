@@ -1150,8 +1150,7 @@ coins:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of:
-  - unified-dk-tid-162984
+  composed_of: []
   v1_home_location: denmark
 - fuss: 9_thaler
   phase: I
@@ -1559,8 +1558,7 @@ coins:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of:
-  - unified-dk-tid-163001
+  composed_of: []
   v1_home_location: denmark
 - fuss: 9_thaler
   phase: I
@@ -1599,8 +1597,7 @@ coins:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of:
-  - unified-dk-tid-163011
+  composed_of: []
   v1_home_location: denmark
 - fuss: 9_thaler
   phase: I
@@ -1788,8 +1785,7 @@ coins:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of:
-  - unified-dk-tid-163030
+  composed_of: []
   v1_home_location: denmark
 - fuss: 9_thaler
   phase: I
@@ -2001,10 +1997,10 @@ coins:
   fraction: 1/3
   id: dk-tid-163046
   year_first: 1606
-  year_last: 1609
+  year_last: 1607
   year_ranges:
   - - 1606
-    - 1609
+    - 1607
   year_label: 1607-1609
   mint: Kopenhagen
   catalog:
@@ -2052,7 +2048,6 @@ coins:
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   composed_of:
   - unified-dk-hede-c4h92b
-  - unified-dk-tid-163046
   v1_home_location: denmark
 - fuss: kronemont_chr_iv
   phase: I
@@ -28348,8 +28343,7 @@ coins:
       Speciedaler 1582-1624 — Royal Danish Copenhagen) та KM-DK# 85 (Royal-Danish-Krause-індекс без SH-аналогу) переатрибутовано
       як королівсько-данську копенгагенську монету (1622–1623). Монетний двір лишається (?) — прямого підтвердження за Hede/Wilcke
       немає.
-  composed_of:
-  - unified-km-x017-chr-iv-1622
+  composed_of: []
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
@@ -44205,7 +44199,9 @@ coins:
   year_first: 1524
   year_last: 1524
   year_label: '1524'
-  mint: Copenhagen
+  mint:
+  - Copenhagen
+  - Landskrone
   catalog:
     bruun_collection_id: '3977'
     sieg: '18'
@@ -44213,6 +44209,8 @@ coins:
     bruun_part: II
     bruun_lot_no: 13051
     bruun_page: 51
+    galster: '65'
+    galster_volume: f1g
   metal: billon
   fineness_verified: false
   weight_rough_verified: true
@@ -44224,6 +44222,9 @@ coins:
   sources:
   - type: literature
     ref: Bruun-3977 · Stack's Bowers Bruun Collection Part II, lot 13051
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g65.htm
+    ref: Galster 65 (f1g) — danskmoent.dk fr_f1g65.htm
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -46197,8 +46198,7 @@ coins:
     uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
       Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
       Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-f1g-65
+  composed_of: []
 - fuss: seed_unsorted
   phase: galster
   kind: kurant
@@ -59552,13 +59552,21 @@ coins:
   - - 1607
     - 1609
   year_label: 1607–1609
-  mint: Helsingør
+  mint:
+  - Helsingør
+  - Kopenhagen
   catalog:
+    km: '36'
     hede: 95A
     hede_volume: c4h
     schou: 7-14,10-30,9-15
     sieg: '73'
+    bruun_collection_id: '4739'
+    bruun_part: III
+    bruun_lot_no: 11182
+    bruun_page: 95
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -59566,13 +59574,23 @@ coins:
   fineness:
   - value: 0.888
     source: hede
+  - value: 0.888
+    source: tid
   weight_rough_g:
+  - value: 6.15
+    source: tid
   - value: 6.154
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h95.htm
     ref: danskmoent.dk (Hede c4h95A)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-mark-1607-1609/?tid=163046
+    ref: ucoin
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 11182, p. 95
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -59637,12 +59655,14 @@ coins:
   issuing_entity: danish_realm
   id: unified-dk-hede-c4h96
   year_first: 1606
-  year_last: 1608
+  year_last: 1609
   year_ranges:
   - - 1606
-    - 1608
+    - 1609
   year_label: '1608'
-  mint: Helsingør
+  mint:
+  - Helsingør
+  - Kopenhagen
   catalog:
     km: '32'
     hede: '96'
@@ -59660,7 +59680,11 @@ coins:
     source: hede
   - value: 0.888
     source: numismaster
+  - value: 0.888
+    source: tid
   weight_rough_g:
+  - value: 2.92
+    source: tid
   - value: 2.923
     source: hede
   - value: 2.923
@@ -59672,6 +59696,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h96.htm
     ref: danskmoent.dk (Hede c4h96)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-8-skilling-1606-1609/?tid=163031
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -61250,30 +61277,44 @@ coins:
   issuing_entity: danish_realm
   id: unified-dk-hede-f2h24
   year_first: 1582
-  year_last: 1582
+  year_last: 1585
+  year_ranges:
+  - - 1582
+    - 1585
   year_label: '1582'
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
+    km: UC# 5
     hede: '24'
     hede_volume: f2h
     schou: '3'
     sieg: '13'
     fr: '2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
   fineness:
+  - value: 0.61
+    source: tid
   - value: 0.614
     source: hede
   weight_rough_g:
+  - value: 4.45
+    source: tid
   - value: 4.872
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h24.htm
     ref: danskmoent.dk (Hede f2h24)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-8-skilling-1582-1585/?tid=163030
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -61392,14 +61433,18 @@ coins:
   - - 1582
     - 1583
   year_label: 1582–1583
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
+    km: UC# 2
     hede: '28'
     hede_volume: f2h
     schou: '19'
     sieg: '5'
     fr: '2'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -61407,13 +61452,20 @@ coins:
   fineness:
   - value: 0.187
     source: hede
+  - value: 0.187
+    source: tid
   weight_rough_g:
   - value: 1.772
     source: hede
+  - value: 1.8
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h28.htm
     ref: danskmoent.dk (Hede f2h28)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-skilling-1582-1583/?tid=163001
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -61439,14 +61491,18 @@ coins:
   - - 1582
     - 1583
   year_label: 1582–1583
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
+    km: UC# 1
     hede: '29'
     hede_volume: f2h
     schou: '25'
     sieg: '2'
     fr: '2'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -61454,13 +61510,20 @@ coins:
   fineness:
   - value: 0.166
     source: hede
+  - value: 0.166
+    source: tid
   weight_rough_g:
+  - value: 0.63
+    source: tid
   - value: 0.632
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h29.htm
     ref: danskmoent.dk (Hede f2h29)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-hvid-1582-1583/?tid=162984
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -67725,13 +67788,17 @@ coins:
   - - 1622
     - 1623
   year_label: 1622–1623
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
     km: '85'
     hede: '121'
     hede_volume: c4h
     schou: '7'
     sieg: '68'
+    others:
+    - KM-DK# 85
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -67743,7 +67810,11 @@ coins:
     source: hede
   - value: 0.888
     source: numismaster
+  - value: 0.888
+    source: x017
   weight_rough_g:
+  - value: 3.02
+    source: ucoin
   - value: 3.024
     source: hede
   - value: 3.024
@@ -67755,6 +67826,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h121.htm
     ref: danskmoent.dk (Hede c4h121)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-12-skilling-1622-1623/?tid=163037
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -67781,7 +67855,9 @@ coins:
   - - 1622
     - 1623
   year_label: 1622–1623
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
     km: '84'
     hede: '122'
@@ -67799,7 +67875,11 @@ coins:
     source: hede
   - value: 0.888
     source: numismaster
+  - value: 0.888
+    source: tid
   weight_rough_g:
+  - value: 2.0
+    source: tid
   - value: 2.016
     source: hede
   sources:
@@ -67809,6 +67889,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h122.htm
     ref: danskmoent.dk (Hede c4h122)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-8-skilling-1622-1623/?tid=163027
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -69670,7 +69753,9 @@ coins:
   - - 1608
     - 1609
   year_label: 1608–1609
-  mint: Helsingør
+  mint:
+  - Helsingør
+  - Kopenhagen
   catalog:
     km: '41'
     hede: '97'
@@ -69688,7 +69773,11 @@ coins:
     source: hede
   - value: 0.888
     source: numismaster
+  - value: 0.888
+    source: tid
   weight_rough_g:
+  - value: 1.46
+    source: tid
   - value: 1.462
     source: hede
   - value: 1.462
@@ -69700,6 +69789,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h97.htm
     ref: danskmoent.dk (Hede c4h97)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-skilling-1608-1609/?tid=163022
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -72754,18 +72846,20 @@ coins:
   year_last: 1585
   year_ranges:
   - - 1582
-    - 1583
-  - - 1585
     - 1585
   year_label: 1582–1583, 1585
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
+    km: UC# 3
     hede: '27'
     hede_volume: f2h
     schou: '6'
     sieg: '8'
     fr: '2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -72773,13 +72867,20 @@ coins:
   fineness:
   - value: 0.312
     source: hede
+  - value: 0.312
+    source: tid
   weight_rough_g:
   - value: 2.338
     source: hede
+  - value: 2.4
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h27.htm
     ref: danskmoent.dk (Hede f2h27)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-skilling-1582-1585/?tid=163011
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from

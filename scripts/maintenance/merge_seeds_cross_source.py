@@ -791,7 +791,23 @@ def _mints_overlap(a, b):
     mb = _normalise_mints(b.get("mint"))
     if not (ma and mb):
         return None
-    return bool(ma & mb)
+    if ma & mb:
+        return True
+    # No overlap — check whether either side's mint is curator-attested
+    # (`mint_verified: True`). An UNVERIFIED mint is a V1-bootstrap
+    # fallback (typically «Kopenhagen» as default for Danish coins) or
+    # a parser guess — it cannot DISPROVE a merge against a verified
+    # authority like Hede 1971's page header. When one side is verified
+    # and the other isn't, return None (unknown) instead of False.
+    #
+    # When BOTH sides are unverified, the mint signal is fully advisory;
+    # also return None to let other signals drive the decision.
+    av = bool(a.get("mint_verified"))
+    bv = bool(b.get("mint_verified"))
+    if av != bv or (not av and not bv):
+        return None
+    # Both verified, no overlap — real divergence
+    return False
 
 
 # ---------------------------------------------------------------------------

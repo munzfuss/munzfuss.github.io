@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 2026 per-source seed entries.
-# Output: 1652 unified entries (one per physical coin).
+# Output: 1642 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -24614,7 +24614,9 @@ coins:
   year_last: 1524
   year_label: '1524'
   ruler: Frederik I
-  mint: Copenhagen
+  mint:
+  - Copenhagen
+  - Landskrone
   catalog:
     bruun_collection_id: '3977'
     sieg: '18'
@@ -24622,6 +24624,8 @@ coins:
     bruun_part: II
     bruun_lot_no: 13051
     bruun_page: 51
+    galster: '65'
+    galster_volume: f1g
   metal: billon
   fineness_verified: false
   weight_rough_verified: true
@@ -24633,6 +24637,9 @@ coins:
   sources:
   - type: literature
     ref: Bruun-3977 · Stack's Bowers Bruun Collection Part II, lot 13051
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g65.htm
+    ref: Galster 65 (f1g) — danskmoent.dk fr_f1g65.htm
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -24647,6 +24654,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-bruun-3977
+  - dk-galster-f1g-65
 - id: unified-dk-bruun-3978
   fuss: seed_unsorted
   phase: bruun
@@ -27467,41 +27475,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-f1g-64
-- id: unified-dk-galster-f1g-65
-  fuss: seed_unsorted
-  phase: galster
-  kind: kurant
-  nominal: 14 Penning
-  year_first: 1524
-  year_last: 1524
-  year_label: '1524'
-  ruler: Frederik I
-  mint: Landskrone
-  catalog:
-    galster: '65'
-    galster_volume: f1g
-  metal: billon
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f1g65.htm
-    ref: Galster 65 (f1g) — danskmoent.dk fr_f1g65.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-galster-f1g-65
 - id: unified-dk-galster-f1g-66
   fuss: seed_unsorted
   phase: galster
@@ -30473,13 +30446,17 @@ coins:
     - 1623
   year_label: 1622–1623
   ruler: Christian IV.
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
     km: '85'
     hede: '121'
     hede_volume: c4h
     schou: '7'
     sieg: '68'
+    others:
+    - KM-DK# 85
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -30491,7 +30468,11 @@ coins:
     source: hede
   - value: 0.888
     source: numismaster
+  - value: 0.888
+    source: x017
   weight_rough_g:
+  - value: 3.02
+    source: ucoin
   - value: 3.024
     source: hede
   - value: 3.024
@@ -30503,6 +30484,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h121.htm
     ref: danskmoent.dk (Hede c4h121)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-12-skilling-1622-1623/?tid=163037
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -30517,6 +30501,7 @@ coins:
   composed_of:
   - denmark-numismaster-65133
   - dk-hede-c4h121
+  - km-x017-chr-iv-1622
 - id: unified-dk-hede-c4h122
   fuss: kronemont_chr_iv
   phase: I
@@ -30530,7 +30515,9 @@ coins:
   year_label: 1622–1623
   fraction: 1/12
   ruler: Christian IV.
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
     km: '84'
     hede: '122'
@@ -30548,7 +30535,11 @@ coins:
     source: hede
   - value: 0.888
     source: numismaster
+  - value: 0.888
+    source: tid
   weight_rough_g:
+  - value: 2.0
+    source: tid
   - value: 2.016
     source: hede
   sources:
@@ -30558,6 +30549,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h122.htm
     ref: danskmoent.dk (Hede c4h122)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-8-skilling-1622-1623/?tid=163027
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -30572,6 +30566,7 @@ coins:
   composed_of:
   - denmark-numismaster-65123
   - dk-hede-c4h122
+  - dk-tid-163027
 - id: unified-dk-hede-c4h13
   fuss: reichsdukatenfuss
   phase: I
@@ -34843,13 +34838,21 @@ coins:
     - 1609
   year_label: 1607–1609
   ruler: Christian IV.
-  mint: Helsingør
+  mint:
+  - Helsingør
+  - Kopenhagen
   catalog:
+    km: '36'
     hede: 95A
     hede_volume: c4h
     schou: 7-14,10-30,9-15
     sieg: '73'
+    bruun_collection_id: '4739'
+    bruun_part: III
+    bruun_lot_no: 11182
+    bruun_page: 95
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -34857,13 +34860,23 @@ coins:
   fineness:
   - value: 0.888
     source: hede
+  - value: 0.888
+    source: tid
   weight_rough_g:
+  - value: 6.15
+    source: tid
   - value: 6.154
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h95.htm
     ref: danskmoent.dk (Hede c4h95A)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-mark-1607-1609/?tid=163046
+    ref: ucoin
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 11182, p. 95
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -34877,6 +34890,7 @@ coins:
     unit_raw: daler
   composed_of:
   - dk-hede-c4h95a
+  - dk-tid-163046
 - id: unified-dk-hede-c4h95b
   fuss: seed_unsorted
   phase: hede
@@ -34926,14 +34940,16 @@ coins:
   kind: scheide
   nominal: 8 Skilling
   year_first: 1606
-  year_last: 1608
+  year_last: 1609
   year_ranges:
   - - 1606
-    - 1608
+    - 1609
   year_label: '1608'
   fraction: 1/12
   ruler: Christian IV.
-  mint: Helsingør
+  mint:
+  - Helsingør
+  - Kopenhagen
   catalog:
     km: '32'
     hede: '96'
@@ -34951,7 +34967,11 @@ coins:
     source: hede
   - value: 0.888
     source: numismaster
+  - value: 0.888
+    source: tid
   weight_rough_g:
+  - value: 2.92
+    source: tid
   - value: 2.923
     source: hede
   - value: 2.923
@@ -34963,6 +34983,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h96.htm
     ref: danskmoent.dk (Hede c4h96)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-8-skilling-1606-1609/?tid=163031
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -34977,6 +35000,7 @@ coins:
   composed_of:
   - denmark-numismaster-65115
   - dk-hede-c4h96
+  - dk-tid-163031
 - id: unified-dk-hede-c4h97
   fuss: 9_thaler
   phase: I
@@ -34990,7 +35014,9 @@ coins:
   year_label: 1608–1609
   fraction: 1/24
   ruler: Christian IV.
-  mint: Helsingør
+  mint:
+  - Helsingør
+  - Kopenhagen
   catalog:
     km: '41'
     hede: '97'
@@ -35008,7 +35034,11 @@ coins:
     source: hede
   - value: 0.888
     source: numismaster
+  - value: 0.888
+    source: tid
   weight_rough_g:
+  - value: 1.46
+    source: tid
   - value: 1.462
     source: hede
   - value: 1.462
@@ -35020,6 +35050,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h97.htm
     ref: danskmoent.dk (Hede c4h97)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-skilling-1608-1609/?tid=163022
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -35034,6 +35067,7 @@ coins:
   composed_of:
   - denmark-numismaster-65089
   - dk-hede-c4h97
+  - dk-tid-163022
 - id: unified-dk-hede-c4h99a
   fuss: 9_thaler
   phase: I
@@ -44634,32 +44668,46 @@ coins:
   kind: scheide
   nominal: 8 Skilling
   year_first: 1582
-  year_last: 1582
+  year_last: 1585
+  year_ranges:
+  - - 1582
+    - 1585
   year_label: '1582'
   fraction: 1/12
   ruler: Frederik II.
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
+    km: UC# 5
     hede: '24'
     hede_volume: f2h
     schou: '3'
     sieg: '13'
     fr: '2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
   fineness:
+  - value: 0.61
+    source: tid
   - value: 0.614
     source: hede
   weight_rough_g:
+  - value: 4.45
+    source: tid
   - value: 4.872
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h24.htm
     ref: danskmoent.dk (Hede f2h24)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-8-skilling-1582-1585/?tid=163030
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -44673,6 +44721,7 @@ coins:
     unit_raw: daler
   composed_of:
   - dk-hede-f2h24
+  - dk-tid-163030
 - id: unified-dk-hede-f2h25
   fuss: seed_unsorted
   phase: hede
@@ -44774,19 +44823,21 @@ coins:
   year_last: 1585
   year_ranges:
   - - 1582
-    - 1583
-  - - 1585
     - 1585
   year_label: 1582–1583, 1585
   ruler: Frederik II.
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
+    km: UC# 3
     hede: '27'
     hede_volume: f2h
     schou: '6'
     sieg: '8'
     fr: '2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -44794,13 +44845,20 @@ coins:
   fineness:
   - value: 0.312
     source: hede
+  - value: 0.312
+    source: tid
   weight_rough_g:
   - value: 2.338
     source: hede
+  - value: 2.4
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h27.htm
     ref: danskmoent.dk (Hede f2h27)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-skilling-1582-1585/?tid=163011
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -44814,6 +44872,7 @@ coins:
     unit_raw: daler
   composed_of:
   - dk-hede-f2h27
+  - dk-tid-163011
 - id: unified-dk-hede-f2h28
   fuss: 9_thaler
   phase: I
@@ -44827,14 +44886,18 @@ coins:
   year_label: 1582–1583
   fraction: 1/96
   ruler: Frederik II.
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
+    km: UC# 2
     hede: '28'
     hede_volume: f2h
     schou: '19'
     sieg: '5'
     fr: '2'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -44842,13 +44905,20 @@ coins:
   fineness:
   - value: 0.187
     source: hede
+  - value: 0.187
+    source: tid
   weight_rough_g:
   - value: 1.772
     source: hede
+  - value: 1.8
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h28.htm
     ref: danskmoent.dk (Hede f2h28)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-skilling-1582-1583/?tid=163001
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -44862,6 +44932,7 @@ coins:
     unit_raw: daler
   composed_of:
   - dk-hede-f2h28
+  - dk-tid-163001
 - id: unified-dk-hede-f2h29
   fuss: seed_unsorted
   phase: hede
@@ -44874,14 +44945,18 @@ coins:
     - 1583
   year_label: 1582–1583
   ruler: Frederik II.
-  mint: Frederiksborg
+  mint:
+  - Frederiksborg
+  - Kopenhagen
   catalog:
+    km: UC# 1
     hede: '29'
     hede_volume: f2h
     schou: '25'
     sieg: '2'
     fr: '2'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -44889,13 +44964,20 @@ coins:
   fineness:
   - value: 0.166
     source: hede
+  - value: 0.166
+    source: tid
   weight_rough_g:
+  - value: 0.63
+    source: tid
   - value: 0.632
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h29.htm
     ref: danskmoent.dk (Hede f2h29)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-hvid-1582-1583/?tid=162984
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -44909,6 +44991,7 @@ coins:
     unit_raw: daler
   composed_of:
   - dk-hede-f2h29
+  - dk-tid-162984
 - id: unified-dk-hede-f2h3
   fuss: seed_unsorted
   phase: hede
@@ -60722,44 +60805,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-162980
-- id: unified-dk-tid-162984
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 1 Hvid
-  year_first: 1582
-  year_last: 1583
-  year_ranges:
-  - - 1582
-    - 1583
-  year_label: 1582-1583
-  ruler: Frederik II.
-  mint: Kopenhagen
-  catalog:
-    km: UC# 1
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.166
-    source: tid
-  weight_rough_g:
-  - value: 0.63
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-hvid-1582-1583/?tid=162984
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-162984
 - id: unified-dk-tid-162989
   fuss: seed_unsorted
   phase: ucoin
@@ -61044,234 +61089,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-162996
-- id: unified-dk-tid-163001
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 1 Skilling
-  year_first: 1582
-  year_last: 1583
-  year_ranges:
-  - - 1582
-    - 1583
-  year_label: 1582-1583
-  ruler: Frederik II.
-  mint: Kopenhagen
-  catalog:
-    km: UC# 2
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.187
-    source: tid
-  weight_rough_g:
-  - value: 1.8
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-skilling-1582-1583/?tid=163001
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-163001
-- id: unified-dk-tid-163011
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 2 Skilling
-  year_first: 1582
-  year_last: 1585
-  year_ranges:
-  - - 1582
-    - 1585
-  year_label: 1582-1585
-  ruler: Frederik II.
-  mint: Kopenhagen
-  catalog:
-    km: UC# 3
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.312
-    source: tid
-  weight_rough_g:
-  - value: 2.4
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-skilling-1582-1585/?tid=163011
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-163011
-- id: unified-dk-tid-163022
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 4 Skilling
-  year_first: 1608
-  year_last: 1609
-  year_ranges:
-  - - 1608
-    - 1609
-  year_label: 1608-1609
-  ruler: Christian IV.
-  mint: Kopenhagen
-  catalog:
-    km: '41'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.888
-    source: tid
-  weight_rough_g:
-  - value: 1.46
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-skilling-1608-1609/?tid=163022
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-163022
-- id: unified-dk-tid-163027
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 8 Skilling
-  year_first: 1622
-  year_last: 1623
-  year_ranges:
-  - - 1622
-    - 1623
-  year_label: 1622-1623
-  ruler: Christian IV.
-  mint: Kopenhagen
-  catalog:
-    km: '84'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.888
-    source: tid
-  weight_rough_g:
-  - value: 2.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-8-skilling-1622-1623/?tid=163027
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-163027
-- id: unified-dk-tid-163030
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 8 Skilling
-  year_first: 1582
-  year_last: 1585
-  year_ranges:
-  - - 1582
-    - 1585
-  year_label: 1582-1585
-  ruler: Frederik II.
-  mint: Kopenhagen
-  catalog:
-    km: UC# 5
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.61
-    source: tid
-  weight_rough_g:
-  - value: 4.45
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-8-skilling-1582-1585/?tid=163030
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-163030
-- id: unified-dk-tid-163031
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 8 Skilling
-  year_first: 1606
-  year_last: 1609
-  year_ranges:
-  - - 1606
-    - 1609
-  year_label: 1606-1609
-  ruler: Christian IV.
-  mint: Kopenhagen
-  catalog:
-    km: '32'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.888
-    source: tid
-  weight_rough_g:
-  - value: 2.92
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-8-skilling-1606-1609/?tid=163031
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-163031
 - id: unified-dk-tid-163033
   fuss: seed_unsorted
   phase: ucoin
@@ -61380,51 +61197,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-163043
-- id: unified-dk-tid-163046
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Mark
-  year_first: 1607
-  year_last: 1609
-  year_ranges:
-  - - 1607
-    - 1609
-  year_label: 1607-1609
-  ruler: Christian IV.
-  mint: Kopenhagen
-  catalog:
-    km: '36'
-    bruun_collection_id: '4739'
-    bruun_part: III
-    bruun_lot_no: 11182
-    bruun_page: 95
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.888
-    source: tid
-  weight_rough_g:
-  - value: 6.15
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-mark-1607-1609/?tid=163046
-    ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 11182, p. 95
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-163046
 - id: unified-dk-tid-163055
   fuss: seed_unsorted
   phase: ucoin
@@ -71106,45 +70878,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - km-x015-chr-iv-1648
-- id: unified-km-x017-chr-iv-1622
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: scheide
-  nominal: 12 Skilling
-  year_first: 1622
-  year_last: 1623
-  year_ranges:
-  - - 1622
-    - 1623
-  year_label: 1622–1623
-  ruler: Christian IV.
-  mint: Kopenhagen
-  catalog:
-    others:
-    - KM-DK# 85
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.888
-    source: x017
-  weight_rough_g:
-  - value: 3.02
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-12-skilling-1622-1623/?tid=163037
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: danish_realm
-  composed_of:
-  - km-x017-chr-iv-1622
 - id: unified-km-x022-fr-iii-1651
   fuss: seed_unsorted
   phase: ucoin
