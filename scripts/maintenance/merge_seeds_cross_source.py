@@ -1133,9 +1133,43 @@ def _collect_sources(members: list[dict]) -> list[dict]:
 
 
 def _collect_mints(members: list[dict]) -> str | list[str] | None:
+    """Collect mint(s) from unified members per verified-wins precedence.
+
+    Per CLAUDE.md §4 «verified-wins-over-unverified» principle applied
+    to mint specifically (user-confirmed 2026-05-19): a `mint_verified:
+    False` value is a curator GUESS (typically V1 bootstrap default
+    «Kopenhagen» for Danish coins, or a parser heuristic). It cannot
+    OVERRIDE a `mint_verified: True` authoritative attestation, and
+    when no verified attestation exists, the lower-authority guess
+    must yield to the higher-authority source's mint.
+
+    Precedence:
+      Tier 1: ANY member has `mint_verified: True`
+              → use ONLY those members' mints (drop unverified guesses)
+      Tier 2: All members unverified
+              → use only the HIGHEST-_authority_score source's mints
+              (e.g. Hede outranks ucoin even when neither flips the
+              verified flag; the ucoin curator's «Kopenhagen» default
+              is dropped in favour of Hede's parser-extracted mint)
+      Tier 3: All members at authority score 0
+              → fall back to UNION of all mints (legitimate joint-mint
+              coins like Altona+Kopenhagen where both attest the same
+              physical issue)
+    """
+    # Tier 1: verified mints, when any exist
+    source_members = [m for m in members if bool(m.get("mint_verified"))]
+    if not source_members:
+        # Tier 2: keep only the highest-authority members
+        scored = [(m, _authority_score(m.get("id", ""))) for m in members]
+        max_score = max((s for _, s in scored), default=0)
+        if max_score > 0:
+            source_members = [m for m, s in scored if s == max_score]
+        else:
+            # Tier 3: nothing to rank by — keep everyone
+            source_members = members
     mints_set: list[str] = []
     seen: set[str] = set()
-    for m in members:
+    for m in source_members:
         mint = m.get("mint")
         if mint is None:
             continue
