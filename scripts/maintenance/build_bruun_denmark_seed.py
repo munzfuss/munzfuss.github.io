@@ -74,7 +74,10 @@ REALM_REGIONS = {"DENMARK", "NORW AY", "NORWAY", "DENMARK-NORWAY"}
 YEAR_FROM = 1514
 YEAR_TO = 1541
 
-# Map Bruun ref-key to project catalog field
+# Map Bruun ref-key to project catalog field. Keys NOT present in
+# `CatalogRefs` schema (lott, delzanno, sm, hagander, appelgren,
+# mb_swedish, hauberg, malmer) route to `catalog.others` as
+# «{prefix}# {value}» tokens — see _route_unknown_ref below.
 REF_FIELDS = {
     "Bruun": "bruun_collection_id",
     "Sieg": "sieg",
@@ -87,6 +90,7 @@ REF_FIELDS = {
     "Hede": "hede",
     "Schive": "schive",
     "NMD": "nmd",
+    "Skjoldager": "jensen_skjoldager",  # parser key for «Jensen & Skjoldager»
     "Llt": "lott",
     "Delzanno": "delzanno",
     "SM": "sm",
@@ -146,13 +150,29 @@ def parse_ruler_from_meta(meta_line: str | None, body: str | None, ruler_hint: s
 
 
 def parse_mint(lot: dict) -> str | None:
-    """Extract mint from meta_line: pattern `<Mint> Mint.` typically."""
+    """Extract mint from meta_line: pattern `<Mint> Mint.` typically.
+
+    Also supports the «<Modern> (<Period>) Mint.» / «<Period> (<Modern>) Mint.»
+    bilingual form (Bruun PDF uses for Nidaros/Trondheim etc.). Returns
+    the period-canonical name when both are present.
+    """
     meta = lot.get("meta_line") or ""
+    # Bilingual «Nidaros (Trondheim) Mint» / «Trondheim (Nidaros) Mint»
+    m = re.search(
+        r"\b(Nidaros|Trondheim)\s*\([^)]+\)\s+Mint\b",
+        meta,
+    )
+    if m:
+        # Canonical: use the period name. «Nidaros» is the period name,
+        # «Trondheim» is modern. When matched first capture is one of
+        # them, return as-is — both forms are widely understood.
+        return m.group(1)
     # Direct ".Malmö Mint." or "Copenhagen Mint." patterns
     m = re.search(
         r"\b(Copenhagen|København|Malmö|Malmø|Malmo|Husum|Gottorp|Roskilde|"
         r"Aarhus|Ribe|Bergen|Oslo|Visby|Stockholm|Flensborg|Landskrona|"
-        r"Helsingør|Helsingor|Lund)\s+Mint\b",
+        r"Helsingør|Helsingor|Lund|Nidaros|Trondheim|Lübeck|Hamburg|"
+        r"Altona|Glückstadt|Gluckstadt|Rendsburg|Schwerin)\s+Mint\b",
         meta,
     )
     if m:
@@ -160,7 +180,8 @@ def parse_mint(lot: dict) -> str | None:
     # Without "Mint" suffix
     m = re.search(
         r"\b(Copenhagen|København|Malmö|Husum|Gottorp|Roskilde|Aarhus|Ribe|"
-        r"Bergen|Oslo|Visby|Stockholm|Flensborg|Landskrona|Helsingør|Lund)\b",
+        r"Bergen|Oslo|Visby|Stockholm|Flensborg|Landskrona|Helsingør|Lund|"
+        r"Nidaros|Trondheim)\b",
         meta,
     )
     if m:
@@ -169,11 +190,21 @@ def parse_mint(lot: dict) -> str | None:
 
 
 def parse_denomination(meta: str | None, body: str | None) -> str | None:
-    """Extract a denomination string from meta_line."""
+    """Extract a denomination string from meta_line.
+
+    Patterns supported:
+      A. «<COUNTRY>. <denom>, <year>.»          — standard dated form
+      B. «<COUNTRY>. <denom>, ND.»              — undated (ND with period)
+      C. «<COUNTRY>. <denom>, ND (year).»       — undated with attribution
+    """
     if not meta:
         return None
-    # Pattern: `<COUNTRY>. <denomination>, <year>.`
-    m = re.match(r"^[^.]+\.\s+([^,]+),\s*(?:ND\s*)?[\(\d]", meta)
+    # Cover (A) + (B) + (C): denomination is between «<COUNTRY>. » and the
+    # first comma; what follows is either a year, «ND.», or «ND (year».
+    m = re.match(
+        r"^[^.]+\.\s+([^,]+),\s*(?:ND(?:\s*[.\(]|\b)|[\(\d])",
+        meta,
+    )
     if m:
         d = m.group(1).strip()
         # Filter junk

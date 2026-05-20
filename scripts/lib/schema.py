@@ -383,6 +383,10 @@ class CatalogRefs(_StrictBase):
     # (used by NumisMaster on entries pre-1604 where KM# was never assigned;
     # appears as «MB# 27» on the source page's catalog-number field).
     mb: str | list[str] | None = None
+    # NMD — Norwegian medieval-era catalogue cited alongside Sieg/Galster
+    # in the Bruun PDFs (esp. pre-1541 Norway lots). Cited as «NMD-1»,
+    # «NMD-2», etc.
+    nmd: str | list[str] | None = None
     # Bruun citation. collection-id IS list-form: same physical coin
     # type can appear in MULTIPLE Bruun lots (different specimens) with
     # their own collection ids — the merger preserves every distinct id.

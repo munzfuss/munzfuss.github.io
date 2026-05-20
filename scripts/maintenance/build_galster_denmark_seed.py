@@ -101,6 +101,62 @@ def coin_id(galster_number: str | None, ruler_volume: str | None, source_file: s
     return f"dk-galster-{source_file.replace('.htm', '').replace('.json', '')}"
 
 
+_GALSTER_MINTS_RE = re.compile(
+    r",\s*("
+    r"Ålborg|Aalborg|Malmø|Malmoe|Malmö|"
+    r"Ronneby|Hamar|Bergen|Oslo|Christiania|"
+    r"København|Kjøbenhavn|Copenhagen|"
+    r"Roskilde|Aarhus|Århus|Ribe|Lund|Visby|"
+    r"Husum|Gottorp|Glückstadt|Gluckstadt|"
+    r"Trondheim|Nidaros|Stockholm|Vasteras|"
+    r"Lübeck|Hamburg|Schwerin|Rendsburg|"
+    r"Helsingør|Helsingor"
+    r")(\s*\(\?\))?\s*$",
+    re.IGNORECASE,
+)
+# Coin-shape descriptors that occasionally bleed into the denomination
+# field from Galster page titles. «klipping» / «klippe» = clipped /
+# emergency-issue square-cut coin shape, not a denomination. Stripped
+# from nominal; preserved in note via `shape_hint` (curator may move
+# to `shape` field).
+_SHAPE_DESCRIPTORS_RE = re.compile(
+    r"[,\s]+\(?(klipping|klippe|firkant)\)?\s*$",
+    re.IGNORECASE,
+)
+
+
+def _split_nominal_mint(nominal: str | None, source_mint: str | None
+                        ) -> tuple[str | None, str | None, str | None]:
+    """Detect «<nominal>, <mint>[ (?)]» pattern and split.
+
+    Returns (clean_nominal, mint, shape_hint). When the nominal carries
+    a mint suffix, the in-nominal mint is treated as the page-title-
+    attested authority and is preferred over `source_mint` (which is
+    parser-heuristic-derived from elsewhere on the page and sometimes
+    wrong, e.g. defaults to «København»). Also strips coin-shape
+    descriptors («klipping») from nominal.
+    """
+    if not nominal:
+        return (nominal, source_mint, None)
+    s = str(nominal).strip()
+    extracted_mint = None
+    m = _GALSTER_MINTS_RE.search(s)
+    if m:
+        extracted_mint = m.group(1)
+        # Strip mint segment from nominal (canonicalised via parens
+        # tail too if present).
+        s = _GALSTER_MINTS_RE.sub("", s).rstrip(" ,")
+    shape_hint = None
+    sm = _SHAPE_DESCRIPTORS_RE.search(s)
+    if sm:
+        shape_hint = sm.group(1).lower()
+        s = _SHAPE_DESCRIPTORS_RE.sub("", s).rstrip(" ,")
+    # Prefer the title-attested mint over the parser-heuristic source_mint:
+    # the page-title explicit «, <Mint>» suffix is authoritative.
+    mint_value = extracted_mint or source_mint
+    return (s or None, mint_value, shape_hint)
+
+
 def build_entry(data: dict) -> dict | None:
     year_first, year_last = parse_year_range(data.get("year_label"))
     if year_first is None or year_last is None:
@@ -120,27 +176,33 @@ def build_entry(data: dict) -> dict | None:
 
     cid = coin_id(data.get("galster_number"), data.get("ruler_volume"), data.get("source_file", ""))
 
+    # Split mint from denomination string («14 Penning, Ålborg» →
+    # nominal=«14 Penning», mint=«Ålborg»). Also strips coin-shape
+    # descriptors like «klipping» that leak from page titles.
+    nominal_clean, mint_value, shape_hint = _split_nominal_mint(
+        data.get("denomination"), data.get("mint"))
+
     entry: dict = {
         "id": cid,
         "fuss": "seed_unsorted",
         "phase": "galster",
         "kind": "kurant",
-        "nominal": data.get("denomination"),
+        "nominal": nominal_clean,
         "year_label": data.get("year_label"),
         "year_first": year_first,
         "year_last": year_last,
         "year_ranges": [[year_first, year_last]] if year_first == year_last else [[year_first, year_last]],
         "ruler": data.get("ruler"),
-        "mint": data.get("mint"),
+        "mint": mint_value,
         "catalog": catalog,
         "metal": metal,
         "fineness": specs.get("finhed"),
         "weight_rough_g": specs.get("bruttovaegt_g"),
-        "issuing_entity": detect_issuing_entity(sub_realm, data.get("mint")),
+        "issuing_entity": detect_issuing_entity(sub_realm, mint_value),
         "verified": False,
         "fineness_verified": bool(specs.get("finhed")),
         "weight_rough_verified": bool(specs.get("bruttovaegt_g")),
-        "mint_verified": bool(data.get("mint")),
+        "mint_verified": bool(mint_value),
         "sources": [
             {
                 "type": "literature",

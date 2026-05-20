@@ -694,18 +694,79 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     """Returns (state, has_overlap):
       state ∈ {'agree', 'disagree', 'no_overlap'}
       has_overlap: True if any shared key
+
+    Multi-catalog tolerance: when ≥2 shared refs AGREE and only ONE
+    disagrees, treat the chain as 'agree'. Rationale: catalogue families
+    cross-classify the same physical type with different granularities.
+    Galster covers parent types; Schou enumerates die / sub-variant
+    refinements within a Galster type; Davenport runs at a parallel
+    level. So three Bruun lots with Galster=102, Sieg=19, Dav=8226 but
+    Schou=8/12/13 are by Galster's reckoning ONE coin with three Schou
+    sub-variants — per CLAUDE.md §9a these merge into one entry with
+    list-form Schou. Without this tolerance the merger leaves them as
+    three phantom unified entries (caught 2026-05-20 audit on Bruun
+    4276/4277/4278 Joachimsdaler 1537).
+
+    Schou is the canonical «sub-variant» field on Danish coins (Schou
+    catalogue numbers die-variants explicitly). Other sub-variant-style
+    fields (`nmd`, `aagaard`, `schive`) follow the same pattern and
+    join the sub-variant tolerance list.
     """
     shared = set(refs_a) & set(refs_b)
     if not shared:
         return ("no_overlap", False)
+    # Identify «sub-variant» refs — disagreements here are weaker signal
+    # because they identify die-variants, sub-types, or specimens rather
+    # than coin types themselves. Bruun-collection-id is specimen-level
+    # by Bruun's own cataloguing convention (every physical specimen has
+    # its own collection id even when of the same coin type) — see §9a.
+    SUB_VARIANT_REFS = {
+        "schou", "nmd", "aagaard", "schive", "skjoldager",
+        "bruun_collection_id",
+    }
+
+    def _numeric_core(v: str) -> str:
+        """Strip trailing alphabetic sub-variant suffix («8226A» →
+        «8226»). Catalogue convention: a single letter (occasionally
+        two) appended to a base catalogue number marks a die-variant
+        or sub-type of the same parent. Tolerated as same when the
+        broader catalogue chain confirms identity."""
+        m = re.match(r"^(\d+(?:\.\d+)?)[A-Za-z]{1,2}$", v.strip())
+        return m.group(1) if m else v.strip()
+
+    agreeing: list[str] = []
+    disagreeing: list[str] = []
     for k in shared:
-        # For list-encoded refs (separated by "|"), match if sets overlap
         va, vb = refs_a[k], refs_b[k]
         sa = set(va.split("|"))
         sb = set(vb.split("|"))
-        if not (sa & sb):
-            return ("disagree", True)
-    return ("agree", True)
+        if sa & sb:
+            agreeing.append(k)
+            continue
+        # Loosened match: compare numeric cores (8226A ≡ 8226). Applied
+        # only when both sides have non-empty numeric cores; cross-
+        # variant identity is the catalogue-convention reading.
+        cores_a = {_numeric_core(v) for v in sa}
+        cores_b = {_numeric_core(v) for v in sb}
+        if cores_a & cores_b:
+            agreeing.append(k)
+        else:
+            disagreeing.append(k)
+    if not disagreeing:
+        return ("agree", True)
+    # Tolerance: ≥2 non-sub-variant refs agree AND every disagreement is
+    # a sub-variant field → still agree (Schou-only disagreement on
+    # otherwise-identical Galster + Dav + Sieg → same coin).
+    non_subvariant_agree = [
+        k for k in agreeing if k not in SUB_VARIANT_REFS
+    ]
+    non_subvariant_disagree = [
+        k for k in disagreeing if k not in SUB_VARIANT_REFS
+    ]
+    if (len(non_subvariant_agree) >= 2
+            and not non_subvariant_disagree):
+        return ("agree", True)
+    return ("disagree", True)
 
 
 def _year_first(coin):

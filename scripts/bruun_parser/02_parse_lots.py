@@ -82,6 +82,18 @@ REF_PATTERNS = {
     "Brekke":  re.compile(r"\bBrekke[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Wilcke":  re.compile(r"\bWilcke[\-:]?\s*(\d+(?:\.\d+)?)", re.IGNORECASE),
     "Pn":      re.compile(r"\b(Pn\d+[A-Za-z]*)\b"),
+    # Norwegian-medieval catalogues frequently cited alongside Sieg/Bruun
+    # on pre-1541 Norwegian lots in the Bruun PDFs. Without these patterns
+    # the parser silently drops 63+ Galster, 302+ NMD, 40+ Schive refs
+    # (audit 2026-05-20 on Bruun-9295 KM/Schou/Sieg/Galster/NMD chain).
+    "Galster":           re.compile(r"\bGalster[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    "NMD":               re.compile(r"\bNMD[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
+    "Schive":            re.compile(r"\bSchive[\-:]?\s*(\S+?)(?=[;,\s])", re.IGNORECASE),
+    # «Jensen & Skjoldager» (the Norwegian Frederik I lejrskilling catalogue
+    # by Niels Jørgen Jensen and Mogens Skjoldager). Bruun catalogue cites
+    # as «Skjoldager-T21/25» / «Jensen & Skjoldager-...»; match the
+    # standalone «Skjoldager» token since «Jensen» is too generic.
+    "Skjoldager":        re.compile(r"\bSkjoldager[\-:]?\s*(\S+?)(?=[;,\s]|$)", re.IGNORECASE),
 }
 
 YEAR_RE = re.compile(r"\b(1[5-9]\d{2}|20\d{2})\b")
