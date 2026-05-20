@@ -226,16 +226,25 @@ def _normalise_nominal(raw):
     # Collapse multiple spaces (e.g. «X,  Y» → «X, Y»)
     s = re.sub(r"\s{2,}", " ", s)
     # Expand parenthesised abbreviation-completion: «Fr(ederiks) D'or»
-    # → «Frederiks D'or», «Chr(istians) D'or» → «Christians D'or».
-    # The Danish numismatic convention prints the genitive suffix in
-    # parens immediately after the abbreviation root («Fr» / «Chr»),
-    # with NO space between root and opening paren. The legitimate
-    # paren-clarifier case («1 Skilling (Firehvid)», «Ny mønt (1844)»)
-    # has a space before «(» AND starts with uppercase / digit inside
-    # the parens — distinguishable from the abbreviation form.
+    # → «Frederiks D'or», «Chr(istians) D'or» → «Christians D'or»,
+    # «Fr(Ederiks) D'or» (NumisMaster's uppercase variant) →
+    # «Frederiks D'or». The Danish numismatic convention prints the
+    # genitive suffix in parens immediately after the abbreviation
+    # root («Fr» / «Chr»), with NO space between root and opening
+    # paren. The legitimate paren-clarifier case («1 Skilling
+    # (Firehvid)», «Ny mønt (1844)») has a SPACE before «(» —
+    # distinguishable from the abbreviation form.
+    # NumisMaster sometimes capitalises the first letter inside the
+    # parens («Fr(Ederiks)») — normalise to lowercase to match the
+    # Schou/Hede convention.
+    def _expand_paren_abbrev(m):
+        root = m.group(1)  # «Fr» / «Chr»
+        suffix = m.group(2).lower()  # «Ederiks» → «ederiks»
+        return f"{root}{suffix}"
+
     s = re.sub(
-        r"\b([A-Z][a-z]*)\(([a-zæøåü]+)\)",
-        r"\1\2",
+        r"\b([A-Z][a-z]*)\(([A-Za-zæøåüÆØÅÜ]+)\)",
+        _expand_paren_abbrev,
         s,
     )
     # Add leading «1 » when nominal is a bare denomination noun.
@@ -428,6 +437,16 @@ _NOMINAL_SHAPE_RE = re.compile(
     r"[,\s]+\(?(klipping|klippe|firkant)\)?\s*$",
     re.IGNORECASE,
 )
+# Narrative mint-statement fragments that bleed from Danish page
+# titles into denomination strings. «; prægested ukendt» literally
+# means «; mint unknown» — a curator statement about provenance, not
+# part of the coin's nominal. Strip from nominal tail.
+_NOMINAL_NARRATIVE_TAIL_RE = re.compile(
+    r"\s*[;,]\s*"
+    r"(prægested\s+ukendt|mønt(?:sted)?\s+ukendt|ukendt\s+mønt(?:sted)?)"
+    r"\s*$",
+    re.IGNORECASE,
+)
 
 
 def _extract_mint_from_nominal(nominal, source_mint
@@ -454,6 +473,10 @@ def _extract_mint_from_nominal(nominal, source_mint
         if m_lead:
             extracted_mint = m_lead.group(1)
             s = _NOMINAL_MINT_LEADING_RE.sub("", s).strip()
+    # Narrative mint-statement fragments stripped first («; prægested
+    # ukendt» = «; mint unknown» — curator's provenance note, not
+    # part of denomination)
+    s = _NOMINAL_NARRATIVE_TAIL_RE.sub("", s).rstrip(" ,;")
     # Coin-shape descriptor stripping
     s = _NOMINAL_SHAPE_RE.sub("", s).rstrip(" ,")
     mint_value = extracted_mint or source_mint
