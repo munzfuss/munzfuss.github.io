@@ -224,6 +224,19 @@ def _normalise_nominal(raw):
     s = re.sub(r"\s+,", ",", s)
     # Collapse multiple spaces (e.g. «X,  Y» → «X, Y»)
     s = re.sub(r"\s{2,}", " ", s)
+    # Expand parenthesised abbreviation-completion: «Fr(ederiks) D'or»
+    # → «Frederiks D'or», «Chr(istians) D'or» → «Christians D'or».
+    # The Danish numismatic convention prints the genitive suffix in
+    # parens immediately after the abbreviation root («Fr» / «Chr»),
+    # with NO space between root and opening paren. The legitimate
+    # paren-clarifier case («1 Skilling (Firehvid)», «Ny mønt (1844)»)
+    # has a space before «(» AND starts with uppercase / digit inside
+    # the parens — distinguishable from the abbreviation form.
+    s = re.sub(
+        r"\b([A-Z][a-z]*)\(([a-zæøåü]+)\)",
+        r"\1\2",
+        s,
+    )
     # Add leading «1 » when nominal is a bare denomination noun.
     # «Penning» → «1 Penning», «Hvid» → «1 Hvid», «Skilling» → «1 Skilling».
     # Also fires when the nominal has the shape «<noun>, <mint>» or
