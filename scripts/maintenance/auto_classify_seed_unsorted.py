@@ -538,6 +538,94 @@ def _classify_via_era_anchor(coin: dict, entity_id: str | None
     return ("era_anchor", "18_5_thaler", kind, audit)
 
 
+def _classify_via_kronefod_anchor(coin: dict, entity_id: str | None
+                                   ) -> tuple[str, str | None, str | None, dict]:
+    """Era-anchor rule: post-1873 Danish-realm / Norwegian-realm coins with
+    Krone- or Øre-family denominations belong unambiguously to `kronefod`
+    (Skandinaviska Myntunionen, Lov nr. 66 af 23. maj 1873).
+
+    Why an anchor rule is needed here.
+    --------------------------------
+    The fineness/weight-Δ math fails on the small-Øre tier when:
+      * fineness is missing (typical for bronze 5/2/1 Øre — NumisMaster
+        rarely tags «Bronze» as fineness)
+      * the Δ against the Hauptkurant Soll-fein lands in the «dead zone»
+        between full-Kurant (±2%) and large-Scheide (>20%) because the
+        Øre tier is *deliberately* under-weight per the Lov nr. 66
+        subsidiary-tier schedule (.600 / .400 Ag, then Bronze).
+    Year + denomination + entity, however, uniquely determine the fuss:
+    post-1873 Danish-realm Krone/Øre denominations are by definition
+    `kronefod` until the Goldkonvertibilität end on 2 August 1914 — and
+    our project upper bound is 1914 so every Krone/Øre coin in scope
+    is `kronefod`.
+
+    Kind derivation:
+      * Commemorative / Gedenk Krone → kind=gedenk
+      * Øre family (25 / 10 / 5 / 2 / 1 Øre) → kind=scheide
+        (per fuesse.yml `kronefod.grundwerte` — these tiers are
+        «absichtlich unterwertig» / deliberately under-weight)
+      * Krone family (1 / 2 / 5 / 10 / 20 Kroner) → kind=kurant
+        (silver 1/2 Krone are full-Kurant companions, gold 5/10/20
+        Kroner are Hauptkurant — both circulate as kurant)
+
+    Entity scope:
+      * `danish_realm` — DK adopted 1873-05-23
+      * `danish_norway` — Norway adopted 1875 via SMU extension
+    Not applied to `royal_holstein` / `prussian_schleswig_holstein`:
+    Schleswig-Holstein became Prussian 1864/1867 and post-1871 used
+    `reichsgoldmuenzfuss` (Goldmark), not the Krone-fod.
+
+    Returns (signal, fuss_id, kind, audit).
+    """
+    audit: dict = {"rule": "era_kronefod"}
+    year_first = coin.get("year_first")
+    if not isinstance(year_first, int) or year_first < 1873:
+        return ("no_match", None, None, audit)
+    if entity_id not in {"danish_realm", "danish_norway"}:
+        return ("no_match", None, None, audit)
+    nominal = str(coin.get("nominal") or "").lower()
+    if not nominal:
+        return ("no_match", None, None, audit)
+    # Match Krone/Kroner (kurant) — exclude "Rigsdaler"-prefixed legacy
+    # nominals («Rigsdaler kurant», «Skilling kurant») which would
+    # falsely match on substring «krone». Anchor on the word boundary
+    # via direct token check.
+    krone_match = (
+        ("krone" in nominal or "kroner" in nominal)
+        and "rigs" not in nominal
+        and "courant" not in nominal
+        and "kurant" not in nominal
+    )
+    # Match Øre family — all spellings used in source data:
+    #   «Øre» (Danish canonical capitalised) / «øre» (lowercase variant)
+    #   «Öre» (Swedish-influenced spelling occasionally on parsed pages)
+    #   bare «Ore» (transliteration in some sources)
+    # Case-insensitive: NumisMaster + Numista mix capitalisation, and the
+    # uppercase «Ø» (U+00D8) vs lowercase «ø» (U+00F8) are distinct chars
+    # that ignored-case correctly folds together.
+    ore_match = bool(
+        re.search(r"\børe\b|\böre\b|\bore\b",
+                  coin.get("nominal") or "",
+                  flags=re.IGNORECASE)
+    )
+    if not (krone_match or ore_match):
+        return ("no_match", None, None, audit)
+    # Kind derivation
+    if "commemorat" in nominal or "gedenk" in nominal:
+        kind = "gedenk"
+    elif ore_match:
+        kind = "scheide"
+    else:
+        kind = "kurant"
+    audit.update({
+        "year_first": year_first,
+        "entity": entity_id,
+        "nominal": coin.get("nominal"),
+        "match": "krone" if krone_match else "øre",
+    })
+    return ("era_kronefod", "kronefod", kind, audit)
+
+
 def classify_coin(coin: dict, fuesse: dict, yield_index: dict,
                   entity_id: str | None = None,
                   phase_index: dict | None = None) -> dict:
@@ -558,6 +646,21 @@ def classify_coin(coin: dict, fuesse: dict, yield_index: dict,
         decision["proposed_fuss"] = yld_fuss
         decision["signal"] = yld_signal  # hede_yield
         decision["audit"] = yld_audit
+        return decision
+
+    # Era-anchor: post-1873 Danish-realm / Norwegian Krone-Øre → kronefod.
+    # Runs BEFORE 18½-Thaler anchor because the year-bounds differ (1873+
+    # for Krone-fod, 1813-1873 for 18½-Thaler) and a Krone post-1873 coin
+    # would otherwise hit the 18½-Thaler era-anchor on the «skilling» word
+    # check if its nominal accidentally carried that token.
+    kf_signal, kf_fuss, kf_kind, kf_audit = _classify_via_kronefod_anchor(
+        coin, entity_id)
+    if kf_fuss:
+        decision["proposed_fuss"] = kf_fuss
+        if kf_kind:
+            decision["proposed_kind"] = kf_kind
+        decision["signal"] = kf_signal
+        decision["audit"] = kf_audit
         return decision
 
     # Era-anchor: post-1813 Danish-realm Skilling / Rigsbank → 18_5_thaler
