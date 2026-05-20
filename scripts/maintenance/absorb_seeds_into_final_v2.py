@@ -469,16 +469,36 @@ def process_entity(entity_id: str) -> dict:
             cat = fe.get("catalog")
             if isinstance(cat, dict):
                 _normalise_catalog(cat)
+            # fineness-implies-metal rule (parallel to seed-writer hygiene)
+            if (fe.get("metal")
+                    and bool(fe.get("fineness_verified"))
+                    and not bool(fe.get("metal_verified"))):
+                fe["metal_verified"] = True
+            # sources-imply-mint rule
+            sources_fe = fe.get("sources") or []
+            if (fe.get("mint")
+                    and isinstance(sources_fe, list)
+                    and any(isinstance(s, dict) and s.get("url") for s in sources_fe)
+                    and not bool(fe.get("mint_verified"))):
+                fe["mint_verified"] = True
         kept_finals.append(fe)
     final_entries = kept_finals
 
-    # Stale-foundation purge: when a V1-bootstrap foundation entry
-    # `unified-X` has been merged AWAY by the cross-source merger
-    # (its source seed id `X` now belongs to a different unified
-    # entry's composed_of in seed_unified), the foundation copy is
-    # a stale duplicate. Detection: foundation id no longer exists
-    # as a unified entry AND its source id (strip `unified-` prefix)
-    # appears in some OTHER unified entry's composed_of.
+    # Stale-foundation purge: when a V1-bootstrap foundation entry has
+    # been merged AWAY by the cross-source merger (its source seed id
+    # now belongs to a different unified entry's composed_of), the
+    # foundation copy is a stale duplicate. Two shapes:
+    #   A. `unified-X` foundation where the cross-source merger has
+    #      consolidated `X` into a different unified entry.
+    #   B. `X` foundation (V1-direct bootstrap, e.g. `dk-tid-70722`)
+    #      where `X` now appears as a source-seed in some unified's
+    #      composed_of, but `X` itself is not a unified entry id.
+    # Both shapes need purging — the consolidated unified entry's
+    # final wrapper subsumes the original V1-foundation data via its
+    # composed_of seed-id membership; leaving the orphan foundation
+    # results in DUPLICATE coin rows (caught 2026-05-20 audit on
+    # KM# 688 / 696 / Tn6 — V1 ucoin foundation + NumisMaster unified
+    # appearing as two rows in seed_unsorted).
     stale_foundation_dropped = 0
     # Build: source seed id → its current unified host
     seed_to_unified: dict[str, str] = {}
@@ -491,11 +511,25 @@ def process_entity(entity_id: str) -> dict:
         if not fid:
             surviving_finals.append(fe)
             continue
+        composed = fe.get("composed_of") or []
+        # Shape A: `unified-X` foundation
         if (fid.startswith("unified-")
                 and fid not in unified_by_id):
             source_id = fid[len("unified-"):]
             new_host = seed_to_unified.get(source_id)
             if new_host and new_host != fid:
+                stale_foundation_dropped += 1
+                continue
+        # Shape B: V1-direct bootstrap foundation whose id is now a
+        # source-seed in some unified's composed_of. Detection requires
+        # both: (a) fid is composed BY a unified, (b) fid itself is not
+        # a unified entry id, (c) foundation has empty composed_of (not
+        # the host of any seed itself — pure leaf foundation).
+        elif (fid in seed_to_unified
+                and fid not in unified_by_id
+                and not composed):
+            new_host = seed_to_unified[fid]
+            if new_host != fid:
                 stale_foundation_dropped += 1
                 continue
         surviving_finals.append(fe)

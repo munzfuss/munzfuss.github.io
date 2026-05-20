@@ -128,12 +128,24 @@ def build_entry(data: dict) -> dict | None:
         }
     ]
 
+    # Nominal preference: structured `value.raw` field first; fall back
+    # to the title's denomination prefix («1 Joachimstaler - Christian
+    # III ...» → «1 Joachimstaler») when `value` is null. Some Numista
+    # entries (esp. pre-1541 / unusual types) leave the structured value
+    # blank but the title carries the denomination explicitly.
+    nominal = value.get("raw")
+    if not nominal and data.get("title"):
+        title = data["title"]
+        # Split on " - " (Numista's canonical separator between
+        # denomination prefix and ruler/era info).
+        if " - " in title:
+            nominal = title.split(" - ", 1)[0].strip()
     entry: dict = {
         "id": cid,
         "fuss": "seed_unsorted",
         "phase": "numista",
         "kind": "kurant",
-        "nominal": value.get("raw"),
+        "nominal": nominal,
         "year_label": data.get("years_raw"),
         "year_first": yf,
         "year_last": yl if yl is not None else yf,

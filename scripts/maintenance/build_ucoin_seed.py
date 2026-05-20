@@ -167,8 +167,12 @@ def detect_metal(comp: str | None, denom: str | None) -> str:
             return "gold"
         if "silver" in c:
             return "silver"
+        if "bronze" in c:
+            return "bronze"
         if "copper" in c:
             return "copper"
+        if "lead" in c:
+            return "lead"
     if denom:
         d = denom.lower()
         if any(t in d for t in (

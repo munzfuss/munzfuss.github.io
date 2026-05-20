@@ -206,14 +206,39 @@ def _normalise_nominal(raw):
         s,
         flags=re.IGNORECASE,
     ).strip(" ,")
+    # Strip trailing year-range fragments like «, -24» / «, 1523-24» —
+    # parser artefacts where a sub-year range from the page header bleeds
+    # into the captured denomination string. Patterns observed (Galster
+    # pre-1541 pages):
+    #   «Skilling (10 hvide), -24»  → «Skilling (10 hvide)»
+    #   «X, 1523-24» / «X, -1525»   → «X»
+    # The trailing fragment is recognised as: comma + optional whitespace
+    # + (optional 4-digit-year + dash) + 2-digit-year-tail OR bare dash-
+    # prefixed 2/4-digit tail.
+    s = re.sub(
+        r"\s*,\s*-?\d{2,4}(?:[-–]\d{2,4})?\s*$",
+        "",
+        s,
+    ).strip(" ,")
+    # Collapse extra whitespace before comma: «X , Y» → «X, Y»
+    s = re.sub(r"\s+,", ",", s)
+    # Collapse multiple spaces (e.g. «X,  Y» → «X, Y»)
+    s = re.sub(r"\s{2,}", " ", s)
     # Add leading «1 » when nominal is a bare denomination noun.
     # «Penning» → «1 Penning», «Hvid» → «1 Hvid», «Skilling» → «1 Skilling».
-    # Only fires when the nominal IS exactly one of the known
-    # denomination nouns (case-insensitive); compound forms like
-    # «Specie Daler» / «Marck Banco» check via lowercased compare.
-    if s and s.lower() in _BARE_DENOMINATION_NOUNS:
-        # Preserve the source's exact capitalisation of the noun
-        s = f"1 {s}"
+    # Also fires when the nominal has the shape «<noun>, <mint>» or
+    # «<noun>, <mint> (?)» — the leading count is implicit. Catches
+    # Galster pre-1541 pages where page-title denomination omits «1 »:
+    #   «Søsling, Ronneby (?)»  → «1 Søsling, Ronneby (?)»
+    #   «Halv Sølvgylden»       → kept as-is (Halv = «½», not bare-noun)
+    if s:
+        # Split on first comma to get the leading-denomination token;
+        # also strip a trailing paren clarifier («Skilling (10 Hvide)»
+        # → head = «Skilling») so bare-noun detection still fires.
+        head = s.split(",", 1)[0].strip()
+        head_noparens = re.sub(r"\s*\([^)]*\)\s*$", "", head).strip()
+        if head_noparens.lower() in _BARE_DENOMINATION_NOUNS:
+            s = f"1 {s}"
     # Fraction typography: «1 1/2» / «1-1/2» → «1½»; «1/2» → «½»; etc.
     s = re.sub(r"(\d)\s*[\-\s]\s*1/2\b", r"\1½", s)
     s = re.sub(r"(\d)\s*[\-\s]\s*1/4\b", r"\1¼", s)
@@ -435,6 +460,7 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         "catalog_split": 0,
         "out_of_scope_filtered": 0,
         "out_of_scope_km_filtered": 0,
+        "metal_verified_implied": 0,
     }
     kept: list[dict] = []
     for c in coins:
@@ -462,6 +488,33 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
             _, n_split = _normalise_catalog(catalog)
             if n_split:
                 stats["catalog_split"] += n_split
+        # fineness-implies-metal rule: a source that attests fineness
+        # has by definition also attested the metal (you cannot publish
+        # «.875» without knowing whether it's silver or gold). When
+        # `fineness_verified: true` AND metal is non-null, metal_verified
+        # MUST be true. V1-bootstrap entries sometimes have
+        # metal_verified=false next to fineness_verified=true — that's
+        # an inconsistency, not an intended state.
+        if (c.get("metal")
+                and bool(c.get("fineness_verified"))
+                and not bool(c.get("metal_verified"))):
+            c["metal_verified"] = True
+            stats["metal_verified_implied"] += 1
+        # sources-imply-mint rule: when an entry has at least one
+        # external source citation (ucoin / numista / numismaster /
+        # hede / bruun / galster URL in `sources[]`) AND mint is
+        # populated, the mint value came FROM that source's coin page
+        # — every source we use publishes mint metadata. V1-bootstrap
+        # default of `mint_verified: false` is an under-claim that
+        # incorrectly flags the value as a curator guess.
+        sources = c.get("sources") or []
+        if (c.get("mint")
+                and isinstance(sources, list)
+                and any(isinstance(s, dict) and s.get("url") for s in sources)
+                and not bool(c.get("mint_verified"))):
+            c["mint_verified"] = True
+            stats.setdefault("mint_verified_implied", 0)
+            stats["mint_verified_implied"] += 1
         kept.append(c)
     return kept, stats
 
@@ -627,6 +680,20 @@ def write_v2_seed(
                     _, n_cat = _normalise_catalog(catalog)
                     if n_cat:
                         file_normalised += 1
+                # fineness-implies-metal rule
+                if (c.get("metal")
+                        and bool(c.get("fineness_verified"))
+                        and not bool(c.get("metal_verified"))):
+                    c["metal_verified"] = True
+                    file_normalised += 1
+                # sources-imply-mint rule
+                sources = c.get("sources") or []
+                if (c.get("mint")
+                        and isinstance(sources, list)
+                        and any(isinstance(s, dict) and s.get("url") for s in sources)
+                        and not bool(c.get("mint_verified"))):
+                    c["mint_verified"] = True
+                    file_normalised += 1
                 kept.append(c)
             if purged or out_of_scope_dropped or file_normalised:
                 existing_doc["coins"] = kept

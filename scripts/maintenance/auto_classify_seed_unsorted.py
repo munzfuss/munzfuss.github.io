@@ -484,6 +484,60 @@ def _classify_via_delta(coin: dict, fuesse: dict[str, dict],
     return ("delta_no_fit", None, audit)
 
 
+def _classify_via_era_anchor(coin: dict, entity_id: str | None
+                              ) -> tuple[str, str | None, str | None, dict]:
+    """Era-anchor rule: post-1813 Danish-realm Skilling / Rigsbank-*
+    coins unambiguously belong to 18_5_thaler (Rigsbankdaler reform).
+
+    The fineness/weight-Δ math fails on these when fineness is missing
+    (typical for copper Scheide entries from NumisMaster) AND when the
+    Hede-yield path doesn't fire (no Hede-attested «Marken … udbragt
+    til N» yield). Year + denomination + entity, however, uniquely
+    determine the fuss — Frederik VI's Forordning af 5. Januar 1813
+    established 18½-Thaler-Fuß as the sole Danish-realm standard for
+    Rigsbankdaler / Rigsbankskilling. By extension Tn-token KMs
+    (Krause's classification for crown-issued small-change in this
+    era) also fall under this Fuß as Scheidemünze.
+
+    Returns (signal, fuss_id, kind, audit). Signal is one of:
+      - era_anchor — applied (returns 18_5_thaler + kind by metal)
+      - no_match — rule does not fire (year/entity/nominal don't fit)
+    """
+    audit: dict = {"rule": "era_anchor"}
+    year_first = coin.get("year_first")
+    if not isinstance(year_first, int) or year_first < 1813:
+        return ("no_match", None, None, audit)
+    if entity_id not in {"danish_realm", "royal_holstein", "danish_norway"}:
+        return ("no_match", None, None, audit)
+    nominal = str(coin.get("nominal") or "").lower()
+    # Denomination patterns for 18½-Thaler-Fuß post-1813:
+    #   Rigsbankdaler / Rigsbankskilling (the canonical units)
+    #   bare «Skilling» (Krause Tn-tokens carry plain «Skilling»;
+    #                    1813+ «Skilling» is by definition
+    #                    Rigsbankskilling per the Forordning)
+    #   Skilling Rigsmønt (the post-1854 currency-tag variant)
+    if not any(tok in nominal for tok in (
+            "rigsbank", "rigsbanktegn", "rigsbankdaler",
+            "skilling rigsmønt", "skilling")):
+        return ("no_match", None, None, audit)
+    metal = coin.get("metal")
+    if metal == "silver":
+        kind = "kurant"
+    elif metal in ("copper", "billon", "bronze"):
+        kind = "scheide"
+    else:
+        # Unknown metal — apply anyway as kurant by default; curator
+        # can override via classification_decisions.
+        kind = "kurant"
+    audit.update({
+        "year_first": year_first,
+        "entity": entity_id,
+        "metal": metal,
+        "nominal": coin.get("nominal"),
+    })
+    return ("era_anchor", "18_5_thaler", kind, audit)
+
+
 def classify_coin(coin: dict, fuesse: dict, yield_index: dict,
                   entity_id: str | None = None,
                   phase_index: dict | None = None) -> dict:
@@ -504,6 +558,17 @@ def classify_coin(coin: dict, fuesse: dict, yield_index: dict,
         decision["proposed_fuss"] = yld_fuss
         decision["signal"] = yld_signal  # hede_yield
         decision["audit"] = yld_audit
+        return decision
+
+    # Era-anchor: post-1813 Danish-realm Skilling / Rigsbank → 18_5_thaler
+    era_signal, era_fuss, era_kind, era_audit = _classify_via_era_anchor(
+        coin, entity_id)
+    if era_fuss:
+        decision["proposed_fuss"] = era_fuss
+        if era_kind:
+            decision["proposed_kind"] = era_kind
+        decision["signal"] = era_signal
+        decision["audit"] = era_audit
         return decision
 
     # Fallback: fineness/weight-Δ

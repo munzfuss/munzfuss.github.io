@@ -649,9 +649,43 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
 
     galster = cat.get("galster")
     if galster is not None:
+        # Galster catalogue is per-ruler (Christian II = c2g, Frederik I = f1g,
+        # Christian III = c3g, ...). When the entry carries galster_volume
+        # explicitly, scope by that. Otherwise fall back to ruler-derived
+        # scope so two records pointing at the same ruler's Galster volume
+        # compare as same-scope. Without this, Numista entries (which
+        # publish galster ref but no galster_volume) end up in the bare
+        # `galster` scope while Galster-source entries land in
+        # `galster/<vol>` → no_overlap → false-positive merges with
+        # disagreeing galster numbers (caught 2026-05-20 audit on Numista
+        # 474583 — Galster 101 vs Galster 103 silently merged).
         vol = (cat.get("galster_volume") or "").strip()
+        if not vol:
+            # Derive volume code from ruler. Pattern: lowercase initial
+            # of forename + numeral + 'g'. «Christian III» → «c3g»,
+            # «Frederik I» → «f1g», «Christian II» → «c2g». For Erik VII
+            # and other less-common rulers no mapping yet — fall through
+            # to bare scope.
+            ruler_norm = _normalise_ruler(coin.get("ruler"))
+            if ruler_norm:
+                # _normalise_ruler returns lowercase, so match case-insens
+                m = re.match(r"(christian|frederik|hans|erik|knud)"
+                             r"\s+([ivx]+|\d+)\.?", ruler_norm,
+                             flags=re.IGNORECASE)
+                if m:
+                    name_initial = m.group(1)[0].lower()
+                    num = m.group(2)
+                    roman_map = {"I": "1", "II": "2", "III": "3",
+                                 "IV": "4", "V": "5", "VI": "6",
+                                 "VII": "7", "VIII": "8", "IX": "9", "X": "10"}
+                    arabic = roman_map.get(num.upper(), num)
+                    if arabic.isdigit():
+                        vol = f"{name_initial}{arabic}g"
         key = f"galster/{vol}" if vol else "galster"
-        refs[key] = str(galster).strip()
+        if isinstance(galster, list):
+            refs[key] = "|".join(sorted(str(g).strip() for g in galster))
+        else:
+            refs[key] = str(galster).strip()
 
     return refs
 
@@ -1291,22 +1325,35 @@ def _collect_metal(members: list[dict]) -> str | None:
 
     Precedence (mirrors `_collect_mints`):
       Tier 1: ANY member has `metal_verified: True`
-              → use the highest-_authority_score member among those
+              → use the highest-_authority_score member among those.
+              Ties broken in REVERSE insertion order — i.e. members
+              appended LAST win when authority tied, because absorb's
+              members list is [fc, *composed_of_unified]: the
+              composed_of unified entries are FRESHER cross-source
+              merge results, while fc is the (potentially stale)
+              foundation. When fc and a composed_of member tie on
+              authority but disagree on metal, the fresh unified
+              attestation should win.
       Tier 2: All members unverified
               → fall back to first non-None metal among the highest-
               authority-scored members
       Tier 3: No metal anywhere → None
     """
-    # Tier 1: verified attestations
-    verified = [m for m in members if bool(m.get("metal_verified")) and m.get("metal")]
+    # Tier 1: verified attestations. Sort key: (-authority, -insertion_index)
+    # so high-authority wins; ties broken by later insertion (fresher).
+    indexed = list(enumerate(members))
+    verified = [(idx, m) for idx, m in indexed
+                if bool(m.get("metal_verified")) and m.get("metal")]
     if verified:
         verified_sorted = sorted(
-            verified, key=lambda c: -_authority_score(c.get("id", "")))
-        return verified_sorted[0].get("metal")
-    # Tier 2: highest-authority unverified
+            verified,
+            key=lambda im: (-_authority_score(im[1].get("id", "")), -im[0]))
+        return verified_sorted[0][1].get("metal")
+    # Tier 2: highest-authority unverified, fresher when tied
     sorted_members = sorted(
-        members, key=lambda c: -_authority_score(c.get("id", "")))
-    for m in sorted_members:
+        indexed,
+        key=lambda im: (-_authority_score(im[1].get("id", "")), -im[0]))
+    for _, m in sorted_members:
         v = m.get("metal")
         if v:
             return v
