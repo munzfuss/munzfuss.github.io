@@ -96,18 +96,29 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.125
     source: numismaster
+  - value: 0.125
+    source: tid
   weight_rough_g:
   - value: 0.73
     source: numismaster
+  - value: 0.73
+    source: tid
+  diameter_mm:
+  - value: 14.35
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_110593
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-skilling-1682/?tid=143754
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -6764,13 +6775,20 @@ coins:
   fineness:
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: tid
   weight_rough_g:
   - value: 1.49
     source: numismaster
+  - value: 1.49
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_110791
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-ducat-1666/?tid=145473
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -6801,13 +6819,20 @@ coins:
   fineness:
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: tid
   weight_rough_g:
   - value: 1.49
     source: numismaster
+  - value: 1.49
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_110792
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-ducat-1669/?tid=145474
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -9845,7 +9870,9 @@ coins:
   year_first: 1526
   year_last: 1526
   year_label: '1526'
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     bruun_collection_id: '9268'
     sieg: '2'
@@ -9929,7 +9956,9 @@ coins:
   year_first: 1535
   year_last: 1535
   year_label: '1535'
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     bruun_collection_id: '9290'
     sieg: '1'
@@ -9971,7 +10000,9 @@ coins:
   year_first: 1535
   year_last: 1535
   year_label: '1535'
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     bruun_collection_id: '9291'
     sieg: '1'
@@ -10099,7 +10130,9 @@ coins:
   - - 1531
     - 1532
   year_label: 1531, 1532
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     galster: '172'
     galster_volume: c2g
@@ -10133,7 +10166,9 @@ coins:
   year_first: 1525
   year_last: 1525
   year_label: '1525'
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     galster: '166'
     schive: XVI.1
@@ -10174,7 +10209,9 @@ coins:
   - - 1525
     - 1530
   year_label: 1525, 1526, 1528, 1530
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     galster: '167'
     schive: XVI.2-7
@@ -10216,7 +10253,9 @@ coins:
   year_first: 1531
   year_last: 1531
   year_label: '1531'
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     galster: '168'
     schou: '6'
@@ -10302,6 +10341,7 @@ coins:
     hede_volume: nc3h
     schou: '1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10347,6 +10387,7 @@ coins:
     hede_volume: nc3h
     schou: '1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10389,6 +10430,7 @@ coins:
     hede_volume: nc3h
     schou: '8'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10435,6 +10477,7 @@ coins:
     hede: '4'
     hede_volume: nc3h
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10480,6 +10523,7 @@ coins:
     hede_volume: nc4h
     schou: '16'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10525,6 +10569,7 @@ coins:
     hede_volume: nc4h
     schou: '9'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10572,6 +10617,7 @@ coins:
     hede_volume: nc4h
     schou: '23'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10619,6 +10665,7 @@ coins:
     hede_volume: nc4h
     schou: '28'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10828,6 +10875,7 @@ coins:
     hede_volume: nc4h
     schou: '48'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10873,6 +10921,7 @@ coins:
     hede_volume: nc4h
     schou: '28'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10918,6 +10967,7 @@ coins:
     hede_volume: nc4h
     schou: '29'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10963,6 +11013,7 @@ coins:
     hede_volume: nc4h
     schou: '24'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11008,6 +11059,7 @@ coins:
     hede_volume: nc4h
     schou: '11'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11055,6 +11107,7 @@ coins:
     hede_volume: nc4h
     schou: '11'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11104,6 +11157,7 @@ coins:
     hede_volume: nc4h
     schou: '1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11146,6 +11200,7 @@ coins:
     hede_volume: nc5h
     schou: '3'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11183,6 +11238,7 @@ coins:
     hede_volume: nc5h
     schou: '5'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11220,6 +11276,7 @@ coins:
     hede_volume: nc5h
     schou: '1'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11257,6 +11314,7 @@ coins:
     hede_volume: nc5h
     schou: '1'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11299,6 +11357,7 @@ coins:
     hede_volume: nc5h
     schou: '11'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11560,16 +11619,16 @@ coins:
   year_last: 1674
   year_ranges:
   - - 1671
-    - 1671
-  - - 1673
     - 1674
   year_label: 1671, 1673–1674
   mint: Christiania
   catalog:
+    km: '107'
     hede: '33'
     hede_volume: nc5h
     schou: '13'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11577,13 +11636,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 14.447
     source: hede
+  - value: 14.45
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h33.htm
     ref: danskmoent.dk (Hede nc5h33)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1671-1674/?tid=145604
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -11606,8 +11672,6 @@ coins:
   year_last: 1675
   year_ranges:
   - - 1671
-    - 1671
-  - - 1675
     - 1675
   year_label: 1671, 1675
   mint: Christiania
@@ -11616,6 +11680,7 @@ coins:
     hede_volume: nc5h
     schou: '15'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11623,13 +11688,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
+  - value: 7.22
+    source: tid
   - value: 7.224
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h34.htm
     ref: danskmoent.dk (Hede nc5h34)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-4-speciedaler-1671-1675/?tid=144929
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -11657,6 +11729,7 @@ coins:
     hede_volume: nc5h
     schou: '48'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11690,10 +11763,12 @@ coins:
   year_label: '1693'
   mint: Kongsberg
   catalog:
+    km: '191'
     hede: '38'
     hede_volume: nc5h
     schou: '20'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11701,13 +11776,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 14.447
     source: hede
+  - value: 14.45
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h38.htm
     ref: danskmoent.dk (Hede nc5h38)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1693/?tid=145605
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -11945,6 +12027,7 @@ coins:
     hede_volume: nc5h
     schou: '24'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -12312,11 +12395,15 @@ coins:
     source: hede
   - value: 0.125
     source: numismaster
+  - value: 0.125
+    source: tid
   weight_rough_g:
   - value: 0.731
     source: hede
   - value: 0.75
     source: numismaster
+  - value: 0.75
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_110592
@@ -12324,6 +12411,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h52.htm
     ref: danskmoent.dk (Hede nc5h52)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-skilling-1676/?tid=143753
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -12414,6 +12504,7 @@ coins:
     hede_volume: nc5h
     schou: 29-30
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -12459,6 +12550,7 @@ coins:
     hede_volume: nc5h
     schou: '27'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -12753,6 +12845,7 @@ coins:
     hede_volume: nc5h
     schou: 4-5
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -12795,6 +12888,7 @@ coins:
     hede_volume: nc5h
     schou: '17'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -12894,6 +12988,7 @@ coins:
     hede_volume: nc5h
     schou: '19'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -12939,6 +13034,7 @@ coins:
     hede_volume: nc5h
     schou: '11'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -13246,6 +13342,7 @@ coins:
     hede_volume: nc5h
     schou: '14'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -13532,6 +13629,7 @@ coins:
     hede_volume: nc5h
     schou: '5'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -13733,6 +13831,7 @@ coins:
     hede_volume: nc5h
     schou: '11'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -13807,6 +13906,7 @@ coins:
     hede_volume: nc5h
     schou: '5'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -13844,6 +13944,7 @@ coins:
     hede_volume: nc6h
     schou: '1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -14786,6 +14887,7 @@ coins:
     unit_raw: spdl
   composed_of:
   - unified-dk-hede-nc7h3
+  - unified-dk-tid-88743
 - fuss: seed_unsorted
   phase: hede
   kind: kurant
@@ -14889,6 +14991,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-nc7h5
+  - unified-dk-tid-88744
 - fuss: seed_unsorted
   phase: hede
   kind: kurant
@@ -14941,6 +15044,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-nc7h6
+  - unified-dk-tid-88741
   - unified-dk-tid-88742
 - fuss: seed_unsorted
   phase: hede
@@ -15062,6 +15166,7 @@ coins:
     schou: 3-4
     sieg: '15'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15107,6 +15212,7 @@ coins:
     schou: '26'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15114,13 +15220,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 7.178
     source: hede
+  - value: 7.18
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h12.htm
     ref: danskmoent.dk (Hede nf3h12)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-4-speciedaler-1649-1651/?tid=145388
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15309,6 +15422,7 @@ coins:
     schou: '20'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15352,6 +15466,7 @@ coins:
     schou: '9'
     fr: '3'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15380,10 +15495,10 @@ coins:
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h20
-  year_first: 1653
+  year_first: 1649
   year_last: 1658
   year_ranges:
-  - - 1653
+  - - 1649
     - 1658
   year_label: 1653–1658
   mint: Christiania
@@ -15393,6 +15508,7 @@ coins:
     schou: '26'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15400,13 +15516,23 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
+  - value: 14.36
+    source: tid
   - value: 14.387
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h20.htm
     ref: danskmoent.dk (Hede nf3h20)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1649-1653/?tid=145410
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1653-1658/?tid=145411
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15439,6 +15565,7 @@ coins:
     schou: '14'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15598,6 +15725,7 @@ coins:
     schou: 18-19
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15639,6 +15767,7 @@ coins:
     schou: '20'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15803,6 +15932,7 @@ coins:
     schou: '21'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15810,13 +15940,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 14.387
     source: hede
+  - value: 14.39
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h37.htm
     ref: danskmoent.dk (Hede nf3h37)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1659-1660/?tid=145412
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15846,6 +15983,7 @@ coins:
     schou: '45'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15889,6 +16027,7 @@ coins:
     schou: '18'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15930,6 +16069,7 @@ coins:
     schou: 17-18
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16086,6 +16226,7 @@ coins:
     schou: '24'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16093,13 +16234,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 3.596
     source: hede
+  - value: 3.6
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h47.htm
     ref: danskmoent.dk (Hede nf3h47)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1663/?tid=145386
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -16129,6 +16277,7 @@ coins:
     schou: 35-36
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16175,6 +16324,7 @@ coins:
     schou: '21'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16450,6 +16600,7 @@ coins:
     schou: '38'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16457,13 +16608,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 3.596
     source: hede
+  - value: 3.6
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h61.htm
     ref: danskmoent.dk (Hede nf3h61)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1665/?tid=145387
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -16496,6 +16654,7 @@ coins:
     schou: '1'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16593,6 +16752,7 @@ coins:
     schou: '21'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16600,13 +16760,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 14.387
     source: hede
+  - value: 14.39
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h65.htm
     ref: danskmoent.dk (Hede nf3h65)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1669/?tid=145425
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -16636,6 +16803,7 @@ coins:
     schou: 34-35
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16738,6 +16906,7 @@ coins:
     schou: '39'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16837,6 +17006,7 @@ coins:
     schou: '10'
     fr: '3'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -17151,6 +17321,7 @@ coins:
     schou: '9'
     fr: '3'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -17634,6 +17805,7 @@ coins:
     schou: '7'
     fr: '4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -17837,6 +18009,7 @@ coins:
     sieg: '11'
     fr: '4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -17879,6 +18052,7 @@ coins:
     sieg: '12'
     fr: '4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -18606,6 +18780,7 @@ coins:
     schou: 5-8
     fr: '6'
   metal: silver
+  metal_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
@@ -18640,6 +18815,7 @@ coins:
     schou: 12-15
     fr: '6'
   metal: silver
+  metal_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
@@ -18670,7 +18846,9 @@ coins:
   - - 1513
     - 1523
   year_label: 1513-1523
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     numista: '110323'
     schive: XV:7
@@ -18767,7 +18945,9 @@ coins:
   - - 1524
     - 1533
   year_label: 1524-1533
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     numista: '121754'
     schive: XVI:11
@@ -18913,7 +19093,9 @@ coins:
   year_first: 1531
   year_last: 1531
   year_label: '1531'
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     numista: '444429'
     galster: '168'
@@ -18958,7 +19140,9 @@ coins:
   year_first: 1535
   year_last: 1535
   year_label: '1535'
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     numista: '444496'
     schive: XVII:9
@@ -19004,7 +19188,9 @@ coins:
   year_first: 1525
   year_last: 1525
   year_label: '1525'
-  mint: Oslo
+  mint:
+  - Christiania
+  - Oslo
   catalog:
     numista: '477551'
     galster: '166'
@@ -19113,6 +19299,7 @@ coins:
     hede_volume: nc4h
     schou: '76'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -19519,8 +19706,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-143753
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -19558,8 +19744,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-143754
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -19713,8 +19898,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-144929
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -19894,8 +20078,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-145386
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -19929,8 +20112,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-145387
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -19967,8 +20149,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-145388
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -20119,8 +20300,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-145410
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -20157,8 +20337,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-145412
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -20230,8 +20409,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-145425
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -20302,8 +20480,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-145473
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -20339,8 +20516,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-145474
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -20604,8 +20780,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-145604
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -20641,8 +20816,7 @@ coins:
       Lange / NumisMaster / Bruun) before §BF promotion.'
     uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-145605
+  composed_of: []
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -21455,7 +21629,7 @@ coins:
   year_ranges:
   - - 1747
     - 1756
-  year_label: 1747-1756
+  year_label: 1750, 1756
   mint:
   - Kongsberg
   - Kopenhagen
@@ -21522,6 +21696,7 @@ coins:
     schou: 6-7
     sieg: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -21564,6 +21739,7 @@ coins:
     schou: '8'
     sieg: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -21607,6 +21783,7 @@ coins:
     sieg: '2'
     fr: '6'
   metal: silver
+  metal_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false

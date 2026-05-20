@@ -37,6 +37,198 @@ from lib.seed_merge import merge_seed  # noqa: E402
 
 V2_SEED_ROOT = PROJECT_ROOT / "data" / "v2" / "seed"
 
+# ----------------------------------------------------------------------
+# Pre-write hygiene: out-of-scope filter + normalisation
+# ----------------------------------------------------------------------
+import re  # noqa: E402
+
+# Nominal substrings that mark a coin as OUT-OF-SCOPE for the project.
+# Per CLAUDE.md «Mission temporal scope» the artifact documents NORTH
+# GERMAN + DANISH-NORWEGIAN coinage. Trade coins minted FOR (not BY)
+# the Danish Crown — East India Asiatic Piastre etc. — fall outside
+# this register even when minted at Kopenhagen. User-confirmed
+# 2026-05-20.
+_OUT_OF_SCOPE_NOMINAL_TOKENS = (
+    "piastre",       # Christian VII East India trade
+    "rupee",         # East India Tranquebar
+    "fanam",         # East India sub-denomination
+    "cash",          # East India sub-denomination
+)
+
+# Canonical mint name table — normalises the dozens of orthographic
+# variants encountered across sources (English / Danish / Latin
+# spellings, country-prefixed ucoin format, modern vs historical
+# spellings) to ONE canonical form per physical mint town.
+# Project convention per CLAUDE.md i18n policy: German period spelling
+# for project canonical (Kopenhagen, Christiania, Glückstadt, Altona).
+_MINT_CANONICAL = {
+    # Copenhagen variants → Kopenhagen
+    "copenhagen": "Kopenhagen",
+    "københavn": "Kopenhagen",
+    "kjøbenhavn": "Kopenhagen",      # pre-1948 Danish spelling
+    "k�benhavn": "Kopenhagen",        # mojibake from iso-8859 source
+    "hafnia": "Kopenhagen",           # Latin (Christian IV legends)
+    "kopenhagen": "Kopenhagen",
+    # Christiania / Oslo (Norge)
+    "christiania": "Christiania",
+    "oslo": "Christiania",            # pre-1924 Christiania (post 1925 Oslo)
+                                       # — project window ends 1914 → Christiania
+    # Glückstadt variants
+    "glückstadt": "Glückstadt",
+    "gluckstadt": "Glückstadt",       # ASCII fallback
+    "gl�ckstadt": "Glückstadt",       # mojibake
+    # Rendsburg (German canonical for SH)
+    "rendsburg": "Rendsburg",
+    "rendsborg": "Rendsburg",         # Danish spelling
+    # Helsingør
+    "helsingør": "Helsingør",
+    "helsingor": "Helsingør",
+    "helsing�r": "Helsingør",         # mojibake
+    "elsinore": "Helsingør",          # English
+    "elseneur": "Helsingør",          # French (old auction catalogues)
+    # Aarhus / Århus
+    "århus": "Århus",
+    "aarhus": "Århus",
+    # Malmö / Malmø (Scania historical; Swedish for project)
+    "malmö": "Malmö",
+    "malmø": "Malmö",                 # Danish for the same town
+    "malm�": "Malmö",                 # mojibake
+    "malmoe": "Malmö",
+    # Kongsberg (Norge silver mint)
+    "kongsberg": "Kongsberg",
+    "konsberg": "Kongsberg",
+}
+
+# Country / region prefix tokens that ucoin sometimes prepends
+# («Denmark, Copenhagen»). Strip these before canonicalising.
+_MINT_COUNTRY_PREFIXES = frozenset({
+    "denmark", "norway", "sweden", "germany", "holstein", "schleswig",
+    "schleswig-holstein", "lübeck", "hamburg",
+})
+
+
+def _canonicalise_mint(raw):
+    """Map an arbitrary mint string (or list) to canonical project
+    spelling. Strips country-prefixes, paren tails, applies alias
+    map, restores diacritics. Returns scalar (single mint) or sorted
+    de-duped list (joint mint). None when input is None / empty."""
+    if raw is None:
+        return None
+    items = raw if isinstance(raw, list) else [raw]
+    out_set: list[str] = []
+    for item in items:
+        if not isinstance(item, str):
+            continue
+        # Strip paren tail «Altona (FK VS)» → «Altona»
+        base = re.sub(r"\s*\([^)]*\)\s*$", "", item).strip()
+        if not base:
+            continue
+        # Split on comma — drop country prefix tokens, canonicalise the
+        # rest. «Denmark, Copenhagen» → Kopenhagen.
+        for tok in [t.strip() for t in base.split(",") if t.strip()]:
+            key = tok.lower()
+            if key in _MINT_COUNTRY_PREFIXES:
+                continue
+            canonical = _MINT_CANONICAL.get(key, tok)
+            if canonical not in out_set:
+                out_set.append(canonical)
+    if not out_set:
+        return None
+    return out_set[0] if len(out_set) == 1 else sorted(out_set)
+
+
+# Nominal normalisation table — fixes mojibake + standardises fraction
+# typography («1/2» → «½», «1 1/2» → «1½») without altering the
+# semantic content. Per CLAUDE.md §i18n the period denomination form
+# stays — we only fix encoding artefacts and typographic consistency.
+_NOMINAL_MOJIBAKE_FIXES = (
+    ("K�benhavn", "København"),
+    ("Malm�", "Malmø"),
+    ("Gl�ckstadt", "Glückstadt"),
+    ("Helsing�r", "Helsingør"),
+    ("Sølv�", "Sølv"),
+    ("�", ""),  # last-resort drop remaining replacement-char artefacts
+)
+
+
+def _normalise_nominal(raw):
+    """Normalise a nominal string: mojibake fix + fraction typography +
+    consistent capitalization of the denomination noun. Preserves the
+    period-correct numismatic form (no translation), only typographic
+    cleanup. Returns None when input is None."""
+    if raw is None:
+        return None
+    s = str(raw).strip()
+    if not s:
+        return None
+    # Mojibake repair first — must happen before any case folding so
+    # the diacritic-bearing char survives.
+    for bad, good in _NOMINAL_MOJIBAKE_FIXES:
+        if bad in s:
+            s = s.replace(bad, good)
+    # Fraction typography: «1 1/2» / «1-1/2» → «1½»; «1/2» → «½»; etc.
+    s = re.sub(r"(\d)\s*[\-\s]\s*1/2\b", r"\1½", s)
+    s = re.sub(r"(\d)\s*[\-\s]\s*1/4\b", r"\1¼", s)
+    s = re.sub(r"(\d)\s*[\-\s]\s*3/4\b", r"\1¾", s)
+    s = re.sub(r"\b1/2\b", "½", s)
+    s = re.sub(r"\b1/4\b", "¼", s)
+    s = re.sub(r"\b3/4\b", "¾", s)
+    s = re.sub(r"\b1/3\b", "⅓", s)
+    s = re.sub(r"\b2/3\b", "⅔", s)
+    s = re.sub(r"\b1/8\b", "⅛", s)
+    s = re.sub(r"\b1/16\b", "1/16", s)  # leave higher fractions as-is
+    # Capitalize denomination noun after a number. «1 skilling» →
+    # «1 Skilling»; «4 mark» → «4 Mark»; «1 dukat» → «1 Dukat».
+    # Only first noun, not deep capitalisation.
+    s = re.sub(
+        r"(\b(?:\d+|½|¼|¾|⅓|⅔|⅛)\s+)([a-zæøåüß])",
+        lambda m: m.group(1) + m.group(2).upper(),
+        s,
+    )
+    return s
+
+
+def _is_out_of_scope_nominal(nominal) -> bool:
+    """Return True when the nominal indicates an out-of-scope trade coin
+    (East India Piastre / Rupee / Fanam / Cash). User-confirmed
+    2026-05-20: these coins were minted BY the Danish Crown FOR Asian
+    markets, not for the European-realm coinage system the artifact
+    documents — exclude from every seed regardless of mint."""
+    if not nominal:
+        return False
+    n = str(nominal).lower()
+    return any(tok in n for tok in _OUT_OF_SCOPE_NOMINAL_TOKENS)
+
+
+def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, int]]:
+    """Run mint + nominal normalisation in-place and filter out coins
+    whose nominal puts them out-of-scope. Returns (kept, stats)."""
+    stats = {
+        "mint_normalised": 0,
+        "nominal_normalised": 0,
+        "out_of_scope_filtered": 0,
+    }
+    kept: list[dict] = []
+    for c in coins:
+        if not isinstance(c, dict):
+            kept.append(c)
+            continue
+        nominal = c.get("nominal")
+        if _is_out_of_scope_nominal(nominal):
+            stats["out_of_scope_filtered"] += 1
+            continue
+        new_nom = _normalise_nominal(nominal)
+        if new_nom is not None and new_nom != nominal:
+            c["nominal"] = new_nom
+            stats["nominal_normalised"] += 1
+        mint = c.get("mint")
+        new_mint = _canonicalise_mint(mint)
+        if new_mint != mint and not (new_mint is None and mint in (None, "")):
+            c["mint"] = new_mint
+            stats["mint_normalised"] += 1
+        kept.append(c)
+    return kept, stats
+
 
 def _home_entity(coin: dict) -> str | None:
     """Return the home-file entity for a coin.
@@ -94,6 +286,17 @@ def write_v2_seed(
         "unclassified_count": N,
       }
     """
+    # Pre-write hygiene: normalise mints + nominals, drop out-of-scope
+    # trade coins (Piastre / Rupee / Fanam / Cash). Runs in-place so
+    # all builders benefit uniformly. Returns the kept list +
+    # per-source counts of how many entries were touched.
+    coins, hygiene_stats = _apply_pre_write_hygiene(list(coins))
+    if any(hygiene_stats.values()):
+        print(f"\n[{source_name}] pre-write hygiene: "
+              f"out_of_scope_filtered={hygiene_stats['out_of_scope_filtered']}, "
+              f"nominal_normalised={hygiene_stats['nominal_normalised']}, "
+              f"mint_normalised={hygiene_stats['mint_normalised']}")
+
     by_entity: dict[str, list[dict]] = defaultdict(list)
     unclassified: list[dict] = []
     for c in coins:

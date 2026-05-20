@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 334 per-source seed entries.
-# Output: 301 unified entries (one per physical coin).
+# Output: 300 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -61,7 +61,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 1/2 Mark
+  nominal: ½ Mark
   year_first: 1514
   year_last: 1514
   year_label: '1514'
@@ -386,6 +386,7 @@ coins:
     schou: '2'
     sieg: '51'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -424,6 +425,7 @@ coins:
     schou: '2'
     sieg: '51'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -462,6 +464,7 @@ coins:
     schou: 1-2
     sieg: '49'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -505,6 +508,7 @@ coins:
     schou: 1-5
     sieg: '50'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -536,7 +540,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/2 Sølvgylden
+  nominal: ½ Sølvgylden
   year_first: 1547
   year_last: 1547
   year_label: '1547'
@@ -548,6 +552,7 @@ coins:
     schou: 6-8
     sieg: '48'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -591,6 +596,7 @@ coins:
     schou: 13-18
     sieg: '44.1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -634,6 +640,7 @@ coins:
     schou: 19-20
     sieg: '44.2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -684,6 +691,7 @@ coins:
     schou: '12'
     sieg: '45.1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -731,6 +739,7 @@ coins:
     schou: '7'
     sieg: '185'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -828,13 +837,11 @@ coins:
   fuss: 9_25_thaler
   phase: I
   kind: kurant
-  nominal: 1/2 Speciedaler
+  nominal: ½ Speciedaler
   year_first: 1623
   year_last: 1627
   year_ranges:
   - - 1623
-    - 1623
-  - - 1625
     - 1625
   - - 1627
     - 1627
@@ -848,24 +855,41 @@ coins:
     hede_volume: c4h
     schou: '37'
     sieg: '176'
+    lange: '42'
+    numista: '142943'
+    bruun_collection_id: '5342'
+    bruun_part: III
+    bruun_lot_no: 11190
+    bruun_page: 97
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
+  - value: 0.888
+    source: '14'
   - value: 0.888
     source: hede
   - value: 0.888
     source: numismaster
   weight_rough_g:
+  - value: 14.25
+    source: '14'
   - value: 14.616
     source: hede
+  diameter_mm:
+  - value: 39.0
+    source: '14'
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h160.htm
     ref: danskmoent.dk (Hede c4h160)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-speciedaler-1623-1625/?tid=163652
+    ref: ucoin
   - type: literature
     url: https://numismaster.com/MC_93014
     ref: NumisMaster
@@ -882,12 +906,13 @@ coins:
     unit_raw: daler
   composed_of:
   - dk-hede-c4h160
+  - km-14-chr-iv-1623
   - schleswig_holstein-numismaster-93014
 - id: unified-dk-hede-c4h161
   fuss: 9_thaler
   phase: I
   kind: kurant
-  nominal: 1/4 Speciedaler
+  nominal: ¼ Speciedaler
   year_first: 1623
   year_last: 1623
   year_label: '1623'
@@ -1003,7 +1028,7 @@ coins:
   fuss: 9_25_thaler
   phase: I
   kind: kurant
-  nominal: 1/2 Speciedaler
+  nominal: ½ Speciedaler
   year_first: 1645
   year_last: 1646
   year_ranges:
@@ -1058,7 +1083,7 @@ coins:
   fuss: 9_25_thaler
   phase: I
   kind: kurant
-  nominal: 1/4 Speciedaler
+  nominal: ¼ Speciedaler
   year_first: 1645
   year_last: 1645
   year_label: '1645'
@@ -1124,6 +1149,7 @@ coins:
     schou: 36-48
     sieg: '168'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1167,6 +1193,7 @@ coins:
     schou: 80-84
     sieg: '163'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1213,6 +1240,7 @@ coins:
     schou: '66'
     sieg: '165'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1380,6 +1408,7 @@ coins:
     schou: 33-37
     sieg: '162'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1421,6 +1450,7 @@ coins:
     schou: '17'
     sieg: '166'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1534,6 +1564,7 @@ coins:
     hede_volume: c4h
     sieg: '161'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1580,6 +1611,7 @@ coins:
     hede_volume: c4h
     sieg: '161'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1682,6 +1714,7 @@ coins:
     schou: '1'
     sieg: '9'
   metal: gold
+  metal_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
@@ -1717,6 +1750,7 @@ coins:
     schou: '3'
     sieg: '8'
   metal: gold
+  metal_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
@@ -1754,6 +1788,7 @@ coins:
     hede_volume: c4h
     sieg: '1'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1790,6 +1825,7 @@ coins:
     hede: 8B
     hede_volume: c4h
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1831,6 +1867,7 @@ coins:
     hede_volume: c5h
     sieg: '142.1'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1874,6 +1911,7 @@ coins:
     hede_volume: c5h
     sieg: '142.2'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1918,6 +1956,7 @@ coins:
     schou: '1'
     sieg: '144'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -1957,6 +1996,7 @@ coins:
     schou: '2'
     sieg: '145'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2066,6 +2106,7 @@ coins:
     schou: '22'
     sieg: '137'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2112,6 +2153,7 @@ coins:
     schou: '34'
     sieg: '134'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2155,6 +2197,7 @@ coins:
     schou: 31-32
     sieg: '132'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2200,6 +2243,7 @@ coins:
     hede_volume: c5h
     sieg: '138.1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2243,6 +2287,7 @@ coins:
     schou: 42-44
     sieg: '138.2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2288,6 +2333,7 @@ coins:
     hede_volume: c5h
     sieg: '139'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2333,6 +2379,7 @@ coins:
     hede_volume: c5h
     sieg: '135'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2380,6 +2427,7 @@ coins:
     hede_volume: c5h
     sieg: '136'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2428,6 +2476,7 @@ coins:
     hede_volume: c5h
     sieg: '133.2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2471,6 +2520,7 @@ coins:
     schou: '43'
     sieg: '133.1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2516,6 +2566,7 @@ coins:
     hede_volume: c5h
     sieg: '131'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2560,6 +2611,7 @@ coins:
     schou: '48'
     sieg: '128'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2591,7 +2643,7 @@ coins:
   fuss: 9_25_thaler
   phase: II
   kind: kurant
-  nominal: 1/4 Speciedaler
+  nominal: ¼ Speciedaler
   year_first: 1769
   year_last: 1769
   year_label: '1769'
@@ -2604,6 +2656,7 @@ coins:
     schou: '11'
     sieg: '1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2635,7 +2688,7 @@ coins:
   fuss: 9_25_thaler
   phase: II
   kind: kurant
-  nominal: 1/2 Speciedaler
+  nominal: ½ Speciedaler
   year_first: 1777
   year_last: 1786
   year_ranges:
@@ -2653,6 +2706,7 @@ coins:
     schou: '2'
     sieg: '29'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2702,6 +2756,7 @@ coins:
     schou: '11'
     sieg: '27'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2745,6 +2800,7 @@ coins:
     sieg: '26'
     fr: '6'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2789,6 +2845,7 @@ coins:
     schou: '2'
     sieg: '13'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2847,6 +2904,7 @@ coins:
     hede_volume: c7h
     sieg: '42'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2893,6 +2951,7 @@ coins:
     hede_volume: c7h
     sieg: '42.2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2939,6 +2998,7 @@ coins:
     hede_volume: c7h
     sieg: '42.2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -2985,6 +3045,7 @@ coins:
     hede_volume: c7h
     sieg: '42.3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3031,6 +3092,7 @@ coins:
     hede_volume: c7h
     sieg: '42.4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3075,6 +3137,7 @@ coins:
     schou: '6'
     sieg: '55'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3119,6 +3182,7 @@ coins:
     schou: '6'
     sieg: '56'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3150,7 +3214,7 @@ coins:
   fuss: 9_25_thaler
   phase: II
   kind: kurant
-  nominal: 2/3 Speciedaler
+  nominal: ⅔ Speciedaler
   year_first: 1787
   year_last: 1808
   year_ranges:
@@ -3169,6 +3233,7 @@ coins:
     hede_volume: c7h
     sieg: '41'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3200,7 +3265,7 @@ coins:
   fuss: 9_25_thaler
   phase: III
   kind: kurant
-  nominal: 2/3 Speciedaler
+  nominal: ⅔ Speciedaler
   year_first: 1799
   year_last: 1799
   year_label: '1799'
@@ -3213,6 +3278,7 @@ coins:
     schou: '7'
     sieg: '54'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3244,7 +3310,7 @@ coins:
   fuss: 9_25_thaler
   phase: II
   kind: kurant
-  nominal: 1/3 Speciedaler
+  nominal: ⅓ Speciedaler
   year_first: 1787
   year_last: 1808
   year_ranges:
@@ -3263,6 +3329,7 @@ coins:
     hede_volume: c7h
     sieg: '40.1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3294,7 +3361,7 @@ coins:
   fuss: 9_25_thaler
   phase: II
   kind: kurant
-  nominal: 1/3 Speciedaler
+  nominal: ⅓ Speciedaler
   year_first: 1787
   year_last: 1787
   year_label: '1787'
@@ -3307,6 +3374,7 @@ coins:
     schou: '8'
     sieg: '40.2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3338,7 +3406,7 @@ coins:
   fuss: 9_25_thaler
   phase: III
   kind: kurant
-  nominal: 1/3 Speciedaler
+  nominal: ⅓ Speciedaler
   year_first: 1789
   year_last: 1789
   year_label: '1789'
@@ -3351,6 +3419,7 @@ coins:
     schou: 4-5
     sieg: '40.3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3382,7 +3451,7 @@ coins:
   fuss: 9_25_thaler
   phase: III
   kind: kurant
-  nominal: 1/3 Speciedaler
+  nominal: ⅓ Speciedaler
   year_first: 1799
   year_last: 1799
   year_label: '1799'
@@ -3395,6 +3464,7 @@ coins:
     schou: '8'
     sieg: '53'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3444,6 +3514,7 @@ coins:
     schou: '9'
     sieg: '39'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3497,6 +3568,7 @@ coins:
     schou: '12'
     sieg: '38'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3528,7 +3600,7 @@ coins:
   fuss: 9_25_thaler
   phase: II
   kind: scheide
-  nominal: 1/24 Speciedaler/2 1/2 Schilling Schleswig-holsteinischer Courant
+  nominal: 1/24 Speciedaler/2½ Schilling Schleswig-holsteinischer Courant
   year_first: 1787
   year_last: 1801
   year_ranges:
@@ -3548,6 +3620,7 @@ coins:
     schou: '14'
     sieg: '37'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3661,6 +3734,7 @@ coins:
     schou: 18-22
     sieg: '35'
   metal: silver
+  metal_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
@@ -3695,6 +3769,7 @@ coins:
     schou: '23'
     sieg: '34'
   metal: silver
+  metal_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
@@ -3735,6 +3810,7 @@ coins:
     schou: '1'
     sieg: '47'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3777,6 +3853,7 @@ coins:
     schou: '2'
     sieg: '4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3821,6 +3898,7 @@ coins:
     schou: '1'
     sieg: '6'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3865,6 +3943,7 @@ coins:
     schou: 2-6
     sieg: '5'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3896,7 +3975,7 @@ coins:
   fuss: 9_25_thaler
   phase: II
   kind: kurant
-  nominal: 1/2 Speciedaler
+  nominal: ½ Speciedaler
   year_first: 1769
   year_last: 1769
   year_label: '1769'
@@ -3909,6 +3988,7 @@ coins:
     schou: '9'
     sieg: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3958,6 +4038,7 @@ coins:
     schou: 1,3,2,2
     sieg: '15'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -3996,6 +4077,7 @@ coins:
     schou: '7'
     sieg: '9'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4040,6 +4122,7 @@ coins:
     schou: '7'
     sieg: '6'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4083,6 +4166,7 @@ coins:
     hede_volume: f2h
     sieg: '33.1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4127,6 +4211,7 @@ coins:
     schou: 1-8
     sieg: '33.2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4172,6 +4257,7 @@ coins:
     sieg: '32.1'
     fr: '2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4220,6 +4306,7 @@ coins:
     sieg: '159'
     fr: '3'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4263,6 +4350,7 @@ coins:
     hede_volume: f3h
     sieg: '160'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4302,6 +4390,7 @@ coins:
     schou: '2'
     sieg: '160'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4411,6 +4500,7 @@ coins:
     sieg: '147'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4459,6 +4549,7 @@ coins:
     sieg: '146'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4504,6 +4595,7 @@ coins:
     sieg: '152'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4553,6 +4645,7 @@ coins:
     sieg: '150.1'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4599,6 +4692,7 @@ coins:
     hede_volume: f3h
     sieg: '153.1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4645,6 +4739,7 @@ coins:
     hede_volume: f3h
     sieg: '153.2'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4688,6 +4783,7 @@ coins:
     schou: '1'
     sieg: '57'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4728,6 +4824,7 @@ coins:
     hede_volume: f4h
     sieg: '57'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -4947,15 +5044,14 @@ coins:
   fuss: reichsdukatenfuss
   phase: I
   kind: kurant
-  nominal: 1/2 Dukat
+  nominal: ½ Dukat
   year_first: 1719
   year_last: 1719
   year_label: '1719'
   fraction: 1/2
   ruler: Frederik IV.
-  mint: Denmark, Rendsburg
+  mint: Rendsburg
   catalog:
-    km: '7'
     hede: '61'
     hede_volume: f4h
     schou: '2'
@@ -4965,25 +5061,18 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: true
+  mint_verified: false
   verified: false
   fineness:
   - value: 0.979
     source: hede
-  - value: 0.979
-    source: x011
   weight_rough_g:
   - value: 1.745
     source: hede
-  - value: 1.75
-    source: x011
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h61.htm
     ref: danskmoent.dk (Hede f4h61)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-2-dukat-1719/?tid=169253
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -4992,7 +5081,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-hede-f4h61
-  - km-x011-fr-iv-1719-half
 - id: unified-dk-hede-f4h62
   fuss: 9_25_thaler
   phase: I
@@ -5138,6 +5226,7 @@ coins:
     sieg: '8'
     fr: '6'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -5188,6 +5277,7 @@ coins:
     sieg: '35'
     fr: '6'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -5237,6 +5327,7 @@ coins:
     sieg: '23'
     fr: '6'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -5282,6 +5373,7 @@ coins:
     sieg: '22'
     fr: '6'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -5326,6 +5418,7 @@ coins:
     sieg: '21'
     fr: '6'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -5369,6 +5462,7 @@ coins:
     sieg: '20'
     fr: '6'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -5413,6 +5507,7 @@ coins:
     sieg: '19'
     fr: '6'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -5456,6 +5551,7 @@ coins:
     schou: '2'
     sieg: '32'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -5502,6 +5598,7 @@ coins:
     schou: 1829-37
     sieg: '33'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -5546,6 +5643,7 @@ coins:
     sieg: '1'
     fr: '6'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -5591,6 +5689,7 @@ coins:
     sieg: '15'
     fr: '7'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -6283,56 +6382,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - km-138-3-chr-vii-1787
-- id: unified-km-14-chr-iv-1623
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ speciedaler
-  year_first: 1623
-  year_last: 1625
-  year_ranges:
-  - - 1623
-    - 1625
-  year_label: 1623–1625
-  ruler: Christian IV
-  catalog:
-    km: '14'
-    lange: '42'
-    numista: '142943'
-    bruun_collection_id: '5342'
-    bruun_part: III
-    bruun_lot_no: 11190
-    bruun_page: 97
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.888
-    source: '14'
-  weight_rough_g:
-  - value: 14.25
-    source: '14'
-  diameter_mm:
-  - value: 39.0
-    source: '14'
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-2-speciedaler-1623-1625/?tid=163652
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - km-14-chr-iv-1623
 - id: unified-km-150-fr-vi-1809
   fuss: seed_unsorted
   phase: ucoin
@@ -7013,7 +7062,7 @@ coins:
   fuss: seed_unsorted
   phase: ucoin
   kind: scheide
-  nominal: 2 Skilling Dansk
+  nominal: 2 skilling
   year_first: 1676
   year_last: 1681
   year_ranges:
@@ -7022,8 +7071,7 @@ coins:
   - - 1680
     - 1681
   year_label: 1676–1677, 1680–1681
-  ruler: Christian V.
-  mint: Glückstadt
+  ruler: Christian V
   catalog:
     km: '358'
     hede: '123'
@@ -7033,39 +7081,33 @@ coins:
     - Schou 50-54
     - KM-DK# 71
     hede_volume: c5h
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: false
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.281
     source: '358'
   weight_rough_g:
-  - value: 1.3
-    source: ucoin tid 163585
   - value: 1.32
-    source: Numista N#22576
-  - value: 1.32
-    source: ucoin tid 96983
+    source: '358'
+  diameter_mm:
+  - value: 19.0
+    source: '358'
   sources:
-  - type: numista
-    url: https://en.numista.com/22576
-    ref: Numista
-  - type: web
-    url: https://www.danskmoent.dk/2skill.htm
-    ref: Hede 123 / danskmoent.dk
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-skilling-1676-1681/?tid=96983
-    ref: ucoin tid 96983
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-skilling-dansk-1681/?tid=163585
-    ref: ucoin tid 163585
+    ref: ucoin
   verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   issuing_entity: royal_holstein
   composed_of:
   - km-358-h123-chr-v-1681
@@ -7231,9 +7273,13 @@ coins:
   fineness:
   - value: 0.812
     source: '55'
+  - value: 0.812
+    source: numismaster
   weight_rough_g:
   - value: 3.57
     source: '55'
+  - value: 3.57
+    source: numismaster
   diameter_mm:
   - value: 25.0
     source: '55'
@@ -7241,6 +7287,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-8-speciedaler-1665/?tid=163641
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_93011
+    ref: NumisMaster
   verification_note:
     de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
       / NumisMaster / Bruun) vor §BF-Promotion.'
@@ -7251,6 +7300,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - km-55-fr-iii-1665
+  - schleswig_holstein-numismaster-93011
 - id: unified-km-56-fr-iii-1666
   fuss: seed_unsorted
   phase: ucoin
@@ -8747,6 +8797,44 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - km-x007-chr-iv-1620
+- id: unified-km-x011-fr-iv-1719-half
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1/2 dukat
+  year_first: 1719
+  year_last: 1719
+  year_label: '1719'
+  ruler: Frederick IV
+  mint: Denmark, Rendsburg
+  catalog:
+    km: '7'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.979
+    source: x011
+  weight_rough_g:
+  - value: 1.75
+    source: x011
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-dukat-1719/?tid=169253
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: royal_holstein
+  composed_of:
+  - km-x011-fr-iv-1719-half
 - id: unified-schleswig_holstein-numismaster-117986
   fuss: seed_unsorted
   phase: numismaster
@@ -9780,7 +9868,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/4 Mark
+  nominal: ¼ Mark
   year_first: 1514
   year_last: 1514
   year_label: '1514'
@@ -9815,7 +9903,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Mark
+  nominal: ½ Mark
   year_first: 1514
   year_last: 1514
   year_label: '1514'
@@ -12054,7 +12142,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/8 Speciedaler
+  nominal: ⅛ Speciedaler
   year_first: 1623
   year_last: 1623
   year_label: '1623'
@@ -12081,42 +12169,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-93010
-- id: unified-schleswig_holstein-numismaster-93011
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1/8 Speciedaler
-  year_first: 1665
-  year_last: 1665
-  year_label: '1665'
-  catalog:
-    km: '55'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.812
-    source: numismaster
-  weight_rough_g:
-  - value: 3.57
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_93011
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-93011
 - id: unified-schleswig_holstein-numismaster-93016
   fuss: seed_unsorted
   phase: numismaster
@@ -12521,7 +12573,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Ducat
+  nominal: ½ Ducat
   year_first: 1645
   year_last: 1646
   year_ranges:

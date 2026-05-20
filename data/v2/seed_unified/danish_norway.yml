@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 693 per-source seed entries.
-# Output: 497 unified entries (one per physical coin).
+# Output: 487 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -17,7 +17,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Skilling
+  nominal: ½ Skilling
   year_first: 1682
   year_last: 1682
   year_label: '1682'
@@ -28,18 +28,29 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.125
     source: numismaster
+  - value: 0.125
+    source: tid
   weight_rough_g:
   - value: 0.73
     source: numismaster
+  - value: 0.73
+    source: tid
+  diameter_mm:
+  - value: 14.35
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_110593
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-skilling-1682/?tid=143754
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -50,6 +61,7 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110593
+  - dk-tid-143754
 - id: unified-denmark-numismaster-110594
   fuss: seed_unsorted
   phase: numismaster
@@ -2676,7 +2688,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/8 Specie Daler
+  nominal: ⅛ Specie Daler
   year_first: 1628
   year_last: 1629
   year_ranges:
@@ -2715,7 +2727,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/8 Specie Daler
+  nominal: ⅛ Specie Daler
   year_first: 1629
   year_last: 1647
   year_ranges:
@@ -2756,7 +2768,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/8 Specie Daler
+  nominal: ⅛ Specie Daler
   year_first: 1649
   year_last: 1650
   year_ranges:
@@ -2795,7 +2807,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/8 Specie Daler
+  nominal: ⅛ Specie Daler
   year_first: 1654
   year_last: 1654
   year_label: '1654'
@@ -2831,7 +2843,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/8 Specie Daler
+  nominal: ⅛ Specie Daler
   year_first: 1660
   year_last: 1660
   year_label: '1660'
@@ -2867,7 +2879,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/8 Specie Daler
+  nominal: ⅛ Specie Daler
   year_first: 1661
   year_last: 1661
   year_label: '1661'
@@ -2903,7 +2915,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/8 Specie Daler
+  nominal: ⅛ Specie Daler
   year_first: 1661
   year_last: 1661
   year_label: '1661'
@@ -2939,7 +2951,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/8 Specie Daler
+  nominal: ⅛ Specie Daler
   year_first: 1663
   year_last: 1663
   year_label: '1663'
@@ -2975,7 +2987,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/8 Specie Daler
+  nominal: ⅛ Specie Daler
   year_first: 1665
   year_last: 1665
   year_label: '1665'
@@ -3011,7 +3023,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/8 Specie Daler
+  nominal: ⅛ Specie Daler
   year_first: 1671
   year_last: 1671
   year_label: '1671'
@@ -3047,7 +3059,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/4 Specie Daler
+  nominal: ¼ Specie Daler
   year_first: 1628
   year_last: 1629
   year_ranges:
@@ -3086,7 +3098,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/4 Specie Daler
+  nominal: ¼ Specie Daler
   year_first: 1629
   year_last: 1647
   year_ranges:
@@ -3127,7 +3139,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/4 Specie Daler
+  nominal: ¼ Specie Daler
   year_first: 1648
   year_last: 1648
   year_label: '1648'
@@ -3163,7 +3175,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/4 Specie Daler
+  nominal: ¼ Specie Daler
   year_first: 1649
   year_last: 1651
   year_ranges:
@@ -3202,7 +3214,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/4 Specie Daler
+  nominal: ¼ Specie Daler
   year_first: 1652
   year_last: 1654
   year_ranges:
@@ -3241,7 +3253,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/4 Specie Daler
+  nominal: ¼ Specie Daler
   year_first: 1655
   year_last: 1656
   year_ranges:
@@ -3280,7 +3292,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/4 Specie Daler
+  nominal: ¼ Specie Daler
   year_first: 1663
   year_last: 1663
   year_label: '1663'
@@ -3316,7 +3328,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/4 Specie Daler
+  nominal: ¼ Specie Daler
   year_first: 1671
   year_last: 1675
   year_ranges:
@@ -3357,7 +3369,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/4 Specie Daler
+  nominal: ¼ Specie Daler
   year_first: 1685
   year_last: 1685
   year_label: '1685'
@@ -3393,7 +3405,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/4 Specie Daler
+  nominal: ¼ Specie Daler
   year_first: 1685
   year_last: 1685
   year_label: '1685'
@@ -3429,7 +3441,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Specie Daler
+  nominal: ½ Specie Daler
   year_first: 1628
   year_last: 1629
   year_ranges:
@@ -3468,7 +3480,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Specie Daler
+  nominal: ½ Specie Daler
   year_first: 1629
   year_last: 1647
   year_ranges:
@@ -3507,7 +3519,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Specie Daler
+  nominal: ½ Specie Daler
   year_first: 1648
   year_last: 1648
   year_label: '1648'
@@ -3543,7 +3555,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Specie Daler
+  nominal: ½ Specie Daler
   year_first: 1649
   year_last: 1653
   year_ranges:
@@ -3582,7 +3594,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Specie Daler
+  nominal: ½ Specie Daler
   year_first: 1653
   year_last: 1658
   year_ranges:
@@ -3621,7 +3633,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Specie Daler
+  nominal: ½ Specie Daler
   year_first: 1659
   year_last: 1660
   year_ranges:
@@ -3660,7 +3672,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Specie Daler
+  nominal: ½ Specie Daler
   year_first: 1665
   year_last: 1667
   year_ranges:
@@ -3701,7 +3713,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Specie Daler
+  nominal: ½ Specie Daler
   year_first: 1669
   year_last: 1669
   year_label: '1669'
@@ -3737,7 +3749,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Specie Daler
+  nominal: ½ Specie Daler
   year_first: 1671
   year_last: 1674
   year_ranges:
@@ -3778,7 +3790,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Specie Daler
+  nominal: ½ Specie Daler
   year_first: 1693
   year_last: 1693
   year_label: '1693'
@@ -6717,10 +6729,11 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Ducat
+  nominal: ½ Ducat
   year_first: 1666
   year_last: 1666
   year_label: '1666'
+  ruler: Frederick III
   mint: Christiania
   catalog:
     km: '80'
@@ -6733,13 +6746,20 @@ coins:
   fineness:
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: tid
   weight_rough_g:
   - value: 1.49
     source: numismaster
+  - value: 1.49
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_110791
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-ducat-1666/?tid=145473
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -6750,14 +6770,16 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110791
+  - dk-tid-145473
 - id: unified-denmark-numismaster-110792
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Ducat
+  nominal: ½ Ducat
   year_first: 1669
   year_last: 1669
   year_label: '1669'
+  ruler: Frederick III
   mint: Christiania
   catalog:
     km: '81'
@@ -6770,13 +6792,20 @@ coins:
   fineness:
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: tid
   weight_rough_g:
   - value: 1.49
     source: numismaster
+  - value: 1.49
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_110792
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-ducat-1669/?tid=145474
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -6787,11 +6816,12 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110792
+  - dk-tid-145474
 - id: unified-denmark-numismaster-110793
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Ducat
+  nominal: ½ Ducat
   year_first: 1668
   year_last: 1668
   year_label: '1668'
@@ -8298,7 +8328,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/3 Specie Daler
+  nominal: ⅓ Specie Daler
   year_first: 1803
   year_last: 1803
   year_label: '1803'
@@ -9420,7 +9450,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/3 Specie Daler
+  nominal: ⅓ Specie Daler
   year_first: 1795
   year_last: 1803
   year_ranges:
@@ -9459,7 +9489,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/2 Specie Daler
+  nominal: ½ Specie Daler
   year_first: 1776
   year_last: 1779
   year_ranges:
@@ -9498,7 +9528,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 2/3 Specie Daler
+  nominal: ⅔ Specie Daler
   year_first: 1795
   year_last: 1796
   year_ranges:
@@ -9537,7 +9567,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 2/3 Specie Daler
+  nominal: ⅔ Specie Daler
   year_first: 1795
   year_last: 1796
   year_ranges:
@@ -9865,7 +9895,7 @@ coins:
   year_last: 1526
   year_label: '1526'
   ruler: Frederik I
-  mint: Oslo
+  mint: Christiania
   catalog:
     bruun_collection_id: '9268'
     sieg: '2'
@@ -9949,7 +9979,7 @@ coins:
   year_last: 1535
   year_label: '1535'
   ruler: Christian III
-  mint: Oslo
+  mint: Christiania
   catalog:
     bruun_collection_id: '9290'
     sieg: '1'
@@ -9991,7 +10021,7 @@ coins:
   year_last: 1535
   year_label: '1535'
   ruler: Christian III
-  mint: Oslo
+  mint: Christiania
   catalog:
     bruun_collection_id: '9291'
     sieg: '1'
@@ -10119,7 +10149,7 @@ coins:
     - 1532
   year_label: 1531, 1532
   ruler: Christian II
-  mint: Oslo
+  mint: Christiania
   catalog:
     galster: '172'
     galster_volume: c2g
@@ -10149,11 +10179,11 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: 1 skilling (Firehvid)
+  nominal: 1 Skilling (Firehvid)
   year_first: 1525
   year_last: 1525
   year_label: '1525'
-  mint: Oslo
+  mint: Christiania
   catalog:
     galster: '166'
     schive: XVI.1
@@ -10194,7 +10224,7 @@ coins:
     - 1530
   year_label: 1525, 1526, 1528, 1530
   ruler: Frederik I
-  mint: Oslo
+  mint: Christiania
   catalog:
     galster: '167'
     schive: XVI.2-7
@@ -10232,11 +10262,11 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: 1 skilling
+  nominal: 1 Skilling
   year_first: 1531
   year_last: 1531
   year_label: '1531'
-  mint: Oslo
+  mint: Christiania
   catalog:
     galster: '168'
     schou: '6'
@@ -10268,7 +10298,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: 1 skilling (Firehvid)
+  nominal: 1 Skilling (Firehvid)
   year_first: 1530
   year_last: 1530
   year_label: '1530'
@@ -10387,6 +10417,7 @@ coins:
     schou: 6-7
     sieg: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10429,6 +10460,7 @@ coins:
     schou: '8'
     sieg: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10472,6 +10504,7 @@ coins:
     sieg: '2'
     fr: '6'
   metal: silver
+  metal_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
@@ -10507,6 +10540,7 @@ coins:
     hede_volume: nc3h
     schou: '1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10552,6 +10586,7 @@ coins:
     hede_volume: nc3h
     schou: '1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10594,6 +10629,7 @@ coins:
     hede_volume: nc3h
     schou: '8'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10640,6 +10676,7 @@ coins:
     hede: '4'
     hede_volume: nc3h
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10685,6 +10722,7 @@ coins:
     hede_volume: nc4h
     schou: '16'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10716,7 +10754,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/2 Speciedaler
+  nominal: ½ Speciedaler
   year_first: 1629
   year_last: 1648
   year_ranges:
@@ -10730,6 +10768,7 @@ coins:
     hede_volume: nc4h
     schou: '9'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10761,7 +10800,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/4 Speciedaler
+  nominal: ¼ Speciedaler
   year_first: 1629
   year_last: 1648
   year_ranges:
@@ -10777,6 +10816,7 @@ coins:
     hede_volume: nc4h
     schou: '23'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -10808,7 +10848,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/8 Speciedaler
+  nominal: ⅛ Speciedaler
   year_first: 1629
   year_last: 1647
   year_ranges:
@@ -10824,6 +10864,7 @@ coins:
     hede_volume: nc4h
     schou: '28'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11036,6 +11077,7 @@ coins:
     hede_volume: nc4h
     schou: '48'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11122,7 +11164,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/2 Speciedaler
+  nominal: ½ Speciedaler
   year_first: 1628
   year_last: 1629
   year_ranges:
@@ -11136,6 +11178,7 @@ coins:
     hede_volume: nc4h
     schou: '28'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11181,6 +11224,7 @@ coins:
     hede_volume: nc4h
     schou: '76'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11212,7 +11256,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/4 Speciedaler
+  nominal: ¼ Speciedaler
   year_first: 1628
   year_last: 1629
   year_ranges:
@@ -11226,6 +11270,7 @@ coins:
     hede_volume: nc4h
     schou: '29'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11257,7 +11302,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/8 Speciedaler
+  nominal: ⅛ Speciedaler
   year_first: 1628
   year_last: 1629
   year_ranges:
@@ -11271,6 +11316,7 @@ coins:
     hede_volume: nc4h
     schou: '24'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11316,6 +11362,7 @@ coins:
     hede_volume: nc4h
     schou: '11'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11363,6 +11410,7 @@ coins:
     hede_volume: nc4h
     schou: '11'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11412,6 +11460,7 @@ coins:
     hede_volume: nc4h
     schou: '1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11454,6 +11503,7 @@ coins:
     hede_volume: nc5h
     schou: '3'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11491,6 +11541,7 @@ coins:
     hede_volume: nc5h
     schou: '5'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11517,7 +11568,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 2 og 3 Dukat
+  nominal: 2 Og 3 Dukat
   year_first: 1673
   year_last: 1673
   year_label: '1673'
@@ -11528,6 +11579,7 @@ coins:
     hede_volume: nc5h
     schou: '1'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11565,6 +11617,7 @@ coins:
     hede_volume: nc5h
     schou: '1'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11607,6 +11660,7 @@ coins:
     hede_volume: nc5h
     schou: '11'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11862,22 +11916,22 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/2 Speciedaler
+  nominal: ½ Speciedaler
   year_first: 1671
   year_last: 1674
   year_ranges:
   - - 1671
-    - 1671
-  - - 1673
     - 1674
   year_label: 1671, 1673–1674
   ruler: Christian V.
   mint: Christiania
   catalog:
+    km: '107'
     hede: '33'
     hede_volume: nc5h
     schou: '13'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11885,13 +11939,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 14.447
     source: hede
+  - value: 14.45
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h33.htm
     ref: danskmoent.dk (Hede nc5h33)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1671-1674/?tid=145604
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -11904,17 +11965,16 @@ coins:
     basis: fin
   composed_of:
   - dk-hede-nc5h33
+  - dk-tid-145604
 - id: unified-dk-hede-nc5h34
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/4 Speciedaler
+  nominal: ¼ Speciedaler
   year_first: 1671
   year_last: 1675
   year_ranges:
   - - 1671
-    - 1671
-  - - 1675
     - 1675
   year_label: 1671, 1675
   ruler: Christian V.
@@ -11924,6 +11984,7 @@ coins:
     hede_volume: nc5h
     schou: '15'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -11931,13 +11992,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
+  - value: 7.22
+    source: tid
   - value: 7.224
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h34.htm
     ref: danskmoent.dk (Hede nc5h34)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-4-speciedaler-1671-1675/?tid=144929
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -11950,11 +12018,12 @@ coins:
     basis: fin
   composed_of:
   - dk-hede-nc5h34
+  - dk-tid-144929
 - id: unified-dk-hede-nc5h35
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 12 Skilling (1/8 Speciedaler)
+  nominal: 12 Skilling (⅛ Speciedaler)
   year_first: 1671
   year_last: 1671
   year_label: '1671'
@@ -11965,6 +12034,7 @@ coins:
     hede_volume: nc5h
     schou: '48'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -12053,17 +12123,19 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/2 Speciedaler
+  nominal: ½ Speciedaler
   year_first: 1693
   year_last: 1693
   year_label: '1693'
   ruler: Christian V.
   mint: Kongsberg
   catalog:
+    km: '191'
     hede: '38'
     hede_volume: nc5h
     schou: '20'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -12071,13 +12143,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 14.447
     source: hede
+  - value: 14.45
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h38.htm
     ref: danskmoent.dk (Hede nc5h38)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1693/?tid=145605
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -12090,6 +12169,7 @@ coins:
     basis: fin
   composed_of:
   - dk-hede-nc5h38
+  - dk-tid-145605
 - id: unified-dk-hede-nc5h39
   fuss: seed_unsorted
   phase: hede
@@ -12438,6 +12518,7 @@ coins:
     hede_volume: nc5h
     schou: '24'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -12787,7 +12868,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: scheide
-  nominal: 1/2 Skilling
+  nominal: ½ Skilling
   year_first: 1676
   year_last: 1682
   year_ranges:
@@ -12814,11 +12895,15 @@ coins:
     source: hede
   - value: 0.125
     source: numismaster
+  - value: 0.125
+    source: tid
   weight_rough_g:
   - value: 0.731
     source: hede
   - value: 0.75
     source: numismaster
+  - value: 0.75
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_110592
@@ -12826,6 +12911,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h52.htm
     ref: danskmoent.dk (Hede nc5h52)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-skilling-1676/?tid=143753
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -12840,6 +12928,7 @@ coins:
   composed_of:
   - denmark-numismaster-110592
   - dk-hede-nc5h52
+  - dk-tid-143753
 - id: unified-dk-hede-nc5h53
   fuss: seed_unsorted
   phase: hede
@@ -12919,6 +13008,7 @@ coins:
     hede_volume: nc5h
     schou: 29-30
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -12964,6 +13054,7 @@ coins:
     hede_volume: nc5h
     schou: '27'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -13266,6 +13357,7 @@ coins:
     hede_volume: nc5h
     schou: 4-5
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -13308,6 +13400,7 @@ coins:
     hede_volume: nc5h
     schou: '17'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -13408,6 +13501,7 @@ coins:
     hede_volume: nc5h
     schou: '19'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -13453,6 +13547,7 @@ coins:
     hede_volume: nc5h
     schou: '11'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -13765,6 +13860,7 @@ coins:
     hede_volume: nc5h
     schou: '14'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -14060,6 +14156,7 @@ coins:
     hede_volume: nc5h
     schou: '5'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -14264,6 +14361,7 @@ coins:
     hede_volume: nc5h
     schou: '11'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -14338,6 +14436,7 @@ coins:
     hede_volume: nc5h
     schou: '5'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -14375,6 +14474,7 @@ coins:
     hede_volume: nc6h
     schou: '1'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15285,7 +15385,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/2 Speciedaler
+  nominal: ½ Speciedaler
   year_first: 1776
   year_last: 1779
   year_ranges:
@@ -15295,7 +15395,6 @@ coins:
   ruler: Christian VII.
   mint: Kongsberg
   catalog:
-    km: '252'
     hede: '3'
     hede_volume: nc7h
     schou: '4'
@@ -15303,29 +15402,18 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.875
     source: hede
-  - value: 0.875
-    source: tid
   weight_rough_g:
   - value: 14.447
     source: hede
-  - value: 14.45
-    source: tid
-  diameter_mm:
-  - value: 36.0
-    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h3.htm
     ref: danskmoent.dk (Hede nc7h3)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1776-1779/?tid=88743
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15339,7 +15427,6 @@ coins:
     unit_raw: spdl
   composed_of:
   - dk-hede-nc7h3
-  - dk-tid-88743
 - id: unified-dk-hede-nc7h4
   fuss: seed_unsorted
   phase: hede
@@ -15394,7 +15481,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 2/3 Speciedaler
+  nominal: ⅔ Speciedaler
   year_first: 1795
   year_last: 1796
   year_ranges:
@@ -15404,7 +15491,6 @@ coins:
   ruler: Christian VII.
   mint: Kongsberg
   catalog:
-    km: '267'
     hede: '5'
     hede_volume: nc7h
     schou: '6'
@@ -15417,20 +15503,13 @@ coins:
   fineness:
   - value: 0.875
     source: hede
-  - value: 0.875
-    source: tid
   weight_rough_g:
-  - value: 19.26
-    source: tid
   - value: 19.262
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h5.htm
     ref: danskmoent.dk (Hede nc7h5)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-2-3-speciedaler-1795-1796/?tid=88744
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15444,22 +15523,22 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - dk-hede-nc7h5
-  - dk-tid-88744
 - id: unified-dk-hede-nc7h6
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/3 Speciedaler
+  nominal: ⅓ Speciedaler
   year_first: 1795
   year_last: 1803
   year_ranges:
   - - 1795
+    - 1801
+  - - 1803
     - 1803
   year_label: 1795–1801, 1803
   ruler: Christian VII.
   mint: Kongsberg
   catalog:
-    km: '266'
     hede: '6'
     hede_volume: nc7h
     schou: '2'
@@ -15472,20 +15551,13 @@ coins:
   fineness:
   - value: 0.875
     source: hede
-  - value: 0.875
-    source: tid
   weight_rough_g:
-  - value: 9.63
-    source: tid
   - value: 9.631
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h6.htm
     ref: danskmoent.dk (Hede nc7h6)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-3-speciedaler-1795-1803/?tid=88741
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15494,7 +15566,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-hede-nc7h6
-  - dk-tid-88741
 - id: unified-dk-hede-nc7h7
   fuss: seed_unsorted
   phase: hede
@@ -15616,6 +15687,7 @@ coins:
     schou: 3-4
     sieg: '15'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15646,7 +15718,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/4 Speciedaler
+  nominal: ¼ Speciedaler
   year_first: 1649
   year_last: 1654
   year_ranges:
@@ -15661,6 +15733,7 @@ coins:
     schou: '26'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15668,13 +15741,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 7.178
     source: hede
+  - value: 7.18
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h12.htm
     ref: danskmoent.dk (Hede nf3h12)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-4-speciedaler-1649-1651/?tid=145388
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15688,6 +15768,7 @@ coins:
     unit_raw: spdl
   composed_of:
   - dk-hede-nf3h12
+  - dk-tid-145388
 - id: unified-dk-hede-nf3h14
   fuss: seed_unsorted
   phase: hede
@@ -15866,6 +15947,7 @@ coins:
     schou: '20'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15909,6 +15991,7 @@ coins:
     schou: '9'
     fr: '3'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15935,11 +16018,11 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/2 Speciedaler
-  year_first: 1653
+  nominal: ½ Speciedaler
+  year_first: 1649
   year_last: 1658
   year_ranges:
-  - - 1653
+  - - 1649
     - 1658
   year_label: 1653–1658
   ruler: Frederik III.
@@ -15950,6 +16033,7 @@ coins:
     schou: '26'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -15957,13 +16041,23 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
+  - value: 14.36
+    source: tid
   - value: 14.387
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h20.htm
     ref: danskmoent.dk (Hede nf3h20)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1649-1653/?tid=145410
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1653-1658/?tid=145411
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15977,6 +16071,8 @@ coins:
     unit_raw: spdl
   composed_of:
   - dk-hede-nf3h20
+  - dk-tid-145410
+  - dk-tid-145411
 - id: unified-dk-hede-nf3h21
   fuss: seed_unsorted
   phase: hede
@@ -15996,6 +16092,7 @@ coins:
     schou: '14'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16157,6 +16254,7 @@ coins:
     schou: 18-19
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16198,6 +16296,7 @@ coins:
     schou: '20'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16350,7 +16449,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/2 Speciedaler
+  nominal: ½ Speciedaler
   year_first: 1659
   year_last: 1660
   year_ranges:
@@ -16365,6 +16464,7 @@ coins:
     schou: '21'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16372,13 +16472,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 14.387
     source: hede
+  - value: 14.39
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h37.htm
     ref: danskmoent.dk (Hede nf3h37)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1659-1660/?tid=145412
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -16392,11 +16499,12 @@ coins:
     unit_raw: spdl
   composed_of:
   - dk-hede-nf3h37
+  - dk-tid-145412
 - id: unified-dk-hede-nf3h38
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 12 Skilling (1/8 Speciedaler)
+  nominal: 12 Skilling (⅛ Speciedaler)
   year_first: 1661
   year_last: 1661
   year_label: '1661'
@@ -16408,6 +16516,7 @@ coins:
     schou: '45'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16439,7 +16548,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1 og 2 Speciedaler U. År
+  nominal: 1 Og 2 Speciedaler U. År
   year_first: 1661
   year_last: 1661
   year_label: '1661'
@@ -16451,6 +16560,7 @@ coins:
     schou: '18'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16492,6 +16602,7 @@ coins:
     schou: 17-18
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16638,7 +16749,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/8 Speciedaler
+  nominal: ⅛ Speciedaler
   year_first: 1663
   year_last: 1663
   year_label: '1663'
@@ -16650,6 +16761,7 @@ coins:
     schou: '24'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16657,13 +16769,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 3.596
     source: hede
+  - value: 3.6
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h47.htm
     ref: danskmoent.dk (Hede nf3h47)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1663/?tid=145386
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -16677,6 +16796,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - dk-hede-nf3h47
+  - dk-tid-145386
 - id: unified-dk-hede-nf3h48
   fuss: seed_unsorted
   phase: hede
@@ -16693,6 +16813,7 @@ coins:
     schou: 35-36
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -16739,6 +16860,7 @@ coins:
     schou: '21'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -17006,7 +17128,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/8 Speciedaler
+  nominal: ⅛ Speciedaler
   year_first: 1665
   year_last: 1665
   year_label: '1665'
@@ -17018,6 +17140,7 @@ coins:
     schou: '38'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -17025,13 +17148,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 3.596
     source: hede
+  - value: 3.6
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h61.htm
     ref: danskmoent.dk (Hede nf3h61)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1665/?tid=145387
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -17045,6 +17175,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - dk-hede-nf3h61
+  - dk-tid-145387
 - id: unified-dk-hede-nf3h62
   fuss: seed_unsorted
   phase: hede
@@ -17064,6 +17195,7 @@ coins:
     schou: '1'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -17150,7 +17282,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/2 Speciedaler
+  nominal: ½ Speciedaler
   year_first: 1669
   year_last: 1669
   year_label: '1669'
@@ -17162,6 +17294,7 @@ coins:
     schou: '21'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -17169,13 +17302,20 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: tid
   weight_rough_g:
   - value: 14.387
     source: hede
+  - value: 14.39
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h65.htm
     ref: danskmoent.dk (Hede nf3h65)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1669/?tid=145425
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -17189,6 +17329,7 @@ coins:
     unit_raw: spdl
   composed_of:
   - dk-hede-nf3h65
+  - dk-tid-145425
 - id: unified-dk-hede-nf3h66
   fuss: seed_unsorted
   phase: hede
@@ -17205,6 +17346,7 @@ coins:
     schou: 34-35
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -17309,6 +17451,7 @@ coins:
     schou: '39'
     fr: '3'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -17398,7 +17541,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/2 Dukat U.år (ca
+  nominal: ½ Dukat U.år (ca
   year_first: 1669
   year_last: 1669
   year_label: '1669'
@@ -17410,6 +17553,7 @@ coins:
     schou: '10'
     fr: '3'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -17844,6 +17988,7 @@ coins:
     schou: '9'
     fr: '3'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -18385,6 +18530,7 @@ coins:
     schou: '7'
     fr: '4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -18593,6 +18739,7 @@ coins:
     sieg: '11'
     fr: '4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -18635,6 +18782,7 @@ coins:
     sieg: '12'
     fr: '4'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -19032,6 +19180,7 @@ coins:
     schou: '22'
     fr: '5'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: false
@@ -19350,6 +19499,7 @@ coins:
     schou: 5-8
     fr: '6'
   metal: silver
+  metal_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
@@ -19384,6 +19534,7 @@ coins:
     schou: 12-15
     fr: '6'
   metal: silver
+  metal_verified: true
   weight_rough_verified: true
   mint_verified: false
   verified: false
@@ -19414,7 +19565,7 @@ coins:
     - 1523
   year_label: 1513-1523
   ruler: Christian II
-  mint: Oslo
+  mint: Christiania
   catalog:
     numista: '110323'
     schive: XV:7
@@ -19511,7 +19662,7 @@ coins:
     - 1533
   year_label: 1524-1533
   ruler: Frederick I
-  mint: Oslo
+  mint: Christiania
   catalog:
     numista: '121754'
     schive: XVI:11
@@ -19657,7 +19808,7 @@ coins:
   year_last: 1531
   year_label: '1531'
   ruler: Frederick I
-  mint: Oslo
+  mint: Christiania
   catalog:
     numista: '444429'
     galster: '168'
@@ -19702,7 +19853,7 @@ coins:
   year_last: 1535
   year_label: '1535'
   ruler: Christian III
-  mint: Oslo
+  mint: Christiania
   catalog:
     numista: '444496'
     schive: XVII:9
@@ -19748,7 +19899,7 @@ coins:
   year_last: 1525
   year_label: '1525'
   ruler: Frederick I
-  mint: Oslo
+  mint: Christiania
   catalog:
     numista: '477551'
     galster: '166'
@@ -19785,80 +19936,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-477551
-- id: unified-dk-tid-143753
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ skilling
-  year_first: 1676
-  year_last: 1676
-  year_label: '1676'
-  ruler: Christian V
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.125
-    source: tid
-  weight_rough_g:
-  - value: 0.75
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-skilling-1676/?tid=143753
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-143753
-- id: unified-dk-tid-143754
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ skilling
-  year_first: 1682
-  year_last: 1682
-  year_label: '1682'
-  ruler: Christian V
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.125
-    source: tid
-  weight_rough_g:
-  - value: 0.73
-    source: tid
-  diameter_mm:
-  - value: 14.35
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-skilling-1682/?tid=143754
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-143754
 - id: unified-dk-tid-143756
   fuss: seed_unsorted
   phase: ucoin
@@ -20016,44 +20093,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-144924
-- id: unified-dk-tid-144929
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ¼ speciedaler
-  year_first: 1671
-  year_last: 1675
-  year_ranges:
-  - - 1671
-    - 1675
-  year_label: 1671–1675
-  ruler: Christian V
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: tid
-  weight_rough_g:
-  - value: 7.22
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-4-speciedaler-1671-1675/?tid=144929
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-144929
 - id: unified-dk-tid-144930
   fuss: seed_unsorted
   phase: ucoin
@@ -20201,114 +20240,6 @@ coins:
   composed_of:
   - dk-tid-144933
   - dk-tid-145385
-- id: unified-dk-tid-145386
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ⅛ speciedaler
-  year_first: 1663
-  year_last: 1663
-  year_label: '1663'
-  ruler: Frederick III
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: tid
-  weight_rough_g:
-  - value: 3.6
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1663/?tid=145386
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145386
-- id: unified-dk-tid-145387
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ⅛ speciedaler
-  year_first: 1665
-  year_last: 1665
-  year_label: '1665'
-  ruler: Frederick III
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: tid
-  weight_rough_g:
-  - value: 3.6
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1665/?tid=145387
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145387
-- id: unified-dk-tid-145388
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ¼ speciedaler
-  year_first: 1649
-  year_last: 1651
-  year_ranges:
-  - - 1649
-    - 1651
-  year_label: 1649–1651
-  ruler: Frederick III
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: tid
-  weight_rough_g:
-  - value: 7.18
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-4-speciedaler-1649-1651/?tid=145388
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145388
 - id: unified-dk-tid-145391
   fuss: seed_unsorted
   phase: ucoin
@@ -20420,86 +20351,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-145393
-- id: unified-dk-tid-145410
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ speciedaler
-  year_first: 1649
-  year_last: 1658
-  year_ranges:
-  - - 1649
-    - 1658
-  year_label: 1649–1653
-  ruler: Frederick III
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: tid
-  weight_rough_g:
-  - value: 14.36
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1649-1653/?tid=145410
-    ref: ucoin
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1653-1658/?tid=145411
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145410
-  - dk-tid-145411
-- id: unified-dk-tid-145412
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ speciedaler
-  year_first: 1659
-  year_last: 1660
-  year_ranges:
-  - - 1659
-    - 1660
-  year_label: 1659–1660
-  ruler: Frederick III
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: tid
-  weight_rough_g:
-  - value: 14.39
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1659-1660/?tid=145412
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145412
 - id: unified-dk-tid-145424
   fuss: seed_unsorted
   phase: ucoin
@@ -20538,41 +20389,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-145424
-- id: unified-dk-tid-145425
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ speciedaler
-  year_first: 1669
-  year_last: 1669
-  year_label: '1669'
-  ruler: Frederick III
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: tid
-  weight_rough_g:
-  - value: 14.39
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1669/?tid=145425
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145425
 - id: unified-dk-tid-145426
   fuss: seed_unsorted
   phase: ucoin
@@ -20650,80 +20466,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-145428
-- id: unified-dk-tid-145473
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ ducat
-  year_first: 1666
-  year_last: 1666
-  year_label: '1666'
-  ruler: Frederick III
-  catalog:
-    km: '80'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: tid
-  weight_rough_g:
-  - value: 1.49
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-ducat-1666/?tid=145473
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145473
-- id: unified-dk-tid-145474
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ ducat
-  year_first: 1669
-  year_last: 1669
-  year_label: '1669'
-  ruler: Frederick III
-  catalog:
-    km: '81'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: tid
-  weight_rough_g:
-  - value: 1.49
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-ducat-1669/?tid=145474
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145474
 - id: unified-dk-tid-145512
   fuss: seed_unsorted
   phase: ucoin
@@ -21069,83 +20811,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-145599
-- id: unified-dk-tid-145604
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ speciedaler
-  year_first: 1671
-  year_last: 1674
-  year_ranges:
-  - - 1671
-    - 1674
-  year_label: 1671–1674
-  ruler: Christian V
-  catalog:
-    km: '107'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: tid
-  weight_rough_g:
-  - value: 14.45
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1671-1674/?tid=145604
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145604
-- id: unified-dk-tid-145605
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ speciedaler
-  year_first: 1693
-  year_last: 1693
-  year_label: '1693'
-  ruler: Christian V
-  catalog:
-    km: '191'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: tid
-  weight_rough_g:
-  - value: 14.45
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1693/?tid=145605
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145605
 - id: unified-dk-tid-145666
   fuss: seed_unsorted
   phase: ucoin
@@ -21919,6 +21584,46 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-88718
+- id: unified-dk-tid-88741
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1/3 speciedaler
+  year_first: 1795
+  year_last: 1803
+  year_ranges:
+  - - 1795
+    - 1803
+  year_label: 1795–1803
+  ruler: Christian VII
+  catalog:
+    km: '266'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.875
+    source: tid
+  weight_rough_g:
+  - value: 9.63
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-3-speciedaler-1795-1803/?tid=88741
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-tid-88741
 - id: unified-dk-tid-88742
   fuss: seed_unsorted
   phase: ucoin
@@ -21956,3 +21661,87 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-88742
+- id: unified-dk-tid-88743
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1/2 speciedaler
+  year_first: 1776
+  year_last: 1779
+  year_ranges:
+  - - 1776
+    - 1779
+  year_label: 1776–1779
+  ruler: Christian VII
+  catalog:
+    km: '252'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.875
+    source: tid
+  weight_rough_g:
+  - value: 14.45
+    source: tid
+  diameter_mm:
+  - value: 36.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1776-1779/?tid=88743
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-tid-88743
+- id: unified-dk-tid-88744
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2/3 speciedaler
+  year_first: 1795
+  year_last: 1796
+  year_ranges:
+  - - 1795
+    - 1796
+  year_label: 1795–1796
+  ruler: Christian VII
+  catalog:
+    km: '267'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.875
+    source: tid
+  weight_rough_g:
+  - value: 19.26
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-3-speciedaler-1795-1796/?tid=88744
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-tid-88744

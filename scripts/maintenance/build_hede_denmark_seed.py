@@ -711,6 +711,16 @@ def _build_coin(
         cm["fineness_verified"] = True   # Hede page directly publishes
     if brutto is not None:
         cm["weight_rough_verified"] = True   # Hede page directly publishes
+    # metal_verified: when Hede publishes fineness or weight on the page,
+    # the metal is IMPLICITLY attested by the same source (a .985 reading
+    # on a Dukat page is the source telling us the coin is gold; a .875
+    # on a Speciedaler is the source telling us silver). Flip the flag
+    # whenever either measurement is source-attested. This avoids
+    # rendering «Silber (?)» / «Gold (?)» on Hede-only coins whose
+    # fineness column already shows a source-cited value (user-reported
+    # 2026-05-20 on KM-340 c5h2 Christian V Dukat .979/.980).
+    if fineness is not None or brutto is not None:
+        cm["metal_verified"] = True
     cm["mint_verified"] = False  # parser-heuristic; not flipped here
     vn = CommentedMap()
     vn["de"] = (
