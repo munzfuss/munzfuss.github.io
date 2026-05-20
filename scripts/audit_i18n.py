@@ -172,7 +172,38 @@ CATREF_RE = re.compile(
 
 # Cyrillic transliteration of Müntzfuß-Fuß suffix or other forbidden non-words.
 # Per CLAUDE.md i18n policy «Müntzfuß standard names NEVER translate».
-FORBIDDEN_UK_MFUESSE = re.compile(r"\b(\d+(?:[.,⅓¼½¾⅔]+)?-?\s*(?:талер|тал|гульден|гульд|марк)-?(?:стопа|стоп[ауі]|нога|нога)|стопа|стопи|стопу)\b", re.IGNORECASE)
+#
+# This rule is scoped to **compound Müntzfuß-name + Cyrillic-Fuß-suffix**
+# patterns — the kind that translate a proper-name compound like
+# «Krone-Müntzfuß» → «Krone-стопа» or «9¼-Thaler-Fuß» → «9¼-талер-стопа».
+# It does NOT flag bare-«стопа» / «стопи» / «стопу» as «standard», which
+# per §2a is the LEGITIMATE Ukrainian rendering of the generic concept
+# («канонічна стопа Speciedaler», «та сама стопа», «вендсько-любецька
+# стопа»). Flagging bare-«стопа» produces noise and obscures real
+# proper-name compound violations.
+#
+# Two alternations:
+#   1. <digit/fraction-prefix>-<Cyrillic-denom>-стопа — e.g.
+#      «9¼-талер-стопа», «12-талер-стопа», «20-гульден-стопа».
+#   2. <Latin-Mfuß-name-prefix>-стопа — e.g. «Krone-стопа»,
+#      «Speciedaler-стопа», «Konventions-стопа», «Vereinsmünz-стопа».
+#      The prefix list mirrors the curated Mfuß name set documented
+#      in CLAUDE.md §i18n policy.
+_LATIN_MFUSS_PREFIX = (
+    r"(?:Krone|Kurantmønt|Speciedaler|Speciemont|Reichsdukaten|"
+    r"Reichsgoldmünz|Reichsmünz|Konventions|Convention|Vereinsmünz|"
+    r"Vereins|Pistolen|Graumann|Lübisch|Hamburgisch|Burgundisch|"
+    r"Schleswig-Holsteinisch|Zinnaisch|Banco|Mark[ -]Banco|Altonaer|"
+    r"Bremer|Lauenburger)"
+)
+FORBIDDEN_UK_MFUESSE = re.compile(
+    r"(?:"
+    r"\b\d+(?:[.,⅓¼½¾⅔]+)?-\s*(?:талер|тал|гульден|гульд|марк)-стоп(?:а|и|у|і|ою|о|ам|ах|ами|е)\b"
+    r"|"
+    rf"\b{_LATIN_MFUSS_PREFIX}-стоп(?:а|и|у|і|ою|о|ам|ах|ами|е)\b"
+    r")",
+    re.IGNORECASE,
+)
 FORBIDDEN_EN_MFUESSE = re.compile(r"\b(\d+(?:[\d./]+)?-thaler-foot|thaler-foot)\b", re.IGNORECASE)
 
 
