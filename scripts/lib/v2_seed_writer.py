@@ -49,11 +49,33 @@ import re  # noqa: E402
 # this register even when minted at Kopenhagen. User-confirmed
 # 2026-05-20.
 _OUT_OF_SCOPE_NOMINAL_TOKENS = (
-    "piastre",       # Christian VII East India trade
+    "piast",         # Piaster (German singular) + Piastre (English plural)
+                     # — Christian VII East India trade
     "rupee",         # East India Tranquebar
     "fanam",         # East India sub-denomination
     "cash",          # East India sub-denomination
 )
+
+# Denomination nouns that often appear in source data without a
+# leading number (Hede pages: «Penning», «Hvid», «Skilling», bare
+# spec-headers). Per CLAUDE.md «mathematically-verified register»:
+# every coin row needs an explicit denomination count, default «1»
+# when source publishes just the noun. Listed denominations get
+# «1 » prefixed when the nominal lacks a leading digit/fraction.
+_BARE_DENOMINATION_NOUNS = frozenset({
+    # Danish core
+    "ducat", "dukat", "thaler", "speciedaler", "specie daler",
+    "krone", "skilling", "mark", "søsling", "hvid", "penning",
+    "denning",
+    # German + Hanseatic
+    "pfennig", "schilling", "sechsling", "dreiling", "groschen",
+    "goldgulden", "gulden", "portugaløser", "rosenobel", "nobel",
+    "reichsthaler", "kronenthaler",
+    # Rigsdaler-era
+    "rigsdaler", "rigsbankdaler", "rigsbankskilling",
+    # Gold sub-denominations
+    "pistole", "friedrichsdor", "rosenoble",
+})
 
 # Canonical mint name table — normalises the dozens of orthographic
 # variants encountered across sources (English / Danish / Latin
@@ -184,6 +206,14 @@ def _normalise_nominal(raw):
         s,
         flags=re.IGNORECASE,
     ).strip(" ,")
+    # Add leading «1 » when nominal is a bare denomination noun.
+    # «Penning» → «1 Penning», «Hvid» → «1 Hvid», «Skilling» → «1 Skilling».
+    # Only fires when the nominal IS exactly one of the known
+    # denomination nouns (case-insensitive); compound forms like
+    # «Specie Daler» / «Marck Banco» check via lowercased compare.
+    if s and s.lower() in _BARE_DENOMINATION_NOUNS:
+        # Preserve the source's exact capitalisation of the noun
+        s = f"1 {s}"
     # Fraction typography: «1 1/2» / «1-1/2» → «1½»; «1/2» → «½»; etc.
     s = re.sub(r"(\d)\s*[\-\s]\s*1/2\b", r"\1½", s)
     s = re.sub(r"(\d)\s*[\-\s]\s*1/4\b", r"\1¼", s)
@@ -342,6 +372,8 @@ def write_v2_seed(
             if cid:
                 fresh_id_to_entity[cid] = entity
     purged_per_file: dict[str, int] = {}
+    out_of_scope_per_file: dict[str, int] = {}
+    normalised_per_file: dict[str, int] = {}
     if not dry_run and not no_merge:
         import ruamel.yaml as _ruyaml
         purge_yaml = _ruyaml.YAML(typ="rt")
@@ -361,9 +393,19 @@ def write_v2_seed(
             existing_coins = existing_doc.get("coins") or []
             kept = []
             purged = 0
+            out_of_scope_dropped = 0
+            file_normalised = 0
             for c in existing_coins:
                 if not isinstance(c, dict):
                     kept.append(c)
+                    continue
+                # Out-of-scope purge: when the pre-write filter rules
+                # are tightened (e.g. extending Piastre → Piaster), the
+                # already-stored entries from prior builds need to be
+                # purged from existing seed yamls — otherwise merge_seed's
+                # orphan-curated mechanism preserves them indefinitely.
+                if _is_out_of_scope_nominal(c.get("nominal")):
+                    out_of_scope_dropped += 1
                     continue
                 cid = c.get("id")
                 if cid and cid in fresh_id_to_entity:
@@ -371,12 +413,33 @@ def write_v2_seed(
                     if new_entity != stale_entity_name:
                         purged += 1
                         continue
+                # Normalise orphan-curated entries' nominal + mint in
+                # place. The same hygiene that runs on fresh coins
+                # applies retroactively to entries the parser no longer
+                # produces (the orphan_curated path through merge_seed).
+                # Without this, hygiene rule changes leave a long tail
+                # of un-normalised entries from prior builds.
+                nominal = c.get("nominal")
+                new_nom = _normalise_nominal(nominal)
+                if new_nom is not None and new_nom != nominal:
+                    c["nominal"] = new_nom
+                    file_normalised += 1
+                mint = c.get("mint")
+                new_mint = _canonicalise_mint(mint)
+                if (new_mint != mint
+                        and not (new_mint is None and mint in (None, ""))):
+                    c["mint"] = new_mint
                 kept.append(c)
-            if purged:
+            if purged or out_of_scope_dropped or file_normalised:
                 existing_doc["coins"] = kept
                 with existing_path.open("w") as f:
                     purge_yaml.dump(existing_doc, f)
-                purged_per_file[existing_path.name] = purged
+                if purged:
+                    purged_per_file[existing_path.name] = purged
+                if out_of_scope_dropped:
+                    out_of_scope_per_file[existing_path.name] = out_of_scope_dropped
+                if file_normalised:
+                    normalised_per_file[existing_path.name] = file_normalised
 
     stats = {
         "entities_written": [],
@@ -391,6 +454,16 @@ def write_v2_seed(
               f"from {len(purged_per_file)} file(s)")
         for fname, n in sorted(purged_per_file.items()):
             print(f"  - {fname}: {n} entries dropped (re-classified)")
+    if out_of_scope_per_file:
+        print(f"\n[{source_name}] out-of-scope purge from existing seeds: "
+              f"{sum(out_of_scope_per_file.values())} entries removed "
+              f"from {len(out_of_scope_per_file)} file(s)")
+        for fname, n in sorted(out_of_scope_per_file.items()):
+            print(f"  - {fname}: {n} entries dropped (out-of-scope)")
+    if normalised_per_file:
+        print(f"\n[{source_name}] orphan-curated normalisation: "
+              f"{sum(normalised_per_file.values())} entries with nominal "
+              f"renormalised across {len(normalised_per_file)} file(s)")
     print(f"\n[{source_name}] grouping → {len(by_entity)} entities, "
           f"{len(unclassified)} unclassified")
     for entity in sorted(by_entity.keys()):

@@ -58,6 +58,11 @@ V2_CLASSIFICATION_DECISIONS = ROOT / "data" / "v2" / "classification_decisions"
 
 sys.path.insert(0, str(ROOT / "scripts"))
 from lib.seed_merge import merge_seed  # noqa: E402
+from lib.v2_seed_writer import (  # noqa: E402
+    _is_out_of_scope_nominal,
+    _normalise_nominal,
+    _canonicalise_mint,
+)
 
 # Reuse match-strategy + enrichment helpers from Phase 3.2.
 # Both files share the same data-accumulation conventions (D17-D21).
@@ -425,6 +430,34 @@ def process_entity(entity_id: str) -> dict:
     final_path = V2_FINAL / f"{entity_id}.yml"
     final_doc = _load_yaml(final_path)
     final_entries: list[dict] = final_doc.get("coins") or []
+
+    # Out-of-scope purge: when the pre-write hygiene filter rules are
+    # tightened (broader Piaster filter, etc.) entries previously absorbed
+    # into final survive because absorb iterates `final_by_id` from the
+    # existing file. Drop them here before they re-enter the enrichment
+    # cycle — keeps final in sync with the current scope policy.
+    # Apply nominal + mint normalisation in-place too — the V1-foundation
+    # entries were seeded with raw values; data quality rules
+    # (U.År strip, bare-noun prefix, mojibake fix, canonical mint
+    # spelling) apply retroactively across the whole pipeline.
+    out_of_scope_final_dropped = 0
+    kept_finals: list[dict] = []
+    for fe in final_entries:
+        if isinstance(fe, dict) and _is_out_of_scope_nominal(fe.get("nominal")):
+            out_of_scope_final_dropped += 1
+            continue
+        if isinstance(fe, dict):
+            raw_nom = fe.get("nominal")
+            new_nom = _normalise_nominal(raw_nom)
+            if new_nom is not None and new_nom != raw_nom:
+                fe["nominal"] = new_nom
+            raw_mint = fe.get("mint")
+            new_mint = _canonicalise_mint(raw_mint)
+            if (new_mint != raw_mint
+                    and not (new_mint is None and raw_mint in (None, ""))):
+                fe["mint"] = new_mint
+        kept_finals.append(fe)
+    final_entries = kept_finals
     final_by_id = {f["id"]: f for f in final_entries if f.get("id")}
 
     bulk_promote_mode = _bulk_promote_mode(entity_id)
@@ -601,6 +634,7 @@ def process_entity(entity_id: str) -> dict:
         "genuinely_new": len(unmatched),
         "bulk_promoted": len(bulk_promoted),
         "stale_purged": purged_count,
+        "out_of_scope_dropped": out_of_scope_final_dropped,
         "unmatched_unified_ids": unmatched,
         "multi_match_warnings": multi_match,
         "enrichment_conflicts": enrichment_conflicts,
@@ -715,6 +749,7 @@ def main() -> int:
         totals["genuinely_new"] += result["genuinely_new"]
         totals["bulk_promoted"] += result.get("bulk_promoted", 0)
         totals["stale_purged"] += result.get("stale_purged", 0)
+        totals["out_of_scope_dropped"] += result.get("out_of_scope_dropped", 0)
         totals["multi_match"] += len(result["multi_match_warnings"])
         totals["enrichment_conflicts"] += len(result["enrichment_conflicts"])
 
@@ -792,6 +827,7 @@ def main() -> int:
     print(f"  Bulk-promoted (D37):             {totals['bulk_promoted']:>5d}")
     print(f"  Genuinely new (pending):         {totals['genuinely_new']:>5d}")
     print(f"  Stale composed_of refs purged:   {totals['stale_purged']:>5d}")
+    print(f"  Out-of-scope finals dropped:     {totals['out_of_scope_dropped']:>5d}")
     print(f"  Multi-match warnings:            {totals['multi_match']:>5d}")
     print(f"  Enrichment conflicts (logged):   {totals['enrichment_conflicts']:>5d}")
 

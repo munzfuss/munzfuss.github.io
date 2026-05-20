@@ -2,8 +2,8 @@
 # Generated 2026-05-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 693 per-source seed entries.
-# Output: 487 unified entries (one per physical coin).
+# Input: 692 per-source seed entries.
+# Output: 461 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -35,15 +35,15 @@ coins:
   - value: 0.125
     source: numismaster
   - value: 0.125
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 0.73
     source: numismaster
   - value: 0.73
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 14.35
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110593
@@ -62,91 +62,11 @@ coins:
   composed_of:
   - denmark-numismaster-110593
   - dk-tid-143754
-- id: unified-denmark-numismaster-110594
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Skilling
-  year_first: 1643
-  year_last: 1648
-  year_ranges:
-  - - 1643
-    - 1648
-  year_label: 1643–1648
-  ruler: Christian IV
-  catalog:
-    km: '23'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.156
-    source: numismaster
-  weight_rough_g:
-  - value: 0.92
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110594
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110594
-- id: unified-denmark-numismaster-110595
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Skilling
-  year_first: 1649
-  year_last: 1670
-  year_ranges:
-  - - 1649
-    - 1670
-  year_label: 1649–1670
-  ruler: Frederick III
-  catalog:
-    km: '29'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.156
-    source: numismaster
-  weight_rough_g:
-  - value: 0.92
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110595
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110595
 - id: unified-denmark-numismaster-110596
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1670
   year_last: 1670
   year_label: '1670'
@@ -182,10 +102,11 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1670
   year_last: 1670
   year_label: '1670'
+  ruler: Christian V
   catalog:
     km: '91'
   metal: silver
@@ -197,13 +118,25 @@ coins:
   fineness:
   - value: 0.156
     source: numismaster
+  - value: 0.156
+    source: ucoin
   weight_rough_g:
   - value: 0.81
     source: numismaster
+  - value: 0.81
+    source: ucoin
+  - value: 0.92
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110597
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-skilling-1670/?tid=143756
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-skilling-1670/?tid=143757
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -214,58 +147,18 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110597
-- id: unified-denmark-numismaster-110598
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Skilling
-  year_first: 1675
-  year_last: 1682
-  year_ranges:
-  - - 1675
-    - 1675
-  - - 1682
-    - 1682
-  year_label: 1675, 1682
-  ruler: Christian V
-  catalog:
-    km: '130'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.25
-    source: numismaster
-  weight_rough_g:
-  - value: 0.81
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110598
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110598
+  - dk-tid-143756
+  - dk-tid-143757
 - id: unified-denmark-numismaster-110599
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1686
-  year_last: 1687
+  year_last: 1688
   year_ranges:
   - - 1686
-    - 1687
+    - 1688
   year_label: 1686–1687
   ruler: Christian V
   catalog:
@@ -274,18 +167,32 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.188
     source: numismaster
+  - value: 0.188
+    source: ucoin
   weight_rough_g:
   - value: 1.11
     source: numismaster
+  - value: 1.11
+    source: ucoin
+  diameter_mm:
+  - value: 15.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110599
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-skilling-1686-1687/?tid=143759
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-skilling-1687-1688/?tid=143760
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -296,51 +203,13 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110599
-- id: unified-denmark-numismaster-110600
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Skilling
-  year_first: 1687
-  year_last: 1688
-  year_ranges:
-  - - 1687
-    - 1688
-  year_label: 1687–1688
-  ruler: Christian V
-  catalog:
-    km: '159'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.188
-    source: numismaster
-  weight_rough_g:
-  - value: 1.11
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110600
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110600
+  - dk-tid-143759
+  - dk-tid-143760
 - id: unified-denmark-numismaster-110601
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1688
   year_last: 1699
   year_ranges:
@@ -478,15 +347,15 @@ coins:
   - value: 0.406
     source: numismaster
   - value: 0.406
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.09
     source: numismaster
   - value: 1.09
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110611
@@ -673,12 +542,12 @@ coins:
   - value: 0.125
     source: numismaster
   - value: 0.125
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 5.85
     source: numismaster
   - value: 5.85
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110621
@@ -863,15 +732,15 @@ coins:
   - value: 0.667
     source: numismaster
   - value: 0.667
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 2.66
     source: numismaster
   - value: 2.66
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110628
@@ -955,15 +824,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 5.57
     source: numismaster
   - value: 5.57
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 28.6
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110632
@@ -1009,15 +878,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 5.57
     source: numismaster
   - value: 5.57
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 28.6
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110633
@@ -1058,15 +927,15 @@ coins:
   - value: 0.667
     source: numismaster
   - value: 0.667
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 5.31
     source: numismaster
   - value: 5.31
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110634
@@ -1110,15 +979,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 5.57
     source: numismaster
   - value: 5.57
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110635
@@ -1137,86 +1006,11 @@ coins:
   composed_of:
   - denmark-numismaster-110635
   - dk-tid-144919
-- id: unified-denmark-numismaster-110636
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Mark
-  year_first: 1681
-  year_last: 1686
-  year_ranges:
-  - - 1681
-    - 1686
-  year_label: 1681–1686
-  catalog:
-    km: '146'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  weight_rough_g:
-  - value: 5.57
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110636
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110636
-- id: unified-denmark-numismaster-110637
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Mark
-  year_first: 1686
-  year_last: 1686
-  year_label: '1686'
-  catalog:
-    km: '154'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  weight_rough_g:
-  - value: 5.57
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110637
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110637
 - id: unified-denmark-numismaster-110638
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Mark
+  nominal: 1 Mark
   year_first: 1686
   year_last: 1686
   year_label: '1686'
@@ -1252,28 +1046,40 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Mark
+  nominal: 1 Mark
   year_first: 1687
   year_last: 1687
   year_label: '1687'
+  ruler: Christian V
   catalog:
     km: '162'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.672
     source: numismaster
+  - value: 0.672
+    source: ucoin
   weight_rough_g:
   - value: 5.57
     source: numismaster
+  - value: 5.57
+    source: ucoin
+  diameter_mm:
+  - value: 25.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110639
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-mark-1687/?tid=144924
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -1284,47 +1090,12 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110639
-- id: unified-denmark-numismaster-110640
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Mark
-  year_first: 1688
-  year_last: 1688
-  year_label: '1688'
-  catalog:
-    km: '175'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  weight_rough_g:
-  - value: 5.57
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110640
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110640
+  - dk-tid-144924
 - id: unified-denmark-numismaster-110641
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Mark
+  nominal: 1 Mark
   year_first: 1688
   year_last: 1688
   year_label: '1688'
@@ -1356,50 +1127,11 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110641
-- id: unified-denmark-numismaster-110642
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Mark
-  year_first: 1689
-  year_last: 1690
-  year_ranges:
-  - - 1689
-    - 1690
-  year_label: 1689–1690
-  catalog:
-    km: '185.1'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  weight_rough_g:
-  - value: 5.57
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110642
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110642
 - id: unified-denmark-numismaster-110643
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Mark
+  nominal: 1 Mark
   year_first: 1691
   year_last: 1699
   year_ranges:
@@ -1436,42 +1168,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110643
-- id: unified-denmark-numismaster-110644
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Mark
-  year_first: 1699
-  year_last: 1699
-  year_label: '1699'
-  catalog:
-    km: '197'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.833
-    source: numismaster
-  weight_rough_g:
-  - value: 4.5
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110644
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110644
 - id: unified-denmark-numismaster-110647
   fuss: seed_unsorted
   phase: numismaster
@@ -1569,15 +1265,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 11.14
     source: numismaster
   - value: 11.14
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 31.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110651
@@ -1621,15 +1317,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 11.14
     source: numismaster
   - value: 11.14
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 31.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110653
@@ -1670,15 +1366,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 11.14
     source: numismaster
   - value: 11.14
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 31.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110655
@@ -2076,15 +1772,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
   - value: 22.27
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 39.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110669
@@ -2125,15 +1821,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
   - value: 22.27
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 39.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110670
@@ -2174,15 +1870,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
   - value: 22.27
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 39.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110671
@@ -2224,15 +1920,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
   - value: 22.27
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 39.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110672
@@ -2421,15 +2117,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
   - value: 22.27
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 39.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110677
@@ -2510,15 +2206,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
   - value: 22.27
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 39.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110681
@@ -2559,12 +2255,12 @@ coins:
   - value: 0.833
     source: numismaster
   - value: 0.833
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 17.99
     source: numismaster
   - value: 17.99
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110682
@@ -2608,15 +2304,15 @@ coins:
   - value: 0.833
     source: numismaster
   - value: 0.833
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 17.99
     source: numismaster
   - value: 17.99
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 35.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110683
@@ -2657,15 +2353,15 @@ coins:
   - value: 0.833
     source: numismaster
   - value: 0.833
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 17.99
     source: numismaster
   - value: 17.99
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 35.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110684
@@ -3857,7 +3553,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1628
   year_last: 1629
   year_ranges:
@@ -3897,7 +3593,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1629
   year_last: 1648
   year_ranges:
@@ -3938,7 +3634,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1648
   year_last: 1648
   year_label: '1648'
@@ -3974,7 +3670,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1649
   year_last: 1651
   year_ranges:
@@ -4014,7 +3710,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1651
   year_last: 1652
   year_ranges:
@@ -4054,7 +3750,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1652
   year_last: 1653
   year_ranges:
@@ -4094,7 +3790,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1653
   year_last: 1656
   year_ranges:
@@ -4134,7 +3830,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1655
   year_last: 1657
   year_ranges:
@@ -4174,7 +3870,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1657
   year_last: 1658
   year_ranges:
@@ -4214,7 +3910,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1658
   year_last: 1658
   year_label: '1658'
@@ -4251,7 +3947,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1658
   year_last: 1659
   year_ranges:
@@ -4291,7 +3987,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1659
   year_last: 1662
   year_ranges:
@@ -4331,7 +4027,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1661
   year_last: 1661
   year_label: '1661'
@@ -4368,7 +4064,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1661
   year_last: 1662
   year_ranges:
@@ -4408,7 +4104,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1662
   year_last: 1664
   year_ranges:
@@ -4448,7 +4144,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1662
   year_last: 1662
   year_label: '1662'
@@ -4485,7 +4181,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1662
   year_last: 1664
   year_ranges:
@@ -4525,7 +4221,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1664
   year_last: 1664
   year_label: '1664'
@@ -4562,7 +4258,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1665
   year_last: 1665
   year_label: '1665'
@@ -4599,7 +4295,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1665
   year_last: 1665
   year_label: '1665'
@@ -4636,7 +4332,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1665
   year_last: 1667
   year_ranges:
@@ -4676,7 +4372,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1667
   year_last: 1669
   year_ranges:
@@ -4716,7 +4412,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1670
   year_last: 1670
   year_label: '1670'
@@ -4753,7 +4449,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1670
   year_last: 1670
   year_label: '1670'
@@ -4790,7 +4486,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1670
   year_last: 1670
   year_label: '1670'
@@ -4827,7 +4523,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1671
   year_last: 1672
   year_ranges:
@@ -4867,7 +4563,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1671
   year_last: 1674
   year_ranges:
@@ -4909,7 +4605,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1675
   year_last: 1680
   year_ranges:
@@ -4948,7 +4644,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1687
   year_last: 1687
   year_label: '1687'
@@ -4985,7 +4681,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1688
   year_last: 1690
   year_ranges:
@@ -5027,7 +4723,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1692
   year_last: 1693
   year_ranges:
@@ -5067,7 +4763,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1693
   year_last: 1693
   year_label: '1693'
@@ -5104,7 +4800,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1693
   year_last: 1694
   year_ranges:
@@ -5144,7 +4840,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1694
   year_last: 1696
   year_ranges:
@@ -6747,12 +6443,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.49
     source: numismaster
   - value: 1.49
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110791
@@ -6793,12 +6489,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.49
     source: numismaster
   - value: 1.49
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110792
@@ -6858,10 +6554,11 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Ducat
+  nominal: 1 Ducat
   year_first: 1660
   year_last: 1660
   year_label: '1660'
+  ruler: Frederick III
   mint: Christiania
   catalog:
     km: '61'
@@ -6874,13 +6571,20 @@ coins:
   fineness:
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 3.49
     source: numismaster
+  - value: 3.49
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110794
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-ducat-1660/?tid=145512
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -6891,14 +6595,16 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110794
+  - dk-tid-145512
 - id: unified-denmark-numismaster-110795
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Ducat
+  nominal: 1 Ducat
   year_first: 1665
   year_last: 1665
   year_label: '1665'
+  ruler: Frederick III
   catalog:
     km: '77'
   metal: gold
@@ -6910,13 +6616,20 @@ coins:
   fineness:
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 3.49
     source: numismaster
+  - value: 3.49
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110795
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-ducat-1665/?tid=145513
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -6927,14 +6640,16 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110795
+  - dk-tid-145513
 - id: unified-denmark-numismaster-110796
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Ducat
+  nominal: 1 Ducat
   year_first: 1668
   year_last: 1668
   year_label: '1668'
+  ruler: Frederick III
   catalog:
     km: '86'
   metal: gold
@@ -6946,13 +6661,20 @@ coins:
   fineness:
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 3.49
     source: numismaster
+  - value: 3.49
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110796
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-ducat-1668/?tid=145517
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -6963,14 +6685,16 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110796
+  - dk-tid-145517
 - id: unified-denmark-numismaster-110797
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Ducat
+  nominal: 1 Ducat
   year_first: 1669
   year_last: 1669
   year_label: '1669'
+  ruler: Frederick III
   catalog:
     km: '88'
   metal: gold
@@ -6982,13 +6706,20 @@ coins:
   fineness:
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 3.49
     source: numismaster
+  - value: 3.49
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110797
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-ducat-1669/?tid=145518
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -6999,17 +6730,19 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110797
+  - dk-tid-145518
 - id: unified-denmark-numismaster-110798
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Ducat
+  nominal: 1 Ducat
   year_first: 1673
   year_last: 1674
   year_ranges:
   - - 1673
     - 1674
   year_label: 1673–1674
+  ruler: Christian V
   catalog:
     km: '117'
   metal: gold
@@ -7021,13 +6754,20 @@ coins:
   fineness:
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 3.49
     source: numismaster
+  - value: 3.49
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110798
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-ducat-1673/?tid=145746
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -7038,14 +6778,16 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110798
+  - dk-tid-145746
 - id: unified-denmark-numismaster-110799
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Ducat
+  nominal: 1 Ducat
   year_first: 1680
   year_last: 1680
   year_label: '1680'
+  ruler: Christian V
   catalog:
     km: '118'
   metal: gold
@@ -7057,13 +6799,20 @@ coins:
   fineness:
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 3.49
     source: numismaster
+  - value: 3.49
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110799
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-ducat-1680/?tid=145787
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -7074,14 +6823,16 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110799
+  - dk-tid-145787
 - id: unified-denmark-numismaster-110800
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Ducat
+  nominal: 1 Ducat
   year_first: 1697
   year_last: 1697
   year_label: '1697'
+  ruler: Christian V
   mint: Kongsberg
   catalog:
     km: '195'
@@ -7094,13 +6845,20 @@ coins:
   fineness:
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 3.49
     source: numismaster
+  - value: 3.49
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110800
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-ducat-1697/?tid=145747
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -7111,6 +6869,7 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110800
+  - dk-tid-145747
 - id: unified-denmark-numismaster-110801
   fuss: seed_unsorted
   phase: numismaster
@@ -7133,12 +6892,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 6.98
     source: numismaster
   - value: 6.98
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110801
@@ -7181,12 +6940,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 6.98
     source: numismaster
   - value: 6.98
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110802
@@ -7226,12 +6985,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 6.98
     source: numismaster
   - value: 6.98
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110803
@@ -7271,12 +7030,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 6.98
     source: numismaster
   - value: 6.98
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110804
@@ -7316,12 +7075,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 6.98
     source: numismaster
   - value: 6.98
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110805
@@ -7361,12 +7120,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 6.98
     source: numismaster
   - value: 6.98
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110806
@@ -7406,12 +7165,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 6.98
     source: numismaster
   - value: 6.98
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110807
@@ -7488,12 +7247,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 6.98
     source: numismaster
   - value: 6.98
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110809
@@ -7534,12 +7293,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 10.47
     source: numismaster
   - value: 10.47
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110810
@@ -7579,12 +7338,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 10.47
     source: numismaster
   - value: 10.47
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110811
@@ -7624,12 +7383,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 10.47
     source: numismaster
   - value: 10.47
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110812
@@ -7669,12 +7428,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 10.47
     source: numismaster
   - value: 10.47
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110813
@@ -7714,12 +7473,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 10.47
     source: numismaster
   - value: 10.47
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110814
@@ -7831,12 +7590,12 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 13.96
     source: numismaster
   - value: 13.96
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110818
@@ -7859,7 +7618,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1809
   year_last: 1809
   year_label: '1809'
@@ -7890,7 +7649,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1809
   year_last: 1809
   year_label: '1809'
@@ -7921,7 +7680,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1809
   year_last: 1809
   year_label: '1809'
@@ -7952,23 +7711,34 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1812
   year_last: 1812
   year_label: '1812'
   ruler: Frederick VI
+  mint: Norway, Kongsberg
   catalog:
     km: '281'
   metal: copper
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 0.76
+    source: ucoin
+  diameter_mm:
+  - value: 13.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_122241
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-skilling-1812/?tid=88669
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -7979,6 +7749,7 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-122241
+  - dk-tid-88669
 - id: unified-denmark-numismaster-122245
   fuss: seed_unsorted
   phase: numismaster
@@ -8225,7 +7996,7 @@ coins:
   verified: false
   weight_rough_g:
   - value: 4.26
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_122264
@@ -8302,10 +8073,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 8.6
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 27.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_122269
@@ -8381,10 +8152,10 @@ coins:
   - value: 0.979
     source: numismaster
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 6.98
-    source: tid
+    source: ucoin
   - value: 6.99
     source: numismaster
   sources:
@@ -8405,152 +8176,40 @@ coins:
   composed_of:
   - denmark-numismaster-204386
   - dk-tid-145589
-- id: unified-denmark-numismaster-86211
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Skilling
-  year_first: 1700
-  year_last: 1722
-  year_ranges:
-  - - 1700
-    - 1708
-  - - 1710
-    - 1712
-  - - 1719
-    - 1722
-  year_label: 1700–1708, 1710–1712, 1719–1722
-  ruler: Frederick IV
-  catalog:
-    km: '205'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.188
-    source: numismaster
-  weight_rough_g:
-  - value: 1.11
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_86211
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-86211
-- id: unified-denmark-numismaster-86212
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Skilling
-  year_first: 1761
-  year_last: 1765
-  year_ranges:
-  - - 1761
-    - 1765
-  year_label: 1761–1765
-  ruler: Frederick V
-  catalog:
-    km: '240'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.25
-    source: numismaster
-  weight_rough_g:
-  - value: 0.57
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_86212
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-86212
-- id: unified-denmark-numismaster-86213
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Skilling
-  year_first: 1768
-  year_last: 1770
-  year_ranges:
-  - - 1768
-    - 1770
-  year_label: 1768–1770
-  ruler: Christian VII
-  catalog:
-    km: '245'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.25
-    source: numismaster
-  weight_rough_g:
-  - value: 0.57
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_86213
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-86213
 - id: unified-denmark-numismaster-86214
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1771
   year_last: 1771
   year_label: '1771'
   ruler: Christian VII
-  mint: Kongsberg
+  mint:
+  - Kongsberg
+  - Norway, Kongsberg
   catalog:
     km: 245a
   metal: copper
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 11.69
+    source: ucoin
+  diameter_mm:
+  - value: 29.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86214
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-skilling-1771/?tid=88590
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -8561,45 +8220,7 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-86214
-- id: unified-denmark-numismaster-86215
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: Skilling
-  year_first: 1779
-  year_last: 1780
-  year_ranges:
-  - - 1779
-    - 1780
-  year_label: 1779–1780
-  catalog:
-    km: '258'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.187
-    source: numismaster
-  weight_rough_g:
-  - value: 0.77
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_86215
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-86215
+  - dk-tid-88590
 - id: unified-denmark-numismaster-86217
   fuss: seed_unsorted
   phase: numismaster
@@ -8625,15 +8246,15 @@ coins:
   - value: 0.281
     source: numismaster
   - value: 0.281
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.3
     source: numismaster
   - value: 1.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.2
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86217
@@ -8677,15 +8298,15 @@ coins:
   - value: 0.281
     source: numismaster
   - value: 0.281
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.3
     source: numismaster
   - value: 1.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.2
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86218
@@ -8724,12 +8345,12 @@ coins:
   - value: 0.312
     source: numismaster
   - value: 0.312
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 2.75
     source: numismaster
   - value: 2.75
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86225
@@ -8773,15 +8394,15 @@ coins:
   - value: 0.75
     source: numismaster
   - value: 0.75
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 2.29
     source: numismaster
   - value: 2.29
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 19.5
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86227
@@ -8824,12 +8445,12 @@ coins:
   - value: 0.562
     source: numismaster
   - value: 0.562
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.9
     source: numismaster
   - value: 3.9
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86233
@@ -8872,12 +8493,12 @@ coins:
   - value: 0.625
     source: numismaster
   - value: 0.625
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 5.2
     source: numismaster
   - value: 5.2
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86235
@@ -9029,15 +8650,15 @@ coins:
   - value: 0.562
     source: numismaster
   - value: 0.563
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 9.17
     source: numismaster
   - value: 9.17
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 29.5
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86245
@@ -9199,15 +8820,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
   - value: 22.27
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 41.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86252
@@ -9252,15 +8873,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
   - value: 22.27
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 41.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86260
@@ -9302,15 +8923,15 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
   - value: 22.27
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 41.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86263
@@ -9606,7 +9227,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1765
   year_last: 1765
   year_label: '1765'
@@ -9643,7 +9264,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1767
   year_last: 1768
   year_ranges:
@@ -9683,7 +9304,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1776
   year_last: 1785
   year_ranges:
@@ -9762,7 +9383,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1791
   year_last: 1792
   year_ranges:
@@ -9802,7 +9423,7 @@ coins:
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: Specie Daler
+  nominal: 1 Specie Daler
   year_first: 1792
   year_last: 1795
   year_ranges:
@@ -9862,10 +9483,10 @@ coins:
   - value: 0.833
     source: numismaster
   - value: 0.833
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 26.98
-    source: tid
+    source: ucoin
   - value: 26.983
     source: numismaster
   sources:
@@ -9890,7 +9511,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1526
   year_last: 1526
   year_label: '1526'
@@ -9932,7 +9553,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1530
   year_last: 1530
   year_label: '1530'
@@ -9974,7 +9595,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1535
   year_last: 1535
   year_label: '1535'
@@ -10016,7 +9637,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1535
   year_last: 1535
   year_label: '1535'
@@ -10099,7 +9720,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: Skilling
+  nominal: 1 Skilling
   year_first: 1537
   year_last: 1537
   year_label: '1537'
@@ -10216,7 +9837,7 @@ coins:
   fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: skilling
+  nominal: 1 Skilling
   year_first: 1525
   year_last: 1530
   year_ranges:
@@ -10369,14 +9990,14 @@ coins:
   - value: 0.344
     source: numismaster
   - value: 0.344
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.218
     source: hede
   - value: 1.22
     source: numismaster
   - value: 1.22
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86220
@@ -11073,6 +10694,7 @@ coins:
   ruler: Christian IV.
   mint: Christiania
   catalog:
+    km: '23'
     hede: '18'
     hede_volume: nc4h
     schou: '48'
@@ -11085,10 +10707,17 @@ coins:
   fineness:
   - value: 0.156
     source: hede
+  - value: 0.156
+    source: numismaster
   weight_rough_g:
+  - value: 0.92
+    source: numismaster
   - value: 0.921
     source: hede
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110594
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc4h18.htm
     ref: danskmoent.dk (Hede nc4h18)
@@ -11104,6 +10733,7 @@ coins:
     basis: fin
     unit_raw: dalere
   composed_of:
+  - denmark-numismaster-110594
   - dk-hede-nc4h18
 - id: unified-dk-hede-nc4h19
   fuss: seed_unsorted
@@ -11709,15 +11339,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.775
     source: hede
   - value: 28.78
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h25.htm
@@ -11767,15 +11397,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.78
-    source: tid
+    source: ucoin
   - value: 28.893
     source: hede
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h29.htm
@@ -11825,15 +11455,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 57.55
-    source: tid
+    source: ucoin
   - value: 57.786
     source: hede
   diameter_mm:
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h30.htm
@@ -11883,15 +11513,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 115.57
-    source: tid
+    source: ucoin
   - value: 115.573
     source: hede
   diameter_mm:
   - value: 43.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h32.htm
@@ -11940,12 +11570,12 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 14.447
     source: hede
   - value: 14.45
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h33.htm
@@ -11993,10 +11623,10 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 7.22
-    source: tid
+    source: ucoin
   - value: 7.224
     source: hede
   sources:
@@ -12090,15 +11720,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: tid
+    source: ucoin
   - value: 28.893
     source: hede
   diameter_mm:
   - value: 41.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h37.htm
@@ -12144,12 +11774,12 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 14.447
     source: hede
   - value: 14.45
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h38.htm
@@ -12199,15 +11829,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: tid
+    source: ucoin
   - value: 28.893
     source: hede
   diameter_mm:
   - value: 41.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h39.htm
@@ -12257,15 +11887,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: tid
+    source: ucoin
   - value: 28.893
     source: hede
   diameter_mm:
   - value: 41.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h40.htm
@@ -12318,17 +11948,17 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
   - value: 22.27
-    source: tid
+    source: ucoin
   - value: 22.272
     source: hede
   diameter_mm:
   - value: 39.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110665
@@ -12383,23 +12013,23 @@ coins:
   - value: 0.667
     source: numismaster
   - value: 0.667
-    source: tid
+    source: ucoin
   - value: 0.672
     source: hede
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 10.63
     source: numismaster
   - value: 10.63
-    source: tid
+    source: ucoin
   - value: 11.136
     source: hede
   - value: 11.14
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 31.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110649
@@ -12458,19 +12088,19 @@ coins:
   - value: 0.667
     source: numismaster
   - value: 0.667
-    source: tid
+    source: ucoin
   - value: 0.672
     source: hede
   weight_rough_g:
   - value: 10.63
     source: numismaster
   - value: 10.63
-    source: tid
+    source: ucoin
   - value: 11.136
     source: hede
   diameter_mm:
   - value: 31.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110650
@@ -12579,17 +12209,17 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 2.78
     source: numismaster
   - value: 2.78
-    source: tid
+    source: ucoin
   - value: 2.784
     source: hede
   diameter_mm:
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110629
@@ -12646,17 +12276,17 @@ coins:
   - value: 0.281
     source: numismaster
   - value: 0.281
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.218
     source: hede
   - value: 1.22
     source: numismaster
   - value: 1.22
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.2
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110607
@@ -12710,17 +12340,17 @@ coins:
   - value: 0.281
     source: numismaster
   - value: 0.281
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.299
     source: hede
   - value: 1.3
     source: numismaster
   - value: 1.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110608
@@ -12774,17 +12404,17 @@ coins:
   - value: 0.406
     source: numismaster
   - value: 0.406
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.09
     source: hede
   - value: 1.09
     source: numismaster
   - value: 1.09
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110609
@@ -12824,6 +12454,7 @@ coins:
   ruler: Christian V.
   mint: Christiania
   catalog:
+    km: '130'
     hede: '51'
     hede_volume: nc5h
     schou: 22-27
@@ -12837,13 +12468,20 @@ coins:
   - value: 0.25
     source: hede
   - value: 0.25
-    source: tid
+    source: numismaster
+  - value: 0.25
+    source: ucoin
   weight_rough_g:
   - value: 0.81
-    source: tid
+    source: numismaster
+  - value: 0.81
+    source: ucoin
   - value: 0.812
     source: hede
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110598
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h51.htm
     ref: danskmoent.dk (Hede nc5h51)
@@ -12862,6 +12500,7 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
+  - denmark-numismaster-110598
   - dk-hede-nc5h51
   - dk-tid-143758
 - id: unified-dk-hede-nc5h52
@@ -12896,14 +12535,14 @@ coins:
   - value: 0.125
     source: numismaster
   - value: 0.125
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 0.731
     source: hede
   - value: 0.75
     source: numismaster
   - value: 0.75
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110592
@@ -12957,17 +12596,17 @@ coins:
   - value: 0.125
     source: numismaster
   - value: 0.125
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 2.78
     source: numismaster
   - value: 2.78
-    source: tid
+    source: ucoin
   - value: 5.846
     source: hede
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110612
@@ -13110,17 +12749,17 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 11.136
     source: hede
   - value: 11.14
     source: numismaster
   - value: 11.14
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 31.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110652
@@ -13160,6 +12799,7 @@ coins:
   ruler: Christian V.
   mint: Christiania
   catalog:
+    km: '146'
     hede: '57'
     hede_volume: nc5h
     schou: '36'
@@ -13174,16 +12814,23 @@ coins:
   - value: 0.672
     source: hede
   - value: 0.672
-    source: tid
+    source: numismaster
+  - value: 0.672
+    source: ucoin
   weight_rough_g:
   - value: 5.568
     source: hede
   - value: 5.57
-    source: tid
+    source: numismaster
+  - value: 5.57
+    source: ucoin
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110636
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h57.htm
     ref: danskmoent.dk (Hede nc5h57)
@@ -13202,6 +12849,7 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
+  - denmark-numismaster-110636
   - dk-hede-nc5h57
   - dk-tid-144920
 - id: unified-dk-hede-nc5h58
@@ -13235,17 +12883,17 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 2.78
     source: numismaster
   - value: 2.78
-    source: tid
+    source: ucoin
   - value: 2.784
     source: hede
   diameter_mm:
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110630
@@ -13302,17 +12950,17 @@ coins:
   - value: 0.344
     source: numismaster
   - value: 0.344
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.218
     source: hede
   - value: 1.22
     source: numismaster
   - value: 1.22
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.2
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110613
@@ -13442,6 +13090,7 @@ coins:
   ruler: Christian V.
   mint: Christiania
   catalog:
+    km: '185.1'
     hede: '62'
     hede_volume: nc5h
     schou: '18'
@@ -13456,16 +13105,23 @@ coins:
   - value: 0.672
     source: hede
   - value: 0.672
-    source: tid
+    source: numismaster
+  - value: 0.672
+    source: ucoin
   weight_rough_g:
   - value: 5.568
     source: hede
   - value: 5.57
-    source: tid
+    source: numismaster
+  - value: 5.57
+    source: ucoin
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110642
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h62.htm
     ref: danskmoent.dk (Hede nc5h62)
@@ -13484,6 +13140,7 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
+  - denmark-numismaster-110642
   - dk-hede-nc5h62
   - dk-tid-144927
 - id: unified-dk-hede-nc5h63
@@ -13606,17 +13263,17 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 11.136
     source: hede
   - value: 11.14
     source: numismaster
   - value: 11.14
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 31.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110654
@@ -13656,6 +13313,7 @@ coins:
   ruler: Christian V.
   mint: Kongsberg
   catalog:
+    km: '154'
     hede: '69'
     hede_volume: nc5h
     schou: 21-23
@@ -13670,16 +13328,23 @@ coins:
   - value: 0.672
     source: hede
   - value: 0.672
-    source: tid
+    source: numismaster
+  - value: 0.672
+    source: ucoin
   weight_rough_g:
   - value: 5.568
     source: hede
   - value: 5.57
-    source: tid
+    source: numismaster
+  - value: 5.57
+    source: ucoin
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110637
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h69.htm
     ref: danskmoent.dk (Hede nc5h69)
@@ -13701,6 +13366,7 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
+  - denmark-numismaster-110637
   - dk-hede-nc5h69
   - dk-tid-144922
   - dk-tid-144923
@@ -13735,17 +13401,17 @@ coins:
   - value: 0.344
     source: numismaster
   - value: 0.344
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.218
     source: hede
   - value: 1.22
     source: numismaster
   - value: 1.22
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.2
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110614
@@ -13806,17 +13472,17 @@ coins:
   - value: 0.344
     source: numismaster
   - value: 0.344
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.218
     source: hede
   - value: 1.22
     source: numismaster
   - value: 1.22
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.2
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110615
@@ -13919,17 +13585,17 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 11.136
     source: hede
   - value: 11.14
     source: numismaster
   - value: 11.14
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 31.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110659
@@ -13977,6 +13643,7 @@ coins:
   ruler: Christian V.
   mint: Kongsberg
   catalog:
+    km: '175'
     hede: '75'
     hede_volume: nc5h
     schou: '51'
@@ -13991,16 +13658,23 @@ coins:
   - value: 0.672
     source: hede
   - value: 0.672
-    source: tid
+    source: numismaster
+  - value: 0.672
+    source: ucoin
   weight_rough_g:
   - value: 5.568
     source: hede
   - value: 5.57
-    source: tid
+    source: numismaster
+  - value: 5.57
+    source: ucoin
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110640
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h75.htm
     ref: danskmoent.dk (Hede nc5h75)
@@ -14022,6 +13696,7 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
+  - denmark-numismaster-110640
   - dk-hede-nc5h75
   - dk-tid-144925
   - dk-tid-144926
@@ -14093,6 +13768,7 @@ coins:
   ruler: Christian V.
   mint: Kongsberg
   catalog:
+    km: '159'
     hede: '77'
     hede_volume: nc5h
     schou: '29'
@@ -14107,22 +13783,26 @@ coins:
   - value: 0.187
     source: hede
   - value: 0.188
-    source: tid
+    source: numismaster
+  - value: 0.188
+    source: ucoin
   weight_rough_g:
   - value: 1.11
-    source: tid
+    source: numismaster
+  - value: 1.11
+    source: ucoin
   - value: 1.114
     source: hede
   diameter_mm:
   - value: 15.0
-    source: tid
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110600
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h77.htm
     ref: danskmoent.dk (Hede nc5h77)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-skilling-1687-1688/?tid=143760
-    ref: ucoin
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-skilling-1688-1699/?tid=143775
     ref: ucoin
@@ -14138,8 +13818,8 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
+  - denmark-numismaster-110600
   - dk-hede-nc5h77
-  - dk-tid-143760
   - dk-tid-143775
 - id: unified-dk-hede-nc5h78
   fuss: seed_unsorted
@@ -14212,17 +13892,17 @@ coins:
   - value: 0.833
     source: numismaster
   - value: 0.833
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 8.99
     source: numismaster
   - value: 8.99
-    source: tid
+    source: ucoin
   - value: 8.994
     source: hede
   diameter_mm:
   - value: 27.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110663
@@ -14259,6 +13939,7 @@ coins:
   ruler: Christian V.
   mint: Kongsberg
   catalog:
+    km: '197'
     hede: '80'
     hede_volume: nc5h
     schou: '9'
@@ -14272,13 +13953,20 @@ coins:
   - value: 0.833
     source: hede
   - value: 0.833
-    source: tid
+    source: numismaster
+  - value: 0.833
+    source: ucoin
   weight_rough_g:
   - value: 4.497
     source: hede
   - value: 4.5
-    source: tid
+    source: numismaster
+  - value: 4.5
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110644
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h80.htm
     ref: danskmoent.dk (Hede nc5h80)
@@ -14297,13 +13985,14 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
+  - denmark-numismaster-110644
   - dk-hede-nc5h80
   - dk-tid-144928
 - id: unified-dk-hede-nc5hunknown_349
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 2 Dukat U.år
+  nominal: 2 Dukat
   year_first: 1673
   year_last: 1678
   year_ranges:
@@ -14678,17 +14367,17 @@ coins:
   - value: 0.344
     source: numismaster
   - value: 0.344
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.218
     source: hede
   - value: 1.22
     source: numismaster
   - value: 1.22
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.2
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86219
@@ -14737,10 +14426,10 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: tid
+    source: ucoin
   - value: 28.893
     source: hede
   sources:
@@ -14785,15 +14474,15 @@ coins:
   - value: 0.562
     source: hede
   - value: 0.563
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 9.17
-    source: tid
+    source: ucoin
   - value: 9.171
     source: hede
   diameter_mm:
   - value: 29.5
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h10.htm
@@ -14844,16 +14533,23 @@ coins:
   - value: 0.25
     source: hede
   - value: 0.25
-    source: tid
+    source: numismaster
+  - value: 0.25
+    source: ucoin
   weight_rough_g:
   - value: 0.57
-    source: tid
+    source: numismaster
+  - value: 0.57
+    source: ucoin
   - value: 0.575
     source: hede
   diameter_mm:
   - value: 14.0
-    source: tid
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_86213
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h11.htm
     ref: danskmoent.dk (Hede nc7h11)
@@ -14872,6 +14568,7 @@ coins:
     basis: fin
     unit_raw: dalere
   composed_of:
+  - denmark-numismaster-86213
   - dk-hede-nc7h11
   - dk-tid-88589
 - id: unified-dk-hede-nc7h12
@@ -14907,15 +14604,15 @@ coins:
   - value: 0.562
     source: hede
   - value: 0.563
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 9.17
-    source: tid
+    source: ucoin
   - value: 9.171
     source: hede
   diameter_mm:
   - value: 29.5
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h12.htm
@@ -14968,17 +14665,17 @@ coins:
   - value: 0.562
     source: numismaster
   - value: 0.562
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.057
     source: hede
   - value: 3.06
     source: numismaster
   - value: 3.06
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.9
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86230
@@ -15035,17 +14732,17 @@ coins:
   - value: 0.562
     source: numismaster
   - value: 0.562
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.057
     source: hede
   - value: 3.06
     source: numismaster
   - value: 3.06
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.9
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86231
@@ -15104,17 +14801,17 @@ coins:
   - value: 0.562
     source: numismaster
   - value: 0.563
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.528
     source: hede
   - value: 1.53
     source: numismaster
   - value: 1.53
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86224
@@ -15171,17 +14868,17 @@ coins:
   - value: 0.344
     source: numismaster
   - value: 0.344
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.18
     source: numismaster
   - value: 1.18
-    source: tid
+    source: ucoin
   - value: 1.181
     source: hede
   diameter_mm:
   - value: 17.3
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86222
@@ -15235,13 +14932,20 @@ coins:
   - value: 0.187
     source: hede
   - value: 0.187
-    source: tid
+    source: numismaster
+  - value: 0.187
+    source: ucoin
   weight_rough_g:
   - value: 0.768
     source: hede
   - value: 0.77
-    source: tid
+    source: numismaster
+  - value: 0.77
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_86215
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h17.htm
     ref: danskmoent.dk (Hede nc7h17)
@@ -15260,6 +14964,7 @@ coins:
     basis: fin
     unit_raw: dalere
   composed_of:
+  - denmark-numismaster-86215
   - dk-hede-nc7h17
   - dk-tid-88591
 - id: unified-dk-hede-nc7h18
@@ -15293,17 +14998,17 @@ coins:
   - value: 0.25
     source: numismaster
   - value: 0.25
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.5
     source: hede
   - value: 1.5
     source: numismaster
   - value: 1.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86223
@@ -15359,10 +15064,10 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: tid
+    source: ucoin
   - value: 28.893
     source: hede
   sources:
@@ -15455,10 +15160,10 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: tid
+    source: ucoin
   - value: 28.893
     source: hede
   sources:
@@ -15592,14 +15297,14 @@ coins:
   verified: false
   fineness:
   - value: 0.68
-    source: tid
+    source: ucoin
   - value: 0.687
     source: hede
   weight_rough_g:
   - value: 7.31
     source: hede
   - value: 7.31
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h7.htm
@@ -15644,12 +15349,12 @@ coins:
   - value: 0.5
     source: hede
   - value: 0.5
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.37
     source: hede
   - value: 3.37
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h8.htm
@@ -15671,49 +15376,6 @@ coins:
   composed_of:
   - dk-hede-nc7h8
   - dk-tid-88720
-- id: unified-dk-hede-nc7h9
-  fuss: seed_unsorted
-  phase: hede
-  kind: kurant
-  nominal: Piaster
-  year_first: 1777
-  year_last: 1777
-  year_label: '1777'
-  ruler: Christian VII.
-  mint: Kongsberg
-  catalog:
-    hede: '9'
-    hede_volume: nc7h
-    schou: 3-4
-    sieg: '15'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.903
-    source: hede
-  weight_rough_g:
-  - value: 26.983
-    source: hede
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/norge/nc7h9.htm
-    ref: danskmoent.dk (Hede nc7h9)
-  verification_note:
-    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
-      danskmoent.dk.'
-    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  issuing_entity: danish_norway
-  hede_muentzfuss_yield:
-    value: 9.6
-    unit: speciedaler
-    basis: fin
-  composed_of:
-  - dk-hede-nc7h9
 - id: unified-dk-hede-nf3h12
   fuss: seed_unsorted
   phase: hede
@@ -15742,12 +15404,12 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 7.178
     source: hede
   - value: 7.18
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h12.htm
@@ -15798,17 +15460,17 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.72
-    source: tid
+    source: ucoin
   - value: 28.775
     source: hede
   - value: 28.78
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h14.htm
@@ -15838,7 +15500,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1/2 Dukat U.år (ca
+  nominal: ½ Dukat
   year_first: 1669
   year_last: 1669
   year_label: '1669'
@@ -15901,10 +15563,10 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 86.15
-    source: tid
+    source: ucoin
   - value: 86.325
     source: hede
   sources:
@@ -16042,10 +15704,10 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 14.36
-    source: tid
+    source: ucoin
   - value: 14.387
     source: hede
   sources:
@@ -16149,15 +15811,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 57.55
     source: hede
   - value: 57.55
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h22.htm
@@ -16208,15 +15870,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.72
-    source: tid
+    source: ucoin
   - value: 28.775
     source: hede
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h26.htm
@@ -16354,17 +16016,17 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.775
     source: hede
   - value: 28.78
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h33.htm
@@ -16420,15 +16082,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 57.55
     source: hede
   - value: 57.55
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h34.htm
@@ -16473,12 +16135,12 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 14.387
     source: hede
   - value: 14.39
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h37.htm
@@ -16655,15 +16317,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.775
     source: hede
   - value: 28.78
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h43.htm
@@ -16715,15 +16377,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 57.55
     source: hede
   - value: 57.55
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h44.htm
@@ -16770,12 +16432,12 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.596
     source: hede
   - value: 3.6
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h47.htm
@@ -16915,15 +16577,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.775
     source: hede
   - value: 28.78
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h53.htm
@@ -16974,15 +16636,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.775
     source: hede
   - value: 28.78
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h55.htm
@@ -17034,15 +16696,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.775
     source: hede
   - value: 28.78
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h57.htm
@@ -17094,15 +16756,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 57.55
     source: hede
   - value: 57.55
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h58.htm
@@ -17149,12 +16811,12 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.596
     source: hede
   - value: 3.6
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h61.htm
@@ -17253,15 +16915,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 57.55
     source: hede
   - value: 57.55
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h63.htm
@@ -17303,12 +16965,12 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 14.387
     source: hede
   - value: 14.39
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h65.htm
@@ -17401,17 +17063,17 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 11.136
     source: hede
   - value: 11.14
     source: numismaster
   - value: 11.14
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 32.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110646
@@ -17506,17 +17168,17 @@ coins:
   - value: 0.672
     source: numismaster
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 2.78
     source: numismaster
   - value: 2.78
-    source: tid
+    source: ucoin
   - value: 2.784
     source: hede
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110627
@@ -17608,17 +17270,17 @@ coins:
   - value: 0.281
     source: numismaster
   - value: 0.281
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.299
     source: hede
   - value: 1.3
     source: numismaster
   - value: 1.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110604
@@ -17658,6 +17320,7 @@ coins:
   ruler: Frederik III.
   mint: Christiania
   catalog:
+    km: '29'
     hede: '71'
     hede_volume: nf3h
     schou: '48'
@@ -17673,16 +17336,23 @@ coins:
   - value: 0.156
     source: hede
   - value: 0.156
-    source: tid
+    source: numismaster
+  - value: 0.156
+    source: ucoin
   weight_rough_g:
   - value: 0.92
-    source: tid
+    source: numismaster
+  - value: 0.92
+    source: ucoin
   - value: 0.921
     source: hede
   diameter_mm:
   - value: 15.0
-    source: tid
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110595
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h71.htm
     ref: danskmoent.dk (Hede nf3h71)
@@ -17701,6 +17371,7 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
+  - denmark-numismaster-110595
   - dk-hede-nf3h71
   - dk-tid-143755
 - id: unified-dk-hede-nf3h72
@@ -17735,21 +17406,21 @@ coins:
   - value: 0.281
     source: numismaster
   - value: 0.281
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.22
-    source: tid
+    source: ucoin
   - value: 1.299
     source: hede
   - value: 1.3
     source: numismaster
   - value: 1.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.2
-    source: tid
+    source: ucoin
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110605
@@ -17808,15 +17479,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.717
     source: hede
   - value: 28.72
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h8.htm
@@ -17868,15 +17539,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 57.43
-    source: tid
+    source: ucoin
   - value: 57.435
     source: hede
   diameter_mm:
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h9.htm
@@ -18079,15 +17750,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 57.55
     source: hede
   - value: 57.55
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h41.htm
@@ -18134,15 +17805,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 57.55
     source: hede
   - value: 57.55
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/nf3h63.htm
@@ -18186,15 +17857,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 57.55
     source: hede
   - value: 57.55
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h30.htm
@@ -18281,10 +17952,10 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 86.32
-    source: tid
+    source: ucoin
   - value: 86.325
     source: hede
   sources:
@@ -18333,15 +18004,15 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 57.43
-    source: tid
+    source: ucoin
   - value: 57.435
     source: hede
   diameter_mm:
   - value: 45.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/nf3h9.htm
@@ -18387,10 +18058,10 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 86.32
-    source: tid
+    source: ucoin
   - value: 86.325
     source: hede
   sources:
@@ -18438,10 +18109,10 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 86.15
-    source: tid
+    source: ucoin
   - value: 86.153
     source: hede
   sources:
@@ -18489,12 +18160,12 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 115.1
     source: hede
   - value: 115.1
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h34.htm
@@ -18582,14 +18253,14 @@ coins:
   - value: 0.468
     source: numismaster
   - value: 0.468
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.668
     source: hede
   - value: 3.67
     source: numismaster
   - value: 3.67
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86228
@@ -18640,12 +18311,12 @@ coins:
   - value: 0.468
     source: hede
   - value: 0.468
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.668
     source: hede
   - value: 3.67
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf4h17.htm
@@ -18691,17 +18362,17 @@ coins:
   - value: 0.833
     source: numismaster
   - value: 0.833
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 8.99
     source: numismaster
   - value: 8.99
-    source: tid
+    source: ucoin
   - value: 8.994
     source: hede
   diameter_mm:
   - value: 27.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110664
@@ -18835,15 +18506,15 @@ coins:
   - value: 0.672
     source: hede
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 11.136
     source: hede
   - value: 11.14
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 32.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf4h5.htm
@@ -18892,14 +18563,14 @@ coins:
   - value: 0.562
     source: numismaster
   - value: 0.562
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.057
     source: hede
   - value: 3.06
     source: numismaster
   - value: 3.06
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86226
@@ -18953,17 +18624,17 @@ coins:
   - value: 0.344
     source: numismaster
   - value: 0.344
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.218
     source: hede
   - value: 1.22
     source: numismaster
   - value: 1.22
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.2
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86216
@@ -19016,16 +18687,23 @@ coins:
   - value: 0.187
     source: hede
   - value: 0.188
-    source: tid
+    source: numismaster
+  - value: 0.188
+    source: ucoin
   weight_rough_g:
   - value: 1.11
-    source: tid
+    source: numismaster
+  - value: 1.11
+    source: ucoin
   - value: 1.114
     source: hede
   diameter_mm:
   - value: 15.0
-    source: tid
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_86211
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nf4h8.htm
     ref: danskmoent.dk (Hede nf4h8)
@@ -19039,6 +18717,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_norway
   composed_of:
+  - denmark-numismaster-86211
   - dk-hede-nf4h8
   - dk-tid-143848
 - id: unified-dk-hede-nf5h1
@@ -19067,10 +18746,10 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: tid
+    source: ucoin
   - value: 28.893
     source: hede
   sources:
@@ -19126,17 +18805,17 @@ coins:
   - value: 0.562
     source: numismaster
   - value: 0.563
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 9.17
     source: numismaster
   - value: 9.17
-    source: tid
+    source: ucoin
   - value: 9.171
     source: hede
   diameter_mm:
   - value: 29.5
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86244
@@ -19233,16 +18912,23 @@ coins:
   - value: 0.25
     source: hede
   - value: 0.25
-    source: tid
+    source: numismaster
+  - value: 0.25
+    source: ucoin
   weight_rough_g:
   - value: 0.57
-    source: tid
+    source: numismaster
+  - value: 0.57
+    source: ucoin
   - value: 0.575
     source: hede
   diameter_mm:
   - value: 15.6
-    source: tid
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_86212
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nf5h4.htm
     ref: danskmoent.dk (Hede nf5h4)
@@ -19256,6 +18942,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_norway
   composed_of:
+  - denmark-numismaster-86212
   - dk-hede-nf5h4
   - dk-tid-88588
 - id: unified-dk-hede-nf5hunknown_281
@@ -19339,17 +19026,17 @@ coins:
   - value: 0.25
     source: numismaster
   - value: 0.25
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.15
     source: numismaster
   - value: 1.15
-    source: tid
+    source: ucoin
   - value: 1.151
     source: hede
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86221
@@ -19396,10 +19083,10 @@ coins:
   - value: 0.375
     source: hede
   - value: 0.375
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 2.73
-    source: tid
+    source: ucoin
   - value: 2.735
     source: hede
   sources:
@@ -19450,15 +19137,15 @@ coins:
   - value: 0.25
     source: hede
   - value: 0.25
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 2.05
-    source: tid
+    source: ucoin
   - value: 2.051
     source: hede
   diameter_mm:
   - value: 19.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf6h2.htm
@@ -19936,85 +19623,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-477551
-- id: unified-dk-tid-143756
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 skilling
-  year_first: 1670
-  year_last: 1670
-  year_label: '1670'
-  ruler: Christian V
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.156
-    source: tid
-  weight_rough_g:
-  - value: 0.81
-    source: tid
-  - value: 0.92
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-skilling-1670/?tid=143756
-    ref: ucoin
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-skilling-1670/?tid=143757
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-143756
-  - dk-tid-143757
-- id: unified-dk-tid-143759
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 skilling
-  year_first: 1686
-  year_last: 1687
-  year_ranges:
-  - - 1686
-    - 1687
-  year_label: 1686–1687
-  ruler: Christian V
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.188
-    source: tid
-  weight_rough_g:
-  - value: 1.11
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-skilling-1686-1687/?tid=143759
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-143759
 - id: unified-dk-tid-144917
   fuss: seed_unsorted
   phase: ucoin
@@ -20033,13 +19641,13 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.61
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-12-skilling-1671/?tid=144917
@@ -20054,45 +19662,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-144917
-- id: unified-dk-tid-144924
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 mark
-  year_first: 1687
-  year_last: 1687
-  year_label: '1687'
-  ruler: Christian V
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: tid
-  weight_rough_g:
-  - value: 5.57
-    source: tid
-  diameter_mm:
-  - value: 25.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-mark-1687/?tid=144924
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-144924
 - id: unified-dk-tid-144930
   fuss: seed_unsorted
   phase: ucoin
@@ -20113,10 +19682,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.59
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1649-1650/?tid=144930
@@ -20148,10 +19717,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.6
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1654/?tid=144931
@@ -20183,10 +19752,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.6
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1660/?tid=144932
@@ -20218,10 +19787,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.6
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-12-skilling-1661/?tid=144933
@@ -20260,10 +19829,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 7.18
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-4-speciedaler-1652-1654/?tid=145391
@@ -20298,10 +19867,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 7.18
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-4-speciedaler-1655-1656/?tid=145392
@@ -20333,10 +19902,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 7.18
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-4-speciedaler-1663/?tid=145393
@@ -20371,10 +19940,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 14.39
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1665-1667/?tid=145424
@@ -20406,10 +19975,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-4-mark-1669/?tid=145426
@@ -20445,13 +20014,13 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.72
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-speciedaler-1649-1651/?tid=145428
@@ -20466,154 +20035,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-145428
-- id: unified-dk-tid-145512
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 ducat
-  year_first: 1660
-  year_last: 1660
-  year_label: '1660'
-  ruler: Frederick III
-  catalog:
-    km: '61'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: tid
-  weight_rough_g:
-  - value: 3.49
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-ducat-1660/?tid=145512
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145512
-- id: unified-dk-tid-145513
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 ducat
-  year_first: 1665
-  year_last: 1665
-  year_label: '1665'
-  ruler: Frederick III
-  catalog:
-    km: '77'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: tid
-  weight_rough_g:
-  - value: 3.49
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-ducat-1665/?tid=145513
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145513
-- id: unified-dk-tid-145517
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 ducat
-  year_first: 1668
-  year_last: 1668
-  year_label: '1668'
-  ruler: Frederick III
-  catalog:
-    km: '86'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: tid
-  weight_rough_g:
-  - value: 3.49
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-ducat-1668/?tid=145517
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145517
-- id: unified-dk-tid-145518
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 ducat
-  year_first: 1669
-  year_last: 1669
-  year_label: '1669'
-  ruler: Frederick III
-  catalog:
-    km: '88'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: tid
-  weight_rough_g:
-  - value: 3.49
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-ducat-1669/?tid=145518
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145518
 - id: unified-dk-tid-145590
   fuss: seed_unsorted
   phase: ucoin
@@ -20633,10 +20054,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 115.1
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-4-speciedaler-1656/?tid=145590
@@ -20673,10 +20094,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 115.1
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-4-speciedaler-1657-1658/?tid=145591
@@ -20713,10 +20134,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 86.32
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-3-speciedaler-1663-1664/?tid=145595
@@ -20753,10 +20174,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 86.32
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-3-speciedaler-1654-1656/?tid=145598
@@ -20793,10 +20214,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 86.32
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-3-speciedaler-1657-1658/?tid=145599
@@ -20834,13 +20255,13 @@ coins:
   verified: false
   fineness:
   - value: 0.672
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 22.27
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 39.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-4-mark-1681-1695/?tid=145666
@@ -20874,10 +20295,10 @@ coins:
   verified: false
   fineness:
   - value: 0.979
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 1.49
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-2-ducat-1674/?tid=145745
@@ -20892,117 +20313,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-145745
-- id: unified-dk-tid-145746
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 ducat
-  year_first: 1673
-  year_last: 1673
-  year_label: '1673'
-  ruler: Christian V
-  catalog:
-    km: '117'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: tid
-  weight_rough_g:
-  - value: 3.49
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-ducat-1673/?tid=145746
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145746
-- id: unified-dk-tid-145747
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 ducat
-  year_first: 1697
-  year_last: 1697
-  year_label: '1697'
-  ruler: Christian V
-  catalog:
-    km: '195'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: tid
-  weight_rough_g:
-  - value: 3.49
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-ducat-1697/?tid=145747
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145747
-- id: unified-dk-tid-145787
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 ducat
-  year_first: 1680
-  year_last: 1680
-  year_label: '1680'
-  ruler: Christian V
-  catalog:
-    km: '118'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: tid
-  weight_rough_g:
-  - value: 3.49
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-ducat-1680/?tid=145787
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145787
 - id: unified-dk-tid-145801
   fuss: seed_unsorted
   phase: ucoin
@@ -21025,7 +20335,7 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.67
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-8-skilling-1730-1735/?tid=145801
@@ -21063,13 +20373,13 @@ coins:
   verified: false
   fineness:
   - value: 0.562
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 9.22
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 29.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-24-skilling-1734-1735/?tid=145852
@@ -21107,13 +20417,13 @@ coins:
   verified: false
   fineness:
   - value: 0.562
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 9.22
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 29.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-24-skilling-1735-1746/?tid=145853
@@ -21151,13 +20461,13 @@ coins:
   verified: false
   fineness:
   - value: 0.188
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 0.77
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 15.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-skilling-1719-1722/?tid=145854
@@ -21194,10 +20504,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 86.68
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-3-speciedaler-1674-1680/?tid=145965
@@ -21232,13 +20542,13 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.78
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-speciedaler-1670/?tid=146013
@@ -21276,13 +20586,13 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.78
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-speciedaler-1675-1680/?tid=146015
@@ -21320,13 +20630,13 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 41.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-speciedaler-1688-1690/?tid=146021
@@ -21364,13 +20674,13 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 41.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-speciedaler-1694-1696/?tid=146028
@@ -21385,45 +20695,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-146028
-- id: unified-dk-tid-88590
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 skilling
-  year_first: 1771
-  year_last: 1771
-  year_label: '1771'
-  ruler: Christian VII
-  mint: Norway, Kongsberg
-  catalog:
-    km: 245a
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 11.69
-    source: tid
-  diameter_mm:
-  - value: 29.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-skilling-1771/?tid=88590
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-88590
 - id: unified-dk-tid-88592
   fuss: seed_unsorted
   phase: ucoin
@@ -21445,10 +20716,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 5.57
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-skilling-1809/?tid=88592
@@ -21463,45 +20734,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-88592
-- id: unified-dk-tid-88669
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 skilling
-  year_first: 1812
-  year_last: 1812
-  year_label: '1812'
-  ruler: Frederick VI
-  mint: Norway, Kongsberg
-  catalog:
-    km: '281'
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 0.76
-    source: tid
-  diameter_mm:
-  - value: 13.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-skilling-1812/?tid=88669
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-88669
 - id: unified-dk-tid-88694
   fuss: seed_unsorted
   phase: ucoin
@@ -21525,10 +20757,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 8.0
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 28.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-2-skilling-1810-1811/?tid=88694
@@ -21566,10 +20798,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 22.27
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 32.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-4-skilling-1809-1810/?tid=88718
@@ -21606,10 +20838,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 9.63
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-3-speciedaler-1795-1803/?tid=88741
@@ -21643,10 +20875,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 9.63
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-3-speciedaler-1803/?tid=88742
@@ -21684,13 +20916,13 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 14.45
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 36.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-2-speciedaler-1776-1779/?tid=88743
@@ -21727,10 +20959,10 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 19.26
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-2-3-speciedaler-1795-1796/?tid=88744

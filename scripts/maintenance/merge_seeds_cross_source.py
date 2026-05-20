@@ -1058,29 +1058,106 @@ def _collect_field_list(members: list[dict], field: str) -> list[dict]:
                 v = item.get("value")
                 if not isinstance(v, (int, float)):
                     continue
-                entry = {"value": float(v), "source": item.get("source", "?")}
+                raw_src = item.get("source", "?")
+                # Detect & fix stale synthesised labels from a prior buggy
+                # split — when the source string matches a dash-segment
+                # of ANY member's id (e.g. `'26'` from `km-26-fr-karl-
+                # plon-1760` via the old `split('-')[1]` fallback), re-
+                # synthesise from the matching member's id so the
+                # user-facing tooltip shows the correct source name.
+                if (isinstance(raw_src, str)
+                        and raw_src
+                        and " " not in raw_src
+                        and len(raw_src) <= 8):
+                    # Look across all members for an id whose segments
+                    # contain this stale label. Prefer the first match.
+                    for cand in members:
+                        cid = cand.get("id")
+                        if cid and raw_src in str(cid).split("-"):
+                            correct = _source_label_from_id(cid)
+                            if correct and correct != "?":
+                                raw_src = correct
+                                break
+                entry = {"value": float(v), "source": raw_src}
                 key = (entry["value"], entry["source"])
                 if key not in seen:
                     seen.add(key)
                     out.append(entry)
+    # Drop stale numeric / dash-segment source labels (e.g. '15', '156',
+    # 'dk') unconditionally — these are residue from historical absorb
+    # runs where the now-fixed `_source_label_from_id` returned the
+    # wrong split segment of curator V1 ids (`km-N-ruler-year`,
+    # `dk-tid-N`, etc.). The actual measurement readings carry their
+    # correct source (`hede`, `numismaster`, `ucoin`, `bruun`, etc.)
+    # via the fresh re-derivation pass above. A stale numeric-only
+    # source label refers to no real source — it is a leftover that
+    # would otherwise show as a meaningless number in the rendered
+    # tooltip.
+    import re as _re
+    _stale_src = _re.compile(r"^[a-z]?\d+[a-z]?$|^dk$|^sh$|^lu$|^hb$|^en$|^de$|^uk$")
+    cleaned: list[dict] = []
+    for e in out:
+        s = e.get("source", "")
+        if isinstance(s, str) and _stale_src.match(s):
+            continue  # unconditional drop of synthesised-from-bad-split labels
+        cleaned.append(e)
     # Deterministic order: by value, then source
-    out.sort(key=lambda e: (e["value"], e["source"]))
-    return out
+    cleaned.sort(key=lambda e: (e["value"], e["source"]))
+    return cleaned
 
 
 def _source_label_from_id(coin_id: str | None) -> str:
     if not coin_id:
         return "?"
-    if coin_id.startswith("dk-hede-"):
+    # Strip the `unified-` wrapper that the cross-source merger prefixes
+    # to its output ids — the underlying source signature lives in the
+    # post-prefix part.
+    if coin_id.startswith("unified-"):
+        coin_id = coin_id[len("unified-"):]
+    if coin_id.startswith("dk-hede-") or coin_id.startswith("hede-"):
         return "hede"
-    if coin_id.startswith("dk-bruun-"):
+    if coin_id.startswith("dk-bruun-") or coin_id.startswith("bruun-"):
         return "bruun"
     if coin_id.startswith("dk-numismaster-"):
         return "numismaster"
     if coin_id.startswith("dk-numista-"):
         return "numista"
-    if coin_id.startswith("dk-galster-"):
+    if coin_id.startswith("dk-galster-") or coin_id.startswith("galster-"):
         return "galster"
+    # ucoin V1 carryover ids — `dk-tid-`, `sh-tid-`, `hb-tid-`,
+    # `lu-tid-`. The «tid» token is the URL query-param name from
+    # ucoin (`?tid=NNNN`); the actual SOURCE is ucoin.net, so label
+    # as such for human-readable provenance tooltips.
+    if (coin_id.startswith("dk-tid-")
+            or coin_id.startswith("sh-tid-")
+            or coin_id.startswith("hb-tid-")
+            or coin_id.startswith("lu-tid-")):
+        return "ucoin"
+    # ucoin V1 curator-named ids — `km-N-ruler-YYYY` / `km-xNNN-ruler-YYYY`
+    # / `km-NNN-YYYY` / `bruun-NNNNN-ruler-mint-YYYY` / `lange-NNN-ruler-
+    # mint-YYYY` and similar V1 curator hand-shaped ids that end with a
+    # 4-digit year. Per `build_ucoin_seed.py` §«Preserve V1's custom id»,
+    # curator-named entries (no `tid` query-param assigned) carry this
+    # shape. The V1-foundation entries came through V1 curator imports
+    # where ucoin was the primary source — label them so the
+    # weight/fineness multi-source list shows «ucoin» rather than the
+    # numeric KM/Bruun/Lange catalog index segment.
+    if (coin_id.startswith("km-")
+            or coin_id.startswith("bruun-")
+            or coin_id.startswith("lange-")) and coin_id.count("-") >= 2:
+        # End-of-id year check — pattern `…-YYYY` with 4-digit year
+        last = coin_id.rsplit("-", 1)[-1]
+        if last.isdigit() and len(last) == 4:
+            return "ucoin"
+        # km-N-ruler-… without trailing year — still ucoin V1 carryover
+        if coin_id.startswith("km-") and coin_id.count("-") >= 3:
+            return "ucoin"
+    # NumisMaster-prefixed entity IDs from the location-aware builder
+    # (e.g. `schleswig_holstein-numismaster-X`).
+    if "-numismaster-" in coin_id:
+        return "numismaster"
+    if "-numista-" in coin_id:
+        return "numista"
     return coin_id.split("-")[1] if "-" in coin_id else "?"
 
 
