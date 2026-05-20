@@ -1111,6 +1111,51 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 3. **Cross-reference Hede 1971 + 1977 extension printed indices** (paper or scan, if accessible) against the cache. Count delta per ruler — Hede's printed Hede-numbers per king are well-defined; missing any printed-index entry from our cache = a gap. Surface gaps as separate sub-TODOs.
 4. **Document closure** in this entry's body: count delta, any new pages, list of non-DK subtrees found + scope-relevance assessment.
 
+### BW. 🟢 Persist `classification_signal` on coin entries for audit traceability  *(opened 2026-05-20, user-marked «високий»)* *(est: small)* *(type: data + classifier extension)*
+
+**Surfaced.** User direction 2026-05-20 with explicit «з високим пріоритетом» marker. The §8a classifier (`scripts/maintenance/auto_classify_seed_unsorted.py`) runs multiple rule arms in sequence (`_classify_via_yield` → `_classify_via_kronefod_anchor` → `_classify_via_era_anchor` → `_classify_via_delta`) and produces a single best-match decision per coin. At `--apply` time only the resulting (`fuss`, `phase`, `kind`) lands on the coin entry — the **signal that produced that decision is discarded**. A curator looking at `fuss=kronefod` in `data/v2/final/danish_realm.yml` cannot tell whether it came from the `era_kronefod` year+denomination anchor, the `delta_confident` fineness+weight math, or `hede_yield` (Hede-attested Müntzfuß yield), without re-running the classifier in `--show all` mode.
+
+**Why this matters.**
+
+1. **Reviewability** — when a curator suspects a misclassification, knowing which signal produced it tells them where to debug (rule logic vs source data).
+2. **Rule-impact metrics** — once we extend the classifier (new era-anchor rules, fineness-class rules for Søsling-scale Scheidemünze, etc.) we want to know which existing classifications were touched by which rule, so a rule change can be audited against the population of coins it affected.
+3. **Future re-classification** — if we re-run the classifier with refined rules, we want a way to compare «what signal X produced last time vs this time» per coin.
+
+**Plan.**
+
+1. **Schema extension** in `scripts/lib/schema.py`:
+   ```python
+   class Coin(BaseModel):
+       classification_signal: str | None = Field(
+           None,
+           description="Which classifier signal produced (fuss, phase). "
+           "Set automatically by auto_classify_seed_unsorted.py --apply. "
+           "Values: hede_yield, era_kronefod, era_anchor, delta_confident, "
+           "delta_low_conf, delta_scheide, curator_decision (manual override), "
+           "legacy_v1 (pre-V2 manual placement, signal not re-derivable)."
+       )
+   ```
+2. **Classifier `--apply` writes the field**: when mutating a coin's fuss / phase, additionally set `coin["classification_signal"] = decision["signal"]`.
+3. **`CURATED_FIELDS` (in `scripts/lib/seed_merge.py`)** — add `classification_signal` to the allowlist so future merges preserve it. Manual override convention: setting `classification_signal: curator_decision` in a `classification_decisions/<entity>.yml` entry signals «manual override, do not auto-reclassify on next pass».
+4. **Backfill for existing classifications**: one-time pass that walks `data/v2/final/*.yml`, runs the classifier rules in detection-only mode (no apply, no mutation), and writes `classification_signal` for every non-`seed_unsorted` coin whose signal can be re-derived. Coins where the rules don't re-fire (e.g. legacy curator-edited) get `classification_signal: legacy_v1` to flag them as carrying pre-V2 manual placement.
+5. **Audit hook**: add to `audit_v2.py` a section reporting `classification_signal` distribution per entity — helps spot drift over time («Why did our era_anchor population shrink from 25 to 12 between runs?»).
+
+**Acceptance criteria.**
+
+- Schema field added + validator accepts it.
+- `auto_classify_seed_unsorted.py --apply` writes the field.
+- Backfill pass runs cleanly across all 20 entity files; ≥95% of non-seed_unsorted coins receive a signal value (the legacy ~5% get `legacy_v1`).
+- `scripts/audit_v2.py` adds a «Classification signal distribution» section.
+- Build clean.
+
+**Cross-references.**
+
+- §BV — every new Fuß rule added under §BV must use a NAMED signal value (e.g. `era_sovereign_fod`, `era_rhinsk_gylden`) so the field stays useful.
+- §BT — D38-style consistency: builders that bypass classifier (write `fuss:` directly) should also write a `classification_signal: builder_<source>` for consistency. Optional extension.
+- §BX (auto_classify pipeline integration) — when classifier becomes canonical Phase 4 step in the V2 pipeline chain, this field becomes structural metadata, not optional.
+
+**Definition of done.** Every coin entry in `data/v2/final/*.yml` carries a `classification_signal` value (or explicit `legacy_v1` for pre-V2 placements). Audit script reports the distribution. Future rule extensions automatically write the signal as they fire.
+
 ## Normal priority
 
 ### AK. Flip `mint_verified` to true for seed entries whose Hede source explicitly states the mint  *(opened 2026-05-13)*
@@ -2739,6 +2784,43 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 - **CLAUDE.md §i18n** — current policy is DE / EN / UK only. Adding `da` to selected pages needs the policy to acknowledge per-location language sets.
 - **`data/i18n/ui.yml`** — the existing 3-lang UI-string convention may need a structural revision (e.g. nullable `da:` field, or a separate `ui_da.yml` overlay).
 - **Templates** — language-switcher chip implementation determines whether the `da` chip appears on landing / German-jurisdiction pages (probably hidden when the page itself has no Danish content).
+
+### BX. 🟡 Integrate auto_classify_seed_unsorted.py as canonical Phase 4 step in V2 pipeline  *(opened 2026-05-20)* *(est: small-medium)* *(type: pipeline + docs)*
+
+**Surfaced.** User direction 2026-05-20: «цей процес має бути складовою частиною нашого пайплайну даних на v2 (уже основній версії)». The §8a auto-classifier (`scripts/maintenance/auto_classify_seed_unsorted.py`) currently sits in the `scripts/maintenance/` ad-hoc tier and is invoked manually. Per `docs/ARCHITECTURE.md` §«Phase 4 — Classification to Müntzfuß (final)» (line 541), a script with this exact responsibility is documented as **`classify_to_fuss_v2.py` (to-be-built)** — the existing `auto_classify_seed_unsorted.py` IS that script under a different name, just not yet canonicalised in the pipeline orchestration.
+
+**Why this matters.** After every new harvest cycle (Phase 1 → 2 → 3.1 → 3.2 → 4 absorb → render), the classifier should run as a canonical step so newly-absorbed entries with `fuss: seed_unsorted` get classified BEFORE the build assembles + renders. Without canonical integration, the operator (today: a Claude session) has to remember to run it; «forgot to run classify» causes silent regression to seed_unsorted-bucket bloat.
+
+**Plan.**
+
+1. **Decide naming**: keep `auto_classify_seed_unsorted.py` (clearer name about its actual job) OR rename to `classify_to_fuss_v2.py` (match ARCHITECTURE.md spec). Recommend: **keep current name** + update ARCHITECTURE.md to drop the «to-be-built» annotation and point to the actual script.
+2. **Canonicalise in script-inventory chain** in `docs/ARCHITECTURE.md` line 569-577 («Script inventory + when to re-run each»): replace the «classify_to_fuss_v2.py» placeholder with `auto_classify_seed_unsorted.py --apply` as step 4 of the post-harvest chain.
+3. **Document the run-order dependency** explicitly in `docs/V2_PIPELINE.md`: classifier runs AFTER absorb (`absorb_seeds_into_final_v2.py`) — operates on `data/v2/final/<entity>.yml`. It mutates fuss + phase in place, idempotent on re-runs (seed_unsorted shrinks monotonically).
+4. **Auto-trigger options** (pick one):
+   - (a) Add to the pre-commit hook — runs `--dry-run` on staged changes, errors if it detects new seed_unsorted entries that would be auto-classified. Curator must run `--apply` manually before commit lands. Pro: forces awareness. Con: slow pre-commit.
+   - (b) Add to a `run_v2_pipeline.sh` wrapper script that chains all phase scripts in correct order (seed_v2_regroup → merge_seeds_cross_source → absorb → auto_classify → relink_promoted). Pro: single command. Con: operator still has to invoke the wrapper.
+   - (c) Document in `docs/PLAYBOOKS.md` as a recurrent-procedure entry (PB-N «Post-harvest V2 pipeline re-run») without code automation. Pro: lowest infra cost. Con: relies on operator memory.
+   - **Recommend (b) + (c)**: wrapper script for one-command convenience + playbook for documentation.
+5. **Coupled with §BW** (classification_signal persistence): once §BW lands, the canonical pipeline write of `classification_signal` is part of the auto-classify step. The integration must include this field, not just fuss/phase.
+
+**Acceptance criteria.**
+
+- ARCHITECTURE.md §«Phase 4 classification» updated: drop «to-be-built» note, name the actual script.
+- ARCHITECTURE.md script-inventory chain includes `auto_classify_seed_unsorted.py --apply` as canonical Phase 4 step.
+- V2_PIPELINE.md updated with explicit run-order specification.
+- `scripts/run_v2_pipeline.sh` (or equivalent wrapper) chains the full Phase 3.1 → 3.2 → absorb → classify → relink sequence.
+- `docs/PLAYBOOKS.md` entry «Post-harvest V2 pipeline re-run» documents the wrapper invocation + when to use it (after harvest brings new cache files, after curator edits decision files, before build verification).
+- Pre-commit hook MAYBE checks for unclassified seed_unsorted in staged data/v2/final/ changes (advisory) — decision (a) deferred until the workflow proves the manual approach is error-prone.
+
+**Cross-references.**
+
+- §BV (pre-1582 Müntzfüße) — each new Fuß landing requires a corresponding rule in this classifier; the pipeline integration formalises «classifier-extension-then-run».
+- §BW (classification_signal persistence) — must be coupled with the canonical pipeline write to remain useful.
+- §BT (D38-style builder consistency) — builders that write fuss directly (legacy) bypass the classifier; the pipeline should converge on classifier-as-single-source-of-truth.
+- `docs/ARCHITECTURE.md` §«Phase 4 — Classification to Müntzfuß (final)» — the documented spec the current script already implements.
+- `docs/V2_PIPELINE.md` §«Detailed execution plan» Phase 4 — needs update to reference the canonical script name.
+
+**Definition of done.** Operator runs `scripts/run_v2_pipeline.sh` (or equivalent) after harvest cycles; classifier runs in canonical order; ARCHITECTURE.md + V2_PIPELINE.md + PLAYBOOKS.md cross-reference the actual script name; no «to-be-built» annotations remain.
 
 ---
 
