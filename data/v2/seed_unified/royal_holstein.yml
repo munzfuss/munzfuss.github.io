@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-05-19 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 444 per-source seed entries.
-# Output: 408 unified entries (one per physical coin).
+# Output: 407 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-05-19'
+generated_at: '2026-05-20'
 coins:
 - id: unified-denmark-numismaster-145357
   fuss: seed_unsorted
@@ -6993,28 +6993,39 @@ coins:
   year_label: '1719'
   fraction: 1/2
   ruler: Frederik IV.
-  mint: Rendsburg
+  mint:
+  - Denmark, Rendsburg
+  - Rendsburg
   catalog:
+    km: '7'
     hede: '61'
     hede_volume: f4h
     schou: '2'
     sieg: '60'
     fr: '4'
   metal: gold
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.979
     source: hede
+  - value: 0.979
+    source: x011
   weight_rough_g:
   - value: 1.745
     source: hede
+  - value: 1.75
+    source: x011
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h61.htm
     ref: danskmoent.dk (Hede f4h61)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-dukat-1719/?tid=169253
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -7023,6 +7034,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-hede-f4h61
+  - km-x011-fr-iv-1719-half
 - id: unified-dk-hede-f4h62
   fuss: 9_25_thaler
   phase: I
@@ -10787,44 +10799,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - km-x007-chr-iv-1620
-- id: unified-km-x011-fr-iv-1719-half
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1/2 dukat
-  year_first: 1719
-  year_last: 1719
-  year_label: '1719'
-  ruler: Frederick IV
-  mint: Denmark, Rendsburg
-  catalog:
-    km: '7'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: x011
-  weight_rough_g:
-  - value: 1.75
-    source: x011
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-2-dukat-1719/?tid=169253
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - km-x011-fr-iv-1719-half
 - id: unified-schleswig_holstein-numismaster-117986
   fuss: seed_unsorted
   phase: numismaster

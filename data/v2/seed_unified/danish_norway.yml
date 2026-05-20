@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-05-19 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 690 per-source seed entries.
-# Output: 496 unified entries (one per physical coin).
+# Output: 494 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-05-19'
+generated_at: '2026-05-20'
 coins:
 - id: unified-denmark-numismaster-110593
   fuss: seed_unsorted
@@ -19099,27 +19099,38 @@ coins:
   year_last: 1809
   year_label: '1809'
   ruler: Frederik VI.
-  mint: Kongsberg
+  mint:
+  - Kongsberg
+  - Norway, Kongsberg
   catalog:
+    km: '277'
     hede: '1'
     hede_volume: nf6h
     schou: '2'
     fr: '6'
   metal: silver
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.375
     source: hede
+  - value: 0.375
+    source: tid
   weight_rough_g:
+  - value: 2.73
+    source: tid
   - value: 2.735
     source: hede
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf6h1.htm
     ref: danskmoent.dk (Hede nf6h1)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-8-skilling-1809/?tid=88721
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -19133,6 +19144,7 @@ coins:
     unit_raw: dalere
   composed_of:
   - dk-hede-nf6h1
+  - dk-tid-88721
 - id: unified-dk-hede-nf6h2
   fuss: seed_unsorted
   phase: hede
@@ -19142,27 +19154,42 @@ coins:
   year_last: 1809
   year_label: '1809'
   ruler: Frederik VI.
-  mint: Kongsberg
+  mint:
+  - Kongsberg
+  - Norway, Kongsberg
   catalog:
+    km: '276'
     hede: '2'
     hede_volume: nf6h
     schou: 3-4
     fr: '6'
   metal: billon
+  metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.25
     source: hede
+  - value: 0.25
+    source: tid
   weight_rough_g:
+  - value: 2.05
+    source: tid
   - value: 2.051
     source: hede
+  diameter_mm:
+  - value: 19.0
+    source: tid
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf6h2.htm
     ref: danskmoent.dk (Hede nf6h2)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-skilling-1809/?tid=88719
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -19176,6 +19203,7 @@ coins:
     unit_raw: dalere
   composed_of:
   - dk-hede-nf6h2
+  - dk-tid-88719
 - id: unified-dk-hede-nf6h3
   fuss: seed_unsorted
   phase: hede
@@ -21764,86 +21792,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-88718
-- id: unified-dk-tid-88719
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 4 skilling
-  year_first: 1809
-  year_last: 1809
-  year_label: '1809'
-  ruler: Frederick VI
-  mint: Norway, Kongsberg
-  catalog:
-    km: '276'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.25
-    source: tid
-  weight_rough_g:
-  - value: 2.05
-    source: tid
-  diameter_mm:
-  - value: 19.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-skilling-1809/?tid=88719
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-88719
-- id: unified-dk-tid-88721
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 8 skilling
-  year_first: 1809
-  year_last: 1809
-  year_label: '1809'
-  ruler: Frederick VI
-  mint: Norway, Kongsberg
-  catalog:
-    km: '277'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.375
-    source: tid
-  weight_rough_g:
-  - value: 2.73
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-8-skilling-1809/?tid=88721
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-88721
 - id: unified-dk-tid-88742
   fuss: seed_unsorted
   phase: ucoin

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-05-19 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-20 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 2026 per-source seed entries.
-# Output: 1657 unified entries (one per physical coin).
+# Output: 1652 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-05-19'
+generated_at: '2026-05-20'
 coins:
 - id: unified-denmark-numismaster-117787
   fuss: seed_unsorted
@@ -28120,6 +28120,7 @@ coins:
   ruler: Christian X.
   mint:
   - Copenhagen
+  - Denmark, Copenhagen
   - Kopenhagen
   catalog:
     km: '811'
@@ -28131,6 +28132,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -28138,11 +28140,18 @@ coins:
     source: hede
   - value: 0.8
     source: numismaster
+  - value: 0.8
+    source: tid
   weight_rough_g:
   - value: 15.0
     source: hede
   - value: 15.0
     source: numismaster
+  - value: 15.0
+    source: tid
+  diameter_mm:
+  - value: 31.0
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_42084
@@ -28150,6 +28159,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c10h3.htm
     ref: danskmoent.dk (Hede c10h3)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-kroner-1912/?tid=31057
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -28159,6 +28171,7 @@ coins:
   composed_of:
   - denmark-numismaster-42084
   - dk-hede-c10h3
+  - dk-tid-31057
 - id: unified-dk-hede-c10h35
   fuss: seed_unsorted
   phase: hede
@@ -42682,6 +42695,7 @@ coins:
   ruler: Christian IX.
   mint:
   - Copenhagen
+  - Denmark, Copenhagen
   - Kopenhagen
   catalog:
     km: '799'
@@ -42692,6 +42706,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -42699,11 +42714,18 @@ coins:
     source: hede
   - value: 0.8
     source: numismaster
+  - value: 0.8
+    source: tid
   weight_rough_g:
   - value: 15.0
     source: hede
   - value: 15.0
     source: numismaster
+  - value: 15.0
+    source: tid
+  diameter_mm:
+  - value: 31.0
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_66270
@@ -42711,6 +42733,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c9h10.htm
     ref: danskmoent.dk (Hede c9h10)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-kroner-1888/?tid=49668
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -42720,6 +42745,7 @@ coins:
   composed_of:
   - denmark-numismaster-66270
   - dk-hede-c9h10
+  - dk-tid-49668
 - id: unified-dk-hede-c9h11
   fuss: seed_unsorted
   phase: hede
@@ -42731,6 +42757,7 @@ coins:
   ruler: Christian IX.
   mint:
   - Copenhagen
+  - Denmark, Copenhagen
   - Kopenhagen
   catalog:
     km: '800'
@@ -42741,6 +42768,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -42748,11 +42776,18 @@ coins:
     source: hede
   - value: 0.8
     source: numismaster
+  - value: 0.8
+    source: tid
   weight_rough_g:
   - value: 15.0
     source: hede
   - value: 15.0
     source: numismaster
+  - value: 15.0
+    source: tid
+  diameter_mm:
+  - value: 31.0
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_66272
@@ -42760,6 +42795,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c9h11.htm
     ref: danskmoent.dk (Hede c9h11)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-kroner-1892/?tid=49669
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -42769,6 +42807,7 @@ coins:
   composed_of:
   - denmark-numismaster-66272
   - dk-hede-c9h11
+  - dk-tid-49669
 - id: unified-dk-hede-c9h12
   fuss: seed_unsorted
   phase: hede
@@ -42780,6 +42819,7 @@ coins:
   ruler: Christian IX.
   mint:
   - Copenhagen
+  - Denmark, Copenhagen
   - Kopenhagen
   catalog:
     km: '802'
@@ -42791,6 +42831,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -42798,11 +42839,18 @@ coins:
     source: hede
   - value: 0.8
     source: numismaster
+  - value: 0.8
+    source: tid
   weight_rough_g:
   - value: 15.0
     source: hede
   - value: 15.0
     source: numismaster
+  - value: 15.0
+    source: tid
+  diameter_mm:
+  - value: 31.0
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_42082
@@ -42810,6 +42858,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c9h12.htm
     ref: danskmoent.dk (Hede c9h12)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-kroner-1903/?tid=49670
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -42819,6 +42870,7 @@ coins:
   composed_of:
   - denmark-numismaster-42082
   - dk-hede-c9h12
+  - dk-tid-49670
 - id: unified-dk-hede-c9h13a
   fuss: seed_unsorted
   phase: hede
@@ -57760,6 +57812,7 @@ coins:
   ruler: Frederik VIII.
   mint:
   - Copenhagen
+  - Denmark, Copenhagen
   - Kopenhagen
   catalog:
     km: '803'
@@ -57771,6 +57824,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -57778,11 +57832,18 @@ coins:
     source: hede
   - value: 0.8
     source: numismaster
+  - value: 0.8
+    source: tid
   weight_rough_g:
   - value: 15.0
     source: hede
   - value: 15.0
     source: numismaster
+  - value: 15.0
+    source: tid
+  diameter_mm:
+  - value: 31.0
+    source: tid
   sources:
   - type: literature
     url: https://numismaster.com/MC_42083
@@ -57790,6 +57851,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f8h3.htm
     ref: danskmoent.dk (Hede f8h3)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-kroner-1906/?tid=49477
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -57799,6 +57863,7 @@ coins:
   composed_of:
   - denmark-numismaster-42083
   - dk-hede-f8h3
+  - dk-tid-49477
 - id: unified-dk-hede-f8h4
   fuss: seed_unsorted
   phase: hede
@@ -62331,48 +62396,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-30109
-- id: unified-dk-tid-31057
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 2 kroner
-  year_first: 1912
-  year_last: 1912
-  year_label: '1912'
-  ruler: Christian X
-  mint: Denmark, Copenhagen
-  catalog:
-    km: '811'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.8
-    source: tid
-  weight_rough_g:
-  - value: 15.0
-    source: tid
-  diameter_mm:
-  - value: 31.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-kroner-1912/?tid=31057
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-31057
 - id: unified-dk-tid-49461
   fuss: seed_unsorted
   phase: ucoin
@@ -62584,48 +62607,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-49475
-- id: unified-dk-tid-49477
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 2 kroner
-  year_first: 1906
-  year_last: 1906
-  year_label: '1906'
-  ruler: Frederick VIII
-  mint: Denmark, Copenhagen
-  catalog:
-    km: '803'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.8
-    source: tid
-  weight_rough_g:
-  - value: 15.0
-    source: tid
-  diameter_mm:
-  - value: 31.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-kroner-1906/?tid=49477
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-49477
 - id: unified-dk-tid-49544
   fuss: seed_unsorted
   phase: ucoin
@@ -62881,132 +62862,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-49663
-- id: unified-dk-tid-49668
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 2 kroner
-  year_first: 1888
-  year_last: 1888
-  year_label: '1888'
-  ruler: Christian IX
-  mint: Denmark, Copenhagen
-  catalog:
-    km: '799'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.8
-    source: tid
-  weight_rough_g:
-  - value: 15.0
-    source: tid
-  diameter_mm:
-  - value: 31.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-kroner-1888/?tid=49668
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-49668
-- id: unified-dk-tid-49669
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 2 kroner
-  year_first: 1892
-  year_last: 1892
-  year_label: '1892'
-  ruler: Christian IX
-  mint: Denmark, Copenhagen
-  catalog:
-    km: '800'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.8
-    source: tid
-  weight_rough_g:
-  - value: 15.0
-    source: tid
-  diameter_mm:
-  - value: 31.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-kroner-1892/?tid=49669
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-49669
-- id: unified-dk-tid-49670
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 2 kroner
-  year_first: 1903
-  year_last: 1903
-  year_label: '1903'
-  ruler: Christian IX
-  mint: Denmark, Copenhagen
-  catalog:
-    km: '802'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.8
-    source: tid
-  weight_rough_g:
-  - value: 15.0
-    source: tid
-  diameter_mm:
-  - value: 31.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-kroner-1903/?tid=49670
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-49670
 - id: unified-dk-tid-49671
   fuss: seed_unsorted
   phase: ucoin

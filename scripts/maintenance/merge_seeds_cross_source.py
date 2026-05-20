@@ -746,21 +746,43 @@ _MINT_SPELLING_ALIASES = {
 }
 
 
+# Country / region prefix tokens that ucoin and similar sources
+# sometimes prepend to mint strings — e.g. ucoin's «Denmark, Copenhagen»,
+# «Norway, Christiania», «Sweden, Stockholm». These prefixes carry no
+# information beyond what the issuing_entity already encodes; stripping
+# them lets the city token reach the alias map.
+_MINT_COUNTRY_PREFIXES = frozenset({
+    "denmark", "norway", "sweden", "germany", "holstein", "schleswig",
+    "schleswig-holstein", "lübeck", "hamburg",
+})
+
+
 def _normalise_mints(mint) -> set[str]:
     if mint is None:
         return set()
     mints = mint if isinstance(mint, list) else [mint]
     out = set()
     for m in mints:
-        if isinstance(m, str):
-            base = re.sub(r"\s*\([^)]*\)\s*$", "", m).strip().lower()
-            if not base:
+        if not isinstance(m, str):
+            continue
+        # Strip trailing paren tail «Altona (FK VS)» → «Altona», then
+        # split on comma so multi-token shapes like «Denmark, Copenhagen»
+        # or «Altona, Kopenhagen» (V1 list-style joined into a string)
+        # decompose into individual mint tokens.
+        base = re.sub(r"\s*\([^)]*\)\s*$", "", m).strip()
+        if not base:
+            continue
+        tokens = [t.strip().lower() for t in base.split(",") if t.strip()]
+        for t in tokens:
+            # Skip pure country-prefix tokens (they're scope qualifiers,
+            # not mint towns). Keeps the city token for comparison.
+            if t in _MINT_COUNTRY_PREFIXES:
                 continue
             # Apply spelling-alias canonicalisation so cross-source
             # comparison doesn't false-fail on English/Danish/German
             # variants of the same mint town.
-            base = _MINT_SPELLING_ALIASES.get(base, base)
-            out.add(base)
+            canonical = _MINT_SPELLING_ALIASES.get(t, t)
+            out.add(canonical)
     return out
 
 
