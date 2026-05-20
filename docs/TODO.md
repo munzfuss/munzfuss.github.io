@@ -603,6 +603,58 @@ Estimated total remaining harvest: **~250-400 TIDs** across **6-10 batches**.
 
 **Definition of done.** Norway 1514-1814 harvested (or verified-empty), DK 1514-1581 + 1873-1914 closed, SH pre-1788 + post-1855 closed. Phase-1 coverage table updated. BR closure note replaces this in-progress entry.
 
+### BV. 🟡 Pre-1582 Danish Müntzfüße — define missing standards in fuesse.yml + Denmark page  *(opened 2026-05-20, user-marked «найвищий»)* *(est: medium-large)* *(type: data + research-applied)*
+
+**Surfaced.** User direction 2026-05-20 with explicit «найвищий» marker. The §8a auto_classify_seed_unsorted classifier can only target Müntzfüße that EXIST in `data/shared/fuesse.yml` AND have phase blocks in the location yamls. A tranche of pre-1582 Danish gold + silver standards is currently absent from our data, so coins from those eras stay stuck in `seed_unsorted` indefinitely regardless of classifier improvements. Goal: ship Fuß definitions on the Denmark page first (no coins required initially) so classifier rules can be authored against them, then per-Fuß coin promotion follows downstream.
+
+**Scope — candidate missing Müntzfüße from the user's preliminary 1390-1660 Danish-gold timeline (2026-05-20).** User explicitly flagged that the timeline values are **NOT to be treated as authoritative** («не сприймай ці визначення як ‹закон›, ми це ще дослідимо детальніше»). Each Fuß below carries a working name + provisional metric; **every metric written into fuesse.yml must trace to a primary or top-tier secondary source per CLAUDE.md §0**.
+
+| # | Working name | Period (in scope 1514+) | Provisional metric | TODO sub-task | Verification debt |
+|---|---|---|---|---|---|
+| 1 | **`sovereign_fod`** / **`noble_fod`** | C-II 1516-1518 + F1 1524, 1532 (extends to Hans 1496-1502 pre-scope) | gold ~14-15 g rough, .979-.995 fineness (English Sovereign / Noble tier) | new (no TODO yet) | Hans Realer + C-II Realer + F1 Realer — Wilcke 1924/1950 chapter on pre-Reformation gold; Galster 1959-1960; Hede c1h / c2h / f1h primary entries |
+| 2 | **`rhinsk_gylden_fod`** | F2 1563 → C-IV 1632 (extends back to Hans 1497 pre-scope) | gold .76-.77 fineness, ~3.25 g rough; per-piece fein ~2.5 g | **§AW (plan ready)** | Wilcke chapter on Rhinsk Gylden; period tariff (1 Rhinsk Gylden ≈ 0.7-0.75 Reichsdukat) needs source |
+| 3 | **`goldgulden_fod`** (transitional pre-Reichsdukatenfuß)? | F1 1527 → C-IV 1593 (overlapping with Rhinsk track and post-1564 Reichsdukatenfuß) | gold .986, ~3.49 g rough | new (no TODO yet) | **Open question:** distinct from `reichsdukatenfuss` (1564→1802) or just an early phase of it? Wilcke + Bobzin verification required |
+| 4 | **C-III Gottorp 0.764 Dukat-named** (one-off 1534) | C-III 1534 Gottorp only | gold .764, weight TBD | new (no TODO yet) | One-off classification: own Fuß, fold into `rhinsk_gylden_fod` as a higher-fineness variant, or phase under existing `reichsdukatenfuss`? |
+| 5 | **`f2_guldkrone_fod`** (écu d'or tier) | F2 1563-64 only | gold .9305, fein 3.120 g per piece (Hede f2h2, f2h5) | **§AV** (pending (a) vs (b) verdict — separate Fuß vs phase under `guldkrone`) | Wilcke + Hede f2h2/f2h5 |
+| 6 | **`christian_iii_dalerfod`** (silver) | 1541-1582 (København baseline + 1544 debased) | mf 8.827 anchor; fein 26.494 g per Daler at .906 / 14½ Lod | **§BF** (full plan, pending dual-zone verdict) | Wilcke 1950 + Rigsarkivet T.K. 160 + Paus 1752 — already captured in `docs/research/moentordning_1541.md` |
+| 7 | **`christian_iii_flensborg_fod`** (silver) | 1547-1571 (Lybsk-aligned dual-zone) | TBD per dossier §7.1 (Lybsk sub-Mark + 14¼ Lod Daler) | **§BF** (full plan, sub-design of dual-zone choice) | Same as #6 + 1547 Flensborg Bestalling |
+| 8 | **Rosenobel Fuß placement** (1611-1629) | C-IV 1611, 1612, 1613, 1627, 1629 | gold .833, fein 7.495 g per Rosenobel | **§AX** (pending tariff investigation) | Wilcke I + Bobzin + contemporary Danish ordinance for the period tariff |
+
+**Acceptance criteria (per Fuß).** When ANY of these candidates lands in fuesse.yml, the following must all hold:
+
+1. `data/shared/fuesse.yml` entry with: `id`, `name`, optional `historical_name`, `metal`, `grid_unit_g` + `grid_stops` (anchor formula), `fineness_standard`, `fineness_display`, `grundwerte` block (rows for fractions per CLAUDE.md §2 period orthography), `fractions: {N: {soll_rau_g, soll_fein_g}}`, `events` block (`first_adoption.anywhere`, `first_mint.anywhere`, `std_end.anywhere`, plus `anywhere_label: {de, en, uk}`), `description` prose in DE/EN/UK with period orthography per §2. Every metric carries a verbatim source comment (e.g. `# Wilcke 1950 Kap. 7-4 p. 184`).
+2. Phase block in `data/v2/locations/denmark.yml` under `fuss_periods.<fuss_id>` with `year_from` / `year_to` per phase + soll values + mint(s) attested + brief description.
+3. **Same** in `data/locations/denmark.yml` (V1 fallback page — V1 stays live until V2 promotion fully validated per `docs/V2_PIPELINE.md` §3.8).
+4. Added to `fuss_order` list on BOTH V1 + V2 `denmark.yml`.
+5. Added to `data/shared/german_fuesse.yml` (landing-page Müntzfüße overview).
+6. At least ONE bibliography reference in `data/locations/denmark-references.yml` with verbatim quote ≤25 words + page hint per CLAUDE.md §5a.
+7. `python scripts/build.py --validate-only` clean; the Fuß card renders on the Denmark page with structural row OK (empty coin tables acceptable initially).
+8. **`scripts/maintenance/auto_classify_seed_unsorted.py`** extended with a rule targeting the new Fuß — typically either an era-anchor (year+denomination → Fuß, like the new kronefod rule landed 2026-05-20) or a fineness/weight-Δ math arm. **Without this step the new Fuß is unreachable from seed.**
+
+**Sequencing — independent landings, lowest research-debt first:**
+
+1. **`rhinsk_gylden_fod`** (§AW) — plan already ready, metric verified, just needs ship-execution. **Start here.**
+2. **`f2_guldkrone_fod`** (§AV) — pending (a) vs (b) verdict from user. Once resolved, ~30 min implementation.
+3. **`christian_iii_dalerfod`** + **`christian_iii_flensborg_fod`** (§BF) — pending dual-zone verdict from user. ~2-3 sessions total (longer because seed coin promotion is bundled).
+4. **`sovereign_fod`** — research from scratch. Primary sources for Hans 1496+ + Christian II + Frederik I Realer needed before metric can be written. Estimated 1-2 sessions of source-hunting (Wilcke 1924 + Galster 1959-1960 + Hede c1h/c2h/f1h).
+5. **`goldgulden_fod` decision** — separate Fuß vs phase under `reichsdukatenfuss`. Likely resolution after #4 (Sovereign research clarifies pre-1564 gold landscape).
+6. **Rosenobel + C-III Gottorp one-offs** (§AX + new sub-task) — likely resolve as standalone phases under existing Fuß families rather than new Fuß slots.
+
+**Cross-references** (existing TODOs subsumed under this umbrella):
+
+- **§AV** Frederik II Guldkrone-fod 1563-64 → row 5 above
+- **§AW** Rhinsk Gylden-fod 1563-1632 → row 2 above
+- **§AX** Rosenobel 1611-1629 → row 8 above
+- **§BF** Christian III dalerfod + flensborg_fod 1541-1582 → rows 6+7 above
+- **§BD** Danish Müntzfuß naming convention — applies to ALL new IDs (use Danish form `_fod` rather than German `_fuss` per §BD policy)
+- **§BB** Fuß description framing rule — applies to ALL new `description` prose (historical framing only, no parameter bleed)
+- **§AU** Frederik II seed promotion — depends on §AV + §AW landings
+- **§AZ** Galster + Jensen-Skjoldager paper-source import — independent track that PROVIDES coins for the new Fuß slots once they exist (especially `sovereign_fod` + `rhinsk_gylden_fod`)
+- **`docs/V2_PIPELINE.md`** — entity-keyed pipeline; new Fuß definitions live in V1 + V2 in parallel until V2-only flip
+- **`scripts/maintenance/auto_classify_seed_unsorted.py`** — every new Fuß must be coupled with a classifier rule extension
+
+**Definition of done.** All 6-8 missing Müntzfüße defined in fuesse.yml + visible on Denmark page (V2 + V1) with structural rows (empty coin tables OK initially), classifier extended to target each new Fuß (era-anchor or delta-math), at least 6-10 new bibliography refs added across the new Fuß definitions. Coin promotion into each Fuß is a separate downstream task — typically tracked under the per-Fuß sub-TODO (§BF for 1541-1571 silver, sibling per-Fuß TODOs to be opened as each Fuß lands).
+
 ---
 ## High priority
 
