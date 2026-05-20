@@ -688,6 +688,26 @@ def _extract_specs(text: str, basename: str = "") -> dict:
                     return v
         return None
 
+    # Direct «Hede [Norge] N» header line detector — matches pages like
+    # nf3h39 / nc5h13 where each spec block is immediately preceded by
+    # a Hede header (bare on its own line OR appended after the
+    # denomination label with a comma). Without this the label_window
+    # scan finds the Hede header as the immediate parent, doesn't map
+    # it against the denomination → Hede dict (it isn't a denomination
+    # label), and falls back to the 400-char heuristic which picks the
+    # WRONG (later or earlier) Hede tag on multi-coin pages.
+    # Two forms:
+    #   A. «Hede [Norge] N» as the entire line (nf3h39 layout)
+    #   B. «<denom>, Hede [Norge] N» single-line form (nc5h13 layout)
+    DIRECT_HEDE_HEADER_RE = re.compile(
+        r"^\s*Hede(?:\s+Norge)?\s+(\d+[A-Za-z]*(?:[\-/,]\s*\d+[A-Za-z]*)*)\s*$",
+        re.IGNORECASE,
+    )
+    INLINE_HEDE_HEADER_RE = re.compile(
+        r"\bHede(?:\s+Norge)?\s+(\d+[A-Za-z]*(?:[\-/,]\s*\d+[A-Za-z]*)*)\s*$",
+        re.IGNORECASE,
+    )
+
     by_hede: dict[str, dict] = {}
     for m in bruttos:
         pos = m.start()
@@ -708,6 +728,20 @@ def _extract_specs(text: str, basename: str = "") -> dict:
                 or candidate.startswith("Finvægt") or candidate.startswith("Marken")
                 or candidate.startswith(_HR_SENTINEL) or candidate.startswith("-")):
                 continue
+            # Pre-check: is this a bare «Hede [Norge] N» header line?
+            # If yes, extract the Hede number directly — the page is
+            # using the multi-Hede header-per-block layout.
+            direct_hede = DIRECT_HEDE_HEADER_RE.match(candidate)
+            if direct_hede:
+                tag = direct_hede.group(1).replace(" ", "")
+                break
+            # Pre-check: is this a «<denom>, Hede [Norge] N» single-line
+            # form? Look for the Hede header at the END of the line
+            # — common on nc5h13-style pages.
+            inline_hede = INLINE_HEDE_HEADER_RE.search(candidate)
+            if inline_hede:
+                tag = inline_hede.group(1).replace(" ", "")
+                break
             matched = _label_to_hede(candidate)
             if matched:
                 tag = matched
