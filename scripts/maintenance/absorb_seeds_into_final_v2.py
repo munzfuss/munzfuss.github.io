@@ -245,16 +245,66 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         if v is not None:
             out[field] = v
 
-    # Multi-source measurement lists (D17 / §9a)
-    fine = _collect_field_list(members, "fineness")
+    # Multi-source measurement lists (D17 / §9a).
+    # `skip_first_list=True` — the first member is the foundation (fc),
+    # and its list-form values are absorb-cached from prior runs. The
+    # cache may carry phantom readings from composed_of sources that
+    # have since been split off (e.g. Galster ruler-scope split). Re-
+    # derive from composed_of unified members only; foundation's scalar
+    # (when present) still counts via the same call.
+    fine = _collect_field_list(members, "fineness", skip_first_list=True)
     if fine:
         out["fineness"] = fine
-    weights = _collect_field_list(members, "weight_rough_g")
+    weights = _collect_field_list(members, "weight_rough_g", skip_first_list=True)
     if weights:
         out["weight_rough_g"] = weights
-    diameters = _collect_field_list(members, "diameter_mm")
+    diameters = _collect_field_list(members, "diameter_mm", skip_first_list=True)
     if diameters:
         out["diameter_mm"] = diameters
+
+    # Catalog rebuild: same principle as measurements — drop foundation's
+    # absorb-cached list-form catalog values for cross-source fields
+    # before re-deriving. Foundation's SCALAR catalog entries are V1-
+    # bootstrap and stay (DF1-immutable for some — see schema notes).
+    # The merger's `_deep_merge_catalog` already runs above; we just
+    # need to scrub fc's list-form for cross-source accumulation
+    # fields before that. Done in-place on the `out` catalog after
+    # merge by intersecting with members[1:]'s actual values.
+    _CROSS_SOURCE_CATALOG_FIELDS = {
+        "hede", "sieg", "schou", "galster", "galster_volume",
+        "jensen_skjoldager", "schive", "skaare", "friedberg",
+        "davenport", "lange", "fr", "dav", "nmd",
+    }
+    if isinstance(out.get("catalog"), dict):
+        # Build the union of cross-source catalog values from composed_of
+        # members (excluding fc which is members[0]).
+        composed_members = members[1:]
+        composed_values: dict[str, set[str]] = {}
+        for k in _CROSS_SOURCE_CATALOG_FIELDS:
+            for cm in composed_members:
+                cat = cm.get("catalog") or {}
+                v = cat.get(k)
+                if v is None:
+                    continue
+                vals = v if isinstance(v, list) else [v]
+                composed_values.setdefault(k, set()).update(
+                    str(x).strip() for x in vals if x is not None)
+        # For each cross-source catalog field in out, intersect with
+        # composed_values — drop any value that no current member attests.
+        for k in _CROSS_SOURCE_CATALOG_FIELDS:
+            if k not in out["catalog"]:
+                continue
+            current = out["catalog"][k]
+            current_list = current if isinstance(current, list) else [current]
+            keep = composed_values.get(k, set())
+            filtered = [v for v in current_list if str(v).strip() in keep]
+            if not filtered:
+                # No composed_of member attests this field → drop entirely
+                del out["catalog"][k]
+            elif len(filtered) == 1:
+                out["catalog"][k] = filtered[0]
+            else:
+                out["catalog"][k] = filtered
 
     # Sources union
     sources = _collect_sources(members)

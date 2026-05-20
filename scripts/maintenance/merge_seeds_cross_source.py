@@ -1147,13 +1147,28 @@ class UnionFind:
 # ---------------------------------------------------------------------------
 
 
-def _collect_field_list(members: list[dict], field: str) -> list[dict]:
+def _collect_field_list(members: list[dict], field: str,
+                          skip_first_list: bool = False) -> list[dict]:
     """For weight_rough_g / fineness / diameter_mm — collect ALL readings
     from every member as multi-source list entries. Dedupe by (value, source)
-    so re-runs are deterministic."""
+    so re-runs are deterministic.
+
+    `skip_first_list`: when True, the FIRST member's list-form values
+    are IGNORED (its scalar value still counts). Used by absorb when
+    the first member is the foundation (final entry) and its list-form
+    is absorb-cached output from a prior run. The fresh re-derivation
+    should rebuild from composed_of members' attestations rather than
+    propagating cached values. Concrete case: `unified-dk-numista-474583`
+    foundation had cached list [14.38 galster, 36.31 numista] from a
+    previous merger output that merged Numista + Galster c3g-103.
+    After the Galster ruler-scope fix split them, seed_unified now
+    has only 36.31 from Numista. Without `skip_first_list`, the
+    foundation's cached 14.38 (Galster) survives re-enrichment as a
+    phantom reading.
+    """
     seen: set[tuple] = set()
     out: list[dict] = []
-    for m in members:
+    for idx, m in enumerate(members):
         val = m.get(field)
         if val is None:
             continue
@@ -1165,6 +1180,13 @@ def _collect_field_list(members: list[dict], field: str) -> list[dict]:
                 seen.add(key)
                 out.append(entry)
         elif isinstance(val, list):
+            # When the caller marks the first member as foundation
+            # (absorb's existing final entry), skip its cached list-
+            # form values. Its scalar reading (if any) still counts;
+            # the list is purely the previous-absorb output and may
+            # contain stale entries (now-removed composed_of sources).
+            if idx == 0 and skip_first_list:
+                continue
             for item in val:
                 if not isinstance(item, dict):
                     continue
@@ -1214,9 +1236,40 @@ def _collect_field_list(members: list[dict], field: str) -> list[dict]:
         if isinstance(s, str) and _stale_src.match(s):
             continue  # unconditional drop of synthesised-from-bad-split labels
         cleaned.append(e)
+    # Collapse same-value entries whose source labels are nested
+    # variants of one another. Pattern: same `value`, sources
+    # `[X, X tid N]` or `[X, X N# N]` — both refer to the same external
+    # citation (the more-specific form annotates which entry on X). Keep
+    # only the MORE SPECIFIC label (drop the bare prefix). Real
+    # multi-source attestations (Hede + Bruun + ucoin) keep all
+    # distinct labels.
+    by_value: dict[float, list[dict]] = {}
+    for e in cleaned:
+        by_value.setdefault(e["value"], []).append(e)
+    nested_pruned: list[dict] = []
+    for val, entries in by_value.items():
+        if len(entries) > 1:
+            srcs = [e.get("source", "") for e in entries
+                    if isinstance(e.get("source"), str)]
+            # If any source is a prefix of another (e.g. «ucoin» of
+            # «ucoin tid 97375»), the prefix is redundant — drop it.
+            to_drop_idx: set[int] = set()
+            for i, src_i in enumerate(srcs):
+                for j, src_j in enumerate(srcs):
+                    if i == j or not src_i or not src_j:
+                        continue
+                    # src_i is a prefix of src_j with a space boundary
+                    if (len(src_i) < len(src_j)
+                            and src_j.startswith(src_i + " ")):
+                        to_drop_idx.add(i)
+            for k, e in enumerate(entries):
+                if k not in to_drop_idx:
+                    nested_pruned.append(e)
+        else:
+            nested_pruned.extend(entries)
     # Deterministic order: by value, then source
-    cleaned.sort(key=lambda e: (e["value"], e["source"]))
-    return cleaned
+    nested_pruned.sort(key=lambda e: (e["value"], e["source"]))
+    return nested_pruned
 
 
 def _source_label_from_id(coin_id: str | None) -> str:

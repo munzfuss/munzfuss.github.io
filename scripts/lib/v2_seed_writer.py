@@ -221,6 +221,47 @@ def _normalise_nominal(raw):
         "",
         s,
     ).strip(" ,")
+    # Strip Numista value_text trailing decorations:
+    #   «(Dukaten)» — German translation hint of the same denomination
+    #   «(7)» — Numista category number
+    # Both appear in pairs or singly («2 Ducats (Dukaten) (7)»).
+    # Word-form parens are stripped ONLY when the word matches a known
+    # denomination-translation hint — that preserves legitimate variant
+    # markers like «(Firehvid)» / «(Tohvid)» which are period-attested
+    # sub-types, not translations.
+    _DENOMINATION_TRANSLATION_HINTS = {
+        # German-form translations of Danish denominations
+        "dukaten", "ducaten", "ducati", "ducates", "ducatos",
+        "mark", "marck", "marke", "marken",
+        "schillinge", "schillinger",
+        "pfennige", "pfennigen",
+        "groschen",
+        "krone", "kronen", "kroner",
+        "daler", "dalere", "dalern",
+        "speciedalere", "speciedalern",
+        "talern", "thaler", "thaler", "talers",
+        "rigsdalere", "rigsbankdalere",
+        "skilling", "skillinger",
+        "ören", "ören",
+        "öre", "ore",
+    }
+    while True:
+        m = re.search(
+            r"\s*\(([A-Za-zæøåüÆØÅÜ]+|\d+)\)\s*$",
+            s,
+        )
+        if not m:
+            break
+        token = m.group(1)
+        # Numeric category — strip unconditionally
+        if token.isdigit():
+            s = s[:m.start()].rstrip()
+            continue
+        # Word — strip only if it's a known translation hint
+        if token.lower() in _DENOMINATION_TRANSLATION_HINTS:
+            s = s[:m.start()].rstrip()
+            continue
+        break  # leave non-hint paren in place (variant marker)
     # Collapse extra whitespace before comma: «X , Y» → «X, Y»
     s = re.sub(r"\s+,", ",", s)
     # Collapse multiple spaces (e.g. «X,  Y» → «X, Y»)
@@ -430,7 +471,12 @@ _NOMINAL_MINT_TRAILING_RE = re.compile(
     re.IGNORECASE,
 )
 _NOMINAL_MINT_LEADING_RE = re.compile(
-    r"^(" + _NOMINAL_MINT_PATTERN + r")\s*,\s*",
+    # Leading mint, optionally a slash-compound «Hamar/Oslo».
+    # Inner mint pattern wrapped in (?:...) — the OUTER capture group
+    # spans the full compound («Hamar/Oslo» or just «Hamar»).
+    r"^((?:" + _NOMINAL_MINT_PATTERN + r")"
+    r"(?:\s*/\s*(?:" + _NOMINAL_MINT_PATTERN + r"))?)"
+    r"\s*,\s*",
     re.IGNORECASE,
 )
 _NOMINAL_SHAPE_RE = re.compile(

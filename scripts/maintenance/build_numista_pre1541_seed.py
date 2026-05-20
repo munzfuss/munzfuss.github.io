@@ -159,6 +159,11 @@ def build_entry(data: dict) -> dict | None:
         "diameter_mm": data.get("diameter_mm"),
         "issuing_entity": detect_issuing_entity(data),
         "verified": False,
+        # `metal_verified` true when Numista's composition_text actually
+        # named a metal — Numista publishes composition explicitly on
+        # every coin page; absence of `composition.metal` means the
+        # builder fell through to denomination-based inference.
+        "metal_verified": bool(composition.get("metal")),
         "fineness_verified": fineness is not None,
         "weight_rough_verified": data.get("weight_g") is not None,
         "diameter_mm_verified": data.get("diameter_mm") is not None,
