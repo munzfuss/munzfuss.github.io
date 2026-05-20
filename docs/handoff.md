@@ -319,17 +319,31 @@ this list exists only to anchor «what's open» on a quick read.
 * **Main repo**: working tree clean. Recent commits on
   `feat/v2-pipeline` not pushed (user has not granted push
   permission this turn):
-  - `05b5b5e` data(v2): D39 first application — 535 N-cases bulk-promoted across 8 entities
-  - `a092e56` build(v2): D39 — bulk_promote `no_basic_peer_only` mode + writer-bug fix
-  - `6884789` data(v2): manually delete 3 stale _unclassified files
-  - `8bc0075` Revert "build+data(v2): orphan-output cleanup ..."
-  - `f1d530a` data+build: sweep «stope/stopa» non-word per CLAUDE.md §2a
-  - `503ba0a` todo: §BT — D38-style consistency cleanup for remaining 4 seed builders
-  - `b0e4d44` build+docs: _curation_holds dict-form carries «why» rationale
-  - `706e3c5` data(v2): rebuild NumisMaster seeds + regrouped V2 + absorb after D38
-  - `494b85b` build(v2): D38 — NumisMaster builder maps country to canonical V2 entity
-* **Submodule `scripts/cache/`**: clean, no pending submodule
-  commits.
+  - `917452c` audit(i18n): tighten R5 — flag only Mfuß-compound translations, not bare «стопа»
+  - `66a2adc` build: bump scripts/cache → galster JSON regenerations (parser refactor outputs)
+  - `5df8370` build: V2 default at /, V1 fallback under /v1/ (D44)
+  - `c020d11` build(v2): default bulk_promote_pending → no_basic_peer_only for steady-state
+  - `07b88cb` build(v2): expand Bruun year window to 1914 + schema cleanups
+* **Submodule `scripts/cache/`**: 7 commits ahead of `origin/main`
+  (parse(galster) regen + earlier parse(bruun) Galster/NMD/Schive/
+  Skjoldager ref patterns + parse(hede) multi-Hede header layout +
+  re-parse 87 hede files + extended marken_fin_udbragt_til). Push
+  needs `git -C scripts/cache push origin HEAD:main` once user
+  approves; superproject pointer already references the new head
+  (`3f566216`).
+
+## Recent changes — URL routing (2026-05-20)
+
+* **V2 → root default, V1 → /v1/ fallback** (`5df8370`, D44).
+  V2 pages now render at `site/<loc>/<lang>/index.html`; V1 pages
+  move to `site/v1/<loc>/<lang>/index.html`. Two landings:
+  `site/<lang>/index.html` lists V2 locations (default),
+  `site/v1/<lang>/index.html` lists V1. Root `index.html` redirects
+  to default; `/v1/index.html` redirects to V1 fallback. Both
+  subtrees emitted on every build; `--v1-only` / `--v2-only` flags
+  preserved.
+* **V2 invariants audit clean** post-routing (I1-I6 all pass:
+  3475 final coins, 3097 unified, 4560 seed, 22 entity tags).
 
 ## Helper queries (audit reproducibility)
 
