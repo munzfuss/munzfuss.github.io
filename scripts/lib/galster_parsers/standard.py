@@ -162,10 +162,37 @@ def _parse_mint_line(text: str) -> str | None:
     return None
 
 
+_CATALOGUE_KEYWORDS = (
+    "Galster", "Schou", "Sieg", "Hede", "Sømod", "Schive", "Lange",
+    "Friedberg", "Fr.", "Fr",
+    "Jensen/Skjoldager", "Jensen Skjoldager", "Jensen og Skjoldager",
+    "Delzanno", "Lott", "MB", "NMD", "MNI", "Aagaard",
+)
+_CATALOGUE_KEYWORD_RE = re.compile(
+    r"\b(" + "|".join(re.escape(k) for k in _CATALOGUE_KEYWORDS) + r")\b",
+    re.IGNORECASE,
+)
+# Danish connector words that bleed into the catalogue-ref value when
+# the source uses «hhv.» / «henholdsvis» (= «respectively»). The actual
+# value follows AFTER the connector. Strip from the captured value
+# prefix.
+_CATALOGUE_CONNECTOR_RE = re.compile(
+    r"^\s*(?:hhv\.?|henholdsvis|resp\.?)\s+",
+    re.IGNORECASE,
+)
+
+
 def _parse_description_and_refs(text: str) -> tuple[str | None, dict]:
     """Description block carries «Forside: ... bagside: ... (Galster N, Schou M, ...)».
 
     Returns (description_text, catalog_refs_dict).
+
+    Multi-ref parsing strategy: locate each catalogue keyword in the
+    paren content and capture everything between this keyword and the
+    NEXT keyword (or end of paren). This preserves comma-separated
+    sub-values within one catalogue ref (e.g. «Schive XVI.2-7,11-13»
+    stays whole) AND strips Danish connectors like «hhv.» («Schou
+    hhv. 12-15, 1, 1, 4 og 27-29» → schou = «12-15, 1, 1, 4 og 27-29»).
     """
     refs: dict = {}
     desc = None
@@ -173,21 +200,31 @@ def _parse_description_and_refs(text: str) -> tuple[str | None, dict]:
     if m:
         desc = m.group(1).strip()
         for pm in re.finditer(r"\(([^)]+)\)", desc):
-            for chunk in re.split(r",\s*", pm.group(1)):
-                chunk = chunk.strip()
-                rm = re.match(
-                    r"(Galster|Schou|Sieg|Hede|Sømod|Schive|Lange|Friedberg|Fr\.|Fr|"
-                    r"Jensen[/ ]?Skjoldager|Delzanno|Lott|MB|NMD|MNI|Aagaard)\s*([0-9IVXLA-Z./\-]+)",
-                    chunk,
-                    re.IGNORECASE,
+            content = pm.group(1)
+            keyword_matches = list(_CATALOGUE_KEYWORD_RE.finditer(content))
+            for i, km in enumerate(keyword_matches):
+                kw_start = km.start()
+                value_start = km.end()
+                # Value runs until the next keyword or end of paren content
+                value_end = (
+                    keyword_matches[i + 1].start()
+                    if i + 1 < len(keyword_matches)
+                    else len(content)
                 )
-                if rm:
-                    key = rm.group(1).lower().replace("/", "_").replace(" ", "_").replace(".", "")
-                    if key == "fr":
-                        key = "friedberg"
-                    if key.startswith("jensen"):
-                        key = "jensen_skjoldager"
-                    refs[key] = rm.group(2).strip()
+                value_raw = content[value_start:value_end]
+                # Strip Danish connector prefix («hhv. » etc.) and
+                # trailing commas / whitespace
+                value_clean = _CATALOGUE_CONNECTOR_RE.sub("", value_raw).strip(" ,;.")
+                if not value_clean:
+                    continue
+                # Normalise keyword → ref-field name
+                kw = km.group(1).lower()
+                kw_clean = kw.replace("/", "_").replace(" ", "_").replace(".", "")
+                if kw_clean == "fr":
+                    kw_clean = "friedberg"
+                elif kw_clean.startswith("jensen"):
+                    kw_clean = "jensen_skjoldager"
+                refs[kw_clean] = value_clean
     return desc, refs
 
 

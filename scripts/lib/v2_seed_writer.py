@@ -519,6 +519,47 @@ def _extract_mint_from_nominal(nominal, source_mint
         if m_lead:
             extracted_mint = m_lead.group(1)
             s = _NOMINAL_MINT_LEADING_RE.sub("", s).strip()
+    # Denomination-keyword detection (complex-mint fallback). When the
+    # string has a comma AND the post-comma part starts with a known
+    # denomination noun (or fraction + denomination noun), treat the
+    # pre-comma part as the mint (even when it's a complex narrative
+    # like «Hamar (Norge) eller København»), and the post-comma part
+    # as the denomination. Catches forms that the standard trailing
+    # and leading patterns miss because the mint is multi-word or
+    # contains parens.
+    if not extracted_mint and "," in s:
+        # Build a regex that matches «<count>?<bare-noun>» as the post-
+        # comma denomination head. Use the bare-noun set for the
+        # word match.
+        denom_pattern = "|".join(
+            re.escape(d) for d in _BARE_DENOMINATION_NOUNS
+        )
+        # Find the LAST comma whose right-hand side starts with a
+        # known denomination keyword. Iterate right-to-left so the
+        # mint takes everything BEFORE the last comma that
+        # introduces a denomination.
+        commas = [i for i, ch in enumerate(s) if ch == ","]
+        for idx in reversed(commas):
+            left, right = s[:idx].strip(), s[idx + 1:].strip()
+            # Strip trailing «(?)» / «(klipping)» from the
+            # denomination candidate so the head-word check sees
+            # the denomination noun unencumbered.
+            right_head = re.sub(
+                r"\s*\([^)]*\)\s*$", "", right
+            ).strip()
+            # Allow optional leading count or fraction
+            denom_match = re.match(
+                r"^(?:\d+(?:[/¼½¾⅓⅔⅛]\d*)?\s+)?"
+                r"(?P<noun>(?:" + denom_pattern + r"))"
+                r"(?:\([^)]+\))?\s*$",
+                right_head,
+                flags=re.IGNORECASE,
+            )
+            if denom_match and left:
+                extracted_mint = left
+                s = right  # keep the (?) / (klipping) on the
+                            # denomination for later stripping passes
+                break
     # Narrative mint-statement fragments stripped first («; prægested
     # ukendt» = «; mint unknown» — curator's provenance note, not
     # part of denomination)
