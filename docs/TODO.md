@@ -132,7 +132,7 @@ Primary-source captures: `docs/research/sources/wilcke_1950_christian_iii_moentr
 **Scope.** Four operational sub-tasks (from the §BC closure note, now promoted under §BF):
 
 1. **Define new Müntzfuß `christian_iii_dalerfod`** in `data/shared/fuesse.yml`. Canonical metric: mf 8.827, 26.494 g fein per Daler, fineness 0.906 (14½ Lod), sourced to Wilcke 1950 + Rigsarkivet T.K. nr. 160 + Paus 1752. Per §BD this should probably be the Danish-form name from the start (`dalerfod` not `christian_iii_thaler_fuss`).
-2. **Add `fuss_periods.christian_iii_dalerfod`** block to `data/locations/denmark.yml` with phases:
+2. **Add `fuss_periods.christian_iii_dalerfod`** block to `data/v2/locations/denmark.yml` with phases (V2-only — V1 frozen at `/v1/` since 2026-05-18 flip):
    - **A1 (1541–1543)** — København baseline, mf 8.827 unchanged.
    - **A2 (1544–1555)** — København debased per the 27 September 1544 supplement (mf 9.481 per dossier §4.5).
    - **A3 / A4 (1547+)** — Flensborg dual-zone (see decision below).
@@ -624,12 +624,13 @@ Estimated total remaining harvest: **~250-400 TIDs** across **6-10 batches**.
 
 1. `data/shared/fuesse.yml` entry with: `id`, `name`, optional `historical_name`, `metal`, `grid_unit_g` + `grid_stops` (anchor formula), `fineness_standard`, `fineness_display`, `grundwerte` block (rows for fractions per CLAUDE.md §2 period orthography), `fractions: {N: {soll_rau_g, soll_fein_g}}`, `events` block (`first_adoption.anywhere`, `first_mint.anywhere`, `std_end.anywhere`, plus `anywhere_label: {de, en, uk}`), `description` prose in DE/EN/UK with period orthography per §2. Every metric carries a verbatim source comment (e.g. `# Wilcke 1950 Kap. 7-4 p. 184`).
 2. Phase block in `data/v2/locations/denmark.yml` under `fuss_periods.<fuss_id>` with `year_from` / `year_to` per phase + soll values + mint(s) attested + brief description.
-3. **Same** in `data/locations/denmark.yml` (V1 fallback page — V1 stays live until V2 promotion fully validated per `docs/V2_PIPELINE.md` §3.8).
-4. Added to `fuss_order` list on BOTH V1 + V2 `denmark.yml`.
-5. Added to `data/shared/german_fuesse.yml` (landing-page Müntzfüße overview).
-6. At least ONE bibliography reference in `data/locations/denmark-references.yml` with verbatim quote ≤25 words + page hint per CLAUDE.md §5a.
-7. `python scripts/build.py --validate-only` clean; the Fuß card renders on the Denmark page with structural row OK (empty coin tables acceptable initially).
-8. **`scripts/maintenance/auto_classify_seed_unsorted.py`** extended with a rule targeting the new Fuß — typically either an era-anchor (year+denomination → Fuß, like the new kronefod rule landed 2026-05-20) or a fineness/weight-Δ math arm. **Without this step the new Fuß is unreachable from seed.**
+3. Added to `fuss_order` list in `data/v2/locations/denmark.yml`.
+4. Added to `data/shared/german_fuesse.yml` (landing-page Müntzfüße overview).
+5. At least ONE bibliography reference in `data/locations/denmark-references.yml` with verbatim quote ≤25 words + page hint per CLAUDE.md §5a.
+6. `python scripts/build.py --validate-only` clean; the Fuß card renders on the Denmark page (V2, default site root) with structural row OK (empty coin tables acceptable initially).
+7. **`scripts/maintenance/auto_classify_seed_unsorted.py`** extended with a rule targeting the new Fuß — typically either an era-anchor (year+denomination → Fuß, like the new kronefod rule landed 2026-05-20) or a fineness/weight-Δ math arm. **Without this step the new Fuß is unreachable from seed.**
+
+**V1 NOT touched.** Per the 2026-05-18 V2 promotion (`5df8370 build: V2 default at /, V1 fallback under /v1/`), V1 yamls (`data/locations/<loc>.yml`) are frozen at their post-flip state. New Müntzfüße land V2-only; the V1 page renders its pre-flip Fuß repertoire indefinitely until V1 is retired.
 
 **Sequencing — independent landings, lowest research-debt first:**
 
@@ -650,10 +651,10 @@ Estimated total remaining harvest: **~250-400 TIDs** across **6-10 batches**.
 - **§BB** Fuß description framing rule — applies to ALL new `description` prose (historical framing only, no parameter bleed)
 - **§AU** Frederik II seed promotion — depends on §AV + §AW landings
 - **§AZ** Galster + Jensen-Skjoldager paper-source import — independent track that PROVIDES coins for the new Fuß slots once they exist (especially `sovereign_fod` + `rhinsk_gylden_fod`)
-- **`docs/V2_PIPELINE.md`** — entity-keyed pipeline; new Fuß definitions live in V1 + V2 in parallel until V2-only flip
+- **`docs/V2_PIPELINE.md`** — entity-keyed pipeline; V1 retired to `/v1/` archive 2026-05-18, all new Fuß work is V2-only
 - **`scripts/maintenance/auto_classify_seed_unsorted.py`** — every new Fuß must be coupled with a classifier rule extension
 
-**Definition of done.** All 6-8 missing Müntzfüße defined in fuesse.yml + visible on Denmark page (V2 + V1) with structural rows (empty coin tables OK initially), classifier extended to target each new Fuß (era-anchor or delta-math), at least 6-10 new bibliography refs added across the new Fuß definitions. Coin promotion into each Fuß is a separate downstream task — typically tracked under the per-Fuß sub-TODO (§BF for 1541-1571 silver, sibling per-Fuß TODOs to be opened as each Fuß lands).
+**Definition of done.** All 6-8 missing Müntzfüße defined in fuesse.yml + visible on the Denmark V2 page (default site root) with structural rows (empty coin tables OK initially), classifier extended to target each new Fuß (era-anchor or delta-math), at least 6-10 new bibliography refs added across the new Fuß definitions. Coin promotion into each Fuß is a separate downstream task — typically tracked under the per-Fuß sub-TODO (§BF for 1541-1571 silver, sibling per-Fuß TODOs to be opened as each Fuß lands).
 
 ---
 ## High priority
