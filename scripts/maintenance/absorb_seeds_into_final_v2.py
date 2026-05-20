@@ -44,6 +44,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from collections import Counter, defaultdict
 from datetime import date
@@ -466,12 +467,28 @@ def process_entity(entity_id: str) -> dict:
             # Foundation-immutable per DF1 normally — but a placeholder
             # is by definition unset; replacing it isn't a curator
             # override, it's a gap-fill.
+            # Same rule extended: foundation nominal with the
+            # «X og Y» Danish-conjunction pattern is an obsolete
+            # multi-coin merged form from before the Hede multi-Hede
+            # parser fix. The unified entry now publishes the clean
+            # single-coin nominal — adopt it. Concrete case:
+            # `unified-dk-hede-nf3h39` foundation had «1 Og 2
+            # Speciedaler» (merged Hede 39 + Hede 40); fresh Hede
+            # parser splits into `nf3h39` (1 Speciedaler) +
+            # `nf3h40` (2 Speciedaler) — foundation adopts the
+            # clean Hede 39's «1 Speciedaler».
             fid = fe.get("id")
-            if (raw_nom in ("(?)", "", None)
+            needs_adoption = False
+            if raw_nom in ("(?)", "", None):
+                needs_adoption = True
+            elif isinstance(raw_nom, str) and re.search(
+                    r"\b[Oo]g\b", raw_nom):
+                needs_adoption = True
+            if (needs_adoption
                     and fid and fid in unified_by_id):
                 ue = unified_by_id[fid]
                 ue_nom = ue.get("nominal")
-                if ue_nom and ue_nom not in ("(?)", ""):
+                if ue_nom and ue_nom not in ("(?)", "") and ue_nom != raw_nom:
                     fe["nominal"] = ue_nom
                     raw_nom = ue_nom
             # Mint-from-nominal extraction first (so the string-level
