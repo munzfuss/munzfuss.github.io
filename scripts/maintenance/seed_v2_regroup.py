@@ -1,6 +1,27 @@
 #!/usr/bin/env python3
 """V2 Phase 3 — regroup V1 location-keyed seed yamls into V2 entity-keyed seed yamls.
 
+⚠ RETIRED as of 2026-05-20 — every V1 builder is now V2-native and
+writes `data/v2/seed/<source>/<entity>.yml` directly via the shared
+`lib.v2_seed_writer.write_v2_seed` helper. This script is no longer
+part of the canonical pipeline; kept on disk for one-shot use if a
+V1 seed yaml ever needs re-translation against the current entity
+classifier (e.g. cross-checking a frozen V1 anchor). To regenerate
+V2 seeds, run the source builders directly:
+
+    scripts/maintenance/build_hede_denmark_seed.py
+    scripts/maintenance/build_bruun_denmark_seed.py
+    scripts/maintenance/build_numismaster_seed.py
+    scripts/maintenance/build_numismaster_pre1541_seed.py
+    scripts/maintenance/build_numista_pre1541_seed.py
+    scripts/maintenance/build_galster_denmark_seed.py
+    scripts/maintenance/build_ucoin_seed.py
+
+The legacy V1 seed yamls at `data/seed/<source>/<location>.yml` are
+FROZEN per CLAUDE.md «V1 is the verification anchor» — they are not
+rewritten by the V2-native builders.
+
+
 Pragmatic shortcut over the V2_PIPELINE.md §6 plan's «add `--v2` flag to
 every builder» recipe: V1 seed yamls are already the «classified
 intermediate» distilled from raw parsed caches. Rather than duplicating
