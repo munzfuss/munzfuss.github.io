@@ -116,7 +116,25 @@ The summary is per-tier — a Highest-tier summary stays under
 > to use this file»). Demote to High once the blocker semantic is no
 > longer warranted.
 
-### BF. 🟢 Denmark 1514-1566 gap — Müntzfüße + coin promotion for the new lower-bound window  *(opened 2026-05-15, rescoped 2026-05-16 per §BI)* *(est: large)* *(type: research-applied + data)*
+### BF. ✅ Denmark 1514-1566 gap — Müntzfüße + coin promotion for the new lower-bound window  *(opened 2026-05-15, rescoped 2026-05-16 per §BI, **closed 2026-05-21**)* *(est: large)* *(type: research-applied + data)*
+
+**Closed 2026-05-21** via commits `0102073` (Fuß defs in fuesse.yml) + `9343cd6` (V2 denmark fuss_periods + 6 c3h promotions + 4 refs). User verdict 2026-05-21: (a) separate Flensborg Fuß + Danish `_fod` naming.
+
+**Definition of done — met:**
+- ✅ `christian_iii_dalerfod` + `christian_iii_flensborg_fod` defined in `data/shared/fuesse.yml` with full metric blocks (grundwerte, fractions, events), DE/EN/UK descriptions, sourced metrics (Wilcke 1950 / Paus 1752 / Rigsarkivet T.K. nr. 160 / Galster 1965).
+- ✅ V2 `data/v2/locations/denmark.yml`: fuss_order updated (both new Fußen prepended chronologically), timeline.bars added for both, fuss_periods entries with full pdate_label / hintergrund / closing for both.
+- ✅ 6 c3h Kopenhagen seed coins promoted in `data/v2/final/danish_realm.yml`: Phase A1 Kurant (c3h3 Mark, c3h4 8 Sk, c3h5 4 Sk); Phase A1 Scheide (c3h6a 1 Sk 1542, c3h7 Hvid); Phase A2 Scheide (c3h8 Penning 1546).
+- ✅ 4 new bibliography refs (ref29 Wilcke 1950, ref30 Paus 1752, ref31 Rigsarkivet T.K. nr. 160, ref32 Galster 1965) with verbatim quotes + page hints per §5a.
+
+**Remaining work — sibling tasks, NOT blocking §BF closure:**
+- **Flensborg c3h21/c3h22 specimen promotion** — Lybsk Sølvgylden + Søsling lybsk specimens not yet in our cache; pending §AZ Galster + Jensen-Skjoldager paper-source import. The `christian_iii_flensborg_fod` Fuß card renders structurally with the metric block but the coin table stays empty until those specimens arrive.
+- **c3h1 + c3h2** (1557 Ungersk Gylden gold .986) — these are POST-1559 gold issues, belong under `reichsdukatenfuss`, not the Christian-III silver track. Separate placement task.
+- **Pre-1541 sub-window** (Christian II 1513-1523 + Frederik I 1523-1533) — depends on §AZ Galster + Jensen-Skjoldager catalog import. §BF was scoped to 1541-1566 Christian III; pre-1541 stays its own §AZ-blocked workstream.
+- **Classifier rule extension** for `christian_iii_dalerfod` era-anchor (year+denomination → Fuß) — deferred to when c3h21/22 land; current 6 coins manually promoted, future imports will need rule-based classification.
+
+**Original §BF planning text below preserved for reference:**
+
+
 
 **Surfaced.** User direction 2026-05-15 with explicit «найвищий» marker. The dual-anchor scope decision (§BC closed 2026-05-15) initially extended the Denmark page's lower bound from 1559 to 1541; §BI (2026-05-16) re-anchored further back to **1514** (Christian II Lovkompleks per Wilcke 1950 p. 183-186 verbatim). The seed builder's `--year-from` default is now 1514 and ~26 c3h Hede entries (Christian III + early Frederik II) sit in `data/seed/hede/denmark.yml` — but none of them are placed yet. The page renders the new (1514–1914) range in its header/timeline, but the 1514-1566 phase block of the Denmark page is structurally **empty of curated Müntzfüße + coins**. Closing this gap is the Highest-priority blocker for the Denmark-track research front.
 
