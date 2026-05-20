@@ -1327,7 +1327,8 @@ def _source_label_from_id(coin_id: str | None) -> str:
     return coin_id.split("-")[1] if "-" in coin_id else "?"
 
 
-def _collect_sources(members: list[dict]) -> list[dict]:
+def _collect_sources(members: list[dict],
+                       skip_first_list: bool = False) -> list[dict]:
     """Union members' source lists with smart de-duplication.
 
     Two regimes by URL shape:
@@ -1345,6 +1346,14 @@ def _collect_sources(members: list[dict]) -> list[dict]:
       collides. Covers Bruun PDFs (Stack's Bowers catalogues — one
       PDF, hundreds of lots), institutional library PDFs.
 
+    `skip_first_list`: when True, the FIRST member's sources list is
+    ignored. Used by absorb when the first member is the foundation
+    (final entry) and its sources list is absorb-cached output from a
+    prior run — may contain phantom citations from composed_of sources
+    that have since been split off (e.g. Galster c3g-103 ref left in
+    Numista 474583's sources after the Galster ruler-scope split). Re-
+    derive from composed_of unified members only.
+
     Triggers for the «single-page» regime: known host substrings.
     Anything else falls through to the strict (url, ref, type) key.
     """
@@ -1357,7 +1366,9 @@ def _collect_sources(members: list[dict]) -> list[dict]:
     )
     seen_keys: set[tuple] = set()
     out: list[dict] = []
-    for m in members:
+    for idx, m in enumerate(members):
+        if idx == 0 and skip_first_list:
+            continue
         for s in m.get("sources") or []:
             if not isinstance(s, dict):
                 continue

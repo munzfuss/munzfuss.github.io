@@ -307,7 +307,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                 out["catalog"][k] = filtered
 
     # Sources union
-    sources = _collect_sources(members)
+    sources = _collect_sources(members, skip_first_list=True)
     if sources:
         out["sources"] = sources
 
