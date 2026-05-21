@@ -224,7 +224,7 @@ Apply the read like so:
 
 - **`next_numista_batch_label` / `next_ucoin_batch_label`** — use these verbatim as the new batch's `<letter>` / `<N>`. If you mint your own label (e.g. label already used in a concurrent session), record the alias in the new run's anomaly list.
 - **`priority_override`** — if non-null, **honour it FIRST** for that source. E.g. `{source: "numista", bucket: "NO p4", reason: "user-requested closure push"}` → ignore §2.2's priority table and harvest from NO p4 this run.
-- **`deferred_ids`** — retry these BEFORE picking fresh entries from the priority bucket. They represent NIDs/TIDs the previous run couldn't fetch (Cloudflare blocked, canonical-tid mismatch, etc.) and explicitly punted to «next hour». Drop a deferred ID from the list once it lands cleanly OR after 3 consecutive failed retries (then move it to `dead_404_observed_recently` for manual review).
+- **`deferred_ids`** — retry these BEFORE picking fresh entries from the priority bucket. They represent NIDs/TIDs the previous run couldn't fetch (transient Cloudflare blocked, canonical-tid mismatch, etc.) and explicitly punted to «next hour». Drop a deferred ID from the list once it lands cleanly. If it fails again in this run, log it via §2.4 / §4.4 to `_failed_open_ids.json` for user review (NEVER mark as «deleted» — the upstream state is opaque to the routine).
 - **`audit_files_known_state`** — read this BEFORE running §7.5 defensive sampling. If the audit notes say «denmark/p4 OOS-reclassified 2026-05-21», you don't need to re-verify; the upstream fix has landed.
 - **`routine_doc_pending_updates`** — informational only; the routine itself does not edit `docs/HARVEST_ROUTINE.md` (that requires user review). If the list contains items, surface them in the end-of-run report so the user sees them.
 
@@ -261,7 +261,7 @@ new_run = {
         'nids_saved': NIDS_THIS_RUN,
         'saved_count': len(NIDS_THIS_RUN),
         'deferred': NUMISTA_DEFERRED_THIS_RUN,
-        'dead_404': NUMISTA_404_THIS_RUN,
+        'failed_open': NUMISTA_FAILED_OPEN_THIS_RUN,  # list of {id, reason, url_tried, ts}
     },
     'ucoin_batch': {
         'label': UCOIN_BATCH_LABEL,
@@ -269,7 +269,7 @@ new_run = {
         'tids_saved': TIDS_THIS_RUN,
         'saved_count': len(TIDS_THIS_RUN),
         'deferred': UCOIN_DEFERRED_THIS_RUN,
-        'dead_404': UCOIN_404_THIS_RUN,
+        'failed_open': UCOIN_FAILED_OPEN_THIS_RUN,    # list of {id, reason, url_tried, ts}
     },
     'anomalies': ANOMALIES_THIS_RUN,  # list of {type, detail, action_taken, follow_up}
     'notes': '<short freeform — closure note, defensive-sample positives, etc.>',
@@ -300,7 +300,7 @@ Use these stable strings so the next run can grep / match without prose parsing:
 | `chrome_mcp_unavailable` | `list_connected_browsers` returned empty mid-run |
 | `pre_commit_hook_failure` | `.githooks/pre-commit` failed validate/audit on unrelated files |
 | `concurrent_session_conflict` | submodule needed rebase or main-repo had unrelated dirty edits |
-| `nid_or_tid_404_unexpected` | Source returned «Page Not Found» for an ID that was in the audit's gap list |
+| `url_open_failed` | Source returned 404 / persistent Cloudflare / canonical-id mismatch / redirect-to-landing / DOM-shape-unexpected for an ID that was in the audit's gap list. NEVER framed as «deleted» — upstream state opaque, user inspects manually via `_failed_open_ids.json` |
 | `priority_bucket_exhausted` | The current-priority bucket closed mid-run; routine moved to next priority |
 | `doc_update_pending` | Routine surfaced a non-blocking «next session please update doc X» note |
 
@@ -430,31 +430,78 @@ EOF
 sleep $((RANDOM % 30 + 31)) && echo "pacing done"
 ```
 
-### §2.4. Handle 404 / dead NIDs
+### §2.4. Handle URL-open failure (404 / persistent-block / canonical mismatch)
 
-If the page returns "Page Not Found" (Numista or ucoin):
-- Do NOT save the cache file.
-- Log to `scripts/cache/<source>/_deleted_ids.json` (append-only manifest, JSON array of integers).
-- Continue with the next NID/TID in the batch — do NOT halt.
-- Mention in commit message: «N#XXXXX returned 404 — likely merged or deleted upstream; logged to _deleted_ids.json».
+> **Never frame an unreachable ID as «deleted».** A 404 from Numista or ucoin may mean the entry was renamed, merged, moved behind auth, temporarily withdrawn for editing, or genuinely removed — **the routine cannot tell which**. The user needs to inspect each case manually. Do NOT remove the ID from the audit's `gap_nids` list; just record the failure and move on.
 
-```bash
-# Append to deleted manifest (creates if absent)
-.venv/bin/python -c "
+**On any of these conditions:**
+- HTTP page returns «Page Not Found» / 404 layout
+- Cloudflare challenge survives a 90 s wait + retry
+- `/tmp/save_ucoin.py` exits with code 2 (canonical-tid mismatch) twice in a row
+
+**Do all of:**
+
+1. **Do NOT save the cache file** (no `<id>.json` written).
+2. **Do NOT delete or modify the audit's `gap_nids` entry** — the ID stays a retry candidate.
+3. **Append a structured record** to `scripts/cache/<source>/_failed_open_ids.json`:
+
+   ```json
+   {
+     "id": 117344,
+     "ts": "2026-05-21T15:23:00Z",
+     "url_tried": "https://en.numista.com/117344",
+     "reason": "404_page_not_found",         // see vocabulary below
+     "batch_label": "T",                       // the run that hit it
+     "details": "<one-line context if any>"
+   }
+   ```
+
+   `reason` vocabulary (use these stable strings):
+
+   | `reason` | Trigger |
+   |---|---|
+   | `404_page_not_found` | HTTP/page-layout 404 (title «Page Not Found» / empty result block) |
+   | `cloudflare_persistent` | CF challenge survives 90 s wait + retry |
+   | `canonical_id_mismatch` | `save_ucoin.py` exit 2 on retry (URL redirected to different TID) |
+   | `redirect_to_landing` | Page renders the issuer-landing instead of the per-coin record |
+   | `dom_structure_unexpected` | Extractor JS returned `null` for all key fields (page changed shape?) |
+   | `other` | Anything else; populate `details` with a sentence |
+
+4. **Track in this run's handoff entry** — append the ID to `runs[].numista_batch.failed_open[]` (or `ucoin_batch.failed_open[]` accordingly).
+5. **Continue with the next NID/TID in the batch** — do NOT halt. The batch's saved-count for the day will be smaller; that's the honest record.
+6. **Surface in the end-of-run report (§8)** — the «Failed to open this run» section lists each failed ID + reason for user analysis.
+
+**Append snippet:**
+
+```python
+.venv/bin/python <<EOF
 import json, pathlib
-p = pathlib.Path('scripts/cache/numista/_deleted_ids.json')
+from datetime import datetime, timezone
+
+p = pathlib.Path('scripts/cache/numista/_failed_open_ids.json')
 arr = json.loads(p.read_text()) if p.exists() else []
-arr.append(NID)
-p.write_text(json.dumps(sorted(set(arr)), indent=2))
-"
+arr.append({
+    "id": NID,
+    "ts": datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+    "url_tried": URL,
+    "reason": REASON,                  # one of the vocabulary above
+    "batch_label": BATCH_LABEL,
+    "details": DETAILS_STRING_OR_EMPTY,
+})
+p.write_text(json.dumps(arr, indent=2, ensure_ascii=False) + '\n')
+EOF
 ```
 
-### §2.5. Handle Cloudflare challenge
+**Commit-message note (within the §3.1 commit body):**
+«N#XXXXX failed to open this run (reason: <reason>); logged to _failed_open_ids.json for user review. NID remains in audit gap_nids — retried next run unless reclassified.»
 
-If the page returns Cloudflare interstitial («Just a moment…», «Checking your browser», DOM has `<div class="cf-browser-verification">`):
-- Wait 90s (`sleep 90`).
+### §2.5. Handle Cloudflare challenge (transient, single-retry path)
+
+When the page returns a Cloudflare interstitial («Just a moment…», «Checking your browser», DOM has `<div class="cf-browser-verification">`):
+- Wait 90 s (`sleep 90`).
 - Reload the same URL.
-- If still blocked, log to `scripts/cache/numista/_rate_limit_events.json` and skip this NID for this run (try again next hour).
+- **If the retry succeeds** → continue normally (save cache, log nothing special).
+- **If the retry fails too** → apply §2.4 with `reason: cloudflare_persistent`. Also append to `scripts/cache/numista/_rate_limit_events.json` for cross-session pattern analysis. Skip this NID for this run.
 
 ---
 
@@ -713,9 +760,18 @@ EOF
 
 **D. Pace 31-60s** between fetches (same as Numista).
 
-### §4.4. canonical-tid mismatch handling
+### §4.4. URL-open failure handling (ucoin — same rule as §2.4)
 
-If `/tmp/save_ucoin.py` exits with code 2, the canonical_tid in the URL ≠ requested_tid. This means ucoin redirected (rate-limit defence often does that — sends to a "browse" landing page or a fallback). Wait 90s, reload the same slug URL, retry once. If it fails again, skip this TID for this run.
+The ucoin-specific failure modes are:
+- HTTP page returns «Page Not Found» (slug URL is invalid)
+- Cloudflare challenge survives 90 s wait + retry
+- `/tmp/save_ucoin.py` exits with code 2 — the canonical_tid in the URL ≠ requested_tid (ucoin redirected; rate-limit defence often does that)
+
+**Apply §2.4 exactly**, writing to `scripts/cache/ucoin/_failed_open_ids.json` (NOT the Numista file). Append a structured record with the same schema (id / ts / url_tried / reason / batch_label / details). The TID stays a retry candidate in the audit's `gap_tids` — never removed by this routine.
+
+Per-TID retry rule: for `canonical_id_mismatch`, wait 90 s and try ONCE; if the second attempt also returns exit-2, log `reason: canonical_id_mismatch` and continue. Do NOT loop indefinitely.
+
+Track in handoff `runs[].ucoin_batch.failed_open[]`; surface in §8 end-of-run report.
 
 ---
 
@@ -807,7 +863,7 @@ After both batches commit, output BOTH tables in the exact format below. This is
 
 The script accepts two integer-list inputs at the TOP — fill them with the exact NIDs / TIDs you just saved in this run's Numista batch + ucoin batch. The script then renders both tables with a **«Δ this run»** column that tallies how many of those just-added IDs landed in each period/bucket.
 
-If a batch was deferred (Cloudflare blocked, NID returned 404 and was logged to `_deleted_ids.json`), DO NOT include it in the list — only IDs whose `<id>.json` was actually written this run.
+If a batch was deferred (Cloudflare blocked, NID returned 404 and was logged to `_failed_open_ids.json` per §2.4 / §4.4), DO NOT include it in the list — only IDs whose `<id>.json` was actually written this run.
 
 ```bash
 .venv/bin/python <<'EOF'
@@ -997,9 +1053,20 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
    - ucoin Phase 1 — total cached, remaining (Δ this run: +X)
    - Grand cumulative cached (Δ this run: +X from Numista, +Y from ucoin = +Z total)
 
-5. **Push state** — exactly one sentence: «N commits ready locally — `git push` when ready (both repos).» Compute N via `git log --oneline origin/main..HEAD | wc -l` from main repo + same from submodule, sum.
+5. **Failed-to-open this run** — list IDs that the routine could NOT fetch (404 / persistent Cloudflare / canonical mismatch / DOM unexpected). Pulled from this run's `runs[-1].numista_batch.failed_open[]` + `runs[-1].ucoin_batch.failed_open[]` + `_failed_open_ids.json` tail. **Omit the section entirely if both lists are empty** (the typical clean run).
+   Shape per entry: `N#<id> — <reason> — <one-line context>`. Example:
+   > ### ⚠ Failed to open this run (4)
+   > - **Numista**:
+   >   - N#117344 — `404_page_not_found` — Erik of Pommern Skærv per audit, but bare URL returns "Page Not Found". May be moved / renamed; needs manual check.
+   >   - N#475742 — `redirect_to_landing` — URL bounced to /coins page instead of /475742 per-coin record.
+   > - **ucoin**:
+   >   - TID 94158 — `canonical_id_mismatch` — slug URL resolved to TID 94159 after redirect (twice in a row).
 
-6. **Recommended next batches** — top 3 priorities for the NEXT hourly run.
+   Tells the user exactly which IDs to inspect manually. The IDs **remain in audit gap_nids/gap_tids** — they're retry candidates next hour. Routine does NOT mark them «dead».
+
+6. **Push state** — exactly one sentence: «N commits ready locally — `git push` when ready (both repos).» Compute N via `git log --oneline origin/main..HEAD | wc -l` from main repo + same from submodule, sum.
+
+7. **Recommended next batches** — top 3 priorities for the NEXT hourly run.
 
 ### §6.3. Status emoji legend (use consistently)
 
@@ -1013,7 +1080,7 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
 ### §6.4. Delta semantics — what counts
 
 - A TID/NID counts toward the delta only if its `<id>.json` was **written to disk this run** (save script exit 0).
-- 404 cases logged to `_deleted_ids.json` are NOT included (no file written; per §2.4 / §4.4).
+- IDs logged to `_failed_open_ids.json` are NOT included in delta (no file written; per §2.4 / §4.4). They surface in the §6.2 «Failed to open this run» section instead — visibility for the user without inflating progress numbers.
 - Canonical-tid mismatch (save_ucoin exit 2) is NOT included.
 - Cloudflare deferrals — IDs that you decided to retry next hour — are NOT included.
 - Re-saves of an already-cached file (idempotent rewrite with same content) ARE counted as 0 delta for that period — the file already existed, the run didn't add new scope.
@@ -1113,6 +1180,18 @@ Final response to the user follows this exact structure. The Δ-columns in both 
 - **ucoin Phase 1**: <cached>/<total>, **<remaining> left** (Δ this run: +<n3>)
 - **Grand total**: <numista_cumulative + ucoin_cumulative> cached cumulatively (Δ this run: **+<n1+n2>** Numista, **+<n3>** ucoin = **+<total>** entries)
 
+<!-- §6.2 item 5 — Failed to open this run. Include ONLY when at least one failed_open[] is non-empty: -->
+### ⚠ Failed to open this run (<K>)
+
+- **Numista**:
+  - N#<id> — `<reason>` — <one-line context>
+  - …
+- **ucoin**:
+  - TID <id> — `<reason>` — <one-line context>
+  - …
+
+IDs remain in audit `gap_nids`/`gap_tids` — retried next run. Manual review: open each URL in browser to determine whether the entry is renamed / moved / withdrawn / genuinely removed. If verified OOS or merged, reclassify the ID in the audit JSON via the same pattern as the DK p4 / NO p2 cleanups (`oos_excluded_nids` slot with audit-trail reason).
+
 ### Push state
 
 **<N> commits ready locally** — `git push` when ready (both repos: `cd scripts/cache && git push && cd /Users/serg/projects/muentzfuesse && git push`).
@@ -1156,8 +1235,8 @@ The routine STOPS HARD (returns failure, do not commit) under:
 | `scripts/cache/numista/_BO6_gaps_manifest_2026-05-19.json` | SH-cluster per-issuer gap lists | RO |
 | `scripts/cache/ucoin/<TID>.json` | Per-TID harvested data | RW (this routine appends) |
 | `scripts/cache/numista/<NID>.json` | Per-NID harvested data | RW |
-| `scripts/cache/ucoin/_deleted_ids.json` | Append-only list of 404 TIDs | RW |
-| `scripts/cache/numista/_deleted_ids.json` | Append-only list of 404 NIDs | RW |
+| `scripts/cache/ucoin/_failed_open_ids.json` | Append-only structured log of URL-open failures (404 / Cloudflare-persistent / canonical-mismatch / redirect-to-landing / DOM-unexpected). Each entry: `{id, ts, url_tried, reason, batch_label, details}`. NOT framed as «deleted» — upstream state opaque; surfaces in §8 report for manual user review. IDs stay in audit `gap_tids` as retry candidates. | RW (append-only) |
+| `scripts/cache/numista/_failed_open_ids.json` | Same shape for Numista NIDs. | RW (append-only) |
 | `scripts/cache/ucoin/_p<NNNN>_listing.json` | Optional: cached slug→TID map per period | RW (lazy) |
 | `scripts/cache/_harvest_handoff.json` | Between-runs state (next batch labels, deferred IDs, anomaly log, audit-known-state notes) — see §1.5 | **RW (mandatory, every run)** |
 | `docs/handoff.md` | Project-wide session-state pickup file | Read for context only; this routine does NOT update |
