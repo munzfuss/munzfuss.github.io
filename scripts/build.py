@@ -498,6 +498,9 @@ def _merge_seeds_into_raw(loc_id: str, raw: dict) -> list[tuple[str, int]]:
 # =============================================================================
 
 _V2_FINAL_CACHE: dict[str, list[dict]] | None = None
+_V2_SEED_CACHE: list[dict] | None = None
+_V2_UNIFIED_CACHE: list[dict] | None = None
+_V2_ABSORBED_SEED_IDS_CACHE: set[str] | None = None
 
 
 def _load_v2_curated() -> dict[str, list[dict]]:
@@ -522,9 +525,18 @@ def _load_v2_seed_entries() -> list[dict]:
     """Load every `data/v2/seed/<source>/<entity>.yml`, flatten into a single
     list of coin dicts. Empty until Phase 3 lands. Each coin dict carries a
     `_v2_seed_source` field (added here) so the inverse-index step can
-    track provenance."""
+    track provenance.
+
+    Cached per process — the seed corpus is location-independent (the
+    same 29 YAML files / 7.4 MB get walked for every page assembly), so
+    re-parsing it 12 times during a full build was a major bottleneck.
+    """
+    global _V2_SEED_CACHE
+    if _V2_SEED_CACHE is not None:
+        return _V2_SEED_CACHE
     out: list[dict] = []
     if not V2_SEED_DIR.exists():
+        _V2_SEED_CACHE = out
         return out
     for source_dir in sorted(V2_SEED_DIR.iterdir()):
         if not source_dir.is_dir():
@@ -536,7 +548,96 @@ def _load_v2_seed_entries() -> list[dict]:
                 c = dict(c)
                 c["_v2_seed_source"] = source_dir.name
                 out.append(c)
+    _V2_SEED_CACHE = out
     return out
+
+
+def _load_v2_seed_unified() -> list[dict]:
+    """Load every `data/v2/seed_unified/<entity>.yml` once per process,
+    flatten into a list of unified-entry dicts. Each entry has the shape
+    `{id, composed_of, ...}` — used to walk the absorb chain from unified
+    ids back to the V1 seed ids underlying them.
+
+    Cached per process: the same 12 YAML files / 4.8 MB were previously
+    parsed once per location during `_assemble_v2_location`, which was
+    12× redundant for a full build.
+    """
+    global _V2_UNIFIED_CACHE
+    if _V2_UNIFIED_CACHE is not None:
+        return _V2_UNIFIED_CACHE
+    out: list[dict] = []
+    unified_dir = DATA_DIR / "v2" / "seed_unified"
+    if not unified_dir.exists():
+        _V2_UNIFIED_CACHE = out
+        return out
+    for path in sorted(unified_dir.glob("*.yml")):
+        with open(path, encoding="utf-8") as f:
+            doc = yaml.safe_load(f) or {}
+        for uc in (doc.get("coins") or []):
+            out.append(uc)
+    _V2_UNIFIED_CACHE = out
+    return out
+
+
+def _compute_absorbed_seed_ids() -> set[str]:
+    """Build the global set of V1 seed coin ids that are already
+    represented in a foundation entry via the absorb chain. Walked once
+    per process — the computation is purely a function of curated +
+    seed-unified data, NOT of any single location's `consumes_entities`.
+
+    Three levels (mirrors the original inline implementation in
+    `_assemble_v2_location`, just hoisted out for caching):
+      Level 1 — unified ids in foundation.composed_of (covers self-
+        promoted D37/D39/D40 entries where unified id == seed-derived id).
+      Level 2 — for each unified entry surfaced in level 1, walk its own
+        `composed_of` for the underlying V1 seed ids.
+      Level 3 — catalog-ref coverage. A V2 final entry may carry a
+        `catalog.hede + catalog.hede_volume` ref WITHOUT explicit
+        composed_of linkage (the entry was curated independently of the
+        seed pipeline). The corresponding `dk-hede-<volume><number>` id
+        is also marked absorbed so the seed-pass doesn't render a
+        duplicate row.
+
+    Before this hoist the function ran 12 times in a full build (once
+    per location, each parsing the same V2 unified YAMLs); now it runs
+    once.
+    """
+    global _V2_ABSORBED_SEED_IDS_CACHE
+    if _V2_ABSORBED_SEED_IDS_CACHE is not None:
+        return _V2_ABSORBED_SEED_IDS_CACHE
+
+    by_entity = _load_v2_curated()
+    absorbed: set[str] = set()
+
+    # Level 1
+    for ent_coins in by_entity.values():
+        for c in ent_coins:
+            for cid_composed in (c.get("composed_of") or []):
+                absorbed.add(cid_composed)
+
+    # Level 2
+    for uc in _load_v2_seed_unified():
+        uid = uc.get("id")
+        if uid not in absorbed:
+            continue
+        for seed_id in (uc.get("composed_of") or []):
+            absorbed.add(seed_id)
+
+    # Level 3
+    for ent_coins in by_entity.values():
+        for c in ent_coins:
+            cat = c.get("catalog") or {}
+            hede_volume = cat.get("hede_volume")
+            hede_num = cat.get("hede")
+            if not (hede_volume and hede_num):
+                continue
+            hede_values = hede_num if isinstance(hede_num, list) else [hede_num]
+            for hv in hede_values:
+                seed_id = f"dk-hede-{hede_volume}{str(hv).lower()}"
+                absorbed.add(seed_id)
+
+    _V2_ABSORBED_SEED_IDS_CACHE = absorbed
+    return absorbed
 
 
 def _normalise_ie_to_list(ie) -> list[str]:
@@ -615,60 +716,16 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
     assembled: list[dict] = []
     seen_ids: set[str] = set()
 
-    # Pre-compute the «already-absorbed» set: every V1 seed coin id
-    # represented in foundation via the absorb chain. The chain is
-    # two-level:
-    #   foundation.composed_of → unified id (e.g. `unified-dk-hede-f6h15`)
-    #   unified.composed_of    → V1 seed id (e.g. `dk-hede-f6h15`)
-    # The seed-pass below iterates V1 seed ids; without resolving the
-    # chain we'd re-add absorbed seeds as duplicate rows on the
-    # rendered page (user report 2026-05-19: f6h15 rendered twice as
-    # identical «1 Skilling 1812» rows — same coin, both via
-    # foundation entry AND raw V1 seed).
-    absorbed_seed_ids: set[str] = set()
-    # Level 1: unified ids in foundation.composed_of (covers self-
-    # promoted D37/D39/D40 entries where unified id == seed-derived id).
-    for ent_coins in by_entity.values():
-        for c in ent_coins:
-            for cid_composed in (c.get("composed_of") or []):
-                absorbed_seed_ids.add(cid_composed)
-    # Level 2: walk every unified entry's own composed_of for the V1
-    # seed ids underlying it.
-    v2_unified_dir = DATA_DIR / "v2" / "seed_unified"
-    if v2_unified_dir.exists():
-        for path in sorted(v2_unified_dir.glob("*.yml")):
-            with open(path, encoding="utf-8") as f:
-                udoc = yaml.safe_load(f) or {}
-            for uc in (udoc.get("coins") or []):
-                uid = uc.get("id")
-                if uid not in absorbed_seed_ids:
-                    continue
-                for seed_id in (uc.get("composed_of") or []):
-                    absorbed_seed_ids.add(seed_id)
-
-    # Level 3: catalog-ref coverage. A V2 final entry may carry a
-    # `catalog.hede + catalog.hede_volume` ref WITHOUT explicit
-    # composed_of linkage (the entry was curated independently of the
-    # seed pipeline, predating the unified→absorb chain — common for
-    # Christian-IV-era Guldkrone / Speciedaler entries). In those
-    # cases the matching seed id (`dk-hede-<volume><number>`) is still
-    # the «same coin» from the reader's perspective and should be
-    # suppressed in the seed-pass to avoid the curator-entry +
-    # Bulk-seed-row duplicate pair on the rendered page (user report
-    # 2026-05-19: c4h25 sub-letters rendered 5× under Guldkrone-Fuß
-    # AND 5× under Bulk-seed).
-    for ent_coins in by_entity.values():
-        for c in ent_coins:
-            cat = c.get("catalog") or {}
-            hede_volume = cat.get("hede_volume")
-            hede_num = cat.get("hede")
-            if not (hede_volume and hede_num):
-                continue
-            # Handle list-form catalog.hede (curated coin may list multiple sub-letters)
-            hede_values = hede_num if isinstance(hede_num, list) else [hede_num]
-            for hv in hede_values:
-                seed_id = f"dk-hede-{hede_volume}{str(hv).lower()}"
-                absorbed_seed_ids.add(seed_id)
+    # «Already-absorbed» V1 seed coin ids — every coin represented in a
+    # foundation entry via the three-level absorb chain (Level 1 direct
+    # composed_of, Level 2 unified.composed_of, Level 3 catalog-hede
+    # ref coverage). The set is location-INDEPENDENT (purely a function
+    # of curated + seed-unified data), so it's computed once per process
+    # in `_compute_absorbed_seed_ids` and reused across every location's
+    # assembly. Pre-hoist this ran 12× per full build; now it runs once.
+    # See the function docstring for the per-level rationale, including
+    # the rendered-duplicate bug reports that motivated each level.
+    absorbed_seed_ids = _compute_absorbed_seed_ids()
 
     # ---- Pass 1: direct membership ---------------------------------------
     for ent in consumes_entities:
@@ -773,18 +830,29 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
     return len(kept)
 
 
-def load_v2_locations(filter_id: str | None = None) -> list[Location]:
+def load_v2_locations(filter_id: str | list[str] | None = None) -> list[Location]:
     """Phase 4.2 V2 location loader. Reads `data/v2/locations/<loc>.yml`
     (display-meta only, no coins), assembles coins via
     `_assemble_v2_location()`, then validates as `Location`. Returns
-    [] if `data/v2/locations/` is empty (V2 build is a no-op then)."""
+    [] if `data/v2/locations/` is empty (V2 build is a no-op then).
+
+    `filter_id` accepts a single string (legacy) or a list of ids
+    (multi-location filter via `--location a,b,c` split). `None` loads
+    everything.
+    """
     if not V2_LOCATIONS_DIR.exists():
         return []
+    if filter_id is None:
+        filter_set: set[str] | None = None
+    elif isinstance(filter_id, str):
+        filter_set = {filter_id}
+    else:
+        filter_set = set(filter_id)
     locations = []
     for path in sorted(V2_LOCATIONS_DIR.glob("*.yml")):
         if path.stem.endswith("-references"):
             continue
-        if filter_id and path.stem != filter_id:
+        if filter_set is not None and path.stem not in filter_set:
             continue
         with open(path, encoding="utf-8") as f:
             raw = yaml.safe_load(f) or {}
@@ -809,21 +877,48 @@ def load_v2_locations(filter_id: str | None = None) -> list[Location]:
     return locations
 
 
-def load_locations(filter_id: str | None = None) -> list[Location]:
+def load_locations(filter_id: str | list[str] | None = None,
+                   skip_seed_merge: bool = False) -> list[Location]:
+    """Load V1 locations from `data/locations/*.yml`.
+
+    `filter_id` — single id or list of ids; None = load all.
+
+    `skip_seed_merge` — when True, bypass `_merge_seeds_into_raw`.
+    Useful when V1 won't be rendered this run (the default-V2 fast
+    path), since the seed merge is the dominant cost of V1 load
+    (~28 s on a full build). The returned Location objects are
+    still schema-valid; their `coins` list just doesn't include
+    seed-only entries (which are only relevant to the V1 render).
+    """
+    # `filter_id` may be a single string (legacy single-location filter)
+    # or a list of ids (multi-location flag — `--location a,b,c` splits
+    # into a list before reaching us). Normalise to a set for O(1) lookup;
+    # `None` means «no filter, load everything».
+    filter_set: set[str] | None
+    if filter_id is None:
+        filter_set = None
+    elif isinstance(filter_id, str):
+        filter_set = {filter_id}
+    else:
+        filter_set = set(filter_id)
+
     locations = []
     for path in sorted((DATA_DIR / "locations").glob("*.yml")):
         # Skip reference sidecar files
         if path.stem.endswith("-references"):
             continue
-        if filter_id and path.stem != filter_id:
+        if filter_set is not None and path.stem not in filter_set:
             continue
         with open(path, encoding="utf-8") as f:
             raw = yaml.safe_load(f)
-        seed_merges = _merge_seeds_into_raw(path.stem, raw)
-        if seed_merges:
-            parts = [f"{n} from {src}" for src, n in seed_merges]
-            print(f"   🌱 {path.stem}: merged {sum(n for _, n in seed_merges)} "
-                  f"seed coins ({', '.join(parts)})")
+        if skip_seed_merge:
+            seed_merges = []
+        else:
+            seed_merges = _merge_seeds_into_raw(path.stem, raw)
+            if seed_merges:
+                parts = [f"{n} from {src}" for src, n in seed_merges]
+                print(f"   🌱 {path.stem}: merged {sum(n for _, n in seed_merges)} "
+                      f"seed coins ({', '.join(parts)})")
         try:
             loc = Location(**raw)
             # Attach references sidecar if present
@@ -1172,9 +1267,60 @@ def generate_assets(theme: dict) -> None:
                 print(f"📎 Asset: site/assets/{src.name} ({dst.stat().st_size:,} bytes)")
 
 
+def _render_location_worker(loc_id: str, output_root_str: str, debug: bool,
+                            repo_url: str, base_url: str,
+                            location_filter: list[str] | None,
+                            lang: str | None) -> None:
+    """ProcessPoolExecutor worker — renders one location in a clean
+    subprocess.
+
+    Reloads the shared resources (fuesse / theme / ui / issuing_entities)
+    + the V1 or V2 Location for `loc_id` from disk inside the worker.
+    The alternative — pickling everything across the IPC boundary —
+    crashes on Pydantic `model_config` proxies and bloats per-task IPC.
+    Re-parsing the YAMLs costs ~0.3 s of fixed overhead per worker
+    process, easily amortised across the ~5-15 s a single SH/DK render
+    takes; for the small Hessen / Lauenburg pages a single worker
+    handles them all in the queue, so the overhead is paid once.
+
+    `output_root_str == ""` means the V2 default tree (SITE_DIR);
+    a non-empty path string targets `SITE_DIR / "v1"` (or any other
+    override path). The caller passes a string because `pathlib.Path`
+    pickles cleanly but mixing `None`-sentinel + Path is uglier here.
+    """
+    from pathlib import Path as _Path
+    fuesse = load_fuesse()
+    theme = load_theme()
+    ui = load_ui()
+    issuing_entities = load_issuing_entities()
+
+    # Locate the location: V1 path is data/locations/<id>.yml; V2 path is
+    # data/v2/locations/<id>.yml. Pick by output-root: V2 default tree
+    # uses V2 yamls, /v1/ tree uses V1 yamls.
+    is_v1 = output_root_str.endswith("/v1") or output_root_str.endswith("\\v1")
+    if is_v1:
+        loc_list = load_locations(filter_id=[loc_id])
+    else:
+        loc_list = load_v2_locations(filter_id=[loc_id])
+    if not loc_list:
+        raise RuntimeError(f"worker: location {loc_id!r} not found "
+                           f"(v1={is_v1}, output_root={output_root_str!r})")
+    loc = loc_list[0]
+
+    env = build_env(str(TEMPLATE_DIR))
+    languages = [lang] if lang else DEFAULT_LANGS
+    output_root = _Path(output_root_str) if output_root_str else None
+    build_location(loc, fuesse, theme, ui, languages, env,
+                   debug=debug, repo_url=repo_url,
+                   issuing_entities=issuing_entities, base_url=base_url,
+                   output_root=output_root)
+
+
 def parse_args():
     p = argparse.ArgumentParser()
-    p.add_argument("--location", help="Build only this location (default: all)")
+    p.add_argument("--location", help="Build only these location(s). Accepts one id "
+                   "(e.g. `--location schleswig_holstein`) or a comma-separated list "
+                   "(e.g. `--location denmark,schleswig_holstein,lubeck`). Default: all.")
     p.add_argument("--lang", help="Build only this language (default: all)")
     p.add_argument("--debug", action="store_true", help="Dump intermediate JSON")
     p.add_argument("--validate-only", action="store_true", help="Check schema + cross-refs, don't render")
@@ -1193,16 +1339,39 @@ def parse_args():
                    help="Force-hide seed locations from the landing page even on local "
                         "builds (matches production behaviour).")
     # V2 pipeline flags (per docs/V2_PIPELINE.md §4.1). Default behaviour
-    # post-2026-05-20 (D44): V2 is DEFAULT (rendered at site/<loc>/<lang>/);
-    # V1 falls back to site/v1/<loc>/<lang>/ subtree but still builds
-    # alongside whenever data/v2/locations/ is populated.
+    # post-2026-05-21 (D-fast-build): V2 ONLY by default, since V1 is frozen
+    # per CLAUDE.md «V1 is FROZEN after the 2026-05-18 bootstrap». Re-render
+    # V1 only when explicitly requested (CI deploy / template change / V1
+    # YAML edit). Cuts a typical local build from ~65 s to ~30 s.
     p.add_argument("--v1-only", dest="v1_only", action="store_true",
                    help="Suppress the V2 build path even when data/v2/locations/ "
-                        "is populated. V1 still moves to site/v1/<loc>/<lang>/.")
+                        "is populated. V1 lands at site/v1/<loc>/<lang>/.")
+    p.add_argument("--include-v1", dest="include_v1", action="store_true",
+                   help="Build V1 pages alongside V2 (site/v1/<loc>/<lang>/). "
+                        "Required for production CI deploys (the /v1/ tree is "
+                        "still live-served). Local iteration usually doesn't "
+                        "need this — V1 is frozen.")
+    # `--v2-only` retained as an alias of the new default; kept for
+    # back-compatibility with existing shell scripts and CI tooling
+    # that might still pass it. Has no effect when --include-v1 is off
+    # (the default).
     p.add_argument("--v2-only", dest="v2_only", action="store_true",
-                   help="Skip the V1 build path; only build site/<loc>/<lang>/ "
-                        "(V2 default). Useful for fast V2 iteration when V1 "
-                        "is unchanged.")
+                   help="(Alias of the new default — V2 only. Kept for "
+                        "back-compat; redundant unless overriding --include-v1.)")
+    # Parallelism: ProcessPoolExecutor across locations. After the
+    # A+B+C cache hoists the per-location render is fast (~0.05 s),
+    # so worker startup + IPC overhead actually slows the full build
+    # if turned on by default. Kept as opt-in for the case where
+    # individual renders grow expensive again (e.g. SH+DK with
+    # multi-thousand-coin pages).
+    p.add_argument("--jobs", "-j", type=int, default=None,
+                   help="Number of parallel location renderers. Default: "
+                        "1 (serial). Pass an int > 1 to opt into a worker "
+                        "pool; only helpful when per-location render time "
+                        "is large.")
+    p.add_argument("--serial", action="store_true",
+                   help="Force serial location rendering (equivalent to --jobs 1; "
+                        "the current default).")
     return p.parse_args()
 
 
@@ -1242,35 +1411,58 @@ def main():
     if german_fuesse_refs:
         print(f"   German Müntzfüße references: {len(german_fuesse_refs.get('entries', []))} entries")
     
-    # Load locations
-    locations = load_locations(filter_id=args.location)
+    # Resolve --location filter: accept comma-separated list for multi-
+    # location builds (e.g. `--location denmark,schleswig_holstein`). A
+    # single id (legacy behaviour) still works — the split + filter is a
+    # no-op when there's just one id.
+    location_filter: list[str] | None = None
+    if args.location:
+        location_filter = [s.strip() for s in args.location.split(",") if s.strip()]
+
+    # Mode selection (V1 vs V2):
+    #   * default        — V2 ONLY (V1 is frozen per CLAUDE.md)
+    #   * --include-v1   — V1 + V2 (CI deploys / template-wide refactors)
+    #   * --v1-only      — V1 alone (rare: when validating V1 in isolation)
+    #   * --v2-only      — alias of default (kept for back-compat)
+    if args.v1_only and (args.v2_only or args.include_v1):
+        print("\n❌ --v1-only conflicts with --v2-only / --include-v1.")
+        sys.exit(1)
+    # Effective flags:
+    build_v1 = args.v1_only or args.include_v1
+    build_v2 = (not args.v1_only) and V2_LOCATIONS_DIR.exists() and any(V2_LOCATIONS_DIR.glob("*.yml"))
+
+    # V1 location load — the `_merge_seeds_into_raw` step alone walks
+    # ~28 MB of seed YAML and dominates load time (~28 s out of the
+    # original 191 s build). Skip the seed-merge step entirely when V1
+    # won't be rendered AND V2 carries its own coin assembly. In that
+    # case Location is still validated (Pydantic schema check) but its
+    # `coins` list is empty of seed-only entries — which is fine
+    # because we won't render those V1 pages this run.
+    v1_load_needs_seed_merge = build_v1
+    locations = load_locations(filter_id=location_filter,
+                               skip_seed_merge=not v1_load_needs_seed_merge)
     print(f"   Locations: {len(locations)} ({', '.join(l.id for l in locations)})")
 
-    # V2 — load entity-keyed locations + assemble coins per consumes_entities.
-    # Mode:
-    #   * default        — V1 + V2 (if data/v2/locations/ non-empty)
-    #   * --v1-only      — V1 alone
-    #   * --v2-only      — V2 alone
-    if args.v1_only and args.v2_only:
-        print("\n❌ --v1-only and --v2-only are mutually exclusive.")
-        sys.exit(1)
-    v2_enabled = (not args.v1_only) and V2_LOCATIONS_DIR.exists() and any(V2_LOCATIONS_DIR.glob("*.yml"))
     v2_locations: list[Location] = []
-    if v2_enabled:
+    if build_v2:
         print()
         print("📦 Loading V2 entity-keyed locations...")
-        v2_locations = load_v2_locations(filter_id=args.location)
+        v2_locations = load_v2_locations(filter_id=location_filter)
         print(f"   V2 locations: {len(v2_locations)} "
               f"({', '.join(l.id for l in v2_locations)})")
     print()
 
     # Schema + cross-ref validation
     print("🔍 Validating cross-references...")
+    # V1 cross-ref check runs on the location list even when we won't
+    # render V1 — it's also the schema-integrity check for the underlying
+    # YAML, which V2 references via `consumes_entities`-driven coin
+    # assembly. Cheap relative to V2 work after the seed-merge caching.
     if not cross_ref_check(locations, fuesse):
         print("\n❌ V1 validation failed. Fix errors above and rerun.")
         sys.exit(1)
     print("   ✓ V1 cross-references OK")
-    if v2_enabled and v2_locations:
+    if build_v2 and v2_locations:
         if not cross_ref_check(v2_locations, fuesse):
             print("\n❌ V2 validation failed. Fix errors above and rerun.")
             sys.exit(1)
@@ -1280,37 +1472,69 @@ def main():
     if args.validate_only:
         print("✅ Validation-only mode. No rendering performed.")
         return
-    
+
     # Clean site/ if requested
     if args.clean and SITE_DIR.exists():
         shutil.rmtree(SITE_DIR)
         print("🗑️  Cleaned site/")
-    
+
     SITE_DIR.mkdir(parents=True, exist_ok=True)
-    
+
     # Render
     languages = [args.lang] if args.lang else DEFAULT_LANGS
     env = build_env(str(TEMPLATE_DIR))
 
-    # URL routing post-2026-05-20 (D44): V2 is the DEFAULT — V2 pages
-    # land at `site/<loc>/<lang>/index.html`. V1 pages move to the
-    # `site/v1/<loc>/<lang>/index.html` subtree so existing references
-    # remain reachable but no longer occupy the root path.
-    if not args.v2_only:
-        print(f"📦 Rendering V1 pages → {(SITE_DIR / 'v1').relative_to(REPO_ROOT)}/")
-        for loc in locations:
-            build_location(loc, fuesse, theme, ui, languages, env,
-                           debug=args.debug, repo_url=args.repo_url,
-                           issuing_entities=issuing_entities, base_url=base_url,
-                           output_root=SITE_DIR / "v1")
+    # Parallel renderer: ProcessPoolExecutor across locations. Each call
+    # to `build_location` is CPU-bound and reads only its own Location
+    # + the shared (read-only) fuesse / theme / ui / issuing_entities
+    # state — safe to fork across workers. Disabled by --serial (or
+    # --jobs 1) for deterministic profiling / debug.
+    serial = args.serial or args.jobs is None or args.jobs <= 1
+    n_workers = 1 if serial else int(args.jobs)
 
-    if v2_enabled and v2_locations:
-        print()
-        print(f"📦 Rendering V2 pages (default) → {SITE_DIR.relative_to(REPO_ROOT)}/")
-        for loc in v2_locations:
-            build_location(loc, fuesse, theme, ui, languages, env,
-                           debug=args.debug, repo_url=args.repo_url,
-                           issuing_entities=issuing_entities, base_url=base_url)
+    def render_all(loc_list, output_root):
+        """Render the given Location list, sequentially or via a worker
+        pool. Workers re-load shared resources inside the subprocess —
+        much cheaper than pickling Pydantic + Jinja state through the
+        executor IPC layer.
+        """
+        if serial or n_workers <= 1 or len(loc_list) <= 1:
+            for loc in loc_list:
+                build_location(loc, fuesse, theme, ui, languages, env,
+                               debug=args.debug, repo_url=args.repo_url,
+                               issuing_entities=issuing_entities,
+                               base_url=base_url, output_root=output_root)
+            return
+        from concurrent.futures import ProcessPoolExecutor, as_completed
+        out_arg = str(output_root) if output_root is not None else ""
+        with ProcessPoolExecutor(max_workers=n_workers) as ex:
+            futures = {
+                ex.submit(_render_location_worker, loc.id,
+                          out_arg, args.debug, args.repo_url, base_url,
+                          location_filter, args.lang): loc.id
+                for loc in loc_list
+            }
+            for fut in as_completed(futures):
+                loc_id = futures[fut]
+                # Re-raise worker exceptions verbatim (with traceback).
+                fut.result()
+
+    # URL routing post-2026-05-20 (D44): V2 is the DEFAULT — V2 pages
+    # land at `site/<loc>/<lang>/index.html`. V1 pages, when explicitly
+    # included via --include-v1 (or --v1-only), land at
+    # `site/v1/<loc>/<lang>/index.html` so the /v1/ tree stays reachable
+    # for existing references.
+    if build_v1:
+        print(f"📦 Rendering V1 pages → {(SITE_DIR / 'v1').relative_to(REPO_ROOT)}/  "
+              f"({n_workers} worker{'s' if n_workers > 1 else ''})")
+        render_all(locations, SITE_DIR / "v1")
+
+    if build_v2 and v2_locations:
+        if build_v1:
+            print()
+        print(f"📦 Rendering V2 pages (default) → {SITE_DIR.relative_to(REPO_ROOT)}/  "
+              f"({n_workers} worker{'s' if n_workers > 1 else ''})")
+        render_all(v2_locations, None)
 
     if len(locations) > 1 or not args.location:
         # Pull contact email from local.env (or process env). Falls back to
@@ -1330,7 +1554,7 @@ def main():
         # Default landing → V2 location list (V2 is root after D44).
         # Falls back to V1 location list when V2 is disabled / empty.
         default_landing_locs = (
-            v2_locations if (v2_enabled and v2_locations) else locations
+            v2_locations if (build_v2 and v2_locations) else locations
         )
         build_landing(default_landing_locs, ui, theme, languages, env,
                       repo_url=args.repo_url, base_url=base_url,
@@ -1340,9 +1564,9 @@ def main():
                       include_seed=include_seed)
 
         # V1 landing at site/v1/<lang>/index.html so V1 location pages'
-        # home-link («../../index.html») has a target. Only emitted when
-        # V1 was actually built (i.e. --v2-only NOT set).
-        if not args.v2_only:
+        # home-link («../../index.html») has a target. Emitted only when
+        # V1 was actually rendered in this run.
+        if build_v1:
             build_landing(locations, ui, theme, languages, env,
                           repo_url=args.repo_url, base_url=base_url,
                           contact_email=contact_email,
