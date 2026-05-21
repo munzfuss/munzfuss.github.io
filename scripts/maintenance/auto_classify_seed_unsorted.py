@@ -586,18 +586,18 @@ _DENOMINATION_ANCHOR_RULES: list[dict] = [
      "rationale": "Nobel (Sovereign-tier) — unique to nobel_fod after Rosenobel-rule eats Rosenobel"},
 
     # Ungersk Gylden / Ungersk gylden — uniquely the
-    # Hungarian-Venetian Dukat standard. Pre-Augsburger 1559 →
-    # goldgulden_fod (the §BV pre-Reichsmünzordnung Fuß); post-1559
-    # → reichsdukatenfuss (the same physical standard but under
-    # formal imperial codification). year_max=1559 enforces this
-    # split; coins with year_first > 1559 don't match this rule and
-    # fall through to delta-math, which lands them on
-    # reichsdukatenfuss.
+    # Hungarian-Venetian Dukat standard. Post 2026-05-21 merger of
+    # goldgulden_fod into reichsdukatenfuss: ALL Ungersk Gylden
+    # specimens (pre- and post-1559) route to reichsdukatenfuss.
+    # The Fuß has Phase pre-I (1514-1558 mission-scope-clipped,
+    # actual 1481-1558) for de facto Hungarian Goldgulden tradition,
+    # and Phase I (1559+) for post-Augsburger codification. The
+    # build's year-window phase resolver places specimens in the
+    # correct phase by year_first.
     {"patterns": ["ungersk gylden", "ungersk gulden"],
-     "fuss": "goldgulden_fod",
+     "fuss": "reichsdukatenfuss",
      "kind": "kurant",
-     "year_max": 1559,
-     "rationale": "Ungersk Gylden ≤1559 — pre-Reichsmünzordnung goldgulden_fod (post-1559 falls through to reichsdukatenfuss)"},
+     "rationale": "Ungersk Gylden → reichsdukatenfuss (merged 2026-05-21 — pre-I phase covers pre-1559 de facto; Phase I covers post-1559 codification; specimen-drift .972 vs .986 is period remedium per Wikipedia Sophie of Mecklenburg-Güstrow)"},
 
     # Sølvgylden / Silver Gulden — uniquely the Christian II
     # Lovkompleks Hauptkurant silver coin (1514-1523). Covers
