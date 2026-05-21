@@ -579,11 +579,27 @@ EOF
 
 After both batches commit, output BOTH tables in the exact format below. This is the user-facing deliverable; everything else above is plumbing.
 
-### §6.1. Compute current numbers
+### §6.1. Compute current numbers (with per-row Δ for THIS run)
+
+The script accepts two integer-list inputs at the TOP — fill them with the exact NIDs / TIDs you just saved in this run's Numista batch + ucoin batch. The script then renders both tables with a **«Δ this run»** column that tallies how many of those just-added IDs landed in each period/bucket.
+
+If a batch was deferred (Cloudflare blocked, NID returned 404 and was logged to `_deleted_ids.json`), DO NOT include it in the list — only IDs whose `<id>.json` was actually written this run.
 
 ```bash
 .venv/bin/python <<'EOF'
 import json, pathlib
+
+# ============================================================
+# FILL THESE IN at the start of each rendering call:
+# ============================================================
+NIDS_THIS_RUN = [82133, 82384, 98983, 99000, 50496, 55887, 55888]  # Numista batch
+TIDS_THIS_RUN = [94070, 94098, 94099, 94100, 94101]                # ucoin batch
+NUMISTA_BATCH_LABEL = 'N'                                          # e.g. 'N', 'O', 'P'
+UCOIN_BATCH_LABEL = '29'                                           # e.g. '29', '30', '31'
+# ============================================================
+
+def fmt_delta(n):
+    return f'**+{n}**' if n > 0 else '—'
 
 # === ucoin per-period ===
 uc_cache = pathlib.Path('scripts/cache/ucoin')
@@ -609,18 +625,27 @@ UCOIN_PERIODS = [
     ('SH duchies Speciesbank 1787-1839', 'Speciesbank-era SH', 15, None),
 ]
 
-print('### ucoin — per-period detailed coverage')
+# Per-row Δ for ucoin: tally how many TIDS_THIS_RUN landed in this period's gap_tids list.
+# Static-closed periods (key=None) cannot receive deltas in this routine — they're already done.
+tids_set = set(str(t) for t in TIDS_THIS_RUN)
+ucoin_unmatched_tids = set(tids_set)  # track which TIDs we found a home for
+
+print(f'### ucoin — per-period detailed coverage (post batch {UCOIN_BATCH_LABEL})')
 print()
-print('| # | Period | Era | Total | Cached | Gap | % | Status |')
-print('|---|---|---|---:|---:|---:|---:|---|')
-total_in_scope = total_cached = 0
+print(f'| # | Period | Era | Total | Cached | Gap | % | Δ b{UCOIN_BATCH_LABEL} | Status |')
+print('|---|---|---|---:|---:|---:|---:|---:|---|')
+total_in_scope = total_cached = total_delta = 0
 closed_count = 0
 for i, (name, era, total, key) in enumerate(UCOIN_PERIODS, 1):
+    delta = 0
     if key and key in audit['NEW_GAPS_DISCOVERED']:
         v = audit['NEW_GAPS_DISCOVERED'][key]
         if 'gap_tids' in v:
+            period_tids = set(str(t) for t in v['gap_tids'])
             uncached = sum(1 for t in v['gap_tids'] if not (uc_cache/f'{t}.json').exists())
             cached = total - uncached
+            delta = len(period_tids & tids_set)
+            ucoin_unmatched_tids -= period_tids
         else:
             cached = v.get('cached', 0)
     else:
@@ -628,21 +653,31 @@ for i, (name, era, total, key) in enumerate(UCOIN_PERIODS, 1):
     gap = total - cached
     pct = round(100 * cached / total) if total else 0
     status = '✅ CLOSED' if gap == 0 else ('⏳ untouched' if cached == 0 else '🔵 open')
+    if delta > 0 and gap == 0:
+        status = f'🎉 CLOSED! (b{UCOIN_BATCH_LABEL})'
+    elif delta > 0:
+        status = f'🔵 batch {UCOIN_BATCH_LABEL} here'
     if gap == 0: closed_count += 1
     total_in_scope += total
     total_cached += cached
-    print(f'| {i} | {name} | {era} | {total} | {cached} | {gap} | {pct}% | {status} |')
+    total_delta += delta
+    print(f'| {i} | {name} | {era} | {total} | {cached} | {gap} | {pct}% | {fmt_delta(delta)} | {status} |')
 
 gap = total_in_scope - total_cached
 pct = round(100 * total_cached / total_in_scope)
-print(f'| **TOTAL** | | | **{total_in_scope}** | **{total_cached}** | **{gap}** | **{pct}%** | **{closed_count}/16 closed** |')
+print(f'| **TOTAL** | | | **{total_in_scope}** | **{total_cached}** | **{gap}** | **{pct}%** | **{fmt_delta(total_delta)}** | **{closed_count}/16 closed** |')
+
+if ucoin_unmatched_tids:
+    print()
+    print(f'> ⚠ TIDs not matched to any tracked period: {sorted(ucoin_unmatched_tids)} '
+          '— check audit-2 manifest; may be a new period that needs adding to UCOIN_PERIODS.')
 
 # === Numista per-bucket ===
 print()
-print('### Numista — per-bucket detailed coverage')
+print(f'### Numista — per-bucket detailed coverage (BO.6 v3, post batch {NUMISTA_BATCH_LABEL})')
 print()
-print('| # | Bucket | Era | In-scope | Cached | Gap | % | Status |')
-print('|---|---|---|---:|---:|---:|---:|---|')
+print(f'| # | Bucket | Era | In-scope | Cached | Gap | % | Δ batch {NUMISTA_BATCH_LABEL} | Status |')
+print('|---|---|---|---:|---:|---:|---:|---:|---|')
 
 num_audit = json.loads(pathlib.Path('scripts/cache/numista/_BO6_audit_2026-05-20.json').read_text())
 num_cache = pathlib.Path('scripts/cache/numista')
@@ -660,53 +695,82 @@ NUMISTA_BUCKETS = [
 
 # SH-cluster from gaps manifest
 gm = json.loads(pathlib.Path('scripts/cache/numista/_BO6_gaps_manifest_2026-05-19.json').read_text())
-sh_total = sum(len(v) for v in gm['sh_cluster_gaps'].values())
-sh_cached = sum(sum(1 for n in v if (num_cache/f'{n}.json').exists()) for v in gm['sh_cluster_gaps'].values())
+sh_all_nids = set()
+for v in gm['sh_cluster_gaps'].values():
+    sh_all_nids.update(v)
+sh_total = len(sh_all_nids)
+sh_cached = sum(1 for n in sh_all_nids if (num_cache/f'{n}.json').exists())
 
-total_in_scope = total_cached = 0
+nids_set = set(NIDS_THIS_RUN)
+numista_unmatched_nids = set(nids_set)
+
+total_in_scope = total_cached = total_delta = 0
 closed_count = 0
 for i, (name, era, key) in enumerate(NUMISTA_BUCKETS, 1):
+    delta = 0
     if key is None:  # SH cluster
         total = sh_total
         cached = sh_cached
+        bucket_nids = sh_all_nids
     else:
         country, page = key
         info = num_audit['in_scope_buckets'][country][page]
         total = info['in_scope_total']
         nids = info.get('in_scope_nids') or info.get('gap_nids') or []
+        bucket_nids = set(nids)
         if 'gap_nids' in info:
             uncached = sum(1 for n in nids if not (num_cache/f'{n}.json').exists())
             cached = total - uncached
         else:
             cached = sum(1 for n in nids if (num_cache/f'{n}.json').exists())
+    delta = len(bucket_nids & nids_set)
+    numista_unmatched_nids -= bucket_nids
     gap = total - cached
     pct = round(100 * cached / total) if total else 0
     status = '✅ CLOSED' if gap == 0 else ('⏳ untouched' if cached == 0 else '🔵 open')
+    if delta > 0 and gap == 0:
+        status = f'🎉 CLOSED! (batch {NUMISTA_BATCH_LABEL})'
+    elif delta > 0:
+        status = f'🔵 batch {NUMISTA_BATCH_LABEL} here'
     if gap == 0: closed_count += 1
     total_in_scope += total
     total_cached += cached
-    print(f'| {i} | {name} | {era} | {total} | {cached} | {gap} | {pct}% | {status} |')
+    total_delta += delta
+    print(f'| {i} | {name} | {era} | {total} | {cached} | {gap} | {pct}% | {fmt_delta(delta)} | {status} |')
 
 gap = total_in_scope - total_cached
 pct = round(100 * total_cached / total_in_scope)
-print(f'| **TOTAL** | | | **{total_in_scope}** | **{total_cached}** | **{gap}** | **{pct}%** | **{closed_count}/8 closed** |')
+print(f'| **TOTAL** | | | **{total_in_scope}** | **{total_cached}** | **{gap}** | **{pct}%** | **{fmt_delta(total_delta)}** | **{closed_count}/8 closed** |')
+
+if numista_unmatched_nids:
+    print()
+    print(f'> ⚠ NIDs not matched to any tracked bucket: {sorted(numista_unmatched_nids)} '
+          '— check audit + gaps manifest; may be off-bucket or freshly-discovered scope.')
 EOF
 ```
 
+**Implementation note.** Maintain `NIDS_THIS_RUN` and `TIDS_THIS_RUN` as live variables during the batch flow:
+- After each successful `save_numista.py` call, append the NID to a running list (e.g. `RUN_NIDS=()` Bash array, or just track in your scratchpad).
+- After each successful `save_ucoin.py` call (exit code 0), append the TID.
+- Skip 404 cases and exit-2 (canonical-tid fail) cases — those are not «processed this run».
+- At rendering time, paste the final lists into the script's top.
+
+The unmatched-IDs warning at the bottom guards against scope drift — if a TID/NID you saved doesn't show up in any tracked bucket, the audit needs updating OR the ID was saved outside the routine's intended scope.
+
 ### §6.2. Required output sections (in this order)
 
-1. **Pre-tables one-liner** — what this run added.
-   Example: «Batch run YYYY-MM-DD HH:MM: Numista batch P (NO p2 +5), ucoin batch 31 (DK p1115 +5). Both committed local.»
+1. **Pre-tables one-liner** — what this run added, framed as a delta.
+   Example: «Batch run 2026-05-21 14:00 UTC: Numista batch P added **+5** to NO p2; ucoin batch 31 added **+5** to DK p1115. Both committed local.»
 
-2. **ucoin coverage table** — 16 rows + TOTAL, exactly as the script in §6.1 prints.
+2. **ucoin coverage table** — 16 rows + TOTAL, with the `Δ b<N>` column populated from §6.1's script (exactly as printed).
 
-3. **Numista coverage table** — 8 rows + TOTAL, same.
+3. **Numista coverage table** — 8 rows + TOTAL, with the `Δ batch <letter>` column populated similarly.
 
-4. **Headline numbers**:
-   - Phase 1 (DK + SH) Numista — total cached, remaining
-   - Phase 2 (NO) Numista — total cached, remaining
-   - ucoin Phase 1 — total cached, remaining
-   - Grand cumulative cached
+4. **Headline numbers** (each line ends with a parenthetical run-delta):
+   - Phase 1 (DK + SH) Numista — total cached, remaining (Δ this run: +X)
+   - Phase 2 (NO) Numista — total cached, remaining (Δ this run: +X)
+   - ucoin Phase 1 — total cached, remaining (Δ this run: +X)
+   - Grand cumulative cached (Δ this run: +X from Numista, +Y from ucoin = +Z total)
 
 5. **Push state** — exactly one sentence: «N commits ready locally — `git push` when ready (both repos).» Compute N via `git log --oneline origin/main..HEAD | wc -l` from main repo + same from submodule, sum.
 
@@ -714,12 +778,22 @@ EOF
 
 ### §6.3. Status emoji legend (use consistently)
 
-- ✅ `CLOSED` — cached == in_scope (gap = 0)
-- 🎉 `CLOSED!` — closed THIS run (special highlight, one-off)
-- 🔵 `open` — partial coverage (0 < cached < total)
-- 🔵 `batch <N> here` — explicitly note which batch touched this period THIS run
-- ⏳ `untouched` — 0 cached
-- ⚠ stragglers — special note for «closed except for N residual NIDs» edge cases
+- ✅ `CLOSED` — cached == in_scope (gap = 0), no delta this run
+- 🎉 `CLOSED! (batch <N>)` — closed THIS run (delta > 0 AND gap == 0) — auto-emitted by the script
+- 🔵 `batch <N> here` — partially advanced THIS run (delta > 0 AND gap > 0) — auto-emitted
+- 🔵 `open` — partial coverage, untouched this run
+- ⏳ `untouched` — 0 cached, untouched this run
+- ⚠ stragglers — special note for «closed except for N residual NIDs» edge cases (manual annotation)
+
+### §6.4. Delta semantics — what counts
+
+- A TID/NID counts toward the delta only if its `<id>.json` was **written to disk this run** (save script exit 0).
+- 404 cases logged to `_deleted_ids.json` are NOT included (no file written; per §2.4 / §4.4).
+- Canonical-tid mismatch (save_ucoin exit 2) is NOT included.
+- Cloudflare deferrals — IDs that you decided to retry next hour — are NOT included.
+- Re-saves of an already-cached file (idempotent rewrite with same content) ARE counted as 0 delta for that period — the file already existed, the run didn't add new scope.
+
+This keeps the delta semantics tight: **«items the routine demonstrably added to the cache this hour»**, nothing aspirational.
 
 ---
 
@@ -772,25 +846,25 @@ If `list_connected_browsers` returns empty or the user's extension is off:
 
 ## §8. End-of-run report template
 
-Final response to the user follows this exact structure:
+Final response to the user follows this exact structure. The Δ-columns in both tables come straight from §6.1's script output — do not hand-compute, the script already filled them.
 
 ```markdown
-**Batch run <UTC timestamp>**: Numista batch <letter> (+<N> in <bucket>), ucoin batch <NN> (+<M> in <period>). Both committed local.
+**Batch run <UTC timestamp>**: Numista batch <letter> added **+<N>** to <bucket>; ucoin batch <NN> added **+<M>** to <period>. Both committed local (total **+<N+M>** entries this run).
 
 ### ucoin — per-period detailed coverage (post batch <NN>)
 
-<16-row + TOTAL table from §6.1>
+<16-row + TOTAL table from §6.1 — includes Δ b<NN> column>
 
 ### Numista — per-bucket detailed coverage (BO.6 v3, post batch <letter>)
 
-<8-row + TOTAL table from §6.1>
+<8-row + TOTAL table from §6.1 — includes Δ batch <letter> column>
 
 ### Headline numbers post-batches <letter> + <NN>
 
-- **Phase 1 (DK + SH) Numista**: <cached>/<total>, **<remaining> left**
-- **Phase 2 (NO) Numista**: <cached>/<total>, **<remaining> left**
-- **ucoin Phase 1**: <cached>/<total>, **<remaining> left**
-- **Grand total**: <numista_cumulative + ucoin_cumulative> cached cumulatively
+- **Phase 1 (DK + SH) Numista**: <cached>/<total>, **<remaining> left** (Δ this run: +<n1>)
+- **Phase 2 (NO) Numista**: <cached>/<total>, **<remaining> left** (Δ this run: +<n2>)
+- **ucoin Phase 1**: <cached>/<total>, **<remaining> left** (Δ this run: +<n3>)
+- **Grand total**: <numista_cumulative + ucoin_cumulative> cached cumulatively (Δ this run: **+<n1+n2>** Numista, **+<n3>** ucoin = **+<total>** entries)
 
 ### Push state
 
@@ -802,6 +876,8 @@ Final response to the user follows this exact structure:
 2. <next-ucoin-batch> — <description>
 3. <third-priority>
 ```
+
+**If a batch was skipped or partial** (Cloudflare blocked, Chrome MCP disconnected mid-run, etc.) — append a `### Anomalies` section listing what was deferred. The Δ-columns will then show smaller-than-target deltas (e.g. `+3` instead of `+5`); that's the honest record.
 
 If anything went wrong mid-run, append a `### Anomalies` section listing what was skipped/deferred.
 
