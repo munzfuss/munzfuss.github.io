@@ -199,11 +199,24 @@ The handoff file carries forward what the next run needs to know without reading
 
 ### §1.5.1. Read at session start (after §1 preflight)
 
+> **Path resolution — always use `git rev-parse --show-toplevel` as anchor.** The routine's PB-10 dance involves `cd scripts/cache` mid-flow; relative paths like `scripts/cache/_harvest_handoff.json` break if a handoff read/write runs while cwd is already inside the submodule. Anchoring at the git toplevel makes the path resolution cwd-independent. (Failure mode caught 2026-05-21 cron-run X/38: handoff appeared «missing» after a misordered cd; recovered via `git checkout` + manual run-entry merge.)
+
 ```bash
 .venv/bin/python <<'EOF'
-import json, pathlib
-p = pathlib.Path('scripts/cache/_harvest_handoff.json')
-if not p.exists():
+import json, pathlib, subprocess
+repo_root = pathlib.Path(subprocess.check_output(
+    ['git', 'rev-parse', '--show-toplevel'], cwd=pathlib.Path.cwd()
+).decode().strip())
+# If cwd is inside the submodule, --show-toplevel returns the submodule root.
+# Walk up to find the main repo (handoff lives in scripts/cache/, which IS the submodule):
+if (repo_root / 'scripts/cache/_harvest_handoff.json').exists():
+    p = repo_root / 'scripts/cache/_harvest_handoff.json'                  # main-repo cwd case
+elif (repo_root / '_harvest_handoff.json').exists():
+    p = repo_root / '_harvest_handoff.json'                                 # submodule cwd case
+else:
+    p = None
+
+if p is None or not p.exists():
     print('!!! Handoff file missing — fresh-start mode; proceed but flag at end-of-run.')
 else:
     h = json.loads(p.read_text())
@@ -217,6 +230,11 @@ else:
     pending = h.get('routine_doc_pending_updates', [])
     if pending:
         print('Routine-doc pending updates (FYI, do not block):', pending)
+    fos = h.get('failed_open_recent_summary', {})
+    if fos.get('numista') or fos.get('ucoin'):
+        n_count = len(fos.get('numista', []))
+        u_count = len(fos.get('ucoin', []))
+        print(f'!!! Recent failed_open carry-over: {n_count} Numista, {u_count} ucoin — surface in §8 if user inspection still pending.')
 EOF
 ```
 
@@ -232,11 +250,21 @@ Apply the read like so:
 
 The handoff file rides with the **ucoin commit** (the last commit of the run) so each run produces exactly two submodule commits — Numista cache, then ucoin cache + handoff bump. Write the file via Python `json.dump` AFTER ucoin saves complete but BEFORE the `cd scripts/cache && git add ucoin/...` line in §5.1. The ucoin commit's `git add` includes `_harvest_handoff.json` in the file list.
 
+> **Path resolution — same `git rev-parse` anchor as §1.5.1.** The write step often runs immediately AFTER a `cd scripts/cache` for the Numista commit (Step A of §3.1). Cwd may be either the main repo or the submodule; the snippet must work in both.
+
 ```python
-import json, pathlib
+import json, pathlib, subprocess
 from datetime import datetime, timezone
 
-p = pathlib.Path('scripts/cache/_harvest_handoff.json')
+repo_root = pathlib.Path(subprocess.check_output(
+    ['git', 'rev-parse', '--show-toplevel'], cwd=pathlib.Path.cwd()
+).decode().strip())
+# Resolve regardless of whether cwd is main-repo or inside submodule:
+if (repo_root / 'scripts/cache/_harvest_handoff.json').exists():
+    p = repo_root / 'scripts/cache/_harvest_handoff.json'
+else:
+    p = repo_root / '_harvest_handoff.json'   # submodule-cwd fallback
+
 h = json.loads(p.read_text())
 
 # Update top-level cross-run state
