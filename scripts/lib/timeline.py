@@ -242,6 +242,18 @@ def compute_bar_layers(
                 if last > effective_trunc:
                     last = effective_trunc
                     last_approx = False
+            # Mission-scope visibility clip: if the actual start year is BEFORE
+            # the timeline's left edge, the visible left edge of the layer is
+            # the clip line (sharp cutoff), NOT the underlying uncertain year
+            # — so the fade-start gradient would be misleading (it would
+            # suggest uncertainty at the clip line itself, whereas the
+            # uncertainty is hidden off-screen to the left). Symmetrical for
+            # the right edge. Clear approx flags when the actual extent
+            # extends past the visible window.
+            if first < tl_year_from:
+                first_approx = False
+            if last > tl_year_to:
+                last_approx = False
             layers.append({
                 "kind": kind,
                 "scope": scope,
