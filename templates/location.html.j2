@@ -65,8 +65,12 @@
           {%- else %} <span class="alt-source" data-tooltip="{{ g.sources|join('\n') }}">{{ _txt }}</span>
           {%- endif %}
         {%- endfor %}
+        {#- Only render the fineness-unverified marker when there IS a fineness value to qualify.
+            When fineness_groups is empty (no fineness in data), placing a "(?)" right after the
+            metal name visually reads as "metal is uncertain" — but the marker is meant for the
+            fineness column. Suppress in the no-fineness case. -#}
+        {%- if not coin.raw.fineness_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
       {%- endif -%}
-      {%- if not coin.raw.fineness_verified %} <span class="unverified" data-tooltip="{{ ui_get('marker.unverified') }}">(?)</span>{% endif -%}
     {%- else -%}—{%- endif -%}
   </td>
   <td class="c-w">
