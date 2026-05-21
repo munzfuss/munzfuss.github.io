@@ -648,6 +648,72 @@ _DENOMINATION_ANCHOR_RULES: list[dict] = [
 ]
 
 
+def _classify_via_grevens_fejde_anchor(coin: dict, entity_id: str | None
+                                         ) -> tuple[str, str | None, str | None, dict]:
+    """Era-anchor rule: Christian III silver/billon coinage 1534-1540
+    belongs unambiguously to `christian_iii_grevens_fejde_fod`.
+
+    Why an anchor rule is needed.
+    ----------------------------
+    The Grevens-Fejde cascade (per Wilcke 7-3 p. 242) has 9+ fineness
+    variants on a single denomination — no single soll_fein the
+    delta-math can land on. AND the denominations (2 Mark, 4 Skilling,
+    1 Skilling, Hvid, Joachimsdaler) overlap with other Fuß families
+    BUT the year + ruler + entity combination uniquely identifies this
+    period: Christian III silver/billon issues 1534-1540 are by
+    definition pre-Møntordning Grevens-Fejde-cascade coinage.
+
+    The 1537 Joachimsdaler is metrically identical to the 1541 Møntordning
+    (14½ Lod / 8/M / 26.494 g fein) but conceptually distinct — Wilcke
+    treats it as a Grevens-Fejde-precursor-Daler, not the formal
+    Møntordning. Routing 1537 Joachimsdaler to grevens_fejde rather
+    than dalerfod preserves this Wilcke distinction.
+
+    Returns (signal, fuss_id, kind, audit). Signal is one of:
+      - grevens_fejde_anchor — applied
+      - no_match — rule does not fire
+    """
+    audit: dict = {"rule": "grevens_fejde_anchor"}
+    year_first = coin.get("year_first")
+    if not isinstance(year_first, int) or not (1534 <= year_first <= 1540):
+        return ("no_match", None, None, audit)
+    if entity_id != "danish_realm":
+        return ("no_match", None, None, audit)
+    ruler = str(coin.get("ruler") or "")
+    if "Christian III" not in ruler:
+        return ("no_match", None, None, audit)
+    metal = coin.get("metal")
+    if metal not in ("silver", "billon"):
+        return ("no_match", None, None, audit)
+    # Kind derivation: Klippe + sub-Skilling + Hvid = Scheide;
+    # Joachimsdaler + 2 Mark + 1 Mark + 8 Skilling = Kurant
+    nominal = str(coin.get("nominal") or "").lower()
+    if any(tok in nominal for tok in ("joachimstaler", "joachimsdaler",
+                                       "1 gulden", "½ gulden", "halv gulden")):
+        kind = "kurant"
+    elif any(tok in nominal for tok in ("hvid", "penning", "klippe")):
+        kind = "scheide"
+    elif "skilling" in nominal:
+        # 8 Skilling kurant; 1-4 Skilling typically scheide
+        # Per Wilcke 7-3 p. 242 the 4 ß variants are debased Scheide
+        if nominal.startswith("8 skilling") or nominal.startswith("1 mark") \
+           or nominal.startswith("2 mark"):
+            kind = "kurant"
+        else:
+            kind = "scheide"
+    else:
+        kind = coin.get("kind") or "kurant"
+    audit.update({
+        "year_first": year_first,
+        "entity": entity_id,
+        "ruler": ruler,
+        "metal": metal,
+        "nominal": coin.get("nominal"),
+        "kind_derivation": kind,
+    })
+    return ("grevens_fejde_anchor", "christian_iii_grevens_fejde_fod", kind, audit)
+
+
 def _classify_via_denomination_anchor(coin: dict, entity_id: str | None
                                         ) -> tuple[str, str | None, str | None, dict]:
     """Denomination-anchor rule: when a coin's nominal text uniquely
@@ -824,6 +890,21 @@ def classify_coin(coin: dict, fuesse: dict, yield_index: dict,
         decision["proposed_fuss"] = yld_fuss
         decision["signal"] = yld_signal  # hede_yield
         decision["audit"] = yld_audit
+        return decision
+
+    # Era-anchor: Grevens-Fejde 1534-1540 Christian III silver/billon
+    # cascade. Runs BEFORE denomination_anchor because denominations
+    # (2 Mark, 4 Skilling, Joachimsdaler) overlap with other Fuß
+    # families but the year+ruler+entity combination uniquely
+    # identifies this period (Wilcke 7-3 p. 242).
+    gf_signal, gf_fuss, gf_kind, gf_audit = _classify_via_grevens_fejde_anchor(
+        coin, entity_id)
+    if gf_fuss:
+        decision["proposed_fuss"] = gf_fuss
+        if gf_kind:
+            decision["proposed_kind"] = gf_kind
+        decision["signal"] = gf_signal
+        decision["audit"] = gf_audit
         return decision
 
     # Denomination-anchor: §BV unique-denomination patterns
