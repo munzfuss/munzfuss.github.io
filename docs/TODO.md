@@ -1190,7 +1190,33 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 ## Normal priority
 
-### BY. 🟢 Pre-1541 Danish silver Müntzfüße — define 4 standards (Christian II Lovkompleks + Frederik I + Husum + Grevens Fejde) + promote 91 seed_unsorted specimens  *(opened 2026-05-21)* *(est: medium-large)* *(type: data + classifier extension)*
+### BY. ✅ Pre-1541 Danish silver Müntzfüße — 3 standards landed (Christian II Lovkompleks + Frederik I + Grevens Fejde) + 55 specimens promoted  *(opened 2026-05-21, closed 2026-05-21)* *(est: medium-large)* *(type: data + classifier extension)*
+
+**Closed 2026-05-21.** 3-Müntzfuß implementation cycle complete in three atomic commits:
+
+- ✅ **`christian_ii_lovkompleks_fod`** (commit `49f2922`, §BY/1) — Sølvgylden-Skilling-Hvid triad 1514-1523. 3 phases (A1 Haandfæstning + Lovkompleks baseline, A2 Klipping debasement, A3 final consolidation). 3 specimens promoted: galster-c2g-38 + bruun-3931 + bruun-3933. New classifier rule «sølvgylden»/«solvgylden»/«silver gulden» year_max=1523.
+- ✅ **`frederik_i_dalerfod`** (commit `0480880`, §BY/2) — Møntordning af 25. Februar 1524, 8 Sølvgylden/M @ 14 Lod (vs Christian II 8.5/M) + Lybsk-aligned 24-ß-Mark subdivision + 14-Penning Klipping-Indfrielse-Mønt (separate act 26 Feb 1524). 2 phases (A1 1524-1531, A2 1532 final consolidation). 12 specimens promoted: 4× galster-f1g Sølvgylden 1531-1532 + bruun-4075 ¼ Silver Gulden 1532 + 7× «14 Penning» 1524 specimens. New classifier rules: «sølvgylden» year_min=1524 year_max=1533, «14 penning» year_min=1523 year_max=1533.
+- ✅ **`christian_iii_grevens_fejde_fod`** (commit `017f344`, §BY/3) — civil-war cascade 1534-1540 with 9+ fineness variants per Wilcke 7-3 p. 242 «Master Mårtens regnskabsbøger». 3 phases (A1 Klippe cascade Aarhus+Roskilde+Stockholm+Ribe 1534-1536, A2 Joachimsdaler 1537 Copenhagen, A3 pre-Møntordning transition 1538-1540). Main anchor: Joachimsdaler 1537 at 14½ Lod (metrically identical to 1541 Møntordning — Christian III's first heavy-Daler attempt). 40 specimens promoted: 3× Joachimsdaler 1537 Bruun + 1× ½ Joachimsdaler + multi-mint Klippe + Skilling cascade. New classifier function `_classify_via_grevens_fejde_anchor` (year-range + ruler + entity + metal pattern).
+
+**Deferred to future SH-page cycle:** `frederik_i_husum_fod` (Schleswig-Holstein ducal-zone, 1514-1533) — per user 2026-05-21 «досліди цей стандарт теж, для майбутнього огляду для шлез-гольшт земель». Foundation research already captured at `docs/research/sh_ducal_zone_husum_1514.md` (Husum 1514 Bestalling + Wendischer Münzverein genealogy + 1474 Kaiser Friedrich III imperial privilege). Implementation when SH-page expansion cycle starts.
+
+**Project impact:**
+- 3 new Müntzfüße in `data/shared/fuesse.yml`
+- 3 new fuss_periods + phases blocks in `data/v2/locations/denmark.yml`
+- 3 new timeline.bars (positions 12, 13, 14)
+- 4 new classifier rules + 1 new era-anchor function
+- **55 specimens promoted out of seed_unsorted** (target was 60-80 — actual landed slightly below because Sølvgylden patterns split across two Fuß via year_max/year_min, and some pre-1534 Galster Skilling/Hvid specimens still need additional period-specific patterns)
+- Pre-1541 silver gap closes for Danish-realm-entity scope
+- Foundation laid for §AZ paper-source import to deepen specimen coverage incrementally
+
+**Remaining seed_unsorted with pre-1541 silver/billon profile:** ~36 specimens (91 inventory - 55 promoted). Most are pre-1523 Christian II + Frederik I Skilling/Hvid that don't carry "Sølvgylden" denomination text and need additional rules (Skilling year_max=1523 → Lovkompleks, Skilling 1524-1533 → Frederik-I-Dalerfod, etc.) — straightforward follow-up but deferred to keep §BY commits focused on Sølvgylden/Joachimsdaler/Klippe hauptkurant tiers.
+
+Original §BY planning preserved below for reference:
+
+---
+
+### BY-planning (preserved for historical reference)
+
 
 **Surfaced.** User question 2026-05-21 «якою була срібна стопа в данії до 1541 року?» exposed a known coverage gap: the §BV cycle (closed same day) added eight pre-1582 Fuß slots but only on the gold side; the silver side 1514-1540 still has NO project-defined Müntzfuß. 91 silver/billon specimens currently sit in `seed_unsorted` because the classifier has no metric target to land them under.
 
