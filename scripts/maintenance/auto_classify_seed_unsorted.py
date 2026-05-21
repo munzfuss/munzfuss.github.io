@@ -651,26 +651,31 @@ _DENOMINATION_ANCHOR_RULES: list[dict] = [
 def _classify_via_grevens_fejde_anchor(coin: dict, entity_id: str | None
                                          ) -> tuple[str, str | None, str | None, dict]:
     """Era-anchor rule: Christian III silver/billon coinage 1534-1540
-    belongs unambiguously to `christian_iii_grevens_fejde_fod`.
+    belongs to `christian_iii_dalerfod` Phase 0 (de-facto-Etablierung).
 
-    Why an anchor rule is needed.
-    ----------------------------
-    The Grevens-Fejde cascade (per Wilcke 7-3 p. 242) has 9+ fineness
-    variants on a single denomination — no single soll_fein the
-    delta-math can land on. AND the denominations (2 Mark, 4 Skilling,
-    1 Skilling, Hvid, Joachimsdaler) overlap with other Fuß families
-    BUT the year + ruler + entity combination uniquely identifies this
-    period: Christian III silver/billon issues 1534-1540 are by
-    definition pre-Møntordning Grevens-Fejde-cascade coinage.
+    Why this routing.
+    -----------------
+    Per refactor 2026-05-21 (research findings danskmoent.dk c3hede.htm
+    continuous catalogue, Wilcke 1950 7-3 p. 242 «die 1537 Karbung
+    etabliert das 14½-Lod-Daler-Standard», Reynold Junge mintmaster
+    continuity 1534-1540): the formerly-separate
+    `christian_iii_grevens_fejde_fod` Fuß was merged INTO
+    `christian_iii_dalerfod` as Phase 0 (1534-1540, de-facto-
+    Etablierung). The 1537 Joachimsdaler is metrically identical to
+    the 1541 Møntordning Daler (14½ Lod, 8/M, 26.494 g fein) — Wilcke
+    himself explicitly notes this metric continuity. The 1541
+    Møntordning codifies de jure what Junge had already established
+    de facto by 1537.
 
-    The 1537 Joachimsdaler is metrically identical to the 1541 Møntordning
-    (14½ Lod / 8/M / 26.494 g fein) but conceptually distinct — Wilcke
-    treats it as a Grevens-Fejde-precursor-Daler, not the formal
-    Møntordning. Routing 1537 Joachimsdaler to grevens_fejde rather
-    than dalerfod preserves this Wilcke distinction.
+    Function name retained as `_classify_via_grevens_fejde_anchor`
+    for historical continuity; the trigger and the kind-derivation
+    logic are unchanged — only the routing target changed from
+    grevens_fejde_fod to dalerfod (with Phase 0 picked up by the
+    build's year-window phase resolver: 1534-1540 → Phase 0,
+    1541-1543 → Phase A1, 1544-1555 → Phase A2).
 
     Returns (signal, fuss_id, kind, audit). Signal is one of:
-      - grevens_fejde_anchor — applied
+      - grevens_fejde_anchor — applied (routes to dalerfod Phase 0)
       - no_match — rule does not fire
     """
     audit: dict = {"rule": "grevens_fejde_anchor"}
@@ -710,8 +715,9 @@ def _classify_via_grevens_fejde_anchor(coin: dict, entity_id: str | None
         "metal": metal,
         "nominal": coin.get("nominal"),
         "kind_derivation": kind,
+        "target_fuss_phase": "christian_iii_dalerfod / Phase 0 (de-facto-Etablierung)",
     })
-    return ("grevens_fejde_anchor", "christian_iii_grevens_fejde_fod", kind, audit)
+    return ("grevens_fejde_anchor", "christian_iii_dalerfod", kind, audit)
 
 
 def _classify_via_denomination_anchor(coin: dict, entity_id: str | None

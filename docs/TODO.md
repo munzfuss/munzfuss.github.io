@@ -1190,7 +1190,9 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 ## Normal priority
 
-### BY. ✅ Pre-1541 Danish silver Müntzfüße — 3 standards landed (Christian II Lovkompleks + Frederik I + Grevens Fejde) + 55 specimens promoted  *(opened 2026-05-21, closed 2026-05-21)* *(est: medium-large)* *(type: data + classifier extension)*
+### BY. ✅ Pre-1541 Danish silver Müntzfüße — 2 standards landed + Christian III Dalerfod Phase 0 expansion + 55 specimens promoted  *(opened 2026-05-21, closed 2026-05-21, **refactored 2026-05-21**)* *(est: medium-large)* *(type: data + classifier extension)*
+
+**Refactor 2026-05-21:** following web-research into how numismatic literature (danskmoent.dk Galster-Hede catalogue, Wilcke 1950 7-3 p. 242 «die 1537 Karbung etabliert das 14½-Lod-Daler-Standard», Reynold Junge mintmaster continuity 1534-1540 per `jungebc.htm`), the originally-separate `christian_iii_grevens_fejde_fod` was MERGED into `christian_iii_dalerfod` as Phase 0 (de-facto-Etablierung 1534-1540). Rationale: no source treats them as separate Müntzfüße; metric anchor (14½ Lod / 8/M / 26.494 g fein) is identical between 1537 Joachimsdaler and 1541 Møntordning Daler — 1541 codifies de jure what Junge established de facto 1537. The 40 specimens previously under grevens_fejde A1/A2/A3 are now under dalerfod Phase 0. Cycle now ships 2 (not 3) new Müntzfüße + 1 phase-expansion of existing dalerfod.
 
 **Closed 2026-05-21.** 3-Müntzfuß implementation cycle complete in three atomic commits:
 
