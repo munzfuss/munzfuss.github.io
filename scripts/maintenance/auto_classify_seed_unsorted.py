@@ -617,7 +617,34 @@ _DENOMINATION_ANCHOR_RULES: list[dict] = [
      "fuss": "christian_ii_lovkompleks_fod",
      "kind": "kurant",
      "year_max": 1523,
-     "rationale": "Sølvgylden ≤1523 — Christian II Lovkompleks Hauptkurant silver (post-1523 splits to frederik_i_dalerfod when that Fuß lands)"},
+     "rationale": "Sølvgylden ≤1523 — Christian II Lovkompleks Hauptkurant silver (post-1523 splits to frederik_i_dalerfod)"},
+
+    # Sølvgylden / Silver Gulden continuation 1524-1533 —
+    # uniquely the Frederik I Dalerfod Hauptkurant. Same physical
+    # standard (14 Lod / .875) as Christian II Lovkompleks but
+    # tightened to 8/M (vs 8½/M); see frederik_i_dalerfod
+    # fuesse.yml entry. year_min=1524 + year_max=1533 (Frederik I's
+    # death 10 April 1533).
+    {"patterns": ["sølvgylden", "solvgylden", "silver gulden"],
+     "fuss": "frederik_i_dalerfod",
+     "kind": "kurant",
+     "year_min": 1524,
+     "year_max": 1533,
+     "rationale": "Sølvgylden 1524-1533 — Frederik I Dalerfod (post-Lovkompleks; pre-Grevens-Fejde)"},
+
+    # 14 Penning / 14 Penny — uniquely Frederik I's Klipping
+    # redemption coin under the separate act of 26 February 1524
+    # (Wilcke 7-2 p. 187). The «14 %» small-change subtype was
+    # introduced specifically to exchange Christian II's Klippinge
+    # for new Frederik I tokens. Year range 1524-1532 (Frederik I's
+    # reign as king); Numista + Bruun specimens cluster around
+    # Copenhagen + Malmö 1524.
+    {"patterns": ["14 penning", "14 penny"],
+     "fuss": "frederik_i_dalerfod",
+     "kind": "scheide",
+     "year_min": 1523,
+     "year_max": 1533,
+     "rationale": "14 Penning Klipping-Indfrielse-Mønt 1524 — Frederik I Dalerfod (separate act 26 Feb 1524, Wilcke 7-2 p. 187)"},
 ]
 
 
