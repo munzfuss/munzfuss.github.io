@@ -621,7 +621,25 @@ Estimated total remaining harvest: **~250-400 TIDs** across **6-10 batches**.
 
 **Definition of done.** Norway 1514-1814 harvested (or verified-empty), DK 1514-1581 + 1873-1914 closed, SH pre-1788 + post-1855 closed. Phase-1 coverage table updated. BR closure note replaces this in-progress entry.
 
-### BV. 🟡 Pre-1582 Danish Müntzfüße — define missing standards in fuesse.yml + Denmark page  *(opened 2026-05-20, user-marked «найвищий»)* *(est: medium-large)* *(type: data + research-applied)*
+### BV. 🔵 Pre-1582 Danish Müntzfüße — define missing standards in fuesse.yml + Denmark page  *(opened 2026-05-20, user-marked «найвищий», **3 of 8 closed 2026-05-21**, status: In review)* *(est: medium-large)* *(type: data + research-applied)*
+
+**Progress 2026-05-21 — 3 of 8 candidates closed, ticket in In review:**
+- ✅ **christian_iii_dalerfod** (commits `0102073` + `9343cd6` + `b88c4a9`, §BF closure)
+- ✅ **christian_iii_flensborg_fod** (same §BF commits, structural Fuß card)
+- ✅ **rhinsk_gylden_fod** (commit `81c91fa`, §AW plan executed — 3 specimens promoted f2h3 + f2h6 + c4h29, two phases I + II)
+
+**Pending — surfaced for user verdict (no implementation possible without decision):**
+- **f2_guldkrone_fod** (§AV) — pending (a) separate Fuß vs (b) phase under existing `guldkrone`. Recommendation in §AV: (a). Once verdict lands, ~30 min implementation (metric .934 / fein 3.120 g already verified Hede f2h2 + f2h5).
+
+**Pending — research from primary sources needed:**
+- **sovereign_fod / noble_fod** — Hans 1496-1502 + Christian II 1516-1518 + Frederik I 1524/1532 high-fineness Realer-tier gold. Wilcke 1924 + Galster 1959-1960 + Hede c1h/c2h/f1h chapters need extraction for metric anchor.
+- **goldgulden_fod** (transitional pre-Reichsdukatenfuß) — F1 1527 → C-IV 1593 at gold .986 / 3.49 g. **Open question** whether this is a distinct Fuß from `reichsdukatenfuss` (1564→1802 at same .986/3.49) or just an early phase of it. Wilcke + Bobzin verification required.
+- **C-III Gottorp 0.764 Dukat-named** (1534 one-off) — classification TBD: own Fuß, fold into `rhinsk_gylden_fod` as a higher-fineness variant, or phase under existing `reichsdukatenfuss`?
+- **Rosenobel Fuß placement** (§AX, C-IV 1611-1629 at gold .833 / 7.495 g fein) — pending tariff investigation. Likely fold under an existing Fuß family rather than spawn a new slot, but tariff verification needed first.
+
+Project ticket `190229723` moved to **In review** (NOT Done) to signal partial closure: rhinsk_gylden_fod implementation done + §BF christian_iii closures done, remaining 5 items have explicit blockers (verdict / research / tariff).
+
+
 
 **Surfaced.** User direction 2026-05-20 with explicit «найвищий» marker. The §8a auto_classify_seed_unsorted classifier can only target Müntzfüße that EXIST in `data/shared/fuesse.yml` AND have phase blocks in the location yamls. A tranche of pre-1582 Danish gold + silver standards is currently absent from our data, so coins from those eras stay stuck in `seed_unsorted` indefinitely regardless of classifier improvements. Goal: ship Fuß definitions on the Denmark page first (no coins required initially) so classifier rules can be authored against them, then per-Fuß coin promotion follows downstream.
 
