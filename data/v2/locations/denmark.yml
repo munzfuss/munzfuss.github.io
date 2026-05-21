@@ -553,6 +553,47 @@ fuss_periods:
       en: Technical catch-all bucket for bulk-imported coins from several sources. One phase per source (<code>A</code> = ucoin bulk; <code>hede</code> = Hede 1971 via danskmoent.dk, auto-merged at build time from <code>data/seed/hede/denmark.yml</code>). On future detailed work the pieces move to their proper Münzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>kronefod</code>, <code>reichsdukatenfuss</code>, etc.).
       uk: Технічний загальний кошик для bulk-імпортованих монет із кількох джерел. Окрема фаза на джерело (<code>A</code> = ucoin-bulk; <code>hede</code> = Hede 1971 через danskmoent.dk, авто-merge при build з <code>data/seed/hede/denmark.yml</code>). При майбутній детальній роботі монети перейдуть у відповідну Müntzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>kronefod</code>, <code>reichsdukatenfuss</code> тощо).
 phases:
+  christian_iii_dalerfod:
+  - id: A1
+    year_from: 1541
+    year_to: 1543
+    from_label: '1541'
+    to_label: '1543'
+    title:
+      de: 'Phase A1 · Baseline 1541-1543 · mf 8,827, 14½ Lod (906¼ ‰), 26,494 g fein je Daler — København'
+      en: 'Phase A1 · Baseline 1541-1543 · mf 8.827, 14½ Lod (906¼ ‰), 26.494 g fine per Daler — København'
+      uk: 'Фаза A1 · Baseline 1541-1543 · mf 8,827, 14½ Lod (906¼ ‰), 26,494 г чистого на Daler — Копенгаген'
+    description:
+      de: 'Baseline-Phase der <b>Møntordning vom 20. September 1541</b> Christians III.<sup><a href="#ref29">[29]</a></sup>: acht Daler aus der Cölln. Marck fein bei 14½ Lod, Marken-fin <b>mf 8,827</b>, 26,494 g fein je Daler. Dreistufige Stückelung: vollwertige Kurantmünze (Daler / Mark / 8 Skilling / 4 Skilling) @ 14½ Lod; Scheidemünze (1 Skilling) @ 4 Lod (250 ‰); Billon (Hvid 4 Lod, Penning 2 Lod). Hauptmünze København unter Mzm. Reynold Junge.'
+      en: 'Baseline phase of Christian III''s <b>Møntordning of 20 September 1541</b><sup><a href="#ref29">[29]</a></sup>: eight Daler per Cologne mark fine at 14½ Lod, Marken-fin <b>mf 8.827</b>, 26.494 g fine per Daler. Three-tier denomination: full-value Kurantmünze (Daler / Mark / 8 Skilling / 4 Skilling) at 14½ Lod; Scheidemünze (1 Skilling) at 4 Lod (250 ‰); billon (Hvid 4 Lod, Penning 2 Lod). Principal mint København under mintmaster Reynold Junge.'
+      uk: 'Baseline-фаза <b>Møntordning від 20 вересня 1541</b> Кристіана III<sup><a href="#ref29">[29]</a></sup>: вісім Daler з кельнської марки чистого срібла за 14½ Lod, Marken-fin <b>mf 8,827</b>, 26,494 г чистого на Daler. Триступенева структура: повноцінна Kurantmünze (Daler / Mark / 8 Skilling / 4 Skilling) за 14½ Lod; Scheidemünze (1 Skilling) за 4 Lod (250 ‰); billon (Hvid 4 Lod, Penning 2 Lod). Головний монетний двір Копенгаген за монетмайстра Reynold Junge.'
+  - id: A2
+    year_from: 1544
+    year_to: 1555
+    from_label: '1544'
+    to_label: '1555'
+    title:
+      de: 'Phase A2 · Debasierung 1544-1555 · Tillæg 27. September 1544 · mf 9,481, ≈ 24,67 g fein je Daler — København'
+      en: 'Phase A2 · Debasement 1544-1555 · supplement of 27 September 1544 · mf 9.481, ≈ 24.67 g fine per Daler — København'
+      uk: 'Фаза A2 · Девальвація 1544-1555 · Tillæg 27 вересня 1544 · mf 9,481, ≈ 24,67 г чистого на Daler — Копенгаген'
+    description:
+      de: 'Tillæg vom 27. September 1544 erhöht den Marken-fin auf <b>mf 9,481</b> (≈ 24,67 g fein je Daler)<sup><a href="#ref30">[30]</a></sup><sup><a href="#ref31">[31]</a></sup>. Feingehalt unverändert bei 14½ Lod (906¼ ‰); Raugewicht reduziert. Wirtschaftlicher Hintergrund: nordeuropäische Silberpreisaufwärtsbewegung 1544+ und Bedarf an Münzgeld für Schmalkaldischer-Krieg-Subventionszahlungen Christians III.'
+      en: 'The supplement of 27 September 1544 raises Marken-fin to <b>mf 9.481</b> (≈ 24.67 g fine per Daler)<sup><a href="#ref30">[30]</a></sup><sup><a href="#ref31">[31]</a></sup>. Fineness unchanged at 14½ Lod (906¼ ‰); rough weight reduced. Economic background: northern-European silver price uptrend from 1544 onwards and Christian III''s need for mint money to fund Schmalkaldic War subsidies.'
+      uk: 'Tillæg від 27 вересня 1544 підвищує Marken-fin до <b>mf 9,481</b> (≈ 24,67 г чистого на Daler)<sup><a href="#ref30">[30]</a></sup><sup><a href="#ref31">[31]</a></sup>. Проба незмінна 14½ Lod (906¼ ‰); повна вага зменшена. Економічний контекст: північноєвропейський підйом цін на срібло з 1544+ і потреба Кристіана III у монетних коштах для субсидій Шмалькальденської війни.'
+  christian_iii_flensborg_fod:
+  - id: I
+    year_from: 1547
+    year_to: 1571
+    from_label: '1547'
+    to_label: '1571'
+    title:
+      de: 'Phase I · Flensborg Bestalling 1547 · 14¼ Lod (890⅝ ‰) · mf 8,982, 26,029 g fein je Daler · Lybsk-Untertheilung'
+      en: 'Phase I · Flensborg Bestalling 1547 · 14¼ Lod (890⅝ ‰) · mf 8.982, 26.029 g fine per Daler · Lybsk subdivision'
+      uk: 'Фаза I · Flensborg Bestalling 1547 · 14¼ Lod (890⅝ ‰) · mf 8,982, 26,029 г чистого на Daler · любекська підструктура'
+    description:
+      de: 'Flensborg Bestalling vom 22. Januar 1547 unter Mzm. Jørgen Kock dem Jüngeren<sup><a href="#ref29">[29]</a></sup>. Daler-Brutto identisch zur königlichen Linie (29,232 g, 8 Stück / Cölln. Marck rauh), aber Feingehalt abgesenkt auf 14¼ Lod (890⅝ ‰) ⇒ <b>mf 8,982</b>, 26,029 g fein je Daler (1,75 % leichter als royal). Sub-Mark in Lybsk-Untertheilung: <b>1 Gylden = 24 ß lybsk = 288 Penning lybsk</b><sup><a href="#ref29">[29]</a></sup><sup><a href="#ref32">[32]</a></sup> (vs königliche 48 ß danske). Hauptphase 1545-1554; Auslauf biß 1571 unter Frederik II. Geprägt: Rhinsk Gylden, Sølvgylden, Søsling lybsk (Hede c3h15-c3h22 — Specimen-Coverage in unserem Datensatz noch unvollständig, abhängig vom §AZ Galster + Jensen-Skjoldager Paper-Source-Import).'
+      en: 'Flensborg Bestalling of 22 January 1547 under mintmaster Jørgen Kock the Younger<sup><a href="#ref29">[29]</a></sup>. Daler brutto identical to the royal line (29.232 g, 8 pieces per Cologne mark rough), but fineness reduced to 14¼ Lod (890⅝ ‰) ⇒ <b>mf 8.982</b>, 26.029 g fine per Daler (1.75 % lighter than royal). Sub-Mark in Lybsk subdivision: <b>1 Gylden = 24 ß lybsk = 288 Penning lybsk</b><sup><a href="#ref29">[29]</a></sup><sup><a href="#ref32">[32]</a></sup> (vs royal 48 ß danske). Main phase 1545-1554; tail through 1571 under Frederik II. Coinage: Rhinsk Gylden, Sølvgylden, Søsling lybsk (Hede c3h15-c3h22 — specimen coverage in our dataset is still incomplete, pending the §AZ Galster + Jensen-Skjoldager paper-source import).'
+      uk: 'Flensborg Bestalling від 22 січня 1547 за монетмайстра Jørgen Kock молодшого<sup><a href="#ref29">[29]</a></sup>. Daler повної ваги ідентично royal-лінії (29,232 г, 8 шт. з кельнської марки повної), але проба знижена до 14¼ Lod (890⅝ ‰) ⇒ <b>mf 8,982</b>, 26,029 г чистого на Daler (на 1,75 % легший за royal). Sub-Mark у любекській підструктурі: <b>1 Gylden = 24 ß lybsk = 288 Penning lybsk</b><sup><a href="#ref29">[29]</a></sup><sup><a href="#ref32">[32]</a></sup> (vs royal 48 ß danske). Головна фаза 1545-1554; заник до 1571 за Фредеріка II. Карбування: Rhinsk Gylden, Sølvgylden, Søsling lybsk (Hede c3h15-c3h22 — покриття зразків у нашому наборі даних ще неповне, очікується §AZ Galster + Jensen-Skjoldager paper-source імпорт).'
   kronemont_chr_iv:
   - id: I
     year_from: 1618
