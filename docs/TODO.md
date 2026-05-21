@@ -621,24 +621,19 @@ Estimated total remaining harvest: **~250-400 TIDs** across **6-10 batches**.
 
 **Definition of done.** Norway 1514-1814 harvested (or verified-empty), DK 1514-1581 + 1873-1914 closed, SH pre-1788 + post-1855 closed. Phase-1 coverage table updated. BR closure note replaces this in-progress entry.
 
-### BV. 🔵 Pre-1582 Danish Müntzfüße — define missing standards in fuesse.yml + Denmark page  *(opened 2026-05-20, user-marked «найвищий», **7 of 8 closed 2026-05-21**, status: In review)* *(est: medium-large)* *(type: data + research-applied)*
+### BV. 🔵 Pre-1582 Danish Müntzfüße — define missing standards in fuesse.yml + Denmark page  *(opened 2026-05-20, user-marked «найвищий», **8 of 8 closed 2026-05-21**, status: In review)* *(est: medium-large)* *(type: data + research-applied)*
 
-**Progress 2026-05-21 — 7 of 8 candidates closed, ticket in In review:**
+**Progress 2026-05-21 — 8 of 8 candidates closed, ticket in In review:**
 - ✅ **christian_iii_dalerfod** (commits `0102073` + `9343cd6` + `b88c4a9`, §BF closure)
 - ✅ **christian_iii_flensborg_fod** (same §BF commits, structural Fuß card)
-- ✅ **rhinsk_gylden_fod** (commit `81c91fa`, §AW plan executed — 3 specimens promoted f2h3 + f2h6 + c4h29, two phases I + II)
+- ✅ **rhinsk_gylden_fod** (commit `81c91fa`, §AW plan executed — 3 specimens promoted f2h3 + f2h6 + c4h29, originally two phases I + II)
 - ✅ **f2_guldkrone_fod** (§AV verdict «окрема» 2026-05-21, separate Fuß — 2 specimens promoted f2h2 + f2h5, Klipping-Notmünz-Emission Northern Seven Years' War, 4 new bibliography refs ref33-ref35 added with Wilcke Rentmeister-Rechnungen verbatim, danskmoent.dk, Historyofwar.org)
 - ✅ **goldgulden_fod** (verdict «зроби окремою» 2026-05-21, separate pre-Reichsmünzordnung Fuß for the Hungarian-Venetian Dukat standard; 1527-1559 span; 2 specimens promoted c3h1 + c3h2 1557 Ungersk Gylden; metrically identical to reichsdukatenfuss but legally distinct pre-Augsburger 1559 codification; f1h** Frederik I 1527-1533 specimens pending §AZ; documented as merge-back candidate if maintenance-irrelevant)
 - ✅ **nobel_fod** (Sovereign-tier Danish prestige gold coinage 1496-1532, modelled on Henry VII's English Sovereign 1489 via Øresund Toll channel; Hans 1496 reference specimen 14.67g per Stack's Bowers Bruun Lot 1001 €1.2M auction; Hans 1502 + Christian II 1516+1518 + Frederik I 1532 + undated Ribe Galster 68/69 — all RRR or unique; 3 new bibliography refs ref36-ref38 with Stack's Bowers + danskmoent.dk + Wikipedia Sovereign; ZERO specimens in cache, pending §AZ Galster + Jensen-Skjoldager paper-source import)
 - ✅ **rosenobel_fod** (§AX — Renaissance adaptation of English Rose Noble; Phase I Frederik II 1584 Frederiksborg unique 7.69g + Phase II Christian IV 1611-1629 Copenhagen 8.994g/.833/7.492g fein; ½-Rosenobel «Guldridder» Hede 24; Kalmar War 1611-1613 + Imperial-Danish War 1625-1629 financing context; 5 specimens promoted/reclassified — f2h7b + c4h23a + c4h24 + numismaster-65609 + km-x026 (km-x026 fraction corrected 2→1 from legacy V1 reichsdukatenfuss misplacement); 2 new refs ref39-ref40 danskmoent.dk + Historyofwar Kalmar War; tariff ≈ 3-4 Specie computed, no period attestation — §AX tariff investigation closed as computed, formal verification still optional)
+- ✅ **«Gottorp 0.764» (1534 one-off) — NOT a separate Fuß: Galster misattribution.** Investigation 2026-05-21 against `scripts/cache/danskmoent/galster/chr_c3g131.json` revealed danskmoent.dk verbatim correction: «*Roskilde, af Galster fejlagtigt henført til Gottorp*» — actual mint is **Roskilde**, actual year **1536** (not 1534), denomination **1 Rhinsk gylden** (.764 / 3.19g rough / 2.44g fine). Metrics match `rhinsk_gylden_fod` Phase II (.76) within ~1.1 % Δ. **Verdict (user 2026-05-21):** option (a) — folded into `rhinsk_gylden_fod` as new **Phase 0** (Christian III 1536, Roskilde). Existing Phase I (Frederik II 1563-1564) and Phase II (Christian IV 1625-1632) retained unchanged. Belegfenster extended 1563-1632 → 1536-1632 (96-year window with 27 + 61 year hiatus periods). 2 specimens promoted from seed_unsorted: `unified-dk-galster-c3g-131` + `unified-dk-bruun-14770`. Cross-references on the merged type: Schou 4 / Sieg 23 / Friedberg 18 / Lange 18 / Galster 131. No new bibliography refs needed — ref29 (Wilcke 1950) already covers the Rhenish-Gulden standard genealogy.
 
-**Pending — research from primary sources needed:**
-- **sovereign_fod / noble_fod** — Hans 1496-1502 + Christian II 1516-1518 + Frederik I 1524/1532 high-fineness Realer-tier gold. Wilcke 1924 + Galster 1959-1960 + Hede c1h/c2h/f1h chapters need extraction for metric anchor.
-- **goldgulden_fod** (transitional pre-Reichsdukatenfuß) — F1 1527 → C-IV 1593 at gold .986 / 3.49 g. **Open question** whether this is a distinct Fuß from `reichsdukatenfuss` (1564→1802 at same .986/3.49) or just an early phase of it. Wilcke + Bobzin verification required.
-- **C-III Gottorp 0.764 Dukat-named** (1534 one-off) — classification TBD: own Fuß, fold into `rhinsk_gylden_fod` as a higher-fineness variant, or phase under existing `reichsdukatenfuss`?
-- **Rosenobel Fuß placement** (§AX, C-IV 1611-1629 at gold .833 / 7.495 g fein) — pending tariff investigation. Likely fold under an existing Fuß family rather than spawn a new slot, but tariff verification needed first.
-
-Project ticket `190229723` moved to **In review** (NOT Done) to signal partial closure: rhinsk_gylden_fod implementation done + §BF christian_iii closures done, remaining 5 items have explicit blockers (verdict / research / tariff).
+Project ticket `190229723` ready to flip In review → Done — all 8 candidates closed; remaining work is harvest-bound (§AZ Galster + Jensen-Skjoldager paper-source import for f1h** + c1h** + c2h** + c3h-Flensborg specimens) and tracked under §AZ separately, not §BV.
 
 
 
