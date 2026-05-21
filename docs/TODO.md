@@ -696,6 +696,33 @@ Project ticket `190229723` ready to flip In review → Done — all 8 candidates
 > - **§AM** (DROP 5 gold off-strike entries per CLAUDE.md §9.3) — per-case verdict per candidate (PB-1 style).
 > - **§AQ** (Seed-merge data augmentation policy — field selection + conflict resolution naming).
 
+### BZ. 🟢 Krone-Fuß vernacular names — confirm/add «Груба Крона» / «Тонка Крона» with source citations in descriptions  *(opened 2026-05-21)* *(est: small)* *(type: prose enrichment + sourcing)*
+
+**Surfaced.** User direction 2026-05-21: ensure the **descriptions** of `kronemont` (10½-Krone-Fuß) and `kronemont_fine` (13-Krone-Fuß) explicitly mention the period-attested vernacular names — «Груба Крона» (Grov Krone / Grobe Krone) and «Тонка Крона» (Fin Krone / Feine Krone) respectively — with inline source citations (per CLAUDE.md §5 web-sourced facts → bibliography entry + inline `<sup>` citation, IMMEDIATELY).
+
+**Current state on `data/shared/fuesse.yml`.** The vernacular names DO appear in the Grundwerte headings + one rechnungsfraktionen passage:
+
+- **`kronemont.grundwerte.heading`** (line 2098-2100): «<i>Grobe Krone</i>» / «<i>Груба Крона</i>» — appears as part of the heading subtitle but unsourced.
+- **`kronemont.grundwerte.rechnungsfraktionen.uk`** (line 2157): «<i>13-Krone-Fuß («Тонка Крона»)</i>» — passing mention in cross-reference, also unsourced.
+- **`kronemont_fine.grundwerte.heading`** (line 2228-2230): «<i>Feine Krone</i>» / «<i>Тонка Крона</i>» — same shape as `kronemont`, also unsourced.
+
+The longform `description:` blocks (line 2158-2173 for `kronemont`, line 2288-2306 for `kronemont_fine`) **DO NOT** mention the vernacular names AT ALL. The reader who skips the Grundwerte heading and reads only the prose description never learns these were the period-current Danish names.
+
+**Required action.**
+
+1. **Find primary sources** for both vernacular names (Hede 1957, Wilcke I/II 1919/1924, Aagaard Glückstadt 1671-1696, danskmoent.dk artikler — likely candidates). Each name needs a period-attested source quote, not just modern numismatic-encyclopaedia paraphrase. Confirm the actual Danish forms — «Grov Krone» / «Grove Krone» (the modifier inflection «Grobe» vs «Grov» depends on grammatical context) and «Fin Krone» / «Feine Krone».
+2. **Add to descriptions:** weave the vernacular names into the existing description prose (DE/EN/UK) with inline `<sup><a href="#refNN">[NN]</a></sup>` references. The reader should learn the period-current name AND understand its etymology — «груба» = «coarse» (lower fineness, .672), «тонка» = «fine» (higher fineness, .8333) — from the description, not just the heading.
+3. **Bibliography entries:** add to `data/locations/denmark-references.yml` per CLAUDE.md §5a (Wikipedia-style atomic refs with verbatim quote + page hint). Likely candidate sources:
+   - Hede 1957 NNUM article «Kronemønten 1618-1771» (already ref4 / ref9 in denmark-references.yml — may already carry the period names; verify).
+   - Wilcke II 1924 «Møntvæsenet under Christian IV og Frederik III 1625-1670» (already ref16) — historical naming.
+   - danskmoent.dk article «1 Krone / 4 Mark» (already ref1) — verify Hede-school usage.
+   - Aagaard 2022 «Christian V Kronemønt Glückstadt 1671-1696» (ref15) — Glückstadt-era naming.
+4. **Same fix on the Denmark page (`data/v2/locations/denmark.yml` if separate description-text lives there)** if the location-overlay block carries an independent prose for these Fuß.
+
+**Acceptance criterion.** After the fix, a reader scanning the description prose (the long-form text, not the Grundwerte heading) for `kronemont` should encounter «Grobe Krone / Grov Krone / Груба Крона» with a `<sup>[N]</sup>` citation; same for `kronemont_fine` with «Feine Krone / Fin Krone / Тонка Крона». Verbatim period-source quotation preferred over secondary-source paraphrase.
+
+**Cross-reference.** This pattern (period vernacular name + etymology + source) is the same shape as the «Guldridder» nickname already documented for the ½-Rosenobel Hede 24 (period prose, sourced) — use that as a model.
+
 ### BP. 🟢 Schleswig-Holstein page — review correctness of DK+ vs RH separation  *(opened 2026-05-17)* *(est: small-medium)* *(type: curation policy + data)*
 
 **Surfaced.** User direction 2026-05-17 — review whether the SH page's issuing-entity taxonomy correctly separates `gesamtstaat` (DK+) from `royal_holstein` (RH), and whether keeping them as distinct entities on the SH page is logical.
@@ -1196,8 +1223,8 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 **Closed 2026-05-21.** 3-Müntzfuß implementation cycle complete in three atomic commits:
 
-- ✅ **`christian_ii_lovkompleks_fod`** (commit `49f2922`, §BY/1) — Sølvgylden-Skilling-Hvid triad 1514-1523. 3 phases (A1 Haandfæstning + Lovkompleks baseline, A2 Klipping debasement, A3 final consolidation). 3 specimens promoted: galster-c2g-38 + bruun-3931 + bruun-3933. New classifier rule «sølvgylden»/«solvgylden»/«silver gulden» year_max=1523.
-- ✅ **`frederik_i_dalerfod`** (commit `0480880`, §BY/2) — Møntordning af 25. Februar 1524, 8 Sølvgylden/M @ 14 Lod (vs Christian II 8.5/M) + Lybsk-aligned 24-ß-Mark subdivision + 14-Penning Klipping-Indfrielse-Mønt (separate act 26 Feb 1524). 2 phases (A1 1524-1531, A2 1532 final consolidation). 12 specimens promoted: 4× galster-f1g Sølvgylden 1531-1532 + bruun-4075 ¼ Silver Gulden 1532 + 7× «14 Penning» 1524 specimens. New classifier rules: «sølvgylden» year_min=1524 year_max=1533, «14 penning» year_min=1523 year_max=1533.
+- ✅ **`8_5_gylden_fod`** (commit `49f2922`, §BY/1) — Sølvgylden-Skilling-Hvid triad 1514-1523. 3 phases (A1 Haandfæstning + Lovkompleks baseline, A2 Klipping debasement, A3 final consolidation). 3 specimens promoted: galster-c2g-38 + bruun-3931 + bruun-3933. New classifier rule «sølvgylden»/«solvgylden»/«silver gulden» year_max=1523.
+- ✅ **`8_gylden_fod`** (commit `0480880`, §BY/2) — Møntordning af 25. Februar 1524, 8 Sølvgylden/M @ 14 Lod (vs Christian II 8.5/M) + Lybsk-aligned 24-ß-Mark subdivision + 14-Penning Klipping-Indfrielse-Mønt (separate act 26 Feb 1524). 2 phases (A1 1524-1531, A2 1532 final consolidation). 12 specimens promoted: 4× galster-f1g Sølvgylden 1531-1532 + bruun-4075 ¼ Silver Gulden 1532 + 7× «14 Penning» 1524 specimens. New classifier rules: «sølvgylden» year_min=1524 year_max=1533, «14 penning» year_min=1523 year_max=1533.
 - ✅ **`christian_iii_grevens_fejde_fod`** (commit `017f344`, §BY/3) — civil-war cascade 1534-1540 with 9+ fineness variants per Wilcke 7-3 p. 242 «Master Mårtens regnskabsbøger». 3 phases (A1 Klippe cascade Aarhus+Roskilde+Stockholm+Ribe 1534-1536, A2 Joachimsdaler 1537 Copenhagen, A3 pre-Møntordning transition 1538-1540). Main anchor: Joachimsdaler 1537 at 14½ Lod (metrically identical to 1541 Møntordning — Christian III's first heavy-Daler attempt). 40 specimens promoted: 3× Joachimsdaler 1537 Bruun + 1× ½ Joachimsdaler + multi-mint Klippe + Skilling cascade. New classifier function `_classify_via_grevens_fejde_anchor` (year-range + ruler + entity + metal pattern).
 
 **Deferred to future SH-page cycle:** `frederik_i_husum_fod` (Schleswig-Holstein ducal-zone, 1514-1533) — per user 2026-05-21 «досліди цей стандарт теж, для майбутнього огляду для шлез-гольшт земель». Foundation research already captured at `docs/research/sh_ducal_zone_husum_1514.md` (Husum 1514 Bestalling + Wendischer Münzverein genealogy + 1474 Kaiser Friedrich III imperial privilege). Implementation when SH-page expansion cycle starts.
@@ -1211,7 +1238,7 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 - Pre-1541 silver gap closes for Danish-realm-entity scope
 - Foundation laid for §AZ paper-source import to deepen specimen coverage incrementally
 
-**Remaining seed_unsorted with pre-1541 silver/billon profile:** ~36 specimens (91 inventory - 55 promoted). Most are pre-1523 Christian II + Frederik I Skilling/Hvid that don't carry "Sølvgylden" denomination text and need additional rules (Skilling year_max=1523 → Lovkompleks, Skilling 1524-1533 → Frederik-I-Dalerfod, etc.) — straightforward follow-up but deferred to keep §BY commits focused on Sølvgylden/Joachimsdaler/Klippe hauptkurant tiers.
+**Remaining seed_unsorted with pre-1541 silver/billon profile:** ~36 specimens (91 inventory - 55 promoted). Most are pre-1523 Christian II + Frederik I Skilling/Hvid that don't carry "Sølvgylden" denomination text and need additional rules (Skilling year_max=1523 → Lovkompleks, Skilling 1524-1533 → 8-Gylden-Fod, etc.) — straightforward follow-up but deferred to keep §BY commits focused on Sølvgylden/Joachimsdaler/Klippe hauptkurant tiers.
 
 Original §BY planning preserved below for reference:
 
@@ -1234,8 +1261,8 @@ User verdict: «так, роби, знайдену інформацію помі
 
 | ID (proposed) | Period | Anchor | Specimens in scope |
 |---|---|---|---:|
-| `christian_ii_lovkompleks_fod` | 1514-1523 | Møntordning Sommer 1514 (Dines Blicher Brev Malmö) + Norge 3 Aug 1514 + Sjælland åbent Brev 24 Aug 1515 | 21 |
-| `frederik_i_dalerfod` | 1524-1531 | 25 Februar 1524 royal ordinance (Wilcke 7-2 p. 184-187) | 28 |
+| `8_5_gylden_fod` | 1514-1523 | Møntordning Sommer 1514 (Dines Blicher Brev Malmö) + Norge 3 Aug 1514 + Sjælland åbent Brev 24 Aug 1515 | 21 |
+| `8_gylden_fod` | 1524-1531 | 25 Februar 1524 royal ordinance (Wilcke 7-2 p. 184-187) | 28 |
 | `frederik_i_husum_fod` | 1514-1533 | Husum + Gottorp ducal-zone (mintmaster Jørgen Drewes) | ~6-10 |
 | `christian_iii_grevens_fejde_fod` | 1534-1540 | Master Mårtens regnskab (Wilcke 7-3 p. 242) — civil-war cascade | 41 |
 
@@ -1246,16 +1273,16 @@ Metric anchors fully documented in the existing dossier — no further primary-s
 1. **Define 4 Müntzfüße in `data/shared/fuesse.yml`** with full `grundwerte` + `fractions` + `events` + DE/EN/UK descriptions. Per §BD, all four IDs use the Danish `-fod` convention from day one. Per §0z, descriptions stay reader-voice (historical fact, not project-meta). Per §BB, prose is historical framing only — no parameter bleed.
 
 2. **Add 4 entries to `data/v2/locations/denmark.yml`** under fuss_order + timeline.bars + fuss_periods + phases. Sequencing decisions:
-   - `christian_ii_lovkompleks_fod` ends 1523 → preceeds Frederik I (1523-1533) chronologically; place after `nobel_fod` / `goldgulden_fod` in silver group.
-   - `frederik_i_dalerfod` follows `christian_ii_lovkompleks_fod` (chronological).
+   - `8_5_gylden_fod` ends 1523 → preceeds Frederik I (1523-1533) chronologically; place after `nobel_fod` / `goldgulden_fod` in silver group.
+   - `8_gylden_fod` follows `8_5_gylden_fod` (chronological).
    - `frederik_i_husum_fod` is the SEED of the later Flensborg-fod lineage — list adjacent to `christian_iii_flensborg_fod`.
    - `christian_iii_grevens_fejde_fod` immediately precedes `christian_iii_dalerfod`.
    - Update `timeline.bars[].order` sequence accordingly (currently 0..18; will become 0..22 after insertion of 4 new bars).
 
 3. **Add 4 denomination-anchor rules to `scripts/maintenance/auto_classify_seed_unsorted.py`** (`_DENOMINATION_ANCHOR_RULES` table). Per §BV's proven pattern — denomination + optional year-gate. Suggested rules:
-   - «Sølvgylden» (any form: 1, ¼, ½, 1½) + `year_max: 1523` → `christian_ii_lovkompleks_fod`
-   - «Sølvgylden» + `year_min: 1524, year_max: 1533` → `frederik_i_dalerfod`
-   - «14 Penning» / «14 Penny» + `year_max: 1533` → `frederik_i_dalerfod` (the Wilcke 7-2 p. 187 «14 %» small-change subtype)
+   - «Sølvgylden» (any form: 1, ¼, ½, 1½) + `year_max: 1523` → `8_5_gylden_fod`
+   - «Sølvgylden» + `year_min: 1524, year_max: 1533` → `8_gylden_fod`
+   - «14 Penning» / «14 Penny» + `year_max: 1533` → `8_gylden_fod` (the Wilcke 7-2 p. 187 «14 %» small-change subtype)
    - «Mark lybsk» / «4 ß lybsk» / «Husumdaler» + mint in {Husum, Gottorp} → `frederik_i_husum_fod`
    - «Joachimstaler» / «Joachimsdaler» + year 1537 → `christian_iii_grevens_fejde_fod` (Christian III's first heavy-Daler issue)
    - «2 Mark Klippe» / «4 Skilling Klippe» + year 1535-1539 + mint in {Aarhus, Roskilde, Ribe, Stockholm} → `christian_iii_grevens_fejde_fod`
