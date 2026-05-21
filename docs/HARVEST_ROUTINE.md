@@ -842,6 +842,28 @@ If `list_connected_browsers` returns empty or the user's extension is off:
 - For Numista, WebFetch + Apify may work for sparse single-NID lookups but rate-limit fast.
 - Best move: report «Chrome MCP unavailable this hour — skipped harvest run» and exit cleanly. Do NOT half-execute.
 
+### §7.5. Defensive sampling — pre-harvest scope check (mandatory)
+
+> **Trigger.** Any bucket whose `gap_nids` (Numista) or `gap_tids` (ucoin) list contains entries that have NEVER been touched in a prior batch — i.e. the routine is about to harvest «fresh» scope it hasn't previously verified.
+
+The audit manifests were enumerated via client-side regex on listing-page HTML, and historical evidence (SOURCES.md §13.1 «year-regex false-positives») shows the enumeration occasionally mis-classifies post-1914 modern coins as in-scope. Before mass-harvesting any «fresh» gap list, do this **once**:
+
+1. **Sample 1-2 NIDs from the head of the gap list** via Chrome MCP `browser_batch [navigate + minimal extractor]`. The extractor only needs `king`, `years`, `value` — no save call, no API budget.
+2. **Cross-check the result against the mission scope** declared in `CLAUDE.md` §«Mission temporal scope» (German lands 1559-1914, Danish-realm 1514-1914).
+3. **If sample falls outside mission window** (e.g. ruler is Margrethe II / Frederik IX / any post-1914 monarch):
+   - DO NOT save any cache files from this gap.
+   - Report the finding as an **Anomaly** in the end-of-run report (§8) with the sampled NID + ruler + year.
+   - **Switch to the next priority bucket** for this run.
+   - Open a tracking note: «BO.6 v3 audit's `<country>/<page>` gap suspect — sample N#XXX = <ruler> <years> OOS. Cleanup required before resuming this bucket.»
+   - The user (or a maintenance follow-up) decides whether to reclassify the entire gap list as OOS or whether it's a mixed bucket.
+
+**Why this matters.** The routine is autonomous; a silent harvest of OOS NIDs pollutes the cache with modern coins that the project will never use, AND silently inflates the «cached» counts in the coverage tables. The defensive sample costs ~30 s + 2 page loads — cheaper than every downstream consumer of `scripts/cache/numista/` having to filter OOS noise.
+
+**When NOT to sample.** Buckets currently in-flight (e.g. NO p2 with 7 NIDs already cached from batch N) are already validated — the prior batches confirmed scope. Sample only when opening a fresh bucket whose first batch hasn't run yet.
+
+**Example real case (2026-05-21, DK p4):**
+The audit manifest's `denmark/p4` listed 20 «gap» NIDs as in-scope. The hourly routine sampled N#1461 → got «10 Kroner Margrethe II 2001-2002» → recognised OOS → switched to NO p2 for that hour's Numista batch → reported anomaly. Follow-up Chrome-MCP samples (N#1462, N#14840, N#137792) confirmed all 20 are Margrethe II 2001-2010. The audit was then patched to move the 20 NIDs into a new `oos_excluded_nids` slot with audit-trail reason; DK p4 now correctly shows 104/104 closed. Documented in SOURCES.md §13.1 as known-issue case.
+
 ---
 
 ## §8. End-of-run report template
