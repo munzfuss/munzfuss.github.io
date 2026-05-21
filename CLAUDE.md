@@ -577,12 +577,69 @@ The build pipeline is **`scripts/build.py`** + `scripts/lib/*` (read-only for no
 ## Build command
 
 ```bash
-python scripts/build.py                    # builds everything
-python scripts/build.py --location schleswig_holstein   # single location, all languages
-python scripts/build.py --location schleswig_holstein --lang de   # single page
-python scripts/build.py --debug            # also writes output/debug/*.json
-python scripts/build.py --validate-only    # runs schema validation, no rendering
+python scripts/build.py                                            # V2 pages only (~40s; default)
+python scripts/build.py --include-v1                               # V1 + V2 — required for CI deploy (~67s)
+python scripts/build.py --location schleswig_holstein              # single location, all languages
+python scripts/build.py --location denmark,schleswig_holstein,lubeck   # multi-location (comma-separated)
+python scripts/build.py --location schleswig_holstein --lang de    # single page
+python scripts/build.py --debug                                    # also writes output/debug/*.json
+python scripts/build.py --validate-only                            # schema validation, no rendering
+python scripts/build.py --jobs 4                                   # opt-in parallel renderer (rarely helps)
 ```
+
+Default mode skips the V1 render path because V1 is frozen post the
+2026-05-18 bootstrap (see the V1↔V2 split in `docs/V2_PIPELINE.md`).
+Pass `--include-v1` whenever V1 pages must be refreshed — production
+CI deploy (where `/v1/` is still live-served), template-wide refactors
+that change both trees, or rare V1 YAML edits.
+
+### Build-time caches — scope and invalidation
+
+The build pipeline keeps four **process-scoped** caches in
+`scripts/build.py` to avoid re-parsing ~12 MB of V2 YAML on every
+location render (without them a full build is ~3× slower):
+
+- `_V2_FINAL_CACHE` — `data/v2/final/<entity>.yml` parsed dicts
+- `_V2_SEED_CACHE` — `data/v2/seed/<source>/<entity>.yml` flattened seed list
+- `_V2_UNIFIED_CACHE` — `data/v2/seed_unified/<entity>.yml` parsed dicts
+- `_V2_ABSORBED_SEED_IDS_CACHE` — derived absorb-chain set (function of
+  the three above)
+
+**Scope: per-process module globals.** They populate lazily on first
+call and stay through the process. Each new `python scripts/build.py`
+invocation starts with empty caches — your YAML edits are picked up.
+
+Verified via empirical test (commit `0feccaa` body): mutating
+`data/v2/final/<entity>.yml` between runs produces a different
+rendered HTML hash; restoring the file returns to baseline. There is
+NO disk cache, no persistent-state file, no shared-memory layer —
+purely Python module globals.
+
+**Read-only contract.** Callers MUST treat cached objects as
+read-only. The `_resolve_dict_fields_per_location` path uses
+`{**old, ...}` spreads and dict comprehensions so cached dicts never
+get mutated downstream. If you add a new consumer that touches the
+cached structures, copy first (`dict(c)` / `list(lst)`) before
+mutating — otherwise you corrupt cache state for every subsequent
+location render in the same process.
+
+**One known limitation** — relevant only to **long-lived processes**
+that import `scripts/build.py` and call `_load_v2_*` multiple times
+across YAML edits (test suite re-running fixtures, hypothetical
+watcher daemon, REPL session). In those scenarios the cache won't
+notice the YAML edit until the process restarts. To force-invalidate
+without restarting:
+
+```python
+import build as bld
+bld._V2_FINAL_CACHE = None
+bld._V2_SEED_CACHE = None
+bld._V2_UNIFIED_CACHE = None
+bld._V2_ABSORBED_SEED_IDS_CACHE = None
+```
+
+For the actual CLI build (`python scripts/build.py`) this never
+comes up — every invocation is a fresh process.
 
 ### Preview lifecycle
 
