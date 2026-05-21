@@ -2050,7 +2050,7 @@ coins:
       hede_volume: c4h
       schou: '1'
       sieg: '148'
-    metal: silver
+    metal: gold
     fineness: 0.937
     weight_rough_g: 17.649
     sources:
@@ -2067,6 +2067,9 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     metal_verified: true
+    _curation_holds:
+      metal: "GOLD per Hede source verbatim «Firkantet blanket, guld» (square planchet, gold) + «De firkantede gulddalere (Hede Nr. 10-13)» — Christian IV 1604 Klipping-prestige gulddalere, NOT silver. Seed builder mis-defaulted metal:silver for Daler-tier entries. Override 2026-05-21 user-flagged via c4h13 spot-check; same pattern across siblings c4h10-c4h13."
+      metal_verified: ~
   - id: dk-hede-c4h11
     fuss: reichsdukatenfuss
     phase: I
@@ -2081,7 +2084,7 @@ coins:
       hede_volume: c4h
       schou: 2-4
       sieg: '153'
-    metal: silver
+    metal: gold
     fineness: 0.923
     weight_rough_g: 13.175
     sources:
@@ -2098,6 +2101,9 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     metal_verified: true
+    _curation_holds:
+      metal: "GOLD per Hede source verbatim «Firkantet blanket, guld» — Christian IV 1604 6-Daler Klipping gulddaler, NOT silver. Seed builder mis-defaulted. Override 2026-05-21 same fix as c4h10/12/13."
+      metal_verified: ~
   - id: dk-hede-c4h12
     fuss: reichsdukatenfuss
     phase: I
@@ -2112,7 +2118,7 @@ coins:
       hede_volume: c4h
       schou: 5-8
       sieg: '152'
-    metal: silver
+    metal: gold
     fineness: 0.833
     weight_rough_g: 9.744
     sources:
@@ -2130,6 +2136,9 @@ coins:
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '4'
     metal_verified: true
+    _curation_holds:
+      metal: "GOLD per Hede source verbatim «Firkantet blanket, guld» — Christian IV 1604 4-Daler Klipping gulddaler, NOT silver. Seed builder mis-defaulted. Override 2026-05-21 same fix as c4h10/11/13."
+      metal_verified: ~
   - id: dk-hede-c4h13
     fuss: reichsdukatenfuss
     phase: I
@@ -2144,7 +2153,7 @@ coins:
       hede_volume: c4h
       schou: '6'
       sieg: '151'
-    metal: silver
+    metal: gold
     weight_rough_g: 7.42
     sources:
       - type: literature
@@ -2160,6 +2169,9 @@ coins:
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     fraction: '3'
     metal_verified: true
+    _curation_holds:
+      metal: "GOLD per Hede source verbatim «(Unii) Klipping, guld» + «De firkantede gulddalere (Hede Nr. 10-13)» — Christian IV 1604 3-Daler Klipping gulddaler, only known specimen in Kgl. Mønt- og Medaillesamling, København (61 minted). NOT silver. Seed builder mis-defaulted metal:silver for Daler-tier entries. Override 2026-05-21 user-flagged this entry first; same pattern across siblings c4h10-c4h12."
+      metal_verified: ~
   - id: dk-hede-c4h15
     fuss: reichsdukatenfuss
     phase: I
@@ -2222,36 +2234,7 @@ coins:
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
     metal_verified: true
-  - id: dk-hede-c4h22
-    fuss: reichsdukatenfuss
-    phase: I
-    kind: kurant
-    nominal: Guldmønt
-    year_label: '1606'
-    year_first: 1606
-    ruler: Christian IV.
-    mint: Kopenhagen
-    catalog:
-      hede: '22'
-      hede_volume: c4h
-      schou: '13'
-      sieg: '157'
-    metal: gold
-    weight_rough_g: 4.65
-    sources:
-      - type: literature
-        url: https://www.danskmoent.dk/chr/c4h22.htm
-        ref: danskmoent.dk (Hede c4h22)
-    issuing_entity: danish_realm
-    verified: false
-    weight_rough_verified: true
-    mint_verified: true
-    verification_note:
-      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
-      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-    fraction: '1'
-    metal_verified: true
+
   - id: dk-hede-c4h91
     fuss: seed_unsorted
     phase: hede

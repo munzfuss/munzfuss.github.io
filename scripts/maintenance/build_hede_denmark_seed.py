@@ -153,6 +153,16 @@ _KNOWN_PROOF_PATTERNS: set[str] = {
     "c4h20",   # «Guldmønt U.år» Kbh, Hede 20 / Schou 8 / Sieg 159 —
                # Prøvemønt efter engelsk forbillede; Unik in
                # Den Kgl. Mønt- og Medaillesamling København.
+    "c4h21",   # «Guldmønt u. år» Kbh, Hede 21AB / Schou 10-12 / Sieg 158 —
+               # Prøvemønt efter engelsk forbillede; RRR/Unik in
+               # Den Kgl. Mønt- og Medaillesamling København. Per Anders
+               # Harck (2000): Hede Nr. 20-22 are all proof strikes from
+               # the same period (portrait type 4 / reverse of type 6).
+    "c4h22",   # «Guldmønt, U.år» Kbh, Hede 22 / Schou 13 / Sieg 157 —
+               # «Prøvemønt efter engelsk forbillede»; Unik in Den Kgl.
+               # Mønt- og Medaillesamling København. Forsidestempel
+               # shared with 8 Skilling 1606 (Hede 93). Same Harck-2000
+               # proof cluster as c4h20 + c4h21.
 }
 
 
