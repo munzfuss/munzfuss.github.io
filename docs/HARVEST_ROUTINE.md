@@ -169,6 +169,123 @@ if __name__ == '__main__':
 
 ---
 
+## §1.5. Handoff file — between-runs state
+
+> **Path.** `scripts/cache/_harvest_handoff.json` (inside the submodule — ships with cache data, no extra main-repo commit needed; bumped naturally with each batch commit).
+
+The handoff file carries forward what the next run needs to know without reading chat history: last batch labels, deferred IDs to retry, anomalies the previous run surfaced, audit-files-known-state notes, and a per-run history log.
+
+### §1.5.1. Read at session start (after §1 preflight)
+
+```bash
+.venv/bin/python <<'EOF'
+import json, pathlib
+p = pathlib.Path('scripts/cache/_harvest_handoff.json')
+if not p.exists():
+    print('!!! Handoff file missing — fresh-start mode; proceed but flag at end-of-run.')
+else:
+    h = json.loads(p.read_text())
+    print('Last run UTC:', h.get('last_run_utc'))
+    print('Next batch labels:', h.get('next_numista_batch_label'), '/', h.get('next_ucoin_batch_label'))
+    if h.get('priority_override'):
+        print('!!! Priority override active:', h['priority_override'])
+    deferred = h.get('deferred_ids', {})
+    if deferred.get('numista') or deferred.get('ucoin'):
+        print('Deferred IDs to retry this run:', deferred)
+    pending = h.get('routine_doc_pending_updates', [])
+    if pending:
+        print('Routine-doc pending updates (FYI, do not block):', pending)
+EOF
+```
+
+Apply the read like so:
+
+- **`next_numista_batch_label` / `next_ucoin_batch_label`** — use these verbatim as the new batch's `<letter>` / `<N>`. If you mint your own label (e.g. label already used in a concurrent session), record the alias in the new run's anomaly list.
+- **`priority_override`** — if non-null, **honour it FIRST** for that source. E.g. `{source: "numista", bucket: "NO p4", reason: "user-requested closure push"}` → ignore §2.2's priority table and harvest from NO p4 this run.
+- **`deferred_ids`** — retry these BEFORE picking fresh entries from the priority bucket. They represent NIDs/TIDs the previous run couldn't fetch (Cloudflare blocked, canonical-tid mismatch, etc.) and explicitly punted to «next hour». Drop a deferred ID from the list once it lands cleanly OR after 3 consecutive failed retries (then move it to `dead_404_observed_recently` for manual review).
+- **`audit_files_known_state`** — read this BEFORE running §7.5 defensive sampling. If the audit notes say «denmark/p4 OOS-reclassified 2026-05-21», you don't need to re-verify; the upstream fix has landed.
+- **`routine_doc_pending_updates`** — informational only; the routine itself does not edit `docs/HARVEST_ROUTINE.md` (that requires user review). If the list contains items, surface them in the end-of-run report so the user sees them.
+
+### §1.5.2. Write right before the ucoin commit (§5.1)
+
+The handoff file rides with the **ucoin commit** (the last commit of the run) so each run produces exactly two submodule commits — Numista cache, then ucoin cache + handoff bump. Write the file via Python `json.dump` AFTER ucoin saves complete but BEFORE the `cd scripts/cache && git add ucoin/...` line in §5.1. The ucoin commit's `git add` includes `_harvest_handoff.json` in the file list.
+
+```python
+import json, pathlib
+from datetime import datetime, timezone
+
+p = pathlib.Path('scripts/cache/_harvest_handoff.json')
+h = json.loads(p.read_text())
+
+# Update top-level cross-run state
+now = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z')
+h['last_run_utc'] = now
+h['last_numista_batch_label'] = NUMISTA_BATCH_LABEL   # e.g. 'R'
+h['last_ucoin_batch_label'] = UCOIN_BATCH_LABEL       # e.g. '32'
+h['next_numista_batch_label'] = _increment_label(NUMISTA_BATCH_LABEL)  # 'R' → 'S'
+h['next_ucoin_batch_label'] = str(int(UCOIN_BATCH_LABEL) + 1)          # '32' → '33'
+
+# Carry deferred IDs forward / clear closed ones
+h['deferred_ids']['numista'] = NUMISTA_DEFERRED_THIS_RUN
+h['deferred_ids']['ucoin'] = UCOIN_DEFERRED_THIS_RUN
+
+# Append this run to the history (cap to last 24 entries = 1 day)
+new_run = {
+    'run_utc': now,
+    'trigger': 'cron-fired autonomous',  # or 'user-driven'
+    'numista_batch': {
+        'label': NUMISTA_BATCH_LABEL,
+        'bucket': '<bucket-name>',
+        'nids_saved': NIDS_THIS_RUN,
+        'saved_count': len(NIDS_THIS_RUN),
+        'deferred': NUMISTA_DEFERRED_THIS_RUN,
+        'dead_404': NUMISTA_404_THIS_RUN,
+    },
+    'ucoin_batch': {
+        'label': UCOIN_BATCH_LABEL,
+        'period': '<period-name>',
+        'tids_saved': TIDS_THIS_RUN,
+        'saved_count': len(TIDS_THIS_RUN),
+        'deferred': UCOIN_DEFERRED_THIS_RUN,
+        'dead_404': UCOIN_404_THIS_RUN,
+    },
+    'anomalies': ANOMALIES_THIS_RUN,  # list of {type, detail, action_taken, follow_up}
+    'notes': '<short freeform — closure note, defensive-sample positives, etc.>',
+}
+h['runs'].append(new_run)
+h['runs'] = h['runs'][-24:]   # keep last 24 runs
+
+p.write_text(json.dumps(h, indent=2, ensure_ascii=False) + '\n')
+```
+
+**The handoff file is bumped in the ucoin commit (§5.1), not the Numista commit.** This keeps each run's commit count at exactly two: Numista cache (§3.1), then ucoin cache + handoff (§5.1). Both pointer bumps in main repo follow per PB-10.
+
+### §1.5.3. Label-increment rule
+
+- Numista labels: single uppercase letter A-Z, then double letters AA-ZZ. `_increment_label('Q') == 'R'`, `_increment_label('Z') == 'AA'`, `_increment_label('AZ') == 'BA'`.
+- ucoin labels: integer string. `int(label) + 1`.
+
+### §1.5.4. Anomaly type vocabulary (for the `runs[].anomalies[].type` field)
+
+Use these stable strings so the next run can grep / match without prose parsing:
+
+| Type | When |
+|---|---|
+| `audit_manifest_scope_drift` | §7.5 defensive sample shows a bucket's gap list contains OOS entries |
+| `commit_footer_rejected` | Pre-commit or auto-mode classifier rejects the Co-Authored-By footer (or similar) |
+| `cloudflare_challenge_persistent` | Cloudflare blocked the same source ≥2 times in this run despite 90s waits |
+| `canonical_tid_mismatch_persistent` | ucoin save script returned exit 2 for ≥2 consecutive TIDs |
+| `chrome_mcp_unavailable` | `list_connected_browsers` returned empty mid-run |
+| `pre_commit_hook_failure` | `.githooks/pre-commit` failed validate/audit on unrelated files |
+| `concurrent_session_conflict` | submodule needed rebase or main-repo had unrelated dirty edits |
+| `nid_or_tid_404_unexpected` | Source returned «Page Not Found» for an ID that was in the audit's gap list |
+| `priority_bucket_exhausted` | The current-priority bucket closed mid-run; routine moved to next priority |
+| `doc_update_pending` | Routine surfaced a non-blocking «next session please update doc X» note |
+
+For each anomaly, also fill `detail` (free-text), `action_taken` (what the routine did), and `follow_up` (what the user/next-session should do).
+
+---
+
 ## §2. Pick the next Numista batch
 
 ### §2.1. Read the audit + cache state
@@ -334,7 +451,7 @@ N#<nid5>  …
 
 <optional 1-line note: bucket closure status, e.g. "p1 progress: 134/139 (5 left)">
 
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -350,7 +467,7 @@ data: bump cache pointer — Numista BO.6 batch <letter> (<bucket>, <N> NIDs)
 scripts/cache: <one-line description of what this slice contains>.
 <closure note if any, e.g. "DK p1 1513-1617 now 139/139 — Phase 1 COMPLETE">
 
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -541,7 +658,7 @@ Same shape as §3 (PB-10 dance), but for ucoin files:
 ### §5.1. Submodule step (Step A)
 
 ```bash
-cd scripts/cache && git add ucoin/<tid1>.json ucoin/<tid2>.json … && git commit -m "$(cat <<'EOF'
+cd scripts/cache && git add ucoin/<tid1>.json ucoin/<tid2>.json … _harvest_handoff.json && git commit -m "$(cat <<'EOF'
 ucoin BR batch <N> — <period-name> <slice-description> (<M> TIDs)
 
 <1-2 line description of what cluster this batch covers>
@@ -554,7 +671,7 @@ TID <tid5>  …
 
 <period> progress: <cached>/<total> cached (<remaining> left).
 
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -568,7 +685,7 @@ data: bump cache pointer — ucoin BR batch <N> (<period> <slice>, <M> TIDs)
 scripts/cache: <1-line description>. <period> progress: <cached>/<total>
 cached (<remaining> left).
 
-Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>
 EOF
 )"
 ```
@@ -934,7 +1051,8 @@ The routine STOPS HARD (returns failure, do not commit) under:
 | `scripts/cache/ucoin/_deleted_ids.json` | Append-only list of 404 TIDs | RW |
 | `scripts/cache/numista/_deleted_ids.json` | Append-only list of 404 NIDs | RW |
 | `scripts/cache/ucoin/_p<NNNN>_listing.json` | Optional: cached slug→TID map per period | RW (lazy) |
-| `docs/handoff.md` | Session-state pickup file | Read for context only; this routine does NOT update |
+| `scripts/cache/_harvest_handoff.json` | Between-runs state (next batch labels, deferred IDs, anomaly log, audit-known-state notes) — see §1.5 | **RW (mandatory, every run)** |
+| `docs/handoff.md` | Project-wide session-state pickup file | Read for context only; this routine does NOT update |
 
 ---
 
@@ -944,23 +1062,34 @@ For reference — what a successful run looks like end-to-end:
 
 ```
 1. Preflight: pwd, save scripts present, Chrome connected ✓
-2. Pick Numista batch: NO p2 priority #1 → next 5 uncached
-   = [129036, 131961, 134252, 135242, 142680]  (example, NOT necessarily these)
-3. For each NID:
+2. Read scripts/cache/_harvest_handoff.json (§1.5.1):
+   → next_numista_batch_label = "R"
+   → next_ucoin_batch_label = "32"
+   → priority_override = null
+   → deferred_ids = {numista: [], ucoin: []}
+   → audit_files_known_state has "denmark/p4 OOS-reclassified" → safe to use audit
+3. Pick Numista batch: NO p2 priority #1 → next 5 uncached
+   = [129036, 131961, 134252, 135242, 142680]  (example)
+4. For each NID:
    a. browser_batch [navigate + extractor JS]
    b. save heredoc → /tmp/save_numista.py
    c. sleep 31-60s
-4. Submodule commit + main pointer bump
-5. Pick ucoin batch: p1115 priority #1 → next 5 uncached
+5. Submodule commit (Numista cache only) + main pointer bump
+6. Pick ucoin batch: p1115 priority #1 → next 5 uncached
    = [94117, 94118, 94119, 94120, 94124]  (example)
-6. Listing-page anchor fetch (once)
-7. For each TID:
+7. Listing-page anchor fetch (once)
+8. For each TID:
    a. browser_batch [navigate slug-URL + extractor JS]
    b. save heredoc → /tmp/save_ucoin.py
    c. sleep 31-60s
-8. Submodule commit + main pointer bump
-9. Render §6.1 tables + §8 report
-10. Wait for user "пуш" before any push
+9. Update _harvest_handoff.json (§1.5.2):
+   → last_run_utc = now
+   → last_*_batch_label = R / 32
+   → next_*_batch_label = S / 33
+   → append run record to runs[] (with anomalies if any)
+10. Submodule commit (ucoin cache + _harvest_handoff.json) + main pointer bump
+11. Render §6.1 tables + §8 report (delta-columns auto-populated from this run's IDs)
+12. Wait for user "пуш" before any push
 ```
 
 Total wall time per run: ~12-18 min (10 fetches × ~45s pacing + ~3 min overhead). Cron firing at :00 every hour will not overlap.
