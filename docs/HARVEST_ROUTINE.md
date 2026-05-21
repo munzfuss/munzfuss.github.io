@@ -321,9 +321,10 @@ num_cache = pathlib.Path('scripts/cache/numista')
 # Buckets are at audit['in_scope_buckets'][country][page]
 # Each carries: in_scope_total + (in_scope_nids | gap_nids)
 priorities = [
-    ('norway', 'p2', 193),    # 1st: continue NO p2 (batch N opened)
-    ('norway', 'p4', 78),     # 2nd: small bucket, easy closure
-    ('norway', 'p3', 200),    # 3rd: largest pool, save for last
+    ('denmark', 'p0_pre_lovkompleks', 20),  # NEW pri-1 2026-05-21: standards-continuity context, [1396, 1513)
+    ('norway', 'p2', 88),     # 2nd: continue NO p2 (post-cleanup; was 193 before pre-1513 OOS reclassify)
+    ('norway', 'p4', 78),     # 3rd: small bucket, easy closure
+    ('norway', 'p3', 200),    # 4th: largest pool, save for last
 ]
 for country, page, _ in priorities:
     info = num_audit['in_scope_buckets'][country][page]
@@ -340,15 +341,18 @@ EOF
 
 The script picks the first priority with uncached NIDs and prints the next 5 to fetch.
 
-### §2.2. Numista priority order (Phase 2 only — Phase 1 is closed)
+### §2.2. Numista priority order
 
 | Priority | Bucket | Era | Strategy |
 |---|---|---|---|
-| 1 | NO p2 1513-1657 | C2 Oslo → F3 early | Continue from batch N |
-| 2 | NO p4 1697-1814 | C5 late → F6 1813 | Small (78 NIDs), close it next |
-| 3 | NO p3 1657-1697 | F3 mid → C5 Kongsberg | Largest pool (200), interleave |
+| **1** | **DK p0_pre_lovkompleks 1396-1513** | **Erik of Pommern → John I (Hans)** | **Standards-continuity context — user-introduced 2026-05-21, ~4 batches to close (20 NIDs)** |
+| 2 | NO p2 1513-1657 | C2 Oslo → F3 early Speciedaler | Continue from batch N (post-OOS cleanup: 88 in-scope, ~27 cached) |
+| 3 | NO p4 1697-1814 | C5 late → F6 1813 | Small (78 NIDs), close it next |
+| 4 | NO p3 1657-1697 | F3 mid → C5 Kongsberg | Largest pool (200), interleave |
 
 When a bucket cached count == in_scope_total, move to the next priority.
+
+**Note on `p0_pre_lovkompleks`** — this bucket holds Danish coinage from Erik of Pommern (1396-1439) through Hans / John I (1481-1513) — strictly speaking outside the project's 1514 mission anchor, but kept in scope as **standards-continuity context** for understanding what immediately preceded the Christian II 1514 four-act Lovkompleks. The 20 NIDs were user-curated from the Numista DK catalogue page 1 listing (`?e=danemark&st=1-2-3-47-154-5-54&cat=y&p=1&q=200&s=c&o=y`, sorted year ASC). Defensive sampling §7.5 does NOT need to fire here — every NID was hand-verified against the listing-page text before being added to `in_scope_nids` (no false-positive risk).
 
 **Special case — when DK p1/p2/p3/p4 or SH cluster have new gap NIDs** (e.g. user added URLs to a manifest), prioritise those FIRST. Re-read `_BO6_audit_2026-05-20.json` + `_BO6_gaps_manifest_2026-05-19.json` and compare against actual cache contents before defaulting to NO buckets.
 
@@ -903,6 +907,7 @@ num_audit = json.loads(pathlib.Path('scripts/cache/numista/_BO6_audit_2026-05-20
 num_cache = pathlib.Path('scripts/cache/numista')
 
 NUMISTA_BUCKETS = [
+    ('DK p0 pre-Lovkompleks (1396-1513)', 'Erik of Pommern → Christopher of Bavaria → C1 → John I (Hans)', ('denmark', 'p0_pre_lovkompleks')),
     ('DK p1 (1513-1617)', 'C2/C3/F1/F2 + C4 early', ('denmark', 'p1')),
     ('DK p2 (1617-1671)', 'C4 Kipper/Glückstadt/Gottorp + F3', ('denmark', 'p2')),
     ('DK p3 (1671-1791)', 'C5 Speciedaler → C7 Trade', ('denmark', 'p3')),
