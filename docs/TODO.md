@@ -1190,6 +1190,71 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 ## Normal priority
 
+### BY. 🟢 Pre-1541 Danish silver Müntzfüße — define 4 standards (Christian II Lovkompleks + Frederik I + Husum + Grevens Fejde) + promote 91 seed_unsorted specimens  *(opened 2026-05-21)* *(est: medium-large)* *(type: data + classifier extension)*
+
+**Surfaced.** User question 2026-05-21 «якою була срібна стопа в данії до 1541 року?» exposed a known coverage gap: the §BV cycle (closed same day) added eight pre-1582 Fuß slots but only on the gold side; the silver side 1514-1540 still has NO project-defined Müntzfuß. 91 silver/billon specimens currently sit in `seed_unsorted` because the classifier has no metric target to land them under.
+
+User verdict: «так, роби, знайдену інформацію помісти в docs».
+
+**Research COMPLETE** — captured in three companion dossiers:
+
+- `docs/research/wilcke_1514_1541_specs.md` §1-§4 — full ordinance-level specs from Wilcke 1950 (Christian II 1514 Lovkompleks pp. 150-156, Frederik I 25 Feb 1524 ordinance pp. 184-187, Husum ducal-zone p. 186, Grevens Fejde 1534-39 p. 242)
+- `docs/research/denmark_pre_1541_source_survey.md` — per-source coverage matrix (Wilcke + Bruun + Galster + Numista + Jensen-Skjoldager)
+- `docs/research/pre_1541_silver_seed_inventory.md` — **new 2026-05-21**, current-state snapshot: 91 seed_unsorted specimens grouped + classifier behaviour + §BF roadmap mapping
+
+**Scope — 4 new Müntzfüße to define (per `wilcke_1514_1541_specs.md` §8 roadmap):**
+
+| ID (proposed) | Period | Anchor | Specimens in scope |
+|---|---|---|---:|
+| `christian_ii_lovkompleks_fod` | 1514-1523 | Møntordning Sommer 1514 (Dines Blicher Brev Malmö) + Norge 3 Aug 1514 + Sjælland åbent Brev 24 Aug 1515 | 21 |
+| `frederik_i_dalerfod` | 1524-1531 | 25 Februar 1524 royal ordinance (Wilcke 7-2 p. 184-187) | 28 |
+| `frederik_i_husum_fod` | 1514-1533 | Husum + Gottorp ducal-zone (mintmaster Jørgen Drewes) | ~6-10 |
+| `christian_iii_grevens_fejde_fod` | 1534-1540 | Master Mårtens regnskab (Wilcke 7-3 p. 242) — civil-war cascade | 41 |
+
+Metric anchors fully documented in the existing dossier — no further primary-source research needed before implementation.
+
+**Implementation sub-tasks (§BV-style cycle):**
+
+1. **Define 4 Müntzfüße in `data/shared/fuesse.yml`** with full `grundwerte` + `fractions` + `events` + DE/EN/UK descriptions. Per §BD, all four IDs use the Danish `-fod` convention from day one. Per §0z, descriptions stay reader-voice (historical fact, not project-meta). Per §BB, prose is historical framing only — no parameter bleed.
+
+2. **Add 4 entries to `data/v2/locations/denmark.yml`** under fuss_order + timeline.bars + fuss_periods + phases. Sequencing decisions:
+   - `christian_ii_lovkompleks_fod` ends 1523 → preceeds Frederik I (1523-1533) chronologically; place after `nobel_fod` / `goldgulden_fod` in silver group.
+   - `frederik_i_dalerfod` follows `christian_ii_lovkompleks_fod` (chronological).
+   - `frederik_i_husum_fod` is the SEED of the later Flensborg-fod lineage — list adjacent to `christian_iii_flensborg_fod`.
+   - `christian_iii_grevens_fejde_fod` immediately precedes `christian_iii_dalerfod`.
+   - Update `timeline.bars[].order` sequence accordingly (currently 0..18; will become 0..22 after insertion of 4 new bars).
+
+3. **Add 4 denomination-anchor rules to `scripts/maintenance/auto_classify_seed_unsorted.py`** (`_DENOMINATION_ANCHOR_RULES` table). Per §BV's proven pattern — denomination + optional year-gate. Suggested rules:
+   - «Sølvgylden» (any form: 1, ¼, ½, 1½) + `year_max: 1523` → `christian_ii_lovkompleks_fod`
+   - «Sølvgylden» + `year_min: 1524, year_max: 1533` → `frederik_i_dalerfod`
+   - «14 Penning» / «14 Penny» + `year_max: 1533` → `frederik_i_dalerfod` (the Wilcke 7-2 p. 187 «14 %» small-change subtype)
+   - «Mark lybsk» / «4 ß lybsk» / «Husumdaler» + mint in {Husum, Gottorp} → `frederik_i_husum_fod`
+   - «Joachimstaler» / «Joachimsdaler» + year 1537 → `christian_iii_grevens_fejde_fod` (Christian III's first heavy-Daler issue)
+   - «2 Mark Klippe» / «4 Skilling Klippe» + year 1535-1539 + mint in {Aarhus, Roskilde, Ribe, Stockholm} → `christian_iii_grevens_fejde_fod`
+
+4. **Add bibliography refs to `data/locations/denmark-references.yml`** as needed — ref29 (Wilcke 1950) already covers most; expect ref41-ref44 for ordinance-specific citations (1514 Sommer-ordinance text, 25 Feb 1524 royal ordinance text, Husum 1514 spec, Grevens Fejde Mårtens regnskab).
+
+5. **Run `auto_classify_seed_unsorted.py --entity danish_realm --apply`** — expected to promote ≈ 60-80 specimens out of seed_unsorted (the remainder will be FUSS_OK_PHASE_GAP or genuinely off-pattern Klippe/civil-war variants needing manual placement).
+
+6. **Build + validate + commit** in atomic-task batches (per CLAUDE.md commit-cadence rule — one Fuß per commit, classifier rule update its own commit, specimen promotion its own commit).
+
+**Cross-references:**
+
+- **§BV** (closed 2026-05-21) — 8-Fuß gold cycle that proved the implementation pattern. §BY reuses the same shape (denomination_anchor rules + surgical apply path + verbatim source quotes in `verification_note: false` + `_curation_holds` for any manual edits).
+- **§BF** (closed 2026-05-20) — Christian III 1541 `christian_iii_dalerfod`. §BY is «what comes chronologically before» §BF; the 1540→1541 fineness transition (.875 → .906) is a natural cross-Fuß boundary.
+- **§AZ** (long-running, paper-source-blocked) — Galster + Jensen-Skjoldager promotion that would land the c3h21-c3h22 Flensborg specimens + earlier Frederik I royal-mint paper-only specimens. §BY can proceed WITHOUT waiting for §AZ — the existing Galster cache + Bruun lots already cover 91 specimens; §AZ would deepen coverage incrementally.
+- **§BD** (Danish-jurisdiction Fuß names) — all 4 new IDs adopt the `-fod` convention from day one (`*_lovkompleks_fod`, `*_dalerfod`, `*_husum_fod`, `*_grevens_fejde_fod`).
+
+**Acceptance criteria (per §BV pattern):**
+
+- 4 `fuesse.yml` entries land with full structural blocks + sourced metric annotations.
+- 4 `denmark.yml` timeline.bars + fuss_periods + phases land.
+- 4 denomination-anchor rules added to classifier; dry-run shows ≥ 60 new auto-promotions.
+- `python scripts/build.py --validate-only` clean; rendered Denmark DE/EN/UK pages show 4 new Fuß cards.
+- §BY closure commits push the ahead-of-origin count.
+
+**Definition of done.** Pre-1541 silver gap closes; the 91 seed_unsorted specimens are either promoted to one of the 4 new Müntzfüße or explicitly noted as FUSS_OK_PHASE_GAP / off-pattern (with reason). The §AZ paper-source import becomes a coverage-deepening task, not a blocker.
+
 ### AK. Flip `mint_verified` to true for seed entries whose Hede source explicitly states the mint  *(opened 2026-05-13)*
 
 **Surfaced.** User flagged `dk-hede-f2h31` (Hede# 31 / Sieg# 32.1 / Schou# 27 / Fr# 2 — 1 Søsling Lybsk 1566, Frederik II): currently `mint: Flensburg` + `mint_verified: false` → renders as «Flensburg (?)» in the table. But the Hede source page (https://www.danskmoent.dk/fr/f2h31.htm) explicitly names «Flensborg» (Danish spelling of the same German «Flensburg»). The mint IS source-attested; the `(?)` marker is wrong.
