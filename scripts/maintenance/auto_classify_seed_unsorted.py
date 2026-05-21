@@ -598,6 +598,26 @@ _DENOMINATION_ANCHOR_RULES: list[dict] = [
      "kind": "kurant",
      "year_max": 1559,
      "rationale": "Ungersk Gylden ≤1559 — pre-Reichsmünzordnung goldgulden_fod (post-1559 falls through to reichsdukatenfuss)"},
+
+    # Sølvgylden / Silver Gulden — uniquely the Christian II
+    # Lovkompleks Hauptkurant silver coin (1514-1523). Covers
+    # variant spellings: «1 Sølvgylden», «Halv Sølvgylden»,
+    # «1½ Sølvgylden», «¼ Sølvgylden», «Silver Gulden» (Bruun
+    # English spelling), «1 Gulden» (Numista variant). year_max
+    # not strictly required — post-1523 Sølvgylden is rare and
+    # falls under Frederik I's reign anyway (the f1g specimens
+    # belong to the SAME 14-Lod Hauptkurant tradition since
+    # Frederik I's 1524 ordinance preserves the .875 fineness on
+    # the silver side per Wilcke 7-2 p. 187). When `frederik_i_
+    # dalerfod` lands as a separate Fuß, this rule will need a
+    # year_max=1523 split similar to the Ungersk Gylden case.
+    # For now (until §BY Fuß 2 lands), Sølvgylden routes to
+    # christian_ii_lovkompleks_fod globally.
+    {"patterns": ["sølvgylden", "solvgylden", "silver gulden"],
+     "fuss": "christian_ii_lovkompleks_fod",
+     "kind": "kurant",
+     "year_max": 1523,
+     "rationale": "Sølvgylden ≤1523 — Christian II Lovkompleks Hauptkurant silver (post-1523 splits to frederik_i_dalerfod when that Fuß lands)"},
 ]
 
 
