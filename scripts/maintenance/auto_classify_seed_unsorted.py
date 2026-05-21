@@ -538,6 +538,137 @@ def _classify_via_era_anchor(coin: dict, entity_id: str | None
     return ("era_anchor", "18_5_thaler", kind, audit)
 
 
+# Denomination-anchor rule table — coins whose nominal text uniquely
+# identifies a Müntzfuß within the Danish-Norwegian register, with no
+# possibility of cross-Fuß ambiguity. Each entry is matched in order,
+# first-match wins.
+#
+# Adding a new rule requires verifying TWO conditions in the data:
+#   (a) the denomination string only appears in this Fuß family
+#       across all Danish-Norwegian seeds (`grep nominal: data/v2/final`)
+#   (b) the optional year_max (if set) cleanly separates this Fuß from
+#       a sibling Fuß that shares the denomination but covers a
+#       different period (the Ungersk Gylden 1527-1559 → goldgulden_fod
+#       vs. 1559+ → reichsdukatenfuss case).
+#
+# Patterns are case-insensitive substring matches on the lowercased
+# `nominal` field. Order matters — narrower patterns must precede
+# broader ones (Rosenobel before Nobel, etc.).
+_DENOMINATION_ANCHOR_RULES: list[dict] = [
+    # Rhinsk Gylden / Rhinsk Gulden — uniquely the Rhenish-Gulden
+    # standard. Appears as «1 Rhinsk Gylden», «1 Rhinsk gylden»,
+    # «Goldgulden (Rhinsk Gulden)» (Bruun alt spelling), «Gold Gulden
+    # (Rhinsk Gylden)». Covers Phase 0 (Christian III 1536 Roskilde),
+    # Phase I (Frederik II 1563-1564), Phase II (Christian IV
+    # 1625-1632).
+    {"patterns": ["rhinsk gylden", "rhinsk gulden"],
+     "fuss": "rhinsk_gylden_fod",
+     "kind": "kurant",
+     "rationale": "Rhinsk-Gylden — unique to rhinsk_gylden_fod"},
+
+    # Rosenobel — uniquely the Rose-Noble-Renaissance-adaptation.
+    # Covers «1 Rosenobel» (Frederik II 1584 + Christian IV 1611-1629)
+    # + «½ Rosenobel» (Christian IV 1611, period nickname Guldridder).
+    # MUST precede the Nobel rule below — otherwise «Rosenobel» would
+    # false-positive on the bare «Nobel» substring check.
+    {"patterns": ["rosenobel"],
+     "fuss": "rosenobel_fod",
+     "kind": "kurant",
+     "rationale": "Rosenobel — unique to rosenobel_fod"},
+
+    # Nobel (Sovereign-tier prestige, NOT Rosenobel). Covers Hans
+    # 1496-1502 + Christian II 1516-1518 + Frederik I 1532 + undated
+    # Ribe Galster 68/69. The Rosenobel rule above eats «Rosenobel»
+    # first, so this rule only fires on bare «Nobel» / «1 Nobel».
+    {"patterns": ["nobel"],
+     "fuss": "nobel_fod",
+     "kind": "kurant",
+     "rationale": "Nobel (Sovereign-tier) — unique to nobel_fod after Rosenobel-rule eats Rosenobel"},
+
+    # Ungersk Gylden / Ungersk gylden — uniquely the
+    # Hungarian-Venetian Dukat standard. Pre-Augsburger 1559 →
+    # goldgulden_fod (the §BV pre-Reichsmünzordnung Fuß); post-1559
+    # → reichsdukatenfuss (the same physical standard but under
+    # formal imperial codification). year_max=1559 enforces this
+    # split; coins with year_first > 1559 don't match this rule and
+    # fall through to delta-math, which lands them on
+    # reichsdukatenfuss.
+    {"patterns": ["ungersk gylden", "ungersk gulden"],
+     "fuss": "goldgulden_fod",
+     "kind": "kurant",
+     "year_max": 1559,
+     "rationale": "Ungersk Gylden ≤1559 — pre-Reichsmünzordnung goldgulden_fod (post-1559 falls through to reichsdukatenfuss)"},
+]
+
+
+def _classify_via_denomination_anchor(coin: dict, entity_id: str | None
+                                        ) -> tuple[str, str | None, str | None, dict]:
+    """Denomination-anchor rule: when a coin's nominal text uniquely
+    identifies a Müntzfuß within the Danish-Norwegian register, assign
+    it directly without delta-math.
+
+    Why an anchor rule is needed.
+    -----------------------------
+    The §BV cycle added six new Müntzfüße with characteristic
+    denominations (Rhinsk Gylden, Rosenobel, Nobel, Ungersk Gylden,
+    plus the existing pattern-matchable ones). Several of these
+    specimens carry NO fineness in the seed data (Bruun parser doesn't
+    extract fineness; Galster pages sometimes only carry brutto) — so
+    the fineness/weight-Δ fallback CANNOT classify them, even though
+    the denomination alone uniquely determines the Fuß.
+
+    The rule table `_DENOMINATION_ANCHOR_RULES` carries the patterns
+    + targeted Fuß + optional year constraint. First-match wins; order
+    in the table matters (narrower patterns precede broader ones —
+    Rosenobel before Nobel).
+
+    Entity scope:
+      * `danish_realm` — all four §BV rules apply
+      * `danish_norway` — Norway shares Danish-realm currency for the
+        relevant periods (pre-1814 Kalmar-Union era), so the same
+        rules apply when the denomination appears there too. Future
+        rules with period-specific Norwegian-mint scope would need a
+        per-rule entity gate.
+      * Other entities — rules currently don't fire (the §BV Fuesse
+        are Danish-Norwegian-exclusive); generalise if needed when
+        German lands need parallel denomination-anchor rules.
+
+    Returns (signal, fuss_id, kind, audit). Signal is one of:
+      - denomination_anchor — applied (returns Fuß + kind from rule)
+      - no_match — no denomination rule fires
+    """
+    audit: dict = {"rule": "denomination_anchor"}
+    if entity_id not in {"danish_realm", "danish_norway"}:
+        return ("no_match", None, None, audit)
+    nominal = str(coin.get("nominal") or "").lower()
+    if not nominal:
+        return ("no_match", None, None, audit)
+    year_first = coin.get("year_first")
+    for rule in _DENOMINATION_ANCHOR_RULES:
+        if not any(p in nominal for p in rule["patterns"]):
+            continue
+        # Year constraint check
+        year_max = rule.get("year_max")
+        if year_max is not None:
+            if not isinstance(year_first, int) or year_first > year_max:
+                # Pattern matched but year is past the cutoff — fall
+                # through to the next rule (or to delta-math).
+                continue
+        year_min = rule.get("year_min")
+        if year_min is not None:
+            if not isinstance(year_first, int) or year_first < year_min:
+                continue
+        audit.update({
+            "matched_pattern": next(p for p in rule["patterns"] if p in nominal),
+            "rationale": rule["rationale"],
+            "nominal": coin.get("nominal"),
+            "year_first": year_first,
+            "entity": entity_id,
+        })
+        return ("denomination_anchor", rule["fuss"], rule.get("kind"), audit)
+    return ("no_match", None, None, audit)
+
+
 def _classify_via_kronefod_anchor(coin: dict, entity_id: str | None
                                    ) -> tuple[str, str | None, str | None, dict]:
     """Era-anchor rule: post-1873 Danish-realm / Norwegian-realm coins with
@@ -646,6 +777,22 @@ def classify_coin(coin: dict, fuesse: dict, yield_index: dict,
         decision["proposed_fuss"] = yld_fuss
         decision["signal"] = yld_signal  # hede_yield
         decision["audit"] = yld_audit
+        return decision
+
+    # Denomination-anchor: §BV unique-denomination patterns
+    # (Rhinsk Gylden, Rosenobel, Nobel, Ungersk Gylden ≤1559).
+    # Runs BEFORE delta-math because these denominations uniquely
+    # determine the Fuß even when fineness/weight data is missing
+    # — and several seed entries (Bruun, partial Galster pages)
+    # carry no fineness so delta-math can't classify them.
+    dn_signal, dn_fuss, dn_kind, dn_audit = _classify_via_denomination_anchor(
+        coin, entity_id)
+    if dn_fuss:
+        decision["proposed_fuss"] = dn_fuss
+        if dn_kind:
+            decision["proposed_kind"] = dn_kind
+        decision["signal"] = dn_signal
+        decision["audit"] = dn_audit
         return decision
 
     # Era-anchor: post-1873 Danish-realm / Norwegian Krone-Øre → kronefod.
@@ -825,35 +972,80 @@ def main() -> int:
                 break
 
     if args.apply:
-        # Apply classifications: mutate V2 final entries
+        # Apply classifications: mutate V2 final entries via SURGICAL
+        # line-level edits. We do NOT round-trip the whole YAML
+        # through any parser — that re-serialises every long string,
+        # reflows multi-line scalars, and produces a multi-thousand-
+        # line cosmetic diff that buries the actual fuss/phase/kind
+        # mutations in noise.
+        #
+        # Instead, walk the file line-by-line: find each coin block
+        # by its `id: <coin_id>` line (anchor), then back-walk to the
+        # block's `- fuss: seed_unsorted` line and the `phase:` /
+        # `kind:` lines that follow within the same indentation
+        # level. Replace the three values in place. Resulting diff
+        # contains exactly the changed lines per coin (typically
+        # 3 lines × N coins = ~30 lines for a batch of 10 coins).
         write_count = 0
         for ent, decisions in by_entity.items():
             if not decisions:
                 continue
             path = V2_FINAL / f"{ent}.yml"
-            doc = yaml.safe_load(path.read_text()) or {}
-            coins = doc.get("coins") or []
             applied_ids = {d["coin_id"]: d for d in decisions
                            if d.get("proposed_fuss") and d.get("proposed_phase")}
+            if not applied_ids:
+                continue
+            lines = path.read_text().splitlines(keepends=True)
+            # Build coin-block index: for each coin, find the line
+            # number of its `id:` line (the anchor — id appears once
+            # per coin block, unique value), then back-walk to the
+            # nearest `- fuss:` line above (block start).
+            id_to_block_start: dict[str, int] = {}
+            for i, line in enumerate(lines):
+                m = re.match(r"^\s+id:\s+(\S+)\s*$", line)
+                if m and m.group(1) in applied_ids:
+                    # Back-walk to the `- fuss:` line
+                    for j in range(i, -1, -1):
+                        if re.match(r"^-\s+fuss:\s+\S", lines[j]):
+                            id_to_block_start[m.group(1)] = j
+                            break
             mutated = 0
-            for coin in coins:
-                cid = coin.get("id")
-                if cid not in applied_ids:
+            for cid, d in applied_ids.items():
+                if cid not in id_to_block_start:
+                    print(f"  [warn] {ent}/{cid}: id-line not found, skipping")
                     continue
-                d = applied_ids[cid]
-                coin["fuss"] = d["proposed_fuss"]
-                coin["phase"] = d["proposed_phase"]
-                if d.get("proposed_kind"):
-                    coin["kind"] = d["proposed_kind"]
+                start = id_to_block_start[cid]
+                # Forward-walk from the block start; replace the
+                # `- fuss:` line + any `  phase:` / `  kind:` lines
+                # we encounter before the next block (`- fuss:`).
+                end = len(lines)
+                for j in range(start + 1, len(lines)):
+                    if re.match(r"^-\s+fuss:\s+\S", lines[j]):
+                        end = j
+                        break
+                for j in range(start, end):
+                    if j == start:
+                        # The `- fuss:` block-start line
+                        lines[j] = re.sub(
+                            r"(^-\s+fuss:\s+)\S+(\s*$)",
+                            rf"\g<1>{d['proposed_fuss']}\g<2>",
+                            lines[j],
+                        )
+                    elif re.match(r"^\s+phase:\s+\S", lines[j]):
+                        lines[j] = re.sub(
+                            r"(^\s+phase:\s+)\S+(\s*$)",
+                            rf"\g<1>{d['proposed_phase']}\g<2>",
+                            lines[j],
+                        )
+                    elif d.get("proposed_kind") and re.match(r"^\s+kind:\s+\S", lines[j]):
+                        lines[j] = re.sub(
+                            r"(^\s+kind:\s+)\S+(\s*$)",
+                            rf"\g<1>{d['proposed_kind']}\g<2>",
+                            lines[j],
+                        )
                 mutated += 1
             if mutated:
-                doc["coins"] = coins
-                # Pretty-write keeping the existing flow style
-                ruamel_yaml_str = yaml.dump(
-                    doc, allow_unicode=True, sort_keys=False, width=120,
-                    default_flow_style=False,
-                )
-                path.write_text(ruamel_yaml_str)
+                path.write_text("".join(lines))
                 print(f"  wrote {ent}: {mutated} coins reclassified")
                 write_count += mutated
         print(f"\n✓ Applied {write_count} classifications across {len(by_entity)} entit(y/ies)")
