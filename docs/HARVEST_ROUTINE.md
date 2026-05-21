@@ -39,6 +39,28 @@
    - Step B: `cd /Users/serg/projects/muentzfuesse && git add scripts/cache && git commit -m "data: bump cache pointer — …"`
    - Both steps required. Missing step B = pointer drift; the next session sees `git status` warn `modified: scripts/cache (new commits)`.
 
+8. **Surgical commits — stage ONLY the files you intend to commit. Parallel sessions may be active.** Other Claude sessions (V2-pipeline, asset builds, documentation work) routinely run in this same working tree and leave their own modifications in flight. The harvest routine MUST commit atomically and MUST NOT bundle unrelated edits into its commits.
+
+   **Concrete rules:**
+   - **NEVER use `git add .` or `git add -A` or `git add -u`** — these blanket-stage everything dirty, including the parallel session's work.
+   - **NEVER use `git commit -a`** — it auto-stages every tracked file with modifications.
+   - **Always stage by explicit file path** — `git add numista/123.json numista/456.json scripts/cache/_harvest_handoff.json` (specific files) vs. `git add scripts/cache` (specific submodule pointer, single path).
+   - **In Step B of the PB-10 dance**, stage ONLY `scripts/cache` — never `git add scripts/cache docs/`, never `git add scripts/cache assets/`, never any second path on the same `git add`. The cache-pointer commit's ONLY purpose is the pointer; if docs / assets / scripts changed, they go in SEPARATE commits.
+   - **Re-check `git status --short` IMMEDIATELY before each `git commit`** — if you see modifications that aren't yours from this run, do NOT proceed; either skip the commit (leave files for the user to handle) or commit only your specific files by absolute path. Concurrent session edits between preflight and commit time are normal.
+   - **If a bundle happens anyway** (commit got more files than intended), do NOT amend. Per CLAUDE.md «Git safety protocol», create a corrective commit:
+     ```bash
+     # Self-recovery — split a bundle into atomic commits:
+     git reset --soft HEAD~1                  # un-commit, keep stages
+     git reset HEAD                            # un-stage everything
+     git add <only-cache-pointer-path>         # re-stage just the harvest part
+     git commit -m "..."                       # atomic harvest commit
+     git add <other-paths>                     # stage the unrelated stuff
+     git commit -m "..."                       # atomic OTHER commit (or leave for user)
+     ```
+     The routine that caused commit `95b3f59` (2026-05-21) ran this recovery successfully — keep that pattern as the template.
+
+   **Why this matters.** Each commit must be reviewable + revertable independently. A bundle of «cache pointer + 6 favicon assets + favicon-generator script» can't be cleanly rolled back if any one element turns out wrong, and the commit message can only describe one of them, leaving the others undocumented in git history.
+
 ---
 
 ## §1. Preflight (do this once at session start)
@@ -436,8 +458,23 @@ If the page returns Cloudflare interstitial («Just a moment…», «Checking yo
 
 ### §3.1. Submodule step (Step A of PB-10)
 
+> **Surgical-commit rule (per §0.8) applies here.** Stage ONLY the per-NID cache files you saved this run, by explicit path. Do NOT `git add numista/`, do NOT `git add .`, do NOT use any glob that could pick up unrelated NIDs.
+
+**Pre-commit sanity check (mandatory):**
+
 ```bash
-cd scripts/cache && git add numista/<nid1>.json numista/<nid2>.json … && git commit -m "$(cat <<'EOF'
+cd scripts/cache
+git status --short                 # inspect what's dirty BEFORE staging
+# Expected output: ONLY your batch's `?? numista/<nid>.json` lines.
+# If you see ANY other modifications (ucoin files, other audit files,
+# anything else), STOP — investigate before staging. A concurrent
+# session may have written there.
+```
+
+**Then stage + commit:**
+
+```bash
+cd scripts/cache && git add numista/<nid1>.json numista/<nid2>.json numista/<nid3>.json numista/<nid4>.json numista/<nid5>.json && git status --short && git commit -m "$(cat <<'EOF'
 Numista BO.6 batch <letter> — <bucket-name> (<N> NIDs)
 
 <2-line description of what cluster this batch covers — ruler, era,
@@ -456,12 +493,30 @@ EOF
 )"
 ```
 
+The interim `git status --short` between `add` and `commit` confirms the staged area contains ONLY your 5 NIDs — if it shows extra items in the «to be committed» section, abort the commit and unstage (`git reset HEAD <unwanted-file>`).
+
 **Important:** after `cd scripts/cache && git commit`, you are STILL inside `scripts/cache`. The next `cd` returns to the main repo for Step B.
 
 ### §3.2. Main-repo pointer bump (Step B of PB-10)
 
+> **Surgical-commit rule (per §0.8) applies here.** Stage ONLY the literal path `scripts/cache` — never `git add .`, never `git add scripts/cache docs/`, never any combined path on the same `git add` line. The cache-pointer commit's ONLY job is to bump the submodule reference; if `docs/` or `assets/` or other paths changed, they belong in SEPARATE commits handled by SEPARATE actors (or this routine commits its cache-pointer first, then leaves the unrelated changes for the user to triage).
+
+**Pre-commit sanity check (mandatory):**
+
 ```bash
-cd /Users/serg/projects/muentzfuesse && git add scripts/cache && git commit -m "$(cat <<'EOF'
+cd /Users/serg/projects/muentzfuesse
+git status --short
+# Expected output:
+#   M scripts/cache         # ← yours (submodule pointer)
+#   (anything else)         # ← NOT yours — leave it alone in Step B
+```
+
+If `git status` shows additional modified / untracked files beyond `scripts/cache`, those are concurrent-session work. **DO NOT stage them**. Proceed with the surgical `git add scripts/cache` only.
+
+**Then commit:**
+
+```bash
+cd /Users/serg/projects/muentzfuesse && git add scripts/cache && git status --short && git commit -m "$(cat <<'EOF'
 data: bump cache pointer — Numista BO.6 batch <letter> (<bucket>, <N> NIDs)
 
 scripts/cache: <one-line description of what this slice contains>.
@@ -472,18 +527,27 @@ EOF
 )"
 ```
 
-**Sanity check after Step B:**
+The interim `git status --short` between `add` and `commit` confirms only `scripts/cache` is in the staged column (typically shown as `M  scripts/cache` after staging — note the two spaces vs one). If you see any other path in the «Changes to be committed» area, abort and unstage.
+
+**Sanity check after the commit lands:**
 
 ```bash
-git status --short                 # should show clean for scripts/cache (no "modified" anymore)
-git log -2 --oneline               # both commits visible: pointer bump + (in submodule) batch commit
+git log -1 --stat                  # the commit MUST show 1 file changed (scripts/cache)
+git status --short                 # unrelated dirty files remain dirty (correct — not your concern)
 ```
 
-If `git status` still shows `modified: scripts/cache (new commits)`, Step B did not stage the pointer change — re-run Step B with explicit `git add scripts/cache`.
+If `git log -1 --stat` shows more than 1 file changed, you bundled something — execute the §0.8 self-recovery recipe.
 
-### §3.3. Unrelated changes (concurrent V2-pipeline edits etc.)
+### §3.3. Unrelated changes (concurrent V2-pipeline edits, asset builds, etc.)
 
-The user may have other concurrent sessions editing `docs/` / `scripts/run_*.sh`. **Do NOT bundle those into your commits.** Stage only `scripts/cache` in Step B. If `git diff` shows unrelated edits, leave them untouched.
+Other sessions may have left modifications in:
+- `docs/` (documentation updates, handoff edits, etc.)
+- `data/v2/` (V2-pipeline classification work)
+- `scripts/run_*.sh` (pipeline orchestration)
+- `assets/` (favicons, illustrations)
+- `scripts/maintenance/` (new one-off scripts being built)
+
+**Do NOT touch any of these.** Stage only `scripts/cache` in Step B. The other sessions will commit their own work in their own time. If a concurrent edit accidentally lands in your commit (race condition between preflight and commit), use the §0.8 self-recovery to split.
 
 ---
 
@@ -653,12 +717,28 @@ If `/tmp/save_ucoin.py` exits with code 2, the canonical_tid in the URL ≠ requ
 
 ## §5. Commit the ucoin batch
 
-Same shape as §3 (PB-10 dance), but for ucoin files:
+Same shape as §3 (PB-10 dance), but for ucoin files + the handoff bump (per §1.5.2). **Same surgical-commit discipline applies — see §0.8 and §3.1's pre-commit sanity-check pattern.**
 
 ### §5.1. Submodule step (Step A)
 
+> **Surgical-commit rule (per §0.8) applies here.** Stage ONLY the per-TID ucoin cache files you saved this run + the handoff file, by explicit path. Do NOT `git add ucoin/`, do NOT `git add .`.
+
+**Pre-commit sanity check (mandatory):**
+
 ```bash
-cd scripts/cache && git add ucoin/<tid1>.json ucoin/<tid2>.json … _harvest_handoff.json && git commit -m "$(cat <<'EOF'
+cd scripts/cache
+git status --short                 # inspect what's dirty BEFORE staging
+# Expected output:
+#   ?? ucoin/<tid1>.json … ?? ucoin/<tid5>.json   ← your 5 TIDs
+#   M  _harvest_handoff.json                       ← your handoff update
+# If anything ELSE shows up (numista files from another session, audit
+# files, etc.), STOP and investigate. Stage only your files explicitly.
+```
+
+**Then stage + commit:**
+
+```bash
+cd scripts/cache && git add ucoin/<tid1>.json ucoin/<tid2>.json ucoin/<tid3>.json ucoin/<tid4>.json ucoin/<tid5>.json _harvest_handoff.json && git status --short && git commit -m "$(cat <<'EOF'
 ucoin BR batch <N> — <period-name> <slice-description> (<M> TIDs)
 
 <1-2 line description of what cluster this batch covers>
@@ -676,10 +756,25 @@ EOF
 )"
 ```
 
+The interim `git status --short` between `add` and `commit` should show exactly 6 entries staged (5 ucoin TID files + 1 handoff file). If you see more, abort and unstage extras with `git reset HEAD <unwanted-file>`.
+
 ### §5.2. Main-repo pointer bump (Step B)
 
+> **Surgical-commit rule (per §0.8) applies here.** Stage ONLY the literal path `scripts/cache`. Same anti-pattern list as §3.2 — never blanket adds, never combined paths.
+
+**Pre-commit sanity check (mandatory):**
+
 ```bash
-cd /Users/serg/projects/muentzfuesse && git add scripts/cache && git commit -m "$(cat <<'EOF'
+cd /Users/serg/projects/muentzfuesse
+git status --short
+# Expected:  M scripts/cache  (yours — submodule pointer)
+# Anything else dirty → leave alone, NOT your concern.
+```
+
+**Then commit:**
+
+```bash
+cd /Users/serg/projects/muentzfuesse && git add scripts/cache && git status --short && git commit -m "$(cat <<'EOF'
 data: bump cache pointer — ucoin BR batch <N> (<period> <slice>, <M> TIDs)
 
 scripts/cache: <1-line description>. <period> progress: <cached>/<total>
@@ -689,6 +784,14 @@ Co-Authored-By: Claude Opus 4.7 <noreply@anthropic.com>
 EOF
 )"
 ```
+
+**Sanity check after commit:**
+
+```bash
+git log -1 --stat                  # MUST show 1 file changed (scripts/cache)
+```
+
+If more than 1 file changed, you bundled — execute §0.8 self-recovery to split.
 
 ---
 
