@@ -657,6 +657,16 @@ class TimelineBar(_StrictBase):
     year_to: int
     bar_label: I18nTextOptional | None = None
     bar_title: I18nTextOptional | None = None
+    nominal_modern: I18nTextOptional | None = None
+    """Modern normalised form of the largest accounting unit (the
+    «nominal» part of the label). Period orthography may be used in
+    `label` (e.g. «Golt Krone», «Rosen Nowel») while the
+    normalised modern form (e.g. «Guldkrone», «Rosenobel») stays
+    machine-searchable here. Purely data — the renderer does not
+    consume this field today; future audit / search tooling can.
+    Add this for ANY bar whose `label` uses period orthography in
+    the nominal suffix; optional for bars whose `label` already
+    uses the canonical modern form."""
     color_class: str = "si"   # CSS modifier: si, sh, rb, kr, krm, vt, rm, g
     order: float | None = None
     """Optional sort key for the timeline-bar order. When set, bars are
