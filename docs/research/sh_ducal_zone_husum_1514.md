@@ -6,7 +6,7 @@
 > the .906 / 14½-Lod anchor + Mark-Lybsk subdivision come from
 > (Wendischer Münzverein), how Christian I and Frederik I as Dukes of
 > Schleswig-Holstein activated the chain, and how this seed-standard
-> propagates forward to `christian_iii_flensborg_fod` (1547+), the
+> propagates forward to `8_daler_lybsk_fod` (1547+), the
 > Glückstadt Krone-Mønt (1618+), and ultimately the Rigsbankdaler-Fuß
 > (1813+).
 >
@@ -202,7 +202,7 @@ The Husum-Gottorp ducal-zone Lybsk standard runs continuously from
 through ~1533 (his death) — and then through the Counts' Feud / pre-
 king Christian III phase until Christian III's 1547 Flensborg
 Bestalling formalises a renewed ducal-zone standard
-(`christian_iii_flensborg_fod`).
+(`8_daler_lybsk_fod`).
 
 ## §4. Frederik I's 1524 royal ordinance — a partial Lybsk import
 
@@ -226,7 +226,7 @@ during Frederik I's king phase 1523-1533, even as the Lybsk
 This dual-track structure — Lybsk reckoning + Danish fineness on the
 royal side, Lybsk reckoning + Lybsk fineness on the ducal side —
 becomes the model for Christian III's 1541/1547 dual reform
-(`christian_iii_dalerfod` royal + `christian_iii_flensborg_fod`
+(`8_daler_fod` royal + `8_daler_lybsk_fod`
 ducal).
 
 ## §5. Forward genealogy — what comes after Husum-fod
@@ -241,7 +241,7 @@ Lybsk subdivision:
 | **1514** | **`frederik_i_husum_fod`** *(proposed)* | Frederik I as Duke | Husum | **.906** | 13 Mark Lybsk / Cölln. Marck rauh |
 | **1522** | (same standard, Husumdaler experimental) | Frederik I as Duke | Husum | .906 | Daler-or-Mark dilemma |
 | **1526-1532** | (same standard, post-king cont.) | Frederik I as King | Gottorp | .906 (Doppelskilling tier) | Mint moved to Gottorp |
-| **1547** | **`christian_iii_flensborg_fod`** | Christian III, Jørgen Kock the Younger | Flensborg | .890⅝ (14¼ Lod) | Slight relaxation; SAME structural lineage (8 Daler/M, Lybsk subdivision) |
+| **1547** | **`8_daler_lybsk_fod`** | Christian III, Jørgen Kock the Younger | Flensborg | .890⅝ (14¼ Lod) | Slight relaxation; SAME structural lineage (8 Daler/M, Lybsk subdivision) |
 | **1571** | (Flensborg-fod tail ends) | Frederik II | Flensborg | — | Standard ends as F2 9-Thaler-Fuß takes over realm-wide |
 | **1618** | **`kronemont_chr_iv`** + Glückstadt minting | Christian IV | Glückstadt | .859 | Lybsk-aligned sub-Mark logic migrates to Glückstadt |
 | **1813** | **`18_5_thaler`** Rigsbankdaler | Frederik VI | (Rigsbank) | — | 18½ Rigsbankdaler / Mark fein — the Lybsk-Untertheilung lineage culminates |
@@ -358,7 +358,7 @@ the Danish realm), the implementation will need:
    - Phase II: Husumdaler experiments 1522
    - Phase III: post-king continuation (Gottorp 1523-1532)
 
-3. **Cross-link to `christian_iii_flensborg_fod`** as the immediate
+3. **Cross-link to `8_daler_lybsk_fod`** as the immediate
    successor (1547+) — slight fineness relaxation (.906 → .890⅝) but
    same structural lineage.
 
@@ -381,7 +381,7 @@ the Danish realm), the implementation will need:
 - `docs/research/denmark_pre_1541_source_survey.md` — per-source coverage matrix
 - `docs/research/pre_1541_silver_seed_inventory.md` — current §BY seed inventory
 - `data/v2/locations/schleswig_holstein.yml` — target SH page
-- `data/shared/fuesse.yml#christian_iii_flensborg_fod` — the immediate
+- `data/shared/fuesse.yml#8_daler_lybsk_fod` — the immediate
   successor Fuß (1547+), already defined per §BF closure 2026-05-20
 
 Existing tickets that touch this material:

@@ -7,7 +7,7 @@
 > stkr-per-Cølnsk-Mark, Bruttovægt + Finvægt theoretical, with verbatim
 > quotes from the legal acts. These ordinance specs feed into
 > `data/shared/fuesse.yml` Müntzfuß-definitions when §BF wires up the
-> Christian-II-Lovkompleks / Christian-III-Dalerfod Müntzfüße.
+> Christian-II-Lovkompleks / 8-Daler-Fod Müntzfüße.
 >
 > All page references are to Wilcke 1950 (J. Wilcke, *Renæssancens
 > Mønt- og Pengeforhold 1481-1588*, Copenhagen 1950), local cache at
@@ -222,12 +222,12 @@ Per-Daler fein drops from 26.494 g (1541 baseline) to **24.665 g** (1544 debased
 
 The spec tables above feed into `data/shared/fuesse.yml` definitions:
 
-1. **`christian_ii_lovkompleks_fod`** (proposed name, pending §BD verdict): mf calibrated from Sølvgylden 8½ stkr/M = 27.5 g brutto + 14 Lod fineness → ~24 g fein per Sølvgylden. Phases:
+1. **`8_5_gylden_fod`** (proposed name, pending §BD verdict): mf calibrated from Sølvgylden 8½ stkr/M = 27.5 g brutto + 14 Lod fineness → ~24 g fein per Sølvgylden. Phases:
    - Phase A1 (1514-1515 Lovkompleks baseline)
    - Phase A2 (1518 Klipping debasement)
    - Phase A3 (1523 final consolidation)
 
-2. **`frederik_i_dalerfod`** (proposed name): mf 8.0 from 25 Feb 1524 Sølvgylden spec (8 stkr per cølnsk Mark at 14 Lod = 29.232 g brutto / 25.578 g fein per Sølvgylden). Phases:
+2. **`8_gylden_fod`** (proposed name): mf 8.0 from 25 Feb 1524 Sølvgylden spec (8 stkr per cølnsk Mark at 14 Lod = 29.232 g brutto / 25.578 g fein per Sølvgylden). Phases:
    - Phase A1 (1524-1531 royal Copenhagen ordinance)
    - Phase A2 (1527-1531 Malmö Goldgulden — separate Rhinsk Gylden track)
 
@@ -241,7 +241,7 @@ The spec tables above feed into `data/shared/fuesse.yml` definitions:
    - OR multiple sub-Müntzfüße for each fineness-variant (overcomplicated)
    1537 Joachimstaler at 14½ Lod fits OUTSIDE this — it's a tariff-coin attempt closer to dalerfod precursor.
 
-5. **`christian_iii_dalerfod`** (main 1541 Müntzfuß, per §BF + `moentordning_1541.md` §8): mf 8.827 baseline + 9.481 debased.
+5. **`8_daler_fod`** (main 1541 Müntzfuß, per §BF + `moentordning_1541.md` §8): mf 8.827 baseline + 9.481 debased.
 
 Each of these definitions can be machine-built from the spec tables above once §BF starts wiring up `fuesse.yml`. The Bruun-seed entries in `data/seed/bruun/denmark_pre_1541.yml` are then promoted into curated entries pointing at the right `fuss:` and `phase:` slot.
 

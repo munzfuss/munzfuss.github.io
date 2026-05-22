@@ -68,7 +68,7 @@ transcript and summarised at the end of this file.
 
 ---
 
-## 1. `dalerfod` — Christian-III-Dalerfod (silver Daler standard)
+## 1. `dalerfod` — 8-Daler-Fod (silver Daler standard)
 
 | Boundary | Year | Type | Source |
 |---|---|---|---|
@@ -120,7 +120,7 @@ mint closure 1571.
 **Verification gaps:**
   - Did Hertug Adolph's Gottorp mint continue striking at the same
     14¼-Lod / 24-ß-Lybsk standard 1572–1580? If yes, the de facto
-    end of «Christian-III-Flensborg-fod» persists past the royal
+    end of «8-Daler-Lybsk-Fod» persists past the royal
     mint closure as a ducal-zone standard, and our Fuß's `year_to`
     might need extension.
   - The 1547 Bestalling text has been read via Wilcke 1950

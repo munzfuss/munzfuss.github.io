@@ -103,7 +103,7 @@ the 91 pre-1541 silver specimens currently produces:
 - **0 hits via `delta_math` for the Hauptkurant tier** — there is no
   Fuß in `fuesse.yml` whose grid yields ~23.7 g fein per Sølvgylden
   or ~4.6 g fein per 4 Skilling. The closest existing Fuß
-  (`christian_iii_dalerfod`) has soll fein 26.494 g / Daler — a 14 %
+  (`8_daler_fod`) has soll fein 26.494 g / Daler — a 14 %
   delta, well outside the ±2 % envelope.
 - **Scattered `delta_scheide` / `delta_no_fit` for sub-Skilling
   specimens** — Hvid + Søsling drop into Scheidemünze classification
@@ -120,7 +120,7 @@ definitions.
 The `wilcke_1514_1541_specs.md` §8 roadmap proposed 4 new Müntzfüße.
 Mapping our current seed inventory against each:
 
-### 4.1 `christian_ii_lovkompleks_fod` (1514-1523)
+### 4.1 `8_5_gylden_fod` (1514-1523)
 
 - **Anchor**: Møntordning af Sommeren 1514 (Dines Blicher Brev Malmö) +
   Norge-Forordning 3. August 1514 + Sjælland åbent Brev 24. August 1515.
@@ -135,7 +135,7 @@ Mapping our current seed inventory against each:
   including Sølvgylden 1516/1518/1523, Skilling 1514-1525, Hvid 1513,
   Klipping 18-Penning 1518, plus Visby + Landskrona + Ribe outliers.
 
-### 4.2 `frederik_i_dalerfod` (1524-1531/32)
+### 4.2 `8_gylden_fod` (1524-1531/32)
 
 - **Anchor**: 25 February 1524 royal ordinance, København (Wilcke 7-2
   p. 184-187). Verbatim: «*Vi Fr. ... at slaa, i Guld: Nobler (den
@@ -170,7 +170,7 @@ Mapping our current seed inventory against each:
     + Gottorp 1523-1533)
 - **Current seed coverage**: ~6-10 specimens — Husum 1514 Mark + ½ Mark
   (Bruun-14708 + 14709), Gottorp 2 Skilling 1523, Doppelschilling 1526.
-  Some overlap with `christian_iii_flensborg_fod` (1547+) but **distinct
+  Some overlap with `8_daler_lybsk_fod` (1547+) but **distinct
   Müntzfuß generation** — Husum-fod 1514 is the SEED of the Schleswig
   lineage that the 1547 Flensborg Bestalling formalises.
 

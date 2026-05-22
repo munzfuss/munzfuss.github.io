@@ -778,21 +778,21 @@ If TODO §BC's Denmark-timeline-start decision lands on **1541**, the
 data work for Phase A1 (1541–1543 København baseline) needs:
 
 1. **New Müntzfuß** in `data/shared/fuesse.yml`. Candidate name
-   `christian_iii_dalerfod`. Canonical metric: mf 8.827 / Cölln. Mark
+   `8_daler_fod`. Canonical metric: mf 8.827 / Cölln. Mark
    233.856 g / per-Daler 26.494 g fein / fineness 0.906. Definition
    anchored to the 1541 ordinance per this dossier.
-2. **`fuss_periods.christian_iii_dalerfod`** block in
+2. **`fuss_periods.8_daler_fod`** block in
    `data/locations/denmark.yml` with phase A1 (1541–1543 København
    baseline) and phase A2 (1544–1555 København debased). Per-phase
    `hintergrund` framed historically per §BB convention (no
    parametric / specific-issuance bleed in the prose; parameters go
    to the Grundwerte block).
 3. **Seed-coin promotion**: c3h3-3A, c3h4, c3h5, c3h7 (Mark, 8 Sk,
-   4 Sk, Hvid u.år) → `fuss: christian_iii_dalerfod`, `phase: A1`.
+   4 Sk, Hvid u.år) → `fuss: 8_daler_fod`, `phase: A1`.
    c3h3-3B (1 Mark 1544–1555) → `phase: A2`.
 4. **Flensborg track** (1545–1554) — sub-phases A3 (sølvgylden mf 8.982)
    and A4 (søsling lybsk mf 9.287). May share the same
-   `christian_iii_dalerfod` Fuß with the København track via mint-tag
+   `8_daler_fod` Fuß with the København track via mint-tag
    differentiation, OR sit under a parallel Lübisch Fuß. Open design
    question for §BC.
 5. **References** — new ref(s) in `denmark-references.yml` pointing
