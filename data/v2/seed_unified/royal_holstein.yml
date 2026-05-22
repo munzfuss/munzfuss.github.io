@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-05-20 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-22 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 414 per-source seed entries.
-# Output: 311 unified entries (one per physical coin).
+# Input: 422 per-source seed entries.
+# Output: 318 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-05-20'
+generated_at: '2026-05-22'
 coins:
 - id: unified-dk-bruun-14708
   fuss: seed_unsorted
@@ -1465,77 +1465,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-bruun-8047
-- id: unified-dk-bruun-8048
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1819
-  year_last: 1819
-  year_label: '1819'
-  ruler: Frederik VI
-  mintmaster: Johan Friedrich Freund (IFF)
-  mint: Altona
-  catalog:
-    km: '693'
-    bruun_collection_id: '8048'
-    sieg: '29'
-    schou: '1'
-    davenport: '72'
-    hede: '25'
-    bruun_part: IV
-    bruun_lot_no: 17160
-    bruun_page: 93
-    dav: EC IV 72
-    numista: '70515'
-    others:
-    - Dav EC IV# 72
-    - Dav ECT# 72
-  metal: silver
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: ucoin
-  weight_rough_g:
-  - value: 28.83
-    source: Bruun Part IV, lot 17160, p. 93
-  - value: 28.83
-    source: bruun
-  - value: 28.89
-    source: ucoin
-  - value: 28.893
-    source: Numista
-  sources:
-  - type: literature
-    ref: Bruun-8048 · Stack's Bowers Bruun Collection Part IV, lot 17160
-  - type: numista
-    url: https://en.numista.com/catalogue/pieces70515.html
-    ref: Numista
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1819/?tid=70766
-    ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17160, p. 93
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-bruun-8048
-  - km-693-fr-vi-1819
 - id: unified-dk-bruun-8053
   fuss: seed_unsorted
   phase: bruun
@@ -3318,6 +3247,76 @@ coins:
     unit_raw: daler
   composed_of:
   - dk-hede-c3h16
+- id: unified-dk-hede-c3h17ab
+  fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: ½ Sølvgylden
+  year_first: 1545
+  year_last: 1545
+  year_label: '1545'
+  ruler: Christian III.
+  mint: Flensburg
+  catalog:
+    hede: 17ab
+    hede_volume: c3h
+    sieg: 47.1-2
+  metal: silver
+  metal_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3hede.htm
+    ref: danskmoent.dk overview c3hede (Hede c3h17ab — Tiefenseite fehlt)
+  verification_note:
+    de: 'Hede-Index-Stub: Nur die Übersichtsreihe von c3hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
+      Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster
+      1965). Anmerkung im Index: «17B: bs. uden krone over skjoldet»'
+    en: 'Hede index stub: only the overview-table row of c3hede.htm attests this entry (Hede deep page absent from danskmoent.dk).
+      Weight and fineness not captured; full per-coin verification depends on the §AZ paper-source import (Hede 1971 + Galster
+      1965). Index note: «17B: bs. uden krone over skjoldet»'
+    uk: 'Hede index-stub: тільки рядок огляду c3hede.htm підтверджує цей запис (deep-сторінка Hede відсутня на danskmoent.dk).
+      Вага та проба не зафіксовані; повна покоінна верифікація залежить від §AZ paper-source імпорту (Hede 1971 + Galster
+      1965). Коментар з індексу: «17B: bs. uden krone over skjoldet»'
+  issuing_entity: royal_holstein
+  composed_of:
+  - dk-hede-c3h17ab
+- id: unified-dk-hede-c3h18
+  fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: ¼ Sølvgylden
+  year_first: 1545
+  year_last: 1545
+  year_label: '1545'
+  ruler: Christian III.
+  mint: Flensburg
+  catalog:
+    hede: '18'
+    hede_volume: c3h
+    sieg: '46'
+  metal: silver
+  metal_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3hede.htm
+    ref: danskmoent.dk overview c3hede (Hede c3h18 — Tiefenseite fehlt)
+  verification_note:
+    de: 'Hede-Index-Stub: Nur die Übersichtsreihe von c3hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
+      Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster
+      1965).'
+    en: 'Hede index stub: only the overview-table row of c3hede.htm attests this entry (Hede deep page absent from danskmoent.dk).
+      Weight and fineness not captured; full per-coin verification depends on the §AZ paper-source import (Hede 1971 + Galster
+      1965).'
+    uk: 'Hede index-stub: тільки рядок огляду c3hede.htm підтверджує цей запис (deep-сторінка Hede відсутня на danskmoent.dk).
+      Вага та проба не зафіксовані; повна покоінна верифікація залежить від §AZ paper-source імпорту (Hede 1971 + Galster
+      1965).'
+  issuing_entity: royal_holstein
+  composed_of:
+  - dk-hede-c3h18
 - id: unified-dk-hede-c3h19
   fuss: seed_unsorted
   phase: hede
@@ -4625,6 +4624,44 @@ coins:
   composed_of:
   - dk-hede-c4h179
   - km-32-chr-iv-1645
+- id: unified-dk-hede-c4h2
+  fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: ½ Portugaløser
+  year_first: 1591
+  year_last: 1592
+  year_ranges:
+  - - 1591
+    - 1592
+  year_label: 1591–1592
+  ruler: Christian IV.
+  mint: Hadersleben
+  catalog:
+    hede: '2'
+    hede_volume: c4h
+    sieg: '5'
+  metal: gold
+  metal_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c4hede.htm
+    ref: danskmoent.dk overview c4hede (Hede c4h2 — Tiefenseite fehlt)
+  verification_note:
+    de: 'Hede-Index-Stub: Nur die Übersichtsreihe von c4hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
+      Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster
+      1965). Anmerkung im Index: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
+    en: 'Hede index stub: only the overview-table row of c4hede.htm attests this entry (Hede deep page absent from danskmoent.dk).
+      Weight and fineness not captured; full per-coin verification depends on the §AZ paper-source import (Hede 1971 + Galster
+      1965). Index note: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
+    uk: 'Hede index-stub: тільки рядок огляду c4hede.htm підтверджує цей запис (deep-сторінка Hede відсутня на danskmoent.dk).
+      Вага та проба не зафіксовані; повна покоінна верифікація залежить від §AZ paper-source імпорту (Hede 1971 + Galster
+      1965). Коментар з індексу: «Ernst: NNUM 1953 side 193-198 Harck: Num. Rap. 109 (2011) side 9-21»'
+  issuing_entity: royal_holstein
+  composed_of:
+  - dk-hede-c4h2
 - id: unified-dk-hede-c4h4
   fuss: reichsdukatenfuss
   phase: I
@@ -5537,6 +5574,49 @@ coins:
   composed_of:
   - dk-bruun-7951
   - dk-hede-c7h15
+- id: unified-dk-hede-c7h22ab
+  fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: Albertsdaler T34
+  year_first: 1781
+  year_last: 1796
+  year_ranges:
+  - - 1781
+    - 1796
+  year_label: 1781–1796
+  ruler: Christian VII.
+  mint:
+  - Altona
+  - Poppenbüttel
+  catalog:
+    hede: 22ab
+    hede_volume: c7h
+    sieg: '22A: 18.1 22B: 18.2'
+  metal: silver
+  metal_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c7hede.htm
+    ref: danskmoent.dk overview c7hede (Hede c7h22ab — Tiefenseite fehlt)
+  verification_note:
+    de: 'Hede-Index-Stub: Nur die Übersichtsreihe von c7hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
+      Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster
+      1965). Anmerkung im Index: «22A: Kølle i venstre hånd 22B: Kølle i højre hånd. Wilcke III s.189; Wilcke IV s.46 ; Nat.Arb.
+      1959 s.112»'
+    en: 'Hede index stub: only the overview-table row of c7hede.htm attests this entry (Hede deep page absent from danskmoent.dk).
+      Weight and fineness not captured; full per-coin verification depends on the §AZ paper-source import (Hede 1971 + Galster
+      1965). Index note: «22A: Kølle i venstre hånd 22B: Kølle i højre hånd. Wilcke III s.189; Wilcke IV s.46 ; Nat.Arb. 1959
+      s.112»'
+    uk: 'Hede index-stub: тільки рядок огляду c7hede.htm підтверджує цей запис (deep-сторінка Hede відсутня на danskmoent.dk).
+      Вага та проба не зафіксовані; повна покоінна верифікація залежить від §AZ paper-source імпорту (Hede 1971 + Galster
+      1965). Коментар з індексу: «22A: Kølle i venstre hånd 22B: Kølle i højre hånd. Wilcke III s.189; Wilcke IV s.46 ; Nat.Arb.
+      1959 s.112»'
+  issuing_entity: royal_holstein
+  composed_of:
+  - dk-hede-c7h22ab
 - id: unified-dk-hede-c7h25
   fuss: seed_unsorted
   phase: hede
@@ -6469,6 +6549,44 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - dk-hede-c7h9
+- id: unified-dk-hede-c8h13ab
+  fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: 1/5 Rigsbankskilling / 1/5 R.B.S
+  year_first: 1842
+  year_last: 1842
+  year_label: '1842'
+  ruler: Christian VIII.
+  mint: Altona
+  catalog:
+    hede: 13ab
+    hede_volume: c8h
+    sieg: 1, 2
+  metal: copper
+  metal_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c8hede.htm
+    ref: danskmoent.dk overview c8hede (Hede c8h13ab — Tiefenseite fehlt)
+  verification_note:
+    de: 'Hede-Index-Stub: Nur die Übersichtsreihe von c8hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
+      Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster
+      1965). Anmerkung im Index: «FF / K ; 13A (Sieg 1): Rigsbankskilling; 13B (Sieg 2): R.B.S. Hede: 1842: 3 og 1/5 Rigsbankskilling.
+      I: NNUM 1956 ; Sømod: Krone, scepter og sværd (2000) ; Wilcke IV side 386»'
+    en: 'Hede index stub: only the overview-table row of c8hede.htm attests this entry (Hede deep page absent from danskmoent.dk).
+      Weight and fineness not captured; full per-coin verification depends on the §AZ paper-source import (Hede 1971 + Galster
+      1965). Index note: «FF / K ; 13A (Sieg 1): Rigsbankskilling; 13B (Sieg 2): R.B.S. Hede: 1842: 3 og 1/5 Rigsbankskilling.
+      I: NNUM 1956 ; Sømod: Krone, scepter og sværd (2000) ; Wilcke IV side 386»'
+    uk: 'Hede index-stub: тільки рядок огляду c8hede.htm підтверджує цей запис (deep-сторінка Hede відсутня на danskmoent.dk).
+      Вага та проба не зафіксовані; повна покоінна верифікація залежить від §AZ paper-source імпорту (Hede 1971 + Galster
+      1965). Коментар з індексу: «FF / K ; 13A (Sieg 1): Rigsbankskilling; 13B (Sieg 2): R.B.S. Hede: 1842: 3 og 1/5 Rigsbankskilling.
+      I: NNUM 1956 ; Sømod: Krone, scepter og sværd (2000) ; Wilcke IV side 386»'
+  issuing_entity: royal_holstein
+  composed_of:
+  - dk-hede-c8h13ab
 - id: unified-dk-hede-c8h2
   fuss: pistolenfuss
   phase: I
@@ -7636,6 +7754,116 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - dk-hede-f6h16
+- id: unified-dk-hede-f6h2
+  fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: 1 Frederikd'or
+  year_first: 1827
+  year_last: 1827
+  year_label: '1827'
+  ruler: Frederik VI.
+  mint: Altona
+  catalog:
+    hede: '2'
+    hede_volume: f6h
+    sieg: '31'
+  metal: gold
+  metal_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f6hede.htm
+    ref: danskmoent.dk overview f6hede (Hede f6h2 — Tiefenseite fehlt)
+  verification_note:
+    de: 'Hede-Index-Stub: Nur die Übersichtsreihe von f6hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
+      Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster
+      1965). Anmerkung im Index: «IFF Wilcke IV side 370ff.»'
+    en: 'Hede index stub: only the overview-table row of f6hede.htm attests this entry (Hede deep page absent from danskmoent.dk).
+      Weight and fineness not captured; full per-coin verification depends on the §AZ paper-source import (Hede 1971 + Galster
+      1965). Index note: «IFF Wilcke IV side 370ff.»'
+    uk: 'Hede index-stub: тільки рядок огляду f6hede.htm підтверджує цей запис (deep-сторінка Hede відсутня на danskmoent.dk).
+      Вага та проба не зафіксовані; повна покоінна верифікація залежить від §AZ paper-source імпорту (Hede 1971 + Galster
+      1965). Коментар з індексу: «IFF Wilcke IV side 370ff.»'
+  issuing_entity: royal_holstein
+  composed_of:
+  - dk-hede-f6h2
+- id: unified-dk-hede-f6h25
+  fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: 1 Speciedaler
+  year_first: 1819
+  year_last: 1819
+  year_label: '1819'
+  ruler: Frederik VI.
+  mintmaster: Johan Friedrich Freund (IFF)
+  mint: Altona
+  catalog:
+    km: '693'
+    hede: '25'
+    hede_volume: f6h
+    sieg: '29'
+    bruun_collection_id: '8048'
+    schou: '1'
+    davenport: '72'
+    bruun_part: IV
+    bruun_lot_no: 17160
+    bruun_page: 93
+    dav: EC IV 72
+    numista: '70515'
+    others:
+    - Dav EC IV# 72
+    - Dav ECT# 72
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.875
+    source: ucoin
+  weight_rough_g:
+  - value: 28.83
+    source: Bruun Part IV, lot 17160, p. 93
+  - value: 28.83
+    source: bruun
+  - value: 28.89
+    source: ucoin
+  - value: 28.893
+    source: Numista
+  sources:
+  - type: literature
+    ref: Bruun-8048 · Stack's Bowers Bruun Collection Part IV, lot 17160
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f6hede.htm
+    ref: danskmoent.dk overview f6hede (Hede f6h25 — Tiefenseite fehlt)
+  - type: numista
+    url: https://en.numista.com/catalogue/pieces70515.html
+    ref: Numista
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1819/?tid=70766
+    ref: ucoin
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17160, p. 93
+  verification_note:
+    de: 'Hede-Index-Stub: Nur die Übersichtsreihe von f6hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
+      Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster
+      1965). Anmerkung im Index: «Sidste danske mønt med norske løve i skjoldet.»'
+    en: 'Hede index stub: only the overview-table row of f6hede.htm attests this entry (Hede deep page absent from danskmoent.dk).
+      Weight and fineness not captured; full per-coin verification depends on the §AZ paper-source import (Hede 1971 + Galster
+      1965). Index note: «Sidste danske mønt med norske løve i skjoldet.»'
+    uk: 'Hede index-stub: тільки рядок огляду f6hede.htm підтверджує цей запис (deep-сторінка Hede відсутня на danskmoent.dk).
+      Вага та проба не зафіксовані; повна покоінна верифікація залежить від §AZ paper-source імпорту (Hede 1971 + Galster
+      1965). Коментар з індексу: «Sidste danske mønt med norske løve i skjoldet.»'
+  issuing_entity: royal_holstein
+  composed_of:
+  - dk-bruun-8048
+  - dk-hede-f6h25
+  - km-693-fr-vi-1819
 - id: unified-dk-hede-f6h3
   fuss: pistolenfuss
   phase: I
@@ -8003,6 +8231,44 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-hede-f6h4b
+- id: unified-dk-hede-f6h6
+  fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: 1/6 Rigsdaler
+  year_first: 1808
+  year_last: 1808
+  year_label: '1808'
+  ruler: Frederik VI.
+  mint: Altona
+  catalog:
+    hede: '6'
+    hede_volume: f6h
+    sieg: '7'
+  metal: silver
+  metal_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f6hede.htm
+    ref: danskmoent.dk overview f6hede (Hede f6h6 — Tiefenseite fehlt)
+  verification_note:
+    de: 'Hede-Index-Stub: Nur die Übersichtsreihe von f6hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
+      Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster
+      1965). Anmerkung im Index: «MF . Kaldet Offermark. Riflet rand. Stykker med ringe er falske. Flensborg: Frivilligt offer...
+      I: Politiken (1973) Wilcke IV side 113f.»'
+    en: 'Hede index stub: only the overview-table row of f6hede.htm attests this entry (Hede deep page absent from danskmoent.dk).
+      Weight and fineness not captured; full per-coin verification depends on the §AZ paper-source import (Hede 1971 + Galster
+      1965). Index note: «MF . Kaldet Offermark. Riflet rand. Stykker med ringe er falske. Flensborg: Frivilligt offer...
+      I: Politiken (1973) Wilcke IV side 113f.»'
+    uk: 'Hede index-stub: тільки рядок огляду f6hede.htm підтверджує цей запис (deep-сторінка Hede відсутня на danskmoent.dk).
+      Вага та проба не зафіксовані; повна покоінна верифікація залежить від §AZ paper-source імпорту (Hede 1971 + Galster
+      1965). Коментар з індексу: «MF . Kaldet Offermark. Riflet rand. Stykker med ringe er falske. Flensborg: Frivilligt offer...
+      I: Politiken (1973) Wilcke IV side 113f.»'
+  issuing_entity: royal_holstein
+  composed_of:
+  - dk-hede-f6h6
 - id: unified-dk-hede-f6h7
   fuss: 11_333_thaler
   phase: I
@@ -8218,7 +8484,7 @@ coins:
   fuss: seed_unsorted
   phase: numista
   kind: kurant
-  nominal: 2 Skilling (1⁄24)
+  nominal: 2 Skilling
   year_first: 1514
   year_last: 1522
   year_ranges:
@@ -8268,7 +8534,7 @@ coins:
   fuss: seed_unsorted
   phase: numista
   kind: kurant
-  nominal: 2 Skilling (1⁄24)
+  nominal: 2 Skilling
   year_first: 1514
   year_last: 1522
   year_ranges:

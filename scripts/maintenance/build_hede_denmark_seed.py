@@ -596,7 +596,18 @@ def _build_coin(
     ruler = _normalise_ruler(parsed.get("ruler"))
     fineness = spec.get("finhed") if spec else None
     brutto = spec.get("bruttovægt_g") if spec else None
-    metal = _infer_metal(nominal, ruler, fineness)
+    # Index-stub coins (parse_hede.py emits these for deep-page-absent
+    # Hede rows) carry an authoritative metal token from the overview
+    # table's metal column. Trust that over the nominal-token heuristic
+    # — Hede's own table is the source-of-record for «Guld / Sølv /
+    # Kobber / Bronze». For real deep-page parses (no
+    # `metal_from_index`), fall through to the heuristic.
+    is_index_stub = parsed.get("_source_type") == "index_stub"
+    metal_from_index = parsed.get("metal_from_index") if is_index_stub else None
+    if metal_from_index:
+        metal = metal_from_index
+    else:
+        metal = _infer_metal(nominal, ruler, fineness)
     kind = _infer_kind(metal, nominal, ruler, fineness)
     coin_id = f"dk-hede-{hede_volume}{hede_number.lower()}"
 
@@ -700,12 +711,27 @@ def _build_coin(
     sources = CommentedSeq()
     src = CommentedMap()
     src["type"] = "literature"
-    src["url"] = _danskmoent_url(parsed["id"])
-    # Domain-first label per CONVENTIONS.md §«Source-ref label shape»:
-    # the domain (the actual link target) leads, the catalog basename
-    # follows in parens as sub-resource disambiguator. Reads as «which
-    # domain → which page on it», the natural navigation order.
-    src["ref"] = f"danskmoent.dk (Hede {hede_volume}{hede_number})"
+    if is_index_stub:
+        # Index stub — deep page doesn't exist on danskmoent.dk; the
+        # citation must point at the overview catalogue page that
+        # actually attests this row. `_source_index` carries the
+        # basename of that overview file (e.g. «c3hede.htm»).
+        overview_basename = (parsed.get("_source_index") or "").replace(".htm", "")
+        if overview_basename:
+            src["url"] = _danskmoent_url(overview_basename)
+        else:
+            src["url"] = _danskmoent_url(parsed["id"])
+        src["ref"] = (
+            f"danskmoent.dk overview {overview_basename} "
+            f"(Hede {hede_volume}{hede_number} — Tiefenseite fehlt)"
+        )
+    else:
+        src["url"] = _danskmoent_url(parsed["id"])
+        # Domain-first label per CONVENTIONS.md §«Source-ref label shape»:
+        # the domain (the actual link target) leads, the catalog basename
+        # follows in parens as sub-resource disambiguator. Reads as «which
+        # domain → which page on it», the natural navigation order.
+        src["ref"] = f"danskmoent.dk (Hede {hede_volume}{hede_number})"
     sources.append(src)
     cm["sources"] = sources
 
@@ -729,22 +755,59 @@ def _build_coin(
     # rendering «Silber (?)» / «Gold (?)» on Hede-only coins whose
     # fineness column already shows a source-cited value (user-reported
     # 2026-05-20 on KM-340 c5h2 Christian V Dukat .979/.980).
-    if fineness is not None or brutto is not None:
+    #
+    # For index-stub coins, the overview table's metal column is the
+    # source-of-record — flip metal_verified even though
+    # fineness/weight stay null.
+    if fineness is not None or brutto is not None or metal_from_index:
         cm["metal_verified"] = True
     cm["mint_verified"] = False  # parser-heuristic; not flipped here
     vn = CommentedMap()
-    vn["de"] = (
-        "Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation "
-        "stehen noch aus; Daten direkt aus danskmoent.dk übernommen."
-    )
-    vn["en"] = (
-        "Hede seed: Müntzfuß assignment, phase and per-coin verification "
-        "are still outstanding; data lifted directly from danskmoent.dk."
-    )
-    vn["uk"] = (
-        "Hede-seed: призначення Müntzfuß, фази та покоінна верифікація "
-        "ще очікуються; дані взято безпосередньо з danskmoent.dk."
-    )
+    if is_index_stub:
+        # Index-stub: danskmoent.dk overview-table attestation only;
+        # deep page absent. Weight + fineness unknown; nominal, metal,
+        # year, mint and Sieg-ref carry over from the index row. Full
+        # per-specimen verification depends on the §AZ paper-source
+        # import (Hede 1971 physical book + Galster 1965).
+        index_note = parsed.get("index_note") or ""
+        idx_basename = parsed.get("_source_index", "danskmoent.dk overview")
+        vn["de"] = (
+            f"Hede-Index-Stub: Nur die Übersichtsreihe von {idx_basename} "
+            f"belegt diesen Eintrag (Hede-Tiefenseite fehlt auf "
+            f"danskmoent.dk). Gewicht und Probe nicht erfasst; "
+            f"vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-"
+            f"Import (Hede 1971 + Galster 1965)."
+            + (f" Anmerkung im Index: «{index_note}»" if index_note else "")
+        )
+        vn["en"] = (
+            f"Hede index stub: only the overview-table row of {idx_basename} "
+            f"attests this entry (Hede deep page absent from "
+            f"danskmoent.dk). Weight and fineness not captured; full "
+            f"per-coin verification depends on the §AZ paper-source import "
+            f"(Hede 1971 + Galster 1965)."
+            + (f" Index note: «{index_note}»" if index_note else "")
+        )
+        vn["uk"] = (
+            f"Hede index-stub: тільки рядок огляду {idx_basename} "
+            f"підтверджує цей запис (deep-сторінка Hede відсутня на "
+            f"danskmoent.dk). Вага та проба не зафіксовані; повна "
+            f"покоінна верифікація залежить від §AZ paper-source імпорту "
+            f"(Hede 1971 + Galster 1965)."
+            + (f" Коментар з індексу: «{index_note}»" if index_note else "")
+        )
+    else:
+        vn["de"] = (
+            "Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation "
+            "stehen noch aus; Daten direkt aus danskmoent.dk übernommen."
+        )
+        vn["en"] = (
+            "Hede seed: Müntzfuß assignment, phase and per-coin verification "
+            "are still outstanding; data lifted directly from danskmoent.dk."
+        )
+        vn["uk"] = (
+            "Hede-seed: призначення Müntzfuß, фази та покоінна верифікація "
+            "ще очікуються; дані взято безпосередньо з danskmoent.dk."
+        )
     cm["verification_note"] = vn
     return cm
 

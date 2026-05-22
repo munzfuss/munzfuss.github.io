@@ -1465,6 +1465,254 @@ def _is_canonical(entry: dict, key: str, volume: str) -> bool:
     return file_num == key_num
 
 
+# Index-stub extraction — for Hede entries listed in `*hede.htm`
+# overview tables WITHOUT a `<A HREF>` link to a deep page. These are
+# real catalogue entries that danskmoent.dk simply hasn't published a
+# detail page for (often «Kendes ikke mere» / «Prøvemøntning» / very
+# rare specimens). The index row itself attests: nominal, metal, year,
+# mint, Sieg-ref and a brief comment — enough to emit a seed-stub
+# `<vol>h<N>.json` that flows through the normal seed-builder
+# pipeline. Weight + fineness stay None (require the deep page or
+# paper-source for actual measurements).
+#
+# Output JSON shape mirrors the normal deep-page parse but carries an
+# explicit `_source_type: "index_stub"` marker so downstream code
+# (seed builder, audits) can distinguish stub from real data.
+
+_INDEX_TR_RE = re.compile(r"<TR[^>]*>(.*?)</TR>", re.I | re.S)
+_INDEX_TD_RE = re.compile(r"<TD[^>]*>(.*?)</TD>", re.I | re.S)
+# Match <A HREF="…cNhN.htm"> in the FIRST cell — captures the
+# target's own Hede-N for cross-reference detection.
+_INDEX_FIRST_CELL_LINK_RE = re.compile(
+    r"<A\s+HREF=[\"'][^\"']*\b[cfn]\d+h(\d+[a-z]?)\.htm[\"']", re.I,
+)
+_INDEX_HEDE_NUMBER_RE = re.compile(
+    r"^\s*(?:Hede\s+)?(\d+[A-Z]{0,3}(?:-\d+[A-Z]{0,3})?)\s*$", re.I,
+)
+_INDEX_HTML_ENTITIES = {
+    "&oslash;": "ø", "&Oslash;": "Ø",
+    "&aelig;":  "æ", "&AElig;":  "Æ",
+    "&aring;":  "å", "&Aring;":  "Å",
+    "&uuml;":   "ü", "&Uuml;":   "Ü",
+    "&ouml;":   "ö", "&Ouml;":   "Ö",
+    "&auml;":   "ä", "&Auml;":   "Ä",
+    "&szlig;":  "ß",
+    "&amp;":    "&",
+    "&nbsp;":   " ",
+    "&quot;":   '"',
+    "&#39;":    "'",
+}
+_INDEX_METAL_TOKENS = {
+    "sølv":            "silver",
+    "guld":            "gold",
+    "kobber":          "copper",
+    "bronze":          "bronze",
+    "aluminiumbronze": "bronze",  # Krone-fod 1/2 Krone tier
+    "tin":             "tin",
+    "messing":         "brass",
+    "kobbernikkel":    "copper_nickel",
+    "billon":          "billon",
+}
+
+
+def _index_decode_entities(s: str) -> str:
+    out = s
+    for ent, ch in _INDEX_HTML_ENTITIES.items():
+        out = out.replace(ent, ch)
+    return out
+
+
+def _index_clean_cell(html_cell: str) -> str:
+    """Strip tags, normalise whitespace, decode common HTML entities."""
+    bare = re.sub(r"<[^>]+>", " ", html_cell)
+    bare = re.sub(r"\s+", " ", bare).strip()
+    return _index_decode_entities(bare)
+
+
+def _index_parse_years(year_cell: str) -> list[dict]:
+    """Parse the index «year» cell into the deep-page years[] shape.
+
+    Handles forms seen in indices:
+      "1607, 1608"       → [{year:1607}, {year:1608}]
+      "1545"             → [{year:1545}]
+      "(15)45"           → [{year:1545}]            (c3 century-abbrev)
+      "1924-1926"        → [{year:1924},…,{year:1926}]
+      "1781-96"          → [{year:1781},…,{year:1796}]
+      "U.år" / "u.år"    → []  (undated)
+      "1939, 1940"       → [{year:1939},{year:1940}]
+    """
+    if not year_cell:
+        return []
+    s = year_cell.strip()
+    if re.match(r"^[Uu]\.?\s*[åa]r", s):
+        return []
+    # Century-abbrev form «(15)45» → 1545
+    s = _expand_century_abbr(s)
+    # Short-range form «1781-96» → «1781-1796»
+    s = _expand_year_ranges(s)
+    out: list[dict] = []
+    for tok in re.findall(r"\b\d{4}(?:\s*-\s*\d{4})?\b", s):
+        if "-" in tok:
+            a, b = [int(x.strip()) for x in tok.split("-", 1)]
+            for y in range(a, b + 1):
+                out.append({"year": y, "rarity": None})
+        else:
+            out.append({"year": int(tok), "rarity": None})
+    return out
+
+
+def _index_classify_columns(cells: list[str]) -> dict | None:
+    """Detect the column layout per row and extract structured fields.
+
+    Two layouts seen across volumes:
+      7-col: [Hede, Sieg, Nominal, Metal, Year, Mint, Comment]
+        (c3, c4, f2, f4, f5, f6, c8, c10, f9)
+      8-col: [Hede, Sieg, ProofTag, Nominal, Metal, Year, Mint, Comment]
+        (c7 — Prøvemøntning rows with P1/T34/E3 sub-classification tag)
+
+    Detection: cell[3] is a metal token → 7-col; cell[4] is a metal
+    token → 8-col. Otherwise fall back to 7-col with empty metal.
+    Returns dict with: hede, sieg, nominal, metal, years[], mint, note.
+    """
+    if len(cells) < 4:
+        return None
+    hede = cells[0].strip()
+    if hede.lower().startswith("hede "):
+        hede = hede[5:].strip()
+    sieg = cells[1] if len(cells) > 1 else ""
+
+    cell3 = cells[3].lower().strip() if len(cells) > 3 else ""
+    cell4 = cells[4].lower().strip() if len(cells) > 4 else ""
+
+    if cell3 in _INDEX_METAL_TOKENS:
+        # 7-col layout
+        nominal = cells[2]
+        metal = _INDEX_METAL_TOKENS[cell3]
+        years_cell = cells[4] if len(cells) > 4 else ""
+        mint = cells[5] if len(cells) > 5 else ""
+        note = " · ".join(c for c in cells[6:] if c) if len(cells) > 6 else ""
+    elif cell4 in _INDEX_METAL_TOKENS:
+        # 8-col layout with proof-tag at cell[2]
+        # Merge proof-tag into nominal: «1/3 Speciedaler P1»
+        nominal = f"{cells[3]} {cells[2]}".strip() if cells[2] else cells[3]
+        metal = _INDEX_METAL_TOKENS[cell4]
+        years_cell = cells[5] if len(cells) > 5 else ""
+        mint = cells[6] if len(cells) > 6 else ""
+        note = " · ".join(c for c in cells[7:] if c) if len(cells) > 7 else ""
+    else:
+        # Layout unclear — bail. Caller will skip the row.
+        return None
+
+    return {
+        "hede": hede,
+        "sieg": sieg,
+        "nominal": nominal.strip(),
+        "metal": metal,
+        "years": _index_parse_years(years_cell),
+        "mint": mint.strip().rstrip(",.;"),
+        "note": note.strip(),
+    }
+
+
+def _extract_index_stubs(html: str, basename: str) -> list[dict]:
+    """Walk an overview page (`<vol>hede.htm`) and return one parsed-
+    JSON-compatible stub per row whose Hede-cell has NO `<A HREF>` link.
+
+    Returned dicts mirror the deep-page parse_one() output:
+      id, ruler_volume, ruler_inferred, page_title, ruler,
+      years[], nominal, mint, specs.default{...None...},
+      catalog_refs{Hede, Sieg}, _source_type: "index_stub",
+      metal_from_index: <metal-token>, index_note: <comment>.
+
+    Skips rows that link to deep pages (real entries) or that have
+    malformed structure (e.g. table header row, footer row).
+    """
+    ruler_label, volume_code = _ruler_volume(basename + "h0")
+    # `_ruler_volume` expects an `…h<NUM>` suffix to parse the volume.
+    # Indices like `c4hede` won't fit; rebuild manually.
+    m = re.match(r"^(n?)(c|f)(\d+)hede$", basename)
+    if not m:
+        return []
+    norge_prefix, letter, num = m.groups()
+    ruler_label = (
+        f"{'Christian' if letter == 'c' else 'Frederik'} {num}."
+    )
+    volume_code = f"{norge_prefix}{letter}{num}h"
+
+    stubs: list[dict] = []
+    for row_match in _INDEX_TR_RE.finditer(html):
+        body = row_match.group(1)
+        tds = _INDEX_TD_RE.findall(body)
+        if len(tds) < 4:
+            continue
+        first_td = tds[0]
+        first_clean = _index_clean_cell(first_td)
+        if not _INDEX_HEDE_NUMBER_RE.match(first_clean):
+            continue
+        # Skip the table header row («<B>Hede</B>» / «Hede» plain)
+        if first_clean.strip().lower() in ("hede", ""):
+            continue
+        # If the FIRST cell links to the row's OWN canonical deep page
+        # (e.g. Hede 16 → c4h16.htm), the deep page exists — skip stub
+        # generation. Soft-links to thematic articles (halvglkr.htm,
+        # loeve.htm) or cross-refs to OTHER Hede pages (Hede 47 →
+        # c4h46.htm) don't establish an own deep page, so those rows
+        # DO become stubs.
+        own_hede = _INDEX_HEDE_NUMBER_RE.match(first_clean).group(1).lower()
+        # Strip trailing letter-suffix («2ab», «17ab», «99abcd») to the
+        # bare numeric form for canonical-link comparison — the deep
+        # page convention is `<vol>h<N>.htm` (parent number), with
+        # sub-letter variants handled inside via the by_letter
+        # mechanism. «Hede 2AB» row whose first cell links to f5h2.htm
+        # is a real deep page covering 2A + 2B.
+        own_bare = re.sub(r"[a-z]+$", "", own_hede)
+        first_link = _INDEX_FIRST_CELL_LINK_RE.search(first_td)
+        if first_link:
+            link_bare = re.sub(r"[a-z]+$", "", first_link.group(1).lower())
+            if link_bare == own_bare:
+                continue  # canonical deep page exists
+        cells = [_index_clean_cell(td) for td in tds]
+        parsed_row = _index_classify_columns(cells)
+        if parsed_row is None:
+            continue
+        hede_no = parsed_row["hede"]
+        # Construct file-id matching deep-page convention. Sub-letter
+        # forms like «17AB» / «13AB» / «22AB» become a single stub on
+        # the parent number for now; the seed builder's by_letter
+        # mechanism doesn't fire because we have no per-letter year
+        # split. Future enrichment via paper-source can expand these.
+        stub_id = f"{volume_code}{hede_no.lower()}"
+        catalog_refs: dict[str, list[str]] = {"Hede": [hede_no]}
+        if parsed_row["sieg"]:
+            catalog_refs["Sieg"] = [parsed_row["sieg"]]
+        stub = {
+            "id": stub_id,
+            "ruler_volume": volume_code,
+            "ruler_inferred": ruler_label,
+            "page_title": f"{ruler_label}, Hede {hede_no} (index stub)",
+            "ruler": ruler_label,
+            "years": parsed_row["years"],
+            "nominal": parsed_row["nominal"],
+            "mint": parsed_row["mint"],
+            "specs": {
+                "default": {
+                    "bruttovægt_g": None,
+                    "finhed": None,
+                    "finvægt_g": None,
+                    "marken_fin_udbragt_til": None,
+                },
+            },
+            "catalog_refs": catalog_refs,
+            "litteratur": [],
+            "_source_type": "index_stub",
+            "_source_index": f"{basename}.htm",
+            "metal_from_index": parsed_row["metal"],
+            "index_note": parsed_row["note"],
+        }
+        stubs.append(stub)
+    return stubs
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true",
@@ -1500,6 +1748,55 @@ def main() -> int:
         parsed += 1
         parsed_files.append(json_path)
 
+    # Second pass: index-only stubs. For each overview page
+    # (`*hede.htm`), extract rows whose Hede cell has no deep-page link
+    # and emit a synthetic sidecar at `<vol>h<N>.json` marked
+    # `_source_type: "index_stub"`. Skips any stub whose target sidecar
+    # already exists (a real deep-page parse takes precedence) AND any
+    # stub whose Hede composite-key is already covered by another deep
+    # page's `specs.by_hede` (e.g. Hede 34 is documented inside
+    # c4h33.htm via by_hede — no stub needed).
+    #
+    # First-pass aggregate built from deep-page parses only — drives
+    # the «is this Hede already covered?» check below.
+    deep_index = _build_index(parsed_files)
+    stub_written = 0
+    stub_skipped_existing = 0
+    stub_skipped_covered = 0
+    for f in sorted(CACHE_DIR.glob("*hede.htm")):
+        basename = f.stem  # e.g. c3hede
+        if not re.match(r"^n?[cf]\d+hede$", basename):
+            continue
+        html = f.read_text(encoding="utf-8", errors="replace")
+        stubs = _extract_index_stubs(html, basename)
+        for stub in stubs:
+            # Skip if a deep-page parse (real or by_hede / by_letter
+            # sub-entry on another page) already covers this composite
+            # key. Composite shape: <ruler_volume><hede>.
+            composite_key = f"{stub['ruler_volume']}{stub['catalog_refs']['Hede'][0].lower()}"
+            if composite_key in deep_index:
+                stub_skipped_covered += 1
+                continue
+            # Also try the bare-number form (strip trailing letters) —
+            # «60ab» row may be covered by a deep page that lists «60a»
+            # + «60b» separately via by_letter.
+            bare_hede = re.sub(r"[a-z]+$", "", stub["catalog_refs"]["Hede"][0].lower())
+            if bare_hede != stub["catalog_refs"]["Hede"][0].lower():
+                bare_key = f"{stub['ruler_volume']}{bare_hede}"
+                if bare_key in deep_index:
+                    stub_skipped_covered += 1
+                    continue
+            stub_path = CACHE_DIR / f"{stub['id']}.json"
+            if stub_path.exists() and not args.force:
+                stub_skipped_existing += 1
+                continue
+            stub_path.write_text(
+                json.dumps(stub, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
+            stub_written += 1
+            parsed_files.append(stub_path)
+
     # Aggregate index. `sort_keys=True` keeps the on-disk output
     # deterministic across runs — without it, dict insertion order
     # (which varies with filesystem listing / re-parse subsets) would
@@ -1515,6 +1812,9 @@ def main() -> int:
     print(f"Skipped (already parsed): {skipped}")
     print(f"Overviews skipped (in-page parsing not implemented): {overviews}")
     print(f"Failed: {failed}")
+    print(f"Index stubs written: {stub_written}")
+    print(f"Index stubs skipped (existing sidecar): {stub_skipped_existing}")
+    print(f"Index stubs skipped (covered by by_hede / by_letter): {stub_skipped_covered}")
     print(f"Aggregate index: {len(index)} composite Hede keys")
     return 0
 
