@@ -637,7 +637,8 @@ Other sessions may have left modifications in:
 ```bash
 .venv/bin/python <<'EOF'
 import json, pathlib, re
-audit = json.loads(pathlib.Path('scripts/cache/ucoin/_BR_audit-2_2026-05-20.json').read_text())
+audit2 = json.loads(pathlib.Path('scripts/cache/ucoin/_BR_audit-2_2026-05-20.json').read_text())
+audit3 = json.loads(pathlib.Path('scripts/cache/ucoin/_BR_audit-3_2026-05-22_hanseatic.json').read_text())
 url_index = json.loads(pathlib.Path('scripts/cache/ucoin/_url_index.json').read_text())
 uc = pathlib.Path('scripts/cache/ucoin')
 
@@ -646,9 +647,10 @@ dk_priorities = [
     'DK_p1115_Rigsdaler_1699-1749',
     'DK_p846_Rigsdaler_1750-1812',
     'DK_p647_Rigsbankdaler_1813-1854',
+    'DK_p1147_Rigsdaler_1625-1699',
 ]
 for k in dk_priorities:
-    v = audit['NEW_GAPS_DISCOVERED'].get(k) or {}
+    v = audit2['NEW_GAPS_DISCOVERED'].get(k) or {}
     if 'gap_tids' in v:
         uncached = [t for t in v['gap_tids'] if not (uc/f'{t}.json').exists()]
     else:
@@ -660,18 +662,28 @@ for k in dk_priorities:
         break
 else:
     # All DK-period priorities are closed. Fall through to the
-    # url_index-tagged buckets (Hamburg + Lübeck) per the
-    # 2026-05-22 priority-bucket-exhausted closure.
-    for src in ('country_hamburg', 'period_1204', 'period_1205'):
-        uncached = [tid for tid, v in url_index.items()
-                    if isinstance(v, dict) and v.get('source') == src
-                    and not (uc/f'{tid}.json').exists()]
+    # audit-3 Hanseatic buckets (per 2026-05-22 enumeration).
+    hanseatic_priority = [
+        'hamburg_p904',                # 34 TIDs, 1713-1772
+        'hamburg_p903',                # 45 TIDs, 1773-1872
+        'german_empire_p468_hamburg',  # 12 TIDs, 1873-1914 Reichsgoldmünzfuß
+        'lubeck_p1205',                # 45 TIDs, 1620-1716
+        'lubeck_p1204',                # 36 TIDs, 1717-1797
+        'german_empire_p469_lubeck',   #  6 TIDs, 1901-1914 Reichsgoldmünzfuß
+    ]
+    for bkey in hanseatic_priority:
+        b = audit3['buckets'].get(bkey) or {}
+        tids = b.get('gap_tids') or []
+        uncached = [t for t in tids if not (uc/f'{t}.json').exists()]
         if uncached:
-            print(f'>>> Next ucoin batch: ucoin/{src}, {len(uncached)} uncached, take first 5:')
+            print(f'>>> Next ucoin batch: ucoin/{bkey}, {len(uncached)}/{len(tids)} uncached, take first 5:')
             print(uncached[:5])
             break
     else:
-        print('!!! ALL ucoin priorities closed — declare harvest complete OR add new buckets to §4.2.')
+        print('!!! ALL ucoin priorities CLOSED — declare harvest complete OR add new buckets to §4.2.')
+        print('!!! Known unresolvable-via-ucoin gaps (paper-source needed):')
+        for k, v in audit3['in_scope_gaps_unresolvable_via_ucoin'].items():
+            print(f'!!!   {k}: {v}')
 EOF
 ```
 
@@ -686,28 +698,29 @@ DK-period priorities (audit-2 tracked) — current state as of 2026-05-22:
 | 3 | DK p647 1813-1854 | Helstaten F6 → C8 | ✅ **CLOSED** (48/48) |
 | 4 | DK p1147 1625-1699 | C4 late + F3 + C5 | ✅ **CLOSED** (211/211 verified 2026-05-22 page-by-page re-enum) |
 
-When all four DK-period buckets are at 100% cached, fall through to the Hanseatic buckets below. The `_url_index.json` is the authority — its `source` tags `country_hamburg` / `period_1204` / `period_1205` are derived from per-TID enumeration of the ucoin listing pages.
+When all four DK-period buckets are at 100 % cached, fall through to the Hanseatic buckets below. The authority is `scripts/cache/ucoin/_BR_audit-3_2026-05-22_hanseatic.json` — produced by a fresh Chrome-MCP listing-page enumeration covering the mission window 1559-1914.
 
-Hanseatic priorities (url_index-tagged) — added 2026-05-22 after DK-period exhaustion:
+Hanseatic priorities (audit-3 tracked) — added 2026-05-22:
 
-| Priority | Bucket | URL listing | TIDs | Scope |
+| Priority | Bucket key | Listing URL | TIDs | Scope |
 |---|---|---|---|---|
-| 5 | Hamburg city | `country=hamburg` | 80 | Hanseatic Hamburg 1726-1803 (Dreiling, Sechsling, Mark, Doppelschilling, Speziestaler). Lands in V2 entity `hanseatic_hamburg`. |
-| 6 | Lübeck early-modern | `period=1205` | 45 | Hanseatic Lübeck 1620-1671 (Schilling, Doppelschilling family). Lands in V2 entity `hanseatic_lubeck`. |
-| 7 | Lübeck late period | `period=1204` | 34 | Hanseatic Lübeck 1727-1789 (Schilling family). Lands in V2 entity `hanseatic_lubeck`. |
+| 5 | `hamburg_p904` | `country=hamburg&period=904` | 34 | Hanseatic Hamburg 1713-1772 (Dreiling, Sechsling, Schilling, Doppelschilling, Mark, Thaler, Dukat). Lands in V2 entity `hanseatic_hamburg`. |
+| 6 | `hamburg_p903` | `country=hamburg&period=903` | 45 | Hanseatic Hamburg 1773-1872 (same denomination range + ducat continuity). Lands in V2 entity `hanseatic_hamburg`. |
+| 7 | `german_empire_p468_hamburg` | `country=german_empire&period=468` | 12 | Reichsgoldmünzfuß Hamburg sub-period 1873-1914 (2/5/10/20-Mark gold + silver Reichsmark). Lands in V2 entity `hanseatic_hamburg` (post-1871 sub-track). |
+| 8 | `lubeck_p1205` | `country=lubeck&period=1205` | 45 | Hanseatic Lübeck 1620-1716 (Schilling, Mark, Thaler, Goldgulden, Dukat). Lands in V2 entity `hanseatic_lubeck`. |
+| 9 | `lubeck_p1204` | `country=lubeck&period=1204` | 36 | Hanseatic Lübeck 1717-1797 / continuity to 1801 (Schilling, Mark, Thaler, Dukat). Lands in V2 entity `hanseatic_lubeck`. |
+| 10 | `german_empire_p469_lubeck` | `country=german_empire&period=469` | 6 | Reichsgoldmünzfuß Lübeck sub-period 1901-1914 (2/3/5/10-Mark silver + gold). Lands in V2 entity `hanseatic_lubeck` (post-1871 sub-track). |
+
+**Total Hanseatic harvest scope**: 178 unique TIDs (179 entries; 2 lubeck cross-period dupes via 1716/17 boundary).
+
+**Unresolvable-via-ucoin gaps** (audit-3 documented; need paper-source for completion):
+- **Hamburg pre-1713**: ucoin has no period earlier than p904. Mission years 1559-1712 (154 yr) uncovered — paper-source candidate: Behrens 1905 *Münzen und Medaillen der Stadt Hamburg*.
+- **Lübeck pre-1620**: ucoin has no period earlier than p1205. Mission years 1559-1619 (61 yr) uncovered — paper-source: Behrens 1905 *Münzen und Medaillen der Lübecker*, Lübeck-Bisthum cabinet catalogues.
+- **Lübeck 1798-1870**: 73-year gap between p1204 (ends 1797) and p469 (starts 1901). Helstaten-era + pre-Reichsmünzfuß silver coinage uncovered — paper-source.
 
 For priorities 1-4, the `gap_tids` lists in audit-2 manifest are authoritative — pick first 5 uncached, fetch, save.
 
-For priority 3 (p647) when re-opened, the manifest stores only a count (`gap: 47`) — no explicit TID list. ENUMERATE the listing page once before harvesting:
-
-```bash
-# Navigate Chrome MCP to: https://en.ucoin.net/catalog/?country=denmark&period=647
-# Extract all anchors with /coin/<slug>/?tid=<TID> pattern
-# Save the slug-to-TID map to scripts/cache/ucoin/_p647_listing.json
-# (One-time enumeration; subsequent batches read from that file)
-```
-
-For priorities 5-7, the `_url_index.json` already carries the per-TID URL — no listing enumeration needed. Filter by `source` tag and pick first 5 uncached.
+For priorities 5-10, the `gap_tids` lists in audit-3 manifest are authoritative — same shape, same harvest logic. The `_url_index.json` already carries every enumerated TID's URL (auto-populated when audit-3 was written), so no per-period listing-page re-enumeration is needed before the cron job fetches.
 
 ### §4.3. ucoin URL pattern — MUST use slug-form
 
