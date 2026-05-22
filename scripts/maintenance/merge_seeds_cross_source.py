@@ -823,6 +823,134 @@ def _fineness_within(a, b, tol=0.05):
     return abs(fa - fb) <= tol
 
 
+# ---------------------------------------------------------------------------
+# Weight tier-1 disambiguator (user-confirmed 2026-05-22)
+# ---------------------------------------------------------------------------
+#
+# Per user direction, weight + fineness form the primary identity vector
+# for sub-variant disambiguation. When BOTH coins carry weight_rough_g
+# AND the relative gap exceeds the tolerance (default 5%), the matcher
+# returns no_match REGARDLESS of catalog-letter agreement.
+#
+# Rationale — encoded numismatic intuition.
+# -----------------------------------------
+# Cataloguers regularly cite the same Galster sub-letter (e.g. «92B»)
+# for specimens whose physical weight clearly differs beyond expected
+# variance. Example: chr_c3g92.htm publishes Galster 92B at 12.12g; the
+# Bruun catalogue lot 13057 attests a specimen at 11.05g — both labelled
+# «Galster 92B», but with auxiliary catalog refs that diverge (Sieg 4
+# vs 16, Schou 48,50 vs 48 alone) and weights ~8.8% apart.
+#
+# In this regime the physical-specimen identity is the relevant atomic
+# unit; cataloguer's sub-letter is an approximation across multiple
+# physical specimens. We surface this by keeping the two records as
+# distinct unified entries; a curator can later decide whether to fold
+# them via §9a multi-specimen merge AFTER additional verification.
+#
+# Specimen-variance considerations.
+# ---------------------------------
+# Standard Reichsthaler / well-defined types: ±1-2% specimen variance is
+# typical (≤5% covers extremes). Emergency Klippinge / Notmünze:
+# variance can reach ±10-15%, but the >5% gap then ALSO usually has
+# divergent sub-cataloguing (Sieg numbers, mintmark variants) — which is
+# exactly what we want to surface as separate entries. The 5% threshold
+# is conservative for cross-source merge; within-source §9a multi-
+# specimen merge (where catalog identity is established by the source
+# cataloguer themselves) is unaffected.
+
+
+def _weight_repr(coin) -> float | None:
+    """Single representative weight from `weight_rough_g`. Mirrors
+    `_fineness_repr` shape: scalar OR list-of-FieldValue."""
+    w = coin.get("weight_rough_g")
+    if isinstance(w, (int, float)):
+        return float(w)
+    if isinstance(w, list):
+        vals = [
+            e.get("value") for e in w
+            if isinstance(e, dict) and isinstance(e.get("value"), (int, float))
+        ]
+        if vals:
+            return sum(vals) / len(vals)
+    return None
+
+
+def _weight_diverges(a, b, tol_rel: float = 0.05) -> bool | None:
+    """Tier-1 weight disambiguator.
+
+    Returns:
+      True  — both sides have weight AND relative Δ > tol_rel → BLOCK merge.
+      False — both sides have weight AND relative Δ ≤ tol_rel → ok.
+      None  — at least one side lacks weight → not evaluable, no decision.
+
+    Relative tolerance is computed against the average of the two
+    readings to avoid asymmetry. Default 5% covers normal specimen
+    variance; gaps beyond it signal a likely different physical type.
+    """
+    wa = _weight_repr(a)
+    wb = _weight_repr(b)
+    if wa is None or wb is None:
+        return None
+    if wa <= 0 or wb <= 0:
+        return None
+    avg = (wa + wb) / 2
+    rel = abs(wa - wb) / avg
+    return rel > tol_rel
+
+
+def _catalog_strongly_agrees(refs_a: dict, refs_b: dict,
+                              min_shared_agreeing: int = 2) -> bool:
+    """Strong catalog-agreement test for the weight tier-1 disambiguator.
+
+    Returns True iff:
+      (a) refs share ≥ `min_shared_agreeing` keys AND
+      (b) every shared key's values overlap (no disagreement on any
+          shared key) — strict equality WITHOUT numeric-core normalisation.
+
+    Used to gate weight tier-1 disambiguation:
+      - SAME physical type, different preservation (e.g. two specimens
+        of KM 19 / Hede 56A with weights 28.8g vs 24.5g due to wear):
+        ≥2 type+sub-variant refs agree → True → weight guard does NOT
+        fire → merge allowed (per §9a multi-specimen merge).
+      - DIFFERENT physical types loosely cataloguing as same parent
+        (e.g. Bruun's 8 Skilling 2.72g cited «Galster 93» vs Galster's
+        own reference at 3.32g — only galster=93 in common): only 1
+        shared ref → False → weight guard fires → no_match.
+      - Same parent letter but auxiliary refs disagree (e.g. 92B Galster
+        sieg=4 vs 92B Bruun sieg=16): galster agrees + sieg disagrees
+        → False (disagreement detected) → weight guard fires.
+
+    Why a strict-equality + min-shared count:
+      Per user direction 2026-05-22, when weight diverges > 5% the
+      identity of the physical type must be more strongly evidenced
+      than a single catalog letter agreement. Wear-only divergence
+      typically appears in catalogues that cite ALL the standard refs
+      (KM + Hede + Sieg + Schou); cross-source same-letter coincidence
+      typically lacks that depth. The min-2 threshold separates these
+      two cases cleanly.
+
+    Numeric-core normalisation («92B» ≡ «92») from
+    `_catalog_chain_consistent` is INTENTIONALLY NOT applied here —
+    Galster letter-suffix is meaningful at the sub-variant level
+    («Galster 92» base ≠ «Galster 92B» sub-variant).
+    """
+    shared = set(refs_a) & set(refs_b)
+    if len(shared) < min_shared_agreeing:
+        return False
+    n_agreeing = 0
+    for k in shared:
+        va, vb = refs_a[k], refs_b[k]
+        sa = set(va.split("|")) if isinstance(va, str) else {str(va)}
+        sb = set(vb.split("|")) if isinstance(vb, str) else {str(vb)}
+        if sa & sb:
+            n_agreeing += 1
+        else:
+            # Any disagreement on a shared key disqualifies — strong
+            # agreement requires zero disagreements across shared keys.
+            return False
+    return n_agreeing >= min_shared_agreeing
+
+
 # Mint spelling aliases — map source-specific variants to a single
 # project-canonical lowercased form so cross-source mint comparison
 # doesn't false-fail on language / orthography. Each entry: source
@@ -953,6 +1081,48 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     fallback = {}
     why = []
 
+    # Weight tier-1 disambiguator (user-confirmed 2026-05-22, refined
+    # same day to be catalog-strength-aware).
+    #
+    # The naïve rule «block merge when weight Δ > 5%» is too aggressive:
+    # same-type specimens with different preservation states (wear,
+    # corrosion, slight planchet variance) legitimately differ by 5-10%
+    # in weight even when cataloguers unanimously assign the same
+    # KM/Hede/Sieg/Schou/Galster. Per §9a these merge into ONE entry
+    # with a multi-source `weight_rough_g` list.
+    #
+    # The refined rule combines TWO signals:
+    #   1. weight Δ > 5% relative AND
+    #   2. catalog does NOT strongly agree (i.e. fewer than 2 shared
+    #      catalog refs ALL in agreement, strict equality without
+    #      numeric-core / sub-variant tolerance)
+    #
+    # Both must hold to block merge. Otherwise the merge proceeds
+    # through the standard primary-signal path.
+    #
+    # Worked examples (1535 Galster cluster):
+    #   - 92B Galster (12.12g) vs 92B Bruun (11.05g): Δ ≈ 9%; shared
+    #     {galster, schou, sieg} but sieg=4 vs sieg=16 disagree → not
+    #     strongly-agreeing → no_match ✓
+    #   - 93 Galster (3.32g) vs 93 Bruun (2.72g): Δ ≈ 20%; only
+    #     {galster=93} shared → 1 ref < 2 threshold → no_match ✓
+    #   - Wear-only KM 19 specimens 28.8 vs 24.5g: Δ ≈ 16%; shared
+    #     {km=19, hede=56A} both agree → strongly-agreeing → merge ✓
+    refs_a_pre = _catalog_refs(coin_a, entity_id)
+    refs_b_pre = _catalog_refs(coin_b, entity_id)
+    if (_weight_diverges(coin_a, coin_b, tol_rel=0.05) is True
+            and not _catalog_strongly_agrees(refs_a_pre, refs_b_pre,
+                                              min_shared_agreeing=2)):
+        wa = _weight_repr(coin_a)
+        wb = _weight_repr(coin_b)
+        why.append(
+            f"weight: {wa:.3f}g vs {wb:.3f}g — Δ > 5% "
+            f"AND catalog not strongly-agreeing (<2 shared refs match) — "
+            f"tier-1 disambiguator"
+        )
+        return {"decision": "no_match", "primary": primary,
+                "fallback": fallback, "why": why}
+
     # Metal — verified-wins rule (CLAUDE.md §4, extended 2026-05-19
     # operational consequence #1: a `metal_verified: false` value
     # cannot DISPROVE a merge). Without this rule, a builder-inferred
@@ -1026,9 +1196,31 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
                 rb = inferred_b
                 why.append(f"ruler_b inferred: {inferred_b!r} from year(s) {sorted(_coin_years(coin_b))}")
     if ra and rb:
-        primary["ruler"] = (ra == rb)
-        if not primary["ruler"]:
-            why.append(f"ruler: {ra!r} ≠ {rb!r}")
+        if ra == rb:
+            primary["ruler"] = True
+        else:
+            # Honour `ruler_verified` like mint_verified does (CLAUDE.md
+            # §4 + V2_DECISIONS §«Ruler verified-wins extension»): a
+            # source whose ruler attribution failed the reign-window
+            # check (e.g. ucoin tagging 1807 with Frederik VI) carries
+            # `ruler_verified: False` and MUST NOT disprove a merge
+            # against a verified attestation. When one side is
+            # ruler_verified=True and the other is False, return None
+            # so other signals drive the decision. When BOTH sides are
+            # unverified, also defer (the conflict is between two
+            # guesses). Only when BOTH are verified AND values differ
+            # do we treat ruler as a genuine primary disagreement.
+            a_rv = bool(coin_a.get("ruler_verified", True))
+            b_rv = bool(coin_b.get("ruler_verified", True))
+            if a_rv and b_rv:
+                primary["ruler"] = False
+                why.append(f"ruler: {ra!r} ≠ {rb!r}")
+            else:
+                primary["ruler"] = None
+                why.append(
+                    f"ruler-disagreement-suppressed: {ra!r}(verified={a_rv}) "
+                    f"vs {rb!r}(verified={b_rv})"
+                )
     else:
         primary["ruler"] = None
 

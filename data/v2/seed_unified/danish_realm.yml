@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 2680 per-source seed entries.
-# Output: 1716 unified entries (one per physical coin).
+# Output: 1711 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -5240,18 +5240,29 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.25
     source: numismaster
+  - value: 0.25
+    source: ucoin
   weight_rough_g:
   - value: 2.598
     source: numismaster
+  - value: 2.6
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65105
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-skilling-1807/?tid=79557
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -5262,6 +5273,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65105
+  - dk-tid-79557
 - id: unified-denmark-numismaster-65106
   fuss: seed_unsorted
   phase: numismaster
@@ -9123,24 +9135,33 @@ coins:
   year_first: 1665
   year_last: 1665
   year_label: '1665'
+  ruler: Christian IV
+  mint: Kopenhagen
   catalog:
     km: '260'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
   - value: 14.387
     source: numismaster
+  - value: 14.39
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65390
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-speciedaler-1665/?tid=97356
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -9151,6 +9172,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65390
+  - dk-tid-97356
 - id: unified-denmark-numismaster-65396
   fuss: seed_unsorted
   phase: numismaster
@@ -22298,7 +22320,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: (?)
+  nominal: 1 Speciedaler
   year_first: 1603
   year_last: 1603
   year_label: '1603'
@@ -29545,17 +29567,24 @@ coins:
   fineness:
   - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
   - value: 28.65
     source: bruun
   - value: 28.775
     source: numismaster
+  - value: 28.78
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65462
     ref: NumisMaster
   - type: literature
     ref: Bruun-6697 · Stack's Bowers Bruun Collection Part I, lot 1093
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1669/?tid=99109
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -29571,6 +29600,7 @@ coins:
   composed_of:
   - denmark-numismaster-65462
   - dk-bruun-6697
+  - dk-tid-99109
 - id: unified-dk-bruun-6702
   fuss: seed_unsorted
   phase: bruun
@@ -47034,6 +47064,7 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
+    km: '16.1'
     hede:
     - 79A
     - 79B
@@ -47048,18 +47079,29 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.296
     source: hede
+  - value: 0.298
+    source: ucoin
   weight_rough_g:
+  - value: 1.78
+    source: ucoin
   - value: 2.088
     source: hede
+  diameter_mm:
+  - value: 22.3
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h79.htm
     ref: danskmoent.dk (Hede c4h79A)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-skilling-1603-1613/?tid=163008
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -47074,6 +47116,7 @@ coins:
   composed_of:
   - dk-hede-c4h79a
   - dk-hede-c4h79b
+  - km-16-1-chr-iv-1603
 - id: unified-dk-hede-c4h79c
   fuss: 9_thaler
   phase: I
@@ -47086,6 +47129,7 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
+    km: '16.2'
     hede:
     - 79C
     - 79D
@@ -47100,18 +47144,29 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.296
     source: hede
+  - value: 0.298
+    source: ucoin
   weight_rough_g:
+  - value: 1.78
+    source: ucoin
   - value: 2.088
     source: hede
+  diameter_mm:
+  - value: 22.3
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h79.htm
     ref: danskmoent.dk (Hede c4h79C)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-skilling-1618/?tid=163009
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -47126,6 +47181,7 @@ coins:
   composed_of:
   - dk-hede-c4h79c
   - dk-hede-c4h79d
+  - km-16-2-chr-iv-1618
 - id: unified-dk-hede-c4h81
   fuss: 9_thaler
   phase: I
@@ -78128,48 +78184,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-79553
-- id: unified-dk-tid-79557
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 4 Skilling
-  year_first: 1807
-  year_last: 1807
-  year_label: '1807'
-  ruler: Frederick VI
-  mint: Altona
-  catalog:
-    km: '661'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.25
-    source: ucoin
-  weight_rough_g:
-  - value: 2.6
-    source: ucoin
-  diameter_mm:
-  - value: 21.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-skilling-1807/?tid=79557
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-79557
 - id: unified-dk-tid-81019
   fuss: seed_unsorted
   phase: ucoin
@@ -79913,44 +79927,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-97340
-- id: unified-dk-tid-97356
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ Speciedaler
-  year_first: 1665
-  year_last: 1665
-  year_label: '1665'
-  ruler: Christian IV
-  mint: Kopenhagen
-  catalog:
-    km: '260'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: ucoin
-  weight_rough_g:
-  - value: 14.39
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-2-speciedaler-1665/?tid=97356
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-97356
 - id: unified-dk-tid-97376
   fuss: seed_unsorted
   phase: ucoin
@@ -80475,48 +80451,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-99106
-- id: unified-dk-tid-99109
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1669
-  year_last: 1669
-  year_label: '1669'
-  ruler: Christian V
-  mint: Kopenhagen
-  catalog:
-    km: '308'
-    bruun_collection_id: '6697'
-    bruun_part: I
-    bruun_lot_no: 1093
-    bruun_page: 139
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: ucoin
-  weight_rough_g:
-  - value: 28.78
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1669/?tid=99109
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-tid-99109
 - id: unified-dk-tid-99118
   fuss: seed_unsorted
   phase: ucoin
@@ -80737,112 +80671,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - km-135-chr-iv-1646
-- id: unified-km-16-1-chr-iv-1603
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 2 Skilling
-  year_first: 1603
-  year_last: 1613
-  year_ranges:
-  - - 1603
-    - 1605
-  - - 1607
-    - 1609
-  - - 1611
-    - 1611
-  - - 1613
-    - 1613
-  year_label: 1603–1605, 1607–1609, 1611, 1613
-  ruler: Christian IV
-  catalog:
-    km: '16.1'
-    hede:
-    - 79A
-    - 79B
-    hede_volume: c4h
-    sieg:
-    - '38.1'
-    - '38.2'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.298
-    source: ucoin
-  weight_rough_g:
-  - value: 1.78
-    source: ucoin
-  diameter_mm:
-  - value: 22.3
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-skilling-1603-1613/?tid=163008
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - km-16-1-chr-iv-1603
-- id: unified-km-16-2-chr-iv-1618
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 2 Skilling
-  year_first: 1618
-  year_last: 1618
-  year_label: '1618'
-  ruler: Christian IV
-  mint: Kopenhagen
-  catalog:
-    km: '16.2'
-    hede:
-    - 79C
-    - 79D
-    hede_volume: c4h
-    sieg:
-    - '38.3'
-    - '38.4'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.298
-    source: ucoin
-  weight_rough_g:
-  - value: 1.78
-    source: ucoin
-  diameter_mm:
-  - value: 22.3
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-skilling-1618/?tid=163009
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - km-16-2-chr-iv-1618
 - id: unified-km-566-1747
   fuss: seed_unsorted
   phase: ucoin

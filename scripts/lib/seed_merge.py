@@ -108,6 +108,13 @@ _VERIFIABLE_FIELDS = {
     "weight_rough_g": "weight_rough_verified",
     "diameter_mm": "diameter_mm_verified",
     "mint": "mint_verified",
+    # Ruler attribution joined the verified set 2026-05-22 (after the
+    # ucoin reign-window check landed). Per §4 generalisation: «any
+    # `<field>` paired with a `<field>_verified` flag follows the
+    # same precedence pattern». A reign-window-flagged unverified
+    # ucoin ruler value defers to a verified Hede / NumisMaster /
+    # Bruun attestation during merge.
+    "ruler": "ruler_verified",
 }
 
 

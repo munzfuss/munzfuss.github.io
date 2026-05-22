@@ -469,6 +469,22 @@ class Coin(_StrictBase):
         ),
     )
     ruler: str | None = None
+    ruler_verified: bool = Field(
+        True,
+        description=(
+            "Whether the ruler attribution comes from a source-attested "
+            "reading (coin inscription, Hede page header, Numista entry "
+            "with explicit ruler field). False when the attribution is "
+            "suspect — typical trigger 2026-05-22: ucoin source data "
+            "occasionally tags a coin with a king whose reign doesn't "
+            "cover the coin's minting year (e.g. ucoin tid=79557 «4 "
+            "Skilling 1807 — Frederick VI» but Christian VII reigned "
+            "until 13 March 1808). The ucoin builder's reign-window "
+            "check flips this False, then the cross-source merger's "
+            "verified-wins rule (§4) lets NumisMaster / Bruun / Hede "
+            "attestations override the suspect ucoin reading."
+        ),
+    )
     mint: str | list[str] | None = Field(
         None,
         description=(
@@ -795,8 +811,14 @@ class Location(_StrictBase):
                 errors.append(f"coin {coin.id}: fuss '{coin.fuss}' not in shared/fuesse.yml")
                 continue
             
-            # Check fraction exists if given
-            if coin.fraction:
+            # Check fraction exists if given. Skip the check on the
+            # `seed_unsorted` catch-all bucket — it carries coins
+            # awaiting Müntzfuß classification, and a stub merged
+            # with a source that DOES know its fraction (Bruun: «2 Dukat»
+            # → fraction='2') is legitimate carry-over. The fraction
+            # will get validated against the real fuss at Phase-4
+            # auto-classifier or curator promotion time.
+            if coin.fraction and coin.fuss != "seed_unsorted":
                 if coin.fraction not in fuesse[coin.fuss].fractions:
                     errors.append(
                         f"coin {coin.id}: fraction '{coin.fraction}' not in "

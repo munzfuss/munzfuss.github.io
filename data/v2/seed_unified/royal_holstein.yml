@@ -260,6 +260,56 @@ coins:
   composed_of:
   - dk-bruun-5737
   - schleswig_holstein-numismaster-93029
+- id: unified-dk-bruun-5758
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: ¼ Speciedaler
+  year_first: 1645
+  year_last: 1645
+  year_label: '1645'
+  ruler: Christian IV
+  mintmaster: Jacob Schwieger
+  mint: Glückstadt
+  catalog:
+    km: '33'
+    bruun_collection_id: '5758'
+    sieg: '180'
+    schou: '28'
+    hede: '166'
+    bruun_part: III
+    bruun_lot_no: 11208
+    bruun_page: 107
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 6.94
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-5758 · Stack's Bowers Bruun Collection Part III, lot 11208
+  - type: literature
+    url: https://numismaster.com/MC_93013
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: royal_holstein
+  composed_of:
+  - dk-bruun-5758
+  - schleswig_holstein-numismaster-93013
 - id: unified-dk-bruun-5798
   fuss: seed_unsorted
   phase: bruun
@@ -3987,20 +4037,12 @@ coins:
   year_label: '1645'
   fraction: 1/4
   ruler: Christian IV.
-  mintmaster: Jacob Schwieger
   mint: Glückstadt
   catalog:
-    km: '33'
     hede: '166'
     hede_volume: c4h
     schou: '28'
-    sieg:
-    - '175'
-    - '180'
-    bruun_collection_id: '5758'
-    bruun_part: III
-    bruun_lot_no: 11208
-    bruun_page: 107
+    sieg: '175'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -4011,19 +4053,12 @@ coins:
   - value: 0.888
     source: hede
   weight_rough_g:
-  - value: 6.94
-    source: bruun
   - value: 7.308
     source: hede
   sources:
   - type: literature
-    ref: Bruun-5758 · Stack's Bowers Bruun Collection Part III, lot 11208
-  - type: literature
     url: https://www.danskmoent.dk/chr/c4h166.htm
     ref: danskmoent.dk (Hede c4h166)
-  - type: literature
-    url: https://numismaster.com/MC_93013
-    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -4036,9 +4071,7 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
-  - dk-bruun-5758
   - dk-hede-c4h166
-  - schleswig_holstein-numismaster-93013
 - id: unified-dk-hede-c4h167
   fuss: 9_thaler
   phase: I
@@ -9508,6 +9541,7 @@ coins:
     - 1646
   year_label: 1640–1646
   ruler: Frederick II
+  mint: Glückstadt
   catalog:
     km: '29'
     lange: '31'
@@ -9522,12 +9556,16 @@ coins:
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.986
+    source: numismaster
+  - value: 0.986
     source: ucoin
   weight_rough_g:
+  - value: 3.5
+    source: numismaster
   - value: 3.5
     source: ucoin
   diameter_mm:
@@ -9537,6 +9575,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-ducat-1640-1646/?tid=163665
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_93030
+    ref: NumisMaster
   verification_note:
     de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
       / NumisMaster / Bruun) vor §BF-Promotion.'
@@ -9547,6 +9588,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - km-29-chr-iv-1640
+  - schleswig_holstein-numismaster-93030
 - id: unified-km-3-fr-iv-1711
   fuss: seed_unsorted
   phase: ucoin
@@ -14290,51 +14332,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-93028
-- id: unified-schleswig_holstein-numismaster-93030
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Ducat
-  year_first: 1640
-  year_last: 1646
-  year_ranges:
-  - - 1640
-    - 1640
-  - - 1642
-    - 1642
-  - - 1646
-    - 1646
-  year_label: 1640, 1642, 1646
-  ruler: Christian IV
-  mint: Glückstadt
-  catalog:
-    km: '29'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.986
-    source: numismaster
-  weight_rough_g:
-  - value: 3.5
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_93030
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - schleswig_holstein-numismaster-93030
 - id: unified-schleswig_holstein-numismaster-93033
   fuss: seed_unsorted
   phase: numismaster

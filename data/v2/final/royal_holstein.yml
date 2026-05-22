@@ -1221,11 +1221,11 @@ coins:
   - type: literature
     ref: Bruun-5758 · Stack's Bowers Bruun Collection Part III, lot 11208
   - type: literature
-    url: https://www.danskmoent.dk/chr/c4h166.htm
-    ref: danskmoent.dk (Hede c4h166)
-  - type: literature
     url: https://numismaster.com/MC_93013
     ref: NumisMaster
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c4h166.htm
+    ref: danskmoent.dk (Hede c4h166)
   note:
     de: ¼ Speciedaler 1645 · Glückstadter Spätprägung Christians IV.
     en: ¼ Speciedaler 1645 · Glückstadt late issue of Christian IV
@@ -1241,6 +1241,7 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
+  - unified-dk-bruun-5758
   - unified-dk-hede-c4h166
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
@@ -7944,51 +7945,6 @@ coins:
   phase: I
   kind: kurant
   nominal: 1 Ducat
-  ruler: Christian IV
-  issuing_entity: royal_holstein
-  id: unified-schleswig_holstein-numismaster-93030
-  year_first: 1640
-  year_last: 1646
-  year_ranges:
-  - - 1640
-    - 1640
-  - - 1642
-    - 1642
-  - - 1646
-    - 1646
-  year_label: 1640, 1642, 1646
-  mint: Glückstadt
-  catalog:
-    km: '29'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.986
-    source: numismaster
-  weight_rough_g:
-  - value: 3.5
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_93030
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-93030
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 1 Ducat
   issuing_entity: royal_holstein
   id: unified-schleswig_holstein-numismaster-93033
   year_first: 1664
@@ -12076,6 +12032,7 @@ coins:
   - - 1640
     - 1646
   year_label: 1640–1646
+  mint: Glückstadt
   catalog:
     km: '29'
     lange: '31'
@@ -12090,12 +12047,16 @@ coins:
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.986
+    source: numismaster
+  - value: 0.986
     source: ucoin
   weight_rough_g:
+  - value: 3.5
+    source: numismaster
   - value: 3.5
     source: ucoin
   diameter_mm:
@@ -12105,6 +12066,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-ducat-1640-1646/?tid=163665
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_93030
+    ref: NumisMaster
   verification_note:
     de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
       / NumisMaster / Bruun) vor §BF-Promotion.'
@@ -16083,10 +16047,16 @@ coins:
   mint: Flensburg
   catalog:
     hede_volume: c3h
+    hede: 17ab
+    sieg: 47.1-2
   metal: silver
   metal_verified: true
   mint_verified: true
   verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/c3hede.htm
+    ref: danskmoent.dk overview c3hede (Hede c3h17ab — Tiefenseite fehlt)
   verification_note:
     de: 'Hede-Index-Stub: Nur die Übersichtsreihe von c3hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
       Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster

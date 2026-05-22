@@ -59,6 +59,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import PROJECT_ROOT, UCOIN_CACHE  # noqa: E402
+from lib.ruler_reigns import reign_covers_year  # noqa: E402
 from lib.seed_merge import merge_seed  # noqa: E402
 from lib.v2_seed_writer import _apply_pre_write_hygiene  # noqa: E402
 
@@ -356,6 +357,26 @@ def _build_entry_from_cache(cache: dict, entity: str) -> dict | None:
 
     metal_attested = bool(cache.get("composition_text"))
 
+    # Reign-window check on the cache's ruler attribution. ucoin's
+    # source-data is user-edited and can attribute a coin to a king
+    # whose reign doesn't cover the coin's minting year (real case
+    # 2026-05-22: tid=79557 «4 Skilling 1807» tagged ruler
+    # «Frederick VI» — but Christian VII reigned until 13 March 1808
+    # so the 1807 coin is Christian VII's). When the cache's ruler
+    # falls OUTSIDE the canonical reign window for the coin's year,
+    # we keep the cache value in `ruler` (preserving the source
+    # attestation) but flip `ruler_verified: False` so the cross-
+    # source merger's verified-wins-over-unverified rule (§4) lets
+    # NumisMaster / Bruun / Hede attestations override. The merger
+    # also stops treating ruler-disagreement as a primary-signal
+    # «no_match» when one side is unverified per CLAUDE.md §4.
+    raw_ruler = cache.get("ruler_text")
+    in_reign = reign_covers_year(raw_ruler, yf)
+    # in_reign: True → reign covers year; False → year outside reign
+    # (ruler attribution suspect); None → unrecognised ruler name or
+    # year missing (can't decide, leave verified=True per default).
+    ruler_verified = not (in_reign is False)
+
     entry: dict = {
         "id": cid,
         "fuss": "seed_unsorted",
@@ -366,7 +387,8 @@ def _build_entry_from_cache(cache: dict, entity: str) -> dict | None:
         "year_first": yf,
         "year_last": yl if yl is not None else yf,
         "year_ranges": year_ranges,
-        "ruler": cache.get("ruler_text"),
+        "ruler": raw_ruler,
+        "ruler_verified": ruler_verified,
         "mint": cache.get("mint_text"),
         "catalog": catalog,
         "metal": metal,
@@ -459,6 +481,11 @@ def _build_entry_from_v1(v1_coin: dict, entity: str) -> dict | None:
         "year_last": yl if yl is not None else yf,
         "year_ranges": v1_coin.get("year_ranges") or [[yf, yl if yl is not None else yf]],
         "ruler": v1_coin.get("ruler"),
+        # V1-carryover ruler is always unverified per §4 (pre-cache
+        # curator-set, no citation). Even if the V1 ruler happens to
+        # align with the reign window, the carry-over branch's
+        # «no cache backing» self-description applies to ruler too.
+        "ruler_verified": False,
         "mint": v1_coin.get("mint"),
         "catalog": cat,
         "metal": v1_coin.get("metal") or "silver",
