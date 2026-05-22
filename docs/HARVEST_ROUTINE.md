@@ -417,7 +417,11 @@ For each NID in the batch (5 entries):
 - `Issuer` → `country`
 - `King` / `Ruler` → `ruler`
 - `Value` → `denomination`
-- `Years` / `Year` → parse `year_first` / `year_last` from format `"1649-1670"` or `"1532"`
+- `Years` / `Year` → parse `year_first` / `year_last`. **The Numista field has THREE distinct shapes — DO NOT collapse them:**
+  - **Single year** «1532» → `year_first: 1532`, `year_last: 1532`, `year_list: null`
+  - **Dash-form range** «1649-1670» → continuous range, every in-between year was struck → `year_first: 1649`, `year_last: 1670`, `year_list: null`. Use this when the separator is a dash / hyphen / en-dash with no commas.
+  - **Comma-form discrete years** «1496, 1502» / «1592, 1593, 1595» → DISCRETE strike years, the in-between years were NOT struck → `year_first: <min>`, `year_last: <max>`, `year_list: [<each year>]`. Use this when the separator is a comma. The `year_list` field is REQUIRED on this shape — without it the seed builder collapses to a continuous range, inventing years that were never struck (§4 «source years are immutable» violation in reverse).
+  - **Mixed form** «1591-1593, 1595» → split into `year_list: [1591, 1592, 1593, 1595]` AND set `year_first` / `year_last` to overall min / max. Comma form takes precedence — any comma in the field → discrete mode.
 - `Composition` → `metal` (silver/gold/billon/copper based on text), `fineness` (parse `.875` / `0.875` / `(.156 silver)`)
 - `Weight` → `weight_g` (strip `g`)
 - `Diameter` → `diameter_mm` (strip `mm`)
@@ -439,6 +443,7 @@ cat <<'EOF' | python3 /tmp/save_numista.py
   "denomination": "1 Speciedaler|½ Sølvgylden|...",
   "year_first": YYYY,
   "year_last": YYYY,
+  "year_list": null,
   "metal": "silver|gold|billon|copper",
   "fineness": 0.NNN,
   "weight_g": NN.NN,
@@ -451,6 +456,10 @@ cat <<'EOF' | python3 /tmp/save_numista.py
 }
 EOF
 ```
+
+**`year_list` field encoding** (per the §2.3 B rule above):
+- `year_list: null` — for single-year + dash-form-range entries (the in-between years were struck).
+- `year_list: [1496, 1502]` — for comma-form discrete entries (verbatim list of struck years, ascending).
 
 **D. Pace 31-60s:**
 

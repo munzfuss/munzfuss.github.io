@@ -1,0 +1,1116 @@
+# Numista re-harvest queue — year_list field backfill
+#
+# Generated: 2026-05-22T19:25:07.835723+00:00
+# Trigger:   user-flagged data-loss on N#420401 (1 Noble John I, displayed
+#            «1496, 1502» on Numista but our cache stored 1496-1502 as a
+#            continuous range, losing the discrete-year distinction).
+#
+# Scope: 122 Numista NIDs where year_first != year_last AND
+# the cache file does NOT carry a `year_list` field. Each needs a
+# Numista-page recheck:
+#
+#   * If page shows «Years: A-B» (dash-form) → continuous range,
+#     write `year_list: null` to confirm.
+#   * If page shows «Years: A, B[, C, ...]» (comma-form) → discrete
+#     strike years, write `year_list: [A, B, C, ...]` (sorted ascending).
+#   * If mixed (e.g. «1591-1593, 1595») → write as discrete with all
+#     years expanded: `year_list: [1591, 1592, 1593, 1595]`.
+#
+# Re-harvest procedure: same as HARVEST_ROUTINE.md §2.3, but use the
+# `year_list` field per the new convention (HARVEST_ROUTINE.md §2.3.B
+# updated 2026-05-22). Run via the existing BO.6 batch routine; can be
+# batched arbitrarily — recommendation is 5-10 NIDs per pacing block.
+#
+# Sorted by gap descending (biggest year_last - year_first gap first;
+# those are statistically most likely to be true ranges, but also most
+# likely to harbor a discrete-comma-form discovery).
+#
+# When the routine resolves an entry, it adds `year_list` to the cache
+# JSON (per the new HARVEST_ROUTINE.md §2.3 rule), runs the seed
+# rebuild, and removes the entry from this file's `pending` list.
+
+pending:
+- nid: 143452
+  year_first: 1396
+  year_last: 1439
+  gap: 43
+  ruler: Eric VII (Erik of Pommern, 1397-1439)
+  denomination: ½ Penning (Skærv)
+  audit_context: BO.6 batch V — DK p0_pre_lovkompleks Erik of Pommern Skærv (½ Penning
+    bracteate) ND 1396-1439 Sieg E7-2
+  url: https://en.numista.com/143452
+- nid: 475742
+  year_first: 1396
+  year_last: 1439
+  gap: 43
+  ruler: Eric VII (Erik of Pommern, 1397-1439)
+  denomination: 1 Penning
+  audit_context: BO.6 batch X — DK p0_pre_lovkompleks, Erik of Pommern, 1 Penning
+    silver bracteate Hulpenning 1396-1439 — SIEG 2
+  url: https://en.numista.com/475742
+- nid: 348708
+  year_first: 1397
+  year_last: 1439
+  gap: 42
+  ruler: Eric VII (Erik of Pommern, 1397-1439)
+  denomination: 1 Sterling = 3 Pennings
+  audit_context: BO.6 batch W — DK p0_pre_lovkompleks, Erik of Pommern, Næstved mint,
+    Kobbersterling 3 Pennings copper 1397-1439
+  url: https://en.numista.com/348708
+- nid: 426966
+  year_first: 1397
+  year_last: 1439
+  gap: 42
+  ruler: Eric VII (Erik of Pommern, 1397-1439)
+  denomination: ''
+  audit_context: BO.6 batch X — DK p0_pre_lovkompleks, Erik of Pommern, Lund mint,
+    unattributed gold issue 9.85g (no denomination/cat-ref
+  url: https://en.numista.com/426966
+- nid: 476049
+  year_first: 1397
+  year_last: 1439
+  gap: 42
+  ruler: Eric VII (Erik of Pommern, 1397-1439)
+  denomination: 1 Sterling = 3 Pennings
+  audit_context: BO.6 batch X — DK p0_pre_lovkompleks, Erik of Pommern, Odense mint,
+    Kobbersterling 3 Pennings copper 1397-1439 — SIEG 9.
+  url: https://en.numista.com/476049
+- nid: 143575
+  year_first: 1448
+  year_last: 1481
+  gap: 33
+  ruler: Christian I (1448-1481)
+  denomination: 1 Hvid (= 4 Pennings)
+  audit_context: BO.6 batch W — DK p0_pre_lovkompleks Christian I Hvid Malmö ND 1448-1481
+    Sieg C1-1 Schive XIII:38-39
+  url: https://en.numista.com/143575
+- nid: 355730
+  year_first: 1481
+  year_last: 1513
+  gap: 32
+  ruler: John I (Hans I) (1481-1513)
+  denomination: 1 Goldgulden
+  audit_context: BO.6 batch W — DK p0_pre_lovkompleks, John I (Hans), 1 Goldgulden
+    gold 1481-1513
+  url: https://en.numista.com/355730
+- nid: 108399
+  year_first: 1483
+  year_last: 1513
+  gap: 30
+  ruler: John I (Hans I, 1481-1513)
+  denomination: 1 Hvid (= 4 Pennings)
+  audit_context: BO.6 batch V — DK p0_pre_lovkompleks John I Hvid Malmö ND 1483-1513
+    Sieg H-1
+  url: https://en.numista.com/108399
+- nid: 152921
+  year_first: 1483
+  year_last: 1513
+  gap: 30
+  ruler: John I (Hans I, 1481-1513)
+  denomination: 1 Hvid (= 4 Pennings)
+  audit_context: BO.6 batch W — DK p0_pre_lovkompleks John I Hvid Aalborg ND 1483-1513
+    Sieg H-2
+  url: https://en.numista.com/152921
+- nid: 152925
+  year_first: 1483
+  year_last: 1513
+  gap: 30
+  ruler: John I (Hans I, 1481-1513)
+  denomination: 1 Skilling (= 12 Pennings)
+  audit_context: BO.6 batch W — DK p0_pre_lovkompleks John I 1 Skilling Copenhagen
+    ND 1483-1513 Sieg H-7
+  url: https://en.numista.com/152925
+- nid: 152926
+  year_first: 1483
+  year_last: 1513
+  gap: 30
+  ruler: John I (Hans I, 1481-1513)
+  denomination: 1 Skilling (= 12 Pennings)
+  audit_context: BO.6 batch W — DK p0_pre_lovkompleks John I 1 Skilling Malmö ND 1483-1513
+    Sieg H-6
+  url: https://en.numista.com/152926
+- nid: 421269
+  year_first: 1806
+  year_last: 1830
+  gap: 24
+  ruler: Magnus VII Ericson (1319-1343)
+  denomination: 1 Penning
+  audit_context: BO.6 batch AW — NO p4 NID#421269 contemporary counterfeit 1 Penning
+    Magnus VII Ericson struck ND 1806-1830 (~Norwegian p
+  url: https://en.numista.com/421269
+- nid: 82133
+  year_first: 1649
+  year_last: 1670
+  gap: 21
+  ruler: Frederik III
+  denomination: 1 Skilling
+  audit_context: BO.6 batch N — NO Frederik III 1649-1670 1-Skilling KM-29 Hede-71A/B/C
+    .156 billon Scheide
+  url: https://en.numista.com/82133
+- nid: 99012
+  year_first: 1649
+  year_last: 1670
+  gap: 21
+  ruler: Frederik III
+  denomination: 2 Skilling
+  audit_context: BO.6 batch Q — NO p2 Frederik III billon Skilling Type I 1649-1670
+  url: https://en.numista.com/99012
+- nid: 491154
+  year_first: 1648
+  year_last: 1669
+  gap: 21
+  ruler: Frederick III
+  denomination: 16 Skilling = 1 Mark (1/6)
+  audit_context: BO.6 batch AI — NO p2 closure (Frederick III 16 Skilling 1648-1669)
+  url: https://en.numista.com/491154
+- nid: 115207
+  year_first: 1629
+  year_last: 1647
+  gap: 18
+  ruler: Christian IV (1588-1648)
+  denomination: ⅛ Speciedaler
+  audit_context: BO.6 batch R — NO p2 1513-1657, Christian IV Christiania 1629-1647
+    ⅛ Speciedaler KM-9 Hede-13A/B (.882 fineness, fractio
+  url: https://en.numista.com/115207
+- nid: 115216
+  year_first: 1629
+  year_last: 1647
+  gap: 18
+  ruler: Christian IV (1588-1648)
+  denomination: ¼ Speciedaler
+  audit_context: BO.6 batch R — NO p2 1513-1657, Christian IV Christiania 1629-1647
+    ¼ Speciedaler KM-10 Hede-12A/B (.882 fineness, fracti
+  url: https://en.numista.com/115216
+- nid: 115222
+  year_first: 1629
+  year_last: 1647
+  gap: 18
+  ruler: Christian IV (1588-1648)
+  denomination: ½ Speciedaler
+  audit_context: BO.6 batch S — NO p2 1513-1657 Christian IV Christiania ½ Speciedaler
+    9¼-Fuß
+  url: https://en.numista.com/115222
+- nid: 116009
+  year_first: 1629
+  year_last: 1647
+  gap: 18
+  ruler: Christian IV (1588-1648)
+  denomination: 2 Speciedaler
+  audit_context: BO.6 batch S — NO p2 1513-1657 Christian IV Christiania 2 Speciedaler
+    9¼-Fuß
+  url: https://en.numista.com/116009
+- nid: 55890
+  year_first: 1746
+  year_last: 1763
+  gap: 17
+  ruler: Frederick V (1746-1766)
+  denomination: 24 Skilling (1/4)
+  audit_context: BO.6 batch AK — NO p4 F5 Norge 24 Skilling 1746-1763 Type I silver
+    .562 Scheidemünze 9.17g (mintmaster TL Gruls Andersen
+  url: https://en.numista.com/55890
+- nid: 99204
+  year_first: 1778
+  year_last: 1795
+  gap: 17
+  ruler: Christian VII (1766-1808)
+  denomination: 8 Skilling (1/12 Speciedaler)
+  audit_context: 'BO.6 batch AQ — NO p4 1697-1814, Christian VII 8 Skilling 1778-1795
+    Kongsberg KM-257 .562 silver 3.06g 1/12-Speciedaler '
+  url: https://en.numista.com/99204
+- nid: 99108
+  year_first: 1700
+  year_last: 1714
+  gap: 14
+  ruler: Frederik IV (1699-1730)
+  denomination: 2 Skilling
+  audit_context: BO.6 batch AO — NO p4 Frederik IV 2 Skilling 1700-1714 billon Scheidemünze
+  url: https://en.numista.com/99108
+- nid: 75266
+  year_first: 1702
+  year_last: 1715
+  gap: 13
+  ruler: Frederick IV (1699-1730)
+  denomination: 8 Skilling (1/12)
+  audit_context: BO.6 batch AK — NO p4 F4 Norge 8 Skilling 1702-1715 Type I light
+    silver .750 Scheidemünze 2.292g
+  url: https://en.numista.com/75266
+- nid: 99008
+  year_first: 1700
+  year_last: 1712
+  gap: 12
+  ruler: Frederik IV (1699-1730)
+  denomination: 1 Skilling (1/96)
+  audit_context: BO.6 batch AN — NO p4 F4 Speciedaler billon 1 Skilling 1700-1712
+    Kongsberg
+  url: https://en.numista.com/99008
+- nid: 99196
+  year_first: 1649
+  year_last: 1661
+  gap: 12
+  ruler: Frederik III
+  denomination: 8 Skilling (1/12 Speciedaler)
+  audit_context: BO.6 batch O — NO p2 F3 Frederik III 8 Skilling 1649-1661 Type I
+    date-on-obverse large-monogram (.672 silver, KM-31 / He
+  url: https://en.numista.com/99196
+- nid: 99347
+  year_first: 1649
+  year_last: 1661
+  gap: 12
+  ruler: Frederik III
+  denomination: 16 Skilling = 1 Mark (1/6 Speciedaler)
+  audit_context: BO.6 batch O — NO p2 F3 Frederik III 16 Skilling = 1 Mark 1649-1661
+    Type II date-on-obverse large-monogram (.672 silver,
+  url: https://en.numista.com/99347
+- nid: 54204
+  year_first: 1688
+  year_last: 1699
+  gap: 11
+  ruler: Christian V (1670-1699)
+  denomination: 2 Skilling (1/48)
+  audit_context: BO.6 batch AZ — NO p3 C5 2 Skilling Kongsberg type IV 1688-1699 billon
+    Scheidemünze
+  url: https://en.numista.com/54204
+- nid: 82372
+  year_first: 1735
+  year_last: 1746
+  gap: 11
+  ruler: Christian VI (1730-1746)
+  denomination: 24 Skilling (1/4)
+  audit_context: 'BO.6 batch AL — NO p4 1697-1814: C6 1735-46 Norway 24 Skilling Type
+    II Ag .562/9.17g Scheide; mintmasters C/NBF/TL'
+  url: https://en.numista.com/82372
+- nid: 72027
+  year_first: 1778
+  year_last: 1788
+  gap: 10
+  ruler: Christian VII (1766-1808)
+  denomination: 2 Skilling (1/48)
+  audit_context: BO.6 batch AK — NO p4 C7 Norge 2 Skilling 1778-1788 billon .344 Scheidemünze
+    1.181g (mintmaster HIAB Branth)
+  url: https://en.numista.com/72027
+- nid: 110323
+  year_first: 1513
+  year_last: 1523
+  gap: 10
+  ruler: Christian II (1513-1523)
+  denomination: 1 Skilling
+  audit_context: BO.6 batch R — NO p2 1513-1657, Christian II Oslo 1513-1523 1 Skilling
+    Schive XV:7 Skaare-308 (.375 billon, C2 pre-Refor
+  url: https://en.numista.com/110323
+- nid: 124914
+  year_first: 1513
+  year_last: 1523
+  gap: 10
+  ruler: Christian II (1513-1523)
+  denomination: 1 Skilling
+  audit_context: BO.6 batch AD — NO p2 1513-1657 — Christian II 1513-1523 1 Skilling
+    billon, .375 fineness
+  url: https://en.numista.com/124914
+- nid: 82373
+  year_first: 1776
+  year_last: 1785
+  gap: 9
+  ruler: Christian VII (1766-1808)
+  denomination: 1 Speciedaler
+  audit_context: 'BO.6 batch AL — NO p4 1697-1814: C7 1776-85 Norway 1 Speciedaler
+    Type II Ag .875/28.89g Kurant 9¼-Fuß; mintmaster HIAB K'
+  url: https://en.numista.com/82373
+- nid: 99113
+  year_first: 1747
+  year_last: 1756
+  gap: 9
+  ruler: Frederik V (1746-1766)
+  denomination: 2 Skilling
+  audit_context: BO.6 batch AO — NO p4 Frederik V 2 Skilling 1747-1756 billon Scheidemünze
+    (TL Kongsberg)
+  url: https://en.numista.com/99113
+- nid: 120175
+  year_first: 1524
+  year_last: 1533
+  gap: 9
+  ruler: Frederick I (Friedrich I) (1523-1533)
+  denomination: 1 Skilling
+  audit_context: BO.6 batch AB — NO p2 (F1 Bergen Skilling, ND 1524-1533)
+  url: https://en.numista.com/120175
+- nid: 121754
+  year_first: 1524
+  year_last: 1533
+  gap: 9
+  ruler: Frederick I (Friedrich I) (1523-1533)
+  denomination: 1 Skilling
+  audit_context: BO.6 batch AC — NO p2 — Frederik I 1524-1533 Oslo 1 Skilling Billon
+    (.219 Ag) Scheidemünze
+  url: https://en.numista.com/121754
+- nid: 143451
+  year_first: 1404
+  year_last: 1413
+  gap: 9
+  ruler: Eric VII (Erik of Pommern, 1397-1439)
+  denomination: 1 Sterling (= 3 Pennings)
+  audit_context: BO.6 batch V — DK p0_pre_lovkompleks Erik of Pommern Sterling Næstved
+    ND 1404-1413 Sieg E7-5
+  url: https://en.numista.com/143451
+- nid: 287318
+  year_first: 1430
+  year_last: 1439
+  gap: 9
+  ruler: Eric VII (Erik of Pommern, 1397-1439)
+  denomination: Gros = 9 Pennings
+  audit_context: BO.6 batch W — DK p0_pre_lovkompleks, Erik of Pommern (Eric VII),
+    Lund mint, Gros 9 Pennings billon 1430-1439
+  url: https://en.numista.com/287318
+- nid: 444482
+  year_first: 1524
+  year_last: 1533
+  gap: 9
+  ruler: Frederik I (1523-1533)
+  denomination: 1 Hvid (1/144 Speciedaler)
+  audit_context: BO.6 batch AE — NO p2 Frederik I 1 Hvid ND 1524-1533 billon 0.250
+    fineness 0.73g (Scheidemünze 1/144 Speciedaler)
+  url: https://en.numista.com/444482
+- nid: 100310
+  year_first: 1795
+  year_last: 1803
+  gap: 8
+  ruler: Christian VII (1766-1808)
+  denomination: 1/3 Speciedaler
+  audit_context: BO.6 batch AR — NO p4 (1697-1814) — Christian VII Norway 1/3 Speciedaler
+    Type I, Kongsberg, silver .875, KM-266
+  url: https://en.numista.com/100310
+- nid: 303699
+  year_first: 1440
+  year_last: 1448
+  gap: 8
+  ruler: Christopher III of Bavaria (1440-1448)
+  denomination: 1 Hvid = 4 Pennings
+  audit_context: BO.6 batch W — DK p0_pre_lovkompleks, Christopher III of Bavaria,
+    Malmö mint, 1 Hvid (4 Pennings) silver 1440-1448
+  url: https://en.numista.com/303699
+- nid: 40310
+  year_first: 1800
+  year_last: 1807
+  gap: 7
+  ruler: Christian VII (1766-1808)
+  denomination: 2 Skilling (1/48)
+  audit_context: 'BO.6 batch AJ — NO p4 1697-1814: C7 Norway 2 Skilling .250 billon
+    Scheidemünze, Rigsdaler specie currency; mintmasters I'
+  url: https://en.numista.com/40310
+- nid: 76322
+  year_first: 1413
+  year_last: 1420
+  gap: 7
+  ruler: Eric VII (Erik of Pommern, 1397-1439)
+  denomination: 1 Sterling (= 3 Pennings)
+  audit_context: BO.6 batch V — DK p0_pre_lovkompleks Erik of Pommern Sterling Lund
+    ND 1413-1420 Sieg E7-6
+  url: https://en.numista.com/76322
+- nid: 99003
+  year_first: 1675
+  year_last: 1682
+  gap: 7
+  ruler: Christian V
+  denomination: 1 Skilling
+  audit_context: BO.6 batch BB — NO p3 1657-1697 — Christian V 1 Skilling 1675-1682
+    Christiania type II billon Scheidemünze (PG)
+  url: https://en.numista.com/99003
+- nid: 99206
+  year_first: 1717
+  year_last: 1724
+  gap: 7
+  ruler: Frederick IV (1699-1730)
+  denomination: 12 Skilling (1/8 Speciedaler)
+  audit_context: BO.6 batch AQ — NO p4 1697-1814, Frederick IV 12 Skilling 1717-1724
+    Kongsberg KM-217 .562 silver 3.9g 1/8-Speciedaler Sc
+  url: https://en.numista.com/99206
+- nid: 100212
+  year_first: 1795
+  year_last: 1802
+  gap: 7
+  ruler: Christian VII (1766-1808)
+  denomination: 1/15 Speciedaler = 1/12 Rigsdaler Courant
+  audit_context: BO.6 batch AR — NO p4 (1697-1814) — Christian VII Norway 1/15 Speciedaler,
+    Kongsberg, silver .500, KM-271
+  url: https://en.numista.com/100212
+- nid: 100214
+  year_first: 1796
+  year_last: 1803
+  gap: 7
+  ruler: Christian VII (1766-1808)
+  denomination: 1/5 Speciedaler = 1/4 Rigsdaler Courant
+  audit_context: BO.6 batch AR — NO p4 (1697-1814) — Christian VII Norway 1/5 Speciedaler,
+    Kongsberg, silver .687, KM-272
+  url: https://en.numista.com/100214
+- nid: 99111
+  year_first: 1719
+  year_last: 1725
+  gap: 6
+  ruler: Frederik IV (1699-1730)
+  denomination: 2 Skilling
+  audit_context: BO.6 batch AO — NO p4 Frederik IV 2 Skilling 1719-1725 (Heavy w/o
+    leaf) billon Scheidemünze
+  url: https://en.numista.com/99111
+- nid: 152728
+  year_first: 1424
+  year_last: 1430
+  gap: 6
+  ruler: Eric VII (Erik of Pommern, 1397-1439)
+  denomination: 1 Gros (= 9 Pennings)
+  audit_context: BO.6 batch W — DK p0_pre_lovkompleks Erik of Pommern Gros (9 Pennings)
+    Gurre ND 1424-1430 Sieg E7-15
+  url: https://en.numista.com/152728
+- nid: 420401
+  year_first: 1496
+  year_last: 1502
+  gap: 6
+  ruler: John I (Hans I) (1481-1513)
+  denomination: 1 Noble
+  audit_context: BO.6 batch W — DK p0_pre_lovkompleks, John I (Hans), 1 Noble gold
+    1496-1502 — heavy gold trade coin (14.75g)
+  url: https://en.numista.com/420401
+- nid: 99000
+  year_first: 1643
+  year_last: 1648
+  gap: 5
+  ruler: Christian IV
+  denomination: 1 Skilling
+  audit_context: BO.6 batch N — NO Christian IV 1643-1648 1-Skilling KM-23 Hede-18
+    .156 billon Scheide
+  url: https://en.numista.com/99000
+- nid: 99011
+  year_first: 1643
+  year_last: 1648
+  gap: 5
+  ruler: Christian IV
+  denomination: 2 Skilling
+  audit_context: BO.6 batch Q — NO p2 Christian IV billon Skilling 1643-1648 Speciedaler
+    currency
+  url: https://en.numista.com/99011
+- nid: 99203
+  year_first: 1730
+  year_last: 1735
+  gap: 5
+  ruler: Christian VI (1730-1746)
+  denomination: 8 Skilling (1/12)
+  audit_context: BO.6 batch AP — NO p4 C6 8 Skilling 1730-1735 billon Scheidemünze
+    KM-224 Hede-2 Kongsberg
+  url: https://en.numista.com/99203
+- nid: 118976
+  year_first: 1653
+  year_last: 1658
+  gap: 5
+  ruler: Frederick III (1648-1670)
+  denomination: ½ Speciedaler
+  audit_context: BO.6 batch Y — NO p2 — Frederik III ½ Speciedaler Christiania 1653-1658
+    (Type III) KM-47 .875/14.39g
+  url: https://en.numista.com/118976
+- nid: 118985
+  year_first: 1649
+  year_last: 1654
+  gap: 5
+  ruler: Frederick III (1648-1670)
+  denomination: ¼ Speciedaler
+  audit_context: BO.6 batch Y — NO p2 — Frederik III ¼ Speciedaler Christiania 1649-1654
+    (Type I.B) KM-35/45.1 .875/7.18g
+  url: https://en.numista.com/118985
+- nid: 420606
+  year_first: 1797
+  year_last: 1802
+  gap: 5
+  ruler: Christian VII (1766-1808)
+  denomination: 1/15 Speciedaler = 1/12 Rigsdaler Courant
+  audit_context: 'BO.6 batch AV — NO p4 1697-1814: Christian VII contemporary counterfeit
+    1/15 Speciedaler 1797-1802, silver-plated copper'
+  url: https://en.numista.com/420606
+- nid: 444416
+  year_first: 1525
+  year_last: 1530
+  gap: 5
+  ruler: Frederik I (1523-1533)
+  denomination: 1 Skilling (1/96 Speciedaler)
+  audit_context: BO.6 batch AE — NO p2 Frederik I 1 Skilling Oslo 1525-1530 billon
+    0.219 fineness 2.05g (Scheidemünze 1/96 Speciedaler)
+  url: https://en.numista.com/444416
+- nid: 81301
+  year_first: 1782
+  year_last: 1786
+  gap: 4
+  ruler: Christian VII (1766-1808)
+  denomination: 1 Skilling (1/96)
+  audit_context: 'BO.6 batch AL — NO p4 1697-1814: C7 1782-86 Kongsberg 1 Skilling
+    Cu Scheide'
+  url: https://en.numista.com/81301
+- nid: 85512
+  year_first: 1761
+  year_last: 1765
+  gap: 4
+  ruler: Frederick V (1746-1766)
+  denomination: 1 Skilling (1/96)
+  audit_context: BO.6 batch AM — NO p4 (1697-1814) F5 1 Skilling Kongsberg TL 1761-1765
+    Scheidemünze billon .250
+  url: https://en.numista.com/85512
+- nid: 99110
+  year_first: 1714
+  year_last: 1718
+  gap: 4
+  ruler: Frederik IV (1699-1730)
+  denomination: 2 Skilling
+  audit_context: BO.6 batch AO — NO p4 Frederik IV 2 Skilling 1714-1718 (Heavy w/
+    leaf) billon Scheidemünze
+  url: https://en.numista.com/99110
+- nid: 121758
+  year_first: 1533
+  year_last: 1537
+  gap: 4
+  ruler: Christian III (1534-1559)
+  denomination: 1 Skilling
+  audit_context: BO.6 batch AC — NO p2 — Christian III 1533-1537 Bergen 1 Skilling
+    Billon (.219 Ag) Scheidemünze
+  url: https://en.numista.com/121758
+- nid: 82389
+  year_first: 1776
+  year_last: 1779
+  gap: 3
+  ruler: Christian VII (1766-1808)
+  denomination: ½ Speciedaler
+  audit_context: BO.6 batch AM — NO p4 (1697-1814) F5 ½ Speciedaler Kongsberg HIAB
+    1776-1779 9¼-Fuß silver
+  url: https://en.numista.com/82389
+- nid: 94273
+  year_first: 1761
+  year_last: 1764
+  gap: 3
+  ruler: Frederik V (1746-1766)
+  denomination: 2 Skilling (1/48)
+  audit_context: BO.6 batch AN — NO p4 F5 Rigsdaler specie billon Skilling Kongsberg
+  url: https://en.numista.com/94273
+- nid: 99112
+  year_first: 1742
+  year_last: 1745
+  gap: 3
+  ruler: Christian VI (1730-1746)
+  denomination: 2 Skilling
+  audit_context: BO.6 batch AO — NO p4 Christian VI 2 Skilling 1742-1745 billon Scheidemünze
+    (TL Kongsberg)
+  url: https://en.numista.com/99112
+- nid: 99346
+  year_first: 1644
+  year_last: 1647
+  gap: 3
+  ruler: Christian IV
+  denomination: 16 Skilling = 1 Mark (1/6 Speciedaler)
+  audit_context: BO.6 batch O — NO p2 C4 Christian IV 16 Skilling = 1 Mark 1644-1647
+    (.593 silver, KM-27 / Hede-20, demonetised 1813)
+  url: https://en.numista.com/99346
+- nid: 99778
+  year_first: 1727
+  year_last: 1730
+  gap: 3
+  ruler: Frederick IV (1699-1730)
+  denomination: 8 Skilling (1/12 Speciedaler)
+  audit_context: BO.6 batch AR — NO p4 (1697-1814) — Frederik IV Norway 8 Skilling
+    Type III, Norwegian Mint Kongsberg, billon .468, KM-22
+  url: https://en.numista.com/99778
+- nid: 100330
+  year_first: 1719
+  year_last: 1722
+  gap: 3
+  ruler: Frederick IV (1699-1730)
+  denomination: 1 Skilling (1/96 Speciedaler)
+  audit_context: BO.6 batch AT — NO p4 F4 Norwegian Mint 1719-1722 Skilling billon
+    Scheide
+  url: https://en.numista.com/100330
+- nid: 100607
+  year_first: 1653
+  year_last: 1656
+  gap: 3
+  ruler: Frederick III (1648-1670)
+  denomination: 1 Speciedaler
+  audit_context: BO.6 batch R — NO p2 1513-1657, Frederik III Christiania 1653-1656
+    1 Speciedaler KM-48 Hede-17 9¼-Fuß F3
+  url: https://en.numista.com/100607
+- nid: 116006
+  year_first: 1644
+  year_last: 1647
+  gap: 3
+  ruler: Christian IV (1588-1648)
+  denomination: 2 Mark (⅓ Speciedaler)
+  audit_context: BO.6 batch S — NO p2 1513-1657 Christian IV Christiania 2 Mark =
+    ⅓ Speciedaler reduced-fineness Scheide-adjacent
+  url: https://en.numista.com/116006
+- nid: 118202
+  year_first: 1653
+  year_last: 1656
+  gap: 3
+  ruler: Frederick III (Frederik III)
+  denomination: 2 Speciedaler
+  audit_context: BO.6 batch U — NO p2 F3 Christiania 2 Speciedaler 9¼-Fuß 1653-1656
+  url: https://en.numista.com/118202
+- nid: 120349
+  year_first: 1543
+  year_last: 1546
+  gap: 3
+  ruler: Christian III (1534-1559)
+  denomination: 1 Skilling (1/96 Speciedaler)
+  audit_context: BO.6 batch AB — NO p2 (C3 Gimsøy 1 Skilling 1543-1546, billon .250)
+  url: https://en.numista.com/120349
+- nid: 121234
+  year_first: 1543
+  year_last: 1546
+  gap: 3
+  ruler: Christian III (1534-1559)
+  denomination: 1 Mark = 16 Skilling (1/6 Speciedaler)
+  audit_context: BO.6 batch AB — NO p2 (C3 Gimsøy 1 Mark = 16 Skilling 1543-1546,
+    silver .843)
+  url: https://en.numista.com/121234
+- nid: 401274
+  year_first: 1792
+  year_last: 1795
+  gap: 3
+  ruler: Christian VII (1766-1808)
+  denomination: 1 Speciedaler
+  audit_context: 'BO.6 batch AV — NO p4 1697-1814: Christian VII Speciedaler Type
+    III.B (second bust) 1792-1795, 9-Fuß (.875 / 28.89g stan'
+  url: https://en.numista.com/401274
+- nid: 444509
+  year_first: 1575
+  year_last: 1578
+  gap: 3
+  ruler: Frederick II (1559-1588)
+  denomination: 1 Hvid (1/144)
+  audit_context: BO.6 batch AF — NO p2 Frederick II Norway 1575-1578 1 Hvid (1/144
+    Speciedaler) Hede 1C
+  url: https://en.numista.com/444509
+- nid: 10494
+  year_first: 1665
+  year_last: 1667
+  gap: 2
+  ruler: Frederik III (1648-1670)
+  denomination: 2 Speciedaler
+  audit_context: BO.6 batch AZ — NO p3 F3 2 Speciedaler 1665-1667 Christiania Frederik
+    III
+  url: https://en.numista.com/10494
+- nid: 37619
+  year_first: 1768
+  year_last: 1770
+  gap: 2
+  ruler: Christian VII (1766-1808)
+  denomination: 1 Skilling (1/96)
+  audit_context: 'BO.6 batch AJ — NO p4 1697-1814: C7 Norway 1 Skilling .250 billon
+    Scheidemünze, Rigsdaler specie currency; mintmasters I'
+  url: https://en.numista.com/37619
+- nid: 46039
+  year_first: 1773
+  year_last: 1775
+  gap: 2
+  ruler: Christian VII (1766-1808)
+  denomination: 8 Skilling (1/12)
+  audit_context: 'BO.6 batch AJ — NO p4 1697-1814: C7 Norway 8 Skilling .562 silver
+    Scheidemünze/Kurant boundary, Rigsdaler specie currenc'
+  url: https://en.numista.com/46039
+- nid: 47278
+  year_first: 1670
+  year_last: 1672
+  gap: 2
+  ruler: Christian V (1670-1699)
+  denomination: 2 Skilling (1/48)
+  audit_context: BO.6 batch AZ — NO p3 C5 2 Skilling Christiania type I 1670-1672
+    billon Scheidemünze
+  url: https://en.numista.com/47278
+- nid: 82177
+  year_first: 1700
+  year_last: 1702
+  gap: 2
+  ruler: Frederick IV (1699-1730)
+  denomination: 8 Skilling (1/12)
+  audit_context: 'BO.6 batch AL — NO p4 1697-1814: F4 1700-02 Norway 8 Skilling Type
+    I heavy Ag .562/3.057g Scheide'
+  url: https://en.numista.com/82177
+- nid: 82384
+  year_first: 1649
+  year_last: 1651
+  gap: 2
+  ruler: Frederik III
+  denomination: 1 Speciedaler
+  audit_context: BO.6 batch N — NO Frederik III 1649-1651 1-Speciedaler KM-37 Hede-8B
+    .875/28.72g Speciedaler-Fuß
+  url: https://en.numista.com/82384
+- nid: 82388
+  year_first: 1763
+  year_last: 1765
+  gap: 2
+  ruler: Frederick V (1746-1766)
+  denomination: 24 Skilling (¼)
+  audit_context: BO.6 batch AM — NO p4 (1697-1814) F5 24 Skilling Kongsberg TL 1763-1765
+    Type II
+  url: https://en.numista.com/82388
+- nid: 98992
+  year_first: 1684
+  year_last: 1686
+  gap: 2
+  ruler: Christian V
+  denomination: 2 Skilling (1/48 Speciedaler)
+  audit_context: BO.6 batch BA — NO p3 (1657-1697) Christian V 2 Skilling Christiania
+    type VI 1684-1686 Scheidemünze
+  url: https://en.numista.com/98992
+- nid: 99350
+  year_first: 1715
+  year_last: 1717
+  gap: 2
+  ruler: Frederick IV (1699-1730)
+  denomination: 16 Skilling (1 Mark = 1/6 Speciedaler)
+  audit_context: BO.6 batch AQ — NO p4 1697-1814, Frederick IV 16 Skilling = 1 Mark
+    1715-1717 Kongsberg KM-216 .625 silver 5.2g 1/6-Speci
+  url: https://en.numista.com/99350
+- nid: 118916
+  year_first: 1655
+  year_last: 1657
+  gap: 2
+  ruler: Frederick III (1648-1670)
+  denomination: 1 Speciedaler
+  audit_context: BO.6 batch Y — NO p2 — Frederik III Speciedaler Christiania 1655-1657
+    (Type IV) KM-A41 .875/28.78g
+  url: https://en.numista.com/118916
+- nid: 118972
+  year_first: 1649
+  year_last: 1651
+  gap: 2
+  ruler: Frederick III (1648-1670)
+  denomination: ½ Speciedaler
+  audit_context: BO.6 batch Y — NO p2 — Frederik III ½ Speciedaler Christiania 1649-1651
+    (Type I.B) KM-36 .875/14.36g
+  url: https://en.numista.com/118972
+- nid: 119943
+  year_first: 1643
+  year_last: 1645
+  gap: 2
+  ruler: Christian IV
+  denomination: 4 Speciedaler
+  audit_context: BO.6 batch Z — NO p2 Christian IV Christiania 4 Speciedaler multi-Daler
+    (.882 fine)
+  url: https://en.numista.com/119943
+- nid: 20936
+  year_first: 1810
+  year_last: 1811
+  gap: 1
+  ruler: Frederick VI (1808-1814)
+  denomination: 2 Skilling Courant (1/48)
+  audit_context: 'BO.6 batch AJ — NO p4 1697-1814: F6 Norway 2 Skilling Courant copper
+    Scheidemünze, Rigsdaler courant currency'
+  url: https://en.numista.com/20936
+- nid: 82371
+  year_first: 1695
+  year_last: 1696
+  gap: 1
+  ruler: Christian V
+  denomination: 1 Speciedaler
+  audit_context: BO.6 batch BA — NO p3 (1657-1697) Christian V Speciedaler Kongsberg
+    type V.C 1695-1696 9¼-Fuß
+  url: https://en.numista.com/82371
+- nid: 82387
+  year_first: 1725
+  year_last: 1726
+  gap: 1
+  ruler: Frederick IV (1699-1730)
+  denomination: 4 Mark = 1 Krone (⅔)
+  audit_context: BO.6 batch AM — NO p4 (1697-1814) F4 1 Krone Kongsberg HCM 1725-1726
+  url: https://en.numista.com/82387
+- nid: 97335
+  year_first: 1809
+  year_last: 1810
+  gap: 1
+  ruler: Frederik VI (1808-1814)
+  denomination: 4 Skilling Courant (1/24)
+  audit_context: BO.6 batch AN — NO p4 F6 Rigsdaler courant copper 4 Skilling 1809-1810
+  url: https://en.numista.com/97335
+- nid: 98983
+  year_first: 1641
+  year_last: 1642
+  gap: 1
+  ruler: Christian IV
+  denomination: 2 Skilling
+  audit_context: BO.6 batch N — NO Christian IV 1641-1642 2-Skilling KM-20 Hede-16
+    .875/0.59g (1/48 Speciedaler small-change)
+  url: https://en.numista.com/98983
+- nid: 98988
+  year_first: 1686
+  year_last: 1687
+  gap: 1
+  ruler: Christian V
+  denomination: 2 Skilling (1/48 Speciedaler)
+  audit_context: BO.6 batch BA — NO p3 (1657-1697) Christian V 2 Skilling Kongsberg
+    type I 1686-1687 Scheidemünze
+  url: https://en.numista.com/98988
+- nid: 99005
+  year_first: 1686
+  year_last: 1687
+  gap: 1
+  ruler: Christian V
+  denomination: 1 Skilling
+  audit_context: BO.6 batch BB — NO p3 1657-1697 — Christian V 1 Skilling 1686-1687
+    Kongsberg type I.A billon Scheidemünze
+  url: https://en.numista.com/99005
+- nid: 99006
+  year_first: 1687
+  year_last: 1688
+  gap: 1
+  ruler: Christian V
+  denomination: 1 Skilling
+  audit_context: BO.6 batch BB — NO p3 1657-1697 — Christian V 1 Skilling 1687-1688
+    Kongsberg type I.B billon Scheidemünze
+  url: https://en.numista.com/99006
+- nid: 99009
+  year_first: 1779
+  year_last: 1780
+  gap: 1
+  ruler: Christian VII (1766-1808)
+  denomination: 1 Skilling (1/96)
+  audit_context: BO.6 batch AN — NO p4 C7 Rigsdaler specie billon 1 Skilling 1779-1780
+    Kongsberg
+  url: https://en.numista.com/99009
+- nid: 99114
+  year_first: 1641
+  year_last: 1642
+  gap: 1
+  ruler: Christian IV
+  denomination: 4 Skilling
+  audit_context: BO.6 batch Q — NO p2 Christian IV silver 4 Skilling 1641-1642 .875
+  url: https://en.numista.com/99114
+- nid: 99123
+  year_first: 1641
+  year_last: 1642
+  gap: 1
+  ruler: Christian IV
+  denomination: 8 Skilling
+  audit_context: BO.6 batch Q — NO p2 Christian IV silver 8 Skilling 1641-1642 .875
+  url: https://en.numista.com/99123
+- nid: 99776
+  year_first: 1734
+  year_last: 1735
+  gap: 1
+  ruler: Christian VI (1730-1746)
+  denomination: 24 Skilling (1/4 Speciedaler)
+  audit_context: BO.6 batch AQ — NO p4 1697-1814, Christian VI 24 Skilling Type I
+    1734-1735 Kongsberg KM-231 .562 silver 9.17g 1/4-Specie
+  url: https://en.numista.com/99776
+- nid: 100311
+  year_first: 1795
+  year_last: 1796
+  gap: 1
+  ruler: Christian VII (1766-1808)
+  denomination: ⅔ Speciedaler
+  audit_context: BO.6 batch AS — NO p4 Speciedaler 1697-1814 (C7 Reichsdukatenfuß
+    / 9¼-Speciesfuß silver fractional)
+  url: https://en.numista.com/100311
+- nid: 100312
+  year_first: 1791
+  year_last: 1792
+  gap: 1
+  ruler: Christian VII (1766-1808)
+  denomination: 1 Speciedaler
+  audit_context: BO.6 batch AS — NO p4 Speciedaler 1791-1792 Type III.A first bust
+    (C7 Reichsdukatenfuß 9¼-Speciesfuß)
+  url: https://en.numista.com/100312
+- nid: 100313
+  year_first: 1767
+  year_last: 1768
+  gap: 1
+  ruler: Christian VII (1766-1808)
+  denomination: 1 Speciedaler
+  audit_context: BO.6 batch AS — NO p4 Speciedaler 1767-1768 Type I (C7 Reichsdukatenfuß
+    9¼-Speciesfuß)
+  url: https://en.numista.com/100313
+- nid: 100478
+  year_first: 1732
+  year_last: 1733
+  gap: 1
+  ruler: Christian VI (1730-1746)
+  denomination: 1 Reisedaler = 6 Mark
+  audit_context: BO.6 batch AT — NO p4 C6 1732-1733 Reisedaler Royal Visit Kurant
+  url: https://en.numista.com/100478
+- nid: 101118
+  year_first: 1725
+  year_last: 1726
+  gap: 1
+  ruler: Frederick IV (1699-1730)
+  denomination: 2 Mark (1/3 Speciedaler)
+  audit_context: BO.6 batch AT — NO p4 F4 1725-1726 2 Mark .672 Scheide
+  url: https://en.numista.com/101118
+- nid: 101132
+  year_first: 1699
+  year_last: 1700
+  gap: 1
+  ruler: Frederick IV (1699-1730)
+  denomination: 4 Mark = 1 Krone (⅔)
+  audit_context: BO.6 batch AU — NO p4 Frederik IV 4 Mark Krone 1699-1700 (KM-200,
+    Hede-1A/1B Mark fraction of Speciedaler)
+  url: https://en.numista.com/101132
+- nid: 109480
+  year_first: 1628
+  year_last: 1629
+  gap: 1
+  ruler: Christian IV (1588-1648)
+  denomination: 1 Speciedaler
+  audit_context: BO.6 batch R — NO p2 1513-1657, Christian IV Norway 1628-1629 1 Speciedaler
+    KM-8 Hede-1 (.969 high-fineness Type pre-Kip
+  url: https://en.numista.com/109480
+- nid: 117504
+  year_first: 1649
+  year_last: 1650
+  gap: 1
+  ruler: Frederik III (1648-1670)
+  denomination: 3 Speciedaler
+  audit_context: BO.6 batch S — NO p2 1513-1657 Frederik III Christiania 3 Speciedaler
+    9¼-Fuß (Type I.B)
+  url: https://en.numista.com/117504
+- nid: 118173
+  year_first: 1651
+  year_last: 1652
+  gap: 1
+  ruler: Frederik III (1648-1670)
+  denomination: 3 Speciedaler
+  audit_context: BO.6 batch T — NO p2 1513-1657 (Frederik III Christiania 3 Speciedaler
+    1651-1652, F3 Kurant 9¼-Fuß)
+  url: https://en.numista.com/118173
+- nid: 118175
+  year_first: 1654
+  year_last: 1655
+  gap: 1
+  ruler: Frederik III (1648-1670)
+  denomination: 3 Speciedaler
+  audit_context: BO.6 batch T — NO p2 1513-1657 (Frederik III Christiania 3 Speciedaler
+    Type III 1654-1655, F3 Kurant 9¼-Fuß)
+  url: https://en.numista.com/118175
+- nid: 118190
+  year_first: 1649
+  year_last: 1650
+  gap: 1
+  ruler: Frederik III (1648-1670)
+  denomination: 2 Speciedaler
+  audit_context: BO.6 batch T — NO p2 1513-1657 (Frederik III Christiania 2 Speciedaler
+    Type I.B 1649-1650, F3 Kurant 9¼-Fuß)
+  url: https://en.numista.com/118190
+- nid: 118193
+  year_first: 1651
+  year_last: 1652
+  gap: 1
+  ruler: Frederik III (1648-1670)
+  denomination: 2 Speciedaler
+  audit_context: BO.6 batch T — NO p2 1513-1657 (Frederik III Christiania 2 Speciedaler
+    Type I.B 1651-1652, F3 Kurant 9¼-Fuß)
+  url: https://en.numista.com/118193
+- nid: 118205
+  year_first: 1656
+  year_last: 1657
+  gap: 1
+  ruler: Frederick III (Frederik III)
+  denomination: 2 Speciedaler
+  audit_context: BO.6 batch U — NO p2 F3 Christiania 2 Speciedaler 9¼-Fuß 1656-1657
+    (Type IV)
+  url: https://en.numista.com/118205
+- nid: 118915
+  year_first: 1652
+  year_last: 1653
+  gap: 1
+  ruler: Frederick III (Frederik III)
+  denomination: 1 Speciedaler
+  audit_context: BO.6 batch U — NO p2 F3 Christiania 1 Speciedaler 9¼-Fuß 1652-1653
+    (Type II)
+  url: https://en.numista.com/118915
+- nid: 118987
+  year_first: 1655
+  year_last: 1656
+  gap: 1
+  ruler: Frederick III (1648-1670)
+  denomination: ¼ Speciedaler
+  audit_context: BO.6 batch Y — NO p2 — Frederik III ¼ Speciedaler Christiania 1655-1656
+    (Type IV) KM-45.2 .875/7.19g
+  url: https://en.numista.com/118987
+- nid: 118989
+  year_first: 1649
+  year_last: 1650
+  gap: 1
+  ruler: Frederik III
+  denomination: ⅛ Speciedaler
+  audit_context: BO.6 batch Z — NO p2 Frederik III Christiania Speciedaler 9¼-Fuß
+    subdivisions
+  url: https://en.numista.com/118989
+- nid: 119412
+  year_first: 1628
+  year_last: 1629
+  gap: 1
+  ruler: Christian IV
+  denomination: ⅛ Speciedaler
+  audit_context: BO.6 batch Z — NO p2 Christian IV ⅛ Speciedaler Norway (.969 fine)
+  url: https://en.numista.com/119412
+- nid: 119413
+  year_first: 1628
+  year_last: 1629
+  gap: 1
+  ruler: Christian IV
+  denomination: ¼ Speciedaler
+  audit_context: BO.6 batch Z — NO p2 Christian IV ¼ Speciedaler Norway (.969 fine)
+  url: https://en.numista.com/119413
+- nid: 119945
+  year_first: 1643
+  year_last: 1644
+  gap: 1
+  ruler: Christian IV
+  denomination: 3 Speciedaler
+  audit_context: BO.6 batch AA — NO p2 Christian IV Norway Speciedaler-triple 1643-1644
+    Christiania PG
+  url: https://en.numista.com/119945
+- nid: 119953
+  year_first: 1628
+  year_last: 1629
+  gap: 1
+  ruler: Christian IV
+  denomination: ½ Speciedaler
+  audit_context: BO.6 batch AA — NO p2 Christian IV Norway ½-Speciedaler 1628-1629
+    Christiania
+  url: https://en.numista.com/119953
+- nid: 121905
+  year_first: 1531
+  year_last: 1532
+  gap: 1
+  ruler: Christian II (1513-1523)
+  denomination: 2 Skilling
+  audit_context: BO.6 batch AD — NO p2 1513-1657 — Christian II Siege-of-Oslo 1531-1532
+    2 Skilling Klippe
+  url: https://en.numista.com/121905
+- nid: 124917
+  year_first: 1531
+  year_last: 1532
+  gap: 1
+  ruler: Christian II (1513-1523)
+  denomination: 2 Skilling
+  audit_context: BO.6 batch AD — NO p2 1513-1657 — Christian II Siege-of-Oslo 1531-1532
+    2 Skilling Klippe (Skaare 319 variant)
+  url: https://en.numista.com/124917
+- nid: 444409
+  year_first: 1523
+  year_last: 1524
+  gap: 1
+  ruler: Hans Mule (1516-1524)
+  denomination: Dobbelthvid
+  audit_context: BO.6 batch AD — NO p2 1513-1657 — Hans Mule Interregnum 1523-1524
+    Dobbelthvid (2 Hvid), Governor-issue (no fineness publ
+  url: https://en.numista.com/444409
+- nid: 448563
+  year_first: 1531
+  year_last: 1532
+  gap: 1
+  ruler: Christian II
+  denomination: 2 Skilling Klipping
+  audit_context: 'BO.6 batch AG — NO p2 1513-1657 cleanup: Christian II ND-Klippe
+    Siege of Oslo 1531-1532, 2 Skilling 1/48 emergency coina'
+  url: https://en.numista.com/448563
+- nid: 569008
+  year_first: 1592
+  year_last: 1593
+  gap: 1
+  ruler: Christian IV
+  denomination: 5 Ducats (= 10 in fraction column)
+  audit_context: 'BO.6 batch O — DK p1 last 5 closure: Christian IV 1592-1593 5-Dukat
+    Fr-63 Hede-6 gold 17.38g (large gold multiple, First'
+  url: https://en.numista.com/569008
+total: 122

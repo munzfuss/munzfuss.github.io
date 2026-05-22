@@ -59,13 +59,13 @@ unchanged per §BI's explicit scope-restriction.
 
 **§BF Denmark 1541-1566 gap (now «1514-1566 gap»)** sequenced AFTER
 §BI lands. Original §BF four operational sub-tasks remain valid for
-the 1541-1566 portion (christian_iii_dalerfod definition + fuss_periods
+the 1541-1566 portion (8_daler_fod definition + fuss_periods
 A1/A2 + seed-coin promotion c3h3-3A/3B + c3h4/5/7 + 4 new refs); the
 pre-1541 portion (Christian II 1513-1523 + Frederik I 1523-1533)
 becomes a fifth sub-task pending §AZ (Galster + Jensen-Skjoldager catalog import — new source family, not a Hede extension).
 
 **Open §BF design question — Flensborg post-1544 track (Phase A3/A4)**:
-separate `christian_iii_flensborg_fod` Müntzfuß for Lybsk-aligned
+separate `8_daler_lybsk_fod` Müntzfuß for Lybsk-aligned
 sub-Mark + 14¼ Lod Daler, OR same Fuß with mint differentiation. Per
 `moentordning_1541.md` §7.1 the 1547 Flensborg dual-zone is the
 genealogical seed of later `18_5_thaler` / `34_marck` family vs
@@ -209,6 +209,7 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
 
 ### Recommended next-session work order
 
+0. **Numista `year_list` backfill** (HIGH — added 2026-05-22 per user N#420401 audit) — 122 cache entries with multi-year ranges and NO `year_list` field. Each needs a Numista-page recheck to distinguish dash-form continuous range from comma-form discrete years. Queue in `docs/handoff_numista_year_list_reharvest.yml` (sorted by year gap descending). Procedure: HARVEST_ROUTINE.md §2.3 updated 2026-05-22 — the saver payload now requires `year_list: null | [int]`. Can be interleaved with other Numista batches (5-10 NIDs per pacing block). Removes the §4 «source years are immutable» violation that turned N#420401's «1496, 1502» into a continuous 1496-1502 range.
 1. **ucoin p1147 closure** — 10 TIDs (4 known + re-enum p2-5 for remaining 6). Closes the DK Rigsdaler 1625-1699 bucket entirely.
 2. **ucoin p846 closure** — 34 TIDs of Frederik V → Christian VII Skilling/Mark Convention era. Mostly 8-Skilling + 1/6-Rigsdaler variants.
 3. **Numista DK p1 closure** — 14 NIDs to close pre-1617 DK Reichsdukatenfuß gold + post-1572 First Speciedaler.

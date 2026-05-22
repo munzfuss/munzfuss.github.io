@@ -121,16 +121,16 @@ The summary is per-tier — a Highest-tier summary stays under
 **Closed 2026-05-21** via commits `0102073` (Fuß defs in fuesse.yml) + `9343cd6` (V2 denmark fuss_periods + 6 c3h promotions + 4 refs). User verdict 2026-05-21: (a) separate Flensborg Fuß + Danish `_fod` naming.
 
 **Definition of done — met:**
-- ✅ `christian_iii_dalerfod` + `christian_iii_flensborg_fod` defined in `data/shared/fuesse.yml` with full metric blocks (grundwerte, fractions, events), DE/EN/UK descriptions, sourced metrics (Wilcke 1950 / Paus 1752 / Rigsarkivet T.K. nr. 160 / Galster 1965).
+- ✅ `8_daler_fod` + `8_daler_lybsk_fod` defined in `data/shared/fuesse.yml` with full metric blocks (grundwerte, fractions, events), DE/EN/UK descriptions, sourced metrics (Wilcke 1950 / Paus 1752 / Rigsarkivet T.K. nr. 160 / Galster 1965).
 - ✅ V2 `data/v2/locations/denmark.yml`: fuss_order updated (both new Fußen prepended chronologically), timeline.bars added for both, fuss_periods entries with full pdate_label / hintergrund / closing for both.
 - ✅ 6 c3h Kopenhagen seed coins promoted in `data/v2/final/danish_realm.yml`: Phase A1 Kurant (c3h3 Mark, c3h4 8 Sk, c3h5 4 Sk); Phase A1 Scheide (c3h6a 1 Sk 1542, c3h7 Hvid); Phase A2 Scheide (c3h8 Penning 1546).
 - ✅ 4 new bibliography refs (ref29 Wilcke 1950, ref30 Paus 1752, ref31 Rigsarkivet T.K. nr. 160, ref32 Galster 1965) with verbatim quotes + page hints per §5a.
 
 **Remaining work — sibling tasks, NOT blocking §BF closure:**
-- **Flensborg c3h21/c3h22 specimen promotion** — Lybsk Sølvgylden + Søsling lybsk specimens not yet in our cache; pending §AZ Galster + Jensen-Skjoldager paper-source import. The `christian_iii_flensborg_fod` Fuß card renders structurally with the metric block but the coin table stays empty until those specimens arrive.
+- **Flensborg c3h21/c3h22 specimen promotion** — Lybsk Sølvgylden + Søsling lybsk specimens not yet in our cache; pending §AZ Galster + Jensen-Skjoldager paper-source import. The `8_daler_lybsk_fod` Fuß card renders structurally with the metric block but the coin table stays empty until those specimens arrive.
 - **c3h1 + c3h2** (1557 Ungersk Gylden gold .986) — these are POST-1559 gold issues, belong under `reichsdukatenfuss`, not the Christian-III silver track. Separate placement task.
 - **Pre-1541 sub-window** (Christian II 1513-1523 + Frederik I 1523-1533) — depends on §AZ Galster + Jensen-Skjoldager catalog import. §BF was scoped to 1541-1566 Christian III; pre-1541 stays its own §AZ-blocked workstream.
-- **Classifier rule extension** for `christian_iii_dalerfod` era-anchor (year+denomination → Fuß) — deferred to when c3h21/22 land; current 6 coins manually promoted, future imports will need rule-based classification.
+- **Classifier rule extension** for `8_daler_fod` era-anchor (year+denomination → Fuß) — deferred to when c3h21/22 land; current 6 coins manually promoted, future imports will need rule-based classification.
 
 **Original §BF planning text below preserved for reference:**
 
@@ -149,8 +149,8 @@ Primary-source captures: `docs/research/sources/wilcke_1950_christian_iii_moentr
 
 **Scope.** Four operational sub-tasks (from the §BC closure note, now promoted under §BF):
 
-1. **Define new Müntzfuß `christian_iii_dalerfod`** in `data/shared/fuesse.yml`. Canonical metric: mf 8.827, 26.494 g fein per Daler, fineness 0.906 (14½ Lod), sourced to Wilcke 1950 + Rigsarkivet T.K. nr. 160 + Paus 1752. Per §BD this should probably be the Danish-form name from the start (`dalerfod` not `christian_iii_thaler_fuss`).
-2. **Add `fuss_periods.christian_iii_dalerfod`** block to `data/v2/locations/denmark.yml` with phases (V2-only — V1 frozen at `/v1/` since 2026-05-18 flip):
+1. **Define new Müntzfuß `8_daler_fod`** in `data/shared/fuesse.yml`. Canonical metric: mf 8.827, 26.494 g fein per Daler, fineness 0.906 (14½ Lod), sourced to Wilcke 1950 + Rigsarkivet T.K. nr. 160 + Paus 1752. Per §BD this should probably be the Danish-form name from the start (`dalerfod` not `christian_iii_thaler_fuss`).
+2. **Add `fuss_periods.8_daler_fod`** block to `data/v2/locations/denmark.yml` with phases (V2-only — V1 frozen at `/v1/` since 2026-05-18 flip):
    - **A1 (1541–1543)** — København baseline, mf 8.827 unchanged.
    - **A2 (1544–1555)** — København debased per the 27 September 1544 supplement (mf 9.481 per dossier §4.5).
    - **A3 / A4 (1547+)** — Flensborg dual-zone (see decision below).
@@ -167,15 +167,15 @@ Primary-source captures: `docs/research/sources/wilcke_1950_christian_iii_moentr
 
 **Open design question — Flensborg post-1544 track (Phase A3 / A4).** Per `moentordning_1541.md` §7.1 the 1547 Flensborg dual-zone is the *genealogical seed* of the later `18_5_thaler` / `34_marck` family (Lybsk-aligned debased sub-Mark) vs `9_thaler` / Speciedaler family (heavier daler track). Two architectures:
 
-- **(a) Separate Müntzfuß `christian_iii_flensborg_fod`** for the Lybsk-aligned sub-Mark + 14¼ Lod Daler. Clean genealogy: A1/A2 are København, A3/A4 are Flensborg. Two parallel Müntzfüße for the same monarch.
-- **(b) Same `christian_iii_dalerfod` Fuß with mint-tag differentiation** — A3/A4 phases marked as Flensborg-specific within the single Fuß. Simpler structurally but conflates two genuinely distinct standards.
+- **(a) Separate Müntzfuß `8_daler_lybsk_fod`** for the Lybsk-aligned sub-Mark + 14¼ Lod Daler. Clean genealogy: A1/A2 are København, A3/A4 are Flensborg. Two parallel Müntzfüße for the same monarch.
+- **(b) Same `8_daler_fod` Fuß with mint-tag differentiation** — A3/A4 phases marked as Flensborg-specific within the single Fuß. Simpler structurally but conflates two genuinely distinct standards.
 
 Likely answer is (a) — the dual-zone is the seed of an enduring lineage and deserves its own Fuß slot. User verdict requested before the data edit.
 
 **Cross-references.**
 
 - **§BD** (Danish Müntzfuß names) — the new `dalerfod` / `flensborg_fod` IDs should land in the Danish convention from day one. Sequencing §BD verdict before §BF data edit avoids immediate rename churn.
-- **§BB** (Fuß descriptions — historical framing only) — `christian_iii_dalerfod` `hintergrund` prose follows the §BB rule (historical framing, no parameter bleed).
+- **§BB** (Fuß descriptions — historical framing only) — `8_daler_fod` `hintergrund` prose follows the §BB rule (historical framing, no parameter bleed).
 - **§AY** (Frederik II 3-Mark one-off) — sits at the boundary of this window (1560/1563); coordinate with §BF if the 1560s F2 seed entries land in the same pass.
 - **§AV / §AW** (Guldkrone-fod, Rhinsk Gylden) — earlier Christian I / Hans gold entries; design decisions interact with the broader 1541-window architecture.
 - **§BE** (Danish translation for DK/SH) — every new field added under §BF will eventually need a `da:` translation. Either add `da:` upfront (if §BE is also accepted) or accept the rework.
@@ -183,14 +183,14 @@ Likely answer is (a) — the dual-zone is the seed of an enduring lineage and de
 **Action sequence.**
 
 1. User decides on (a) vs (b) for Flensborg.
-2. User decides §BD architecture (jurisdiction-aware naming) at least at policy level — affects whether new IDs are `christian_iii_dalerfod` (Danish form) or `christian_iii_thaler_fuss` (German form).
+2. User decides §BD architecture (jurisdiction-aware naming) at least at policy level — affects whether new IDs are `8_daler_fod` (Danish form) or `christian_iii_thaler_fuss` (German form).
 3. Define Müntzfuß / Müntzfüße in `fuesse.yml` with sourced metrics + hintergrund prose.
 4. Add `fuss_periods` block(s) to `denmark.yml` with phase boundaries + descriptions.
 5. Promote seed coins into curated entries with `fuss:` + `phase:` set; preserve all per-specimen multi-source data (§9a).
 6. Add the 4 new bibliography entries to `denmark-references.yml` with verbatim quotes + page hints per §5a.
 7. Build clean + sample-review three coins per phase against the rendered page.
 
-**Definition of done.** The Denmark page renders a non-empty 1514-1566 section with at least 6 placed coins, a `christian_iii_dalerfod` Fuß card with full metric block + sourced hintergrund, and the dual-track Flensborg phase (if (a)) wired up. The 26+ new c3h seed entries auto-suppress against the curated phase blocks per the `_merge_seeds_into_raw` rule. Pre-1541 sub-window coverage (Christian II 1513-1523 + Frederik I 1523-1533) depends on §AZ Galster + Jensen-Skjoldager catalog import landing first.
+**Definition of done.** The Denmark page renders a non-empty 1514-1566 section with at least 6 placed coins, a `8_daler_fod` Fuß card with full metric block + sourced hintergrund, and the dual-track Flensborg phase (if (a)) wired up. The 26+ new c3h seed entries auto-suppress against the curated phase blocks per the `_merge_seeds_into_raw` rule. Pre-1541 sub-window coverage (Christian II 1513-1523 + Frederik I 1523-1533) depends on §AZ Galster + Jensen-Skjoldager catalog import landing first.
 
 ### BO. 🟢 Verify early-period absence on Numista, NumisMaster, ucoin (3 sub-tasks)  *(opened 2026-05-17, user-marked «найвищий»)* *(est: medium)* *(type: audit + harvest)*
 
@@ -624,8 +624,8 @@ Estimated total remaining harvest: **~250-400 TIDs** across **6-10 batches**.
 ### BV. 🔵 Pre-1582 Danish Müntzfüße — define missing standards in fuesse.yml + Denmark page  *(opened 2026-05-20, user-marked «найвищий», **8 of 8 closed 2026-05-21**, status: In review)* *(est: medium-large)* *(type: data + research-applied)*
 
 **Progress 2026-05-21 — 8 of 8 candidates closed, ticket in In review:**
-- ✅ **christian_iii_dalerfod** (commits `0102073` + `9343cd6` + `b88c4a9`, §BF closure)
-- ✅ **christian_iii_flensborg_fod** (same §BF commits, structural Fuß card)
+- ✅ **8_daler_fod** (commits `0102073` + `9343cd6` + `b88c4a9`, §BF closure)
+- ✅ **8_daler_lybsk_fod** (same §BF commits, structural Fuß card)
 - ✅ **rhinsk_gylden_fod** (commit `81c91fa`, §AW plan executed — 3 specimens promoted f2h3 + f2h6 + c4h29, originally two phases I + II)
 - ✅ **f2_guldkrone_fod** (§AV verdict «окрема» 2026-05-21, separate Fuß — 2 specimens promoted f2h2 + f2h5, Klipping-Notmünz-Emission Northern Seven Years' War, 4 new bibliography refs ref33-ref35 added with Wilcke Rentmeister-Rechnungen verbatim, danskmoent.dk, Historyofwar.org)
 - ✅ **goldgulden_fod** (verdict «зроби окремою» 2026-05-21, separate pre-Reichsmünzordnung Fuß for the Hungarian-Venetian Dukat standard; 1527-1559 span; 2 specimens promoted c3h1 + c3h2 1557 Ungersk Gylden; metrically identical to reichsdukatenfuss but legally distinct pre-Augsburger 1559 codification; f1h** Frederik I 1527-1533 specimens pending §AZ; documented as merge-back candidate if maintenance-irrelevant)
@@ -648,8 +648,8 @@ Project ticket `190229723` ready to flip In review → Done — all 8 candidates
 | 3 | **`goldgulden_fod`** (transitional pre-Reichsdukatenfuß)? | F1 1527 → C-IV 1593 (overlapping with Rhinsk track and post-1564 Reichsdukatenfuß) | gold .986, ~3.49 g rough | new (no TODO yet) | **Open question:** distinct from `reichsdukatenfuss` (1564→1802) or just an early phase of it? Wilcke + Bobzin verification required |
 | 4 | **C-III Gottorp 0.764 Dukat-named** (one-off 1534) | C-III 1534 Gottorp only | gold .764, weight TBD | new (no TODO yet) | One-off classification: own Fuß, fold into `rhinsk_gylden_fod` as a higher-fineness variant, or phase under existing `reichsdukatenfuss`? |
 | 5 | **`f2_guldkrone_fod`** (écu d'or tier) | F2 1563-64 only | gold .9305, fein 3.120 g per piece (Hede f2h2, f2h5) | **§AV** (pending (a) vs (b) verdict — separate Fuß vs phase under `guldkrone`) | Wilcke + Hede f2h2/f2h5 |
-| 6 | **`christian_iii_dalerfod`** (silver) | 1541-1582 (København baseline + 1544 debased) | mf 8.827 anchor; fein 26.494 g per Daler at .906 / 14½ Lod | **§BF** (full plan, pending dual-zone verdict) | Wilcke 1950 + Rigsarkivet T.K. 160 + Paus 1752 — already captured in `docs/research/moentordning_1541.md` |
-| 7 | **`christian_iii_flensborg_fod`** (silver) | 1547-1571 (Lybsk-aligned dual-zone) | TBD per dossier §7.1 (Lybsk sub-Mark + 14¼ Lod Daler) | **§BF** (full plan, sub-design of dual-zone choice) | Same as #6 + 1547 Flensborg Bestalling |
+| 6 | **`8_daler_fod`** (silver) | 1541-1582 (København baseline + 1544 debased) | mf 8.827 anchor; fein 26.494 g per Daler at .906 / 14½ Lod | **§BF** (full plan, pending dual-zone verdict) | Wilcke 1950 + Rigsarkivet T.K. 160 + Paus 1752 — already captured in `docs/research/moentordning_1541.md` |
+| 7 | **`8_daler_lybsk_fod`** (silver) | 1547-1571 (Lybsk-aligned dual-zone) | TBD per dossier §7.1 (Lybsk sub-Mark + 14¼ Lod Daler) | **§BF** (full plan, sub-design of dual-zone choice) | Same as #6 + 1547 Flensborg Bestalling |
 | 8 | **Rosenobel Fuß placement** (1611-1629) | C-IV 1611, 1612, 1613, 1627, 1629 | gold .833, fein 7.495 g per Rosenobel | **§AX** (pending tariff investigation) | Wilcke I + Bobzin + contemporary Danish ordinance for the period tariff |
 
 **Acceptance criteria (per Fuß).** When ANY of these candidates lands in fuesse.yml, the following must all hold:
@@ -668,7 +668,7 @@ Project ticket `190229723` ready to flip In review → Done — all 8 candidates
 
 1. **`rhinsk_gylden_fod`** (§AW) — plan already ready, metric verified, just needs ship-execution. **Start here.**
 2. **`f2_guldkrone_fod`** (§AV) — pending (a) vs (b) verdict from user. Once resolved, ~30 min implementation.
-3. **`christian_iii_dalerfod`** + **`christian_iii_flensborg_fod`** (§BF) — pending dual-zone verdict from user. ~2-3 sessions total (longer because seed coin promotion is bundled).
+3. **`8_daler_fod`** + **`8_daler_lybsk_fod`** (§BF) — pending dual-zone verdict from user. ~2-3 sessions total (longer because seed coin promotion is bundled).
 4. **`sovereign_fod`** — research from scratch. Primary sources for Hans 1496+ + Christian II + Frederik I Realer needed before metric can be written. Estimated 1-2 sessions of source-hunting (Wilcke 1924 + Galster 1959-1960 + Hede c1h/c2h/f1h).
 5. **`goldgulden_fod` decision** — separate Fuß vs phase under `reichsdukatenfuss`. Likely resolution after #4 (Sovereign research clarifies pre-1564 gold landscape).
 6. **Rosenobel + C-III Gottorp one-offs** (§AX + new sub-task) — likely resolve as standalone phases under existing Fuß families rather than new Fuß slots.
@@ -695,6 +695,37 @@ Project ticket `190229723` ready to flip In review → Done — all 8 candidates
 > - **§AB** (Daler-Klippe placement — new Fuß `daler_tarif_gold` vs redefine fractions). Deferred 2026-05-13: «поки що нічого з цим не роби, я вивчу питання і повернусь».
 > - **§AM** (DROP 5 gold off-strike entries per CLAUDE.md §9.3) — per-case verdict per candidate (PB-1 style).
 > - **§AQ** (Seed-merge data augmentation policy — field selection + conflict resolution naming).
+
+### CA. 🟢 Build per-resource harvest skill (`/harvest-numista`, `/harvest-ucoin`, `/harvest-bruun`, `/harvest-hede`, `/harvest-galster`, `/harvest-ikmk`)  *(opened 2026-05-22, user-directed)* *(est: medium-large)* *(type: tooling + automation)*
+
+**Surfaced.** User direction 2026-05-22: «створи туду високого пріоритету – зробити скіл для харвесту для кожного ресурсу». Trigger context: discovered systematic data-loss in Numista harvest (Chrome MCP scraper collapsed «Years: 1496, 1502» discrete → `year_first: 1496, year_last: 1502` continuous range; 122 cache entries affected; HARVEST_ROUTINE.md §2.3 + builder fixed 2026-05-22 + handoff queue created in `docs/handoff_numista_year_list_reharvest.yml`). The fact that a single field-shape gap costs ~122 backfill entries suggests the current «long monolithic HARVEST_ROUTINE.md doc» pattern is fragile — easy to miss field-shape edge cases, no executable validation, no per-resource isolation.
+
+**Goal.** Replace the resource-specific sections of HARVEST_ROUTINE.md with dedicated **skills** invocable as `/harvest-<resource>` slash commands. Each skill encapsulates: the URL pattern, the data shape (with `year_list` / `years_text` / `mintmaster` / etc. all enforced via field schema), the save script, the rate-limit cadence, the canonical-page-vs-redirect validation, and the per-resource quirks doc reference.
+
+**Per-resource skills to build (in expected priority order):**
+
+1. **`/harvest-numista`** — Chrome MCP HTML scrape, slug-free URL, year-shape distinction (single / dash-form continuous / comma-form discrete), Numista API quota guard (per CLAUDE.md «Numista API budget» rule). Drives `scripts/cache/numista/`.
+2. **`/harvest-ucoin`** — Chrome MCP, slug-required URL (`/coin/<slug>-tid-<TID>`), canonical-TID re-verification gate (`_verified: false` → abort save per §1a save_ucoin.py), Cloudflare retry path. Drives `scripts/cache/ucoin/`.
+3. **`/harvest-bruun`** — Stack's Bowers PDF mining via pdf-viewer MCP, per-lot extraction with KM / Hede / Sieg / Schou citation parsing. Drives `scripts/cache/bruun/`.
+4. **`/harvest-hede`** — danskmoent.dk multi-page (deep page + index-stub paths), embedded image-table OCR-or-manual-typed input, Galster cross-reference capture. Drives `scripts/cache/hede/` (currently driven by `scripts/parse_hede.py`).
+5. **`/harvest-galster`** — Galster catalogue standard format, sub-variant index handling. Drives `scripts/cache/galster/`.
+6. **`/harvest-ikmk`** — IKMK Berlin museum API (`/object/<id>/json/`), bulk-fetch friendly. Drives `scripts/cache/ikmk/`.
+
+**Minimum spec per skill:**
+
+- **Frontmatter** — name, description, expected input pattern (e.g. «list of NIDs» / «list of TIDs» / «lot range»).
+- **URL-pattern + extractor JS** — verbatim Chrome MCP `browser_batch` snippet that returns the harvest payload.
+- **Field schema** — enumerated list of every cache field with type + nullability + how to encode each Numista-/ucoin-display shape (e.g. the `year_list` distinction documented this session).
+- **Save script** — call signature for `/tmp/save_<resource>.py` (preflight from HARVEST_ROUTINE.md §1a still applies but skill checks presence + recreates if missing).
+- **Per-resource quirks** — cross-reference to `docs/SOURCES.md` §13 entry for the source. Skill should refuse to harvest if the quirk log lists an active unresolved issue.
+- **Rate-limit cadence** — `sleep $((RANDOM % 30 + 31))` between calls (current convention), or resource-specific.
+- **Cache validation step** — after save, validate the JSON shape against the schema; abort if missing required fields.
+
+**Migration path.** Each new skill REPLACES the corresponding section of HARVEST_ROUTINE.md. The .md doc shrinks to: (a) preflight (§1, §1a, §1.5), (b) priority order (§2.2, §4.2), (c) commit cadence (§3, §5), (d) coverage tables (§6) — all resource-agnostic. The resource-specific «how to fetch one entry» disappears from the doc and lives in the skill instead. This gives us: (i) per-resource isolation — fixing a Numista shape gap doesn't risk touching ucoin / Hede prose, (ii) executable validation — a skill can enforce the schema at save time, (iii) discoverability — `/harvest-` autocomplete shows the available resources.
+
+**Acceptance criterion.** All 6 skills exist + the corresponding HARVEST_ROUTINE.md sections shrink to a one-line «see /harvest-<resource>». A fresh agent picking up a harvest task discovers the right skill from the slash autocomplete + reads the skill spec instead of the long .md.
+
+**Cross-reference.** `docs/HARVEST_ROUTINE.md` (current resource-by-resource format), `docs/HARVEST_GUIDE.md` (deeper per-source playbooks), `docs/handoff_numista_year_list_reharvest.yml` (immediate backfill queue the first new skill can consume as input).
 
 ### BZ. 🟢 Krone-Fuß vernacular names — confirm/add «Груба Крона» / «Тонка Крона» with source citations in descriptions  *(opened 2026-05-21)* *(est: small)* *(type: prose enrichment + sourcing)*
 
@@ -1219,7 +1250,7 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 ### BY. ✅ Pre-1541 Danish silver Müntzfüße — 2 standards landed + Christian III Dalerfod Phase 0 expansion + 55 specimens promoted  *(opened 2026-05-21, closed 2026-05-21, **refactored 2026-05-21**)* *(est: medium-large)* *(type: data + classifier extension)*
 
-**Refactor 2026-05-21:** following web-research into how numismatic literature (danskmoent.dk Galster-Hede catalogue, Wilcke 1950 7-3 p. 242 «die 1537 Karbung etabliert das 14½-Lod-Daler-Standard», Reynold Junge mintmaster continuity 1534-1540 per `jungebc.htm`), the originally-separate `christian_iii_grevens_fejde_fod` was MERGED into `christian_iii_dalerfod` as Phase 0 (de-facto-Etablierung 1534-1540). Rationale: no source treats them as separate Müntzfüße; metric anchor (14½ Lod / 8/M / 26.494 g fein) is identical between 1537 Joachimsdaler and 1541 Møntordning Daler — 1541 codifies de jure what Junge established de facto 1537. The 40 specimens previously under grevens_fejde A1/A2/A3 are now under dalerfod Phase 0. Cycle now ships 2 (not 3) new Müntzfüße + 1 phase-expansion of existing dalerfod.
+**Refactor 2026-05-21:** following web-research into how numismatic literature (danskmoent.dk Galster-Hede catalogue, Wilcke 1950 7-3 p. 242 «die 1537 Karbung etabliert das 14½-Lod-Daler-Standard», Reynold Junge mintmaster continuity 1534-1540 per `jungebc.htm`), the originally-separate `christian_iii_grevens_fejde_fod` was MERGED into `8_daler_fod` as Phase 0 (de-facto-Etablierung 1534-1540). Rationale: no source treats them as separate Müntzfüße; metric anchor (14½ Lod / 8/M / 26.494 g fein) is identical between 1537 Joachimsdaler and 1541 Møntordning Daler — 1541 codifies de jure what Junge established de facto 1537. The 40 specimens previously under grevens_fejde A1/A2/A3 are now under dalerfod Phase 0. Cycle now ships 2 (not 3) new Müntzfüße + 1 phase-expansion of existing dalerfod.
 
 **Closed 2026-05-21.** 3-Müntzfuß implementation cycle complete in three atomic commits:
 
@@ -1275,8 +1306,8 @@ Metric anchors fully documented in the existing dossier — no further primary-s
 2. **Add 4 entries to `data/v2/locations/denmark.yml`** under fuss_order + timeline.bars + fuss_periods + phases. Sequencing decisions:
    - `8_5_gylden_fod` ends 1523 → preceeds Frederik I (1523-1533) chronologically; place after `nobel_fod` / `goldgulden_fod` in silver group.
    - `8_gylden_fod` follows `8_5_gylden_fod` (chronological).
-   - `frederik_i_husum_fod` is the SEED of the later Flensborg-fod lineage — list adjacent to `christian_iii_flensborg_fod`.
-   - `christian_iii_grevens_fejde_fod` immediately precedes `christian_iii_dalerfod`.
+   - `frederik_i_husum_fod` is the SEED of the later Flensborg-fod lineage — list adjacent to `8_daler_lybsk_fod`.
+   - `christian_iii_grevens_fejde_fod` immediately precedes `8_daler_fod`.
    - Update `timeline.bars[].order` sequence accordingly (currently 0..18; will become 0..22 after insertion of 4 new bars).
 
 3. **Add 4 denomination-anchor rules to `scripts/maintenance/auto_classify_seed_unsorted.py`** (`_DENOMINATION_ANCHOR_RULES` table). Per §BV's proven pattern — denomination + optional year-gate. Suggested rules:
@@ -1296,7 +1327,7 @@ Metric anchors fully documented in the existing dossier — no further primary-s
 **Cross-references:**
 
 - **§BV** (closed 2026-05-21) — 8-Fuß gold cycle that proved the implementation pattern. §BY reuses the same shape (denomination_anchor rules + surgical apply path + verbatim source quotes in `verification_note: false` + `_curation_holds` for any manual edits).
-- **§BF** (closed 2026-05-20) — Christian III 1541 `christian_iii_dalerfod`. §BY is «what comes chronologically before» §BF; the 1540→1541 fineness transition (.875 → .906) is a natural cross-Fuß boundary.
+- **§BF** (closed 2026-05-20) — Christian III 1541 `8_daler_fod`. §BY is «what comes chronologically before» §BF; the 1540→1541 fineness transition (.875 → .906) is a natural cross-Fuß boundary.
 - **§AZ** (long-running, paper-source-blocked) — Galster + Jensen-Skjoldager promotion that would land the c3h21-c3h22 Flensborg specimens + earlier Frederik I royal-mint paper-only specimens. §BY can proceed WITHOUT waiting for §AZ — the existing Galster cache + Bruun lots already cover 91 specimens; §AZ would deepen coverage incrementally.
 - **§BD** (Danish-jurisdiction Fuß names) — all 4 new IDs adopt the `-fod` convention from day one (`*_lovkompleks_fod`, `*_dalerfod`, `*_husum_fod`, `*_grevens_fejde_fod`).
 
@@ -3201,8 +3232,8 @@ The German-lands timeline retains its existing anchor: **1559** (Augsburger Reic
 
 **§BC sub-tasks remain open** (now demoted from §BC to follow-up TODOs in this Done note):
 
-  1. **`christian_iii_dalerfod` Müntzfuß** in `data/shared/fuesse.yml` — canonical metric mf 8.827 / Cölln. Mark 233.856 g / per-Daler 26.494 g fein / fineness 0.906. **NOT YET DONE** — separate normal-priority TODO.
-  2. **`fuss_periods.christian_iii_dalerfod`** in `data/locations/denmark.yml` with phases A1 (1541-1543 København baseline) + A2 (1544-1555 København debased). **NOT YET DONE**.
+  1. **`8_daler_fod` Müntzfuß** in `data/shared/fuesse.yml` — canonical metric mf 8.827 / Cölln. Mark 233.856 g / per-Daler 26.494 g fein / fineness 0.906. **NOT YET DONE** — separate normal-priority TODO.
+  2. **`fuss_periods.8_daler_fod`** in `data/locations/denmark.yml` with phases A1 (1541-1543 København baseline) + A2 (1544-1555 København debased). **NOT YET DONE**.
   3. **Seed-coin promotion**: c3h3-3A, c3h4, c3h5, c3h7 (Mark, 8 Sk, 4 Sk, Hvid u.år) → phase A1; c3h3-3B → phase A2. **NOT YET DONE**.
   4. **Flensborg Phase A3/A4**: sub-phase decision (separate Müntzfuß for Lybsk-aligned Flensborg track vs same Fuß with mint differentiation). Per §7.1 of moentordning_1541.md the 1547 Flensborg dual-zone is the genealogical seed of later `18_5_thaler` / `34_marck` family vs `9_thaler` family — likely deserves its own Müntzfuß. **NOT YET DONE — open design question for next session**.
   5. **References** in `denmark-references.yml` for Wilcke 1950, Galster 1965, Paus 1752, Rigsarkivet folio — **NOT YET DONE**.

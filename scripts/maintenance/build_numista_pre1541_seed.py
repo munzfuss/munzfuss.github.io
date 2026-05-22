@@ -140,16 +140,62 @@ def build_entry(data: dict) -> dict | None:
         # denomination prefix and ruler/era info).
         if " - " in title:
             nominal = title.split(" - ", 1)[0].strip()
+    # Strip trailing Daler-fraction suffix per CLAUDE.md §1
+    # («2 Mark (⅔)» → «2 Mark»; «4 Skilling (1⁄12)» → «4 Skilling»).
+    # Numista catalogues fractional denominations with their Daler-
+    # equivalent in parens — that's a rechnerische Äquivalent, not
+    # part of the period inscription. Belongs in note, not nominal.
+    if nominal:
+        nominal = re.sub(
+            r"\s+\(([⅓⅔¼½¾⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞]|\d+\s*[⁄/]\s*\d+)\)\s*$",
+            "",
+            nominal,
+        ).strip()
+    # Year handling — discrete-year list takes precedence over
+    # year_first/year_last range collapse.
+    #
+    # Numista displays «Years» two ways:
+    #   • dash form  «1649-1670» → continuous range, every year in
+    #     between is a documented strike year
+    #   • comma form «1496, 1502» → DISCRETE strike years, the in-
+    #     between years were NOT struck
+    #
+    # The Chrome MCP harvester originally collapsed both shapes to a
+    # year_first / year_last pair, losing the dash-vs-comma distinction
+    # — for the discrete case this is a §4 «source years are
+    # immutable» violation in reverse: we INTERPOLATE years that were
+    # never struck. To preserve the distinction the harvest spec
+    # (HARVEST_ROUTINE.md §2.3) now mandates a `year_list: [int]`
+    # field when the source displays comma-separated discrete years;
+    # `year_list` is left null/absent for true range form.
+    year_list_raw = data.get("year_list")
+    year_list_clean: list[int] = []
+    if isinstance(year_list_raw, list):
+        year_list_clean = sorted(set(int(y) for y in year_list_raw if y is not None))
+    if year_list_clean:
+        # Discrete years — emit per-year ranges, label as comma form.
+        year_first_out = year_list_clean[0]
+        year_last_out = year_list_clean[-1]
+        year_ranges_out = [[y, y] for y in year_list_clean]
+        year_label = ", ".join(str(y) for y in year_list_clean)
+    else:
+        # Continuous-range path (legacy + range-form Numista entries).
+        year_label = data.get("years_raw")
+        if not year_label:
+            year_label = (str(yf) if yl is None or yl == yf else f"{yf}-{yl}")
+        year_first_out = yf
+        year_last_out = yl if yl is not None else yf
+        year_ranges_out = [[year_first_out, year_last_out]]
     entry: dict = {
         "id": cid,
         "fuss": "seed_unsorted",
         "phase": "numista",
         "kind": "kurant",
         "nominal": nominal,
-        "year_label": data.get("years_raw"),
-        "year_first": yf,
-        "year_last": yl if yl is not None else yf,
-        "year_ranges": [[yf, yl if yl is not None else yf]],
+        "year_label": year_label,
+        "year_first": year_first_out,
+        "year_last": year_last_out,
+        "year_ranges": year_ranges_out,
         "ruler": normalise_ruler(data.get("kings") or []),
         "mint": data.get("mint"),
         "catalog": catalog,
@@ -197,21 +243,17 @@ def build_entry(data: dict) -> dict | None:
         },
     }
 
-    # Photo credit + lettering enrichment
-    if data.get("photo_credit"):
-        entry["photo_credit"] = data["photo_credit"]
-    if obverse:
-        entry["obverse"] = obverse
-    if reverse:
-        entry["reverse"] = reverse
-    if data.get("title"):
-        entry["numista_title"] = data["title"]
-    if data.get("rarity_index"):
-        entry["numista_rarity_index"] = data["rarity_index"]
-    if data.get("shape"):
-        entry["shape"] = data["shape"]
-    if data.get("technique"):
-        entry["technique"] = data["technique"]
+    # Note: enrichment fields (photo_credit, obverse, reverse,
+    # numista_title, numista_rarity_index, shape, technique) are NOT
+    # emitted — Coin pydantic schema (_StrictBase extra=forbid) rejects
+    # them. Previously masked because most numista seed entries were
+    # absorbed into foundation final entries via composed_of chain (build
+    # `absorbed_seed_ids` skips them); new cross-source merger output
+    # (2026-05-22 with tier-1 weight disambiguator) can produce seed
+    # entries that surface independently in the seed_unsorted phase and
+    # then hit schema validation. The raw cache JSON
+    # (scripts/cache/numista/denmark_pre_1541/n<NID>.json) preserves
+    # all fields for future re-derivation when the schema gains them.
 
     return entry
 
