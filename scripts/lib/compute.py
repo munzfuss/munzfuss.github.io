@@ -244,7 +244,11 @@ class ComputedCoin:
 
 import re  # noqa: E402
 
-# Display label for each named catalog field
+# Display label for each named catalog field. Ordering doesn't matter
+# for output (the render order is driven by `_PREFIX_PRIORITY` below).
+# The field must exist on the `CatalogRefs` schema in
+# `scripts/lib/schema.py` — adding an entry here without the schema
+# field is a no-op (the lookup returns None).
 _NAMED_FIELDS: list[tuple[str, str]] = [
     ("km", "KM"),
     ("hede", "Hede"),
@@ -254,6 +258,18 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
     ("fr", "Fr"),
     ("dav", "Dav"),
     ("bruun_lot", "Bruun"),
+    # Galster — Danish-Norwegian numismatic catalogue (Georg Galster
+    # series via danskmoent.dk). Routinely populated on coins seeded
+    # from `scripts/cache/danskmoent/galster/` via the V1+V2 galster
+    # builders. Was missing from this list pre-2026-05-22 — coins
+    # whose only catalog ref was Galster (e.g. Christian II Nobel
+    # 1516/1518 via c2g37, Hans/Frederik I Galster series) had an
+    # empty catalog column despite the source URL being a Galster
+    # page. `_PREFIX_PRIORITY` already had a slot for it (270),
+    # confirming this is a missing-field bug rather than a missing-
+    # priority bug. 120 final entries carry catalog.galster; 54 of
+    # those have NO other rendered catalog field.
+    ("galster", "Galster"),
 ]
 
 # Register tooltip text per Krause register code. Used by
