@@ -2906,49 +2906,6 @@ coins:
 - fuss: seed_unsorted
   phase: galster
   kind: kurant
-  nominal: 2 Skilling
-  ruler: Frederik I
-  issuing_entity: gottorp_duchy
-  id: unified-dk-galster-f1g-124
-  year_first: 1523
-  year_last: 1523
-  year_label: '1523'
-  mint: Gottorp
-  catalog:
-    galster: 124A-C
-    schou: varia
-    galster_volume: f1g
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.469
-    source: galster
-  weight_rough_g:
-  - value: 4.17
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f1g124.htm
-    ref: Galster 124 (f1g) — danskmoent.dk fr_f1g124.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-f1g-124
-- fuss: seed_unsorted
-  phase: galster
-  kind: kurant
   nominal: 1 Søsling
   ruler: Frederik I
   issuing_entity: gottorp_duchy
@@ -3039,6 +2996,9 @@ coins:
     numista: '153257'
     sieg: F1-43
     mb: '10'
+    galster: 124A-C
+    schou: varia
+    galster_volume: f1g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -3047,15 +3007,22 @@ coins:
   mint_verified: true
   verified: false
   fineness:
+  - value: 0.469
+    source: galster
   - value: 0.484
     source: numista
   weight_rough_g:
   - value: 4.06
     source: numista
+  - value: 4.17
+    source: galster
   diameter_mm:
   - value: 30.33
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g124.htm
+    ref: Galster 124 (f1g) — danskmoent.dk fr_f1g124.htm
   - type: literature
     url: https://en.numista.com/153257
     ref: Numista N#153257 — 2 Schillings - Frederik I (Gottorp; year above shield)

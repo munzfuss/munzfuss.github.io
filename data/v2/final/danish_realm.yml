@@ -828,7 +828,7 @@ coins:
     url: https://numismaster.com/MC_64954
     ref: NumisMaster
   - type: literature
-    url: https://www.danskmoent.dk/chr/c4hede.htm
+    url: https://www.danskmoent.dk/c4hede.htm
     ref: danskmoent.dk overview c4hede (Hede c4h87 — Tiefenseite fehlt)
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-penning-1602/?tid=162976
@@ -11243,7 +11243,7 @@ coins:
   - type: literature
     ref: Bruun-4534 · Stack's Bowers Bruun Collection Part III, lot 11173
   - type: literature
-    url: https://www.danskmoent.dk/fr/f2hede.htm
+    url: https://www.danskmoent.dk/f2hede.htm
     ref: danskmoent.dk overview f2hede (Hede f2h23 — Tiefenseite fehlt)
   note:
     de: Mark 1582 · Frederiksborger Münze unter Münzmeister Poul Gulden
@@ -11966,7 +11966,7 @@ coins:
   - type: literature
     ref: Bruun-4625 · Stack's Bowers Bruun Collection Part III, lot 11175
   - type: literature
-    url: https://www.danskmoent.dk/chr/c4hede.htm
+    url: https://www.danskmoent.dk/c4hede.htm
     ref: danskmoent.dk overview c4hede (Hede c4h69 — Tiefenseite fehlt)
   note:
     de: Mark 1596 · Münzmeister Gert van Campen · laut Bruun nur wenige Exemplare bekannt
@@ -19377,7 +19377,7 @@ coins:
   - type: literature
     ref: Bruun-5366 · Stack's Bowers Bruun Collection Part II, lot 13101
   - type: literature
-    url: https://www.danskmoent.dk/chr/c4hede.htm
+    url: https://www.danskmoent.dk/c4hede.htm
     ref: danskmoent.dk overview c4hede (Hede c4h62 — Tiefenseite fehlt)
   note:
     de: 3 Speciedaler 1624-NS «mit gebogenen Schilden» · Münzmeister Nicolaus Schwabe · einziges anderes registriertes Exemplar
@@ -31277,19 +31277,29 @@ coins:
     - '92'
     galster_volume: c3g
   metal: silver
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.5
+    source: galster
   weight_rough_g:
   - value: 11.05
     source: bruun
+  - value: 14.38
+    source: galster
   sources:
   - type: literature
     ref: Bruun-4155 · Stack's Bowers Bruun Collection Part II, lot 13057
   - type: literature
     url: https://www.danskmoent.dk/chr/c3g92.htm
     ref: Galster 92 (c3g) — danskmoent.dk chr_c3g92.htm
+  note:
+    de: 'Galster-Variantentabelle: Kendes ikke mere'
+    en: 'Galster variant table: Kendes ikke mere'
+    uk: 'Galster-таблиця варіантів: Kendes ikke mere'
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -31317,16 +31327,21 @@ coins:
   mint: Århus
   catalog:
     bruun_collection_id: '4156'
-    sieg: '12'
+    sieg:
+    - '12'
+    - C3-2
     schou: '239'
     bruun_part: III
     bruun_lot_no: 11162
     bruun_page: 86
     galster: '93'
     galster_volume: c3g
+    numista: '476670'
   metal: silver
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   weight_rough_g:
@@ -31334,12 +31349,17 @@ coins:
     source: bruun
   - value: 3.32
     source: galster
+  - value: 3.32
+    source: numista
   sources:
   - type: literature
     ref: Bruun-4156 · Stack's Bowers Bruun Collection Part III, lot 11162
   - type: literature
     url: https://www.danskmoent.dk/chr/c3g93.htm
     ref: Galster 93 (c3g) — danskmoent.dk chr_c3g93.htm
+  - type: literature
+    url: https://en.numista.com/476670
+    ref: Numista N#476670 — 8 Skilling Klipping - Christian III
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -31366,33 +31386,47 @@ coins:
   mint: Roskilde
   catalog:
     bruun_collection_id: '4194'
-    sieg: '13'
+    sieg:
+    - '13'
+    - C3-13
     schou: '28'
     bruun_part: III
     bruun_lot_no: 11163
     bruun_page: 86
     galster: '98'
     galster_volume: c3g
-  metal: silver
+    numista: '476681'
+  metal: billon
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.406
     source: galster
+  - value: 0.406
+    source: numista
   weight_rough_g:
   - value: 7.19
     source: galster
+  - value: 7.19
+    source: numista
   - value: 8.07
     source: bruun
+  diameter_mm:
+  - value: 34.0
+    source: numista
   sources:
   - type: literature
     ref: Bruun-4194 · Stack's Bowers Bruun Collection Part III, lot 11163
   - type: literature
     url: https://www.danskmoent.dk/chr/c3g98.htm
     ref: Galster 98 (c3g) — danskmoent.dk chr_c3g98.htm
+  - type: literature
+    url: https://en.numista.com/476681
+    ref: Numista N#476681 — 1 Mark - Christian III (Roskilde)
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -31717,48 +31751,6 @@ coins:
       Sieg, Jensen-Skjoldager, Schive, тощо).'
   composed_of:
   - unified-dk-galster-c3g-102
-- fuss: christian_iii_dalerfod
-  phase: '0'
-  kind: scheide
-  nominal: 4 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-galster-c3g-104
-  year_first: 1535
-  year_last: 1535
-  year_label: '1535'
-  mint: Kopenhagen
-  catalog:
-    galster: '104'
-    galster_volume: c3g
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.219
-    source: galster
-  weight_rough_g:
-  - value: 3.15
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g104.htm
-    ref: Galster 104 (c3g) — danskmoent.dk chr_c3g104.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-c3g-104
 - fuss: rhinsk_gylden_fod
   phase: '0'
   kind: kurant
@@ -31808,62 +31800,18 @@ coins:
   nominal: 4 Skilling
   ruler: Christian III
   issuing_entity: danish_realm
-  id: unified-dk-galster-c3g-94
-  year_first: 1535
-  year_last: 1535
-  year_label: '1535'
-  mint: Århus
-  catalog:
-    galster: '94'
-    galster_volume: c3g
-  metal: billon
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.51
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g94.htm
-    ref: Galster 94 (c3g) — danskmoent.dk chr_c3g94.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-c3g-94
-- fuss: christian_iii_dalerfod
-  phase: '0'
-  kind: scheide
-  nominal: 4 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
   id: unified-dk-galster-c3g-95
   year_first: 1535
   year_last: 1535
   year_label: '1535'
   mint: Århus
-  catalog:
-    galster: '95'
-    galster_volume: c3g
+  catalog: {}
   metal: billon
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: false
   mint_verified: true
   verified: false
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g95.htm
-    ref: Galster 95 (c3g) — danskmoent.dk chr_c3g95.htm
   verification_note:
     de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
@@ -31874,45 +31822,7 @@ coins:
     uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
       Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
       Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-c3g-95
-- fuss: christian_iii_dalerfod
-  phase: '0'
-  kind: scheide
-  nominal: 2 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-galster-c3g-96
-  year_first: 1536
-  year_last: 1536
-  year_label: '1536'
-  mint: Århus
-  catalog:
-    galster: '96'
-    schou: 1-17
-    sieg: '15'
-    galster_volume: c3g
-  metal: billon
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g96.htm
-    ref: Galster 96 (c3g) — danskmoent.dk chr_c3g96.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-c3g-96
+  composed_of: []
 - fuss: nobel_fod
   phase: I
   kind: kurant
@@ -36558,6 +36468,7 @@ coins:
     numista: '152059'
     sieg: C3-12
     galster: '99'
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -36567,14 +36478,21 @@ coins:
   verified: false
   fineness:
   - value: 0.25
+    source: galster
+  - value: 0.25
     source: numista
   weight_rough_g:
+  - value: 3.06
+    source: galster
   - value: 3.06
     source: numista
   diameter_mm:
   - value: 29.4
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g99.htm
+    ref: Galster 99 (c3g) — danskmoent.dk chr_c3g99.htm
   - type: literature
     url: https://en.numista.com/152059
     ref: Numista N#152059 — 4 Skilling - Christian III (Roskilde)
@@ -36605,6 +36523,7 @@ coins:
     numista: '152060'
     sieg: C3-3
     galster: '105'
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -36614,14 +36533,21 @@ coins:
   verified: false
   fineness:
   - value: 0.187
+    source: galster
+  - value: 0.187
     source: numista
   weight_rough_g:
+  - value: 1.75
+    source: galster
   - value: 1.75
     source: numista
   diameter_mm:
   - value: 21.0
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g105.htm
+    ref: Galster 105 (c3g) — danskmoent.dk chr_c3g105.htm
   - type: literature
     url: https://en.numista.com/152060
     ref: Numista N#152060 — 2 Skilling - Christian III (Copenhagen)
@@ -37020,8 +36946,12 @@ coins:
   mint: Århus
   catalog:
     numista: '301375'
-    sieg: C3-16.2
+    sieg:
+    - C3-16.2
+    - '16.2'
     galster: 95B
+    schou: 69-99
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -37031,14 +36961,21 @@ coins:
   verified: false
   fineness:
   - value: 0.25
+    source: galster
+  - value: 0.25
     source: numista
   weight_rough_g:
+  - value: 3.06
+    source: galster
   - value: 3.06
     source: numista
   diameter_mm:
   - value: 28.8
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g95.htm
+    ref: Galster 95B (c3g) — danskmoent.dk chr_c3g95.htm
   - type: literature
     url: https://en.numista.com/301375
     ref: Numista N#301375 — 4 Skilling - Christian III (Aarhus; light)
@@ -37180,98 +37117,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-428876
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Mark
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-numista-474245
-  year_first: 1541
-  year_last: 1541
-  year_label: '1541'
-  catalog:
-    numista: '474245'
-    sieg: C3-38.1
-    hede: 3A
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.906
-    source: numista
-  weight_rough_g:
-  - value: 9.744
-    source: numista
-  diameter_mm:
-  - value: 31.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/474245
-    ref: Numista N#474245 — 1 Mark - Christian III
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-474245
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 8 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-numista-474248
-  year_first: 1541
-  year_last: 1541
-  year_label: '1541'
-  catalog:
-    numista: '474248'
-    sieg: C3-37.1
-    hede: 4A
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.906
-    source: numista
-  weight_rough_g:
-  - value: 4.872
-    source: numista
-  diameter_mm:
-  - value: 28.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/474248
-    ref: Numista N#474248 — 8 Skilling - Christian III
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-474248
 - fuss: seed_unsorted
   phase: numista
   kind: kurant
@@ -37483,6 +37328,7 @@ coins:
     numista: '474591'
     sieg: C3-7
     galster: '104'
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -37492,14 +37338,21 @@ coins:
   verified: false
   fineness:
   - value: 0.219
+    source: galster
+  - value: 0.219
     source: numista
   weight_rough_g:
+  - value: 3.15
+    source: galster
   - value: 3.15
     source: numista
   diameter_mm:
   - value: 29.0
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g104.htm
+    ref: Galster 104 (c3g) — danskmoent.dk chr_c3g104.htm
   - type: literature
     url: https://en.numista.com/474591
     ref: Numista N#474591 — 4 Skilling - Christian III (Copenhagen)
@@ -37530,6 +37383,7 @@ coins:
     numista: '474604'
     sieg: C3-17
     galster: '109'
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -37539,14 +37393,21 @@ coins:
   verified: false
   fineness:
   - value: 0.156
+    source: galster
+  - value: 0.156
     source: numista
   weight_rough_g:
+  - value: 1.15
+    source: galster
   - value: 1.15
     source: numista
   diameter_mm:
   - value: 21.0
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g109.htm
+    ref: Galster 109 (c3g) — danskmoent.dk chr_c3g109.htm
   - type: literature
     url: https://en.numista.com/474604
     ref: Numista N#474604 — 1 Skilling - Christian III (Ribe)
@@ -37577,6 +37438,7 @@ coins:
     numista: '476659'
     sieg: C3-19
     galster: '107'
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -37586,14 +37448,21 @@ coins:
   verified: false
   fineness:
   - value: 0.219
+    source: galster
+  - value: 0.219
     source: numista
   weight_rough_g:
+  - value: 3.15
+    source: galster
   - value: 3.15
     source: numista
   diameter_mm:
   - value: 28.0
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g107.htm
+    ref: Galster 107 (c3g) — danskmoent.dk chr_c3g107.htm
   - type: literature
     url: https://en.numista.com/476659
     ref: Numista N#476659 — 4 Skilling - Christian III (Ribe)
@@ -37624,6 +37493,7 @@ coins:
     numista: '476662'
     sieg: C3-18
     galster: '108'
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -37633,14 +37503,21 @@ coins:
   verified: false
   fineness:
   - value: 0.187
+    source: galster
+  - value: 0.187
     source: numista
   weight_rough_g:
+  - value: 1.75
+    source: galster
   - value: 1.75
     source: numista
   diameter_mm:
   - value: 23.0
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g108.htm
+    ref: Galster 108 (c3g) — danskmoent.dk chr_c3g108.htm
   - type: literature
     url: https://en.numista.com/476662
     ref: Numista N#476662 — 2 Skilling - Christian III (Ribe)
@@ -37666,24 +37543,43 @@ coins:
   year_first: 1535
   year_last: 1535
   year_label: '1535'
+  mint: Århus
   catalog:
     numista: '476668'
-    galster: 92A
-    sieg: C3-3
+    galster:
+    - 92A
+    - 92B
+    sieg:
+    - C3-3
+    - '3'
+    - '4'
+    schou:
+    - '49'
+    - 48, 50
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: false
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.437
+    source: galster
+  - value: 0.437
     source: numista
   weight_rough_g:
+  - value: 12.12
+    source: galster
+  - value: 14.38
+    source: galster
   - value: 14.38
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g92.htm
+    ref: Galster 92A (c3g) — danskmoent.dk chr_c3g92.htm
   - type: literature
     url: https://en.numista.com/476668
     ref: Numista N#476668 — 2 Mark Klipping - Christian III
@@ -37701,46 +37597,6 @@ coins:
   - unified-dk-numista-476668
 - fuss: christian_iii_dalerfod
   phase: '0'
-  kind: kurant
-  nominal: 8 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-numista-476670
-  year_first: 1535
-  year_last: 1535
-  year_label: '1535'
-  catalog:
-    numista: '476670'
-    galster: '93'
-    sieg: C3-2
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 3.32
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/476670
-    ref: Numista N#476670 — 8 Skilling Klipping - Christian III
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-476670
-- fuss: christian_iii_dalerfod
-  phase: '0'
   kind: scheide
   nominal: 4 Skilling
   ruler: Christian III
@@ -37749,21 +37605,28 @@ coins:
   year_first: 1535
   year_last: 1535
   year_label: '1535'
+  mint: Århus
   catalog:
     numista: '476671'
     galster: '94'
     sieg: C3-1
+    galster_volume: c3g
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: false
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 1.51
+    source: galster
+  - value: 1.51
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g94.htm
+    ref: Galster 94 (c3g) — danskmoent.dk chr_c3g94.htm
   - type: literature
     url: https://en.numista.com/476671
     ref: Numista N#476671 — 4 Skilling Klipping - Christian III
@@ -37792,8 +37655,12 @@ coins:
   mint: Århus
   catalog:
     numista: '476674'
-    sieg: C3-16.1
+    sieg:
+    - C3-16.1
+    - '16.1'
     galster: 95A
+    schou: 65-68
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -37803,14 +37670,21 @@ coins:
   verified: false
   fineness:
   - value: 0.3125
+    source: galster
+  - value: 0.3125
     source: numista
   weight_rough_g:
+  - value: 3.71
+    source: galster
   - value: 3.71
     source: numista
   diameter_mm:
   - value: 29.0
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g95.htm
+    ref: Galster 95A (c3g) — danskmoent.dk chr_c3g95.htm
   - type: literature
     url: https://en.numista.com/476674
     ref: Numista N#476674 — 4 Skilling - Christian III (Aarhus; heavy)
@@ -37839,8 +37713,12 @@ coins:
   mint: Århus
   catalog:
     numista: '476676'
-    sieg: C3-15
+    sieg:
+    - C3-15
+    - '15'
     galster: '96'
+    schou: 1-17
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -37859,6 +37737,9 @@ coins:
     source: numista
   sources:
   - type: literature
+    url: https://www.danskmoent.dk/chr/c3g96.htm
+    ref: Galster 96 (c3g) — danskmoent.dk chr_c3g96.htm
+  - type: literature
     url: https://en.numista.com/476676
     ref: Numista N#476676 — 2 Skilling - Christian III (Aarhus)
   verification_note:
@@ -37875,99 +37756,6 @@ coins:
   - unified-dk-numista-476676
 - fuss: christian_iii_dalerfod
   phase: '0'
-  kind: kurant
-  nominal: 2 Mark
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-numista-476678
-  year_first: 1535
-  year_last: 1535
-  year_label: '1535'
-  catalog:
-    numista: '476678'
-    sieg: C3-14
-    galster: '97'
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.406
-    source: numista
-  weight_rough_g:
-  - value: 14.38
-    source: numista
-  diameter_mm:
-  - value: 37.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/476678
-    ref: Numista N#476678 — 2 Mark - Christian III
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-476678
-- fuss: christian_iii_dalerfod
-  phase: '0'
-  kind: kurant
-  nominal: 1 Mark
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-numista-476681
-  year_first: 1535
-  year_last: 1535
-  year_label: '1535'
-  mint: Roskilde
-  catalog:
-    numista: '476681'
-    sieg: C3-13
-    galster: '98'
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.406
-    source: numista
-  weight_rough_g:
-  - value: 7.19
-    source: numista
-  diameter_mm:
-  - value: 34.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/476681
-    ref: Numista N#476681 — 1 Mark - Christian III (Roskilde)
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-476681
-- fuss: christian_iii_dalerfod
-  phase: '0'
   kind: scheide
   nominal: 2 Skilling
   ruler: Christian III
@@ -37981,6 +37769,7 @@ coins:
     numista: '476684'
     sieg: C3-11
     galster: '100'
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -37990,14 +37779,21 @@ coins:
   verified: false
   fineness:
   - value: 0.187
+    source: galster
+  - value: 0.187
     source: numista
   weight_rough_g:
+  - value: 1.75
+    source: galster
   - value: 1.75
     source: numista
   diameter_mm:
   - value: 27.0
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g100.htm
+    ref: Galster 100 (c3g) — danskmoent.dk chr_c3g100.htm
   - type: literature
     url: https://en.numista.com/476684
     ref: Numista N#476684 — 2 Skilling - Christian III (Roskilde)
@@ -38327,6 +38123,7 @@ coins:
     numista: '84844'
     sieg: C3-5
     galster: '106'
+    galster_volume: c3g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -38336,14 +38133,21 @@ coins:
   verified: false
   fineness:
   - value: 0.156
+    source: galster
+  - value: 0.156
     source: numista
   weight_rough_g:
+  - value: 1.15
+    source: galster
   - value: 1.15
     source: numista
   diameter_mm:
   - value: 21.0
     source: numista
   sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g106.htm
+    ref: Galster 106 (c3g) — danskmoent.dk chr_c3g106.htm
   - type: literature
     url: https://en.numista.com/84844
     ref: Numista N#84844 — 1 Skilling - Christian III (Copenhagen)
@@ -42400,33 +42204,47 @@ coins:
   mint: Roskilde
   catalog:
     bruun_collection_id: '4186'
-    sieg: '14'
+    sieg:
+    - '14'
+    - C3-14
     schou: '9'
     bruun_part: II
     bruun_lot_no: 13058
     bruun_page: 53
     galster: '97'
     galster_volume: c3g
-  metal: silver
+    numista: '476678'
+  metal: billon
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.406
     source: galster
+  - value: 0.406
+    source: numista
   weight_rough_g:
   - value: 14.38
     source: galster
+  - value: 14.38
+    source: numista
   - value: 14.96
     source: bruun
+  diameter_mm:
+  - value: 37.0
+    source: numista
   sources:
   - type: literature
     ref: Bruun-4186 · Stack's Bowers Bruun Collection Part II, lot 13058
   - type: literature
     url: https://www.danskmoent.dk/chr/c3g97.htm
     ref: Galster 97 (c3g) — danskmoent.dk chr_c3g97.htm
+  - type: literature
+    url: https://en.numista.com/476678
+    ref: Numista N#476678 — 2 Mark - Christian III
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -42631,258 +42449,6 @@ coins:
   nominal: 2 Skilling
   ruler: Christian III
   issuing_entity: danish_realm
-  id: unified-dk-galster-c3g-100
-  year_first: 1536
-  year_last: 1536
-  year_label: '1536'
-  mint: Roskilde
-  catalog:
-    galster: '100'
-    galster_volume: c3g
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.187
-    source: galster
-  weight_rough_g:
-  - value: 1.75
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g100.htm
-    ref: Galster 100 (c3g) — danskmoent.dk chr_c3g100.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-c3g-100
-- fuss: christian_iii_dalerfod
-  phase: '0'
-  kind: scheide
-  nominal: 2 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-galster-c3g-105
-  year_first: 1536
-  year_last: 1536
-  year_label: '1536'
-  mint: Kopenhagen
-  catalog:
-    galster: '105'
-    galster_volume: c3g
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.187
-    source: galster
-  weight_rough_g:
-  - value: 1.75
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g105.htm
-    ref: Galster 105 (c3g) — danskmoent.dk chr_c3g105.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-c3g-105
-- fuss: christian_iii_dalerfod
-  phase: '0'
-  kind: scheide
-  nominal: 1 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-galster-c3g-106
-  year_first: 1536
-  year_last: 1536
-  year_label: '1536'
-  mint: Kopenhagen
-  catalog:
-    galster: '106'
-    galster_volume: c3g
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.156
-    source: galster
-  weight_rough_g:
-  - value: 1.15
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g106.htm
-    ref: Galster 106 (c3g) — danskmoent.dk chr_c3g106.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-c3g-106
-- fuss: christian_iii_dalerfod
-  phase: '0'
-  kind: scheide
-  nominal: 4 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-galster-c3g-107
-  year_first: 1535
-  year_last: 1535
-  year_label: '1535'
-  mint: Ribe
-  catalog:
-    galster: '107'
-    galster_volume: c3g
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.219
-    source: galster
-  weight_rough_g:
-  - value: 3.15
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g107.htm
-    ref: Galster 107 (c3g) — danskmoent.dk chr_c3g107.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-c3g-107
-- fuss: christian_iii_dalerfod
-  phase: '0'
-  kind: scheide
-  nominal: 2 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-galster-c3g-108
-  year_first: 1536
-  year_last: 1536
-  year_label: '1536'
-  mint: Ribe
-  catalog:
-    galster: '108'
-    galster_volume: c3g
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.187
-    source: galster
-  weight_rough_g:
-  - value: 1.75
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g108.htm
-    ref: Galster 108 (c3g) — danskmoent.dk chr_c3g108.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-c3g-108
-- fuss: christian_iii_dalerfod
-  phase: '0'
-  kind: scheide
-  nominal: 1 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-galster-c3g-109
-  year_first: 1536
-  year_last: 1536
-  year_label: '1536'
-  mint: Ribe
-  catalog:
-    galster: '109'
-    galster_volume: c3g
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.156
-    source: galster
-  weight_rough_g:
-  - value: 1.15
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g109.htm
-    ref: Galster 109 (c3g) — danskmoent.dk chr_c3g109.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-c3g-109
-- fuss: christian_iii_dalerfod
-  phase: '0'
-  kind: scheide
-  nominal: 2 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
   id: unified-dk-galster-c3g-132
   year_first: 1534
   year_last: 1537
@@ -42922,48 +42488,6 @@ coins:
       Sieg, Jensen-Skjoldager, Schive, тощо).'
   composed_of:
   - unified-dk-galster-c3g-132
-- fuss: christian_iii_dalerfod
-  phase: '0'
-  kind: scheide
-  nominal: 4 Skilling
-  ruler: Christian III
-  issuing_entity: danish_realm
-  id: unified-dk-galster-c3g-99
-  year_first: 1535
-  year_last: 1535
-  year_label: '1535'
-  mint: Roskilde
-  catalog:
-    galster: '99'
-    galster_volume: c3g
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.25
-    source: galster
-  weight_rough_g:
-  - value: 3.06
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g99.htm
-    ref: Galster 99 (c3g) — danskmoent.dk chr_c3g99.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-c3g-99
 - fuss: seed_unsorted
   phase: galster
   kind: kurant
@@ -43388,6 +42912,7 @@ coins:
     - '38.1'
     - '37.1'
     - '37.2'
+    - C3-38.1
     bruun_collection_id:
     - '4282'
     - '4288'
@@ -43395,15 +42920,19 @@ coins:
     bruun_part: III
     bruun_lot_no: 11166
     bruun_page: 88
+    numista: '474245'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.906
     source: hede
+  - value: 0.906
+    source: numista
   weight_rough_g:
   - value: 9.31
     source: bruun
@@ -43411,8 +42940,13 @@ coins:
     source: bruun
   - value: 9.744
     source: hede
+  - value: 9.744
+    source: numista
   - value: 9.92
     source: bruun
+  diameter_mm:
+  - value: 31.0
+    source: numista
   sources:
   - type: literature
     ref: Bruun-4282 · Stack's Bowers Bruun Collection Part III, lot 11166
@@ -43423,6 +42957,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c3h3.htm
     ref: danskmoent.dk (Hede c3h3)
+  - type: literature
+    url: https://en.numista.com/474245
+    ref: Numista N#474245 — 1 Mark - Christian III
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -43447,26 +42984,42 @@ coins:
   year_label: 1541, 1544
   mint: Kopenhagen
   catalog:
-    hede: '4'
+    hede:
+    - '4'
+    - 4A
     hede_volume: c3h
     schou: '4'
-    sieg: '37.1'
+    sieg:
+    - '37.1'
+    - C3-37.1
+    numista: '474248'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.906
     source: hede
+  - value: 0.906
+    source: numista
   weight_rough_g:
   - value: 4.872
     source: hede
+  - value: 4.872
+    source: numista
+  diameter_mm:
+  - value: 28.0
+    source: numista
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c3h4.htm
     ref: danskmoent.dk (Hede c3h4)
+  - type: literature
+    url: https://en.numista.com/474248
+    ref: Numista N#474248 — 8 Skilling - Christian III
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -82713,7 +82266,7 @@ coins:
   verified: false
   sources:
   - type: literature
-    url: https://www.danskmoent.dk/chr/c4hede.htm
+    url: https://www.danskmoent.dk/c4hede.htm
     ref: danskmoent.dk overview c4hede (Hede c4h27 — Tiefenseite fehlt)
   verification_note:
     de: 'Hede-Index-Stub: Nur die Übersichtsreihe von c4hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
@@ -82750,7 +82303,7 @@ coins:
   verified: false
   sources:
   - type: literature
-    url: https://www.danskmoent.dk/chr/c4hede.htm
+    url: https://www.danskmoent.dk/c4hede.htm
     ref: danskmoent.dk overview c4hede (Hede c4h65 — Tiefenseite fehlt)
   verification_note:
     de: 'Hede-Index-Stub: Nur die Übersichtsreihe von c4hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
@@ -82788,7 +82341,7 @@ coins:
   verified: false
   sources:
   - type: literature
-    url: https://www.danskmoent.dk/chr/c7hede.htm
+    url: https://www.danskmoent.dk/c7hede.htm
     ref: danskmoent.dk overview c7hede (Hede c7h14 — Tiefenseite fehlt)
   verification_note:
     de: 'Hede-Index-Stub: Nur die Übersichtsreihe von c7hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
@@ -82823,7 +82376,7 @@ coins:
   verified: false
   sources:
   - type: literature
-    url: https://www.danskmoent.dk/chr/c7hede.htm
+    url: https://www.danskmoent.dk/c7hede.htm
     ref: danskmoent.dk overview c7hede (Hede c7h24 — Tiefenseite fehlt)
   verification_note:
     de: 'Hede-Index-Stub: Nur die Übersichtsreihe von c7hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
@@ -82861,7 +82414,7 @@ coins:
   verified: false
   sources:
   - type: literature
-    url: https://www.danskmoent.dk/fr/f4hede.htm
+    url: https://www.danskmoent.dk/f4hede.htm
     ref: danskmoent.dk overview f4hede (Hede f4h32 — Tiefenseite fehlt)
   verification_note:
     de: 'Hede-Index-Stub: Nur die Übersichtsreihe von f4hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).

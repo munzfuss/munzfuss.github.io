@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 960 per-source seed entries.
-# Output: 582 unified entries (one per physical coin).
+# Output: 578 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -12219,11 +12219,11 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Skilling
-  year_first: 1525
-  year_last: 1530
+  year_first: 1524
+  year_last: 1533
   year_ranges:
-  - - 1525
-    - 1530
+  - - 1524
+    - 1533
   year_label: '1526'
   ruler: Frederik I
   mint: Christiania
@@ -12239,30 +12239,44 @@ coins:
     galster: '167'
     schive:
     - XVI:5
+    - XVI:11
     - XVI.2-7,11-13
     nmd: '3'
     jensen_skjoldager: N-13
+    numista: '121754'
+    skaare: '311'
     galster_volume: f1g
   metal: billon
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.219
     source: galster
+  - value: 0.219
+    source: numista
   weight_rough_g:
   - value: 2.05
     source: galster
+  - value: 2.05
+    source: numista
   - value: 2.1
     source: bruun
+  diameter_mm:
+  - value: 24.0
+    source: numista
   sources:
   - type: literature
     ref: Bruun-9268 · Stack's Bowers Bruun Collection Part III, lot 12039
   - type: literature
     url: https://www.danskmoent.dk/norge/nf1g167.htm
     ref: Galster 167 (f1g) — danskmoent.dk norge_nf1g167.htm
+  - type: literature
+    url: https://en.numista.com/121754
+    ref: Numista N#121754 — 1 Skilling - Frederik I (Oslo)
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -12278,6 +12292,7 @@ coins:
   composed_of:
   - dk-bruun-9268
   - dk-galster-f1g-167
+  - dk-numista-121754
 - id: unified-dk-bruun-9271
   fuss: seed_unsorted
   phase: bruun
@@ -12345,21 +12360,36 @@ coins:
     bruun_page: 179
     galster: '175'
     nmd: '1'
+    numista: '444496'
+    schive: XVII:9
   metal: billon
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.219
+    source: numista
   weight_rough_g:
   - value: 1.44
     source: bruun
   - value: 1.5
     source: bruun
+  - value: 1.7
+    source: numista
+  diameter_mm:
+  - value: 26.0
+    source: numista
   sources:
   - type: literature
     ref: Bruun-9290 · Stack's Bowers Bruun Collection Part II, lot 14003
   - type: literature
     ref: Bruun-9291 · Stack's Bowers Bruun Collection Part III, lot 12042
+  - type: literature
+    url: https://en.numista.com/444496
+    ref: Numista N#444496 — 1 Skilling - Christian III (Oslo)
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -12375,6 +12405,7 @@ coins:
   composed_of:
   - dk-bruun-9290
   - dk-bruun-9291
+  - dk-numista-444496
 - id: unified-dk-bruun-9295
   fuss: seed_unsorted
   phase: bruun
@@ -12425,8 +12456,11 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Skilling
-  year_first: 1537
+  year_first: 1533
   year_last: 1537
+  year_ranges:
+  - - 1533
+    - 1537
   year_label: '1537'
   ruler: Christian III
   mint: Bergen
@@ -12439,17 +12473,33 @@ coins:
     bruun_page: 180
     galster: '176'
     nmd: 1A
+    numista: '121758'
+    schive: XVII:6
+    skaare: '326'
   metal: billon
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.219
+    source: numista
   weight_rough_g:
   - value: 1.21
     source: bruun
+  - value: 1.7
+    source: numista
+  diameter_mm:
+  - value: 27.0
+    source: numista
   sources:
   - type: literature
     ref: Bruun-9298 · Stack's Bowers Bruun Collection Part II, lot 14005
+  - type: literature
+    url: https://en.numista.com/121758
+    ref: Numista N#121758 — 1 Skilling - Christian III (Bergen)
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -12464,6 +12514,7 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-bruun-9298
+  - dk-numista-121758
 - id: unified-dk-bruun-9302
   fuss: seed_unsorted
   phase: bruun
@@ -16976,42 +17027,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-galster-f1g-166
-- id: unified-dk-galster-f1g-168
-  fuss: seed_unsorted
-  phase: galster
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1531
-  year_last: 1531
-  year_label: '1531'
-  mint: Christiania
-  catalog:
-    galster: '168'
-    schou: '6'
-    jensen_skjoldager: N-15
-    galster_volume: f1g
-  metal: billon
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/norge/nf1g168.htm
-    ref: Galster 168 (f1g) — danskmoent.dk norge_nf1g168.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-galster-f1g-168
 - id: unified-dk-galster-f1g-169
   fuss: seed_unsorted
   phase: galster
@@ -27473,108 +27488,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-120175
-- id: unified-dk-numista-121754
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1524
-  year_last: 1533
-  year_ranges:
-  - - 1524
-    - 1533
-  year_label: 1524-1533
-  ruler: Frederick I
-  mint: Christiania
-  catalog:
-    numista: '121754'
-    schive: XVI:11
-    skaare: '311'
-    galster: '167'
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.219
-    source: numista
-  weight_rough_g:
-  - value: 2.05
-    source: numista
-  diameter_mm:
-  - value: 24.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/121754
-    ref: Numista N#121754 — 1 Skilling - Frederik I (Oslo)
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-numista-121754
-- id: unified-dk-numista-121758
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1533
-  year_last: 1537
-  year_ranges:
-  - - 1533
-    - 1537
-  year_label: 1533-1537 (1537)
-  ruler: Christian III
-  mint: Bergen
-  catalog:
-    numista: '121758'
-    schive: XVII:6
-    skaare: '326'
-    galster: '176'
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.219
-    source: numista
-  weight_rough_g:
-  - value: 1.7
-    source: numista
-  diameter_mm:
-  - value: 27.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/121758
-    ref: Numista N#121758 — 1 Skilling - Christian III (Bergen)
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-numista-121758
 - id: unified-dk-numista-124914
   fuss: seed_unsorted
   phase: numista
@@ -27638,6 +27551,9 @@ coins:
   catalog:
     numista: '444429'
     galster: '168'
+    schou: '6'
+    jensen_skjoldager: N-15
+    galster_volume: f1g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -27656,6 +27572,9 @@ coins:
     source: numista
   sources:
   - type: literature
+    url: https://www.danskmoent.dk/norge/nf1g168.htm
+    ref: Galster 168 (f1g) — danskmoent.dk norge_nf1g168.htm
+  - type: literature
     url: https://en.numista.com/444429
     ref: Numista N#444429 — 1 Skilling - Frederik I (Oslo)
   verification_note:
@@ -27670,54 +27589,8 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   issuing_entity: danish_norway
   composed_of:
+  - dk-galster-f1g-168
   - dk-numista-444429
-- id: unified-dk-numista-444496
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1535
-  year_last: 1535
-  year_label: '1535'
-  ruler: Christian III
-  mint: Christiania
-  catalog:
-    numista: '444496'
-    schive: XVII:9
-    galster: '175'
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.219
-    source: numista
-  weight_rough_g:
-  - value: 1.7
-    source: numista
-  diameter_mm:
-  - value: 26.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/444496
-    ref: Numista N#444496 — 1 Skilling - Christian III (Oslo)
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-numista-444496
 - id: unified-dk-numista-477551
   fuss: seed_unsorted
   phase: numista

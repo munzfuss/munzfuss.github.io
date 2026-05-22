@@ -547,8 +547,13 @@ def _danskmoent_url(basename: str) -> str:
     """Reconstruct the per-coin URL from a cache basename.
 
     Path conventions on danskmoent.dk:
-      • `/chr/c{N}h{num}.htm`   — Christian N main-realm Hede page
-      • `/fr/f{N}h{num}.htm`    — Frederik N main-realm Hede page
+      • `/c{N}hede.htm` / `/f{N}hede.htm` — Hede-overview index (ROOT
+                                 level, NOT under /chr or /fr).
+                                 Empirically verified 2026-05-22:
+                                 `/chr/c3hede.htm` → 404,
+                                 `/c3hede.htm` → 200.
+      • `/chr/c{N}h{num}.htm`   — Christian N main-realm deep page
+      • `/fr/f{N}h{num}.htm`    — Frederik N main-realm deep page
       • `/norge/nc{N}h{num}.htm`, `/norge/nf{N}h{num}.htm`
                                  — Norge sub-catalogue (personal-union
                                    Norwegian volume of the same monarch's
@@ -557,6 +562,11 @@ def _danskmoent_url(basename: str) -> str:
     contains a few entries like `f4hkr5.htm` that don't fit the
     standard volume pattern).
     """
+    # Hede-overview index pages live at the site root, not in
+    # /chr or /fr subdirectories. Match BEFORE the volume-prefix
+    # routing below.
+    if re.match(r"^n?[cf]\d+hede$", basename):
+        return f"{_DANSKMOENT_BASE}/{basename}.htm"
     if basename.startswith(("nc", "nf")):
         return f"{_DANSKMOENT_BASE}/norge/{basename}.htm"
     if basename.startswith("c"):
