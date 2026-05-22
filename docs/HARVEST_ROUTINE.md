@@ -636,38 +636,69 @@ Other sessions may have left modifications in:
 
 ```bash
 .venv/bin/python <<'EOF'
-import json, pathlib
+import json, pathlib, re
 audit = json.loads(pathlib.Path('scripts/cache/ucoin/_BR_audit-2_2026-05-20.json').read_text())
+url_index = json.loads(pathlib.Path('scripts/cache/ucoin/_url_index.json').read_text())
 uc = pathlib.Path('scripts/cache/ucoin')
-priorities = ['DK_p1115_Rigsdaler_1699-1749', 'DK_p846_Rigsdaler_1750-1812', 'DK_p647_Rigsbankdaler_1813-1854']
-for k in priorities:
-    v = audit['NEW_GAPS_DISCOVERED'][k]
+
+# DK-period priorities (audit-2-tracked).
+dk_priorities = [
+    'DK_p1115_Rigsdaler_1699-1749',
+    'DK_p846_Rigsdaler_1750-1812',
+    'DK_p647_Rigsbankdaler_1813-1854',
+]
+for k in dk_priorities:
+    v = audit['NEW_GAPS_DISCOVERED'].get(k) or {}
     if 'gap_tids' in v:
         uncached = [t for t in v['gap_tids'] if not (uc/f'{t}.json').exists()]
     else:
-        # p647 has no gap_tids list yet — enumerate via listing page first
+        # p647 has no gap_tids list — enumerate via listing page once first.
         uncached = []
     if uncached:
         print(f'>>> Next ucoin batch: {k}, {len(uncached)} uncached, take first 5:')
         print(uncached[:5])
         break
 else:
-    print('!!! All p1115/p846 closed — switch to p647 enumeration (see §4.2)')
+    # All DK-period priorities are closed. Fall through to the
+    # url_index-tagged buckets (Hamburg + Lübeck) per the
+    # 2026-05-22 priority-bucket-exhausted closure.
+    for src in ('country_hamburg', 'period_1204', 'period_1205'):
+        uncached = [tid for tid, v in url_index.items()
+                    if isinstance(v, dict) and v.get('source') == src
+                    and not (uc/f'{tid}.json').exists()]
+        if uncached:
+            print(f'>>> Next ucoin batch: ucoin/{src}, {len(uncached)} uncached, take first 5:')
+            print(uncached[:5])
+            break
+    else:
+        print('!!! ALL ucoin priorities closed — declare harvest complete OR add new buckets to §4.2.')
 EOF
 ```
 
 ### §4.2. ucoin priority order
 
-| Priority | Period | Era | Strategy |
+DK-period priorities (audit-2 tracked) — current state as of 2026-05-22:
+
+| Priority | Bucket | Era | Status |
 |---|---|---|---|
-| 1 | DK p1115 1699-1749 | F4 → C6 Reichsdukatenfuß | Continue from batch 30 (gap_tids list exists) |
-| 2 | DK p846 1750-1812 | F5 → C7 → F6 early | Continue (gap_tids list exists) |
-| 3 | DK p647 1813-1854 | Helstaten F6 → C8 | Untouched — needs listing enumeration first |
-| 4 | DK p1147 stragglers (if any) | C4-C5 Skilling | 10 stragglers per audit — last-mile cleanup |
+| 1 | DK p1115 1699-1749 | F4 → C6 Reichsdukatenfuß | ✅ **CLOSED** (59/59) |
+| 2 | DK p846 1750-1812 | F5 → C7 → F6 early | ✅ **CLOSED** (54/54) |
+| 3 | DK p647 1813-1854 | Helstaten F6 → C8 | ✅ **CLOSED** (48/48) |
+| 4 | DK p1147 1625-1699 | C4 late + F3 + C5 | ✅ **CLOSED** (211/211 verified 2026-05-22 page-by-page re-enum) |
 
-For priorities 1+2, the `gap_tids` lists in audit-2 manifest are authoritative — pick first 5 uncached, fetch, save.
+When all four DK-period buckets are at 100% cached, fall through to the Hanseatic buckets below. The `_url_index.json` is the authority — its `source` tags `country_hamburg` / `period_1204` / `period_1205` are derived from per-TID enumeration of the ucoin listing pages.
 
-For priority 3 (p647), the manifest only stores the count (`gap: 47`) — no explicit TID list. Before harvesting, ENUMERATE the listing page once:
+Hanseatic priorities (url_index-tagged) — added 2026-05-22 after DK-period exhaustion:
+
+| Priority | Bucket | URL listing | TIDs | Scope |
+|---|---|---|---|---|
+| 5 | Hamburg city | `country=hamburg` | 80 | Hanseatic Hamburg 1726-1803 (Dreiling, Sechsling, Mark, Doppelschilling, Speziestaler). Lands in V2 entity `hanseatic_hamburg`. |
+| 6 | Lübeck early-modern | `period=1205` | 45 | Hanseatic Lübeck 1620-1671 (Schilling, Doppelschilling family). Lands in V2 entity `hanseatic_lubeck`. |
+| 7 | Lübeck late period | `period=1204` | 34 | Hanseatic Lübeck 1727-1789 (Schilling family). Lands in V2 entity `hanseatic_lubeck`. |
+
+For priorities 1-4, the `gap_tids` lists in audit-2 manifest are authoritative — pick first 5 uncached, fetch, save.
+
+For priority 3 (p647) when re-opened, the manifest stores only a count (`gap: 47`) — no explicit TID list. ENUMERATE the listing page once before harvesting:
 
 ```bash
 # Navigate Chrome MCP to: https://en.ucoin.net/catalog/?country=denmark&period=647
@@ -675,6 +706,8 @@ For priority 3 (p647), the manifest only stores the count (`gap: 47`) — no exp
 # Save the slug-to-TID map to scripts/cache/ucoin/_p647_listing.json
 # (One-time enumeration; subsequent batches read from that file)
 ```
+
+For priorities 5-7, the `_url_index.json` already carries the per-TID URL — no listing enumeration needed. Filter by `source` tag and pick first 5 uncached.
 
 ### §4.3. ucoin URL pattern — MUST use slug-form
 
