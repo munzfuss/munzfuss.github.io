@@ -219,8 +219,60 @@ class Fuss(_StrictBase):
     # phase-header.
     metal: Literal["silver", "gold"]
     grid_unit_g: float = Field(..., description="E.g., 233.856 for Cöllnische Marck")
+    grid_unit_name: str | None = Field(
+        None,
+        description=(
+            "Human-readable name of the mass unit measured by "
+            "`grid_unit_g`. The canonical period-correct form, e.g. "
+            "«Cöllnische Marck» (233.856 g; default for pre-imperial "
+            "Danish + Reichsthaler-family stops), «Zollpfund» (500 g; "
+            "Vereinsmüntzfuß 1857 + Reichsgoldmüntzfuß 1871), «Pfund "
+            "metrisch» (500 g; Wiener Münzvertrag gold), «Kilogramm» "
+            "(1000 g; Skandinavisk Møntunion 1873). Together with "
+            "`grid_stops` and `grid_unit_convention` this fields gives "
+            "the complete period-formula «N Stück per <unit> [rauh|fein] "
+            "@ <fineness_period>»."
+        ),
+    )
     grid_stops: float = Field(..., description="E.g., 9.25 for 9¼-Fuß")
+    grid_unit_convention: Literal["rauh", "fein"] | None = Field(
+        None,
+        description=(
+            "Period convention anchor for `grid_unit_g` + `grid_stops`. "
+            "`rauh` (alloyed metal mass) — pre-Reichsabschied 1566 stops "
+            "express N pieces per ROUGH Cölln. Marck @ Lod-fineness "
+            "(e.g. C-III Royal Dalerfod «8 Daler aus der Marck rauh @ "
+            "14½ Lod»; same convention applies to 8_5_gylden_fod, "
+            "8_gylden_fod, christian_iii_*, rhinsk_gylden_fod, "
+            "f2_guldkrone_fod, nobel_fod, rosenobel_fod, kronemont*, "
+            "guldkrone, reichsdukatenfuss, pistolenfuss, "
+            "courantdukatenfuss). `fein` (pure metal mass) — post-1566 "
+            "imperial-aligned stops express N pieces per FINE Cölln. "
+            "Marck or Pfund (e.g. 9-Thaler-Fuß «9 Reichsthaler aus der "
+            "Marck fein», 9_25_thaler, 11_333_thaler, 18_5_thaler, "
+            "30_thaler, vereinsgoldmuenze, reichsgoldmuenzfuss, "
+            "kronefod). Optional for backward compatibility; new stops "
+            "must declare. The unit itself (Marck / Pfund / kg) is "
+            "captured by `grid_unit_name` + `grid_unit_g`."
+        ),
+    )
     fineness_standard: float = Field(..., ge=0.0, le=1.0)
+    fineness_period: str | None = Field(
+        None,
+        description=(
+            "Period-form fineness expression in the source-attested "
+            "unit (Karat/Grän for gold, Lod/Loth for silver, ‰ for "
+            "post-1857 metric-era stops). Examples: «23 Karat 8 Grän» "
+            "(reichsdukatenfuss .986), «14½ Lod» (christian_iii_"
+            "dalerfod .906), «14²⁄₉ Loth» (9_thaler .8889), «21¾ Karat» "
+            "(pistolenfuss .903), «900‰» (kronefod metric-era). "
+            "Complements the decimal `fineness_standard` (machine-"
+            "readable) and `fineness_display` (full formatted string "
+            "for rendering). This is the bare period locator — the "
+            "audit-/query-facing value for «what unit did the source "
+            "use» without parsing display prose."
+        ),
+    )
     fineness_display: str | None = None
     description: I18nText | None = None
     grundwerte: Grundwerte | None = None
@@ -251,12 +303,35 @@ class Phase(_StrictBase):
 
 
 class FussPeriod(_StrictBase):
-    """Per-location framing of a single Müntzfuß: validity range + background + closing summary."""
+    """Per-location framing of a single Müntzfuß: validity range + background + closing summary.
+
+    Also acts as the per-location override layer for select shared/fuesse.yml
+    fields (per the per-location-override design 2026-05-22). When any of
+    `name`, `historical_name`, `description`, or `grundwerte` is set in
+    a location's `fuss_periods.<fuss>` block, the build resolver overlays
+    it on the shared Fuß definition for THIS page. Sub-keys of `grundwerte`
+    (heading/subheading/badge/rechnungsfraktionen_label/rechnungsfraktionen)
+    are independently overridable; the `rows` list, when provided, FULLY
+    REPLACES the shared list (no list-level deep-merge).
+
+    Use case: the same physical Fuß (e.g. Reichsdukatenfuß = Hungarian-
+    Venetian Dukat tradition) gets distinct narratives on the Danish vs
+    German page — on denmark.yml it surfaces as «Rigsdukatfod 1481-1876
+    Hungarian-Goldgulden tradition»; on lubeck/SH pages it stays the
+    canonical imperial «Reichsdukatenfuß 1559+». Same Fuß ID, same
+    coins, different framing.
+    """
     pdate_label: I18nText | None = None      # .pdate — e.g. "Geltungsbereich in Holstein: ca. 1625 → 24. Aug. 1866 · ca. 240 Jahre"
     hintergrund: I18nText | None = None      # .psub — short summary (1–3 sentences) shown in the fuss title block
     details: I18nText | None = None          # .fuss-hintergrund — long-form historical context, rendered inside the «Деталі» toggle
     closing: I18nText | None = None          # .terr summary block rendered after the last phase
     closing_label: I18nTextOptional | None = None  # small uppercase .tlb inside .terr
+
+    # ---- Per-location override layer (opt-in; absent → fall back to shared/fuesse.yml) ----
+    name: I18nText | None = None                   # override Fuss.name on this page
+    historical_name: str | None = None             # override Fuss.historical_name
+    description: I18nText | None = None            # override Fuss.description (long intro)
+    grundwerte: Grundwerte | None = None           # override Fuss.grundwerte (deep-merge on top-level sub-keys; lists replace)
 
 
 class KMRef(_StrictBase):

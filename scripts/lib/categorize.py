@@ -9,7 +9,64 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from .compute import ComputedCoin
-from .schema import Location, Phase, Fuss
+from .schema import Location, Phase, Fuss, FussPeriod, Grundwerte
+
+
+def _resolve_fuss_with_overrides(base: Fuss, override: FussPeriod | None) -> Fuss:
+    """Apply per-location overrides from FussPeriod onto the shared Fuss
+    definition. Returns the SAME instance when no overrides exist; else
+    returns a model-copy with overlaid fields.
+
+    Per-location-override design 2026-05-22 (Variant A):
+
+      - `override.name`, `override.historical_name`, `override.description` —
+        whole-field replacement when present in the location's
+        `fuss_periods.<fuss>` block.
+      - `override.grundwerte` — partial-replace at the top-level sub-key
+        granularity (heading/subheading/badge/rechnungsfraktionen_label/
+        rechnungsfraktionen replace independently; `rows` is a list and
+        replaces fully when provided).
+
+    Use case: «Reichsdukatenfuß» (German imperial standard 1559+) is
+    surfaced on the Danish page as «Rigsdukatfod» (Danish-syntax form,
+    structurally parallel to Riksdaler ↔ Reichstaler) with a Hungarian-
+    Goldgulden-tradition narrative 1481-1876. Same physical Fuß ID, same
+    coin classification, distinct page-level framing.
+    """
+    if override is None:
+        return base
+    updates: dict[str, Any] = {}
+    if override.name is not None:
+        updates['name'] = override.name
+    if override.historical_name is not None:
+        updates['historical_name'] = override.historical_name
+    if override.description is not None:
+        updates['description'] = override.description
+    if override.grundwerte is not None:
+        updates['grundwerte'] = _merge_grundwerte(base.grundwerte, override.grundwerte)
+    if not updates:
+        return base
+    return base.model_copy(update=updates)
+
+
+def _merge_grundwerte(base: Grundwerte | None, override: Grundwerte) -> Grundwerte:
+    """Top-level partial-replace on Grundwerte. Each Grundwerte sub-key
+    that's explicitly set in the override (via `model_fields_set`)
+    replaces the corresponding base value. Sub-keys absent from the
+    override fall back to base. The `rows` list — when set in override —
+    replaces the base list in full (no list-element deep-merge — too
+    error-prone given row identity isn't a stable key)."""
+    if base is None:
+        return override
+    base_dict = base.model_dump()
+    override_dict = override.model_dump()
+    # Only fields the override caller explicitly set should replace
+    explicit_keys = override.model_fields_set
+    merged = dict(base_dict)
+    for k in explicit_keys:
+        if k in override_dict:
+            merged[k] = override_dict[k]
+    return Grundwerte(**merged)
 
 
 @dataclass
@@ -149,8 +206,16 @@ def categorize(
             continue
         if fuss_id not in location.phases:
             continue
-        
-        sg = FussGroup(fuss=fuesse[fuss_id])
+
+        # Per-location overrides (Variant A 2026-05-22): look up the
+        # location's `fuss_periods.<fuss>` entry — if it carries any
+        # override field (name / historical_name / description /
+        # grundwerte), build a merged Fuss for THIS page only.
+        location_override = (location.fuss_periods or {}).get(fuss_id)
+        resolved_fuss = _resolve_fuss_with_overrides(
+            fuesse[fuss_id], location_override
+        )
+        sg = FussGroup(fuss=resolved_fuss)
         
         for phase in location.phases[fuss_id]:
             pg = PhaseGroup(phase=phase)
