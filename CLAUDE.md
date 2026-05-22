@@ -647,6 +647,7 @@ The Claude Preview MCP serves a live preview against the rendered output. Two op
 
 - **Auto-build at end-of-turn** — when preview is running AND this turn modified a build-trigger file (`data/**`, `templates/**`, `scripts/build.py`, `scripts/lib/**`, `config/theme.yml`, `assets/**`), run `python scripts/build.py` once before ending the turn. PB-11 §«Auto-build at end-of-turn» has the full trigger-file list + detection heuristic.
 - **Never call `preview_stop` unilaterally** — the user owns the preview lifecycle. Explicit-permission phrasings («stop / restart / перезапусти превʼю» that names the preview AND a stop / restart action) authorise the call; «refresh / reset» do NOT. The «restart implies stop» rule is scoped strictly to restart phrasings. PB-11 §«Stop / restart — never unilateral» carries the full rule.
+- **HARDENED 2026-05-22 — preview stays running until the user says otherwise, in this chat, with the explicit action word.** Anything ambiguous («maybe we should restart preview to see X», «I'll handle preview», «preview seems stuck», a stack trace from the preview tool, a build error that the preview would surface, etc.) does NOT authorise a stop. The DEFAULT is leave-running. Even when «restarting preview» would visibly improve the iteration loop or fix an apparent staleness, Claude must NOT stop on its own initiative — instead surface the situation to the user in chat and let them say «stop / restart». Auto-build per the rule above is still required; auto-stop of the preview process is forbidden.
 
 ## Git workflow
 
