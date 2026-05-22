@@ -172,10 +172,13 @@ _CATALOGUE_KEYWORD_RE = re.compile(
     r"\b(" + "|".join(re.escape(k) for k in _CATALOGUE_KEYWORDS) + r")\b",
     re.IGNORECASE,
 )
-# Danish connector words that bleed into the catalogue-ref value when
-# the source uses «hhv.» / «henholdsvis» (= «respectively»). The actual
-# value follows AFTER the connector. Strip from the captured value
-# prefix.
+# Danish connector words that may prefix a catalogue-ref value: «hhv.» /
+# «henholdsvis» (= «respectively»). Preserved verbatim in the captured
+# value — they're semantically meaningful (signal that the listed
+# values are positional per-year, not a flat list). User direction
+# 2026-05-22: «джерело каже Schou hhv. 1 og 1 — щоб ми не втрачали».
+# This regex is kept as a marker (no longer used to strip) so the
+# parser+downstream code documents the historical decision.
 _CATALOGUE_CONNECTOR_RE = re.compile(
     r"^\s*(?:hhv\.?|henholdsvis|resp\.?)\s+",
     re.IGNORECASE,
@@ -212,9 +215,14 @@ def _parse_description_and_refs(text: str) -> tuple[str | None, dict]:
                     else len(content)
                 )
                 value_raw = content[value_start:value_end]
-                # Strip Danish connector prefix («hhv. » etc.) and
-                # trailing commas / whitespace
-                value_clean = _CATALOGUE_CONNECTOR_RE.sub("", value_raw).strip(" ,;.")
+                # PRESERVE Danish connector prefix («hhv.» / «henholdsvis»
+                # / «resp.»). They're semantically meaningful — signal
+                # that the listed values are positional per-year, not a
+                # flat list. Pre-2026-05-22 we stripped them; user
+                # correction 2026-05-22 — keep the source form intact
+                # so the rendered «Schou# hhv. 1 og 1» matches what
+                # danskmoent.dk prints.
+                value_clean = value_raw.strip(" ,;.")
                 if not value_clean:
                     continue
                 # Normalise keyword → ref-field name
@@ -268,6 +276,151 @@ def _parse_inscription(text: str) -> str | None:
     if m:
         return f"{m.group(1)} / {m.group(2)}"
     return None
+
+
+# ---------------------------------------------------------------------------
+# Variant-table parsers — for pages where ONE Galster number hosts MULTIPLE
+# letter-suffixed sub-variants (e.g. Galster 92 → 92A + 92B + base-92 entry
+# in chr_c3g92.htm). Distinct from `_parse_subsections` (multi-Galster-number
+# pages) — here all sub-variants share the same base number.
+#
+# Two page shapes detected so far (4 pages total across the cache):
+#  - Shape A — explicit row-table with header                  «Galster | Schou | Sieg | Bruttovægt | Finhed | Finvægt | Bemærkninger»
+#    Example: chr_c3g92.htm (92 + 92A + 92B), norge_nc2g172.htm
+#  - Shape B — bullet+inline-spec («• …(Galster 95A, …).\nBruttovægt: …, Finhed: …, Finvægt: …»)
+#    Example: chr_c3g95.htm (95A + 95B)
+#
+# Both shapes yield a list of {galster_suffix, schou, sieg, bruttovaegt_g,
+# finhed, finvaegt_g, note} dicts, returned as `variants: [...]` in the
+# parsed-JSON sidecar. The Galster seed builder consumes `variants` and
+# emits one seed entry per sub-variant when populated.
+#
+# Cache encoding caveat: some pages were doubly-encoded somewhere in the
+# fetch→parse pipeline so «Bruttovægt» / «Finvægt» came through as
+# «Bruttov�gt» / «Finv�gt» (U+FFFD replacement char). The regexes
+# use `Bruttov.gt` / `Finv.gt` to match either form.
+
+# Shape A: row-table. The cache normaliser flattens HTML <td> cells to
+# « cell-text \n » sequences (leading space, trailing « \n »). The header
+# row + each data row appear as a 7-line block, with blank lines between
+# rows. We anchor on the header («Galster\nSchou\nSieg\nBrutto…») then
+# walk subsequent blank-line-separated 6- or 7-cell blocks until §§HR§§.
+_VARIANT_TABLE_HEADER_RE = re.compile(
+    r"\bGalster\s*\n\s*Schou\s*\n\s*Sieg\s*\n\s*Bruttov.gt\s*\n"
+    r"\s*Finhed\s*\n\s*Finv.gt(?:\s*\n\s*Bem.?rkninger)?",
+    re.IGNORECASE,
+)
+
+# Shape B: bullet+inline-spec. Two-line block:
+#   «• <prose> (Galster {N}{suffix}, Schou {…}, Sieg {…}, …).»
+#   «Bruttovægt: <N>g, Finhed: <F>, Finvægt: <N>g.»
+_VARIANT_BULLET_RE = re.compile(
+    r"•\s+(?P<prose>[^\n]*?)\(\s*Galster\s+(?P<base>\d+)(?P<suffix>[A-Z]?)"
+    r"(?:,\s*Schou\s*(?P<schou>[^,\n)]+))?"
+    r"(?:,\s*Sieg\s*(?P<sieg>[^,\n)]+))?"
+    r"[^\n)]*\)\s*\.?\s*\n+"
+    r"\s*Bruttov.gt:\s*(?P<brutto>\d+[,.]\d+)\s*g\s*,"
+    r"\s*Finhed:\s*(?P<finhed>\d+[,.]\d+(?:[,.]\d+)?)\s*,"
+    r"\s*Finv.gt:\s*(?P<finv>\d+[,.]\d+)\s*g",
+    re.MULTILINE,
+)
+
+
+def _to_float(s: str | None) -> float | None:
+    if s is None:
+        return None
+    s = s.replace(",", ".").strip()
+    # Some pages write «0,312,5» (a typo for «0,3125»). Collapse the
+    # extra separator before parsing.
+    if s.count(".") > 1:
+        head, *rest = s.split(".")
+        s = head + "." + "".join(rest)
+    try:
+        return float(s)
+    except ValueError:
+        return None
+
+
+def _parse_variant_table_shape_a(text: str, base_galster: str | None) -> list[dict]:
+    """Shape A — explicit row-table. Returns one dict per data row.
+
+    The base-galster (page's Galster number from filename, e.g. «92» for
+    chr_c3g92) is used to construct the per-row full identifier when the
+    row's Galster cell carries only a letter suffix («A» / «B») or is
+    blank (for the «Kendes ikke mere» orphan row).
+    """
+    m = _VARIANT_TABLE_HEADER_RE.search(text)
+    if not m:
+        return []
+    body_start = m.end()
+    # Body runs until next §§HR§§ sentinel or end-of-text.
+    end_marker = text.find(HR_SENTINEL, body_start)
+    body = text[body_start:end_marker] if end_marker != -1 else text[body_start:]
+    # Split body into row-blocks (separated by blank lines).
+    raw_blocks = [b.strip() for b in re.split(r"\n\s*\n", body) if b.strip()]
+    variants: list[dict] = []
+    for block in raw_blocks:
+        cells = [c.strip() for c in block.split("\n")]
+        # A valid data row has 6 or 7 cells. Cells beyond 7 indicate
+        # spurious wrap-around text (e.g. the next section header bleed-
+        # ing in) — accept only 6/7-cell rows.
+        if len(cells) < 6 or len(cells) > 7:
+            continue
+        galster_cell, schou_cell, sieg_cell, brutto_cell, finhed_cell, finv_cell = cells[:6]
+        note_cell = cells[6] if len(cells) == 7 else ""
+        # Reject obvious header re-occurrences.
+        if galster_cell.lower() == "galster":
+            continue
+        # Build the full galster identifier.
+        suffix = galster_cell.strip()
+        if suffix == "-":
+            galster_full = base_galster or ""
+        elif suffix.isalpha() and base_galster:
+            galster_full = f"{base_galster}{suffix}"
+        else:
+            galster_full = suffix or (base_galster or "")
+        var = {
+            "galster": galster_full or None,
+            "schou": None if schou_cell == "-" else (schou_cell or None),
+            "sieg": None if sieg_cell == "-" else (sieg_cell or None),
+            "bruttovaegt_g": _to_float(brutto_cell.rstrip("g")) if brutto_cell != "-" else None,
+            "finhed": _to_float(finhed_cell) if finhed_cell != "-" else None,
+            "finvaegt_g": _to_float(finv_cell.rstrip("g")) if finv_cell != "-" else None,
+            "note": note_cell or None,
+        }
+        # Drop entries that carry no measurement signal at all.
+        if not any([var["bruttovaegt_g"], var["finhed"], var["finvaegt_g"]]):
+            continue
+        variants.append(var)
+    return variants
+
+
+def _parse_variant_bullets_shape_b(text: str) -> list[dict]:
+    """Shape B — bullet+inline-spec. Returns one dict per matched bullet."""
+    variants: list[dict] = []
+    for m in _VARIANT_BULLET_RE.finditer(text):
+        base = m.group("base")
+        suffix = m.group("suffix") or ""
+        galster_full = f"{base}{suffix}"
+        variants.append({
+            "galster": galster_full,
+            "schou": (m.group("schou") or "").strip() or None,
+            "sieg": (m.group("sieg") or "").strip() or None,
+            "bruttovaegt_g": _to_float(m.group("brutto")),
+            "finhed": _to_float(m.group("finhed")),
+            "finvaegt_g": _to_float(m.group("finv")),
+            "note": None,
+        })
+    return variants
+
+
+def _parse_variants(text: str, base_galster: str | None) -> list[dict]:
+    """Try both shapes; return whichever matches (or empty list)."""
+    a = _parse_variant_table_shape_a(text, base_galster)
+    if a:
+        return a
+    b = _parse_variant_bullets_shape_b(text)
+    return b
 
 
 # Sub-section pattern for multi-Galster pages. E.g. `fr_f1g48.htm`
@@ -345,6 +498,12 @@ def parse_page(html_path: Path, text: str) -> dict:
             if spec_key in sub:
                 specs[spec_key] = sub[spec_key]
 
+    # Sub-variant tables (Shape A row-table / Shape B inline bullets) —
+    # one Galster number with letter-suffixed sub-variants 92A/92B/95A/95B
+    # etc. When detected, emit a `variants: [...]` list; the seed builder
+    # yields one entry per variant downstream.
+    variants = _parse_variants(text, galster_num)
+
     out: dict = {
         "source_file": html_path.name,
         "source_url_hint": (
@@ -358,6 +517,7 @@ def parse_page(html_path: Path, text: str) -> dict:
         "description": desc,
         "catalog_refs": refs,
         "specs": specs,
+        "variants": variants,
         "inscription": inscription,
         "litteratur": litt,
         "raw_text_excerpt": text[:2000],

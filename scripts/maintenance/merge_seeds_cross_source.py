@@ -195,6 +195,37 @@ def _normalise_metal(metal, fineness):
     return m
 
 
+# English / German ↔ Danish denomination synonyms. Numista and
+# NumisMaster catalogues use English spellings («Noble», «Ducat»,
+# «Thaler», «Schilling») whereas Hede / Galster / Bruun and our
+# project's canonical YAML field use the Danish / period German
+# form («Nobel», «Dukat», «Daler», «Skilling»). Without
+# normalisation the matcher sees `1 Noble ≠ 1 Nobel` as a primary
+# disagreement and refuses to merge identical coin types across
+# sources. The substitution direction is English/German → Danish
+# (canonical), applied AFTER lowercasing.
+#
+# Compound forms FIRST so they don't get partially-substituted by
+# single-word patterns («Rose Noble» before «Noble», «Specie Thaler»
+# before «Thaler»). Word-boundary anchored to avoid partial-token
+# corruption (e.g. «Skilling Lybsk» stays whole; only the «Schilling»
+# token folds to «Skilling»).
+_NOMINAL_SYNONYMS: list[tuple[str, str]] = [
+    # Multi-word compounds — must precede single-word patterns below.
+    (r"\brose\s+noble\b", "rosenobel"),
+    (r"\bspecie\s+thaler\b", "speciedaler"),
+    (r"\bspecie\s+daler\b", "speciedaler"),
+    (r"\bsilver\s+gulden\b", "sølvgylden"),
+    (r"\bsilver\s+guilder\b", "sølvgylden"),
+    # Single-word denomination synonyms.
+    (r"\bnoble\b", "nobel"),
+    (r"\bducat\b", "dukat"),
+    (r"\bducaten\b", "dukat"),
+    (r"\bthaler\b", "daler"),
+    (r"\bschilling\b", "skilling"),
+]
+
+
 def _normalise_nominal(nominal):
     if not nominal:
         return ""
@@ -202,6 +233,8 @@ def _normalise_nominal(nominal):
     s = s.replace("müntze", "münze")
     s = re.sub(r"[‒–—]+", "-", s)
     s = re.sub(r"\s+", " ", s)
+    for pattern, replacement in _NOMINAL_SYNONYMS:
+        s = re.sub(pattern, replacement, s)
     return s
 
 
