@@ -222,6 +222,14 @@ _DENOMINATION_UNITS: dict[str, float] = {
     "dreiling":         1.0 / 288,
     "penning":          1.0 / 1152,
     "penninge":         1.0 / 1152,
+    # Christian-III-Dalerfod / Flensborg-fod era (1524-1571): 1 Sølvgylden
+    # = 1/3 Daler under the 8-Daler-per-marck grid (cf. fuesse.yml
+    # christian_iii_dalerfod fractions «1/3»: soll_rau 9.744 g; same
+    # 1/3 ratio in flensborg_fod). 1 Gylden (Flensborg Lybsk variant) is
+    # also 1/3 Daler — same physical specimen, different sub-mark
+    # accounting (24 ß lybsk vs 48 ß danske).
+    "sølvgylden":       1.0 / 3,
+    "solvgylden":       1.0 / 3,
     # Gold — used for reichsdukatenfuss / pistolenfuss / etc.
     "ducat":            1.0,
     "dukat":            1.0,
@@ -446,6 +454,15 @@ def _classify_via_delta(coin: dict, fuesse: dict[str, dict],
             continue
         if era_filter is not None and fid not in era_filter:
             continue
+        # Defensive filter: skip mint-bound Fußen whose binding doesn't
+        # match this coin's mint+ruler. Prevents false positives like
+        # f2h8a (Kbh Speciedaler 1560 Frederik II) being assigned to
+        # christian_iii_flensborg_fod just because the Δ happens to be
+        # 1.75 % — the historical attribution requires Flensburg mint +
+        # Christian III ruler.
+        if fid in _MINT_BOUND_FUSSES:
+            if not _coin_matches_mint_binding(coin, _MINT_BOUND_FUSSES[fid]):
+                continue
         grid_stops = fdef.get("grid_stops")
         grid_unit_g = fdef.get("grid_unit_g")
         fine_std = fdef.get("fineness_standard")
@@ -612,21 +629,21 @@ _DENOMINATION_ANCHOR_RULES: list[dict] = [
     # dalerfod` lands as a separate Fuß, this rule will need a
     # year_max=1523 split similar to the Ungersk Gylden case.
     # For now (until §BY Fuß 2 lands), Sølvgylden routes to
-    # christian_ii_lovkompleks_fod globally.
+    # 8_5_gylden_fod globally.
     {"patterns": ["sølvgylden", "solvgylden", "silver gulden"],
-     "fuss": "christian_ii_lovkompleks_fod",
+     "fuss": "8_5_gylden_fod",
      "kind": "kurant",
      "year_max": 1523,
-     "rationale": "Sølvgylden ≤1523 — Christian II Lovkompleks Hauptkurant silver (post-1523 splits to frederik_i_dalerfod)"},
+     "rationale": "Sølvgylden ≤1523 — Christian II Lovkompleks Hauptkurant silver (post-1523 splits to 8_gylden_fod)"},
 
     # Sølvgylden / Silver Gulden continuation 1524-1533 —
     # uniquely the Frederik I Dalerfod Hauptkurant. Same physical
     # standard (14 Lod / .875) as Christian II Lovkompleks but
-    # tightened to 8/M (vs 8½/M); see frederik_i_dalerfod
+    # tightened to 8/M (vs 8½/M); see 8_gylden_fod
     # fuesse.yml entry. year_min=1524 + year_max=1533 (Frederik I's
     # death 10 April 1533).
     {"patterns": ["sølvgylden", "solvgylden", "silver gulden"],
-     "fuss": "frederik_i_dalerfod",
+     "fuss": "8_gylden_fod",
      "kind": "kurant",
      "year_min": 1524,
      "year_max": 1533,
@@ -640,12 +657,116 @@ _DENOMINATION_ANCHOR_RULES: list[dict] = [
     # reign as king); Numista + Bruun specimens cluster around
     # Copenhagen + Malmö 1524.
     {"patterns": ["14 penning", "14 penny"],
-     "fuss": "frederik_i_dalerfod",
+     "fuss": "8_gylden_fod",
      "kind": "scheide",
      "year_min": 1523,
      "year_max": 1533,
      "rationale": "14 Penning Klipping-Indfrielse-Mønt 1524 — Frederik I Dalerfod (separate act 26 Feb 1524, Wilcke 7-2 p. 187)"},
 ]
+
+
+# Mint-bound Müntzfüße — fusses whose definition pins the standard to a
+# specific mint+ruler combination, not just an era. Coins from other
+# mints (even within the same era and entity) MUST NOT auto-classify
+# into these Fußen even when the Δ-math accidentally fits — the
+# physical attribution is the historical anchor.
+#
+# Used by TWO mechanisms:
+#  (a) _classify_via_mint_anchor — positive promotion: when a coin's
+#      (mint, ruler-substring, year-range) hits a registry entry,
+#      assign that Fuß directly without delta-math.
+#  (b) _classify_via_delta — defensive filter: skip any candidate
+#      Fuß whose mint-binding doesn't match the coin's mint+ruler.
+#
+# Each entry's `kind_by_nominal` callback derives kind from the
+# coin's nominal at classification time (e.g. Søsling lybsk → scheide;
+# Daler / Sølvgylden / Rhinsk Gylden → kurant).
+_MINT_BOUND_FUSSES: dict[str, dict] = {
+    # Christian-III-Flensborg-fod — Flensborg mint, Christian III only,
+    # 1545-1571 (1545-1554 main phase, 1554-1571 tail under Frederik II
+    # — but specimens 1554+ are Frederik II issues, NOT auto-classified
+    # to this Fuß without explicit curator decision; the registry pins
+    # promotion to Christian III only, with year_max=1559 covering his
+    # death 1559-01-01 + a 1 y boundary buffer).
+    #
+    # Source: Wilcke 1950 pp. 25-26 (Flensborg Bestalling 22 Jan 1547),
+    # fuesse.yml christian_iii_flensborg_fod definition. Mint variants
+    # tolerated: «Flensburg» (German/English) / «Flensborg» (Danish).
+    # Ruler match: substring «Christian III» (covers «Christian III.»,
+    # «Christian III», «Christian III. of Denmark», etc.).
+    "christian_iii_flensborg_fod": {
+        "allowed_mints": {"Flensburg", "Flensborg"},
+        "ruler_substring": "Christian III",
+        "year_min": 1545,
+        "year_max": 1559,
+        "allowed_entities": {"royal_holstein", "danish_realm"},
+        "phase": "I",
+        "kind_by_nominal": lambda n: (
+            "scheide" if any(t in (n or "").lower() for t in
+                              ("søsling", "sosling", "hvid", "penning", "skilling"))
+            else "kurant"
+        ),
+        "rationale": "Christian-III-Flensborg-fod — mint=Flensburg + ruler=Christian III (Wilcke 1950 pp. 25-26)",
+    },
+}
+
+
+def _coin_matches_mint_binding(coin: dict, binding: dict) -> bool:
+    """True if the coin's mint + ruler + year + entity match the
+    binding's constraints. Used by both the anchor rule (positive
+    promotion) and the delta-math filter (defensive guard).
+    """
+    mint = coin.get("mint")
+    # Mint may be scalar or list — match if any element is in allowed
+    mints = mint if isinstance(mint, list) else ([mint] if mint else [])
+    if not any(m in binding.get("allowed_mints", set()) for m in mints):
+        return False
+    ruler = str(coin.get("ruler") or "")
+    if binding.get("ruler_substring") and binding["ruler_substring"] not in ruler:
+        return False
+    year_first = coin.get("year_first")
+    ymin = binding.get("year_min")
+    ymax = binding.get("year_max")
+    if ymin is not None and (not isinstance(year_first, int) or year_first < ymin - 1):
+        return False
+    if ymax is not None and (not isinstance(year_first, int) or year_first > ymax + 1):
+        return False
+    return True
+
+
+def _classify_via_mint_anchor(coin: dict, entity_id: str | None
+                                ) -> tuple[str, str | None, str | None, dict]:
+    """Mint-anchor rule: when a coin's (mint, ruler, year, entity) hits
+    a `_MINT_BOUND_FUSSES` registry entry, assign that Fuß directly.
+
+    Runs BEFORE delta-math AND before grevens_fejde_anchor: mint-binding
+    is the strongest signal we have for fusses anchored to a specific
+    physical mint (Flensborg, Glückstadt, Altona, Husum, …) — when it
+    fires it's authoritative.
+
+    Returns (signal, fuss_id, kind, audit). Signal is one of:
+      - mint_anchor — applied (returns Fuß + Phase + kind from binding)
+      - no_match — no binding fires
+    """
+    audit: dict = {"rule": "mint_anchor"}
+    for fuss_id, binding in _MINT_BOUND_FUSSES.items():
+        if binding.get("allowed_entities") and entity_id not in binding["allowed_entities"]:
+            continue
+        if not _coin_matches_mint_binding(coin, binding):
+            continue
+        kind_fn = binding.get("kind_by_nominal")
+        kind = kind_fn(coin.get("nominal")) if kind_fn else coin.get("kind")
+        audit.update({
+            "matched_fuss": fuss_id,
+            "rationale": binding.get("rationale"),
+            "mint": coin.get("mint"),
+            "ruler": coin.get("ruler"),
+            "year_first": coin.get("year_first"),
+            "entity": entity_id,
+            "kind_derivation": kind,
+        })
+        return ("mint_anchor", fuss_id, kind, audit)
+    return ("no_match", None, None, audit)
 
 
 def _classify_via_grevens_fejde_anchor(coin: dict, entity_id: str | None
@@ -896,6 +1017,20 @@ def classify_coin(coin: dict, fuesse: dict, yield_index: dict,
         decision["proposed_fuss"] = yld_fuss
         decision["signal"] = yld_signal  # hede_yield
         decision["audit"] = yld_audit
+        return decision
+
+    # Mint-anchor: Müntzfüße pinned to a specific mint+ruler combination
+    # (Flensborg-fod = Flensburg + Christian III). Runs FIRST among the
+    # anchor rules because mint-binding is the strongest historical
+    # signal — if the coin's mint + ruler match, the Fuß is settled.
+    ma_signal, ma_fuss, ma_kind, ma_audit = _classify_via_mint_anchor(
+        coin, entity_id)
+    if ma_fuss:
+        decision["proposed_fuss"] = ma_fuss
+        if ma_kind:
+            decision["proposed_kind"] = ma_kind
+        decision["signal"] = ma_signal
+        decision["audit"] = ma_audit
         return decision
 
     # Era-anchor: Grevens-Fejde 1534-1540 Christian III silver/billon
