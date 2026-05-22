@@ -259,7 +259,19 @@ DK_MINT_DE = {
     "Glückstadt": "Glückstadt",
     "Altona": "Altona",
     "Flensborg": "Flensburg",
-    "Haderslev": "Hadersleben",
+    # Haderslev — carved out from the «German for SH mints» convention
+    # (user direction 2026-05-22). Rationale: (1) the town has been in
+    # Denmark since 1920 and the current Danish-official name is
+    # Haderslev; (2) Hede 1971 — our primary Danish-source-of-record
+    # — uses «Haderslev» verbatim in page text; (3) majority of our
+    # data (Bruun + Numista + Galster + ucoin) already carries
+    # «Haderslev» (31 occurrences vs 15 for the German exonym);
+    # (4) our mission frame is Danish-Norwegian-realm coinage where
+    # Danish names are period-historically appropriate. The other
+    # SH-Holstein mints (Flensburg, Glückstadt, Altona, Rendsburg,
+    # Rethwisch) stay German per the existing convention — those
+    # towns are German today.
+    "Haderslev": "Haderslev",
     "Rendsborg": "Rendsburg",
     "Rethwitsch": "Rethwisch",
     # Danish-royal mints in the Norwegian realm (1380–1814).

@@ -990,6 +990,13 @@ _MINT_SPELLING_ALIASES = {
     # Project convention: German spelling for SH mints (consistent with
     # other SH towns like Flensburg, Eckernförde, Husum).
     "rendsborg": "rendsburg",
+    # Haderslev (DK) ↔ Hadersleben (DE) — same town in Sønderjylland.
+    # Carve-out from the «German for SH mints» convention per user
+    # direction 2026-05-22 — collapse to the Danish form (matching
+    # Hede 1971 + the town's post-1920 official name + majority of
+    # our existing data). German-source variants like Numista's
+    # «Hadersleben» fold to «Haderslev» at merge time.
+    "hadersleben": "haderslev",
     # Helsingør — English «Elsinore» variant
     "elsinore": "helsingør",
     "elseneur": "helsingør",           # French (rare, appears in old auction catalogues)
@@ -1164,15 +1171,19 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     else:
         primary["metal"] = None
 
-    # Nominal
+    # Nominal — bookkeeping only. Per CLAUDE.md §9.4 «catalog index is
+    # THE discriminating signal»; nominal is a descriptive label that
+    # varies between sources (e.g. NumisMaster's «4 Speciedaler» vs
+    # Hede's «4 Daler» for the same Christian IV 1604 KM-25 Klippe).
+    # We compute the agreement state here but DON'T hard-fail when it
+    # disagrees — instead let the catalog check below override.
+    # Verdict made later: if catalog strongly agrees, accept the merge;
+    # if catalog has no overlap, fall through to fallback-driven low-
+    # confidence path.
     na = _normalise_nominal(coin_a.get("nominal"))
     nb = _normalise_nominal(coin_b.get("nominal"))
     if na and nb:
         primary["nominal"] = (na == nb)
-        if not primary["nominal"]:
-            why.append(f"nominal: {coin_a.get('nominal')!r} ≠ {coin_b.get('nominal')!r}")
-            return {"decision": "no_match", "primary": primary,
-                    "fallback": fallback, "why": why}
     else:
         primary["nominal"] = None
 
@@ -1191,6 +1202,32 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
         # no_overlap: one or both sides lack catalog refs that intersect.
         # NOT a mismatch — can't be evaluated. Tri-state primary signal.
         primary["catalog"] = None
+
+    # Nominal-mismatch handling (refined 2026-05-22 per user direction):
+    # only HARD-fail nominal disagreement when catalog ALSO can't carry
+    # the merge. When catalog STRONGLY agrees (shared KM / Hede ref),
+    # nominal disagreement reflects cross-source cataloguing convention
+    # — e.g. NumisMaster's «4 Speciedaler» vs Hede's «4 Daler» for the
+    # 1604 Christian IV Gold-Klippinge KM-25 series. The catalog match
+    # is the identity-evidence; nominal label difference is noise.
+    #
+    # When the override fires we DEMOTE primary["nominal"] from False
+    # to None (advisory) so the confidence-calc below doesn't count it
+    # as a primary-disagreement (which would re-trigger no_match via
+    # the `if primary_false` short-circuit on line ~1275).
+    if primary["nominal"] is False:
+        if primary["catalog"] is True:
+            # Catalog carries; nominal-mismatch demoted to advisory.
+            why.append(
+                f"nominal: {coin_a.get('nominal')!r} ≠ {coin_b.get('nominal')!r} "
+                f"— demoted to advisory via catalog-agreement override (§9.4)"
+            )
+            primary["nominal"] = None  # don't count as primary_false
+        else:
+            # No catalog evidence to override — keep the hard-fail.
+            why.append(f"nominal: {coin_a.get('nominal')!r} ≠ {coin_b.get('nominal')!r}")
+            return {"decision": "no_match", "primary": primary,
+                    "fallback": fallback, "why": why}
 
     # Ruler — direct values first; reign-index inference (D33) when null.
     ra = _normalise_ruler(coin_a.get("ruler"))
