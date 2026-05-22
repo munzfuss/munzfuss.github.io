@@ -3,7 +3,7 @@
 #
 # A flat enumeration of the principal Müntzfüße that operated in the
 # German lands (HRR + Hansestädte + Bremen + Schleswig-Holstein
-# +  Vereinsstaaten + Reichsgoldmünzfuß) from the Reichsmüntzordnung
+# + Vereinsstaaten + Reichsgoldmünzfuß) from the Reichsmüntzordnung
 # of 1559/1566 to the Reichsmark of 1871/1875.
 #
 # Rendered as a secondary section on the landing page, beneath the
@@ -13,22 +13,22 @@
 # cross-validated against coins.
 #
 # Translation policy:
-#   - Tier 1 (always tri-lingual): years_label, title, subtitle, badge,
-#     body-block labels (Rechnungsfraktionen, Territorien, phase headers).
-#   - Tier 2 (DE primary, falls back via i18n.t): body rows, prose
-#     blocks. The landing template renders a small banner on EN/UK
-#     pages noting that detailed body text is in period German.
+# - Tier 1 (always tri-lingual): years_label, title, subtitle, badge,
+# body-block labels (Rechnungsfraktionen, Territorien, phase headers).
+# - Tier 2 (DE primary, falls back via i18n.t): body rows, prose
+# blocks. The landing template renders a small banner on EN/UK
+# pages noting that detailed body text is in period German.
 #
 # Body block schema (ordered list under `body:`):
-#   - kind: rows
-#     items: [{key: {...}, value: {...}}, ...]
-#   - kind: prose
-#     label: {de, en, uk}        # «Rechnungsfraktionen» / «Accounting fractions» / …
-#     content: {de}               # period-German prose; safe HTML
-#   - kind: phase_header
-#     title: {de, en, uk}
-#   - kind: phase_summary
-#     content: {de}               # short framed paragraph (rendered as .ps-block)
+# - kind: rows
+# items: [{key: {...}, value: {...}},...]
+# - kind: prose
+# label: {de, en, uk} # «Rechnungsfraktionen» / «Accounting fractions» / …
+# content: {de} # period-German prose; safe HTML
+# - kind: phase_header
+# title: {de, en, uk}
+# - kind: phase_summary
+# content: {de} # short framed paragraph (rendered as.ps-block)
 #
 # Sort order on the landing page is CHRONOLOGICAL — by start year,
 # parsed from the `years_label.de` prefix (handles forms like
@@ -258,9 +258,9 @@ entries:
     name: Courantdukatenfuß
     historical_name: Kurantdukatfod · 12-Mark-Goldstück
     subtitle:
-      de: 'Frederik IV. 1714 (Großer Nordischer Krieg, 81½/Mark, 2,511 g fein) · Frederik-V-Reform 1757 (75/Mark, 2,728 g fein, .875 Probe) · spezifisch dänisches tarif-tragendes Goldregime: <b>1 Kurantdukat = 12 Mark Dansk = 2 Rigsdaler Courant</b><sup><a href="#ref39">[39]</a></sup> · in Schleswig-Holstein durch Altonaer Münze ab 1771<sup><a href="#ref37">[37]</a></sup> · letzte Prägung 1796<sup><a href="#ref36">[36]</a></sup> · faktische Demonetisierung 1873 (Skandinavische Münzunion)'
-      en: 'Frederik IV 1714 (Great Northern War, 81½ per Mark, 2.511 g fine) · Frederik V reform 1757 (75 per Mark, 2.728 g fine, .875 fineness) · a specifically Danish tariff-bearing gold regime: <b>1 Kurantdukat = 12 Mark Dansk = 2 Rigsdaler Courant</b><sup><a href="#ref39">[39]</a></sup> · in Schleswig-Holstein via the Altona mint from 1771<sup><a href="#ref37">[37]</a></sup> · last issue 1796<sup><a href="#ref36">[36]</a></sup> · factual demonetisation 1873 (Scandinavian Monetary Union)'
-      uk: 'Frederik IV 1714 (Велика Північна війна, 81½/марки, 2,511 г чистого) · реформа Frederik V 1757 (75/марки, 2,728 г чистого, проба .875) · специфічно данський тариф-несучий золотий режим: <b>1 Kurantdukat = 12 Mark Dansk = 2 Rigsdaler Courant</b><sup><a href="#ref39">[39]</a></sup> · у Шлезвіг-Гольштейні через Альтонський монетний двір з 1771<sup><a href="#ref37">[37]</a></sup> · останнє карбування 1796<sup><a href="#ref36">[36]</a></sup> · фактична демонетизація 1873 (Скандинавська монетна унія)'
+      de: 'Frederik IV. 1714 (Großer Nordischer Krieg, 81½/Mark, 2,511 g fein) · Frederik-V-Reform 1757 (75/Mark, 2,728 g fein,.875 Probe) · spezifisch dänisches tarif-tragendes Goldregime: <b>1 Kurantdukat = 12 Mark Dansk = 2 Rigsdaler Courant</b><sup><a href="#ref39">[39]</a></sup> · in Schleswig-Holstein durch Altonaer Münze ab 1771<sup><a href="#ref37">[37]</a></sup> · letzte Prägung 1796<sup><a href="#ref36">[36]</a></sup> · faktische Demonetisierung 1873 (Skandinavische Münzunion)'
+      en: 'Frederik IV 1714 (Great Northern War, 81½ per Mark, 2.511 g fine) · Frederik V reform 1757 (75 per Mark, 2.728 g fine,.875 fineness) · a specifically Danish tariff-bearing gold regime: <b>1 Kurantdukat = 12 Mark Dansk = 2 Rigsdaler Courant</b><sup><a href="#ref39">[39]</a></sup> · in Schleswig-Holstein via the Altona mint from 1771<sup><a href="#ref37">[37]</a></sup> · last issue 1796<sup><a href="#ref36">[36]</a></sup> · factual demonetisation 1873 (Scandinavian Monetary Union)'
+      uk: 'Frederik IV 1714 (Велика Північна війна, 81½/марки, 2,511 г чистого) · реформа Frederik V 1757 (75/марки, 2,728 г чистого, проба.875) · специфічно данський тариф-несучий золотий режим: <b>1 Kurantdukat = 12 Mark Dansk = 2 Rigsdaler Courant</b><sup><a href="#ref39">[39]</a></sup> · у Шлезвіг-Гольштейні через Альтонський монетний двір з 1771<sup><a href="#ref37">[37]</a></sup> · останнє карбування 1796<sup><a href="#ref36">[36]</a></sup> · фактична демонетизація 1873 (Скандинавська монетна унія)'
     body:
       - kind: rows
         items:
@@ -796,7 +796,7 @@ entries:
           <b>Hannover:</b> 1817–1834 (Annahme des Conventionsfußes 1817; 1834 Übergang zum preußischen 14-Thaler-Fuß).<br>
           <b>Weitere Stände:</b> Hildesheim (biß 1803); Oldenburg; Mecklenburg-Strelitz; Braunschweig-Wolfenbüttel (zeitweise).<br>
           <b>Nicht angenommen:</b> Preußen (Graumannscher 14-Thaler-Fuß seit 14. Julii 1750, fester gestaltet durch Edikt vom 29. März 1764)<sup><a href="#ref26">[26]</a></sup>; Hansestädte; Holstein.<br>
-          <b>9 → 13⅓-Substitution (Künker):</b> «<i>Umgerechnet in den theoretischen (Zähl-)Reichstaler des alten deutschen Reiches zu 24 Groschen entsprach der Konventionstaler einem 13⅓-Taler-Fuß ... anstelle des 1566 vereinbarten 9-Taler-Fußes</i>»<sup><a href="#ref24">[24]</a></sup> — der Konventionstaler ist mathematisch der formale Nachfolger des Reichsthaler-Specie 9-Fuß im Empire-Standard-Sinn (Wikipedia DE «Konventionstaler»: «<i>als Quasi-Nachfolger des Reichstalers</i>»)<sup><a href="#ref18">[18]</a></sup>.
+          <b>9 → 13⅓-Substitution (Künker):</b> «<i>Umgerechnet in den theoretischen (Zähl-)Reichstaler des alten deutschen Reiches zu 24 Groschen entsprach der Konventionstaler einem 13⅓-Taler-Fuß... anstelle des 1566 vereinbarten 9-Taler-Fußes</i>»<sup><a href="#ref24">[24]</a></sup> — der Konventionstaler ist mathematisch der formale Nachfolger des Reichsthaler-Specie 9-Fuß im Empire-Standard-Sinn (Wikipedia DE «Konventionstaler»: «<i>als Quasi-Nachfolger des Reichstalers</i>»)<sup><a href="#ref18">[18]</a></sup>.
         en: |
           <b>Austria:</b> 7 November 1750–1856 (including all Habsburg hereditary lands; Tyrol, Bohemia, Moravia, Hungary, Austrian Netherlands)<sup><a href="#ref18">[18]</a></sup>.<br>
           <b>Bavaria:</b> Müntzconvention with Austria 20 September 1753<sup><a href="#ref18">[18]</a></sup>; 1753–1754 on the 20-Gulden-Fuß, then shifted to the 24-Gulden-Fuß with a rate of 144 Kreutzer instead of 120.<br>
@@ -805,7 +805,7 @@ entries:
           <b>Hanover:</b> 1817–1834 (adopted Conventions-Fuß 1817; 1834 shifted to the Prussian 14-Thaler-Fuß).<br>
           <b>Other estates:</b> Hildesheim (until 1803); Oldenburg; Mecklenburg-Strelitz; Brunswick-Wolfenbüttel (intermittently).<br>
           <b>Did not adopt:</b> Prussia (Graumannscher 14-Thaler-Fuß from 14 July 1750, consolidated by edict of 29 March 1764)<sup><a href="#ref26">[26]</a></sup>; the Hanseatic cities; Holstein.<br>
-          <b>9 → 13⅓ substitution (Künker):</b> «<i>Umgerechnet in den theoretischen (Zähl-)Reichstaler des alten deutschen Reiches zu 24 Groschen entsprach der Konventionstaler einem 13⅓-Taler-Fuß ... anstelle des 1566 vereinbarten 9-Taler-Fußes</i>»<sup><a href="#ref24">[24]</a></sup> — the Konventionstaler is mathematically the formal successor of the Reichsthaler-Specie 9-Fuß in the Empire-standard sense (Wikipedia DE «Konventionstaler»: «<i>als Quasi-Nachfolger des Reichstalers</i>»)<sup><a href="#ref18">[18]</a></sup>.
+          <b>9 → 13⅓ substitution (Künker):</b> «<i>Umgerechnet in den theoretischen (Zähl-)Reichstaler des alten deutschen Reiches zu 24 Groschen entsprach der Konventionstaler einem 13⅓-Taler-Fuß... anstelle des 1566 vereinbarten 9-Taler-Fußes</i>»<sup><a href="#ref24">[24]</a></sup> — the Konventionstaler is mathematically the formal successor of the Reichsthaler-Specie 9-Fuß in the Empire-standard sense (Wikipedia DE «Konventionstaler»: «<i>als Quasi-Nachfolger des Reichstalers</i>»)<sup><a href="#ref18">[18]</a></sup>.
         uk: |
           <b>Австрія:</b> 7 листопада 1750–1856 (включно з усіма габсбурзькими спадковими землями; Тироль, Богемія, Моравія, Угорщина, Австрійські Нідерланди)<sup><a href="#ref18">[18]</a></sup>.<br>
           <b>Баварія:</b> Müntzconvention з Австрією 20 вересня 1753<sup><a href="#ref18">[18]</a></sup>; 1753–1754 за 20-Gulden-Fuß, потім перехід до 24-Gulden-Fuß з курсом 144 Kreutzer замість 120.<br>
@@ -814,7 +814,7 @@ entries:
           <b>Ганновер:</b> 1817–1834 (прийняття Конвенційної стопи 1817; 1834 перехід до прусської 14-Thaler-Fuß).<br>
           <b>Інші стани:</b> Гільдесгайм (до 1803); Ольденбург; Мекленбург-Стреліц; Брауншвайг-Вольфенбюттель (час від часу).<br>
           <b>Не прийняли:</b> Пруссія (Graumannscher 14-Thaler-Fuß з 14 липня 1750, закріплено едиктом від 29 березня 1764)<sup><a href="#ref26">[26]</a></sup>; ганзейські міста; Гольштейн.<br>
-          <b>9 → 13⅓-заміщення (Künker):</b> «<i>Umgerechnet in den theoretischen (Zähl-)Reichstaler des alten deutschen Reiches zu 24 Groschen entsprach der Konventionstaler einem 13⅓-Taler-Fuß ... anstelle des 1566 vereinbarten 9-Taler-Fußes</i>»<sup><a href="#ref24">[24]</a></sup> — Konventionstaler математично є формальним наступником Reichsthaler-Specie 9-Fuß у сенсі імперського стандарту (Wikipedia DE «Konventionstaler»: «<i>als Quasi-Nachfolger des Reichstalers</i>»)<sup><a href="#ref18">[18]</a></sup>.
+          <b>9 → 13⅓-заміщення (Künker):</b> «<i>Umgerechnet in den theoretischen (Zähl-)Reichstaler des alten deutschen Reiches zu 24 Groschen entsprach der Konventionstaler einem 13⅓-Taler-Fuß... anstelle des 1566 vereinbarten 9-Taler-Fußes</i>»<sup><a href="#ref24">[24]</a></sup> — Konventionstaler математично є формальним наступником Reichsthaler-Specie 9-Fuß у сенсі імперського стандарту (Wikipedia DE «Konventionstaler»: «<i>als Quasi-Nachfolger des Reichstalers</i>»)<sup><a href="#ref18">[18]</a></sup>.
 
 # ------------------------------------------------------------------
 # 4b. Conventionscouranttaler-Fuß · 13⅓-Thaler-Fuß
@@ -1232,9 +1232,9 @@ entries:
 # Merged entry: combines the three territorial-administrative
 # variants of the same metallic standard (25,28173 g fein per Thaler
 # Specie, 875 ‰, 233,856 g/9,25):
-#   - Phase A — biß 1788 — Dänisch-norwegischer Verbund · Skilling Danske
-#   - Phase B — ab 1777 — Altonaer Banco-Fuß (banco-formaler Stempelung)
-#   - Phase C — ab 29. Febr. 1788 — Schleswig-Holsteinisch Courant · Schillingfuß
+# - Phase A — biß 1788 — Dänisch-norwegischer Verbund · Skilling Danske
+# - Phase B — ab 1777 — Altonaer Banco-Fuß (banco-formaler Stempelung)
+# - Phase C — ab 29. Febr. 1788 — Schleswig-Holsteinisch Courant · Schillingfuß
 # ------------------------------------------------------------------
   - id: thaler_specie_9_25
     metal: silver
@@ -1681,9 +1681,9 @@ entries:
         items:
           - key: {de: "Feinheit", en: Fineness, uk: Проба}
             value:
-              de: "<b>900 ‰</b> (= 9/10) · Gold .900 + Kupfer .100<sup><a href=\"#ref41\">[41]</a></sup>"
-              en: "<b>900 ‰</b> (= 9/10) · gold .900 + copper .100<sup><a href=\"#ref41\">[41]</a></sup>"
-              uk: "<b>900 ‰</b> (= 9/10) · золото .900 + мідь .100<sup><a href=\"#ref41\">[41]</a></sup>"
+              de: "<b>900 ‰</b> (= 9/10) · Gold.900 + Kupfer.100<sup><a href=\"#ref41\">[41]</a></sup>"
+              en: "<b>900 ‰</b> (= 9/10) · gold.900 + copper.100<sup><a href=\"#ref41\">[41]</a></sup>"
+              uk: "<b>900 ‰</b> (= 9/10) · золото.900 + мідь.100<sup><a href=\"#ref41\">[41]</a></sup>"
           - key: {de: "Vereinskrone (1 Krone)", en: "Vereinskrone (1 Krone)", uk: "Vereinskrone (1 Krone)"}
             value:
               de: "<b>11,111 g</b> rau · <b>10,000 g</b> Feingold (= 500 / 50) · 50 Stück je Pfund Feingold"
@@ -1726,9 +1726,9 @@ entries:
           uk: '<b>Після 30 жовтня 1864 · Приєднання Шлезвіг-Гольштейну:</b> з <b>Wiener Frieden</b>, який поклав край німецько-данській кризі, Schleswig-Holstein переходить у німецький простір і тим самим у Münzverein. Альтонський монетний двір закрито 1863 р., тому специфічно гольштинських Vereinskronen-емісій немає — обіг забезпечували передусім сусідні головні мінт-штати Ганновер (B) і Пруссія (A). Кількісних оцінок обігу в SH у наявних джерелах не подано.<sup><a href="#ref43">[43]</a></sup>'
       - kind: phase_summary
         content:
-          de: '<b>4. Dezember 1871 · Reichsgründung und Mintage-Stop:</b> mit dem <b>Münzgesetz vom 4. Dezember 1871</b> wird die Reichsgoldmark als alleiniger Goldstandard des Reichs eingeführt; die Vereinskronen-Prägung läuft <em>nicht</em> formal aus, sondern wird durch den neuen Standard schlicht überholt — die Vertragsstaaten stellen die Prägung 1871 ein. Mathematischer Anschluss: die Reichsgoldmark übernimmt die Pfund-Basis (500 g) und die .900-Probe direkt von der Vereinskrone, lediglich mit feinerer Unterteilung (139½ Stück 10-Mark / Pfund statt 50 Stück Krone / Pfund).'
-          en: '<b>4 December 1871 · Founding of the Reich and end of mintage:</b> the <b>Coinage Act of 4 December 1871</b> establishes the Reichsgoldmark as the Reich''s sole gold standard; Vereinskronen mintage does not formally end but is superseded by the new standard — the treaty states stop striking in 1871. Mathematical succession: the Reichsgoldmark inherits the pound basis (500 g) and the .900 fineness directly from the Vereinskrone, only at a finer subdivision (139½ ten-Mark pieces per pound vs. 50 Krone per pound).'
-          uk: '<b>4 грудня 1871 · Утворення Рейху і кінець карбування:</b> <b>Закон про монету 4 грудня 1871</b> запроваджує Reichsgoldmark як єдиний золотий стандарт Рейху; карбування Vereinskronen <em>не</em> завершується формально, а просто витісняється новим стандартом — держави-учасниці припиняють карбування 1871. Математична спадковість: Reichsgoldmark переймає фунтову базу (500 г) і пробу .900 безпосередньо від Vereinskrone, лише з тоншим поділом (139½ десятимаркових з фунта проти 50 Krone з фунта).'
+          de: '<b>4. Dezember 1871 · Reichsgründung und Mintage-Stop:</b> mit dem <b>Münzgesetz vom 4. Dezember 1871</b> wird die Reichsgoldmark als alleiniger Goldstandard des Reichs eingeführt; die Vereinskronen-Prägung läuft <em>nicht</em> formal aus, sondern wird durch den neuen Standard schlicht überholt — die Vertragsstaaten stellen die Prägung 1871 ein. Mathematischer Anschluss: die Reichsgoldmark übernimmt die Pfund-Basis (500 g) und die.900-Probe direkt von der Vereinskrone, lediglich mit feinerer Unterteilung (139½ Stück 10-Mark / Pfund statt 50 Stück Krone / Pfund).'
+          en: '<b>4 December 1871 · Founding of the Reich and end of mintage:</b> the <b>Coinage Act of 4 December 1871</b> establishes the Reichsgoldmark as the Reich''s sole gold standard; Vereinskronen mintage does not formally end but is superseded by the new standard — the treaty states stop striking in 1871. Mathematical succession: the Reichsgoldmark inherits the pound basis (500 g) and the.900 fineness directly from the Vereinskrone, only at a finer subdivision (139½ ten-Mark pieces per pound vs. 50 Krone per pound).'
+          uk: '<b>4 грудня 1871 · Утворення Рейху і кінець карбування:</b> <b>Закон про монету 4 грудня 1871</b> запроваджує Reichsgoldmark як єдиний золотий стандарт Рейху; карбування Vereinskronen <em>не</em> завершується формально, а просто витісняється новим стандартом — держави-учасниці припиняють карбування 1871. Математична спадковість: Reichsgoldmark переймає фунтову базу (500 г) і пробу.900 безпосередньо від Vereinskrone, лише з тоншим поділом (139½ десятимаркових з фунта проти 50 Krone з фунта).'
       - kind: phase_summary
         content:
           de: '<b>1. April 1874 · Demonetisierung; 30. Juni 1874 · Einlösungsfrist:</b> die Vereinskronen verlieren den Status als gesetzliches Zahlungsmittel; bis zum 30. Juni 1874 können sie zum Goldwert eingelöst werden.<sup><a href="#ref41">[41]</a></sup> Von 2 138 256 geprägten Vollkronen werden nur <b>332 091</b> (≈ 15,5 %) fristgerecht eingelöst — die Mehrzahl floß ins Ausland und wurde dort eingeschmolzen, da die Vereinskrone bei festem Tarifwert von 9,3 Taler gegenüber dem Au-Marktpreis untertarifiert blieb (Goldarbitrage).<sup><a href="#ref42">[42]</a></sup>'
