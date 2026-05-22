@@ -53,6 +53,16 @@ from typing import Any
 
 import yaml
 
+# Shared Danish↔English/German denomination synonym table — same one
+# the cross-source merger uses. Without this, classifier-anchor
+# patterns like «nobel» fail to match unified entries whose nominal
+# was inherited from a Numista (English) source («1 Noble» — the
+# substring check `"nobel" in "1 noble"` returns False because of
+# the spelling difference). After folding through synonyms, both
+# forms become «1 nobel» and the anchor rule fires.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared  # noqa: E402
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 V2_FINAL = PROJECT_ROOT / "data" / "v2" / "final"
 V2_LOCATIONS = PROJECT_ROOT / "data" / "v2" / "locations"
@@ -222,9 +232,9 @@ _DENOMINATION_UNITS: dict[str, float] = {
     "dreiling":         1.0 / 288,
     "penning":          1.0 / 1152,
     "penninge":         1.0 / 1152,
-    # Christian-III-Dalerfod / Flensborg-fod era (1524-1571): 1 Sølvgylden
+    # 8-Daler-Fod / Flensborg-fod era (1524-1571): 1 Sølvgylden
     # = 1/3 Daler under the 8-Daler-per-marck grid (cf. fuesse.yml
-    # christian_iii_dalerfod fractions «1/3»: soll_rau 9.744 g; same
+    # 8_daler_fod fractions «1/3»: soll_rau 9.744 g; same
     # 1/3 ratio in flensborg_fod). 1 Gylden (Flensborg Lybsk variant) is
     # also 1/3 Daler — same physical specimen, different sub-mark
     # accounting (24 ß lybsk vs 48 ß danske).
@@ -457,7 +467,7 @@ def _classify_via_delta(coin: dict, fuesse: dict[str, dict],
         # Defensive filter: skip mint-bound Fußen whose binding doesn't
         # match this coin's mint+ruler. Prevents false positives like
         # f2h8a (Kbh Speciedaler 1560 Frederik II) being assigned to
-        # christian_iii_flensborg_fod just because the Δ happens to be
+        # 8_daler_lybsk_fod just because the Δ happens to be
         # 1.75 % — the historical attribution requires Flensburg mint +
         # Christian III ruler.
         if fid in _MINT_BOUND_FUSSES:
@@ -526,7 +536,7 @@ def _classify_via_era_anchor(coin: dict, entity_id: str | None
         return ("no_match", None, None, audit)
     if entity_id not in {"danish_realm", "royal_holstein", "danish_norway"}:
         return ("no_match", None, None, audit)
-    nominal = str(coin.get("nominal") or "").lower()
+    nominal = _normalise_nominal_shared(coin.get("nominal"))
     # Denomination patterns for 18½-Thaler-Fuß post-1813:
     #   Rigsbankdaler / Rigsbankskilling (the canonical units)
     #   bare «Skilling» (Krause Tn-tokens carry plain «Skilling»;
@@ -682,7 +692,7 @@ _DENOMINATION_ANCHOR_RULES: list[dict] = [
 # coin's nominal at classification time (e.g. Søsling lybsk → scheide;
 # Daler / Sølvgylden / Rhinsk Gylden → kurant).
 _MINT_BOUND_FUSSES: dict[str, dict] = {
-    # Christian-III-Flensborg-fod — Flensborg mint, Christian III only,
+    # 8-Daler-Lybsk-Fod — Flensborg mint, Christian III only,
     # 1545-1571 (1545-1554 main phase, 1554-1571 tail under Frederik II
     # — but specimens 1554+ are Frederik II issues, NOT auto-classified
     # to this Fuß without explicit curator decision; the registry pins
@@ -690,11 +700,11 @@ _MINT_BOUND_FUSSES: dict[str, dict] = {
     # death 1559-01-01 + a 1 y boundary buffer).
     #
     # Source: Wilcke 1950 pp. 25-26 (Flensborg Bestalling 22 Jan 1547),
-    # fuesse.yml christian_iii_flensborg_fod definition. Mint variants
+    # fuesse.yml 8_daler_lybsk_fod definition. Mint variants
     # tolerated: «Flensburg» (German/English) / «Flensborg» (Danish).
     # Ruler match: substring «Christian III» (covers «Christian III.»,
     # «Christian III», «Christian III. of Denmark», etc.).
-    "christian_iii_flensborg_fod": {
+    "8_daler_lybsk_fod": {
         "allowed_mints": {"Flensburg", "Flensborg"},
         "ruler_substring": "Christian III",
         "year_min": 1545,
@@ -706,7 +716,7 @@ _MINT_BOUND_FUSSES: dict[str, dict] = {
                               ("søsling", "sosling", "hvid", "penning", "skilling"))
             else "kurant"
         ),
-        "rationale": "Christian-III-Flensborg-fod — mint=Flensburg + ruler=Christian III (Wilcke 1950 pp. 25-26)",
+        "rationale": "8-Daler-Lybsk-Fod — mint=Flensburg + ruler=Christian III (Wilcke 1950 pp. 25-26)",
     },
 }
 
@@ -772,7 +782,7 @@ def _classify_via_mint_anchor(coin: dict, entity_id: str | None
 def _classify_via_grevens_fejde_anchor(coin: dict, entity_id: str | None
                                          ) -> tuple[str, str | None, str | None, dict]:
     """Era-anchor rule: Christian III silver/billon coinage 1534-1540
-    belongs to `christian_iii_dalerfod` Phase 0 (de-facto-Etablierung).
+    belongs to `8_daler_fod` Phase 0 (de-facto-Etablierung).
 
     Why this routing.
     -----------------
@@ -781,7 +791,7 @@ def _classify_via_grevens_fejde_anchor(coin: dict, entity_id: str | None
     etabliert das 14½-Lod-Daler-Standard», Reynold Junge mintmaster
     continuity 1534-1540): the formerly-separate
     `christian_iii_grevens_fejde_fod` Fuß was merged INTO
-    `christian_iii_dalerfod` as Phase 0 (1534-1540, de-facto-
+    `8_daler_fod` as Phase 0 (1534-1540, de-facto-
     Etablierung). The 1537 Joachimsdaler is metrically identical to
     the 1541 Møntordning Daler (14½ Lod, 8/M, 26.494 g fein) — Wilcke
     himself explicitly notes this metric continuity. The 1541
@@ -813,7 +823,7 @@ def _classify_via_grevens_fejde_anchor(coin: dict, entity_id: str | None
         return ("no_match", None, None, audit)
     # Kind derivation: Klippe + sub-Skilling + Hvid = Scheide;
     # Joachimsdaler + 2 Mark + 1 Mark + 8 Skilling = Kurant
-    nominal = str(coin.get("nominal") or "").lower()
+    nominal = _normalise_nominal_shared(coin.get("nominal"))
     if any(tok in nominal for tok in ("joachimstaler", "joachimsdaler",
                                        "1 gulden", "½ gulden", "halv gulden")):
         kind = "kurant"
@@ -836,9 +846,9 @@ def _classify_via_grevens_fejde_anchor(coin: dict, entity_id: str | None
         "metal": metal,
         "nominal": coin.get("nominal"),
         "kind_derivation": kind,
-        "target_fuss_phase": "christian_iii_dalerfod / Phase 0 (de-facto-Etablierung)",
+        "target_fuss_phase": "8_daler_fod / Phase 0 (de-facto-Etablierung)",
     })
-    return ("grevens_fejde_anchor", "christian_iii_dalerfod", kind, audit)
+    return ("grevens_fejde_anchor", "8_daler_fod", kind, audit)
 
 
 def _classify_via_denomination_anchor(coin: dict, entity_id: str | None
@@ -880,7 +890,7 @@ def _classify_via_denomination_anchor(coin: dict, entity_id: str | None
     audit: dict = {"rule": "denomination_anchor"}
     if entity_id not in {"danish_realm", "danish_norway"}:
         return ("no_match", None, None, audit)
-    nominal = str(coin.get("nominal") or "").lower()
+    nominal = _normalise_nominal_shared(coin.get("nominal"))
     if not nominal:
         return ("no_match", None, None, audit)
     year_first = coin.get("year_first")
@@ -954,7 +964,7 @@ def _classify_via_kronefod_anchor(coin: dict, entity_id: str | None
         return ("no_match", None, None, audit)
     if entity_id not in {"danish_realm", "danish_norway"}:
         return ("no_match", None, None, audit)
-    nominal = str(coin.get("nominal") or "").lower()
+    nominal = _normalise_nominal_shared(coin.get("nominal"))
     if not nominal:
         return ("no_match", None, None, audit)
     # Match Krone/Kroner (kurant) — exclude "Rigsdaler"-prefixed legacy

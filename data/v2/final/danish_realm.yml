@@ -293,6 +293,7 @@ coins:
     schou: '1'
     sieg: '53'
     fr: '4'
+    friedberg: '246'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -307,6 +308,8 @@ coins:
   - value: 0.98
     source: ucoin
   weight_rough_g:
+  - value: 17.12
+    source: bruun
   - value: 17.45
     source: ucoin
   - value: 17.452
@@ -317,6 +320,8 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_65961
     ref: NumisMaster
+  - type: literature
+    ref: Bruun-7327 · Stack's Bowers Bruun Collection Part I, lot 1127
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h12.htm
     ref: danskmoent.dk (Hede f4h12)
@@ -2043,7 +2048,7 @@ coins:
   v1_home_location: denmark
 - fuss: reichsdukatenfuss
   phase: I
-  kind: kurant
+  kind: scheide
   fraction: '4'
   nominal: 4 Daler
   ruler: Christian IV.
@@ -2117,7 +2122,7 @@ coins:
   v1_home_location: denmark
 - fuss: reichsdukatenfuss
   phase: I
-  kind: tarif
+  kind: scheide
   fraction: '6'
   nominal: 6 Daler
   ruler: Christian IV.
@@ -2388,8 +2393,11 @@ coins:
     bruun_page: 158
     hede: '15'
     hede_volume: c5h
-    schou: 1a
+    schou:
+    - 1a
+    - '3'
     sieg: '120'
+    friedberg: '152'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -2411,6 +2419,8 @@ coins:
     source: ucoin
   - value: 6.981
     source: hede
+  - value: 7.0
+    source: bruun
   diameter_mm:
   - value: 25.0
     source: ucoin
@@ -2418,6 +2428,8 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_65878
     ref: NumisMaster
+  - type: literature
+    ref: Bruun-7030 · Stack's Bowers Bruun Collection Part I, lot 1109
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h15.htm
     ref: danskmoent.dk (Hede c5h15)
@@ -2609,10 +2621,21 @@ coins:
   mint: Kopenhagen
   catalog:
     km: '395'
-    hede: 23AB
+    hede:
+    - 23AB
+    - 23A
     hede_volume: c5h
-    schou: 5-6
-    sieg: '92'
+    schou:
+    - 5-6
+    - '2'
+    sieg:
+    - '92'
+    - '94'
+    bruun_collection_id: '7035'
+    friedberg: '167'
+    bruun_part: I
+    bruun_lot_no: 1110
+    bruun_page: 159
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -2628,6 +2651,8 @@ coins:
   - value: 0.98
     source: ucoin
   weight_rough_g:
+  - value: 6.87
+    source: bruun
   - value: 6.98
     source: numismaster
   - value: 6.98
@@ -2641,6 +2666,8 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_65879
     ref: NumisMaster
+  - type: literature
+    ref: Bruun-7035 · Stack's Bowers Bruun Collection Part I, lot 1110
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h23.htm
     ref: danskmoent.dk (Hede c5h23AB)
@@ -13715,8 +13742,12 @@ coins:
   catalog:
     km: '200'
     hede: '11'
-    sieg: '111'
-    schou: 8-9
+    sieg:
+    - '111'
+    - '112'
+    schou:
+    - 8-9
+    - '6'
     fr: '3'
     bruun_collection_id: '6085'
     bruun_part: I
@@ -13725,6 +13756,7 @@ coins:
     others:
     - Aagaard-14.1 (53-1/53.1)
     hede_volume: f3h
+    friedberg: '100'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -13741,10 +13773,14 @@ coins:
     source: numismaster
   - value: 6.981
     source: hede
+  - value: 7.03
+    source: bruun
   sources:
   - type: literature
     url: https://numismaster.com/MC_65866
     ref: NumisMaster
+  - type: literature
+    ref: Bruun-6085 · Stack's Bowers Bruun Collection Part I, lot 1063
   - type: literature
     url: https://www.danskmoent.dk/fr/f3h10.htm
     ref: danskmoent.dk (Hede f3h11)
@@ -14274,7 +14310,7 @@ coins:
   v1_home_location: denmark
 - fuss: reichsdukatenfuss
   phase: I
-  kind: tarif
+  kind: scheide
   fraction: '8'
   nominal: 8 Daler
   ruler: Christian IV.
@@ -14863,12 +14899,19 @@ coins:
   fineness:
   - value: 0.979
     source: hede
+  - value: 0.979
+    source: numismaster
   weight_rough_g:
   - value: 6.95
     source: bruun
+  - value: 6.98
+    source: numismaster
   - value: 6.981
     source: hede
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65872
+    ref: NumisMaster
   - type: literature
     ref: Bruun-6728 · Stack's Bowers Bruun Collection Part I, lot 1094
   - type: literature
@@ -14887,7 +14930,6 @@ coins:
       danskmoent.dk.'
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
-  - unified-dk-bruun-6728
   - unified-dk-hede-f3h38
   v1_home_location: denmark
 - fuss: reichsdukatenfuss
@@ -14915,14 +14957,23 @@ coins:
     friedberg: '136'
     hede: '1'
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
   weight_rough_g:
   - value: 6.97
     source: bruun
+  - value: 6.98
+    source: numismaster
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65874
+    ref: NumisMaster
   - type: literature
     ref: Bruun-6753 · Stack's Bowers Bruun Collection Part II, lot 13171
   note:
@@ -15457,15 +15508,22 @@ coins:
   catalog:
     km: '396'
     hede: '24'
-    sieg: '92'
-    schou: 5-6
-    bruun_collection_id: '7080'
+    sieg:
+    - '92'
+    - '95'
+    schou:
+    - 5-6
+    - '1'
+    bruun_collection_id:
+    - '7080'
+    - '7034'
     bruun_part: II
     bruun_lot_no: 13183
     bruun_page: 135
     hede_volume: c5h
     sieg_hede1971: '92'
     schou_hede1971: 5-6
+    friedberg: '166'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -15478,6 +15536,8 @@ coins:
   - value: 0.979
     source: numismaster
   weight_rough_g:
+  - value: 13.8
+    source: bruun
   - value: 13.961
     source: hede
   - value: 13.961
@@ -15486,6 +15546,8 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_65948
     ref: NumisMaster
+  - type: literature
+    ref: Bruun-7034 · Stack's Bowers Bruun Collection Part II, lot 13183
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h23.htm
     ref: danskmoent.dk (Hede c5h24)
@@ -15894,13 +15956,20 @@ coins:
   catalog:
     km: '446'
     hede: '47'
-    sieg: '77'
-    schou: '10'
-    bruun_collection_id: '7186'
+    sieg:
+    - '77'
+    - '79'
+    schou:
+    - '10'
+    - '4'
+    bruun_collection_id:
+    - '7186'
+    - '7205'
     bruun_part: I
     bruun_lot_no: 1119
     bruun_page: 169
     hede_volume: c5h
+    friedberg: '181'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -15917,10 +15986,14 @@ coins:
     source: numismaster
   - value: 6.981
     source: hede
+  - value: 7.0
+    source: bruun
   sources:
   - type: literature
-    url: https://numismaster.com/MC_65887
+    url: https://numismaster.com/MC_65886
     ref: NumisMaster
+  - type: literature
+    ref: Bruun-7205 · Stack's Bowers Bruun Collection Part I, lot 1119
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h48.htm
     ref: danskmoent.dk (Hede c5h47)
@@ -16053,15 +16126,22 @@ coins:
   catalog:
     km: '457'
     hede: '54'
-    sieg: '111'
-    schou: 2-3
-    bruun_collection_id: '7228'
+    sieg:
+    - '111'
+    - '112'
+    schou:
+    - 2-3
+    - '1'
+    bruun_collection_id:
+    - '7228'
+    - '7232'
     bruun_part: II
     bruun_lot_no: 13191
     bruun_page: 142
     hede_volume: c5h
     sieg_hede1971: '111'
     schou_hede1971: 2-3
+    friedberg: '169'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -16071,10 +16151,21 @@ coins:
   fineness:
   - value: 0.979
     source: hede
+  - value: 0.979
+    source: numismaster
   weight_rough_g:
+  - value: 6.91
+    source: bruun
+  - value: 6.98
+    source: numismaster
   - value: 6.981
     source: hede
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65889
+    ref: NumisMaster
+  - type: literature
+    ref: Bruun-7232 · Stack's Bowers Bruun Collection Part II, lot 13191
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h53.htm
     ref: danskmoent.dk (Hede c5h54)
@@ -20748,7 +20839,7 @@ coins:
     schou: '1'
     friedberg: '35'
     hede: '19'
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -26548,54 +26639,6 @@ coins:
   kind: kurant
   nominal: 4 Ducat
   issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65946
-  year_first: 1664
-  year_last: 1664
-  year_label: '1664'
-  mint: Kopenhagen
-  catalog:
-    km: '217.2'
-    bruun_collection_id: '6412'
-    bruun_part: I
-    bruun_lot_no: 1080
-    bruun_page: 125
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  - value: 0.98
-    source: ucoin
-  weight_rough_g:
-  - value: 13.96
-    source: ucoin
-  - value: 13.961
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65946
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-dukat-1664/?tid=173650
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65946
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 4 Ducat
-  issuing_entity: danish_realm
   id: unified-denmark-numismaster-65947
   year_first: 1683
   year_last: 1683
@@ -28375,7 +28418,7 @@ coins:
     bruun_lot_no: 11153
     bruun_page: 82
     galster: '38'
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -30661,8 +30704,8 @@ coins:
     unit_raw: daler
   composed_of:
   - unified-dk-hede-c4h113
-- fuss: reichsdukatenfuss
-  phase: I
+- fuss: seed_unsorted
+  phase: hede
   kind: kurant
   nominal: 3 Daler
   fraction: '3'
@@ -32069,7 +32112,7 @@ coins:
     source: hede
   sources:
   - type: literature
-    url: https://numismaster.com/MC_65876
+    url: https://numismaster.com/MC_65882
     ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h57.htm
@@ -34991,8 +35034,8 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-386681
-- fuss: seed_unsorted
-  phase: numista
+- fuss: nobel_fod
+  phase: I
   kind: kurant
   nominal: 1 Noble
   ruler: Frederick I
@@ -35048,8 +35091,8 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-428544
-- fuss: seed_unsorted
-  phase: numista
+- fuss: nobel_fod
+  phase: I
   kind: kurant
   nominal: 1 Noble
   ruler: Christian II
@@ -38412,114 +38455,6 @@ coins:
   kind: kurant
   nominal: 2 Ducat
   issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65872
-  year_first: 1670
-  year_last: 1670
-  year_label: '1670'
-  catalog:
-    km: '326'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  weight_rough_g:
-  - value: 6.98
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65872
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65872
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 2 Ducat
-  issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65874
-  year_first: 1670
-  year_last: 1670
-  year_label: '1670'
-  catalog:
-    km: '328'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  weight_rough_g:
-  - value: 6.98
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65874
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65874
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 2 Ducat
-  issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65882
-  year_first: 1691
-  year_last: 1691
-  year_label: '1691'
-  catalog:
-    km: '416.2'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  weight_rough_g:
-  - value: 6.98
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65882
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65882
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 2 Ducat
-  issuing_entity: danish_realm
   id: unified-denmark-numismaster-65883
   year_first: 1692
   year_last: 1692
@@ -38551,42 +38486,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65883
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 2 Ducat
-  issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65889
-  year_first: 1699
-  year_last: 1699
-  year_label: '1699'
-  catalog:
-    km: '457'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  weight_rough_g:
-  - value: 6.98
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65889
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65889
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -38732,148 +38631,6 @@ coins:
   composed_of:
   - unified-denmark-numismaster-65893
 - fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 2 Ducat
-  ruler: Frederik IV
-  issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65900
-  year_first: 1702
-  year_last: 1702
-  year_label: '1702'
-  catalog:
-    km: '500'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  weight_rough_g:
-  - value: 6.981
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65900
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65900
-- fuss: reichsdukatenfuss
-  phase: II
-  kind: kurant
-  nominal: 2 Ducat
-  ruler: Frederik V
-  issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65903
-  year_first: 1746
-  year_last: 1746
-  year_label: '1746'
-  mint: Kopenhagen
-  catalog:
-    km: '555'
-    bruun_collection_id: '7604'
-    bruun_part: I
-    bruun_lot_no: 1142
-    bruun_page: 199
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  - value: 0.98
-    source: ucoin
-  weight_rough_g:
-  - value: 6.98
-    source: ucoin
-  - value: 6.981
-    source: numismaster
-  diameter_mm:
-  - value: 25.7
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65903
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-dukat-1746/?tid=94364
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65903
-- fuss: reichsdukatenfuss
-  phase: II
-  kind: kurant
-  nominal: 2 Ducat
-  issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65904
-  year_first: 1746
-  year_last: 1746
-  year_label: '1746'
-  mint: Kopenhagen
-  catalog:
-    km: '556'
-    bruun_collection_id: '7605'
-    bruun_part: I
-    bruun_lot_no: 1143
-    bruun_page: 200
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  - value: 0.98
-    source: ucoin
-  weight_rough_g:
-  - value: 6.98
-    source: ucoin
-  - value: 6.981
-    source: numismaster
-  diameter_mm:
-  - value: 25.7
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65904
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-dukat-1746/?tid=94365
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65904
-- fuss: reichsdukatenfuss
   phase: II
   kind: kurant
   nominal: 2 Ducat
@@ -38910,148 +38667,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65905
-- fuss: reichsdukatenfuss
-  phase: II
-  kind: kurant
-  nominal: 2 Ducat
-  issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65906
-  year_first: 1746
-  year_last: 1746
-  year_label: '1746'
-  catalog:
-    km: '558'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  weight_rough_g:
-  - value: 6.981
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65906
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65906
-- fuss: reichsdukatenfuss
-  phase: II
-  kind: kurant
-  nominal: 2 Ducat
-  ruler: Frederik V
-  issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65909
-  year_first: 1747
-  year_last: 1747
-  year_label: '1747'
-  mint: Kopenhagen
-  catalog:
-    km: '569'
-    bruun_collection_id: '7613'
-    bruun_part: II
-    bruun_lot_no: 13221
-    bruun_page: 161
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  - value: 0.98
-    source: ucoin
-  weight_rough_g:
-  - value: 6.98
-    source: ucoin
-  - value: 6.981
-    source: numismaster
-  diameter_mm:
-  - value: 25.7
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65909
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-dukat-1747/?tid=94405
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65909
-- fuss: reichsdukatenfuss
-  phase: II
-  kind: kurant
-  nominal: 2 Ducat
-  ruler: Frederik V
-  issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65911
-  year_first: 1747
-  year_last: 1747
-  year_label: '1747'
-  mint: Kopenhagen
-  catalog:
-    km: '570'
-    bruun_collection_id: '7612'
-    bruun_part: III
-    bruun_lot_no: 11279
-    bruun_page: 143
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  - value: 0.98
-    source: ucoin
-  weight_rough_g:
-  - value: 6.98
-    source: ucoin
-  - value: 6.981
-    source: numismaster
-  diameter_mm:
-  - value: 25.7
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65911
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-dukat-1747/?tid=94406
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65911
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -44672,7 +44287,7 @@ coins:
   year_last: 1726
   year_ranges:
   - - 1709
-    - 1711
+    - 1709
   - - 1723
     - 1723
   - - 1726
@@ -44695,17 +44310,10 @@ coins:
   fineness:
   - value: 0.979
     source: hede
-  - value: 0.979
-    source: numismaster
   weight_rough_g:
   - value: 6.981
     source: hede
-  - value: 6.981
-    source: numismaster
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_65898
-    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h16.htm
     ref: danskmoent.dk (Hede f4h17)
@@ -50994,7 +50602,7 @@ coins:
     source: hede
   sources:
   - type: literature
-    url: https://numismaster.com/MC_65886
+    url: https://numismaster.com/MC_65887
     ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h42.htm
@@ -51042,28 +50650,18 @@ coins:
     source: hede
   - value: 0.979
     source: numismaster
-  - value: 0.98
-    source: ucoin
   weight_rough_g:
-  - value: 6.91
-    source: ucoin
   - value: 6.98
     source: numismaster
   - value: 6.981
     source: hede
-  diameter_mm:
-  - value: 24.0
-    source: ucoin
   sources:
   - type: literature
-    url: https://numismaster.com/MC_65875
+    url: https://numismaster.com/MC_65876
     ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h55.htm
     ref: danskmoent.dk (Hede c5h56)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-dukat-1673/?tid=101249
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -54690,15 +54288,20 @@ coins:
     hede:
     - 33AB
     - 33A
+    - 33B
     hede_volume: f3h
-    schou: '6'
+    schou:
+    - '6'
+    - '7'
     sieg:
     - '131'
     - '131.1'
+    - '131.2'
     fr: '3'
     bruun_collection_id:
     - '6384'
     - '6400'
+    - '6401'
     friedberg: '117'
     bruun_part: IV
     bruun_lot_no: 17071
@@ -54720,6 +54323,8 @@ coins:
   weight_rough_g:
   - value: 6.92
     source: bruun
+  - value: 6.93
+    source: bruun
   - value: 6.98
     source: numismaster
   - value: 6.98
@@ -54735,6 +54340,10 @@ coins:
     ref: NumisMaster
   - type: literature
     ref: Bruun-6384 · Stack's Bowers Bruun Collection Part IV, lot 17071
+  - type: literature
+    ref: Bruun-6400 · Stack's Bowers Bruun Collection Part I, lot 1077
+  - type: literature
+    ref: Bruun-6401 · Stack's Bowers Bruun Collection Part II, lot 13148
   - type: literature
     url: https://www.danskmoent.dk/fr/f3h33.htm
     ref: danskmoent.dk (Hede f3h33AB)
@@ -55660,8 +55269,6 @@ coins:
   year_last: 1704
   year_ranges:
   - - 1701
-    - 1701
-  - - 1704
     - 1704
   year_label: 1701, 1704
   mint: Kopenhagen
@@ -55669,13 +55276,16 @@ coins:
     km: '476'
     hede: '10'
     hede_volume: f4h
-    schou: 2,2
+    schou:
+    - 2,2
+    - '2'
     sieg: '50'
     fr: '4'
     bruun_collection_id: '7306'
     bruun_part: I
     bruun_lot_no: 1126
     bruun_page: 179
+    friedberg: '243'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -55688,18 +55298,32 @@ coins:
     source: hede
   - value: 0.979
     source: numismaster
+  - value: 0.98
+    source: ucoin
   weight_rough_g:
+  - value: 6.94
+    source: bruun
+  - value: 6.98
+    source: ucoin
   - value: 6.981
     source: hede
   - value: 6.981
     source: numismaster
+  diameter_mm:
+  - value: 25.7
+    source: ucoin
   sources:
   - type: literature
-    url: https://numismaster.com/MC_65894
+    url: https://numismaster.com/MC_65895
     ref: NumisMaster
+  - type: literature
+    ref: Bruun-7306 · Stack's Bowers Bruun Collection Part I, lot 1126
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h10.htm
     ref: danskmoent.dk (Hede f4h10)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-dukat-1701-1704/?tid=94343
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -55773,11 +55397,23 @@ coins:
   year_label: 1710–1711
   mint: Kopenhagen
   catalog:
+    km: '498'
     hede: '19'
     hede_volume: f4h
-    schou: '2'
-    sieg: '47'
+    schou:
+    - '2'
+    - '1'
+    sieg:
+    - '47'
+    - '48'
     fr: '4'
+    bruun_collection_id:
+    - '7361'
+    - '7365'
+    friedberg: '237'
+    bruun_part: I
+    bruun_lot_no: 1132
+    bruun_page: 186
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -55787,10 +55423,23 @@ coins:
   fineness:
   - value: 0.979
     source: hede
+  - value: 0.979
+    source: numismaster
   weight_rough_g:
+  - value: 6.93
+    source: bruun
   - value: 6.981
     source: hede
+  - value: 6.981
+    source: numismaster
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65898
+    ref: NumisMaster
+  - type: literature
+    ref: Bruun-7361 · Stack's Bowers Bruun Collection Part I, lot 1132
+  - type: literature
+    ref: Bruun-7365 · Stack's Bowers Bruun Collection Part III, lot 11268
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h18.htm
     ref: danskmoent.dk (Hede f4h19)
@@ -55808,11 +55457,8 @@ coins:
   ruler: Frederik IV.
   issuing_entity: danish_realm
   id: unified-dk-hede-f4h21
-  year_first: 1701
-  year_last: 1704
-  year_ranges:
-  - - 1701
-    - 1704
+  year_first: 1702
+  year_last: 1702
   year_label: '1702'
   mint: Kopenhagen
   catalog:
@@ -55838,28 +55484,18 @@ coins:
     source: hede
   - value: 0.979
     source: numismaster
-  - value: 0.98
-    source: ucoin
   weight_rough_g:
-  - value: 6.98
-    source: ucoin
   - value: 6.981
     source: hede
   - value: 6.981
     source: numismaster
-  diameter_mm:
-  - value: 25.7
-    source: ucoin
   sources:
   - type: literature
-    url: https://numismaster.com/MC_65895
+    url: https://numismaster.com/MC_65899
     ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h20.htm
     ref: danskmoent.dk (Hede f4h21)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-dukat-1701-1704/?tid=94343
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -55917,10 +55553,10 @@ coins:
     source: numismaster
   sources:
   - type: literature
-    url: https://numismaster.com/MC_65899
-    ref: NumisMaster
-  - type: literature
     ref: Bruun-7542 · Stack's Bowers Bruun Collection Part IV, lot 17119
+  - type: literature
+    url: https://numismaster.com/MC_65900
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h25.htm
     ref: danskmoent.dk (Hede f4h24)
@@ -55930,6 +55566,7 @@ coins:
       danskmoent.dk.'
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
+  - unified-dk-bruun-7542
   - unified-dk-hede-f4h24
 - fuss: kronemont_fine
   phase: I
@@ -57802,11 +57439,22 @@ coins:
   mint: Kopenhagen
   catalog:
     km: '217.1'
-    hede: '30'
+    hede:
+    - '30'
+    - 30A
     hede_volume: f3h
-    schou: '5'
-    sieg: '133'
+    schou:
+    - '5'
+    - '2'
+    sieg:
+    - '133'
+    - '135.1'
     fr: '3'
+    bruun_collection_id: '6218'
+    friedberg: '110'
+    bruun_part: II
+    bruun_lot_no: 13137
+    bruun_page: 101
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -57819,6 +57467,8 @@ coins:
   - value: 0.979
     source: numismaster
   weight_rough_g:
+  - value: 13.75
+    source: bruun
   - value: 13.961
     source: hede
   - value: 13.961
@@ -57827,6 +57477,8 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_65944
     ref: NumisMaster
+  - type: literature
+    ref: Bruun-6218 · Stack's Bowers Bruun Collection Part II, lot 13137
   - type: literature
     url: https://www.danskmoent.dk/fr/f3h28.htm
     ref: danskmoent.dk (Hede f3h30)
@@ -61554,40 +61206,6 @@ coins:
   kind: kurant
   nominal: ½ Portugaloser
   issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65627
-  year_first: 1591
-  year_last: 1592
-  year_ranges:
-  - - 1591
-    - 1592
-  year_label: 1591–1592
-  mint: Haderslev
-  catalog:
-    fr: '63.1'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65627
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65627
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ½ Portugaloser
-  issuing_entity: danish_realm
   id: unified-denmark-numismaster-65628
   year_first: 1592
   year_last: 1593
@@ -63021,43 +62639,6 @@ coins:
   kind: kurant
   nominal: ¼ Portugaloser
   issuing_entity: danish_realm
-  id: unified-denmark-numismaster-65623
-  year_first: 1592
-  year_last: 1592
-  year_label: '1592'
-  mint: Haderslev
-  catalog:
-    fr: '64.1'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  weight_rough_g:
-  - value: 8.661
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65623
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65623
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ¼ Portugaloser
-  issuing_entity: danish_realm
   id: unified-denmark-numismaster-65624
   year_first: 1592
   year_last: 1593
@@ -64074,7 +63655,7 @@ coins:
     bruun_part: I
     bruun_lot_no: 1001
     bruun_page: 29
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -64787,9 +64368,13 @@ coins:
   mintmaster: Andreas Metzner
   issuing_entity: danish_realm
   id: unified-dk-bruun-4597
-  year_first: 1592
+  year_first: 1591
   year_last: 1592
+  year_ranges:
+  - - 1591
+    - 1592
   year_label: '1592'
+  mint: Haderslev
   catalog:
     bruun_collection_id: '4597'
     sieg: '160'
@@ -64799,15 +64384,20 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17041
     bruun_page: 30
-  metal: silver
+    fr: '63.1'
+  metal: gold
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 17.38
     source: bruun
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65627
+    ref: NumisMaster
   - type: literature
     ref: Bruun-4597 · Stack's Bowers Bruun Collection Part IV, lot 17041
   verification_note:
@@ -64834,6 +64424,7 @@ coins:
   year_first: 1592
   year_last: 1592
   year_label: '1592'
+  mint: Haderslev
   catalog:
     bruun_collection_id: '4598'
     sieg: '155'
@@ -64843,15 +64434,25 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17042
     bruun_page: 31
-  metal: silver
-  fineness_verified: false
+    fr: '64.1'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
   weight_rough_g:
+  - value: 8.661
+    source: numismaster
   - value: 8.69
     source: bruun
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65623
+    ref: NumisMaster
   - type: literature
     ref: Bruun-4598 · Stack's Bowers Bruun Collection Part IV, lot 17042
   verification_note:
@@ -65522,8 +65123,8 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-4811
-- fuss: seed_unsorted
-  phase: bruun
+- fuss: rosenobel_fod
+  phase: II
   kind: kurant
   nominal: Rose Noble
   ruler: Christian IV
@@ -65548,7 +65149,7 @@ coins:
     bruun_part: I
     bruun_lot_no: 1022
     bruun_page: 59
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -65622,8 +65223,8 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-4845
-- fuss: seed_unsorted
-  phase: bruun
+- fuss: rosenobel_fod
+  phase: II
   kind: kurant
   nominal: Rose Noble
   ruler: Christian IV
@@ -65648,7 +65249,7 @@ coins:
     bruun_part: III
     bruun_lot_no: 11186
     bruun_page: 96
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -66404,8 +66005,8 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-5457
-- fuss: seed_unsorted
-  phase: bruun
+- fuss: rosenobel_fod
+  phase: II
   kind: kurant
   nominal: Rose Noble
   ruler: Christian IV
@@ -66426,7 +66027,7 @@ coins:
     bruun_part: II
     bruun_lot_no: 13105
     bruun_page: 81
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -67671,51 +67272,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-6043
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Ducats
-  ruler: Frederik III
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-6085
-  year_first: 1653
-  year_last: 1653
-  year_label: '1653'
-  mint: Kopenhagen
-  catalog:
-    km: '200'
-    bruun_collection_id: '6085'
-    sieg: '112'
-    schou: '6'
-    friedberg: '100'
-    hede: '11'
-    bruun_part: I
-    bruun_lot_no: 1063
-    bruun_page: 103
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 7.03
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-6085 · Stack's Bowers Bruun Collection Part I, lot 1063
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-6085
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -67900,51 +67456,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-6201
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 4 Ducats
-  ruler: Frederik III
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-6218
-  year_first: 1657
-  year_last: 1657
-  year_label: '1657'
-  mint: Kopenhagen
-  catalog:
-    km: '217.1'
-    bruun_collection_id: '6218'
-    sieg: '135.1'
-    schou: '2'
-    friedberg: '110'
-    hede: 30A
-    bruun_part: II
-    bruun_lot_no: 13137
-    bruun_page: 101
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 13.75
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-6218 · Stack's Bowers Bruun Collection Part II, lot 13137
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-6218
 - fuss: 9_25_thaler
   phase: I
   kind: scheide
@@ -68384,58 +67895,6 @@ coins:
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 2 Ducats
-  ruler: Frederik III
-  mintmaster: Johan Stichmann (IS)
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-6400
-  year_first: 1663
-  year_last: 1663
-  year_label: '1663'
-  mint: Kopenhagen
-  catalog:
-    km: '244'
-    bruun_collection_id:
-    - '6400'
-    - '6401'
-    sieg: '131.2'
-    schou:
-    - '6'
-    - '7'
-    friedberg: '117'
-    hede: 33B
-    bruun_part: I
-    bruun_lot_no: 1077
-    bruun_page: 120
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 6.93
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-6400 · Stack's Bowers Bruun Collection Part I, lot 1077
-  - type: literature
-    ref: Bruun-6401 · Stack's Bowers Bruun Collection Part II, lot 13148
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-6400
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
   nominal: 2 Speciedaler
   ruler: Frederik III
   mintmaster: Johann Stichmann (IS)
@@ -68501,16 +67960,32 @@ coins:
     bruun_lot_no: 1080
     bruun_page: 125
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  - value: 0.98
+    source: ucoin
   weight_rough_g:
   - value: 13.94
     source: bruun
+  - value: 13.96
+    source: ucoin
+  - value: 13.961
+    source: numismaster
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65946
+    ref: NumisMaster
+  - type: literature
     ref: Bruun-6412 · Stack's Bowers Bruun Collection Part I, lot 1080
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-dukat-1664/?tid=173650
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -69361,7 +68836,7 @@ coins:
     bruun_part: II
     bruun_lot_no: 13165
     bruun_page: 121
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -69702,16 +69177,36 @@ coins:
     bruun_lot_no: 1102
     bruun_page: 151
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  - value: 0.98
+    source: ucoin
   weight_rough_g:
   - value: 6.86
     source: bruun
+  - value: 6.91
+    source: ucoin
+  - value: 6.98
+    source: numismaster
+  diameter_mm:
+  - value: 24.0
+    source: ucoin
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65875
+    ref: NumisMaster
+  - type: literature
     ref: Bruun-6808 · Stack's Bowers Bruun Collection Part I, lot 1102
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-dukat-1673/?tid=101249
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -70137,143 +69632,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-7006
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Ducats
-  ruler: Christian V
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-7030
-  year_first: 1687
-  year_last: 1687
-  year_label: '1687'
-  mint: Kopenhagen
-  catalog:
-    km: '390'
-    bruun_collection_id: '7030'
-    sieg: '120'
-    schou: '3'
-    friedberg: '152'
-    hede: '15'
-    bruun_part: I
-    bruun_lot_no: 1109
-    bruun_page: 158
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 7.0
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-7030 · Stack's Bowers Bruun Collection Part I, lot 1109
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7030
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 4 Ducats
-  ruler: Christian V
-  mintmaster: Gregorius Sesemann
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-7034
-  year_first: 1688
-  year_last: 1688
-  year_label: '1688'
-  mint: Kopenhagen
-  catalog:
-    km: '396'
-    bruun_collection_id: '7034'
-    sieg: '95'
-    schou: '1'
-    friedberg: '166'
-    hede: '24'
-    bruun_part: II
-    bruun_lot_no: 13183
-    bruun_page: 135
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 13.8
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-7034 · Stack's Bowers Bruun Collection Part II, lot 13183
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7034
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Ducats
-  ruler: Christian V
-  mintmaster: Gregorius Sesemann
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-7035
-  year_first: 1688
-  year_last: 1688
-  year_label: '1688'
-  mint: Kopenhagen
-  catalog:
-    km: '395.1'
-    bruun_collection_id: '7035'
-    sieg: '94'
-    schou: '2'
-    friedberg: '167'
-    hede: 23A
-    bruun_part: I
-    bruun_lot_no: 1110
-    bruun_page: 159
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 6.87
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-7035 · Stack's Bowers Bruun Collection Part I, lot 1110
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7035
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -70941,52 +70299,6 @@ coins:
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 2 Ducats
-  ruler: Christian V
-  mintmaster: Christian Wineke
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-7205
-  year_first: 1696
-  year_last: 1696
-  year_label: '1696'
-  mint: Kopenhagen
-  catalog:
-    km: '446'
-    bruun_collection_id: '7205'
-    sieg: '79'
-    schou: '4'
-    friedberg: '181'
-    hede: '47'
-    bruun_part: I
-    bruun_lot_no: 1119
-    bruun_page: 169
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 7.0
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-7205 · Stack's Bowers Bruun Collection Part I, lot 1119
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7205
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
   nominal: Copenhagen. ½ Ducat
   ruler: Christian V
   mintmaster: Christian Wineke
@@ -71033,144 +70345,6 @@ coins:
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 2 Ducats
-  ruler: Christian V
-  mintmaster: Christian Wineke
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-7232
-  year_first: 1699
-  year_last: 1699
-  year_label: '1699'
-  mint: Kopenhagen
-  catalog:
-    km: '457'
-    bruun_collection_id: '7232'
-    sieg: '112'
-    schou: '1'
-    friedberg: '169'
-    hede: '54'
-    bruun_part: II
-    bruun_lot_no: 13191
-    bruun_page: 142
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 6.91
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-7232 · Stack's Bowers Bruun Collection Part II, lot 13191
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7232
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Ducats
-  ruler: Frederik IV
-  mintmaster: Christian Wineke
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-7305
-  year_first: 1701
-  year_last: 1701
-  year_label: '1701'
-  mint: Kopenhagen
-  catalog:
-    km: '475'
-    bruun_collection_id: '7305'
-    sieg: '49'
-    schou: '1'
-    friedberg: '229'
-    hede: '8'
-    bruun_part: I
-    bruun_lot_no: 1125
-    bruun_page: 177
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 6.87
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-7305 · Stack's Bowers Bruun Collection Part I, lot 1125
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7305
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Ducats
-  ruler: Frederik IV
-  mintmaster: Christian Wineke
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-7306
-  year_first: 1701
-  year_last: 1701
-  year_label: '1701'
-  mint: Kopenhagen
-  catalog:
-    km: '476'
-    bruun_collection_id: '7306'
-    sieg: '50'
-    schou: '2'
-    friedberg: '243'
-    hede: '10'
-    bruun_part: I
-    bruun_lot_no: 1126
-    bruun_page: 179
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 6.94
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-7306 · Stack's Bowers Bruun Collection Part I, lot 1126
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7306
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
   nominal: 1 Ducat
   ruler: Christian V
   mintmaster: Christian Wineke the Y ounger
@@ -71213,98 +70387,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-7308
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 5 Ducats
-  ruler: Frederik IV
-  mintmaster: Christian Wineke
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-7327
-  year_first: 1704
-  year_last: 1704
-  year_label: '1704'
-  mint: Kopenhagen
-  catalog:
-    km: '482'
-    bruun_collection_id: '7327'
-    sieg: '53'
-    schou: '1'
-    friedberg: '246'
-    hede: '12'
-    bruun_part: I
-    bruun_lot_no: 1127
-    bruun_page: 181
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 17.12
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-7327 · Stack's Bowers Bruun Collection Part I, lot 1127
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7327
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Ducats
-  ruler: Frederik IV
-  mintmaster: Christian Wineke, the younger
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-7329
-  year_first: 1704
-  year_last: 1704
-  year_label: '1704'
-  mint: Kopenhagen
-  catalog:
-    km: '475'
-    bruun_collection_id: '7329'
-    sieg: '49'
-    schou: '3'
-    friedberg: '229'
-    hede: '8'
-    bruun_part: II
-    bruun_lot_no: 13205
-    bruun_page: 151
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 6.94
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-7329 · Stack's Bowers Bruun Collection Part II, lot 13205
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7329
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
@@ -71384,7 +70466,7 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17113
     bruun_page: 74
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -71508,98 +70590,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-7352
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Ducats
-  ruler: Frederik IV
-  mintmaster: Christian Wineke
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-7361
-  year_first: 1710
-  year_last: 1710
-  year_label: '1710'
-  mint: Kopenhagen
-  catalog:
-    km: '498'
-    bruun_collection_id: '7361'
-    sieg: '48'
-    schou: '1'
-    friedberg: '237'
-    hede: '19'
-    bruun_part: I
-    bruun_lot_no: 1132
-    bruun_page: 186
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 6.93
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-7361 · Stack's Bowers Bruun Collection Part I, lot 1132
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7361
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Ducats
-  ruler: Frederik IV
-  mintmaster: Christian Wineke the Y ounger
-  issuing_entity: danish_realm
-  id: unified-dk-bruun-7365
-  year_first: 1711
-  year_last: 1711
-  year_label: '1711'
-  mint: Kopenhagen
-  catalog:
-    km: '498'
-    bruun_collection_id: '7365'
-    sieg: '48'
-    schou: '1'
-    friedberg: '237'
-    hede: '19'
-    bruun_part: III
-    bruun_lot_no: 11268
-    bruun_page: 138
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 6.93
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-7365 · Stack's Bowers Bruun Collection Part III, lot 11268
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7365
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
@@ -72032,16 +71022,36 @@ coins:
     bruun_lot_no: 1142
     bruun_page: 199
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  - value: 0.98
+    source: ucoin
   weight_rough_g:
   - value: 6.97
     source: bruun
+  - value: 6.98
+    source: ucoin
+  - value: 6.981
+    source: numismaster
+  diameter_mm:
+  - value: 25.7
+    source: ucoin
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65903
+    ref: NumisMaster
+  - type: literature
     ref: Bruun-7604 · Stack's Bowers Bruun Collection Part I, lot 1142
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-dukat-1746/?tid=94364
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -72078,16 +71088,36 @@ coins:
     bruun_lot_no: 1143
     bruun_page: 200
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  - value: 0.98
+    source: ucoin
   weight_rough_g:
   - value: 6.91
     source: bruun
+  - value: 6.98
+    source: ucoin
+  - value: 6.981
+    source: numismaster
+  diameter_mm:
+  - value: 25.7
+    source: ucoin
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65904
+    ref: NumisMaster
+  - type: literature
     ref: Bruun-7605 · Stack's Bowers Bruun Collection Part I, lot 1143
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-dukat-1746/?tid=94365
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -72124,14 +71154,23 @@ coins:
     bruun_lot_no: 1144
     bruun_page: 201
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
   weight_rough_g:
   - value: 6.96
     source: bruun
+  - value: 6.981
+    source: numismaster
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65906
+    ref: NumisMaster
   - type: literature
     ref: Bruun-7606 · Stack's Bowers Bruun Collection Part I, lot 1144
   verification_note:
@@ -72357,16 +71396,36 @@ coins:
     bruun_lot_no: 11279
     bruun_page: 143
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  - value: 0.98
+    source: ucoin
   weight_rough_g:
   - value: 6.94
     source: bruun
+  - value: 6.98
+    source: ucoin
+  - value: 6.981
+    source: numismaster
+  diameter_mm:
+  - value: 25.7
+    source: ucoin
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65911
+    ref: NumisMaster
+  - type: literature
     ref: Bruun-7612 · Stack's Bowers Bruun Collection Part III, lot 11279
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-dukat-1747/?tid=94406
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -72403,16 +71462,36 @@ coins:
     bruun_lot_no: 13221
     bruun_page: 161
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  - value: 0.98
+    source: ucoin
   weight_rough_g:
   - value: 6.98
     source: bruun
+  - value: 6.98
+    source: ucoin
+  - value: 6.981
+    source: numismaster
+  diameter_mm:
+  - value: 25.7
+    source: ucoin
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65909
+    ref: NumisMaster
+  - type: literature
     ref: Bruun-7613 · Stack's Bowers Bruun Collection Part II, lot 13221
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-dukat-1747/?tid=94405
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -74891,7 +73970,7 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17172
     bruun_page: 97
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -75015,7 +74094,7 @@ coins:
     bruun_part: I
     bruun_lot_no: 1163
     bruun_page: 224
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -75256,7 +74335,7 @@ coins:
     bruun_part: I
     bruun_lot_no: 1166
     bruun_page: 228
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -75732,7 +74811,7 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17225
     bruun_page: 113
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -75778,7 +74857,7 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17226
     bruun_page: 113
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -75823,7 +74902,7 @@ coins:
     bruun_part: I
     bruun_lot_no: 1168
     bruun_page: 231
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -75869,7 +74948,7 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17227
     bruun_page: 114
-  metal: silver
+  metal: gold
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -78410,8 +77489,8 @@ coins:
       і phase призначення та покоінна верифікація очікуються.
   composed_of:
   - unified-dk-numista-426966
-- fuss: seed_unsorted
-  phase: numista
+- fuss: nobel_fod
+  phase: I
   kind: kurant
   nominal: 2 Nobles
   ruler: John I (Hans I)
@@ -78446,8 +77525,8 @@ coins:
       і phase призначення та покоінна верифікація очікуються.
   composed_of:
   - unified-dk-numista-428886
-- fuss: seed_unsorted
-  phase: numista
+- fuss: nobel_fod
+  phase: I
   kind: kurant
   nominal: 3 Nobles
   ruler: John I (Hans I)
@@ -78607,8 +77686,8 @@ coins:
       і phase призначення та покоінна верифікація очікуються.
   composed_of:
   - unified-dk-numista-76322
-- fuss: seed_unsorted
-  phase: hede
+- fuss: reichsdukatenfuss
+  phase: I
   kind: kurant
   nominal: 1 Ungersk Gylden
   ruler: Christian IV.
@@ -78645,8 +77724,8 @@ coins:
       1965).'
   composed_of:
   - unified-dk-hede-c4h16
-- fuss: seed_unsorted
-  phase: hede
+- fuss: reichsdukatenfuss
+  phase: I
   kind: kurant
   nominal: ¼ Dukat
   ruler: Christian IV.
@@ -79045,8 +78124,8 @@ coins:
       1965).'
   composed_of:
   - unified-dk-hede-f2h22
-- fuss: seed_unsorted
-  phase: hede
+- fuss: reichsdukatenfuss
+  phase: I
   kind: kurant
   nominal: ¼ Dukat
   ruler: Frederik IV.
@@ -79186,18 +78265,53 @@ coins:
   issuing_entity: danish_realm
   id: unified-dk-hede-f4h8
   year_first: 1701
-  year_last: 1701
+  year_last: 1704
+  year_ranges:
+  - - 1701
+    - 1701
+  - - 1704
+    - 1704
   year_label: '1701'
   mint: Kopenhagen
   catalog:
+    km: '475'
     hede_volume: f4h
     hede: '8'
     sieg: '49'
+    bruun_collection_id:
+    - '7305'
+    - '7329'
+    schou:
+    - '1'
+    - '3'
+    friedberg: '229'
+    bruun_part: I
+    bruun_lot_no: 1125
+    bruun_page: 177
   metal: gold
   metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  weight_rough_g:
+  - value: 6.87
+    source: bruun
+  - value: 6.94
+    source: bruun
+  - value: 6.981
+    source: numismaster
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65894
+    ref: NumisMaster
+  - type: literature
+    ref: Bruun-7305 · Stack's Bowers Bruun Collection Part I, lot 1125
+  - type: literature
+    ref: Bruun-7329 · Stack's Bowers Bruun Collection Part II, lot 13205
   - type: literature
     url: https://www.danskmoent.dk/f4hede.htm
     ref: danskmoent.dk overview f4hede (Hede f4h8 — Tiefenseite fehlt)
@@ -79213,8 +78327,8 @@ coins:
       1965).'
   composed_of:
   - unified-dk-hede-f4h8
-- fuss: seed_unsorted
-  phase: hede
+- fuss: reichsdukatenfuss
+  phase: II
   kind: kurant
   nominal: 2 Dukat
   fraction: '2'
@@ -79317,9 +78431,9 @@ coins:
       s.88; NFM X s.207.»'
   composed_of:
   - unified-dk-hede-f5h32
-- fuss: seed_unsorted
-  phase: hede
-  kind: kurant
+- fuss: 18_5_thaler
+  phase: I
+  kind: scheide
   nominal: 2 Rigsbankskilling
   ruler: Frederik VI.
   issuing_entity: danish_realm
@@ -79361,8 +78475,8 @@ coins:
       1965). Коментар з індексу: «Prøvemønt. Forsidestemplet identisk med 24A Sømod (2000)»'
   composed_of:
   - unified-dk-hede-f6h35
-- fuss: seed_unsorted
-  phase: numista
+- fuss: nobel_fod
+  phase: I
   kind: kurant
   nominal: 1 Noble
   ruler: John I (Hans I)
@@ -79400,8 +78514,8 @@ coins:
       і phase призначення та покоінна верифікація очікуються.
   composed_of:
   - unified-dk-numista-420401
-- fuss: seed_unsorted
-  phase: ucoin
+- fuss: 11_333_thaler
+  phase: I
   kind: kurant
   nominal: 3 Kroner
   ruler: Frederick IV
@@ -79448,9 +78562,9 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   composed_of:
   - unified-dk-tid-173635
-- fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
+- fuss: 18_5_thaler
+  phase: I
+  kind: scheide
   nominal: 2 Rigsbankskilling
   ruler: Frederick VI
   issuing_entity: danish_realm
@@ -79487,9 +78601,9 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   composed_of:
   - unified-dk-tid-70745
-- fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
+- fuss: 18_5_thaler
+  phase: I
+  kind: scheide
   nominal: 1 Rigsbankskilling
   ruler: Christian VIII
   issuing_entity: danish_realm
@@ -79577,9 +78691,9 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-58029
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
+- fuss: 9_25_thaler
+  phase: I
+  kind: scheide
   nominal: 2 Skilling
   issuing_entity: danish_realm
   id: unified-denmark-numismaster-65061
@@ -79616,9 +78730,9 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65061
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
+- fuss: 9_25_thaler
+  phase: I
+  kind: scheide
   nominal: 2 Skilling
   issuing_entity: danish_realm
   id: unified-denmark-numismaster-65062
@@ -79655,9 +78769,9 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65062
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
+- fuss: 9_thaler
+  phase: I
+  kind: scheide
   nominal: 4 Skilling
   issuing_entity: danish_realm
   id: unified-denmark-numismaster-65090
@@ -79772,8 +78886,8 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65111
-- fuss: seed_unsorted
-  phase: numismaster
+- fuss: 11_333_thaler
+  phase: I
   kind: kurant
   nominal: 3 Krone
   ruler: Frederik IV
@@ -79997,8 +79111,8 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-6419
-- fuss: seed_unsorted
-  phase: galster
+- fuss: 8_daler_fod
+  phase: 0
   kind: kurant
   nominal: 2 Mark
   ruler: Christian III
@@ -80043,9 +79157,9 @@ coins:
       Sieg, Jensen-Skjoldager, Schive, тощо).'
   composed_of:
   - unified-dk-galster-c3g-92
-- fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
+- fuss: 18_5_thaler
+  phase: I
+  kind: scheide
   nominal: 2 Skilling
   ruler: Frederick VI
   issuing_entity: danish_realm
@@ -80082,9 +79196,9 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   composed_of:
   - unified-dk-tid-81019
-- fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
+- fuss: 18_5_thaler
+  phase: I
+  kind: scheide
   nominal: 4 Skilling
   ruler: Frederick VI
   issuing_entity: danish_realm

@@ -64,6 +64,14 @@ from pathlib import Path
 
 import yaml
 
+# Ensure `scripts/` is on sys.path so `from lib.nominal_synonyms ...`
+# below resolves regardless of how the script is invoked (direct
+# `python scripts/maintenance/merge_seeds_cross_source.py` puts only
+# `scripts/maintenance/` on the default path).
+_SCRIPTS_DIR = str(Path(__file__).resolve().parent.parent)
+if _SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPTS_DIR)
+
 ROOT = Path(__file__).resolve().parents[2]
 V2_SEED = ROOT / "data" / "v2" / "seed"
 V2_SEED_UNIFIED = ROOT / "data" / "v2" / "seed_unified"
@@ -195,47 +203,17 @@ def _normalise_metal(metal, fineness):
     return m
 
 
-# English / German ↔ Danish denomination synonyms. Numista and
-# NumisMaster catalogues use English spellings («Noble», «Ducat»,
-# «Thaler», «Schilling») whereas Hede / Galster / Bruun and our
-# project's canonical YAML field use the Danish / period German
-# form («Nobel», «Dukat», «Daler», «Skilling»). Without
-# normalisation the matcher sees `1 Noble ≠ 1 Nobel` as a primary
-# disagreement and refuses to merge identical coin types across
-# sources. The substitution direction is English/German → Danish
-# (canonical), applied AFTER lowercasing.
-#
-# Compound forms FIRST so they don't get partially-substituted by
-# single-word patterns («Rose Noble» before «Noble», «Specie Thaler»
-# before «Thaler»). Word-boundary anchored to avoid partial-token
-# corruption (e.g. «Skilling Lybsk» stays whole; only the «Schilling»
-# token folds to «Skilling»).
-_NOMINAL_SYNONYMS: list[tuple[str, str]] = [
-    # Multi-word compounds — must precede single-word patterns below.
-    (r"\brose\s+noble\b", "rosenobel"),
-    (r"\bspecie\s+thaler\b", "speciedaler"),
-    (r"\bspecie\s+daler\b", "speciedaler"),
-    (r"\bsilver\s+gulden\b", "sølvgylden"),
-    (r"\bsilver\s+guilder\b", "sølvgylden"),
-    # Single-word denomination synonyms.
-    (r"\bnoble\b", "nobel"),
-    (r"\bducat\b", "dukat"),
-    (r"\bducaten\b", "dukat"),
-    (r"\bthaler\b", "daler"),
-    (r"\bschilling\b", "skilling"),
-]
+# Nominal normalisation delegates to the shared synonym table in
+# `lib.nominal_synonyms` so the cross-source matcher AND the
+# auto-classifier's denomination-anchor rules apply the same
+# Danish↔English/German fold. Keep this thin wrapper for backwards
+# compatibility — `_normalise_nominal` is called from many places
+# in this module.
+from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared
 
 
 def _normalise_nominal(nominal):
-    if not nominal:
-        return ""
-    s = str(nominal).lower().strip()
-    s = s.replace("müntze", "münze")
-    s = re.sub(r"[‒–—]+", "-", s)
-    s = re.sub(r"\s+", " ", s)
-    for pattern, replacement in _NOMINAL_SYNONYMS:
-        s = re.sub(pattern, replacement, s)
-    return s
+    return _normalise_nominal_shared(nominal)
 
 
 def _normalise_ruler(ruler):
