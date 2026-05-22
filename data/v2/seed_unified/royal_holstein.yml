@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 422 per-source seed entries.
-# Output: 318 unified entries (one per physical coin).
+# Output: 315 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1246,7 +1246,10 @@ coins:
   kind: kurant
   nominal: 1 Dukat
   year_first: 1791
-  year_last: 1791
+  year_last: 1802
+  year_ranges:
+  - - 1791
+    - 1802
   year_label: '1791'
   ruler: Christian VII
   mintmaster: Michael Flor
@@ -1261,17 +1264,33 @@ coins:
     bruun_part: II
     bruun_lot_no: 13250
     bruun_page: 173
+    fr: '283'
+    numista: '83066'
+    hede_volume: c7h
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.978
+    source: ucoin
   weight_rough_g:
   - value: 3.48
     source: bruun
+  - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-7910 · Stack's Bowers Bruun Collection Part II, lot 13250
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-dukat-1791-1802/?tid=101039
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -1286,6 +1305,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-bruun-7910
+  - km-650-chr-v-1791
 - id: unified-dk-bruun-7912
   fuss: seed_unsorted
   phase: bruun
@@ -2051,28 +2071,52 @@ coins:
   kind: kurant
   nominal: 32 Rigsbankskilling
   year_first: 1842
-  year_last: 1842
+  year_last: 1843
+  year_ranges:
+  - - 1842
+    - 1843
   year_label: '1842'
   ruler: Christian VIII
   mintmaster: Johan Friedrich Freund (FF)
   mint: Altona
   catalog:
     km: '734'
-    bruun_collection_id: '8150'
+    bruun_collection_id:
+    - '8150'
+    - '8163'
     sieg: '11'
-    schou: '2'
+    schou:
+    - '2'
+    - '5'
     hede: 5A
     bruun_part: IV
     bruun_lot_no: 17180
     bruun_page: 100
-  metal: billon
-  fineness_verified: false
-  weight_rough_verified: false
+    numista: '39798'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.68
+    source: ucoin
+  weight_rough_g:
+  - value: 6.13
+    source: ucoin
+  diameter_mm:
+  - value: 24.0
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-8150 · Stack's Bowers Bruun Collection Part IV, lot 17180
+  - type: literature
+    ref: Bruun-8163 · Stack's Bowers Bruun Collection Part IV, lot 17184
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1842-1843/?tid=70757
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -2087,6 +2131,8 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-bruun-8150
+  - dk-bruun-8163
+  - km-734-chr-v-1842
 - id: unified-dk-bruun-8152
   fuss: seed_unsorted
   phase: bruun
@@ -2175,48 +2221,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-bruun-8162
-- id: unified-dk-bruun-8163
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 32 Rigsbankskilling
-  year_first: 1843
-  year_last: 1843
-  year_label: '1843'
-  ruler: Christian VIII
-  mintmaster: Johan Friedrich Freund
-  mint: Altona
-  catalog:
-    km: '734'
-    bruun_collection_id: '8163'
-    sieg: '11'
-    schou: '5'
-    hede: 5A
-    bruun_part: IV
-    bruun_lot_no: 17184
-    bruun_page: 102
-  metal: billon
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    ref: Bruun-8163 · Stack's Bowers Bruun Collection Part IV, lot 17184
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-bruun-8163
 - id: unified-dk-bruun-8168
   fuss: seed_unsorted
   phase: bruun
@@ -6604,18 +6608,10 @@ coins:
   ruler: Christian VIII.
   mint: Altona
   catalog:
-    km: '730'
     hede: '2'
     hede_volume: c8h
-    schou:
-    - 1,3,2,2
-    - '2'
+    schou: 1,3,2,2
     sieg: '15'
-    fr: '290'
-    bruun_collection_id: '8162'
-    bruun_part: I
-    bruun_lot_no: 1164
-    bruun_page: 225
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -6625,32 +6621,13 @@ coins:
   fineness:
   - value: 0.896
     source: hede
-  - value: 0.9028
-    source: ucoin
   weight_rough_g:
-  - value: 6.61
-    source: Bruun Part III, lot 11305, p. 152
-  - value: 6.63
-    source: Bruun Part I, lot 1164, p. 225
-  - value: 6.642
-    source: Hede 2
   - value: 6.642
     source: hede
-  - value: 6.642
-    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c8h2.htm
     ref: danskmoent.dk (Hede c8h2)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-d-or-1843-1847/?tid=130239
-    ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-    ref: Bruun Part I, lot 1164, p. 225
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 11305, p. 152
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -6659,7 +6636,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-hede-c8h2
-  - km-730-chr-viii-1843
 - id: unified-dk-hede-c8h7
   fuss: 18_5_thaler
   phase: I
@@ -6671,10 +6647,12 @@ coins:
   ruler: Christian VIII.
   mint: Altona
   catalog:
+    km: '737'
     hede: '7'
     hede_volume: c8h
     schou: '7'
     sieg: '9'
+    numista: '45871'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6684,13 +6662,20 @@ coins:
   fineness:
   - value: 0.375
     source: hede
+  - value: 0.375
+    source: ucoin
   weight_rough_g:
   - value: 2.809
     source: hede
+  - value: 2.81
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c8h7.htm
     ref: danskmoent.dk (Hede c8h7)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-8-rigsbankskilling-1843/?tid=70754
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -6704,6 +6689,7 @@ coins:
     unit_raw: rigsbankdalere
   composed_of:
   - dk-hede-c8h7
+  - km-737-chr-v-1843
 - id: unified-dk-hede-c8h9
   fuss: 18_5_thaler
   phase: I
@@ -7813,13 +7799,11 @@ coins:
     bruun_page: 93
     dav: EC IV 72
     numista: '70515'
-    others:
-    - Dav EC IV# 72
-    - Dav ECT# 72
   metal: silver
   metal_verified: true
-  fineness_verified: false
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -7827,28 +7811,21 @@ coins:
     source: ucoin
   weight_rough_g:
   - value: 28.83
-    source: Bruun Part IV, lot 17160, p. 93
-  - value: 28.83
     source: bruun
   - value: 28.89
     source: ucoin
-  - value: 28.893
-    source: Numista
+  diameter_mm:
+  - value: 37.0
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-8048 · Stack's Bowers Bruun Collection Part IV, lot 17160
   - type: literature
     url: https://www.danskmoent.dk/f6hede.htm
     ref: danskmoent.dk overview f6hede (Hede f6h25 — Tiefenseite fehlt)
-  - type: numista
-    url: https://en.numista.com/catalogue/pieces70515.html
-    ref: Numista
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1819/?tid=70766
     ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17160, p. 93
   verification_note:
     de: 'Hede-Index-Stub: Nur die Übersichtsreihe von f6hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
       Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster
@@ -9672,7 +9649,7 @@ coins:
 - id: unified-km-358-h123-chr-v-1681
   fuss: seed_unsorted
   phase: ucoin
-  kind: scheide
+  kind: kurant
   nominal: 2 Skilling
   year_first: 1676
   year_last: 1681
@@ -9688,9 +9665,6 @@ coins:
     hede: '123'
     sieg: '129'
     numista: '22576'
-    others:
-    - Schou 50-54
-    - KM-DK# 71
     hede_volume: c5h
   metal: silver
   metal_verified: true
@@ -9969,17 +9943,15 @@ coins:
 - id: unified-km-615-1-2-3-chr-v-1771
   fuss: seed_unsorted
   phase: ucoin
-  kind: scheide
+  kind: kurant
   nominal: ½ Skilling
   year_first: 1771
   year_last: 1771
   year_label: '1771'
   ruler: Christian VII
   catalog:
-    km: 615.1/2/3
+    km: '615'
     numista: '44799'
-    others:
-    - KM# 615
   metal: copper
   metal_verified: true
   fineness_verified: false
@@ -10010,7 +9982,7 @@ coins:
 - id: unified-km-616-chr-v-1771
   fuss: seed_unsorted
   phase: ucoin
-  kind: scheide
+  kind: kurant
   nominal: 1 Skilling
   year_first: 1771
   year_last: 1771
@@ -10020,10 +9992,6 @@ coins:
     km: '616'
     hede: '37'
     numista: '958'
-    others:
-    - KM# 616.1
-    - KM# 616.2
-    - C# 47
     hede_volume: c7h
   metal: copper
   metal_verified: true
@@ -10202,87 +10170,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - km-65-chr-v-1679
-- id: unified-km-650-chr-v-1791
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Species-Dukat
-  year_first: 1791
-  year_last: 1802
-  year_ranges:
-  - - 1791
-    - 1792
-  - - 1794
-    - 1794
-  - - 1802
-    - 1802
-  year_label: 1791-1792, 1794, 1802
-  ruler: Christian VII.
-  mint: Altona
-  catalog:
-    km: '650'
-    hede: '2'
-    fr: '283'
-    numista: '83066'
-    bruun_collection_id: '7910'
-    bruun_part: II
-    bruun_lot_no: 13250
-    bruun_page: 173
-    hede_volume: c7h
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.978
-    source: ucoin
-  - value: 0.979
-    source: Hede 2
-  - value: 0.979
-    source: Numista
-  weight_rough_g:
-  - value: 3.48
-    source: Bruun Part II, lot 13250, p. 173
-  - value: 3.49
-    source: Bruun Part I, lot 1154, p. 213
-  - value: 3.49
-    source: Bruun Part IV, lot 17146, p. 89
-  - value: 3.49
-    source: Numista, ucoin
-  sources:
-  - type: numista
-    url: https://en.numista.com/catalogue/pieces83066.html
-    ref: Numista
-  - type: web
-    url: https://www.ngccoin.com/price-guide/world/denmark-ducat-specie-km-650-1791-1802-cuid-65862-duid-184126
-    ref: NGC
-  - type: web
-    url: https://americanhistory.si.edu/collections/object/nmah_945128
-    ref: Smithsonian NMAH (1792)
-  - type: web
-    url: https://www.danskmoent.dk/chr/c7h2.htm
-    ref: Hede / danskmoent.dk
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-dukat-1791-1802/?tid=101039
-    ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-    ref: Bruun Part I, lot 1154, p. 213
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 13250, p. 173
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17146, p. 89
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - km-650-chr-v-1791
 - id: unified-km-69-chr-v-1680
   fuss: seed_unsorted
   phase: ucoin
@@ -10447,21 +10334,67 @@ coins:
   composed_of:
   - km-72-chr-v-1682
   - schleswig_holstein-numismaster-93041
+- id: unified-km-730-chr-viii-1843
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 D'Or
+  year_first: 1843
+  year_last: 1847
+  year_ranges:
+  - - 1843
+    - 1847
+  year_label: 1843–1847
+  ruler: Christian VIII
+  catalog:
+    km: '730'
+    hede: '2'
+    sieg: '15'
+    schou: '2'
+    fr: '290'
+    bruun_collection_id: '8162'
+    bruun_part: I
+    bruun_lot_no: 1164
+    bruun_page: 225
+    hede_volume: c8h
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.896
+    source: ucoin
+  weight_rough_g:
+  - value: 6.64
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-dor-1843-1847/?tid=130239
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: royal_holstein
+  composed_of:
+  - km-730-chr-viii-1843
 - id: unified-km-733-chr-v-1842
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 16 Rigsbankskilling = 5 Schilling Courant
+  nominal: 16 Rigsbankskilling
   year_first: 1842
   year_last: 1844
   year_ranges:
   - - 1842
-    - 1842
-  - - 1844
     - 1844
-  year_label: 1842, 1844
-  ruler: Christian VIII.
-  mint: Altona
+  year_label: 1842–1844
+  ruler: Christian VIII
   catalog:
     km: '733'
     numista: '24423'
@@ -10470,142 +10403,35 @@ coins:
     bruun_lot_no: 17177
     bruun_page: 99
   metal: silver
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
   verified: false
   fineness:
   - value: 0.5
     source: ucoin
   weight_rough_g:
   - value: 4.21
-    source: Bruun Part IV, lot 17177, p. 99
-  - value: 4.21
     source: ucoin
-  - value: 4.214
-    source: Numista
+  diameter_mm:
+  - value: 21.5
+    source: ucoin
   sources:
-  - type: numista
-    url: https://en.numista.com/24423
-    ref: Numista
-  - type: web
-    url: https://www.ngccoin.com/price-guide/world/denmark-16-rigsbankskilling-km-733-1842-1844-cuid-1051025-duid-1238262
-    ref: NGC
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-16-rigsbankskilling-1842-1844/?tid=70755
     ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17177, p. 99
   verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   issuing_entity: royal_holstein
   composed_of:
   - km-733-chr-v-1842
-- id: unified-km-734-chr-v-1842
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 32 Rigsbankskilling = 10 Schilling Courant
-  year_first: 1842
-  year_last: 1843
-  year_ranges:
-  - - 1842
-    - 1843
-  year_label: 1842–1843
-  ruler: Christian VIII.
-  mint: Altona
-  catalog:
-    km: '734'
-    numista: '39798'
-    bruun_collection_id: '8163'
-    bruun_part: IV
-    bruun_lot_no: 17184
-    bruun_page: 102
-  metal: silver
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.68
-    source: ucoin
-  - value: 0.687
-    source: Numista
-  weight_rough_g:
-  - value: 6.129
-    source: Numista
-  - value: 6.13
-    source: ucoin
-  sources:
-  - type: numista
-    url: https://en.numista.com/catalogue/pieces39798.html
-    ref: Numista
-  - type: web
-    url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-734-1842-1843-cuid-1051026-duid-1238264
-    ref: NGC
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1842-1843/?tid=70757
-    ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17180, p. 100
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17184, p. 102
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - km-734-chr-v-1842
-- id: unified-km-737-chr-v-1843
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 8 Rigsbankskilling = 2½ Schilling Courant
-  year_first: 1843
-  year_last: 1843
-  year_label: '1843'
-  ruler: Christian VIII.
-  mint: Altona
-  catalog:
-    km: '737'
-    numista: '45871'
-  metal: billon
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.375
-    source: ucoin
-  weight_rough_g:
-  - value: 2.81
-    source: Numista, ucoin
-  sources:
-  - type: numista
-    url: https://en.numista.com/45871
-    ref: Numista
-  - type: web
-    url: https://www.ngccoin.com/price-guide/world/denmark-8-rigsbankskilling-km-737-1843-cuid-1050984-duid-1238249
-    ref: NGC
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-8-rigsbankskilling-1843/?tid=70754
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - km-737-chr-v-1843
 - id: unified-km-74-chr-v-1682
   fuss: seed_unsorted
   phase: ucoin

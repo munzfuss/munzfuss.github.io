@@ -1,6 +1,6 @@
 status: seed
 source: ucoin (ucoin.net per-coin pages, harvested via Chrome MCP)
-generated_at: '2026-05-20T16:25:06Z'
+generated_at: '2026-05-22T10:47:45Z'
 entity: royal_holstein
 scope_note: 'ucoin V2 seed for entity `royal_holstein`. User-edited coin catalogue (ucoin.net), tier-equivalent to Numista per CLAUDE.md §5.6. Pulls from `scripts/cache/ucoin/<tid>.json` recent harvests
   plus V1 location-yaml carry-overs (pre-cache curator imports). Entity classification: V1 curator placement first; URL-country fallback for cache-only entries. Per-coin verification against primary sources
@@ -1288,7 +1288,7 @@ coins:
   - id: km-358-h123-chr-v-1681
     fuss: seed_unsorted
     phase: ucoin
-    kind: scheide
+    kind: kurant
     nominal: 2 Skilling
     year_label: 1676–1677, 1680–1681
     year_first: 1676
@@ -1305,9 +1305,6 @@ coins:
       hede: '123'
       sieg: '129'
       numista: '22576'
-      others:
-        - Schou 50-54
-        - KM-DK# 71
       hede_volume: c5h
     metal: silver
     fineness: 0.281
@@ -1326,12 +1323,12 @@ coins:
       de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.'
       en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
       uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-    _currency: Danish rigsdaler
     diameter_mm: 19.0
-    _ucoin_tid: '96983'
-    _references_text: KM# 358
     diameter_mm_verified: true
+    _currency: Danish rigsdaler
     _period: Rigsdaler (1625 - 1699)
+    _references_text: KM# 358
+    _ucoin_tid: '96983'
   - id: km-65-chr-v-1679
     fuss: seed_unsorted
     phase: ucoin
@@ -2193,7 +2190,7 @@ coins:
   - id: km-615-1-2-3-chr-v-1771
     fuss: seed_unsorted
     phase: ucoin
-    kind: scheide
+    kind: kurant
     nominal: ½ Skilling
     year_label: '1771'
     year_first: 1771
@@ -2204,10 +2201,8 @@ coins:
     ruler: Christian VII
     mint:
     catalog:
-      km: 615.1/2/3
+      km: '615'
       numista: '44799'
-      others:
-        - KM# 615
     metal: copper
     fineness:
     weight_rough_g: 5.85
@@ -2226,15 +2221,15 @@ coins:
       en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
       uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) перед §BF-промоцією.'
     diameter_mm: 24.5
+    diameter_mm_verified: true
+    _currency: Danish rigsdaler
     _period: Rigsdaler (1750 - 1812)
     _references_text: KM# 615
-    _currency: Danish rigsdaler
     _ucoin_tid: '78766'
-    diameter_mm_verified: true
   - id: km-616-chr-v-1771
     fuss: seed_unsorted
     phase: ucoin
-    kind: scheide
+    kind: kurant
     nominal: 1 Skilling
     year_label: '1771'
     year_first: 1771
@@ -2248,10 +2243,6 @@ coins:
       km: '616'
       hede: '37'
       numista: '958'
-      others:
-        - KM# 616.1
-        - KM# 616.2
-        - C# 47
       hede_volume: c7h
     metal: copper
     fineness:
@@ -2271,11 +2262,11 @@ coins:
       en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
       uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) перед §BF-промоцією.'
     diameter_mm: 29
+    diameter_mm_verified: true
+    _currency: Danish rigsdaler
     _period: Rigsdaler (1750 - 1812)
     _references_text: KM# 616
-    _currency: Danish rigsdaler
     _ucoin_tid: '78775'
-    diameter_mm_verified: true
   - id: km-116-chr-v-1787
     fuss: seed_unsorted
     phase: ucoin
@@ -2675,19 +2666,15 @@ coins:
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
-    nominal: 1 Species-Dukat
-    year_label: 1791-1792, 1794, 1802
+    nominal: 1 Dukat
+    year_label: 1791–1802
     year_first: 1791
     year_last: 1802
     year_ranges:
       -   - 1791
-          - 1792
-      -   - 1794
-          - 1794
-      -   - 1802
           - 1802
-    ruler: Christian VII.
-    mint: Altona
+    ruler: Christian VII
+    mint:
     catalog:
       km: '650'
       hede: '2'
@@ -2699,57 +2686,28 @@ coins:
       bruun_page: 173
       hede_volume: c7h
     metal: gold
-    fineness:
-      - value: 0.979
-        source: Hede 2
-      - value: 0.979
-        source: Numista
-      - value: 0.978
-        source: ucoin
-    weight_rough_g:
-      - value: 3.49
-        source: Numista, ucoin
-      - value: 3.49
-        source: Bruun Part I, lot 1154, p. 213
-      - value: 3.48
-        source: Bruun Part II, lot 13250, p. 173
-      - value: 3.49
-        source: Bruun Part IV, lot 17146, p. 89
+    fineness: 0.978
+    weight_rough_g: 3.49
     issuing_entity: royal_holstein
     verified: false
     metal_verified: true
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
     sources:
-      - type: numista
-        url: https://en.numista.com/catalogue/pieces83066.html
-        ref: Numista
-      - type: web
-        url: https://www.ngccoin.com/price-guide/world/denmark-ducat-specie-km-650-1791-1802-cuid-65862-duid-184126
-        ref: NGC
-      - type: web
-        url: https://americanhistory.si.edu/collections/object/nmah_945128
-        ref: Smithsonian NMAH (1792)
-      - type: web
-        url: https://www.danskmoent.dk/chr/c7h2.htm
-        ref: Hede / danskmoent.dk
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-dukat-1791-1802/?tid=101039
         ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1154, p. 213
-      - type: auction
-        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-        ref: Bruun Part II, lot 13250, p. 173
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17146, p. 89
     verification_note:
-      de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-      en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-      uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
+      de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.'
+      en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
+      uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+    diameter_mm: 21
+    diameter_mm_verified: true
+    _currency: Danish rigsdaler
+    _period: Rigsdaler (1750 - 1812)
+    _references_text: KM# 650
+    _ucoin_tid: '101039'
   - id: km-150-fr-vi-1809
     fuss: seed_unsorted
     phase: ucoin
@@ -2888,48 +2846,39 @@ coins:
     year_ranges:
       -   - 1819
           - 1819
-    ruler: Frederik VI.
+    ruler: Frederick VI
     mint: Altona
     catalog:
       km: '693'
       dav: EC IV 72
       numista: '70515'
-      others:
-        - Dav EC IV# 72
-        - Dav ECT# 72
       bruun_collection_id: '8048'
       bruun_part: IV
       bruun_lot_no: 17160
       bruun_page: 93
     metal: silver
     fineness: 0.875
-    weight_rough_g:
-      - value: 28.893
-        source: Numista
-      - value: 28.89
-        source: ucoin
-      - value: 28.83
-        source: Bruun Part IV, lot 17160, p. 93
+    weight_rough_g: 28.89
     issuing_entity: royal_holstein
     verified: false
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     mint_verified: true
     sources:
-      - type: numista
-        url: https://en.numista.com/catalogue/pieces70515.html
-        ref: Numista
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-speciedaler-1819/?tid=70766
         ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17160, p. 93
     verification_note:
-      de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-      en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-      uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
+      de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.'
+      en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
+      uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+    diameter_mm: 37
+    diameter_mm_verified: true
+    _currency: Danish rigsbankdaler
+    _period: Rigsbankdaler (1813 - 1854)
+    _references_text: KM# 693
+    _ucoin_tid: '70766'
   - id: km-154a-fr-vi-1831
     fuss: seed_unsorted
     phase: ucoin
@@ -2979,17 +2928,15 @@ coins:
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
-    nominal: 16 Rigsbankskilling = 5 Schilling Courant
-    year_label: 1842, 1844
+    nominal: 16 Rigsbankskilling
+    year_label: 1842–1844
     year_first: 1842
     year_last: 1844
     year_ranges:
       -   - 1842
-          - 1842
-      -   - 1844
           - 1844
-    ruler: Christian VIII.
-    mint: Altona
+    ruler: Christian VIII
+    mint:
     catalog:
       km: '733'
       numista: '24423'
@@ -2999,49 +2946,40 @@ coins:
       bruun_page: 99
     metal: silver
     fineness: 0.5
-    weight_rough_g:
-      - value: 4.214
-        source: Numista
-      - value: 4.21
-        source: ucoin
-      - value: 4.21
-        source: Bruun Part IV, lot 17177, p. 99
+    weight_rough_g: 4.21
     issuing_entity: royal_holstein
     verified: false
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
     sources:
-      - type: numista
-        url: https://en.numista.com/24423
-        ref: Numista
-      - type: web
-        url: https://www.ngccoin.com/price-guide/world/denmark-16-rigsbankskilling-km-733-1842-1844-cuid-1051025-duid-1238262
-        ref: NGC
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-16-rigsbankskilling-1842-1844/?tid=70755
         ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17177, p. 99
     verification_note:
-      de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-      en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-      uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
+      de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.'
+      en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
+      uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+    diameter_mm: 21.5
+    diameter_mm_verified: true
+    _currency: Danish rigsbankdaler
+    _period: Rigsbankdaler (1813 - 1854)
+    _references_text: KM# 733
+    _ucoin_tid: '70755'
   - id: km-734-chr-v-1842
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
-    nominal: 32 Rigsbankskilling = 10 Schilling Courant
+    nominal: 32 Rigsbankskilling
     year_label: 1842–1843
     year_first: 1842
     year_last: 1843
     year_ranges:
       -   - 1842
           - 1843
-    ruler: Christian VIII.
-    mint: Altona
+    ruler: Christian VIII
+    mint:
     catalog:
       km: '734'
       numista: '39798'
@@ -3050,57 +2988,41 @@ coins:
       bruun_lot_no: 17184
       bruun_page: 102
     metal: silver
-    fineness:
-      - value: 0.687
-        source: Numista
-      - value: 0.68
-        source: ucoin
-    weight_rough_g:
-      - value: 6.129
-        source: Numista
-      - value: 6.13
-        source: ucoin
+    fineness: 0.68
+    weight_rough_g: 6.13
     issuing_entity: royal_holstein
     verified: false
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
     sources:
-      - type: numista
-        url: https://en.numista.com/catalogue/pieces39798.html
-        ref: Numista
-      - type: web
-        url: https://www.ngccoin.com/price-guide/world/denmark-32-rigsbankskilling-km-734-1842-1843-cuid-1051026-duid-1238264
-        ref: NGC
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1842-1843/?tid=70757
         ref: ucoin
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17180, p. 100
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-        ref: Bruun Part IV, lot 17184, p. 102
     verification_note:
-      de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-      en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-      uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
+      de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.'
+      en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
+      uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+    diameter_mm: 24
+    diameter_mm_verified: true
+    _currency: Danish rigsbankdaler
+    _period: Rigsbankdaler (1813 - 1854)
+    _references_text: KM# 734
+    _ucoin_tid: '70757'
   - id: km-730-chr-viii-1843
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
-    nominal: 1 Christian d'Or
-    year_label: 1843, 1844, 1845, 1847
+    nominal: 1 D'Or
+    year_label: 1843–1847
     year_first: 1843
     year_last: 1847
     year_ranges:
       -   - 1843
-          - 1845
-      -   - 1847
           - 1847
-    ruler: Christian VIII.
-    mint: Altona
+    ruler: Christian VIII
+    mint:
     catalog:
       km: '730'
       hede: '2'
@@ -3113,80 +3035,63 @@ coins:
       bruun_page: 225
       hede_volume: c8h
     metal: gold
-    fineness: 0.9028
-    weight_rough_g:
-      - value: 6.642
-        source: Hede 2
-      - value: 6.642
-        source: ucoin
-      - value: 6.63
-        source: Bruun Part I, lot 1164, p. 225
-      - value: 6.61
-        source: Bruun Part III, lot 11305, p. 152
+    fineness: 0.896
+    weight_rough_g: 6.64
     issuing_entity: royal_holstein
     verified: false
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
-    mint_verified: true
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    mint_verified: false
     sources:
       - type: ucoin
-        url: https://en.ucoin.net/coin/denmark-1-d-or-1843-1847/?tid=130239
+        url: https://en.ucoin.net/coin/denmark-1-dor-1843-1847/?tid=130239
         ref: ucoin
-      - type: web
-        url: https://www.danskmoent.dk/chr/c8h2.htm
-        ref: Hede 2 / danskmoent.dk
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-        ref: Bruun Part I, lot 1164, p. 225
-      - type: auction
-        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-        ref: Bruun Part III, lot 11305, p. 152
     verification_note:
-      de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-      en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-      uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
+      de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.'
+      en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
+      uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+    _currency: Danish rigsbankdaler
+    _period: Rigsbankdaler (1813 - 1854)
+    _references_text: KM# 730
+    _ucoin_tid: '130239'
   - id: km-737-chr-v-1843
     fuss: seed_unsorted
     phase: ucoin
     kind: kurant
-    nominal: 8 Rigsbankskilling = 2½ Schilling Courant
+    nominal: 8 Rigsbankskilling
     year_label: '1843'
     year_first: 1843
     year_last: 1843
     year_ranges:
       -   - 1843
           - 1843
-    ruler: Christian VIII.
+    ruler: Christian VIII
     mint: Altona
     catalog:
       km: '737'
       numista: '45871'
-    metal: billon
+    metal: silver
     fineness: 0.375
-    weight_rough_g:
-      - value: 2.81
-        source: Numista, ucoin
+    weight_rough_g: 2.81
     issuing_entity: royal_holstein
     verified: false
-    metal_verified: false
-    fineness_verified: false
-    weight_rough_verified: false
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
     mint_verified: true
     sources:
-      - type: numista
-        url: https://en.numista.com/45871
-        ref: Numista
-      - type: web
-        url: https://www.ngccoin.com/price-guide/world/denmark-8-rigsbankskilling-km-737-1843-cuid-1050984-duid-1238249
-        ref: NGC
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-8-rigsbankskilling-1843/?tid=70754
         ref: ucoin
     verification_note:
-      de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-      en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-      uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
+      de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.'
+      en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
+      uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+    _currency: Danish rigsbankdaler
+    _period: Rigsbankdaler (1813 - 1854)
+    _references_text: KM# 737
+    _ucoin_tid: '70754'
   - id: sh-tid-187884
     fuss: seed_unsorted
     phase: ucoin

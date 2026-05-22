@@ -470,10 +470,24 @@ def _build_entry_from_v1(v1_coin: dict, entity: str) -> dict | None:
         # the deprecated `gesamtstaat` tag back into V2 seed.
         "issuing_entity": entity,
         "verified": False,
-        "metal_verified": v1_coin.get("metal_verified", False),
-        "fineness_verified": v1_coin.get("fineness_verified", False),
-        "weight_rough_verified": v1_coin.get("weight_rough_verified", False),
-        "mint_verified": v1_coin.get("mint_verified", False),
+        # V1-carryover entries inherit curator-set values WITHOUT a
+        # cited source — that's the literal meaning of «pre-cache, no
+        # cache backing». Per CLAUDE.md §4, the `*_verified: True`
+        # flag is reserved for values «directly attested by an
+        # acceptable source» (coin inscription / Hede / Numista / etc.);
+        # a manual curator flag without citation is NOT a source. So
+        # pre-cache carry-overs get all verified flags = False
+        # regardless of what V1 had — let the cross-source merger
+        # pick up the cache-backed (post-§AZ) Numista / NumisMaster /
+        # Bruun / Hede attestation as the verifying source.
+        #
+        # Verified flags on cache-backed ucoin seeds (the OTHER branch
+        # of this builder, _build_entry_from_cache) come from cache
+        # content directly — that path stays unchanged.
+        "metal_verified": False,
+        "fineness_verified": False,
+        "weight_rough_verified": False,
+        "mint_verified": False,
         "sources": v1_coin.get("sources") or [],
         "verification_note": {
             "de": "ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.",
@@ -568,9 +582,15 @@ def build_seed(entity: str, no_merge: bool, dry_run: bool,
 
     cache_by_tid: dict[str, dict] = {}
     for json_path in sorted(UCOIN_CACHE.glob("*.json")):
+        # Skip housekeeping sidecars (e.g. `_failed_open_ids.json` is a
+        # list of failed-fetch records, not a per-tid coin dict).
+        if json_path.name.startswith("_"):
+            continue
         try:
             data = json.loads(json_path.read_text())
         except json.JSONDecodeError:
+            continue
+        if not isinstance(data, dict):
             continue
         tid = str(data.get("tid") or json_path.stem)
         # Determine target entity: V1 curator placement first, then URL.
