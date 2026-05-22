@@ -35,7 +35,7 @@ from lib.timeline import (
 )
 from lib.compute import compute_location
 from lib.render import build_env, generate_css
-from lib.schema import Location, Fuss, I18nText
+from lib.schema import Location, Fuss, I18nText, Coin
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -502,6 +502,15 @@ _V2_SEED_CACHE: list[dict] | None = None
 _V2_UNIFIED_CACHE: list[dict] | None = None
 _V2_ABSORBED_SEED_IDS_CACHE: set[str] | None = None
 
+# Schema fields valid on the Coin model — derived once from the
+# Pydantic model class. Used to strip seed-side raw extras at
+# render time so source-specific builders (numista, bruun, …) can
+# carry book-keeping fields like `numista_title`, `obverse`,
+# `reverse`, `additional_litteratur`, `photo_credit`, etc. on
+# their seed entries without breaking the strict Coin validation
+# downstream.
+_COIN_SCHEMA_FIELDS: frozenset[str] = frozenset(Coin.model_fields.keys())
+
 
 def _load_v2_curated() -> dict[str, list[dict]]:
     """Load every `data/v2/final/<entity>.yml` once per process and return
@@ -769,8 +778,40 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
             continue
         if coin.get("promoted_to"):
             continue
-        # Strip seed-side bookkeeping field before pydantic instantiation.
-        c = {k: v for k, v in coin.items() if k != "_v2_seed_source"}
+        # Strip seed-side bookkeeping AND source-specific raw fields
+        # before pydantic instantiation. Source builders may carry
+        # extras like `numista_title`, `obverse`, `reverse`,
+        # `additional_litteratur`, `photo_credit`, `shape`,
+        # `technique`, `numista_rarity_index`, `_v2_seed_source`,
+        # `_currency`, `_period`, `_references_text`, `_ucoin_tid` etc.
+        # — useful for audit + provenance in seed YAMLs but rejected
+        # by Coin's strict schema. Filter to schema-known keys only;
+        # the alternative (per-source allowlists) drifts as builders
+        # evolve. The strip is location-independent so seen by every
+        # consumer page identically.
+        c = {k: v for k, v in coin.items() if k in _COIN_SCHEMA_FIELDS}
+        # Required-field normalisation for seed entries with sparse
+        # source data:
+        #   * `nominal: None`  → drop the entry (without nominal we
+        #     can't render anything useful; the seed builder should
+        #     fix the underlying data but the render shouldn't crash)
+        #   * `year_label: None` + `year_first` available → derive
+        #     a plain year-string. Per §3a year_label is a plain
+        #     decimal year/range, so `str(year_first)` (or
+        #     `f"{year_first}–{year_last}"` for ranges) is correct.
+        if c.get("nominal") is None:
+            continue
+        if c.get("year_label") is None:
+            yf = c.get("year_first")
+            yl = c.get("year_last")
+            if yf is not None:
+                if yl is not None and yl != yf:
+                    c["year_label"] = f"{yf}–{yl}"
+                else:
+                    c["year_label"] = str(yf)
+            else:
+                # No year info at all — skip rather than fabricate.
+                continue
         assembled.append(_resolve_dict_fields_per_location(c, loc_id, km_register))
         seen_ids.add(cid)
 
