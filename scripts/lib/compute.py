@@ -769,14 +769,32 @@ def compute_location(
     location: Location,
     fuesse: dict[str, Fuss],
 ) -> list[ComputedCoin]:
-    """Compute derived fields for all coins in a location."""
+    """Compute derived fields for all coins in a location.
+
+    Per-location Fuß overrides (Variant A, 2026-05-22): when the location's
+    `fuss_periods.<fuss>` block carries name / historical_name / description /
+    grundwerte fields, we apply those overrides BEFORE binding the Fuss to
+    the per-coin ComputedCoin — so the coin-row Fuß-name column shows the
+    overridden form (Rigsdukatfod on the Denmark page) instead of the global
+    form (Reichsdukatenfuß). Without this resolution, only the FussGroup
+    section heading saw the override; per-coin fuss.name calls still
+    rendered the global label.
+    """
+    # Local import to avoid circular dependency (categorize imports compute).
+    from .categorize import _resolve_fuss_with_overrides
+    fuess_by_id_resolved: dict[str, Fuss] = {}
+    location_overrides = location.fuss_periods or {}
+    for fid, base in fuesse.items():
+        fuess_by_id_resolved[fid] = _resolve_fuss_with_overrides(
+            base, location_overrides.get(fid)
+        )
     computed = []
     for coin in location.coins:
-        if coin.fuss not in fuesse:
+        if coin.fuss not in fuess_by_id_resolved:
             # Should have been caught in validation, but guard anyway
             continue
         computed.append(_compute_coin(
-            coin, fuesse[coin.fuss],
+            coin, fuess_by_id_resolved[coin.fuss],
             location_km_register=location.km_register,
         ))
     return computed
