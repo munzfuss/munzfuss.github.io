@@ -226,26 +226,62 @@ def parse_denomination(meta: str | None, body: str | None) -> str | None:
     return None
 
 
-def parse_metal(denom: str | None, refs: dict) -> str:
-    """Best-effort metal classification from denomination."""
+def parse_metal(denom: str | None, refs: dict) -> tuple[str, bool]:
+    """Best-effort metal classification from denomination.
+
+    Returns (metal, verified) tuple. `verified=True` when the
+    classification rests on a SOURCE-ATTESTED signal (Friedberg-ref =
+    gold by catalogue definition; an explicit denomination token from
+    Bruun's body — «Ducat», «Sovereign», «d'Or», «Skilling», etc.).
+    `verified=False` for the safest-default fallback to «silver» when
+    neither signal applies.
+
+    The `metal_verified` flag matters downstream: §4 verified-wins-
+    over-unverified rule lets a correct source-attested metal override
+    a V1-bootstrap mis-classification on cross-source merge / absorb.
+
+    Friedberg-ref is the strongest gold-signal (Friedberg's catalogue
+    indexes GOLD coins only by definition — see §BJ source survey).
+    Check it FIRST, before falling through to denomination-token
+    heuristics — that way coins with empty/missing `denom` but a Fr-
+    reference still get classified correctly.
+
+    Bug fix 2026-05-22: the prior `"fr" in refs` check was case-sensitive
+    but Bruun cache uses capital-F key «Fr» (per `REF_FIELDS` mapping
+    above, line 95). The check silently never fired, leaving 44 gold
+    coins mis-classified as silver (Christian/Frederik d'Or pieces,
+    Sovereign 1608, ½ Rose Noble 1611, Rose Noble 1629, etc. — all
+    Fr-indexed gold lots). Fix: normalise the keys to lowercase for
+    the membership test + return verified-flag alongside metal so the
+    verified-wins rule can propagate the fix to existing final
+    entries on next absorb.
+    """
+    refs_lc = {k.lower() for k in (refs or {})}
+    # Friedberg is the cleanest gold signal — applies regardless of denom.
+    if "fr" in refs_lc or "friedberg" in refs_lc:
+        return ("gold", True)
     if not denom:
-        return "silver"  # safest default
+        return ("silver", False)  # safest default — no source signal
     d = denom.lower()
-    if any(t in d for t in ["nobel", "goldgulden", "rhinsk gylden", "ungersk gylden", "ducat", "dukat", "crown", "krone", "guldreal"]) and "silver" not in d:
-        return "gold"
-    if "fr" in refs:  # Friedberg only appears on gold lots per §BJ key
-        return "gold"
+    if any(t in d for t in [
+        "nobel", "goldgulden", "rhinsk gylden", "ungersk gylden",
+        "ducat", "dukat", "crown", "krone", "guldreal",
+        "sovereign",  # Christian IV 1608 Sovereign (Hede 19) — gold prestige
+        "d'or", "d’or", "dor",  # Pistolen-family (Christian/Frederik d'Or)
+        "pistol",  # Pistole, Half Pistole etc.
+    ]) and "silver" not in d:
+        return ("gold", True)
     if "klipping" in d or "klippe" in d:
-        return "silver"  # billon Klippe usually classed as silver
+        return ("silver", False)  # billon Klippe — verified=False (heuristic)
     if "hvid" in d or "penning" in d or "blaffert" in d:
-        return "billon"
+        return ("billon", True)
     if "skilling" in d or "søsling" in d or "sosling" in d:
-        return "billon"  # most pre-1541 skillinge are debased
+        return ("billon", True)  # most pre-1541 skillinge are debased
     if "joachimstaler" in d or "joachimsdaler" in d or "silver gulden" in d or "sølvgylden" in d or "solvgylden" in d:
-        return "silver"
+        return ("silver", True)
     if "mark" in d:
-        return "silver"
-    return "silver"
+        return ("silver", True)
+    return ("silver", False)
 
 
 def parse_mintmaster(body: str | None) -> str | None:
@@ -306,7 +342,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     ruler = parse_ruler_from_meta(meta, body, lot.get("ruler"))
     mint = parse_mint(lot)
     denom = parse_denomination(meta, body)
-    metal = parse_metal(denom, refs)
+    metal, metal_verified = parse_metal(denom, refs)
     mintmaster = parse_mintmaster(body)
 
     catalog: dict[str, Any] = {}
@@ -337,6 +373,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         "mint": mint,
         "catalog": catalog,
         "metal": metal,
+        "metal_verified": metal_verified,
         "fineness": None,  # not in Bruun lot data; comes from spec tables (Wilcke)
         "weight_rough_g": lot.get("weight_g"),
         "issuing_entity": _classify_entity(mint, is_norway),
