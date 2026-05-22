@@ -174,15 +174,44 @@ _CATALOGUE_KEYWORD_RE = re.compile(
 )
 # Danish connector words that may prefix a catalogue-ref value: «hhv.» /
 # «henholdsvis» (= «respectively»). Preserved verbatim in the captured
-# value — they're semantically meaningful (signal that the listed
-# values are positional per-year, not a flat list). User direction
-# 2026-05-22: «джерело каже Schou hhv. 1 og 1 — щоб ми не втрачали».
-# This regex is kept as a marker (no longer used to strip) so the
-# parser+downstream code documents the historical decision.
+# value when the segments differ — they're semantically meaningful
+# (signal that the listed values are positional per-year, not a flat
+# list). When the connector pattern is DEGENERATE (all segments after
+# splitting on ` og ` resolve to the same token), the «hhv. X og X»
+# wrapper is collapsed to bare «X» — keeping it adds verbose noise
+# without information gain. User direction 2026-05-22: «"Schou# hhv. 1
+# og 1" заміни на "Schou# 1"».
 _CATALOGUE_CONNECTOR_RE = re.compile(
     r"^\s*(?:hhv\.?|henholdsvis|resp\.?)\s+",
     re.IGNORECASE,
 )
+
+
+def _collapse_degenerate_hhv(value: str) -> str:
+    """Collapse «hhv. X og X» / «X og X» to bare «X» when all segments
+    are identical. Returns the original string when segments differ.
+
+    Handles both leading-«hhv.» form (preferred Danish prose) AND the
+    bare-«X og X» form (Galster occasionally drops the «hhv.» prefix).
+
+    Examples:
+      «hhv. 1 og 1»       → «1»
+      «1-4 og 1-4»         → «1-4»
+      «hhv. 2 og mangler» → unchanged (segments differ)
+      «hhv. 4-5 og 1-9»    → unchanged (segments differ)
+      «hhv. 1»              → unchanged (single segment; «hhv.» retained as marker)
+    """
+    if not isinstance(value, str):
+        return value
+    s = value.strip()
+    # Strip leading «hhv.» / «henholdsvis» / «resp.» for the comparison
+    stripped = _CATALOGUE_CONNECTOR_RE.sub("", s, count=1).strip()
+    if " og " not in stripped:
+        return value  # no list-connector → nothing to collapse
+    segments = [seg.strip() for seg in stripped.split(" og ") if seg.strip()]
+    if len(segments) >= 2 and len(set(segments)) == 1:
+        return segments[0]
+    return value
 
 
 def _parse_description_and_refs(text: str) -> tuple[str | None, dict]:
@@ -216,15 +245,15 @@ def _parse_description_and_refs(text: str) -> tuple[str | None, dict]:
                 )
                 value_raw = content[value_start:value_end]
                 # PRESERVE Danish connector prefix («hhv.» / «henholdsvis»
-                # / «resp.»). They're semantically meaningful — signal
-                # that the listed values are positional per-year, not a
-                # flat list. Pre-2026-05-22 we stripped them; user
-                # correction 2026-05-22 — keep the source form intact
-                # so the rendered «Schou# hhv. 1 og 1» matches what
-                # danskmoent.dk prints.
+                # / «resp.») when segments differ — they're semantically
+                # meaningful (positional-per-year list). Collapse to a
+                # bare value when all segments are identical: «hhv. 1
+                # og 1» → «1» (degenerate case, verbose without info
+                # gain). User correction 2026-05-22.
                 value_clean = value_raw.strip(" ,;.")
                 if not value_clean:
                     continue
+                value_clean = _collapse_degenerate_hhv(value_clean)
                 # Normalise keyword → ref-field name
                 kw = km.group(1).lower()
                 kw_clean = kw.replace("/", "_").replace(" ", "_").replace(".", "")

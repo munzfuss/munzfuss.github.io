@@ -271,14 +271,18 @@ def build_entry(data: dict) -> dict | None:
     # Inscription as literary attachment
     if data.get("inscription"):
         entry["inscription"] = data["inscription"]
-    if data.get("litteratur"):
-        entry["additional_litteratur"] = data["litteratur"]
     if sub_realm:
         entry["sub_realm"] = sub_realm
-    if specs.get("finvaegt_g"):
-        entry["finvaegt_g"] = specs["finvaegt_g"]
     if specs.get("mintage"):
         entry["mintage"] = specs["mintage"]
+    # Note: `additional_litteratur` + `finvaegt_g` are deliberately
+    # NOT emitted into the seed — they are dead-end metadata fields
+    # never read downstream (cache JSON retains the litteratur block;
+    # finvægt is bruttovægt × finhed and gets re-derived where needed)
+    # and the Coin pydantic model rejects them (`_StrictBase` extra=forbid).
+    # Schema-rejection was previously masked because most galster seed
+    # entries were absorbed into unified foundation entries (build.py
+    # `absorbed_seed_ids`); new sub-variant entries surface the issue.
 
     return entry
 
@@ -314,6 +318,47 @@ def collect_entries() -> list[dict]:
         source_file = data.get("source_file") or json_path.name
         if source_file.startswith(("ernst_", "artikler_")):
             skipped_shape += 1
+            continue
+        # Sub-variant pages (chr_c3g92 → 92/92A/92B; chr_c3g95 → 95A/95B;
+        # parser-emitted `variants: [...]`): emit one entry per variant.
+        # Each variant overlays its galster suffix + per-row specs onto
+        # the page-level data; catalog_refs gets variant-specific
+        # schou/sieg when the variant carries them.
+        variants = data.get("variants") or []
+        if variants:
+            for var in variants:
+                var_data = dict(data)
+                if var.get("galster"):
+                    var_data["galster_number"] = var["galster"]
+                var_data["specs"] = {
+                    **(data.get("specs") or {}),
+                    **{k: v for k, v in {
+                        "bruttovaegt_g": var.get("bruttovaegt_g"),
+                        "finhed": var.get("finhed"),
+                        "finvaegt_g": var.get("finvaegt_g"),
+                    }.items() if v is not None},
+                }
+                # Variant-specific schou / sieg refs override the
+                # page-level catalog_refs (which mix all variants).
+                var_data["catalog_refs"] = dict(data.get("catalog_refs") or {})
+                if var.get("schou"):
+                    var_data["catalog_refs"]["schou"] = var["schou"]
+                if var.get("sieg"):
+                    var_data["catalog_refs"]["sieg"] = var["sieg"]
+                entry = build_entry(var_data)
+                if entry:
+                    if var.get("note"):
+                        # «Kendes ikke mere» style annotation from the
+                        # variant table — folded into the schema-allowed
+                        # `note` field as DE/EN/UK prose (single-language
+                        # caveat; downstream curator can refine).
+                        caveat = var["note"]
+                        entry["note"] = {
+                            "de": f"Galster-Variantentabelle: {caveat}",
+                            "en": f"Galster variant table: {caveat}",
+                            "uk": f"Galster-таблиця варіантів: {caveat}",
+                        }
+                    entries.append(entry)
             continue
         entry = build_entry(data)
         if entry:
