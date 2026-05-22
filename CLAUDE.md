@@ -393,6 +393,40 @@ In `coin.kind`: one of `kurant | scheide | tarif | gedenk`. Build script renders
 - **Phases** are location-specific: how *this location* applied *this fuss* during *this period*. Bremen's 9¼-Fuß phases differ from Schleswig's.
 - Coins reference both: `fuss: reichsdukatenfuss` (global), `phase: A` (local to the location file).
 
+### 7a. Münzfuß description scope — SYSTEM, not specimens
+
+> **A Müntzfuß description (or phase background, timeline bar_title, closing prose, hintergrund) documents the monetary standard as a system — never individual physical coins.** This applies to every prose surface that names the Müntzfuß: `data/shared/fuesse.yml::<fuss>.description / .closing / .pdate_label`, and the per-location `fuss_periods.<fuss>.hintergrund / .closing / .bar_title` blocks in `data/v2/locations/<loc>.yml` and `data/locations/<loc>.yml`.
+
+**The four canonical pillars of a Fuß description:**
+
+1. **Origin** — what political, legal, or economic forcing brought the standard into existence. Which decree / ordinance / treaty / market pressure crystallised it. The *system-level* reason, not «coin X was struck».
+2. **Role** — the function the standard served in the monetary system: prestige tier, trade currency, daily-use Kurant, Scheidemünze, accounting unit, Bancovaluta. Its relation to parallel and contemporary standards (predecessor / successor / parallel tier).
+3. **Cessation** — what brought the standard to an end: a successor ordinance, monetary union, debasement crisis, jurisdictional change. The *system-level* exit, not «last coin minted by ruler Y».
+4. **Cross-references** — links to the predecessor, parallel, or successor Müntzfuß, where this clarifies the place in the chronology. (Same period-correct names per the i18n rule on Müntzfuß noun-forms; never translate.)
+
+**Forbidden inside any Fuß/phase prose surface:**
+
+- **Auction prices** — any currency, any source, any context. **Project-wide out-of-scope.** A Müntzfuß documents a 16th-19th-century monetary standard; modern market valuations of surviving specimens do not belong in the description of the system. (User-stated 2026-05-22: «у нас ніде не варто писати про ціни з аукціонів – це точно поза скоупом».)
+- **Individual specimen identifiers** — Bruun Lot N, Stack's Bowers auction-lot detail, NGC / PCGS grades, cabinet provenance, single-piece weights, single-piece mintage figures of one cataloged specimen. Those belong on the coin row that documents the specimen, in `coin.note` / `coin.sources` / `verification_note`.
+- **«Sole surviving specimen» / «unique known piece» claims tied to a physical coin** — that's a per-specimen rarity claim, belongs on the coin row. The standard itself doesn't have a survival count; specimens do.
+- **«First dated coin of X» / «last coin under standard Y» framed as a specimen-level fact** — unless the claim is genuinely about the standard's origin or cessation AND it's backed by an explicit source. Specimen-level milestone claims drift into invention quickly (§0); a competing earlier specimen surfacing on Numista or in a museum catalogue silently turns yesterday's confident sentence into a falsehood.
+- **Mintage figures of specific issues** — these are coin-level (one ruler-year-mint combination), not standard-level. They belong on the coin row.
+
+**Permitted in Fuß prose** (system-level claims, sourced per §5):
+
+- The decree / ordinance year(s) and instrument names that established or terminated the standard.
+- The accounting structure (fineness, weight, fractions, Cöllnische-Marck divisor).
+- The political-economic role and place in the period's monetary hierarchy.
+- The chronological span as a *standard*: «in force 1496-1532», not «struck 1496-1532 by Hans, then Frederik I».
+- Computation attribution per §0: «errechnet aus N Stücken aus der Marck» when a derived figure is genuinely the build's own arithmetic.
+
+**Operational test before any sentence enters a Fuß prose surface:**
+
+1. Does this sentence describe the *standard* (origin / role / cessation / structure / relation to other standards)? If yes — keep, with citation per §5.
+2. Or does it describe one or more specific coins, weights of cabinet specimens, auction outcomes, grading certificates, hammer prices? If yes — it doesn't belong here. Move the historical fact (without the specimen scaffolding) elsewhere or delete.
+
+This rule complements §0 (no invention) and §0a (reader voice vs analyst voice): §0 forbids unsourced facts; §0a forbids project-meta language; §7a draws the line between *standard-level prose* (the Müntzfuß card) and *specimen-level prose* (the coin row). Together they keep the Müntzfuß cards as concise system-level documentation, not as galleries of celebrated cabinet pieces.
+
 ### 8. Coin placement rules (audit checklist)
 
 Every coin must be in:
