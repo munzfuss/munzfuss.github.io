@@ -696,6 +696,36 @@ Project ticket `190229723` ready to flip In review → Done — all 8 candidates
 > - **§AM** (DROP 5 gold off-strike entries per CLAUDE.md §9.3) — per-case verdict per candidate (PB-1 style).
 > - **§AQ** (Seed-merge data augmentation policy — field selection + conflict resolution naming).
 
+### W. 🟢 Clean up §0z violations surfaced by `scripts/audit_prose.py`  *(opened 2026-05-13, promoted Normal → High 2026-05-23, user-directed «з високим пріоритетом»)* *(est: medium-large)* *(type: prose cleanup + linter integration)*
+
+**Surfaced.** The new prose-linter `scripts/audit_prose.py` (commit ahead) catches forbidden patterns per CLAUDE.md §0a/§0z/§2a/§2/§0b across all `data/**/*.yml` rendered-prose surfaces. First run reports **873 hits across 8 files** — most are real violations, not false positives.
+
+**Re-audit 2026-05-23 (after the session-scoped §0z cleanup landed in commits `1a1d77d` + `b5097ee`):** `.venv/bin/python scripts/audit_prose.py --rule §0z` still reports **577 hits across 4 files**. The session-scoped cleanup hit the user-flagged «Наразі НУЛЬ еталонних зразків у кеші — pending §AZ Galster + Jensen-Skjoldager paper-source import» class (Modellierungsnotiz / mission-scope-clipped / Aktuell-NULL / aktuellen-Projekt-Cache wrappers in `fuesse.yml` + `denmark.yml`); the residual 577 are different shapes — listed below.
+
+**By rule (current snapshot 2026-05-23):**
+
+  - **§0z: 573 errors initially → still the dominant residual class.** 552 of these = `verification_note` fields literally citing «CLAUDE.md §4» / «CLAUDE.md §0» in the tooltip text — a project-internal-meta reference that the role-3 numismatist-reader sees in the (?) tooltip but has no context for. Bulk-introduced by the canonical-fineness backfill (§R-style) where the auto-generated verification_note explained the inference with «Per Projekt-Konvention (CLAUDE.md §4) auf den kanonischen Müntzfuß-Wert … gesetzt». The remaining hits are «in unserem» / «у нашій» first-person-plural project-self-references in coin notes + reference-file entries. The fix is mechanical: rewrite to say WHAT (canonical-fineness-from-Müntzfuß-standard) without WHERE-IT'S-CODIFIED (CLAUDE.md §4), and strip first-person-plural project framing from role-3 prose.
+  - **§2: 90 errors + 123 warnings.** Period-orthography violations in DE prose — modern «Taler» / «Münzfuß» / «Münzvertrag» / «Münzreform» that should be «Thaler» / «Müntzfuß» / «Müntzvertrag» / «Müntzreform». The 123 warnings include modern «Mark» (where period-correct is «Marck») and modern «bis» (where period-correct is «biß») — those are higher-volume and need manual judgment because some quoted text from Wikipedia legitimately uses modern spelling.
+  - **§0b: 61 warnings.** «vermutlich» / «імовірно» / «presumably» / «likely» hedge words without explicit hypothesis marker. Each needs review: either label as hypothesis pending verification, or attribute to a period source's own uncertainty, or replace with a hard claim once verified.
+  - **§2a: 17 warnings.** Sensationalist intensifiers («extrem», «величезний») — easy mechanical rewrite to quantified language.
+  - **§0a: 9 warnings.** First-person plural («presumably») in EN prose — needs voice rewrite.
+
+**Plan.**
+
+  1. **§0z verification_note cleanup** (biggest single class). One-pass `scripts/maintenance/rewrite_verification_notes.py` that walks all coins, detects the «Per Projekt-Konvention (CLAUDE.md §X)» template, and rewrites to the role-3-clean form. Target rewrite:
+     - Before: «Per Projekt-Konvention (CLAUDE.md §4) auf den kanonischen Müntzfuß-Wert (9_thaler, Anker 0.8889) gesetzt; Δ -1.31% gegen den Soll-Wert.»
+     - After:  «Probe nicht direkt belegt; aus dem kanonischen Müntzfuß-Standard (9_thaler, Anker 0.8889) übernommen. Δ -1.31% gegen den Soll-Wert liegt in der Spezimen-Toleranz.»
+  1a. **«in unserem» / «у нашій» first-person-plural sweep.** Companion pass to (1) — strip project-self-references from coin-note + reference-entry prose. Replace «in unserem Fuß-Register noch nicht definiert» with «im hiesigen Fuß-Register noch nicht definiert» / drop the project framing entirely.
+  2. **§2 orthography cleanup** — sweep Taler→Thaler, Münzfuß→Müntzfuß, Münzvertrag→Müntzvertrag, Münzreform→Müntzreform in DE-only fields (`note.de`, `description.de`, `verification_note.de`, `entries[].content.de`). Mostly mechanical; «Münze» (the institution) stays; «Reichsmünz-» / «Kurantmünz-» compounds in banking context stay.
+  3. **§0b hedge-word audit** — per-coin manual review. Each «vermutlich» / «likely» is either correctable (attribute to source) or needs an actual verification step (per CLAUDE.md §0b).
+  4. **§2a + §0a** — small enough to fix inline as discovered.
+
+**Operational integration (after cleanup).** Once the project starts clean, wire `audit_prose.py` into:
+  - **Pre-commit hook** (`.githooks/pre-commit`) — refuse to commit when ERRORs are introduced.
+  - **CI on push** — informational warning report for WARNINGs.
+
+The lint rule set itself can keep growing as new anti-patterns are discovered; the rules list at the top of `scripts/audit_prose.py` is intentionally inline + scannable.
+
 ### CA. 🟢 Build per-resource harvest skill (`/harvest-numista`, `/harvest-ucoin`, `/harvest-bruun`, `/harvest-hede`, `/harvest-galster`, `/harvest-ikmk`)  *(opened 2026-05-22, user-directed)* *(est: medium-large)* *(type: tooling + automation)*
 
 **Surfaced.** User direction 2026-05-22: «створи туду високого пріоритету – зробити скіл для харвесту для кожного ресурсу». Trigger context: discovered systematic data-loss in Numista harvest (Chrome MCP scraper collapsed «Years: 1496, 1502» discrete → `year_first: 1496, year_last: 1502` continuous range; 122 cache entries affected; HARVEST_ROUTINE.md §2.3 + builder fixed 2026-05-22 + handoff queue created in `docs/handoff_numista_year_list_reharvest.yml`). The fact that a single field-shape gap costs ~122 backfill entries suggests the current «long monolithic HARVEST_ROUTINE.md doc» pattern is fragile — easy to miss field-shape edge cases, no executable validation, no per-resource isolation.
@@ -1501,33 +1531,6 @@ Fix: open `km-105-chr-v-1683`, verify against Hede / Bruun / Numista which Fuß 
   3. **R3 catalog-ref glance**: per-case review of the 33 warnings; most resolve to legitimate phrasing differences but real divergences (DE-side gap) should be fixed.
 
 Once the project starts clean (or with documented residual warnings), wire `audit_i18n.py` into the same pre-commit hook as `audit_prose.py`.
-
-### W. Clean up §0z violations surfaced by `scripts/audit_prose.py`  *(opened 2026-05-13)*
-
-**Surfaced.** The new prose-linter `scripts/audit_prose.py` (commit ahead) catches forbidden patterns per CLAUDE.md §0a/§0z/§2a/§2/§0b across all `data/**/*.yml` rendered-prose surfaces. First run reports **873 hits across 8 files** — most are real violations, not false positives.
-
-**By rule:**
-
-  - **§0z: 573 errors.** 552 of these = `verification_note` fields literally citing «CLAUDE.md §4» / «CLAUDE.md §0» in the tooltip text — a project-internal-meta reference that the role-3 numismatist-reader sees in the (?) tooltip but has no context for. Bulk-introduced by the canonical-fineness backfill (§R-style) where the auto-generated verification_note explained the inference with «Per Projekt-Konvention (CLAUDE.md §4) auf den kanonischen Müntzfuß-Wert … gesetzt». The fix is mechanical: rewrite to say WHAT (canonical-fineness-from-Müntzfuß-standard) without WHERE-IT'S-CODIFIED (CLAUDE.md §4).
-  - **§2: 90 errors + 123 warnings.** Period-orthography violations in DE prose — modern «Taler» / «Münzfuß» / «Münzvertrag» / «Münzreform» that should be «Thaler» / «Müntzfuß» / «Müntzvertrag» / «Müntzreform». The 123 warnings include modern «Mark» (where period-correct is «Marck») and modern «bis» (where period-correct is «biß») — those are higher-volume and need manual judgment because some quoted text from Wikipedia legitimately uses modern spelling.
-  - **§0b: 61 warnings.** «vermutlich» / «імовірно» / «presumably» / «likely» hedge words without explicit hypothesis marker. Each needs review: either label as hypothesis pending verification, or attribute to a period source's own uncertainty, or replace with a hard claim once verified.
-  - **§2a: 17 warnings.** Sensationalist intensifiers («extrem», «величезний») — easy mechanical rewrite to quantified language.
-  - **§0a: 9 warnings.** First-person plural («presumably») in EN prose — needs voice rewrite.
-
-**Plan.**
-
-  1. **§0z verification_note cleanup** (biggest single class). One-pass `scripts/maintenance/rewrite_verification_notes.py` that walks all coins, detects the «Per Projekt-Konvention (CLAUDE.md §X)» template, and rewrites to the role-3-clean form. Target rewrite:
-     - Before: «Per Projekt-Konvention (CLAUDE.md §4) auf den kanonischen Müntzfuß-Wert (9_thaler, Anker 0.8889) gesetzt; Δ -1.31% gegen den Soll-Wert.»
-     - After:  «Probe nicht direkt belegt; aus dem kanonischen Müntzfuß-Standard (9_thaler, Anker 0.8889) übernommen. Δ -1.31% gegen den Soll-Wert liegt in der Spezimen-Toleranz.»
-  2. **§2 orthography cleanup** — sweep Taler→Thaler, Münzfuß→Müntzfuß, Münzvertrag→Müntzvertrag, Münzreform→Müntzreform in DE-only fields (`note.de`, `description.de`, `verification_note.de`, `entries[].content.de`). Mostly mechanical; «Münze» (the institution) stays; «Reichsmünz-» / «Kurantmünz-» compounds in banking context stay.
-  3. **§0b hedge-word audit** — per-coin manual review. Each «vermutlich» / «likely» is either correctable (attribute to source) or needs an actual verification step (per CLAUDE.md §0b).
-  4. **§2a + §0a** — small enough to fix inline as discovered.
-
-**Operational integration (after cleanup).** Once the project starts clean, wire `audit_prose.py` into:
-  - **Pre-commit hook** (`.githooks/pre-commit`) — refuse to commit when ERRORs are introduced.
-  - **CI on push** — informational warning report for WARNINGs.
-
-The lint rule set itself can keep growing as new anti-patterns are discovered; the rules list at the top of `scripts/audit_prose.py` is intentionally inline + scannable.
 
 ### V. Numista / ucoin cache coverage audit (no auto-merge pipeline yet)  *(opened 2026-05-13)*
 
