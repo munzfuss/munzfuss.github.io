@@ -128,13 +128,30 @@ coins:
   catalog:
     km: '28'
     numista: '41864'
+    dav: '1354'
   metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
   mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_73983
+    ref: NumisMaster
   note:
     de: 1 Thaler · Friedrich Karl von Holstein-Plön, 1761
     en: 1 Thaler · Friedrich Karl, Duke of Holstein-Plön, 1761
     uk: 1 Thaler · Фрідріх Карл (Гольштейн-Плен), 1761
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-schleswig_holstein-numismaster-73983
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -550,38 +567,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-73982
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  ruler: Friedrich Karl
-  issuing_entity: norburg_plon_duchy
-  id: unified-schleswig_holstein-numismaster-73983
-  year_first: 1761
-  year_last: 1761
-  year_label: '1761'
-  catalog:
-    km: '28'
-    dav: '1354'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_73983
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-73983
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
