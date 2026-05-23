@@ -1923,47 +1923,89 @@ def _take_first_non_none(members: list[dict], field: str):
 
 
 def _union_year_ranges(members: list[dict]) -> list[list[int]] | None:
-    """UNION year_ranges across members per data-accumulation principle.
-    Combines all `year_ranges` entries (and also synthesised entries
-    from each member's `year_first..year_last` when explicit ranges
-    are absent), de-overlaps, returns sorted non-overlapping list.
+    """Cross-source year-range merge with discrete-displaces-span rule.
 
-    Example:
-      Member A: year_ranges = [[1591, 1593]]
-      Member B: year_ranges = [[1591,1591], [1595,1595]]
-      Result:   [[1591, 1593], [1595, 1595]]
-                (1591-1593 absorbs B's 1591; 1595 stands alone)
+    Each member contributes `year_ranges` (list of `[lo, hi]` pairs) or
+    falls back to `year_first` / `year_last`. Pairs split into two shapes:
+
+      SPAN      lo < hi — less-precise bounding window (e.g. Numista or
+                ucoin published «1640-1646»).
+      SINGLETON lo == hi — authoritative per-year strike attestation
+                (e.g. NumisMaster or Hede per-year breakdown).
+
+    Merge rule (user direction, 2026-05-23):
+
+      1. UNION all singletons across all members → authoritative attested
+         years.
+      2. For each span: if ANY singleton year falls inside the span's
+         [lo, hi] range, the span is DISPLACED by the discrete attestations
+         and discarded.
+      3. Spans with no overlapping singleton SURVIVE and are emitted as-is.
+      4. Surviving spans are de-overlapped among themselves (legacy
+         envelope union — they're all of equal precision tier).
+      5. Result = (singletons as [y, y]) ∪ (surviving spans), sorted.
+
+    Rationale: a discrete singleton says «strike happened in THIS year»;
+    a span says «strikes happened SOMEWHERE in this range». When they
+    overlap, the discrete authority wins — singletons are the precise
+    form of the same claim.
 
     Returns None when no member has any year info.
     """
-    pairs: list[tuple[int, int]] = []
+    singletons: set[int] = set()
+    spans: list[tuple[int, int]] = []
+
     for m in members:
         yr = m.get("year_ranges")
         if isinstance(yr, list) and yr:
+            source_pairs = []
             for r in yr:
                 if isinstance(r, (list, tuple)) and len(r) == 2:
                     try:
-                        pairs.append((int(r[0]), int(r[1])))
+                        source_pairs.append((int(r[0]), int(r[1])))
                     except (TypeError, ValueError):
                         continue
         else:
             yf, yl = m.get("year_first"), m.get("year_last")
             if isinstance(yf, int):
-                pairs.append((yf, int(yl) if isinstance(yl, int) else yf))
+                source_pairs = [(yf, int(yl) if isinstance(yl, int) else yf)]
+            else:
+                source_pairs = []
+        for lo, hi in source_pairs:
+            if lo == hi:
+                singletons.add(lo)
+            else:
+                if lo > hi:
+                    lo, hi = hi, lo
+                spans.append((lo, hi))
 
-    if not pairs:
+    if not singletons and not spans:
         return None
 
-    # De-overlap / merge adjacent or overlapping pairs
-    pairs.sort()
-    merged: list[list[int]] = []
-    for first, last in pairs:
-        if merged and first <= merged[-1][1] + 1:
-            # Overlap or adjacent — extend
-            merged[-1][1] = max(merged[-1][1], last)
+    # Step 2-3: drop spans that overlap any singleton.
+    surviving_spans: list[tuple[int, int]] = []
+    if singletons:
+        for lo, hi in spans:
+            if any(lo <= y <= hi for y in singletons):
+                continue  # displaced
+            surviving_spans.append((lo, hi))
+    else:
+        surviving_spans = list(spans)
+
+    # Step 4: de-overlap surviving spans against each other (no singletons
+    # to confuse — these are all equal-precision spans now).
+    surviving_spans.sort()
+    merged_spans: list[list[int]] = []
+    for lo, hi in surviving_spans:
+        if merged_spans and lo <= merged_spans[-1][1] + 1:
+            merged_spans[-1][1] = max(merged_spans[-1][1], hi)
         else:
-            merged.append([first, last])
-    return merged
+            merged_spans.append([lo, hi])
+
+    # Step 5: emit singletons (as [y, y]) + surviving spans, fully sorted.
+    out: list[list[int]] = [[y, y] for y in sorted(singletons)] + merged_spans
+    out.sort()
+    return out
 
 
 def _or_merge_verified(members: list[dict], field: str) -> bool | None:
