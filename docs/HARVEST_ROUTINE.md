@@ -61,6 +61,30 @@
 
    **Why this matters.** Each commit must be reviewable + revertable independently. A bundle of «cache pointer + 6 favicon assets + favicon-generator script» can't be cleanly rolled back if any one element turns out wrong, and the commit message can only describe one of them, leaving the others undocumented in git history.
 
+9. **End-of-session protocol — commit your changes, do NOT push, leave the working tree to the user.** Every session MUST close with:
+
+   - **Commit ALL of the routine's own changes** — both the submodule pointer bump (`scripts/cache/<source>/*.json` cache writes) and any handoff-file updates (`scripts/cache/_harvest_handoff.json`, `docs/handoff.md` coverage-state edits when the routine touches them). Don't leave half-finished state in the working tree for the next session to inherit.
+   - **DO NOT commit changes you did not make.** Use surgical staging per §0.8. Files modified by parallel sessions (V2-pipeline work, prose cleanup, doc edits) stay in the working tree untouched — they are NOT the harvest routine's concern.
+   - **DO NOT push.** Per §0.1, push requires explicit user permission via chat. The end-of-run report's «Push state» line surfaces the local-commit count; the user types «пуш» / «push» when they're ready.
+   - **The working tree at session end can legitimately be non-clean** if parallel sessions have in-flight edits. That is expected and not a failure mode — those changes belong to other agents. The routine's success criterion is «my own changes are committed; everyone else's stays untouched».
+
+   **Operational check before closing the session:**
+
+   ```bash
+   git status --short
+   # Expected: clean OR only files NOT in the routine's scope
+   #          (data/**, docs/**, scripts/lib/**, scripts/maintenance/**,
+   #           etc. — anything outside scripts/cache/* + the specific
+   #           handoff files the routine writes)
+   #
+   # Forbidden at this point:
+   #          - any modified file under scripts/cache/<source>/ (uncommitted cache write)
+   #          - any modified scripts/cache/_harvest_*.json (uncommitted handoff)
+   #          - scripts/cache itself showing «modified» (submodule pointer not bumped — step B missed)
+   ```
+
+   If any of those «forbidden» states surface, the routine has a bug — finish the commit dance before the user resumes.
+
 ---
 
 ## §1. Preflight (do this once at session start)
