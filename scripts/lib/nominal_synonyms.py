@@ -55,6 +55,19 @@ def normalise_nominal(nominal: str | None) -> str:
     """Lowercase the nominal, normalise dashes/whitespace, then apply
     the canonical synonym substitutions. Returns empty string on
     None / empty input.
+
+    A leading «1 » prefix is stripped at the end — different sources
+    write the same denomination with or without the implicit «one of»
+    quantifier:
+
+      Numista:  «1 Noble»     → «1 nobel» → «nobel»
+      Bruun:    «Noble»                   → «nobel»
+      Hede:     «Speciedaler»             → «speciedaler»
+      ucoin:    «1 Speciedaler»           → «speciedaler»
+
+    Only a bare integer «1 » followed by whitespace is stripped —
+    fractions «½ Ducat» / «¼ Speciedaler» and other quantities «2 Nobles»
+    stay distinct (those genuinely differ in denomination weight).
     """
     if not nominal:
         return ""
@@ -64,4 +77,8 @@ def normalise_nominal(nominal: str | None) -> str:
     s = re.sub(r"\s+", " ", s)
     for pattern, replacement in NOMINAL_SYNONYMS:
         s = re.sub(pattern, replacement, s)
+    # Strip leading «1 » (implicit-one quantifier). Applied AFTER synonyms
+    # so «1 Rose Noble» → «1 rosenobel» → «rosenobel» works correctly.
+    # `^1\s+` won't touch «1/2», «1.5», «10», «1A», «2 Nobles».
+    s = re.sub(r"^1\s+", "", s)
     return s
