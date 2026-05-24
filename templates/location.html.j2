@@ -593,11 +593,25 @@
           {%- for layer in layers -%}
             {%- set _kinds = layer.kinds or [layer.kind] -%}
             {%- set _tt_idx = loop.index0 -%}
-            {%- for _kind in _kinds -%}
-              <div class="tl-bar-layer {{ bar.color_class }} tl-bar-layer-{{ layer.kind }} tl-bar-layer-{{ layer.scope }}{% if layer.first_approx %} tl-bar-layer-fade-start{% endif %}{% if layer.last_approx %} tl-bar-layer-fade-end{% endif %}"
-                   style="left:{{ layer.left_pct }}%;width:{{ layer.width_pct }}%"
-                   data-tt-part="{{ _tts.parts[_tt_idx] }}"
-                   aria-hidden="true"></div>
+            {# `visual_pieces` is set by `attach_visual_pieces` only when
+               the layer has approx flags AND the bar's hover-zone
+               segmentation makes splitting meaningful (fade applies only
+               on the solo tail, not across the overlap zone). When
+               absent, fall back to a single piece spanning the full
+               layer with the original approx flags driving fade. #}
+            {%- set _pieces = layer.visual_pieces or [{
+                'left_pct': layer.left_pct,
+                'width_pct': layer.width_pct,
+                'show_fade_start': layer.first_approx,
+                'show_fade_end': layer.last_approx,
+            }] -%}
+            {%- for _piece in _pieces -%}
+              {%- for _kind in _kinds -%}
+                <div class="tl-bar-layer {{ bar.color_class }} tl-bar-layer-{{ layer.kind }} tl-bar-layer-{{ layer.scope }}{% if _piece.show_fade_start %} tl-bar-layer-fade-start{% endif %}{% if _piece.show_fade_end %} tl-bar-layer-fade-end{% endif %}"
+                     style="left:{{ _piece.left_pct }}%;width:{{ _piece.width_pct }}%"
+                     data-tt-part="{{ _tts.parts[_tt_idx] }}"
+                     aria-hidden="true"></div>
+              {%- endfor -%}
             {%- endfor -%}
           {%- endfor -%}
         {%- endif -%}

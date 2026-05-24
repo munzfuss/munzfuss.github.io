@@ -632,3 +632,84 @@ def compute_hover_zones(
         out[bar_id] = zones
 
     return out
+
+
+def attach_visual_pieces(bar_layers: dict, hover_zones: dict) -> None:
+    """Mutate `bar_layers` in place: for each layer carrying `first_approx`
+    or `last_approx`, attach a `visual_pieces` list derived from the
+    hover-zone segmentation. Each piece corresponds to one zone where the
+    layer is active, with `show_fade_start` / `show_fade_end` flags set
+    only when the zone is solo (only layer of its scope active) AND
+    touches the layer's matching edge.
+
+    Layers without any approx flag are skipped — they don't need split
+    rendering and the template's default-single-piece fallback applies.
+
+    Adjacent pieces with identical fade flags are merged to keep the
+    rendered DOM lean.
+
+    Rationale: the `.tl-bar-layer-fade-end::before` CSS mask gradient
+    bleeds into the overlap zone when applied to a layer's full width;
+    by emitting separate piece divs for the overlap region (no fade
+    class) and the solo region (fade class), the mask only acts where
+    the layer is actually the bar's visible end-strip.
+
+    Operates symmetrically on `first_approx` (left edge) and
+    `last_approx` (right edge).
+
+    Args:
+        bar_layers: dict `bar_id → [layer, ...]` from `compute_bar_layers`.
+        hover_zones: dict `bar_id → [zone, ...]` from `compute_hover_zones`.
+    """
+    for bar_id, layers in bar_layers.items():
+        zones = hover_zones.get(bar_id) or []
+        if not zones:
+            continue
+        for layer_idx, L in enumerate(layers):
+            fa = L.get("first_approx", False)
+            la = L.get("last_approx", False)
+            if not (fa or la):
+                continue  # no fade flag → no visual_pieces needed
+
+            pieces: list[dict] = []
+            for z in zones:
+                indices = z.get("layer_indices") or []
+                if layer_idx not in indices:
+                    continue
+                # Solo-of-scope: only layer of L's scope active in this
+                # zone. Anywhere-scope and holstein-scope layers don't
+                # cross-shadow each other.
+                same_scope_count = sum(
+                    1 for i in indices
+                    if 0 <= i < len(layers) and layers[i].get("scope") == L["scope"]
+                )
+                is_solo = (same_scope_count == 1)
+                touches_lo = (z["first"] == L["first"])
+                touches_hi = (z["last"]  == L["last"])
+                pieces.append({
+                    "left_pct":  z["left_pct"],
+                    "width_pct": z["width_pct"],
+                    "show_fade_start": fa and is_solo and touches_lo,
+                    "show_fade_end":   la and is_solo and touches_hi,
+                })
+
+            if pieces:
+                L["visual_pieces"] = _merge_adjacent_pieces(pieces)
+
+
+def _merge_adjacent_pieces(pieces: list[dict]) -> list[dict]:
+    """Collapse consecutive pieces with identical fade flags into one,
+    summing their widths. Pieces are assumed to be in left-to-right order
+    (hover_zones returns them sorted).
+    """
+    if not pieces:
+        return pieces
+    out: list[dict] = [dict(pieces[0])]
+    for p in pieces[1:]:
+        prev = out[-1]
+        if (prev["show_fade_start"] == p["show_fade_start"]
+                and prev["show_fade_end"] == p["show_fade_end"]):
+            prev["width_pct"] = round(prev["width_pct"] + p["width_pct"], 2)
+        else:
+            out.append(dict(p))
+    return out

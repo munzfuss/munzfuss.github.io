@@ -30,6 +30,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from lib import i18n
 from lib.categorize import categorize
 from lib.timeline import (
+    attach_visual_pieces,
     compute_bar_layers, compute_coin_year_runs,
     compute_hover_zones, derive_holstein_mint_overrides,
 )
@@ -1125,6 +1126,12 @@ def build_location(
             bar_layers,
             loc.timeline.year_from, loc.timeline.year_to,
         )
+        # Visual segmentation: split each fade-bearing layer into solid +
+        # faded pieces aligned with hover-zone breakpoints, so the
+        # fade-end CSS mask only acts on the solo tail (not the active
+        # overlap zone). Mutates bar_layers in place — adds `visual_pieces`
+        # to affected layers.
+        attach_visual_pieces(bar_layers, hover_zones)
 
     # Resolve references (from sidecar YAML) if present
     references_data = getattr(loc, '_references_data', None)
