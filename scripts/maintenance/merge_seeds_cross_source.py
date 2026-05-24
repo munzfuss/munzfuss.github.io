@@ -647,16 +647,39 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
     #
     # Bruun_part / bruun_lot_no / bruun_page are SPECIMEN-level — two
     # lots can be the same type; excluded from match comparison.
+    # Catalog-key synonym table. Different parsers / catalogues use different
+    # short tokens for the same publication; map them all to one canonical
+    # ref-key so the cross-source matcher sees overlap. Without this:
+    #   - Numista publishes `cat.fr: "3"` (Friedberg «Gold Coins of the World»)
+    #   - Bruun parser emits `cat.friedberg: "3"` (same Friedberg)
+    #   - `_catalog_chain_consistent` saw refs[{fr:3}] vs refs[{friedberg:3}]
+    #     → zero overlap → primary["catalog"] = None → match_pair couldn't
+    #     promote the merge.
+    # Likewise `dav` (Numista) ↔ `davenport` (Bruun) reference the same
+    # Davenport «European Crowns» catalogue; canonical is `dav`.
+    CATALOG_KEY_SYNONYMS = {
+        "friedberg": "fr",
+        "davenport": "dav",
+    }
     for field in ("sieg", "schou", "lange", "fr", "dav", "mb",
                   "jensen_skjoldager", "schive", "skaare", "friedberg",
                   "davenport", "numista", "bruun_collection_id"):
         val = cat.get(field)
         if val is None:
             continue
+        canonical = CATALOG_KEY_SYNONYMS.get(field, field)
         if isinstance(val, list):
-            refs[field] = "|".join(sorted(str(v).strip() for v in val))
+            new_val = "|".join(sorted(str(v).strip() for v in val))
         else:
-            refs[field] = str(val).strip()
+            new_val = str(val).strip()
+        # When both synonyms attest the same key (e.g. coin has both `fr` and
+        # `friedberg` set), merge values rather than letting the later one
+        # overwrite. Preserves §«Data-accumulation principle».
+        if canonical in refs and refs[canonical] != new_val:
+            joined = sorted(set(refs[canonical].split("|")) | set(new_val.split("|")))
+            refs[canonical] = "|".join(joined)
+        else:
+            refs[canonical] = new_val
 
     galster = cat.get("galster")
     if galster is not None:
