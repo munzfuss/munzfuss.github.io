@@ -80,8 +80,17 @@ REALM_REGIONS = {"DENMARK", "NORW AY", "NORWAY", "DENMARK-NORWAY"}
 # original §BI anchor; expanded to 1514-1914 to recover the 62 lost
 # Bruun citations on Christian IV-era Speciedaler / 17-18th c Krone /
 # Rigsbankdaler / Krone-era entries from V1).
-YEAR_FROM = 1514
+YEAR_FROM = 1481
 YEAR_TO = 1914
+# Lower bound 1481 = Hans's earliest documented coinage (Hans Goldgulden
+# Numista N#355730 «de facto 1481»). The project's mission-scope anchor
+# is 1514 (Christian II Lovkompleks), but the Nobelfod and reichsdukatenfuss
+# Phase pre-I genuinely extend back to 1481 — Hans Nobel 1496, Hans
+# Goldgulden 1481-1513 et al. are documented Hans-era types kept in
+# V2 nobel_fod / reichsdukatenfuss. Bruun catalogue carries authoritative
+# specimen attestations for these (Bruun-3831 Hans Nobel, Bruun-3840
+# Hans Goldgulden) — must enter seed for cross-source attestation parity.
+# Earlier than 1481 (Erik VII, Christopher III, true medieval) remains OOS.
 
 # Map Bruun ref-key to project catalog field. Keys NOT present in
 # `CatalogRefs` schema (lott, delzanno, sm, hagander, appelgren,
