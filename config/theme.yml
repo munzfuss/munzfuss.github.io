@@ -136,15 +136,17 @@ timeline_bars:
   # since the differentiation was visual noise rather than information.
   # Tariff-silver families (krm — Krone-Mønt) stay in a distinct hue
   # family below so they're visually separable from pure-silver bars.
-  # `from_light` = #7c8894 — cool silver tone inheriting the dark-theme
-  # hue family (from: #92a0ae) but darkened to ~85% for sufficient
-  # contrast against cream paper. Previously was a pure neutral #707070
-  # which read as «sterile grey» rather than «silver» on light themes.
-  rt:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#7c8894" }  # 9-Thaler-Fuß    (25,98 g fein)
-  si:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#7c8894" }  # 9¼-Thaler-Fuß   (25,28 g fein) — canonical Speciedaler
-  kr:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#7c8894" }  # 11⅓-Thaler-Fuß  (20,63 g fein)
-  vt:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#7c8894" }  # 30-Thaler-Fuß   (16,67 g fein) — Vereinsthaler
-  rb:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#7c8894" }  # 18½-Thaler-Fuß  (12,64 g fein) — Rigsbankdaler
+  # `from_light` = #92a0ae — same value as the dark-theme `from` colour.
+  # Earlier attempts darkened it to #7c8894 (cool steel) for stronger
+  # cream-paper contrast, but the over-cooled steel read as «winter
+  # grey» rather than «silver». Using the dark-theme cool-silver hue
+  # directly: still cool enough to separate from gold/tariff bars,
+  # but with the same luminance band the user already accepts on dark.
+  rt:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#92a0ae" }  # 9-Thaler-Fuß    (25,98 g fein)
+  si:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#92a0ae" }  # 9¼-Thaler-Fuß   (25,28 g fein) — canonical Speciedaler
+  kr:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#92a0ae" }  # 11⅓-Thaler-Fuß  (20,63 g fein)
+  vt:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#92a0ae" }  # 30-Thaler-Fuß   (16,67 g fein) — Vereinsthaler
+  rb:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#92a0ae" }  # 18½-Thaler-Fuß  (12,64 g fein) — Rigsbankdaler
   sh:  { from: "#5a4d6d", to: "#8575b0" }
   # Krone-Mønt-Familie. `from_light` = #3a78b8 — clear sky-blue tone
   # for the light themes, sourced to push the tariff-silver bars away
