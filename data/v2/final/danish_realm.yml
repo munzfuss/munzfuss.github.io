@@ -18375,11 +18375,24 @@ coins:
 - fuss: guldkrone
   phase: pre-I
   kind: kurant
-  fraction: '1'
+  fraction: '1/2'
   nominal: Gold Krone
   ruler: Christian IV.
   issuing_entity: danish_realm
   id: km-73-chr-iv-1619
+  _curation_holds:
+    fraction: 'Christian IV ↔ Frederik III nomenclature shift per Hede 1957
+      «Frederik III''s guldkroner» NNUM, footnote (1): «Betegnelsen guldkrone
+      dækker under Frederik III den mønt, Christian IV kaldte 2 guldkrone»
+      (https://www.danskmoent.dk/artikler/f3guldkr.htm). The project anchors
+      guldkrone.fractions on Frederik III''s definition (fractions["1"] =
+      5,996 g rau). Christian IV''s own «1 Guldkrone» face value (Hede 26,
+      ~3 g rau, 0,917 fein) is physically the ½ Guldkrone under Frederik III''s
+      later unit. fraction="1/2" → physical Soll 2,998 g rau / 2,749 g fein,
+      Δ ≈ ±1% within Remedium (production deviation, semantically meaningful).
+      Do NOT regen to fraction="1": that would lookup Frederik III''s canonical
+      6 g Soll against a 3 g specimen → Δ -50% category error (face nomenclature
+      vs Frederik-III-anchored Soll).'
   year_first: 1619
   year_last: 1619
   year_label: '1619'
@@ -38725,10 +38738,22 @@ coins:
   phase: pre-I
   kind: kurant
   nominal: 1 Guldkrone
-  fraction: '1'
+  fraction: '1/2'
   ruler: Christian IV.
   issuing_entity: danish_realm
   id: unified-dk-hede-c4h26
+  _curation_holds:
+    fraction: 'Christian IV ↔ Frederik III nomenclature shift per Hede 1957
+      «Frederik III''s guldkroner» NNUM, footnote (1): «Betegnelsen guldkrone
+      dækker under Frederik III den mønt, Christian IV kaldte 2 guldkrone»
+      (https://www.danskmoent.dk/artikler/f3guldkr.htm). The project anchors
+      guldkrone.fractions on Frederik III''s definition (fractions["1"] =
+      5,996 g rau). Christian IV''s own «1 Guldkrone» face value (Hede 26,
+      ~3 g rau, 0,917 fein) is physically the ½ Guldkrone under Frederik III''s
+      later unit. fraction="1/2" → physical Soll 2,998 g rau / 2,749 g fein,
+      Δ ≈ ±1% within Remedium (production deviation, semantically meaningful).
+      Do NOT regen to fraction="1": that would lookup Frederik III''s canonical
+      6 g Soll against a 3 g specimen → Δ -50% category error.'
   year_first: 1619
   year_last: 1619
   year_label: '1619'
@@ -57723,9 +57748,20 @@ coins:
   phase: I
   kind: scheide
   nominal: 1 Krone
+  fraction: '1/2'
   ruler: Frederick III
   issuing_entity: danish_realm
   id: unified-dk-tid-163671
+  _curation_holds:
+    fraction: 'Physical-Soll alignment: ucoin tid-163671 (Frederik III KM-40,
+      Glückstadt 1657-1660) attests weight 3,0 g rau / 0,917 fein. This matches
+      guldkrone.fractions["1/2"] (Soll 2,998 g rau / 2,749 g fein, Δ ≈ +0,1%
+      within Remedium), NOT fractions["1"] (Soll 5,996 g, would yield Δ -50%
+      category error). The ucoin source labels this entry «1 Krone» which is
+      ucoin''s own terminology; physically the specimen is a ½ Guldkrone in
+      Frederik III''s metric definition. Do NOT regen to fraction="1": physical
+      mass governs the fraction lookup so Δ expresses production deviation,
+      not nomenclature mismatch.'
   year_first: 1657
   year_last: 1660
   year_ranges:
@@ -57763,7 +57799,6 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   composed_of:
   - unified-dk-tid-163671
-  fraction: '1'
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
