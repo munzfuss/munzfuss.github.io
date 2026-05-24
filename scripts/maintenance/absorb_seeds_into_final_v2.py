@@ -306,8 +306,16 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
             else:
                 out["catalog"][k] = filtered
 
-    # Sources union
-    sources = _collect_sources(members, skip_first_list=True)
+    # Sources union — preserve curator-added entries on the foundation
+    # alongside fresh seed-source citations, deduplicated by URL (single-
+    # page hosts) or by (url, ref, type) (multi-record sources like the
+    # Bruun PDF catalogues). The earlier `skip_first_list=True` dropped
+    # the foundation's entire sources list to avoid phantom citations
+    # from prior absorb runs — but it also dropped V1-curator-added
+    # Numista / ucoin / auction refs that have no seed equivalent.
+    # Phantom-citation persistence is a smaller issue than curator data
+    # loss; dedup ensures legitimate duplicates collapse anyway.
+    sources = _collect_sources(members)
     if sources:
         out["sources"] = sources
 
