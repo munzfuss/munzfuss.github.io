@@ -1092,8 +1092,20 @@ h2[style] {
    enough that the 0.15 step reads as a perceptible shade change.
    Noir keeps the original bright `#fcd34d` × 0.1667 — that
    combination already pops on the dark track. */
+/* `--layer-bg` is overridden HERE (in addition to `background`) so the
+   fade-end pseudo (`tl-bar-layer-fade-end::before`) picks up the SAME
+   bronze colour. Without this, the ::before falls back to the generated
+   dark-olive `--layer-bg` from the upstream `from`-darkening rule —
+   producing a faded-tail darker than the cream paper because plus-lighter
+   contributes too little on light backgrounds to lift dark olive above
+   the bg luminance. Aligning both code paths to the bronze keeps the
+   solo-tail visually consistent with the solid overlap zone, just with
+   the mask-gradient fading toward transparent. */
 [data-theme="v1"] .tl-bar-layer.g,
-[data-theme="v2"] .tl-bar-layer.g { background: rgba(184, 144, 47, 0.15); }
+[data-theme="v2"] .tl-bar-layer.g {
+  --layer-bg: rgba(184, 144, 47, 0.15);
+  background: var(--layer-bg);
+}
 
 /* --- Per-year mintage markers ------------------------------------------- */
 /* Each `.tl-coin-year` rect marks one consecutive run of years where at
