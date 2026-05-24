@@ -728,6 +728,30 @@ This returns ONLY the slugs we need for the current batch, keeping the JSON smal
 
 ### 13.3 Bruun PDFs (Stack's Bowers L. E. Bruun Collection)
 
+**Bruun parser pre-1500 year theft via Beskrivelsen + dashed catalog refs (2026-05-24).**
+Three linked bugs in `scripts/bruun_parser/02_parse_lots.py` left every pre-1500 lot mis-dated. Discovered via `unified-dk-bruun-3831` (Hans Nobel) sitting under `seed_unsorted` with year_first=1791 despite meta_line clearly stating «<i>DENMARK. Noble, 1496. Malmö or Copenhagen Mint. Hans.</i>».
+*Bug A — YEAR_RE 1500-floor.* Pattern `r"\b(1[5-9]\d{2}|20\d{2})\b"` started at 1500. Hans Nobel 1496, Hans Goldgulden 1481-1497, Erik VII Witten 1400, Christopher III 1440 etc. were silently ignored — parser fell through to whatever 1500+ year appeared next in body.
+*Bug B — no meta_line priority.* Year extraction took FIRST match in `body_match[:600]` without checking meta_line first. Body typically carries catalog refs (Beskrivelsen 1791, Bruun-1898, edition years) — any of these could outrun the coin's actual year.
+*Bug C — body fallback doesn't skip dashed catalog refs.* Even when meta-yearless, body fallback would capture «Dav-1311», «KM-543», «Bruun-3831» as if they were years.
+*Bug D (builder-side mirror).* `scripts/maintenance/build_bruun_denmark_seed.py::parse_year` carried the same 1500-floor as defensive fallback regex, plus a pre-existing greedy `[01]?[01]\d\d` ND-medieval gate that false-positive-rejected «ND (1440)» / «ND (1496)» / «ND (1396)» because `[01]?` + `[01]` backtracking matched ANY 1-prefixed 4-digit.
+*Diagnosis.* 15 pre-1500 lots affected across part1/2/3; 13 with confirmed wrong year, 2 with None. All in-scope coins now correctly classified to `nobel_fod` (Hans Nobel) / `reichsdukatenfuss` pre-I (Hans Goldgulden) etc.
+*Fix.* Extracted `extract_year(meta_line, body_match)` standalone function. Widened YEAR_RE to `1[1-9]\d{2}` (1100+, full Scandinavian medieval — builder scope filter handles V2 truncation). Meta-line priority first, body fallback second. Body fallback skips matches preceded by `<Alpha>-`. Builder regex widened to `1[3-9]\d{2}`. ND-medieval gate tightened to `1[012]\d{2}` (only true 10xx/11xx/12xx). Comprehensive test suite (28 parser + 14 builder cases, real Bruun cache lots). — commits `70383cc` + `c230f7b` + cache regen `6e8d6b95`.
+
+**Cross-source merger: `friedberg` ↔ `fr` catalog-key synonym collision (2026-05-24).**
+Numista API publishes Friedberg under `cat.fr`; Bruun PDF parser emits the same Friedberg under `cat.friedberg`. `_catalog_refs` carried both verbatim → zero shared keys → `primary["catalog"] = None` → match_pair couldn't merge. Same shape for `dav` (Numista) ↔ `davenport` (Bruun).
+*Diagnosis.* Verified via match_pair simulation on Bruun-3831 vs Numista-420401: even with year-fix applied, refs `{friedberg:3, bruun_collection_id:3831, sieg:12, schou:2, galster:24}` vs `{fr:3, numista:420401}` had zero overlap.
+*Fix.* Added `CATALOG_KEY_SYNONYMS = {friedberg → fr, davenport → dav}` mapping in `_catalog_refs`; when both synonyms attest the same key with different values, values are unioned per §«Data-accumulation principle». Tests: 15 cases. — commit `9076f65`.
+
+**Nominal normalisation: «X» = «1 X» quantifier collision (2026-05-24).**
+Bruun parser extracts denominations from meta_line without numeric prefix («Noble», «Speciedaler»). Numista API publishes with explicit «1 » prefix («1 Noble», «1 Speciedaler»). Pre-fix `normalise_nominal` handled cross-language synonyms (Noble↔Nobel, Thaler↔Daler) but NOT this implicit-one quantifier gap → `primary["nominal"] = False` → blocked merges.
+*Fix.* Append `re.sub(r"^1\s+", "", s)` AFTER synonym substitution so «1 Rose Noble» → «1 rosenobel» → «rosenobel» works. Fractions «½ Ducat», multi-digit «10 Kroner», other quantities «2 Nobles» / «3 Nobles» (different denomination weights) stay distinct. Tests: 25 cases including real-world Bruun vs Numista pairs. — commit `d98fd77`.
+
+**Ruler cross-language synonyms missing (Hans↔John I, Erik↔Eric, Margaret↔Margrethe) + trailing-dot bug (2026-05-24).**
+Bruun writes «Hans» (Danish), Numista writes «John I (Hans I)» (English with Danish parenthetical). `_normalise_ruler` had `frederick → frederik` but no Hans↔John I mapping → primary["ruler"]=False → match_pair returned no_match. Parallel pre-existing bug: trailing-dot strip `re.sub(r"\.+$", "")` ran BEFORE whitespace strip, leaving «Christian IV.» with the dot intact when input was «Christian IV. (1588-1648)».
+*Fix.* Added Hans/John I/II → hans, Eric → erik, Margaret → margrethe substitutions. Combined trailing-strip `[\s.]+$`. Tests: 17 cases. — commit `94ee8f8`.
+
+**End-to-end verification.** `unified-dk-bruun-3831` (Hans Nobel) now in `nobel_fod` Phase I with `composed_of: [dk-bruun-3831, dk-numista-420401]`, multi-specimen weight `[14.67g (bruun), 14.75g (numista)]`, dual source citation. Pre-fix: sat in `seed_unsorted` with year 1791, isolated from Numista cluster. — commit `b753e40`.
+
 **Bruun cataloguer copies adjacent KM-number from sister-lot (2026-05-10).**
 2-Speciedaler 1663 (Frederik III) `body_excerpt` from `scripts/cache/bruun/lots/part4.json`: «<i>Dav-3547; KM-240; Hede-62A; Sieg-80.1</i>». The actual KM# for the 2-Speciedaler 1663 is **KM-241**; KM-240 is the 1-Speciedaler of the same year. Our parser captured the catalogue's printed text faithfully — the cataloguer at Stack's Bowers cited the 1-Speciedaler's KM number on the 2-Speciedaler lot, likely an «adjacent KM» editorial mistake, OR Bruun used an older Krause edition with different numbering.
 *Diagnosis.* Bruun's specimen-level data (weight, grade, mintmaster, photo) is highly reliable. Bruun's catalogue-cross-references (KM#, Hede#, Sieg#) are mostly reliable but **NOT verbatim-authoritative** — cross-check against Numista + Hede before adopting Bruun-quoted catalogue numbers as canonical. Our initial reaction («it's a parser typo / OCR artefact») was a §0b violation — we wrote that as a confident claim before opening the cache file to check. — commit `37f5b6d`.
