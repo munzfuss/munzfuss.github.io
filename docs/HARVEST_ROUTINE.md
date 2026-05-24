@@ -373,46 +373,97 @@ For each anomaly, also fill `detail` (free-text), `action_taken` (what the routi
 ```bash
 .venv/bin/python <<'EOF'
 import json, pathlib
-num_audit = json.loads(pathlib.Path('scripts/cache/numista/_BO6_audit_2026-05-20.json').read_text())
 num_cache = pathlib.Path('scripts/cache/numista')
+bo6 = json.loads(pathlib.Path('scripts/cache/numista/_BO6_audit_2026-05-20.json').read_text())
+bo7 = json.loads(pathlib.Path('scripts/cache/numista/_BO7_audit_2026-05-24.json').read_text())
 
-# Buckets are at audit['in_scope_buckets'][country][page]
-# Each carries: in_scope_total + (in_scope_nids | gap_nids)
+# Walk priorities in order across BOTH manifests. First bucket with
+# uncached NIDs wins. BO.6 priorities first (DK/NO/SH), then BO.7
+# (German states). Smallest-uncached-first within each manifest to
+# maximise closure rate.
 priorities = [
-    ('denmark', 'p0_pre_lovkompleks', 20),  # NEW pri-1 2026-05-21: standards-continuity context, [1396, 1513)
-    ('norway', 'p2', 88),     # 2nd: continue NO p2 (post-cleanup; was 193 before pre-1513 OOS reclassify)
-    ('norway', 'p4', 78),     # 3rd: small bucket, easy closure
-    ('norway', 'p3', 200),    # 4th: largest pool, save for last
+    # (manifest_label, audit, path_into_in_scope_buckets)
+    ('BO.6', bo6, ('denmark', 'p0_pre_lovkompleks')),  # standards-continuity context [1396, 1513)
+    ('BO.6', bo6, ('norway', 'p2')),                    # post-OOS-cleanup pool
+    ('BO.6', bo6, ('norway', 'p4')),                    # small bucket, easy closure
+    ('BO.6', bo6, ('norway', 'p3')),                    # largest BO.6 pool
+    # BO.7 German states (added 2026-05-24) — small first for fast closures
+    ('BO.7', bo7, ('saxe_lauenburg_duchy',)),           # 17
+    ('BO.7', bo7, ('brunswick_calenberg',)),            # 13
+    ('BO.7', bo7, ('brunswick_grubenhagen',)),          # 15
+    ('BO.7', bo7, ('bremen_archbishopric',)),           # 21
+    ('BO.7', bo7, ('oldenburg_grand_duchy',)),          # 40
+    ('BO.7', bo7, ('osnabruck_bishopric',)),            # 60
+    ('BO.7', bo7, ('oldenburg_county',)),               # 61
+    ('BO.7', bo7, ('brunswick_wolfenbuttel_duchy',)),   # 75
+    ('BO.7', bo7, ('brunswick_luneburg_celle',)),       # 117
+    ('BO.7', bo7, ('brunswick_luneburg_calenberg',)),   # 118
+    ('BO.7', bo7, ('bremen_free_imperial_city',)),      # 118
+    ('BO.7', bo7, ('lubeck_free_hanseatic_city',)),     # 129
+    ('BO.7', bo7, ('hessen_kassel_landgraviate',)),     # 256
+    ('BO.7', bo7, ('hessen_kassel_electorate',)),       # 282
+    ('BO.7', bo7, ('hamburg_hanseatic_city',)),         # 303
+    ('BO.7', bo7, ('brunswick_wolfenbuttel_principality',)),  # 753, save for last
 ]
-for country, page, _ in priorities:
-    info = num_audit['in_scope_buckets'][country][page]
-    nids = info.get('in_scope_nids') or info.get('gap_nids') or []
+for label, audit, path in priorities:
+    cur = audit['in_scope_buckets']
+    for k in path:
+        cur = cur.get(k) or {}
+    nids = cur.get('in_scope_nids') or cur.get('gap_nids') or []
+    if not nids:
+        continue
     uncached = [n for n in nids if not (num_cache/f'{n}.json').exists()]
     if uncached:
-        print(f'>>> Next Numista batch: {country}/{page}, {len(uncached)} uncached, take first 5:')
+        bucket_name = '/'.join(path)
+        print(f'>>> Next Numista batch: {label} {bucket_name}, {len(uncached)} uncached, take first 5:')
         print(uncached[:5])
         break
 else:
-    print('!!! All Numista buckets closed — switch strategy or stop')
+    print('!!! All Numista buckets closed (BO.6 + BO.7) — switch strategy or stop')
 EOF
 ```
 
-The script picks the first priority with uncached NIDs and prints the next 5 to fetch.
+The script walks BO.6 first, then BO.7, picks the first priority with uncached NIDs, and prints the next 5 to fetch. When a manifest is fully closed (every bucket in its priority list at 100% cached), the loop falls through to the next manifest. The `else` clause on the for-loop fires only when BOTH manifests are exhausted.
 
 ### §2.2. Numista priority order
 
-| Priority | Bucket | Era | Strategy |
-|---|---|---|---|
-| **1** | **DK p0_pre_lovkompleks 1396-1513** | **Erik of Pommern → John I (Hans)** | **Standards-continuity context — user-introduced 2026-05-21, ~4 batches to close (20 NIDs)** |
-| 2 | NO p2 1513-1657 | C2 Oslo → F3 early Speciedaler | Continue from batch N (post-OOS cleanup: 88 in-scope, ~27 cached) |
-| 3 | NO p4 1697-1814 | C5 late → F6 1813 | Small (78 NIDs), close it next |
-| 4 | NO p3 1657-1697 | F3 mid → C5 Kongsberg | Largest pool (200), interleave |
+**Manifest A — BO.6 (`_BO6_audit_2026-05-20.json`): Denmark + Norway + SH cluster.** Status as of 2026-05-24: all DK/NO buckets at 100 % (✅ CLOSED). SH cluster: 67/67 (✅ CLOSED).
 
-When a bucket cached count == in_scope_total, move to the next priority.
+| Priority | Bucket | Era | Status |
+|---|---|---|---|
+| 1 | DK p0_pre_lovkompleks 1396-1513 | Erik of Pommern → John I (Hans) | ✅ **CLOSED** (20/20) |
+| 2 | NO p2 1513-1657 | C2 Oslo → F3 early Speciedaler | ✅ **CLOSED** (88/88) |
+| 3 | NO p4 1697-1814 | C5 late → F6 1813 | ✅ **CLOSED** (78/78) |
+| 4 | NO p3 1657-1697 | F3 mid → C5 Kongsberg | ✅ **CLOSED** (200/200) |
+| — | DK p1/p2/p3/p4 + SH cluster (older priorities) | — | ✅ **CLOSED** |
+
+**Manifest B — BO.7 (`_BO7_audit_2026-05-24.json`): German states (Hanseatic cities + Welf territories + Hesse-Kassel + Oldenburg + Saxe-Lauenburg + Osnabrück + Bremen).** All German lands inside the mission window 1559-1914. Added 2026-05-24. Strategy: smallest-uncached-first to maximise per-batch closure rate; large pools (Hessen-Kassel, Hamburg, Brunswick-Wolfenbüttel principality) come last.
+
+| Priority | Bucket | Era | In-scope NIDs | Strategy |
+|---|---|---|---:|---|
+| 5 | saxe_lauenburg_duchy | 1605-1815 (Saxe-Lauenburg) | 17 | First to close after BO.6 — small bucket |
+| 6 | brunswick_calenberg | early Calenberg-Hannover | 13 | Small, single-batch closure |
+| 7 | brunswick_grubenhagen | Brunswick-Grubenhagen line | 15 | Small, ~3 batches |
+| 8 | bremen_archbishopric | Bremen ecclesiastical | 21 | ~5 batches |
+| 9 | oldenburg_grand_duchy | post-1815 Oldenburg | 40 | ~8 batches |
+| 10 | osnabruck_bishopric | Osnabrück Hochstift | 60 | ~12 batches |
+| 11 | oldenburg_county | pre-1815 Oldenburg | 61 | ~13 batches |
+| 12 | brunswick_wolfenbuttel_duchy | Wolfenbüttel pre-principality | 75 | ~15 batches |
+| 13 | brunswick_luneburg_celle | Brunswick-Lüneburg-Celle line | 117 | ~24 batches |
+| 14 | brunswick_luneburg_calenberg | Brunswick-Lüneburg-Calenberg | 118 | ~24 batches |
+| 15 | bremen_free_imperial_city | Bremen civic | 118 | ~24 batches |
+| 16 | lubeck_free_hanseatic_city | Lübeck civic | 129 | ~26 batches |
+| 17 | hessen_kassel_landgraviate | Hesse-Kassel pre-1803 | 256 | ~52 batches |
+| 18 | hessen_kassel_electorate | Hesse-Kassel 1803-1866 | 282 | ~57 batches |
+| 19 | hamburg_hanseatic_city | Hamburg civic | 303 | ~61 batches |
+| 20 | brunswick_wolfenbuttel_principality | Wolfenbüttel post-1735 | 753 | Largest BO.7 pool — save for last (~151 batches) |
+| — | bremen_verden_swedish | Swedish Bremen-Verden | 13 | ✅ **CLOSED** (13/13) |
+
+When a bucket cached count == in_scope_total, the picker in §2.1 automatically moves to the next priority. Cron runs do not need manual intervention.
+
+**Special case — when DK p1/p2/p3/p4 or SH cluster have new gap NIDs** (e.g. user added URLs to a manifest), prioritise those FIRST. Re-read `_BO6_audit_2026-05-20.json` + `_BO6_gaps_manifest_2026-05-19.json` and compare against actual cache contents before defaulting to BO.7 buckets. Adjust the §2.1 picker temporarily by inserting the new BO.6 entries above the BO.7 block, OR set `priority_override` in `_harvest_handoff.json` (per §1.5.1).
 
 **Note on `p0_pre_lovkompleks`** — this bucket holds Danish coinage from Erik of Pommern (1396-1439) through Hans / John I (1481-1513) — strictly speaking outside the project's 1514 mission anchor, but kept in scope as **standards-continuity context** for understanding what immediately preceded the Christian II 1514 four-act Lovkompleks. The 20 NIDs were user-curated from the Numista DK catalogue page 1 listing (`?e=danemark&st=1-2-3-47-154-5-54&cat=y&p=1&q=200&s=c&o=y`, sorted year ASC). Defensive sampling §7.5 does NOT need to fire here — every NID was hand-verified against the listing-page text before being added to `in_scope_nids` (no false-positive risk).
-
-**Special case — when DK p1/p2/p3/p4 or SH cluster have new gap NIDs** (e.g. user added URLs to a manifest), prioritise those FIRST. Re-read `_BO6_audit_2026-05-20.json` + `_BO6_gaps_manifest_2026-05-19.json` and compare against actual cache contents before defaulting to NO buckets.
 
 ### §2.3. Fetch each NID
 
@@ -675,54 +726,79 @@ Other sessions may have left modifications in:
 
 ```bash
 .venv/bin/python <<'EOF'
-import json, pathlib, re
+import json, pathlib
+uc = pathlib.Path('scripts/cache/ucoin')
 audit2 = json.loads(pathlib.Path('scripts/cache/ucoin/_BR_audit-2_2026-05-20.json').read_text())
 audit3 = json.loads(pathlib.Path('scripts/cache/ucoin/_BR_audit-3_2026-05-22_hanseatic.json').read_text())
-url_index = json.loads(pathlib.Path('scripts/cache/ucoin/_url_index.json').read_text())
-uc = pathlib.Path('scripts/cache/ucoin')
+audit4 = json.loads(pathlib.Path('scripts/cache/ucoin/_BR_audit-4_2026-05-24.json').read_text())
 
-# DK-period priorities (audit-2-tracked).
-dk_priorities = [
-    'DK_p1115_Rigsdaler_1699-1749',
-    'DK_p846_Rigsdaler_1750-1812',
-    'DK_p647_Rigsbankdaler_1813-1854',
-    'DK_p1147_Rigsdaler_1625-1699',
+# Walk priorities across THREE manifests in defined order. First bucket
+# with uncached TIDs wins. BR-audit-2 (DK periods) → BR-audit-3
+# (Hanseatic) → BR-audit-4 (German states). Smallest-first within each
+# manifest to maximise closure rate.
+def _get_audit2(key):
+    v = audit2['NEW_GAPS_DISCOVERED'].get(key) or {}
+    return v.get('gap_tids') or []
+
+def _get_audit3(key):
+    return (audit3['buckets'].get(key) or {}).get('gap_tids') or []
+
+def _get_audit4(key):
+    return (audit4['buckets'].get(key) or {}).get('gap_tids') or []
+
+priorities = [
+    # (manifest_label, getter, bucket_key)
+    # BR-audit-2 — DK periods
+    ('BR-2', _get_audit2, 'DK_p1115_Rigsdaler_1699-1749'),
+    ('BR-2', _get_audit2, 'DK_p846_Rigsdaler_1750-1812'),
+    ('BR-2', _get_audit2, 'DK_p647_Rigsbankdaler_1813-1854'),
+    ('BR-2', _get_audit2, 'DK_p1147_Rigsdaler_1625-1699'),
+    # BR-audit-3 — Hanseatic Hamburg + Lübeck (audit-3 added 2026-05-22)
+    ('BR-3', _get_audit3, 'hamburg_p904'),                # 34 TIDs, 1713-1772
+    ('BR-3', _get_audit3, 'hamburg_p903'),                # 45 TIDs, 1773-1872
+    ('BR-3', _get_audit3, 'german_empire_p468_hamburg'),  # 12 TIDs, 1873-1914
+    ('BR-3', _get_audit3, 'lubeck_p1205'),                # 45 TIDs, 1620-1716
+    ('BR-3', _get_audit3, 'lubeck_p1204'),                # 36 TIDs, 1717-1797
+    ('BR-3', _get_audit3, 'german_empire_p469_lubeck'),   #  6 TIDs, 1901-1914
+    # BR-audit-4 — German states (audit-4 added 2026-05-24) — smallest first
+    ('BR-4', _get_audit4, 'oldenburg_p658'),               #   4 TIDs
+    ('BR-4', _get_audit4, 'bremen_p1194'),                 #  12
+    ('BR-4', _get_audit4, 'oldenburg_p976'),               #  35
+    ('BR-4', _get_audit4, 'bremen_p3067'),                 #  39
+    ('BR-4', _get_audit4, 'brunswick_luneburg_p1088'),     #  46
+    ('BR-4', _get_audit4, 'brunswick_wolfenbuttel_p1146'), #  47
+    ('BR-4', _get_audit4, 'brunswick_wolfenbuttel_p1154'), #  47
+    ('BR-4', _get_audit4, 'brunswick_wolfenbuttel_p3283'), #  55
+    ('BR-4', _get_audit4, 'osnabruck_p2988'),              #  55
+    ('BR-4', _get_audit4, 'osnabruck_p3057'),              #  55
+    ('BR-4', _get_audit4, 'brunswick_luneburg_p1082'),     #  61
+    ('BR-4', _get_audit4, 'hesse_kassel_p899'),            #  62
+    ('BR-4', _get_audit4, 'brunswick_p905'),               #  77
+    ('BR-4', _get_audit4, 'osnabruck_p2989'),              #  77
+    ('BR-4', _get_audit4, 'bremen_p1195'),                 #  93
+    ('BR-4', _get_audit4, 'brunswick_luneburg_p1087'),     #  95
+    ('BR-4', _get_audit4, 'brunswick_wolfenbuttel_p1145'), # 108
+    ('BR-4', _get_audit4, 'brunswick_luneburg_p1089'),     # 122
+    ('BR-4', _get_audit4, 'brunswick_wolfenbuttel_p1153'), # 124
+    ('BR-4', _get_audit4, 'hesse_kassel_p1292'),           # 130
+    ('BR-4', _get_audit4, 'brunswick_wolfenbuttel_p3284'), # 141
+    ('BR-4', _get_audit4, 'brunswick_luneburg_p1083'),     # 159
+    ('BR-4', _get_audit4, 'hesse_kassel_p2945'),           # 220, largest BR-4 pool
 ]
-for k in dk_priorities:
-    v = audit2['NEW_GAPS_DISCOVERED'].get(k) or {}
-    if 'gap_tids' in v:
-        uncached = [t for t in v['gap_tids'] if not (uc/f'{t}.json').exists()]
-    else:
-        # p647 has no gap_tids list — enumerate via listing page once first.
-        uncached = []
+for label, getter, key in priorities:
+    tids = getter(key)
+    if not tids:
+        continue
+    uncached = [t for t in tids if not (uc/f'{t}.json').exists()]
     if uncached:
-        print(f'>>> Next ucoin batch: {k}, {len(uncached)} uncached, take first 5:')
+        print(f'>>> Next ucoin batch: {label} {key}, {len(uncached)}/{len(tids)} uncached, take first 5:')
         print(uncached[:5])
         break
 else:
-    # All DK-period priorities are closed. Fall through to the
-    # audit-3 Hanseatic buckets (per 2026-05-22 enumeration).
-    hanseatic_priority = [
-        'hamburg_p904',                # 34 TIDs, 1713-1772
-        'hamburg_p903',                # 45 TIDs, 1773-1872
-        'german_empire_p468_hamburg',  # 12 TIDs, 1873-1914 Reichsgoldmünzfuß
-        'lubeck_p1205',                # 45 TIDs, 1620-1716
-        'lubeck_p1204',                # 36 TIDs, 1717-1797
-        'german_empire_p469_lubeck',   #  6 TIDs, 1901-1914 Reichsgoldmünzfuß
-    ]
-    for bkey in hanseatic_priority:
-        b = audit3['buckets'].get(bkey) or {}
-        tids = b.get('gap_tids') or []
-        uncached = [t for t in tids if not (uc/f'{t}.json').exists()]
-        if uncached:
-            print(f'>>> Next ucoin batch: ucoin/{bkey}, {len(uncached)}/{len(tids)} uncached, take first 5:')
-            print(uncached[:5])
-            break
-    else:
-        print('!!! ALL ucoin priorities CLOSED — declare harvest complete OR add new buckets to §4.2.')
-        print('!!! Known unresolvable-via-ucoin gaps (paper-source needed):')
-        for k, v in audit3['in_scope_gaps_unresolvable_via_ucoin'].items():
-            print(f'!!!   {k}: {v}')
+    print('!!! ALL ucoin priorities CLOSED (BR-2 + BR-3 + BR-4) — declare harvest complete OR add new buckets to §4.2.')
+    print('!!! Known unresolvable-via-ucoin gaps (paper-source needed):')
+    for k, v in audit3.get('in_scope_gaps_unresolvable_via_ucoin', {}).items():
+        print(f'!!!   {k}: {v}')
 EOF
 ```
 
@@ -760,6 +836,42 @@ Hanseatic priorities (audit-3 tracked) — added 2026-05-22:
 For priorities 1-4, the `gap_tids` lists in audit-2 manifest are authoritative — pick first 5 uncached, fetch, save.
 
 For priorities 5-10, the `gap_tids` lists in audit-3 manifest are authoritative — same shape, same harvest logic. The `_url_index.json` already carries every enumerated TID's URL (auto-populated when audit-3 was written), so no per-period listing-page re-enumeration is needed before the cron job fetches.
+
+**Manifest C — BR-audit-4 (`_BR_audit-4_2026-05-24.json`): German states (Bremen + Brunswick lines + Hesse-Kassel + Oldenburg + Osnabrück + Lauenburg).** All German lands inside the mission window 1559-1914. Added 2026-05-24. Smallest-first strategy.
+
+| Priority | Bucket key | TIDs | Scope |
+|---|---|---:|---|
+| 11 | `oldenburg_p658` | 4 | Oldenburg county pre-1815 — single closure batch |
+| 12 | `bremen_p1194` | 12 | Bremen civic small bucket |
+| 13 | `oldenburg_p976` | 35 | Oldenburg county / Grand Duchy slice |
+| 14 | `bremen_p3067` | 39 | Bremen civic |
+| 15 | `brunswick_luneburg_p1088` | 46 | Brunswick-Lüneburg slice |
+| 16 | `brunswick_wolfenbuttel_p1146` | 47 | Wolfenbüttel slice |
+| 17 | `brunswick_wolfenbuttel_p1154` | 47 | Wolfenbüttel slice |
+| 18 | `brunswick_wolfenbuttel_p3283` | 55 | Wolfenbüttel slice |
+| 19 | `osnabruck_p2988` | 55 | Osnabrück Hochstift |
+| 20 | `osnabruck_p3057` | 55 | Osnabrück Hochstift |
+| 21 | `brunswick_luneburg_p1082` | 61 | Brunswick-Lüneburg slice |
+| 22 | `hesse_kassel_p899` | 62 | Hesse-Kassel landgraviate |
+| 23 | `brunswick_p905` | 77 | Brunswick (early/general) |
+| 24 | `osnabruck_p2989` | 77 | Osnabrück Hochstift |
+| 25 | `bremen_p1195` | 93 | Bremen civic |
+| 26 | `brunswick_luneburg_p1087` | 95 | Brunswick-Lüneburg slice |
+| 27 | `brunswick_wolfenbuttel_p1145` | 108 | Wolfenbüttel slice |
+| 28 | `brunswick_luneburg_p1089` | 122 | Brunswick-Lüneburg slice |
+| 29 | `brunswick_wolfenbuttel_p1153` | 124 | Wolfenbüttel slice |
+| 30 | `hesse_kassel_p1292` | 130 | Hesse-Kassel electorate |
+| 31 | `brunswick_wolfenbuttel_p3284` | 141 | Wolfenbüttel slice |
+| 32 | `brunswick_luneburg_p1083` | 159 | Brunswick-Lüneburg slice |
+| 33 | `hesse_kassel_p2945` | 220 | Hesse-Kassel largest pool — save for last |
+| — | `bremen_p655` | 4 | ✅ **CLOSED** (4/4) |
+| — | `brunswick_p654` | 1 | ✅ **CLOSED** (1/1) |
+| — | `lauenburg_p1788` | 12 | ✅ **CLOSED** (12/12) |
+| — | `osnabruck_p3047` | 13 | ✅ **CLOSED** (13/13) — closed b105 (2026-05-24) |
+
+For priorities 11-33, the `gap_tids` lists in audit-4 manifest are authoritative — same harvest logic as audit-2 / audit-3 (listing-page slug fetch via §4.3, per-TID save via §4.3 C).
+
+The §4.1 picker walks BR-2 → BR-3 → BR-4 in priority order and picks the first bucket with uncached TIDs. Cron runs do not need manual intervention when one manifest fully closes.
 
 ### §4.3. ucoin URL pattern — MUST use slug-form
 
@@ -1134,14 +1246,128 @@ for i, (name, era, key) in enumerate(NUMISTA_BUCKETS, 1):
 
 gap = total_in_scope - total_cached
 pct = round(100 * total_cached / total_in_scope)
-print(f'| **TOTAL** | | | **{total_in_scope}** | **{total_cached}** | **{gap}** | **{pct}%** | **{fmt_delta(total_delta)}** | **{closed_count}/8 closed** |')
+print(f'| **TOTAL** | | | **{total_in_scope}** | **{total_cached}** | **{gap}** | **{pct}%** | **{fmt_delta(total_delta)}** | **{closed_count}/{len(NUMISTA_BUCKETS)} closed** |')
 
 if numista_unmatched_nids:
     print()
     print(f'> ⚠ NIDs not matched to any tracked bucket: {sorted(numista_unmatched_nids)} '
           '— check audit + gaps manifest; may be off-bucket or freshly-discovered scope.')
+
+# === Numista BO.7 — German states per-issuer (added 2026-05-24) ===
+print()
+print(f'### Numista BO.7 — per-issuer coverage (German states, post batch {NUMISTA_BATCH_LABEL})')
+print()
+print(f'| # | Issuer | Total | Cached | Gap | % | Δ batch {NUMISTA_BATCH_LABEL} | Status |')
+print('|---|---|---:|---:|---:|---:|---:|---|')
+
+bo7_audit = json.loads(pathlib.Path('scripts/cache/numista/_BO7_audit_2026-05-24.json').read_text())
+
+bo7_total_in_scope = bo7_total_cached = bo7_total_delta = 0
+bo7_closed = 0
+bo7_active = 0
+bo7_issuer_order = [
+    'saxe_lauenburg_duchy', 'brunswick_calenberg', 'brunswick_grubenhagen',
+    'bremen_archbishopric', 'bremen_verden_swedish', 'oldenburg_grand_duchy',
+    'osnabruck_bishopric', 'oldenburg_county', 'brunswick_wolfenbuttel_duchy',
+    'brunswick_luneburg_celle', 'brunswick_luneburg_calenberg',
+    'bremen_free_imperial_city', 'lubeck_free_hanseatic_city',
+    'hessen_kassel_landgraviate', 'hessen_kassel_electorate',
+    'hamburg_hanseatic_city', 'brunswick_wolfenbuttel_principality',
+]
+for i, issuer in enumerate(bo7_issuer_order, 1):
+    info = bo7_audit['in_scope_buckets'].get(issuer) or {}
+    nids = info.get('in_scope_nids') or info.get('gap_nids') or []
+    total = info.get('in_scope_total', len(nids))
+    if total == 0:
+        continue
+    bo7_active += 1
+    bucket_nids = set(nids)
+    cached = sum(1 for n in nids if (num_cache/f'{n}.json').exists())
+    delta = len(bucket_nids & nids_set)
+    numista_unmatched_nids -= bucket_nids
+    gap = total - cached
+    pct = round(100 * cached / total) if total else 0
+    status = '✅ CLOSED' if gap == 0 else ('⏳ untouched' if cached == 0 else '🔵 open')
+    if delta > 0 and gap == 0:
+        status = f'🎉 CLOSED! (batch {NUMISTA_BATCH_LABEL})'
+    elif delta > 0:
+        status = f'🔵 batch {NUMISTA_BATCH_LABEL} here'
+    if gap == 0: bo7_closed += 1
+    bo7_total_in_scope += total
+    bo7_total_cached += cached
+    bo7_total_delta += delta
+    print(f'| {i} | {issuer} | {total} | {cached} | {gap} | {pct}% | {fmt_delta(delta)} | {status} |')
+
+bo7_gap = bo7_total_in_scope - bo7_total_cached
+bo7_pct = round(100 * bo7_total_cached / bo7_total_in_scope) if bo7_total_in_scope else 0
+print(f'| **TOTAL** | | **{bo7_total_in_scope}** | **{bo7_total_cached}** | **{bo7_gap}** | **{bo7_pct}%** | **{fmt_delta(bo7_total_delta)}** | **{bo7_closed}/{bo7_active} closed** |')
+
+# === ucoin BR-audit-4 — German states per-bucket (added 2026-05-24) ===
+print()
+print(f'### ucoin BR-audit-4 — per-bucket coverage (German states, post batch {UCOIN_BATCH_LABEL})')
+print()
+print(f'| # | Bucket | Total | Cached | Gap | % | Δ b{UCOIN_BATCH_LABEL} | Status |')
+print('|---|---|---:|---:|---:|---:|---:|---|')
+
+br4_audit = json.loads(pathlib.Path('scripts/cache/ucoin/_BR_audit-4_2026-05-24.json').read_text())
+
+br4_total_in_scope = br4_total_cached = br4_total_delta = 0
+br4_closed = 0
+br4_active = 0
+br4_bucket_order = [
+    # Smallest-first within BR-audit-4 (matches §4.1 picker order).
+    'bremen_p655', 'brunswick_p654', 'lauenburg_p1788', 'osnabruck_p3047',  # already-closed first for visual baseline
+    'oldenburg_p658', 'bremen_p1194', 'oldenburg_p976', 'bremen_p3067',
+    'brunswick_luneburg_p1088', 'brunswick_wolfenbuttel_p1146',
+    'brunswick_wolfenbuttel_p1154', 'brunswick_wolfenbuttel_p3283',
+    'osnabruck_p2988', 'osnabruck_p3057', 'brunswick_luneburg_p1082',
+    'hesse_kassel_p899', 'brunswick_p905', 'osnabruck_p2989',
+    'bremen_p1195', 'brunswick_luneburg_p1087', 'brunswick_wolfenbuttel_p1145',
+    'brunswick_luneburg_p1089', 'brunswick_wolfenbuttel_p1153',
+    'hesse_kassel_p1292', 'brunswick_wolfenbuttel_p3284',
+    'brunswick_luneburg_p1083', 'hesse_kassel_p2945',
+]
+for i, bkey in enumerate(br4_bucket_order, 1):
+    info = br4_audit['buckets'].get(bkey) or {}
+    tids = info.get('gap_tids') or info.get('in_scope_tids') or []
+    total = info.get('in_scope_total', len(tids))
+    if total == 0:
+        continue
+    br4_active += 1
+    period_tids = set(str(t) for t in tids)
+    cached = sum(1 for t in tids if (uc_cache/f'{t}.json').exists())
+    delta = len(period_tids & tids_set)
+    ucoin_unmatched_tids -= period_tids
+    gap = total - cached
+    pct = round(100 * cached / total) if total else 0
+    status = '✅ CLOSED' if gap == 0 else ('⏳ untouched' if cached == 0 else '🔵 open')
+    if delta > 0 and gap == 0:
+        status = f'🎉 CLOSED! (b{UCOIN_BATCH_LABEL})'
+    elif delta > 0:
+        status = f'🔵 batch {UCOIN_BATCH_LABEL} here'
+    if gap == 0: br4_closed += 1
+    br4_total_in_scope += total
+    br4_total_cached += cached
+    br4_total_delta += delta
+    print(f'| {i} | {bkey} | {total} | {cached} | {gap} | {pct}% | {fmt_delta(delta)} | {status} |')
+
+br4_gap = br4_total_in_scope - br4_total_cached
+br4_pct = round(100 * br4_total_cached / br4_total_in_scope) if br4_total_in_scope else 0
+print(f'| **TOTAL** | | **{br4_total_in_scope}** | **{br4_total_cached}** | **{br4_gap}** | **{br4_pct}%** | **{fmt_delta(br4_total_delta)}** | **{br4_closed}/{br4_active} closed** |')
+
+# Re-print unmatched warnings AFTER all 4 tables have had a chance to claim IDs.
+if numista_unmatched_nids:
+    print()
+    print(f'> ⚠ NIDs not matched to BO.6 OR BO.7 buckets: {sorted(numista_unmatched_nids)} '
+          '— check audits / gaps manifest; may be off-bucket or freshly-discovered scope.')
+if ucoin_unmatched_tids:
+    print()
+    print(f'> ⚠ TIDs not matched to BR-audit-2 OR BR-audit-4 buckets: {sorted(ucoin_unmatched_tids)} '
+          '— check audits; BR-audit-3 Hanseatic buckets are tracked separately and may need adding here.')
 EOF
 ```
+
+**Note on the rendering scope.** The script above renders FOUR tables: BR-audit-2 (DK periods, 16 rows), BO.6 (DK+NO+SH, 9 rows), BO.7 (German states, 17 rows), BR-audit-4 (German states, 27 rows). It does NOT render BR-audit-3 Hanseatic per-bucket (those 6 buckets sit between BR-2 and BR-4 in coverage but are tracked separately for now — surface them in the §8 headline-numbers line if needed). When a manifest is fully closed, its table still renders (all-CLOSED rows) — keeps the report shape stable across runs so the reader sees the same structure regardless of which fronts are active.
 
 **Implementation note.** Maintain `NIDS_THIS_RUN` and `TIDS_THIS_RUN` as live variables during the batch flow:
 - After each successful `save_numista.py` call, append the NID to a running list (e.g. `RUN_NIDS=()` Bash array, or just track in your scratchpad).
@@ -1156,17 +1382,25 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
 1. **Pre-tables one-liner** — what this run added, framed as a delta.
    Example: «Batch run 2026-05-21 14:00 UTC: Numista batch P added **+5** to NO p2; ucoin batch 31 added **+5** to DK p1115. Both committed local.»
 
-2. **ucoin coverage table** — 16 rows + TOTAL, with the `Δ b<N>` column populated from §6.1's script (exactly as printed).
+2. **ucoin BR-audit-2 coverage table** — 16 rows + TOTAL (DK periods), with the `Δ b<N>` column populated from §6.1's script.
 
-3. **Numista coverage table** — 8 rows + TOTAL, with the `Δ batch <letter>` column populated similarly.
+3. **Numista BO.6 coverage table** — 9 rows + TOTAL (DK p0–p4 + NO p2–p4 + SH cluster).
 
-4. **Headline numbers** (each line ends with a parenthetical run-delta):
-   - Phase 1 (DK + SH) Numista — total cached, remaining (Δ this run: +X)
-   - Phase 2 (NO) Numista — total cached, remaining (Δ this run: +X)
-   - ucoin Phase 1 — total cached, remaining (Δ this run: +X)
-   - Grand cumulative cached (Δ this run: +X from Numista, +Y from ucoin = +Z total)
+4. **Numista BO.7 coverage table** — 17 rows + TOTAL (German states), populated by the §6.1 BO.7 block.
 
-5. **Failed-to-open this run** — list IDs that the routine could NOT fetch (404 / persistent Cloudflare / canonical mismatch / DOM unexpected). Pulled from this run's `runs[-1].numista_batch.failed_open[]` + `runs[-1].ucoin_batch.failed_open[]` + `_failed_open_ids.json` tail. **Omit the section entirely if both lists are empty** (the typical clean run).
+5. **ucoin BR-audit-4 coverage table** — 27 rows + TOTAL (German states), populated by the §6.1 BR-audit-4 block.
+
+   When a coverage manifest has zero activity AND zero gap (all-CLOSED, no delta this run), the table still renders — it stays in the report for shape stability across runs, so the reader sees the same four sections every time. The §6.1 script handles all four uniformly.
+
+6. **Headline numbers** (each line ends with a parenthetical run-delta — include each manifest with non-trivial state, omit ones that are 100 %-closed and untouched this run):
+   - Numista BO.6 (DK + NO + SH) — total cached, remaining (Δ this run: +X)
+   - Numista BO.7 (German states) — total cached, remaining (Δ this run: +X)
+   - ucoin BR-audit-2 (DK periods) — total cached, remaining (Δ this run: +X)
+   - ucoin BR-audit-3 (Hanseatic Hamburg + Lübeck) — total cached, remaining (Δ this run: +X)
+   - ucoin BR-audit-4 (German states) — total cached, remaining (Δ this run: +X)
+   - Grand cumulative cached across all manifests (Δ this run: +X Numista, +Y ucoin = +Z total)
+
+7. **Failed-to-open this run** — list IDs that the routine could NOT fetch (404 / persistent Cloudflare / canonical mismatch / DOM unexpected). Pulled from this run's `runs[-1].numista_batch.failed_open[]` + `runs[-1].ucoin_batch.failed_open[]` + `_failed_open_ids.json` tail. **Omit the section entirely if both lists are empty** (the typical clean run).
    Shape per entry: `N#<id> — <reason> — <one-line context>`. Example:
    > ### ⚠ Failed to open this run (4)
    > - **Numista**:
@@ -1177,9 +1411,9 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
 
    Tells the user exactly which IDs to inspect manually. The IDs **remain in audit gap_nids/gap_tids** — they're retry candidates next hour. Routine does NOT mark them «dead».
 
-6. **Push state** — exactly one sentence: «N commits ready locally — `git push` when ready (both repos).» Compute N via `git log --oneline origin/main..HEAD | wc -l` from main repo + same from submodule, sum.
+8. **Push state** — exactly one sentence: «N commits ready locally — `git push` when ready (both repos).» Compute N via `git log --oneline origin/main..HEAD | wc -l` from main repo + same from submodule, sum.
 
-7. **Recommended next batches** — top 3 priorities for the NEXT hourly run.
+9. **Recommended next batches** — top 3 priorities for the NEXT hourly run, picking from whichever manifest's smallest open bucket is next per the §2.1 / §4.1 picker order.
 
 ### §6.3. Status emoji legend (use consistently)
 
@@ -1343,9 +1577,12 @@ The routine STOPS HARD (returns failure, do not commit) under:
 
 | File | Purpose | Read-only or writable |
 |---|---|---|
-| `scripts/cache/ucoin/_BR_audit-2_2026-05-20.json` | 16-period enumeration + gap_tids lists | RO (this routine) |
-| `scripts/cache/numista/_BO6_audit_2026-05-20.json` | 8-bucket enumeration + in_scope_nids / gap_nids | RO |
-| `scripts/cache/numista/_BO6_gaps_manifest_2026-05-19.json` | SH-cluster per-issuer gap lists | RO |
+| `scripts/cache/ucoin/_BR_audit-2_2026-05-20.json` | 16-period DK enumeration + gap_tids lists (BR-audit-2 — manifest 1) | RO (this routine) |
+| `scripts/cache/ucoin/_BR_audit-3_2026-05-22_hanseatic.json` | 6-bucket Hanseatic Hamburg + Lübeck enumeration + gap_tids (BR-audit-3 — manifest 2, added 2026-05-22) | RO |
+| `scripts/cache/ucoin/_BR_audit-4_2026-05-24.json` | 27-bucket German-states enumeration + gap_tids (BR-audit-4 — manifest 3, added 2026-05-24; Bremen + Brunswick lines + Hesse-Kassel + Oldenburg + Osnabrück + Lauenburg) | RO |
+| `scripts/cache/numista/_BO6_audit_2026-05-20.json` | 8-bucket DK + NO + SH enumeration + in_scope_nids / gap_nids (BO.6 — manifest 1) | RO |
+| `scripts/cache/numista/_BO6_gaps_manifest_2026-05-19.json` | SH-cluster per-issuer gap lists (BO.6 supplementary) | RO |
+| `scripts/cache/numista/_BO7_audit_2026-05-24.json` | 17-issuer German-states enumeration + in_scope_nids (BO.7 — manifest 2, added 2026-05-24; Hanseatic cities + Welf territories + Hesse-Kassel + Oldenburg + Saxe-Lauenburg + Osnabrück + Bremen) | RO |
 | `scripts/cache/ucoin/<TID>.json` | Per-TID harvested data | RW (this routine appends) |
 | `scripts/cache/numista/<NID>.json` | Per-NID harvested data | RW |
 | `scripts/cache/ucoin/_failed_open_ids.json` | Append-only structured log of URL-open failures (404 / Cloudflare-persistent / canonical-mismatch / redirect-to-landing / DOM-unexpected). Each entry: `{id, ts, url_tried, reason, batch_label, details}`. NOT framed as «deleted» — upstream state opaque; surfaces in §8 report for manual user review. IDs stay in audit `gap_tids` as retry candidates. | RW (append-only) |
