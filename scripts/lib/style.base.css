@@ -1100,11 +1100,25 @@ h2[style] {
    contributes too little on light backgrounds to lift dark olive above
    the bg luminance. Aligning both code paths to the bronze keeps the
    solo-tail visually consistent with the solid overlap zone, just with
-   the mask-gradient fading toward transparent. */
+   the mask-gradient fading toward transparent. Alpha multiplied by
+   `--layer-alpha-multiplier` (default 1) so the Denmark single-scope
+   page can scale uniformly with the auto-generated rules. */
 [data-theme="v1"] .tl-bar-layer.g,
 [data-theme="v2"] .tl-bar-layer.g {
-  --layer-bg: rgba(184, 144, 47, 0.15);
+  --layer-bg: rgba(184, 144, 47, calc(0.15 * var(--layer-alpha-multiplier, 1)));
   background: var(--layer-bg);
+}
+
+/* Per-page layer-alpha multiplier. Pages with a single active scope
+   (`scope_mode: denmark_only` — Denmark) emit max 3 layers per bar
+   (mint + status + circulation × anywhere only). With the default
+   ~0.15 layer alpha tuned for 6-layer SH bars, the Denmark triple-stack
+   maxes at ~45 % saturation — visibly paler than SH's 6-layer ~90 %.
+   Doubling the multiplier to 2 lifts Denmark's triple-stack back to
+   ~90 %, matching SH bars' density. The variable cascades through the
+   tl-grid wrapper down to every descendant .tl-bar-layer. */
+.tl-grid.tl-grid-denmark-only {
+  --layer-alpha-multiplier: 2;
 }
 
 /* --- Per-year mintage markers ------------------------------------------- */

@@ -73,11 +73,15 @@ def _timeline_bars_css(bars: dict) -> str:
         if extras_str.strip():
             out.append(f".tl-bar.{bar_id} {{{extras_str} }}")
 
-        # Layer-colour rule.
+        # Layer-colour rule. Alpha is multiplied by `--layer-alpha-multiplier`
+        # (default 1) — pages with a single active scope (e.g. Denmark with
+        # `scope_mode: denmark_only` → max 3 layers per bar) set this to 2
+        # so triple-stack still reaches ~90 % saturation matching the
+        # 6-layer SH page.
         r, g, b = _hex_to_rgb(conf["to"])
         out.append(
             f".tl-bar-layer.{bar_id} {{ "
-            f"--layer-bg: rgba({r}, {g}, {b}, {alpha:.4f}); "
+            f"--layer-bg: rgba({r}, {g}, {b}, calc({alpha:.4f} * var(--layer-alpha-multiplier, 1))); "
             f"background: var(--layer-bg); }}"
         )
 
@@ -93,7 +97,7 @@ def _timeline_bars_css(bars: dict) -> str:
         out.append(
             f'[data-theme="v1"] .tl-bar-layer.{bar_id}, '
             f'[data-theme="v2"] .tl-bar-layer.{bar_id} {{ '
-            f"--layer-bg: rgba({fr_d}, {fg_d}, {fb_d}, {alpha:.4f}); }}"
+            f"--layer-bg: rgba({fr_d}, {fg_d}, {fb_d}, calc({alpha:.4f} * var(--layer-alpha-multiplier, 1))); }}"
         )
 
         # Fallback gradient kept for bars without layers (no events data).

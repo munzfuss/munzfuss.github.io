@@ -490,7 +490,7 @@
       {%- endfor -%}
     </div>
   </div>
-  <div class="tl-grid">
+  <div class="tl-grid{% if tl.scope_mode == 'denmark_only' %} tl-grid-denmark-only{% endif %}">
     {%- macro tl_bar_html(bar, tl, tl_span, lang, extra_class='', layers=None, year_runs=None, zones=None) -%}
       {# A year is a 1-year-wide block, not a point — the bar runs through
          year `year_to` inclusive, so the right edge sits at point
