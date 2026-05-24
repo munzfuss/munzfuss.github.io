@@ -18526,13 +18526,19 @@ coins:
   issuing_entity: danish_realm
   id: km-74-1-hede-25c-chr-iv-1621
   _curation_holds:
-    fraction: 'Tarifmünze face-vs-physical asymmetry per CLAUDE.md §6:
-      nominal "2 Guldkrone" is the FACE value; physical Soll matches
-      guldkrone.fractions["1"] (5,996 g rau, identical to Frederik III''s
-      later "1 Guldkrone"). fraction points to physical-Soll lookup so
-      Δ column expresses production deviation (~ -1% within Remedium),
-      NOT tariff seigniorage. Do NOT regen to fraction="2" — that
-      breaks Δ semantics by conflating face-value with production-Soll.'
+    fraction: 'Christian IV ↔ Frederik III nomenclature shift documented
+      verbatim in Hede 1957 «Frederik III''s guldkroner» NNUM, footnote (1):
+      «Betegnelsen guldkrone dækker under Frederik III den mønt, Christian
+      IV kaldte 2 guldkrone» (https://www.danskmoent.dk/artikler/f3guldkr.htm).
+      What Frederik III calls «1 Guldkrone» is physically the same coin
+      Christian IV called «2 Guldkrone». The project anchors guldkrone.fractions
+      on Frederik III''s definition (fractions["1"] = 5,996 g rau), so this
+      Hede c4h25 entry — face «2 Guldkrone» under Christian IV''s nomenclature —
+      points to fractions["1"] for the physical-Soll lookup. Δ column then
+      expresses production deviation (~ -1% within Remedium), NOT face-value-
+      vs-metal-value seigniorage. Do NOT regen to fraction="2": that conflates
+      Christian IV''s face nomenclature with Frederik III''s physical-Soll-
+      anchored unit and breaks Δ semantics per CLAUDE.md §6 Tarifmünze rule.'
   year_first: 1619
   year_last: 1648
   year_ranges:
