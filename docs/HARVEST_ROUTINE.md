@@ -85,6 +85,12 @@
 
    If any of those «forbidden» states surface, the routine has a bug — finish the commit dance before the user resumes.
 
+10. **Tab reuse — reuse the SAME Chrome tab for every fetch in the run; never spawn new tabs.** Chrome MCP exposes `tabs_create_mcp` (open a new tab) and `tabs_close_mcp` (close one). The harvest routine MUST use `tabs_context_mcp(createIfEmpty: true)` once at preflight to attach to (or create) ONE tab, and then `navigate` within that same tab for every subsequent NID / TID in the batch. Do not call `tabs_create_mcp` to «start fresh» between fetches.
+
+    **If a fetch fails** (Cloudflare challenge, rate-limit defence, broken markup): **first try clearing cookies** for the target domain (Chrome MCP exposes cookie removal via `javascript_tool` with a `document.cookie` clear pattern, or via the appropriate browser shortcut), then re-navigate in the SAME tab. Only as a LAST resort, close the current tab and let `tabs_context_mcp(createIfEmpty: true)` reattach. Do NOT proliferate tabs — each new tab burns user-visible UI real estate, breaks reasoning about which tab the routine is acting on, and forces the user to clean up afterwards.
+
+    **Why this matters.** Multiple harvest runs over a day can leave dozens of tabs open in the user's actual Chrome window — visible clutter that is hard to triage post-hoc. Cookie-clear + tab-reuse keeps the browser footprint at exactly one tab regardless of how many fetches the routine performs.
+
 ---
 
 ## §1. Preflight (do this once at session start)
