@@ -113,15 +113,34 @@ REF_FIELDS = {
 
 def parse_year(lot: dict) -> int | None:
     """Try lot.year first, then regex on meta_line / body_excerpt.
-    Reject medieval ND-ranges (10xx/11xx/12xx) BEFORE checking lot.year —
-    the upstream Bruun parser sometimes sets lot.year to a stray 15xx
-    catalog-ref token (Sieg-1535, etc.) on medieval-Penny lots."""
+
+    The upstream Bruun parser (`scripts/bruun_parser/02_parse_lots.py`) was
+    fixed 2026-05-24 to cover pre-1500 coinage and prioritise meta_line over
+    body refs (Beskrivelsen 1791 / Bruun-1898 catalog-ref traps). This
+    builder-side helper mirrors that fix so a fresh build against an unpatched
+    cache (or partial regen) still picks up the right year for in-scope coins
+    spanning the 1514 anchor (Hans Goldgulden 1481-1497 Phase pre-I etc.).
+
+    Order of precedence:
+      1. ND-range gate — reject medieval-Penny lots whose meta starts with
+         «ND (1xxx)» where xxx is <= 299 (pre-1300 horizon). Builder scope
+         filter further restricts to 1514-1914, but this gate avoids spending
+         cycles on clearly OOS medieval lots.
+      2. lot.year (upstream parser's verdict) — trusted when present.
+      3. Fallback regex on meta_line / body — first 4-digit year in
+         1300-1980 range (matches every Bruun coin from medieval up to
+         modern catalogue edition years; builder scope filter discards OOS).
+    """
     meta = lot.get("meta_line") or ""
     body = lot.get("body_excerpt") or ""
-    # Reject medieval ND-ranges outright — regardless of any 15xx token
-    if re.search(r"ND\s*\([01]?[01]\d\d", meta) or re.search(r"ND\s*\([01]?2\d\d", meta):
-        return None
-    if re.search(r"ND\s*\([01]?[01]\d\d", body[:200]) or re.search(r"ND\s*\([01]?2\d\d", body[:200]):
+    # Reject ND-ranges that explicitly mark a pre-1300 medieval lot
+    # («ND (1100)» / «ND (1234)» / «ND (1289)»). The previous regex
+    # `[01]?[01]\d\d` was greedy: «[01]?» + «[01]» backtrack-matched
+    # ANY 1-prefixed 4-digit token, so «ND (1440)», «ND (1496)»,
+    # «ND (1396)» etc. all got silently rejected. Tightened to
+    # `1[012]\d{2}` so only true 10xx/11xx/12xx ranges trip the gate.
+    NDMED = r"ND\s*\(1[012]\d{2}"
+    if re.search(NDMED, meta) or re.search(NDMED, body[:200]):
         return None
     y = lot.get("year")
     if y is not None:
@@ -129,11 +148,16 @@ def parse_year(lot: dict) -> int | None:
             return int(str(y)[:4])
         except (ValueError, TypeError):
             pass
+    # Fallback: meta first, then body — match parser's priority order.
+    # Pattern covers 1300-1980 (Hans pre-1500 coinage + standard project
+    # horizon + catalog edition years up to 1980). Lower bound 1300 instead
+    # of 1100 (parser's bound) because by the time we're here, lot.year was
+    # already missing — extra strictness is acceptable to dodge body-prose
+    # noise (e.g. battle-of-1238 mentions in long lot descriptions).
     for src in (meta, body):
         if not src:
             continue
-        # First 4-digit 15xx year in the text
-        m = re.search(r"\b(15[0-4][0-9])\b", src)
+        m = re.search(r"\b(1[3-9]\d{2})\b", src)
         if m:
             return int(m.group(1))
     return None
