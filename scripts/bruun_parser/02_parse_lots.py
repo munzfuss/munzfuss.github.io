@@ -96,7 +96,68 @@ REF_PATTERNS = {
     "Skjoldager":        re.compile(r"\bSkjoldager[\-:]?\s*(\S+?)(?=[;,\s]|$)", re.IGNORECASE),
 }
 
-YEAR_RE = re.compile(r"\b(1[5-9]\d{2}|20\d{2})\b")
+YEAR_RE = re.compile(r"\b(1[1-9]\d{2}|20\d{2})\b")
+# Lower bound 1100: covers the full Scandinavian medieval-coinage horizon
+# (early Norwegian penningar, Erik VII of Pomerania ND (1396-1439), etc.).
+# Project's V2 scope filter (1514-1914) lives in `build_bruun_denmark_seed.py`
+# and will drop OOS coins downstream — the parser itself has no business
+# truncating year information.
+#
+# The earlier 1500-floor silently lost the year on every pre-1500 lot — the
+# parser then fell through to whatever 1500+ year appeared next in the body
+# (typically a catalog reference like «Beskrivelsen 1791» / «Bruun-1898» /
+# Hede edition year). See `extract_year` below for the meta-line-priority
+# logic that also immunises against future catalog-year traps.
+YEAR_MIN = 1100
+YEAR_MAX = 1980
+
+
+def extract_year(meta_line: str | None, body_match: str | None) -> int | None:
+    """Extract a coin year from a lot's meta_line + body text.
+
+    Priority rule (auction-cataloguer authoritative dating):
+      1. Try meta_line first — the cataloguer's explicit dating sits here
+         («DENMARK. Speciedaler, 1672. Glückstadt Mint. Christian V.»).
+         The first YEAR_RE match in meta_line wins.
+      2. Fallback to body_match[:600] when meta_line yields no year (e.g.
+         purely descriptive meta «DENMARK. Speciedaler. Christian VII.»
+         with the year elsewhere in the prose).
+
+    Returns the first valid year (YEAR_MIN ≤ y ≤ YEAR_MAX) found in the
+    priority order, or None.
+
+    Failure mode this guards against (real Bruun lot 1001, Hans Nobel):
+        meta_line:    "DENMARK. Noble, 1496. Malmö or Copenhagen Mint. Hans."
+        body_excerpt: "...Beskrivelsen 1791-pl. 1, 2; Schive-pl. XIV, 38..."
+    Old logic (first match in body_match): captured 1791 (catalog-year).
+    New logic (meta first): captures 1496 (coin-year, correct).
+    """
+    if meta_line:
+        for ym in YEAR_RE.finditer(meta_line):
+            y = int(ym.group(1))
+            if YEAR_MIN <= y <= YEAR_MAX:
+                return y
+    if body_match:
+        body = body_match[:600]
+        for ym in YEAR_RE.finditer(body):
+            y = int(ym.group(1))
+            if not (YEAR_MIN <= y <= YEAR_MAX):
+                continue
+            # Skip matches immediately preceded by `<Alpha>-` — catalog-ref
+            # pattern like «Dav-1311», «KM-543», «Bruun-1898», «Hede-72»,
+            # «Sieg-31», «Bru-1145». Body text typically carries dozens of
+            # such refs; without this filter the body fallback would mistake
+            # a catalog reference for the coin year. (Meta-line priority
+            # above handles the more common Beskrivelsen / Schive trap with
+            # space-separated year; this lookbehind closes the dash-form gap.)
+            start = ym.start()
+            if start >= 2 and body[start - 1] == "-" and body[start - 2].isalpha():
+                continue
+            return y
+    return None
+
+
+
 WEIGHT_RE = re.compile(r"\bWeight:\s*([\d.]+)\s*(?:gms?|grams?)\b", re.IGNORECASE)
 GRADE_RE = re.compile(r"\b(NGC|PCGS|ICG|ANACS)\s+([A-Z]+(?:\-\d{1,2})?(?:\s+(?:DPL|DCAM|CAM|PL|FH|UCAM))?)\b")
 RARITY_RE = re.compile(
@@ -220,13 +281,10 @@ def parse_part(slug: str) -> list[dict]:
             mm = pat.search(body_match)
             if mm:
                 refs[k] = mm.group(1)
-        # Year (prefer year inside parens, e.g. "MDCIII (1603)" or "Speciedaler, 1672")
-        year = None
-        for ym in YEAR_RE.finditer(body_match[:600]):
-            y = int(ym.group(1))
-            if 1500 <= y <= 1980:
-                year = y
-                break
+        # Year — meta_line first (cataloguer's authoritative dating),
+        # body_match fallback. See `extract_year` for the failure modes
+        # this guards against (pre-1500 floor + catalog-year traps).
+        year = extract_year(meta_line, body_match)
         # Weight
         wmatch = WEIGHT_RE.search(body_match)
         weight_g = float(wmatch.group(1)) if wmatch else None
