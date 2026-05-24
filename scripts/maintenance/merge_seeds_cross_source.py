@@ -247,8 +247,12 @@ def _normalise_ruler(ruler):
     s = re.sub(r"\s+\d{4}\s*-\s*\d{0,4}\s*$", "", s)
     # Drop «von <house>» / «af <kingdom>» trailing peerage
     s = re.split(r"\s+(?:von|af|of|zu)\s+", s, maxsplit=1)[0]
-    # Strip trailing dots, normalise whitespace
-    s = re.sub(r"\.+$", "", s).strip()
+    # Strip trailing dots + whitespace, normalise internal whitespace.
+    # Combined `[\s.]+$` handles the «Christian IV. (1588-1648)» path
+    # where split("(")[0] leaves «Christian IV. » — trailing space had
+    # to be stripped BEFORE the dot-strip could catch the dot, otherwise
+    # «christian iv.» leaked through with dot intact.
+    s = re.sub(r"[\s.]+$", "", s)
     s = re.sub(r"\s+", " ", s)
     s = s.lower()
     # English / parser-artefact spelling normalisations. The Danish
@@ -256,6 +260,25 @@ def _normalise_ruler(ruler):
     # render it «Frederick» which fragments index attestation. Same
     # for «Christian» (no variant) — kept for symmetry future-proof.
     s = re.sub(r"\bfrederick\b", "frederik", s)
+    # Cross-language ruler-name synonyms — different sources use the
+    # English vs Danish/Norwegian form for the same monarch.
+    #
+    #   «John I» / «John I (Hans I)» (Numista English) ↔ «Hans» (Bruun,
+    #       Hede, danskmoent.dk Danish form). Hans of Denmark (1455-1513)
+    #       reigned 1481-1513 as Hans / Johann / John I.
+    #   «John II» (Sweden side via Kalmar Union) — same Hans, period
+    #       Swedish attestation. Same canonical.
+    #   «Eric» ↔ «Erik» (Erik VII of Pomerania, Erik XIV, etc.)
+    #   «Margaret» ↔ «Margrethe» (Margrethe I, Margrethe II).
+    #
+    # Canonical form is the Danish (matches Hede/Galster/our project YAML).
+    # The parenthetical clipping above («John I (Hans I)» → «John I») runs
+    # before lowercase, so by the time we get here the input is the bare
+    # English form.
+    if s in ("john i", "john ii"):
+        s = "hans"
+    s = re.sub(r"\beric\b", "erik", s)
+    s = re.sub(r"\bmargaret\b", "margrethe", s)
     return s
 
 
