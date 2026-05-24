@@ -18520,11 +18520,19 @@ coins:
 - fuss: guldkrone
   phase: pre-I
   kind: tarif
-  fraction: '2'
+  fraction: '1'
   nominal: 2 Guldkrone
   ruler: Christian IV.
   issuing_entity: danish_realm
   id: km-74-1-hede-25c-chr-iv-1621
+  _curation_holds:
+    fraction: 'Tarifmünze face-vs-physical asymmetry per CLAUDE.md §6:
+      nominal "2 Guldkrone" is the FACE value; physical Soll matches
+      guldkrone.fractions["1"] (5,996 g rau, identical to Frederik III''s
+      later "1 Guldkrone"). fraction points to physical-Soll lookup so
+      Δ column expresses production deviation (~ -1% within Remedium),
+      NOT tariff seigniorage. Do NOT regen to fraction="2" — that
+      breaks Δ semantics by conflating face-value with production-Soll.'
   year_first: 1619
   year_last: 1648
   year_ranges:
