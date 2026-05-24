@@ -1094,18 +1094,21 @@ h2[style] {
    combination already pops on the dark track. */
 /* `--layer-bg` is overridden HERE (in addition to `background`) so the
    fade-end pseudo (`tl-bar-layer-fade-end::before`) picks up the SAME
-   bronze colour. Without this, the ::before falls back to the generated
-   dark-olive `--layer-bg` from the upstream `from`-darkening rule —
-   producing a faded-tail darker than the cream paper because plus-lighter
-   contributes too little on light backgrounds to lift dark olive above
-   the bg luminance. Aligning both code paths to the bronze keeps the
-   solo-tail visually consistent with the solid overlap zone, just with
-   the mask-gradient fading toward transparent. Alpha multiplied by
-   `--layer-alpha-multiplier` (default 1) so the Denmark single-scope
-   page can scale uniformly with the auto-generated rules. */
+   yellow-gold colour. Without this, the ::before falls back to the
+   generated dark-olive `--layer-bg` from the upstream `from`-darkening
+   rule — producing a faded-tail darker than the cream paper because
+   plus-lighter contributes too little on light backgrounds to lift
+   dark olive above the bg luminance. Aligning both code paths to the
+   yellow-gold keeps the solo-tail visually consistent with the solid
+   overlap zone, just with the mask-gradient fading toward transparent.
+   Alpha multiplied by `--layer-alpha-multiplier` (default 1) so the
+   Denmark single-scope page can scale uniformly with the auto-generated
+   rules. Colour rgba(196, 168, 50) = #c4a832 — warm yellow-gold with
+   G:R ratio 0.86 (less orange than the previous #b8902f bronze whose
+   ratio 0.78 read as too brown / too orange on cream paper). */
 [data-theme="v1"] .tl-bar-layer.g,
 [data-theme="v2"] .tl-bar-layer.g {
-  --layer-bg: rgba(184, 144, 47, calc(0.15 * var(--layer-alpha-multiplier, 1)));
+  --layer-bg: rgba(196, 168, 50, calc(0.15 * var(--layer-alpha-multiplier, 1)));
   background: var(--layer-bg);
 }
 

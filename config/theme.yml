@@ -136,11 +136,15 @@ timeline_bars:
   # since the differentiation was visual noise rather than information.
   # Tariff-silver families (krm — Krone-Mønt) stay in a distinct hue
   # family below so they're visually separable from pure-silver bars.
-  rt:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#707070" }  # 9-Thaler-Fuß    (25,98 g fein)
-  si:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#707070" }  # 9¼-Thaler-Fuß   (25,28 g fein) — canonical Speciedaler
-  kr:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#707070" }  # 11⅓-Thaler-Fuß  (20,63 g fein)
-  vt:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#707070" }  # 30-Thaler-Fuß   (16,67 g fein) — Vereinsthaler
-  rb:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#707070" }  # 18½-Thaler-Fuß  (12,64 g fein) — Rigsbankdaler
+  # `from_light` = #7c8894 — cool silver tone inheriting the dark-theme
+  # hue family (from: #92a0ae) but darkened to ~85% for sufficient
+  # contrast against cream paper. Previously was a pure neutral #707070
+  # which read as «sterile grey» rather than «silver» on light themes.
+  rt:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#7c8894" }  # 9-Thaler-Fuß    (25,98 g fein)
+  si:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#7c8894" }  # 9¼-Thaler-Fuß   (25,28 g fein) — canonical Speciedaler
+  kr:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#7c8894" }  # 11⅓-Thaler-Fuß  (20,63 g fein)
+  vt:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#7c8894" }  # 30-Thaler-Fuß   (16,67 g fein) — Vereinsthaler
+  rb:  { from: "#92a0ae", to: "#bcc6d2", from_light: "#7c8894" }  # 18½-Thaler-Fuß  (12,64 g fein) — Rigsbankdaler
   sh:  { from: "#5a4d6d", to: "#8575b0" }
   # Krone-Mønt-Familie. `from_light` = #3a78b8 — clear sky-blue tone
   # for the light themes, sourced to push the tariff-silver bars away
