@@ -1,4 +1,4 @@
-# The Coins of Denmark (Academia.edu compilation)
+# The Coins of Denmark — David Ruckser
 
 > **Source capture** — extracted scope-relevant sections from an
 > external auction-catalogue compilation.
@@ -6,11 +6,16 @@
 > - **Original URL**: <https://www.academia.edu/30495376/The_Coins_of_Denmark>
 > - **Local PDF**: `~/Downloads/The_Coins_of_Denmark.pdf` (111 pages,
 >   ≈ 14.4 MB; saved 2026-05-25)
-> - **Author**: not stated explicitly on title page (compilation
->   — likely auction-catalogue aggregation by an unnamed editor)
-> - **Original publication**: undated; references to «auction date»
->   throughout suggest compiled from late 2000s / early 2010s
->   Danish-coin auction lots (Stack's Bowers, Künker, etc.)
+> - **Author**: **David Ruckser** — <https://independent.academia.edu/DavidRuckser>
+>   (independent numismatic researcher / collector hosting his
+>   compilations on Academia.edu; authorship not stated on the
+>   PDF's title page but identified via the author's Academia.edu
+>   profile, where this PDF is one of several country-coin
+>   compilations he has published)
+> - **Original publication**: undated on title page; references to
+>   «auction date» throughout suggest compiled from late 2000s /
+>   early 2010s Danish-coin auction lots (Stack's Bowers, Künker,
+>   etc.)
 > - **Scope**: Danish kings from Harald Bluetooth (958-986/87) to
 >   Christian IV (1588-1648). Stops at Christian IV's death; later
 >   reigns (Frederik III 1648+ onwards) NOT covered.
@@ -412,11 +417,11 @@ auction-provenance note or a period-historical comment), add a
 `refs_pool.yml` entry with this PDF as the source:
 
 ```yaml
-coins-of-denmark-academia:
-  de: "<b>The Coins of Denmark</b> — Auktions­katalog-Kompilation auf Academia.edu (kein Verfasser), <a href=\"https://www.academia.edu/30495376/The_Coins_of_Denmark\" target=\"_blank\">academia.edu/30495376</a>. Per-Lot-Beschreibungen mit Hede / Sieg / Schou / Dav-Referenzen für Dänische Münzen Erich von Pommern 1396-1439 biß Christian IV. 1588-1648; Schwerpunkt Christian-IV-Schilling- und Krone-Karbung."
-  en: "<b>The Coins of Denmark</b> — auction-catalogue compilation on Academia.edu (no author stated), <a href=\"https://www.academia.edu/30495376/The_Coins_of_Denmark\" target=\"_blank\">academia.edu/30495376</a>. Per-lot descriptions with Hede / Sieg / Schou / Dav references for Danish coins Erich von Pommern 1396-1439 to Christian IV 1588-1648; bulk of coin entries cover Christian IV's Skilling and Krone coinage."
-  uk: "<b>The Coins of Denmark</b> — компіляція аукціонного каталогу на Academia.edu (автор не вказаний), <a href=\"https://www.academia.edu/30495376/The_Coins_of_Denmark\" target=\"_blank\">academia.edu/30495376</a>. Покоінні описи з посиланнями Hede / Sieg / Schou / Dav для данських монет Erich von Pommern 1396-1439 до Christian IV 1588-1648; основна маса записів — Schilling- і Krone-карбування Christian IV."
+ruckser-coins-of-denmark:
+  de: "<b>Ruckser, David</b>: <i>The Coins of Denmark</i> — Auktionskatalog-Kompilation auf Academia.edu (undatiert, ca. 2010er Jahre), <a href=\"https://www.academia.edu/30495376/The_Coins_of_Denmark\" target=\"_blank\">academia.edu/30495376</a> (Autor­profil: <a href=\"https://independent.academia.edu/DavidRuckser\" target=\"_blank\">independent.academia.edu/DavidRuckser</a>). Per-Lot-Beschreibungen mit Hede / Sieg / Schou / Dav-Referenzen für Dänische Münzen Erich von Pommern 1396-1439 biß Christian IV. 1588-1648; Schwerpunkt Christian-IV-Schilling- und Krone-Karbung."
+  en: "<b>Ruckser, David</b>: <i>The Coins of Denmark</i> — auction-catalogue compilation on Academia.edu (undated, c. 2010s), <a href=\"https://www.academia.edu/30495376/The_Coins_of_Denmark\" target=\"_blank\">academia.edu/30495376</a> (author profile: <a href=\"https://independent.academia.edu/DavidRuckser\" target=\"_blank\">independent.academia.edu/DavidRuckser</a>). Per-lot descriptions with Hede / Sieg / Schou / Dav references for Danish coins Erich von Pommern 1396-1439 to Christian IV 1588-1648; bulk of coin entries cover Christian IV's Skilling and Krone coinage."
+  uk: "<b>Ruckser, David</b>: <i>The Coins of Denmark</i> — компіляція аукціонного каталогу на Academia.edu (не датовано, близько 2010-х), <a href=\"https://www.academia.edu/30495376/The_Coins_of_Denmark\" target=\"_blank\">academia.edu/30495376</a> (профіль автора: <a href=\"https://independent.academia.edu/DavidRuckser\" target=\"_blank\">independent.academia.edu/DavidRuckser</a>). Покоінні описи з посиланнями Hede / Sieg / Schou / Dav для данських монет Erich von Pommern 1396-1439 до Christian IV 1588-1648; основна маса записів — Schilling- і Krone-карбування Christian IV."
 ```
 
-The pool key would be `coins-of-denmark-academia`. Cite from prose
-via `<sup>[ref:coins-of-denmark-academia]</sup>`.
+The pool key would be `ruckser-coins-of-denmark`. Cite from prose
+via `<sup>[ref:ruckser-coins-of-denmark]</sup>`.
