@@ -426,7 +426,20 @@ def _extract_years(text: str) -> list[dict]:
 #   * dot sub-number    — «11.1», «11.2» (Sieg's mintmaster sub-class)
 #   * comma/dash chain  — «16,17», «250-1»
 _REFS_RE = re.compile(
-    r"\b(Hede|Schou|Sieg|Frederik|Galster|Bruun|Dav|Davenport|KM)\.?\s*"
+    # `Frederik` REMOVED from this list — it's a ruler name («Frederik 2.»
+    # = «Frederik II», a Danish king), not a catalogue. The previous
+    # inclusion caused the parser to harvest «Frederik 2» as
+    # `catalog_refs.Frederik = "2"` from every Frederik II/III/IV/V/VI/VII
+    # page title, which Hede builder then mapped to `fr` (Friedberg
+    # catalogue), producing fake `Fr#2` on hundreds of coins. Real
+    # Friedberg refs come from Bruun PDFs (`friedberg: NN`) — the
+    # danskmoent.dk Hede pages don't generally cite Friedberg.
+    #
+    # Same caution for `Christian` — it's the other ruling-dynasty name
+    # and would create the same false-positive. Not in the regex; added
+    # here only as a comment guard against future «look, the parser
+    # missed Christian» additions.
+    r"\b(Hede|Schou|Sieg|Galster|Bruun|Dav|Davenport|KM|Fr|Friedberg)\.?\s*"
     r"([\d]+(?:\.\d+)*(?:[A-Za-z][\w\.]*)?"
     r"(?:[\-/,]\s*\d+(?:\.\d+)*[A-Za-z]*)*)",
     re.IGNORECASE,
@@ -437,9 +450,11 @@ def _extract_refs(text: str) -> dict[str, list[str]]:
     refs: dict[str, list[str]] = {}
     for m in _REFS_RE.finditer(text):
         catalogue = m.group(1).capitalize()
-        # Normalise alias
+        # Normalise aliases to canonical form
         if catalogue == "Davenport":
             catalogue = "Dav"
+        elif catalogue == "Friedberg":
+            catalogue = "Fr"
         num = re.sub(r"\s+", "", m.group(2))
         bucket = refs.setdefault(catalogue, [])
         if num not in bucket:

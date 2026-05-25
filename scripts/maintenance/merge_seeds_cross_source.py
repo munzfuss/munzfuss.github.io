@@ -2078,6 +2078,34 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
         if k in out and isinstance(out[k], str) and out[k].isdigit():
             out[k] = int(out[k])
 
+    # Catalog-key synonym canonicalisation on OUTPUT (the same canonical
+    # map used for matcher input in `_catalog_refs`). When per-source data
+    # populates both forms (Bruun emits `friedberg`, Numista emits `fr`),
+    # the merged output catalog ends up with both keys redundantly — the
+    # rendered table shows «Fr#» from `fr` and «Friedberg#» from
+    # `friedberg` as two separate columns even though they cite the same
+    # catalogue. Fold synonyms to canonical at write time so the YAML
+    # carries a single canonical key per catalogue.
+    OUTPUT_CATALOG_KEY_SYNONYMS = {"friedberg": "fr", "davenport": "dav"}
+    for syn, canonical in OUTPUT_CATALOG_KEY_SYNONYMS.items():
+        if syn not in out:
+            continue
+        syn_val = out.pop(syn)
+        canon_val = out.get(canonical)
+        if canon_val is None:
+            out[canonical] = syn_val
+            continue
+        # Both populated — union deduped, preserve list-form when ≥2 distinct
+        merged_set = set()
+        for v in (canon_val if isinstance(canon_val, list) else [canon_val]):
+            if v is not None:
+                merged_set.add(str(v).strip())
+        for v in (syn_val if isinstance(syn_val, list) else [syn_val]):
+            if v is not None:
+                merged_set.add(str(v).strip())
+        merged_list = sorted(merged_set)
+        out[canonical] = merged_list[0] if len(merged_list) == 1 else merged_list
+
     return out, all_conflicts
 
 

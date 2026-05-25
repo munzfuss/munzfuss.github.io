@@ -689,12 +689,23 @@ def _build_coin(
         catalog["schou"] = refs["Schou"][0]
     if "Sieg" in refs and refs["Sieg"]:
         catalog["sieg"] = refs["Sieg"][0]
-    if "Frederik" in refs and refs["Frederik"]:
-        catalog["fr"] = refs["Frederik"][0]
+    # `Frederik` key in catalog_refs is a known parser false-positive
+    # (king name «Frederik 2.» mis-matched as catalogue) — fixed in
+    # parse_hede.py 2026-05-25. The mapping `Frederik → fr (Friedberg)`
+    # was anyway semantically wrong — Friedberg is a Western gold-coin
+    # global catalogue, not «Frederik-N» ruler-attribution. Real Friedberg
+    # refs are now captured under the `Fr` / `Friedberg` keys (post-fix)
+    # and should populate fr field directly.
+    if "Fr" in refs and refs["Fr"]:
+        catalog["fr"] = refs["Fr"][0]
     if "Dav" in refs and refs["Dav"]:
         catalog["dav"] = refs["Dav"][0]
     if "Km" in refs and refs["Km"]:
         catalog["km"] = refs["Km"][0]
+    if "Galster" in refs and refs["Galster"]:
+        catalog["galster"] = refs["Galster"][0]
+    if "Bruun" in refs and refs["Bruun"]:
+        catalog["bruun_collection_id"] = refs["Bruun"][0]
     cm["catalog"] = catalog
 
     cm["metal"] = metal
@@ -1294,7 +1305,14 @@ def main() -> int:
         source_name="hede",
         source_label="Hede 1971 (danskmoent.dk cache)",
         scope_note=scope_note,
-        dry_run=not merge,  # When --no-merge passed, dry-run the writer too
+        dry_run=False,
+        # `--no-merge` instructs writer to BYPASS merge_seed's curation
+        # preservation (CURATED_FIELDS / DEEP_MERGE_FIELDS) and write fresh
+        # data wholesale. Previously this flag also triggered dry_run=True
+        # via `dry_run=not merge`, which made --no-merge a NO-OP (writer
+        # never wrote). Now it writes the wholesale-fresh data as
+        # intended. Use with care — destructive for any curator overrides
+        # carried in the existing seed YAML.
         no_merge=not merge,
         extra_top_level={
             "scope_year_from": year_from,
