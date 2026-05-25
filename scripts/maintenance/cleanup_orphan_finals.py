@@ -69,6 +69,14 @@ CATALOG_FIELDS = (
     "skaare", "galster", "friedberg", "davenport", "nmd", "skjoldager",
 )
 
+# Specimen-level keys that, when shared between orphan and twin, ARE
+# strong evidence they represent the same physical coin even when other
+# catalog refs disagree (e.g. V1 bootstrap recorded `km: 250` but the
+# post-§9a-merge final entry stored `km: 51` + `others: KM-DK# 250` —
+# different surface form of the SAME coin). Bruun and Numista assign
+# one number per physical specimen / type, so a shared id is forensic.
+SPECIMEN_KEYS = {"bruun_collection_id", "numista"}
+
 
 def coin_refs(coin: dict) -> dict[str, set[str]]:
     """Return {canonical_catalog_key: set(values)} for a coin's catalog
@@ -212,8 +220,27 @@ def main() -> int:
                     })
                 continue
 
-            # Best twin
-            best = max(twin_scores.items(), key=lambda x: x[1])
+            # Best twin selection — prefer specimen-level shared refs
+            # (bruun_collection_id, numista) over generic shared refs,
+            # because specimen-level identifies the SAME physical coin
+            # rather than just the same type. Two twins both with
+            # shared_refs=1: bruun_coll_id match outweighs km match
+            # (km can collide across catalog volumes; specimen-level is
+            # unambiguous within one source register).
+            def _twin_priority(item):
+                (twin_ent_, twin_id_), shared_ = item
+                twin_c_ = next((tc for e, tc in [(twin_ent_, tc) for tc in
+                               all_finals[twin_ent_] if tc.get("id") == twin_id_]),
+                              None)
+                if twin_c_ is None:
+                    return (shared_, 0)
+                # Count specimen-level shared refs
+                t_refs_ = coin_refs(twin_c_)
+                spec_shared = sum(1 for k in SPECIMEN_KEYS
+                                  if k in o_refs and k in t_refs_
+                                  and (o_refs[k] & t_refs_[k]))
+                return (shared_, spec_shared)
+            best = max(twin_scores.items(), key=_twin_priority)
             twin_ent, twin_id = best[0]
             shared = best[1]
             twin_c = next(tc for e, tc in [(twin_ent, tc) for tc in all_finals[twin_ent]
@@ -257,25 +284,64 @@ def main() -> int:
                 propagate_classification = True
             else:
                 # Both concrete but classifications differ.
-                # When the orphan has NO real data (no weight, fineness,
-                # sources, diameter, or note), its V1-bootstrap classification
-                # is the only thing being preserved — and since the orphan
-                # has zero supporting evidence beyond catalog refs, that
-                # classification is suspect (could be wrong attribution,
-                # outdated, or corrupted). The twin's classification is
-                # backed by actual data from cross-source attestations and
-                # wins. Force DELETE in this case.
+                # Check 1: empty-orphan case (no real data) — classification
+                # is suspect; twin wins.
                 orphan_has_data = any([
                     c.get("weight_rough_g"), c.get("fineness"),
                     c.get("sources"), c.get("diameter_mm"), c.get("note"),
                 ])
+                # Check 2: shared SPECIMEN-LEVEL ref (bruun_collection_id /
+                # numista) — these are per-specimen identifiers; if both
+                # orphan and twin cite the same one, they describe the
+                # SAME physical coin (cross-volume KM collision or wrong-
+                # cite-by-V1 is the only way they'd differ on classification
+                # while sharing a specimen id). Force DELETE — V1 orphan
+                # is the duplicate.
+                orph_specimen = {k: o_refs.get(k) for k in SPECIMEN_KEYS if k in o_refs}
+                twin_specimen = {k: coin_refs(twin_c).get(k)
+                                 for k in SPECIMEN_KEYS
+                                 if k in coin_refs(twin_c)}
+                shared_specimen = False
+                for k in orph_specimen:
+                    if k in twin_specimen and (orph_specimen[k] & twin_specimen[k]):
+                        shared_specimen = True
+                        break
                 if not orphan_has_data:
                     action = "DELETE"
                     reason = (f"{tier}_{conf}_empty_orphan_twin_wins "
                               f"(orphan_fuss={o_fuss}/{o_phase} dropped; "
                               f"twin_fuss={t_fuss}/{t_phase} kept)")
+                elif shared_specimen:
+                    # Shared specimen-level ref (bruun_collection_id /
+                    # numista) — describes same physical coin.
+                    # Sub-cases:
+                    #   (i) twin unclassified, orph classified → propagate
+                    #       orphan's fuss/phase, delete orphan.
+                    #   (ii) both unclassified → safe DELETE (no info loss)
+                    #   (iii) both classified, fuss differs → CURATOR
+                    #        decision (do not auto-decide between two
+                    #        concrete classifications even with specimen-
+                    #        level evidence; one of them is wrong but we
+                    #        can't tell which without numismatic review)
+                    if twin_unclassified and not orph_unclassified:
+                        action = "PROPAGATE_AND_DELETE"
+                        reason = (f"{tier}_{conf}_shared_specimen_promote_orphan_classification "
+                                  f"(orphan_fuss={o_fuss}/{o_phase} propagated; "
+                                  f"shared specimen-level ref)")
+                        propagate_classification = True
+                    elif orph_unclassified:  # twin classified OR also unclassified
+                        action = "DELETE"
+                        reason = (f"{tier}_{conf}_shared_specimen_id_twin_wins "
+                                  f"(orphan_fuss={o_fuss}/{o_phase} dropped; "
+                                  f"twin_fuss={t_fuss}/{t_phase} kept; "
+                                  f"shared specimen-level ref)")
+                    else:
+                        # Both classified differently — keep for curator review
+                        action = "SKIP_CLASSIFICATION_CONFLICT_SPECIMEN"
+                        reason = (f"{tier}_{conf}_shared_specimen_but_both_classified "
+                                  f"(orph={o_fuss}/{o_phase} vs twin={t_fuss}/{t_phase})")
                 else:
-                    # Orphan has real data — curator review required
+                    # Orphan has real data + no shared specimen — curator review
                     action = "SKIP_CLASSIFICATION_CONFLICT"
                     reason = (f"{tier}_{conf}_fuss_{o_fuss}_vs_{t_fuss}_phase_{o_phase}_vs_{t_phase}")
 

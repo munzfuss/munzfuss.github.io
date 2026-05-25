@@ -181,7 +181,7 @@ def check_i2_bidirectional(final_coins: list[tuple[str, dict]],
     # I2a is therefore a soft check — it reports the current count but
     # only HARD-BLOCKS if the count exceeds a baseline. Baseline grows
     # only by explicit bump after a curator review pass.
-    I2A_BASELINE = 261
+    I2A_BASELINE = 250
     orphan_count = 0
     for _, fc in final_coins:
         composed = fc.get("composed_of")
