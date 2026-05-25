@@ -21,7 +21,7 @@ III 1541, so Galster is the primary structured-data source for the
       Inscription + translation
       Litteratur: ... refs ...
 
-Two phases:
+Three phases:
 
 * ``discover`` — fetches /c2galst.htm + /f1galst.htm, extracts all
   per-coin Galster page URLs from their tables, writes
@@ -29,6 +29,14 @@ Two phases:
 * ``fetch`` — reads the manifest and downloads each unique URL,
   caching the raw page as ``scripts/cache/danskmoent/galster/<basename>.htm``.
   Skips URLs already cached.
+* ``overviews`` — fetches /type.htm (the Pålydende master index of
+  denomination overviews) + each root-level overview page it lists
+  (1nobel.htm, guldgyld.htm, 2skill.htm, …), then extracts cross-refs
+  from each overview to per-coin pages. Writes
+  ``_overview_cross_refs.json`` keyed by coin_path with the list of
+  overview URLs that mention it. Consumed by
+  ``build_galster_denmark_seed.py`` to enrich each per-coin entry's
+  ``sources[]`` with denomination-overview attestations.
 
 Run all phases::
 
@@ -50,6 +58,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.paths import GALSTER_CACHE as CACHE_DIR  # noqa: E402
 
 MANIFEST = CACHE_DIR / "_manifest.json"
+OVERVIEW_MANIFEST = CACHE_DIR / "_overview_cross_refs.json"
 USER_AGENT = "Mozilla/5.0 (research; muentzfuesse project; non-commercial scholarly register)"
 SLEEP_SECS = 0.4
 BASE = "https://www.danskmoent.dk"
@@ -61,6 +70,19 @@ INDEX_PAGES = [
     "/c2galst.htm",
     "/f1galst.htm",
 ]
+
+# Denomination-overview master index page. Each entry links to a
+# root-level overview page (1nobel.htm, guldgyld.htm, 2skill.htm, …)
+# that documents one denomination across multiple rulers, with hyper-
+# links back to specific per-coin pages. The harvester walks this
+# master index, fetches each overview, and extracts cross-refs from
+# each overview to per-coin pages. The result populates a
+# `coin_path → [overview_paths]` map used by the Galster builder to
+# enrich per-coin entries' `sources[]` with denomination-overview
+# attestations. (Surfaced 2026-05-25 — danskmoent.dk/1nobel.htm
+# overview was not previously visited, so Frederik I Ribe Nobel
+# entries lacked the overview cross-ref despite being listed there.)
+TYPE_INDEX = "/type.htm"
 
 # Per-coin URL patterns to extract from index pages. The Galster
 # series uses single-letter «g» (vs Hede's «h»). Mirroring fetch_hede.py.
@@ -122,6 +144,139 @@ def _filename_for(url_path: str) -> str:
     that chr/c2g37.htm + norge/nc2g37.htm don't collide on basename."""
     path = url_path.lstrip("/")
     return path.replace("/", "_")
+
+
+# Hyperlink + visible-text extractor for the /type.htm master index.
+# Each row links a denomination overview page (root-level, e.g.
+# `1nobel.htm`) with a human-readable title («1 Nobel»). The harvester
+# uses this to (a) enumerate the overview-page URL set, (b) attach
+# a human-readable title to each overview for the source-ref text.
+_TYPE_INDEX_LINK_RE = re.compile(
+    r'<a\s+href="([^"]+\.htm)"[^>]*>([^<]+)</a>',
+    re.IGNORECASE,
+)
+
+
+def _extract_overview_index(html: str) -> list[tuple[str, str]]:
+    """Parse /type.htm master index into [(path, title), …].
+
+    Filters to ROOT-LEVEL overview pages only (single .htm at root —
+    e.g. `1nobel.htm`, `guldgyld.htm`). Sub-directory links
+    (`fr/f1g68.htm`, `chr/c2g37.htm`, `norge/nc2g165.htm`, `falske/*`)
+    are NOT overviews — they're individual coin pages that some
+    denominations co-list (typically for rare one-off coins where
+    no overview exists). Self-link to /type.htm and the navigation
+    /index.htm are excluded.
+    """
+    excluded_basenames = {"type.htm", "index.htm"}
+    seen_paths: set[str] = set()
+    out: list[tuple[str, str]] = []
+    for href, text in _TYPE_INDEX_LINK_RE.findall(html):
+        href = href.strip()
+        text = text.strip()
+        # Strip any leading slash and skip subdirectory links
+        norm = href.lstrip("/")
+        if "/" in norm:
+            continue
+        if norm in excluded_basenames:
+            continue
+        path = "/" + norm
+        if path in seen_paths:
+            # Same path linked from multiple rows (e.g. 1mark.htm
+            # appears as both «1 Mark/16 Skilling» and «16 Skilling/1 Mark»).
+            # Keep the first-seen title (alphabetical-order in /type.htm
+            # tends to favour the canonical denomination form).
+            continue
+        seen_paths.add(path)
+        out.append((path, text))
+    return out
+
+
+def discover_overviews() -> dict:
+    """Fetch /type.htm master index, enumerate denomination-overview
+    pages, fetch each one, and extract cross-refs from each overview
+    to per-coin pages.
+
+    Writes `_overview_cross_refs.json` with:
+      {
+        "overviews": [{"path": ..., "title": ..., "cache_file": ...}],
+        "cross_refs": {coin_path: [overview_path, …], …},
+        "fetched_at": "..."
+      }
+
+    The cross_refs map is read by `build_galster_denmark_seed.py`
+    (and any sibling builder) to add denomination-overview URLs to
+    each per-coin entry's `sources[]`.
+    """
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    opener = _make_session()
+
+    # Phase 1 — fetch /type.htm master index
+    type_url = BASE + TYPE_INDEX
+    type_html = _try_fetch(opener, type_url)
+    time.sleep(SLEEP_SECS)
+    if type_html is None:
+        print(f"  {TYPE_INDEX} — not found; cannot enumerate overviews", file=sys.stderr)
+        return {}
+    type_cache = CACHE_DIR / _filename_for(TYPE_INDEX)
+    type_cache.write_text(type_html, encoding="utf-8")
+
+    overview_entries = _extract_overview_index(type_html)
+    print(f"  /type.htm: enumerated {len(overview_entries)} denomination-overview page(s)")
+
+    # Phase 2 — fetch each overview page + extract its cross-refs
+    overviews_meta: list[dict] = []
+    cross_refs: dict[str, list[str]] = {}  # coin_path → [overview_paths]
+    fetched_now = 0
+    cached_already = 0
+    failed = 0
+    for path, title in overview_entries:
+        cache_file = CACHE_DIR / _filename_for(path)
+        if cache_file.exists():
+            html = cache_file.read_text(encoding="utf-8")
+            cached_already += 1
+        else:
+            url = BASE + path
+            html = _try_fetch(opener, url)
+            time.sleep(SLEEP_SECS)
+            if html is None:
+                failed += 1
+                continue
+            cache_file.write_text(html, encoding="utf-8")
+            fetched_now += 1
+        overviews_meta.append({
+            "path": path,
+            "title": title,
+            "cache_file": _filename_for(path),
+        })
+        # Extract cross-refs from this overview's body. _extract_links
+        # captures per-coin paths under chr/, fr/, norge/, artikler/,
+        # galster/, ernst/ — i.e. exactly the per-coin URL shapes the
+        # rest of this harvester already knows. Self-links (an overview
+        # linking to itself or to another overview) are filtered by
+        # the existing patterns since overviews live at root level.
+        for coin_path in _extract_links(html):
+            cross_refs.setdefault(coin_path, []).append(path)
+
+    # Deduplicate + sort each cross-ref list (an overview may appear
+    # twice on a coin page via duplicate links).
+    cross_refs_sorted = {cp: sorted(set(ops)) for cp, ops in cross_refs.items()}
+
+    manifest = {
+        "overviews": overviews_meta,
+        "cross_refs": cross_refs_sorted,
+        "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    }
+    OVERVIEW_MANIFEST.write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    print(f"  Overviews fetched: {fetched_now} new + {cached_already} cached "
+          f"+ {failed} failed = {len(overviews_meta)}/{len(overview_entries)}")
+    print(f"  Cross-refs: {len(cross_refs_sorted)} per-coin pages have "
+          f"≥1 overview backref")
+    print(f"  Manifest written: {OVERVIEW_MANIFEST.name}")
+    return manifest
 
 
 def discover() -> dict:
@@ -217,7 +372,8 @@ def fetch_all(force: bool = False) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("phase", nargs="?", default="all", choices=["discover", "fetch", "all"])
+    ap.add_argument("phase", nargs="?", default="all",
+                    choices=["discover", "fetch", "overviews", "all"])
     ap.add_argument("--force", action="store_true", help="Re-fetch already-cached pages")
     args = ap.parse_args()
 
@@ -227,6 +383,9 @@ def main() -> None:
     if args.phase in ("fetch", "all"):
         print(f"\nFetching per-coin pages...")
         fetch_all(force=args.force)
+    if args.phase in ("overviews", "all"):
+        print(f"\nDiscovering denomination-overview pages...")
+        discover_overviews()
 
 
 if __name__ == "__main__":

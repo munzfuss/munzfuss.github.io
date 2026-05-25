@@ -36,6 +36,35 @@ from lib.paths import GALSTER_CACHE  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
+_OVERVIEW_MANIFEST = GALSTER_CACHE / "_overview_cross_refs.json"
+_DANSKMOENT_BASE = "https://www.danskmoent.dk"
+
+
+def _load_overview_cross_refs() -> tuple[dict[str, list[str]], dict[str, str]]:
+    """Load `_overview_cross_refs.json` produced by `fetch_galster.py overviews`.
+
+    Returns:
+      (cross_refs, overview_titles) where
+        cross_refs[coin_path] = [overview_path, ...]
+        overview_titles[overview_path] = "1 Nobel" (etc.)
+
+    Both maps are empty if the manifest doesn't exist (older clones
+    that haven't run the overviews phase). Builder propagation is
+    a no-op in that case.
+    """
+    if not _OVERVIEW_MANIFEST.exists():
+        return {}, {}
+    try:
+        data = json.loads(_OVERVIEW_MANIFEST.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}, {}
+    cross_refs = data.get("cross_refs") or {}
+    overviews = data.get("overviews") or []
+    titles = {ov.get("path"): ov.get("title", "")
+              for ov in overviews if ov.get("path")}
+    return cross_refs, titles
+
+
 YEAR_FROM = 1481
 YEAR_TO = 1541
 # Lower bound 1481 matches Bruun builder + project Phase-pre-I scope
@@ -208,6 +237,53 @@ def _split_nominal_mint(nominal: str | None, source_mint: str | None
     return (s or None, mint_value, shape_hint)
 
 
+# Module-level overview-cross-refs cache, loaded once per build.
+# Maps coin_path (e.g. "/fr/f1g68.htm") → [overview_path, …]
+# and overview_path → overview title for ref-text emission.
+_OVERVIEW_CROSS_REFS, _OVERVIEW_TITLES = _load_overview_cross_refs()
+
+
+def _build_sources(data: dict) -> list[dict]:
+    """Construct the per-coin `sources[]` list.
+
+    Always emits the primary Galster page citation. When the overview-
+    cross-refs manifest is populated AND this coin's URL path is
+    referenced from one or more denomination-overview pages
+    (/1nobel.htm, /guldgyld.htm, /2skill.htm, …), each overview is
+    appended as a secondary literature citation. Per CLAUDE.md §5
+    «Web-sourced facts → bibliography entry + inline cite»: the
+    overview attests that the coin is part of a documented denomination
+    series, with a canonical denomination title from danskmoent.dk's
+    Pålydende master index.
+    """
+    sources: list[dict] = [
+        {
+            "type": "literature",
+            "url": data.get("source_url_hint"),
+            "ref": (
+                f"Galster {data.get('galster_number', '?')} "
+                f"({data.get('ruler_volume', '?')}) — "
+                f"danskmoent.dk {data.get('source_file', '?')}"
+            ),
+        }
+    ]
+    # Look up overview cross-refs by URL path. The path is derivable
+    # from `source_url_hint` (full URL) by stripping the BASE prefix.
+    src_url = data.get("source_url_hint") or ""
+    if src_url.startswith(_DANSKMOENT_BASE):
+        coin_path = src_url[len(_DANSKMOENT_BASE):]
+        overview_paths = _OVERVIEW_CROSS_REFS.get(coin_path) or []
+        for op in overview_paths:
+            title = _OVERVIEW_TITLES.get(op) or op.lstrip("/").removesuffix(".htm")
+            basename = op.lstrip("/")
+            sources.append({
+                "type": "literature",
+                "url": f"{_DANSKMOENT_BASE}{op}",
+                "ref": f"«{title}» (Wertstufen-Übersicht) — danskmoent.dk {basename}",
+            })
+    return sources
+
+
 def build_entry(data: dict) -> dict | None:
     year_first, year_last = parse_year_range(data.get("year_label"))
     year_verified = True
@@ -278,17 +354,7 @@ def build_entry(data: dict) -> dict | None:
             and re.search(r"\s*(?:\beller\b|\boder\b|\bor\b|/)\s*",
                           mint_value, re.IGNORECASE)
         ),
-        "sources": [
-            {
-                "type": "literature",
-                "url": data.get("source_url_hint"),
-                "ref": (
-                    f"Galster {data.get('galster_number', '?')} "
-                    f"({data.get('ruler_volume', '?')}) — "
-                    f"danskmoent.dk {data.get('source_file', '?')}"
-                ),
-            }
-        ],
+        "sources": _build_sources(data),
         "verification_note": {
             "de": (
                 "Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie "
