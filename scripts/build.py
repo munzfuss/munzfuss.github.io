@@ -1148,7 +1148,7 @@ def build_location(
                 'heading': i18n.t(references_data.get('heading'), lang),
                 'entries': [
                     {'id': e['id'], 'content': i18n.t(e.get('content'), lang)}
-                    for e in references_data.get('entries', [])
+                    for e in (references_data.get('entries') or [])
                     if i18n.t(e.get('content'), lang)
                 ]
             }
@@ -1243,7 +1243,7 @@ def build_landing(
                 'heading': i18n.t(german_fuesse_references.get('heading'), lang),
                 'entries': [
                     {'id': e['id'], 'content': i18n.t(e.get('content'), lang)}
-                    for e in german_fuesse_references.get('entries', [])
+                    for e in (german_fuesse_references.get('entries') or [])
                     if i18n.t(e.get('content'), lang)
                 ]
             }
