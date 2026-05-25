@@ -159,11 +159,41 @@ def check_i2_bidirectional(final_coins: list[tuple[str, dict]],
                             seed_coins: list[tuple[str, str, dict]]
                             ) -> list[str]:
     """I2 — bidirectional link integrity. composed_of refs resolve;
-    promoted_to refs resolve + reciprocate."""
+    promoted_to refs resolve + reciprocate. Final entries must have a
+    non-empty composed_of (V1-bootstrap orphan prevention)."""
     errors: list[str] = []
     final_by_id = {c["id"]: c for _, c in final_coins if c.get("id")}
     unified_by_id = {c["id"]: c for _, c in unified_coins if c.get("id")}
     seed_by_id = {c["id"]: c for _, _, c in seed_coins if c.get("id")}
+
+    # I2a — orphan-baseline check. Every final entry SHOULD reference at
+    # least one seed/unified id. Empty composed_of typically indicates a
+    # V1-bootstrap stub whose seed-cluster migrated or was consumed —
+    # such entries render with no sources/weight on display tables.
+    #
+    # The 2026-05-25 cleanup (`cleanup_orphan_finals.py`) reclaimed 140
+    # safe-delete cases; the residual 282 are legitimately preserved:
+    #   - ≈152 are T3 entries with V1-curated sources (no other source
+    #     attests them)
+    #   - ≈89 are low-confidence twin candidates (curator review queue)
+    #   - ≈41 are classification-conflict pairs (curator decision queue)
+    #
+    # I2a is therefore a soft check — it reports the current count but
+    # only HARD-BLOCKS if the count exceeds a baseline. Baseline grows
+    # only by explicit bump after a curator review pass.
+    I2A_BASELINE = 282
+    orphan_count = 0
+    for _, fc in final_coins:
+        composed = fc.get("composed_of")
+        if composed == [] or composed is None:
+            orphan_count += 1
+    if orphan_count > I2A_BASELINE:
+        errors.append(
+            f"I2a: final-orphan count regressed: {orphan_count} > baseline "
+            f"{I2A_BASELINE}. Either run `cleanup_orphan_finals.py --apply` "
+            f"to reclaim new orphans, or bump I2A_BASELINE in audit_v2.py "
+            f"after a curator review."
+        )
 
     # composed_of must resolve to seed or unified id
     for _, fc in final_coins:
