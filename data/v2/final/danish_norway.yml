@@ -7527,12 +7527,20 @@ coins:
   - - 1672
     - 1675
   year_label: 1670, 1672, 1675
-  mint: Christiania
+  mint:
+  - Christiania
+  - Christiania Mint
   catalog:
     km: 93a
     hede: '45'
     hede_volume: nc5h
     schou: '25'
+    bruun_collection_id: '10098'
+    sieg: '19'
+    nmd: '128'
+    bruun_part: III
+    bruun_lot_no: 12093
+    bruun_page: 208
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7541,6 +7549,10 @@ coins:
   mint_verified: true
   verified: false
   fineness:
+  - value: 0.667
+    source: numismaster
+  - value: 0.667
+    source: ucoin
   - value: 0.672
     source: hede
   - value: 0.672
@@ -7548,6 +7560,12 @@ coins:
   - value: 0.672
     source: ucoin
   weight_rough_g:
+  - value: 2.66
+    source: numismaster
+  - value: 2.66
+    source: ucoin
+  - value: 2.77
+    source: bruun
   - value: 2.78
     source: numismaster
   - value: 2.78
@@ -7555,6 +7573,8 @@ coins:
   - value: 2.784
     source: hede
   diameter_mm:
+  - value: 21.0
+    source: ucoin
   - value: 22.0
     source: ucoin
   sources:
@@ -7567,6 +7587,14 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-8-skilling-1672-1675/?tid=143943
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_110628
+    ref: NumisMaster
+  - type: literature
+    ref: Bruun-10098 · Stack's Bowers Bruun Collection Part III, lot 12093
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-8-skilling-1670/?tid=143942
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -7578,6 +7606,7 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
+  - unified-dk-bruun-10098
   - unified-dk-hede-nc5h45
 - fuss: seed_unsorted
   phase: hede

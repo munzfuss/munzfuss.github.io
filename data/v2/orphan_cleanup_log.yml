@@ -1,11 +1,71 @@
-generated_at: '2026-05-25T07:27:21.594618+00:00'
+generated_at: '2026-05-25T07:54:55.713962+00:00'
 mode: apply
 summary:
+  DELETE: 5
   SKIP_PRESERVE_V1_DATA: 152
   SKIP_CLASSIFICATION_CONFLICT: 39
   SKIP_LOW_CONFIDENCE: 89
-  DELETE: 2
 actions:
+  - action: DELETE
+    reason: T1_medium_redundant
+    orph_entity: danish_realm
+    orph_id: dk-tid-163398
+    twin_entity: danish_realm
+    twin_id: unified-dk-bruun-4602
+    confidence: medium
+    shared_refs: 1
+    nominal: 1 Gulden
+    year_first: 1591
+    fuss: reichsdukatenfuss
+    phase: I
+    twin_fuss: reichsdukatenfuss
+    twin_phase: I
+    propagate_classification: false
+  - action: DELETE
+    reason: T1_medium_redundant
+    orph_entity: danish_realm
+    orph_id: dk-tid-97335
+    twin_entity: danish_realm
+    twin_id: unified-dk-hede-c5h91
+    confidence: medium
+    shared_refs: 1
+    nominal: 2 Kroner
+    year_first: 1691
+    fuss: kronemont
+    phase: II
+    twin_fuss: kronemont
+    twin_phase: II
+    propagate_classification: false
+  - action: DELETE
+    reason: T1_high_redundant
+    orph_entity: danish_realm
+    orph_id: dk-tid-97340
+    twin_entity: danish_realm
+    twin_id: unified-dk-hede-c5h101
+    confidence: high
+    shared_refs: 2
+    nominal: 3 Kroner
+    year_first: 1693
+    fuss: kronemont
+    phase: II
+    twin_fuss: kronemont
+    twin_phase: II
+    propagate_classification: false
+  - action: DELETE
+    reason: T1_high_redundant
+    orph_entity: danish_realm
+    orph_id: dk-tid-99118
+    twin_entity: danish_realm
+    twin_id: unified-dk-hede-c5h105
+    confidence: high
+    shared_refs: 2
+    nominal: 2 Kroner
+    year_first: 1693
+    fuss: kronemont
+    phase: II
+    twin_fuss: kronemont
+    twin_phase: II
+    propagate_classification: false
   - action: SKIP_PRESERVE_V1_DATA
     reason: T3_has_sources_or_notes
     orph_entity: danish_realm
@@ -260,6 +320,21 @@ actions:
     phase: I
     twin_fuss: seed_unsorted
     twin_phase: hede
+    propagate_classification: false
+  - action: DELETE
+    reason: T1_high_redundant
+    orph_entity: danish_realm
+    orph_id: km-51-hede-23b-chr-iv-1629
+    twin_entity: danish_realm
+    twin_id: unified-dk-hede-c4h23a
+    confidence: high
+    shared_refs: 2
+    nominal: Rose Noble
+    year_first: 1611
+    fuss: rosenobel_fod
+    phase: II
+    twin_fuss: rosenobel_fod
+    twin_phase: II
     propagate_classification: false
   - action: SKIP_CLASSIFICATION_CONFLICT
     reason: T1_medium_fuss_11_333_thaler_vs_9_25_thaler_phase_I_vs_II
@@ -722,21 +797,6 @@ actions:
     phase: I
     twin_fuss: seed_unsorted
     twin_phase: hede
-    propagate_classification: false
-  - action: DELETE
-    reason: T2_medium_orphan_unclassified
-    orph_entity: fuerstbisthum_luebeck
-    orph_id: bruun-14121-adolf-1607
-    twin_entity: danish_norway
-    twin_id: unified-denmark-numismaster-110774
-    confidence: medium
-    shared_refs: 1
-    nominal: 1/2 Taler
-    year_first: 1607
-    fuss: seed_unsorted
-    phase: I
-    twin_fuss: 9_25_thaler
-    twin_phase: I
     propagate_classification: false
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
@@ -1419,21 +1479,6 @@ actions:
     twin_fuss: seed_unsorted
     twin_phase: hede
     propagate_classification: false
-  - action: DELETE
-    reason: T2_medium_orphan_unclassified
-    orph_entity: grafschaft_oldenburg
-    orph_id: bruun-15103-unknown-1667
-    twin_entity: danish_norway
-    twin_id: unified-denmark-numismaster-110597
-    confidence: medium
-    shared_refs: 1
-    nominal: 1/4 Taler
-    year_first: 1667
-    fuss: seed_unsorted
-    phase: I
-    twin_fuss: 9_25_thaler
-    twin_phase: I
-    propagate_classification: false
   - action: SKIP_CLASSIFICATION_CONFLICT
     reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_numismaster
     orph_entity: grafschaft_oldenburg
@@ -1567,12 +1612,12 @@ actions:
     twin_phase: bruun
     propagate_classification: false
   - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_high_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_bruun
+    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_bruun
     orph_entity: herzogtum_braunschweig_lueneburg
     orph_id: bruun-5536-christian-1627
     twin_entity: danish_realm
     twin_id: unified-dk-bruun-5536
-    confidence: high
+    confidence: medium
     shared_refs: 6
     nominal: Speciedaler (Reichstaler)
     year_first: 1627

@@ -1106,7 +1106,11 @@ def _normalise_mints(mint) -> set[str]:
         # split on comma so multi-token shapes like «Denmark, Copenhagen»
         # or «Altona, Kopenhagen» (V1 list-style joined into a string)
         # decompose into individual mint tokens.
+        # Also strip trailing « Mint» suffix common in Bruun catalogue
+        # output («Copenhagen Mint», «Glückstadt Mint», «Altona Mint»)
+        # so Bruun mint tokens align with project-canonical bare-mint form.
         base = re.sub(r"\s*\([^)]*\)\s*$", "", m).strip()
+        base = re.sub(r"\s+Mint\s*$", "", base).strip()
         if not base:
             continue
         tokens = [t.strip().lower() for t in base.split(",") if t.strip()]
@@ -1303,8 +1307,26 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
                 f"— demoted to advisory via catalog-agreement override (§9.4)"
             )
             primary["nominal"] = None  # don't count as primary_false
+        elif primary["catalog"] is None:
+            # Catalog has NO overlap (no shared refs at all) — can't
+            # override BUT can't disprove either. Demote nominal disagree
+            # to None («can't tell» rather than «definitely different»)
+            # and let downstream confidence calc decide via the other
+            # signals. Critically: returning here as no_match would call
+            # `uf.add_no_merge(a, b)` and BLOCK any transitive union via
+            # a third party that shares catalog with both — even when
+            # the third party's evidence overwhelmingly identifies a, b
+            # as same-type (the «Guilder» NumisMaster vs «Rhinsk Gylden»
+            # Hede + KM-only-NumisMaster + Hede-only-Hede case).
+            why.append(
+                f"nominal: {coin_a.get('nominal')!r} ≠ {coin_b.get('nominal')!r} "
+                f"— demoted to advisory (no catalog overlap to evaluate)"
+            )
+            primary["nominal"] = None
         else:
-            # No catalog evidence to override — keep the hard-fail.
+            # Catalog has overlap but DISAGREES (chain_state = 'disagree')
+            # — both sources cite catalog refs and they contradict each
+            # other. THIS is genuine different-type evidence. Keep hard-fail.
             why.append(f"nominal: {coin_a.get('nominal')!r} ≠ {coin_b.get('nominal')!r}")
             return {"decision": "no_match", "primary": primary,
                     "fallback": fallback, "why": why}
@@ -1368,6 +1390,68 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     if primary_false:
         return {"decision": "no_match", "primary": primary,
                 "fallback": fallback, "why": why or ["primary signal disagreed"]}
+
+    # §9a multi-specimen rule (catalog-driven multi-year/multi-mint tolerance).
+    #
+    # Two seeds attesting the SAME physical type minted across multiple years
+    # (each Bruun specimen has its OWN year_first=year_last for the year it
+    # was struck) inevitably disagree on `years` fallback even when catalog
+    # evidence is overwhelming (KM + Hede + Sieg + Schou agree). Mint
+    # orthographic variation registers as `mint` fallback False before
+    # normalisation. Bruun specimens of the same type also disagree on
+    # bruun_collection_id (per-specimen) and Schou (per-die-variant).
+    #
+    # Gate: catalog has TYPE-LEVEL strong agreement — ≥2 non-sub-variant refs
+    # agree OR ≥1 shared authoritative type-defining ref (km/<reg>, hede/<vol>,
+    # galster/<vol>, numista) agrees — AND no non-sub-variant disagreements.
+    # Sub-variant disagreements (Schou, Sieg, bruun_collection_id, NMD,
+    # Aagaard, Schive, Skjoldager) are tolerated as expected for §9a.
+    #
+    # Additional safety: ruler + metal primaries also True. Cross-edition KM
+    # drift on different physical coins under the same ruler + metal would
+    # be the main false-merge risk, but it's vanishingly rare within a
+    # single per-entity bucket.
+    AUTHORITATIVE_TYPE_DEFINING_REFS = {"numista", "bruun_collection_id"}
+    SUB_VARIANT_REFS_FOR_MULTISPECIMEN = {
+        "schou", "nmd", "aagaard", "schive", "skjoldager",
+        "bruun_collection_id", "sieg",
+    }
+
+    def _has_type_strong_agreement(ra: dict, rb: dict) -> bool:
+        shared = set(ra) & set(rb)
+        if not shared:
+            return False
+        non_subvariant_agree = 0
+        has_authoritative = False
+        for k in shared:
+            va, vb = ra[k], rb[k]
+            sa = set(va.split("|")) if isinstance(va, str) else {str(va)}
+            sb = set(vb.split("|")) if isinstance(vb, str) else {str(vb)}
+            overlap = bool(sa & sb)
+            is_subvar = k in SUB_VARIANT_REFS_FOR_MULTISPECIMEN
+            if not overlap and not is_subvar:
+                # Non-sub-variant disagreement disqualifies
+                return False
+            if overlap and not is_subvar:
+                non_subvariant_agree += 1
+                if (k.startswith("km/")
+                        or k.startswith("hede/")
+                        or k.startswith("galster/")
+                        or k in AUTHORITATIVE_TYPE_DEFINING_REFS):
+                    has_authoritative = True
+        return non_subvariant_agree >= 2 or has_authoritative
+
+    if (fallback_false > 0
+            and primary.get("catalog") is True
+            and primary.get("ruler") is True
+            and primary.get("metal") is True
+            and _has_type_strong_agreement(refs_a, refs_b)):
+        why.append(
+            f"§9a multi-specimen promotion: catalog type-strong + ruler + "
+            f"metal True; fallback disagreement tolerated ({fallback})"
+        )
+        return {"decision": "confident", "primary": primary,
+                "fallback": fallback, "why": why}
 
     # All available primary signals agree (no False); some may be None
     # (not evaluable — e.g. catalog no_overlap when refs come from

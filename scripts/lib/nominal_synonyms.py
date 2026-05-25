@@ -39,6 +39,10 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     (r"\bspecie\s+dalers?\b", "speciedaler"),
     (r"\bsilver\s+guldens?\b", "sølvgylden"),
     (r"\bsilver\s+guilders?\b", "sølvgylden"),
+    # «Rhinsk Gylden» / «Rhinsk Gulden» — Danish/Norwegian per-source
+    # variants of the Rhenish Gulden (18½-karat gold). Normalise the
+    # spelling variant to the canonical Hede form.
+    (r"\brhinsk\s+gulden\b", "rhinsk gylden"),
     # Single-word denomination synonyms — handle English «-s» plural
     # («2 Nobles», «3 Ducats», «Thalers», «Schillings»). Danish forms
     # don't take English-style «s» pluralisation, so a trailing «s»
@@ -48,6 +52,12 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     (r"\bducaten\b", "dukat"),
     (r"\bthalers?\b", "daler"),
     (r"\bschillings?\b", "skilling"),
+    # «Guilder» (English) ≡ «Gulden» (German) ≡ «Gylden» (Danish).
+    # NumisMaster uses «Guilder» for Rhenish/Danish gold guldens; Hede
+    # uses «Gylden». Both refer to the same gold-coin family — normalise
+    # to «gylden» as canonical (matches Hede / project YAML).
+    (r"\bguilders?\b", "gylden"),
+    (r"\bguldens?\b", "gylden"),
 ]
 
 
