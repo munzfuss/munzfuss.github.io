@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-05-24 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 2714 per-source seed entries.
-# Output: 1565 unified entries (one per physical coin).
+# Output: 1563 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-05-24'
+generated_at: '2026-05-25'
 coins:
 - id: unified-denmark-numismaster-117787
   fuss: seed_unsorted
@@ -16050,18 +16050,27 @@ coins:
     bruun_lot_no: 14258
     bruun_page: 322
     galster: '131'
+    galster_volume: c3g
   metal: gold
   metal_verified: true
-  fineness_verified: false
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.764
+    source: galster
   weight_rough_g:
+  - value: 3.19
+    source: galster
   - value: 3.37
     source: bruun
   sources:
   - type: literature
     ref: Bruun-14770 · Stack's Bowers Bruun Collection Part II, lot 14258
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g131.htm
+    ref: Galster 131 (c3g) — danskmoent.dk chr_c3g131.htm
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -16076,6 +16085,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-bruun-14770
+  - dk-galster-c3g-131
 - id: unified-dk-bruun-3725
   fuss: seed_unsorted
   phase: bruun
@@ -17361,6 +17371,7 @@ coins:
     bruun_lot_no: 11162
     bruun_page: 86
     galster: '93'
+    galster_volume: c3g
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -17370,9 +17381,14 @@ coins:
   weight_rough_g:
   - value: 2.72
     source: bruun
+  - value: 3.32
+    source: galster
   sources:
   - type: literature
     ref: Bruun-4156 · Stack's Bowers Bruun Collection Part III, lot 11162
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g93.htm
+    ref: Galster 93 (c3g) — danskmoent.dk chr_c3g93.htm
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -17387,6 +17403,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-bruun-4156
+  - dk-galster-c3g-93
 - id: unified-dk-bruun-4186
   fuss: seed_unsorted
   phase: bruun
@@ -37415,48 +37432,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-c3g-101
-- id: unified-dk-galster-c3g-131
-  fuss: seed_unsorted
-  phase: galster
-  kind: kurant
-  nominal: 1 Rhinsk gylden
-  year_first: 1536
-  year_last: 1536
-  year_label: '1536'
-  ruler: Christian III
-  mint: Roskilde
-  catalog:
-    galster: '131'
-    galster_volume: c3g
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.764
-    source: galster
-  weight_rough_g:
-  - value: 3.19
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g131.htm
-    ref: Galster 131 (c3g) — danskmoent.dk chr_c3g131.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-galster-c3g-131
 - id: unified-dk-galster-c3g-132
   fuss: seed_unsorted
   phase: galster
@@ -40059,10 +40034,12 @@ coins:
     - '64.3'
     - '64.4'
     - '64.5'
+    numista: '142858'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -40070,9 +40047,16 @@ coins:
     source: hede
   - value: 0.859
     source: numismaster
+  - value: 0.86
+    source: ucoin
   weight_rough_g:
+  - value: 1.85
+    source: ucoin
   - value: 2.101
     source: hede
+  diameter_mm:
+  - value: 22.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65122
@@ -40080,6 +40064,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h114.htm
     ref: danskmoent.dk (Hede c4h114A)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-8-skilling-1620-1621/?tid=163026
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -40098,6 +40085,7 @@ coins:
   - dk-hede-c4h114c
   - dk-hede-c4h114d
   - dk-hede-c4h114e
+  - km-82-chr-iv-1620
 - id: unified-dk-hede-c4h115a
   fuss: seed_unsorted
   phase: hede
@@ -71408,28 +71396,21 @@ coins:
   year_last: 1535
   year_label: '1535'
   ruler: Christian III
-  mint: Århus
   catalog:
     numista: '476670'
     galster: '93'
     sieg: C3-2
-    galster_volume: c3g
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: false
-  mint_verified: true
+  mint_verified: false
   verified: false
   weight_rough_g:
   - value: 3.32
-    source: galster
-  - value: 3.32
     source: numista
   sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g93.htm
-    ref: Galster 93 (c3g) — danskmoent.dk chr_c3g93.htm
   - type: literature
     url: https://en.numista.com/476670
     ref: Numista N#476670 — 8 Skilling Klipping - Christian III
@@ -71445,7 +71426,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   issuing_entity: danish_realm
   composed_of:
-  - dk-galster-c3g-93
   - dk-numista-476670
 - id: unified-dk-numista-476671
   fuss: seed_unsorted
@@ -77776,58 +77756,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - km-761-fr-vi-1854
-- id: unified-km-82-chr-iv-1620
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 8 Skilling
-  year_first: 1620
-  year_last: 1621
-  year_ranges:
-  - - 1620
-    - 1621
-  year_label: 1620–1621
-  ruler: Christian IV
-  catalog:
-    km: '82'
-    numista: '142858'
-    hede:
-    - 114A
-    - 114B
-    - 114C
-    - 114D
-    - 114E
-    hede_volume: c4h
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.86
-    source: ucoin
-  weight_rough_g:
-  - value: 1.85
-    source: ucoin
-  diameter_mm:
-  - value: 22.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-8-skilling-1620-1621/?tid=163026
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - km-82-chr-iv-1620
 - id: unified-km-95-chr-iv-1624
   fuss: seed_unsorted
   phase: ucoin

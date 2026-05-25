@@ -992,8 +992,20 @@ def _catalog_strongly_agrees(refs_a: dict, refs_b: dict,
     («Galster 92» base ≠ «Galster 92B» sub-variant).
     """
     shared = set(refs_a) & set(refs_b)
-    if len(shared) < min_shared_agreeing:
-        return False
+    # Type-defining authoritative catalogs — one number per coin type
+    # within their scope. A single shared+agreeing ref from this set is
+    # strong-enough evidence by itself (used to relax min_shared_agreeing
+    # for sources that publish only one catalog ref). The check still
+    # requires zero disagreements across ALL shared keys.
+    AUTHORITATIVE_TYPE_DEFINING = {
+        "km", "numista", "bruun_collection_id",
+        # Galster + Hede are scoped per ruler-volume (galster/c3g, hede/c4h)
+        # so the scope-prefixed key signals the volume already. Galster's
+        # «one number per type» discipline within a ruler-volume is the
+        # equivalent of KM's per-region scope.
+    }
+    # Match any galster/<vol> or hede/<vol> as authoritative
+    has_authoritative_agreement = False
     n_agreeing = 0
     for k in shared:
         va, vb = refs_a[k], refs_b[k]
@@ -1001,11 +1013,22 @@ def _catalog_strongly_agrees(refs_a: dict, refs_b: dict,
         sb = set(vb.split("|")) if isinstance(vb, str) else {str(vb)}
         if sa & sb:
             n_agreeing += 1
+            if (k in AUTHORITATIVE_TYPE_DEFINING
+                    or k.startswith("galster/")
+                    or k.startswith("hede/")):
+                has_authoritative_agreement = True
         else:
             # Any disagreement on a shared key disqualifies — strong
             # agreement requires zero disagreements across shared keys.
             return False
-    return n_agreeing >= min_shared_agreeing
+    # Two paths to «strongly agrees»:
+    #   (a) classic: ≥ min_shared_agreeing refs in agreement, OR
+    #   (b) single-source carry: ≥1 authoritative type-defining ref
+    #       (KM / Numista / Bruun-coll-id / galster/vol / hede/vol).
+    #       Use this when a source publishes only one catalog ref
+    #       (Galster-derived seeds typically have just galster/vol;
+    #        Numista pages often carry just N# + a Friedberg cross-ref).
+    return n_agreeing >= min_shared_agreeing or has_authoritative_agreement
 
 
 # Mint spelling aliases — map source-specific variants to a single
