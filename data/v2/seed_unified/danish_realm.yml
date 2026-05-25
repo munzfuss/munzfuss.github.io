@@ -2,8 +2,8 @@
 # Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 2701 per-source seed entries.
-# Output: 1454 unified entries (one per physical coin).
+# Input: 2714 per-source seed entries.
+# Output: 1466 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -15830,6 +15830,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.764
     source: galster
@@ -16282,6 +16283,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   weight_rough_g:
   - value: 3.97
     source: bruun
@@ -16467,6 +16469,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   weight_rough_g:
   - value: 1.99
     source: bruun
@@ -16519,6 +16522,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.319
     source: galster
@@ -16578,6 +16582,7 @@ coins:
   diameter_mm_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.75
     source: galster
@@ -16736,18 +16741,28 @@ coins:
     schou: '11'
     galster: '60'
     jensen_skjoldager: ', again leans towards 4 Skilling'
+    galster_volume: f1g
   metal: billon
   metal_verified: true
-  fineness_verified: false
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
+  fineness:
+  - value: 0.875
+    source: galster
   weight_rough_g:
   - value: 3.72
     source: bruun
+  - value: 5.23
+    source: galster
   sources:
   - type: literature
     ref: Bruun-4090 · Stack's Bowers Bruun Collection Part IV, lot 17035
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g60.htm
+    ref: Galster 60 (f1g) — danskmoent.dk fr_f1g60.htm
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -16762,6 +16777,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-bruun-4090
+  - dk-galster-f1g-60
 - id: unified-dk-bruun-4112
   fuss: seed_unsorted
   phase: bruun
@@ -16848,6 +16864,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   weight_rough_g:
   - value: 4.08
     source: bruun
@@ -16943,6 +16960,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   weight_rough_g:
   - value: 0.41
     source: bruun
@@ -16994,6 +17012,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   weight_rough_g:
   - value: 3.56
     source: bruun
@@ -17133,6 +17152,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   weight_rough_g:
   - value: 2.72
     source: bruun
@@ -17333,6 +17353,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.906
     source: galster
@@ -17412,6 +17433,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.906
     source: galster
@@ -33125,6 +33147,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.875
     source: galster
@@ -33168,6 +33191,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.875
     source: galster
@@ -33209,6 +33233,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c2g40.htm
@@ -33249,6 +33274,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.375
     source: galster
@@ -33272,6 +33298,89 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-c2g-41
+- id: unified-dk-galster-c2g-43
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Hvid
+  year_first: 1513
+  year_last: 1513
+  year_label: '1513'
+  ruler: Christian II
+  mint: Malmö
+  catalog:
+    galster: '43'
+    schou: 1-3
+    galster_volume: c2g
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  year_verified: true
+  fineness:
+  - value: 0.246
+    source: galster
+  weight_rough_g:
+  - value: 1.04
+    source: galster
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c2g43.htm
+    ref: Galster 43 (c2g) — danskmoent.dk chr_c2g43.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-c2g-43
+- id: unified-dk-galster-c2g-44
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Sølvgylden
+  year_first: 1513
+  year_last: 1523
+  year_ranges:
+  - - 1513
+    - 1523
+  year_label: 1513-1523
+  ruler: Christian II
+  catalog:
+    galster: '44'
+    schou: '2'
+    galster_volume: c2g
+  metal: silver
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c2g44.htm
+    ref: Galster 44 (c2g) — danskmoent.dk chr_c2g44.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-c2g-44
 - id: unified-dk-galster-c2g-82
   fuss: seed_unsorted
   phase: galster
@@ -33293,8 +33402,9 @@ coins:
   metal: silver
   fineness_verified: false
   weight_rough_verified: false
-  mint_verified: false
+  mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c2g82.htm
@@ -33332,6 +33442,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c2g84.htm
@@ -33371,6 +33482,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c2g85.htm
@@ -33408,6 +33520,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c2g86.htm
@@ -33425,6 +33538,131 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-c2g-86
+- id: unified-dk-galster-c2g-88
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Hvid
+  year_first: 1513
+  year_last: 1523
+  year_ranges:
+  - - 1513
+    - 1523
+  year_label: 1513-1523
+  ruler: Christian II
+  mint: Kopenhagen
+  catalog:
+    galster: '88'
+    galster_volume: c2g
+  metal: billon
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c2g88.htm
+    ref: Galster 88 (c2g) — danskmoent.dk chr_c2g88.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-c2g-88
+- id: unified-dk-galster-c2g-89
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Ungersk gylden
+  year_first: 1513
+  year_last: 1523
+  year_ranges:
+  - - 1513
+    - 1523
+  year_label: 1513-1523
+  ruler: Christian II
+  mint:
+  - Kopenhagen
+  - Malmö
+  catalog:
+    galster: '89'
+    schou: '2'
+    sieg: '2'
+    galster_volume: c2g
+  metal: gold
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c2g89.htm
+    ref: Galster 89 (c2g) — danskmoent.dk chr_c2g89.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-c2g-89
+- id: unified-dk-galster-c2g-90
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 2 Ungersk gylden
+  year_first: 1513
+  year_last: 1523
+  year_ranges:
+  - - 1513
+    - 1523
+  year_label: 1513-1523
+  ruler: Christian II
+  mint:
+  - Kopenhagen
+  - Malmö
+  catalog:
+    galster: '90'
+    schou: '1'
+    sieg: '3'
+    galster_volume: c2g
+  metal: gold
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c2g90.htm
+    ref: Galster 90 (c2g) — danskmoent.dk chr_c2g90.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-c2g-90
 - id: unified-dk-galster-c3g-101
   fuss: seed_unsorted
   phase: galster
@@ -33446,6 +33684,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.906
     source: galster
@@ -33491,6 +33730,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.473
     source: galster
@@ -33533,6 +33773,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.5
     source: galster
@@ -33581,6 +33822,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.437
     source: galster
@@ -33604,6 +33846,86 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-c3g-92b
+- id: unified-dk-galster-f1g-257
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Sølvgylden
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Ribe
+  catalog:
+    galster: '257'
+    schou: '2'
+    galster_volume: f1g
+  metal: silver
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g257.htm
+    ref: Galster 257 (f1g) — danskmoent.dk fr_f1g257.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-257
+- id: unified-dk-galster-f1g-258
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Sølvgylden
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Ribe
+  catalog:
+    galster: '258'
+    schou: '3'
+    galster_volume: f1g
+  metal: silver
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g258.htm
+    ref: Galster 258 (f1g) — danskmoent.dk fr_f1g258.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-258
 - id: unified-dk-galster-f1g-49
   fuss: seed_unsorted
   phase: galster
@@ -33624,8 +33946,9 @@ coins:
   metal: silver
   fineness_verified: false
   weight_rough_verified: false
-  mint_verified: false
+  mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g49.htm
@@ -33664,6 +33987,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g52.htm
@@ -33700,6 +34024,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.875
     source: galster
@@ -33741,6 +34066,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g56.htm
@@ -33776,6 +34102,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g57.htm
@@ -33793,6 +34120,53 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-f1g-57
+- id: unified-dk-galster-f1g-58
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Hvid
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Kopenhagen
+  catalog:
+    galster: '58'
+    schou: '34'
+    galster_volume: f1g
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  year_verified: false
+  fineness:
+  - value: 0.25
+    source: galster
+  weight_rough_g:
+  - value: 0.77
+    source: galster
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g58.htm
+    ref: Galster 58 (f1g) — danskmoent.dk fr_f1g58.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-58
 - id: unified-dk-galster-f1g-61
   fuss: seed_unsorted
   phase: galster
@@ -33815,6 +34189,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.319
     source: galster
@@ -33859,6 +34234,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g63.htm
@@ -33895,6 +34271,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g64.htm
@@ -33930,6 +34307,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g65.htm
@@ -33965,6 +34343,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g66.htm
@@ -34003,6 +34382,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g66c.htm
@@ -34038,6 +34418,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g67suaar31.htm
@@ -34055,6 +34436,92 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-f1g-67suaar31
+- id: unified-dk-galster-f1g-68
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Nobel
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Ribe
+  catalog:
+    galster: '68'
+    galster_volume: f1g
+  metal: gold
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g68.htm
+    ref: Galster 68 (f1g) — danskmoent.dk fr_f1g68.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-68
+- id: unified-dk-galster-f1g-69
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Nobel
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Ribe
+  catalog:
+    galster: '69'
+    schou: '1'
+    galster_volume: f1g
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  year_verified: false
+  fineness:
+  - value: 0.979
+    source: galster
+  weight_rough_g:
+  - value: 14.375
+    source: galster
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g69.htm
+    ref: Galster 69 (f1g) — danskmoent.dk fr_f1g69.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-69
 - id: unified-dk-galster-f1g-70
   fuss: seed_unsorted
   phase: galster
@@ -34074,6 +34541,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g70.htm
@@ -34110,6 +34578,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g71.htm
@@ -34146,6 +34615,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g72.htm
@@ -34181,6 +34651,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g73.htm
@@ -34217,6 +34688,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g74.htm
@@ -34254,6 +34726,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g75.htm
@@ -34271,6 +34744,85 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-galster-f1g-75
+- id: unified-dk-galster-f1g-76
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Søsling
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Ålborg
+  catalog:
+    galster: '76'
+    galster_volume: f1g
+  metal: billon
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g76.htm
+    ref: Galster 76 (f1g) — danskmoent.dk fr_f1g76.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-76
+- id: unified-dk-galster-f1g-77
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Hvid
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Ålborg
+  catalog:
+    galster: '77'
+    schou: 32-33
+    galster_volume: f1g
+  metal: billon
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g77.htm
+    ref: Galster 77 (f1g) — danskmoent.dk fr_f1g77.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_realm
+  composed_of:
+  - dk-galster-f1g-77
 - id: unified-dk-hede-c10h11
   fuss: seed_unsorted
   phase: hede
@@ -34551,8 +35103,7 @@ coins:
   year_ranges:
   - - 1912
     - 1947
-  year_label: '1912-1947'
-  year_verified: false
+  year_label: 1912-1947
   ruler: Christian X.
   mint: Kopenhagen
   catalog:
@@ -34564,6 +35115,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 1.6
     source: hede
@@ -39041,8 +39593,7 @@ coins:
     - 1646
   - - 1647
     - 1647
-  year_label: '1588-1648'
-  year_verified: false
+  year_label: 1588-1648
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
@@ -39061,6 +39612,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: numismaster
@@ -44911,8 +45463,7 @@ coins:
   nominal: 1 Dukat
   year_first: 1685
   year_last: 1685
-  year_label: '1670-1699'
-  year_verified: false
+  year_label: 1670-1699
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
@@ -44927,6 +45478,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: hede
@@ -44960,8 +45512,7 @@ coins:
   nominal: 2 Dukat
   year_first: 1691
   year_last: 1691
-  year_label: '1670-1699'
-  year_verified: false
+  year_label: 1670-1699
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
@@ -44976,6 +45527,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: hede
@@ -45009,8 +45561,7 @@ coins:
   nominal: 1 Dukat
   year_first: 1687
   year_last: 1687
-  year_label: '1670-1699'
-  year_verified: false
+  year_label: 1670-1699
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
@@ -45025,6 +45576,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: hede
@@ -45069,8 +45621,7 @@ coins:
   nominal: 2 Dukat
   year_first: 1692
   year_last: 1692
-  year_label: '1670-1699'
-  year_verified: false
+  year_label: 1670-1699
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
@@ -45084,6 +45635,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: hede
@@ -46261,8 +46813,7 @@ coins:
   year_ranges:
   - - 1670
     - 1699
-  year_label: '1670-1699'
-  year_verified: false
+  year_label: 1670-1699
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
@@ -46275,6 +46826,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.156
     source: hede
@@ -48775,8 +49327,7 @@ coins:
   nominal: 32 Skilling
   year_first: 1775
   year_last: 1775
-  year_label: '1766-1808'
-  year_verified: false
+  year_label: 1766-1808
   ruler: Christian VII.
   mint: Kopenhagen
   catalog:
@@ -48792,6 +49343,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.562
     source: hede
@@ -54541,8 +55093,7 @@ coins:
   year_ranges:
   - - 1648
     - 1670
-  year_label: '1648-1670'
-  year_verified: false
+  year_label: 1648-1670
   ruler: Frederik III.
   mint: Kopenhagen
   catalog:
@@ -54556,6 +55107,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.156
     source: hede
@@ -56502,8 +57054,7 @@ coins:
   year_ranges:
   - - 1648
     - 1670
-  year_label: '1648-1670'
-  year_verified: false
+  year_label: 1648-1670
   ruler: Frederik III.
   mint: Kopenhagen
   catalog:
@@ -56517,6 +57068,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: hede
@@ -59123,8 +59675,7 @@ coins:
   nominal: 2 Speciedaler
   year_first: 1669
   year_last: 1669
-  year_label: '1648-1670'
-  year_verified: false
+  year_label: 1648-1670
   ruler: Frederik III.
   mint: Kopenhagen
   catalog:
@@ -59140,6 +59691,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.875
     source: hede
@@ -59186,8 +59738,7 @@ coins:
   nominal: 1 Speciedaler
   year_first: 1649
   year_last: 1649
-  year_label: '1648-1670'
-  year_verified: false
+  year_label: 1648-1670
   ruler: Frederik III.
   mint: Kopenhagen
   catalog:
@@ -59203,6 +59754,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.875
     source: hede
@@ -59241,8 +59793,7 @@ coins:
   nominal: 4 Speciedaler
   year_first: 1669
   year_last: 1669
-  year_label: '1648-1670'
-  year_verified: false
+  year_label: 1648-1670
   ruler: Frederik III.
   mint: Kopenhagen
   catalog:
@@ -59258,6 +59809,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.875
     source: hede
@@ -60708,8 +61260,7 @@ coins:
   nominal: 1 Dukat
   year_first: 1701
   year_last: 1701
-  year_label: '1699-1730'
-  year_verified: false
+  year_label: 1699-1730
   ruler: Frederik IV.
   mint: Kopenhagen
   catalog:
@@ -60725,6 +61276,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: hede
@@ -60774,8 +61326,7 @@ coins:
     - 1702
   - - 1710
     - 1710
-  year_label: '1699-1730'
-  year_verified: false
+  year_label: 1699-1730
   ruler: Frederik IV.
   mintmaster: Christian Wineke, the Y ounger
   mint: Kopenhagen
@@ -60798,6 +61349,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: hede
@@ -60836,8 +61388,7 @@ coins:
   nominal: ½ Dukat
   year_first: 1702
   year_last: 1702
-  year_label: '1699-1730'
-  year_verified: false
+  year_label: 1699-1730
   ruler: Frederik IV.
   mint: Kopenhagen
   catalog:
@@ -60852,6 +61403,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: hede
@@ -60885,8 +61437,7 @@ coins:
   nominal: ¼ Dukat
   year_first: 1702
   year_last: 1702
-  year_label: '1699-1730'
-  year_verified: false
+  year_label: 1699-1730
   ruler: Frederik IV.
   mint: Kopenhagen
   catalog:
@@ -60900,6 +61451,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.979
     source: numismaster
@@ -65156,8 +65708,7 @@ coins:
   year_ranges:
   - - 1808
     - 1839
-  year_label: '1808-1839'
-  year_verified: false
+  year_label: 1808-1839
   ruler: Frederik VI.
   mint:
   - Altona
@@ -65172,6 +65723,7 @@ coins:
   weight_rough_verified: true
   mint_verified: false
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 2.436
     source: hede
@@ -66533,6 +67085,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.25
     source: galster
@@ -66589,6 +67142,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.187
     source: galster
@@ -67230,6 +67784,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.25
     source: galster
@@ -67451,8 +68006,9 @@ coins:
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.979
     source: galster
@@ -67511,8 +68067,9 @@ coins:
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.986
     source: galster
@@ -67573,6 +68130,7 @@ coins:
   diameter_mm_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   weight_rough_g:
   - value: 14.53
     source: numista
@@ -67737,6 +68295,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.219
     source: galster
@@ -67793,6 +68352,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.156
     source: galster
@@ -67931,6 +68491,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.219
     source: galster
@@ -67987,6 +68548,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.187
     source: galster
@@ -68046,6 +68608,7 @@ coins:
   diameter_mm_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.437
     source: galster
@@ -68139,6 +68702,7 @@ coins:
   diameter_mm_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   weight_rough_g:
   - value: 1.51
     source: galster
@@ -68190,6 +68754,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.3125
     source: galster
@@ -68249,6 +68814,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.187
     source: numista
@@ -68301,6 +68867,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.406
     source: galster
@@ -68357,6 +68924,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.406
     source: galster
@@ -68413,6 +68981,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.187
     source: galster
@@ -68510,8 +69079,9 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  year_verified: true
   weight_rough_g:
   - value: 45.58
     source: galster
@@ -68648,8 +69218,9 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  year_verified: true
   weight_rough_g:
   - value: 14.26
     source: numista
@@ -68703,6 +69274,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.875
     source: galster
@@ -68800,6 +69372,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.156
     source: galster

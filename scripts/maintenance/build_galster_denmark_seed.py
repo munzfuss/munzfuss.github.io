@@ -36,8 +36,30 @@ from lib.paths import GALSTER_CACHE  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
-YEAR_FROM = 1514
+YEAR_FROM = 1481
 YEAR_TO = 1541
+# Lower bound 1481 matches Bruun builder + project Phase-pre-I scope
+# anchor (Hans's reign start = 1481). Galster catalogue covers Hans
+# 1481-1513 + Christian II 1513-1523 + Frederik I 1523-1533, so the
+# previous 1514 floor was over-restrictive and rejected ~9 Hans
+# coins (Galster 1-24, Nobel 1496-1502 + Goldgulden 1481-1513
+# + Sølvgylden + Hvid varieties). Surface harvest gap: the Hans
+# Galster index `/hgalst.htm` is not yet in `fetch_galster.py::INDEX_PAGES`
+# so even with this lower YEAR_FROM, Hans pages remain uncached;
+# tracked as a separate harvest task.
+
+# Reign-end anchor per ruler — used as fallback year_first/year_last
+# for undated («u.år») Galster entries. Keys match `ruler_volume`
+# from the per-coin JSON (`hg` Hans / `c2g` Christian II / `f1g`
+# Frederik I) or fallback by ruler-name. Per CLAUDE.md §3a:
+# undated entries get bare year-range as year_label + set
+# `year_verified: false` so the renderer emits `(?)`.
+_RULER_REIGN = {
+    "hg":  (1481, 1513),   # Hans
+    "c2g": (1513, 1523),   # Christian II
+    "f1g": (1523, 1533),   # Frederik I
+    "c3g": (1534, 1559),   # Christian III (pre-1541 portion only — YEAR_TO=1541 cuts later)
+}
 
 
 def parse_year_range(year_label: str | None) -> tuple[int | None, int | None]:
@@ -47,7 +69,7 @@ def parse_year_range(year_label: str | None) -> tuple[int | None, int | None]:
       «1531» → (1531, 1531)
       «1516, 1518» → (1516, 1518)
       «1535-1540» → (1535, 1540)
-      «u.år» → (None, None) — falls back to «pre-1540» heuristic
+      «u.år» → (None, None) — caller anchors to reign window
     """
     if not year_label:
         return None, None
@@ -188,8 +210,15 @@ def _split_nominal_mint(nominal: str | None, source_mint: str | None
 
 def build_entry(data: dict) -> dict | None:
     year_first, year_last = parse_year_range(data.get("year_label"))
+    year_verified = True
     if year_first is None or year_last is None:
-        return None
+        # Undated «u.år» entry — anchor to ruler reign window per
+        # CLAUDE.md §3a (renderer adds `(?)` via year_verified=false).
+        reign = _RULER_REIGN.get(data.get("ruler_volume") or "")
+        if reign is None:
+            return None
+        year_first, year_last = reign
+        year_verified = False
     if not (YEAR_FROM <= year_first <= YEAR_TO):
         return None
 
@@ -211,16 +240,29 @@ def build_entry(data: dict) -> dict | None:
     nominal_clean, mint_value, shape_hint = _split_nominal_mint(
         data.get("denomination"), data.get("mint"))
 
+    # Render year_label per CLAUDE.md §3a: bare decimal years/range,
+    # no «u.år» prefix. For undated entries we use the reign-window
+    # range as year_label and set year_verified=false (renderer
+    # emits `(?)`).
+    if not year_verified:
+        if year_first == year_last:
+            year_label_out = str(year_first)
+        else:
+            year_label_out = f"{year_first}-{year_last}"
+    else:
+        year_label_out = data.get("year_label")
+
     entry: dict = {
         "id": cid,
         "fuss": "seed_unsorted",
         "phase": "galster",
         "kind": "kurant",
         "nominal": nominal_clean,
-        "year_label": data.get("year_label"),
+        "year_label": year_label_out,
         "year_first": year_first,
         "year_last": year_last,
         "year_ranges": [[year_first, year_last]] if year_first == year_last else [[year_first, year_last]],
+        "year_verified": year_verified,
         "ruler": data.get("ruler"),
         "mint": mint_value,
         "catalog": catalog,

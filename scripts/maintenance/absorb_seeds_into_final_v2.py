@@ -943,6 +943,63 @@ def process_entity(entity_id: str) -> dict:
         if bulk_promote_mode == "all":
             multi_match = []  # mode «all» subsumes multi-match decisions
 
+    # CURATOR ASSIGNMENTS — apply explicit fuss/phase/kind overrides
+    # declared in `data/v2/classification_decisions/<entity>.yml::assignments`.
+    # The docstring at top of file states: «Curator declares ... {coin_id:
+    # {fuss, phase, kind}}; on next run, absorb adds the entry to final
+    # with the declared classification.» Without this block the file's
+    # assignments were merely PRESERVED on writeback but never APPLIED,
+    # leaving curator-classified entries stuck at `fuss=seed_unsorted`
+    # after they had been bulk-promoted. (Observed 2026-05-25 for the
+    # Galster f1g-68/f1g-69 Frederik I Nobel u.år Ribe pair: assignments
+    # to nobel_fod/I/kurant were declared and preserved, but the final
+    # entries kept fuss=seed_unsorted/phase=galster.)
+    #
+    # Matching: assignment.coin_id is looked up against (a) each enriched
+    # entry's `id` directly, and (b) each enriched entry's `composed_of`
+    # member ids. Direct id match wins when both apply. Override touches
+    # only the three classification fields (fuss/phase/kind); all other
+    # data on the entry stays intact.
+    decisions_doc = _load_yaml(V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml")
+    raw_assignments = decisions_doc.get("assignments") or []
+    assignment_by_coin_id: dict[str, dict] = {}
+    for a in raw_assignments:
+        if not isinstance(a, dict):
+            continue
+        cid = a.get("coin_id")
+        if cid:
+            assignment_by_coin_id[cid] = a
+    applied_assignments: list[str] = []
+    unapplied_assignments: list[str] = []
+    if assignment_by_coin_id:
+        for entry in enriched_entries:
+            eid = entry.get("id")
+            assignment: dict | None = None
+            if eid and eid in assignment_by_coin_id:
+                assignment = assignment_by_coin_id[eid]
+                applied_assignments.append(eid)
+            else:
+                for cid in entry.get("composed_of") or []:
+                    if cid in assignment_by_coin_id:
+                        assignment = assignment_by_coin_id[cid]
+                        applied_assignments.append(cid)
+                        break
+            if assignment is None:
+                continue
+            for field in ("fuss", "phase", "kind"):
+                if assignment.get(field):
+                    entry[field] = assignment[field]
+        # Diagnostic: assignments whose coin_id matched nothing.
+        all_known_ids: set[str] = set()
+        for e in enriched_entries:
+            if e.get("id"):
+                all_known_ids.add(e["id"])
+            for cid in e.get("composed_of") or []:
+                all_known_ids.add(cid)
+        for coin_id in assignment_by_coin_id:
+            if coin_id not in all_known_ids:
+                unapplied_assignments.append(coin_id)
+
     return {
         "entity_id": entity_id,
         "unified_total": len(unified_entries),
@@ -958,6 +1015,8 @@ def process_entity(entity_id: str) -> dict:
         "multi_match_warnings": multi_match,
         "enrichment_conflicts": enrichment_conflicts,
         "enriched_final_entries": enriched_entries,
+        "applied_assignments": applied_assignments,
+        "unapplied_assignments": unapplied_assignments,
     }
 
 
@@ -1071,6 +1130,8 @@ def main() -> int:
         totals["out_of_scope_dropped"] += result.get("out_of_scope_dropped", 0)
         totals["multi_match"] += len(result["multi_match_warnings"])
         totals["enrichment_conflicts"] += len(result["enrichment_conflicts"])
+        totals["applied_assignments"] += len(result.get("applied_assignments") or [])
+        totals["unapplied_assignments"] += len(result.get("unapplied_assignments") or [])
 
         line = (
             f"{ent:36s}  "
@@ -1082,11 +1143,20 @@ def main() -> int:
         )
         if result.get("bulk_promoted"):
             line += f"  bulk_promote:{result['bulk_promoted']}"
+        if result.get("applied_assignments"):
+            line += f"  assigned:{len(result['applied_assignments'])}"
+        if result.get("unapplied_assignments"):
+            line += f"  ASSIGN-MISS:{len(result['unapplied_assignments'])}"
         if result["multi_match_warnings"]:
             line += f"  multi:{len(result['multi_match_warnings'])}"
         if result["enrichment_conflicts"]:
             line += f"  conflicts:{len(result['enrichment_conflicts'])}"
         print(line)
+
+        if args.verbose and result.get("unapplied_assignments"):
+            print(f"    assignments with unknown coin_id (skipped):")
+            for cid in result["unapplied_assignments"]:
+                print(f"      • {cid}")
 
         if args.verbose and result["unmatched_unified_ids"]:
             print(f"    pending (no match in final):")
@@ -1149,6 +1219,9 @@ def main() -> int:
     print(f"  Out-of-scope finals dropped:     {totals['out_of_scope_dropped']:>5d}")
     print(f"  Multi-match warnings:            {totals['multi_match']:>5d}")
     print(f"  Enrichment conflicts (logged):   {totals['enrichment_conflicts']:>5d}")
+    print(f"  Curator assignments applied:     {totals['applied_assignments']:>5d}")
+    if totals['unapplied_assignments']:
+        print(f"  Curator assignments unmatched:   {totals['unapplied_assignments']:>5d}  (coin_id not in unified/final)")
 
     if args.dry_run:
         print("\n--- DRY RUN — no files written. Re-run with --apply to commit. ---")

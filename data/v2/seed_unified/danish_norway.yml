@@ -2,8 +2,8 @@
 # Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
-# Input: 961 per-source seed entries.
-# Output: 421 unified entries (one per physical coin).
+# Input: 965 per-source seed entries.
+# Output: 422 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -8645,22 +8645,34 @@ coins:
   catalog:
     bruun_collection_id: '9255'
     sieg: '2'
-    schou: '22'
+    schou:
+    - '22'
+    - 18-24
     galster: '164'
-    schive: XV:7-9
+    schive:
+    - XV:7-9
+    - XV.7-9
     nmd: '2'
+    galster_volume: c2g
   metal: billon
   metal_verified: true
-  fineness_verified: false
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
+  fineness:
+  - value: 0.25
+    source: galster
   weight_rough_g:
   - value: 2.26
     source: bruun
   sources:
   - type: literature
     ref: Bruun-9255 · Stack's Bowers Bruun Collection Part III, lot 12034
+  - type: literature
+    url: https://www.danskmoent.dk/norge/nc2g164.htm
+    ref: Galster 164 (c2g) — danskmoent.dk norge_nc2g164.htm
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -8675,6 +8687,7 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-bruun-9255
+  - dk-galster-c2g-164
 - id: unified-dk-bruun-9259
   fuss: seed_unsorted
   phase: bruun
@@ -8880,6 +8893,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.219
     source: galster
@@ -8952,6 +8966,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.281
     source: galster
@@ -8995,22 +9010,30 @@ coins:
   catalog:
     bruun_collection_id: '9275'
     sieg: '2'
-    schou: '22'
+    schou:
+    - '22'
+    - 18-26
     galster: '170'
     nmd: '7'
     jensen_skjoldager: N-07
+    schive: XVI.14-17
+    galster_volume: f1g
   metal: billon
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 1.88
     source: bruun
   sources:
   - type: literature
     ref: Bruun-9275 · Stack's Bowers Bruun Collection Part III, lot 12041
+  - type: literature
+    url: https://www.danskmoent.dk/norge/nf1g170.htm
+    ref: Galster 170 (f1g) — danskmoent.dk norge_nf1g170.htm
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -9025,6 +9048,7 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-bruun-9275
+  - dk-galster-f1g-170
 - id: unified-dk-bruun-9282
   fuss: seed_unsorted
   phase: bruun
@@ -9038,21 +9062,30 @@ coins:
   catalog:
     bruun_collection_id: '9282'
     sieg: '1'
-    schou: '36'
+    schou:
+    - '36'
+    - 35-39
     galster: '171'
     nmd: '9'
+    schive: XVI.18-19
+    jensen_skjoldager: N-01
+    galster_volume: f1g
   metal: billon
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   weight_rough_g:
   - value: 0.76
     source: bruun
   sources:
   - type: literature
     ref: Bruun-9282 · Stack's Bowers Bruun Collection Part II, lot 14001
+  - type: literature
+    url: https://www.danskmoent.dk/norge/nf1g171.htm
+    ref: Galster 171 (f1g) — danskmoent.dk norge_nf1g171.htm
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -9067,6 +9100,7 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-bruun-9282
+  - dk-galster-f1g-171
 - id: unified-dk-bruun-9290
   fuss: seed_unsorted
   phase: bruun
@@ -11817,6 +11851,47 @@ coins:
   - denmark-numismaster-110791
   - dk-bruun-9985
   - dk-tid-145473
+- id: unified-dk-galster-c2g-165
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Dobbelthvid
+  year_first: 1513
+  year_last: 1523
+  year_ranges:
+  - - 1513
+    - 1523
+  year_label: 1513-1523
+  ruler: Christian II
+  mint: Christiania
+  catalog:
+    galster: '165'
+    schive: XV.25
+    schou: 1-6
+    galster_volume: c2g
+  metal: billon
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/norge/nc2g165.htm
+    ref: Galster 165 (c2g) — danskmoent.dk norge_nc2g165.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-galster-c2g-165
 - id: unified-dk-galster-c2g-172
   fuss: seed_unsorted
   phase: galster
@@ -11840,8 +11915,9 @@ coins:
   metal: silver
   fineness_verified: false
   weight_rough_verified: false
-  mint_verified: false
+  mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc2g172.htm
@@ -11878,6 +11954,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf1g168.htm
@@ -22617,6 +22694,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.219
     source: numista

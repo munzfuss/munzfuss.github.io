@@ -2,8 +2,8 @@
 # Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
-# Input: 227 per-source seed entries.
-# Output: 191 unified entries (one per physical coin).
+# Input: 234 per-source seed entries.
+# Output: 198 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1916,6 +1916,7 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.75
     source: galster
@@ -1974,6 +1975,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.764
     source: galster
@@ -2179,6 +2181,135 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - dk-bruun-15046
+- id: unified-dk-galster-c3g-133
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Søsling
+  year_first: 1534
+  year_last: 1559
+  year_ranges:
+  - - 1534
+    - 1559
+  year_label: 1534-1559
+  ruler: Christian III
+  mint: Gottorp
+  catalog:
+    galster: '133'
+    galster_volume: c3g
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  year_verified: false
+  fineness:
+  - value: 0.5
+    source: galster
+  weight_rough_g:
+  - value: 1.01
+    source: galster
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g133.htm
+    ref: Galster 133 (c3g) — danskmoent.dk chr_c3g133.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - dk-galster-c3g-133
+- id: unified-dk-galster-f1g-123
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: (?)
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Gottorp
+  catalog:
+    galster: '123'
+    galster_volume: f1g
+  metal: silver
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g123.htm
+    ref: Galster 123 (f1g) — danskmoent.dk fr_f1g123.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - dk-galster-f1g-123
+- id: unified-dk-galster-f1g-125
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Skilling
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Gottorp
+  catalog:
+    galster: '125'
+    schou: 39-49
+    galster_volume: f1g
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  fineness:
+  - value: 0.5
+    source: galster
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g125.htm
+    ref: Galster 125 (f1g) — danskmoent.dk fr_f1g125.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - dk-galster-f1g-125
 - id: unified-dk-galster-f1g-126
   fuss: seed_unsorted
   phase: galster
@@ -2201,6 +2332,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g126.htm
@@ -2218,6 +2350,124 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - dk-galster-f1g-126
+- id: unified-dk-galster-f1g-127
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Søsling
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Gottorp
+  catalog:
+    galster: '127'
+    schou: '72'
+    galster_volume: f1g
+  metal: billon
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g127.htm
+    ref: Galster 127 (f1g) — danskmoent.dk fr_f1g127.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - dk-galster-f1g-127
+- id: unified-dk-galster-f1g-128
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: 1 Blaffert lybsk
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Gottorp
+  catalog:
+    galster: '128'
+    galster_volume: f1g
+  metal: billon
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g128.htm
+    ref: Galster 128 (f1g) — danskmoent.dk fr_f1g128.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - dk-galster-f1g-128
+- id: unified-dk-galster-f1g-129
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: Hulpenning
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Gottorp
+  catalog:
+    galster: '129'
+    galster_volume: f1g
+  metal: billon
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g129.htm
+    ref: Galster 129 (f1g) — danskmoent.dk fr_f1g129.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - dk-galster-f1g-129
 - id: unified-dk-galster-f1g-78
   fuss: seed_unsorted
   phase: galster
@@ -2237,6 +2487,7 @@ coins:
   weight_rough_verified: false
   mint_verified: true
   verified: false
+  year_verified: true
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f1g78.htm
@@ -2254,6 +2505,46 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - dk-galster-f1g-78
+- id: unified-dk-galster-f1g-79
+  fuss: seed_unsorted
+  phase: galster
+  kind: kurant
+  nominal: Hulpenning; Blaffert
+  year_first: 1523
+  year_last: 1533
+  year_ranges:
+  - - 1523
+    - 1533
+  year_label: 1523-1533
+  ruler: Frederik I
+  mint: Gottorp
+  catalog:
+    galster: '79'
+    schou: '40'
+    galster_volume: f1g
+  metal: billon
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  year_verified: false
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f1g79.htm
+    ref: Galster 79 (f1g) — danskmoent.dk fr_f1g79.htm
+  verification_note:
+    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
+      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
+      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
+    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
+      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
+      Sieg, Jensen-Skjoldager, Schive, тощо).'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - dk-galster-f1g-79
 - id: unified-dk-numista-153257
   fuss: seed_unsorted
   phase: numista
@@ -2278,6 +2569,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: true
   fineness:
   - value: 0.469
     source: galster
