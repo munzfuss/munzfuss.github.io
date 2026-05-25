@@ -1,0 +1,39 @@
+# Shared reference pool — bibliographic entries by stable string key.
+#
+# Used by the inline-refs system (introduced 2026-05-25). Prose anywhere
+# in the project can cite an entry by writing `<sup>[ref:KEY]</sup>`;
+# the build's post-render pass scans these markers per page, resolves
+# the KEY against this pool (or a per-fuss / per-location override),
+# numbers them in appearance order, and injects the entries into the
+# page's bibliography section.
+#
+# Adding a new ref:
+#   1. Pick a stable key — lowercase-hyphenated identifier that names
+#      the source unambiguously (`ernst-axel-kurantdukat`,
+#      `wilcke-1950-vol3-altona`, `bobzin-1894`, etc.).
+#   2. Add an entry below with DE/EN/UK content following §5a — Wikipedia-
+#      style bibliographic citation + concrete page hint + verbatim quote.
+#   3. Cite from prose: `<sup>[ref:your-key]</sup>`.
+#
+# DO NOT renumber existing keys — they are stable identifiers, NOT
+# display numbers. The renderer assigns display numbers per page.
+
+ernst-axel-kurantdukat:
+  de: '<b>Ernst, Axel</b>: <i>Kurantdukaten — en dansk Dukat</i> — <a href="https://danskmoent.dk/ernst/kuduaxel.htm" target="_blank">danskmoent.dk/ernst/kuduaxel.htm</a>. Hauptquelle für Phase-I-Standard 1714–1717 (81½ Stück / Mark, 21 Karat, 2,511 g fein), Tarifreduktion 9. Juli 1727, Wiedereinziehung 4. Juli 1757, Frederik-V-Reform 1757 (75/Mark, 2,728 g fein), Massenkarbung 1757–1765 (3 030 742 Stück), Christian-VII-Geburtstagsstrich 1771 (131 Stück), Hauptphase 1781–1796 (≈ 237 000 Stück), Subnominale.'
+  en: '<b>Ernst, Axel</b>: <i>Kurantdukaten — en dansk Dukat</i> — <a href="https://danskmoent.dk/ernst/kuduaxel.htm" target="_blank">danskmoent.dk/ernst/kuduaxel.htm</a>. Main source for the Phase I standard 1714–1717 (81½ pieces / Mark, 21 carats, 2.511 g fine), the tariff reduction of 9 July 1727, the call-in for melting of 4 July 1757, the Frederik V reform of 1757 (75 / Mark, 2.728 g fine), the mass coinage 1757–1765 (3,030,742 pieces), the Christian VII birthday strike of 1771 (131 pieces), the 1781–1796 main phase (≈ 237,000 pieces) and the sub-denominations.'
+  uk: '<b>Ernst, Axel</b>: <i>Kurantdukaten — en dansk Dukat</i> — <a href="https://danskmoent.dk/ernst/kuduaxel.htm" target="_blank">danskmoent.dk/ernst/kuduaxel.htm</a>. Головне джерело для стандарту фази I 1714–1717 (81½ штук з марки, 21 карат, 2,511 г чистого), зниження тарифу 9 липня 1727, скликання на переплав 4 липня 1757, реформи Frederik V 1757 (75 з марки, 2,728 г чистого), масового карбування 1757–1765 (3 030 742 шт.), меморіального карбування Christian VII 1771 (131 шт.), головної фази 1781–1796 (≈ 237 000 шт.) та субномінали.'
+
+danskmoent-c7mord-plakat-1782:
+  de: '<b>danskmoent.dk</b>: <i>Møntforordninger m.v. under Christian 7. (1766–1808)</i> — <a href="https://www.danskmoent.dk/artikler/c7mord.htm" target="_blank">danskmoent.dk/artikler/c7mord.htm</a>. Beleg für die wörtliche Plakat-Klausel vom 2. Dezember 1782 («guld udmønte til kurantdukater med 75 stykker pr. mark brutto af 21 karat») und die Aufhebung des Plakats 1795.'
+  en: '<b>danskmoent.dk</b>: <i>Møntforordninger m.v. under Christian 7. (1766–1808)</i> — <a href="https://www.danskmoent.dk/artikler/c7mord.htm" target="_blank">danskmoent.dk/artikler/c7mord.htm</a>. Source for the verbatim clause of the Plakat of 2 December 1782 («guld udmønte til kurantdukater med 75 stykker pr. mark brutto af 21 karat») and its revocation in 1795.'
+  uk: '<b>danskmoent.dk</b>: <i>Møntforordninger m.v. under Christian 7. (1766–1808)</i> — <a href="https://www.danskmoent.dk/artikler/c7mord.htm" target="_blank">danskmoent.dk/artikler/c7mord.htm</a>. Джерело для verbatim-формулювання Plakat 2 грудня 1782 («guld udmønte til kurantdukater med 75 stykker pr. mark brutto af 21 karat») та скасування plakat 1795.'
+
+forordning-pengevaesenet-1813:
+  de: '<b>danmarkshistorien.lex.dk</b>: <i>Forordning om Forandring i Pengevæsenet, 5. januar 1813</i> — <a href="https://danmarkshistorien.lex.dk/Forordning_om_Forandring_i_Pengev%C3%A6senet,_5._januar_1813" target="_blank">danmarkshistorien.lex.dk</a>. Beleg für den Statsbankerot vom 5. Januar 1813 als reine Silberreform: Kurantdaler durch Rigsbankdaler im Verhältnis 6 : 1 abgelöst; Goldmünzen (Reichsdukaten, Kurantdukaten, Christian d''or) sind von §§1–16 nicht erfaßt.'
+  en: '<b>danmarkshistorien.lex.dk</b>: <i>Forordning om Forandring i Pengevæsenet, 5. januar 1813</i> — <a href="https://danmarkshistorien.lex.dk/Forordning_om_Forandring_i_Pengev%C3%A6senet,_5._januar_1813" target="_blank">danmarkshistorien.lex.dk</a>. Source for the Statsbankerot of 5 January 1813 as a purely silver reform: Kurantdaler replaced by Rigsbankdaler at the ratio 6 : 1; gold coins (Reichsdukaten, Kurantdukaten, Christian d''or) are not covered by §§1–16.'
+  uk: '<b>danmarkshistorien.lex.dk</b>: <i>Forordning om Forandring i Pengevæsenet, 5. januar 1813</i> — <a href="https://danmarkshistorien.lex.dk/Forordning_om_Forandring_i_Pengev%C3%A6senet,_5._januar_1813" target="_blank">danmarkshistorien.lex.dk</a>. Джерело про Statsbankerot 5 січня 1813 як суто срібну реформу: Kurantdaler замінено Rigsbankdaler у пропорції 6 : 1; золоті монети (Reichsdukaten, Kurantdukaten, Christian d''or) §§1–16 не охоплюють.'
+
+coinvarieties-kurantdukat-tariff:
+  de: '<b>CoinVarieties</b>: <i>Denmark 1771-K 12 mark Fr-280</i> — <a href="https://coinvarieties.com/index.php/Denmark_1771-K_12_mark_Fr-280" target="_blank">coinvarieties.com</a>. Beleg für die Tarifformel «<i>Until 1813, one ducat = 2 speciedaler = 12 mark = 192 skilling Danske</i>» und die Charakterisierung des Kurantdukaten als «<i>too light and too low in fineness to qualify as full ducats</i>» — entscheidend für die numerische Abgrenzung Kurantdukat / Reichsdukat.'
+  en: '<b>CoinVarieties</b>: <i>Denmark 1771-K 12 mark Fr-280</i> — <a href="https://coinvarieties.com/index.php/Denmark_1771-K_12_mark_Fr-280" target="_blank">coinvarieties.com</a>. Source for the tariff formula «<i>Until 1813, one ducat = 2 speciedaler = 12 mark = 192 skilling Danske</i>» and for the characterisation of the Kurantdukat as «<i>too light and too low in fineness to qualify as full ducats</i>» — decisive for the numerical Kurantdukat / Reichsdukat distinction.'
+  uk: '<b>CoinVarieties</b>: <i>Denmark 1771-K 12 mark Fr-280</i> — <a href="https://coinvarieties.com/index.php/Denmark_1771-K_12_mark_Fr-280" target="_blank">coinvarieties.com</a>. Джерело для формули тарифу «<i>Until 1813, one ducat = 2 speciedaler = 12 mark = 192 skilling Danske</i>» і характеристики Kurantdukat як «<i>too light and too low in fineness to qualify as full ducats</i>» — визначальне для нумеричного розмежування Kurantdukat / Reichsdukat.'

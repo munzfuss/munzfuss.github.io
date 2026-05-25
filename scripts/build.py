@@ -1175,6 +1175,14 @@ def build_location(
             fmt_date=lambda d, l=lang: i18n.fmt_date(d, l),
         )
 
+        # Inline-refs post-processing pass (introduced 2026-05-25, see
+        # scripts/lib/refs_pool.py). Scans rendered HTML for `<sup>[ref:KEY]</sup>`
+        # markers, resolves against the shared pool, renumbers in
+        # appearance order, injects entries into the biblio section.
+        from lib import refs_pool as _refs_pool_mod
+        _pool = _refs_pool_mod.load_refs_pool(DATA_DIR / "shared" / "refs_pool.yml")
+        html = _refs_pool_mod.process_html(html, lang, _pool)
+
         out_dir = output_root / loc.id / lang
         out_dir.mkdir(parents=True, exist_ok=True)
         out_file = out_dir / "index.html"
@@ -1257,6 +1265,13 @@ def build_landing(
             t=lambda v, l=lang: i18n.t(v, l),
             fmt_date=lambda d, l=lang: i18n.fmt_date(d, l),
         )
+
+        # Inline-refs post-processing pass — same mechanism as
+        # per-location pages (see _refs_pool_mod docstring).
+        from lib import refs_pool as _refs_pool_mod
+        _pool = _refs_pool_mod.load_refs_pool(DATA_DIR / "shared" / "refs_pool.yml")
+        html = _refs_pool_mod.process_html(html, lang, _pool)
+
         root = output_root if output_root is not None else SITE_DIR
         out_dir = root / lang
         out_dir.mkdir(parents=True, exist_ok=True)

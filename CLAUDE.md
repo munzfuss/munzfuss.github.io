@@ -379,6 +379,39 @@ Forms accepted (use whichever fits the underlying work's pagination scheme):
 
 **Why this matters.** A reader scanning the references list expects «author + title + URL» — the same thing every academic encyclopaedia and Wikipedia article does. A 600-word analysis paragraph buried in slot 35 between slots 34 and 36 is invisible to that scan and indistinguishable from prose; it should *be* prose, with the citation hanging off it. Bundled refs make footnote stacks ambiguous (which of the five sources backs *this* sentence?). Atomic refs let the reader follow the exact source that backs each claim.
 
+### 5b. Inline-refs system (preferred for new cites, 2026-05-25+)
+
+The legacy `<sup>[N]</sup>` numeric cites + per-page `*-references.yml` system has a structural flaw: shared content (e.g. `data/shared/fuesse.yml::<fuss>` Müntzfuß cards) renders on multiple pages, but `<sup>[N]</sup>` cite IDs resolve against EACH page's own refs file. Same N can mean different things on different pages → silent misattribution under §0. (See the 2026-05-25 Kurantdukatfod audit thread.)
+
+**Replacement system: stable-key inline-refs.** Prose anywhere in the project can cite a source via stable-key marker:
+
+```html
+<sup>[ref:ernst-axel-kurantdukat]</sup>
+```
+
+The key is a lowercase-hyphenated identifier (`ernst-axel-kurantdukat`, `wilcke-1950-vol3-altona`, `danskmoent-c7mord-plakat-1782`, etc.). Stable identifiers — not display numbers.
+
+The build's post-render pass (`scripts/lib/refs_pool.py::process_html`):
+1. Scans rendered HTML for `<sup>[ref:KEY]</sup>` markers.
+2. Resolves KEY against `data/shared/refs_pool.yml` (per-language content).
+3. Numbers cites in appearance order, starting after `max(legacy <li value>)` so they sit naturally below legacy refs in the page biblio.
+4. Replaces markers with `<sup><a href="#ref-pool-KEY">[N]</a></sup>`.
+5. Injects `<li id="ref-pool-KEY" value="N">{content_for_lang}</li>` into the existing `<ol class="refs">` (or creates one before `</body>` if the page has no legacy biblio).
+
+**Why this is better for ongoing work.** Adding a new cite touches ONE file (`refs_pool.yml`) for the source content + ONE place in prose for the marker. No numbering cascade — renderer assigns numbers per page. No cross-page collision — keys travel with prose. Removing a cite leaves the pool entry intact (it may be cited from other prose); no orphan-N gaps in numbering.
+
+**Adding a new ref:**
+1. Pick a stable key: lowercase-hyphenated, unambiguous (`{source-author-or-publisher}-{topic-or-document}`).
+2. Add `data/shared/refs_pool.yml::<key>` with `de` / `en` / `uk` content following §5a (Wikipedia-style citation + page hint + verbatim quote if applicable).
+3. Cite from prose: `<sup>[ref:your-key]</sup>`.
+
+**Forbidden:**
+- Renumbering existing keys — they are stable IDs, NOT display numbers.
+- Pulling display number from key (e.g. `ref:42` is forbidden) — confusing; use semantic key.
+- Inlining a single ref under multiple keys — one source = one key.
+
+**Migration status (as of 2026-05-25):** 18 cites migrated (entire `fuesse.yml::courantdukatenfuss` block + V1 + V2 `denmark.yml::fuss_periods.courantdukatenfuss.hintergrund`). Remaining ~164 cites in fuesse.yml + N location-yml cites stay on legacy `<sup>[N]</sup>` system until incrementally migrated. Both systems coexist on the rendered page (legacy refs numbered 1..max, pool refs numbered max+1..max+M).
+
 ### 6. Kurantmünze vs. Scheidemünze distinction
 
 - **Kurantmünze** (vollwertig): nominal ≈ silver content. Issued by state without (or with minor) seigniorage. Full-value money.
