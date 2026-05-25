@@ -1,12 +1,12 @@
-generated_at: '2026-05-25T12:53:48.638601+00:00'
+generated_at: '2026-05-25T13:13:49.111477+00:00'
 mode: apply
 summary:
-  SKIP_PRESERVE_V1_DATA: 149
+  SKIP_PRESERVE_V1_DATA: 134
   SKIP_CLASSIFICATION_CONFLICT_SPECIMEN: 5
-  DELETE: 3
-  SKIP_LOW_CONFIDENCE: 76
-  PROPAGATE_AND_DELETE: 2
-  SKIP_CLASSIFICATION_CONFLICT: 20
+  SKIP_LOW_CONFIDENCE: 45
+  SKIP_CLASSIFICATION_CONFLICT: 7
+  DELETE: 26
+  PROPAGATE_AND_DELETE: 12
 actions:
   - action: SKIP_PRESERVE_V1_DATA
     reason: T3_has_sources_or_notes
@@ -146,21 +146,6 @@ actions:
     twin_fuss: 9_thaler
     twin_phase: I
     propagate_classification: false
-  - action: DELETE
-    reason: T1_high_redundant
-    orph_entity: danish_realm
-    orph_id: km-163-2-fr-iii-1648
-    twin_entity: danish_realm
-    twin_id: unified-dk-hede-f3h5
-    confidence: high
-    shared_refs: 2
-    nominal: Largesse Ducat
-    year_first: 1648
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: reichsdukatenfuss
-    twin_phase: I
-    propagate_classification: false
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
     orph_entity: danish_realm
@@ -175,21 +160,6 @@ actions:
     phase: I
     twin_fuss: 9_25_thaler
     twin_phase: III
-    propagate_classification: false
-  - action: DELETE
-    reason: T1_medium_redundant
-    orph_entity: danish_realm
-    orph_id: km-294-fr-iii-1667
-    twin_entity: danish_realm
-    twin_id: unified-dk-hede-f3h26
-    confidence: medium
-    shared_refs: 1
-    nominal: 1 Ducat
-    year_first: 1667
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: reichsdukatenfuss
-    twin_phase: I
     propagate_classification: false
   - action: SKIP_PRESERVE_V1_DATA
     reason: T3_has_sources_or_notes
@@ -248,21 +218,6 @@ actions:
     twin_fuss: seed_unsorted
     twin_phase: hede
     propagate_classification: false
-  - action: DELETE
-    reason: T1_medium_redundant
-    orph_entity: danish_realm
-    orph_id: km-568-2-fr-v-1747
-    twin_entity: danish_realm
-    twin_id: dk-tid-94404
-    confidence: medium
-    shared_refs: 1
-    nominal: 2 Ducat
-    year_first: 1747
-    fuss: reichsdukatenfuss
-    phase: II
-    twin_fuss: reichsdukatenfuss
-    twin_phase: II
-    propagate_classification: false
   - action: SKIP_CLASSIFICATION_CONFLICT_SPECIMEN
     reason: T1_medium_shared_specimen_but_both_classified (orph=11_333_thaler/I vs twin=9_25_thaler/II)
     orph_entity: danish_realm
@@ -278,36 +233,6 @@ actions:
     twin_fuss: 9_25_thaler
     twin_phase: II
     propagate_classification: false
-  - action: PROPAGATE_AND_DELETE
-    reason: T1_high_promote_orphan_classification
-    orph_entity: danish_realm
-    orph_id: km-586-1-fr-v-1757
-    twin_entity: danish_realm
-    twin_id: unified-dk-hede-f5h24
-    confidence: high
-    shared_refs: 2
-    nominal: 12 Mark (Courant Ducat)
-    year_first: 1757
-    fuss: courantdukatenfuss
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: true
-  - action: PROPAGATE_AND_DELETE
-    reason: T1_high_promote_orphan_classification
-    orph_entity: danish_realm
-    orph_id: km-587-2-fr-v-1758
-    twin_entity: danish_realm
-    twin_id: unified-dk-hede-f5h22
-    confidence: high
-    shared_refs: 2
-    nominal: 12 Mark (Courant Ducat)
-    year_first: 1758
-    fuss: courantdukatenfuss
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: true
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
     orph_entity: danish_realm
@@ -410,30 +335,36 @@ actions:
     year_first: 1693
     fuss: reichsdukatenfuss
     phase: I
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+  - action: DELETE
+    reason: T1_medium_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: erzbisthum_bremen_verden
     orph_id: bruun-12323-unknown-1674
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: erzbisthum_bremen_verden
+    twin_id: unified-dk-bruun-12323
+    confidence: medium
+    shared_refs: 1
     nominal: Taler
     year_first: 1674
     fuss: seed_unsorted
     phase: I
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: false
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: erzbisthum_bremen_verden
     orph_id: bruun-14999-unknown-1622
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: gottorp_duchy
+    twin_id: unified-dk-bruun-14999
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1622
     fuss: seed_unsorted
     phase: I
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: false
   - action: SKIP_CLASSIFICATION_CONFLICT
     reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_hede
     orph_entity: erzbisthum_bremen_verden
@@ -449,74 +380,74 @@ actions:
     twin_fuss: seed_unsorted
     twin_phase: hede
     propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-14114-adolf-1606
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nf3h71
-    confidence: low
-    shared_refs: 1
+    twin_entity: gottorp_duchy
+    twin_id: unified-dk-bruun-14114
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1606
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: hede
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_numismaster
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-14115-adolf-1606
-    twin_entity: danish_norway
-    twin_id: unified-denmark-numismaster-110624
-    confidence: medium
-    shared_refs: 1
+    twin_entity: hanseatic_lubeck
+    twin_id: unified-dk-bruun-14115
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1606
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: numismaster
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_numismaster
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-14116-adolf-1606
-    twin_entity: danish_norway
-    twin_id: unified-denmark-numismaster-110624
-    confidence: medium
-    shared_refs: 1
+    twin_entity: hanseatic_lubeck
+    twin_id: unified-dk-bruun-14115
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1606
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: numismaster
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-14120-adolf-1607
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nf3h71
-    confidence: low
-    shared_refs: 1
+    twin_entity: gottorp_duchy
+    twin_id: unified-dk-bruun-14114
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1607
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: hede
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-14124-adolf-1608
-    twin_entity: danish_norway
-    twin_id: unified-dk-bruun-9600
-    confidence: low
-    shared_refs: 1
+    twin_entity: gottorp_duchy
+    twin_id: unified-dk-bruun-14124
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1608
     fuss: seed_unsorted
@@ -524,180 +455,171 @@ actions:
     twin_fuss: seed_unsorted
     twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-14975-unknown-1612
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: lubeck_bishopric
+    twin_id: unified-dk-bruun-14975
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1612
     fuss: seed_unsorted
     phase: I
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_hede
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: false
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-15027-unknown-1687
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nf3hunknown_735
-    confidence: medium
-    shared_refs: 1
+    twin_entity: hanseatic_lubeck
+    twin_id: unified-dk-bruun-15027
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1687
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: hede
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_numismaster
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-15028-hans-1683
-    twin_entity: danish_norway
-    twin_id: unified-denmark-numismaster-110691
-    confidence: medium
-    shared_refs: 1
+    twin_entity: gottorp_duchy
+    twin_id: unified-dk-bruun-15028
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1683
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: numismaster
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-15039-frederik-1723
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: lubeck_bishopric
+    twin_id: unified-dk-bruun-15039
+    confidence: high
+    shared_refs: 2
     nominal: 2 Mark
     year_first: 1723
     fuss: seed_unsorted
     phase: I
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: false
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-15040-unknown-1723
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: lubeck_bishopric
+    twin_id: unified-dk-bruun-15040
+    confidence: high
+    shared_refs: 2
     nominal: 2 Mark
     year_first: 1723
     fuss: seed_unsorted
     phase: I
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: false
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-15046-friedrich-1724
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nf3hunknown_539
-    confidence: low
-    shared_refs: 1
+    twin_entity: gottorp_duchy
+    twin_id: unified-dk-bruun-15046
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1724
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: hede
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_numismaster
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-15140-christian-1775
-    twin_entity: danish_norway
-    twin_id: unified-denmark-numismaster-110606
-    confidence: medium
-    shared_refs: 1
+    twin_entity: royal_holstein
+    twin_id: unified-dk-bruun-15140
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1775
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: numismaster
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
+  - action: DELETE
+    reason: T2_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: fuerstbisthum_luebeck
     orph_id: bruun-15142-christian-1776
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nf3h65
-    confidence: low
-    shared_refs: 1
+    twin_entity: royal_holstein
+    twin_id: unified-dk-bruun-15142
+    confidence: high
+    shared_refs: 2
     nominal: 5 Taler (Pistole - Friederich Augustd’ or)
     year_first: 1776
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: hede
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
-    orph_entity: glucksburg_duchy
-    orph_id: bruun-14681-christian-glb-1672
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
-    nominal: 1 Reichsthaler
-    year_first: 1672
-    fuss: 9_25_thaler
-    phase: I
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: glucksburg_duchy
-    orph_id: km-5-philipp-glb-1632
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc4h4
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Reichsthaler
-    year_first: 1632
-    fuss: 9_25_thaler
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: false
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+  - action: PROPAGATE_AND_DELETE
+    reason: T1_medium_promote_orphan_classification
     orph_entity: gottorp_duchy
     orph_id: bruun-14118-ja-1607
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: gottorp_duchy
+    twin_id: unified-dk-bruun-14118
+    confidence: medium
+    shared_refs: 1
     nominal: 2 Reichsthaler
     year_first: 1607
     fuss: 9_thaler
     phase: I
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: true
+  - action: PROPAGATE_AND_DELETE
+    reason: T1_medium_promote_orphan_classification
     orph_entity: gottorp_duchy
     orph_id: bruun-14136-ja-1611
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: gottorp_duchy
+    twin_id: unified-dk-bruun-14136
+    confidence: medium
+    shared_refs: 1
     nominal: ½ Reichsthaler
     year_first: 1611
     fuss: 9_thaler
     phase: I
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: true
+  - action: PROPAGATE_AND_DELETE
+    reason: T1_medium_promote_orphan_classification
     orph_entity: gottorp_duchy
     orph_id: bruun-14147-ja-1607
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: gottorp_duchy
+    twin_id: unified-dk-bruun-14147
+    confidence: medium
+    shared_refs: 1
     nominal: 2½ Reichsthaler
     year_first: 1607
     fuss: 9_thaler
     phase: I
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: true
   - action: SKIP_PRESERVE_V1_DATA
     reason: T3_has_sources_or_notes
     orph_entity: gottorp_duchy
@@ -713,21 +635,6 @@ actions:
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
     orph_entity: gottorp_duchy
-    orph_id: km-109-ca-1664
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc5h29
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Ducat
-    year_first: 1664
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: 9_25_thaler
-    twin_phase: I
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: gottorp_duchy
     orph_id: km-139-chr-a-1681
     twin_entity: danish_norway
     twin_id: unified-dk-hede-nc5h17
@@ -740,91 +647,16 @@ actions:
     twin_fuss: reichsdukatenfuss
     twin_phase: I
     propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: gottorp_duchy
-    orph_id: km-146-chr-a-1689
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc5h57
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Dukat
-    year_first: 1689
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: 9_25_thaler
-    twin_phase: I
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: gottorp_duchy
-    orph_id: km-147-chr-a-1689
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc5h56
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Dukat
-    year_first: 1689
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: 9_25_thaler
-    twin_phase: I
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: gottorp_duchy
-    orph_id: km-169-fr-iv-1698
-    twin_entity: danish_norway
-    twin_id: unified-dk-bruun-10310
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Dukat
-    year_first: 1698
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: 9_25_thaler
-    twin_phase: I
-    propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_reichsdukatenfuss_vs_9_25_thaler_phase_I_vs_I
-    orph_entity: gottorp_duchy
-    orph_id: km-170-fr-iv-1698
-    twin_entity: danish_norway
-    twin_id: unified-denmark-numismaster-110674
-    confidence: medium
-    shared_refs: 1
-    nominal: 1 Dukat
-    year_first: 1698
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: 9_25_thaler
-    twin_phase: I
-    propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_reichsdukatenfuss_vs_9_25_thaler_phase_I_vs_I
+  - action: DELETE
+    reason: T1_high_redundant
     orph_entity: gottorp_duchy
     orph_id: km-170-fr-iv-1700
-    twin_entity: danish_norway
-    twin_id: unified-denmark-numismaster-110674
-    confidence: medium
-    shared_refs: 1
+    twin_entity: gottorp_duchy
+    twin_id: km-170-fr-iv-1698
+    confidence: high
+    shared_refs: 2
     nominal: 1 Dukat
     year_first: 1700
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: 9_25_thaler
-    twin_phase: I
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: gottorp_duchy
-    orph_id: km-188-karl-fr-1705
-    twin_entity: danish_realm
-    twin_id: km-188-fr-iii-1652
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Dukat
-    year_first: 1705
     fuss: reichsdukatenfuss
     phase: I
     twin_fuss: reichsdukatenfuss
@@ -840,21 +672,6 @@ actions:
     shared_refs: 1
     nominal: 1 Dukat
     year_first: 1705
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: reichsdukatenfuss
-    twin_phase: I
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: gottorp_duchy
-    orph_id: km-200-karl-fr-1708
-    twin_entity: danish_realm
-    twin_id: km-200-fr-iii-1653
-    confidence: low
-    shared_refs: 1
-    nominal: ¼ Dukat
-    year_first: 1708
     fuss: reichsdukatenfuss
     phase: I
     twin_fuss: reichsdukatenfuss
@@ -926,13 +743,13 @@ actions:
     twin_fuss: seed_unsorted
     twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
+  - action: PROPAGATE_AND_DELETE
+    reason: T2_medium_promote_orphan_classification
     orph_entity: gottorp_duchy
     orph_id: km-56-chr-a-1661
     twin_entity: danish_norway
     twin_id: unified-dk-hede-nf3h33
-    confidence: low
+    confidence: medium
     shared_refs: 1
     nominal: 1/16 Thaler
     year_first: 1661
@@ -940,7 +757,7 @@ actions:
     phase: I
     twin_fuss: seed_unsorted
     twin_phase: hede
-    propagate_classification: false
+    propagate_classification: true
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
     orph_entity: gottorp_duchy
@@ -1001,21 +818,21 @@ actions:
     twin_fuss: reichsdukatenfuss
     twin_phase: I
     propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
+  - action: PROPAGATE_AND_DELETE
+    reason: T1_medium_promote_orphan_classification
     orph_entity: gottorp_duchy
     orph_id: km-64-fr-iii-1622
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nf3h39
-    confidence: low
-    shared_refs: 1
+    twin_entity: gottorp_duchy
+    twin_id: unified-dk-bruun-14175
+    confidence: medium
+    shared_refs: 2
     nominal: 1 Thaler
     year_first: 1622
     fuss: 9_25_thaler
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: false
+    twin_phase: bruun
+    propagate_classification: true
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
     orph_entity: gottorp_duchy
@@ -1042,21 +859,6 @@ actions:
     nominal: ½ Thaler
     year_first: 1623
     fuss: 9_25_thaler
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: gottorp_duchy
-    orph_id: km-73-fr-iv-1698
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nf3h53
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Dukat
-    year_first: 1698
-    fuss: reichsdukatenfuss
     phase: I
     twin_fuss: seed_unsorted
     twin_phase: hede
@@ -1148,107 +950,110 @@ actions:
     year_first: 1701
     fuss: 9_25_thaler
     phase: I
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+  - action: DELETE
+    reason: T1_medium_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: grafschaft_oldenburg
     orph_id: bruun-15091-unknown-1658
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
-    nominal: 1/2 Mark / 12 Grote
+    twin_entity: grafschaft_oldenburg
+    twin_id: unified-dk-bruun-15091
+    confidence: medium
+    shared_refs: 1
+    nominal: ½ Mark / 12 Grote
     year_first: 1658
     fuss: seed_unsorted
     phase: I
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_numismaster
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: false
+  - action: DELETE
+    reason: T1_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: grafschaft_oldenburg
     orph_id: bruun-15097-unknown-1664
-    twin_entity: danish_norway
-    twin_id: unified-denmark-numismaster-110691
-    confidence: medium
-    shared_refs: 1
-    nominal: Ducat
+    twin_entity: grafschaft_oldenburg
+    twin_id: unified-dk-bruun-15097
+    confidence: high
+    shared_refs: 2
+    nominal: 1 Ducat
     year_first: 1664
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: numismaster
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_hede
+  - action: DELETE
+    reason: T1_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: grafschaft_oldenburg
     orph_id: bruun-15099-unknown-1665
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nf3hunknown_418
-    confidence: medium
-    shared_refs: 1
+    twin_entity: grafschaft_oldenburg
+    twin_id: unified-dk-bruun-15099
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1665
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: hede
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_numismaster
+  - action: DELETE
+    reason: T1_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: grafschaft_oldenburg
     orph_id: bruun-15106-unknown-1614
-    twin_entity: danish_realm
-    twin_id: unified-denmark-numismaster-64980
-    confidence: medium
-    shared_refs: 1
-    nominal: 2 Taler Klippe
+    twin_entity: grafschaft_oldenburg
+    twin_id: unified-dk-bruun-15106
+    confidence: high
+    shared_refs: 2
+    nominal: 2 Taler
     year_first: 1614
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: numismaster
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_hede
+  - action: DELETE
+    reason: T1_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: grafschaft_oldenburg
     orph_id: bruun-15107-unknown-1614
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc4h2
-    confidence: medium
-    shared_refs: 1
-    nominal: Taler Klippe
-    year_first: 1614
-    fuss: seed_unsorted
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_hede
-    orph_entity: grafschaft_oldenburg
-    orph_id: bruun-15108-unknown-1614
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc4h13
-    confidence: medium
-    shared_refs: 1
+    twin_entity: grafschaft_oldenburg
+    twin_id: unified-dk-bruun-15107
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1614
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: hede
+    twin_phase: bruun
     propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_I_vs_hede
+  - action: DELETE
+    reason: T1_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
+    orph_entity: grafschaft_oldenburg
+    orph_id: bruun-15108-unknown-1614
+    twin_entity: grafschaft_oldenburg
+    twin_id: unified-dk-bruun-15108
+    confidence: high
+    shared_refs: 2
+    nominal: Taler
+    year_first: 1614
+    fuss: seed_unsorted
+    phase: I
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: false
+  - action: DELETE
+    reason: T1_high_shared_specimen_id_twin_wins (orphan_fuss=seed_unsorted/I dropped; twin_fuss=seed_unsorted/bruun kept; shared specimen-level ref)
     orph_entity: grafschaft_oldenburg
     orph_id: bruun-15109-unknown-1619
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc4h5
-    confidence: medium
-    shared_refs: 1
+    twin_entity: grafschaft_oldenburg
+    twin_id: unified-dk-bruun-15109
+    confidence: high
+    shared_refs: 2
     nominal: Taler
     year_first: 1619
     fuss: seed_unsorted
     phase: I
     twin_fuss: seed_unsorted
-    twin_phase: hede
+    twin_phase: bruun
     propagate_classification: false
   - action: SKIP_PRESERVE_V1_DATA
     reason: T3_has_sources_or_notes
@@ -2525,66 +2330,6 @@ actions:
     twin_fuss: 9_thaler
     twin_phase: I
     propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: norburg_plon_duchy
-    orph_id: km-26-fr-karl-plon-1760
-    twin_entity: danish_norway
-    twin_id: unified-dk-bruun-9496
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Ducat
-    year_first: 1760
-    fuss: reichsdukatenfuss
-    phase: II
-    twin_fuss: seed_unsorted
-    twin_phase: bruun
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: norburg_plon_duchy
-    orph_id: km-27-fr-karl-plon-1760
-    twin_entity: danish_norway
-    twin_id: unified-denmark-numismaster-110631
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Ducat
-    year_first: 1760
-    fuss: reichsdukatenfuss
-    phase: II
-    twin_fuss: seed_unsorted
-    twin_phase: numismaster
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: norburg_plon_duchy
-    orph_id: km-5-august-plon-1676
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc4h4
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Reichsthaler
-    year_first: 1676
-    fuss: 9_25_thaler
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: norburg_plon_duchy
-    orph_id: km-6-august-plon-1676
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc4h3
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Reichsthaler
-    year_first: 1676
-    fuss: 9_25_thaler
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: false
   - action: SKIP_PRESERVE_V1_DATA
     reason: T3_has_sources_or_notes
     orph_entity: provisional_govt
@@ -2597,80 +2342,20 @@ actions:
     year_first: 1850
     fuss: 9_25_thaler
     phase: IV
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: rantzau_county
-    orph_id: km-1-christian-rantzau-1655
-    twin_entity: royal_holstein
-    twin_id: unified-dk-hede-f4h58
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Ducat
-    year_first: 1655
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: 9_25_thaler
-    twin_phase: I
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: rantzau_county
-    orph_id: km-1-christian-rantzau-1656a
-    twin_entity: royal_holstein
-    twin_id: unified-dk-hede-f4h58
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Ducat
-    year_first: 1656
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: 9_25_thaler
-    twin_phase: I
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
+  - action: DELETE
+    reason: T1_high_redundant
     orph_entity: rantzau_county
     orph_id: km-1-christian-rantzau-1656b
-    twin_entity: royal_holstein
-    twin_id: unified-dk-hede-f4h58
-    confidence: low
-    shared_refs: 1
+    twin_entity: rantzau_county
+    twin_id: km-1-christian-rantzau-1656a
+    confidence: high
+    shared_refs: 2
     nominal: 1 Ducat
     year_first: 1656
     fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: 9_25_thaler
-    twin_phase: I
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: rantzau_county
-    orph_id: km-2-christian-rantzau-1657
-    twin_entity: royal_holstein
-    twin_id: unified-km-2-fr-iv-1705-glueck
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Reichsthaler
-    year_first: 1657
-    fuss: 9_25_thaler
     phase: I
     twin_fuss: reichsdukatenfuss
     twin_phase: I
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: rantzau_county
-    orph_id: km-5-detlef-rantzau-1689
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc4h4
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Ducat
-    year_first: 1689
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
     propagate_classification: false
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
@@ -2717,6 +2402,21 @@ actions:
     twin_fuss: seed_unsorted
     twin_phase: hede
     propagate_classification: false
+  - action: DELETE
+    reason: T1_medium_redundant
+    orph_entity: royal_holstein
+    orph_id: km-154-fr-vi-1816
+    twin_entity: royal_holstein
+    twin_id: unified-sh-tid-90766
+    confidence: medium
+    shared_refs: 2
+    nominal: 16 Reichsbank Schilling
+    year_first: 1816
+    fuss: 18_5_thaler
+    phase: I
+    twin_fuss: 18_5_thaler
+    twin_phase: I
+    propagate_classification: false
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
     orph_entity: royal_holstein
@@ -2762,6 +2462,21 @@ actions:
     twin_fuss: 11_333_thaler
     twin_phase: I
     propagate_classification: false
+  - action: PROPAGATE_AND_DELETE
+    reason: T1_high_promote_orphan_classification
+    orph_entity: royal_holstein
+    orph_id: km-640-1-chr-vii-1784
+    twin_entity: royal_holstein
+    twin_id: unified-dk-hede-c7h22ab
+    confidence: high
+    shared_refs: 2
+    nominal: Albertsdaler (Speciedaler)
+    year_first: 1784
+    fuss: 11_333_thaler
+    phase: II
+    twin_fuss: seed_unsorted
+    twin_phase: hede
+    propagate_classification: true
   - action: SKIP_PRESERVE_V1_DATA
     reason: T3_has_sources_or_notes
     orph_entity: royal_holstein
@@ -2849,54 +2564,66 @@ actions:
     twin_fuss: kronemont_chr_iv
     twin_phase: I
     propagate_classification: false
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+  - action: PROPAGATE_AND_DELETE
+    reason: T1_medium_promote_orphan_classification
     orph_entity: schauenburg_pinneberg
     orph_id: bruun-14793-adolf-xiii-1590
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: schauenburg_pinneberg
+    twin_id: unified-dk-bruun-14793
+    confidence: medium
+    shared_refs: 1
     nominal: 1 Reichsthaler
     year_first: 1590
     fuss: 9_thaler
     phase: I
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: true
+  - action: PROPAGATE_AND_DELETE
+    reason: T2_medium_promote_orphan_classification
     orph_entity: schauenburg_pinneberg
     orph_id: bruun-14799-adolf-xiii-1593
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: royal_holstein
+    twin_id: unified-dk-bruun-14799
+    confidence: medium
+    shared_refs: 1
     nominal: 2 Reichsthaler (Doppeltaler)
     year_first: 1593
     fuss: 9_thaler
     phase: I
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: true
+  - action: PROPAGATE_AND_DELETE
+    reason: T2_medium_promote_orphan_classification
     orph_entity: schauenburg_pinneberg
     orph_id: bruun-14813-adolf-xiii-1598a
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: royal_holstein
+    twin_id: unified-dk-bruun-14813
+    confidence: medium
+    shared_refs: 1
     nominal: 3 Reichsthaler
     year_first: 1598
     fuss: 9_thaler
     phase: I
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: true
+  - action: PROPAGATE_AND_DELETE
+    reason: T2_medium_promote_orphan_classification
     orph_entity: schauenburg_pinneberg
     orph_id: bruun-14815-adolf-xiii-1598b
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: royal_holstein
+    twin_id: unified-dk-bruun-14815
+    confidence: medium
+    shared_refs: 1
     nominal: 1½ Reichsthaler (Breit-Taler)
     year_first: 1598
     fuss: 9_thaler
     phase: I
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: true
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
     orph_entity: schauenburg_pinneberg
@@ -2957,35 +2684,20 @@ actions:
     twin_fuss: 9_25_thaler
     twin_phase: I
     propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: schauenburg_pinneberg
-    orph_id: km-130-ernst-iii-1622a
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc5h51
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Reichsthaler
-    year_first: 1622
-    fuss: 9_25_thaler
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
+  - action: DELETE
+    reason: T1_high_redundant
     orph_entity: schauenburg_pinneberg
     orph_id: km-130-ernst-iii-1622b
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc5h51
-    confidence: low
-    shared_refs: 1
+    twin_entity: schauenburg_pinneberg
+    twin_id: km-130-ernst-iii-1622a
+    confidence: high
+    shared_refs: 2
     nominal: 1 Reichsthaler
     year_first: 1622
     fuss: 9_25_thaler
     phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
+    twin_fuss: 9_25_thaler
+    twin_phase: I
     propagate_classification: false
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
@@ -3134,18 +2846,21 @@ actions:
     twin_fuss: 9_25_thaler
     twin_phase: I
     propagate_classification: false
-  - action: SKIP_PRESERVE_V1_DATA
-    reason: T3_has_sources_or_notes
+  - action: PROPAGATE_AND_DELETE
+    reason: T1_medium_promote_orphan_classification
     orph_entity: schauenburg_pinneberg
     orph_id: km-278276-adolph-xiv-1589
-    twin_entity:
-    twin_id:
-    confidence:
-    shared_refs: 0
+    twin_entity: schauenburg_pinneberg
+    twin_id: unified-dk-bruun-14788
+    confidence: medium
+    shared_refs: 1
     nominal: 1 Thaler
     year_first: 1589
     fuss: 9_thaler
     phase: I
+    twin_fuss: seed_unsorted
+    twin_phase: bruun
+    propagate_classification: true
   - action: SKIP_PRESERVE_V1_DATA
     reason: T3_has_sources_or_notes
     orph_entity: schauenburg_pinneberg
@@ -3257,21 +2972,6 @@ actions:
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
     orph_entity: schauenburg_pinneberg
-    orph_id: km-74-ernst-iii-1615
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nf3h55
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Reichsthaler
-    year_first: 1615
-    fuss: 9_thaler
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: schauenburg_pinneberg
     orph_id: km-8-ernst-1600
     twin_entity: danish_norway
     twin_id: unified-dk-hede-nc4h1
@@ -3284,66 +2984,21 @@ actions:
     twin_fuss: seed_unsorted
     twin_phase: hede
     propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: sonderburg_duchy
-    orph_id: km-17-hans-jr-sonderb-1622
-    twin_entity: danish_realm
-    twin_id: unified-dk-hede-c4h49
-    confidence: low
-    shared_refs: 1
-    nominal: ½ Reichsthaler
-    year_first: 1622
-    fuss: 9_thaler
-    phase: I
-    twin_fuss: 9_thaler
-    twin_phase: I
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: sonderburg_duchy
-    orph_id: km-20-hans-jr-sonderb-1622
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc4h16
-    confidence: low
-    shared_refs: 1
-    nominal: 1 Reichsthaler
-    year_first: 1622
-    fuss: 9_thaler
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
-    orph_entity: sonderburg_duchy
-    orph_id: km-23-hans-jr-sonderb-1622
-    twin_entity: danish_norway
-    twin_id: unified-dk-hede-nc4h18
-    confidence: low
-    shared_refs: 1
-    nominal: 2 Reichsthaler
-    year_first: 1622
-    fuss: 9_thaler
-    phase: I
-    twin_fuss: seed_unsorted
-    twin_phase: hede
-    propagate_classification: false
-  - action: SKIP_LOW_CONFIDENCE
-    reason: T2_shared=1_year=False_ruler=False
+  - action: PROPAGATE_AND_DELETE
+    reason: T1_medium_promote_orphan_classification
     orph_entity: sonderburg_duchy
     orph_id: km-26-alex-sonderb-1626
-    twin_entity: danish_norway
-    twin_id: unified-dk-bruun-9496
-    confidence: low
-    shared_refs: 1
+    twin_entity: sonderburg_duchy
+    twin_id: unified-dk-bruun-14677
+    confidence: medium
+    shared_refs: 2
     nominal: 1 Reichsthaler
     year_first: 1626
     fuss: 9_thaler
     phase: I
     twin_fuss: seed_unsorted
     twin_phase: bruun
-    propagate_classification: false
+    propagate_classification: true
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=1_year=False_ruler=False
     orph_entity: sonderburg_duchy

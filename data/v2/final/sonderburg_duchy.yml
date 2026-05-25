@@ -195,17 +195,43 @@ coins:
     bruun_part: II
     bruun_lot_no: 14246
     bruun_page: 315
+    sieg: '20'
+    lange: '545'
   metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
   mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 14.19
+    source: bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14246, p. 315
+  - type: literature
+    ref: Bruun-14666 · Stack's Bowers Bruun Collection Part II, lot 14246
+  - type: literature
+    url: https://numismaster.com/MC_101373
+    ref: NumisMaster
   note:
     de: ½ Reichsthaler · Reinfelder Münze unter Münzmeister Tobias Reinhardt
     en: ½ Reichsthaler · Reinfeld mint under mintmaster Tobias Reinhardt
     uk: ½ Reichsthaler · Райнфельдське карбування під монетмейстером Tobias Reinhardt
-  composed_of: []
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-14666
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -229,12 +255,17 @@ coins:
     bruun_lot_no: 14242
     bruun_page: 312
     dav: '3714'
+    sieg: '15.1'
+    lange: 529a
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 28.56
+    source: bruun
   sources:
   - type: literature
     url: https://numismaster.com/MC_101374
@@ -245,6 +276,8 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14242, p. 312
+  - type: literature
+    ref: Bruun-14662 · Stack's Bowers Bruun Collection Part II, lot 14242
   note:
     de: 1 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
     en: 1 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
@@ -257,7 +290,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
-  - unified-schleswig_holstein-numismaster-101374
+  - unified-dk-bruun-14662
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
@@ -277,13 +310,29 @@ coins:
     bruun_part: II
     bruun_lot_no: 14243
     bruun_page: 312
+    sieg: '15.2'
+    lange: 529c
+    dav:
+    - 3714B
+    - 3714b
   metal: silver
+  metal_verified: true
   fineness_verified: false
+  weight_rough_verified: true
   mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.65
+    source: bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14243, p. 312
+  - type: literature
+    ref: Bruun-14663 · Stack's Bowers Bruun Collection Part II, lot 14243
+  - type: literature
+    url: https://numismaster.com/MC_101376
+    ref: NumisMaster
   note:
     de: Reichsthaler 1622-TR · Münzmeister Tobias Reinhardt
     en: Reichsthaler 1622-TR · mintmaster Tobias Reinhardt
@@ -295,7 +344,8 @@ coins:
       anchor 0.8889); Δ -1.99% against the soll value sits within the ±2 % specimen-tolerance envelope.
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_thaler,
       якірна проба 0.8889); Δ -1.99% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  composed_of: []
+  composed_of:
+  - unified-dk-bruun-14663
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -319,12 +369,17 @@ coins:
     bruun_lot_no: 14245
     bruun_page: 314
     dav: '3715'
+    sieg: '21'
+    lange: '544'
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 28.62
+    source: bruun
   sources:
   - type: literature
     url: https://numismaster.com/MC_101377
@@ -335,6 +390,8 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14245, p. 314
+  - type: literature
+    ref: Bruun-14665 · Stack's Bowers Bruun Collection Part II, lot 14245
   note:
     de: 1 Thaler (Gedenk) · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
     en: 1 Thaler (Gedenk) · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
@@ -347,7 +404,7 @@ coins:
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_25_thaler,
       якірна проба 0.875); Δ -1.60% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
   composed_of:
-  - unified-schleswig_holstein-numismaster-101377
+  - unified-dk-bruun-14665
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
@@ -367,13 +424,26 @@ coins:
     bruun_part: II
     bruun_lot_no: 14244
     bruun_page: 313
+    sieg: '22'
+    lange: '543'
   metal: silver
+  metal_verified: true
   fineness_verified: false
+  weight_rough_verified: true
   mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 57.48
+    source: bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14244, p. 313
+  - type: literature
+    ref: Bruun-14664 · Stack's Bowers Bruun Collection Part II, lot 14244
+  - type: literature
+    url: https://numismaster.com/MC_101381
+    ref: NumisMaster
   note:
     de: 2 Reichsthaler · Reinfelder Doppeltaler unter Tobias Reinhardt · in dieser Erhaltung selten.
     en: 2 Reichsthaler · Reinfeld double taler under Tobias Reinhardt · rare in this state.
@@ -385,40 +455,8 @@ coins:
       anchor 0.8889); Δ -1.68% against the soll value sits within the ±2 % specimen-tolerance envelope.
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_thaler,
       якірна проба 0.8889); Δ -1.68% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  composed_of: []
-  v1_home_location: schleswig_holstein
-- fuss: 9_thaler
-  phase: I
-  kind: kurant
-  fraction: '1'
-  nominal: 1 Reichsthaler
-  ruler: Alexander von Schleswig-Holstein-Sonderburg
-  issuing_entity: sonderburg_duchy
-  id: km-26-alex-sonderb-1626
-  year_first: 1626
-  year_last: 1626
-  year_label: '1626'
-  mint: Reinfeld
-  catalog:
-    km: '26'
-    bruun_collection_id: '14677'
-    bruun_part: II
-    bruun_lot_no: 14247
-    bruun_page: 316
-  metal: silver
-  mint_verified: true
-  sources:
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14247, p. 316
-  note:
-    de: Reichsthaler 1626 · erste eigene Prägung Alexanders nach dem Tod Hans d. J. (1622) · Münzort Reinfelder oder Sonderburg
-      laut Bruun-Beschreibung
-    en: Reichsthaler 1626 · Alexander's first own issue after Hans the Younger's death (1622) · Reinfeld or Sonderburg mint
-      per Bruun catalogue
-    uk: Reichsthaler 1626 · перше власне карбування Александра після смерті Ганса Молодшого (1622) · Райнфельд або Зондербург
-      за каталогом Bruun
-  composed_of: []
+  composed_of:
+  - unified-dk-bruun-14664
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -441,12 +479,17 @@ coins:
     bruun_lot_no: 12212
     bruun_page: 263
     dav: '3717'
+    sieg: '5'
+    lange: '560'
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 27.26
+    source: bruun
   sources:
   - type: literature
     url: https://numismaster.com/MC_101379
@@ -457,6 +500,8 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12212, p. 263
+  - type: literature
+    ref: Bruun-14678 · Stack's Bowers Bruun Collection Part III, lot 12212
   note:
     de: 1 Thaler (Gedenk) · Alexander von Schleswig-Holstein-Sonderburg, 1627
     en: 1 Thaler (Gedenk) · Alexander, Duke of Schleswig-Holstein-Sonderburg, 1627
@@ -469,7 +514,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
-  - unified-schleswig_holstein-numismaster-101379
+  - unified-dk-bruun-14678
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
@@ -960,36 +1005,6 @@ coins:
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: ½ Thaler
-  issuing_entity: sonderburg_duchy
-  id: unified-schleswig_holstein-numismaster-101373
-  year_first: 1622
-  year_last: 1622
-  year_label: '1622'
-  catalog:
-    km: '17'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101373
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-101373
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
   nominal: 1 Thaler
   issuing_entity: sonderburg_duchy
   id: unified-schleswig_holstein-numismaster-101375
@@ -1021,68 +1036,6 @@ coins:
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1 Thaler
-  issuing_entity: sonderburg_duchy
-  id: unified-schleswig_holstein-numismaster-101376
-  year_first: 1622
-  year_last: 1622
-  year_label: '1622'
-  catalog:
-    km: '20'
-    dav: 3714B
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101376
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-101376
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  issuing_entity: sonderburg_duchy
-  id: unified-schleswig_holstein-numismaster-101378
-  year_first: 1626
-  year_last: 1626
-  year_label: '1626'
-  catalog:
-    km: '26'
-    dav: '3716'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101378
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-101378
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
   nominal: 2 Thaler
   issuing_entity: sonderburg_duchy
   id: unified-schleswig_holstein-numismaster-101380
@@ -1111,36 +1064,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-101380
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Thaler
-  issuing_entity: sonderburg_duchy
-  id: unified-schleswig_holstein-numismaster-101381
-  year_first: 1622
-  year_last: 1622
-  year_label: '1622'
-  catalog:
-    km: '23'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101381
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-101381
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -1377,3 +1300,48 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-120992
+- fuss: 9_thaler
+  phase: I
+  kind: kurant
+  nominal: Taler
+  ruler: Hans
+  mintmaster: Johann Lilienthal
+  issuing_entity: sonderburg_duchy
+  id: unified-dk-bruun-14677
+  year_first: 1626
+  year_last: 1626
+  year_label: '1626'
+  catalog:
+    km: '26'
+    bruun_collection_id: '14677'
+    sieg: '2'
+    lange: '558'
+    dav: '3716'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.52
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14677 · Stack's Bowers Bruun Collection Part II, lot 14247
+  - type: literature
+    url: https://numismaster.com/MC_101378
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-14677

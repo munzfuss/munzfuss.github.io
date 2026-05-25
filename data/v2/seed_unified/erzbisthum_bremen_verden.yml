@@ -1,29 +1,117 @@
-id: fuerstbisthum_luebeck
-source_locations:
-- lubeck_bishopric
-migrated_from_v1: '2026-05-18'
+# V2 seed_unified for political entity `erzbisthum_bremen_verden`.
+# Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
+# from data/v2/seed/<source>/erzbisthum_bremen_verden.yml across all sources.
+#
+# Input: 3 per-source seed entries.
+# Output: 3 unified entries (one per physical coin).
+#
+# Each unified entry's `composed_of` lists the per-source seeds
+# it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
+# `fineness[]`, `diameter_mm[]` are multi-source lists preserving
+# every reading per CLAUDE.md §9a. `sources[]` is the union.
+
+id: erzbisthum_bremen_verden
+generated_at: '2026-05-25'
 coins:
-- fuss: seed_unsorted
+- id: unified-dk-bruun-12130
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: Lübeck (Bishopric). Taler
-  issuing_entity: fuerstbisthum_luebeck
-  id: unified-dk-bruun-14975
-  year_first: 1612
-  year_last: 1612
-  year_label: '1612'
+  nominal: Bremen & Verden. 4 Mark
+  year_first: 1660
+  year_last: 1660
+  year_label: '1660'
   catalog:
-    km: '19.1'
-    bruun_collection_id: '14975'
+    km: '61'
+    bruun_collection_id: '12130'
+    dav: '321'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 21.77
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-12130 · Stack's Bowers Bruun Collection Part II, lot 14167
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - dk-bruun-12130
+- id: unified-dk-bruun-12270
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Bremen & Verden. 4 Mark
+  year_first: 1670
+  year_last: 1670
+  year_label: '1670'
+  mintmaster: Andreas Hille
+  catalog:
+    km: '79'
+    bruun_collection_id: '12270'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 22.13
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-12270 · Stack's Bowers Bruun Collection Part III, lot 12177
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - dk-bruun-12270
+- id: unified-dk-bruun-12323
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Bremen & Verden. Taler
+  year_first: 1674
+  year_last: 1674
+  year_label: '1674'
+  catalog:
+    bruun_collection_id: '12323'
+    dav: '6282'
   metal: silver
   metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 29.1
+    source: bruun
   sources:
   - type: literature
-    ref: Bruun-14975 · Stack's Bowers Bruun Collection Part III, lot 12222
+    ref: Bruun-12323 · Stack's Bowers Bruun Collection Part III, lot 12179
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -35,77 +123,6 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: erzbisthum_bremen_verden
   composed_of:
-  - unified-dk-bruun-14975
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: Lübeck (Bishopric). 2 Mark
-  ruler: Frederik III
-  issuing_entity: fuerstbisthum_luebeck
-  id: unified-dk-bruun-15039
-  year_first: 1723
-  year_last: 1723
-  year_label: '1723'
-  mint: Glückstadt
-  catalog:
-    km: '78.1'
-    bruun_collection_id: '15039'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    ref: Bruun-15039 · Stack's Bowers Bruun Collection Part III, lot 12223
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-15039
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: Lübeck (Bishopric). 2 Mark
-  mintmaster: Andreas Woltereck
-  issuing_entity: fuerstbisthum_luebeck
-  id: unified-dk-bruun-15040
-  year_first: 1723
-  year_last: 1723
-  year_label: '1723'
-  mint: Glückstadt
-  catalog:
-    km: '78.2'
-    bruun_collection_id: '15040'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    ref: Bruun-15040 · Stack's Bowers Bruun Collection Part III, lot 12224
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-15040
+  - dk-bruun-12323

@@ -1,14 +1,23 @@
+# V2 seed_unified for political entity `grafschaft_oldenburg`.
+# Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
+# from data/v2/seed/<source>/grafschaft_oldenburg.yml across all sources.
+#
+# Input: 11 per-source seed entries.
+# Output: 11 unified entries (one per physical coin).
+#
+# Each unified entry's `composed_of` lists the per-source seeds
+# it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
+# `fineness[]`, `diameter_mm[]` are multi-source lists preserving
+# every reading per CLAUDE.md §9a. `sources[]` is the union.
+
 id: grafschaft_oldenburg
-source_locations:
-- oldenburg
-migrated_from_v1: '2026-05-18'
+generated_at: '2026-05-25'
 coins:
-- fuss: seed_unsorted
+- id: unified-dk-bruun-15088
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Oldenburg. Taler
-  issuing_entity: grafschaft_oldenburg
-  id: unified-dk-bruun-15088
   year_first: 1538
   year_last: 1538
   year_label: '1538'
@@ -38,14 +47,14 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: grafschaft_oldenburg
   composed_of:
-  - unified-dk-bruun-15088
-- fuss: seed_unsorted
+  - dk-bruun-15088
+- id: unified-dk-bruun-15091
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Oldenburg. ½ Mark / 12 Grote
-  issuing_entity: grafschaft_oldenburg
-  id: unified-dk-bruun-15091
   year_first: 1658
   year_last: 1658
   year_label: '1658'
@@ -74,18 +83,18 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: grafschaft_oldenburg
   composed_of:
-  - unified-dk-bruun-15091
-- fuss: seed_unsorted
+  - dk-bruun-15091
+- id: unified-dk-bruun-15097
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Oldenburg. Ducat
-  mintmaster: Georg David Ziegenhorn
-  issuing_entity: grafschaft_oldenburg
-  id: unified-dk-bruun-15097
   year_first: 1664
   year_last: 1664
   year_label: '1664'
+  mintmaster: Georg David Ziegenhorn
   catalog:
     km: '63'
     bruun_collection_id: '15097'
@@ -113,18 +122,18 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: grafschaft_oldenburg
   composed_of:
-  - unified-dk-bruun-15097
-- fuss: seed_unsorted
+  - dk-bruun-15097
+- id: unified-dk-bruun-15099
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Oldenburg. Taler
-  mintmaster: Georg David Ziegenhorn
-  issuing_entity: grafschaft_oldenburg
-  id: unified-dk-bruun-15099
   year_first: 1665
   year_last: 1665
   year_label: '1665'
+  mintmaster: Georg David Ziegenhorn
   catalog:
     km: '84'
     bruun_collection_id: '15099'
@@ -152,18 +161,18 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: grafschaft_oldenburg
   composed_of:
-  - unified-dk-bruun-15099
-- fuss: seed_unsorted
+  - dk-bruun-15099
+- id: unified-dk-bruun-15100
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Oldenburg. Taler
-  mintmaster: Georg David Ziegenhorn
-  issuing_entity: grafschaft_oldenburg
-  id: unified-dk-bruun-15100
   year_first: 1666
   year_last: 1666
   year_label: '1666'
+  mintmaster: Georg David Ziegenhorn
   catalog:
     km: '86'
     bruun_collection_id: '15100'
@@ -191,18 +200,18 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: grafschaft_oldenburg
   composed_of:
-  - unified-dk-bruun-15100
-- fuss: seed_unsorted
+  - dk-bruun-15100
+- id: unified-dk-bruun-15101
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Oldenburg. Taler
-  mintmaster: Georg David Ziegenhorn
-  issuing_entity: grafschaft_oldenburg
-  id: unified-dk-bruun-15101
   year_first: 1667
   year_last: 1667
   year_label: '1667'
+  mintmaster: Georg David Ziegenhorn
   catalog:
     km: '93'
     bruun_collection_id: '15101'
@@ -227,18 +236,18 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: grafschaft_oldenburg
   composed_of:
-  - unified-dk-bruun-15101
-- fuss: seed_unsorted
+  - dk-bruun-15101
+- id: unified-dk-bruun-15103
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Oldenburg. ¼ Taler
-  mintmaster: David Ziegenhorn
-  issuing_entity: grafschaft_oldenburg
-  id: unified-dk-bruun-15103
   year_first: 1667
   year_last: 1667
   year_label: '1667'
+  mintmaster: David Ziegenhorn
   catalog:
     km: '91'
     bruun_collection_id: '15103'
@@ -265,18 +274,18 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: grafschaft_oldenburg
   composed_of:
-  - unified-dk-bruun-15103
-- fuss: seed_unsorted
+  - dk-bruun-15103
+- id: unified-dk-bruun-15106
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Oldenburg. 2 Taler
-  mintmaster: Nikolaus Wintgens
-  issuing_entity: grafschaft_oldenburg
-  id: unified-dk-bruun-15106
   year_first: 1614
   year_last: 1614
   year_label: '1614'
+  mintmaster: Nikolaus Wintgens
   catalog:
     km: '14'
     bruun_collection_id: '15106'
@@ -304,18 +313,18 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: grafschaft_oldenburg
   composed_of:
-  - unified-dk-bruun-15106
-- fuss: seed_unsorted
+  - dk-bruun-15106
+- id: unified-dk-bruun-15107
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Oldenburg. Taler
-  mintmaster: Nikolaus Wintgen
-  issuing_entity: grafschaft_oldenburg
-  id: unified-dk-bruun-15107
   year_first: 1614
   year_last: 1614
   year_label: '1614'
+  mintmaster: Nikolaus Wintgen
   catalog:
     km: '7'
     bruun_collection_id: '15107'
@@ -343,18 +352,18 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: grafschaft_oldenburg
   composed_of:
-  - unified-dk-bruun-15107
-- fuss: seed_unsorted
+  - dk-bruun-15107
+- id: unified-dk-bruun-15108
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Oldenburg. Taler
-  mintmaster: Nicolaus Wintgens
-  issuing_entity: grafschaft_oldenburg
-  id: unified-dk-bruun-15108
   year_first: 1614
   year_last: 1614
   year_label: '1614'
+  mintmaster: Nicolaus Wintgens
   catalog:
     km: '9'
     bruun_collection_id: '15108'
@@ -382,18 +391,18 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: grafschaft_oldenburg
   composed_of:
-  - unified-dk-bruun-15108
-- fuss: seed_unsorted
+  - dk-bruun-15108
+- id: unified-dk-bruun-15109
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Oldenburg. Taler
-  mintmaster: Nicolaus Wintgens
-  issuing_entity: grafschaft_oldenburg
-  id: unified-dk-bruun-15109
   year_first: 1619
   year_last: 1619
   year_label: '1619'
+  mintmaster: Nicolaus Wintgens
   catalog:
     km: '12'
     bruun_collection_id: '15109'
@@ -421,5 +430,6 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: grafschaft_oldenburg
   composed_of:
-  - unified-dk-bruun-15109
+  - dk-bruun-15109

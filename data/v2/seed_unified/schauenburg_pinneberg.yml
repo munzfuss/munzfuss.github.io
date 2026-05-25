@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `schauenburg_pinneberg`.
-# Generated 2026-05-22 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
-# Input: 167 per-source seed entries.
-# Output: 167 unified entries (one per physical coin).
+# Input: 176 per-source seed entries.
+# Output: 171 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,8 +11,403 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: schauenburg_pinneberg
-generated_at: '2026-05-22'
+generated_at: '2026-05-25'
 coins:
+- id: unified-dk-bruun-14788
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: (?)
+  year_first: 1589
+  year_last: 1589
+  year_label: '1589'
+  ruler: Adolf
+  mintmaster: Georg Michaelsen
+  mint: Altona
+  catalog:
+    bruun_collection_id: '14788'
+    lange: '790'
+    dav: '8239'
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.96
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14788 · Stack's Bowers Bruun Collection Part III, lot 12213
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - dk-bruun-14788
+- id: unified-dk-bruun-14793
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: (?)
+  year_first: 1590
+  year_last: 1590
+  year_label: '1590'
+  ruler: Adolf
+  mintmaster: Abraham Symons
+  mint: Altona
+  catalog:
+    bruun_collection_id: '14793'
+    dav: '8241'
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.85
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14793 · Stack's Bowers Bruun Collection Part III, lot 12214
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - dk-bruun-14793
+- id: unified-dk-bruun-14834
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: S chleswig-Holstein-Schaumburg-Pinneberg. Double Taler
+  year_first: 1603
+  year_last: 1603
+  year_label: '1603'
+  ruler: Ernst III
+  catalog:
+    km: '24'
+    bruun_collection_id: '14834'
+    lange: 834b
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 57.52
+    source: bruun
+  - value: 58.0
+    source: numismaster
+  sources:
+  - type: literature
+    ref: Bruun-14834 · Stack's Bowers Bruun Collection Part II, lot 14262
+  - type: literature
+    url: https://numismaster.com/MC_96168
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - dk-bruun-14834
+  - schleswig_holstein-numismaster-96168
+- id: unified-dk-bruun-14871
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1615
+  year_last: 1619
+  year_ranges:
+  - - 1615
+    - 1615
+  - - 1617
+    - 1619
+  year_label: '1615'
+  ruler: Ernst III
+  mintmaster: Henning Hanses
+  mint: Altona
+  catalog:
+    km: '74'
+    bruun_collection_id: '14871'
+    dav: '3738'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.81
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14871 · Stack's Bowers Bruun Collection Part III, lot 12216
+  - type: literature
+    url: https://numismaster.com/MC_96138
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - dk-bruun-14871
+  - schleswig_holstein-numismaster-96138
+- id: unified-dk-bruun-14891
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1620
+  year_last: 1620
+  year_label: '1620'
+  ruler: Ernst III
+  mintmaster: Christoph Feistell
+  mint:
+  - Altona
+  - Oldendorf
+  catalog:
+    km: '106'
+    bruun_collection_id: '14891'
+    dav: '3739'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.82
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14891 · Stack's Bowers Bruun Collection Part III, lot 12217
+  - type: literature
+    url: https://numismaster.com/MC_96140
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - dk-bruun-14891
+  - schleswig_holstein-numismaster-96140
+- id: unified-dk-bruun-14906
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: (?)
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mintmaster: Thomas Eisenbein
+  mint: Altona
+  catalog:
+    km: '130'
+    bruun_collection_id: '14906'
+    dav: 3746var
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.93
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14906 · Stack's Bowers Bruun Collection Part III, lot 12218
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - dk-bruun-14906
+- id: unified-dk-bruun-14907
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  ruler: Ernst III
+  mintmaster: Thomas Eisenbein
+  mint: Altona
+  catalog:
+    km: '130'
+    bruun_collection_id: '14907'
+    dav:
+    - '3746'
+    - 3746a
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.0
+    source: numismaster
+  - value: 28.46
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14907 · Stack's Bowers Bruun Collection Part III, lot 12219
+  - type: literature
+    url: https://numismaster.com/MC_96149
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - dk-bruun-14907
+  - schleswig_holstein-numismaster-96149
+- id: unified-dk-bruun-14918
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: (?)
+  year_first: 1601
+  year_last: 1601
+  year_label: '1601'
+  mint: Altona
+  catalog:
+    km: '102'
+    bruun_collection_id: '14918'
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 14.27
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14918 · Stack's Bowers Bruun Collection Part III, lot 12220
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - dk-bruun-14918
+- id: unified-dk-bruun-14953
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1628
+  year_last: 1628
+  year_label: '1628'
+  ruler: Jobst Hermann
+  mint: Altona
+  catalog:
+    km: '143'
+    bruun_collection_id: '14953'
+    lange: '954'
+    dav: '3753'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.89
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14953 · Stack's Bowers Bruun Collection Part III, lot 12221
+  - type: literature
+    url: https://numismaster.com/MC_96159
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - dk-bruun-14953
+  - schleswig_holstein-numismaster-96159
 - id: unified-schleswig_holstein-numismaster-171183
   fuss: seed_unsorted
   phase: numismaster
@@ -3964,44 +4359,6 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - schleswig_holstein-numismaster-96137
-- id: unified-schleswig_holstein-numismaster-96138
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1615
-  year_last: 1619
-  year_ranges:
-  - - 1615
-    - 1615
-  - - 1617
-    - 1619
-  year_label: 1615, 1617–1619
-  ruler: Ernst III
-  mint: Altona
-  catalog:
-    km: '74'
-    dav: '3738'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_96138
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: schauenburg_pinneberg
-  composed_of:
-  - schleswig_holstein-numismaster-96138
 - id: unified-schleswig_holstein-numismaster-96139
   fuss: seed_unsorted
   phase: numismaster
@@ -4038,39 +4395,6 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - schleswig_holstein-numismaster-96139
-- id: unified-schleswig_holstein-numismaster-96140
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1620
-  year_last: 1620
-  year_label: '1620'
-  ruler: Ernst III
-  mint: Oldendorf
-  catalog:
-    km: '106'
-    dav: '3739'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_96140
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: schauenburg_pinneberg
-  composed_of:
-  - schleswig_holstein-numismaster-96140
 - id: unified-schleswig_holstein-numismaster-96141
   fuss: seed_unsorted
   phase: numismaster
@@ -4342,41 +4666,6 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - schleswig_holstein-numismaster-96148
-- id: unified-schleswig_holstein-numismaster-96149
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1622
-  year_last: 1622
-  year_label: '1622'
-  ruler: Ernst III
-  catalog:
-    km: '130'
-    dav: '3746'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 28.0
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_96149
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: schauenburg_pinneberg
-  composed_of:
-  - schleswig_holstein-numismaster-96149
 - id: unified-schleswig_holstein-numismaster-96150
   fuss: seed_unsorted
   phase: numismaster
@@ -4668,38 +4957,6 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - schleswig_holstein-numismaster-96158
-- id: unified-schleswig_holstein-numismaster-96159
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1628
-  year_last: 1628
-  year_label: '1628'
-  ruler: Jobst Hermann
-  catalog:
-    km: '143'
-    dav: '3753'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_96159
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: schauenburg_pinneberg
-  composed_of:
-  - schleswig_holstein-numismaster-96159
 - id: unified-schleswig_holstein-numismaster-96160
   fuss: seed_unsorted
   phase: numismaster
@@ -4968,40 +5225,6 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - schleswig_holstein-numismaster-96167
-- id: unified-schleswig_holstein-numismaster-96168
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Thaler
-  year_first: 1603
-  year_last: 1603
-  year_label: '1603'
-  ruler: Ernst III
-  catalog:
-    km: '24'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 58.0
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_96168
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: schauenburg_pinneberg
-  composed_of:
-  - schleswig_holstein-numismaster-96168
 - id: unified-schleswig_holstein-numismaster-96169
   fuss: seed_unsorted
   phase: numismaster

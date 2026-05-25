@@ -1,14 +1,23 @@
+# V2 seed_unified for political entity `hochstift_osnabrueck`.
+# Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
+# from data/v2/seed/<source>/hochstift_osnabrueck.yml across all sources.
+#
+# Input: 1 per-source seed entries.
+# Output: 1 unified entries (one per physical coin).
+#
+# Each unified entry's `composed_of` lists the per-source seeds
+# it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
+# `fineness[]`, `diameter_mm[]` are multi-source lists preserving
+# every reading per CLAUDE.md §9a. `sources[]` is the union.
+
 id: hochstift_osnabrueck
-source_locations:
-- osnabrueck
-migrated_from_v1: '2026-05-18'
+generated_at: '2026-05-25'
 coins:
-- fuss: seed_unsorted
+- id: unified-dk-bruun-11903
+  fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Osnabrück. Taler
-  issuing_entity: hochstift_osnabrueck
-  id: unified-dk-bruun-11903
   year_first: 1633
   year_last: 1633
   year_label: '1633'
@@ -38,5 +47,6 @@ coins:
     uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: hochstift_osnabrueck
   composed_of:
-  - unified-dk-bruun-11903
+  - dk-bruun-11903

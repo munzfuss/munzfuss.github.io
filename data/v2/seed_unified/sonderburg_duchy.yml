@@ -1,8 +1,8 @@
 # V2 seed_unified for political entity `sonderburg_duchy`.
-# Generated 2026-05-22 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sonderburg_duchy.yml across all sources.
 #
-# Input: 25 per-source seed entries.
+# Input: 32 per-source seed entries.
 # Output: 25 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -11,8 +11,322 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sonderburg_duchy
-generated_at: '2026-05-22'
+generated_at: '2026-05-25'
 coins:
+- id: unified-dk-bruun-14662
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Taler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  catalog:
+    km: '18'
+    bruun_collection_id: '14662'
+    sieg: '15.1'
+    lange: 529a
+    dav: '3714'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.56
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14662 · Stack's Bowers Bruun Collection Part II, lot 14242
+  - type: literature
+    url: https://numismaster.com/MC_101374
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-bruun-14662
+  - schleswig_holstein-numismaster-101374
+- id: unified-dk-bruun-14663
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Taler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mintmaster: Tobias Reinhardt
+  catalog:
+    km: '20'
+    bruun_collection_id: '14663'
+    sieg: '15.2'
+    lange: 529c
+    dav:
+    - 3714B
+    - 3714b
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.65
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14663 · Stack's Bowers Bruun Collection Part II, lot 14243
+  - type: literature
+    url: https://numismaster.com/MC_101376
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-bruun-14663
+  - schleswig_holstein-numismaster-101376
+- id: unified-dk-bruun-14664
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 2 Taler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mintmaster: Tobias Reinhardt (orb)
+  catalog:
+    km: '23'
+    bruun_collection_id: '14664'
+    sieg: '22'
+    lange: '543'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 57.48
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14664 · Stack's Bowers Bruun Collection Part II, lot 14244
+  - type: literature
+    url: https://numismaster.com/MC_101381
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-bruun-14664
+  - schleswig_holstein-numismaster-101381
+- id: unified-dk-bruun-14665
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Taler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mintmaster: Tobias Reinhardt (orb)
+  catalog:
+    km: '21'
+    bruun_collection_id: '14665'
+    sieg: '21'
+    lange: '544'
+    dav: '3715'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.62
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14665 · Stack's Bowers Bruun Collection Part II, lot 14245
+  - type: literature
+    url: https://numismaster.com/MC_101377
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-bruun-14665
+  - schleswig_holstein-numismaster-101377
+- id: unified-dk-bruun-14666
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: ½ Taler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mintmaster: Tobias Reinhardt (orb)
+  catalog:
+    km: '17'
+    bruun_collection_id: '14666'
+    sieg: '20'
+    lange: '545'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 14.19
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14666 · Stack's Bowers Bruun Collection Part II, lot 14246
+  - type: literature
+    url: https://numismaster.com/MC_101373
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-bruun-14666
+  - schleswig_holstein-numismaster-101373
+- id: unified-dk-bruun-14677
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Taler
+  year_first: 1626
+  year_last: 1626
+  year_label: '1626'
+  ruler: Hans
+  mintmaster: Johann Lilienthal
+  catalog:
+    km: '26'
+    bruun_collection_id: '14677'
+    sieg: '2'
+    lange: '558'
+    dav: '3716'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.52
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14677 · Stack's Bowers Bruun Collection Part II, lot 14247
+  - type: literature
+    url: https://numismaster.com/MC_101378
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-bruun-14677
+  - schleswig_holstein-numismaster-101378
+- id: unified-dk-bruun-14678
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1627
+  year_last: 1627
+  year_label: '1627'
+  catalog:
+    km: '28'
+    bruun_collection_id: '14678'
+    sieg: '5'
+    lange: '560'
+    dav: '3717'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 27.26
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14678 · Stack's Bowers Bruun Collection Part III, lot 12212
+  - type: literature
+    url: https://numismaster.com/MC_101379
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-bruun-14678
+  - schleswig_holstein-numismaster-101379
 - id: unified-schleswig_holstein-numismaster-101366
   fuss: seed_unsorted
   phase: numismaster
@@ -230,67 +544,6 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - schleswig_holstein-numismaster-101372
-- id: unified-schleswig_holstein-numismaster-101373
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ½ Thaler
-  year_first: 1622
-  year_last: 1622
-  year_label: '1622'
-  catalog:
-    km: '17'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101373
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: sonderburg_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-101373
-- id: unified-schleswig_holstein-numismaster-101374
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1622
-  year_last: 1622
-  year_label: '1622'
-  catalog:
-    km: '18'
-    dav: '3714'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101374
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: sonderburg_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-101374
 - id: unified-schleswig_holstein-numismaster-101375
   fuss: seed_unsorted
   phase: numismaster
@@ -322,130 +575,6 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - schleswig_holstein-numismaster-101375
-- id: unified-schleswig_holstein-numismaster-101376
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1622
-  year_last: 1622
-  year_label: '1622'
-  catalog:
-    km: '20'
-    dav: 3714B
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101376
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: sonderburg_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-101376
-- id: unified-schleswig_holstein-numismaster-101377
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1622
-  year_last: 1622
-  year_label: '1622'
-  catalog:
-    km: '21'
-    dav: '3715'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101377
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: sonderburg_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-101377
-- id: unified-schleswig_holstein-numismaster-101378
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1626
-  year_last: 1626
-  year_label: '1626'
-  catalog:
-    km: '26'
-    dav: '3716'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101378
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: sonderburg_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-101378
-- id: unified-schleswig_holstein-numismaster-101379
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1627
-  year_last: 1627
-  year_label: '1627'
-  catalog:
-    km: '28'
-    dav: '3717'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101379
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: sonderburg_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-101379
 - id: unified-schleswig_holstein-numismaster-101380
   fuss: seed_unsorted
   phase: numismaster
@@ -477,36 +606,6 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - schleswig_holstein-numismaster-101380
-- id: unified-schleswig_holstein-numismaster-101381
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Thaler
-  year_first: 1622
-  year_last: 1622
-  year_label: '1622'
-  catalog:
-    km: '23'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101381
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: sonderburg_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-101381
 - id: unified-schleswig_holstein-numismaster-101382
   fuss: seed_unsorted
   phase: numismaster

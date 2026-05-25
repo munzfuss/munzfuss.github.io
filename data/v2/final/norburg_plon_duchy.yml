@@ -48,12 +48,35 @@ coins:
     bruun_part: II
     bruun_lot_no: 14253
     bruun_page: 318
+    sieg: '2'
+    lange: 769a
+    fr: '3097'
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.986
+    source: numismaster
+  weight_rough_g:
+  - value: 3.46
+    source: bruun
+  - value: 3.5
+    source: numismaster
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14253, p. 318
+  - type: literature
+    ref: Bruun-14704 · Stack's Bowers Bruun Collection Part II, lot 14253
+  - type: literature
+    url: https://numismaster.com/MC_73989
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_73990
+    ref: NumisMaster
   note:
     de: Ducat 1760-G · Münzmeister Otto Heinrich Knorre · Hamburger Mietprägung des Plöner Herzogs
     en: Ducat 1760-G · mintmaster Otto Heinrich Knorre · Hamburg lease-mint for the Plön duke
@@ -68,7 +91,8 @@ coins:
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) для строго-однопробних стоп Категорії 1 (reichsdukatenfuss,
       якірна проба 0.9861) встановлена на канонічне значення стандарту; Δ -0.87% проти Soll лежить у смузі ±2 % допустимої
       специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
-  composed_of: []
+  composed_of:
+  - unified-dk-bruun-14704
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
   phase: II
@@ -88,9 +112,23 @@ coins:
     bruun_part: II
     bruun_lot_no: 14254
     bruun_page: 318
+    sieg: '3'
+    lange: 769b
+    fr: '3098'
   metal: gold
   metal_verified: true
   fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.986
+    source: numismaster
+  weight_rough_g:
+  - value: 3.48
+    source: bruun
+  - value: 3.5
+    source: numismaster
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces222051.html
@@ -98,11 +136,28 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14254, p. 318
+  - type: literature
+    ref: Bruun-14705 · Stack's Bowers Bruun Collection Part II, lot 14254
+  - type: literature
+    url: https://numismaster.com/MC_73991
+    ref: NumisMaster
   note:
     de: 1 Ducat · Friedrich Karl von Holstein-Plön, 1760
     en: 1 Ducat · Friedrich Karl, Duke of Holstein-Plön, 1760
     uk: 1 Ducat · Фрідріх Карл (Гольштейн-Плен), 1760
-  composed_of: []
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-14705
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: II
@@ -166,13 +221,24 @@ coins:
     bruun_part: II
     bruun_lot_no: 14251
     bruun_page: 318
+    sieg: '1.1'
+    lange: 767a
+    dav: '3722'
   metal: silver
+  metal_verified: false
   fineness_verified: false
+  weight_rough_verified: true
   mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 29.15
+    source: bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14251, p. 318
+  - type: literature
+    ref: Bruun-14702 · Stack's Bowers Bruun Collection Part II, lot 14251
   note:
     de: Reichsthaler 1676-CP · Münzmeister Christoph Pflug · Magdeburg-Mietprägung Augusts von Holstein-Norburg-Plön
     en: Reichsthaler 1676-CP · mintmaster Christoph Pflug · Magdeburg lease-mint of August of Holstein-Norburg-Plön
@@ -184,7 +250,8 @@ coins:
       anchor 0.875); Δ +0.89% against the soll value sits within the ±2 % specimen-tolerance envelope.
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_25_thaler,
       якірна проба 0.875); Δ +0.89% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  composed_of: []
+  composed_of:
+  - unified-dk-bruun-14702
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -205,13 +272,24 @@ coins:
     bruun_part: II
     bruun_lot_no: 14252
     bruun_page: 318
+    sieg: '1.2'
+    lange: 767b
+    dav: 3722A
   metal: silver
+  metal_verified: false
   fineness_verified: false
+  weight_rough_verified: true
   mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 29.29
+    source: bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14252, p. 318
+  - type: literature
+    ref: Bruun-14703 · Stack's Bowers Bruun Collection Part II, lot 14252
   note:
     de: Reichsthaler 1676-CP · Stempelvariante (KM-6, Lange-767b, Dav-3722A) der Pflug-Magdeburg-Prägung
     en: Reichsthaler 1676-CP · die variant (KM-6, Lange-767b, Dav-3722A) of the Pflug-Magdeburg issue
@@ -223,7 +301,8 @@ coins:
       anchor 0.875); Δ +1.37% against the soll value sits within the ±2 % specimen-tolerance envelope.
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_25_thaler,
       якірна проба 0.875); Δ +1.37% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  composed_of: []
+  composed_of:
+  - unified-dk-bruun-14703
   v1_home_location: schleswig_holstein
 - fuss: seed_unsorted
   phase: numismaster
@@ -677,85 +756,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-73988
-- fuss: reichsdukatenfuss
-  phase: II
-  kind: kurant
-  nominal: 1 Ducat
-  ruler: Friedrich Karl
-  issuing_entity: norburg_plon_duchy
-  fraction: '1'
-  id: unified-schleswig_holstein-numismaster-73989
-  year_first: 1760
-  year_last: 1760
-  year_label: '1760'
-  catalog:
-    km: '26'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.986
-    source: numismaster
-  weight_rough_g:
-  - value: 3.5
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_73989
-    ref: NumisMaster
-  - type: literature
-    url: https://numismaster.com/MC_73990
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-73989
-- fuss: reichsdukatenfuss
-  phase: II
-  kind: kurant
-  nominal: 1 Ducat
-  ruler: Friedrich Karl
-  issuing_entity: norburg_plon_duchy
-  fraction: '1'
-  id: unified-schleswig_holstein-numismaster-73991
-  year_first: 1760
-  year_last: 1760
-  year_label: '1760'
-  catalog:
-    km: '27'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.986
-    source: numismaster
-  weight_rough_g:
-  - value: 3.5
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_73991
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-73991
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant

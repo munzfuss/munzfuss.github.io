@@ -62,19 +62,110 @@ from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
 
-def _classify_entity(mint, is_norway: bool):
-    """Bruun lot → V2 issuing_entity. Prefers central mint→entity
-    classifier; falls back to Norway-flag / `danish_realm` default."""
+def _classify_entity(mint, is_norway: bool, meta_line: str | None = None):
+    """Bruun lot → V2 issuing_entity. Three-tier fallback:
+
+    1. **Mint-based** (`classify_mint_to_entity`) — strongest signal when
+       mint is attested (e.g. `Glückstadt` → `glucksburg_duchy` or
+       `royal_holstein` depending on year — handled inside the central
+       classifier).
+    2. **Meta_line subnational token** (`_classify_via_meta_line`) —
+       Bruun's meta line carries the territorial annotation when present
+       («Schleswig-Holstein-Norburg-Plön. Ducat, 1760…»). Used when mint
+       is missing OR mint-based returned None (generic mint like
+       «Hamburg» that doesn't pin down the issuer). Added 2026-05-25 to
+       cover the 57 Bruun lots tagged GERMANY/SWEDEN region but
+       legitimately in-scope project entities (SH-duchies, Bremen-Verden,
+       Plön Ducats, Holstein-Schauenburg).
+    3. **Norway flag / `danish_realm` default** — bottom of the fallback
+       chain. Lots that fail all three end up in `danish_realm` and
+       surface as orphan unifieds for curator review.
+    """
     if mint:
         result = classify_mint_to_entity(mint)
+        if result:
+            return result
+    if meta_line:
+        result = _classify_via_meta_line(meta_line)
         if result:
             return result
     if is_norway:
         return "danish_norway"
     return "danish_realm"
 
-# Region filter — Bruun parser produced "NORW AY" with internal space
-REALM_REGIONS = {"DENMARK", "NORW AY", "NORWAY", "DENMARK-NORWAY"}
+# Region filter — Bruun parser produced "NORW AY" with internal space.
+# GERMANY + SWEDEN added 2026-05-25 to cover SH-duchy / Bremen-Verden /
+# Plön coinage in Bruun catalogue (audit found 57 Bruun lots tagged as
+# GERMANY/SWEDEN but legitimately in project scope — Schleswig-Holstein-
+# Norburg-Plön under DENMARK crown, Holstein-Gottorp-Bremen, Bremen-Verden
+# under SWEDISH crown 1648-1715). The downstream `_classify_entity` /
+# `_classify_via_meta_line` routes such lots to the correct project
+# entity (norburg_plon_duchy, gottorp_duchy, erzbisthum_bremen_verden,
+# holstein_schauenburg_county, etc.); lots that don't classify land in
+# `_unclassified.yml` for curator review.
+REALM_REGIONS = {
+    "DENMARK", "NORW AY", "NORWAY", "DENMARK-NORWAY",
+    "GERMANY", "SWEDEN",
+}
+
+# Meta_line subnational-token → project entity mapping. Bruun's meta_line
+# carries «Schleswig-Holstein-Norburg-Plön. Ducat, 1760...» — the second
+# clause names the issuing political body. When the mint-based classifier
+# returns nothing (mint missing or generic), we fall back to these tokens.
+META_SUBNATIONAL_TO_ENTITY: dict[str, str] = {
+    "schleswig-holstein-norburg-plön": "norburg_plon_duchy",
+    "schleswig-holstein-norburg-plon": "norburg_plon_duchy",
+    "schleswig-holstein-sonderburg": "sonderburg_duchy",
+    "schleswig-holstein-sønderborg": "sonderburg_duchy",
+    "schleswig-holstein-sonderburg-glücksburg": "glucksburg_duchy",
+    "schleswig-holstein-sonderburg-glucksburg": "glucksburg_duchy",
+    "schleswig-holstein-glücksburg": "glucksburg_duchy",
+    "schleswig-holstein-gottorp": "gottorp_duchy",
+    "schleswig-holstein": "royal_holstein",  # fallback for unqualified SH
+    "holstein-schauenburg": "holstein_schauenburg_county",
+    "schauenburg-pinneberg": "schauenburg_pinneberg",
+    "lübeck (bishopric)": "fuerstbisthum_luebeck",
+    "luebeck (bishopric)": "fuerstbisthum_luebeck",
+    "lübeck-bishopric": "fuerstbisthum_luebeck",
+    "fürstbisthum lübeck": "fuerstbisthum_luebeck",
+    "fuerstbisthum luebeck": "fuerstbisthum_luebeck",
+    "bremen (bishopric)": "erzbisthum_bremen_verden",
+    "bremen-verden": "erzbisthum_bremen_verden",
+    "bremen & verden": "erzbisthum_bremen_verden",
+    "hesse-kassel": "landgrafschaft_hessen_kassel",
+    "hessen-kassel": "landgrafschaft_hessen_kassel",
+    "oldenburg": "grafschaft_oldenburg",
+    "osnabrück (bishopric)": "hochstift_osnabrueck",
+    "osnabrueck (bishopric)": "hochstift_osnabrueck",
+    "osnabrück": "hochstift_osnabrueck",
+    "osnabrueck": "hochstift_osnabrueck",
+    "schaumburg-pinneberg": "schauenburg_pinneberg",
+    "schleswig-holstein-schaumburg-pinneberg": "schauenburg_pinneberg",
+    "s chleswig-holstein-schaumburg-pinneberg": "schauenburg_pinneberg",
+    "lübeck. taler": "hanseatic_lubeck",
+    "luebeck. taler": "hanseatic_lubeck",
+    "rantzau": "rantzau_county",
+    "brunswick-lüneburg": "herzogtum_braunschweig_lueneburg",
+    "brunswick-luneburg": "herzogtum_braunschweig_lueneburg",
+    "saxe-lauenburg": "herzogtum_sachsen_lauenburg",
+    "sachsen-lauenburg": "herzogtum_sachsen_lauenburg",
+    "lauenburg": "herzogtum_sachsen_lauenburg",
+}
+
+
+def _classify_via_meta_line(meta: str | None) -> str | None:
+    """Walk META_SUBNATIONAL_TO_ENTITY tokens against the lot's meta_line
+    text. Longest-match wins (multi-word tokens like
+    `schleswig-holstein-norburg-plön` outrank the generic
+    `schleswig-holstein`). Case-insensitive substring."""
+    if not meta:
+        return None
+    meta_lc = meta.lower()
+    # Sort by token length descending so longest-match wins
+    for token in sorted(META_SUBNATIONAL_TO_ENTITY, key=len, reverse=True):
+        if token in meta_lc:
+            return META_SUBNATIONAL_TO_ENTITY[token]
+    return None
 
 # Year window — full project scope (was 1514-1541 pre-2026-05-20 per the
 # original §BI anchor; expanded to 1514-1914 to recover the 62 lost
@@ -391,6 +482,22 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     # Norwegian region marker
     is_norway = "NORW" in region
 
+    # Scope-gate for GERMANY / SWEDEN regions (added 2026-05-25 alongside
+    # REALM_REGIONS expansion). Bruun catalogue carries ~100 GERMANY +
+    # ~180 SWEDEN lots; only those tagging a known project entity
+    # (SH-duchy, Bremen-Verden, Hesse-Kassel, Plön, Holstein-Schauenburg,
+    # bishopric Lübeck/Osnabrück) belong in-scope. The mint→entity
+    # classifier handles cases where the lot's mint pins down an entity
+    # (Steinbeck Mint → gottorp_duchy); _classify_via_meta_line handles
+    # cases where the subnational annotation is only in meta_line. Lots
+    # that fall through to the `danish_realm` default — pure Swedish
+    # coinage (Stockholm Mint), Pomerania, Livonia, Mainz, Erfurt — are
+    # genuinely out of project scope and MUST NOT enter the seed.
+    if region in {"GERMANY", "SWEDEN"}:
+        entity_check = _classify_entity(mint, is_norway, meta_line=meta)
+        if entity_check in {"danish_realm", "danish_norway"}:
+            return None
+
     cid = lot_id(part, lot)
     entry: dict[str, Any] = {
         "id": cid,
@@ -409,7 +516,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         "metal_verified": metal_verified,
         "fineness": None,  # not in Bruun lot data; comes from spec tables (Wilcke)
         "weight_rough_g": lot.get("weight_g"),
-        "issuing_entity": _classify_entity(mint, is_norway),
+        "issuing_entity": _classify_entity(mint, is_norway, meta_line=meta),
         "verified": False,
         "fineness_verified": False,
         "weight_rough_verified": bool(lot.get("weight_g")),

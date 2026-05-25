@@ -35,14 +35,22 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.562
     source: hede
+  - value: 0.563
+    source: ucoin
   weight_rough_g:
+  - value: 9.17
+    source: ucoin
   - value: 9.171
     source: hede
+  diameter_mm:
+  - value: 29.5
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h12.htm
@@ -53,6 +61,9 @@ coins:
   - type: numista
     url: https://en.numista.com/55898
     ref: Numista
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-24-skilling-1772-1788/?tid=88738
+    ref: ucoin
   note:
     de: 'Norwegische Reichsprägung des dänisch-norwegischen Verbundes, Müntzstätte <b>Kongsberg</b> (Mzz. ⚒ — gekreuzte Bergmannshämmer),
       Münzmeister Johann Heinrich Madelung (<b>IHM</b>, 1772–1775) und Hans Jacob Arnold Branth (<b>HIAB</b>, 1783, 1788).
@@ -753,46 +764,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-110626
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 16 Skilling
-  ruler: Christian IV
-  issuing_entity: danish_norway
-  id: unified-denmark-numismaster-110631
-  year_first: 1644
-  year_last: 1647
-  year_ranges:
-  - - 1644
-    - 1647
-  year_label: 1644–1647
-  catalog:
-    km: '27'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.593
-    source: numismaster
-  weight_rough_g:
-  - value: 5.57
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110631
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-110631
 - fuss: 9_25_thaler
   phase: I
   kind: kurant
@@ -857,6 +828,8 @@ coins:
   - - 1648
     - 1648
   - - 1663
+    - 1663
+  - - 1665
     - 1669
   year_label: 1648, 1663, 1665–1669
   catalog:
@@ -897,57 +870,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-110633
-- fuss: 9_25_thaler
-  phase: I
-  kind: kurant
-  nominal: 16 Skilling
-  ruler: Christian V
-  issuing_entity: danish_norway
-  id: unified-denmark-numismaster-110635
-  year_first: 1671
-  year_last: 1679
-  year_ranges:
-  - - 1671
-    - 1679
-  year_label: 1671, 1673–1676, 1679
-  catalog:
-    km: 94a
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: ucoin
-  weight_rough_g:
-  - value: 5.57
-    source: numismaster
-  - value: 5.57
-    source: ucoin
-  diameter_mm:
-  - value: 25.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110635
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-16-skilling-1671-1679/?tid=144919
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-110635
 - fuss: 9_25_thaler
   phase: I
   kind: kurant
@@ -1727,49 +1649,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-110684
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ⅛ Specie Daler
-  issuing_entity: danish_norway
-  id: unified-denmark-numismaster-110688
-  year_first: 1654
-  year_last: 1654
-  year_label: '1654'
-  catalog:
-    km: '49'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  - value: 0.875
-    source: ucoin
-  weight_rough_g:
-  - value: 3.6
-    source: numismaster
-  - value: 3.6
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110688
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1654/?tid=144931
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-110688
 - fuss: 9_25_thaler
   phase: I
   kind: kurant
@@ -2280,43 +2159,6 @@ coins:
   kind: kurant
   nominal: 2 Specie Daler
   issuing_entity: danish_norway
-  id: unified-denmark-numismaster-110769
-  year_first: 1670
-  year_last: 1670
-  year_label: '1670'
-  catalog:
-    km: '100'
-    dav: '3649'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  weight_rough_g:
-  - value: 57.55
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110769
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-110769
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Specie Daler
-  issuing_entity: danish_norway
   id: unified-denmark-numismaster-110770
   year_first: 1670
   year_last: 1670
@@ -2518,6 +2360,8 @@ coins:
   year_last: 1680
   year_ranges:
   - - 1674
+    - 1674
+  - - 1678
     - 1680
   year_label: 1674, 1678–1680
   catalog:
@@ -2637,50 +2481,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-110788
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ½ Ducat
-  issuing_entity: danish_norway
-  id: unified-denmark-numismaster-110791
-  year_first: 1666
-  year_last: 1666
-  year_label: '1666'
-  mint: Christiania
-  catalog:
-    km: '80'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  - value: 0.979
-    source: ucoin
-  weight_rough_g:
-  - value: 1.49
-    source: numismaster
-  - value: 1.49
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110791
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-ducat-1666/?tid=145473
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-110791
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -2806,53 +2606,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-110796
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 1 Ducat
-  issuing_entity: danish_norway
-  fraction: '1'
-  id: unified-denmark-numismaster-110798
-  year_first: 1673
-  year_last: 1674
-  year_ranges:
-  - - 1673
-    - 1674
-  year_label: 1673–1674
-  catalog:
-    km: '117'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  - value: 0.979
-    source: ucoin
-  weight_rough_g:
-  - value: 3.49
-    source: numismaster
-  - value: 3.49
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110798
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-ducat-1673/?tid=145746
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-110798
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -2986,43 +2739,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-110807
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 2 Ducat
-  issuing_entity: danish_norway
-  fraction: '2'
-  id: unified-denmark-numismaster-110808
-  year_first: 1679
-  year_last: 1679
-  year_label: '1679'
-  catalog:
-    km: '138'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  weight_rough_g:
-  - value: 6.98
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110808
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-110808
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -4548,11 +4264,8 @@ coins:
   ruler: Frederik I
   issuing_entity: danish_norway
   id: unified-dk-bruun-9268
-  year_first: 1524
-  year_last: 1533
-  year_ranges:
-  - - 1524
-    - 1533
+  year_first: 1526
+  year_last: 1526
   year_label: '1526'
   mint: Christiania
   catalog:
@@ -4632,25 +4345,39 @@ coins:
   catalog:
     bruun_collection_id: '9271'
     sieg: '3'
-    schou: '1'
+    schou:
+    - '1'
+    - 1-3
     bruun_part: III
     bruun_lot_no: 12040
     bruun_page: 179
     galster: '169'
-    schive: XVI:8-10
+    schive:
+    - XVI:8-10
+    - XVI.8-10
     nmd: '8'
     jensen_skjoldager: N-05
+    galster_volume: f1g
   metal: billon
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.281
+    source: galster
   weight_rough_g:
+  - value: 1.83
+    source: galster
   - value: 1.84
     source: bruun
   sources:
   - type: literature
     ref: Bruun-9271 · Stack's Bowers Bruun Collection Part III, lot 12040
+  - type: literature
+    url: https://www.danskmoent.dk/norge/nf1g169.htm
+    ref: Galster 169 (f1g) — danskmoent.dk norge_nf1g169.htm
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -4729,7 +4456,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-9290
-  - unified-dk-numista-444496
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
@@ -4752,6 +4478,7 @@ coins:
     schive: XV
     nmd: '2'
   metal: billon
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: false
@@ -4835,7 +4562,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-9298
-  - unified-dk-numista-121758
 - fuss: seed_unsorted
   phase: galster
   kind: kurant
@@ -4879,87 +4605,6 @@ coins:
   composed_of:
   - unified-dk-galster-c2g-172
 - fuss: seed_unsorted
-  phase: galster
-  kind: kurant
-  nominal: 1 Skilling (Firehvid)
-  issuing_entity: danish_norway
-  id: unified-dk-galster-f1g-166
-  year_first: 1525
-  year_last: 1525
-  year_label: '1525'
-  mint: Christiania
-  catalog:
-    galster: '166'
-    schive: XVI.1
-    schou: '11'
-    jensen_skjoldager: N-11
-    galster_volume: f1g
-  metal: billon
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/norge/nf1g166.htm
-    ref: Galster 166 (f1g) — danskmoent.dk norge_nf1g166.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-f1g-166
-- fuss: seed_unsorted
-  phase: galster
-  kind: kurant
-  nominal: 1 Skilling (Firehvid)
-  issuing_entity: danish_norway
-  id: unified-dk-galster-f1g-169
-  year_first: 1530
-  year_last: 1530
-  year_label: '1530'
-  mint: Bergen
-  catalog:
-    galster: '169'
-    schive: XVI.8-10
-    schou: 1-3
-    jensen_skjoldager: N-05
-    galster_volume: f1g
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.281
-    source: galster
-  weight_rough_g:
-  - value: 1.83
-    source: galster
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/norge/nf1g169.htm
-    ref: Galster 169 (f1g) — danskmoent.dk norge_nf1g169.htm
-  verification_note:
-    de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
-      automatisch extrahiert (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    en: 'Galster seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the danskmoent.dk Galster-page series (hosting Galster numismatic catalog). Cross-references from H1 + description
-      block extracted automatically (Schou, Sieg, Jensen-Skjoldager, Schive, etc.).'
-    uk: 'Galster-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо зі сторінок
-      Galster на danskmoent.dk (хостинг каталога Galster). Cross-references з H1 + блоку опису витягнуто автоматично (Schou,
-      Sieg, Jensen-Skjoldager, Schive, тощо).'
-  composed_of:
-  - unified-dk-galster-f1g-169
-- fuss: seed_unsorted
   phase: hede
   kind: kurant
   nominal: 1 Sølvgylden
@@ -4974,6 +4619,12 @@ coins:
     hede: '1'
     hede_volume: nc3h
     schou: '1'
+    bruun_collection_id: '9302'
+    sieg: '4'
+    nmd: '2'
+    bruun_part: I
+    bruun_lot_no: 1174
+    bruun_page: 241
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -4986,10 +4637,14 @@ coins:
   weight_rough_g:
   - value: 29.232
     source: hede
+  - value: 29.38
+    source: bruun
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc3h1.htm
     ref: danskmoent.dk (Hede nc3h1)
+  - type: literature
+    ref: Bruun-9302 · Stack's Bowers Bruun Collection Part I, lot 1174
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -5009,10 +4664,12 @@ coins:
   ruler: Christian III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc3h2
-  year_first: 1543
+  year_first: 1545
   year_last: 1546
   year_ranges:
-  - - 1543
+  - - 1545
+    - 1545
+  - - 1546
     - 1546
   year_label: 1543–1546
   mint: Gimsø
@@ -5185,11 +4842,11 @@ coins:
   year_last: 1629
   year_ranges:
   - - 1628
+    - 1628
+  - - 1629
     - 1629
   year_label: 1628–1629
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '8'
     hede: '1'
@@ -5257,12 +4914,30 @@ coins:
   ruler: Christian IV.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc4h10
-  year_first: 1648
+  year_first: 1629
   year_last: 1648
+  year_ranges:
+  - - 1629
+    - 1629
+  - - 1631
+    - 1631
+  - - 1634
+    - 1634
+  - - 1637
+    - 1637
+  - - 1640
+    - 1640
+  - - 1643
+    - 1643
+  - - 1645
+    - 1645
+  - - 1646
+    - 1646
+  - - 1648
+    - 1648
   year_label: 1629–1648
   mint:
   - Christiania
-  - Christiania Mint
   - Christiania mint
   catalog:
     km: 11a
@@ -5394,13 +5069,16 @@ coins:
   year_last: 1648
   year_ranges:
   - - 1629
-    - 1643
+    - 1629
+  - - 1636
+    - 1636
+  - - 1640
+    - 1640
   - - 1646
     - 1648
   year_label: 1629–1643, 1646–1648
   mint:
   - Christiania
-  - Christiania Mint
   - Christiania mint
   catalog:
     km: '10'
@@ -5475,17 +5153,20 @@ coins:
   ruler: Christian IV.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc4h13
-  year_first: 1630
+  year_first: 1629
   year_last: 1647
   year_ranges:
+  - - 1629
+    - 1629
   - - 1630
     - 1630
+  - - 1638
+    - 1638
   - - 1646
     - 1647
   year_label: 1629–1643, 1646–1647
   mint:
   - Christiania
-  - Christiania Mint
   - Christiania mint
   catalog:
     km: '9'
@@ -5497,9 +5178,11 @@ coins:
     - '28'
     - '30'
     - '12'
+    - '6'
     bruun_collection_id:
     - '9328'
     - '9338'
+    - '9390'
     sieg: '9.1'
     nmd: '95'
     bruun_part: III
@@ -5521,6 +5204,8 @@ coins:
     source: bruun
   - value: 3.48
     source: bruun
+  - value: 3.62
+    source: bruun
   - value: 3.65
     source: numismaster
   - value: 3.654
@@ -5536,6 +5221,8 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc4h13.htm
     ref: danskmoent.dk (Hede nc4h13)
+  - type: literature
+    ref: Bruun-9390 · Stack's Bowers Bruun Collection Part III, lot 12054
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -5547,7 +5234,7 @@ coins:
     basis: fin
     unit_raw: speciedalere
   composed_of:
-  - unified-dk-bruun-9338
+  - unified-dk-bruun-9328
   - unified-dk-hede-nc4h13
 - fuss: seed_unsorted
   phase: hede
@@ -5778,11 +5465,11 @@ coins:
   year_last: 1629
   year_ranges:
   - - 1628
+    - 1628
+  - - 1629
     - 1629
   year_label: 1628–1629
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '7'
     hede: '2'
@@ -5852,9 +5539,7 @@ coins:
   year_first: 1629
   year_last: 1629
   year_label: 1628–1629
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '6'
     hede: '3'
@@ -5915,15 +5600,10 @@ coins:
   ruler: Christian IV.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc4h4
-  year_first: 1628
+  year_first: 1629
   year_last: 1629
-  year_ranges:
-  - - 1628
-    - 1629
   year_label: 1628–1629
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '5'
     hede: '4'
@@ -5984,11 +5664,14 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nc4h5
   year_first: 1629
-  year_last: 1629
+  year_last: 1648
+  year_ranges:
+  - - 1629
+    - 1629
+  - - 1648
+    - 1648
   year_label: 1629–1648
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '12'
     hede:
@@ -6009,7 +5692,9 @@ coins:
     bruun_part: III
     bruun_lot_no: 12046
     bruun_page: 183
-    dav: '3534'
+    dav:
+    - '3534'
+    - '9319'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6068,17 +5753,37 @@ coins:
   ruler: Christian IV.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc4h7
-  year_first: 1629
+  year_first: 1630
   year_last: 1648
   year_ranges:
-  - - 1629
+  - - 1630
+    - 1630
+  - - 1631
+    - 1631
+  - - 1632
+    - 1632
+  - - 1635
+    - 1635
+  - - 1639
+    - 1639
+  - - 1640
+    - 1640
+  - - 1641
+    - 1641
+  - - 1642
     - 1642
   - - 1644
+    - 1644
+  - - 1645
+    - 1645
+  - - 1646
+    - 1646
+  - - 1647
+    - 1647
+  - - 1648
     - 1648
   year_label: 1629–1642, 1644–1648
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '13'
     hede:
@@ -6221,13 +5926,11 @@ coins:
   - - 1634
     - 1634
   - - 1644
-    - 1645
+    - 1644
   - - 1648
     - 1648
   year_label: 1634, 1644–1645, 1648
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '15'
     hede:
@@ -6346,10 +6049,7 @@ coins:
   fraction: '2'
   id: unified-dk-hede-nc5h11
   year_first: 1673
-  year_last: 1674
-  year_ranges:
-  - - 1673
-    - 1674
+  year_last: 1673
   year_label: '1673'
   mint: Christiania
   catalog:
@@ -6410,7 +6110,16 @@ coins:
     km: '121'
     hede: '13'
     hede_volume: nc5h
-    schou: '1'
+    schou:
+    - '1'
+    - '6'
+    bruun_collection_id: '10150'
+    sieg: '72.1'
+    nmd: 13A
+    bruun_part: I
+    bruun_lot_no: 1222
+    bruun_page: 307
+    fr: 12b
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -6425,6 +6134,8 @@ coins:
   - value: 0.979
     source: ucoin
   weight_rough_g:
+  - value: 6.94
+    source: bruun
   - value: 6.98
     source: numismaster
   - value: 6.98
@@ -6440,6 +6151,14 @@ coins:
     ref: danskmoent.dk (Hede nc5h13)
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-2-ducat-1673/?tid=145749
+    ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_110805
+    ref: NumisMaster
+  - type: literature
+    ref: Bruun-10150 · Stack's Bowers Bruun Collection Part I, lot 1222
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-ducat-1673/?tid=145750
     ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
@@ -6465,6 +6184,13 @@ coins:
     hede: '15'
     hede_volume: nc5h
     schou: '1'
+    bruun_collection_id: '10143'
+    sieg: '79'
+    nmd: 6A
+    bruun_part: II
+    bruun_lot_no: 14078
+    bruun_page: 228
+    fr: '13'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -6479,6 +6205,8 @@ coins:
   - value: 0.979
     source: ucoin
   weight_rough_g:
+  - value: 9.89
+    source: bruun
   - value: 10.47
     source: numismaster
   - value: 10.47
@@ -6495,6 +6223,8 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-3-ducat-1673/?tid=145794
     ref: ucoin
+  - type: literature
+    ref: Bruun-10143 · Stack's Bowers Bruun Collection Part II, lot 14078
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -6514,16 +6244,29 @@ coins:
   year_last: 1678
   year_ranges:
   - - 1673
-    - 1674
+    - 1673
   - - 1678
     - 1678
   year_label: 1673, 1678
-  mint: Christiania
+  mint:
+  - Christiania
+  - Christiania mint
   catalog:
     km: '120'
-    hede: '16'
+    hede:
+    - '16'
+    - 16A
     hede_volume: nc5h
-    schou: '11'
+    schou:
+    - '11'
+    - '8'
+    bruun_collection_id: '6811'
+    sieg: '74.1'
+    nmd: 14A
+    bruun_part: III
+    bruun_lot_no: 11238
+    bruun_page: 124
+    fr: 12d
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -6544,6 +6287,8 @@ coins:
     source: ucoin
   - value: 6.981
     source: hede
+  - value: 7.0
+    source: bruun
   sources:
   - type: literature
     url: https://numismaster.com/MC_110803
@@ -6553,6 +6298,14 @@ coins:
     ref: danskmoent.dk (Hede nc5h16)
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-2-ducat-1674/?tid=145752
+    ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_110806
+    ref: NumisMaster
+  - type: literature
+    ref: Bruun-6811 · Stack's Bowers Bruun Collection Part III, lot 11238
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-ducat-1673/?tid=145751
     ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
@@ -6571,9 +6324,7 @@ coins:
   year_first: 1670
   year_last: 1670
   year_label: '1670'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '97'
     hede:
@@ -6650,13 +6401,13 @@ coins:
   year_last: 1674
   year_ranges:
   - - 1671
+    - 1671
+  - - 1672
     - 1672
   - - 1674
     - 1674
   year_label: 1671–1672, 1674
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '109'
     hede:
@@ -6679,9 +6430,7 @@ coins:
     bruun_part: III
     bruun_lot_no: 12094
     bruun_page: 208
-    dav:
-    - '3653'
-    - '3656'
+    dav: '3653'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6694,15 +6443,9 @@ coins:
     source: hede
   - value: 0.875
     source: numismaster
-  - value: 0.875
-    source: ucoin
   weight_rough_g:
   - value: 28.52
     source: bruun
-  - value: 28.78
-    source: numismaster
-  - value: 28.78
-    source: ucoin
   - value: 28.84
     source: bruun
   - value: 28.88
@@ -6711,9 +6454,6 @@ coins:
     source: numismaster
   - value: 28.893
     source: hede
-  diameter_mm:
-  - value: 44.0
-    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110742
@@ -6752,17 +6492,19 @@ coins:
   ruler: Christian V.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc5h30
-  year_first: 1671
-  year_last: 1674
+  year_first: 1672
+  year_last: 1680
   year_ranges:
-  - - 1671
+  - - 1672
     - 1672
   - - 1674
     - 1674
+  - - 1679
+    - 1679
+  - - 1680
+    - 1680
   year_label: 1671–1672, 1674
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '110'
     hede:
@@ -6851,6 +6593,8 @@ coins:
   year_last: 1680
   year_ranges:
   - - 1674
+    - 1674
+  - - 1678
     - 1680
   year_label: 1674, 1678–1680
   mint: Christiania
@@ -6915,11 +6659,11 @@ coins:
   year_last: 1674
   year_ranges:
   - - 1671
+    - 1671
+  - - 1674
     - 1674
   year_label: 1671, 1673–1674
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '107'
     hede: '33'
@@ -6999,11 +6743,11 @@ coins:
   year_last: 1675
   year_ranges:
   - - 1671
+    - 1671
+  - - 1675
     - 1675
   year_label: 1671, 1675
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '106'
     hede: '34'
@@ -7108,9 +6852,7 @@ coins:
   year_first: 1693
   year_last: 1693
   year_label: '1693'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '191'
     hede: '38'
@@ -7182,9 +6924,7 @@ coins:
   - - 1672
     - 1672
   year_label: 1670–1674
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '96'
     hede:
@@ -7263,7 +7003,6 @@ coins:
     unit_raw: rd
   composed_of:
   - unified-dk-bruun-10120
-  - unified-dk-bruun-10137
   - unified-dk-hede-nc5h41
 - fuss: 9_25_thaler
   phase: I
@@ -7275,9 +7014,7 @@ coins:
   year_first: 1670
   year_last: 1670
   year_label: 1670–1671
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: 95a
     hede: '42'
@@ -7362,10 +7099,7 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nc5h43
   year_first: 1671
-  year_last: 1674
-  year_ranges:
-  - - 1671
-    - 1674
+  year_last: 1671
   year_label: 1671–1674
   mint: Christiania
   catalog:
@@ -7431,14 +7165,14 @@ coins:
   year_ranges:
   - - 1670
     - 1670
+  - - 1671
+    - 1671
   - - 1675
     - 1675
   - - 1679
     - 1679
   year_label: 1670–1671, 1673–1676, 1679
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: 94a
     hede: '44'
@@ -7466,6 +7200,10 @@ coins:
     source: ucoin
   - value: 0.672
     source: hede
+  - value: 0.672
+    source: numismaster
+  - value: 0.672
+    source: ucoin
   weight_rough_g:
   - value: 5.31
     source: numismaster
@@ -7475,6 +7213,10 @@ coins:
     source: bruun
   - value: 5.568
     source: hede
+  - value: 5.57
+    source: numismaster
+  - value: 5.57
+    source: ucoin
   diameter_mm:
   - value: 25.0
     source: ucoin
@@ -7490,6 +7232,12 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h44.htm
     ref: danskmoent.dk (Hede nc5h44)
+  - type: literature
+    url: https://numismaster.com/MC_110635
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-16-skilling-1671-1679/?tid=144919
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -7502,7 +7250,6 @@ coins:
     unit_raw: rd.kr
   composed_of:
   - unified-denmark-numismaster-110634
-  - unified-dk-bruun-10177
   - unified-dk-hede-nc5h44
 - fuss: 9_25_thaler
   phase: I
@@ -7517,11 +7264,11 @@ coins:
   - - 1670
     - 1670
   - - 1672
+    - 1672
+  - - 1675
     - 1675
   year_label: 1670, 1672, 1675
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: 93a
     hede: '45'
@@ -7598,6 +7345,7 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
+  - unified-denmark-numismaster-110628
   - unified-dk-bruun-10098
   - unified-dk-hede-nc5h45
 - fuss: seed_unsorted
@@ -7800,6 +7548,8 @@ coins:
   year_last: 1682
   year_ranges:
   - - 1675
+    - 1675
+  - - 1682
     - 1682
   year_label: '1675'
   mint: Christiania
@@ -8135,12 +7885,15 @@ coins:
   ruler: Christian V.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc5h57
-  year_first: 1686
+  year_first: 1681
   year_last: 1686
+  year_ranges:
+  - - 1681
+    - 1681
+  - - 1686
+    - 1686
   year_label: '1681'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '146'
     hede:
@@ -8168,8 +7921,6 @@ coins:
     source: hede
   - value: 0.672
     source: numismaster
-  - value: 0.672
-    source: ucoin
   weight_rough_g:
   - value: 5.11
     source: bruun
@@ -8177,11 +7928,6 @@ coins:
     source: hede
   - value: 5.57
     source: numismaster
-  - value: 5.57
-    source: ucoin
-  diameter_mm:
-  - value: 25.0
-    source: ucoin
   sources:
   - type: literature
     ref: Bruun-10288 · Stack's Bowers Bruun Collection Part III, lot 12107
@@ -8215,11 +7961,16 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nc5h58
   year_first: 1681
-  year_last: 1681
+  year_last: 1689
+  year_ranges:
+  - - 1681
+    - 1681
+  - - 1685
+    - 1685
+  - - 1689
+    - 1689
   year_label: '1681'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '145'
     hede: '58'
@@ -8444,10 +8195,7 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nc5h62
   year_first: 1689
-  year_last: 1699
-  year_ranges:
-  - - 1689
-    - 1699
+  year_last: 1689
   year_label: '1689'
   mint: Christiania
   catalog:
@@ -8511,9 +8259,7 @@ coins:
   year_first: 1689
   year_last: 1689
   year_label: '1689'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: Tn1
     hede: '63'
@@ -8619,10 +8365,7 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nc5h68
   year_first: 1686
-  year_last: 1687
-  year_ranges:
-  - - 1686
-    - 1687
+  year_last: 1686
   year_label: 1686–1687
   mint: Kongsberg
   catalog:
@@ -8684,10 +8427,7 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nc5h69
   year_first: 1686
-  year_last: 1687
-  year_ranges:
-  - - 1686
-    - 1687
+  year_last: 1686
   year_label: 1686–1687
   mint: Kongsberg
   catalog:
@@ -8732,6 +8472,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-mark-1686/?tid=144923
     ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-mark-1681-1686/?tid=144920
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -8751,11 +8494,8 @@ coins:
   ruler: Christian V.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc5h70
-  year_first: 1686
-  year_last: 1688
-  year_ranges:
-  - - 1686
-    - 1688
+  year_first: 1687
+  year_last: 1687
   year_label: 1686–1687
   mint: Kongsberg
   catalog:
@@ -8887,40 +8627,63 @@ coins:
   year_first: 1688
   year_last: 1688
   year_label: 1688–1699
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '183'
     hede: '73'
     hede_volume: nc5h
-    schou: '14'
-    bruun_collection_id: '10336'
+    schou:
+    - '14'
+    - '15'
+    bruun_collection_id:
+    - '10336'
+    - '10337'
     sieg: '42'
     nmd: 182B
     bruun_part: III
     bruun_lot_no: 12111
     bruun_page: 218
+    dav: '3666'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.672
     source: hede
+  - value: 0.672
+    source: numismaster
+  - value: 0.672
+    source: ucoin
   weight_rough_g:
   - value: 22.06
     source: bruun
+  - value: 22.27
+    source: numismaster
+  - value: 22.27
+    source: ucoin
   - value: 22.272
     source: hede
+  diameter_mm:
+  - value: 39.0
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-10336 · Stack's Bowers Bruun Collection Part III, lot 12111
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h73.htm
     ref: danskmoent.dk (Hede nc5h73)
+  - type: literature
+    url: https://numismaster.com/MC_110681
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1688-1699/?tid=145715
+    ref: ucoin
+  - type: literature
+    ref: Bruun-10337 · Stack's Bowers Bruun Collection Part II, lot 14088
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -8932,6 +8695,7 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
+  - unified-denmark-numismaster-110681
   - unified-dk-bruun-10336
   - unified-dk-hede-nc5h73
 - fuss: 9_25_thaler
@@ -8942,10 +8706,7 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nc5h74
   year_first: 1688
-  year_last: 1699
-  year_ranges:
-  - - 1688
-    - 1699
+  year_last: 1688
   year_label: 1688–1699
   mint: Kongsberg
   catalog:
@@ -9013,10 +8774,7 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nc5h75
   year_first: 1688
-  year_last: 1699
-  year_ranges:
-  - - 1688
-    - 1699
+  year_last: 1688
   year_label: 1688–1699
   mint: Kongsberg
   catalog:
@@ -9133,10 +8891,12 @@ coins:
   ruler: Christian V.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc5h77
-  year_first: 1687
+  year_first: 1688
   year_last: 1699
   year_ranges:
-  - - 1687
+  - - 1688
+    - 1688
+  - - 1690
     - 1699
   year_label: 1688, 1690–1699
   mint: Kongsberg
@@ -9244,9 +9004,7 @@ coins:
   year_first: 1699
   year_last: 1699
   year_label: '1699'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '198'
     hede: '79'
@@ -9385,29 +9143,13 @@ coins:
   mint: Christiania
   catalog:
     km: '122'
-    hede: unknown_349
     hede_volume: nc5h
-    schou: '11'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
-  fineness:
-  - value: 0.979
-    source: hede
-  - value: 0.979
-    source: numismaster
-  - value: 0.979
-    source: ucoin
-  weight_rough_g:
-  - value: 6.98
-    source: numismaster
-  - value: 6.98
-    source: ucoin
-  - value: 6.981
-    source: hede
   sources:
   - type: literature
     url: https://numismaster.com/MC_110805
@@ -9475,29 +9217,13 @@ coins:
   mint: Christiania
   catalog:
     km: '123'
-    hede: unknown_516
     hede_volume: nc5h
-    schou: '5'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
-  fineness:
-  - value: 0.979
-    source: hede
-  - value: 0.979
-    source: numismaster
-  - value: 0.979
-    source: ucoin
-  weight_rough_g:
-  - value: 6.98
-    source: numismaster
-  - value: 6.98
-    source: ucoin
-  - value: 6.981
-    source: hede
   sources:
   - type: literature
     url: https://numismaster.com/MC_110806
@@ -9693,10 +9419,7 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nc6h4
   year_first: 1735
-  year_last: 1746
-  year_ranges:
-  - - 1735
-    - 1746
+  year_last: 1735
   year_label: 1735–1746
   mint: Kongsberg
   catalog:
@@ -9740,11 +9463,14 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nc6h5
   year_first: 1742
-  year_last: 1742
+  year_last: 1745
+  year_ranges:
+  - - 1742
+    - 1742
+  - - 1745
+    - 1745
   year_label: 1742–1743, 1745
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '235'
     hede: '5'
@@ -9813,11 +9539,11 @@ coins:
   year_last: 1768
   year_ranges:
   - - 1767
+    - 1767
+  - - 1768
     - 1768
   year_label: 1767–1768
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '244'
     hede: '1'
@@ -9887,9 +9613,7 @@ coins:
   year_first: 1767
   year_last: 1767
   year_label: '1767'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '243'
     hede: '10'
@@ -10344,6 +10068,8 @@ coins:
   year_last: 1807
   year_ranges:
   - - 1800
+    - 1805
+  - - 1807
     - 1807
   year_label: 1800–1805, 1807
   mint: Kongsberg
@@ -10405,17 +10131,17 @@ coins:
   ruler: Christian VII.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc7h2
-  year_first: 1776
+  year_first: 1777
   year_last: 1785
   year_ranges:
-  - - 1776
+  - - 1777
+    - 1777
+  - - 1781
     - 1781
   - - 1785
     - 1785
   year_label: 1776–1779, 1781, 1785
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '253'
     hede: '2'
@@ -10478,15 +10204,10 @@ coins:
   ruler: Christian VII.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc7h3
-  year_first: 1776
-  year_last: 1779
-  year_ranges:
-  - - 1776
-    - 1779
+  year_first: 1777
+  year_last: 1777
   year_label: 1776–1779
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '252'
     hede: '3'
@@ -10558,14 +10279,9 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nc7h4
   year_first: 1791
-  year_last: 1795
-  year_ranges:
-  - - 1791
-    - 1795
+  year_last: 1791
   year_label: 1791–1795
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '265'
     hede:
@@ -10695,13 +10411,11 @@ coins:
   year_last: 1803
   year_ranges:
   - - 1795
-    - 1801
+    - 1795
   - - 1803
     - 1803
   year_label: 1795–1801, 1803
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '266'
     hede:
@@ -10783,6 +10497,8 @@ coins:
   year_last: 1803
   year_ranges:
   - - 1796
+    - 1801
+  - - 1803
     - 1803
   year_label: 1796–1801, 1803
   mint: Kongsberg
@@ -10897,14 +10613,15 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h12
   year_first: 1649
-  year_last: 1654
+  year_last: 1650
   year_ranges:
   - - 1649
-    - 1654
+    - 1649
+  - - 1650
+    - 1650
   year_label: 1649–1654
   mint:
   - Christiania
-  - Christiania Mint
   - Christiania mint
   catalog:
     km: '35'
@@ -10916,7 +10633,6 @@ coins:
     - '26'
     - '28'
     - '22'
-    fr: '3'
     bruun_collection_id:
     - '9604'
     - '9619'
@@ -10982,12 +10698,15 @@ coins:
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h14
-  year_first: 1653
+  year_first: 1652
   year_last: 1653
+  year_ranges:
+  - - 1652
+    - 1652
+  - - 1653
+    - 1653
   year_label: 1652–1653
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '48'
     hede: '14'
@@ -10996,7 +10715,6 @@ coins:
     - '22'
     - '8'
     - '23'
-    fr: '3'
     bruun_collection_id:
     - '9648'
     - '9663'
@@ -11005,7 +10723,9 @@ coins:
     bruun_part: I
     bruun_lot_no: 1193
     bruun_page: 263
-    dav: '3590'
+    dav:
+    - '3590'
+    - '3592'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -11108,7 +10828,6 @@ coins:
     hede: '16'
     hede_volume: nf3h
     schou: '3'
-    fr: '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -11151,15 +10870,17 @@ coins:
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h17
-  year_first: 1652
-  year_last: 1656
+  year_first: 1653
+  year_last: 1655
   year_ranges:
-  - - 1652
-    - 1656
+  - - 1653
+    - 1653
+  - - 1654
+    - 1654
+  - - 1655
+    - 1655
   year_label: 1653–1656
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '48'
     hede: '17'
@@ -11171,7 +10892,6 @@ coins:
     - '8'
     - '10'
     - '11'
-    fr: '3'
     bruun_collection_id:
     - '9660'
     - '9661'
@@ -11270,15 +10990,13 @@ coins:
   year_first: 1665
   year_last: 1665
   year_label: '1665'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '77'
     hede: '2'
     hede_volume: nf3h
     schou: '9'
-    fr: '3'
+    fr: '4'
     bruun_collection_id: '9955'
     sieg: '69'
     nmd: '7'
@@ -11334,14 +11052,18 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h20
   year_first: 1653
-  year_last: 1658
+  year_last: 1656
   year_ranges:
   - - 1653
-    - 1658
+    - 1653
+  - - 1654
+    - 1654
+  - - 1655
+    - 1655
+  - - 1656
+    - 1656
   year_label: 1653–1658
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '47'
     hede:
@@ -11354,7 +11076,6 @@ coins:
     - '9'
     - '13'
     - '16'
-    fr: '3'
     bruun_collection_id:
     - '9664'
     - '9684'
@@ -11430,15 +11151,15 @@ coins:
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h21
-  year_first: 1655
+  year_first: 1656
   year_last: 1657
   year_ranges:
-  - - 1655
+  - - 1656
+    - 1656
+  - - 1657
     - 1657
   year_label: 1655–1657
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: A41
     hede: '21'
@@ -11447,7 +11168,6 @@ coins:
     - '14'
     - '12'
     - '19'
-    fr: '3'
     bruun_collection_id:
     - '9715'
     - '9738'
@@ -11511,16 +11231,15 @@ coins:
   year_last: 1657
   year_ranges:
   - - 1656
+    - 1656
+  - - 1657
     - 1657
   year_label: 1656–1657
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: 38a
     hede: '22'
     hede_volume: nf3h
-    fr: '3'
     bruun_collection_id:
     - '9712'
     - '9734'
@@ -11584,15 +11303,10 @@ coins:
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h26
-  year_first: 1657
-  year_last: 1662
-  year_ranges:
-  - - 1657
-    - 1662
+  year_first: 1658
+  year_last: 1658
   year_label: 1657–1658
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: A42
     hede: '26'
@@ -11600,7 +11314,6 @@ coins:
     schou:
     - '20'
     - '16'
-    fr: '3'
     bruun_collection_id: '9767'
     sieg: '33'
     nmd: 83A
@@ -11668,9 +11381,7 @@ coins:
   year_first: 1658
   year_last: 1658
   year_label: '1658'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: A43
     hede:
@@ -11683,7 +11394,6 @@ coins:
     - '18'
     - '19'
     - '21'
-    fr: '3'
     bruun_collection_id:
     - '9769'
     - '9770'
@@ -11756,7 +11466,6 @@ coins:
     hede: '32'
     hede_volume: nf3h
     schou: '20'
-    fr: '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -11785,22 +11494,17 @@ coins:
     unit_raw: spdl
   composed_of:
   - unified-dk-hede-nf3h32
-- fuss: seed_unsorted
-  phase: hede
+- fuss: 9_25_thaler
+  phase: I
   kind: kurant
   nominal: 1 Speciedaler
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h33
-  year_first: 1658
-  year_last: 1662
-  year_ranges:
-  - - 1658
-    - 1662
+  year_first: 1659
+  year_last: 1659
   year_label: 1659–1662
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '56'
     hede:
@@ -11810,7 +11514,6 @@ coins:
     schou:
     - '19'
     - '24'
-    fr: '3'
     bruun_collection_id:
     - '9798'
     - '9799'
@@ -11872,14 +11575,14 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h34
   year_first: 1659
-  year_last: 1662
+  year_last: 1660
   year_ranges:
   - - 1659
-    - 1662
+    - 1659
+  - - 1660
+    - 1660
   year_label: 1659–1662
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: A52
     hede: '34'
@@ -11889,7 +11592,6 @@ coins:
     - '14'
     - '16'
     - '9'
-    fr: '3'
     bruun_collection_id:
     - '9795'
     - '9796'
@@ -11964,11 +11666,11 @@ coins:
   year_last: 1660
   year_ranges:
   - - 1659
+    - 1659
+  - - 1660
     - 1660
   year_label: 1659–1660
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '53'
     hede: '37'
@@ -11976,7 +11678,6 @@ coins:
     schou:
     - '21'
     - '29'
-    fr: '3'
     bruun_collection_id:
     - '9832'
     - '9803'
@@ -12050,7 +11751,6 @@ coins:
     hede: '38'
     hede_volume: nf3h
     schou: '45'
-    fr: '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -12095,7 +11795,6 @@ coins:
     hede: '39'
     hede_volume: nf3h
     schou: '18'
-    fr: '3'
     dav: '3609'
   metal: silver
   metal_verified: true
@@ -12149,11 +11848,11 @@ coins:
   year_last: 1662
   year_ranges:
   - - 1661
+    - 1661
+  - - 1662
     - 1662
   year_label: 1661–1662
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '56'
     hede: '41'
@@ -12162,7 +11861,6 @@ coins:
     - 17-18
     - '24'
     - '28'
-    fr: '3'
     bruun_collection_id:
     - '9859'
     - '9890'
@@ -12232,11 +11930,11 @@ coins:
   year_last: 1664
   year_ranges:
   - - 1662
+    - 1662
+  - - 1664
     - 1664
   year_label: 1662–1664
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '70'
     hede: '43'
@@ -12245,7 +11943,6 @@ coins:
     - '29'
     - '30'
     - '33'
-    fr: '3'
     bruun_collection_id:
     - '9938'
     - '9892'
@@ -12311,21 +12008,15 @@ coins:
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h44
-  year_first: 1662
+  year_first: 1664
   year_last: 1664
-  year_ranges:
-  - - 1662
-    - 1664
   year_label: 1662–1664
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '52'
     hede: '44'
     hede_volume: nf3h
     schou: '17'
-    fr: '3'
     bruun_collection_id: '9935'
     sieg: '49'
     nmd: '58'
@@ -12383,15 +12074,12 @@ coins:
   year_first: 1663
   year_last: 1663
   year_label: '1663'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '68'
     hede: '47'
     hede_volume: nf3h
     schou: '24'
-    fr: '3'
     bruun_collection_id: '9918'
     sieg: '11'
     nmd: '146'
@@ -12460,7 +12148,6 @@ coins:
     hede: '48'
     hede_volume: nf3h
     schou: 35-36
-    fr: '3'
     dav: '3615'
   metal: silver
   metal_verified: true
@@ -12504,15 +12191,10 @@ coins:
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h49
-  year_first: 1662
+  year_first: 1664
   year_last: 1664
-  year_ranges:
-  - - 1662
-    - 1664
   year_label: 1663–1664
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '70'
     hede: '49'
@@ -12520,7 +12202,6 @@ coins:
     schou:
     - '21'
     - '32'
-    fr: '3'
     bruun_collection_id: '9939'
     sieg: '52'
     nmd: '102'
@@ -12578,9 +12259,7 @@ coins:
   year_first: 1665
   year_last: 1665
   year_label: '1665'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '73'
     hede:
@@ -12594,7 +12273,6 @@ coins:
     - '23'
     - '25'
     - '26'
-    fr: '3'
     bruun_collection_id:
     - '9957'
     - '9958'
@@ -12675,7 +12353,6 @@ coins:
     schou:
     - 28-30
     - '28'
-    fr: '3'
     bruun_collection_id: '9961'
     sieg: '58'
     nmd: '109'
@@ -12740,15 +12417,10 @@ coins:
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h57
-  year_first: 1665
+  year_first: 1667
   year_last: 1667
-  year_ranges:
-  - - 1665
-    - 1667
   year_label: 1665–1667
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '83'
     hede: '57'
@@ -12756,7 +12428,6 @@ coins:
     schou:
     - '31'
     - '25'
-    fr: '3'
     bruun_collection_id: '10001'
     sieg: '60'
     nmd: '112'
@@ -12822,10 +12493,7 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h58
   year_first: 1665
-  year_last: 1667
-  year_ranges:
-  - - 1665
-    - 1667
+  year_last: 1665
   year_label: 1665–1667
   mint: Christiania
   catalog:
@@ -12833,7 +12501,6 @@ coins:
     hede: '58'
     hede_volume: nf3h
     schou: '13'
-    fr: '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -12896,7 +12563,6 @@ coins:
     hede: '61'
     hede_volume: nf3h
     schou: '38'
-    fr: '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -12950,11 +12616,13 @@ coins:
   year_last: 1669
   year_ranges:
   - - 1667
+    - 1667
+  - - 1668
+    - 1668
+  - - 1669
     - 1669
   year_label: 1667–1669
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '83'
     hede: '62'
@@ -12965,7 +12633,6 @@ coins:
     - '14'
     - '16'
     - '18'
-    fr: '3'
     bruun_collection_id:
     - '10004'
     - '10027'
@@ -13046,15 +12713,10 @@ coins:
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h63
-  year_first: 1667
-  year_last: 1669
-  year_ranges:
-  - - 1667
-    - 1669
+  year_first: 1668
+  year_last: 1668
   year_label: 1667–1669
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '76'
     hede: '63'
@@ -13062,7 +12724,6 @@ coins:
     schou:
     - '1'
     - '10'
-    fr: '3'
     bruun_collection_id: '10026'
     sieg: '64'
     nmd: '66'
@@ -13131,7 +12792,6 @@ coins:
     hede: '65'
     hede_volume: nf3h
     schou: '21'
-    fr: '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -13184,22 +12844,20 @@ coins:
   year_first: 1669
   year_last: 1669
   year_label: '1669'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     hede: '66'
     hede_volume: nf3h
     schou:
     - 34-35
     - '35'
-    fr: '3'
     bruun_collection_id: '10052'
     sieg: '7.2'
     nmd: 148B
     bruun_part: II
     bruun_lot_no: 14072
     bruun_page: 224
+    dav: '3662'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -13239,11 +12897,15 @@ coins:
   year_last: 1669
   year_ranges:
   - - 1649
+    - 1651
+  - - 1652
+    - 1652
+  - - 1654
+    - 1654
+  - - 1669
     - 1669
   year_label: 1649–1651
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '33'
     hede:
@@ -13254,7 +12916,6 @@ coins:
     - 76-85
     - '27'
     - '34'
-    fr: '3'
     bruun_collection_id:
     - '9652'
     - '9688'
@@ -13330,7 +12991,6 @@ coins:
     hede: '68'
     hede_volume: nf3h
     schou: '39'
-    fr: '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -13373,7 +13033,6 @@ coins:
     hede: '69'
     hede_volume: nf3h
     schou: '47'
-    fr: '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -13385,12 +13044,8 @@ coins:
   - value: 0.672
     source: hede
   - value: 0.672
-    source: numismaster
-  - value: 0.672
     source: ucoin
   weight_rough_g:
-  - value: 2.78
-    source: numismaster
   - value: 2.78
     source: ucoin
   - value: 2.784
@@ -13431,7 +13086,6 @@ coins:
     hede: '7'
     hede_volume: nf3h
     schou: '10'
-    fr: '3'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -13474,7 +13128,6 @@ coins:
     hede: '70'
     hede_volume: nf3h
     schou: '60'
-    fr: '3'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -13540,7 +13193,6 @@ coins:
     hede: '71'
     hede_volume: nf3h
     schou: '48'
-    fr: '3'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -13606,7 +13258,6 @@ coins:
     hede: '72'
     hede_volume: nf3h
     schou: '139'
-    fr: '3'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -13734,7 +13385,6 @@ coins:
     hede: unknown_324
     hede_volume: nf3h
     schou: '9'
-    fr: '3'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -14092,7 +13742,6 @@ coins:
     hede: '1'
     hede_volume: nf4h
     schou: '7'
-    fr: '4'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14133,7 +13782,6 @@ coins:
     hede_volume: nf4h
     schou: '1'
     sieg: '4'
-    fr: '4'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14191,7 +13839,6 @@ coins:
     hede_volume: nf4h
     schou: 2-3
     sieg: '5.1'
-    fr: '4'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14238,7 +13885,6 @@ coins:
     hede: '2'
     hede_volume: nf4h
     schou: '8'
-    fr: '4'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14296,7 +13942,6 @@ coins:
     hede_volume: nf4h
     schou: 3-6
     sieg: '11'
-    fr: '4'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14339,7 +13984,6 @@ coins:
     hede_volume: nf4h
     schou: '2'
     sieg: '12'
-    fr: '4'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14370,15 +14014,10 @@ coins:
   ruler: Frederik IV.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf4h5
-  year_first: 1725
+  year_first: 1726
   year_last: 1726
-  year_ranges:
-  - - 1725
-    - 1726
   year_label: 1725–1726
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '221'
     hede: '5'
@@ -14386,7 +14025,6 @@ coins:
     schou:
     - '4'
     - '6'
-    fr: '4'
     bruun_collection_id: '10651'
     sieg: '9'
     nmd: '10'
@@ -14405,7 +14043,11 @@ coins:
     source: hede
   - value: 0.672
     source: ucoin
+  - value: 0.833
+    source: numismaster
   weight_rough_g:
+  - value: 8.99
+    source: numismaster
   - value: 11.136
     source: hede
   - value: 11.14
@@ -14424,12 +14066,16 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-2-mark-1725-1726/?tid=145855
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_86249
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
       danskmoent.dk.'
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
+  - unified-dk-bruun-10651
   - unified-dk-hede-nf4h5
 - fuss: seed_unsorted
   phase: hede
@@ -14451,7 +14097,6 @@ coins:
     hede_volume: nf4h
     schou: '8'
     sieg: 3.1-2
-    fr: '4'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14509,7 +14154,6 @@ coins:
     hede_volume: nf4h
     schou: '7'
     sieg: 2.1-2
-    fr: '4'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14572,7 +14216,6 @@ coins:
     hede: '8'
     hede_volume: nf4h
     schou: '6'
-    fr: '4'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -14636,7 +14279,6 @@ coins:
     hede: '1'
     hede_volume: nf5h
     schou: '4'
-    fr: '5'
     dav: '1303'
   metal: silver
   metal_verified: true
@@ -14699,7 +14341,6 @@ coins:
     hede: '2'
     hede_volume: nf5h
     schou: '13'
-    fr: '5'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14764,7 +14405,6 @@ coins:
     hede: '3'
     hede_volume: nf5h
     schou: '22'
-    fr: '5'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14807,7 +14447,6 @@ coins:
     hede: '4'
     hede_volume: nf5h
     schou: '24'
-    fr: '5'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -14909,7 +14548,6 @@ coins:
     hede: unknown_387
     hede_volume: nf5h
     schou: '22'
-    fr: '5'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -14967,7 +14605,6 @@ coins:
     hede: '1'
     hede_volume: nf6h
     schou: '2'
-    fr: '6'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -15019,7 +14656,6 @@ coins:
     hede: '2'
     hede_volume: nf6h
     schou: 3-4
-    fr: '6'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -15078,7 +14714,6 @@ coins:
     hede: '3'
     hede_volume: nf6h
     schou: 5-8
-    fr: '6'
     bruun_collection_id: '10942'
   metal: silver
   metal_verified: true
@@ -15115,7 +14750,6 @@ coins:
     hede: '4'
     hede_volume: nf6h
     schou: 12-15
-    fr: '6'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -15344,7 +14978,12 @@ coins:
   catalog:
     numista: '477551'
     galster: '166'
-    schive: XVI:1
+    schive:
+    - XVI:1
+    - XVI.1
+    schou: '11'
+    jensen_skjoldager: N-11
+    galster_volume: f1g
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -15365,6 +15004,9 @@ coins:
   - type: literature
     url: https://en.numista.com/477551
     ref: Numista N#477551 — 1 Skilling - Frederik I (Oslo)
+  - type: literature
+    url: https://www.danskmoent.dk/norge/nf1g166.htm
+    ref: Galster 166 (f1g) — danskmoent.dk norge_nf1g166.htm
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -15384,12 +15026,15 @@ coins:
   ruler: Christian IV.
   issuing_entity: danish_norway
   id: unified-dk-hede-nc4h19
-  year_first: 1647
+  year_first: 1644
   year_last: 1647
+  year_ranges:
+  - - 1644
+    - 1644
+  - - 1647
+    - 1647
   year_label: 1644–1647
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '28'
     hede: '19'
@@ -15448,7 +15093,7 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
-  - unified-dk-bruun-9562
+  - unified-dk-bruun-9489
   - unified-dk-hede-nc4h19
 - fuss: seed_unsorted
   phase: hede
@@ -15460,9 +15105,7 @@ coins:
   year_first: 1646
   year_last: 1646
   year_label: 1644–1647
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '27'
     hede: '20'
@@ -15485,17 +15128,24 @@ coins:
   fineness:
   - value: 0.593
     source: hede
+  - value: 0.593
+    source: numismaster
   weight_rough_g:
   - value: 5.23
     source: bruun
   - value: 5.568
     source: hede
+  - value: 5.57
+    source: numismaster
   sources:
   - type: literature
     ref: Bruun-9544 · Stack's Bowers Bruun Collection Part II, lot 14029
   - type: literature
     url: https://www.danskmoent.dk/norge/nc4h20.htm
     ref: danskmoent.dk (Hede nc4h20)
+  - type: literature
+    url: https://numismaster.com/MC_110631
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15520,7 +15170,7 @@ coins:
   year_last: 1693
   year_ranges:
   - - 1687
-    - 1688
+    - 1687
   - - 1690
     - 1690
   - - 1692
@@ -15662,9 +15312,7 @@ coins:
   year_first: 1693
   year_last: 1693
   year_label: '1693'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '193'
     hede:
@@ -15686,7 +15334,10 @@ coins:
     bruun_part: I
     bruun_lot_no: 1227
     bruun_page: 314
-    dav: '3660'
+    dav:
+    - '3660'
+    - 3660B
+    - 3660C
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -15738,9 +15389,7 @@ coins:
   year_first: 1649
   year_last: 1649
   year_label: 1648–1651
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '37'
     hede:
@@ -15750,9 +15399,7 @@ coins:
     schou:
     - '30'
     - '19'
-    - '22'
     - '23'
-    fr: '3'
     bruun_collection_id:
     - '9596'
     - '9598'
@@ -15763,7 +15410,9 @@ coins:
     bruun_part: III
     bruun_lot_no: 12065
     bruun_page: 191
-    dav: '3583'
+    dav:
+    - '3583'
+    - '3588'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -15779,8 +15428,6 @@ coins:
   - value: 0.875
     source: ucoin
   weight_rough_g:
-  - value: 28.41
-    source: bruun
   - value: 28.44
     source: bruun
   - value: 28.717
@@ -15836,22 +15483,20 @@ coins:
   year_last: 1650
   year_ranges:
   - - 1649
+    - 1649
+  - - 1650
     - 1650
   year_label: 1649–1650
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '38'
     hede:
-    - '9'
     - 9AB
     - 9A
     hede_volume: nf3h
     schou:
     - '5'
     - '7'
-    fr: '3'
     bruun_collection_id:
     - '9593'
     - '9614'
@@ -15908,6 +15553,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-nf3h9
+  - unified-dk-hede-nf3h9ab
 - fuss: seed_unsorted
   phase: hede
   kind: kurant
@@ -16098,43 +15744,6 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   composed_of:
   - unified-dk-tid-145666
-- fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ½ Ducat
-  ruler: Christian V
-  issuing_entity: danish_norway
-  id: unified-dk-tid-145745
-  year_first: 1674
-  year_last: 1674
-  year_label: '1674'
-  catalog:
-    km: '103'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: ucoin
-  weight_rough_g:
-  - value: 1.49
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-2-ducat-1674/?tid=145745
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-145745
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
@@ -16353,6 +15962,10 @@ coins:
   year_last: 1756
   year_ranges:
   - - 1747
+    - 1747
+  - - 1750
+    - 1750
+  - - 1756
     - 1756
   year_label: 1750, 1756
   mint:
@@ -16367,7 +15980,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: true
+  mint_verified: false
   verified: false
   fineness:
   - value: 0.343
@@ -16428,7 +16041,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: true
+  mint_verified: false
   verified: false
   fineness:
   - value: 0.343
@@ -16467,11 +16080,10 @@ coins:
     hede_volume: f6h
     schou: '7'
     sieg: '2'
-    fr: '6'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
-  mint_verified: true
+  mint_verified: false
   verified: false
   weight_rough_g:
   - value: 0.78
@@ -16626,11 +16238,7 @@ coins:
   fineness:
   - value: 0.979
     source: hede
-  - value: 0.979
-    source: numismaster
   weight_rough_g:
-  - value: 10.47
-    source: numismaster
   - value: 10.471
     source: hede
   sources:
@@ -16655,11 +16263,14 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h10ab
   year_first: 1649
-  year_last: 1649
+  year_last: 1650
+  year_ranges:
+  - - 1649
+    - 1649
+  - - 1650
+    - 1650
   year_label: 1649–1650
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: A39
     hede:
@@ -16669,7 +16280,6 @@ coins:
     schou:
     - '5'
     - '2'
-    fr: '3'
     bruun_collection_id:
     - '9613'
     - '9591'
@@ -16741,7 +16351,6 @@ coins:
     hede: '31'
     hede_volume: nf3h
     schou: 18-19
-    fr: '3'
     dav: '3602'
   metal: silver
   metal_verified: true
@@ -16792,14 +16401,9 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h35
   year_first: 1659
-  year_last: 1662
-  year_ranges:
-  - - 1659
-    - 1662
+  year_last: 1659
   year_label: 1659–1662
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: A55
     hede:
@@ -16807,7 +16411,6 @@ coins:
     - 35A
     hede_volume: nf3h
     schou: '12'
-    fr: '3'
     bruun_collection_id: '9794'
     sieg: '42.1'
     nmd: '26'
@@ -16863,11 +16466,8 @@ coins:
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h36
-  year_first: 1659
-  year_last: 1662
-  year_ranges:
-  - - 1659
-    - 1662
+  year_first: 1661
+  year_last: 1661
   year_label: 1659–1662
   mint: Christiania
   catalog:
@@ -16875,7 +16475,6 @@ coins:
     hede: '36'
     hede_volume: nf3h
     schou: '12'
-    fr: '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -16929,7 +16528,6 @@ coins:
     hede: '40'
     hede_volume: nf3h
     schou: '18'
-    fr: '3'
     dav: '3608'
   metal: silver
   metal_verified: true
@@ -16979,15 +16577,10 @@ coins:
   ruler: Frederik III.
   issuing_entity: danish_norway
   id: unified-dk-hede-nf3h42
-  year_first: 1661
+  year_first: 1662
   year_last: 1662
-  year_ranges:
-  - - 1661
-    - 1662
   year_label: 1661–1662
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '89'
     hede: '42'
@@ -16995,7 +16588,6 @@ coins:
     schou:
     - 17-18
     - '18'
-    fr: '3'
     bruun_collection_id: '9887'
     sieg: '47'
     nmd: '54'
@@ -17056,7 +16648,6 @@ coins:
     hede: '64'
     hede_volume: nf3h
     schou: '1'
-    fr: '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -17141,11 +16732,11 @@ coins:
   year_last: 1667
   year_ranges:
   - - 1665
+    - 1665
+  - - 1667
     - 1667
   year_label: '1667'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '72'
     bruun_collection_id:
@@ -17215,9 +16806,7 @@ coins:
   year_first: 1669
   year_last: 1669
   year_label: '1669'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '88'
     bruun_collection_id: '10046'
@@ -17228,6 +16817,7 @@ coins:
     bruun_part: I
     bruun_lot_no: 1216
     bruun_page: 297
+    fr: '4'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -17278,9 +16868,7 @@ coins:
   year_first: 1670
   year_last: 1670
   year_label: '1670'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '100'
     bruun_collection_id: '10085'
@@ -17291,17 +16879,27 @@ coins:
     bruun_part: I
     bruun_lot_no: 1218
     bruun_page: 301
+    dav: '3649'
   metal: silver
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.875
+    source: numismaster
   weight_rough_g:
   - value: 57.55
     source: bruun
+  - value: 57.55
+    source: numismaster
   sources:
   - type: literature
     ref: Bruun-10085 · Stack's Bowers Bruun Collection Part I, lot 1218
+  - type: literature
+    url: https://numismaster.com/MC_110769
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -17325,9 +16923,7 @@ coins:
   year_first: 1670
   year_last: 1670
   year_label: '1670'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '98'
     bruun_collection_id: '10088'
@@ -17393,9 +16989,7 @@ coins:
   year_first: 1671
   year_last: 1671
   year_label: '1671'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '104'
     bruun_collection_id: '10128'
@@ -17407,6 +17001,7 @@ coins:
     bruun_lot_no: 12097
     bruun_page: 210
   metal: billon
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -17433,53 +17028,6 @@ coins:
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 3 Ducats
-  ruler: Christian V
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-10143
-  year_first: 1673
-  year_last: 1673
-  year_label: '1673'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '127'
-    bruun_collection_id: '10143'
-    sieg: '79'
-    schou: '1'
-    hede: '15'
-    nmd: 6A
-    bruun_part: II
-    bruun_lot_no: 14078
-    bruun_page: 228
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 9.89
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-10143 · Stack's Bowers Bruun Collection Part II, lot 14078
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-10143
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
   nominal: 2 Ducats
   ruler: Christian V
   issuing_entity: danish_norway
@@ -17487,9 +17035,7 @@ coins:
   year_first: 1673
   year_last: 1673
   year_label: '1673'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '121'
     bruun_collection_id: '10149'
@@ -17500,17 +17046,34 @@ coins:
     bruun_part: I
     bruun_lot_no: 1221
     bruun_page: 305
+    fr: 11B
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 6.91
     source: bruun
+  - value: 6.98
+    source: numismaster
+  - value: 6.98
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-10149 · Stack's Bowers Bruun Collection Part I, lot 1221
+  - type: literature
+    url: https://numismaster.com/MC_110804
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-ducat-1673/?tid=145749
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -17527,53 +17090,6 @@ coins:
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 2 Ducats
-  ruler: Christian V
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-10150
-  year_first: 1673
-  year_last: 1673
-  year_label: '1673'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '122'
-    bruun_collection_id: '10150'
-    sieg: '72.1'
-    schou: '6'
-    hede: '13'
-    nmd: 13A
-    bruun_part: I
-    bruun_lot_no: 1222
-    bruun_page: 307
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 6.94
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-10150 · Stack's Bowers Bruun Collection Part I, lot 1222
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-10150
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
   nominal: 1 Speciedaler
   ruler: Christian V
   issuing_entity: danish_norway
@@ -17582,11 +17098,13 @@ coins:
   year_last: 1680
   year_ranges:
   - - 1675
+    - 1675
+  - - 1677
+    - 1677
+  - - 1680
     - 1680
   year_label: '1675'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '132'
     bruun_collection_id:
@@ -17605,6 +17123,7 @@ coins:
     bruun_part: III
     bruun_lot_no: 12100
     bruun_page: 213
+    dav: '3656'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -17666,15 +17185,19 @@ coins:
   ruler: Christian V
   issuing_entity: danish_norway
   id: unified-dk-bruun-10245
-  year_first: 1681
-  year_last: 1695
+  year_first: 1682
+  year_last: 1690
   year_ranges:
-  - - 1681
-    - 1695
+  - - 1682
+    - 1682
+  - - 1683
+    - 1683
+  - - 1689
+    - 1689
+  - - 1690
+    - 1690
   year_label: '1682'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '148.1'
     bruun_collection_id:
@@ -17696,7 +17219,7 @@ coins:
     bruun_part: II
     bruun_lot_no: 14083
     bruun_page: 232
-  metal: silver
+  metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
@@ -17744,6 +17267,7 @@ coins:
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
+  - unified-denmark-numismaster-110667
   - unified-dk-bruun-10245
 - fuss: 9_25_thaler
   phase: I
@@ -17755,9 +17279,7 @@ coins:
   year_first: 1683
   year_last: 1683
   year_label: '1683'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '148.2'
     bruun_collection_id: '10257'
@@ -17768,7 +17290,8 @@ coins:
     bruun_part: II
     bruun_lot_no: 14084
     bruun_page: 232
-  metal: silver
+    dav: '3664'
+  metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
@@ -17800,6 +17323,7 @@ coins:
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
+  - unified-denmark-numismaster-110647
   - unified-dk-bruun-10257
 - fuss: 9_25_thaler
   phase: I
@@ -17808,15 +17332,15 @@ coins:
   ruler: Christian V
   issuing_entity: danish_norway
   id: unified-dk-bruun-10260
-  year_first: 1682
+  year_first: 1683
   year_last: 1685
   year_ranges:
-  - - 1682
+  - - 1683
+    - 1683
+  - - 1685
     - 1685
   year_label: '1683'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '150'
     bruun_collection_id: '10260'
@@ -17881,9 +17405,7 @@ coins:
   year_first: 1686
   year_last: 1686
   year_label: '1686'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '157'
     bruun_collection_id:
@@ -17898,7 +17420,8 @@ coins:
     bruun_part: II
     bruun_lot_no: 14086
     bruun_page: 232
-  metal: silver
+    dav: '3665'
+  metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
@@ -17945,6 +17468,7 @@ coins:
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
+  - unified-denmark-numismaster-110669
   - unified-dk-bruun-10293
 - fuss: 9_25_thaler
   phase: I
@@ -17955,14 +17479,9 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-bruun-10310
   year_first: 1687
-  year_last: 1688
-  year_ranges:
-  - - 1687
-    - 1688
+  year_last: 1687
   year_label: '1687'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '169'
     bruun_collection_id:
@@ -17974,11 +17493,13 @@ coins:
     - '21'
     hede: 67B
     nmd: 179H
-    dav: 3665A
+    dav:
+    - 3665A
+    - '3665'
     bruun_part: III
     bruun_lot_no: 12109
     bruun_page: 218
-  metal: silver
+  metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
@@ -18014,6 +17535,7 @@ coins:
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
+  - unified-denmark-numismaster-110673
   - unified-dk-bruun-10310
 - fuss: 9_25_thaler
   phase: I
@@ -18025,9 +17547,7 @@ coins:
   year_first: 1687
   year_last: 1687
   year_label: '1687'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '162'
     bruun_collection_id: '10321'
@@ -18082,78 +17602,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-10321
-- fuss: 9_25_thaler
-  phase: I
-  kind: kurant
-  nominal: 4 Mark
-  ruler: Christian V
-  mintmaster: Henning Christopher Meyer, the elder
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-10337
-  year_first: 1688
-  year_last: 1699
-  year_ranges:
-  - - 1688
-    - 1699
-  year_label: '1688'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
-  catalog:
-    km: '183'
-    bruun_collection_id: '10337'
-    sieg: '42'
-    schou: '15'
-    hede: '73'
-    nmd: 182B
-    dav: '3666'
-    bruun_part: II
-    bruun_lot_no: 14088
-    bruun_page: 233
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: ucoin
-  weight_rough_g:
-  - value: 22.06
-    source: bruun
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: ucoin
-  diameter_mm:
-  - value: 39.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110681
-    ref: NumisMaster
-  - type: literature
-    ref: Bruun-10337 · Stack's Bowers Bruun Collection Part II, lot 14088
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1688-1699/?tid=145715
-    ref: ucoin
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-10337
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
@@ -18164,9 +17612,7 @@ coins:
   year_first: 1689
   year_last: 1689
   year_label: '1689'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     bruun_collection_id: '10357'
     sieg: '28'
@@ -18177,6 +17623,7 @@ coins:
     bruun_lot_no: 14090
     bruun_page: 233
   metal: billon
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -18208,10 +17655,10 @@ coins:
   mintmaster: Henning Christopher Meyer the Elder
   issuing_entity: danish_norway
   id: unified-dk-bruun-10366
-  year_first: 1688
+  year_first: 1689
   year_last: 1699
   year_ranges:
-  - - 1688
+  - - 1689
     - 1689
   - - 1693
     - 1693
@@ -18220,9 +17667,7 @@ coins:
   - - 1697
     - 1699
   year_label: '1689'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '179.1'
     bruun_collection_id:
@@ -18286,11 +17731,11 @@ coins:
   year_last: 1693
   year_ranges:
   - - 1692
+    - 1692
+  - - 1693
     - 1693
   year_label: '1692'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '190'
     bruun_collection_id:
@@ -18316,7 +17761,12 @@ coins:
     bruun_part: II
     bruun_lot_no: 14093
     bruun_page: 235
-    dav: '3659'
+    dav:
+    - '3659'
+    - 3659A
+    - 3659B
+    - 3659C
+    - 3659E
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -18377,17 +17827,15 @@ coins:
   mintmaster: Henning Christopher Meyer, the elder
   issuing_entity: danish_norway
   id: unified-dk-bruun-10399
-  year_first: 1691
+  year_first: 1692
   year_last: 1699
   year_ranges:
-  - - 1691
-    - 1695
+  - - 1692
+    - 1692
   - - 1697
     - 1699
   year_label: '1692'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '185.2'
     bruun_collection_id: '10399'
@@ -18441,9 +17889,7 @@ coins:
   year_first: 1699
   year_last: 1699
   year_label: '1699'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '199'
     bruun_collection_id: '10488'
@@ -18455,7 +17901,7 @@ coins:
     bruun_part: II
     bruun_lot_no: 14099
     bruun_page: 237
-  metal: silver
+  metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
@@ -18494,6 +17940,7 @@ coins:
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
+  - unified-denmark-numismaster-110682
   - unified-dk-bruun-10488
 - fuss: 9_25_thaler
   phase: I
@@ -18504,14 +17951,9 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-bruun-10516
   year_first: 1699
-  year_last: 1700
-  year_ranges:
-  - - 1699
-    - 1700
+  year_last: 1699
   year_label: '1699'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '200.1'
     bruun_collection_id: '10516'
@@ -18522,28 +17964,16 @@ coins:
     bruun_part: II
     bruun_lot_no: 14104
     bruun_page: 240
-  metal: silver
+  metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: true
   verified: false
-  fineness:
-  - value: 0.833
-    source: numismaster
-  - value: 0.833
-    source: ucoin
   weight_rough_g:
   - value: 17.87
     source: bruun
-  - value: 17.99
-    source: numismaster
-  - value: 17.99
-    source: ucoin
-  diameter_mm:
-  - value: 35.0
-    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110683
@@ -18577,9 +18007,7 @@ coins:
   year_first: 1700
   year_last: 1700
   year_label: '1700'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '200.1'
     bruun_collection_id: '10518'
@@ -18591,16 +18019,36 @@ coins:
     bruun_lot_no: 12123
     bruun_page: 223
   metal: silver
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.833
+    source: numismaster
+  - value: 0.833
+    source: ucoin
   weight_rough_g:
   - value: 8.92
     source: bruun
+  - value: 17.99
+    source: numismaster
+  - value: 17.99
+    source: ucoin
+  diameter_mm:
+  - value: 35.0
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-10518 · Stack's Bowers Bruun Collection Part III, lot 12123
+  - type: literature
+    url: https://numismaster.com/MC_110683
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1699-1700/?tid=145966
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -18625,9 +18073,7 @@ coins:
   year_first: 1723
   year_last: 1723
   year_label: '1723'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '220'
     bruun_collection_id: '10634'
@@ -18639,7 +18085,7 @@ coins:
     bruun_part: II
     bruun_lot_no: 14108
     bruun_page: 242
-  metal: silver
+  metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
@@ -18682,6 +18128,7 @@ coins:
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
+  - unified-denmark-numismaster-86252
   - unified-dk-bruun-10634
 - fuss: seed_unsorted
   phase: bruun
@@ -18693,9 +18140,7 @@ coins:
   year_first: 1753
   year_last: 1753
   year_label: '1753'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '236'
     bruun_collection_id: '10726'
@@ -18706,6 +18151,7 @@ coins:
     bruun_lot_no: 12128
     bruun_page: 225
   metal: billon
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -18736,19 +18182,10 @@ coins:
   ruler: Christian VII
   issuing_entity: danish_norway
   id: unified-dk-bruun-10833
-  year_first: 1772
-  year_last: 1788
-  year_ranges:
-  - - 1772
-    - 1775
-  - - 1783
-    - 1783
-  - - 1788
-    - 1788
+  year_first: 1783
+  year_last: 1783
   year_label: '1783'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '250'
     bruun_collection_id: '10833'
@@ -18758,24 +18195,16 @@ coins:
     bruun_part: III
     bruun_lot_no: 12130
     bruun_page: 225
-  metal: silver
+  metal: billon
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: true
   verified: false
-  fineness:
-  - value: 0.563
-    source: ucoin
   weight_rough_g:
   - value: 9.16
     source: bruun
-  - value: 9.17
-    source: ucoin
-  diameter_mm:
-  - value: 29.5
-    source: ucoin
   sources:
   - type: literature
     ref: Bruun-10833 · Stack's Bowers Bruun Collection Part III, lot 12130
@@ -18804,14 +18233,9 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-bruun-10871
   year_first: 1792
-  year_last: 1795
-  year_ranges:
-  - - 1792
-    - 1795
+  year_last: 1792
   year_label: '1792'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '265.2'
     bruun_collection_id: '10871'
@@ -18822,21 +18246,16 @@ coins:
     bruun_part: II
     bruun_lot_no: 14119
     bruun_page: 248
-    dav: '1314'
+    dav: '1313'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
   weight_rough_g:
   - value: 28.85
     source: bruun
-  - value: 28.89
-    source: numismaster
   sources:
   - type: literature
     url: https://numismaster.com/MC_86291
@@ -18866,9 +18285,7 @@ coins:
   year_first: 1794
   year_last: 1794
   year_label: '1794'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '265.2'
     bruun_collection_id: '10878'
@@ -18879,17 +18296,27 @@ coins:
     bruun_part: I
     bruun_lot_no: 1234
     bruun_page: 323
+    dav: '1314'
   metal: silver
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.875
+    source: numismaster
   weight_rough_g:
   - value: 28.89
     source: bruun
+  - value: 28.89
+    source: numismaster
   sources:
   - type: literature
     ref: Bruun-10878 · Stack's Bowers Bruun Collection Part I, lot 1234
+  - type: literature
+    url: https://numismaster.com/MC_86291
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -18914,9 +18341,7 @@ coins:
   year_first: 1796
   year_last: 1796
   year_label: '1796'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '266'
     bruun_collection_id: '10888'
@@ -18928,6 +18353,7 @@ coins:
     bruun_lot_no: 14120
     bruun_page: 248
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -18961,9 +18387,7 @@ coins:
   year_first: 1823
   year_last: 1823
   year_label: '1823'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '290'
     bruun_collection_id: '10976'
@@ -18971,7 +18395,9 @@ coins:
     bruun_part: III
     bruun_lot_no: 12135
     bruun_page: 227
+    dav: '240'
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19005,9 +18431,7 @@ coins:
   year_first: 1823
   year_last: 1823
   year_label: '1823'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '289'
     bruun_collection_id: '10977'
@@ -19016,6 +18440,7 @@ coins:
     bruun_lot_no: 12136
     bruun_page: 228
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19049,9 +18474,7 @@ coins:
   year_first: 1824
   year_last: 1824
   year_label: '1824'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '290'
     bruun_collection_id: '10979'
@@ -19059,7 +18482,9 @@ coins:
     bruun_part: I
     bruun_lot_no: 1236
     bruun_page: 325
+    dav: '240'
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19092,9 +18517,7 @@ coins:
   year_first: 1824
   year_last: 1824
   year_label: '1824'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '286'
     bruun_collection_id: '10984'
@@ -19104,6 +18527,7 @@ coins:
     bruun_lot_no: 12137
     bruun_page: 228
   metal: billon
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19137,9 +18561,7 @@ coins:
   year_first: 1831
   year_last: 1831
   year_label: '1831'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '302'
     bruun_collection_id: '11006'
@@ -19148,6 +18570,7 @@ coins:
     bruun_lot_no: 12138
     bruun_page: 228
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19181,9 +18604,7 @@ coins:
   year_first: 1847
   year_last: 1847
   year_label: '1847'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '317'
     bruun_collection_id: '11046'
@@ -19191,7 +18612,9 @@ coins:
     bruun_part: III
     bruun_lot_no: 12139
     bruun_page: 228
+    dav: '243'
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19225,9 +18648,7 @@ coins:
   year_first: 1848
   year_last: 1848
   year_label: '1848'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '317'
     bruun_collection_id: '11050'
@@ -19235,7 +18656,9 @@ coins:
     bruun_part: I
     bruun_lot_no: 1237
     bruun_page: 326
+    dav: '243'
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19269,9 +18692,7 @@ coins:
   year_first: 1850
   year_last: 1850
   year_label: '1850'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '316'
     bruun_collection_id: '11057'
@@ -19280,6 +18701,7 @@ coins:
     bruun_lot_no: 1238
     bruun_page: 327
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19313,9 +18735,7 @@ coins:
   year_first: 1861
   year_last: 1861
   year_label: '1861'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '323'
     bruun_collection_id: '11072'
@@ -19323,7 +18743,9 @@ coins:
     bruun_part: I
     bruun_lot_no: 1239
     bruun_page: 328
+    dav: '244'
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19358,9 +18780,7 @@ coins:
   year_first: 1861
   year_last: 1861
   year_label: '1861'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '322'
     bruun_collection_id: '11073'
@@ -19369,6 +18789,7 @@ coins:
     bruun_lot_no: 1240
     bruun_page: 329
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19402,9 +18823,7 @@ coins:
   year_first: 1865
   year_last: 1865
   year_label: '1865'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '327'
     bruun_collection_id: '11083'
@@ -19413,6 +18832,7 @@ coins:
     bruun_lot_no: 12140
     bruun_page: 228
   metal: billon
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19439,51 +18859,6 @@ coins:
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 2 Ducats
-  ruler: Christian V
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-6811
-  year_first: 1673
-  year_last: 1673
-  year_label: '1673'
-  mint: Christiania mint
-  catalog:
-    km: '123'
-    bruun_collection_id: '6811'
-    sieg: '74.1'
-    schou: '8'
-    hede: 16A
-    nmd: 14A
-    bruun_part: III
-    bruun_lot_no: 11238
-    bruun_page: 124
-  metal: gold
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 7.0
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-6811 · Stack's Bowers Bruun Collection Part III, lot 11238
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-6811
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
   nominal: 3 Ducats
   ruler: Christian V
   issuing_entity: danish_norway
@@ -19502,17 +18877,27 @@ coins:
     bruun_part: III
     bruun_lot_no: 11243
     bruun_page: 126
+    fr: 12C
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
   weight_rough_g:
   - value: 9.82
     source: bruun
+  - value: 10.47
+    source: numismaster
   sources:
   - type: literature
     ref: Bruun-6884 · Stack's Bowers Bruun Collection Part III, lot 11243
+  - type: literature
+    url: https://numismaster.com/MC_110816
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -19536,9 +18921,7 @@ coins:
   year_first: 1699
   year_last: 1699
   year_label: '1699'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '449'
     bruun_collection_id: '7297'
@@ -19550,6 +18933,7 @@ coins:
     bruun_lot_no: 13202
     bruun_page: 150
   metal: gold
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -19576,81 +18960,80 @@ coins:
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 1 Sølvgylden (Gimsøydaler)
-  ruler: Christian III
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-9302
-  year_first: 1546
-  year_last: 1546
-  year_label: '1546'
-  catalog:
-    bruun_collection_id: '9302'
-    sieg: '4'
-    schou: '1'
-    hede: '1'
-    nmd: '2'
-    bruun_part: I
-    bruun_lot_no: 1174
-    bruun_page: 241
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 29.38
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-9302 · Stack's Bowers Bruun Collection Part I, lot 1174
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-9302
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
   nominal: 1 Speciedaler
   ruler: Christian IV
   mintmaster: Anders Pedersen
   issuing_entity: danish_norway
   id: unified-dk-bruun-9334
   year_first: 1630
-  year_last: 1630
+  year_last: 1641
+  year_ranges:
+  - - 1630
+    - 1630
+  - - 1632
+    - 1632
+  - - 1633
+    - 1633
+  - - 1634
+    - 1634
+  - - 1638
+    - 1638
+  - - 1641
+    - 1641
   year_label: '1630'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '12'
-    bruun_collection_id: '9334'
+    bruun_collection_id:
+    - '9334'
+    - '9347'
+    - '9351'
+    - '9357'
+    - '9387'
+    - '9409'
     sieg: '16.1'
-    schou: '7'
+    schou:
+    - '7'
+    - '8'
+    - '2'
+    - '5'
+    - '6'
     hede: 5A
     nmd: 30B
     bruun_part: II
     bruun_lot_no: 14012
     bruun_page: 184
+    dav: '3534'
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 27.61
+    source: bruun
+  - value: 28.82
+    source: bruun
+  - value: 28.84
+    source: bruun
   - value: 28.95
+    source: bruun
+  - value: 28.98
     source: bruun
   sources:
   - type: literature
     ref: Bruun-9334 · Stack's Bowers Bruun Collection Part II, lot 14012
+  - type: literature
+    ref: Bruun-9347 · Stack's Bowers Bruun Collection Part I, lot 1178
+  - type: literature
+    ref: Bruun-9351 · Stack's Bowers Bruun Collection Part II, lot 14016
+  - type: literature
+    ref: Bruun-9357 · Stack's Bowers Bruun Collection Part II, lot 14017
+  - type: literature
+    ref: Bruun-9387 · Stack's Bowers Bruun Collection Part III, lot 12053
+  - type: literature
+    ref: Bruun-9409 · Stack's Bowers Bruun Collection Part III, lot 12056
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -19669,323 +19052,72 @@ coins:
   kind: kurant
   nominal: 1 Speciedaler
   ruler: Christian IV
-  mintmaster: Anders Pedersen
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-9347
-  year_first: 1632
-  year_last: 1632
-  year_label: '1632'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '12'
-    bruun_collection_id: '9347'
-    sieg: '16.1'
-    schou: '8'
-    hede: 5A
-    nmd: 32A
-    bruun_part: I
-    bruun_lot_no: 1178
-    bruun_page: 245
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.98
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-9347 · Stack's Bowers Bruun Collection Part I, lot 1178
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-9347
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian IV
-  mintmaster: Anders Pedersen
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-9351
-  year_first: 1633
-  year_last: 1633
-  year_label: '1633'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '12'
-    bruun_collection_id: '9351'
-    sieg: '16.1'
-    schou: '2'
-    hede: 5A
-    nmd: '33'
-    bruun_part: II
-    bruun_lot_no: 14016
-    bruun_page: 187
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.84
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-9351 · Stack's Bowers Bruun Collection Part II, lot 14016
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-9351
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian IV
-  mintmaster: Anders Pedersen
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-9357
-  year_first: 1634
-  year_last: 1634
-  year_label: '1634'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '12'
-    bruun_collection_id: '9357'
-    sieg: '16.1'
-    schou: '5'
-    hede: 5A
-    nmd: 34A
-    bruun_part: II
-    bruun_lot_no: 14017
-    bruun_page: 187
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.84
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-9357 · Stack's Bowers Bruun Collection Part II, lot 14017
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-9357
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian IV
-  mintmaster: Anders Pedersen
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-9387
-  year_first: 1638
-  year_last: 1638
-  year_label: '1638'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '12'
-    bruun_collection_id: '9387'
-    sieg: '16.1'
-    schou: '2'
-    hede: 5A
-    nmd: '38'
-    bruun_part: III
-    bruun_lot_no: 12053
-    bruun_page: 184
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 27.61
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-9387 · Stack's Bowers Bruun Collection Part III, lot 12053
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-9387
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: ⅛ Speciedaler
-  ruler: Christian IV
-  mintmaster: Anders Pedersen
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-9390
-  year_first: 1638
-  year_last: 1638
-  year_label: '1638'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '10'
-    bruun_collection_id: '9390'
-    sieg: '9.1'
-    schou: '6'
-    hede: 13A
-    nmd: '104'
-    bruun_part: III
-    bruun_lot_no: 12054
-    bruun_page: 185
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 3.62
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-9390 · Stack's Bowers Bruun Collection Part III, lot 12054
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-9390
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian IV
-  mintmaster: Anders Pedersen
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-9409
-  year_first: 1641
-  year_last: 1641
-  year_label: '1641'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '12'
-    bruun_collection_id: '9409'
-    sieg: '16.1'
-    schou: '6'
-    hede: 5A
-    nmd: '42'
-    bruun_part: III
-    bruun_lot_no: 12056
-    bruun_page: 186
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.82
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-9409 · Stack's Bowers Bruun Collection Part III, lot 12056
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-9409
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian IV
   issuing_entity: danish_norway
   id: unified-dk-bruun-9482
   year_first: 1644
-  year_last: 1644
+  year_last: 1647
+  year_ranges:
+  - - 1644
+    - 1644
+  - - 1645
+    - 1645
+  - - 1646
+    - 1646
+  - - 1647
+    - 1647
   year_label: '1644'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '12'
-    bruun_collection_id: '9482'
-    sieg: '16.3'
-    schou: '13'
+    bruun_collection_id:
+    - '9482'
+    - '9513'
+    - '9531'
+    - '9533'
+    - '9553'
+    sieg:
+    - '16.3'
+    - '16.2'
+    schou:
+    - '13'
+    - '19'
+    - '26'
+    - '29'
+    - '16'
     hede: 5B
     nmd: 45A
     bruun_part: II
     bruun_lot_no: 14024
     bruun_page: 194
+    dav: '3534'
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 28.8
+    source: bruun
   - value: 28.82
+    source: bruun
+  - value: 28.86
+    source: bruun
+  - value: 28.94
+    source: bruun
+  - value: 28.99
     source: bruun
   sources:
   - type: literature
     ref: Bruun-9482 · Stack's Bowers Bruun Collection Part II, lot 14024
+  - type: literature
+    ref: Bruun-9513 · Stack's Bowers Bruun Collection Part II, lot 14025
+  - type: literature
+    ref: Bruun-9531 · Stack's Bowers Bruun Collection Part I, lot 1184
+  - type: literature
+    ref: Bruun-9533 · Stack's Bowers Bruun Collection Part II, lot 14028
+  - type: literature
+    ref: Bruun-9553 · Stack's Bowers Bruun Collection Part II, lot 14030
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -20009,9 +19141,7 @@ coins:
   year_first: 1644
   year_last: 1644
   year_label: '1644'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '26'
     bruun_collection_id: '9496'
@@ -20022,6 +19152,7 @@ coins:
     bruun_lot_no: 12060
     bruun_page: 187
   metal: billon
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -20048,157 +19179,6 @@ coins:
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian IV
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-9513
-  year_first: 1645
-  year_last: 1645
-  year_label: '1645'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '12'
-    bruun_collection_id: '9513'
-    sieg: '16.3'
-    schou: '19'
-    hede: 5B
-    nmd: '46'
-    bruun_part: II
-    bruun_lot_no: 14025
-    bruun_page: 194
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.8
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-9513 · Stack's Bowers Bruun Collection Part II, lot 14025
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-9513
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian IV
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-9531
-  year_first: 1646
-  year_last: 1646
-  year_label: '1646'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '12'
-    bruun_collection_id:
-    - '9531'
-    - '9533'
-    sieg:
-    - '16.3'
-    - '16.2'
-    schou:
-    - '26'
-    - '29'
-    hede: 5B
-    nmd: '47'
-    bruun_part: I
-    bruun_lot_no: 1184
-    bruun_page: 253
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.94
-    source: bruun
-  - value: 28.99
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-9531 · Stack's Bowers Bruun Collection Part I, lot 1184
-  - type: literature
-    ref: Bruun-9533 · Stack's Bowers Bruun Collection Part II, lot 14028
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-9531
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian IV
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-9553
-  year_first: 1647
-  year_last: 1647
-  year_label: '1647'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '12'
-    bruun_collection_id: '9553'
-    sieg: '16.3'
-    schou: '16'
-    hede: 5B
-    nmd: '48'
-    bruun_part: II
-    bruun_lot_no: 14030
-    bruun_page: 198
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.86
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-9553 · Stack's Bowers Bruun Collection Part II, lot 14030
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-9553
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
   nominal: ½ Speciedaler
   ruler: Frederik III
   issuing_entity: danish_norway
@@ -20207,11 +19187,18 @@ coins:
   year_last: 1653
   year_ranges:
   - - 1649
+    - 1649
+  - - 1650
+    - 1650
+  - - 1651
+    - 1651
+  - - 1652
+    - 1652
+  - - 1653
     - 1653
   year_label: '1649'
   mint:
   - Christiania
-  - Christiania Mint
   - Christiania mint
   catalog:
     km: '36'
@@ -20303,14 +19290,9 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-bruun-9605
   year_first: 1649
-  year_last: 1650
-  year_ranges:
-  - - 1649
-    - 1650
+  year_last: 1649
   year_label: '1649'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '34'
     bruun_collection_id: '9605'
@@ -20372,11 +19354,11 @@ coins:
   year_last: 1652
   year_ranges:
   - - 1651
+    - 1651
+  - - 1652
     - 1652
   year_label: '1651'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '44'
     bruun_collection_id:
@@ -20447,15 +19429,10 @@ coins:
   ruler: Frederik III
   issuing_entity: danish_norway
   id: unified-dk-bruun-9644
-  year_first: 1651
+  year_first: 1652
   year_last: 1652
-  year_ranges:
-  - - 1651
-    - 1652
   year_label: '1652'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '39'
     bruun_collection_id: '9644'
@@ -20514,14 +19491,14 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-bruun-9658
   year_first: 1653
-  year_last: 1656
+  year_last: 1654
   year_ranges:
   - - 1653
-    - 1656
+    - 1653
+  - - 1654
+    - 1654
   year_label: '1653'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: 38a
     bruun_collection_id:
@@ -20646,14 +19623,9 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-bruun-9678
   year_first: 1654
-  year_last: 1656
-  year_ranges:
-  - - 1654
-    - 1656
+  year_last: 1654
   year_label: '1654'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: B39a
     bruun_collection_id: '9678'
@@ -20715,9 +19687,7 @@ coins:
   year_first: 1654
   year_last: 1654
   year_label: '1654'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '49'
     bruun_collection_id: '9686'
@@ -20734,12 +19704,20 @@ coins:
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.875
+    source: numismaster
   weight_rough_g:
   - value: 3.41
     source: bruun
+  - value: 3.6
+    source: numismaster
   sources:
   - type: literature
     ref: Bruun-9686 · Stack's Bowers Bruun Collection Part III, lot 12075
+  - type: literature
+    url: https://numismaster.com/MC_110688
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -20763,9 +19741,7 @@ coins:
   year_first: 1656
   year_last: 1656
   year_label: '1656'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: A50
     bruun_collection_id: '9711'
@@ -20824,14 +19800,9 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-bruun-9733
   year_first: 1657
-  year_last: 1658
-  year_ranges:
-  - - 1657
-    - 1658
+  year_last: 1657
   year_label: '1657'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: 39a
     bruun_collection_id: '9733'
@@ -20890,11 +19861,8 @@ coins:
   ruler: Frederik III
   issuing_entity: danish_norway
   id: unified-dk-bruun-9764
-  year_first: 1657
+  year_first: 1658
   year_last: 1658
-  year_ranges:
-  - - 1657
-    - 1658
   year_label: '1658'
   mint: Christiania mint
   catalog:
@@ -20952,9 +19920,7 @@ coins:
   year_first: 1660
   year_last: 1660
   year_label: '1660'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '61'
     bruun_collection_id: '9823'
@@ -20965,6 +19931,7 @@ coins:
     bruun_part: I
     bruun_lot_no: 1202
     bruun_page: 279
+    fr: '1'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -21015,9 +19982,7 @@ coins:
   year_first: 1660
   year_last: 1660
   year_label: '1660'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '60'
     bruun_collection_id: '9833'
@@ -21075,11 +20040,18 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-bruun-9869
   year_first: 1661
-  year_last: 1661
+  year_last: 1668
+  year_ranges:
+  - - 1661
+    - 1661
+  - - 1663
+    - 1663
+  - - 1665
+    - 1665
+  - - 1668
+    - 1668
   year_label: '1661'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '31'
     bruun_collection_id: '9869'
@@ -21091,16 +20063,25 @@ coins:
     bruun_lot_no: 12085
     bruun_page: 204
   metal: silver
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.672
+    source: numismaster
   weight_rough_g:
+  - value: 2.78
+    source: numismaster
   - value: 10.9
     source: bruun
   sources:
   - type: literature
     ref: Bruun-9869 · Stack's Bowers Bruun Collection Part III, lot 12085
+  - type: literature
+    url: https://numismaster.com/MC_110627
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -21124,9 +20105,7 @@ coins:
   year_first: 1661
   year_last: 1661
   year_label: '1661'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '62'
     bruun_collection_id: '9872'
@@ -21138,6 +20117,7 @@ coins:
     bruun_lot_no: 1207
     bruun_page: 285
   metal: billon
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -21171,9 +20151,7 @@ coins:
   year_first: 1661
   year_last: 1661
   year_label: '1661'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '31'
     bruun_collection_id: '9875'
@@ -21185,6 +20163,7 @@ coins:
     bruun_lot_no: 14058
     bruun_page: 216
   metal: billon
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -21218,9 +20197,7 @@ coins:
   year_first: 1663
   year_last: 1663
   year_label: '1663'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '69'
     bruun_collection_id: '9917'
@@ -21281,9 +20258,7 @@ coins:
   year_first: 1664
   year_last: 1664
   year_label: '1664'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '70'
     bruun_collection_id: '9940'
@@ -21294,7 +20269,9 @@ coins:
     bruun_part: I
     bruun_lot_no: 1212
     bruun_page: 291
+    dav: '3618'
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -21326,14 +20303,9 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-bruun-9956
   year_first: 1665
-  year_last: 1667
-  year_ranges:
-  - - 1665
-    - 1667
+  year_last: 1665
   year_label: '1665'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '76'
     bruun_collection_id: '9956'
@@ -21399,9 +20371,7 @@ coins:
   year_first: 1665
   year_last: 1665
   year_label: '1665'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '71'
     bruun_collection_id: '9966'
@@ -21413,6 +20383,7 @@ coins:
     bruun_lot_no: 14067
     bruun_page: 222
   metal: billon
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -21446,9 +20417,7 @@ coins:
   year_first: 1666
   year_last: 1666
   year_label: '1666'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '80'
     bruun_collection_id: '9985'
@@ -21459,17 +20428,35 @@ coins:
     bruun_part: III
     bruun_lot_no: 12088
     bruun_page: 205
+    fr: '5'
+    dav: '3621'
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
+  - value: 1.49
+    source: numismaster
+  - value: 1.49
+    source: ucoin
   - value: 1.72
     source: bruun
   sources:
   - type: literature
     ref: Bruun-9985 · Stack's Bowers Bruun Collection Part III, lot 12088
+  - type: literature
+    url: https://numismaster.com/MC_110791
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-ducat-1666/?tid=145473
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -21491,32 +20478,70 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-bruun-10134
   year_first: 1672
-  year_last: 1672
+  year_last: 1674
+  year_ranges:
+  - - 1672
+    - 1672
+  - - 1674
+    - 1674
   year_label: '1672'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '109'
-    bruun_collection_id: '10134'
+    bruun_collection_id:
+    - '10134'
+    - '10166'
+    - '10167'
     sieg: '53.2'
-    schou: '11'
+    schou:
+    - '11'
+    - '13'
+    - '14'
     hede: 29B
     nmd: '61'
     bruun_part: III
     bruun_lot_no: 12098
     bruun_page: 211
+    dav: '3656'
   metal: silver
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.875
+    source: numismaster
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
+  - value: 28.78
+    source: numismaster
+  - value: 28.78
+    source: ucoin
+  - value: 28.82
+    source: bruun
+  - value: 28.86
+    source: bruun
   - value: 28.89
     source: bruun
+  diameter_mm:
+  - value: 44.0
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-10134 · Stack's Bowers Bruun Collection Part III, lot 12098
+  - type: literature
+    url: https://numismaster.com/MC_110742
+    ref: NumisMaster
+  - type: literature
+    ref: Bruun-10166 · Stack's Bowers Bruun Collection Part II, lot 14079
+  - type: literature
+    ref: Bruun-10167 · Stack's Bowers Bruun Collection Part I, lot 1223
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-speciedaler-1671-1674/?tid=146014
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -21535,61 +20560,6 @@ coins:
   kind: kurant
   nominal: 1 Speciedaler
   ruler: Christian V
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-10166
-  year_first: 1674
-  year_last: 1674
-  year_label: '1674'
-  mint:
-  - Christiania
-  - Christiania Mint
-  catalog:
-    km: '109'
-    bruun_collection_id:
-    - '10166'
-    - '10167'
-    sieg: '53.2'
-    schou:
-    - '13'
-    - '14'
-    hede: 29B
-    nmd: 62A
-    bruun_part: II
-    bruun_lot_no: 14079
-    bruun_page: 229
-  metal: silver
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.82
-    source: bruun
-  - value: 28.86
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-10166 · Stack's Bowers Bruun Collection Part II, lot 14079
-  - type: literature
-    ref: Bruun-10167 · Stack's Bowers Bruun Collection Part I, lot 1223
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-10166
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian V
   mintmaster: Henning Christopher Meyer, the elder
   issuing_entity: danish_norway
   id: unified-dk-bruun-10372
@@ -21597,11 +20567,11 @@ coins:
   year_last: 1690
   year_ranges:
   - - 1688
+    - 1688
+  - - 1690
     - 1690
   year_label: '1690'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '184'
     bruun_collection_id: '10372'
@@ -21669,11 +20639,13 @@ coins:
   year_last: 1696
   year_ranges:
   - - 1694
+    - 1694
+  - - 1695
+    - 1695
+  - - 1696
     - 1696
   year_label: '1694'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '194'
     bruun_collection_id:
@@ -21707,6 +20679,10 @@ coins:
     bruun_part: III
     bruun_lot_no: 12117
     bruun_page: 220
+    dav:
+    - 3661B
+    - '3661'
+    - 3661C
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -21783,9 +20759,7 @@ coins:
   year_first: 1809
   year_last: 1809
   year_label: '1809'
-  mint:
-  - Kongsberg
-  - Kongsberg Mint
+  mint: Kongsberg
   catalog:
     km: '275'
     bruun_collection_id: '10942'
@@ -21839,14 +20813,16 @@ coins:
   issuing_entity: danish_norway
   id: unified-dk-bruun-9798
   year_first: 1659
-  year_last: 1662
+  year_last: 1661
   year_ranges:
   - - 1659
-    - 1662
+    - 1659
+  - - 1660
+    - 1660
+  - - 1661
+    - 1661
   year_label: '1659'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '54'
     bruun_collection_id:
@@ -21916,45 +20892,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-9798
-- fuss: 9_25_thaler
-  phase: II
-  kind: kurant
-  nominal: 2 Mark
-  issuing_entity: danish_norway
-  id: unified-denmark-numismaster-86249
-  year_first: 1725
-  year_last: 1726
-  year_ranges:
-  - - 1725
-    - 1726
-  year_label: 1725–1726
-  catalog:
-    km: '221'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.833
-    source: numismaster
-  weight_rough_g:
-  - value: 8.99
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_86249
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-86249
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
@@ -21962,12 +20899,15 @@ coins:
   ruler: Christian V
   issuing_entity: danish_norway
   id: unified-dk-bruun-10498
-  year_first: 1676
+  year_first: 1674
   year_last: 1676
+  year_ranges:
+  - - 1674
+    - 1674
+  - - 1676
+    - 1676
   year_label: '1676'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: '120'
     bruun_collection_id: '10498'
@@ -21978,17 +20918,34 @@ coins:
     schou: '15'
     hede: '8'
     nmd: 11A
+    fr: '11'
   metal: gold
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 6.92
     source: bruun
+  - value: 6.98
+    source: numismaster
+  - value: 6.98
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-10498 · Stack's Bowers Bruun Collection Part II, lot 14101
+  - type: literature
+    url: https://numismaster.com/MC_110803
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-ducat-1674/?tid=145752
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -22087,9 +21044,7 @@ coins:
   year_first: 1643
   year_last: 1643
   year_label: '1643'
-  mint:
-  - Christiania
-  - Christiania Mint
+  mint: Christiania
   catalog:
     km: 21.1a
     bruun_collection_id: '9470'
@@ -22100,7 +21055,7 @@ coins:
     schou: '40'
     hede: 15B
     nmd: '127'
-  metal: silver
+  metal: billon
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
@@ -22132,6 +21087,7 @@ coins:
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
+  - unified-denmark-numismaster-110620
   - unified-dk-bruun-9470
 - fuss: seed_unsorted
   phase: ucoin
@@ -22168,3 +21124,969 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   composed_of:
   - unified-dk-tid-143756
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 2 Speciedaler
+  ruler: Christian IV
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-10082
+  year_first: 1661
+  year_last: 1661
+  year_label: '1661'
+  mint: Christiania
+  catalog:
+    km: '65'
+    bruun_collection_id: '10082'
+    sieg: '45'
+    schou: '12'
+    hede: '40'
+    nmd: '52'
+    dav: '3608'
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 57.6
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-10082 · Stack's Bowers Bruun Collection Part I, lot 1217
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-10082
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 2 Ducats
+  ruler: Christian V
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-10497
+  year_first: 1670
+  year_last: 1679
+  year_ranges:
+  - - 1670
+    - 1670
+  - - 1679
+    - 1679
+  year_label: '1670'
+  mint: Christiania
+  catalog:
+    km: '138'
+    bruun_collection_id: '10497'
+    sieg: '64.2'
+    schou: '14'
+    hede: '4'
+    nmd: '10'
+    fr: '8'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  weight_rough_g:
+  - value: 6.89
+    source: bruun
+  - value: 6.98
+    source: numismaster
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110808
+    ref: NumisMaster
+  - type: literature
+    ref: Bruun-10497 · Stack's Bowers Bruun Collection Part I, lot 1230
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-10497
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Ducat
+  ruler: Christian V
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-10501
+  year_first: 1670
+  year_last: 1673
+  year_ranges:
+  - - 1670
+    - 1670
+  - - 1673
+    - 1673
+  year_label: '1670'
+  mint: Christiania
+  catalog:
+    km: '117'
+    bruun_collection_id: '10501'
+    sieg: '63.2'
+    schou: '33'
+    hede: '3'
+    nmd: '19'
+    fr: '9'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.979
+    source: numismaster
+  - value: 0.979
+    source: ucoin
+  weight_rough_g:
+  - value: 3.4
+    source: bruun
+  - value: 3.49
+    source: numismaster
+  - value: 3.49
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110798
+    ref: NumisMaster
+  - type: literature
+    ref: Bruun-10501 · Stack's Bowers Bruun Collection Part III, lot 12121
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-ducat-1673/?tid=145746
+    ref: ucoin
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-10501
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: ½ Ducat
+  ruler: Christian V
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-10509
+  year_first: 1670
+  year_last: 1674
+  year_ranges:
+  - - 1670
+    - 1670
+  - - 1674
+    - 1674
+  year_label: '1670'
+  mint: Christiania
+  catalog:
+    km: '103'
+    bruun_collection_id: '10509'
+    sieg: '62'
+    schou: '40'
+    hede: '6'
+    nmd: 21A
+    fr: '10'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.979
+    source: ucoin
+  weight_rough_g:
+  - value: 1.49
+    source: ucoin
+  - value: 1.71
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-10509 · Stack's Bowers Bruun Collection Part I, lot 1231
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-2-ducat-1674/?tid=145745
+    ref: ucoin
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-10509
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 2 Ducats
+  ruler: Frederik III
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-6737
+  year_first: 1669
+  year_last: 1669
+  year_label: '1669'
+  mint: Christiania
+  catalog:
+    km: A119
+    bruun_collection_id:
+    - '6737'
+    - '6738'
+    sieg:
+    - '73'
+    - '139'
+    schou:
+    - '4'
+    - '6'
+    hede: '39'
+    nmd: 5A
+    fr: 5b
+  metal: gold
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 6.55
+    source: bruun
+  - value: 6.81
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-6737 · Stack's Bowers Bruun Collection Part II, lot 13169
+  - type: literature
+    ref: Bruun-6738 · Stack's Bowers Bruun Collection Part IV, lot 17085
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-6737
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Gold Issue
+  ruler: Christian V
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-7235
+  year_first: 1670
+  year_last: 1670
+  year_label: '1670'
+  mint: Christiania
+  catalog:
+    bruun_collection_id: '7235'
+    schou: '5'
+    hede: 20B
+    nmd: 24A
+    fr: '14'
+  metal: gold
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 7.29
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-7235 · Stack's Bowers Bruun Collection Part IV, lot 17105
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-7235
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: ½ Skilling (Søsling)
+  ruler: Hans
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9223
+  year_first: 1481
+  year_last: 1481
+  year_label: '1481'
+  mint: Bergen
+  catalog:
+    bruun_collection_id: '9223'
+    sieg: '15'
+    schou: '100'
+    galster: '149'
+    schive: XIV:2
+    nmd: '3'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.38
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9223 · Stack's Bowers Bruun Collection Part III, lot 12029
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9223
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Hvid
+  ruler: Hans
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9242
+  year_first: 1483
+  year_last: 1483
+  year_label: '1483'
+  mint: Nidaros
+  catalog:
+    bruun_collection_id: '9242'
+    sieg: '3'
+    schou: '215'
+    galster: '157'
+    schive: XIV:26
+    nmd: '2'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 0.68
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9242 · Stack's Bowers Bruun Collection Part III, lot 12030
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9242
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Hvid
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9243
+  year_first: 1505
+  year_last: 1505
+  year_label: '1505'
+  mint: Nidaros
+  catalog:
+    bruun_collection_id: '9243'
+    sieg: '5'
+    schou: '220'
+    galster: '159'
+    schive: XIV:32-33
+    nmd: '11'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 0.8
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9243 · Stack's Bowers Bruun Collection Part III, lot 12031
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9243
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Hvid
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9248
+  year_first: 1505
+  year_last: 1505
+  year_label: '1505'
+  mint: Nidaros
+  catalog:
+    bruun_collection_id: '9248'
+    sieg: '7'
+    schou: '5'
+    galster: '177'
+    schive: XVII:24-27
+    nmd: '9'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 0.72
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9248 · Stack's Bowers Bruun Collection Part III, lot 12032
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9248
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Penny
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9251
+  year_first: 1505
+  year_last: 1505
+  year_label: '1505'
+  mint: Nidaros
+  catalog:
+    bruun_collection_id: '9251'
+    sieg: '3'
+    schou: '16'
+    galster: '180'
+    schive: XVII:29
+    nmd: '15'
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 0.33
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9251 · Stack's Bowers Bruun Collection Part III, lot 12033
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9251
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Skilling
+  ruler: Christian II
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9255
+  year_first: 1513
+  year_last: 1513
+  year_label: '1513'
+  mint: Christiania
+  catalog:
+    bruun_collection_id: '9255'
+    sieg: '2'
+    schou: '22'
+    galster: '164'
+    schive: XV:7-9
+    nmd: '2'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 2.26
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9255 · Stack's Bowers Bruun Collection Part III, lot 12034
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9255
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Skilling
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9259
+  year_first: 1510
+  year_last: 1510
+  year_label: '1510'
+  mint: Nidaros
+  catalog:
+    bruun_collection_id: '9259'
+    sieg: '8'
+    schou: '1'
+    galster: '182'
+    schive: XVIII:10-12
+    nmd: '4'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.95
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9259 · Stack's Bowers Bruun Collection Part III, lot 12035
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9259
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Skilling
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9261
+  year_first: 1510
+  year_last: 1510
+  year_label: '1510'
+  mint: Nidaros
+  catalog:
+    bruun_collection_id: '9261'
+    sieg: '6'
+    schou: '11'
+    galster: '183'
+    schive: XVIII:5
+    nmd: '1'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 2.32
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9261 · Stack's Bowers Bruun Collection Part III, lot 12036
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9261
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Hvid
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9262
+  year_first: 1510
+  year_last: 1510
+  year_label: '1510'
+  mint: Nidaros
+  catalog:
+    bruun_collection_id: '9262'
+    sieg: '5'
+    schou: '14'
+    galster: '184'
+    schive: XVIII:13
+    nmd: '6'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 0.64
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9262 · Stack's Bowers Bruun Collection Part III, lot 12037
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9262
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Double Hvid
+  ruler: Hans Mule
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9264
+  year_first: 1523
+  year_last: 1523
+  year_label: '1523'
+  mint: Christiania
+  catalog:
+    bruun_collection_id: '9264'
+    sieg: '3'
+    schou: '1'
+    galster: '165'
+    schive: XV:24-26
+    nmd: '1'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.24
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9264 · Stack's Bowers Bruun Collection Part III, lot 12038
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9264
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Skilling
+  ruler: Frederik I
+  mintmaster: Hans Hansen
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9275
+  year_first: 1524
+  year_last: 1524
+  year_label: '1524'
+  mint: Bergen
+  catalog:
+    bruun_collection_id: '9275'
+    sieg: '2'
+    schou: '22'
+    galster: '170'
+    nmd: '7'
+    jensen_skjoldager: N-07
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.88
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9275 · Stack's Bowers Bruun Collection Part III, lot 12041
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9275
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Hvid
+  ruler: Frederik I
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9282
+  year_first: 1523
+  year_last: 1523
+  year_label: '1523'
+  mint: Bergen
+  catalog:
+    bruun_collection_id: '9282'
+    sieg: '1'
+    schou: '36'
+    galster: '171'
+    nmd: '9'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 0.76
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9282 · Stack's Bowers Bruun Collection Part II, lot 14001
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9282
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Skilling
+  ruler: Christian III
+  mintmaster: Jacob Schult
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9293
+  year_first: 1522
+  year_last: 1522
+  year_label: '1522'
+  mint: Nidaros
+  catalog:
+    bruun_collection_id: '9293'
+    sieg: '1'
+    schou: '2'
+    galster: '187'
+    nmd: '2'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.49
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9293 · Stack's Bowers Bruun Collection Part III, lot 12043
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9293
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Speciedaler
+  ruler: Frederik III
+  issuing_entity: danish_norway
+  id: unified-dk-bruun-9598
+  year_first: 1649
+  year_last: 1650
+  year_ranges:
+  - - 1649
+    - 1649
+  - - 1650
+    - 1650
+  year_label: '1649'
+  mint: Christiania
+  catalog:
+    km: '37'
+    bruun_collection_id:
+    - '9598'
+    - '9616'
+    bruun_part: II
+    bruun_lot_no: 14036
+    bruun_page: 203
+    sieg: '21.2'
+    schou:
+    - '22'
+    - '19'
+    hede: 8B
+    nmd: 69B
+    dav: '3588'
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.41
+    source: bruun
+  - value: 28.44
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-9598 · Stack's Bowers Bruun Collection Part II, lot 14036
+  - type: literature
+    ref: Bruun-9616 · Stack's Bowers Bruun Collection Part I, lot 1189
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-9598
+- fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ⅛ Speciedaler
+  ruler: Frederick III
+  issuing_entity: danish_norway
+  id: unified-dk-tid-144931
+  year_first: 1654
+  year_last: 1654
+  year_label: '1654'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.875
+    source: ucoin
+  weight_rough_g:
+  - value: 3.6
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-8-speciedaler-1654/?tid=144931
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of:
+  - unified-dk-tid-144931

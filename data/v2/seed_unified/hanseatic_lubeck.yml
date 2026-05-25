@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_lubeck`.
-# Generated 2026-05-22 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
-# Input: 79 per-source seed entries.
-# Output: 79 unified entries (one per physical coin).
+# Input: 83 per-source seed entries.
+# Output: 82 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,8 +11,134 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_lubeck
-generated_at: '2026-05-22'
+generated_at: '2026-05-25'
 coins:
+- id: unified-dk-bruun-12891
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Wismar. Ducat
+  year_first: 1743
+  year_last: 1743
+  year_label: '1743'
+  ruler: Hans
+  mintmaster: Caspar August Falk
+  catalog:
+    km: '127'
+    bruun_collection_id: '12891'
+    fr: '3530'
+  metal: gold
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 3.44
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-12891 · Stack's Bowers Bruun Collection Part II, lot 14185
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - dk-bruun-12891
+- id: unified-dk-bruun-14115
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Lübeck (Bishopric). Taler
+  year_first: 1606
+  year_last: 1606
+  year_label: '1606'
+  ruler: Adolf
+  mintmaster: Matthias Puls
+  catalog:
+    km: '26.1'
+    bruun_collection_id:
+    - '14115'
+    - '14116'
+    sieg: '9.9'
+    lange: 268a
+    dav: '5438'
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.65
+    source: bruun
+  - value: 28.83
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14115 · Stack's Bowers Bruun Collection Part II, lot 14201
+  - type: literature
+    ref: Bruun-14116 · Stack's Bowers Bruun Collection Part II, lot 14202
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - dk-bruun-14115
+  - dk-bruun-14116
+- id: unified-dk-bruun-15027
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Lübeck. Taler
+  year_first: 1687
+  year_last: 1687
+  year_label: '1687'
+  mintmaster: Berthold Meyer
+  catalog:
+    km: '66'
+    bruun_collection_id: '15027'
+    lange: 504D
+    dav: '5443'
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    ref: Bruun-15027 · Stack's Bowers Bruun Collection Part II, lot 14269
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - dk-bruun-15027
 - id: unified-lu-tid-102423
   fuss: seed_unsorted
   phase: ucoin

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `norburg_plon_duchy`.
-# Generated 2026-05-22 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/norburg_plon_duchy.yml across all sources.
 #
-# Input: 22 per-source seed entries.
-# Output: 21 unified entries (one per physical coin).
+# Input: 26 per-source seed entries.
+# Output: 23 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,8 +11,192 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: norburg_plon_duchy
-generated_at: '2026-05-22'
+generated_at: '2026-05-25'
 coins:
+- id: unified-dk-bruun-14702
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Taler
+  year_first: 1676
+  year_last: 1676
+  year_label: '1676'
+  catalog:
+    km: '5'
+    bruun_collection_id: '14702'
+    sieg: '1.1'
+    lange: 767a
+    dav: '3722'
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 29.15
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14702 · Stack's Bowers Bruun Collection Part II, lot 14251
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: norburg_plon_duchy
+  composed_of:
+  - dk-bruun-14702
+- id: unified-dk-bruun-14703
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Taler
+  year_first: 1676
+  year_last: 1676
+  year_label: '1676'
+  catalog:
+    km: '6'
+    bruun_collection_id: '14703'
+    sieg: '1.2'
+    lange: 767b
+    dav: 3722A
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 29.29
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14703 · Stack's Bowers Bruun Collection Part II, lot 14252
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: norburg_plon_duchy
+  composed_of:
+  - dk-bruun-14703
+- id: unified-dk-bruun-14704
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Ducat
+  year_first: 1760
+  year_last: 1760
+  year_label: '1760'
+  ruler: Friedrich Karl
+  catalog:
+    km: '26'
+    bruun_collection_id: '14704'
+    sieg: '2'
+    lange: 769a
+    fr: '3097'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.986
+    source: numismaster
+  weight_rough_g:
+  - value: 3.46
+    source: bruun
+  - value: 3.5
+    source: numismaster
+  sources:
+  - type: literature
+    ref: Bruun-14704 · Stack's Bowers Bruun Collection Part II, lot 14253
+  - type: literature
+    url: https://numismaster.com/MC_73989
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_73990
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: norburg_plon_duchy
+  composed_of:
+  - dk-bruun-14704
+  - schleswig_holstein-numismaster-73989
+  - schleswig_holstein-numismaster-73990
+- id: unified-dk-bruun-14705
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Ducat
+  year_first: 1760
+  year_last: 1760
+  year_label: '1760'
+  ruler: Friedrich Karl
+  catalog:
+    km: '27'
+    bruun_collection_id: '14705'
+    sieg: '3'
+    lange: 769b
+    fr: '3098'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.986
+    source: numismaster
+  weight_rough_g:
+  - value: 3.48
+    source: bruun
+  - value: 3.5
+    source: numismaster
+  sources:
+  - type: literature
+    ref: Bruun-14705 · Stack's Bowers Bruun Collection Part II, lot 14254
+  - type: literature
+    url: https://numismaster.com/MC_73991
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: norburg_plon_duchy
+  composed_of:
+  - dk-bruun-14705
+  - schleswig_holstein-numismaster-73991
 - id: unified-schleswig_holstein-numismaster-152009
   fuss: seed_unsorted
   phase: numismaster
@@ -495,84 +679,6 @@ coins:
   issuing_entity: norburg_plon_duchy
   composed_of:
   - schleswig_holstein-numismaster-73988
-- id: unified-schleswig_holstein-numismaster-73989
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Ducat
-  year_first: 1760
-  year_last: 1760
-  year_label: '1760'
-  ruler: Friedrich Karl
-  catalog:
-    km: '26'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.986
-    source: numismaster
-  weight_rough_g:
-  - value: 3.5
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_73989
-    ref: NumisMaster
-  - type: literature
-    url: https://numismaster.com/MC_73990
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: norburg_plon_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-73989
-  - schleswig_holstein-numismaster-73990
-- id: unified-schleswig_holstein-numismaster-73991
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Ducat
-  year_first: 1760
-  year_last: 1760
-  year_label: '1760'
-  ruler: Friedrich Karl
-  catalog:
-    km: '27'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.986
-    source: numismaster
-  weight_rough_g:
-  - value: 3.5
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_73991
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: norburg_plon_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-73991
 - id: unified-schleswig_holstein-numismaster-92766
   fuss: seed_unsorted
   phase: numismaster

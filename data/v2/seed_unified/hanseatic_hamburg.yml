@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_hamburg`.
-# Generated 2026-05-22 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-25 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_hamburg.yml across all sources.
 #
-# Input: 80 per-source seed entries.
-# Output: 80 unified entries (one per physical coin).
+# Input: 81 per-source seed entries.
+# Output: 81 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,8 +11,50 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_hamburg
-generated_at: '2026-05-22'
+generated_at: '2026-05-25'
 coins:
+- id: unified-dk-bruun-14417
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Taler
+  year_first: 1673
+  year_last: 1673
+  year_label: '1673'
+  ruler: Christian Albrecht
+  mintmaster: Matthias Freude the Y ounger
+  catalog:
+    km: '118'
+    bruun_collection_id: '14417'
+    sieg: '7.1'
+    lange: '374'
+    dav: '3703'
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 29.07
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14417 · Stack's Bowers Bruun Collection Part II, lot 14219
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: hanseatic_hamburg
+  composed_of:
+  - dk-bruun-14417
 - id: unified-hb-tid-81900
   fuss: seed_unsorted
   phase: ucoin

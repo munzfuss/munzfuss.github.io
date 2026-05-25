@@ -20,11 +20,18 @@ coins:
     bruun_part: II
     bruun_lot_no: 14249
     bruun_page: 316
+    sieg: '1'
+    lange: '737'
   metal: silver
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.77
+    source: bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -33,6 +40,8 @@ coins:
     url: https://ikmk.smb.museum/object?id=18206117
     ref: IKMK Berlin, Inv. 18206117
     note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Lutz-Jürgen Lübke (Lübke und Wiedemann)'
+  - type: literature
+    ref: Bruun-14681 · Stack's Bowers Bruun Collection Part II, lot 14249
   inscription_rev: QVI VICERIT SIC VESTIETUR VESTIMENTIS ALBIS Apoc 3 V 5
   note:
     de: Reichsthaler 1672 · Glücksburger Münze · weder bei KM noch bei Davenport gelistet (sub-variante zu Sieg-1 / Lange-737)
@@ -45,7 +54,8 @@ coins:
       anchor 0.875); Δ -0.43% against the soll value sits within the ±2 % specimen-tolerance envelope.
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_25_thaler,
       якірна проба 0.875); Δ -0.43% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  composed_of: []
+  composed_of:
+  - unified-dk-bruun-14681
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -64,12 +74,24 @@ coins:
     bruun_part: II
     bruun_lot_no: 14248
     bruun_page: 316
+    sieg: '1'
+    lange: 736a
+    dav: '3718'
   metal: silver
+  metal_verified: false
   fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.85
+    source: bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14248, p. 316
+  - type: literature
+    ref: Bruun-14680 · Stack's Bowers Bruun Collection Part II, lot 14248
   note:
     de: Reichsthaler 1632 · Münzmeister vermutlich Tobias Reinhardt (Bruun) · seltene Frühprägung der Glücksburger Linie
     en: Reichsthaler 1632 · mintmaster probably Tobias Reinhardt (per Bruun) · rare early issue of the Glücksburg line
@@ -81,7 +103,8 @@ coins:
       anchor 0.875); Δ -0.15% against the soll value sits within the ±2 % specimen-tolerance envelope.
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_25_thaler,
       якірна проба 0.875); Δ -0.15% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  composed_of: []
+  composed_of:
+  - unified-dk-bruun-14680
   v1_home_location: schleswig_holstein
 - fuss: seed_unsorted
   phase: numismaster
@@ -114,44 +137,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-57852
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 1 Ducat
-  ruler: Philip Ernst
-  issuing_entity: glucksburg_duchy
-  fraction: '1'
-  id: unified-schleswig_holstein-numismaster-57853
-  year_first: 1716
-  year_last: 1716
-  year_label: '1716'
-  catalog:
-    km: '50'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.986
-    source: numismaster
-  weight_rough_g:
-  - value: 3.5
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_57853
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-57853
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -183,3 +168,51 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-92957
+- fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Ducat
+  ruler: Philip Ernst
+  issuing_entity: glucksburg_duchy
+  id: unified-dk-bruun-14682
+  year_first: 1716
+  year_last: 1716
+  year_label: '1716'
+  catalog:
+    km: '50'
+    bruun_collection_id: '14682'
+    lange: '747'
+    fr: '3074'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.986
+    source: numismaster
+  weight_rough_g:
+  - value: 3.47
+    source: bruun
+  - value: 3.5
+    source: numismaster
+  sources:
+  - type: literature
+    ref: Bruun-14682 · Stack's Bowers Bruun Collection Part II, lot 14250
+  - type: literature
+    url: https://numismaster.com/MC_57853
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-14682
