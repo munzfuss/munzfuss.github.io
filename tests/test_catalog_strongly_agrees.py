@@ -63,11 +63,28 @@ class TestSingleAuthoritativeRefPath(unittest.TestCase):
              "lange": "18", "fr": "18", "galster/c3g": "131"}
         self.assertTrue(_catalog_strongly_agrees(a, b))
 
-    def test_km_single_ref(self):
-        """KM single shared ref is type-defining (one num per region)."""
-        a = {"km": "55"}
-        b = {"km": "55", "sieg": "152", "schou": "52"}
+    def test_km_scoped_single_ref(self):
+        """SCOPED KM (km/<register>) is type-defining within its register.
+        Bare `km` does NOT qualify — that's the cross-country collision risk
+        (Denmark KM 75 ≠ Schleswig-Holstein KM 75 per CLAUDE.md §9.4).
+        match_pair scopes KM via `_ENTITY_TO_KM_REGISTER` before this check
+        is reached, so authoritative-set membership only fires on the
+        already-scoped key shape."""
+        a = {"km/dk": "55"}
+        b = {"km/dk": "55", "sieg": "152", "schou": "52"}
         self.assertTrue(_catalog_strongly_agrees(a, b))
+
+    def test_bare_km_NOT_authoritative_alone(self):
+        """Cross-country safety: bare `km` (un-scoped, register-ambiguous)
+        must NOT carry strong-agreement by itself. Real risk: two coins from
+        different entities both tagged `km: 75` could falsely collapse if
+        bare KM counted. Bare KM only happens for entities without a
+        register mapping; those should fall back to ≥2-shared-refs path."""
+        a = {"km": "75"}
+        b = {"km": "75"}
+        # Only 1 shared ref AND it's a bare (non-scoped) authoritative ref
+        # → must NOT qualify as strong agreement
+        self.assertFalse(_catalog_strongly_agrees(a, b))
 
     def test_numista_single_ref(self):
         """Numista N# — one per type, single ref is enough."""

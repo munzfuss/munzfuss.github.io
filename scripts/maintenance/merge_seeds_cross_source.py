@@ -997,14 +997,24 @@ def _catalog_strongly_agrees(refs_a: dict, refs_b: dict,
     # strong-enough evidence by itself (used to relax min_shared_agreeing
     # for sources that publish only one catalog ref). The check still
     # requires zero disagreements across ALL shared keys.
+    #
+    # SCOPE-CRITICAL: only keys that are GLOBALLY UNIQUE or already scoped
+    # qualify. Per CLAUDE.md §9.4 «catalogue numbers restart within each
+    # country / register»:
+    #   - bare `km` is AMBIGUOUS (Denmark KM 75 ≠ SH KM 75) — must NOT
+    #     count as authoritative on its own. Only the SCOPED form
+    #     `km/<register>` (km/dk, km/sh, km/no, etc.) qualifies.
+    #   - bare `numista` IS safe — Numista N#s are globally unique.
+    #   - bare `bruun_collection_id` IS safe — Bruun catalogue's own
+    #     single-source numbering.
+    #   - galster/<vol> and hede/<vol> already scoped per ruler-volume.
+    #
+    # If a coin's catalog has bare `km` (entity without register mapping
+    # in `_ENTITY_TO_KM_REGISTER`), it stays bare — and intentionally
+    # falls back to the classic ≥2-shared-refs requirement.
     AUTHORITATIVE_TYPE_DEFINING = {
-        "km", "numista", "bruun_collection_id",
-        # Galster + Hede are scoped per ruler-volume (galster/c3g, hede/c4h)
-        # so the scope-prefixed key signals the volume already. Galster's
-        # «one number per type» discipline within a ruler-volume is the
-        # equivalent of KM's per-region scope.
+        "numista", "bruun_collection_id",
     }
-    # Match any galster/<vol> or hede/<vol> as authoritative
     has_authoritative_agreement = False
     n_agreeing = 0
     for k in shared:
@@ -1014,6 +1024,7 @@ def _catalog_strongly_agrees(refs_a: dict, refs_b: dict,
         if sa & sb:
             n_agreeing += 1
             if (k in AUTHORITATIVE_TYPE_DEFINING
+                    or k.startswith("km/")
                     or k.startswith("galster/")
                     or k.startswith("hede/")):
                 has_authoritative_agreement = True
