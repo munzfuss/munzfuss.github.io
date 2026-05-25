@@ -62,13 +62,49 @@ Our V2 data model currently has three structural layers:
 What we DO NOT have, but what the Nobel↔Rosenobel relationship —
 and other similar relationships in our data — implies should exist:
 
-4. **Denomination lineage** — a name-anchored sequence of issues
+4. **Denomination lineage / coin family** — a sequence of issues
    that PERSISTS across Müntzfuß boundaries, documenting the
    historical continuity of a coin family.
 
 A lineage's identity is not «one Müntzfuß» but «one coin-family
 narrative». It explicitly accommodates the fact that the metric
-specification changed.
+specification (and potentially even the coin's NAME) changed inside
+the same conceptual family.
+
+### What can change inside a lineage
+
+The continuity that defines a lineage is NOT strictly «same name».
+Two distinct continuity patterns both qualify:
+
+**Pattern A — same name, metric discontinuity.** The denomination's
+name persists but the Müntzfuß underneath it changes. Example:
+Nobel (Hans 1496-1532, .986 ~14,6 g) → Rosenobel (Christian IV.
+1611-1629, .833 ~9 g). danskmoent.dk frames this as «Senere
+ændredes betegnelsen til Rosenobel» — a designation change
+rather than a metric change.
+
+**Pattern B — different name, same metric tradition.** The
+denomination is renamed while the underlying Müntzfuß and weight
+class persist. Example: **Hungarian Goldgulden → Reichsdukat** —
+Hans's 1481-1513 Ungersk Gylden (~3,49 g fein, .986) and the
+post-1559 Reichsdukat carbung (same ~3,44 g fein, same .986) are
+metrically essentially identical; the 1559 Augsburger
+Reichsmünzordnung formalised the Goldgulden tradition under a new
+imperial label. Our V2 model handles this informally via the
+Phase-pre-I extension on `rigsdukatfod` (and `reichsdukatenfuss`
+for the Reich side), but it does NOT explicitly carry the
+«Goldgulden continuation» information as a structural element.
+
+Hybrid case (rename PLUS metric change) is also possible — Krone
+evolutions across Christian IV / Christian V / 1693 reform combine
+both axes.
+
+**Implication for translation.** A common temptation is to call
+the layer «номінальна лінія» / «denomination line» — but that
+framing implies the *denomination name* is the anchor (Pattern A
+only). Goldgulden → Reichsdukat (Pattern B) shows the anchor is
+something more abstract: the **coin family tradition** itself,
+which can survive both metric and name changes.
 
 ## Candidate lineages in current project scope
 
@@ -104,12 +140,26 @@ Working through our data, the lineages that span multiple Müntzfüße:
   defensible; the «one denomination, two standards» framing applies
   marginally because the Müntzfuß was administratively continuous.
 
-### Reichsdukat (Hungarian-Goldgulden tradition)
-- `reichsdukatenfuss` (1559+) — but in DK rendered as `rigsdukatfod`
-  Phase pre-I covering 1481-1532 (Hans Goldgulden etc.) + Phase I
-  onwards — same Müntzfuß but the «pre-I» extension shows that the
-  denomination tradition predates the formal 1559 Reichsmünzordnung
-  anchor.
+### Goldgulden → Reichsdukat (Hungarian-Goldgulden tradition) — Pattern B exemplar
+- **Pre-1559**: Hungarian-style «Goldgulden» / «Ungersk Gylden»
+  (~3,49 g fein @ .986) — minted by Hans 1481-1513, Christian II.
+  1513-1523, Frederik I. 1523-1533, Christian III. 1534-1559
+- **1559 Augsburger Reichsmünzordnung** formalises the existing
+  Hungarian-Goldgulden tradition under the new imperial label
+  **«Reichsdukat»** (~3,44 g fein @ .986). Same metric tradition,
+  RENAMED. Continues as the European standard gold-trade-coin into
+  the 18th-19th c. (Dutch Handelsdukat, Hamburg Dukat, etc.).
+- In our V2 model this is handled informally via the Phase-pre-I
+  extension on `rigsdukatfod` (Danish side) / `reichsdukatenfuss`
+  (Reich side) — the pre-I phase explicitly extends back to
+  Hans's 1481-onwards Goldgulden carbung. The «Goldgulden» name
+  itself is not modelled as a separate Müntzfuß since the metric
+  is essentially continuous through 1559 (this is exactly the
+  Pattern B case — name changed, metric tradition preserved).
+- **Pattern B exemplar.** This lineage is the cleanest example
+  of why «лінія номіналу» (denomination line) fails as a
+  translation: the lineage spans a denomination RENAME and would
+  be unnamed in that framing.
 
 ### Speciedaler / Speciestaler
 - `9_thaler` (1566-1623) → `9_25_thaler` (1623+, Schleswig-Holstein
@@ -172,14 +222,55 @@ with sub-Fuß phases». We should resist this for several reasons:
 A **lineage** is a higher-order object with:
 
 - `lineage_id`: stable string key (e.g. `nobel_rosenobel`)
-- `display_name`: i18n family name («Nobel-Rosenobel-Linie» / «Nobel-
-  Rosenobel line» / «Nobel-Rosenobel-лінія»)
+- `display_name`: i18n family name (DE: «Münzfamilie» / EN: «coin
+  family» / UK: **TODO — see terminology note below**)
 - `member_fusses`: ordered list of Müntzfuß IDs that constitute the
   lineage chronologically (`[nobel_fod, rosenobel_fod]`)
 - `description`: i18n prose narrating the connection (what's shared:
-  name, ancestor, function tier; what's different: metric, period,
-  iconography)
+  name OR metric tradition OR functional tier; what's different:
+  metric / name / period / iconography — see «What can change»
+  section above)
 - `references_inline`: per-lineage refs
+
+### Terminology note — UK translation pending
+
+**The Ukrainian rendering is unsettled and needs a final decision
+before any rendered artefact emits one of these terms.**
+
+«Лінія номіналу» / «номінальна лінія» seemed reasonable for the
+Nobel↔Rosenobel case (same name, metric change), but **fails for
+Pattern B** (Goldgulden → Reichsdukat / Dukat) where the
+denomination NAME itself changes inside the same tradition. The
+anchor isn't the nominal — it's the coin-family tradition.
+
+Candidates considered (per user direction):
+
+- **«родина (монет)»** — biology-style «family». Captures both
+  Pattern A and B. Paralles German «Münzfamilie». Currently the
+  strongest candidate, used informally in the prose above.
+- **«вид»** — biology-style «species». Narrower than «родина» in
+  taxonomy. Possibly too specific for the lineage layer.
+- **«тип»** — «type». Heavily overloaded in numismatic Ukrainian
+  («тип монети» = catalogue type / variant). Reusing it for the
+  higher-order lineage would create terminology collision with
+  existing Hede/KM/Sieg type-level usage.
+
+Other rejected candidates:
+
+- «лінія» — risks confusion with «династична лінія» / «лінія
+  наслідування» (royal line).
+- «лінійка» — colloquial / marketing register, violates §2a
+  academic tone.
+- «лінія номіналу» / «номінальна лінія» — fails for Goldgulden →
+  Dukat (name change inside the same tradition).
+- «рід» — slightly archaic, less common in modern numismatic
+  Ukrainian.
+
+**Decision deferred to the lineage-schema implementation pass.**
+At that point we'll have a fuller enumeration of candidate
+lineages across the project (including the German side —
+Reichsthaler family, Konventionsthaler family, etc.) and can
+evaluate which UK term reads cleanly across all of them.
 
 Render surface options:
 - Landing page: a «lineages» section showing the family tree
