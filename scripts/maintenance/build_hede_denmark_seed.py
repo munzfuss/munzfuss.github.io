@@ -662,16 +662,24 @@ def _build_coin(
         # Undated Hede entry («u. år» — uden årstal). Anchor to the
         # ruler's reign window so the placeholder year_first sits
         # inside seed_unsorted/A's [1500, 1914] cross-ref window AND
-        # is at least *plausible* for promotion. year_label keeps
-        # «u. å.» so the reader sees the entry is undated.
+        # is at least *plausible* for promotion. Per CLAUDE.md §3a
+        # year_label MUST be plain decimal years/range — no «u. å.»
+        # prefix, no «ND», no «ca.». Year-level uncertainty is
+        # surfaced via `year_verified: false`, which the renderer
+        # turns into a `(?)` span next to the year column.
         reign = _RULER_REIGN.get(hede_volume)
         if reign:
-            cm["year_label"] = f"u. å. ({reign[0]}–{reign[1]})"
+            cm["year_label"] = f"{reign[0]}-{reign[1]}"
             cm["year_first"] = reign[0]
             cm["year_last"] = reign[1]
         else:
-            cm["year_label"] = "u. å."
-            cm["year_first"] = 1500  # last-resort sentinel within phase A
+            # Last-resort: no reign data → reign-window unknown.
+            # Use the lowest plausible anchor (1500) as year_first
+            # and leave year_label as a single year placeholder; the
+            # `(?)` marker on year_verified=false signals the gap.
+            cm["year_label"] = "1500"
+            cm["year_first"] = 1500
+        cm["year_verified"] = False
     if ruler:
         cm["ruler"] = ruler
     if isinstance(mint_normalised, list):
