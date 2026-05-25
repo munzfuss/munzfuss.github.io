@@ -63,10 +63,12 @@ USER_AGENT = "Mozilla/5.0 (research; muentzfuesse project; non-commercial schola
 SLEEP_SECS = 0.4
 BASE = "https://www.danskmoent.dk"
 
-# Reign-level Galster index pages. Christian II + Frederik I are
-# confirmed (§BJ); Christian III index does NOT exist, so we walk
-# c3g* per-coin pages via probe pattern in `discover`.
+# Reign-level Galster index pages. Hans + Christian II + Frederik I
+# are confirmed (Hans index is `/hans.htm`, NOT `/hgalst.htm`).
+# Christian III pre-1541 index does NOT exist, so we walk c3g*
+# per-coin pages via probe pattern in `discover`.
 INDEX_PAGES = [
+    "/hans.htm",
     "/c2galst.htm",
     "/f1galst.htm",
 ]
@@ -85,12 +87,29 @@ INDEX_PAGES = [
 TYPE_INDEX = "/type.htm"
 
 # Per-coin URL patterns to extract from index pages. The Galster
-# series uses single-letter «g» (vs Hede's «h»). Mirroring fetch_hede.py.
+# series uses single-letter «g» (vs Hede's «h»). Hans (1481-1513)
+# uses several conventions: `fr/hg<N>.htm` is most common,
+# `hansg<N>.htm` for the Hvid-Malmø series at root, `gotlg<N>.htm`
+# for Gotland Hvid, `norge/hansg<N>.htm` + `norge/nha_g<N>.htm` for
+# Norway. Christian II + Frederik I use the regular
+# `(?:c|f)<digit>g<N>` pattern under chr/ + fr/ + norge/.
 PERCOIN_PATTERNS = [
-    # Standard: chr/c2g37.htm, fr/f1g46.htm
-    r"((?:chr|fr)/(?:c|f)\d+g[\w\-]*\.htm)",
-    # Norway sub-folder: norge/nc2g164.htm, norge/nf1g166.htm
-    r"(norge/n(?:c|f)\d+g[\w\-]*\.htm)",
+    # Standard reign-prefixed under chr/ or fr/:
+    #   - chr/c2g37.htm  (Christian II)
+    #   - fr/f1g46.htm   (Frederik I)
+    #   - fr/hg24.htm    (Hans — ruler letter without digit before g)
+    r"((?:chr|fr)/(?:c\d+|f\d+|h)g[\w\-]*\.htm)",
+    # Norway sub-folder:
+    #   - norge/nc2g164.htm  (Christian II)
+    #   - norge/nf1g166.htm  (Frederik I)
+    #   - norge/nha_g149.htm (Hans, «ha_» token between «n» and «g»)
+    #   - norge/hansg151.htm (Hans, full «hans» prefix)
+    #   - norge/hansGej.htm  (Hans, special non-numbered «Gej» variant)
+    r"(norge/(?:n(?:c\d+|f\d+|ha_)g[\w\-]*\.htm|hansg\w+\.htm|hansGej\.htm))",
+    # Hans root-level Hvid + Gotland-Hans Hvid pages (no subfolder):
+    #   - hansg31.htm   (Hvid Malmø)
+    #   - gotlg141.htm  (Hvid Visby — Gotland sub-realm)
+    r"((?:hansg|gotlg)\d+[\w\-]*\.htm)",
     # Some pages live at root or in artikler/ or galster/ subfolders
     r"((?:artikler|galster|ernst)/[\w\-]+\.htm)",
 ]

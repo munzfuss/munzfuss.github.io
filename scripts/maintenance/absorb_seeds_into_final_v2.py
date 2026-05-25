@@ -314,13 +314,23 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # have since been split off (e.g. Galster ruler-scope split). Re-
     # derive from composed_of unified members only; foundation's scalar
     # (when present) still counts via the same call.
-    fine = _collect_field_list(members, "fineness", skip_first_list=True)
+    #
+    # Exception — bulk-promote path (`members = [unified_self]`,
+    # `len(members) == 1`). Here `members[0]` IS the freshly-merged
+    # unified entry, not a stale-cached foundation; its list-form
+    # values came from the current seed/merger and should pass
+    # through verbatim. Skipping them would silently drop every
+    # per-source weight/fineness/diameter reading on every bulk-
+    # promoted entry — observed cooccurrence with the catalog bug
+    # (see comment above), same root cause.
+    _skip_first = len(members) > 1
+    fine = _collect_field_list(members, "fineness", skip_first_list=_skip_first)
     if fine:
         out["fineness"] = fine
-    weights = _collect_field_list(members, "weight_rough_g", skip_first_list=True)
+    weights = _collect_field_list(members, "weight_rough_g", skip_first_list=_skip_first)
     if weights:
         out["weight_rough_g"] = weights
-    diameters = _collect_field_list(members, "diameter_mm", skip_first_list=True)
+    diameters = _collect_field_list(members, "diameter_mm", skip_first_list=_skip_first)
     if diameters:
         out["diameter_mm"] = diameters
 
@@ -337,7 +347,16 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         "jensen_skjoldager", "schive", "skaare", "friedberg",
         "davenport", "lange", "fr", "dav", "nmd",
     }
-    if isinstance(out.get("catalog"), dict):
+    # Skip the cross-source intersect entirely for bulk-promote entries
+    # (where the foundation IS the unified entry and `composed_members`
+    # is empty). In that case there's no «prior absorb-cached list-form»
+    # to clean up — the catalog values came directly from the current
+    # seed and are trustworthy as-is. Running the intersect would
+    # incorrectly drop every cross-source field because the composed-set
+    # is empty by definition. Observed 2026-05-26 — Hans Galster entries
+    # bulk-promoted in their first absorb run lost their entire
+    # catalog dict (galster, schou, sieg, schive, galster_volume).
+    if isinstance(out.get("catalog"), dict) and len(members) > 1:
         # Build the union of cross-source catalog values from composed_of
         # members (excluding fc which is members[0]).
         composed_members = members[1:]
@@ -755,6 +774,22 @@ def process_entity(entity_id: str) -> dict:
             source_id = fid[len("unified-"):]
             new_host = seed_to_unified.get(source_id)
             if new_host and new_host != fid:
+                stale_foundation_dropped += 1
+                continue
+            # Shape D: orphan unified-X foundation where X is gone from
+            # EVERY unified entry's composed_of (no `new_host` lookup
+            # hit). The source seed id was removed from seed entirely
+            # (e.g. phantom-cleanup after the parser learned to skip
+            # the page that originally produced it). The final entry
+            # is now a true orphan with no live data feed and would
+            # otherwise persist indefinitely. Only fire when the
+            # foundation is a bulk-promoted self-link (composed_of
+            # == [fid]) — a curator-composed unified entry with N>=2
+            # different composed_of members is a different shape that
+            # needs explicit curator decision before dropping.
+            if (new_host is None
+                    and source_id not in seed_to_unified
+                    and composed == [fid]):
                 stale_foundation_dropped += 1
                 continue
         # Shape B: V1-direct bootstrap foundation whose id is now a

@@ -12,11 +12,18 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-# Reign-overview pages: explicit filename pattern. Names look like
-# `c2galst.htm` (Christian 2) and `f1galst.htm` (Frederik 1). The
-# `galst` token is the reign-overview marker (vs. coin-page `g37`,
-# `g46` etc. which use single-letter `g`).
-_REIGN_INDEX_FILENAME_RE = re.compile(r"^(c|f)\d+galst\.htm$")
+# Reign-overview pages: explicit filename pattern.
+# Names look like:
+#   - `c2galst.htm` (Christian 2)
+#   - `f1galst.htm` (Frederik 1)
+#   - `hans.htm`    (Hans — uses the ruler's name directly rather than
+#                   the `<letter><digit>galst` convention, since Hans
+#                   is the only Danish-Norwegian Hans and needs no
+#                   reign-number disambiguator)
+# The `galst` token is the reign-overview marker for Christian/Frederik
+# (vs. coin-page `g37`, `g46` etc. which use single-letter `g`). Hans
+# requires an explicit filename match.
+_REIGN_INDEX_FILENAME_RE = re.compile(r"^(c|f)\d+galst\.htm$|^hans\.htm$")
 
 # Article-folder filename prefixes. `artikler_*` (danskmoent.dk blog
 # articles) always skip. `ernst_*` is more nuanced — Ernst-Hede sometimes
@@ -36,6 +43,17 @@ _ERNST_COIN_NUM_RE = re.compile(r"g\d+")
 _POSSESSIVE_H1_RE = re.compile(
     r"^(Christian|Frederik|Hans|Margrethe|Erik|Olav|Olaf)\s+\d+\.s\s+",
 )
+
+# Coin-page filename signatures. A filename matching ANY of these is
+# a per-coin page (Christian II / Frederik I / Hans / Christian III
+# under their respective subfolder + Hans's root-level Hvid + Gotland-
+# Hans + Norway-Hans variants). A filename matching NONE of these
+# AND none of the article / reign-index patterns is an overview page
+# (1nobel.htm, 2skill.htm, guldgyld.htm, …) — fetched into the cache
+# by `fetch_galster.py overviews` for cross-ref extraction but NOT
+# itself a coin page; should be skipped by the parser.
+_COIN_PAGE_PREFIXES = ("chr_", "fr_", "norge_")
+_COIN_PAGE_ROOT_RE = re.compile(r"^(?:hansg|gotlg)\d+[\w\-]*\.htm$")
 
 
 def _extract_first_h1(text: str) -> str | None:
@@ -61,8 +79,9 @@ def detect_page_shape(html_path: Path, text: str) -> str:
     Priority order — first match wins:
       1. Reign-overview filename → ``reign_index``
       2. Article filename (with ernst-coin-variant carve-out) → ``article``
-      3. Possessive-H1 content → ``grevenfejde``
-      4. Default → ``standard``
+      3. Non-coin-page filename (overview pages from /type.htm) → ``reign_index``
+      4. Possessive-H1 content → ``grevenfejde``
+      5. Default → ``standard``
 
     Returns one of: ``"standard"``, ``"grevenfejde"``, ``"reign_index"``,
     ``"article"``.
@@ -80,12 +99,24 @@ def detect_page_shape(html_path: Path, text: str) -> str:
     if _ERNST_FILENAME_RE.match(name) and not _ERNST_COIN_NUM_RE.search(name):
         return "article"
 
-    # 3. Possessive-H1 pages (Grevens Fejde series). Check H1 content
+    # 3. Filename doesn't match any per-coin URL signature → overview
+    # page (1nobel.htm, guldgyld.htm, 2skill.htm, …) fetched into
+    # the cache by the `overviews` phase for cross-ref extraction.
+    # Routed to the reign_index skip-parser. Type.htm itself + any
+    # future root-level non-coin filename also lands here.
+    is_coin_page = (
+        name.startswith(_COIN_PAGE_PREFIXES)
+        or _COIN_PAGE_ROOT_RE.match(name)
+    )
+    if not is_coin_page:
+        return "reign_index"
+
+    # 4. Possessive-H1 pages (Grevens Fejde series). Check H1 content
     # only AFTER filename rules so we don't false-positive on a
     # hypothetical article whose H1 happens to use possessive form.
     h1 = _extract_first_h1(text)
     if h1 and _POSSESSIVE_H1_RE.match(h1):
         return "grevenfejde"
 
-    # 4. Default coin-page shape
+    # 5. Default coin-page shape
     return "standard"

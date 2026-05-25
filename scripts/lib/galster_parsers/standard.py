@@ -79,11 +79,19 @@ def _parse_header_h1(text: str) -> dict:
         body_idx = text.find(h1)
         body_after = text[body_idx + len(h1):body_idx + len(h1) + 300] if body_idx >= 0 else ""
 
-    # Pull ruler from start
-    rm = re.match(r"(Christian|Frederik|Hans|Margrethe|Erik|Olav|Olaf)\s+(\d+|I+|II|III|IV|VII?)\.?", h1)
+    # Pull ruler from start. Ordinal is optional — danskmoent.dk Hans
+    # (1481-1513) H1s use bare «Hans, 1 Nobel» without any «1.» or «I.»
+    # suffix, since the dynastic context already makes the ordinal
+    # implicit (he was the only Danish-Norwegian Hans). Other rulers
+    # carry their ordinal explicitly («Christian 2.», «Frederik 1.»).
+    rm = re.match(
+        r"(Christian|Frederik|Hans|Margrethe|Erik|Olav|Olaf)"
+        r"(?:\s+(\d+|I+|II|III|IV|VII?)\.?)?",
+        h1,
+    )
     if rm:
         ruler_name = rm.group(1)
-        ruler_num = rm.group(2)
+        ruler_num = rm.group(2) or ""
         if ruler_num.isdigit():
             ruler_num = {"1": "I", "2": "II", "3": "III", "4": "IV", "5": "V"}.get(ruler_num, ruler_num)
         out["ruler"] = f"{ruler_name} {ruler_num}".strip()
@@ -551,22 +559,70 @@ def parse_page(html_path: Path, text: str) -> dict:
         "litteratur": litt,
         "raw_text_excerpt": text[:2000],
     }
+    # Detect galster_number + ruler_volume + sub_realm from the cache
+    # filename. Filename shapes covered:
+    #   chr_c2g37.htm    → galster=37,  volume=c2g
+    #   chr_c3g92.htm    → galster=92,  volume=c3g
+    #   fr_f1g46.htm     → galster=46,  volume=f1g
+    #   fr_hg24.htm      → galster=24,  volume=hg     (Hans)
+    #   hansg31.htm      → galster=31,  volume=hg     (Hans, Hvid Malmø)
+    #   gotlg141.htm     → galster=141, volume=hg, sub_realm=gotland  (Hans, Visby)
+    #   norge_nc2g164.htm → galster=164, volume=c2g, sub_realm=norway
+    #   norge_nf1g166.htm → galster=166, volume=f1g, sub_realm=norway
+    #   norge_nha_g149.htm → galster=149, volume=hg, sub_realm=norway (Hans, nha_g prefix)
+    #   norge_hansg151.htm → galster=151, volume=hg, sub_realm=norway (Hans, hansg prefix)
+    #   norge_hansGej.htm  → galster=Gej, volume=hg, sub_realm=norway (Hans, special)
     fm = re.search(r"_(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
     if fm:
         out["galster_number"] = fm.group(2)
+    # Hans under fr/ — fr_hg24.htm style
+    fm_hans_fr = re.match(r"^fr_hg(\d+\w*)\.htm$", html_path.name)
+    if fm_hans_fr:
+        out["galster_number"] = fm_hans_fr.group(1)
+    # Hans root-level — hansg31.htm
+    fm_hans_root = re.match(r"^hansg(\d+\w*)\.htm$", html_path.name)
+    if fm_hans_root:
+        out["galster_number"] = fm_hans_root.group(1)
+    # Gotland-Hans root-level — gotlg141.htm
+    fm_gotl = re.match(r"^gotlg(\d+\w*)\.htm$", html_path.name)
+    if fm_gotl:
+        out["galster_number"] = fm_gotl.group(1)
+        out["sub_realm"] = "gotland"
+    # Norway under norge/ — multiple Hans shapes + standard reign-prefixed
     fm2 = re.search(r"^norge_n(c|f)\d+g(\d+\w*)\.htm$", html_path.name)
     if fm2:
         out["galster_number"] = fm2.group(2)
         out["sub_realm"] = "norway"
+    fm_norge_nha = re.match(r"^norge_nha_g(\d+\w*)\.htm$", html_path.name)
+    if fm_norge_nha:
+        out["galster_number"] = fm_norge_nha.group(1)
+        out["sub_realm"] = "norway"
+    fm_norge_hans = re.match(r"^norge_hansg(\d+\w*)\.htm$", html_path.name)
+    if fm_norge_hans:
+        out["galster_number"] = fm_norge_hans.group(1)
+        out["sub_realm"] = "norway"
+    if html_path.name == "norge_hansGej.htm":
+        out["galster_number"] = "Gej"
+        out["sub_realm"] = "norway"
+    # ruler_volume tag (used downstream as the catalog-volume prefix)
     if html_path.name.startswith("chr_c2"):
         out["ruler_volume"] = "c2g"
     elif html_path.name.startswith("chr_c3"):
         out["ruler_volume"] = "c3g"
     elif html_path.name.startswith("fr_f1"):
         out["ruler_volume"] = "f1g"
+    elif html_path.name.startswith("fr_hg"):
+        out["ruler_volume"] = "hg"
+    elif html_path.name.startswith("hansg") or html_path.name.startswith("gotlg"):
+        out["ruler_volume"] = "hg"
     elif html_path.name.startswith("norge_"):
         m = re.match(r"norge_n(c\d|f\d)g", html_path.name)
         if m:
             out["ruler_volume"] = m.group(1) + "g"
+            out["sub_realm"] = "norway"
+        elif (html_path.name.startswith("norge_hansg")
+              or html_path.name.startswith("norge_nha_g")
+              or html_path.name == "norge_hansGej.htm"):
+            out["ruler_volume"] = "hg"
             out["sub_realm"] = "norway"
     return out
