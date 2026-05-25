@@ -841,7 +841,7 @@ For priorities 5-10, the `gap_tids` lists in audit-3 manifest are authoritative 
 
 | Priority | Bucket key | TIDs | Scope |
 |---|---|---:|---|
-| 11 | `oldenburg_p658` | 4 | Oldenburg county pre-1815 — single closure batch |
+| 11 | `oldenburg_p658` | 4 | Oldenburg Grand Duchy 1871-1918 (Reichsmark-era KM# 200/201/202/203) — single closure batch |
 | 12 | `bremen_p1194` | 12 | Bremen civic small bucket |
 | 13 | `oldenburg_p976` | 35 | Oldenburg county / Grand Duchy slice |
 | 14 | `bremen_p3067` | 39 | Bremen civic |
