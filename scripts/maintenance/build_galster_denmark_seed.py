@@ -231,7 +231,11 @@ def build_entry(data: dict) -> dict | None:
         "verified": False,
         "fineness_verified": bool(specs.get("finhed")),
         "weight_rough_verified": bool(specs.get("bruttovaegt_g")),
-        "mint_verified": bool(mint_value),
+        "mint_verified": bool(mint_value) and not (
+            isinstance(mint_value, str)
+            and re.search(r"\s*(?:\beller\b|\boder\b|\bor\b|/)\s*",
+                          mint_value, re.IGNORECASE)
+        ),
         "sources": [
             {
                 "type": "literature",

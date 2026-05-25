@@ -1,71 +1,10 @@
-generated_at: '2026-05-25T07:54:55.713962+00:00'
+generated_at: '2026-05-25T08:04:15.926438+00:00'
 mode: apply
 summary:
-  DELETE: 5
   SKIP_PRESERVE_V1_DATA: 152
   SKIP_CLASSIFICATION_CONFLICT: 39
   SKIP_LOW_CONFIDENCE: 89
 actions:
-  - action: DELETE
-    reason: T1_medium_redundant
-    orph_entity: danish_realm
-    orph_id: dk-tid-163398
-    twin_entity: danish_realm
-    twin_id: unified-dk-bruun-4602
-    confidence: medium
-    shared_refs: 1
-    nominal: 1 Gulden
-    year_first: 1591
-    fuss: reichsdukatenfuss
-    phase: I
-    twin_fuss: reichsdukatenfuss
-    twin_phase: I
-    propagate_classification: false
-  - action: DELETE
-    reason: T1_medium_redundant
-    orph_entity: danish_realm
-    orph_id: dk-tid-97335
-    twin_entity: danish_realm
-    twin_id: unified-dk-hede-c5h91
-    confidence: medium
-    shared_refs: 1
-    nominal: 2 Kroner
-    year_first: 1691
-    fuss: kronemont
-    phase: II
-    twin_fuss: kronemont
-    twin_phase: II
-    propagate_classification: false
-  - action: DELETE
-    reason: T1_high_redundant
-    orph_entity: danish_realm
-    orph_id: dk-tid-97340
-    twin_entity: danish_realm
-    twin_id: unified-dk-hede-c5h101
-    confidence: high
-    shared_refs: 2
-    nominal: 3 Kroner
-    year_first: 1693
-    fuss: kronemont
-    phase: II
-    twin_fuss: kronemont
-    twin_phase: II
-    propagate_classification: false
-  - action: DELETE
-    reason: T1_high_redundant
-    orph_entity: danish_realm
-    orph_id: dk-tid-99118
-    twin_entity: danish_realm
-    twin_id: unified-dk-hede-c5h105
-    confidence: high
-    shared_refs: 2
-    nominal: 2 Kroner
-    year_first: 1693
-    fuss: kronemont
-    phase: II
-    twin_fuss: kronemont
-    twin_phase: II
-    propagate_classification: false
   - action: SKIP_PRESERVE_V1_DATA
     reason: T3_has_sources_or_notes
     orph_entity: danish_realm
@@ -320,21 +259,6 @@ actions:
     phase: I
     twin_fuss: seed_unsorted
     twin_phase: hede
-    propagate_classification: false
-  - action: DELETE
-    reason: T1_high_redundant
-    orph_entity: danish_realm
-    orph_id: km-51-hede-23b-chr-iv-1629
-    twin_entity: danish_realm
-    twin_id: unified-dk-hede-c4h23a
-    confidence: high
-    shared_refs: 2
-    nominal: Rose Noble
-    year_first: 1611
-    fuss: rosenobel_fod
-    phase: II
-    twin_fuss: rosenobel_fod
-    twin_phase: II
     propagate_classification: false
   - action: SKIP_CLASSIFICATION_CONFLICT
     reason: T1_medium_fuss_11_333_thaler_vs_9_25_thaler_phase_I_vs_II

@@ -1830,17 +1830,27 @@ def _collect_mints(members: list[dict]) -> str | list[str] | None:
               coins like Altona+Kopenhagen where both attest the same
               physical issue)
     """
-    # Tier 1: verified mints, when any exist
-    source_members = [m for m in members if bool(m.get("mint_verified"))]
+    # Tier 1: verified mints, when any exist (with non-empty mint)
+    source_members = [m for m in members
+                      if bool(m.get("mint_verified")) and m.get("mint") is not None]
     if not source_members:
-        # Tier 2: keep only the highest-authority members
-        scored = [(m, _authority_score(m.get("id", ""))) for m in members]
-        max_score = max((s for _, s in scored), default=0)
+        # Tier 2: keep only the highest-authority members WITH a mint.
+        # Members lacking a mint contribute no information at this tier —
+        # filtering them out lets lower-authority members with attested
+        # mints (e.g. Galster authority=1 with mint=['Kopenhagen','Malmö'])
+        # carry the result when higher-authority members lack mint
+        # (e.g. Numista authority=2 with mint=None).
+        with_mint = [(m, _authority_score(m.get("id", ""))) for m in members
+                     if m.get("mint") is not None]
+        max_score = max((s for _, s in with_mint), default=0)
         if max_score > 0:
-            source_members = [m for m, s in scored if s == max_score]
+            source_members = [m for m, s in with_mint if s == max_score]
+        elif with_mint:
+            # Tier 3: all with-mint members at score 0 — keep them all
+            source_members = [m for m, _ in with_mint]
         else:
-            # Tier 3: nothing to rank by — keep everyone
-            source_members = members
+            # Nothing has a mint
+            source_members = []
     mints_set: list[str] = []
     seen: set[str] = set()
     for m in source_members:

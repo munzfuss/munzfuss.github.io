@@ -217,6 +217,68 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     if yv is not None:
         out["year_verified"] = yv
 
+    # Ambiguity-split sweep across members: any member with a scalar
+    # mint containing «eller / oder / or / /» indicators (Hede/Galster
+    # cataloguer-documented uncertainty) is split in-place to list-form
+    # AND its mint_verified forced to False. This matches the seed-writer
+    # hygiene step and ensures stale foundation entries from pre-2026-05-25
+    # absorb runs don't bleed legacy «X eller Y» scalars into the union.
+    _AMBIG_MINT_RE = re.compile(
+        r"\s*(?:\beller\b|\boder\b|\bor\b|/)\s*", re.IGNORECASE)
+
+    def _split_ambig(value):
+        """Return (new_value, split_happened) — splits scalar AND list-form
+        cases (legacy data may have «eller»-scalar embedded as a list item)."""
+        if isinstance(value, str) and _AMBIG_MINT_RE.search(value):
+            tokens = [t.strip() for t in _AMBIG_MINT_RE.split(value) if t.strip()]
+            if len(tokens) >= 2:
+                return tokens, True
+        if isinstance(value, list):
+            out_list = []
+            did_split = False
+            for item in value:
+                if isinstance(item, str) and _AMBIG_MINT_RE.search(item):
+                    tokens = [t.strip() for t in _AMBIG_MINT_RE.split(item) if t.strip()]
+                    if len(tokens) >= 2:
+                        out_list.extend(tokens)
+                        did_split = True
+                        continue
+                out_list.append(item)
+            if did_split:
+                # De-dupe while preserving order
+                seen = set()
+                dedup = []
+                for x in out_list:
+                    if isinstance(x, str) and x not in seen:
+                        seen.add(x)
+                        dedup.append(x)
+                return dedup, True
+        return value, False
+
+    for m in members:
+        new_v, did = _split_ambig(m.get("mint"))
+        if did:
+            # Canonicalise each token after split so «København» and
+            # «Kopenhagen» both fold to project-canonical «Kopenhagen».
+            canonical = _canonicalise_mint(new_v)
+            m["mint"] = canonical if canonical is not None else new_v
+            m["mint_verified"] = False
+    # Foundation-verified-override-cleanup: when a seed_unified member
+    # explicitly publishes mint_verified=False AND its mint is multi-mint
+    # list-form, the foundation's mint_verified=True is residue from
+    # pre-ambiguity-split absorb runs. Force foundation to False so the
+    # OR-merge below produces the correct unverified verdict. (OR-merge
+    # alone cannot regress True → False; this explicit cleanup closes
+    # that gap.)
+    if len(members) >= 2 and members[0].get("mint_verified") is True:
+        fc_mint = members[0].get("mint")
+        if isinstance(fc_mint, list) and len(fc_mint) >= 2:
+            for m in members[1:]:
+                if (m.get("mint_verified") is False
+                        and isinstance(m.get("mint"), list)
+                        and set(m.get("mint", [])) == set(fc_mint)):
+                    members[0]["mint_verified"] = False
+                    break
     # mint UNION across members (D17 list-form when multi-mint)
     mint = _collect_mints(members)
     if mint is not None:

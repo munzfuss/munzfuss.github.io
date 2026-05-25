@@ -144,11 +144,18 @@ def _canonicalise_mint(raw):
             continue
         # Strip paren tail «Altona (FK VS)» → «Altona»
         base = re.sub(r"\s*\([^)]*\)\s*$", "", item).strip()
+        # Strip trailing « Mint» suffix (Bruun PDF convention) so the
+        # canonical form matches project-bare-mint spelling. Consistent
+        # with merger's `_normalise_mints` strip.
+        base = re.sub(r"\s+Mint\s*$", "", base).strip()
         if not base:
             continue
         # Split on comma — drop country prefix tokens, canonicalise the
         # rest. «Denmark, Copenhagen» → Kopenhagen.
         for tok in [t.strip() for t in base.split(",") if t.strip()]:
+            # Re-strip « Mint» on each token in case multi-token form
+            # like «Denmark, Copenhagen Mint» entered (rare but possible).
+            tok = re.sub(r"\s+Mint\s*$", "", tok).strip()
             key = tok.lower()
             if key in _MINT_COUNTRY_PREFIXES:
                 continue
@@ -681,6 +688,24 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
             c["nominal"] = new_nom
             stats["nominal_normalised"] += 1
         mint = c.get("mint")
+        # Detect ambiguity-indicators in the mint string («København eller
+        # Malmø», «Copenhagen or Malmø», «København/Malmø», «Hamburg oder
+        # Altona»). These come from Hede/Galster source pages where the
+        # cataloguer documents uncertainty between candidate mints. Split
+        # into list-form and mark mint_verified=false so the (?) marker
+        # renders in the table per CLAUDE.md §4 unconfirmed-data convention.
+        AMBIG_RE = re.compile(r"\s*(?:\beller\b|\boder\b|\bor\b|/)\s*",
+                              re.IGNORECASE)
+        if isinstance(mint, str) and AMBIG_RE.search(mint):
+            tokens = [t.strip() for t in AMBIG_RE.split(mint) if t.strip()]
+            if len(tokens) >= 2:
+                mint = tokens
+                c["mint"] = mint
+                # When the SOURCE itself documents uncertainty, the value
+                # is curator-guess-shaped — flag as unverified so (?) renders.
+                c["mint_verified"] = False
+                stats.setdefault("mint_ambiguity_split", 0)
+                stats["mint_ambiguity_split"] += 1
         new_mint = _canonicalise_mint(mint)
         if new_mint != mint and not (new_mint is None and mint in (None, "")):
             c["mint"] = new_mint
@@ -710,7 +735,15 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         # default of `mint_verified: false` is an under-claim that
         # incorrectly flags the value as a curator guess.
         sources = c.get("sources") or []
+        # The sources-imply-mint rule does NOT fire when the mint is
+        # list-form: that signals either (a) genuine joint-mint coinage
+        # documented by the source, or (b) ambiguity-split (source itself
+        # documents uncertainty between candidates). Either way, the
+        # auto-promotion to verified is inappropriate — joint mints
+        # preserve their original mint_verified, ambiguity-splits stay
+        # at False per the explicit hygiene-split above.
         if (c.get("mint")
+                and not isinstance(c.get("mint"), list)
                 and isinstance(sources, list)
                 and any(isinstance(s, dict) and s.get("url") for s in sources)
                 and not bool(c.get("mint_verified"))):
