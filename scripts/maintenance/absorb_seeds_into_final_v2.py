@@ -400,9 +400,36 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     if yld is not None:
         out["hede_muentzfuss_yield"] = yld
 
-    # composed_of: union of final's existing + new members (deterministic order)
+    # composed_of: union of final's existing + new members (deterministic
+    # order). When a member has the SAME id as the final entry, it's the
+    # «promoted unified entry» case — a final entry whose id is the
+    # unified id (created by the bulk-promote path or absorbed via direct
+    # match by self-id). In that case the SELF-REFERENCE is meaningful: it
+    # marks the final as «this is the absorbed projection of the unified
+    # cluster». Without self-reference, `already_absorbed` index on next
+    # absorb run can't recognise this entry → it gets re-processed forever
+    # and stays as an orphan (composed_of=[]).
+    #
+    # Heuristic: include self-id when the final-id matches a unified id
+    # (starts with `unified-` AND the member with same id IS the unified
+    # cluster representation of this final). Otherwise (foundation entry
+    # with curator-set id that happens to also be a unified-id collision
+    # — rare), exclude.
     existing_composed = list(final_entry.get("composed_of") or [])
-    member_ids = [m["id"] for m in members if m.get("id") and m["id"] != final_entry["id"]]
+    final_id = final_entry.get("id") or ""
+    member_ids = []
+    for m in members:
+        mid = m.get("id")
+        if not mid:
+            continue
+        if mid != final_id:
+            member_ids.append(mid)
+            continue
+        # Self-reference: only meaningful if final-id is a unified-shape
+        # id (the promoted-unified pattern). For other foundation entries
+        # with a name-collision risk, stay safe and exclude.
+        if final_id.startswith("unified-"):
+            member_ids.append(mid)
     composed = sorted(set(existing_composed) | set(member_ids))
     out["composed_of"] = composed
 
