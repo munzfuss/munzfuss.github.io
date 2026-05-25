@@ -256,9 +256,28 @@ def main() -> int:
                 reason = f"{tier}_{conf}_promote_orphan_classification"
                 propagate_classification = True
             else:
-                # Both concrete but classifications differ — curator decision
-                action = "SKIP_CLASSIFICATION_CONFLICT"
-                reason = (f"{tier}_{conf}_fuss_{o_fuss}_vs_{t_fuss}_phase_{o_phase}_vs_{t_phase}")
+                # Both concrete but classifications differ.
+                # When the orphan has NO real data (no weight, fineness,
+                # sources, diameter, or note), its V1-bootstrap classification
+                # is the only thing being preserved — and since the orphan
+                # has zero supporting evidence beyond catalog refs, that
+                # classification is suspect (could be wrong attribution,
+                # outdated, or corrupted). The twin's classification is
+                # backed by actual data from cross-source attestations and
+                # wins. Force DELETE in this case.
+                orphan_has_data = any([
+                    c.get("weight_rough_g"), c.get("fineness"),
+                    c.get("sources"), c.get("diameter_mm"), c.get("note"),
+                ])
+                if not orphan_has_data:
+                    action = "DELETE"
+                    reason = (f"{tier}_{conf}_empty_orphan_twin_wins "
+                              f"(orphan_fuss={o_fuss}/{o_phase} dropped; "
+                              f"twin_fuss={t_fuss}/{t_phase} kept)")
+                else:
+                    # Orphan has real data — curator review required
+                    action = "SKIP_CLASSIFICATION_CONFLICT"
+                    reason = (f"{tier}_{conf}_fuss_{o_fuss}_vs_{t_fuss}_phase_{o_phase}_vs_{t_phase}")
 
             actions.append({
                 "action": action,

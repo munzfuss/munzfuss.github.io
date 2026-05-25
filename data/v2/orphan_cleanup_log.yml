@@ -1,8 +1,8 @@
-generated_at: '2026-05-25T08:04:15.926438+00:00'
+generated_at: '2026-05-25T08:27:58.427656+00:00'
 mode: apply
 summary:
   SKIP_PRESERVE_V1_DATA: 152
-  SKIP_CLASSIFICATION_CONFLICT: 39
+  SKIP_CLASSIFICATION_CONFLICT: 34
   SKIP_LOW_CONFIDENCE: 89
 actions:
   - action: SKIP_PRESERVE_V1_DATA
@@ -428,21 +428,6 @@ actions:
     twin_fuss: 9_thaler
     twin_phase: I
     propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_seed_unsorted_vs_seed_unsorted_phase_ucoin_vs_numismaster
-    orph_entity: danish_realm
-    orph_id: unified-dk-tid-163582
-    twin_entity: danish_norway
-    twin_id: unified-denmark-numismaster-110792
-    confidence: medium
-    shared_refs: 1
-    nominal: 1 Skilling dansk
-    year_first: 1694
-    fuss: seed_unsorted
-    phase: ucoin
-    twin_fuss: seed_unsorted
-    twin_phase: numismaster
-    propagate_classification: false
   - action: SKIP_LOW_CONFIDENCE
     reason: T1_shared=1_year=False_ruler=False
     orph_entity: danish_realm
@@ -488,21 +473,6 @@ actions:
     twin_fuss: seed_unsorted
     twin_phase: hede
     propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T2_medium_fuss_9_25_thaler_vs_kronemont_phase_I_vs_II
-    orph_entity: danish_realm
-    orph_id: unified-dk-tid-163651
-    twin_entity: royal_holstein
-    twin_id: km-65-chr-v-1679
-    confidence: medium
-    shared_refs: 2
-    nominal: 2 Mark dansk
-    year_first: 1679
-    fuss: 9_25_thaler
-    phase: I
-    twin_fuss: kronemont
-    twin_phase: II
-    propagate_classification: false
   - action: SKIP_LOW_CONFIDENCE
     reason: T2_shared=2_year=False_ruler=False
     orph_entity: danish_realm
@@ -547,51 +517,6 @@ actions:
     phase: I
     twin_fuss: seed_unsorted
     twin_phase: hede
-    propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T1_medium_fuss_18_5_thaler_vs_18_5_thaler_phase_I_vs_II
-    orph_entity: danish_realm
-    orph_id: unified-km-721-chr-v-1841
-    twin_entity: danish_realm
-    twin_id: km-721-chr-v-1841
-    confidence: medium
-    shared_refs: 1
-    nominal: 4 Rigsbankskilling = 1¼ Schilling Courant
-    year_first: 1841
-    fuss: 18_5_thaler
-    phase: I
-    twin_fuss: 18_5_thaler
-    twin_phase: II
-    propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T1_high_fuss_18_5_thaler_vs_18_5_thaler_phase_I_vs_II
-    orph_entity: danish_realm
-    orph_id: unified-km-735-chr-v-1842
-    twin_entity: danish_realm
-    twin_id: km-735-chr-v-1842
-    confidence: high
-    shared_refs: 2
-    nominal: 1 Rigsbankdaler · 30 Schill. Courant
-    year_first: 1842
-    fuss: 18_5_thaler
-    phase: I
-    twin_fuss: 18_5_thaler
-    twin_phase: II
-    propagate_classification: false
-  - action: SKIP_CLASSIFICATION_CONFLICT
-    reason: T1_high_fuss_18_5_thaler_vs_18_5_thaler_phase_I_vs_III
-    orph_entity: danish_realm
-    orph_id: unified-km-x003-fr-vi-1854
-    twin_entity: danish_realm
-    twin_id: km-x003-fr-vi-1854
-    confidence: high
-    shared_refs: 3
-    nominal: 4 Skilling Rigsmønt
-    year_first: 1854
-    fuss: 18_5_thaler
-    phase: I
-    twin_fuss: 18_5_thaler
-    twin_phase: III
     propagate_classification: false
   - action: SKIP_PRESERVE_V1_DATA
     reason: T3_has_sources_or_notes
