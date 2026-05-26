@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 972 per-source seed entries.
-# Output: 425 unified entries (one per physical coin).
+# Output: 419 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1000,27 +1000,42 @@ coins:
   phase: numismaster
   kind: kurant
   nominal: 4 Mark
-  year_first: 1683
-  year_last: 1683
-  year_label: '1683'
+  year_first: 1681
+  year_last: 1695
+  year_ranges:
+  - - 1681
+    - 1695
+  year_label: 1681-1695
+  ruler: Christian V
   catalog:
     km: '148.2'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.672
     source: numismaster
+  - value: 0.672
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
+  - value: 22.27
+    source: ucoin
+  diameter_mm:
+  - value: 39.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110647
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1681-1695/?tid=145666
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -1031,6 +1046,7 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-110647
+  - dk-tid-145666
 - id: unified-denmark-numismaster-110651
   fuss: seed_unsorted
   phase: numismaster
@@ -3394,20 +3410,34 @@ coins:
   kind: kurant
   nominal: 2 Skilling
   year_first: 1810
-  year_last: 1810
-  year_label: '1810'
+  year_last: 1811
+  year_ranges:
+  - - 1810
+    - 1811
+  year_label: 1810-1811
+  ruler: Frederick VI
   catalog:
     km: '280.1'
   metal: copper
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 8.0
+    source: ucoin
+  diameter_mm:
+  - value: 28.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_122245
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-skilling-1810-1811/?tid=88694
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -3418,6 +3448,7 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-122245
+  - dk-tid-88694
 - id: unified-denmark-numismaster-122246
   fuss: seed_unsorted
   phase: numismaster
@@ -4123,24 +4154,39 @@ coins:
   kind: kurant
   nominal: 24 Skilling
   year_first: 1735
-  year_last: 1735
-  year_label: '1735'
+  year_last: 1746
+  year_ranges:
+  - - 1735
+    - 1746
+  year_label: 1735-1746
   ruler: Christian VI
   catalog:
     km: '232.1'
   metal: silver
   metal_verified: true
   fineness_verified: true
-  weight_rough_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.562
     source: numismaster
+  - value: 0.562
+    source: ucoin
+  weight_rough_g:
+  - value: 9.22
+    source: ucoin
+  diameter_mm:
+  - value: 29.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86241
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-24-skilling-1735-1746/?tid=145853
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -4151,6 +4197,7 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - denmark-numismaster-86241
+  - dk-tid-145853
 - id: unified-denmark-numismaster-86242
   fuss: seed_unsorted
   phase: numismaster
@@ -17117,6 +17164,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -17124,9 +17172,16 @@ coins:
     source: hede
   - value: 0.562
     source: numismaster
+  - value: 0.562
+    source: ucoin
   weight_rough_g:
   - value: 9.171
     source: hede
+  - value: 9.22
+    source: ucoin
+  diameter_mm:
+  - value: 29.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_86239
@@ -17134,6 +17189,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc6h3.htm
     ref: danskmoent.dk (Hede nc6h3)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-24-skilling-1734-1735/?tid=145852
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -17143,6 +17201,7 @@ coins:
   composed_of:
   - denmark-numismaster-86239
   - dk-hede-nc6h3
+  - dk-tid-145852
 - id: unified-dk-hede-nc6h4
   fuss: seed_unsorted
   phase: hede
@@ -18093,11 +18152,15 @@ coins:
     source: hede
   - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
   - value: 28.89
     source: bruun
   - value: 28.89
     source: numismaster
+  - value: 28.89
+    source: ucoin
   - value: 28.893
     source: hede
   sources:
@@ -18109,6 +18172,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h4.htm
     ref: danskmoent.dk (Hede nc7h4)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-speciedaler-1791-1795/?tid=88748
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -18119,6 +18185,7 @@ coins:
   - denmark-numismaster-86290
   - dk-bruun-10870
   - dk-hede-nc7h4
+  - dk-tid-88748
 - id: unified-dk-hede-nc7h5
   fuss: seed_unsorted
   phase: hede
@@ -18148,9 +18215,13 @@ coins:
     source: hede
   - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
   - value: 19.26
     source: numismaster
+  - value: 19.26
+    source: ucoin
   - value: 19.262
     source: hede
   sources:
@@ -18160,6 +18231,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h5.htm
     ref: danskmoent.dk (Hede nc7h5)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-3-speciedaler-1795-1796/?tid=88744
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -18174,6 +18248,7 @@ coins:
   composed_of:
   - denmark-numismaster-86284
   - dk-hede-nc7h5
+  - dk-tid-88744
 - id: unified-dk-hede-nc7h6
   fuss: seed_unsorted
   phase: hede
@@ -23163,50 +23238,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-145427
-- id: unified-dk-tid-145666
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 4 Mark
-  year_first: 1681
-  year_last: 1695
-  year_ranges:
-  - - 1681
-    - 1695
-  year_label: 1681-1695
-  ruler: Christian V
-  catalog:
-    km: '148'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: ucoin
-  weight_rough_g:
-  - value: 22.27
-    source: ucoin
-  diameter_mm:
-  - value: 39.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1681-1695/?tid=145666
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145666
 - id: unified-dk-tid-145801
   fuss: seed_unsorted
   phase: ucoin
@@ -23244,94 +23275,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-145801
-- id: unified-dk-tid-145852
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 24 Skilling
-  year_first: 1734
-  year_last: 1735
-  year_ranges:
-  - - 1734
-    - 1735
-  year_label: 1734-1735
-  ruler: Christian VI
-  catalog:
-    km: '231'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.562
-    source: ucoin
-  weight_rough_g:
-  - value: 9.22
-    source: ucoin
-  diameter_mm:
-  - value: 29.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-24-skilling-1734-1735/?tid=145852
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145852
-- id: unified-dk-tid-145853
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 24 Skilling
-  year_first: 1735
-  year_last: 1746
-  year_ranges:
-  - - 1735
-    - 1746
-  year_label: 1735-1746
-  ruler: Christian VI
-  catalog:
-    km: '232'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.562
-    source: ucoin
-  weight_rough_g:
-  - value: 9.22
-    source: ucoin
-  diameter_mm:
-  - value: 29.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-24-skilling-1735-1746/?tid=145853
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-145853
 - id: unified-dk-tid-145854
   fuss: seed_unsorted
   phase: ucoin
@@ -23415,47 +23358,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-88592
-- id: unified-dk-tid-88694
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 2 Skilling
-  year_first: 1810
-  year_last: 1811
-  year_ranges:
-  - - 1810
-    - 1811
-  year_label: 1810-1811
-  ruler: Frederick VI
-  catalog:
-    km: '280'
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 8.0
-    source: ucoin
-  diameter_mm:
-  - value: 28.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-2-skilling-1810-1811/?tid=88694
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-88694
 - id: unified-dk-tid-88718
   fuss: seed_unsorted
   phase: ucoin
@@ -23497,83 +23399,3 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-88718
-- id: unified-dk-tid-88744
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ⅔ Speciedaler
-  year_first: 1795
-  year_last: 1796
-  year_ranges:
-  - - 1795
-    - 1796
-  year_label: 1795-1796
-  ruler: Christian VII
-  catalog:
-    km: '267'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: ucoin
-  weight_rough_g:
-  - value: 19.26
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-2-3-speciedaler-1795-1796/?tid=88744
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-88744
-- id: unified-dk-tid-88748
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1791
-  year_last: 1795
-  year_ranges:
-  - - 1791
-    - 1795
-  year_label: 1791-1795
-  ruler: Christian VII
-  catalog:
-    km: '265'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: ucoin
-  weight_rough_g:
-  - value: 28.89
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-speciedaler-1791-1795/?tid=88748
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-tid-88748

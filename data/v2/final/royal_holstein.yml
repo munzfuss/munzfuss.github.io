@@ -1361,8 +1361,7 @@ coins:
     de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
     en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
     uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  composed_of:
-  - unified-km-615-1-2-3-chr-v-1771
+  composed_of: []
   v1_home_location: schleswig_holstein
 - fuss: 11_333_thaler
   phase: I
@@ -2241,6 +2240,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -2248,6 +2248,8 @@ coins:
     source: hede
   - value: 0.986
     source: numismaster
+  - value: 0.986
+    source: ucoin
   weight_rough_g:
   - value: 3.44
     source: bruun
@@ -2259,6 +2261,11 @@ coins:
     source: hede
   - value: 3.5
     source: numismaster
+  - value: 3.5
+    source: ucoin
+  diameter_mm:
+  - value: 24.0
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-6910 · Stack's Bowers Bruun Collection Part III, lot 11244
@@ -2698,6 +2705,7 @@ coins:
     - KM# 74.2
     - Dav EC II# 3676
     - Dav EC II# 3676A
+    dav: '3676'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -2721,6 +2729,12 @@ coins:
   - type: numista
     url: https://en.numista.com/145748
     ref: Numista
+  - type: literature
+    url: https://numismaster.com/MC_93024
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_93025
+    ref: NumisMaster
   note:
     de: '1 Speciedaler Christians V. (Glückstadt, ND 1682) · Obverse stehende Königsfigur «CHRISTIANUS · V · D · G | REX ·
       DAN · NOR · VAN · G ·» mit Zepter und Reichsapfel — Pose ähnlich Christian-IV.-Speciedaler. Reverse Krone über doppeltem
@@ -2745,6 +2759,7 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   composed_of:
   - unified-km-74-chr-v-1682
+  - unified-schleswig_holstein-numismaster-93025
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: IV
@@ -2910,18 +2925,29 @@ coins:
   ruler: Christian V. (Kgr. Dänemark, Glückstadt)
   issuing_entity: royal_holstein
   id: km-80-1-chr-v-1693
-  year_first: 1693
-  year_last: 1694
+  year_first: 1694
+  year_last: 1696
   year_ranges:
-  - - 1693
-    - 1694
-  year_label: 1693-1694
+  - - 1694
+    - 1696
+  year_label: 1694-1696
   mint: Glückstadt
   catalog:
     km: '80.1'
     numista: '108725'
+    dav: '3680'
   metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
   mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.671
+    source: numismaster
+  weight_rough_g:
+  - value: 22.272
+    source: numismaster
   sources:
   - type: numista
     url: https://en.numista.com/108725
@@ -2929,6 +2955,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-mark-dansk-1693-1696/?tid=163646
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_92999
+    ref: NumisMaster
   note:
     de: '½ Krone-Stück mit Palmkranz-Variante, Glückstadt 1693–1694 — pendant zu km-77-1 (4 Mark Danske, Palmkranz). Tarif:
       ⅓ Speciedaler.'
@@ -2936,7 +2965,15 @@ coins:
       ⅓ Speciedaler.'
     uk: 'Півкронна монета, варіант з пальмовим вінком, Glückstadt 1693–1694 — пара до km-77-1 (4 Mark Danske, пальмовий вінок).
       Тариф: ⅓ Speciedaler.'
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-schleswig_holstein-numismaster-92999
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -3214,9 +3251,13 @@ coins:
   fineness:
   - value: 0.888
     source: numismaster
+  - value: 0.888
+    source: ucoin
   weight_rough_g:
   - value: 1.008
     source: numismaster
+  - value: 1.01
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_92977
@@ -3257,7 +3298,7 @@ coins:
     en: Diameter not given by ucoin; Hede/Bruun verification recommended.
     uk: Діаметр у ucoin не вказано; рекомендована верифікація за Hede/Bruun.
   composed_of:
-  - unified-schleswig_holstein-numismaster-92977
+  - unified-km-x005-chr-iv-1620
   - unified-schleswig_holstein-numismaster-92978
   - unified-schleswig_holstein-numismaster-92979
   - unified-schleswig_holstein-numismaster-92980
@@ -3272,26 +3313,46 @@ coins:
   ruler: Christian IV.
   issuing_entity: royal_holstein
   id: km-x007-chr-iv-1620
-  year_first: 1620
-  year_last: 1620
-  year_label: '1620'
+  year_first: 1588
+  year_last: 1648
+  year_ranges:
+  - - 1588
+    - 1648
+  year_label: 1588-1648
+  year_verified: false
   mint: Glückstadt
   catalog:
     km: '9.1'
     others:
     - KM-DK# 9
+    hede: '167'
+    hede_volume: c4h
+    schou: 36-48
+    sieg: '168'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.888
+    source: hede
+  - value: 0.888
     source: numismaster
+  - value: 0.888
+    source: ucoin
   weight_rough_g:
+  - value: 1.93
+    source: ucoin
+  - value: 2.016
+    source: hede
   - value: 2.016
     source: numismaster
+  diameter_mm:
+  - value: 18.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_92985
@@ -3299,6 +3360,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-4-skilling-lybsk-1620/?tid=163638
     ref: ucoin
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c4h167.htm
+    ref: danskmoent.dk (Hede c4h167)
   note:
     de: 4 Skilling Lybsk = 1/12 Speciedaler · Christian IV. (Glückstadt 1620, doppelte Theilung des km-x005 = 2 Sk Lybsk-Schwesterstücks).
       Reichsmünzordnung-Feingehalt .888; rohes Gewicht 1,93 g ≈ 2 × 1,01 g (km-x005). Im Schleswig-Holstein-Register nicht
@@ -3316,8 +3380,13 @@ coins:
       primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  hede_muentzfuss_yield:
+    value: 10.875
+    unit: speciedaler
+    basis: fin
+    unit_raw: daler
   composed_of:
-  - unified-schleswig_holstein-numismaster-92985
+  - unified-dk-hede-c4h167
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -3717,6 +3786,7 @@ coins:
   nominal: 1 Rhinsk Gylden
   ruler: Christian III.
   issuing_entity: royal_holstein
+  fraction: '1'
   id: unified-dk-hede-c3h14
   year_first: 1546
   year_last: 1546
@@ -3795,6 +3865,7 @@ coins:
   nominal: 1 Sølvgylden
   ruler: Christian III.
   issuing_entity: royal_holstein
+  fraction: '1'
   id: unified-dk-hede-c3h16
   year_first: 1545
   year_last: 1545
@@ -3839,6 +3910,7 @@ coins:
   nominal: 1 Sølvgylden
   ruler: Christian III.
   issuing_entity: royal_holstein
+  fraction: '1'
   id: unified-dk-hede-c3h19
   year_first: 1547
   year_last: 1547
@@ -3883,6 +3955,7 @@ coins:
   nominal: ½ Sølvgylden
   ruler: Christian III.
   issuing_entity: royal_holstein
+  fraction: 1/2
   id: unified-dk-hede-c3h20
   year_first: 1547
   year_last: 1547
@@ -4316,6 +4389,7 @@ coins:
   nominal: 4 Marck
   ruler: Christian V.
   issuing_entity: royal_holstein
+  fraction: '1'
   id: unified-dk-hede-c5h125a
   year_first: 1692
   year_last: 1696
@@ -4369,6 +4443,7 @@ coins:
   nominal: 2 Marck
   ruler: Christian V.
   issuing_entity: royal_holstein
+  fraction: 1/2
   id: unified-dk-hede-c5h126a
   year_first: 1693
   year_last: 1696
@@ -5475,6 +5550,7 @@ coins:
   nominal: 3 Skilling
   ruler: Frederik VI.
   issuing_entity: royal_holstein
+  fraction: 1/24
   id: unified-dk-hede-f6h33
   year_first: 1836
   year_last: 1836
@@ -6813,6 +6889,7 @@ coins:
   nominal: 4 Mark Danske
   ruler: Christian V
   issuing_entity: royal_holstein
+  fraction: '1'
   id: unified-schleswig_holstein-numismaster-92997
   year_first: 1692
   year_last: 1694
@@ -6848,43 +6925,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-92997
-- fuss: 9_25_thaler
-  phase: I
-  kind: kurant
-  nominal: 4 Mark Danske
-  ruler: Christian V
-  issuing_entity: royal_holstein
-  id: unified-schleswig_holstein-numismaster-92998
-  year_first: 1693
-  year_last: 1693
-  year_label: '1693'
-  catalog:
-    km: '77.2'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.671
-    source: numismaster
-  weight_rough_g:
-  - value: 22.272
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_92998
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-92998
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -7012,69 +7052,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-93021
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian V
-  issuing_entity: royal_holstein
-  id: unified-schleswig_holstein-numismaster-93024
-  year_first: 1682
-  year_last: 1682
-  year_label: '1682'
-  catalog:
-    km: '74.1'
-    dav: '3676'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_93024
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-93024
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian V
-  issuing_entity: royal_holstein
-  id: unified-schleswig_holstein-numismaster-93025
-  year_first: 1682
-  year_last: 1682
-  year_label: '1682'
-  catalog:
-    km: '74.2'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_93025
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-93025
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -7313,6 +7290,7 @@ coins:
   nominal: 1 Søsling Lybsk
   ruler: Christian III.
   issuing_entity: royal_holstein
+  fraction: 1/48
   id: unified-dk-hede-c3h21a
   year_first: 1545
   year_last: 1545
@@ -7363,6 +7341,7 @@ coins:
   nominal: 1 Søsling Lybsk
   ruler: Christian III.
   issuing_entity: royal_holstein
+  fraction: 1/48
   id: unified-dk-hede-c3h22
   year_first: 1546
   year_last: 1554
@@ -8008,10 +7987,12 @@ coins:
     bruun_lot_no: 11266
     bruun_page: 136
     fr: '219'
+    numista: '108575'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -8019,6 +8000,8 @@ coins:
     source: hede
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: ucoin
   weight_rough_g:
   - value: 3.43
     source: bruun
@@ -8026,6 +8009,11 @@ coins:
     source: hede
   - value: 3.49
     source: numismaster
+  - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-7348 · Stack's Bowers Bruun Collection Part III, lot 11266
@@ -8035,6 +8023,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_85857
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-ducat-1705-1706/?tid=162962
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -8191,6 +8182,7 @@ coins:
   kind: scheide
   nominal: 2 Skilling Danske
   issuing_entity: royal_holstein
+  fraction: 1/48
   id: unified-schleswig_holstein-numismaster-92972
   year_first: 1681
   year_last: 1681
@@ -8222,42 +8214,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-92972
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 8 Skilling Danske
-  issuing_entity: royal_holstein
-  id: unified-schleswig_holstein-numismaster-92975
-  year_first: 1694
-  year_last: 1694
-  year_label: '1694'
-  catalog:
-    km: '82.1'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.562
-    source: numismaster
-  weight_rough_g:
-  - value: 3.057
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_92975
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-92975
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -8342,46 +8298,7 @@ coins:
   nominal: 2 Mark Danske
   ruler: Christian V
   issuing_entity: royal_holstein
-  id: unified-schleswig_holstein-numismaster-92994
-  year_first: 1693
-  year_last: 1694
-  year_ranges:
-  - - 1693
-    - 1694
-  year_label: 1693-1694
-  catalog:
-    km: '80.1'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.671
-    source: numismaster
-  weight_rough_g:
-  - value: 11.136
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_92994
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-92994
-- fuss: 9_25_thaler
-  phase: I
-  kind: kurant
-  nominal: 2 Mark Danske
-  ruler: Christian V
-  issuing_entity: royal_holstein
+  fraction: 2/3
   id: unified-schleswig_holstein-numismaster-92995
   year_first: 1694
   year_last: 1696
@@ -8424,46 +8341,7 @@ coins:
   nominal: 1/16 Speciedaler
   ruler: Frederik III
   issuing_entity: royal_holstein
-  id: unified-schleswig_holstein-numismaster-93002
-  year_first: 1658
-  year_last: 1659
-  year_ranges:
-  - - 1658
-    - 1659
-  year_label: 1658-1659
-  catalog:
-    km: '42.1'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.812
-    source: numismaster
-  weight_rough_g:
-  - value: 1.785
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_93002
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-93002
-- fuss: 9_thaler
-  phase: II
-  kind: kurant
-  nominal: 1/16 Speciedaler
-  ruler: Frederik III
-  issuing_entity: royal_holstein
+  fraction: 1/16
   id: unified-schleswig_holstein-numismaster-93003
   year_first: 1658
   year_last: 1658
@@ -8501,6 +8379,7 @@ coins:
   nominal: 1/16 Speciedaler
   ruler: Frederik III
   issuing_entity: royal_holstein
+  fraction: 1/16
   id: unified-schleswig_holstein-numismaster-93004
   year_first: 1658
   year_last: 1658
@@ -8538,6 +8417,7 @@ coins:
   nominal: 1/16 Speciedaler
   ruler: Frederik III
   issuing_entity: royal_holstein
+  fraction: 1/16
   id: unified-schleswig_holstein-numismaster-93005
   year_first: 1660
   year_last: 1660
@@ -8573,90 +8453,8 @@ coins:
   phase: II
   kind: kurant
   nominal: 1/16 Speciedaler
-  ruler: Christian IV
   issuing_entity: royal_holstein
-  id: unified-schleswig_holstein-numismaster-93001
-  year_first: 1640
-  year_last: 1647
-  year_ranges:
-  - - 1640
-    - 1643
-  - - 1645
-    - 1647
-  year_label: 1640-1643, 1645-1647
-  catalog:
-    km: '26'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.812
-    source: numismaster
-  weight_rough_g:
-  - value: 1.785
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_93001
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-93001
-- fuss: 9_thaler
-  phase: II
-  kind: kurant
-  nominal: 1/16 Speciedaler
-  issuing_entity: royal_holstein
-  id: unified-schleswig_holstein-numismaster-93006
-  year_first: 1665
-  year_last: 1669
-  year_ranges:
-  - - 1665
-    - 1667
-  - - 1669
-    - 1669
-  year_label: 1665-1667, 1669
-  catalog:
-    km: '54.1'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.812
-    source: numismaster
-  weight_rough_g:
-  - value: 1.785
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_93006
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-93006
-- fuss: 9_thaler
-  phase: II
-  kind: kurant
-  nominal: 1/16 Speciedaler
-  issuing_entity: royal_holstein
+  fraction: 1/16
   id: unified-schleswig_holstein-numismaster-93007
   year_first: 1665
   year_last: 1665
@@ -8958,80 +8756,6 @@ coins:
     unit_raw: daler
   composed_of:
   - unified-dk-hede-c4h165
-- fuss: 9_thaler
-  phase: I
-  kind: scheide
-  nominal: 4 Skilling Lybsk
-  fraction: 1/24
-  ruler: Christian IV.
-  issuing_entity: royal_holstein
-  id: unified-dk-hede-c4h167
-  year_first: 1588
-  year_last: 1648
-  year_ranges:
-  - - 1588
-    - 1648
-  year_label: 1588-1648
-  year_verified: false
-  mint: Glückstadt
-  catalog:
-    km: '9'
-    hede: '167'
-    hede_volume: c4h
-    schou: 36-48
-    sieg: '168'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.888
-    source: hede
-  - value: 0.888
-    source: ucoin
-  weight_rough_g:
-  - value: 1.93
-    source: ucoin
-  - value: 2.016
-    source: hede
-  diameter_mm:
-  - value: 18.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c4h167.htm
-    ref: danskmoent.dk (Hede c4h167)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-skilling-lybsk-1620/?tid=163638
-    ref: ucoin
-  note:
-    de: 4 Skilling Lybsk = 1/12 Speciedaler · Christian IV. (Glückstadt 1620, doppelte Theilung des km-x005 = 2 Sk Lybsk-Schwesterstücks).
-      Reichsmünzordnung-Feingehalt .888; rohes Gewicht 1,93 g ≈ 2 × 1,01 g (km-x005). Im Schleswig-Holstein-Register nicht
-      erfasst, sondern als <b>KM-DK# 9</b> im Royal-Danish-Register. ucoin-Eintrag tid 163638; in Numista nicht katalogisiert.
-    en: 4 Skilling Lybsk = 1/12 Speciedaler · Christian IV (Glückstadt 1620, double subdivision of the km-x005 = 2 Sk Lybsk
-      sister piece). Reichsmünzordnung fineness .888; rough weight 1.93 g ≈ 2 × 1.01 g (km-x005). Not recorded in the Schleswig-Holstein
-      KM register, only as <b>KM-DK# 9</b> in the Royal Danish register. ucoin entry tid 163638; not catalogued by Numista.
-    uk: 4 Skilling Lybsk = 1/12 Speciedaler · Кристіан IV (Glückstadt 1620, подвійний поділ сестринської монети km-x005 =
-      2 Sk Lybsk). Reichsmünzordnung-проба .888; груба вага 1,93 г ≈ 2 × 1,01 г (km-x005). У шлезвіг-гольштинському KM-реєстрі
-      не зафіксовано, лише як <b>KM-DK# 9</b> у данському Royal-реєстрі. ucoin запис tid 163638; у Numista не каталогізовано.
-  verification_note:
-    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
-      danskmoent.dk.'
-    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  hede_muentzfuss_yield:
-    value: 10.875
-    unit: speciedaler
-    basis: fin
-    unit_raw: daler
-  composed_of:
-  - unified-dk-hede-c4h167
-  _curation_holds:
-    note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-dk-hede-c4h167 (matched via seed-unified-bridge; V1→V2
-      bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
 - fuss: 9_thaler
   phase: I
   kind: kurant
@@ -9414,10 +9138,13 @@ coins:
     bruun_lot_no: 13175
     bruun_page: 129
     fr: '134'
+    bruun_lot: '6825'
+    numista: '275958'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -9425,6 +9152,8 @@ coins:
     source: hede
   - value: 0.986
     source: numismaster
+  - value: 0.986
+    source: ucoin
   weight_rough_g:
   - value: 3.44
     source: bruun
@@ -9432,6 +9161,11 @@ coins:
     source: hede
   - value: 3.5
     source: numismaster
+  - value: 3.5
+    source: ucoin
+  diameter_mm:
+  - value: 24.0
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-6791 · Stack's Bowers Bruun Collection Part II, lot 13175
@@ -9441,6 +9175,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_93037
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-ducat-1672-1676/?tid=163668
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -9454,6 +9191,7 @@ coins:
   nominal: 4 Marck
   ruler: Christian V.
   issuing_entity: royal_holstein
+  fraction: '1'
   id: unified-dk-hede-c5h121
   year_first: 1671
   year_last: 1682
@@ -9848,6 +9586,7 @@ coins:
   nominal: 2 Sechsling
   ruler: Christian VII.
   issuing_entity: royal_holstein
+  fraction: 1/48
   id: unified-dk-hede-c7h45
   year_first: 1787
   year_last: 1800
@@ -10522,48 +10261,6 @@ coins:
     basis: fin
   composed_of:
   - unified-dk-hede-f6h31
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 8 Skilling Lybsk
-  ruler: Christian IV
-  issuing_entity: royal_holstein
-  id: unified-schleswig_holstein-numismaster-92989
-  year_first: 1641
-  year_last: 1645
-  year_ranges:
-  - - 1641
-    - 1642
-  - - 1645
-    - 1645
-  year_label: 1641-1642, 1645
-  catalog:
-    km: '30.1'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.812
-    source: numismaster
-  weight_rough_g:
-  - value: 4.872
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_92989
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-92989
 - fuss: 9_25_thaler
   phase: I
   kind: scheide
@@ -11015,6 +10712,7 @@ coins:
   nominal: 16 Schilling
   ruler: Frederick VI
   issuing_entity: royal_holstein
+  fraction: 1/6
   id: unified-sh-tid-90766
   year_first: 1816
   year_last: 1818
@@ -11191,88 +10889,22 @@ coins:
   _curation_holds:
     note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-km-10-chr-iv-1623 (matched via unified-prefix; V1→V2
       bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 1 Ducat
-  ruler: Frederick IV
-  issuing_entity: royal_holstein
-  fraction: '1'
-  id: unified-km-2-fr-iv-1705-glueck
-  year_first: 1705
-  year_last: 1706
-  year_ranges:
-  - - 1705
-    - 1706
-  year_label: 1705-1706
-  catalog:
-    km: '2'
-    hede: 57B
-    fr: '219'
-    numista: '108575'
-    bruun_collection_id: '7348'
-    bruun_part: III
-    bruun_lot_no: 11266
-    bruun_page: 136
-    hede_volume: f4h
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: ucoin
-  weight_rough_g:
-  - value: 3.49
-    source: ucoin
-  diameter_mm:
-  - value: 21.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-ducat-1705-1706/?tid=162962
-    ref: ucoin
-  note:
-    de: '1 Dukat Friedrichs IV. (Glückstadt) · Obverse Panzerbüste mit Locken «FRID • IV • D • G • | DAN • N • V • G • REX
-      •»; Reverse Krone und Devise «DOMINUS • MIHI • ADIUTOR • » («Der Herr ist mein Helfer») mit Glückstadt-Mzz. Zwei Untertypen:
-      KM# 2.1 (Type 1, Datum unter Krone) und KM# 2.2 (Type 2, Panzerbüste kleiner mit Datum unter Büste). Glückstadter Praxisstandard
-      .979 (Hede 57B).'
-    en: '1 Ducat of Frederik IV (Glückstadt) · obverse armoured bust with curly hair «FRID • IV • D • G • | DAN • N • V •
-      G • REX •»; reverse crown above the motto «DOMINUS • MIHI • ADIUTOR • » («The Lord be my aid») with Glückstadt mintmark.
-      Two sub-types: KM# 2.1 (Type 1, date below the crown) and KM# 2.2 (Type 2, smaller armour with date below the bust).
-      Glückstadt practice fineness .979 (Hede 57B).'
-    uk: '1 Ducat Фредеріка IV (Glückstadt) · аверс — броньований бюст із кучерявим волоссям «FRID • IV • D • G • | DAN • N
-      • V • G • REX •»; реверс корона над девізом «DOMINUS • MIHI • ADIUTOR • » («Господь — мій помічник») з ґлюкштатською
-      монограмою. Два суб-типи: KM# 2.1 (Type 1, дата під короною) і KM# 2.2 (Type 2, менший обладунок із датою під бюстом).
-      Ґлюкштатська практична проба .979 (Hede 57B).'
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-km-2-fr-iv-1705-glueck
-  _curation_holds:
-    note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-km-2-fr-iv-1705-glueck (matched via unified-prefix;
-      V1→V2 bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
 - fuss: 9_thaler
   phase: II
   kind: kurant
   nominal: 1/16 Speciedaler
   ruler: Christian IV
   issuing_entity: royal_holstein
+  fraction: 1/16
   id: unified-km-26-chr-iv-1641-l2b1
   year_first: 1640
-  year_last: 1641
+  year_last: 1647
   year_ranges:
   - - 1640
-    - 1641
-  year_label: 1640-1641
+    - 1643
+  - - 1645
+    - 1647
+  year_label: 1640-1643, 1645-1647
   catalog:
     km: '26.1'
     lange: 48-51, 51A
@@ -11286,8 +10918,12 @@ coins:
   verified: false
   fineness:
   - value: 0.812
+    source: numismaster
+  - value: 0.812
     source: ucoin
   weight_rough_g:
+  - value: 1.785
+    source: numismaster
   - value: 1.79
     source: ucoin
   diameter_mm:
@@ -11297,6 +10933,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1640-1641/?tid=163618
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_93001
+    ref: NumisMaster
   note:
     de: '1/16 Reichs Thaler = 3 Skilling Lybsk · Christian IV. (Glückstadt 1641–1647, Legend-Typ II / Bust-Typ I) · Reverse-Legende
       «MON:NOV:GLUCKSTADT:(Datum)(Mzz.)», Wert «XVI E:REIC HSDA». Mzz. (f) = Simon Timpf 1641–1644, (h) = gekreuzte Hellebarden
@@ -11343,6 +10982,7 @@ coins:
   nominal: 1/16 Speciedaler
   ruler: Christian IV
   issuing_entity: royal_holstein
+  fraction: 1/16
   id: unified-km-26-chr-iv-1645-l2b2
   year_first: 1641
   year_last: 1646
@@ -11405,6 +11045,7 @@ coins:
   nominal: 1/16 Speciedaler
   ruler: Frederick III
   issuing_entity: royal_holstein
+  fraction: 1/16
   id: unified-km-42-1-fr-iii-1658
   year_first: 1658
   year_last: 1659
@@ -11424,8 +11065,12 @@ coins:
   verified: false
   fineness:
   - value: 0.812
+    source: numismaster
+  - value: 0.812
     source: ucoin
   weight_rough_g:
+  - value: 1.785
+    source: numismaster
   - value: 1.79
     source: ucoin
   diameter_mm:
@@ -11435,6 +11080,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1658-1659/?tid=163626
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_93002
+    ref: NumisMaster
   note:
     de: 'Obverse «FRIDERICK 3 D·G: D·N·R·» mit gekrönter Büste · Reverse <b>«MONNO GLVCKSTAD 1659 · XVI · E·REIC· HS·DA ·
       IS»</b> = «Moneta Glückstadiensis 1659 · <i>XVI [auf] ein Reichs Holstein Daler</i> · IS (Münzmeister Jacob Schwiegelt)».
@@ -11472,13 +11120,16 @@ coins:
   nominal: 1/16 Speciedaler
   ruler: Frederick III
   issuing_entity: royal_holstein
+  fraction: 1/16
   id: unified-km-54-fr-iii-1665
   year_first: 1665
-  year_last: 1667
+  year_last: 1669
   year_ranges:
   - - 1665
     - 1667
-  year_label: 1665-1667
+  - - 1669
+    - 1669
+  year_label: 1665-1667, 1669
   catalog:
     km: '54'
     lange: 69, 70a, 71a, 73a
@@ -11492,8 +11143,12 @@ coins:
   verified: false
   fineness:
   - value: 0.812
+    source: numismaster
+  - value: 0.812
     source: ucoin
   weight_rough_g:
+  - value: 1.785
+    source: numismaster
   - value: 1.79
     source: ucoin
   diameter_mm:
@@ -11503,6 +11158,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1665-1667/?tid=163628
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_93006
+    ref: NumisMaster
   note:
     de: '1/16 Thaler Friedrichs III. · Obverse römische Büste «FRIDERIC. 3. D.G: D.N.V.G.REX»; Reverse «MONETA NOVA GLVCKSTAD
       — XVI E.REIC. HS.THA 1666». Drei Wert-Schreibweisen-Varianten KM# 54.1 (HS THA), 54.2 (HS DAL), 54.3 (HS TAL). Glückstadter
@@ -11531,6 +11189,7 @@ coins:
   nominal: ⅛ Speciedaler
   ruler: Frederick III
   issuing_entity: royal_holstein
+  fraction: 1/8
   id: unified-km-55-fr-iii-1665
   year_first: 1665
   year_last: 1665
@@ -11592,159 +11251,13 @@ coins:
   _curation_holds:
     note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-km-55-fr-iii-1665 (matched via unified-prefix; V1→V2
       bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 1 Ducat
-  ruler: Christian V
-  issuing_entity: royal_holstein
-  fraction: '1'
-  id: unified-km-64-1-chr-v-1674
-  year_first: 1672
-  year_last: 1676
-  year_ranges:
-  - - 1672
-    - 1676
-  year_label: 1672-1676
-  catalog:
-    km: '64'
-    hede: 115B
-    sieg: '142.2'
-    schou: '3'
-    fr: '134'
-    bruun_lot: '6825'
-    numista: '275958'
-    hede_volume: c5h
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.986
-    source: ucoin
-  weight_rough_g:
-  - value: 3.5
-    source: ucoin
-  diameter_mm:
-  - value: 24.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-ducat-1672-1676/?tid=163668
-    ref: ucoin
-  note:
-    de: 'Münzmeister <b>Johan(n) Woltereck</b> (IW, Glückstadt 1664–1679) · Variante mit «<i>even flan</i>» · Bruun-Lot 13178
-      (Stack''s Bowers Zürich 2025) · Reverse-Legende: «·PIETATE· | · IUSTITIA · | 1674 . I ⚒ W». nennt für diesen Typ den
-      nominellen Reichsdukatenfuß-Wert .986; unser angegebener Feingehalt <b>.979</b> stützt sich auf Hede c5h117-analoge
-      Praxis und Bruun-Specimen.'
-    en: Mintmaster <b>Johan(n) Woltereck</b> (IW, Glückstadt 1664–1679) · variant with «<i>even flan</i>» · Bruun lot 13178
-      (Stack's Bowers Zürich 2025) · reverse legend «·PIETATE· | · IUSTITIA · | 1674 . I ⚒ W». lists the nominal Reichsdukatenfuß
-      fineness .986 for this type; our recorded fineness <b>.979</b> follows the Hede c5h117-analogous practice value and
-      Bruun-recorded specimens.
-    uk: Монетмайстер <b>Johan(n) Woltereck</b> (IW, Glückstadt 1664–1679) · варіант з «<i>even flan</i>» · лот Bruun 13178
-      (Stack's Bowers Zürich 2025) · легенда реверсу «·PIETATE· | · IUSTITIA · | 1674 . I ⚒ W». наводить номінальний Reichsdukatenfuß-показник
-      .986 для цього типу; наша проба <b>.979</b> базується на практиці аналогічній Hede c5h117 і вагах із Bruun-специменів.
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-km-64-1-chr-v-1674
-  _curation_holds:
-    note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-km-64-1-chr-v-1674 (matched via unified-prefix; V1→V2
-      bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 1 Ducat
-  ruler: Christian V
-  issuing_entity: royal_holstein
-  fraction: '1'
-  id: unified-km-70-1-chr-v-1680
-  year_first: 1680
-  year_last: 1685
-  year_ranges:
-  - - 1680
-    - 1685
-  year_label: 1680-1685
-  catalog:
-    km: '70'
-    hede: '117'
-    sieg: '144.1'
-    schou: '4'
-    fr: '141'
-    bruun_lot: '6913'
-    numista: '275959'
-    hede_volume: c5h
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.986
-    source: ucoin
-  weight_rough_g:
-  - value: 3.5
-    source: ucoin
-  diameter_mm:
-  - value: 24.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-ducat-1680-1685/?tid=163669
-    ref: ucoin
-  note:
-    de: 'Glückstädter Standard-Typ Christians V. (1680–1685, Münzmeister CW = Christoph Friedrich Woltereck, 1680–1702 — Nachfolger
-      seines Onkels Johan(n) Woltereck/IW 1664–1679) · Obverse «CHRISITANVS · V · D · G · REX · DAN · NOR ·», Reverse «PIETATE.
-      ET. | IUSTITIA. | 1680. C·⚒·W·» mit Hammer-Mzz. zwischen den CW-Initialen. Reichsdukatenfuß-Standardprobe.986 (23 K
-      8 Gr). Bruun-6913 / Auktionslos 13180: «<i>An eminently lustrous example with razor-sharp details. The Ducats struck
-      in Glückstadt differ from the ones struck in Copenhagen in being minted for regular trade use rather than just as occasion
-      coins.</i>» <em>Anmerkung:</em> die CW-Initialen hier nicht mit Christian Wineke senior zu verwechseln, der zeitgleich
-      an der Kopenhagener Münze (KM# 414, N#112811, Fr# 201) tätig war. Schwesterstück: KM# 72 (1682-only, Hede 118, Vægterdukat,
-      reduzierter Feingehalt.979).'
-    en: 'Glückstadt standard issue under Christian V (1680–1685, mintmaster CW = Christoph Friedrich Woltereck, 1680–1702
-      — successor to his uncle Johan(n) Woltereck/IW 1664–1679) · obverse «CHRISITANVS · V · D · G · REX · DAN · NOR ·», reverse
-      «PIETATE. ET. | IUSTITIA. | 1680. C·⚒·W·» with hammer mintmark between the CW initials. Reichsdukatenfuß standard fineness.986
-      (23 K 8 Gr). Bruun-6913 / Auction lot 13180: «<i>An eminently lustrous example with razor-sharp details. The Ducats
-      struck in Glückstadt differ from the ones struck in Copenhagen in being minted for regular trade use rather than just
-      as occasion coins.</i>» <em>Note:</em> the CW initials here are not to be confused with Christian Wineke senior, who
-      was simultaneously active at the Copenhagen mint (KM# 414, N#112811, Fr# 201). Sister type: KM# 72 (1682-only, Hede
-      118 Vægterdukat, reduced fineness.979).'
-    uk: 'Ґлюкштадтський стандартний тип Кристіана V (1680–1685, монетмайстер CW = Christoph Friedrich Woltereck, 1680–1702
-      — наступник свого дядька Johan(n) Woltereck/IW 1664–1679) · аверс «CHRISITANVS · V · D · G · REX · DAN · NOR ·», реверс
-      «PIETATE. ET. | IUSTITIA. | 1680. C·⚒·W·» з молотом-монограмою між ініціалами CW. Reichsdukatenfuß-стандартна проба.986
-      (23 K 8 Gr). Bruun-6913 / аукціонний лот 13180: «<i>An eminently lustrous example with razor-sharp details. The Ducats
-      struck in Glückstadt differ from the ones struck in Copenhagen in being minted for regular trade use rather than just
-      as occasion coins.</i>» <em>Зауваження:</em> ініціали CW тут не плутати з Christian Wineke senior, що паралельно працював
-      у копенгагенському монетному дворі (KM# 414, N#112811, Fr# 201). Сестринський тип: KM# 72 (тільки 1682, Hede 118 Vægterdukat,
-      знижена проба.979).'
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-km-70-1-chr-v-1680
-  _curation_holds:
-    note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-km-70-1-chr-v-1680 (matched via unified-prefix; V1→V2
-      bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
 - fuss: 9_25_thaler
   phase: I
   kind: kurant
   nominal: 4 Mark dansk
   ruler: Christian V
   issuing_entity: royal_holstein
+  fraction: '1'
   id: unified-km-77-1-chr-v-1686
   year_first: 1692
   year_last: 1694
@@ -11768,10 +11281,14 @@ coins:
   verified: false
   fineness:
   - value: 0.671
+    source: numismaster
+  - value: 0.671
     source: ucoin
   weight_rough_g:
   - value: 22.27
     source: ucoin
+  - value: 22.272
+    source: numismaster
   diameter_mm:
   - value: 41.0
     source: ucoin
@@ -11779,6 +11296,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1692-1694/?tid=163656
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_92998
+    ref: NumisMaster
   note:
     de: 'Palmkranz-Variante · 77.1 Jahr in der Umschrift, 77.2 Jahr beim Elefantenorden · .671 · 22,272 g (Numista). <em>Hede-Typologie:</em>
       Hede 125A (Palmkranz, Datum in Umschrift, 1692–1694, Sieg 138.1) und Hede 125B (Palmkranz, Datum unter Schild, nur 1693,
@@ -11888,6 +11408,7 @@ coins:
   nominal: 2 Mark dansk
   ruler: Christian V
   issuing_entity: royal_holstein
+  fraction: 2/3
   id: unified-km-80-2-chr-v-1694
   year_first: 1693
   year_last: 1696
@@ -11898,7 +11419,6 @@ coins:
   catalog:
     km: '80'
     numista: '108733'
-    dav: '3680'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -11912,10 +11432,10 @@ coins:
   - value: 0.671
     source: ucoin
   weight_rough_g:
+  - value: 11.136
+    source: numismaster
   - value: 11.14
     source: ucoin
-  - value: 22.272
-    source: numismaster
   diameter_mm:
   - value: 33.0
     source: ucoin
@@ -11925,6 +11445,9 @@ coins:
     ref: ucoin
   - type: literature
     url: https://numismaster.com/MC_92999
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_92994
     ref: NumisMaster
   note:
     de: '½ Krone-Stück mit Lorbeerkranz-Variante, Glückstadt 1694–1696 — pendant zu km-80 (4 Mark Danske, Lorbeerkranz). Tarif:
@@ -11951,6 +11474,7 @@ coins:
   nominal: 4 Mark dansk
   ruler: Christian V
   issuing_entity: royal_holstein
+  fraction: '1'
   id: unified-km-80-chr-v-1694
   year_first: 1694
   year_last: 1696
@@ -12054,8 +11578,12 @@ coins:
   verified: false
   fineness:
   - value: 0.562
+    source: numismaster
+  - value: 0.562
     source: ucoin
   weight_rough_g:
+  - value: 3.057
+    source: numismaster
   - value: 3.06
     source: ucoin
   diameter_mm:
@@ -12065,6 +11593,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-8-skilling-dansk-1694-1697/?tid=163635
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_92975
+    ref: NumisMaster
   note:
     de: 'Reverse-Legende (alle Jahrgänge): «*VIII* SKILLING DANSKE» + Jahreszahl · Die Wertangabe auf der Münze ist <b>ausschließlich
       «8 Skilling Danske»</b>. Rechnerische Äquivalente (1/12 Speciedaler zu 60 Skilling Danske; ≈ 4 Schilling lübisch nach
@@ -12105,6 +11636,7 @@ coins:
   nominal: 4 Mark dansk
   ruler: Frederick III
   issuing_entity: royal_holstein
+  fraction: '1'
   id: unified-km-x001-fr-iii-1659
   year_first: 1659
   year_last: 1660
@@ -12237,59 +11769,6 @@ coins:
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 2 Skilling lybsk
-  ruler: Christian IV
-  issuing_entity: royal_holstein
-  id: unified-km-x005-chr-iv-1620
-  year_first: 1620
-  year_last: 1620
-  year_label: '1620'
-  catalog:
-    km: '8'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.888
-    source: ucoin
-  weight_rough_g:
-  - value: 1.01
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-skilling-lybsk-1620/?tid=163588
-    ref: ucoin
-  note:
-    de: 2 Skilling Lybsk = 1/24 Speciedaler · Christian IV. (Glückstadt 1620, früheste dokumentierte Glückstädter Sk-Lybsk-Stufe
-      in der Reichsmüntzfuß-Phase 1617–1622). <b>Reichsmünzordnung-Standard-Feingehalt .888</b>; rohes Gewicht 1,01 g entspricht
-      etwa der Standard-Theilung (1/24 Speciedaler-soll = 1,083 g rau). Im Schleswig-Holstein-Register nicht erfasst, sondern
-      nur als <b>KM-DK# 8</b> im Royal-Danish-Register. ucoin-Eintrag tid 163588; in Numista nicht katalogisiert.
-    en: 2 Skilling Lybsk = 1/24 Speciedaler · Christian IV (Glückstadt 1620, earliest documented Glückstadt Sk-Lybsk denomination
-      from the Reichsmüntzfuß phase 1617–1622). <b>Reichsmünzordnung standard fineness .888</b>; rough weight 1.01 g is close
-      to the standard subdivision (1/24 Speciedaler soll = 1.083 g rough). Not recorded in the Schleswig-Holstein KM register,
-      only in the Royal Danish register as <b>KM-DK# 8</b>. ucoin entry tid 163588; not catalogued by Numista.
-    uk: 2 Skilling Lybsk = 1/24 Speciedaler · Кристіан IV (Glückstadt 1620, найраніший задокументований ґлюкштадтський номінал
-      Sk Lybsk із Reichsmüntzfuß-фази 1617–1622). <b>Стандартна проба Reichsmünzordnung .888</b>; груба вага 1,01 г близька
-      до стандартного поділу (1/24 Speciedaler-soll = 1,083 г груб.). У шлезвіг-гольштинському KM-реєстрі не зафіксовано,
-      лише в данському Royal-реєстрі як <b>KM-DK# 8</b>. ucoin запис tid 163588; у Numista не каталогізовано.
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-km-x005-chr-iv-1620
-  _curation_holds:
-    note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-km-x005-chr-iv-1620 (matched via unified-prefix; V1→V2
-      bootstrap had dropped the note field — see restore_v1_notes_to_v2_final.py).
-- fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
   nominal: 1 Sechsling
   issuing_entity: royal_holstein
   id: unified-sh-tid-187884
@@ -12397,6 +11876,7 @@ coins:
   nominal: 1/16 Speciedaler
   ruler: Frederick III
   issuing_entity: royal_holstein
+  fraction: 1/16
   id: unified-km-57-fr-iii-1666
   year_first: 1667
   year_last: 1670
@@ -12463,6 +11943,7 @@ coins:
   nominal: 1/16 Speciedaler
   ruler: Christian V
   issuing_entity: royal_holstein
+  fraction: 1/16
   id: unified-km-69-chr-v-1680
   year_first: 1680
   year_last: 1680
@@ -13106,6 +12587,7 @@ coins:
   ruler: Christian IV
   mintmaster: Johan Friedrich Freund (FF)
   issuing_entity: royal_holstein
+  fraction: '2'
   id: unified-dk-bruun-8105
   year_first: 1836
   year_last: 1839
@@ -13163,6 +12645,7 @@ coins:
   nominal: 2 Christian d’Or
   ruler: Christian VIII
   issuing_entity: royal_holstein
+  fraction: '2'
   id: unified-dk-bruun-8149
   year_first: 1842
   year_last: 1847
@@ -13228,6 +12711,7 @@ coins:
   ruler: Christian VIII
   mintmaster: Johan Friedrich Freund (FF)
   issuing_entity: royal_holstein
+  fraction: 1/3
   id: unified-dk-bruun-8150
   year_first: 1842
   year_last: 1843
@@ -13301,6 +12785,7 @@ coins:
   nominal: 2 Frederik d’Or
   ruler: Frederik VII
   issuing_entity: royal_holstein
+  fraction: '2'
   id: unified-dk-bruun-8212
   year_first: 1851
   year_last: 1855
@@ -13370,6 +12855,7 @@ coins:
   ruler: Frederik VII
   mintmaster: Johan Friedrich Freund (FF)
   issuing_entity: royal_holstein
+  fraction: 1/24
   id: unified-dk-bruun-8228
   year_first: 1854
   year_last: 1854
@@ -13486,6 +12972,7 @@ coins:
   ruler: Frederik VII
   mintmaster: Hans Frederik Alsing (FA)
   issuing_entity: royal_holstein
+  fraction: '2'
   id: unified-dk-bruun-8261
   year_first: 1856
   year_last: 1859
@@ -13620,6 +13107,7 @@ coins:
   nominal: ¼ Sølvgylden
   ruler: Christian III.
   issuing_entity: royal_holstein
+  fraction: '1'
   id: unified-dk-hede-c3h18
   year_first: 1545
   year_last: 1545
@@ -13754,6 +13242,7 @@ coins:
   nominal: 1/5 Rigsbankskilling / 1/5 R.B.S
   ruler: Christian VIII.
   issuing_entity: royal_holstein
+  fraction: 1/96
   id: unified-dk-hede-c8h13ab
   year_first: 1842
   year_last: 1842
@@ -13898,6 +13387,7 @@ coins:
   nominal: ½ Sølvgylden
   ruler: Christian III.
   issuing_entity: royal_holstein
+  fraction: 1/2
   id: unified-dk-hede-c3h17ab
   year_first: 1545
   year_last: 1545
@@ -14139,16 +13629,27 @@ coins:
   mint: Altona
   catalog:
     km: '615.1'
+    numista: '44799'
   metal: copper
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 5.85
+    source: ucoin
+  diameter_mm:
+  - value: 24.5
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_58027
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-2-skilling-1771/?tid=78766
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -15033,18 +14534,29 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
+  - value: 0.68
+    source: ucoin
   - value: 0.687
     source: numismaster
   weight_rough_g:
   - value: 6.129
     source: numismaster
+  - value: 6.13
+    source: ucoin
+  diameter_mm:
+  - value: 25.5
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66038
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1820/?tid=70756
+    ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -15609,48 +15121,6 @@ coins:
 - fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 32 Rigsbankskilling
-  ruler: Frederick VI
-  issuing_entity: royal_holstein
-  id: unified-dk-tid-70756
-  year_first: 1820
-  year_last: 1820
-  year_label: '1820'
-  mint: Altona
-  catalog:
-    km: '690'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.68
-    source: ucoin
-  weight_rough_g:
-  - value: 6.13
-    source: ucoin
-  diameter_mm:
-  - value: 25.5
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1820/?tid=70756
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-70756
-- fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
   nominal: 1 Skilling
   ruler: Frederick VI
   issuing_entity: royal_holstein
@@ -15698,8 +15168,10 @@ coins:
   year_last: 1645
   year_ranges:
   - - 1641
+    - 1642
+  - - 1645
     - 1645
-  year_label: 1641-1645
+  year_label: 1641-1642, 1645
   catalog:
     km: '30'
     numista: '109450'
@@ -15712,10 +15184,14 @@ coins:
   verified: false
   fineness:
   - value: 0.812
+    source: numismaster
+  - value: 0.812
     source: ucoin
   weight_rough_g:
   - value: 4.87
     source: ucoin
+  - value: 4.872
+    source: numismaster
   diameter_mm:
   - value: 29.0
     source: ucoin
@@ -15723,6 +15199,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-8-skilling-lybsk-1641-1645/?tid=163647
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_92989
+    ref: NumisMaster
   verification_note:
     de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
       / NumisMaster / Bruun) vor §BF-Promotion.'

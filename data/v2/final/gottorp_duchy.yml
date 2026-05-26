@@ -1675,6 +1675,7 @@ coins:
   nominal: 1/12 Schilling
   ruler: Karl Friedrich von Gottorp
   issuing_entity: gottorp_duchy
+  fraction: 1/12
   id: km-194-karl-fr-1706
   year_first: 1706
   year_last: 1706
@@ -2075,7 +2076,9 @@ coins:
   year_first: 1753
   year_last: 1753
   year_label: '1753'
-  mint: Mannheim
+  mint:
+  - Gottorp
+  - Mannheim
   catalog:
     km: '226'
     numista: '33257'
@@ -2084,17 +2087,48 @@ coins:
     - Uzd# 4929
     - Bit# 61
     - Dav EC III# 1353
+    bruun_collection_id: '14640'
+    sieg: '1'
+    lange: 491b
+    dav:
+    - '1353'
+    - 1353A
   metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
   mint_verified: true
+  verified: false
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces33257.html
     ref: Numista
+  - type: literature
+    ref: Bruun-14640 · Stack's Bowers Bruun Collection Part II, lot 14241
+  - type: literature
+    url: https://numismaster.com/MC_79685
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_145857
+    ref: NumisMaster
   note:
     de: 1 Thaler · Karl Peter Ulrich von Gottorp (späterer Peter III. v. Russland), 1753
     en: 1 Thaler · Karl Peter Ulrich (later Peter III of Russia), 1753
     uk: 1 Thaler · Карл Петер Ульріх (Гольштейн-Ґотторп; пізніше Петро III), 1753
-  composed_of: []
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  composed_of:
+  - unified-dk-bruun-14640
+  - unified-schleswig_holstein-numismaster-145857
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
@@ -3670,39 +3704,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-153825
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  ruler: Karl Peter Ulrich
-  issuing_entity: gottorp_duchy
-  id: unified-schleswig_holstein-numismaster-145857
-  year_first: 1753
-  year_last: 1753
-  year_label: '1753'
-  mint: Mannheim
-  catalog:
-    km: '226.2'
-    dav: 1353A
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_145857
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-145857
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -5952,6 +5953,7 @@ coins:
   nominal: 1 Goldgulden
   ruler: Friedrich III
   issuing_entity: gottorp_duchy
+  fraction: '1'
   id: unified-schleswig_holstein-numismaster-99477
   year_first: 1619
   year_last: 1619
@@ -5989,6 +5991,7 @@ coins:
   nominal: 1 Goldgulden
   ruler: Friedrich III
   issuing_entity: gottorp_duchy
+  fraction: '1'
   id: unified-schleswig_holstein-numismaster-99478
   year_first: 1627
   year_last: 1627
@@ -6026,6 +6029,7 @@ coins:
   nominal: 1 Goldgulden
   ruler: Christian Albrecht
   issuing_entity: gottorp_duchy
+  fraction: '1'
   id: unified-schleswig_holstein-numismaster-99479
   year_first: 1664
   year_last: 1664
@@ -6553,6 +6557,7 @@ coins:
   nominal: 1/16 Thaler
   ruler: Friedrich III
   issuing_entity: gottorp_duchy
+  fraction: 1/16
   id: unified-schleswig_holstein-numismaster-167342
   year_first: 1617
   year_last: 1617
@@ -7360,6 +7365,7 @@ coins:
   ruler: Adolf
   mintmaster: Matz Puls
   issuing_entity: gottorp_duchy
+  fraction: 1/2
   id: unified-dk-bruun-14136
   year_first: 1611
   year_last: 1611
@@ -7572,50 +7578,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-14510
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: Taler
-  ruler: Karl Peter Ulrich
-  issuing_entity: gottorp_duchy
-  id: unified-dk-bruun-14640
-  year_first: 1753
-  year_last: 1753
-  year_label: '1753'
-  mint:
-  - Gottorp
-  - Mannheim
-  catalog:
-    km: '226.1'
-    bruun_collection_id: '14640'
-    sieg: '1'
-    lange: 491b
-    dav: '1353'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    ref: Bruun-14640 · Stack's Bowers Bruun Collection Part II, lot 14241
-  - type: literature
-    url: https://numismaster.com/MC_79685
-    ref: NumisMaster
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-14640
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
