@@ -58,6 +58,7 @@ V2_FINAL = ROOT / "data" / "v2" / "final"
 V2_CLASSIFICATION_DECISIONS = ROOT / "data" / "v2" / "classification_decisions"
 
 sys.path.insert(0, str(ROOT / "scripts"))
+from lib.fraction_infer import infer_fraction, load_fuss_fractions  # noqa: E402
 from lib.seed_merge import merge_seed  # noqa: E402
 from lib.v2_seed_writer import (  # noqa: E402
     _is_out_of_scope_nominal,
@@ -603,6 +604,19 @@ def _all_basic_peers_no_match_primary(unified: dict, finals: list[dict],
     # disagreement (D/E category). Pure fallback-only disagreement
     # (H category) is NOT promotable — keep pending for review.
     return saw_primary_disagreement
+
+
+# Module-level cache for `fuesse.yml::<fuss>.fractions` keys. Built once
+# on first call to process_entity, reused across every entity. Reading
+# fuesse.yml on every fraction-inference invocation would be wasteful.
+_FUSS_FRACTIONS_CACHE: dict[str, set] | None = None
+
+
+def _get_fuss_fractions_cache() -> dict[str, set]:
+    global _FUSS_FRACTIONS_CACHE
+    if _FUSS_FRACTIONS_CACHE is None:
+        _FUSS_FRACTIONS_CACHE = load_fuss_fractions()
+    return _FUSS_FRACTIONS_CACHE
 
 
 def process_entity(entity_id: str) -> dict:
@@ -1227,6 +1241,33 @@ def process_entity(entity_id: str) -> dict:
         for coin_id in assignment_by_coin_id:
             if coin_id not in all_known_ids:
                 unapplied_assignments.append(coin_id)
+
+    # FRACTION INFERENCE — when a final entry has fuss != seed_unsorted +
+    # a parseable nominal but NO fraction, derive it from the fuss+nominal
+    # rules in `lib.fraction_infer`. Without `fraction` set, the build's
+    # `_compute_coin` (scripts/lib/compute.py:558) can't look up
+    # `fuss.fractions[fraction]` and the Soll-Feingewicht + Δ columns
+    # render blank — hiding analysis that could be done from data the
+    # entry already carries (weight + fineness). User direction
+    # 2026-05-27: «ці дані мають прораховуватись як тільки коін отримує
+    # своє місце в стопі».
+    #
+    # Conservative behaviour: only fills when fraction is currently None
+    # AND the inferred candidate exists in `fuss.fractions`. Curator-set
+    # `_curation_holds: [fraction, ...]` is respected (never overwrites
+    # an existing fraction value).
+    fuss_fractions_cache = _get_fuss_fractions_cache()
+    inferred_fractions_count = 0
+    for entry in enriched_entries:
+        if entry.get("fraction"):
+            continue  # already set — never overwrite
+        cand = infer_fraction(entry, fuss_fractions_cache)
+        if cand:
+            entry["fraction"] = cand
+            inferred_fractions_count += 1
+    if inferred_fractions_count:
+        print(f"  [{entity_id}] fraction-inference: "
+              f"set on {inferred_fractions_count} entries from nominal+fuss")
 
     return {
         "entity_id": entity_id,
