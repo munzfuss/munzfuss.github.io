@@ -799,6 +799,21 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
         m = re.match(r"^(\d+(?:\.\d+)?)[A-Za-z]{1,2}$", v.strip())
         return m.group(1) if m else v.strip()
 
+    def _parent_of_dotnum(v: str) -> str | None:
+        """Return parent of a dot-numeric sub-variant («70.1» → «70»),
+        or None if the value isn't dot-numeric. Used for bare-vs-sub
+        catalog-ref tolerance: when ucoin/Numista publish bare «KM-70»
+        and Hede/NumisMaster publish specific «KM-70.1», they refer to
+        the same Krause-Mishler parent type and should merge.
+
+        Asymmetric: ONLY when one side is bare and the other is
+        dot-form is this loosening applied — two distinct dot-form
+        sub-variants («70.1» and «70.2») remain different so curator
+        sub-variant distinctions stay intact. Same applies to KM «1.1»
+        ↔ «1» (parent type) but NOT KM «1.1» ↔ «1.2»."""
+        m = re.match(r"^(\d+)\.\d+$", v.strip())
+        return m.group(1) if m else None
+
     agreeing: list[str] = []
     disagreeing: list[str] = []
     for k in shared:
@@ -814,6 +829,18 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
         cores_a = {_numeric_core(v) for v in sa}
         cores_b = {_numeric_core(v) for v in sb}
         if cores_a & cores_b:
+            agreeing.append(k)
+            continue
+        # Bare-vs-dot-numeric tolerance («70» ≡ «70.1»). Asymmetric: one
+        # side must be bare (no dot-form), the other side's dot-num
+        # parent must equal the bare side. Two distinct dot-forms
+        # («70.1» ≢ «70.2») stay disagreeing so curator sub-variant
+        # splits stay intact.
+        parents_a = {p for p in (_parent_of_dotnum(v) for v in sa) if p}
+        parents_b = {p for p in (_parent_of_dotnum(v) for v in sb) if p}
+        # bare-a meets dot-b: cores_a (which equals sa for bare values)
+        # intersects with parents_b
+        if (cores_a & parents_b) or (cores_b & parents_a):
             agreeing.append(k)
         else:
             disagreeing.append(k)
