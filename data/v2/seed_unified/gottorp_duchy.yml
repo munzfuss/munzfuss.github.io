@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `gottorp_duchy`.
-# Generated 2026-05-26 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-27 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 236 per-source seed entries.
-# Output: 199 unified entries (one per physical coin).
+# Output: 194 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: gottorp_duchy
-generated_at: '2026-05-26'
+generated_at: '2026-05-27'
 coins:
 - id: unified-dk-bruun-14114
   fuss: seed_unsorted
@@ -24,7 +24,7 @@ coins:
   - - 1606
     - 1607
   year_label: 1606-1607
-  ruler: Adolf
+  ruler: Johann Adolf
   mintmaster: Jonas Georgen
   mint: Gottorp
   catalog:
@@ -74,7 +74,7 @@ coins:
   year_first: 1606
   year_last: 1606
   year_label: '1606'
-  ruler: Adolf
+  ruler: Johann Adolf
   mintmaster: Matthias Puls
   catalog:
     km: '26.1'
@@ -123,7 +123,7 @@ coins:
   year_first: 1607
   year_last: 1607
   year_label: '1607'
-  ruler: Adolf
+  ruler: Johann Adolf
   mintmaster: Jonas Georgens
   mint: Gottorp
   catalog:
@@ -156,19 +156,27 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: (?)
+  nominal: ½ Thaler
   year_first: 1607
-  year_last: 1607
-  year_label: '1607'
-  ruler: Adolf
+  year_last: 1612
+  year_ranges:
+  - - 1607
+    - 1607
+  - - 1609
+    - 1609
+  - - 1611
+    - 1612
+  year_label: 1607, 1609, 1611-1612
+  ruler: Johann Adolf
   mintmaster: Jonas Georgen
   mint: Gottorp
   catalog:
     km: '25'
     bruun_collection_id: '14121'
     sieg: '8.1'
+    lange: 276-77
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -179,6 +187,9 @@ coins:
   sources:
   - type: literature
     ref: Bruun-14121 · Stack's Bowers Bruun Collection Part II, lot 14205
+  - type: literature
+    url: https://numismaster.com/MC_167362
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -193,6 +204,7 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - dk-bruun-14121
+  - schleswig_holstein-numismaster-167362
 - id: unified-dk-bruun-14124
   fuss: seed_unsorted
   phase: bruun
@@ -201,7 +213,7 @@ coins:
   year_first: 1608
   year_last: 1608
   year_label: '1608'
-  ruler: Adolf
+  ruler: Johann Adolf
   mintmaster: Jonas Georgen
   mint: Gottorp
   catalog:
@@ -247,7 +259,7 @@ coins:
   - - 1608
     - 1609
   year_label: 1608-1609
-  ruler: Adolf
+  ruler: Johann Adolf
   mintmaster: Heinrich Puls
   mint: Gottorp
   catalog:
@@ -259,7 +271,7 @@ coins:
     lange: '269'
     dav: '3682'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -274,6 +286,9 @@ coins:
     ref: Bruun-14125 · Stack's Bowers Bruun Collection Part II, lot 14207
   - type: literature
     ref: Bruun-14128 · Stack's Bowers Bruun Collection Part II, lot 14208
+  - type: literature
+    url: https://numismaster.com/MC_99440
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -289,6 +304,7 @@ coins:
   composed_of:
   - dk-bruun-14125
   - dk-bruun-14128
+  - schleswig_holstein-numismaster-99440
 - id: unified-dk-bruun-14129
   fuss: seed_unsorted
   phase: bruun
@@ -297,7 +313,7 @@ coins:
   year_first: 1609
   year_last: 1609
   year_label: '1609'
-  ruler: Adolf
+  ruler: Johann Adolf
   mint: Gottorp
   catalog:
     km: '27'
@@ -306,7 +322,7 @@ coins:
     lange: '270'
     dav: '3687'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -317,6 +333,9 @@ coins:
   sources:
   - type: literature
     ref: Bruun-14129 · Stack's Bowers Bruun Collection Part II, lot 14209
+  - type: literature
+    url: https://numismaster.com/MC_99443
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -331,15 +350,19 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - dk-bruun-14129
+  - schleswig_holstein-numismaster-99443
 - id: unified-dk-bruun-14132
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: Taler
   year_first: 1611
-  year_last: 1611
-  year_label: '1611'
-  ruler: Adolf
+  year_last: 1612
+  year_ranges:
+  - - 1611
+    - 1612
+  year_label: 1611-1612
+  ruler: Johann Adolf
   mintmaster: Matz Puls
   mint: Gottorp
   catalog:
@@ -349,17 +372,22 @@ coins:
     lange: 271c
     dav: '3689'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 28.71
+    source: numismaster
   - value: 28.87
     source: bruun
   sources:
   - type: literature
     ref: Bruun-14132 · Stack's Bowers Bruun Collection Part II, lot 14210
+  - type: literature
+    url: https://numismaster.com/MC_99445
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -374,6 +402,7 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - dk-bruun-14132
+  - schleswig_holstein-numismaster-99445
 - id: unified-dk-bruun-14136
   fuss: seed_unsorted
   phase: bruun
@@ -382,7 +411,7 @@ coins:
   year_first: 1611
   year_last: 1611
   year_label: '1611'
-  ruler: Adolf
+  ruler: Johann Adolf
   mintmaster: Matz Puls
   mint: Gottorp
   catalog:
@@ -422,7 +451,7 @@ coins:
   year_first: 1607
   year_last: 1607
   year_label: '1607'
-  ruler: Adolf
+  ruler: Johann Adolf
   mint: Gottorp
   catalog:
     bruun_collection_id: '14147'
@@ -561,7 +590,7 @@ coins:
   year_first: 1642
   year_last: 1642
   year_label: '1642'
-  ruler: Hans
+  ruler: Friedrich III
   mintmaster: Hans Glaser
   mint: Gottorp
   catalog:
@@ -572,16 +601,24 @@ coins:
     fr: '3077'
   metal: gold
   metal_verified: true
-  fineness_verified: false
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.986
+    source: numismaster
   weight_rough_g:
   - value: 3.46
     source: bruun
+  - value: 3.5
+    source: numismaster
   sources:
   - type: literature
     ref: Bruun-14257 · Stack's Bowers Bruun Collection Part II, lot 14215
+  - type: literature
+    url: https://numismaster.com/MC_99481
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -596,6 +633,7 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - dk-bruun-14257
+  - schleswig_holstein-numismaster-99481
 - id: unified-dk-bruun-14338
   fuss: seed_unsorted
   phase: bruun
@@ -2091,7 +2129,6 @@ coins:
   year_first: 1683
   year_last: 1683
   year_label: '1683'
-  ruler: Hans
   mintmaster: Hans Ridder
   mint: Gottorp
   catalog:
@@ -2174,7 +2211,6 @@ coins:
   year_first: 1724
   year_last: 1724
   year_label: '1724'
-  ruler: Friedrich IV
   mintmaster: Johann Justus Jaster
   mint: Gottorp
   catalog:
@@ -5135,43 +5171,6 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - schleswig_holstein-numismaster-167361
-- id: unified-schleswig_holstein-numismaster-167362
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ½ Thaler
-  year_first: 1609
-  year_last: 1612
-  year_ranges:
-  - - 1609
-    - 1609
-  - - 1611
-    - 1612
-  year_label: 1609, 1611-1612
-  ruler: Johann Adolf
-  catalog:
-    km: '25'
-    lange: 276-77
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167362
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: gottorp_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-167362
 - id: unified-schleswig_holstein-numismaster-167363
   fuss: seed_unsorted
   phase: numismaster
@@ -6433,41 +6432,6 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - schleswig_holstein-numismaster-99437
-- id: unified-schleswig_holstein-numismaster-99440
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1608
-  year_last: 1609
-  year_ranges:
-  - - 1608
-    - 1609
-  year_label: 1608-1609
-  ruler: Johann Adolf
-  catalog:
-    km: '21'
-    dav: '3682'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_99440
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: gottorp_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-99440
 - id: unified-schleswig_holstein-numismaster-99441
   fuss: seed_unsorted
   phase: numismaster
@@ -6532,38 +6496,6 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - schleswig_holstein-numismaster-99442
-- id: unified-schleswig_holstein-numismaster-99443
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1609
-  year_last: 1609
-  year_label: '1609'
-  ruler: Johann Adolf
-  catalog:
-    km: '27'
-    dav: '3687'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_99443
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: gottorp_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-99443
 - id: unified-schleswig_holstein-numismaster-99444
   fuss: seed_unsorted
   phase: numismaster
@@ -6601,44 +6533,6 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - schleswig_holstein-numismaster-99444
-- id: unified-schleswig_holstein-numismaster-99445
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1611
-  year_last: 1612
-  year_ranges:
-  - - 1611
-    - 1612
-  year_label: 1611-1612
-  ruler: Johann Adolf
-  catalog:
-    km: '34'
-    dav: '3689'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 28.71
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_99445
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: gottorp_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-99445
 - id: unified-schleswig_holstein-numismaster-99446
   fuss: seed_unsorted
   phase: numismaster
@@ -7531,43 +7425,6 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - schleswig_holstein-numismaster-99480
-- id: unified-schleswig_holstein-numismaster-99481
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Ducat
-  year_first: 1642
-  year_last: 1642
-  year_label: '1642'
-  ruler: Friedrich III
-  catalog:
-    km: '94'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.986
-    source: numismaster
-  weight_rough_g:
-  - value: 3.5
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_99481
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: gottorp_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-99481
 - id: unified-schleswig_holstein-numismaster-99489
   fuss: seed_unsorted
   phase: numismaster

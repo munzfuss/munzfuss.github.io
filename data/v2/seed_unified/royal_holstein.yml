@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-05-26 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-27 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 521 per-source seed entries.
-# Output: 305 unified entries (one per physical coin).
+# Output: 302 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-05-26'
+generated_at: '2026-05-27'
 coins:
 - id: unified-denmark-numismaster-58027
   fuss: seed_unsorted
@@ -1003,47 +1003,6 @@ coins:
   composed_of:
   - denmark-numismaster-66041
   - km-734-chr-v-1842
-- id: unified-denmark-numismaster-66103
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Frederiks D'or
-  year_first: 1836
-  year_last: 1839
-  year_ranges:
-  - - 1836
-    - 1839
-  year_label: 1836-1839
-  ruler: Frederik VI
-  mint: Altona
-  catalog:
-    km: '713.1'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.896
-    source: numismaster
-  weight_rough_g:
-  - value: 13.284
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_66103
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - denmark-numismaster-66103
 - id: unified-dk-bruun-14708
   fuss: seed_unsorted
   phase: bruun
@@ -1901,7 +1860,7 @@ coins:
   year_first: 1671
   year_last: 1671
   year_label: '1671'
-  ruler: Christian IV
+  ruler: Christian V
   mintmaster: Johan Woltereck
   mint: Glückstadt
   catalog:
@@ -3037,9 +2996,12 @@ coins:
   kind: kurant
   nominal: 2 Frederik d’Or
   year_first: 1836
-  year_last: 1836
-  year_label: '1836'
-  ruler: Christian IV
+  year_last: 1839
+  year_ranges:
+  - - 1836
+    - 1839
+  year_label: 1836-1839
+  ruler: Frederik VI
   mintmaster: Johan Friedrich Freund (FF)
   mint: Altona
   catalog:
@@ -3054,14 +3016,22 @@ coins:
     fr: '288'
   metal: gold
   metal_verified: true
-  fineness_verified: false
+  fineness_verified: true
   weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.896
+    source: numismaster
   weight_rough_g:
   - value: 13.27
     source: bruun
+  - value: 13.284
+    source: numismaster
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_66103
+    ref: NumisMaster
   - type: literature
     ref: Bruun-8105 · Stack's Bowers Bruun Collection Part I, lot 1160
   verification_note:
@@ -3077,6 +3047,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   issuing_entity: royal_holstein
   composed_of:
+  - denmark-numismaster-66103
   - dk-bruun-8105
 - id: unified-dk-bruun-8133
   fuss: seed_unsorted
@@ -3313,53 +3284,6 @@ coins:
   composed_of:
   - denmark-numismaster-66016
   - dk-bruun-8152
-- id: unified-dk-bruun-8162
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: Christian d’Or
-  year_first: 1843
-  year_last: 1843
-  year_label: '1843'
-  ruler: Christian III
-  mintmaster: Johan Friedrich Freund (FF)
-  mint: Altona
-  catalog:
-    km: '730'
-    bruun_collection_id: '8162'
-    sieg: '15'
-    schou: '1'
-    hede: '2'
-    bruun_part: I
-    bruun_lot_no: 1164
-    bruun_page: 225
-    fr: '290'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 6.63
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-8162 · Stack's Bowers Bruun Collection Part I, lot 1164
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-bruun-8162
 - id: unified-dk-bruun-8187
   fuss: seed_unsorted
   phase: bruun
@@ -3608,31 +3532,51 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 2 Rigsdaler
-  year_first: 1855
-  year_last: 1855
-  year_label: '1855'
-  ruler: Christian IX
+  year_first: 1854
+  year_last: 1856
+  year_ranges:
+  - - 1854
+    - 1856
+  year_label: 1854-1856
+  ruler: Frederik VII
   mintmaster: Johan Friedrich Freund (FF)
   mint: Altona
   catalog:
     km: '761.1'
-    bruun_collection_id: '8234'
+    bruun_collection_id:
+    - '8234'
+    - '8249'
     sieg: '14.2'
-    schou: '3'
+    schou:
+    - '3'
+    - '2'
     hede: 6B
     bruun_part: I
     bruun_lot_no: 1167
     bruun_page: 229
     dav: '77'
   metal: silver
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: false
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.875
+    source: numismaster
+  weight_rough_g:
+  - value: 28.78
+    source: bruun
+  - value: 28.893
+    source: numismaster
   sources:
   - type: literature
+    url: https://numismaster.com/MC_66089
+    ref: NumisMaster
+  - type: literature
     ref: Bruun-8234 · Stack's Bowers Bruun Collection Part I, lot 1167
+  - type: literature
+    ref: Bruun-8249 · Stack's Bowers Bruun Collection Part IV, lot 17219
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -3646,7 +3590,9 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   issuing_entity: royal_holstein
   composed_of:
+  - denmark-numismaster-66089
   - dk-bruun-8234
+  - dk-bruun-8249
 - id: unified-dk-bruun-8235
   fuss: seed_unsorted
   phase: bruun
@@ -3701,64 +3647,6 @@ coins:
   composed_of:
   - denmark-numismaster-66075
   - dk-bruun-8235
-- id: unified-dk-bruun-8249
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Rigsdaler
-  year_first: 1854
-  year_last: 1856
-  year_ranges:
-  - - 1854
-    - 1856
-  year_label: 1854-1856
-  ruler: Frederik VII
-  mint: Altona
-  catalog:
-    km: '761.1'
-    bruun_collection_id: '8249'
-    sieg: '14.2'
-    schou: '2'
-    hede: 6B
-    bruun_part: IV
-    bruun_lot_no: 17219
-    bruun_page: 111
-    dav: '77'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  weight_rough_g:
-  - value: 28.78
-    source: bruun
-  - value: 28.893
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_66089
-    ref: NumisMaster
-  - type: literature
-    ref: Bruun-8249 · Stack's Bowers Bruun Collection Part IV, lot 17219
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: royal_holstein
-  composed_of:
-  - denmark-numismaster-66089
-  - dk-bruun-8249
 - id: unified-dk-bruun-8261
   fuss: seed_unsorted
   phase: bruun
@@ -8172,6 +8060,7 @@ coins:
     - 1847
   year_label: 1843-1845, 1847
   ruler: Christian VIII.
+  mintmaster: Johan Friedrich Freund (FF)
   mint: Altona
   catalog:
     km: '730'
@@ -8179,16 +8068,17 @@ coins:
     hede_volume: c8h
     schou:
     - 1,3,2,2
+    - '1'
     - '3'
     - '2'
     sieg: '15'
     bruun_collection_id:
+    - '8162'
     - '8169'
     - '8185'
-    - '8162'
-    bruun_part: IV
-    bruun_lot_no: 17186
-    bruun_page: 102
+    bruun_part: I
+    bruun_lot_no: 1164
+    bruun_page: 225
     fr: '290'
   metal: gold
   metal_verified: true
@@ -8206,6 +8096,8 @@ coins:
   weight_rough_g:
   - value: 6.61
     source: bruun
+  - value: 6.63
+    source: bruun
   - value: 6.64
     source: ucoin
   - value: 6.642
@@ -8218,6 +8110,8 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_66095
     ref: NumisMaster
+  - type: literature
+    ref: Bruun-8162 · Stack's Bowers Bruun Collection Part I, lot 1164
   - type: literature
     ref: Bruun-8169 · Stack's Bowers Bruun Collection Part IV, lot 17186
   - type: literature
@@ -8236,6 +8130,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - denmark-numismaster-66095
+  - dk-bruun-8162
   - dk-bruun-8169
   - dk-bruun-8185
   - dk-hede-c8h2

@@ -873,6 +873,114 @@ def process_entity(entity_id: str) -> dict:
     if article_page_dropped:
         print(f"  [{entity_id}] article-page purge: "
               f"{article_page_dropped} entries dropped (narrative articles)")
+
+    # Shape E: self-foundation reconciliation. When a unified entry was
+    # bulk-promoted as `composed_of: [self]` in a previous run AND a
+    # V1-bootstrap foundation peer now `confident`-matches it (4/4
+    # primary signals), the self-foundation is a duplicate. Drop it from
+    # final; the iteration loop below will pick up the unified entry
+    # from seed_unified/ and absorb it into the V1-foundation peer's
+    # composed_of via the standard match_pair path. Caught 2026-05-26
+    # on KM-94 1642 1 Ducat: V1-bootstrap `km-94-fr-iii-1642` (carrying
+    # mintmaster HG + Bruun catalog refs + curator note prose) and
+    # self-promoted `unified-schleswig_holstein-numismaster-99481`
+    # (carrying NumisMaster fineness+weight) sat side-by-side as two
+    # separate rows even though match_pair returned confident for the
+    # pair.
+    #
+    # Trigger conditions (ALL must hold):
+    #   - fid.startswith("unified-")
+    #   - fid in unified_by_id (the underlying unified still exists)
+    #   - composed_of == [fid] (pure self-link, not a curator-composed
+    #     entry with multiple members)
+    #   - exactly ONE non-`unified-`-prefixed peer in `surviving_finals`
+    #     returns `decision: confident` from match_pair
+    #   - classification fields (fuss/phase/kind/issuing_entity) either
+    #     agree exactly OR the self-foundation carries the default
+    #     `seed_unsorted` fuss (i.e. no curator decision has fired yet
+    #     on the self-foundation, so V1's classification is authoritative)
+    #
+    # Strict 1-peer requirement: if multiple V1 peers match confidently,
+    # fold direction is ambiguous and needs curator review. If zero V1
+    # peers match, the self-foundation stays as its only home.
+    #
+    # Classification-disagreement guard: when both sides carry curator-
+    # set fuss/phase/kind that DIFFER, don't silently lose either —
+    # surface as a skip and let the curator resolve.
+    v1_foundations_for_fold = [
+        fe for fe in surviving_finals
+        if isinstance(fe, dict) and fe.get("id")
+        and not fe["id"].startswith("unified-")
+    ]
+    _CLASSIFICATION_FIELDS = ("fuss", "phase", "kind", "issuing_entity")
+
+    def _classifications_compatible(self_fe: dict, v1_fe: dict) -> bool:
+        """Self-foundation may fold into V1-foundation iff classifications
+        agree exactly OR self has the default `seed_unsorted` fuss.
+        Returns False if there's a curator-set disagreement on any field."""
+        sf_fuss = self_fe.get("fuss")
+        if sf_fuss in (None, "seed_unsorted"):
+            # No curator decision on self yet → V1 is authoritative.
+            return True
+        for field in _CLASSIFICATION_FIELDS:
+            sv = self_fe.get(field)
+            vv = v1_fe.get(field)
+            if sv in (None, "", "seed_unsorted"):
+                continue
+            if vv in (None, "", "seed_unsorted"):
+                continue
+            if sv != vv:
+                return False
+        return True
+
+    self_foundation_folded = 0
+    self_foundation_fold_skipped_multi: list[str] = []
+    self_foundation_fold_skipped_clash: list[str] = []
+    final_after_fold: list[dict] = []
+    for fe in surviving_finals:
+        if not isinstance(fe, dict):
+            final_after_fold.append(fe)
+            continue
+        fid = fe.get("id")
+        composed = fe.get("composed_of") or []
+        if not (fid and fid.startswith("unified-")
+                and fid in unified_by_id
+                and composed == [fid]):
+            final_after_fold.append(fe)
+            continue
+        # Self-foundation candidate. Find V1-peer matches via match_pair.
+        matches = []
+        for vf in v1_foundations_for_fold:
+            result = match_pair(fe, vf, entity_id)
+            if result.get("decision") == "confident":
+                matches.append(vf)
+        if len(matches) == 1:
+            if _classifications_compatible(fe, matches[0]):
+                # Safe to fold. Drop self-foundation; loop below will
+                # absorb the unified into V1 via the normal match_pair path.
+                self_foundation_folded += 1
+                continue
+            # Classification disagreement — needs curator review.
+            self_foundation_fold_skipped_clash.append(fid)
+        elif len(matches) > 1:
+            self_foundation_fold_skipped_multi.append(fid)
+        final_after_fold.append(fe)
+    if self_foundation_folded:
+        print(f"  [{entity_id}] self-foundation fold: "
+              f"{self_foundation_folded} entries dropped "
+              f"(re-absorb into V1 peers via match_pair)")
+    if self_foundation_fold_skipped_multi:
+        print(f"  [{entity_id}] self-foundation fold: "
+              f"skipped {len(self_foundation_fold_skipped_multi)} "
+              f"(multiple V1 peers match): "
+              f"{self_foundation_fold_skipped_multi[:3]}")
+    if self_foundation_fold_skipped_clash:
+        print(f"  [{entity_id}] self-foundation fold: "
+              f"skipped {len(self_foundation_fold_skipped_clash)} "
+              f"(curator classification clash): "
+              f"{self_foundation_fold_skipped_clash[:3]}")
+    surviving_finals = final_after_fold
+
     final_entries = surviving_finals
     final_by_id = {f["id"]: f for f in final_entries if f.get("id")}
 

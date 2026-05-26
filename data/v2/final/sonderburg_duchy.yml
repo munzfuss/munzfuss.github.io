@@ -579,9 +579,14 @@ coins:
     - Lange# 535b
     - Lange# 536a
     - Lange# 536b
+    lange: 535a, 535b, 536
   metal: silver
+  metal_verified: true
+  fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
+  mint_verified: false
+  verified: false
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151525.html
@@ -626,6 +631,9 @@ coins:
     url: https://ikmk.smb.museum/object?id=18284705
     ref: IKMK Berlin, Inv. 18284705
     note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  - type: literature
+    url: https://numismaster.com/MC_120992
+    ref: NumisMaster
   inscription_obv: IOHAN D G HAERES NOR
   inscription_rev: D SCHL E H C I O E D 19
   note:
@@ -641,7 +649,15 @@ coins:
 
 
       Задокументовані штемпелі під типом KM#5: Lange 535a/535b (1618), 536a/536b (1619) — IKMK Berlin.'
-  composed_of: []
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-schleswig_holstein-numismaster-120992
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
@@ -784,9 +800,12 @@ coins:
   year_last: 1618
   year_label: '1618'
   catalog:
+    km: '4'
     others:
     - Lange# 532b
+    lange: '540'
   metal: silver
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
@@ -813,6 +832,9 @@ coins:
     url: https://ikmk.smb.museum/object?id=18284398
     ref: IKMK Berlin, Inv. 18284398
     note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  - type: literature
+    url: https://numismaster.com/MC_120991
+    ref: NumisMaster
   inscription_obv: IOHAN D G HAERES NORWG
   inscription_rev: D SCHL E HO C I OL E D 1618
   note:
@@ -844,7 +866,8 @@ coins:
       verification and KM assignment outstanding.
     uk: Штемпельний / реверс-варіант 2-Schilling 1618 Hans-Sonderburg; у Krause-каталозі не виділений окремо. Покоінна верифікація
       та призначення KM очікуються.
-  composed_of: []
+  composed_of:
+  - unified-schleswig_holstein-numismaster-120991
   v1_home_location: schleswig_holstein
 - fuss: seed_unsorted
   phase: numismaster
@@ -1233,73 +1256,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-120997
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Schilling
-  ruler: Johann
-  issuing_entity: sonderburg_duchy
-  id: unified-schleswig_holstein-numismaster-120991
-  year_first: 1618
-  year_last: 1618
-  year_label: '1618'
-  catalog:
-    km: '4'
-    lange: '540'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_120991
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-120991
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Schilling
-  ruler: Johann
-  issuing_entity: sonderburg_duchy
-  id: unified-schleswig_holstein-numismaster-120992
-  year_first: 1618
-  year_last: 1619
-  year_ranges:
-  - - 1618
-    - 1619
-  year_label: 1618-1619
-  catalog:
-    km: '5'
-    lange: 535a, 535b, 536
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_120992
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-120992
 - fuss: 9_thaler
   phase: I
   kind: kurant
@@ -1345,3 +1301,4 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-14677
+  - unified-schleswig_holstein-numismaster-101378

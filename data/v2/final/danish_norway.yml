@@ -1988,54 +1988,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-110715
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Specie Daler
-  issuing_entity: danish_norway
-  id: unified-denmark-numismaster-110733
-  year_first: 1664
-  year_last: 1664
-  year_label: '1664'
-  catalog:
-    km: '70'
-    dav: '3618'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  - value: 0.875
-    source: ucoin
-  weight_rough_g:
-  - value: 28.78
-    source: numismaster
-  - value: 28.78
-    source: ucoin
-  diameter_mm:
-  - value: 44.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110733
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-speciedaler-1664/?tid=145470
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-110733
 - fuss: 9_25_thaler
   phase: I
   kind: kurant
@@ -10273,9 +10225,11 @@ coins:
     schou:
     - '2'
     - '8'
+    - '6'
     bruun_collection_id:
     - '10924'
     - '10882'
+    - '10888'
     sieg:
     - '12.1'
     - '12.3'
@@ -10297,6 +10251,8 @@ coins:
   - value: 0.875
     source: ucoin
   weight_rough_g:
+  - value: 9.61
+    source: bruun
   - value: 9.62
     source: bruun
   - value: 9.63
@@ -10325,6 +10281,8 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-3-speciedaler-1803/?tid=88742
     ref: ucoin
+  - type: literature
+    ref: Bruun-10888 · Stack's Bowers Bruun Collection Part II, lot 14120
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15912,8 +15870,13 @@ coins:
     km: '65'
     hede: '40'
     hede_volume: nf3h
-    schou: '18'
+    schou:
+    - '18'
+    - '12'
     dav: '3608'
+    bruun_collection_id: '10082'
+    sieg: '45'
+    nmd: '52'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -15935,6 +15898,8 @@ coins:
     source: numismaster
   - value: 57.55
     source: ucoin
+  - value: 57.6
+    source: bruun
   diameter_mm:
   - value: 45.0
     source: ucoin
@@ -15948,6 +15913,8 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-2-speciedaler-1661/?tid=145508
     ref: ucoin
+  - type: literature
+    ref: Bruun-10082 · Stack's Bowers Bruun Collection Part I, lot 1217
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -17722,64 +17689,22 @@ coins:
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: ⅓ Speciedaler
-  ruler: Christian IV
-  mintmaster: Hans Jacob Arnold Branth
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-10888
-  year_first: 1796
-  year_last: 1796
-  year_label: '1796'
-  mint: Kongsberg
-  catalog:
-    km: '266'
-    bruun_collection_id: '10888'
-    sieg: '12.1'
-    schou: '6'
-    hede: 6A
-    nmd: 23A
-    bruun_part: II
-    bruun_lot_no: 14120
-    bruun_page: 248
-  metal: silver
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 9.61
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-10888 · Stack's Bowers Bruun Collection Part II, lot 14120
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-10888
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
   nominal: 1 Speciedaler
   mintmaster: Johan Georg Prahm
   issuing_entity: danish_norway
   id: unified-dk-bruun-10976
   year_first: 1823
-  year_last: 1823
-  year_label: '1823'
+  year_last: 1824
+  year_ranges:
+  - - 1823
+    - 1824
+  year_label: 1823-1824
   mint: Kongsberg
   catalog:
     km: '290'
-    bruun_collection_id: '10976'
+    bruun_collection_id:
+    - '10976'
+    - '10979'
     sieg: '16'
     bruun_part: III
     bruun_lot_no: 12135
@@ -17797,6 +17722,8 @@ coins:
   sources:
   - type: literature
     ref: Bruun-10976 · Stack's Bowers Bruun Collection Part III, lot 12135
+  - type: literature
+    ref: Bruun-10979 · Stack's Bowers Bruun Collection Part I, lot 1236
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -17853,50 +17780,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-10977
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  mintmaster: Johan Michael Kruse (JMK)
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-10979
-  year_first: 1824
-  year_last: 1824
-  year_label: '1824'
-  mint: Kongsberg
-  catalog:
-    km: '290'
-    bruun_collection_id: '10979'
-    sieg: '16'
-    bruun_part: I
-    bruun_lot_no: 1236
-    bruun_page: 325
-    dav: '240'
-  metal: silver
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.9
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-10979 · Stack's Bowers Bruun Collection Part I, lot 1236
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-10979
 - fuss: 18_5_thaler
   phase: I
   kind: scheide
@@ -19653,17 +19536,36 @@ coins:
     bruun_page: 291
     dav: '3618'
   metal: silver
-  metal_verified: false
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.875
+    source: numismaster
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
   - value: 28.73
     source: bruun
+  - value: 28.78
+    source: numismaster
+  - value: 28.78
+    source: ucoin
+  diameter_mm:
+  - value: 44.0
+    source: ucoin
   sources:
   - type: literature
     ref: Bruun-9940 · Stack's Bowers Bruun Collection Part I, lot 1212
+  - type: literature
+    url: https://numismaster.com/MC_110733
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-speciedaler-1664/?tid=145470
+    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -20508,50 +20410,6 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   composed_of:
   - unified-dk-tid-143756
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Speciedaler
-  ruler: Christian IV
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-10082
-  year_first: 1661
-  year_last: 1661
-  year_label: '1661'
-  mint: Christiania
-  catalog:
-    km: '65'
-    bruun_collection_id: '10082'
-    sieg: '45'
-    schou: '12'
-    hede: '40'
-    nmd: '52'
-    dav: '3608'
-  metal: silver
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 57.6
-    source: bruun
-  sources:
-  - type: literature
-    ref: Bruun-10082 · Stack's Bowers Bruun Collection Part I, lot 1217
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-10082
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
