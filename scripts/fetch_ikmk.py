@@ -41,15 +41,35 @@ QUERIES = [
     "Holstein-Sonderburg", "Holstein-Sonderburg-Glücksburg",
     "Sonderburg", "Augustenburg", "Plön", "Glücksburg", "Norburg",
     "Schaumburg",
-    # SH mints / cities
+    # SH mints / cities — Royal-Holstein + Gottorp + sub-duchies
     "Glückstadt", "Altona", "Reinfeld", "Eutin", "Kiel", "Flensburg",
-    "Itzehoe", "Pinneberg",
+    "Itzehoe", "Pinneberg", "Husum", "Haderslev", "Rendsburg",
+    "Tönning", "Gottorp", "Barmstedt", "Rantzau",
+    # holstein_schauenburg_county ancestral mints (Lower-Saxon
+    # Reichsmünzordnung Imperial-circle coinage, distinct from SH-
+    # Pinneberg numismatic tradition — see CLAUDE.md analysis
+    # 2026-05-26 + docs/research/mint_year_transitions.md).
+    "Stadthagen", "Bückeburg", "Rinteln", "Hessisch Oldendorf",
+    "Oldendorf",
     # Lauenburg territory + residences (project scope)
     "Lauenburg", "Ratzeburg", "Mölln",
-    # Lübeck (Hansestadt) and Lübeck-Bishopric
+    # Lübeck-Bishopric (Eutin-residenced prince-bishopric)
     "Lübeck Bistum",
+    # Hanseatic cities — Hamburg + Lübeck-as-city (separate from
+    # Lübeck Bistum bishopric)
+    "Hamburg", "Lübeck",
     # Bremen-Verden / Bremen archbishopric
-    "Bistum Bremen", "Bremen-Verden",
+    "Bistum Bremen", "Bremen-Verden", "Stade", "Bremervörde",
+    # Hessen-Kassel landgraviate (post-1640 Schaumburg-Hessen-Anteil)
+    "Hessen-Kassel", "Hesse-Cassel", "Kassel",
+    # Hochstift Osnabrück (prince-bishopric)
+    "Osnabrück", "Iburg",
+    # Grafschaft Oldenburg (county in Lower Saxony, Danish-king-as-
+    # count 1667-1773 personal union)
+    "Oldenburg",
+    # Brunswick-Lüneburg (project-scope brunswick_lueneburg location)
+    "Braunschweig-Lüneburg", "Brunswick-Lüneburg",
+    "Braunschweig", "Wolfenbüttel",
 
     # ============================================================
     # Denmark proper, Danish-Norwegian crown, and Danish-controlled
@@ -181,7 +201,18 @@ def _fetch_one(opener_holder: list, nid: str) -> bool:
     raise last_err  # type: ignore[misc]
 
 
-def fetch() -> None:
+def fetch(limit: int | None = None) -> None:
+    """Fetch JSON for every ID in the manifest (skipping cached).
+
+    Parameters
+    ----------
+    limit
+        When set, stop after that many NEW fetches (cache writes). IDs
+        already cached are still skipped without counting against the
+        limit. Used by the hourly harvest routine (`HARVEST_ROUTINE.md`
+        §5.5) to pace IKMK harvest into small batches matching the
+        Numista/ucoin per-run cadence.
+    """
     if not MANIFEST.exists():
         print("manifest missing — run `discover` first", file=sys.stderr)
         sys.exit(1)
@@ -206,6 +237,13 @@ def fetch() -> None:
         if new:
             fetched += 1
             time.sleep(SLEEP_SECS)
+            if limit is not None and fetched >= limit:
+                print(
+                    f"  reached --limit {limit}; stopping. "
+                    f"fetched={fetched} skipped={skipped} errors={errors} "
+                    f"({int(time.time() - t0)}s).",
+                )
+                return
         else:
             skipped += 1
         if i % 50 == 0:
@@ -229,11 +267,17 @@ def main() -> int:
         choices=["discover", "fetch", "both"],
         default="both",
     )
+    ap.add_argument(
+        "--limit", type=int, default=None,
+        help="Cap on new fetches per run (cache writes). Used by the "
+             "hourly harvest routine for small per-run batches. "
+             "Applies to `fetch` and `both` phases.",
+    )
     args = ap.parse_args()
     if args.phase in ("discover", "both"):
         discover()
     if args.phase in ("fetch", "both"):
-        fetch()
+        fetch(limit=args.limit)
     return 0
 
 

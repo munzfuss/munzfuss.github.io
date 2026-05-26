@@ -24,7 +24,7 @@
 
 1. **NEVER push without explicit user permission in the chat.** The user must type «пуш» / «push» / «git push» / «запуш» or equivalent BEFORE any `git push` runs. Cron-triggered runs almost always finish with commits local-only. End-of-run report includes the line: «N commits ready locally — `git push` when ready (both repos).»
 
-2. **One Numista batch + one ucoin batch per run.** Do not exceed this. Context budget + politeness to both sources require small slices.
+2. **One Numista batch + one ucoin batch + one IKMK batch per run.** Do not exceed this. Context budget + politeness to all three sources require small slices. IKMK is the supplementary museum-catalogue source (`docs/IKMK_HARVEST.md`) — openly licensed (CC BY-SA 4.0), no Cloudflare, uses ID-list-from-search-queries rather than per-NID URLs. See §5.5 for the batch protocol. IKMK can be skipped per-run when no uncached IDs remain (§5.5.5).
 
 3. **Batch size = 5 entries** (NIDs or TIDs). Hard cap. If a batch would close the bucket and only 3 remain, do those 3 — never extend past the bucket boundary into the next priority.
 
@@ -1080,6 +1080,145 @@ If more than 1 file changed, you bundled — execute §0.8 self-recovery to spli
 
 ---
 
+## §5.5. IKMK batch (Berlin Münzkabinett API)
+
+Third source per run. IKMK Berlin (`ikmk.smb.museum`) is openly-
+licensed (CC BY-SA 4.0 text + PDM 1.0 LOD ids; see
+`docs/IKMK_HARVEST.md` §«Why this is OK to scrape (unlike Numista)»).
+Different mechanics from Numista / ucoin:
+
+- **No per-NID URL like Numista**; the search returns a list of
+  IKMK-MDS-IDs, which then have JSON endpoints
+  (`/object?id=<mds_id>&download=json_ext`).
+- **Pre-existing harvest**: 7000+ records already cached as of
+  2026-05-26 (`scripts/cache/ikmk/<mds_id>.json`); manifest at
+  `scripts/cache/ikmk/_manifest.json` lists all known IDs across
+  query buckets.
+- **One-shot driver**: `scripts/fetch_ikmk.py` handles both
+  discovery (search queries) and per-ID fetch.
+- **No Cloudflare**: plain `urllib` works. Polite pacing built into
+  the driver (0.5 s between fetches).
+
+### §5.5.1. Batch shape
+
+**5 new fetches per run, cap.** Same hard cap as Numista / ucoin
+batches. The driver accepts `--limit N` to enforce this — counting
+only NEW cache writes (already-cached IDs skipped without counting).
+
+```bash
+.venv/bin/python scripts/fetch_ikmk.py fetch --limit 5
+```
+
+This walks the manifest (`_manifest.json::ids`), skipping any IDs
+whose `<id>.json` already exists, fetching the next 5 uncached IDs,
+and stopping.
+
+### §5.5.2. Pre-batch check — manifest freshness
+
+Manifest is the list of IDs to fetch. If the manifest doesn't cover
+the entities currently consumed by V2 location pages, re-discover
+to expand it.
+
+```bash
+# How many IDs in manifest vs cached vs query coverage:
+.venv/bin/python <<'EOF'
+import json, pathlib
+m = json.load(open('scripts/cache/ikmk/_manifest.json'))
+cached = len(list(pathlib.Path('scripts/cache/ikmk').glob('[0-9]*.json')))
+total = len(m['ids'])
+gap = total - cached
+print(f'manifest IDs: {total}  cached: {cached}  uncached: {gap}')
+print(f'discover queries: {len(m["queries"])}  fetched_at: {m.get("fetched_at")}')
+EOF
+```
+
+**When to re-discover** (run `scripts/fetch_ikmk.py discover`):
+
+1. **uncached < 20** — about to run out of work; re-discover to top up
+   the manifest with potentially-new IDs (IKMK adds records slowly,
+   so usually 0-50 new appear per discovery pass).
+2. **`fetched_at` older than 30 days** — periodic refresh in case
+   IKMK published new records or updated existing.
+3. **New entity added to project scope** — extend `QUERIES` list in
+   `scripts/fetch_ikmk.py` first, then discover. As of 2026-05-26 the
+   `QUERIES` list covers all V2 location-page consumed entities:
+   royal_holstein / gottorp_duchy / danish_realm / danish_norway /
+   sub-duchies (Sonderburg / Norburg-Plön / Glücksburg) /
+   holstein_schauenburg_county (Stadthagen / Bückeburg / Rinteln /
+   Hessisch Oldendorf) / schauenburg_pinneberg / rantzau_county /
+   hanseatic_hamburg / hanseatic_lubeck / fuerstbisthum_luebeck /
+   erzbisthum_bremen_verden / landgrafschaft_hessen_kassel /
+   hochstift_osnabrueck / grafschaft_oldenburg /
+   herzogtum_braunschweig_lueneburg / herzogtum_sachsen_lauenburg.
+
+Discover is heavier (one HTTP POST per query, ~50 queries → ~25 s).
+Don't run it every batch — only when the freshness rules above
+trigger.
+
+### §5.5.3. Fetch the batch
+
+```bash
+.venv/bin/python scripts/fetch_ikmk.py fetch --limit 5
+```
+
+Expected output: «reached --limit 5; stopping. fetched=5 skipped=N
+errors=0 (Xs).»
+
+### §5.5.4. Commit the IKMK batch — PB-10 dance (Step A + Step B)
+
+Same two-step dance as Numista (§3) and ucoin (§5):
+
+```bash
+# Step A — submodule commit
+cd scripts/cache
+ls -la ikmk/ | grep -E "^\-rw" | grep "\.json" | head -5  # confirm the 5 new JSONs are there
+git add ikmk/<each-of-the-5-mds-ids>.json    # explicit paths, NEVER `git add ikmk/`
+git status --short                            # confirm exactly 5 files staged
+git commit -m "IKMK batch — <N> mds_ids (<entity-or-query-bucket>)"
+```
+
+Step A commit-message format: name the per-run label («IKMK batch
+N»), the count, AND the dominant entity / query the batch fed (e.g.
+«IKMK batch C — 5 mds_ids (holstein_schauenburg_county)» when the
+5 IDs all came from queries that route to that entity). When the
+batch crosses multiple buckets, name the dominant 2 — e.g. «IKMK
+batch D — 5 mds_ids (royal_holstein + gottorp_duchy)».
+
+```bash
+# Step B — main-repo pointer bump
+cd /Users/serg/projects/muentzfuesse
+git status --short                            # confirm only `scripts/cache (new commits)`
+git add scripts/cache
+git commit -m "data: bump cache pointer — IKMK batch <N> (<bucket>, 5 mds_ids)"
+```
+
+### §5.5.5. Skip conditions
+
+Skip the IKMK batch this run when:
+
+- **uncached = 0** AND last discover < 30 days → IKMK is fully
+  harvested for current scope; nothing to do. Log «IKMK: skipped
+  (fully harvested)» in the end-of-run report.
+- **discover failed** (network / Cloudflare on `quick_search`) → log
+  «IKMK: skipped (discover failed)» and continue to §6.
+- **All 5 fetches errored** (consecutive HTTP errors) → suggests
+  rate-limit or outage; log + skip remaining.
+
+The IKMK batch is NOT a hard requirement for the run — Numista
+and ucoin batches drive coverage; IKMK is supplementary museum-
+catalogue enrichment. If skipped, just note in the end-of-run
+report's «Push state» line.
+
+### §5.5.6. Per-run labeling
+
+IKMK batches use letter labels matching Numista's cadence so the
+audit's «Δ this run» columns can attribute correctly. Track
+the last-used label in `scripts/cache/_harvest_handoff.json::ikmk_last_label`
+(creates field if missing). Increment alphabetically each run that
+actually fetches.
+
+---
+
 ## §6. Render the coverage tables
 
 After both batches commit, output BOTH tables in the exact format below. This is the user-facing deliverable; everything else above is plumbing.
@@ -1510,7 +1649,7 @@ The audit manifest's `denmark/p4` listed 20 «gap» NIDs as in-scope. The hourly
 Final response to the user follows this exact structure. The Δ-columns in both tables come straight from §6.1's script output — do not hand-compute, the script already filled them.
 
 ```markdown
-**Batch run <UTC timestamp>**: Numista batch <letter> added **+<N>** to <bucket>; ucoin batch <NN> added **+<M>** to <period>. Both committed local (total **+<N+M>** entries this run).
+**Batch run <UTC timestamp>**: Numista batch <letter> added **+<N>** to <bucket>; ucoin batch <NN> added **+<M>** to <period>; IKMK batch <letter> added **+<K>** to <bucket-or-«skipped»>. All committed local (total **+<N+M+K>** entries this run).
 
 ### ucoin — per-period detailed coverage (post batch <NN>)
 
