@@ -746,6 +746,43 @@ def process_entity(entity_id: str) -> dict:
     for uid, ue in unified_by_id.items():
         for sid in ue.get("composed_of") or []:
             seed_to_unified[sid] = uid
+    # When a stale foundation is purged because the merger has consolidated
+    # its source seed id into a different unified host, the V1-bootstrap
+    # foundation's curator-attested classification (fuss / phase / kind /
+    # ruler-spelling / mintmaster, etc.) must MIGRATE to the new host —
+    # otherwise the absorb's bulk-promote path would emit the new unified
+    # entry with the source's raw `fuss: seed_unsorted` default, silently
+    # losing months of curator work.
+    #
+    # Build a migration table `{new_host_fid: classification_dict}` so the
+    # later bulk-promote step can look it up and apply the curator override
+    # to the freshly-promoted final entry. Observed 2026-05-26: relocation
+    # of Bruun `dk-bruun-5631` from `danish_realm` to `royal_holstein`
+    # caused the merger to compose 3 sources (Bruun + V1 `km-29-chr-iv-1640`
+    # + NumisMaster) into a new unified id `unified-dk-bruun-5631`. The
+    # stale-foundation purge then dropped the V1 entry, taking with it
+    # the `fuss: reichsdukatenfuss, phase: I` classification — the merged
+    # entry rendered into the seed_unsorted bucket instead of Reichsdukatenfuß.
+    curator_migrations: dict[str, dict] = {}
+
+    def _migrate_classification(fe: dict, new_host_fid: str) -> None:
+        """Snapshot foundation-immutable fields for migration to new host."""
+        snapshot = {
+            field: fe[field]
+            for field in _FOUNDATION_IMMUTABLE_FIELDS
+            if field in fe and fe[field] not in (None, "", [], {})
+        }
+        if not snapshot:
+            return
+        existing = curator_migrations.get(new_host_fid) or {}
+        # Multiple stale foundations might both point at the same new host
+        # (rare — only if 2+ V1 entries got merged into 1 unified by the
+        # cross-source merger). Last-writer-wins is acceptable here: both
+        # would carry the same curator classification by construction
+        # (they ARE the same coin per the merger's confident match).
+        existing.update(snapshot)
+        curator_migrations[new_host_fid] = existing
+
     surviving_finals: list[dict] = []
     for fe in final_entries:
         fid = fe.get("id") if isinstance(fe, dict) else None
@@ -782,6 +819,7 @@ def process_entity(entity_id: str) -> dict:
             source_id = fid[len("unified-"):]
             new_host = seed_to_unified.get(source_id)
             if new_host and new_host != fid:
+                _migrate_classification(fe, new_host)
                 stale_foundation_dropped += 1
                 continue
             # Shape D: orphan unified-X foundation where X is gone from
@@ -810,6 +848,7 @@ def process_entity(entity_id: str) -> dict:
                 and not composed):
             new_host = seed_to_unified[fid]
             if new_host != fid:
+                _migrate_classification(fe, new_host)
                 stale_foundation_dropped += 1
                 continue
         surviving_finals.append(fe)
@@ -975,6 +1014,29 @@ def process_entity(entity_id: str) -> dict:
             # — guarantees idempotency on re-runs.
             promoted_stub = dict(unified)
             promoted_stub["composed_of"] = [uid]
+            # Apply curator-classification migration from any V1-bootstrap
+            # foundation(s) that the merger consolidated into this unified
+            # host (see `curator_migrations` build above). This ensures the
+            # bulk-promoted entry inherits the V1 curator's fuss / phase /
+            # kind / mintmaster / etc. instead of falling back to the
+            # source seed's raw defaults («fuss: seed_unsorted»).
+            migrated = curator_migrations.get(uid)
+            if migrated:
+                for field, value in migrated.items():
+                    # Don't overwrite a non-trivial value the seed already
+                    # carries — but DO overwrite when the seed has the
+                    # default placeholder («seed_unsorted» for fuss, the
+                    # source's raw phase name like «bruun» / «ucoin»).
+                    seed_val = promoted_stub.get(field)
+                    if field == "fuss" and seed_val == "seed_unsorted":
+                        promoted_stub[field] = value
+                    elif field == "phase" and seed_val in (
+                            None, "bruun", "ucoin", "numismaster",
+                            "numista", "hede", "galster"):
+                        promoted_stub[field] = value
+                    elif seed_val in (None, "", [], {}):
+                        promoted_stub[field] = value
+                    # else: seed already has a curator-set value; keep it.
             enriched, _ = _enrich_final_entry(
                 promoted_stub, [promoted_stub], entity_id
             )
