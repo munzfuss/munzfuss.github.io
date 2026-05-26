@@ -227,7 +227,85 @@ staleness if you ever need a refresh pass.
 - Identifiable User-Agent string, e.g. `Mozilla/5.0 (research;
   muentzfuesse project; serhii)`.
 - If the server returns 429 / 503: back off, halt, surface to
-  user.
+  user — AND log the event to §«Observed rate-limit log»
+  below so the next routine reads the new known threshold.
+
+### Per-run batch size — bulk is fine until proven otherwise
+
+Empirically **no rate limit has ever been observed** across the
+project's IKMK harvest history (May 2026). Unlike Numista / ucoin
+(which are Chrome-MCP HTML scrapes through Cloudflare with hard
+5-entry-per-batch caps per `docs/HARVEST_ROUTINE.md` §0.3), IKMK
+is a museum JSON API with an openly-licensed reuse contract — the
+politeness budget is generous. So:
+
+- **Default per-run batch cap = `known_safe_batch_cap` from
+  §«Observed rate-limit log» below.** Initial value (empty log)
+  = **500 entries / run**, retained as the default until the log
+  records an empirical throttle event.
+- Maintain 0.4-0.6 s pacing across the whole batch; do not
+  parallelise. Bulk = sequential-many, not concurrent-many.
+- A 500-entry batch at 0.5 s pacing ≈ 4 min wall-time, well within
+  one routine slot.
+- When `fetch_ikmk.py fetch` consumes a manifest larger than the
+  cap, slice into multiple back-to-back routine runs rather than
+  one mega-call.
+
+### Throttle-recovery protocol (when a 429 / 503 fires)
+
+When `fetch_ikmk.py` (or any other IKMK fetcher) actually gets
+throttled mid-batch, the responding routine MUST:
+
+1. **STOP the current batch immediately.** Do NOT retry the same
+   request in a tight loop — the throttle is a signal, not noise.
+2. **Capture the empirical metric**: how many entries were fetched
+   cleanly BEFORE the throttle response (`entries_before_throttle`),
+   the HTTP code returned, the `Retry-After` header value (if any),
+   and the wall-time of the run so far.
+3. **Append a row to §«Observed rate-limit log» below** via Edit on
+   this file (the table is the source of truth — the routine reads
+   it on next start to pick `known_safe_batch_cap`).
+4. **Set the next `known_safe_batch_cap`** = `min(existing_cap,
+   round(entries_before_throttle * 0.8))`. The 0.8 derate gives a
+   safety margin; the `min()` keeps the cap monotonically non-
+   increasing across runs (a relaxation requires a deliberate human
+   edit, not an automated bump).
+5. **Surface in the end-of-run report**: «IKMK throttled at N entries
+   on HTTP <code>; logged + capped future runs at <new_cap>».
+6. **Wait** at least the `Retry-After` window before any further
+   IKMK request. If no `Retry-After`, back off ≥ 600 s.
+
+### Observed rate-limit log
+
+<!-- ROUTINE-WRITABLE: append rows below the placeholder; never reorder;
+     never delete historical rows. Initial state is the «—» placeholder. -->
+
+| Date (UTC)         | Batch attempted | Entries before throttle | HTTP code | `Retry-After` (s) | Recovery applied                       | Source (fetcher / context)        |
+|--------------------|-----------------|-------------------------|-----------|-------------------|----------------------------------------|-----------------------------------|
+| —                  | —               | —                       | —         | —                 | _no limits observed as of 2026-05-27_  | initial state (no events yet)     |
+
+**Reading the log to compute the active cap** — a routine that
+needs the current `known_safe_batch_cap` does:
+
+```python
+import re, pathlib
+
+doc = pathlib.Path('docs/IKMK_HARVEST.md').read_text()
+# Capture every row under «Observed rate-limit log» that has a
+# numeric «entries before throttle» value (skip the placeholder row).
+rows = re.findall(
+    r'^\|\s*\d{4}-\d{2}-\d{2}[^|]*\|\s*\d+[^|]*\|\s*(\d+)\s*\|',
+    doc, flags=re.MULTILINE,
+)
+INITIAL_CAP = 500
+known_safe_batch_cap = (
+    min(int(r) * 0.8 for r in rows) if rows else INITIAL_CAP
+)
+print(int(known_safe_batch_cap))
+```
+
+If the regex returns zero rows (only the placeholder is present),
+fall back to the 500-entry initial cap.
 
 ## Operational driver
 
