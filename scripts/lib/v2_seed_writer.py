@@ -82,44 +82,23 @@ _BARE_DENOMINATION_NOUNS = frozenset({
 # variants encountered across sources (English / Danish / Latin
 # spellings, country-prefixed ucoin format, modern vs historical
 # spellings) to ONE canonical form per physical mint town.
+# Mint canonicalisation is centralised in `mint_registry` (single source
+# of truth — same registry drives entity classification in
+# v2_entity_classify.py). See `mint_registry.py` module docstring for
+# the rationale + the 2026-05-26 ASCII-alias regression that motivated
+# unifying the previously-split tables.
+#
+# Derived `{alias: display}` map for fast _canonicalise_mint lookup.
 # Project convention per CLAUDE.md i18n policy: German period spelling
 # for project canonical (Kopenhagen, Christiania, Glückstadt, Altona).
-_MINT_CANONICAL = {
-    # Copenhagen variants → Kopenhagen
-    "copenhagen": "Kopenhagen",
-    "københavn": "Kopenhagen",
-    "kjøbenhavn": "Kopenhagen",      # pre-1948 Danish spelling
-    "k�benhavn": "Kopenhagen",        # mojibake from iso-8859 source
-    "hafnia": "Kopenhagen",           # Latin (Christian IV legends)
-    "kopenhagen": "Kopenhagen",
-    # Christiania / Oslo (Norge)
-    "christiania": "Christiania",
-    "oslo": "Christiania",            # pre-1924 Christiania (post 1925 Oslo)
-                                       # — project window ends 1914 → Christiania
-    # Glückstadt variants
-    "glückstadt": "Glückstadt",
-    "gluckstadt": "Glückstadt",       # ASCII fallback
-    "gl�ckstadt": "Glückstadt",       # mojibake
-    # Rendsburg (German canonical for SH)
-    "rendsburg": "Rendsburg",
-    "rendsborg": "Rendsburg",         # Danish spelling
-    # Helsingør
-    "helsingør": "Helsingør",
-    "helsingor": "Helsingør",
-    "helsing�r": "Helsingør",         # mojibake
-    "elsinore": "Helsingør",          # English
-    "elseneur": "Helsingør",          # French (old auction catalogues)
-    # Aarhus / Århus
-    "århus": "Århus",
-    "aarhus": "Århus",
-    # Malmö / Malmø (Scania historical; Swedish for project)
-    "malmö": "Malmö",
-    "malmø": "Malmö",                 # Danish for the same town
-    "malm�": "Malmö",                 # mojibake
-    "malmoe": "Malmö",
-    # Kongsberg (Norge silver mint)
-    "kongsberg": "Kongsberg",
-    "konsberg": "Kongsberg",
+from lib.mint_registry import (  # noqa: E402
+    ALIAS_TO_CANON as _MINT_ALIAS_TO_CANON,
+    CANON_TO_DISPLAY as _MINT_CANON_TO_DISPLAY,
+)
+_MINT_CANONICAL: dict[str, str] = {
+    alias: _MINT_CANON_TO_DISPLAY[canon]
+    for alias, canon in _MINT_ALIAS_TO_CANON.items()
+    if canon in _MINT_CANON_TO_DISPLAY
 }
 
 # Country / region prefix tokens that ucoin sometimes prepends
@@ -754,6 +733,78 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
     return kept, stats
 
 
+def _check_entity_invariant(
+    coins: list[dict],
+    source_name: str,
+) -> dict:
+    """Per-coin invariant check: when `mint` maps unambiguously to ONE
+    entity via the unified `mint_registry`, the coin's `issuing_entity`
+    SHOULD match that mapping. Disagreements are reported to stdout
+    + returned in the stats dict.
+
+    A disagreement is NOT auto-corrected here — some source builders
+    legitimately override the mint-based default (NumisMaster classifies
+    by Krause-region / issuer-name, which is year-aware for cases like
+    Altona pre-1640 = Schauenburg vs post-1640 = Royal-Holstein). The
+    invariant check exists so a fresh regression surfaces immediately
+    rather than waiting for a project-wide audit run.
+
+    The 2026-05-26 entity-classification refactor (mint_registry
+    unification) closed an ASCII-alias gap that had silently routed
+    87 royal-Holstein-mint Bruun + NumisMaster + ucoin entries to
+    `danish_realm` for several months. Without this invariant the next
+    similar regression (new mint alias added to one table but not the
+    other; new harvester emitting an un-recognised spelling) would only
+    surface via manual user-visible side effects.
+    """
+    # Lazy import to avoid circular dependency at module load.
+    from lib.v2_entity_classify import classify_mint_to_entity  # noqa: PLC0415
+
+    stats = {"entity_mismatch": 0}
+    mismatches: list[tuple[str, str, str, str]] = []  # (id, mint, current, expected)
+    for c in coins:
+        mint = c.get("mint")
+        if mint in (None, "", []):
+            continue
+        expected = classify_mint_to_entity(mint)
+        if expected is None:
+            continue
+        ie = c.get("issuing_entity")
+        current = ie if isinstance(ie, str) else (
+            sorted(str(e) for e in ie if e)[0] if isinstance(ie, list) and ie else None
+        )
+        # Normalise expected to scalar (alphabetically-first for list-form
+        # — matches `_home_entity` convention).
+        expected_scalar = expected if isinstance(expected, str) else (
+            sorted(str(e) for e in expected if e)[0] if isinstance(expected, list) else None
+        )
+        if current is None or expected_scalar is None:
+            continue
+        if current != expected_scalar:
+            # Special case: when BOTH current and expected are in the
+            # coin's list-form issuing_entity, treat as agreement (joint
+            # mint where multiple entities are legitimately claimed).
+            if isinstance(ie, list) and expected_scalar in [str(e) for e in ie]:
+                continue
+            stats["entity_mismatch"] += 1
+            mismatches.append((str(c.get("id", "?")), str(mint),
+                               current, expected_scalar))
+    if mismatches:
+        print(f"\n[{source_name}] ⚠️  ENTITY INVARIANT: "
+              f"{len(mismatches)} coins have mint→entity disagreement")
+        print(f"  (mint-classifier returns one entity, "
+              f"coin's issuing_entity says another)")
+        # Print up to first 10 to keep log readable
+        for cid, mint, cur, exp in mismatches[:10]:
+            print(f"    {cid:42s}  mint={mint:18s}  "
+                  f"current={cur}  expected={exp}")
+        if len(mismatches) > 10:
+            print(f"    ... and {len(mismatches) - 10} more")
+        print(f"  Run `scripts/maintenance/audit_entity_misclassifications.py --apply` "
+              f"to relocate to expected entity.")
+    return stats
+
+
 def _home_entity(coin: dict) -> str | None:
     """Return the home-file entity for a coin.
 
@@ -820,6 +871,14 @@ def write_v2_seed(
               f"out_of_scope_filtered={hygiene_stats['out_of_scope_filtered']}, "
               f"nominal_normalised={hygiene_stats['nominal_normalised']}, "
               f"mint_normalised={hygiene_stats['mint_normalised']}")
+
+    # Entity-invariant check (post-hygiene so the normalised mint string
+    # is what the classifier sees). Emits warnings to stdout for any
+    # coin whose `issuing_entity` disagrees with what the mint-driven
+    # classifier returns. Doesn't auto-correct — the C-stage maintenance
+    # script is the authorised path to relocate misclassified entries
+    # (preserves curator decisions + handles cross-file moves cleanly).
+    _check_entity_invariant(coins, source_name)
 
     by_entity: dict[str, list[dict]] = defaultdict(list)
     unclassified: list[dict] = []
