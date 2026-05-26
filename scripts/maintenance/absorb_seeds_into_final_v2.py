@@ -1252,22 +1252,61 @@ def process_entity(entity_id: str) -> dict:
     # 2026-05-27: «ці дані мають прораховуватись як тільки коін отримує
     # своє місце в стопі».
     #
-    # Conservative behaviour: only fills when fraction is currently None
-    # AND the inferred candidate exists in `fuss.fractions`. Curator-set
-    # `_curation_holds: [fraction, ...]` is respected (never overwrites
-    # an existing fraction value).
+    # Two paths:
+    #   (a) FILL — fraction is currently None → inferred value emitted.
+    #   (b) CORRECT — fraction was set by a PRIOR (buggy) inference run
+    #       AND the fresh inference returns a different value. The
+    #       common bug-pattern: «½ Skilling» under 9_25_thaler used to
+    #       infer `1/2` (leading_frac applied as-if head was the base
+    #       unit) when the correct answer is `1/192` (½ × 1/96 sub-unit
+    #       fraction). The fix at the lib level (sub-unit-aware path 1)
+    #       only kicks in for new None values; we ALSO replace existing
+    #       values that match the buggy shape so the data converges on
+    #       the fresh logic without manual cleanup.
+    #
+    # Curator overrides via `_curation_holds: [fraction, ...]` always
+    # win — neither path touches `fraction` when it's in holds. This is
+    # the lever the curator uses to pin a value across regens (e.g.
+    # «½ Krone» of a Kipper-period coin that doesn't follow the textbook
+    # ratio).
     fuss_fractions_cache = _get_fuss_fractions_cache()
     inferred_fractions_count = 0
+    corrected_fractions_count = 0
     for entry in enriched_entries:
-        if entry.get("fraction"):
-            continue  # already set — never overwrite
+        holds = set(entry.get("_curation_holds") or [])
+        if "fraction" in holds:
+            continue  # curator-pinned, never touch
+        existing = entry.get("fraction")
         cand = infer_fraction(entry, fuss_fractions_cache)
-        if cand:
+        if not cand:
+            continue
+        if not existing:
             entry["fraction"] = cand
             inferred_fractions_count += 1
+            continue
+        # existing is set; consider replacement only when the prior value
+        # matches the LEGACY buggy-path output AND fresh inference gives
+        # a different (correct) value. The legacy path returned the bare
+        # leading_frac of the nominal regardless of whether the head was
+        # a sub-unit; that's exactly the shape to overwrite.
+        if str(existing) == str(cand):
+            continue
+        # Reproduce the legacy path-1 output: if nominal has a leading
+        # unicode/text fraction AND that fraction is the current value,
+        # this entry was likely set by the buggy code. Overwrite.
+        nom = entry.get("nominal") or ""
+        from lib.fraction_infer import _parse_nominal_head as _pnh
+        leading_frac, _count, _rest = _pnh(nom)
+        if leading_frac and str(existing) == leading_frac:
+            entry["fraction"] = cand
+            corrected_fractions_count += 1
     if inferred_fractions_count:
         print(f"  [{entity_id}] fraction-inference: "
               f"set on {inferred_fractions_count} entries from nominal+fuss")
+    if corrected_fractions_count:
+        print(f"  [{entity_id}] fraction-inference: "
+              f"corrected {corrected_fractions_count} entries "
+              f"(prior buggy leading-frac path output)")
 
     return {
         "entity_id": entity_id,

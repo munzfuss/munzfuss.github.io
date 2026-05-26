@@ -131,13 +131,14 @@ RULES: dict[str, list[tuple[str, callable]]] = {
         ("øre", lambda n: {10: "1/192"}.get(n, None)),  # 1854-74 Rigsmønt øre
     ],
     # ------- 10½-Krone-Fuß (Christian V Krone + Frederik III) -------
+    # No «Ducat» rule here intentionally: gold Ducats under kronemont
+    # are out-of-standard (typically Vægterdukat reichsdukatenfuss
+    # mis-classified). Curator must decide per case.
     "kronemont": [
         ("krone", _identity),
         ("kroner", _identity),
         ("mark", lambda n: {1: "1/4", 2: "1/2", 4: "1", 6: "1"}.get(n, None)),
         ("marck", lambda n: {1: "1/4", 2: "1/2", 4: "1", 6: "1"}.get(n, None)),
-        ("ducat", _fixed("1/2")),  # ½ Ducat-Krone (kronemont gold-half nominally)
-        ("dukat", _fixed("1/2")),
     ],
     # ------- Christian IV Krone / Corona Danica -------
     "kronemont_chr_iv": [
@@ -347,6 +348,32 @@ def load_fuss_fractions(fuesse_path: str | Path | None = None) -> dict[str, set]
     }
 
 
+def _fraction_str_to_pair(s: str) -> tuple[int, int] | None:
+    """Parse «1/2», «3/2», «1» → (num, denom). Returns None if unparseable."""
+    s = s.strip()
+    if "/" in s:
+        a, _, b = s.partition("/")
+        if a.isdigit() and b.isdigit() and int(b) != 0:
+            return int(a), int(b)
+        return None
+    if s.isdigit():
+        return int(s), 1
+    return None
+
+
+def _format_fraction(num: int, denom: int) -> str:
+    """Reduce + format «num/denom» → canonical fraction string. (2,4) → «1/2», (4,1) → «4»."""
+    from math import gcd
+    if denom == 0:
+        return ""
+    g = gcd(num, denom)
+    num //= g
+    denom //= g
+    if denom == 1:
+        return str(num)
+    return f"{num}/{denom}"
+
+
 def infer_fraction(coin: dict,
                    fuss_fractions: dict[str, set] | None = None) -> str | None:
     """Return the inferred ``fraction`` string for this coin, or None.
@@ -360,6 +387,18 @@ def infer_fraction(coin: dict,
     `fuss_fractions` is the result of `load_fuss_fractions()`; passed
     as a parameter so callers can cache it across many invocations.
     Loads lazily if omitted.
+
+    Sub-unit + leading-fraction handling
+    ====================================
+
+    «½ Speciedaler» under 9_25_thaler → fraction "1/2" (head is base unit
+    whose count-1 maps to fraction "1"; leading_frac IS the fraction).
+
+    «½ Skilling» under 9_25_thaler → fraction "1/192" (head is sub-unit;
+    1 Skilling = 1/96; ½ × 1/96 = 1/192). Computed by multiplying the
+    leading fraction by the sub-unit's count=1 fraction. If the result
+    isn't a defined `fuss.fractions` key, returns None rather than risk
+    a wrong Soll.
     """
     fuss = coin.get("fuss")
     if not fuss or fuss == "seed_unsorted":
@@ -377,14 +416,42 @@ def infer_fraction(coin: dict,
 
     available = fuss_fractions.get(fuss, set())
 
-    # Path 1 — leading unicode/text fraction («½ Speciedaler»).
+    # Path 1 — leading unicode/text fraction («½ Speciedaler», «½ Skilling»).
+    # Sub-unit-aware: only emit leading_frac as the FINAL fraction when
+    # head IS a base unit (token's fn(1) == "1"); for sub-units multiply
+    # leading_frac × sub-unit fraction.
     if leading_frac:
-        if leading_frac in available:
-            # Sanity-check head matches a defined denom for this fuss
-            for token, _ in rules:
-                if head.startswith(token):
+        head_matched = False
+        for token, fn in rules:
+            if not head.startswith(token):
+                continue
+            head_matched = True
+            sub_unit_fraction = fn(1)
+            if sub_unit_fraction is None:
+                # fn(1) returned None — the rule doesn't have a «1 X»
+                # mapping. Skip (curator decides).
+                return None
+            if sub_unit_fraction == "1":
+                # Head IS the base unit → leading_frac IS the fraction.
+                if leading_frac in available:
                     return leading_frac
-            return leading_frac
+                return None
+            # Head is a sub-unit. Compute leading_frac × sub_unit_fraction.
+            lf_pair = _fraction_str_to_pair(leading_frac)
+            su_pair = _fraction_str_to_pair(sub_unit_fraction)
+            if not (lf_pair and su_pair):
+                return None
+            num = lf_pair[0] * su_pair[0]
+            denom = lf_pair[1] * su_pair[1]
+            candidate = _format_fraction(num, denom)
+            if candidate and candidate in available:
+                return candidate
+            return None
+        if head_matched:
+            return None
+        # No token matched. Don't emit a fraction we can't justify
+        # against a known head denomination.
+        return None
 
     # Path 2 — count + denom token («N Speciedaler» etc.).
     for token, fn in rules:
