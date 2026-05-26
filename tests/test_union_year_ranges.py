@@ -3,28 +3,44 @@
 Function under test:
     scripts/maintenance/merge_seeds_cross_source.py :: _union_year_ranges
 
-Behavioural rule the function SHOULD implement (user direction, 2026-05-23):
+Behavioural rule the function MUST implement (user direction,
+2026-05-23 + 2026-05-26 refinement):
 
-- Year-range entries from N seed sources come in two shapes:
-  • SPAN     (lo, hi) with lo < hi — a less-precise bounding window
-             (typical Numista / ucoin «1640-1646» published year-range).
-  • SINGLETON (y, y) where lo == hi — an AUTHORITATIVE per-year strike
-             attestation (typical NumisMaster / Hede per-year breakdown).
+- Year-range entries from N seed sources come in two CLASSIFIED shapes:
+  • LOOSE source = a member whose `year_ranges` is a SINGLE non-
+                   singleton range `[[lo, hi]]` with lo < hi.
+                   Typical: Numista / ucoin's «1640-1646» single field.
+  • DISCRETE source = anything else: multi-entry year_ranges, a single
+                   singleton `[[y, y]]`, or multiple singletons.
+                   Typical: NumisMaster / Hede / Bruun per-year breakdown.
 
-- When N sources are merged:
-  1. UNION all singletons across all members → these are the
-     authoritative attested years.
-  2. For each span: if ANY singleton year falls inside the span's
-     [lo, hi] range, the span is OVERLAP-DISPLACED by the discrete
-     attestations — discarded entirely.
-  3. Spans with no overlapping singleton SURVIVE and are emitted
-     as-is.
-  4. Result = (union of singletons) ∪ (surviving spans), sorted.
+- A DISCRETE source's `year_ranges` is exploded into its full year SET:
+  each range `[lo, hi]` contributes years lo..hi inclusive. A range
+  like `[[1618, 1619]]` inside a multi-entry list contributes
+  {1618, 1619} as DISCRETE attestations (NOT a loose span).
 
-- Rationale: discrete singletons say «strike happened in THIS year»;
-  span says «strikes happened SOMEWHERE in this range». When they
-  conflict, the discrete authority wins per «дискретні витісняють
-  ширший період коли перекриваються».
+- Cross-source merge rule:
+
+  1. discrete_years = union of attested years from ALL discrete members.
+  2. loose_ranges  = list of (lo, hi) tuples from loose members.
+  3. SPAN COMPARISON: when discrete_years is non-empty, compute
+     discrete_min / discrete_max. For each loose range (lo, hi):
+       * If discrete_min ≤ lo AND discrete_max ≥ hi → the discrete
+         attestations form a same-or-wider window than the loose source.
+         The loose range is DROPPED — discrete wins.
+       * Otherwise (discrete forms a NARROWER window) → loose KEPT;
+         final compression absorbs the discrete singletons into the
+         loose envelope.
+  4. Final result = (discrete years as `[y, y]` singletons) + surviving
+     loose ranges, sorted and compressed (adjacent / overlapping ranges
+     merge).
+
+- Rationale (user direction): when discrete sources together span the
+  same window as a loose source, the loose source is by definition
+  imprecise about the same period and is supplanted. When discrete
+  sources span a NARROWER window than the loose source, the loose
+  source carries information about years the discrete attestations
+  don't reach, so the loose envelope is retained.
 
 Test harness: stdlib unittest (no pytest dep needed). Run via:
 
@@ -116,68 +132,70 @@ class TestUnionYearRangesBasic(unittest.TestCase):
 
 
 class TestUnionYearRangesDiscreteDisplacement(unittest.TestCase):
-    """THE CORE RULE: discrete singletons displace overlapping spans.
-
-    These cases currently FAIL — they're the bug we're fixing.
+    """CORE RULE: discrete years displace a loose range ONLY when the
+    discrete attestations span same-or-wider than the loose range.
     """
 
     def test_163665_case_singletons_cover_span_endpoints(self):
-        """Bug 1 canonical case: ucoin span + NumisMaster discretes for KM-29.
+        """KM-29 canonical case: ucoin span + NumisMaster discretes.
 
-        ucoin says «1640-1646» (range), NumisMaster says «1640, 1642, 1646»
-        (discrete strike years). The discretes overlap the span at BOTH
-        endpoints. Per rule: discretes win, span discarded.
+        ucoin: «1640-1646» (loose). NumisMaster: «1640, 1642, 1646»
+        (discrete). Discrete span 1640-1646 = loose span 1640-1646.
+        Per rule: discrete spans same as loose → discrete wins, loose
+        discarded.
         """
         self.assertEqual(
             _union_year_ranges([
-                _member(year_ranges=[[1640, 1646]]),  # ucoin span
+                _member(year_ranges=[[1640, 1646]]),
                 _member(year_ranges=[
                     [1640, 1640], [1642, 1642], [1646, 1646],
-                ]),  # NumisMaster discretes
+                ]),
             ]),
             [[1640, 1640], [1642, 1642], [1646, 1646]],
         )
 
-    def test_singletons_strictly_inside_span(self):
-        """Discretes inside span (not on endpoints) — discretes still win."""
+    def test_singletons_strictly_inside_span_loose_wins(self):
+        """Discrete singletons strictly INSIDE a wider loose range — discrete
+        narrower than loose, so loose stays. Final compression absorbs the
+        singletons into the loose envelope.
+
+        Previously this case displaced the span; per the refined rule
+        (2026-05-26), discrete only wins when it spans same-or-wider.
+        """
         self.assertEqual(
             _union_year_ranges([
                 _member(year_ranges=[[1640, 1650]]),
                 _member(year_ranges=[[1643, 1643], [1647, 1647]]),
             ]),
-            [[1643, 1643], [1647, 1647]],
+            [[1640, 1650]],
         )
 
-    def test_single_singleton_overlaps_span(self):
-        """Even one discrete singleton overlapping a span discards the span."""
+    def test_single_singleton_inside_span_loose_wins(self):
+        """One discrete singleton inside wider loose range → discrete
+        narrower → loose stays."""
         self.assertEqual(
             _union_year_ranges([
                 _member(year_ranges=[[1640, 1646]]),
                 _member(year_ranges=[[1642, 1642]]),
             ]),
-            [[1642, 1642]],
+            [[1640, 1646]],
         )
 
-    def test_singleton_at_span_endpoint(self):
-        """Singleton matching span's start endpoint → displaces span."""
+    def test_singleton_at_span_endpoint_loose_wins(self):
+        """Singleton at span's start endpoint → discrete span (1 year) is
+        narrower than loose (7 years) → loose stays."""
         self.assertEqual(
             _union_year_ranges([
                 _member(year_ranges=[[1640, 1646]]),
                 _member(year_ranges=[[1640, 1640]]),
             ]),
-            [[1640, 1640]],
+            [[1640, 1646]],
         )
 
-    def test_docstring_example_under_new_rule(self):
-        """The current docstring example (which the new rule changes).
-
-        Member A: year_ranges = [[1591, 1593]]    (span)
-        Member B: year_ranges = [[1591,1591], [1595,1595]]  (singletons)
-
-        OLD behaviour: [[1591, 1593], [1595, 1595]]
-                      (span absorbed singleton 1591, kept singleton 1595)
-        NEW rule: singleton 1591 overlaps span → span discarded.
-                  Result: [[1591,1591], [1595,1595]]
+    def test_discrete_span_wider_than_loose_wins(self):
+        """Discrete singletons {1591, 1595} span 1591-1595 (5 years).
+        Loose [1591, 1593] (3 years). Discrete wider → covers loose
+        endpoints → drop loose.
         """
         self.assertEqual(
             _union_year_ranges([
@@ -187,18 +205,15 @@ class TestUnionYearRangesDiscreteDisplacement(unittest.TestCase):
             [[1591, 1591], [1595, 1595]],
         )
 
-    def test_multiple_sources_with_discretes_unite_and_displace(self):
-        """Per user: «при наявності декількох джерел які дають такі дискрети –
-        їхні дискрети перекриваються, і ширший менш точний період все одно
-        програє».
+    def test_multiple_discrete_sources_unite_to_cover_loose(self):
+        """Three sources example:
+          A: loose [1640, 1650]
+          B: discrete {1640, 1645}
+          C: discrete {1645, 1648}
 
-        Three sources:
-          A: span [1640, 1650]
-          B: singletons {1640, 1645}
-          C: singletons {1645, 1648}
-
-        Singletons union → {1640, 1645, 1648}. Span overlaps them → discarded.
-        Result: [[1640,1640], [1645,1645], [1648,1648]]
+        Combined discrete: {1640, 1645, 1648}, span 1640-1648 (9 years).
+        Loose [1640, 1650] span = 11 years. Discrete NARROWER → loose
+        stays. Final compress: discrete + loose → [[1640, 1650]].
         """
         self.assertEqual(
             _union_year_ranges([
@@ -206,7 +221,129 @@ class TestUnionYearRangesDiscreteDisplacement(unittest.TestCase):
                 _member(year_ranges=[[1640, 1640], [1645, 1645]]),
                 _member(year_ranges=[[1645, 1645], [1648, 1648]]),
             ]),
-            [[1640, 1640], [1645, 1645], [1648, 1648]],
+            [[1640, 1650]],
+        )
+
+    def test_multiple_discrete_sources_collectively_wider_loose_dropped(self):
+        """Three sources where combined discrete is WIDER than loose:
+          A: discrete {1640, 1642}
+          B: discrete {1646, 1648}
+          C: loose [1641, 1647]
+
+        Combined discrete: {1640, 1642, 1646, 1648}, span 1640-1648.
+        Loose 1641-1647. Discrete WIDER (1640 ≤ 1641 AND 1648 ≥ 1647)
+        → drop loose.
+        Result: [[1640, 1640], [1642, 1642], [1646, 1646], [1648, 1648]].
+        """
+        self.assertEqual(
+            _union_year_ranges([
+                _member(year_ranges=[[1640, 1640], [1642, 1642]]),
+                _member(year_ranges=[[1646, 1646], [1648, 1648]]),
+                _member(year_ranges=[[1641, 1647]]),
+            ]),
+            [[1640, 1640], [1642, 1642], [1646, 1646], [1648, 1648]],
+        )
+
+
+class TestUnionYearRangesUserDirectionExample(unittest.TestCase):
+    """2026-05-26 user direction: cross-source merge example.
+
+    «джерело А дає роки 1611 1613 1618-1619, а джерело Б дає 1613 1614
+    1619 1620, а джерело 3 дає 1611-1619, то повинно перемогти
+    результуюче "1611, 1613-1614, 1618-1620"»
+
+    This is the canonical case for the refined rule: A and B are both
+    multi-entry (DISCRETE) sources; C is a single-range (LOOSE) source
+    spanning a narrower window than A∪B. Discrete wins, loose dropped,
+    final compression collapses adjacent singletons.
+    """
+
+    def test_user_example_three_sources_discrete_wins(self):
+        """A: 1611, 1613, 1618-1619 (multi-entry, DISCRETE).
+        B: 1613, 1614, 1619, 1620 (multi-entry, DISCRETE).
+        C: 1611-1619 (single range, LOOSE).
+
+        Combined discrete: {1611, 1613, 1614, 1618, 1619, 1620}.
+        Discrete span 1611-1620 (10 years) ⊃ loose 1611-1619 (9 years)
+        → drop loose. Compress discrete: [[1611,1611], [1613,1614],
+        [1618,1620]].
+        """
+        self.assertEqual(
+            _union_year_ranges([
+                _member(year_ranges=[[1611, 1611], [1613, 1613], [1618, 1619]]),
+                _member(year_ranges=[[1613, 1613], [1614, 1614],
+                                     [1619, 1619], [1620, 1620]]),
+                _member(year_ranges=[[1611, 1619]]),
+            ]),
+            [[1611, 1611], [1613, 1614], [1618, 1620]],
+        )
+
+    def test_narrow_range_in_multi_entry_member_treated_as_discrete(self):
+        """A `[1618, 1619]` range INSIDE a multi-entry year_ranges list
+        is DISCRETE attestation of both 1618 AND 1619, NOT a span that
+        gets displaced by another source's singleton on 1619.
+
+        Old buggy behaviour: range [1618,1619] gets displaced wholesale
+        by singleton 1619 → year 1618 silently lost.
+        Correct behaviour: both 1618 and 1619 contribute to discrete_years
+        and survive into output.
+        """
+        self.assertEqual(
+            _union_year_ranges([
+                _member(year_ranges=[[1611, 1611], [1618, 1619]]),
+                _member(year_ranges=[[1619, 1619]]),
+            ]),
+            [[1611, 1611], [1618, 1619]],
+        )
+
+    def test_pair_of_narrow_ranges_no_loose(self):
+        """Two members each with a narrow range (multi-year, no singletons,
+        no separate loose source). Both treated as discrete-flavoured;
+        result is the year-set union compressed.
+
+        A: [[1614, 1617]] (single entry but multi-year — DEFAULT loose
+           when alone, but no other discrete source to compete).
+        B: [[1616, 1619]] (same shape).
+
+        Both are LOOSE (single non-singleton). No discrete_years.
+        → just union loose ranges, compressed: [[1614, 1619]].
+        """
+        self.assertEqual(
+            _union_year_ranges([
+                _member(year_ranges=[[1614, 1617]]),
+                _member(year_ranges=[[1616, 1619]]),
+            ]),
+            [[1614, 1619]],
+        )
+
+    def test_reign_window_fallback_loose_keeps_when_discrete_narrower(self):
+        """Hans Nobel-style: Bruun attests {1496}, Galster attests {1502},
+        reign-window fallback gives [1481, 1513].
+
+        Discrete: {1496, 1502}, span 1496-1502 (7 years).
+        Loose [1481, 1513] (33 years). Discrete NARROWER.
+        → loose stays. Final compress: loose absorbs discrete singletons.
+        Result: [[1481, 1513]].
+        """
+        self.assertEqual(
+            _union_year_ranges([
+                _member(year_ranges=[[1496, 1496]]),
+                _member(year_ranges=[[1502, 1502]]),
+                _member(year_ranges=[[1481, 1513]]),
+            ]),
+            [[1481, 1513]],
+        )
+
+    def test_two_discrete_sources_no_loose_compress_adjacent(self):
+        """A: {1640, 1641}, B: {1641, 1642}. Combined: {1640, 1641, 1642}.
+        No loose source. Compression merges adjacent: [[1640, 1642]].
+        """
+        self.assertEqual(
+            _union_year_ranges([
+                _member(year_ranges=[[1640, 1640], [1641, 1641]]),
+                _member(year_ranges=[[1641, 1641], [1642, 1642]]),
+            ]),
+            [[1640, 1642]],
         )
 
 
@@ -303,11 +440,15 @@ class TestUnionYearRangesEdgeCases(unittest.TestCase):
             [[1640, 1650]],
         )
 
-    def test_singletons_partially_overlap_multiple_spans(self):
-        """Singletons displace EACH span they overlap, not all spans globally.
+    def test_singleton_inside_one_of_multiple_spans_loose_wins(self):
+        """One discrete singleton inside one of two loose spans → discrete
+        span (1 year) narrower than ANY loose span → both loose ranges
+        stay. The singleton is absorbed by the loose envelope it falls
+        within during compression.
 
-        Singletons {1645} overlap span [1640,1650] but NOT span [1700,1710].
-        First span discarded; second preserved alongside singletons.
+        Per refined rule (2026-05-26): only DISCRETE that spans
+        same-or-wider than each loose range displaces. Here {1645}
+        spans 1 year << 11 years per loose range → no displacement.
         """
         self.assertEqual(
             _union_year_ranges([
@@ -315,7 +456,64 @@ class TestUnionYearRangesEdgeCases(unittest.TestCase):
                 _member(year_ranges=[[1700, 1710]]),
                 _member(year_ranges=[[1645, 1645]]),
             ]),
-            [[1645, 1645], [1700, 1710]],
+            [[1640, 1650], [1700, 1710]],
+        )
+
+
+_format_year_label = _merger._format_year_label
+
+
+class TestFormatYearLabel(unittest.TestCase):
+    """Compact display rendering of year_ranges.
+
+    The function takes the cross-source merged year_ranges output and
+    formats it for the `year_label` display field. Singletons render as
+    bare year strings; multi-year ranges render with an en-dash; entries
+    are joined with «, ».
+
+    Output examples:
+      [[1640, 1640]] → "1640"
+      [[1640, 1646]] → "1640-1646"
+      [[1611, 1611], [1613, 1614], [1618, 1620]] → "1611, 1613-1614, 1618-1620"
+    """
+
+    def test_none_input(self):
+        """None → None (no year info)."""
+        self.assertIsNone(_format_year_label(None))
+
+    def test_empty_list(self):
+        """Empty list → None."""
+        self.assertIsNone(_format_year_label([]))
+
+    def test_single_singleton(self):
+        """[[1640, 1640]] → '1640'."""
+        self.assertEqual(_format_year_label([[1640, 1640]]), "1640")
+
+    def test_single_range(self):
+        """[[1640, 1646]] → '1640-1646'."""
+        self.assertEqual(_format_year_label([[1640, 1646]]), "1640-1646")
+
+    def test_user_example_compact(self):
+        """User direction example (2026-05-26):
+        [[1611,1611], [1613,1614], [1618,1620]] → '1611, 1613-1614, 1618-1620'.
+        """
+        self.assertEqual(
+            _format_year_label([[1611, 1611], [1613, 1614], [1618, 1620]]),
+            "1611, 1613-1614, 1618-1620",
+        )
+
+    def test_three_discrete_singletons(self):
+        """[[1640,1640], [1642,1642], [1646,1646]] → '1640, 1642, 1646'."""
+        self.assertEqual(
+            _format_year_label([[1640, 1640], [1642, 1642], [1646, 1646]]),
+            "1640, 1642, 1646",
+        )
+
+    def test_mixed_singletons_and_ranges(self):
+        """Singletons + ranges mixed → comma-separated mix."""
+        self.assertEqual(
+            _format_year_label([[1481, 1513], [1532, 1532]]),
+            "1481-1513, 1532",
         )
 
 

@@ -79,6 +79,7 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     _collect_metal,
     _deep_merge_catalog,
     _union_year_ranges,
+    _format_year_label,
     _take_first_non_none,
     _or_merge_verified,
 )
@@ -199,15 +200,22 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
             out["year_first"] = min(r[0] for r in authoritative_yr)
             out["year_last"] = max(r[1] for r in authoritative_yr)
             out["year_ranges"] = authoritative_yr
-    # year_label:
-    # For pure-absorbed foundations, the seed_unified member's
-    # year_label is the source of truth (it tracks the fresh parser
-    # output). For curator foundations, preserve curator display
-    # formatting unless we re-derive from year_first/year_last above.
-    if pure_absorbed and seed_member is not None and seed_member.get("year_label"):
-        out["year_label"] = seed_member["year_label"]
-    elif final_entry.get("year_label") is not None and not pure_absorbed:
+    # year_label — ALWAYS synthesise from the resolved year_ranges
+    # (via `_format_year_label`). This guarantees the display label
+    # reflects the merged truth «1611, 1613-1614, 1618-1620» rather
+    # than a single source's loose «1611-1619» that may have been
+    # supplanted by discrete attestations during cross-source merge.
+    #
+    # The curator-foundation case is the exception: when a V1-curator
+    # entry has frozen year info via `_curation_holds: {year_label}`,
+    # the curator's hand-written label survives regen unchanged.
+    holds = final_entry.get("_curation_holds")
+    holds_keys = set(holds.keys() if isinstance(holds, dict)
+                     else (holds or []))
+    if "year_label" in holds_keys and final_entry.get("year_label"):
         out["year_label"] = final_entry["year_label"]
+    elif authoritative_yr is not None:
+        out["year_label"] = _format_year_label(authoritative_yr)
     elif "year_first" in out and "year_last" in out:
         out["year_label"] = (str(out["year_first"]) if out["year_first"] == out["year_last"]
                               else f"{out['year_first']}-{out['year_last']}")

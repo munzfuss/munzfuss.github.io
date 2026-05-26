@@ -2125,89 +2125,158 @@ def _take_first_non_none(members: list[dict], field: str):
 
 
 def _union_year_ranges(members: list[dict]) -> list[list[int]] | None:
-    """Cross-source year-range merge with discrete-displaces-span rule.
+    """Cross-source year-range merge with span-comparison displacement.
 
     Each member contributes `year_ranges` (list of `[lo, hi]` pairs) or
-    falls back to `year_first` / `year_last`. Pairs split into two shapes:
+    falls back to `year_first` / `year_last`. A member's year_ranges
+    is CLASSIFIED in one of two flavours:
 
-      SPAN      lo < hi — less-precise bounding window (e.g. Numista or
-                ucoin published «1640-1646»).
-      SINGLETON lo == hi — authoritative per-year strike attestation
-                (e.g. NumisMaster or Hede per-year breakdown).
+      LOOSE     single non-singleton range `[[lo, hi]]` with lo < hi.
+                Typical: Numista / ucoin's «1640-1646» date-range field
+                published without per-year breakdown.
+      DISCRETE  anything else — multiple entries, single singleton, or
+                multiple singletons. A multi-year range INSIDE a
+                multi-entry list (e.g. `[1618, 1619]` alongside other
+                entries) is exploded into its full year set and counts
+                as discrete attestation.
 
-    Merge rule (user direction, 2026-05-23):
+    Cross-source merge (user direction, 2026-05-23 + 2026-05-26 refinement):
 
-      1. UNION all singletons across all members → authoritative attested
-         years.
-      2. For each span: if ANY singleton year falls inside the span's
-         [lo, hi] range, the span is DISPLACED by the discrete attestations
-         and discarded.
-      3. Spans with no overlapping singleton SURVIVE and are emitted as-is.
-      4. Surviving spans are de-overlapped among themselves (legacy
-         envelope union — they're all of equal precision tier).
-      5. Result = (singletons as [y, y]) ∪ (surviving spans), sorted.
+      1. discrete_years = union of attested years from every DISCRETE
+         member (each range `[lo, hi]` in such a member is exploded
+         into years lo..hi inclusive).
+      2. loose_ranges = (lo, hi) tuples from every LOOSE member.
+      3. Span comparison: when discrete_years is non-empty, compute
+         discrete_min = min(discrete_years), discrete_max = max(...).
+         For each loose range (lo, hi):
+            • If discrete_min ≤ lo AND discrete_max ≥ hi → discrete
+              attestations span same-or-wider than the loose window
+              → DROP the loose range. Discrete wins.
+            • Otherwise (discrete narrower than loose) → KEEP loose.
+              Final compression will absorb the discrete singletons
+              into the loose envelope.
+      4. Result = (discrete years as `[y, y]`) + surviving loose ranges,
+         sorted and compressed (adjacent / overlapping ranges merge).
 
-    Rationale: a discrete singleton says «strike happened in THIS year»;
-    a span says «strikes happened SOMEWHERE in this range». When they
-    overlap, the discrete authority wins — singletons are the precise
-    form of the same claim.
+    Returns None when no member contributes any year info.
 
-    Returns None when no member has any year info.
+    Rationale: when discrete sources collectively span the SAME window
+    a loose source describes, the loose source is by definition a
+    less-precise version of the same claim and is supplanted by the
+    granular form. When discrete sources span a NARROWER window than
+    the loose source, the loose source carries information about years
+    the discrete attestations don't reach (often a reign-window or a
+    date-range field), so the loose envelope is retained.
     """
-    singletons: set[int] = set()
-    spans: list[tuple[int, int]] = []
+    discrete_years: set[int] = set()
+    loose_ranges: list[tuple[int, int]] = []
 
     for m in members:
         yr = m.get("year_ranges")
+        source_pairs: list[tuple[int, int]] = []
         if isinstance(yr, list) and yr:
-            source_pairs = []
             for r in yr:
                 if isinstance(r, (list, tuple)) and len(r) == 2:
                     try:
-                        source_pairs.append((int(r[0]), int(r[1])))
+                        a, b = int(r[0]), int(r[1])
                     except (TypeError, ValueError):
                         continue
+                    if a > b:
+                        a, b = b, a
+                    source_pairs.append((a, b))
         else:
             yf, yl = m.get("year_first"), m.get("year_last")
             if isinstance(yf, int):
-                source_pairs = [(yf, int(yl) if isinstance(yl, int) else yf)]
-            else:
-                source_pairs = []
-        for lo, hi in source_pairs:
-            if lo == hi:
-                singletons.add(lo)
-            else:
-                if lo > hi:
-                    lo, hi = hi, lo
-                spans.append((lo, hi))
+                a = yf
+                b = int(yl) if isinstance(yl, int) else yf
+                if a > b:
+                    a, b = b, a
+                source_pairs = [(a, b)]
 
-    if not singletons and not spans:
+        if not source_pairs:
+            continue
+
+        # Classify the member: LOOSE if it carries a single non-singleton
+        # range AND nothing else; DISCRETE otherwise (multi-entry list,
+        # single singleton, or multiple singletons).
+        is_loose = (
+            len(source_pairs) == 1
+            and source_pairs[0][0] < source_pairs[0][1]
+        )
+        if is_loose:
+            loose_ranges.append(source_pairs[0])
+        else:
+            # Explode every range into its year set (singleton ranges
+            # contribute just one year; multi-year ranges inside a
+            # multi-entry list contribute every year between lo and hi
+            # inclusive — they're discrete attestations of each year).
+            for lo, hi in source_pairs:
+                for y in range(lo, hi + 1):
+                    discrete_years.add(y)
+
+    if not discrete_years and not loose_ranges:
         return None
 
-    # Step 2-3: drop spans that overlap any singleton.
-    surviving_spans: list[tuple[int, int]] = []
-    if singletons:
-        for lo, hi in spans:
-            if any(lo <= y <= hi for y in singletons):
-                continue  # displaced
-            surviving_spans.append((lo, hi))
+    # Step 3: drop loose ranges fully covered by the discrete span.
+    surviving_loose: list[tuple[int, int]] = []
+    if discrete_years:
+        d_min = min(discrete_years)
+        d_max = max(discrete_years)
+        for lo, hi in loose_ranges:
+            if d_min <= lo and d_max >= hi:
+                continue  # discrete spans wider-or-equal → drop loose
+            surviving_loose.append((lo, hi))
     else:
-        surviving_spans = list(spans)
+        surviving_loose = list(loose_ranges)
 
-    # Step 4: de-overlap surviving spans against each other (no singletons
-    # to confuse — these are all equal-precision spans now).
-    surviving_spans.sort()
-    merged_spans: list[list[int]] = []
-    for lo, hi in surviving_spans:
-        if merged_spans and lo <= merged_spans[-1][1] + 1:
-            merged_spans[-1][1] = max(merged_spans[-1][1], hi)
+    # Step 4: assemble discrete singletons + surviving loose ranges,
+    # then compress (sort + merge adjacent or overlapping).
+    all_ranges: list[tuple[int, int]] = sorted(
+        [(y, y) for y in discrete_years] + surviving_loose
+    )
+    merged: list[list[int]] = []
+    for lo, hi in all_ranges:
+        if merged and lo <= merged[-1][1] + 1:
+            merged[-1][1] = max(merged[-1][1], hi)
         else:
-            merged_spans.append([lo, hi])
+            merged.append([lo, hi])
+    return merged
 
-    # Step 5: emit singletons (as [y, y]) + surviving spans, fully sorted.
-    out: list[list[int]] = [[y, y] for y in sorted(singletons)] + merged_spans
-    out.sort()
-    return out
+
+def _format_year_label(year_ranges) -> str | None:
+    """Render year_ranges as a compact `year_label` display string.
+
+    Singletons render as bare year strings; multi-year ranges render
+    with a hyphen; entries are joined with «, ». Returns None when
+    the input is None or empty.
+
+    Examples:
+      [[1640, 1640]]                              → "1640"
+      [[1640, 1646]]                              → "1640-1646"
+      [[1640, 1640], [1642, 1642], [1646, 1646]]  → "1640, 1642, 1646"
+      [[1611, 1611], [1613, 1614], [1618, 1620]]  → "1611, 1613-1614, 1618-1620"
+
+    Always render from the cross-source MERGED year_ranges (after
+    `_union_year_ranges` applied) rather than from any single source's
+    published year_label — discrete attestations win over loose ranges
+    when they span same-or-wider per the merge rule, and the label
+    must reflect the merged truth, not the loose source's original
+    «1640-1646» form.
+    """
+    if not year_ranges:
+        return None
+    parts: list[str] = []
+    for pair in year_ranges:
+        if not (isinstance(pair, (list, tuple)) and len(pair) == 2):
+            continue
+        lo, hi = pair[0], pair[1]
+        if lo == hi:
+            parts.append(str(lo))
+        else:
+            parts.append(f"{lo}-{hi}")
+    if not parts:
+        return None
+    return ", ".join(parts)
 
 
 def _or_merge_verified(members: list[dict], field: str) -> bool | None:
@@ -2291,16 +2360,14 @@ def build_unified(members: list[dict], unified_id: str,
             out["year_first"] = min(r[0] for r in union_yr)
             out["year_last"] = max(r[1] for r in union_yr)
             out["year_ranges"] = union_yr
-    # year_label — top-auth wins for display (synthesise if missing
-    # but year info exists)
-    year_label = _take_first_non_none(sorted_members, "year_label")
-    if year_label is not None:
-        out["year_label"] = year_label
-    elif "year_first" in out and "year_last" in out:
-        if out["year_first"] == out["year_last"]:
-            out["year_label"] = str(out["year_first"])
-        else:
-            out["year_label"] = f"{out['year_first']}-{out['year_last']}"
+    # year_label — ALWAYS synthesise from the merged year_ranges, never
+    # take from a source verbatim. When discrete attestations from one
+    # source supersede a loose date-range from another (per
+    # `_union_year_ranges` rules), the display label has to reflect the
+    # merged truth «1611, 1613-1614, 1618-1620», not the loose
+    # source's original «1611-1619» label.
+    if union_yr is not None:
+        out["year_label"] = _format_year_label(union_yr)
 
     # Other scalar text fields — gap-fill across members (log conflicts).
     # `ruler` uses _normalise_ruler equivalence to suppress pure-punctuation
