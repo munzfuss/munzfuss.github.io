@@ -303,25 +303,110 @@ def parse_part(slug: str) -> list[dict]:
         mmint = MINT_RE.search(body_match)
         if mmint:
             mint = mmint.group(1)
-        # Ruler — heuristic: look for KING_NAME inside body, ".[ruler] ."
-        ruler = None
-        rulers = [
-            "Christian III", "Christian IV", "Christian V", "Christian VI", "Christian VII",
-            "Christian VIII", "Christian IX", "Christian X",
-            "Frederik II", "Frederik III", "Frederik IV", "Frederik V", "Frederik VI",
-            "Frederik VII", "Frederik VIII", "Frederik IX",
-            "Frederick II", "Frederick III", "Frederick IV", "Frederick V", "Frederick VI",
-            "Frederick VII", "Frederick VIII", "Frederick IX",
-            "Friedrich II", "Friedrich III", "Friedrich IV",
-            "Karl Friedrich", "Carl Friedrich",
-            "Christian Albrecht",
-            "Margrethe II", "Hans", "Adolf", "Johann Adolf",
-            "Håkon VII", "Olav V", "Harald V",
-            "Oskar I", "Oskar II", "Karl XV", "Karl XIV Johan", "Gustav V",
+        # Ruler — heuristic: look for KING_NAME inside body, before
+        # mintmaster/engraver/provenance annotations. The pre-Mintmaster
+        # cut is critical: Bruun lots routinely include lines like
+        # «Mintmaster: Hans Glaser» / «Engraver: Hans zum Busch» /
+        # «Ex: Hans Henning Sale» whose personal-name tokens would
+        # otherwise be captured as the ruler when the cataloguer's own
+        # ruler attribution is missing or typo'd.
+        #
+        # Real-world failure (Bruun lot 14215, KM-94 1 Ducat 1642):
+        # meta_line was truncated to «GERMANY . Schleswig-Holstein-
+        # Gottorp. Ducat, 1642-HG.» — no ruler. The body says
+        # «Friederich III» (typo, extra 'e') which didn't match the
+        # canonical «Friedrich III» pattern. The matcher then fell
+        # through to «Mintmaster: Hans Glaser» and recorded
+        # `ruler: Hans` — a wrong attribution that broke cross-source
+        # merging downstream. Fix: (1) cut at the markers below,
+        # (2) include common typos as aliases, (3) sort the rulers
+        # list by descending length so multi-word names («Christian
+        # Albrecht», «Karl XIV Johan») win over the bare «Christian»
+        # / «Karl» prefixes.
+        # Cut at markers that introduce NON-ruler personal-name tokens
+        # (mintmaster, engraver, provenance, auction-house signatures).
+        # «Privy mark:» / «Date Source:» are deliberately NOT cut here —
+        # the ruler often appears AFTER them on the same line:
+        # «DENMARK. Gold 2 Krone, 1628. Copenhagen Mint; Privy mark:
+        # flower. Christian IV. NGC ...» — cutting at «Privy mark:»
+        # would lose the ruler.
+        ruler_zone = body_match
+        for marker in ("Mintmaster:", "Mintmasters:",
+                       "Engraver:", "Engravers:",
+                       "Ex:", "From the L. E. Bruun"):
+            idx = ruler_zone.find(marker)
+            if idx != -1:
+                ruler_zone = ruler_zone[:idx]
+        # (regex pattern, canonical name) — typo aliases map to the
+        # canonical Danish/German form so downstream consumers see
+        # consistent spelling.
+        ruler_patterns = [
+            # Multi-word names FIRST so the substring match doesn't
+            # short-circuit on a bare «Christian» / «Karl» prefix.
+            ("Christian Albrecht", "Christian Albrecht"),
+            ("Karl XIV Johan", "Karl XIV Johan"),
+            ("Carl XIV Johan", "Karl XIV Johan"),  # Bruun spelling
+            ("Karl Friedrich", "Karl Friedrich"),
+            ("Carl Friedrich", "Carl Friedrich"),
+            ("Johann Adolf", "Johann Adolf"),
+            # Ordinal-bearing names — longer ordinals before shorter.
+            ("Christian VIII", "Christian VIII"),
+            ("Christian VII", "Christian VII"),
+            ("Christian III", "Christian III"),
+            ("Christian IV", "Christian IV"),
+            ("Christian IX", "Christian IX"),
+            ("Christian X", "Christian X"),
+            ("Christian V", "Christian V"),
+            ("Christian VI", "Christian VI"),
+            ("Frederik VIII", "Frederik VIII"),
+            ("Frederik VII", "Frederik VII"),
+            ("Frederik II", "Frederik II"),
+            ("Frederik III", "Frederik III"),
+            ("Frederik IV", "Frederik IV"),
+            ("Frederik IX", "Frederik IX"),
+            ("Frederik V", "Frederik V"),
+            ("Frederik VI", "Frederik VI"),
+            ("Frederick VIII", "Frederik VIII"),
+            ("Frederick VII", "Frederik VII"),
+            ("Frederick II", "Frederik II"),
+            ("Frederick III", "Frederik III"),
+            ("Frederick IV", "Frederik IV"),
+            ("Frederick IX", "Frederik IX"),
+            ("Frederick V", "Frederik V"),
+            ("Frederick VI", "Frederik VI"),
+            ("Friedrich II", "Friedrich II"),
+            ("Friedrich III", "Friedrich III"),
+            ("Friedrich IV", "Friedrich IV"),
+            # Typo aliases (canonical spelling on right):
+            ("Friederich II", "Friedrich II"),
+            ("Friederich III", "Friedrich III"),
+            ("Friederich IV", "Friedrich IV"),
+            ("Frederich II", "Friedrich II"),
+            ("Frederich III", "Friedrich III"),
+            ("Frederich IV", "Friedrich IV"),
+            # Single-word — last, so they don't pre-empt the multi-words.
+            ("Håkon VII", "Håkon VII"),
+            ("Olav V", "Olav V"),
+            ("Harald V", "Harald V"),
+            ("Oskar II", "Oskar II"),
+            ("Oskar I", "Oskar I"),
+            ("Karl XV", "Karl XV"),
+            ("Carl XV", "Karl XV"),  # Bruun spelling → canonical
+            ("Karl XIII", "Karl XIII"),
+            ("Carl XIII", "Karl XIII"),
+            ("Karl XII", "Karl XII"),
+            ("Karl XI", "Karl XI"),
+            ("Karl X", "Karl X"),
+            ("Karl IX", "Karl IX"),
+            ("Gustav V", "Gustav V"),
+            ("Margrethe II", "Margrethe II"),
+            ("Adolf", "Adolf"),
+            ("Hans", "Hans"),
         ]
-        for r in rulers:
-            if re.search(rf"\b{re.escape(r)}\b", body_match):
-                ruler = r
+        ruler = None
+        for pattern, canonical in ruler_patterns:
+            if re.search(rf"\b{re.escape(pattern)}\b", ruler_zone):
+                ruler = canonical
                 break
 
         lots.append({
