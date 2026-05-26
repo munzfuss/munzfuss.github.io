@@ -462,7 +462,7 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
 
     # Preserve other V2 bookkeeping fields from foundation
     for k in ("v1_home_location", "_migration_note", "_migration_dup_origin_id",
-              "promoted_to"):
+              "promoted_to", "_curation_holds"):
         if k in final_entry:
             out[k] = final_entry[k]
 
@@ -765,11 +765,26 @@ def process_entity(entity_id: str) -> dict:
     # entry rendered into the seed_unsorted bucket instead of Reichsdukatenfuß.
     curator_migrations: dict[str, dict] = {}
 
+    # Fields migrated from a dropped V1-bootstrap foundation onto its
+    # new unified host. Superset of `_FOUNDATION_IMMUTABLE_FIELDS` plus
+    # curator-prose fields that hold V1's hand-written description text
+    # (Stempelschneider initials, mint-master attribution, Reichsdukatenfuß
+    # standard recap — content that's not derivable from any source seed
+    # and would otherwise vanish into the void).
+    _MIGRATION_PRESERVED_FIELDS = _FOUNDATION_IMMUTABLE_FIELDS | {"note"}
+
     def _migrate_classification(fe: dict, new_host_fid: str) -> None:
-        """Snapshot foundation-immutable fields for migration to new host."""
+        """Snapshot curator-set fields for migration to new host.
+
+        Includes foundation-immutable (fuss/phase/kind/etc.) AND
+        curator-prose `note` field — the V1 entry's hand-written
+        description that captures mint-master initials, engraver names,
+        and other context not encoded in any source seed's structured
+        fields.
+        """
         snapshot = {
             field: fe[field]
-            for field in _FOUNDATION_IMMUTABLE_FIELDS
+            for field in _MIGRATION_PRESERVED_FIELDS
             if field in fe and fe[field] not in (None, "", [], {})
         }
         if not snapshot:
