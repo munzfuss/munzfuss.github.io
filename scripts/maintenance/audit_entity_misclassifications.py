@@ -117,7 +117,15 @@ def _scan_one_source(src_dir: Path) -> list[dict]:
             mint = c.get("mint")
             if mint in (None, "", []):
                 continue
-            expected = classify_mint_to_entity(mint)
+            # Year-aware classification per MVP-D (2026-05-26): use the
+            # coin's `year_first` as the canonical era anchor when
+            # available (any year_overrides in the mint registry are
+            # evaluated against it). Falls back to year-blind default
+            # when `year_first` is missing.
+            year = c.get("year_first")
+            if not isinstance(year, int):
+                year = None
+            expected = classify_mint_to_entity(mint, year=year)
             if expected is None:
                 continue
             # Joint-mint allow: if mint maps to a list of entities AND

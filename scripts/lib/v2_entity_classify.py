@@ -34,6 +34,7 @@ import re
 # unifying the previously-split tables.
 from lib.mint_registry import ALIAS_TO_CANON as _ALIAS_TO_CANON  # noqa: E402
 from lib.mint_registry import CANON_TO_ENTITY as _MINT_TO_ENTITY  # noqa: E402
+from lib.mint_registry import entity_for_canon_year as _entity_for_canon_year  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -53,9 +54,10 @@ def _normalise_one_mint(raw: str) -> str | None:
     return _ALIAS_TO_CANON.get(stripped.lower())
 
 
-def classify_mint_to_entity(mint) -> str | list[str] | None:
-    """Map a coin's `mint` field (scalar, list, or None) to its political
-    entity tag(s).
+def classify_mint_to_entity(mint, year: int | None = None
+                              ) -> str | list[str] | None:
+    """Map a coin's `mint` field (scalar, list, or None) + optional
+    `year` to its political entity tag(s).
 
       * None / unknown / unparseable → returns None (caller routes to
         `_unclassified`).
@@ -65,6 +67,13 @@ def classify_mint_to_entity(mint) -> str | list[str] | None:
 
     The list-form ordering matches V2_PIPELINE.md §3.10 (alphabetical),
     so the alphabetically-first element is the home-file entity.
+
+    `year` argument is OPT-IN. When provided, the mint registry's
+    `year_overrides` rules are consulted to pick the era-correct entity
+    (per locked 2026-05-26 convention: `year_to` exclusive). Mints
+    without overrides ignore the year. See
+    `docs/research/mint_year_transitions.md` for currently-modeled
+    transitions (Altona 1640 only as of MVP-D).
     """
     if mint is None:
         return None
@@ -90,7 +99,7 @@ def classify_mint_to_entity(mint) -> str | list[str] | None:
             if canon is None:
                 any_unknown = True
                 continue
-            ent = _MINT_TO_ENTITY.get(canon)
+            ent = _entity_for_canon_year(canon, year)
             if ent is None:
                 # Known mint, deliberately mapped to None (out-of-scope).
                 # We don't add it to resolved, but it's not "unknown" either.

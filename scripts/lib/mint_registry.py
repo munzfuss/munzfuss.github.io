@@ -134,12 +134,26 @@ _MINT_REGISTRY: dict[str, dict] = {
 
     # ────────────────────────── Royal Holstein ─────────────────────────
     "altona": {
-        # Pre-1640 = Schauenburg-Pinneberg; post-1640 = Royal Holstein.
-        # Project late default = Royal Holstein. NumisMaster handles
-        # Schauenburg-era Altona via issuer-tag instead of mint-tag.
+        # Pre-1640 Altona under Holstein-Pinneberg (House of Schaumburg
+        # rule, Adolf XIII / Ernst III / Otto V). Otto V died childless
+        # 1640 — House of Schaumburg extinct; Holstein-Pinneberg merged
+        # with the Duchy of Holstein under Christian IV's Royal-Danish
+        # administration (Holstein-Glückstadt portion). Per Wikipedia
+        # EN «Altona, Hamburg»: «In 1640, Altona was part of Holstein-
+        # Glückstadt.» Cross-check Wikipedia EN «House of Schauenburg»:
+        # «After the death in 1640 of Count Otto V without children,
+        # the House of Schaumburg became extinct. The County of Holstein-
+        # Pinneberg was merged with the Duchy of Holstein.»
+        # See `docs/research/mint_year_transitions.md` for full sources.
         "aliases": {"altona"},
         "display": "Altona",
-        "entity": "royal_holstein",
+        "entity": "royal_holstein",  # default = post-1640
+        "year_overrides": [
+            # Exclusive cutoff per 2026-05-26 user direction:
+            # year < 1640 → Schauenburg-Pinneberg; year ≥ 1640 →
+            # default Royal Holstein.
+            {"year_to": 1640, "entity": "schauenburg_pinneberg"},
+        ],
     },
     "glueckstadt": {
         # Christian IV founded the Glückstadt mint 1640. ASCII form
@@ -371,6 +385,45 @@ CANON_TO_DISPLAY: dict[str, str] = {
 CANON_TO_ENTITY: dict[str, str | None] = {
     canon: spec["entity"] for canon, spec in _MINT_REGISTRY.items()
 }
+
+# canonical key → list of year-overrides, each a dict
+#   {"year_from": int | None, "year_to": int | None, "entity": str}.
+# year_from inclusive, year_to EXCLUSIVE (locked 2026-05-26).
+# Missing bound = open-ended on that side. Walk in order;
+# first match wins. Mints without overrides have an empty list.
+CANON_TO_YEAR_OVERRIDES: dict[str, list[dict]] = {
+    canon: (spec.get("year_overrides") or [])
+    for canon, spec in _MINT_REGISTRY.items()
+}
+
+
+def entity_for_canon_year(canon: str, year: int | None) -> str | None:
+    """Resolve canonical mint key + optional year → entity tag.
+
+    When `year is None` OR the mint has no year_overrides OR no override
+    matches the given year, return the registry's default entity for
+    that canon. Otherwise return the matching override's entity.
+
+    Match rule per override:
+      year_from inclusive, year_to EXCLUSIVE.
+      year_from=None → -∞ (open lower bound).
+      year_to=None   → +∞ (open upper bound).
+    """
+    if canon not in CANON_TO_ENTITY:
+        return None
+    default = CANON_TO_ENTITY[canon]
+    if year is None:
+        return default
+    overrides = CANON_TO_YEAR_OVERRIDES.get(canon) or []
+    for ov in overrides:
+        yf = ov.get("year_from")
+        yt = ov.get("year_to")
+        if yf is not None and year < yf:
+            continue
+        if yt is not None and year >= yt:
+            continue
+        return ov["entity"]
+    return default
 
 
 def canon_for_alias(raw: str) -> str | None:
