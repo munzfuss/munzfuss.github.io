@@ -274,11 +274,58 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
         if key in _ALLOWED_CATALOG_KEYS:
             catalog.setdefault(key, v)
 
-    issuing = COUNTRY_TO_ISSUING_ENTITY.get((data.get("country") or "").upper())
+    # Issuer classification — three-tier with country-vs-mint priority
+    # determined by country specificity:
+    #
+    # Tier 1 (SPECIFIC subnational country): country wins.
+    #   E.g. country=HOLSTEIN-GOTTORP-RENDSBORG → gottorp_duchy. Krause
+    #   has explicitly tagged this as a sub-state coinage (Christian
+    #   August's brief HGR period 1716-1720). Mint=Rendsburg alone
+    #   would route to royal_holstein default — wrong for this catalog
+    #   attribution.
+    #
+    # Tier 2 (UMBRELLA country): mint-classifier with year wins, country
+    # used as fallback when mint is None or unclassifiable.
+    #   E.g. country=DENMARK + mint=Altona post-1640 → royal_holstein
+    #   (Altona Royal-Danish mint location, NOT Copenhagen-area
+    #   danish_realm). Country=SCHAUMBURG-PINNEBERG + mint=Rinteln →
+    #   holstein_schauenburg_county (not the Pinneberg subset).
+    #   Country=SCHAUMBURG-PINNEBERG + mint=Altona pre-1640 →
+    #   schauenburg_pinneberg via year-aware override.
+    #
+    # Tier 3 (unknown country): fall back to target-location default.
+    #
+    # Umbrella set captures Krause groupings that lump together coinage
+    # from multiple political entities (Denmark = realm + royal-Holstein
+    # + royal-Schleswig portions; Schaumburg-Pinneberg = full Schauenburg
+    # including ancestral non-SH region; etc.).
+    _UMBRELLA_COUNTRIES = {
+        "DENMARK", "NORWAY", "NORW AY", "DENMARK-NORWAY",
+        "SCHLESWIG-HOLSTEIN", "SCHAUMBURG-PINNEBERG", "SWEDEN",
+    }
+
+    issuing: str | None = None
+    country_upper = (data.get("country") or "").upper()
+    country_tag = COUNTRY_TO_ISSUING_ENTITY.get(country_upper)
+
+    if country_upper in _UMBRELLA_COUNTRIES:
+        # Umbrella → mint-classifier first, country-tag as fallback.
+        from lib.v2_entity_classify import classify_mint_to_entity  # noqa: PLC0415
+        raw_mint = data.get("mint")
+        if raw_mint:
+            mint_tag = classify_mint_to_entity(raw_mint, year=yf)
+            if mint_tag:
+                issuing = mint_tag
+        if issuing is None:
+            issuing = country_tag
+    else:
+        # Specific subnational country → country wins.
+        issuing = country_tag
+
     if issuing is None:
-        # Fallback by target-location (rare — keeps un-recognised country strings safe).
-        # SH location → SH duchy; denmark location → danish_realm default (NO Norge
-        # entries override via COUNTRY_TO_ISSUING_ENTITY[NORWAY] → norwegian_realm).
+        # Last-resort fallback by target-location (rare — keeps un-recognised
+        # country strings safe). SH location → SH duchy; denmark location
+        # → danish_realm default.
         issuing = {
             "schleswig_holstein": "schleswig_holstein_duchy",
             "denmark": "danish_realm",
