@@ -46,10 +46,25 @@ def _strip_mintmark_suffix(mint: str) -> str:
     return re.sub(r"\s*\([^)]*\)\s*$", "", mint).strip()
 
 
+def _strip_mint_word_suffix(mint: str) -> str:
+    """`Altona Mint` → `Altona`; `Glückstadt Mint` → `Glückstadt`.
+
+    Bruun's catalogue body excerpts emit the mint name with a trailing
+    « Mint» word (English-language auction convention). The cache parser
+    preserves this verbatim in the lot's `mint` field, so when
+    `parse_mint(lot)` falls through to the cache value as fallback the
+    string carries the suffix. Classifier needs to strip it before
+    alias lookup, otherwise «Altona Mint» misses the «altona» alias.
+    """
+    return re.sub(r"\s+Mint\s*$", "", mint, flags=re.IGNORECASE).strip()
+
+
 def _normalise_one_mint(raw: str) -> str | None:
     """Returns the canonical mint key (e.g. `kopenhagen`) or None when no
-    alias matches. Strips any parenthesised mintmaster suffix first."""
+    alias matches. Strips any parenthesised mintmaster suffix and any
+    trailing « Mint» word first."""
     stripped = _strip_mintmark_suffix(raw)
+    stripped = _strip_mint_word_suffix(stripped)
     # Direct lookup against alias table (case-insensitive).
     return _ALIAS_TO_CANON.get(stripped.lower())
 

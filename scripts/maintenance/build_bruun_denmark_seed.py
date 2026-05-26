@@ -62,31 +62,51 @@ from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
 
-def _classify_entity(mint, is_norway: bool, meta_line: str | None = None):
+def _classify_entity(mint, is_norway: bool, meta_line: str | None = None,
+                       year: int | None = None):
     """Bruun lot → V2 issuing_entity. Three-tier fallback:
 
-    1. **Mint-based** (`classify_mint_to_entity`) — strongest signal when
-       mint is attested (e.g. `Glückstadt` → `glucksburg_duchy` or
-       `royal_holstein` depending on year — handled inside the central
-       classifier).
-    2. **Meta_line subnational token** (`_classify_via_meta_line`) —
-       Bruun's meta line carries the territorial annotation when present
-       («Schleswig-Holstein-Norburg-Plön. Ducat, 1760…»). Used when mint
-       is missing OR mint-based returned None (generic mint like
-       «Hamburg» that doesn't pin down the issuer). Added 2026-05-25 to
-       cover the 57 Bruun lots tagged GERMANY/SWEDEN region but
-       legitimately in-scope project entities (SH-duchies, Bremen-Verden,
-       Plön Ducats, Holstein-Schauenburg).
+    1. **Meta_line subnational token** (`_classify_via_meta_line`) —
+       Bruun's meta line carries the EXPLICIT issuer attribution from
+       Krause's catalogue convention («Schleswig-Holstein-Norburg-Plön. Ducat»,
+       «Lübeck (Bishopric). 2 Mark», «Lauenburg. 2/3 Taler»). When
+       present, this is the most precise signal — it tells us which
+       political body Bruun assigns the coin to, regardless of which
+       physical mint struck it. The matcher uses longest-token-first
+       so «schleswig-holstein-gottorp» beats the generic «schleswig-
+       holstein» fallback. Returns None when no subnational token
+       matches (e.g. meta_line just says «DENMARK. <denom>. <mint>
+       Mint. ...» — no SH-prefix qualifier).
+    2. **Mint-based** (`classify_mint_to_entity`) — fallback when
+       meta_line gives no issuer signal. `year` forwarded so the
+       central classifier applies year-aware overrides (e.g. Altona
+       pre/post-1640 → Schauenburg-Pinneberg vs Royal-Holstein per
+       `mint_registry.py::year_overrides`).
     3. **Norway flag / `danish_realm` default** — bottom of the fallback
        chain. Lots that fail all three end up in `danish_realm` and
        surface as orphan unifieds for curator review.
+
+    Order rationale (2026-05-26): meta_line-first preserves Krause's
+    issuer attribution for cases where multiple issuers used the same
+    physical mint at the same time. Example: Glückstadt royal mint
+    struck Royal-Holstein coinage AND, under contract, Lübeck-Bishopric
+    coinage (Christian August 1723) AND Lauenburg-territorial coinage
+    (Frederik VI 1830). Mint alone says royal_holstein for all three;
+    meta_line correctly distinguishes them via «Lübeck (Bishopric)»,
+    «Lauenburg», or no-subnational-token (= royal coinage).
+
+    Year-awareness wired 2026-05-26: when meta_line has no subnational
+    token (e.g. pre-1640 Altona with Bruun-14912 typo «Schaumberg»
+    that misses META_SUBNATIONAL alias OR generic «DENMARK. <denom>.
+    <mint>» meta), mint-classifier-with-year correctly returns
+    `schauenburg_pinneberg` for Altona+year<1640.
     """
-    if mint:
-        result = classify_mint_to_entity(mint)
-        if result:
-            return result
     if meta_line:
         result = _classify_via_meta_line(meta_line)
+        if result:
+            return result
+    if mint:
+        result = classify_mint_to_entity(mint, year=year)
         if result:
             return result
     if is_norway:
@@ -142,6 +162,13 @@ META_SUBNATIONAL_TO_ENTITY: dict[str, str] = {
     "schaumburg-pinneberg": "schauenburg_pinneberg",
     "schleswig-holstein-schaumburg-pinneberg": "schauenburg_pinneberg",
     "s chleswig-holstein-schaumburg-pinneberg": "schauenburg_pinneberg",
+    # Bruun catalogue typo observed on Bruun-14912 («Schaumberg» without
+    # the «u»). Defense-in-depth alias so meta_line classification
+    # survives without the mint+year fallback path. Same for the leading-
+    # space parser artefact.
+    "schaumberg-pinneberg": "schauenburg_pinneberg",
+    "schleswig-holstein-schaumberg-pinneberg": "schauenburg_pinneberg",
+    "s chleswig-holstein-schaumberg-pinneberg": "schauenburg_pinneberg",
     "lübeck. taler": "hanseatic_lubeck",
     "luebeck. taler": "hanseatic_lubeck",
     "rantzau": "rantzau_county",
@@ -494,7 +521,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     # coinage (Stockholm Mint), Pomerania, Livonia, Mainz, Erfurt — are
     # genuinely out of project scope and MUST NOT enter the seed.
     if region in {"GERMANY", "SWEDEN"}:
-        entity_check = _classify_entity(mint, is_norway, meta_line=meta)
+        entity_check = _classify_entity(mint, is_norway, meta_line=meta, year=year)
         if entity_check in {"danish_realm", "danish_norway"}:
             return None
 
@@ -516,7 +543,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         "metal_verified": metal_verified,
         "fineness": None,  # not in Bruun lot data; comes from spec tables (Wilcke)
         "weight_rough_g": lot.get("weight_g"),
-        "issuing_entity": _classify_entity(mint, is_norway, meta_line=meta),
+        "issuing_entity": _classify_entity(mint, is_norway, meta_line=meta, year=year),
         "verified": False,
         "fineness_verified": False,
         "weight_rough_verified": bool(lot.get("weight_g")),

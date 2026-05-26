@@ -2,8 +2,8 @@
 # Generated 2026-05-26 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
-# Input: 234 per-source seed entries.
-# Output: 198 unified entries (one per physical coin).
+# Input: 236 per-source seed entries.
+# Output: 199 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -66,6 +66,55 @@ coins:
   composed_of:
   - dk-bruun-14114
   - dk-bruun-14120
+- id: unified-dk-bruun-14115
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Lübeck (Bishopric). Taler
+  year_first: 1606
+  year_last: 1606
+  year_label: '1606'
+  ruler: Adolf
+  mintmaster: Matthias Puls
+  catalog:
+    km: '26.1'
+    bruun_collection_id:
+    - '14115'
+    - '14116'
+    sieg: '9.9'
+    lange: 268a
+    dav: '5438'
+  metal: silver
+  metal_verified: false
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.65
+    source: bruun
+  - value: 28.83
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14115 · Stack's Bowers Bruun Collection Part II, lot 14201
+  - type: literature
+    ref: Bruun-14116 · Stack's Bowers Bruun Collection Part II, lot 14202
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - dk-bruun-14115
+  - dk-bruun-14116
 - id: unified-dk-bruun-14118
   fuss: seed_unsorted
   phase: bruun
@@ -644,6 +693,55 @@ coins:
   composed_of:
   - dk-bruun-14361
   - schleswig_holstein-numismaster-99482
+- id: unified-dk-bruun-14417
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: Taler
+  year_first: 1673
+  year_last: 1674
+  year_ranges:
+  - - 1673
+    - 1674
+  year_label: 1673-1674
+  ruler: Christian Albrecht
+  mintmaster: Matthias Freude the Y ounger
+  catalog:
+    km: '118'
+    bruun_collection_id: '14417'
+    sieg: '7.1'
+    lange: '374'
+    dav: '3703'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 29.07
+    source: bruun
+  sources:
+  - type: literature
+    ref: Bruun-14417 · Stack's Bowers Bruun Collection Part II, lot 14219
+  - type: literature
+    url: https://numismaster.com/MC_99462
+    ref: NumisMaster
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - dk-bruun-14417
+  - schleswig_holstein-numismaster-99462
 - id: unified-dk-bruun-14418
   fuss: seed_unsorted
   phase: bruun
@@ -1945,79 +2043,6 @@ coins:
   composed_of:
   - dk-bruun-14741
   - dk-galster-f1g-122
-- id: unified-dk-bruun-14783
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Ducat
-  year_first: 1534
-  year_last: 1534
-  year_label: '1534'
-  ruler: Christian III
-  mintmaster: Reynold Junge
-  mint: Gottorp
-  catalog:
-    bruun_collection_id: '14783'
-    sieg:
-    - '22'
-    - C3-22
-    schou: '1'
-    galster: '130'
-    lange: '17'
-    numista: '461448'
-    galster_volume: c3g
-    fr: '16'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  year_verified: true
-  fineness:
-  - value: 0.764
-    source: galster
-  - value: 0.764
-    source: numista
-  weight_rough_g:
-  - value: 3.19
-    source: galster
-  - value: 3.19
-    source: numista
-  - value: 3.29
-    source: bruun
-  diameter_mm:
-  - value: 22.0
-    source: numista
-  sources:
-  - type: literature
-    ref: Bruun-14783 · Stack's Bowers Bruun Collection Part II, lot 14259
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c3g130.htm
-    ref: Galster 130 (c3g) — danskmoent.dk chr_c3g130.htm
-  - type: literature
-    url: https://www.danskmoent.dk/1rhingyl.htm
-    ref: «1 Rhinsk gylden» (Wertstufen-Übersicht) — danskmoent.dk 1rhingyl.htm
-  - type: literature
-    url: https://en.numista.com/461448
-    ref: Numista N#461448 — 1 Ducat - Christian III (Gottorp)
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: gottorp_duchy
-  composed_of:
-  - dk-bruun-14783
-  - dk-galster-c3g-130
-  - dk-numista-461448
 - id: unified-dk-bruun-14999
   fuss: seed_unsorted
   phase: bruun
@@ -2693,6 +2718,67 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - dk-numista-153825
+- id: unified-dk-numista-461448
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Ducat (Dukat) (3.5)
+  year_first: 1534
+  year_last: 1534
+  year_label: '1534'
+  ruler: Christian III
+  mint: Gottorp
+  catalog:
+    numista: '461448'
+    galster: '130'
+    sieg: C3-22
+    galster_volume: c3g
+    fr: '16'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  year_verified: true
+  fineness:
+  - value: 0.764
+    source: galster
+  - value: 0.764
+    source: numista
+  weight_rough_g:
+  - value: 3.19
+    source: galster
+  - value: 3.19
+    source: numista
+  diameter_mm:
+  - value: 22.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g130.htm
+    ref: Galster 130 (c3g) — danskmoent.dk chr_c3g130.htm
+  - type: literature
+    url: https://www.danskmoent.dk/1rhingyl.htm
+    ref: «1 Rhinsk gylden» (Wertstufen-Übersicht) — danskmoent.dk 1rhingyl.htm
+  - type: literature
+    url: https://en.numista.com/461448
+    ref: Numista N#461448 — 1 Ducat - Christian III (Gottorp)
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - dk-galster-c3g-130
+  - dk-numista-461448
 - id: unified-schleswig_holstein-numismaster-145857
   fuss: seed_unsorted
   phase: numismaster
@@ -6977,41 +7063,6 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - schleswig_holstein-numismaster-99461
-- id: unified-schleswig_holstein-numismaster-99462
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1673
-  year_last: 1674
-  year_ranges:
-  - - 1673
-    - 1674
-  year_label: 1673-1674
-  ruler: Christian Albrecht
-  catalog:
-    km: '118'
-    dav: '3703'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_99462
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: gottorp_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-99462
 - id: unified-schleswig_holstein-numismaster-99464
   fuss: seed_unsorted
   phase: numismaster

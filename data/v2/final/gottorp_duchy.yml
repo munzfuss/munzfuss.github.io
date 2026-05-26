@@ -214,12 +214,17 @@ coins:
     bruun_lot_no: 14219
     bruun_page: 298
     dav: '3703'
+    sieg: '7.1'
+    lange: '374'
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 29.07
+    source: bruun
   sources:
   - type: literature
     url: https://numismaster.com/MC_99462
@@ -230,6 +235,8 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14219, p. 298
+  - type: literature
+    ref: Bruun-14417 · Stack's Bowers Bruun Collection Part II, lot 14219
   note:
     de: 1 Thaler · Christian Albrecht von Gottorp, 1673-1674
     en: 1 Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1673-1674
@@ -242,7 +249,7 @@ coins:
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_25_thaler,
       якірна проба 0.875); Δ +0.61% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
   composed_of:
-  - unified-schleswig_holstein-numismaster-99462
+  - unified-dk-bruun-14417
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -8170,3 +8177,63 @@ coins:
       Sieg, Jensen-Skjoldager, Schive, тощо).'
   composed_of:
   - unified-dk-galster-f1g-79
+- fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Ducat (Dukat) (3.5)
+  ruler: Christian III
+  issuing_entity: gottorp_duchy
+  id: unified-dk-numista-461448
+  year_first: 1534
+  year_last: 1534
+  year_label: '1534'
+  year_verified: true
+  mint: Gottorp
+  catalog:
+    numista: '461448'
+    galster: '130'
+    sieg: C3-22
+    galster_volume: c3g
+    fr: '16'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.764
+    source: galster
+  - value: 0.764
+    source: numista
+  weight_rough_g:
+  - value: 3.19
+    source: galster
+  - value: 3.19
+    source: numista
+  diameter_mm:
+  - value: 22.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c3g130.htm
+    ref: Galster 130 (c3g) — danskmoent.dk chr_c3g130.htm
+  - type: literature
+    url: https://www.danskmoent.dk/1rhingyl.htm
+    ref: «1 Rhinsk gylden» (Wertstufen-Übersicht) — danskmoent.dk 1rhingyl.htm
+  - type: literature
+    url: https://en.numista.com/461448
+    ref: Numista N#461448 — 1 Ducat - Christian III (Gottorp)
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  composed_of:
+  - unified-dk-numista-461448
