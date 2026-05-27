@@ -257,6 +257,22 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
     ("lange", "Lange"),
     ("fr", "Fr"),
     ("dav", "Dav"),
+    # Bruun catalogue references — both schema field names map to the same
+    # «Bruun#» display prefix:
+    #   * `bruun_collection_id` — canonical V2 schema field (populated by
+    #     `build_bruun_denmark_seed.py`); the Niels Lassen Bruun 1928
+    #     «Beskrivelse over Danske og Norske Mønter» collection number.
+    #     One-per-Krause-sub-variant for typical Christian-IV..Christian-X
+    #     coinage; list-form when CLAUDE.md §9a multi-specimen merges
+    #     several Bruun cabinet entries into a single coin row.
+    #   * `bruun_lot` — legacy V1 ucoin-builder field name carrying the
+    #     same Bruun-XXXX collection number under a different key. Values
+    #     are aliases when both are set; the cat-group dedupe collapses
+    #     them automatically (`add()` skips duplicates within a prefix).
+    # `_PREFIX_PRIORITY["Bruun"] = 80` slots both after FP (65) and Dav
+    # (70), matching the order Bruun PDFs print: «… Fr, KM, Hede, Sieg,
+    # Schou, FP, Bruun-XXXX».
+    ("bruun_collection_id", "Bruun"),
     ("bruun_lot", "Bruun"),
     # Galster — Danish-Norwegian numismatic catalogue (Georg Galster
     # series via danskmoent.dk). Routinely populated on coins seeded
