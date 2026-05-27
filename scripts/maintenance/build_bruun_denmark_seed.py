@@ -226,6 +226,7 @@ REF_FIELDS = {
     "Hede": "hede",
     "Schive": "schive",
     "NMD": "nmd",
+    "FP": "fp",  # Friberg-Pedersen «Skillingen, Specien og Kronen 1761-1813»
     "Skjoldager": "jensen_skjoldager",  # parser key for «Jensen & Skjoldager»
     "Llt": "lott",
     "Delzanno": "delzanno",
@@ -236,6 +237,49 @@ REF_FIELDS = {
     "Hauberg": "hauberg",
     "Malmer": "malmer",
 }
+
+
+# Canonical PDF URL per Bruun Part. Stack's Bowers Galleries published the
+# L. E. Bruun collection across four sales (Sept 2024, March 2025, October 2025,
+# March 2026); Part II's PDF is hosted by danskmoent.dk, the rest by
+# stacksbowers.com. These URLs anchor every emitted Bruun source so a
+# reader can land on the exact catalog PDF for the cited lot/page.
+_BRUUN_PART_PDF_URL: dict[int, str] = {
+    1: "https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf",
+    2: "https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf",
+    3: "https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf",
+    4: "https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf",
+}
+_BRUUN_PART_ROMAN: tuple[str, ...] = ("I", "II", "III", "IV")
+
+
+def _build_bruun_source(part: int, lot: dict) -> dict:
+    """Canonical Bruun source entry — `Bruun Part {N}, lot {lot_no}, p. {page}`.
+
+    Schema-conformant: `type: auction`, with the part-specific PDF URL
+    and a `ref` text giving Part roman numeral + lot number + page. This
+    format is the project's single canonical form for Bruun citations
+    (curator-stated 2026-05-27): readers want a direct, dense locator
+    that points at a specific page of the auction catalog. Older builder
+    output of «Bruun-{coll_id} · Stack's Bowers Bruun Collection Part
+    {N}, lot {lot_no}» (no page, no URL, redundant collection-id-in-text)
+    is replaced; existing entries get rewritten by
+    `scripts/maintenance/normalise_bruun_sources.py`.
+
+    Page numbers come from the Bruun parser's `page_span` (single page when
+    the lot fits on one page; min(page_span) when it spans two — page
+    numbers in auction catalogs traditionally cite the lot's first page).
+    """
+    page_span = lot.get("page_span") or []
+    page = page_span[0] if page_span else lot.get("page")
+    romnum = _BRUUN_PART_ROMAN[part - 1]
+    lot_no = lot.get("lot_no")
+    page_str = f", p. {page}" if page else ""
+    return {
+        "type": "auction",
+        "url": _BRUUN_PART_PDF_URL[part],
+        "ref": f"Bruun Part {romnum}, lot {lot_no}{page_str}",
+    }
 
 
 def parse_year(lot: dict) -> int | None:
@@ -548,15 +592,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
         "fineness_verified": False,
         "weight_rough_verified": bool(lot.get("weight_g")),
         "mint_verified": bool(mint),
-        "sources": [
-            {
-                "type": "literature",
-                "ref": (
-                    f"Bruun-{refs.get('Bruun', '?')} · Stack's Bowers Bruun "
-                    f"Collection Part {{romnum}}, lot {lot.get('lot_no')}"
-                ).format(romnum=("I", "II", "III", "IV")[part - 1]),
-            }
-        ],
+        "sources": [_build_bruun_source(part, lot)],
         "verification_note": {
             "de": (
                 "Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie "

@@ -89,6 +89,11 @@ REF_PATTERNS = {
     "Galster":           re.compile(r"\bGalster[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "NMD":               re.compile(r"\bNMD[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Schive":            re.compile(r"\bSchive[\-:]?\s*(\S+?)(?=[;,\s])", re.IGNORECASE),
+    # FP — Friberg-Pedersen catalogue (Christian VII-specific Danish-Norwegian
+    # «Skillingen, Specien og Kronen 1761-1813» by Bent Friberg & Tom Pedersen).
+    # Cited as «FP-44.3», «FP-9.3», «FP-36». Appears on 42 Bruun lots, all
+    # under Christian VII (1766-1808). Sub-variant decimals («.X») captured.
+    "FP":                re.compile(r"\bFP[\-:]?\s*(\d+(?:\.\d+)?[A-Za-z]*)"),
     # «Jensen & Skjoldager» (the Norwegian Frederik I lejrskilling catalogue
     # by Niels Jørgen Jensen and Mogens Skjoldager). Bruun catalogue cites
     # as «Skjoldager-T21/25» / «Jensen & Skjoldager-...»; match the

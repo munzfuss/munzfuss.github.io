@@ -2035,6 +2035,7 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
         "galster", "galster_volume", "jensen_skjoldager",
         "schive", "skaare", "friedberg", "davenport",
         "mb", "bruun_collection_id", "bruun_lot", "numista", "lange",
+        "nmd", "fp",
     }
     # Fields that stay single-value (specimen-level or strict literal).
     # Conflict = log; top-auth wins for output.

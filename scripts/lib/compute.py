@@ -270,6 +270,13 @@ _NAMED_FIELDS: list[tuple[str, str]] = [
     # priority bug. 120 final entries carry catalog.galster; 54 of
     # those have NO other rendered catalog field.
     ("galster", "Galster"),
+    # FP — Friberg-Pedersen «Skillingen, Specien og Kronen 1761-1813»
+    # (Christian VII-specific Danish-Norwegian catalogue). Routinely cited
+    # alongside Hede/Sieg/Schou in the Bruun PDFs on Christian VII issues.
+    # `_PREFIX_PRIORITY` slot 65 places it between Fr (60) and Dav (70) —
+    # both are gold-trade-coin / world-crowns adjacencies that pair well
+    # with FP's Danish gold + speciedaler Christian-VII focus.
+    ("fp", "FP"),
 ]
 
 # Register tooltip text per Krause register code. Used by
@@ -295,7 +302,7 @@ _PREFIX_PRIORITY: dict[str, int] = {
     # register tagging.
     "KM": 10, "KM-DK": 11, "KM-SH": 12, "KM-NO": 13,
     "Hede": 20, "Sieg": 30, "Schou": 40, "Lange": 50,
-    "Fr": 60,
+    "Fr": 60, "FP": 65,
     "Dav": 70,
     "Dav EC II": 71, "Dav EC III": 72, "Dav EC IV": 73, "Dav ECT": 74,
     "Dav Lg": 75, "Dav SG": 76, "Dav GT I": 77, "Dav CCT": 78,
