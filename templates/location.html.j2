@@ -425,7 +425,14 @@
     {% set ns.coin_total = ns.coin_total + (sg.nonempty_phases | sum(attribute='total') if sg.nonempty_phases else 0) %}
   {% endif %}
 {% endfor %}
-{% set hero_refs = (references.entries | length) if references and references.entries else 0 %}
+{# `hero_refs` is rendered with the legacy count from `*-references.yml`,
+   but a post-render pass in `scripts/build.py::_patch_hero_refs_count`
+   rewrites this number to reflect the TOTAL bibliography size (legacy +
+   `refs_pool.yml` entries injected by `scripts/lib/refs_pool.py`).
+   Setting the floor to 1 ensures the badge is always emitted; the
+   post-process either patches it to the real count OR strips the badge
+   when no refs exist in the final bibliography. #}
+{% set hero_refs = (references.entries | length) if references and references.entries else 1 %}
 
 <section class="hero">
   <div class="hero-text">
