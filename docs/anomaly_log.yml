@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-27T20:20:27Z'
+  last_updated_utc: '2026-05-27T20:28:26Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -11,7 +11,7 @@ anomalies:
     query: hamburg
   summary: IKMK discover query «Hamburg» returns OOS records (fuzzy-search false-positives outside mission
     scope).
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-26T23:23:08Z'
   last_seen: '2026-05-27T19:22:57Z'
   occurrence_count: 4
@@ -64,9 +64,26 @@ anomalies:
   proposed_fix: 'Manifest-scoping pass needed: ADD oos_excluded_mds_ids slot to scripts/cache/ikmk/_manifest.json,
     OR tighten QUERIES list in scripts/fetch_ikmk.py to exclude buckets matching Bundesrepublik / Byzanz
     / medieval Meißen / ancient Roman patterns.'
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Year-range mission-scope filter added to scripts/fetch_ikmk.py (MISSION_YEAR_MIN=1514,
+    MISSION_YEAR_MAX=1914). New _is_in_mission_scope() predicate tests overlap of IKMK record''s year_start/year_end
+    against [1514, 1914]; applied in _fetch_one() at-fetch-time. OOS records get recorded to manifest''s
+    new oos_excluded_mds_ids slot (skipped by future fetch() runs without re-fetching). New `scan-cache`
+    CLI mode walks already-cached records: identified 5424/7194 (75%) as OOS — populated the slot in one
+    pass. Effective in-scope IKMK pool drops from 11558 to 6140 (5418 still-cached OOS + 5424 marked filtered
+    + 6140 in-scope kept or to be fetched). Predicate unit-tested: 10/10 edge cases pass (BCE/CE, single-year/range,
+    year_end=0 collapse, missing-field conservative-keep). Fix is class-wide — resolves ALL 8 IKMK query
+    scope-drift anomaly entries because the filter is applied to every fetched record regardless of which
+    query originally surfaced it.'
+  resolved_at: '2026-05-27T20:28:26Z'
+  resolved_by: serhii
+  in_progress_at: '2026-05-27T20:25:22Z'
+  in_progress_note: 'Single coordinated fix planned: add year-range mission-scope filter [1514, 1914]
+    to scripts/fetch_ikmk.py::_fetch_one(). Discovered via 30-record sample analysis that ~67% of currently-cached
+    IKMK records are OOS by year (Abbasid/Umayyad/ancient Greek-Roman/Merowingian/medieval German), not
+    just the handful tracked in occurrence detail. IKMK records carry clean year_start/year_end integer
+    fields; filter test: year_start <= 1914 AND year_end >= 1514. Fix scope: forward-filter (skip OOS
+    writes) + cache scan mode (populate oos_excluded_mds_ids in manifest from currently-cached OOS records).
+    One fix resolves all 8 IKMK scope-drift anomaly entries.'
 - id: audit_manifest_scope_drift:query=kassel:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
@@ -74,7 +91,7 @@ anomalies:
     query: kassel
   summary: IKMK discover query «Kassel» returns OOS records (fuzzy-search false-positives outside mission
     scope).
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-26T23:23:08Z'
   last_seen: '2026-05-26T23:23:08Z'
   occurrence_count: 1
@@ -92,9 +109,26 @@ anomalies:
       ucoin_batch: '157'
   proposed_fix: 'Future: narrow IKMK QUERIES in scripts/fetch_ikmk.py with year-range filters, OR add
     post-fetch era filter that flags entries outside 1514-1914 as out-of-mission.'
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Year-range mission-scope filter added to scripts/fetch_ikmk.py (MISSION_YEAR_MIN=1514,
+    MISSION_YEAR_MAX=1914). New _is_in_mission_scope() predicate tests overlap of IKMK record''s year_start/year_end
+    against [1514, 1914]; applied in _fetch_one() at-fetch-time. OOS records get recorded to manifest''s
+    new oos_excluded_mds_ids slot (skipped by future fetch() runs without re-fetching). New `scan-cache`
+    CLI mode walks already-cached records: identified 5424/7194 (75%) as OOS — populated the slot in one
+    pass. Effective in-scope IKMK pool drops from 11558 to 6140 (5418 still-cached OOS + 5424 marked filtered
+    + 6140 in-scope kept or to be fetched). Predicate unit-tested: 10/10 edge cases pass (BCE/CE, single-year/range,
+    year_end=0 collapse, missing-field conservative-keep). Fix is class-wide — resolves ALL 8 IKMK query
+    scope-drift anomaly entries because the filter is applied to every fetched record regardless of which
+    query originally surfaced it.'
+  resolved_at: '2026-05-27T20:28:26Z'
+  resolved_by: serhii
+  in_progress_at: '2026-05-27T20:25:22Z'
+  in_progress_note: 'Single coordinated fix planned: add year-range mission-scope filter [1514, 1914]
+    to scripts/fetch_ikmk.py::_fetch_one(). Discovered via 30-record sample analysis that ~67% of currently-cached
+    IKMK records are OOS by year (Abbasid/Umayyad/ancient Greek-Roman/Merowingian/medieval German), not
+    just the handful tracked in occurrence detail. IKMK records carry clean year_start/year_end integer
+    fields; filter test: year_start <= 1914 AND year_end >= 1514. Fix scope: forward-filter (skip OOS
+    writes) + cache scan mode (populate oos_excluded_mds_ids in manifest from currently-cached OOS records).
+    One fix resolves all 8 IKMK scope-drift anomaly entries.'
 - id: audit_manifest_scope_drift:scope=queries_broad_general:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
@@ -102,7 +136,7 @@ anomalies:
     scope: queries_broad_general
   summary: IKMK broad-text discover queries (multiple) collectively return OOS records (ancient + medieval
     + post-1914 commemoratives). Generic class — see per-query entries for specific cases.
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-27T01:24:59Z'
   last_seen: '2026-05-27T01:24:59Z'
   occurrence_count: 1
@@ -117,9 +151,26 @@ anomalies:
         downstream filters absorb.
   proposed_fix: 'Future: narrow IKMK QUERIES in scripts/fetch_ikmk.py with year-range filters, OR add
     post-fetch era filter that flags entries outside 1514-1914 as out-of-mission.'
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Year-range mission-scope filter added to scripts/fetch_ikmk.py (MISSION_YEAR_MIN=1514,
+    MISSION_YEAR_MAX=1914). New _is_in_mission_scope() predicate tests overlap of IKMK record''s year_start/year_end
+    against [1514, 1914]; applied in _fetch_one() at-fetch-time. OOS records get recorded to manifest''s
+    new oos_excluded_mds_ids slot (skipped by future fetch() runs without re-fetching). New `scan-cache`
+    CLI mode walks already-cached records: identified 5424/7194 (75%) as OOS — populated the slot in one
+    pass. Effective in-scope IKMK pool drops from 11558 to 6140 (5418 still-cached OOS + 5424 marked filtered
+    + 6140 in-scope kept or to be fetched). Predicate unit-tested: 10/10 edge cases pass (BCE/CE, single-year/range,
+    year_end=0 collapse, missing-field conservative-keep). Fix is class-wide — resolves ALL 8 IKMK query
+    scope-drift anomaly entries because the filter is applied to every fetched record regardless of which
+    query originally surfaced it.'
+  resolved_at: '2026-05-27T20:28:26Z'
+  resolved_by: serhii
+  in_progress_at: '2026-05-27T20:25:22Z'
+  in_progress_note: 'Single coordinated fix planned: add year-range mission-scope filter [1514, 1914]
+    to scripts/fetch_ikmk.py::_fetch_one(). Discovered via 30-record sample analysis that ~67% of currently-cached
+    IKMK records are OOS by year (Abbasid/Umayyad/ancient Greek-Roman/Merowingian/medieval German), not
+    just the handful tracked in occurrence detail. IKMK records carry clean year_start/year_end integer
+    fields; filter test: year_start <= 1914 AND year_end >= 1514. Fix scope: forward-filter (skip OOS
+    writes) + cache scan mode (populate oos_excluded_mds_ids in manifest from currently-cached OOS records).
+    One fix resolves all 8 IKMK scope-drift anomaly entries.'
 - id: audit_manifest_scope_drift:query=hessen:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
@@ -127,7 +178,7 @@ anomalies:
     query: hessen
   summary: IKMK discover query «Hessen» returns OOS records (fuzzy-search false-positives outside mission
     scope).
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-27T02:26:24Z'
   last_seen: '2026-05-27T02:26:24Z'
   occurrence_count: 1
@@ -152,9 +203,26 @@ anomalies:
       ucoin_batch: '160'
   proposed_fix: Refine QUERIES list in scripts/fetch_ikmk.py to add temporal filters or replace text-queries
     for Hessen + Lübeck with NDP region/period queries that exclude pre-1514 material.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Year-range mission-scope filter added to scripts/fetch_ikmk.py (MISSION_YEAR_MIN=1514,
+    MISSION_YEAR_MAX=1914). New _is_in_mission_scope() predicate tests overlap of IKMK record''s year_start/year_end
+    against [1514, 1914]; applied in _fetch_one() at-fetch-time. OOS records get recorded to manifest''s
+    new oos_excluded_mds_ids slot (skipped by future fetch() runs without re-fetching). New `scan-cache`
+    CLI mode walks already-cached records: identified 5424/7194 (75%) as OOS — populated the slot in one
+    pass. Effective in-scope IKMK pool drops from 11558 to 6140 (5418 still-cached OOS + 5424 marked filtered
+    + 6140 in-scope kept or to be fetched). Predicate unit-tested: 10/10 edge cases pass (BCE/CE, single-year/range,
+    year_end=0 collapse, missing-field conservative-keep). Fix is class-wide — resolves ALL 8 IKMK query
+    scope-drift anomaly entries because the filter is applied to every fetched record regardless of which
+    query originally surfaced it.'
+  resolved_at: '2026-05-27T20:28:26Z'
+  resolved_by: serhii
+  in_progress_at: '2026-05-27T20:25:22Z'
+  in_progress_note: 'Single coordinated fix planned: add year-range mission-scope filter [1514, 1914]
+    to scripts/fetch_ikmk.py::_fetch_one(). Discovered via 30-record sample analysis that ~67% of currently-cached
+    IKMK records are OOS by year (Abbasid/Umayyad/ancient Greek-Roman/Merowingian/medieval German), not
+    just the handful tracked in occurrence detail. IKMK records carry clean year_start/year_end integer
+    fields; filter test: year_start <= 1914 AND year_end >= 1514. Fix scope: forward-filter (skip OOS
+    writes) + cache scan mode (populate oos_excluded_mds_ids in manifest from currently-cached OOS records).
+    One fix resolves all 8 IKMK scope-drift anomaly entries.'
 - id: audit_manifest_scope_drift:query=lubeck:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
@@ -162,7 +230,7 @@ anomalies:
     query: lubeck
   summary: IKMK discover query «Lübeck» returns OOS records (fuzzy-search false-positives outside mission
     scope).
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-27T02:26:24Z'
   last_seen: '2026-05-27T02:26:24Z'
   occurrence_count: 1
@@ -187,9 +255,26 @@ anomalies:
       ucoin_batch: '160'
   proposed_fix: Refine QUERIES list in scripts/fetch_ikmk.py to add temporal filters or replace text-queries
     for Hessen + Lübeck with NDP region/period queries that exclude pre-1514 material.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Year-range mission-scope filter added to scripts/fetch_ikmk.py (MISSION_YEAR_MIN=1514,
+    MISSION_YEAR_MAX=1914). New _is_in_mission_scope() predicate tests overlap of IKMK record''s year_start/year_end
+    against [1514, 1914]; applied in _fetch_one() at-fetch-time. OOS records get recorded to manifest''s
+    new oos_excluded_mds_ids slot (skipped by future fetch() runs without re-fetching). New `scan-cache`
+    CLI mode walks already-cached records: identified 5424/7194 (75%) as OOS — populated the slot in one
+    pass. Effective in-scope IKMK pool drops from 11558 to 6140 (5418 still-cached OOS + 5424 marked filtered
+    + 6140 in-scope kept or to be fetched). Predicate unit-tested: 10/10 edge cases pass (BCE/CE, single-year/range,
+    year_end=0 collapse, missing-field conservative-keep). Fix is class-wide — resolves ALL 8 IKMK query
+    scope-drift anomaly entries because the filter is applied to every fetched record regardless of which
+    query originally surfaced it.'
+  resolved_at: '2026-05-27T20:28:26Z'
+  resolved_by: serhii
+  in_progress_at: '2026-05-27T20:25:22Z'
+  in_progress_note: 'Single coordinated fix planned: add year-range mission-scope filter [1514, 1914]
+    to scripts/fetch_ikmk.py::_fetch_one(). Discovered via 30-record sample analysis that ~67% of currently-cached
+    IKMK records are OOS by year (Abbasid/Umayyad/ancient Greek-Roman/Merowingian/medieval German), not
+    just the handful tracked in occurrence detail. IKMK records carry clean year_start/year_end integer
+    fields; filter test: year_start <= 1914 AND year_end >= 1514. Fix scope: forward-filter (skip OOS
+    writes) + cache scan mode (populate oos_excluded_mds_ids in manifest from currently-cached OOS records).
+    One fix resolves all 8 IKMK scope-drift anomaly entries.'
 - id: audit_manifest_scope_drift:query=christian_v:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
@@ -197,7 +282,7 @@ anomalies:
     query: christian_v
   summary: IKMK discover query «Christian V.» returns OOS records (fuzzy-search false-positives outside
     mission scope).
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-27T09:21:43Z'
   last_seen: '2026-05-27T18:25:44Z'
   occurrence_count: 3
@@ -235,9 +320,26 @@ anomalies:
       ucoin_batch: '176'
   proposed_fix: 'Separate manifest-scoping pass needed: tighten Christian V. + Hamburg queries to exclude
     ancient/non-DK-NO catalogue scope, OR add an oos_excluded_mds_ids slot to manifest.'
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Year-range mission-scope filter added to scripts/fetch_ikmk.py (MISSION_YEAR_MIN=1514,
+    MISSION_YEAR_MAX=1914). New _is_in_mission_scope() predicate tests overlap of IKMK record''s year_start/year_end
+    against [1514, 1914]; applied in _fetch_one() at-fetch-time. OOS records get recorded to manifest''s
+    new oos_excluded_mds_ids slot (skipped by future fetch() runs without re-fetching). New `scan-cache`
+    CLI mode walks already-cached records: identified 5424/7194 (75%) as OOS — populated the slot in one
+    pass. Effective in-scope IKMK pool drops from 11558 to 6140 (5418 still-cached OOS + 5424 marked filtered
+    + 6140 in-scope kept or to be fetched). Predicate unit-tested: 10/10 edge cases pass (BCE/CE, single-year/range,
+    year_end=0 collapse, missing-field conservative-keep). Fix is class-wide — resolves ALL 8 IKMK query
+    scope-drift anomaly entries because the filter is applied to every fetched record regardless of which
+    query originally surfaced it.'
+  resolved_at: '2026-05-27T20:28:26Z'
+  resolved_by: serhii
+  in_progress_at: '2026-05-27T20:25:22Z'
+  in_progress_note: 'Single coordinated fix planned: add year-range mission-scope filter [1514, 1914]
+    to scripts/fetch_ikmk.py::_fetch_one(). Discovered via 30-record sample analysis that ~67% of currently-cached
+    IKMK records are OOS by year (Abbasid/Umayyad/ancient Greek-Roman/Merowingian/medieval German), not
+    just the handful tracked in occurrence detail. IKMK records carry clean year_start/year_end integer
+    fields; filter test: year_start <= 1914 AND year_end >= 1514. Fix scope: forward-filter (skip OOS
+    writes) + cache scan mode (populate oos_excluded_mds_ids in manifest from currently-cached OOS records).
+    One fix resolves all 8 IKMK scope-drift anomaly entries.'
 - id: audit_manifest_scope_drift:query=friedrich_vi:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
@@ -245,7 +347,7 @@ anomalies:
     query: friedrich_vi
   summary: IKMK discover query «Friedrich VI.» returns OOS records (fuzzy-search false-positives outside
     mission scope).
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-27T09:21:43Z'
   last_seen: '2026-05-27T09:21:43Z'
   occurrence_count: 1
@@ -263,9 +365,26 @@ anomalies:
       ucoin_batch: '167'
   proposed_fix: tighten discover queries in scripts/fetch_ikmk.py QUERIES to constrain by country/mint,
     or add post-fetch scope filter before manifest indexing.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Year-range mission-scope filter added to scripts/fetch_ikmk.py (MISSION_YEAR_MIN=1514,
+    MISSION_YEAR_MAX=1914). New _is_in_mission_scope() predicate tests overlap of IKMK record''s year_start/year_end
+    against [1514, 1914]; applied in _fetch_one() at-fetch-time. OOS records get recorded to manifest''s
+    new oos_excluded_mds_ids slot (skipped by future fetch() runs without re-fetching). New `scan-cache`
+    CLI mode walks already-cached records: identified 5424/7194 (75%) as OOS — populated the slot in one
+    pass. Effective in-scope IKMK pool drops from 11558 to 6140 (5418 still-cached OOS + 5424 marked filtered
+    + 6140 in-scope kept or to be fetched). Predicate unit-tested: 10/10 edge cases pass (BCE/CE, single-year/range,
+    year_end=0 collapse, missing-field conservative-keep). Fix is class-wide — resolves ALL 8 IKMK query
+    scope-drift anomaly entries because the filter is applied to every fetched record regardless of which
+    query originally surfaced it.'
+  resolved_at: '2026-05-27T20:28:26Z'
+  resolved_by: serhii
+  in_progress_at: '2026-05-27T20:25:22Z'
+  in_progress_note: 'Single coordinated fix planned: add year-range mission-scope filter [1514, 1914]
+    to scripts/fetch_ikmk.py::_fetch_one(). Discovered via 30-record sample analysis that ~67% of currently-cached
+    IKMK records are OOS by year (Abbasid/Umayyad/ancient Greek-Roman/Merowingian/medieval German), not
+    just the handful tracked in occurrence detail. IKMK records carry clean year_start/year_end integer
+    fields; filter test: year_start <= 1914 AND year_end >= 1514. Fix scope: forward-filter (skip OOS
+    writes) + cache scan mode (populate oos_excluded_mds_ids in manifest from currently-cached OOS records).
+    One fix resolves all 8 IKMK scope-drift anomaly entries.'
 - id: audit_manifest_scope_drift:query=iburg:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
@@ -273,7 +392,7 @@ anomalies:
     query: iburg
   summary: IKMK discover query «Iburg» returns OOS records (fuzzy-search false-positives outside mission
     scope).
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-27T09:21:43Z'
   last_seen: '2026-05-27T09:21:43Z'
   occurrence_count: 1
@@ -291,9 +410,26 @@ anomalies:
       ucoin_batch: '167'
   proposed_fix: tighten discover queries in scripts/fetch_ikmk.py QUERIES to constrain by country/mint,
     or add post-fetch scope filter before manifest indexing.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Year-range mission-scope filter added to scripts/fetch_ikmk.py (MISSION_YEAR_MIN=1514,
+    MISSION_YEAR_MAX=1914). New _is_in_mission_scope() predicate tests overlap of IKMK record''s year_start/year_end
+    against [1514, 1914]; applied in _fetch_one() at-fetch-time. OOS records get recorded to manifest''s
+    new oos_excluded_mds_ids slot (skipped by future fetch() runs without re-fetching). New `scan-cache`
+    CLI mode walks already-cached records: identified 5424/7194 (75%) as OOS — populated the slot in one
+    pass. Effective in-scope IKMK pool drops from 11558 to 6140 (5418 still-cached OOS + 5424 marked filtered
+    + 6140 in-scope kept or to be fetched). Predicate unit-tested: 10/10 edge cases pass (BCE/CE, single-year/range,
+    year_end=0 collapse, missing-field conservative-keep). Fix is class-wide — resolves ALL 8 IKMK query
+    scope-drift anomaly entries because the filter is applied to every fetched record regardless of which
+    query originally surfaced it.'
+  resolved_at: '2026-05-27T20:28:26Z'
+  resolved_by: serhii
+  in_progress_at: '2026-05-27T20:25:22Z'
+  in_progress_note: 'Single coordinated fix planned: add year-range mission-scope filter [1514, 1914]
+    to scripts/fetch_ikmk.py::_fetch_one(). Discovered via 30-record sample analysis that ~67% of currently-cached
+    IKMK records are OOS by year (Abbasid/Umayyad/ancient Greek-Roman/Merowingian/medieval German), not
+    just the handful tracked in occurrence detail. IKMK records carry clean year_start/year_end integer
+    fields; filter test: year_start <= 1914 AND year_end >= 1514. Fix scope: forward-filter (skip OOS
+    writes) + cache scan mode (populate oos_excluded_mds_ids in manifest from currently-cached OOS records).
+    One fix resolves all 8 IKMK scope-drift anomaly entries.'
 - id: audit_manifest_label_mismatch:bucket=osnabruck_p2988:source=ucoin
   type: audit_manifest_label_mismatch
   key_dims:
