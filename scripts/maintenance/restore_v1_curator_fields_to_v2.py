@@ -284,9 +284,46 @@ def _restore_multi(v1_coins: list[dict], v2_coin: dict,
     return counts
 
 
+def _restore_classification(v1_coin: dict, v2_coin: dict) -> bool:
+    """Propagate V1 curator classification (fuss/phase/kind/fraction)
+    when V2 is at seed_unsorted (no V2 curator decision yet) AND V1 has
+    a concrete classification. Migration is ATOMIC — all four fields
+    move together; partial migration would corrupt the entry.
+
+    Skips when:
+    - V2.fuss != seed_unsorted (curator already classified V2 elsewhere)
+    - V1.fuss is None / seed_unsorted (V1 has no curator decision)
+    - `fraction` is in `_curation_holds` on V2 (curator pin)
+
+    Returns True if classification was migrated.
+    """
+    if v2_coin.get("fuss") != "seed_unsorted":
+        return False
+    v1_fuss = v1_coin.get("fuss")
+    if not v1_fuss or v1_fuss == "seed_unsorted":
+        return False
+    holds = set(v2_coin.get("_curation_holds") or [])
+    if "fuss" in holds:
+        return False
+    # Carry the classification quartet
+    v2_coin["fuss"] = v1_fuss
+    if v1_coin.get("phase"):
+        v2_coin["phase"] = v1_coin["phase"]
+    if v1_coin.get("kind"):
+        v2_coin["kind"] = v1_coin["kind"]
+    if v1_coin.get("fraction") and "fraction" not in holds:
+        v2_coin["fraction"] = v1_coin["fraction"]
+    return True
+
+
 def _restore_one(v1_coin: dict, v2_coin: dict) -> dict:
     """Mutate v2_coin in place. Returns counts of fields touched."""
-    counts = {"year": 0, "diameter": 0, "sources": 0}
+    counts = {"year": 0, "diameter": 0, "sources": 0, "classification": 0}
+    # Classification migration first — when V2 is at seed_unsorted and
+    # V1 has a curator classification, it's the highest-value restoration
+    # (the coin moves from «bulk-seed (unsortiert)» into a real fuss).
+    if _restore_classification(v1_coin, v2_coin):
+        counts["classification"] = 1
 
     # Year metadata: V1's discrete year_ranges → V2 if V2 has a single
     # wide-span range OR no year_ranges at all.
@@ -421,12 +458,12 @@ def main() -> int:
 
     grand = {"files": 0, "files_changed": 0,
              "year": 0, "diameter": 0, "sources": 0,
-             "km_register": 0, "numista_alt": 0}
+             "km_register": 0, "numista_alt": 0, "classification": 0}
     for path, doc in _v2_yaml_pair_iter(yloader):
         grand["files"] += 1
         coins = doc.get("coins") or []
         per_file = {"year": 0, "diameter": 0, "sources": 0,
-                    "km_register": 0, "numista_alt": 0}
+                    "km_register": 0, "numista_alt": 0, "classification": 0}
         for v2c in coins:
             if not isinstance(v2c, dict):
                 continue
@@ -509,7 +546,8 @@ def main() -> int:
             for k, v in per_file.items():
                 grand[k] += v
             rel = path.relative_to(PROJECT)
-            print(f"  {rel}: year={per_file['year']} "
+            print(f"  {rel}: cls={per_file['classification']} "
+                  f"year={per_file['year']} "
                   f"diameter={per_file['diameter']} "
                   f"sources={per_file['sources']} "
                   f"km_alt_register={per_file['km_register']} "
@@ -520,6 +558,7 @@ def main() -> int:
     print()
     print(f"Files scanned:           {grand['files']}")
     print(f"Files changed:           {grand['files_changed']}")
+    print(f"Classifications:         {grand['classification']}")
     print(f"Year-fields restored:    {grand['year']}")
     print(f"Diameters restored:      {grand['diameter']}")
     print(f"Sources added:           {grand['sources']}")
