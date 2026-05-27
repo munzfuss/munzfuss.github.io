@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-27T21:28:16Z'
+  last_updated_utc: '2026-05-27T22:18:58Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -521,11 +521,11 @@ anomalies:
     source: ucoin
     bucket: osnabruck_p3057
   summary: ucoin osnabruck_p3057 bucket spans 1482-1661 (Bishopric of Osnabrück); mission scope starts
-    1559 so ~half of bucket is pre-mission OOS.
+    1559 so part of bucket is pre-mission OOS.
   status: open
   instance_first_seen: '2026-05-27T19:22:57Z'
-  last_seen: '2026-05-27T20:20:27Z'
-  occurrence_count: 2
+  last_seen: '2026-05-27T22:18:58.760037Z'
+  occurrence_count: 3
   affected_ids:
     ucoin:
     - 171936
@@ -558,9 +558,18 @@ anomalies:
       - 172659
       - 172663
       - 172662
+  - run_utc: '2026-05-27T22:18:58.760037Z'
+    batch_label: '180'
+    detail: 'Batch 180 (cron-fired): bucket osnabruck_p3057 still 0/55 cached. Per §7.5 + occ=2 prior
+      detection, skipping the bucket again — first-5 TIDs (171936, 172222, 172659, 172663, 172662) confirmed
+      pre-1559 OOS on batches 177 + 178. Audit-4 manifest needs year-filter cleanup before this bucket
+      can resume. Switched to next priority bucket brunswick_luneburg_p1082 for this run.'
+    full_context:
+      action_taken: Switched to next priority bucket brunswick_luneburg_p1082 per §7.5; did not save any
+        cache files from osnabruck_p3057.
   proposed_fix: 'Re-enumerate osnabruck_p3057 with year filter in audit-4 manifest: split into in_scope_tids
-    (>=1559) + oos_excluded_tids (<1559) slots. Alternatively, page-by-page filter using ucoin listing''s
-    per-row year column.'
+    (>=1559) + oos_excluded_tids (<1559) slots. Page-by-page filter via ucoin listing''s per-row year
+    column.'
   resolution: null
   resolved_at: null
   resolved_by: null
