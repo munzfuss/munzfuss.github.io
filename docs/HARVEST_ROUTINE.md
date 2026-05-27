@@ -347,22 +347,109 @@ p.write_text(json.dumps(h, indent=2, ensure_ascii=False) + '\n')
 
 ### §1.5.4. Anomaly type vocabulary (for the `runs[].anomalies[].type` field)
 
+> **Canonical vocab + lifecycle: `docs/ANOMALY_LOG.md`.** The same type strings are used here (handoff per-run snapshot) and in the persistent log. Keep the two in sync — when adding a new type, update both this table AND `docs/ANOMALY_LOG.md` §«Type vocabulary».
+
 Use these stable strings so the next run can grep / match without prose parsing:
 
 | Type | When |
 |---|---|
 | `audit_manifest_scope_drift` | §7.5 defensive sample shows a bucket's gap list contains OOS entries |
+| `audit_manifest_label_mismatch` | A bucket's label disagrees with the source's own period title |
+| `audit_manifest_period_boundary` | A specific entry's date falls outside its bucket's claimed period |
 | `commit_footer_rejected` | Pre-commit or auto-mode classifier rejects the Co-Authored-By footer (or similar) |
-| `cloudflare_challenge_persistent` | Cloudflare blocked the same source ≥2 times in this run despite 90s waits |
+| `cloudflare_challenge_cleared` | Cloudflare hit, but a single 90 s wait + retry succeeded → ID cached. TRANSIENT — handoff snapshot only, NOT promoted to persistent log |
+| `cloudflare_challenge_persistent` | Cloudflare blocked the same source ≥2 times in this run despite 90s waits → fetch failed → §2.4 dual-write fires (raw log + anomaly_log) |
 | `canonical_tid_mismatch_persistent` | ucoin save script returned exit 2 for ≥2 consecutive TIDs |
 | `chrome_mcp_unavailable` | `list_connected_browsers` returned empty mid-run |
 | `pre_commit_hook_failure` | `.githooks/pre-commit` failed validate/audit on unrelated files |
 | `concurrent_session_conflict` | submodule needed rebase or main-repo had unrelated dirty edits |
-| `url_open_failed` | Source returned 404 / persistent Cloudflare / canonical-id mismatch / redirect-to-landing / DOM-shape-unexpected for an ID that was in the audit's gap list. NEVER framed as «deleted» — upstream state opaque, user inspects manually via `_failed_open_ids.json` |
+| `url_open_failed` | Source returned 404 / persistent Cloudflare / canonical-id mismatch / redirect-to-landing / DOM-shape-unexpected for an ID that was in the audit's gap list. NEVER framed as «deleted» — upstream state opaque. Goes to both `_failed_open_ids.json` (raw) AND persistent anomaly log (`url_open_failed:source=X:id=Y` — auto-resolves when subsequent run successfully fetches the ID). |
 | `priority_bucket_exhausted` | The current-priority bucket closed mid-run; routine moved to next priority |
 | `doc_update_pending` | Routine surfaced a non-blocking «next session please update doc X» note |
 
 For each anomaly, also fill `detail` (free-text), `action_taken` (what the routine did), and `follow_up` (what the user/next-session should do).
+
+---
+
+## §1.6. Anomaly log — persistent record
+
+> **File:** `docs/anomaly_log.yml` (MAIN repo, not submodule).
+> **Lib:** `scripts/lib/anomaly_log.py`.
+> **Doc:** `docs/ANOMALY_LOG.md` (full schema + lifecycle + triage workflow).
+
+The handoff's `runs[].anomalies[]` is a **per-run snapshot** that rolls off after 24 runs. The anomaly log is the **persistent record** — every non-transient anomaly the routine detects gets recorded there too, with stable id + occurrence counter + status lifecycle (open → acknowledged → in_progress → resolved/wontfix). This makes recurring patterns visible across sessions and gives the user a single place to triage chronic issues.
+
+### §1.6.1. Transient vs persistent (decision rule)
+
+| Anomaly auto-resolved within the SAME run | → handoff `runs[].anomalies[]` ONLY (per-run snapshot). Do NOT write to anomaly log. |
+| Anomaly survives the run unresolved | → handoff `runs[].anomalies[]` AND `docs/anomaly_log.yml` via `al.record(...)`. |
+
+Examples of **transient** (handoff only):
+- Cloudflare interstitial cleared after single 90 s wait + cookie-clear.
+- Single fetch 404'd but succeeded on retry within the same batch.
+
+Examples of **persistent** (handoff + anomaly log):
+- IKMK QUERIES false-positives (chronic; every IKMK batch hits them).
+- ucoin BR-4 bucket scope drift (manifest enumerated pre-mission TIDs).
+- ucoin bucket label mismatch (Hochstift vs City).
+- ucoin per-TID period-boundary violation.
+
+### §1.6.2. Write at detection time (NOT batched at run-end)
+
+When the routine detects a persistent anomaly mid-run, write to the log **immediately** via:
+
+```python
+from scripts.lib import anomaly_log as al
+
+al.record(
+    type_="audit_manifest_scope_drift",
+    key_dims={"source": "ikmk", "query": "hamburg"},
+    summary="IKMK 'Hamburg' query returns OOS records.",
+    detail="Batch W: 4 of 5 fetched mds_ids OOS via Hamburg query (Bundesrepublik commems, Byzanz).",
+    affected_ids={"ikmk": [18203499, 18203500, 18203503, 18203512]},
+    proposed_fix="Tighten Hamburg query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter.",
+    batch_label="W",
+    full_context={"ikmk_batch": "W", "numista_batch": NUMISTA_BATCH_LABEL, "ucoin_batch": UCOIN_BATCH_LABEL},
+)
+```
+
+The lib's `record()` either appends to the existing active entry (if same id + status ∈ {open, acknowledged, in_progress}) or creates a fresh active entry (if no entry OR latest is terminal — reopen-after-resolved per `docs/ANOMALY_LOG.md`).
+
+**Stable-id derivation guideline: FINE granularity.** Different queries / buckets / per-TID violations get distinct `key_dims` → distinct stable ids. When an event affects multiple queries / buckets in one batch (e.g. «IKMK batch returned bad results for Hamburg AND Christian VIII queries»), call `al.record()` ONCE PER affected query — each call lands in its own log entry.
+
+### §1.6.3. Read at preflight (alongside handoff §1.5.1)
+
+After the handoff read, surface open anomalies for context:
+
+```bash
+.venv/bin/python <<'EOF'
+import sys, pathlib
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))  # adjust for cwd
+from scripts.lib import anomaly_log as al
+
+opens = al.open_anomalies()
+print(f'Open anomalies: {len(opens)} (across {len(set(e["type"] for e in opens))} types)')
+for e in sorted(opens, key=lambda x: x['occurrence_count'], reverse=True)[:8]:
+    aff_summary = ', '.join(f'{k}:{len(v)}' for k, v in (e.get('affected_ids') or {}).items()) or 'none'
+    print(f'  occ={e["occurrence_count"]:2d}  {e["id"]}  (affected: {aff_summary})')
+EOF
+```
+
+These are **informational, not blocking**. The routine continues normally; the open count just appears in the end-of-run report. The user (or a separate triage session) handles state transitions via `al.mark_acknowledged()` / `al.mark_in_progress()` / `al.mark_resolved()` / `al.mark_wontfix()` per the workflow in `docs/ANOMALY_LOG.md`.
+
+### §1.6.4. Commit anomaly log changes with the routine's normal commits
+
+`docs/anomaly_log.yml` is in the MAIN repo, so its modifications appear in `git status` of the main repo (NOT the submodule). When the routine wrote new anomalies this run, the file shows up as `M docs/anomaly_log.yml` alongside `M scripts/cache` at Step B time.
+
+**Stage it explicitly** alongside `scripts/cache` in the LAST main-repo pointer-bump commit of the run (typically the ucoin pointer bump in §5.2, since anomalies most commonly surface during the ucoin batch):
+
+```bash
+git add scripts/cache docs/anomaly_log.yml
+```
+
+If anomalies surface during the Numista batch (rare but possible — e.g. cache-invalidation alarm), include `docs/anomaly_log.yml` in §3.2's Numista pointer bump too.
+
+If `git status` shows `M docs/anomaly_log.yml` but you DON'T recognise the changes as yours-from-this-run, that's a concurrent-session conflict per §0.8 — investigate, don't bundle.
 
 ---
 
@@ -589,37 +676,82 @@ sleep $((RANDOM % 30 + 31)) && echo "pacing done"
 5. **Continue with the next NID/TID in the batch** — do NOT halt. The batch's saved-count for the day will be smaller; that's the honest record.
 6. **Surface in the end-of-run report (§8)** — the «Failed to open this run» section lists each failed ID + reason for user analysis.
 
-**Append snippet:**
+**Append snippet — writes BOTH the raw `_failed_open_ids.json` log AND the persistent anomaly log:**
 
 ```python
 .venv/bin/python <<EOF
-import json, pathlib
+import json, pathlib, sys
 from datetime import datetime, timezone
 
+# Step a) raw structured failure log (legacy + audit-trail)
 p = pathlib.Path('scripts/cache/numista/_failed_open_ids.json')
 arr = json.loads(p.read_text()) if p.exists() else []
+ts_now = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
 arr.append({
     "id": NID,
-    "ts": datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+    "ts": ts_now,
     "url_tried": URL,
     "reason": REASON,                  # one of the vocabulary above
     "batch_label": BATCH_LABEL,
     "details": DETAILS_STRING_OR_EMPTY,
 })
 p.write_text(json.dumps(arr, indent=2, ensure_ascii=False) + '\n')
+
+# Step b) persistent anomaly log — recurring failures get visibility for triage
+# Stable id: url_open_failed:source=numista:id=<NID> (reason in detail, NOT key_dims —
+# same broken ID across different failure reasons is one triage target, not many).
+sys.path.insert(0, str(pathlib.Path('.').resolve()))
+from scripts.lib import anomaly_log as al
+al.record(
+    type_="url_open_failed",
+    key_dims={"source": "numista", "id": str(NID)},
+    summary=f"numista NID {NID} fails to fetch (last reason: {REASON!r}); ID remains in audit gap_nids as retry candidate, cache file absent.",
+    detail=f"Batch {BATCH_LABEL}: {REASON} — url {URL}. {DETAILS_STRING_OR_EMPTY}".strip(),
+    affected_ids={"numista": [NID]},
+    proposed_fix=(
+        "Open URL in browser to determine status (renamed/merged/moved/withdrawn/removed). "
+        "If verified OOS, reclassify into audit's oos_excluded_nids slot."
+    ),
+    batch_label=BATCH_LABEL,
+    run_utc=ts_now,
+    full_context={"reason": REASON, "url_tried": URL},
+)
 EOF
 ```
 
+(For ucoin failures use `source="ucoin"` + path `scripts/cache/ucoin/_failed_open_ids.json` — same shape.)
+
+**Why the dual write.** `_failed_open_ids.json` is raw append-only structured evidence (one line per attempt, never collapsed). The anomaly log is the curated triage view (one entry per broken ID, with `occurrence_count` showing chronicity + lifecycle). Both are needed: raw data for forensic detail, log for «what should the user actually look at».
+
+**Auto-resolve on subsequent successful fetch.** When a later run's save script succeeds writing `scripts/cache/<source>/<id>.json` for an ID that previously had an active `url_open_failed:source=<source>:id=<id>` entry, the routine MUST close that anomaly:
+
+```python
+from scripts.lib import anomaly_log as al
+import json, pathlib
+
+# After a successful save_*.py call (cache file just written):
+stable_id = f"url_open_failed:source={SOURCE}:id={ID_AS_STR}"
+existing = al.get_by_id(stable_id, include_archived=False)  # active only
+if existing:
+    al.mark_resolved(
+        stable_id,
+        resolution=f"Auto-resolved: cache file <id>.json written successfully in batch {BATCH_LABEL}.",
+        resolved_by="harvest-routine-auto",
+    )
+```
+
+Place this snippet in the save loop right after each successful save script call (`/tmp/save_numista.py` exit 0 or `/tmp/save_ucoin.py` exit 0). If no active entry exists for the ID, the routine is a no-op — cheap, safe.
+
 **Commit-message note (within the §3.1 commit body):**
-«N#XXXXX failed to open this run (reason: <reason>); logged to _failed_open_ids.json for user review. NID remains in audit gap_nids — retried next run unless reclassified.»
+«N#XXXXX failed to open this run (reason: <reason>); logged to _failed_open_ids.json AND anomaly_log (url_open_failed). NID remains in audit gap_nids — retried next run, auto-resolves on success.»
 
 ### §2.5. Handle Cloudflare challenge (transient, single-retry path)
 
 When the page returns a Cloudflare interstitial («Just a moment…», «Checking your browser», DOM has `<div class="cf-browser-verification">`):
 - Wait 90 s (`sleep 90`).
 - Reload the same URL.
-- **If the retry succeeds** → continue normally (save cache, log nothing special).
-- **If the retry fails too** → apply §2.4 with `reason: cloudflare_persistent`. Also append to `scripts/cache/numista/_rate_limit_events.json` for cross-session pattern analysis. Skip this NID for this run.
+- **If the retry succeeds** → continue normally (save cache, log nothing special). If the routine wants to flag the event as a notable transient for handoff snapshot, use type `cloudflare_challenge_cleared` (handoff-only, NOT promoted to anomaly log per the §1.6.1 transient rule).
+- **If the retry fails too** → apply §2.4 with `reason: cloudflare_persistent`. The dual write there will record both to `_failed_open_ids.json` AND to the persistent anomaly log as `url_open_failed:source=X:id=Y`. Also append to `scripts/cache/numista/_rate_limit_events.json` for cross-session pattern analysis. Skip this NID for this run.
 
 ---
 
@@ -992,7 +1124,11 @@ The ucoin-specific failure modes are:
 - Cloudflare challenge survives 90 s wait + retry
 - `/tmp/save_ucoin.py` exits with code 2 — the canonical_tid in the URL ≠ requested_tid (ucoin redirected; rate-limit defence often does that)
 
-**Apply §2.4 exactly**, writing to `scripts/cache/ucoin/_failed_open_ids.json` (NOT the Numista file). Append a structured record with the same schema (id / ts / url_tried / reason / batch_label / details). The TID stays a retry candidate in the audit's `gap_tids` — never removed by this routine.
+**Apply §2.4's dual-write pattern exactly**, writing to BOTH:
+1. `scripts/cache/ucoin/_failed_open_ids.json` (raw structured log — same schema as Numista: id / ts / url_tried / reason / batch_label / details)
+2. `docs/anomaly_log.yml` via `al.record(type_="url_open_failed", key_dims={"source": "ucoin", "id": str(TID)}, ...)` — persistent triage view
+
+The TID stays a retry candidate in the audit's `gap_tids` — never removed by this routine. **Auto-resolve hook same as §2.4**: when a later run's `/tmp/save_ucoin.py` exit 0 writes `<TID>.json`, the routine MUST call `al.mark_resolved("url_open_failed:source=ucoin:id=<TID>", resolution="...")` to close the active anomaly log entry. If no active entry exists for the TID, the call is a no-op.
 
 Per-TID retry rule: for `canonical_id_mismatch`, wait 90 s and try ONCE; if the second attempt also returns exit-2, log `reason: canonical_id_mismatch` and continue. Do NOT loop indefinitely.
 
@@ -1782,6 +1918,29 @@ Final response to the user follows this exact structure. The Δ-columns in all f
   - …
 
 IDs remain in audit `gap_nids`/`gap_tids` — retried next run. Manual review: open each URL in browser to determine whether the entry is renamed / moved / withdrawn / genuinely removed. If verified OOS or merged, reclassify the ID in the audit JSON via the same pattern as the DK p4 / NO p2 cleanups (`oos_excluded_nids` slot with audit-trail reason).
+
+<!-- Anomaly log status — ALWAYS include. Surfaces persistent log state for triage visibility. -->
+### Anomaly log — open + new this run
+
+- **Open anomalies (carry-over from previous runs):** <X> total — top 3 by occurrence count:
+  - `<stable-id-1>` — occ=<N>, first_seen=<date>, last_seen=<date>
+  - `<stable-id-2>` — …
+  - `<stable-id-3>` — …
+- **New entries created this run:** <Y> (stable ids: <comma-separated>)
+- **Active-entry occurrences appended this run:** <Z>
+- **Resolved this run (out-of-routine triage):** <W> — link to docs/anomaly_log.yml for detail
+- **Triage queue:** see `docs/anomaly_log.yml` + `docs/ANOMALY_LOG.md` workflow.
+
+  Compute via:
+  ```python
+  from scripts.lib import anomaly_log as al
+  opens = al.open_anomalies()
+  print(f'open={len(opens)}')
+  for e in sorted(opens, key=lambda x: x['occurrence_count'], reverse=True)[:3]:
+      print(f'  {e["id"]} occ={e["occurrence_count"]}')
+  ```
+
+  Omit the «Resolved this run» line when 0 (the routine never resolves; that's manual triage).
 
 ### Push state
 

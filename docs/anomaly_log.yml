@@ -1,0 +1,430 @@
+_metadata:
+  schema_version: 1
+  last_updated_utc: '2026-05-27T20:20:27Z'
+  doc: docs/ANOMALY_LOG.md
+  writer_lib: scripts/lib/anomaly_log.py
+anomalies:
+- id: audit_manifest_scope_drift:query=hamburg:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: hamburg
+  summary: IKMK discover query «Hamburg» returns OOS records (fuzzy-search false-positives outside mission
+    scope).
+  status: open
+  instance_first_seen: '2026-05-26T23:23:08Z'
+  last_seen: '2026-05-27T19:22:57Z'
+  occurrence_count: 4
+  affected_ids:
+    ikmk:
+    - 18203249
+    - 18203499
+    - 18203503
+    - 18203512
+    - 18203516
+  occurrences:
+  - run_utc: '2026-05-26T23:23:08Z'
+    batch_label: '157'
+    detail: IKMK quick_search queries "Hamburg" + "Kassel" return Roman-era coins (pre-mission) — discovery
+      is too broad. Affects batch C all 5 mds_ids.
+    full_context:
+      action_taken: Saved cache files (per §5.5.4); flagged in commit + end-of-run report. No data lost;
+        downstream filters absorb.
+      ikmk_batch: C
+      numista_batch: EU
+      ucoin_batch: '157'
+  - run_utc: '2026-05-27T10:23:15Z'
+    batch_label: '168'
+    detail: IKMK discovery queries "Christian V." and "Hamburg" continue catching full-text false-positives
+      (Phanagoria + Roman Republic this batch). Pattern recurring since batch M (2026-05-27T09:21:43Z).
+    full_context:
+      action_taken: Cached the 5 records; flagged in commit body as off-scope; manifest unchanged.
+      ikmk_batch: N
+      numista_batch: FF
+      ucoin_batch: '168'
+  - run_utc: '2026-05-27T18:25:44Z'
+    batch_label: '176'
+    detail: IKMK Christian V. + Hamburg queries returned 4/5 ancient records (Roman Constans + Greek Pantikapaion,
+      Croatia mint) — manifest fuzzy-search false positives at mds_id 18203249/314/325/382/418.
+    full_context:
+      action_taken: Committed cache writes for audit trail; flagged in commit message and end-of-run report.
+      ikmk_batch: V
+      numista_batch: FN
+      ucoin_batch: '176'
+  - run_utc: '2026-05-27T19:22:57Z'
+    batch_label: '177'
+    detail: 'IKMK batch W: 5/5 records OOS (18203499/500 Bundesrepublik post-1914, 18203503 Byzanz ancient,
+      18203512 Meißen medieval, 18203516 Iulia Titi Roman). Manifest sequential walk hitting non-project-scope
+      mds_ids systematically — sibling case to batch V (Christian V + Hamburg fuzzy queries).'
+    full_context:
+      action_taken: Committed cache writes for audit trail; flagged in commit message and end-of-run report.
+      ikmk_batch: W
+      numista_batch: FO
+      ucoin_batch: '177'
+  proposed_fix: 'Manifest-scoping pass needed: ADD oos_excluded_mds_ids slot to scripts/cache/ikmk/_manifest.json,
+    OR tighten QUERIES list in scripts/fetch_ikmk.py to exclude buckets matching Bundesrepublik / Byzanz
+    / medieval Meißen / ancient Roman patterns.'
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=kassel:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: kassel
+  summary: IKMK discover query «Kassel» returns OOS records (fuzzy-search false-positives outside mission
+    scope).
+  status: open
+  instance_first_seen: '2026-05-26T23:23:08Z'
+  last_seen: '2026-05-26T23:23:08Z'
+  occurrence_count: 1
+  affected_ids: {}
+  occurrences:
+  - run_utc: '2026-05-26T23:23:08Z'
+    batch_label: '157'
+    detail: IKMK quick_search queries "Hamburg" + "Kassel" return Roman-era coins (pre-mission) — discovery
+      is too broad. Affects batch C all 5 mds_ids.
+    full_context:
+      action_taken: Saved cache files (per §5.5.4); flagged in commit + end-of-run report. No data lost;
+        downstream filters absorb.
+      ikmk_batch: C
+      numista_batch: EU
+      ucoin_batch: '157'
+  proposed_fix: 'Future: narrow IKMK QUERIES in scripts/fetch_ikmk.py with year-range filters, OR add
+    post-fetch era filter that flags entries outside 1514-1914 as out-of-mission.'
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:scope=queries_broad_general:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    scope: queries_broad_general
+  summary: IKMK broad-text discover queries (multiple) collectively return OOS records (ancient + medieval
+    + post-1914 commemoratives). Generic class — see per-query entries for specific cases.
+  status: open
+  instance_first_seen: '2026-05-27T01:24:59Z'
+  last_seen: '2026-05-27T01:24:59Z'
+  occurrence_count: 1
+  affected_ids: {}
+  occurrences:
+  - run_utc: '2026-05-27T01:24:59Z'
+    batch_label: '159'
+    detail: IKMK batch E continuation of batches C/D — broad text queries surface ancient + medieval material
+      outside 1514-1914 mission window.
+    full_context:
+      action_taken: Saved cache files (per §5.5.4); flagged in commit + end-of-run report. No data lost;
+        downstream filters absorb.
+  proposed_fix: 'Future: narrow IKMK QUERIES in scripts/fetch_ikmk.py with year-range filters, OR add
+    post-fetch era filter that flags entries outside 1514-1914 as out-of-mission.'
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=hessen:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: hessen
+  summary: IKMK discover query «Hessen» returns OOS records (fuzzy-search false-positives outside mission
+    scope).
+  status: open
+  instance_first_seen: '2026-05-27T02:26:24Z'
+  last_seen: '2026-05-27T02:26:24Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18201200
+    - 18201201
+    - 18201202
+    - 18201205
+    - 18201214
+  occurrences:
+  - run_utc: '2026-05-27T02:26:24Z'
+    batch_label: '160'
+    detail: IKMK batch F continuation of batches C/D/E — broad text queries (Hessen, Lübeck) surface medieval
+      12th-13th-century brakteat material outside 1514-1914 mission window. IDs 18201200/18201201/18201202/18201205/18201214
+      are all Brakteate (Hermann I/Barbarossa/Friedrich I/Kuno/Dän. Herrschaft).
+    full_context:
+      action_taken: cache writes preserved; downstream seed builders filter on year/era. Logged as recurring
+        pattern.
+      ikmk_batch: F
+      numista_batch: EX
+      ucoin_batch: '160'
+  proposed_fix: Refine QUERIES list in scripts/fetch_ikmk.py to add temporal filters or replace text-queries
+    for Hessen + Lübeck with NDP region/period queries that exclude pre-1514 material.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=lubeck:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: lubeck
+  summary: IKMK discover query «Lübeck» returns OOS records (fuzzy-search false-positives outside mission
+    scope).
+  status: open
+  instance_first_seen: '2026-05-27T02:26:24Z'
+  last_seen: '2026-05-27T02:26:24Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18201200
+    - 18201201
+    - 18201202
+    - 18201205
+    - 18201214
+  occurrences:
+  - run_utc: '2026-05-27T02:26:24Z'
+    batch_label: '160'
+    detail: IKMK batch F continuation of batches C/D/E — broad text queries (Hessen, Lübeck) surface medieval
+      12th-13th-century brakteat material outside 1514-1914 mission window. IDs 18201200/18201201/18201202/18201205/18201214
+      are all Brakteate (Hermann I/Barbarossa/Friedrich I/Kuno/Dän. Herrschaft).
+    full_context:
+      action_taken: cache writes preserved; downstream seed builders filter on year/era. Logged as recurring
+        pattern.
+      ikmk_batch: F
+      numista_batch: EX
+      ucoin_batch: '160'
+  proposed_fix: Refine QUERIES list in scripts/fetch_ikmk.py to add temporal filters or replace text-queries
+    for Hessen + Lübeck with NDP region/period queries that exclude pre-1514 material.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=christian_v:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: christian_v
+  summary: IKMK discover query «Christian V.» returns OOS records (fuzzy-search false-positives outside
+    mission scope).
+  status: open
+  instance_first_seen: '2026-05-27T09:21:43Z'
+  last_seen: '2026-05-27T18:25:44Z'
+  occurrence_count: 3
+  affected_ids:
+    ikmk:
+    - 18203249
+  occurrences:
+  - run_utc: '2026-05-27T09:21:43Z'
+    batch_label: '167'
+    detail: IKMK discovery keyword queries catch full-text false-positives. 5 fetched IDs (4× Phanagoria
+      ancient, 1× Schweiz Freiburg) tagged to Christian V./VI./Friedrich VI./Iburg via word-match but
+      are off-scope.
+    full_context:
+      action_taken: cached the records (in manifest); flagged as off-scope in commit body.
+      ikmk_batch: M
+      numista_batch: FE
+      ucoin_batch: '167'
+  - run_utc: '2026-05-27T10:23:15Z'
+    batch_label: '168'
+    detail: IKMK discovery queries "Christian V." and "Hamburg" continue catching full-text false-positives
+      (Phanagoria + Roman Republic this batch). Pattern recurring since batch M (2026-05-27T09:21:43Z).
+    full_context:
+      action_taken: Cached the 5 records; flagged in commit body as off-scope; manifest unchanged.
+      ikmk_batch: N
+      numista_batch: FF
+      ucoin_batch: '168'
+  - run_utc: '2026-05-27T18:25:44Z'
+    batch_label: '176'
+    detail: IKMK Christian V. + Hamburg queries returned 4/5 ancient records (Roman Constans + Greek Pantikapaion,
+      Croatia mint) — manifest fuzzy-search false positives at mds_id 18203249/314/325/382/418.
+    full_context:
+      action_taken: Committed cache writes for audit trail; flagged in commit message and end-of-run report.
+      ikmk_batch: V
+      numista_batch: FN
+      ucoin_batch: '176'
+  proposed_fix: 'Separate manifest-scoping pass needed: tighten Christian V. + Hamburg queries to exclude
+    ancient/non-DK-NO catalogue scope, OR add an oos_excluded_mds_ids slot to manifest.'
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=friedrich_vi:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: friedrich_vi
+  summary: IKMK discover query «Friedrich VI.» returns OOS records (fuzzy-search false-positives outside
+    mission scope).
+  status: open
+  instance_first_seen: '2026-05-27T09:21:43Z'
+  last_seen: '2026-05-27T09:21:43Z'
+  occurrence_count: 1
+  affected_ids: {}
+  occurrences:
+  - run_utc: '2026-05-27T09:21:43Z'
+    batch_label: '167'
+    detail: IKMK discovery keyword queries catch full-text false-positives. 5 fetched IDs (4× Phanagoria
+      ancient, 1× Schweiz Freiburg) tagged to Christian V./VI./Friedrich VI./Iburg via word-match but
+      are off-scope.
+    full_context:
+      action_taken: cached the records (in manifest); flagged as off-scope in commit body.
+      ikmk_batch: M
+      numista_batch: FE
+      ucoin_batch: '167'
+  proposed_fix: tighten discover queries in scripts/fetch_ikmk.py QUERIES to constrain by country/mint,
+    or add post-fetch scope filter before manifest indexing.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=iburg:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: iburg
+  summary: IKMK discover query «Iburg» returns OOS records (fuzzy-search false-positives outside mission
+    scope).
+  status: open
+  instance_first_seen: '2026-05-27T09:21:43Z'
+  last_seen: '2026-05-27T09:21:43Z'
+  occurrence_count: 1
+  affected_ids: {}
+  occurrences:
+  - run_utc: '2026-05-27T09:21:43Z'
+    batch_label: '167'
+    detail: IKMK discovery keyword queries catch full-text false-positives. 5 fetched IDs (4× Phanagoria
+      ancient, 1× Schweiz Freiburg) tagged to Christian V./VI./Friedrich VI./Iburg via word-match but
+      are off-scope.
+    full_context:
+      action_taken: cached the records (in manifest); flagged as off-scope in commit body.
+      ikmk_batch: M
+      numista_batch: FE
+      ucoin_batch: '167'
+  proposed_fix: tighten discover queries in scripts/fetch_ikmk.py QUERIES to constrain by country/mint,
+    or add post-fetch scope filter before manifest indexing.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_label_mismatch:bucket=osnabruck_p2988:source=ucoin
+  type: audit_manifest_label_mismatch
+  key_dims:
+    source: ucoin
+    bucket: osnabruck_p2988
+  summary: ucoin BR-4 bucket osnabruck_p2988 carries label «Osnabrück Hochstift» but ucoin's own period
+    title reads «City of Osnabrück (1586-1805)»; fetched TIDs are city issues not Hochstift.
+  status: open
+  instance_first_seen: '2026-05-27T14:21:59Z'
+  last_seen: '2026-05-27T14:21:59Z'
+  occurrence_count: 1
+  affected_ids: {}
+  occurrences:
+  - run_utc: '2026-05-27T14:21:59Z'
+    batch_label: '172'
+    detail: BR-4 audit names bucket osnabruck_p2988 as "Osnabrück Hochstift" but ucoin period title reads
+      "City of Osnabrück (1586-1805)" — all 5 fetched TIDs are city issues (KM 144/182/278/288 + MB 52),
+      not Hochstift. Plus TID 172175 dates to 1566, predating ucoin metadata bounds 1586-1805 (ucoin internal
+      label inconsistency).
+    full_context:
+      action_taken: Saved all 5 as city issues (in mission scope 1559-1914 regardless of Hochstift vs
+        city label); flagged context in each _audit_context.
+  proposed_fix: Rename osnabruck_p2988 bucket in BR-audit-4 manifest from "Osnabrück Hochstift" to "City
+    of Osnabrück" or "stadt" qualifier; verify other osnabruck buckets are correctly labelled Hochstift
+    vs Stadt.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_period_boundary:bucket=osnabruck_p2988:source=ucoin:tid=172175
+  type: audit_manifest_period_boundary
+  key_dims:
+    source: ucoin
+    bucket: osnabruck_p2988
+    tid: '172175'
+  summary: ucoin TID 172175 carries a year predating its bucket's period start (osnabruck_p2988 = 1586-1805)
+    — ucoin internal label inconsistency, but year still within mission window.
+  status: open
+  instance_first_seen: '2026-05-27T14:21:59Z'
+  last_seen: '2026-05-27T14:21:59Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 172175
+  occurrences:
+  - run_utc: '2026-05-27T14:21:59Z'
+    batch_label: '172'
+    detail: BR-4 audit names bucket osnabruck_p2988 as "Osnabrück Hochstift" but ucoin period title reads
+      "City of Osnabrück (1586-1805)" — all 5 fetched TIDs are city issues (KM 144/182/278/288 + MB 52),
+      not Hochstift. Plus TID 172175 dates to 1566, predating ucoin metadata bounds 1586-1805 (ucoin internal
+      label inconsistency).
+    full_context:
+      action_taken: Saved all 5 as city issues (in mission scope 1559-1914 regardless of Hochstift vs
+        city label); flagged context in each _audit_context.
+  proposed_fix: Rename osnabruck_p2988 bucket in BR-audit-4 manifest from "Osnabrück Hochstift" to "City
+    of Osnabrück" or "stadt" qualifier; verify other osnabruck buckets are correctly labelled Hochstift
+    vs Stadt.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_period_boundary:bucket=osnabruck_p2988:source=ucoin:tid=172191
+  type: audit_manifest_period_boundary
+  key_dims:
+    source: ucoin
+    bucket: osnabruck_p2988
+    tid: '172191'
+  summary: ucoin TID 172191 carries a year predating its bucket's period start (osnabruck_p2988 = 1586-1805)
+    — ucoin internal label inconsistency, but year still within mission window.
+  status: open
+  instance_first_seen: '2026-05-27T17:22:41Z'
+  last_seen: '2026-05-27T17:22:41Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 172191
+  occurrences:
+  - run_utc: '2026-05-27T17:22:41Z'
+    batch_label: '175'
+    detail: ucoin TID 172191 (8 pfennig 1570 MB-68) carries year 1570 — precedes ucoin City of Osnabrück
+      period start 1586. Period-bucket anomaly upstream.
+    full_context:
+      action_taken: Saved entry; flagged in _audit_context. 1570 still within mission window (post-1559).
+  proposed_fix: Downstream classifier should accept ucoin period mismatch on this TID.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:bucket=osnabruck_p3057:source=ucoin
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ucoin
+    bucket: osnabruck_p3057
+  summary: ucoin osnabruck_p3057 bucket spans 1482-1661 (Bishopric of Osnabrück); mission scope starts
+    1559 so ~half of bucket is pre-mission OOS.
+  status: open
+  instance_first_seen: '2026-05-27T19:22:57Z'
+  last_seen: '2026-05-27T20:20:27Z'
+  occurrence_count: 2
+  affected_ids:
+    ucoin:
+    - 171936
+    - 172222
+    - 172659
+    - 172663
+    - 172662
+  occurrences:
+  - run_utc: '2026-05-27T19:22:57Z'
+    batch_label: '177'
+    detail: 'ucoin BR-4 bucket osnabruck_p3057 (Bishopric of Osnabrück 1482-1661): first 5 gap TIDs (171936,
+      172222, 172659, 172663, 172662) all date 1482-1508 — strictly pre-mission (German lands 1559-1914).
+      Bucket spans 1482-1661, of which only 1559-1661 falls within mission scope; audit-4 did not filter
+      to mission window.'
+    full_context:
+      action_taken: Switched to next priority bucket brunswick_luneburg_p1082 per §7.5; did not save any
+        cache files from osnabruck_p3057.
+  - run_utc: '2026-05-27T20:20:27Z'
+    batch_label: '178'
+    detail: 'Defensive sample batch 178: first 5 TIDs (171936=1-vierling-1508, 172222=1-heller-1508, 172659=1-heller-1508,
+      172663=1-pfennig-1482, 172662=1-pfennig-1508) all pre-1559. Bucket''s enumerated 55 TIDs were not
+      year-filtered against mission window. Switched to next priority bucket (brunswick_luneburg_p1082)
+      for this run; bucket needs year-filter cleanup before resumption.'
+    full_context:
+      period: p3057
+      years_label: 1482-1661
+      sample_tids_oos:
+      - 171936
+      - 172222
+      - 172659
+      - 172663
+      - 172662
+  proposed_fix: 'Re-enumerate osnabruck_p3057 with year filter in audit-4 manifest: split into in_scope_tids
+    (>=1559) + oos_excluded_tids (<1559) slots. Alternatively, page-by-page filter using ucoin listing''s
+    per-row year column.'
+  resolution: null
+  resolved_at: null
+  resolved_by: null
