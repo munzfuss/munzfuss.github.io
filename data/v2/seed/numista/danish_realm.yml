@@ -59,9 +59,18 @@ coins:
       numista: '153125'
       sieg: C2-3
     metal: billon
-    fineness: 0.375
-    weight_rough_g: 2.37
-    diameter_mm: 26.8
+    fineness:
+      - value: 0.375
+      - value: 0.375
+        source: numista
+    weight_rough_g:
+      - value: 2.37
+      - value: 2.37
+        source: numista
+    diameter_mm:
+      - value: 26.8
+      - value: 26.8
+        source: numista
     issuing_entity: danish_realm
     verified: false
     fineness_verified: true
