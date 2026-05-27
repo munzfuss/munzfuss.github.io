@@ -473,9 +473,18 @@ def _compute_catalog_groups(
         else:
             add(prefix, value)
 
-    # Numista — always last
+    # Numista — always last. Schema allows scalar `str` or list[str]
+    # form (per CLAUDE.md §9a multi-source attestation: same physical
+    # coin can have multiple Numista N#s when curators register different
+    # sub-variants under separate N#s). Iterate list-form so each N#
+    # gets its own value entry in the «N#» group.
     if cat.numista:
-        add("N", str(cat.numista))
+        if isinstance(cat.numista, list):
+            for n in cat.numista:
+                if n:
+                    add("N", str(n))
+        else:
+            add("N", str(cat.numista))
 
     def sort_key(prefix: str) -> tuple[int, int]:
         prio = _PREFIX_PRIORITY.get(prefix, 500)

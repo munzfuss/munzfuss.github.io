@@ -157,6 +157,133 @@ def _ranges_to_label(year_ranges: list) -> str:
     return ", ".join(parts)
 
 
+def _infer_v1_register(v1_loc: str, v1_id: str) -> str | None:
+    """Infer Krause register code (DK / SH / NO) from V1 location +
+    id-suffix conventions. Returns None when register can't be inferred
+    safely. Used to tag cross-register KMs when merging multiple V1
+    entries that share a Hede-key but cite DIFFERENT KM registers
+    (e.g. the same Krone-Mønt 1671 cited as KM-DK 103 by curator in
+    one V1 entry and KM-SH 63 in another).
+
+    Convention:
+    - id contains `-dk-` → DK
+    - id contains `-sh-` → SH
+    - id contains `-no-` → NO
+    - else: location-default (denmark.yml → DK; schleswig_holstein.yml → SH;
+      norway.yml → NO; other → None)
+    """
+    if not v1_id:
+        return None
+    id_low = v1_id.lower()
+    if "-dk-" in id_low:
+        return "DK"
+    if "-sh-" in id_low:
+        return "SH"
+    if "-no-" in id_low:
+        return "NO"
+    loc_default = {
+        "denmark": "DK",
+        "schleswig_holstein": "SH",
+        "norway": "NO",
+    }
+    return loc_default.get(v1_loc)
+
+
+def _restore_multi(v1_coins: list[dict], v2_coin: dict,
+                   v1_locs: list[str], v1_ids: list[str]) -> dict:
+    """Restore data from MULTIPLE V1 entries (sharing a Hede-key) onto
+    one V2 entry. Specific concern: V1 had separate per-register entries
+    for the same physical coin (curator dual-citation under DK + SH
+    Krause volumes); V2 collapsed them into one entry with a single
+    KM. Add the cross-register KM(s) + each V1 entry's distinct
+    Numista N# / sources as list-form alongside V2's existing values.
+
+    The base single-V1 restore (`_restore_one`) handles year-ranges /
+    diameter / sources of the primary V1 match. THIS multi-V1 pass
+    layers additional cross-register catalog data on top.
+
+    Returns counts of fields touched."""
+    counts = {"km_register": 0, "numista_alt": 0, "sources": 0}
+    v2_cat = v2_coin.get("catalog") or {}
+    v2_km = v2_cat.get("km")
+    v2_km_scalar = v2_km if not isinstance(v2_km, list) else None
+    # Collect existing KMs already on V2 (set form)
+    v2_km_values: set[str] = set()
+    if isinstance(v2_km, list):
+        for k in v2_km:
+            if isinstance(k, dict) and k.get("value"):
+                v2_km_values.add(str(k["value"]))
+            elif isinstance(k, str):
+                v2_km_values.add(k)
+    elif v2_km:
+        v2_km_values.add(str(v2_km))
+    v2_numista = v2_cat.get("numista")
+    v2_numista_set: set[str] = set()
+    if isinstance(v2_numista, list):
+        v2_numista_set = {str(x) for x in v2_numista}
+    elif v2_numista:
+        v2_numista_set.add(str(v2_numista))
+
+    cross_register_kms: list[dict] = []  # each: {value, register}
+    new_numistas: list[str] = []
+    for v1c, loc, vid in zip(v1_coins, v1_locs, v1_ids):
+        v1_cat = v1c.get("catalog") or {}
+        v1_km = _flatten_scalar(v1_cat.get("km"))
+        if v1_km and v1_km not in v2_km_values:
+            reg = _infer_v1_register(loc, vid)
+            if reg:
+                cross_register_kms.append({"value": v1_km, "register": reg})
+        v1_n = _flatten_scalar(v1_cat.get("numista"))
+        if v1_n and v1_n not in v2_numista_set:
+            new_numistas.append(v1_n)
+        # Source merging: same logic as _restore_one, but per V1 entry.
+        v1_sources = v1c.get("sources") or []
+        if v1_sources:
+            v2_sources = v2_coin.get("sources") or []
+            existing_urls = set()
+            for s in v2_sources:
+                if isinstance(s, dict) and s.get("url"):
+                    existing_urls.add(s["url"])
+            for s in v1_sources:
+                if not isinstance(s, dict):
+                    continue
+                url = s.get("url")
+                if not url or url.startswith("#"):
+                    continue
+                if url in existing_urls:
+                    continue
+                v2_sources.append(dict(s))
+                existing_urls.add(url)
+                counts["sources"] += 1
+            v2_coin["sources"] = v2_sources
+
+    # Apply cross-register KMs: promote V2's km to list[KMRef] form.
+    if cross_register_kms:
+        new_km_list: list = []
+        # Preserve existing entries (with their implicit page-default register
+        # tag — emit as plain string so the renderer applies its default)
+        if isinstance(v2_km, list):
+            new_km_list.extend(v2_km)
+        elif v2_km is not None:
+            new_km_list.append(str(v2_km))
+        for entry in cross_register_kms:
+            new_km_list.append(entry)
+            counts["km_register"] += 1
+        v2_coin.setdefault("catalog", {})["km"] = new_km_list
+
+    # Apply alternative Numistas as list-form
+    if new_numistas:
+        new_n_list = list(v2_numista_set)
+        new_n_list.extend(new_numistas)
+        if len(new_n_list) == 1:
+            v2_coin.setdefault("catalog", {})["numista"] = new_n_list[0]
+        else:
+            v2_coin.setdefault("catalog", {})["numista"] = sorted(new_n_list)
+        counts["numista_alt"] = len(new_numistas)
+
+    return counts
+
+
 def _restore_one(v1_coin: dict, v2_coin: dict) -> dict:
     """Mutate v2_coin in place. Returns counts of fields touched."""
     counts = {"year": 0, "diameter": 0, "sources": 0}
@@ -240,6 +367,12 @@ def main() -> int:
     # hede_volume + hede + ruler — per-ruler Hede catalogue (volume needed
     # because Hede numbering restarts per-ruler).
     v1_index_by_hede_full: dict[tuple, dict] = {}
+    # Same key → LIST of (loc, coin) — used by the multi-V1 cross-register
+    # pass to merge KM/Numista alternatives from sibling V1 entries that
+    # cite the same coin under different Krause volumes (e.g. KM-DK 103 +
+    # KM-SH 63 both citing Hede c5h121 Christian V Krone-Mønt).
+    import collections as _col2
+    v1_buckets_by_hede_full: dict[tuple, list] = _col2.defaultdict(list)
     # year + normalised nominal + ruler — fuzziest fallback for V1 entries
     # without specific catalog ref (typically ucoin-V1 entries with UC# only).
     # Stored as LIST to detect ambiguity; only single-entry buckets are used.
@@ -274,6 +407,9 @@ def main() -> int:
                 v1_index_by_hede_full.setdefault(
                     (hede_vol, hede, ruler), c
                 )
+                v1_buckets_by_hede_full[(hede_vol, hede, ruler)].append(
+                    (loc_id, c)
+                )
             nominal = _norm_nominal(c.get("nominal"))
             if year_first and nominal and ruler:
                 v1_index_by_ynr_buckets[(year_first, nominal, ruler)].append(c)
@@ -284,11 +420,13 @@ def main() -> int:
     yloader.indent(mapping=2, sequence=4, offset=2)
 
     grand = {"files": 0, "files_changed": 0,
-             "year": 0, "diameter": 0, "sources": 0}
+             "year": 0, "diameter": 0, "sources": 0,
+             "km_register": 0, "numista_alt": 0}
     for path, doc in _v2_yaml_pair_iter(yloader):
         grand["files"] += 1
         coins = doc.get("coins") or []
-        per_file = {"year": 0, "diameter": 0, "sources": 0}
+        per_file = {"year": 0, "diameter": 0, "sources": 0,
+                    "km_register": 0, "numista_alt": 0}
         for v2c in coins:
             if not isinstance(v2c, dict):
                 continue
@@ -343,6 +481,28 @@ def main() -> int:
             r = _restore_one(v1c, v2c)
             for k, v in r.items():
                 per_file[k] += v
+            # Multi-V1 pass: if this V2 entry has hede+hede_volume+ruler
+            # and the V1 bucket has 2+ entries (cross-register dual
+            # citation), merge KMs and Numista alternatives from the
+            # SIBLING V1 entries that share the matcher key.
+            v1_hede = cat.get("hede")
+            v1_hede_vol = cat.get("hede_volume")
+            if v1_hede and v1_hede_vol and ruler:
+                bucket = v1_buckets_by_hede_full.get(
+                    (v1_hede_vol, v1_hede, ruler), []
+                )
+                if len(bucket) > 1:
+                    siblings = [e for e in bucket if e[1] is not v1c]
+                    sib_coins = [e[1] for e in siblings]
+                    sib_locs = [e[0] for e in siblings]
+                    sib_ids = [e[1].get("id") for e in siblings]
+                    extra = _restore_multi(sib_coins, v2c, sib_locs, sib_ids)
+                    # Aggregate counts into per_file
+                    per_file.setdefault("km_register", 0)
+                    per_file.setdefault("numista_alt", 0)
+                    per_file["km_register"] = per_file.get("km_register", 0) + extra.get("km_register", 0)
+                    per_file["numista_alt"] = per_file.get("numista_alt", 0) + extra.get("numista_alt", 0)
+                    per_file["sources"] += extra.get("sources", 0)
         total = sum(per_file.values())
         if total:
             grand["files_changed"] += 1
@@ -351,7 +511,9 @@ def main() -> int:
             rel = path.relative_to(PROJECT)
             print(f"  {rel}: year={per_file['year']} "
                   f"diameter={per_file['diameter']} "
-                  f"sources={per_file['sources']}")
+                  f"sources={per_file['sources']} "
+                  f"km_alt_register={per_file['km_register']} "
+                  f"numista_alt={per_file['numista_alt']}")
             if not args.dry_run:
                 with path.open("w") as f:
                     yloader.dump(doc, f)
@@ -361,6 +523,8 @@ def main() -> int:
     print(f"Year-fields restored:    {grand['year']}")
     print(f"Diameters restored:      {grand['diameter']}")
     print(f"Sources added:           {grand['sources']}")
+    print(f"Cross-register KMs:      {grand['km_register']}")
+    print(f"Numista alts:            {grand['numista_alt']}")
     if args.dry_run:
         print("(dry-run — no files written)")
     return 0
