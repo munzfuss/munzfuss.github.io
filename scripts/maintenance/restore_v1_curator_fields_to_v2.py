@@ -82,22 +82,28 @@ def _v2_yaml_pair_iter(yaml_loader):
             yield path, doc
 
 
+def _flatten_scalar(v):
+    """First non-empty value of a scalar/list field. Used to derive a
+    single match key when a catalog field may be either form."""
+    if v is None:
+        return None
+    if isinstance(v, list):
+        return str(v[0]) if v else None
+    s = str(v).strip()
+    return s or None
+
+
 def _cat_keys(cat: dict) -> dict:
     """Extract identifying keys for cross-V1/V2 matching.
 
-    Returns a dict with five potential match keys: numista (globally
-    unique), bruun_collection_id (globally unique within Bruun catalogue),
-    lange (Schleswig-Holstein-specific catalogue), km (territory-bound,
-    needs ruler+year disambiguation upstream), and km_no_subvariant
-    (km stripped of dot-suffix — covers «70» ↔ «70.1» bare-vs-dot match
-    cases per the merger's CATALOG_KEY_SYNONYMS tolerance)."""
+    Returns potential match keys at descending specificity:
+    numista (globally unique), bruun_collection_id (globally unique
+    within Bruun catalogue), lange (Schleswig-Holstein-specific),
+    hede + hede_volume (per-ruler-volume specific), schou (per-ruler),
+    km + km_core (territory-bound)."""
     if not isinstance(cat, dict):
         return {}
-    km_raw = cat.get("km")
-    if isinstance(km_raw, list):
-        km_str = str(km_raw[0]) if km_raw else None
-    else:
-        km_str = str(km_raw) if km_raw is not None else None
+    km_str = _flatten_scalar(cat.get("km"))
     km_core = None
     if km_str and "." in km_str:
         import re as _re
@@ -105,12 +111,23 @@ def _cat_keys(cat: dict) -> dict:
         if m:
             km_core = m.group(1)
     return {
-        "numista": str(cat.get("numista") or "") or None,
-        "bruun_coll": str(cat.get("bruun_collection_id") or "") or None,
-        "lange": str(cat.get("lange") or "") or None,
+        "numista": _flatten_scalar(cat.get("numista")),
+        "bruun_coll": _flatten_scalar(cat.get("bruun_collection_id")),
+        "lange": _flatten_scalar(cat.get("lange")),
+        "hede": _flatten_scalar(cat.get("hede")),
+        "hede_volume": _flatten_scalar(cat.get("hede_volume")),
+        "schou": _flatten_scalar(cat.get("schou")),
         "km": km_str,
         "km_core": km_core,
     }
+
+
+def _norm_nominal(n) -> str:
+    """Lowercase + collapse whitespace. Used for year+nominal+ruler match."""
+    import re as _re
+    if not n:
+        return ""
+    return _re.sub(r"\s+", " ", str(n).lower()).strip()
 
 
 def _norm_ruler(s) -> str:
@@ -220,6 +237,14 @@ def main() -> int:
     v1_index_by_km_ruler_year: dict[tuple, dict] = {}
     # km-core (sub-variant stripped) + ruler + year — bare-vs-dot tolerance.
     v1_index_by_km_core_ruler_year: dict[tuple, dict] = {}
+    # hede_volume + hede + ruler — per-ruler Hede catalogue (volume needed
+    # because Hede numbering restarts per-ruler).
+    v1_index_by_hede_full: dict[tuple, dict] = {}
+    # year + normalised nominal + ruler — fuzziest fallback for V1 entries
+    # without specific catalog ref (typically ucoin-V1 entries with UC# only).
+    # Stored as LIST to detect ambiguity; only single-entry buckets are used.
+    import collections as _col
+    v1_index_by_ynr_buckets: dict[tuple, list] = _col.defaultdict(list)
     for loc_id, coins in _v1_yaml_iter():
         for c in coins:
             if not isinstance(c, dict):
@@ -243,6 +268,15 @@ def main() -> int:
                 v1_index_by_km_core_ruler_year.setdefault(
                     (km_core, ruler, year_first), c
                 )
+            hede = cat.get("hede")
+            hede_vol = cat.get("hede_volume")
+            if hede and hede_vol and ruler:
+                v1_index_by_hede_full.setdefault(
+                    (hede_vol, hede, ruler), c
+                )
+            nominal = _norm_nominal(c.get("nominal"))
+            if year_first and nominal and ruler:
+                v1_index_by_ynr_buckets[(year_first, nominal, ruler)].append(c)
 
     yloader = YAML()
     yloader.preserve_quotes = True
@@ -260,6 +294,8 @@ def main() -> int:
                 continue
             cat = _cat_keys(v2c.get("catalog") or {})
             v1c = None
+            ruler = _norm_ruler(v2c.get("ruler"))
+            year_first = v2c.get("year_first")
             # Priority order: most-specific globally-unique keys first.
             if cat.get("numista") and cat["numista"] in v1_index_by_numista:
                 v1c = v1_index_by_numista[cat["numista"]]
@@ -267,24 +303,41 @@ def main() -> int:
                 v1c = v1_index_by_bruun_coll[cat["bruun_coll"]]
             elif cat.get("lange") and cat["lange"] in v1_index_by_lange:
                 v1c = v1_index_by_lange[cat["lange"]]
-            if v1c is None:
+            elif (cat.get("hede") and cat.get("hede_volume") and ruler
+                  and (cat["hede_volume"], cat["hede"], ruler) in v1_index_by_hede_full):
+                # hede_volume + hede + ruler — Hede numbering restarts
+                # per ruler, so volume IS required for disambiguation.
+                v1c = v1_index_by_hede_full[(cat["hede_volume"], cat["hede"], ruler)]
+            if v1c is None and ruler and year_first:
                 # km + ruler + year_first fallback — territory-bound,
                 # disambiguated by the ruler+year pair. Try the V2's KM
                 # verbatim, then the bare-form parent (V2 «70.1» → V1
                 # «70» bare).
-                ruler = _norm_ruler(v2c.get("ruler"))
-                year_first = v2c.get("year_first")
-                if ruler and year_first:
-                    km = cat.get("km")
-                    if km:
-                        key = (km, ruler, year_first)
-                        if key in v1_index_by_km_ruler_year:
-                            v1c = v1_index_by_km_ruler_year[key]
-                        elif (cat.get("km_core")
-                              and (cat["km_core"], ruler, year_first) in v1_index_by_km_ruler_year):
-                            v1c = v1_index_by_km_ruler_year[
-                                (cat["km_core"], ruler, year_first)
-                            ]
+                km = cat.get("km")
+                if km:
+                    key = (km, ruler, year_first)
+                    if key in v1_index_by_km_ruler_year:
+                        v1c = v1_index_by_km_ruler_year[key]
+                    elif (cat.get("km_core")
+                          and (cat["km_core"], ruler, year_first) in v1_index_by_km_ruler_year):
+                        v1c = v1_index_by_km_ruler_year[
+                            (cat["km_core"], ruler, year_first)
+                        ]
+            if v1c is None and ruler and year_first:
+                # year + normalised nominal + ruler — UNIQUE-ONLY fallback.
+                # Only apply when EXACTLY ONE V1 entry has the (year, nom,
+                # ruler) tuple AND its KM is not present in any V2 entry
+                # (avoid clobbering distinct sub-variants that V1 split
+                # differently from V2). This catches the «UC# 1» ucoin
+                # V1 entries that match a Hede-cataloged V2 entry but
+                # have no shared catalog key.
+                nom = _norm_nominal(v2c.get("nominal"))
+                if nom:
+                    bucket = v1_index_by_ynr_buckets.get(
+                        (year_first, nom, ruler), []
+                    )
+                    if len(bucket) == 1:
+                        v1c = bucket[0]
             if v1c is None:
                 continue
             r = _restore_one(v1c, v2c)
