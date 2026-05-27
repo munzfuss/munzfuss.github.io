@@ -1225,9 +1225,9 @@ After both batches commit, output BOTH tables in the exact format below. This is
 
 ### §6.1. Compute current numbers (with per-row Δ for THIS run)
 
-The script accepts two integer-list inputs at the TOP — fill them with the exact NIDs / TIDs you just saved in this run's Numista batch + ucoin batch. The script then renders both tables with a **«Δ this run»** column that tallies how many of those just-added IDs landed in each period/bucket.
+The script accepts THREE id-list inputs at the TOP — fill them with the exact NIDs / TIDs / mds_ids you just saved in this run's Numista batch + ucoin batch + IKMK batch. The script then renders ALL THREE source tables (Numista BO.6 + BO.7, ucoin BR-audit-2 + BR-audit-3 + BR-audit-4, IKMK by query bucket) with a **«Δ this run»** column that tallies how many of those just-added IDs landed in each period/bucket.
 
-If a batch was deferred (Cloudflare blocked, NID returned 404 and was logged to `_failed_open_ids.json` per §2.4 / §4.4), DO NOT include it in the list — only IDs whose `<id>.json` was actually written this run.
+If a batch was deferred (Cloudflare blocked, NID returned 404 and was logged to `_failed_open_ids.json` per §2.4 / §4.4) or skipped (IKMK per §5.5.5), DO NOT include it in the list — only IDs whose `<id>.json` was actually written this run.
 
 ```bash
 .venv/bin/python <<'EOF'
@@ -1238,8 +1238,10 @@ import json, pathlib
 # ============================================================
 NIDS_THIS_RUN = [82133, 82384, 98983, 99000, 50496, 55887, 55888]  # Numista batch
 TIDS_THIS_RUN = [94070, 94098, 94099, 94100, 94101]                # ucoin batch
+IKMK_IDS_THIS_RUN = [18201589, 18201591, 18201596, 18201699, 18201701]  # IKMK batch (empty list [] if skipped per §5.5.5)
 NUMISTA_BATCH_LABEL = 'N'                                          # e.g. 'N', 'O', 'P'
 UCOIN_BATCH_LABEL = '29'                                           # e.g. '29', '30', '31'
+IKMK_BATCH_LABEL = 'J'                                             # alphabetical letter, matching Numista cadence (§5.5.6)
 # ============================================================
 
 def fmt_delta(n):
@@ -1494,6 +1496,77 @@ br4_gap = br4_total_in_scope - br4_total_cached
 br4_pct = round(100 * br4_total_cached / br4_total_in_scope) if br4_total_in_scope else 0
 print(f'| **TOTAL** | | **{br4_total_in_scope}** | **{br4_total_cached}** | **{br4_gap}** | **{br4_pct}%** | **{fmt_delta(br4_total_delta)}** | **{br4_closed}/{br4_active} closed** |')
 
+# === IKMK — per-query-bucket coverage (added 2026-05-27) ===
+# IKMK's manifest groups mds_ids by query name (e.g. "Braunschweig",
+# "Kopenhagen"). Same mds_id can appear in multiple buckets (Welf-
+# dynasty cross-refs etc.), so per-bucket totals include duplicates;
+# the **grand total** uses unique mds_id counts from the manifest's
+# top-level `ids` field.
+print()
+print(f'### IKMK — per-query-bucket coverage (post batch {IKMK_BATCH_LABEL})')
+print()
+print(f'| # | Query bucket | Total | Cached | Gap | % | Δ b{IKMK_BATCH_LABEL} | Status |')
+print('|---|---|---:|---:|---:|---:|---:|---|')
+
+ikmk_cache = pathlib.Path('scripts/cache/ikmk')
+ikmk_manifest = json.loads((ikmk_cache/'_manifest.json').read_text())
+ikmk_ids_set = set(str(i) for i in IKMK_IDS_THIS_RUN)
+ikmk_unmatched_ids = set(ikmk_ids_set)
+
+# Render only non-empty buckets, sorted by gap descending (work-remaining
+# first so the reader sees where the next batches should go). Closed
+# buckets (gap=0, total>0) appear at the bottom of the active set.
+ikmk_buckets_raw = []
+for qname, ids in ikmk_manifest['queries'].items():
+    total = len(ids)
+    if total == 0:
+        continue  # empty queries (returned no hits) skip the table entirely
+    bucket_ids = set(str(i) for i in ids)
+    cached = sum(1 for i in ids if (ikmk_cache/f'{i}.json').exists())
+    delta = len(bucket_ids & ikmk_ids_set)
+    ikmk_unmatched_ids -= bucket_ids
+    ikmk_buckets_raw.append((qname, total, cached, delta, bucket_ids))
+
+# Sort: rows with delta > 0 first (so this run's contributions are visible),
+# then open rows by gap desc, then closed rows.
+def _ikmk_sort_key(row):
+    qname, total, cached, delta, _ = row
+    gap = total - cached
+    if delta > 0:
+        return (0, -delta, -gap, qname)
+    if gap > 0:
+        return (1, -gap, qname)
+    return (2, -total, qname)
+ikmk_buckets_raw.sort(key=_ikmk_sort_key)
+
+ikmk_closed = ikmk_active = 0
+ikmk_bucket_total_sum = ikmk_bucket_cached_sum = ikmk_bucket_delta_sum = 0
+for i, (qname, total, cached, delta, _bucket_ids) in enumerate(ikmk_buckets_raw, 1):
+    ikmk_active += 1
+    gap = total - cached
+    pct = round(100 * cached / total) if total else 0
+    status = '✅ CLOSED' if gap == 0 else ('⏳ untouched' if cached == 0 else '🔵 open')
+    if delta > 0 and gap == 0:
+        status = f'🎉 CLOSED! (b{IKMK_BATCH_LABEL})'
+    elif delta > 0:
+        status = f'🔵 batch {IKMK_BATCH_LABEL} here'
+    if gap == 0: ikmk_closed += 1
+    ikmk_bucket_total_sum += total
+    ikmk_bucket_cached_sum += cached
+    ikmk_bucket_delta_sum += delta
+    print(f'| {i} | {qname} | {total} | {cached} | {gap} | {pct}% | {fmt_delta(delta)} | {status} |')
+
+# Per-row totals include cross-bucket duplicates — the bucket-sum row
+# is informational only. The authoritative TOTAL uses the manifest's
+# unique-id pool.
+ikmk_unique_total = len(ikmk_manifest['ids'])
+ikmk_unique_cached = len(list(ikmk_cache.glob('[0-9]*.json')))
+ikmk_unique_gap = ikmk_unique_total - ikmk_unique_cached
+ikmk_unique_pct = round(100 * ikmk_unique_cached / ikmk_unique_total) if ikmk_unique_total else 0
+ikmk_unique_delta = len(ikmk_ids_set & set(str(i) for i in ikmk_manifest['ids']))
+print(f'| _bucket-sum_ | _includes cross-bucket dupes_ | _{ikmk_bucket_total_sum}_ | _{ikmk_bucket_cached_sum}_ | _{ikmk_bucket_total_sum - ikmk_bucket_cached_sum}_ | _—_ | _{fmt_delta(ikmk_bucket_delta_sum)}_ | _—_ |')
+print(f'| **TOTAL (unique)** | | **{ikmk_unique_total}** | **{ikmk_unique_cached}** | **{ikmk_unique_gap}** | **{ikmk_unique_pct}%** | **{fmt_delta(ikmk_unique_delta)}** | **{ikmk_closed}/{ikmk_active} buckets closed** |')
+
 # Re-print unmatched warnings AFTER all 4 tables have had a chance to claim IDs.
 if numista_unmatched_nids:
     print()
@@ -1503,23 +1576,32 @@ if ucoin_unmatched_tids:
     print()
     print(f'> ⚠ TIDs not matched to BR-audit-2 OR BR-audit-4 buckets: {sorted(ucoin_unmatched_tids)} '
           '— check audits; BR-audit-3 Hanseatic buckets are tracked separately and may need adding here.')
+if ikmk_unmatched_ids:
+    print()
+    print(f'> ⚠ IKMK mds_ids not matched to any non-empty query bucket: {sorted(ikmk_unmatched_ids)} '
+          '— ID was saved this run but not present in any of the manifest queries. Check `_manifest.json` '
+          'or re-run `scripts/fetch_ikmk.py discover` to refresh.')
 EOF
 ```
 
-**Note on the rendering scope.** The script above renders FOUR tables: BR-audit-2 (DK periods, 16 rows), BO.6 (DK+NO+SH, 9 rows), BO.7 (German states, 17 rows), BR-audit-4 (German states, 27 rows). It does NOT render BR-audit-3 Hanseatic per-bucket (those 6 buckets sit between BR-2 and BR-4 in coverage but are tracked separately for now — surface them in the §8 headline-numbers line if needed). When a manifest is fully closed, its table still renders (all-CLOSED rows) — keeps the report shape stable across runs so the reader sees the same structure regardless of which fronts are active.
+**Note on the rendering scope.** The script above renders FIVE tables: BR-audit-2 (DK periods, 16 rows), BO.6 (DK+NO+SH, 9 rows), BO.7 (German states, 17 rows), BR-audit-4 (German states, 27 rows), IKMK (per-query-bucket, variable rows — only non-empty buckets are shown, sorted with this-run's buckets first then by gap descending). It does NOT render BR-audit-3 Hanseatic per-bucket (those 6 buckets sit between BR-2 and BR-4 in coverage but are tracked separately for now — surface them in the §8 headline-numbers line if needed). When a manifest is fully closed, its table still renders (all-CLOSED rows) — keeps the report shape stable across runs so the reader sees the same structure regardless of which fronts are active.
 
-**Implementation note.** Maintain `NIDS_THIS_RUN` and `TIDS_THIS_RUN` as live variables during the batch flow:
+**Note on the IKMK bucket-sum vs. unique-total distinction.** IKMK query buckets often overlap — a Welf-dynasty piece can satisfy both «Braunschweig» and «Braunschweig-Lüneburg» queries — so summing per-bucket totals double-counts. The script emits TWO total rows: an italic `_bucket-sum_` row that mirrors the per-row arithmetic (informational, for catching scope drift between manifest and cache) and the bold authoritative `**TOTAL (unique)**` row that uses the manifest's top-level `ids` list as the unique pool. **Always cite the unique-total** in §8 headline numbers; the bucket-sum is debugging-only.
+
+**Implementation note.** Maintain `NIDS_THIS_RUN`, `TIDS_THIS_RUN`, and `IKMK_IDS_THIS_RUN` as live variables during the batch flow:
 - After each successful `save_numista.py` call, append the NID to a running list (e.g. `RUN_NIDS=()` Bash array, or just track in your scratchpad).
 - After each successful `save_ucoin.py` call (exit code 0), append the TID.
+- After each successful IKMK fetch (extract the mds_ids written by `scripts/fetch_ikmk.py fetch --limit 5` via `git status --short` on the submodule — the new `?? ikmk/<mds_id>.json` lines name the IDs added this run).
 - Skip 404 cases and exit-2 (canonical-tid fail) cases — those are not «processed this run».
+- When IKMK was skipped per §5.5.5, set `IKMK_IDS_THIS_RUN = []` and the table still renders for shape stability.
 - At rendering time, paste the final lists into the script's top.
 
-The unmatched-IDs warning at the bottom guards against scope drift — if a TID/NID you saved doesn't show up in any tracked bucket, the audit needs updating OR the ID was saved outside the routine's intended scope.
+The unmatched-IDs warning at the bottom guards against scope drift — if a TID/NID/mds_id you saved doesn't show up in any tracked bucket, the audit needs updating OR the ID was saved outside the routine's intended scope.
 
 ### §6.2. Required output sections (in this order)
 
 1. **Pre-tables one-liner** — what this run added, framed as a delta.
-   Example: «Batch run 2026-05-21 14:00 UTC: Numista batch P added **+5** to NO p2; ucoin batch 31 added **+5** to DK p1115. Both committed local.»
+   Example: «Batch run 2026-05-21 14:00 UTC: Numista batch P added **+5** to NO p2; ucoin batch 31 added **+5** to DK p1115; IKMK batch J added **+5** mds_ids. All committed local.»
 
 2. **ucoin BR-audit-2 coverage table** — 16 rows + TOTAL (DK periods), with the `Δ b<N>` column populated from §6.1's script.
 
@@ -1529,17 +1611,22 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
 
 5. **ucoin BR-audit-4 coverage table** — 27 rows + TOTAL (German states), populated by the §6.1 BR-audit-4 block.
 
-   When a coverage manifest has zero activity AND zero gap (all-CLOSED, no delta this run), the table still renders — it stays in the report for shape stability across runs, so the reader sees the same four sections every time. The §6.1 script handles all four uniformly.
+6. **IKMK per-query-bucket coverage table** — variable rows (one per non-empty query in `_manifest.json::queries`) + `_bucket-sum_` informational row + **TOTAL (unique)** row using the manifest's deduped `ids` pool. Sorted with this-run's contributions at the top, then open buckets by gap descending, then closed buckets. Populated by the §6.1 IKMK block.
 
-6. **Headline numbers** (each line ends with a parenthetical run-delta — include each manifest with non-trivial state, omit ones that are 100 %-closed and untouched this run):
+   When a coverage manifest has zero activity AND zero gap (all-CLOSED, no delta this run), the table still renders — it stays in the report for shape stability across runs, so the reader sees the same five sections every time. The §6.1 script handles all five uniformly.
+
+   **IKMK skipped per §5.5.5?** The table still renders against the existing manifest — `IKMK_IDS_THIS_RUN = []` means every row shows `Δ = —`. Don't omit the table just because no fetches happened; the static state IS the report.
+
+7. **Headline numbers** (each line ends with a parenthetical run-delta — include each manifest with non-trivial state, omit ones that are 100 %-closed and untouched this run):
    - Numista BO.6 (DK + NO + SH) — total cached, remaining (Δ this run: +X)
    - Numista BO.7 (German states) — total cached, remaining (Δ this run: +X)
    - ucoin BR-audit-2 (DK periods) — total cached, remaining (Δ this run: +X)
    - ucoin BR-audit-3 (Hanseatic Hamburg + Lübeck) — total cached, remaining (Δ this run: +X)
    - ucoin BR-audit-4 (German states) — total cached, remaining (Δ this run: +X)
-   - Grand cumulative cached across all manifests (Δ this run: +X Numista, +Y ucoin = +Z total)
+   - IKMK (museum catalogue) — total cached / unique pool, remaining (Δ this run: +X) — cite the **unique** pool, NOT the bucket-sum
+   - Grand cumulative cached across all manifests (Δ this run: +X Numista, +Y ucoin, +Z IKMK = +W total)
 
-7. **Failed-to-open this run** — list IDs that the routine could NOT fetch (404 / persistent Cloudflare / canonical mismatch / DOM unexpected). Pulled from this run's `runs[-1].numista_batch.failed_open[]` + `runs[-1].ucoin_batch.failed_open[]` + `_failed_open_ids.json` tail. **Omit the section entirely if both lists are empty** (the typical clean run).
+8. **Failed-to-open this run** — list IDs that the routine could NOT fetch (404 / persistent Cloudflare / canonical mismatch / DOM unexpected). Pulled from this run's `runs[-1].numista_batch.failed_open[]` + `runs[-1].ucoin_batch.failed_open[]` + `_failed_open_ids.json` tail. **Omit the section entirely if both lists are empty** (the typical clean run).
    Shape per entry: `N#<id> — <reason> — <one-line context>`. Example:
    > ### ⚠ Failed to open this run (4)
    > - **Numista**:
@@ -1550,9 +1637,9 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
 
    Tells the user exactly which IDs to inspect manually. The IDs **remain in audit gap_nids/gap_tids** — they're retry candidates next hour. Routine does NOT mark them «dead».
 
-8. **Push state** — exactly one sentence: «N commits ready locally — `git push` when ready (both repos).» Compute N via `git log --oneline origin/main..HEAD | wc -l` from main repo + same from submodule, sum.
+9. **Push state** — exactly one sentence: «N commits ready locally — `git push` when ready (both repos).» Compute N via `git log --oneline origin/main..HEAD | wc -l` from main repo + same from submodule, sum.
 
-9. **Recommended next batches** — top 3 priorities for the NEXT hourly run, picking from whichever manifest's smallest open bucket is next per the §2.1 / §4.1 picker order.
+10. **Recommended next batches** — top 3 priorities for the NEXT hourly run, picking from whichever manifest's smallest open bucket is next per the §2.1 / §4.1 picker order (Numista + ucoin); for IKMK suggest «next 5 from manifest uncached pool» unless re-discovery is due per §5.5.2.
 
 ### §6.3. Status emoji legend (use consistently)
 
@@ -1565,10 +1652,11 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
 
 ### §6.4. Delta semantics — what counts
 
-- A TID/NID counts toward the delta only if its `<id>.json` was **written to disk this run** (save script exit 0).
+- A TID/NID/mds_id counts toward the delta only if its `<id>.json` was **written to disk this run** (save script exit 0 for Numista/ucoin; `fetched=` count in the `fetch_ikmk.py` summary for IKMK).
 - IDs logged to `_failed_open_ids.json` are NOT included in delta (no file written; per §2.4 / §4.4). They surface in the §6.2 «Failed to open this run» section instead — visibility for the user without inflating progress numbers.
 - Canonical-tid mismatch (save_ucoin exit 2) is NOT included.
 - Cloudflare deferrals — IDs that you decided to retry next hour — are NOT included.
+- IKMK batches skipped per §5.5.5 (already fully harvested / discover failed / consecutive errors) contribute zero delta — `IKMK_IDS_THIS_RUN = []`.
 - Re-saves of an already-cached file (idempotent rewrite with same content) ARE counted as 0 delta for that period — the file already existed, the run didn't add new scope.
 
 This keeps the delta semantics tight: **«items the routine demonstrably added to the cache this hour»**, nothing aspirational.
@@ -1646,10 +1734,10 @@ The audit manifest's `denmark/p4` listed 20 «gap» NIDs as in-scope. The hourly
 
 ## §8. End-of-run report template
 
-Final response to the user follows this exact structure. The Δ-columns in both tables come straight from §6.1's script output — do not hand-compute, the script already filled them.
+Final response to the user follows this exact structure. The Δ-columns in all five tables come straight from §6.1's script output — do not hand-compute, the script already filled them.
 
 ```markdown
-**Batch run <UTC timestamp>**: Numista batch <letter> added **+<N>** to <bucket>; ucoin batch <NN> added **+<M>** to <period>; IKMK batch <letter> added **+<K>** to <bucket-or-«skipped»>. All committed local (total **+<N+M+K>** entries this run).
+**Batch run <UTC timestamp>**: Numista batch <letter> added **+<N>** to <bucket>; ucoin batch <NN> added **+<M>** to <period>; IKMK batch <letter> added **+<K>** mds_ids (or «skipped per §5.5.5» with reason). All committed local (total **+<N+M+K>** entries this run).
 
 ### ucoin — per-period detailed coverage (post batch <NN>)
 
@@ -1657,16 +1745,33 @@ Final response to the user follows this exact structure. The Δ-columns in both 
 
 ### Numista — per-bucket detailed coverage (BO.6 v3, post batch <letter>)
 
-<8-row + TOTAL table from §6.1 — includes Δ batch <letter> column>
+<9-row + TOTAL table from §6.1 — includes Δ batch <letter> column>
 
-### Headline numbers post-batches <letter> + <NN>
+### Numista BO.7 — per-issuer coverage (German states, post batch <letter>)
 
-- **Phase 1 (DK + SH) Numista**: <cached>/<total>, **<remaining> left** (Δ this run: +<n1>)
-- **Phase 2 (NO) Numista**: <cached>/<total>, **<remaining> left** (Δ this run: +<n2>)
-- **ucoin Phase 1**: <cached>/<total>, **<remaining> left** (Δ this run: +<n3>)
-- **Grand total**: <numista_cumulative + ucoin_cumulative> cached cumulatively (Δ this run: **+<n1+n2>** Numista, **+<n3>** ucoin = **+<total>** entries)
+<17-row + TOTAL table from §6.1 — includes Δ batch <letter> column>
 
-<!-- §6.2 item 5 — Failed to open this run. Include ONLY when at least one failed_open[] is non-empty: -->
+### ucoin BR-audit-4 — per-bucket coverage (German states, post batch <NN>)
+
+<27-row + TOTAL table from §6.1 — includes Δ b<NN> column>
+
+### IKMK — per-query-bucket coverage (post batch <letter>)
+
+<variable-row table (one per non-empty query) + _bucket-sum_ row + TOTAL (unique) row from §6.1 — includes Δ b<letter> column. ALWAYS rendered, even when IKMK was skipped per §5.5.5 (all Δ cells will read «—»). Cite the **TOTAL (unique)** line in the headline numbers below, NOT the bucket-sum.>
+
+### Headline numbers post-batches <letter> + <NN> + <ikmk-letter>
+
+- **Numista BO.6** (DK + NO + SH): <cached>/<total>, **<remaining> left** (Δ this run: +<n1>)
+- **Numista BO.7** (German states): <cached>/<total>, **<remaining> left** (Δ this run: +<n2>)
+- **ucoin BR-audit-2** (DK periods): <cached>/<total>, **<remaining> left** (Δ this run: +<n3>)
+- **ucoin BR-audit-3** (Hanseatic): <cached>/<total>, **<remaining> left** (Δ this run: +<n4>)
+- **ucoin BR-audit-4** (German states): <cached>/<total>, **<remaining> left** (Δ this run: +<n5>)
+- **IKMK** (museum catalogue, unique pool): <cached>/<total>, **<remaining> left** (Δ this run: +<n6>)
+- **Grand cumulative**: <numista_cum> Numista + <ucoin_cum> ucoin + <ikmk_cum> IKMK = **<sum>** cached cumulatively (Δ this run: **+<n1+n2>** Numista, **+<n3+n4+n5>** ucoin, **+<n6>** IKMK = **+<total>** entries)
+
+  Omit any line whose manifest is 100 %-closed AND untouched this run, to keep the headline list focused on active work.
+
+<!-- §6.2 item 8 — Failed to open this run. Include ONLY when at least one failed_open[] is non-empty: -->
 ### ⚠ Failed to open this run (<K>)
 
 - **Numista**:
@@ -1686,7 +1791,7 @@ IDs remain in audit `gap_nids`/`gap_tids` — retried next run. Manual review: o
 
 1. <next-Numista-batch> — <description>
 2. <next-ucoin-batch> — <description>
-3. <third-priority>
+3. <next-IKMK-batch (or «top up next 5 from manifest uncached pool» / «re-discover per §5.5.2 — manifest fetched_at older than 30 days»)>
 ```
 
 **If a batch was skipped or partial** (Cloudflare blocked, Chrome MCP disconnected mid-run, etc.) — append a `### Anomalies` section listing what was deferred. The Δ-columns will then show smaller-than-target deltas (e.g. `+3` instead of `+5`); that's the honest record.
@@ -1722,8 +1827,10 @@ The routine STOPS HARD (returns failure, do not commit) under:
 | `scripts/cache/numista/_BO6_audit_2026-05-20.json` | 8-bucket DK + NO + SH enumeration + in_scope_nids / gap_nids (BO.6 — manifest 1) | RO |
 | `scripts/cache/numista/_BO6_gaps_manifest_2026-05-19.json` | SH-cluster per-issuer gap lists (BO.6 supplementary) | RO |
 | `scripts/cache/numista/_BO7_audit_2026-05-24.json` | 17-issuer German-states enumeration + in_scope_nids (BO.7 — manifest 2, added 2026-05-24; Hanseatic cities + Welf territories + Hesse-Kassel + Oldenburg + Saxe-Lauenburg + Osnabrück + Bremen) | RO |
+| `scripts/cache/ikmk/_manifest.json` | IKMK enumeration: `queries` (dict of query-name → mds_id list, 90 buckets) + top-level `ids` (deduped unique pool) + `fetched_at` timestamp. Used by §5.5 IKMK batch + §6.1 IKMK coverage table. Re-fetched by `scripts/fetch_ikmk.py discover` when freshness rules in §5.5.2 trigger. | RO (this routine reads only; `discover` writes it) |
 | `scripts/cache/ucoin/<TID>.json` | Per-TID harvested data | RW (this routine appends) |
 | `scripts/cache/numista/<NID>.json` | Per-NID harvested data | RW |
+| `scripts/cache/ikmk/<mds_id>.json` | Per-IKMK-mds_id harvested record (CC BY-SA 4.0 LOD) | RW (this routine appends) |
 | `scripts/cache/ucoin/_failed_open_ids.json` | Append-only structured log of URL-open failures (404 / Cloudflare-persistent / canonical-mismatch / redirect-to-landing / DOM-unexpected). Each entry: `{id, ts, url_tried, reason, batch_label, details}`. NOT framed as «deleted» — upstream state opaque; surfaces in §8 report for manual user review. IDs stay in audit `gap_tids` as retry candidates. | RW (append-only) |
 | `scripts/cache/numista/_failed_open_ids.json` | Same shape for Numista NIDs. | RW (append-only) |
 | `scripts/cache/ucoin/_p<NNNN>_listing.json` | Optional: cached slug→TID map per period | RW (lazy) |
