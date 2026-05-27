@@ -175,25 +175,51 @@ def parse_references_from_strings(items: list[str] | None) -> dict[str, str]:
 #   "Iron"
 # Plus chrome's `composition_text` carrying the same forms.
 
-_METAL_TOKEN_TO_CANON: dict[str, str] = {
+# Map Numista metal vocabulary → our Pydantic-allowed metal set
+# (silver / gold / billon / copper / lead / bronze per schema.py).
+# Numista emits a wider vocabulary («Gilding metal plated», «Brass»,
+# «Cupronickel», «Aluminum-bronze», …) — these compound / alloy forms
+# get folded onto the nearest schema-allowed metal, or None when no
+# reasonable mapping exists (caller then falls back to denomination
+# heuristic via `infer_metal_from_denomination`).
+_METAL_TOKEN_TO_CANON: dict[str, str | None] = {
+    # Schema-direct
     "silver": "silver",
-    "billon": "billon",
     "gold": "gold",
+    "billon": "billon",
     "copper": "copper",
-    "bronze": "bronze",
-    "brass": "brass",
-    "iron": "iron",
-    "nickel": "nickel",
-    "nickel-silver": "nickel-silver",
-    "tin": "tin",
     "lead": "lead",
+    "bronze": "bronze",
+    # Compounds Numista emits, folded onto schema-allowed:
+    "brass": "bronze",                      # copper-zinc, closest schema match
+    "gilding": "bronze",                    # «Gilding metal plated» — copper-zinc alloy
+    "gilt": "bronze",
+    "cupronickel": "copper",                # copper-nickel, project treats as copper-tier
+    "aluminum-bronze": "bronze",
+    "aluminium-bronze": "bronze",
+    "nickel-silver": "billon",              # German silver alloy — closest schema is billon
+    "nickel": "copper",                     # base-metal nickel, treat as copper-tier
+    # OOS (foreign tropical / fantasy / contemporary commemoratives)
+    "iron": None,
+    "aluminum": None,
+    "aluminium": None,
+    "tin": None,
+    "zinc": None,
 }
 
 
 def parse_composition(raw: str | None) -> dict[str, Any]:
     """Parse a Numista composition string («Silver (.875)») into
     `{raw, metal, fineness}`. Returns `{raw: None, metal: None,
-    fineness: None}` when input is None / unparseable."""
+    fineness: None}` when input is None / unparseable.
+
+    Fineness handling:
+      * «(.875)» / «(.5625)» — leading-dot decimal form: parsed as
+        direct decimal, e.g. .5625 → 0.5625 (no rescaling).
+      * «(0.875)» — explicit zero-dot decimal: parsed as direct decimal.
+      * «(875)» — bare integer: per-mille form, divided by 1000.
+      * «(875/1000)» — explicit ratio: parsed as fraction.
+    """
     out: dict[str, Any] = {"raw": raw, "metal": None, "fineness": None}
     if not raw or not isinstance(raw, str):
         return out
@@ -202,14 +228,34 @@ def parse_composition(raw: str | None) -> dict[str, Any]:
     m_metal = re.match(r"^\s*([A-Za-z\-]+)", s)
     if m_metal:
         token = m_metal.group(1).strip().lower()
-        out["metal"] = _METAL_TOKEN_TO_CANON.get(token, token)
-    # Extract fineness inside parens — e.g. (.875), (0.875), (875/1000)
-    m_fin = re.search(r"\(\s*\.?\s*(\d+(?:\.\d+)?)\s*\)", s)
+        # Look up token in canonical map; if absent, pass through
+        # lowercase token so a downstream consumer can decide whether
+        # to fold or report. None entries in the map are explicit OOS
+        # (iron / aluminum / tin / zinc) — treat as «metal unknown».
+        if token in _METAL_TOKEN_TO_CANON:
+            out["metal"] = _METAL_TOKEN_TO_CANON[token]
+        else:
+            out["metal"] = token
+    # Fineness: capture the dot character explicitly to distinguish
+    # decimal form (.875) from per-mille form (875). Both forms map
+    # to the same fraction; the regex preserves the dot when present
+    # so the conversion logic is unambiguous.
+    m_fin = re.search(r"\(\s*(\.?\d+(?:\.\d+)?)\s*\)", s)
     if m_fin:
-        v = float(m_fin.group(1))
-        if v > 1.0 and v <= 1000.0:
-            # «875» → .875
-            v = v / 1000.0
+        token = m_fin.group(1)
+        if token.startswith("."):
+            # Direct leading-dot decimal: «.5625» → 0.5625
+            v = float("0" + token)
+        else:
+            v_raw = float(token)
+            if "." in token:
+                # Explicit decimal form: «0.875» → 0.875 directly
+                v = v_raw
+            elif v_raw >= 1.0:
+                # Per-mille bare integer: «875» → 0.875
+                v = v_raw / 1000.0
+            else:
+                v = v_raw
         out["fineness"] = round(v, 6)
     else:
         # «X/1000» form

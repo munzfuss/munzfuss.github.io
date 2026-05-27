@@ -148,7 +148,19 @@ def _extract_composition(d: dict[str, Any]) -> dict[str, Any]:
     # parser disagrees / didn't find anything.
     chrome_metal = d.get("metal")
     if chrome_metal and parsed["metal"] is None:
-        parsed["metal"] = chrome_metal
+        # Normalise chrome's metal vocabulary through the same canonical
+        # map parse_composition uses — chrome emits compound forms
+        # («brass», «silver_plated_copper», «paper», …) that need
+        # folding onto our Pydantic-allowed set.
+        from lib.numista_canonical import _METAL_TOKEN_TO_CANON
+        chrome_metal_norm = chrome_metal.lower().replace("_", "-").replace(" ", "-")
+        # Strip «plated» / «-plated-<base>» / surface treatment suffixes —
+        # use the base metal token before the modifier.
+        for suffix in ("-plated-copper", "-plated"):
+            if chrome_metal_norm.endswith(suffix):
+                chrome_metal_norm = chrome_metal_norm[: -len(suffix)]
+                break
+        parsed["metal"] = _METAL_TOKEN_TO_CANON.get(chrome_metal_norm, chrome_metal_norm)
     chrome_fineness = d.get("fineness")
     if chrome_fineness is not None and parsed["fineness"] is None:
         try:
