@@ -1103,6 +1103,19 @@ def process_entity(entity_id: str) -> dict:
     # the unified id itself (a self-promote — distinguishes a bulk-
     # promoted entry from a V1-bootstrap-foundation entry that has
     # `composed_of: []`).
+    # Pre-load curator assignments so the bulk-promote loop can force-
+    # promote any pending unified entry that the curator has explicitly
+    # classified. Without this, an assignment on a pending entry whose
+    # bulk_promote mode would otherwise skip it (e.g.
+    # `no_basic_peer_only` when a basic peer exists) goes unapplied —
+    # the assignment is the curator's explicit «yes, add this row»
+    # decision, so the policy gate should be bypassed for it.
+    _decisions_pre = _load_yaml(V2_CLASSIFICATION_DECISIONS / f"{entity_id}.yml")
+    _assignment_ids: set[str] = set()
+    for a in _decisions_pre.get("assignments") or []:
+        if isinstance(a, dict) and a.get("coin_id"):
+            _assignment_ids.add(a["coin_id"])
+
     bulk_promoted: list[str] = []
     bulk_skipped: list[str] = []  # mode="no_basic_peer_only" — peer-exists cases stay pending
     if bulk_promote_mode is not None:
@@ -1111,12 +1124,18 @@ def process_entity(entity_id: str) -> dict:
             unified = unified_by_id.get(uid)
             if not unified:
                 continue
+            # Curator-assignment force-promote: if this unified id has
+            # an explicit fuss/phase assignment, promote regardless of
+            # the bulk_promote_mode gate. Curator decided — the gate
+            # exists to keep ambiguous cases parked in pending, not
+            # to override decisions.
+            force_promote = uid in _assignment_ids
             # Mode «no_basic_peer_only» (D39): only promote when the
             # unified entry has NO metal+nominal peer in foundation.
             # Skips D/E/H/C-category cases where promoting would
             # silently duplicate an existing foundation entry whose
             # auto-match was blocked by a fixable signal disagreement.
-            if bulk_promote_mode == "no_basic_peer_only":
+            if bulk_promote_mode == "no_basic_peer_only" and not force_promote:
                 if _has_basic_peer(unified, existing_finals_for_peer_check,
                                    entity_id, reign_index=reign_index):
                     bulk_skipped.append(uid)
@@ -1128,7 +1147,7 @@ def process_entity(entity_id: str) -> dict:
             # KM/Hede sub-variant, ruler False ≡ different reign).
             # Keeps `low_confidence` AND fallback-only-disagreement
             # cases in pending for curator review.
-            elif bulk_promote_mode == "no_match_primary_disagrees":
+            elif bulk_promote_mode == "no_match_primary_disagrees" and not force_promote:
                 primary_disagreement = _all_basic_peers_no_match_primary(
                     unified, existing_finals_for_peer_check,
                     entity_id, reign_index=reign_index,
