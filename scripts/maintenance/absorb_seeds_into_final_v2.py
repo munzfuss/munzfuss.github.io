@@ -785,7 +785,30 @@ def process_entity(entity_id: str) -> dict:
     # (Stempelschneider initials, mint-master attribution, Reichsdukatenfuß
     # standard recap — content that's not derivable from any source seed
     # and would otherwise vanish into the void).
-    _MIGRATION_PRESERVED_FIELDS = _FOUNDATION_IMMUTABLE_FIELDS | {"note"}
+    _MIGRATION_PRESERVED_FIELDS = _FOUNDATION_IMMUTABLE_FIELDS | {
+        "note",
+        # Curator-set year metadata is irreplaceable: V1 entry «1791-1792,
+        # 1794, 1802» (4 discrete years) is more accurate than the
+        # merger's «1791-1802» wide-span derived from year_first/year_last
+        # of the source seeds. Per CLAUDE.md «Source years are immutable
+        # — never truncate to fit our taxonomy». Caught 2026-05-27 on
+        # KM-650 Christian VII Species-Dukat.
+        "year_first", "year_last", "year_ranges", "year_label",
+        # Curator-set diameter (V1 scalar, manually verified against
+        # specimen catalogues) is dropped by the merger when no cache
+        # source provides diameter — preserve it as a fallback.
+        "diameter_mm", "diameter_mm_verified",
+        # Verification flags travel with the curator's intent.
+        "weight_rough_verified", "fineness_verified", "metal_verified",
+        "mint_verified",
+    }
+    # Fields that MERGE rather than replace. `sources` from V1
+    # foundations carry curator-handpicked URLs (NGC price guides,
+    # Smithsonian collection links, museum pages, Wikipedia analyses)
+    # that NO source seed produces. The merger's unified entry has
+    # cache-derived sources (Bruun PDFs, ucoin tids, NumisMaster); we
+    # want BOTH sets on the final entry, deduplicated by URL.
+    _MIGRATION_MERGE_FIELDS = frozenset({"sources"})
 
     def _migrate_classification(fe: dict, new_host_fid: str) -> None:
         """Snapshot curator-set fields for migration to new host.
@@ -794,22 +817,36 @@ def process_entity(entity_id: str) -> dict:
         curator-prose `note` field — the V1 entry's hand-written
         description that captures mint-master initials, engraver names,
         and other context not encoded in any source seed's structured
-        fields.
+        fields. ALSO year-metadata fields when the V1 curator set
+        discrete years that merger's range-derivation would lose.
         """
         snapshot = {
             field: fe[field]
             for field in _MIGRATION_PRESERVED_FIELDS
             if field in fe and fe[field] not in (None, "", [], {})
         }
-        if not snapshot:
+        # Merge-fields: collect curator-added entries (sources list)
+        # under a separate key so the bulk-promote applier knows to
+        # MERGE not REPLACE.
+        merge_snapshot = {}
+        for field in _MIGRATION_MERGE_FIELDS:
+            v = fe.get(field)
+            if v not in (None, "", [], {}):
+                merge_snapshot[field] = v
+        if not snapshot and not merge_snapshot:
             return
         existing = curator_migrations.get(new_host_fid) or {}
-        # Multiple stale foundations might both point at the same new host
-        # (rare — only if 2+ V1 entries got merged into 1 unified by the
-        # cross-source merger). Last-writer-wins is acceptable here: both
-        # would carry the same curator classification by construction
-        # (they ARE the same coin per the merger's confident match).
         existing.update(snapshot)
+        # Accumulate merge-field entries across multiple stale-foundations
+        # pointing at the same new host.
+        for k, vlist in merge_snapshot.items():
+            mkey = f"__merge__{k}"
+            ex_merge = existing.get(mkey) or []
+            if isinstance(vlist, list):
+                ex_merge.extend(vlist)
+            else:
+                ex_merge.append(vlist)
+            existing[mkey] = ex_merge
         curator_migrations[new_host_fid] = existing
 
     surviving_finals: list[dict] = []
@@ -1179,6 +1216,27 @@ def process_entity(entity_id: str) -> dict:
             migrated = curator_migrations.get(uid)
             if migrated:
                 for field, value in migrated.items():
+                    # Merge-form keys carry «__merge__<field>» prefix —
+                    # union with existing list under the bare field name,
+                    # deduped by URL (or full repr for non-URL entries).
+                    if field.startswith("__merge__"):
+                        bare = field[len("__merge__"):]
+                        existing_list = promoted_stub.get(bare) or []
+                        if not isinstance(existing_list, list):
+                            existing_list = [existing_list]
+                        seen_urls: set[str] = set()
+                        for e in existing_list:
+                            if isinstance(e, dict) and e.get("url"):
+                                seen_urls.add(e["url"])
+                        for v_entry in value:
+                            url = v_entry.get("url") if isinstance(v_entry, dict) else None
+                            if url and url in seen_urls:
+                                continue
+                            if url:
+                                seen_urls.add(url)
+                            existing_list.append(v_entry)
+                        promoted_stub[bare] = existing_list
+                        continue
                     # Don't overwrite a non-trivial value the seed already
                     # carries — but DO overwrite when the seed has the
                     # default placeholder («seed_unsorted» for fuss, the

@@ -2026,6 +2026,9 @@ coins:
     composed_of:
       - unified-dk-hede-f4h41
     v1_home_location: denmark
+    diameter_mm:
+      - value: 53.11
+        source: v1_curator
   - fuss: 9_thaler
     phase: I
     kind: kurant
@@ -5022,6 +5025,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-dukat-1747/?tid=94340
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/147904
+        ref: Numista
     verification_note:
       de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -5320,6 +5326,12 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h130.htm
         ref: danskmoent.dk (Hede f3h130A)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1654-1655/?tid=96466
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17068, p. 46
     verification_note:
       de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -6512,10 +6524,13 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1690/?tid=97317
         ref: ucoin
-      - &id001
+      - &id003
         type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1690-1692/?tid=97319
         ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17094, p. 65
     verification_note:
       de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -9750,6 +9765,12 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17154, p. 91
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-12-skilling-1812/?tid=79558
+        ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13260, p. 175
     note:
       de: 16 Skilling Rigsbanktegn 1814 (Hede-18) · Bruun-Specimen.
       en: 16 Skilling Rigsbanktegn 1814 (Hede-18) · Bruun specimen.
@@ -13026,8 +13047,10 @@ coins:
     year_last: 1607
     year_ranges:
       -   - 1606
+          - 1606
+      -   - 1607
           - 1607
-    year_label: 1606-1607
+    year_label: 1606, 1607
     mint: Kopenhagen
     catalog:
       km: '33.1'
@@ -13754,8 +13777,10 @@ coins:
     year_last: 1699
     year_ranges:
       -   - 1693
+          - 1695
+      -   - 1699
           - 1699
-    year_label: 1693-1699
+    year_label: 1693-1695, 1699
     mint: Kopenhagen
     catalog:
       km: '428.1'
@@ -15178,6 +15203,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-2-skilling-1751-1762/?tid=78763
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-2-speciedaler-1769/?tid=79158
+        ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13233, p. 164
     note:
       de: ½ Skilling 1755 (KM-577.1 Hede-40A) · kleinste Frederik-V.-Scheidemünze · Bruun-Specimen.
       en: ½ Skilling 1755 (KM-577.1 Hede-40A) · smallest Frederik V petty coin · Bruun specimen.
@@ -15829,6 +15860,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-kroner-1618-1619/?tid=163407
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/109282
+        ref: Numista
     note:
       de: 2 Krone 1618 (Helsingør, Privy Mark gekreuzte Keulen, Hede-105B) · Münzmeister Johan Post
       en: 2 Krone 1618 (Elsinore, privy mark crossed clubs, Hede-105B) · mintmaster Johan Post
@@ -16069,10 +16103,12 @@ coins:
     id: km-683-1-fr-vi-1813__v1from_schleswig_holstein
     year_first: 1813
     year_last: 1819
-    year_ranges:
+    year_ranges: &id001
       -   - 1813
+          - 1813
+      -   - 1818
           - 1819
-    year_label: 1813-1819
+    year_label: 1813, 1818-1819
     mint:
       - Altona
       - Kopenhagen
@@ -16112,6 +16148,18 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1813-1819/?tid=70758
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/22803
+        ref: Numista
+      - type: web
+        url: https://auctions.stacksbowers.com/lots/view/3-1AKSQN/denmark-rigsbankdaler-1813-copenhagen-mint-frederik-vi-ngc-specimen-66
+        ref: SB (Bruun)
+      - type: web
+        url: https://coins.ha.com/itm/denmark/frederik-vi-rigsbankdaler-1813-ic-vf25-ngc-/a/231513-64102.s
+        ref: Heritage
+      - type: web
+        url: https://www.danskmoent.dk/fr/f6h24.htm
+        ref: Hede / danskmoent.dk
     note:
       de: '«EN RIGSBANKDALER 1813» · Münzmeister Ole Varberg · Stempelschneider: Christian Andreas Müller (683.1) / Johannes Conradsen (683.2)'
       en: '«EN RIGSBANKDALER 1813» · mintmaster Ole Varberg · die-engraver: Christian Andreas Müller (683.1) / Johannes Conradsen (683.2)'
@@ -16205,8 +16253,16 @@ coins:
     year_last: 1839
     year_ranges:
       -   - 1820
+          - 1820
+      -   - 1822
+          - 1822
+      -   - 1824
+          - 1829
+      -   - 1833
+          - 1835
+      -   - 1837
           - 1839
-    year_label: 1820-1839
+    year_label: 1820, 1822, 1824-1829, 1833-1835, 1837-1839
     mint:
       - Altona
       - Kopenhagen
@@ -16439,8 +16495,10 @@ coins:
     year_last: 1847
     year_ranges:
       -   - 1840
+          - 1841
+      -   - 1843
           - 1847
-    year_label: 1840-1847
+    year_label: 1840-1841, 1843-1847
     mint:
       - Altona
       - Kopenhagen
@@ -16929,8 +16987,12 @@ coins:
     year_last: 1854
     year_ranges:
       -   - 1849
+          - 1849
+      -   - 1851
+          - 1851
+      -   - 1853
           - 1854
-    year_label: 1849-1854
+    year_label: 1849, 1851, 1853-1854
     mint:
       - Altona
       - Kopenhagen
@@ -17171,8 +17233,10 @@ coins:
     year_last: 1863
     year_ranges:
       -   - 1854
+          - 1856
+      -   - 1863
           - 1863
-    year_label: 1854-1863
+    year_label: 1854-1856, 1863
     mint:
       - Altona
       - Kopenhagen
@@ -17327,8 +17391,12 @@ coins:
     year_last: 1891
     year_ranges:
       -   - 1874
+          - 1874
+      -   - 1884
+          - 1884
+      -   - 1891
           - 1891
-    year_label: 1874-1891
+    year_label: 1874, 1884, 1891
     mint: Kopenhagen
     catalog:
       km: '795.1'
@@ -20952,6 +21020,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-4-krone-1618/?tid=163041
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/142680
+        ref: Numista
     note:
       de: ¼ Krone der Corona-Danica-Reform 1618 — kleinste Stückelung der Serie.
       en: ¼ Krone of the 1618 Corona Danica reform — smallest denomination of the series.
@@ -22574,6 +22645,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-rigsbankskilling-1842/?tid=70723
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/catalogue/pieces23857.html
+        ref: Numista
     verification_note:
       de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
       en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
@@ -22668,6 +22742,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-skilling-rigsmont-1867-1872/?tid=70686
         ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17228, p. 114
     verification_note:
       de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
       en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
@@ -22684,10 +22761,8 @@ coins:
     id: unified-denmark-numismaster-66045
     year_first: 1813
     year_last: 1819
-    year_ranges:
-      -   - 1813
-          - 1819
-    year_label: 1813-1819
+    year_ranges: *id001
+    year_label: 1813, 1818-1819
     mint: Kopenhagen
     catalog:
       km: '683.1'
@@ -22731,6 +22806,18 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1813-1819/?tid=70758
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/22803
+        ref: Numista
+      - type: web
+        url: https://auctions.stacksbowers.com/lots/view/3-1AKSQN/denmark-rigsbankdaler-1813-copenhagen-mint-frederik-vi-ngc-specimen-66
+        ref: SB (Bruun)
+      - type: web
+        url: https://coins.ha.com/itm/denmark/frederik-vi-rigsbankdaler-1813-ic-vf25-ngc-/a/231513-64102.s
+        ref: Heritage
+      - type: web
+        url: https://www.danskmoent.dk/fr/f6h24.htm
+        ref: Hede / danskmoent.dk
     verification_note:
       de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
       en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
@@ -22970,6 +23057,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-dor-1829-1838/?tid=132804
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-d-or-1829-1838/?tid=132804
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11303, p. 152
     verification_note:
       de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
       en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
@@ -23016,6 +23109,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-dor-1853/?tid=130481
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-d-or-1853/?tid=130481
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17202, p. 106
     verification_note:
       de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
       en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
@@ -25196,6 +25295,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-2-krone-1618/?tid=163048
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/109271
+        ref: Numista
     note:
       de: ½ Krone der Corona-Danica-Reform 1618 — pendant zu km-59 (1 Krone).
       en: ½ Krone of the 1618 Corona Danica reform — pendant to km-59 (1 Krone).
@@ -25271,6 +25373,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-2-krone-1619-1621/?tid=163056
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/109273
+        ref: Numista
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13093, p. 74
     note:
       de: ½ Krone, Spätprägung der Corona-Danica-Serie 1619–1621 — pendant zu km-59a.
       en: ½ Krone, late strike of the Corona Danica series 1619–1621 — pendant to km-59a.
@@ -25932,6 +26040,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-2-dukat-1647/?tid=97394
         ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11210, p. 108
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -26624,6 +26735,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_65779
         ref: NumisMaster
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13194, p. 144
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -27069,6 +27183,18 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c8h6.htm
         ref: danskmoent.dk (Hede c8h6)
+      - type: numista
+        url: https://en.numista.com/24423
+        ref: Numista
+      - type: web
+        url: https://www.ngccoin.com/price-guide/world/denmark-16-rigsbankskilling-km-733-1842-1844-cuid-1051025-duid-1238262
+        ref: NGC
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-16-rigsbankskilling-1842-1844/?tid=70755
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17177, p. 99
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -27080,6 +27206,9 @@ coins:
       unit_raw: rigsbankdalere
     composed_of:
       - unified-dk-hede-c8h6
+    diameter_mm:
+      - value: 21.5
+        source: v1_curator
   - fuss: pistolenfuss
     phase: I
     kind: kurant
@@ -27138,6 +27267,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c9h2.htm
         ref: danskmoent.dk (Hede c9h2)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-d-or-1869/?tid=130483
+        ref: ucoin
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -27185,6 +27317,12 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c9h6.htm
         ref: danskmoent.dk (Hede c9h6)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-skilling-rigsmont-1867-1872/?tid=70686
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17228, p. 114
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -28976,6 +29114,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-2-rigsdaler-1854-1855/?tid=70690
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/catalogue/pieces22115.html
+        ref: Numista
     note:
       de: «FREDERICVS VII» · Reverse Wappenschild in Kranz
       en: «FREDERICVS VII» · reverse coat-of-arms shield in Kranz
@@ -33645,6 +33786,12 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1026, p. 63
+      - type: numista
+        url: https://en.numista.com/420365
+        ref: Numista 420365
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13094, p. 75 (Hede 26B)
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -34525,6 +34672,18 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h60.htm
         ref: danskmoent.dk (Hede c5h60)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1670/?tid=97370
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1099, p. 147
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13172, p. 127
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17110, p. 73
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -35006,10 +35165,12 @@ coins:
     id: unified-dk-hede-c7h33a
     year_first: 1778
     year_last: 1785
-    year_ranges:
+    year_ranges: &id002
       -   - 1778
+          - 1779
+      -   - 1781
           - 1785
-    year_label: 1778-1785
+    year_label: 1778-1779, 1781-1785
     mint:
       - Altona
       - Kopenhagen
@@ -35063,6 +35224,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-skilling-1778-1785/?tid=78930
         ref: ucoin
+      - type: web
+        url: https://worldcoingallery.com/countries/Denmark.html
+        ref: WorldCoinGallery
+      - type: numista
+        url: https://en.numista.com/catalogue/pieces42563.html
+        ref: Numista
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -35082,12 +35249,10 @@ coins:
     ruler: Christian VII.
     issuing_entity: danish_realm
     id: unified-dk-hede-c7h33c
-    year_first: 1784
+    year_first: 1778
     year_last: 1785
-    year_ranges:
-      -   - 1784
-          - 1785
-    year_label: 1784-1785
+    year_ranges: *id002
+    year_label: 1778-1779, 1781-1785
     mint:
       - Altona
       - Kopenhagen
@@ -35127,6 +35292,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-skilling-1778-1785/?tid=78930
         ref: ucoin
+      - type: web
+        url: https://worldcoingallery.com/countries/Denmark.html
+        ref: WorldCoinGallery
+      - type: numista
+        url: https://en.numista.com/catalogue/pieces42563.html
+        ref: Numista
     note:
       de: Reverse «2 SKILLING DANSKE 17[JJ]» · «DANSKE» ist authentische Prägungsinschrift
       en: reverse «2 SKILLING DANSKE 17[JJ]» · «DANSKE» is authentische Prägungsinschrift
@@ -35568,6 +35739,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f2h20.htm
         ref: danskmoent.dk (Hede f2h20)
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13075, p. 63
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -36298,6 +36472,12 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h116.htm
         ref: danskmoent.dk (Hede f3h116)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1666-1670/?tid=99134
+        ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13158, p. 116
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -37477,6 +37657,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h91.htm
         ref: danskmoent.dk (Hede f3h91)
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11216, p. 110
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -37726,6 +37909,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1699-1702/?tid=94124
         ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13203, p. 150
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -38135,6 +38321,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-dukat-1746/?tid=94335
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-dukat-1746/?tid=94334
+        ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13219, p. 159
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -38190,6 +38382,12 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_65902
         ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-dukat-1746/?tid=94364
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1142, p. 199
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -38748,6 +38946,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1624-1625/?tid=163062
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/82862
+        ref: Numista
     note:
       de: «Dicke» Krone (Dickabschlag) 1624 mit geschlossener Krone im Wappen — dickere Flan-Variante der regulären Corona-Danica-Krone. Stilistische Abweichung innerhalb desselben Tarifregimes 1½ Speciedaler (offizielle Tarifsenkung erst 1625).
       en: «Dicke» Krone (thick-flan strike) 1624 with a closed crown on the arms — thicker-flan variant of the regular Corona Danica Krone. Stylistic deviation within the same 1½ Speciedaler tariff regime (the official tariff cut only came in 1625).
@@ -38900,6 +39101,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1651-1652/?tid=97151
         ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13130, p. 96
     verification_note:
       de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
       en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
@@ -39145,6 +39349,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1665/?tid=97238
         ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11228, p. 120
     verification_note:
       de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
       en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
@@ -39421,6 +39628,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1666-1670/?tid=99134
         ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13158, p. 116
     verification_note:
       de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
       en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
@@ -40432,6 +40642,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-16-skilling-rigsmont-1856-1858/?tid=70689
         ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17220, p. 111
     verification_note:
       de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
       en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
@@ -40505,6 +40718,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-20-kroner-1913-1931/?tid=30109
         ref: ucoin
+      - type: web
+        url: https://www.danskmoent.dk/chr/c9h8.htm
+        ref: Hede 8B / danskmoent.dk
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -40783,6 +40999,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_65230
         ref: NumisMaster
+      - type: numista
+        url: https://en.numista.com/80227
+        ref: Numista
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -40862,6 +41081,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1619-1622/?tid=163061
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/70513
+        ref: Numista
     note:
       de: '1 Krone, Spätprägung der Corona-Danica-Serie 1619–1622 unter dem ursprünglichen Tarif 1½ Speciedaler · formelle Tarifsenkung erst 1625 · Feingehalt unverändert .859, jedoch Bruttovægt nach Reform 5. April 1619 erhöht auf 18,909g (KM-59 vor der Reform: 18,766g) · vier Münzmeister-Varianten nach Hede 106 unter KM-59a: 106A trekløver-Mzz (Schwabe, Sieg-1971 90.1) — 1619-1622 inkl. Unik 1622; 106B korslagte køller (Sieg-1971 90.2) — 1619-1620 RR; 106C fugl-Mzz (Sieg-1971 90.3) — 1620-1621; 106D ibskal-Mzz (Sieg-1971 90.4) — 1620 RR · Literatur: Harck, Numismatisk Rapport 97 (2008) s.7-29.'
       en: '1 Krone, late strike of the Corona Danica series 1619–1622 under the original 1½ Speciedaler tariff · formal tariff cut only came in 1625 · fineness unchanged at .859 but Bruttovægt rose to 18.909g after the 5 April 1619 reform (pre-reform under KM-59: 18.766g) · four mint-master variants per Hede 106 folded under KM-59a: 106A trekløver privy mark (Schwabe, Sieg-1971 90.1) — 1619-1622 incl. 1622 Unik; 106B crossed-clubs (Sieg-1971 90.2) — 1619-1620 RR; 106C bird privy mark (Sieg-1971 90.3) — 1620-1621; 106D scallop privy mark (Sieg-1971 90.4) — 1620 RR · Literature: Harck, Numismatisk Rapport 97 (2008) pp.7-29.'
@@ -40929,6 +41151,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-skilling-1619/?tid=163000
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/142853
+        ref: Numista
     note:
       de: 1 Skilling Dansk 1619 — Billon-Variante (.312 Feinheit, 0,52g) mit kleiner Kronenseite und Mzz am Legenden-Ende · einjährige Emission, Numista-attestiert über 142853 («small crown encircled by legend with mintmark at end»).
       en: 1 Skilling Dansk 1619 — Billon variant (.312 fineness, 0.52g) with small crown obverse and mintmark at end of legend · single-year issue, Numista-attested via 142853 («small crown encircled by legend with mintmark at end»).
@@ -41021,6 +41246,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-skilling-1619-1623/?tid=162997
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/43532
+        ref: Numista
     note:
       de: '1 Skilling Dansk 1619-1623 — Billon-Variante (.312 Feinheit, 0,523g) mit gekröntem C4-Monogramm und RFP-Buchstaben in Dreiecksrahmen · vier Müntzmeister-Varianten nach Hede 119A-D unter KM-67 zusammengefaßt: 119A korslagte køller (1619 S, Sieg-1971 32.1), 119B fugl (1620-1623, Sieg-1971 32.2), 119C trekløver (1620-1622, Sieg-1971 32.3), 119D korslagte glødehager (1620-1622 R, Sieg-1971 32.4) · Marken-fin 14,906 daler · Literatur: Dahl, NNÅ 2003 «1 og 2 skillinger 1619-20».'
       en: '1 Skilling Dansk 1619-1623 — Billon variant (.312 fineness, 0.523g) with crowned C4 monogram and RFP letters in a triangular frame · four mint-master variants per Hede 119A-D folded under KM-67: 119A crossed clubs (1619 S, Sieg-1971 32.1), 119B bird (1620-1623, Sieg-1971 32.2), 119C clover (1620-1622, Sieg-1971 32.3), 119D crossed fire-hooks (1620-1622 R, Sieg-1971 32.4) · 14.906 daler per Marken-fein · Literature: Dahl, NNÅ 2003 «1 og 2 skillinger 1619-20».'
@@ -41559,6 +41787,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-mark-1644-1646/?tid=99089
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/82679
+        ref: Numista
     note:
       de: 'Kopenhagener Pendant zu km-32 (Glückstadter Hebræermønt 1645) — selber Tetragramm יהוה auf der Rückseite, selber reduzierter Feingehalt .593 unter dem Druck des Torstensson-Krieges (1643–1645). Beide Münzstätten — København und Glückstadt — prägten die Hebræermønt parallel; Krause weist sie als getrennte Typen aus (vgl. KM# 32 für die Glückstädter Parallele). Strukturell identisch zu km-32: Tarif unverändert ⅓ Speciedaler, kumulativer Seigniorage-Aufschlag durch das Debasement bei ca. +27,6 %.'
       en: 'Copenhagen pendant to km-32 (Glückstadt Hebræermønt 1645) — same Tetragrammaton יהוה on the reverse, same reduced fineness .593 under the strain of the Torstensson War (1643–1645). Both mints — Copenhagen and Glückstadt — struck the Hebræermønt in parallel; Krause lists them as separate types (cf. KM# 32 for the Glückstadt parallel). Structurally identical to km-32: tariff unchanged at ⅓ Speciedaler, cumulative seigniorage premium from the debasement at about +27.6 %.'
@@ -42101,6 +42332,15 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h32.htm
         ref: danskmoent.dk (Hede c4h32)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-dukat-1644-1648/?tid=101246
+        ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13115, p. 87
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11209, p. 107
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -42403,6 +42643,18 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h54.htm
         ref: danskmoent.dk (Hede c4h54)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1608-1621/?tid=163070
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1024, p. 61
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13088, p. 71
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11183, p. 95
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -42645,6 +42897,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h58.htm
         ref: danskmoent.dk (Hede c4h58)
+      - type: web
+        url: https://coinvarieties.com/index.php/Denmark_1624-NS_4_speciedaler_Dav-3521
+        ref: CoinVarieties — Denmark 1624-NS 4-Speciedaler
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -42656,6 +42911,9 @@ coins:
       unit_raw: speciedalere
     composed_of:
       - unified-dk-hede-c4h58
+    diameter_mm:
+      - value: 43.7
+        source: v1_curator
   - fuss: 9_thaler
     phase: I
     kind: kurant
@@ -42744,6 +43002,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-2-speciedaler-1624-1634/?tid=97347
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/109973
+        ref: Numista 109973
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11203, p. 104
     note:
       de: '½ Speciedaler 1624-1634 Christian IV. (Kopenhagen) — 9¼-Speciedaler-Fuß · zwei Müntzmeister-Varianten nach Hede 59 unter KM-100 zusammengefaßt: 59A NS-Mzz (Nicolaus Schwabe), 1624 + 1627 + 1628; 59B PG-Mzz (P. Grüner), 1631 RRR + 1632 RRR + 1634 RR · gemeinsame Bruttovægt 14,616g · Finhed 0,881 · Marken-fin 9,071 Speciedalere · Numista 109973 «Bust type I» bestätigt KM-100 für die 1624-1634-Spanne und gibt 0.875 Feinheit (Hede 0.881 mit kleiner Toleranz).'
       en: '½ Speciedaler 1624-1634 Christian IV (Copenhagen) — 9¼ Speciedaler standard · two mint-master variants per Hede 59 folded under KM-100: 59A NS privy mark (Nicolaus Schwabe), 1624 + 1627 + 1628; 59B PG privy mark (P. Grüner), 1631 RRR + 1632 RRR + 1634 RR · shared Bruttovægt 14.616g · Finhed 0.881 · 9.071 Speciedalere per Marken-fein · Numista 109973 «Bust type I» confirms KM-100 for the 1624-1634 span and lists .875 fineness (Hede 0.881 within tolerance).'
@@ -43435,6 +43699,12 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_65882
         ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-dukat-1673/?tid=101249
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1102, p. 151
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -43862,6 +44132,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1690-1692/?tid=97319
         ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17094, p. 65
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -44137,6 +44410,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-dukat-1738-1740/?tid=94329
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/82697
+        ref: Numista
     note:
       de: '1 Dukat 1738, 1740 — Reverse: Fort Christiansborg, Avers: gekröntes Monogramm Christian VI. · Münzmeister Christian Wineke, Kopenhagen.'
       en: '1 Ducat 1738, 1740 — reverse: Fort Christiansborg, obverse: crowned monogram of Christian VI · mintmaster Christian Wineke, Copenhagen.'
@@ -44208,6 +44484,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1731-1732/?tid=94157
         ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13217, p. 158
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17120, p. 79
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -44870,6 +45152,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-rigsbankdaler-1842-1848/?tid=70764
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/catalogue/pieces83073.html
+        ref: Numista
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -45659,6 +45944,9 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c9h3.htm
         ref: danskmoent.dk (Hede c9h3)
+      - type: web
+        url: https://coins.ha.com/itm/denmark/denmark-christian-ix-2-rigsdaler-1863-km770-proof-63-ngc-a-choice-example-with-exceptionally-sharp-details-and-mirror/a/425-50919.s
+        ref: Heritage
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -45681,8 +45969,12 @@ coins:
     year_last: 1872
     year_ranges:
       -   - 1864
+          - 1864
+      -   - 1868
+          - 1868
+      -   - 1871
           - 1872
-    year_label: 1864-1872
+    year_label: 1864, 1868, 1871-1872
     mint: Kopenhagen
     catalog:
       km: '772.1'
@@ -45738,6 +46030,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-rigsdaler-1864-1872/?tid=70696
         ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1169, p. 232
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -46827,6 +47122,18 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f3h16.htm
         ref: danskmoent.dk (Hede f3h17)
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-dukat-1662-1663/?tid=101247
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1077, p. 120
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13148, p. 109
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17071, p. 48
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -47918,6 +48225,15 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-speciedaler-1669/?tid=97382
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1655-1656/?tid=97377
+        ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13136, p. 100
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11217, p. 111
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -48242,6 +48558,12 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_65900
         ref: NumisMaster
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-dukat-1701-1704/?tid=94343
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1126, p. 179
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -50450,6 +50772,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-speciedaler-1662-1664/?tid=97379
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/328513
+        ref: Numista N#328513
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17073, p. 50
     note:
       de: 2 Speciedaler (Varianten 1662 IS, 1663 IS, 1664 CH) · Frederik III., Kopenhagener Hauptmünze, Münzmeister Johann Stichmann (IS) und CH · Hede 62A, Davenport 3547. Der Stack's Bowers-Bruun-Auktionskatalog (Lot IV/17073) druckt KM 240; Numista, ucoin und Greysheet führen den Typ als KM 241.
       en: 2 Speciedaler (variants 1662 IS, 1663 IS, 1664 CH) · Frederik III, Copenhagen royal mint, mintmasters Johann Stichmann (IS) and CH · Hede 62A, Davenport 3547. The Stack's Bowers Bruun auction catalogue (lot IV/17073) prints KM 240; Numista, ucoin and Greysheet list this type as KM 241.
@@ -52361,6 +52689,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-gulden-1591-1593/?tid=163398
         ref: ucoin
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h8.htm
+        ref: Hede 8B / danskmoent.dk
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -52400,6 +52731,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13080, p. 67
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h48.htm
+        ref: Hede 48 / danskmoent.dk
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -52717,6 +53051,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13087, p. 71
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-speciedaler-1608-1609/?tid=163069
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -52821,6 +53158,12 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13093, p. 74
+      - type: numista
+        url: https://en.numista.com/109273
+        ref: Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-2-krone-1619-1621/?tid=163056
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -52864,6 +53207,15 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17051, p. 35
+      - type: numista
+        url: https://en.numista.com/107774
+        ref: Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-4-skilling-1620-1621/?tid=163016
+        ref: ucoin tid 163016
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h115.htm
+        ref: Hede 115A / danskmoent.dk
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -52913,6 +53265,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11194, p. 100
+      - type: numista
+        url: https://en.numista.com/197668
+        ref: Numista
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -52954,12 +53309,21 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11195, p. 100
+      - type: numista
+        url: https://en.numista.com/197665
+        ref: Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-2-krone-1624/?tid=163057
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
       uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
     composed_of:
       - unified-dk-bruun-5391
+    diameter_mm:
+      - value: 31.0
+        source: v1_curator
   - fuss: seed_unsorted
     phase: bruun
     kind: kurant
@@ -53490,6 +53854,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13130, p. 96
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1651-1652/?tid=97151
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -53928,12 +54295,24 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17073, p. 50
+      - type: numista
+        url: https://en.numista.com/328513
+        ref: Numista N#328513
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-speciedaler-1662-1664/?tid=97379
+        ref: ucoin tid 97379
+      - type: web
+        url: https://www.danskmoent.dk/fr/f3h62.htm
+        ref: Hede c-fr/f3h62 — danskmoent.dk
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
       uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
     composed_of:
       - unified-dk-bruun-6403
+    diameter_mm:
+      - value: 44.0
+        source: v1_curator
   - fuss: seed_unsorted
     phase: bruun
     kind: kurant
@@ -54098,6 +54477,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_138061
         ref: NumisMaster
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1081, p. 127
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -54138,6 +54520,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11228, p. 120
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1665/?tid=97238
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -54310,6 +54695,9 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_65681
         ref: NumisMaster
+      - type: web
+        url: https://www.danskmoent.dk/fr/f3h40.htm
+        ref: Hede 40A / danskmoent.dk
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -54529,6 +54917,12 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17083, p. 58
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1666-1669/?tid=97239
+        ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13163, p. 120
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -54865,6 +55259,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17094, p. 65
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1690-1692/?tid=97319
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -55941,6 +56338,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11281, p. 144
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1747/?tid=94159
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -56242,6 +56642,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17137, p. 86
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-24-skilling-1767/?tid=79088
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -56671,12 +57074,21 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13248, p. 171
+      - type: numista
+        url: https://en.numista.com/325285
+        ref: Numista
+      - type: web
+        url: https://www.danskmoent.dk/chr/c7h25.htm
+        ref: Hede / danskmoent.dk
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
       uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
     composed_of:
       - unified-dk-bruun-7893
+    diameter_mm:
+      - value: 39.0
+        source: v1_curator
   - fuss: seed_unsorted
     phase: bruun
     kind: kurant
@@ -56948,6 +57360,12 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17153, p. 91
+      - type: numista
+        url: https://en.numista.com/catalogue/pieces22578.html
+        ref: Numista
+      - type: web
+        url: https://www.ngccoin.com/price-guide/world/denmark-rigsbankskilling-km-680-1813-cuid-1050460-duid-1238205
+        ref: NGC
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -57571,8 +57989,10 @@ coins:
     year_last: 1856
     year_ranges:
       -   - 1854
+          - 1854
+      -   - 1856
           - 1856
-    year_label: 1854-1856
+    year_label: 1854, 1856
     mint: Kopenhagen
     catalog:
       km: '758.2'
@@ -57622,6 +58042,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-4-skilling-rigsmont-1854-1856/?tid=70687
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/catalogue/pieces10231.html
+        ref: Numista
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -57660,6 +58083,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17220, p. 111
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-16-skilling-rigsmont-1856-1858/?tid=70689
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -57709,6 +58135,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17222, p. 112
+      - type: web
+        url: https://www.danskmoent.dk/chr/c9h1.htm
+        ref: Hede 1B / danskmoent.dk
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -57858,6 +58287,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17228, p. 114
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-skilling-rigsmont-1867-1872/?tid=70686
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -58549,6 +58981,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-4-skilling-1619/?tid=163023
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/302666
+        ref: Numista
     verification_note:
       de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
       en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
@@ -60415,6 +60850,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-krone-1747/?tid=94159
         ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11281, p. 144
     verification_note:
       de: 'Hede-Index-Stub: Nur die Übersichtsreihe von f5hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk). Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster 1965). Anmerkung im Index: «Prøvemønt skåret af den sachsiske medaillør L. Chr. Koch. Slået i 4 (?) eks. Wilcke III s.88; NFM X s.207.»'
       en: 'Hede index stub: only the overview-table row of f5hede.htm attests this entry (Hede deep page absent from danskmoent.dk). Weight and fineness not captured; full per-coin verification depends on the §AZ paper-source import (Hede 1971 + Galster 1965). Index note: «Prøvemønt skåret af den sachsiske medaillør L. Chr. Koch. Slået i 4 (?) eks. Wilcke III s.88; NFM X s.207.»'
@@ -60658,12 +61096,24 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-3-kroner-1726/?tid=173635
         ref: ucoin
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f4h41.htm
+        ref: Hede 1971 f4h41
+      - type: numista
+        url: https://en.numista.com/190127
+        ref: Numista N# 190127
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1136, p. 190
     verification_note:
       de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
       en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
       uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
     composed_of:
       - unified-denmark-numismaster-65367
+    diameter_mm:
+      - value: 53.11
+        source: v1_curator
   - fuss: 8_daler_fod
     phase: '0'
     kind: kurant
@@ -60809,6 +61259,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11180, p. 95
+      - type: web
+        url: https://www.danskmoent.dk/chr/c4h91.htm
+        ref: Hede 91 / danskmoent.dk
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -60904,6 +61357,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11231, p. 120
+      - type: web
+        url: https://www.danskmoent.dk/fr/f3h112.htm
+        ref: Hede 112A / danskmoent.dk
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -60944,6 +61400,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13158, p. 116
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1666-1670/?tid=99134
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -60984,6 +61443,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1105, p. 154
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1680/?tid=97311
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -61170,6 +61632,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11255, p. 132
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1137, p. 191
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -61209,6 +61674,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13203, p. 150
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1699-1702/?tid=94124
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -61250,12 +61718,24 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1136, p. 190
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f4h41.htm
+        ref: Hede 1971 f4h41
+      - type: numista
+        url: https://en.numista.com/190127
+        ref: Numista N# 190127
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-3-kroner-1726/?tid=173635
+        ref: ucoin tid 173635
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
       uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
     composed_of:
       - unified-dk-bruun-7524
+    diameter_mm:
+      - value: 53.11
+        source: v1_curator
   - fuss: seed_unsorted
     phase: bruun
     kind: kurant
@@ -61287,6 +61767,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11274, p. 140
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-8-skilling-1728/?tid=94110
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -61326,6 +61809,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13218, p. 158
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-24-skilling-1732-1743/?tid=94120
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -61367,6 +61853,9 @@ coins:
       - type: auction
         url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
         ref: Bruun Part II, lot 13223, p. 162
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1747/?tid=94158
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -61460,6 +61949,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
         ref: Bruun Part III, lot 11289, p. 145
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-1-krone-1771/?tid=79156
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
@@ -61475,8 +61967,8 @@ coins:
     fraction: 1/6
     id: unified-dk-bruun-8140
     year_first: 1842
-    year_last: 1842
-    year_label: '1842'
+    year_last: 1844
+    year_label: '1842, 1844'
     mint: Kopenhagen
     catalog:
       km: '733'
@@ -61500,12 +61992,29 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
         ref: Bruun Part IV, lot 17177, p. 99
+      - type: numista
+        url: https://en.numista.com/24423
+        ref: Numista
+      - type: web
+        url: https://www.ngccoin.com/price-guide/world/denmark-16-rigsbankskilling-km-733-1842-1844-cuid-1051025-duid-1238262
+        ref: NGC
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-16-rigsbankskilling-1842-1844/?tid=70755
+        ref: ucoin
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
       uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
     composed_of:
       - unified-dk-bruun-8140
+    year_ranges:
+      -   - 1842
+          - 1842
+      -   - 1844
+          - 1844
+    diameter_mm:
+      - value: 21.5
+        source: v1_curator
   - fuss: kronefod
     phase: I
     kind: kurant
@@ -61650,6 +62159,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-2-krone-1624/?tid=163057
         ref: ucoin
+      - type: numista
+        url: https://en.numista.com/197665
+        ref: Numista
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11195, p. 100
     note:
       de: ½ Krone mit offener Krone und stehender Königsdarstellung, 1624 · Münzmeister Nicolaus Schwabe — pendant zu km-96, gleicher Tarif 1½ Speciedaler.
       en: ½ Krone with open crown and standing king, 1624 · mintmaster Nicolaus Schwabe — pendant to km-96, same 1½ Speciedaler tariff.
@@ -62159,7 +62674,10 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/chr/c5h90.htm
         ref: danskmoent.dk (Hede c5h90A)
-      - *id001
+      - *id003
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17094, p. 65
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -63498,6 +64016,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-dor-1826-1827/?tid=132805
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-d-or-1826-1827/?tid=132805
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+        ref: Bruun Part III, lot 11301, p. 151
     verification_note:
       de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.'
       en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
@@ -63543,6 +64067,12 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-2-dor-1828-1836/?tid=132806
         ref: ucoin
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-d-or-1828-1836/?tid=132806
+        ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+        ref: Bruun Part I, lot 1159, p. 219
     verification_note:
       de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.'
       en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
@@ -63624,6 +64154,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-1-15-speciedaler-1796-1799/?tid=79093
         ref: ucoin
+      - type: auction
+        url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+        ref: Bruun Part IV, lot 17147, p. 90
     verification_note:
       de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.'
       en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.'
