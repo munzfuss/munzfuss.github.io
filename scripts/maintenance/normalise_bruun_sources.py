@@ -81,29 +81,44 @@ _OLD_BRUUN_REF_RE = re.compile(
     r"\s*$"
 )
 
-# Page-number lookup cache from the parser output (collection_id → page).
+# Page-number lookup caches from the parser output. Two indexes
+# keyed on different identifiers, since legacy refs reference by
+# collection-id («Bruun-7837») while canonical-form refs reference by
+# (part, lot_no). Both lookups go to the SAME source-of-truth — the
+# parser's page extraction in `scripts/cache/bruun/lots/part*.json`.
 _PAGE_BY_COLL: dict[str, int] | None = None
+_PAGE_BY_PART_LOT: dict[tuple[int, int], int] | None = None
 
 
-def _load_page_cache() -> dict[str, int]:
-    global _PAGE_BY_COLL
-    if _PAGE_BY_COLL is not None:
-        return _PAGE_BY_COLL
-    cache: dict[str, int] = {}
+def _load_page_caches() -> tuple[dict[str, int], dict[tuple[int, int], int]]:
+    global _PAGE_BY_COLL, _PAGE_BY_PART_LOT
+    if _PAGE_BY_COLL is not None and _PAGE_BY_PART_LOT is not None:
+        return _PAGE_BY_COLL, _PAGE_BY_PART_LOT
+    by_coll: dict[str, int] = {}
+    by_part_lot: dict[tuple[int, int], int] = {}
     for part_n in (1, 2, 3, 4):
         p = PROJECT / "scripts" / "cache" / "bruun" / "lots" / f"part{part_n}.json"
         if not p.exists():
             continue
         for lot in json.loads(p.read_text(encoding="utf-8")):
-            coll = str((lot.get("refs") or {}).get("Bruun", "")).strip()
-            if not coll:
-                continue
             page_span = lot.get("page_span") or []
             page = page_span[0] if page_span else lot.get("page")
-            if page:
-                cache[coll] = int(page)
-    _PAGE_BY_COLL = cache
-    return cache
+            if not page:
+                continue
+            coll = str((lot.get("refs") or {}).get("Bruun", "")).strip()
+            if coll:
+                by_coll[coll] = int(page)
+            lot_no = lot.get("lot_no")
+            if isinstance(lot_no, int):
+                by_part_lot[(part_n, lot_no)] = int(page)
+    _PAGE_BY_COLL = by_coll
+    _PAGE_BY_PART_LOT = by_part_lot
+    return by_coll, by_part_lot
+
+
+def _load_page_cache() -> dict[str, int]:
+    """Backward-compat alias for the coll-id cache."""
+    return _load_page_caches()[0]
 
 
 def _roman_to_part(roman: str) -> int | None:
@@ -124,11 +139,22 @@ def _canonical_source(part: int, lot_no: int, page: int | None) -> dict:
     }
 
 
-def _normalise_coin_sources(coin: dict, page_cache: dict[str, int]) -> tuple[int, int]:
-    """Rewrite OLD-format Bruun sources on a coin; dedupe duplicates.
+_CANONICAL_BRUUN_REF_RE = re.compile(
+    r"^Bruun Part ([IVX]+), lot (\d+)(?:, p\. (\d+))?$"
+)
 
-    Returns (n_rewritten, n_deduped) — the counts of source-entry
-    rewrites and post-rewrite dedupe drops.
+
+def _normalise_coin_sources(
+    coin: dict,
+    page_by_coll: dict[str, int],
+    page_by_part_lot: dict[tuple[int, int], int],
+) -> tuple[int, int]:
+    """Rewrite OLD-format Bruun sources on a coin; correct wrong pages on
+    canonical-form entries; dedupe duplicates.
+
+    Returns (n_rewritten, n_deduped) — counts of source-entry rewrites
+    (OLD-format → canonical, or canonical-with-wrong-page →
+    canonical-with-cache-page) and post-rewrite dedupe drops.
     """
     sources = coin.get("sources")
     if not isinstance(sources, list) or not sources:
@@ -140,48 +166,92 @@ def _normalise_coin_sources(coin: dict, page_cache: dict[str, int]) -> tuple[int
             new_sources.append(s)
             continue
         ref = str(s.get("ref") or "")
-        m = _OLD_BRUUN_REF_RE.match(ref.strip())
-        if not m:
-            new_sources.append(s)
-            continue
-        coll_id, roman, lot_no_str = m.group(1), m.group(2), m.group(3)
-        part = _roman_to_part(roman)
-        if part is None:
-            # Unknown part roman — leave alone (defensive).
-            new_sources.append(s)
-            continue
-        try:
-            lot_no = int(lot_no_str)
-        except ValueError:
-            new_sources.append(s)
-            continue
-        # Page: prefer the entry's catalog.bruun_page; fall back to the
-        # parser cache lookup keyed on collection_id.
-        cat = coin.get("catalog") or {}
-        page = cat.get("bruun_page")
-        if not page:
-            page = page_cache.get(coll_id)
-        new_sources.append(_canonical_source(part, lot_no, page))
-        n_rewrite += 1
+        ref_str = ref.strip()
 
-    # Dedupe pass: for the canonical-form Bruun sources (type=auction +
-    # ref starts with «Bruun Part »), collapse duplicates by ref.
-    seen_bruun_refs: dict[str, int] = {}
-    deduped: list[dict] = []
+        # Pass 1: rewrite LEGACY format «Bruun-7837 · Stack's Bowers ...»
+        m = _OLD_BRUUN_REF_RE.match(ref_str)
+        if m:
+            coll_id, roman, lot_no_str = m.group(1), m.group(2), m.group(3)
+            part = _roman_to_part(roman)
+            if part is None:
+                new_sources.append(s)
+                continue
+            try:
+                lot_no = int(lot_no_str)
+            except ValueError:
+                new_sources.append(s)
+                continue
+            # Per-collection-id page lookup. Falls back to (part, lot_no)
+            # if coll_id is unknown (rare — happens when the coll_id in
+            # legacy text is malformed).
+            page = page_by_coll.get(coll_id) or page_by_part_lot.get((part, lot_no))
+            new_sources.append(_canonical_source(part, lot_no, page))
+            n_rewrite += 1
+            continue
+
+        # Pass 2: correct canonical-form entries with a stale/wrong page.
+        # Looks up the authoritative page from the parser cache by
+        # (part_roman → part, lot_no). When the entry's page differs
+        # from the cache page, rewrite. When the entry has no page but
+        # the cache does, fill it in. When the cache has nothing,
+        # leave the entry untouched.
+        m = _CANONICAL_BRUUN_REF_RE.match(ref_str)
+        if m:
+            roman, lot_no_str, page_str = m.group(1), m.group(2), m.group(3)
+            part = _roman_to_part(roman)
+            try:
+                lot_no = int(lot_no_str)
+            except ValueError:
+                part = None
+            if part is None:
+                new_sources.append(s)
+                continue
+            cache_page = page_by_part_lot.get((part, lot_no))
+            entry_page = int(page_str) if page_str else None
+            if cache_page is None:
+                # No authoritative page — keep entry as-is.
+                new_sources.append(s)
+                continue
+            if entry_page == cache_page:
+                new_sources.append(s)
+                continue
+            # Rewrite to canonical with cache page.
+            new_sources.append(_canonical_source(part, lot_no, cache_page))
+            n_rewrite += 1
+            continue
+
+        # Non-Bruun source — keep as-is.
+        new_sources.append(s)
+
+    # Dedupe pass. After all rewrites are done above, every Bruun ref
+    # is in canonical form with the cache-correct page. Dedupe is
+    # therefore safe to do by exact (part_roman, lot_no) — the page
+    # will match on collision.
+    by_lot: dict[tuple[str, str], dict] = {}
     n_dedupe = 0
+    out: list[dict] = []
+    seen_sigs: set[tuple] = set()
     for s in new_sources:
-        if (isinstance(s, dict)
-                and isinstance(s.get("ref"), str)
-                and s["ref"].startswith("Bruun Part ")):
-            r = s["ref"]
-            if r in seen_bruun_refs:
+        if isinstance(s, dict):
+            ref = s.get("ref") or ""
+            m = _CANONICAL_BRUUN_REF_RE.match(ref.strip()) if isinstance(ref, str) else None
+            if m:
+                key = (m.group(1), m.group(2))
+                if key in by_lot:
+                    n_dedupe += 1
+                    continue
+                by_lot[key] = s
+            # Strict (url, ref, type) dedupe — guards against literal
+            # duplicates in non-Bruun sources too.
+            sig = (s.get("url") or "", s.get("ref") or "", s.get("type") or "")
+            if sig in seen_sigs:
                 n_dedupe += 1
                 continue
-            seen_bruun_refs[r] = 1
-        deduped.append(s)
+            seen_sigs.add(sig)
+        out.append(s)
 
     if n_rewrite or n_dedupe:
-        coin["sources"] = deduped
+        coin["sources"] = out
     return n_rewrite, n_dedupe
 
 
@@ -191,8 +261,8 @@ def main() -> int:
                     help="Report what would change without writing files")
     args = ap.parse_args()
 
-    page_cache = _load_page_cache()
-    if not page_cache:
+    page_by_coll, page_by_part_lot = _load_page_caches()
+    if not page_by_coll:
         print("WARNING: no Bruun parser cache loaded — page lookups disabled.",
               file=sys.stderr)
 
@@ -218,7 +288,7 @@ def main() -> int:
             for coin in coins:
                 if not isinstance(coin, dict):
                     continue
-                r, d = _normalise_coin_sources(coin, page_cache)
+                r, d = _normalise_coin_sources(coin, page_by_coll, page_by_part_lot)
                 n_rewrite_file += r
                 n_dedupe_file += d
             if n_rewrite_file or n_dedupe_file:
