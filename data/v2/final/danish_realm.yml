@@ -979,6 +979,9 @@ coins:
       - type: numista
         url: https://en.numista.com/142850
         ref: Numista
+      - type: ucoin
+        url: https://en.ucoin.net/coin/denmark-2-skilling-1619-1621/?tid=163005
+        ref: ucoin
     verification_note:
       de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
       en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -992,6 +995,9 @@ coins:
       - unified-dk-hede-c4h112
       - unified-dk-hede-c4h116a
     v1_home_location: denmark
+    diameter_mm:
+      - value: 13.5
+        source: v1_curator
   - fuss: 9_thaler
     phase: I
     kind: scheide
@@ -39026,12 +39032,14 @@ coins:
     ruler: Frederik VIII.
     issuing_entity: danish_realm
     id: unified-dk-hede-f8h1
-    year_first: 1908
-    year_last: 1912
+    year_first: 1898
+    year_last: 1900
     year_ranges:
-      -   - 1908
-          - 1912
-    year_label: 1908-1912
+      -   - 1898
+          - 1898
+      -   - 1900
+          - 1900
+    year_label: 1898, 1900
     mint: Kopenhagen
     catalog:
       km: '810'
@@ -39102,6 +39110,9 @@ coins:
       - type: auction
         url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
         ref: Bruun Part I, lot 1171, p. 235
+      - type: web
+        url: https://www.danskmoent.dk/chr/c9h9.htm
+        ref: Hede 9B / danskmoent.dk
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -51796,6 +51807,9 @@ coins:
       - type: ucoin
         url: https://en.ucoin.net/coin/denmark-24-skilling-1750-1764/?tid=79086
         ref: ucoin
+      - type: auction
+        url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+        ref: Bruun Part II, lot 13226, p. 162
     verification_note:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
@@ -55222,12 +55236,21 @@ coins:
       - type: literature
         url: https://numismaster.com/MC_65602
         ref: NumisMaster
+      - type: numista
+        url: https://en.numista.com/308327
+        ref: Numista
+      - type: web
+        url: https://www.danskmoent.dk/c5.htm
+        ref: danskmoent.dk · MM Krüger
     verification_note:
       de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s. docs/research/moentordning_1541.md).'
       en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value; fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
       uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
     composed_of:
       - unified-dk-bruun-6638
+    diameter_mm:
+      - value: 26.2
+        source: v1_curator
   - fuss: reichsdukatenfuss
     phase: I
     kind: kurant

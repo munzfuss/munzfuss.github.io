@@ -93,6 +93,28 @@ def _flatten_scalar(v):
     return s or None
 
 
+def _flatten_all(v) -> list[str]:
+    """ALL non-empty string values of a scalar/list/dict catalog field.
+    Used by V2-side lookups against V1 indices so list-form (per §9a
+    multi-source accumulation) is iterated, not just the first item.
+
+    Bug-trigger 2026-05-27 (V1 km-66 N#142853 not propagating because
+    V2 catalog had numista=['109264','142853'] and the old flatten-to-
+    scalar lookup only checked '109264')."""
+    if v is None:
+        return []
+    if isinstance(v, list):
+        out = []
+        for x in v:
+            if isinstance(x, dict) and x.get("value"):
+                out.append(str(x["value"]))
+            elif x is not None and str(x).strip():
+                out.append(str(x).strip())
+        return out
+    s = str(v).strip()
+    return [s] if s else []
+
+
 def _cat_keys(cat: dict) -> dict:
     """Extract identifying keys for cross-V1/V2 matching.
 
@@ -468,21 +490,40 @@ def main() -> int:
             if not isinstance(v2c, dict):
                 continue
             cat = _cat_keys(v2c.get("catalog") or {})
+            v2_cat_raw = v2c.get("catalog") or {}
             v1c = None
             ruler = _norm_ruler(v2c.get("ruler"))
             year_first = v2c.get("year_first")
             # Priority order: most-specific globally-unique keys first.
-            if cat.get("numista") and cat["numista"] in v1_index_by_numista:
-                v1c = v1_index_by_numista[cat["numista"]]
-            elif cat.get("bruun_coll") and cat["bruun_coll"] in v1_index_by_bruun_coll:
-                v1c = v1_index_by_bruun_coll[cat["bruun_coll"]]
-            elif cat.get("lange") and cat["lange"] in v1_index_by_lange:
-                v1c = v1_index_by_lange[cat["lange"]]
-            elif (cat.get("hede") and cat.get("hede_volume") and ruler
-                  and (cat["hede_volume"], cat["hede"], ruler) in v1_index_by_hede_full):
+            # Iterate ALL values in list-form catalog fields (per §9a
+            # multi-source accumulation V2 may carry numista=['A','B']
+            # — the V1 match could correspond to ANY of those Numista
+            # entries, not just the first).
+            for nv in _flatten_all(v2_cat_raw.get("numista")):
+                if nv in v1_index_by_numista:
+                    v1c = v1_index_by_numista[nv]
+                    break
+            if v1c is None:
+                for bv in _flatten_all(v2_cat_raw.get("bruun_collection_id")):
+                    if bv in v1_index_by_bruun_coll:
+                        v1c = v1_index_by_bruun_coll[bv]
+                        break
+            if v1c is None:
+                for lv in _flatten_all(v2_cat_raw.get("lange")):
+                    if lv in v1_index_by_lange:
+                        v1c = v1_index_by_lange[lv]
+                        break
+            if v1c is None and ruler:
                 # hede_volume + hede + ruler — Hede numbering restarts
                 # per ruler, so volume IS required for disambiguation.
-                v1c = v1_index_by_hede_full[(cat["hede_volume"], cat["hede"], ruler)]
+                # Iterate list-form hede too.
+                for hv_v in _flatten_all(v2_cat_raw.get("hede_volume")):
+                    for h_v in _flatten_all(v2_cat_raw.get("hede")):
+                        if (hv_v, h_v, ruler) in v1_index_by_hede_full:
+                            v1c = v1_index_by_hede_full[(hv_v, h_v, ruler)]
+                            break
+                    if v1c:
+                        break
             if v1c is None and ruler and year_first:
                 # km + ruler + year_first fallback — territory-bound,
                 # disambiguated by the ruler+year pair. Try the V2's KM
