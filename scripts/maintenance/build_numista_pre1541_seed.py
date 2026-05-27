@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
-"""build_numista_pre1541_seed.py — §AZ Tier 3 seed builder.
+"""build_numista_pre1541_seed.py — DEPRECATED §AZ Tier 3 seed builder.
+
+⚠ This script is superseded by `scripts/maintenance/build_numista_seed.py`
+(2026-05-27) — the generic year-agnostic builder reads canonical Phase 2
+sidecars from `scripts/cache/numista/parsed/` (which now includes the
+pre_1541 subdir's output) and routes per-entity via the shared
+write_v2_seed(). The pre_1541 sub-window is no longer special.
+
+Kept on disk for reference + git-blame traceability of the original
+§AZ Tier 3 contribution. DO NOT invoke — running it would re-emit
+pre_1541-only entries on top of the generic seed builder's output,
+clobbering the pan-Numista catalogue with a 1514-1541 subset.
+
+Original docstring follows. ─────────────────────────────────────────
 
 Reads parsed Numista pre-1541 JSON sidecars from
 scripts/cache/numista/denmark_pre_1541/n<N#>.json and emits
@@ -273,6 +286,21 @@ def collect_entries() -> list[dict]:
 
 
 def main() -> int:
+    # DEPRECATED: Refuse to run without explicit override. The generic
+    # builder is now the canonical path; running both produces a stale
+    # pre_1541-only output that clobbers the broader Numista catalogue.
+    if "--allow-deprecated" not in sys.argv:
+        print(
+            "ERROR: build_numista_pre1541_seed.py is DEPRECATED.\n"
+            "Use scripts/maintenance/build_numista_seed.py — it reads canonical\n"
+            "Phase 2 sidecars (scripts/parse_numista.py output) including the\n"
+            "pre_1541 subdir, classifies per entity, and emits per-entity seed\n"
+            "yamls via the shared write_v2_seed().\n\n"
+            "Pass --allow-deprecated to override (verification only).",
+            file=sys.stderr,
+        )
+        return 2
+
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument(
@@ -284,6 +312,8 @@ def main() -> int:
             "use for verification / dry-run paths."
         ),
     )
+    ap.add_argument("--allow-deprecated", action="store_true",
+                    help="Override deprecation guard (verification only).")
     args = ap.parse_args()
     print(f"Collecting Numista pre-1541 entries from {CACHE_DIR}...")
     entries = collect_entries()
