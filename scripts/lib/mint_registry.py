@@ -445,3 +445,139 @@ def entity_for_alias(raw: str) -> str | None:
     when the registered entity is None (out-of-scope mint)."""
     canon = canon_for_alias(raw)
     return CANON_TO_ENTITY.get(canon) if canon else None
+
+
+# ───────────────────────── Issuer-text → entity registry ───────────────
+#
+# Parallel to the mint→entity map above. Used by parsers whose primary
+# source labels coins by ISSUER STRING rather than mint (Numista does
+# this — `issuer.name` / `issuer_text` / `country` field carries the
+# emitting jurisdiction, mint is often not catalogued).
+#
+# Two real-world Numista cache shapes feed this table:
+#   * API v3 (`fetch_numista_api.py`):   `issuer: {code, name}`
+#   * chrome v1 (older HARVEST_ROUTINE): `issuer_text: <name>`
+#   * chrome v2 (newer HARVEST_ROUTINE): `country: <name>`
+# Same noun used three ways — registry is keyed by the lowercase string
+# (whichever route surfaces it) plus any obvious variants Numista emits.
+#
+# Coverage (locked 2026-05-27 after full enumeration of 1717 cache files):
+#   - All ~22 issuer strings present in cache map to one of 11 V2 entities
+#   - One OOS issuer (`Mauritius`) maps to None (out-of-scope by project scope)
+#   - One ambiguous issuer (`Schleswig and Holstein, Danish duchies of`)
+#     spans 1514-1851 across multiple V2 entities (gottorp_duchy in early
+#     period, royal_holstein in king-as-duke period, provisional_govt
+#     for 1850-1851 rebels). Returns None here so mint-driven classifier
+#     gets first crack via `classify_mint_to_entity`; only when mint is
+#     also absent does the caller fall back to `_unclassified`.
+#
+# When Numista publishes a NEW issuer string the cache will surface a
+# `None` from `classify_issuer_to_entity()`. The seed builder logs that
+# as an unclassified entry; curator adds the new mapping here.
+_ISSUER_REGISTRY: dict[str, str | None] = {
+    # ───────────────────────── Denmark / Norway ────────────────────────
+    "denmark": "danish_realm",
+    "norway": "danish_norway",
+
+    # API v3 code prefixes (issuer.code values verbatim, lower-case)
+    "danemark": "danish_realm",
+    "norvege": "danish_norway",
+
+    # ────────────── Schleswig-Holstein duchies ────────────────────────
+    "schleswig-holstein-gottorp, duchy of": "gottorp_duchy",
+    "duchy of schleswig-holstein-gottorp (german states)": "gottorp_duchy",
+    "schleswig_holstein_gottorp_duchy": "gottorp_duchy",  # API code
+
+    "holstein-schaumburg-pinneberg, county of": "schauenburg_pinneberg",
+    "county of holstein-schaumburg-pinneberg (german states)": "schauenburg_pinneberg",
+    "holstein_schauenburg_county": "schauenburg_pinneberg",  # API code
+
+    "schleswig-holstein-norburg-plön, duchy of": "norburg_plon_duchy",
+    "schleswig-holstein-norburg-plon, duchy of": "norburg_plon_duchy",
+    "schleswig_holstein_norbourg_plon_duchy": "norburg_plon_duchy",  # API code
+
+    "schleswig-holstein-sonderburg, duchy of": "sonderburg_duchy",
+    "schleswig_holstein_sonderburg_duchy": "sonderburg_duchy",  # API code
+
+    # ──────────── Royal Holstein / Glückstadt mint ──────────────────────
+    "glückstadt, city of": "royal_holstein",
+    "gluckstadt, city of": "royal_holstein",
+    "city of glückstadt (denmark)": "royal_holstein",
+    "city of gluckstadt (denmark)": "royal_holstein",
+    "gluckstadt_city": "royal_holstein",  # API code
+
+    # ───────────────── Fürstbistum Lübeck ───────────────────────────────
+    "bishopric of lübeck (german states)": "fuerstbisthum_luebeck",
+    "bishopric of lubeck (german states)": "fuerstbisthum_luebeck",
+
+    # ──────────────── Brunswick-Lüneburg cluster ────────────────────────
+    "duchy of brunswick (german states)": "herzogtum_braunschweig_lueneburg",
+    "duchy of brunswick": "herzogtum_braunschweig_lueneburg",
+    "brunswick-lüneburg-celle (german states)": "herzogtum_braunschweig_lueneburg",
+    "brunswick-lüneburg-celle": "herzogtum_braunschweig_lueneburg",
+    "brunswick-luneburg-celle (german states)": "herzogtum_braunschweig_lueneburg",
+    "brunswick-luneburg-celle": "herzogtum_braunschweig_lueneburg",
+    "principality of brunswick-grubenhagen (german states)": "herzogtum_braunschweig_lueneburg",
+    "principality of brunswick-calenberg (german states)": "herzogtum_braunschweig_lueneburg",
+
+    # ──────────────────────── Oldenburg ─────────────────────────────────
+    "county of oldenburg (german states)": "grafschaft_oldenburg",
+    "county of oldenburg": "grafschaft_oldenburg",
+    "grand duchy of oldenburg (german states)": "grafschaft_oldenburg",
+
+    # ───────────────────── Osnabrück / Bremen-Verden ───────────────────
+    "bishopric of osnabrück (german states)": "hochstift_osnabrueck",
+    "bishopric of osnabruck (german states)": "hochstift_osnabrueck",
+    "archbishopric of bremen (german states)": "erzbisthum_bremen_verden",
+    "duchy under swedish possession of bremen-verden (german states)": "erzbisthum_bremen_verden",
+    "bremen-verden (swedish)": "erzbisthum_bremen_verden",
+
+    # ──────────────────── Saxe-Lauenburg ────────────────────────────────
+    "duchy of saxe-lauenburg (german states)": "herzogtum_sachsen_lauenburg",
+
+    # ─────────────────── Ambiguous / context-dependent ─────────────────
+    # 44 cache entries 1514-1851 span multiple V2 entities — let
+    # mint-driven classification resolve first; only when mint is absent
+    # too does the caller route to _unclassified.
+    "schleswig and holstein, danish duchies of": None,
+    "danish duchies of schleswig and holstein (german states)": None,
+    "schleswig_holstein_danish_duchies": None,  # API code
+
+    # ────────────────────── Out-of-scope ────────────────────────────────
+    # Project scope is German lands + Danish-Norwegian realm 1514-1914.
+    # Mauritius / other tropical / colonial issues are explicitly OOS.
+    "mauritius": None,
+    "maurice": None,  # API code
+}
+
+
+def classify_issuer_to_entity(issuer: str | None) -> str | None:
+    """Map a Numista `issuer` / `issuer_text` / `country` string to a V2
+    political entity tag.
+
+    Returns:
+      * scalar entity tag when the issuer is registered and not OOS
+      * None when:
+          - issuer is None / empty
+          - issuer is registered as None (ambiguous OR OOS — caller
+            distinguishes via `issuer in _ISSUER_REGISTRY`)
+          - issuer is unknown (not in registry)
+
+    Case-insensitive. Strips surrounding whitespace.
+
+    The newer chrome_mcp_html shape uses `country` instead of `issuer_text`
+    but the strings themselves are identical (e.g. `Norway`, `Denmark`,
+    `Duchy of Brunswick (German States)`) — callers can pass either route.
+    """
+    if not issuer or not isinstance(issuer, str):
+        return None
+    return _ISSUER_REGISTRY.get(issuer.strip().lower())
+
+
+def is_known_issuer(issuer: str | None) -> bool:
+    """True if the issuer string is in our registry (regardless of whether
+    it maps to a real entity or to None/OOS). Distinguishes «known
+    ambiguous / OOS» from «unrecognised — needs curator review»."""
+    if not issuer or not isinstance(issuer, str):
+        return False
+    return issuer.strip().lower() in _ISSUER_REGISTRY

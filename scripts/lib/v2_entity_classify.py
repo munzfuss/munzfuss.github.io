@@ -35,6 +35,12 @@ import re
 from lib.mint_registry import ALIAS_TO_CANON as _ALIAS_TO_CANON  # noqa: E402
 from lib.mint_registry import CANON_TO_ENTITY as _MINT_TO_ENTITY  # noqa: E402
 from lib.mint_registry import entity_for_canon_year as _entity_for_canon_year  # noqa: E402
+# Issuer-string classifier (Numista et al. — sources that label coins by
+# emitting jurisdiction rather than by mint). Lives in mint_registry for
+# co-location with the mint table; re-exported here as the public
+# classifier surface paralleling `classify_mint_to_entity`.
+from lib.mint_registry import classify_issuer_to_entity  # noqa: E402,F401
+from lib.mint_registry import is_known_issuer  # noqa: E402,F401
 
 
 # ---------------------------------------------------------------------------
