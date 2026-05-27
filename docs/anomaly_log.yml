@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-27T20:33:34Z'
+  last_updated_utc: '2026-05-27T21:28:16Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -569,18 +569,20 @@ anomalies:
   key_dims:
     source: ikmk
     scope: issuer_class
-  summary: IKMK query-text fuzzy match still returns issuer-OOS records after year-filter resolution (commit
-    06e3e2d resolves year-scope only).
+  summary: IKMK fetch script's at-fetch year filter passes Kingdom of Westphalia (Hieronymus Napoleon,
+    1807-1813) records but they are project-entity OOS.
   status: open
   instance_first_seen: '2026-05-27T20:33:34Z'
-  last_seen: '2026-05-27T20:33:34Z'
-  occurrence_count: 1
+  last_seen: '2026-05-27T21:28:16Z'
+  occurrence_count: 2
   affected_ids:
     ikmk:
     - 18203611
     - 18203804
     - 18203658
     - 18203660
+    - 18204485
+    - 18204536
   occurrences:
   - run_utc: '2026-05-27T20:33:34Z'
     batch_label: X
@@ -596,10 +598,20 @@ anomalies:
       numista_batch: FP
       ucoin_batch: '178'
       examples: Magdeburg:Stadt via Braunschweig query; Brandenburg:Johann_Georg via Hamburg query
-  proposed_fix: Add post-fetch issuer-class filter to scripts/fetch_ikmk.py mapping IKMK `title` prefix
-    (e.g. 'Magdeburg:', 'Brandenburg:', 'Pommern:', 'Sachsen:') to project-entity scope; records matching
-    non-mission issuer-prefixes get routed to manifest's oos_excluded_mds_ids slot. For ambiguous personal-union
-    cases (Hanover/UK), defer classification to V2 entity-classifier (lib/v2_entity_classify.py).
+  - run_utc: '2026-05-27T21:28:16Z'
+    batch_label: Y
+    detail: 'Batch Y: 2 of 5 fetched mds_ids (18204485, 18204536 ''Westfalen: Hieronymus Napoleon'') passed
+      the [1514, 1914] year filter but Westphalia is not a project entity. Sibling case to batches V/W
+      (Christian V + Hamburg fuzzy + Bundesrepublik) — fetch_ikmk.py mission filter is year-only; needs
+      an entity-class filter OR oos_excluded_mds_ids manual addition for Westphalia/Bundesrepublik-style
+      records.'
+    full_context:
+      ikmk_batch: Y
+      numista_batch: FQ
+      ucoin_batch: '179'
+  proposed_fix: 'Add entity-class filter to fetch_ikmk.py: drop records whose title prefix matches OOS-issuer
+    set (Westfalen, Bundesrepublik, Roman, Byzanz, etc.). Alternative: tag QUERIES list with project-entity
+    mapping and reject records not back-resolved to any covered entity.'
   resolution: null
   resolved_at: null
   resolved_by: null
