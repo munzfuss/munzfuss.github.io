@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-28T02:25:08Z'
+  last_updated_utc: '2026-05-28T03:29:07Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -520,12 +520,11 @@ anomalies:
   key_dims:
     source: ucoin
     bucket: osnabruck_p3057
-  summary: ucoin BR-4 bucket osnabruck_p3057 — pre-mission scope drift; first-5 TIDs are pre-1559 (1482-1508
-    per prior batches' defensive samples).
+  summary: ucoin BR-4 bucket osnabruck_p3057 enumeration contains pre-mission OOS TIDs (pre-1559).
   status: open
   instance_first_seen: '2026-05-27T19:22:57Z'
-  last_seen: '2026-05-28T02:25:08Z'
-  occurrence_count: 7
+  last_seen: '2026-05-28T03:23:27Z'
+  occurrence_count: 8
   affected_ids:
     ucoin:
     - 171936
@@ -600,9 +599,16 @@ anomalies:
       ucoin_batch: '184'
       numista_batch: FV
       fallback_bucket: brunswick_luneburg_p1082
-  proposed_fix: 'Re-enumerate p3057 with year filter ≥1559; move pre-1559 TIDs to oos_excluded_tids slot
-    in audit-4 manifest with audit-trail reason. Pattern: see DK p4 / NO p2 OOS reclassification in BO.6
-    audit.'
+  - run_utc: '2026-05-28T03:23:27Z'
+    batch_label: '185'
+    detail: 'Batch 185: bucket skipped again. First 5 TIDs in audit gap_tids (171936/172222/172659/172663/172662)
+      are pre-1559 OOS per prior defensive samples across batches 177/178/180. Switched to brunswick_luneburg_p1082
+      per §7.5.'
+    full_context:
+      numista_batch: FW
+      ucoin_batch: '185'
+  proposed_fix: Re-enumerate p3057 with mission-window year filter (>=1559); move pre-1559 TIDs to oos_excluded_tids
+    slot in audit-4 manifest, matching DK p4 / NO p2 pattern in BO.6 audit.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -654,6 +660,61 @@ anomalies:
   proposed_fix: 'Add entity-class filter to fetch_ikmk.py: drop records whose title prefix matches OOS-issuer
     set (Westfalen, Bundesrepublik, Roman, Byzanz, etc.). Alternative: tag QUERIES list with project-entity
     mapping and reject records not back-resolved to any covered entity.'
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=osnabrueck:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: osnabrueck
+  summary: IKMK Osnabrück query returns OOS issuer records (Brandenburg).
+  status: open
+  instance_first_seen: '2026-05-28T03:29:07Z'
+  last_seen: '2026-05-28T03:29:07Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18206581
+  occurrences:
+  - run_utc: '2026-05-28T03:29:07Z'
+    batch_label: AE
+    detail: 'Batch AE: mds_id 18206581 ''Brandenburg: Joachim I.'' (gold, Renaissance) surfaced via Osnabrück
+      query but is Brandenburg-issued (OOS — not Hochstift Osnabrück).'
+    full_context:
+      numista_batch: FW
+      ucoin_batch: '185'
+  proposed_fix: 'Tighten Osnabrück query in fetch_ikmk.py: filter results to issuer == ''Bistum Osnabrück''
+    / ''Hochstift Osnabrück'' rather than relying on free-text Osnabrück match.'
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=hamburg:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: hamburg
+  summary: IKMK Hamburg query returns non-coin art-medal records (Fischer wax sculptures, Völkerschlacht
+    bronze commem).
+  status: open
+  instance_first_seen: '2026-05-28T03:29:07Z'
+  last_seen: '2026-05-28T03:29:07Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18210988
+    - 18210989
+    - 18210990
+  occurrences:
+  - run_utc: '2026-05-28T03:29:07Z'
+    batch_label: AE
+    detail: 'Batch AE: mds_ids 18210988/18210989/18210990 (Fischer, Johann Karl: Germania, Viktoria, 50.
+      Jahrestag Völkerschlacht) — Classicism-era wax + bronze art medals, not Hamburg circulation coinage.'
+    full_context:
+      numista_batch: FW
+      ucoin_batch: '185'
+  proposed_fix: 'Tighten Hamburg query in fetch_ikmk.py: filter object_type to coin classes, exclude Wachs/Bronze
+    art-medal classes; OR scope-filter by issuer to ''Stadt Hamburg'' / ''Hanseatic Hamburg''.'
   resolution: null
   resolved_at: null
   resolved_by: null
