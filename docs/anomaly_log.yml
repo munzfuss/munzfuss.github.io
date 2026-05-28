@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-28T03:29:07Z'
+  last_updated_utc: '2026-05-28T04:27:47Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -715,6 +715,40 @@ anomalies:
       ucoin_batch: '185'
   proposed_fix: 'Tighten Hamburg query in fetch_ikmk.py: filter object_type to coin classes, exclude Wachs/Bronze
     art-medal classes; OR scope-filter by issuer to ''Stadt Hamburg'' / ''Hanseatic Hamburg''.'
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=kassel:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: kassel
+  summary: IKMK 'Kassel' query returns Napoleonic Kingdom-of-Westphalia / France records (mint=Paris).
+  status: open
+  instance_first_seen: '2026-05-28T04:27:47Z'
+  last_seen: '2026-05-28T04:27:47Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18213935
+    - 18213936
+    - 18213938
+    - 18213939
+  occurrences:
+  - run_utc: '2026-05-28T04:27:47Z'
+    batch_label: AF
+    detail: 'Batch AF: 4 of 5 fetched mds_ids OOS via Kassel query — 18213935 (Patrize Westfalen, Paris),
+      18213936 (Frankreich: Napoleon I., Paris), 18213938 (Patrize Westfalen, Paris), 18213939 (Prägestempel
+      Westfalen, Paris). Königreich Westphalen 1807-1813 (Jérôme Bonaparte) had its dies struck in Paris;
+      IKMK indexes them under Kassel because Kassel was the Westphalian capital. Hessen-Kassel landgraviate/electorate
+      scope per project boundary EXCLUDES Westphalia.'
+    full_context:
+      ikmk_batch: AF
+      numista_batch: FX
+      ucoin_batch: '186'
+  proposed_fix: 'Tighten Kassel query in fetch_ikmk.py: filter mint!=Paris OR issuer != ''Frankreich''
+    / ''Königreich Westphalen'' / Napoleonic-era issuers; OR add post-fetch scope filter in the fetch
+    loop matching the Hesse-Kassel / Hessen-Kassel landgraviate/electorate window 1559-1866.'
   resolution: null
   resolved_at: null
   resolved_by: null
