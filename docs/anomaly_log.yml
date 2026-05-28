@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-28T05:15:08Z'
+  last_updated_utc: '2026-05-28T05:26:22Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -677,14 +677,16 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK Osnabrück query returns OOS issuer records (Brandenburg).
+  summary: IKMK 'Osnabrück' query returns OOS records (Brandenburg).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-28T03:29:07Z'
-  occurrence_count: 1
+  last_seen: '2026-05-28T05:26:22.524355Z'
+  occurrence_count: 2
   affected_ids:
     ikmk:
     - 18206581
+    - 18214569
+    - 18214572
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -693,8 +695,17 @@ anomalies:
     full_context:
       numista_batch: FW
       ucoin_batch: '185'
-  proposed_fix: 'Tighten Osnabrück query in fetch_ikmk.py: filter results to issuer == ''Bistum Osnabrück''
-    / ''Hochstift Osnabrück'' rather than relying on free-text Osnabrück match.'
+  - run_utc: '2026-05-28T05:26:22.524355Z'
+    batch_label: AG
+    detail: 'IKMK batch AG: mds_ids 18214569 (Brandenburg: Joachim I., 1/4 Taler) and 18214572 (Brandenburg:
+      Johann Sigismund, Dukat) both came from ''Osnabrück'' query bucket. Brandenburg is not in the project''s
+      supported entity list. Q likely matches on ''Osnabrück'' as a strike-location reference on a Brandenburg
+      coin (Brandenburg issued some coins struck at non-Brandenburg mints), or as a legend-text match.'
+    full_context:
+      ikmk_batch: AG
+      query: Osnabrück
+  proposed_fix: Tighten Osnabrück query to filter by issuer Hochstift/Bistum Osnabrück, or add post-fetch
+    issuer filter.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -703,17 +714,18 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK Hamburg query returns non-coin art-medal records (Fischer wax sculptures, Völkerschlacht
-    bronze commem).
+  summary: IKMK 'Hamburg' query returns OOS records (Swiss Schilling, Bismarck medal).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-28T03:29:07Z'
-  occurrence_count: 1
+  last_seen: '2026-05-28T05:26:22.524355Z'
+  occurrence_count: 2
   affected_ids:
     ikmk:
     - 18210988
     - 18210989
     - 18210990
+    - 18214571
+    - 18215700
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -722,8 +734,17 @@ anomalies:
     full_context:
       numista_batch: FW
       ucoin_batch: '185'
-  proposed_fix: 'Tighten Hamburg query in fetch_ikmk.py: filter object_type to coin classes, exclude Wachs/Bronze
-    art-medal classes; OR scope-filter by issuer to ''Stadt Hamburg'' / ''Hanseatic Hamburg''.'
+  - run_utc: '2026-05-28T05:26:22.524355Z'
+    batch_label: AG
+    detail: 'IKMK batch AG: mds_ids 18214571 (Schweiz: Glarus, Schilling, Billon — non-German) and 18215700
+      (Schaper/Langa Bismarck medal, Silber — medal not a coin) both came from ''Hamburg'' query bucket.
+      Q likely matches on ''Hamburg'' as the inscription/legend/find-spot, not on issuer. Tighten Hamburg
+      query to issuer-scope or add post-fetch entity filter.'
+    full_context:
+      ikmk_batch: AG
+      query: Hamburg
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to filter by issuer/Münzstand=Hamburg, OR add post-fetch
+    scope filter that drops non-coin records (medals, dies, etc.) + non-supported issuers.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -732,17 +753,18 @@ anomalies:
   key_dims:
     source: ikmk
     query: kassel
-  summary: IKMK 'Kassel' query returns Napoleonic Kingdom-of-Westphalia / France records (mint=Paris).
+  summary: IKMK 'Kassel' query returns non-coin records (die-tools, Prägestempel).
   status: open
   instance_first_seen: '2026-05-28T04:27:47Z'
-  last_seen: '2026-05-28T04:27:47Z'
-  occurrence_count: 1
+  last_seen: '2026-05-28T05:26:22.524355Z'
+  occurrence_count: 2
   affected_ids:
     ikmk:
     - 18213935
     - 18213936
     - 18213938
     - 18213939
+    - 18213940
   occurrences:
   - run_utc: '2026-05-28T04:27:47Z'
     batch_label: AF
@@ -755,9 +777,16 @@ anomalies:
       ikmk_batch: AF
       numista_batch: FX
       ucoin_batch: '186'
-  proposed_fix: 'Tighten Kassel query in fetch_ikmk.py: filter mint!=Paris OR issuer != ''Frankreich''
-    / ''Königreich Westphalen'' / Napoleonic-era issuers; OR add post-fetch scope filter in the fetch
-    loop matching the Hesse-Kassel / Hessen-Kassel landgraviate/electorate window 1559-1866.'
+  - run_utc: '2026-05-28T05:26:22.524355Z'
+    batch_label: AG
+    detail: 'IKMK batch AG: mds_id 18213940 (Prägestempel Westfalen, Stahl) from ''Kassel'' query bucket.
+      Prägestempel = engraved die, a coin-production tool, not a coin. Q catches die-tools stored under
+      Münzkabinett''s mint-equipment collection because the die''s region matches.'
+    full_context:
+      ikmk_batch: AG
+      query: Kassel
+  proposed_fix: Tighten Kassel query to filter by item-type='coin' (exclude die-tools, mint equipment,
+    presses, weights, etc.).
   resolution: null
   resolved_at: null
   resolved_by: null
