@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-28T01:18:30Z'
+  last_updated_utc: '2026-05-28T02:25:08Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -520,12 +520,12 @@ anomalies:
   key_dims:
     source: ucoin
     bucket: osnabruck_p3057
-  summary: ucoin osnabruck_p3057 bucket spans 1482-1661 (Bishopric of Osnabrück); mission scope starts
-    1559 so part of bucket is pre-mission OOS.
+  summary: ucoin BR-4 bucket osnabruck_p3057 — pre-mission scope drift; first-5 TIDs are pre-1559 (1482-1508
+    per prior batches' defensive samples).
   status: open
   instance_first_seen: '2026-05-27T19:22:57Z'
-  last_seen: '2026-05-28T01:18:30Z'
-  occurrence_count: 6
+  last_seen: '2026-05-28T02:25:08Z'
+  occurrence_count: 7
   affected_ids:
     ucoin:
     - 171936
@@ -591,8 +591,18 @@ anomalies:
     full_context:
       action_taken: Switched to next priority bucket brunswick_luneburg_p1082 per §7.5; did not save any
         cache files from osnabruck_p3057.
-  proposed_fix: Re-enumerate osnabruck_p3057 with year>=1559 filter against ucoin listing-page year metadata;
-    reclassify pre-1559 TIDs into oos_excluded_tids slot in BR-audit-4 manifest with audit-trail reason.
+  - run_utc: '2026-05-28T02:25:08Z'
+    batch_label: '184'
+    detail: 'Batch 184: skipped per §7.5 — known scope drift. First-5 TIDs 171936/172222/172659/172663/172662
+      confirmed OOS pre-mission on prior runs (handoff anomalies in runs 181-183). Anomaly occurrence
+      count incrementing.'
+    full_context:
+      ucoin_batch: '184'
+      numista_batch: FV
+      fallback_bucket: brunswick_luneburg_p1082
+  proposed_fix: 'Re-enumerate p3057 with year filter ≥1559; move pre-1559 TIDs to oos_excluded_tids slot
+    in audit-4 manifest with audit-trail reason. Pattern: see DK p4 / NO p2 OOS reclassification in BO.6
+    audit.'
   resolution: null
   resolved_at: null
   resolved_by: null
