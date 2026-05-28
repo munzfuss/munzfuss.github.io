@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-28T04:27:47Z'
+  last_updated_utc: '2026-05-28T05:15:08Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -523,8 +523,8 @@ anomalies:
   summary: ucoin BR-4 bucket osnabruck_p3057 enumeration contains pre-mission OOS TIDs (pre-1559).
   status: open
   instance_first_seen: '2026-05-27T19:22:57Z'
-  last_seen: '2026-05-28T03:23:27Z'
-  occurrence_count: 8
+  last_seen: '2026-05-28T05:15:08.163068Z'
+  occurrence_count: 9
   affected_ids:
     ucoin:
     - 171936
@@ -607,8 +607,17 @@ anomalies:
     full_context:
       numista_batch: FW
       ucoin_batch: '185'
-  proposed_fix: Re-enumerate p3057 with mission-window year filter (>=1559); move pre-1559 TIDs to oos_excluded_tids
-    slot in audit-4 manifest, matching DK p4 / NO p2 pattern in BO.6 audit.
+  - run_utc: '2026-05-28T05:15:08.163068Z'
+    batch_label: '187'
+    detail: 'Batch 187 (cron-fired): bucket osnabruck_p3057 still 0/55 cached. Per §7.5 + prior occ=8
+      detections, skipping the bucket again — first 5 TIDs (171936, 172222, 172659, 172663, 172662) confirmed
+      pre-1559 OOS on batches 177-180. Audit-4 manifest needs year-filter cleanup before this bucket can
+      resume. Switched to next priority bucket (brunswick_luneburg_p1082) for this run.'
+    full_context:
+      action_taken: Switched to next priority bucket brunswick_luneburg_p1082 per §7.5
+  proposed_fix: 'Year-filter audit-4''s osnabruck_p3057 enumeration: drop TIDs whose min_year < 1559 from
+    gap_tids; move them to an oos_excluded_tids slot with audit-trail reason. Then the picker will fall
+    through to the next priority correctly.'
   resolution: null
   resolved_at: null
   resolved_by: null
