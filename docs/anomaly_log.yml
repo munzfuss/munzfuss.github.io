@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-29T17:16:44Z'
+  last_updated_utc: '2026-05-29T17:29:25Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -684,17 +684,18 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query returns OOS records (Preußen).
+  summary: IKMK 'Osnabrück' query surfaces OOS records (cross-issuer false positives).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-29T16:34:06Z'
-  occurrence_count: 3
+  last_seen: '2026-05-29T17:29:25Z'
+  occurrence_count: 4
   affected_ids:
     ikmk:
     - 18206581
     - 18214569
     - 18214572
     - 18216734
+    - 18217328
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -718,7 +719,14 @@ anomalies:
       II.). Not an Osnabrück-Hochstift coin.'
     full_context:
       ikmk_batch: AH
-  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter.
+  - run_utc: '2026-05-29T17:29:25Z'
+    batch_label: AI
+    detail: 'Batch AI: Osnabrück query returned mds_id 18217328 = ''Brandenburg: Joachim I.'' — Brandenburg-issuer,
+      not Osnabrück. 4th recorded occurrence.'
+    full_context:
+      ikmk_batch: AI
+  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py or add post-fetch issuer filter rejecting Brandenburg
+    records.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -727,11 +735,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query returns OOS records (Breslau, Korbach).
+  summary: IKMK 'Hamburg' query surfaces OOS records (cross-issuer false positives).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-29T16:34:06Z'
-  occurrence_count: 3
+  last_seen: '2026-05-29T17:29:25Z'
+  occurrence_count: 4
   affected_ids:
     ikmk:
     - 18210988
@@ -741,6 +749,7 @@ anomalies:
     - 18215700
     - 18216216
     - 18216456
+    - 18219373
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -764,8 +773,16 @@ anomalies:
       18216456 (Korbach: Stadt). Neither is a Hamburg-Hanseatic-City coin.'
     full_context:
       ikmk_batch: AH
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter
-    excluding non-Hanseatic-Hamburg issuers.
+  - run_utc: '2026-05-29T17:29:25Z'
+    batch_label: AI
+    detail: 'Batch AI: Hamburg query returned mds_id 18219373 = ''Haag: Grafschaft'' (county of Haag,
+      Bavaria) — not Hamburg-issuer. 4th recorded occurrence.'
+    full_context:
+      ikmk_batch: AI
+      numista_batch: FZ
+      ucoin_batch: '188'
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope or add post-fetch issuer filter
+    rejecting Haag/Brandenburg/Sachsen records.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -836,6 +853,33 @@ anomalies:
       ikmk_batch: AH
   proposed_fix: Add object_type post-fetch filter in fetch_ikmk.py to exclude IKMK records where the object
     is a Medaille rather than a Münze, regardless of issuer query.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=braunschweig:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: braunschweig
+  summary: IKMK 'Braunschweig' / 'Wolfenbüttel' queries surface OOS Saxon issuers.
+  status: open
+  instance_first_seen: '2026-05-29T17:29:25Z'
+  last_seen: '2026-05-29T17:29:25Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18217796
+  occurrences:
+  - run_utc: '2026-05-29T17:29:25Z'
+    batch_label: AI
+    detail: 'Batch AI: Braunschweig + Wolfenbüttel queries returned mds_id 18217796 = ''Sachsen-Weimar
+      und Eisenach: Anna Amalia'' — Saxon-Weimar duchess (regent for Carl August), not a Welf coinage.
+      Likely cross-dynasty IKMK auto-tagging (Anna Amalia was Princess of Braunschweig-Wolfenbüttel by
+      birth, married into Sachsen-Weimar).'
+    full_context:
+      ikmk_batch: AI
+  proposed_fix: 'Post-fetch issuer filter on Braunschweig/Wolfenbüttel queries: reject records whose issuer.label
+    starts with ''Sachsen-'' / ''Brandenburg-'' / ''Mecklenburg-'' / similar non-Welf prefixes.'
   resolution: null
   resolved_at: null
   resolved_by: null
