@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `holstein_schauenburg_county`.
-# Generated 2026-05-27 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-29 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/holstein_schauenburg_county.yml across all sources.
 #
-# Input: 16 per-source seed entries.
-# Output: 16 unified entries (one per physical coin).
+# Input: 28 per-source seed entries.
+# Output: 25 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,8 +11,354 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: holstein_schauenburg_county
-generated_at: '2026-05-27'
+generated_at: '2026-05-29'
 coins:
+- id: unified-dk-numista-137300
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groschen = 1/24 Thaler
+  year_first: 1612
+  year_last: 1618
+  year_ranges:
+  - - 1612
+    - 1618
+  year_label: 1612-1618
+  ruler: Ernest (Ernst)
+  catalog:
+    km: '64.2'
+    numista: '137300'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.49
+    source: numista
+  diameter_mm:
+  - value: 21.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/137300
+    ref: Numista N#137300 — 1 Groschen - Ernest
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: holstein_schauenburg_county
+  composed_of:
+  - dk-numista-137300
+  _entity_routing_hint:
+    rule_id: schauenburg_niedersaechsisch_denoms
+    matched_on:
+      issuer: holstein-schaumburg-pinneberg
+      denomination: 1/24 thaler
+    would_route_to: holstein_schauenburg_county
+    active: true
+    reasoning: Rule matched on issuer='holstein-schaumburg-pinneberg', denomination='1/24 thaler'; mint absent / unverified
+      → rule re-routed.
+- id: unified-dk-numista-137342
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groschen = 1/24 Thaler
+  year_first: 1620
+  year_last: 1620
+  year_label: '1620'
+  ruler: Ernst III
+  catalog:
+    km: '99'
+    numista: '137342'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.8
+    source: numismaster
+  - value: 0.84
+    source: numista
+  diameter_mm:
+  - value: 18.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/137342
+    ref: Numista N#137342 — 1 Groschen - Ernest III - County of Holstein-Schaumburg-Pinneberg – Numista
+  - type: literature
+    url: https://numismaster.com/MC_96088
+    ref: NumisMaster
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: holstein_schauenburg_county
+  composed_of:
+  - dk-numista-137342
+  - schleswig_holstein-numismaster-96088
+  _entity_routing_hint:
+    rule_id: schauenburg_niedersaechsisch_denoms
+    matched_on:
+      issuer: holstein-schaumburg-pinneberg
+      denomination: 1/24 thaler
+    would_route_to: holstein_schauenburg_county
+    active: true
+    reasoning: Rule matched on issuer='holstein-schaumburg-pinneberg', denomination='1/24 thaler'; mint absent / unverified
+      → rule re-routed.
+- id: unified-dk-numista-137399
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groschen = 1/24 Thaler
+  year_first: 1622
+  year_last: 1635
+  year_ranges:
+  - - 1622
+    - 1627
+  - - 1630
+    - 1633
+  - - 1635
+    - 1635
+  year_label: 1622-1627, 1630-1633, 1635
+  ruler: Jobst Hermann
+  mint: Oldendorf
+  catalog:
+    km: '124'
+    numista: '137399'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.7
+    source: numismaster
+  - value: 1.7
+    source: numista
+  diameter_mm:
+  - value: 23.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/137399
+    ref: Numista N#137399 — 1 Groschen - Justus Hermann - HS-Pinneberg
+  - type: literature
+    url: https://numismaster.com/MC_96070
+    ref: NumisMaster
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: holstein_schauenburg_county
+  composed_of:
+  - dk-numista-137399
+  - schleswig_holstein-numismaster-96070
+  _entity_routing_hint:
+    rule_id: schauenburg_niedersaechsisch_denoms
+    matched_on:
+      issuer: holstein-schaumburg-pinneberg
+      denomination: 1/24 thaler
+    would_route_to: holstein_schauenburg_county
+    active: true
+    reasoning: Rule matched on issuer='holstein-schaumburg-pinneberg', denomination='1/24 thaler'; mint absent / unverified
+      → rule re-routed.
+- id: unified-dk-numista-137408
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Mariengroschens
+  year_first: 1624
+  year_last: 1626
+  year_ranges:
+  - - 1624
+    - 1626
+  year_label: 1624-1626
+  ruler: Justus Herman
+  mint: Oldendorf
+  catalog:
+    km: A134
+    numista: '137408'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.11
+    source: numista
+  diameter_mm:
+  - value: 19.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/137408
+    ref: Numista N#137408 — 2 Mariengroschen - Justus Hermann
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: holstein_schauenburg_county
+  composed_of:
+  - dk-numista-137408
+  _entity_routing_hint:
+    rule_id: schauenburg_niedersaechsisch_denoms
+    matched_on:
+      ruler_lineage: justus herman
+      issuer: holstein-schaumburg-pinneberg
+      denomination: mariengroschen
+    would_route_to: holstein_schauenburg_county
+    active: false
+    agrees_with_active: true
+    reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'holstein_schauenburg_county';
+      active entity is 'holstein_schauenburg_county'.
+- id: unified-dk-numista-137409
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 4 Mariengroschen
+  year_first: 1624
+  year_last: 1624
+  year_label: '1624'
+  ruler: Justus Herman
+  mint: Oldendorf
+  catalog:
+    km: '135'
+    numista: '137409'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 2.59
+    source: numista
+  diameter_mm:
+  - value: 22.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/137409
+    ref: Numista N#137409 — 4 Mariengroschen - Justus Hermann
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: holstein_schauenburg_county
+  composed_of:
+  - dk-numista-137409
+  _entity_routing_hint:
+    rule_id: schauenburg_niedersaechsisch_denoms
+    matched_on:
+      ruler_lineage: justus herman
+      issuer: holstein-schaumburg-pinneberg
+      denomination: mariengroschen
+    would_route_to: holstein_schauenburg_county
+    active: false
+    agrees_with_active: true
+    reasoning: Rule matched but mint is verified — mint took precedence. Rule would route to 'holstein_schauenburg_county';
+      active entity is 'holstein_schauenburg_county'.
+- id: unified-dk-numista-143279
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groschen = 1/24 Thaler
+  year_first: 1614
+  year_last: 1620
+  year_ranges:
+  - - 1614
+    - 1620
+  year_label: 1614-1620
+  ruler: Ernst III
+  mint: Oldendorf
+  catalog:
+    km: '73'
+    numista: '143279'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.08
+    source: numista
+  diameter_mm:
+  - value: 19.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/143279
+    ref: Numista N#143279 — 1 Groschen - Ernest III - HS-Pinneberg
+  - type: literature
+    url: https://numismaster.com/MC_96087
+    ref: NumisMaster
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: holstein_schauenburg_county
+  composed_of:
+  - dk-numista-143279
+  - schleswig_holstein-numismaster-96087
+  _entity_routing_hint:
+    rule_id: schauenburg_niedersaechsisch_denoms
+    matched_on:
+      issuer: holstein-schaumburg-pinneberg
+      denomination: 1/24 thaler
+    would_route_to: holstein_schauenburg_county
+    active: true
+    reasoning: Rule matched on issuer='holstein-schaumburg-pinneberg', denomination='1/24 thaler'; mint absent / unverified
+      → rule re-routed.
 - id: unified-schleswig_holstein-numismaster-171188
   fuss: seed_unsorted
   phase: numismaster
@@ -45,6 +391,37 @@ coins:
   issuing_entity: holstein_schauenburg_county
   composed_of:
   - schleswig_holstein-numismaster-171188
+- id: unified-schleswig_holstein-numismaster-171189
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1/24 Thaler
+  year_first: 1573
+  year_last: 1573
+  year_label: '1573'
+  ruler: Otto V
+  catalog:
+    mb: '10'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_171189
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: holstein_schauenburg_county
+  composed_of:
+  - schleswig_holstein-numismaster-171189
 - id: unified-schleswig_holstein-numismaster-171267
   fuss: seed_unsorted
   phase: numismaster
@@ -85,48 +462,6 @@ coins:
   issuing_entity: holstein_schauenburg_county
   composed_of:
   - schleswig_holstein-numismaster-171267
-- id: unified-schleswig_holstein-numismaster-96070
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1/24 Thaler
-  year_first: 1622
-  year_last: 1635
-  year_ranges:
-  - - 1622
-    - 1627
-  - - 1630
-    - 1633
-  - - 1635
-    - 1635
-  year_label: 1622-1627, 1630-1633, 1635
-  ruler: Jobst Hermann
-  mint: Oldendorf
-  catalog:
-    km: '124'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.7
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_96070
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: holstein_schauenburg_county
-  composed_of:
-  - schleswig_holstein-numismaster-96070
 - id: unified-schleswig_holstein-numismaster-96071
   fuss: seed_unsorted
   phase: numismaster
@@ -165,30 +500,34 @@ coins:
   issuing_entity: holstein_schauenburg_county
   composed_of:
   - schleswig_holstein-numismaster-96071
-- id: unified-schleswig_holstein-numismaster-96087
+- id: unified-schleswig_holstein-numismaster-96072
   fuss: seed_unsorted
   phase: numismaster
   kind: kurant
-  nominal: 1/24 Thaler
-  year_first: 1614
-  year_last: 1620
+  nominal: 2 Mariengroschen
+  year_first: 1624
+  year_last: 1626
   year_ranges:
-  - - 1614
-    - 1620
-  year_label: 1614-1620
-  ruler: Ernst III
-  mint: Oldendorf
+  - - 1624
+    - 1624
+  - - 1626
+    - 1626
+  year_label: 1624, 1626
+  ruler: Jobst Hermann
   catalog:
-    km: '73'
+    km: A134
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
+  weight_rough_verified: true
+  mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 1.3
+    source: numismaster
   sources:
   - type: literature
-    url: https://numismaster.com/MC_96087
+    url: https://numismaster.com/MC_96072
     ref: NumisMaster
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
@@ -199,7 +538,106 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   issuing_entity: holstein_schauenburg_county
   composed_of:
-  - schleswig_holstein-numismaster-96087
+  - schleswig_holstein-numismaster-96072
+- id: unified-schleswig_holstein-numismaster-96073
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 4 Mariengroschen
+  year_first: 1624
+  year_last: 1624
+  year_label: '1624'
+  ruler: Jobst Hermann
+  catalog:
+    km: '135'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 2.4
+    source: numismaster
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_96073
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: holstein_schauenburg_county
+  composed_of:
+  - schleswig_holstein-numismaster-96073
+- id: unified-schleswig_holstein-numismaster-96084
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1/24 Thaler
+  year_first: 1601
+  year_last: 1604
+  year_ranges:
+  - - 1601
+    - 1604
+  year_label: 1601-1604
+  ruler: Ernst III
+  catalog:
+    km: '7'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_96084
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: holstein_schauenburg_county
+  composed_of:
+  - schleswig_holstein-numismaster-96084
+- id: unified-schleswig_holstein-numismaster-96089
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1/21 Thaler
+  year_first: 1621
+  year_last: 1621
+  year_label: '1621'
+  ruler: Ernst III
+  catalog:
+    km: '116'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_96089
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: holstein_schauenburg_county
+  composed_of:
+  - schleswig_holstein-numismaster-96089
 - id: unified-schleswig_holstein-numismaster-96090
   fuss: seed_unsorted
   phase: numismaster

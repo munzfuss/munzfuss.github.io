@@ -463,9 +463,19 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
 
     # Preserve other V2 bookkeeping fields from foundation
     for k in ("v1_home_location", "_migration_note", "_migration_dup_origin_id",
-              "promoted_to", "_curation_holds"):
+              "promoted_to", "_curation_holds", "_entity_routing_hint"):
         if k in final_entry:
             out[k] = final_entry[k]
+
+    # When the foundation didn't already carry an `_entity_routing_hint`,
+    # promote one from a composed_of member if any of them carries one.
+    # The hint is metadata-class — last-writer-wins is acceptable;
+    # foundation precedence handled above.
+    if "_entity_routing_hint" not in out:
+        for m in members:
+            if isinstance(m, dict) and m.get("_entity_routing_hint"):
+                out["_entity_routing_hint"] = m["_entity_routing_hint"]
+                break
 
     return out, conflicts
 

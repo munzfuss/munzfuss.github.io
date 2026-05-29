@@ -86,6 +86,64 @@ V2_SEED_ROOT = PROJECT_ROOT / "data" / "v2" / "seed"
 _RELOCATE_FROM_ENTITIES = frozenset({"danish_realm"})
 
 
+def _scan_one_source_rule_based(src_dir: Path) -> list[dict]:
+    """Parallel scan applying `data/v2/entity_routing_rules.yml` rules to
+    every coin in `data/v2/seed/<src>/`. Returns mismatches where the
+    rule actively re-routes (the rule's safe-mode says: «mint absent
+    or unverified, rule decides») but the coin is currently in a
+    different entity file.
+
+    These mismatches typically arise because:
+      (a) The source builder didn't apply the routing rules at seed-emit
+          time (legacy NumisMaster / Bruun / Hede / ucoin builders are
+          pre-rules). Re-routing surfaces what the rule WOULD do.
+      (b) The seed was emitted before the rule was added to the registry.
+
+    Returns the same shape as `_scan_one_source` so the
+    `_relocate_misclassifications` writer can process both in one pass.
+    """
+    from lib.entity_routing import route_entity_with_rules  # noqa: E402
+
+    out: list[dict] = []
+    for yml_path in sorted(src_dir.glob("*.yml")):
+        if yml_path.stem == "_unclassified":
+            continue
+        current_entity = yml_path.stem
+        try:
+            data = yaml.safe_load(yml_path.read_text(encoding="utf-8")) or {}
+        except (OSError, yaml.YAMLError):
+            continue
+        coins = data.get("coins") or []
+        for c in coins:
+            if not isinstance(c, dict):
+                continue
+            # Default entity = current placement (the rule fires
+            # against where the coin actually sits, asking «would a
+            # rule actively re-route this?»).
+            routed_ent, hint = route_entity_with_rules(c, default_entity=current_entity)
+            if hint is None:
+                continue
+            # Only relocate when the rule's verdict was ACTIVE (mint
+            # absent / unverified — rule had authority). When mint was
+            # verified, the rule wrote a hint but did NOT override —
+            # those stay put (curator-review surface, not auto-relocate).
+            if not hint.get("active"):
+                continue
+            if not isinstance(routed_ent, str):
+                continue
+            if current_entity == routed_ent:
+                continue
+            out.append({
+                "source": src_dir.name,
+                "current_entity": current_entity,
+                "expected_entity": routed_ent,
+                "coin": c,
+                "filepath": yml_path,
+                "_rule_id": hint.get("rule_id"),
+            })
+    return out
+
+
 def _scan_one_source(src_dir: Path) -> list[dict]:
     """For each yaml in `data/v2/seed/<src>/`, find coins whose
     `issuing_entity` disagrees with the mint-driven classifier.
@@ -163,21 +221,29 @@ def _relocate_misclassifications(
     Both writes go through `merge_seed` (the merge-aware writer) to
     preserve any curator-edited fields that survive across regen.
     """
-    # Group by (source, current_entity, expected_entity) to batch the
-    # per-file rewrites — touching each entity file at most once per
-    # (current, expected) pair keeps disk I/O low and the diff readable.
-    grouped: dict[tuple[str, str, str], list[dict]] = defaultdict(list)
+    # Group by (source, current_entity, expected_entity, source-kind) to
+    # batch the per-file rewrites. source-kind distinguishes mint-based
+    # vs rule-based mismatches — rule-based ones are always relocatable
+    # because the rule is the new declarative authority.
+    grouped: dict[tuple[str, str, str, str], list[dict]] = defaultdict(list)
     for m in misclassifications:
-        grouped[(m["source"], m["current_entity"], m["expected_entity"])].append(m["coin"])
+        kind = "rule" if m.get("_rule_id") else "mint"
+        grouped[(m["source"], m["current_entity"], m["expected_entity"], kind)].append(m["coin"])
 
     actions_taken = 0
-    for (src, cur, exp), coins in sorted(grouped.items()):
-        # Only relocate from entities in the allow-list. Other current
-        # entities reflect issuer-aware classification we should NOT
-        # override blindly — see `_RELOCATE_FROM_ENTITIES` comment.
-        is_relocatable = cur in _RELOCATE_FROM_ENTITIES
+    for (src, cur, exp, kind), coins in sorted(grouped.items()):
+        # Rule-based mismatches always relocate (the rule is the
+        # declarative authority; safe-mode pivot already filtered).
+        # Mint-based mismatches only relocate from the allow-list per
+        # `_RELOCATE_FROM_ENTITIES` (issuer-aware curator decisions
+        # in other entities should not be blindly overridden).
+        if kind == "rule":
+            is_relocatable = True
+            suffix = "  [rule-driven]"
+        else:
+            is_relocatable = cur in _RELOCATE_FROM_ENTITIES
+            suffix = "" if is_relocatable else "  [skipped — issuer-aware]"
         marker = "→" if is_relocatable else "⊘"
-        suffix = "" if is_relocatable else "  [skipped — issuer-aware]"
         print(f"  {src:12s}  {cur:34s} {marker} {exp:34s}  "
               f"{len(coins)} coin(s){suffix}")
         if not apply or not is_relocatable:
@@ -271,14 +337,26 @@ def main() -> int:
     all_mismatches: list[dict] = []
     per_source: Counter[str] = Counter()
     per_shape: Counter[tuple[str, str]] = Counter()
+    per_rule: Counter[str] = Counter()
     for src_dir in src_dirs:
         if not src_dir.is_dir():
             continue
         mismatches = _scan_one_source(src_dir)
+        rule_mismatches = _scan_one_source_rule_based(src_dir)
+        # De-dup: same coin id may surface in both scanners. Mint-based
+        # mismatch takes precedence (more specific) — drop rule-based
+        # for IDs already seen.
+        existing_ids = {m["coin"].get("id") for m in mismatches}
+        rule_mismatches = [m for m in rule_mismatches
+                            if m["coin"].get("id") not in existing_ids]
         all_mismatches.extend(mismatches)
-        per_source[src_dir.name] = len(mismatches)
+        all_mismatches.extend(rule_mismatches)
+        per_source[src_dir.name] = len(mismatches) + len(rule_mismatches)
         for m in mismatches:
             per_shape[(m["current_entity"], m["expected_entity"])] += 1
+        for m in rule_mismatches:
+            per_shape[(m["current_entity"], m["expected_entity"])] += 1
+            per_rule[m["_rule_id"]] += 1
 
     print(f"Scanned {len(src_dirs)} source dir(s); "
           f"found {len(all_mismatches)} mismatched coin(s).\n")
@@ -292,6 +370,12 @@ def main() -> int:
     for (cur, exp), n in per_shape.most_common(20):
         print(f"  {cur:34s} → {exp:34s}  {n}")
     print()
+
+    if per_rule:
+        print("Rule-based mismatch breakdown:")
+        for rid, n in per_rule.most_common():
+            print(f"  {rid:48s}  {n}")
+        print()
 
     if not all_mismatches:
         print("✓ No misclassifications found.")
