@@ -456,6 +456,8 @@ URL pattern for individual coins: `https://ikmk.smb.museum/object?id={N}&downloa
 
 **Use as:** authoritative museum-grade specimen images and metadata when you need photo confirmation.
 
+Discovery quirks (full-text `quick_search` noise, year-only fetch filter, modern-geography mint-country geocoding, the 2026-05-29 scope-purge): see §13.8 below.
+
 ### 8.2 Nationalmuseet København — `natmus.dk`
 
 Danish National Museum. Holds the largest Danish-coin collection and is the home of the Esrum Schatzfund Christian-IV-Doppelguldkronen (Hede 28, 1628).
@@ -847,6 +849,16 @@ KM (Krause-Mishler) numbering for Denmark begins ~1604 (Christian IV reign), for
 - `/api/...` — does not exist (no public API)
 - `/sitemap.xml` — 404, no public sitemap
 
+### 13.8 IKMK Berlin (ikmk.smb.museum)
+
+**Discovery noise — full-text `quick_search` + year-only fetch filter let the cache fill with ~90 % out-of-scope records (2026-05-29).**
+`scripts/fetch_ikmk.py` discovers ids via `quick_search_value=<query>` — a **full-text** search, so a query like «Hamburg» matches any record mentioning Hamburg anywhere (auction house, collector, find-spot), and «Kassel» pulls Napoleonic Westphalia (capital Kassel). The at-fetch scope gate `_is_in_mission_scope` filters **by year only**, so any record whose year falls in 1514-1914 passes regardless of issuer or object type. Net effect measured on the cache: of 7259 cached records only **1468** were German/Scandinavian coins; **5791** were out of scope — 4818 other-country coins (Turkey 2085, Greece 655, Iraq 521, Italy 399, Iran 269, …, mostly ancient/oriental), 710 exonumia, 263 None-country oriental (Abbasiden/Umayyaden/Sasaniden).
+*Classification signals (the museum's own typology — authoritative, not heuristic).* `mint[].country_name_en` + `region_name` for issuer; `item.item_en` («Coin» vs «Medal»/«Minting Tools»/«Model»/«Tokens and Labels»/«Paper Money»/«Seal»/…) + `division.division_name_en` («Antiquity»/«Medieval Period»/«Modern Period»/«Medals») for object type.
+*Geocoding trap.* IKMK tags `mint.country` by **modern** geography, so historical German/HRE territories surface under foreign flags: Silesia (Liegnitz und Brieg, Glogau) + Pomerania (Pommern-Stettin, Cammin, Rügenwalde) + Posen → `Poland`; Neuchâtel (Neuenburg, a Prussian principality 1707-1857) → `Switzerland`; Bohemia + Friedland/Sagan → `Czech Republic`; Steiermark/Tirol/Salzburg → `Austria`. A naïve «country ≠ Germany» drop loses real German-lands material — keep the borderline {PL, CH, CZ, AT, NL, BE, LU} set.
+*«Token» ≠ small-change coin.* Circulating copper Pfennige are `item==Coin` in IKMK and stay in scope; the «Tokens and Labels» class is reserved for genuine non-money — Rechenpfennige (abacus counters), Münzmeisterjetons, Brot-/Bier-/Armen-/Gefängnis-marken. Don't equate the «-pfennig» in «Rechenpfennig» with a denomination.
+*Scope-purge done 2026-05-29* (submodule commit `07014b3`). Keep-rule: `item==Coin` AND country ∈ {Germany, DK, NO, SE, IS, FI} ∪ borderline-HRE {PL, CH, CZ, AT, NL, BE, LU} ∪ None-country-with-German/Scandinavian-title; all exonumia dropped; Danish-colonial (Tranquebar/Vestindien/Guinea) rescued. Cache 103 MB → 28 MB. Dropped ids + reasons in `scripts/cache/ikmk/_oos_purged_by_scope_2026-05.json`; all 5791 added to manifest `oos_excluded_mds_ids` so the harvest routine will not re-fetch them. Deleted files recoverable via the submodule's history.
+*Open follow-up.* The purge + skip-set stop already-discovered OOS ids, but `_is_in_mission_scope` is still year-only — newly-discovered other-country/exonumia records would re-accumulate. Durable fix: add a post-fetch country+object-type gate to `fetch_ikmk.py` (drop country ∉ keep∪borderline; drop `item != Coin`). Not yet implemented.
+
 ---
 
 ## 14. Operational status snapshot
@@ -861,7 +873,7 @@ Last reviewed: 2026-05-13.
 | **Bruun parsed lots** | `scripts/cache/bruun/lots/part{1,2,3,4}.json` | 2026-05-10 | OK | All 4 parts cached; pdf-viewer MCP unusable, use pypdf via curl-to-/tmp. |
 | **Bruun page texts** | `scripts/cache/bruun/pages/part{1,2,3,4}.txt` | 2026-05-10 | OK | Used for full-text searches over auction-intro material. |
 | **Hede HTML+JSON** | `scripts/cache/hede/*.{htm,json}` (~1 360 entries) | 2026-05-12 | OK | Comprehensive; per-coin re-parse via `scripts/parse_hede.py --force` if parser changes. |
-| **IKMK Berlin** | `scripts/cache/ikmk/*.json` (~7 000 entries) | 2026-05-11 | OK | Direct WebFetch on `?download=json_ext` works; no rate-limit observed. |
+| **IKMK Berlin** | `scripts/cache/ikmk/*.json` (1468 in-scope entries post-purge) | 2026-05-29 | OK | Scope-purged 2026-05-29 (7259→1468, dropped 5791 OOS — see §13.8). Direct WebFetch on `?download=json_ext` works; no rate-limit observed. |
 | **danskmoent.dk Galster** | `scripts/cache/danskmoent/galster/*.{htm,json}` (110 pages) | 2026-05-16 | OK | Pre-Christian-III gap (Hede starts 1541); 79 entries for §AZ 1514-1541 window. Indexes `/c2galst.htm` + `/f1galst.htm`; per-coin `chr/c2g*.htm`, `fr/f1g*.htm`, `norge/n<r>g*.htm`. No `/c3galst.htm` (Christian III pre-1541 needs per-Galster# probing). |
 | **Numista HTML (denmark_pre_1541)** | `scripts/cache/numista/denmark_pre_1541/*.{html,json}` (56 pages) | 2026-05-16 | OK | NOT the v3 API — direct HTML route at `en.numista.com/<N>`. Polite 30s pauses, ASCII-only User-Agent. 47 DK + 8 Norway for §AZ Tier 3. |
 | **NumisMaster MC_ (legacy §AZ)** | `scripts/cache/numismaster/denmark_pre_1541/*.{html,json}` (3 entries) | 2026-05-16 | OK | Initial §AZ Tier 4 sample: MB#22 (Witten F.I 1516, MC_167729) + MB#33 (Chr.III 6 Pfg 1534-54, MC_167727) + MB#39 (Chr.III Goldgulden 1535, MC_167745). |

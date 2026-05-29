@@ -125,6 +125,36 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
    correct (sample-checked hede-44). User asked for verification
    before any push. ⇒ Awaiting «OK to push» or further checks.
 
+## Harvest routine — anomaly investigation (2026-05-29)
+
+Investigated the autonomous harvest routine's self-logged anomalies
+(`scripts/cache/_harvest_handoff.json::runs[].anomalies`). Two systemic,
+one class transient.
+
+- **IKMK discovery noise → ✅ scope-purged.** `fetch_ikmk.py` uses
+  full-text `quick_search` + a **year-only** fetch filter, so the cache
+  had filled to ~90 % out-of-scope. Purged 5791/7259 records (cache
+  103→28 MB), kept 1468 German/Scandinavian coins + borderline-HRE.
+  Landed on **main** (submodule commit `07014b3`, superproject pointer
+  bump `651633d`) — not the worktree, due to a `cd /main` slip; curator
+  accepted keeping it there. Keep-rule + verification recorded in
+  `scripts/cache/ikmk/_oos_purged_by_scope_2026-05.json` and SOURCES.md
+  §13.8. **Open follow-up:** `_is_in_mission_scope` is still year-only;
+  to stop re-accumulation add a post-fetch country+object-type gate to
+  `fetch_ikmk.py` (drop country ∉ keep∪borderline; drop `item != Coin`).
+  Not yet implemented — needs curator go-ahead (code change on main).
+- **ucoin `osnabruck_p3057` skip-loop (occ≥10).** Bucket «Bishopric of
+  Osnabrück 1482-1661» — first gap-TIDs are pre-1559 OOS, so the picker
+  re-offers + skips it every run. Curator chose **full re-enumeration
+  with years** (Chrome MCP) to split TIDs into in-scope 1559-1661 vs OOS
+  1482-1558 in `_BR_audit-4_2026-05-24.json`. Pending — needs Chrome
+  connected; note the submodule has diverged (worktree `e3d4b4c` full vs
+  main `07014b3` purged), so resolve placement before editing the audit
+  manifest.
+- **Transient (no action):** chrome-mcp-disconnect (16:34 run),
+  cloudflare interstitials (auto-cleared), `osnabruck_p2988` audit label
+  drift («Hochstift» vs «City of Osnabrück»).
+
 ## Harvest coverage state — ucoin + Numista (2026-05-20)
 
 > **For the next harvest session**: detailed snapshot of where every
