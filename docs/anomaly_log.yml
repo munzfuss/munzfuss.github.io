@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-29T20:12:29Z'
+  last_updated_utc: '2026-05-29T20:31:53Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -692,11 +692,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query returns OOS records (Brandenburg / non-Osnabrück).
+  summary: IKMK 'Osnabrück' query returns OOS records.
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-29T19:25:19Z'
-  occurrence_count: 5
+  last_seen: '2026-05-29T20:31:52Z'
+  occurrence_count: 6
   affected_ids:
     ikmk:
     - 18206581
@@ -705,6 +705,8 @@ anomalies:
     - 18216734
     - 18217328
     - 18224485
+    - 18229376
+    - 18229792
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -739,7 +741,18 @@ anomalies:
     detail: 'Batch AJ: 18224485 = ''Brandenburg: Joachim II.'' filed under Osnabrück query — OOS.'
     full_context:
       ikmk_batch: AJ
-  proposed_fix: Tighten Osnabrück query or filter post-fetch.
+  - run_utc: '2026-05-29T20:31:52Z'
+    batch_label: AK
+    detail: 'Batch AK: 2 of 5 fetched mds_ids OOS via ''Osnabrück'' query — Preußen/Friedrich II issues
+      (mds 18229376 = 1/2 Stüber, 18229792 = Friedrich d''or) from Berlin mint, Brandenburg region. Likely
+      caught because the records reference Osnabrück territory (Prussian-held intermittently in the 18th
+      century) without being Hochstift-Osnabrück issues.'
+    full_context:
+      ikmk_batch: AK
+      numista_batch: GC
+      ucoin_batch: '191'
+  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to hochstift_osnabrueck issuer-scope or add post-fetch
+    scope filter.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -748,11 +761,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query returns OOS records (Württemberg / non-Hamburg pieces).
+  summary: IKMK 'Hamburg' query returns OOS records (Brandenburg/Preußen Berlin mint).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-29T19:25:19Z'
-  occurrence_count: 6
+  last_seen: '2026-05-29T20:31:52Z'
+  occurrence_count: 7
   affected_ids:
     ikmk:
     - 18210988
@@ -765,6 +778,8 @@ anomalies:
     - 18219373
     - 18222024
     - 18224430
+    - 18230184
+    - 18230186
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -812,7 +827,19 @@ anomalies:
       ikmk_batch: AJ
       numista_batch: GB
       ucoin_batch: '190'
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter.
+  - run_utc: '2026-05-29T20:31:52Z'
+    batch_label: AK
+    detail: 'Batch AK (cron-fired): 2 of 5 fetched mds_ids OOS via ''Hamburg'' query — both Preußen/Friedrich
+      II Bancotaler issues (mds 18230184, 18230186) from Berlin mint, Brandenburg region. The IKMK ''Bancotaler''
+      nominal info_de explicitly cites Hamburger Bank (1619), which is why the query catches them — but
+      the issuer is Prussia, not Hanseatic Hamburg.'
+    full_context:
+      ikmk_batch: AK
+      numista_batch: GC
+      ucoin_batch: '191'
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope (hanseatic_hamburg only) or add
+    post-fetch scope filter rejecting records whose 'aussteller'/'authority' field doesn't match the hanseatic_hamburg
+    entity.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -897,15 +924,16 @@ anomalies:
   key_dims:
     source: ikmk
     query: braunschweig
-  summary: IKMK 'Braunschweig'/'Braunschweig-Lüneburg' query returns Großbritannien Georg III. records.
+  summary: IKMK 'Braunschweig' query returns OOS records.
   status: open
   instance_first_seen: '2026-05-29T17:29:25Z'
-  last_seen: '2026-05-29T19:25:19Z'
-  occurrence_count: 2
+  last_seen: '2026-05-29T20:31:53Z'
+  occurrence_count: 3
   affected_ids:
     ikmk:
     - 18217796
     - 18227333
+    - 18228337
   occurrences:
   - run_utc: '2026-05-29T17:29:25Z'
     batch_label: AI
@@ -921,8 +949,17 @@ anomalies:
       — likely Hannover-Personalunion crossover. OOS (UK not a project entity).'
     full_context:
       ikmk_batch: AJ
-  proposed_fix: Tighten Braunschweig-Lüneburg query to exclude UK Hannover-Personalunion records, or filter
-    post-fetch.
+  - run_utc: '2026-05-29T20:31:53Z'
+    batch_label: AK
+    detail: 'Batch AK: 1 of 5 fetched mds_ids OOS via ''Braunschweig'' query — Preußen Berlin-mint Koch/Lüders
+      medal commemorating wedding of Crown Prince Friedrich (II.) to Elisabeth Christine of Brunswick-Bevern
+      (1733). Query catches it via the Brunswick-Bevern reference, but the issuer/mint is Prussian.'
+    full_context:
+      ikmk_batch: AK
+      numista_batch: GC
+      ucoin_batch: '191'
+  proposed_fix: Tighten Braunschweig query in fetch_ikmk.py to herzogtum_braunschweig_lueneburg issuer-scope
+    or add post-fetch scope filter rejecting Berlin/Brandenburg mints.
   resolution: null
   resolved_at: null
   resolved_by: null
