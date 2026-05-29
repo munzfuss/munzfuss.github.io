@@ -499,9 +499,16 @@ def section_git() -> Section:
     n_changed = len([l for l in status.split("\n") if l.strip()])
     ahead = g(["rev-list", "--count", "origin/main..HEAD"]) or "?"
     last = g(["log", "-1", "--format=%cr · %h · %s"])
-    # Submodule
+    # Submodule. `git submodule status` prefixes each line:
+    #   ' ' checked out and matching the superproject pointer
+    #   '+' checked-out commit differs from the pointer (real divergence)
+    #   'U' merge conflicts
+    #   '-' not initialised / not checked out — normal inside a git worktree,
+    #       which does not populate submodule working trees automatically.
+    # Only '+'/'U' are a problem; '-' is an expected uninitialised state.
     submod_status = g(["submodule", "status"])
-    submod_dirty = submod_status.startswith(("+", "-"))
+    submod_dirty = submod_status.startswith(("+", "U"))
+    submod_uninit = submod_status.startswith("-")
     submod_ahead = ""
     if (ROOT / "scripts" / "cache" / ".git").exists() or (ROOT / "scripts" / "cache").is_dir():
         sub_ahead = subprocess.run(
@@ -519,8 +526,10 @@ def section_git() -> Section:
             "warn" if ahead and ahead.isdigit() and int(ahead) > 0 else "ok",
             "git push when ready" if ahead and ahead.isdigit() and int(ahead) > 0 else ""),
         Row("Last commit", last),
-        Row("Submodule scripts/cache", "clean" if not submod_dirty else "dirty",
-            "ok" if not submod_dirty else "warn"),
+        Row("Submodule scripts/cache",
+            "not initialised" if submod_uninit else ("clean" if not submod_dirty else "dirty"),
+            "ok" if not submod_dirty else "warn",
+            "worktree: run `git submodule update --init scripts/cache` if needed" if submod_uninit else ""),
     ]
     if submod_ahead and submod_ahead.isdigit() and int(submod_ahead) > 0:
         rows.append(Row("  ahead of origin", submod_ahead, "warn",
