@@ -3056,54 +3056,6 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 
 **Definition of done.** Operator runs `scripts/run_v2_pipeline.sh` (or equivalent) after harvest cycles; classifier runs in canonical order; ARCHITECTURE.md + V2_PIPELINE.md + PLAYBOOKS.md cross-reference the actual script name; no «to-be-built» annotations remain.
 
-### CE. 🟢 Migrate 12 Niedersächsisch-tradition entries from `schauenburg_pinneberg` → `holstein_schauenburg_county`  *(opened 2026-05-27)* *(est: small)* *(type: data-audit + curator-fix)*
-
-**Surfaced.** Deep tradition audit (in-session 2026-05-27, see chat trail) of all 388 Schauenburg-lineage coins revealed that the project's Schauenburg-Pinneberg vs Holstein-Schauenburg split is **mint-driven, not dynasty-driven**:
-
-  - Altona / Glückstadt mints (Pinneberg county side) → SH 9¼-Thaler-Fuß system → `schauenburg_pinneberg.yml` → SH page
-  - Oldendorf / Rinteln / Stadthagen / Bückeburg mints (Schauenburg-county side, modern Niedersachsen) → Niedersächsisch 36-Mariengroschen-pro-Reichsthaler system → `holstein_schauenburg_county.yml` → hidden page
-
-This is a **dual-coinage system under one dynastic ruler** — each mint operates per the regional economic standard, not one shared system spanning both. The existing 184-entry `holstein_schauenburg_county.yml` already correctly captures the Niedersachsen side. But `schauenburg_pinneberg.yml` carries 12 entries that the audit identifies as misclassified — they belong on the hidden Schauenburg-county page, not the SH page:
-
-| Count | Reason |
-|---|---|
-| 9 | `1/24 Thaler` denomination — does NOT exist in SH 9¼-Fuß subdivisions; Niedersächsisch-only |
-| 3 | `Mariengroschen` denomination — Niedersächsisch-tradition (originated Goslar 1505); SH 9¼-Fuß never includes it |
-
-Full ID list:
-  - km-135-just-herman-1624 (4 Mariengroschen Oldendorf 1624, currently fuss=9_25_thaler ⚠)
-  - unified-schleswig_holstein-numismaster-96072 (2 Mariengroschen Just Herman 1624-1626, fuss=9_25_thaler ⚠)
-  - unified-schleswig_holstein-numismaster-96073 (4 Mariengroschen Just Herman 1624)
-  - unified-schleswig_holstein-numismaster-171189 (1/24 Thaler Otto V 1573)
-  - unified-schleswig_holstein-numismaster-96084 (1/24 Thaler Ernst III 1601-1604)
-  - unified-schleswig_holstein-numismaster-96088 (1/24 Thaler Ernst III 1620)
-  - unified-schleswig_holstein-numismaster-171190 (1/24 Thaler Adolf XIII Altona 1589-1601)
-  - unified-schleswig_holstein-numismaster-171191 (1/24 Thaler Adolf XIII Altona 1589-1601)
-  - unified-schleswig_holstein-numismaster-171192 (1/24 Thaler Adolf XIII Altona 1598-1599)
-  - unified-schleswig_holstein-numismaster-175536 (1/24 Thaler Ernst III Altona 1611)
-  - unified-schleswig_holstein-numismaster-96085 (1/24 Thaler Ernst III Altona 1600-1609)
-  - unified-schleswig_holstein-numismaster-96086 (1/24 Thaler Ernst III Altona 1612-1618)
-
-**Edge case to verify before bulk migration.** 6 of the 9 1/24 Thaler entries are minted at Altona (SH-side mint) — apparent contradiction. Either:
-  - Curator decision: Altona did mint Niedersachsen-tradition 1/24 Thaler for Pinneberg circulation under specific rulers (Adolf XIII pre-Reformation, Ernst III early reign) — keep these in Pinneberg
-  - OR these entries are mint-typos (e.g. parser mis-attributed Oldendorf as Altona)
-
-Recommend per-entry verification against Lange / Behrens / Weinmeister before mass-moving the Altona subgroup. The 3 Mariengroschen entries + 3 NS-mint 1/24 Thaler entries (Otto V + 2× Ernst III no-mint) are clear-cut migrations regardless.
-
-**Plan.**
-1. Per-entry verification of the 6 Altona-mint 1/24 Thaler cases against primary sources (Lange / Weinmeister) — keep in Pinneberg if confirmed; move if mint attribution is incorrect.
-2. For the 3 Mariengroschen + 3 unambiguous 1/24 Thaler entries, run the standard `move_coin_between_entities.py`-style maintenance (or manual edit) to:
-   - Strip the entry from `data/v2/final/schauenburg_pinneberg.yml`
-   - Append it to `data/v2/final/holstein_schauenburg_county.yml`
-   - Reset `fuss: seed_unsorted` + `phase: numista` (or appropriate Niedersachsen seed-bucket)
-   - Update `issuing_entity: holstein_schauenburg_county`
-3. Update audit-recipe so the test stays green after the move.
-4. Single end-to-end commit per CLAUDE.md atomic-commit convention.
-
-**Acceptance criteria.** All 12 entries reside in `holstein_schauenburg_county.yml` (with per-Altona verdicts documented in commit message); rendered SH page no longer shows the 12; rendered Holstein-Schauenburg page (hidden) shows them under seed_unsorted bucket. `schauenburg_pinneberg.yml` retains only SH-tradition (Reichsthaler / ½ Thaler / Speciedaler) entries.
-
-**Cross-references.** §CF (no-mint Ernst III cluster audit) — same lineage but deeper. After §CE lands the Pinneberg.yml carries only SH-tradition entries; §CF then sweeps the 184 no-mint Ernst III. entries currently in `holstein_schauenburg_county.yml` to see if any should reverse-migrate back into Pinneberg.
-
 ### CF. 🔵 No-mint Schauenburg Ernst III. cluster — 184-entry tradition audit pending Lange/Behrens/Weinmeister page-by-page  *(opened 2026-05-27, user-asked «наступною задачею»)* *(est: large — many sessions)* *(type: deep audit + manual research)*
 
 **Surfaced.** Same tradition audit as §CE. After the §CE migration, the largest residual classification ambiguity in the Schauenburg lineage is the **184 Ernst III. (1601-1622) entries that lack mint attribution** in our cache (mostly IKMK Berlin bulk-seed). These currently sit in `holstein_schauenburg_county.yml` as bulk `seed_unsorted` per the original §0b14f71 (2026-05-08) split decision, but the audit revealed that without mint-info we genuinely cannot tell whether each entry belongs in SH-tradition (Schilling Holsteinisch + ½ / ¼ Reichsthaler from Altona) or Niedersachsen-tradition (Doppelschilling + 1/16 / 1/24 Thaler from Oldendorf/Rinteln).
@@ -3142,6 +3094,21 @@ Recommend per-entry verification against Lange / Behrens / Weinmeister before ma
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
+
+### CE. ✅ Schauenburg NS-tradition migration + «1/24 Thaler» rule correction  *(opened 2026-05-27, closed 2026-05-29)* *(est: small)* *(type: data-audit + curator-fix + rule correction)*
+
+**Closed 2026-05-29.** The original §CE premise («1/24 Thaler is Niedersächsisch-only, 9 entries to migrate») was DISPROVEN during execution. NumisMaster reverse-legend inspection showed the 1/24 Thaler is the **Imperial Gutegroschen** of the 24-Groschen-per-Reichsthaler reckoning — «24» mark on the imperial orb + crowned imperial eagle + reigning-emperor name (Rudolf II on the Schaumburg-Pinneberg pieces). It is a Reichsmünzordnung-standard denomination struck empire-wide on BOTH the Pinneberg (Altona, SH side) and Schaumburg-county (Niedersachsen) sides — NOT a Mariengroschen-system signal. Only Mariengroschen (36/Thaler) + Fürstengroschen + Arendschilling are reliable NS-exclusive denominations.
+
+**Delivered:**
+- **Routing-rule correction** (`data/v2/entity_routing_rules.yml`): removed `1/24 thaler` + `1/21 thaler` from the `schauenburg_niedersaechsisch_denoms` rule's `denomination_any`. Documented the Gutegroschen rationale inline. The rule now fires only on genuine NS-exclusive denoms.
+- **Net migration outcome:** only the genuine Mariengroschen entries route to `holstein_schauenburg_county` (96072 + 96073 auto-migrated by rule; km-135 hand-moved — see below). The 1/24 Thaler entries place by mint: 6 Altona-mint pieces correctly STAY in `schauenburg_pinneberg` (SH side); 3 no-mint NumisMaster 1/24 Thaler (171189/96084/96088) remain where the NumisMaster builder placed them (HSC) — deferred to §CF as genuine no-mint ambiguity, NOT forced.
+- **km-135** (V1-foundation, 4 Mariengroschen Oldendorf 1624): the sole foundation entity-invariant case (mint=Oldendorf→HSC + Mariengroschen=NS, both signals agree). Hand-moved from `final/schauenburg_pinneberg.yml` → `final/holstein_schauenburg_county.yml`; `fuss: 9_25_thaler → seed_unsorted` (Mariengroschen has no SH-Fuß), dropped the spurious `fraction: 1/12` artefact, `issuing_entity → holstein_schauenburg_county`, `phase: II`. Added new HSC `seed_unsorted/II` phase (Just Herman + Otto V, 1622-1640) to host it.
+- **Tests:** `test_24_thaler_no_longer_ns_signal` (1/24 Thaler passthrough) + updated 2 OR-coupling tests to use Mariengroschen. All 10 pass.
+- **audit_v2 I7** dropped 13 → 0 informational conflicts (the 1/24-Thaler-Altona false flags are gone). Build + validate clean. km-135 renders on HSC page, removed from SH page.
+
+**Key correction recorded** (§0b discipline): a hypothesis-as-fact slipped into the original §CE/§CF TODO bodies («1/24 Thaler does NOT exist in SH 9¼-Fuß subdivisions; Niedersächsisch-only»). The Gutegroschen finding corrects it. The reliable NS-tradition denomination set is Mariengroschen / Fürstengroschen / Arendschilling — NOT 1/24 Thaler.
+
+**Cross-references.** §CF (no-mint Schauenburg cluster) inherits the 3 no-mint 1/24 Thaler + the broader no-mint SP-vs-HSC ambiguity. The §CF body's «1/24 Thaler» row should be re-read with the Gutegroschen correction in mind.
 
 ### CB. ✅ «Schleswig and Holstein, Danish duchies of» issuer → royal_holstein (flat) — 6 _unclassified Numista entries resolved  *(opened 2026-05-27, closed 2026-05-29)* *(est: small-medium → actual small)* *(type: classifier extension)*
 
