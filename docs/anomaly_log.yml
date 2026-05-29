@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-29T22:25:38Z'
+  last_updated_utc: '2026-05-29T22:30:39Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -697,11 +697,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query returns OOS records.
+  summary: IKMK 'Osnabrück' query returns OOS Prussian records via keyword match (Friedrich II 1752).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-29T20:31:52Z'
-  occurrence_count: 6
+  last_seen: '2026-05-29T22:30:39Z'
+  occurrence_count: 7
   affected_ids:
     ikmk:
     - 18206581
@@ -712,6 +712,7 @@ anomalies:
     - 18224485
     - 18229376
     - 18229792
+    - 18231365
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -756,8 +757,13 @@ anomalies:
       ikmk_batch: AK
       numista_batch: GC
       ucoin_batch: '191'
-  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to hochstift_osnabrueck issuer-scope or add post-fetch
-    scope filter.
+  - run_utc: '2026-05-29T22:30:39Z'
+    batch_label: AK
+    detail: 'Batch AK: mds_id 18231365 ''Preußen: Friedrich II.'' 1752 — Prussian Hohenzollern coinage;
+      Osnabrück query picked it up presumably via Osnabrück mint or legend mention. Prussia is OOS for
+      project (German-states mission scope does not include Brandenburg-Prussia).'
+  proposed_fix: Tighten Osnabrück query in scripts/fetch_ikmk.py to issuer='Hochstift Osnabrück' only,
+    OR post-fetch reject when issuer prefix is 'Preußen'.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -766,11 +772,12 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query returns OOS records (Brandenburg/Preußen Berlin mint).
+  summary: IKMK 'Hamburg' query returns OOS Swedish commemorative medals (Frieden von Hamburg 1762) via
+    keyword match.
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-29T20:31:52Z'
-  occurrence_count: 7
+  last_seen: '2026-05-29T22:30:39Z'
+  occurrence_count: 8
   affected_ids:
     ikmk:
     - 18210988
@@ -785,6 +792,7 @@ anomalies:
     - 18224430
     - 18230184
     - 18230186
+    - 18230648
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -842,9 +850,15 @@ anomalies:
       ikmk_batch: AK
       numista_batch: GC
       ucoin_batch: '191'
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope (hanseatic_hamburg only) or add
-    post-fetch scope filter rejecting records whose 'aussteller'/'authority' field doesn't match the hanseatic_hamburg
-    entity.
+  - run_utc: '2026-05-29T22:30:39Z'
+    batch_label: AK
+    detail: 'Batch AK: mds_id 18230648 ''Krüger nach Nikolaus Georgi: Frieden von Hamburg'' 1762 — Hildebrand
+      attribution is ''Sveriges och Svenska Konungahusets Minnespennigar'' (Swedish royal commemorative
+      medal); fetched via Hamburg keyword match on ''Frieden von Hamburg'' but issuer is Swedish, not
+      Hanseatic Hamburg. OOS for project.'
+  proposed_fix: Tighten Hamburg query in scripts/fetch_ikmk.py to issuer-scope filter ('Hamburg' as issuer
+    text, not free-text keyword), OR add post-fetch scope filter rejecting records where issuer/publisher
+    is not in {Hamburg, Hanseatic Hamburg, Free Imperial City of Hamburg}.
   resolution: null
   resolved_at: null
   resolved_by: null
