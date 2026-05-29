@@ -154,7 +154,23 @@ class TestEntityRouting(unittest.TestCase):
         self.assertEqual(ent, "schauenburg_pinneberg")
         self.assertIsNone(hint)
 
-    # ── Case 9: empty rules → noop ────────────────────────────────
+    # ── Case 9: «Danish duchies» issuer → royal_holstein (flat) ──────
+    def test_danish_duchies_issuer_to_royal_holstein(self):
+        from lib.mint_registry import classify_issuer_to_entity
+        # All three issuer-string variants → royal_holstein, flat (no
+        # year axis — §CB twin-evidence: every «Danish duchies» coin
+        # lands in royal_holstein regardless of year 1545-1787).
+        for s in (
+            "Schleswig and Holstein, Danish duchies of",
+            "Danish duchies of Schleswig and Holstein (German States)",
+            "schleswig_holstein_danish_duchies",
+        ):
+            self.assertEqual(
+                classify_issuer_to_entity(s), "royal_holstein",
+                msg=f"issuer {s!r} should map to royal_holstein",
+            )
+
+    # ── Case 10: empty rules → noop ───────────────────────────────
     def test_empty_default(self):
         coin = {"id": "test-7"}
         ent, hint = route_entity_with_rules(coin, default_entity=None)
