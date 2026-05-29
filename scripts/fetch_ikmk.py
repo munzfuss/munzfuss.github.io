@@ -35,37 +35,83 @@ MANIFEST = CACHE_DIR / "_manifest.json"
 USER_AGENT = "Mozilla/5.0 (research; muentzfuesse project; serhii)"
 SLEEP_SECS = 0.5
 
-# Mission scope per CLAUDE.md §«Mission temporal scope»: 1514 (Christian II
-# Lovkompleks, Danish realm) to 1914 (end of precious-metal anchor). German
-# lands start 1559 but the wider union is used here as a single filter — a
-# German coin from 1530 is rare-but-not-impossible context material; the year-
-# overlap rule keeps anything plausibly relevant to the wider 1514-1914 window.
-MISSION_YEAR_MIN = 1514
-MISSION_YEAR_MAX = 1914
+# Scope note (curator 2026-05-29). The keep-scope is multi-level:
+#   • Broad (future): German lands + Scandinavia + territories under their
+#     rule (HRE / Denmark / Norway / dependencies), in ANY era — pre-1514 and
+#     post-1914 included as future-useful context.
+#   • Narrow (current research): Schleswig-Holstein 1559(1566)-1914 +
+#     Denmark 1514-1914 (+ 1480+ examples for standards predating 1514).
+#   • Active harvest concentration: 1480-1914 — but that governs which
+#     discovery buckets we prioritise, NOT what we reject on fetch.
+# The fetch / scan scope gate is therefore ENTITY-based (country + object-
+# type), NOT year: see `_is_in_entity_scope`. Anything German/Scandinavian
+# that surfaces is kept regardless of year; only other-country coins and
+# exonumia are filtered out.
 
 
-def _is_in_mission_scope(record: dict) -> bool:
-    """Return True iff the record's year range overlaps the mission window.
+# Entity-scope filter (added 2026-05-29 after the IKMK cache scope-purge —
+# see docs/SOURCES.md §13.8). The year filter above is necessary but NOT
+# sufficient: the full-text quick_search discovery pulls in-window-year records
+# from other countries (ancient/oriental/foreign) and non-coin objects (medals,
+# dies, jetons). Without this gate the cache re-accumulates ~90 % out-of-scope.
+# The keep-rule mirrors the purge classification exactly.
+_KEEP_COUNTRIES = {
+    "Germany", "Deutschland", "Denmark", "Dänemark", "Norway", "Norwegen",
+    "Sweden", "Schweden", "Iceland", "Island", "Finland", "Finnland",
+}
+# Borderline modern states that hold historical German / HRE territories
+# (Silesia, Pomerania, Neuchâtel, Bohemia, Austrian HRE lands). IKMK tags mint
+# country by modern geography, so these must be kept per curator verdict
+# 2026-05-29 — a naïve "country != Germany" drop would lose German-lands material.
+_BORDERLINE_COUNTRIES = {
+    "Poland", "Polen", "Switzerland", "Schweiz", "Czech Republic",
+    "Tschechische Republik", "Austria", "Österreich", "Netherlands",
+    "Niederlande", "Belgium", "Belgien", "Luxembourg", "Luxemburg",
+}
+# Danish-colonial coins are in scope even under a foreign mint country.
+_COLONIAL_RE = re.compile(
+    r"(Tranquebar|Trankebar|Vestindien|Westindien|Virgin|Guinea|"
+    r"Goldküste|Dänisch|Grönland|Grønland|Färöer|Færøerne)", re.I)
+# None-country records: drop only clearly ancient/oriental polities; keep the
+# rest (German issuers occasionally carry no mint country, e.g. "Preußen …").
+_NONE_ORIENTAL_RE = re.compile(
+    r"^(Abbasiden|Umayyaden|Sasaniden|Südarabien|Arabo-Sasaniden|"
+    r"Persischer Großkönig|Persis|Makedonien|Honorius|Früh-islamische|"
+    r"Umayyaden oder Abbasiden)")
 
-    IKMK records carry integer `year_start` / `year_end` fields (BCE encoded
-    as negatives; e.g. -380 = 380 BC). The check is overlap, not containment:
-    a record dated 1500-1530 is in scope (touches mission window), as is one
-    dated 1900-1920.
 
-    Conservative on missing/unparseable years — return True so we cache the
-    record and the curator can decide. Better to harvest a few OOS records
-    than to silently drop in-scope ones because of a field-format edge case.
+def _first(x):
+    """First dict in a list-or-dict field (IKMK mint/item/division shapes vary)."""
+    while isinstance(x, list):
+        x = x[0] if x else {}
+    return x if isinstance(x, dict) else {}
+
+
+def _is_in_entity_scope(record: dict) -> tuple[bool, str]:
+    """Return (in_scope, reason).
+
+    Keep coins of German lands + Scandinavia (+ borderline HRE states +
+    Danish colonies); drop other-country coins and all exonumia. Uses the
+    museum's own `item.item_en` / `division` typology (authoritative) and the
+    `mint[].country_name` geocoding. Conservative on missing fields — keep.
     """
-    try:
-        y_start = int(record.get("year_start"))
-        y_end = int(record.get("year_end"))
-    except (TypeError, ValueError):
-        return True  # missing/malformed → keep, conservative
-    if y_end == 0:
-        # Defensive: some records carry year_end=0 as "unset" placeholder;
-        # collapse to single-year.
-        y_end = y_start
-    return y_start <= MISSION_YEAR_MAX and y_end >= MISSION_YEAR_MIN
+    item_en = _first(record.get("item")).get("item_en")
+    div_en = _first(record.get("division")).get("division_name_en")
+    title = str(record.get("title") or "")
+    # Exonumia (medal / minting tool / model / token / paper money / seal / …).
+    if div_en == "Medals" or (item_en is not None and item_en != "Coin"):
+        return False, f"exonumia:{item_en or div_en}"
+    if _COLONIAL_RE.search(title):
+        return True, "colonial"
+    mint = _first(record.get("mint"))
+    country = mint.get("country_name_en") or mint.get("country_name_de")
+    if country in _KEEP_COUNTRIES or country in _BORDERLINE_COUNTRIES:
+        return True, "keep"
+    if country is None:
+        if _NONE_ORIENTAL_RE.match(title):
+            return False, "none-oriental"
+        return True, "none-keep"  # conservative: keep ambiguous None-country
+    return False, f"other-country:{country}"
 
 QUERIES = [
     # Schleswig-Holstein and territorial duchies
@@ -212,8 +258,14 @@ def _load_oos_set() -> set[str]:
     return set(str(i) for i in m.get("oos_excluded_mds_ids") or [])
 
 
-def _record_oos(nid: str, year_start, year_end, title: str = "") -> None:
-    """Append nid to manifest's oos_excluded_mds_ids slot (idempotent, sorted)."""
+def _record_oos(nid: str, year_start, year_end, title: str = "",
+                reason: str = "year") -> None:
+    """Append nid to manifest's oos_excluded_mds_ids slot (idempotent, sorted).
+
+    `reason` records WHY the record is out of scope — "year" (outside the
+    1514-1914 window) or an entity reason from `_is_in_entity_scope`
+    ("exonumia:…", "other-country:…", "none-oriental").
+    """
     if not MANIFEST.exists():
         return
     m = json.loads(MANIFEST.read_text())
@@ -228,6 +280,7 @@ def _record_oos(nid: str, year_start, year_end, title: str = "") -> None:
         "year_start": year_start,
         "year_end": year_end,
         "title": title[:140],
+        "reason": reason,
         "filtered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
     MANIFEST.write_text(json.dumps(m, ensure_ascii=False, indent=2))
@@ -266,12 +319,23 @@ def _fetch_one(opener_holder: list, nid: str) -> str:
                 # downstream parser will surface.
                 path.write_bytes(body)
                 return "fetched"
-            if not _is_in_mission_scope(record):
+            # Scope gate is ENTITY-based (country + object-type), NOT year.
+            # Per curator scope 2026-05-29: the broad keep-scope is German
+            # lands + Scandinavia + territories under their rule, in ANY era
+            # (HRE / Denmark / Norway, pre-1514 and post-1914 included as
+            # future-useful context). Year is therefore NOT a drop criterion —
+            # only other-country coins and exonumia are filtered out. (The
+            # active harvest CONCENTRATION is 1480-1914, but that governs which
+            # discovery buckets we prioritise, not what we reject on fetch:
+            # anything German/Scandinavian that surfaces is kept.)
+            in_scope, reason = _is_in_entity_scope(record)
+            if not in_scope:
                 _record_oos(
                     nid,
                     record.get("year_start"),
                     record.get("year_end"),
                     record.get("title", ""),
+                    reason=reason,
                 )
                 return "oos"
             path.write_bytes(body)
@@ -361,46 +425,47 @@ def fetch(limit: int | None = None) -> None:
 
 
 def scan_cache() -> None:
-    """Walk already-cached records, apply mission-scope filter, populate
+    """Walk already-cached records, apply the ENTITY-scope filter, populate
     manifest's oos_excluded_mds_ids slot.
 
     One-shot cleanup for IDs cached before the at-fetch-time filter existed.
     Does NOT delete cache files — only marks them OOS so downstream
     consumers (seed builders, coverage tables) can skip them. Preserves
     cache as audit trail.
+
+    Scope is ENTITY-based (country + object-type), NOT year — German /
+    Scandinavian coins of any era are in the broad keep-scope (see
+    `_is_in_entity_scope` + docs/SOURCES.md §13.8). Only other-country coins
+    and exonumia are marked OOS.
     """
     if not MANIFEST.exists():
         print("manifest missing — run `discover` first", file=sys.stderr)
         sys.exit(1)
     cache_files = sorted(CACHE_DIR.glob("[0-9]*.json"))
-    print(f"scanning {len(cache_files)} cached records against mission scope "
-          f"[{MISSION_YEAR_MIN}, {MISSION_YEAR_MAX}]...")
+    print(f"scanning {len(cache_files)} cached records against entity scope "
+          f"(German lands + Scandinavia + borderline-HRE, any era)...")
     in_scope = 0
     oos = 0
-    no_year = 0
-    newly_oos: list[tuple[str, dict]] = []
+    newly_oos: list[tuple[str, dict, str]] = []
     for p in cache_files:
         try:
             record = json.loads(p.read_text())
         except json.JSONDecodeError:
             print(f"  [{p.stem}] malformed JSON — skip", file=sys.stderr)
             continue
-        ys, ye = record.get("year_start"), record.get("year_end")
-        if ys is None or ye is None or ys == "" or ye == "":
-            no_year += 1
-            continue
-        if _is_in_mission_scope(record):
+        ok, reason = _is_in_entity_scope(record)
+        if ok:
             in_scope += 1
         else:
             oos += 1
-            newly_oos.append((p.stem, record))
+            newly_oos.append((p.stem, record, reason))
     # Bulk-write all newly-found OOS ids
     if newly_oos:
         manifest = json.loads(MANIFEST.read_text())
         existing = set(str(i) for i in manifest.get("oos_excluded_mds_ids") or [])
         added = 0
         details = manifest.setdefault("oos_excluded_details", {})
-        for nid, record in newly_oos:
+        for nid, record, reason in newly_oos:
             if nid in existing:
                 continue
             existing.add(nid)
@@ -409,6 +474,7 @@ def scan_cache() -> None:
                 "year_start": record.get("year_start"),
                 "year_end": record.get("year_end"),
                 "title": (record.get("title") or "")[:140],
+                "reason": reason,
                 "filtered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 "source": "scan_cache",
             }
@@ -416,8 +482,7 @@ def scan_cache() -> None:
         MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
         print(f"  added {added} ids to manifest.oos_excluded_mds_ids "
               f"(was {len(existing) - added}, now {len(existing)})")
-    print(f"\nDone. in_scope={in_scope}  oos={oos}  no_year={no_year}  "
-          f"total={len(cache_files)}")
+    print(f"\nDone. in_scope={in_scope}  oos={oos}  total={len(cache_files)}")
 
 
 def main() -> int:
