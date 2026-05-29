@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-28T05:26:22Z'
+  last_updated_utc: '2026-05-29T16:34:06Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -677,16 +677,17 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query returns OOS records (Brandenburg).
+  summary: IKMK 'Osnabrück' query returns OOS records (Preußen).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-28T05:26:22.524355Z'
-  occurrence_count: 2
+  last_seen: '2026-05-29T16:34:06Z'
+  occurrence_count: 3
   affected_ids:
     ikmk:
     - 18206581
     - 18214569
     - 18214572
+    - 18216734
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -704,8 +705,13 @@ anomalies:
     full_context:
       ikmk_batch: AG
       query: Osnabrück
-  proposed_fix: Tighten Osnabrück query to filter by issuer Hochstift/Bistum Osnabrück, or add post-fetch
-    issuer filter.
+  - run_utc: '2026-05-29T16:34:06Z'
+    batch_label: AH
+    detail: 'Batch AH: 1 of 5 fetched mds_ids from Osnabrück query is OOS — 18216734 (Preußen: Friedrich
+      II.). Not an Osnabrück-Hochstift coin.'
+    full_context:
+      ikmk_batch: AH
+  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -714,11 +720,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query returns OOS records (Swiss Schilling, Bismarck medal).
+  summary: IKMK 'Hamburg' query returns OOS records (Breslau, Korbach).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-28T05:26:22.524355Z'
-  occurrence_count: 2
+  last_seen: '2026-05-29T16:34:06Z'
+  occurrence_count: 3
   affected_ids:
     ikmk:
     - 18210988
@@ -726,6 +732,8 @@ anomalies:
     - 18210990
     - 18214571
     - 18215700
+    - 18216216
+    - 18216456
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -743,8 +751,14 @@ anomalies:
     full_context:
       ikmk_batch: AG
       query: Hamburg
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to filter by issuer/Münzstand=Hamburg, OR add post-fetch
-    scope filter that drops non-coin records (medals, dies, etc.) + non-supported issuers.
+  - run_utc: '2026-05-29T16:34:06Z'
+    batch_label: AH
+    detail: 'Batch AH: 2 of 5 fetched mds_ids from Hamburg query are OOS — 18216216 (Breslau: Stadt),
+      18216456 (Korbach: Stadt). Neither is a Hamburg-Hanseatic-City coin.'
+    full_context:
+      ikmk_batch: AH
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter
+    excluding non-Hanseatic-Hamburg issuers.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -787,6 +801,34 @@ anomalies:
       query: Kassel
   proposed_fix: Tighten Kassel query to filter by item-type='coin' (exclude die-tools, mint equipment,
     presses, weights, etc.).
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=braunschweig_medals:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: braunschweig_medals
+  summary: IKMK 'Braunschweig' + 'Braunschweig-Lüneburg' queries return Göttingen prize medals (exonumia,
+    §9 excluded).
+  status: open
+  instance_first_seen: '2026-05-29T16:34:06Z'
+  last_seen: '2026-05-29T16:34:06Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18216121
+    - 18216123
+  occurrences:
+  - run_utc: '2026-05-29T16:34:06Z'
+    batch_label: AH
+    detail: 'Batch AH: 2 of 5 fetched mds_ids are Preismedaillen by Edward Burch for Universität Göttingen
+      — 18216121, 18216123. These are medals (Preismedaille = prize medal), project §9.2 excludes exonumia.
+      Captured because Göttingen falls under Welf/Braunschweig-Lüneburg territory in IKMK query scope.'
+    full_context:
+      ikmk_batch: AH
+  proposed_fix: Add object_type post-fetch filter in fetch_ikmk.py to exclude IKMK records where the object
+    is a Medaille rather than a Münze, regardless of issuer query.
   resolution: null
   resolved_at: null
   resolved_by: null
