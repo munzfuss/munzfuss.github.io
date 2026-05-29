@@ -45,6 +45,7 @@ from typing import Any
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 
+from lib.entity_routing import route_entity_with_rules  # noqa: E402
 from lib.v2_entity_classify import (  # noqa: E402
     classify_issuer_to_entity,
     classify_mint_to_entity,
@@ -81,7 +82,7 @@ def _resolve_ruler(kings: list[dict] | None) -> str | None:
     return " / ".join(names)
 
 
-def _resolve_entity(canonical: dict[str, Any]) -> str | list[str] | None:
+def _resolve_default_entity(canonical: dict[str, Any]) -> str | list[str] | None:
     """Two-tier entity resolution: mint first, issuer fallback.
 
     Mint-driven classification is preferred because:
@@ -95,6 +96,10 @@ def _resolve_entity(canonical: dict[str, Any]) -> str | list[str] | None:
       * mint is None / not in mint registry, AND
       * issuer string is in our `_ISSUER_REGISTRY` table with a
         non-None entity.
+
+    The result is the «default» entity — `route_entity_with_rules` then
+    applies the tradition-driven rules layer on top, potentially
+    re-routing the coin when mint is absent / unverified.
     """
     year = canonical.get("year_first")
     mint = canonical.get("mint")
@@ -193,7 +198,7 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
         "fineness": fineness,
         "weight_rough_g": canonical.get("weight_g"),
         "diameter_mm": canonical.get("diameter_mm"),
-        "issuing_entity": _resolve_entity(canonical),
+        "issuing_entity": None,           # populated by routing layer below
         "verified": False,
         "metal_verified": bool(metal) and metal != "unknown",
         "fineness_verified": fineness is not None,
@@ -234,6 +239,30 @@ def build_coin_entry(canonical: dict[str, Any]) -> dict[str, Any] | None:
             ),
         },
     }
+
+    # Apply entity routing — two-step process:
+    #   1. Compute default entity via mint → issuer chain
+    #   2. Layer the tradition-driven rules from
+    #      `data/v2/entity_routing_rules.yml` on top. The rules layer
+    #      is safe-mode: actively re-routes only when the coin's mint
+    #      is None or `mint_verified: false`; otherwise records a hint
+    #      noting whether rule agrees with mint-driven verdict. The
+    #      hint persists on the entry so curators debugging non-obvious
+    #      placements see the rule's analysis trace.
+    default_ent = _resolve_default_entity(canonical)
+    # `route_entity_with_rules` reads `ruler`, `nominal`, `mint`,
+    # `mint_verified`, `year_first`, and optional `_numista_issuer` /
+    # `_issuer` / `issuer` slots from the entry dict. The Numista
+    # issuer chip is the most authoritative lineage signal when the
+    # parser failed to extract a ruler string — pass it via the
+    # `_numista_issuer` slot. Stripped before Coin() instantiation by
+    # the build's underscore-field filter.
+    routing_input = dict(entry)
+    routing_input["_numista_issuer"] = canonical.get("issuer")
+    routed_ent, hint = route_entity_with_rules(routing_input, default_entity=default_ent)
+    entry["issuing_entity"] = routed_ent
+    if hint is not None:
+        entry["_entity_routing_hint"] = hint
     return entry
 
 
