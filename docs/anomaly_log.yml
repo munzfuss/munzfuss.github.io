@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-29T18:22:32Z'
+  last_updated_utc: '2026-05-29T19:25:19Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -684,11 +684,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query surfaces OOS records (cross-issuer false positives).
+  summary: IKMK 'Osnabrück' query returns OOS records (Brandenburg / non-Osnabrück).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-29T17:29:25Z'
-  occurrence_count: 4
+  last_seen: '2026-05-29T19:25:19Z'
+  occurrence_count: 5
   affected_ids:
     ikmk:
     - 18206581
@@ -696,6 +696,7 @@ anomalies:
     - 18214572
     - 18216734
     - 18217328
+    - 18224485
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -725,8 +726,12 @@ anomalies:
       not Osnabrück. 4th recorded occurrence.'
     full_context:
       ikmk_batch: AI
-  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py or add post-fetch issuer filter rejecting Brandenburg
-    records.
+  - run_utc: '2026-05-29T19:25:19Z'
+    batch_label: AJ
+    detail: 'Batch AJ: 18224485 = ''Brandenburg: Joachim II.'' filed under Osnabrück query — OOS.'
+    full_context:
+      ikmk_batch: AJ
+  proposed_fix: Tighten Osnabrück query or filter post-fetch.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -735,11 +740,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query returns OOS records (Romania, Byzanz, Bundesrepublik commemoratives).
+  summary: IKMK 'Hamburg' query returns OOS records (Württemberg / non-Hamburg pieces).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-29T18:22:32Z'
-  occurrence_count: 5
+  last_seen: '2026-05-29T19:25:19Z'
+  occurrence_count: 6
   affected_ids:
     ikmk:
     - 18210988
@@ -751,6 +756,7 @@ anomalies:
     - 18216456
     - 18219373
     - 18222024
+    - 18224430
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -790,8 +796,15 @@ anomalies:
       ikmk_batch: AJ
       numista_batch: GA
       ucoin_batch: '189'
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope (hanseatic Hamburg only) or add
-    post-fetch scope filter excluding non-German-states issuers.
+  - run_utc: '2026-05-29T19:25:19Z'
+    batch_label: AJ
+    detail: 'Batch AJ: 18224430 = ''Kaiserreich: Württemberg 1877'' filed under Hamburg query — OOS. 18224429
+      = ''Kaiserreich: Hamburg 1875'' = legit in-scope hanseatic_hamburg post-1871.'
+    full_context:
+      ikmk_batch: AJ
+      numista_batch: GB
+      ucoin_batch: '190'
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -800,11 +813,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: kassel
-  summary: IKMK 'Kassel' query returns non-coin records (die-tools, Prägestempel).
+  summary: IKMK 'Kassel/Hessen-Kassel' query returns OOS records (Preußen).
   status: open
   instance_first_seen: '2026-05-28T04:27:47Z'
-  last_seen: '2026-05-28T05:26:22.524355Z'
-  occurrence_count: 2
+  last_seen: '2026-05-29T19:25:19Z'
+  occurrence_count: 3
   affected_ids:
     ikmk:
     - 18213935
@@ -812,6 +825,7 @@ anomalies:
     - 18213938
     - 18213939
     - 18213940
+    - 18226454
   occurrences:
   - run_utc: '2026-05-28T04:27:47Z'
     batch_label: AF
@@ -832,8 +846,13 @@ anomalies:
     full_context:
       ikmk_batch: AG
       query: Kassel
-  proposed_fix: Tighten Kassel query to filter by item-type='coin' (exclude die-tools, mint equipment,
-    presses, weights, etc.).
+  - run_utc: '2026-05-29T19:25:19Z'
+    batch_label: AJ
+    detail: 'Batch AJ: 18226454 = ''Preußen: Friedrich II.'' filed under Kassel + Hessen-Kassel queries
+      — OOS.'
+    full_context:
+      ikmk_batch: AJ
+  proposed_fix: Tighten Kassel queries or filter post-fetch.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -870,14 +889,15 @@ anomalies:
   key_dims:
     source: ikmk
     query: braunschweig
-  summary: IKMK 'Braunschweig' / 'Wolfenbüttel' queries surface OOS Saxon issuers.
+  summary: IKMK 'Braunschweig'/'Braunschweig-Lüneburg' query returns Großbritannien Georg III. records.
   status: open
   instance_first_seen: '2026-05-29T17:29:25Z'
-  last_seen: '2026-05-29T17:29:25Z'
-  occurrence_count: 1
+  last_seen: '2026-05-29T19:25:19Z'
+  occurrence_count: 2
   affected_ids:
     ikmk:
     - 18217796
+    - 18227333
   occurrences:
   - run_utc: '2026-05-29T17:29:25Z'
     batch_label: AI
@@ -887,8 +907,14 @@ anomalies:
       birth, married into Sachsen-Weimar).'
     full_context:
       ikmk_batch: AI
-  proposed_fix: 'Post-fetch issuer filter on Braunschweig/Wolfenbüttel queries: reject records whose issuer.label
-    starts with ''Sachsen-'' / ''Brandenburg-'' / ''Mecklenburg-'' / similar non-Welf prefixes.'
+  - run_utc: '2026-05-29T19:25:19Z'
+    batch_label: AJ
+    detail: 'Batch AJ: 18227333 = ''Großbritannien: Georg III.'' filed under Braunschweig + Braunschweig-Lüneburg
+      — likely Hannover-Personalunion crossover. OOS (UK not a project entity).'
+    full_context:
+      ikmk_batch: AJ
+  proposed_fix: Tighten Braunschweig-Lüneburg query to exclude UK Hannover-Personalunion records, or filter
+    post-fetch.
   resolution: null
   resolved_at: null
   resolved_by: null
