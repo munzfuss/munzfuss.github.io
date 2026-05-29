@@ -139,10 +139,15 @@ one class transient.
   bump `651633d`) — not the worktree, due to a `cd /main` slip; curator
   accepted keeping it there. Keep-rule + verification recorded in
   `scripts/cache/ikmk/_oos_purged_by_scope_2026-05.json` and SOURCES.md
-  §13.8. **Open follow-up:** `_is_in_mission_scope` is still year-only;
-  to stop re-accumulation add a post-fetch country+object-type gate to
-  `fetch_ikmk.py` (drop country ∉ keep∪borderline; drop `item != Coin`).
-  Not yet implemented — needs curator go-ahead (code change on main).
+  §13.8. **Durable filter landed** (commit `48dc101`, worktree branch):
+  `fetch_ikmk.py` now gates fetch + `scan_cache` on `_is_in_entity_scope`
+  (country + object-type); the year-only `_is_in_mission_scope` gate is
+  removed. Per the curator's multi-level scope (2026-05-29) year is NOT a
+  drop criterion — German/Scandinavian (+ lands under their rule) of ANY
+  era are broad keep-scope; only other-country coins + exonumia are
+  dropped. Validated: entity-only filter flags just 2 of 1478 cached (a
+  British Sovereign + a Koch medal — routine-added OOS the old year gate
+  let slip), keeps all 326 German/Scandinavian records outside 1514-1914.
 - **ucoin `osnabruck_p3057` skip-loop (occ≥10) → ✅ fixed.** Bucket
   «Bishopric of Osnabrück 1482-1661» — first gap-TIDs were pre-1559 OOS,
   so the picker re-offered + skipped it every run. Re-enumerated per-TID
