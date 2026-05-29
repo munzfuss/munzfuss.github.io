@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-29T17:29:25Z'
+  last_updated_utc: '2026-05-29T18:22:32Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -735,11 +735,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query surfaces OOS records (cross-issuer false positives).
+  summary: IKMK 'Hamburg' query returns OOS records (Romania, Byzanz, Bundesrepublik commemoratives).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-29T17:29:25Z'
-  occurrence_count: 4
+  last_seen: '2026-05-29T18:22:32Z'
+  occurrence_count: 5
   affected_ids:
     ikmk:
     - 18210988
@@ -750,6 +750,7 @@ anomalies:
     - 18216216
     - 18216456
     - 18219373
+    - 18222024
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -781,8 +782,16 @@ anomalies:
       ikmk_batch: AI
       numista_batch: FZ
       ucoin_batch: '188'
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope or add post-fetch issuer filter
-    rejecting Haag/Brandenburg/Sachsen records.
+  - run_utc: '2026-05-29T18:22:32Z'
+    batch_label: AJ
+    detail: 'Batch AJ: mds_id 18222024 = Rumänien Karl I. 20 Lei — fetched via Hamburg query, OOS (Romania
+      not in project scope).'
+    full_context:
+      ikmk_batch: AJ
+      numista_batch: GA
+      ucoin_batch: '189'
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope (hanseatic Hamburg only) or add
+    post-fetch scope filter excluding non-German-states issuers.
   resolution: null
   resolved_at: null
   resolved_by: null
