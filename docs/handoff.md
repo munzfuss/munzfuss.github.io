@@ -143,14 +143,18 @@ one class transient.
   to stop re-accumulation add a post-fetch country+object-type gate to
   `fetch_ikmk.py` (drop country ∉ keep∪borderline; drop `item != Coin`).
   Not yet implemented — needs curator go-ahead (code change on main).
-- **ucoin `osnabruck_p3057` skip-loop (occ≥10).** Bucket «Bishopric of
-  Osnabrück 1482-1661» — first gap-TIDs are pre-1559 OOS, so the picker
-  re-offers + skips it every run. Curator chose **full re-enumeration
-  with years** (Chrome MCP) to split TIDs into in-scope 1559-1661 vs OOS
-  1482-1558 in `_BR_audit-4_2026-05-24.json`. Pending — needs Chrome
-  connected; note the submodule has diverged (worktree `e3d4b4c` full vs
-  main `07014b3` purged), so resolve placement before editing the audit
-  manifest.
+- **ucoin `osnabruck_p3057` skip-loop (occ≥10) → ✅ fixed.** Bucket
+  «Bishopric of Osnabrück 1482-1661» — first gap-TIDs were pre-1559 OOS,
+  so the picker re-offered + skipped it every run. Re-enumerated per-TID
+  years via the ucoin listing (Chrome, 2 pages, 55 TIDs) and split
+  `_BR_audit-4_2026-05-24.json::osnabruck_p3057.gap_tids` into 29
+  in-scope (1631-1662) + 26 `oos_excluded_tids` (1482-1541). gap_tids now
+  lists only the in-scope set, so the routine harvests the 1631-1662
+  coins and the skip-loop ends. Committed on the **worktree** branch
+  (submodule `417ab9d`, pointer bump `620241f`). NB: this worktree's
+  cache submodule (base `e3d4b4c`) does NOT carry main's IKMK purge
+  (`07014b3`); the two are orthogonal (ucoin audit vs ikmk records) and
+  reconcile trivially on merge.
 - **Transient (no action):** chrome-mcp-disconnect (16:34 run),
   cloudflare interstitials (auto-cleared), `osnabruck_p2988` audit label
   drift («Hochstift» vs «City of Osnabrück»).
