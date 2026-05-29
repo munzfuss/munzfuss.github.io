@@ -1276,6 +1276,78 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 **Definition of done.** Every coin entry in `data/v2/final/*.yml` carries a `classification_signal` value (or explicit `legacy_v1` for pre-V2 placements). Audit script reports the distribution. Future rule extensions automatically write the signal as they fire.
 
+### CB. 🟡 Year-aware issuer→entity override for «Schleswig and Holstein, Danish duchies of» — 6 _unclassified Numista entries  *(opened 2026-05-27, user-marked «з високим пріоритетом»)* *(est: small-medium)* *(type: classifier extension + entity-routing)*
+
+**Surfaced.** First run of the new generic `scripts/maintenance/build_numista_seed.py` (commit `a773c2d`) routed 6 Numista entries to `data/v2/seed/numista/_unclassified.yml` because both the mint-driven and issuer-driven classifiers returned None:
+
+  - dk-numista-153125 (1 Skilling, no ruler, no mint, 1514)
+  - dk-numista-301237 (2 Schillings, no ruler, no mint, 1514)
+  - dk-numista-309418 (1 Pfennig, Frederick II, no mint, 1559)
+  - dk-numista-313337 (2 Schilling, Christian IV, no mint, 1640)
+  - dk-numista-313357 (1 Krone, Frederick III, no mint, 1671)
+  - dk-numista-31895 (2 Sechsling, Christian VII, no mint, 1787)
+
+All carry the Numista issuer string «Schleswig and Holstein, Danish duchies of» (44 cache entries total). The current `_ISSUER_REGISTRY` (in `scripts/lib/mint_registry.py`) deliberately maps this issuer to None because the string spans 1514-1851 across multiple V2 entities (Frederik I era → gottorp_duchy, Christian VII Speciesthaler era → royal_holstein, 1850-1851 → provisional_govt). The 6 surfaced cases are the no-mint subset where mint-driven fallback can't resolve.
+
+**Plan.** Add year-aware override to `classify_issuer_to_entity()` paralleling the existing `entity_for_canon_year` pattern in `mint_registry.py::CANON_TO_YEAR_OVERRIDES`. Concretely:
+
+  ```python
+  # Pseudo — extend classify_issuer_to_entity to accept year parameter
+  _ISSUER_YEAR_OVERRIDES = {
+      "schleswig and holstein, danish duchies of": [
+          {"year_to": 1559, "entity": "gottorp_duchy"},        # Frederik I / Christian III era
+          {"year_from": 1559, "year_to": 1640, "entity": "royal_holstein"},  # late-Reformation
+          {"year_from": 1640, "year_to": 1773, "entity": "royal_holstein"},  # Holstein-Glückstadt portion
+          {"year_from": 1773, "year_to": 1849, "entity": "gesamtstaat"},     # post-Tauschvertrag
+          {"year_from": 1849, "year_to": 1851, "entity": "provisional_govt"},
+          # post-1864 = German Schleswig-Holstein province (existing routing)
+      ],
+  }
+  ```
+
+The 6 cases above resolve as: 153125+301237 (1514) → gottorp_duchy; 309418 (1559) → boundary case, needs source check; 313337 (1640) → royal_holstein; 313357 (1671) → royal_holstein; 31895 (1787) → gesamtstaat.
+
+**Acceptance criteria.** All 6 entries land in concrete entity files after re-running build_numista_seed; the _unclassified.yml file's only residuals are genuinely-unparseable cases (foreign coins / unknown lineage). Build clean.
+
+**Cross-references.** This is the year-aware analogue to the locked 2026-05-26 mint-registry year_to-exclusive convention (Altona 1640 pivot). The 44-entry Numista cluster is the obvious test corpus to validate the implementation. Wikipedia DE «Schleswig-holsteinische Münzgeschichte» + Wilcke 1950 vol. II are likely the verification sources for the 1559 / 1640 / 1773 boundary years.
+
+### CC. 🟢 222 Numista cache entries with no year_first — undated / ND issues investigation  *(opened 2026-05-27, user-marked «з високим пріоритетом»)* *(est: small)* *(type: audit + classification)*
+
+**Surfaced.** First run of `scripts/parse_numista.py` (commit `fccb75c`) reports 222 of 1717 top-level Numista cache files as `unparseable_top` — both shape-detectors (api / chrome) recognise them, but the per-shape parse returns None. Investigation in this session showed the cause is **missing `year_first` / `min_year`** — i.e. the underlying coin type has no year on Numista (undated, «ND», pattern strikes, modern restrikes).
+
+**Why this matters.** Per CLAUDE.md §9 exclusion list, project does NOT include patterns / trial strikes (case 1) or off-strike singletons (case 3). The 222 might include legitimate undated circulation coins that DO belong in our scope (Christian IV «ND» Schüsselpfennige in Holstein, etc.) — we should NOT silently drop them all.
+
+**Plan.**
+1. Walk all 222 unparseable cache files, tag by source-shape + issuer + denomination + presence/absence of «ND» / «No date» / «undated» marker in title.
+2. Triage into 4 buckets:
+   - **OUT-OF-SCOPE** — patterns / probe / off-strike (drop).
+   - **GENUINELY UNDATED CIRCULATION** — add to seed with `year_first: None` + `year_verified: false`; render with `(?)` per CLAUDE.md §3a year-format escape hatch.
+   - **DATE-INFERABLE** — title or ruler implies year range (Christian II 1513-1523, etc.); add inferred range with `year_verified: false`.
+   - **NEEDS RE-HARVEST** — Numista may have date in HTML but our cache file lost it; re-harvest single coin via Chrome MCP per HARVEST_ROUTINE §5.5.
+3. Extend `parse_numista_api.py` + `parse_numista_chrome.py` to handle the **GENUINELY UNDATED** case explicitly — emit canonical sidecar with year fields null + `_undated: true` marker — instead of returning None.
+4. Update `build_numista_seed.py` to accept undated entries with appropriate fuss/phase defaults.
+
+**Acceptance criteria.** Triage report committed under `docs/anomaly_log.yml` (or as a new analysis doc); per-bucket count + ID list; parser extended to handle the GENUINELY UNDATED case; re-run shows ≥80% of the 222 either landing as proper seeds (with year_verified=false) or explicit OOS-drop documented.
+
+### CD. 🟢 Drop legacy `build_numista_pre1541_seed.py` + `parse_numista_pre1541.py` + `denmark_pre_1541/` cache subdir  *(opened 2026-05-27, user-marked «з високим пріоритетом»)* *(est: small)* *(type: refactor cleanup)*
+
+**Surfaced.** Commit `337466d` added a deprecation guard to `build_numista_pre1541_seed.py` (the §AZ Tier 3 single-window builder), making it refuse to run without `--allow-deprecated`. The generic `build_numista_seed.py` (commit `a773c2d`) reads canonical Phase 2 sidecars including the pre_1541 subdir's output, so the legacy scripts are functionally superseded. They remain on disk for reference + git-blame traceability of the §AZ Tier 3 work, but a few more end-to-end re-runs are needed to confirm zero regression before deletion.
+
+**Plan.**
+1. Run `scripts/parse_numista.py --force` followed by `scripts/maintenance/build_numista_seed.py` on a clean checkout AND on a checkout where `denmark_pre_1541/n*.json` is moved to a temp location (then back) — confirm both runs produce byte-identical V2 seed output for the 56 pre_1541 entries.
+2. Delete the three artefacts:
+   - `scripts/maintenance/build_numista_pre1541_seed.py`
+   - `scripts/parse_numista_pre1541.py` (Phase 2 HTML-pre1541 parser — the generic driver still reads the parsed JSON sidecars)
+   - `scripts/fetch_numista_pre1541.py` (Phase 1 HTML fetcher — keep ONLY if there's evidence it caught entries not reachable via the API)
+3. Decide on `scripts/cache/numista/denmark_pre_1541/n*.{html,json}`:
+   - The HTML files are Phase 1 raw cache; could be migrated to top-level `scripts/cache/numista/<NID>.html` for uniformity, OR left in place as historical artefact.
+   - The JSON files are Phase 2 output; the new driver already copies them through `parsed/<NID>.json` so the subdir is redundant once verified.
+4. Update HARVEST_GUIDE.md / SOURCES.md references to point at the new single-pipeline path.
+
+**Acceptance criteria.** No `pre1541` filename left under `scripts/` or `scripts/maintenance/`. The 56 pre_1541-window entries continue to land in `data/v2/seed/numista/<entity>.yml` after deletion. `git grep "pre_1541"` returns only doc-trail mentions in commit messages / DECISIONS.md.
+
+**Cross-references.** Closes the TODO §BO.5 step 5 cleanup tail — see TODO §BO entry body for the original «OR fold into existing Numista parser» note that this scope is now fulfilling.
+
 ## Normal priority
 
 ### BY. ✅ Pre-1541 Danish silver Müntzfüße — 2 standards landed + Christian III Dalerfod Phase 0 expansion + 55 specimens promoted  *(opened 2026-05-21, closed 2026-05-21, **refactored 2026-05-21**)* *(est: medium-large)* *(type: data + classifier extension)*
@@ -3018,6 +3090,85 @@ User verdict requested on (a) vs (b) before any data edit. Once chosen:
 - `docs/V2_PIPELINE.md` §«Detailed execution plan» Phase 4 — needs update to reference the canonical script name.
 
 **Definition of done.** Operator runs `scripts/run_v2_pipeline.sh` (or equivalent) after harvest cycles; classifier runs in canonical order; ARCHITECTURE.md + V2_PIPELINE.md + PLAYBOOKS.md cross-reference the actual script name; no «to-be-built» annotations remain.
+
+### CE. 🟢 Migrate 12 Niedersächsisch-tradition entries from `schauenburg_pinneberg` → `holstein_schauenburg_county`  *(opened 2026-05-27)* *(est: small)* *(type: data-audit + curator-fix)*
+
+**Surfaced.** Deep tradition audit (in-session 2026-05-27, see chat trail) of all 388 Schauenburg-lineage coins revealed that the project's Schauenburg-Pinneberg vs Holstein-Schauenburg split is **mint-driven, not dynasty-driven**:
+
+  - Altona / Glückstadt mints (Pinneberg county side) → SH 9¼-Thaler-Fuß system → `schauenburg_pinneberg.yml` → SH page
+  - Oldendorf / Rinteln / Stadthagen / Bückeburg mints (Schauenburg-county side, modern Niedersachsen) → Niedersächsisch 36-Mariengroschen-pro-Reichsthaler system → `holstein_schauenburg_county.yml` → hidden page
+
+This is a **dual-coinage system under one dynastic ruler** — each mint operates per the regional economic standard, not one shared system spanning both. The existing 184-entry `holstein_schauenburg_county.yml` already correctly captures the Niedersachsen side. But `schauenburg_pinneberg.yml` carries 12 entries that the audit identifies as misclassified — they belong on the hidden Schauenburg-county page, not the SH page:
+
+| Count | Reason |
+|---|---|
+| 9 | `1/24 Thaler` denomination — does NOT exist in SH 9¼-Fuß subdivisions; Niedersächsisch-only |
+| 3 | `Mariengroschen` denomination — Niedersächsisch-tradition (originated Goslar 1505); SH 9¼-Fuß never includes it |
+
+Full ID list:
+  - km-135-just-herman-1624 (4 Mariengroschen Oldendorf 1624, currently fuss=9_25_thaler ⚠)
+  - unified-schleswig_holstein-numismaster-96072 (2 Mariengroschen Just Herman 1624-1626, fuss=9_25_thaler ⚠)
+  - unified-schleswig_holstein-numismaster-96073 (4 Mariengroschen Just Herman 1624)
+  - unified-schleswig_holstein-numismaster-171189 (1/24 Thaler Otto V 1573)
+  - unified-schleswig_holstein-numismaster-96084 (1/24 Thaler Ernst III 1601-1604)
+  - unified-schleswig_holstein-numismaster-96088 (1/24 Thaler Ernst III 1620)
+  - unified-schleswig_holstein-numismaster-171190 (1/24 Thaler Adolf XIII Altona 1589-1601)
+  - unified-schleswig_holstein-numismaster-171191 (1/24 Thaler Adolf XIII Altona 1589-1601)
+  - unified-schleswig_holstein-numismaster-171192 (1/24 Thaler Adolf XIII Altona 1598-1599)
+  - unified-schleswig_holstein-numismaster-175536 (1/24 Thaler Ernst III Altona 1611)
+  - unified-schleswig_holstein-numismaster-96085 (1/24 Thaler Ernst III Altona 1600-1609)
+  - unified-schleswig_holstein-numismaster-96086 (1/24 Thaler Ernst III Altona 1612-1618)
+
+**Edge case to verify before bulk migration.** 6 of the 9 1/24 Thaler entries are minted at Altona (SH-side mint) — apparent contradiction. Either:
+  - Curator decision: Altona did mint Niedersachsen-tradition 1/24 Thaler for Pinneberg circulation under specific rulers (Adolf XIII pre-Reformation, Ernst III early reign) — keep these in Pinneberg
+  - OR these entries are mint-typos (e.g. parser mis-attributed Oldendorf as Altona)
+
+Recommend per-entry verification against Lange / Behrens / Weinmeister before mass-moving the Altona subgroup. The 3 Mariengroschen entries + 3 NS-mint 1/24 Thaler entries (Otto V + 2× Ernst III no-mint) are clear-cut migrations regardless.
+
+**Plan.**
+1. Per-entry verification of the 6 Altona-mint 1/24 Thaler cases against primary sources (Lange / Weinmeister) — keep in Pinneberg if confirmed; move if mint attribution is incorrect.
+2. For the 3 Mariengroschen + 3 unambiguous 1/24 Thaler entries, run the standard `move_coin_between_entities.py`-style maintenance (or manual edit) to:
+   - Strip the entry from `data/v2/final/schauenburg_pinneberg.yml`
+   - Append it to `data/v2/final/holstein_schauenburg_county.yml`
+   - Reset `fuss: seed_unsorted` + `phase: numista` (or appropriate Niedersachsen seed-bucket)
+   - Update `issuing_entity: holstein_schauenburg_county`
+3. Update audit-recipe so the test stays green after the move.
+4. Single end-to-end commit per CLAUDE.md atomic-commit convention.
+
+**Acceptance criteria.** All 12 entries reside in `holstein_schauenburg_county.yml` (with per-Altona verdicts documented in commit message); rendered SH page no longer shows the 12; rendered Holstein-Schauenburg page (hidden) shows them under seed_unsorted bucket. `schauenburg_pinneberg.yml` retains only SH-tradition (Reichsthaler / ½ Thaler / Speciedaler) entries.
+
+**Cross-references.** §CF (no-mint Ernst III cluster audit) — same lineage but deeper. After §CE lands the Pinneberg.yml carries only SH-tradition entries; §CF then sweeps the 184 no-mint Ernst III. entries currently in `holstein_schauenburg_county.yml` to see if any should reverse-migrate back into Pinneberg.
+
+### CF. 🔵 No-mint Schauenburg Ernst III. cluster — 184-entry tradition audit pending Lange/Behrens/Weinmeister page-by-page  *(opened 2026-05-27, user-asked «наступною задачею»)* *(est: large — many sessions)* *(type: deep audit + manual research)*
+
+**Surfaced.** Same tradition audit as §CE. After the §CE migration, the largest residual classification ambiguity in the Schauenburg lineage is the **184 Ernst III. (1601-1622) entries that lack mint attribution** in our cache (mostly IKMK Berlin bulk-seed). These currently sit in `holstein_schauenburg_county.yml` as bulk `seed_unsorted` per the original §0b14f71 (2026-05-08) split decision, but the audit revealed that without mint-info we genuinely cannot tell whether each entry belongs in SH-tradition (Schilling Holsteinisch + ½ / ¼ Reichsthaler from Altona) or Niedersachsen-tradition (Doppelschilling + 1/16 / 1/24 Thaler from Oldendorf/Rinteln).
+
+**Breakdown by denomination** (184 entries):
+
+| Denom | n | Tradition signal needed |
+|---|---|---|
+| Schilling (60) | 60 | Distinguish SH «Schilling Lübisch» vs NS «Doppelschilling Niedersachsen» — needs weight + fineness + iconography (Wendischer Münzverein vs Lower Saxon imagery) |
+| Pfennig (18) | 18 | Niedersachsen-leaning by default but Ernst III. also minted Pfennig at Altona |
+| Reichsthaler-Multi (17) | 17 | Two-Thaler / Three-Thaler — both systems struck them |
+| Reichsthaler (13) | 13 | Mint-disambiguating; weight + fineness Δ analysis |
+| ½ Reichsthaler (13) | 13 | Same |
+| 1/16 Reichsthaler (7) | 7 | Same |
+| Fürstengroschen (5) | 5 | Niedersachsen-specific |
+| Ducat (5) | 5 | Trade gold — both systems |
+| 1/24 Reichsthaler (3) | 3 | Niedersachsen-only by definition (already part of §CE if any are wrongly in `schauenburg_pinneberg`) |
+| Groschen (3) | 3 | Niedersachsen-leaning |
+| ¼ Reichsthaler (2) | 2 | Both systems |
+| Goldgulden (2) | 2 | Both |
+| unmatched (43) | 43 | Mixed — needs prose inspection |
+
+**Plan.**
+1. **Phase 1 — automated weight-clustering** (small effort): for each denomination group, cluster the per-entry weights and check whether the distribution is bimodal. Bimodal clusters likely indicate two parallel mints/systems; unimodal suggests one. Reichsthaler weight Δ vs SH Soll (28.07g fein @ 9¼-Fuß) vs NS Soll (29.23g brutto @ 14 Lod) might separate cleanly.
+2. **Phase 2 — primary-source verification** (large effort, many sessions): walk through Lange 1908/1912 + Behrens 1905 + Weinmeister 1908 + Bei der Wieden 1961 systematically. Each entry's IKMK photo can be matched against catalogue iconography descriptions. For the 60-Schilling cluster, Wendischer Münzverein vs Niedersachsen iconography is the key discriminator (Madonna vs imperial eagle / regional shield arrangement).
+3. **Phase 3 — apply curator verdicts**: for each entry that can be confidently classified, move to the appropriate entity + fuss. For unresolvable cases, document under `data/v2/match_uncertainty/holstein_schauenburg_county.yml` + leave as seed_unsorted with annotated reason.
+
+**Acceptance criteria.** Phase 1 weight-cluster analysis committed as a `docs/research/schauenburg_ernst_iii_clustering.md` document. Phases 2-3 ship per-batch (10-20 entries per session) with per-entry curator verdicts in commit messages. By completion, every Ernst III. entry either lives in its correct entity bucket OR is documented as unresolvable with a specific source-research request open against it.
+
+**Cross-references.** §CE (the immediate-cleanup precursor — clean obvious cases first). §BV / §BY (pre-1622 Müntzfuß scoping — Ernst III. period overlaps Reichsmünzordnung + early Kipper era). `docs/research/schauenburg_pinneberg_economic_zone.md` (new doc to be created).
 
 ---
 
