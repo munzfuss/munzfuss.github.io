@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `grafschaft_oldenburg`.
-# Generated 2026-05-27 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-29 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/grafschaft_oldenburg.yml across all sources.
 #
-# Input: 11 per-source seed entries.
-# Output: 11 unified entries (one per physical coin).
+# Input: 112 per-source seed entries.
+# Output: 111 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: grafschaft_oldenburg
-generated_at: '2026-05-27'
+generated_at: '2026-05-29'
 coins:
 - id: unified-dk-bruun-15088
   fuss: seed_unsorted
@@ -253,14 +253,17 @@ coins:
   year_first: 1667
   year_last: 1667
   year_label: '1667'
+  ruler: Anthony Günther (Anton Günther)
   mintmaster: David Ziegenhorn
   catalog:
     km: '91'
     bruun_collection_id: '15103'
+    numista: '340788'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: false
   verified: false
   weight_rough_g:
@@ -270,6 +273,9 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12227, p. 267
+  - type: literature
+    url: https://en.numista.com/340788
+    ref: Numista N#340788 — 1/4 Thaler - Anthony Günter (Death) - County of Oldenburg
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -284,6 +290,7 @@ coins:
   issuing_entity: grafschaft_oldenburg
   composed_of:
   - dk-bruun-15103
+  - dk-numista-340788
 - id: unified-dk-bruun-15106
   fuss: seed_unsorted
   phase: bruun
@@ -444,3 +451,4331 @@ coins:
   issuing_entity: grafschaft_oldenburg
   composed_of:
   - dk-bruun-15109
+- id: unified-dk-numista-112022
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1/6 Thaler
+  year_first: 1846
+  year_last: 1846
+  year_label: '1846'
+  ruler: Paul Friedrich August
+  catalog:
+    km: '177'
+    numista: '112022'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.52
+    source: numista
+  weight_rough_g:
+  - value: 5.35
+    source: numista
+  diameter_mm:
+  - value: 23.5
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/112022
+    ref: Numista N#112022 — 1/6 Thaler - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-112022
+- id: unified-dk-numista-122829
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ⅓ Thaler
+  year_first: 1816
+  year_last: 1818
+  year_ranges:
+  - - 1816
+    - 1818
+  year_label: 1816-1818
+  ruler: Peter I Frederick Louis
+  catalog:
+    km: '159'
+    numista: '122829'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.625
+    source: numista
+  weight_rough_g:
+  - value: 7.79
+    source: numista
+  diameter_mm:
+  - value: 28.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/122829
+    ref: Numista N#122829 — 1/3 Thaler - Peter Frederick Louis - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-122829
+- id: unified-dk-numista-134280
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Schwaren
+  year_first: 1852
+  year_last: 1852
+  year_label: '1852'
+  ruler: Paul Frederick Augustus (Paul Friedrich August)
+  catalog:
+    km: '185'
+    numista: '134280'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.5
+    source: numista
+  diameter_mm:
+  - value: 16.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/134280
+    ref: Numista N#134280 — 1 Schwaren - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-134280
+- id: unified-dk-numista-141725
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Mariengroschen
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '117'
+    numista: '141725'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.375
+    source: numista
+  weight_rough_g:
+  - value: 2.08
+    source: numista
+  diameter_mm:
+  - value: 20.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/141725
+    ref: Numista N#141725 — 2 Mariengroschen - Frederick V of Dänemark - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-141725
+- id: unified-dk-numista-143418
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1831
+  year_last: 1835
+  year_ranges:
+  - - 1831
+    - 1835
+  year_label: 1831-1835
+  ruler: Paul Friedrich August
+  catalog:
+    km: '165'
+    numista: '143418'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 3.97
+    source: numista
+  diameter_mm:
+  - value: 19.3
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/143418
+    ref: Numista N#143418 — ½ Grote - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-143418
+- id: unified-dk-numista-145705
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1853
+  year_last: 1857
+  year_ranges:
+  - - 1853
+    - 1857
+  year_label: 1853-1857
+  ruler: Peter II
+  catalog:
+    km: '187'
+    numista: '145705'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.218
+    source: numista
+  weight_rough_g:
+  - value: 0.92
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/145705
+    ref: Numista N#145705 — 1 Grote - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-145705
+- id: unified-dk-numista-147761
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groten
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '22'
+    numista: '147761'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  diameter_mm:
+  - value: 20.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/147761
+    ref: Numista N#147761 — 1 Groten - Anthony Günther - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-147761
+- id: unified-dk-numista-15803
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2½ Groschen (1/12 Thaler)
+  year_first: 1858
+  year_last: 1858
+  year_label: '1858'
+  ruler: Peter II
+  mint: Hanover
+  catalog:
+    km: '195'
+    numista: '15803'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.375
+    source: numista
+  weight_rough_g:
+  - value: 3.22
+    source: numista
+  diameter_mm:
+  - value: 21.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/15803
+    ref: Numista N#15803 — 2½ Groschen - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-15803
+- id: unified-dk-numista-166270
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Grote
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '110'
+    numista: '166270'
+    sieg: '48'
+    hede: '10'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.312
+    source: numista
+  weight_rough_g:
+  - value: 1.09
+    source: numista
+  diameter_mm:
+  - value: 16.8
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/166270
+    ref: Numista N#166270 — 2 Grote - Frederick V of Dänemark - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-166270
+- id: unified-dk-numista-166397
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 4 Pfennigs (4 Pfennige) (1/144 Thaler)
+  year_first: 1762
+  year_last: 1763
+  year_ranges:
+  - - 1762
+    - 1763
+  year_label: 1762-1763
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '124'
+    numista: '166397'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.25
+    source: numista
+  weight_rough_g:
+  - value: 0.65
+    source: numista
+  diameter_mm:
+  - value: 15.2
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/166397
+    ref: Numista N#166397 — 4 Pfennigs - Frederik V of Denmark - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-166397
+- id: unified-dk-numista-18146
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 3 Schwaren
+  year_first: 1858
+  year_last: 1869
+  year_ranges:
+  - - 1858
+    - 1860
+  - - 1862
+    - 1862
+  - - 1864
+    - 1866
+  - - 1869
+    - 1869
+  year_label: 1858-1860, 1862, 1864-1866, 1869
+  ruler: Peter II
+  catalog:
+    km: '191'
+    numista: '18146'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 3.79
+    source: numista
+  diameter_mm:
+  - value: 21.2
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/18146
+    ref: Numista N#18146 — 3 Schwaren - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-18146
+- id: unified-dk-numista-185335
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groten
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '21'
+    numista: '185335'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.0
+    source: numista
+  diameter_mm:
+  - value: 19.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/185335
+    ref: Numista N#185335 — 1 Groten - Anthony Günther - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-185335
+- id: unified-dk-numista-18937
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1840
+  year_last: 1840
+  year_label: '1840'
+  ruler: Paul Friedrich August
+  catalog:
+    km: '170'
+    numista: '18937'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 4.0
+    source: numista
+  diameter_mm:
+  - value: 21.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/18937
+    ref: Numista N#18937 — ½ Grote - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-18937
+- id: unified-dk-numista-19529
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groschen
+  year_first: 1858
+  year_last: 1869
+  year_ranges:
+  - - 1858
+    - 1858
+  - - 1864
+    - 1866
+  - - 1869
+    - 1869
+  year_label: 1858, 1864-1866, 1869
+  ruler: Peter II
+  catalog:
+    km: '194'
+    numista: '19529'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.222
+    source: numista
+  weight_rough_g:
+  - value: 2.19
+    source: numista
+  diameter_mm:
+  - value: 18.2
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/19529
+    ref: Numista N#19529 — 1 Groschen - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-19529
+- id: unified-dk-numista-23078
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1/24 Thaler
+  year_first: 1762
+  year_last: 1762
+  year_label: '1762'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '129'
+    numista: '23078'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.375
+    source: numista
+  weight_rough_g:
+  - value: 1.79
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/23078
+    ref: Numista N#23078 — 1/24 Thaler - Frederick V of Denmark - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-23078
+- id: unified-dk-numista-23081
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Schwaren
+  year_first: 1858
+  year_last: 1869
+  year_ranges:
+  - - 1858
+    - 1860
+  - - 1862
+    - 1862
+  - - 1864
+    - 1866
+  - - 1869
+    - 1869
+  year_label: 1858-1860, 1862, 1864-1866, 1869
+  ruler: Peter II
+  catalog:
+    km: '190'
+    numista: '23081'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.33
+    source: numista
+  diameter_mm:
+  - value: 16.28
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/23081
+    ref: Numista N#23081 — 1 Schwaren - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-23081
+- id: unified-dk-numista-26828
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Vereinsthaler
+  year_first: 1858
+  year_last: 1866
+  year_ranges:
+  - - 1858
+    - 1858
+  - - 1860
+    - 1860
+  - - 1866
+    - 1866
+  year_label: 1858, 1860, 1866
+  ruler: Peter II
+  mint: Hanover
+  catalog:
+    km: '196'
+    numista: '26828'
+    dav: GT III# 753
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.9
+    source: numista
+  weight_rough_g:
+  - value: 18.52
+    source: numista
+  diameter_mm:
+  - value: 33.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/26828
+    ref: Numista N#26828 — 1 Vereinsthaler - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-26828
+- id: unified-dk-numista-268600
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ⅔ Thaler
+  year_first: 1761
+  year_last: 1765
+  year_ranges:
+  - - 1761
+    - 1765
+  year_label: 1761-1765
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '122'
+    numista: '268600'
+    hede: 2 D
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 17.46
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/268600
+    ref: Numista N#268600 — ⅔ Thaler - Frederick V of Dänemark - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-268600
+- id: unified-dk-numista-268604
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Thalers
+  year_first: 1840
+  year_last: 1840
+  year_label: '1840'
+  ruler: Paul Friedrich August
+  catalog:
+    km: '173'
+    numista: '268604'
+    dav: GT III# 751
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.9
+    source: numista
+  weight_rough_g:
+  - value: 37.09
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/268604
+    ref: Numista N#268604 — 2 Thalers - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-268604
+- id: unified-dk-numista-270890
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 3 Grote (1/24 Thaler)
+  year_first: 1856
+  year_last: 1856
+  year_label: '1856'
+  ruler: Peter II
+  mint: Hanover
+  catalog:
+    km: '189'
+    numista: '270890'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.312
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/270890
+    ref: Numista N#270890 — 3 Grote - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-270890
+- id: unified-dk-numista-271078
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Grote
+  year_first: 1815
+  year_last: 1815
+  year_label: '1815'
+  ruler: Peter I Frederick Louis
+  catalog:
+    numista: '271078'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.986
+    source: numista
+  weight_rough_g:
+  - value: 2.27
+    source: numista
+  diameter_mm:
+  - value: 18.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/271078
+    ref: Numista N#271078 — 2 Grote - Peter Frederick Louis (Gold Pattern) - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-271078
+- id: unified-dk-numista-297461
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ⅔ Thaler
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '121'
+    numista: '297461'
+    dav: SG# 723
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.75
+    source: numista
+  weight_rough_g:
+  - value: 17.32
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/297461
+    ref: Numista N#297461 — 2/3 Thaler - Frederick V of Dänemark - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-297461
+- id: unified-dk-numista-297587
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Guenther (Anton Guenther) (1603-1667), Emperor Matthias
+  catalog:
+    km: '6'
+    numista: '297587'
+    dav: ST# 7102
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.97
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/297587
+    ref: Numista N#297587 — 1 Thaler - Anthony Guenter (in the name of Matthias) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-297587
+- id: unified-dk-numista-30134
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Schwaren
+  year_first: 1846
+  year_last: 1846
+  year_label: '1846'
+  ruler: Paul Friedrich August
+  catalog:
+    km: '174'
+    numista: '30134'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  diameter_mm:
+  - value: 17.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/30134
+    ref: Numista N#30134 — 1 Schwaren - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-30134
+- id: unified-dk-numista-314517
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 4 Grote
+  year_first: 1816
+  year_last: 1816
+  year_label: '1816'
+  ruler: Peter I Frederick Louis
+  catalog:
+    numista: '314517'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 2.0
+    source: numista
+  diameter_mm:
+  - value: 21.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314517
+    ref: Numista N#314517 — 4 Grote - Peter Frederick Louis - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314517
+- id: unified-dk-numista-314933
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1802
+  year_last: 1816
+  year_ranges:
+  - - 1802
+    - 1816
+  year_label: 1802-1816
+  ruler: Peter I Frederick Louis
+  catalog:
+    numista: '314933'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  diameter_mm:
+  - value: 20.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314933
+    ref: Numista N#314933 — ½ Grote - Peter Frederick Louis (Silver pattern strike) - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314933
+- id: unified-dk-numista-314939
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1½ Grote
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '107'
+    numista: '314939'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.81
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314939
+    ref: Numista N#314939 — 1½ Grote - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314939
+- id: unified-dk-numista-314940
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1½ Grote
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '108'
+    numista: '314940'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.81
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314940
+    ref: Numista N#314940 — 1½ Grote - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314940
+- id: unified-dk-numista-314941
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1½ Grote
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '109'
+    numista: '314941'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.81
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314941
+    ref: Numista N#314941 — 1½ Grote - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314941
+- id: unified-dk-numista-314943
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 3 Grote
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '111'
+    numista: '314943'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.375
+    source: numista
+  weight_rough_g:
+  - value: 1.79
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314943
+    ref: Numista N#314943 — 3 Grote - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314943
+- id: unified-dk-numista-314946
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ⅓ Thaler
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '120.1'
+    numista: '314946'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.075
+    source: numista
+  weight_rough_g:
+  - value: 8.66
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314946
+    ref: Numista N#314946 — 1/3 Thaler - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314946
+- id: unified-dk-numista-314949
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1/6 Thaler
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '119'
+    numista: '314949'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.5
+    source: numista
+  weight_rough_g:
+  - value: 5.85
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314949
+    ref: Numista N#314949 — 1/6 Thaler - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314949
+- id: unified-dk-numista-314951
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1/12 Thaler
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '118'
+    numista: '314951'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.5
+    source: numista
+  weight_rough_g:
+  - value: 2.92
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314951
+    ref: Numista N#314951 — 1/12 Thaler - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314951
+- id: unified-dk-numista-314955
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groten
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '105'
+    numista: '314955'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.25
+    source: numista
+  weight_rough_g:
+  - value: 0.87
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314955
+    ref: Numista N#314955 — 1 Groten - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314955
+- id: unified-dk-numista-314957
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groten
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '106'
+    numista: '314957'
+    sieg: '44'
+    hede: '14'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.25
+    source: numista
+  weight_rough_g:
+  - value: 0.87
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314957
+    ref: Numista N#314957 — 1 Groten - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314957
+- id: unified-dk-numista-314960
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 4 Grote
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '112'
+    numista: '314960'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.375
+    source: numista
+  weight_rough_g:
+  - value: 2.39
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314960
+    ref: Numista N#314960 — 4 Grote - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314960
+- id: unified-dk-numista-314963
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Mariengroschen
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '116'
+    numista: '314963'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.375
+    source: numista
+  weight_rough_g:
+  - value: 2.39
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/314963
+    ref: Numista N#314963 — 2 Mariengroschen - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-314963
+- id: unified-dk-numista-32021
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Marks
+  year_first: 1900
+  year_last: 1901
+  year_ranges:
+  - - 1900
+    - 1901
+  year_label: 1900-1901
+  ruler: Frederick Augustus II (Friedrich August II)
+  mint: Berlin
+  catalog:
+    km: '202'
+    numista: '32021'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.9
+    source: numista
+  weight_rough_g:
+  - value: 11.111
+    source: numista
+  diameter_mm:
+  - value: 28.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/32021
+    ref: Numista N#32021 — 2 Marks - Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-32021
+- id: unified-dk-numista-320766
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1560
+  year_last: 1570
+  year_ranges:
+  - - 1560
+    - 1570
+  year_label: 1560-1570
+  ruler: Anthony I (Anton I)
+  catalog:
+    numista: '320766'
+    mb: '39'
+    dav: GT I# 9606
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 29.15
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/320766
+    ref: Numista N#320766 — 1 Thaler - Anthony I - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-320766
+- id: unified-dk-numista-336982
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 30 Stuber
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Guenther (Anton Guenther)
+  catalog:
+    km: '56'
+    numista: '336982'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 19.15
+    source: numista
+  diameter_mm:
+  - value: 39.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/336982
+    ref: Numista N#336982 — 30 Stueber - Anthony Guenter - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-336982
+- id: unified-dk-numista-338753
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ¼ Groten
+  year_first: 1560
+  year_last: 1570
+  year_ranges:
+  - - 1560
+    - 1570
+  year_label: 1560-1570
+  ruler: Anthony I (Anton I)
+  catalog:
+    numista: '338753'
+    mb: '33'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.74
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/338753
+    ref: Numista N#338753 — ¼ Groten - Anthony I - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-338753
+- id: unified-dk-numista-338853
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Schwaren
+  year_first: 1603
+  year_last: 1603
+  year_label: '1603'
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '5'
+    numista: '338853'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/338853
+    ref: Numista N#338853 — 1 Schwaren - Anthon Gunther - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-338853
+- id: unified-dk-numista-338882
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1603
+  year_last: 1603
+  year_label: '1603'
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '9'
+    numista: '338882'
+    dav: ST# 7107
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 29.6
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/338882
+    ref: Numista N#338882 — 1 Thaler - Anthony Günter - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-338882
+- id: unified-dk-numista-338905
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1619
+  year_last: 1622
+  year_ranges:
+  - - 1619
+    - 1622
+  year_label: 1619-1622
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '12'
+    numista: '338905'
+    dav: ST# 7109
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.77
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/338905
+    ref: Numista N#338905 — 1 Thaler - Anthony Günter - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-338905
+- id: unified-dk-numista-338997
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Thaler
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Guenther (Anton Guenther) (1603-1667), Emperor Matthias
+  catalog:
+    km: '14'
+    numista: '338997'
+    dav: ST# 7101
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 58.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/338997
+    ref: Numista N#338997 — 2 Thalers - Anthony Guenter - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-338997
+- id: unified-dk-numista-339156
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Thaler
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Guenther (Anton Guenther)
+  catalog:
+    km: '15'
+    numista: '339156'
+    dav: ST# 7105
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 58.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/339156
+    ref: Numista N#339156 — 2 Thalers - Anthony Guenter - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-339156
+- id: unified-dk-numista-339161
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ½ Schilling
+  year_first: 1612
+  year_last: 1619
+  year_ranges:
+  - - 1612
+    - 1619
+  year_label: 1612-1619
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '20'
+    numista: '339161'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/339161
+    ref: Numista N#339161 — ½ Schilling - Anthony Günter - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-339161
+- id: unified-dk-numista-339245
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Schilling (⅑)
+  year_first: 1614
+  year_last: 1619
+  year_ranges:
+  - - 1614
+    - 1619
+  year_label: 1614-1619
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '28'
+    numista: '339245'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/339245
+    ref: Numista N#339245 — 1 Schilling - Anthony Günter (Klippe) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-339245
+- id: unified-dk-numista-339292
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groten
+  year_first: 1619
+  year_last: 1622
+  year_ranges:
+  - - 1619
+    - 1622
+  year_label: 1619-1622
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '32'
+    numista: '339292'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.04
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/339292
+    ref: Numista N#339292 — 1 Groten - Anthony Günther - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-339292
+- id: unified-dk-numista-339420
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ¼ Mark
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '34'
+    numista: '339420'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/339420
+    ref: Numista N#339420 — ¼ Mark - Anthony Günther - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-339420
+- id: unified-dk-numista-339661
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ½ Mark
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '37'
+    numista: '339661'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/339661
+    ref: Numista N#339661 — ½ Mark - Anthony Günther - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-339661
+- id: unified-dk-numista-339962
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Mark
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '40'
+    numista: '339962'
+    dav: SG# 720
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 18.72
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/339962
+    ref: Numista N#339962 — 1 Mark - Anthony Günther - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-339962
+- id: unified-dk-numista-339968
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Mark
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '45'
+    numista: '339968'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 18.77
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/339968
+    ref: Numista N#339968 — 1 Mark - Anthony Günther - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-339968
+- id: unified-dk-numista-340123
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ¼ Thaler
+  year_first: 1614
+  year_last: 1619
+  year_ranges:
+  - - 1614
+    - 1619
+  year_label: 1614-1619
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '47'
+    numista: '340123'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 6.6
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/340123
+    ref: Numista N#340123 — ¼ Thaler - Anthony Günter (In the name of Matthias) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-340123
+- id: unified-dk-numista-340125
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ¼ Thaler
+  year_first: 1619
+  year_last: 1622
+  year_ranges:
+  - - 1619
+    - 1622
+  year_label: 1619-1622
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '47'
+    numista: '340125'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 6.99
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/340125
+    ref: Numista N#340125 — 1/4 Thaler - Anthony Günter (In the name of Ferdinand II) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-340125
+- id: unified-dk-numista-340198
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 15 Schaf
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '55'
+    numista: '340198'
+    dav: SG# 711
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 20.6
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/340198
+    ref: Numista N#340198 — 15 Schaf - Anthony Günther - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-340198
+- id: unified-dk-numista-340212
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1639
+  year_last: 1639
+  year_label: '1639'
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '64'
+    numista: '340212'
+    dav: ST# 7110
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/340212
+    ref: Numista N#340212 — 1 Thaler - Anthony Günter (Death of Anna Sophia) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-340212
+- id: unified-dk-numista-340282
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groten
+  year_first: 1651
+  year_last: 1651
+  year_label: '1651'
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '75'
+    numista: '340282'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/340282
+    ref: Numista N#340282 — 1 Groten - Anthony Günther (Late type) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-340282
+- id: unified-dk-numista-340358
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1665
+  year_last: 1665
+  year_label: '1665'
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '84'
+    numista: '340358'
+    dav: ST# 7115
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/340358
+    ref: Numista N#340358 — 1 Thaler - Anthony Günter (82nd Birthday) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-340358
+- id: unified-dk-numista-340451
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1666
+  year_last: 1666
+  year_label: '1666'
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '86'
+    numista: '340451'
+    dav: ST# 7116
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/340451
+    ref: Numista N#340451 — 1 Thaler - Anthony Günter (83rd Birthday) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-340451
+- id: unified-dk-numista-340589
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ⅛ Thaler
+  year_first: 1667
+  year_last: 1667
+  year_label: '1667'
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '90'
+    numista: '340589'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/340589
+    ref: Numista N#340589 — 1/8 Thaler - Anthony Günter (Death) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-340589
+- id: unified-dk-numista-340789
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ½ Thaler
+  year_first: 1667
+  year_last: 1667
+  year_label: '1667'
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '92'
+    numista: '340789'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/340789
+    ref: Numista N#340789 — 1/2 Thaler - Anthony Günter (Death) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-340789
+- id: unified-dk-numista-340790
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1667
+  year_last: 1667
+  year_label: '1667'
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '93'
+    numista: '340790'
+    dav: ST# 7118
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/340790
+    ref: Numista N#340790 — 1 Thaler - Anthony Günter (Death) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-340790
+- id: unified-dk-numista-340860
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ⅔ Thaler
+  year_first: 1690
+  year_last: 1690
+  year_label: '1690'
+  ruler: Christian V
+  catalog:
+    km: '97'
+    numista: '340860'
+    dav: SG# 721
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.75
+    source: numista
+  weight_rough_g:
+  - value: 17.32
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/340860
+    ref: Numista N#340860 — ⅔ Thaler - Christian V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-340860
+- id: unified-dk-numista-341018
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ⅓ Thaler
+  year_first: 1762
+  year_last: 1762
+  year_label: '1762'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '120.2'
+    numista: '341018'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.75
+    source: numista
+  weight_rough_g:
+  - value: 8.66
+    source: numista
+  diameter_mm:
+  - value: 29.5
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/341018
+    ref: Numista N#341018 — 1/3 Thaler - Frederick V of Denmark - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-341018
+- id: unified-dk-numista-341045
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Mariengroschen
+  year_first: 1762
+  year_last: 1763
+  year_ranges:
+  - - 1762
+    - 1763
+  year_label: 1762-1763
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '126'
+    numista: '341045'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.375
+    source: numista
+  weight_rough_g:
+  - value: 2.39
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/341045
+    ref: Numista N#341045 — 2 Mariengroschen - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-341045
+- id: unified-dk-numista-341129
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1/12 Thaler
+  year_first: 1763
+  year_last: 1764
+  year_ranges:
+  - - 1763
+    - 1764
+  year_label: 1763-1764
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '131'
+    numista: '341129'
+    sieg: '54'
+    hede: '5'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.5
+    source: numista
+  weight_rough_g:
+  - value: 2.92
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/341129
+    ref: Numista N#341129 — 1/12 Thaler - Frederick V of Denmark - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-341129
+- id: unified-dk-numista-341217
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1/6 Thaler
+  year_first: 1763
+  year_last: 1765
+  year_ranges:
+  - - 1763
+    - 1765
+  year_label: 1763-1765
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '132'
+    numista: '341217'
+    sieg: '55'
+    hede: '4'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.5
+    source: numista
+  weight_rough_g:
+  - value: 5.85
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/341217
+    ref: Numista N#341217 — 1/6 Thaler - Frederick V of Denmark - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-341217
+- id: unified-dk-numista-341249
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Pfennigs
+  year_first: 1764
+  year_last: 1764
+  year_label: '1764'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '133'
+    numista: '341249'
+    sieg: '43'
+    hede: '16'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.25
+    source: numista
+  weight_rough_g:
+  - value: 0.43
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/341249
+    ref: Numista N#341249 — 2 Pfennigs - Frederick V of Denmark - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-341249
+- id: unified-dk-numista-341318
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Mariengroschen
+  year_first: 1762
+  year_last: 1763
+  year_ranges:
+  - - 1762
+    - 1763
+  year_label: 1762-1763
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '127'
+    numista: '341318'
+    sieg: '53'
+    hede: '7'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.375
+    source: numista
+  weight_rough_g:
+  - value: 2.39
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/341318
+    ref: Numista N#341318 — 2 Mariengroschen - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-341318
+- id: unified-dk-numista-341386
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1614
+  year_last: 1622
+  year_ranges:
+  - - 1614
+    - 1622
+  year_label: 1614-1622
+  ruler: Anthony Guenther (Anton Guenther) (1603-1667), Emperor Matthias
+  catalog:
+    km: '8'
+    numista: '341386'
+    dav: ST# 7104
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/341386
+    ref: Numista N#341386 — 1 Thaler - Anthony Guenter (Klippe; in name of Matthias) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-341386
+- id: unified-dk-numista-341885
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Schilling
+  year_first: 1619
+  year_last: 1637
+  year_ranges:
+  - - 1619
+    - 1637
+  year_label: 1619-1637
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '33'
+    numista: '341885'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 4.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/341885
+    ref: Numista N#341885 — 1 Schilling - Anthony Gunther - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-341885
+- id: unified-dk-numista-341888
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Schilling
+  year_first: 1657
+  year_last: 1662
+  year_ranges:
+  - - 1657
+    - 1662
+  year_label: 1657-1662
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '76'
+    numista: '341888'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 3.9
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/341888
+    ref: Numista N#341888 — 1 Schilling - Anthony Günter - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-341888
+- id: unified-dk-numista-341895
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Schilling
+  year_first: 1629
+  year_last: 1667
+  year_ranges:
+  - - 1629
+    - 1667
+  year_label: 1629-1667
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: '80'
+    numista: '341895'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.6
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/341895
+    ref: Numista N#341895 — Schilling - Anthony Gunter (imitating Gustav Adolphus solidus) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-341895
+- id: unified-dk-numista-391426
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: Medal
+  year_first: 1908
+  year_last: 1908
+  year_label: '1908'
+  ruler: Frederick Augustus II (Friedrich August II)
+  catalog:
+    numista: '391426'
+  metal: bronze
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/391426
+    ref: Numista N#391426 — Gustav-Adolf-Festspiele of 1908 in Oldenburg - Elisabeth Grandduchess of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-391426
+- id: unified-dk-numista-412572
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 25 Thaler
+  year_first: 1870
+  year_last: 1870
+  year_label: '1870'
+  ruler: Peter II
+  catalog:
+    numista: '412572'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/412572
+    ref: Numista N#412572 — 25 Thaler banknote - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-412572
+- id: unified-dk-numista-42683
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1849
+  year_last: 1850
+  year_ranges:
+  - - 1849
+    - 1850
+  year_label: 1849-1850
+  ruler: Paul Frederick Augustus (Paul Friedrich August)
+  catalog:
+    km: '179'
+    numista: '42683'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.218
+    source: numista
+  weight_rough_g:
+  - value: 0.92
+    source: numista
+  diameter_mm:
+  - value: 14.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/42683
+    ref: Numista N#42683 — 1 Grote - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-42683
+- id: unified-dk-numista-434649
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Ducats
+  year_first: 1667
+  year_last: 1667
+  year_label: '1667'
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    numista: '434649'
+  metal: gold
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 7.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/434649
+    ref: Numista N#434649 — 2 Ducats - Anthony Günter (Death) - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-434649
+- id: unified-dk-numista-44960
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ¼ Grote
+  year_first: 1846
+  year_last: 1846
+  year_label: '1846'
+  ruler: Paul Friedrich August
+  catalog:
+    km: '175'
+    numista: '44960'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.48
+    source: numista
+  diameter_mm:
+  - value: 18.75
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/44960
+    ref: Numista N#44960 — 1/4 Grote - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-44960
+- id: unified-dk-numista-44966
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1846
+  year_last: 1846
+  year_label: '1846'
+  ruler: Paul Friedrich August
+  catalog:
+    km: '176'
+    numista: '44966'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 3.19
+    source: numista
+  diameter_mm:
+  - value: 20.55
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/44966
+    ref: Numista N#44966 — 1/2 Grote - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-44966
+- id: unified-dk-numista-44969
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1853
+  year_last: 1856
+  year_ranges:
+  - - 1853
+    - 1856
+  year_label: 1853-1856
+  ruler: Peter II
+  catalog:
+    km: '186'
+    numista: '44969'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 3.25
+    source: numista
+  diameter_mm:
+  - value: 20.45
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/44969
+    ref: Numista N#44969 — 1/2 Grote - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-44969
+- id: unified-dk-numista-44990
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1802
+  year_last: 1816
+  year_ranges:
+  - - 1802
+    - 1816
+  year_label: 1802-1816
+  ruler: Peter I Frederick Louis
+  catalog:
+    km: '150'
+    numista: '44990'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 3.6
+    source: numista
+  diameter_mm:
+  - value: 20.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/44990
+    ref: Numista N#44990 — ½ Grote - Peter Frederick Louis - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-44990
+- id: unified-dk-numista-47169
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ½ Groschen
+  year_first: 1858
+  year_last: 1869
+  year_ranges:
+  - - 1858
+    - 1858
+  - - 1864
+    - 1866
+  - - 1869
+    - 1869
+  year_label: 1858, 1864-1866, 1869
+  ruler: Peter II
+  catalog:
+    km: '192'
+    numista: '47169'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.22
+    source: numista
+  weight_rough_g:
+  - value: 1.09
+    source: numista
+  diameter_mm:
+  - value: 14.6
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/47169
+    ref: Numista N#47169 — ½ Groschen - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-47169
+- id: unified-dk-numista-47340
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Groschen (1/30 Thaler)
+  year_first: 1858
+  year_last: 1858
+  year_label: '1858'
+  ruler: Peter II
+  mint: Hanover
+  catalog:
+    km: '193'
+    numista: '47340'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.22
+    source: numista
+  weight_rough_g:
+  - value: 2.19
+    source: numista
+  diameter_mm:
+  - value: 18.35
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/47340
+    ref: Numista N#47340 — 1 Groschen - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-47340
+- id: unified-dk-numista-49669
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Grote
+  year_first: 1815
+  year_last: 1815
+  year_label: '1815'
+  ruler: Peter I Frederick Louis
+  catalog:
+    km: '155'
+    numista: '49669'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.291
+    source: numista
+  weight_rough_g:
+  - value: 1.39
+    source: numista
+  diameter_mm:
+  - value: 18.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/49669
+    ref: Numista N#49669 — 2 Grote - Peter Frederick Louis - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-49669
+- id: unified-dk-numista-56099
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 5 Mark
+  year_first: 1900
+  year_last: 1901
+  year_ranges:
+  - - 1900
+    - 1901
+  year_label: 1900-1901
+  ruler: Frederick Augustus II (Friedrich August II)
+  mint: Berlin
+  catalog:
+    km: '203'
+    numista: '56099'
+    dav: GT III# 754
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.9
+    source: numista
+  weight_rough_g:
+  - value: 27.77
+    source: numista
+  diameter_mm:
+  - value: 38.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/56099
+    ref: Numista N#56099 — 5 Mark - Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-56099
+- id: unified-dk-numista-56100
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Marks
+  year_first: 1891
+  year_last: 1891
+  year_label: '1891'
+  ruler: Peter II
+  mint: Berlin
+  catalog:
+    km: '201'
+    numista: '56100'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.9
+    source: numista
+  weight_rough_g:
+  - value: 11.11
+    source: numista
+  diameter_mm:
+  - value: 28.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/56100
+    ref: Numista N#56100 — 2 Marks - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-56100
+- id: unified-dk-numista-58973
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Schwaren (1/360 Thaler)
+  year_first: 1854
+  year_last: 1856
+  year_ranges:
+  - - 1854
+    - 1854
+  - - 1856
+    - 1856
+  year_label: 1854, 1856
+  ruler: Peter II
+  mint: Hanover
+  catalog:
+    km: '188'
+    numista: '58973'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.5
+    source: numista
+  diameter_mm:
+  - value: 16.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/58973
+    ref: Numista N#58973 — 1 Schwaren - Nicholas Frederick Peter - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-58973
+- id: unified-dk-numista-58977
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 4 Grote (1/18 Thaler)
+  year_first: 1816
+  year_last: 1818
+  year_ranges:
+  - - 1816
+    - 1818
+  year_label: 1816-1818
+  ruler: Peter I Frederick Louis
+  catalog:
+    km: '156'
+    numista: '58977'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.34
+    source: numista
+  weight_rough_g:
+  - value: 2.0
+    source: numista
+  diameter_mm:
+  - value: 21.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/58977
+    ref: Numista N#58977 — 4 Grote - Peter Frederick Louis - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-58977
+- id: unified-dk-numista-59018
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1836
+  year_last: 1836
+  year_label: '1836'
+  ruler: Paul Friedrich August
+  catalog:
+    km: '166'
+    numista: '59018'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.218
+    source: numista
+  weight_rough_g:
+  - value: 0.92
+    source: numista
+  diameter_mm:
+  - value: 15.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/59018
+    ref: Numista N#59018 — 1 Groten - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-59018
+- id: unified-dk-numista-59024
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1/48 Thaler
+  year_first: 1762
+  year_last: 1762
+  year_label: '1762'
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '128'
+    numista: '59024'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.312
+    source: numista
+  weight_rough_g:
+  - value: 1.04
+    source: numista
+  diameter_mm:
+  - value: 17.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/59024
+    ref: Numista N#59024 — 1/48 Thaler - Frederick V of Denmark - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-59024
+- id: unified-dk-numista-61153
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 10 Mark
+  year_first: 1874
+  year_last: 1874
+  year_label: '1874'
+  ruler: Peter II
+  mint: Hanover
+  catalog:
+    km: '200'
+    numista: '61153'
+    fr: '3812'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.9
+    source: numista
+  weight_rough_g:
+  - value: 3.982
+    source: numista
+  diameter_mm:
+  - value: 19.5
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/61153
+    ref: Numista N#61153 — 10 Mark - Peter II - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-61153
+- id: unified-dk-numista-70765
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 4 Grote
+  year_first: 1840
+  year_last: 1840
+  year_label: '1840'
+  ruler: Paul Friedrich August
+  catalog:
+    km: '172'
+    numista: '70765'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.34
+    source: numista
+  weight_rough_g:
+  - value: 2.3
+    source: numista
+  diameter_mm:
+  - value: 20.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/70765
+    ref: Numista N#70765 — 4 Grote - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-70765
+- id: unified-dk-numista-71444
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Grote (1/72 Thaler)
+  year_first: 1817
+  year_last: 1817
+  year_label: '1817'
+  ruler: Peter I Frederick Louis
+  catalog:
+    km: '160'
+    numista: '71444'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.208
+    source: numista
+  weight_rough_g:
+  - value: 0.97
+    source: numista
+  diameter_mm:
+  - value: 16.5
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/71444
+    ref: Numista N#71444 — 1 Grote - Peter Frederick Louis - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-71444
+- id: unified-dk-numista-76718
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 3 Grote
+  year_first: 1840
+  year_last: 1840
+  year_label: '1840'
+  ruler: Paul Friedrich August
+  catalog:
+    km: '171'
+    numista: '76718'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.312
+    source: numista
+  weight_rough_g:
+  - value: 1.94
+    source: numista
+  diameter_mm:
+  - value: 18.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/76718
+    ref: Numista N#76718 — 3 Grote - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-76718
+- id: unified-dk-numista-78556
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Schilling (⅑)
+  year_first: 1614
+  year_last: 1619
+  year_ranges:
+  - - 1614
+    - 1619
+  year_label: 1614-1619
+  ruler: Anthony Günther (Anton Günther)
+  catalog:
+    km: 25-27
+    numista: '78556'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 5.0
+    source: numista
+  diameter_mm:
+  - value: 30.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/78556
+    ref: Numista N#78556 — 1 Schilling - Anthony Günter - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-78556
+- id: unified-dk-numista-82316
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 12 Grote (1/6 Thaler)
+  year_first: 1816
+  year_last: 1818
+  year_ranges:
+  - - 1816
+    - 1818
+  year_label: 1816-1818
+  ruler: Peter I Frederick Louis
+  catalog:
+    km: '158'
+    numista: '82316'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.52
+    source: numista
+  weight_rough_g:
+  - value: 4.87
+    source: numista
+  diameter_mm:
+  - value: 24.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/82316
+    ref: Numista N#82316 — 12 Grote - Peter Frederick Louis - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-82316
+- id: unified-dk-numista-84821
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Mariengroschen
+  year_first: 1762
+  year_last: 1763
+  year_ranges:
+  - - 1762
+    - 1763
+  year_label: 1762-1763
+  ruler: Frederick V (Friedrich V)
+  catalog:
+    km: '123'
+    numista: '84821'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.312
+    source: numista
+  weight_rough_g:
+  - value: 1.13
+    source: numista
+  diameter_mm:
+  - value: 17.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/84821
+    ref: Numista N#84821 — 1 Mariengroschen - Frederick V - County of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-84821
+- id: unified-dk-numista-87256
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1846
+  year_last: 1846
+  year_label: '1846'
+  ruler: Paul Frederick Augustus (Paul Friedrich August)
+  catalog:
+    km: '178'
+    numista: '87256'
+    dav: GT III# 752
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.75
+    source: numista
+  weight_rough_g:
+  - value: 22.27
+    source: numista
+  diameter_mm:
+  - value: 34.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/87256
+    ref: Numista N#87256 — 1 Thaler - Paul Frederick August - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-87256
+- id: unified-dk-numista-89522
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 6 Grote (1/12 Thaler)
+  year_first: 1816
+  year_last: 1818
+  year_ranges:
+  - - 1816
+    - 1818
+  year_label: 1816-1818
+  ruler: Peter I Frederick Louis
+  catalog:
+    km: '157'
+    numista: '89522'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.34
+    source: numista
+  weight_rough_g:
+  - value: 3.58
+    source: numista
+  diameter_mm:
+  - value: 22.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/89522
+    ref: Numista N#89522 — 6 Grote - Peter Frederick Louis - Grand duchy of Oldenburg
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: grafschaft_oldenburg
+  composed_of:
+  - dk-numista-89522

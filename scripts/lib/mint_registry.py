@@ -535,13 +535,38 @@ _ISSUER_REGISTRY: dict[str, str | None] = {
     # ──────────────────── Saxe-Lauenburg ────────────────────────────────
     "duchy of saxe-lauenburg (german states)": "herzogtum_sachsen_lauenburg",
 
-    # ─────────────────── Ambiguous / context-dependent ─────────────────
-    # 44 cache entries 1514-1851 span multiple V2 entities — let
-    # mint-driven classification resolve first; only when mint is absent
-    # too does the caller route to _unclassified.
-    "schleswig and holstein, danish duchies of": None,
-    "danish duchies of schleswig and holstein (german states)": None,
-    "schleswig_holstein_danish_duchies": None,  # API code
+    # ──────────── Danish-ruled Schleswig-Holstein duchies ──────────────
+    # Numista's «Schleswig and Holstein, Danish duchies of» (+ German-
+    # states-suffix + API-code variants) is the coinage struck by the
+    # Danish KING in his capacity as Duke of (his portion of) Schleswig-
+    # Holstein — the royal Holstein portion. This is DISTINCT from:
+    #   * «Schleswig-Holstein-Gottorp, Duchy of» → gottorp_duchy (the
+    #     independent Gottorp dukes' own sovereign coinage, 1544-1773)
+    #   * «Holstein-Schaumburg-Pinneberg, County of» → schauenburg
+    #     (the Schauenburg comital dynasty)
+    # Numista distinguishes all three issuer strings, so this one is
+    # unambiguously the royal/Danish line.
+    #
+    # Maps flat to royal_holstein — NOT year-varying. Control-based
+    # classification per the project entity scheme (issuing_entities.yml):
+    # Schleswig-Holstein territory under Danish control = royal_holstein,
+    # across the whole period. The three historical eras all collapse to
+    # royal_holstein in this scheme:
+    #   * pre-1544 (joint, senior-duke = royal line): royal_holstein
+    #   * 1544-1773 (King's portion alongside sovereign Gottorp): royal_holstein
+    #   * post-1773 (Gottorp ceded to DK → unified SH duchy, Altona-struck):
+    #     royal_holstein (the deprecated `gesamtstaat` term retired; coins
+    #     classify by territorial control, and unified SH = royal Holstein)
+    #
+    # Twin-evidence (2026-05-27, §CB): every «Danish duchies» coin with a
+    # findable same-type V2 twin lands in royal_holstein —
+    #   km-82-chr-iv-1640 (2 Schilling Reuterpfennig 1640),
+    #   hede-c7h45 (2 Sechsling 1787), hede-c5h121+sieg-137 (4 Marck /
+    #   1 Krone 1671), numismaster mb-48 (1 Thaler Christian III 1545),
+    #   numismaster mb-62 (1 Pfennig Schüsselpfennig Friedrich II 1559).
+    "schleswig and holstein, danish duchies of": "royal_holstein",
+    "danish duchies of schleswig and holstein (german states)": "royal_holstein",
+    "schleswig_holstein_danish_duchies": "royal_holstein",  # API code
 
     # ────────────────────── Out-of-scope ────────────────────────────────
     # Project scope is German lands + Danish-Norwegian realm 1514-1914.

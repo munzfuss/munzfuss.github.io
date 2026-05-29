@@ -686,6 +686,22 @@ class Coin(_StrictBase):
             "`relink_promoted_v2.py` from curated `composed_of` lists."
         ),
     )
+
+    # `_entity_routing_hint` is audit metadata from
+    # `scripts/lib/entity_routing.py`, written to the YAML when any rule
+    # in `data/v2/entity_routing_rules.yml` matched this coin's
+    # patterns. Persists across regen / absorb so curators debugging a
+    # non-obvious placement can see the rule's verdict.
+    #
+    # Shape: {rule_id, matched_on, would_route_to, active,
+    # agrees_with_active?, reasoning}. `active=true` → rule changed
+    # entity; `active=false` + `agrees_with_active=false` → mint and
+    # rule disagree (curator-review case). Not rendered on pages.
+    #
+    # Not modelled as a Pydantic field because of pydantic v2's
+    # leading-underscore prohibition. Stripped from the dict by the
+    # build assembly + the seed writer before Coin instantiation, same
+    # mechanism as the V1→V2 migration breadcrumbs below.
     # ---- V2 migration bookkeeping (temporary; cleaned at Phase 9 flip) ----
     # The migration script adds three extra keys per V2 coin yaml:
     #   - `v1_home_location` — source `data/locations/<loc>.yml` stem

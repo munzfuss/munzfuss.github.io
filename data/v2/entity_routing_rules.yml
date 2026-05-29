@@ -1,0 +1,139 @@
+# Entity routing rules — pre-classification layer applied by all seed
+# builders (Phase 3) and re-evaluated by the absorb step (Phase 4).
+#
+# Solves the «whack-a-mole curator overrides» problem: when an entry's
+# mint placeholder is missing or unverifiable, the seed builder's
+# default fallback (issuer-string classification) can mis-route entries
+# whose TRADITION signal (ruler lineage + denomination) is the more
+# reliable indicator.
+#
+# Each rule names a pattern (ruler-lineage names, denomination tokens,
+# optional mint / year / issuer constraints) and routes matching coins
+# to a specific V2 entity tag. Rule application is SAFE by default —
+# active re-route fires only when the coin's mint is absent OR carries
+# `mint_verified: false`. When the rule matches but mint is verified,
+# the rule still writes its analysis as a `_entity_routing_hint` field
+# on the coin entry, so a curator debugging an unexpected placement
+# sees the rule's verdict and can decide whether to override.
+#
+# Schema (per rule):
+#   id              str  - stable identifier, surfaces in hint + audit
+#   description     str  - human-readable rationale (multi-line OK)
+#   match           dict - conditions, ALL keys ANDed; values inside
+#                          each key ORed (any-match within field)
+#     ruler_lineage_any:   [str]  case-insensitive substring match on coin.ruler
+#     denomination_any:    [str]  case-insensitive substring match on coin.nominal
+#     mint_any:            [str]  case-insensitive substring match on coin.mint (optional)
+#     year_from:           int    inclusive lower bound on coin.year_first (optional)
+#     year_to:             int    exclusive upper bound on coin.year_first (optional)
+#     issuer_any:          [str]  case-insensitive substring match on coin._numista_issuer
+#                                 or any source-specific issuer hint (optional)
+#   routes_to       str  - V2 entity tag to assign
+#   audit           dict - metadata: first_added (date), first_run_corpus,
+#                          related_rules, source_decisions
+#
+# Resolver behaviour:
+#   1. For each rule, test if (ruler_lineage_any && denomination_any && ...)
+#      conditions match the coin. ALL specified fields must match; absent
+#      conditions skip.
+#   2. If a rule matches:
+#      a. Write `_entity_routing_hint` to the coin with rule_id +
+#         matched_on + would_route_to + reasoning.
+#      b. If coin.mint is None OR coin.mint_verified is False, ACTIVELY
+#         set coin.issuing_entity = rule.routes_to.
+#         Hint.active = true.
+#      c. Else (mint verified), do NOT override.
+#         Hint.active = false.
+#         Hint.agrees_with_active = (rule.routes_to == coin.issuing_entity).
+#   3. Multiple-rule conflicts: first match wins (rules iterated in
+#      declaration order). If two rules disagree on the same coin,
+#      the second writes a secondary hint slot — surfaced by audit.
+#   4. No rule matches → resolver falls through to mint / issuer /
+#      None per existing chain; no hint written.
+#
+# Tests live in scripts/lib/test_entity_routing.py (a small Python-
+# unittest suite, not pytest — matches project conventions).
+
+rules:
+
+  - id: schauenburg_niedersaechsisch_denoms
+    description: |
+      Schauenburg-lineage coins struck in Niedersächsisch-tradition
+      denominations route to holstein_schauenburg_county. The
+      Pinneberg/Schauenburg dual-coinage system audit 2026-05-27
+      established: Schauenburg dynasty struck at TWO mints serving
+      separate economic systems — Altona (SH side, Pinneberg county,
+      modern Schleswig-Holstein) followed the SH 9¼-Thaler-Fuß with
+      Reichsthaler / ½ Thaler / ¼ Thaler subdivisions; Oldendorf /
+      Rinteln / Stadthagen / Bückeburg (Schauenburg-county side,
+      modern Niedersachsen) followed the Niedersächsisch Reichskreis
+      36-Mariengroschen-per-Reichsthaler system with Mariengroschen /
+      Fürstengroschen / 1/24 Thaler / Arendschilling subdivisions.
+
+      Mariengroschen originated Goslar 1505 (Marian iconography);
+      Reichsthaler-as-36-Mariengroschen was the Lower Saxon Imperial
+      Circle's standard. SH 9¼-Fuß never includes Mariengroschen or
+      1/24 Thaler — these denominations are reliable tradition
+      signals identifying the Niedersächsisch side regardless of
+      mint placeholder.
+    match:
+      # ruler_lineage_any OR issuer_any — at least one must match. The
+      # OR-coupling handles real Numista data: some entries have
+      # ruler='Justus Herman' (parser-extracted), others have empty
+      # ruler but issuer='Holstein-Schaumburg-Pinneberg County'
+      # (Numista issuer chip preserved verbatim).
+      ruler_lineage_any:
+        - 'ernst iii'
+        - 'just herman'
+        - 'jobst hermann'
+        - 'justus herman'
+        - 'otto v'
+        - 'otto vi'
+        - 'adolph xiii'
+        - 'adolph xiv'
+        - 'adolf xiii'
+        - 'adolf xiv'
+        - 'schauenburg'
+        - 'schaumburg'
+      issuer_any:
+        - 'holstein-schaumburg-pinneberg'
+        - 'holstein-schauenburg-pinneberg'
+        - 'schaumburg-pinneberg'
+        - 'schauenburg-pinneberg'
+      denomination_any:
+        - 'mariengroschen'
+        - 'fürstengroschen'
+        - 'fuerstengroschen'
+        - 'arendschilling'
+        - '1/24 thaler'
+        - '1⁄24 thaler'
+        - '1/21 thaler'
+        - '1⁄21 thaler'
+    routes_to: holstein_schauenburg_county
+    audit:
+      first_added: '2026-05-27'
+      first_run_corpus: |
+        12 entries identified in data/v2/final/schauenburg_pinneberg.yml
+        that should reside in holstein_schauenburg_county:
+          - km-135-just-herman-1624 (4 Mariengroschen Oldendorf 1624)
+          - unified-schleswig_holstein-numismaster-96072 (2 Mariengroschen)
+          - unified-schleswig_holstein-numismaster-96073 (4 Mariengroschen)
+          - unified-schleswig_holstein-numismaster-171189 (1/24 Thaler Otto V)
+          - unified-schleswig_holstein-numismaster-96084 (1/24 Thaler Ernst III)
+          - unified-schleswig_holstein-numismaster-96088 (1/24 Thaler Ernst III)
+          - unified-schleswig_holstein-numismaster-171190 (1/24 Thaler Altona Adolf XIII)
+          - unified-schleswig_holstein-numismaster-171191 (1/24 Thaler Altona Adolf XIII)
+          - unified-schleswig_holstein-numismaster-171192 (1/24 Thaler Altona Adolf XIII)
+          - unified-schleswig_holstein-numismaster-175536 (1/24 Thaler Altona Ernst III)
+          - unified-schleswig_holstein-numismaster-96085 (1/24 Thaler Altona Ernst III)
+          - unified-schleswig_holstein-numismaster-96086 (1/24 Thaler Altona Ernst III)
+        Of these, 6 have mint=Altona (SH-side mint). Those will land
+        in `_entity_routing_hint.agrees_with_active=false` on first
+        run for curator review — Altona may legitimately have struck
+        Niedersachsen-tradition 1/24 Thaler under some Schauenburg
+        rulers, requiring Lange/Behrens/Weinmeister verification.
+      related_rules: []
+      source_decisions:
+        - 'chat 2026-05-27: deep Schauenburg tradition audit'
+        - 'docs/TODO.md §CE: migration corpus + verification plan'
+        - 'docs/TODO.md §CF: deeper 184-entry no-mint cluster audit'

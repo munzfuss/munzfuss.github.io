@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `sonderburg_duchy`.
-# Generated 2026-05-27 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-29 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sonderburg_duchy.yml across all sources.
 #
-# Input: 32 per-source seed entries.
-# Output: 26 unified entries (one per physical coin).
+# Input: 43 per-source seed entries.
+# Output: 34 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sonderburg_duchy
-generated_at: '2026-05-27'
+generated_at: '2026-05-29'
 coins:
 - id: unified-dk-bruun-14662
   fuss: seed_unsorted
@@ -21,25 +21,34 @@ coins:
   year_first: 1622
   year_last: 1622
   year_label: '1622'
+  ruler: John
+  mint: Reinfeld
   catalog:
     km: '18'
     bruun_collection_id: '14662'
     sieg: '15.1'
     lange: 529a
+    numista: '151530'
     dav: '3714'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 28.27
+    source: numista
   - value: 28.56
     source: bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14242, p. 312
+  - type: literature
+    url: https://en.numista.com/151530
+    ref: Numista N#151530 — 1 Thaler - John
   - type: literature
     url: https://numismaster.com/MC_101374
     ref: NumisMaster
@@ -57,6 +66,7 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - dk-bruun-14662
+  - dk-numista-151530
   - schleswig_holstein-numismaster-101374
 - id: unified-dk-bruun-14663
   fuss: seed_unsorted
@@ -72,11 +82,9 @@ coins:
     bruun_collection_id: '14663'
     sieg: '15.2'
     lange: 529c
-    dav:
-    - 3714B
-    - 3714b
+    dav: 3714b
   metal: silver
-  metal_verified: true
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: false
@@ -88,9 +96,6 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14243, p. 312
-  - type: literature
-    url: https://numismaster.com/MC_101376
-    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -105,7 +110,6 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - dk-bruun-14663
-  - schleswig_holstein-numismaster-101376
 - id: unified-dk-bruun-14664
   fuss: seed_unsorted
   phase: bruun
@@ -121,7 +125,7 @@ coins:
     sieg: '22'
     lange: '543'
   metal: silver
-  metal_verified: true
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: false
@@ -133,9 +137,6 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14244, p. 313
-  - type: literature
-    url: https://numismaster.com/MC_101381
-    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -150,7 +151,6 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - dk-bruun-14664
-  - schleswig_holstein-numismaster-101381
 - id: unified-dk-bruun-14665
   fuss: seed_unsorted
   phase: bruun
@@ -159,26 +159,35 @@ coins:
   year_first: 1622
   year_last: 1622
   year_label: '1622'
+  ruler: John
   mintmaster: Tobias Reinhardt (orb)
+  mint: Reinfeld
   catalog:
     km: '21'
     bruun_collection_id: '14665'
     sieg: '21'
     lange: '544'
+    numista: '151531'
     dav: '3715'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 28.43
+    source: numista
   - value: 28.62
     source: bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14245, p. 314
+  - type: literature
+    url: https://en.numista.com/151531
+    ref: Numista N#151531 — 1 Thaler - John (Death)
   - type: literature
     url: https://numismaster.com/MC_101377
     ref: NumisMaster
@@ -196,6 +205,7 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - dk-bruun-14665
+  - dk-numista-151531
   - schleswig_holstein-numismaster-101377
 - id: unified-dk-bruun-14666
   fuss: seed_unsorted
@@ -212,7 +222,7 @@ coins:
     sieg: '20'
     lange: '545'
   metal: silver
-  metal_verified: true
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: false
@@ -224,9 +234,6 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14246, p. 315
-  - type: literature
-    url: https://numismaster.com/MC_101373
-    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -241,7 +248,6 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - dk-bruun-14666
-  - schleswig_holstein-numismaster-101373
 - id: unified-dk-bruun-14677
   fuss: seed_unsorted
   phase: bruun
@@ -292,16 +298,19 @@ coins:
   year_first: 1627
   year_last: 1627
   year_label: '1627'
+  ruler: Alexander
   catalog:
     km: '28'
     bruun_collection_id: '14678'
     sieg: '5'
     lange: '560'
+    numista: '151536'
     dav: '3717'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: false
   verified: false
   weight_rough_g:
@@ -311,6 +320,9 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12212, p. 263
+  - type: literature
+    url: https://en.numista.com/151536
+    ref: Numista N#151536 — 1 Thaler - Alexander (Death)
   - type: literature
     url: https://numismaster.com/MC_101379
     ref: NumisMaster
@@ -328,7 +340,347 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - dk-bruun-14678
+  - dk-numista-151536
   - schleswig_holstein-numismaster-101379
+- id: unified-dk-numista-131934
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: ¼ Thaler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  ruler: John
+  mint: Reinfeld
+  catalog:
+    km: '16'
+    numista: '131934'
+    lange: '546'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/131934
+    ref: Numista N#131934 — ¼ Thaler - John (Death)
+  - type: literature
+    url: https://numismaster.com/MC_101371
+    ref: NumisMaster
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-numista-131934
+  - schleswig_holstein-numismaster-101371
+- id: unified-dk-numista-151521
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Schillings
+  year_first: 1604
+  year_last: 1604
+  year_label: '1604'
+  ruler: John
+  catalog:
+    km: '3'
+    numista: '151521'
+    lange: '531'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/151521
+    ref: Numista N#151521 — 2 Schillings - John
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-numista-151521
+- id: unified-dk-numista-151523
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Schilling Lübisch
+  year_first: 1618
+  year_last: 1622
+  year_ranges:
+  - - 1618
+    - 1622
+  year_label: 1618-1622
+  ruler: John
+  mint: Reinfeld
+  catalog:
+    km: '4'
+    numista: '151523'
+    lange: '540'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/151523
+    ref: Numista N#151523 — 2 Schillings Lübisch - John
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-numista-151523
+- id: unified-dk-numista-151525
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Schilling
+  year_first: 1618
+  year_last: 1619
+  year_ranges:
+  - - 1618
+    - 1619
+  year_label: 1618-1619
+  ruler: John
+  catalog:
+    km: '5'
+    numista: '151525'
+    lange: '535'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 2.08
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/151525
+    ref: Numista N#151525 — 2 Schillings - John
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-numista-151525
+- id: unified-dk-numista-151527
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Schilling
+  year_first: 1619
+  year_last: 1620
+  year_ranges:
+  - - 1619
+    - 1620
+  year_label: 1619-1620
+  ruler: John
+  mint: Reinfeld
+  catalog:
+    km: '9'
+    numista: '151527'
+    lange: 533a
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/151527
+    ref: Numista N#151527 — 2 Schillings - John
+  - type: literature
+    url: https://numismaster.com/MC_101368
+    ref: NumisMaster
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-numista-151527
+  - schleswig_holstein-numismaster-101368
+- id: unified-dk-numista-151528
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 2 Schilling Lübisch
+  year_first: 1620
+  year_last: 1625
+  year_ranges:
+  - - 1620
+    - 1625
+  year_label: 1620-1625
+  ruler: John
+  catalog:
+    km: '11'
+    numista: '151528'
+    lange: 542c
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.01
+    source: numista
+  diameter_mm:
+  - value: 13.9
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/151528
+    ref: Numista N#151528 — 2 Schillings Lübisch "Reuterpfennig" - John
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-numista-151528
+- id: unified-dk-numista-151529
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 4 Schilling Lübisch
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  ruler: John
+  mint: Reinfeld
+  catalog:
+    km: '12'
+    numista: '151529'
+    lange: '539'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 2.19
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/151529
+    ref: Numista N#151529 — 4 Schilling Lübisch "Reuterpfennig" - John
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-numista-151529
+- id: unified-dk-numista-151534
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Düttchen
+  year_first: 1625
+  year_last: 1625
+  year_label: '1625'
+  ruler: Alexander
+  catalog:
+    km: '25'
+    numista: '151534'
+    lange: 559a
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.44
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/151534
+    ref: Numista N#151534 — 1 Düttchen - Alexander
+  - type: literature
+    url: https://numismaster.com/MC_101369
+    ref: NumisMaster
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-numista-151534
+  - schleswig_holstein-numismaster-101369
 - id: unified-schleswig_holstein-numismaster-101366
   fuss: seed_unsorted
   phase: numismaster
@@ -393,69 +745,6 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - schleswig_holstein-numismaster-101367
-- id: unified-schleswig_holstein-numismaster-101368
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1/16 Thaler
-  year_first: 1619
-  year_last: 1620
-  year_ranges:
-  - - 1619
-    - 1620
-  year_label: 1619-1620
-  catalog:
-    km: '9'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101368
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: sonderburg_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-101368
-- id: unified-schleswig_holstein-numismaster-101369
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1/16 Thaler
-  year_first: 1625
-  year_last: 1625
-  year_label: '1625'
-  catalog:
-    km: '25'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101369
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: sonderburg_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-101369
 - id: unified-schleswig_holstein-numismaster-101370
   fuss: seed_unsorted
   phase: numismaster
@@ -486,36 +775,6 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - schleswig_holstein-numismaster-101370
-- id: unified-schleswig_holstein-numismaster-101371
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ¼ Thaler
-  year_first: 1622
-  year_last: 1622
-  year_label: '1622'
-  catalog:
-    km: '16'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_101371
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: sonderburg_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-101371
 - id: unified-schleswig_holstein-numismaster-101372
   fuss: seed_unsorted
   phase: numismaster
@@ -546,6 +805,36 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - schleswig_holstein-numismaster-101372
+- id: unified-schleswig_holstein-numismaster-101373
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: ½ Thaler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  catalog:
+    km: '17'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_101373
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - schleswig_holstein-numismaster-101373
 - id: unified-schleswig_holstein-numismaster-101375
   fuss: seed_unsorted
   phase: numismaster
@@ -577,6 +866,37 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - schleswig_holstein-numismaster-101375
+- id: unified-schleswig_holstein-numismaster-101376
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  catalog:
+    km: '20'
+    dav: 3714B
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_101376
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - schleswig_holstein-numismaster-101376
 - id: unified-schleswig_holstein-numismaster-101378
   fuss: seed_unsorted
   phase: numismaster
@@ -639,6 +959,36 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - schleswig_holstein-numismaster-101380
+- id: unified-schleswig_holstein-numismaster-101381
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 2 Thaler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  catalog:
+    km: '23'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_101381
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - schleswig_holstein-numismaster-101381
 - id: unified-schleswig_holstein-numismaster-101382
   fuss: seed_unsorted
   phase: numismaster

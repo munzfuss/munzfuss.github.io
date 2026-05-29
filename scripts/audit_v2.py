@@ -308,6 +308,86 @@ def check_i5_entity_tags(coins: list[tuple[str, dict]],
     return errors
 
 
+def check_i7_routing_conflicts(coins: list[tuple[str, dict]]
+                                ) -> list[str]:
+    """I7 — entity routing conflicts: surface coins where any rule in
+    `data/v2/entity_routing_rules.yml` would disagree with the coin's
+    current `issuing_entity`.
+
+    Two paths:
+      (a) Coin already carries `_entity_routing_hint` with
+          `active=false, agrees_with_active=false` — read the
+          stored hint.
+      (b) Coin does NOT carry a hint — apply the rules on-the-fly
+          and check if any rule's verdict disagrees with the current
+          entity. This catches coins from source builders that
+          haven't been upgraded to apply rules at seed-build time
+          (NumisMaster / Bruun / Hede / ucoin currently).
+
+    Examples: 1/24 Thaler struck at Altona under Schauenburg-Pinneberg —
+    denomination is Niedersächsisch-tradition (rule routes to
+    `holstein_schauenburg_county`), but mint is verified Altona (SH
+    side, mint-driven routes to `schauenburg_pinneberg`). Curator must
+    decide which side wins for that specific coin (verification against
+    Lange/Behrens/Weinmeister page-by-page).
+
+    Not a hard violation — informational. Returns a list of
+    «<id>: rule X says route_to=<Y> but coin's issuing_entity=<Z>»
+    strings.
+    """
+    from lib.entity_routing import route_entity_with_rules  # local import
+
+    conflicts: list[str] = []
+    for ent, c in coins:
+        hint = c.get("_entity_routing_hint")
+        cid = c.get("id", "?")
+        cur = c.get("issuing_entity", "?")
+
+        # Path (a) — read stored hint
+        if isinstance(hint, dict):
+            if hint.get("active"):
+                continue
+            if hint.get("agrees_with_active"):
+                continue
+            rid = hint.get("rule_id", "?")
+            wr = hint.get("would_route_to", "?")
+            conflicts.append(
+                f"I7: [{ent}] {cid}: rule {rid} says route_to={wr!r} "
+                f"but coin's issuing_entity={cur!r} (mint-driven)"
+            )
+            continue
+
+        # Path (b) — compute on-the-fly for coins lacking a hint
+        try:
+            routed, fresh_hint = route_entity_with_rules(c, default_entity=cur)
+        except Exception:
+            continue
+        if fresh_hint is None:
+            continue
+        # Active=false (mint authoritative) with disagreement is the
+        # surface case. Active=true would mean the coin should have
+        # been re-routed already — that's a pipeline issue, also
+        # worth flagging.
+        if fresh_hint.get("active"):
+            wr = fresh_hint.get("would_route_to", "?")
+            rid = fresh_hint.get("rule_id", "?")
+            if wr != cur:
+                conflicts.append(
+                    f"I7: [{ent}] {cid}: rule {rid} would actively re-route "
+                    f"to {wr!r} but coin's issuing_entity={cur!r} "
+                    f"(seed pipeline did not apply rule)"
+                )
+            continue
+        if not fresh_hint.get("agrees_with_active"):
+            wr = fresh_hint.get("would_route_to", "?")
+            rid = fresh_hint.get("rule_id", "?")
+            conflicts.append(
+                f"I7: [{ent}] {cid}: rule {rid} says route_to={wr!r} "
+                f"but coin's issuing_entity={cur!r} (mint-driven)"
+            )
+    return conflicts
+
+
 def check_i6_decision_refs(unified_coins: list[tuple[str, dict]],
                             seed_coins: list[tuple[str, str, dict]]
                             ) -> list[str]:
@@ -408,21 +488,41 @@ def main() -> int:
         results["I6"] = []
         print("Skipping I6 (--quick mode)")
 
-    total = sum(len(v) for v in results.values())
+    print("Running I7 (entity routing conflicts)...")
+    results["I7"] = check_i7_routing_conflicts(final_coins + unified_coins)
+    print(f"  {len(results['I7'])} conflict(s) — informational, not blocking")
+
+    # I7 is informational — surfaces curator-review cases (mint vs
+    # rule disagreement), not a hard invariant violation. Excluded
+    # from the blocking total but reported in detail below.
+    _INFORMATIONAL_KEYS = {"I7"}
+    total = sum(len(v) for k, v in results.items() if k not in _INFORMATIONAL_KEYS)
+    info_total = sum(len(v) for k, v in results.items() if k in _INFORMATIONAL_KEYS)
     print()
-    print(f"=== Total violations: {total} ===")
+    print(f"=== Total violations: {total} (+ {info_total} informational) ===")
 
     if args.json:
         args.json.write_text(json.dumps(results, ensure_ascii=False, indent=2))
         print(f"\nJSON report → {args.json}")
 
+    # Always print info-class detail (I7 etc.) even when blocking
+    # violations are zero — these are curator-review surfaces.
+    for invariant, errors in results.items():
+        if not errors or invariant not in _INFORMATIONAL_KEYS:
+            continue
+        print(f"\n--- {invariant} ({len(errors)} informational) ---")
+        for e in errors[:10]:
+            print(f"  {e}")
+        if len(errors) > 10:
+            print(f"  ... and {len(errors) - 10} more")
+
     if total == 0:
-        print("✓ All V2 invariants pass.")
+        print("\n✓ All V2 invariants pass.")
         return 0
 
-    # Show details
+    # Show details for blocking violations
     for invariant, errors in results.items():
-        if not errors:
+        if not errors or invariant in _INFORMATIONAL_KEYS:
             continue
         print(f"\n--- {invariant} ({len(errors)} violation(s)) ---")
         for e in errors[:10]:

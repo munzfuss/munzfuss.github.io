@@ -1819,9 +1819,9 @@ def _collect_sources(members: list[dict],
         for s in m.get("sources") or []:
             if not isinstance(s, dict):
                 continue
-            url = s.get("url", "")
-            ref = s.get("ref", "")
-            stype = s.get("type", "")
+            url = s.get("url") or ""
+            ref = s.get("ref") or ""
+            stype = s.get("type") or ""
             if any(host in url for host in _SINGLE_PAGE_HOSTS):
                 key = ("url", url)
             else:
@@ -2492,6 +2492,14 @@ def build_unified(members: list[dict], unified_id: str,
 
     # Audit trail
     out["composed_of"] = composed_of
+
+    # Propagate `_entity_routing_hint` from members — last-writer-wins
+    # is acceptable since hints are metadata-class. Primary member's
+    # hint preferred when present, falling back to others.
+    for m in sorted_members:
+        if isinstance(m, dict) and m.get("_entity_routing_hint"):
+            out["_entity_routing_hint"] = m["_entity_routing_hint"]
+            break
 
     return out, conflicts
 

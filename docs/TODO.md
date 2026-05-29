@@ -1276,41 +1276,6 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 **Definition of done.** Every coin entry in `data/v2/final/*.yml` carries a `classification_signal` value (or explicit `legacy_v1` for pre-V2 placements). Audit script reports the distribution. Future rule extensions automatically write the signal as they fire.
 
-### CB. 🟡 Year-aware issuer→entity override for «Schleswig and Holstein, Danish duchies of» — 6 _unclassified Numista entries  *(opened 2026-05-27, user-marked «з високим пріоритетом»)* *(est: small-medium)* *(type: classifier extension + entity-routing)*
-
-**Surfaced.** First run of the new generic `scripts/maintenance/build_numista_seed.py` (commit `a773c2d`) routed 6 Numista entries to `data/v2/seed/numista/_unclassified.yml` because both the mint-driven and issuer-driven classifiers returned None:
-
-  - dk-numista-153125 (1 Skilling, no ruler, no mint, 1514)
-  - dk-numista-301237 (2 Schillings, no ruler, no mint, 1514)
-  - dk-numista-309418 (1 Pfennig, Frederick II, no mint, 1559)
-  - dk-numista-313337 (2 Schilling, Christian IV, no mint, 1640)
-  - dk-numista-313357 (1 Krone, Frederick III, no mint, 1671)
-  - dk-numista-31895 (2 Sechsling, Christian VII, no mint, 1787)
-
-All carry the Numista issuer string «Schleswig and Holstein, Danish duchies of» (44 cache entries total). The current `_ISSUER_REGISTRY` (in `scripts/lib/mint_registry.py`) deliberately maps this issuer to None because the string spans 1514-1851 across multiple V2 entities (Frederik I era → gottorp_duchy, Christian VII Speciesthaler era → royal_holstein, 1850-1851 → provisional_govt). The 6 surfaced cases are the no-mint subset where mint-driven fallback can't resolve.
-
-**Plan.** Add year-aware override to `classify_issuer_to_entity()` paralleling the existing `entity_for_canon_year` pattern in `mint_registry.py::CANON_TO_YEAR_OVERRIDES`. Concretely:
-
-  ```python
-  # Pseudo — extend classify_issuer_to_entity to accept year parameter
-  _ISSUER_YEAR_OVERRIDES = {
-      "schleswig and holstein, danish duchies of": [
-          {"year_to": 1559, "entity": "gottorp_duchy"},        # Frederik I / Christian III era
-          {"year_from": 1559, "year_to": 1640, "entity": "royal_holstein"},  # late-Reformation
-          {"year_from": 1640, "year_to": 1773, "entity": "royal_holstein"},  # Holstein-Glückstadt portion
-          {"year_from": 1773, "year_to": 1849, "entity": "gesamtstaat"},     # post-Tauschvertrag
-          {"year_from": 1849, "year_to": 1851, "entity": "provisional_govt"},
-          # post-1864 = German Schleswig-Holstein province (existing routing)
-      ],
-  }
-  ```
-
-The 6 cases above resolve as: 153125+301237 (1514) → gottorp_duchy; 309418 (1559) → boundary case, needs source check; 313337 (1640) → royal_holstein; 313357 (1671) → royal_holstein; 31895 (1787) → gesamtstaat.
-
-**Acceptance criteria.** All 6 entries land in concrete entity files after re-running build_numista_seed; the _unclassified.yml file's only residuals are genuinely-unparseable cases (foreign coins / unknown lineage). Build clean.
-
-**Cross-references.** This is the year-aware analogue to the locked 2026-05-26 mint-registry year_to-exclusive convention (Altona 1640 pivot). The 44-entry Numista cluster is the obvious test corpus to validate the implementation. Wikipedia DE «Schleswig-holsteinische Münzgeschichte» + Wilcke 1950 vol. II are likely the verification sources for the 1559 / 1640 / 1773 boundary years.
-
 ### CC. 🟢 222 Numista cache entries with no year_first — undated / ND issues investigation  *(opened 2026-05-27, user-marked «з високим пріоритетом»)* *(est: small)* *(type: audit + classification)*
 
 **Surfaced.** First run of `scripts/parse_numista.py` (commit `fccb75c`) reports 222 of 1717 top-level Numista cache files as `unparseable_top` — both shape-detectors (api / chrome) recognise them, but the per-shape parse returns None. Investigation in this session showed the cause is **missing `year_first` / `min_year`** — i.e. the underlying coin type has no year on Numista (undated, «ND», pattern strikes, modern restrikes).
@@ -3177,6 +3142,23 @@ Recommend per-entry verification against Lange / Behrens / Weinmeister before ma
 _None at the moment. This section is reserved for entries we consciously postpone — when something doesn't belong in High or Normal but is also not closed, it lands here._
 
 ## Done
+
+### CB. ✅ «Schleswig and Holstein, Danish duchies of» issuer → royal_holstein (flat) — 6 _unclassified Numista entries resolved  *(opened 2026-05-27, closed 2026-05-29)* *(est: small-medium → actual small)* *(type: classifier extension)*
+
+**Closed 2026-05-29.** Resolution turned out SIMPLER than the original year-axis plan. The TODO draft assumed «Danish duchies» spans multiple entities by year (gottorp pre-1559 / royal mid / gesamtstaat post-1773). Twin-evidence investigation disproved this:
+
+every «Danish duchies» coin with a findable same-type V2 twin lands in **royal_holstein**, regardless of year (1545-1787):
+  - km-82-chr-iv-1640 (2 Schilling Reuterpfennig 1640)
+  - hede-c7h45 (2 Sechsling 1787)
+  - hede-c5h121 + sieg-137 (4 Marck / 1 Krone 1671)
+  - numismaster mb-48 (1 Thaler Christian III 1545)
+  - numismaster mb-62 (1 Pfennig Schüsselpfennig Friedrich II 1559)
+
+**Why flat (no year-axis).** Numista distinguishes THREE issuer strings — «Schleswig-Holstein-Gottorp, Duchy of» (→ gottorp_duchy, the sovereign Gottorp dukes' own coinage), «Holstein-Schaumburg-Pinneberg, County of» (→ schauenburg), and «Schleswig and Holstein, Danish duchies of» (the Danish KING's ducal portion = royal Holstein). The third is unambiguously the royal/Danish line across the whole period. Control-based classification (per issuing_entities.yml): SH territory under Danish control = royal_holstein, all eras. The deprecated `gesamtstaat` is a term-only retirement — coins classify by territorial control, and post-1773 unified SH (Altona-struck) = royal_holstein. User confirmed 2026-05-29: «це ж лише термін депрекейтед, самі монети визначені за локацією — Ш-Г під контролем данії значить роял гольштейн».
+
+**Delivered.** `_ISSUER_REGISTRY` in `scripts/lib/mint_registry.py`: 3 issuer-string variants None → royal_holstein, with full twin-evidence + 3-era rationale in the comment block. Test `test_danish_duchies_issuer_to_royal_holstein` added. All 6 entries now land in royal_holstein after the standard pipeline cascade — 4 standalone, 2 (468485 1 Thaler 1545 + 31895 2 Sechsling 1787) cross-source MERGED into their existing Hede twins (unified-dk-hede-c3h16 + unified-dk-hede-c7h45), consolidating Numista catalog refs without duplicate rows. `_unclassified.yml` Numista bucket now empty. The 2 «no mint» entries 153125/301237 from the original list got mint-classified separately (Malmo→danish_realm, Husum→royal_holstein) once mints were read.
+
+**Decision recorded:** year-axis NOT added to issuer classification — no current issuer genuinely varies entity by year (verified across all registry entries). Will add the mechanism (paralleling mint_registry's entity_for_canon_year) only when a real year-varying issuer appears, with real bands + test coverage. Avoids speculative generality.
 
 ### BG. Harvest Norway-specific Hede pages (norge/ subfolder pattern)  *(opened 2026-05-15, closed 2026-05-17)*
 
