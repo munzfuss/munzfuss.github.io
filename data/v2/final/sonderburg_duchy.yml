@@ -602,7 +602,9 @@ coins:
     - Lange# 535b
     - Lange# 536a
     - Lange# 536b
-    lange: 535a, 535b, 536
+    lange:
+    - 535a, 535b, 536
+    - '535'
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -610,6 +612,9 @@ coins:
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 2.08
+    source: numista
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151525.html
@@ -657,6 +662,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_120992
     ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/151525
+    ref: Numista N#151525 — 2 Schillings - John
   inscription_obv: IOHAN D G HAERES NOR
   inscription_rev: D SCHL E H C I O E D 19
   note:
@@ -680,6 +688,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-151525
   - unified-schleswig_holstein-numismaster-120992
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
