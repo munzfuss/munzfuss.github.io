@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T16:28:23Z'
+  last_updated_utc: '2026-05-30T18:07:38Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1086,7 +1086,7 @@ anomalies:
     bucket: osnabruck_p3057
   summary: ucoin osnabruck_p3057 bucket (titled '1482-1661') contains TIDs 178756/178757 with attested
     year 1662 — period boundary off by 1 year.
-  status: open
+  status: wontfix
   instance_first_seen: '2026-05-30T16:17:57Z'
   last_seen: '2026-05-30T16:17:57Z'
   occurrence_count: 1
@@ -1108,16 +1108,19 @@ anomalies:
   proposed_fix: Verify with Osnabrück Hochstift numismatic literature whether these are 1662 first-strikes
     under Ernst August (took office 1662) or attribution-only ND coins backdated to 1661 by some sources.
     Update bucket title in audit-4 if ucoin's attribution is canonical.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'ucoin period-label quirk: bucket titled 1482-1661 but TIDs 178756/178757 are dated 1662
+    (Ernst August). 1662 is in mission scope (>1559) — the p3057 mission-year split correctly kept them
+    in gap_tids and they harvest normally. ucoin''s period upper bound is its own metadata imprecision,
+    not a data error (same class as the p2988 period-boundary entries). No manifest change warranted.'
+  resolved_at: '2026-05-30T18:07:37Z'
+  resolved_by: claude
 - id: audit_manifest_scope_drift:query=hamburg:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
     source: ikmk
     query: Hamburg
   summary: IKMK 'Hamburg' query returns OOS records (Würzburg medieval).
-  status: open
+  status: wontfix
   instance_first_seen: '2026-05-30T16:21:47Z'
   last_seen: '2026-05-30T16:21:47Z'
   occurrence_count: 1
@@ -1135,16 +1138,20 @@ anomalies:
       ucoin_batch: '210'
   proposed_fix: Tighten Hamburg query in fetch_ikmk.py QUERIES list to issuer-scope (e.g. add a post-fetch
     filter on issuer.name to require 'Hamburg' substring) or build issuer-allowlist for each bucket.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Wuerzburg (prince-bishopric) is German lands → IN scope under the broad scope (German/Scandinavian,
+    any era), not OOS. The full-text ''Hamburg'' query surfacing it is query-imprecision: the PR #8 title-scope
+    discovery filter KEEPS ''Wuerzburg'' (cached-keep) and the per-record entity filter keeps it (country=Germany).
+    Record correctly cached. Full-text cross-query surfacing of in-scope German issuers is accepted (not
+    a defect).'
+  resolved_at: '2026-05-30T18:07:37Z'
+  resolved_by: claude
 - id: audit_manifest_scope_drift:query=kassel:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
     source: ikmk
     query: Kassel
   summary: IKMK 'Kassel' query returns OOS records (Roman Antoninianus).
-  status: open
+  status: wontfix
   instance_first_seen: '2026-05-30T16:21:47Z'
   last_seen: '2026-05-30T16:21:47Z'
   occurrence_count: 1
@@ -1163,16 +1170,20 @@ anomalies:
       ucoin_batch: '210'
   proposed_fix: Tighten Kassel query in fetch_ikmk.py QUERIES list to scope-filter on date-range (>= 1500)
     and/or issuer-name token (e.g. 'Hesse', 'Hessen-Kassel').
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Victorinus (Gallic Empire 269-271, Trier/Koeln mint) is German-soil → in scope; ''Victorinus''
+    is in the cached-keep set. The ''Kassel'' query surfacing it is full-text imprecision: title filter
+    keeps it, the entity filter at fetch decides by mint country (German-mint Trier → keep; foreign →
+    drop). The broad scope does NOT date-filter German lands, so the proposed >=1500 date-filter does
+    not apply. Correctly handled.'
+  resolved_at: '2026-05-30T18:07:37Z'
+  resolved_by: claude
 - id: concurrent_session_conflict:context=pointer_bump_step_b:source=main_repo
   type: concurrent_session_conflict
   key_dims:
     source: main_repo
     context: pointer_bump_step_b
   summary: Pointer-bump commit accidentally bundled concurrent V2-pipeline edits.
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-30T16:28:23Z'
   last_seen: '2026-05-30T16:28:23Z'
   occurrence_count: 1
@@ -1192,6 +1203,9 @@ anomalies:
   proposed_fix: Always run `git status --short` BETWEEN `git add scripts/cache` and `git commit` in Step
     B (already documented in §3.2 — discipline lapse, not a doc bug). Routine should re-stage and verify
     with `git diff --staged --stat` showing exactly the expected single file before committing.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: Hardened by the pathspec-commit Git safety protocol (commit d29f1e7, 'fix shared-index sweep
+    across ALL sessions') — Step B now stages only scripts/cache by pathspec, so a concurrent V2-pipeline
+    edit cannot be bundled into the pointer-bump. The routine also self-recovered this instance (reset
+    --soft → re-stage scripts/cache → re-commit 8ad0934).
+  resolved_at: '2026-05-30T18:07:38Z'
+  resolved_by: claude
