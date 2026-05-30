@@ -34,9 +34,13 @@
 
 6. **English-only commit messages** (CLAUDE.md «Git workflow» rule). Chat may be Ukrainian; commits are English.
 
-7. **`scripts/cache/` is a submodule.** Every commit is a TWO-STEP dance:
-   - Step A: `cd scripts/cache && git add … && git commit -m "…"`
-   - Step B: `cd /Users/serg/projects/muentzfuesse && git add scripts/cache && git commit -m "data: bump cache pointer — …"`
+7. **`scripts/cache/` is a submodule.** Every commit is a TWO-STEP dance,
+   and BOTH steps commit with an EXPLICIT PATHSPEC (never a bare
+   `git commit` — that commits the whole shared index, sweeping a
+   parallel session's staged files; see §0.8 + CLAUDE.md «Surgical
+   staging under a shared working tree»):
+   - Step A: `cd scripts/cache && git add <explicit cache paths> && git commit <same explicit paths> -m "…"`
+   - Step B: `cd /Users/serg/projects/muentzfuesse && git commit scripts/cache -m "data: bump cache pointer — …"` (scripts/cache is already tracked — pathspec-commit alone, no `git add` of anything else)
    - Both steps required. Missing step B = pointer drift; the next session sees `git status` warn `modified: scripts/cache (new commits)`.
 
 8. **Surgical commits — stage ONLY the files you intend to commit. Parallel sessions may be active.** Other Claude sessions (V2-pipeline, asset builds, documentation work) routinely run in this same working tree and leave their own modifications in flight. The harvest routine MUST commit atomically and MUST NOT bundle unrelated edits into its commits.
@@ -46,16 +50,16 @@
    - **NEVER use `git commit -a`** — it auto-stages every tracked file with modifications.
    - **Always stage by explicit file path** — `git add numista/123.json numista/456.json scripts/cache/_harvest_handoff.json` (specific files) vs. `git add scripts/cache` (specific submodule pointer, single path).
    - **In Step B of the PB-10 dance**, stage ONLY `scripts/cache` — never `git add scripts/cache docs/`, never `git add scripts/cache assets/`, never any second path on the same `git add`. The cache-pointer commit's ONLY purpose is the pointer; if docs / assets / scripts changed, they go in SEPARATE commits.
-   - **Re-check `git status --short` IMMEDIATELY before each `git commit`** — if you see modifications that aren't yours from this run, do NOT proceed; either skip the commit (leave files for the user to handle) or commit only your specific files by absolute path. Concurrent session edits between preflight and commit time are normal.
+   - **PRIMARY GUARD — commit with an EXPLICIT PATHSPEC, never a bare `git commit`.** A bare `git commit -m "…"` commits the ENTIRE shared `.git/index` — including files a PARALLEL session staged. The «stage by explicit path» rules above stop the routine from *staging* others' work, but a bare commit still sweeps what others already staged. So always name the paths on the commit itself: `git commit numista/<n1>.json <n2>.json -m "…"` (Step A) / `git commit scripts/cache -m "…"` (Step B). `git commit <pathspec>` commits ONLY those paths and leaves every other index entry untouched — race-proof regardless of the shared index's state. This is the canonical fix; see CLAUDE.md «Surgical staging under a shared working tree (Git safety protocol)». **This is exactly the bug that produced commit `2bfa76b` (2026-05-30)** — a routine cache-pointer bump bare-committed the shared index and swept a parallel session's `data/v2/final/*` + `scripts/maintenance/*` edits.
+   - **Re-check `git status --short` IMMEDIATELY before each `git commit`** — secondary guard. With pathspec-commit the bare-index sweep can't happen, but the status check still catches «did my own paths end up as expected». Concurrent session edits between preflight and commit time are normal and — with pathspec-commit — harmless.
    - **If a bundle happens anyway** (commit got more files than intended), do NOT amend. Per CLAUDE.md «Git safety protocol», create a corrective commit:
      ```bash
-     # Self-recovery — split a bundle into atomic commits:
+     # Self-recovery — split a bundle into atomic commits (pathspec on
+     # every commit so the split itself can't re-sweep the shared index):
      git reset --soft HEAD~1                  # un-commit, keep stages
      git reset HEAD                            # un-stage everything
-     git add <only-cache-pointer-path>         # re-stage just the harvest part
-     git commit -m "..."                       # atomic harvest commit
-     git add <other-paths>                     # stage the unrelated stuff
-     git commit -m "..."                       # atomic OTHER commit (or leave for user)
+     git commit <only-cache-pointer-path> -m "..."   # atomic harvest commit (pathspec)
+     git commit <other-paths> -m "..."        # atomic OTHER commit, or leave for user
      ```
      The routine that caused commit `95b3f59` (2026-05-21) ran this recovery successfully — keep that pattern as the template.
 
@@ -450,10 +454,10 @@ These are **informational, not blocking**. The routine continues normally; the o
 
 `docs/anomaly_log.yml` is in the MAIN repo, so its modifications appear in `git status` of the main repo (NOT the submodule). When the routine wrote new anomalies this run, the file shows up as `M docs/anomaly_log.yml` alongside `M scripts/cache` at Step B time.
 
-**Stage it explicitly** alongside `scripts/cache` in the LAST main-repo pointer-bump commit of the run (typically the ucoin pointer bump in §5.2, since anomalies most commonly surface during the ucoin batch):
+**Commit it explicitly** alongside `scripts/cache` in the LAST main-repo pointer-bump commit of the run (typically the ucoin pointer bump in §5.2, since anomalies most commonly surface during the ucoin batch). Name BOTH paths on the commit (pathspec-commit per §0.8 — never a bare `git commit` that would also sweep a parallel session's staged files):
 
 ```bash
-git add scripts/cache docs/anomaly_log.yml
+git commit scripts/cache docs/anomaly_log.yml -m "data: bump cache pointer — … (+ anomaly log)"
 ```
 
 If anomalies surface during the Numista batch (rare but possible — e.g. cache-invalidation alarm), include `docs/anomaly_log.yml` in §3.2's Numista pointer bump too.
@@ -784,7 +788,7 @@ git status --short                 # inspect what's dirty BEFORE staging
 **Then stage + commit:**
 
 ```bash
-cd scripts/cache && git add numista/<nid1>.json numista/<nid2>.json numista/<nid3>.json numista/<nid4>.json numista/<nid5>.json && git status --short && git commit -m "$(cat <<'EOF'
+cd scripts/cache && git add numista/<nid1>.json numista/<nid2>.json numista/<nid3>.json numista/<nid4>.json numista/<nid5>.json && git status --short && git commit numista/<nid1>.json numista/<nid2>.json numista/<nid3>.json numista/<nid4>.json numista/<nid5>.json -m "$(cat <<'EOF'
 Numista BO.6 batch <letter> — <bucket-name> (<N> NIDs)
 
 <2-line description of what cluster this batch covers — ruler, era,
@@ -826,7 +830,7 @@ If `git status` shows additional modified / untracked files beyond `scripts/cach
 **Then commit:**
 
 ```bash
-cd /Users/serg/projects/muentzfuesse && git add scripts/cache && git status --short && git commit -m "$(cat <<'EOF'
+cd /Users/serg/projects/muentzfuesse && git status --short && git commit scripts/cache -m "$(cat <<'EOF'
 data: bump cache pointer — Numista BO.6 batch <letter> (<bucket>, <N> NIDs)
 
 scripts/cache: <one-line description of what this slice contains>.
@@ -1168,7 +1172,7 @@ git status --short                 # inspect what's dirty BEFORE staging
 **Then stage + commit:**
 
 ```bash
-cd scripts/cache && git add ucoin/<tid1>.json ucoin/<tid2>.json ucoin/<tid3>.json ucoin/<tid4>.json ucoin/<tid5>.json _harvest_handoff.json && git status --short && git commit -m "$(cat <<'EOF'
+cd scripts/cache && git add ucoin/<tid1>.json ucoin/<tid2>.json ucoin/<tid3>.json ucoin/<tid4>.json ucoin/<tid5>.json _harvest_handoff.json && git status --short && git commit ucoin/<tid1>.json ucoin/<tid2>.json ucoin/<tid3>.json ucoin/<tid4>.json ucoin/<tid5>.json _harvest_handoff.json -m "$(cat <<'EOF'
 ucoin BR batch <N> — <period-name> <slice-description> (<M> TIDs)
 
 <1-2 line description of what cluster this batch covers>
@@ -1204,7 +1208,7 @@ git status --short
 **Then commit:**
 
 ```bash
-cd /Users/serg/projects/muentzfuesse && git add scripts/cache && git status --short && git commit -m "$(cat <<'EOF'
+cd /Users/serg/projects/muentzfuesse && git status --short && git commit scripts/cache -m "$(cat <<'EOF'
 data: bump cache pointer — ucoin BR batch <N> (<period> <slice>, <M> TIDs)
 
 scripts/cache: <1-line description>. <period> progress: <cached>/<total>
@@ -1343,7 +1347,9 @@ cd scripts/cache
 ls -la ikmk/ | grep -E "^\-rw" | grep "\.json" | head -5  # confirm the 5 new JSONs are there
 git add ikmk/<each-of-the-5-mds-ids>.json    # explicit paths, NEVER `git add ikmk/`
 git status --short                            # confirm exactly 5 files staged
-git commit -m "IKMK batch — <N> mds_ids (<entity-or-query-bucket>)"
+# Pathspec on commit too (§0.8 primary guard) — bare commit would sweep
+# the shared index incl. a parallel session's staged files:
+git commit ikmk/<each-of-the-5-mds-ids>.json -m "IKMK batch — <N> mds_ids (<entity-or-query-bucket>)"
 ```
 
 Step A commit-message format: name the per-run label («IKMK batch
@@ -1354,11 +1360,11 @@ batch crosses multiple buckets, name the dominant 2 — e.g. «IKMK
 batch D — 5 mds_ids (royal_holstein + gottorp_duchy)».
 
 ```bash
-# Step B — main-repo pointer bump
+# Step B — main-repo pointer bump (pathspec-commit; scripts/cache is
+# tracked, so no `git add` needed — pathspec alone is race-proof)
 cd /Users/serg/projects/muentzfuesse
 git status --short                            # confirm only `scripts/cache (new commits)`
-git add scripts/cache
-git commit -m "data: bump cache pointer — IKMK batch <N> (<bucket>, 5 mds_ids)"
+git commit scripts/cache -m "data: bump cache pointer — IKMK batch <N> (<bucket>, 5 mds_ids)"
 ```
 
 ### §5.5.5. Skip conditions
@@ -1863,7 +1869,7 @@ git reset --hard <sha-of-new-commit>  # bring the new commit onto main
 cd /Users/serg/projects/muentzfuesse
 ```
 
-Then proceed with Step B (`git add scripts/cache && git commit …`).
+Then proceed with Step B (`git commit scripts/cache -m …` — pathspec-commit per §0.8).
 
 ### §7.3. Concurrent-session conflict on submodule
 

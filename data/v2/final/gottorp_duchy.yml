@@ -77,12 +77,17 @@ coins:
     numista: '301216'
     others:
     - Lange# 399 A var.
+    lange: 399 A var.
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 0.49
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_99424
@@ -90,6 +95,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301216.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/301216
+    ref: Numista N#301216 — 1 Dreiling - Christian Albert
   note:
     de: 3 Pfennigs = 1/128 Thaler · Christian Albrecht von Gottorp, 1661-1675
     en: 3 Pfennigs = 1/128 Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1661-1675
@@ -102,6 +110,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-301216
   - unified-schleswig_holstein-numismaster-99424
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
@@ -180,11 +189,13 @@ coins:
     others:
     - Lange# 376 a
     - Dav SG# 573
+    lange: 376 a
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
   sources:
   - type: literature
@@ -193,6 +204,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301744.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/301744
+    ref: Numista N#301744 — ⅔ Thaler - Christian Albert
   note:
     de: ⅔ Thaler · Christian Albrecht von Gottorp, 1672
     en: ⅔ Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1672
@@ -205,6 +219,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-301744
   - unified-schleswig_holstein-numismaster-99433
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -294,11 +309,14 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   weight_rough_g:
   - value: 28.88
     source: bruun
+  - value: 29.06
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_99463
@@ -309,6 +327,9 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12205, p. 260
+  - type: literature
+    url: https://en.numista.com/314237
+    ref: Numista N#314237 — 1 Thaler - Christian Albert
   note:
     de: 1 Thaler · Christian Albrecht von Gottorp, 1674
     en: 1 Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1674
@@ -322,6 +343,7 @@ coins:
       якірна проба 0.875); Δ +0.58% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
   composed_of:
   - unified-dk-bruun-14419
+  - unified-dk-numista-314237
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -435,13 +457,19 @@ coins:
   catalog:
     km: '132'
     numista: '301095'
-    lange: 404A, 405
+    lange:
+    - 404A, 405
+    - '405'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 2.3
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167258
@@ -449,6 +477,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301095.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/301095
+    ref: Numista N#301095 — 2 Schillings - Christian Albert
   note:
     de: 2 Schillings = 1/24 Thaler · Christian Albrecht von Gottorp, 1681-1682
     en: 2 Schillings = 1/24 Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1681-1682
@@ -461,6 +492,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-301095
   - unified-schleswig_holstein-numismaster-167258
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -534,8 +566,12 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 29.15
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_99465
@@ -543,6 +579,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces354511.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/354511
+    ref: Numista N#354511 — 1 Thaler - Christian Albert
   note:
     de: 1 Thaler · Christian Albrecht von Gottorp, 1681
     en: 1 Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1681
@@ -555,6 +594,7 @@ coins:
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_25_thaler,
       якірна проба 0.875); Δ +0.89% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
   composed_of:
+  - unified-dk-numista-354511
   - unified-schleswig_holstein-numismaster-99465
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -574,9 +614,14 @@ coins:
   catalog:
     km: '139'
     numista: '303372'
+    lange: '408'
   metal: billon
+  metal_verified: true
+  fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
+  mint_verified: true
+  verified: false
   weight_rough_g:
   - value: 0.8
     source: numista
@@ -587,11 +632,25 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces303372.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/303372
+    ref: Numista N#303372 — 1 Sosling - Christian Albert
   note:
     de: 6 Pfennigs = 1/64 Thaler · Christian Albrecht von Gottorp, 1681-1682
     en: 6 Pfennigs = 1/64 Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1681-1682
     uk: 6 Pfennigs = 1/64 Thaler · Крістіан Альбрехт (Гольштейн-Ґотторп), 1681-1682
-  composed_of: []
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  composed_of:
+  - unified-dk-numista-303372
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -615,6 +674,12 @@ coins:
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 1.0
+    source: numista
+  diameter_mm:
+  - value: 19.0
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167249
@@ -622,6 +687,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces48549.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/48549
+    ref: Numista N#48549 — 1 Schilling - Christian Albert
   note:
     de: 1 Schilling = 1/48 Thaler · Christian Albrecht von Gottorp, 1682
     en: 1 Schilling = 1/48 Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1682
@@ -634,6 +702,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-48549
   - unified-schleswig_holstein-numismaster-167249
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -656,8 +725,12 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 16.86
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_99437
@@ -665,6 +738,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces313891.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/313891
+    ref: Numista N#313891 — ⅔ Thaler - Christian Albert
   note:
     de: ⅔ Thaler · Christian Albrecht von Gottorp, 1689
     en: ⅔ Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1689
@@ -677,6 +753,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-313891
   - unified-schleswig_holstein-numismaster-99437
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
@@ -708,16 +785,21 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   fineness:
   - value: 0.986
     source: numismaster
+  - value: 0.986
+    source: numista
   weight_rough_g:
   - value: 3.41
     source: bruun
   - value: 3.5
     source: numismaster
+  - value: 3.5
+    source: numista
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces319271.html
@@ -731,6 +813,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_99484
     ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/319271
+    ref: Numista N#319271 — 1 Ducat - Christian Albert
   note:
     de: Münzmeister Hans Heinrich Lüders (HHL) · Variante mit gekröntem Schild auf Reverse (statt allegorischem Motiv) · Reichsdukatenfuß
       · Bruun-Lot 14223 (Stack's Bowers Zürich 2025)
@@ -751,6 +836,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-14465
+  - unified-dk-numista-319271
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
   phase: I
@@ -778,14 +864,19 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   fineness:
   - value: 0.986
     source: numismaster
+  - value: 0.986
+    source: numista
   weight_rough_g:
   - value: 3.48
     source: bruun
+  - value: 3.48
+    source: numista
   - value: 3.5
     source: numismaster
   sources:
@@ -801,6 +892,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_99485
     ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/276018
+    ref: Numista N#276018 — 1 Ducat - Christian Albert
   note:
     de: 'Münzmeister Hans Heinrich Lüders (HHL) · Allegorische Reverse: Herzog besteigt Dornenberg zur Krone in den Wolken
       · Reichsdukatenfuß · Bruun-Lot 14222 (Stack''s Bowers Zürich 2025)'
@@ -821,6 +915,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-14464
+  - unified-dk-numista-276018
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -902,6 +997,7 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: false
   verified: false
   sources:
@@ -911,6 +1007,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces317503.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/317503
+    ref: Numista N#317503 — 4 Schilling - Frederick IV
   note:
     de: Kürzerer Jahrgang, eigene Stempel · Münzmeister Hans Heinrich Lüders (Tönning) · Scheidemünze · Raugewicht nicht online
       belegt · Feingehalt geschätzt <b>.500–.625</b> (Billon) nach Analogie zu KM-186 · 4 Schilling lübisch ≈ 1/12 Thaler
@@ -929,6 +1028,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-317503
   - unified-schleswig_holstein-numismaster-167288
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
@@ -939,9 +1039,12 @@ coins:
   ruler: Johann Adolf von Gottorp
   issuing_entity: gottorp_duchy
   id: km-16-ja-1605
-  year_first: 1607
-  year_last: 1607
-  year_label: '1607'
+  year_first: 1606
+  year_last: 1610
+  year_ranges:
+  - - 1606
+    - 1610
+  year_label: 1606-1610
   catalog:
     km: '16'
     numista: '313235'
@@ -949,13 +1052,19 @@ coins:
     - Lange# 268 a
     - Behr# 818
     - Dav CCT# 5438
-    lange: 264c
+    lange:
+    - 264c
+    - 268 a
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 28.83
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167365
@@ -963,6 +1072,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces313235.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/313235
+    ref: Numista N#313235 — 1 Thaler - John Adolphus
   note:
     de: 1 Thaler · Johann Adolf von Gottorp, 1605-1611
     en: 1 Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1605-1611
@@ -975,6 +1087,7 @@ coins:
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_thaler,
       якірна проба 0.8889); Δ -1.38% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
   composed_of:
+  - unified-dk-numista-313235
   - unified-schleswig_holstein-numismaster-167365
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -1245,11 +1358,14 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   fineness:
   - value: 0.986
     source: numismaster
+  - value: 0.986
+    source: numista
   weight_rough_g:
   - value: 3.46
     source: bruun
@@ -1257,6 +1373,8 @@ coins:
     source: bruun
   - value: 3.5
     source: numismaster
+  - value: 3.5
+    source: numista
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces319101.html
@@ -1270,6 +1388,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_99488
     ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/319101
+    ref: Numista N#319101 — 1 Ducat - Frederick IV
   note:
     de: Münzmeister Hans Henrik Lüders · Reichsdukatenfuß — Gold hielt seinen Wert, während die Silberprägung des Herzogs
       fiskalisch instabil war · Bruun-Lot 14225
@@ -1291,6 +1412,7 @@ coins:
   composed_of:
   - unified-dk-bruun-14486
   - unified-dk-bruun-14504
+  - unified-dk-numista-319101
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -1366,9 +1488,12 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 25.02
+    source: numista
   - value: 26.14
     source: bruun
   sources:
@@ -1384,6 +1509,9 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14231, p. 306
+  - type: literature
+    url: https://en.numista.com/319105
+    ref: Numista N#319105 — 1 Thaler - Frederick IV
   note:
     de: Münzstätte Tönning · Münzmeister Hans Heinrich Lüders · Bruun-Lot 14231 (Stack's Bowers Zürich 2025) gibt das Raugewicht
       mit 25,02 g an — deutlich unter dem kanonischen 9¼-Fuß-Wert (28,89 g rau bei .875 = 25,28 g fein). Da kein primäres
@@ -1407,6 +1535,7 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-dk-bruun-14505
+  - unified-dk-numista-319105
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -1433,6 +1562,12 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 0.9
+    source: numista
+  diameter_mm:
+  - value: 18.0
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167251
@@ -1440,6 +1575,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces73161.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/73161
+    ref: Numista N#73161 — 1 Schilling - Charles Frederick
   note:
     de: '«I SCHILLING» + Datum · Münzstätte Tönning · Numista-Standardwert: 0,90 g / ⌀ 18 mm · Kleinstscheidemünze im 9¼-Fuß
       · rau 0,90 g × geschätzten <b>.125–.250</b> · Feingehalt im Kupfer-Silber-Legierungsbereich (typisch für 1-Schilling-Nominale
@@ -1460,6 +1598,7 @@ coins:
     uk: 'Аудит TODO A (2026-05-03) проти Numista _issues.json: усі 7 років від 1703 до 1709 явно перелічено, без gap-маркерів
       — діапазон підтверджено як continuous.'
   composed_of:
+  - unified-dk-numista-73161
   - unified-schleswig_holstein-numismaster-167251
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -1487,6 +1626,9 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  diameter_mm:
+  - value: 22.0
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167292
@@ -1494,6 +1636,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces38955.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/38955
+    ref: Numista N#38955 — 4 Schilling - Charles Frederick
   note:
     de: 'Fortsetzung der lübischen Rechnung unter Karl Friedrich · Münzmeister Bastian Hille d. J. (Numista) · Scheidemünze
       · Raugewicht nicht online belegt · Feingehalt geschätzt <b>.500–.625</b> (Billon) — Münzmeister Bastian Hille d. J.,
@@ -1514,6 +1659,7 @@ coins:
     uk: 'Аудит TODO A (2026-05-03) проти Numista _issues.json: усі 8 років від 1703 до 1710 явно перелічено, без gap-маркерів
       — діапазон підтверджено як continuous.'
   composed_of:
+  - unified-dk-numista-38955
   - unified-schleswig_holstein-numismaster-167292
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
@@ -1548,11 +1694,14 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   fineness:
   - value: 0.986
     source: numismaster
+  - value: 0.986
+    source: numista
   weight_rough_g:
   - value: 3.46
     source: bruun
@@ -1560,6 +1709,8 @@ coins:
     source: bruun
   - value: 3.5
     source: numismaster
+  - value: 3.5
+    source: numista
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces319272.html
@@ -1574,6 +1725,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_79689
     ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/319272
+    ref: Numista N#319272 — 1 Ducat - Charles Frederick
   note:
     de: Münzmeister Bastian Hille (BH) · junger Karl Friedrich (b. 1700, reg. 1702–1739) · Bruun-Lot 14233 · <b>erster Tönning-Dukat
       unter Karl Friedrich</b>
@@ -1594,6 +1748,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-14527
+  - unified-dk-numista-319272
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
   phase: I
@@ -1611,11 +1766,15 @@ coins:
     km: '188'
     bruun_lot: '14528'
     numista: '319169'
+    lange: 444A
+    fr: '3088'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
+  verified: false
   fineness:
   - value: 0.986
     source: numista
@@ -1630,6 +1789,9 @@ coins:
     ref: Bruun Part II, lot 14234, p. 309
     note: Stack's Bowers Zürich, 14–15 March 2025 — «Fr-3088; KM-188; Lange-444A; Sieg-11.2; Bruun-14528.... Rare and enviable
       despite the noted flaw.»
+  - type: literature
+    url: https://en.numista.com/319169
+    ref: Numista N#319169 — 1 Ducat - Charles Frederick
   note:
     de: Münzmeister Bastian Hille (BH) · junger Karl Friedrich (b. 1700, reg. 1702–1739) · Bruun-Lot 14233 · <b>erster Tönning-Dukat
       unter Karl Friedrich</b>
@@ -1637,7 +1799,18 @@ coins:
       under Karl Friedrich</b>
     uk: монетмайстер Bastian Hille (BH) · молодий Karl Friedrich (b. 1700, reg. 1702–1739) · лот Bruun 14233 · <b>Перший Tönning-Dukat
       за Karl Friedrich</b>
-  composed_of: []
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  composed_of:
+  - unified-dk-numista-319169
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -1662,6 +1835,7 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   sources:
@@ -1671,6 +1845,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces143519.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/143519
+    ref: Numista N#143519 — 1 Sechsling - Charles Frederick
   note:
     de: 6 Pfennigs = 1/64 Thaler · Karl Friedrich von Gottorp, 1706-1712
     en: 6 Pfennigs = 1/64 Thaler · Charles Frederick, Duke of Schleswig-Holstein-Gottorp, 1706-1712
@@ -1683,6 +1860,7 @@ coins:
     uk: 'Аудит TODO A (2026-05-03) проти Numista _issues.json: усі 7 років від 1706 до 1712 явно перелічено, без gap-маркерів
       — діапазон підтверджено як continuous.'
   composed_of:
+  - unified-dk-numista-143519
   - unified-schleswig_holstein-numismaster-167242
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -1746,10 +1924,12 @@ coins:
   catalog:
     km: '199'
     numista: '319171'
+    lange: 468a
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   sources:
@@ -1759,6 +1939,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces319171.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/319171
+    ref: Numista N#319171 — 1 Schilling - Charles Frederick
   note:
     de: 1 Schilling = 1/48 Thaler · Karl Friedrich von Gottorp, 1708-1710
     en: 1 Schilling = 1/48 Thaler · Charles Frederick, Duke of Schleswig-Holstein-Gottorp, 1708-1710
@@ -1771,6 +1954,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-319171
   - unified-schleswig_holstein-numismaster-167252
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
@@ -1799,14 +1983,19 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   fineness:
   - value: 0.986
     source: numismaster
+  - value: 0.986
+    source: numista
   weight_rough_g:
   - value: 0.87
     source: bruun
+  - value: 0.87
+    source: numista
   - value: 0.875
     source: numismaster
   sources:
@@ -1822,6 +2011,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_79686
     ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/276021
+    ref: Numista N#276021 — ¼ Ducat - Charles Frederick
   note:
     de: Münzmeister Bastian Hille (BH) · <b>kleinstes bekanntes Gottorp-Goldnominal</b> · Bruun-Lot 14237 · «<i>Magnificent
       coin with rich luster</i>» (Bruun)
@@ -1842,6 +2034,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-14550
+  - unified-dk-numista-276021
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -1861,10 +2054,12 @@ coins:
   catalog:
     km: '201'
     numista: '224070'
+    lange: 470c
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   sources:
@@ -1874,6 +2069,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces224070.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/224070
+    ref: Numista N#224070 — 1 Schilling - Charles Frederick
   note:
     de: 1 Schilling = 1/48 Thaler · Karl Friedrich von Gottorp, 1710-1713
     en: 1 Schilling = 1/48 Thaler · Charles Frederick, Duke of Schleswig-Holstein-Gottorp, 1710-1713
@@ -1886,6 +2084,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-224070
   - unified-schleswig_holstein-numismaster-167253
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
@@ -1911,12 +2110,12 @@ coins:
     bruun_part: II
     bruun_lot_no: 14208
     bruun_page: 292
-    dav: '3682'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 28.62
@@ -1931,6 +2130,9 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14207, p. 292
+  - type: literature
+    url: https://en.numista.com/313236
+    ref: Numista N#313236 — 1 Thaler - John Adolphus
   note:
     de: 1 Thaler · Johann Adolf von Gottorp, 1606-1611
     en: 1 Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1606-1611
@@ -1942,7 +2144,8 @@ coins:
       primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of: []
+  composed_of:
+  - unified-dk-numista-313236
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -1961,11 +2164,14 @@ coins:
   catalog:
     km: '212'
     numista: '301664'
-    lange: 462-63
+    lange:
+    - 462-63
+    - '463'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   sources:
@@ -1975,6 +2181,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301664.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/301664
+    ref: Numista N#301664 — 4 Schilling - Charles Frederick
   note:
     de: Büste des Herzogs rechts · Reverse gekröntes Schleswig-Schild · Scheidemünze · letzte Tönning-Prägung · Feingehalt
       geschätzt <b>.500–.625</b> (Billon) · 4 Schilling lübisch ≈ 1/12 Thaler Species = 2,10681 g fein
@@ -1990,6 +2199,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-301664
   - unified-schleswig_holstein-numismaster-167293
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -2012,10 +2222,12 @@ coins:
   catalog:
     km: '214'
     numista: '301538'
+    lange: '470'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   sources:
@@ -2025,6 +2237,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301538.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/301538
+    ref: Numista N#301538 — 1 Schilling - Charles Frederick
   note:
     de: 1 Schilling = 1/48 Thaler · Karl Friedrich von Gottorp, 1710-1712
     en: 1 Schilling = 1/48 Thaler · Charles Frederick, Duke of Schleswig-Holstein-Gottorp, 1710-1712
@@ -2037,6 +2252,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-301538
   - unified-schleswig_holstein-numismaster-167254
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -2062,6 +2278,7 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   sources:
@@ -2071,6 +2288,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces319268.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/319268
+    ref: Numista N#319268 — 1 Sechsling - Charles Frederick
   note:
     de: 6 Pfennigs = 1/64 Thaler · Karl Friedrich von Gottorp, 1723-1724
     en: 6 Pfennigs = 1/64 Thaler · Charles Frederick, Duke of Schleswig-Holstein-Gottorp, 1723-1724
@@ -2083,6 +2303,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-319268
   - unified-schleswig_holstein-numismaster-167245
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -2117,8 +2338,12 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 27.98
+    source: numista
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces33257.html
@@ -2132,6 +2357,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_145857
     ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/33257
+    ref: Numista N#33257 — 1 Thaler - Charles Peter Ulrich (Albertustaler)
   note:
     de: 1 Thaler · Karl Peter Ulrich von Gottorp (späterer Peter III. v. Russland), 1753
     en: 1 Thaler · Karl Peter Ulrich (later Peter III of Russia), 1753
@@ -2149,6 +2377,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-14640
+  - unified-dk-numista-33257
   - unified-schleswig_holstein-numismaster-145857
   - unified-schleswig_holstein-numismaster-79685
   v1_home_location: schleswig_holstein
@@ -2164,14 +2393,11 @@ coins:
   year_last: 1612
   year_ranges:
   - - 1609
-    - 1609
-  - - 1611
     - 1612
-  year_label: 1609, 1611-1612
+  year_label: 1609-1612
   catalog:
     km: '25'
     numista: '301092'
-    lange: 276-77
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2192,6 +2418,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301092.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/301092
+    ref: Numista N#301092 — ½ Thaler - John Adolphus
   note:
     de: ½ Thaler · Johann Adolf von Gottorp, 1611
     en: ½ Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1611
@@ -2203,7 +2432,8 @@ coins:
       anchor 0.8889); Δ -1.27% against the soll value sits within the ±2 % specimen-tolerance envelope.
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_thaler,
       якірна проба 0.8889); Δ -1.27% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  composed_of: []
+  composed_of:
+  - unified-dk-numista-301092
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
@@ -2272,6 +2502,12 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 0.6
+    source: numista
+  diameter_mm:
+  - value: 15.0
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167234
@@ -2279,6 +2515,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces292243.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/292243
+    ref: Numista N#292243 — 6 Pfennigs - Charles Frederick
   note:
     de: 6 Pfennigs = 1/64 Thaler · Karl Friedrich von Gottorp, 1726
     en: 6 Pfennigs = 1/64 Thaler · Charles Frederick, Duke of Schleswig-Holstein-Gottorp, 1726
@@ -2291,6 +2530,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-292243
   - unified-schleswig_holstein-numismaster-167234
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -2359,6 +2599,7 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: false
   verified: false
   sources:
@@ -2368,6 +2609,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301546.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/301546
+    ref: Numista N#301546 — ⅔ Thaler - Christian Albert
   note:
     de: ⅔ Thaler · Christian Albrecht von Gottorp, 1683-1688
     en: ⅔ Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1683-1688
@@ -2380,6 +2624,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-301546
   - unified-schleswig_holstein-numismaster-99436
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -2452,8 +2697,12 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 22.11
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_99434
@@ -2464,6 +2713,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces313830.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/313830
+    ref: Numista N#313830 — ⅔ Thaler - Christian Albert
   note:
     de: 'Reverse-Inschrift: «PER: ASPERA: AD ASTRA. 1676» mit explizitem Wertindex «2/3» (, Münzmeisterzeichen H L). Anders
       als KM# 134/136 trägt der Reverse hier nicht «MARCK LVB», sondern nur die ⅔-Wertangabe. Die metrischen Parameter (Raugewicht
@@ -2493,6 +2745,7 @@ coins:
     uk: Виведено з реверс-інскрипції «II MARCK LVB» (= 2 Marck Lübisch) і типової проби вендсько-любецької монетної традиції
       — не задокументовано первинним монетним едиктом.
   composed_of:
+  - unified-dk-numista-313830
   - unified-schleswig_holstein-numismaster-99434
   - unified-schleswig_holstein-numismaster-99435
   v1_home_location: schleswig_holstein
@@ -2510,13 +2763,19 @@ coins:
   catalog:
     km: '149'
     numista: '317502'
-    lange: 409a-409b
+    lange:
+    - 409a-409b
+    - '409'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 0.81
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167241
@@ -2524,6 +2783,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces317502.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/317502
+    ref: Numista N#317502 — 1 Sechsling - Christian Albert
   note:
     de: 6 Pfennigs = 1/64 Thaler · Christian Albrecht von Gottorp, 1693
     en: 6 Pfennigs = 1/64 Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1693
@@ -2536,6 +2798,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-317502
   - unified-schleswig_holstein-numismaster-167241
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -2557,8 +2820,12 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 1.02
+    source: numista
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces319277.html
@@ -2566,6 +2833,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_167247
     ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/319277
+    ref: Numista N#319277 — 1 Schilling - Christian Albert
   note:
     de: 1 Schilling = 1/48 Thaler · Christian Albrecht von Gottorp, 1681
     en: 1 Schilling = 1/48 Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1681
@@ -2578,6 +2848,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-319277
   - unified-schleswig_holstein-numismaster-167247
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
@@ -2599,8 +2870,12 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 7.06
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167349
@@ -2608,6 +2883,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces313239.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/313239
+    ref: Numista N#313239 — ¼ Thaler - John Adolphus
   note:
     de: ¼ Thaler · Johann Adolf von Gottorp, 1611
     en: ¼ Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1611
@@ -2620,6 +2898,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-313239
   - unified-schleswig_holstein-numismaster-167349
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
@@ -2645,16 +2924,14 @@ coins:
     bruun_part: II
     bruun_lot_no: 14210
     bruun_page: 293
-    dav: '3689'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: false
   verified: false
   weight_rough_g:
-  - value: 28.71
-    source: numismaster
   - value: 28.71
     source: numista
   sources:
@@ -2667,6 +2944,9 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14210, p. 293
+  - type: literature
+    url: https://en.numista.com/313300
+    ref: Numista N#313300 — 1 Thaler - John Adolphus
   note:
     de: 1 Thaler · Johann Adolf von Gottorp, 1611-1612
     en: 1 Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1611-1612
@@ -2678,7 +2958,8 @@ coins:
       anchor 0.8889); Δ -1.79% against the soll value sits within the ±2 % specimen-tolerance envelope.
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_thaler,
       якірна проба 0.8889); Δ -1.79% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  composed_of: []
+  composed_of:
+  - unified-dk-numista-313300
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
@@ -2699,12 +2980,17 @@ coins:
     - Lange# 271 var.
     - Dav EC II# 3690
     dav: '3690'
+    lange: 271 var.
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 28.77
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_99446
@@ -2712,6 +2998,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces313301.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/313301
+    ref: Numista N#313301 — 1 Thaler - John Adolphus
   note:
     de: 1 Thaler · Johann Adolf von Gottorp, 1611
     en: 1 Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1611
@@ -2724,6 +3013,7 @@ coins:
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_thaler,
       якірна проба 0.8889); Δ -1.58% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
   composed_of:
+  - unified-dk-numista-313301
   - unified-schleswig_holstein-numismaster-99446
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
@@ -2748,8 +3038,12 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 2.51
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167336
@@ -2757,6 +3051,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces313340.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/313340
+    ref: Numista N#313340 — 2 Schillings - John Adolphus
   note:
     de: 2 Schillings = 1/24 Thaler · Johann Adolf von Gottorp, 1614-1615
     en: 2 Schillings = 1/24 Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1614-1615
@@ -2769,6 +3066,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-313340
   - unified-schleswig_holstein-numismaster-167336
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -3283,7 +3581,9 @@ coins:
     numista: '257985'
     others:
     - Saur# 3549
-    lange: 295B, 296-297, 302, 302d, 303
+    lange:
+    - 295B, 296-297, 302, 302d, 303
+    - '303'
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3291,6 +3591,12 @@ coins:
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 2.0
+    source: numista
+  diameter_mm:
+  - value: 20.0
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167331
@@ -3298,6 +3604,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces257985.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/257985
+    ref: Numista N#257985 — 1⁄24 Thaler - John Adolphus
   note:
     de: 1 Groschen = 1/24 Thaler · Johann Adolf von Gottorp, 1599-1603
     en: 1 Groschen = 1/24 Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1599-1603
@@ -3310,6 +3619,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-257985
   - unified-schleswig_holstein-numismaster-167331
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -3384,11 +3694,15 @@ coins:
     numista: '564126'
     bruun_collection_id: '14490'
     sieg: '12.7'
-    fr: '3083'
+    fr:
+    - '3083'
+    - '3085'
+    lange: 426B
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   fineness:
@@ -3397,6 +3711,8 @@ coins:
   weight_rough_g:
   - value: 3.38
     source: bruun
+  - value: 3.48
+    source: numista
   - value: 3.5
     source: numismaster
   sources:
@@ -3412,6 +3728,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_99486
     ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/564126
+    ref: Numista N#564126 — 1 Ducat - Frederick IV
   note:
     de: Münzmeister Hans Heinrich Lüders (HHL) · Reverse zeigt <b>Stapelholm-Festung</b> zwischen den Flüssen Ejder und Treene
       nahe Friedrichstadt · Bruun-Lot 14227 · gleiche Stempel wie der Silberabschlag zu 8 Schilling (Lange-430B) · leicht
@@ -3435,6 +3754,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-14490
+  - unified-dk-numista-564126
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I

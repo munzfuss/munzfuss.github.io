@@ -739,6 +739,63 @@ The Claude Preview MCP serves a live preview against the rendered output. Two op
 >
 > **Push permission grant.** A request from the user to push — phrased as «пуш», «push», «git push», «push it», «запуш», or any equivalent that names the push action — counts as explicit permission to push to `origin/main` for that turn. No follow-up confirmation is required; run `git push` and report the resulting refspec range. The push permission is per-turn and per-request — it does not pre-authorise future pushes elsewhere in the session.
 
+### Surgical staging under a shared working tree (Git safety protocol)
+
+> **This rule binds EVERY session that runs `git commit` — interactive
+> chat sessions, the hourly harvest routine, any cron / automated run.
+> Not just the harvest routine.** Multiple Claude sessions routinely
+> operate in the SAME working tree at once (interactive editing +
+> background harvest cron + V2-pipeline work). They all share ONE
+> `.git/index`. That shared index is the trap.
+
+**The failure mode (observed 2026-05-30, commit `2bfa76b`).** Session A
+runs `git add <A's files>` — those files now sit in the shared index.
+Before A commits, session B runs `git add scripts/cache && git commit -m
+"…"`. B's **bare `git commit` commits the ENTIRE index** — A's staged
+files get swept into B's commit, mislabelled and undocumented. A
+harvest cache-pointer bump thereby bundled an unrelated session's
+in-flight `data/v2/final/*` + `scripts/maintenance/*` edits.
+
+**Why the obvious guards don't fully protect.** «Never `git add -A`» +
+«stage by explicit path» stop a session from *staging* others' files —
+but they do NOT stop a **bare `git commit` from committing files
+another session already staged**. «Re-check `git status` before commit»
+is racy (TOCTOU — files can be staged between the check and the commit).
+
+**The rule — commit with an explicit pathspec, always:**
+
+```bash
+# New / untracked files (e.g. fresh cache JSONs) — add THEN commit the
+# SAME explicit paths. The pathspec on `git commit` is the race-proof
+# part: it commits ONLY those paths, ignoring whatever else is staged.
+git add path/a path/b && git commit path/a path/b -m "…"
+
+# Already-tracked path (e.g. the scripts/cache submodule pointer) — no
+# add needed; pathspec-commit alone:
+git commit scripts/cache -m "…"
+```
+
+**Forbidden (all commit the whole shared index → sweep parallel work):**
+- bare `git commit -m "…"` (no pathspec) — commits everything staged.
+- `git add . / git add -A / git add -u` — blanket-stage.
+- `git commit -a` — auto-stages every tracked modification.
+
+`git commit <pathspec>` commits only the named paths from the working
+tree and leaves every other index entry untouched (still staged for the
+other session). It is race-proof regardless of what else is dirty or
+staged. This is the canonical «Git safety protocol» referenced by
+`docs/HARVEST_ROUTINE.md` §0.8 and `docs/PLAYBOOKS.md` PB-10.
+
+**If a bundle happens anyway** (a commit captured files you didn't
+intend), do NOT amend — split it with the self-recovery in
+`docs/HARVEST_ROUTINE.md` §0.8 (`git reset --soft HEAD~1` → un-stage →
+re-commit each set with its own pathspec + message).
+
+**Architectural note.** A per-session `git worktree` (separate index)
+would eliminate the shared-index race at the root, but our `scripts/cache`
+submodule makes multi-worktree support costly to maintain — so
+pathspec-commit is the in-place discipline we use instead.
+
 ### Script directory layout
 
 Three tiers under `scripts/` picked by recurrence pattern (active build path / lifecycle-bound utilities / throwaway scratch). Tier definitions + decision tests for new scripts: **`docs/CONVENTIONS.md` §«Script directory layout»**. Per-script inventory of the maintenance tier: **`scripts/maintenance/README.md`**.

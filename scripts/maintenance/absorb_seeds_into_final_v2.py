@@ -83,6 +83,8 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     _format_year_label,
     _take_first_non_none,
     _or_merge_verified,
+    _catalog_refs,
+    _shares_unique_id_ref,
 )
 
 
@@ -1105,6 +1107,39 @@ def process_entity(entity_id: str) -> dict:
             result = match_pair(unified, fc, entity_id, reign_index=reign_index)
             if result["decision"] == "confident":
                 candidates.append(fid)
+        # Globally-unique-ID absorb fallback (§dup-audit T1 residual,
+        # 2026-05-30). When no confident match_pair candidate exists, a
+        # unified entry STILL absorbs into a foundation that shares an
+        # AGREEING globally-unique ref (numista N# / bruun coll-id) —
+        # PROVIDED exactly one foundation qualifies AND match_pair's
+        # failure was not on a hard physical signal (metal / nominal).
+        # This catches the «same Numista type, divergent Lange sub-number»
+        # case (e.g. unified-dk-numista-301095 vs km-132-chr-a-1681 —
+        # both cite N#301095 + km=132, but lange «405» vs «404A,405» makes
+        # the catalog chain «disagree» → match_pair no_match). The shared
+        # N# is identity-proof; the Lange divergence is cross-source noise.
+        #
+        # Scoped to ABSORB only (not the merger's union-find) so it can't
+        # trigger transitive over-merge across seeds. The exactly-one
+        # guard rejects the year-variant false-positive (Numista groups
+        # multiple struck years under one N#; OUR data splits them into
+        # several foundations → multiple share the N# → ambiguous → skip).
+        if not candidates:
+            u_refs = _catalog_refs(unified, entity_id)
+            id_fallback = []
+            for fid, fc in final_by_id.items():
+                f_refs = _catalog_refs(fc, entity_id)
+                if not _shares_unique_id_ref(u_refs, f_refs):
+                    continue
+                r = match_pair(unified, fc, entity_id, reign_index=reign_index)
+                # Don't override a hard physical-signal disagreement.
+                if r["primary"].get("metal") is False:
+                    continue
+                if r["primary"].get("nominal") is False:
+                    continue
+                id_fallback.append(fid)
+            if len(id_fallback) == 1:
+                candidates = id_fallback
         if not candidates:
             unmatched.append(uid)
         elif len(candidates) == 1:

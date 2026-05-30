@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T15:45:22Z'
+  last_updated_utc: '2026-05-30T16:28:23Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1079,3 +1079,119 @@ anomalies:
     4 audit files (e.g. brunswick_luneburg_p1082 0→61, norway.p3 0→200).'
   resolved_at: '2026-05-30T08:44:39Z'
   resolved_by: claude
+- id: audit_manifest_period_boundary:bucket=osnabruck_p3057:source=ucoin
+  type: audit_manifest_period_boundary
+  key_dims:
+    source: ucoin
+    bucket: osnabruck_p3057
+  summary: ucoin osnabruck_p3057 bucket (titled '1482-1661') contains TIDs 178756/178757 with attested
+    year 1662 — period boundary off by 1 year.
+  status: open
+  instance_first_seen: '2026-05-30T16:17:57Z'
+  last_seen: '2026-05-30T16:17:57Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 178756
+    - 178757
+  occurrences:
+  - run_utc: '2026-05-30T16:17:57Z'
+    batch_label: '210'
+    detail: 'Batch 210: TID 178756 (4 Thaler ND-1662 KM-91, 115.97g) and TID 178757 (likely 5 Thaler 1662)
+      both attributed to ''Ernest Augustus'' within bucket period ''1482 - 1661'' per ucoin''s own page
+      text. Possibly the bucket should extend to include early HG-Rendsburg transition 1662-1663 or these
+      TIDs were misclassified upstream by ucoin.'
+    full_context:
+      ucoin_batch: '210'
+      numista_batch: GW
+      ikmk_batch: BC-pending
+  proposed_fix: Verify with Osnabrück Hochstift numismatic literature whether these are 1662 first-strikes
+    under Ernst August (took office 1662) or attribution-only ND coins backdated to 1661 by some sources.
+    Update bucket title in audit-4 if ucoin's attribution is canonical.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=hamburg:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: Hamburg
+  summary: IKMK 'Hamburg' query returns OOS records (Würzburg medieval).
+  status: open
+  instance_first_seen: '2026-05-30T16:21:47Z'
+  last_seen: '2026-05-30T16:21:47Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18267557
+  occurrences:
+  - run_utc: '2026-05-30T16:21:47Z'
+    batch_label: BC
+    detail: 'Batch BC: mds_id 18267557 is Würzburg Bishop Embricho (1127-1146) Denar/Dünnpfennig — clearly
+      not Hamburg. IKMK quick_search likely cross-listed via dynastic / collection-tagging.'
+    full_context:
+      ikmk_batch: BC
+      numista_batch: GW
+      ucoin_batch: '210'
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py QUERIES list to issuer-scope (e.g. add a post-fetch
+    filter on issuer.name to require 'Hamburg' substring) or build issuer-allowlist for each bucket.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=kassel:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: Kassel
+  summary: IKMK 'Kassel' query returns OOS records (Roman Antoninianus).
+  status: open
+  instance_first_seen: '2026-05-30T16:21:47Z'
+  last_seen: '2026-05-30T16:21:47Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18263997
+  occurrences:
+  - run_utc: '2026-05-30T16:21:47Z'
+    batch_label: BC
+    detail: 'Batch BC: mds_id 18263997 is Roman emperor Victorinus (269-271 AD) Doppeldenar/Antoninianus,
+      bronze — clearly not Hesse-Kassel. IKMK quick_search likely matched via collection-name ''Kassel''
+      or museum-cabinet origin tag.'
+    full_context:
+      ikmk_batch: BC
+      numista_batch: GW
+      ucoin_batch: '210'
+  proposed_fix: Tighten Kassel query in fetch_ikmk.py QUERIES list to scope-filter on date-range (>= 1500)
+    and/or issuer-name token (e.g. 'Hesse', 'Hessen-Kassel').
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: concurrent_session_conflict:context=pointer_bump_step_b:source=main_repo
+  type: concurrent_session_conflict
+  key_dims:
+    source: main_repo
+    context: pointer_bump_step_b
+  summary: Pointer-bump commit accidentally bundled concurrent V2-pipeline edits.
+  status: open
+  instance_first_seen: '2026-05-30T16:28:23Z'
+  last_seen: '2026-05-30T16:28:23Z'
+  occurrence_count: 1
+  affected_ids: {}
+  occurrences:
+  - run_utc: '2026-05-30T16:28:23Z'
+    batch_label: GW/210/BC
+    detail: 'Run GW/210/BC handoff-fixup pointer-bump commit (originally 2bfa76b) included 5 unrelated
+      working-tree files (data/v2/classification_decisions/{gottorp,sonderburg}_duchy.yml, data/v2/final/{gottorp,sonderburg}_duchy.yml,
+      scripts/maintenance/absorb_seeds_into_final_v2.py) from a concurrent session. Detected post-commit
+      via `git log -1 --stat`. Self-recovery executed per §0.8: git reset --soft HEAD~1, git reset HEAD,
+      git add scripts/cache only, re-commit (new sha 8ad0934, 1 file). V2-pipeline edits left unstaged
+      in working tree.'
+    full_context:
+      original_bad_sha: 2bfa76b02c72eb649d1fbb616db34b6667629cff
+      recovered_sha: 8ad0934875e4444d9173d333de3cfb5b764dc963
+  proposed_fix: Always run `git status --short` BETWEEN `git add scripts/cache` and `git commit` in Step
+    B (already documented in §3.2 — discipline lapse, not a doc bug). Routine should re-stage and verify
+    with `git diff --staged --stat` showing exactly the expected single file before committing.
+  resolution: null
+  resolved_at: null
+  resolved_by: null

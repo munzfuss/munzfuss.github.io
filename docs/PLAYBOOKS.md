@@ -1076,17 +1076,22 @@ it; only fetchers / parsers / audits / maintenance scripts do.
 the pointer in main. Otherwise collaborators (or CI, if it ever
 starts pulling the submodule) see a dangling pointer.
 
+Both commits use an EXPLICIT PATHSPEC (never a bare `git commit` —
+that commits the whole shared `.git/index` and sweeps a parallel
+session's staged files; see CLAUDE.md «Surgical staging under a shared
+working tree (Git safety protocol)»).
+
 ```bash
-# 1. Commit cache changes in the submodule first.
+# 1. Commit cache changes in the submodule first — pathspec-commit.
 cd scripts/cache
 git add <changed files>
-git commit -m "harvest(<source>): <what changed>"
+git commit <same changed files> -m "harvest(<source>): <what changed>"
 git push
 
-# 2. Bump the submodule pointer in the main repo.
+# 2. Bump the submodule pointer in the main repo — pathspec-commit
+#    (scripts/cache is already tracked, so no `git add` needed).
 cd ../..
-git add scripts/cache       # records the new commit SHA the submodule points at
-git commit -m "build: bump harvest submodule (<reason>)"
+git commit scripts/cache -m "build: bump harvest submodule (<reason>)"
 git push
 ```
 
@@ -1152,7 +1157,7 @@ cd scripts/cache && git checkout main && git reset --hard <our-cache-sha>
 cd ../..
 # One consolidated pointer-bump commit — preserves OUR cache work
 # while accepting upstream's data/* commits:
-git add scripts/cache && git commit -m "cache: bump submodule (post-rebase consolidation)"
+git commit scripts/cache -m "cache: bump submodule (post-rebase consolidation)"
 ```
 
 This loses the per-batch granularity of multiple pointer-bumps that
