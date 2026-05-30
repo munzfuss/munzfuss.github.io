@@ -94,6 +94,30 @@ _ROMAN_VALUES: dict[str, int] = {
 _LEADING_ROMAN_TOKEN_RE = re.compile(r"^([IVXLCDM]+)\s+")
 # Fractional WORD leading a nominal → numeric ½ («Halv ørtug» → «½ ørtug»).
 _LEADING_HALV_RE = re.compile(r"^(?:Halv|Halve|Half|Halb)\s+", re.IGNORECASE)
+# Known geographic / territorial prefixes that leaked into the nominal
+# field («Oldenburg. Taler», «Lübeck (Bishopric). Ducat»). The place is
+# the issuing entity (the coin lives in that entity file), never part of
+# the nominal. A CLOSED set — NOT a generic «<Capital>. » match — so
+# non-place prefixes that happen to fit the shape («Gold Off-Metal.», an
+# off-strike annotation; «Danish West India Company.», an issuer) are
+# left for the curated §CG pass instead of being silently dropped.
+_NOMINAL_LOCATION_PREFIXES = frozenset({
+    "oldenburg", "lübeck", "lübeck (bishopric)", "bremen (bishopric)",
+    "bremen & verden", "rantzau", "osnabrück", "wismar", "hesse-kassel",
+    "lauenburg", "lower saxony", "copenhagen", "lübeck (bistum)",
+    "s chleswig-holstein-schaumburg-pinneberg",
+})
+# Editorial prefix that is NOT part of the denomination («Commemorative
+# 2 Kroner», «Largesse 4 Ducats»). The commemorative / largesse character
+# is carried by `kind: gedenk`, not the nominal — strip it.
+_LEADING_EDITORIAL_RE = re.compile(r"^(?:Commemorative|Largesse)\s+", re.IGNORECASE)
+# Trailing decimal-number paren = the piece weight in grams («1 Ducat (3.5)»,
+# «1 Crown (15.75)») — a parser bleed; the weight lives in `weight_rough_g`.
+# Decimal-only so it never touches a denomination equivalent like «(8 Mark)»
+# or «(= 20)».
+_TRAILING_WEIGHT_PAREN_RE = re.compile(r"\s*\(\d+\.\d+\)\s*$")
+# Trailing modern-currency / metric equivalence («1 Øre (0.01 DKK)»).
+_TRAILING_MODERN_PAREN_RE = re.compile(r"\s*\(\s*=?\s*[\d.,]+\s*DKK\s*\)\s*$", re.IGNORECASE)
 
 # Nominal heads that are NOT real denominations — generic descriptors /
 # placeholders that must never receive an implicit «1 » count.
@@ -454,6 +478,27 @@ def normalise_nominal_display(raw):
     if raw is None:
         return None
     s = str(raw).strip()
+    if not s:
+        return None
+    # Leading place / mint prefix that leaked into the nominal («Oldenburg.
+    # Taler», «Lübeck (Bishopric). Ducat», double «Oldenburg. Lübeck
+    # (Bishopric). 5 Taler») — the location is the issuing entity (the coin
+    # already lives in that entity file), never part of the nominal. Strip
+    # repeatedly for stacked prefixes. Per CLAUDE.md §1 / TODO §CG.
+    for _ in range(3):
+        if ". " not in s:
+            break
+        prefix = s.split(". ", 1)[0].strip()
+        if prefix.lower() not in _NOMINAL_LOCATION_PREFIXES:
+            break
+        s = s.split(". ", 1)[1].lstrip()
+    # Leading editorial word → strip (character carried by kind=gedenk).
+    s = _LEADING_EDITORIAL_RE.sub("", s).strip()
+    # Trailing weight-in-grams paren + modern-currency equivalence → drop
+    # (weight lives in weight_rough_g; DKK value is derivable, not a nominal).
+    s = _TRAILING_WEIGHT_PAREN_RE.sub("", s)
+    s = _TRAILING_MODERN_PAREN_RE.sub("", s)
+    s = s.strip()
     if not s:
         return None
     # Leading fractional word → ½ («Halv ørtug» → «½ ørtug»). Lossless.
