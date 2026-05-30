@@ -74,7 +74,26 @@ _NOMINAL_DISPLAY_SPELLING: tuple[tuple[str, str], ...] = (
     (r"\bRose[\s\-]+Nobles?\b", "Rosenobel"),
     (r"\bRosenobles?\b", "Rosenobel"),
     (r"\bNobles?\b", "Nobel"),
+    # Portugaløser — Danish ø (Hede / danskmoent / Galster form). Numista /
+    # NumisMaster print the ASCII «Portugaloser». A named denomination =
+    # 10 Dukat (½ = 5 Dukat, ¼ = 2½ Dukat, 2× = 20 Dukat); see V2_DECISIONS
+    # D43 + TODO §CG. Spelling-only here; the «(10 Ducats)» value-equivalent
+    # tail is handled by the §CG nominal-hygiene pass, not this normaliser.
+    (r"\bPortugaloser\b", "Portugaløser"),
 )
+
+# Roman-numeral counts that lead a nominal («IIII Skilling», «XV Skilling»).
+# Archaic «IIII» (=4) included — sources print it. Maps the literal token
+# to its arabic value; only the LEADING run-of-roman-letters-then-space is
+# converted (so word-heads «Mark» / «Lion» / «Christian» never match).
+_ROMAN_VALUES: dict[str, int] = {
+    "I": 1, "II": 2, "III": 3, "IIII": 4, "IV": 4, "V": 5, "VI": 6,
+    "VII": 7, "VIII": 8, "IX": 9, "X": 10, "XI": 11, "XII": 12, "XIII": 13,
+    "XIV": 14, "XV": 15, "XVI": 16, "XX": 20, "XXIV": 24, "XXXII": 32,
+}
+_LEADING_ROMAN_TOKEN_RE = re.compile(r"^([IVXLCDM]+)\s+")
+# Fractional WORD leading a nominal → numeric ½ («Halv ørtug» → «½ ørtug»).
+_LEADING_HALV_RE = re.compile(r"^(?:Halv|Halve|Half|Halb)\s+", re.IGNORECASE)
 
 # Nominal heads that are NOT real denominations — generic descriptors /
 # placeholders that must never receive an implicit «1 » count.
@@ -437,6 +456,12 @@ def normalise_nominal_display(raw):
     s = str(raw).strip()
     if not s:
         return None
+    # Leading fractional word → ½ («Halv ørtug» → «½ ørtug»). Lossless.
+    s = _LEADING_HALV_RE.sub("½ ", s)
+    # Leading roman-numeral count → arabic («IIII Skilling» → «4 Skilling»).
+    m = _LEADING_ROMAN_TOKEN_RE.match(s)
+    if m and m.group(1) in _ROMAN_VALUES:
+        s = f"{_ROMAN_VALUES[m.group(1)]} {s[m.end():]}"
     for pattern, replacement in _NOMINAL_DISPLAY_SPELLING:
         s = re.sub(pattern, replacement, s, flags=re.IGNORECASE)
     if _should_prepend_one(s):
