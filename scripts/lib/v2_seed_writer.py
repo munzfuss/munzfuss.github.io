@@ -54,7 +54,16 @@ _OUT_OF_SCOPE_NOMINAL_TOKENS = (
     "rupee",         # East India Tranquebar
     "fanam",         # East India sub-denomination
     "cash",          # East India sub-denomination
+    "west india",    # Danish WEST India Company colonial issues — OOS
+    "vestindien",    #   «наразі такі коіни за межами скоупу» (user 2026-05-30)
 )
+
+# Exact KM numbers that are out-of-scope regardless of nominal wording.
+# Catches colonial-company issues whose Hede / NumisMaster records label
+# them with a plain denomination («2 Dukat») — only the KM identifies them.
+#   A488 — Danish West India Company 2 Ducats 1708 (Krause colonial «A»
+#          appendix). User-flagged OOS 2026-05-30.
+_OUT_OF_SCOPE_KM_EXACT = frozenset({"A488"})
 
 # Danish-realm denomination DISPLAY spelling normalisation. Numista /
 # NumisMaster / Friedberg print the English «Noble» / «Rose Noble» for
@@ -813,6 +822,8 @@ def _is_out_of_scope_catalog(catalog) -> bool:
                 candidates.append(v)
     for value in candidates:
         v = value.strip()
+        if v in _OUT_OF_SCOPE_KM_EXACT:
+            return True
         for prefix in _OUT_OF_SCOPE_KM_PREFIXES:
             if v.startswith(prefix) and len(v) > len(prefix):
                 # Require digit immediately after prefix to avoid
