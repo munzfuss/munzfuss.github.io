@@ -156,10 +156,12 @@ one class transient.
   in-scope (1631-1662) + 26 `oos_excluded_tids` (1482-1541). gap_tids now
   lists only the in-scope set, so the routine harvests the 1631-1662
   coins and the skip-loop ends. Committed on the **worktree** branch
-  (submodule `417ab9d`, pointer bump `620241f`). NB: this worktree's
-  cache submodule (base `e3d4b4c`) does NOT carry main's IKMK purge
-  (`07014b3`); the two are orthogonal (ucoin audit vs ikmk records) and
-  reconcile trivially on merge.
+  (submodule `417ab9d`, pointer bump `620241f`). Since reconciled:
+  `origin/main` was merged into the branch (`f989f9b`), unioning the
+  IKMK purge (origin) with this p3057 split in submodule merge `d385a7a`;
+  a follow-up normalised the audit JSON back to the routine's indent=2
+  (`e475a36` / pointer `04a17a7`). The branch's cache submodule now
+  carries both changes.
 - **Transient (no action):** chrome-mcp-disconnect (16:34 run),
   cloudflare interstitials (auto-cleared), `osnabruck_p2988` audit label
   drift («Hochstift» vs «City of Osnabrück»).

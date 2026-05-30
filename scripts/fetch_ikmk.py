@@ -50,10 +50,10 @@ SLEEP_SECS = 0.5
 
 
 # Entity-scope filter (added 2026-05-29 after the IKMK cache scope-purge —
-# see docs/SOURCES.md §13.8). The year filter above is necessary but NOT
-# sufficient: the full-text quick_search discovery pulls in-window-year records
+# see docs/SOURCES.md §13.8). This is the SOLE fetch/scan gate (it replaced an
+# earlier year-only filter). The full-text quick_search discovery pulls records
 # from other countries (ancient/oriental/foreign) and non-coin objects (medals,
-# dies, jetons). Without this gate the cache re-accumulates ~90 % out-of-scope.
+# dies, jetons); without this gate the cache re-accumulates ~90 % out-of-scope.
 # The keep-rule mirrors the purge classification exactly.
 _KEEP_COUNTRIES = {
     "Germany", "Deutschland", "Denmark", "Dänemark", "Norway", "Norwegen",
@@ -259,12 +259,11 @@ def _load_oos_set() -> set[str]:
 
 
 def _record_oos(nid: str, year_start, year_end, title: str = "",
-                reason: str = "year") -> None:
+                reason: str = "entity") -> None:
     """Append nid to manifest's oos_excluded_mds_ids slot (idempotent, sorted).
 
-    `reason` records WHY the record is out of scope — "year" (outside the
-    1514-1914 window) or an entity reason from `_is_in_entity_scope`
-    ("exonumia:…", "other-country:…", "none-oriental").
+    `reason` records WHY the record is out of scope — an entity reason from
+    `_is_in_entity_scope` ("exonumia:…", "other-country:…", "none-oriental").
     """
     if not MANIFEST.exists():
         return
