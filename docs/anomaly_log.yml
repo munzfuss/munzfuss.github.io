@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T17:25:02Z'
+  last_updated_utc: '2026-05-30T17:28:34Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1116,14 +1116,18 @@ anomalies:
   key_dims:
     source: ikmk
     query: Hamburg
-  summary: IKMK 'Hamburg' query returns OOS records (Würzburg medieval).
+  summary: IKMK 'Hamburg' query returns false-positive Würzburg medieval bishop records.
   status: open
   instance_first_seen: '2026-05-30T16:21:47Z'
-  last_seen: '2026-05-30T16:21:47Z'
-  occurrence_count: 1
+  last_seen: '2026-05-30T17:28:34.557704Z'
+  occurrence_count: 2
   affected_ids:
     ikmk:
     - 18267557
+    - 18267588
+    - 18267592
+    - 18267602
+    - 18267662
   occurrences:
   - run_utc: '2026-05-30T16:21:47Z'
     batch_label: BC
@@ -1133,8 +1137,18 @@ anomalies:
       ikmk_batch: BC
       numista_batch: GW
       ucoin_batch: '210'
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py QUERIES list to issuer-scope (e.g. add a post-fetch
-    filter on issuer.name to require 'Hamburg' substring) or build issuer-allowlist for each bucket.
+  - run_utc: '2026-05-30T17:28:34.557704Z'
+    batch_label: BD
+    detail: 'Batch BD: 4 mds_ids enumerated under Hamburg query are Würzburg Spätmittelalter bishop coinage
+      (Heinrich IV. von Heßberg, Otto I. von Lobdeburg, Andreas von Gundelfingen). Passed _is_in_entity_scope''s
+      None-country conservative gate (mint geocoding empty); cached but OOS per mission scope. Fits established
+      Hamburg-query scope-drift pattern.'
+    full_context:
+      ikmk_batch: BD
+      numista_batch: GX
+      ucoin_batch: '211'
+  proposed_fix: Tighten Hamburg query post-fetch scope filter to drop period.name_de in {'Spätmittelalter','Frühmittelalter','Hochmittelalter','Antike','Römische
+    Spätantike'} when mint country is None.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -1143,14 +1157,15 @@ anomalies:
   key_dims:
     source: ikmk
     query: Kassel
-  summary: IKMK 'Kassel' query returns OOS records (Roman Antoninianus).
+  summary: IKMK 'Kassel' query returns false-positive Roman Late Antiquity record.
   status: open
   instance_first_seen: '2026-05-30T16:21:47Z'
-  last_seen: '2026-05-30T16:21:47Z'
-  occurrence_count: 1
+  last_seen: '2026-05-30T17:28:34.557704Z'
+  occurrence_count: 2
   affected_ids:
     ikmk:
     - 18263997
+    - 18268152
   occurrences:
   - run_utc: '2026-05-30T16:21:47Z'
     batch_label: BC
@@ -1161,8 +1176,15 @@ anomalies:
       ikmk_batch: BC
       numista_batch: GW
       ucoin_batch: '210'
-  proposed_fix: Tighten Kassel query in fetch_ikmk.py QUERIES list to scope-filter on date-range (>= 1500)
-    and/or issuer-name token (e.g. 'Hesse', 'Hessen-Kassel').
+  - run_utc: '2026-05-30T17:28:34.557704Z'
+    batch_label: BD
+    detail: 'Batch BD: 1 mds_id 18268152 ''Valens: Nachahmung'' (period: Römische Spätantike, 4th c. AD)
+      enumerated under Kassel query. Passed None-country conservative gate; cached but clearly OOS.'
+    full_context:
+      ikmk_batch: BD
+      numista_batch: GX
+      ucoin_batch: '211'
+  proposed_fix: Same as Hamburg-query fix — period.name_de OOS-list extension.
   resolution: null
   resolved_at: null
   resolved_by: null
