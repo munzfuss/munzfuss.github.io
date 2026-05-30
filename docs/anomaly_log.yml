@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T10:27:28Z'
+  last_updated_utc: '2026-05-30T12:27:47Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -862,11 +862,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query returns OOS records (modern medals + non-Hamburg German cities).
+  summary: IKMK 'Hamburg' query returns OOS records.
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-30T09:28:17Z'
-  occurrence_count: 10
+  last_seen: '2026-05-30T12:27:47Z'
+  occurrence_count: 11
   affected_ids:
     ikmk:
     - 18210988
@@ -886,6 +886,9 @@ anomalies:
     - 18238370
     - 18239544
     - 18247227
+    - 18255719
+    - 18256263
+    - 18256268
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -966,8 +969,17 @@ anomalies:
       ikmk_batch: AV
       numista_batch: GP
       ucoin_batch: '203'
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope or add post-fetch entity scope
-    filter.
+  - run_utc: '2026-05-30T12:27:47Z'
+    batch_label: AY
+    detail: 'Batch AY: 3 of 5 mds_ids from Hamburg query are Mainz electorate Goldgulden (Johann von Luxemburg-Ligny
+      + Adolf I. von Nassau ×2) — pure OOS scope drift.'
+    full_context:
+      ikmk_batch: AY
+      numista_batch: GS
+      ucoin_batch: '206'
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope (e.g. filter records by mds_issuer
+    or mint_authority match 'Hamburg' / 'Hansestadt Hamburg') OR add post-fetch scope filter dropping
+    records whose issuer != Hamburg.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -1273,6 +1285,34 @@ anomalies:
       ucoin_batch: '196'
   proposed_fix: Tighten Stade query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter; Stade
     is a Bremen-Verden geography target but IKMK returns matches via personenname.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=iburg:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: iburg
+  summary: IKMK 'Iburg' query returns OOS records (Konstanz Bistum + Konstanz Otto I.).
+  status: open
+  instance_first_seen: '2026-05-30T12:27:47Z'
+  last_seen: '2026-05-30T12:27:47Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18255407
+    - 18255954
+  occurrences:
+  - run_utc: '2026-05-30T12:27:47Z'
+    batch_label: AY
+    detail: 'Batch AY: 2 of 5 mds_ids from Iburg query are Konstanz Bistum medieval Denar/Denarius — ''Iburg''
+      query likely substring-matching across unrelated records.'
+    full_context:
+      ikmk_batch: AY
+      numista_batch: GS
+      ucoin_batch: '206'
+  proposed_fix: Replace bare 'Iburg' query with phrase-quoted or issuer-scoped variant in fetch_ikmk.py
+    QUERIES list; or add issuer-text post-fetch filter.
   resolution: null
   resolved_at: null
   resolved_by: null
