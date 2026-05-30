@@ -24,7 +24,7 @@
 
 1. **NEVER push without explicit user permission in the chat.** The user must type «пуш» / «push» / «git push» / «запуш» or equivalent BEFORE any `git push` runs. Cron-triggered runs almost always finish with commits local-only. End-of-run report includes the line: «N commits ready locally — `git push` when ready (both repos).»
 
-2. **One Numista batch + one ucoin batch + one IKMK batch per run.** Do not exceed this. Context budget + politeness to all three sources require small slices. IKMK is the supplementary museum-catalogue source (`docs/IKMK_HARVEST.md`) — openly licensed (CC BY-SA 4.0), no Cloudflare, uses ID-list-from-search-queries rather than per-NID URLs. See §5.5 for the batch protocol. IKMK can be skipped per-run when no uncached IDs remain (§5.5.5).
+2. **One Numista batch + one ucoin batch + one IKMK batch per run.** Do not exceed this. Numista + ucoin are Chrome-MCP scrapes through Cloudflare, hard-capped at **5 entries/batch** (context budget + politeness). IKMK is different: a plain `urllib` museum JSON API (`docs/IKMK_HARVEST.md`) — openly licensed (CC BY-SA 4.0), no Cloudflare, no observed rate limit, ID-list-from-search-queries rather than per-NID URLs — so its single batch is **200 entries/run** (§5.5.1), clearing the title-scoped backlog in a handful of runs. See §5.5 for the batch protocol. IKMK can be skipped per-run when no uncached IDs remain (§5.5.5).
 
 3. **Batch size = 5 entries** (NIDs or TIDs). Hard cap. If a batch would close the bucket and only 3 remain, do those 3 — never extend past the bucket boundary into the next priority.
 
@@ -1250,17 +1250,26 @@ Different mechanics from Numista / ucoin:
 
 ### §5.5.1. Batch shape
 
-**5 new fetches per run, cap.** Same hard cap as Numista / ucoin
-batches. The driver accepts `--limit N` to enforce this — counting
-only NEW cache writes (already-cached IDs skipped without counting).
+**200 new fetches per run.** IKMK is NOT subject to the 5-per-batch
+Cloudflare cap that bounds Numista / ucoin — it is a plain `urllib`
+museum JSON API with an openly-licensed reuse contract and **no
+observed rate limit** (`docs/IKMK_HARVEST.md` §«Per-run batch size»
+documents a 500-entry safe cap). We use **200/run** as a generous,
+politeness-margined slice: at 0.5 s pacing ≈ 100 s wall-time, well
+within one routine slot, and it clears the post-discovery in-scope
+backlog in a handful of runs instead of hundreds. The driver's
+`--limit N` counts only NEW cache writes (already-cached IDs skipped
+without counting).
 
 ```bash
-.venv/bin/python scripts/fetch_ikmk.py fetch --limit 5
+.venv/bin/python scripts/fetch_ikmk.py fetch --limit 200
 ```
 
-This walks the manifest (`_manifest.json::ids`), skipping any IDs
-whose `<id>.json` already exists, fetching the next 5 uncached IDs,
-and stopping.
+This walks the manifest (`_manifest.json::ids` — already title-scoped
+at discovery, see §5.5.2), skipping any IDs whose `<id>.json` already
+exists and any in `oos_excluded_mds_ids`, fetching the next 200
+uncached in-scope IDs, and stopping. (If a 429/503 ever fires, fall
+back per `docs/IKMK_HARVEST.md` §«Throttle-recovery protocol».)
 
 ### §5.5.2. Pre-batch check — manifest freshness
 
@@ -1300,17 +1309,32 @@ EOF
    hochstift_osnabrueck / grafschaft_oldenburg /
    herzogtum_braunschweig_lueneburg / herzogtum_sachsen_lauenburg.
 
-Discover is heavier (one HTTP POST per query, ~50 queries → ~25 s).
+Discover is heavier (one HTTP POST per query, ~90 queries → ~90 s).
 Don't run it every batch — only when the freshness rules above
 trigger.
+
+**Discovery is title-scoped (2026-05-30).** `discover()` reads the
+`view=table` result list (which carries each record's title) and keeps
+an ID only if its issuer-prefix is a known German/Scandinavian/HRE
+issuer OR unknown (default-keep); it drops prefixes in the curated OOS
+set `scripts/fetch_ikmk_oos_title_prefixes.json` (ancient Greek/Roman/
+oriental cities, Islamic dynasties, foreign countries) that are NOT in
+the empirical cached-keep set. So the manifest `ids` is already mostly
+in-scope — fetch batches don't burn slots classifying obvious ancient/
+foreign noise. The per-record entity filter (`_is_in_entity_scope`)
+stays the final precise gate at fetch (it sees mint country + object
+type, which the title alone cannot). `discover()` preserves the
+accumulated `oos_excluded_mds_ids` skip-set across re-runs. Regenerate
+the drop-set file from the purge data when scope changes (provenance
+note in the file header).
 
 ### §5.5.3. Fetch the batch
 
 ```bash
-.venv/bin/python scripts/fetch_ikmk.py fetch --limit 5
+.venv/bin/python scripts/fetch_ikmk.py fetch --limit 200
 ```
 
-Expected output: «reached --limit 5; stopping. fetched=5 skipped=N
+Expected output: «reached --limit 200; stopping. fetched=200 skipped=N
 errors=0 (Xs).»
 
 ### §5.5.4. Commit the IKMK batch — PB-10 dance (Step A + Step B)
@@ -1752,7 +1776,7 @@ EOF
 **Implementation note.** Maintain `NIDS_THIS_RUN`, `TIDS_THIS_RUN`, and `IKMK_IDS_THIS_RUN` as live variables during the batch flow:
 - After each successful `save_numista.py` call, append the NID to a running list (e.g. `RUN_NIDS=()` Bash array, or just track in your scratchpad).
 - After each successful `save_ucoin.py` call (exit code 0), append the TID.
-- After each successful IKMK fetch (extract the mds_ids written by `scripts/fetch_ikmk.py fetch --limit 5` via `git status --short` on the submodule — the new `?? ikmk/<mds_id>.json` lines name the IDs added this run).
+- After each successful IKMK fetch (extract the mds_ids written by `scripts/fetch_ikmk.py fetch --limit 200` via `git status --short` on the submodule — the new `?? ikmk/<mds_id>.json` lines name the IDs added this run).
 - Skip 404 cases and exit-2 (canonical-tid fail) cases — those are not «processed this run».
 - When IKMK was skipped per §5.5.5, set `IKMK_IDS_THIS_RUN = []` and the table still renders for shape stability.
 - At rendering time, paste the final lists into the script's top.

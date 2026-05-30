@@ -204,7 +204,73 @@ def _make_session():
     return opener
 
 
-def _search_ids(opener, query: str, range_: int = 4000) -> list[str]:
+# ── Discovery title-scope filter ─────────────────────────────────────────────
+# IKMK quick_search is full-text (no facets), so generic queries (Hamburg,
+# Kassel, …) pull in-window-year records from OTHER issuers — ancient
+# Greek/Roman/oriental cities, Islamic dynasties, foreign countries. The result
+# list (view=table) renders each record's title, so we scope at DISCOVERY time
+# and never enumerate the noise into the manifest. Rule (curator 2026-05-30):
+# KEEP if the title-prefix is a known German/Scandinavian/HRE issuer (empirical
+# cached-keep set) OR unknown (default-keep — the per-record entity filter at
+# fetch is the final gate); DROP only if the prefix is in the curated OOS set
+# AND not in cached-keep. Zero false-drop for known in-scope issuers by
+# construction. Roman/Greek imperial PERSON names are excluded from the OOS set
+# (could be German-mint Trier/Köln) and default-keep.
+_DROP_PREFIXES_FILE = Path(__file__).resolve().parent / "fetch_ikmk_oos_title_prefixes.json"
+_drop_prefixes_cache: set[str] | None = None
+_keep_prefixes_cache: set[str] | None = None
+
+
+def _title_prefix(title: str) -> str:
+    """Issuer prefix = text before the first ':' (whole title if no colon)."""
+    return (title or "").split(":")[0].strip()
+
+
+def _load_drop_prefixes() -> set[str]:
+    global _drop_prefixes_cache
+    if _drop_prefixes_cache is None:
+        try:
+            data = json.loads(_DROP_PREFIXES_FILE.read_text())
+            _drop_prefixes_cache = set(data.get("drop_title_prefixes") or [])
+        except (OSError, json.JSONDecodeError):
+            _drop_prefixes_cache = set()
+    return _drop_prefixes_cache
+
+
+def _load_keep_prefixes() -> set[str]:
+    """Empirical in-scope issuer prefixes — title-prefixes of cached records."""
+    global _keep_prefixes_cache
+    if _keep_prefixes_cache is None:
+        keep: set[str] = set()
+        for p in CACHE_DIR.glob("*.json"):
+            if p.stem.startswith("_"):
+                continue
+            try:
+                title = json.loads(p.read_text()).get("title")
+            except (OSError, json.JSONDecodeError):
+                continue
+            pref = _title_prefix(str(title or ""))
+            if pref:
+                keep.add(pref)
+        _keep_prefixes_cache = keep
+    return _keep_prefixes_cache
+
+
+def _title_in_scope(title: str, keep: set[str], drop: set[str]) -> bool:
+    pref = _title_prefix(title)
+    if pref in keep:
+        return True   # known German/Scandinavian/HRE issuer
+    if pref in drop:
+        return False  # curated OOS (ancient city/dynasty/foreign country)
+    return True       # unknown → keep; the fetch entity-filter is the final gate
+
+
+def _search_results(opener, query: str, range_: int = 4000) -> list[tuple[str, str]]:
+    """Return (mds_id, title) pairs for a query, parsed from the view=table list.
+
+    Each result item renders ``<figcaption>TITLE<br>ID</figcaption>``; the title
+    carries the issuer prefix used by the discovery scope filter.
+    """
     data = urllib.parse.urlencode({
         "quick_search_value": query,
         "search_type": "quick_search",
@@ -215,38 +281,68 @@ def _search_ids(opener, query: str, range_: int = 4000) -> list[str]:
         headers={"Referer": "https://ikmk.smb.museum/home?lang=en"},
     )
     opener.open(req).read()
-    url = f"https://ikmk.smb.museum/tray?lang=en&view=list&range={range_}"
+    url = f"https://ikmk.smb.museum/tray?lang=en&view=table&range={range_}"
     html = opener.open(url).read().decode("utf-8", "replace")
-    return list(dict.fromkeys(
-        re.findall(r"\?(?:lang=[a-z]+&)?id=(\d{7,9})(?:&|\"|'|>)", html),
-    ))
+    pairs = re.findall(
+        r"<figcaption>(.*?)<br\s*/?>\s*(\d{7,9})</figcaption>", html, re.S,
+    )
+    out: dict[str, str] = {}
+    for title, mds in pairs:
+        title = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", title)).strip()
+        out.setdefault(mds, title)
+    return list(out.items())
 
 
 def discover() -> dict:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    keep_set = _load_keep_prefixes()
+    drop_set = _load_drop_prefixes()
     per_query: dict[str, list[str]] = {}
     union: list[str] = []
     seen = set()
+    total_dropped = 0
     for q in QUERIES:
         opener = _make_session()
         try:
-            ids = _search_ids(opener, q)
+            results = _search_results(opener, q)
         except urllib.error.HTTPError as exc:
             print(f"  [{q}] HTTP {exc.code}", file=sys.stderr)
-            ids = []
-        per_query[q] = ids
-        new = [i for i in ids if i not in seen]
+            results = []
+        in_scope = [
+            mds for mds, title in results
+            if _title_in_scope(title, keep_set, drop_set)
+        ]
+        dropped = len(results) - len(in_scope)
+        total_dropped += dropped
+        per_query[q] = in_scope
+        new = [i for i in in_scope if i not in seen]
         seen.update(new)
         union.extend(new)
-        print(f"  {q:35s}  hits={len(ids):4d}  cum_union={len(union)}")
+        print(
+            f"  {q:35s}  hits={len(results):4d}  in_scope={len(in_scope):4d}"
+            f"  (dropped {dropped})  cum_union={len(union)}"
+        )
         time.sleep(SLEEP_SECS)
+    # Preserve the accumulated OOS skip-set + details across re-discovery —
+    # discover() must NOT wipe the at-fetch entity-filter's learned exclusions.
+    prior = json.loads(MANIFEST.read_text()) if MANIFEST.exists() else {}
     manifest = {
         "queries": per_query,
         "ids": sorted(set(union), key=int),
         "fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "discovery_title_filter": {
+            "applied": True,
+            "dropped_by_title": total_dropped,
+            "drop_prefixes_file": _DROP_PREFIXES_FILE.name,
+        },
+        "oos_excluded_mds_ids": prior.get("oos_excluded_mds_ids", []),
+        "oos_excluded_details": prior.get("oos_excluded_details", {}),
     }
     MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2))
-    print(f"\nUnion: {len(manifest['ids'])} IDs → {MANIFEST}")
+    print(
+        f"\nUnion: {len(manifest['ids'])} in-scope IDs "
+        f"({total_dropped} dropped by title filter) → {MANIFEST}"
+    )
     return manifest
 
 
