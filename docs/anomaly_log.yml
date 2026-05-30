@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T16:21:47Z'
+  last_updated_utc: '2026-05-30T16:28:23Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1163,6 +1163,35 @@ anomalies:
       ucoin_batch: '210'
   proposed_fix: Tighten Kassel query in fetch_ikmk.py QUERIES list to scope-filter on date-range (>= 1500)
     and/or issuer-name token (e.g. 'Hesse', 'Hessen-Kassel').
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: concurrent_session_conflict:context=pointer_bump_step_b:source=main_repo
+  type: concurrent_session_conflict
+  key_dims:
+    source: main_repo
+    context: pointer_bump_step_b
+  summary: Pointer-bump commit accidentally bundled concurrent V2-pipeline edits.
+  status: open
+  instance_first_seen: '2026-05-30T16:28:23Z'
+  last_seen: '2026-05-30T16:28:23Z'
+  occurrence_count: 1
+  affected_ids: {}
+  occurrences:
+  - run_utc: '2026-05-30T16:28:23Z'
+    batch_label: GW/210/BC
+    detail: 'Run GW/210/BC handoff-fixup pointer-bump commit (originally 2bfa76b) included 5 unrelated
+      working-tree files (data/v2/classification_decisions/{gottorp,sonderburg}_duchy.yml, data/v2/final/{gottorp,sonderburg}_duchy.yml,
+      scripts/maintenance/absorb_seeds_into_final_v2.py) from a concurrent session. Detected post-commit
+      via `git log -1 --stat`. Self-recovery executed per §0.8: git reset --soft HEAD~1, git reset HEAD,
+      git add scripts/cache only, re-commit (new sha 8ad0934, 1 file). V2-pipeline edits left unstaged
+      in working tree.'
+    full_context:
+      original_bad_sha: 2bfa76b02c72eb649d1fbb616db34b6667629cff
+      recovered_sha: 8ad0934875e4444d9173d333de3cfb5b764dc963
+  proposed_fix: Always run `git status --short` BETWEEN `git add scripts/cache` and `git commit` in Step
+    B (already documented in §3.2 — discipline lapse, not a doc bug). Routine should re-stage and verify
+    with `git diff --staged --stat` showing exactly the expected single file before committing.
   resolution: null
   resolved_at: null
   resolved_by: null
