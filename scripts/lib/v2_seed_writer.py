@@ -469,6 +469,56 @@ def _normalise_nominal(raw):
     return s
 
 
+_FRACNICK_FRACTION = r"1/\d+|\d*[½¼¾⅛⅓⅔⅕⅙⅚⅜⅝⅞]"
+
+
+def split_nominal_annotations(nominal):
+    """Split a nominal into (clean_denomination, [annotations]) per
+    CLAUDE.md §1 / TODO §CG: a trailing/embedded **fraction-of-standard**
+    paren («1/96 Speciedaler», «⅛ Speciedaler») or **nickname / alternative
+    name** paren («Sechsling», «Reisedaler», «Doppeltaler») is editorial and
+    belongs in `note` — the leading denomination is the nominal.
+
+    Returns `(nominal, [])` UNCHANGED (caller leaves the coin alone) when the
+    nominal carries something this pass must NOT decide:
+      * a dual FULL-denomination equivalence — «X = Y» or «(N <denom>)»
+        (the §CI legend-verification set: is the second denomination
+        inscribed?);
+      * a «Portugaløser» tail — the correct nominal there is «Portugaløser»,
+        a separate reorder, not a strip-to-note;
+      * any paren this classifier doesn't recognise (defensive: leave it).
+    """
+    if not nominal:
+        return nominal, []
+    s = str(nominal)
+    if re.search(r"=\s", s):          # dual equivalence → §CI, leave
+        return s, []
+    parens = re.findall(r"\(([^)]*)\)", s)
+    if not parens:
+        return s, []
+    if any("portugal" in p.lower() for p in parens):   # Portugaløser-special
+        return s, []
+    payloads: list[str] = []
+    for p in parens:
+        pc = p.strip()
+        if re.match(r"^\d+\s+[A-Za-zÆØÅæøå]", pc):     # «8 Mark» whole-denom → §CI
+            return s, []
+        if re.match(rf"^({_FRACNICK_FRACTION})(\s|$)", pc) or \
+           re.match(r"^[A-Za-zÆØÅæøåäöü][A-Za-zÆØÅæøåäöü .'\-]*$", pc):
+            payloads.append(pc)
+        elif re.match(r"^\d+\.\d+$", pc):              # decimal weight (Stage B) — ignore
+            continue
+        else:
+            return s, []                              # unrecognised → leave
+    if not payloads:
+        return s, []
+    clean = s
+    for pc in payloads:
+        clean = re.sub(r"\s*\(\s*" + re.escape(pc) + r"\s*\)", "", clean)
+    clean = re.sub(r"\s{2,}", " ", clean).strip()
+    return clean, payloads
+
+
 def normalise_nominal_display(raw):
     """Lightweight DISPLAY normalisation for ALREADY-typed nominals.
 
@@ -873,6 +923,28 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         if new_nom is not None and new_nom != nominal:
             c["nominal"] = new_nom
             stats["nominal_normalised"] += 1
+        # §CG-C1: fraction-of-standard / nickname annotation → `note`
+        # (the inscribed/source denomination is the nominal; the editorial
+        # equivalent belongs in note per §1). Dual «X = Y» / «(N denom)» /
+        # Portugaløser tails return [] and are left for §CI / separate
+        # handling. Mirrors scripts/oneoff/cg_fraction_nickname_to_note.py.
+        clean_nom, payloads = split_nominal_annotations(c.get("nominal"))
+        if payloads and clean_nom != c.get("nominal"):
+            note = c.get("note")
+            present = False
+            if isinstance(note, dict):
+                present = all(any(p in str(v) for v in note.values() if v) for p in payloads)
+            elif isinstance(note, str):
+                present = all(p in note for p in payloads)
+            if note is None:
+                ps = "; ".join(payloads)
+                c["note"] = {"de": ps, "en": ps, "uk": ps}
+                c["nominal"] = clean_nom
+                stats["nominal_annotation_to_note"] = stats.get("nominal_annotation_to_note", 0) + 1
+            elif present:
+                c["nominal"] = clean_nom
+                stats["nominal_annotation_to_note"] = stats.get("nominal_annotation_to_note", 0) + 1
+            # else: note exists but payload absent → leave (avoid mismatched-note append)
         mint = c.get("mint")
         # Detect ambiguity-indicators in the mint string («København eller
         # Malmø», «Copenhagen or Malmø», «København/Malmø», «Hamburg oder
