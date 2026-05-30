@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T00:28:37Z'
+  last_updated_utc: '2026-05-30T01:27:04Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -697,11 +697,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query returns OOS records (Preußen Friedrich II minted in Berlin).
+  summary: IKMK 'Osnabrück' query returns Preußen records.
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-30T00:28:37Z'
-  occurrence_count: 8
+  last_seen: '2026-05-30T01:27:04Z'
+  occurrence_count: 9
   affected_ids:
     ikmk:
     - 18206581
@@ -716,6 +716,10 @@ anomalies:
     - 18233712
     - 18233798
     - 18233802
+    - 18234043
+    - 18234873
+    - 18234875
+    - 18234876
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -776,9 +780,17 @@ anomalies:
       ikmk_batch: AM
       numista_batch: GG
       ucoin_batch: '194'
-  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py — current query likely returns hits for Stüber/Friedrich-d'or
-    coinage minted Berlin under Prussia (territory near but distinct from Osnabrück Hochstift). Add issuer-scope
-    filter (issuer must contain 'Osnabrück' or 'Bistum') OR add Berlin-mint exclusion for Osnabrück query.
+  - run_utc: '2026-05-30T01:27:04Z'
+    batch_label: AN
+    detail: 'Batch AN: 4 of 5 fetched mds_ids OOS via Osnabrück query — all Preußen rulers (Friedrich
+      II, Wilhelm I). Same chronic pattern as prior occurrences (Bundesrepublik / Byzanz cross-issuer
+      in earlier batches).'
+    full_context:
+      ikmk_batch: AN
+      numista_batch: GH
+      ucoin_batch: '195'
+  proposed_fix: Tighten Osnabrueck query in fetch_ikmk.py to issuer-scope (filter by issuing-entity 'Hochstift
+    Osnabrück' / 'Bisthum Osnabrück') or add post-fetch issuer-name filter to exclude Preußen records.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -958,16 +970,17 @@ anomalies:
   key_dims:
     source: ikmk
     query: braunschweig
-  summary: IKMK 'Braunschweig' query returns OOS records.
+  summary: IKMK 'Braunschweig' query returns Russland record.
   status: open
   instance_first_seen: '2026-05-29T17:29:25Z'
-  last_seen: '2026-05-29T20:31:53Z'
-  occurrence_count: 3
+  last_seen: '2026-05-30T01:27:04Z'
+  occurrence_count: 4
   affected_ids:
     ikmk:
     - 18217796
     - 18227333
     - 18228337
+    - 18234771
   occurrences:
   - run_utc: '2026-05-29T17:29:25Z'
     batch_label: AI
@@ -992,8 +1005,17 @@ anomalies:
       ikmk_batch: AK
       numista_batch: GC
       ucoin_batch: '191'
-  proposed_fix: Tighten Braunschweig query in fetch_ikmk.py to herzogtum_braunschweig_lueneburg issuer-scope
-    or add post-fetch scope filter rejecting Berlin/Brandenburg mints.
+  - run_utc: '2026-05-30T01:27:04Z'
+    batch_label: AN
+    detail: 'Batch AN: 1 of 5 fetched mds_ids via Braunschweig query reads ''Braunschweig: Herzogtum/Russland:
+      Alexej Michailowitsch'' — likely Welf-dynastic cross-issue with Russian ruler legend, OOS for mission
+      scope (project tracks Welf territorial issues, not Russian commemoratives).'
+    full_context:
+      ikmk_batch: AN
+      numista_batch: GH
+      ucoin_batch: '195'
+  proposed_fix: Add ruler-name filter to Braunschweig query to exclude entries whose issuer/ruler text
+    contains 'Russland' / 'Russisch' / Russian-tsar names.
   resolution: null
   resolved_at: null
   resolved_by: null
