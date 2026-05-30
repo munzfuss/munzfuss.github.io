@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T06:30:17Z'
+  last_updated_utc: '2026-05-30T07:28:46Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -523,8 +523,8 @@ anomalies:
   summary: ucoin BR-4 bucket osnabruck_p3057 enumeration contains pre-mission OOS TIDs (pre-1559).
   status: open
   instance_first_seen: '2026-05-27T19:22:57Z'
-  last_seen: '2026-05-30T05:24:56Z'
-  occurrence_count: 14
+  last_seen: '2026-05-30T07:28:46Z'
+  occurrence_count: 15
   affected_ids:
     ucoin:
     - 171936
@@ -647,9 +647,17 @@ anomalies:
       pending.'
     full_context:
       action_taken: Switched to hesse_kassel_p899 for this run; no cache files saved from osnabruck_p3057.
-  proposed_fix: 'Audit-4 needs year-filter: trim osnabruck_p3057 in_scope to 1559-1661 portion only, move
-    1482-1558 TIDs to oos_excluded_tids slot with audit-trail reason. Until then, picker auto-skips this
-    bucket.'
+  - run_utc: '2026-05-30T07:28:46Z'
+    batch_label: '201'
+    detail: 'Batch 201: picker''s first-5 candidates [171936, 172222, 172659, 172663, 172662] match the
+      known-OOS set; bucket skipped without fetching. Bucket years_label=''1482-1661'' overlaps pre-mission
+      era.'
+    full_context:
+      ucoin_batch: '201'
+      numista_batch: GN
+      skipped_action: moved to brunswick_p905
+  proposed_fix: Reclassify pre-1559 TIDs into oos_excluded_tids slot in _BR_audit-4_2026-05-24.json. Recompute
+    in_scope_total = post-1559 TIDs only.
   resolution: null
   resolved_at: null
   resolved_by: null
