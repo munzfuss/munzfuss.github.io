@@ -107,13 +107,19 @@ coins:
   catalog:
     km: '12'
     numista: '151529'
-    lange: 539A
+    lange:
+    - 539A
+    - '539'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 2.19
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_120995
@@ -121,6 +127,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151529.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/151529
+    ref: Numista N#151529 — 4 Schilling Lübisch "Reuterpfennig" - John
   note:
     de: 4 Schilling Lübisch = 1/15 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
     en: 4 Schilling Lübisch = 1/15 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
@@ -133,6 +142,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-151529
   - unified-schleswig_holstein-numismaster-120995
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -150,10 +160,12 @@ coins:
   catalog:
     km: '16'
     numista: '131934'
+    lange: '546'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   sources:
@@ -163,6 +175,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces131934.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/131934
+    ref: Numista N#131934 — ¼ Thaler - John (Death)
   note:
     de: ¼ Thaler (Gedenk) · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1622
     en: ¼ Thaler (Gedenk) · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1622
@@ -174,7 +189,8 @@ coins:
       primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of: []
+  composed_of:
+  - unified-dk-numista-131934
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
@@ -531,10 +547,12 @@ coins:
   catalog:
     km: '3'
     numista: '151521'
+    lange: '531'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: false
   verified: false
   sources:
@@ -544,6 +562,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151521.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/151521
+    ref: Numista N#151521 — 2 Schillings - John
   note:
     de: 2 Schilling = 1/16 Thaler · Johann (Hans d. J.) von Schleswig-Holstein-Sonderburg, 1604
     en: 2 Schilling = 1/16 Thaler · Johann (Hans the Younger), Duke of Schleswig-Holstein-Sonderburg, 1604
@@ -556,6 +577,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-151521
   - unified-schleswig_holstein-numismaster-101366
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
@@ -682,13 +704,14 @@ coins:
     - Lange# 533
     - Lange# 533 A/b
     - Lange# 534
+    lange: 533a
   metal: silver
+  metal_verified: true
+  fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: true
-  diameter_mm:
-  - value: 23.0
-    source: v1_curator
+  verified: false
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces151527.html
@@ -737,6 +760,12 @@ coins:
     url: https://ikmk.smb.museum/object?id=18284696
     ref: IKMK Berlin, Inv. 18284696
     note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Christian Stoess'
+  - type: literature
+    url: https://en.numista.com/151527
+    ref: Numista N#151527 — 2 Schillings - John
+  - type: literature
+    url: https://numismaster.com/MC_101368
+    ref: NumisMaster
   inscription_obv: IOHA D G - HAE NOR
   inscription_rev: DVX SL HOL CO OL ET D 619
   note:
@@ -791,7 +820,18 @@ coins:
       Штемпельний варіант 1620 року під KM#9 (Numista N#151527 покриває 1619-1620): Lange II 534 — IKMK 18284697 фіксує коротку
       легенду av. «IO D G - H NO» / rev. «DVX SL HOL CO O E D 620», що відповідає коротко-штемпельній родині 1619-х (Lange
       533a base), лише з датою 620.'
-  composed_of: []
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  composed_of:
+  - unified-dk-numista-151527
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
