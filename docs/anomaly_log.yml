@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T16:28:23Z'
+  last_updated_utc: '2026-05-30T17:25:02Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1192,6 +1192,33 @@ anomalies:
   proposed_fix: Always run `git status --short` BETWEEN `git add scripts/cache` and `git commit` in Step
     B (already documented in §3.2 — discipline lapse, not a doc bug). Routine should re-stage and verify
     with `git diff --staged --stat` showing exactly the expected single file before committing.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: url_open_failed:id=95858:source=ucoin
+  type: url_open_failed
+  key_dims:
+    source: ucoin
+    id: '95858'
+  summary: ucoin TID 95858 (Hesse-Kassel 10 Thaler 1838-1841, William II, Gold) — both initial + 90s-cookie-clear
+    retry redirected to /check/?f=0 rate-limit page.
+  status: open
+  instance_first_seen: '2026-05-30T17:25:02.706544Z'
+  last_seen: '2026-05-30T17:25:02.706544Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 95858
+  occurrences:
+  - run_utc: '2026-05-30T17:25:02.706544Z'
+    batch_label: '211'
+    detail: 'Batch 211: canonical_id_mismatch — URL https://en.ucoin.net/coin/hesse_kassel-10-thaler-1838-1841/?tid=95858
+      — both initial fetch + cookie-clear retry redirected to /check/?f=0.'
+    full_context:
+      reason: canonical_id_mismatch
+      url_tried: https://en.ucoin.net/coin/hesse_kassel-10-thaler-1838-1841/?tid=95858
+  proposed_fix: Open URL in browser to determine status (rate-limit decay/renamed/withdrawn). Closes hesse_kassel_p899
+    bucket when fetched (61/62 cached as of batch 211; this is the lone holdout).
   resolution: null
   resolved_at: null
   resolved_by: null
