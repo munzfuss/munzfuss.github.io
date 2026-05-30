@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T16:17:57Z'
+  last_updated_utc: '2026-05-30T16:21:47Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1108,6 +1108,61 @@ anomalies:
   proposed_fix: Verify with Osnabrück Hochstift numismatic literature whether these are 1662 first-strikes
     under Ernst August (took office 1662) or attribution-only ND coins backdated to 1661 by some sources.
     Update bucket title in audit-4 if ucoin's attribution is canonical.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=hamburg:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: Hamburg
+  summary: IKMK 'Hamburg' query returns OOS records (Würzburg medieval).
+  status: open
+  instance_first_seen: '2026-05-30T16:21:47Z'
+  last_seen: '2026-05-30T16:21:47Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18267557
+  occurrences:
+  - run_utc: '2026-05-30T16:21:47Z'
+    batch_label: BC
+    detail: 'Batch BC: mds_id 18267557 is Würzburg Bishop Embricho (1127-1146) Denar/Dünnpfennig — clearly
+      not Hamburg. IKMK quick_search likely cross-listed via dynastic / collection-tagging.'
+    full_context:
+      ikmk_batch: BC
+      numista_batch: GW
+      ucoin_batch: '210'
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py QUERIES list to issuer-scope (e.g. add a post-fetch
+    filter on issuer.name to require 'Hamburg' substring) or build issuer-allowlist for each bucket.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=kassel:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: Kassel
+  summary: IKMK 'Kassel' query returns OOS records (Roman Antoninianus).
+  status: open
+  instance_first_seen: '2026-05-30T16:21:47Z'
+  last_seen: '2026-05-30T16:21:47Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18263997
+  occurrences:
+  - run_utc: '2026-05-30T16:21:47Z'
+    batch_label: BC
+    detail: 'Batch BC: mds_id 18263997 is Roman emperor Victorinus (269-271 AD) Doppeldenar/Antoninianus,
+      bronze — clearly not Hesse-Kassel. IKMK quick_search likely matched via collection-name ''Kassel''
+      or museum-cabinet origin tag.'
+    full_context:
+      ikmk_batch: BC
+      numista_batch: GW
+      ucoin_batch: '210'
+  proposed_fix: Tighten Kassel query in fetch_ikmk.py QUERIES list to scope-filter on date-range (>= 1500)
+    and/or issuer-name token (e.g. 'Hesse', 'Hessen-Kassel').
   resolution: null
   resolved_at: null
   resolved_by: null
