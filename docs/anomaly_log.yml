@@ -1252,7 +1252,7 @@ anomalies:
   summary: BR-4 ucoin audit cached_count/cached_tids fields are stale across multiple buckets — brunswick_luneburg_p1082
     confirmed fully cached on disk (61/61) but audit still reports cached_count=0. Picker safe (uses on-disk
     filter); operator tables affected.
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-29T21:33:48Z'
   last_seen: '2026-05-29T21:33:48Z'
   occurrence_count: 1
@@ -1272,9 +1272,13 @@ anomalies:
   proposed_fix: 'Maintenance script: walk _BR_audit-4_2026-05-24.json buckets, recompute cached_count
     + cached_tids from actual scripts/cache/ucoin/<tid>.json existence, write back. Run at start of every
     cron session or on a daily schedule. Same logic should run for BR-2, BR-3, BO.6, BO.7 audits.'
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Added scripts/maintenance/refresh_audit_cached_counts.py: recomputes cached_count/cached_tids/gap_tids
+    (ucoin) + cached_count/gap_nids (Numista) from on-disk cache across BR-4/BR-3/BO.7/BO.6 schemas (preserves
+    gap order + oos_excluded_tids + file format; idempotent). Wired into HARVEST_ROUTINE.md §1 preflight
+    so the picker reads fresh state every cron session. One-time --write corrected 38 stale buckets across
+    4 audit files (e.g. brunswick_luneburg_p1082 0→61, norway.p3 0→200).'
+  resolved_at: '2026-05-30T08:44:39Z'
+  resolved_by: claude
 - id: audit_manifest_label_mismatch:bucket=hesse_kassel_p899:source=ucoin
   type: audit_manifest_label_mismatch
   key_dims:
