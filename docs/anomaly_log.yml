@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T02:25:04Z'
+  last_updated_utc: '2026-05-30T04:17:49Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -523,8 +523,8 @@ anomalies:
   summary: ucoin BR-4 bucket osnabruck_p3057 enumeration contains pre-mission OOS TIDs (pre-1559).
   status: open
   instance_first_seen: '2026-05-27T19:22:57Z'
-  last_seen: '2026-05-29T22:25:38Z'
-  occurrence_count: 12
+  last_seen: '2026-05-30T04:17:49Z'
+  occurrence_count: 13
   affected_ids:
     ucoin:
     - 171936
@@ -635,6 +635,11 @@ anomalies:
     detail: 'Batch 193: picker hit osnabruck_p3057 (55/55 uncached). Head TIDs [171936, 172222, 172659,
       172663, 172662] match the same prior-recorded OOS set. Auto-skipped per anomaly proposed_fix; fell
       through to next priority (hesse_kassel_p899).'
+  - run_utc: '2026-05-30T04:17:49Z'
+    batch_label: '198'
+    detail: 'Batch 198 (autonomous cron-fired): picker selected osnabruck_p3057 again; all 55 TIDs flagged
+      as pre-mission per existing anomaly. Skipped to next priority (hesse_kassel_p899). Audit-4 fix still
+      pending.'
   proposed_fix: 'Audit-4 needs year-filter: trim osnabruck_p3057 in_scope to 1559-1661 portion only, move
     1482-1558 TIDs to oos_excluded_tids slot with audit-trail reason. Until then, picker auto-skips this
     bucket.'
