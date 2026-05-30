@@ -982,6 +982,32 @@ def _weight_diverges(a, b, tol_rel: float = 0.05) -> bool | None:
     return rel > tol_rel
 
 
+def _shares_unique_id_ref(refs_a: dict, refs_b: dict) -> bool:
+    """True iff the two ref dicts share an AGREEING globally-unique
+    identity ref — a Numista N# or a Bruun collection-id.
+
+    These two refs are identity-proof: a Numista N# names exactly one
+    catalogue type empire-wide; a Bruun collection-id names exactly one
+    physical specimen. A shared+agreeing value on either is conclusive
+    same-coin evidence that does NOT collide cross-reign / cross-register
+    (unlike a bare km, which can be reused across reigns — e.g. KM#461 on
+    both a Christian V and a Frederik IV «2 Ducats» around 1699).
+
+    Used to NARROWLY gate the ruler-string-divergence override in
+    `match_pair`: ruler is demoted to advisory only on a shared unique-ID
+    ref, never on a bare km/hede-volume collision. See the §dup-audit T1
+    note (2026-05-30) at the ruler block.
+    """
+    GLOBALLY_UNIQUE = {"numista", "bruun_collection_id"}
+    for k in (GLOBALLY_UNIQUE & set(refs_a) & set(refs_b)):
+        va, vb = refs_a[k], refs_b[k]
+        sa = set(va.split("|")) if isinstance(va, str) else {str(va)}
+        sb = set(vb.split("|")) if isinstance(vb, str) else {str(vb)}
+        if sa & sb:
+            return True
+    return False
+
+
 def _catalog_strongly_agrees(refs_a: dict, refs_b: dict,
                               min_shared_agreeing: int = 2) -> bool:
     """Strong catalog-agreement test for the weight tier-1 disambiguator.
@@ -1390,8 +1416,38 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
             a_rv = bool(coin_a.get("ruler_verified", True))
             b_rv = bool(coin_b.get("ruler_verified", True))
             if a_rv and b_rv:
-                primary["ruler"] = False
-                why.append(f"ruler: {ra!r} ≠ {rb!r}")
+                # Globally-unique-ID override (NARROW — §dup-audit T1
+                # 2026-05-30). A ruler-string divergence is demoted to
+                # advisory ONLY when the two coins share an agreeing
+                # GLOBALLY-UNIQUE identity ref — a Numista N# or a Bruun
+                # collection-id. Those are identity-proof: a Numista N# is
+                # one catalogue type empire-wide, a Bruun coll-id is one
+                # physical specimen. When they agree, a ruler-string
+                # difference is cross-source naming / language convention
+                # (Numista's English «Christian Albert» vs German
+                # «Christian Albrecht von Gottorp» on the coin both cite
+                # as N#301216) — not different-ruler evidence.
+                #
+                # The gate is deliberately NARROWER than
+                # `_catalog_strongly_agrees`: it does NOT accept a shared
+                # bare km / hede-volume ref, which can collide cross-reign
+                # (KM#461 cited on both a Christian V and a Frederik IV
+                # «2 Ducats» around 1699). A shared Numista N# / Bruun
+                # coll-id never collides cross-reign, so it is safe.
+                # (Cross-reign coins that legitimately share a Bruun
+                # specimen / N# — same physical coin catalogued under two
+                # reign-volumes — DO merge; the hede_volume scalar-handling
+                # in _deep_merge_catalog keeps the output well-formed.)
+                if _shares_unique_id_ref(refs_a, refs_b):
+                    primary["ruler"] = None
+                    why.append(
+                        f"ruler: {ra!r} ≠ {rb!r} — demoted to advisory via "
+                        f"shared globally-unique ID ref (numista N# / "
+                        f"bruun coll-id) — identity-proof"
+                    )
+                else:
+                    primary["ruler"] = False
+                    why.append(f"ruler: {ra!r} ≠ {rb!r}")
             else:
                 primary["ruler"] = None
                 why.append(
@@ -2031,7 +2087,7 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
     # (per CatalogRefs `str | list[str]` declaration). Distinct values
     # across members are PRESERVED.
     _LIST_FORM_FIELDS = {
-        "hede", "hede_volume", "sieg", "schou", "fr", "dav",
+        "hede", "sieg", "schou", "fr", "dav",
         "galster", "galster_volume", "jensen_skjoldager",
         "schive", "skaare", "friedberg", "davenport",
         "mb", "bruun_collection_id", "bruun_lot", "numista", "lange",
@@ -2039,9 +2095,20 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
     }
     # Fields that stay single-value (specimen-level or strict literal).
     # Conflict = log; top-auth wins for output.
+    #
+    # `hede_volume` is scalar-only in the schema (`str | None`) — it is
+    # the per-ruler Hede volume code (c5h, f4h, …). A coin is catalogued
+    # in ONE Hede volume; when two cross-source members disagree (e.g. a
+    # 1699-transition coin that one source files under Christian V «c5h»
+    # and another under Frederik IV «f4h» — same physical coin, divergent
+    # reign-attribution), top-authority (foundation / curated) wins and
+    # the divergence is logged as a conflict. It must NOT list-form —
+    # that produced `hede_volume: ['c5h','f4h']` which violates the
+    # schema (§dup-audit T-fix 2026-05-30). Unlike `galster_volume`
+    # (`str | list[str]`, list-allowed), `hede_volume` is strictly scalar.
     _SINGLE_VALUE_FIELDS = {
         "bruun_part", "bruun_lot_no", "bruun_page",
-        "sieg_hede1971", "schou_hede1971",
+        "sieg_hede1971", "schou_hede1971", "hede_volume",
     }
     # `others` is already list-form; just union.
 
