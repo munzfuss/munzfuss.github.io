@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-29T22:30:39Z'
+  last_updated_utc: '2026-05-30T00:28:37Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -697,11 +697,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query returns OOS Prussian records via keyword match (Friedrich II 1752).
+  summary: IKMK 'Osnabrück' query returns OOS records (Preußen Friedrich II minted in Berlin).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-29T22:30:39Z'
-  occurrence_count: 7
+  last_seen: '2026-05-30T00:28:37Z'
+  occurrence_count: 8
   affected_ids:
     ikmk:
     - 18206581
@@ -713,6 +713,9 @@ anomalies:
     - 18229376
     - 18229792
     - 18231365
+    - 18233712
+    - 18233798
+    - 18233802
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -762,8 +765,20 @@ anomalies:
     detail: 'Batch AK: mds_id 18231365 ''Preußen: Friedrich II.'' 1752 — Prussian Hohenzollern coinage;
       Osnabrück query picked it up presumably via Osnabrück mint or legend mention. Prussia is OOS for
       project (German-states mission scope does not include Brandenburg-Prussia).'
-  proposed_fix: Tighten Osnabrück query in scripts/fetch_ikmk.py to issuer='Hochstift Osnabrück' only,
-    OR post-fetch reject when issuer prefix is 'Preußen'.
+  - run_utc: '2026-05-30T00:28:37Z'
+    batch_label: AM
+    detail: 'Batch AM: 3 of 5 fetched mds_ids OOS via Osnabrück query — 18233712 (Preußen Friedrich II
+      2 Friedrich d''or gold, Berlin mint), 18233798 (Preußen Friedrich II Stüber billon, Berlin mint),
+      18233802 (Preußen Friedrich II 1/2 Stüber billon, Berlin mint). Project scope excludes Prussia entirely
+      (German lands per CLAUDE.md mission scope: Hanseatic + Welf + Hesse-Kassel + Oldenburg + Saxe-Lauenburg
+      + Osnabrück + Bremen — Prussia/Brandenburg not in scope).'
+    full_context:
+      ikmk_batch: AM
+      numista_batch: GG
+      ucoin_batch: '194'
+  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py — current query likely returns hits for Stüber/Friedrich-d'or
+    coinage minted Berlin under Prussia (territory near but distinct from Osnabrück Hochstift). Add issuer-scope
+    filter (issuer must contain 'Osnabrück' or 'Bistum') OR add Berlin-mint exclusion for Osnabrück query.
   resolution: null
   resolved_at: null
   resolved_by: null
