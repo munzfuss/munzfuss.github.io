@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T18:07:38Z'
+  last_updated_utc: '2026-05-30T18:21:32Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1216,7 +1216,7 @@ anomalies:
     id: '95858'
   summary: ucoin TID 95858 (Hesse-Kassel 10 Thaler 1838-1841, William II, Gold) — both initial + 90s-cookie-clear
     retry redirected to /check/?f=0 rate-limit page.
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-30T17:25:02.706544Z'
   last_seen: '2026-05-30T17:25:02.706544Z'
   occurrence_count: 1
@@ -1233,6 +1233,8 @@ anomalies:
       url_tried: https://en.ucoin.net/coin/hesse_kassel-10-thaler-1838-1841/?tid=95858
   proposed_fix: Open URL in browser to determine status (rate-limit decay/renamed/withdrawn). Closes hesse_kassel_p899
     bucket when fetched (61/62 cached as of batch 211; this is the lone holdout).
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Auto-resolved by harvest run GY/212: cache file ucoin/95858.json written via slug-form
+    URL hesse_kassel-10-thaler-1838-1841 found on listing page 2 (prior runs apparently only walked page
+    1 of the period 899 listing). Bucket hesse_kassel_p899 now 62/62 CLOSED.'
+  resolved_at: '2026-05-30T18:21:32Z'
+  resolved_by: harvest-routine-auto
