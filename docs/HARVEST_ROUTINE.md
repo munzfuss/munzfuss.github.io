@@ -1621,15 +1621,25 @@ br4_bucket_order = [
 ]
 for i, bkey in enumerate(br4_bucket_order, 1):
     info = br4_audit['buckets'].get(bkey) or {}
-    tids = info.get('gap_tids') or info.get('in_scope_tids') or []
-    total = info.get('in_scope_total', len(tids))
+    # BR-4 buckets carry `enumerated_total` (NOT `in_scope_total`); oos-split
+    # buckets (e.g. osnabruck_p3057) also carry `in_scope_total`. After a
+    # cached_count refresh (scripts/maintenance/refresh_audit_cached_counts.py)
+    # `gap_tids` holds ONLY the uncached TIDs and `cached_count`/`cached_tids`
+    # are accurate. So compute total from in_scope_total → enumerated_total →
+    # (gap ∪ cached); read `cached` from cached_count; NEVER fall back to
+    # len(gap_tids) (that equals the uncached count post-refresh and drops
+    # fully-cached buckets / undercounts — the §6.1 regression after the
+    # 2026-05-30 refresh).
+    gap_tids = [str(t) for t in (info.get('gap_tids') or [])]
+    cached_tids = [str(t) for t in (info.get('cached_tids') or [])]
+    all_tids = set(gap_tids) | set(cached_tids)
+    total = info.get('in_scope_total') or info.get('enumerated_total') or len(all_tids)
     if total == 0:
         continue
     br4_active += 1
-    period_tids = set(str(t) for t in tids)
-    cached = sum(1 for t in tids if (uc_cache/f'{t}.json').exists())
-    delta = len(period_tids & tids_set)
-    ucoin_unmatched_tids -= period_tids
+    cached = info.get('cached_count', len(cached_tids))
+    delta = len(all_tids & tids_set)
+    ucoin_unmatched_tids -= all_tids
     gap = total - cached
     pct = round(100 * cached / total) if total else 0
     status = '✅ CLOSED' if gap == 0 else ('⏳ untouched' if cached == 0 else '🔵 open')
