@@ -101,14 +101,28 @@ rules:
         - 'schaumburg-pinneberg'
         - 'schauenburg-pinneberg'
       denomination_any:
+        # Niedersächsisch-EXCLUSIVE denominations only. The Lower Saxon
+        # Circle's 36-Mariengroschen-per-Reichsthaler subdivision —
+        # Mariengroschen, its multiples, and Fürstengroschen — never
+        # appear in the SH 9¼-Thaler-Fuß system. Arendschilling is a
+        # Niedersachsen-specific Schauenburg type.
         - 'mariengroschen'
         - 'fürstengroschen'
         - 'fuerstengroschen'
         - 'arendschilling'
-        - '1/24 thaler'
-        - '1⁄24 thaler'
-        - '1/21 thaler'
-        - '1⁄21 thaler'
+        # NB: «1/24 Thaler» was REMOVED 2026-05-29 — it is NOT a NS
+        # signal. The 1/24 Thaler is the Imperial Gutegroschen of the
+        # 24-Groschen-per-Reichsthaler reckoning (Reichsmünzordnung
+        # standard), struck with the «24» mark on the imperial orb +
+        # crowned imperial eagle + the reigning emperor's name (Rudolf
+        # II on the Schaumburg-Pinneberg pieces). It circulated empire-
+        # wide on BOTH the Pinneberg (Altona, SH side) and Schaumburg-
+        # county (Niedersachsen) sides, so it does NOT disambiguate the
+        # tradition. Schaumburg-Pinneberg 1/24 Thaler are placed by
+        # MINT (Altona → schauenburg_pinneberg) or, when mint is absent,
+        # by ISSUER chip («Holstein-Schaumburg-Pinneberg» →
+        # schauenburg_pinneberg) — not by this rule. Verified against
+        # NumisMaster reverse legends 2026-05-29 (§CE).
     routes_to: holstein_schauenburg_county
     audit:
       first_added: '2026-05-27'

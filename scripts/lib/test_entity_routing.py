@@ -63,7 +63,12 @@ class TestEntityRouting(unittest.TestCase):
         self.assertTrue(hint["agrees_with_active"])
 
     # ── Case 3: rule matches, mint Altona (SH-side) verified → hint records DISAGREEMENT ─
-    def test_24_thaler_altona_verified_hint_disagrees(self):
+    def test_24_thaler_no_longer_ns_signal(self):
+        # 1/24 Thaler is the Imperial Gutegroschen (24-Groschen-Thaler
+        # reckoning, Reichsmünzordnung standard) — NOT a NS-Mariengroschen
+        # denomination. Removed from the rule 2026-05-29 (§CE). A
+        # Schaumburg-Pinneberg 1/24 Thaler must NOT match the rule; it's
+        # placed by mint (Altona → schauenburg_pinneberg) or issuer.
         coin = {
             "id": "test-3",
             "ruler": "Ernst III von Schaumburg-Pinneberg",
@@ -73,13 +78,9 @@ class TestEntityRouting(unittest.TestCase):
             "year_first": 1611,
         }
         ent, hint = route_entity_with_rules(coin, default_entity="schauenburg_pinneberg")
-        # Mint wins (verified); rule writes hint with agrees_with_active=False
-        # — this is the edge-case-flag for curator review.
+        # No rule matches (1/24 Thaler dropped) → passthrough, no hint.
         self.assertEqual(ent, "schauenburg_pinneberg")
-        self.assertIsNotNone(hint)
-        self.assertFalse(hint["active"])
-        self.assertFalse(hint["agrees_with_active"])
-        self.assertEqual(hint["would_route_to"], "holstein_schauenburg_county")
+        self.assertIsNone(hint)
 
     # ── Case 4: no rule matches → passes through unchanged, no hint ──
     def test_reichsthaler_altona_vanilla_passthrough(self):
@@ -113,7 +114,7 @@ class TestEntityRouting(unittest.TestCase):
         coin = {
             "id": "test-6",
             "ruler": ["Ernst III", "Matthias"],   # joint
-            "nominal": "1/24 Thaler",
+            "nominal": "4 Mariengroschen",        # NS-tradition denom
             "mint": None,
             "mint_verified": False,
             "year_first": 1612,
@@ -127,7 +128,7 @@ class TestEntityRouting(unittest.TestCase):
         coin = {
             "id": "test-7",
             "ruler": "",                     # empty ruler text
-            "nominal": "1 Groschen = 1/24 Thaler",
+            "nominal": "2 Mariengroschen",   # NS-tradition denom
             "mint": None,
             "mint_verified": False,
             "_numista_issuer": "County of Holstein-Schaumburg-Pinneberg (German States)",

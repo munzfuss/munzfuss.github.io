@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-29T20:31:53Z'
+  last_updated_utc: '2026-05-29T21:33:48Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -960,6 +960,75 @@ anomalies:
       ucoin_batch: '191'
   proposed_fix: Tighten Braunschweig query in fetch_ikmk.py to herzogtum_braunschweig_lueneburg issuer-scope
     or add post-fetch scope filter rejecting Berlin/Brandenburg mints.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_period_boundary:bucket=osnabruck_p3057:source=ucoin
+  type: audit_manifest_period_boundary
+  key_dims:
+    source: ucoin
+    bucket: osnabruck_p3057
+  summary: ucoin osnabruck_p3057 (Bishopric of Osnabrück 1482-1661) is a mixed bucket — head of gap_tids
+    (first 5) is all pre-1559 OOS, but later TIDs (1637-1662) are in mission scope.
+  status: open
+  instance_first_seen: '2026-05-29T21:19:17Z'
+  last_seen: '2026-05-29T21:19:17Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 171936
+    - 172222
+    - 172659
+    - 172663
+    - 172662
+  occurrences:
+  - run_utc: '2026-05-29T21:19:17Z'
+    batch_label: '192'
+    detail: 'Defensive sampling for BR batch 192 (per §7.5) revealed first 5 uncached TIDs (171936/172222/172659/172663/172662)
+      are 1482-1508 Vierling/Heller/Pfennig — pre-1559 Reichsmünzordnung boundary, OOS for German lands.
+      Spot-checks of deeper TIDs (172945=1657 6-Pfennig, 173024=1656 1/28-Thaler, 173393=1661 1-Thaler,
+      178754=1637 2-Thaler) confirm post-1559 in-scope content exists. Bucket needs OOS split: reclassify
+      TIDs from years 1482-1558 into oos_excluded_tids, keep 1559-1661 TIDs in gap_tids. Picker mechanically
+      takes head-first so without the split every batch from this bucket will burn on OOS heads.'
+    full_context:
+      numista_batch: GD
+      ucoin_batch_skipped_bucket: osnabruck_p3057
+      switched_to: brunswick_luneburg_p1082
+  proposed_fix: 'Patch _BR_audit-4_2026-05-24.json::buckets.osnabruck_p3057: split gap_tids by year (sample
+    TIDs via Chrome MCP listing-page anchors to bin), move pre-1559 TIDs into oos_excluded_tids slot with
+    audit-trail reason. Then re-pick head from remaining in-scope list.'
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:field=cached_count:manifest=br_audit_4:source=ucoin
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ucoin
+    manifest: BR-audit-4
+    field: cached_count
+  summary: BR-4 ucoin audit cached_count/cached_tids fields are stale across multiple buckets — brunswick_luneburg_p1082
+    confirmed fully cached on disk (61/61) but audit still reports cached_count=0. Picker safe (uses on-disk
+    filter); operator tables affected.
+  status: open
+  instance_first_seen: '2026-05-29T21:33:48Z'
+  last_seen: '2026-05-29T21:33:48Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin: []
+  occurrences:
+  - run_utc: '2026-05-29T21:33:48Z'
+    batch_label: '192'
+    detail: 'Encountered during BR batch 192: §4.1 picker correctly returned brunswick_luneburg_p1082
+      as `0/61 cached, 55 uncached` based on stale audit cached_count=0. On-disk verification revealed
+      all 61 TIDs already present from prior batches (177, 187, 188, 189). Likely the same staleness affects
+      sibling buckets where audit was generated 2026-05-24 and harvest has progressed since.'
+    full_context:
+      sample_bucket: brunswick_luneburg_p1082
+      audit_cached_count: 0
+      on_disk_cached_count: 61
+  proposed_fix: 'Maintenance script: walk _BR_audit-4_2026-05-24.json buckets, recompute cached_count
+    + cached_tids from actual scripts/cache/ucoin/<tid>.json existence, write back. Run at start of every
+    cron session or on a daily schedule. Same logic should run for BR-2, BR-3, BO.6, BO.7 audits.'
   resolution: null
   resolved_at: null
   resolved_by: null
