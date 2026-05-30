@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T13:27:39Z'
+  last_updated_utc: '2026-05-30T14:24:47Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1333,6 +1333,120 @@ anomalies:
       ucoin_batch: '206'
   proposed_fix: Replace bare 'Iburg' query with phrase-quoted or issuer-scoped variant in fetch_ikmk.py
     QUERIES list; or add issuer-text post-fetch filter.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: url_open_failed:id=178756:source=ucoin
+  type: url_open_failed
+  key_dims:
+    source: ucoin
+    id: '178756'
+  summary: 'ucoin TID 178756 fails to fetch (last reason: ''404_page_not_found''); ID remains in audit
+    gap_tids as retry candidate, cache file absent.'
+  status: open
+  instance_first_seen: '2026-05-30T14:18:31.171277Z'
+  last_seen: '2026-05-30T14:18:31.171277Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 178756
+  occurrences:
+  - run_utc: '2026-05-30T14:18:31.171277Z'
+    batch_label: '208'
+    detail: 'Batch 208: 404_page_not_found — url https://en.ucoin.net/coin/?tid=178756. TID not on osnabruck_p3057
+      listing (48 anchors visible, this TID not among them); slug-less redirect resolves to Page Not Found.'
+    full_context:
+      reason: 404_page_not_found
+      url_tried: https://en.ucoin.net/coin/?tid=178756
+  proposed_fix: Open URL in browser to determine status (renamed/merged/moved/withdrawn/removed). If verified
+    OOS or merged, reclassify into audit's oos_excluded_tids slot.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: url_open_failed:id=178757:source=ucoin
+  type: url_open_failed
+  key_dims:
+    source: ucoin
+    id: '178757'
+  summary: 'ucoin TID 178757 fails to fetch (last reason: ''404_page_not_found''); ID remains in audit
+    gap_tids as retry candidate, cache file absent.'
+  status: open
+  instance_first_seen: '2026-05-30T14:18:31.171277Z'
+  last_seen: '2026-05-30T14:18:31.171277Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 178757
+  occurrences:
+  - run_utc: '2026-05-30T14:18:31.171277Z'
+    batch_label: '208'
+    detail: 'Batch 208: 404_page_not_found — url https://en.ucoin.net/coin/?tid=178757. TID not on osnabruck_p3057
+      listing (48 anchors visible, this TID not among them); slug-less redirect resolves to Page Not Found.'
+    full_context:
+      reason: 404_page_not_found
+      url_tried: https://en.ucoin.net/coin/?tid=178757
+  proposed_fix: Open URL in browser to determine status (renamed/merged/moved/withdrawn/removed). If verified
+    OOS or merged, reclassify into audit's oos_excluded_tids slot.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_period_boundary:bucket=osnabruck_p3057:id=178755:source=ucoin
+  type: audit_manifest_period_boundary
+  key_dims:
+    source: ucoin
+    bucket: osnabruck_p3057
+    id: '178755'
+  summary: ucoin TID 178755 (Ernst August 3 thaler ND 1662) sits 1y past p3057 period label '1482-1661'
+    / mission_window 1559-1661.
+  status: open
+  instance_first_seen: '2026-05-30T14:20:38.405861Z'
+  last_seen: '2026-05-30T14:20:38.405861Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 178755
+  occurrences:
+  - run_utc: '2026-05-30T14:20:38.405861Z'
+    batch_label: '208'
+    detail: 'Batch 208: TID 178755 in audit-4 gap_tids for osnabruck_p3057 (years_label ''1482-1661'',
+      mission_window ''1559-1661''); ucoin-published year is ND (1662). Coin saved; period boundary surfaced
+      for review — Ernst August acceded to Osnabrück bishopric 1662, so single-year overshoot is historically
+      plausible. Decide whether to extend bucket label to ''1482-1662'' or reclassify into a successor
+      bucket.'
+  proposed_fix: Extend osnabruck_p3057 period upper bound to 1662 OR identify the correct successor period
+    bucket on ucoin and move this TID there.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:scope=query_bucket_drift:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    scope: query_bucket_drift
+  summary: IKMK fetcher's broad entity-scope accepts records that no manifest query maps to — batches
+    AY / AZ / BA all returned 100 % scope-drift mds_ids.
+  status: open
+  instance_first_seen: '2026-05-30T14:24:47.720421Z'
+  last_seen: '2026-05-30T14:24:47.720421Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18258191
+    - 18258383
+    - 18260299
+    - 18263022
+    - 18263039
+  occurrences:
+  - run_utc: '2026-05-30T14:24:47.720421Z'
+    batch_label: BA
+    detail: 'Batch BA: 5 fetched mds_ids — Würzburg (Otto I. Denar), Mainz (Johann II. Goldgulden), Neuenburg
+      (Friedrich Wilhelm II. 10½ Batzen), 2× Postumus (Gallo-Roman). None map to any active query in _manifest.json::queries.
+      Three consecutive batches now exhibit this pattern (AY / AZ / BA). Suggests either (a) the manifest''s
+      `ids` pool has stale entries from prior discover passes whose query buckets were later removed/renamed,
+      or (b) the entity-scope filter is too generous relative to the curated query list.'
+  proposed_fix: Re-run scripts/fetch_ikmk.py discover to refresh manifest queries, then run a cleanup
+    pass that drops orphan ids from `ids` pool. OR tighten _is_in_entity_scope() to match the project's
+    curated entity list more strictly (V2 location-consumed entities).
   resolution: null
   resolved_at: null
   resolved_by: null
