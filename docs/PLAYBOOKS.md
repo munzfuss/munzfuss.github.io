@@ -1160,6 +1160,60 @@ might have been waiting locally, but the submodule history preserves
 the per-batch detail in full. Triggered 2026-05-19 during BO.6 v2
 work, see commit `16ccfe1`.
 
+**Recovery from a `git pull` MERGE with submodule divergence.** A
+NON-rebase pull (`git pull --no-rebase`, or plain `git pull` when both
+sides diverged) that finds the **submodule itself diverged** (local
+advanced N harvest commits, origin advanced M different commits, off a
+common base) reports:
+
+```
+Failed to merge submodule scripts/cache (commits not present)
+CONFLICT (submodule): Merge conflict in scripts/cache
+```
+
+Git CANNOT auto-resolve this — the two submodule pointers are not
+ancestor/descendant (both branched off the merge-base). Resolution:
+**merge the submodule by hand, then point the superproject at the
+merged result.**
+
+```bash
+# 0. Confirm divergence direction (not a trivial fast-forward):
+git ls-files -u scripts/cache          # stage 1=base, 2=ours, 3=theirs SHAs
+cd scripts/cache
+git fetch origin main
+git merge-base --is-ancestor <ours> <theirs> && echo "linear" || echo "diverged"
+
+# 1. Merge inside the submodule (both private-repo harvest histories
+#    combine — merge commits are fine here; no content conflict when
+#    the two sides touched different cache files, which is the norm).
+git merge --no-edit origin/main
+git rev-parse HEAD^1 HEAD^2            # verify the merge has BOTH parents
+
+# 2. Back in the superproject: record the merged submodule pointer.
+cd ../..
+git add scripts/cache
+
+# 3. Resolve any OTHER superproject conflicts (e.g. docs/anomaly_log.yml
+#    — union both sides' new entries; for a resolved-vs-open anomaly,
+#    take the side that RESOLVED it + keep the other side's new entries).
+#    Then finalise the superproject merge commit:
+git commit --no-edit
+```
+
+⚠ **Push-order is CRITICAL after this.** The superproject merge-commit
+now references a submodule **merge-commit that exists only locally**
+(it was created in step 1, never pushed). If the superproject is pushed
+before the submodule, origin/main will reference a submodule SHA the
+remote submodule doesn't have — a dangling pointer that breaks
+`git submodule update` for every other clone / session. So the standard
+PB-10 order is MANDATORY here, not just advisory: **`cd scripts/cache
+&& git push` FIRST, then push the superproject.** (Same submodule-first
+rule as the two-step dance above — but here it's load-bearing because
+the referenced submodule commit is a fresh local merge, not an
+already-pushed harvest commit.) Triggered 2026-05-30 reconciling a
+63-local-vs-2-origin divergence where the submodule had also diverged
+59-vs-1; submodule merge `468fb8ac`, superproject merge `0a85db1`.
+
 **Push-permission rule still applies.** Per CLAUDE.md «Commit cadence
 + push permission»: never push autonomously. Both `git push` calls above
 require the user's explicit «пуш» / «push» grant. The grant covers
