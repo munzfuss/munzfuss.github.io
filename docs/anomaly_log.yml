@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T15:45:22Z'
+  last_updated_utc: '2026-05-30T16:17:57Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1079,3 +1079,35 @@ anomalies:
     4 audit files (e.g. brunswick_luneburg_p1082 0→61, norway.p3 0→200).'
   resolved_at: '2026-05-30T08:44:39Z'
   resolved_by: claude
+- id: audit_manifest_period_boundary:bucket=osnabruck_p3057:source=ucoin
+  type: audit_manifest_period_boundary
+  key_dims:
+    source: ucoin
+    bucket: osnabruck_p3057
+  summary: ucoin osnabruck_p3057 bucket (titled '1482-1661') contains TIDs 178756/178757 with attested
+    year 1662 — period boundary off by 1 year.
+  status: open
+  instance_first_seen: '2026-05-30T16:17:57Z'
+  last_seen: '2026-05-30T16:17:57Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 178756
+    - 178757
+  occurrences:
+  - run_utc: '2026-05-30T16:17:57Z'
+    batch_label: '210'
+    detail: 'Batch 210: TID 178756 (4 Thaler ND-1662 KM-91, 115.97g) and TID 178757 (likely 5 Thaler 1662)
+      both attributed to ''Ernest Augustus'' within bucket period ''1482 - 1661'' per ucoin''s own page
+      text. Possibly the bucket should extend to include early HG-Rendsburg transition 1662-1663 or these
+      TIDs were misclassified upstream by ucoin.'
+    full_context:
+      ucoin_batch: '210'
+      numista_batch: GW
+      ikmk_batch: BC-pending
+  proposed_fix: Verify with Osnabrück Hochstift numismatic literature whether these are 1662 first-strikes
+    under Ernst August (took office 1662) or attribution-only ND coins backdated to 1661 by some sources.
+    Update bucket title in audit-4 if ucoin's attribution is canonical.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
