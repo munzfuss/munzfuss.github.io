@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T09:28:17Z'
+  last_updated_utc: '2026-05-30T10:27:28Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -976,11 +976,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: kassel
-  summary: IKMK 'Kassel' query returns OOS records (Roman Imperial, pre-mission).
+  summary: IKMK 'Kassel' query returns OOS records.
   status: open
   instance_first_seen: '2026-05-28T04:27:47Z'
-  last_seen: '2026-05-30T09:28:17Z'
-  occurrence_count: 4
+  last_seen: '2026-05-30T10:27:28Z'
+  occurrence_count: 5
   affected_ids:
     ikmk:
     - 18213935
@@ -991,6 +991,10 @@ anomalies:
     - 18226454
     - 18249502
     - 18249503
+    - 18249520
+    - 18250330
+    - 18250332
+    - 18250345
   occurrences:
   - run_utc: '2026-05-28T04:27:47Z'
     batch_label: AF
@@ -1025,7 +1029,17 @@ anomalies:
       ikmk_batch: AV
       numista_batch: GP
       ucoin_batch: '203'
-  proposed_fix: Tighten Kassel query in fetch_ikmk.py to issuer-scope or add post-fetch entity scope filter.
+  - run_utc: '2026-05-30T10:27:28Z'
+    batch_label: AW
+    detail: 'Batch AW: 4 of 5 fetched mds_ids OOS (Magnentius, Roman Trier mint 350-353 AD). Mds_ids:
+      18249520, 18250330, 18250332, 18250345.'
+    full_context:
+      ikmk_batch: AW
+      numista_batch: GQ
+      ucoin_batch: '204'
+  proposed_fix: Tighten Kassel query in fetch_ikmk.py — Kassel as German city name returns Roman 'Magnentius'
+    (linked via mint=Trier 'Kassel' fragment, RIC/SBM index overlap, or other catalog quirk). Add post-fetch
+    issuer-scope filter (regnum != 'Roman Empire').
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -1062,11 +1076,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: braunschweig
-  summary: IKMK 'Braunschweig' query returns OOS records (modern non-German commemoratives).
+  summary: IKMK 'Braunschweig' query returns OOS records.
   status: open
   instance_first_seen: '2026-05-29T17:29:25Z'
-  last_seen: '2026-05-30T09:28:17Z'
-  occurrence_count: 6
+  last_seen: '2026-05-30T10:27:28Z'
+  occurrence_count: 7
   affected_ids:
     ikmk:
     - 18217796
@@ -1076,6 +1090,7 @@ anomalies:
     - 18235390
     - 18248981
     - 18248997
+    - 18253647
   occurrences:
   - run_utc: '2026-05-29T17:29:25Z'
     batch_label: AI
@@ -1125,8 +1140,16 @@ anomalies:
       ikmk_batch: AV
       numista_batch: GP
       ucoin_batch: '203'
-  proposed_fix: Tighten Braunschweig query in fetch_ikmk.py to issuer-scope or add post-fetch entity scope
-    filter.
+  - run_utc: '2026-05-30T10:27:28Z'
+    batch_label: AW
+    detail: 'Batch AW: 1 of 5 fetched mds_id OOS (Köln: Dietrich von Moers, medieval Köln archbishopric
+      Weißpfennig, Riehl 1414-1463). Mds_id: 18253647.'
+    full_context:
+      ikmk_batch: AW
+      numista_batch: GQ
+      ucoin_batch: '204'
+  proposed_fix: Tighten Braunschweig query — keyword matching pulls Köln archbishopric medieval records.
+    Add post-fetch issuer/region scope filter.
   resolution: null
   resolved_at: null
   resolved_by: null
