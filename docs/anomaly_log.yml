@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T15:18:55Z'
+  last_updated_utc: '2026-05-30T15:27:37Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -870,11 +870,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query returns OOS records (Mainz, Böhmen, etc.).
+  summary: IKMK 'Hamburg' query returns OOS records (Roman Gallic Empire).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-30T13:27:39Z'
-  occurrence_count: 12
+  last_seen: '2026-05-30T15:27:37.195514Z'
+  occurrence_count: 13
   affected_ids:
     ikmk:
     - 18210988
@@ -901,6 +901,8 @@ anomalies:
     - 18257140
     - 18258176
     - 18258178
+    - 18263878
+    - 18263936
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -998,8 +1000,16 @@ anomalies:
       ikmk_batch: AZ
       numista_batch: GT
       ucoin_batch: '207'
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter
-    on regions outside Norddeutschland.
+  - run_utc: '2026-05-30T15:27:37.195514Z'
+    batch_label: BB
+    detail: 'Batch BB: 2 of 5 fetched mds_ids OOS via Hamburg query (Marius 18263878, Victorinus 18263936)
+      — Gallic-Empire Doppeldenar (Antoninianus), c. 269-271 AD — out of mission scope (1514/1559-1914).'
+    full_context:
+      ikmk_batch: BB
+      numista_batch: GV
+      ucoin_batch: '209'
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope (Hanseatic Hamburg only) or add
+    post-fetch scope filter to reject 3rd-century Roman antoniniani.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -1008,11 +1018,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: kassel
-  summary: IKMK 'Kassel' query returns OOS records.
+  summary: IKMK 'Kassel' query returns OOS records (Roman Gallic Empire).
   status: open
   instance_first_seen: '2026-05-28T04:27:47Z'
-  last_seen: '2026-05-30T10:27:28Z'
-  occurrence_count: 5
+  last_seen: '2026-05-30T15:27:37.195514Z'
+  occurrence_count: 6
   affected_ids:
     ikmk:
     - 18213935
@@ -1027,6 +1037,9 @@ anomalies:
     - 18250330
     - 18250332
     - 18250345
+    - 18263164
+    - 18263359
+    - 18263948
   occurrences:
   - run_utc: '2026-05-28T04:27:47Z'
     batch_label: AF
@@ -1069,9 +1082,17 @@ anomalies:
       ikmk_batch: AW
       numista_batch: GQ
       ucoin_batch: '204'
-  proposed_fix: Tighten Kassel query in fetch_ikmk.py — Kassel as German city name returns Roman 'Magnentius'
-    (linked via mint=Trier 'Kassel' fragment, RIC/SBM index overlap, or other catalog quirk). Add post-fetch
-    issuer-scope filter (regnum != 'Roman Empire').
+  - run_utc: '2026-05-30T15:27:37.195514Z'
+    batch_label: BB
+    detail: 'Batch BB: 3 of 5 fetched mds_ids OOS via Kassel query (Postumus 18263164, Postumus 18263359,
+      Victorinus 18263948) — Gallic-Empire Doppeldenar (Antoninianus), c. 260-271 AD — out of mission
+      scope (1514/1559-1914).'
+    full_context:
+      ikmk_batch: BB
+      numista_batch: GV
+      ucoin_batch: '209'
+  proposed_fix: Tighten Kassel query in fetch_ikmk.py to issuer-scope (Hesse-Kassel landgraviate / electorate
+    only) or add post-fetch scope filter to reject Roman antoniniani.
   resolution: null
   resolved_at: null
   resolved_by: null
