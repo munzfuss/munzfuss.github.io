@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T14:24:47Z'
+  last_updated_utc: '2026-05-30T15:18:55Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1447,6 +1447,62 @@ anomalies:
   proposed_fix: Re-run scripts/fetch_ikmk.py discover to refresh manifest queries, then run a cleanup
     pass that drops orphan ids from `ids` pool. OR tighten _is_in_entity_scope() to match the project's
     curated entity list more strictly (V2 location-consumed entities).
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: url_open_failed:id=81804:source=ucoin
+  type: url_open_failed
+  key_dims:
+    source: ucoin
+    id: '81804'
+  summary: ucoin TID 81804 fails to fetch (404_page_not_found); hesse_kassel_p899 residual gap; cache
+    file absent.
+  status: open
+  instance_first_seen: '2026-05-30T15:18:55.536367Z'
+  last_seen: '2026-05-30T15:18:55.536367Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 81804
+  occurrences:
+  - run_utc: '2026-05-30T15:18:55.536367Z'
+    batch_label: '209'
+    detail: 'Batch 209: 404_page_not_found — url https://en.ucoin.net/coin/?tid=81804. TID missing from
+      listing-page p=1+p=2 (48/62 visible).'
+    full_context:
+      reason: 404_page_not_found
+      url_tried: https://en.ucoin.net/coin/?tid=81804
+      bucket: hesse_kassel_p899
+  proposed_fix: Open URL in browser to determine status (renamed/merged/moved/withdrawn/removed). If verified
+    OOS or merged, reclassify into audit's oos_excluded_tids slot with audit-trail reason.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: url_open_failed:id=95858:source=ucoin
+  type: url_open_failed
+  key_dims:
+    source: ucoin
+    id: '95858'
+  summary: ucoin TID 95858 fails to fetch (404_page_not_found); hesse_kassel_p899 residual gap; cache
+    file absent.
+  status: open
+  instance_first_seen: '2026-05-30T15:18:55.536367Z'
+  last_seen: '2026-05-30T15:18:55.536367Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 95858
+  occurrences:
+  - run_utc: '2026-05-30T15:18:55.536367Z'
+    batch_label: '209'
+    detail: 'Batch 209: 404_page_not_found — url https://en.ucoin.net/coin/?tid=95858. TID missing from
+      listing-page p=1+p=2 (48/62 visible).'
+    full_context:
+      reason: 404_page_not_found
+      url_tried: https://en.ucoin.net/coin/?tid=95858
+      bucket: hesse_kassel_p899
+  proposed_fix: Open URL in browser to determine status (renamed/merged/moved/withdrawn/removed). If verified
+    OOS or merged, reclassify into audit's oos_excluded_tids slot with audit-trail reason.
   resolution: null
   resolved_at: null
   resolved_by: null
