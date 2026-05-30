@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T12:27:47Z'
+  last_updated_utc: '2026-05-30T13:27:39Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -726,11 +726,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query returns OOS Prussian Friedrich II / Friedrich Wilhelm I records.
+  summary: IKMK 'Osnabrück' query returns OOS records (Mainz, etc.).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-30T07:31:19Z'
-  occurrence_count: 12
+  last_seen: '2026-05-30T13:27:39Z'
+  occurrence_count: 13
   affected_ids:
     ikmk:
     - 18206581
@@ -757,6 +757,7 @@ anomalies:
     - 18240574
     - 18240592
     - 18240594
+    - 18257109
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -852,8 +853,15 @@ anomalies:
       ikmk_batch: AT
       numista_batch: GN
       ucoin_batch: '201'
-  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to issuer-scope (region=Osnabrück) or add post-fetch
-    scope filter against authority.country_name_de + region_name.
+  - run_utc: '2026-05-30T13:27:39Z'
+    batch_label: AZ
+    detail: 'Batch AZ: 1 of 5 fetched mds_ids OOS via Osnabrück query (Mainz: Adolf I. von Nassau Goldgulden
+      at Höchst). Pre-mission Mainz record surfaced by overly-permissive Osnabrück-query.'
+    full_context:
+      ikmk_batch: AZ
+      numista_batch: GT
+      ucoin_batch: '207'
+  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -862,11 +870,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query returns OOS records.
+  summary: IKMK 'Hamburg' query returns OOS records (Mainz, Böhmen, etc.).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-30T12:27:47Z'
-  occurrence_count: 11
+  last_seen: '2026-05-30T13:27:39Z'
+  occurrence_count: 12
   affected_ids:
     ikmk:
     - 18210988
@@ -889,6 +897,10 @@ anomalies:
     - 18255719
     - 18256263
     - 18256268
+    - 18257069
+    - 18257140
+    - 18258176
+    - 18258178
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -977,9 +989,17 @@ anomalies:
       ikmk_batch: AY
       numista_batch: GS
       ucoin_batch: '206'
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope (e.g. filter records by mds_issuer
-    or mint_authority match 'Hamburg' / 'Hansestadt Hamburg') OR add post-fetch scope filter dropping
-    records whose issuer != Hamburg.
+  - run_utc: '2026-05-30T13:27:39Z'
+    batch_label: AZ
+    detail: 'Batch AZ: 4 of 5 fetched mds_ids OOS via Hamburg query (Mainz: Adolf I. von Nassau Goldgulden
+      at Bingen/Udenheim; Böhmen: Ludwig II. Dukat at Prag). All pre-mission Reichsmuntzfuß context coins
+      surfaced by overly-permissive Hamburg-query string match.'
+    full_context:
+      ikmk_batch: AZ
+      numista_batch: GT
+      ucoin_batch: '207'
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter
+    on regions outside Norddeutschland.
   resolution: null
   resolved_at: null
   resolved_by: null
