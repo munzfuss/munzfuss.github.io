@@ -116,6 +116,24 @@ from lib.mint_registry import (  # noqa: E402
     ALIAS_TO_CANON as _MINT_ALIAS_TO_CANON,
     CANON_TO_DISPLAY as _MINT_CANON_TO_DISPLAY,
 )
+from lib.nominal_synonyms import normalise_nominal as _fold_denom  # noqa: E402
+
+
+def _same_denomination(head_word: str, paren_word: str) -> bool:
+    """True when two denomination words are the SAME denomination in a
+    different language / spelling / plural («Ducats» / «Dukaten»,
+    «Skilling» / «Skillinger», «Krone» / «Kroner»), rather than two
+    DIFFERENT denominations («Mark» / «Krone», «Speciedaler» /
+    «Reichstaler»). Used to decide whether a trailing single-word paren
+    is a translation hint (safe to strip) or a cross-denomination
+    equivalence (must NOT be deleted — per CLAUDE.md §1 the equivalent
+    belongs in `note`, the nominal carries the inscribed denomination).
+    Folds via the cross-source synonym table (so «Ducats»≡«Dukaten»),
+    then accepts a shared stem for plural/inflection variants."""
+    a, b = _fold_denom(head_word), _fold_denom(paren_word)
+    if not a or not b:
+        return False
+    return a == b or a.startswith(b) or b.startswith(a)
 _MINT_CANONICAL: dict[str, str] = {
     alias: _MINT_CANON_TO_DISPLAY[canon]
     for alias, canon in _MINT_ALIAS_TO_CANON.items()
@@ -324,11 +342,22 @@ def _normalise_nominal(raw):
         if token.isdigit():
             s = s[:m.start()].rstrip()
             continue
-        # Word — strip only if it's a known translation hint
+        # Word — strip ONLY when it's a same-denomination language/plural
+        # variant of the head («2 Ducats (Dukaten)» → «2 Ducats»). A
+        # DIFFERENT-denomination token in parens is an equivalence /
+        # nickname («4 Mark (Krone)», «1 Speciedaler (Reichstaler)») —
+        # per CLAUDE.md §1 the inscribed/source denomination is the
+        # nominal and the equivalent belongs in `note`, so this
+        # normaliser must NOT silently delete it. Keep it in place; the
+        # §1 decision is curation, not a silent strip.
         if token.lower() in _DENOMINATION_TRANSLATION_HINTS:
-            s = s[:m.start()].rstrip()
-            continue
-        break  # leave non-hint paren in place (variant marker)
+            head_part = s[:m.start()].rstrip()
+            head_words = head_part.split()
+            head_denom = head_words[-1] if head_words else ""
+            if _same_denomination(head_denom, token):
+                s = head_part
+                continue
+        break  # different-denomination / non-hint paren — keep (variant marker)
     # Collapse extra whitespace before comma: «X , Y» → «X, Y»
     s = re.sub(r"\s+,", ",", s)
     # Collapse multiple spaces (e.g. «X,  Y» → «X, Y»)
