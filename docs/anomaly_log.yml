@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T08:18:03Z'
+  last_updated_utc: '2026-05-30T09:28:17Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -862,11 +862,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query returns OOS records (3/4 OOS this batch).
+  summary: IKMK 'Hamburg' query returns OOS records (modern medals + non-Hamburg German cities).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-30T06:30:17Z'
-  occurrence_count: 9
+  last_seen: '2026-05-30T09:28:17Z'
+  occurrence_count: 10
   affected_ids:
     ikmk:
     - 18210988
@@ -885,6 +885,7 @@ anomalies:
     - 18238125
     - 18238370
     - 18239544
+    - 18247227
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -957,8 +958,16 @@ anomalies:
       ikmk_batch: AS
       numista_batch: GM
       ucoin_batch: '200'
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope (issuer ~ 'Hamburg') or add post-fetch
-    scope filter.
+  - run_utc: '2026-05-30T09:28:17Z'
+    batch_label: AV
+    detail: 'Batch AV: mds_id 18247227 ''Kaufbeuren: Stadt'' (Werner Falk medal, Bavaria) returned via
+      Hamburg query.'
+    full_context:
+      ikmk_batch: AV
+      numista_batch: GP
+      ucoin_batch: '203'
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope or add post-fetch entity scope
+    filter.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -967,11 +976,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: kassel
-  summary: IKMK 'Kassel/Hessen-Kassel' query returns OOS records (Preußen).
+  summary: IKMK 'Kassel' query returns OOS records (Roman Imperial, pre-mission).
   status: open
   instance_first_seen: '2026-05-28T04:27:47Z'
-  last_seen: '2026-05-29T19:25:19Z'
-  occurrence_count: 3
+  last_seen: '2026-05-30T09:28:17Z'
+  occurrence_count: 4
   affected_ids:
     ikmk:
     - 18213935
@@ -980,6 +989,8 @@ anomalies:
     - 18213939
     - 18213940
     - 18226454
+    - 18249502
+    - 18249503
   occurrences:
   - run_utc: '2026-05-28T04:27:47Z'
     batch_label: AF
@@ -1006,7 +1017,15 @@ anomalies:
       — OOS.'
     full_context:
       ikmk_batch: AJ
-  proposed_fix: Tighten Kassel queries or filter post-fetch.
+  - run_utc: '2026-05-30T09:28:17Z'
+    batch_label: AV
+    detail: 'Batch AV: mds_ids 18249502 + 18249503 ''Magnentius'' (4th-century Roman Imperial, Trier mint,
+      year 351-353).'
+    full_context:
+      ikmk_batch: AV
+      numista_batch: GP
+      ucoin_batch: '203'
+  proposed_fix: Tighten Kassel query in fetch_ikmk.py to issuer-scope or add post-fetch entity scope filter.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -1043,11 +1062,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: braunschweig
-  summary: IKMK 'Braunschweig' query returns OOS records.
+  summary: IKMK 'Braunschweig' query returns OOS records (modern non-German commemoratives).
   status: open
   instance_first_seen: '2026-05-29T17:29:25Z'
-  last_seen: '2026-05-30T02:25:04Z'
-  occurrence_count: 5
+  last_seen: '2026-05-30T09:28:17Z'
+  occurrence_count: 6
   affected_ids:
     ikmk:
     - 18217796
@@ -1055,6 +1074,8 @@ anomalies:
     - 18228337
     - 18234771
     - 18235390
+    - 18248981
+    - 18248997
   occurrences:
   - run_utc: '2026-05-29T17:29:25Z'
     batch_label: AI
@@ -1096,7 +1117,16 @@ anomalies:
       ikmk_batch: AO
       numista_batch: GI
       ucoin_batch: '196'
-  proposed_fix: Tighten Braunschweig query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter.
+  - run_utc: '2026-05-30T09:28:17Z'
+    batch_label: AV
+    detail: 'Batch AV: mds_ids 18248981 + 18248997 ''Belgien: 2015 Waterloo'' (modern Belgian 10/2.5 Euro
+      Waterloo commems, Brussels mint).'
+    full_context:
+      ikmk_batch: AV
+      numista_batch: GP
+      ucoin_batch: '203'
+  proposed_fix: Tighten Braunschweig query in fetch_ikmk.py to issuer-scope or add post-fetch entity scope
+    filter.
   resolution: null
   resolved_at: null
   resolved_by: null
