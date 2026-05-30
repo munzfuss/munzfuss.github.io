@@ -1,0 +1,42 @@
+status: seed
+source: IKMK Berlin (ikmk.smb.museum, json_ext)
+generated_at: '2026-05-30T19:55:30Z'
+entity: gottorp_duchy
+scope_note: IKMK Berlin seed — records from the Interaktiver Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0), built directly from the museum json_ext cache (scope-purged + 
+  title-filtered at harvest). Coin-only (§9.2 exonumia excluded). Mint city → issuing entity via classify_mint_to_entity; museum-attested fields carry verified=true. Phase-4 assigns Müntzfuß/phase; 
+  cross-source merger deduplicates against Hede/Bruun/Numista/etc.
+coins:
+  - id: ikmk-18239610
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: gottorp_duchy
+    nominal: 1 Goldgulden
+    metal: gold
+    metal_verified: true
+    mint:
+    mint_verified: true
+    ruler: Friedrich I.
+    year_first: 1506
+    year_last: 1506
+    year_label: '1506'
+    year_ranges:
+      -   - 1506
+          - 1506
+    inscription_obv: FREDERICVS - D HOLSACI
+    inscription_rev: MO NO AVREA SLESWICENSIS
+    weight_rough_g: 3.25
+    weight_rough_verified: true
+    diameter_mm: 24.0
+    diameter_mm_verified: true
+    catalog:
+      lange: '9'
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18239610
+        ref: IKMK Berlin 18239610
+    verification_note:
+      de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+      en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested; Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+      uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза некласифіковані (seed_unsorted) до Phase-4.'
