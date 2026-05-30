@@ -26,6 +26,7 @@ research workflow.
 
 | script | purpose | when last needed |
 |---|---|---|
+| `harvest_coverage.py` | Read-only standing coverage report across ALL sources (HARVEST_ROUTINE §6.5): (A) entity × source classified-specimen matrix from `data/v2/seed/`, (B) per-source cached-vs-seeded footprint, (C) IKMK cache detail (un-seeded → uncovered by entity). `--json` for machine output. Run every harvest end-of-run + ad-hoc to answer «what locations / how many specimens do we hold, total». | Every routine run (§6.2 item 7); added 2026-05-30. |
 | `classify_issuing_entity.py` | Bulk-assign `issuing_entity` to existing SH coins via heuristic ruler-name rules. | Once — after the field was added to the schema. |
 | `dedupe_sources.py` | Merge duplicate `coin.sources[]` entries pointing to the same URL. | Once — cleanup after a bulk URL promotion. |
 | `enrich_numista_id.py` | Extract Numista piece-id from each coin's source URL into `catalog.numista`. | Phase-1 of the Numista enrichment. |

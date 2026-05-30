@@ -1802,7 +1802,9 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
 
    **IKMK skipped per §5.5.5?** The table still renders against the existing manifest — `IKMK_IDS_THIS_RUN = []` means every row shows `Δ = —`. Don't omit the table just because no fetches happened; the static state IS the report.
 
-7. **Headline numbers** (each line ends with a parenthetical run-delta — include each manifest with non-trivial state, omit ones that are 100 %-closed and untouched this run):
+7. **Full coverage inventory (ALL harvests — past + planned)** — run `.venv/bin/python scripts/maintenance/harvest_coverage.py` and include its three sections verbatim (defined in §6.5). This is the standing per-entity / per-specimen coverage across EVERY source ever harvested — distinct from the per-batch delta tables above, which only track the active enumeration fronts and so silently omit anything harvested outside a tracked bucket (notably the entire IKMK cache, which has no seed builder). It prints (a) the entity × source classified-specimen matrix, (b) each source's cached-vs-seeded footprint, (c) IKMK cache detail. Always include it, every run — it is the answer to «what locations + how many specimens do we actually hold, total».
+
+8. **Headline numbers** (each line ends with a parenthetical run-delta — include each manifest with non-trivial state, omit ones that are 100 %-closed and untouched this run):
    - Numista BO.6 (DK + NO + SH) — total cached, remaining (Δ this run: +X)
    - Numista BO.7 (German states) — total cached, remaining (Δ this run: +X)
    - ucoin BR-audit-2 (DK periods) — total cached, remaining (Δ this run: +X)
@@ -1811,7 +1813,7 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
    - IKMK (museum catalogue) — total cached / unique pool, remaining (Δ this run: +X) — cite the **unique** pool, NOT the bucket-sum
    - Grand cumulative cached across all manifests (Δ this run: +X Numista, +Y ucoin, +Z IKMK = +W total)
 
-8. **Failed-to-open this run** — list IDs that the routine could NOT fetch (404 / persistent Cloudflare / canonical mismatch / DOM unexpected). Pulled from this run's `runs[-1].numista_batch.failed_open[]` + `runs[-1].ucoin_batch.failed_open[]` + `_failed_open_ids.json` tail. **Omit the section entirely if both lists are empty** (the typical clean run).
+9. **Failed-to-open this run** — list IDs that the routine could NOT fetch (404 / persistent Cloudflare / canonical mismatch / DOM unexpected). Pulled from this run's `runs[-1].numista_batch.failed_open[]` + `runs[-1].ucoin_batch.failed_open[]` + `_failed_open_ids.json` tail. **Omit the section entirely if both lists are empty** (the typical clean run).
    Shape per entry: `N#<id> — <reason> — <one-line context>`. Example:
    > ### ⚠ Failed to open this run (4)
    > - **Numista**:
@@ -1822,9 +1824,9 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
 
    Tells the user exactly which IDs to inspect manually. The IDs **remain in audit gap_nids/gap_tids** — they're retry candidates next hour. Routine does NOT mark them «dead».
 
-9. **Push state** — exactly one sentence: «N commits ready locally — `git push` when ready (both repos).» Compute N via `git log --oneline origin/main..HEAD | wc -l` from main repo + same from submodule, sum.
+10. **Push state** — exactly one sentence: «N commits ready locally — `git push` when ready (both repos).» Compute N via `git log --oneline origin/main..HEAD | wc -l` from main repo + same from submodule, sum.
 
-10. **Recommended next batches** — top 3 priorities for the NEXT hourly run, picking from whichever manifest's smallest open bucket is next per the §2.1 / §4.1 picker order (Numista + ucoin); for IKMK suggest «next 5 from manifest uncached pool» unless re-discovery is due per §5.5.2.
+11. **Recommended next batches** — top 3 priorities for the NEXT hourly run, picking from whichever manifest's smallest open bucket is next per the §2.1 / §4.1 picker order (Numista + ucoin); for IKMK suggest «next 5 from manifest uncached pool» unless re-discovery is due per §5.5.2.
 
 ### §6.3. Status emoji legend (use consistently)
 
@@ -1845,6 +1847,16 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
 - Re-saves of an already-cached file (idempotent rewrite with same content) ARE counted as 0 delta for that period — the file already existed, the run didn't add new scope.
 
 This keeps the delta semantics tight: **«items the routine demonstrably added to the cache this hour»**, nothing aspirational.
+
+### §6.5. Full coverage inventory script (`harvest_coverage.py`)
+
+`scripts/maintenance/harvest_coverage.py` (read-only, no writes) prints the **standing** coverage across ALL sources — independent of the active-front batch tables in §6.1–§6.2. Run it every end-of-run (§6.2 item 7) and include its output verbatim. Three sections:
+
+- **A. Entity × source matrix** — `data/v2/seed/<source>/<entity>.yml` coin counts ARE the classified, in-scope, per-entity specimen coverage for the six seed-builder sources (bruun / galster / hede / numismaster / numista / ucoin). One row per political entity, one column per source, with row + column totals. This is the canonical «which locations, how many specimens».
+- **B. Per-source footprint** — for every cache source: cached record files vs specimens seeded into V2. Flags any source cached but NOT enumerated by entity (no seed builder).
+- **C. IKMK detail** — IKMK has no generic seed builder, so its cache is invisible to §A. Shows manifest-enumerated / actually-cached / **enumerated-but-unfetched gap** + by-mint-country + by-era. IKMK records expose mint COUNTRY (not city), so a precise per-entity split is impossible without a real builder — tracked as TODO §CH.
+
+**Why this is separate from §6.1–§6.2.** Those per-batch tables answer «how is the *current* re-enumeration front progressing» — they are keyed by harvest bucket/period and silently omit any specimen harvested outside a tracked bucket. §6.5 answers «what locations and how many specimens do we actually hold, total, across every harvest past and planned». Both views are required; neither subsumes the other. Snapshot (2026-05-30): 6 368 classified specimens across 20 entities; IKMK 1 778 cached / 0 seeded / 4 498 enumerated-but-unfetched.
 
 ---
 
