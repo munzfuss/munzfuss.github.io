@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T07:28:46Z'
+  last_updated_utc: '2026-05-30T07:31:19Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -717,11 +717,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query returns OOS records (Preußen Friedrich II this batch).
+  summary: IKMK 'Osnabrück' query returns OOS Prussian Friedrich II / Friedrich Wilhelm I records.
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-30T06:30:17Z'
-  occurrence_count: 11
+  last_seen: '2026-05-30T07:31:19Z'
+  occurrence_count: 12
   affected_ids:
     ikmk:
     - 18206581
@@ -743,6 +743,11 @@ anomalies:
     - 18234877
     - 18235996
     - 18240565
+    - 18240566
+    - 18240568
+    - 18240574
+    - 18240592
+    - 18240594
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -828,8 +833,18 @@ anomalies:
       ikmk_batch: AS
       numista_batch: GM
       ucoin_batch: '200'
-  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to issuer-scope (issuer ~ 'Osnabrück') or add
-    post-fetch scope filter.
+  - run_utc: '2026-05-30T07:31:19Z'
+    batch_label: AT
+    detail: 'IKMK batch AT: 5 of 5 fetched IDs (18240566, 18240568, 18240574, 18240592, 18240594) — all
+      ''Preußen: Friedrich II.'' or ''Preußen: Friedrich Wilhelm I.'' Brandenburg/Berlin/Breslau/Magdeburg
+      mint records; Osnabrück query likely matches incidental text mentions of Osnabrück in record descriptions
+      (Westphalian peace context, etc.).'
+    full_context:
+      ikmk_batch: AT
+      numista_batch: GN
+      ucoin_batch: '201'
+  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to issuer-scope (region=Osnabrück) or add post-fetch
+    scope filter against authority.country_name_de + region_name.
   resolution: null
   resolved_at: null
   resolved_by: null
