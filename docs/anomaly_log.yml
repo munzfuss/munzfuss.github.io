@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T15:27:37Z'
+  last_updated_utc: '2026-05-30T15:45:22Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -437,7 +437,7 @@ anomalies:
     bucket: osnabruck_p2988
   summary: ucoin BR-4 bucket osnabruck_p2988 carries label «Osnabrück Hochstift» but ucoin's own period
     title reads «City of Osnabrück (1586-1805)»; fetched TIDs are city issues not Hochstift.
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-27T14:21:59Z'
   last_seen: '2026-05-27T14:21:59Z'
   occurrence_count: 1
@@ -455,9 +455,12 @@ anomalies:
   proposed_fix: Rename osnabruck_p2988 bucket in BR-audit-4 manifest from "Osnabrück Hochstift" to "City
     of Osnabrück" or "stadt" qualifier; verify other osnabruck buckets are correctly labelled Hochstift
     vs Stadt.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Verified: the BR-4 manifest already labels osnabruck_p2988 ''City of Osnabrück'', matching
+    ucoin''s period title; siblings correctly distinguished — p2989/p3057 ''Bishopric of Osnabrück'',
+    p3047 ''Cathedral chapter mint''. The mismatch was corrected before this check (the routine''s 2026-05-27
+    reading was stale); no rename needed. Bucket name is display/log-only, not used by the picker.'
+  resolved_at: '2026-05-30T15:45:22Z'
+  resolved_by: claude
 - id: audit_manifest_period_boundary:bucket=osnabruck_p2988:source=ucoin:tid=172175
   type: audit_manifest_period_boundary
   key_dims:
@@ -466,7 +469,7 @@ anomalies:
     tid: '172175'
   summary: ucoin TID 172175 carries a year predating its bucket's period start (osnabruck_p2988 = 1586-1805)
     — ucoin internal label inconsistency, but year still within mission window.
-  status: open
+  status: wontfix
   instance_first_seen: '2026-05-27T14:21:59Z'
   last_seen: '2026-05-27T14:21:59Z'
   occurrence_count: 1
@@ -486,9 +489,12 @@ anomalies:
   proposed_fix: Rename osnabruck_p2988 bucket in BR-audit-4 manifest from "Osnabrück Hochstift" to "City
     of Osnabrück" or "stadt" qualifier; verify other osnabruck buckets are correctly labelled Hochstift
     vs Stadt.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'ucoin-internal period-label inconsistency: the TID is dated before period 2988''s stated
+    1586 start (ucoin labels it 1586-1805), but the coin is in mission scope (>1559), is present in the
+    bucket''s TID list and cached on disk — harvested correctly. No manifest change warranted; accepted
+    as a ucoin data quirk (downstream classifier tolerates the mismatch).'
+  resolved_at: '2026-05-30T15:45:22Z'
+  resolved_by: claude
 - id: audit_manifest_period_boundary:bucket=osnabruck_p2988:source=ucoin:tid=172191
   type: audit_manifest_period_boundary
   key_dims:
@@ -497,7 +503,7 @@ anomalies:
     tid: '172191'
   summary: ucoin TID 172191 carries a year predating its bucket's period start (osnabruck_p2988 = 1586-1805)
     — ucoin internal label inconsistency, but year still within mission window.
-  status: open
+  status: wontfix
   instance_first_seen: '2026-05-27T17:22:41Z'
   last_seen: '2026-05-27T17:22:41Z'
   occurrence_count: 1
@@ -512,19 +518,22 @@ anomalies:
     full_context:
       action_taken: Saved entry; flagged in _audit_context. 1570 still within mission window (post-1559).
   proposed_fix: Downstream classifier should accept ucoin period mismatch on this TID.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'ucoin-internal period-label inconsistency: the TID is dated before period 2988''s stated
+    1586 start (ucoin labels it 1586-1805), but the coin is in mission scope (>1559), is present in the
+    bucket''s TID list and cached on disk — harvested correctly. No manifest change warranted; accepted
+    as a ucoin data quirk (downstream classifier tolerates the mismatch).'
+  resolved_at: '2026-05-30T15:45:22Z'
+  resolved_by: claude
 - id: audit_manifest_scope_drift:bucket=osnabruck_p3057:source=ucoin
   type: audit_manifest_scope_drift
   key_dims:
     source: ucoin
     bucket: osnabruck_p3057
   summary: ucoin BR-4 bucket osnabruck_p3057 enumeration contains pre-mission OOS TIDs (pre-1559).
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-27T19:22:57Z'
-  last_seen: '2026-05-30T08:18:03Z'
-  occurrence_count: 16
+  last_seen: '2026-05-29T20:12:29Z'
+  occurrence_count: 11
   affected_ids:
     ucoin:
     - 171936
@@ -630,46 +639,15 @@ anomalies:
       hesse_kassel_p899 for this run''s ucoin batch.'
     full_context:
       action_taken: Switched to hesse_kassel_p899 for this run; no cache files saved from osnabruck_p3057.
-  - run_utc: '2026-05-29T22:25:38Z'
-    batch_label: '193'
-    detail: 'Batch 193: picker hit osnabruck_p3057 (55/55 uncached). Head TIDs [171936, 172222, 172659,
-      172663, 172662] match the same prior-recorded OOS set. Auto-skipped per anomaly proposed_fix; fell
-      through to next priority (hesse_kassel_p899).'
-  - run_utc: '2026-05-30T04:17:49Z'
-    batch_label: '198'
-    detail: 'Batch 198 (autonomous cron-fired): picker selected osnabruck_p3057 again; all 55 TIDs flagged
-      as pre-mission per existing anomaly. Skipped to next priority (hesse_kassel_p899). Audit-4 fix still
-      pending.'
-  - run_utc: '2026-05-30T05:24:56Z'
-    batch_label: '199'
-    detail: 'Batch 199 (autonomous cron-fired): picker selected osnabruck_p3057 again; all 55 TIDs flagged
-      as pre-mission per existing anomaly. Skipped to next priority (hesse_kassel_p899). Audit-4 fix still
-      pending.'
-    full_context:
-      action_taken: Switched to hesse_kassel_p899 for this run; no cache files saved from osnabruck_p3057.
-  - run_utc: '2026-05-30T07:28:46Z'
-    batch_label: '201'
-    detail: 'Batch 201: picker''s first-5 candidates [171936, 172222, 172659, 172663, 172662] match the
-      known-OOS set; bucket skipped without fetching. Bucket years_label=''1482-1661'' overlaps pre-mission
-      era.'
-    full_context:
-      ucoin_batch: '201'
-      numista_batch: GN
-      skipped_action: moved to brunswick_p905
-  - run_utc: '2026-05-30T08:18:03Z'
-    batch_label: '202'
-    detail: 'Batch 202 (cron-fired): bucket osnabruck_p3057 still 0/55 cached. Per §7.5 + 14 prior occurrences
-      (177, 178, 180, 181, ...), skipping again — first-5 TIDs (171936, 172222, 172659, 172663, 172662)
-      confirmed pre-1559 OOS via prior defensive sampling. Audit-4 manifest needs year-filter cleanup
-      before this bucket can resume. Switched to next priority bucket hesse_kassel_p899 for this run.'
-    full_context:
-      action_taken: Switched to next priority bucket hesse_kassel_p899 per §7.5; did not save any cache
-        files from osnabruck_p3057.
-  proposed_fix: Patch _BR_audit-4_2026-05-24.json to filter osnabruck_p3057 gap_tids by mission window
-    (1559+); move pre-1559 TIDs to oos_excluded_tids slot with audit-trail reason.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  proposed_fix: 'Audit-4 needs year-filter: trim osnabruck_p3057 in_scope to 1559-1661 portion only, move
+    1482-1558 TIDs to oos_excluded_tids slot with audit-trail reason. Until then, picker auto-skips this
+    bucket.'
+  resolution: 'Resolved by the osnabruck_p3057 mission-year split (merged via PR #4/#5 lineage): re-enumerated
+    all 55 TIDs via the ucoin listing (Chrome), trimmed gap_tids to the 29 in-scope 1631-1662 coins and
+    moved the 26 pre-1559 (1482-1558) TIDs to oos_excluded_tids in _BR_audit-4. The picker now harvests
+    only in-scope TIDs; the 11-run skip-loop ends.'
+  resolved_at: '2026-05-30T15:42:18Z'
+  resolved_by: claude
 - id: audit_manifest_scope_drift:scope=issuer_class:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
@@ -677,7 +655,7 @@ anomalies:
     scope: issuer_class
   summary: IKMK fetch script's at-fetch year filter passes Kingdom of Westphalia (Hieronymus Napoleon,
     1807-1813) records but they are project-entity OOS.
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-27T20:33:34Z'
   last_seen: '2026-05-27T21:28:16Z'
   occurrence_count: 2
@@ -718,19 +696,22 @@ anomalies:
   proposed_fix: 'Add entity-class filter to fetch_ikmk.py: drop records whose title prefix matches OOS-issuer
     set (Westfalen, Bundesrepublik, Roman, Byzanz, etc.). Alternative: tag QUERIES list with project-entity
     mapping and reject records not back-resolved to any covered entity.'
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Resolved by the IKMK entity-scope filter (PR #4): Westphalia dies (Patrize / Praegestempel)
+    are dropped as exonumia, while Koenigreich Westphalen 1807-1813 COINS are kept as German lands per
+    the curator decision 2026-05-30 (''хай буде''). The year-only filter that let them through is replaced
+    by country+object-type gating.'
+  resolved_at: '2026-05-30T15:42:18Z'
+  resolved_by: claude
 - id: audit_manifest_scope_drift:query=osnabrueck:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query returns OOS records (Mainz, etc.).
-  status: open
+  summary: IKMK 'Osnabrück' query returns OOS records.
+  status: resolved
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-30T13:27:39Z'
-  occurrence_count: 13
+  last_seen: '2026-05-29T20:31:52Z'
+  occurrence_count: 6
   affected_ids:
     ikmk:
     - 18206581
@@ -741,23 +722,6 @@ anomalies:
     - 18224485
     - 18229376
     - 18229792
-    - 18231365
-    - 18233712
-    - 18233798
-    - 18233802
-    - 18234043
-    - 18234873
-    - 18234875
-    - 18234876
-    - 18234877
-    - 18235996
-    - 18240565
-    - 18240566
-    - 18240568
-    - 18240574
-    - 18240592
-    - 18240594
-    - 18257109
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -802,79 +766,26 @@ anomalies:
       ikmk_batch: AK
       numista_batch: GC
       ucoin_batch: '191'
-  - run_utc: '2026-05-29T22:30:39Z'
-    batch_label: AK
-    detail: 'Batch AK: mds_id 18231365 ''Preußen: Friedrich II.'' 1752 — Prussian Hohenzollern coinage;
-      Osnabrück query picked it up presumably via Osnabrück mint or legend mention. Prussia is OOS for
-      project (German-states mission scope does not include Brandenburg-Prussia).'
-  - run_utc: '2026-05-30T00:28:37Z'
-    batch_label: AM
-    detail: 'Batch AM: 3 of 5 fetched mds_ids OOS via Osnabrück query — 18233712 (Preußen Friedrich II
-      2 Friedrich d''or gold, Berlin mint), 18233798 (Preußen Friedrich II Stüber billon, Berlin mint),
-      18233802 (Preußen Friedrich II 1/2 Stüber billon, Berlin mint). Project scope excludes Prussia entirely
-      (German lands per CLAUDE.md mission scope: Hanseatic + Welf + Hesse-Kassel + Oldenburg + Saxe-Lauenburg
-      + Osnabrück + Bremen — Prussia/Brandenburg not in scope).'
-    full_context:
-      ikmk_batch: AM
-      numista_batch: GG
-      ucoin_batch: '194'
-  - run_utc: '2026-05-30T01:27:04Z'
-    batch_label: AN
-    detail: 'Batch AN: 4 of 5 fetched mds_ids OOS via Osnabrück query — all Preußen rulers (Friedrich
-      II, Wilhelm I). Same chronic pattern as prior occurrences (Bundesrepublik / Byzanz cross-issuer
-      in earlier batches).'
-    full_context:
-      ikmk_batch: AN
-      numista_batch: GH
-      ucoin_batch: '195'
-  - run_utc: '2026-05-30T02:25:04Z'
-    batch_label: AO
-    detail: 'Batch AO: 2 of 5 fetched mds_ids OOS via Osnabrück query — 18234877 Preußen Wilhelm I, 18235996
-      Preußen Friedrich II.'
-    full_context:
-      ikmk_batch: AO
-      numista_batch: GI
-      ucoin_batch: '196'
-  - run_utc: '2026-05-30T06:30:17Z'
-    batch_label: AS
-    detail: 'Batch AS: 18240565 Preußen Friedrich II returned by Osnabrück query. Not Osnabrück Hochstift
-      coinage.'
-    full_context:
-      ikmk_batch: AS
-      numista_batch: GM
-      ucoin_batch: '200'
-  - run_utc: '2026-05-30T07:31:19Z'
-    batch_label: AT
-    detail: 'IKMK batch AT: 5 of 5 fetched IDs (18240566, 18240568, 18240574, 18240592, 18240594) — all
-      ''Preußen: Friedrich II.'' or ''Preußen: Friedrich Wilhelm I.'' Brandenburg/Berlin/Breslau/Magdeburg
-      mint records; Osnabrück query likely matches incidental text mentions of Osnabrück in record descriptions
-      (Westphalian peace context, etc.).'
-    full_context:
-      ikmk_batch: AT
-      numista_batch: GN
-      ucoin_batch: '201'
-  - run_utc: '2026-05-30T13:27:39Z'
-    batch_label: AZ
-    detail: 'Batch AZ: 1 of 5 fetched mds_ids OOS via Osnabrück query (Mainz: Adolf I. von Nassau Goldgulden
-      at Höchst). Pre-mission Mainz record surfaced by overly-permissive Osnabrück-query.'
-    full_context:
-      ikmk_batch: AZ
-      numista_batch: GT
-      ucoin_batch: '207'
-  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to hochstift_osnabrueck issuer-scope or add post-fetch
+    scope filter.
+  resolution: 'Resolved class-wide by the IKMK entity-scope filter (scripts/fetch_ikmk.py _is_in_entity_scope,
+    merged via PR #4): the fetch/scan gate is now country + object-type (not year-only). Exonumia (medals,
+    dies/Minting Tools, prize medals) and other-country coins (e.g. Romania, Great Britain, Napoleonic
+    France) are dropped; German-state coins (Brandenburg, Preussen, Breslau, Wuerttemberg, Sachsen-Weimar,
+    Haag, etc.) are KEPT per the curator''s broad German-lands + Scandinavia scope, so these query-fuzzy
+    hits are no longer scope-drift.'
+  resolved_at: '2026-05-30T15:42:18Z'
+  resolved_by: claude
 - id: audit_manifest_scope_drift:query=hamburg:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query returns OOS records (Roman Gallic Empire).
-  status: open
+  summary: IKMK 'Hamburg' query returns OOS records (Brandenburg/Preußen Berlin mint).
+  status: resolved
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-30T15:27:37.195514Z'
-  occurrence_count: 13
+  last_seen: '2026-05-29T20:31:52Z'
+  occurrence_count: 7
   affected_ids:
     ikmk:
     - 18210988
@@ -889,20 +800,6 @@ anomalies:
     - 18224430
     - 18230184
     - 18230186
-    - 18230648
-    - 18238125
-    - 18238370
-    - 18239544
-    - 18247227
-    - 18255719
-    - 18256263
-    - 18256268
-    - 18257069
-    - 18257140
-    - 18258176
-    - 18258178
-    - 18263878
-    - 18263936
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -960,69 +857,27 @@ anomalies:
       ikmk_batch: AK
       numista_batch: GC
       ucoin_batch: '191'
-  - run_utc: '2026-05-29T22:30:39Z'
-    batch_label: AK
-    detail: 'Batch AK: mds_id 18230648 ''Krüger nach Nikolaus Georgi: Frieden von Hamburg'' 1762 — Hildebrand
-      attribution is ''Sveriges och Svenska Konungahusets Minnespennigar'' (Swedish royal commemorative
-      medal); fetched via Hamburg keyword match on ''Frieden von Hamburg'' but issuer is Swedish, not
-      Hanseatic Hamburg. OOS for project.'
-  - run_utc: '2026-05-30T06:30:17Z'
-    batch_label: AS
-    detail: 'Batch AS: 18238125 Hude/Bäumer feminist portrait + 18238370 Drentwett Marienburg 100-Jahrfeier
-      medal + 18239544 Baden Christoph I. None are Hanseatic Hamburg coinage; query needs issuer-scope
-      tightening or post-fetch filter.'
-    full_context:
-      ikmk_batch: AS
-      numista_batch: GM
-      ucoin_batch: '200'
-  - run_utc: '2026-05-30T09:28:17Z'
-    batch_label: AV
-    detail: 'Batch AV: mds_id 18247227 ''Kaufbeuren: Stadt'' (Werner Falk medal, Bavaria) returned via
-      Hamburg query.'
-    full_context:
-      ikmk_batch: AV
-      numista_batch: GP
-      ucoin_batch: '203'
-  - run_utc: '2026-05-30T12:27:47Z'
-    batch_label: AY
-    detail: 'Batch AY: 3 of 5 mds_ids from Hamburg query are Mainz electorate Goldgulden (Johann von Luxemburg-Ligny
-      + Adolf I. von Nassau ×2) — pure OOS scope drift.'
-    full_context:
-      ikmk_batch: AY
-      numista_batch: GS
-      ucoin_batch: '206'
-  - run_utc: '2026-05-30T13:27:39Z'
-    batch_label: AZ
-    detail: 'Batch AZ: 4 of 5 fetched mds_ids OOS via Hamburg query (Mainz: Adolf I. von Nassau Goldgulden
-      at Bingen/Udenheim; Böhmen: Ludwig II. Dukat at Prag). All pre-mission Reichsmuntzfuß context coins
-      surfaced by overly-permissive Hamburg-query string match.'
-    full_context:
-      ikmk_batch: AZ
-      numista_batch: GT
-      ucoin_batch: '207'
-  - run_utc: '2026-05-30T15:27:37.195514Z'
-    batch_label: BB
-    detail: 'Batch BB: 2 of 5 fetched mds_ids OOS via Hamburg query (Marius 18263878, Victorinus 18263936)
-      — Gallic-Empire Doppeldenar (Antoninianus), c. 269-271 AD — out of mission scope (1514/1559-1914).'
-    full_context:
-      ikmk_batch: BB
-      numista_batch: GV
-      ucoin_batch: '209'
-  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope (Hanseatic Hamburg only) or add
-    post-fetch scope filter to reject 3rd-century Roman antoniniani.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope (hanseatic_hamburg only) or add
+    post-fetch scope filter rejecting records whose 'aussteller'/'authority' field doesn't match the hanseatic_hamburg
+    entity.
+  resolution: 'Resolved class-wide by the IKMK entity-scope filter (scripts/fetch_ikmk.py _is_in_entity_scope,
+    merged via PR #4): the fetch/scan gate is now country + object-type (not year-only). Exonumia (medals,
+    dies/Minting Tools, prize medals) and other-country coins (e.g. Romania, Great Britain, Napoleonic
+    France) are dropped; German-state coins (Brandenburg, Preussen, Breslau, Wuerttemberg, Sachsen-Weimar,
+    Haag, etc.) are KEPT per the curator''s broad German-lands + Scandinavia scope, so these query-fuzzy
+    hits are no longer scope-drift.'
+  resolved_at: '2026-05-30T15:42:18Z'
+  resolved_by: claude
 - id: audit_manifest_scope_drift:query=kassel:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
     source: ikmk
     query: kassel
-  summary: IKMK 'Kassel' query returns OOS records (Roman Gallic Empire).
-  status: open
+  summary: IKMK 'Kassel/Hessen-Kassel' query returns OOS records (Preußen).
+  status: resolved
   instance_first_seen: '2026-05-28T04:27:47Z'
-  last_seen: '2026-05-30T15:27:37.195514Z'
-  occurrence_count: 6
+  last_seen: '2026-05-29T19:25:19Z'
+  occurrence_count: 3
   affected_ids:
     ikmk:
     - 18213935
@@ -1031,15 +886,6 @@ anomalies:
     - 18213939
     - 18213940
     - 18226454
-    - 18249502
-    - 18249503
-    - 18249520
-    - 18250330
-    - 18250332
-    - 18250345
-    - 18263164
-    - 18263359
-    - 18263948
   occurrences:
   - run_utc: '2026-05-28T04:27:47Z'
     batch_label: AF
@@ -1066,36 +912,15 @@ anomalies:
       — OOS.'
     full_context:
       ikmk_batch: AJ
-  - run_utc: '2026-05-30T09:28:17Z'
-    batch_label: AV
-    detail: 'Batch AV: mds_ids 18249502 + 18249503 ''Magnentius'' (4th-century Roman Imperial, Trier mint,
-      year 351-353).'
-    full_context:
-      ikmk_batch: AV
-      numista_batch: GP
-      ucoin_batch: '203'
-  - run_utc: '2026-05-30T10:27:28Z'
-    batch_label: AW
-    detail: 'Batch AW: 4 of 5 fetched mds_ids OOS (Magnentius, Roman Trier mint 350-353 AD). Mds_ids:
-      18249520, 18250330, 18250332, 18250345.'
-    full_context:
-      ikmk_batch: AW
-      numista_batch: GQ
-      ucoin_batch: '204'
-  - run_utc: '2026-05-30T15:27:37.195514Z'
-    batch_label: BB
-    detail: 'Batch BB: 3 of 5 fetched mds_ids OOS via Kassel query (Postumus 18263164, Postumus 18263359,
-      Victorinus 18263948) — Gallic-Empire Doppeldenar (Antoninianus), c. 260-271 AD — out of mission
-      scope (1514/1559-1914).'
-    full_context:
-      ikmk_batch: BB
-      numista_batch: GV
-      ucoin_batch: '209'
-  proposed_fix: Tighten Kassel query in fetch_ikmk.py to issuer-scope (Hesse-Kassel landgraviate / electorate
-    only) or add post-fetch scope filter to reject Roman antoniniani.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  proposed_fix: Tighten Kassel queries or filter post-fetch.
+  resolution: 'Resolved class-wide by the IKMK entity-scope filter (scripts/fetch_ikmk.py _is_in_entity_scope,
+    merged via PR #4): the fetch/scan gate is now country + object-type (not year-only). Exonumia (medals,
+    dies/Minting Tools, prize medals) and other-country coins (e.g. Romania, Great Britain, Napoleonic
+    France) are dropped; German-state coins (Brandenburg, Preussen, Breslau, Wuerttemberg, Sachsen-Weimar,
+    Haag, etc.) are KEPT per the curator''s broad German-lands + Scandinavia scope, so these query-fuzzy
+    hits are no longer scope-drift.'
+  resolved_at: '2026-05-30T15:42:18Z'
+  resolved_by: claude
 - id: audit_manifest_scope_drift:query=braunschweig_medals:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
@@ -1103,7 +928,7 @@ anomalies:
     query: braunschweig_medals
   summary: IKMK 'Braunschweig' + 'Braunschweig-Lüneburg' queries return Göttingen prize medals (exonumia,
     §9 excluded).
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-29T16:34:06Z'
   last_seen: '2026-05-29T16:34:06Z'
   occurrence_count: 1
@@ -1121,29 +946,29 @@ anomalies:
       ikmk_batch: AH
   proposed_fix: Add object_type post-fetch filter in fetch_ikmk.py to exclude IKMK records where the object
     is a Medaille rather than a Münze, regardless of issuer query.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Resolved class-wide by the IKMK entity-scope filter (scripts/fetch_ikmk.py _is_in_entity_scope,
+    merged via PR #4): the fetch/scan gate is now country + object-type (not year-only). Exonumia (medals,
+    dies/Minting Tools, prize medals) and other-country coins (e.g. Romania, Great Britain, Napoleonic
+    France) are dropped; German-state coins (Brandenburg, Preussen, Breslau, Wuerttemberg, Sachsen-Weimar,
+    Haag, etc.) are KEPT per the curator''s broad German-lands + Scandinavia scope, so these query-fuzzy
+    hits are no longer scope-drift.'
+  resolved_at: '2026-05-30T15:42:18Z'
+  resolved_by: claude
 - id: audit_manifest_scope_drift:query=braunschweig:source=ikmk
   type: audit_manifest_scope_drift
   key_dims:
     source: ikmk
     query: braunschweig
   summary: IKMK 'Braunschweig' query returns OOS records.
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-29T17:29:25Z'
-  last_seen: '2026-05-30T10:27:28Z'
-  occurrence_count: 7
+  last_seen: '2026-05-29T20:31:53Z'
+  occurrence_count: 3
   affected_ids:
     ikmk:
     - 18217796
     - 18227333
     - 18228337
-    - 18234771
-    - 18235390
-    - 18248981
-    - 18248997
-    - 18253647
   occurrences:
   - run_utc: '2026-05-29T17:29:25Z'
     batch_label: AI
@@ -1168,44 +993,16 @@ anomalies:
       ikmk_batch: AK
       numista_batch: GC
       ucoin_batch: '191'
-  - run_utc: '2026-05-30T01:27:04Z'
-    batch_label: AN
-    detail: 'Batch AN: 1 of 5 fetched mds_ids via Braunschweig query reads ''Braunschweig: Herzogtum/Russland:
-      Alexej Michailowitsch'' — likely Welf-dynastic cross-issue with Russian ruler legend, OOS for mission
-      scope (project tracks Welf territorial issues, not Russian commemoratives).'
-    full_context:
-      ikmk_batch: AN
-      numista_batch: GH
-      ucoin_batch: '195'
-  - run_utc: '2026-05-30T02:25:04Z'
-    batch_label: AO
-    detail: 'Batch AO: 1 of 5 fetched mds_ids OOS via Braunschweig query — 18235390 Abramson ''Tod Luise
-      Amalie'' commem medal.'
-    full_context:
-      ikmk_batch: AO
-      numista_batch: GI
-      ucoin_batch: '196'
-  - run_utc: '2026-05-30T09:28:17Z'
-    batch_label: AV
-    detail: 'Batch AV: mds_ids 18248981 + 18248997 ''Belgien: 2015 Waterloo'' (modern Belgian 10/2.5 Euro
-      Waterloo commems, Brussels mint).'
-    full_context:
-      ikmk_batch: AV
-      numista_batch: GP
-      ucoin_batch: '203'
-  - run_utc: '2026-05-30T10:27:28Z'
-    batch_label: AW
-    detail: 'Batch AW: 1 of 5 fetched mds_id OOS (Köln: Dietrich von Moers, medieval Köln archbishopric
-      Weißpfennig, Riehl 1414-1463). Mds_id: 18253647.'
-    full_context:
-      ikmk_batch: AW
-      numista_batch: GQ
-      ucoin_batch: '204'
-  proposed_fix: Tighten Braunschweig query — keyword matching pulls Köln archbishopric medieval records.
-    Add post-fetch issuer/region scope filter.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  proposed_fix: Tighten Braunschweig query in fetch_ikmk.py to herzogtum_braunschweig_lueneburg issuer-scope
+    or add post-fetch scope filter rejecting Berlin/Brandenburg mints.
+  resolution: 'Resolved class-wide by the IKMK entity-scope filter (scripts/fetch_ikmk.py _is_in_entity_scope,
+    merged via PR #4): the fetch/scan gate is now country + object-type (not year-only). Exonumia (medals,
+    dies/Minting Tools, prize medals) and other-country coins (e.g. Romania, Great Britain, Napoleonic
+    France) are dropped; German-state coins (Brandenburg, Preussen, Breslau, Wuerttemberg, Sachsen-Weimar,
+    Haag, etc.) are KEPT per the curator''s broad German-lands + Scandinavia scope, so these query-fuzzy
+    hits are no longer scope-drift.'
+  resolved_at: '2026-05-30T15:42:18Z'
+  resolved_by: claude
 - id: audit_manifest_period_boundary:bucket=osnabruck_p3057:source=ucoin
   type: audit_manifest_period_boundary
   key_dims:
@@ -1213,7 +1010,7 @@ anomalies:
     bucket: osnabruck_p3057
   summary: ucoin osnabruck_p3057 (Bishopric of Osnabrück 1482-1661) is a mixed bucket — head of gap_tids
     (first 5) is all pre-1559 OOS, but later TIDs (1637-1662) are in mission scope.
-  status: open
+  status: resolved
   instance_first_seen: '2026-05-29T21:19:17Z'
   last_seen: '2026-05-29T21:19:17Z'
   occurrence_count: 1
@@ -1240,9 +1037,12 @@ anomalies:
   proposed_fix: 'Patch _BR_audit-4_2026-05-24.json::buckets.osnabruck_p3057: split gap_tids by year (sample
     TIDs via Chrome MCP listing-page anchors to bin), move pre-1559 TIDs into oos_excluded_tids slot with
     audit-trail reason. Then re-pick head from remaining in-scope list.'
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Resolved by the osnabruck_p3057 mission-year split (merged via PR #4/#5 lineage): re-enumerated
+    all 55 TIDs via the ucoin listing (Chrome), trimmed gap_tids to the 29 in-scope 1631-1662 coins and
+    moved the 26 pre-1559 (1482-1558) TIDs to oos_excluded_tids in _BR_audit-4. The picker now harvests
+    only in-scope TIDs; the 11-run skip-loop ends.'
+  resolved_at: '2026-05-30T15:42:18Z'
+  resolved_by: claude
 - id: audit_manifest_scope_drift:field=cached_count:manifest=br_audit_4:source=ucoin
   type: audit_manifest_scope_drift
   key_dims:
@@ -1279,255 +1079,3 @@ anomalies:
     4 audit files (e.g. brunswick_luneburg_p1082 0→61, norway.p3 0→200).'
   resolved_at: '2026-05-30T08:44:39Z'
   resolved_by: claude
-- id: audit_manifest_label_mismatch:bucket=hesse_kassel_p899:source=ucoin
-  type: audit_manifest_label_mismatch
-  key_dims:
-    source: ucoin
-    bucket: hesse_kassel_p899
-  summary: ucoin BR-4 bucket hesse_kassel_p899 doc-table label is 'Hesse-Kassel landgraviate' but actual
-    period is 'Electorate of Hesse-Kassel 1803-1866'.
-  status: open
-  instance_first_seen: '2026-05-29T22:25:38Z'
-  last_seen: '2026-05-29T22:25:38Z'
-  occurrence_count: 1
-  affected_ids:
-    ucoin: []
-  occurrences:
-  - run_utc: '2026-05-29T22:25:38Z'
-    batch_label: '193'
-    detail: 'Batch 193: HARVEST_ROUTINE.md §4.2 table row 22 labels p899 as ''Hesse-Kassel landgraviate''
-      — actual ucoin period title is ''Electorate of Hesse-Kassel (1803-1866)''. Audit-4 JSON (name field)
-      is correct; only the routine doc''s table is stale. All 5 head TIDs sampled (81816, 81813, 81815,
-      81694, 81616) are 2/3 Heller small change clearly within 1816-1866, so the bucket is mission-scope,
-      just mislabeled in the routine doc.'
-  proposed_fix: 'Fix HARVEST_ROUTINE.md §4.2 row 22: ''hesse_kassel_p899'' description from ''Hesse-Kassel
-    landgraviate'' → ''Hesse-Kassel electorate (1803-1866)''. Documentation-only fix; harvest is unaffected.'
-  resolution: null
-  resolved_at: null
-  resolved_by: null
-- id: audit_manifest_scope_drift:query=stade:source=ikmk
-  type: audit_manifest_scope_drift
-  key_dims:
-    source: ikmk
-    query: stade
-  summary: IKMK 'Stade' query returns OOS records.
-  status: open
-  instance_first_seen: '2026-05-30T02:25:04Z'
-  last_seen: '2026-05-30T02:25:04Z'
-  occurrence_count: 1
-  affected_ids:
-    ikmk:
-    - 18236189
-    - 18236190
-  occurrences:
-  - run_utc: '2026-05-30T02:25:04Z'
-    batch_label: AO
-    detail: 'Batch AO: 2 of 5 fetched mds_ids OOS via Stade query — 18236189, 18236190 both Morin Georges
-      medals ''Feldmarschall Karl von Bülow'' (Prussian/WWI commemorative).'
-    full_context:
-      ikmk_batch: AO
-      numista_batch: GI
-      ucoin_batch: '196'
-  proposed_fix: Tighten Stade query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter; Stade
-    is a Bremen-Verden geography target but IKMK returns matches via personenname.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
-- id: audit_manifest_scope_drift:query=iburg:source=ikmk
-  type: audit_manifest_scope_drift
-  key_dims:
-    source: ikmk
-    query: iburg
-  summary: IKMK 'Iburg' query returns OOS records (Konstanz Bistum + Konstanz Otto I.).
-  status: open
-  instance_first_seen: '2026-05-30T12:27:47Z'
-  last_seen: '2026-05-30T12:27:47Z'
-  occurrence_count: 1
-  affected_ids:
-    ikmk:
-    - 18255407
-    - 18255954
-  occurrences:
-  - run_utc: '2026-05-30T12:27:47Z'
-    batch_label: AY
-    detail: 'Batch AY: 2 of 5 mds_ids from Iburg query are Konstanz Bistum medieval Denar/Denarius — ''Iburg''
-      query likely substring-matching across unrelated records.'
-    full_context:
-      ikmk_batch: AY
-      numista_batch: GS
-      ucoin_batch: '206'
-  proposed_fix: Replace bare 'Iburg' query with phrase-quoted or issuer-scoped variant in fetch_ikmk.py
-    QUERIES list; or add issuer-text post-fetch filter.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
-- id: url_open_failed:id=178756:source=ucoin
-  type: url_open_failed
-  key_dims:
-    source: ucoin
-    id: '178756'
-  summary: 'ucoin TID 178756 fails to fetch (last reason: ''404_page_not_found''); ID remains in audit
-    gap_tids as retry candidate, cache file absent.'
-  status: open
-  instance_first_seen: '2026-05-30T14:18:31.171277Z'
-  last_seen: '2026-05-30T14:18:31.171277Z'
-  occurrence_count: 1
-  affected_ids:
-    ucoin:
-    - 178756
-  occurrences:
-  - run_utc: '2026-05-30T14:18:31.171277Z'
-    batch_label: '208'
-    detail: 'Batch 208: 404_page_not_found — url https://en.ucoin.net/coin/?tid=178756. TID not on osnabruck_p3057
-      listing (48 anchors visible, this TID not among them); slug-less redirect resolves to Page Not Found.'
-    full_context:
-      reason: 404_page_not_found
-      url_tried: https://en.ucoin.net/coin/?tid=178756
-  proposed_fix: Open URL in browser to determine status (renamed/merged/moved/withdrawn/removed). If verified
-    OOS or merged, reclassify into audit's oos_excluded_tids slot.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
-- id: url_open_failed:id=178757:source=ucoin
-  type: url_open_failed
-  key_dims:
-    source: ucoin
-    id: '178757'
-  summary: 'ucoin TID 178757 fails to fetch (last reason: ''404_page_not_found''); ID remains in audit
-    gap_tids as retry candidate, cache file absent.'
-  status: open
-  instance_first_seen: '2026-05-30T14:18:31.171277Z'
-  last_seen: '2026-05-30T14:18:31.171277Z'
-  occurrence_count: 1
-  affected_ids:
-    ucoin:
-    - 178757
-  occurrences:
-  - run_utc: '2026-05-30T14:18:31.171277Z'
-    batch_label: '208'
-    detail: 'Batch 208: 404_page_not_found — url https://en.ucoin.net/coin/?tid=178757. TID not on osnabruck_p3057
-      listing (48 anchors visible, this TID not among them); slug-less redirect resolves to Page Not Found.'
-    full_context:
-      reason: 404_page_not_found
-      url_tried: https://en.ucoin.net/coin/?tid=178757
-  proposed_fix: Open URL in browser to determine status (renamed/merged/moved/withdrawn/removed). If verified
-    OOS or merged, reclassify into audit's oos_excluded_tids slot.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
-- id: audit_manifest_period_boundary:bucket=osnabruck_p3057:id=178755:source=ucoin
-  type: audit_manifest_period_boundary
-  key_dims:
-    source: ucoin
-    bucket: osnabruck_p3057
-    id: '178755'
-  summary: ucoin TID 178755 (Ernst August 3 thaler ND 1662) sits 1y past p3057 period label '1482-1661'
-    / mission_window 1559-1661.
-  status: open
-  instance_first_seen: '2026-05-30T14:20:38.405861Z'
-  last_seen: '2026-05-30T14:20:38.405861Z'
-  occurrence_count: 1
-  affected_ids:
-    ucoin:
-    - 178755
-  occurrences:
-  - run_utc: '2026-05-30T14:20:38.405861Z'
-    batch_label: '208'
-    detail: 'Batch 208: TID 178755 in audit-4 gap_tids for osnabruck_p3057 (years_label ''1482-1661'',
-      mission_window ''1559-1661''); ucoin-published year is ND (1662). Coin saved; period boundary surfaced
-      for review — Ernst August acceded to Osnabrück bishopric 1662, so single-year overshoot is historically
-      plausible. Decide whether to extend bucket label to ''1482-1662'' or reclassify into a successor
-      bucket.'
-  proposed_fix: Extend osnabruck_p3057 period upper bound to 1662 OR identify the correct successor period
-    bucket on ucoin and move this TID there.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
-- id: audit_manifest_scope_drift:scope=query_bucket_drift:source=ikmk
-  type: audit_manifest_scope_drift
-  key_dims:
-    source: ikmk
-    scope: query_bucket_drift
-  summary: IKMK fetcher's broad entity-scope accepts records that no manifest query maps to — batches
-    AY / AZ / BA all returned 100 % scope-drift mds_ids.
-  status: open
-  instance_first_seen: '2026-05-30T14:24:47.720421Z'
-  last_seen: '2026-05-30T14:24:47.720421Z'
-  occurrence_count: 1
-  affected_ids:
-    ikmk:
-    - 18258191
-    - 18258383
-    - 18260299
-    - 18263022
-    - 18263039
-  occurrences:
-  - run_utc: '2026-05-30T14:24:47.720421Z'
-    batch_label: BA
-    detail: 'Batch BA: 5 fetched mds_ids — Würzburg (Otto I. Denar), Mainz (Johann II. Goldgulden), Neuenburg
-      (Friedrich Wilhelm II. 10½ Batzen), 2× Postumus (Gallo-Roman). None map to any active query in _manifest.json::queries.
-      Three consecutive batches now exhibit this pattern (AY / AZ / BA). Suggests either (a) the manifest''s
-      `ids` pool has stale entries from prior discover passes whose query buckets were later removed/renamed,
-      or (b) the entity-scope filter is too generous relative to the curated query list.'
-  proposed_fix: Re-run scripts/fetch_ikmk.py discover to refresh manifest queries, then run a cleanup
-    pass that drops orphan ids from `ids` pool. OR tighten _is_in_entity_scope() to match the project's
-    curated entity list more strictly (V2 location-consumed entities).
-  resolution: null
-  resolved_at: null
-  resolved_by: null
-- id: url_open_failed:id=81804:source=ucoin
-  type: url_open_failed
-  key_dims:
-    source: ucoin
-    id: '81804'
-  summary: ucoin TID 81804 fails to fetch (404_page_not_found); hesse_kassel_p899 residual gap; cache
-    file absent.
-  status: open
-  instance_first_seen: '2026-05-30T15:18:55.536367Z'
-  last_seen: '2026-05-30T15:18:55.536367Z'
-  occurrence_count: 1
-  affected_ids:
-    ucoin:
-    - 81804
-  occurrences:
-  - run_utc: '2026-05-30T15:18:55.536367Z'
-    batch_label: '209'
-    detail: 'Batch 209: 404_page_not_found — url https://en.ucoin.net/coin/?tid=81804. TID missing from
-      listing-page p=1+p=2 (48/62 visible).'
-    full_context:
-      reason: 404_page_not_found
-      url_tried: https://en.ucoin.net/coin/?tid=81804
-      bucket: hesse_kassel_p899
-  proposed_fix: Open URL in browser to determine status (renamed/merged/moved/withdrawn/removed). If verified
-    OOS or merged, reclassify into audit's oos_excluded_tids slot with audit-trail reason.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
-- id: url_open_failed:id=95858:source=ucoin
-  type: url_open_failed
-  key_dims:
-    source: ucoin
-    id: '95858'
-  summary: ucoin TID 95858 fails to fetch (404_page_not_found); hesse_kassel_p899 residual gap; cache
-    file absent.
-  status: open
-  instance_first_seen: '2026-05-30T15:18:55.536367Z'
-  last_seen: '2026-05-30T15:18:55.536367Z'
-  occurrence_count: 1
-  affected_ids:
-    ucoin:
-    - 95858
-  occurrences:
-  - run_utc: '2026-05-30T15:18:55.536367Z'
-    batch_label: '209'
-    detail: 'Batch 209: 404_page_not_found — url https://en.ucoin.net/coin/?tid=95858. TID missing from
-      listing-page p=1+p=2 (48/62 visible).'
-    full_context:
-      reason: 404_page_not_found
-      url_tried: https://en.ucoin.net/coin/?tid=95858
-      bucket: hesse_kassel_p899
-  proposed_fix: Open URL in browser to determine status (renamed/merged/moved/withdrawn/removed). If verified
-    OOS or merged, reclassify into audit's oos_excluded_tids slot with audit-trail reason.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
