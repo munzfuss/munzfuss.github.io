@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T05:24:56Z'
+  last_updated_utc: '2026-05-30T06:30:17Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -709,11 +709,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query returns OOS records.
+  summary: IKMK 'Osnabrück' query returns OOS records (Preußen Friedrich II this batch).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-30T02:25:04Z'
-  occurrence_count: 10
+  last_seen: '2026-05-30T06:30:17Z'
+  occurrence_count: 11
   affected_ids:
     ikmk:
     - 18206581
@@ -734,6 +734,7 @@ anomalies:
     - 18234876
     - 18234877
     - 18235996
+    - 18240565
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -811,7 +812,16 @@ anomalies:
       ikmk_batch: AO
       numista_batch: GI
       ucoin_batch: '196'
-  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter.
+  - run_utc: '2026-05-30T06:30:17Z'
+    batch_label: AS
+    detail: 'Batch AS: 18240565 Preußen Friedrich II returned by Osnabrück query. Not Osnabrück Hochstift
+      coinage.'
+    full_context:
+      ikmk_batch: AS
+      numista_batch: GM
+      ucoin_batch: '200'
+  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to issuer-scope (issuer ~ 'Osnabrück') or add
+    post-fetch scope filter.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -820,12 +830,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: hamburg
-  summary: IKMK 'Hamburg' query returns OOS Swedish commemorative medals (Frieden von Hamburg 1762) via
-    keyword match.
+  summary: IKMK 'Hamburg' query returns OOS records (3/4 OOS this batch).
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-29T22:30:39Z'
-  occurrence_count: 8
+  last_seen: '2026-05-30T06:30:17Z'
+  occurrence_count: 9
   affected_ids:
     ikmk:
     - 18210988
@@ -841,6 +850,9 @@ anomalies:
     - 18230184
     - 18230186
     - 18230648
+    - 18238125
+    - 18238370
+    - 18239544
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -904,9 +916,17 @@ anomalies:
       attribution is ''Sveriges och Svenska Konungahusets Minnespennigar'' (Swedish royal commemorative
       medal); fetched via Hamburg keyword match on ''Frieden von Hamburg'' but issuer is Swedish, not
       Hanseatic Hamburg. OOS for project.'
-  proposed_fix: Tighten Hamburg query in scripts/fetch_ikmk.py to issuer-scope filter ('Hamburg' as issuer
-    text, not free-text keyword), OR add post-fetch scope filter rejecting records where issuer/publisher
-    is not in {Hamburg, Hanseatic Hamburg, Free Imperial City of Hamburg}.
+  - run_utc: '2026-05-30T06:30:17Z'
+    batch_label: AS
+    detail: 'Batch AS: 18238125 Hude/Bäumer feminist portrait + 18238370 Drentwett Marienburg 100-Jahrfeier
+      medal + 18239544 Baden Christoph I. None are Hanseatic Hamburg coinage; query needs issuer-scope
+      tightening or post-fetch filter.'
+    full_context:
+      ikmk_batch: AS
+      numista_batch: GM
+      ucoin_batch: '200'
+  proposed_fix: Tighten Hamburg query in fetch_ikmk.py to issuer-scope (issuer ~ 'Hamburg') or add post-fetch
+    scope filter.
   resolution: null
   resolved_at: null
   resolved_by: null
