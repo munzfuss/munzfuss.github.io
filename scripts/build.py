@@ -37,6 +37,7 @@ from lib.timeline import (
 from lib.compute import compute_location
 from lib.render import build_env, generate_css
 from lib.schema import Location, Fuss, I18nText, Coin
+from lib.v2_seed_writer import normalise_nominal_display
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -914,6 +915,12 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
         #     `f"{year_first}–{year_last}"` for ranges) is correct.
         if c.get("nominal") is None:
             continue
+        # Reader-facing nominal guarantee (idempotent): Danish-realm
+        # spelling (Noble→Nobel / Rose Noble→Rosenobel) + implicit «1 »
+        # count. Belt-and-suspenders over the seed-write normalisation
+        # so every rendered row is correct regardless of source path
+        # (incl. curated entries hand-added to a final/location yaml).
+        c["nominal"] = normalise_nominal_display(c["nominal"])
         if c.get("year_label") is None:
             yf = c.get("year_first")
             yl = c.get("year_last")

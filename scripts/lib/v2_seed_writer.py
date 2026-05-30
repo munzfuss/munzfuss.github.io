@@ -56,27 +56,48 @@ _OUT_OF_SCOPE_NOMINAL_TOKENS = (
     "cash",          # East India sub-denomination
 )
 
-# Denomination nouns that often appear in source data without a
-# leading number (Hede pages: «Penning», «Hvid», «Skilling», bare
-# spec-headers). Per CLAUDE.md «mathematically-verified register»:
-# every coin row needs an explicit denomination count, default «1»
-# when source publishes just the noun. Listed denominations get
-# «1 » prefixed when the nominal lacks a leading digit/fraction.
-_BARE_DENOMINATION_NOUNS = frozenset({
-    # Danish core
-    "ducat", "dukat", "thaler", "speciedaler", "specie daler",
-    "krone", "skilling", "mark", "søsling", "hvid", "penning",
-    "denning", "dobbelthvid", "firehvid", "treskilling",
-    "joachimstaler",
-    # German + Hanseatic
-    "pfennig", "schilling", "sechsling", "dreiling", "groschen",
-    "goldgulden", "gulden", "portugaløser", "rosenobel", "nobel",
-    "reichsthaler", "kronenthaler", "rhinsk gylden", "sølvgylden",
-    # Rigsdaler-era
-    "rigsdaler", "rigsbankdaler", "rigsbankskilling",
-    # Gold sub-denominations
-    "pistole", "friedrichsdor", "rosenoble",
+# Danish-realm denomination DISPLAY spelling normalisation. Numista /
+# NumisMaster / Friedberg print the English «Noble» / «Rose Noble» for
+# the Danish gold Nobel (Hans 1496 → Frederik I 1532) and Christian IV's
+# Rosenobel. The Danish numismatic + project-canonical form (Galster,
+# danskmoent.dk/1nobel.htm + 1rosenobel.htm, our `nobel_fod` /
+# `rosenobel_fod` Müntzfüße) is «Nobel» / «Rosenobel». Unlike the
+# cross-source MATCHING synonyms in `nominal_synonyms.py` (lowercased,
+# for equality checks), this map is CASE- and COUNT-preserving for
+# display: «2 Nobles» → «2 Nobel» (singular Danish noun after the
+# count, per the nominal-field convention «<N> <singular>»). Compound
+# forms FIRST so «Rose Noble» resolves before bare «Noble». Scope is
+# deliberately NARROW (noble family only) — we do NOT fold
+# Thaler→Daler / Ducat→Dukat etc. for display, since the project keeps
+# the period-correct German/Danish forms per CLAUDE.md §2.
+_NOMINAL_DISPLAY_SPELLING: tuple[tuple[str, str], ...] = (
+    (r"\bRose[\s\-]+Nobles?\b", "Rosenobel"),
+    (r"\bRosenobles?\b", "Rosenobel"),
+    (r"\bNobles?\b", "Nobel"),
+)
+
+# Nominal heads that are NOT real denominations — generic descriptors /
+# placeholders that must never receive an implicit «1 » count.
+_NON_DENOMINATION_NOMINALS = frozenset({
+    "(?)", "gold coin", "gold issue", "gold bracteate", "gold medallic",
+    "medal", "silver coin", "coin",
 })
+
+# Leading roman-numeral count («IIII Skilling», «XV Skilling»). Archaic
+# «IIII» (=4) is intentionally allowed — sources print it. Matched as a
+# run of roman letters immediately followed by whitespace, so word-heads
+# like «Mark» / «Lion» / «Dukat» (single roman letter then a non-space)
+# do not match.
+_LEADING_ROMAN_RE = re.compile(r"^[IVXLCDM]+\s")
+# Leading place / mint prefix ending in «. » («Oldenburg. Taler»,
+# «Lübeck (Bishopric). Taler», «Bremen & Verden. 4 Mark»). The location
+# has leaked into the nominal field — a separate data-quality issue, but
+# never an implicit count, so we must not prepend «1 » at the front.
+_LEADING_PLACE_DOT_RE = re.compile(r"^[A-ZÄÖÜØÅ][^.]*\.\s")
+# Leading fractional WORD («Halv ørtug», «Half Portugaloser»).
+_LEADING_FRACTION_WORD_RE = re.compile(r"^(?:halv|halve|half|halb)\b", re.IGNORECASE)
+# Characters that signal an explicit count is already present.
+_QUANTITY_CHARS = "0123456789½¼¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞"
 
 # Canonical mint name table — normalises the dozens of orthographic
 # variants encountered across sources (English / Danish / Latin
@@ -158,6 +179,59 @@ _NOMINAL_MOJIBAKE_FIXES = (
     ("Sølv�", "Sølv"),
     ("�", ""),  # last-resort drop remaining replacement-char artefacts
 )
+
+
+def _should_prepend_one(s: str) -> bool:
+    """Decide whether a bare nominal needs an implicit «1 » count.
+
+    Per CLAUDE.md (mathematically-verified register) every coin row
+    carries an explicit denomination count; sources that publish just
+    the denomination noun («Skilling», «Taler», «Nobel») get «1 »
+    prefixed. This is GUARD-based (skip-list) rather than an allowlist,
+    so qualifier-bearing and future denominations («Skilling Rigsmønt»,
+    «Gold Krone», «Silver Gulden (Taler)», «Albertsdaler») are handled
+    by default. Returns False (skip) when an implicit «1 » would be
+    wrong:
+
+      1. an explicit count is already present — leading OR embedded
+         digit / fraction glyph once paren-clarifiers like «(10 Ducats)»
+         are removed («Commemorative 2 Kroner», «Speciedaler / 3 Mark»);
+      2. a leading roman-numeral count («IIII Skilling»);
+      3. a leading fractional word («Halv ørtug», «Half Portugaloser»);
+      4. a leading place / mint prefix («Oldenburg. Taler») or an
+         uncertain-mint «… eller …» attribution that leaked into the
+         nominal field («Hamar (Norge) eller København, Søsling(?)»);
+      5. a non-denomination placeholder («(?)», «Gold coin», «Medal»).
+    """
+    if not s:
+        return False
+    # Strip paren clarifiers so an embedded equivalence «(10 Ducats)»
+    # is not mistaken for the denomination's own count.
+    bare = re.sub(r"\([^)]*\)", "", s).strip()
+    if not bare:
+        return False
+    # 1. explicit count already present (leading or embedded).
+    if any(ch in _QUANTITY_CHARS for ch in bare):
+        return False
+    # 2. leading roman-numeral count.
+    if _LEADING_ROMAN_RE.match(bare):
+        return False
+    # 3. leading fractional word.
+    if _LEADING_FRACTION_WORD_RE.match(bare):
+        return False
+    # 4. leading place / mint prefix, or uncertain-mint attribution.
+    if _LEADING_PLACE_DOT_RE.match(s):
+        return False
+    if " eller " in bare.lower():
+        return False
+    first_token = re.split(r"[\s,;]", bare, maxsplit=1)[0].lower()
+    if first_token in _MINT_ALIAS_TO_CANON:
+        return False
+    # 5. non-denomination placeholder.
+    head = bare.split(",")[0].split(";")[0].strip().lower()
+    if head in _NON_DENOMINATION_NOMINALS:
+        return False
+    return True
 
 
 def _normalise_nominal(raw):
@@ -281,21 +355,17 @@ def _normalise_nominal(raw):
         _expand_paren_abbrev,
         s,
     )
-    # Add leading «1 » when nominal is a bare denomination noun.
-    # «Penning» → «1 Penning», «Hvid» → «1 Hvid», «Skilling» → «1 Skilling».
-    # Also fires when the nominal has the shape «<noun>, <mint>» or
-    # «<noun>, <mint> (?)» — the leading count is implicit. Catches
-    # Galster pre-1541 pages where page-title denomination omits «1 »:
-    #   «Søsling, Ronneby (?)»  → «1 Søsling, Ronneby (?)»
-    #   «Halv Sølvgylden»       → kept as-is (Halv = «½», not bare-noun)
-    if s:
-        # Split on first comma to get the leading-denomination token;
-        # also strip a trailing paren clarifier («Skilling (10 Hvide)»
-        # → head = «Skilling») so bare-noun detection still fires.
-        head = s.split(",", 1)[0].strip()
-        head_noparens = re.sub(r"\s*\([^)]*\)\s*$", "", head).strip()
-        if head_noparens.lower() in _BARE_DENOMINATION_NOUNS:
-            s = f"1 {s}"
+    # Danish-realm denomination spelling: English «Noble» / «Rose Noble»
+    # → canonical Danish «Nobel» / «Rosenobel» (case- + count-preserving).
+    # Runs BEFORE the implicit-«1 » step so «Noble» → «Nobel» → «1 Nobel».
+    for pattern, replacement in _NOMINAL_DISPLAY_SPELLING:
+        s = re.sub(pattern, replacement, s, flags=re.IGNORECASE)
+    # Add an implicit leading «1 » when the nominal is a bare denomination
+    # with no explicit count. Guard-based — see `_should_prepend_one`.
+    #   «Penning» → «1 Penning», «Skilling Rigsmønt» → «1 Skilling Rigsmønt»,
+    #   «Nobel» → «1 Nobel», «Halv Sølvgylden» / «Oldenburg. Taler» kept as-is.
+    if _should_prepend_one(s):
+        s = f"1 {s}"
     # Fraction typography: «1 1/2» / «1-1/2» → «1½»; «1/2» → «½»; etc.
     s = re.sub(r"(\d)\s*[\-\s]\s*1/2\b", r"\1½", s)
     s = re.sub(r"(\d)\s*[\-\s]\s*1/4\b", r"\1¼", s)
@@ -315,6 +385,33 @@ def _normalise_nominal(raw):
         lambda m: m.group(1) + m.group(2).upper(),
         s,
     )
+    return s
+
+
+def normalise_nominal_display(raw):
+    """Lightweight DISPLAY normalisation for ALREADY-typed nominals.
+
+    Applies only the two reader-facing rules that must hold on every
+    rendered coin row regardless of source path:
+      * Danish-realm spelling — «Noble»/«Rose Noble» → «Nobel»/«Rosenobel»
+        (case- + count-preserving);
+      * implicit «1 » count for a bare denomination (`_should_prepend_one`).
+
+    Unlike `_normalise_nominal` (the full raw-ingest pipeline) it does
+    NOT strip years / paren-clarifiers / mojibake / reformat fractions,
+    so it is safe to re-apply at render time and on curated data without
+    altering intentional content (e.g. it leaves «4 Mark (Krone)» and
+    «1/2 Taler» untouched). Idempotent; None passes through unchanged.
+    """
+    if raw is None:
+        return None
+    s = str(raw).strip()
+    if not s:
+        return None
+    for pattern, replacement in _NOMINAL_DISPLAY_SPELLING:
+        s = re.sub(pattern, replacement, s, flags=re.IGNORECASE)
+    if _should_prepend_one(s):
+        s = f"1 {s}"
     return s
 
 
