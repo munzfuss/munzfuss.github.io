@@ -125,6 +125,47 @@ but reflects the `dup_pairs_denmark.txt` enumeration.
    correct (sample-checked hede-44). User asked for verification
    before any push. ⇒ Awaiting «OK to push» or further checks.
 
+## Harvest routine — anomaly investigation (2026-05-29)
+
+Investigated the autonomous harvest routine's self-logged anomalies
+(`scripts/cache/_harvest_handoff.json::runs[].anomalies`). Two systemic,
+one class transient.
+
+- **IKMK discovery noise → ✅ scope-purged.** `fetch_ikmk.py` uses
+  full-text `quick_search` + a **year-only** fetch filter, so the cache
+  had filled to ~90 % out-of-scope. Purged 5791/7259 records (cache
+  103→28 MB), kept 1468 German/Scandinavian coins + borderline-HRE.
+  Landed on **main** (submodule commit `07014b3`, superproject pointer
+  bump `651633d`) — not the worktree, due to a `cd /main` slip; curator
+  accepted keeping it there. Keep-rule + verification recorded in
+  `scripts/cache/ikmk/_oos_purged_by_scope_2026-05.json` and SOURCES.md
+  §13.8. **Durable filter landed** (commit `48dc101`, worktree branch):
+  `fetch_ikmk.py` now gates fetch + `scan_cache` on `_is_in_entity_scope`
+  (country + object-type); the year-only `_is_in_mission_scope` gate is
+  removed. Per the curator's multi-level scope (2026-05-29) year is NOT a
+  drop criterion — German/Scandinavian (+ lands under their rule) of ANY
+  era are broad keep-scope; only other-country coins + exonumia are
+  dropped. Validated: entity-only filter flags just 2 of 1478 cached (a
+  British Sovereign + a Koch medal — routine-added OOS the old year gate
+  let slip), keeps all 326 German/Scandinavian records outside 1514-1914.
+- **ucoin `osnabruck_p3057` skip-loop (occ≥10) → ✅ fixed.** Bucket
+  «Bishopric of Osnabrück 1482-1661» — first gap-TIDs were pre-1559 OOS,
+  so the picker re-offered + skipped it every run. Re-enumerated per-TID
+  years via the ucoin listing (Chrome, 2 pages, 55 TIDs) and split
+  `_BR_audit-4_2026-05-24.json::osnabruck_p3057.gap_tids` into 29
+  in-scope (1631-1662) + 26 `oos_excluded_tids` (1482-1541). gap_tids now
+  lists only the in-scope set, so the routine harvests the 1631-1662
+  coins and the skip-loop ends. Committed on the **worktree** branch
+  (submodule `417ab9d`, pointer bump `620241f`). Since reconciled:
+  `origin/main` was merged into the branch (`f989f9b`), unioning the
+  IKMK purge (origin) with this p3057 split in submodule merge `d385a7a`;
+  a follow-up normalised the audit JSON back to the routine's indent=2
+  (`e475a36` / pointer `04a17a7`). The branch's cache submodule now
+  carries both changes.
+- **Transient (no action):** chrome-mcp-disconnect (16:34 run),
+  cloudflare interstitials (auto-cleared), `osnabruck_p2988` audit label
+  drift («Hochstift» vs «City of Osnabrück»).
+
 ## Harvest coverage state — ucoin + Numista (2026-05-20)
 
 > **For the next harvest session**: detailed snapshot of where every
