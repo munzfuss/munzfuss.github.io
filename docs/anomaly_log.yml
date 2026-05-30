@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T01:27:04Z'
+  last_updated_utc: '2026-05-30T02:25:04Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -697,11 +697,11 @@ anomalies:
   key_dims:
     source: ikmk
     query: osnabrueck
-  summary: IKMK 'Osnabrück' query returns Preußen records.
+  summary: IKMK 'Osnabrück' query returns OOS records.
   status: open
   instance_first_seen: '2026-05-28T03:29:07Z'
-  last_seen: '2026-05-30T01:27:04Z'
-  occurrence_count: 9
+  last_seen: '2026-05-30T02:25:04Z'
+  occurrence_count: 10
   affected_ids:
     ikmk:
     - 18206581
@@ -720,6 +720,8 @@ anomalies:
     - 18234873
     - 18234875
     - 18234876
+    - 18234877
+    - 18235996
   occurrences:
   - run_utc: '2026-05-28T03:29:07Z'
     batch_label: AE
@@ -789,8 +791,15 @@ anomalies:
       ikmk_batch: AN
       numista_batch: GH
       ucoin_batch: '195'
-  proposed_fix: Tighten Osnabrueck query in fetch_ikmk.py to issuer-scope (filter by issuing-entity 'Hochstift
-    Osnabrück' / 'Bisthum Osnabrück') or add post-fetch issuer-name filter to exclude Preußen records.
+  - run_utc: '2026-05-30T02:25:04Z'
+    batch_label: AO
+    detail: 'Batch AO: 2 of 5 fetched mds_ids OOS via Osnabrück query — 18234877 Preußen Wilhelm I, 18235996
+      Preußen Friedrich II.'
+    full_context:
+      ikmk_batch: AO
+      numista_batch: GI
+      ucoin_batch: '196'
+  proposed_fix: Tighten Osnabrück query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -970,17 +979,18 @@ anomalies:
   key_dims:
     source: ikmk
     query: braunschweig
-  summary: IKMK 'Braunschweig' query returns Russland record.
+  summary: IKMK 'Braunschweig' query returns OOS records.
   status: open
   instance_first_seen: '2026-05-29T17:29:25Z'
-  last_seen: '2026-05-30T01:27:04Z'
-  occurrence_count: 4
+  last_seen: '2026-05-30T02:25:04Z'
+  occurrence_count: 5
   affected_ids:
     ikmk:
     - 18217796
     - 18227333
     - 18228337
     - 18234771
+    - 18235390
   occurrences:
   - run_utc: '2026-05-29T17:29:25Z'
     batch_label: AI
@@ -1014,8 +1024,15 @@ anomalies:
       ikmk_batch: AN
       numista_batch: GH
       ucoin_batch: '195'
-  proposed_fix: Add ruler-name filter to Braunschweig query to exclude entries whose issuer/ruler text
-    contains 'Russland' / 'Russisch' / Russian-tsar names.
+  - run_utc: '2026-05-30T02:25:04Z'
+    batch_label: AO
+    detail: 'Batch AO: 1 of 5 fetched mds_ids OOS via Braunschweig query — 18235390 Abramson ''Tod Luise
+      Amalie'' commem medal.'
+    full_context:
+      ikmk_batch: AO
+      numista_batch: GI
+      ucoin_batch: '196'
+  proposed_fix: Tighten Braunschweig query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter.
   resolution: null
   resolved_at: null
   resolved_by: null
@@ -1111,6 +1128,34 @@ anomalies:
       just mislabeled in the routine doc.'
   proposed_fix: 'Fix HARVEST_ROUTINE.md §4.2 row 22: ''hesse_kassel_p899'' description from ''Hesse-Kassel
     landgraviate'' → ''Hesse-Kassel electorate (1803-1866)''. Documentation-only fix; harvest is unaffected.'
+  resolution: null
+  resolved_at: null
+  resolved_by: null
+- id: audit_manifest_scope_drift:query=stade:source=ikmk
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: ikmk
+    query: stade
+  summary: IKMK 'Stade' query returns OOS records.
+  status: open
+  instance_first_seen: '2026-05-30T02:25:04Z'
+  last_seen: '2026-05-30T02:25:04Z'
+  occurrence_count: 1
+  affected_ids:
+    ikmk:
+    - 18236189
+    - 18236190
+  occurrences:
+  - run_utc: '2026-05-30T02:25:04Z'
+    batch_label: AO
+    detail: 'Batch AO: 2 of 5 fetched mds_ids OOS via Stade query — 18236189, 18236190 both Morin Georges
+      medals ''Feldmarschall Karl von Bülow'' (Prussian/WWI commemorative).'
+    full_context:
+      ikmk_batch: AO
+      numista_batch: GI
+      ucoin_batch: '196'
+  proposed_fix: Tighten Stade query in fetch_ikmk.py to issuer-scope or add post-fetch scope filter; Stade
+    is a Bremen-Verden geography target but IKMK returns matches via personenname.
   resolution: null
   resolved_at: null
   resolved_by: null
