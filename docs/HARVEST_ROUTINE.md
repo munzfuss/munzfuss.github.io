@@ -107,6 +107,15 @@ git status --short                 # if dirty, inspect; do not bundle unrelated 
 
 # 3. Confirm Chrome MCP is connected
 # (use the tabs_context_mcp tool with createIfEmpty:true at the start of step-1 batch)
+
+# 4. Refresh stale cached_count / cached_tids / gap lists in the audit
+#    manifests from the actual on-disk cache, so §2.1's bucket picker does
+#    not re-offer already-cached buckets and burn the run on defensive
+#    sampling (anomaly audit_manifest_scope_drift:field=cached_count).
+#    Idempotent + format-preserving — a no-op run leaves a zero-byte diff;
+#    any changes it does make are part of THIS run and get committed with
+#    the routine's normal cache commit (§3.1 / §5.1).
+.venv/bin/python scripts/maintenance/refresh_audit_cached_counts.py --write
 ```
 
 ### §1a. Re-create `/tmp/save_*.py` if missing
