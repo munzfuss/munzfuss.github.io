@@ -186,6 +186,15 @@ def build_entry(rec) -> dict | None:
     except (TypeError, ValueError):
         yl = yf
 
+    # Era scope gate (CLAUDE.md mission lower-bound 1481 / upper 1914). IKMK
+    # full-text queries pull in medieval (Denar / Örtug «MA», Gotland) +
+    # post-1914 modern records; drop the clearly out-of-scope ones. Undated
+    # (yf is None) is KEPT — it may be an in-scope coin the parser couldn't
+    # date; the finer dual-anchor (DK 1514 / German 1559) is left to Phase-4
+    # classification since these are seed_unsorted.
+    if yf is not None and (yf < 1481 or yf > 1914):
+        return None
+
     mint = _mint_city(rec)
     entity = classify_mint_to_entity(mint, year=yf) if mint else None
     metal = _METAL.get(_first(rec.get("material")).get("material_name_de"))

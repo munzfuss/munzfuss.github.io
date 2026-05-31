@@ -1,69 +1,11 @@
 status: seed
 source: IKMK Berlin (ikmk.smb.museum, json_ext)
-generated_at: '2026-05-30T19:55:29Z'
+generated_at: '2026-05-31T06:41:23Z'
 entity: danish_norway
 scope_note: IKMK Berlin seed — records from the Interaktiver Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0), built directly from the museum json_ext cache (scope-purged + 
   title-filtered at harvest). Coin-only (§9.2 exonumia excluded). Mint city → issuing entity via classify_mint_to_entity; museum-attested fields carry verified=true. Phase-4 assigns Müntzfuß/phase; 
   cross-source merger deduplicates against Hede/Bruun/Numista/etc.
 coins:
-  - id: ikmk-18206600
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: danish_norway
-    nominal: 1 Brakteat (¼ Pfennig?)
-    metal: silver
-    metal_verified: true
-    mint: Bergen
-    mint_verified: true
-    year_first: 1170
-    year_last: 1205
-    year_label: 1170-1205
-    year_ranges:
-      -   - 1170
-          - 1205
-    weight_rough_g: 0.07
-    weight_rough_verified: true
-    diameter_mm: 14.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18206600
-        ref: IKMK Berlin 18206600
-    verification_note: &id001
-      de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
-      en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested; Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
-      uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза некласифіковані (seed_unsorted) до Phase-4.'
-  - id: ikmk-18206602
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: danish_norway
-    nominal: 1 Penning
-    metal: silver
-    metal_verified: true
-    mint: Bergen
-    mint_verified: true
-    ruler: Eirik Magnusson
-    year_first: 1285
-    year_last: 1290
-    year_label: 1285-1290
-    year_ranges:
-      -   - 1285
-          - 1290
-    inscription_obv: + ERIC MAGN REX NORVEG
-    inscription_rev: CRVX - SCA - IhV - XPI
-    weight_rough_g: 1.34
-    weight_rough_verified: true
-    diameter_mm: 21.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18206602
-        ref: IKMK Berlin 18206602
-    verification_note: *id001
   - id: ikmk-18244025
     fuss: seed_unsorted
     phase: ikmk
@@ -92,7 +34,10 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18244025
         ref: IKMK Berlin 18244025
-    verification_note: *id001
+    verification_note: &id001
+      de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+      en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested; Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+      uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза некласифіковані (seed_unsorted) до Phase-4.'
   - id: ikmk-18244024
     fuss: seed_unsorted
     phase: ikmk
@@ -718,7 +663,7 @@ coins:
     phase: ikmk
     kind: kurant
     issuing_entity: danish_norway
-    nominal: 1 Krone (AR)
+    nominal: 1 Krone
     metal: silver
     metal_verified: true
     mint: Kongsberg
@@ -745,3 +690,7 @@ coins:
         url: https://ikmk.smb.museum/object?id=18240602
         ref: IKMK Berlin 18240602
     verification_note: *id001
+    note:
+      de: AR
+      en: AR
+      uk: AR

@@ -1,67 +1,11 @@
 status: seed
 source: IKMK Berlin (ikmk.smb.museum, json_ext)
-generated_at: '2026-05-30T19:55:30Z'
+generated_at: '2026-05-31T06:41:24Z'
 entity: hanseatic_hamburg
 scope_note: IKMK Berlin seed — records from the Interaktiver Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0), built directly from the museum json_ext cache (scope-purged + 
   title-filtered at harvest). Coin-only (§9.2 exonumia excluded). Mint city → issuing entity via classify_mint_to_entity; museum-attested fields carry verified=true. Phase-4 assigns Müntzfuß/phase; 
   cross-source merger deduplicates against Hede/Bruun/Numista/etc.
 coins:
-  - id: ikmk-18216312
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: hanseatic_hamburg
-    nominal: 1 Brakteat
-    metal: silver
-    metal_verified: true
-    mint:
-    mint_verified: true
-    ruler: Adolf III.
-    year_first: 1190
-    year_last: 1201
-    year_label: 1190-1201
-    year_ranges:
-      -   - 1190
-          - 1201
-    weight_rough_g: 0.5
-    weight_rough_verified: true
-    diameter_mm: 23.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18216312
-        ref: IKMK Berlin 18216312
-    verification_note: &id001
-      de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
-      en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested; Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
-      uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза некласифіковані (seed_unsorted) до Phase-4.'
-  - id: ikmk-18201292
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: hanseatic_hamburg
-    nominal: 1 Blaffert
-    metal: silver
-    metal_verified: true
-    mint:
-    mint_verified: true
-    year_first: 1400
-    year_last: 1450
-    year_label: 1400-1450
-    year_ranges:
-      -   - 1400
-          - 1450
-    weight_rough_g: 0.79
-    weight_rough_verified: true
-    diameter_mm: 21.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18201292
-        ref: IKMK Berlin 18201292
-    verification_note: *id001
   - id: ikmk-18265633
     fuss: seed_unsorted
     phase: ikmk
@@ -89,7 +33,10 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18265633
         ref: IKMK Berlin 18265633
-    verification_note: *id001
+    verification_note: &id001
+      de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+      en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested; Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+      uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза некласифіковані (seed_unsorted) до Phase-4.'
   - id: ikmk-18264713
     fuss: seed_unsorted
     phase: ikmk
@@ -236,6 +183,36 @@ coins:
         url: https://ikmk.smb.museum/object?id=18265652
         ref: IKMK Berlin 18265652
     verification_note: *id001
+  - id: ikmk-18284861
+    fuss: seed_unsorted
+    phase: ikmk
+    kind: kurant
+    issuing_entity: hanseatic_hamburg
+    nominal: 1 Dukat
+    metal: gold
+    metal_verified: true
+    mint:
+    mint_verified: true
+    year_first: 1808
+    year_last: 1808
+    year_label: '1808'
+    year_ranges:
+      -   - 1808
+          - 1808
+    inscription_obv: NVMVS AVREVS HAMBURGENSIS // 1808
+    inscription_rev: 67 / AEQV POND / MARC COLON / PRETII / 23 1/2 KARAT
+    weight_rough_g: 3.49
+    weight_rough_verified: true
+    diameter_mm: 22.0
+    diameter_mm_verified: true
+    catalog:
+      fr: '1140'
+    verified: false
+    sources:
+      - type: museum
+        url: https://ikmk.smb.museum/object?id=18284861
+        ref: IKMK Berlin 18284861
+    verification_note: *id001
   - id: ikmk-18204546
     fuss: seed_unsorted
     phase: ikmk
@@ -378,88 +355,4 @@ coins:
       - type: museum
         url: https://ikmk.smb.museum/object?id=18203937
         ref: IKMK Berlin 18203937
-    verification_note: *id001
-  - id: ikmk-18200470
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: hanseatic_hamburg
-    nominal: 5 Deutsche Mark
-    metal: silver
-    metal_verified: true
-    mint:
-    mint_verified: true
-    year_first: 1979
-    year_last: 1979
-    year_label: '1979'
-    year_ranges:
-      -   - 1979
-          - 1979
-    inscription_obv: 150 / JAHRE / DEUTSCHES / ARCHÄOLOGISCHES / INSTITUT / 1829-1979
-    inscription_rev: BUNDESREPUBLIK / DEUTSCHLAND / DEUTSCHE MARK / 19 - 5 - 79
-    weight_rough_g: 11.2
-    weight_rough_verified: true
-    diameter_mm: 29.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18200470
-        ref: IKMK Berlin 18200470
-    verification_note: *id001
-  - id: ikmk-18203499
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: hanseatic_hamburg
-    nominal: 10 Deutsche Mark
-    metal: silver
-    metal_verified: true
-    mint:
-    mint_verified: true
-    year_first: 1995
-    year_last: 1995
-    year_label: '1995'
-    year_ranges:
-      -   - 1995
-          - 1995
-    inscription_obv: 50 JAHRE MAHNUNG ZU - FRIEDEN UND VERSÖHNUNG, WIEDER/AUFBAU / FRAUEN/KIRCHE / DRESDEN
-    inscription_rev: BUNDESREPUBLIK DEUTSCHLAND - 10 DEUTSCHE MARK / 19-95
-    weight_rough_g: 15.42
-    weight_rough_verified: true
-    diameter_mm: 32.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18203499
-        ref: IKMK Berlin 18203499
-    verification_note: *id001
-  - id: ikmk-18203500
-    fuss: seed_unsorted
-    phase: ikmk
-    kind: kurant
-    issuing_entity: hanseatic_hamburg
-    nominal: 10 Deutsche Mark
-    metal: silver
-    metal_verified: true
-    mint:
-    mint_verified: true
-    year_first: 1998
-    year_last: 1998
-    year_label: '1998'
-    year_ranges:
-      -   - 1998
-          - 1998
-    inscription_obv: WESTFÄLISCHER FRIEDE / 1648
-    inscription_rev: BUNDESREPUBLIK DEUTSCHLAND - 10 DEUTSCHE MARK 1998 J
-    weight_rough_g: 15.48
-    weight_rough_verified: true
-    diameter_mm: 32.0
-    diameter_mm_verified: true
-    verified: false
-    sources:
-      - type: museum
-        url: https://ikmk.smb.museum/object?id=18203500
-        ref: IKMK Berlin 18203500
     verification_note: *id001

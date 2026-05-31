@@ -135,6 +135,23 @@ _NON_DENOMINATION_NOMINALS = frozenset({
     "medal", "silver coin", "coin",
 })
 
+# Denomination-noun keyword set — used by `_extract_mint_from_nominal` to
+# recognise a «<mint>, <denomination>» split (the post-comma head must be a
+# known denomination for the pre-comma part to be treated as the mint).
+# (The implicit-«1 » prepend no longer uses this — that switched to the
+# guard-based `_should_prepend_one` in §CG-D43 — but mint-extraction still
+# needs the keyword list, so it stays.)
+_BARE_DENOMINATION_NOUNS = frozenset({
+    "ducat", "dukat", "thaler", "speciedaler", "specie daler",
+    "krone", "skilling", "mark", "søsling", "hvid", "penning",
+    "denning", "dobbelthvid", "firehvid", "treskilling", "joachimstaler",
+    "pfennig", "schilling", "sechsling", "dreiling", "groschen",
+    "goldgulden", "gulden", "portugaløser", "rosenobel", "nobel",
+    "reichsthaler", "kronenthaler", "rhinsk gylden", "sølvgylden",
+    "rigsdaler", "rigsbankdaler", "rigsbankskilling",
+    "pistole", "friedrichsdor", "rosenoble",
+})
+
 # Leading roman-numeral count («IIII Skilling», «XV Skilling»). Archaic
 # «IIII» (=4) is intentionally allowed — sources print it. Matched as a
 # run of roman letters immediately followed by whitespace, so word-heads
