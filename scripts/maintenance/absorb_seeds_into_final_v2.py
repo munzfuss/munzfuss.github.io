@@ -656,6 +656,20 @@ def process_entity(entity_id: str) -> dict:
     final_doc = _load_yaml(final_path)
     final_entries: list[dict] = final_doc.get("coins") or []
 
+    # Monotonic-absorb snapshot: the coins currently in `final` (references —
+    # in-place normalisation below mutates these same dicts). A post-pass
+    # before return re-promotes any of these that a re-run DROPS for a
+    # NON-legitimate reason (stale-foundation-purge regroup churn / D40
+    # bulk-promote peer-check shift when a new source like IKMK is merged
+    # in) — so adding a new source can never silently DE-PROMOTE a coin
+    # that was already on the page. It re-adds the prior entry VERBATIM
+    # (never a new merge — that stays the merger's job, surfaced for curator
+    # review). Legitimate drops (out-of-scope, article-page, genuinely
+    # consolidated-into-a-peer) are excluded in the post-pass. See TODO §CH.
+    _prior_final_for_monotonic: list[dict] = [
+        fc for fc in final_entries if isinstance(fc, dict) and fc.get("id")
+    ]
+
     # Out-of-scope purge: when the pre-write hygiene filter rules are
     # tightened (broader Piaster filter, etc.) entries previously absorbed
     # into final survive because absorb iterates `final_by_id` from the
@@ -1429,6 +1443,52 @@ def process_entity(entity_id: str) -> dict:
         print(f"  [{entity_id}] fraction-inference: "
               f"corrected {corrected_fractions_count} entries "
               f"(prior buggy leading-frac path output)")
+
+    # MONOTONIC-ABSORB GUARD (TODO §CH). A coin already on the page must
+    # not silently vanish from final just because a new source (IKMK, …)
+    # was merged in and shifted the stale-foundation-purge / bulk-promote
+    # decisions. Re-promote any prior-final coin that is NOT represented in
+    # the new final, EXCEPT the legitimately-dropped kinds:
+    #   • out-of-scope (nominal / catalog) — correctly purged;
+    #   • article-page narrative foundation (Shape C) — not a real coin;
+    #   • genuinely consolidated — its id / source-ids appear in some new
+    #     entry's id or composed_of (the merger merged it into a peer).
+    # The re-add is VERBATIM (the prior standalone entry) — it never fuses
+    # two coins; genuine cross-source merges stay the merger's job and are
+    # surfaced for curator image-review, never auto-decided here.
+    new_repr_ids: set[str] = set()
+    for e in enriched_entries:
+        if e.get("id"):
+            new_repr_ids.add(e["id"])
+        for m in e.get("composed_of") or []:
+            new_repr_ids.add(m)
+    monotonic_restored: list[str] = []
+    for fc in _prior_final_for_monotonic:
+        fid = fc.get("id")
+        if not fid or fid in new_repr_ids:
+            continue
+        if (_is_out_of_scope_nominal(fc.get("nominal"))
+                or _is_out_of_scope_catalog(fc.get("catalog"))):
+            continue  # OOS — correctly dropped
+        src_ids = {fid} | set(fc.get("composed_of") or [])
+        if src_ids & new_repr_ids:
+            continue  # consolidated into a peer — its data is in final
+        composed_real = [c for c in (fc.get("composed_of") or []) if c != fid]
+        if not composed_real:
+            srcs = fc.get("sources") or []
+            if any(isinstance(s, dict)
+                   and ("/ernst/" in str(s.get("url") or "")
+                        or "/artikler/" in str(s.get("url") or ""))
+                   for s in srcs):
+                continue  # article-page narrative foundation (Shape C)
+        enriched_entries.append(fc)
+        new_repr_ids.add(fid)
+        monotonic_restored.append(fid)
+    if monotonic_restored:
+        print(f"  [{entity_id}] monotonic guard: re-promoted "
+              f"{len(monotonic_restored)} prior-final coin(s) a re-merge "
+              f"would have de-promoted (verbatim, no merge): "
+              f"{monotonic_restored[:8]}")
 
     return {
         "entity_id": entity_id,
