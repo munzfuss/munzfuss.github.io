@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 677 per-source seed entries.
-# Output: 334 unified entries (one per physical coin).
+# Output: 331 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -322,7 +322,9 @@ coins:
   ruler: Frederik VI
   mint: Altona
   catalog:
-    km: '690.2'
+    km:
+    - '690.2'
+    - '690'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -699,103 +701,6 @@ coins:
   - dk-bruun-5327
   - dk-numista-468489
   - schleswig_holstein-numismaster-93026
-- id: unified-dk-bruun-5440
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1624
-  year_last: 1624
-  year_label: '1624'
-  ruler: Christian IV
-  mintmaster: Albert Dionis
-  mint: Glückstadt
-  catalog:
-    km: '14'
-    bruun_collection_id: '5440'
-    sieg: '183.1'
-    schou: '18'
-    hede: '156'
-    bruun_part: II
-    bruun_lot_no: 13102
-    bruun_page: 80
-    dav: '3668'
-  metal: silver
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.8
-    source: bruun
-  sources:
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 13102, p. 80
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-bruun-5440
-- id: unified-dk-bruun-5441
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1624
-  year_last: 1624
-  year_label: '1624'
-  ruler: Christian IV
-  mintmaster: Albert Dionis
-  mint: Glückstadt
-  catalog:
-    km: '15'
-    bruun_collection_id: '5441'
-    sieg: '183.1'
-    schou: '19'
-    lange: '35'
-    hede: '156'
-    bruun_part: III
-    bruun_lot_no: 11196
-    bruun_page: 100
-    dav: '3668'
-  metal: silver
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.74
-    source: bruun
-  sources:
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 11196, p. 100
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-bruun-5441
 - id: unified-dk-bruun-5631
   fuss: seed_unsorted
   phase: bruun
@@ -1781,7 +1686,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '641.1'
+    km:
+    - '641.1'
+    - '641'
     bruun_collection_id: '7849'
     schou: '2'
     hede: 4A
@@ -2156,7 +2063,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '683.4'
+    km:
+    - '683.4'
+    - '683'
     bruun_collection_id: '8044'
     sieg: '26.4'
     schou: '1'
@@ -2351,7 +2260,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '695.1'
+    km:
+    - '695.1'
+    - '695'
     bruun_collection_id:
     - '8055'
     - '8071'
@@ -2515,7 +2426,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '696.1'
+    km:
+    - '696.1'
+    - '696'
     bruun_collection_id: '8067'
     sieg: '27.1'
     schou: '3'
@@ -2595,7 +2508,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '706.1'
+    km:
+    - '706.1'
+    - '706'
     bruun_collection_id: '8103'
     sieg: '28.1'
     schou: '6'
@@ -2734,7 +2649,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '720.2'
+    km:
+    - '720.2'
+    - '720'
     bruun_collection_id: '8133'
     sieg: '13.2'
     schou: '2'
@@ -2808,7 +2725,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '722.2'
+    km:
+    - '722.2'
+    - '722'
     bruun_collection_id:
     - '8149'
     - '8168'
@@ -2943,7 +2862,9 @@ coins:
   mintmaster: Johan Friedrich Freund (FF)
   mint: Altona
   catalog:
-    km: '721.3'
+    km:
+    - '721.3'
+    - '721'
     bruun_collection_id: '8152'
     sieg: '8.3'
     schou: '6'
@@ -3014,7 +2935,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '735.2'
+    km:
+    - '735.2'
+    - '735'
     bruun_collection_id: '8187'
     sieg: '12.2'
     schou: '6'
@@ -3087,7 +3010,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '744.2'
+    km:
+    - '744.2'
+    - '744'
     bruun_collection_id: '8205'
     sieg: '6.2'
     schou: '2'
@@ -3161,7 +3086,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '750.2'
+    km:
+    - '750.2'
+    - '750'
     bruun_collection_id:
     - '8212'
     - '8216'
@@ -3251,7 +3178,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '758.1'
+    km:
+    - '758.1'
+    - '758'
     bruun_collection_id: '8228'
     sieg: '10.1'
     schou: '8'
@@ -3321,7 +3250,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '761.1'
+    km:
+    - '761.1'
+    - '761'
     bruun_collection_id:
     - '8234'
     - '8249'
@@ -3403,7 +3334,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '760.2'
+    km:
+    - '760.2'
+    - '760'
     bruun_collection_id: '8235'
     sieg: '13.2'
     schou: '5'
@@ -4301,7 +4234,10 @@ coins:
   inscription_rev: MO NO CIVI GLVCKSTADENSIS 623
   mint: Glückstadt
   catalog:
-    km: '15'
+    km:
+    - '15'
+    - '14'
+    - '20'
     hede: '156'
     hede_volume: c4h
     schou:
@@ -4309,6 +4245,8 @@ coins:
     - '16'
     - '29'
     - '34'
+    - '18'
+    - '19'
     sieg:
     - '178'
     - '183.1'
@@ -4316,12 +4254,20 @@ coins:
     - '5332'
     - '5335'
     - '5337'
-    lange: '34'
+    - '5440'
+    - '5441'
+    lange:
+    - '34'
+    - '35'
     bruun_part: I
     bruun_lot_no: 1030
     bruun_page: 68
-    numista: '142977'
-    dav: '3668'
+    numista:
+    - '142977'
+    - '308515'
+    dav:
+    - '3668'
+    - 3668D
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -4336,11 +4282,19 @@ coins:
     source: hede
   - value: 0.888
     source: numista
+  - value: 0.888
+    source: ucoin
   weight_rough_g:
+  - value: 28.63
+    source: numista
+  - value: 28.74
+    source: bruun
   - value: 28.75
     source: '?'
   - value: 28.75
     source: numista
+  - value: 28.8
+    source: bruun
   - value: 29.02
     source: bruun
   - value: 29.07
@@ -4352,6 +4306,8 @@ coins:
     source: numista
   - value: 44.0
     source: '?'
+  - value: 44.0
+    source: ucoin
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -4362,20 +4318,32 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13098, p. 78
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 11196, p. 100
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h156.htm
     ref: danskmoent.dk (Hede c4h156)
   - type: literature
     url: https://en.numista.com/142977
     ref: Numista N#142977 — 1 Speciedaler - Christian IV (Standing King - Type 1a)
+  - type: literature
+    url: https://en.numista.com/308515
+    ref: Numista N#308515 — 1 Speciedaler - Christian IV (Standing King - Type 2)
   - type: museum
     url: https://ikmk.smb.museum/object?id=18202375
     ref: IKMK Berlin 18202375
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1623-1625/?tid=163658
     ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1629-1630/?tid=163659
+    ref: ucoin
   - type: literature
     url: https://numismaster.com/MC_93016
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_93017
     ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
@@ -4392,11 +4360,16 @@ coins:
   - dk-bruun-5332
   - dk-bruun-5335
   - dk-bruun-5337
+  - dk-bruun-5440
+  - dk-bruun-5441
   - dk-hede-c4h156
   - dk-numista-142977
+  - dk-numista-308515
   - ikmk-18202375
   - km-15-chr-iv-1623
+  - km-20-chr-iv-1629
   - schleswig_holstein-numismaster-93016
+  - schleswig_holstein-numismaster-93017
 - id: unified-dk-hede-c4h160
   fuss: seed_unsorted
   phase: hede
@@ -5630,7 +5603,9 @@ coins:
   mintmaster: Johan Woltereck
   mint: Glückstadt
   catalog:
-    km: '64.2'
+    km:
+    - '64.2'
+    - '64'
     hede:
     - 115A
     - 115B
@@ -5720,7 +5695,9 @@ coins:
   mintmaster: Christopher Woltereck
   mint: Glückstadt
   catalog:
-    km: '70.1'
+    km:
+    - '70.1'
+    - '70'
     hede: '117'
     hede_volume: c5h
     schou:
@@ -6520,7 +6497,9 @@ coins:
   ruler: Christian VII.
   mint: Altona
   catalog:
-    km: '633'
+    km:
+    - '633'
+    - '633.1'
     hede: '12'
     hede_volume: c7h
     schou: '2'
@@ -7287,7 +7266,9 @@ coins:
   mintmaster: Michael Flor
   mint: Altona
   catalog:
-    km: '130'
+    km:
+    - '130'
+    - 130a
     hede:
     - 41A
     - 41B
@@ -9152,7 +9133,9 @@ coins:
   mintmaster: Christopher Woltereck
   mint: Glückstadt
   catalog:
-    km: '2.1'
+    km:
+    - '2.1'
+    - '2'
     hede:
     - 57A
     - 57B
@@ -10805,7 +10788,9 @@ coins:
   ruler: Christian IV
   mint: Glückstadt
   catalog:
-    km: '9'
+    km:
+    - '9'
+    - '9.1'
     numista: '108002'
     lange: '55'
   metal: silver
@@ -11064,7 +11049,9 @@ coins:
   ruler: Christian V
   mint: Glückstadt
   catalog:
-    km: '80.2'
+    km:
+    - '80.2'
+    - '80'
     numista: '108733'
   metal: silver
   metal_verified: true
@@ -11193,7 +11180,9 @@ coins:
   ruler: Christian V
   mint: Glückstadt
   catalog:
-    km: '77'
+    km:
+    - '77'
+    - '77.2'
     numista: '108760'
     hede: 125A / 125B
     sieg: 138.1 / 138.2
@@ -11452,7 +11441,9 @@ coins:
   ruler: Christian IV
   mint: Glückstadt
   catalog:
-    km: '30.3'
+    km:
+    - '30.3'
+    - '30'
     numista: '109450'
   metal: silver
   metal_verified: true
@@ -11579,7 +11570,9 @@ coins:
   ruler: Frederick III
   mint: Glückstadt
   catalog:
-    km: '54'
+    km:
+    - '54'
+    - '54.1'
     numista: '129062'
     lange: 69 - 70a - 71a - 73a
   metal: silver
@@ -11835,7 +11828,9 @@ coins:
   ruler: Christian IV
   mint: Glückstadt
   catalog:
-    km: '8'
+    km:
+    - '8'
+    - '8.1'
     numista: '142941'
     hede: '168'
     lange: '56'
@@ -11954,7 +11949,9 @@ coins:
   ruler: Christian V
   mint: Glückstadt
   catalog:
-    km: '74'
+    km:
+    - '74'
+    - '74.1'
     numista: '145748'
     lange: '82'
     dav: '3676'
@@ -12699,7 +12696,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '726'
+    km:
+    - '726'
+    - '726.1'
     numista: '23857'
   metal: copper
   metal_verified: true
@@ -12813,7 +12812,9 @@ coins:
   ruler: Frederick VI
   mint: Altona
   catalog:
-    km: '690'
+    km:
+    - '690'
+    - '690.1'
     numista: '24424'
   metal: silver
   metal_verified: true
@@ -13093,66 +13094,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-306974
-- id: unified-dk-numista-308515
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1629
-  year_last: 1630
-  year_ranges:
-  - - 1629
-    - 1630
-  year_label: 1629-1630
-  ruler: Christian IV
-  mint: Glückstadt
-  catalog:
-    km: '20'
-    numista: '308515'
-    dav: 3668D
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.888
-    source: ucoin
-  weight_rough_g:
-  - value: 28.63
-    source: numista
-  - value: 28.75
-    source: '?'
-  diameter_mm:
-  - value: 44.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://en.numista.com/308515
-    ref: Numista N#308515 — 1 Speciedaler - Christian IV (Standing King - Type 2)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1629-1630/?tid=163659
-    ref: ucoin
-  - type: literature
-    url: https://numismaster.com/MC_93017
-    ref: NumisMaster
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-308515
-  - km-20-chr-iv-1629
-  - schleswig_holstein-numismaster-93017
 - id: unified-dk-numista-308517
   fuss: seed_unsorted
   phase: numista
@@ -14186,7 +14127,9 @@ coins:
   ruler: Frederick III
   mint: Glückstadt
   catalog:
-    km: '42.1'
+    km:
+    - '42.1'
+    - '42'
     numista: '398134'
   metal: silver
   metal_verified: true
@@ -14524,7 +14467,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '631'
+    km:
+    - '631'
+    - '631.2'
     numista: '42563'
   metal: billon
   metal_verified: true
@@ -14578,7 +14523,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '615'
+    km:
+    - '615'
+    - '615.1'
     numista: '44799'
   metal: copper
   metal_verified: true
@@ -14726,7 +14673,9 @@ coins:
   ruler: Christian V
   mint: Glückstadt
   catalog:
-    km: '82'
+    km:
+    - '82'
+    - '82.1'
     numista: '47945'
   metal: silver
   metal_verified: true
@@ -15112,7 +15061,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '660'
+    km:
+    - '660'
+    - '660.2'
     numista: '89153'
   metal: billon
   metal_verified: true
@@ -15169,7 +15120,9 @@ coins:
   - Altona
   - Royal Danish
   catalog:
-    km: '632'
+    km:
+    - '632'
+    - '632.2'
     numista: '90574'
   metal: silver
   metal_verified: true
@@ -15875,7 +15828,9 @@ coins:
   year_label: 1665-1667
   ruler: Frederick III
   catalog:
-    km: '54'
+    km:
+    - '54'
+    - '54.2'
     lange: 69, 70a, 71a, 73a
     numista: '129062'
   metal: silver

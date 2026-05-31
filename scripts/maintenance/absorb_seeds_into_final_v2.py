@@ -129,6 +129,11 @@ def _km_base(coin: dict) -> str | None:
     if isinstance(km, dict):
         vals = [v for v in km.values() if v not in (None, "", [])]
         km = vals[0] if vals else None
+    if isinstance(km, list):
+        # Multi-KM (curator-merged) coin — the first (top-authority) value
+        # is sufficient for the safety guard, which only needs to refuse a
+        # genuinely-different-type absorb (different base never overlaps).
+        km = km[0] if km else None
     if km in (None, "", []):
         return None
     s = str(km).strip()
@@ -1564,6 +1569,19 @@ def process_entity(entity_id: str) -> dict:
             new_repr_ids.add(e["id"])
         for m in e.get("composed_of") or []:
             new_repr_ids.add(m)
+            # Resolve a unified composed_of member → its underlying seeds, so
+            # a prior STANDALONE final (id form `unified-<seed>`) that a
+            # curator merge_decision has since consolidated into this entry
+            # (its seed now sits in the host unified's composed_of) is
+            # recognised as consolidated and NOT spuriously re-promoted by
+            # the monotonic guard. Add both the bare seed id and its
+            # `unified-`-prefixed standalone-promote form.
+            um = unified_by_id.get(m)
+            if um:
+                for s in um.get("composed_of") or []:
+                    new_repr_ids.add(s)
+                    if not s.startswith("unified-"):
+                        new_repr_ids.add("unified-" + s)
     monotonic_restored: list[str] = []
     for fc in _prior_final_for_monotonic:
         fid = fc.get("id")

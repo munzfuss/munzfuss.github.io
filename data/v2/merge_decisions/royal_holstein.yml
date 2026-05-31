@@ -1,0 +1,36 @@
+# Curator merge decisions — entity `royal_holstein`.
+#
+# Two decision surfaces, both authoritative over the auto-matcher:
+#   merges:    force these member-ids into one unified class
+#   no_merges: forbid these member pairs from ever uniting
+#
+# Loaded by merge_seeds_cross_source.py::_load_decisions and applied via
+# union-find. IDs reference V2 seed-layer entries (data/v2/seed/<src>/<entity>.yml).
+
+merges:
+  - members:
+      - dk-hede-c4h156
+      - dk-bruun-5441
+      - dk-bruun-5440
+      - km-20-chr-iv-1629
+    reason: |
+      Curator decision 2026-05-31 (Serhii, by image + Bruun lot review).
+      All four records describe the SAME physical coin type: Christian IV
+      1 Speciedaler, Glückstadt, Hede 156 (Standing King). Hede catalogues
+      them as one type (h156); the divergent Krause numbers are edition /
+      sub-variant artefacts that do NOT split the type:
+        - dk-hede-c4h156      KM 15, Hede 156, Sieg 178/183.1, Dav 3668,
+                              Lange 34, Numista 142977 (Type 1a), IKMK 18202375
+        - dk-bruun-5441       KM 15, Hede 156, Sieg 183.1, Dav 3668, Lange 35
+                              (Bruun Part III lot 11196)
+        - dk-bruun-5440       KM 14, Hede 156, Sieg 183.1, Dav 3668
+                              (Bruun Part II lot 13102)
+        - km-20-chr-iv-1629   KM 20, Dav 3668D, Numista 308515 (Type 2),
+                              ucoin tid 163659 (pulls Numista 308515 + NumisMaster
+                              MC_93017)
+      The curator's explicit verdict: «хеде не дарма обʼєднує їх в один,
+      нехай будуть однією монетою, попри три різні КМ» — one coin, KM
+      14/15/20 accumulate to list-form per §9a/data-accumulation. This
+      supersedes the earlier provisional §9.4 base-KM auto-split of c4h156
+      from km-20-chr-iv-1629 (the km-20 ucoin seed lacked the Hede 156 tag,
+      so the auto-rule could not see they share the Hede type).

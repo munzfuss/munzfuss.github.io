@@ -630,16 +630,25 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
 
     km = cat.get("km")
     if km is not None:
+        def _km_join(vals):
+            # "|"-join distinct values so _catalog_chain_consistent's
+            # set-intersection sees every KM of a multi-KM (curator-merged)
+            # coin — same convention as hede/sieg list-form refs.
+            seen: list[str] = []
+            for v in vals:
+                s = str(v).strip()
+                if s and s not in seen:
+                    seen.append(s)
+            return "|".join(seen)
         if isinstance(km, dict):
             for reg, v in km.items():
-                refs[f"km/{reg.lower()}"] = str(v).strip()
+                vv = v if isinstance(v, list) else [v]
+                refs[f"km/{reg.lower()}"] = _km_join(vv)
         else:
+            vals = km if isinstance(km, list) else [km]
             # Bare KM — infer register from entity context.
             register = _ENTITY_TO_KM_REGISTER.get(entity_id or "")
-            if register:
-                refs[f"km/{register}"] = str(km).strip()
-            else:
-                refs["km"] = str(km).strip()
+            refs[f"km/{register}" if register else "km"] = _km_join(vals)
 
     hede = cat.get("hede")
     if hede is not None:
@@ -1591,6 +1600,13 @@ class UnionFind:
     def __init__(self):
         self.parent: dict[str, str] = {}
         self.no_merge: set[frozenset] = set()
+        # Curator-declared no_merges (merge_decisions::no_merges). These are
+        # NEVER auto-cleared — a curator-forced merge that conflicts with one
+        # is refused (genuine curator contradiction → caller warns). Auto
+        # no_merges (matcher no_match opinions) live only in `no_merge` and
+        # ARE cleared by `force_union` since a curator merge outranks a
+        # heuristic no_match.
+        self.explicit_no_merge: set[frozenset] = set()
 
     def find(self, x):
         self.parent.setdefault(x, x)
@@ -1631,12 +1647,44 @@ class UnionFind:
             self.parent[rx] = ry
         return (True, None)
 
-    def add_no_merge(self, x, y):
-        self.no_merge.add(frozenset({x, y}))
+    def add_no_merge(self, x, y, explicit: bool = False):
+        fs = frozenset({x, y})
+        self.no_merge.add(fs)
+        if explicit:
+            self.explicit_no_merge.add(fs)
         # Touch both ids so they appear as singleton classes if not
         # subsequently merged with anything else.
         self.find(x)
         self.find(y)
+
+    def force_union(self, x, y) -> tuple[bool, frozenset | None]:
+        """Curator-forced union (merge_decisions::merges). Clears AUTO
+        no_merges between the two classes — a curator merge outranks any
+        heuristic matcher no_match — but REFUSES if an EXPLICIT curator
+        no_merge conflicts (a genuine curator contradiction). Returns
+        (succeeded, conflicting_explicit_pair_or_None). Apply AFTER the
+        confident-merge pass so both classes are fully formed and every
+        cross-class auto no_merge gets cleared."""
+        rx, ry = self.find(x), self.find(y)
+        if rx == ry:
+            return (True, None)
+        members_x = self._class_members(rx)
+        members_y = self._class_members(ry)
+        # Refuse on explicit curator no_merge conflict.
+        for mx in members_x:
+            for my in members_y:
+                if frozenset({mx, my}) in self.explicit_no_merge:
+                    return (False, frozenset({mx, my}))
+        # Clear AUTO no_merges between the two classes (heuristic opinions
+        # overridden by the curator merge).
+        for mx in members_x:
+            for my in members_y:
+                self.no_merge.discard(frozenset({mx, my}))
+        if rx < ry:
+            self.parent[ry] = rx
+        else:
+            self.parent[rx] = ry
+        return (True, None)
 
     def classes(self) -> dict[str, list[str]]:
         groups: dict[str, list[str]] = defaultdict(list)
@@ -2015,47 +2063,59 @@ def _merge_km_field(members: list[dict], entity_id: str | None) -> tuple[
     members disagreed on the same register's KM. Top-auth wins for the
     merged output; conflicts are surfaced for diagnostic logging.
     """
+    # Accumulate DISTINCT values per register (authority order, top-auth
+    # first) into a list — data-accumulation principle. Post the §9.4
+    # over-merge fix the matcher never auto-merges different-base-KM coins,
+    # so divergent same-register KM only reaches here via a curator
+    # merge_decision (one Hede type Krause split across e.g. KM 14/15/20) or
+    # a genuine multi-citation (two sources cite different KM for the SAME
+    # coin). Either way ALL the numbers belong on the one coin → list-form,
+    # never drop. (Pre-fix this kept one value/register + dropped the rest to
+    # `conflicts`, losing KM 14/20 on a curator-merged Hede-156 type.)
     sorted_members = sorted(members, key=lambda c: -_authority_score(c.get("id", "")))
-    by_register: dict[str, str] = {}
-    bare_value: str | None = None
+    by_register: dict[str, list[str]] = {}
+    bare_values: list[str] = []
     conflicts: list[tuple[str, str, str]] = []
+
+    def _add(bucket: list[str], val: str):
+        if val and val not in bucket:
+            bucket.append(val)
 
     for m in sorted_members:
         km = (m.get("catalog") or {}).get("km")
         if km is None:
             continue
-        if isinstance(km, dict):
-            for reg, val in km.items():
-                reg_norm = reg.lower()
-                val_str = str(val).strip()
-                if reg_norm in by_register and by_register[reg_norm] != val_str:
-                    conflicts.append((f"km/{reg_norm}", by_register[reg_norm], val_str))
-                    continue
-                by_register.setdefault(reg_norm, val_str)
+        if isinstance(km, list):
+            km_vals = km
         else:
-            val_str = str(km).strip()
+            km_vals = [km]
+        for kv in km_vals:
+            if isinstance(kv, dict):
+                for reg, val in kv.items():
+                    _add(by_register.setdefault(reg.lower(), []), str(val).strip())
+                continue
+            val_str = str(kv).strip()
             register = _ENTITY_TO_KM_REGISTER.get(entity_id or "")
             if register:
-                if register in by_register and by_register[register] != val_str:
-                    conflicts.append((f"km/{register}", by_register[register], val_str))
-                    continue
-                by_register.setdefault(register, val_str)
-            elif bare_value is None:
-                bare_value = val_str
-            elif bare_value != val_str:
-                conflicts.append(("km", bare_value, val_str))
+                _add(by_register.setdefault(register, []), val_str)
+            else:
+                _add(bare_values, val_str)
+
+    def _shape(vals: list[str]):
+        """1 value → scalar (V1-compat); ≥2 → list-form (multi-KM)."""
+        return vals[0] if len(vals) == 1 else list(vals)
 
     # Output shape — preserve maximal info:
-    #   - cross-volume known → dict-form
-    #   - single register known + no other inputs → bare-form (compact, V1-compat)
-    #   - only bare-without-register input → bare-form
+    #   - cross-volume (≥2 registers) → dict-form, each value scalar-or-list
+    #   - single register → bare scalar (1) or bare list (≥2)
+    #   - only bare-without-register input → scalar (1) or list (≥2)
     if by_register:
         if len(by_register) == 1:
-            # Single register — emit bare to stay V1-compat. The
-            # entity-aware scoping rebuilds the register at match time.
-            return next(iter(by_register.values())), conflicts
-        return dict(by_register), conflicts
-    return bare_value, conflicts
+            return _shape(next(iter(by_register.values()))), conflicts
+        return {reg: _shape(vals) for reg, vals in by_register.items()}, conflicts
+    if bare_values:
+        return _shape(bare_values), conflicts
+    return None, conflicts
 
 
 def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
@@ -2680,7 +2740,7 @@ def process_entity(entity_id: str) -> dict:
         members = entry.get("members") or []
         for i in range(len(members)):
             for j in range(i + 1, len(members)):
-                uf.add_no_merge(members[i], members[j])
+                uf.add_no_merge(members[i], members[j], explicit=True)
         forced_no_merges.append(entry)
 
     # 2. PRE-PASS: run matcher on every pair, register no_match pairs in
@@ -2865,19 +2925,13 @@ def process_entity(entity_id: str) -> dict:
             if tuple(lcp["members"]) not in promoted_keys
         ]
 
-    # 3. Apply explicit merges (curator wins over auto-rules, but still
-    #    respects already-recorded no_match — curator must explicitly
-    #    add the conflicting pair to `merges:` to override, in which case
-    #    they must ALSO remove the implicit no_match by their reasoning).
-    forced_merges: list[dict] = []
-    for entry in decisions["merges"]:
-        members = entry.get("members") or []
-        for i in range(1, len(members)):
-            uf.union(members[0], members[i])
-        forced_merges.append(entry)
-
-    # 4. Apply confident auto-merges. union() now refuses any merge
-    #    that would create a class containing a no_match pair.
+    # 3. Apply confident auto-merges. union() refuses any merge that would
+    #    create a class containing a no_match pair. Run this BEFORE curator
+    #    forced-merges so every equivalence class is fully formed first —
+    #    force_union (step 4) then clears auto no_merges between the two
+    #    COMPLETE classes, so a curator merge of e.g. a Hede-156 type pulls
+    #    in all its KM-15 siblings even though they each carry an auto
+    #    no_merge against the KM-20 variant being merged in.
     confident_merges: list[dict] = []
     transitivity_blocks: list[dict] = []
     for cp in confident_pairs:
@@ -2893,6 +2947,21 @@ def process_entity(entity_id: str) -> dict:
                 "would_merge": [cp["a"], cp["b"]],
                 "blocked_by_no_match": sorted(blocking),
             })
+
+    # 4. Apply explicit curator merges LAST via force_union: a curator merge
+    #    outranks the heuristic matcher, so auto no_merges between the member
+    #    classes are CLEARED; only an EXPLICIT curator no_merge can block it
+    #    (genuine curator contradiction → warn, leave separate).
+    forced_merges: list[dict] = []
+    for entry in decisions["merges"]:
+        members = entry.get("members") or []
+        for i in range(1, len(members)):
+            ok, conflict = uf.force_union(members[0], members[i])
+            if not ok:
+                print(f"  ⚠ forced merge {members[0]} + {members[i]} "
+                      f"conflicts with explicit no_merge {sorted(conflict)} "
+                      f"— left separate")
+        forced_merges.append(entry)
 
     # 4. Build unified entries from equivalence classes
     classes = uf.classes()

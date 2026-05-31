@@ -49,6 +49,7 @@ ROOT = Path(__file__).resolve().parents[2]
 V2_FINAL = ROOT / "data" / "v2" / "final"
 V2_SEED_UNIFIED = ROOT / "data" / "v2" / "seed_unified"
 V2_SEED = ROOT / "data" / "v2" / "seed"
+V2_MERGE_DECISIONS = ROOT / "data" / "v2" / "merge_decisions"
 ALLOWLIST = ROOT / "data" / "v2" / "overmerge_purge_allowlist.yml"
 SAFE_JSON = ROOT / "docs" / "overmerge_split_SAFE.json"
 COMPLEX_JSON = ROOT / "docs" / "overmerge_split_COMPLEX.json"
@@ -119,6 +120,34 @@ def main() -> int:
             if isinstance(c, dict) and c.get("id"):
                 twin.setdefault(c["id"], c)
 
+    # Curator merge_decisions override §9.4 auto-split: when the curator
+    # explicitly declares seeds A+B one coin (e.g. a Hede type Krause split
+    # across KM 14/15/20), a different-base-KM composed_of member that is in
+    # the SAME merge group as the host MUST NOT be auto-split off. Build the
+    # seed-id groups, then map any final/unified id to its underlying seed
+    # set (seed_unified composed_of, or the id itself for raw seeds).
+    merge_groups: list[set] = []
+    for f in V2_MERGE_DECISIONS.glob("*.yml"):
+        doc = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
+        for m in (doc.get("merges") or []):
+            mem = {x for x in (m.get("members") or []) if x}
+            if len(mem) >= 2:
+                merge_groups.append(mem)
+
+    def _seeds_of(cid: str) -> set:
+        c = twin.get(cid)
+        if c is not None:
+            comp = [m for m in (c.get("composed_of") or []) if m != cid]
+            return set(comp) | {cid} if comp else {cid}
+        return {cid}
+
+    def _curator_merged(host_id: str, member_id: str) -> bool:
+        hs, ms = _seeds_of(host_id), _seeds_of(member_id)
+        for g in merge_groups:
+            if (hs & g) and (ms & g):
+                return True
+        return False
+
     safe, complex_ = [], []
     for f in sorted(V2_FINAL.glob("*.yml")):
         ent = f.stem
@@ -158,6 +187,8 @@ def main() -> int:
             }
             safe_members, complex_members = [], []
             for mid, mc, mkm, mb in divergent:
+                if _curator_merged(c["id"], mid):
+                    continue  # curator merge_decision says SAME coin — never split
                 reasons = []
                 shared = _shares_type_level(host_twin, mc)
                 if shared:
