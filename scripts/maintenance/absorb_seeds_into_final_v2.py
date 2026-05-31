@@ -44,6 +44,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import copy
 import re
 import sys
 from collections import Counter, defaultdict
@@ -54,8 +55,10 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 V2_SEED_UNIFIED = ROOT / "data" / "v2" / "seed_unified"
+V2_SEED = ROOT / "data" / "v2" / "seed"
 V2_FINAL = ROOT / "data" / "v2" / "final"
 V2_CLASSIFICATION_DECISIONS = ROOT / "data" / "v2" / "classification_decisions"
+V2_OVERMERGE_PURGE = ROOT / "data" / "v2" / "overmerge_purge_allowlist.yml"
 
 sys.path.insert(0, str(ROOT / "scripts"))
 from lib.fraction_infer import infer_fraction, load_fuss_fractions  # noqa: E402
@@ -109,6 +112,28 @@ def _entities_with_seed_unified() -> list[str]:
     if not V2_SEED_UNIFIED.exists():
         return []
     return sorted(p.stem for p in V2_SEED_UNIFIED.glob("*.yml"))
+
+
+def _km_base(coin: dict) -> str | None:
+    """Base KM token of a coin: leading optional-letter + integer part,
+    dropping dot-subvariant + trailing letters. 'A110'→'A110', '70.1'→'70',
+    '11a'→'11', '156,3'→'156'. Returns None when KM is absent / dict-empty.
+
+    Used to detect GENUINE cross-type KM divergence (different base = different
+    Krause type per CLAUDE.md §9.4) while tolerating sub-variants ('11'≡'11a',
+    '70'≡'70.1'). The A-prefix is PRESERVED (KM A110 ≠ KM 110 — Krause addendum
+    types are distinct), so A-prefix divergence still reads as different; those
+    cases are kept OUT of the auto-purge allowlist for curator review."""
+    cat = coin.get("catalog") or {}
+    km = cat.get("km")
+    if isinstance(km, dict):
+        vals = [v for v in km.values() if v not in (None, "", [])]
+        km = vals[0] if vals else None
+    if km in (None, "", []):
+        return None
+    s = str(km).strip()
+    m = re.match(r"^([A-Za-z]*)(\d+)", s)
+    return (m.group(1).upper() + m.group(2)) if m else s
 
 
 # ---------------------------------------------------------------------------
@@ -1096,6 +1121,73 @@ def process_entity(entity_id: str) -> dict:
             fc["composed_of"] = kept
             purged_count += len(original_composed) - len(kept)
 
+    # PURGE over-merge composed_of members (CLAUDE.md §9.4 base-KM split).
+    # Older pipeline code fused entries of DIFFERENT base KM into one final
+    # (e.g. dk-tid-97364 km=248 absorbing unified-dk-hede-f3h61 km=240 +
+    # f3h82 km=169 → three Krause types in one row). The current matcher
+    # returns no_match on these, but the additive absorb never re-validated
+    # existing composed_of, so the stale fusion persisted across runs. The
+    # curator-reviewed SAFE allowlist (data/v2/overmerge_purge_allowlist.yml)
+    # lists, per host, the members to evict: each carries a different base KM
+    # than the host AND self-attributes (own KM, no orphan no-KM member
+    # entangled, no two evicted members sharing a KM).
+    #
+    # CRITICAL: simply dropping the member from composed_of is NOT enough —
+    # the host's accumulated fields (catalog, weights, sources, year) were
+    # BAKED INTO the foundation entry by prior enrichment runs (_deep_merge_
+    # catalog merges members[0]=fc's own catalog, so an evicted member's
+    # km/hede survives in fc even after it leaves composed_of). That stale
+    # km then lets the matcher RE-ABSORB the evicted member this very run
+    # (48==48). So we RESET each host's accumulated fields to its clean
+    # foundation twin (the seed_unified or raw-seed entry of the same id),
+    # then drop evicted members + re-enrich from the remaining members only.
+    # Curator-immutable fields (fuss/phase/kind/nominal/ruler/…) + composed_of
+    # are preserved on fc. Evicted members are force-promoted standalone (or
+    # re-matched into an existing same-KM home) below. COMPLEX cases (no-KM
+    # member / A-prefix / same-km-multi / no clean twin) are NOT in the
+    # allowlist — they await curator image verification.
+    forced_evict_promote: set[str] = set()
+    _purge_allow = _load_yaml(V2_OVERMERGE_PURGE)
+    if isinstance(_purge_allow, dict) and any(
+            h in final_by_id for h in _purge_allow):
+        # Clean-foundation twin lookup: seed_unified (this entity) ∪ raw seeds.
+        _twin: dict[str, dict] = dict(unified_by_id)
+        for _sf in V2_SEED.rglob(f"*/{entity_id}.yml"):
+            _sdoc = _load_yaml(_sf)
+            for _sc in (_sdoc.get("coins") or []):
+                if isinstance(_sc, dict) and _sc.get("id"):
+                    _twin.setdefault(_sc["id"], _sc)
+        # Fields the over-merge accumulated onto the foundation — reset from
+        # the twin so they re-derive cleanly from the post-purge member set.
+        _ACCUM = ("catalog", "weight_rough_g", "fineness", "diameter_mm",
+                  "sources", "year_first", "year_last", "year_ranges",
+                  "year_label", "year_verified")
+        for host_id, evict_ids in _purge_allow.items():
+            fc = final_by_id.get(host_id)
+            if not fc or not isinstance(evict_ids, list):
+                continue
+            comp = fc.get("composed_of") or []
+            evict_set = {e for e in evict_ids if e in comp}
+            if not evict_set:
+                continue
+            twin = _twin.get(host_id)
+            if twin is None:
+                # No clean twin → cannot safely un-bake; leave merged (the
+                # allowlist generator already filtered these to COMPLEX, so
+                # this branch is a defensive no-op).
+                continue
+            for fld in _ACCUM:
+                if fld in twin:
+                    fc[fld] = copy.deepcopy(twin[fld])
+                else:
+                    fc.pop(fld, None)
+            fc["composed_of"] = [c for c in comp if c not in evict_set]
+            forced_evict_promote |= evict_set
+    if forced_evict_promote:
+        print(f"  over-merge purge: evicted {len(forced_evict_promote)} "
+              f"different-KM member(s) + reset host(s) to clean twin "
+              f"→ re-match + force-promote standalone")
+
     # Build: already-absorbed unified ids (across all final composed_of lists)
     already_absorbed: dict[str, str] = {}
     for fid, fc in final_by_id.items():
@@ -1150,6 +1242,16 @@ def process_entity(entity_id: str) -> dict:
                 if r["primary"].get("metal") is False:
                     continue
                 if r["primary"].get("nominal") is False:
+                    continue
+                # §9.4 guard: never absorb across genuinely different BASE KM,
+                # even on a shared globally-unique ref. Numista groups multiple
+                # Krause KM under one N#, so a shared N# must NOT fuse KM 40
+                # with KM 48 (this fallback was the over-merge root cause —
+                # 2026-05-31 audit). Bare-vs-subvariant (KM 70 ≡ 70.1) and
+                # absent-KM still pass: _km_base collapses dot-subvariants and
+                # returns None when KM is absent.
+                ub, fb = _km_base(unified), _km_base(fc)
+                if ub is not None and fb is not None and ub != fb:
                     continue
                 id_fallback.append(fid)
             if len(id_fallback) == 1:
@@ -1225,7 +1327,7 @@ def process_entity(entity_id: str) -> dict:
             # the bulk_promote_mode gate. Curator decided — the gate
             # exists to keep ambiguous cases parked in pending, not
             # to override decisions.
-            force_promote = uid in _assignment_ids
+            force_promote = uid in _assignment_ids or uid in forced_evict_promote
             # Mode «no_basic_peer_only» (D39): only promote when the
             # unified entry has NO metal+nominal peer in foundation.
             # Skips D/E/H/C-category cases where promoting would
