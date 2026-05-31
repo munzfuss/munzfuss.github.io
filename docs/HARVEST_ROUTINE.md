@@ -1394,6 +1394,37 @@ actually fetches.
 
 ---
 
+## §5.6. Priority curation-harvest task — §CI dual-denomination legend verification
+
+When `_harvest_handoff.json::priority_override` has `task: "§CI"` (or the
+preflight prints it), run a batch of this BEFORE the normal Numista/ucoin
+fronts. This is a curation-harvest task (fetch a legend, then decide a
+nominal), not manifest enumeration.
+
+- **Work-list:** `docs/cg_dual_denomination_verify.json` — 82 coins whose
+  `nominal` carries two FULL denominations («4 Mark = 1 Krone»,
+  «2 Krone (8 Mark)», «16 Rigsbankskilling = 5 Schilling Courant», …).
+  Track progress in `_harvest_handoff.json::ci_verified_ids` (list; create
+  if missing) so each run picks the next ~8 unverified entries.
+- **Per coin** — fetch the actual coin legend via **Chrome MCP** (IKMK
+  `ikmk.smb.museum`, danskmoent.dk, or the Numista per-coin page in Chrome).
+  **Do NOT use the Numista API** (budget-bound per CLAUDE.md «Numista API
+  budget»). Then decide per CLAUDE.md §1:
+  - legend shows **BOTH** denominations (genuinely dual-inscribed, e.g. the
+    Rigsbankskilling Phase-2 dual face) → **KEEP** the dual nominal as-is;
+  - legend shows **ONE** → set `nominal` to the inscribed denomination,
+    move the other to `note` (language-neutral, like §CG stage C);
+  - no legible legend / undated → leave + record `unknown` in the work-list.
+  Edit `data/v2/final/<entity>.yml` (+ matching seed/seed_unified records)
+  textually — ruamel reflows these files (§CG lesson). Add the verified id
+  to `ci_verified_ids`.
+- **Cite** any legend fetched into a coin `note`/`sources` per §5 (web-
+  sourced fact → bibliography + inline cite).
+- When `ci_verified_ids` covers all 82, clear `priority_override` and mark
+  TODO §CI done.
+
+---
+
 ## §6. Render the coverage tables
 
 After both batches commit, output BOTH tables in the exact format below. This is the user-facing deliverable; everything else above is plumbing.
