@@ -17,11 +17,17 @@ coins:
   year_label: '1683'
   mint: Glückstadt
   catalog:
-    km: '73'
+    km: '105'
     numista: '301630'
-    lange: 82A
+    lange:
+    - 82A
+    - '82'
     sieg: '140'
     hede: '120'
+    others:
+    - KM# 73
+    - Numista N#308517
+    - Dav EC II# 3677
     bruun_collection_id: '6987'
     bruun_part: II
     bruun_lot_no: 13182
@@ -39,20 +45,14 @@ coins:
   fineness:
   - value: 0.888
     source: hede
-  - value: 0.888
-    source: ucoin
   weight_rough_g:
   - value: 28.95
     source: bruun
+  - value: 29.06
+    source: numista
   - value: 29.232
     source: hede
-  diameter_mm:
-  - value: 43.0
-    source: ucoin
   sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1683/?tid=163663
-    ref: ucoin
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13182, p. 134
@@ -62,6 +62,18 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_93023
     ref: NumisMaster
+  - type: numista
+    url: https://en.numista.com/catalogue/pieces301630.html
+    ref: Numista N#301630
+  - type: numista
+    url: https://en.numista.com/308517
+    ref: Numista N#308517
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1683/?tid=163663
+    ref: ucoin tid 163663
+  - type: literature
+    url: https://en.numista.com/301630
+    ref: Numista N#301630 — 1 Thaler - Christian V
   note:
     de: '1 Thaler Species · Christian V. (Kgr. Dänemark, Glückstadt), 1683 · Münzmeister Christoph Friedrich Woltereck (CW)
       · Edge-Legende «PIETATE · ET · IUSTITIA … ANNO M·DC·LXXXIII · C W». Hede c5h120<sup>[ref:hede-1957-kronemoenten-nnum]</sup>
@@ -96,6 +108,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-c5h120
+  - unified-dk-numista-301630
   v1_home_location: schleswig_holstein
 - fuss: kronemont
   phase: II
@@ -10219,21 +10232,39 @@ coins:
   - - 1794
     - 1796
   - - 1799
-    - 1799
-  - - 1801
     - 1801
   - - 1804
     - 1804
   - - 1807
     - 1808
-  year_label: 1787-1788, 1790-1791, 1794-1796, 1799, 1801, 1804, 1807-1808
+  year_label: 1787-1788, 1790-1791, 1794-1796, 1799-1801, 1804, 1807-1808
   mint: Altona
   catalog:
-    km: '640.2'
-    hede: 39A
+    km: '138.1'
+    hede:
+    - 39A
+    - 39B
+    - 39C
+    - '39'
     hede_volume: c7h
-    sieg: '42'
-    dav: '1310'
+    sieg:
+    - '42'
+    - '42.2'
+    - '45.1'
+    - '45'
+    schou: '2'
+    bruun_collection_id:
+    - '7889'
+    - '7866'
+    bruun_part: I
+    bruun_lot_no: 1153
+    bruun_page: 212
+    dav:
+    - '1311'
+    - '1310'
+    fp: '9.1'
+    numista: '32842'
+    lange: 124-131
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -10246,18 +10277,58 @@ coins:
     source: numismaster
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: numismaster
+  - value: 0.875
+    source: numista
   weight_rough_g:
   - value: 28.063
     source: numismaster
+  - value: 28.86
+    source: bruun
   - value: 28.893
     source: hede
+  - value: 28.893
+    source: numismaster
+  - value: 28.893
+    source: numista
+  diameter_mm:
+  - value: 39.0
+    source: numista
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_145357
-    ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+    ref: Bruun Part I, lot 1153, p. 212
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h39.htm
     ref: danskmoent.dk (Hede c7h39A)
+  - type: literature
+    url: https://numismaster.com/MC_120087
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13243, p. 169
+  - type: literature
+    url: https://numismaster.com/MC_145357
+    ref: NumisMaster
+  - type: numista
+    url: https://en.numista.com/catalogue/pieces32842.html
+    ref: Numista
+  - type: web
+    url: https://coins.ha.com/itm/german-states/schleswig-holstein/german-states-schleswig-holstein-christian-vii-of-denmark-speciedaler-1807-b-mf-ms65-ngc-/a/3089-30100.s
+    ref: Heritage
+  - type: web
+    url: https://auctions.stacksbowers.com/lots/view/3-140YI5/denmark-60-schilling-speciedaler-1795-mf-b-altona-mint-christian-vii-of-denmark-pcgs-genuine-cleaned-ef-details
+    ref: SB
+  - type: ucoin
+    url: https://en.ucoin.net/coin/schleswig_holstein-1-speciedaler-1787-1808/?tid=90687
+    ref: ucoin
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 11297, p. 149
+  - type: literature
+    url: https://en.numista.com/32842
+    ref: Numista N#32842 — 1 Speciesthaler / 60 Schilling Courant - Christian VII
   note: &id003
     de: «60 · SCHILLING · SCHLESW · HOLST · COURANT · 1 · SP ·» <br>(<b>SP</b> = Species = vollwertiger Thaler im 9¼-Fuß)
       · 1 Thaler Species = 25,28173 g fein · 60 Sch.C. = 1 Thaler Species = 25,28173 g ✓ (derselbe Müntzfuß)
@@ -10277,6 +10348,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-c7h39a
+  - unified-dk-hede-c7h39b
 - fuss: 9_25_thaler
   phase: II
   kind: kurant
@@ -18971,143 +19043,6 @@ coins:
     unit_raw: daler
   composed_of:
   - unified-dk-hede-c4h167
-- fuss: seed_unsorted
-  phase: hede
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian VII.
-  mintmaster: Michael Flor
-  issuing_entity: royal_holstein
-  id: unified-dk-hede-c7h39b
-  year_first: 1787
-  year_last: 1808
-  year_ranges:
-  - - 1787
-    - 1788
-  - - 1790
-    - 1791
-  - - 1794
-    - 1796
-  - - 1799
-    - 1801
-  - - 1804
-    - 1804
-  - - 1807
-    - 1808
-  year_label: 1787-1788, 1790-1791, 1794-1796, 1799-1801, 1804, 1807-1808
-  mint: Altona
-  catalog:
-    km: '138.1'
-    hede:
-    - 39B
-    - 39C
-    - 39A
-    - '39'
-    hede_volume: c7h
-    sieg:
-    - '42.2'
-    - '45.1'
-    - '45'
-    bruun_collection_id: '7866'
-    schou: '2'
-    fp: '9.1'
-    numista: '32842'
-    lange: 124-131
-    dav: '1311'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: hede
-  - value: 0.875
-    source: numismaster
-  - value: 0.875
-    source: numista
-  weight_rough_g:
-  - value: 28.86
-    source: bruun
-  - value: 28.893
-    source: hede
-  - value: 28.893
-    source: numismaster
-  - value: 28.893
-    source: numista
-  diameter_mm:
-  - value: 39.0
-    source: numista
-  sources:
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 13243, p. 169
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c7h39.htm
-    ref: danskmoent.dk (Hede c7h39B)
-  - type: literature
-    url: https://en.numista.com/32842
-    ref: Numista N#32842 — 1 Speciesthaler / 60 Schilling Courant - Christian VII
-  - type: literature
-    url: https://numismaster.com/MC_120087
-    ref: NumisMaster
-  verification_note:
-    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
-      danskmoent.dk.'
-    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  hede_muentzfuss_yield:
-    value: 9.25
-    unit: speciedaler
-    basis: fin
-    unit_raw: speciedalere
-  composed_of:
-  - unified-dk-hede-c7h39b
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Thaler
-  ruler: Christian V
-  issuing_entity: royal_holstein
-  id: unified-dk-numista-301630
-  year_first: 1683
-  year_last: 1683
-  year_label: '1683'
-  mint: Glückstadt
-  catalog:
-    km: '105'
-    numista: '301630'
-    lange: '82'
-    sieg: '140'
-    hede: '120'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 29.06
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/301630
-    ref: Numista N#301630 — 1 Thaler - Christian V
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-301630
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
