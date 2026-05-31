@@ -519,6 +519,33 @@ def split_nominal_annotations(nominal):
     return clean, payloads
 
 
+def portugaloser_medallic_split(nominal):
+    """Portugaløser «(N Ducats)» reorder + «Gold Medallic» prefix strip
+    (TODO §CG stage-C tail). Returns (clean_nominal, [payloads]):
+      * «Gold Medallic 2 Ducats» → («2 Ducats», []) — strip-only, the
+        «Medallic» style already lives in the note; «Gold» is the metal;
+      * «1 Portugaløser (10 Ducats)» / «10 Ducats (Portugaløser)» →
+        («1 Portugaløser», [«10 Ducats»]) — Portugaløser is the named
+        denomination (= 10 Dukat), the ducat/speciedaler equivalent → note;
+      * unchanged nominals return (nominal, [])."""
+    if not nominal:
+        return nominal, []
+    s = str(nominal)
+    if s.lower().startswith("gold medallic "):
+        return s[len("Gold Medallic "):].strip(), []
+    if "portugal" in s.lower():
+        m = re.search(r"([0-9½¼¾⅛⅓⅔]*)\s*[Pp]ortugal[øo]ser", s)
+        qty = (m.group(1).strip() if m and m.group(1).strip() else "1")
+        clean = f"{qty} Portugaløser"
+        if clean == s:
+            return s, []
+        other = re.sub(r"\(?\s*[0-9½¼¾⅛⅓⅔]*\s*[Pp]ortugal[øo]ser\s*\)?", "", s)
+        other = re.sub(r"[()=]", " ", other)
+        other = re.sub(r"\s+", " ", other).strip(" ;")
+        return clean, ([other] if other else [])
+    return s, []
+
+
 def normalise_nominal_display(raw):
     """Lightweight DISPLAY normalisation for ALREADY-typed nominals.
 
@@ -923,13 +950,20 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
         if new_nom is not None and new_nom != nominal:
             c["nominal"] = new_nom
             stats["nominal_normalised"] += 1
-        # §CG-C1: fraction-of-standard / nickname annotation → `note`
-        # (the inscribed/source denomination is the nominal; the editorial
-        # equivalent belongs in note per §1). Dual «X = Y» / «(N denom)» /
-        # Portugaløser tails return [] and are left for §CI / separate
-        # handling. Mirrors scripts/oneoff/cg_fraction_nickname_to_note.py.
-        clean_nom, payloads = split_nominal_annotations(c.get("nominal"))
-        if payloads and clean_nom != c.get("nominal"):
+        # §CG-C: editorial content out of `nominal` → `note` (the
+        # inscribed/source denomination is the nominal per §1). Two
+        # splitters: (1) fraction-of-standard / nickname; (2) Portugaløser
+        # «(N Ducats)» reorder + «Gold Medallic» prefix. Dual «X = Y» /
+        # «(N denom)» return [] (left for §CI legend verification).
+        for _splitter in (split_nominal_annotations, portugaloser_medallic_split):
+            cur_nom = c.get("nominal")
+            clean_nom, payloads = _splitter(cur_nom)
+            if clean_nom == cur_nom:
+                continue
+            if not payloads:                       # strip-only (e.g. Gold Medallic)
+                c["nominal"] = clean_nom
+                stats["nominal_annotation_to_note"] = stats.get("nominal_annotation_to_note", 0) + 1
+                continue
             note = c.get("note")
             present = False
             if isinstance(note, dict):
