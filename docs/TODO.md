@@ -702,6 +702,8 @@ Project ticket `190229723` ready to flip In review → Done — all 8 candidates
 
 **Work-list:** `docs/cg_dual_denomination_verify.json` — 82 coins (id + nominal + entity + catalog refs), grouped: danish_norway 24, danish_realm 17, herzogtum_braunschweig_lueneburg 12, hochstift_osnabrueck 9, schauenburg_pinneberg 9, royal_holstein 5, erzbisthum_bremen_verden 3, herzogtum_sachsen_lauenburg 2, grafschaft_oldenburg 1.
 
+**Wired into the harvest routine 2026-05-30** (commits `4a3c886` super + `1c78a3a1` submodule): `_harvest_handoff.json::priority_override` → `task: §CI` so the routine surfaces it at preflight + honours it FIRST; procedure in **HARVEST_ROUTINE.md §5.6**; per-run progress in `ci_verified_ids`. So this is now an ACTIVE routine priority, not just a backlog entry.
+
 **Method (user-directed 2026-05-30).** «варто спробувати механізмом харвест рутини … нуміста по апі не перевіряй, можна через хром мсп». For each coin fetch the legend via **Chrome MCP** (IKMK / danskmoent / Numista-page-via-Chrome — **NOT** the Numista API, budget-bound). Then per coin: (a) legend shows BOTH denominations → keep the dual nominal as-is; (b) legend shows ONE → set `nominal` to the inscribed denomination, move the other to `note`; (c) no legend / undated → leave + flag. This is a harvest-routine priority pass (targeted fetch of 82 known coins, not manifest enumeration). The §CG stage-A/B normaliser already handles everything else; this closes the §1-ambiguous remainder.
 
 ### W. 🟢 Clean up §0z violations surfaced by `scripts/audit_prose.py`  *(opened 2026-05-13, promoted Normal → High 2026-05-23, user-directed «з високим пріоритетом»)* *(est: medium-large)* *(type: prose cleanup + linter integration)*
