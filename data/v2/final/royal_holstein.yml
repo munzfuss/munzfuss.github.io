@@ -839,6 +839,8 @@ coins:
     url: https://ikmk.smb.museum/object?id=18202375
     ref: IKMK Berlin, Inv. 18202375
     note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Lutz-Jürgen Lübke (Lübke und Wiedemann)'
+  inscription_obv: CHRISTIANVS 4 D G DAN NOR V G R
+  inscription_rev: MO NO CIVI GLVCKSTADENSIS 623
   note:
     de: 1 Speciedaler Christians IV. (Glückstadt 1629–1630, Standing-King-Typ 2) · spätere Variante des stehenden Königs mit
       veränderten Stempeldetails. Davenport EC II# 3668D. Numista-Eintrag ohne explizite Feingewichtsangabe — übernommen vom
@@ -1412,6 +1414,7 @@ coins:
     - '20'
     sieg: '156'
     dav: '3673'
+    lange: '65'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -4887,8 +4890,10 @@ coins:
     hede_volume: c4h
     schou: '1'
     sieg: '9'
+    fr: '61'
   metal: gold
   metal_verified: true
+  fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
   verified: false
@@ -4899,6 +4904,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h4.htm
     ref: danskmoent.dk (Hede c4h4)
+  - type: literature
+    url: https://numismaster.com/MC_65634
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -4914,15 +4922,19 @@ coins:
   ruler: Christian IV.
   issuing_entity: royal_holstein
   id: unified-dk-hede-c4h5
-  year_first: 1592
+  year_first: 1591
   year_last: 1592
-  year_label: '1592'
+  year_ranges:
+  - - 1591
+    - 1592
+  year_label: 1591-1592
   mint: Haderslev
   catalog:
     hede: '5'
     hede_volume: c4h
     schou: '3'
     sieg: '8'
+    fr: '62.1'
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -4939,6 +4951,9 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13110, p. 83
+  - type: literature
+    url: https://numismaster.com/MC_65629
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.
       Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss,
@@ -10870,6 +10885,8 @@ coins:
     url: https://ikmk.smb.museum/object?id=18219857
     ref: IKMK Berlin, Inv. 18219857
     note: 'Bild: PDM 1.0; Text: CC BY-SA 4.0; Aufnahme: Reinhard Saczewski'
+  inscription_obv: FRIDERIC 3 D G DA NOR VA GOT REX
+  inscription_rev: DOMINUS - PROVIDEBIT // 1666
   note:
     de: '1 Dukat Friedrichs III. (Glückstadt) · Münzmeister <b>Johan(n) Woltereck</b> (IW, Glückstadt 1664–1679) · Obverse
       römische Büste «FRIDERIC : 3 : D : G : DA : NOR : VA : GOT : REX»; Reverse «DOMINUS · PROVIDEBIT I ⚒ W · 1667» mit stehender
@@ -11376,10 +11393,6 @@ coins:
   phase: I
   kind: scheide
   nominal: 3 Skilling Lybsk
-  note:
-    de: 'Døtgen'
-    en: 'Døtgen'
-    uk: 'Døtgen'
   ruler: Frederik III.
   issuing_entity: royal_holstein
   id: unified-dk-hede-f3h149
@@ -11411,6 +11424,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f3h149.htm
     ref: danskmoent.dk (Hede f3h149)
+  note:
+    de: Døtgen
+    en: Døtgen
+    uk: Døtgen
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -11427,10 +11444,6 @@ coins:
   phase: I
   kind: scheide
   nominal: 3 Skilling Lybsk
-  note:
-    de: 'Døtgen'
-    en: 'Døtgen'
-    uk: 'Døtgen'
   ruler: Frederik III.
   issuing_entity: royal_holstein
   id: unified-dk-hede-f3h152
@@ -11464,6 +11477,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f3h152.htm
     ref: danskmoent.dk (Hede f3h152)
+  note:
+    de: Døtgen
+    en: Døtgen
+    uk: Døtgen
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -13259,7 +13276,9 @@ coins:
     - '8184'
     sieg: '16.2'
     schou: '1'
-    hede: 1B
+    hede:
+    - 1B
+    - '1'
     bruun_part: III
     bruun_lot_no: 11304
     bruun_page: 152
@@ -13300,6 +13319,11 @@ coins:
   - type: literature
     url: https://en.numista.com/83072
     ref: Numista N#83072 — 2 Christians d'Or - Christian VIII
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18204859
+    ref: IKMK Berlin 18204859
+  inscription_obv: CHRISTIANUS VIII - D G DANIAE V G REX
+  inscription_rev: 2 CHR - D'OR 18-42
   note:
     de: 2 Christian d'Or 1842, 1844, 1847 (KM-722.2, einheitliche Hede-1B / Fr-289) · drei Bruun-Specimina dokumentieren die
       durchgängige Altona-Goldprägung in der späten Christian-VIII.-Periode.
@@ -13320,6 +13344,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-8149
+  - unified-ikmk-18204859
 - fuss: 18_5_thaler
   phase: II
   kind: scheide
@@ -13866,14 +13891,20 @@ coins:
     hede_volume: c4h
     hede: '2'
     sieg: '5'
+    fr: '63.1'
   metal: gold
   metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
   mint_verified: true
   verified: false
   sources:
   - type: literature
     url: https://www.danskmoent.dk/c4hede.htm
     ref: danskmoent.dk overview c4hede (Hede c4h2 — Tiefenseite fehlt)
+  - type: literature
+    url: https://numismaster.com/MC_65627
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Index-Stub: Nur die Übersichtsreihe von c4hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
       Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster
@@ -14628,40 +14659,6 @@ coins:
   kind: kurant
   nominal: ½ Portugaløser
   issuing_entity: royal_holstein
-  id: unified-denmark-numismaster-65627
-  year_first: 1591
-  year_last: 1592
-  year_ranges:
-  - - 1591
-    - 1592
-  year_label: 1591-1592
-  mint: Haderslev
-  catalog:
-    fr: '63.1'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65627
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65627
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ½ Portugaløser
-  issuing_entity: royal_holstein
   id: unified-denmark-numismaster-65628
   year_first: 1592
   year_last: 1593
@@ -14696,40 +14693,6 @@ coins:
   kind: kurant
   nominal: 1 Portugaløser
   issuing_entity: royal_holstein
-  id: unified-denmark-numismaster-65629
-  year_first: 1591
-  year_last: 1592
-  year_ranges:
-  - - 1591
-    - 1592
-  year_label: 1591-1592
-  mint: Haderslev
-  catalog:
-    fr: '62.1'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65629
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65629
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Portugaløser
-  issuing_entity: royal_holstein
   id: unified-denmark-numismaster-65630
   year_first: 1592
   year_last: 1592
@@ -14756,37 +14719,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65630
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Portugaløser
-  issuing_entity: royal_holstein
-  id: unified-denmark-numismaster-65634
-  year_first: 1592
-  year_last: 1592
-  year_label: '1592'
-  mint: Haderslev
-  catalog:
-    fr: '61'
-  metal: gold
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65634
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65634
 - fuss: courantdukatenfuss
   phase: I
   kind: kurant
@@ -15597,10 +15529,6 @@ coins:
   phase: I
   kind: kurant
   nominal: 1 Rigsbankdaler
-  note:
-    de: '½ Speciedaler'
-    en: '½ Speciedaler'
-    uk: '½ Speciedaler'
   ruler: Frederik VI
   mintmaster: Johan Friedrich Freund
   issuing_entity: royal_holstein
@@ -15659,6 +15587,10 @@ coins:
   - type: literature
     url: https://en.numista.com/83070
     ref: Numista N#83070 — 1 Rigsbankdaler / ½ Speciedaler - Frederik VI (Type 2; broken neck cut)
+  note:
+    de: ½ Speciedaler
+    en: ½ Speciedaler
+    uk: ½ Speciedaler
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -15676,10 +15608,6 @@ coins:
   phase: numismaster
   kind: kurant
   nominal: 1 Goldgulden
-  note:
-    de: 'Rhinsk Gulden'
-    en: 'Rhinsk Gulden'
-    uk: 'Rhinsk Gulden'
   ruler: Christian III
   issuing_entity: royal_holstein
   id: unified-dk-bruun-14770
@@ -15718,6 +15646,10 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_167746
     ref: NumisMaster
+  note:
+    de: Rhinsk Gulden
+    en: Rhinsk Gulden
+    uk: Rhinsk Gulden
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -19008,3 +18940,141 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-468623
+- fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 8 Gute Groschen
+  ruler: Friedrich August
+  issuing_entity: royal_holstein
+  id: unified-ikmk-18236636
+  year_first: 1758
+  year_last: 1762
+  year_ranges:
+  - - 1758
+    - 1762
+  year_label: 1758-1762
+  mint: Rethwisch
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18236636
+    ref: IKMK Berlin 18236636
+  inscription_obv: FRID A D G PR AN D S A & W C
+  inscription_rev: 8 / GUTE / GROSCHEN / 1758
+  note:
+    de: ⅓ Taler
+    en: ⅓ Taler
+    uk: ⅓ Taler
+  verification_note:
+    de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder
+      museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+    en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested;
+      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+    uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза
+      некласифіковані (seed_unsorted) до Phase-4.'
+  composed_of:
+  - unified-ikmk-18236636
+- fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: ½ Portugaløser
+  issuing_entity: royal_holstein
+  id: unified-denmark-numismaster-65627
+  year_first: 1591
+  year_last: 1592
+  year_ranges:
+  - - 1591
+    - 1592
+  year_label: 1591-1592
+  mint: Haderslev
+  catalog:
+    fr: '63.1'
+  metal: gold
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_65627
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-denmark-numismaster-65627
+- fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1 Portugaløser
+  issuing_entity: royal_holstein
+  id: unified-denmark-numismaster-65629
+  year_first: 1591
+  year_last: 1592
+  year_ranges:
+  - - 1591
+    - 1592
+  year_label: 1591-1592
+  mint: Haderslev
+  catalog:
+    fr: '62.1'
+  metal: gold
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_65629
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-denmark-numismaster-65629
+- fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 2 Portugaløser
+  issuing_entity: royal_holstein
+  id: unified-denmark-numismaster-65634
+  year_first: 1592
+  year_last: 1592
+  year_label: '1592'
+  mint: Haderslev
+  catalog:
+    fr: '61'
+  metal: gold
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_65634
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-denmark-numismaster-65634

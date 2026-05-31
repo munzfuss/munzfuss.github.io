@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-05-30 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-31 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
-# Input: 3097 per-source seed entries.
-# Output: 1436 unified entries (one per physical coin).
+# Input: 3128 per-source seed entries.
+# Output: 1448 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-05-30'
+generated_at: '2026-05-31'
 coins:
 - id: unified-denmark-numismaster-117787
   fuss: seed_unsorted
@@ -1649,52 +1649,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-64998
-- id: unified-denmark-numismaster-65016
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1629
-  year_last: 1629
-  year_label: '1629'
-  ruler: Christian IV
-  mint: Kopenhagen
-  catalog:
-    km: '113.1'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  - value: 0.875
-    source: ucoin
-  weight_rough_g:
-  - value: 0.29
-    source: ucoin
-  - value: 0.292
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65016
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-skilling-1629/?tid=96444
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - denmark-numismaster-65016
-  - dk-tid-96444
 - id: unified-denmark-numismaster-65017
   fuss: seed_unsorted
   phase: numismaster
@@ -6853,42 +6807,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65609
-- id: unified-denmark-numismaster-65626
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: ¼ Portugaløser
-  year_first: 1629
-  year_last: 1629
-  year_label: '1629'
-  catalog:
-    km: '114'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  weight_rough_g:
-  - value: 8.661
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65626
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_realm
-  composed_of:
-  - denmark-numismaster-65626
 - id: unified-denmark-numismaster-65638
   fuss: seed_unsorted
   phase: numismaster
@@ -6926,6 +6844,46 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65638
+- id: unified-denmark-numismaster-65644
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 12 Mark
+  year_first: 1758
+  year_last: 1761
+  year_ranges:
+  - - 1758
+    - 1761
+  year_label: 1758-1761
+  ruler: Frederik V
+  catalog:
+    km: '587.3'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.875
+    source: numismaster
+  weight_rough_g:
+  - value: 3.118
+    source: numismaster
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_65644
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: danish_realm
+  composed_of:
+  - denmark-numismaster-65644
 - id: unified-denmark-numismaster-65645
   fuss: seed_unsorted
   phase: numismaster
@@ -9172,10 +9130,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Goldgulden
-  note:
-    de: 'Rhinsk Gulden'
-    en: 'Rhinsk Gulden'
-    uk: 'Rhinsk Gulden'
   year_first: 1481
   year_last: 1513
   year_ranges:
@@ -9224,6 +9178,10 @@ coins:
   - type: literature
     url: https://en.numista.com/355730
     ref: Numista N#355730 — Goldgulden - John I - Denmark
+  note:
+    de: Rhinsk Gulden
+    en: Rhinsk Gulden
+    uk: Rhinsk Gulden
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -9756,10 +9714,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Goldgulden
-  note:
-    de: 'Rhinsk Gulden'
-    en: 'Rhinsk Gulden'
-    uk: 'Rhinsk Gulden'
   year_first: 1527
   year_last: 1527
   year_label: '1527'
@@ -9811,6 +9765,10 @@ coins:
   - type: literature
     url: https://en.numista.com/433743
     ref: Numista N#433743 — 1 Goldgulden - Frederik I
+  note:
+    de: Rhinsk Gulden
+    en: Rhinsk Gulden
+    uk: Rhinsk Gulden
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -9832,10 +9790,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Gold Gulden
-  note:
-    de: 'Rhinsk Gylden'
-    en: 'Rhinsk Gylden'
-    uk: 'Rhinsk Gylden'
   year_first: 1527
   year_last: 1527
   year_label: '1527'
@@ -9865,6 +9819,10 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 11157, p. 84
+  note:
+    de: Rhinsk Gylden
+    en: Rhinsk Gylden
+    uk: Rhinsk Gylden
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -10564,10 +10522,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Joachimsdaler
-  note:
-    de: 'Taler'
-    en: 'Taler'
-    uk: 'Taler'
   year_first: 1537
   year_last: 1537
   year_label: '1537'
@@ -10643,6 +10597,10 @@ coins:
   - type: literature
     url: https://en.numista.com/474577
     ref: Numista N#474577 — 1 Joachimstaler - Christian III
+  note:
+    de: Taler
+    en: Taler
+    uk: Taler
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -10666,10 +10624,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: ½ Joachimsdaler
-  note:
-    de: '½ Taler'
-    en: '½ Taler'
-    uk: '½ Taler'
   year_first: 1537
   year_last: 1537
   year_label: '1537'
@@ -10723,6 +10677,10 @@ coins:
   - type: literature
     url: https://en.numista.com/474581
     ref: Numista N#474581 — ½ Joachimstaler - Christian III
+  note:
+    de: ½ Taler
+    en: ½ Taler
+    uk: ½ Taler
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -10851,10 +10809,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Silver Gulden
-  note:
-    de: 'Taler'
-    en: 'Taler'
-    uk: 'Taler'
   year_first: 1545
   year_last: 1545
   year_label: '1545'
@@ -10891,6 +10845,10 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13063, p. 57
+  note:
+    de: Taler
+    en: Taler
+    uk: Taler
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -11002,10 +10960,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Silver Gulden
-  note:
-    de: 'Taler'
-    en: 'Taler'
-    uk: 'Taler'
   year_first: 1547
   year_last: 1547
   year_label: '1547'
@@ -11045,6 +10999,10 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13065, p. 59
+  note:
+    de: Taler
+    en: Taler
+    uk: Taler
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -11156,10 +11114,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Gold Gulden
-  note:
-    de: 'Ungersk Gylden'
-    en: 'Ungersk Gylden'
-    uk: 'Ungersk Gylden'
   year_first: 1563
   year_last: 1563
   year_label: '1563'
@@ -11195,6 +11149,10 @@ coins:
   - type: literature
     url: https://en.numista.com/366616
     ref: Numista N#366616 — 1 Goldgulden - Frederick II 1563 Klippe
+  note:
+    de: Ungersk Gylden
+    en: Ungersk Gylden
+    uk: Ungersk Gylden
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -11437,15 +11395,12 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Speciedaler
-  note:
-    de: 'Prinsens Daler'
-    en: 'Prinsens Daler'
-    uk: 'Prinsens Daler'
   year_first: 1590
   year_last: 1590
   year_label: '1590'
   ruler: Christian IV
   catalog:
+    km: UC# 6
     bruun_collection_id: '4594'
     sieg: '93'
     schou: '1'
@@ -11455,18 +11410,34 @@ coins:
     bruun_page: 44
     dav: '8230'
   metal: silver
-  metal_verified: false
-  fineness_verified: false
+  metal_verified: true
+  fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
+  fineness:
+  - value: 0.937
+    source: ucoin
   weight_rough_g:
   - value: 29.04
     source: bruun
+  - value: 29.23
+    source: ucoin
+  diameter_mm:
+  - value: 41.5
+    source: ucoin
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
     ref: Bruun Part I, lot 1010, p. 44
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1590/?tid=163065
+    ref: ucoin
+  note:
+    de: Prinsens Daler
+    en: Prinsens Daler
+    uk: Prinsens Daler
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -11481,15 +11452,12 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-bruun-4594
+  - dk-tid-163065
 - id: unified-dk-bruun-4595
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: 1 Portugaløser
-  note:
-    de: '10 Ducats'
-    en: '10 Ducats'
-    uk: '10 Ducats'
   year_first: 1591
   year_last: 1592
   year_ranges:
@@ -11527,6 +11495,10 @@ coins:
   - type: literature
     url: https://en.numista.com/469294
     ref: Numista N#469294 — 10 Ducats - Christian IV 1591-1592
+  note:
+    de: 10 Ducats
+    en: 10 Ducats
+    uk: 10 Ducats
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -11595,6 +11567,10 @@ coins:
   - type: literature
     url: https://en.numista.com/423686
     ref: Numista N#423686 — 5 Ducats - Christian IV 1591-1593
+  note:
+    de: 5 Ducats
+    en: 5 Ducats
+    uk: 5 Ducats
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -11673,10 +11649,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: ¼ Portugaløser
-  note:
-    de: '2½ Ducats'
-    en: '2½ Ducats'
-    uk: '2½ Ducats'
   year_first: 1593
   year_last: 1593
   year_label: '1593'
@@ -11704,6 +11676,10 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
     ref: Bruun Part I, lot 1011, p. 45
+  note:
+    de: 2½ Ducats
+    en: 2½ Ducats
+    uk: 2½ Ducats
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -11723,10 +11699,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Goldgulden
-  note:
-    de: 'Ungersk Gylden'
-    en: 'Ungersk Gylden'
-    uk: 'Ungersk Gylden'
   year_first: 1591
   year_last: 1593
   year_ranges:
@@ -11769,6 +11741,10 @@ coins:
   - type: literature
     url: https://en.numista.com/142133
     ref: Numista N#142133 — 1 Gulden Hungarian-style - Christian IV 1591-1593
+  note:
+    de: Ungersk Gylden
+    en: Ungersk Gylden
+    uk: Ungersk Gylden
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -13026,10 +13002,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 2 Krone
-  note:
-    de: 'Corona Danica'
-    en: 'Corona Danica'
-    uk: 'Corona Danica'
   year_first: 1618
   year_last: 1619
   year_ranges:
@@ -13080,6 +13052,10 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
     ref: Bruun Part I, lot 1025, p. 62
+  note:
+    de: Corona Danica
+    en: Corona Danica
+    uk: Corona Danica
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -13606,10 +13582,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Speciedaler
-  note:
-    de: 'Reichstaler'
-    en: 'Reichstaler'
-    uk: 'Reichstaler'
   year_first: 1627
   year_last: 1627
   year_label: '1627'
@@ -13637,6 +13609,10 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13108, p. 83
+  note:
+    de: Reichstaler
+    en: Reichstaler
+    uk: Reichstaler
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -13656,10 +13632,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Speciedaler
-  note:
-    de: 'Reichstaler'
-    en: 'Reichstaler'
-    uk: 'Reichstaler'
   year_first: 1627
   year_last: 1627
   year_label: '1627'
@@ -13696,6 +13668,10 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 11199, p. 101
+  note:
+    de: Reichstaler
+    en: Reichstaler
+    uk: Reichstaler
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -13716,10 +13692,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Speciedaler
-  note:
-    de: 'Reichstaler'
-    en: 'Reichstaler'
-    uk: 'Reichstaler'
   year_first: 1619
   year_last: 1627
   year_ranges:
@@ -13782,6 +13754,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-skilling-1619/?tid=163014
     ref: ucoin
+  note:
+    de: Reichstaler
+    en: Reichstaler
+    uk: Reichstaler
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -15498,10 +15474,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Portugaløser
-  note:
-    de: '10 Ducats'
-    en: '10 Ducats'
-    uk: '10 Ducats'
   year_first: 1659
   year_last: 1659
   year_label: '1659'
@@ -15537,6 +15509,10 @@ coins:
   - type: literature
     url: https://en.numista.com/427984
     ref: Numista N#427984 — 1 Portugaløser - Frederik III (Victory over Swedish army)
+  note:
+    de: 10 Ducats
+    en: 10 Ducats
+    uk: 10 Ducats
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -15557,14 +15533,12 @@ coins:
   phase: bruun
   kind: kurant
   nominal: ½ Portugaløser
-  note:
-    de: '5 Ducat'
-    en: '5 Ducat'
-    uk: '5 Ducat'
   year_first: 1659
   year_last: 1659
   year_label: '1659'
   ruler: Frederik III
+  inscription_obv: DOMINV PROVIDEBIT 1659
+  inscription_rev: SOLI DEO - GLORIA
   mint: Kopenhagen
   catalog:
     bruun_collection_id: '6274'
@@ -15579,6 +15553,7 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   weight_rough_g:
@@ -15588,6 +15563,13 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17069, p. 47
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219813
+    ref: IKMK Berlin 18219813
+  note:
+    de: 5 Ducat
+    en: 5 Ducat
+    uk: 5 Ducat
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -15602,6 +15584,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-bruun-6274
+  - ikmk-18219813
 - id: unified-dk-bruun-6275
   fuss: seed_unsorted
   phase: bruun
@@ -16063,10 +16046,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Portugaløser
-  note:
-    de: '10 Ducats'
-    en: '10 Ducats'
-    uk: '10 Ducats'
   year_first: 1662
   year_last: 1664
   year_ranges:
@@ -16112,6 +16091,10 @@ coins:
   - type: literature
     url: https://en.numista.com/469099
     ref: Numista N#469099 — 10 Ducats Portugaloser - Frederik III
+  note:
+    de: 10 Ducats
+    en: 10 Ducats
+    uk: 10 Ducats
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -16238,10 +16221,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Portugaløser
-  note:
-    de: '10 Ducats'
-    en: '10 Ducats'
-    uk: '10 Ducats'
   year_first: 1664
   year_last: 1664
   year_label: '1664'
@@ -16269,6 +16248,10 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17074, p. 51
+  note:
+    de: 10 Ducats
+    en: 10 Ducats
+    uk: 10 Ducats
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -17136,10 +17119,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 18 Mark
-  note:
-    de: 'Guld-Krone'
-    en: 'Guld-Krone'
-    uk: 'Guld-Krone'
   year_first: 1668
   year_last: 1668
   year_label: '1668'
@@ -17199,6 +17178,10 @@ coins:
   - type: literature
     url: https://en.numista.com/308327
     ref: Numista N#308327 — 16 Mark dansk / Guldkrone - Frederik III
+  note:
+    de: Guld-Krone
+    en: Guld-Krone
+    uk: Guld-Krone
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -17694,10 +17677,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Portugaløser
-  note:
-    de: '10 Ducats'
-    en: '10 Ducats'
-    uk: '10 Ducats'
   year_first: 1668
   year_last: 1668
   year_label: '1668'
@@ -17721,6 +17700,10 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
     ref: Bruun Part I, lot 1096, p. 143
+  note:
+    de: 10 Ducats
+    en: 10 Ducats
+    uk: 10 Ducats
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -18214,11 +18197,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 3 Mark
-  note:
-    de: '¼ Ducat'
-    en: '¼ Ducat'
-    uk: '¼ Ducat'
+  nominal: ¼ Ducat (3 Mark)
   year_first: 1676
   year_last: 1676
   year_label: '1676'
@@ -18274,6 +18253,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-4-dukat-1676/?tid=97391
     ref: ucoin
+  note:
+    de: ¼ Ducat
+    en: ¼ Ducat
+    uk: ¼ Ducat
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -20072,10 +20055,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 6 Mark
-  note:
-    de: 'Rejsedaler'
-    en: 'Rejsedaler'
-    uk: 'Rejsedaler'
   year_first: 1704
   year_last: 1704
   year_label: '1704'
@@ -20107,6 +20086,10 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17113, p. 74
+  note:
+    de: Rejsedaler
+    en: Rejsedaler
+    uk: Rejsedaler
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -21735,10 +21718,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 12 Mark
-  note:
-    de: 'Courant Ducat'
-    en: 'Courant Ducat'
-    uk: 'Courant Ducat'
   year_first: 1757
   year_last: 1758
   year_ranges:
@@ -21801,6 +21780,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-12-mark-1757-1758/?tid=101043
     ref: ucoin
+  note:
+    de: Courant Ducat
+    en: Courant Ducat
+    uk: Courant Ducat
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -21823,43 +21806,52 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 12 Mark
-  note:
-    de: 'Courant Ducat'
-    en: 'Courant Ducat'
-    uk: 'Courant Ducat'
   year_first: 1757
-  year_last: 1758
+  year_last: 1765
   year_ranges:
   - - 1757
-    - 1758
-  year_label: 1757-1758
+    - 1765
+  year_label: 1757-1765
   ruler: Frederik V
   mintmaster: Magnus Gustav Arbien
-  mint: Kopenhagen
+  mint:
+  - Kopenhagen
+  - Royal Danish
   catalog:
     km: '587.1'
     bruun_collection_id: '7669'
     sieg: '21.1'
     schou: '3'
-    hede: 22A
+    hede:
+    - 22A
+    - 22C
     bruun_part: III
     bruun_lot_no: 11285
     bruun_page: 144
+    numista: '72266'
     fr: '269'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: numista
   weight_rough_g:
   - value: 3.11
     source: bruun
   - value: 3.118
     source: numismaster
+  - value: 3.12
+    source: numista
+  diameter_mm:
+  - value: 21.0
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_65642
@@ -21867,6 +21859,13 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 11285, p. 144
+  - type: literature
+    url: https://en.numista.com/72266
+    ref: Numista N#72266 — 12 Mark - Frederik V
+  note:
+    de: Courant Ducat
+    en: Courant Ducat
+    uk: Courant Ducat
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -21882,15 +21881,12 @@ coins:
   composed_of:
   - denmark-numismaster-65642
   - dk-bruun-7669
+  - dk-numista-72266
 - id: unified-dk-bruun-7680
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
   nominal: 12 Mark
-  note:
-    de: 'Courant Ducat'
-    en: 'Courant Ducat'
-    uk: 'Courant Ducat'
   year_first: 1761
   year_last: 1763
   year_ranges:
@@ -21935,6 +21931,10 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13229, p. 163
+  note:
+    de: Courant Ducat
+    en: Courant Ducat
+    uk: Courant Ducat
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -21956,10 +21956,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 12 Mark
-  note:
-    de: 'Courant Ducat'
-    en: 'Courant Ducat'
-    uk: 'Courant Ducat'
   year_first: 1757
   year_last: 1763
   year_ranges:
@@ -22012,6 +22008,10 @@ coins:
   - type: literature
     url: https://en.numista.com/72262
     ref: Numista N#72262 — 12 Mark "Stråledukat" - Frederik V
+  note:
+    de: Courant Ducat
+    en: Courant Ducat
+    uk: Courant Ducat
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -22208,10 +22208,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 12 Mark
-  note:
-    de: 'Courant Ducat'
-    en: 'Courant Ducat'
-    uk: 'Courant Ducat'
   year_first: 1765
   year_last: 1765
   year_label: '1765'
@@ -22248,6 +22244,10 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
     ref: Bruun Part I, lot 1148, p. 205
+  note:
+    de: Courant Ducat
+    en: Courant Ducat
+    uk: Courant Ducat
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -22677,10 +22677,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 12 Mark
-  note:
-    de: 'Courant Ducat'
-    en: 'Courant Ducat'
-    uk: 'Courant Ducat'
   year_first: 1771
   year_last: 1771
   year_label: '1771'
@@ -22742,6 +22738,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-12-mark-1771/?tid=101041
     ref: ucoin
+  note:
+    de: Courant Ducat
+    en: Courant Ducat
+    uk: Courant Ducat
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -22909,10 +22909,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 12 Mark
-  note:
-    de: 'Courant Ducat'
-    en: 'Courant Ducat'
-    uk: 'Courant Ducat'
   year_first: 1783
   year_last: 1783
   year_label: '1783'
@@ -22943,6 +22939,10 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17141, p. 89
+  note:
+    de: Courant Ducat
+    en: Courant Ducat
+    uk: Courant Ducat
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -23886,6 +23886,8 @@ coins:
   year_label: 1840-1841, 1843, 1845-1846
   ruler: Christian VIII
   mintmaster: Georg Vilhelm Svendsen (VS)
+  inscription_obv: CHRISTIANUS VIII - D G DANIAE V G REX
+  inscription_rev: 1 SPE-CIES
   mint: Kopenhagen
   catalog:
     km: '720.1'
@@ -23905,6 +23907,7 @@ coins:
     - 3A
     - 3D
     - 3E
+    - '3'
     bruun_part: I
     bruun_lot_no: 1162
     bruun_page: 223
@@ -23913,6 +23916,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -23938,6 +23942,9 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17187, p. 102
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18204757
+    ref: IKMK Berlin 18204757
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -23955,6 +23962,7 @@ coins:
   - dk-bruun-8131
   - dk-bruun-8159
   - dk-bruun-8172
+  - ikmk-18204757
 - id: unified-dk-bruun-8136
   fuss: seed_unsorted
   phase: bruun
@@ -27920,10 +27928,6 @@ coins:
   phase: galster
   kind: kurant
   nominal: 1 Hvid, Visby
-  note:
-    de: 'Gotland'
-    en: 'Gotland'
-    uk: 'Gotland'
   year_first: 1481
   year_last: 1513
   year_ranges:
@@ -27950,6 +27954,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/hvid.htm
     ref: «1 Hvid» (Wertstufen-Übersicht) — danskmoent.dk hvid.htm
+  note:
+    de: Gotland
+    en: Gotland
+    uk: Gotland
   verification_note:
     de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
@@ -27968,10 +27976,6 @@ coins:
   phase: galster
   kind: kurant
   nominal: 1 Hvid, Visby
-  note:
-    de: 'Gotland'
-    en: 'Gotland'
-    uk: 'Gotland'
   year_first: 1481
   year_last: 1513
   year_ranges:
@@ -27999,6 +28003,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/hvid.htm
     ref: «1 Hvid» (Wertstufen-Übersicht) — danskmoent.dk hvid.htm
+  note:
+    de: Gotland
+    en: Gotland
+    uk: Gotland
   verification_note:
     de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
@@ -28017,10 +28025,6 @@ coins:
   phase: galster
   kind: kurant
   nominal: 1 Hvid, Visby
-  note:
-    de: 'Gotland'
-    en: 'Gotland'
-    uk: 'Gotland'
   year_first: 1481
   year_last: 1513
   year_ranges:
@@ -28045,6 +28049,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/hvid.htm
     ref: «1 Hvid» (Wertstufen-Übersicht) — danskmoent.dk hvid.htm
+  note:
+    de: Gotland
+    en: Gotland
+    uk: Gotland
   verification_note:
     de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
@@ -28149,10 +28157,6 @@ coins:
   phase: galster
   kind: kurant
   nominal: ½ ørtug, Vesterås
-  note:
-    de: 'Sverige'
-    en: 'Sverige'
-    uk: 'Sverige'
   year_first: 1481
   year_last: 1513
   year_ranges:
@@ -28177,6 +28181,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/halvortu.htm
     ref: «1/2 &Oslash;rtug» (Wertstufen-Übersicht) — danskmoent.dk halvortu.htm
+  note:
+    de: Sverige
+    en: Sverige
+    uk: Sverige
   verification_note:
     de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
@@ -28195,10 +28203,6 @@ coins:
   phase: galster
   kind: kurant
   nominal: ½ ørtug, Vesterås
-  note:
-    de: 'Sverige'
-    en: 'Sverige'
-    uk: 'Sverige'
   year_first: 1481
   year_last: 1513
   year_ranges:
@@ -28223,6 +28227,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/halvortu.htm
     ref: «1/2 &Oslash;rtug» (Wertstufen-Übersicht) — danskmoent.dk halvortu.htm
+  note:
+    de: Sverige
+    en: Sverige
+    uk: Sverige
   verification_note:
     de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
@@ -30113,14 +30121,19 @@ coins:
     - 1621
   year_label: 1619-1621
   ruler: Christian IV.
+  inscription_obv: CHRISTIANU-S - IIII D G DANI
+  inscription_rev: NORVEG VANDAL GOTORU Q REX
   mint: Kopenhagen
   catalog:
     km: 58a
-    hede: 107C
+    hede:
+    - 107C
+    - '107'
     hede_volume: c4h
     schou: 69-77,25-27
     sieg: '86.3'
     numista: '109273'
+    dav: '107'
     bruun_collection_id: '5092'
     bruun_part: II
     bruun_lot_no: 13093
@@ -30158,9 +30171,16 @@ coins:
   - type: literature
     url: https://en.numista.com/109273
     ref: Numista N#109273 — ½ Krone - Christian IV
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18201871
+    ref: IKMK Berlin 18201871
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-2-krone-1619-1621/?tid=163056
     ref: ucoin
+  note:
+    de: AR
+    en: AR
+    uk: AR
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -30175,6 +30195,7 @@ coins:
   composed_of:
   - dk-hede-c4h107c
   - dk-numista-109273
+  - ikmk-18201871
   - km-58a-chr-iv-1619
 - id: unified-dk-hede-c4h11
   fuss: seed_unsorted
@@ -31557,6 +31578,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h14.htm
     ref: danskmoent.dk (Hede c4h14)
+  note:
+    de: Ungersk Gylden
+    en: Ungersk Gylden
+    uk: Ungersk Gylden
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -31778,16 +31803,13 @@ coins:
   phase: hede
   kind: kurant
   nominal: 1 Skilling
-  note:
-    de: 'hulpenning'
-    en: 'hulpenning'
-    uk: 'hulpenning'
   year_first: 1629
   year_last: 1629
   year_label: '1629'
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
+    km: '113.1'
     hede: '144'
     hede_volume: c4h
     schou: '57'
@@ -31801,13 +31823,31 @@ coins:
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: numismaster
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
+  - value: 0.29
+    source: ucoin
   - value: 0.292
     source: hede
+  - value: 0.292
+    source: numismaster
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65016
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h144.htm
     ref: danskmoent.dk (Hede c4h144)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-skilling-1629/?tid=96444
+    ref: ucoin
+  note:
+    de: hulpenning
+    en: hulpenning
+    uk: hulpenning
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -31820,7 +31860,9 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
+  - denmark-numismaster-65016
   - dk-hede-c4h144
+  - dk-tid-96444
 - id: unified-dk-hede-c4h145
   fuss: seed_unsorted
   phase: hede
@@ -32312,6 +32354,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-gulden-1608-1611/?tid=163405
     ref: ucoin
+  note:
+    de: Ungersk Gylden
+    en: Ungersk Gylden
+    uk: Ungersk Gylden
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -33220,6 +33266,10 @@ coins:
   - type: literature
     url: https://en.numista.com/131961
     ref: Numista N#131961 — 1 Rhinsk Guilder - Christian IV
+  note:
+    de: Rhinsk Gylden
+    en: Rhinsk Gylden
+    uk: Rhinsk Gylden
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -33244,6 +33294,7 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
+    km: '114'
     hede: '30'
     hede_volume: c4h
     schou: '1'
@@ -33257,10 +33308,17 @@ coins:
   fineness:
   - value: 0.979
     source: hede
+  - value: 0.979
+    source: numismaster
   weight_rough_g:
   - value: 8.661
     source: hede
+  - value: 8.661
+    source: numismaster
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65626
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h30.htm
     ref: danskmoent.dk (Hede c4h30)
@@ -33271,6 +33329,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_realm
   composed_of:
+  - denmark-numismaster-65626
   - dk-hede-c4h30
 - id: unified-dk-hede-c4h32
   fuss: seed_unsorted
@@ -36164,20 +36223,27 @@ coins:
   phase: hede
   kind: kurant
   nominal: 1 Portugaløser
-  year_first: 1605
-  year_last: 1605
-  year_label: '1605'
+  year_first: 1604
+  year_last: 1607
+  year_ranges:
+  - - 1604
+    - 1607
+  year_label: 1604-1607
   ruler: Christian IV.
+  inscription_obv: CHRISTIANVS IIII - D G DAN NO VA G REX // REGNA FIR/MAT PIETAS
+  inscription_rev: DVX SCL HOL ST - DIT COM IN OL FIZ
   mint: Kopenhagen
   catalog:
     hede: '9'
     hede_volume: c4h
     schou: 1-6
     sieg: '156'
+    fr: '68'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -36190,6 +36256,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h9.htm
     ref: danskmoent.dk (Hede c4h9)
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18227466
+    ref: IKMK Berlin 18227466
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -36198,6 +36267,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-hede-c4h9
+  - ikmk-18227466
 - id: unified-dk-hede-c4h91
   fuss: seed_unsorted
   phase: hede
@@ -41684,11 +41754,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 8 Mark
-  note:
-    de: '2 Krone'
-    en: '2 Krone'
-    uk: '2 Krone'
+  nominal: 2 Krone
   year_first: 1675
   year_last: 1675
   year_label: '1675'
@@ -41744,6 +41810,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-kroner-1675/?tid=97332
     ref: ucoin
+  note:
+    de: 2 Krone
+    en: 2 Krone
+    uk: 2 Krone
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -43911,6 +43981,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c6h5.htm
     ref: danskmoent.dk (Hede c6h5)
+  note:
+    de: Rejsedaler
+    en: Rejsedaler
+    uk: Rejsedaler
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -47695,6 +47769,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h1.htm
     ref: danskmoent.dk (Hede f2h1)
+  note:
+    de: Ungersk Gylden
+    en: Ungersk Gylden
+    uk: Ungersk Gylden
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -47995,6 +48073,8 @@ coins:
   year_label: '1572'
   ruler: Frederik II.
   mintmaster: Hans Delhusen
+  inscription_obv: FRIDERICVS Z D G DA NOR SLA GOTO Q REX
+  inscription_rev: DEVS REFVGIVM ET FIDVCIA MEA
   mint: Kopenhagen
   catalog:
     hede: '17'
@@ -48015,6 +48095,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -48037,6 +48118,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h17.htm
     ref: danskmoent.dk (Hede f2h17)
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18202238
+    ref: IKMK Berlin 18202238
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -48047,6 +48131,7 @@ coins:
   - dk-bruun-4523
   - dk-bruun-4525
   - dk-hede-f2h17
+  - ikmk-18202238
 - id: unified-dk-hede-f2h18ab
   fuss: seed_unsorted
   phase: hede
@@ -48718,6 +48803,10 @@ coins:
   - type: literature
     url: https://en.numista.com/366621
     ref: Numista N#366621 — 1 Goldgulden - Frederick II 1563 Klippe (variant)
+  note:
+    de: Rhinsk Gulden
+    en: Rhinsk Gulden
+    uk: Rhinsk Gulden
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -48819,6 +48908,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h5.htm
     ref: danskmoent.dk (Hede f2h5)
+  note:
+    de: Golt Krone
+    en: Golt Krone
+    uk: Golt Krone
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -48876,6 +48969,10 @@ coins:
   - type: literature
     url: https://en.numista.com/426872
     ref: Numista N#426872 — 1 Goldgulden - Frederick II Seven-Years War Square 1564
+  note:
+    de: Rhinsk Gylden
+    en: Rhinsk Gylden
+    uk: Rhinsk Gylden
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -49598,12 +49695,16 @@ coins:
   year_last: 1653
   year_label: '1653'
   ruler: Frederik III.
+  mintmaster: Henrik Köhler
+  inscription_obv: FRIDERICVS III D G DANIAE
+  inscription_rev: NORWEGIAE VAND GOTHOR REX
   mint: Kopenhagen
   catalog:
     km: '198'
     hede:
     - 10AB
     - 10A
+    - '10'
     hede_volume: f3h
     schou:
     - 8-9
@@ -49655,6 +49756,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-dukat-1653/?tid=97520
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219559
+    ref: IKMK Berlin 18219559
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -49666,6 +49770,7 @@ coins:
   - dk-bruun-6087
   - dk-hede-f3h10ab
   - dk-tid-97520
+  - ikmk-18219559
 - id: unified-dk-hede-f3h11
   fuss: seed_unsorted
   phase: hede
@@ -53087,6 +53192,9 @@ coins:
     - 1668
   year_label: 1665, 1668
   ruler: Frederik III.
+  mintmaster: Frederik Caspar Herbach
+  inscription_obv: Dominus - Providebit
+  inscription_rev: III / MARCK / DANSKE / 1665
   mint: Kopenhagen
   catalog:
     km: '264.2'
@@ -53094,6 +53202,7 @@ coins:
     - 40A
     - 40B
     - 40C
+    - '40'
     hede_volume: f3h
     sieg:
     - '102'
@@ -53155,6 +53264,13 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-4-dukat-1665-1668/?tid=97388
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219566
+    ref: IKMK Berlin 18219566
+  note:
+    de: ¼ Ducat
+    en: ¼ Ducat
+    uk: ¼ Ducat
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -53169,6 +53285,7 @@ coins:
   - dk-hede-f3h40c
   - dk-numista-210704
   - dk-tid-97388
+  - ikmk-18219566
 - id: unified-dk-hede-f3h41
   fuss: seed_unsorted
   phase: hede
@@ -53417,6 +53534,9 @@ coins:
   year_last: 1668
   year_label: '1668'
   ruler: Frederik III.
+  mintmaster: Gotfred Krüger
+  inscription_obv: FRID III D G DAN NOR V G REX
+  inscription_rev: Dominus Providebit // XVIII M / 1668
   mint: Kopenhagen
   catalog:
     hede: '46'
@@ -53427,6 +53547,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -53439,6 +53560,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f3h46.htm
     ref: danskmoent.dk (Hede f3h46)
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219564
+    ref: IKMK Berlin 18219564
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -53447,6 +53571,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-hede-f3h46
+  - ikmk-18219564
 - id: unified-dk-hede-f3h47
   fuss: seed_unsorted
   phase: hede
@@ -53689,12 +53814,16 @@ coins:
     - 1651
   year_label: 1649-1651
   ruler: Frederik III.
+  mintmaster: Henrik Köhler
+  inscription_obv: FRIDERICVS III D G DAN NOR VAN GOT REX
+  inscription_rev: DOMINUS PRO-VIDEBIT 1650
   mint: Kopenhagen
   catalog:
     km: '168'
     hede:
     - 50AB
     - 50A
+    - '50'
     hede_volume: f3h
     schou:
     - 17-18
@@ -53756,6 +53885,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1649-1651/?tid=97360
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219590
+    ref: IKMK Berlin 18219590
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -53773,6 +53905,7 @@ coins:
   - dk-hede-f3h50ab
   - dk-numista-143386
   - dk-tid-97360
+  - ikmk-18219590
 - id: unified-dk-hede-f3h51
   fuss: seed_unsorted
   phase: hede
@@ -54216,10 +54349,15 @@ coins:
     - 1661
   year_label: 1657, 1661
   ruler: Frederik III.
+  mintmaster: Henrik Köhler
+  inscription_obv: FRIDERICVS III D G DAN NOR VAN GOT REX
+  inscription_rev: DOMINVS P-ROVIDEBIT - 16-57
   mint: Kopenhagen
   catalog:
     km: '212'
-    hede: 57A
+    hede:
+    - 57A
+    - '57'
     hede_volume: f3h
     schou:
     - 13-16,21-22
@@ -54271,6 +54409,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1657-1661/?tid=97362
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219592
+    ref: IKMK Berlin 18219592
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -54287,6 +54428,7 @@ coins:
   - dk-bruun-6372
   - dk-hede-f3h57a
   - dk-tid-97362
+  - ikmk-18219592
 - id: unified-dk-hede-f3h58ab
   fuss: seed_unsorted
   phase: hede
@@ -54907,6 +55049,8 @@ coins:
   year_label: '1664'
   ruler: Frederik III.
   mintmaster: Caspar Herbach
+  inscription_obv: FRIDERIC 3 D G DAN NOR VAN GOT REX
+  inscription_rev: DOMINUS - PROVIDEBIT 16-64
   mint: Kopenhagen
   catalog:
     km: '250'
@@ -54929,6 +55073,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -54957,6 +55102,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f3h66.htm
     ref: danskmoent.dk (Hede f3h66)
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219594
+    ref: IKMK Berlin 18219594
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1664/?tid=97365
     ref: ucoin
@@ -54975,6 +55123,7 @@ coins:
   - denmark-numismaster-65447
   - dk-bruun-6422
   - dk-hede-f3h66
+  - ikmk-18219594
   - km-x013-fr-iii-1664
 - id: unified-dk-hede-f3h68a
   fuss: seed_unsorted
@@ -55304,6 +55453,9 @@ coins:
   year_last: 1667
   year_label: '1667'
   ruler: Frederik III.
+  mintmaster: Gotfred Krüger
+  inscription_obv: FRID III D G DAN NOR VAN GOT REX
+  inscription_rev: DVX SL HO STO - DIT CO OL & DEL
   mint: Kopenhagen
   catalog:
     km: '287'
@@ -55356,6 +55508,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1667/?tid=99108
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219595
+    ref: IKMK Berlin 18219595
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -55372,6 +55527,7 @@ coins:
   - dk-hede-f3h73
   - dk-numista-308265
   - dk-tid-99108
+  - ikmk-18219595
 - id: unified-dk-hede-f3h75
   fuss: seed_unsorted
   phase: hede
@@ -55381,6 +55537,9 @@ coins:
   year_last: 1667
   year_label: '1667'
   ruler: Frederik III.
+  mintmaster: Frederik Caspar Herbach
+  inscription_obv: FRIDERICVS 3 D G DAN NOR VAN GOT REX
+  inscription_rev: DOMI-NUS - PROVIDE-BIT 1667
   mint: Kopenhagen
   catalog:
     km: '289'
@@ -55393,6 +55552,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -55412,6 +55572,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f3h75.htm
     ref: danskmoent.dk (Hede f3h75)
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219596
+    ref: IKMK Berlin 18219596
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -55426,6 +55589,7 @@ coins:
   composed_of:
   - denmark-numismaster-65455
   - dk-hede-f3h75
+  - ikmk-18219596
 - id: unified-dk-hede-f3h78a
   fuss: seed_unsorted
   phase: hede
@@ -55615,10 +55779,14 @@ coins:
     - 1669
   year_label: 1668-1669
   ruler: Frederik III.
+  inscription_obv: FRIDERICUS III D G DAN NOR V GOT REX
+  inscription_rev: DVX SLES - HOL STOR - DITM COM - OLD & DELM
   mint: Kopenhagen
   catalog:
     km: '301'
-    hede: 80A
+    hede:
+    - 80A
+    - '80'
     hede_volume: f3h
     schou:
     - '13'
@@ -55687,6 +55855,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1668/?tid=97368
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219597
+    ref: IKMK Berlin 18219597
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -55705,6 +55876,7 @@ coins:
   - dk-hede-f3h80a
   - dk-numista-81646
   - dk-tid-97368
+  - ikmk-18219597
 - id: unified-dk-hede-f3h80b
   fuss: seed_unsorted
   phase: hede
@@ -55791,6 +55963,9 @@ coins:
     - 1670
   year_label: 1648-1670
   ruler: Frederik III.
+  mintmaster: Gotfred Krüger
+  inscription_obv: FRIDER III D G DAN - NOR VAN GOT REX
+  inscription_rev: DVX SLES - HOL STOR - DITM COM - OLD & DELM
   mint: Kopenhagen
   catalog:
     km: '310'
@@ -55803,6 +55978,7 @@ coins:
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   year_verified: false
@@ -55830,6 +56006,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-speciedaler-1669/?tid=97382
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219572
+    ref: IKMK Berlin 18219572
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -55845,6 +56024,7 @@ coins:
   - denmark-numismaster-65562
   - dk-hede-f3h81
   - dk-tid-97382
+  - ikmk-18219572
 - id: unified-dk-hede-f3h82
   fuss: seed_unsorted
   phase: hede
@@ -56882,15 +57062,18 @@ coins:
   ruler: Frederik IV.
   mint: Kopenhagen
   catalog:
-    km: '488'
+    km: '486'
     hede: '15'
     hede_volume: f4h
     schou: 2 og 2
     sieg: '44'
+    numista: '521570'
+    fr: '211'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   fineness:
@@ -56898,18 +57081,25 @@ coins:
     source: hede
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: numista
   weight_rough_g:
   - value: 6.981
     source: hede
   - value: 6.981
     source: numismaster
+  - value: 6.981
+    source: numista
   sources:
   - type: literature
-    url: https://numismaster.com/MC_65897
+    url: https://numismaster.com/MC_65896
     ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h14.htm
     ref: danskmoent.dk (Hede f4h15)
+  - type: literature
+    url: https://en.numista.com/521570
+    ref: Numista N#521570 — 2 Ducats - Frederik IV
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -56917,8 +57107,9 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_realm
   composed_of:
-  - denmark-numismaster-65897
+  - denmark-numismaster-65896
   - dk-hede-f4h15
+  - dk-numista-521570
 - id: unified-dk-hede-f4h16
   fuss: seed_unsorted
   phase: hede
@@ -57030,6 +57221,7 @@ coins:
   ruler: Frederik IV.
   mint: Kopenhagen
   catalog:
+    km: '488'
     hede: '17'
     hede_volume: f4h
     schou: '3'
@@ -57043,10 +57235,17 @@ coins:
   fineness:
   - value: 0.979
     source: hede
+  - value: 0.979
+    source: numismaster
   weight_rough_g:
   - value: 6.981
     source: hede
+  - value: 6.981
+    source: numismaster
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65897
+    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h16.htm
     ref: danskmoent.dk (Hede f4h17)
@@ -57057,6 +57256,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_realm
   composed_of:
+  - denmark-numismaster-65897
   - dk-hede-f4h17
 - id: unified-dk-hede-f4h18
   fuss: seed_unsorted
@@ -57907,11 +58107,7 @@ coins:
   fuss: seed_unsorted
   phase: hede
   kind: kurant
-  nominal: 1 Rigsdaler Courant
-  note:
-    de: '½ Kurant Dukat'
-    en: '½ Kurant Dukat'
-    uk: '½ Kurant Dukat'
+  nominal: ½ Kurant Dukat (1 Rixdaler)
   year_first: 1715
   year_last: 1715
   year_label: '1715'
@@ -57977,6 +58173,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-rixdaler-1715/?tid=94408
     ref: ucoin
+  note:
+    de: Rixdaler
+    en: Rixdaler
+    uk: Rixdaler
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -58299,6 +58499,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h38.htm
     ref: danskmoent.dk (Hede f4h38)
+  note:
+    de: Rejsedaler
+    en: Rejsedaler
+    uk: Rejsedaler
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -60830,6 +61034,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f5h22.htm
     ref: danskmoent.dk (Hede f5h22)
+  note:
+    de: Courant Ducat
+    en: Courant Ducat
+    uk: Courant Ducat
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -60938,6 +61146,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f5h24.htm
     ref: danskmoent.dk (Hede f5h24)
+  note:
+    de: Courant Ducat
+    en: Courant Ducat
+    uk: Courant Ducat
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -61079,6 +61291,8 @@ coins:
   year_label: 1764-1765
   ruler: Frederik V.
   mintmaster: Hans Schierven Knoph
+  inscription_obv: FRIDERICVS V D G DAN NOR V G REX
+  inscription_rev: PRUDENTIA E-T CONSTANTIA // 17-64
   mint: Kopenhagen
   catalog:
     km: '599'
@@ -61145,6 +61359,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1764/?tid=79161
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18240601
+    ref: IKMK Berlin 18240601
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -61161,6 +61378,7 @@ coins:
   - dk-bruun-7711
   - dk-hede-f5h27
   - dk-tid-79161
+  - ikmk-18240601
 - id: unified-dk-hede-f5h28
   fuss: seed_unsorted
   phase: hede
@@ -61534,6 +61752,10 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/fr/f5h33.htm
     ref: danskmoent.dk (Hede f5h33)
+  note:
+    de: Rejsedaler
+    en: Rejsedaler
+    uk: Rejsedaler
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -62027,10 +62249,14 @@ coins:
   year_last: 1746
   year_label: '1746'
   ruler: Frederik V.
+  inscription_obv: FRIDERICVS V D - G REX DAN NOR V G
+  inscription_rev: REGALIBVS - AVSPICIIS // EX AVRO SINICO / 1746
   mint: Kopenhagen
   catalog:
     km: '549'
-    hede: 5AB
+    hede:
+    - 5AB
+    - '5'
     hede_volume: f5h
     schou: '9'
     sieg: '26'
@@ -62068,6 +62294,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-dukat-1746/?tid=94335
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18227330
+    ref: IKMK Berlin 18227330
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -62078,6 +62307,7 @@ coins:
   - denmark-numismaster-65822
   - dk-hede-f5h5ab
   - dk-tid-94335
+  - ikmk-18227330
 - id: unified-dk-hede-f5h6
   fuss: seed_unsorted
   phase: hede
@@ -63506,10 +63736,6 @@ coins:
   phase: numista
   kind: kurant
   nominal: 6 Mark
-  note:
-    de: Reisedaler
-    en: Reisedaler
-    uk: Reisedaler
   year_first: 1732
   year_last: 1733
   year_ranges:
@@ -63543,6 +63769,10 @@ coins:
   - type: literature
     url: https://en.numista.com/100478
     ref: Numista N#100478 — 1 Reisedaler - Christian VI (Royal visit) - Norway
+  note:
+    de: Reisedaler
+    en: Reisedaler
+    uk: Reisedaler
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -66284,9 +66514,7 @@ coins:
   year_first: 1590
   year_last: 1590
   year_label: '1590'
-  ruler: Christian IV
   catalog:
-    km: UC# 6
     numista: '141796'
     sieg: C4-93
     dav: EC I# 8230
@@ -66300,25 +66528,16 @@ coins:
   fineness:
   - value: 0.937
     source: numista
-  - value: 0.937
-    source: ucoin
   weight_rough_g:
-  - value: 29.23
-    source: ucoin
   - value: 29.232
     source: numista
   diameter_mm:
-  - value: 41.5
-    source: ucoin
   - value: 41.52
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/141796
     ref: Numista N#141796 — 1 Speciedaler Prinsensdaler - Christian IV 1590
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1590/?tid=163065
-    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -66332,7 +66551,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-numista-141796
-  - dk-tid-163065
 - id: unified-dk-numista-142013
   fuss: seed_unsorted
   phase: numista
@@ -66873,10 +67091,6 @@ coins:
   phase: numista
   kind: scheide
   nominal: ½ Penning
-  note:
-    de: 'Skærv'
-    en: 'Skærv'
-    uk: 'Skærv'
   year_first: 1396
   year_last: 1439
   year_ranges:
@@ -66904,6 +67118,10 @@ coins:
   - type: literature
     url: https://en.numista.com/143452
     ref: Numista N#143452 — Skærv - Erik of Pommern - Denmark
+  note:
+    de: Skærv
+    en: Skærv
+    uk: Skærv
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -70839,10 +71057,6 @@ coins:
   phase: numista
   kind: kurant
   nominal: 2 Rigsdaler
-  note:
-    de: 12 Rigsdaler courant
-    en: 12 Rigsdaler courant
-    uk: 12 Rigsdaler courant
   year_first: 1863
   year_last: 1863
   year_label: '1863'
@@ -70874,6 +71088,10 @@ coins:
   - type: literature
     url: https://en.numista.com/23580
     ref: Numista N#23580 — 2 Rigsdaler - Christian IX Death and Accession
+  note:
+    de: 12 Rigsdaler courant
+    en: 12 Rigsdaler courant
+    uk: 12 Rigsdaler courant
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -71162,10 +71380,6 @@ coins:
   phase: numista
   kind: kurant
   nominal: 1 Ducat
-  note:
-    de: 'Dukat'
-    en: 'Dukat'
-    uk: 'Dukat'
   year_first: 1564
   year_last: 1564
   year_label: '1564'
@@ -71190,6 +71404,10 @@ coins:
   - type: literature
     url: https://en.numista.com/265065
     ref: Numista N#265065 — 1 Ducat - Frederick II Seven-Years War 1564
+  note:
+    de: Dukat
+    en: Dukat
+    uk: Dukat
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -71470,10 +71688,6 @@ coins:
   phase: numista
   kind: scheide
   nominal: Gros
-  note:
-    de: 9 Pennings (Rechnungs-Äquivalent)
-    en: 9 Pennings (accounting equivalent)
-    uk: 9 Pennings (розрахунковий еквівалент)
   year_first: 1430
   year_last: 1439
   year_ranges:
@@ -71505,6 +71719,10 @@ coins:
   - type: literature
     url: https://en.numista.com/287318
     ref: Numista N#287318 — Gros - Erik of Pommern (Lund) - Denmark
+  note:
+    de: 9 Pennings (Rechnungs-Äquivalent)
+    en: 9 Pennings (accounting equivalent)
+    uk: 9 Pennings (розрахунковий еквівалент)
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -71938,10 +72156,6 @@ coins:
   phase: numista
   kind: scheide
   nominal: 1 Hvid
-  note:
-    de: 4 Pennings (Rechnungs-Äquivalent)
-    en: 4 Pennings (accounting equivalent)
-    uk: 4 Pennings (розрахунковий еквівалент)
   year_first: 1440
   year_last: 1448
   year_ranges:
@@ -71970,6 +72184,10 @@ coins:
   - type: literature
     url: https://en.numista.com/303699
     ref: Numista N#303699 — 1 Hvid - Christopher of Bavaria (Malmo) - Denmark
+  note:
+    de: 4 Pennings (Rechnungs-Äquivalent)
+    en: 4 Pennings (accounting equivalent)
+    uk: 4 Pennings (розрахунковий еквівалент)
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -72545,10 +72763,6 @@ coins:
   phase: numista
   kind: scheide
   nominal: 1 Sterling
-  note:
-    de: 3 Pennings (Rechnungs-Äquivalent)
-    en: 3 Pennings (accounting equivalent)
-    uk: 3 Pennings (розрахунковий еквівалент)
   year_first: 1397
   year_last: 1439
   year_ranges:
@@ -72577,6 +72791,10 @@ coins:
   - type: literature
     url: https://en.numista.com/348708
     ref: Numista N#348708 — Kobbersterling - Erik of Pomerania (Naestved) - Denmark
+  note:
+    de: 3 Pennings (Rechnungs-Äquivalent)
+    en: 3 Pennings (accounting equivalent)
+    uk: 3 Pennings (розрахунковий еквівалент)
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -75944,53 +76162,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-numista-47998
-- id: unified-dk-numista-521570
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 2 Ducats
-  year_first: 1708
-  year_last: 1709
-  year_ranges:
-  - - 1708
-    - 1709
-  year_label: 1708-1709
-  ruler: Frederick IV
-  catalog:
-    km: '486'
-    numista: '521570'
-    fr: '211'
-    hede: '15'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numista
-  weight_rough_g:
-  - value: 6.981
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/521570
-    ref: Numista N#521570 — 2 Ducats - Frederik IV
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-numista-521570
 - id: unified-dk-numista-521607
   fuss: seed_unsorted
   phase: numista
@@ -76950,65 +77121,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-numista-71072
-- id: unified-dk-numista-72266
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 12 Mark
-  year_first: 1757
-  year_last: 1765
-  year_ranges:
-  - - 1757
-    - 1765
-  year_label: 1757-1765
-  ruler: Frederick V
-  mint: Royal Danish
-  catalog:
-    km: '587.3'
-    numista: '72266'
-    fr: '269'
-    hede: 22C
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  - value: 0.875
-    source: numista
-  weight_rough_g:
-  - value: 3.118
-    source: numismaster
-  - value: 3.12
-    source: numista
-  diameter_mm:
-  - value: 21.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65644
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/72266
-    ref: Numista N#72266 — 12 Mark - Frederik V
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_realm
-  composed_of:
-  - denmark-numismaster-65644
-  - dk-numista-72266
 - id: unified-dk-numista-76322
   fuss: seed_unsorted
   phase: numista
@@ -79462,6 +79574,497 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-tid-99111
+- id: unified-ikmk-18201698
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 3 Mark
+  year_first: 1562
+  year_last: 1562
+  year_label: '1562'
+  ruler: Erich XIV.
+  mintmaster: Jost Höjer
+  inscription_obv: ERICVS XIIII D G SVE GOT VAN &Z REX
+  inscription_rev: DEVS DAT CVI VVLT 1562
+  mint: Stockholm
+  catalog:
+    dav: '8703'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18201698
+    ref: IKMK Berlin 18201698
+  verification_note: &id001
+    de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder
+      museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+    en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested;
+      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+    uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза
+      некласифіковані (seed_unsorted) до Phase-4.'
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18201698
+- id: unified-ikmk-18201735
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Daler
+  year_first: 1575
+  year_last: 1575
+  year_label: '1575'
+  ruler: Johann III.
+  mintmaster: Gillis (Julius) der Ältere Coyet
+  inscription_obv: IOHANNES III D G SVE-CIE GOT VAN REX / DEVS PROTEC-TOR NOSTER
+  inscription_rev: SALVATOR MVNDI - SALVA NOS 15-75
+  mint: Stockholm
+  catalog:
+    dav: '8705'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18201735
+    ref: IKMK Berlin 18201735
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18201735
+- id: unified-ikmk-18202014
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  year_first: 1523
+  year_last: 1523
+  year_label: '1523'
+  ruler: Christian II.
+  inscription_obv: + XPS IHS ELEGIT ME REGEM POPVLO SVO 15Z3
+  inscription_rev: + CRISTIERNVS DEI GRA REX DACIE SVECIE NORVE
+  mint: Malmö
+  catalog:
+    schou: '3'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18202014
+    ref: IKMK Berlin 18202014
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18202014
+- id: unified-ikmk-18203663
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  year_first: 1731
+  year_last: 1731
+  year_label: '1731'
+  ruler: Friedrich
+  inscription_obv: FRIDERICVS ET VLR ELEON D G REX ET REG SVECIAE
+  inscription_rev: SPLENDET IN ORBE DECVS
+  mint: Stockholm
+  catalog:
+    dav: '1725'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18203663
+    ref: IKMK Berlin 18203663
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18203663
+- id: unified-ikmk-18203664
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 2 Kronen (8 Mark)
+  year_first: 1747
+  year_last: 1747
+  year_label: '1747'
+  ruler: Frederik V.
+  inscription_obv: FRIDERICUS V - DEI GRATIA
+  inscription_rev: DAN NOR VAN GOT REX
+  mint: Kopenhagen
+  catalog:
+    dav: '1300'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18203664
+    ref: IKMK Berlin 18203664
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18203664
+- id: unified-ikmk-18204758
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Riksdaler
+  year_first: 1825
+  year_last: 1825
+  year_label: '1825'
+  ruler: Karl XIV. Johann
+  mintmaster: Paul Krell
+  inscription_obv: CAROLVS XIV IOH D G REX SVECIAE ET NORV // AN IVBIL 1821
+  inscription_rev: IN MEMOR VINDICATAE / LIBERT AC RELIG
+  mint: Stockholm
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18204758
+    ref: IKMK Berlin 18204758
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18204758
+- id: unified-ikmk-18206591
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Schilling
+  year_first: 1481
+  year_last: 1513
+  year_ranges:
+  - - 1481
+    - 1513
+  year_label: 1481-1513
+  ruler: Johann
+  inscription_obv: IOhS - DEI GR - A REX - DACIE
+  inscription_rev: MONETA NOVA hAFNIENSIS
+  mint: Kopenhagen
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18206591
+    ref: IKMK Berlin 18206591
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18206591
+- id: unified-ikmk-18206592
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Goldgulden
+  year_first: 1481
+  year_last: 1513
+  year_ranges:
+  - - 1481
+    - 1513
+  year_label: 1481-1513
+  ruler: Johann
+  inscription_obv: IOhS DEI GR - REX DACIE
+  inscription_rev: MONET - AVREA - REGNI - DACIE
+  mint: Kopenhagen
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18206592
+    ref: IKMK Berlin 18206592
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18206592
+- id: unified-ikmk-18217806
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 2 Dukaten
+  year_first: 1719
+  year_last: 1719
+  year_label: '1719'
+  ruler: Ulrika Eleonora
+  mintmaster: Lorenz Careelberg
+  inscription_obv: VLRICA ELEONORA D G REGINA SVECIAE
+  inscription_rev: IN DEO SPES MEA
+  mint: Stockholm
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18217806
+    ref: IKMK Berlin 18217806
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18217806
+- id: unified-ikmk-18219556
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 2 Dukaten
+  year_first: 1658
+  year_last: 1658
+  year_label: '1658'
+  ruler: Frederik III.
+  inscription_obv: FRIDERICUS III D G DANIAE NORWEGIAE
+  inscription_rev: VANDALOR GOTHOR Q REX // 16-58
+  mint: Kopenhagen
+  catalog:
+    hede: '216'
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219556
+    ref: IKMK Berlin 18219556
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18219556
+- id: unified-ikmk-18219558
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 2 Dukaten
+  year_first: 1662
+  year_last: 1662
+  year_label: '1662'
+  ruler: Frederik III.
+  mintmaster: Johan Stichmann
+  inscription_obv: FRID III D G REX DAN NOR VAN GOT
+  inscription_rev: DOMINVS - PROVIDEBIT
+  mint: Kopenhagen
+  catalog:
+    hede: '33'
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219558
+    ref: IKMK Berlin 18219558
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18219558
+- id: unified-ikmk-18219560
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Dukat
+  year_first: 1653
+  year_last: 1653
+  year_label: '1653'
+  ruler: Frederik III.
+  mintmaster: Johan Stichmann
+  inscription_obv: FRIDERICUS III D G DAN NOR
+  inscription_rev: VANDAL GOTHOR Q REX 1662
+  mint: Kopenhagen
+  catalog:
+    hede: '16'
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219560
+    ref: IKMK Berlin 18219560
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18219560
+- id: unified-ikmk-18222036
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Dukat (12 Mark)
+  year_first: 1761
+  year_last: 1761
+  year_label: '1761'
+  ruler: Frederik V.
+  inscription_obv: FRIDERICVS V D G DAN NOR V G REX
+  inscription_rev: PRUDENTIA ET CONSTANTIA // 17-61
+  mint: Kopenhagen
+  catalog:
+    hede: '22'
+    fr: '269'
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18222036
+    ref: IKMK Berlin 18222036
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18222036
+- id: unified-ikmk-18235175
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 20 Kronor
+  year_first: 1877
+  year_last: 1877
+  year_label: '1877'
+  ruler: Oskar II.
+  mintmaster: Emil Brusewitz
+  inscription_obv: OSCAR II SVERIGES O NORGES KONUNG
+  inscription_rev: BRÖDRAFOLKENS VÄL - 20 KRONOR
+  mint: Stockholm
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18235175
+    ref: IKMK Berlin 18235175
+  note:
+    de: SEK
+    en: SEK
+    uk: SEK
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18235175
+- id: unified-ikmk-18296050
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 6 Daler
+  year_first: 1568
+  year_last: 1574
+  year_ranges:
+  - - 1568
+    - 1574
+  year_label: 1568-1574
+  ruler: Johann III.
+  mintmaster: Hans Höjer
+  inscription_obv: IOHANNES 3 D G SWEC-ORVM GOTOR VAN S RX
+  inscription_rev: + MISERICORD ET VERITS CVSTOD REG + ET ROBOR CLEM THRON EIVS / BENE + FACIENDO + NEMINEM + TIMEMVS / DEVS
+    + PROTEC-TOR + NOSTER
+  mint: Stockholm
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18296050
+    ref: IKMK Berlin 18296050
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18296050
+- id: unified-ikmk-18296060
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Daler
+  year_first: 1576
+  year_last: 1576
+  year_label: '1576'
+  ruler: Johann III.
+  mintmaster: Gillis (Julius) der Ältere Coyet
+  inscription_obv: IOHANNES III D G SWE-CIE GOT VAN REX / DEVS PROTEC-TOR NOSTER
+  inscription_rev: SALVATOR MVNDI - SALVA NOS 15-76
+  mint: Stockholm
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18296060
+    ref: IKMK Berlin 18296060
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18296060
+- id: unified-ikmk-18296063
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Daler
+  year_first: 1586
+  year_last: 1586
+  year_label: '1586'
+  ruler: Johann III.
+  mintmaster: Gillis (Julius) der Ältere Coyet
+  inscription_obv: IOHANNES III D G SWE-CIE GOT VAN REX / DEVS PROTEC-TOR NOSTER
+  inscription_rev: SALVATOR MVNDI - SALVA NOS 15-86
+  mint: Stockholm
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18296063
+    ref: IKMK Berlin 18296063
+  verification_note: *id001
+  issuing_entity: danish_realm
+  composed_of:
+  - ikmk-18296063
 - id: unified-km-135-chr-iv-1646
   fuss: seed_unsorted
   phase: ucoin

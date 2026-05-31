@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `landgrafschaft_hessen_kassel`.
-# Generated 2026-05-30 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-31 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/landgrafschaft_hessen_kassel.yml across all sources.
 #
-# Input: 2 per-source seed entries.
-# Output: 2 unified entries (one per physical coin).
+# Input: 8 per-source seed entries.
+# Output: 8 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: landgrafschaft_hessen_kassel
-generated_at: '2026-05-30'
+generated_at: '2026-05-31'
 coins:
 - id: unified-dk-bruun-12844
   fuss: seed_unsorted
@@ -94,3 +94,179 @@ coins:
   issuing_entity: landgrafschaft_hessen_kassel
   composed_of:
   - dk-bruun-12898
+- id: unified-ikmk-18204485
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  year_first: 1811
+  year_last: 1811
+  year_label: '1811'
+  ruler: Hieronymus Napoleon
+  inscription_obv: HIERONYMUS - NAPOLEON
+  inscription_rev: KOENIG VON WESTPHALEN FR PR - 10 ST EINE MARK F
+  mint: Kassel
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18204485
+    ref: IKMK Berlin 18204485
+  note:
+    de: Ausbeute
+    en: Ausbeute
+    uk: Ausbeute
+  verification_note: &id001
+    de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder
+      museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+    en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested;
+      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+    uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза
+      некласифіковані (seed_unsorted) до Phase-4.'
+  issuing_entity: landgrafschaft_hessen_kassel
+  composed_of:
+  - ikmk-18204485
+- id: unified-ikmk-18206232
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  year_first: 1637
+  year_last: 1637
+  year_label: '1637'
+  ruler: Wilhelm V.
+  inscription_obv: WILHELM9 V DICT9 CONSTANS HASS LANDGRAVIUS - NATVS / 14 FEBRVARI / ANNI 1602 MOR/TVVS 21 SEPTEM / ANNI
+    1637 REGN / ANNOS 10 MESES / 6 DIES 4 VIXIT / ANNOS 35 MEN / SES 7 DIES 7 / G K
+  inscription_rev: VNO VOLENTE HUMILIS LEVABOR
+  mint: Kassel
+  catalog:
+    dav: '984'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18206232
+    ref: IKMK Berlin 18206232
+  verification_note: *id001
+  issuing_entity: landgrafschaft_hessen_kassel
+  composed_of:
+  - ikmk-18206232
+- id: unified-ikmk-18206254
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  year_first: 1778
+  year_last: 1778
+  year_label: '1778'
+  ruler: Friedrich II.
+  mintmaster: Johann Balthasar Reinhard
+  inscription_obv: FRIDERICUS II D G HASS LANDG HAN COM
+  inscription_rev: EIN THALER // VIRTUTE ET FIDELITATE // 17-78
+  mint: Kassel
+  catalog:
+    dav: '2303'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18206254
+    ref: IKMK Berlin 18206254
+  verification_note: *id001
+  issuing_entity: landgrafschaft_hessen_kassel
+  composed_of:
+  - ikmk-18206254
+- id: unified-ikmk-18220013
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 2 Dukaten
+  year_first: 1727
+  year_last: 1727
+  year_label: '1727'
+  ruler: Karl
+  inscription_obv: CAR D G - HASS LAND
+  mint: Kassel
+  catalog:
+    fr: '1276'
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18220013
+    ref: IKMK Berlin 18220013
+  verification_note: *id001
+  issuing_entity: landgrafschaft_hessen_kassel
+  composed_of:
+  - ikmk-18220013
+- id: unified-ikmk-18270237
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  year_first: 1776
+  year_last: 1776
+  year_label: '1776'
+  ruler: Friedrich II.
+  mintmaster: Johann Balthasar Reinhard
+  inscription_obv: FRIDERICUS II D G HASS LANDG HAN COM
+  inscription_rev: EIN THALER // VIRTUTE ET FIDELITATE // 17-76
+  mint: Kassel
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18270237
+    ref: IKMK Berlin 18270237
+  verification_note: *id001
+  issuing_entity: landgrafschaft_hessen_kassel
+  composed_of:
+  - ikmk-18270237
+- id: unified-ikmk-18273559
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Guldengroschen
+  year_first: 1502
+  year_last: 1502
+  year_label: '1502'
+  ruler: Wilhelm II.
+  inscription_obv: + WILHELMVS D G LANTGRAVIVS HASSI
+  inscription_rev: GLORIA REI - PVBLICE 1502
+  mint: Kassel
+  catalog:
+    dav: '9267'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18273559
+    ref: IKMK Berlin 18273559
+  verification_note: *id001
+  issuing_entity: landgrafschaft_hessen_kassel
+  composed_of:
+  - ikmk-18273559

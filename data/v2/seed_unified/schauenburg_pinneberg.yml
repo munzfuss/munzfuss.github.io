@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `schauenburg_pinneberg`.
-# Generated 2026-05-30 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-31 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
-# Input: 246 per-source seed entries.
-# Output: 223 unified entries (one per physical coin).
+# Input: 248 per-source seed entries.
+# Output: 224 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: schauenburg_pinneberg
-generated_at: '2026-05-30'
+generated_at: '2026-05-31'
 coins:
 - id: unified-dk-bruun-14788
   fuss: seed_unsorted
@@ -4286,6 +4286,47 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - dk-numista-87823
+- id: unified-ikmk-18285689
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Doppelschilling
+  year_first: 1618
+  year_last: 1618
+  year_label: '1618'
+  ruler: Ernst III.
+  mintmaster: Christof (Christoffer) Feustel (Feistel)
+  inscription_obv: E D G C H - S E S D G
+  inscription_rev: MATTHIAS D G RO IM S A 618
+  mint: Altona
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18285689
+    ref: IKMK Berlin 18285689
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18285701
+    ref: IKMK Berlin 18285701
+  note:
+    de: 1/16 Taler
+    en: 1/16 Taler
+    uk: 1/16 Taler
+  verification_note:
+    de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder
+      museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+    en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested;
+      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+    uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза
+      некласифіковані (seed_unsorted) до Phase-4.'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - ikmk-18285689
+  - ikmk-18285701
 - id: unified-schleswig_holstein-numismaster-171183
   fuss: seed_unsorted
   phase: numismaster

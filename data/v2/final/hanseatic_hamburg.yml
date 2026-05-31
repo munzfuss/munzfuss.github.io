@@ -916,11 +916,11 @@ coins:
   catalog:
     km: '354'
   metal: billon
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: false
-  mint_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.375
@@ -932,6 +932,11 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/hamburg-1-schilling-1725-1768/?tid=81934
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18201570
+    ref: IKMK Berlin 18201570
+  inscription_obv: I / SCHIL/LING / 1754
+  inscription_rev: HAMBURGER
   verification_note:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -2352,12 +2357,13 @@ coins:
   year_label: 1808-1810
   catalog:
     km: '532'
+    fr: '1140'
   metal: gold
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: false
-  mint_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.979
@@ -2369,6 +2375,11 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/hamburg-1-ducat-1808-1810/?tid=82013
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18284861
+    ref: IKMK Berlin 18284861
+  inscription_obv: NVMVS AVREVS HAMBURGENSIS // 1808
+  inscription_rev: 67 / AEQV POND / MARC COLON / PRETII / 23 1/2 KARAT
   verification_note:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -2470,11 +2481,11 @@ coins:
   catalog:
     km: '560'
   metal: gold
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: false
-  mint_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.979
@@ -2486,6 +2497,11 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/hamburg-1-ducat-1843-1850/?tid=82026
     ref: ucoin
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18204546
+    ref: IKMK Berlin 18204546
+  inscription_obv: NVMVS AVREVS - HAMBVRGENSIS
+  inscription_rev: 67 / AEQV POND / MARC COL / PRETII / 23 1/2 KARAT
   verification_note:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -3036,3 +3052,236 @@ coins:
   composed_of:
   - unified-hb-tid-95684
   v1_home_location: hamburg
+- fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 2 Dukaten
+  issuing_entity: hanseatic_hamburg
+  id: unified-ikmk-18202256
+  year_first: 1705
+  year_last: 1711
+  year_ranges:
+  - - 1705
+    - 1711
+  year_label: 1705-1711
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18202256
+    ref: IKMK Berlin 18202256
+  inscription_obv: MONETA AUREA CIVITATIS HAMBURGEN
+  inscription_rev: IOSEPHUS D G ROMA IMP SEM AUG
+  verification_note: &id001
+    de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder
+      museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+    en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested;
+      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+    uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза
+      некласифіковані (seed_unsorted) до Phase-4.'
+  composed_of:
+  - unified-ikmk-18202256
+- fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  mintmaster: Joachim Rustmeyer
+  issuing_entity: hanseatic_hamburg
+  id: unified-ikmk-18202372
+  year_first: 1694
+  year_last: 1694
+  year_label: '1694'
+  catalog:
+    dav: '5374'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18202372
+    ref: IKMK Berlin 18202372
+  inscription_obv: MONETA NOVA CIVITATIS HAMBURGENSIS
+  inscription_rev: LEOPOLDUS D G ROMA IMP SEM AUG
+  verification_note: *id001
+  composed_of:
+  - unified-ikmk-18202372
+- fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 2 Mark
+  issuing_entity: hanseatic_hamburg
+  id: unified-ikmk-18203932
+  year_first: 1908
+  year_last: 1908
+  year_label: '1908'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18203932
+    ref: IKMK Berlin 18203932
+  inscription_obv: FREIE UND HANSESTADT HAMBURG
+  inscription_rev: DEUTSCHES - REICH 1908 - ZWEI MARK
+  verification_note: *id001
+  composed_of:
+  - unified-ikmk-18203932
+- fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 25 Pfennig
+  ruler: Wilhelm II.
+  issuing_entity: hanseatic_hamburg
+  id: unified-ikmk-18203937
+  year_first: 1909
+  year_last: 1909
+  year_label: '1909'
+  metal_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18203937
+    ref: IKMK Berlin 18203937
+  inscription_rev: DEUTSCHES - REICH 1909
+  verification_note: *id001
+  composed_of:
+  - unified-ikmk-18203937
+- fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 20 Lei
+  ruler: Karl
+  issuing_entity: hanseatic_hamburg
+  id: unified-ikmk-18222024
+  year_first: 1883
+  year_last: 1883
+  year_label: '1883'
+  catalog:
+    fr: '3'
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18222024
+    ref: IKMK Berlin 18222024
+  inscription_obv: CAROL I REGE AL ROMANIEI
+  verification_note: *id001
+  composed_of:
+  - unified-ikmk-18222024
+- fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 10 Mark
+  issuing_entity: hanseatic_hamburg
+  id: unified-ikmk-18224429
+  year_first: 1875
+  year_last: 1875
+  year_label: '1875'
+  catalog:
+    fr: '3780'
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18224429
+    ref: IKMK Berlin 18224429
+  inscription_obv: FREIE UND HANSESTADT HAMBURG
+  inscription_rev: DEUTSCHES - REICH 1875 - ZEHN MARK
+  verification_note: *id001
+  composed_of:
+  - unified-ikmk-18224429
+- fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler (32 Schillinge)
+  mintmaster: Matthias der Ältere Freude
+  issuing_entity: hanseatic_hamburg
+  id: unified-ikmk-18264713
+  year_first: 1636
+  year_last: 1636
+  year_label: '1636'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18264713
+    ref: IKMK Berlin 18264713
+  inscription_obv: MONETA NOVA CIVIT HAMBURGENSIS 1636
+  inscription_rev: FERDINANDUS D G ROMA IMP SE AU
+  verification_note: *id001
+  composed_of:
+  - unified-ikmk-18264713
+- fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Doppelschilling
+  issuing_entity: hanseatic_hamburg
+  id: unified-ikmk-18265633
+  year_first: 1628
+  year_last: 1628
+  year_label: '1628'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18265633
+    ref: IKMK Berlin 18265633
+  inscription_obv: HAMBURGER
+  inscription_rev: STAD GELDT 1628 -/ II SCHIL/LING
+  verification_note: *id001
+  composed_of:
+  - unified-ikmk-18265633
+- fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler (32 Schillinge)
+  mintmaster: Otto Heinrich Knorre
+  issuing_entity: hanseatic_hamburg
+  id: unified-ikmk-18265652
+  year_first: 1767
+  year_last: 1767
+  year_label: '1767'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18265652
+    ref: IKMK Berlin 18265652
+  inscription_obv: HAMBVRGER - CVRRENTGELD // 32 SCHILL
+  inscription_rev: IOSEPHVS II D G ROM IMP SEMP AVGVSTVS
+  verification_note: *id001
+  composed_of:
+  - unified-ikmk-18265652

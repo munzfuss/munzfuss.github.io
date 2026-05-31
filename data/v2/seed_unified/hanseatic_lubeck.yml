@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hanseatic_lubeck`.
-# Generated 2026-05-30 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-05-31 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_lubeck.yml across all sources.
 #
-# Input: 81 per-source seed entries.
-# Output: 81 unified entries (one per physical coin).
+# Input: 105 per-source seed entries.
+# Output: 101 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hanseatic_lubeck
-generated_at: '2026-05-30'
+generated_at: '2026-05-31'
 coins:
 - id: unified-dk-bruun-12891
   fuss: seed_unsorted
@@ -91,6 +91,623 @@ coins:
   issuing_entity: hanseatic_lubeck
   composed_of:
   - dk-bruun-15027
+- id: unified-ikmk-18201758
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1½ Taler
+  year_first: 1603
+  year_last: 1609
+  year_ranges:
+  - - 1603
+    - 1609
+  year_label: 1603-1609
+  mintmaster: Statius Wessel
+  inscription_obv: ADVERSVS HOSTES NVLLA - PRAETEREVNDA EST OCCASIO
+  inscription_rev: MEDIOCRITAS IN OMNI - RE EST OPTIMA
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18201758
+    ref: IKMK Berlin 18201758
+  verification_note: &id001
+    de: 'IKMK-Seed: Datensatz aus dem Interaktiven Katalog des Münzkabinetts Berlin (ikmk.smb.museum, CC BY-SA 4.0). Felder
+      museumsbelegt; Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+    en: 'IKMK seed: record from the Berlin Münzkabinett online catalogue (ikmk.smb.museum, CC BY-SA 4.0). Fields museum-attested;
+      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+    uk: 'IKMK-сід: запис з онлайн-каталогу Münzkabinett Berlin (ikmk.smb.museum, CC BY-SA 4.0). Поля музейно-засвідчені; Müntzfuß/фаза
+      некласифіковані (seed_unsorted) до Phase-4.'
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18201758
+- id: unified-ikmk-18201883
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  year_first: 1537
+  year_last: 1537
+  year_label: '1537'
+  ruler: Karl I.
+  inscription_obv: MONETA CESAREAE CIVITATIS LVBECAE 15-37
+  inscription_rev: + IMP CAROLVS V CESARVS NVLLI SECVNDVS
+  catalog:
+    dav: '9398'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18201883
+    ref: IKMK Berlin 18201883
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18201883
+- id: unified-ikmk-18202373
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler (32 Schillinge)
+  year_first: 1631
+  year_last: 1631
+  year_label: '1631'
+  inscription_obv: MONE NOVA - LVBECENS
+  inscription_rev: FERDINAND II D G ROM IM SEMP AV
+  catalog:
+    dav: '5449'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18202373
+    ref: IKMK Berlin 18202373
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18202373
+- id: unified-ikmk-18206000
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  year_first: 1730
+  year_last: 1730
+  year_label: '1730'
+  mintmaster: Johann Justus Jaster
+  inscription_obv: IMPERIAL CIVIT - LUBECENSIS 1730
+  inscription_rev: CONFESS EVANG IN COMIT AUG EXHIBITAE // SACRA - SAECU/LARIA - SECUNDA / XXV - IUN
+  catalog:
+    dav: '2416'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18206000
+    ref: IKMK Berlin 18206000
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18206000
+- id: unified-ikmk-18206339
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Dukat
+  year_first: 1627
+  year_last: 1737
+  year_ranges:
+  - - 1627
+    - 1737
+  year_label: 1627-1737
+  ruler: Freie Reichsstadt Lübeck
+  mintmaster: Johann Justus Jaster
+  inscription_obv: IMPERIAL CIVIT - LUBECENSIS 1730
+  inscription_rev: CONFESS EVANG IN COM AUG EXHIBITAE -/ SAC - SAECU/LAR - SEC / 25 - IUN
+  catalog:
+    km: A36
+  metal: gold
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.986
+    source: ucoin
+  weight_rough_g:
+  - value: 3.5
+    source: ucoin
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18206339
+    ref: IKMK Berlin 18206339
+  - type: ucoin
+    url: https://en.ucoin.net/coin/lubeck-1-ducat-1627-1737/?tid=102730
+    ref: ucoin
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18206339
+  - lu-tid-102730
+- id: unified-ikmk-18219826
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: ⅓ Mark
+  year_first: 1502
+  year_last: 1502
+  year_label: '1502'
+  inscription_obv: + MONETA NOVA LVBICENSIS 1502
+  inscription_rev: + TERNARIVS MARCE LVBICENSIS
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219826
+    ref: IKMK Berlin 18219826
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18219826
+- id: unified-ikmk-18219983
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Goldgulden
+  year_first: 1490
+  year_last: 1500
+  year_ranges:
+  - - 1490
+    - 1500
+  year_label: 1490-1500
+  inscription_obv: MONETA LVBICENS
+  inscription_rev: S IOhANES - BAPTIST
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18219983
+    ref: IKMK Berlin 18219983
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18219983
+- id: unified-ikmk-18264671
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  year_first: 1609
+  year_last: 1616
+  year_ranges:
+  - - 1609
+    - 1616
+  year_label: 1609-1616
+  mintmaster: Statius Wessel
+  inscription_obv: ADVERSVS HOSTES NVLLA - PRAETEREVNDA EST OCCASIO
+  inscription_rev: MEDIOCRITAS IN OMNI - RE EST OPTIMA
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18264671
+    ref: IKMK Berlin 18264671
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18264671
+- id: unified-ikmk-18274551
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: ½ Taler
+  year_first: 1531
+  year_last: 1531
+  year_label: '1531'
+  ruler: Jesus Christus
+  mintmaster: Jürgen Bockolt
+  inscription_obv: IK DAVIT E KONE HELT MI HARP KLI A D G VEL-T
+  inscription_rev: NVMENT KVMT TO I VADER DE DOR / MI IO 14
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18274551
+    ref: IKMK Berlin 18274551
+  note:
+    de: ½ Schautaler
+    en: ½ Schautaler
+    uk: ½ Schautaler
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18274551
+- id: unified-ikmk-18276098
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Sechsling
+  year_first: 1620
+  year_last: 1620
+  year_label: '1620'
+  mintmaster: Heinrich von der Klähren
+  inscription_obv: MONE NO - LVBEC
+  inscription_rev: CIVITAT IMPERI 20
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18276098
+    ref: IKMK Berlin 18276098
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18276104
+    ref: IKMK Berlin 18276104
+  note:
+    de: 1/96 Taler
+    en: 1/96 Taler
+    uk: 1/96 Taler
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18276098
+  - ikmk-18276104
+- id: unified-ikmk-18276110
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Sechsling
+  year_first: 1620
+  year_last: 1620
+  year_label: '1620'
+  mintmaster: Heinrich von der Klähren
+  inscription_obv: MONE NO - LVBE
+  inscription_rev: CIVITAT IMPERI 20
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18276110
+    ref: IKMK Berlin 18276110
+  note:
+    de: 1/96 Taler
+    en: 1/96 Taler
+    uk: 1/96 Taler
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18276110
+- id: unified-ikmk-18276115
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Sechsling
+  year_first: 1621
+  year_last: 1621
+  year_label: '1621'
+  mintmaster: Heinrich von der Klähren
+  inscription_obv: MONE NO - LVBE
+  inscription_rev: CIVITAT IMPERI 21
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18276115
+    ref: IKMK Berlin 18276115
+  note:
+    de: 1/96 Taler
+    en: 1/96 Taler
+    uk: 1/96 Taler
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18276115
+- id: unified-ikmk-18276121
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Sechsling
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mintmaster: Heinrich von der Klähren
+  inscription_obv: MONE NO - LVBE
+  inscription_rev: CIVITAT IMPERI 22
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18276121
+    ref: IKMK Berlin 18276121
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18276123
+    ref: IKMK Berlin 18276123
+  note:
+    de: 1/96 Taler
+    en: 1/96 Taler
+    uk: 1/96 Taler
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18276121
+  - ikmk-18276123
+- id: unified-ikmk-18276125
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Sechsling
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mintmaster: Heinrich von der Klähren
+  inscription_obv: MONE NO - LVBE
+  inscription_rev: CIVITAT IMPERI 22
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18276125
+    ref: IKMK Berlin 18276125
+  note:
+    de: 1/96 Taler
+    en: 1/96 Taler
+    uk: 1/96 Taler
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18276125
+- id: unified-ikmk-18283281
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Dreiling
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mintmaster: Heinrich von der Klähren
+  inscription_obv: MONE NO LVBEC 22
+  inscription_rev: CIVITAT IMPER
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18283281
+    ref: IKMK Berlin 18283281
+  note:
+    de: 1/192 Taler
+    en: 1/192 Taler
+    uk: 1/192 Taler
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18283281
+- id: unified-ikmk-18283282
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Dreiling
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mintmaster: Heinrich von der Klähren
+  inscription_obv: MONE NO [LVB] 22
+  inscription_rev: CIVITAT IMPERI
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18283282
+    ref: IKMK Berlin 18283282
+  note:
+    de: 1/192 Taler
+    en: 1/192 Taler
+    uk: 1/192 Taler
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18283282
+- id: unified-ikmk-18283283
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Pfennig
+  year_first: 1621
+  year_last: 1621
+  year_label: '1621'
+  mintmaster: Heinrich von der Klähren
+  metal: copper
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18283283
+    ref: IKMK Berlin 18283283
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18283303
+    ref: IKMK Berlin 18283303
+  note:
+    de: einseitig
+    en: einseitig
+    uk: einseitig
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18283283
+  - ikmk-18283303
+- id: unified-ikmk-18283284
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Pfennig
+  year_first: 1621
+  year_last: 1621
+  year_label: '1621'
+  mintmaster: Heinrich von der Klähren
+  metal: copper
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18283284
+    ref: IKMK Berlin 18283284
+  note:
+    de: einseitig
+    en: einseitig
+    uk: einseitig
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18283284
+- id: unified-ikmk-18283285
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Pfennig
+  year_first: 1621
+  year_last: 1621
+  year_label: '1621'
+  mintmaster: Heinrich von der Klähren
+  metal: copper
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18283285
+    ref: IKMK Berlin 18283285
+  note:
+    de: einseitig
+    en: einseitig
+    uk: einseitig
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18283285
+- id: unified-ikmk-18283304
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Pfennig
+  year_first: 1621
+  year_last: 1621
+  year_label: '1621'
+  mintmaster: Heinrich von der Klähren
+  metal: copper
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18283304
+    ref: IKMK Berlin 18283304
+  note:
+    de: einseitig
+    en: einseitig
+    uk: einseitig
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18283304
+- id: unified-ikmk-18283331
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 24 Pfennig
+  year_first: 1619
+  year_last: 1619
+  year_label: '1619'
+  mintmaster: Heinrich von der Klähren
+  inscription_obv: MONETA - LVBECEN
+  inscription_rev: DOMINE SERVA NOS DALER -/ A / 20 STVC -/ 24 d
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18283331
+    ref: IKMK Berlin 18283331
+  note:
+    de: 1/20 Taler
+    en: 1/20 Taler
+    uk: 1/20 Taler
+  verification_note: *id001
+  issuing_entity: hanseatic_lubeck
+  composed_of:
+  - ikmk-18283331
 - id: unified-lu-tid-102423
   fuss: seed_unsorted
   phase: ucoin
@@ -2384,43 +3001,6 @@ coins:
   issuing_entity: hanseatic_lubeck
   composed_of:
   - lu-tid-102729
-- id: unified-lu-tid-102730
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Ducat
-  year_first: 1627
-  year_last: 1737
-  year_ranges:
-  - - 1627
-    - 1737
-  year_label: 1627-1737
-  ruler: Freie Reichsstadt Lübeck
-  catalog:
-    km: A36
-  metal: gold
-  metal_verified: false
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.986
-    source: ucoin
-  weight_rough_g:
-  - value: 3.5
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/lubeck-1-ducat-1627-1737/?tid=102730
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed (V1-Carryover): pre-cache V1-Curator-Eintrag, kein Cache-Backing.'
-    en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
-    uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
-  issuing_entity: hanseatic_lubeck
-  composed_of:
-  - lu-tid-102730
 - id: unified-lu-tid-102733
   fuss: seed_unsorted
   phase: ucoin

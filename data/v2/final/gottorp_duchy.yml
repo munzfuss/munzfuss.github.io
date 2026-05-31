@@ -934,11 +934,14 @@ coins:
   catalog:
     km: '155'
     numista: '301828'
-    lange: 431-32, 434, 436-38
+    lange:
+    - 431-32, 434, 436-38
+    - '434'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   sources:
@@ -948,6 +951,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301828.html
     ref: Numista N#301828
+  - type: literature
+    url: https://en.numista.com/301828
+    ref: Numista N#301828 — 4 Schilling - Frederick IV
   note:
     de: «IIII SCHILLING» + Datum · Friedrich IV. von Holstein-Gottorp, Tönning · Numista N#301828 dokumentiert Typ und Datierung
       1695–1702, publiziert jedoch weder Raugewicht noch Feingehalt; das Foto auf der Numista-Seite trägt einen Emporium-Hamburg-Bildrechte-Vermerk,
@@ -974,6 +980,7 @@ coins:
       — діапазон підтверджено як continuous. Раніше вказаний діапазон повної ваги 2,54–2,60 г та оцінений за аналогією діапазон
       проби .500–.625 видалено 2026-05-10, бо жодне доступне джерело прямо не підтверджувало ці значення (за CLAUDE.md §0).'
   composed_of:
+  - unified-dk-numista-301828
   - unified-schleswig_holstein-numismaster-167287
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -8361,10 +8368,6 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Goldgulden
-  note:
-    de: 'Rhinsk Gulden'
-    en: 'Rhinsk Gulden'
-    uk: 'Rhinsk Gulden'
   ruler: Frederik I
   issuing_entity: gottorp_duchy
   id: unified-dk-bruun-14741
@@ -8423,6 +8426,10 @@ coins:
   - type: literature
     url: https://en.numista.com/417865
     ref: Numista N#417865 — 1 Goldgulden - Frederick I
+  note:
+    de: Rhinsk Gulden
+    en: Rhinsk Gulden
+    uk: Rhinsk Gulden
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -8740,10 +8747,6 @@ coins:
   phase: numista
   kind: kurant
   nominal: 1 Ducat
-  note:
-    de: 'Dukat'
-    en: 'Dukat'
-    uk: 'Dukat'
   ruler: Christian III
   issuing_entity: gottorp_duchy
   id: unified-dk-numista-461448
@@ -8788,6 +8791,10 @@ coins:
   - type: literature
     url: https://en.numista.com/461448
     ref: Numista N#461448 — 1 Ducat - Christian III (Gottorp)
+  note:
+    de: Dukat
+    en: Dukat
+    uk: Dukat
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
