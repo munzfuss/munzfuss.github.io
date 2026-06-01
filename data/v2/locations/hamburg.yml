@@ -4,13 +4,16 @@ name:
   en: Hamburg
   uk: Гамбург
 summary:
-  de: Freie und Hansestadt Hamburg — Reichsstadt mit eigener Müntzstätte und der Bancovaluta des Hamburger Banks (gegründet 1619). Reichsthaler im 9-Fuß und Schillinge im 34-Marck-Fuß biß zur Einführung der Reichsmark 1875.
-  en: Free and Hanseatic City of Hamburg — imperial city with its own mint and the Bancovaluta of the Hamburger Bank (founded 1619). Reichsthaler at the 9-Fuß and Schilling pieces at the 34-Marck-Fuß until the introduction of the Reichsmark in 1875.
-  uk: Вільне ганзейське місто Гамбург — імперське місто з власним монетним двором і Bancovaluta-системою Гамбурзького банку (заснований 1619). Reichsthaler у 9-Fuß та шилінги у 34-Marck-Fuß до запровадження Reichsmark 1875.
+  de: Freie und Hansestadt Hamburg — Reichsstadt mit eigener Müntzstätte und der Bancovaluta des Hamburger Banks (gegründet 1619). Reichsthaler im 9-Fuß und Schillinge im 34-Marck-Fuß biß zur 
+    Einführung der Reichsmark 1875.
+  en: Free and Hanseatic City of Hamburg — imperial city with its own mint and the Bancovaluta of the Hamburger Bank (founded 1619). Reichsthaler at the 9-Fuß and Schilling pieces at the 34-Marck-Fuß 
+    until the introduction of the Reichsmark in 1875.
+  uk: Вільне ганзейське місто Гамбург — імперське місто з власним монетним двором і Bancovaluta-системою Гамбурзького банку (заснований 1619). Reichsthaler у 9-Fuß та шилінги у 34-Marck-Fuß до 
+    запровадження Reichsmark 1875.
 consumes_entities:
-- hanseatic_hamburg
+  - hanseatic_hamburg
 fuss_order:
-- seed_unsorted
+  - seed_unsorted
 fuss_periods:
   seed_unsorted:
     pdate_label:
@@ -18,34 +21,43 @@ fuss_periods:
       en: Bulk seed bucket — period of validity to be assigned per coin
       uk: Bulk-seed загальний кошик — період дії потрібно призначити per coin
     hintergrund:
-      de: Technischer Sammelbucket für bulk-importierte Münzen aus ucoin. Bei künftiger Detail-Bearbeitung wandern die Stücke in den jeweils passenden eigentlichen Müntzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code> etc.).
-      en: Technical catch-all bucket for bulk-imported coins from ucoin. On future detailed work the pieces will move to their proper Münzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code>, etc.).
-      uk: Технічний загальний кошик для bulk-імпортованих монет із ucoin. При майбутній детальній роботі монети перейдуть у відповідну Müntzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code> тощо).
+      de: Technischer Sammelbucket für bulk-importierte Münzen aus ucoin. Bei künftiger Detail-Bearbeitung wandern die Stücke in den jeweils passenden eigentlichen Müntzfuß (<code>9_25_thaler</code>, 
+        <code>11_333_thaler</code>, <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code> etc.).
+      en: Technical catch-all bucket for bulk-imported coins from ucoin. On future detailed work the pieces will move to their proper Münzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, 
+        <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code>, etc.).
+      uk: Технічний загальний кошик для bulk-імпортованих монет із ucoin. При майбутній детальній роботі монети перейдуть у відповідну Müntzfuß (<code>9_25_thaler</code>, <code>11_333_thaler</code>, 
+        <code>18_5_thaler</code>, <code>30_thaler</code>, <code>reichsdukatenfuss</code> тощо).
 phases:
   seed_unsorted:
-  - id: I
-    year_from: 1500
-    year_to: 1900
-    from_label: (?)
-    to_label: (?)
-    title:
-      de: Bulk-Seed-Phase
-      en: Bulk seed phase
-      uk: Bulk-seed-фаза
-    description:
-      de: Sammelphase für die initial bulk-importierten Stücke aus ucoin. Bei der nächsten Detail-Bearbeitung wandern die einzelnen Münzen in eigene Phasen mit korrekter Periodisierung.
-      en: Catch-all phase for the initial bulk-imported pieces from ucoin. On the next detailed pass each coin will move into its own properly periodised phase.
-      uk: Збірна фаза для початково bulk-імпортованих монет з ucoin. При наступному детальному проходженні кожна монета перейде у власну фазу з коректною періодизацією.
-  - id: ucoin
-    year_from: 1500
-    year_to: 1914
-    from_label: (?)
-    to_label: (?)
-    title:
-      de: Bulk-Seed · ucoin
-      en: Bulk seed · ucoin
-      uk: Bulk-seed · ucoin
-    description:
-      de: Sammelphase für die aus ucoin (ucoin.net per-coin pages) bulk-importierten Stücke — user-edited Münzkatalog (Tier-Äquivalent zu Numista). Quelle ist <code>data/v2/seed/ucoin/&lt;entity&gt;.yml</code>, generiert von <code>scripts/maintenance/build_ucoin_seed.py</code> aus dem ucoin-Cache (<code>scripts/cache/ucoin/*.json</code>). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.
-      en: Catch-all phase for coins bulk-imported from ucoin (ucoin.net per-coin pages) — user-edited coin catalogue (tier-equivalent to Numista). Source is <code>data/v2/seed/ucoin/&lt;entity&gt;.yml</code>, generated by <code>scripts/maintenance/build_ucoin_seed.py</code> from the ucoin cache (<code>scripts/cache/ucoin/*.json</code>). Per-coin verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.
-      uk: Збірна фаза для монет, bulk-імпортованих з ucoin (ucoin.net per-coin pages) — користувацький каталог монет (tier-еквівалент до Numista). Джерело — <code>data/v2/seed/ucoin/&lt;entity&gt;.yml</code>, генерує <code>scripts/maintenance/build_ucoin_seed.py</code> з ucoin-кешу (<code>scripts/cache/ucoin/*.json</code>). Покоінна верифікація проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) перед §BF-промоцією.
+    - id: I
+      year_from: 1559
+      year_to: 1914
+      from_label: (?)
+      to_label: (?)
+      title:
+        de: Bulk-Seed-Phase
+        en: Bulk seed phase
+        uk: Bulk-seed-фаза
+      description:
+        de: Sammelphase für die initial bulk-importierten Stücke aus ucoin. Bei der nächsten Detail-Bearbeitung wandern die einzelnen Münzen in eigene Phasen mit korrekter Periodisierung.
+        en: Catch-all phase for the initial bulk-imported pieces from ucoin. On the next detailed pass each coin will move into its own properly periodised phase.
+        uk: Збірна фаза для початково bulk-імпортованих монет з ucoin. При наступному детальному проходженні кожна монета перейде у власну фазу з коректною періодизацією.
+    - id: ucoin
+      year_from: 1559
+      year_to: 1914
+      from_label: (?)
+      to_label: (?)
+      title:
+        de: Bulk-Seed · ucoin
+        en: Bulk seed · ucoin
+        uk: Bulk-seed · ucoin
+      description:
+        de: Sammelphase für die aus ucoin (ucoin.net per-coin pages) bulk-importierten Stücke — user-edited Münzkatalog (Tier-Äquivalent zu Numista). Quelle ist 
+          <code>data/v2/seed/ucoin/&lt;entity&gt;.yml</code>, generiert von <code>scripts/maintenance/build_ucoin_seed.py</code> aus dem ucoin-Cache (<code>scripts/cache/ucoin/*.json</code>). 
+          Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange / NumisMaster / Bruun) vor §BF-Promotion.
+        en: Catch-all phase for coins bulk-imported from ucoin (ucoin.net per-coin pages) — user-edited coin catalogue (tier-equivalent to Numista). Source is 
+          <code>data/v2/seed/ucoin/&lt;entity&gt;.yml</code>, generated by <code>scripts/maintenance/build_ucoin_seed.py</code> from the ucoin cache (<code>scripts/cache/ucoin/*.json</code>). Per-coin
+          verification against primary sources (Hede / Sieg / Lange / NumisMaster / Bruun) before §BF promotion.
+        uk: Збірна фаза для монет, bulk-імпортованих з ucoin (ucoin.net per-coin pages) — користувацький каталог монет (tier-еквівалент до Numista). Джерело — 
+          <code>data/v2/seed/ucoin/&lt;entity&gt;.yml</code>, генерує <code>scripts/maintenance/build_ucoin_seed.py</code> з ucoin-кешу (<code>scripts/cache/ucoin/*.json</code>). Покоінна верифікація 
+          проти первинних джерел (Hede / Sieg / Lange / NumisMaster / Bruun) перед §BF-промоцією.
