@@ -4,33 +4,71 @@ name:
   en: Archbishopric of Bremen-Verden
   uk: Архієпископство Бремен-Верден
 summary:
-  de: Erzbisthum Bremen mit Bisthum Verden — Reichslehen mit Müntzstätten Bremervörde und Stade. Unter dänischen Administratoren
-    biß zum Westfälischen Frieden 1648, danach schwedisch (1648–1712). Nicht zu verwechseln mit der Freien Hansestadt Bremen.
-  en: Archbishopric of Bremen with the Bishopric of Verden — imperial fief with mints at Bremervörde and Stade. Held under
-    Danish administrators until the Peace of Westphalia in 1648, then Swedish (1648–1712). Not to be confused with the Free
-    Hanseatic City of Bremen.
-  uk: Архієпископство Бремен з єпископством Верден — імперський лен з монетними дворами в Бремерферде та Штаде. Під данськими
-    адміністраторами до Вестфальського миру 1648, потім шведське володіння (1648–1712). Не плутати з Вільним ганзейським містом
-    Бременом.
+  de: Erzbisthum Bremen mit Bisthum Verden — Reichslehen mit Müntzstätten Bremervörde und Stade. Unter dänischen Administratoren biß zum Westfälischen Frieden 1648, danach schwedisch (1648–1712). 
+    Nicht zu verwechseln mit der Freien Hansestadt Bremen.
+  en: Archbishopric of Bremen with the Bishopric of Verden — imperial fief with mints at Bremervörde and Stade. Held under Danish administrators until the Peace of Westphalia in 1648, then Swedish 
+    (1648–1712). Not to be confused with the Free Hanseatic City of Bremen.
+  uk: Архієпископство Бремен з єпископством Верден — імперський лен з монетними дворами в Бремерферде та Штаде. Під данськими адміністраторами до Вестфальського миру 1648, потім шведське володіння 
+    (1648–1712). Не плутати з Вільним ганзейським містом Бременом.
 consumes_entities:
-- erzbisthum_bremen_verden
+  - erzbisthum_bremen_verden
 fuss_order:
-- seed_unsorted
+  - seed_unsorted
 phases:
   seed_unsorted:
-  - id: I
-    year_from: 1622
-    year_to: 1674
-    from_label: (?)
-    to_label: (?)
-    title:
-      de: Bulk-Seed-Phase (Bruun-Import 2026-05)
-      en: Bulk seed phase (Bruun import 2026-05)
-      uk: Bulk-seed-фаза (Bruun-імпорт 2026-05)
-    description:
-      de: Sammelphase für die aus Bruun-Auktionskatalogen seed-importierten Stücke. Bei der nächsten Detail-Bearbeitung wandern
-        die einzelnen Münzen in ihre eigene Müntzfuß-Klassifikation.
-      en: Catch-all phase for the pieces seed-imported from Bruun auction catalogues. On the next detailed pass each coin
-        will move into its own Müntzfuß classification.
-      uk: Збірна фаза для монет, seed-імпортованих з Bruun-аукціонних каталогів. При наступному детальному проходженні кожна
-        монета перейде у власну Müntzfuß-класифікацію.
+    - id: bruun
+      year_from: 1559
+      year_to: 1914
+      from_label: (?)
+      to_label: (?)
+      title:
+        de: Bulk-Seed · Bruun
+        en: Bulk seed · Bruun
+        uk: Bulk-seed · Bruun
+      description:
+        de: Sammelphase für die seed-importierten Stücke aus Bruun. Bei der nächsten Detail-Bearbeitung wandern die einzelnen Münzen in ihre eigene Müntzfuß-Klassifikation mit korrekter 
+          Periodisierung.
+        en: Bulk-seed collection of pieces imported from Bruun. On the next detailed pass each coin moves into its own Münzfuß classification with proper periodisation.
+        uk: Збірна фаза для seed-імпортованих монет із Bruun. На наступному детальному проході кожна монета перейде у власну класифікацію Müntzfuß з коректною періодизацією.
+    - id: numista
+      year_from: 1559
+      year_to: 1914
+      from_label: (?)
+      to_label: (?)
+      title:
+        de: Bulk-Seed · Numista
+        en: Bulk seed · Numista
+        uk: Bulk-seed · Numista
+      description:
+        de: Sammelphase für die seed-importierten Stücke aus Numista. Bei der nächsten Detail-Bearbeitung wandern die einzelnen Münzen in ihre eigene Müntzfuß-Klassifikation mit korrekter 
+          Periodisierung.
+        en: Bulk-seed collection of pieces imported from Numista. On the next detailed pass each coin moves into its own Münzfuß classification with proper periodisation.
+        uk: Збірна фаза для seed-імпортованих монет із Numista. На наступному детальному проході кожна монета перейде у власну класифікацію Müntzfuß з коректною періодизацією.
+    - id: ucoin
+      year_from: 1559
+      year_to: 1914
+      from_label: (?)
+      to_label: (?)
+      title:
+        de: Bulk-Seed · ucoin
+        en: Bulk seed · ucoin
+        uk: Bulk-seed · ucoin
+      description:
+        de: Sammelphase für die seed-importierten Stücke aus ucoin. Bei der nächsten Detail-Bearbeitung wandern die einzelnen Münzen in ihre eigene Müntzfuß-Klassifikation mit korrekter 
+          Periodisierung.
+        en: Bulk-seed collection of pieces imported from ucoin. On the next detailed pass each coin moves into its own Münzfuß classification with proper periodisation.
+        uk: Збірна фаза для seed-імпортованих монет із ucoin. На наступному детальному проході кожна монета перейде у власну класифікацію Müntzfuß з коректною періодизацією.
+    - id: ikmk
+      year_from: 1559
+      year_to: 1914
+      from_label: (?)
+      to_label: (?)
+      title:
+        de: Bulk-Seed · IKMK Berlin
+        en: Bulk seed · IKMK Berlin
+        uk: Bulk-seed · IKMK Berlin
+      description:
+        de: Sammelphase für die seed-importierten Stücke aus IKMK Berlin. Bei der nächsten Detail-Bearbeitung wandern die einzelnen Münzen in ihre eigene Müntzfuß-Klassifikation mit korrekter 
+          Periodisierung.
+        en: Bulk-seed collection of pieces imported from IKMK Berlin. On the next detailed pass each coin moves into its own Münzfuß classification with proper periodisation.
+        uk: Збірна фаза для seed-імпортованих монет із IKMK Berlin. На наступному детальному проході кожна монета перейде у власну класифікацію Müntzfuß з коректною періодизацією.

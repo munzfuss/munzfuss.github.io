@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `sonderburg_duchy`.
-# Generated 2026-05-30 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-01 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/sonderburg_duchy.yml across all sources.
 #
 # Input: 43 per-source seed entries.
-# Output: 34 unified entries (one per physical coin).
+# Output: 39 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: sonderburg_duchy
-generated_at: '2026-05-30'
+generated_at: '2026-06-01'
 coins:
 - id: unified-dk-bruun-14662
   fuss: seed_unsorted
@@ -21,37 +21,25 @@ coins:
   year_first: 1622
   year_last: 1622
   year_label: '1622'
-  ruler: John
-  mint: Reinfeld
   catalog:
     km: '18'
     bruun_collection_id: '14662'
     sieg: '15.1'
     lange: 529a
-    numista: '151530'
     dav: '3714'
   metal: silver
-  metal_verified: true
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
+  mint_verified: false
   verified: false
   weight_rough_g:
-  - value: 28.27
-    source: numista
   - value: 28.56
     source: bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14242, p. 312
-  - type: literature
-    url: https://en.numista.com/151530
-    ref: Numista N#151530 — 1 Thaler - John
-  - type: literature
-    url: https://numismaster.com/MC_101374
-    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -66,8 +54,6 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - dk-bruun-14662
-  - dk-numista-151530
-  - schleswig_holstein-numismaster-101374
 - id: unified-dk-bruun-14663
   fuss: seed_unsorted
   phase: bruun
@@ -159,38 +145,26 @@ coins:
   year_first: 1622
   year_last: 1622
   year_label: '1622'
-  ruler: John
   mintmaster: Tobias Reinhardt (orb)
-  mint: Reinfeld
   catalog:
     km: '21'
     bruun_collection_id: '14665'
     sieg: '21'
     lange: '544'
-    numista: '151531'
     dav: '3715'
   metal: silver
-  metal_verified: true
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
+  mint_verified: false
   verified: false
   weight_rough_g:
-  - value: 28.43
-    source: numista
   - value: 28.62
     source: bruun
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14245, p. 314
-  - type: literature
-    url: https://en.numista.com/151531
-    ref: Numista N#151531 — 1 Thaler - John (Death)
-  - type: literature
-    url: https://numismaster.com/MC_101377
-    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -205,8 +179,6 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - dk-bruun-14665
-  - dk-numista-151531
-  - schleswig_holstein-numismaster-101377
 - id: unified-dk-bruun-14666
   fuss: seed_unsorted
   phase: bruun
@@ -298,19 +270,16 @@ coins:
   year_first: 1627
   year_last: 1627
   year_label: '1627'
-  ruler: Alexander
   catalog:
     km: '28'
     bruun_collection_id: '14678'
     sieg: '5'
     lange: '560'
-    numista: '151536'
     dav: '3717'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
   mint_verified: false
   verified: false
   weight_rough_g:
@@ -320,9 +289,6 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12212, p. 263
-  - type: literature
-    url: https://en.numista.com/151536
-    ref: Numista N#151536 — 1 Thaler - Alexander (Death)
   - type: literature
     url: https://numismaster.com/MC_101379
     ref: NumisMaster
@@ -340,7 +306,6 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - dk-bruun-14678
-  - dk-numista-151536
   - schleswig_holstein-numismaster-101379
 - id: unified-dk-numista-131934
   fuss: seed_unsorted
@@ -637,6 +602,90 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - dk-numista-151529
+- id: unified-dk-numista-151530
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  ruler: John
+  mint: Reinfeld
+  catalog:
+    km: '18'
+    numista: '151530'
+    lange: 529a
+    dav: EC II 3714
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.27
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/151530
+    ref: Numista N#151530 — 1 Thaler - John
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-numista-151530
+- id: unified-dk-numista-151531
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  ruler: John
+  mint: Reinfeld
+  catalog:
+    km: '21'
+    numista: '151531'
+    lange: '544'
+    dav: EC II 3715
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 28.43
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/151531
+    ref: Numista N#151531 — 1 Thaler - John (Death)
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-numista-151531
 - id: unified-dk-numista-151534
   fuss: seed_unsorted
   phase: numista
@@ -681,6 +730,44 @@ coins:
   composed_of:
   - dk-numista-151534
   - schleswig_holstein-numismaster-101369
+- id: unified-dk-numista-151536
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1627
+  year_last: 1627
+  year_label: '1627'
+  ruler: Alexander
+  catalog:
+    km: '28'
+    numista: '151536'
+    lange: '560'
+    dav: EC II 3717
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://en.numista.com/151536
+    ref: Numista N#151536 — 1 Thaler - Alexander (Death)
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - dk-numista-151536
 - id: unified-schleswig_holstein-numismaster-101366
   fuss: seed_unsorted
   phase: numismaster
@@ -835,6 +922,37 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - schleswig_holstein-numismaster-101373
+- id: unified-schleswig_holstein-numismaster-101374
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  catalog:
+    km: '18'
+    dav: '3714'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_101374
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - schleswig_holstein-numismaster-101374
 - id: unified-schleswig_holstein-numismaster-101375
   fuss: seed_unsorted
   phase: numismaster
@@ -897,6 +1015,37 @@ coins:
   issuing_entity: sonderburg_duchy
   composed_of:
   - schleswig_holstein-numismaster-101376
+- id: unified-schleswig_holstein-numismaster-101377
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  catalog:
+    km: '21'
+    dav: '3715'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_101377
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: sonderburg_duchy
+  composed_of:
+  - schleswig_holstein-numismaster-101377
 - id: unified-schleswig_holstein-numismaster-101378
   fuss: seed_unsorted
   phase: numismaster

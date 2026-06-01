@@ -625,6 +625,13 @@ _V2_ABSORBED_SEED_IDS_CACHE: set[str] | None = None
 # downstream.
 _COIN_SCHEMA_FIELDS: frozenset[str] = frozenset(Coin.model_fields.keys())
 
+# Valid Coin.metal values (mirrors the schema.py Coin.metal Literal). Used to
+# skip out-of-scope seed entries — Numista/ucoin catalogue paper money /
+# Notgeld too (metal 'paper'), which the precious-metal mission excludes and
+# the schema can't represent. See the _assemble_v2_location seed-render pass.
+_VALID_COIN_METALS: frozenset[str] = frozenset(
+    {"silver", "gold", "billon", "copper", "lead", "bronze"})
+
 
 def _load_v2_curated() -> dict[str, list[dict]]:
     """Load every `data/v2/final/<entity>.yml` once per process and return
@@ -827,9 +834,24 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
 
     Returns the number of coins assembled.
     """
-    consumes_entities = raw.get("consumes_entities") or []
-    if not consumes_entities:
+    # `consumes_entities` accepts a bare entity-id string OR a dict
+    # `{entity: <id>, year_from?: Y, year_to?: Y}` — the dict form caps the
+    # entity's coins to its «under-this-jurisdiction» window on THIS page
+    # (per-location, not global). E.g. the Denmark page consumes Norway only
+    # ≤1814 (Treaty of Kiel) and the Danish-controlled SH duchies only ≤1864
+    # (2nd Schleswig War), while those same entities render their full span on
+    # their own pages. The cap is enforced in the per-coin pre-filter below;
+    # Pass 1/2/seed-render iterate the entity ids unchanged.
+    _raw_consumes = raw.get("consumes_entities") or []
+    if not _raw_consumes:
         return 0
+    consumes_window: dict[str, tuple] = {}
+    for _e in _raw_consumes:
+        if isinstance(_e, dict):
+            consumes_window[_e["entity"]] = (_e.get("year_from"), _e.get("year_to"))
+        else:
+            consumes_window[_e] = (None, None)
+    consumes_entities = list(consumes_window.keys())
     consumes_set = set(consumes_entities)
 
     km_register = raw.get("km_register")
@@ -954,6 +976,32 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
         fuss = c.get("fuss")
         phase = c.get("phase")  # already scalar after _resolve_dict_fields
         cid = c.get("id")
+        # Out-of-scope guard (choke point for ALL passes — curated, seed_unified
+        # via _load_v2_curated, and seed-render): skip entries with a `metal`
+        # the schema can't model (Numista/ucoin harvest paper money / Notgeld,
+        # metal 'paper'), which the precious-metal mission excludes. `None`
+        # allowed (sparse seed). Prevents the whole location failing validation.
+        _m = c.get("metal")
+        if _m is not None and _m not in _VALID_COIN_METALS:
+            dropped.append((cid, f"out-of-scope metal '{_m}'"))
+            continue
+        # Per-entity consume-window cap (see consumes_window above): keep the
+        # coin only if its year falls within the «under this jurisdiction»
+        # window of AT LEAST ONE of its consumed entities. A coin matched via
+        # an uncapped entity (window (None, None)) always passes. This is what
+        # lets the Denmark page show Norway only ≤1814 + Danish-controlled SH
+        # only ≤1864, while those entities render their full span elsewhere.
+        _yf_coin = c.get("year_first")
+        if _yf_coin is not None:
+            _matched = [consumes_window[e]
+                        for e in _normalise_ie_to_list(c.get("issuing_entity"))
+                        if e in consumes_window]
+            if _matched and not any(
+                (lo is None or _yf_coin >= lo) and (hi is None or _yf_coin <= hi)
+                for lo, hi in _matched
+            ):
+                dropped.append((cid, f"year {_yf_coin} outside consume-window"))
+                continue
         if fuss not in phases_map:
             dropped.append((cid, f"fuss '{fuss}' not on this page"))
             continue

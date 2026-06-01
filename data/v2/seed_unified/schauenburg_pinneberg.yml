@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `schauenburg_pinneberg`.
-# Generated 2026-05-31 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-01 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
 # Input: 248 per-source seed entries.
-# Output: 224 unified entries (one per physical coin).
+# Output: 225 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: schauenburg_pinneberg
-generated_at: '2026-05-31'
+generated_at: '2026-06-01'
 coins:
 - id: unified-dk-bruun-14788
   fuss: seed_unsorted
@@ -217,7 +217,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 1 Double Taler
+  nominal: S chleswig-Holstein-Schaumburg-Pinneberg. Double Taler
   year_first: 1603
   year_last: 1603
   year_label: '1603'
@@ -256,7 +256,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 1 Double Taler
+  nominal: S chleswig-Holstein-Schaumburg-Pinneberg. Double Taler
   year_first: 1606
   year_last: 1606
   year_label: '1606'
@@ -268,6 +268,8 @@ coins:
     numista: '278290'
     dav: Lg# 470
     lange: '835'
+    others:
+    - Weinm# 95
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -363,37 +365,29 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 1 Thaler
+  nominal: (?)
   year_first: 1620
   year_last: 1620
   year_label: '1620'
-  ruler: Ernest
   mintmaster: Christoph Feistell
   mint: Altona
   catalog:
     km: '106'
     bruun_collection_id: '14891'
-    numista: '137344'
     dav: '3739'
   metal: silver
-  metal_verified: true
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
   mint_verified: true
   verified: false
   weight_rough_g:
-  - value: 27.43
-    source: numista
   - value: 28.82
     source: bruun
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12217, p. 264
-  - type: literature
-    url: https://en.numista.com/137344
-    ref: Numista N#137344 — 1 Thaler - Ernest III
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -408,7 +402,6 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - dk-bruun-14891
-  - dk-numista-137344
 - id: unified-dk-bruun-14906
   fuss: seed_unsorted
   phase: bruun
@@ -807,6 +800,8 @@ coins:
   catalog:
     km: '101'
     numista: '122595'
+    others:
+    - Weing Corvey# 219
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -850,6 +845,7 @@ coins:
   catalog:
     km: '109'
     numista: '133206'
+    dav: EC II 3741
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -896,6 +892,8 @@ coins:
     numista: '137111'
     mb: '2'
     lange: 780 A
+    others:
+    - Weinm# 9
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -939,6 +937,8 @@ coins:
     numista: '137112'
     mb: '4'
     lange: 780 A
+    others:
+    - Weinm# 10
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1156,6 +1156,8 @@ coins:
     mb: '42'
     dav: Lg# 454
     lange: 787c
+    others:
+    - Weinm# 23
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1243,6 +1245,8 @@ coins:
     numista: '137295'
     dav: Lg# 472
     lange: 831a
+    others:
+    - Weinm# 97
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1372,6 +1376,8 @@ coins:
   catalog:
     km: '61'
     numista: '137299'
+    others:
+    - Weinm# 120
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1635,6 +1641,8 @@ coins:
     km: '86'
     numista: '137309'
     lange: 942A
+    others:
+    - Weinm# 315
   metal: copper
   metal_verified: true
   fineness_verified: false
@@ -1677,6 +1685,8 @@ coins:
   catalog:
     km: '87'
     numista: '137315'
+    others:
+    - Weinm# 314
   metal: copper
   metal_verified: true
   fineness_verified: false
@@ -1724,6 +1734,8 @@ coins:
     km: '88'
     numista: '137320'
     lange: '942'
+    others:
+    - Weinm# 313
   metal: copper
   metal_verified: true
   fineness_verified: false
@@ -1771,6 +1783,8 @@ coins:
     km: '90'
     numista: '137325'
     lange: '941'
+    others:
+    - Weinm# 310
   metal: copper
   metal_verified: true
   fineness_verified: false
@@ -2048,6 +2062,46 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - dk-numista-137343
+- id: unified-dk-numista-137344
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1620
+  year_last: 1620
+  year_label: '1620'
+  ruler: Ernest
+  catalog:
+    km: '106'
+    numista: '137344'
+    dav: EC II 3739
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 27.43
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/137344
+    ref: Numista N#137344 — 1 Thaler - Ernest III
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - dk-numista-137344
 - id: unified-dk-numista-137345
   fuss: seed_unsorted
   phase: numista
@@ -2060,6 +2114,7 @@ coins:
   catalog:
     km: '108'
     numista: '137345'
+    dav: EC II 3741
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2102,6 +2157,8 @@ coins:
     km: '113'
     numista: '137346'
     dav: EC II# 3744
+    others:
+    - Weinm# 97
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2220,6 +2277,8 @@ coins:
   catalog:
     km: '123'
     numista: '137397'
+    others:
+    - Weinm# 373
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2311,6 +2370,8 @@ coins:
     numista: '137400'
     dav: EC II# 3746
     lange: 944c
+    others:
+    - Weinm# 154
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2397,6 +2458,8 @@ coins:
   ruler: Ernest
   catalog:
     numista: '137411'
+    others:
+    - Weinm# 316
   metal: copper
   metal_verified: true
   fineness_verified: false
@@ -2437,6 +2500,9 @@ coins:
     km: '26'
     numista: '137413'
     lange: 834 a
+    dav: Lg 461
+    others:
+    - Weinm# 90
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2480,6 +2546,9 @@ coins:
     km: '39'
     numista: '137415'
     lange: 832 a
+    dav: Lg 475
+    others:
+    - Weinm# 96
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2611,6 +2680,8 @@ coins:
   catalog:
     numista: '137419'
     lange: '837'
+    others:
+    - Weinm# 152
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2686,7 +2757,7 @@ coins:
   fuss: seed_unsorted
   phase: numista
   kind: kurant
-  nominal: 1½ Thaler
+  nominal: 1½ Thaler (1.5)
   year_first: 1598
   year_last: 1598
   year_label: '1598'
@@ -2695,6 +2766,8 @@ coins:
     numista: '268866'
     mb: '54'
     dav: Lg# 456
+    others:
+    - Weinm# 29
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2769,7 +2842,7 @@ coins:
   fuss: seed_unsorted
   phase: numista
   kind: kurant
-  nominal: 1 Goldgulden
+  nominal: 1 Goldgulden (3.25)
   year_first: 1603
   year_last: 1612
   year_ranges:
@@ -2787,6 +2860,8 @@ coins:
     km: '27'
     numista: '270483'
     fr: '3062'
+    others:
+    - Weinm# 83
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -2933,6 +3008,9 @@ coins:
     numista: '278276'
     mb: '20'
     lange: '790'
+    dav: GT I 8239
+    others:
+    - Weinm# 30
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2972,6 +3050,9 @@ coins:
   catalog:
     numista: '278277'
     mb: '21'
+    dav: GT I 8240
+    others:
+    - Weinm# 31
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3011,6 +3092,8 @@ coins:
   catalog:
     numista: '278278'
     mb: '16'
+    others:
+    - Weinm# 39
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3090,6 +3173,9 @@ coins:
     km: '34'
     numista: '278280'
     lange: 832 b
+    dav: Lg 476
+    others:
+    - Weinm# 107
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3130,6 +3216,9 @@ coins:
     km: '33'
     numista: '278281'
     lange: 873 b
+    dav: Lg 473
+    others:
+    - Weinm# 103
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3170,6 +3259,9 @@ coins:
     km: '35'
     numista: '278282'
     lange: 913 c
+    dav: Lg 482
+    others:
+    - Weinm# 105/106
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3212,6 +3304,8 @@ coins:
   catalog:
     numista: '278283'
     lange: 838 A
+    others:
+    - Weinm# 161
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3253,6 +3347,8 @@ coins:
     numista: '278285'
     dav: Lg# 474
     lange: 831 c
+    others:
+    - Weinm# 150
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3296,6 +3392,8 @@ coins:
     km: '49'
     numista: '278286'
     dav: EC II# 3729
+    others:
+    - Weinm# 125
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3339,6 +3437,8 @@ coins:
     numista: '278287'
     dav: EC II# 3737
     lange: '850'
+    others:
+    - Weinm# 141
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3379,6 +3479,8 @@ coins:
     km: '102'
     numista: '278288'
     lange: '920'
+    others:
+    - Weinm# 159
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3419,6 +3521,9 @@ coins:
     km: '25'
     numista: '278289'
     lange: 834 b
+    dav: Lg 464
+    others:
+    - Weinm# 93
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3462,6 +3567,8 @@ coins:
     numista: '278291'
     dav: EC II# 3730
     lange: '844'
+    others:
+    - Weinm# 115
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3502,6 +3609,8 @@ coins:
     numista: '278292'
     dav: EC II# 3731 A
     lange: '846'
+    others:
+    - Weinm# 119
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3584,6 +3693,8 @@ coins:
     numista: '278294'
     dav: EC II# 3738
     lange: '862'
+    others:
+    - Weinm# 139
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3623,6 +3734,8 @@ coins:
     km: '142'
     numista: '278295'
     dav: EC II# 3752 B
+    others:
+    - Weinm# 339
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3664,9 +3777,13 @@ coins:
   ruler: Jobst Hermann
   mint: Altona
   catalog:
-    km: '128'
+    km:
+    - '128'
+    - '128.2'
     numista: '278296'
     lange: '956'
+    others:
+    - Weinm# 343
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3712,6 +3829,8 @@ coins:
   catalog:
     km: '125'
     numista: '278297'
+    others:
+    - Weinm# 346
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3758,6 +3877,8 @@ coins:
     km: '127'
     numista: '278298'
     lange: 945 b
+    others:
+    - Weinm# 163
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3804,6 +3925,8 @@ coins:
     numista: '278299'
     dav: EC II# 3745
     lange: '943'
+    others:
+    - Weinm# 154
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3885,6 +4008,8 @@ coins:
     km: '102'
     numista: '278301'
     lange: 920 A
+    others:
+    - Weinm# 158
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3978,6 +4103,8 @@ coins:
     numista: '278793'
     dav: EC II# 3749
     lange: 949 a
+    others:
+    - Weinm# 328
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -4020,6 +4147,8 @@ coins:
   catalog:
     km: '126'
     numista: '278795'
+    others:
+    - Weinm# 345
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -4066,6 +4195,8 @@ coins:
     numista: '278796'
     dav: EC II# 3751
     lange: '953'
+    others:
+    - Weinm# 334
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -4108,6 +4239,8 @@ coins:
   catalog:
     km: B139
     numista: '309994'
+    others:
+    - Weinm# 378
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -4200,7 +4333,7 @@ coins:
   fuss: seed_unsorted
   phase: numista
   kind: kurant
-  nominal: 2½ Thalers
+  nominal: 2½ Thalers (2.5)
   year_first: 1592
   year_last: 1593
   year_ranges:

@@ -688,6 +688,8 @@ coins:
     schou: 95-124
     sieg: '22'
     numista: '82790'
+    others:
+    - schou# 115
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -974,6 +976,8 @@ coins:
     hede_volume: c4h
     schou: 135-148
     sieg: '33'
+    others:
+    - schou# 143
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -1044,6 +1048,12 @@ coins:
     bruun_page: 83
     numista: '142850'
     dav: '7760'
+    others:
+    - schou# 136-139
+    - schou# 132
+    - schou# 137
+    - schou# 139
+    - Aagaard# 6
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -1539,7 +1549,9 @@ coins:
     bruun_part: I
     bruun_lot_no: 1053
     bruun_page: 92
-    dav: 3538B
+    dav:
+    - 3538B
+    - EC II 3538B
     sieg: '119.3'
     schou: '24'
     hede: 64B
@@ -1591,6 +1603,7 @@ coins:
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   composed_of:
   - unified-dk-bruun-5849
+  - unified-dk-numista-200434
   v1_home_location: denmark
 - fuss: 9_thaler
   phase: I
@@ -1676,6 +1689,10 @@ coins:
     hede_volume: c4h
     schou: 1-6
     sieg: '156'
+    others:
+    - schou# 30
+    - schou# 3
+    - schou# 2
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -1765,6 +1782,8 @@ coins:
     bruun_lot_no: 1018
     bruun_page: 52
     fr: '46'
+    others:
+    - schou# 5
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -1848,6 +1867,9 @@ coins:
     bruun_page: 51
     fr: '45'
     numista: '154009'
+    others:
+    - schou# 5
+    - schou# 2/3
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -2041,6 +2063,8 @@ coins:
     - '133.1'
     fr: '112'
     numista: '143578'
+    others:
+    - Aagaard# 20.1 (57-1/57-1)
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -2199,8 +2223,12 @@ coins:
     bruun_part: I
     bruun_lot_no: 1136
     bruun_page: 190
-    numista: N# 190127
-    dav: '1293'
+    numista:
+    - N# 190127
+    - '190127'
+    dav:
+    - '1293'
+    - EC III 1293
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -2211,13 +2239,24 @@ coins:
   fineness:
   - value: 0.671
     source: hede
+  - value: 0.671
+    source: numista
+  - value: 0.993
+    source: numismaster
   - value: 0.993
     source: ucoin
   weight_rough_g:
+  - value: 45.287
+    source: numismaster
   - value: 45.29
     source: ucoin
   - value: 66.816
     source: hede
+  - value: 67.15
+    source: numista
+  diameter_mm:
+  - value: 53.11
+    source: numista
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h41.htm
@@ -2231,6 +2270,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-3-kroner-1726/?tid=173635
     ref: ucoin tid 173635
+  - type: literature
+    url: https://numismaster.com/MC_65367
+    ref: NumisMaster
   note:
     de: '3 Krone 1726 Frederik IV. (KM-525, Hede 41, Schou 2, Sieg 22, Fr 4, Dav 1293) — Repräsentationsausgabe in zwei Stempel-Varianten
       dokumentiert: Hede 1971 (f4h41), Numista (N# 190127), Bruun Part I lot 1136 und ucoin (tid 173635) führen die <b>Umlauf-Variante</b>
@@ -2258,6 +2300,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-denmark-numismaster-65367
   - unified-dk-hede-f4h41
   v1_home_location: denmark
 - fuss: 9_thaler
@@ -2298,6 +2341,9 @@ coins:
     dav:
     - '8231'
     - '8232'
+    others:
+    - schou# 31
+    - schou# 3
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -2610,100 +2656,6 @@ coins:
 - fuss: 18_5_thaler
   phase: I
   kind: scheide
-  nominal: 2 Rigsbankskilling
-  ruler: Frederik VI.
-  issuing_entity: danish_realm
-  fraction: 1/96
-  id: dk-tid-70747
-  year_first: 1836
-  year_last: 1836
-  year_label: '1836'
-  mint: Altona
-  catalog:
-    km: '710'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.2
-    source: ucoin
-  - value: 0.208
-    source: numismaster
-  weight_rough_g:
-  - value: 1.11
-    source: ucoin
-  - value: 1.112
-    source: numismaster
-  diameter_mm:
-  - value: 14.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_66005
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-rigsbankskilling-1836/?tid=70747
-    ref: ucoin
-  verification_note:
-    de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-    en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-    uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of: []
-  v1_home_location: denmark
-- fuss: 18_5_thaler
-  phase: I
-  kind: scheide
-  nominal: 3 Rigsbankskilling
-  ruler: Frederik VI.
-  issuing_entity: danish_realm
-  fraction: 1/24
-  id: dk-tid-70749
-  year_first: 1836
-  year_last: 1836
-  year_label: '1836'
-  mint: Altona
-  catalog:
-    km: '711'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.229
-    source: numismaster
-  - value: 0.229
-    source: ucoin
-  weight_rough_g:
-  - value: 1.519
-    source: numismaster
-  - value: 1.52
-    source: ucoin
-  diameter_mm:
-  - value: 15.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_66008
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-3-rigsbankskilling-1836/?tid=70749
-    ref: ucoin
-  verification_note:
-    de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-    en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-    uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of: []
-  v1_home_location: denmark
-- fuss: 18_5_thaler
-  phase: I
-  kind: scheide
   nominal: 3 Rigsbankskilling
   ruler: Christian VIII.
   issuing_entity: danish_realm
@@ -2727,9 +2679,16 @@ coins:
   fineness:
   - value: 0.229
     source: numismaster
+  - value: 0.229
+    source: ucoin
   weight_rough_g:
   - value: 1.519
     source: numismaster
+  - value: 1.52
+    source: ucoin
+  diameter_mm:
+  - value: 15.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66009
@@ -2770,9 +2729,16 @@ coins:
   fineness:
   - value: 0.229
     source: numismaster
+  - value: 0.229
+    source: ucoin
   weight_rough_g:
   - value: 1.519
     source: numismaster
+  - value: 1.52
+    source: ucoin
+  diameter_mm:
+  - value: 15.5
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66010
@@ -2786,95 +2752,6 @@ coins:
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   composed_of:
   - unified-denmark-numismaster-66010
-  v1_home_location: denmark
-- fuss: 18_5_thaler
-  phase: I
-  kind: scheide
-  nominal: 4 Rigsbankskilling
-  ruler: Frederik VI.
-  issuing_entity: danish_realm
-  fraction: 1/24
-  id: dk-tid-70752
-  year_first: 1836
-  year_last: 1836
-  year_label: '1836'
-  mint: Altona
-  catalog:
-    km: '712'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.25
-    source: numismaster
-  - value: 0.25
-    source: ucoin
-  weight_rough_g:
-  - value: 1.85
-    source: ucoin
-  - value: 1.856
-    source: numismaster
-  diameter_mm:
-  - value: 17.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_66011
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-rigsbankskilling-1836/?tid=70752
-    ref: ucoin
-  verification_note:
-    de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-    en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-    uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of: []
-  v1_home_location: denmark
-- fuss: 18_5_thaler
-  phase: I
-  kind: scheide
-  nominal: 32 Rigsbankskilling
-  ruler: Frederik VI.
-  issuing_entity: danish_realm
-  fraction: 1/3
-  id: dk-tid-70756
-  year_first: 1820
-  year_last: 1820
-  year_label: '1820'
-  mint:
-  - Altona
-  - Kopenhagen
-  catalog:
-    km: '690'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.68
-    source: ucoin
-  weight_rough_g:
-  - value: 6.13
-    source: ucoin
-  diameter_mm:
-  - value: 25.5
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1820/?tid=70756
-    ref: ucoin
-  verification_note:
-    de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-    en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-    uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of: []
   v1_home_location: denmark
 - fuss: 18_5_thaler
   phase: I
@@ -3021,27 +2898,25 @@ coins:
   verified: false
   fineness:
   - value: 0.312
-    source: '?'
-  - value: 0.312
     source: hede
   - value: 0.312
     source: numismaster
   - value: 0.312
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 2.75
-    source: '?'
-  - value: 2.75
     source: numismaster
+  - value: 2.75
+    source: ucoin
   - value: 2.751
     source: hede
   - value: 2.751
     source: numista
   diameter_mm:
   - value: 21.2
-    source: '?'
-  - value: 21.2
     source: numista
+  - value: 21.2
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_58056
@@ -3106,6 +2981,8 @@ coins:
     - '577.2'
     - '577.1'
     numista: '43458'
+    others:
+    - C# 1
   metal: copper
   metal_verified: true
   fineness_verified: false
@@ -3247,6 +3124,13 @@ coins:
     schou: 14-16
     sieg: 5.1-3
     numista: '150932'
+    others:
+    - schou# 14
+    - schou# 15
+    - schou# 16
+    - sieg# 5.1
+    - sieg# 5.2
+    - sieg# 5.3
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -3389,6 +3273,8 @@ coins:
     schou: '3'
     sieg: '14'
     numista: '318047'
+    others:
+    - schou# 12
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -3866,7 +3752,9 @@ coins:
     sieg:
     - '30'
     - '23.1'
-    dav: '1307'
+    dav:
+    - '1307'
+    - EC III 1307
     fp: '36'
     numista: '334195'
   metal: silver
@@ -3928,6 +3816,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-c7h11a
+  - unified-dk-numista-334195
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: II
@@ -3968,18 +3857,25 @@ coins:
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.875
     source: hede
   - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
+  - value: 28.89
+    source: ucoin
   - value: 28.893
     source: hede
   - value: 28.893
     source: numismaster
+  diameter_mm:
+  - value: 40.5
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65492
@@ -4060,53 +3956,6 @@ coins:
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   composed_of:
   - unified-denmark-numismaster-65082
-  v1_home_location: denmark
-- fuss: 11_333_thaler
-  phase: I
-  kind: scheide
-  nominal: 4 Skilling
-  ruler: Christian VII.
-  issuing_entity: danish_realm
-  fraction: 1/24
-  id: dk-tid-79557
-  year_first: 1807
-  year_last: 1807
-  year_label: '1807'
-  mint: Altona
-  catalog:
-    km: '661'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.25
-    source: numismaster
-  - value: 0.25
-    source: ucoin
-  weight_rough_g:
-  - value: 2.598
-    source: numismaster
-  - value: 2.6
-    source: ucoin
-  diameter_mm:
-  - value: 21.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65105
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-skilling-1807/?tid=79557
-    ref: ucoin
-  verification_note:
-    de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
-    en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
-    uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
-  composed_of: []
   v1_home_location: denmark
 - fuss: 11_333_thaler
   phase: I
@@ -4570,7 +4419,9 @@ coins:
     sieg: '19'
     schou: '2'
     hede: '39'
-    dav: '1290'
+    dav:
+    - '1290'
+    - EC III 1290A
     numista: '319756'
   metal: silver
   metal_verified: true
@@ -4651,8 +4502,12 @@ coins:
     - '11'
     dav:
     - 1300A
-    - '1300'
+    - EC III 1300A
     numista: '147926'
+    others:
+    - schou# 16
+    - schou# 15
+    - sieg# 11
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -4715,7 +4570,7 @@ coins:
     unit_raw: rd
   composed_of:
   - unified-dk-hede-f5h29
-  - unified-ikmk-18203664
+  - unified-dk-numista-147926
   v1_home_location: denmark
 - fuss: kronemont_fine
   phase: I
@@ -4743,6 +4598,9 @@ coins:
     hede_volume: f5h
     schou: '3'
     numista: '147934'
+    others:
+    - schou# 4
+    - schou# 5
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -4827,7 +4685,12 @@ coins:
     - '24.1'
     - '24'
     numista: '90042'
-    dav: '1288'
+    dav:
+    - '1288'
+    - EC III 1288
+    others:
+    - schou# 7
+    - sieg# 24.2
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -4877,6 +4740,7 @@ coins:
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   composed_of:
   - unified-dk-hede-f4h34
+  - unified-dk-numista-90042
   v1_home_location: denmark
 - fuss: reichsdukatenfuss
   phase: I
@@ -5228,6 +5092,9 @@ coins:
     - '45'
     - '45.2'
     fr: '224'
+    others:
+    - schou# 1,1
+    - schou# 1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -5796,6 +5663,12 @@ coins:
     hede_volume: f3h
     sieg: '18.1'
     numista: '129036'
+    others:
+    - sieg# 18.2
+    - sieg# 18.3
+    - sieg# 18.4
+    - sieg# 18.5
+    - sieg# 18.6
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -6009,6 +5882,9 @@ coins:
     schou: 75-76
     sieg: '8'
     numista: '313247'
+    others:
+    - schou# 75
+    - schou# 76
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6087,6 +5963,9 @@ coins:
     schou: 41-42
     sieg: 1.1-2
     numista: '311390'
+    others:
+    - schou# 41
+    - schou# 42
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -6271,6 +6150,8 @@ coins:
     schou: 13-16
     sieg: '67'
     numista: '90016'
+    others:
+    - schou# 16
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6347,6 +6228,8 @@ coins:
     schou: '44'
     sieg: '26'
     numista: '144901'
+    others:
+    - schou# 45
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6421,6 +6304,9 @@ coins:
     schou: 64-65
     sieg: '12'
     numista: '145292'
+    others:
+    - schou# 64
+    - schou# 65
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6494,6 +6380,8 @@ coins:
     hede_volume: c5h
     schou: 64-65
     sieg: '13'
+    others:
+    - schou# 64
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6819,6 +6707,12 @@ coins:
     schou: '13'
     sieg: '35.1'
     dav: '3635'
+    others:
+    - sieg# 35.2
+    - sieg# 35.1-2
+    - schou# 9
+    - schou# 7
+    - schou# 10
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6964,7 +6858,11 @@ coins:
     schou: 2-5
     sieg: '45'
     numista: '112718'
-    dav: '3640'
+    dav:
+    - '3640'
+    - EC II 3640
+    others:
+    - schou# 4
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7019,7 +6917,7 @@ coins:
     unit_raw: rd
   composed_of:
   - unified-dk-hede-c5h88
-  - unified-dk-tid-97317
+  - unified-dk-numista-112718
   v1_home_location: denmark
 - fuss: kronemont
   phase: II
@@ -7049,6 +6947,10 @@ coins:
     schou: '24'
     sieg: '52'
     numista: '80206'
+    others:
+    - schou# 25
+    - schou# 15
+    dav: EC II 3647
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7131,9 +7033,8 @@ coins:
   mint: Kopenhagen
   catalog:
     km:
-    - '[''142'', {''value'': ''143'', ''register'': ''DK''}]'
-    - '101'
     - '142'
+    - '101'
     hede:
     - '55'
     - 55A
@@ -7147,6 +7048,23 @@ coins:
     - '19'
     - '20'
     - '5'
+    others:
+    - schou# 5-6,6-7,4
+    - schou# 17-25,13-15
+    - schou# 15
+    - schou# 3
+    - schou# 5
+    - schou# 11
+    - schou# 16
+    - schou# 17
+    - schou# 14
+    - schou# 20
+    - schou# 21
+    - schou# 6
+    - schou# 7
+    - schou# 4
+    - schou# 22
+    - schou# 23
     bruun_collection_id:
     - '5369'
     - '5461'
@@ -7154,19 +7072,18 @@ coins:
     - '5515'
     - '5608'
     - '5628'
+    sieg:
+    - '107.1'
+    - '107.2'
+    - '107.3'
     bruun_part: I
     bruun_lot_no: 1032
     bruun_page: 70
     dav:
     - '3524'
     - '3536'
-    sieg:
-    - '107.1'
-    - '107.2'
-    - '107.3'
-    numista:
-    - '82678'
-    - '110876'
+    - EC II 3536
+    numista: '110876'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7209,11 +7126,15 @@ coins:
     source: numista
   - value: 43.5
     source: ucoin
-  - value: 43.85
-    source: numista
   sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1646/?tid=97358
+    ref: ucoin
   - type: literature
     url: https://numismaster.com/MC_65405
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_65412
     ref: NumisMaster
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
@@ -7236,18 +7157,6 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1624-1634/?tid=97357
     ref: ucoin
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1646/?tid=97358
-    ref: ucoin
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1647/?tid=97359
-    ref: ucoin
-  - type: literature
-    url: https://en.numista.com/82678
-    ref: Numista N#82678 — 1 Speciedaler - Christian IV (Bust type I; Oval provincial shields)
-  - type: literature
-    url: https://numismaster.com/MC_65412
-    ref: NumisMaster
   - type: literature
     url: https://en.numista.com/110876
     ref: Numista N#110876 — 1 Speciedaler - Christian IV (Bust type IIa)
@@ -7262,6 +7171,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-c4h55
+  - unified-dk-numista-110876
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
@@ -7360,6 +7270,10 @@ coins:
     dav:
     - '3555'
     - 3555A
+    - EC II 3555
+    others:
+    - Aagaard# 117.1
+    - Aagaard# 116.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7419,6 +7333,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-bruun-6576
+  - unified-dk-numista-111551
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
@@ -7448,6 +7363,8 @@ coins:
     - '96'
     - '96.2'
     dav: '3561'
+    others:
+    - Aagaard# 119.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7520,9 +7437,13 @@ coins:
     - 4-5
     - '4'
     sieg: '62'
-    dav: '3631'
+    dav:
+    - '3631'
+    - EC II 3631
     galster: '95'
     numista: '145806'
+    others:
+    - schou# 4
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7582,6 +7503,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-c5h65
+  - unified-dk-numista-145806
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
@@ -7614,6 +7536,12 @@ coins:
     bruun_lot_no: 13131
     bruun_page: 97
     dav: '3541'
+    others:
+    - schou# 19
+    - schou# 12
+    - schou# 13
+    - sieg# 72
+    - Aagaard# 78.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7745,6 +7673,8 @@ coins:
     sieg: '115'
     fr: '101'
     numista: '342964'
+    others:
+    - Aagaard# 21.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -7823,6 +7753,13 @@ coins:
     sieg: '119'
     numista: '344695'
     fr: '101'
+    others:
+    - schou# 7-8
+    - schou# 5
+    - schou# 3
+    - sieg# 116
+    - sieg# 120
+    - sieg# 121
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -8328,6 +8265,9 @@ coins:
     sieg: '68'
     numista: '112815'
     fr: '161'
+    others:
+    - schou# 7
+    - schou# 5
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -8401,6 +8341,12 @@ coins:
     hede_volume: f3h
     schou: 106-113
     sieg: '22.1'
+    others:
+    - schou# 114
+    - schou# 106
+    - schou# 109
+    - sieg# 22.2
+    - sieg# 22.3
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -8470,6 +8416,12 @@ coins:
     schou: 67-68
     sieg: '23.1'
     numista: '111346'
+    others:
+    - sieg# 23.2
+    - sieg# 23.3
+    - sieg# 23.4
+    - sieg# 23.6
+    - sieg# 23.5
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -8762,6 +8714,8 @@ coins:
     hede_volume: f3h
     schou: 25-26
     sieg: '30'
+    others:
+    - schou# 25
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -8826,6 +8780,8 @@ coins:
     hede_volume: f3h
     schou: '67'
     sieg: '31'
+    others:
+    - schou# 20
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -8945,6 +8901,24 @@ coins:
     schou: 73-87
     sieg: '36.1'
     numista: '207063'
+    others:
+    - schou# 88
+    - schou# 92
+    - schou# 95
+    - schou# 42
+    - schou# 73
+    - schou# 74
+    - schou# 75
+    - schou# 77
+    - schou# 79
+    - schou# 81
+    - schou# 85
+    - schou# 87
+    - schou# 51
+    - sieg# 36.2
+    - sieg# 36.3
+    - sieg# 36.4
+    - sieg# 36.5
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -9026,6 +9000,8 @@ coins:
     schou: '54'
     sieg: '41'
     numista: '180657'
+    others:
+    - schou# 36
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -9244,7 +9220,11 @@ coins:
     schou: '14'
     hede: 57B
     numista: '202573'
-    dav: 3546A
+    dav:
+    - 3546A
+    - EC II 3546A
+    others:
+    - Aagaard# 91.2
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -9299,6 +9279,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-bruun-6370
+  - unified-dk-numista-202573
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
@@ -9323,10 +9304,13 @@ coins:
     dav:
     - '3545'
     - 3545A
+    - EC II 3545A
     sieg: '76.1'
     schou: '9'
     hede: 58A
     numista: '202574'
+    others:
+    - Aagaard# 86.3
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -9374,6 +9358,7 @@ coins:
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   composed_of:
   - unified-dk-bruun-6368
+  - unified-dk-numista-202574
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
@@ -9395,13 +9380,18 @@ coins:
     bruun_part: I
     bruun_lot_no: 1092
     bruun_page: 138
-    dav: '3564'
+    dav:
+    - '3564'
+    - EC II 3564
     sieg: '98'
     schou:
     - '7'
     - '8'
     hede: '81'
     numista: '82686'
+    others:
+    - Aagaard# 123.1
+    - Aagaard# 121.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -9454,6 +9444,7 @@ coins:
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   composed_of:
   - unified-dk-bruun-6692
+  - unified-dk-numista-82686
   v1_home_location: denmark
 - fuss: kronemont
   phase: I
@@ -9719,6 +9710,8 @@ coins:
     bruun_page: 131
     hede_volume: c5h
     schou_hede1971: 61-62
+    others:
+    - schou# 61
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -9764,13 +9757,14 @@ coins:
   issuing_entity: danish_realm
   id: hede-112a-fr-iii-1666
   year_first: 1666
-  year_last: 1667
+  year_last: 1669
   year_ranges:
   - - 1666
-    - 1667
-  year_label: 1666-1667
+    - 1669
+  year_label: 1666-1669
   mint: Kopenhagen
   catalog:
+    km: '274'
     hede:
     - 112A
     - 112B
@@ -9787,18 +9781,28 @@ coins:
     - Aagaard-97.1
     hede_volume: f3h
     sieg_hede1971: '58'
+    numista: '111392'
+    dav: EC II 3581
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.671
     source: hede
+  - value: 0.671
+    source: numista
   weight_rough_g:
   - value: 22.272
     source: hede
+  - value: 22.272
+    source: numista
+  diameter_mm:
+  - value: 40.76
+    source: numista
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f3h112.htm
@@ -9806,6 +9810,9 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 11231, p. 120
+  - type: literature
+    url: https://en.numista.com/111392
+    ref: Numista N#111392 — 4 Mark Danske - Frederik III (Motto on obverse; type I)
   note:
     de: '4 Mark (Krone) 1666 · Münzmeister Gotfred Krüger · seltener Einjahres-Typ · drei Stempelvarianten nach Hede 112A-C
       zusammengefaßt (Hede-1971 Sieg 58): 112A Schou 34 (Bruun-Specimen), 112B Schou 35, 112C nicht bei Schou.'
@@ -9825,7 +9832,6 @@ coins:
     unit_raw: daler
   composed_of:
   - unified-dk-hede-f3h112a
-  - unified-dk-hede-f3h112c
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
@@ -9892,6 +9898,8 @@ coins:
     bruun_page: 63
     others:
     - Aagaard & Märcher-72.10
+    - schou# 2
+    - schou# 3
     hede_volume: f2h
     dav: '8229'
   metal: silver
@@ -10525,6 +10533,11 @@ coins:
     sieg_hede1971: '14'
     schou_hede1971: '1'
     numista: '47932'
+    others:
+    - schou# 1a
+    - schou# 5
+    - schou# 6
+    - schou# 3
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -10617,6 +10630,7 @@ coins:
     bruun_page: 118
     others:
     - Aagaard-97.2 (62.1/63.1)
+    - Aagaard# 97.2 (62.1/63.1)
     hede_volume: f3h
     sieg: '79'
     schou: '5'
@@ -10696,6 +10710,8 @@ coins:
     bruun_page: 107
     others:
     - Aagaard-97.1 / 97.2
+    - Aagaard# 97.1
+    - Aagaard# 97.2 (62.1/63-1)
     hede_volume: f3h
     sieg: '79'
     schou: '1'
@@ -10774,6 +10790,7 @@ coins:
     bruun_page: 123
     others:
     - Aagaard-99.1
+    - Aagaard# 99.1
     hede_volume: f3h
     sieg: '80.2'
     schou: '2'
@@ -10841,6 +10858,7 @@ coins:
     bruun_page: 51
     others:
     - Aagaard-99.1
+    - Aagaard# 99.1
     hede_volume: f3h
     sieg: '80.2'
     schou: '1'
@@ -11071,6 +11089,9 @@ coins:
     sieg:
     - '37'
     - '29'
+    others:
+    - schou# 11
+    - schou# 12
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -11132,6 +11153,7 @@ coins:
     bruun_page: 143
     others:
     - Aagaard-119.2
+    - Aagaard# 119.2
     hede_volume: f3h
     sieg: '96.2'
     schou: '3'
@@ -11504,6 +11526,8 @@ coins:
     - H-150
     - Aagaard-K9
     - Harck-35.10.2
+    - schou# 119
+    - schou# 87
     sieg:
     - '47.2'
     - '53'
@@ -11684,6 +11708,8 @@ coins:
     bruun_page: 94
     others:
     - Aagaard-3 (3/3) / Aagaard-4
+    - Aagaard# 4
+    - Aagaard# 3 (3/3)
     hede_volume: c4h
     sieg: '52'
     schou:
@@ -11834,6 +11860,9 @@ coins:
     bruun_page: 109
     others:
     - Aagaard-69.3 (48-2v/48.3)
+    - schou# 36
+    - schou# 38
+    - Aagaard# 69.3 (48-2v/48.3)
     hede_volume: f3h
     schou_hede1971: 36-38
     numista: '111030'
@@ -12084,6 +12113,9 @@ coins:
     hede_volume: f3h
     schou_hede1971: 31-33
     numista: '111027'
+    others:
+    - Aagaard# 67.1
+    - schou# 33
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -12166,6 +12198,7 @@ coins:
     bruun_page: 109
     others:
     - Aagaard-7.1
+    - Aagaard# 7.1
     hede_volume: f3h
     fr: '76'
     numista: '111022'
@@ -12242,6 +12275,14 @@ coins:
     bruun_page: 94
     others:
     - Aagaard-4.2
+    - schou# 24
+    - schou# 23
+    - schou# 22
+    - schou# 26
+    - sieg# 128
+    - sieg# 129
+    - sieg# 130
+    - Aagaard# 4.2
     hede_volume: f3h
     schou_hede1971: 25-26
     fr: '74'
@@ -12313,6 +12354,14 @@ coins:
     bruun_page: 96
     others:
     - Aagaard-2.1
+    - schou# 24
+    - schou# 23
+    - schou# 22
+    - schou# 26
+    - sieg# 128
+    - sieg# 129
+    - sieg# 130
+    - Aagaard# 2.1
     hede_volume: f3h
     sieg_hede1971: '127'
     schou_hede1971: 25-26
@@ -12381,6 +12430,7 @@ coins:
     bruun_page: 100
     others:
     - Aagaard-1.1 (51-3/51-3)
+    - Aagaard# 1.1 (51-3/51-3)
     hede_volume: f3h
     sieg: '43'
     schou: '13'
@@ -12452,6 +12502,7 @@ coins:
     bruun_page: 101
     others:
     - Aagaard-9.1
+    - Aagaard# 9.1
     hede_volume: f3h
     sieg: '105'
     schou: '1'
@@ -12597,6 +12648,7 @@ coins:
     bruun_page: 110
     others:
     - Aagaard-17.1
+    - Aagaard# 17.1
     hede_volume: f3h
     sieg: '46.2'
     schou: '39'
@@ -12649,6 +12701,7 @@ coins:
     bruun_page: 97
     others:
     - Aagaard-33.5
+    - Aagaard# 33.5
     hede_volume: f3h
     sieg: '49.1'
     schou: '31'
@@ -12701,6 +12754,7 @@ coins:
     bruun_page: 105
     others:
     - Aagaard-80.1
+    - Aagaard# 80.1
     hede_volume: f3h
     sieg: '72.1'
     schou: '12'
@@ -12768,6 +12822,16 @@ coins:
     bruun_page: 103
     others:
     - Aagaard-14.1 (53-1/53.1)
+    - schou# 10
+    - schou# 6-7
+    - schou# 4-5
+    - schou# 2
+    - schou# 8
+    - schou# 9
+    - sieg# 112
+    - sieg# 113
+    - sieg# 114
+    - Aagaard# 14.1 (53-1/53.1)
     hede_volume: f3h
     fr: '100'
   metal: gold
@@ -12835,6 +12899,7 @@ coins:
     bruun_page: 108
     others:
     - Aagaard-17.1
+    - Aagaard# 17.1
     hede_volume: f3h
     sieg: '142.2'
     schou: '4'
@@ -12899,6 +12964,7 @@ coins:
     bruun_page: 98
     others:
     - Aagaard-18.1
+    - Aagaard# 18.1
     hede_volume: f3h
     sieg: '142.1'
     schou: '3'
@@ -12958,6 +13024,7 @@ coins:
     bruun_page: 114
     others:
     - Aagaard-74.1 (59-E1/59-E1)
+    - Aagaard# 74.1 (59-E1/59-E1)
     hede_volume: f3h
     sieg: '51'
     schou: '32'
@@ -13018,6 +13085,7 @@ coins:
     bruun_page: 105
     others:
     - Aagaard-73.1
+    - Aagaard# 73.1
     hede_volume: f3h
     sieg: '52'
     schou: '30'
@@ -13078,6 +13146,7 @@ coins:
     bruun_page: 110
     others:
     - Aagaard-41.1
+    - Aagaard# 41.1
     hede_volume: f3h
     sieg: '122'
     schou: '9'
@@ -13149,6 +13218,7 @@ coins:
     bruun_page: 119
     others:
     - Aagaard-47.1
+    - Aagaard# 47.1
     hede_volume: f3h
     sieg: '123.1'
     schou: '8'
@@ -13220,6 +13290,7 @@ coins:
     bruun_page: 114
     others:
     - Aagaard-48.1
+    - Aagaard# 48.1
     hede_volume: f3h
     sieg: '123.2'
     schou: '7'
@@ -13285,6 +13356,8 @@ coins:
     bruun_page: 68
     hede_volume: c4h
     fr: '44'
+    others:
+    - schou# 5
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -13397,6 +13470,9 @@ coins:
     bruun_page: 130
     others:
     - Aagaard-60.1
+    - Aagaard# 60.1
+    - schou# 4
+    - sieg# 145
     hede_volume: f3h
     fr: '88'
   metal: gold
@@ -13471,6 +13547,7 @@ coins:
     bruun_page: 54
     others:
     - Aagaard-107.3
+    - Aagaard# 107.3
     hede_volume: f3h
     sieg: '86.2'
     schou: '18'
@@ -13531,6 +13608,7 @@ coins:
     bruun_page: 122
     others:
     - Aagaard-142.1
+    - Aagaard# 142.1
     hede_volume: f3h
     sieg: '26.2'
     schou: '45'
@@ -13670,6 +13748,7 @@ coins:
     bruun_page: 140
     others:
     - Aagaard-65.1
+    - Aagaard# 65.1
     hede_volume: f3h
     fr: '95'
   metal: gold
@@ -13803,6 +13882,7 @@ coins:
     others:
     - Aagaard-2
     - Harck-6.32.1
+    - Aagaard# 2
     hede_volume: c4h
     sieg_hede1971: '72'
     sieg: '65.1'
@@ -13917,6 +13997,8 @@ coins:
     hede: '2'
     fr: '140'
     numista: '83046'
+    others:
+    - schou# 1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -14086,7 +14168,9 @@ coins:
     schou:
     - 11-15
     - '13'
-    dav: '3634'
+    dav:
+    - '3634'
+    - EC II 3634
     bruun_collection_id:
     - '6859'
     - '6835'
@@ -14097,6 +14181,10 @@ coins:
     schou_hede1971: 11-15
     sieg: '56.2'
     numista: '83080'
+    others:
+    - Aagaard# 15
+    - schou# 12
+    - schou# 13
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14145,6 +14233,9 @@ coins:
   - type: literature
     url: https://en.numista.com/83080
     ref: Numista N#83080 — 8 Mark Dansk / 2 Krone - Christian V
+  - type: literature
+    url: https://numismaster.com/MC_65357
+    ref: NumisMaster
   note:
     de: 2 Krone (8 Mark) 1675 (Hede-72) · Bruun-Specimen.
     en: 2 Krone (8 Mark) 1675 (Hede-72) · Bruun specimen.
@@ -14162,6 +14253,7 @@ coins:
   composed_of:
   - unified-dk-bruun-6835
   - unified-dk-hede-c5h72
+  - unified-dk-numista-83080
   v1_home_location: denmark
 - fuss: 9_25_thaler
   phase: I
@@ -14241,6 +14333,8 @@ coins:
     schou: '19'
     hede: '78'
     dav: '3636'
+    others:
+    - Aagaard# 26
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -14362,6 +14456,8 @@ coins:
     schou: '2'
     hede: '117'
     fr: '41'
+    others:
+    - Aagaard# 8.1
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -14672,6 +14768,7 @@ coins:
     - '3648'
     - 3648A
     - 3648C
+    - EC II 3648
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14744,8 +14841,8 @@ coins:
   composed_of:
   - unified-denmark-numismaster-65330
   - unified-denmark-numismaster-65332
-  - unified-denmark-numismaster-65333
   - unified-dk-hede-c5h99a
+  - unified-dk-numista-82691
   v1_home_location: denmark
 - fuss: reichsdukatenfuss
   phase: I
@@ -15435,6 +15532,8 @@ coins:
     nmd:
     - 1B
     - 1C
+    others:
+    - schou# 9
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -15516,6 +15615,8 @@ coins:
     bruun_page: 67
     hede_volume: c4h
     sieg_hede1971: '107'
+    others:
+    - schou# 1a
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -16038,6 +16139,9 @@ coins:
     bruun_lot_no: 1145
     bruun_page: 202
     hede_volume: f5h
+    others:
+    - schou# 11
+    - sieg# 17
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -16197,6 +16301,9 @@ coins:
     nmd:
     - 1A
     - 1B
+    others:
+    - schou# 3
+    - schou# 4
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -16353,27 +16460,27 @@ coins:
   - value: 0.979
     source: hede
   - value: 0.98
-    source: '?'
+    source: ucoin
   - value: 0.986
     source: numismaster
   - value: 0.986
     source: numista
   weight_rough_g:
   - value: 3.49
-    source: '?'
-  - value: 3.49
     source: bruun
   - value: 3.49
     source: hede
+  - value: 3.49
+    source: ucoin
   - value: 3.5
     source: numismaster
   - value: 3.5
     source: numista
   diameter_mm:
   - value: 21.0
-    source: '?'
-  - value: 21.0
     source: numista
+  - value: 21.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_85964
@@ -16444,6 +16551,8 @@ coins:
     - '2.1'
     schou: '7'
     numista: '26744'
+    others:
+    - C# 2
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -16879,6 +16988,7 @@ coins:
     - 3516C
     - '3516'
     - 3516A
+    - EC II 3516
     hede:
     - 105A
     - 105B
@@ -16899,21 +17009,21 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 37.36
-    source: '?'
-  - value: 37.36
     source: numista
+  - value: 37.36
+    source: ucoin
   - value: 37.819
     source: hede
   - value: 37.819
     source: numismaster
   diameter_mm:
   - value: 46.0
-    source: '?'
-  - value: 46.0
     source: numista
+  - value: 46.0
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-kroner-1618-1619/?tid=163406
@@ -16951,10 +17061,10 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
-  - unified-denmark-numismaster-117946
   - unified-denmark-numismaster-117947
   - unified-denmark-numismaster-65344
   - unified-dk-hede-c4h105a
+  - unified-dk-numista-109280
   v1_home_location: denmark
 - fuss: kronemont_chr_iv
   phase: I
@@ -16983,7 +17093,9 @@ coins:
     bruun_page: 62
     hede_volume: c4h
     sieg_hede1971: '93'
-    dav: 3516A
+    dav:
+    - 3516A
+    - EC II 3516a
     numista: '109282'
   metal: silver
   metal_verified: true
@@ -16998,10 +17110,10 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 37.36
-    source: '?'
+    source: ucoin
   - value: 37.816
     source: numista
   - value: 37.819
@@ -17010,7 +17122,7 @@ coins:
   - value: 45.6
     source: numista
   - value: 46.0
-    source: '?'
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65345
@@ -17046,6 +17158,7 @@ coins:
       каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
+  - unified-denmark-numismaster-65345
   - unified-dk-numista-109282
   v1_home_location: denmark
 - fuss: kronemont_chr_iv
@@ -17471,23 +17584,17 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: '?'
-  - value: 0.875
     source: numismaster
   - value: 0.875
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: '?'
+    source: ucoin
   - value: 28.893
     source: numismaster
-  - value: 28.893
-    source: numista
   diameter_mm:
   - value: 37.0
-    source: '?'
-  - value: 39.0
-    source: numista
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1820-1839/?tid=70767
@@ -17661,6 +17768,8 @@ coins:
     - 3E
     - '3'
     dav: '74'
+    others:
+    - Schön# 49
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -17751,19 +17860,13 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: '?'
-  - value: 0.875
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: '?'
-  - value: 28.893
-    source: numista
+    source: ucoin
   diameter_mm:
   - value: 37.0
-    source: '?'
-  - value: 38.68
-    source: numista
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1840-1847/?tid=70768
@@ -17882,6 +17985,8 @@ coins:
     - '26'
     - 26A
     fr: '55'
+    others:
+    - schou# 3
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -18152,27 +18257,27 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: '?'
-  - value: 0.875
     source: hede
   - value: 0.875
     source: numismaster
   - value: 0.875
     source: numista
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
   - value: 14.447
     source: hede
   - value: 14.447
     source: numismaster
   - value: 14.45
-    source: '?'
-  - value: 14.45
     source: numista
+  - value: 14.45
+    source: ucoin
   - value: 14.47
     source: bruun
   diameter_mm:
   - value: 30.0
-    source: '?'
+    source: ucoin
   - value: 30.6
     source: numista
   sources:
@@ -18329,19 +18434,13 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: '?'
-  - value: 0.875
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: '?'
-  - value: 28.893
-    source: numista
+    source: ucoin
   diameter_mm:
   - value: 37.0
-    source: '?'
-  - value: 37.88
-    source: numista
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-speciedaler-1849-1854/?tid=70770
@@ -18588,19 +18687,13 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: '?'
-  - value: 0.875
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 28.89
-    source: '?'
-  - value: 28.893
-    source: numista
+    source: ucoin
   diameter_mm:
   - value: 37.0
-    source: '?'
-  - value: 37.0
-    source: numista
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-2-rigsdaler-1854-1863/?tid=70693
@@ -18671,7 +18764,9 @@ coins:
     - '4'
     - '5.2'
     - '5.1'
-    dav: '79'
+    dav:
+    - '79'
+    - EC IV 79
     numista: '83076'
   metal: silver
   metal_verified: true
@@ -18793,6 +18888,9 @@ coins:
     - '9.2'
     schou: '2'
     numista: '5567'
+    others:
+    - Schön# 4
+    - DNF# 4.1-4.2.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -19293,6 +19391,8 @@ coins:
     sieg: '149.1'
     schou: '52'
     hede: 133A
+    others:
+    - Aagaard# 8
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -19616,10 +19716,10 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 1.05
-    source: '?'
+    source: ucoin
   - value: 1.051
     source: hede
   - value: 1.051
@@ -19628,7 +19728,7 @@ coins:
   - value: 17.76
     source: numista
   - value: 18.0
-    source: '?'
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h115.htm
@@ -19721,17 +19821,17 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 1.85
-    source: '?'
-  - value: 1.85
     source: numista
+  - value: 1.85
+    source: ucoin
   - value: 2.101
     source: hede
   diameter_mm:
   - value: 22.0
-    source: '?'
+    source: ucoin
   - value: 22.3
     source: numista
   sources:
@@ -19814,19 +19914,19 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 9.454
     source: numista
   - value: 9.455
     source: numismaster
   - value: 9.46
-    source: '?'
+    source: ucoin
   diameter_mm:
   - value: 24.34
     source: numista
   - value: 25.0
-    source: '?'
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-2-krone-1624-1625/?tid=163058
@@ -19873,7 +19973,9 @@ coins:
     numista: '143473'
     others:
     - Dav EC II# 3518
-    dav: '3518'
+    dav:
+    - '3518'
+    - EC II 3518
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -19887,10 +19989,10 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 37.36
-    source: '?'
+    source: ucoin
   - value: 37.62
     source: numista
   - value: 37.819
@@ -19899,7 +20001,7 @@ coins:
   - value: 39.5
     source: numista
   - value: 40.0
-    source: '?'
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65348
@@ -19922,6 +20024,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-denmark-numismaster-65348
   - unified-dk-numista-143473
   v1_home_location: denmark
 - fuss: reichsdukatenfuss
@@ -20246,6 +20349,7 @@ coins:
     km: '91'
     others:
     - KM-DK# 91
+    - schou# 96
     hede: '132'
     hede_volume: c4h
     schou: 94-99,33-34
@@ -20348,6 +20452,21 @@ coins:
     schou: '149'
     sieg: '19.1'
     numista: '302868'
+    others:
+    - schou# 154-156
+    - schou# 156-160
+    - schou# 138-48,150-152
+    - schou# 153
+    - schou# 159-160
+    - schou# 156
+    - schou# 158
+    - schou# 140
+    - schou# 159
+    - sieg# 19.2
+    - sieg# 19.3
+    - sieg# 19.4
+    - sieg# 19.5
+    - sieg# 19.6
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -20445,6 +20564,8 @@ coins:
     hede_volume: c4h
     schou: 99-102
     sieg: '63'
+    others:
+    - schou# 103
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -21713,6 +21834,11 @@ coins:
   weight_rough_g:
   - value: 0.78
     source: numismaster
+  - value: 0.78
+    source: ucoin
+  diameter_mm:
+  - value: 15.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65032
@@ -21754,6 +21880,10 @@ coins:
     hede_volume: c5h
     schou: '59'
     numista: '145642'
+    others:
+    - schou# 60
+    - schou# 17
+    - schou# 18
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -23088,15 +23218,11 @@ coins:
   weight_rough_g:
   - value: 7.308
     source: numismaster
-  - value: 7.308
-    source: numista
   - value: 7.31
-    source: '?'
+    source: ucoin
   diameter_mm:
   - value: 23.0
-    source: '?'
-  - value: 23.0
-    source: numista
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65993
@@ -23204,23 +23330,17 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: '?'
-  - value: 0.875
     source: numismaster
   - value: 0.875
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 14.447
     source: numismaster
-  - value: 14.447
-    source: numista
   - value: 14.45
-    source: '?'
+    source: ucoin
   diameter_mm:
   - value: 30.0
-    source: '?'
-  - value: 31.0
-    source: numista
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66045
@@ -23446,9 +23566,16 @@ coins:
   fineness:
   - value: 0.896
     source: numismaster
+  - value: 0.896
+    source: ucoin
   weight_rough_g:
+  - value: 6.64
+    source: ucoin
   - value: 6.642
     source: numismaster
+  diameter_mm:
+  - value: 24.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66098
@@ -24485,6 +24612,7 @@ coins:
   mint:
   - Kopenhagen
   - Malmö
+  - Malm�
   catalog:
     bruun_collection_id: '4056'
     sieg: '35'
@@ -25024,7 +25152,9 @@ coins:
   year_last: 1537
   year_label: '1537'
   year_verified: true
-  mint: Kopenhagen
+  mint:
+  - Kopenhagen
+  - K�benhavn
   catalog:
     bruun_collection_id:
     - '4276'
@@ -25122,7 +25252,9 @@ coins:
   year_last: 1537
   year_label: '1537'
   year_verified: true
-  mint: Kopenhagen
+  mint:
+  - Kopenhagen
+  - K�benhavn
   catalog:
     bruun_collection_id: '4279'
     sieg:
@@ -25852,6 +25984,8 @@ coins:
     hede_volume: c3h
     schou: 2-3
     sieg: '32'
+    others:
+    - schou# 2
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -25896,6 +26030,8 @@ coins:
     hede_volume: c3h
     schou: '15'
     sieg: '31'
+    others:
+    - schou# 7
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -26004,10 +26140,10 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 9.3
-    source: '?'
+    source: ucoin
   - value: 9.301
     source: hede
   - value: 9.301
@@ -26018,9 +26154,9 @@ coins:
     source: numismaster
   diameter_mm:
   - value: 32.0
-    source: '?'
-  - value: 32.0
     source: numista
+  - value: 32.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65212
@@ -26098,17 +26234,17 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 9.301
     source: hede
   - value: 9.455
     source: numista
   - value: 9.46
-    source: '?'
+    source: ucoin
   diameter_mm:
   - value: 33.0
-    source: '?'
+    source: ucoin
   - value: 33.21
     source: numista
   sources:
@@ -26247,6 +26383,8 @@ coins:
     hede_volume: c4h
     schou: '57'
     sieg: '34'
+    others:
+    - schou# 58
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -26446,6 +26584,8 @@ coins:
     bruun_lot_no: 1023
     bruun_page: 60
     fr: '49'
+    others:
+    - schou# 7
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -26569,6 +26709,8 @@ coins:
     bruun_page: 83
     fr: '40'
     numista: '109357'
+    others:
+    - schou# 7
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -26917,6 +27059,8 @@ coins:
     schou: 91-94
     sieg: '23'
     numista: '54915'
+    others:
+    - schou# 91
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -27916,7 +28060,7 @@ coins:
   metal: silver
   metal_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 5.846
@@ -28027,10 +28171,12 @@ coins:
     hede_volume: c8h
     schou: '10'
     sieg: '4'
+    others:
+    - schou# 11
   metal: silver
   metal_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 7.308
@@ -28387,6 +28533,8 @@ coins:
     bruun_page: 28
     fr: '21'
     numista: '366616'
+    others:
+    - schou# 1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -28450,6 +28598,8 @@ coins:
     hede_volume: f2h
     schou: '7'
     sieg: '20'
+    others:
+    - schou# 4
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -28767,6 +28917,16 @@ coins:
     hede_volume: f3h
     schou: 8-9
     sieg: '111'
+    others:
+    - schou# 10
+    - schou# 6-7
+    - schou# 4-5
+    - schou# 2
+    - schou# 8
+    - schou# 9
+    - sieg# 112
+    - sieg# 113
+    - sieg# 114
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -28830,6 +28990,10 @@ coins:
     bruun_page: 111
     fr: '102'
     numista: '175949'
+    others:
+    - Aagaard# 23.1
+    - Aagaard# 42.1
+    - Aagaard# 43.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -28918,6 +29082,13 @@ coins:
     hede_volume: f3h
     schou: 9-11
     sieg: '116'
+    others:
+    - sieg# 117
+    - sieg# 118
+    - schou# 7
+    - schou# 4
+    - schou# 3
+    - schou# 11
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -28987,6 +29158,10 @@ coins:
     bruun_page: 111
     fr: '103'
     numista: '144492'
+    others:
+    - schou# 13
+    - Aagaard# 25.1
+    - Aagaard# 44.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -29065,6 +29240,14 @@ coins:
     hede_volume: f3h
     schou: 25-26
     sieg: '127'
+    others:
+    - schou# 24
+    - schou# 23
+    - schou# 22
+    - schou# 26
+    - sieg# 128
+    - sieg# 129
+    - sieg# 130
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -29119,6 +29302,13 @@ coins:
     hede_volume: f3h
     schou: '8'
     sieg: '119'
+    others:
+    - schou# 7-8
+    - schou# 5
+    - schou# 3
+    - sieg# 116
+    - sieg# 120
+    - sieg# 121
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -29174,6 +29364,8 @@ coins:
     schou: '2'
     sieg: '141'
     numista: '434795'
+    others:
+    - schou# 19-19a
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -29231,6 +29423,9 @@ coins:
     hede_volume: f3h
     schou: 4-6
     sieg: '139'
+    others:
+    - schou# 6
+    - schou# 6a
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -29278,6 +29473,8 @@ coins:
     bruun_page: 121
     fr: '128'
     numista: '344441'
+    others:
+    - Aagaard# 57.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -29355,6 +29552,8 @@ coins:
     bruun_page: 141
     fr: '130'
     numista: '344370'
+    others:
+    - Aagaard# 66.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -29427,6 +29626,8 @@ coins:
     schou: 34-35
     sieg: '66'
     numista: '111028'
+    others:
+    - schou# 35
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -29559,6 +29760,8 @@ coins:
     hede_volume: f4h
     schou: '1'
     sieg: '52'
+    others:
+    - schou# 1c
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -29663,6 +29866,8 @@ coins:
     sieg: '29'
     bruun_collection_id: '7557'
     fr: '241'
+    others:
+    - schou# 14a
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -29918,6 +30123,9 @@ coins:
     bruun_lot_no: 17134
     bruun_page: 86
     fr: '269'
+    others:
+    - schou# 1
+    - schou# 3
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -29979,6 +30187,8 @@ coins:
     hede_volume: f5h
     schou: '2'
     sieg: '19'
+    others:
+    - schou# 6
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -30027,7 +30237,7 @@ coins:
   metal: silver
   metal_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 2.436
@@ -30065,7 +30275,7 @@ coins:
   metal: silver
   metal_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 4.872
@@ -30244,6 +30454,8 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17213
     bruun_page: 110
+    others:
+    - schou# 6
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -30253,27 +30465,21 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: '?'
-  - value: 0.875
     source: hede
   - value: 0.875
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 7.18
     source: bruun
   - value: 7.22
-    source: '?'
-  - value: 7.22
     source: bruun
+  - value: 7.22
+    source: ucoin
   - value: 7.224
     source: hede
-  - value: 7.224
-    source: numista
   diameter_mm:
   - value: 28.0
-    source: '?'
-  - value: 28.0
-    source: numista
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66043
@@ -31092,7 +31298,9 @@ coins:
   year_last: 1537
   year_label: '1537'
   year_verified: true
-  mint: Kopenhagen
+  mint:
+  - Kopenhagen
+  - K�benhavn
   catalog:
     numista: '474583'
     sieg:
@@ -31156,7 +31364,9 @@ coins:
   year_last: 1535
   year_label: '1535'
   year_verified: true
-  mint: Kopenhagen
+  mint:
+  - Kopenhagen
+  - K�benhavn
   catalog:
     numista: '474591'
     sieg: C3-7
@@ -33186,43 +33396,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65355
-- fuss: kronemont_chr_iv
-  phase: III
-  kind: gedenk
-  nominal: 2 Krone
-  issuing_entity: danish_realm
-  fraction: '2'
-  id: unified-denmark-numismaster-65357
-  year_first: 1675
-  year_last: 1675
-  year_label: '1675'
-  catalog:
-    km: '351.2'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.767
-    source: numismaster
-  weight_rough_g:
-  - value: 39.002
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65357
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65357
 - fuss: 9_25_thaler
   phase: I
   kind: scheide
@@ -34593,6 +34766,9 @@ coins:
     bruun_lot_no: 11166
     bruun_page: 88
     numista: '474245'
+    others:
+    - schou# 2
+    - schou# 1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -34669,6 +34845,8 @@ coins:
     - '37.1'
     - C3-37.1
     numista: '474248'
+    others:
+    - schou# 8
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -34742,6 +34920,9 @@ coins:
     bruun_lot_no: 11167
     bruun_page: 88
     numista: '474250'
+    others:
+    - schou# 7
+    - schou# 4
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -34801,6 +34982,12 @@ coins:
     hede_volume: c3h
     schou: '1'
     sieg: '33.1'
+    others:
+    - schou# 1544
+    - schou# 2
+    - schou# 6
+    - schou# 7
+    - sieg# 33.2
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -34851,6 +35038,17 @@ coins:
     schou: 104-119
     sieg: '50.1'
     numista: '302666'
+    others:
+    - schou# 120
+    - schou# 122
+    - schou# 121
+    - schou# 1619
+    - schou# 130
+    - schou# 118
+    - sieg# 50.2
+    - sieg# 50.3
+    - sieg# 50.4
+    - sieg# 50.5
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -34911,6 +35109,10 @@ coins:
     hede_volume: c4h
     schou: 182-184
     sieg: '41'
+    others:
+    - schou# 185
+    - schou# 182
+    - schou# 184
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -34970,6 +35172,8 @@ coins:
     schou: '142'
     sieg: '31'
     numista: '142853'
+    others:
+    - schou# 143
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -34979,25 +35183,23 @@ coins:
   verified: false
   fineness:
   - value: 0.312
-    source: '?'
-  - value: 0.312
     source: hede
   - value: 0.312
     source: numismaster
   - value: 0.312
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 0.52
     source: numista
   - value: 0.523
     source: hede
   - value: 0.53
-    source: '?'
+    source: ucoin
   - value: 0.532
     source: numismaster
   diameter_mm:
   - value: 13.5
-    source: '?'
+    source: ucoin
   - value: 14.0
     source: numista
   sources:
@@ -35062,6 +35264,8 @@ coins:
     schou: 123-35,91-94
     sieg: '44'
     numista: '107874'
+    others:
+    - schou# 124
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -35215,6 +35419,9 @@ coins:
     schou: '6'
     sieg: '116'
     dav: 3512A
+    others:
+    - schou# 4
+    - sieg# 117
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -35267,6 +35474,11 @@ coins:
     hede_volume: c4h
     schou: 16-26
     sieg: '27'
+    others:
+    - schou# 16
+    - schou# 21
+    - schou# 23
+    - schou# 25
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -35410,6 +35622,9 @@ coins:
     hede_volume: c4h
     schou: 64-111
     sieg: '62'
+    others:
+    - schou# 74
+    - schou# 93
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -35475,7 +35690,9 @@ coins:
     hede: '101'
     hede_volume: c5h
     sieg: '53'
-    dav: '3646'
+    dav:
+    - '3646'
+    - EC II 3646
     bruun_collection_id:
     - '7120'
     - '7191'
@@ -35544,6 +35761,7 @@ coins:
     unit_raw: rd
   composed_of:
   - unified-dk-hede-c5h101
+  - unified-dk-numista-83107
 - fuss: kronemont
   phase: II
   kind: kurant
@@ -35566,6 +35784,8 @@ coins:
     hede_volume: c5h
     schou: '37'
     sieg: '22'
+    others:
+    - schou# 27
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -35779,6 +35999,12 @@ coins:
     schou: 60a
     sieg: '22.1'
     numista: '112565'
+    others:
+    - sieg# 22.2
+    - schou# 60
+    - schou# 39
+    - schou# 59
+    - schou# 34
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -35835,6 +36061,8 @@ coins:
     hede_volume: c5h
     schou: 23-28
     sieg: '16'
+    others:
+    - schou# 27
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -36085,19 +36313,15 @@ coins:
   year_label: '1670'
   mint: Kopenhagen
   catalog:
-    km:
-    - '322'
-    - '321'
+    km: '322'
     hede: '60'
     hede_volume: c5h
     schou: '2'
     sieg: '57'
-    bruun_collection_id: '6754'
-    bruun_part: I
-    bruun_lot_no: 1099
-    bruun_page: 147
-    numista: '328512'
-    dav: '3628'
+    others:
+    - schou# 2a
+    numista: '214327'
+    dav: EC II 3629
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -36109,41 +36333,22 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: numismaster
-  - value: 0.875
     source: numista
   weight_rough_g:
   - value: 28.775
     source: hede
-  - value: 28.775
-    source: numismaster
-  - value: 28.78
+  - value: 28.83
     source: numista
   diameter_mm:
-  - value: 42.0
+  - value: 41.75
     source: numista
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h60.htm
     ref: danskmoent.dk (Hede c5h60)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1670/?tid=97370
-    ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-    ref: Bruun Part I, lot 1099, p. 147
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 13172, p. 127
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17110, p. 73
   - type: literature
-    url: https://numismaster.com/MC_65464
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/328512
-    ref: Numista N#328512 — 1 Speciedaler - Christian V (Accession)
+    url: https://en.numista.com/214327
+    ref: Numista N#214327 — 1 Speciedaler - Christian V (Type 1; Year on edge)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -36182,6 +36387,10 @@ coins:
     schou: '32'
     sieg: '7'
     numista: '22576'
+    others:
+    - sieg# 8
+    - sieg# 8.2
+    - schou# 49
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -36283,6 +36492,13 @@ coins:
     hede_volume: c5h
     schou: '4'
     sieg: '40'
+    others:
+    - schou# 5
+    - schou# 7
+    - schou# 8
+    - schou# 11/10
+    - schou# 12
+    - schou# 13
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -36332,6 +36548,14 @@ coins:
     hede: '82'
     hede_volume: c5h
     schou: '1'
+    others:
+    - schou# 3
+    - schou# 6
+    - schou# 7
+    - schou# 8
+    - schou# 9
+    - schou# 10
+    - schou# 2
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -36377,6 +36601,14 @@ coins:
     hede_volume: c5h
     schou: 25-31
     sieg: '9.1'
+    others:
+    - schou# 30
+    - schou# 25
+    - schou# 26
+    - schou# 27
+    - schou# 28
+    - schou# 29
+    - schou# 31
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -36428,6 +36660,9 @@ coins:
     hede_volume: c5h
     schou: 20-21
     sieg: '31'
+    others:
+    - schou# 1690
+    - schou# 21
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -36478,6 +36713,8 @@ coins:
     schou: 12-13
     sieg: '47'
     dav: '3641'
+    others:
+    - schou# 13
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -36736,27 +36973,21 @@ coins:
   verified: false
   fineness:
   - value: 0.343
-    source: '?'
-  - value: 0.343
     source: hede
   - value: 0.343
     source: numismaster
   - value: 0.343
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 1.18
-    source: '?'
+    source: ucoin
   - value: 1.181
     source: hede
   - value: 1.181
     source: numismaster
-  - value: 1.181
-    source: numista
   diameter_mm:
   - value: 17.3
-    source: '?'
-  - value: 18.3
-    source: numista
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_58047
@@ -36817,7 +37048,7 @@ coins:
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.343
@@ -37104,6 +37335,9 @@ coins:
     hede_volume: f2h
     schou: '6'
     sieg: '6'
+    others:
+    - schou# 7
+    - schou# 5
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -37195,6 +37429,8 @@ coins:
     hede_volume: f2h
     schou: 133-134
     sieg: '9'
+    others:
+    - schou# 133
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -37287,6 +37523,8 @@ coins:
     bruun_part: II
     bruun_lot_no: 13075
     bruun_page: 63
+    others:
+    - schou# 1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -37339,6 +37577,9 @@ coins:
     hede_volume: f2h
     schou: 8-12
     sieg: '4'
+    others:
+    - schou# 10
+    - schou# 8
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -37458,6 +37699,10 @@ coins:
     hede_volume: f2h
     schou: 1-5
     sieg: '19'
+    others:
+    - schou# 2
+    - schou# 5
+    - schou# 3
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -37506,6 +37751,13 @@ coins:
     hede_volume: f2h
     schou: '5'
     sieg: '14'
+    others:
+    - schou# 8/9
+    - schou# 1
+    - schou# 6
+    - schou# 7
+    - schou# 11
+    - schou# 9
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -37560,6 +37812,8 @@ coins:
     hede_volume: f2h
     schou: '19'
     sieg: '5'
+    others:
+    - schou# 17
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -37628,6 +37882,9 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17039
     bruun_page: 28
+    others:
+    - schou# 21
+    - schou# 23
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -37898,6 +38155,8 @@ coins:
     hede_volume: f3h
     schou: '39'
     sieg: '35'
+    others:
+    - schou# 40
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -37949,6 +38208,9 @@ coins:
     hede_volume: f3h
     schou: 40-41
     sieg: '34'
+    others:
+    - schou# 39
+    - schou# 40
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -37997,6 +38259,9 @@ coins:
     hede_volume: f3h
     schou: 107-109
     sieg: '27'
+    others:
+    - schou# 107
+    - schou# 108
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -38045,6 +38310,9 @@ coins:
     hede_volume: f3h
     schou: 32-33
     sieg: '61'
+    others:
+    - schou# 34
+    - schou# 33
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -38099,7 +38367,21 @@ coins:
     bruun_lot_no: 13158
     bruun_page: 116
     numista: '83028'
-    dav: '3582'
+    dav:
+    - '3582'
+    - EC II 3582
+    others:
+    - schou# 58
+    - schou# 60
+    - schou# 69
+    - schou# 70
+    - schou# 72
+    - schou# 46
+    - schou# 36
+    - schou# 39
+    - schou# 30
+    - schou# 33
+    - schou# 5
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -38157,6 +38439,7 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
+  - unified-denmark-numismaster-65294
   - unified-dk-hede-f3h116
   - unified-dk-numista-83028
 - fuss: kronemont
@@ -38176,6 +38459,8 @@ coins:
     hede_volume: f3h
     schou: '28'
     sieg: '62'
+    others:
+    - schou# 27
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -38269,6 +38554,16 @@ coins:
     hede_volume: f3h
     schou: 8-9
     sieg: '111'
+    others:
+    - schou# 10
+    - schou# 6-7
+    - schou# 4-5
+    - schou# 2
+    - schou# 8
+    - schou# 9
+    - sieg# 112
+    - sieg# 113
+    - sieg# 114
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -38421,6 +38716,9 @@ coins:
     hede_volume: f3h
     schou: '19'
     sieg: '4.1'
+    others:
+    - schou# 20-21
+    - sieg# 4.2
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -38514,6 +38812,8 @@ coins:
     hede_volume: f3h
     schou: 64-70
     sieg: '2'
+    others:
+    - schou# 67
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -38559,6 +38859,23 @@ coins:
     schou: '39'
     sieg: '6.1'
     numista: '143431'
+    others:
+    - schou# 35-42
+    - schou# 47
+    - schou# 116-118
+    - schou# 81,84
+    - schou# 79
+    - schou# 78
+    - schou# 118
+    - sieg# 6.2
+    - sieg# 7
+    - sieg# 8.1
+    - sieg# 8.2
+    - sieg# 5/1650
+    - sieg# 8.2/1655
+    - sieg# 8.3
+    - sieg# 9.1
+    - sieg# 9.2
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -38660,6 +38977,10 @@ coins:
     hede_volume: f3h
     schou: 145-146
     sieg: '11.1'
+    others:
+    - schou# 147-148
+    - schou# 147
+    - sieg# 11.2
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -38705,6 +39026,12 @@ coins:
     hede_volume: f3h
     schou: 83-92
     sieg: '24.1'
+    others:
+    - schou# 93
+    - schou# 85
+    - schou# 91
+    - schou# 92
+    - sieg# 24.2
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -38806,6 +39133,13 @@ coins:
     hede_volume: f3h
     schou: '8'
     sieg: '119'
+    others:
+    - schou# 7-8
+    - schou# 5
+    - schou# 3
+    - sieg# 116
+    - sieg# 120
+    - sieg# 121
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -38905,6 +39239,14 @@ coins:
     hede_volume: f3h
     schou: 25-26
     sieg: '127'
+    others:
+    - schou# 24
+    - schou# 23
+    - schou# 22
+    - schou# 26
+    - sieg# 128
+    - sieg# 129
+    - sieg# 130
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -38952,6 +39294,9 @@ coins:
     hede_volume: f3h
     schou: '7'
     sieg: '144'
+    others:
+    - schou# 4
+    - sieg# 145
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -38992,6 +39337,8 @@ coins:
     hede_volume: f3h
     schou: 2/2a
     sieg: '143'
+    others:
+    - schou# 2
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -39048,6 +39395,9 @@ coins:
     bruun_lot_no: 1057
     bruun_page: 97
     fr: '75'
+    others:
+    - schou# 28
+    - Aagaard# 5.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -39108,12 +39458,23 @@ coins:
     sieg:
     - '69'
     - '69.2'
-    dav: '3540'
+    dav:
+    - '3540'
+    - EC II 3540
     bruun_collection_id: '6017'
     bruun_part: II
     bruun_lot_no: 13129
     bruun_page: 96
     numista: '143386'
+    others:
+    - sieg# 70
+    - schou# 13
+    - schou# 15
+    - schou# 11
+    - schou# 12
+    - schou# 16
+    - schou# 18
+    - Aagaard# 77
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -39179,6 +39540,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-f3h50ab
+  - unified-dk-numista-143386
 - fuss: 9_25_thaler
   phase: I
   kind: kurant
@@ -39197,6 +39559,11 @@ coins:
     hede_volume: f3h
     schou: '18'
     sieg: '71'
+    others:
+    - schou# 19
+    - schou# 12
+    - schou# 13
+    - sieg# 72
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -39260,6 +39627,9 @@ coins:
     - '84.1'
     others:
     - KM-DK# 250
+    - schou# 24
+    - schou# 22
+    - Aagaard# 101.1 (64-1/64.2)
     dav: '3550'
     bruun_collection_id: '6422'
     bruun_part: II
@@ -39353,6 +39723,13 @@ coins:
     schou: 14-15
     sieg: '97'
     dav: 3564A
+    others:
+    - schou# 7-8
+    - schou# 11
+    - schou# 8
+    - schou# 14
+    - sieg# 98
+    - sieg# 99
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -39410,6 +39787,10 @@ coins:
     bruun_part: III
     bruun_lot_no: 11216
     bruun_page: 110
+    others:
+    - schou# 38-41
+    - schou# 42-43
+    - schou# 43
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -39472,6 +39853,9 @@ coins:
     hede_volume: f4h
     schou: '3'
     sieg: '45'
+    others:
+    - schou# 1,1
+    - schou# 1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -39481,13 +39865,9 @@ coins:
   fineness:
   - value: 0.979
     source: hede
-  - value: 0.979
-    source: numismaster
   weight_rough_g:
   - value: 6.981
     source: hede
-  - value: 6.981
-    source: numismaster
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f4h16.htm
@@ -39626,6 +40006,12 @@ coins:
     bruun_lot_no: 13203
     bruun_page: 150
     numista: '82692'
+    others:
+    - schou# 7
+    - schou# 9
+    - schou# 5
+    - schou# 3
+    dav: EC III A1287
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -39817,6 +40203,9 @@ coins:
     schou: '12'
     sieg: '16'
     dav: '1298'
+    others:
+    - schou# 11
+    - sieg# 17
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -39917,7 +40306,9 @@ coins:
     hede_volume: f5h
     schou: '13'
     sieg: '10'
-    dav: '1300'
+    dav:
+    - '1300'
+    - EC III 1300
     numista: '147923'
   metal: silver
   metal_verified: true
@@ -39962,6 +40353,11 @@ coins:
   - type: literature
     url: https://en.numista.com/147923
     ref: Numista N#147923 — 2 Krone - Frederik V
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18203664
+    ref: IKMK Berlin 18203664
+  inscription_obv: FRIDERICUS V - DEI GRATIA
+  inscription_rev: DAN NOR VAN GOT REX
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -39973,6 +40369,7 @@ coins:
     basis: fin
     unit_raw: rd
   composed_of:
+  - unified-denmark-numismaster-65363
   - unified-dk-hede-f5h30
   - unified-dk-numista-147923
 - fuss: reichsdukatenfuss
@@ -40220,6 +40617,9 @@ coins:
     hede_volume: f5h
     schou: '10'
     sieg: '28'
+    others:
+    - schou# 6
+    - sieg# 29
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -40400,6 +40800,9 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17212
     bruun_page: 109
+    others:
+    - sieg# 13.2
+    - schou# 5
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -40483,6 +40886,8 @@ coins:
     bruun_page: 122
     fr: '297'
     numista: '26770'
+    others:
+    - Schön# 18
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -41242,66 +41647,52 @@ coins:
   nominal: 1 Krone
   issuing_entity: danish_realm
   fraction: '1'
-  id: unified-denmark-numismaster-65305
-  year_first: 1680
-  year_last: 1680
-  year_label: '1680'
-  mint: Kopenhagen
+  id: unified-denmark-numismaster-65313
+  year_first: 1686
+  year_last: 1689
+  year_ranges:
+  - - 1686
+    - 1686
+  - - 1689
+    - 1689
+  year_label: 1686, 1689
   catalog:
     km:
-    - '367.2'
-    - '367'
-    - '367.1'
-    hede: '78'
-    hede_volume: c5h
-    schou: 19-21
-    numista: '145724'
-    dav: '3636'
+    - '386.3'
+    - '386.1'
+    - '386'
+    dav:
+    - 3639A
+    - '3639'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: true
+  mint_verified: false
   verified: false
   fineness:
   - value: 0.671
-    source: hede
-  - value: 0.671
     source: numismaster
-  - value: 0.671
-    source: numista
   - value: 0.671
     source: ucoin
   weight_rough_g:
   - value: 22.27
     source: ucoin
   - value: 22.272
-    source: hede
-  - value: 22.272
     source: numismaster
-  - value: 22.4
-    source: numista
   diameter_mm:
-  - value: 40.9
+  - value: 39.1
     source: ucoin
-  - value: 40.92
-    source: numista
   sources:
   - type: literature
-    url: https://numismaster.com/MC_65305
+    url: https://numismaster.com/MC_65313
     ref: NumisMaster
   - type: literature
-    url: https://numismaster.com/MC_65304
+    url: https://numismaster.com/MC_65310
     ref: NumisMaster
-  - type: literature
-    url: https://www.danskmoent.dk/chr/c5h78.htm
-    ref: danskmoent.dk (Hede c5h78)
-  - type: literature
-    url: https://en.numista.com/145724
-    ref: Numista N#145724 — 4 Mark Dansk "Piedestalkrone" - Christian V
   - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-krone-1680/?tid=97313
+    url: https://en.ucoin.net/coin/denmark-1-krone-1686-1689/?tid=97316
     ref: ucoin
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
@@ -41310,51 +41701,8 @@ coins:
       primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  hede_muentzfuss_yield:
-    value: 10.418
-    unit: rigsdaler
-    basis: fin
-    unit_raw: rd
   composed_of:
-  - unified-denmark-numismaster-65305
-  - unified-dk-hede-c5h78
-- fuss: 9_25_thaler
-  phase: I
-  kind: scheide
-  nominal: 1 Krone
-  issuing_entity: danish_realm
-  fraction: '1'
-  id: unified-denmark-numismaster-65313
-  year_first: 1689
-  year_last: 1689
-  year_label: '1689'
-  catalog:
-    km: '386.3'
-    dav: 3639A
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.671
-    source: numismaster
-  weight_rough_g:
-  - value: 22.272
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65313
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
+  - unified-denmark-numismaster-65310
   - unified-denmark-numismaster-65313
 - fuss: 9_25_thaler
   phase: I
@@ -41447,6 +41795,8 @@ coins:
     hede_volume: c4h
     schou: 16-17
     sieg: '26'
+    others:
+    - schou# 16
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -42160,7 +42510,9 @@ coins:
     others:
     - Dav EC II# 3517
     - Dav EC II# 3517a
-    dav: '3517'
+    dav:
+    - '3517'
+    - EC II 3517
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -42176,23 +42528,23 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 18.766
     source: numismaster
   - value: 18.766
     source: numista
   - value: 18.77
-    source: '?'
+    source: ucoin
   - value: 18.909
     source: hede
   - value: 18.909
     source: numismaster
   diameter_mm:
   - value: 40.0
-    source: '?'
-  - value: 40.0
     source: numista
+  - value: 40.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65229
@@ -42247,6 +42599,7 @@ coins:
     unit_raw: daler
   composed_of:
   - unified-dk-hede-c4h106a
+  - unified-dk-numista-80227
 - fuss: kronemont_chr_iv
   phase: I
   kind: tarif
@@ -42279,6 +42632,7 @@ coins:
     numista: '70513'
     others:
     - Dav EC II# 3517
+    dav: EC II 3517
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -42292,19 +42646,19 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 18.909
     source: hede
   - value: 18.91
-    source: '?'
-  - value: 18.91
     source: numista
+  - value: 18.91
+    source: ucoin
   diameter_mm:
   - value: 39.55
     source: numista
   - value: 40.0
-    source: '?'
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65230
@@ -42464,27 +42818,25 @@ coins:
   verified: false
   fineness:
   - value: 0.312
-    source: '?'
-  - value: 0.312
     source: hede
   - value: 0.312
     source: numismaster
   - value: 0.312
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 0.523
     source: hede
   - value: 0.53
-    source: '?'
+    source: ucoin
   - value: 0.532
     source: numismaster
   - value: 0.532
     source: numista
   diameter_mm:
   - value: 13.5
-    source: '?'
-  - value: 13.5
     source: numista
+  - value: 13.5
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65014
@@ -42644,6 +42996,8 @@ coins:
     schou: '12'
     sieg: '65'
     numista: '92044'
+    others:
+    - schou# 52
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -42719,6 +43073,8 @@ coins:
     schou: '104'
     sieg: '66'
     numista: '107717'
+    others:
+    - schou# 105
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -43043,6 +43399,8 @@ coins:
     schou: 17-21,14-17
     sieg: '52'
     numista: '108001'
+    others:
+    - schou# 20
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -43120,6 +43478,21 @@ coins:
     schou: '25'
     sieg: '83'
     numista: '82679'
+    others:
+    - schou# 27
+    - schou# 32
+    - schou# 33
+    - schou# 35
+    - schou# 36
+    - schou# 40
+    - schou# 41
+    - schou# 44
+    - schou# 30
+    - schou# 48
+    - schou# 49
+    - schou# 52
+    - schou# 53
+    - schou# 55
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -43129,13 +43502,13 @@ coins:
   verified: false
   fineness:
   - value: 0.593
-    source: '?'
-  - value: 0.593
     source: hede
   - value: 0.593
     source: numismaster
   - value: 0.593
     source: numista
+  - value: 0.593
+    source: ucoin
   weight_rough_g:
   - value: 11.136
     source: hede
@@ -43144,12 +43517,12 @@ coins:
   - value: 11.136
     source: numista
   - value: 11.14
-    source: '?'
+    source: ucoin
   diameter_mm:
   - value: 32.0
-    source: '?'
-  - value: 32.0
     source: numista
+  - value: 32.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65172
@@ -43213,6 +43586,13 @@ coins:
     hede_volume: c4h
     schou: '64'
     sieg: '78'
+    others:
+    - schou# 71
+    - schou# 72
+    - schou# 55
+    - schou# 58
+    - schou# 59
+    - schou# 61
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -43619,6 +43999,8 @@ coins:
     bruun_page: 75
     fr: '43'
     numista: '131961'
+    others:
+    - schou# 8
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -43711,6 +44093,8 @@ coins:
     bruun_part: II
     bruun_lot_no: 13115
     bruun_page: 87
+    others:
+    - schou# 2
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -43984,6 +44368,9 @@ coins:
     bruun_part: I
     bruun_lot_no: 1015
     bruun_page: 49
+    others:
+    - schou# 7
+    - sieg# 115
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -44321,6 +44708,9 @@ coins:
     bruun_part: I
     bruun_lot_no: 1031
     bruun_page: 69
+    others:
+    - sieg# 126
+    - schou# 1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -44431,7 +44821,7 @@ coins:
   - value: 0.875
     source: numista
   - value: 0.88
-    source: '?'
+    source: ucoin
   - value: 0.881
     source: hede
   - value: 0.881
@@ -44446,12 +44836,12 @@ coins:
   - value: 14.616
     source: numista
   - value: 14.62
-    source: '?'
+    source: ucoin
   diameter_mm:
   - value: 35.37
-    source: '?'
-  - value: 35.37
     source: numista
+  - value: 35.37
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65388
@@ -44529,6 +44919,9 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17043
     bruun_page: 32
+    others:
+    - schou# 13
+    - schou# 2
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -44740,6 +45133,9 @@ coins:
     bruun_lot_no: 13085
     bruun_page: 69
     numista: '142001'
+    others:
+    - schou# 5a
+    - schou# 114
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -44828,6 +45224,10 @@ coins:
     schou: 121-131
     sieg: '48'
     numista: '110823'
+    others:
+    - schou# 121
+    - schou# 127
+    - schou# 27
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -45289,7 +45689,9 @@ coins:
     hede: 67B
     hede_volume: c5h
     sieg: '39'
-    dav: '3637'
+    dav:
+    - '3637'
+    - EC II 3637
     numista: '112663'
   metal: silver
   metal_verified: true
@@ -45346,6 +45748,7 @@ coins:
     unit_raw: rd
   composed_of:
   - unified-dk-hede-c5h67b
+  - unified-dk-numista-112663
 - fuss: kronemont
   phase: II
   kind: kurant
@@ -45444,6 +45847,8 @@ coins:
     hede: '75'
     hede_volume: c5h
     schou: '48'
+    others:
+    - schou# 50
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -45491,6 +45896,10 @@ coins:
     schou: '16'
     sieg: '28.1'
     numista: '145804'
+    others:
+    - schou# 18
+    - schou# 11
+    - schou# 13
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -45570,6 +45979,11 @@ coins:
     schou: 18-19
     sieg: '29'
     numista: '311705'
+    others:
+    - schou# 18
+    - schou# 19
+    - schou# 13
+    - schou# 14
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -46006,25 +46420,25 @@ coins:
   - value: 0.979
     source: numista
   - value: 0.98
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 3.47
     source: bruun
   - value: 3.48
     source: bruun
   - value: 3.49
-    source: '?'
-  - value: 3.49
     source: hede
   - value: 3.49
     source: numismaster
   - value: 3.49
     source: numista
+  - value: 3.49
+    source: ucoin
   diameter_mm:
   - value: 21.0
-    source: '?'
-  - value: 21.0
     source: numista
+  - value: 21.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65819
@@ -46087,6 +46501,10 @@ coins:
     bruun_lot_no: 17120
     bruun_page: 79
     numista: '90151'
+    others:
+    - schou# 2
+    - schou# 3
+    dav: EC III A1294
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -46170,6 +46588,8 @@ coins:
     bruun_part: III
     bruun_lot_no: 11276
     bruun_page: 140
+    others:
+    - schou# 1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -46431,7 +46851,7 @@ coins:
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.875
@@ -46514,6 +46934,9 @@ coins:
     schou: '3'
     sieg: '19'
     numista: '148397'
+    others:
+    - schou# 2
+    - sieg# 20
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -46568,6 +46991,7 @@ coins:
     basis: fin
   composed_of:
   - unified-dk-hede-c7h26
+  - unified-dk-numista-148397
 - fuss: 11_333_thaler
   phase: I
   kind: scheide
@@ -46752,6 +47176,8 @@ coins:
     schou: '18'
     sieg: '9'
     numista: '43515'
+    others:
+    - C# 49
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -46858,13 +47284,11 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: '?'
-  - value: 0.875
     source: hede
   - value: 0.875
     source: numismaster
   - value: 0.875
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 14.38
     source: bruun
@@ -46872,17 +47296,13 @@ coins:
     source: hede
   - value: 14.447
     source: numismaster
-  - value: 14.447
-    source: numista
   - value: 14.45
-    source: '?'
+    source: ucoin
   - value: 14.47
     source: bruun
   diameter_mm:
   - value: 30.0
-    source: '?'
-  - value: 30.56
-    source: numista
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66060
@@ -48110,6 +48530,9 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17040
     bruun_page: 28
+    others:
+    - schou# 7
+    - schou# 2
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -48384,6 +48807,9 @@ coins:
     schou: '52'
     sieg: '40'
     numista: '111376'
+    others:
+    - schou# 49
+    - schou# 50
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -48461,6 +48887,12 @@ coins:
     schou: 46-47
     sieg: '14.1'
     numista: '111082'
+    others:
+    - sieg# 14.2
+    - sieg# 14.3
+    - sieg# 14.4
+    - sieg# 14.5
+    - schou# 48
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -48604,6 +49036,8 @@ coins:
     hede_volume: f3h
     sieg: '19.1'
     numista: '180731'
+    others:
+    - sieg# 19.2
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -48735,6 +49169,12 @@ coins:
     hede_volume: f3h
     schou: 88-92
     sieg: '25.1'
+    others:
+    - schou# 93
+    - schou# 94
+    - schou# 95
+    - schou# 63
+    - schou# 91
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -48792,6 +49232,13 @@ coins:
     hede_volume: f3h
     schou: 9-11
     sieg: '116'
+    others:
+    - sieg# 117
+    - sieg# 118
+    - schou# 7
+    - schou# 4
+    - schou# 3
+    - schou# 11
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -48862,6 +49309,10 @@ coins:
     bruun_page: 134
     fr: '104'
     numista: '568145'
+    others:
+    - schou# 7
+    - Aagaard# 53.1
+    - Aagaard# 52.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -48940,6 +49391,8 @@ coins:
     bruun_lot_no: 17075
     bruun_page: 52
     fr: '112'
+    others:
+    - Aagaard# 56.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -49023,6 +49476,10 @@ coins:
     bruun_page: 48
     fr: '117'
     numista: '82683'
+    others:
+    - Aagaard# 28.1 (62-1/62-2)
+    - Aagaard# 36.1
+    - Aagaard# 36.2
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -49127,6 +49584,12 @@ coins:
     bruun_page: 134
     fr: '82'
     numista: '182011'
+    others:
+    - sieg# 65
+    - schou# 5
+    - schou# 3
+    - Aagaard# 61.1
+    - Aagaard# 61.2
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -49221,6 +49684,9 @@ coins:
     bruun_page: 123
     fr: '109'
     numista: '344400'
+    others:
+    - Aagaard# 64.1 (69-1/69-2)
+    - Aagaard# 64.2
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -49316,6 +49782,8 @@ coins:
     bruun_page: 128
     fr: '129'
     numista: '210704'
+    others:
+    - Aagaard# 58.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -49418,6 +49886,14 @@ coins:
     bruun_page: 99
     others:
     - Aagaard-74.1 (49-2/49-5)
+    - Aagaard# 74.1 (49-2/49-5)
+    - sieg# 70
+    - schou# 13
+    - schou# 15
+    - schou# 11
+    - schou# 12
+    - schou# 16
+    - schou# 18
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -49503,6 +49979,8 @@ coins:
     - '73.1'
     others:
     - KM-DK# 204
+    - Aagaard# 83.1
+    - Aagaard# 83.2 (53.1/56.2)
     dav: '3544'
     schou:
     - '10'
@@ -49605,7 +50083,9 @@ coins:
     - '7'
     - '5'
     sieg: '74'
-    dav: '3543'
+    dav:
+    - '3543'
+    - EC II 3543
     bruun_collection_id:
     - '6178'
     - '6210'
@@ -49613,6 +50093,9 @@ coins:
     bruun_lot_no: 11217
     bruun_page: 111
     numista: '305881'
+    others:
+    - Aagaard# 82.1
+    - Aagaard# 82.2
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -49678,6 +50161,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-f3h55
+  - unified-dk-numista-305881
 - fuss: 9_25_thaler
   phase: I
   kind: kurant
@@ -49829,6 +50313,9 @@ coins:
     schou:
     - '10'
     - '9'
+    others:
+    - Aagaard# 111.1
+    - Aagaard# 111.2
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -49918,8 +50405,13 @@ coins:
     bruun_part: II
     bruun_lot_no: 13162
     bruun_page: 119
-    dav: '3560'
+    dav:
+    - '3560'
+    - EC II 3560
     numista: '81646'
+    others:
+    - Aagaard# 118.1
+    - Aagaard# 118.2
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -49990,6 +50482,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-f3h80a
+  - unified-dk-numista-81646
 - fuss: 9_25_thaler
   phase: I
   kind: kurant
@@ -50019,6 +50512,13 @@ coins:
     bruun_lot_no: 11217
     bruun_page: 111
     dav: '3562'
+    others:
+    - schou# 7-8
+    - schou# 11
+    - schou# 8
+    - schou# 14
+    - sieg# 98
+    - sieg# 99
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -50098,6 +50598,13 @@ coins:
     schou: '28'
     sieg: '33'
     numista: '202111'
+    others:
+    - schou# 29
+    - schou# 32
+    - schou# 33
+    - schou# 74
+    - schou# 44
+    - schou# 45
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -50185,6 +50692,8 @@ coins:
     bruun_page: 179
     fr: '243'
     numista: '183046'
+    others:
+    - schou# 2
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -50322,6 +50831,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-f4h15
+  - unified-dk-numista-521570
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -50562,6 +51072,9 @@ coins:
     schou: '1'
     sieg: '20'
     numista: '113309'
+    others:
+    - schou# 3
+    dav: EC III 1291
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -50634,6 +51147,9 @@ coins:
     schou: '7'
     sieg: '6'
     numista: '42609'
+    others:
+    - schou# 1
+    - schou# 3
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -50865,6 +51381,12 @@ coins:
     hede_volume: f4h
     schou: '19'
     sieg: '4'
+    others:
+    - schou# 19a
+    - schou# 8
+    - schou# 15
+    - schou# 17
+    - schou# 7
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -50928,6 +51450,10 @@ coins:
     schou: 22a
     sieg: '2'
     numista: '26614'
+    others:
+    - schou# 10
+    - schou# 15
+    - schou# 20
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -51458,6 +51984,11 @@ coins:
     bruun_page: 133
     fr: '230'
     numista: '341250'
+    others:
+    - schou# 2
+    - schou# 3
+    - schou# 4
+    - sieg# 40
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -51645,6 +52176,8 @@ coins:
     bruun_page: 122
     fr: '298'
     numista: '26769'
+    others:
+    - Schön# 17
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -51822,6 +52355,10 @@ coins:
     bruun_lot_no: 13079
     bruun_page: 66
     dav: '8234'
+    others:
+    - schou# 1,1
+    - schou# 1
+    - sieg# 113
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -51902,6 +52439,10 @@ coins:
     bruun_lot_no: 1014
     bruun_page: 48
     dav: '8233'
+    others:
+    - schou# 1,1
+    - schou# 1
+    - sieg# 113
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -51986,6 +52527,14 @@ coins:
     bruun_lot_no: 1099
     bruun_page: 147
     numista: '214327'
+    others:
+    - schou# 43
+    - schou# 10
+    - schou# 42
+    - schou# 8
+    - sieg# 58.2
+    - sieg# 58.3
+    - sieg# 59
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -51999,8 +52548,6 @@ coins:
   - value: 0.875
     source: numismaster
   - value: 0.875
-    source: numista
-  - value: 0.875
     source: ucoin
   weight_rough_g:
   - value: 28.33
@@ -52011,15 +52558,11 @@ coins:
     source: numismaster
   - value: 28.78
     source: ucoin
-  - value: 28.83
-    source: numista
   - value: 28.99
     source: bruun
   - value: 29.55
     source: bruun
   diameter_mm:
-  - value: 41.75
-    source: numista
   - value: 41.75
     source: ucoin
   sources:
@@ -52075,6 +52618,14 @@ coins:
     sieg: '58.1'
     numista: '577419'
     dav: EC II# 3629A
+    others:
+    - schou# 43
+    - schou# 10
+    - schou# 42
+    - schou# 8
+    - sieg# 58.2
+    - sieg# 58.3
+    - sieg# 59
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -52144,6 +52695,13 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17086
     bruun_page: 60
+    others:
+    - schou# 8
+    - schou# 7
+    - schou# 4
+    - sieg# 60.2
+    - sieg# 60.3
+    - sieg# 61
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -52220,6 +52778,13 @@ coins:
     bruun_lot_no: 1100
     bruun_page: 149
     dav: '408'
+    others:
+    - schou# 8
+    - schou# 7
+    - schou# 4
+    - sieg# 60.2
+    - sieg# 60.3
+    - sieg# 61
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -52282,11 +52847,13 @@ coins:
     hede_volume: c7h
     schou: '3'
     sieg: '17'
+    others:
+    - schou# 9
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.562
@@ -52340,6 +52907,11 @@ coins:
     hede_volume: f2h
     schou: '123'
     sieg: '11'
+    others:
+    - schou# 132
+    - schou# 5
+    - schou# 3
+    - schou# 119
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -52393,6 +52965,11 @@ coins:
     bruun_part: III
     bruun_lot_no: 11170
     bruun_page: 90
+    others:
+    - schou# 8
+    - schou# 1
+    - schou# 5
+    - sieg# 16.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -52452,6 +53029,9 @@ coins:
     bruun_lot_no: 11169
     bruun_page: 89
     dav: '8228'
+    others:
+    - schou# 5
+    - schou# 6
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -52553,6 +53133,8 @@ coins:
     bruun_page: 101
     fr: '110'
     numista: '468770'
+    others:
+    - Aagaard# 19.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -52630,6 +53212,18 @@ coins:
     bruun_lot_no: 13138
     bruun_page: 102
     dav: '3545'
+    others:
+    - sieg# 76
+    - sieg# 77
+    - sieg# 78
+    - schou# 6-8
+    - schou# 4
+    - schou# 16
+    - schou# 17
+    - schou# 13
+    - schou# 14
+    - schou# 6
+    - Aagaard# 86.2
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -52704,6 +53298,17 @@ coins:
     schou: 13-16,21-22
     sieg: '75'
     dav: 3545B
+    others:
+    - sieg# 76
+    - sieg# 77
+    - sieg# 78
+    - schou# 6-8
+    - schou# 4
+    - schou# 16
+    - schou# 17
+    - schou# 13
+    - schou# 14
+    - schou# 6
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -52758,6 +53363,17 @@ coins:
     schou: 13-16,21-22
     sieg: '75'
     dav: 3545C
+    others:
+    - sieg# 76
+    - sieg# 77
+    - sieg# 78
+    - schou# 6-8
+    - schou# 4
+    - schou# 16
+    - schou# 17
+    - schou# 13
+    - schou# 14
+    - schou# 6
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -52822,10 +53438,18 @@ coins:
     sieg:
     - '79'
     - '80.1'
-    dav: '3547'
+    dav:
+    - '3547'
+    - EC II 3547
     numista: '328513'
     others:
     - Aagaard-96.2
+    - sieg# 80
+    - sieg# 81
+    - sieg# 82
+    - schou# 14
+    - schou# 13
+    - schou# 11
     bruun_collection_id: '6403'
     bruun_part: IV
     bruun_lot_no: 17073
@@ -52839,27 +53463,27 @@ coins:
   verified: false
   fineness:
   - value: 0.875
-    source: '?'
-  - value: 0.875
     source: hede
   - value: 0.875
     source: numismaster
   - value: 0.875
     source: numista
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
   - value: 57.55
-    source: '?'
-  - value: 57.55
     source: hede
   - value: 57.55
     source: numismaster
   - value: 57.55
     source: numista
+  - value: 57.55
+    source: ucoin
   diameter_mm:
   - value: 44.0
-    source: '?'
-  - value: 44.0
     source: numista
+  - value: 44.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65559
@@ -52931,6 +53555,14 @@ coins:
     bruun_part: I
     bruun_lot_no: 1076
     bruun_page: 119
+    others:
+    - sieg# 80
+    - sieg# 81
+    - sieg# 82
+    - schou# 14
+    - schou# 13
+    - schou# 11
+    - Aagaard# 95.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -52994,6 +53626,13 @@ coins:
     hede_volume: f3h
     schou: '16'
     sieg: '79'
+    others:
+    - sieg# 80
+    - sieg# 81
+    - sieg# 82
+    - schou# 14
+    - schou# 13
+    - schou# 11
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -53062,6 +53701,16 @@ coins:
     bruun_lot_no: 13156
     bruun_page: 115
     dav: '3552'
+    others:
+    - sieg# 87
+    - sieg# 88
+    - schou# 15-16
+    - schou# 14
+    - schou# 20
+    - schou# 18
+    - schou# 19
+    - Aagaard# 105.1 (65-2/65-2)
+    - Aagaard# 105.1 (65-1/65-2)
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -53139,6 +53788,14 @@ coins:
     schou: 17-19
     sieg: '86'
     dav: 3552A
+    others:
+    - sieg# 87
+    - sieg# 88
+    - schou# 15-16
+    - schou# 14
+    - schou# 20
+    - schou# 18
+    - schou# 19
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -53199,6 +53856,8 @@ coins:
     bruun_page: 140
     fr: '221'
     numista: '146739'
+    others:
+    - schou# 1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -53283,6 +53942,9 @@ coins:
     bruun_lot_no: 11284
     bruun_page: 144
     fr: '278'
+    others:
+    - schou# 3
+    - schou# 4
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -53355,6 +54017,13 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17128
     bruun_page: 83
+    others:
+    - schou# 3
+    - schou# 2
+    - schou# 4
+    - schou# 5
+    - schou# 8
+    - schou# 7
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -53423,10 +54092,12 @@ coins:
     hede: '9'
     hede_volume: f6h
     sieg: '3'
+    others:
+    - sieg# 4
   metal: silver
   metal_verified: true
   weight_rough_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 4.872
@@ -53761,6 +54432,9 @@ coins:
     bruun_lot_no: 17277
     bruun_page: 124
     numista: '8496'
+    others:
+    - Schön# 15
+    - DNF# 4.3
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -53894,7 +54568,9 @@ coins:
     sieg: '34'
     schou: '8'
     hede: '6'
-    dav: '1304'
+    dav:
+    - '1304'
+    - EC III 1304
     numista: '324361'
   metal: silver
   metal_verified: true
@@ -53946,6 +54622,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-10781
+  - unified-dk-numista-324361
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
@@ -54977,7 +55654,9 @@ coins:
     sieg: '102.1'
     schou: '8'
     hede: 53A
-    dav: '3513'
+    dav:
+    - '3513'
+    - EC II 3513
     bruun_part: II
     bruun_lot_no: 13087
     bruun_page: 71
@@ -55036,6 +55715,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-4748
+  - unified-dk-numista-142532
 - fuss: 9_thaler
   phase: I
   kind: kurant
@@ -55667,6 +56347,8 @@ coins:
     bruun_lot_no: 13108
     bruun_page: 83
     dav: 7758D
+    others:
+    - Aagaard# 10
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -55721,6 +56403,9 @@ coins:
     bruun_lot_no: 13109
     bruun_page: 83
     dav: '7759'
+    others:
+    - Aagaard# 8
+    - Aagaard# 7
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -55775,6 +56460,8 @@ coins:
     bruun_part: III
     bruun_lot_no: 11200
     bruun_page: 102
+    others:
+    - Aagaard# 15.3 (this example)
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -55911,6 +56598,8 @@ coins:
     bruun_lot_no: 1055
     bruun_page: 95
     dav: '5077'
+    others:
+    - Aagaard# 1.1
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -55958,6 +56647,8 @@ coins:
     bruun_lot_no: 13125
     bruun_page: 93
     dav: '5078'
+    others:
+    - Aagaard# 2.1
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -56006,6 +56697,8 @@ coins:
     bruun_lot_no: 17063
     bruun_page: 43
     fr: '75'
+    others:
+    - Aagaard# 6.1 (48-2/48-2)
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -56078,6 +56771,10 @@ coins:
     bruun_page: 98
     fr: '77'
     numista: '111083'
+    others:
+    - Aagaard# 8.1 (49-1/49-2)
+    - Aagaard# 8.2
+    - Aagaard# 8.3
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -56162,6 +56859,8 @@ coins:
     bruun_lot_no: 13130
     bruun_page: 96
     dav: 3567B
+    others:
+    - Aagaard# 6.1 (51.8/51-46)
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -56178,6 +56877,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-krone-1651-1652/?tid=97151
     ref: ucoin
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -56213,6 +56916,8 @@ coins:
     bruun_lot_no: 17067
     bruun_page: 46
     fr: '77'
+    others:
+    - Aagaard# 10.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -56280,6 +56985,8 @@ coins:
     bruun_part: II
     bruun_lot_no: 13135
     bruun_page: 99
+    others:
+    - Aagaard# 48.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -56350,6 +57057,8 @@ coins:
     sieg: '17.3'
     schou: '57'
     hede: 126B
+    others:
+    - Aagaard# 34
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -56415,6 +57124,8 @@ coins:
     bruun_part: III
     bruun_lot_no: 11220
     bruun_page: 113
+    others:
+    - Aagaard# 64.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -56483,6 +57194,8 @@ coins:
     bruun_page: 111
     fr: '123'
     numista: '427984'
+    others:
+    - Aagaard# 74.1 (59-E1/59-E1)
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -56539,6 +57252,8 @@ coins:
     bruun_lot_no: 17069
     bruun_page: 47
     fr: '124'
+    others:
+    - Aagaard# 74.1 (59-E1/59-E1)
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -56594,6 +57309,8 @@ coins:
     bruun_part: II
     bruun_lot_no: 13140
     bruun_page: 104
+    others:
+    - Aagaard# 76.1 (59-E3/59-E1)
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -56640,6 +57357,8 @@ coins:
     bruun_lot_no: 1070
     bruun_page: 112
     fr: '127'
+    others:
+    - Aagaard# 74.1 (59-E1/59-E1)
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -56689,6 +57408,8 @@ coins:
     bruun_lot_no: 17073
     bruun_page: 50
     dav: '3547'
+    others:
+    - Aagaard# 96.2
   metal: silver
   metal_verified: false
   fineness_verified: false
@@ -56756,6 +57477,8 @@ coins:
     bruun_lot_no: 1080
     bruun_page: 125
     fr: '110'
+    others:
+    - Aagaard# 37.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -56826,6 +57549,8 @@ coins:
     bruun_page: 52
     fr: '112'
     numista: '176136'
+    others:
+    - Aagaard# 38.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -56903,6 +57628,8 @@ coins:
     bruun_lot_no: 13153
     bruun_page: 112
     numista: '469145'
+    others:
+    - Aagaard# 106.1 (Aagaard erroneously gives a reference to Bruun-6436)
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -56973,6 +57700,8 @@ coins:
     bruun_part: III
     bruun_lot_no: 11228
     bruun_page: 120
+    others:
+    - Aagaard# 144.1
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -56989,6 +57718,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-krone-1665/?tid=97238
     ref: ucoin
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -57024,6 +57757,8 @@ coins:
     schou: '23'
     hede: 105A
     dav: '3579'
+    others:
+    - Aagaard# 96.2
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -57086,6 +57821,9 @@ coins:
     bruun_page: 131
     fr: '92'
     numista: '308327'
+    others:
+    - Aagaard# 62.1 (68.1/68.1)
+    - Aagaard# 62.1 (68-1/68-2)
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -57195,6 +57933,8 @@ coins:
     bruun_lot_no: 11233
     bruun_page: 121
     fr: '129'
+    others:
+    - Aagaard# 51.2
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -57261,6 +58001,8 @@ coins:
     sieg: '93'
     schou: '8'
     hede: '77'
+    others:
+    - Aagaard# 109.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -57334,6 +58076,8 @@ coins:
     bruun_page: 120
     dav: '3581'
     numista: '111392'
+    others:
+    - Aagaard# 116.3
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -57345,8 +58089,6 @@ coins:
   - value: 0.671
     source: numismaster
   - value: 0.671
-    source: numista
-  - value: 0.671
     source: ucoin
   weight_rough_g:
   - value: 21.54
@@ -57355,13 +58097,9 @@ coins:
     source: ucoin
   - value: 22.272
     source: numismaster
-  - value: 22.272
-    source: numista
   diameter_mm:
   - value: 40.0
     source: ucoin
-  - value: 40.76
-    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_65291
@@ -57409,11 +58147,15 @@ coins:
     sieg: '94.2'
     schou: '13'
     hede: 78B
-    dav: '3563'
+    dav:
+    - '3563'
+    - EC II 3563
     bruun_part: I
     bruun_lot_no: 1093
     bruun_page: 139
     numista: '176769'
+    others:
+    - Aagaard# 114.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -57466,6 +58208,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-6697
+  - unified-dk-numista-176769
 - fuss: kronemont
   phase: I
   kind: kurant
@@ -57488,6 +58231,8 @@ coins:
     bruun_lot_no: 17083
     bruun_page: 58
     dav: '3581'
+    others:
+    - Aagaard# 117.7 (69-GK4/69-GK10)
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -57507,6 +58252,10 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 13163, p. 120
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -57540,7 +58289,9 @@ coins:
     bruun_part: IV
     bruun_lot_no: 17088
     bruun_page: 62
-    dav: '410'
+    dav:
+    - '410'
+    - AAO 410
     numista: '111599'
   metal: silver
   metal_verified: true
@@ -57587,6 +58338,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-6778
+  - unified-dk-numista-111599
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
@@ -57925,6 +58677,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-krone-1690-1692/?tid=97319
     ref: ucoin
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -58104,6 +58860,8 @@ coins:
     bruun_part: III
     bruun_lot_no: 11248
     bruun_page: 130
+    others:
+    - Aagaard# 53
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -58168,6 +58926,8 @@ coins:
     bruun_lot_no: 17096
     bruun_page: 66
     dav: '3642'
+    others:
+    - Aagaard# 59
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -58181,6 +58941,10 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17096, p. 66
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -58627,6 +59391,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-krone-1731-1732/?tid=94157
     ref: ucoin
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -59495,7 +60263,9 @@ coins:
     sieg: '18.3'
     schou: '6'
     hede: 27C
-    dav: 1302B
+    dav:
+    - 1302B
+    - EC III 1302B
     numista: '131340'
   metal: silver
   metal_verified: true
@@ -59551,6 +60321,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-7714
+  - unified-dk-numista-131340
 - fuss: 11_333_thaler
   phase: I
   kind: scheide
@@ -59624,7 +60395,9 @@ coins:
     sieg: '35'
     schou: '1'
     hede: '7'
-    dav: '1305'
+    dav:
+    - '1305'
+    - EC III 1305
     numista: '148258'
   metal: silver
   metal_verified: true
@@ -59680,6 +60453,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-7748
+  - unified-dk-numista-148258
 - fuss: 9_25_thaler
   phase: II
   kind: kurant
@@ -59711,6 +60485,7 @@ coins:
     dav:
     - '1306'
     - 1306A
+    - EC III 1306
     bruun_part: IV
     bruun_lot_no: 17138
     bruun_page: 87
@@ -59725,6 +60500,8 @@ coins:
   fineness:
   - value: 0.875
     source: numista
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
   - value: 28.84
     source: bruun
@@ -59732,7 +60509,11 @@ coins:
     source: numista
   - value: 28.89
     source: bruun
+  - value: 28.89
+    source: ucoin
   diameter_mm:
+  - value: 40.0
+    source: ucoin
   - value: 41.0
     source: numista
   sources:
@@ -59764,6 +60545,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-7749
+  - unified-dk-numista-148259
 - fuss: 9_25_thaler
   phase: II
   kind: kurant
@@ -59869,7 +60651,11 @@ coins:
     source: numismaster
   - value: 0.875
     source: numista
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
+  - value: 7.22
+    source: ucoin
   - value: 7.224
     source: numismaster
   - value: 7.29
@@ -59877,6 +60663,8 @@ coins:
   - value: 7.3
     source: bruun
   diameter_mm:
+  - value: 23.0
+    source: ucoin
   - value: 23.85
     source: numista
   sources:
@@ -60777,7 +61565,9 @@ coins:
     sieg: '14'
     schou: '1'
     hede: 3F
-    dav: '74'
+    dav:
+    - '74'
+    - EC IV 74
     numista: '22191'
   metal: silver
   metal_verified: true
@@ -60833,6 +61623,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-8191
+  - unified-dk-numista-22191
 - fuss: 18_5_thaler
   phase: I
   kind: scheide
@@ -61191,23 +61982,17 @@ coins:
   verified: false
   fineness:
   - value: 0.25
-    source: '?'
-  - value: 0.25
     source: numismaster
   - value: 0.25
-    source: numista
+    source: ucoin
   weight_rough_g:
   - value: 1.85
-    source: '?'
-  - value: 1.85
-    source: numista
+    source: ucoin
   - value: 1.856
     source: numismaster
   diameter_mm:
   - value: 17.0
-    source: '?'
-  - value: 17.0
-    source: numista
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66020
@@ -61779,6 +62564,8 @@ coins:
     bruun_lot_no: 17248
     bruun_page: 118
     numista: '4140'
+    others:
+    - DNF# 2.1-2.2.3.3
   metal: bronze
   metal_verified: true
   fineness_verified: false
@@ -62027,6 +62814,9 @@ coins:
     bruun_lot_no: 17268
     bruun_page: 122
     numista: '4145'
+    others:
+    - Schön# 3
+    - DNF# 3.1
   metal: bronze
   metal_verified: true
   fineness_verified: false
@@ -62151,6 +62941,9 @@ coins:
     bruun_lot_no: 17280
     bruun_page: 124
     numista: '9394'
+    others:
+    - Schön# 22
+    - DNF# 3.4
   metal: bronze
   metal_verified: true
   fineness_verified: false
@@ -62231,6 +63024,8 @@ coins:
     bruun_lot_no: 17281
     bruun_page: 124
     numista: '5255'
+    others:
+    - DNF# 2.4
   metal: bronze
   metal_verified: true
   fineness_verified: false
@@ -62329,7 +63124,9 @@ coins:
   year_label: '1619'
   mint: Kopenhagen
   catalog:
-    km: '70.1'
+    km:
+    - '70.1'
+    - '70'
     numista: '302666'
   metal: silver
   metal_verified: true
@@ -62341,9 +63138,16 @@ coins:
   fineness:
   - value: 0.437
     source: numismaster
+  - value: 0.437
+    source: ucoin
   weight_rough_g:
+  - value: 1.46
+    source: ucoin
   - value: 1.462
     source: numismaster
+  diameter_mm:
+  - value: 20.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65092
@@ -63061,6 +63865,7 @@ coins:
   catalog:
     numista: '143575'
     sieg: C1-1
+    schive: XIII:38
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -64411,6 +65216,7 @@ coins:
   year_last: 1818
   year_label: '1818'
   mint:
+  - Altona
   - Kopenhagen
   - Royal Danish
   catalog:
@@ -64431,9 +65237,13 @@ coins:
     source: numismaster
   - value: 14.616
     source: numista
+  - value: 14.62
+    source: ucoin
   diameter_mm:
   - value: 31.0
     source: numista
+  - value: 31.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_66003
@@ -64693,6 +65503,8 @@ coins:
     schou: '34'
     hede: 112A
     dav: '6505'
+    others:
+    - Aagaard# 97.1
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -64751,6 +65563,8 @@ coins:
     schou: '54'
     hede: '116'
     dav: '3582'
+    others:
+    - Aagaard# 86.11
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -64767,6 +65581,10 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-krone-1666-1670/?tid=99134
     ref: ucoin
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -64802,6 +65620,8 @@ coins:
     sieg: '36'
     schou: '17'
     hede: '76'
+    others:
+    - Aagaard# 24
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -64851,6 +65671,8 @@ coins:
     sieg: '33'
     schou: '30'
     hede: '94'
+    others:
+    - Aagaard# 61
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -65904,8 +66726,12 @@ coins:
     sieg: '97'
     schou: '14'
     hede: '82'
-    dav: '3565'
+    dav:
+    - '3565'
+    - EC II 3565
     numista: '82687'
+    others:
+    - Aagaard# 122.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -65960,6 +66786,7 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-6744
+  - unified-dk-numista-82687
 - fuss: 9_25_thaler
   phase: I
   kind: scheide
@@ -65977,6 +66804,8 @@ coins:
     sieg: '148.2'
     schou: '55'
     hede: 134B
+    others:
+    - Aagaard# 4
   metal: billon
   metal_verified: true
   fineness_verified: false
@@ -66028,6 +66857,8 @@ coins:
     sieg: '147.1'
     schou: '56'
     hede: 135A
+    others:
+    - Aagaard# 2
   metal: billon
   metal_verified: true
   fineness_verified: false
@@ -67666,7 +68497,7 @@ coins:
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.875
@@ -68144,6 +68975,9 @@ coins:
     numista: '100478'
     dav: EC III# 1295
     hede: '5'
+    others:
+    - Brekke# 25
+    - Brekke# 26
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -68517,7 +69351,9 @@ coins:
   catalog:
     km: '143'
     numista: '109435'
-    dav: 3536A
+    dav:
+    - 3536A
+    - EC II 3536A
     hede: '55'
     hede_volume: c4h
   metal: silver
@@ -68567,6 +69403,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-65419
   - unified-dk-numista-109435
 - fuss: seed_unsorted
   phase: numismaster
@@ -68649,7 +69486,9 @@ coins:
   catalog:
     km: '182'
     numista: '111154'
-    dav: 3567B
+    dav:
+    - 3567B
+    - EC II 3567B
     bruun_collection_id: '6043'
     bruun_part: II
     bruun_lot_no: 13130
@@ -68704,6 +69543,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-65271
   - unified-dk-numista-111154
 - fuss: 9_25_thaler
   phase: I
@@ -68723,7 +69563,9 @@ coins:
   catalog:
     km: '180'
     numista: '111156'
-    dav: '3567'
+    dav:
+    - '3567'
+    - EC II 3567
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -68771,6 +69613,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-65269
   - unified-dk-numista-111156
 - fuss: seed_unsorted
   phase: numista
@@ -69194,6 +70037,17 @@ coins:
     bruun_part: II
     bruun_lot_no: 13143
     bruun_page: 105
+    others:
+    - sieg# 117
+    - sieg# 118
+    - schou# 7
+    - schou# 4
+    - schou# 3
+    - schou# 11
+    - Aagaard# 24
+    - Aagaard# 24.6
+    - Aagaard# 31.2
+    - Aagaard# 31.1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -69328,7 +70182,9 @@ coins:
   catalog:
     km: '270'
     numista: '111389'
-    dav: '3579'
+    dav:
+    - '3579'
+    - EC II 3579
     bruun_collection_id: '6500'
     bruun_part: II
     bruun_lot_no: 13157
@@ -69380,6 +70236,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-65286
   - unified-dk-numista-111389
 - fuss: seed_unsorted
   phase: numismaster
@@ -69399,7 +70256,9 @@ coins:
   catalog:
     km: '343'
     numista: '112661'
-    dav: 3633A
+    dav:
+    - 3633A
+    - EC II 3633a
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -69447,6 +70306,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-65300
   - unified-dk-numista-112661
 - fuss: 9_25_thaler
   phase: I
@@ -69465,7 +70325,9 @@ coins:
   catalog:
     km: '378'
     numista: '112715'
-    dav: '3638'
+    dav:
+    - '3638'
+    - EC II 3638
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -69513,6 +70375,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-65308
   - unified-dk-numista-112715
 - fuss: reichsdukatenfuss
   phase: I
@@ -69608,6 +70471,12 @@ coins:
     dav:
     - '1302'
     - 1302A
+    - EC III 1302A
+    others:
+    - schou# 6
+    - schou# 3
+    - schou# 5
+    - schou# 1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -70051,19 +70920,19 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 4.28
     source: numista
   - value: 4.497
     source: numismaster
   - value: 4.5
-    source: '?'
+    source: ucoin
   diameter_mm:
   - value: 26.0
-    source: '?'
-  - value: 26.0
     source: numista
+  - value: 26.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65211
@@ -70246,6 +71115,17 @@ coins:
     bruun_part: I
     bruun_lot_no: 1064
     bruun_page: 104
+    others:
+    - schou# 10
+    - schou# 6-7
+    - schou# 4-5
+    - schou# 2
+    - schou# 8
+    - schou# 9
+    - sieg# 112
+    - sieg# 113
+    - sieg# 114
+    - Aagaard# 15.2
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -70619,7 +71499,9 @@ coins:
   catalog:
     km: '306'
     numista: '144938'
-    dav: '3584'
+    dav:
+    - '3584'
+    - EC II 3584
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -70667,6 +71549,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-65297
   - unified-dk-numista-144938
 - fuss: seed_unsorted
   phase: numista
@@ -71093,7 +71976,9 @@ coins:
   catalog:
     km: '285'
     numista: '180706'
-    dav: 3581B
+    dav:
+    - 3581B
+    - EC II 3581B
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -71141,6 +72026,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-65293
   - unified-dk-numista-180706
 - fuss: seed_unsorted
   phase: numista
@@ -71296,17 +72182,15 @@ coins:
   year_last: 1689
   year_ranges:
   - - 1686
-    - 1686
-  - - 1689
     - 1689
-  year_label: 1686, 1689
+  year_label: 1686-1689
   mint: Kopenhagen
   catalog:
     km:
     - '386.1'
     - '386'
     numista: '182057'
-    dav: '3639'
+    dav: EC II 3639
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -71316,23 +72200,13 @@ coins:
   verified: false
   fineness:
   - value: 0.671
-    source: numismaster
-  - value: 0.671
     source: numista
-  - value: 0.671
-    source: ucoin
   weight_rough_g:
   - value: 22.06
     source: numista
-  - value: 22.27
-    source: ucoin
-  - value: 22.272
-    source: numismaster
   diameter_mm:
   - value: 39.1
     source: numista
-  - value: 39.1
-    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65310
@@ -71692,69 +72566,6 @@ coins:
 - fuss: 11_333_thaler
   phase: I
   kind: kurant
-  nominal: 3 Krone
-  ruler: Frederick IV
-  issuing_entity: danish_realm
-  id: unified-dk-numista-190127
-  year_first: 1726
-  year_last: 1726
-  year_label: '1726'
-  mint: Kopenhagen
-  catalog:
-    km: '525'
-    numista: '190127'
-    dav: '1293'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.671
-    source: numista
-  - value: 0.993
-    source: numismaster
-  weight_rough_g:
-  - value: 45.287
-    source: numismaster
-  - value: 67.15
-    source: numista
-  diameter_mm:
-  - value: 53.11
-    source: numista
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65367
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/190127
-    ref: Numista N#190127 — 3 Krone - Frederik IV
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-3-kroner-1726/?tid=173635
-    ref: ucoin
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f4h41.htm
-    ref: Hede 1971 f4h41
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-    ref: Bruun Part I, lot 1136, p. 190
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-190127
-- fuss: 11_333_thaler
-  phase: I
-  kind: kurant
   nominal: ½ Skilling
   ruler: Christian VI
   issuing_entity: danish_realm
@@ -71981,19 +72792,19 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 9.25
     source: numista
   - value: 9.455
     source: numismaster
   - value: 9.46
-    source: '?'
+    source: ucoin
   diameter_mm:
   - value: 30.6
     source: numista
   - value: 31.0
-    source: '?'
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65216
@@ -72040,7 +72851,9 @@ coins:
   catalog:
     km: '96'
     numista: '197668'
-    dav: '3519'
+    dav:
+    - '3519'
+    - EC II 3519
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -72079,6 +72892,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-65232
   - unified-dk-numista-197668
 - fuss: seed_unsorted
   phase: numista
@@ -72348,16 +73162,16 @@ coins:
   verified: false
   weight_rough_g:
   - value: 4.87
-    source: '?'
+    source: ucoin
   - value: 4.872
     source: numismaster
   - value: 5.1
     source: numista
   diameter_mm:
   - value: 21.5
-    source: '?'
-  - value: 21.5
     source: numista
+  - value: 21.5
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65989
@@ -72622,6 +73436,8 @@ coins:
     km: '817'
     numista: '25627'
     fr: '299'
+    others:
+    - Schön# 28
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -72772,7 +73588,9 @@ coins:
   catalog:
     km: '290'
     numista: '268890'
-    dav: '3556'
+    dav:
+    - '3556'
+    - EC II 3556
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -72820,6 +73638,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-65456
   - unified-dk-numista-268890
 - fuss: seed_unsorted
   phase: numista
@@ -73620,6 +74439,9 @@ coins:
   catalog:
     km: '805'
     numista: '4139'
+    others:
+    - Schön# 13
+    - DNF# 2.3
   metal: bronze
   metal_verified: true
   fineness_verified: false
@@ -74619,6 +75441,9 @@ coins:
   catalog:
     km: '806'
     numista: '5254'
+    others:
+    - Schön# 14
+    - DNF# 3.3
   metal: bronze
   metal_verified: true
   fineness_verified: false
@@ -74681,6 +75506,10 @@ coins:
   catalog:
     km: '792.1'
     numista: '5265'
+    others:
+    - Schön# 1
+    - Kahnt/Schön# 73
+    - DNF# 1.1-1.2.4
   metal: bronze
   metal_verified: true
   fineness_verified: false
@@ -74916,6 +75745,8 @@ coins:
     - '818'
     - '818.1'
     numista: '5568'
+    others:
+    - DNF# 4.4
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -75322,7 +76153,9 @@ coins:
   catalog:
     km: '97'
     numista: '82862'
-    dav: 3519A
+    dav:
+    - 3519A
+    - EC II 3519a
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -75336,10 +76169,10 @@ coins:
   - value: 0.859
     source: numista
   - value: 0.86
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 18.9
-    source: '?'
+    source: ucoin
   - value: 18.909
     source: numismaster
   - value: 18.909
@@ -75348,7 +76181,7 @@ coins:
   - value: 30.0
     source: numista
   - value: 39.0
-    source: '?'
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65234
@@ -75378,6 +76211,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
+  - unified-denmark-numismaster-65234
   - unified-dk-numista-82862
 - fuss: seed_unsorted
   phase: numista
@@ -75449,6 +76283,8 @@ coins:
     - '812'
     - '812.1'
     numista: '8497'
+    others:
+    - DNF# 1.5
   metal: bronze
   metal_verified: true
   fineness_verified: false
@@ -75721,6 +76557,8 @@ coins:
   catalog:
     km: '804'
     numista: '9393'
+    others:
+    - DNF# 1.3
   metal: bronze
   metal_verified: true
   fineness_verified: false
@@ -75828,97 +76666,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-95823
-- fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian V / Frederick III
-  issuing_entity: danish_realm
-  id: unified-dk-tid-99111
-  year_first: 1670
-  year_last: 1670
-  year_label: '1670'
-  mint: Kopenhagen
-  catalog:
-    km: '321'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: ucoin
-  weight_rough_g:
-  - value: 28.78
-    source: ucoin
-  diameter_mm:
-  - value: 42.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1670/?tid=99111
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-dk-tid-99111
-- fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 4 Skilling
-  ruler: Christian IV
-  issuing_entity: danish_realm
-  id: unified-km-70-chr-iv-1619
-  year_first: 1619
-  year_last: 1619
-  year_label: '1619'
-  mint: Kopenhagen
-  catalog:
-    km: '70'
-    numista: '302666'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.437
-    source: '?'
-  - value: 0.859
-    source: numista
-  weight_rough_g:
-  - value: 1.46
-    source: '?'
-  - value: 1.57
-    source: numista
-  diameter_mm:
-  - value: 19.85
-    source: numista
-  - value: 20.0
-    source: '?'
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-skilling-1619/?tid=163023
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-km-70-chr-iv-1619
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -76063,6 +76810,9 @@ coins:
   year_last: 1825
   year_label: '1825'
   mint: Stockholm
+  catalog:
+    others:
+    - Schön# 47
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -76174,8 +76924,6 @@ coins:
   year_last: 1658
   year_label: '1658'
   mint: Kopenhagen
-  catalog:
-    hede: '216'
   metal: gold
   metal_verified: true
   weight_rough_verified: true
@@ -76232,6 +76980,9 @@ coins:
   year_last: 1877
   year_label: '1877'
   mint: Stockholm
+  catalog:
+    others:
+    - Schön# 117
   metal: gold
   metal_verified: true
   weight_rough_verified: true
@@ -76515,6 +77266,9 @@ coins:
     schou: 11-17
     sieg: '16'
     numista: '54910'
+    others:
+    - schou# 14
+    - schou# 17
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -76974,6 +77728,9 @@ coins:
     sieg: '108'
     numista: '112830'
     fr: '144'
+    others:
+    - schou# 2
+    - sieg# 109
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -77196,7 +77953,9 @@ coins:
     hede_volume: c5h
     sieg: 34.1-34.3
     numista: '112662'
-    dav: '3633'
+    dav:
+    - '3633'
+    - EC II 3633
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -77252,6 +78011,7 @@ coins:
     unit_raw: rd
   composed_of:
   - unified-dk-hede-c5h67a
+  - unified-dk-numista-112662
 - fuss: seed_unsorted
   phase: hede
   kind: kurant
@@ -77402,6 +78162,18 @@ coins:
     bruun_lot_no: 11223
     bruun_page: 117
     dav: '3546'
+    others:
+    - sieg# 76
+    - sieg# 77
+    - sieg# 78
+    - schou# 6-8
+    - schou# 4
+    - schou# 16
+    - schou# 17
+    - schou# 13
+    - schou# 14
+    - schou# 6
+    - Aagaard# 87.3
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -77479,6 +78251,13 @@ coins:
     schou: '16'
     sieg: '79'
     dav: '3548'
+    others:
+    - sieg# 80
+    - sieg# 81
+    - sieg# 82
+    - schou# 14
+    - schou# 13
+    - schou# 11
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -77544,6 +78323,14 @@ coins:
     schou: 17-19
     sieg: '86'
     dav: '3551'
+    others:
+    - sieg# 87
+    - sieg# 88
+    - schou# 15-16
+    - schou# 14
+    - schou# 20
+    - schou# 18
+    - schou# 19
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -77645,7 +78432,11 @@ coins:
     schou: '15'
     sieg: '90'
     numista: '308265'
-    dav: 3553A
+    dav:
+    - 3553A
+    - EC II 3557
+    others:
+    - schou# 16
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -77706,6 +78497,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - unified-dk-hede-f3h73
+  - unified-dk-numista-308265
 - fuss: seed_unsorted
   phase: hede
   kind: kurant
@@ -77800,6 +78592,9 @@ coins:
     bruun_lot_no: 11234
     bruun_page: 122
     dav: '3559'
+    others:
+    - Aagaard# 112.1
+    - Aagaard# 112.2
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -77867,6 +78662,13 @@ coins:
     schou: 14-15
     sieg: '97'
     dav: 3540A
+    others:
+    - schou# 7-8
+    - schou# 11
+    - schou# 8
+    - schou# 14
+    - sieg# 98
+    - sieg# 99
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -78157,6 +78959,11 @@ coins:
     bruun_part: II
     bruun_lot_no: 13209
     bruun_page: 153
+    others:
+    - schou# 6
+    - schou# 8
+    - schou# 2
+    dav: EC III 1290
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -78389,19 +79196,13 @@ coins:
   verified: false
   fineness:
   - value: 0.312
-    source: '?'
-  - value: 0.859
-    source: numista
+    source: ucoin
   weight_rough_g:
-  - value: 0.388
-    source: numista
   - value: 0.53
-    source: '?'
+    source: ucoin
   diameter_mm:
-  - value: 13.75
-    source: numista
   - value: 20.0
-    source: '?'
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-skilling-1619/?tid=162999
@@ -78523,19 +79324,19 @@ coins:
   - value: 0.979
     source: numista
   - value: 0.98
-    source: '?'
+    source: ucoin
   weight_rough_g:
   - value: 3.48
     source: numista
   - value: 3.49
-    source: '?'
-  - value: 3.49
     source: hede
   - value: 3.49
     source: numismaster
+  - value: 3.49
+    source: ucoin
   diameter_mm:
   - value: 21.0
-    source: '?'
+    source: ucoin
   - value: 21.6
     source: numista
   sources:
@@ -78618,45 +79419,6 @@ coins:
   composed_of:
   - unified-dk-hede-c4h116a
 - fuss: seed_unsorted
-  phase: hede
-  kind: kurant
-  nominal: 1 Dukat
-  ruler: Frederik V.
-  issuing_entity: danish_realm
-  id: unified-dk-hede-f5h9
-  year_first: 1747
-  year_last: 1747
-  year_label: '1747'
-  mint: Kopenhagen
-  catalog:
-    hede: '9'
-    hede_volume: f5h
-    schou: '10'
-    sieg: '30'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: hede
-  weight_rough_g:
-  - value: 3.49
-    source: hede
-  sources:
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f5h10.htm
-    ref: danskmoent.dk (Hede f5h9)
-  verification_note:
-    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
-    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
-      danskmoent.dk.'
-    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  composed_of:
-  - unified-dk-hede-f5h9
-- fuss: seed_unsorted
   phase: numista
   kind: kurant
   nominal: 1 Speciedaler
@@ -78723,3 +79485,683 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-142901
+- fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Speciedaler
+  ruler: Christian V / Frederick III
+  issuing_entity: danish_realm
+  id: unified-denmark-numismaster-65464
+  year_first: 1670
+  year_last: 1670
+  year_label: '1670'
+  mint: Kopenhagen
+  catalog:
+    km: '321'
+    dav: '3628'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.875
+    source: numismaster
+  - value: 0.875
+    source: ucoin
+  weight_rough_g:
+  - value: 28.775
+    source: numismaster
+  - value: 28.78
+    source: ucoin
+  diameter_mm:
+  - value: 42.0
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_65464
+    ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1670/?tid=99111
+    ref: ucoin
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  composed_of:
+  - unified-denmark-numismaster-65464
+- fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: 1 Krone
+  ruler: Christian V.
+  issuing_entity: danish_realm
+  id: unified-dk-hede-c5h78
+  year_first: 1680
+  year_last: 1680
+  year_label: '1680'
+  mint: Kopenhagen
+  catalog:
+    km:
+    - '367.1'
+    - '367'
+    hede: '78'
+    hede_volume: c5h
+    schou: 19-21
+    others:
+    - schou# 20
+    dav: '3636'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.671
+    source: hede
+  - value: 0.671
+    source: numismaster
+  - value: 0.671
+    source: ucoin
+  weight_rough_g:
+  - value: 22.27
+    source: ucoin
+  - value: 22.272
+    source: hede
+  - value: 22.272
+    source: numismaster
+  diameter_mm:
+  - value: 40.9
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_65304
+    ref: NumisMaster
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c5h78.htm
+    ref: danskmoent.dk (Hede c5h78)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-krone-1680/?tid=97313
+    ref: ucoin
+  verification_note:
+    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
+      danskmoent.dk.'
+    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  hede_muentzfuss_yield:
+    value: 10.418
+    unit: rigsdaler
+    basis: fin
+    unit_raw: rd
+  composed_of:
+  - unified-dk-hede-c5h78
+- fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: 2 Dukat
+  ruler: Frederik IV.
+  issuing_entity: danish_realm
+  id: unified-dk-hede-f4h13
+  year_first: 1708
+  year_last: 1709
+  year_ranges:
+  - - 1708
+    - 1709
+  year_label: 1708-1709
+  mint: Kopenhagen
+  catalog:
+    km: '486'
+    hede: '13'
+    hede_volume: f4h
+    schou: '1'
+    sieg: '51'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.979
+    source: hede
+  - value: 0.979
+    source: numismaster
+  weight_rough_g:
+  - value: 6.981
+    source: hede
+  - value: 6.981
+    source: numismaster
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_65896
+    ref: NumisMaster
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f4h13.htm
+    ref: danskmoent.dk (Hede f4h13)
+  verification_note:
+    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
+      danskmoent.dk.'
+    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  composed_of:
+  - unified-dk-hede-f4h13
+- fuss: 9_25_thaler
+  phase: I
+  kind: kurant
+  nominal: 1 Krone
+  ruler: Christian V
+  issuing_entity: danish_realm
+  fraction: '1'
+  id: unified-dk-numista-145724
+  year_first: 1680
+  year_last: 1680
+  year_label: '1680'
+  mint: Kopenhagen
+  catalog:
+    km:
+    - '367'
+    - '367.2'
+    numista: '145724'
+    dav: EC II 3636
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.671
+    source: numismaster
+  - value: 0.671
+    source: numista
+  weight_rough_g:
+  - value: 22.272
+    source: numismaster
+  - value: 22.4
+    source: numista
+  diameter_mm:
+  - value: 40.92
+    source: numista
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_65305
+    ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/145724
+    ref: Numista N#145724 — 4 Mark Dansk "Piedestalkrone" - Christian V
+  - type: literature
+    url: https://numismaster.com/MC_65304
+    ref: NumisMaster
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c5h78.htm
+    ref: danskmoent.dk (Hede c5h78)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-krone-1680/?tid=97313
+    ref: ucoin
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  composed_of:
+  - unified-dk-numista-145724
+- fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 D'Or
+  ruler: Frederik VI
+  issuing_entity: danish_realm
+  id: unified-dk-tid-133224
+  year_first: 1827
+  year_last: 1827
+  year_label: '1827'
+  mint: Altona
+  catalog:
+    km: '698'
+    bruun_collection_id: '8069'
+    bruun_part: IV
+    bruun_lot_no: 17165
+    bruun_page: 95
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.896
+    source: ucoin
+  weight_rough_g:
+  - value: 6.64
+    source: ucoin
+  diameter_mm:
+  - value: 24.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-dor-1827/?tid=133224
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of:
+  - unified-dk-tid-133224
+- fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1/5 Rigsbankskilling
+  ruler: Christian VIII
+  issuing_entity: danish_realm
+  id: unified-dk-tid-70716
+  year_first: 1842
+  year_last: 1842
+  year_label: '1842'
+  mint: Altona
+  catalog:
+    km: '723'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.46
+    source: ucoin
+  diameter_mm:
+  - value: 16.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-5-rigsbankskilling-1842/?tid=70716
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of:
+  - unified-dk-tid-70716
+- fuss: 18_5_thaler
+  phase: I
+  kind: kurant
+  nominal: 2 Rigsbankskilling
+  ruler: Frederick VI
+  issuing_entity: danish_realm
+  fraction: 1/96
+  id: unified-dk-tid-70747
+  year_first: 1836
+  year_last: 1836
+  year_label: '1836'
+  mint: Altona
+  catalog:
+    km: '710'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.2
+    source: ucoin
+  weight_rough_g:
+  - value: 1.11
+    source: ucoin
+  diameter_mm:
+  - value: 14.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-rigsbankskilling-1836/?tid=70747
+    ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_66005
+    ref: NumisMaster
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of:
+  - unified-dk-tid-70747
+- fuss: 18_5_thaler
+  phase: I
+  kind: kurant
+  nominal: 3 Rigsbankskilling
+  ruler: Frederick VI
+  issuing_entity: danish_realm
+  fraction: 1/24
+  id: unified-dk-tid-70749
+  year_first: 1836
+  year_last: 1836
+  year_label: '1836'
+  mint: Altona
+  catalog:
+    km: '711'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.229
+    source: ucoin
+  weight_rough_g:
+  - value: 1.52
+    source: ucoin
+  diameter_mm:
+  - value: 15.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-3-rigsbankskilling-1836/?tid=70749
+    ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_66008
+    ref: NumisMaster
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of:
+  - unified-dk-tid-70749
+- fuss: 18_5_thaler
+  phase: I
+  kind: kurant
+  nominal: 4 Rigsbankskilling
+  ruler: Frederick VI
+  issuing_entity: danish_realm
+  fraction: 1/24
+  id: unified-dk-tid-70752
+  year_first: 1836
+  year_last: 1836
+  year_label: '1836'
+  mint: Altona
+  catalog:
+    km: '712'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.25
+    source: ucoin
+  weight_rough_g:
+  - value: 1.85
+    source: ucoin
+  diameter_mm:
+  - value: 17.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-rigsbankskilling-1836/?tid=70752
+    ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_66011
+    ref: NumisMaster
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of:
+  - unified-dk-tid-70752
+- fuss: 18_5_thaler
+  phase: I
+  kind: kurant
+  nominal: 32 Rigsbankskilling
+  ruler: Frederick VI
+  issuing_entity: danish_realm
+  fraction: 1/3
+  id: unified-dk-tid-70756
+  year_first: 1820
+  year_last: 1820
+  year_label: '1820'
+  mint: Altona
+  catalog:
+    km: '690'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.68
+    source: ucoin
+  weight_rough_g:
+  - value: 6.13
+    source: ucoin
+  diameter_mm:
+  - value: 25.5
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1820/?tid=70756
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of:
+  - unified-dk-tid-70756
+- fuss: 11_333_thaler
+  phase: I
+  kind: kurant
+  nominal: 4 Skilling
+  ruler: Frederick VI
+  issuing_entity: danish_realm
+  fraction: 1/24
+  id: unified-dk-tid-79557
+  year_first: 1807
+  year_last: 1807
+  year_label: '1807'
+  mint: Altona
+  catalog:
+    km: '661'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.25
+    source: ucoin
+  weight_rough_g:
+  - value: 2.6
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-skilling-1807/?tid=79557
+    ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_65105
+    ref: NumisMaster
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  composed_of:
+  - unified-dk-tid-79557
+- fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: 1 Dukat
+  ruler: Frederik V.
+  issuing_entity: danish_realm
+  id: unified-dk-hede-f5h9
+  year_first: 1747
+  year_last: 1747
+  year_label: '1747'
+  mint: Kopenhagen
+  catalog:
+    hede: '9'
+    hede_volume: f5h
+    schou: '10'
+    sieg: '30'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.979
+    source: hede
+  weight_rough_g:
+  - value: 3.49
+    source: hede
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f5h10.htm
+    ref: danskmoent.dk (Hede f5h9)
+  verification_note:
+    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
+      danskmoent.dk.'
+    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  composed_of:
+  - unified-dk-hede-f5h9
+- fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Speciedaler
+  ruler: Christian V
+  issuing_entity: danish_realm
+  id: unified-dk-numista-328512
+  year_first: 1670
+  year_last: 1670
+  year_label: '1670'
+  catalog:
+    km: '321'
+    numista: '328512'
+    dav: EC II 3628
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.875
+    source: numista
+  weight_rough_g:
+  - value: 28.78
+    source: numista
+  diameter_mm:
+  - value: 42.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/328512
+    ref: Numista N#328512 — 1 Speciedaler - Christian V (Accession)
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  composed_of:
+  - unified-dk-numista-328512
+- fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 1 Speciedaler
+  ruler: Christian IV
+  issuing_entity: danish_realm
+  id: unified-dk-numista-82678
+  year_first: 1624
+  year_last: 1634
+  year_ranges:
+  - - 1624
+    - 1634
+  year_label: 1624-1634
+  mint: Kopenhagen
+  catalog:
+    km: '101'
+    numista: '82678'
+    dav: EC II 3524
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.875
+    source: numista
+  weight_rough_g:
+  - value: 29.232
+    source: numista
+  diameter_mm:
+  - value: 43.85
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/82678
+    ref: Numista N#82678 — 1 Speciedaler - Christian IV (Bust type I; Oval provincial shields)
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  composed_of:
+  - unified-dk-numista-82678
