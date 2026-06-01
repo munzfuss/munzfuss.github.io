@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-05-31 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-01 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 677 per-source seed entries.
-# Output: 331 unified entries (one per physical coin).
+# Output: 329 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-05-31'
+generated_at: '2026-06-01'
 coins:
 - id: unified-denmark-numismaster-58049
   fuss: seed_unsorted
@@ -5887,31 +5887,47 @@ coins:
   mintmaster: Christopher Woltereck
   mint: Glückstadt
   catalog:
-    km: '73'
+    km:
+    - '73'
+    - '105'
     hede: '120'
     hede_volume: c5h
     schou: '3'
     sieg: '140'
     bruun_collection_id: '6987'
-    lange: 82A
+    lange:
+    - 82A
+    - '82'
+    - 82, 82A
     bruun_part: II
     bruun_lot_no: 13182
     bruun_page: 134
+    numista: '301630'
     dav: '3677'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.888
     source: hede
+  - value: 0.888
+    source: ucoin
   weight_rough_g:
   - value: 28.95
     source: bruun
+  - value: 29.0
+    source: '?'
+  - value: 29.06
+    source: numista
   - value: 29.232
     source: hede
+  diameter_mm:
+  - value: 43.0
+    source: ucoin
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -5919,6 +5935,12 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h120.htm
     ref: danskmoent.dk (Hede c5h120)
+  - type: literature
+    url: https://en.numista.com/301630
+    ref: Numista N#301630 — 1 Thaler - Christian V
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1683/?tid=163663
+    ref: ucoin
   - type: literature
     url: https://numismaster.com/MC_93023
     ref: NumisMaster
@@ -5936,6 +5958,8 @@ coins:
   composed_of:
   - dk-bruun-6987
   - dk-hede-c5h120
+  - dk-numista-301630
+  - km-105-chr-v-1683
   - schleswig_holstein-numismaster-93023
 - id: unified-dk-hede-c5h121
   fuss: seed_unsorted
@@ -12957,49 +12981,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-301239
-- id: unified-dk-numista-301630
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1683
-  year_last: 1683
-  year_label: '1683'
-  ruler: Christian V
-  mint: Glückstadt
-  catalog:
-    km: '105'
-    numista: '301630'
-    lange: '82'
-    sieg: '140'
-    hede: '120'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 29.06
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/301630
-    ref: Numista N#301630 — 1 Thaler - Christian V
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-301630
 - id: unified-dk-numista-301740
   fuss: seed_unsorted
   phase: numista
@@ -15444,58 +15425,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - km-10-chr-iv-1623
-- id: unified-km-105-chr-v-1683
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1683
-  year_last: 1683
-  year_label: '1683'
-  ruler: Christian V
-  catalog:
-    km: '73'
-    numista: '301630'
-    lange: 82, 82A
-    sieg: '140'
-    hede: '120'
-    bruun_collection_id: '6987'
-    bruun_part: II
-    bruun_lot_no: 13182
-    bruun_page: 134
-    hede_volume: c5h
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.888
-    source: ucoin
-  weight_rough_g:
-  - value: 29.0
-    source: '?'
-  - value: 29.06
-    source: numista
-  diameter_mm:
-  - value: 43.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1683/?tid=163663
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - km-105-chr-v-1683
 - id: unified-km-138-3-chr-vii-1787
   fuss: seed_unsorted
   phase: ucoin
