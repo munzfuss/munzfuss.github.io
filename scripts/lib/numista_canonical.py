@@ -74,29 +74,42 @@ _NUMISTA_REF_CODE_MAP: dict[str, str] = {
     # quietly drop. Builder logs as informational only when seen.
 }
 
-# Refs Numista catalogues that our schema does not currently model.
-# Listed here so the parser skips them silently rather than raising on
-# unknown keys.
-_UNMODELLED_REFS: set[str] = {
-    "brekke",      # Norway-specific (Brekke 1965)
-    "thesen",      # Norway-specific (Thesen 1969)
-    "rønning",     # Norway-specific (Rønning 1984)
-    "skaare",      # Norway-specific (Skaare 1995)
-    "weinm",       # Weinmeister (Schauenburg)
-    "ahs",         # AKS
-    "aks",
-    "n",           # Numista's own self-ref («N# 12345»)
-    "y",
-    "c",
-    "uc",          # UC# — Numista user-coin id
-    "aagaard",
-    "ngm",
-    "tornberg",
-    "jensen",
-    "skjoldager",
-    "krohn",
-    "stahnsdorf",
+# Schema-typed codes the map was MISSING (these fields exist on CatalogRefs
+# but Numista never populated them — silent under-capture). Map them too.
+_NUMISTA_REF_CODE_MAP.update({
+    "skaare": "skaare",          # Norway (Skaare 1995) — typed field
+    "schive": "schive",          # Norway (Schive) — typed field
+    "nmd": "nmd",
+    "jensen": "jensen_skjoldager",
+    "skjoldager": "jensen_skjoldager",
+    "fp": "fp",
+})
+
+# Codes that are NOT real catalogue references — genuinely drop (Numista's
+# own self-id / user-coin id, not a numismatic catalogue).
+_DROP_REFS: set[str] = {
+    "n",     # Numista N# self-ref
+    "y",     # Numista Y-type self-ref
+    "uc",    # UC# — Numista user-coin id
 }
+
+# Davenport publishes in volume-tagged series («Dav EC II», «Dav EC III»,
+# «Dav Lg», «Dav SG», …). Numista emits the full volume code, which the bare
+# «dav» map key never matched → ~150 Davenport refs silently dropped. Any
+# code beginning «dav » routes to the typed `dav` field with the volume
+# preserved in the value («EC III 1311»).
+def _normalise_dav(code_raw: str, number: str):
+    """Return ('dav', '<volume> <number>') for a Davenport volume code, else
+    None. e.g. ('Dav EC III', '1311') → ('dav', 'EC III 1311')."""
+    parts = code_raw.split()
+    if parts and parts[0].lower() == "dav" and len(parts) > 1:
+        return "dav", f"{' '.join(parts[1:])} {number}".strip()
+    return None
+
+# All other unmapped codes (AKS, Jaeg 6 NWD, Weinm, C/Craig, Behr/Behrens,
+# Schön, Kahnt, Diakov, Uzd, Bit, …) are REAL catalogue references our schema
+# doesn't type individually — route them to the `others` catch-all as
+# «<Code># <number>» strings (full source label preserved), NOT dropped.
 
 
 def parse_references_from_api_list(refs: list[dict[str, Any]] | None) -> dict[str, str]:
@@ -109,21 +122,32 @@ def parse_references_from_api_list(refs: list[dict[str, Any]] | None) -> dict[st
         if not isinstance(r, dict):
             continue
         cat = r.get("catalogue") or {}
-        code = (cat.get("code") or "").strip().lower()
+        code_raw = (cat.get("code") or "").strip()
+        code = code_raw.lower()
         number = r.get("number")
         if number is None:
             continue
         number_str = str(number).strip()
         if not number_str:
             continue
+        if code in _DROP_REFS:
+            continue  # Numista self-ref / user-coin id — not a catalogue
         mapped = _NUMISTA_REF_CODE_MAP.get(code)
-        if not mapped:
-            # silently skip unknown / unmodelled
+        if mapped:
+            # First occurrence wins; multi-volume refs (different KM in
+            # different Krause editions) get list-form later in the
+            # seed builder where merge logic applies.
+            out.setdefault(mapped, number_str)
             continue
-        # First occurrence wins; multi-volume refs (different KM in
-        # different Krause editions) get list-form later in the
-        # seed builder where merge logic applies.
-        out.setdefault(mapped, number_str)
+        dav = _normalise_dav(code_raw, number_str)
+        if dav:
+            out.setdefault(dav[0], dav[1])
+            continue
+        # Real catalogue ref our schema doesn't type → preserve in `others`.
+        out.setdefault("others", [])
+        label = f"{code_raw}# {number_str}"
+        if label not in out["others"]:
+            out["others"].append(label)
     return out
 
 
@@ -144,17 +168,31 @@ def parse_references_from_strings(items: list[str] | None) -> dict[str, str]:
             chunk = chunk.strip()
             if not chunk:
                 continue
-            m = re.match(r"^([A-Za-zÆØÅæøåöü]+(?:[\-\.][A-Za-zÆØÅæøåöü]+)?)\s*#?\s*(.+)$", chunk)
+            # Code may be multi-token («Dav EC III», «Jaeg 6 NWD») — capture
+            # everything up to the «#» / first digit run as the code.
+            m = re.match(r"^([A-Za-zÆØÅæøåöü][\w .\-/]*?)\s*#\s*(.+)$", chunk) \
+                or re.match(r"^([A-Za-zÆØÅæøåöü][\w .\-/]*?)\s+(\d.*)$", chunk)
             if not m:
                 continue
-            code = m.group(1).strip().lower()
+            code_raw = m.group(1).strip()
+            code = code_raw.lower()
             number = m.group(2).strip()
             if not number:
                 continue
-            mapped = _NUMISTA_REF_CODE_MAP.get(code)
-            if not mapped:
+            if code in _DROP_REFS:
                 continue
-            out.setdefault(mapped, number)
+            mapped = _NUMISTA_REF_CODE_MAP.get(code)
+            if mapped:
+                out.setdefault(mapped, number)
+                continue
+            dav = _normalise_dav(code_raw, number)
+            if dav:
+                out.setdefault(dav[0], dav[1])
+                continue
+            out.setdefault("others", [])
+            label = f"{code_raw}# {number}"
+            if label not in out["others"]:
+                out["others"].append(label)
     return out
 
 
