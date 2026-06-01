@@ -2628,6 +2628,23 @@ def build_unified(members: list[dict], unified_id: str,
             out["_entity_routing_hint"] = m["_entity_routing_hint"]
             break
 
+    # §CN: aggregate per-member source-index errata into an `_errata_applied`
+    # audit trail on the unified entry, so the composed record shows which
+    # member-source had which index corrected (and to what). Underscore-keyed
+    # → stripped before render, kept in the YAML for audit.
+    errata_trail = []
+    for m in sorted_members:
+        if not isinstance(m, dict):
+            continue
+        for rec in (m.get("_errata_applied") or m.get("_source_errata") or []):
+            if isinstance(rec, dict) and rec.get("field"):
+                entry = {"source": m.get("id"), "field": rec["field"],
+                         "printed": rec.get("printed"), "correct": rec.get("correct")}
+                if entry not in errata_trail:
+                    errata_trail.append(entry)
+    if errata_trail:
+        out["_errata_applied"] = errata_trail
+
     return out, conflicts
 
 

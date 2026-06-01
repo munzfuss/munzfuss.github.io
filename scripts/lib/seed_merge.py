@@ -101,6 +101,73 @@ DEEP_MERGE_FIELDS = frozenset({
 # entry (private to merge logic; survives via existing across regen).
 _CURATION_HOLDS_KEY = "_curation_holds"
 
+# §CN — inline source-index errata. A curator-recorded list, on the seed entry
+# itself, of catalogue-index values a SOURCE mis-printed:
+#   _source_errata:
+#     - field: km          # the (catalog or top-level) field
+#       printed: "48"      # what the source faithfully printed (provenance)
+#       correct: "40"      # curator-verified correct value
+#       reason: |          # why (evidence; survives without the chat)
+#         Bruun Part III lot 12073 prints KM-48 on a Hede-14 coin; KM 48 = Hede 17.
+#       curator: serg
+# The block is curator-input, co-located with the source's own data (not a
+# separate file), and is PRESERVED across regen exactly like _curation_holds.
+# `apply_source_errata` overwrites the mis-printed value with `correct` AFTER
+# the merge (so it wins over the parser, which keeps re-emitting the wrong
+# value from the immutable cache), and records what it changed in
+# `_errata_applied` for audit. Both keys are `_`-prefixed → auto-stripped
+# before Coin validation + not rendered (build.py strips all `_`-keys).
+_SOURCE_ERRATA_KEY = "_source_errata"
+_ERRATA_APPLIED_KEY = "_errata_applied"
+
+# Meta keys that NEVER flow from fresh and are NEVER dropped as stale — they
+# carry curator intent that must survive every regen.
+_PRESERVE_ALWAYS_KEYS = frozenset({_CURATION_HOLDS_KEY, _SOURCE_ERRATA_KEY})
+
+
+def apply_source_errata(entry) -> None:
+    """Apply the entry's `_source_errata` corrections in place (§CN).
+
+    For each record, overwrite the mis-printed source value (catalog sub-field
+    when `field` is a CatalogRefs field, else a top-level field) with the
+    curator-verified `correct` value, and append a `{field, printed, correct}`
+    record to `_errata_applied`. Idempotent. Must run LAST in the build so the
+    correction wins over the parser/merge value (the source keeps printing the
+    wrong index from the immutable harvest cache)."""
+    errata = entry.get(_SOURCE_ERRATA_KEY)
+    if not errata or not isinstance(errata, (list, tuple)):
+        return
+    try:
+        from lib.catalog_codes import schema_catalog_fields
+        cat_fields = schema_catalog_fields()
+    except Exception:
+        cat_fields = set()
+    applied = []
+    for e in errata:
+        if not isinstance(e, dict):
+            continue
+        field = e.get("field")
+        if not field or "correct" not in e:
+            continue
+        correct = e.get("correct")
+        if field in cat_fields:
+            cat = entry.get("catalog")
+            if not isinstance(cat, dict):
+                cat = {}
+                entry["catalog"] = cat
+            before = cat.get(field)
+            cat[field] = correct
+        else:
+            before = entry.get(field)
+            entry[field] = correct
+        applied.append({
+            "field": field,
+            "printed": e.get("printed", before),
+            "correct": correct,
+        })
+    if applied:
+        entry[_ERRATA_APPLIED_KEY] = applied
+
 # Verifiable measurement fields paired with their boolean «is source-attested?»
 # flag. Verified-wins rule applies (CLAUDE.md §4).
 _VERIFIABLE_FIELDS = {
@@ -157,7 +224,7 @@ def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
     existing_keys = set(existing.keys())
 
     for key in fresh_keys:
-        if key == _CURATION_HOLDS_KEY:
+        if key in _PRESERVE_ALWAYS_KEYS:
             continue  # never flows from fresh; survives via existing
         if key in holds:
             # Frozen field: existing state wins (present-or-absent).
@@ -197,7 +264,7 @@ def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
     # parser stops emitting them.
     drop_candidates = existing_keys - fresh_keys
     for key in drop_candidates:
-        if key == _CURATION_HOLDS_KEY:
+        if key in _PRESERVE_ALWAYS_KEYS:
             continue
         if key in CURATED_FIELDS or key in holds:
             continue
@@ -238,5 +305,12 @@ def merge_seed(
     for cid in sorted(orphan_ids):
         out.append(existing_by_id[cid])
         stats["orphan_curated"] += 1
+
+    # 3. Apply curator-recorded source-index errata (§CN) LAST — after the
+    # merge so the correction wins over the parser value, on every output
+    # entry (merged, freshly-added, or orphan-preserved).
+    for c in out:
+        if isinstance(c, dict):
+            apply_source_errata(c)
 
     return out, stats

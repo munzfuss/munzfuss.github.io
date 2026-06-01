@@ -4486,7 +4486,7 @@ coins:
       sieg: '24'
       schou: '23'
       davenport: '3592'
-      km: '48'
+      km: '40'
       hede: '14'
       nmd: '74'
       bruun_part: III
@@ -4512,6 +4512,17 @@ coins:
       uk: "Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного каталогу Bruun (Stack's Bowers L. E. Bruun Collection 2024-2026). Brutto-вага
         це per-specimen значення; проба відсутня в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md)."
     metal_verified: false
+    _source_errata:
+      - field: km
+        printed: '48'
+        correct: '40'
+        reason: Bruun Part III, lot 12073, p.197 prints «KM-48» on a Hede-14 / Sieg-24 / Dav-3592 / 1653 coin. KM 48 = Hede 17 (Dav 3595); Hede 14 = KM 40 (NumisMaster MC_110720 + ucoin tid 145429; 
+          specimen image = KM 40). Adjacent-KM mis-citation (same error class as KM-240, commit 37f5b6d). Curator-verified by image 2026-06-01.
+        curator: serg
+    _errata_applied:
+      - field: km
+        printed: '48'
+        correct: '40'
   - id: dk-bruun-9664
     fuss: seed_unsorted
     phase: bruun
