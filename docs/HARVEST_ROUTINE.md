@@ -1075,11 +1075,19 @@ The §4.1 picker walks BR-2 → BR-3 → BR-4 in priority order and picks the fi
 
 For each batch, fetch the slug→TID map FIRST from the listing page (once per period per run), then iterate per-TID:
 
-**A. Listing-page anchor extraction (once per period per run):**
+**A. Listing-page anchor extraction (once per period per run) — PAGINATION-AWARE.**
 
-Navigate to: `https://en.ucoin.net/catalog/?country=denmark&period=<NNNN>`
+> **§13.2 known-issue — listing pages paginate.** Large periods (e.g. `bremen_p1195`, 93 TIDs) split across multiple listing pages at ~48 entries/page; a batch's target TIDs can sit on page 2+. A SINGLE-page extraction would report those targets as `MISSING` and falsely defer the whole batch (caught 2026-06-01, run IQ/255). So the extractor MUST iterate `&page=N` until every wanted TID resolves OR no further page link exists. (`page=1` may be implicit / omittable; `?country=…&period=…&page=2` is the next page.)
 
-Run via `javascript_tool`:
+**Loop (operational):**
+
+1. Navigate to page 1: `https://en.ucoin.net/catalog/?country=denmark&period=<NNNN>`
+2. Run the extractor below — it returns this page's `tid_to_url` map AND `has_next` (whether a next-page link exists).
+3. Merge this page's map into an accumulator; check whether all wanted TIDs are now resolved.
+4. If any wanted TID is still unresolved AND `has_next` → navigate to `…&period=<NNNN>&page=<next>` and repeat from step 2.
+5. Stop when all wanted resolve, OR `has_next` is false. Only TIDs still unresolved after the LAST page are genuinely `MISSING`.
+
+Run via `javascript_tool` on EACH page:
 
 ```javascript
 (()=>{
@@ -1089,14 +1097,27 @@ Run via `javascript_tool`:
     const m=a.getAttribute('href').match(/\/coin\/([^/]+)\/?\?tid=(\d+)/);
     if(m){ tid_to_url[m[2]]='https://en.ucoin.net/coin/'+m[1]+'/?tid='+m[2]; }
   }
-  const wanted=['TID1','TID2','TID3','TID4','TID5'];  // batch TIDs
-  const result={};
-  for(const t of wanted){ result[t]=tid_to_url[t]||'MISSING'; }
-  return result;
+  // Detect a "next page" link (pagination control). ucoin renders page links as
+  // anchors carrying &page=N; "next" exists if any page number exceeds the current one.
+  const curM=location.href.match(/[?&]page=(\d+)/);
+  const cur=curM?parseInt(curM[1]):1;
+  const pageNums=Array.from(document.querySelectorAll('a[href*="page="]'))
+    .map(a=>{const mm=a.getAttribute('href').match(/[?&]page=(\d+)/);return mm?parseInt(mm[1]):0;});
+  const maxPage=pageNums.length?Math.max(...pageNums):cur;
+  return {page:cur, has_next: maxPage>cur, tid_to_url};
 })()
 ```
 
-If any TID returns `MISSING`, the period listing doesn't cover it — it might be on a different page or has been deleted. Log + skip.
+Then resolve the batch against the ACCUMULATED map across all visited pages:
+
+```javascript
+// after merging every page's tid_to_url into `acc`:
+const wanted=['TID1','TID2','TID3','TID4','TID5'];  // batch TIDs
+const result={}; for(const t of wanted){ result[t]=acc[t]||'MISSING'; }
+return result;
+```
+
+A TID that is still `MISSING` after the last page genuinely isn't in the listing (deleted / moved) — apply §4.4 (log to `_failed_open_ids.json`, keep as retry candidate). Do NOT defer the whole batch just because targets sat beyond page 1.
 
 **B. Per-TID fetch via `browser_batch`:**
 
