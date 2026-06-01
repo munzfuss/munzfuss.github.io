@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 3128 per-source seed entries.
-# Output: 1444 unified entries (one per physical coin).
+# Output: 1442 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -13667,94 +13667,6 @@ coins:
   composed_of:
   - dk-bruun-5534
   - dk-bruun-5535
-- id: unified-dk-bruun-5536
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1619
-  year_last: 1627
-  year_ranges:
-  - - 1619
-    - 1619
-  - - 1627
-    - 1627
-  year_label: 1619, 1627
-  ruler: Christian IV
-  mint: Kopenhagen
-  catalog:
-    km: '68'
-    bruun_collection_id: '5536'
-    sieg: '196'
-    schou: '11'
-    hede: '5'
-    bruun_part: II
-    bruun_lot_no: 13110
-    bruun_page: 83
-    numista: '142850'
-    dav: '7760'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.859
-    source: numismaster
-  - value: 0.859
-    source: numista
-  - value: 0.86
-    source: ucoin
-  weight_rough_g:
-  - value: 0.787
-    source: numismaster
-  - value: 0.787
-    source: numista
-  - value: 0.79
-    source: ucoin
-  - value: 28.93
-    source: bruun
-  diameter_mm:
-  - value: 19.23
-    source: numista
-  - value: 19.23
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65039
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 13110, p. 83
-  - type: literature
-    url: https://en.numista.com/142850
-    ref: Numista N#142850 — 2 Kroneskilling - Christian IV (Type 1)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-skilling-1619/?tid=163014
-    ref: ucoin
-  note:
-    de: Reichstaler
-    en: Reichstaler
-    uk: Reichstaler
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: danish_realm
-  composed_of:
-  - denmark-numismaster-65039
-  - dk-bruun-5536
-  - dk-numista-142850
-  - dk-tid-163014
 - id: unified-dk-bruun-5538
   fuss: seed_unsorted
   phase: bruun
@@ -30185,31 +30097,85 @@ coins:
   kind: kurant
   nominal: 2 Skilling
   year_first: 1619
-  year_last: 1619
-  year_label: '1619'
+  year_last: 1627
+  year_ranges:
+  - - 1619
+    - 1619
+  - - 1627
+    - 1627
+  year_label: 1619, 1627
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    hede: '112'
+    km: '68'
+    hede:
+    - '112'
+    - '5'
     hede_volume: c4h
-    schou: 131-135
-    sieg: '39'
+    schou:
+    - 131-135
+    - '11'
+    sieg:
+    - '39'
+    - '196'
+    bruun_collection_id: '5536'
+    bruun_part: II
+    bruun_lot_no: 13110
+    bruun_page: 83
+    numista: '142850'
+    dav: '7760'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.859
     source: hede
+  - value: 0.859
+    source: numismaster
+  - value: 0.859
+    source: numista
+  - value: 0.86
+    source: ucoin
   weight_rough_g:
   - value: 0.787
     source: hede
+  - value: 0.787
+    source: numismaster
+  - value: 0.787
+    source: numista
+  - value: 0.79
+    source: ucoin
+  - value: 28.93
+    source: bruun
+  diameter_mm:
+  - value: 19.23
+    source: numista
+  - value: 19.23
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_65039
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13110, p. 83
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h112.htm
     ref: danskmoent.dk (Hede c4h112)
+  - type: literature
+    url: https://en.numista.com/142850
+    ref: Numista N#142850 — 2 Kroneskilling - Christian IV (Type 1)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-skilling-1619/?tid=163014
+    ref: ucoin
+  note:
+    de: Reichstaler
+    en: Reichstaler
+    uk: Reichstaler
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -30222,7 +30188,11 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
+  - denmark-numismaster-65039
+  - dk-bruun-5536
   - dk-hede-c4h112
+  - dk-numista-142850
+  - dk-tid-163014
 - id: unified-dk-hede-c4h113
   fuss: seed_unsorted
   phase: hede
@@ -30465,7 +30435,7 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '80.1'
+    km: '80.2'
     hede:
     - 116A
     - 116B
@@ -30492,7 +30462,7 @@ coins:
     source: numismaster
   sources:
   - type: literature
-    url: https://numismaster.com/MC_65041
+    url: https://numismaster.com/MC_65043
     ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h116.htm
@@ -30509,7 +30479,7 @@ coins:
     basis: fin
     unit_raw: dlr
   composed_of:
-  - denmark-numismaster-65041
+  - denmark-numismaster-65043
   - dk-hede-c4h116a
   - dk-hede-c4h116b
 - id: unified-dk-hede-c4h117
@@ -30523,7 +30493,7 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '80.2'
+    km: '80.1'
     hede: '117'
     hede_volume: c4h
     schou: 182-184
@@ -30546,7 +30516,7 @@ coins:
     source: numismaster
   sources:
   - type: literature
-    url: https://numismaster.com/MC_65043
+    url: https://numismaster.com/MC_65041
     ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h117.htm
@@ -30563,7 +30533,7 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
-  - denmark-numismaster-65043
+  - denmark-numismaster-65041
   - dk-hede-c4h117
 - id: unified-dk-hede-c4h118
   fuss: seed_unsorted
@@ -66891,17 +66861,25 @@ coins:
   kind: kurant
   nominal: 1 Speciedaler
   year_first: 1608
-  year_last: 1610
+  year_last: 1621
   year_ranges:
   - - 1608
     - 1610
-  year_label: 1608-1610
+  - - 1618
+    - 1621
+  year_label: 1608-1610, 1618-1621
   ruler: Christian IV
-  mint: Helsingør
+  mint:
+  - Helsingør
+  - Kopenhagen
   catalog:
     km: '44'
-    numista: '142901'
-    dav: EC II# 3514
+    numista:
+    - '142901'
+    - '199010'
+    dav:
+    - EC II# 3514
+    - EC II# 3514A
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -66912,16 +66890,25 @@ coins:
   fineness:
   - value: 0.875
     source: numista
+  - value: 0.888
+    source: numista
   weight_rough_g:
   - value: 28.37
     source: numista
+  - value: 29.15
+    source: numista
   diameter_mm:
   - value: 40.63
+    source: numista
+  - value: 40.86
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/142901
     ref: Numista N#142901 — 1 Speciedaler - Christian IV Helsingør
+  - type: literature
+    url: https://en.numista.com/199010
+    ref: Numista N#199010 — 1 Speciedaler - Christian IV Copenhagen; rectangular danish arms
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -66935,6 +66922,7 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-numista-142901
+  - dk-numista-199010
 - id: unified-dk-numista-143428
   fuss: seed_unsorted
   phase: numista
@@ -70214,56 +70202,6 @@ coins:
   composed_of:
   - dk-numista-197751
   - dk-tid-162980
-- id: unified-dk-numista-199010
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1618
-  year_last: 1621
-  year_ranges:
-  - - 1618
-    - 1621
-  year_label: 1618-1621
-  ruler: Christian IV
-  mint: Kopenhagen
-  catalog:
-    km: '44'
-    numista: '199010'
-    dav: EC II# 3514A
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.888
-    source: numista
-  weight_rough_g:
-  - value: 29.15
-    source: numista
-  diameter_mm:
-  - value: 40.86
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/199010
-    ref: Numista N#199010 — 1 Speciedaler - Christian IV Copenhagen; rectangular danish arms
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-numista-199010
 - id: unified-dk-numista-199012
   fuss: seed_unsorted
   phase: numista

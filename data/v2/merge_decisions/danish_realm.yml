@@ -49,6 +49,40 @@ merges:
       55A-C type (KM 101, 1624-1647). One Hede 55 type — KM 101 vs 142/143
       are Krause edition/year variants. danskmoent.dk/chr/c4h55.htm.
 
+  # --- B: dk-tid-163014 cluster (2 Skilling Christian IV) — curator
+  # decision 2026-05-31. THREE distinct coins the merger conflated:
+  #   Coin 1: KM 68 / Hede 112 / Sieg 39 — dk-tid-163014 + numista-142850
+  #           (both bare KM 68, no Hede) + dk-hede-c4h112 (Hede 112).
+  #   Coin 2: Hede 116A/116B / Sieg 40 (KM 69 per ucoin tid 163005, which we
+  #           did not harvest) — dk-hede-c4h116a + dk-hede-c4h116b.
+  #   Coin 3: KM 80.1 (1620) — denmark-numismaster-65041 (no image, distinct
+  #           KM) — stays separate (no_merges below). ---
+  - members:
+      - dk-tid-163014
+      - dk-numista-142850
+      - dk-hede-c4h112
+    reason: |
+      2 Skilling Christian IV 1619, Hede 112, KM 68, Sieg 39, Kopenhagen.
+      ucoin tid 163014 + Numista 142850 (both KM 68) + Hede 112.
+  - members:
+      - dk-hede-c4h116a
+      - dk-hede-c4h116b
+    reason: |
+      2 Skilling Christian IV 1619-1621, Hede 116A/116B, Sieg 40 (KM 69 per
+      ucoin tid 163005). Distinct from the Hede-112 / KM-68 coin.
+
+  # --- C: c4h54 (1 Speciedaler Christian IV) — curator decision 2026-05-31.
+  # Host = Hede 54 / KM 53 / Sieg 119 (one coin). The two bare-KM-44 Numista
+  # entries (142901 Helsingør 1608-1610, 199010 Kopenhagen 1618-1621) are TWO
+  # SUB-TYPES of a DIFFERENT coin (KM 44) — merge them together, keep separate
+  # from Hede 54. ---
+  - members:
+      - dk-numista-142901
+      - dk-numista-199010
+    reason: |
+      1 Speciedaler Christian IV, KM 44 — two sub-types (Helsingør 1608-1610;
+      Kopenhagen 1618-1621) of one coin, distinct from Hede 54 / KM 53.
+
 no_merges:
   # --- dk-tid-94338 disentanglement (curator decision 2026-05-31, Serhii).
   # 1 Dukat Frederik V 1747 — the merger fused FOUR distinct coins into one
@@ -127,3 +161,51 @@ no_merges:
       - dk-hede-f5h9
     reason: |
       Hede 13 and Hede 9 are distinct 1 Dukat 1747 types.
+
+  # --- B: keep the three dk-tid-163014 coins apart. Coin 1 (KM 68/Hede 112),
+  # Coin 2 (Hede 116A/B), Coin 3 (KM 80.1 MC_65041) — all 2 Skilling Chr IV
+  # 1619-1621 so they match on nominal+year; full cross-group matrix needed
+  # because the bare-KM seeds (KM 68 ucoin/numista, KM 80.1 numismaster) carry
+  # no Hede to self-distinguish. ---
+  - members: [dk-tid-163014, dk-hede-c4h116a]
+    reason: |
+      KM 68 / Hede 112 coin ≠ Hede 116 coin.
+  - members: [dk-tid-163014, dk-hede-c4h116b]
+    reason: |
+      KM 68 / Hede 112 coin ≠ Hede 116B.
+  - members: [dk-numista-142850, dk-hede-c4h116a]
+    reason: |
+      Numista KM 68 (Hede 112 coin) ≠ Hede 116.
+  - members: [dk-numista-142850, dk-hede-c4h116b]
+    reason: |
+      Numista KM 68 (Hede 112 coin) ≠ Hede 116B.
+  - members: [dk-hede-c4h112, dk-hede-c4h116a]
+    reason: |
+      Hede 112 and Hede 116 are distinct 2 Skilling types.
+  - members: [dk-hede-c4h112, dk-hede-c4h116b]
+    reason: |
+      Hede 112 and Hede 116B are distinct types.
+  - members: [denmark-numismaster-65041, dk-tid-163014]
+    reason: |
+      MC_65041 (KM 80.1, 1620) is a separate coin from KM 68 / Hede 112.
+  - members: [denmark-numismaster-65041, dk-numista-142850]
+    reason: |
+      MC_65041 (KM 80.1) ≠ Numista KM 68 coin.
+  - members: [denmark-numismaster-65041, dk-hede-c4h112]
+    reason: |
+      MC_65041 (KM 80.1) ≠ Hede 112.
+  - members: [denmark-numismaster-65041, dk-hede-c4h116a]
+    reason: |
+      MC_65041 (KM 80.1) ≠ Hede 116.
+  - members: [denmark-numismaster-65041, dk-hede-c4h116b]
+    reason: |
+      MC_65041 (KM 80.1) ≠ Hede 116B.
+
+  # --- C: the KM-44 coin (numista 142901 + 199010) stays separate from the
+  # Hede 54 / KM 53 host. ---
+  - members: [dk-hede-c4h54, dk-numista-142901]
+    reason: |
+      Hede 54 / KM 53 ≠ KM 44 coin (Numista 142901).
+  - members: [dk-hede-c4h54, dk-numista-199010]
+    reason: |
+      Hede 54 / KM 53 ≠ KM 44 coin (Numista 199010).

@@ -48,3 +48,29 @@ merges:
       1 Speciedaler Christian V, Hede 120, Glückstadt 1683. KM 73 (DK volume)
       + KM 105 (SH volume) — same coin, dual-jurisdiction. Sieg 140 shared.
       danskmoent.dk/chr/c5h120.htm.
+
+  # --- A3-② (curator decision 2026-05-31, Serhii). 1 Speciedaler Christian
+  # VII, Altona. The Hede-39 type (Hede 39A/B/C) = KM 138 — merge dk-hede-
+  # c7h39a (39A) with the c7h39b group (39B/C, KM 138.1). The KM-640.2 entry
+  # (NumisMaster MC_145357, no Hede) is a SEPARATE coin — split it out (its
+  # KM 640.2 had wrongly tagged c7h39a via the merge). «KM# 138 і Hede 39Х це
+  # одна монета, KM# 640.2 це інша без Хеде». ---
+  - members:
+      - dk-hede-c7h39a
+      - dk-hede-c7h39b
+    reason: |
+      1 Speciedaler Christian VII, Hede 39 (39A + 39B/C), KM 138.1, Altona.
+      One coin. danskmoent.dk/chr/c7h39.htm.
+
+no_merges:
+  - members:
+      - denmark-numismaster-145357
+      - dk-hede-c7h39a
+    reason: |
+      MC_145357 (KM 640.2, no Hede, 1 Speciedaler 1796 Altona) is a separate
+      coin from the Hede 39 / KM 138 type — curator verdict.
+  - members:
+      - denmark-numismaster-145357
+      - dk-hede-c7h39b
+    reason: |
+      MC_145357 (KM 640.2, no Hede) ≠ Hede 39 / KM 138.1 (c7h39b).
