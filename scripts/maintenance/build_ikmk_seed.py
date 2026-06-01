@@ -61,9 +61,9 @@ _METAL = {
     "Blei": "lead",
 }
 
-# literatur catalogue authors → CatalogRefs key. Per-segment (split on ';'),
-# the first matching author wins; the number is taken from "Nr. N" if present,
-# else the segment's trailing number.
+# literatur catalogue authors → CatalogRefs typed key. Per-segment (split on
+# ';'), the first matching author wins; the number is taken from "Nr. N" if
+# present, else the segment's trailing number.
 _CAT_AUTHORS = [
     (re.compile(r"\bHede\b", re.I), "hede"),
     (re.compile(r"\bDavenport\b", re.I), "dav"),
@@ -72,6 +72,40 @@ _CAT_AUTHORS = [
     (re.compile(r"\bSchou\b", re.I), "schou"),
     (re.compile(r"\bFriedberg\b", re.I), "fr"),
 ]
+
+# §CJ-IKMK: extra catalogue authors our schema doesn't TYPE but which IKMK's
+# prose `literatur` cites for the German entities — routed to `catalog.others`
+# as «Label# Nr». CURATED + author↔catalogue verified against the literatur
+# titles (2026-06-01): each surname here resolves to exactly ONE standard
+# catalogue. Deliberately EXCLUDED (and why):
+#   • Kluge, Bahrfeldt — each authored/edited MANY different works
+#     (surname ≠ a single catalogue) → ambiguous, would mis-attribute;
+#   • Schnee / Keilitz (Saxon Taler), Dannenberg (medieval), Noss (Jülich) —
+#     out-of-mission-scope territories;
+#   • Steguweit («Suum Cuique») — medals = exonumia (§9.2), not coin indices.
+# Ambiguity-of-surname is the bar: only one-catalogue-per-surname authors map.
+_EXTRA_CAT_AUTHORS = [
+    (re.compile(r"\bBehrens\b"), "Behrens"),      # Münzen u. Medaillen Lübecks (1905)
+    (re.compile(r"\bWelter\b"), "Welter"),        # Die Münzen der Welfen
+    (re.compile(r"\bFiala\b"), "Fiala"),          # Münzen/Medaillen Welfische Lande
+    (re.compile(r"\bDuve\b"), "Duve"),            # Braunschweig-Lüneburg Löser-Taler
+    (re.compile(r"\bJesse\b"), "Jesse"),          # Münzen der Stadt Braunschweig
+    (re.compile(r"\bDorfmann\b"), "Dorfmann"),    # Münzwesen Hzm. Lauenburg
+    (re.compile(r"\bSchön\b"), "Schön"),          # Weltmünzkatalog 19. Jahrhundert
+    (re.compile(r"\bJaeger\b"), "Jaeger"),        # Die deutschen Münzen seit 1871
+    (re.compile(r"\bDivo\b"), "Divo"),            # Deutsche Goldmünzen 1800-1930
+    (re.compile(r"\bArnold\b"), "AKS"),           # Arnold-Küthmann-Steinhilber (1800+)
+    (re.compile(r"\bSchrötter\b"), "Schrötter"),  # Das preußische Münzwesen
+    (re.compile(r"\bOlding\b"), "Olding"),        # Die Münzen Friedrichs des Großen
+]
+
+# «Nr. N» extractor for the extra authors — handles plain («471»), letter-suffix
+# sub-variants («90 a», «552 A»), and Olding's K-numbers («K 16.2/3746»). The
+# trailing-letter group requires a word boundary (negative lookahead) so it
+# captures the sub-variant «a» in «90 a» but NOT the «u» of «90 und 91».
+_EXTRA_NR_RE = re.compile(
+    r"\bNr\.\s*([A-Za-z]{0,2}\s?\d[\d.\-/]*(?:\s?[A-Za-z](?![A-Za-z]))?)"
+)
 
 
 def _first(x):
@@ -145,15 +179,38 @@ def _catalog(rec) -> dict:
     if not isinstance(lit, str) or not lit.strip():
         return {}
     out: dict = {}
+    others: list = []
     for seg in lit.split(";"):
+        # «Vgl. …» introduces a cf-reference (a SIMILAR other coin), never this
+        # coin's own catalogue index — drop everything from the first «Vgl.»
+        # onward (anti-pattern 5). It can sit mid-segment («… Nr. 471. Vgl. F.
+        # v. Schrötter …»), not only at the start, so truncate rather than skip
+        # — otherwise the cf author/number leaks into the wrong field.
+        seg = re.split(r"\bvgl\.", seg, maxsplit=1, flags=re.I)[0].strip()
+        if not seg:
+            continue
+        # Typed schema catalogues (first-occurrence wins per key) — unchanged.
         for rx, key in _CAT_AUTHORS:
             if key in out or not rx.search(seg):
                 continue
             m = re.search(r"\bNr\.\s*(\d+[A-Za-z]?)", seg)
             if not m:
-                m = re.search(r"(\d+[A-Za-z]?)\s*\.?\s*$", seg.strip())
+                m = re.search(r"(\d+[A-Za-z]?)\s*\.?\s*$", seg)
             if m:
                 out[key] = m.group(1)
+        # §CJ-IKMK: extra German-states catalogues → others «Label# Nr».
+        for rx, label in _EXTRA_CAT_AUTHORS:
+            if not rx.search(seg):
+                continue
+            m = _EXTRA_NR_RE.search(seg)
+            if m:
+                val = re.sub(r"\s+", " ", m.group(1)).strip().rstrip(".,;").strip()
+                tok = f"{label}# {val}"
+                if tok and tok not in others:
+                    others.append(tok)
+            break  # one extra catalogue per segment
+    if others:
+        out["others"] = others
     return out
 
 
