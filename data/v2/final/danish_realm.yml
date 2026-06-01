@@ -5361,32 +5361,9 @@ coins:
   - Kopenhagen
   - Royal Danish
   catalog:
-    km:
-    - '564'
-    - '566'
-    hede:
-    - 11AB
-    - '13'
-    - '9'
-    hede_volume: f5h
-    schou:
-    - '8'
-    - '10'
-    - '7'
-    sieg:
-    - '32'
-    - '34'
-    - '30'
-    fr:
-    - '273'
-    - '266'
-    bruun_collection_id: '7617'
-    bruun_part: III
-    bruun_lot_no: 11280
-    bruun_page: 144
-    numista:
-    - '147904'
-    - '342563'
+    km: '564'
+    numista: '342563'
+    fr: '266'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -5396,22 +5373,12 @@ coins:
   verified: false
   fineness:
   - value: 0.979
-    source: hede
-  - value: 0.979
     source: numismaster
   - value: 0.979
     source: numista
   - value: 0.98
-    source: '?'
-  - value: 0.98
     source: ucoin
   weight_rough_g:
-  - value: 3.48
-    source: numista
-  - value: 3.49
-    source: '?'
-  - value: 3.49
-    source: hede
   - value: 3.49
     source: numismaster
   - value: 3.49
@@ -5420,36 +5387,14 @@ coins:
     source: ucoin
   diameter_mm:
   - value: 21.0
-    source: '?'
-  - value: 21.0
     source: ucoin
-  - value: 21.6
-    source: numista
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_65825
-    ref: NumisMaster
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f5h11.htm
-    ref: danskmoent.dk (Hede f5h11AB)
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-dukat-1747/?tid=94338
     ref: ucoin
   - type: literature
-    url: https://numismaster.com/MC_65827
+    url: https://numismaster.com/MC_65825
     ref: NumisMaster
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f5h13.htm
-    ref: danskmoent.dk (Hede f5h13)
-  - type: literature
-    url: https://www.danskmoent.dk/fr/f5h10.htm
-    ref: danskmoent.dk (Hede f5h9)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-dukat-1747/?tid=94340
-    ref: ucoin
-  - type: numista
-    url: https://en.numista.com/147904
-    ref: Numista
   - type: literature
     url: https://en.numista.com/342563
     ref: Numista N#342563 — 1 Ducat - Frederik V
@@ -5462,9 +5407,7 @@ coins:
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
     uk: Призначення Müntzfuß і покоінна верифікація за Hede / Schön / Bruun ще очікуються.
   composed_of:
-  - unified-dk-hede-f5h11ab
-  - unified-dk-hede-f5h13
-  - unified-dk-hede-f5h9
+  - unified-dk-numista-342563
   v1_home_location: denmark
 - fuss: reichsdukatenfuss
   phase: II
@@ -7180,6 +7123,7 @@ coins:
     km:
     - '[''142'', {''value'': ''143'', ''register'': ''DK''}]'
     - '101'
+    - '142'
     hede:
     - '55'
     - 55A
@@ -7203,12 +7147,16 @@ coins:
     bruun_part: I
     bruun_lot_no: 1032
     bruun_page: 70
-    dav: '3524'
+    dav:
+    - '3524'
+    - '3536'
     sieg:
     - '107.1'
     - '107.2'
     - '107.3'
-    numista: '82678'
+    numista:
+    - '82678'
+    - '110876'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7247,6 +7195,10 @@ coins:
   diameter_mm:
   - value: 42.0
     source: ucoin
+  - value: 42.9
+    source: numista
+  - value: 43.5
+    source: ucoin
   - value: 43.85
     source: numista
   sources:
@@ -7283,6 +7235,12 @@ coins:
   - type: literature
     url: https://en.numista.com/82678
     ref: Numista N#82678 — 1 Speciedaler - Christian IV (Bust type I; Oval provincial shields)
+  - type: literature
+    url: https://numismaster.com/MC_65412
+    ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/110876
+    ref: Numista N#110876 — 1 Speciedaler - Christian IV (Bust type IIa)
   verification_note:
     de: Müntzfuß-Zuordnung und Per-Münze-Verifikation per Hede / Schön / Bruun stehen noch aus.
     en: Müntzfuß assignment and per-coin verification against Hede / Schön / Bruun are still outstanding.
@@ -59227,73 +59185,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-7612
-- fuss: reichsdukatenfuss
-  phase: II
-  kind: kurant
-  nominal: 1 Ducat
-  ruler: Frederik V
-  issuing_entity: danish_realm
-  fraction: '1'
-  id: unified-dk-bruun-7617
-  year_first: 1747
-  year_last: 1747
-  year_label: '1747'
-  mint: Kopenhagen
-  catalog:
-    km: '565'
-    bruun_collection_id: '7617'
-    sieg: '32.1'
-    schou: '7'
-    hede: 11A
-    bruun_part: III
-    bruun_lot_no: 11280
-    bruun_page: 144
-    fr: '271'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  - value: 0.98
-    source: ucoin
-  weight_rough_g:
-  - value: 3.49
-    source: bruun
-  - value: 3.49
-    source: numismaster
-  - value: 3.49
-    source: ucoin
-  diameter_mm:
-  - value: 21.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65826
-    ref: NumisMaster
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 11280, p. 144
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-dukat-1747/?tid=94339
-    ref: ucoin
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7617
 - fuss: 11_333_thaler
   phase: I
   kind: kurant
@@ -68779,71 +68670,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-110287
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Speciedaler
-  ruler: Christian IV
-  issuing_entity: danish_realm
-  id: unified-dk-numista-110876
-  year_first: 1646
-  year_last: 1646
-  year_label: '1646'
-  mint: Kopenhagen
-  catalog:
-    km: '142'
-    numista: '110876'
-    dav: '3536'
-    hede: '55'
-    hede_volume: c4h
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  - value: 0.875
-    source: numista
-  - value: 0.875
-    source: ucoin
-  weight_rough_g:
-  - value: 29.23
-    source: ucoin
-  - value: 29.232
-    source: numismaster
-  - value: 29.232
-    source: numista
-  diameter_mm:
-  - value: 42.9
-    source: numista
-  - value: 43.5
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65412
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/110876
-    ref: Numista N#110876 — 1 Speciedaler - Christian IV (Bust type IIa)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1646/?tid=97358
-    ref: ucoin
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-110876
 - fuss: kronemont_chr_iv
   phase: II
   kind: kurant
@@ -78628,3 +78454,185 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   composed_of:
   - unified-km-65-chr-iv-1619
+- fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: 1 Dukat
+  ruler: Frederik V.
+  issuing_entity: danish_realm
+  id: unified-dk-hede-f5h11ab
+  year_first: 1747
+  year_last: 1747
+  year_label: '1747'
+  mint: Kopenhagen
+  catalog:
+    km: '565'
+    hede:
+    - 11AB
+    - 11A
+    hede_volume: f5h
+    schou: '7'
+    sieg:
+    - '32'
+    - '32.1'
+    bruun_collection_id: '7617'
+    bruun_part: III
+    bruun_lot_no: 11280
+    bruun_page: 144
+    fr: '271'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.979
+    source: hede
+  - value: 0.979
+    source: numismaster
+  - value: 0.98
+    source: ucoin
+  weight_rough_g:
+  - value: 3.49
+    source: bruun
+  - value: 3.49
+    source: hede
+  - value: 3.49
+    source: numismaster
+  - value: 3.49
+    source: ucoin
+  diameter_mm:
+  - value: 21.0
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_65826
+    ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 11280, p. 144
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f5h11.htm
+    ref: danskmoent.dk (Hede f5h11AB)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-dukat-1747/?tid=94339
+    ref: ucoin
+  verification_note:
+    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
+      danskmoent.dk.'
+    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  composed_of:
+  - unified-dk-hede-f5h11ab
+- fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: 1 Dukat
+  ruler: Frederik V.
+  issuing_entity: danish_realm
+  id: unified-dk-hede-f5h13
+  year_first: 1747
+  year_last: 1747
+  year_label: '1747'
+  mint:
+  - Kopenhagen
+  - Royal Danish
+  catalog:
+    km: '566'
+    hede: '13'
+    hede_volume: f5h
+    schou: '8'
+    sieg: '34'
+    numista: '147904'
+    fr: '273'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.979
+    source: hede
+  - value: 0.979
+    source: numismaster
+  - value: 0.979
+    source: numista
+  - value: 0.98
+    source: '?'
+  weight_rough_g:
+  - value: 3.48
+    source: numista
+  - value: 3.49
+    source: '?'
+  - value: 3.49
+    source: hede
+  - value: 3.49
+    source: numismaster
+  diameter_mm:
+  - value: 21.0
+    source: '?'
+  - value: 21.6
+    source: numista
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_65827
+    ref: NumisMaster
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f5h13.htm
+    ref: danskmoent.dk (Hede f5h13)
+  - type: literature
+    url: https://en.numista.com/147904
+    ref: Numista N#147904 — 1 Ducat - Frederik V (Christiansborg)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-dukat-1747/?tid=94340
+    ref: ucoin
+  verification_note:
+    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
+      danskmoent.dk.'
+    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  composed_of:
+  - unified-dk-hede-f5h13
+- fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: 1 Dukat
+  ruler: Frederik V.
+  issuing_entity: danish_realm
+  id: unified-dk-hede-f5h9
+  year_first: 1747
+  year_last: 1747
+  year_label: '1747'
+  mint: Kopenhagen
+  catalog:
+    hede: '9'
+    hede_volume: f5h
+    schou: '10'
+    sieg: '30'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.979
+    source: hede
+  weight_rough_g:
+  - value: 3.49
+    source: hede
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/fr/f5h10.htm
+    ref: danskmoent.dk (Hede f5h9)
+  verification_note:
+    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
+      danskmoent.dk.'
+    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  composed_of:
+  - unified-dk-hede-f5h9

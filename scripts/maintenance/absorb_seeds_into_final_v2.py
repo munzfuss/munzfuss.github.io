@@ -58,6 +58,7 @@ V2_SEED_UNIFIED = ROOT / "data" / "v2" / "seed_unified"
 V2_SEED = ROOT / "data" / "v2" / "seed"
 V2_FINAL = ROOT / "data" / "v2" / "final"
 V2_CLASSIFICATION_DECISIONS = ROOT / "data" / "v2" / "classification_decisions"
+V2_MERGE_DECISIONS = ROOT / "data" / "v2" / "merge_decisions"
 V2_OVERMERGE_PURGE = ROOT / "data" / "v2" / "overmerge_purge_allowlist.yml"
 
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -1201,6 +1202,48 @@ def process_entity(entity_id: str) -> dict:
         for cid in fc.get("composed_of") or []:
             already_absorbed[cid] = fid
 
+    # Curator no_merges (merge_decisions::no_merges) are authoritative over
+    # the absorb matcher too: a member the curator declared a DIFFERENT coin
+    # from a foundation must NOT be absorbed into it — even when match_pair
+    # says confident on nominal+ruler+year. The §9.4 base-KM guard cannot
+    # catch the no-KM case (e.g. dk-tid-94338 KM 564 vs Hede 9 f5h9: f5h9 has
+    # no KM, so it would re-fuse on nominal+year confidence). Resolve each
+    # entry to its underlying SEED set (a final foundation's composed_of holds
+    # unified ids → expand via unified_by_id to their seeds; its own id is a
+    # seed for raw-seed foundations) and refuse any absorb that would unite a
+    # registered no_merge seed pair.
+    _nm_doc = _load_yaml(V2_MERGE_DECISIONS / f"{entity_id}.yml")
+    _no_merge_pairs: set = set()
+    for nm in (_nm_doc.get("no_merges") or []):
+        mem = [x for x in (nm.get("members") or []) if x]
+        for i in range(len(mem)):
+            for j in range(i + 1, len(mem)):
+                _no_merge_pairs.add(frozenset({mem[i], mem[j]}))
+
+    def _seeds_of_entry(e: dict) -> set:
+        out: set = set()
+        eid = e.get("id")
+        if eid:
+            out.add(eid)
+        for m in (e.get("composed_of") or []):
+            if m == eid:
+                continue
+            out.add(m)
+            um = unified_by_id.get(m)
+            if um is not None:
+                out |= {s for s in (um.get("composed_of") or []) if s}
+        return {x for x in out if x}
+
+    def _curator_no_merged(a: dict, b: dict) -> bool:
+        if not _no_merge_pairs:
+            return False
+        sa, sb = _seeds_of_entry(a), _seeds_of_entry(b)
+        for x in sa:
+            for y in sb:
+                if frozenset({x, y}) in _no_merge_pairs:
+                    return True
+        return False
+
     # Iterate unified entries, find matches in final
     new_links: dict[str, list[str]] = defaultdict(list)
     unmatched: list[str] = []
@@ -1217,6 +1260,8 @@ def process_entity(entity_id: str) -> dict:
         # Find match against final entries (per §5.2 hierarchy)
         candidates = []
         for fid, fc in final_by_id.items():
+            if _curator_no_merged(unified, fc):
+                continue  # curator no_merge: different coin — never absorb
             result = match_pair(unified, fc, entity_id, reign_index=reign_index)
             if result["decision"] == "confident":
                 candidates.append(fid)
@@ -1241,6 +1286,8 @@ def process_entity(entity_id: str) -> dict:
             u_refs = _catalog_refs(unified, entity_id)
             id_fallback = []
             for fid, fc in final_by_id.items():
+                if _curator_no_merged(unified, fc):
+                    continue  # curator no_merge: different coin — never absorb
                 f_refs = _catalog_refs(fc, entity_id)
                 if not _shares_unique_id_ref(u_refs, f_refs):
                     continue

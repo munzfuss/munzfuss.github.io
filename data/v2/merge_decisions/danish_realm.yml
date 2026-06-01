@@ -38,3 +38,92 @@ merges:
       2 Dukat Frederik V, Hede 12, 1747. Host KM 567 vs member KM 569 (Hede
       12B) — same Hede 12 type (Bruun II lot 13221 coll 7613, ucoin tid
       94405 shared). danskmoent.dk/f5hede.htm.
+
+  # --- A2 typology «one Hede → many KM» (curator decision 2026-05-31). ---
+  - members:
+      - dk-tid-97358
+      - dk-hede-c4h55
+    reason: |
+      1 Speciedaler Christian IV, Hede 55, Kopenhagen. Host dk-tid-97358 is
+      the ucoin 1646 sub-year entry (KM 142); member c4h55 is the Hede 55 /
+      55A-C type (KM 101, 1624-1647). One Hede 55 type — KM 101 vs 142/143
+      are Krause edition/year variants. danskmoent.dk/chr/c4h55.htm.
+
+no_merges:
+  # --- dk-tid-94338 disentanglement (curator decision 2026-05-31, Serhii).
+  # 1 Dukat Frederik V 1747 — the merger fused FOUR distinct coins into one
+  # because the bare-KM-564 sources (ucoin tid 94338, Numista 342563,
+  # NumisMaster MC_65825 — all KM 564, no Hede) carry no Hede tag and got
+  # matched onto the Hede-11AB seed (danskmoent f5h11, no KM). Curator
+  # verdict: «KM 564 і Hede 11AB це різні монети» — four separate types:
+  #   (1) KM 564          = dk-tid-94338 + dk-numista-342563 + numismaster-65825
+  #   (2) Hede 11AB        = dk-hede-f5h11ab (Sieg 32, Fr 266)
+  #   (3) Hede 13 / KM 566 = dk-hede-f5h13
+  #   (4) Hede 9 / Sieg 30 = dk-hede-f5h9
+  # The KM-564 group (1) must NOT unite with any of the three Hede seeds;
+  # the three Hede seeds are mutually distinct (different Hede types). ---
+  # Hede 11AB must detach from ALL THREE bare-KM-564 sources so they reunite
+  # as the single KM-564 coin and Hede 11AB stands alone (no_merge against
+  # only one would exile that one source from the KM-564 group instead).
+  - members:
+      - dk-tid-94338
+      - dk-hede-f5h11ab
+    reason: |
+      KM 564 (ucoin/Numista/NumisMaster, no Hede) is a different coin from
+      Hede 11AB (danskmoent f5h11, no KM) per curator verdict.
+  - members:
+      - dk-numista-342563
+      - dk-hede-f5h11ab
+    reason: |
+      KM 564 (Numista 342563, no Hede) ≠ Hede 11AB (no KM) per curator.
+  - members:
+      - denmark-numismaster-65825
+      - dk-hede-f5h11ab
+    reason: |
+      KM 564 (NumisMaster MC_65825, no Hede) ≠ Hede 11AB (no KM) per curator.
+  - members:
+      - dk-tid-94338
+      - dk-hede-f5h13
+    reason: |
+      KM 564 is a different coin from Hede 13 / KM 566 (f5h13).
+  - members:
+      - dk-numista-342563
+      - dk-hede-f5h13
+    reason: |
+      KM 564 (Numista 342563) ≠ Hede 13 (f5h13) — bare-KM source must not
+      drift onto this Hede type.
+  - members:
+      - denmark-numismaster-65825
+      - dk-hede-f5h13
+    reason: |
+      KM 564 (NumisMaster MC_65825) ≠ Hede 13 (f5h13).
+  - members:
+      - dk-tid-94338
+      - dk-hede-f5h9
+    reason: |
+      KM 564 is a different coin from Hede 9 (f5h9).
+  - members:
+      - dk-numista-342563
+      - dk-hede-f5h9
+    reason: |
+      KM 564 (Numista 342563) ≠ Hede 9 (f5h9).
+  - members:
+      - denmark-numismaster-65825
+      - dk-hede-f5h9
+    reason: |
+      KM 564 (NumisMaster MC_65825) ≠ Hede 9 (f5h9).
+  - members:
+      - dk-hede-f5h11ab
+      - dk-hede-f5h13
+    reason: |
+      Hede 11AB and Hede 13 are distinct 1 Dukat 1747 types.
+  - members:
+      - dk-hede-f5h11ab
+      - dk-hede-f5h9
+    reason: |
+      Hede 11AB and Hede 9 are distinct 1 Dukat 1747 types.
+  - members:
+      - dk-hede-f5h13
+      - dk-hede-f5h9
+    reason: |
+      Hede 13 and Hede 9 are distinct 1 Dukat 1747 types.

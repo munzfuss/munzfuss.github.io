@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 1351 per-source seed entries.
-# Output: 523 unified entries (one per physical coin).
+# Output: 512 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -2220,105 +2220,6 @@ coins:
   - dk-bruun-10232
   - dk-numista-117149
   - dk-tid-146015
-- id: unified-dk-bruun-10216
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Speciedaler
-  year_first: 1671
-  year_last: 1680
-  year_ranges:
-  - - 1671
-    - 1672
-  - - 1674
-    - 1680
-  year_label: 1671-1672, 1674-1680
-  ruler: Christian V
-  mint: Christiania
-  catalog:
-    km: '110'
-    bruun_collection_id:
-    - '10216'
-    - '10230'
-    sieg: '54.3'
-    schou:
-    - '5'
-    - '11'
-    hede:
-    - 30C
-    - 30A
-    nmd:
-    - '52'
-    - '53'
-    bruun_part: II
-    bruun_lot_no: 14081
-    bruun_page: 230
-    numista: '117135'
-    dav: '3655'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  - value: 0.875
-    source: numista
-  - value: 0.875
-    source: ucoin
-  weight_rough_g:
-  - value: 56.84
-    source: bruun
-  - value: 57.55
-    source: numismaster
-  - value: 57.55
-    source: ucoin
-  - value: 57.7
-    source: bruun
-  - value: 57.79
-    source: numista
-  diameter_mm:
-  - value: 42.0
-    source: numista
-  - value: 45.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110773
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14081, p. 230
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 12103, p. 214
-  - type: literature
-    url: https://en.numista.com/117135
-    ref: Numista N#117135 — 2 Speciedaler - Christian V (Christiania type III) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-2-speciedaler-1672-1680/?tid=146030
-    ref: ucoin
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110773
-  - dk-bruun-10216
-  - dk-bruun-10230
-  - dk-numista-117135
-  - dk-tid-146030
 - id: unified-dk-bruun-10240
   fuss: seed_unsorted
   phase: bruun
@@ -11802,25 +11703,51 @@ coins:
   kind: kurant
   nominal: 2 Speciedaler
   year_first: 1671
-  year_last: 1674
+  year_last: 1680
   year_ranges:
   - - 1671
     - 1672
   - - 1674
-    - 1674
-  year_label: 1671-1672, 1674
+    - 1680
+  year_label: 1671-1672, 1674-1680
   ruler: Christian V.
   mint: Christiania
   catalog:
-    km: A110
-    hede: '30'
+    km:
+    - '110'
+    - A110
+    hede:
+    - '30'
+    - 30C
+    - 30A
+    - 30B
     hede_volume: nc5h
-    schou: '5'
-    dav: '3652'
+    schou:
+    - '5'
+    - '11'
+    bruun_collection_id:
+    - '10216'
+    - '10230'
+    sieg: '54.3'
+    nmd:
+    - '52'
+    - '53'
+    bruun_part: II
+    bruun_lot_no: 14081
+    bruun_page: 230
+    numista:
+    - '117135'
+    - '445316'
+    - '445318'
+    - '462112'
+    dav:
+    - '3652'
+    - '3655'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -11828,18 +11755,59 @@ coins:
     source: hede
   - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: numista
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
+  - value: 56.84
+    source: bruun
   - value: 57.55
     source: numismaster
+  - value: 57.55
+    source: ucoin
+  - value: 57.7
+    source: bruun
   - value: 57.786
     source: hede
+  - value: 57.79
+    source: numista
+  diameter_mm:
+  - value: 42.0
+    source: numista
+  - value: 45.0
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110772
     ref: NumisMaster
   - type: literature
+    url: https://numismaster.com/MC_110773
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14081, p. 230
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 12103, p. 214
+  - type: literature
     url: https://www.danskmoent.dk/norge/nc5h30.htm
     ref: danskmoent.dk (Hede nc5h30)
+  - type: literature
+    url: https://en.numista.com/117135
+    ref: Numista N#117135 — 2 Speciedaler - Christian V (Christiania type III) - Norway
+  - type: literature
+    url: https://en.numista.com/445316
+    ref: Numista N#445316 — 2 Speciedaler - Christian V (Christiania type IV; short bust) - Norway
+  - type: literature
+    url: https://en.numista.com/445318
+    ref: Numista N#445318 — 2 Speciedaler - Christian V (Christiania type V) - Norway
+  - type: literature
+    url: https://en.numista.com/462112
+    ref: Numista N#462112 — 2 Speciedaler - Christian V (Christiania type IV; tall bust) - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-speciedaler-1672-1680/?tid=146030
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -11852,7 +11820,15 @@ coins:
     basis: fin
   composed_of:
   - denmark-numismaster-110772
+  - denmark-numismaster-110773
+  - dk-bruun-10216
+  - dk-bruun-10230
   - dk-hede-nc5h30
+  - dk-numista-117135
+  - dk-numista-445316
+  - dk-numista-445318
+  - dk-numista-462112
+  - dk-tid-146030
 - id: unified-dk-hede-nc5h32
   fuss: seed_unsorted
   phase: hede
@@ -14091,13 +14067,33 @@ coins:
   ruler: Christian V.
   mint: Kongsberg
   catalog:
-    km: '180'
+    km:
+    - '180'
+    - '169'
+    - '170'
+    - '168'
+    - '167'
+    - '158'
+    - '157'
     hede:
     - '67'
     - 67B
+    - 67A
     hede_volume: nc5h
     schou: '11'
-    numista: '102270'
+    numista:
+    - '102270'
+    - '102272'
+    - '102273'
+    - '102275'
+    - '102277'
+    - '102279'
+    - '102280'
+    - '445630'
+    dav:
+    - EC II# 3665
+    - '3665'
+    - 3665A
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14112,17 +14108,43 @@ coins:
     source: numismaster
   - value: 0.672
     source: numista
+  - value: 0.672
+    source: ucoin
   weight_rough_g:
   - value: 22.27
     source: numismaster
   - value: 22.27
     source: numista
+  - value: 22.27
+    source: ucoin
   - value: 22.272
     source: hede
   diameter_mm:
   - value: 38.0
     source: numista
+  - value: 38.6
+    source: numista
+  - value: 39.0
+    source: ucoin
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110669
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_110670
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_110671
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_110672
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_110673
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_110674
+    ref: NumisMaster
   - type: literature
     url: https://numismaster.com/MC_110675
     ref: NumisMaster
@@ -14132,6 +14154,39 @@ coins:
   - type: literature
     url: https://en.numista.com/102270
     ref: Numista N#102270 — 4 Mark - Christian V (Kongsberg type G&II) - Norway
+  - type: literature
+    url: https://en.numista.com/102272
+    ref: Numista N#102272 — 4 Mark - Christian V (Kongsberg type D&II) - Norway
+  - type: literature
+    url: https://en.numista.com/102273
+    ref: Numista N#102273 — 4 Mark - Christian V (Kongsberg type C&II) - Norway
+  - type: literature
+    url: https://en.numista.com/102275
+    ref: Numista N#102275 — 4 Mark - Christian V (Kongsberg type E&II) - Norway
+  - type: literature
+    url: https://en.numista.com/102277
+    ref: Numista N#102277 — 4 Mark - Christian V (Kongsberg type B&II) - Norway
+  - type: literature
+    url: https://en.numista.com/102279
+    ref: Numista N#102279 — 4 Mark - Christian V (Kongsberg type B&I) - Norway
+  - type: literature
+    url: https://en.numista.com/102280
+    ref: Numista N#102280 — 4 Mark - Christian V (Kongsberg type A&I) - Norway
+  - type: literature
+    url: https://en.numista.com/445630
+    ref: Numista N#445630 — 4 Mark - Christian V (Kongsberg type F&II) - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1686/?tid=145690
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1686/?tid=145694
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1687/?tid=145717
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1687/?tid=145718
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -14144,9 +14199,26 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
+  - denmark-numismaster-110669
+  - denmark-numismaster-110670
+  - denmark-numismaster-110671
+  - denmark-numismaster-110672
+  - denmark-numismaster-110673
+  - denmark-numismaster-110674
   - denmark-numismaster-110675
   - dk-hede-nc5h67
   - dk-numista-102270
+  - dk-numista-102272
+  - dk-numista-102273
+  - dk-numista-102275
+  - dk-numista-102277
+  - dk-numista-102279
+  - dk-numista-102280
+  - dk-numista-445630
+  - dk-tid-145690
+  - dk-tid-145694
+  - dk-tid-145717
+  - dk-tid-145718
 - id: unified-dk-hede-nc5h68
   fuss: seed_unsorted
   phase: hede
@@ -23082,383 +23154,6 @@ coins:
   composed_of:
   - denmark-numismaster-110676
   - dk-numista-101800
-- id: unified-dk-numista-102272
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 4 Mark = 1 Krone
-  year_first: 1687
-  year_last: 1688
-  year_ranges:
-  - - 1687
-    - 1688
-  year_label: 1687-1688
-  ruler: Christian V
-  mint: Kongsberg
-  catalog:
-    km: '169'
-    numista: '102272'
-    hede: 67B
-    dav: 3665A
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: numista
-  weight_rough_g:
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: numista
-  diameter_mm:
-  - value: 38.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110673
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/102272
-    ref: Numista N#102272 — 4 Mark - Christian V (Kongsberg type D&II) - Norway
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110673
-  - dk-numista-102272
-- id: unified-dk-numista-102273
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 4 Mark = 1 Krone
-  year_first: 1687
-  year_last: 1687
-  year_label: '1687'
-  ruler: Christian V
-  mint: Kongsberg
-  catalog:
-    km: '170'
-    numista: '102273'
-    hede: 67A
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: numista
-  weight_rough_g:
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: numista
-  diameter_mm:
-  - value: 38.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110674
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/102273
-    ref: Numista N#102273 — 4 Mark - Christian V (Kongsberg type C&II) - Norway
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110674
-  - dk-numista-102273
-- id: unified-dk-numista-102275
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 4 Mark = 1 Krone
-  year_first: 1687
-  year_last: 1688
-  year_ranges:
-  - - 1687
-    - 1688
-  year_label: 1687-1688
-  ruler: Christian V
-  mint: Kongsberg
-  catalog:
-    km: '168'
-    numista: '102275'
-    hede: 67B
-    dav: '3665'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: numista
-  - value: 0.672
-    source: ucoin
-  weight_rough_g:
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: numista
-  - value: 22.27
-    source: ucoin
-  diameter_mm:
-  - value: 38.0
-    source: numista
-  - value: 39.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110672
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/102275
-    ref: Numista N#102275 — 4 Mark - Christian V (Kongsberg type E&II) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1687/?tid=145718
-    ref: ucoin
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110672
-  - dk-numista-102275
-  - dk-tid-145718
-- id: unified-dk-numista-102277
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 4 Mark = 1 Krone
-  year_first: 1687
-  year_last: 1687
-  year_label: '1687'
-  ruler: Christian V
-  mint: Kongsberg
-  catalog:
-    km: '167'
-    numista: '102277'
-    hede: 67A
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: numista
-  - value: 0.672
-    source: ucoin
-  weight_rough_g:
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: numista
-  - value: 22.27
-    source: ucoin
-  diameter_mm:
-  - value: 38.0
-    source: numista
-  - value: 39.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110671
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/102277
-    ref: Numista N#102277 — 4 Mark - Christian V (Kongsberg type B&II) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1687/?tid=145717
-    ref: ucoin
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110671
-  - dk-numista-102277
-  - dk-tid-145717
-- id: unified-dk-numista-102279
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 4 Mark = 1 Krone
-  year_first: 1686
-  year_last: 1686
-  year_label: '1686'
-  ruler: Christian V
-  catalog:
-    km: '158'
-    numista: '102279'
-    hede: 67A
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: numista
-  - value: 0.672
-    source: ucoin
-  weight_rough_g:
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: numista
-  - value: 22.27
-    source: ucoin
-  diameter_mm:
-  - value: 38.0
-    source: numista
-  - value: 39.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110670
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/102279
-    ref: Numista N#102279 — 4 Mark - Christian V (Kongsberg type B&I) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1686/?tid=145694
-    ref: ucoin
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110670
-  - dk-numista-102279
-  - dk-tid-145694
-- id: unified-dk-numista-102280
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 4 Mark = 1 Krone
-  year_first: 1686
-  year_last: 1686
-  year_label: '1686'
-  ruler: Christian V
-  catalog:
-    km: '157'
-    numista: '102280'
-    dav: EC II# 3665
-    hede: 67A
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: numista
-  - value: 0.672
-    source: ucoin
-  weight_rough_g:
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: numista
-  - value: 22.27
-    source: ucoin
-  diameter_mm:
-  - value: 38.6
-    source: numista
-  - value: 39.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110669
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/102280
-    ref: Numista N#102280 — 4 Mark - Christian V (Kongsberg type A&I) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1686/?tid=145690
-    ref: ucoin
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110669
-  - dk-numista-102280
-  - dk-tid-145690
 - id: unified-dk-numista-102379
   fuss: seed_unsorted
   phase: numista
@@ -27793,104 +27488,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-445307
-- id: unified-dk-numista-445316
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 2 Speciedaler
-  year_first: 1672
-  year_last: 1674
-  year_ranges:
-  - - 1672
-    - 1674
-  year_label: 1672-1674
-  ruler: Christian V
-  catalog:
-    km: '110'
-    numista: '445316'
-    hede: 30B
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numista
-  weight_rough_g:
-  - value: 57.79
-    source: numista
-  diameter_mm:
-  - value: 42.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/445316
-    ref: Numista N#445316 — 2 Speciedaler - Christian V (Christiania type IV; short bust) - Norway
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-numista-445316
-- id: unified-dk-numista-445318
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 2 Speciedaler
-  year_first: 1675
-  year_last: 1680
-  year_ranges:
-  - - 1675
-    - 1680
-  year_label: 1675-1680
-  ruler: Christian V
-  catalog:
-    km: '110'
-    numista: '445318'
-    hede: 30C
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numista
-  weight_rough_g:
-  - value: 57.79
-    source: numista
-  diameter_mm:
-  - value: 42.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/445318
-    ref: Numista N#445318 — 2 Speciedaler - Christian V (Christiania type V) - Norway
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-numista-445318
 - id: unified-dk-numista-445319
   fuss: seed_unsorted
   phase: numista
@@ -28133,51 +27730,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-445607
-- id: unified-dk-numista-445630
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 4 Mark = 1 Krone (⅔ Speciedaler)
-  year_first: 1688
-  year_last: 1688
-  year_label: '1688'
-  ruler: Christian V
-  catalog:
-    numista: '445630'
-    hede: 67B
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numista
-  weight_rough_g:
-  - value: 22.27
-    source: numista
-  diameter_mm:
-  - value: 38.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/445630
-    ref: Numista N#445630 — 4 Mark - Christian V (Kongsberg type F&II) - Norway
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-numista-445630
 - id: unified-dk-numista-448563
   fuss: seed_unsorted
   phase: numista
@@ -28270,52 +27822,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-462111
-- id: unified-dk-numista-462112
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 2 Speciedaler
-  year_first: 1674
-  year_last: 1674
-  year_label: '1674'
-  ruler: Christian V
-  catalog:
-    km: '110'
-    numista: '462112'
-    hede: 30B
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numista
-  weight_rough_g:
-  - value: 57.79
-    source: numista
-  diameter_mm:
-  - value: 42.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/462112
-    ref: Numista N#462112 — 2 Speciedaler - Christian V (Christiania type IV; tall bust) - Norway
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-numista-462112
 - id: unified-dk-numista-462251
   fuss: seed_unsorted
   phase: numista

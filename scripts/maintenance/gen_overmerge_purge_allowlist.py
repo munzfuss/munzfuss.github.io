@@ -144,12 +144,18 @@ def main() -> int:
     # seed-id groups, then map any final/unified id to its underlying seed
     # set (seed_unified composed_of, or the id itself for raw seeds).
     merge_groups: list[set] = []
+    no_merge_pairs: set = set()
     for f in V2_MERGE_DECISIONS.glob("*.yml"):
         doc = yaml.safe_load(f.read_text(encoding="utf-8")) or {}
         for m in (doc.get("merges") or []):
             mem = {x for x in (m.get("members") or []) if x}
             if len(mem) >= 2:
                 merge_groups.append(mem)
+        for nm in (doc.get("no_merges") or []):
+            mem = [x for x in (nm.get("members") or []) if x]
+            for i in range(len(mem)):
+                for j in range(i + 1, len(mem)):
+                    no_merge_pairs.add(frozenset({mem[i], mem[j]}))
 
     def _seeds_of(cid: str) -> set:
         c = twin.get(cid)
@@ -163,6 +169,20 @@ def main() -> int:
         for g in merge_groups:
             if (hs & g) and (ms & g):
                 return True
+        return False
+
+    def _curator_no_merged(host_id: str, member_id: str) -> bool:
+        """True if an EXPLICIT curator no_merge separates the host's seed-set
+        from the member's. Curator «different coin» → force-split, overriding
+        the COMPLEX caution (no-KM member, shared-Hede). The absorb does not
+        honour merger no_merges in its foundation-consolidation, so a member
+        the merger correctly split off can be RE-FUSED into a final foundation
+        — listing it in the SAFE allowlist makes the absorb purge evict it."""
+        hs, ms = _seeds_of(host_id), _seeds_of(member_id)
+        for a in hs:
+            for b in ms:
+                if frozenset({a, b}) in no_merge_pairs:
+                    return True
         return False
 
     safe, complex_ = [], []
@@ -187,16 +207,19 @@ def main() -> int:
             members = [(m, twin.get(m)) for m in comp]
             divergent = []          # different base KM (disjoint base-sets)
             no_km_members = []      # top-level member without a KM
+            forced_split = set()    # curator no_merge'd from host → always split
             for mid, mc in members:
                 if mc is None:
                     continue
+                if _curator_no_merged(c["id"], mid):
+                    forced_split.add(mid)
                 mbases = _km_bases(mc)
                 if not mbases:
                     no_km_members.append(mid)
                 elif mbases.isdisjoint(hbases):
                     divergent.append((mid, mc, str((mc.get("catalog") or {}).get("km")),
                                       frozenset(mbases)))
-            if not divergent:
+            if not divergent and not forced_split:
                 continue
             # same-base-set collision among evicted members → same-coin-between
             # risk (two members that are the same KM type as each other).
@@ -208,8 +231,15 @@ def main() -> int:
                 "entity": ent, "host_id": c["id"], "host_km": host_km_disp,
                 "host_nominal": c.get("nominal"), "host_ruler": c.get("ruler"),
             }
-            safe_members, complex_members = [], []
+            safe_members, complex_members, seen = [], [], set()
             for mid, mc, mkm, mb in divergent:
+                # Curator no_merge → split regardless of COMPLEX caution.
+                if mid in forced_split:
+                    safe_members.append({"member_id": mid, "member_km": mkm,
+                                         "member_hede": (mc.get("catalog") or {}).get("hede"),
+                                         "forced_by": "curator_no_merge"})
+                    seen.add(mid)
+                    continue
                 if _curator_merged(c["id"], mid):
                     continue  # curator merge_decision says SAME coin — never split
                 reasons = []
@@ -227,6 +257,16 @@ def main() -> int:
                     complex_members.append(rec)
                 else:
                     safe_members.append(rec)
+            # Forced-split members that weren't base-KM-divergent (e.g. a no-KM
+            # member the curator no_merge'd off the host).
+            for mid, mc in members:
+                if mc is None or mid in seen or mid not in forced_split:
+                    continue
+                safe_members.append({"member_id": mid,
+                                     "member_km": str((mc.get("catalog") or {}).get("km")),
+                                     "member_hede": (mc.get("catalog") or {}).get("hede"),
+                                     "forced_by": "curator_no_merge"})
+                seen.add(mid)
             if safe_members:
                 safe.append({**entry, "split": safe_members})
             if complex_members:
