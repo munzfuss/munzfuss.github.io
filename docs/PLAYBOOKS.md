@@ -1059,6 +1059,10 @@ fixed, the design decision is made and implemented).
 
 ## PB-10. Committing harvest cache changes
 
+> **Two clones, two procedures.** As of the 2026-06 split, the project lives in two clones: the **routine clone** (`/Users/serg/Documents/GitHub/munzfuss.github.io`) where the hourly harvest runs, and the **curation clone** (`/Users/serg/projects/muentzfuesse`) where interactive work happens and harvest changes are pulled in.
+> - **Hourly harvest routine** — uses the BRANCH-MODEL variant: commits to `harvest/auto` (never `main`), pushes autonomously to submodule `main` + superproject `harvest/auto`. See `docs/HARVEST_ROUTINE.md` §0.1 + §3. Do NOT apply the main-branch push steps below in the routine.
+> - **This PB-10 (below) is for the CURATION clone / ad-hoc interactive cache work** (a parser regen, a one-off fetch) — those still commit cache → bump the pointer on `main` → push `main`, with explicit user push-permission.
+
 **When this fires.** A session touched files under `scripts/cache/`
 (usual triggers: `parse_hede.py --force` after a parser fix updates
 100+ Hede JSONs; `fetch_ikmk.py` adds new museum records; ucoin
@@ -1219,12 +1223,16 @@ already-pushed harvest commit.) Triggered 2026-05-30 reconciling a
 63-local-vs-2-origin divergence where the submodule had also diverged
 59-vs-1; submodule merge `468fb8ac`, superproject merge `0a85db1`.
 
-**Push-permission rule still applies.** Per CLAUDE.md «Commit cadence
-+ push permission»: never push autonomously. Both `git push` calls above
-require the user's explicit «пуш» / «push» grant. The grant covers
-the turn — for the harvest two-step, that means one grant authorises
-both pushes (submodule first, main second), since they together form
-the «atomic harvest commit» from the user's perspective.
+**Push-permission rule (curation clone).** In the curation clone, per
+CLAUDE.md «Commit cadence + push permission»: never push autonomously.
+Both `git push` calls above require the user's explicit «пуш» / «push»
+grant. The grant covers the turn — for the cache two-step, one grant
+authorises both pushes (submodule first, main second), since they
+together form the «atomic harvest commit» from the user's perspective.
+**The hourly harvest routine is exempt** — it pushes autonomously to
+submodule `main` + superproject `harvest/auto` (never superproject
+`main`) per `docs/HARVEST_ROUTINE.md` §0.1; that carve-out is scoped
+strictly to the routine.
 
 **Related rules.** CLAUDE.md «Harvest cache» pointer; ARCHITECTURE.md
 «Harvest cache (submodule)» section (canonical architectural

@@ -22,7 +22,13 @@
 
 ## §0. Critical invariants (read before anything else)
 
-1. **NEVER push without explicit user permission in the chat.** The user must type «пуш» / «push» / «git push» / «запуш» or equivalent BEFORE any `git push` runs. Cron-triggered runs almost always finish with commits local-only. End-of-run report includes the line: «N commits ready locally — `git push` when ready (both repos).»
+1. **Branch model — the routine pushes AUTONOMOUSLY, but ONLY to its own branch + the submodule `main`; it NEVER writes the superproject `origin/main`.** This routine now runs in its OWN clone (`/Users/serg/Documents/GitHub/munzfuss.github.io`); the interactive / curation work lives in a SEPARATE clone (`/Users/serg/projects/muentzfuesse`) that pulls harvest changes when the curator decides. Because the two clones no longer share a working tree, the old shared-index race is gone; the only remaining race is push-level against the shared remote. The branch model removes it by construction:
+
+   - **Superproject (`munzfuss.github.io`): the routine works on `harvest/auto`, never on `main`.** It pointer-bump-commits to `harvest/auto` and `git push origin harvest/auto`. The routine is the SOLE writer of `harvest/auto`, so the push is always a fast-forward — never rejected, never racing. `origin/main` stays single-writer (only the curation clone advances it), so the routine can NEVER race on, or corrupt, the deployable branch. Integration into `main` is the curation clone's job — a local `git merge origin/harvest/auto` (no PR); see §3.4.
+   - **Submodule (`munzfuss-harvest`): the routine pushes directly to `main`.** The routine is the ONLY writer of the cache submodule (curation touches `data/**`, never the cache), so submodule `main` is single-writer too — direct push, no branch, no race.
+   - **NEVER `git push origin main` in the superproject.** That is the one forbidden push. If you ever find yourself about to push the superproject `main`, stop — the routine's superproject pushes go to `harvest/auto` only.
+   - **`harvest/auto` is append-only in the routine: never rebase it, never force-push it.** Just keep stacking pointer-bump commits and fast-forward-pushing. (Rebasing/force-pushing is unnecessary — see §1's preflight, which simply ensures the branch exists off the latest `origin/main`.)
+   - **No per-run «wait for пуш» gate.** Cron-fired runs push `harvest/auto` + submodule `main` autonomously at end of run (§3, §5). The end-of-run report states what was pushed and the one-line integration command for the curator (§6.2 item 10). The CLAUDE.md global «never push autonomously» rule still governs the SUPERPROJECT `main` and the CURATION clone — this carve-out is scoped strictly to the routine pushing `harvest/auto` + submodule `main`.
 
 2. **One Numista batch + one ucoin batch + one IKMK batch per run.** Do not exceed this. Numista + ucoin are Chrome-MCP scrapes through Cloudflare, hard-capped at **5 entries/batch** (context budget + politeness). IKMK is different: a plain `urllib` museum JSON API (`docs/IKMK_HARVEST.md`) — openly licensed (CC BY-SA 4.0), no Cloudflare, no observed rate limit, ID-list-from-search-queries rather than per-NID URLs — so its single batch is **200 entries/run** (§5.5.1), clearing the title-scoped backlog in a handful of runs. See §5.5 for the batch protocol. IKMK can be skipped per-run when no uncached IDs remain (§5.5.5).
 
@@ -38,12 +44,14 @@
    and BOTH steps commit with an EXPLICIT PATHSPEC (never a bare
    `git commit` — that commits the whole shared index, sweeping a
    parallel session's staged files; see §0.8 + CLAUDE.md «Surgical
-   staging under a shared working tree»):
-   - Step A: `cd scripts/cache && git add <explicit cache paths> && git commit <same explicit paths> -m "…"`
-   - Step B: `cd /Users/serg/projects/muentzfuesse && git commit scripts/cache -m "data: bump cache pointer — …"` (scripts/cache is already tracked — pathspec-commit alone, no `git add` of anything else)
-   - Both steps required. Missing step B = pointer drift; the next session sees `git status` warn `modified: scripts/cache (new commits)`.
+   staging under a shared working tree»). Then a THIRD step pushes both
+   (submodule `main` first, superproject `harvest/auto` second — per §0.1):
+   - Step A: `cd scripts/cache && git add <explicit cache paths> && git commit <same explicit paths> -m "…" && git push origin main`
+   - Step B: `cd /Users/serg/Documents/GitHub/munzfuss.github.io && git commit scripts/cache -m "data: bump cache pointer — …"` (scripts/cache is already tracked — pathspec-commit alone, no `git add` of anything else)
+   - Step C: `git push origin harvest/auto` (fast-forward of the routine's own branch — never rejected).
+   - Step A + B required for every commit; missing step B = pointer drift (next session sees `git status` warn `modified: scripts/cache (new commits)`). Push order is load-bearing: submodule `main` MUST be pushed before the superproject pointer that references it, else the curation clone pulls a dangling pointer.
 
-8. **Surgical commits — stage ONLY the files you intend to commit. Parallel sessions may be active.** Other Claude sessions (V2-pipeline, asset builds, documentation work) routinely run in this same working tree and leave their own modifications in flight. The harvest routine MUST commit atomically and MUST NOT bundle unrelated edits into its commits.
+8. **Surgical commits — stage ONLY the files you intend to commit.** With the branch model (§0.1) the routine has its own clone, so interactive / curation sessions no longer share this working tree — the original shared-index race that produced commit `2bfa76b` is structurally gone. The pathspec discipline below is RETAINED as cheap insurance against the one residual co-tenant: **two harvest runs overlapping in THIS clone** (a cron fire while a previous run is still finishing). Keep committing atomically by explicit pathspec so an overlapping run can never sweep your in-flight stage, and vice versa.
 
    **Concrete rules:**
    - **NEVER use `git add .` or `git add -A` or `git add -u`** — these blanket-stage everything dirty, including the parallel session's work.
@@ -65,29 +73,29 @@
 
    **Why this matters.** Each commit must be reviewable + revertable independently. A bundle of «cache pointer + 6 favicon assets + favicon-generator script» can't be cleanly rolled back if any one element turns out wrong, and the commit message can only describe one of them, leaving the others undocumented in git history.
 
-9. **End-of-session protocol — commit your changes, do NOT push, leave the working tree to the user.** Every session MUST close with:
+9. **End-of-session protocol — commit AND push your changes (submodule `main` + superproject `harvest/auto`), leave `main` and everyone else's files alone.** Every session MUST close with:
 
-   - **Commit ALL of the routine's own changes** — both the submodule pointer bump (`scripts/cache/<source>/*.json` cache writes) and any handoff-file updates (`scripts/cache/_harvest_handoff.json`, `docs/handoff.md` coverage-state edits when the routine touches them). Don't leave half-finished state in the working tree for the next session to inherit.
-   - **DO NOT commit changes you did not make.** Use surgical staging per §0.8. Files modified by parallel sessions (V2-pipeline work, prose cleanup, doc edits) stay in the working tree untouched — they are NOT the harvest routine's concern.
-   - **DO NOT push.** Per §0.1, push requires explicit user permission via chat. The end-of-run report's «Push state» line surfaces the local-commit count; the user types «пуш» / «push» when they're ready.
-   - **The working tree at session end can legitimately be non-clean** if parallel sessions have in-flight edits. That is expected and not a failure mode — those changes belong to other agents. The routine's success criterion is «my own changes are committed; everyone else's stays untouched».
+   - **Commit ALL of the routine's own changes** — the submodule cache writes (`scripts/cache/<source>/*.json`), handoff (`scripts/cache/_harvest_handoff.json`), the superproject pointer bump, and `docs/anomaly_log.yml` if the routine wrote anomalies this run.
+   - **Push autonomously per §0.1** — submodule `main` first (Step A), then superproject `harvest/auto` (Step C). NEVER push the superproject `main`. No «wait for пуш» gate; cron runs push on their own.
+   - **DO NOT commit changes you did not make.** Use surgical staging per §0.8. In the steady state this clone is routine-only, so the working tree should be clean apart from the routine's own writes; if you see unexpected dirty files (e.g. a manual curator edit made in this clone by mistake), leave them untouched and surface them in the report.
+   - **A non-clean working tree at session end is a yellow flag now, not green.** Since this clone is routine-only, leftover dirt usually means a bug in the commit dance — investigate rather than shrug it off.
 
    **Operational check before closing the session:**
 
    ```bash
-   git status --short
-   # Expected: clean OR only files NOT in the routine's scope
-   #          (data/**, docs/**, scripts/lib/**, scripts/maintenance/**,
-   #           etc. — anything outside scripts/cache/* + the specific
-   #           handoff files the routine writes)
+   git status --short                 # expected: clean
+   git log --oneline origin/harvest/auto..HEAD   # expected: empty (all pushed)
+   cd scripts/cache && git log --oneline origin/main..HEAD && cd ../..   # expected: empty
    #
    # Forbidden at this point:
    #          - any modified file under scripts/cache/<source>/ (uncommitted cache write)
    #          - any modified scripts/cache/_harvest_*.json (uncommitted handoff)
    #          - scripts/cache itself showing «modified» (submodule pointer not bumped — step B missed)
+   #          - HEAD ahead of origin/harvest/auto (commit not pushed — step C missed)
+   #          - the routine sitting on `main` instead of `harvest/auto` (branch-model violation, §0.1)
    ```
 
-   If any of those «forbidden» states surface, the routine has a bug — finish the commit dance before the user resumes.
+   If any of those «forbidden» states surface, the routine has a bug — finish the commit + push dance before exiting.
 
 10. **Tab reuse — reuse the SAME Chrome tab for every fetch in the run; never spawn new tabs.** Chrome MCP exposes `tabs_create_mcp` (open a new tab) and `tabs_close_mcp` (close one). The harvest routine MUST use `tabs_context_mcp(createIfEmpty: true)` once at preflight to attach to (or create) ONE tab, and then `navigate` within that same tab for every subsequent NID / TID in the batch. Do not call `tabs_create_mcp` to «start fresh» between fetches.
 
@@ -100,19 +108,30 @@
 ## §1. Preflight (do this once at session start)
 
 ```bash
-# 1. Confirm cwd is repo root
-pwd                                # must end in /muentzfuesse
+# 1. Confirm cwd is the ROUTINE clone root
+pwd                                # must be /Users/serg/Documents/GitHub/munzfuss.github.io
 test -d scripts/cache              # submodule present
 test -f /tmp/save_numista.py       # per-NID saver (may need re-create — see §1a)
 test -f /tmp/save_ucoin.py         # per-TID saver
 
-# 2. Confirm working tree is clean (or only carrying expected v2-pipeline edits from concurrent sessions)
-git status --short                 # if dirty, inspect; do not bundle unrelated changes into your commits
+# 2. BRANCH SYNC (before-task, per §0.1) — get onto harvest/auto and pull the submodule to its latest.
+#    harvest/auto is APPEND-ONLY: never rebased, never force-pushed (§0.1). On first run it is created
+#    off origin/main; thereafter it just accumulates. We do NOT rebase it onto origin/main — divergence
+#    from main is fine, the curation clone absorbs it with a clean merge (§3.4). Harvest files
+#    (cache pointer, anomaly_log) don't overlap curation files (data/**), so that merge is automatic.
+git fetch origin
+git checkout harvest/auto 2>/dev/null || git checkout -b harvest/auto origin/main   # create off main on first run
+git merge --ff-only origin/harvest/auto 2>/dev/null || true   # absorb any prior pushed commits (sole writer → ff)
+#   Submodule to latest main (single-writer → fast-forward; reset is safe since only the routine writes it):
+cd scripts/cache && git fetch origin && git checkout main && git reset --hard origin/main && cd ../..
 
-# 3. Confirm Chrome MCP is connected
+# 3. Confirm working tree is clean
+git status --short                 # routine-only clone → expected clean; if dirty, inspect before proceeding
+
+# 4. Confirm Chrome MCP is connected
 # (use the tabs_context_mcp tool with createIfEmpty:true at the start of step-1 batch)
 
-# 4. Refresh stale cached_count / cached_tids / gap lists in the audit
+# 5. Refresh stale cached_count / cached_tids / gap lists in the audit
 #    manifests from the actual on-disk cache, so §2.1's bucket picker does
 #    not re-offer already-cached buckets and burn the run on defensive
 #    sampling (anomaly audit_manifest_scope_drift:field=cached_count).
@@ -809,7 +828,13 @@ EOF
 
 The interim `git status --short` between `add` and `commit` confirms the staged area contains ONLY your 5 NIDs — if it shows extra items in the «to be committed» section, abort the commit and unstage (`git reset HEAD <unwanted-file>`).
 
-**Important:** after `cd scripts/cache && git commit`, you are STILL inside `scripts/cache`. The next `cd` returns to the main repo for Step B.
+**Push the submodule now (still inside `scripts/cache`)** — submodule `main` is single-writer (only the routine writes the cache), so this is always a fast-forward:
+
+```bash
+git push origin main               # submodule push FIRST, before the superproject pointer (§0.7 order)
+```
+
+**Important:** after `cd scripts/cache && git commit && git push`, you are STILL inside `scripts/cache`. The next `cd` returns to the main repo for Step B.
 
 ### §3.2. Main-repo pointer bump (Step B of PB-10)
 
@@ -818,7 +843,7 @@ The interim `git status --short` between `add` and `commit` confirms the staged 
 **Pre-commit sanity check (mandatory):**
 
 ```bash
-cd /Users/serg/projects/muentzfuesse
+cd /Users/serg/Documents/GitHub/munzfuss.github.io
 git status --short
 # Expected output:
 #   M scripts/cache         # ← yours (submodule pointer)
@@ -830,7 +855,7 @@ If `git status` shows additional modified / untracked files beyond `scripts/cach
 **Then commit:**
 
 ```bash
-cd /Users/serg/projects/muentzfuesse && git status --short && git commit scripts/cache -m "$(cat <<'EOF'
+cd /Users/serg/Documents/GitHub/munzfuss.github.io && git status --short && git commit scripts/cache -m "$(cat <<'EOF'
 data: bump cache pointer — Numista BO.6 batch <letter> (<bucket>, <N> NIDs)
 
 scripts/cache: <one-line description of what this slice contains>.
@@ -843,25 +868,51 @@ EOF
 
 The interim `git status --short` between `add` and `commit` confirms only `scripts/cache` is in the staged column (typically shown as `M  scripts/cache` after staging — note the two spaces vs one). If you see any other path in the «Changes to be committed» area, abort and unstage.
 
-**Sanity check after the commit lands:**
+**Push the superproject branch now (Step C of §0.7) — fast-forward of `harvest/auto`, never rejected:**
+
+```bash
+git rev-parse --abbrev-ref HEAD    # MUST print "harvest/auto" — if it says "main", you violated §0.1; checkout harvest/auto first
+git push origin harvest/auto       # NEVER `git push origin main`
+```
+
+**Sanity check after the commit + push:**
 
 ```bash
 git log -1 --stat                  # the commit MUST show 1 file changed (scripts/cache)
-git status --short                 # unrelated dirty files remain dirty (correct — not your concern)
+git log --oneline origin/harvest/auto..HEAD   # MUST be empty (commit pushed)
+git status --short                 # routine-only clone → expected clean
 ```
 
-If `git log -1 --stat` shows more than 1 file changed, you bundled something — execute the §0.8 self-recovery recipe.
+If `git log -1 --stat` shows more than 1 file changed, you bundled something — execute the §0.8 self-recovery recipe. If `origin/harvest/auto..HEAD` is non-empty, the push didn't land — re-run it.
 
-### §3.3. Unrelated changes (concurrent V2-pipeline edits, asset builds, etc.)
+### §3.3. Unexpected dirty files in this clone
 
-Other sessions may have left modifications in:
-- `docs/` (documentation updates, handoff edits, etc.)
-- `data/v2/` (V2-pipeline classification work)
-- `scripts/run_*.sh` (pipeline orchestration)
-- `assets/` (favicons, illustrations)
-- `scripts/maintenance/` (new one-off scripts being built)
+This clone is routine-only (§0.1), so in the steady state `git status` shows nothing but the routine's own writes. If you DO see unexpected modifications — e.g. a curator accidentally edited here instead of the curation clone, or a half-finished prior run left state — they are NOT the routine's to commit. Common spots:
+- `docs/` (a stray edit, or handoff state)
+- `data/**` (a curation edit made in the wrong clone)
+- `assets/` / `scripts/maintenance/` (one-off work)
 
-**Do NOT touch any of these.** Stage only `scripts/cache` in Step B. The other sessions will commit their own work in their own time. If a concurrent edit accidentally lands in your commit (race condition between preflight and commit), use the §0.8 self-recovery to split.
+**Do NOT touch any of these.** Stage only `scripts/cache` (+ `docs/anomaly_log.yml` when the routine wrote anomalies) in Step B, by explicit pathspec. Leave everything else dirty and flag it in the end-of-run report so the curator can move the stray edit to the correct clone. If an unrelated edit accidentally lands in your commit, use the §0.8 self-recovery to split.
+
+### §3.4. Integration into `main` — the CURATION clone's job (NOT the routine's)
+
+> The routine NEVER merges `harvest/auto` into `main` and NEVER pushes the superproject `main` (§0.1). This section documents what the curator runs in the OTHER clone (`/Users/serg/projects/muentzfuesse`) when they decide to pull harvest changes — it is here so the routine's end-of-run report (§6.2 item 10) can quote the exact command, and so the model is documented in one place.
+
+In the curation clone, no PR needed:
+
+```bash
+cd /Users/serg/projects/muentzfuesse
+git fetch origin
+git merge origin/harvest/auto      # clean: harvest files (cache pointer, docs/anomaly_log.yml) don't
+                                   # overlap curation files (data/**). Use --ff-only when main hasn't
+                                   # diverged and you want linear history.
+git submodule update --init        # pull the submodule pointer to the merged state
+git push origin main               # curation clone is the SOLE writer of main → no race
+```
+
+**The one file both sides touch is `docs/anomaly_log.yml`** (routine appends anomalies; curator may resolve them). If that conflicts on merge, union the entries — keep the routine's new entries AND the curator's status transitions (per PB-10's «Recovery from a `git pull` MERGE» resolution). All other harvest files never conflict with curation.
+
+Because the routine keeps `harvest/auto` append-only (§0.1), each integration brings in exactly the commits added since the last merge; the branch is long-lived and never reset.
 
 ---
 
@@ -1192,14 +1243,20 @@ EOF
 
 The interim `git status --short` between `add` and `commit` should show exactly 6 entries staged (5 ucoin TID files + 1 handoff file). If you see more, abort and unstage extras with `git reset HEAD <unwanted-file>`.
 
-### §5.2. Main-repo pointer bump (Step B)
+**Push the submodule now (still inside `scripts/cache`)** — single-writer fast-forward, before the superproject pointer (§0.7 order):
+
+```bash
+git push origin main
+```
+
+### §5.2. Main-repo pointer bump (Step B) + push (Step C)
 
 > **Surgical-commit rule (per §0.8) applies here.** Stage ONLY the literal path `scripts/cache`. Same anti-pattern list as §3.2 — never blanket adds, never combined paths.
 
 **Pre-commit sanity check (mandatory):**
 
 ```bash
-cd /Users/serg/projects/muentzfuesse
+cd /Users/serg/Documents/GitHub/munzfuss.github.io
 git status --short
 # Expected:  M scripts/cache  (yours — submodule pointer)
 # Anything else dirty → leave alone, NOT your concern.
@@ -1208,7 +1265,7 @@ git status --short
 **Then commit:**
 
 ```bash
-cd /Users/serg/projects/muentzfuesse && git status --short && git commit scripts/cache -m "$(cat <<'EOF'
+cd /Users/serg/Documents/GitHub/munzfuss.github.io && git status --short && git commit scripts/cache -m "$(cat <<'EOF'
 data: bump cache pointer — ucoin BR batch <N> (<period> <slice>, <M> TIDs)
 
 scripts/cache: <1-line description>. <period> progress: <cached>/<total>
@@ -1219,10 +1276,18 @@ EOF
 )"
 ```
 
-**Sanity check after commit:**
+**Then push the branch (Step C) — fast-forward of `harvest/auto`:**
 
 ```bash
-git log -1 --stat                  # MUST show 1 file changed (scripts/cache)
+git rev-parse --abbrev-ref HEAD    # MUST print "harvest/auto"
+git push origin harvest/auto       # NEVER `git push origin main`
+```
+
+**Sanity check after commit + push:**
+
+```bash
+git log -1 --stat                             # MUST show 1 file changed (scripts/cache)
+git log --oneline origin/harvest/auto..HEAD   # MUST be empty (pushed)
 ```
 
 If more than 1 file changed, you bundled — execute §0.8 self-recovery to split.
@@ -1350,6 +1415,7 @@ git status --short                            # confirm exactly 5 files staged
 # Pathspec on commit too (§0.8 primary guard) — bare commit would sweep
 # the shared index incl. a parallel session's staged files:
 git commit ikmk/<each-of-the-5-mds-ids>.json -m "IKMK batch — <N> mds_ids (<entity-or-query-bucket>)"
+git push origin main                          # submodule push FIRST (§0.7 order); single-writer fast-forward
 ```
 
 Step A commit-message format: name the per-run label («IKMK batch
@@ -1362,9 +1428,12 @@ batch D — 5 mds_ids (royal_holstein + gottorp_duchy)».
 ```bash
 # Step B — main-repo pointer bump (pathspec-commit; scripts/cache is
 # tracked, so no `git add` needed — pathspec alone is race-proof)
-cd /Users/serg/projects/muentzfuesse
+cd /Users/serg/Documents/GitHub/munzfuss.github.io
 git status --short                            # confirm only `scripts/cache (new commits)`
 git commit scripts/cache -m "data: bump cache pointer — IKMK batch <N> (<bucket>, 5 mds_ids)"
+# Step C — push the branch (NEVER `git push origin main`)
+git rev-parse --abbrev-ref HEAD               # MUST print "harvest/auto"
+git push origin harvest/auto
 ```
 
 ### §5.5.5. Skip conditions
@@ -1855,7 +1924,10 @@ The unmatched-IDs warning at the bottom guards against scope drift — if a TID/
 
    Tells the user exactly which IDs to inspect manually. The IDs **remain in audit gap_nids/gap_tids** — they're retry candidates next hour. Routine does NOT mark them «dead».
 
-10. **Push state** — exactly one sentence: «N commits ready locally — `git push` when ready (both repos).» Compute N via `git log --oneline origin/main..HEAD | wc -l` from main repo + same from submodule, sum.
+10. **Push state + integration hint** — the routine already pushed this run (autonomous, per §0.1). State what landed and how the curator integrates:
+    - «Pushed: submodule `main` + superproject `harvest/auto` (N commits this run).» Compute N via `git log --oneline origin/harvest/auto@{1}..origin/harvest/auto | wc -l` or simply the count committed this run.
+    - One-line integration command for the curation clone (§3.4): «To pull into the project: `cd /Users/serg/projects/muentzfuesse && git fetch && git merge origin/harvest/auto && git submodule update --init` (no PR).»
+    - If anything is UN-pushed (a push failed), say so explicitly and name the repo + branch — that's a bug to fix, not a «ready locally» state.
 
 11. **Recommended next batches** — top 3 priorities for the NEXT hourly run, picking from whichever manifest's smallest open bucket is next per the §2.1 / §4.1 picker order (Numista + ucoin); for IKMK suggest «next 5 from manifest uncached pool» unless re-discovery is due per §5.5.2.
 
@@ -1895,39 +1967,45 @@ This keeps the delta semantics tight: **«items the routine demonstrably added t
 
 ### §7.1. Pre-commit hook failure
 
-`/Users/serg/projects/muentzfuesse/.githooks/pre-commit` runs `build.py --validate-only` + prose audits. If a commit fails:
+`/Users/serg/Documents/GitHub/munzfuss.github.io/.githooks/pre-commit` runs `build.py --validate-only` + prose audits. If a commit fails:
 - The cache files are still added but NOT committed.
 - Inspect the failure (usually unrelated to cache changes — could be stale prose lint on existing YAMLs).
 - Re-run the commit. If still failing AND the failure is in an unrelated file, use `--no-verify` ONLY if the user explicitly said so in chat. Otherwise leave the batch uncommitted and report at end of run.
 
 ### §7.2. Detached HEAD after submodule commit
 
-If `cd scripts/cache && git commit` lands on a detached HEAD (e.g. the submodule pointer was not on a branch), recover before Step B:
+The §1 preflight checks out submodule `main` (`git checkout main && git reset --hard origin/main`), so commits should land ON `main` — detached HEAD should not occur. If it does anyway (preflight skipped), recover before Step B:
 
 ```bash
 cd scripts/cache
 git status                         # confirms "HEAD detached at <sha>"
 git checkout main                  # switch to main branch
 git reset --hard <sha-of-new-commit>  # bring the new commit onto main
-cd /Users/serg/projects/muentzfuesse
+cd /Users/serg/Documents/GitHub/munzfuss.github.io
 ```
 
 Then proceed with Step B (`git commit scripts/cache -m …` — pathspec-commit per §0.8).
 
-### §7.3. Concurrent-session conflict on submodule
+### §7.3. Push rejected (unexpected — single-writer branches)
 
-If another session pushed cache changes after you cloned, the submodule may need a rebase:
+With the branch model (§0.1) both push targets are single-writer: submodule `main` (only the routine writes cache) and superproject `harvest/auto` (only the routine writes it). So `git push` should ALWAYS fast-forward. A `! [rejected] (fetch first)` means the single-writer assumption broke — almost certainly **a second harvest run overlapped in this clone** (cron fired before the previous run finished). Recover by fast-forwarding onto the peer run's commits:
 
 ```bash
+# Submodule (origin main rejected):
 cd scripts/cache
 git fetch origin
-git rebase origin/main             # pull peer's commits + replay yours
-# if conflicts: investigate; do NOT auto-resolve cache file conflicts
-# (a per-NID JSON should not be edited by two sessions simultaneously)
-cd /Users/serg/projects/muentzfuesse
+git rebase origin/main             # replay THIS run's cache commits on top of the overlapping run's
+# Per-NID/TID JSONs from two runs never touch the same file (different IDs), so this is conflict-free.
+git push origin main
+cd /Users/serg/Documents/GitHub/munzfuss.github.io
+
+# Superproject (origin harvest/auto rejected):
+git fetch origin
+git rebase origin/harvest/auto     # replay this run's pointer bump on top
+git push origin harvest/auto
 ```
 
-If conflict resolution feels risky, leave the cache uncommitted and report. The user will resolve manually.
+The ONLY file two overlapping runs can both touch is `docs/anomaly_log.yml` (both append) and `scripts/cache/_harvest_handoff.json` (both write). If either conflicts, union the entries (keep both runs' new records) and continue. If resolution feels risky, leave it uncommitted and report — the curator resolves manually. (To avoid overlap entirely, ensure the cron interval exceeds a run's wall-clock, or add a lockfile guard.)
 
 ### §7.4. Chrome MCP disconnected
 
@@ -2036,7 +2114,9 @@ IDs remain in audit `gap_nids`/`gap_tids` — retried next run. Manual review: o
 
 ### Push state
 
-**<N> commits ready locally** — `git push` when ready (both repos: `cd scripts/cache && git push && cd /Users/serg/projects/muentzfuesse && git push`).
+**Pushed this run:** submodule `munzfuss-harvest` `main` + superproject `harvest/auto` (<N> commits). origin/main untouched (single-writer = curation clone, per §0.1).
+
+**To integrate (curation clone, no PR):** `cd /Users/serg/projects/muentzfuesse && git fetch && git merge origin/harvest/auto && git submodule update --init`.
 
 ### Recommended next batches (priority order)
 
@@ -2096,6 +2176,7 @@ For reference — what a successful run looks like end-to-end:
 
 ```
 1. Preflight: pwd, save scripts present, Chrome connected ✓
+   + branch sync (§1 step 2): git fetch; checkout harvest/auto; submodule → origin/main
 2. Read scripts/cache/_harvest_handoff.json (§1.5.1):
    → next_numista_batch_label = "R"
    → next_ucoin_batch_label = "32"
@@ -2108,7 +2189,7 @@ For reference — what a successful run looks like end-to-end:
    a. browser_batch [navigate + extractor JS]
    b. save heredoc → /tmp/save_numista.py
    c. sleep 31-60s
-5. Submodule commit (Numista cache only) + main pointer bump
+5. Submodule commit + push origin main (Numista cache only) → main-repo pointer bump on harvest/auto → push origin harvest/auto
 6. Pick ucoin batch: p1115 priority #1 → next 5 uncached
    = [94117, 94118, 94119, 94120, 94124]  (example)
 7. Listing-page anchor fetch (once)
@@ -2121,9 +2202,9 @@ For reference — what a successful run looks like end-to-end:
    → last_*_batch_label = R / 32
    → next_*_batch_label = S / 33
    → append run record to runs[] (with anomalies if any)
-10. Submodule commit (ucoin cache + _harvest_handoff.json) + main pointer bump
+10. Submodule commit + push origin main (ucoin cache + _harvest_handoff.json) → main-repo pointer bump on harvest/auto → push origin harvest/auto
 11. Render §6.1 tables + §8 report (delta-columns auto-populated from this run's IDs)
-12. Wait for user "пуш" before any push
+12. Report what was pushed + the curator's one-line integration command (§3.4). No «wait for пуш» gate — pushes already happened (§0.1).
 ```
 
 Total wall time per run: ~12-18 min (10 fetches × ~45s pacing + ~3 min overhead). Cron firing at :00 every hour will not overlap.
