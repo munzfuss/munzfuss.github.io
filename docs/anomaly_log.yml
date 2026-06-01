@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-05-30T18:21:32Z'
+  last_updated_utc: '2026-06-01T03:29:06Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1238,3 +1238,36 @@ anomalies:
     1 of the period 899 listing). Bucket hesse_kassel_p899 now 62/62 CLOSED.'
   resolved_at: '2026-05-30T18:21:32Z'
   resolved_by: harvest-routine-auto
+- id: audit_manifest_period_boundary:bucket=bremen_p1195:source=ucoin:tid=191287
+  type: audit_manifest_period_boundary
+  key_dims:
+    source: ucoin
+    bucket: bremen_p1195
+    tid: '191287'
+  summary: ucoin TID 191287 (Bremen 1 Grote 1543-1551 MB-8) falls outside German-lands mission window
+    1559+; lives in bremen_p1195 gap_tids despite being PRE-mission.
+  status: open
+  instance_first_seen: '2026-06-01T03:29:06Z'
+  last_seen: '2026-06-01T03:29:06Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 191287
+  occurrences:
+  - run_utc: '2026-06-01T03:29:06Z'
+    batch_label: '246'
+    detail: Year range 1543-1551 is fully before the 1559 anchor for German lands (CLAUDE.md «Mission
+      temporal scope»). Cache file written for completeness but candidate for OOS reclassification in
+      the audit's bremen_p1195.oos_excluded_tids slot.
+    full_context:
+      period_listed: Free Imperial City of Bremen (1499 - 1805)
+      ref: MB# 8
+      min_year: 1543
+      max_year: 1551
+      mission_anchor_german_lands: 1559
+  proposed_fix: Move TID 191287 from bremen_p1195.gap_tids into a new bremen_p1195.oos_excluded_tids slot
+    (with audit-trail reason 'pre-mission 1543-1551, German lands anchor 1559'). Same pattern used for
+    the DK p4 / NO p2 cleanups documented in SOURCES.md §13.1.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
