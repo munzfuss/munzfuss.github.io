@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-05-29T21:21:38Z'
+generated_at: '2026-06-01T09:07:26Z'
 entity: hanseatic_hamburg
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -21,6 +21,7 @@ coins:
     catalog:
       numista: '313829'
       km: '118'
+      dav: EC II 3703
     metal: silver
     fineness:
     weight_rough_g:
@@ -76,6 +77,46 @@ coins:
       - type: literature
         url: https://en.numista.com/222051
         ref: Numista N#222051 — 1 Ducat - Frederick Charles
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references
+        (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+  - id: dk-numista-20410
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 2 Marks
+    year_label: '1904'
+    year_first: 1904
+    year_last: 1904
+    year_ranges:
+      -   - 1904
+          - 1904
+    ruler:
+    mint:
+    catalog:
+      numista: '20410'
+      km: '250'
+      others:
+        - J# 59
+    metal: silver
+    fineness: 0.9
+    weight_rough_g: 11.111
+    diameter_mm: 28
+    issuing_entity: hanseatic_hamburg
+    verified: false
+    metal_verified: true
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    sources:
+      - type: literature
+        url: https://en.numista.com/20410
+        ref: Numista N#20410 — 2 Mark - City of Bremen
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'

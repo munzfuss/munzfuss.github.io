@@ -696,6 +696,33 @@ Project ticket `190229723` ready to flip In review → Done — all 8 candidates
 > - **§AM** (DROP 5 gold off-strike entries per CLAUDE.md §9.3) — per-case verdict per candidate (PB-1 style).
 > - **§AQ** (Seed-merge data augmentation policy — field selection + conflict resolution naming).
 
+> **Curator-ordered sequence (2026-06-01, user-directed «з високим пріоритетом»):** do **§CJ → §CK → §CL** in that order. §CJ + §CK are seed-/data-level work; §CL is the single coordinated propagation that ships everything (ucoin backlog re-seed + numista index-fix re-seed already done this session, plus whatever §CJ/§CK change) to the rendered pages.
+
+### CJ. 🟢 Generic catalogue-index capture audit for ALL non-numista sources (Bruun / ucoin / NumisMaster / IKMK / Hede / Galster)  *(opened 2026-06-01, user-directed «з високим пріоритетом»)* *(est: medium)* *(type: parser audit + data integrity)* — **DO FIRST**
+
+**Surfaced.** 2026-06-01, after the numista parser was found dropping most catalogue indices (`0c84510`: Dav-volume variants + AKS/Jaeger/NWD/Craig/Behrens silently dropped; fixed by routing any unmodelled code → `others`, a GENERIC open approach, not a closed white-list).
+
+**The task.** Audit every OTHER source parser the same way and make each **generic / open to ANY index** (NOT a hard-coded white-list of the few we happen to know):
+- `parse_*` / `build_*_seed` for Bruun, ucoin, NumisMaster, IKMK, Hede (danskmoent), Galster.
+- For each: enumerate the catalogue-index universe its raw cache carries; confirm typed indices land in CatalogRefs typed fields; confirm EVERY unmodelled-but-real catalogue code is preserved in `others` (full label), not dropped; confirm `_ALLOWED_CATALOG` (or equivalent) is derived from the schema (`CatalogRefs.model_fields`), not a drifting hand-list.
+- Pattern reference: the numista fix — `scripts/lib/numista_canonical.py` (`_DROP_REFS` minimal; everything else → `others`) + `build_numista_seed._ALLOWED_CATALOG = set(CatalogRefs.model_fields)`.
+
+**Why.** Same data-loss class as the numista bug — surviving indices on the rendered table must reflect ALL catalogues each source publishes.
+
+### CK. 🟢 Curator image-review of 30 IKMK candidate-duplicate pairs  *(opened 2026-05-31, user-directed «з високим пріоритетом», re-confirmed актуально 2026-06-01)* *(est: medium)* *(type: dedup verification — curator decides by images)* — **DO SECOND**
+
+**Surfaced.** 2026-05-31 during the IKMK→final propagation. 30 IKMK standalone coins share nominal+ruler+year(±1) with an existing coin but were NOT auto-merged (no wrong merge made). Curator must decide same-coin (consolidate) vs distinct (keep both) **by images** per the standing constraint «остаточне рішення це чи є вони однією монетою дивлячись на їхнє зображення». Work-list with IKMK image links + existing-coin identity: `docs/ikmk_candidate_duplicates_review.json` (triaged: 27 distinct-by-§9.4-catalog, 3 genuine same-catalog candidates). Process: present pairs → curator verdict per pair → consolidated-same via `merge_decisions`, distinct kept.
+
+### CL. 🟢 Coordinated re-merge → re-absorb → render to ship all accumulated seed-level changes  *(opened 2026-06-01, user-directed «з високим пріоритетом»)* *(est: medium)* *(type: pipeline propagation + verification)* — **DO LAST (after §CJ + §CK)**
+
+**Surfaced.** 2026-06-01. Seed-level changes accumulated that are NOT yet on the rendered pages: (a) numista index-fix re-seed — **947 numista seeds gained `others`/`dav`-volume refs** (`0c84510` + `_ALLOWED_CATALOG`-from-schema), (b) §CM German-entity ucoin coins once routed, (c) whatever §CJ adds. Run the single coordinated propagation: `merge_seeds_cross_source.py --apply` (all entities) → `gen_overmerge_purge_allowlist.py --write` → `absorb_seeds_into_final_v2.py --apply` (all entities) → `build.py`. Verify: over-merge audit SAFE 0, no new dups, all curator `merge_decisions`/`no_merges` reapply, the recovered numista indices + §CM ucoin coins surface, build clean. Cache-only, no API cost; large run touching all entities.
+
+**NOTE — the «1031 ucoin backlog» was a counting artifact, NOT a real gap.** V1-anchored ucoin tids are seeded under their curator id (e.g. tid 163005 → `km-69-chr-iv-1619`, NOT `dk-tid-163005`); counting only `dk-tid-*` undercounted. The ucoin re-seed (2026-06-01) reported `added_new=0` for the mapped entities — the DK-realm/Norway/SH/Hamburg/Lübeck ucoin seed is complete, not stale. The genuine ucoin gap is §CM (unmapped German entities).
+
+### CM. 🟢 ucoin builder — add country→entity mappings for the 6 German mission entities (~734 harvested coins unseeded)  *(opened 2026-06-01)* *(est: small-medium)* *(type: builder coverage + data)*
+
+**Surfaced.** 2026-06-01. `build_ucoin_seed.py::URL_COUNTRY_TO_ENTITY` maps only denmark/norway/schleswig_holstein/hamburg/lubeck. ucoin URLs for **Brunswick** (brunswick / brunswick-wolfenbuttel / brunswick-luneburg = 333), **Osnabrück** (174), **Bremen** (91), **Hesse-Kassel** (62), **Oldenburg** (35), **german_empire** (27), **Lauenburg** (12) — ~734 harvested + verified ucoin records — route to `None` → silently skipped → never seeded. All are in the mission scope. Add the country tokens → entity mappings (erzbisthum_bremen_verden, grafschaft_oldenburg, herzogtum_braunschweig_lueneburg, herzogtum_sachsen_lauenburg, hochstift_osnabrueck, landgrafschaft_hessen_kassel, + a german_empire decision) and re-seed those entities. (numista already seeds these German entities; only the ucoin builder lacks the mapping.)
+
 ### CI. 🟢 Legend-verify the 82 dual-denomination nominals (harvest-routine priority — Chrome MCP, NOT Numista API)  *(opened 2026-05-30, user-directed «пріоритетний»)* *(est: medium)* *(type: harvest verification + curation)*
 
 **Surfaced.** 2026-05-30, §CG stage C part 2. The dual full-denomination nominals («4 Mark = 1 Krone», «16 Skilling = 1 Mark», «2 Krone (8 Mark)», «12 Mark = 3 Kroner», «1 Portugaløser (10 Ducats)», …) cannot be auto-cleaned because **some coins genuinely carry a DUAL denomination on the coin itself** — e.g. «16 Rigsbankskilling = 5 Schilling Courant» (the dual-inscribed Rigsbankskilling, Phase 2 of `18_5_thaler_fod`, the canonical §1 example) and «16 Skilling (1 Mark = 1/6 Speciedaler)». Per CLAUDE.md §1: **if the dual is inscribed on the coin, KEEP it; if the second value is only an editorial equivalent, the inscribed denomination is the nominal and the equivalent → `note`.** Deciding requires the actual legend.

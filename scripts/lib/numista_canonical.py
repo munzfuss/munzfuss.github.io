@@ -85,12 +85,15 @@ _NUMISTA_REF_CODE_MAP.update({
     "fp": "fp",
 })
 
-# Codes that are NOT real catalogue references — genuinely drop (Numista's
-# own self-id / user-coin id, not a numismatic catalogue).
+# Codes that are NOT real numismatic catalogues — the ONLY thing dropped.
+# Everything else (any code Numista emits, known or unknown) flows to a typed
+# field or to `others` — a generic, open approach, NOT a closed white-list.
+# Kept minimal on purpose: only Numista's own internal identifiers, which are
+# already captured by the coin's Numista URL/N# id and are not external
+# catalogue references.
 _DROP_REFS: set[str] = {
-    "n",     # Numista N# self-ref
-    "y",     # Numista Y-type self-ref
-    "uc",    # UC# — Numista user-coin id
+    "n",     # Numista's own N# type id (== the coin's Numista id)
+    "uc",    # UC# — Numista user-coin (user-submitted) id
 }
 
 # Davenport publishes in volume-tagged series («Dav EC II», «Dav EC III»,

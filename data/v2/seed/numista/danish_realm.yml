@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-05-29T21:21:36Z'
+generated_at: '2026-06-01T09:07:24Z'
 entity: danish_realm
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -89,7 +89,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: scheide
-    nominal: 1 Sterling
+    nominal: 1 Sterling = 3 Pennings
     note:
       de: 3 Pennings (Rechnungs-Äquivalent)
       en: 3 Pennings (accounting equivalent)
@@ -320,7 +320,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: scheide
-    nominal: Gros
+    nominal: Gros = 9 Pennings
     note:
       de: 9 Pennings (Rechnungs-Äquivalent)
       en: 9 Pennings (accounting equivalent)
@@ -362,7 +362,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: scheide
-    nominal: 1 Hvid
+    nominal: 1 Hvid = 4 Pennings
     note:
       de: 4 Pennings (Rechnungs-Äquivalent)
       en: 4 Pennings (accounting equivalent)
@@ -450,6 +450,7 @@ coins:
     catalog:
       numista: '143575'
       sieg: C1-1
+      schive: XIII:38
     metal: silver
     issuing_entity: danish_realm
     verified: false
@@ -1401,7 +1402,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1½ Gulden
+    nominal: 1½ Gulden (1.5)
     year_label: '1532'
     year_first: 1532
     year_last: 1532
@@ -3220,7 +3221,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1 Ducat
+    nominal: 1 Ducat (3.5)
     note:
       de: 'Dukat'
       en: 'Dukat'
@@ -3263,7 +3264,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1 Crown
+    nominal: 1 Crown (15.75)
     year_label: '1564'
     year_first: 1564
     year_last: 1564
@@ -5074,6 +5075,7 @@ coins:
     catalog:
       numista: '142532'
       km: '43'
+      dav: EC II 3513
     metal: silver
     fineness: 0.875
     weight_rough_g: 29.232
@@ -5228,6 +5230,7 @@ coins:
     catalog:
       numista: '200434'
       km: '148'
+      dav: EC II 3538B
     metal: silver
     fineness: 0.888
     weight_rough_g: 58.61
@@ -5574,6 +5577,7 @@ coins:
     catalog:
       numista: '109280'
       km: '60'
+      dav: EC II 3516
     metal: silver
     fineness: 0.859
     weight_rough_g: 37.36
@@ -5612,6 +5616,7 @@ coins:
     catalog:
       numista: '109282'
       km: '61'
+      dav: EC II 3516a
     metal: silver
     fineness: 0.859
     weight_rough_g: 37.816
@@ -5803,6 +5808,7 @@ coins:
     catalog:
       numista: '80227'
       km: '59'
+      dav: EC II 3517
     metal: silver
     fineness: 0.859
     weight_rough_g: 18.766
@@ -6263,6 +6269,7 @@ coins:
     catalog:
       numista: '70513'
       km: 59a
+      dav: EC II 3517
     metal: silver
     fineness: 0.859
     weight_rough_g: 18.91
@@ -6720,6 +6727,7 @@ coins:
     catalog:
       numista: '143473'
       km: '99'
+      dav: EC II 3518
     metal: silver
     fineness: 0.859
     weight_rough_g: 37.62
@@ -6837,6 +6845,7 @@ coins:
     catalog:
       numista: '197668'
       km: '96'
+      dav: EC II 3519
     metal: silver
     fineness: 0.859
     weight_rough_g: 18.7
@@ -7030,6 +7039,7 @@ coins:
     catalog:
       numista: '82678'
       km: '101'
+      dav: EC II 3524
     metal: silver
     fineness: 0.875
     weight_rough_g: 29.232
@@ -7068,6 +7078,7 @@ coins:
     catalog:
       numista: '82862'
       km: '97'
+      dav: EC II 3519a
     metal: silver
     fineness: 0.859
     weight_rough_g: 18.909
@@ -7094,7 +7105,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1 Guilder
+    nominal: 1 Guilder (1.25)
     year_label: 1625-1632
     year_first: 1625
     year_last: 1632
@@ -7683,6 +7694,7 @@ coins:
     catalog:
       numista: '110876'
       km: '142'
+      dav: EC II 3536
     metal: silver
     fineness: 0.875
     weight_rough_g: 29.232
@@ -7721,6 +7733,7 @@ coins:
     catalog:
       numista: '109435'
       km: '143'
+      dav: EC II 3536A
     metal: silver
     fineness: 0.875
     weight_rough_g: 29.232
@@ -8069,6 +8082,7 @@ coins:
     catalog:
       numista: '143386'
       km: '168'
+      dav: EC II 3540
     metal: silver
     fineness: 0.881
     weight_rough_g: 29.232
@@ -8107,6 +8121,7 @@ coins:
     catalog:
       numista: '111154'
       km: '182'
+      dav: EC II 3567B
     metal: silver
     fineness: 0.859
     weight_rough_g: 18.909
@@ -8145,6 +8160,7 @@ coins:
     catalog:
       numista: '111156'
       km: '180'
+      dav: EC II 3567
     metal: silver
     fineness: 0.859
     weight_rough_g: 18.909
@@ -8763,6 +8779,7 @@ coins:
     catalog:
       numista: '305881'
       km: '205'
+      dav: EC II 3543
     metal: silver
     fineness: 0.875
     weight_rough_g: 57.71
@@ -9462,6 +9479,7 @@ coins:
     catalog:
       numista: '202573'
       km: '238'
+      dav: EC II 3546A
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.61
@@ -9500,6 +9518,7 @@ coins:
     catalog:
       numista: '202574'
       km: '239'
+      dav: EC II 3545A
     metal: silver
     fineness: 0.875
     weight_rough_g: 57.63
@@ -9538,6 +9557,7 @@ coins:
     catalog:
       numista: '328513'
       km: '241'
+      dav: EC II 3547
     metal: silver
     fineness: 0.875
     weight_rough_g: 57.55
@@ -10189,6 +10209,7 @@ coins:
     catalog:
       numista: '111389'
       km: '270'
+      dav: EC II 3579
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -10227,6 +10248,7 @@ coins:
     catalog:
       numista: '111392'
       km: '274'
+      dav: EC II 3581
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -10341,6 +10363,7 @@ coins:
     catalog:
       numista: '83028'
       km: '276'
+      dav: EC II 3582
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -10455,6 +10478,7 @@ coins:
     catalog:
       numista: '111551'
       km: '288'
+      dav: EC II 3555
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.775
@@ -10493,6 +10517,7 @@ coins:
     catalog:
       numista: '180706'
       km: '285'
+      dav: EC II 3581B
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.84
@@ -10608,6 +10633,7 @@ coins:
     catalog:
       numista: '268890'
       km: '290'
+      dav: EC II 3556
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.65
@@ -10646,6 +10672,7 @@ coins:
     catalog:
       numista: '308265'
       km: '287'
+      dav: EC II 3557
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.9
@@ -10916,6 +10943,7 @@ coins:
     catalog:
       numista: '81646'
       km: '301'
+      dav: EC II 3560
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.55
@@ -10992,6 +11020,7 @@ coins:
     catalog:
       numista: '144938'
       km: '306'
+      dav: EC II 3584
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.68
@@ -11030,6 +11059,7 @@ coins:
     catalog:
       numista: '176769'
       km: '308'
+      dav: EC II 3563
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.34
@@ -11146,6 +11176,7 @@ coins:
     catalog:
       numista: '82686'
       km: '311'
+      dav: EC II 3564
     metal: silver
     fineness: 0.875
     weight_rough_g: 57.55
@@ -11184,6 +11215,7 @@ coins:
     catalog:
       numista: '82687'
       km: '309'
+      dav: EC II 3565
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.775
@@ -11222,6 +11254,7 @@ coins:
     catalog:
       numista: '214327'
       km: '322'
+      dav: EC II 3629
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.83
@@ -11260,6 +11293,7 @@ coins:
     catalog:
       numista: '328512'
       km: '321'
+      dav: EC II 3628
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.78
@@ -11415,6 +11449,7 @@ coins:
     catalog:
       numista: '112661'
       km: '343'
+      dav: EC II 3633a
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -11453,6 +11488,7 @@ coins:
     catalog:
       numista: '112662'
       km: '330'
+      dav: EC II 3633
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -11570,6 +11606,7 @@ coins:
     catalog:
       numista: '111599'
       km: '362'
+      dav: AAO 410
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -11765,6 +11802,7 @@ coins:
     catalog:
       numista: '145806'
       km: '352'
+      dav: EC II 3631
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.93
@@ -11923,6 +11961,7 @@ coins:
     catalog:
       numista: '83080'
       km: '351'
+      dav: EC II 3634
     metal: silver
     fineness: 0.767
     weight_rough_g: 39.28
@@ -12123,6 +12162,7 @@ coins:
     catalog:
       numista: '145724'
       km: '367'
+      dav: EC II 3636
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.4
@@ -12199,6 +12239,7 @@ coins:
     catalog:
       numista: '112663'
       km: '370'
+      dav: EC II 3637
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -12314,6 +12355,7 @@ coins:
     catalog:
       numista: '112715'
       km: '378'
+      dav: EC II 3638
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -12466,6 +12508,7 @@ coins:
     catalog:
       numista: '182057'
       km: '386.1'
+      dav: EC II 3639
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.06
@@ -12736,6 +12779,7 @@ coins:
     catalog:
       numista: '112718'
       km: '400'
+      dav: EC II 3640
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -13351,6 +13395,7 @@ coins:
     catalog:
       numista: '80206'
       km: '429'
+      dav: EC II 3647
     metal: silver
     fineness: 0.833
     weight_rough_g: 35.977
@@ -13389,6 +13434,7 @@ coins:
     catalog:
       numista: '82691'
       km: '428'
+      dav: EC II 3648
     metal: silver
     fineness: 0.833
     weight_rough_g: 17.998
@@ -13505,6 +13551,7 @@ coins:
     catalog:
       numista: '83107'
       km: '430'
+      dav: EC II 3646
     metal: silver
     fineness: 0.833
     weight_rough_g: 53.996
@@ -14016,6 +14063,7 @@ coins:
     catalog:
       numista: '82692'
       km: '448'
+      dav: EC III A1287
     metal: silver
     fineness: 0.833
     weight_rough_g: 17.94
@@ -14332,6 +14380,7 @@ coins:
       km: '480'
       hede: '34'
       sieg: '24'
+      dav: EC III 1288
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -14605,6 +14654,7 @@ coins:
     catalog:
       numista: '146456'
       km: '503'
+      dav: EC III 1290
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.21
@@ -14861,7 +14911,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1 Rigsdaler Courant
+    nominal: ½ Courant Ducat
     note:
       de: '½ Kurant Dukat'
       en: '½ Kurant Dukat'
@@ -15068,6 +15118,7 @@ coins:
     catalog:
       numista: '319756'
       km: '523'
+      dav: EC III 1290A
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.34
@@ -15106,6 +15157,7 @@ coins:
     catalog:
       numista: '113309'
       km: '524'
+      dav: EC III 1291
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -15144,6 +15196,7 @@ coins:
     catalog:
       numista: '190127'
       km: '525'
+      dav: EC III 1293
     metal: silver
     fineness: 0.671
     weight_rough_g: 67.15
@@ -15373,6 +15426,7 @@ coins:
     catalog:
       numista: '90151'
       km: '537'
+      dav: EC III A1294
     metal: silver
     fineness: 0.671
     weight_rough_g: 23.29
@@ -15399,7 +15453,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 6 Mark
+    nominal: 1 Reisedaler = 6 Mark
     note:
       de: Reisedaler
       en: Reisedaler
@@ -15417,6 +15471,9 @@ coins:
       km: '230'
       dav: EC III# 1295
       hede: '5'
+      others:
+        - Brekke# 25
+        - Brekke# 26
     metal: silver
     fineness: 0.833
     weight_rough_g: 26.98
@@ -15931,6 +15988,7 @@ coins:
     catalog:
       numista: '147923'
       km: '561'
+      dav: EC III 1300
     metal: silver
     fineness: 0.833
     weight_rough_g: 36.12
@@ -16011,6 +16069,7 @@ coins:
       km: '559'
       hede: 29B
       sieg: '11'
+      dav: EC III 1300A
     metal: silver
     fineness: 0.833
     weight_rough_g: 18.12
@@ -16435,6 +16494,8 @@ coins:
     catalog:
       numista: '26744'
       km: '578'
+      others:
+        - C# 2
     metal: billon
     fineness:
     weight_rough_g: 0.768
@@ -16475,6 +16536,8 @@ coins:
     catalog:
       numista: '43458'
       km: '577'
+      others:
+        - C# 1
     metal: copper
     fineness:
     weight_rough_g: 3.654
@@ -16823,6 +16886,7 @@ coins:
     catalog:
       numista: '131338'
       km: '599'
+      dav: EC III 1302A
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -16861,6 +16925,7 @@ coins:
     catalog:
       numista: '131340'
       km: '601'
+      dav: EC III 1302B
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -16975,6 +17040,7 @@ coins:
     catalog:
       numista: '324361'
       km: '603'
+      dav: EC III 1304
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.84
@@ -17051,6 +17117,7 @@ coins:
     catalog:
       numista: '148258'
       km: '607'
+      dav: EC III 1305
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.91
@@ -17089,6 +17156,7 @@ coins:
     catalog:
       numista: '148259'
       km: '608'
+      dav: EC III 1306
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.86
@@ -17281,6 +17349,7 @@ coins:
     catalog:
       numista: '334195'
       km: '623'
+      dav: EC III 1307
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.89
@@ -17395,6 +17464,8 @@ coins:
     catalog:
       numista: '43515'
       km: '636'
+      others:
+        - C# 49
     metal: billon
     fineness:
     weight_rough_g: 0.768
@@ -18194,6 +18265,7 @@ coins:
     catalog:
       numista: '22191'
       km: '741'
+      dav: EC IV 74
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -18489,7 +18561,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 2 Rigsdaler
+    nominal: 12 Rigsdaler courant = 2 Rigsdaler
     note:
       de: 12 Rigsdaler courant
       en: 12 Rigsdaler courant
@@ -18546,6 +18618,7 @@ coins:
     catalog:
       numista: '83076'
       km: '772'
+      dav: EC IV 79
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -18848,7 +18921,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 2 Øre
+    nominal: 2 Øre (0.02 DKK)
     year_label: 1874-1906
     year_first: 1874
     year_last: 1906
@@ -18862,6 +18935,8 @@ coins:
     catalog:
       numista: '4140'
       km: '793'
+      others:
+        - DNF# 2.1-2.2.3.3
     metal: bronze
     fineness:
     weight_rough_g: 4
@@ -18888,7 +18963,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 5 Øre
+    nominal: 5 Øre (0.05 DKK)
     year_label: 1874-1906
     year_first: 1874
     year_last: 1906
@@ -18902,6 +18977,9 @@ coins:
     catalog:
       numista: '4145'
       km: '794'
+      others:
+        - Schön# 3
+        - DNF# 3.1
     metal: bronze
     fineness:
     weight_rough_g: 8
@@ -18928,7 +19006,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1 Øre
+    nominal: 1 Øre (0.01 DKK)
     year_label: 1874-1904
     year_first: 1874
     year_last: 1904
@@ -18942,6 +19020,10 @@ coins:
     catalog:
       numista: '5265'
       km: '792.1'
+      others:
+        - Schön# 1
+        - Kahnt/Schön# 73
+        - DNF# 1.1-1.2.4
     metal: bronze
     fineness:
     weight_rough_g: 2
@@ -18968,7 +19050,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 10 Øre
+    nominal: 10 Øre (0.10 DKK)
     year_label: 1874-1905
     year_first: 1874
     year_last: 1905
@@ -18982,6 +19064,9 @@ coins:
     catalog:
       numista: '5567'
       km: '795'
+      others:
+        - Schön# 4
+        - DNF# 4.1-4.2.1
     metal: billon
     fineness: 0.4
     weight_rough_g: 1.45
@@ -19008,7 +19093,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 25 Øre
+    nominal: 25 Øre (0.25 DKK)
     year_label: 1874-1905
     year_first: 1874
     year_last: 1905
@@ -19288,7 +19373,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 25 Øre
+    nominal: 25 Øre (0.25 DKK)
     year_label: 1907-1911
     year_first: 1907
     year_last: 1911
@@ -19328,7 +19413,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 2 Øre
+    nominal: 2 Øre (0.02 DKK)
     year_label: 1907-1912
     year_first: 1907
     year_last: 1912
@@ -19342,6 +19427,9 @@ coins:
     catalog:
       numista: '4139'
       km: '805'
+      others:
+        - Schön# 13
+        - DNF# 2.3
     metal: bronze
     fineness:
     weight_rough_g: 4
@@ -19368,7 +19456,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 5 Øre
+    nominal: 5 Øre (0.05 DKK)
     year_label: 1907-1912
     year_first: 1907
     year_last: 1912
@@ -19382,6 +19470,9 @@ coins:
     catalog:
       numista: '5254'
       km: '806'
+      others:
+        - Schön# 14
+        - DNF# 3.3
     metal: bronze
     fineness:
     weight_rough_g: 8
@@ -19408,7 +19499,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 10 Øre
+    nominal: 10 Øre (0.10 DKK)
     year_label: 1907-1912
     year_first: 1907
     year_last: 1912
@@ -19422,6 +19513,9 @@ coins:
     catalog:
       numista: '8496'
       km: '807'
+      others:
+        - Schön# 15
+        - DNF# 4.3
     metal: billon
     fineness: 0.4
     weight_rough_g: 1.45
@@ -19448,7 +19542,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1 Øre
+    nominal: 1 Øre (0.01 DKK)
     year_label: 1907-1912
     year_first: 1907
     year_last: 1912
@@ -19462,6 +19556,8 @@ coins:
     catalog:
       numista: '9393'
       km: '804'
+      others:
+        - DNF# 1.3
     metal: bronze
     fineness:
     weight_rough_g: 2
@@ -19503,6 +19599,8 @@ coins:
       numista: '26769'
       km: '809'
       fr: '298'
+      others:
+        - Schön# 17
     metal: gold
     fineness: 0.9
     weight_rough_g: 4.4803
@@ -19544,6 +19642,8 @@ coins:
       numista: '26770'
       km: '810'
       fr: '297'
+      others:
+        - Schön# 18
     metal: gold
     fineness: 0.9
     weight_rough_g: 8.9606
@@ -19610,7 +19710,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 25 Øre
+    nominal: 25 Øre (0.25 DKK)
     year_label: 1913-1919
     year_first: 1913
     year_last: 1919
@@ -19663,6 +19763,8 @@ coins:
       numista: '25627'
       km: '817'
       fr: '299'
+      others:
+        - Schön# 28
     metal: gold
     fineness: 0.9
     weight_rough_g: 8.9606
@@ -19730,7 +19832,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 2 Øre
+    nominal: 2 Øre (0.02 DKK)
     year_label: 1913-1923
     year_first: 1913
     year_last: 1923
@@ -19744,6 +19846,8 @@ coins:
     catalog:
       numista: '5255'
       km: '813'
+      others:
+        - DNF# 2.4
     metal: bronze
     fineness:
     weight_rough_g: 4
@@ -19770,7 +19874,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 1 Øre
+    nominal: 1 Øre (0.01 DKK)
     year_label: 1913-1923
     year_first: 1913
     year_last: 1923
@@ -19784,6 +19888,8 @@ coins:
     catalog:
       numista: '8497'
       km: '812'
+      others:
+        - DNF# 1.5
     metal: bronze
     fineness:
     weight_rough_g: 2
@@ -19810,7 +19916,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 5 Øre
+    nominal: 5 Øre (0.05 DKK)
     year_label: 1913-1923
     year_first: 1913
     year_last: 1923
@@ -19824,6 +19930,9 @@ coins:
     catalog:
       numista: '9394'
       km: '814'
+      others:
+        - Schön# 22
+        - DNF# 3.4
     metal: bronze
     fineness:
     weight_rough_g: 8
@@ -19850,7 +19959,7 @@ coins:
     fuss: seed_unsorted
     phase: numista
     kind: kurant
-    nominal: 10 Øre
+    nominal: 10 Øre (0.10 DKK)
     year_label: 1914-1919
     year_first: 1914
     year_last: 1919
@@ -19864,6 +19973,8 @@ coins:
     catalog:
       numista: '5568'
       km: '818'
+      others:
+        - DNF# 4.4
     metal: billon
     fineness: 0.4
     weight_rough_g: 1.45

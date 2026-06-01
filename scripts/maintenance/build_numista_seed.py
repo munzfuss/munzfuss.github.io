@@ -58,12 +58,25 @@ PARSED_DIR = PROJECT_ROOT / "scripts" / "cache" / "numista" / "parsed"
 # Catalog fields the canonical sidecar emits as a flat string-keyed
 # dict (per parse_references_from_*). Pydantic CatalogRefs strict-extra
 # rejects unknown keys, so we filter to the subset our schema accepts.
-_ALLOWED_CATALOG = {
-    "km", "lange", "hede", "sieg", "schou", "fr", "dav", "mb",
-    "bruun_collection_id", "bruun_part", "bruun_lot_no", "bruun_page",
-    "bruun_lot", "numista", "hede_volume", "galster", "friedberg",
-    "nmd", "fp",
-}
+# Derive the allowed-key set FROM the schema (CatalogRefs.model_fields) rather
+# than a hand-maintained white-list — so the builder accepts EXACTLY what the
+# typer models, including the `others` catch-all + every typed ref field. The
+# Numista parser routes any unmodelled catalogue code into `others` (generic,
+# open to ANY index), keeping the chain lossless: a new/unknown catalogue
+# Numista emits flows parser → others → builder → schema → render with no
+# white-list to drift out of sync.
+try:
+    from lib.schema import CatalogRefs as _CatalogRefs  # noqa: E402
+    _ALLOWED_CATALOG = set(_CatalogRefs.model_fields.keys())
+except Exception:  # pragma: no cover — defensive
+    _ALLOWED_CATALOG = {
+        "km", "lange", "hede", "sieg", "sieg_hede1971", "schou",
+        "schou_hede1971", "fr", "dav", "davenport", "mb", "galster",
+        "galster_volume", "friedberg", "jensen_skjoldager", "schive",
+        "skaare", "nmd", "fp", "hede_volume", "numista", "others",
+        "bruun_collection_id", "bruun_part", "bruun_lot_no", "bruun_page",
+        "bruun_lot",
+    }
 
 
 def _resolve_ruler(kings: list[dict] | None) -> str | None:
