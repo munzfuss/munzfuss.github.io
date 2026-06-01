@@ -834,9 +834,24 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
 
     Returns the number of coins assembled.
     """
-    consumes_entities = raw.get("consumes_entities") or []
-    if not consumes_entities:
+    # `consumes_entities` accepts a bare entity-id string OR a dict
+    # `{entity: <id>, year_from?: Y, year_to?: Y}` — the dict form caps the
+    # entity's coins to its «under-this-jurisdiction» window on THIS page
+    # (per-location, not global). E.g. the Denmark page consumes Norway only
+    # ≤1814 (Treaty of Kiel) and the Danish-controlled SH duchies only ≤1864
+    # (2nd Schleswig War), while those same entities render their full span on
+    # their own pages. The cap is enforced in the per-coin pre-filter below;
+    # Pass 1/2/seed-render iterate the entity ids unchanged.
+    _raw_consumes = raw.get("consumes_entities") or []
+    if not _raw_consumes:
         return 0
+    consumes_window: dict[str, tuple] = {}
+    for _e in _raw_consumes:
+        if isinstance(_e, dict):
+            consumes_window[_e["entity"]] = (_e.get("year_from"), _e.get("year_to"))
+        else:
+            consumes_window[_e] = (None, None)
+    consumes_entities = list(consumes_window.keys())
     consumes_set = set(consumes_entities)
 
     km_register = raw.get("km_register")
@@ -970,6 +985,23 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
         if _m is not None and _m not in _VALID_COIN_METALS:
             dropped.append((cid, f"out-of-scope metal '{_m}'"))
             continue
+        # Per-entity consume-window cap (see consumes_window above): keep the
+        # coin only if its year falls within the «under this jurisdiction»
+        # window of AT LEAST ONE of its consumed entities. A coin matched via
+        # an uncapped entity (window (None, None)) always passes. This is what
+        # lets the Denmark page show Norway only ≤1814 + Danish-controlled SH
+        # only ≤1864, while those entities render their full span elsewhere.
+        _yf_coin = c.get("year_first")
+        if _yf_coin is not None:
+            _matched = [consumes_window[e]
+                        for e in _normalise_ie_to_list(c.get("issuing_entity"))
+                        if e in consumes_window]
+            if _matched and not any(
+                (lo is None or _yf_coin >= lo) and (hi is None or _yf_coin <= hi)
+                for lo, hi in _matched
+            ):
+                dropped.append((cid, f"year {_yf_coin} outside consume-window"))
+                continue
         if fuss not in phases_map:
             dropped.append((cid, f"fuss '{fuss}' not on this page"))
             continue
