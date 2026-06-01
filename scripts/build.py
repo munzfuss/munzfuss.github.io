@@ -625,6 +625,13 @@ _V2_ABSORBED_SEED_IDS_CACHE: set[str] | None = None
 # downstream.
 _COIN_SCHEMA_FIELDS: frozenset[str] = frozenset(Coin.model_fields.keys())
 
+# Valid Coin.metal values (mirrors the schema.py Coin.metal Literal). Used to
+# skip out-of-scope seed entries — Numista/ucoin catalogue paper money /
+# Notgeld too (metal 'paper'), which the precious-metal mission excludes and
+# the schema can't represent. See the _assemble_v2_location seed-render pass.
+_VALID_COIN_METALS: frozenset[str] = frozenset(
+    {"silver", "gold", "billon", "copper", "lead", "bronze"})
+
 
 def _load_v2_curated() -> dict[str, list[dict]]:
     """Load every `data/v2/final/<entity>.yml` once per process and return
@@ -954,6 +961,15 @@ def _assemble_v2_location(loc_id: str, raw: dict) -> int:
         fuss = c.get("fuss")
         phase = c.get("phase")  # already scalar after _resolve_dict_fields
         cid = c.get("id")
+        # Out-of-scope guard (choke point for ALL passes — curated, seed_unified
+        # via _load_v2_curated, and seed-render): skip entries with a `metal`
+        # the schema can't model (Numista/ucoin harvest paper money / Notgeld,
+        # metal 'paper'), which the precious-metal mission excludes. `None`
+        # allowed (sparse seed). Prevents the whole location failing validation.
+        _m = c.get("metal")
+        if _m is not None and _m not in _VALID_COIN_METALS:
+            dropped.append((cid, f"out-of-scope metal '{_m}'"))
+            continue
         if fuss not in phases_map:
             dropped.append((cid, f"fuss '{fuss}' not on this page"))
             continue

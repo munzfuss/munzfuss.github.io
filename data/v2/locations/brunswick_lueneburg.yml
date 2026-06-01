@@ -4,31 +4,43 @@ name:
   en: Duchy of Brunswick-Lüneburg (Wolfenbüttel)
   uk: Герцогство Брауншвейг-Люнебург (Вольфенбюттель)
 summary:
-  de: Welfen-Linie Wolfenbüttel des Herzogthums Braunschweig-Lüneburg, mit Müntzstätte Wolfenbüttel. Im Register das Christian-IV.-Engagement
-    im Niedersächsischen Reichskreis während des Dreißigjährigen Krieges (1627).
-  en: Wolfenbüttel branch of the Welf dukes of Brunswick-Lüneburg, with mint at Wolfenbüttel. The register holds the Christian
-    IV engagement in the Lower Saxon Imperial Circle during the Thirty Years' War (1627).
-  uk: Вольфенбюттельська лінія вельфських герцогів Брауншвейг-Люнебург з монетним двором у Вольфенбюттелі. У реєстрі — карбування
-    Кристіана IV у Нижньосаксонському імперському окрузі періоду Тридцятилітньої війни (1627).
+  de: Welfen-Linie Wolfenbüttel des Herzogthums Braunschweig-Lüneburg, mit Müntzstätte Wolfenbüttel. Im Register das Christian-IV.-Engagement im Niedersächsischen Reichskreis während des 
+    Dreißigjährigen Krieges (1627).
+  en: Wolfenbüttel branch of the Welf dukes of Brunswick-Lüneburg, with mint at Wolfenbüttel. The register holds the Christian IV engagement in the Lower Saxon Imperial Circle during the Thirty Years'
+    War (1627).
+  uk: Вольфенбюттельська лінія вельфських герцогів Брауншвейг-Люнебург з монетним двором у Вольфенбюттелі. У реєстрі — карбування Кристіана IV у Нижньосаксонському імперському окрузі періоду 
+    Тридцятилітньої війни (1627).
 consumes_entities:
-- herzogtum_braunschweig_lueneburg
+  - herzogtum_braunschweig_lueneburg
 fuss_order:
-- seed_unsorted
+  - seed_unsorted
 phases:
   seed_unsorted:
-  - id: I
-    year_from: 1627
-    year_to: 1627
-    from_label: (?)
-    to_label: (?)
-    title:
-      de: Bulk-Seed-Phase (Bruun-Import 2026-05)
-      en: Bulk seed phase (Bruun import 2026-05)
-      uk: Bulk-seed-фаза (Bruun-імпорт 2026-05)
-    description:
-      de: Sammelphase für die aus Bruun-Auktionskatalogen seed-importierten Stücke. Bei der nächsten Detail-Bearbeitung wandern
-        die einzelnen Münzen in ihre eigene Müntzfuß-Klassifikation.
-      en: Catch-all phase for the pieces seed-imported from Bruun auction catalogues. On the next detailed pass each coin
-        will move into its own Müntzfuß classification.
-      uk: Збірна фаза для монет, seed-імпортованих з Bruun-аукціонних каталогів. При наступному детальному проходженні кожна
-        монета перейде у власну Müntzfuß-класифікацію.
+    - id: numista
+      year_from: 1556
+      year_to: 1876
+      from_label: (?)
+      to_label: (?)
+      title:
+        de: Bulk-Seed · Numista
+        en: Bulk seed · Numista
+        uk: Bulk-seed · Numista
+      description:
+        de: Sammelphase für die seed-importierten Stücke aus Numista. Bei der nächsten Detail-Bearbeitung wandern die einzelnen Münzen in ihre eigene Müntzfuß-Klassifikation mit korrekter 
+          Periodisierung.
+        en: Bulk-seed collection of pieces imported from Numista. On the next detailed pass each coin moves into its own Münzfuß classification with proper periodisation.
+        uk: Збірна фаза для seed-імпортованих монет із Numista. На наступному детальному проході кожна монета перейде у власну класифікацію Müntzfuß з коректною періодизацією.
+    - id: ucoin
+      year_from: 1556
+      year_to: 1876
+      from_label: (?)
+      to_label: (?)
+      title:
+        de: Bulk-Seed · ucoin
+        en: Bulk seed · ucoin
+        uk: Bulk-seed · ucoin
+      description:
+        de: Sammelphase für die seed-importierten Stücke aus ucoin. Bei der nächsten Detail-Bearbeitung wandern die einzelnen Münzen in ihre eigene Müntzfuß-Klassifikation mit korrekter 
+          Periodisierung.
+        en: Bulk-seed collection of pieces imported from ucoin. On the next detailed pass each coin moves into its own Münzfuß classification with proper periodisation.
+        uk: Збірна фаза для seed-імпортованих монет із ucoin. На наступному детальному проході кожна монета перейде у власну класифікацію Müntzfuß з коректною періодизацією.
