@@ -80,6 +80,11 @@ GALSTER_CACHE: Path = HARVEST_ROOT / "danskmoent" / "galster"
 #                                            input for downstream MC_ID
 #                                            extraction not yet anchored
 NUMISMASTER_CACHE: Path = HARVEST_ROOT / "numismaster"
+# KMK / KMM — Royal Coin Cabinet Copenhagen (Den Kgl. Mønt- og
+# Medaillesamling), harvested via the Nationalmuseet open API
+# (api.natmus.dk). Whole-record `_source` JSON per file: kmk/<id>.json.
+# Strategy + field mapping: docs/KMK_HARVEST.md. Added 2026-06-01.
+KMK_CACHE: Path = HARVEST_ROOT / "kmk"
 
 
 def refresh() -> None:
@@ -91,7 +96,7 @@ def refresh() -> None:
     before doing any actual cache I/O so the eager resolution at import-
     time is already correct.
     """
-    global HARVEST_ROOT, HEDE_CACHE, IKMK_CACHE, NUMISTA_CACHE, UCOIN_CACHE, BRUUN_CACHE, GALSTER_CACHE, NUMISMASTER_CACHE
+    global HARVEST_ROOT, HEDE_CACHE, IKMK_CACHE, NUMISTA_CACHE, UCOIN_CACHE, BRUUN_CACHE, GALSTER_CACHE, NUMISMASTER_CACHE, KMK_CACHE
     HARVEST_ROOT = _resolve_harvest_root()
     HEDE_CACHE = HARVEST_ROOT / "hede"
     IKMK_CACHE = HARVEST_ROOT / "ikmk"
@@ -100,3 +105,4 @@ def refresh() -> None:
     BRUUN_CACHE = HARVEST_ROOT / "bruun"
     GALSTER_CACHE = HARVEST_ROOT / "danskmoent" / "galster"
     NUMISMASTER_CACHE = HARVEST_ROOT / "numismaster"
+    KMK_CACHE = HARVEST_ROOT / "kmk"

@@ -468,9 +468,33 @@ Notable URLs:
 
 **Access:** WebFetch works for public-facing pages.
 
-### 8.3 Royal Coin Cabinet, Copenhagen (KMK)
+### 8.3 Royal Coin Cabinet, Copenhagen (KMM / KMK)
 
-The Kongelige Mønt- og Medaillesamling (KMK). Hosted within Nationalmuseet. Records typically only accessible through Nationalmuseet pages.
+Den Kongelige Mønt- og Medaillesamling (KMM), part of Nationalmuseet — the world's most comprehensive Danish-coin collection (500 k+ objects). **Harvestability investigated 2026-06 — accessible via the Nationalmuseet open API, but the public records are mostly sparse.**
+
+**Access route — open API, NOT Chrome.** `api.natmus.dk` (open since 2018, Swagger at `/swagger`, spec at `/swagger/docs/v1`). Two relevant search endpoints:
+- `GET /search/public/simple?query=…&size=…&offset=…` — **currently broken** (HTTP 500, server-side Newtonsoft `JToken` cast bug). Do not use.
+- **`POST /search/public/raw`** — **works (HTTP 200, no auth).** Raw Elasticsearch query DSL → standard `{hits:{total, hits:[{_index, _source}]}}` response. Index is `cumulus_public_assets`, 2 329 954 docs across all Nationalmuseet collections. This is the harvest route — plain `urllib`/`requests` POST with JSON body; no Chrome/Cloudflare involved.
+
+**Enumeration — yes, by collection code.** Aggregating `collection.keyword` gives the per-collection counts; **`KMM` = 707 969 records** (largest collection). Filter `{bool:{must:[{term:{"collection.keyword":"KMM"}},{term:{"type.keyword":"object"}}]}}` → **639 600 object records** (the rest are `type:asset` = images). Paginate with `size` + `from` (ES default window `from+size` ≤ 10 000 — use `search_after` or a scroll/PIT for deeper enumeration). Text/field filters work (`{match:{nominal:"speciedaler"}}` → 1 245 hits; `nominal` / `materials` / `objectIdentification` / `protocol` / `foundEvents` / `creationEvents` / `measurements` / `descriptions` are real `_source` fields).
+
+**Call limits.** No API key, no auth on `/search/public/raw`, no documented rate-limit. The API self-describes as «very much a work in progress … breaking changes [may] occur» — treat as fragile (the `simple` endpoint is already broken). Be polite (low rate, identifiable UA) as with IKMK.
+
+**Data-richness — globally thin, but the in-scope subset is usable.** Across ALL 639 600 KMM object records the populated-field rates look poor (`nominal` 46 %, `materials` 18 %, dating 21 %, `measurements` 4 %, `descriptions` 0 %) — because the collection spans all eras/world coins (ancient → modern), most of which are minimally catalogued. **But the in-scope subset is far richer.** Sampling the **1560–1850 window** (filter `range:{"creationEvents.yearFrom":{gte,lte}}` — NB years are *strings*, so a lexicographic range leaks short years like Roman «181»; convert to int at harvest) → **41 355 records**, with these populated-field rates (use the TOP-LEVEL fields `authority` / `nation` / `place` / `typeNumber`, NOT `actor` or `creationEvents.placeElaborate` which are empty):
+
+| field | populated | share | example value |
+|---|---:|---:|---|
+| `nation` (realm) | 39 193 | **95 %** | «Slesvig-Holsten» |
+| `authority` (ruler) | 36 665 | **89 %** | «Johan Adolf» |
+| `typeNumber` (catalogue) | 26 486 | 64 % | — |
+| `materials` (metal) | 19 284 | 47 % | «sølv» |
+| `place` (mint) | 11 330 | 27 % | «Holsten» |
+| `measurements` (**weight only**) | 7 953 | 19 % | `{unit:"Gram", dimension:"Vægt", data:28.85}` — no diameter exists |
+| `descriptions` / inscriptions | ~0 | 0 % | — |
+
+Sampled records are genuinely in scope, e.g. «1/16 thaler, 1596/1597, **Johan Adolf**, Slesvig-Holsten, sølv» (Johann Adolf of Gottorp), «½ daler 1573», «4 skilling 1644». Noise to filter: `Regnepenning` (reckoning jetons → §9.2 exonumia) and string-range leakage (numeric year gate fixes it).
+
+**Verdict.** Harvestable via `POST /search/public/raw` and **moderate value for our scope** (revised up from the global-stats first impression). Strengths: ruler (89 %) + realm (95 %) + often `typeNumber` (64 %) give a solid match/dedup signal against Hede/Bruun/Numista, and ~8 k in-scope specimens carry a weight. Gaps vs IKMK: `place`/mint only ~27 % (so entity classification leans on ruler+realm heuristics for the rest), **weight is the only measurement** (no diameter, no fineness), and **no inscriptions/legends** (0 %). If built: filter `collection=KMM` + `type=object` + numeric year-gate 1559/1514–1914 + drop exonumia nominals; map `measurements`→weight, `materials`→metal, `nominal`→denomination, `authority`→ruler, `place`→mint, `nation`→realm/entity hint, `typeNumber`→catalogue, `objectIdentification`→inventory, `foundEvents`→provenance note. The cross-source merger dedups against existing Danish/SH sources. **Full harvest strategy (API mechanics, `search_after` enumeration, dirty-`nation` scope filter, 4-phase pipeline plan, field mapping): `docs/KMK_HARVEST.md`.**
 
 ---
 

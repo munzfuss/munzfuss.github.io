@@ -468,6 +468,32 @@ class CatalogRefs(_StrictBase):
     # 1766-1808 lots in the Bruun PDFs. Cited as «FP-9.3», «FP-44.6»,
     # «FP-36», etc. Both base-numbers and sub-variant decimals appear.
     fp: str | list[str] | None = None
+    # ── Additional regional catalogues surfaced by KMM / Nationalmuseet
+    #    (the museum `typeNumber` field; see docs/KMK_HARVEST.md). All cited
+    #    in-scope; abbreviation in parens is the KMM `typeNumber` prefix. ──
+    # Thomsen («Th.») — C. J. Thomsen's collection catalogue, Danish.
+    thomsen: str | list[str] | None = None
+    # Bergsøe («Bgs.») — Danish (Vilhelm Bergsøe), medals + coins.
+    bergsoe: str | list[str] | None = None
+    # Hauberg («Hbg.») — P. Hauberg, «Danmarks Myntvæsen … 1146-1241»,
+    # medieval Danish (borderline; mostly era-gated out at SEED).
+    hauberg: str | list[str] | None = None
+    # Aagaard («Aagaard 1996 …») — Danish modern typology reference.
+    aagaard: str | list[str] | None = None
+    # Welter — Gerhard Welter, «Die Münzen der Welfen» (Brunswick-Lüneburg).
+    welter: str | list[str] | None = None
+    # Fiala — Eduard Fiala, Brunswick-Lüneburg coinage.
+    fiala: str | list[str] | None = None
+    # Behrens — Hermann Behrens, «Münzen und Medaillen der Stadt Hamburg»
+    # / «… der Stadt und des Bisthums Lübeck» (Hanseatic).
+    behrens: str | list[str] | None = None
+    # Gaedechens — O. C. Gaedechens, Hamburg coins + medals.
+    gaedechens: str | list[str] | None = None
+    # Jesse — Wilhelm Jesse, «Der wendische Münzverein» (Hamburg / Lübeck /
+    # Mecklenburg Hanseatic monetary union).
+    jesse: str | list[str] | None = None
+    # Kreber — Hamburg medal / coin catalogue.
+    kreber: str | list[str] | None = None
     # Bruun citation. collection-id IS list-form: same physical coin
     # type can appear in MULTIPLE Bruun lots (different specimens) with
     # their own collection ids — the merger preserves every distinct id.
@@ -656,6 +682,21 @@ class Coin(_StrictBase):
             "Each list element must be a known entity tag; list non-empty, "
             "no duplicates. Per the home-file rule, the coin is stored in "
             "the entity file matching the alphabetically-first element."
+        ),
+    )
+    entity_classified_via: Literal["mint", "nation", "issuer", "ruler", "manual"] | None = Field(
+        None,
+        description=(
+            "Provenance of the `issuing_entity` value — HOW it was derived, "
+            "not whether it is correct (entity is ALWAYS inferred; no source "
+            "states the political tag). Records the reliability tier of the "
+            "inference so curators can prioritise review of coarse routings: "
+            "`mint` = classified from a specific mint city (precise); "
+            "`nation`/`issuer` = classified from a realm / jurisdiction string "
+            "(coarse — e.g. KMM `nation` fallback when no mint, or Numista "
+            "issuer text); `ruler` = from authority name; `manual` = curator-"
+            "assigned. None = unset (legacy / pre-classifier entries). "
+            "Project-internal scaffolding — never rendered (CLAUDE.md §0z)."
         ),
     )
     fuss_refs: list[FussRef] = Field(default_factory=list,
