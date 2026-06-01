@@ -65,21 +65,38 @@ def _load(p: Path):
     return doc if isinstance(doc, list) else (doc.get("coins") or doc.get("entries") or [])
 
 
-def _km_first(c):
-    km = (c.get("catalog") or {}).get("km")
-    if isinstance(km, dict):
-        vals = [v for v in km.values() if v not in (None, "", [])]
-        km = vals[0] if vals else None
-    return None if km in (None, "", []) else str(km)
-
-
 def _base(km):
     """'A110'→'A110', '70.1'→'70', '11a'→'11', '156,3'→'156'."""
-    if km is None:
+    if km in (None, "", []):
         return None
     s = str(km).strip()
     m = re.match(r"^([A-Za-z]*)(\d+)", s)
     return (m.group(1).upper() + m.group(2)) if m else s
+
+
+def _km_bases(c) -> set:
+    """SET of base KM tokens for a coin — handles scalar, list-form
+    (multi-source KM accumulation, e.g. ['21','21.1']), and dict-form
+    (register-keyed). Two coins SHARE a KM type iff their base-sets
+    intersect; they are KM-divergent iff both non-empty AND disjoint.
+    Critical: list-form KM must NOT be str()'d whole (that yields garbage
+    like "['21', '21.1']" → false divergence)."""
+    km = (c.get("catalog") or {}).get("km")
+    if km in (None, "", []):
+        return set()
+    vals: list = []
+    if isinstance(km, dict):
+        vals = [v for v in km.values() if v not in (None, "", [])]
+    elif isinstance(km, list):
+        vals = [v for v in km if v not in (None, "", [])]
+    else:
+        vals = [km]
+    out = set()
+    for v in vals:
+        b = _base(v)
+        if b is not None:
+            out.add(b)
+    return out
 
 
 def _ref_bases(c, key):
@@ -160,29 +177,35 @@ def main() -> int:
             host_twin = twin.get(c["id"])
             if host_twin is None:
                 continue  # no clean foundation twin → cannot reset → never SAFE
-            hbase = _base(_km_first(host_twin))
-            if hbase is None:
+            hbases = _km_bases(host_twin)
+            if not hbases:
                 continue
-            # members keyed by presence of KM + base divergence
+            # members keyed by presence of KM + base divergence. A member is
+            # KM-divergent ONLY if its base-set is non-empty AND DISJOINT from
+            # the host's base-set — list-form KM that SHARES a base (e.g. host
+            # 21.2 vs member ['21','21.1']) is the SAME coin, not divergent.
             members = [(m, twin.get(m)) for m in comp]
-            divergent = []          # different base KM
+            divergent = []          # different base KM (disjoint base-sets)
             no_km_members = []      # top-level member without a KM
             for mid, mc in members:
                 if mc is None:
                     continue
-                mb = _base(_km_first(mc))
-                if mb is None:
+                mbases = _km_bases(mc)
+                if not mbases:
                     no_km_members.append(mid)
-                elif mb != hbase:
-                    divergent.append((mid, mc, _km_first(mc), mb))
+                elif mbases.isdisjoint(hbases):
+                    divergent.append((mid, mc, str((mc.get("catalog") or {}).get("km")),
+                                      frozenset(mbases)))
             if not divergent:
                 continue
-            # full-km collision among evicted members → same-coin-between risk
-            full_kms = [_km_first(mc) for _, mc, _, _ in divergent]
-            dup_full = {k for k, n in Counter(full_kms).items() if n > 1}
+            # same-base-set collision among evicted members → same-coin-between
+            # risk (two members that are the same KM type as each other).
+            base_keys = [bk for _, _, _, bk in divergent]
+            dup_full = {bk for bk, n in Counter(base_keys).items() if n > 1}
 
+            host_km_disp = (host_twin.get("catalog") or {}).get("km")
             entry = {
-                "entity": ent, "host_id": c["id"], "host_km": _km_first(host_twin),
+                "entity": ent, "host_id": c["id"], "host_km": host_km_disp,
                 "host_nominal": c.get("nominal"), "host_ruler": c.get("ruler"),
             }
             safe_members, complex_members = [], []
@@ -195,7 +218,7 @@ def main() -> int:
                     reasons.append("shares_" + "+".join(shared))
                 if no_km_members:
                     reasons.append("host_has_noKM_member")
-                if _km_first(mc) in dup_full:
+                if mb in dup_full:
                     reasons.append("same_km_as_sibling_evict")
                 rec = {"member_id": mid, "member_km": mkm,
                        "member_hede": (mc.get("catalog") or {}).get("hede")}

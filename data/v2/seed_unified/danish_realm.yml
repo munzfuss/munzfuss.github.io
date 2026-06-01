@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_realm`.
-# Generated 2026-05-31 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-01 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_realm.yml across all sources.
 #
 # Input: 3128 per-source seed entries.
-# Output: 1448 unified entries (one per physical coin).
+# Output: 1445 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_realm
-generated_at: '2026-05-31'
+generated_at: '2026-06-01'
 coins:
 - id: unified-denmark-numismaster-117787
   fuss: seed_unsorted
@@ -24,7 +24,9 @@ coins:
   ruler: Christian IV
   mint: Kopenhagen
   catalog:
-    km: '40.3'
+    km:
+    - '40.3'
+    - '40'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -182,7 +184,9 @@ coins:
   ruler: Christian IV
   mint: Kopenhagen
   catalog:
-    km: '48.1'
+    km:
+    - '48.1'
+    - '48'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -588,7 +592,10 @@ coins:
   year_label: 1653-1654
   ruler: Frederik III
   catalog:
-    km: 194.1a
+    km:
+    - 194.1a
+    - 194.1b
+    - '194.1'
     dav: '3574'
   metal: silver
   metal_verified: true
@@ -637,7 +644,10 @@ coins:
   year_label: 1654-1658
   ruler: Frederik III
   catalog:
-    km: '194.2'
+    km:
+    - '194.2'
+    - 194.2a
+    - 194.2b
     dav: 3574A
   metal: silver
   metal_verified: true
@@ -690,7 +700,9 @@ coins:
   year_label: 1653, 1655, 1657-1658
   ruler: Frederik III
   catalog:
-    km: 194.3a
+    km:
+    - 194.3a
+    - '194.3'
     dav: '3572'
   metal: silver
   metal_verified: true
@@ -1760,7 +1772,9 @@ coins:
   year_label: 1648-1650, 1652-1653
   ruler: Frederick III
   catalog:
-    km: '156.1'
+    km:
+    - '156.1'
+    - '156'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -2665,7 +2679,9 @@ coins:
   year_label: 1664-1667
   ruler: Frederick III
   catalog:
-    km: '249.1'
+    km:
+    - '249.1'
+    - '249'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -2839,7 +2855,9 @@ coins:
   ruler: Christian VII
   mint: Kopenhagen
   catalog:
-    km: '660.1'
+    km:
+    - '660.1'
+    - '660'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -3472,7 +3490,9 @@ coins:
   year_label: 1693-1696
   ruler: Christian V
   catalog:
-    km: '424.1'
+    km:
+    - '424.1'
+    - '424'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -3597,7 +3617,9 @@ coins:
   ruler: Frederick III
   mint: Kopenhagen
   catalog:
-    km: '267.1'
+    km:
+    - '267.1'
+    - '267'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -4650,7 +4672,9 @@ coins:
   ruler: Frederick III
   mint: Kopenhagen
   catalog:
-    km: '299.1'
+    km:
+    - '299.1'
+    - '299'
     dav: '3583'
   metal: silver
   metal_verified: true
@@ -5944,7 +5968,9 @@ coins:
   year_label: '1786'
   ruler: Christian VII
   catalog:
-    km: '633.2'
+    km:
+    - '633.2'
+    - '633'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7540,7 +7566,9 @@ coins:
   ruler: Christian VIII
   mint: Altona; Copenhagen
   catalog:
-    km: '726.2'
+    km:
+    - '726.2'
+    - '726'
     numista: '23857'
   metal: copper
   metal_verified: true
@@ -7754,7 +7782,9 @@ coins:
   ruler: Frederik VI
   mint: Kopenhagen
   catalog:
-    km: '683.1'
+    km:
+    - '683.1'
+    - '683'
     hede: '24'
     schou: '1'
     numista: '22803'
@@ -8014,7 +8044,9 @@ coins:
   ruler: Frederik VI
   mint: Kopenhagen
   catalog:
-    km: '695.2'
+    km:
+    - '695.2'
+    - '695'
     hede: '26'
     schou: '3'
     bruun_lot: '8110'
@@ -11891,62 +11923,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-bruun-4645
-- id: unified-dk-bruun-4647
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1603
-  year_last: 1603
-  year_label: '1603'
-  ruler: Christian IV
-  mint: Kopenhagen
-  catalog:
-    km: '17'
-    bruun_collection_id: '4647'
-    sieg: '98'
-    schou: '5'
-    hede: '49'
-    bruun_part: I
-    bruun_lot_no: 1015
-    bruun_page: 49
-    dav: '3511'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.888
-    source: numismaster
-  weight_rough_g:
-  - value: 27.29
-    source: bruun
-  - value: 29.232
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65399
-    ref: NumisMaster
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-    ref: Bruun Part I, lot 1015, p. 49
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: danish_realm
-  composed_of:
-  - denmark-numismaster-65399
-  - dk-bruun-4647
 - id: unified-dk-bruun-4648
   fuss: seed_unsorted
   phase: bruun
@@ -12444,7 +12420,9 @@ coins:
   mintmaster: Nicolaus Schwabe
   mint: Kopenhagen
   catalog:
-    km: '33.1'
+    km:
+    - '33.1'
+    - '33'
     bruun_collection_id: '4705'
     sieg: '65.1'
     schou: '1'
@@ -13012,7 +12990,9 @@ coins:
   mintmaster: Nicolaus Schwabe
   mint: Kopenhagen
   catalog:
-    km: '61.1'
+    km:
+    - '61.1'
+    - '61'
     bruun_collection_id:
     - '5011'
     - '5040'
@@ -14036,64 +14016,6 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - dk-bruun-5783
-- id: unified-dk-bruun-5815
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: ½ Ducat
-  year_first: 1647
-  year_last: 1647
-  year_label: '1647'
-  ruler: Christian IV
-  mint: Kopenhagen
-  catalog:
-    km: '151'
-    bruun_collection_id: '5815'
-    sieg: '125'
-    schou: '5'
-    hede: '38'
-    bruun_part: III
-    bruun_lot_no: 11210
-    bruun_page: 108
-    numista: '388109'
-    fr: '59'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numista
-  weight_rough_g:
-  - value: 1.74
-    source: bruun
-  - value: 1.75
-    source: numista
-  sources:
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 11210, p. 108
-  - type: literature
-    url: https://en.numista.com/388109
-    ref: Numista N#388109 — ½ Ducat - Christian IV
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: danish_realm
-  composed_of:
-  - dk-bruun-5815
-  - dk-numista-388109
 - id: unified-dk-bruun-5844
   fuss: seed_unsorted
   phase: bruun
@@ -16669,7 +16591,9 @@ coins:
   mintmaster: Frederik Caspar Herbach
   mint: Kopenhagen
   catalog:
-    km: '265.1'
+    km:
+    - '265.1'
+    - '265'
     bruun_collection_id: '6439'
     sieg: '123.1'
     schou: '8'
@@ -21286,75 +21210,6 @@ coins:
   - dk-bruun-7612
   - dk-numista-424620
   - dk-tid-94406
-- id: unified-dk-bruun-7613
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 2 Ducats
-  year_first: 1747
-  year_last: 1747
-  year_label: '1747'
-  ruler: Frederik V
-  mintmaster: Christian Wineke, the younger
-  mint: Kopenhagen
-  catalog:
-    km: '569'
-    bruun_collection_id: '7613'
-    sieg: '33.2'
-    schou: '3'
-    hede: 12B
-    bruun_part: II
-    bruun_lot_no: 13221
-    bruun_page: 161
-    fr: '270'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  - value: 0.98
-    source: ucoin
-  weight_rough_g:
-  - value: 6.98
-    source: bruun
-  - value: 6.98
-    source: ucoin
-  - value: 6.981
-    source: numismaster
-  diameter_mm:
-  - value: 25.7
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65909
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 13221, p. 161
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-dukat-1747/?tid=94405
-    ref: ucoin
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: danish_realm
-  composed_of:
-  - denmark-numismaster-65909
-  - dk-bruun-7613
-  - dk-tid-94405
 - id: unified-dk-bruun-7617
   fuss: seed_unsorted
   phase: bruun
@@ -21968,7 +21823,9 @@ coins:
   - Kopenhagen
   - Royal Danish
   catalog:
-    km: '586'
+    km:
+    - '586'
+    - '586.2'
     bruun_collection_id: '7696'
     sieg: '20.2'
     schou: '3'
@@ -23661,7 +23518,9 @@ coins:
   ruler: Frederik VI
   mint: Kopenhagen
   catalog:
-    km: '706.2'
+    km:
+    - '706.2'
+    - '706'
     bruun_collection_id: '8093'
     sieg: '28.2'
     schou: '6'
@@ -23801,7 +23660,9 @@ coins:
   mintmaster: Georg Wilhelm Svendsen (WS)
   mint: Kopenhagen
   catalog:
-    km: '713.2'
+    km:
+    - '713.2'
+    - '713'
     bruun_collection_id: '8114'
     sieg: '36.2'
     schou: '1'
@@ -23977,7 +23838,9 @@ coins:
   ruler: Christian VIII
   mint: Kopenhagen
   catalog:
-    km: '722.1'
+    km:
+    - '722.1'
+    - '722'
     bruun_collection_id: '8136'
     sieg: '16.1'
     schou: '1'
@@ -24295,7 +24158,9 @@ coins:
   mintmaster: Georg Vilhelm Svendsen (VS)
   mint: Kopenhagen
   catalog:
-    km: '750.1'
+    km:
+    - '750.1'
+    - '750'
     bruun_collection_id: '8200'
     sieg: '16.1'
     schou: '1'
@@ -24635,7 +24500,9 @@ coins:
   ruler: Frederik VII
   mint: Kopenhagen
   catalog:
-    km: '758.2'
+    km:
+    - '758.2'
+    - '758'
     bruun_collection_id:
     - '8238'
     - '8228'
@@ -24815,7 +24682,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '773.1'
+    km:
+    - '773.1'
+    - '773'
     bruun_collection_id: '8282'
     sieg: '7.1'
     schou: '1'
@@ -25539,7 +25408,9 @@ coins:
   mintmaster: Vilhelm Burchard Poulsen (VBP)
   mint: Kopenhagen
   catalog:
-    km: '792.2'
+    km:
+    - '792.2'
+    - '792'
     bruun_collection_id: '8381'
     sieg: '1.2'
     schou: '5'
@@ -25757,7 +25628,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '794.2'
+    km:
+    - '794.2'
+    - '794'
     bruun_collection_id: '8405'
     sieg: '1.2'
     schou: '3'
@@ -25878,7 +25751,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '814.1'
+    km:
+    - '814.1'
+    - '814'
     bruun_collection_id: '8451'
     sieg: '3.1'
     schou: '4'
@@ -25953,7 +25828,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '813'
+    km:
+    - '813'
+    - '813.1'
     bruun_collection_id: '8452'
     sieg: '3.1'
     schou: '5'
@@ -26028,7 +25905,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '815.1'
+    km:
+    - '815.1'
+    - '815'
     bruun_collection_id: '8456'
     sieg: '3.1'
     schou: '2'
@@ -28759,7 +28638,9 @@ coins:
   ruler: Christian X.
   mint: Kopenhagen
   catalog:
-    km: '817.1'
+    km:
+    - '817.1'
+    - '817'
     hede: 1A
     hede_volume: c10h
     sieg:
@@ -29775,7 +29656,9 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '60'
+    km:
+    - '60'
+    - '60.2'
     hede:
     - 105A
     - 105B
@@ -29857,7 +29740,10 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '59'
+    km:
+    - '59'
+    - '59.1'
+    - 59a
     hede:
     - 106A
     - 106B
@@ -30031,7 +29917,9 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '58'
+    km:
+    - '58'
+    - 58a
     hede:
     - 107A
     - 107B
@@ -30247,7 +30135,9 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '71.1'
+    km:
+    - '71.1'
+    - '71'
     hede: '110'
     hede_volume: c4h
     schou: 99-102
@@ -30754,7 +30644,9 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '66'
+    km:
+    - '66'
+    - '66.1'
     hede: '118'
     hede_volume: c4h
     schou: '142'
@@ -32085,7 +31977,9 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '133.2'
+    km:
+    - '133.2'
+    - '133'
     hede: '150'
     hede_volume: c4h
     schou: 113-122,82-89
@@ -33792,11 +33686,21 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '152'
+    km:
+    - '151'
+    - '152'
     hede: '38'
     hede_volume: c4h
     schou: '5'
-    sieg: '131'
+    sieg:
+    - '131'
+    - '125'
+    bruun_collection_id: '5815'
+    bruun_part: III
+    bruun_lot_no: 11210
+    bruun_page: 108
+    numista: '388109'
+    fr: '59'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -33809,13 +33713,19 @@ coins:
     source: hede
   - value: 0.979
     source: numismaster
+  - value: 0.979
+    source: numista
   - value: 0.98
     source: ucoin
   weight_rough_g:
+  - value: 1.74
+    source: bruun
   - value: 1.745
     source: hede
   - value: 1.745
     source: numismaster
+  - value: 1.75
+    source: numista
   - value: 1.75
     source: ucoin
   diameter_mm:
@@ -33825,9 +33735,15 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_65698
     ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 11210, p. 108
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h38.htm
     ref: danskmoent.dk (Hede c4h38)
+  - type: literature
+    url: https://en.numista.com/388109
+    ref: Numista N#388109 — ½ Ducat - Christian IV
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-2-dukat-1647/?tid=97395
     ref: ucoin
@@ -33839,7 +33755,9 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65698
+  - dk-bruun-5815
   - dk-hede-c4h38
+  - dk-numista-388109
   - dk-tid-97395
 - id: unified-dk-hede-c4h39
   fuss: seed_unsorted
@@ -34390,11 +34308,20 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '18'
+    km:
+    - '17'
+    - '18'
     hede: '49'
     hede_volume: c4h
     schou: '5'
-    sieg: '114'
+    sieg:
+    - '114'
+    - '98'
+    bruun_collection_id: '4647'
+    bruun_part: I
+    bruun_lot_no: 1015
+    bruun_page: 49
+    dav: '3511'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -34407,14 +34334,22 @@ coins:
   - value: 0.888
     source: numismaster
   weight_rough_g:
+  - value: 27.29
+    source: bruun
   - value: 29.232
     source: hede
   - value: 29.232
     source: numismaster
   sources:
   - type: literature
+    url: https://numismaster.com/MC_65399
+    ref: NumisMaster
+  - type: literature
     url: https://numismaster.com/MC_65400
     ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+    ref: Bruun Part I, lot 1015, p. 49
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h49.htm
     ref: danskmoent.dk (Hede c4h49)
@@ -34430,7 +34365,9 @@ coins:
     basis: fin
     unit_raw: speciedalere
   composed_of:
+  - denmark-numismaster-65399
   - denmark-numismaster-65400
+  - dk-bruun-4647
   - dk-hede-c4h49
 - id: unified-dk-hede-c4h50
   fuss: seed_unsorted
@@ -35794,7 +35731,9 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '22'
+    km:
+    - '22'
+    - '22.2'
     hede: '81'
     hede_volume: c4h
     schou: 95-124
@@ -35946,7 +35885,9 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '47.1'
+    km:
+    - '47.1'
+    - '47'
     hede:
     - 84A
     - 84B
@@ -36472,7 +36413,9 @@ coins:
   ruler: Christian IV.
   mint: Kopenhagen
   catalog:
-    km: '32'
+    km:
+    - '32'
+    - '32.3'
     hede: 93A
     hede_volume: c4h
     sieg: '61'
@@ -37940,7 +37883,9 @@ coins:
   mintmaster: Gregorius Sesemann
   mint: Kopenhagen
   catalog:
-    km: '374.2'
+    km:
+    - '374.2'
+    - '374'
     hede:
     - 12AB
     - 12B
@@ -38338,7 +38283,9 @@ coins:
   - Kopenhagen
   - Royal Danish
   catalog:
-    km: '340'
+    km:
+    - '340'
+    - '340.2'
     hede: '2'
     hede_volume: c5h
     schou: '3'
@@ -38601,7 +38548,9 @@ coins:
   mintmaster: Gregorius Sesemann
   mint: Kopenhagen
   catalog:
-    km: '395.1'
+    km:
+    - '395.1'
+    - '395'
     hede:
     - 23AB
     - 23A
@@ -38750,7 +38699,9 @@ coins:
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
-    km: '415'
+    km:
+    - '415'
+    - '415.2'
     hede: 26AB
     hede_volume: c5h
     schou: '5'
@@ -38824,7 +38775,9 @@ coins:
   mintmaster: Christian Wineke, the Elder (CW)
   mint: Kopenhagen
   catalog:
-    km: '416.1'
+    km:
+    - '416.1'
+    - '416'
     hede:
     - 27AB
     - 27A
@@ -41610,7 +41563,9 @@ coins:
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
-    km: '342'
+    km:
+    - '342'
+    - '342.1'
     hede: '70'
     hede_volume: c5h
     schou: '59'
@@ -41761,7 +41716,9 @@ coins:
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
-    km: '351'
+    km:
+    - '351'
+    - '351.1'
     hede: '72'
     hede_volume: c5h
     schou: 11-15
@@ -42175,7 +42132,9 @@ coins:
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
-    km: '367'
+    km:
+    - '367'
+    - '367.1'
     hede: '78'
     hede_volume: c5h
     schou: 19-21
@@ -42357,7 +42316,9 @@ coins:
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
-    km: '377'
+    km:
+    - '377'
+    - '377.1'
     hede: '80'
     hede_volume: c5h
     schou: '16'
@@ -42804,7 +42765,9 @@ coins:
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
-    km: '380'
+    km:
+    - '380'
+    - '380.1'
     hede: '87'
     hede_volume: c5h
     schou: 41-42
@@ -42992,7 +42955,9 @@ coins:
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
-    km: '401.3'
+    km:
+    - '401.3'
+    - '401'
     hede: 90A
     hede_volume: c5h
     sieg: '46.1'
@@ -43378,7 +43343,9 @@ coins:
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
-    km: '404.2'
+    km:
+    - '404.2'
+    - '404'
     hede:
     - 95A
     - 95B
@@ -43508,7 +43475,9 @@ coins:
   ruler: Christian V.
   mint: Kopenhagen
   catalog:
-    km: '428'
+    km:
+    - '428'
+    - '428.1'
     hede:
     - 99A
     - 99B
@@ -44499,7 +44468,9 @@ coins:
   - Altona
   - Kopenhagen
   catalog:
-    km: '651.1'
+    km:
+    - '651.1'
+    - '651'
     hede:
     - 13A
     - 13B
@@ -44933,7 +44904,9 @@ coins:
   ruler: Christian VII.
   mint: Kopenhagen
   catalog:
-    km: '635.1'
+    km:
+    - '635.1'
+    - '635'
     hede: '29'
     hede_volume: c7h
     schou: '4'
@@ -45205,7 +45178,9 @@ coins:
   ruler: Christian VII.
   mint: Kopenhagen
   catalog:
-    km: '631.1'
+    km:
+    - '631.1'
+    - '631'
     hede:
     - 33A
     - 33B
@@ -45587,7 +45562,9 @@ coins:
   ruler: Christian VIII.
   mint: Kopenhagen
   catalog:
-    km: '735.1'
+    km:
+    - '735.1'
+    - '735'
     hede:
     - 4A
     - 4B
@@ -46096,7 +46073,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '798'
+    km:
+    - '798'
+    - '798.1'
     hede: 13A
     hede_volume: c9h
     sieg: '14.1'
@@ -46223,7 +46202,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '797'
+    km:
+    - '797'
+    - '797.1'
     hede: 14A
     hede_volume: c9h
     sieg: '13.1'
@@ -46409,7 +46390,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '796.2'
+    km:
+    - '796.2'
+    - '796'
     hede: 15B
     hede_volume: c9h
     sieg:
@@ -46587,7 +46570,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '795.2'
+    km:
+    - '795.2'
+    - '795'
     hede: 16B
     hede_volume: c9h
     sieg:
@@ -47136,7 +47121,9 @@ coins:
   mintmaster: Peter Rasmus Hinnerup (RH)
   mint: Kopenhagen
   catalog:
-    km: '772.1'
+    km:
+    - '772.1'
+    - '772'
     hede: 4A
     hede_volume: c9h
     schou:
@@ -47468,7 +47455,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '791.2'
+    km:
+    - '791.2'
+    - '791'
     hede: 8B
     hede_volume: c9h
     sieg:
@@ -47644,7 +47633,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '790.2'
+    km:
+    - '790.2'
+    - '790'
     hede: 9B
     hede_volume: c9h
     sieg:
@@ -49490,7 +49481,9 @@ coins:
   ruler: Frederik III.
   mint: Kopenhagen
   catalog:
-    km: '269.3'
+    km:
+    - '269.3'
+    - '269'
     hede: '107'
     hede_volume: f3h
     schou: 73-87
@@ -49558,7 +49551,9 @@ coins:
   ruler: Frederik III.
   mint: Kopenhagen
   catalog:
-    km: '259'
+    km:
+    - '259'
+    - '259.1'
     hede:
     - 108A
     - 108B
@@ -50461,7 +50456,9 @@ coins:
   ruler: Frederik III.
   mint: Kopenhagen
   catalog:
-    km: '305'
+    km:
+    - '305'
+    - '305.1'
     hede: '121'
     hede_volume: f3h
     schou: '44'
@@ -53197,7 +53194,9 @@ coins:
   inscription_rev: III / MARCK / DANSKE / 1665
   mint: Kopenhagen
   catalog:
-    km: '264.2'
+    km:
+    - '264.2'
+    - '264'
     hede:
     - 40A
     - 40B
@@ -54017,7 +54016,9 @@ coins:
   ruler: Frederik III.
   mint: Kopenhagen
   catalog:
-    km: '196.2'
+    km:
+    - '196.2'
+    - '196'
     hede:
     - 53AB
     - 53B
@@ -58202,7 +58203,9 @@ coins:
   - Kopenhagen
   - Royal Danish
   catalog:
-    km: '480'
+    km:
+    - '480'
+    - '480.1'
     hede: '34'
     hede_volume: f4h
     schou: '6'
@@ -60162,7 +60165,9 @@ coins:
   mintmaster: Ingeborg Maria Wineke
   mint: Kopenhagen
   catalog:
-    km: '568.2'
+    km:
+    - '568.2'
+    - '568'
     hede:
     - 10AB
     - 10B
@@ -60308,19 +60313,33 @@ coins:
   year_last: 1747
   year_label: '1747'
   ruler: Frederik V.
+  mintmaster: Christian Wineke, the younger
   mint: Kopenhagen
   catalog:
-    km: '567'
+    km:
+    - '569'
+    - '567'
     hede:
     - '12'
     - 12AB
+    - 12B
     hede_volume: f5h
-    sieg: '33'
-    schou: '1'
+    sieg:
+    - '33'
+    - '33.2'
+    schou:
+    - '1'
+    - '3'
+    bruun_collection_id: '7613'
+    bruun_part: II
+    bruun_lot_no: 13221
+    bruun_page: 161
+    fr: '270'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
@@ -60328,21 +60347,39 @@ coins:
     source: hede
   - value: 0.979
     source: numismaster
+  - value: 0.98
+    source: ucoin
   weight_rough_g:
+  - value: 6.98
+    source: bruun
+  - value: 6.98
+    source: ucoin
   - value: 6.981
     source: hede
   - value: 6.981
     source: numismaster
+  diameter_mm:
+  - value: 25.7
+    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_65907
     ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_65909
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13221, p. 161
   - type: literature
     url: https://www.danskmoent.dk/f5hede.htm
     ref: danskmoent.dk overview f5hede (Hede f5h12 — Tiefenseite fehlt)
   - type: literature
     url: https://www.danskmoent.dk/fr/f5h11.htm
     ref: danskmoent.dk (Hede f5h12AB)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-dukat-1747/?tid=94405
+    ref: ucoin
   verification_note:
     de: 'Hede-Index-Stub: Nur die Übersichtsreihe von f5hede.htm belegt diesen Eintrag (Hede-Tiefenseite fehlt auf danskmoent.dk).
       Gewicht und Probe nicht erfasst; vollständige Per-Münze-Verifikation hängt am §AZ Paper-Source-Import (Hede 1971 + Galster
@@ -60356,8 +60393,11 @@ coins:
   issuing_entity: danish_realm
   composed_of:
   - denmark-numismaster-65907
+  - denmark-numismaster-65909
+  - dk-bruun-7613
   - dk-hede-f5h12
   - dk-hede-f5h12ab
+  - dk-tid-94405
 - id: unified-dk-hede-f5h13
   fuss: seed_unsorted
   phase: hede
@@ -61913,7 +61953,9 @@ coins:
   mintmaster: Peter Nicolai Van Hauen (VH)
   mint: Kopenhagen
   catalog:
-    km: '578.1'
+    km:
+    - '578.1'
+    - '578'
     hede:
     - 37bA
     - 37A
@@ -63802,7 +63844,9 @@ coins:
   - Kopenhagen
   - Royal Danish
   catalog:
-    km: '582'
+    km:
+    - '582'
+    - '582.1'
     numista: '100481'
   metal: silver
   metal_verified: true
@@ -63869,7 +63913,9 @@ coins:
   ruler: Christian IV
   mint: Kopenhagen
   catalog:
-    km: '95'
+    km:
+    - '95'
+    - '95.2'
     numista: '107713'
   metal: silver
   metal_verified: true
@@ -63936,7 +63982,9 @@ coins:
   ruler: Christian IV
   mint: Kopenhagen
   catalog:
-    km: '136'
+    km:
+    - '136'
+    - '136.1'
     numista: '107716'
   metal: silver
   metal_verified: true
@@ -64495,7 +64543,9 @@ coins:
   year_label: 1618-1619
   ruler: Christian IV
   catalog:
-    km: '61'
+    km:
+    - '61'
+    - '61.1'
     numista: '109282'
     dav: 3516A
     bruun_collection_id: '5078'
@@ -65314,7 +65364,9 @@ coins:
   ruler: Frederick III (Frederik III)
   mint: Kopenhagen
   catalog:
-    km: '194.4'
+    km:
+    - '194.4'
+    - 194.4a
     numista: '111299'
     dav: EC II# 3574
   metal: silver
@@ -65376,7 +65428,9 @@ coins:
   ruler: Frederick III (Frederik III)
   mint: Kopenhagen
   catalog:
-    km: '194.5'
+    km:
+    - '194.5'
+    - '194'
     numista: '111300'
     dav: EC II# 3574
   metal: silver
@@ -65489,7 +65543,9 @@ coins:
   ruler: Frederick III
   mint: Kopenhagen
   catalog:
-    km: '257'
+    km:
+    - '257'
+    - '257.1'
     numista: '111341'
   metal: billon
   metal_verified: true
@@ -65802,7 +65858,9 @@ coins:
   ruler: Christian V
   mint: Kopenhagen
   catalog:
-    km: '406.1'
+    km:
+    - '406.1'
+    - '406'
     numista: '112647'
   metal: silver
   metal_verified: true
@@ -67216,7 +67274,9 @@ coins:
   ruler: Frederick III (Frederik III)
   mint: Kopenhagen
   catalog:
-    km: '186'
+    km:
+    - '186'
+    - '186.3'
     numista: '143477'
     dav: EC II# 3569
   metal: silver
@@ -68913,7 +68973,9 @@ coins:
   year_label: 1693-1694, 1696
   ruler: Christian V
   catalog:
-    km: '421'
+    km:
+    - '421'
+    - '421.1'
     numista: '175690'
   metal: copper
   metal_verified: true
@@ -69090,7 +69152,9 @@ coins:
   ruler: Frederick IV
   mint: Kopenhagen
   catalog:
-    km: '512'
+    km:
+    - '512'
+    - '512.1'
     numista: '18165'
   metal: copper
   metal_verified: true
@@ -69294,7 +69358,9 @@ coins:
   ruler: Christian V
   mint: Kopenhagen
   catalog:
-    km: '386.1'
+    km:
+    - '386.1'
+    - '386'
     numista: '182057'
     dav: '3639'
   metal: silver
@@ -70481,7 +70547,9 @@ coins:
   ruler: Frederick III
   mint: Kopenhagen
   catalog:
-    km: '191'
+    km:
+    - '191'
+    - '191.1'
     numista: '201276'
   metal: silver
   metal_verified: true
@@ -70715,7 +70783,9 @@ coins:
   ruler: Frederick III
   mint: Kopenhagen
   catalog:
-    km: '283'
+    km:
+    - '283'
+    - '283.1'
     numista: '211450'
   metal: billon
   metal_verified: true
@@ -72098,7 +72168,9 @@ coins:
   ruler: Christian IV
   mint: Kopenhagen
   catalog:
-    km: '63.2'
+    km:
+    - '63.2'
+    - '63'
     numista: '302868'
   metal: billon
   metal_verified: true
@@ -73592,7 +73664,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '793'
+    km:
+    - '793'
+    - '793.2'
     numista: '4140'
   metal: bronze
   metal_verified: true
@@ -74349,7 +74423,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '577'
+    km:
+    - '577'
+    - '577.1'
     numista: '43458'
   metal: copper
   metal_verified: true
@@ -76016,7 +76092,9 @@ coins:
   - Kopenhagen
   - Royal Danish
   catalog:
-    km: '673'
+    km:
+    - '673'
+    - '673.1'
     numista: '47936'
     bruun_collection_id: '8014'
     bruun_part: II
@@ -76559,7 +76637,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '818'
+    km:
+    - '818'
+    - '818.1'
     numista: '5568'
   metal: billon
   metal_verified: true
@@ -77856,7 +77936,9 @@ coins:
   - Kopenhagen
   - Royal Danish Mint (Den Kongelige Mønt)
   catalog:
-    km: '812'
+    km:
+    - '812'
+    - '812.1'
     numista: '8497'
   metal: bronze
   metal_verified: true
@@ -78275,7 +78357,9 @@ coins:
   - Kopenhagen
   - Royal Danish
   catalog:
-    km: '579'
+    km:
+    - '579'
+    - '579.1'
     numista: '92859'
   metal: billon
   metal_verified: true

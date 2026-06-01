@@ -114,31 +114,33 @@ def _entities_with_seed_unified() -> list[str]:
     return sorted(p.stem for p in V2_SEED_UNIFIED.glob("*.yml"))
 
 
-def _km_base(coin: dict) -> str | None:
-    """Base KM token of a coin: leading optional-letter + integer part,
-    dropping dot-subvariant + trailing letters. 'A110'→'A110', '70.1'→'70',
-    '11a'→'11', '156,3'→'156'. Returns None when KM is absent / dict-empty.
+def _km_bases(coin: dict) -> set:
+    """SET of base KM tokens of a coin — handles scalar, list-form
+    (multi-source / curator-merged KM accumulation, e.g. ['21','21.1']), and
+    dict-form (register-keyed). Each token: leading optional-letter + integer
+    part, dropping dot-subvariant + trailing letters ('A110'→'A110', '70.1'→
+    '70', '11a'→'11', '156,3'→'156'). Empty set when KM is absent.
 
-    Used to detect GENUINE cross-type KM divergence (different base = different
-    Krause type per CLAUDE.md §9.4) while tolerating sub-variants ('11'≡'11a',
-    '70'≡'70.1'). The A-prefix is PRESERVED (KM A110 ≠ KM 110 — Krause addendum
-    types are distinct), so A-prefix divergence still reads as different; those
-    cases are kept OUT of the auto-purge allowlist for curator review."""
-    cat = coin.get("catalog") or {}
-    km = cat.get("km")
+    Two coins SHARE a KM type iff their base-sets intersect; they are GENUINELY
+    KM-divergent (different Krause type per CLAUDE.md §9.4) iff both base-sets
+    are non-empty AND DISJOINT. Sub-variants tolerated ('11'≡'11a','70'≡'70.1');
+    the A-prefix is PRESERVED (KM A110 ≠ KM 110). List-form KM must NOT be
+    str()'d whole (that yields garbage like "['21','21.1']" → false divergence
+    — the 44-false-positive bug, 2026-05-31)."""
+    km = (coin.get("catalog") or {}).get("km")
+    if km in (None, "", []):
+        return set()
     if isinstance(km, dict):
         vals = [v for v in km.values() if v not in (None, "", [])]
-        km = vals[0] if vals else None
-    if isinstance(km, list):
-        # Multi-KM (curator-merged) coin — the first (top-authority) value
-        # is sufficient for the safety guard, which only needs to refuse a
-        # genuinely-different-type absorb (different base never overlaps).
-        km = km[0] if km else None
-    if km in (None, "", []):
-        return None
-    s = str(km).strip()
-    m = re.match(r"^([A-Za-z]*)(\d+)", s)
-    return (m.group(1).upper() + m.group(2)) if m else s
+    elif isinstance(km, list):
+        vals = [v for v in km if v not in (None, "", [])]
+    else:
+        vals = [km]
+    out = set()
+    for v in vals:
+        m = re.match(r"^([A-Za-z]*)(\d+)", str(v).strip())
+        out.add((m.group(1).upper() + m.group(2)) if m else str(v).strip())
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -1253,10 +1255,11 @@ def process_entity(entity_id: str) -> dict:
                 # Krause KM under one N#, so a shared N# must NOT fuse KM 40
                 # with KM 48 (this fallback was the over-merge root cause —
                 # 2026-05-31 audit). Bare-vs-subvariant (KM 70 ≡ 70.1) and
-                # absent-KM still pass: _km_base collapses dot-subvariants and
-                # returns None when KM is absent.
-                ub, fb = _km_base(unified), _km_base(fc)
-                if ub is not None and fb is not None and ub != fb:
+                # absent-KM still pass: divergent ONLY when both base-sets are
+                # non-empty AND disjoint (list-form KM that shares a base, e.g.
+                # 21.2 vs ['21','21.1'], is the SAME coin).
+                ub, fb = _km_bases(unified), _km_bases(fc)
+                if ub and fb and ub.isdisjoint(fb):
                     continue
                 id_fallback.append(fid)
             if len(id_fallback) == 1:

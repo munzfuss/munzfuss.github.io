@@ -50,6 +50,70 @@ merges:
       covered by the separate Hede nf4h16 + nf4h17 entries (Frederik
       IV); see no_merges below.
 
+  # --- A1 over-merge group (curator decision 2026-05-31, Serhii, by
+  # image + Bruun-lot review). Each pair shares the SAME Hede type AND
+  # the SAME Bruun lot / Numista N# (already one specimen-set), but
+  # Krause assigns a different / addendum KM to the host's Hede vs the
+  # member's. One coin; divergent KM accumulate to list-form per §9a.
+  # The auto-matcher returns no_match on the KM divergence, so these
+  # need explicit merges to survive re-runs (were absorb-level
+  # over-merges before this). ---
+  - members:
+      - dk-hede-nc4h13
+      - dk-bruun-9328
+    reason: |
+      ⅛ Speciedaler Christian V, Hede 13/13A, Norway. Host KM 10 vs
+      member KM 9 — same Hede 13 type (Bruun III lot 12049, Numista
+      N#115207 shared on both). danskmoent.dk/norge/nc4h13.htm.
+
+  - members:
+      - dk-hede-nc5h29
+      - dk-bruun-10112
+    reason: |
+      1 Speciedaler Christian V, Hede 29, Norway. Host KM 108 vs member
+      KM 109 — same Hede 29 type (Bruun III lot 12094 shared).
+      danskmoent.dk/norge/nc5h29.htm.
+
+  - members:
+      - dk-hede-nc7h6
+      - dk-bruun-10882
+    reason: |
+      ⅓ Speciedaler Christian VII, Hede 6, Norway. Host KM 273 vs member
+      KM 266 — same Hede 6 type (Bruun III lot 12132, Numista N#100310,
+      ucoin tid 88741 shared). danskmoent.dk/norge/nc7h6.htm.
+
+  - members:
+      - dk-hede-nf3h14
+      - dk-bruun-9663
+    reason: |
+      1 Speciedaler Frederik III, Hede 14, Christiania. Host KM 40 vs
+      member KM 48 — same Hede 14 type. Curator: true KM is 40; the 48
+      is a divergent Krause citation. danskmoent.dk/norge/nf3h14.htm.
+
+  - members:
+      - dk-hede-nf3h17
+      - dk-bruun-9660
+    reason: |
+      1 Speciedaler Frederik III, Hede 17, Christiania. Host KM A46 vs
+      member KM 48 — same Hede 17 type (Bruun II lot 14041, IKMK
+      18219601 shared). danskmoent.dk/norge/nf3h17.htm.
+
+  - members:
+      - dk-hede-nf3h53
+      - dk-numista-118954
+    reason: |
+      1 Speciedaler Frederik III, Hede 53, Christiania. Host KM 59 vs
+      member KM 73 (Hede 53A) — same Hede 53 type.
+      danskmoent.dk/norge/nf3h53.htm.
+
+  - members:
+      - dk-hede-nf3h38
+      - dk-numista-118993
+    reason: |
+      12 Skilling Frederik III, Hede 38, Norway. Host KM 62 vs member
+      KM 63 (Hede 38A) — same Hede 38 type.
+      danskmoent.dk/norge/nf3h38.htm.
+
 no_merges:
   - members:
       - denmark-numismaster-110665

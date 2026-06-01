@@ -1,0 +1,40 @@
+# Curator merge decisions — entity `danish_realm`.
+#
+# Two decision surfaces, both authoritative over the auto-matcher:
+#   merges:    force these member-ids into one unified class
+#   no_merges: forbid these member pairs from ever uniting
+#
+# Loaded by merge_seeds_cross_source.py::_load_decisions and applied via
+# union-find. IDs reference V2 seed-layer entries (data/v2/seed/<src>/<entity>.yml).
+
+merges:
+  # --- A1 over-merge group (curator decision 2026-05-31, Serhii, by image +
+  # Bruun-lot review). Each pair shares the SAME Hede type AND the SAME Bruun
+  # lot / Numista N# (already one specimen-set), but Krause assigns a
+  # different / addendum KM to the host's Hede vs the member's. One coin;
+  # divergent KM accumulate to list-form per §9a. The auto-matcher returns
+  # no_match on the KM divergence, so these need explicit merges to survive
+  # re-runs (were absorb-level over-merges before this). ---
+  - members:
+      - dk-hede-c4h38
+      - dk-bruun-5815
+    reason: |
+      ½ Dukat Christian IV, Hede 38, 1647. Host KM 152 vs member KM 151 —
+      same Hede 38 type (Bruun I lot 1046 coll 5814/5815, Numista N#388109
+      shared). danskmoent.dk/chr/c4h38.htm.
+
+  - members:
+      - dk-hede-c4h49
+      - dk-bruun-4647
+    reason: |
+      1 Speciedaler Christian IV, Hede 49, 1603. Host KM 18 vs member KM 17
+      — same Hede 49 type (Bruun I lot 1015 coll 4647 shared on both).
+      danskmoent.dk/chr/c4h49.htm.
+
+  - members:
+      - dk-hede-f5h12
+      - dk-bruun-7613
+    reason: |
+      2 Dukat Frederik V, Hede 12, 1747. Host KM 567 vs member KM 569 (Hede
+      12B) — same Hede 12 type (Bruun II lot 13221 coll 7613, ucoin tid
+      94405 shared). danskmoent.dk/f5hede.htm.

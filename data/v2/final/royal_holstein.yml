@@ -1569,42 +1569,94 @@ coins:
   ruler: Christian VII.
   issuing_entity: royal_holstein
   id: km-641-2-chr-vii-1783
-  year_first: 1783
-  year_last: 1783
-  year_label: '1783'
-  mint: Altona
+  year_first: 1781
+  year_last: 1785
+  year_ranges:
+  - - 1781
+    - 1785
+  year_label: 1781-1785
+  mint:
+  - Altona
+  - Royal Danish
   catalog:
-    km: '641.2'
-    bruun_collection_id: '7837'
+    km:
+    - '641.2'
+    - '641.1'
+    - '641'
+    - '641.3'
+    - '641.4'
+    bruun_collection_id:
+    - '7837'
+    - '7849'
+    - '7859'
     bruun_part: III
     bruun_lot_no: 11292
     bruun_page: 147
     hede_volume: c7h
-    sieg: '27.1'
-    schou: '7'
-    hede: 4B
+    sieg:
+    - '27.1'
+    - '27.4'
+    schou:
+    - '7'
+    - '2'
+    - 1a
+    hede:
+    - 4B
+    - 4A
+    - 4D
     fr: '281'
-    fp: '44.3'
+    fp:
+    - '44.3'
+    - '44.2'
+    - '44.6'
+    numista: '131778'
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.875
     source: numismaster
+  - value: 0.875
+    source: numista
   weight_rough_g:
+  - value: 3.1
+    source: bruun
+  - value: 3.1
+    source: numista
+  - value: 3.11
+    source: bruun
   - value: 3.118
     source: numismaster
   - value: 3.12
     source: bruun
+  diameter_mm:
+  - value: 20.86
+    source: numista
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 11292, p. 147
   - type: literature
     url: https://numismaster.com/MC_65652
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_65651
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13240, p. 168
+  - type: literature
+    url: https://en.numista.com/131778
+    ref: Numista N#131778 — 12 Mark - Christian VII
+  - type: literature
+    url: https://numismaster.com/MC_65653
+    ref: NumisMaster
+  - type: literature
+    url: https://numismaster.com/MC_65654
     ref: NumisMaster
   note:
     de: 12 Mark (Courant Ducat) 1783 · Goldprägung des Courantdukaten-Tarifs
@@ -1621,7 +1673,10 @@ coins:
       якірна проба 0.875) встановлена на канонічне значення стандарту; Δ +0.06% проти Soll лежить у смузі ±2 % допустимої
       специмен-толерантності, тож припущене значення не суперечить жодному задокументованому показнику.
   composed_of:
+  - unified-denmark-numismaster-65653
   - unified-dk-bruun-7837
+  - unified-dk-bruun-7849
+  - unified-dk-bruun-7859
   v1_home_location: schleswig_holstein
   _migration_note: auto-mapped from gesamtstaat
 - fuss: 11_333_thaler
@@ -2350,6 +2405,7 @@ coins:
     km:
     - '70.1'
     - '70'
+    - '70.2'
     hede: '117'
     sieg:
     - '144'
@@ -2433,6 +2489,9 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
     ref: Bruun Part I, lot 1106, p. 155
+  - type: literature
+    url: https://numismaster.com/MC_93040
+    ref: NumisMaster
   note:
     de: 'Glückstädter Standard-Typ Christians V. (1680–1685, Münzmeister CW = Christoph Friedrich Woltereck, 1680–1702 — Nachfolger
       seines Onkels Johan(n) Woltereck/IW 1664–1679) · Obverse «CHRISITANVS · V · D · G · REX · DAN · NOR ·», Reverse «PIETATE.
@@ -2465,6 +2524,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   composed_of:
   - unified-dk-hede-c5h117
+  - unified-schleswig_holstein-numismaster-93040
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
   phase: I
@@ -3595,15 +3655,13 @@ coins:
   mint: Glückstadt
   catalog:
     km:
-    - '8.1'
     - '8'
+    - '8.1'
     - '8.2'
     - '8.3'
     - '8.4'
     - '8.5'
     - '8.6'
-    others:
-    - KM-DK# 8
     numista: '142941'
     hede: '168'
     lange: '56'
@@ -3629,6 +3687,12 @@ coins:
   - value: 1.01
     source: ucoin
   sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-skilling-lybsk-1620/?tid=163588
+    ref: ucoin
+  - type: literature
+    url: https://en.numista.com/142941
+    ref: Numista N#142941 — 2 Skilling Lybsk - Christian IV Wire money
   - type: literature
     url: https://numismaster.com/MC_92977
     ref: NumisMaster
@@ -3647,12 +3711,6 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_92982
     ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-skilling-lybsk-1620/?tid=163588
-    ref: ucoin
-  - type: literature
-    url: https://en.numista.com/142941
-    ref: Numista N#142941 — 2 Skilling Lybsk - Christian IV Wire money
   note:
     de: 2 Skilling Lybsk = 1/24 Speciedaler · Christian IV. (Glückstadt 1620, früheste dokumentierte Glückstädter Sk-Lybsk-Stufe
       in der Reichsmüntzfuß-Phase 1617–1622). <b>Reichsmünzordnung-Standard-Feingehalt .888</b>; rohes Gewicht 1,01 g entspricht
@@ -5533,25 +5591,25 @@ coins:
     sieg:
     - '40.1'
     - '40.2'
+    - '43.1'
+    - '43.2'
     - '40.3'
     - '53'
     - '43'
-    - '43.1'
-    - '43.2'
     schou:
     - '8'
-    - 4-5
     - '7'
-    bruun_lot: '7870'
-    lange: '135'
-    numista:
-    - '60090'
-    - '325284'
-    others:
-    - Sieg# 43.1
+    - 4-5
     bruun_collection_id:
     - '7870'
     - '7871'
+    lange: '135'
+    numista:
+    - '325284'
+    - '60090'
+    bruun_lot: '7870'
+    others:
+    - Sieg# 43.1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -5587,12 +5645,18 @@ coins:
   - value: 32.0
     source: numista
   sources:
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 13245, p. 169
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
+    ref: Bruun Part IV, lot 17143, p. 89
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h41.htm
     ref: danskmoent.dk (Hede c7h41A)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/schleswig_holstein-1-3-speciedaler-1787-1808/?tid=90616
-    ref: ucoin
+  - type: literature
+    url: https://en.numista.com/325284
+    ref: Numista N#325284 — ⅓ Speciesthaler / 20 Schilling Courant - Christian VII
   - type: literature
     url: https://numismaster.com/MC_120083
     ref: NumisMaster
@@ -5600,26 +5664,14 @@ coins:
     url: https://numismaster.com/MC_120084
     ref: NumisMaster
   - type: literature
-    url: https://numismaster.com/MC_187160
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 13245, p. 169
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17143, p. 89
-  - type: web
-    url: https://auctions.stacksbowers.com/lots/view/3-1G6V6M/denmark-schleswig-holstein-13-speciedaler-1787-bmf-altonapoppenbuttel-mint-christian-vii-ngc-ms-64
-    ref: SB (Bruun-Slg.)
-  - type: numista
-    url: https://en.numista.com/catalogue/pieces60090.html
-    ref: Numista
-  - type: literature
-    url: https://en.numista.com/325284
-    ref: Numista N#325284 — ⅓ Speciesthaler / 20 Schilling Courant - Christian VII
-  - type: literature
     url: https://en.numista.com/60090
     ref: Numista N#60090 — ⅓ Speciesthaler / 20 Schilling Courant - Christian VII
+  - type: ucoin
+    url: https://en.ucoin.net/coin/schleswig_holstein-1-3-speciedaler-1787-1808/?tid=90616
+    ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_187160
+    ref: NumisMaster
   note:
     de: «20 · SCHILLING · SCHLESW · HOLST · COURANT · ⅓ SP ·» · Münzmeister MF · ⅓ Thaler Species = 8,42724 g fein · 20 Sch.C.
       = ⅓ Thaler Species
@@ -7889,43 +7941,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-93038
-- fuss: reichsdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 1 Ducat
-  issuing_entity: royal_holstein
-  fraction: '1'
-  id: unified-schleswig_holstein-numismaster-93040
-  year_first: 1680
-  year_last: 1680
-  year_label: '1680'
-  catalog:
-    km: '70.2'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.986
-    source: numismaster
-  weight_rough_g:
-  - value: 3.5
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_93040
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-93040
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -14485,45 +14500,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-denmark-numismaster-65630
-- fuss: courantdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 12 Mark
-  ruler: Christian VII
-  issuing_entity: royal_holstein
-  fraction: '1'
-  id: unified-denmark-numismaster-65653
-  year_first: 1783
-  year_last: 1783
-  year_label: '1783'
-  mint: Altona
-  catalog:
-    km: '641.3'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  weight_rough_g:
-  - value: 3.118
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65653
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-denmark-numismaster-65653
 - fuss: 18_5_thaler
   phase: I
   kind: scheide
@@ -14578,9 +14554,6 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1820/?tid=70756
     ref: ucoin
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17161, p. 93
   - type: literature
     url: https://numismaster.com/MC_66036
     ref: NumisMaster
@@ -15155,147 +15128,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-6485
-- fuss: courantdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 12 Mark
-  ruler: Christian VII
-  issuing_entity: royal_holstein
-  fraction: '1'
-  id: unified-dk-bruun-7849
-  year_first: 1781
-  year_last: 1785
-  year_ranges:
-  - - 1781
-    - 1785
-  year_label: 1781-1785
-  mint:
-  - Altona
-  - Royal Danish
-  catalog:
-    km:
-    - '641.1'
-    - '641'
-    bruun_collection_id: '7849'
-    schou: '2'
-    hede: 4A
-    fr: '281'
-    fp: '44.2'
-    numista: '131778'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  - value: 0.875
-    source: numista
-  weight_rough_g:
-  - value: 3.1
-    source: bruun
-  - value: 3.1
-    source: numista
-  - value: 3.118
-    source: numismaster
-  diameter_mm:
-  - value: 20.86
-    source: numista
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65651
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 13240, p. 168
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
-    ref: Bruun Part IV, lot 17135, p. 86
-  - type: literature
-    url: https://en.numista.com/131778
-    ref: Numista N#131778 — 12 Mark - Christian VII
-  note:
-    de: 8 Skilling 1763 (KM-596 Hede-38B) · Bruun-Specimen.
-    en: 8 Skilling 1763 (KM-596 Hede-38B) · Bruun specimen.
-    uk: 8 Skilling 1763 (KM-596 Hede-38B) · Bruun-зразок.
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7849
-- fuss: courantdukatenfuss
-  phase: I
-  kind: kurant
-  nominal: 12 Mark
-  ruler: Christian VII
-  mintmaster: Didrik Christian Lyng
-  issuing_entity: royal_holstein
-  fraction: '1'
-  id: unified-dk-bruun-7859
-  year_first: 1785
-  year_last: 1785
-  year_label: '1785'
-  mint: Altona
-  catalog:
-    km: '641.4'
-    bruun_collection_id: '7859'
-    sieg: '27.4'
-    schou: 1a
-    hede: 4D
-    fr: '281'
-    fp: '44.6'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numismaster
-  weight_rough_g:
-  - value: 3.11
-    source: bruun
-  - value: 3.118
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_65654
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 13241, p. 168
-  note:
-    de: 12 Mark (Courant Ducat) 1785-W/DCL (KM-641.4 Hede-4D, Untervariante zur KM-641.2-Erstprägung 1783) · Münzmeister Didrik
-      Christian Lange (DCL)
-    en: 12 Mark (Courant Ducat) 1785-W/DCL (KM-641.4 Hede-4D, sub-variant of the initial KM-641.2 1783 issue) · mintmaster
-      Didrik Christian Lange (DCL)
-    uk: 12 Mark (Courant Ducat) 1785-W/DCL (KM-641.4 Hede-4D, підваріант першої емісії KM-641.2 1783) · монетмейстер Didrik
-      Christian Lange (DCL)
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7859
 - fuss: 18_5_thaler
   phase: I
   kind: kurant
