@@ -80,6 +80,20 @@ URL_COUNTRY_TO_ENTITY: dict[str, str] = {
     "schleswig_holstein": "royal_holstein",
     "hamburg": "hanseatic_hamburg",
     "lubeck": "hanseatic_lubeck",
+    # German mission entities (§CM 2026-06-01) — ucoin had harvested ~734
+    # coins for these but the map omitted them → silently skipped. All three
+    # Brunswick lines (incl. Wolfenbüttel) fold into the one Braunschweig-
+    # Lüneburg entity. `german_empire` is intentionally NOT mapped — the
+    # unified-Empire common types don't belong to a single mission state
+    # (curator decision pending, §CM).
+    "brunswick": "herzogtum_braunschweig_lueneburg",
+    "brunswick_wolfenbuttel": "herzogtum_braunschweig_lueneburg",
+    "brunswick_luneburg": "herzogtum_braunschweig_lueneburg",
+    "osnabruck": "hochstift_osnabrueck",
+    "bremen": "erzbisthum_bremen_verden",
+    "hesse_kassel": "landgrafschaft_hessen_kassel",
+    "oldenburg": "grafschaft_oldenburg",
+    "lauenburg": "herzogtum_sachsen_lauenburg",
 }
 
 # V1 location yaml stem → default V2 entity for the V1-carry-over path.
@@ -107,6 +121,16 @@ ENTITY_WINDOW: dict[str, tuple[int, int]] = {
     "provisional_govt": (1848, 1851),    # 1848 revolution SH gov't
     "hanseatic_hamburg": (1559, 1914),
     "hanseatic_lubeck": (1559, 1914),
+    # German mission entities (§CM 2026-06-01). Per CLAUDE.md mission scope
+    # «German lands» lower bound 1559 (Augsburger Reichsmünzordnung) / upper
+    # 1914. `--all` iterates ENTITY_WINDOW.keys() + build_seed gates on
+    # membership, so these MUST be here for the entities to be processed.
+    "erzbisthum_bremen_verden": (1559, 1914),
+    "grafschaft_oldenburg": (1559, 1914),
+    "herzogtum_braunschweig_lueneburg": (1559, 1914),
+    "herzogtum_sachsen_lauenburg": (1559, 1914),
+    "hochstift_osnabrueck": (1559, 1914),
+    "landgrafschaft_hessen_kassel": (1559, 1914),
 }
 
 # `gesamtstaat` is DEPRECATED per docs/V2_DECISIONS.md — mint-driven
