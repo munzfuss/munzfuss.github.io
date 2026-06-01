@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/erzbisthum_bremen_verden.yml across all sources.
 #
 # Input: 188 per-source seed entries.
-# Output: 159 unified entries (one per physical coin).
+# Output: 158 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1788,8 +1788,6 @@ coins:
   inscription_obv: I F D G - A E E P B
   inscription_rev: MATT D R IM S A 619
   mint: Bremervörde
-  catalog:
-    lange: '500'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -3195,8 +3193,6 @@ coins:
   inscription_obv: IO F D G - A E EP B L
   inscription_rev: MATTHI D G RO IM S A 618
   mint: Bremervörde
-  catalog:
-    lange: '499'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -3267,8 +3263,6 @@ coins:
   inscription_obv: I F D G - A EP B
   inscription_rev: MATT D G R IM S A 619
   mint: Bremervörde
-  catalog:
-    lange: '500'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -3283,8 +3277,11 @@ coins:
     url: https://ikmk.smb.museum/object?id=18289023
     ref: IKMK Berlin 18289023
   - type: museum
-    url: https://ikmk.smb.museum/object?id=18289070
-    ref: IKMK Berlin 18289070
+    url: https://ikmk.smb.museum/object?id=18289029
+    ref: IKMK Berlin 18289029
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18289038
+    ref: IKMK Berlin 18289038
   - type: museum
     url: https://ikmk.smb.museum/object?id=18289072
     ref: IKMK Berlin 18289072
@@ -3297,45 +3294,9 @@ coins:
   composed_of:
   - ikmk-18289012
   - ikmk-18289023
-  - ikmk-18289070
-  - ikmk-18289072
-- id: unified-ikmk-18289029
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Doppelschilling
-  year_first: 1619
-  year_last: 1619
-  year_label: '1619'
-  ruler: Johann Friedrich von Schleswig-Holstein-Gottorf
-  mintmaster: Thomas Timpf (Tympf)
-  inscription_obv: I F D G - A E E B
-  inscription_rev: MATT D G R IM S A 619
-  mint: Bremervörde
-  catalog:
-    lange: '501'
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18289029
-    ref: IKMK Berlin 18289029
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18289038
-    ref: IKMK Berlin 18289038
-  note:
-    de: 1/16 Taler
-    en: 1/16 Taler
-    uk: 1/16 Taler
-  verification_note: *id001
-  issuing_entity: erzbisthum_bremen_verden
-  composed_of:
   - ikmk-18289029
   - ikmk-18289038
+  - ikmk-18289072
 - id: unified-ikmk-18289068
   fuss: seed_unsorted
   phase: ikmk
@@ -3349,8 +3310,6 @@ coins:
   inscription_obv: IOH F D - G A E [E] B L
   inscription_rev: MATT D G R IM S AV 619
   mint: Bremervörde
-  catalog:
-    lange: '50'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -3361,6 +3320,9 @@ coins:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18289068
     ref: IKMK Berlin 18289068
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18289070
+    ref: IKMK Berlin 18289070
   note:
     de: 1/16 Taler
     en: 1/16 Taler
@@ -3369,6 +3331,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - ikmk-18289068
+  - ikmk-18289070
 - id: unified-ikmk-18289073
   fuss: seed_unsorted
   phase: ikmk

@@ -2,8 +2,8 @@
 # Generated 2026-06-01 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hanseatic_hamburg.yml across all sources.
 #
-# Input: 95 per-source seed entries.
-# Output: 95 unified entries (one per physical coin).
+# Input: 96 per-source seed entries.
+# Output: 96 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3522,6 +3522,9 @@ coins:
   mintmaster: Johann Heinrich Löwe
   inscription_obv: I / SCHIL/LING / 1754
   inscription_rev: HAMBURGER
+  catalog:
+    others:
+    - Schön# 21
   metal: billon
   metal_verified: true
   weight_rough_verified: true
@@ -3606,6 +3609,11 @@ coins:
   year_label: '1908'
   inscription_obv: FREIE UND HANSESTADT HAMBURG
   inscription_rev: DEUTSCHES - REICH 1908 - ZWEI MARK
+  catalog:
+    others:
+    - Jaeger# 63
+    - Schön# 8
+    - AKS# 48
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -3630,6 +3638,11 @@ coins:
   year_label: '1909'
   ruler: Wilhelm II.
   inscription_rev: DEUTSCHES - REICH 1909
+  catalog:
+    others:
+    - Jaeger# 18
+    - Schön# 15
+    - AKS# 7
   metal_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
@@ -3653,6 +3666,9 @@ coins:
   year_label: '1843'
   inscription_obv: NVMVS AVREVS - HAMBVRGENSIS
   inscription_rev: 67 / AEQV POND / MARC COL / PRETII / 23 1/2 KARAT
+  catalog:
+    others:
+    - AKS# 8
   metal: gold
   metal_verified: true
   weight_rough_verified: true
@@ -3679,6 +3695,8 @@ coins:
   inscription_obv: CAROL I REGE AL ROMANIEI
   catalog:
     fr: '3'
+    others:
+    - Schön# 22
   metal: gold
   metal_verified: true
   weight_rough_verified: true
@@ -3705,6 +3723,11 @@ coins:
   inscription_rev: DEUTSCHES - REICH 1875 - ZEHN MARK
   catalog:
     fr: '3780'
+    others:
+    - Divo# 297
+    - AKS# 37
+    - Schön# 6
+    - Jaeger# 209
   metal: gold
   metal_verified: true
   weight_rough_verified: true
@@ -3805,6 +3828,8 @@ coins:
   inscription_rev: 67 / AEQV POND / MARC COLON / PRETII / 23 1/2 KARAT
   catalog:
     fr: '1140'
+    others:
+    - AKS# 6
   metal: gold
   metal_verified: true
   weight_rough_verified: true
@@ -3819,3 +3844,30 @@ coins:
   issuing_entity: hanseatic_hamburg
   composed_of:
   - ikmk-18284861
+- id: unified-ikmk-18311418
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 10 Mark
+  year_first: 1907
+  year_last: 1907
+  year_label: '1907'
+  inscription_obv: FREIE HANSESTADT BREMEN
+  inscription_rev: DEUTSCHES - REICH 1907 // 10 MARK
+  catalog:
+    others:
+    - Jaeger# 204
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18311418
+    ref: IKMK Berlin 18311418
+  verification_note: *id001
+  issuing_entity: hanseatic_hamburg
+  composed_of:
+  - ikmk-18311418
