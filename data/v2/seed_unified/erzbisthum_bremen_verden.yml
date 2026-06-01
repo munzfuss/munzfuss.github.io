@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `erzbisthum_bremen_verden`.
-# Generated 2026-05-31 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-01 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/erzbisthum_bremen_verden.yml across all sources.
 #
-# Input: 104 per-source seed entries.
-# Output: 91 unified entries (one per physical coin).
+# Input: 188 per-source seed entries.
+# Output: 159 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,13 +11,13 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: erzbisthum_bremen_verden
-generated_at: '2026-05-31'
+generated_at: '2026-06-01'
 coins:
 - id: unified-dk-bruun-12130
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 4 Mark
+  nominal: Bremen & Verden. 4 Mark
   year_first: 1660
   year_last: 1660
   year_label: '1660'
@@ -57,7 +57,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 4 Mark
+  nominal: Bremen & Verden. 4 Mark
   year_first: 1670
   year_last: 1670
   year_label: '1670'
@@ -96,7 +96,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 1 Taler
+  nominal: Bremen & Verden. Taler
   year_first: 1674
   year_last: 1674
   year_label: '1674'
@@ -136,17 +136,20 @@ coins:
   phase: numista
   kind: kurant
   nominal: 1 Thaler
-  year_first: 1561
-  year_last: 1562
+  year_first: 1560
+  year_last: 1565
   year_ranges:
-  - - 1561
-    - 1562
-  year_label: 1561-1562
+  - - 1560
+    - 1565
+  year_label: 1560-1565
   ruler: George of Brunswick-Wolfenbüttel (Georg von Brunswick-Wolfenbüttel)
   catalog:
     numista: '129840'
     mb: '94'
     dav: GT I# 8980
+    others:
+    - Jungk# 230
+    - Welter# 503
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -157,13 +160,23 @@ coins:
   weight_rough_g:
   - value: 27.92
     source: numista
+  - value: 28.0
+    source: tid
   diameter_mm:
+  - value: 42.0
+    source: tid
   - value: 43.0
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/129840
     ref: Numista N#129840 — 1 Thaler - George of Brunswick - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1560-1565/?tid=175546
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1561-1562/?tid=175550
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -177,6 +190,8 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-129840
+  - tid-tid-175546
+  - tid-tid-175550
 - id: unified-dk-numista-129841
   fuss: seed_unsorted
   phase: numista
@@ -192,6 +207,8 @@ coins:
   catalog:
     numista: '129841'
     mb: '102'
+    others:
+    - Jungk# 297
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -235,6 +252,9 @@ coins:
     km: '5'
     numista: '129842'
     lange: '503'
+    others:
+    - Jungk# 317
+    - Behr# 791a
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -243,15 +263,22 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 1.8
+    source: tid
   - value: 1.83
     source: numista
   diameter_mm:
   - value: 19.0
     source: numista
+  - value: 19.0
+    source: tid
   sources:
   - type: literature
     url: https://en.numista.com/129842
     ref: Numista N#129842 — 4 Schilling Lübisch Reuterpfennig - John Frederick (Rider right) - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-4-schilling-1611/?tid=175308
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -265,6 +292,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-129842
+  - tid-tid-175308
 - id: unified-dk-numista-129847
   fuss: seed_unsorted
   phase: numista
@@ -280,6 +308,8 @@ coins:
   catalog:
     km: '8'
     numista: '129847'
+    others:
+    - Jungk# 315
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -290,10 +320,15 @@ coins:
   weight_rough_g:
   - value: 5.07
     source: numista
+  - value: 5.1
+    source: tid
   sources:
   - type: literature
     url: https://en.numista.com/129847
     ref: Numista N#129847 — 4 Groschen - John Frederick of Holstein-Gottorp - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-4-groschen-1596/?tid=175183
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -307,6 +342,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-129847
+  - tid-tid-175183
 - id: unified-dk-numista-129848
   fuss: seed_unsorted
   phase: numista
@@ -320,23 +356,35 @@ coins:
     km: '38'
     numista: '129848'
     dav: CCT# 5078
+    others:
+    - Jungk# 363
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: false
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
   - value: 0.888
     source: numista
+  - value: 0.888
+    source: tid
   weight_rough_g:
+  - value: 29.2
+    source: tid
   - value: 29.23
     source: numista
+  diameter_mm:
+  - value: 40.0
+    source: tid
   sources:
   - type: literature
     url: https://en.numista.com/129848
     ref: Numista N#129848 — 1 Thaler - Frederick II of Denmark - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1641/?tid=175315
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -350,6 +398,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-129848
+  - tid-tid-175315
 - id: unified-dk-numista-134884
   fuss: seed_unsorted
   phase: numista
@@ -367,6 +416,8 @@ coins:
   catalog:
     km: '110'
     numista: '134884'
+    others:
+    - AAJ# 79
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -417,6 +468,10 @@ coins:
   catalog:
     km: '115'
     numista: '147428'
+    others:
+    - AAJ# 61
+    - AAJ# 62
+    - Bahrf# 75b
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -460,20 +515,30 @@ coins:
     numista: '167726'
     mb: '104'
     dav: GT I# 8985
+    others:
+    - Jungk# 294
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 28.5
+    source: tid
   - value: 28.87
     source: numista
+  diameter_mm:
+  - value: 42.0
+    source: tid
   sources:
   - type: literature
     url: https://en.numista.com/167726
     ref: Numista N#167726 — 1 Thaler - Henry III of Sachsen-Lauenburg - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1583-1584/?tid=175552
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -487,6 +552,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-167726
+  - tid-tid-175552
 - id: unified-dk-numista-167735
   fuss: seed_unsorted
   phase: numista
@@ -502,17 +568,25 @@ coins:
   catalog:
     km: '18'
     numista: '167735'
+    others:
+    - Jungk# 333
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: false
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 1.6
+    source: tid
   sources:
   - type: literature
     url: https://en.numista.com/167735
     ref: Numista N#167735 — 2 Schillings - John Frederick of Holstein-Gottorp - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-16-thaler-1612-1616/?tid=175387
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -526,6 +600,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-167735
+  - tid-tid-175387
 - id: unified-dk-numista-167741
   fuss: seed_unsorted
   phase: numista
@@ -542,6 +617,8 @@ coins:
     km: B75
     numista: '167741'
     lange: '883'
+    others:
+    - Weinm# 204
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -583,6 +660,10 @@ coins:
   catalog:
     km: '84'
     numista: '185671'
+    others:
+    - AAJ# 71-78
+    - Bahrf# 54
+    - Ahlström# 72
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -621,11 +702,7 @@ coins:
   fuss: seed_unsorted
   phase: numista
   kind: kurant
-  nominal: 1 Thaler
-  note:
-    de: 36 Grote (Rechnungs-Äquivalent)
-    en: 36 Grote (accounting equivalent)
-    uk: 36 Grote (розрахунковий еквівалент)
+  nominal: 1 Thaler = 36 Grote
   year_first: 1560
   year_last: 1565
   year_ranges:
@@ -637,6 +714,8 @@ coins:
     numista: '266573'
     mb: '86'
     dav: GT I# 8982
+    others:
+    - Jungk# 240
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -651,6 +730,10 @@ coins:
   - type: literature
     url: https://en.numista.com/266573
     ref: Numista N#266573 — 1 Thaler - George of Brunswick - Archbishopric of Bremen
+  note:
+    de: 36 Grote (Rechnungs-Äquivalent)
+    en: 36 Grote (accounting equivalent)
+    uk: 36 Grote (розрахунковий еквівалент)
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -676,6 +759,8 @@ coins:
   catalog:
     km: '70'
     numista: '270939'
+    others:
+    - AAJ# 16
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -717,6 +802,8 @@ coins:
     km: '113'
     numista: '270940'
     dav: ST# 6283
+    others:
+    - AAJ# 13
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -761,6 +848,9 @@ coins:
   catalog:
     km: '91'
     numista: '278263'
+    others:
+    - AAJ# 54
+    - Bahrf# 60a
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -804,6 +894,8 @@ coins:
     numista: '295260'
     mb: '77'
     fr: '433'
+    others:
+    - Welter# 499
   metal: gold
   metal_verified: true
   fineness_verified: false
@@ -844,20 +936,30 @@ coins:
     numista: '301158'
     mb: '108'
     fr: '435'
+    others:
+    - Jungk# 289
   metal: gold
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
   - value: 3.23
     source: numista
+  - value: 3.25
+    source: tid
+  diameter_mm:
+  - value: 22.0
+    source: tid
   sources:
   - type: literature
     url: https://en.numista.com/301158
     ref: Numista N#301158 — 1 Goldgulden - Henry III of Sachsen-Lauenburg - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-goldgulden-1584/?tid=175564
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -871,6 +973,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-301158
+  - tid-tid-175564
 - id: unified-dk-numista-31052
   fuss: seed_unsorted
   phase: numista
@@ -887,6 +990,8 @@ coins:
     km: '83'
     numista: '31052'
     dav: ST# 6282
+    others:
+    - AAJ# 11
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -919,32 +1024,49 @@ coins:
   phase: numista
   kind: kurant
   nominal: 1 Thaler
-  year_first: 1622
+  year_first: 1612
   year_last: 1622
-  year_label: '1622'
+  year_ranges:
+  - - 1612
+    - 1622
+  year_label: 1612-1622
   ruler: John Frederick of Holstein-Gottorp (Johann Friedrich von Holstein-Gottorp)
   catalog:
-    km: '19.4'
+    km:
+    - '19.4'
+    - '19'
     numista: '317317'
     lange: '493'
     dav: CCT# 5076
+    others:
+    - Jungk# 310
   metal: silver
   metal_verified: true
-  fineness_verified: false
+  fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  fineness:
+  - value: 0.888
+    source: tid
   weight_rough_g:
   - value: 29.14
     source: numista
+  - value: 29.2
+    source: tid
   diameter_mm:
   - value: 40.0
     source: numista
+  - value: 40.0
+    source: tid
   sources:
   - type: literature
     url: https://en.numista.com/317317
     ref: Numista N#317317 — 1 Thaler - John Frederick - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1612-1622/?tid=175314
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -958,17 +1080,18 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-317317
+  - tid-tid-175314
 - id: unified-dk-numista-320853
   fuss: seed_unsorted
   phase: numista
   kind: kurant
   nominal: 4 Grote
-  year_first: 1561
+  year_first: 1558
   year_last: 1562
   year_ranges:
-  - - 1561
+  - - 1558
     - 1562
-  year_label: 1561-1562
+  year_label: 1558-1562
   ruler: George of Brunswick-Wolfenbüttel (Georg von Brunswick-Wolfenbüttel)
   catalog:
     numista: '320853'
@@ -977,13 +1100,19 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
-  diameter_mm_verified: false
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
+  diameter_mm:
+  - value: 27.0
+    source: tid
   sources:
   - type: literature
     url: https://en.numista.com/320853
     ref: Numista N#320853 — 4 Grote - George of Brunswick - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-4-grote-1558-1562/?tid=175435
+    ref: ucoin
   note:
     de: 1/18 Thaler
     en: 1/18 Thaler
@@ -1001,6 +1130,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-320853
+  - tid-tid-175435
 - id: unified-dk-numista-325622
   fuss: seed_unsorted
   phase: numista
@@ -1014,6 +1144,8 @@ coins:
     km: '53'
     numista: '325622'
     fr: '439'
+    others:
+    - AAJ# 1
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -1060,6 +1192,9 @@ coins:
     numista: '352504'
     mb: '95'
     dav: GT I# 8979
+    others:
+    - Jungk# 237
+    - Welter# 501
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1068,12 +1203,17 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 58.0
+    source: tid
   - value: 58.74
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/352504
     ref: Numista N#352504 — 2 Thalers - George of Brunswick - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-thaler-1561-1562/?tid=175558
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -1087,6 +1227,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-352504
+  - tid-tid-175558
 - id: unified-dk-numista-363897
   fuss: seed_unsorted
   phase: numista
@@ -1102,6 +1243,8 @@ coins:
   catalog:
     km: '112'
     numista: '363897'
+    others:
+    - AAJ# 59
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1142,8 +1285,12 @@ coins:
   year_label: 1641-1643
   ruler: Frederick II of Denmark (Friedrich II)
   catalog:
-    km: '37.1'
+    km:
+    - '37.1'
+    - '37'
     numista: '394107'
+    others:
+    - Jungk# 366 - 371
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1154,13 +1301,20 @@ coins:
   weight_rough_g:
   - value: 1.57
     source: numista
+  - value: 1.6
+    source: tid
   diameter_mm:
+  - value: 19.0
+    source: tid
   - value: 19.3
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/394107
     ref: Numista N#394107 — 1/16 Thaler (2 Schilling) - Archbishopric of Bremen - Friedrich II 1641-1643
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-16-thaler-1641-1643/?tid=175386
+    ref: ucoin
   note:
     de: 1/16 Thaler
     en: 1/16 Thaler
@@ -1178,6 +1332,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-394107
+  - tid-tid-175386
 - id: unified-dk-numista-397794
   fuss: seed_unsorted
   phase: numista
@@ -1233,6 +1388,8 @@ coins:
   catalog:
     km: '63'
     numista: '424261'
+    others:
+    - AAJ# 34-36
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1267,11 +1424,7 @@ coins:
   fuss: seed_unsorted
   phase: numista
   kind: kurant
-  nominal: 1 Thaler
-  note:
-    de: 36 Grote (Rechnungs-Äquivalent)
-    en: 36 Grote (accounting equivalent)
-    uk: 36 Grote (розрахунковий еквівалент)
+  nominal: 1 Thaler = 36 Grote
   year_first: 1560
   year_last: 1560
   year_label: '1560'
@@ -1280,6 +1433,8 @@ coins:
     numista: '426081'
     mb: '85'
     dav: GT I# 8981
+    others:
+    - Jungk# 219
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1291,6 +1446,10 @@ coins:
   - type: literature
     url: https://en.numista.com/426081
     ref: Numista N#426081 — 1 Thaler - George of Brunswick - Archbishopric of Bremen
+  note:
+    de: 36 Grote (Rechnungs-Äquivalent)
+    en: 36 Grote (accounting equivalent)
+    uk: 36 Grote (розрахунковий еквівалент)
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -1360,17 +1519,25 @@ coins:
     numista: '426182'
     mb: '87'
     dav: GT I# 8977
+    others:
+    - Jungk# 217
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: false
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 56.0
+    source: tid
   sources:
   - type: literature
     url: https://en.numista.com/426182
     ref: Numista N#426182 — 2 Thalers - George of Brunswick - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-thaler-1560/?tid=175556
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -1384,6 +1551,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-426182
+  - tid-tid-175556
 - id: unified-dk-numista-429659
   fuss: seed_unsorted
   phase: numista
@@ -1412,6 +1580,9 @@ coins:
   - type: literature
     url: https://en.numista.com/429659
     ref: Numista N#429659 — 2 Schilling - Frederick II - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-schilling-1641-1643/?tid=175306
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -1425,6 +1596,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-429659
+  - tid-tid-175306
 - id: unified-dk-numista-517615
   fuss: seed_unsorted
   phase: numista
@@ -1441,16 +1613,24 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 1.8
+    source: tid
   - value: 1.9
     source: numista
+  diameter_mm:
+  - value: 19.0
+    source: tid
   sources:
   - type: literature
     url: https://en.numista.com/517615
     ref: Numista N#517615 — 4 Schilling Lübisch Reuterpfennig - John Frederick (Rider left) - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-4-schilling-1611/?tid=175309
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -1464,6 +1644,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-517615
+  - tid-tid-175309
 - id: unified-dk-numista-550158
   fuss: seed_unsorted
   phase: numista
@@ -1517,6 +1698,8 @@ coins:
   ruler: Charles XI (Karl XI)
   catalog:
     numista: '572401'
+    others:
+    - Ahlstroem# 10
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1559,6 +1742,9 @@ coins:
   catalog:
     km: '121'
     numista: '578880'
+    others:
+    - AAJ# 82
+    - Sveriges Myntbok# 277
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3278,3 +3464,2444 @@ coins:
   composed_of:
   - ikmk-18289076
   - ikmk-18289077
+- id: unified-tid-tid-101107
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Schwaren
+  year_first: 1671
+  year_last: 1671
+  year_label: '1671'
+  catalog:
+    km: '145'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-schwaren-1671/?tid=101107
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101107
+- id: unified-tid-tid-101108
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Schwaren
+  year_first: 1676
+  year_last: 1676
+  year_label: '1676'
+  catalog:
+    km: '151'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-schwaren-1676/?tid=101108
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101108
+- id: unified-tid-tid-101109
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Schwaren
+  year_first: 1687
+  year_last: 1708
+  year_ranges:
+  - - 1687
+    - 1708
+  year_label: 1687-1708
+  catalog:
+    km: '155'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.51
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-schwaren-1687-1708/?tid=101109
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101109
+- id: unified-tid-tid-101110
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Schwaren
+  year_first: 1719
+  year_last: 1797
+  year_ranges:
+  - - 1719
+    - 1797
+  year_label: 1719-1797
+  mint: DB
+  catalog:
+    km: '166'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.51
+    source: tid
+  diameter_mm:
+  - value: 17.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-schwaren-1719-1797/?tid=101110
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101110
+- id: unified-tid-tid-101111
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Schwaren
+  year_first: 1781
+  year_last: 1781
+  year_label: '1781'
+  mint: DB
+  catalog:
+    km: '215'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-schwaren-1781/?tid=101111
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101111
+- id: unified-tid-tid-101112
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Schwaren
+  year_first: 1859
+  year_last: 1859
+  year_label: '1859'
+  catalog:
+    km: '241'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.21
+    source: tid
+  diameter_mm:
+  - value: 16.3
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-schwaren-1859/?tid=101112
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101112
+- id: unified-tid-tid-101113
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2½ Schwaren
+  year_first: 1797
+  year_last: 1802
+  year_ranges:
+  - - 1797
+    - 1802
+  year_label: 1797-1802
+  catalog:
+    km: '220'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 4.06
+    source: tid
+  diameter_mm:
+  - value: 20.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-1-2-schwaren-1797-1802/?tid=101113
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101113
+- id: unified-tid-tid-101114
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2½ schwaren
+  year_first: 1820
+  year_last: 1820
+  year_label: '1820'
+  catalog:
+    km: '225'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 3.5
+    source: tid
+  diameter_mm:
+  - value: 20.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-1-2-schwaren-1820/?tid=101114
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101114
+- id: unified-tid-tid-101115
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2½ schwaren
+  year_first: 1841
+  year_last: 1866
+  year_ranges:
+  - - 1841
+    - 1866
+  year_label: 1841-1866
+  catalog:
+    km: '234'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 3.43
+    source: tid
+  diameter_mm:
+  - value: 20.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-1-2-schwaren-1841-1866/?tid=101115
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101115
+- id: unified-tid-tid-101116
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1624
+  year_last: 1624
+  year_label: '1624'
+  catalog:
+    km: '82'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-2-grote-1624/?tid=101116
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101116
+- id: unified-tid-tid-101117
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1640
+  year_last: 1733
+  year_ranges:
+  - - 1640
+    - 1733
+  year_label: 1640-1733
+  catalog:
+    km: '100.1'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-2-grote-1640-1733/?tid=101117
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101117
+- id: unified-tid-tid-101118
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1741
+  year_last: 1752
+  year_ranges:
+  - - 1741
+    - 1752
+  year_label: 1741-1752
+  catalog:
+    km: '100.2'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-2-grote-1741-1752/?tid=101118
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101118
+- id: unified-tid-tid-101119
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1765
+  year_last: 1765
+  year_label: '1765'
+  catalog:
+    km: '208'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-2-grote-1765/?tid=101119
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101119
+- id: unified-tid-tid-101120
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1768
+  year_last: 1768
+  year_label: '1768'
+  catalog:
+    km: '209'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-2-grote-1768/?tid=101120
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101120
+- id: unified-tid-tid-101121
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1771
+  year_last: 1772
+  year_ranges:
+  - - 1771
+    - 1772
+  year_label: 1771-1772
+  catalog:
+    km: '210'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-2-grote-1771-1772/?tid=101121
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101121
+- id: unified-tid-tid-101122
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1781
+  year_last: 1781
+  year_label: '1781'
+  catalog:
+    km: '216'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.73
+    source: tid
+  diameter_mm:
+  - value: 15.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-2-grote-1781/?tid=101122
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101122
+- id: unified-tid-tid-101123
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1789
+  year_last: 1789
+  year_label: '1789'
+  catalog:
+    km: '217'
+  metal: billon
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.73
+    source: tid
+  diameter_mm:
+  - value: 15.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-2-grote-1789/?tid=101123
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101123
+- id: unified-tid-tid-101124
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Grote
+  year_first: 1841
+  year_last: 1841
+  year_label: '1841'
+  catalog:
+    km: '236'
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 3.2
+    source: tid
+  diameter_mm:
+  - value: 20.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-2-grote-1841/?tid=101124
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101124
+- id: unified-tid-tid-101125
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1623
+  year_last: 1627
+  year_ranges:
+  - - 1623
+    - 1627
+  year_label: 1623-1627
+  catalog:
+    km: '78'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.7
+    source: tid
+  diameter_mm:
+  - value: 20.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1623-1627/?tid=101125
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101125
+- id: unified-tid-tid-101127
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1674
+  year_last: 1674
+  year_label: '1674'
+  catalog:
+    km: '150'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1674/?tid=101127
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101127
+- id: unified-tid-tid-101129
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1708
+  year_last: 1709
+  year_ranges:
+  - - 1708
+    - 1709
+  year_label: 1708-1709
+  catalog:
+    km: '160'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1708-1709/?tid=101129
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101129
+- id: unified-tid-tid-101130
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1733
+  year_last: 1734
+  year_ranges:
+  - - 1733
+    - 1734
+  year_label: 1733-1734
+  catalog:
+    km: '175'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1733-1734/?tid=101130
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101130
+- id: unified-tid-tid-101132
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1737
+  year_last: 1740
+  year_ranges:
+  - - 1737
+    - 1740
+  year_label: 1737-1740
+  catalog:
+    km: '176'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.65
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1737-1740/?tid=101132
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101132
+- id: unified-tid-tid-101134
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1742
+  year_last: 1742
+  year_label: '1742'
+  catalog:
+    km: '180'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.65
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1742/?tid=101134
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101134
+- id: unified-tid-tid-101136
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1743
+  year_last: 1744
+  year_ranges:
+  - - 1743
+    - 1744
+  year_label: 1743-1744
+  catalog:
+    km: '197'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.65
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1743-1744/?tid=101136
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101136
+- id: unified-tid-tid-101138
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1745
+  year_last: 1745
+  year_label: '1745'
+  catalog:
+    km: '199'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.65
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1745/?tid=101138
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101138
+- id: unified-tid-tid-101140
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1745
+  year_last: 1745
+  year_label: '1745'
+  catalog:
+    km: '188'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.65
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1745/?tid=101140
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101140
+- id: unified-tid-tid-101141
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1746
+  year_last: 1752
+  year_ranges:
+  - - 1746
+    - 1752
+  year_label: 1746-1752
+  catalog:
+    km: '202'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.5
+    source: tid
+  diameter_mm:
+  - value: 15.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1746-1752/?tid=101141
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101141
+- id: unified-tid-tid-101142
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1746
+  year_last: 1753
+  year_ranges:
+  - - 1746
+    - 1753
+  year_label: 1746-1753
+  catalog:
+    km: '212'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.74
+    source: tid
+  diameter_mm:
+  - value: 16.4
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1746-1753/?tid=101142
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101142
+- id: unified-tid-tid-101143
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1747
+  year_last: 1763
+  year_ranges:
+  - - 1747
+    - 1763
+  year_label: 1747-1763
+  catalog:
+    km: '213'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.9
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1747-1763/?tid=101143
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101143
+- id: unified-tid-tid-101144
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1749
+  year_last: 1749
+  year_label: '1749'
+  catalog:
+    km: '214'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.75
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1749/?tid=101144
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101144
+- id: unified-tid-tid-101145
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1750
+  year_last: 1751
+  year_ranges:
+  - - 1750
+    - 1751
+  year_label: 1750-1751
+  catalog:
+    km: '218'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.7
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1750-1751/?tid=101145
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101145
+- id: unified-tid-tid-101146
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1763
+  year_last: 1763
+  year_label: '1763'
+  catalog:
+    km: '219'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.9
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1763/?tid=101146
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101146
+- id: unified-tid-tid-101147
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1763
+  year_last: 1763
+  year_label: '1763'
+  catalog:
+    km: '222'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.9
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1763/?tid=101147
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101147
+- id: unified-tid-tid-101148
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1763
+  year_last: 1763
+  year_label: '1763'
+  catalog:
+    km: '223'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.9
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1763/?tid=101148
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101148
+- id: unified-tid-tid-101149
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1763
+  year_last: 1764
+  year_ranges:
+  - - 1763
+    - 1764
+  year_label: 1763-1764
+  catalog:
+    km: '224'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.7
+    source: tid
+  diameter_mm:
+  - value: 16.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1763-1764/?tid=101149
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101149
+- id: unified-tid-tid-101150
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Grote
+  year_first: 1840
+  year_last: 1840
+  year_label: '1840'
+  catalog:
+    km: '230'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.281
+    source: tid
+  weight_rough_g:
+  - value: 0.77
+    source: tid
+  diameter_mm:
+  - value: 15.8
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-grote-1840/?tid=101150
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101150
+- id: unified-tid-tid-101240
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Grote
+  year_first: 1625
+  year_last: 1625
+  year_label: '1625'
+  catalog:
+    km: '86'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-grote-1625/?tid=101240
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101240
+- id: unified-tid-tid-101251
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Grote
+  year_first: 1641
+  year_last: 1646
+  year_ranges:
+  - - 1641
+    - 1646
+  year_label: 1641-1646
+  catalog:
+    km: '106'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-grote-1641-1646/?tid=101251
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101251
+- id: unified-tid-tid-101252
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Grote
+  year_first: 1646
+  year_last: 1646
+  year_label: '1646'
+  catalog:
+    km: '110'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-grote-1646/?tid=101252
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101252
+- id: unified-tid-tid-101253
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Grote
+  year_first: 1660
+  year_last: 1671
+  year_ranges:
+  - - 1660
+    - 1671
+  year_label: 1660-1671
+  catalog:
+    km: '130'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-grote-1660-1671/?tid=101253
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101253
+- id: unified-tid-tid-101254
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Grote
+  year_first: 1709
+  year_last: 1709
+  year_label: '1709'
+  catalog:
+    km: '161'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-grote-1709/?tid=101254
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101254
+- id: unified-tid-tid-101255
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Grote
+  year_first: 1738
+  year_last: 1739
+  year_ranges:
+  - - 1738
+    - 1739
+  year_label: 1738-1739
+  mint: GLC
+  catalog:
+    km: '177'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  diameter_mm:
+  - value: 18.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-grote-1738-1739/?tid=101255
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101255
+- id: unified-tid-tid-101256
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 3 Grote
+  year_first: 1629
+  year_last: 1629
+  year_label: '1629'
+  catalog:
+    km: '88'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-3-grote-1629/?tid=101256
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101256
+- id: unified-tid-tid-101257
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 3 Grote
+  year_first: 1634
+  year_last: 1637
+  year_ranges:
+  - - 1634
+    - 1637
+  year_label: 1634-1637
+  catalog:
+    km: '90'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.0
+    source: tid
+  diameter_mm:
+  - value: 18.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-3-grote-1634-1637/?tid=101257
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101257
+- id: unified-tid-tid-101258
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 3 Grote
+  year_first: 1677
+  year_last: 1677
+  year_label: '1677'
+  catalog:
+    km: '147'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.0
+    source: tid
+  diameter_mm:
+  - value: 18.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-3-grote-1677/?tid=101258
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101258
+- id: unified-tid-tid-101259
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 4 Grote
+  year_first: 1646
+  year_last: 1649
+  year_ranges:
+  - - 1646
+    - 1649
+  year_label: 1646-1649
+  catalog:
+    km: '108'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-4-grote-1646-1649/?tid=101259
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101259
+- id: unified-tid-tid-101260
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 4 Grote
+  year_first: 1660
+  year_last: 1660
+  year_label: '1660'
+  catalog:
+    km: '131'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-4-grote-1660/?tid=101260
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101260
+- id: unified-tid-tid-101265
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 6 Grote
+  year_first: 1840
+  year_last: 1840
+  year_label: '1840'
+  catalog:
+    km: '231'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.74
+    source: tid
+  weight_rough_g:
+  - value: 1.94
+    source: tid
+  diameter_mm:
+  - value: 20.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-6-grote-1840/?tid=101265
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101265
+- id: unified-tid-tid-101266
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 6 Grote
+  year_first: 1857
+  year_last: 1857
+  year_label: '1857'
+  catalog:
+    km: '240'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.494
+    source: tid
+  weight_rough_g:
+  - value: 2.8
+    source: tid
+  diameter_mm:
+  - value: 20.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-6-grote-1857/?tid=101266
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101266
+- id: unified-tid-tid-101267
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 6 Grote
+  year_first: 1861
+  year_last: 1861
+  year_label: '1861'
+  catalog:
+    km: '245'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.494
+    source: tid
+  weight_rough_g:
+  - value: 2.92
+    source: tid
+  diameter_mm:
+  - value: 20.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-6-grote-1861/?tid=101267
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101267
+- id: unified-tid-tid-101272
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 12 Grote
+  year_first: 1840
+  year_last: 1846
+  year_ranges:
+  - - 1840
+    - 1846
+  year_label: 1840-1846
+  catalog:
+    km: '232'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.74
+    source: tid
+  weight_rough_g:
+  - value: 3.89
+    source: tid
+  diameter_mm:
+  - value: 23.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-12-grote-1840-1846/?tid=101272
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101272
+- id: unified-tid-tid-101273
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 12 Grote
+  year_first: 1859
+  year_last: 1860
+  year_ranges:
+  - - 1859
+    - 1860
+  year_label: 1859-1860
+  catalog:
+    km: '242'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.74
+    source: tid
+  weight_rough_g:
+  - value: 3.89
+    source: tid
+  diameter_mm:
+  - value: 23.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-12-grote-1859-1860/?tid=101273
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101273
+- id: unified-tid-tid-101276
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 36 Grote
+  year_first: 1840
+  year_last: 1859
+  year_ranges:
+  - - 1840
+    - 1859
+  year_label: 1840-1859
+  catalog:
+    km: '233'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.986
+    source: tid
+  weight_rough_g:
+  - value: 8.77
+    source: tid
+  diameter_mm:
+  - value: 31.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-36-grote-1840-1859/?tid=101276
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101276
+- id: unified-tid-tid-101277
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 36 Grote
+  year_first: 1859
+  year_last: 1864
+  year_ranges:
+  - - 1859
+    - 1864
+  year_label: 1859-1864
+  catalog:
+    km: '243'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.986
+    source: tid
+  weight_rough_g:
+  - value: 8.77
+    source: tid
+  diameter_mm:
+  - value: 31.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-36-grote-1859-1864/?tid=101277
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-101277
+- id: unified-tid-tid-175310
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Schilling
+  year_first: 1611
+  year_last: 1611
+  year_label: '1611'
+  catalog:
+    km: '4'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 0.9
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-schilling-1611/?tid=175310
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175310
+- id: unified-tid-tid-175311
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ½ Thaler
+  year_first: 1642
+  year_last: 1642
+  year_label: '1642'
+  catalog:
+    km: '40'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.888
+    source: tid
+  weight_rough_g:
+  - value: 14.6
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-2-thaler-1642/?tid=175311
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175311
+- id: unified-tid-tid-175313
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1611
+  year_last: 1611
+  year_label: '1611'
+  catalog:
+    km: '9'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.888
+    source: tid
+  weight_rough_g:
+  - value: 29.2
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1611/?tid=175313
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175313
+- id: unified-tid-tid-175316
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Thaler
+  year_first: 1612
+  year_last: 1612
+  year_label: '1612'
+  catalog:
+    km: '20'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.888
+    source: tid
+  weight_rough_g:
+  - value: 58.4
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-thaler-1612/?tid=175316
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175316
+- id: unified-tid-tid-175317
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Thaler
+  year_first: 1641
+  year_last: 1641
+  year_label: '1641'
+  catalog:
+    km: '39'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.888
+    source: tid
+  weight_rough_g:
+  - value: 58.4
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-thaler-1641/?tid=175317
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175317
+- id: unified-tid-tid-175318
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Goldgulden
+  year_first: 1612
+  year_last: 1612
+  year_label: '1612'
+  catalog:
+    km: '21'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.986
+    source: tid
+  weight_rough_g:
+  - value: 3.5
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-goldgulden-1612/?tid=175318
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175318
+- id: unified-tid-tid-175319
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Goldgulden
+  year_first: 1618
+  year_last: 1618
+  year_label: '1618'
+  catalog:
+    km: '23'
+  metal: gold
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.986
+    source: tid
+  weight_rough_g:
+  - value: 3.5
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-goldgulden-1618/?tid=175319
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175319
+- id: unified-tid-tid-175383
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1/24 Thaler
+  year_first: 1619
+  year_last: 1619
+  year_label: '1619'
+  catalog:
+    km: '24'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-24-thaler-1619/?tid=175383
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175383
+- id: unified-tid-tid-175384
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1/24 Thaler
+  year_first: 1621
+  year_last: 1621
+  year_label: '1621'
+  catalog:
+    km: '31'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-24-thaler-1621/?tid=175384
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175384
+- id: unified-tid-tid-175385
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1/16 Thaler
+  year_first: 1611
+  year_last: 1611
+  year_label: '1611'
+  catalog:
+    km: '15'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-16-thaler-1611/?tid=175385
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175385
+- id: unified-tid-tid-175388
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1/16 Thaler
+  year_first: 1613
+  year_last: 1619
+  year_ranges:
+  - - 1613
+    - 1619
+  year_label: 1613-1619
+  catalog:
+    km: '22'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.6
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-16-thaler-1613-1619/?tid=175388
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175388
+- id: unified-tid-tid-175436
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: ¼ Thaler
+  year_first: 1583
+  year_last: 1584
+  year_ranges:
+  - - 1583
+    - 1584
+  year_label: 1583-1584
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 7.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-4-thaler-1583-1584/?tid=175436
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175436
+- id: unified-tid-tid-175543
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Thaler
+  year_first: 1560
+  year_last: 1560
+  year_label: '1560'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 28.0
+    source: tid
+  diameter_mm:
+  - value: 42.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1560/?tid=175543
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1560/?tid=175544
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175543
+  - tid-tid-175544
