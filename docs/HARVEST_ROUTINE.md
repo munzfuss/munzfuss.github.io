@@ -30,13 +30,16 @@
    - **`harvest/auto` is append-only in the routine: never rebase it, never force-push it.** Just keep stacking pointer-bump commits and fast-forward-pushing. (Rebasing/force-pushing is unnecessary — see §1's preflight, which simply ensures the branch exists off the latest `origin/main`.)
    - **No per-run «wait for пуш» gate.** Cron-fired runs push `harvest/auto` + submodule `main` autonomously at end of run (§3, §5). The end-of-run report states what was pushed and the one-line integration command for the curator (§6.2 item 10). The CLAUDE.md global «never push autonomously» rule still governs the SUPERPROJECT `main` and the CURATION clone — this carve-out is scoped strictly to the routine pushing `harvest/auto` + submodule `main`.
 
-2. **One Numista batch + one ucoin batch + one IKMK batch per run.** Do not exceed this. Numista + ucoin are Chrome-MCP scrapes through Cloudflare, hard-capped at **5 entries/batch** (context budget + politeness). IKMK is different: a plain `urllib` museum JSON API (`docs/IKMK_HARVEST.md`) — openly licensed (CC BY-SA 4.0), no Cloudflare, no observed rate limit, ID-list-from-search-queries rather than per-NID URLs — so its single batch is **200 entries/run** (§5.5.1), clearing the title-scoped backlog in a handful of runs. See §5.5 for the batch protocol. IKMK can be skipped per-run when no uncached IDs remain (§5.5.5).
+2. **One Numista batch + one ucoin batch + one IKMK batch + one KMK batch per run.** Do not exceed this. Numista + ucoin are Chrome-MCP scrapes through Cloudflare, hard-capped at **5 entries/batch** (context budget + politeness). IKMK is different: a plain `urllib` museum JSON API (`docs/IKMK_HARVEST.md`) — openly licensed (CC BY-SA 4.0), no Cloudflare, no observed rate limit, ID-list-from-search-queries rather than per-NID URLs — so its single batch is **200 entries/run** (§5.5.1), clearing the title-scoped backlog in a handful of runs. See §5.5 for the batch protocol. IKMK can be skipped per-run when no uncached IDs remain (§5.5.5). KMK (Royal Coin Cabinet Copenhagen, `api.natmus.dk`) is likewise a no-auth, no-Cloudflare, no-rate-limit JSON API but enumerated via `search_after` paging with the scope filter in the ES query (not a per-ID list) — its batch is **10 000 records/run** (§5.7.1), clearing the ~43k task-scope backlog (nation scope ∩ 1480-1914) in ≈ 5 runs. See §5.7 for the protocol; KMK can be skipped when fully harvested (§5.7.5).
 
 3. **Batch size = 5 entries** (NIDs or TIDs). Hard cap. If a batch would close the bucket and only 3 remain, do those 3 — never extend past the bucket boundary into the next priority.
 
 4. **Pacing = 31-60s between fetches** within a single batch. Random `sleep $((RANDOM % 30 + 31))` between calls. Do NOT skip pacing «to save time» — Cloudflare and ucoin's rate-limit defence fire fast.
 
-5. **NEVER edit YAML / seeds / location files in this routine.** Cache writes only. If the cache reveals a data anomaly (wrong year range, missing fineness), record it in the per-entry `_audit_context` field — never propagate to seeds in this run.
+5. **The routine's ONLY job is HARVEST + collecting cached data. It writes the cache; it never edits data, and it never interprets.** Two halves of this rule:
+   - **Never edit `data/**`** — no YAML / seeds / location / `data/v2/**` files (incl. `data/v2/final`, `data/v2/seed*`, `data/v2/*_decisions`). Cache writes only.
+   - **Never produce a VERDICT or DECISION — only raw EVIDENCE.** When a task needs a judgement about the data (which Müntzfuß, dual-vs-single nominal, is-this-a-duplicate, what's the correct value), the routine records the raw observation into the cache (a `_audit_context` field, or a dedicated evidence sidecar like `_ci_legend_evidence.json`) and STOPS. The interpretation + the resulting data edit are CURATION, done in an interactive session — never autonomously by the cron. «Harvest the legend» ✓; «decide the nominal» ✗. (Reference case: §5.6.)
+   If the cache reveals a data anomaly (wrong year range, missing fineness), record it in `_audit_context` / the anomaly log — never propagate to seeds or data in this run.
 
 6. **English-only commit messages** (CLAUDE.md «Git workflow» rule). Chat may be Ukrainian; commits are English.
 
@@ -1075,11 +1078,19 @@ The §4.1 picker walks BR-2 → BR-3 → BR-4 in priority order and picks the fi
 
 For each batch, fetch the slug→TID map FIRST from the listing page (once per period per run), then iterate per-TID:
 
-**A. Listing-page anchor extraction (once per period per run):**
+**A. Listing-page anchor extraction (once per period per run) — PAGINATION-AWARE.**
 
-Navigate to: `https://en.ucoin.net/catalog/?country=denmark&period=<NNNN>`
+> **§13.2 known-issue — listing pages paginate.** Large periods (e.g. `bremen_p1195`, 93 TIDs) split across multiple listing pages at ~48 entries/page; a batch's target TIDs can sit on page 2+. A SINGLE-page extraction would report those targets as `MISSING` and falsely defer the whole batch (caught 2026-06-01, run IQ/255). So the extractor MUST iterate `&page=N` until every wanted TID resolves OR no further page link exists. (`page=1` may be implicit / omittable; `?country=…&period=…&page=2` is the next page.)
 
-Run via `javascript_tool`:
+**Loop (operational):**
+
+1. Navigate to page 1: `https://en.ucoin.net/catalog/?country=denmark&period=<NNNN>`
+2. Run the extractor below — it returns this page's `tid_to_url` map AND `has_next` (whether a next-page link exists).
+3. Merge this page's map into an accumulator; check whether all wanted TIDs are now resolved.
+4. If any wanted TID is still unresolved AND `has_next` → navigate to `…&period=<NNNN>&page=<next>` and repeat from step 2.
+5. Stop when all wanted resolve, OR `has_next` is false. Only TIDs still unresolved after the LAST page are genuinely `MISSING`.
+
+Run via `javascript_tool` on EACH page:
 
 ```javascript
 (()=>{
@@ -1089,14 +1100,27 @@ Run via `javascript_tool`:
     const m=a.getAttribute('href').match(/\/coin\/([^/]+)\/?\?tid=(\d+)/);
     if(m){ tid_to_url[m[2]]='https://en.ucoin.net/coin/'+m[1]+'/?tid='+m[2]; }
   }
-  const wanted=['TID1','TID2','TID3','TID4','TID5'];  // batch TIDs
-  const result={};
-  for(const t of wanted){ result[t]=tid_to_url[t]||'MISSING'; }
-  return result;
+  // Detect a "next page" link (pagination control). ucoin renders page links as
+  // anchors carrying &page=N; "next" exists if any page number exceeds the current one.
+  const curM=location.href.match(/[?&]page=(\d+)/);
+  const cur=curM?parseInt(curM[1]):1;
+  const pageNums=Array.from(document.querySelectorAll('a[href*="page="]'))
+    .map(a=>{const mm=a.getAttribute('href').match(/[?&]page=(\d+)/);return mm?parseInt(mm[1]):0;});
+  const maxPage=pageNums.length?Math.max(...pageNums):cur;
+  return {page:cur, has_next: maxPage>cur, tid_to_url};
 })()
 ```
 
-If any TID returns `MISSING`, the period listing doesn't cover it — it might be on a different page or has been deleted. Log + skip.
+Then resolve the batch against the ACCUMULATED map across all visited pages:
+
+```javascript
+// after merging every page's tid_to_url into `acc`:
+const wanted=['TID1','TID2','TID3','TID4','TID5'];  // batch TIDs
+const result={}; for(const t of wanted){ result[t]=acc[t]||'MISSING'; }
+return result;
+```
+
+A TID that is still `MISSING` after the last page genuinely isn't in the listing (deleted / moved) — apply §4.4 (log to `_failed_open_ids.json`, keep as retry candidate). Do NOT defer the whole batch just because targets sat beyond page 1.
 
 **B. Per-TID fetch via `browser_batch`:**
 
@@ -1463,34 +1487,184 @@ actually fetches.
 
 ---
 
-## §5.6. Priority curation-harvest task — §CI dual-denomination legend verification
+## §5.6. §CI dual-denomination legend HARVEST (evidence-only — routine writes cache, never data)
 
-When `_harvest_handoff.json::priority_override` has `task: "§CI"` (or the
-preflight prints it), run a batch of this BEFORE the normal Numista/ucoin
-fronts. This is a curation-harvest task (fetch a legend, then decide a
-nominal), not manifest enumeration.
+> **Scope per §0.5.** §CI was originally written as a curation task
+> (fetch a legend, THEN decide a nominal, THEN edit `data/v2/final`). Under the
+> branch model that is forbidden: the routine harvests EVIDENCE into the cache;
+> it does NOT interpret the evidence and does NOT touch `data/**`. The nominal
+> decision is a separate curation step (below). When `priority_override` has
+> `task: "§CI"`, run an evidence batch BEFORE the normal Numista/ucoin fronts.
+> (As of 2026-06-01 the override is PARKED in `parked_curation_tasks` — re-activate
+> it into `priority_override` only when you want the routine collecting §CI evidence.)
+
+**The routine's half (HARVEST — cache only):**
 
 - **Work-list:** `docs/cg_dual_denomination_verify.json` — 82 coins whose
   `nominal` carries two FULL denominations («4 Mark = 1 Krone»,
   «2 Krone (8 Mark)», «16 Rigsbankskilling = 5 Schilling Courant», …).
-  Track progress in `_harvest_handoff.json::ci_verified_ids` (list; create
-  if missing) so each run picks the next ~8 unverified entries.
+  Track progress in `_harvest_handoff.json::ci_evidence_ids` (list; create
+  if missing) so each run picks the next ~8 unharvested entries.
 - **Per coin** — fetch the actual coin legend via **Chrome MCP** (IKMK
   `ikmk.smb.museum`, danskmoent.dk, or the Numista per-coin page in Chrome).
-  **Do NOT use the Numista API** (budget-bound per CLAUDE.md «Numista API
-  budget»). Then decide per CLAUDE.md §1:
+  **Do NOT use the Numista API** (budget-bound per CLAUDE.md «Numista API budget»).
+- **Record RAW evidence only — no verdict, no interpretation.** Append to the
+  cache sidecar `scripts/cache/_ci_legend_evidence.json` (a list; create if
+  missing), one record per coin:
+
+  ```json
+  {
+    "coin_ref": "<entity>:<coin_id>",
+    "current_nominal": "4 Mark = 1 Krone",
+    "obverse_legend": "<verbatim legend text, or empty>",
+    "reverse_legend": "<verbatim legend text, or empty>",
+    "legible": true,
+    "source_url": "https://ikmk.smb.museum/object?id=...",
+    "harvested_at": "<UTC ISO>"
+  }
+  ```
+  Record the legend **verbatim** as read from the coin. Do NOT decide
+  «dual vs single», do NOT set or edit `nominal`, do NOT move anything to
+  `note`. If the legend is illegible/undated, set `legible: false` and leave
+  the legend strings empty — that is itself the evidence. Add the coin to
+  `ci_evidence_ids`.
+- This sidecar is a submodule cache write — it rides the run's normal
+  cache commit (PB-10), exactly like `_failed_open_ids.json` / `_rate_limit_events.json`.
+
+**The curation half (DECISION + DATA — NOT the routine; interactive / curation session):**
+
+Reading the cached evidence, a curation session applies the nominal decision via
+`_source_errata` on the coin (seed or final) — NOT by free-hand editing `nominal`:
   - legend shows **BOTH** denominations (genuinely dual-inscribed, e.g. the
-    Rigsbankskilling Phase-2 dual face) → **KEEP** the dual nominal as-is;
-  - legend shows **ONE** → set `nominal` to the inscribed denomination,
-    move the other to `note` (language-neutral, like §CG stage C);
-  - no legible legend / undated → leave + record `unknown` in the work-list.
-  Edit `data/v2/final/<entity>.yml` (+ matching seed/seed_unified records)
-  textually — ruamel reflows these files (§CG lesson). Add the verified id
-  to `ci_verified_ids`.
-- **Cite** any legend fetched into a coin `note`/`sources` per §5 (web-
-  sourced fact → bibliography + inline cite).
-- When `ci_verified_ids` covers all 82, clear `priority_override` and mark
-  TODO §CI done.
+    Rigsbankskilling Phase-2 dual face) → KEEP the dual `nominal`; no errata.
+  - legend shows **ONE** → add `_source_errata: [{field: nominal, printed: "<current>",
+    correct: "<inscribed denom>", reason: "<source> legend reads '<X>' only; '<Y>'
+    is editorial equivalent", curator: <name>}]` + move the equivalent into `note`.
+    `apply_source_errata` (seed_merge.py §CN) overwrites `nominal` LAST in the build,
+    so it wins over the foundation-immutable value and survives regen — no DF1
+    resolution needed.
+  - illegible → leave as-is; record the gap.
+  Cite the harvested legend in the coin `note`/`sources` per §5.
+
+When `ci_evidence_ids` covers all 82, the routine's §CI harvest is done — clear
+`priority_override` (or leave parked) and hand off to curation for the errata pass.
+
+---
+
+## §5.7. KMK batch (Royal Coin Cabinet Copenhagen — Nationalmuseet API)
+
+Fourth API source per run. KMM (Den Kgl. Mønt- og Medaillesamling, held by
+the Danish Nationalmuseet) is harvested through the open, no-auth
+Elasticsearch endpoint `api.natmus.dk/search/public/raw`. Mechanics differ
+from every other source — read `docs/KMK_HARVEST.md` first.
+
+- **No per-ID list and no Cloudflare**: the scope filter lives in the ES
+  query (collection=KMM + type=object + an in-scope `nation` terms list), and
+  enumeration is `search_after` paging (sort `_id` asc) — NOT a manifest of
+  individual IDs like IKMK.
+- **Whole-record cache**: each record's entire `_source` JSON →
+  `scripts/cache/kmk/<id>.json`. No field pruning, no year gate, no exonumia
+  drop at harvest (those happen at SEED).
+- **One-shot driver**: `scripts/fetch_kmk.py` (discover / fetch / both).
+- **No observed rate limit**; polite 0.4 s/page, 500 records/page.
+- **Task scope ≈ 43 033 records.** Nation scope is ~221 934 across 11 entities
+  (Danmark 149k, Hamburg 40k, Lüneburg 14k, Lübeck 12k, Norge 4.3k, …), but a
+  HARVEST-time temporal gate (`_harvest_query`) keeps only dated-in-[1480,1914]
+  OR undated-with-in-scope-ruler, cutting the medieval bulk → ~43 033.
+
+### §5.7.1. Batch shape
+
+**10 000 new cache writes per run.** KMM is a plain JSON API with no
+Cloudflare and no rate limit, and a single POST returns 500 records — so a
+generous batch is cheap (10 000 ≈ 20 pages ≈ 10 s wall-time). `--limit` caps
+NEW writes (rounded up to the 500-record page boundary); already-cached ids
+are skipped for free. At 10 000/run the ~43k task-scope backlog clears in ≈ 5
+runs (a single uninterrupted `fetch` with no `--limit` finishes all ~43k in
+≈ 40 s — fine to run in one go since the volume is now modest).
+
+```bash
+.venv/bin/python scripts/fetch_kmk.py fetch --limit 10000
+```
+
+Resumable: the manifest (`scripts/cache/kmk/_manifest.json::cursor`) holds the
+last `search_after` value, persisted every page, so each run continues where
+the last stopped. When enumeration is exhausted the cursor resets to null (a
+later run re-checks from the top, picking up any newly-added records — all
+cached, so it's fast skip-through).
+
+### §5.7.2. Pre-batch check — discover freshness
+
+`discover` builds the in-scope nation list (the fetch scope filter) by
+classifying the live `nation.keyword` aggregation through
+`classify_nation_to_entity`. Run it:
+
+1. **First run ever** (no `_manifest.json`) — `discover` is mandatory before
+   the first `fetch`. (`both` does discover then fetch.)
+2. **`discovered_at` older than 30 days** — periodic refresh (KMM adds records).
+3. **New entity / nation variant added to scope** — extend the
+   `_NATION_RULES` table in `scripts/lib/mint_registry.py` first, then
+   `discover` (it re-freezes the kept-nation list AND resets the cursor so the
+   widened scope re-enumerates from the start).
+
+```bash
+.venv/bin/python scripts/fetch_kmk.py discover    # ~1 HTTP POST, instant
+```
+
+Skip `discover` on normal runs — only the freshness rules above trigger it.
+
+### §5.7.3. Commit the KMK batch — PB-10 dance
+
+Two-step dance, BUT bulk-scale: a batch writes thousands of `kmk/*.json`.
+The IKMK per-file `git add <each>.json` rule is impractical here, so use a
+**directory pathspec** — `kmk/` is this source's exclusive subdir, and the
+pathspec on `git commit` (§0.8) is the race-proof guard regardless of what
+else sits in the shared submodule index:
+
+```bash
+# Step A — submodule commit (pathspec = the kmk/ dir; race-safe per §0.8)
+cd scripts/cache
+git add kmk/                                  # this source's exclusive dir
+git status --short | head                     # sanity: only kmk/ paths staged
+git commit kmk -m "KMK batch <N> — <count> records (search_after page <P>)"
+
+# Step B — main-repo pointer bump (pathspec-commit; scripts/cache is tracked)
+cd /Users/serg/projects/muentzfuesse
+git commit scripts/cache -m "data: bump cache pointer — KMK batch <N> (<count> records)"
+```
+
+The `_manifest.json` cursor advances with the batch — it commits alongside the
+json files under the `kmk/` pathspec.
+
+### §5.7.4. Seed rebuild (separate, periodic — NOT every run)
+
+Harvesting fills the cache; the seed is rebuilt downstream when you want to
+refresh `data/v2/seed/kmk/<entity>.yml`:
+
+```bash
+.venv/bin/python scripts/maintenance/build_kmk_seed.py --write
+```
+
+Idempotent + merge-aware. It's a main-repo `data/` change → its own commit,
+separate from the cache-pointer bump. Run it after a meaningful cache growth
+(e.g. once the backlog is fully harvested, or every few batches), then let the
+cross-source merger + Phase-4 classifier pick the new entries up.
+
+### §5.7.5. Skip conditions
+
+Skip the KMK batch this run when:
+
+- **cursor is null AND `discovered_at` < 30 days** — fully harvested for
+  current scope; nothing to do. Log «KMK: skipped (fully harvested)».
+- **`discover` failed** (network) → log «KMK: skipped (discover failed)».
+
+Like IKMK, KMK is supplementary museum-catalogue enrichment, NOT a hard run
+requirement. If skipped, note it in the end-of-run «Push state» line.
+
+### §5.7.6. Per-run labeling
+
+KMK batches use numeric labels (KMK batch 1, 2, …). Track the last-used label
+in `scripts/cache/_harvest_handoff.json::kmk_last_label` (creates field if
+missing); increment each run that actually fetches.
 
 ---
 

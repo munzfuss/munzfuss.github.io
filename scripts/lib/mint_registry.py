@@ -606,3 +606,98 @@ def is_known_issuer(issuer: str | None) -> bool:
     if not issuer or not isinstance(issuer, str):
         return False
     return issuer.strip().lower() in _ISSUER_REGISTRY
+
+
+# ───────────────────── KMM `nation` → entity classifier ────────────────
+#
+# The Royal Coin Cabinet Copenhagen (KMM, harvested via api.natmus.dk —
+# see docs/KMK_HARVEST.md) labels every coin with a DANISH-LANGUAGE
+# `nation` realm string, and only ~27 % carry a `place` (mint). For the
+# ~73 % without a mint, `nation` is the fallback entity signal. KMM's
+# nation strings are dirty (case / whitespace / a «Tysk, » prefix /
+# «?» uncertainty marks / spelling variants): «Danmark» / « Danmark» /
+# «danmark» / «Danmark?» / «Tysk, Hamburg» / «Slesvig-Holsten» /
+# «Holsten-Gottorp». So we normalise then match ORDERED substring rules
+# (specific entities before the Danmark/Norge realm fallback).
+#
+# This is the nation-string analogue of `classify_issuer_to_entity`
+# (which handles Numista's English jurisdiction strings). Builders that
+# use it MUST record the lower-confidence provenance — the
+# `entity_classified_via` field on Coin — because nation routing is
+# coarser than mint routing (e.g. bare «Slesvig-Holsten» could be royal
+# OR Gottorp; we default to royal_holstein per the issuer-registry
+# convention «Danish duchies of Schleswig and Holstein → royal_holstein»,
+# and a mint reading, when present, overrides it).
+import re as _re  # noqa: E402
+
+_NATION_RULES: list[tuple] = [
+    # ── Schleswig-Holstein sub-duchies (specific BEFORE the bare
+    #    Slesvig/Holsten → royal_holstein catch) ──
+    (_re.compile(r"gottorp"), "gottorp_duchy"),
+    (_re.compile(r"s[øo]nderb[ou]rg"), "sonderburg_duchy"),
+    (_re.compile(r"gl[üu]cksb[ou]rg"), "glucksburg_duchy"),
+    (_re.compile(r"\bpl[öo]n\b|ploen"), "norburg_plon_duchy"),
+    (_re.compile(r"rantzau"), "rantzau_county"),
+    # ── Schleswig / Holstein under the Danish crown (king-as-duke
+    #    default; flat to royal_holstein per the issuer-registry
+    #    convention). Gottorp/Sønderborg/Plön/Glücksborg already won above. ──
+    (_re.compile(r"slesvig|holsten|holstein"), "royal_holstein"),
+    # ── Hanseatic + German territories ──
+    (_re.compile(r"hamburg"), "hanseatic_hamburg"),
+    (_re.compile(r"l[üu]neburg|lueneburg|brunswick|braunschweig"),
+     "herzogtum_braunschweig_lueneburg"),
+    (_re.compile(r"l[üu]beck|luebeck"), "hanseatic_lubeck"),
+    (_re.compile(r"bremen|verden"), "erzbisthum_bremen_verden"),
+    (_re.compile(r"oldenburg"), "grafschaft_oldenburg"),
+    (_re.compile(r"lauenburg"), "herzogtum_sachsen_lauenburg"),
+    (_re.compile(r"osnabr[üu]ck|osnabruck"), "hochstift_osnabrueck"),
+    (_re.compile(r"hessen|hesse|kassel|cassel"),
+     "landgrafschaft_hessen_kassel"),
+    (_re.compile(r"scha[ou]?[ue]nburg|schaumburg"),
+     "holstein_schauenburg_county"),
+    # ── Danish-Norwegian realm fallback. Danmark BEFORE Norge so
+    #    «Danmark-Norge» / «Danmark; Norge» (dual monarchy) anchor to the
+    #    realm, while bare «Norge» routes to danish_norway. ──
+    (_re.compile(r"danmark"), "danish_realm"),
+    (_re.compile(r"\bnorge\b|\bnorway\b"), "danish_norway"),
+]
+
+
+def _normalise_nation(nation: str) -> str:
+    """Lower-case, strip, drop a leading «Tysk, » / «Tysk » prefix, and
+    strip trailing «?» / «(?)» uncertainty marks. Returns «» on junk."""
+    s = nation.strip().lower()
+    s = _re.sub(r"^tysk[,\s]+", "", s)        # «Tysk, Hamburg» → «hamburg»
+    s = _re.sub(r"\(\?\)|\?+\s*$", "", s).strip()  # «danmark?» → «danmark»
+    return s
+
+
+def classify_nation_to_entity(nation: str | None,
+                              year: int | None = None) -> str | None:
+    """Map a KMM `nation` realm string → V2 political entity tag, or None.
+
+    Ordered substring match against `_NATION_RULES` after normalising the
+    dirty nation string. `year` is accepted for signature parity with
+    `classify_mint_to_entity` but is currently unused (no nation-level
+    year overrides modelled yet). Returns None for unknown / OOS / generic
+    («Tyskland», «Tysk», ancient/world realms) → caller routes to
+    `_unclassified`.
+
+    COARSER than mint classification — callers should prefer
+    `classify_mint_to_entity(place)` first and only fall back to this when
+    no mint is present, recording `entity_classified_via="nation"`.
+    """
+    if not nation or not isinstance(nation, str):
+        return None
+    norm = _normalise_nation(nation)
+    if not norm:
+        return None
+    for rx, entity in _NATION_RULES:
+        if rx.search(norm):
+            return entity
+    return None
+
+
+def is_known_nation(nation: str | None) -> bool:
+    """True if the nation string resolves to an in-scope entity."""
+    return classify_nation_to_entity(nation) is not None
