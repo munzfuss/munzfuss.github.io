@@ -36,7 +36,10 @@
 
 4. **Pacing = 31-60s between fetches** within a single batch. Random `sleep $((RANDOM % 30 + 31))` between calls. Do NOT skip pacing «to save time» — Cloudflare and ucoin's rate-limit defence fire fast.
 
-5. **NEVER edit YAML / seeds / location files in this routine.** Cache writes only. If the cache reveals a data anomaly (wrong year range, missing fineness), record it in the per-entry `_audit_context` field — never propagate to seeds in this run.
+5. **The routine's ONLY job is HARVEST + collecting cached data. It writes the cache; it never edits data, and it never interprets.** Two halves of this rule:
+   - **Never edit `data/**`** — no YAML / seeds / location / `data/v2/**` files (incl. `data/v2/final`, `data/v2/seed*`, `data/v2/*_decisions`). Cache writes only.
+   - **Never produce a VERDICT or DECISION — only raw EVIDENCE.** When a task needs a judgement about the data (which Müntzfuß, dual-vs-single nominal, is-this-a-duplicate, what's the correct value), the routine records the raw observation into the cache (a `_audit_context` field, or a dedicated evidence sidecar like `_ci_legend_evidence.json`) and STOPS. The interpretation + the resulting data edit are CURATION, done in an interactive session — never autonomously by the cron. «Harvest the legend» ✓; «decide the nominal» ✗. (Reference case: §5.6.)
+   If the cache reveals a data anomaly (wrong year range, missing fineness), record it in `_audit_context` / the anomaly log — never propagate to seeds or data in this run.
 
 6. **English-only commit messages** (CLAUDE.md «Git workflow» rule). Chat may be Ukrainian; commits are English.
 
@@ -1484,34 +1487,67 @@ actually fetches.
 
 ---
 
-## §5.6. Priority curation-harvest task — §CI dual-denomination legend verification
+## §5.6. §CI dual-denomination legend HARVEST (evidence-only — routine writes cache, never data)
 
-When `_harvest_handoff.json::priority_override` has `task: "§CI"` (or the
-preflight prints it), run a batch of this BEFORE the normal Numista/ucoin
-fronts. This is a curation-harvest task (fetch a legend, then decide a
-nominal), not manifest enumeration.
+> **Scope per §0.5.** §CI was originally written as a curation task
+> (fetch a legend, THEN decide a nominal, THEN edit `data/v2/final`). Under the
+> branch model that is forbidden: the routine harvests EVIDENCE into the cache;
+> it does NOT interpret the evidence and does NOT touch `data/**`. The nominal
+> decision is a separate curation step (below). When `priority_override` has
+> `task: "§CI"`, run an evidence batch BEFORE the normal Numista/ucoin fronts.
+> (As of 2026-06-01 the override is PARKED in `parked_curation_tasks` — re-activate
+> it into `priority_override` only when you want the routine collecting §CI evidence.)
+
+**The routine's half (HARVEST — cache only):**
 
 - **Work-list:** `docs/cg_dual_denomination_verify.json` — 82 coins whose
   `nominal` carries two FULL denominations («4 Mark = 1 Krone»,
   «2 Krone (8 Mark)», «16 Rigsbankskilling = 5 Schilling Courant», …).
-  Track progress in `_harvest_handoff.json::ci_verified_ids` (list; create
-  if missing) so each run picks the next ~8 unverified entries.
+  Track progress in `_harvest_handoff.json::ci_evidence_ids` (list; create
+  if missing) so each run picks the next ~8 unharvested entries.
 - **Per coin** — fetch the actual coin legend via **Chrome MCP** (IKMK
   `ikmk.smb.museum`, danskmoent.dk, or the Numista per-coin page in Chrome).
-  **Do NOT use the Numista API** (budget-bound per CLAUDE.md «Numista API
-  budget»). Then decide per CLAUDE.md §1:
+  **Do NOT use the Numista API** (budget-bound per CLAUDE.md «Numista API budget»).
+- **Record RAW evidence only — no verdict, no interpretation.** Append to the
+  cache sidecar `scripts/cache/_ci_legend_evidence.json` (a list; create if
+  missing), one record per coin:
+
+  ```json
+  {
+    "coin_ref": "<entity>:<coin_id>",
+    "current_nominal": "4 Mark = 1 Krone",
+    "obverse_legend": "<verbatim legend text, or empty>",
+    "reverse_legend": "<verbatim legend text, or empty>",
+    "legible": true,
+    "source_url": "https://ikmk.smb.museum/object?id=...",
+    "harvested_at": "<UTC ISO>"
+  }
+  ```
+  Record the legend **verbatim** as read from the coin. Do NOT decide
+  «dual vs single», do NOT set or edit `nominal`, do NOT move anything to
+  `note`. If the legend is illegible/undated, set `legible: false` and leave
+  the legend strings empty — that is itself the evidence. Add the coin to
+  `ci_evidence_ids`.
+- This sidecar is a submodule cache write — it rides the run's normal
+  cache commit (PB-10), exactly like `_failed_open_ids.json` / `_rate_limit_events.json`.
+
+**The curation half (DECISION + DATA — NOT the routine; interactive / curation session):**
+
+Reading the cached evidence, a curation session applies the nominal decision via
+`_source_errata` on the coin (seed or final) — NOT by free-hand editing `nominal`:
   - legend shows **BOTH** denominations (genuinely dual-inscribed, e.g. the
-    Rigsbankskilling Phase-2 dual face) → **KEEP** the dual nominal as-is;
-  - legend shows **ONE** → set `nominal` to the inscribed denomination,
-    move the other to `note` (language-neutral, like §CG stage C);
-  - no legible legend / undated → leave + record `unknown` in the work-list.
-  Edit `data/v2/final/<entity>.yml` (+ matching seed/seed_unified records)
-  textually — ruamel reflows these files (§CG lesson). Add the verified id
-  to `ci_verified_ids`.
-- **Cite** any legend fetched into a coin `note`/`sources` per §5 (web-
-  sourced fact → bibliography + inline cite).
-- When `ci_verified_ids` covers all 82, clear `priority_override` and mark
-  TODO §CI done.
+    Rigsbankskilling Phase-2 dual face) → KEEP the dual `nominal`; no errata.
+  - legend shows **ONE** → add `_source_errata: [{field: nominal, printed: "<current>",
+    correct: "<inscribed denom>", reason: "<source> legend reads '<X>' only; '<Y>'
+    is editorial equivalent", curator: <name>}]` + move the equivalent into `note`.
+    `apply_source_errata` (seed_merge.py §CN) overwrites `nominal` LAST in the build,
+    so it wins over the foundation-immutable value and survives regen — no DF1
+    resolution needed.
+  - illegible → leave as-is; record the gap.
+  Cite the harvested legend in the coin `note`/`sources` per §5.
+
+When `ci_evidence_ids` covers all 82, the routine's §CI harvest is done — clear
+`priority_override` (or leave parked) and hand off to curation for the errata pass.
 
 ---
 
