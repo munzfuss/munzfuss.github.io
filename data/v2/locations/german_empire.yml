@@ -4,11 +4,23 @@ name:
   en: German Empire
   uk: Німецька імперія
 summary:
-  de: Vereinigtes Deutsches Reich ab 1871 — einheitliche Reichswährung (Mark zu 100 Pfennig) per Münzgesetz vom 4. Dezember 1871. Goldtier nach dem Reichsgoldmünzfuß (139½ Zehnmarkstücke aus 1 Pfund Feingold, .900); Silber- und Scheidemünzen reichsweit einheitlich. Karbung bis zum Edelmetall-Anker-Ende 1914.
-  en: Unified German Empire from 1871 — single imperial currency (Mark of 100 Pfennig) under the Coinage Act of 4 December 1871. Gold tier on the Reichsgoldmünzfuß (139½ ten-mark pieces from 1 pound fine gold, .900); silver and base coin standardised Reich-wide. Coinage until the precious-metal-anchor end in 1914.
-  uk: Обʼєднана Німецька імперія з 1871 — єдина імперська валюта (марка зі 100 пфенігів) за Законом про монету 4 грудня 1871. Золотий тир за Reichsgoldmünzfuß (139½ десятимаркових монет з 1 фунта чистого золота, .900); срібло й розмінна монета уніфіковані по всій імперії. Карбування до кінця епохи дорогоцінно-металевого анкера 1914.
+  de: Vereinigtes Deutsches Reich ab 1871 — einheitliche Reichswährung (Mark zu 100 Pfennig) per Münzgesetz vom 4. Dezember 1871. Goldtier nach dem Reichsgoldmünzfuß (139½ Zehnmarkstücke aus 1 Pfund Feingold, .900); Silber- und Scheidemünzen reichsweit einheitlich. Diese Seite sammelt sowohl die reichsweiten Gemeinschaftstypen als auch die Reichswährungs-Karbung der Einzelstaaten mit eigener Locationsseite (Hamburg, Lübeck, Oldenburg, Braunschweig-Lüneburg) — diese Stücke erscheinen sowohl hier als auch auf ihrer Staatsseite. Karbung bis zum Edelmetall-Anker-Ende 1914.
+  en: Unified German Empire from 1871 — single imperial currency (Mark of 100 Pfennig) under the Coinage Act of 4 December 1871. Gold tier on the Reichsgoldmünzfuß (139½ ten-mark pieces from 1 pound fine gold, .900); silver and base coin standardised Reich-wide. This page gathers both the Reich-wide common types and the Reichswährung coinage of the member states that have their own location page (Hamburg, Lübeck, Oldenburg, Brunswick-Lüneburg) — those pieces appear both here and on their state page. Coinage until the precious-metal-anchor end in 1914.
+  uk: Обʼєднана Німецька імперія з 1871 — єдина імперська валюта (марка зі 100 пфенігів) за Законом про монету 4 грудня 1871. Золотий тир за Reichsgoldmünzfuß (139½ десятимаркових монет з 1 фунта чистого золота, .900); срібло й розмінна монета уніфіковані по всій імперії. Ця сторінка збирає і загальноімперські спільні типи, і Reichswährung-карбування окремих держав з власною сторінкою (Гамбург, Любек, Ольденбург, Брауншвейг-Люнебург) — такі монети показані і тут, і на сторінці своєї держави. Карбування до кінця епохи дорогоцінно-металевого анкера 1914.
 consumes_entities:
   - german_empire
+  - entity: hanseatic_hamburg
+    year_from: 1871
+    year_to: 1914
+  - entity: hanseatic_lubeck
+    year_from: 1871
+    year_to: 1914
+  - entity: grafschaft_oldenburg
+    year_from: 1871
+    year_to: 1914
+  - entity: herzogtum_braunschweig_lueneburg
+    year_from: 1871
+    year_to: 1914
 fuss_order:
   - seed_unsorted
 phases:
@@ -18,11 +30,33 @@ phases:
       year_to: 1914
       from_label: (?)
       to_label: (?)
-      title:
-        de: Bulk-Seed · ucoin
-        en: Bulk seed · ucoin
-        uk: Bulk-seed · ucoin
-      description:
-        de: Sammelphase für die aus ucoin seed-importierten Reichswährungs-Stücke. Bei der nächsten Detail-Bearbeitung wandern die Goldmünzen in den Reichsgoldmünzfuß und die Silber-/Scheidemünzen in ihre Tier-Klassifikation.
-        en: Bulk-seed collection of Reichswährung pieces imported from ucoin. On the next detailed pass the gold coins move into the Reichsgoldmünzfuß and the silver/base coins into their tier classification.
-        uk: Збірна фаза для seed-імпортованих монет Reichswährung із ucoin. На наступному детальному проході золоті монети перейдуть у Reichsgoldmünzfuß, а срібні/розмінні — у свою класифікацію тиру.
+      title: {de: 'Bulk-Seed · ucoin', en: 'Bulk seed · ucoin', uk: 'Bulk-seed · ucoin'}
+      description: {de: 'Sammelphase für die aus ucoin seed-importierten Reichswährungs-Stücke. Bei der nächsten Detail-Bearbeitung wandern die Goldmünzen in den Reichsgoldmünzfuß und die Silber-/Scheidemünzen in ihre Tier-Klassifikation.', en: 'Bulk-seed collection of Reichswährung pieces imported from ucoin. On the next detailed pass the gold coins move into the Reichsgoldmünzfuß and the silver/base coins into their tier classification.', uk: 'Збірна фаза для seed-імпортованих монет Reichswährung із ucoin. На наступному детальному проході золоті монети перейдуть у Reichsgoldmünzfuß, а срібні/розмінні — у свою класифікацію тиру.'}
+    - id: numista
+      year_from: 1871
+      year_to: 1914
+      from_label: (?)
+      to_label: (?)
+      title: {de: 'Bulk-Seed · Numista', en: 'Bulk seed · Numista', uk: 'Bulk-seed · Numista'}
+      description: {de: 'Sammelphase für aus Numista eingespeiste Reichswährungs-Stücke; Klassifikation in Phase 4.', en: 'Bulk-seed collection of Reichswährung pieces from Numista; classification in Phase 4.', uk: 'Збірна фаза для монет Reichswährung із Numista; класифікація у Phase 4.'}
+    - id: numismaster
+      year_from: 1871
+      year_to: 1914
+      from_label: (?)
+      to_label: (?)
+      title: {de: 'Bulk-Seed · NumisMaster', en: 'Bulk seed · NumisMaster', uk: 'Bulk-seed · NumisMaster'}
+      description: {de: 'Sammelphase für aus NumisMaster eingespeiste Reichswährungs-Stücke; Klassifikation in Phase 4.', en: 'Bulk-seed collection of Reichswährung pieces from NumisMaster; classification in Phase 4.', uk: 'Збірна фаза для монет Reichswährung із NumisMaster; класифікація у Phase 4.'}
+    - id: bruun
+      year_from: 1871
+      year_to: 1914
+      from_label: (?)
+      to_label: (?)
+      title: {de: 'Bulk-Seed · Bruun', en: 'Bulk seed · Bruun', uk: 'Bulk-seed · Bruun'}
+      description: {de: 'Sammelphase für aus dem Bruun-Auktionskatalog eingespeiste Reichswährungs-Stücke; Klassifikation in Phase 4.', en: 'Bulk-seed collection of Reichswährung pieces from the Bruun auction catalogue; classification in Phase 4.', uk: 'Збірна фаза для монет Reichswährung із аукціонного каталогу Bruun; класифікація у Phase 4.'}
+    - id: ikmk
+      year_from: 1871
+      year_to: 1914
+      from_label: (?)
+      to_label: (?)
+      title: {de: 'Bulk-Seed · IKMK Berlin', en: 'Bulk seed · IKMK Berlin', uk: 'Bulk-seed · IKMK Berlin'}
+      description: {de: 'Sammelphase für aus IKMK Berlin eingespeiste Reichswährungs-Stücke; Klassifikation in Phase 4.', en: 'Bulk-seed collection of Reichswährung pieces from IKMK Berlin; classification in Phase 4.', uk: 'Збірна фаза для монет Reichswährung із IKMK Berlin; класифікація у Phase 4.'}
