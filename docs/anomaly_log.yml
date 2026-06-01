@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-01T03:29:06Z'
+  last_updated_utc: '2026-06-01T10:40:23Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1246,7 +1246,7 @@ anomalies:
     tid: '191287'
   summary: ucoin TID 191287 (Bremen 1 Grote 1543-1551 MB-8) falls outside German-lands mission window
     1559+; lives in bremen_p1195 gap_tids despite being PRE-mission.
-  status: open
+  status: resolved
   instance_first_seen: '2026-06-01T03:29:06Z'
   last_seen: '2026-06-01T03:29:06Z'
   occurrence_count: 1
@@ -1268,6 +1268,10 @@ anomalies:
   proposed_fix: Move TID 191287 from bremen_p1195.gap_tids into a new bremen_p1195.oos_excluded_tids slot
     (with audit-trail reason 'pre-mission 1543-1551, German lands anchor 1559'). Same pattern used for
     the DK p4 / NO p2 cleanups documented in SOURCES.md §13.1.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: Moved TID 191287 (Bremen 1 Grote MB-8, 1543-1551) from bremen_p1195 into the bucket 's oos_excluded_tids
+    slot (pre-mission; German-lands anchor 1559). Full Chrome re-enumeration of the bucket (93 TIDs, 2026-05-30)
+    confirms 191287 is the ONLY pre-1559 coin — the rest are 1623-1797 — so no further pre-mission TIDs
+    remain. cached_count 40→39, in_scope_total set to 92. Cache file kept on disk; only the audit accounting
+    changed.
+  resolved_at: '2026-06-01T10:40:23Z'
+  resolved_by: claude
