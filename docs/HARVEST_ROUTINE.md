@@ -30,7 +30,7 @@
    - **`harvest/auto` is append-only in the routine: never rebase it, never force-push it.** Just keep stacking pointer-bump commits and fast-forward-pushing. (Rebasing/force-pushing is unnecessary — see §1's preflight, which simply ensures the branch exists off the latest `origin/main`.)
    - **No per-run «wait for пуш» gate.** Cron-fired runs push `harvest/auto` + submodule `main` autonomously at end of run (§3, §5). The end-of-run report states what was pushed and the one-line integration command for the curator (§6.2 item 10). The CLAUDE.md global «never push autonomously» rule still governs the SUPERPROJECT `main` and the CURATION clone — this carve-out is scoped strictly to the routine pushing `harvest/auto` + submodule `main`.
 
-2. **One Numista batch + one ucoin batch + one IKMK batch per run.** Do not exceed this. Numista + ucoin are Chrome-MCP scrapes through Cloudflare, hard-capped at **5 entries/batch** (context budget + politeness). IKMK is different: a plain `urllib` museum JSON API (`docs/IKMK_HARVEST.md`) — openly licensed (CC BY-SA 4.0), no Cloudflare, no observed rate limit, ID-list-from-search-queries rather than per-NID URLs — so its single batch is **200 entries/run** (§5.5.1), clearing the title-scoped backlog in a handful of runs. See §5.5 for the batch protocol. IKMK can be skipped per-run when no uncached IDs remain (§5.5.5).
+2. **One Numista batch + one ucoin batch + one IKMK batch + one KMK batch per run.** Do not exceed this. Numista + ucoin are Chrome-MCP scrapes through Cloudflare, hard-capped at **5 entries/batch** (context budget + politeness). IKMK is different: a plain `urllib` museum JSON API (`docs/IKMK_HARVEST.md`) — openly licensed (CC BY-SA 4.0), no Cloudflare, no observed rate limit, ID-list-from-search-queries rather than per-NID URLs — so its single batch is **200 entries/run** (§5.5.1), clearing the title-scoped backlog in a handful of runs. See §5.5 for the batch protocol. IKMK can be skipped per-run when no uncached IDs remain (§5.5.5). KMK (Royal Coin Cabinet Copenhagen, `api.natmus.dk`) is likewise a no-auth, no-Cloudflare, no-rate-limit JSON API but enumerated via `search_after` paging with the scope filter in the ES query (not a per-ID list) — its batch is **10 000 records/run** (§5.7.1), clearing the ~43k task-scope backlog (nation scope ∩ 1480-1914) in ≈ 5 runs. See §5.7 for the protocol; KMK can be skipped when fully harvested (§5.7.5).
 
 3. **Batch size = 5 entries** (NIDs or TIDs). Hard cap. If a batch would close the bucket and only 3 remain, do those 3 — never extend past the bucket boundary into the next priority.
 
@@ -1548,6 +1548,123 @@ Reading the cached evidence, a curation session applies the nominal decision via
 
 When `ci_evidence_ids` covers all 82, the routine's §CI harvest is done — clear
 `priority_override` (or leave parked) and hand off to curation for the errata pass.
+
+---
+
+## §5.7. KMK batch (Royal Coin Cabinet Copenhagen — Nationalmuseet API)
+
+Fourth API source per run. KMM (Den Kgl. Mønt- og Medaillesamling, held by
+the Danish Nationalmuseet) is harvested through the open, no-auth
+Elasticsearch endpoint `api.natmus.dk/search/public/raw`. Mechanics differ
+from every other source — read `docs/KMK_HARVEST.md` first.
+
+- **No per-ID list and no Cloudflare**: the scope filter lives in the ES
+  query (collection=KMM + type=object + an in-scope `nation` terms list), and
+  enumeration is `search_after` paging (sort `_id` asc) — NOT a manifest of
+  individual IDs like IKMK.
+- **Whole-record cache**: each record's entire `_source` JSON →
+  `scripts/cache/kmk/<id>.json`. No field pruning, no year gate, no exonumia
+  drop at harvest (those happen at SEED).
+- **One-shot driver**: `scripts/fetch_kmk.py` (discover / fetch / both).
+- **No observed rate limit**; polite 0.4 s/page, 500 records/page.
+- **Task scope ≈ 43 033 records.** Nation scope is ~221 934 across 11 entities
+  (Danmark 149k, Hamburg 40k, Lüneburg 14k, Lübeck 12k, Norge 4.3k, …), but a
+  HARVEST-time temporal gate (`_harvest_query`) keeps only dated-in-[1480,1914]
+  OR undated-with-in-scope-ruler, cutting the medieval bulk → ~43 033.
+
+### §5.7.1. Batch shape
+
+**10 000 new cache writes per run.** KMM is a plain JSON API with no
+Cloudflare and no rate limit, and a single POST returns 500 records — so a
+generous batch is cheap (10 000 ≈ 20 pages ≈ 10 s wall-time). `--limit` caps
+NEW writes (rounded up to the 500-record page boundary); already-cached ids
+are skipped for free. At 10 000/run the ~43k task-scope backlog clears in ≈ 5
+runs (a single uninterrupted `fetch` with no `--limit` finishes all ~43k in
+≈ 40 s — fine to run in one go since the volume is now modest).
+
+```bash
+.venv/bin/python scripts/fetch_kmk.py fetch --limit 10000
+```
+
+Resumable: the manifest (`scripts/cache/kmk/_manifest.json::cursor`) holds the
+last `search_after` value, persisted every page, so each run continues where
+the last stopped. When enumeration is exhausted the cursor resets to null (a
+later run re-checks from the top, picking up any newly-added records — all
+cached, so it's fast skip-through).
+
+### §5.7.2. Pre-batch check — discover freshness
+
+`discover` builds the in-scope nation list (the fetch scope filter) by
+classifying the live `nation.keyword` aggregation through
+`classify_nation_to_entity`. Run it:
+
+1. **First run ever** (no `_manifest.json`) — `discover` is mandatory before
+   the first `fetch`. (`both` does discover then fetch.)
+2. **`discovered_at` older than 30 days** — periodic refresh (KMM adds records).
+3. **New entity / nation variant added to scope** — extend the
+   `_NATION_RULES` table in `scripts/lib/mint_registry.py` first, then
+   `discover` (it re-freezes the kept-nation list AND resets the cursor so the
+   widened scope re-enumerates from the start).
+
+```bash
+.venv/bin/python scripts/fetch_kmk.py discover    # ~1 HTTP POST, instant
+```
+
+Skip `discover` on normal runs — only the freshness rules above trigger it.
+
+### §5.7.3. Commit the KMK batch — PB-10 dance
+
+Two-step dance, BUT bulk-scale: a batch writes thousands of `kmk/*.json`.
+The IKMK per-file `git add <each>.json` rule is impractical here, so use a
+**directory pathspec** — `kmk/` is this source's exclusive subdir, and the
+pathspec on `git commit` (§0.8) is the race-proof guard regardless of what
+else sits in the shared submodule index:
+
+```bash
+# Step A — submodule commit (pathspec = the kmk/ dir; race-safe per §0.8)
+cd scripts/cache
+git add kmk/                                  # this source's exclusive dir
+git status --short | head                     # sanity: only kmk/ paths staged
+git commit kmk -m "KMK batch <N> — <count> records (search_after page <P>)"
+
+# Step B — main-repo pointer bump (pathspec-commit; scripts/cache is tracked)
+cd /Users/serg/projects/muentzfuesse
+git commit scripts/cache -m "data: bump cache pointer — KMK batch <N> (<count> records)"
+```
+
+The `_manifest.json` cursor advances with the batch — it commits alongside the
+json files under the `kmk/` pathspec.
+
+### §5.7.4. Seed rebuild (separate, periodic — NOT every run)
+
+Harvesting fills the cache; the seed is rebuilt downstream when you want to
+refresh `data/v2/seed/kmk/<entity>.yml`:
+
+```bash
+.venv/bin/python scripts/maintenance/build_kmk_seed.py --write
+```
+
+Idempotent + merge-aware. It's a main-repo `data/` change → its own commit,
+separate from the cache-pointer bump. Run it after a meaningful cache growth
+(e.g. once the backlog is fully harvested, or every few batches), then let the
+cross-source merger + Phase-4 classifier pick the new entries up.
+
+### §5.7.5. Skip conditions
+
+Skip the KMK batch this run when:
+
+- **cursor is null AND `discovered_at` < 30 days** — fully harvested for
+  current scope; nothing to do. Log «KMK: skipped (fully harvested)».
+- **`discover` failed** (network) → log «KMK: skipped (discover failed)».
+
+Like IKMK, KMK is supplementary museum-catalogue enrichment, NOT a hard run
+requirement. If skipped, note it in the end-of-run «Push state» line.
+
+### §5.7.6. Per-run labeling
+
+KMK batches use numeric labels (KMK batch 1, 2, …). Track the last-used label
+in `scripts/cache/_harvest_handoff.json::kmk_last_label` (creates field if
+missing); increment each run that actually fetches.
 
 ---
 
