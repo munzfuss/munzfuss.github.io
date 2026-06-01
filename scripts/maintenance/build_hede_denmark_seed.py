@@ -114,6 +114,7 @@ from ruamel.yaml.comments import CommentedMap, CommentedSeq
 _NOMINAL_LOWERCASE_WORDS = {"og", "und", "and"}
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
 from lib.paths import HEDE_CACHE, PROJECT_ROOT as PROJECT  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
@@ -693,27 +694,28 @@ def _build_coin(
     catalog["hede"] = hede_number
     catalog["hede_volume"] = hede_volume
     refs = catalog_refs_override or parsed.get("catalog_refs") or {}
-    if "Schou" in refs and refs["Schou"]:
-        catalog["schou"] = refs["Schou"][0]
-    if "Sieg" in refs and refs["Sieg"]:
-        catalog["sieg"] = refs["Sieg"][0]
-    # `Frederik` key in catalog_refs is a known parser false-positive
-    # (king name «Frederik 2.» mis-matched as catalogue) — fixed in
-    # parse_hede.py 2026-05-25. The mapping `Frederik → fr (Friedberg)`
-    # was anyway semantically wrong — Friedberg is a Western gold-coin
-    # global catalogue, not «Frederik-N» ruler-attribution. Real Friedberg
-    # refs are now captured under the `Fr` / `Friedberg` keys (post-fix)
-    # and should populate fr field directly.
-    if "Fr" in refs and refs["Fr"]:
-        catalog["fr"] = refs["Fr"][0]
-    if "Dav" in refs and refs["Dav"]:
-        catalog["dav"] = refs["Dav"][0]
-    if "Km" in refs and refs["Km"]:
-        catalog["km"] = refs["Km"][0]
-    if "Galster" in refs and refs["Galster"]:
-        catalog["galster"] = refs["Galster"][0]
-    if "Bruun" in refs and refs["Bruun"]:
-        catalog["bruun_collection_id"] = refs["Bruun"][0]
+    # GENERIC catalogue mapping (§CJ): Schou/Sieg/Fr/Dav/Km/Galster/Bruun →
+    # typed; any other code the parser surfaces → `others` (never dropped).
+    # `Hede` is set above from hede_number (authoritative); the `Frederik` key
+    # is a known parser false-positive (king name «Frederik 2.» mis-matched as
+    # a catalogue, fixed in parse_hede.py 2026-05-25; the old `Frederik → fr`
+    # mapping was anyway semantically wrong — Friedberg is a gold-coin global
+    # catalogue, not a ruler-attribution). Both are dropped here.
+    _HEDE_REF_MAP = {
+        "Schou": "schou", "Sieg": "sieg", "Fr": "fr", "Dav": "dav",
+        "Km": "km", "Galster": "galster", "Bruun": "bruun_collection_id",
+    }
+    mapped = catalog_from_ref_dict(
+        refs, _HEDE_REF_MAP, drop_keys={"Hede", "Frederik"}
+    )
+    for field, value in mapped.items():
+        if field == "others":
+            bucket = catalog.setdefault("others", [])
+            for tok in value:
+                if tok not in bucket:
+                    bucket.append(tok)
+        else:
+            catalog[field] = value
     cm["catalog"] = catalog
 
     cm["metal"] = metal

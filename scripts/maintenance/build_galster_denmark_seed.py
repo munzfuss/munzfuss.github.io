@@ -32,6 +32,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
 from lib.paths import GALSTER_CACHE  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
@@ -298,7 +299,12 @@ def build_entry(data: dict) -> dict | None:
     if not (YEAR_FROM <= year_first <= YEAR_TO):
         return None
 
-    catalog: dict = dict(data.get("catalog_refs") or {})
+    # GENERIC catalogue mapping (§CJ): Galster's catalog_refs keys are already
+    # schema-field names (galster/schou/schive/sieg/jensen_skjoldager); the
+    # generic mapper passes those through typed and routes any future
+    # non-schema key to `others` rather than copying it verbatim (which would
+    # fail validation).
+    catalog: dict = catalog_from_ref_dict(data.get("catalog_refs") or {})
     if data.get("galster_number") and "galster" not in catalog:
         catalog["galster"] = data["galster_number"]
     if data.get("ruler_volume"):

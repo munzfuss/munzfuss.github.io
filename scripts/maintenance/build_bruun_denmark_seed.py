@@ -58,6 +58,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 CACHE_DIR = PROJECT_ROOT / "scripts" / "cache" / "bruun" / "lots"
 
 sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
@@ -540,10 +541,12 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     metal, metal_verified = parse_metal(denom, refs)
     mintmaster = parse_mintmaster(body)
 
-    catalog: dict[str, Any] = {}
-    for k, field in REF_FIELDS.items():
-        if k in refs:
-            catalog[field] = refs[k]
+    # GENERIC catalogue mapping (§CJ): schema-field keys → typed; every other
+    # key — Bruun's Swedish-specific cats (lott/delzanno/sm/hagander/appelgren/
+    # mb_swedish/hauberg/malmer, mapped to non-schema names in REF_FIELDS) AND
+    # any code our schema doesn't type (Aagaard, Pn, future catalogues) →
+    # `others` as «Label# value». Nothing dropped, nothing breaks validation.
+    catalog: dict[str, Any] = catalog_from_ref_dict(refs, REF_FIELDS)
     # Special: Jensen-Skjoldager key in Bruun refs (cited as "Jensen & Skjoldager-...")
     if "Jensen & Skjoldager" in body:
         m = re.search(r"Jensen\s*&?\s*Skjoldager-?\s*([A-Z0-9/\-,. ]+?)(?:[;.]|\sschou|\sweight)", body, re.IGNORECASE)
