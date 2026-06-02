@@ -1954,7 +1954,23 @@ def _collect_sources(members: list[dict],
             url = s.get("url") or ""
             ref = s.get("ref") or ""
             stype = s.get("type") or ""
-            if any(host in url for host in _SINGLE_PAGE_HOSTS):
+            # A .pdf URL is ALWAYS a multi-record source (one catalogue PDF
+            # hosts hundreds of lots, the per-lot discriminator living in
+            # `ref`), regardless of host. This guard must precede the
+            # single-page-host check. The Bruun catalogue PDFs are hosted
+            # per-part on DIFFERENT origins: Parts I/III/IV on stacksbowers.com
+            # (never a _SINGLE_PAGE_HOST, so already triple-keyed and correct),
+            # but Part II on danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII…pdf —
+            # whose "danskmoent.dk" host substring mis-classified it as
+            # single-page, collapsing every Part-II lot to ONE citation under
+            # url-only dedup. (Caught 2026-06-02: a 2-Speciedaler type lost
+            # "Bruun Part II, lot 14032" because "lot 14013" of the same PtII
+            # PDF was seen first.) The .pdf guard fixes Part II and is
+            # host-agnostic, so a future danskmoent mirror of any other part
+            # is covered too.
+            if url.lower().endswith(".pdf"):
+                key = ("trip", url, ref, stype)
+            elif any(host in url for host in _SINGLE_PAGE_HOSTS):
                 key = ("url", url)
             else:
                 key = ("trip", url, ref, stype)
