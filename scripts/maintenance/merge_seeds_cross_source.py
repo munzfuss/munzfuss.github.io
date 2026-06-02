@@ -2216,6 +2216,18 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
         "bruun_part", "bruun_lot_no", "bruun_page",
         "sieg_hede1971", "schou_hede1971", "hede_volume",
     }
+    # SPECIMEN-level single-value fields: a coin TYPE legitimately has many
+    # Bruun specimens (different part/lot/page), so a disagreement here is
+    # EXPECTED, not a real conflict — the anchor scalar keeps the top-
+    # authority specimen and every other specimen's full citation lives in
+    # `sources[]` + `bruun_collection_id` (§9a, verified 0 loss 2026-06-03).
+    # §9a already excludes these from MATCHING; we likewise keep them OUT of
+    # the conflict log so the audit surfaces only GENUINE single-value
+    # disagreements (sieg_hede1971 / schou_hede1971 / hede_volume — e.g. the
+    # KM-461 c5h-vs-f4h reign mix-up). Output (chosen anchor) is unchanged.
+    _SPECIMEN_LEVEL_SINGLE_FIELDS = {
+        "bruun_part", "bruun_lot_no", "bruun_page",
+    }
     # `others` is already list-form; just union.
 
     # Defensive filter — drop cf-form values (user policy 2026-05-18):
@@ -2262,7 +2274,9 @@ def _deep_merge_catalog(members: list[dict], entity_id: str | None = None
         elif k in _SINGLE_VALUE_FIELDS:
             # Single-value forced (schema constraint). Top-auth wins.
             out[k] = values[0]
-            if len(values) > 1:
+            # Specimen-level bruun part/lot/page disagreements are expected
+            # (multi-specimen) and lossless — don't log them as conflicts.
+            if len(values) > 1 and k not in _SPECIMEN_LEVEL_SINGLE_FIELDS:
                 for extra in values[1:]:
                     all_conflicts.append((f"catalog.{k}", values[0], extra))
         else:
