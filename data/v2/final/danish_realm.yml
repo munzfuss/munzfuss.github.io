@@ -15342,7 +15342,7 @@ coins:
   kind: kurant
   fraction: '2'
   nominal: 2 Ducats
-  ruler: Christian V.
+  ruler: Frederik IV.
   issuing_entity: danish_realm
   id: km-461-chr-v-1699
   year_first: 1699
@@ -15357,7 +15357,7 @@ coins:
     bruun_part: I
     bruun_lot_no: 1124
     bruun_page: 176
-    hede_volume: c5h
+    hede_volume: f4h
     sieg: '36'
     schou: '4'
     hede: '3'
@@ -15394,9 +15394,15 @@ coins:
     url: https://www.danskmoent.dk/fr/f4h2.htm
     ref: danskmoent.dk (Hede f4h3)
   note:
-    de: 2 Ducats 1699 (Hede-3) · Bruun-Specimen.
-    en: 2 Ducats 1699 (Hede-3) · Bruun specimen.
-    uk: 2 Ducats 1699 (Hede-3) · Bruun-зразок.
+    de: 2 Dukat 1699, geprägt zum Thronwechsel von Christian V. auf Frederik
+      IV. (Tronskifte) — Vorderseite Bildnis Frederik IV., Rückseite Bildnis
+      Christian V.
+    en: 2 Ducats 1699, struck for the succession from Christian V to Frederik
+      IV (tronskifte) — obverse portrait of Frederik IV, reverse portrait of
+      Christian V.
+    uk: 2 дукати 1699, карбовані з нагоди переходу престолу від Christian V до
+      Frederik IV (tronskifte) — аверс із портретом Frederik IV, реверс із
+      портретом Christian V.
   verification_note:
     de: Probe nicht direkt belegt. Per Projekt-Konvention (CLAUDE.md §4) für strikt-monoprobe Müntzfüße der Kategorie 1 (reichsdukatenfuss,
       Anker 0.9861) auf den kanonischen Müntzfuß-Wert gesetzt; Δ -1.16% gegen den Soll-Wert liegt im ±2-%-Streifen der zulässigen
@@ -15410,6 +15416,14 @@ coins:
   composed_of:
   - unified-dk-hede-f4h3
   v1_home_location: denmark
+  _curation_holds:
+    ruler: "Frederik IV (NOT Christian V): this is the 1699 tronskifte (throne-change)
+      2-Dukat, Hede f4h-3, Sieg 36 — danskmoent f4h2 attests the Christian-V→Frederik-IV
+      succession series (obv Frederik IV, rev Christian V). The V1 bootstrap mis-tagged
+      it Christian V / c5h-3, but c5h-3 is the unrelated 1673 2-Dukat (Sieg 118). The
+      cross-source merge surfaced the disagreement; corrected 2026-06-02. The id slug
+      still reads 'chr-v' (kept stable to avoid breaking composed_of links)."
+    hede_volume: "f4h (NOT c5h): per the Frederik-IV tronskifte attribution above."
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant
