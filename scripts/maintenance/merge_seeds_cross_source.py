@@ -605,6 +605,16 @@ def _infer_ruler(coin: dict, reign_index: dict[int, set[str]]) -> str | None:
     return R
 
 
+# Per-coin memo for _catalog_refs. _catalog_refs is a pure function of
+# (coin, entity_id), but within ONE process_entity run the entity_id is
+# constant and the coin dicts are stable objects (held in seeds_by_id), so
+# we key by id(coin) alone. The O(n²) pre-pass calls _catalog_refs 4× per
+# pair (≈179M times on danish_realm) though there are only n distinct coins
+# — memoising collapses that to n computations. MUST be cleared at the start
+# of every process_entity (id() can be reused across entities after GC).
+_CATALOG_REFS_MEMO: dict[int, dict[str, str]] = {}
+
+
 def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
     """Return dict of {scope_key: ref_value} for every catalog ref.
     Keys encode scope so cross-volume / cross-ruler collisions don't
@@ -625,6 +635,10 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         jensen_skjoldager/schive/skaare/friedberg/davenport) — verbatim
         field name (publication-stable scope, no ruler clash).
     """
+    _memo_key = id(coin)
+    _cached = _CATALOG_REFS_MEMO.get(_memo_key)
+    if _cached is not None:
+        return _cached
     cat = coin.get("catalog") or {}
     refs: dict[str, str] = {}
 
@@ -753,6 +767,7 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         else:
             refs[key] = str(galster).strip()
 
+    _CATALOG_REFS_MEMO[_memo_key] = refs
     return refs
 
 
@@ -2711,6 +2726,10 @@ def process_entity(entity_id: str) -> dict:
         'forced_no_merges': [{members, reason}, ...],
       }
     """
+    # Reset the per-coin _catalog_refs memo — id(coin) keys from a prior
+    # entity's (now-GC'd) coin dicts could otherwise collide with this
+    # entity's coins.
+    _CATALOG_REFS_MEMO.clear()
     seeds = _load_seeds_for_entity(entity_id)
     # Drop synthetic «catalog-overview» entries the parser sometimes
     # emits when a catalog index page (rather than a coin page) gets
@@ -2769,28 +2788,42 @@ def process_entity(entity_id: str) -> dict:
     confident_pairs: list[dict] = []
     low_confidence: list[dict] = []
     ids = sorted(seeds_by_id)
+    # PASS 1 (hot O(n²)): collect confident + low_confidence ONLY. The
+    # no_match → no_merge registration is DEFERRED to PASS 2 below. Storing
+    # every no_match pair (≈ all O(n²) pairs for a large entity — 89.7M for
+    # danish_realm) would balloon UnionFind.no_merge to >10 GB and OOM-kill
+    # the process (observed 2026-06-02). PASS 2 registers no_merge only WITHIN
+    # confident-connected components, which is the complete set union() ever
+    # consults (proof in the PASS 2 note), so the deferral is behaviour-
+    # identical. Skipping explicit-curator no_merge pairs here mirrors the
+    # original `can_union` guard: during the original loop `can_union` only
+    # ever filtered EXPLICIT no_merges, because auto no_merges are added for
+    # the SAME pair being processed and so never pre-block a not-yet-visited
+    # pair (each pair is visited exactly once, i<j).
     for i in range(len(ids)):
+        a_id = ids[i]
+        coin_a = seeds_by_id[a_id]
         for j in range(i + 1, len(ids)):
-            a_id, b_id = ids[i], ids[j]
-            if not uf.can_union(a_id, b_id):
+            b_id = ids[j]
+            if frozenset({a_id, b_id}) in uf.explicit_no_merge:
                 continue
-            result = match_pair(seeds_by_id[a_id], seeds_by_id[b_id], entity_id,
+            result = match_pair(coin_a, seeds_by_id[b_id], entity_id,
                                 reign_index=reign_index)
-            if result["decision"] == "no_match":
-                uf.add_no_merge(a_id, b_id)
-            elif result["decision"] == "confident":
+            decision = result["decision"]
+            if decision == "confident":
                 confident_pairs.append({
                     "a": a_id, "b": b_id,
                     "primary": result["primary"],
                     "fallback": result["fallback"],
                 })
-            elif result["decision"] == "low_confidence":
+            elif decision == "low_confidence":
                 low_confidence.append({
                     "members": [a_id, b_id],
                     "primary": result["primary"],
                     "fallback": result["fallback"],
                     "why": result["why"],
                 })
+            # no_match → deferred to PASS 2 (within-component only)
 
     # 2b. POST-PRE-PASS: Single-candidate promotion for null primary
     # signals (`ruler`, `nominal`).
@@ -2941,6 +2974,52 @@ def process_entity(entity_id: str) -> dict:
             lcp for lcp in low_confidence
             if tuple(lcp["members"]) not in promoted_keys
         ]
+
+    # PASS 2: register auto no_merge ONLY within confident-connected
+    # components. union() (step 3) consults UnionFind.no_merge solely in its
+    # cross-class check (members of class rx × members of class ry) — and
+    # classes are built EXCLUSIVELY by unioning confident_pairs. Hence every
+    # pair union() ever tests lies within ONE confident-connected component;
+    # no_match pairs spanning two different components are never consulted, so
+    # omitting them changes no merge outcome while bounding the no_merge set
+    # to Σ(component²) (≈0.5 % of O(n²) — 42 k vs 7.6 M on danish_norway).
+    # Tentative components are built from confident_pairs INCLUDING the §2b
+    # promotions appended just above; the component UF here is a throwaway for
+    # grouping only — the real unions run in step 3. (The `can_union` guard
+    # skips pairs already carrying an EXPLICIT curator no_merge.)
+    _comp_parent: dict[str, str] = {}
+
+    def _cfind(x: str) -> str:
+        _comp_parent.setdefault(x, x)
+        while _comp_parent[x] != x:
+            _comp_parent[x] = _comp_parent[_comp_parent[x]]
+            x = _comp_parent[x]
+        return x
+
+    def _cunion(a: str, b: str) -> None:
+        ra, rb = _cfind(a), _cfind(b)
+        if ra != rb:
+            lo, hi = (ra, rb) if ra < rb else (rb, ra)
+            _comp_parent[hi] = lo
+
+    for cp in confident_pairs:
+        _cunion(cp["a"], cp["b"])
+    _components: dict[str, list[str]] = defaultdict(list)
+    for cid in _comp_parent:
+        _components[_cfind(cid)].append(cid)
+    for _members in _components.values():
+        if len(_members) < 2:
+            continue
+        _ms = sorted(_members)
+        for _ii in range(len(_ms)):
+            _ma = seeds_by_id[_ms[_ii]]
+            for _jj in range(_ii + 1, len(_ms)):
+                _mb_id = _ms[_jj]
+                if not uf.can_union(_ms[_ii], _mb_id):
+                    continue
+                if match_pair(_ma, seeds_by_id[_mb_id], entity_id,
+                              reign_index=reign_index)["decision"] == "no_match":
+                    uf.add_no_merge(_ms[_ii], _mb_id)
 
     # 3. Apply confident auto-merges. union() refuses any merge that would
     #    create a class containing a no_match pair. Run this BEFORE curator
