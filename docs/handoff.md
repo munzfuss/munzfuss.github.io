@@ -71,11 +71,21 @@ session:
   rationale in `_curation_holds`; id slug `km-461-chr-v-1699` kept
   stable. Verified on rendered denmark page (tronskifte note + Frederik
   IV + recovered Bruun Part II lot 14032 all render).
-- **Next:** (a) `git push` both repos (UNPUSHED); (b) the 593
+- **Log-hygiene DONE** (a7967a9): `_deep_merge_catalog` no longer logs
+  specimen-level `bruun_part/lot_no/page` disagreements as merge
+  conflicts (they're expected multi-specimen, anchor + sources[]
+  lossless per §9a — already excluded from MATCHING, now from the
+  conflict LOG too). Verified all 50 were uniformly that pattern across
+  1603→1874 (0 genuine among them). Output byte-identical (diagnostic /
+  gitignored only). Genuine single-value conflicts (sieg_hede1971 /
+  schou_hede1971 / hede_volume) still logged.
+- **german_empire V2 final** (a8ffee0): absorb created it (27
+  Reichswährung coins promoted); was untracked after the dir-pathspec
+  absorb commit — now committed.
+- **Next:** (a) `git push` main (15 commits UNPUSHED; submodule
+  `scripts/cache` untouched this session → main only); (b) the 593
   KMK-pending coins in `classification_decisions/` await curator
-  fuss/phase assignment (Phase 4); (c) optional log-hygiene: stop
-  labelling specimen-level Bruun field differences as "conflicts" so
-  the audit surfaces only genuine ones.
+  fuss/phase assignment (Phase 4).
 
 **Mission temporal scope — Denmark-track anchor rescoped 1541 → 1514
 on 2026-05-16 per §BI.** Denmark-Norway track lower bound = **1514**
