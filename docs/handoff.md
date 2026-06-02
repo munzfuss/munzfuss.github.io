@@ -30,6 +30,53 @@ deferred). Detailed plan: `docs/V2_PIPELINE.md`. Detailed
 architecture: `docs/ARCHITECTURE.md` §«V2 entity-keyed pipeline».
 All other workstreams below paused during V2 unless user redirects.
 
+**§CR + §CP/§CQ — KMK (8th specimen source) SHIPPED to final + pages
+(2026-06-02/03). All committed locally, UNPUSHED.** Chain of work this
+session:
+- **Thinning** (`scripts/maintenance/thin_kmk_seed.py`, commit 822833d):
+  KMK seed 42182 → 14443 per §9a weight-variance envelope (sort by
+  weight, keep min/middle/max per ≥5 sub-variant bucket; id-sorted
+  reps when no member has a weight). KMK `measurements` only ever
+  carries `Vægt` (weight); ~14 % of object records carry it.
+- **Merger hardened for scale** (59faeb4 + 0c26500 + 5a8d9d6): (a)
+  memoise `_catalog_refs` (≈2.2×) GATED behind `_CATALOG_REFS_MEMO_ENABLED`
+  — merger opts in per-entity-clear, absorb/audit/build leave it off
+  (id(coin) reuse across entities would otherwise corrupt — the bug
+  that inflated a danish_realm fold count 1→17); (b) **component-scoped
+  no_merge** — PASS 1 collects confident+low only, PASS 2 registers
+  no_merge ONLY within confident-connected components (≈0.5 % of O(n²))
+  — fixes the real OOM that killed danish_realm (89.7M no_match
+  frozensets ≈ 11 GB); (c) **PASS 1 parallelised** across cpu-1 worker
+  processes (byte-identical, ~3.2×+; threshold `MERGE_PARALLEL_THRESHOLD`
+  default 4000). Full re-merge now minutes, not 40-50 min.
+- **`_collect_sources` .pdf fix** (7abc3f1) — THE root cause of the
+  §CP/§CQ "conflicts": Bruun **Part II** PDF is the sole Bruun catalogue
+  hosted on `danskmoent.dk/pdf/` (Parts I/III/IV on stacksbowers.com),
+  so the `danskmoent.dk` single-page-host substring mis-classified it →
+  url-only dedup collapsed every Part-II lot of a type to ONE citation.
+  Guard `.pdf` URLs onto the multi-record (url,ref,type) path. Recovers
+  Part-II citations project-wide (danish_norway 248→281). See
+  SOURCES §13.
+- **seed_unified regenerated** (9d8e08e) + **absorb --apply** (88aa100):
+  9947 KMK bulk-promoted to V2 final (16957 total), 593 genuinely-new
+  → `data/v2/classification_decisions/` pending (await curator
+  fuss/phase). 50 enrichment conflicts remain — ALL benign specimen-
+  level Bruun part/lot/page (anchor kept, alternatives in sources[];
+  verified 0 citation loss). 1 benign self-foundation fold + 1 stale-
+  purge (danish_realm).
+- **KM-461 1699 2-Ducat corrected** (bb939ec): was the lone genuine
+  conflict — V1 mis-tagged the Frederik IV 1699 *tronskifte* (throne-
+  change) 2-Dukat as Christian V / Hede c5h-3 (c5h-3 is the unrelated
+  1673 2-Dukat, Sieg 118). Now ruler=Frederik IV, hede_volume=f4h,
+  rationale in `_curation_holds`; id slug `km-461-chr-v-1699` kept
+  stable. Verified on rendered denmark page (tronskifte note + Frederik
+  IV + recovered Bruun Part II lot 14032 all render).
+- **Next:** (a) `git push` both repos (UNPUSHED); (b) the 593
+  KMK-pending coins in `classification_decisions/` await curator
+  fuss/phase assignment (Phase 4); (c) optional log-hygiene: stop
+  labelling specimen-level Bruun field differences as "conflicts" so
+  the audit surfaces only genuine ones.
+
 **Mission temporal scope — Denmark-track anchor rescoped 1541 → 1514
 on 2026-05-16 per §BI.** Denmark-Norway track lower bound = **1514**
 (Christian II Lovkompleks: Møntordning af Sommeren 1514 Kopenhagen +

@@ -795,6 +795,13 @@ SH-references.yml::ref38 was a Stack's Bowers Bruun umbrella ref bundling all 4 
 The 4 PDFs are 29-44 MB each. `mcp__pdf-viewer__display_pdf` returns a viewUUID but `interact` calls fail with `Viewer never connected for viewUUID … (no poll within 8s)`. The 8-second poll timeout is too tight for the iframe to finish loading.
 *Decision.* Use the `curl → pypdf` pattern documented in §1.3 above (download, extract via `PdfReader`, search by lot number, clean up). Page mapping for the most-cited Karl-Friedrich-Tönning + Christian-V-Glückstadt lots is preserved in §1.3.
 
+**Bruun PDFs live on TWO origins — Part II on danskmoent.dk collapsed under `_collect_sources` url-only dedup (2026-06-02).**
+The 4 Bruun catalogue PDFs are hosted per-part on different origins: **Parts I, III, IV** on `stacksbowers.com/wp-content/.../catalogs/*.pdf`, but **Part II** on `danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf`. `merge_seeds_cross_source.py::_collect_sources` deduped sources from `_SINGLE_PAGE_HOSTS` (which includes the `danskmoent.dk` article-page host) by URL alone — so every Part-II lot of a type, sharing the ONE Part-II PDF URL, collapsed to a single citation (first-seen wins). Parts I/III/IV (stacksbowers, NOT a single-page host) were always correctly (url, ref, type)-keyed.
+*Symptom.* Surfaced as 6 absorb "enrichment conflicts" where a re-clustered seed's Part-II anchor lot wasn't in the enriched final's sources — looked like §CQ re-clustering churn, but the root was the dedup mis-classification (which also silently dropped same-part Part-II lots at the merger layer project-wide).
+*Diagnosis.* Verified host distribution by grepping seed/seed_unified PDF URLs (746 Part-II on danskmoent, 1430 Parts I/III/IV on stacksbowers); confirmed the lost lot lived in seed_unified but not final.
+*Fix.* Guard `.pdf` URLs onto the multi-record (url, ref, type) path BEFORE the single-page-host check — host-agnostic, so a future danskmoent mirror of any part is covered. Recovers Part-II citations everywhere (danish_norway 248→281, danish_realm 590). — commit `7abc3f1`.
+*Lesson.* A catalogue PDF is ALWAYS multi-record (one file, hundreds of lots, per-lot discriminator in `ref`) regardless of which host serves it. Don't let a host-substring whitelist override that.
+
 ### 13.4 Hede catalogue (danskmoent.dk per-coin pages)
 
 **Hede silver-spec card describes a gold off-strike sub-variant inline — risk of wrong-metal weight (2026-05-13).**
