@@ -610,9 +610,21 @@ def _infer_ruler(coin: dict, reign_index: dict[int, set[str]]) -> str | None:
 # constant and the coin dicts are stable objects (held in seeds_by_id), so
 # we key by id(coin) alone. The O(n²) pre-pass calls _catalog_refs 4× per
 # pair (≈179M times on danish_realm) though there are only n distinct coins
-# — memoising collapses that to n computations. MUST be cleared at the start
-# of every process_entity (id() can be reused across entities after GC).
+# — memoising collapses that to n computations.
+#
+# DANGER — id(coin) is reused after GC. The memo is therefore ONLY safe when
+# (a) it is cleared between entities, and (b) the cached coin objects are not
+# mutated. The cross-source merger satisfies both, so it OPTS IN by setting
+# `_CATALOG_REFS_MEMO_ENABLED = True` inside process_entity (after the clear).
+# Every OTHER caller — notably absorb_seeds_into_final_v2.py, which imports
+# match_pair / _catalog_refs and runs many entities in ONE process WITHOUT
+# clearing AND mutates catalog during enrichment — leaves the flag at its
+# default False and so always computes fresh. (Caught 2026-06-02: with the
+# memo unconditionally on, a full absorb run cross-contaminated entities via
+# id() reuse, e.g. danish_realm reported 17 self-foundation folds instead of
+# the correct 1.)
 _CATALOG_REFS_MEMO: dict[int, dict[str, str]] = {}
+_CATALOG_REFS_MEMO_ENABLED: bool = False
 
 
 def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
@@ -635,10 +647,10 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         jensen_skjoldager/schive/skaare/friedberg/davenport) — verbatim
         field name (publication-stable scope, no ruler clash).
     """
-    _memo_key = id(coin)
-    _cached = _CATALOG_REFS_MEMO.get(_memo_key)
-    if _cached is not None:
-        return _cached
+    if _CATALOG_REFS_MEMO_ENABLED:
+        _cached = _CATALOG_REFS_MEMO.get(id(coin))
+        if _cached is not None:
+            return _cached
     cat = coin.get("catalog") or {}
     refs: dict[str, str] = {}
 
@@ -767,7 +779,8 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         else:
             refs[key] = str(galster).strip()
 
-    _CATALOG_REFS_MEMO[_memo_key] = refs
+    if _CATALOG_REFS_MEMO_ENABLED:
+        _CATALOG_REFS_MEMO[id(coin)] = refs
     return refs
 
 
@@ -2726,10 +2739,16 @@ def process_entity(entity_id: str) -> dict:
         'forced_no_merges': [{members, reason}, ...],
       }
     """
-    # Reset the per-coin _catalog_refs memo — id(coin) keys from a prior
-    # entity's (now-GC'd) coin dicts could otherwise collide with this
-    # entity's coins.
+    # Reset the per-coin _catalog_refs memo and OPT IN to memoisation for
+    # this entity. id(coin) keys from a prior entity's (now-GC'd) coin dicts
+    # could otherwise collide; the merger never mutates member catalogs, so
+    # within one entity the memo stays valid. The flag stays True for the
+    # rest of the process (each entity re-clears at its own start); it is
+    # never set by absorb / audit / build callers, which therefore always
+    # compute fresh — see the _CATALOG_REFS_MEMO_ENABLED note.
+    global _CATALOG_REFS_MEMO_ENABLED
     _CATALOG_REFS_MEMO.clear()
+    _CATALOG_REFS_MEMO_ENABLED = True
     seeds = _load_seeds_for_entity(entity_id)
     # Drop synthetic «catalog-overview» entries the parser sometimes
     # emits when a catalog index page (rather than a coin page) gets
