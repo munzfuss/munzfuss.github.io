@@ -56,6 +56,8 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import multiprocessing as mp
+import os
 import re
 import sys
 from collections import Counter, defaultdict
@@ -2742,6 +2744,79 @@ def _load_seeds_for_entity(entity_id: str) -> list[dict]:
     return coins
 
 
+# ---------------------------------------------------------------------------
+# Parallel PASS-1 workers
+# ---------------------------------------------------------------------------
+# The O(n²) PASS-1 matcher (every pair → confident / low_confidence; no_match
+# discarded, re-derived within components in PASS 2) is embarrassingly
+# parallel: each pair's verdict depends ONLY on the two coins, the entity's
+# reign_index, and the explicit-curator no_merge set — never on other pairs or
+# on accumulated state. We split the i-rows across worker PROCESSES (macOS
+# spawn → these must be module-level functions + module globals, not
+# closures). Results are re-sorted by (a_id, b_id) in the parent, which
+# reproduces the serial (i<j) ordering EXACTLY, so PASS 2 / 2b / union see
+# byte-identical input → byte-identical output. Each worker memoises
+# _catalog_refs in its own address space (one entity per pool, coins stable).
+_MP_IDS: list = []
+_MP_SEEDS: dict = {}
+_MP_ENTITY = None
+_MP_REIGN = None
+_MP_EXPLICIT: frozenset = frozenset()
+
+
+def _pass1_set_globals(ids, seeds_by_id, entity_id, reign_index, explicit_no_merge):
+    """Populate the PASS-1 worker globals. Called directly in the parent for
+    the serial path, and as the Pool initializer for the parallel path."""
+    global _MP_IDS, _MP_SEEDS, _MP_ENTITY, _MP_REIGN, _MP_EXPLICIT
+    global _CATALOG_REFS_MEMO_ENABLED
+    _MP_IDS = ids
+    _MP_SEEDS = seeds_by_id
+    _MP_ENTITY = entity_id
+    _MP_REIGN = reign_index
+    _MP_EXPLICIT = explicit_no_merge
+    _CATALOG_REFS_MEMO.clear()
+    _CATALOG_REFS_MEMO_ENABLED = True
+
+
+def _pass1_eval_i(i: int):
+    """Evaluate every pair (i, j>i) for row i; return (confident, low) sublists.
+    no_match verdicts are intentionally discarded (PASS 2 re-derives them
+    within confident components). Reads only module globals + i → safe to run
+    in a worker process."""
+    ids = _MP_IDS
+    seeds = _MP_SEEDS
+    entity_id = _MP_ENTITY
+    reign_index = _MP_REIGN
+    explicit = _MP_EXPLICIT
+    a_id = ids[i]
+    coin_a = seeds[a_id]
+    n = len(ids)
+    conf: list[dict] = []
+    low: list[dict] = []
+    for j in range(i + 1, n):
+        b_id = ids[j]
+        if frozenset({a_id, b_id}) in explicit:
+            continue
+        result = match_pair(coin_a, seeds[b_id], entity_id, reign_index=reign_index)
+        d = result["decision"]
+        if d == "confident":
+            conf.append({"a": a_id, "b": b_id,
+                         "primary": result["primary"],
+                         "fallback": result["fallback"]})
+        elif d == "low_confidence":
+            low.append({"members": [a_id, b_id],
+                        "primary": result["primary"],
+                        "fallback": result["fallback"],
+                        "why": result["why"]})
+    return conf, low
+
+
+# Entities at/above this seed count run PASS 1 across worker processes; below
+# it the pool spawn/pickle overhead outweighs the gain, so we stay serial.
+# Override via MERGE_PARALLEL_THRESHOLD (e.g. =0 forces parallel for tests).
+_PASS1_PARALLEL_THRESHOLD = int(os.environ.get("MERGE_PARALLEL_THRESHOLD", "4000"))
+
+
 def process_entity(entity_id: str) -> dict:
     """Returns:
       {
@@ -2835,30 +2910,31 @@ def process_entity(entity_id: str) -> dict:
     # ever filtered EXPLICIT no_merges, because auto no_merges are added for
     # the SAME pair being processed and so never pre-block a not-yet-visited
     # pair (each pair is visited exactly once, i<j).
-    for i in range(len(ids)):
-        a_id = ids[i]
-        coin_a = seeds_by_id[a_id]
-        for j in range(i + 1, len(ids)):
-            b_id = ids[j]
-            if frozenset({a_id, b_id}) in uf.explicit_no_merge:
-                continue
-            result = match_pair(coin_a, seeds_by_id[b_id], entity_id,
-                                reign_index=reign_index)
-            decision = result["decision"]
-            if decision == "confident":
-                confident_pairs.append({
-                    "a": a_id, "b": b_id,
-                    "primary": result["primary"],
-                    "fallback": result["fallback"],
-                })
-            elif decision == "low_confidence":
-                low_confidence.append({
-                    "members": [a_id, b_id],
-                    "primary": result["primary"],
-                    "fallback": result["fallback"],
-                    "why": result["why"],
-                })
-            # no_match → deferred to PASS 2 (within-component only)
+    _explicit = frozenset(uf.explicit_no_merge)
+    _pass1_set_globals(ids, seeds_by_id, entity_id, reign_index, _explicit)
+    if len(ids) >= _PASS1_PARALLEL_THRESHOLD:
+        # Parallel across worker processes. imap_unordered scrambles row
+        # order, so we re-sort by (a_id, b_id) afterwards — which is exactly
+        # the serial i<j iteration order (ids is sorted) → PASS 2 / 2b / union
+        # receive byte-identical input.
+        n_workers = max(1, (os.cpu_count() or 2) - 1)
+        with mp.Pool(
+            n_workers,
+            initializer=_pass1_set_globals,
+            initargs=(ids, seeds_by_id, entity_id, reign_index, _explicit),
+        ) as pool:
+            for conf, low in pool.imap_unordered(
+                    _pass1_eval_i, range(len(ids)), chunksize=8):
+                confident_pairs.extend(conf)
+                low_confidence.extend(low)
+        confident_pairs.sort(key=lambda p: (p["a"], p["b"]))
+        low_confidence.sort(key=lambda p: (p["members"][0], p["members"][1]))
+    else:
+        for i in range(len(ids)):
+            conf, low = _pass1_eval_i(i)
+            confident_pairs.extend(conf)
+            low_confidence.extend(low)
+        # no_match → deferred to PASS 2 (within-component only)
 
     # 2b. POST-PRE-PASS: Single-candidate promotion for null primary
     # signals (`ruler`, `nominal`).
