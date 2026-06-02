@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `erzbisthum_bremen_verden`.
-# Generated 2026-06-01 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-02 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/erzbisthum_bremen_verden.yml across all sources.
 #
-# Input: 188 per-source seed entries.
-# Output: 158 unified entries (one per physical coin).
+# Input: 223 per-source seed entries.
+# Output: 184 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: erzbisthum_bremen_verden
-generated_at: '2026-06-01'
+generated_at: '2026-06-02'
 coins:
 - id: unified-dk-bruun-12130
   fuss: seed_unsorted
@@ -1285,9 +1285,7 @@ coins:
   year_label: 1641-1643
   ruler: Frederick II of Denmark (Friedrich II)
   catalog:
-    km:
-    - '37.1'
-    - '37'
+    km: '37.1'
     numista: '394107'
     others:
     - Jungk# 366 - 371
@@ -1301,20 +1299,13 @@ coins:
   weight_rough_g:
   - value: 1.57
     source: numista
-  - value: 1.6
-    source: tid
   diameter_mm:
-  - value: 19.0
-    source: tid
   - value: 19.3
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/394107
     ref: Numista N#394107 — 1/16 Thaler (2 Schilling) - Archbishopric of Bremen - Friedrich II 1641-1643
-  - type: ucoin
-    url: https://en.ucoin.net/coin/bremen-1-16-thaler-1641-1643/?tid=175386
-    ref: ucoin
   note:
     de: 1/16 Thaler
     en: 1/16 Thaler
@@ -1332,7 +1323,6 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-394107
-  - tid-tid-175386
 - id: unified-dk-numista-397794
   fuss: seed_unsorted
   phase: numista
@@ -1580,9 +1570,6 @@ coins:
   - type: literature
     url: https://en.numista.com/429659
     ref: Numista N#429659 — 2 Schilling - Frederick II - Archbishopric of Bremen
-  - type: ucoin
-    url: https://en.ucoin.net/coin/bremen-2-schilling-1641-1643/?tid=175306
-    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -1596,7 +1583,6 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-429659
-  - tid-tid-175306
 - id: unified-dk-numista-517615
   fuss: seed_unsorted
   phase: numista
@@ -3427,6 +3413,566 @@ coins:
   composed_of:
   - ikmk-18289076
   - ikmk-18289077
+- id: unified-kmk-157258
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Dütken
+  year_first: 1641
+  year_last: 1641
+  year_label: '1641'
+  ruler: Frederik 3 som ærkebiskop
+  catalog:
+    hede: 4A
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/157258
+    ref: KMM 157258 (Inv. FP 4518.436)
+  verification_note: &id002
+    de: 'KMK-Seed: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk). Felder museumsbelegt;
+      Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+    en: 'KMK seed: record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk). Fields museum-attested;
+      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+    uk: 'KMK-сід: запис із Королівського мюнцкабінету (Nationalmuseet Копенгаген, api.natmus.dk). Поля музейно-засвідчені;
+      Müntzfuß/фаза некласифіковані (seed_unsorted) до Phase-4.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-157258
+- id: unified-kmk-166747
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Dytgen
+  year_first: 1642
+  year_last: 1642
+  year_label: '1642'
+  ruler: Frederik 3
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/166747
+    ref: KMM 166747 (Inv. FP 1558.30)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-166747
+- id: unified-kmk-168417
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Skilling
+  year_first: 1614
+  year_last: 1614
+  year_label: '1614'
+  ruler: Johan Frederik
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/168417
+    ref: KMM 168417 (Inv. FP 1555.13)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-168417
+- id: unified-kmk-200792
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Søsling lybsk
+  year_first: 1641
+  year_last: 1641
+  year_label: '1641'
+  ruler: Ærkebisp Frederik
+  catalog:
+    hede: '6'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200792
+    ref: KMM 200792 (Inv. FP 3108.11758)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200793
+    ref: KMM 200793 (Inv. FP 3108.11757)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-200792
+  - kmk-200793
+- id: unified-kmk-200794
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 3-skilling lybsk
+  year_first: 1641
+  year_last: 1643
+  year_ranges:
+  - - 1641
+    - 1643
+  year_label: 1641-1643
+  ruler: Ærkebisp Frederik
+  catalog:
+    hede:
+    - 4A
+    - 4B
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200794
+    ref: KMM 200794 (Inv. FP 3108.11756)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200795
+    ref: KMM 200795 (Inv. FP 3108.11755)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200796
+    ref: KMM 200796 (Inv. FP 3108.11754)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200797
+    ref: KMM 200797 (Inv. FP 3108.11753)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200798
+    ref: KMM 200798 (Inv. FP 3108.11752)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200799
+    ref: KMM 200799 (Inv. FP 3108.11751)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200804
+    ref: KMM 200804 (Inv. FP 3108.11746)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200808
+    ref: KMM 200808 (Inv. FP 3108.11742)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200809
+    ref: KMM 200809 (Inv. FP 3108.11741)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200810
+    ref: KMM 200810 (Inv. FP 3108.11740)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200811
+    ref: KMM 200811 (Inv. FP 3108.11739)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-200794
+  - kmk-200795
+  - kmk-200796
+  - kmk-200797
+  - kmk-200798
+  - kmk-200799
+  - kmk-200804
+  - kmk-200808
+  - kmk-200809
+  - kmk-200810
+  - kmk-200811
+- id: unified-kmk-200812
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Skilling lybsk
+  ruler: Ærkebisp Johann Friedrich 1596 - 1634
+  catalog:
+    lange: '1'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200812
+    ref: KMM 200812 (Inv. FP 3108.11738)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-200812
+- id: unified-kmk-200813
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Skilling lybsk
+  ruler: Ærkebisp Johann Friedrich 1596 - 1634
+  catalog:
+    lange: '1'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200813
+    ref: KMM 200813 (Inv. FP 3108.11737)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-200813
+- id: unified-kmk-200814
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Skilling lybsk
+  ruler: Ærkebisp Johann Friedrich 1596 - 1634
+  catalog:
+    lange: '1'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200814
+    ref: KMM 200814 (Inv. FP 3108.11736)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-200814
+- id: unified-kmk-200815
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Skilling lybsk
+  ruler: Ærkebisp Johann Friedrich 1596 - 1634
+  catalog:
+    lange: '1'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200815
+    ref: KMM 200815 (Inv. FP 3108.11735)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-200815
+- id: unified-kmk-200816
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 4 Skilling lybsk
+  ruler: Ærkebisp Johann Friedrich 1596 - 1634
+  catalog:
+    lange: '04'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200816
+    ref: KMM 200816 (Inv. FP 3108.11734)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-200816
+- id: unified-kmk-200842
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 4 Skilling lybsk
+  ruler: Ærkebisp Johann Friedrich 1596 - 1634
+  catalog:
+    lange: '04'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200842
+    ref: KMM 200842 (Inv. FP 3108.11708)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-200842
+- id: unified-kmk-200867
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 4 Skilling lybsk
+  ruler: Ærkebisp Johann Friedrich 1596 - 1634
+  catalog:
+    lange: '04'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/200867
+    ref: KMM 200867 (Inv. FP 3108.11683)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-200867
+- id: unified-kmk-277039
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: (?)
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/277039
+    ref: KMM 277039 (Inv. KP 1281.32.1)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-277039
+- id: unified-kmk-279136
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Hulpenning
+  ruler: Bremen
+  metal_verified: false
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/279136
+    ref: KMM 279136 (Inv. FP 3528.308)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-279136
+- id: unified-kmk-352858
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Skilling lybsk
+  year_first: 1620
+  year_last: 1629
+  year_ranges:
+  - - 1620
+    - 1629
+  year_label: 1620-1629
+  ruler: Johan Frederik
+  catalog:
+    lange: 504A
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/352858
+    ref: KMM 352858 (Inv. FP 5101.1)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-352858
+- id: unified-kmk-494413
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 5 Mark
+  year_first: 1906
+  year_last: 1906
+  year_label: '1906'
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/494413
+    ref: KMM 494413 (Inv. KP 1417.17)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-494413
+- id: unified-kmk-584917
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: (?)
+  ruler: Frederik 3
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/584917
+    ref: KMM 584917 (Inv. FP 1668.44)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-584917
+- id: unified-kmk-627184
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1/16 Thaler
+  year_first: 1697
+  year_last: 1697
+  year_label: '1697'
+  ruler: Carl XI
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/627184
+    ref: KMM 627184 (Inv. KP 146.20)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-627184
+- id: unified-kmk-646716
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Krone
+  year_first: 1670
+  year_last: 1670
+  year_label: '1670'
+  ruler: Carl XI
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/646716
+    ref: KMM 646716 (Inv. BP 57.6a)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-646716
+- id: unified-kmk-647827
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1/12 Species
+  year_first: 1768
+  year_last: 1768
+  year_label: '1768'
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/647827
+    ref: KMM 647827 (Inv. BP 90.39b)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-647827
+- id: unified-kmk-658915
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 6 Grote
+  year_first: 1857
+  year_last: 1857
+  year_label: '1857'
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/658915
+    ref: KMM 658915 (Inv. BP 435.54)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-658915
+- id: unified-kmk-661579
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: ⅓
+  year_first: 1748
+  year_last: 1748
+  year_label: '1748'
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/661579
+    ref: KMM 661579 (Inv. BP 597.23)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-661579
+- id: unified-kmk-676441
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Erindrings thaler
+  year_first: 1871
+  year_last: 1871
+  year_label: '1871'
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/676441
+    ref: KMM 676441 (Inv. BP 874.4)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-676441
+- id: unified-kmk-741043
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Søsling
+  year_first: 1641
+  year_last: 1641
+  year_label: '1641'
+  ruler: Frederik 3
+  catalog:
+    schou: '14'
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/741043
+    ref: KMM 741043 (Inv. FP 1780.330)
+  verification_note: *id002
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - kmk-741043
 - id: unified-tid-tid-101107
   fuss: seed_unsorted
   phase: ucoin
@@ -5420,6 +5966,39 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - tid-tid-101277
+- id: unified-tid-tid-175306
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Schilling
+  year_first: 1641
+  year_last: 1643
+  year_ranges:
+  - - 1641
+    - 1643
+  year_label: 1641-1643
+  catalog:
+    km: '36'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-2-schilling-1641-1643/?tid=175306
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175306
 - id: unified-tid-tid-175310
   fuss: seed_unsorted
   phase: ucoin
@@ -5759,6 +6338,46 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - tid-tid-175385
+- id: unified-tid-tid-175386
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1/16 Thaler
+  year_first: 1641
+  year_last: 1643
+  year_ranges:
+  - - 1641
+    - 1643
+  year_label: 1641-1643
+  catalog:
+    km: '37'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 1.6
+    source: tid
+  diameter_mm:
+  - value: 19.0
+    source: tid
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-16-thaler-1641-1643/?tid=175386
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: erzbisthum_bremen_verden
+  composed_of:
+  - tid-tid-175386
 - id: unified-tid-tid-175388
   fuss: seed_unsorted
   phase: ucoin
