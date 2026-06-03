@@ -295,7 +295,14 @@ def _normalise_ruler(ruler):
     # form is «Frederik» (no `c` before `k`); some sources / parsers
     # render it «Frederick» which fragments index attestation. Same
     # for «Christian» (no variant) — kept for symmetry future-proof.
-    s = re.sub(r"\bfrederick\b", "frederik", s)
+    # «Frederick»(en) / «Friedrich»(de) / «Friederich»(typo) → «frederik»
+    # (Danish canonical). MATCHING-only spelling fold. Safe despite German
+    # «Friedrich» rulers being distinct people from Danish «Frederik»: the
+    # matcher is per-entity (cross-entity Friedrichs never compared) and
+    # match_pair's year/catalog fallback separates same-name-same-numeral
+    # rulers within an entity (e.g. _unclassified «Friedrich III» 1491 vs
+    # 1888 → years disagree → no_match). Verified per-entity 2026-06-03.
+    s = re.sub(r"\b(?:frederick|friedrich|friederich)\b", "frederik", s)
     # Cross-language ruler-name synonyms — different sources use the
     # English vs Danish/Norwegian form for the same monarch.
     #
@@ -315,11 +322,12 @@ def _normalise_ruler(ruler):
         s = "hans"
     s = re.sub(r"\beric\b", "erik", s)
     s = re.sub(r"\bmargaret\b", "margrethe", s)
-    # Leading ducal/comital TITLE strip — «Hertug …» / «Herzog …» / «Duke …»
-    # are not part of the ruler identity (the name discriminates). Folds
-    # «Hertug Johan Adolf» → «johan adolf». Deliberately NOT «Ærkebisp»
-    # (archbishop) — left for the separate Bremen-Verden Friedrich audit.
-    s = re.sub(r"^(?:hertug(?:en)?|herzog|duke)\s+", "", s)
+    # Leading ruler-TITLE strip — «Hertug …»/«Herzog …»/«Duke …»/«Ærkebisp …»
+    # /«Erkebisp …»/«Archbishop …» are not part of the identity (the name
+    # discriminates). Folds «Hertug Johan Adolf» → «johan adolf» and
+    # «Ærkebisp Johann Friedrich» → «johann friedrich» (Bremen-Verden
+    # archbishop — now safe to fold with the Frederik spelling work below).
+    s = re.sub(r"^(?:hertug(?:en)?|herzog|duke|ærkebisp(?:pen)?|erkebisp|archbishop)\s+", "", s)
     #   «Johan Adolf» / «Johan Adolph» / «Johan Adolg»(typo) / «Johann Adolf»
     #   / Adolph — Danish «Johan»(1n) vs German «Johann»(2n) + adolf/adolph
     #   spelling of the SAME Holstein-Gottorp duke (r. 1590-1616). Reign-
@@ -343,6 +351,15 @@ def _normalise_ruler(ruler):
     #   The matcher is per-entity, so even the pre-existing «johann adolf»
     #   gottorp↔norburg_plön label overlap can't cross-merge.
     s = re.sub(r"\bjohn adolphus\b(?!\s+[ivx]\b)", "johann adolf", s)
+    #   «John/Johan/Johann Frederik» — Danish «Johan»(1n)/English «John» vs
+    #   German «Johann»(2n) of the SAME compound-name ruler (Friedrich→
+    #   frederik already applied above). Per-entity matcher + reign window
+    #   verified one ruler per entity (e.g. Bremen-Verden archbishop Johann
+    #   Friedrich 1596-1622). Numeral guard keeps «Johann Frederik I»
+    #   (Saxony elector, 1535) DISTINCT; bare «Johan»/«John» (Hans the
+    #   Younger / John I of Denmark) is untouched (only the +Frederik
+    #   compound folds).
+    s = re.sub(r"\bjoh(?:n|an|ann)\s+frederik\b(?!\s+[ivx]\b)", "johann frederik", s)
     # Arabic→roman regnal numeral (Christian 4 → christian iv, etc.) — LAST,
     # after spelling/synonym folds, so the name-part is already canonical.
     s = _regnal_arabic_to_roman(s)
