@@ -1870,6 +1870,12 @@ def _collect_field_list(members: list[dict], field: str,
         if val is None:
             continue
         if isinstance(val, (int, float)):
+            # A non-positive measurement (0.0 / negative) is a source
+            # placeholder for «not recorded», not a real reading — drop it
+            # (schema requires value > 0; common in IKMK/KMM specimens whose
+            # weight field is blank → harvested as 0.0).
+            if val <= 0:
+                continue
             # bare-number form — synthesise source from member id
             entry = {"value": float(val), "source": _source_label_from_id(m.get("id"))}
             key = (entry["value"], entry["source"])
@@ -1889,6 +1895,8 @@ def _collect_field_list(members: list[dict], field: str,
                     continue
                 v = item.get("value")
                 if not isinstance(v, (int, float)):
+                    continue
+                if v <= 0:  # non-positive = source «not recorded» placeholder
                     continue
                 raw_src = item.get("source", "?")
                 # Detect & fix stale synthesised labels from a prior buggy
@@ -1987,6 +1995,26 @@ def _source_label_from_id(coin_id: str | None) -> str:
         return "numista"
     if coin_id.startswith("dk-galster-") or coin_id.startswith("galster-"):
         return "galster"
+    # KMM (Den kgl. Mønt- og Medaillesamling / Nationalmuseet) specimen ids
+    # `kmk-NNNNN`. Without this branch the generic split returned the numeric
+    # object-id segment («156725»), which the stale-source regex
+    # (`^[a-z]?\d+[a-z]?$`) then PURGED — silently dropping every KMM-sourced
+    # weight/diameter reading from the multi-source list (e.g. the 17.4 g of
+    # the Frederik I Ribe Nobel kmk-156725). Label as «kmk» so the reading
+    # survives + the tooltip shows a real source.
+    if coin_id.startswith("kmk-"):
+        return "kmk"
+    # IKMK Berlin specimen ids `ikmk-NNNNN`. Same trap as kmk: the generic
+    # split returned the numeric object-id («18203389»), purged by the
+    # stale-source regex → every IKMK weight/diameter reading silently dropped
+    # from multi-source lists (4000+ entries). Label as «ikmk».
+    if coin_id.startswith("ikmk-"):
+        return "ikmk"
+    # ucoin V1 ids also appear as `tid-tid-NNNN` (the bare `tid` query-param
+    # prefix doubled). Same source as dk-/sh-/hb-/lu-tid → label «ucoin», not
+    # the literal «tid» the generic split would yield.
+    if coin_id.startswith("tid-tid-") or coin_id.startswith("tid-"):
+        return "ucoin"
     # ucoin V1 carryover ids — `dk-tid-`, `sh-tid-`, `hb-tid-`,
     # `lu-tid-`. The «tid» token is the URL query-param name from
     # ucoin (`?tid=NNNN`); the actual SOURCE is ucoin.net, so label
@@ -2021,7 +2049,16 @@ def _source_label_from_id(coin_id: str | None) -> str:
         return "numismaster"
     if "-numista-" in coin_id:
         return "numista"
-    return coin_id.split("-")[1] if "-" in coin_id else "?"
+    # Generic fallback. SAFETY NET (the ikmk/kmk-class trap): when the second
+    # segment is a bare numeric object-id (`<source>-<NNNNN>`), the SOURCE is
+    # the FIRST segment, not the number — returning the number would be purged
+    # by the stale-source regex, silently dropping that source's measurement
+    # readings. So fall back to the source prefix for any future `src-NNNNN`
+    # shape rather than the numeric id.
+    parts = coin_id.split("-")
+    if len(parts) >= 2:
+        return parts[0] if parts[1].isdigit() else parts[1]
+    return "?"
 
 
 def _collect_sources(members: list[dict],
