@@ -661,6 +661,47 @@ _JAMMED_CATALOG_RE = re.compile(
 )
 
 
+# Danish catalogue year-variant prose: «hhv.» = henholdsvis (respectively),
+# «og» = and, «mangler»/«ej»/«ingen» = missing/none. danskmoent.dk + Hede note
+# a multi-year type's per-variant catalogue numbers as «Schou hhv. A og B»
+# (= variants are Schou A and B respectively). That prose is not a catalogue
+# index — strip it, keep only the distinct index numbers/ranges (curator rule:
+# «keep correct indices, drop the prose»). Applied ONLY to numeric Danish-
+# catalogue fields (schou/sieg/hede/galster), never to free-text like `others`
+# (museum names contain legitimate «og», e.g. «Mønt- og Medaillesamling»).
+_INDEX_PROSE_RE = re.compile(r"hhv\.?|\bog\b|henholdsvis", re.IGNORECASE)
+_INDEX_PROSE_DROP_RE = re.compile(r"^(?:mangler|ej|ingen|-+)$", re.IGNORECASE)
+
+
+def _clean_index_prose(value):
+    """«Schou hhv. 1 og 1» → «1»; «2 og 3» → ['2','3']; «hhv. 2 og mangler» → «2».
+    Returns scalar when one distinct index remains, list when several, the
+    input unchanged when no prose is present, None when nothing survives."""
+    def _tokens(s: str) -> list[str]:
+        s = str(s)
+        if not _INDEX_PROSE_RE.search(s):
+            return [s]  # no prose — leave verbatim (e.g. plain «227» / «228-235»)
+        s = re.sub(r"hhv\.?|henholdsvis", " ", s, flags=re.IGNORECASE)
+        out: list[str] = []
+        for t in re.split(r"\bog\b|,", s, flags=re.IGNORECASE):
+            t = t.strip(" .")
+            if not t or _INDEX_PROSE_DROP_RE.match(t):
+                continue
+            if t not in out:
+                out.append(t)
+        return out
+
+    items = value if isinstance(value, list) else [value]
+    result: list[str] = []
+    for v in items:
+        for t in _tokens(v):
+            if t not in result:
+                result.append(t)
+    if not result:
+        return None
+    return result[0] if len(result) == 1 else result
+
+
 def _normalise_catalog(catalog: dict | None) -> tuple[dict | None, int]:
     """Detect and split jammed catalog-ref values.
 
@@ -739,6 +780,15 @@ def _normalise_catalog(catalog: dict | None) -> tuple[dict | None, int]:
             if new_list != list(val):
                 # Replace; preserve scalar shape if list collapsed to one
                 catalog[field] = new_list[0] if len(new_list) == 1 else new_list
+    # Strip Danish year-variant prose («hhv. A og B») from the Danish-catalogue
+    # index fields, keeping only the distinct catalogue indices.
+    for pf in ("schou", "sieg", "hede", "galster"):
+        v = catalog.get(pf)
+        if v and isinstance(v, (str, list)) and _INDEX_PROSE_RE.search(str(v)):
+            cleaned = _clean_index_prose(v)
+            if cleaned != v:
+                catalog[pf] = cleaned
+                changes += 1
     return catalog, changes
 
 
