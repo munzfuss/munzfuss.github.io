@@ -247,17 +247,21 @@ _OVERVIEW_CROSS_REFS, _OVERVIEW_TITLES = _load_overview_cross_refs()
 def _build_sources(data: dict) -> list[dict]:
     """Construct the per-coin `sources[]` list.
 
-    Always emits the primary Galster page citation. When the overview-
-    cross-refs manifest is populated AND this coin's URL path is
-    referenced from one or more denomination-overview pages
-    (/1nobel.htm, /guldgyld.htm, /2skill.htm, …), each overview is
-    appended as a secondary literature citation. Per CLAUDE.md §5
-    «Web-sourced facts → bibliography entry + inline cite»: the
-    overview attests that the coin is part of a documented denomination
-    series, with a canonical denomination title from danskmoent.dk's
-    Pålydende master index.
+    Emits ONLY the primary Galster page citation — the specific per-coin
+    danskmoent.dk page (e.g. /fr/hg24.htm), which is where the coin's data
+    actually came from.
+
+    The former behaviour ALSO appended the denomination-OVERVIEW page
+    (/1nobel.htm, /guldgyld.htm, /2skill.htm, …) as a secondary
+    «(Wertstufen-Übersicht)» citation. Removed (curator decision 2026-06-03):
+    a denomination-overview is a table-of-contents of ALL coins of that
+    denomination, not a per-coin source — it does not attest THIS coin's
+    specific data. Per §5a sources must be specific + per-claim; the specific
+    page is the source, the overview is navigation. (The overview-cross-ref
+    manifest is still loaded for any future use, but is no longer emitted as a
+    coin source.)
     """
-    sources: list[dict] = [
+    return [
         {
             "type": "literature",
             "url": data.get("source_url_hint"),
@@ -268,21 +272,6 @@ def _build_sources(data: dict) -> list[dict]:
             ),
         }
     ]
-    # Look up overview cross-refs by URL path. The path is derivable
-    # from `source_url_hint` (full URL) by stripping the BASE prefix.
-    src_url = data.get("source_url_hint") or ""
-    if src_url.startswith(_DANSKMOENT_BASE):
-        coin_path = src_url[len(_DANSKMOENT_BASE):]
-        overview_paths = _OVERVIEW_CROSS_REFS.get(coin_path) or []
-        for op in overview_paths:
-            title = _OVERVIEW_TITLES.get(op) or op.lstrip("/").removesuffix(".htm")
-            basename = op.lstrip("/")
-            sources.append({
-                "type": "literature",
-                "url": f"{_DANSKMOENT_BASE}{op}",
-                "ref": f"«{title}» (Wertstufen-Übersicht) — danskmoent.dk {basename}",
-            })
-    return sources
 
 
 def build_entry(data: dict) -> dict | None:
