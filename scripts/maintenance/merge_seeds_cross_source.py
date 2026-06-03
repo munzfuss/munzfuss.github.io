@@ -607,6 +607,27 @@ def _infer_ruler(coin: dict, reign_index: dict[int, set[str]]) -> str | None:
     return R
 
 
+# Davenport `dav` VALUE normaliser — for MATCHING comparison only (stored
+# values keep their source form per §data-accumulation). Davenport's regional
+# sub-catalogues label the number with a series + roman volume: «European
+# Crowns» EC I-IV, «German Talers» GT I-III, plus ST / CCT / SG / Lg / BrSL /
+# AAO / ECT. Sources differ on including it — Numista «EC II 3682» vs Bruun
+# bare «3682» for the SAME coin — so a bare number never matched a prefixed
+# one and the catalog chain falsely disagreed (caught 2026-06-03 on Gottorp
+# KM-21 Taler/Thaler). Strip the series prefix + «#» so the numeric core
+# matches. Cross-series same-number collision (EC 8982 vs GT 8982) is
+# tolerated: dav is one of several catalog signals; the holistic chain +
+# primary signals (km / hede / ruler / metal) still separate distinct coins.
+_DAV_SERIES_PREFIX_RE = re.compile(
+    r"^(?:ECT|EC|GT|ST|CCT|SG|Lg|BrSL|AAO)\b\s*[IVX]*\s*#?\s*", re.IGNORECASE)
+
+
+def _normalise_dav_value(v: str) -> str:
+    s = str(v).strip()
+    stripped = _DAV_SERIES_PREFIX_RE.sub("", s).strip()
+    return stripped or s
+
+
 # Per-coin memo for _catalog_refs. _catalog_refs is a pure function of
 # (coin, entity_id), but within ONE process_entity run the entity_id is
 # constant and the coin dicts are stable objects (held in seeds_by_id), so
@@ -729,9 +750,14 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
             continue
         canonical = CATALOG_KEY_SYNONYMS.get(field, field)
         if isinstance(val, list):
-            new_val = "|".join(sorted(str(v).strip() for v in val))
+            _items = [str(v).strip() for v in val]
+            if canonical == "dav":
+                _items = [_normalise_dav_value(x) for x in _items]
+            new_val = "|".join(sorted(_items))
         else:
             new_val = str(val).strip()
+            if canonical == "dav":
+                new_val = _normalise_dav_value(new_val)
         # When both synonyms attest the same key (e.g. coin has both `fr` and
         # `friedberg` set), merge values rather than letting the later one
         # overwrite. Preserves §«Data-accumulation principle».
