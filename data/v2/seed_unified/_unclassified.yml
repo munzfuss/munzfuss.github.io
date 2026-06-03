@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `_unclassified`.
-# Generated 2026-06-02 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-03 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/_unclassified.yml across all sources.
 #
 # Input: 4471 per-source seed entries.
-# Output: 3482 unified entries (one per physical coin).
+# Output: 3467 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: _unclassified
-generated_at: '2026-06-02'
+generated_at: '2026-06-03'
 coins:
 - id: unified-dk-numista-112819
   fuss: seed_unsorted
@@ -25,6 +25,7 @@ coins:
     - 1642
   year_label: 1639-1642
   ruler: George (Georg)
+  mint: Zellerfeld
   catalog:
     km: '30'
     numista: '112819'
@@ -34,7 +35,7 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 29.0
@@ -46,6 +47,12 @@ coins:
   - type: literature
     url: https://en.numista.com/112819
     ref: Numista N#112819 — 1 Thaler - George - Brunswick-Lüneburg-Calenberg
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18286036
+    ref: IKMK Berlin 18286036
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18286037
+    ref: IKMK Berlin 18286037
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -58,6 +65,8 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-112819
+  - ikmk-18286036
+  - ikmk-18286037
 - id: unified-dk-numista-118001
   fuss: seed_unsorted
   phase: numista
@@ -3673,19 +3682,24 @@ coins:
   year_last: 1677
   year_label: '1677'
   ruler: John Frederick
+  mintmaster: Rudolf Bornemann
+  inscription_obv: EX DURIS GLORIA ANNO - 1677
+  mint: Zellerfeld
   catalog:
     km: '133.2'
     numista: '266686'
     others:
     - Welter# 1671
     - Müseler# 10.4.2/44
+    - Duve# 4
+    - Fiala# 1766 a
     dav: BrSL 212
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 83.42
@@ -3694,6 +3708,13 @@ coins:
   - type: literature
     url: https://en.numista.com/266686
     ref: Numista N#266686 — 3 Thaler Löser - Brunswick-Lüneburg-Calenberg - John Frederick 1677 (Harz Ausbeute)
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18232519
+    ref: IKMK Berlin 18232519
+  note:
+    de: Löser
+    en: Löser
+    uk: Löser
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -3706,6 +3727,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-266686
+  - ikmk-18232519
 - id: unified-dk-numista-266687
   fuss: seed_unsorted
   phase: numista
@@ -4216,6 +4238,7 @@ coins:
     - 1589
   year_label: 1579-1585, 1587-1589
   ruler: Rudolph II (Rudolf II)
+  mint: Klagenfurt
   catalog:
     numista: '271403'
     mb: '160'
@@ -4226,8 +4249,8 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 29.14
@@ -4236,6 +4259,9 @@ coins:
   - type: literature
     url: https://en.numista.com/271403
     ref: Numista N#271403 — 1 Thaler - Free Hanseatic city of Lübeck
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18306115
+    ref: IKMK Berlin 18306115
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -4248,6 +4274,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-271403
+  - ikmk-18306115
 - id: unified-dk-numista-271404
   fuss: seed_unsorted
   phase: numista
@@ -4481,6 +4508,10 @@ coins:
     - 1619
   year_label: 1612-1619
   ruler: Matthias
+  inscription_obv: BRAVNSCHWEIG 4 MOND BELEGERT HART MIT ALLEM ERNST GESTVRMET WART / DOCH HAT SIE SICH MANLICH GEWEHRT IR
+    LOB VND PREIS DADVRCH VERMEHRT / BRAVNSCHWEIG GVT FVHRT LÖWEN MVT / C PPIVI CAE - C MALER
+  inscription_rev: BELAGERVNG DER STAD BRAVNSCHWEIG VOM XXII IVL BIS XI NOVEM Ao 1615
+  mint: Braunschweig
   catalog:
     km: '38'
     numista: '271409'
@@ -4491,8 +4522,8 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 28.91
@@ -4501,6 +4532,9 @@ coins:
   - type: literature
     url: https://en.numista.com/271409
     ref: Numista N#271409 — 1 Thaler - Free Hanseatic city of Lübeck
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18201639
+    ref: IKMK Berlin 18201639
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -4513,6 +4547,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-271409
+  - ikmk-18201639
 - id: unified-dk-numista-271410
   fuss: seed_unsorted
   phase: numista
@@ -4525,6 +4560,7 @@ coins:
     - 1627
   year_label: 1620-1627
   ruler: Ferdinand II
+  mint: Harburg
   catalog:
     km: '54'
     numista: '271410'
@@ -4536,7 +4572,7 @@ coins:
   fineness_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   fineness:
   - value: 0.889
@@ -4551,6 +4587,9 @@ coins:
   - type: literature
     url: https://en.numista.com/271410
     ref: Numista N#271410 — 1 Thaler - Free Hanseatic city of Lübeck
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18285564
+    ref: IKMK Berlin 18285564
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -4563,6 +4602,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-271410
+  - ikmk-18285564
 - id: unified-dk-numista-271411
   fuss: seed_unsorted
   phase: numista
@@ -4843,6 +4883,7 @@ coins:
     - 1635
   year_label: 1620-1623, 1625-1629, 1631-1633, 1635
   ruler: Ferdinand II
+  mint: Harburg
   catalog:
     km: '52'
     numista: '271426'
@@ -4852,8 +4893,8 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 13.59
@@ -4862,6 +4903,9 @@ coins:
   - type: literature
     url: https://en.numista.com/271426
     ref: Numista N#271426 — ½ Thaler - Free Hanseatic city of Lübeck (Ferdinand II) 1620-1635
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18286041
+    ref: IKMK Berlin 18286041
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -4874,6 +4918,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-271426
+  - ikmk-18286041
 - id: unified-dk-numista-271429
   fuss: seed_unsorted
   phase: numista
@@ -5818,6 +5863,7 @@ coins:
   year_last: 1624
   year_label: '1624'
   ruler: Ferdinand II
+  mint: Moisburg
   catalog:
     km: '83'
     numista: '297011'
@@ -5828,8 +5874,8 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 29.33
@@ -5838,6 +5884,9 @@ coins:
   - type: literature
     url: https://en.numista.com/297011
     ref: Numista N#297011 — 1 Thaler - City of Bremen
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18286031
+    ref: IKMK Berlin 18286031
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -5850,6 +5899,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-297011
+  - ikmk-18286031
 - id: unified-dk-numista-297338
   fuss: seed_unsorted
   phase: numista
@@ -5947,6 +5997,7 @@ coins:
     - 1579
   year_label: 1568-1579
   ruler: Maximilian II
+  mint: Graz
   catalog:
     numista: '300511'
     mb: '153'
@@ -5956,7 +6007,7 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 29.07
@@ -5968,6 +6019,9 @@ coins:
   - type: literature
     url: https://en.numista.com/300511
     ref: Numista N#300511 — 1 Thaler - Free Hanseatic city of Lübeck
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18306114
+    ref: IKMK Berlin 18306114
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -5980,6 +6034,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-300511
+  - ikmk-18306114
 - id: unified-dk-numista-30130
   fuss: seed_unsorted
   phase: numista
@@ -6241,15 +6296,22 @@ coins:
     - 1679
   year_label: 1676-1679
   ruler: John Frederick
+  mintmaster: Heinrich Bonhorst
+  inscription_obv: IOAN FRIDER D G DUX BR & L
+  inscription_rev: 'EX DUCIS GLORIA ANNO MDCLXXIX -/ V. FEIN SILB: / 2/3'
+  mint: Clausthal
   catalog:
     km: '187'
     numista: '31053'
+    others:
+    - Fiala# 2026-2027
+    - Welter# 1730
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   diameter_mm:
   - value: 35.0
@@ -6258,6 +6320,13 @@ coins:
   - type: literature
     url: https://en.numista.com/31053
     ref: Numista N#31053 — 2/3 Thaler - Brunswick-Lüneburg-Calenberg - John Frederick 1676-1679
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18264692
+    ref: IKMK Berlin 18264692
+  note:
+    de: Gulden
+    en: Gulden
+    uk: Gulden
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -6270,14 +6339,23 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-31053
+  - ikmk-18264692
 - id: unified-dk-numista-310994
   fuss: seed_unsorted
   phase: numista
   kind: kurant
   nominal: 1 Thaler
-  year_first: 1673
-  year_last: 1673
-  year_label: '1673'
+  year_first: 1671
+  year_last: 1674
+  year_ranges:
+  - - 1671
+    - 1674
+  year_label: 1671-1674
+  ruler: Sylvius II. Friedrich
+  mintmaster: Samuel Pfahler
+  inscription_obv: SYLVI FRID D G DUX WIRT TE I S OLS
+  inscription_rev: CO MON DO I H-EID STER & ME
+  mint: Oels
   catalog:
     km: '108'
     numista: '310994'
@@ -6289,7 +6367,7 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 29.28
@@ -6301,6 +6379,9 @@ coins:
   - type: literature
     url: https://en.numista.com/310994
     ref: Numista N#310994 — 1 Thaler - Free Hanseatic city of Lübeck
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18234846
+    ref: IKMK Berlin 18234846
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -6313,6 +6394,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-310994
+  - ikmk-18234846
 - id: unified-dk-numista-312725
   fuss: seed_unsorted
   phase: numista
@@ -7571,6 +7653,7 @@ coins:
     - 1642
   year_label: 1637-1642
   ruler: George (Georg)
+  mint: Zellerfeld
   catalog:
     km: '22'
     numista: '32871'
@@ -7578,9 +7661,9 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   diameter_mm:
   - value: 42.0
@@ -7589,6 +7672,12 @@ coins:
   - type: literature
     url: https://en.numista.com/32871
     ref: Numista N#32871 — 1 Thaler - George - Brunswick-Lüneburg-Calenberg
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18286038
+    ref: IKMK Berlin 18286038
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18286039
+    ref: IKMK Berlin 18286039
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -7601,6 +7690,8 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-32871
+  - ikmk-18286038
+  - ikmk-18286039
 - id: unified-dk-numista-331692
   fuss: seed_unsorted
   phase: numista
@@ -8315,6 +8406,7 @@ coins:
     - 1636
   year_label: 1635-1636
   ruler: George (Georg)
+  mint: Zellerfeld
   catalog:
     km: '14'
     numista: '363186'
@@ -8325,8 +8417,8 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 28.75
@@ -8335,6 +8427,9 @@ coins:
   - type: literature
     url: https://en.numista.com/363186
     ref: Numista N#363186 — 1 Thaler - George - Brunswick-Lüneburg-Calenberg
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18286034
+    ref: IKMK Berlin 18286034
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -8347,6 +8442,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-363186
+  - ikmk-18286034
 - id: unified-dk-numista-370615
   fuss: seed_unsorted
   phase: numista
@@ -11057,16 +11153,24 @@ coins:
   - - 1619
     - 1627
   year_label: 1619-1627
+  ruler: Bogislav XIV.
+  mintmaster: Christian Wilcke
+  inscription_obv: VLRICVS D G D POM EPISCOP CAMMIN 1-6-ZZ
+  inscription_rev: NVMMVS IN / MEMORIAM FV/NEBR VLRICI P / D ET EPIS CA NA / TI 1Z AVG AO 1589 / ET MORTVI AO 16ZZ / 31 OCT
+    A BOGIS/LAO PO DV PVB/LICATVS
+  mint: Köslin
   catalog:
     km: A47
     numista: '434504'
     dav: Lg 339
+    others:
+    - Olding# 173 C
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 57.63
@@ -11075,6 +11179,9 @@ coins:
   - type: literature
     url: https://en.numista.com/434504
     ref: Numista N#434504 — 2 Thalers - Free Hanseatic city of Lübeck
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18281994
+    ref: IKMK Berlin 18281994
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -11087,6 +11194,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-434504
+  - ikmk-18281994
 - id: unified-dk-numista-434916
   fuss: seed_unsorted
   phase: numista
@@ -14144,31 +14252,6 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18201589
-- id: unified-ikmk-18201639
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Taler
-  year_first: 1615
-  year_last: 1615
-  year_label: '1615'
-  inscription_obv: BRAVNSCHWEIG 4 MOND BELEGERT HART MIT ALLEM ERNST GESTVRMET WART / DOCH HAT SIE SICH MANLICH GEWEHRT IR
-    LOB VND PREIS DADVRCH VERMEHRT / BRAVNSCHWEIG GVT FVHRT LÖWEN MVT / C PPIVI CAE - C MALER
-  inscription_rev: BELAGERVNG DER STAD BRAVNSCHWEIG VOM XXII IVL BIS XI NOVEM Ao 1615
-  mint: Braunschweig
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18201639
-    ref: IKMK Berlin 18201639
-  verification_note: *id001
-  composed_of:
-  - ikmk-18201639
 - id: unified-ikmk-18201640
   fuss: seed_unsorted
   phase: ikmk
@@ -14915,11 +14998,8 @@ coins:
   kind: kurant
   nominal: 1 Guldengroschen
   year_first: 1511
-  year_last: 1514
-  year_ranges:
-  - - 1511
-    - 1514
-  year_label: 1511-1514
+  year_last: 1511
+  year_label: '1511'
   ruler: Johann III. Rhode
   inscription_obv: IO DI GR ARChIEPI - BRE MO NO STAT FL R
   inscription_rev: S - WILhAD P M EP - BREMENSIS 1511
@@ -14939,14 +15019,10 @@ coins:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18306105
     ref: IKMK Berlin 18306105
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18306116
-    ref: IKMK Berlin 18306116
   verification_note: *id001
   composed_of:
   - ikmk-18201953
   - ikmk-18306105
-  - ikmk-18306116
 - id: unified-ikmk-18201966
   fuss: seed_unsorted
   phase: ikmk
@@ -21429,16 +21505,12 @@ coins:
   kind: kurant
   nominal: 1 Taler
   year_first: 1622
-  year_last: 1627
-  year_ranges:
-  - - 1622
-    - 1627
-  year_label: 1622-1627
+  year_last: 1622
+  year_label: '1622'
   ruler: Ernst III.
   inscription_obv: + ERNEST D G S R I PRINC COM HOLSAT SCHAVMB STERNB DN GEH
   inscription_rev: OBIIT / AN CHRI MDCXXII / DIE XVII IANUAR INT / VII ET VIII MATUTINAM / CUM / VIXISSET ANOS LII / MENS
     III DIES XXIV H I / IN REGIMINE VERO / ANNOS XX ME VI / DIE XV HO IV
-  mint: Moisburg
   catalog:
     dav: '3746'
     lange: '944'
@@ -21446,23 +21518,15 @@ coins:
   metal_verified: true
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: true
+  mint_verified: false
   verified: false
   sources:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18219260
     ref: IKMK Berlin 18219260
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286006
-    ref: IKMK Berlin 18286006
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286028
-    ref: IKMK Berlin 18286028
   verification_note: *id001
   composed_of:
   - ikmk-18219260
-  - ikmk-18286006
-  - ikmk-18286028
 - id: unified-ikmk-18219373
   fuss: seed_unsorted
   phase: ikmk
@@ -25480,40 +25544,6 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18232514
-- id: unified-ikmk-18232519
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 3 Taler
-  year_first: 1677
-  year_last: 1677
-  year_label: '1677'
-  ruler: Johann Friedrich
-  mintmaster: Rudolf Bornemann
-  inscription_obv: EX DURIS GLORIA ANNO - 1677
-  mint: Zellerfeld
-  catalog:
-    others:
-    - Duve# 4
-    - Fiala# 1766 a
-    - Welter# 1671
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18232519
-    ref: IKMK Berlin 18232519
-  note:
-    de: Löser
-    en: Löser
-    uk: Löser
-  verification_note: *id001
-  composed_of:
-  - ikmk-18232519
 - id: unified-ikmk-18232524
   fuss: seed_unsorted
   phase: ikmk
@@ -26119,35 +26149,6 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18234845
-- id: unified-ikmk-18234846
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Taler
-  year_first: 1671
-  year_last: 1674
-  year_ranges:
-  - - 1671
-    - 1674
-  year_label: 1671-1674
-  ruler: Sylvius II. Friedrich
-  mintmaster: Samuel Pfahler
-  inscription_obv: SYLVI FRID D G DUX WIRT TE I S OLS
-  inscription_rev: CO MON DO I H-EID STER & ME
-  mint: Oels
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18234846
-    ref: IKMK Berlin 18234846
-  verification_note: *id001
-  composed_of:
-  - ikmk-18234846
 - id: unified-ikmk-18234850
   fuss: seed_unsorted
   phase: ikmk
@@ -31489,40 +31490,6 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18260716
-- id: unified-ikmk-18264692
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: ⅔ Taler
-  year_first: 1679
-  year_last: 1679
-  year_label: '1679'
-  ruler: Johann Friedrich
-  mintmaster: Heinrich Bonhorst
-  inscription_obv: IOAN FRIDER D G DUX BR & L
-  inscription_rev: 'EX DUCIS GLORIA ANNO MDCLXXIX -/ V. FEIN SILB: / 2/3'
-  mint: Clausthal
-  catalog:
-    others:
-    - Fiala# 2026-2027
-    - Welter# 1730
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18264692
-    ref: IKMK Berlin 18264692
-  note:
-    de: Gulden
-    en: Gulden
-    uk: Gulden
-  verification_note: *id001
-  composed_of:
-  - ikmk-18264692
 - id: unified-ikmk-18264725
   fuss: seed_unsorted
   phase: ikmk
@@ -35819,36 +35786,6 @@ coins:
   - ikmk-18291755
   - ikmk-18294742
   - ikmk-18294748
-- id: unified-ikmk-18281994
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 2 Taler
-  year_first: 1622
-  year_last: 1622
-  year_label: '1622'
-  ruler: Bogislav XIV.
-  mintmaster: Christian Wilcke
-  inscription_obv: VLRICVS D G D POM EPISCOP CAMMIN 1-6-ZZ
-  inscription_rev: NVMMVS IN / MEMORIAM FV/NEBR VLRICI P / D ET EPIS CA NA / TI 1Z AVG AO 1589 / ET MORTVI AO 16ZZ / 31 OCT
-    A BOGIS/LAO PO DV PVB/LICATVS
-  mint: Köslin
-  catalog:
-    others:
-    - Olding# 173 C
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18281994
-    ref: IKMK Berlin 18281994
-  verification_note: *id001
-  composed_of:
-  - ikmk-18281994
 - id: unified-ikmk-18281996
   fuss: seed_unsorted
   phase: ikmk
@@ -43238,31 +43175,6 @@ coins:
   composed_of:
   - ikmk-18285543
   - ikmk-18285546
-- id: unified-ikmk-18285564
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Taler
-  year_first: 1623
-  year_last: 1625
-  year_ranges:
-  - - 1623
-    - 1625
-  year_label: 1623-1625
-  mint: Harburg
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18285564
-    ref: IKMK Berlin 18285564
-  verification_note: *id001
-  composed_of:
-  - ikmk-18285564
 - id: unified-ikmk-18285708
   fuss: seed_unsorted
   phase: ikmk
@@ -43573,6 +43485,53 @@ coins:
   - ikmk-18285931
   - ikmk-18294681
   - ikmk-18295764
+- id: unified-ikmk-18286006
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  year_first: 1622
+  year_last: 1627
+  year_ranges:
+  - - 1622
+    - 1627
+  year_label: 1622-1627
+  mint: Moisburg
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18286006
+    ref: IKMK Berlin 18286006
+  verification_note: *id001
+  composed_of:
+  - ikmk-18286006
+- id: unified-ikmk-18286028
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Taler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  mint: Moisburg
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18286028
+    ref: IKMK Berlin 18286028
+  verification_note: *id001
+  composed_of:
+  - ikmk-18286028
 - id: unified-ikmk-18286029
   fuss: seed_unsorted
   phase: ikmk
@@ -43617,28 +43576,6 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18286030
-- id: unified-ikmk-18286031
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Taler
-  year_first: 1624
-  year_last: 1624
-  year_label: '1624'
-  mint: Moisburg
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286031
-    ref: IKMK Berlin 18286031
-  verification_note: *id001
-  composed_of:
-  - ikmk-18286031
 - id: unified-ikmk-18286032
   fuss: seed_unsorted
   phase: ikmk
@@ -43682,28 +43619,6 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18286033
-- id: unified-ikmk-18286034
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Taler
-  year_first: 1636
-  year_last: 1636
-  year_label: '1636'
-  mint: Zellerfeld
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286034
-    ref: IKMK Berlin 18286034
-  verification_note: *id001
-  composed_of:
-  - ikmk-18286034
 - id: unified-ikmk-18286035
   fuss: seed_unsorted
   phase: ikmk
@@ -43726,94 +43641,6 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18286035
-- id: unified-ikmk-18286036
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Taler
-  year_first: 1640
-  year_last: 1640
-  year_label: '1640'
-  mint: Zellerfeld
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286036
-    ref: IKMK Berlin 18286036
-  verification_note: *id001
-  composed_of:
-  - ikmk-18286036
-- id: unified-ikmk-18286037
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Taler
-  year_first: 1640
-  year_last: 1640
-  year_label: '1640'
-  mint: Zellerfeld
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286037
-    ref: IKMK Berlin 18286037
-  verification_note: *id001
-  composed_of:
-  - ikmk-18286037
-- id: unified-ikmk-18286038
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Taler
-  year_first: 1641
-  year_last: 1641
-  year_label: '1641'
-  mint: Zellerfeld
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286038
-    ref: IKMK Berlin 18286038
-  verification_note: *id001
-  composed_of:
-  - ikmk-18286038
-- id: unified-ikmk-18286039
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Taler
-  year_first: 1641
-  year_last: 1641
-  year_label: '1641'
-  mint: Zellerfeld
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286039
-    ref: IKMK Berlin 18286039
-  verification_note: *id001
-  composed_of:
-  - ikmk-18286039
 - id: unified-ikmk-18286040
   fuss: seed_unsorted
   phase: ikmk
@@ -43836,28 +43663,6 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18286040
-- id: unified-ikmk-18286041
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: ½ Taler
-  year_first: 1623
-  year_last: 1623
-  year_label: '1623'
-  mint: Harburg
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18286041
-    ref: IKMK Berlin 18286041
-  verification_note: *id001
-  composed_of:
-  - ikmk-18286041
 - id: unified-ikmk-18286042
   fuss: seed_unsorted
   phase: ikmk
@@ -98374,15 +98179,18 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18306113
-- id: unified-ikmk-18306114
+- id: unified-ikmk-18306116
   fuss: seed_unsorted
   phase: ikmk
   kind: kurant
-  nominal: 1 Taler
-  year_first: 1575
-  year_last: 1575
-  year_label: '1575'
-  mint: Graz
+  nominal: 1 Guldengroschen
+  year_first: 1511
+  year_last: 1514
+  year_ranges:
+  - - 1511
+    - 1514
+  year_label: 1511-1514
+  mint: Bremen
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -98391,33 +98199,11 @@ coins:
   verified: false
   sources:
   - type: museum
-    url: https://ikmk.smb.museum/object?id=18306114
-    ref: IKMK Berlin 18306114
+    url: https://ikmk.smb.museum/object?id=18306116
+    ref: IKMK Berlin 18306116
   verification_note: *id001
   composed_of:
-  - ikmk-18306114
-- id: unified-ikmk-18306115
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Taler
-  year_first: 1582
-  year_last: 1582
-  year_label: '1582'
-  mint: Klagenfurt
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18306115
-    ref: IKMK Berlin 18306115
-  verification_note: *id001
-  composed_of:
-  - ikmk-18306115
+  - ikmk-18306116
 - id: unified-ikmk-18306117
   fuss: seed_unsorted
   phase: ikmk
@@ -98459,31 +98245,17 @@ coins:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18306118
     ref: IKMK Berlin 18306118
-  verification_note: *id001
-  composed_of:
-  - ikmk-18306118
-- id: unified-ikmk-18306119
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 4 Grote
-  year_first: 1512
-  year_last: 1512
-  year_label: '1512'
-  mint: Bremen
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18306119
     ref: IKMK Berlin 18306119
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18306121
+    ref: IKMK Berlin 18306121
   verification_note: *id001
   composed_of:
+  - ikmk-18306118
   - ikmk-18306119
+  - ikmk-18306121
 - id: unified-ikmk-18306120
   fuss: seed_unsorted
   phase: ikmk
@@ -98503,52 +98275,12 @@ coins:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18306120
     ref: IKMK Berlin 18306120
-  verification_note: *id001
-  composed_of:
-  - ikmk-18306120
-- id: unified-ikmk-18306121
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 4 Grote
-  year_first: 1512
-  year_last: 1512
-  year_label: '1512'
-  mint: Bremen
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18306121
-    ref: IKMK Berlin 18306121
-  verification_note: *id001
-  composed_of:
-  - ikmk-18306121
-- id: unified-ikmk-18306122
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 4 Grote
-  year_first: 1512
-  year_last: 1512
-  year_label: '1512'
-  mint: Bremen
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18306122
     ref: IKMK Berlin 18306122
   verification_note: *id001
   composed_of:
+  - ikmk-18306120
   - ikmk-18306122
 - id: unified-ikmk-18306123
   fuss: seed_unsorted
@@ -98591,30 +98323,12 @@ coins:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18306124
     ref: IKMK Berlin 18306124
-  verification_note: *id001
-  composed_of:
-  - ikmk-18306124
-- id: unified-ikmk-18306125
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1 Groten
-  year_first: 1512
-  year_last: 1512
-  year_label: '1512'
-  mint: Bremen
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  sources:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18306125
     ref: IKMK Berlin 18306125
   verification_note: *id001
   composed_of:
+  - ikmk-18306124
   - ikmk-18306125
 - id: unified-ikmk-18306126
   fuss: seed_unsorted
@@ -98679,12 +98393,30 @@ coins:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18306128
     ref: IKMK Berlin 18306128
+  verification_note: *id001
+  composed_of:
+  - ikmk-18306128
+- id: unified-ikmk-18306129
+  fuss: seed_unsorted
+  phase: ikmk
+  kind: kurant
+  nominal: 1 Groten
+  year_first: 1524
+  year_last: 1524
+  year_label: '1524'
+  mint: Bremen
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  sources:
   - type: museum
     url: https://ikmk.smb.museum/object?id=18306129
     ref: IKMK Berlin 18306129
   verification_note: *id001
   composed_of:
-  - ikmk-18306128
   - ikmk-18306129
 - id: unified-ikmk-18306131
   fuss: seed_unsorted

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `norburg_plon_duchy`.
-# Generated 2026-06-02 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-03 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/norburg_plon_duchy.yml across all sources.
 #
 # Input: 28 per-source seed entries.
-# Output: 25 unified entries (one per physical coin).
+# Output: 23 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: norburg_plon_duchy
-generated_at: '2026-06-02'
+generated_at: '2026-06-03'
 coins:
 - id: unified-dk-bruun-14702
   fuss: seed_unsorted
@@ -28,7 +28,7 @@ coins:
     lange: 767a
     dav: '3722'
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: false
@@ -40,6 +40,9 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14251, p. 318
+  - type: literature
+    url: https://numismaster.com/MC_92766
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -54,6 +57,7 @@ coins:
   issuing_entity: norburg_plon_duchy
   composed_of:
   - dk-bruun-14702
+  - schleswig_holstein-numismaster-92766
 - id: unified-dk-bruun-14703
   fuss: seed_unsorted
   phase: bruun
@@ -69,7 +73,7 @@ coins:
     lange: 767b
     dav: 3722A
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: false
@@ -81,6 +85,9 @@ coins:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
     ref: Bruun Part II, lot 14252, p. 318
+  - type: literature
+    url: https://numismaster.com/MC_92767
+    ref: NumisMaster
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -95,6 +102,7 @@ coins:
   issuing_entity: norburg_plon_duchy
   composed_of:
   - dk-bruun-14703
+  - schleswig_holstein-numismaster-92767
 - id: unified-dk-bruun-14704
   fuss: seed_unsorted
   phase: bruun
@@ -765,68 +773,6 @@ coins:
   issuing_entity: norburg_plon_duchy
   composed_of:
   - schleswig_holstein-numismaster-73988
-- id: unified-schleswig_holstein-numismaster-92766
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1676
-  year_last: 1676
-  year_label: '1676'
-  catalog:
-    km: '5'
-    dav: '3722'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_92766
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: norburg_plon_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-92766
-- id: unified-schleswig_holstein-numismaster-92767
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1676
-  year_last: 1676
-  year_label: '1676'
-  catalog:
-    km: '6'
-    dav: 3722A
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_92767
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: norburg_plon_duchy
-  composed_of:
-  - schleswig_holstein-numismaster-92767
 - id: unified-schleswig_holstein-numismaster-92768
   fuss: seed_unsorted
   phase: numismaster

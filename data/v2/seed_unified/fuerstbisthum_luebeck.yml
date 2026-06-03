@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `fuerstbisthum_luebeck`.
-# Generated 2026-06-02 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-03 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/fuerstbisthum_luebeck.yml across all sources.
 #
 # Input: 22 per-source seed entries.
-# Output: 22 unified entries (one per physical coin).
+# Output: 21 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: fuerstbisthum_luebeck
-generated_at: '2026-06-02'
+generated_at: '2026-06-03'
 coins:
 - id: unified-dk-bruun-14975
   fuss: seed_unsorted
@@ -71,7 +71,7 @@ coins:
     lange: 511A
     dav: '623'
   metal: silver
-  metal_verified: true
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -116,7 +116,7 @@ coins:
     bruun_collection_id: '15040'
     dav: '623'
   metal: silver
-  metal_verified: true
+  metal_verified: false
   fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
@@ -154,6 +154,7 @@ coins:
   year_first: 1775
   year_last: 1775
   year_label: '1775'
+  ruler: Frederick Augustus of Oldenburg
   mintmaster: Caspar Heinrich Lyng
   mint: Altona
   catalog:
@@ -162,20 +163,31 @@ coins:
     lange: '523'
     schive: –
     jensen_skjoldager: –
-    dav: '2411'
+    numista: '271400'
+    dav:
+    - '2411'
+    - GT II# 2411
+    others:
+    - Behr# 838
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 28.78
+    source: numista
   - value: 28.89
     source: bruun
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12228, p. 267
+  - type: literature
+    url: https://en.numista.com/271400
+    ref: Numista N#271400 — 1 Thaler - Frederick August
   note:
     de: Bishopric
     en: Bishopric
@@ -194,6 +206,7 @@ coins:
   issuing_entity: fuerstbisthum_luebeck
   composed_of:
   - dk-bruun-15140
+  - dk-numista-271400
 - id: unified-dk-bruun-15142
   fuss: seed_unsorted
   phase: bruun
@@ -414,49 +427,6 @@ coins:
   issuing_entity: fuerstbisthum_luebeck
   composed_of:
   - dk-numista-271397
-- id: unified-dk-numista-271400
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1775
-  year_last: 1775
-  year_label: '1775'
-  ruler: Frederick Augustus of Oldenburg
-  catalog:
-    km: '85'
-    numista: '271400'
-    dav: GT II# 2411
-    lange: '523'
-    others:
-    - Behr# 838
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 28.78
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/271400
-    ref: Numista N#271400 — 1 Thaler - Frederick August
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: fuerstbisthum_luebeck
-  composed_of:
-  - dk-numista-271400
 - id: unified-dk-numista-276012
   fuss: seed_unsorted
   phase: numista
