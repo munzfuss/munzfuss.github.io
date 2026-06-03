@@ -34,6 +34,7 @@ from __future__ import annotations
 import argparse
 import glob
 import json
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -75,12 +76,15 @@ def build_indices():
     # cache identity: bruun-id -> (nominal, year_first, metal, ruler) from the seed
     cache = {}
     for _, c in _load_all(BRUUN_SEED_GLOB):
+        bcat = c.get("catalog") or {}
         for x in _bruun_ids(c):
             cache[x] = {
                 "nominal": c.get("nominal"),
                 "year_first": c.get("year_first"),
                 "metal": c.get("metal"),
                 "ruler": c.get("ruler"),
+                "km": bcat.get("km"),
+                "hede": bcat.get("hede"),
             }
     return uni, cache
 
@@ -108,6 +112,37 @@ def find_collisions(uni):
 
 
 _YEAR_TOL = 2
+
+
+def _catvals(x):
+    if x is None:
+        return set()
+    return {str(v).strip() for v in (x if isinstance(x, list) else [x]) if v is not None}
+
+
+def _base_code(code):
+    """Catalog base number: «401.2»→«401», «90C»→«90», «112A»→«112»."""
+    m = re.match(r"\s*(\d+)", str(code))
+    return m.group(1) if m else str(code).strip()
+
+
+def _catalog_signal(coin, cache_rec):
+    """How strongly the foundation's km/hede corroborate the cache bruun-id's.
+    Returns ('exact'|'family'|'none', reason). Catalog is the project's
+    strongest coin-identity signal — it OVERRIDES a metal-label discrepancy
+    (a Bruun-seed metal mis-parse, or a gold proof sharing the same Hede)."""
+    fcat = coin.get("catalog") or {}
+    fkm, fhede = _catvals(fcat.get("km")), _catvals(fcat.get("hede"))
+    xkm, xhede = _catvals(cache_rec.get("km")), _catvals(cache_rec.get("hede"))
+    exact = (fkm & xkm) | (fhede & xhede)
+    if exact:
+        return "exact", "km/hede " + ",".join(sorted(exact))
+    km_fam = {_base_code(v) for v in fkm} & {_base_code(v) for v in xkm}
+    hede_fam = {_base_code(v) for v in fhede} & {_base_code(v) for v in xhede}
+    fam = km_fam | hede_fam
+    if fam:
+        return "family", "base " + ",".join(sorted(fam))
+    return "none", ""
 
 
 def _metal_class(m):
@@ -139,6 +174,10 @@ def _classify_pair(coin, cache_rec) -> tuple[str, str]:
                   (denom typo, OR an un-encoded accounting equivalence like
                   12 Skilling≡⅛ Speciedaler / Krone≡4 Mark) — needs human eyes.
     """
+    # Catalog corroboration is the strongest signal — it OVERRIDES metal/year.
+    sig, sigr = _catalog_signal(coin, cache_rec)
+    if sig == "exact":
+        return "merge", f"catalog {sigr} match ⇒ same coin (metal-label/specimen diff)"
     nom_b = normalise_nominal(coin.get("nominal"))
     nom_x = normalise_nominal(cache_rec.get("nominal"))
     nom_ok = bool(nom_b) and nom_b == nom_x
@@ -151,13 +190,20 @@ def _classify_pair(coin, cache_rec) -> tuple[str, str]:
         lo = int(yf) - _YEAR_TOL
         hi = int(yl if yl is not None else yf) + _YEAR_TOL
         year_overlap = lo <= int(yx) <= hi
+    if sig == "family":
+        # same catalog family (sub-variant) — never an outright drop; if it also
+        # matches nominal+metal+year it's a clean split-cluster, else review.
+        if nom_ok and not metal_hard and year_overlap is not False:
+            return "merge", f"catalog family {sigr} + nominal/metal/year agree"
+        return "review", f"catalog family {sigr} but metal/nominal/year differ (sub-variant?)"
+    # No catalog corroboration — fall back to metal/year/nominal discriminator.
     if metal_hard:
-        return "miscite", f"metal {coin.get('metal')}≠{cache_rec.get('metal')} (nom '{nom_b}' vs '{nom_x}')"
+        return "miscite", f"no catalog match; metal {coin.get('metal')}≠{cache_rec.get('metal')} (nom '{nom_b}' vs '{nom_x}')"
     if year_known and not year_overlap:
-        return "miscite", f"year {yx} outside [{yf}..{yl}]±{_YEAR_TOL} (nom '{nom_b}' vs '{nom_x}')"
+        return "miscite", f"no catalog match; year {yx} outside [{yf}..{yl}]±{_YEAR_TOL} (nom '{nom_b}' vs '{nom_x}')"
     if nom_ok:
-        return "merge", f"nominal '{nom_b}' + metal {mb} + year {yx}∈[{yf}..{yl}]"
-    return "review", f"metal {mb}+year compatible BUT nominal '{nom_b}'≠'{nom_x}'"
+        return "merge", f"no catalog but nominal '{nom_b}' + metal {mb} + year {yx}∈[{yf}..{yl}] agree"
+    return "review", f"no catalog; nominal '{nom_b}'≠'{nom_x}' but metal/year compatible (accounting-equiv? typo?)"
 
 
 def classify(owners, suspects, cache):
