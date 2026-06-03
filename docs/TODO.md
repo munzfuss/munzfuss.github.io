@@ -698,6 +698,24 @@ Project ticket `190229723` ready to flip In review → Done — all 8 candidates
 
 > **Curator-ordered sequence (2026-06-01, user-directed «з високим пріоритетом»):** do **§CJ → §CK → §CL** in that order. §CJ + §CK are seed-/data-level work; §CL is the single coordinated propagation that ships everything (ucoin backlog re-seed + numista index-fix re-seed already done this session, plus whatever §CJ/§CK change) to the rendered pages.
 
+### CS. 🔵 Split-duplicate dedup campaign — same coin in 2+ final entries  *(opened 2026-06-03, user-flagged; ongoing, multi-root)* *(est: medium-large)* *(type: merger policy + normalization + parser + curation)*
+
+**Surfaced.** 2026-06-03, user spotted two rendered «duplicates»: 2 Ducat 1644-48 Christian IV (KM 140 vs KM-DK 139,140, both Hede 32, shared Bruun 5730) + ½ Dukat 1647 (Hede 38 vs 40, shared Bruun 5814). «потенційно є й інші».
+
+**Scan recipe (the strong signal).** A Bruun `bruun_collection_id` = ONE physical specimen → must live in exactly ONE final entry. Scan: build `bruun_collection_id → {(entity, final_id)}` across `data/v2/final/*.yml`; any id in ≥2 different entries = a split. **Found 129 ids → 108 split-clusters** (2026-06-03 baseline). Categorise per cluster by normalised-nominal agreement.
+
+**Four roots (≈100 genuine dups) + ~8 spurious:**
+1. **Transitivity block** — a KM-sub-variant `no_match` (e.g. NumisMaster KM 139 vs KM 140, both Hede 32) fractures a Hede-cluster; `union()` refuses the confident hede↔bruun merge because the cross-class KM-139/140 pair is a registered no_merge. Needs: when Hede agrees + Bruun-coll-id overlaps, tolerate a KM sub-variant disagreement (extend the §9a type-strong path, OR per-case `merge_decisions`).
+2. **Nominal-synonym gaps — ✅ DONE 2026-06-03 (commit `5bac350`).** Added Taler/Reichsthaler→daler, Marck→mark, Rigsdaler Courant↔Kurantdaler, D'or genitive-s to `scripts/lib/nominal_synonyms.py` (in-pipeline via merge/absorb; verified no false-fold). seed_unified diff-nominal splits 37→13 on re-merge (reverted pending batch propagation).
+3. **Cross-entity scope** — same coin promoted into BOTH `danish_realm` and `royal_holstein` finals (e.g. Kurantdaler CVII Hede 25 KM 645) → renders twice on denmark (which consumes both). Needs entity-routing consistency / cross-entity dedup.
+4. **Hede sub-variant** — Hede 38 vs 40 (½ Dukat 1647) genuinely `no_match` per Hede-as-type-id, yet share Bruun 5814. Needs source check: genuine sub-variants OR one Hede attribution wrong.
++ **~8 spurious Bruun-id collisions** (parser): different coins share a Bruun id — e.g. «1 Ducat Rantzau 1689» ↔ «1 Taler Gottorp 1622»; «12 Mark CVII 1781» ↔ «8 Skilling FV 1763». **User-ordered NEXT** after nominals.
++ **Sibling gap found (Gottorp KM 21 Taler/Thaler):** catalog-ref VALUE formatting — Davenport `3682` vs `EC II 3682` (same Dav#, volume-prefix) → catalog-disagree no_match. A `dav`-value normalizer (strip «EC … » volume prefix) is the analogue of the nominal-synonym fix for catalog refs. Likely other ref-value-format gaps too.
+
+**Propagation.** Each fix is a code/data change; the actual page-collapse needs re-merge → absorb → build (the §CL/§CR cycle, now fast via parallel PASS-1). **Batch ONE propagation after the next round of fixes** (parser-collisions + Davenport-value norm + roots #1/#3/#4) rather than re-propagating per fix.
+
+**Curator-ordered sequence (2026-06-03):** nominals (done) → **parser-collisions next** → then roots #1/#3/#4 + Davenport-value norm → single propagation.
+
 ### CJ. 🟢 Generic catalogue-index capture audit for ALL non-numista sources (Bruun / ucoin / NumisMaster / IKMK / Hede / Galster)  *(opened 2026-06-01, user-directed «з високим пріоритетом»)* *(est: medium)* *(type: parser audit + data integrity)* — **DO FIRST**
 
 **Surfaced.** 2026-06-01, after the numista parser was found dropping most catalogue indices (`0c84510`: Dav-volume variants + AKS/Jaeger/NWD/Craig/Behrens silently dropped; fixed by routing any unmodelled code → `others`, a GENERIC open approach, not a closed white-list).
