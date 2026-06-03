@@ -281,6 +281,19 @@ def _normalise_ruler(ruler):
         s = "hans"
     s = re.sub(r"\beric\b", "erik", s)
     s = re.sub(r"\bmargaret\b", "margrethe", s)
+    #   «John Adolphus» (Numista English) ↔ «Johann Adolf» (German) —
+    #   Johann Adolf von Holstein-Gottorp, Duke 1590-1616. Verified safe by
+    #   reign-window + entity survey (2026-06-03): the bare «John Adolphus»
+    #   form appears only in gottorp_duchy 1590-1611 = this one duke.
+    #   GUARDS (negative lookahead on a trailing roman numeral):
+    #     - «John Adolphus I» (Holstein-Norburg-Plön, 1690) — a DIFFERENT
+    #       duke — stays untouched (the «I» blocks the match).
+    #     - Bare «Adolf» (grandfather Adolf I, 1544-1586), Schauenburg counts
+    #       «Adolf XIII/XIV», «Hans Adolf», «Adolf Friedrich» are different
+    #       strings → never touched.
+    #   The matcher is per-entity, so even the pre-existing «johann adolf»
+    #   gottorp↔norburg_plön label overlap can't cross-merge.
+    s = re.sub(r"\bjohn adolphus\b(?!\s+[ivx]\b)", "johann adolf", s)
     return s
 
 
