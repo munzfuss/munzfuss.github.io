@@ -360,6 +360,14 @@ def _normalise_ruler(ruler):
     #   Younger / John I of Denmark) is untouched (only the +Frederik
     #   compound folds).
     s = re.sub(r"\bjoh(?:n|an|ann)\s+frederik\b(?!\s+[ivx]\b)", "johann frederik", s)
+    #   «Christian Albert»(en) ↔ «Christian Albrecht»(de) — Christian Albrecht
+    #   von Holstein-Gottorp, Duke 1659-1695. Reign-window + entity survey
+    #   (2026-06-03): both forms = this one duke (gottorp/royal_holstein/
+    #   danish_realm/hamburg, 1661-1694). Fold to the German canonical.
+    #   Targets only the «Christian Alb…» compound, so bare «Albrecht»
+    #   (Wallenstein etc.), «Johan Albrecht I», «Albrecht II. Alcibiades»
+    #   are untouched; numeral guard reserves any future «Christian Albrecht I».
+    s = re.sub(r"\bchristian\s+alb(?:recht|ert)\b(?!\s+[ivx]\b)", "christian albrecht", s)
     # Arabic→roman regnal numeral (Christian 4 → christian iv, etc.) — LAST,
     # after spelling/synonym folds, so the name-part is already canonical.
     s = _regnal_arabic_to_roman(s)
