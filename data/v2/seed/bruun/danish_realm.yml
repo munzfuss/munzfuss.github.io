@@ -6914,6 +6914,16 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
+    _source_errata:
+    - field: km
+      printed: '68'
+      correct: null
+      reason: "Bruun Part II, lot 13110, p.83 prints «KM-68» on this 1627 Wolfenbüttel Speciedaler (Hede-5, Dav-7760, Sieg-196, Schou-11), but KM-68 (Denmark) is the 2-Kroneskilling 1619 (V1 km-68-chr-iv-1619 + ucoin tid 163014, independently). Adjacent-KM cataloguer error (§13.3, same class as KM-240 commit 37f5b6d): the km-68 collision leaked Dav-7760 onto the 2-Skilling entries, yet Davenport only lists crown-size coins — proof the Speciedaler was wrongly merged into the small coin. Removed (real KM not invented per §0; type is identified by Hede-5 / Dav-7760 / Sieg-196). 2026-06-03."
+      curator: serg
+    _errata_applied:
+    - field: km
+      printed: '68'
+      correct: null
     nominal: 1 Speciedaler
     note:
       de: 'Reichstaler'
@@ -6932,7 +6942,6 @@ coins:
       sieg: '196'
       schou: '11'
       davenport: '7760'
-      km: '68'
       hede: '5'
       bruun_part: II
       bruun_lot_no: 13110
