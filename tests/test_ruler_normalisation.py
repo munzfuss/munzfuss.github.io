@@ -136,8 +136,10 @@ class TestExistingFeaturesPreserved(unittest.TestCase):
                          "frederik iv")
 
     def test_drop_von_house(self):
+        # «von <House>» suffix dropped; «Friedrich»→«frederik» via the global
+        # German↔Danish spelling fold (added 2026-06; matching-only).
         self.assertEqual(_normalise_ruler("Friedrich III. von Schleswig-Holstein-Gottorp"),
-                         "friedrich iii")
+                         "frederik iii")
 
 
 class TestEdgeCases(unittest.TestCase):
