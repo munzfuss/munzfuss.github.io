@@ -425,58 +425,73 @@ def parse_denomination(meta: str | None, body: str | None) -> str | None:
 def parse_metal(denom: str | None, refs: dict) -> tuple[str, bool]:
     """Best-effort metal classification from denomination.
 
-    Returns (metal, verified) tuple. `verified=True` when the
-    classification rests on a SOURCE-ATTESTED signal (Friedberg-ref =
-    gold by catalogue definition; an explicit denomination token from
-    Bruun's body — «Ducat», «Sovereign», «d'Or», «Skilling», etc.).
-    `verified=False` for the safest-default fallback to «silver» when
-    neither signal applies.
+    Returns (metal, verified) tuple. **Bruun does not state the metal
+    directly** — it is inferred. So `verified=True` is reserved for the two
+    cases where the signal is genuinely RELIABLE, not a denomination-name guess:
 
-    The `metal_verified` flag matters downstream: §4 verified-wins-
-    over-unverified rule lets a correct source-attested metal override
-    a V1-bootstrap mis-classification on cross-source merge / absorb.
+      1. **Friedberg ref** present → gold (Friedberg indexes gold coins ONLY by
+         catalogue definition — see §BJ source survey). External authority.
+      2. **Explicit metal WORD in the nominal** — «Silver Gulden», «Sølvgylden»,
+         «Gold Krone», «Goldgulden», «Guldkrone» — the catalogue literally names
+         the metal.
 
-    Friedberg-ref is the strongest gold-signal (Friedberg's catalogue
-    indexes GOLD coins only by definition — see §BJ source survey).
-    Check it FIRST, before falling through to denomination-token
-    heuristics — that way coins with empty/missing `denom` but a Fr-
-    reference still get classified correctly.
+    EVERYTHING ELSE is a denomination-NAME heuristic (Ducat→gold, Mark→silver,
+    Skilling→billon, Krone→silver/gold-by-value, …) and returns
+    `verified=False` — a WEAK signal. Rationale (curator decision 2026-06-03):
+    «Krone» is genuinely ambiguous (silver 1–2 Kroner vs gold 10/20 Kroner /
+    Guldkrone) and the old code listed bare «krone»/«crown» as a gold token,
+    mis-classifying ~79 silver Krone/Mark coins as gold AND marking them
+    verified=True — which (per §4) BLOCKED their cross-source merge with the
+    silver Hede/Numista foundations, manufacturing silver-vs-gold split-clusters.
 
-    Bug fix 2026-05-22: the prior `"fr" in refs` check was case-sensitive
-    but Bruun cache uses capital-F key «Fr» (per `REF_FIELDS` mapping
-    above, line 95). The check silently never fired, leaving 44 gold
-    coins mis-classified as silver (Christian/Frederik d'Or pieces,
-    Sovereign 1608, ½ Rose Noble 1611, Rose Noble 1629, etc. — all
-    Fr-indexed gold lots). Fix: normalise the keys to lowercase for
-    the membership test + return verified-flag alongside metal so the
-    verified-wins rule can propagate the fix to existing final
-    entries on next absorb.
+    Making the heuristic `verified=False` fixes this at the root: §4 says a
+    `*_verified: false` value cannot DISPROVE a merge and is overridden by any
+    source-attested metal. So an inferred metal no longer blocks a merge, and
+    a real source (Hede/Numista/Friedberg) corrects it in the unified output.
+    The heuristic still makes its best GUESS (so orphan-only entries render a
+    sensible, `(?)`-marked metal) — it just doesn't claim certainty.
+
+    Bug-fix history: 2026-05-22 the `"fr"` ref check was case-sensitive and
+    silently never fired (Bruun uses key «Fr»); fixed to lowercase. 2026-06-03
+    the krone→gold token + verified=True over-claim was fixed per the above.
     """
     refs_lc = {k.lower() for k in (refs or {})}
-    # Friedberg is the cleanest gold signal — applies regardless of denom.
+    # (1) Friedberg ref — reliable external gold signal, regardless of denom.
     if "fr" in refs_lc or "friedberg" in refs_lc:
         return ("gold", True)
     if not denom:
         return ("silver", False)  # safest default — no source signal
     d = denom.lower()
+    # (2) Explicit metal WORD in the nominal — the catalogue names the metal.
+    # SILVER takes precedence and is matched broadly («silver»/«sølv») so that
+    # «Sølvgylden», «Halv Sølvgylden», «Silver Gulden», «Sølvafslag …» never
+    # fall through to a gold heuristic. Safe: no gold coin carries «silver»/«sølv».
+    if "silver" in d or "sølv" in d or "joachimstaler" in d or "joachimsdaler" in d:
+        return ("silver", True)
+    # GOLD word: «gold» (English, unambiguous) or a SPECIFIC guld-gold compound.
+    # NOT bare «guld» — that would mis-catch «Guldengroschen» (a SILVER Guldiner)
+    # and the metal-ambiguous «gulden» family.
+    if "gold" in d or "guldkrone" in d or "guldgylden" in d or "guldreal" in d:
+        return ("gold", True)
+    # --- denomination-NAME heuristics below: weak guess → verified=False ---
+    if "10 kroner" in d or "20 kroner" in d:  # Danish gold-standard gold coins
+        return ("gold", False)
     if any(t in d for t in [
-        "nobel", "goldgulden", "rhinsk gylden", "ungersk gylden",
-        "ducat", "dukat", "crown", "krone", "guldreal",
+        "nobel", "goldgulden", "rhinsk gylden", "ungersk gylden", "ungarsk gylden",
+        "ducat", "dukat", "guldreal", "portugaløser", "portugaloser",
         "sovereign",  # Christian IV 1608 Sovereign (Hede 19) — gold prestige
         "d'or", "d’or", "dor",  # Pistolen-family (Christian/Frederik d'Or)
         "pistol",  # Pistole, Half Pistole etc.
-    ]) and "silver" not in d:
-        return ("gold", True)
+    ]):
+        return ("gold", False)
     if "klipping" in d or "klippe" in d:
-        return ("silver", False)  # billon Klippe — verified=False (heuristic)
+        return ("silver", False)
     if "hvid" in d or "penning" in d or "blaffert" in d:
-        return ("billon", True)
+        return ("billon", False)
     if "skilling" in d or "søsling" in d or "sosling" in d:
-        return ("billon", True)  # most pre-1541 skillinge are debased
-    if "joachimstaler" in d or "joachimsdaler" in d or "silver gulden" in d or "sølvgylden" in d or "solvgylden" in d:
-        return ("silver", True)
+        return ("billon", False)  # most pre-1541 skillinge are debased
     if "mark" in d:
-        return ("silver", True)
+        return ("silver", False)
     return ("silver", False)
 
 
