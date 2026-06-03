@@ -218,6 +218,40 @@ def _normalise_nominal(nominal):
     return _normalise_nominal_shared(nominal)
 
 
+_ARABIC_ROMAN = {
+    1: "i", 2: "ii", 3: "iii", 4: "iv", 5: "v", 6: "vi", 7: "vii", 8: "viii",
+    9: "ix", 10: "x", 11: "xi", 12: "xii", 13: "xiii", 14: "xiv", 15: "xv",
+    16: "xvi", 17: "xvii", 18: "xviii", 19: "xix", 20: "xx",
+}
+
+
+def _regnal_arabic_to_roman(s: str) -> str:
+    """Convert a TRAILING 1-2-digit regnal number to roman for MATCHING.
+    ucoin / Numista write «Christian 4» / «Frederik 3»; Hede / Bruun write
+    «Christian IV» / «Frederik III» — same monarch, but the arabic-vs-roman
+    numeral fragments every Danish king (≈19k coins). Canonicalise to roman.
+
+    GUARDS (so two different rulers are never folded):
+      • only a TRAILING number is converted (with optional «?»), so
+        «Karl 3 Johan» (embedded → Karl XIV Johan) is left alone;
+      • the name-part must carry NO other digit and NO joint/uncertain
+        separator («eller» / «or» / «/»), so «Frederik 7 eller Christian 9»
+        is left alone;
+      • numbers outside 1-20 are left as-is.
+    Matching only — the stored ruler keeps its source form.
+    """
+    m = re.match(r"^(.+?)\s*(\d{1,2})\??$", s)
+    if not m:
+        return s
+    name = m.group(1).strip()
+    if not name or re.search(r"\d", name):
+        return s
+    if any(tok in name for tok in (" eller ", " or ", "/")):
+        return s
+    roman = _ARABIC_ROMAN.get(int(m.group(2)))
+    return f"{name} {roman}" if roman else s
+
+
 def _normalise_ruler(ruler):
     """Canonicalise a ruler string for cross-source comparison.
 
@@ -309,6 +343,9 @@ def _normalise_ruler(ruler):
     #   The matcher is per-entity, so even the pre-existing «johann adolf»
     #   gottorp↔norburg_plön label overlap can't cross-merge.
     s = re.sub(r"\bjohn adolphus\b(?!\s+[ivx]\b)", "johann adolf", s)
+    # Arabic→roman regnal numeral (Christian 4 → christian iv, etc.) — LAST,
+    # after spelling/synonym folds, so the name-part is already canonical.
+    s = _regnal_arabic_to_roman(s)
     return s
 
 
