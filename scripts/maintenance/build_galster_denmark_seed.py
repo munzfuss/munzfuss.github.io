@@ -109,6 +109,31 @@ def parse_year_range(year_label: str | None) -> tuple[int | None, int | None]:
     return min(years), max(years)
 
 
+def parse_year_ranges(year_label: str | None) -> list[list[int]]:
+    """Parse a Galster page year_label into DISCRETE [start, end] ranges.
+
+    Each comma/semicolon-separated token is a single year «1516» → [1516,
+    1516] or a dash range «1535-1540» → [1535, 1540]. A discrete-year list
+    is kept as SEPARATE ranges so «1516, 1518» → [[1516, 1516], [1518,
+    1518]] — NOT [[1516, 1518]], which would falsely assert a 1517
+    striking. Per CLAUDE.md «source years immutable — never collapse a
+    discrete list into a continuous span». Reuses parse_year_range's year
+    token regex, so min/max stay consistent with year_first/year_last.
+
+    Returns [] when no year token is present (caller falls back to the
+    reign-window single span).
+    """
+    if not year_label:
+        return []
+    ranges: list[list[int]] = []
+    for token in re.split(r"[,;]", year_label):
+        yrs = [int(m) for m in re.findall(r"\b(1[5-6]\d{2})\b", token)]
+        if not yrs:
+            continue
+        ranges.append([min(yrs), max(yrs)])
+    return ranges
+
+
 def detect_metal(denom: str | None) -> str:
     if not denom:
         return "silver"
@@ -323,6 +348,18 @@ def build_entry(data: dict) -> dict | None:
     else:
         year_label_out = data.get("year_label")
 
+    # year_ranges: parse the source year_label into DISCRETE ranges so a
+    # comma-list «1516, 1518» yields [[1516,1516],[1518,1518]] (not a
+    # continuous [[1516,1518]] that would falsely assert a 1517 striking,
+    # CLAUDE.md «source years immutable»). The cross-source merger's
+    # span-comparison then keeps the discrete form over a looser Numista
+    # min/max range. Undated (reign-window) entries have no per-year source
+    # detail → single span.
+    if year_verified:
+        yr_ranges = parse_year_ranges(data.get("year_label")) or [[year_first, year_last]]
+    else:
+        yr_ranges = [[year_first, year_last]]
+
     entry: dict = {
         "id": cid,
         "fuss": "seed_unsorted",
@@ -332,7 +369,7 @@ def build_entry(data: dict) -> dict | None:
         "year_label": year_label_out,
         "year_first": year_first,
         "year_last": year_last,
-        "year_ranges": [[year_first, year_last]] if year_first == year_last else [[year_first, year_last]],
+        "year_ranges": yr_ranges,
         "year_verified": year_verified,
         "ruler": data.get("ruler"),
         "mint": mint_value,

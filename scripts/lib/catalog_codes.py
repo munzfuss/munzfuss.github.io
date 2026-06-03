@@ -136,6 +136,37 @@ def schema_catalog_fields() -> set[str]:
     return _SCHEMA_CATALOG_FIELDS
 
 
+_SCHEMA_LIST_CATALOG_FIELDS: set[str] | None = None
+
+
+def schema_list_catalog_fields() -> set[str]:
+    """The subset of CatalogRefs fields whose schema annotation allows
+    list-form (`str | list[str] | None`), cached. A single source that
+    attests MULTIPLE distinct values for such a field (e.g. danskmoent's
+    Galster 68 → «Schou 3» + «Schou 4» inscription variants) emits a list
+    directly, instead of overflowing the extras into `others` as
+    «schou# 4». Scalar-only fields (hede_volume, bruun_part, …) are
+    excluded so they keep the first-wins behaviour."""
+    global _SCHEMA_LIST_CATALOG_FIELDS
+    if _SCHEMA_LIST_CATALOG_FIELDS is None:
+        try:
+            from lib.schema import CatalogRefs  # type: ignore
+        except Exception:  # pragma: no cover
+            from schema import CatalogRefs  # type: ignore
+        out: set[str] = set()
+        for fn, fi in CatalogRefs.model_fields.items():
+            # `list[str]` appears in the annotation's string form for the
+            # `str | list[str] | None` fields; `km`'s richer union and
+            # `others` (bare list[str]) are intentionally excluded.
+            ann = str(fi.annotation)
+            if fn in ("km", "others"):
+                continue
+            if "list[str]" in ann:
+                out.add(fn)
+        _SCHEMA_LIST_CATALOG_FIELDS = out
+    return _SCHEMA_LIST_CATALOG_FIELDS
+
+
 def catalog_from_ref_dict(
     refs: dict,
     key_field_map: dict | None = None,
@@ -168,6 +199,7 @@ def catalog_from_ref_dict(
       non-first list members of an others code) append to `others`.
     """
     schema_fields = schema_catalog_fields()
+    list_fields = schema_list_catalog_fields()
     out: dict = {}
 
     def _emit(field: str | None, label: str, value) -> None:
@@ -178,10 +210,22 @@ def catalog_from_ref_dict(
             if field not in out:
                 out[field] = value
             elif out[field] != value:
-                # second distinct value for an already-set typed scalar → keep
-                # the first as typed, preserve the variant in others so nothing
-                # is lost (merger reconciles list-form later).
-                _emit(None, label, value)
+                # Second distinct value for an already-set typed field. When the
+                # schema allows list-form for this field (str | list[str]), a
+                # single source legitimately attesting multiple distinct values
+                # (e.g. danskmoent Galster 68 → Schou 3 + Schou 4 inscription
+                # variants) accumulates into a list — no `others` overflow, no
+                # loss. Scalar-only fields keep first-wins + variant→others.
+                if field in list_fields:
+                    cur = out[field]
+                    cur_list = cur if isinstance(cur, list) else [cur]
+                    if value not in cur_list:
+                        cur_list.append(value)
+                    out[field] = cur_list
+                else:
+                    # keep the first as typed, preserve the variant in others
+                    # so nothing is lost (merger reconciles list-form later).
+                    _emit(None, label, value)
         else:
             bucket = out.setdefault("others", [])
             tok = f"{label}# {value}"

@@ -451,6 +451,38 @@ def _parse_variant_bullets_shape_b(text: str) -> list[dict]:
     return variants
 
 
+# Shape C: inscription-only variants. ONE Galster number whose page lists
+# multiple die/inscription variants as letter-labelled bullets, each tagged
+# with its OWN «(Schou N)» — and NO spec block (so neither Shape-A row-table
+# nor Shape-B inline-spec matches). The Forside-block ref parser also misses
+# these: the variant bullets sit BELOW the «\n\n» that terminates the Forside
+# capture. Example (fr_f1g68.htm, Frederik I Ribe Nobel, Galster 68):
+#   «• A) indskrift: FREDERICVS · D · G · REX · … (Schou 3)»
+#   «• B) indskrift: + D + G + REX + DACI + R + (Schou 4)»
+# These are inscription dies of the SAME physical type (shared Galster 68,
+# shared weight/fineness), NOT separate coins — so we DON'T split into
+# per-variant seed entries (that's Shape A/B's job, where each variant has
+# distinct specs). We only HARVEST the distinct Schou indices and union them
+# into catalog_refs.schou, so the type carries «Schou 3, 4» rather than
+# nothing (or a wrong index back-filled from a museum specimen field).
+_INSCRIPTION_VARIANT_SCHOU_RE = re.compile(
+    r"•?\s*[A-Z]\)\s*(?:indskrift|omskrift)\b[^\n]*?"
+    r"\(\s*Schou\s+(?P<schou>\d+[A-Za-z]?)\s*\)",
+    re.IGNORECASE,
+)
+
+
+def _parse_inscription_variant_schou(text: str) -> list[str]:
+    """Collect distinct Schou indices from inscription-variant bullets
+    (Shape C). Order-preserving + deduplicated. Returns [] when none."""
+    out: list[str] = []
+    for m in _INSCRIPTION_VARIANT_SCHOU_RE.finditer(text):
+        v = m.group("schou").strip()
+        if v and v not in out:
+            out.append(v)
+    return out
+
+
 def _parse_variants(text: str, base_galster: str | None) -> list[dict]:
     """Try both shapes; return whichever matches (or empty list)."""
     a = _parse_variant_table_shape_a(text, base_galster)
@@ -516,6 +548,17 @@ def parse_page(html_path: Path, text: str) -> dict:
     header = _parse_header_h1(text)
     mint = header.get("mint_from_h1") or _parse_mint_line(text)
     desc, refs = _parse_description_and_refs(text)
+    # Shape C: union Schou indices from inscription-variant bullets (each
+    # die variant tagged with its own «(Schou N)») into catalog_refs.schou.
+    # These sit below the Forside block the ref parser captures, so they'd
+    # otherwise be lost. Distinct values become a list (schema str|list[str]).
+    variant_schou = _parse_inscription_variant_schou(text)
+    if variant_schou:
+        existing = refs.get("schou")
+        existing_list = [existing] if isinstance(existing, str) else list(existing or [])
+        merged = existing_list + [s for s in variant_schou if s not in existing_list]
+        if merged:
+            refs["schou"] = merged[0] if len(merged) == 1 else merged
     specs = _parse_specs(text)
     litt = _parse_litteratur(text)
     inscription = _parse_inscription(text)
