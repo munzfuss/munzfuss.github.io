@@ -27,6 +27,7 @@ which isn't the case for our scope).
 from __future__ import annotations
 
 import re
+from functools import lru_cache
 
 # ---------------------------------------------------------------------------
 # Pre-substitution normalisation (format noise, not denomination synonyms).
@@ -159,6 +160,7 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
 ]
 
 
+@lru_cache(maxsize=None)
 def normalise_nominal(nominal: str | None) -> str:
     """Lowercase the nominal, normalise dashes/whitespace, then apply
     the canonical synonym substitutions. Returns empty string on
