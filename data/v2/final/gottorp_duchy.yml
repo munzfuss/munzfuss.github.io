@@ -2455,23 +2455,33 @@ coins:
   ruler: Johann Adolf von Gottorp
   issuing_entity: gottorp_duchy
   id: km-25-ja-1611
-  year_first: 1609
+  year_first: 1607
   year_last: 1612
   year_ranges:
+  - - 1607
+    - 1607
   - - 1609
+    - 1609
+  - - 1611
     - 1612
-  year_label: 1609-1612
+  year_label: 1607, 1609, 1611-1612
+  mint: Gottorp
   catalog:
     km: '25'
     numista: '301092'
+    bruun_collection_id: '14121'
+    sieg: '8.1'
+    lange: 276-77
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 13.96
+    source: bruun
   - value: 14.43
     source: numista
   diameter_mm:
@@ -2487,6 +2497,9 @@ coins:
   - type: literature
     url: https://en.numista.com/301092
     ref: Numista N#301092 — ½ Thaler - John Adolphus
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14205, p. 291
   note:
     de: ½ Thaler · Johann Adolf von Gottorp, 1611
     en: ½ Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1611
@@ -2498,7 +2511,8 @@ coins:
       anchor 0.8889); Δ -1.27% against the soll value sits within the ±2 % specimen-tolerance envelope.
     uk: Проба не засвідчена джерелом. За проєктною конвенцією (CLAUDE.md §4) встановлена на канонічне значення стандарту (9_thaler,
       якірна проба 0.8889); Δ -1.27% проти Soll лежить у смузі ±2 % допустимої специмен-толерантності.
-  composed_of: []
+  composed_of:
+  - unified-dk-bruun-14121
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler
   phase: I
@@ -7061,69 +7075,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-14118
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: ½ Thaler
-  ruler: Adolf
-  mintmaster: Jonas Georgen
-  issuing_entity: gottorp_duchy
-  id: unified-dk-bruun-14121
-  year_first: 1607
-  year_last: 1612
-  year_ranges:
-  - - 1607
-    - 1607
-  - - 1609
-    - 1609
-  - - 1611
-    - 1612
-  year_label: 1607, 1609, 1611-1612
-  mint: Gottorp
-  catalog:
-    km: '25'
-    bruun_collection_id: '14121'
-    sieg: '8.1'
-    lange: 276-77
-    numista: '301092'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 13.96
-    source: bruun
-  - value: 14.43
-    source: numista
-  diameter_mm:
-  - value: 34.7
-    source: numista
-  sources:
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14205, p. 291
-  - type: literature
-    url: https://numismaster.com/MC_167362
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/301092
-    ref: Numista N#301092 — ½ Thaler - John Adolphus
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-14121
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant

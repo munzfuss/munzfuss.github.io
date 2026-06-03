@@ -1556,7 +1556,9 @@ coins:
     km:
     - '635.1'
     - '635'
-    bruun_collection_id: '7796'
+    bruun_collection_id:
+    - '7796'
+    - '7839'
     bruun_part: II
     bruun_lot_no: 13238
     bruun_page: 167
@@ -1564,6 +1566,10 @@ coins:
     - FP-24
     hede_volume: c7h
     numista: '148504'
+    sieg: '12.1'
+    schou: '9'
+    hede: 28A
+    fp: '24'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -1577,6 +1583,8 @@ coins:
   weight_rough_g:
   - value: 9.1
     source: numista
+  - value: 9.2
+    source: bruun
   diameter_mm:
   - value: 28.76
     source: numista
@@ -1606,7 +1614,8 @@ coins:
     uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of: []
+  composed_of:
+  - unified-dk-bruun-7839
   v1_home_location: schleswig_holstein
   _migration_note: auto-mapped from gesamtstaat
 - fuss: courantdukatenfuss
@@ -2049,14 +2058,18 @@ coins:
   ruler: Frederik VI.
   issuing_entity: royal_holstein
   id: km-690-2-fr-vi-1820
-  year_first: 1820
+  year_first: 1818
   year_last: 1820
-  year_label: '1820'
+  year_ranges:
+  - - 1818
+    - 1820
+  year_label: 1818-1820
   mint: Altona
   catalog:
     km:
     - '690.2'
     - '690'
+    - '690.1'
     bruun_collection_id: '8053'
     bruun_part: IV
     bruun_lot_no: 17161
@@ -2065,6 +2078,7 @@ coins:
     sieg: '25.2'
     schou: '3'
     hede: 29B
+    numista: '24424'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -2077,16 +2091,22 @@ coins:
     source: ucoin
   - value: 0.687
     source: numismaster
+  - value: 0.687
+    source: numista
   weight_rough_g:
   - value: 6.07
     source: bruun
   - value: 6.129
     source: numismaster
+  - value: 6.129
+    source: numista
   - value: 6.13
     source: ucoin
   diameter_mm:
   - value: 25.5
     source: ucoin
+  - value: 26.12
+    source: numista
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
@@ -2097,6 +2117,12 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-32-rigsbankskilling-1820/?tid=70756
     ref: ucoin
+  - type: literature
+    url: https://numismaster.com/MC_66036
+    ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/24424
+    ref: Numista N#24424 — 32 Rigsbankskilling - Frederik VI
   note:
     de: 32 Rigsbankskilling 1820 (KM-690.2) · Scheide-Untervariante zur KM-690.1 1818
     en: 32 Rigsbankskilling 1820 (KM-690.2) · petty sub-variant of KM-690.1 1818
@@ -2110,6 +2136,7 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-dk-bruun-8053
+  - unified-dk-numista-24424
   v1_home_location: schleswig_holstein
   _migration_note: auto-mapped from gesamtstaat
 - fuss: 9_25_thaler
@@ -12915,73 +12942,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-7792
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 24 Skilling
-  ruler: Christian VII
-  issuing_entity: royal_holstein
-  id: unified-dk-bruun-7839
-  year_first: 1778
-  year_last: 1783
-  year_ranges:
-  - - 1778
-    - 1783
-  year_label: 1778-1783
-  mint:
-  - Altona
-  - Royal Danish
-  catalog:
-    km:
-    - '635.1'
-    - '635'
-    bruun_collection_id: '7839'
-    sieg: '12.1'
-    schou: '9'
-    hede: 28A
-    bruun_part: III
-    bruun_lot_no: 11293
-    bruun_page: 147
-    fp: '24'
-    numista: '148504'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.562
-    source: numista
-  weight_rough_g:
-  - value: 9.1
-    source: numista
-  - value: 9.2
-    source: bruun
-  diameter_mm:
-  - value: 28.76
-    source: numista
-  sources:
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 11293, p. 147
-  - type: literature
-    url: https://en.numista.com/148504
-    ref: Numista N#148504 — 24 Skilling Dansk - Christian VII
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-7839
 - fuss: reichsdukatenfuss
   phase: III
   kind: kurant
@@ -34364,64 +34324,6 @@ coins:
   verification_note: *id006
   composed_of:
   - unified-kmk-86266
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 32 Rigsbankskilling
-  ruler: Frederick VI
-  issuing_entity: royal_holstein
-  id: unified-dk-numista-24424
-  year_first: 1818
-  year_last: 1820
-  year_ranges:
-  - - 1818
-    - 1820
-  year_label: 1818-1820
-  mint: Altona
-  catalog:
-    km:
-    - '690'
-    - '690.1'
-    numista: '24424'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.687
-    source: numismaster
-  - value: 0.687
-    source: numista
-  weight_rough_g:
-  - value: 6.129
-    source: numismaster
-  - value: 6.129
-    source: numista
-  diameter_mm:
-  - value: 26.12
-    source: numista
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_66036
-    ref: NumisMaster
-  - type: literature
-    url: https://en.numista.com/24424
-    ref: Numista N#24424 — 32 Rigsbankskilling - Frederik VI
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-24424
 - fuss: seed_unsorted
   phase: kmk
   kind: kurant

@@ -37,7 +37,16 @@ coins:
     - schou# 9
     hede_volume: nc7h
     hede: '12'
-    schou: '1'
+    schou:
+    - '1'
+    - '10'
+    bruun_collection_id: '10833'
+    sieg: '11.2'
+    nmd: '36'
+    bruun_part: III
+    bruun_lot_no: 12130
+    bruun_page: 225
+    fp: '23.2'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -50,14 +59,22 @@ coins:
     source: hede
   - value: 0.562
     source: numista
+  - value: 0.563
+    source: ucoin
   weight_rough_g:
+  - value: 9.16
+    source: bruun
   - value: 9.17
     source: numista
+  - value: 9.17
+    source: ucoin
   - value: 9.171
     source: hede
   diameter_mm:
   - value: 29.0
     source: numista
+  - value: 29.5
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h12.htm
@@ -74,6 +91,9 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/333582
     ref: KMM 333582 (Inv. RP 932.1)
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 12130, p. 225
   note:
     de: 'Norwegische Reichsprägung des dänisch-norwegischen Verbundes, Müntzstätte <b>Kongsberg</b> (Mzz. ⚒ — gekreuzte Bergmannshämmer),
       Münzmeister Johann Heinrich Madelung (<b>IHM</b>, 1772–1775) und Hans Jacob Arnold Branth (<b>HIAB</b>, 1783, 1788).
@@ -115,6 +135,7 @@ coins:
     basis: fin
     unit_raw: rd
   composed_of:
+  - unified-dk-bruun-10833
   - unified-dk-hede-nc7h12
   - unified-dk-numista-55898
   v1_home_location: denmark
@@ -19212,72 +19233,6 @@ coins:
 - fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: 24 Skilling
-  ruler: Christian VII
-  issuing_entity: danish_norway
-  id: unified-dk-bruun-10833
-  year_first: 1772
-  year_last: 1788
-  year_ranges:
-  - - 1772
-    - 1775
-  - - 1783
-    - 1783
-  - - 1788
-    - 1788
-  year_label: 1772-1775, 1783, 1788
-  mint: Kongsberg
-  catalog:
-    km: '250'
-    bruun_collection_id: '10833'
-    sieg: '11.2'
-    schou: '10'
-    nmd: '36'
-    bruun_part: III
-    bruun_lot_no: 12130
-    bruun_page: 225
-    fp: '23.2'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.563
-    source: ucoin
-  weight_rough_g:
-  - value: 9.16
-    source: bruun
-  - value: 9.17
-    source: ucoin
-  diameter_mm:
-  - value: 29.5
-    source: ucoin
-  sources:
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 12130, p. 225
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-24-skilling-1772-1788/?tid=88738
-    ref: ucoin
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  composed_of:
-  - unified-dk-bruun-10833
-- fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
   nominal: 1 Speciedaler
   ruler: Christian VII
   mintmaster: Hans Jacob Arnold Branth
@@ -31972,6 +31927,9 @@ coins:
   ruler: Christian 4
   issuing_entity: danish_norway
   id: unified-kmk-139759
+  year_first: 1644
+  year_last: 1644
+  year_label: '1644'
   mint: Christiania
   catalog:
     hede: '17'
@@ -45783,9 +45741,12 @@ coins:
   ruler: Frederik 3
   issuing_entity: danish_norway
   id: unified-kmk-155299
-  year_first: 1650
+  year_first: 1649
   year_last: 1650
-  year_label: '1650'
+  year_ranges:
+  - - 1649
+    - 1650
+  year_label: 1649-1650
   mint: Christiania
   catalog:
     hede:
