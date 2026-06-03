@@ -281,6 +281,21 @@ def _normalise_ruler(ruler):
         s = "hans"
     s = re.sub(r"\beric\b", "erik", s)
     s = re.sub(r"\bmargaret\b", "margrethe", s)
+    # Leading ducal/comital TITLE strip — «Hertug …» / «Herzog …» / «Duke …»
+    # are not part of the ruler identity (the name discriminates). Folds
+    # «Hertug Johan Adolf» → «johan adolf». Deliberately NOT «Ærkebisp»
+    # (archbishop) — left for the separate Bremen-Verden Friedrich audit.
+    s = re.sub(r"^(?:hertug(?:en)?|herzog|duke)\s+", "", s)
+    #   «Johan Adolf» / «Johan Adolph» / «Johan Adolg»(typo) / «Johann Adolf»
+    #   / Adolph — Danish «Johan»(1n) vs German «Johann»(2n) + adolf/adolph
+    #   spelling of the SAME Holstein-Gottorp duke (r. 1590-1616). Reign-
+    #   window + entity survey (2026-06-03) confirms every NO-NUMERAL form
+    #   is this one duke (gottorp/royal_holstein/danish_realm, 1579-1615).
+    #   The numeral-lookahead guard keeps «Johann Adolph I» (Holstein-
+    #   Norburg-Plön, 1690) DISTINCT; the per-entity matcher prevents the
+    #   pre-existing gottorp↔norburg_plön «johann adolf» label overlap from
+    #   cross-merging. «John Adolphus» (English) is handled by the next sub.
+    s = re.sub(r"\bjohann?\s+adol(?:f|ph|g)\b(?!\s+[ivx]\b)", "johann adolf", s)
     #   «John Adolphus» (Numista English) ↔ «Johann Adolf» (German) —
     #   Johann Adolf von Holstein-Gottorp, Duke 1590-1616. Verified safe by
     #   reign-window + entity survey (2026-06-03): the bare «John Adolphus»
