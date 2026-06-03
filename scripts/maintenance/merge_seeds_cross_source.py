@@ -3048,11 +3048,17 @@ def process_entity(entity_id: str) -> dict:
         # the serial i<j iteration order (ids is sorted) → PASS 2 / 2b / union
         # receive byte-identical input.
         n_workers = max(1, (os.cpu_count() or 2) - 1)
-        with mp.Pool(
-            n_workers,
-            initializer=_pass1_set_globals,
-            initargs=(ids, seeds_by_id, entity_id, reign_index, _explicit),
-        ) as pool:
+        # FORK context (not the macOS-default spawn): the parent already set
+        # the PASS-1 globals via _pass1_set_globals(...) above, and forked
+        # workers inherit them through copy-on-write memory — so we pass NO
+        # initializer/initargs. Spawn instead pickles `seeds_by_id` (13398
+        # entries for danish_realm) to EVERY worker as initargs, which
+        # deadlocked / was pathologically slow (workers idle at 0% CPU while
+        # the pool stalled in setup — observed 2026-06-03). Fork inherits the
+        # dict for free → no large-object pickling, no hang. macOS allows fork
+        # for this pure-compute script (verified: fork-Pool smoke test passes).
+        ctx = mp.get_context("fork")
+        with ctx.Pool(n_workers) as pool:
             for conf, low in pool.imap_unordered(
                     _pass1_eval_i, range(len(ids)), chunksize=8):
                 confident_pairs.extend(conf)
