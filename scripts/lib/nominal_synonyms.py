@@ -43,6 +43,15 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     # variants of the Rhenish Gulden (18½-karat gold). Normalise the
     # spelling variant to the canonical Hede form.
     (r"\brhinsk\s+gulden\b", "rhinsk gylden"),
+    # «Rigsdaler Courant» / «Courant Rigsdaler» ≡ «Kurantdaler» — the same
+    # 1-courant-rigsdaler coin (Numista/NumisMaster vs Danish / project
+    # form). Compound, so precede the single-word `taler` rule below.
+    (r"\brigsdaler\s+courant\b", "kurantdaler"),
+    (r"\bcourant\s+rigsdaler\b", "kurantdaler"),
+    # Genitive-s before «D'or»: NumisMaster «Frederiks D'or» vs project
+    # «Frederik D'or» (same coin). Drop ONLY the genitive s, keep the king,
+    # so «Frederik» vs «Christian» D'or stay DISTINCT (different coins).
+    (r"\b(frederik|christian)s\s+d'or\b", r"\1 d'or"),
     # Single-word denomination synonyms — handle English «-s» plural
     # («2 Nobles», «3 Ducats», «Thalers», «Schillings»). Danish forms
     # don't take English-style «s» pluralisation, so a trailing «s»
@@ -51,6 +60,16 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     (r"\bducats?\b", "dukat"),
     (r"\bducaten\b", "dukat"),
     (r"\bthalers?\b", "daler"),
+    # «Reichsthaler» (one word) ≡ the standard «Daler»/Thaler in our scope —
+    # the existing `\bthalers?\b` rule can't reach it (no word boundary
+    # before the mid-word «thaler»). «Taler» is just the modern spelling of
+    # period «Thaler» (CLAUDE.md §2); fold both to «daler». Qualifiers
+    # (Specie-/Kurant-/Rigs-daler) are already distinct one-word forms.
+    (r"\breichsthalers?\b", "daler"),
+    (r"\btalers?\b", "daler"),
+    # «Marck» = the period-German spelling of «Mark» (CLAUDE.md §2). Fold
+    # for matching so «4 Marck» ≡ «4 Mark», «Marck Banco» ≡ «Mark Banco».
+    (r"\bmarcks?\b", "mark"),
     (r"\bschillings?\b", "skilling"),
     # «Guilder» (English) ≡ «Gulden» (German) ≡ «Gylden» (Danish).
     # NumisMaster uses «Guilder» for Rhenish/Danish gold guldens; Hede
