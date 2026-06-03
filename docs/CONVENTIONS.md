@@ -10,6 +10,36 @@ Concrete rules for writing and editing data files.
 - Numbers without units: floats for measurements (`3.44191`), ints for years (`1689`)
 - Dates: prefer free-form labels (`"ca. 1625"`, `"15. Juli 1726"`) in `*_label` fields; use integer years in `year_*` fields for sorting
 
+## Programmatic edits — ALWAYS via `lib/yaml_io.py`, never ad-hoc round-trip
+
+The project's data YAMLs are written by **two serializers with four distinct
+format families** (three axes: serializer / line-width / ruamel sequence-offset).
+Loading a file and re-dumping it through the WRONG config silently reformats the
+**entire** file — a multi-thousand-line spurious diff from a one-field edit. This
+has burned several sessions. The rule:
+
+- **Never** instantiate a bare `ruamel.yaml.YAML()` / `yaml.dump(...)` with
+  hand-typed `indent`/`width` to edit a data file. Route everything through
+  `scripts/lib/yaml_io.py`, which **auto-detects the family from the path**.
+- **Single-field edits → `yaml_io.edit_coin_field(path, coin_id, field, value)`.**
+  It is line-based (no serialization round-trip), so it touches only the target
+  field's line(s) — immune to the reformat trap regardless of family. `value` may
+  be a scalar, a list (block-rendered; 1-element collapses to scalar), or `None`
+  (remove the field). Pass `expect_contains=...` to assert you're editing the
+  value you think you are.
+- **Structural edits (add/remove/reorder coins) → `yaml_io.load()` / `save()`.**
+  Family-aware: load returns `(ctx, doc)`, `save(ctx, path, doc)` writes with the
+  file's own serializer + settings.
+
+The families (path prefix → serializer / width / seq-offset): `data/v2/final/` +
+`data/v2/seed_unified/` → PyYAML / 120 / n-a; `data/v2/seed/` → ruamel / 200 /
+seq4-off2; `data/locations/` → ruamel / 4096 / **seq2-off0** (dash-flush block
+lists); `data/shared/` + `data/i18n/` → ruamel / 4096 / seq4-off2. The
+`data/locations` (offset 0) and `data/shared` (offset 2) families LOOK alike but
+reformat each other. `scripts/maintenance/test_yaml_io_roundtrip.py` pins each
+family's round-trip residual baseline — run it after touching `yaml_io.py`; a
+config regression shows up as hundreds/thousands of changed lines.
+
 ## File naming
 
 - Locations: `data/locations/<short-name>.yml` — lowercase. Compound region names use **underscores** (`schleswig_holstein.yml`), not hyphens — keeps file ids and URL paths uniform with Python identifiers used in maintenance scripts (`SCHLESWIG_HOLSTEIN`).
