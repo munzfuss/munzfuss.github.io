@@ -28,6 +28,75 @@ from __future__ import annotations
 
 import re
 
+# ---------------------------------------------------------------------------
+# Pre-substitution normalisation (format noise, not denomination synonyms).
+# Applied in `normalise_nominal` BEFORE the NOMINAL_SYNONYMS table. These were
+# mined from same-coin nominal divergences (entries sharing a globally-unique
+# bruun_collection_id) — they are pure spelling/format variants of the SAME
+# denomination, safe for the matcher. Genuine denomination DIFFERENCES (Ungersk
+# vs Rhinsk Gylden, Krone≡4 Mark accounting equivalence, Klippe sub-variants)
+# are deliberately NOT folded here — they stay distinct.
+# ---------------------------------------------------------------------------
+
+# Unicode vulgar fractions + the U+2044 fraction slash → ASCII «n/m» so
+# «½ Daler» ≡ «1/2 Daler» and «1⁄16 Daler» ≡ «1/16 Daler».
+_UNICODE_FRACTIONS = {
+    "½": "1/2", "⅓": "1/3", "⅔": "2/3", "¼": "1/4", "¾": "3/4",
+    "⅕": "1/5", "⅖": "2/5", "⅗": "3/5", "⅘": "4/5", "⅙": "1/6",
+    "⅚": "5/6", "⅛": "1/8", "⅜": "3/8", "⅝": "5/8", "⅞": "7/8",
+    "⁄": "/",
+}
+
+# Danish diacritics → ASCII (matching only — «Portugaløser» ≡ «Portugaloser»).
+_DIACRITIC_FOLD = {"ø": "o", "æ": "ae", "å": "a"}
+
+# Bruun-catalogue region/issuer prefixes («Lübeck. Daler», «Oldenburg. Taler»).
+# Stripped leading-segment-wise; the region is not a coin-identity discriminator
+# (and the per-entity matcher never compares across regions anyway). Includes a
+# known OCR typo variant («s chleswig…»).
+_REGION_PREFIXES = frozenset({
+    "lübeck", "lubeck", "oldenburg", "bremen", "bremen & verden", "lower saxony",
+    "osnabrück", "osnabruck", "hesse-kassel", "lauenburg", "wismar", "rantzau",
+    "copenhagen", "danish east india company",
+    "schleswig-holstein-schaumburg-pinneberg", "s chleswig-holstein-schaumburg-pinneberg",
+    "lübeck (bishopric)", "lubeck (bishopric)",
+})
+
+
+def _strip_region_prefixes(s: str) -> str:
+    """Drop leading «Region. » segments (one or more) from a «. »-delimited
+    nominal, keeping from the first non-region segment onward."""
+    if ". " not in s:
+        return s
+    parts = s.split(". ")
+    i = 0
+    while i < len(parts) - 1 and parts[i].strip() in _REGION_PREFIXES:
+        i += 1
+    return ". ".join(parts[i:])
+
+
+def _normalise_dor(s: str) -> str:
+    """Unify «d'or» spellings: curly/straight apostrophe, stray space, and a
+    missing space before «d'or» («Frederikd'or» → «frederik d'or»)."""
+    s = s.replace("’", "'").replace("`", "'")
+    s = re.sub(r"d'\s+or\b", "d'or", s)          # «d' or» → «d'or»
+    s = re.sub(r"([a-zäöü])d'or\b", r"\1 d'or", s)  # «frederikd'or» → «frederik d'or»
+    return s
+
+
+def _preprocess(s: str) -> str:
+    """Format-noise normalisation applied before the synonym table."""
+    for u, a in _UNICODE_FRACTIONS.items():
+        s = s.replace(u, a)
+    s = _normalise_dor(s)
+    s = re.sub(r"\s*\([^)]*\)", "", s)   # drop parenthetical glosses «X (Y)» → «X»
+    s = re.sub(r"\s+", " ", s).strip()
+    s = _strip_region_prefixes(s)
+    for d, a in _DIACRITIC_FOLD.items():
+        s = s.replace(d, a)
+    return s
+
+
 # (regex pattern, replacement) — applied in order. Compound patterns
 # FIRST so single-word substitutions don't corrupt them.
 NOMINAL_SYNONYMS: list[tuple[str, str]] = [
@@ -77,6 +146,16 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     # to «gylden» as canonical (matches Hede / project YAML).
     (r"\bguilders?\b", "gylden"),
     (r"\bguldens?\b", "gylden"),
+    # --- format/spelling equivalences mined from same-bruun-id divergences ---
+    # (run AFTER the thaler→daler / schilling→skilling rules above so the
+    #  post-substitution forms are what these match).
+    (r"\bkroner\b", "krone"),                              # Danish plural «2 Kroner»≡«2 Krone»
+    (r"\breichsbank[ -]?skilling\b", "rigsbankskilling"),  # «Reichsbank Schilling»≡«Rigsbankskilling»
+    (r"\bspecies[ -]?(?:thaler|taler|daler)s?\b", "speciedaler"),
+    (r"\bdaler species\b", "speciedaler"),                 # «1 Thaler Species»→«speciedaler»
+    (r"\bdouble daler\b", "2 daler"),                      # «Double Taler»→«2 daler»
+    (r"\bguldkrone\b", "gold krone"),                      # Guldkrone≡Gold Krone
+    (r"\bgold (\d+|\d+/\d+) krone\b", r"\1 gold krone"),   # «gold 2 krone»→«2 gold krone»
 ]
 
 
@@ -104,6 +183,7 @@ def normalise_nominal(nominal: str | None) -> str:
     s = s.replace("müntze", "münze")
     s = re.sub(r"[‒–—]+", "-", s)
     s = re.sub(r"\s+", " ", s)
+    s = _preprocess(s)   # fractions, d'or, parenthetical glosses, region prefix, diacritics
     for pattern, replacement in NOMINAL_SYNONYMS:
         s = re.sub(pattern, replacement, s)
     # Strip leading «1 » (implicit-one quantifier). Applied AFTER synonyms

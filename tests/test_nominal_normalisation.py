@@ -144,6 +144,74 @@ class TestExistingSynonymsStillWork(unittest.TestCase):
         self.assertEqual(normalise_nominal("Schilling"), "skilling")
 
 
+class TestMinedFormatEquivalences(unittest.TestCase):
+    """Format/spelling variants of the SAME denomination, mined from entries
+    sharing a globally-unique bruun_collection_id. Each pair must collapse."""
+
+    def test_region_prefix_stripped(self):
+        # Bruun «Region. Nominal» prefix is not a coin-identity discriminator.
+        self.assertEqual(normalise_nominal("Lübeck. Taler"), normalise_nominal("1 Taler"))
+        self.assertEqual(normalise_nominal("Oldenburg. Taler"), normalise_nominal("1 Taler"))
+        self.assertEqual(normalise_nominal("Bremen & Verden. 4 Mark"), normalise_nominal("4 Mark"))
+        self.assertEqual(normalise_nominal("Danish East India Company. 2 Speciedaler"),
+                         normalise_nominal("2 Speciedaler"))
+
+    def test_unicode_fraction_equals_ascii(self):
+        self.assertEqual(normalise_nominal("½ Daler"), normalise_nominal("1/2 Thaler"))
+        self.assertEqual(normalise_nominal("1⁄16 Thaler"), normalise_nominal("1/16 Thaler"))
+
+    def test_dor_apostrophe_variants(self):
+        self.assertEqual(normalise_nominal("2 Frederik D'or"), normalise_nominal("2 Frederik d’Or"))
+        self.assertEqual(normalise_nominal("1 Christian D'or"), normalise_nominal("1 Christian d’Or"))
+        self.assertEqual(normalise_nominal("1 Frederikd'or"), normalise_nominal("1 Frederik d’Or"))
+
+    def test_parenthetical_gloss_dropped(self):
+        self.assertEqual(normalise_nominal("Speciedaler (Reichstaler)"), normalise_nominal("1 Speciedaler"))
+        self.assertEqual(normalise_nominal("¼ Ducat (3 Mark)"), normalise_nominal("¼ Ducat"))
+
+    def test_kroner_plural(self):
+        self.assertEqual(normalise_nominal("2 Kroner"), normalise_nominal("2 Krone"))
+
+    def test_guldkrone_equals_gold_krone(self):
+        self.assertEqual(normalise_nominal("1 Guldkrone"), normalise_nominal("1 Gold Krone"))
+        self.assertEqual(normalise_nominal("2 Guldkrone"), normalise_nominal("Gold 2 Krone"))
+
+    def test_thaler_species_and_speciesthaler(self):
+        self.assertEqual(normalise_nominal("1 Thaler Species"), normalise_nominal("1 Speciedaler"))
+        self.assertEqual(normalise_nominal("1⁄24 Speciesthaler"), normalise_nominal("1/24 Speciedaler"))
+
+    def test_reichsbank_skilling(self):
+        self.assertEqual(normalise_nominal("8 Reichsbank Schilling"), normalise_nominal("8 Rigsbankskilling"))
+
+    def test_diacritic_fold(self):
+        self.assertEqual(normalise_nominal("Portugaloser (10 Ducats)"), normalise_nominal("1 Portugaløser"))
+
+
+class TestContaminationStaysDistinct(unittest.TestCase):
+    """CRITICAL — the improved normalisation must NOT collapse genuinely
+    different coins (else it would cement a bruun-id mis-cite into the matcher).
+    These pairs share a bruun_collection_id ONLY because of an adjacent-id typo,
+    and must remain distinct."""
+
+    def test_skilling_not_speciedaler(self):
+        self.assertNotEqual(normalise_nominal("2 Skilling"), normalise_nominal("1 Speciedaler"))
+        self.assertNotEqual(normalise_nominal("2 Kroneskilling"), normalise_nominal("1 Speciedaler"))
+
+    def test_krone_not_half_ducat(self):
+        self.assertNotEqual(normalise_nominal("1 Krone"), normalise_nominal("½ Ducat"))
+
+    def test_two_ducat_not_krone(self):
+        self.assertNotEqual(normalise_nominal("2 Ducat"), normalise_nominal("1 Krone"))
+
+    def test_ungersk_not_rhinsk_gylden(self):
+        # Distinct gold-gulden types — Bruun's generic «Gold Gulden» label
+        # co-occurs with both, but Ungersk (Hungarian) ≠ Rhinsk (Rhenish).
+        self.assertNotEqual(normalise_nominal("1 Ungersk Gylden"), normalise_nominal("1 Rhinsk Gylden"))
+
+    def test_two_ducats_not_one_ducat(self):
+        self.assertNotEqual(normalise_nominal("2 Ducats"), normalise_nominal("1 Ducat"))
+
+
 class TestEdgeCases(unittest.TestCase):
     """Boundary conditions."""
 

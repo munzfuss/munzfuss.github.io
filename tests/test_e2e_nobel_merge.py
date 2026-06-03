@@ -198,21 +198,23 @@ class TestPostFixHansGoldguldenAlsoMerges(unittest.TestCase):
         )
 
     def test_hans_goldgulden_nominal_collapses(self):
-        """«1 Goldgulden (Rhinsk Gulden)» vs «1 Goldgulden» — normalises
-        to... wait, the Rhinsk Gulden parenthetical IS distinguishing.
-        Verify behaviour explicitly."""
+        """«1 Goldgulden (Rhinsk Gulden)» vs «1 Goldgulden» — both Fr-4, the
+        SAME coin; the «(Rhinsk Gulden)» is a clarifying gloss, not a
+        distinguishing denomination. Since 2026-06 normalise_nominal strips
+        parenthetical glosses, so the two now collapse to one form (and the
+        merge no longer depends on the catalog signal to rescue an advisory
+        nominal mismatch). Note: the DISTINGUISHING bare forms «Ungersk Gylden»
+        vs «Rhinsk Gylden» (no parens) stay distinct — see
+        test_nominal_normalisation.TestContaminationStaysDistinct."""
         from lib.nominal_synonyms import normalise_nominal
         a = normalise_nominal("1 Goldgulden (Rhinsk Gulden)")
         b = normalise_nominal("1 Goldgulden")
-        # Different normalised forms — but the catalog signal still
-        # carries the merge via Fr-4 shared key.
-        self.assertNotEqual(a, b)
-        # The merge still works because primary["catalog"]=True is
-        # strong enough to demote primary["nominal"] mismatch to advisory.
+        self.assertEqual(a, b)
+        # And the end-to-end merge stays confident (catalog Fr-4 + now nominal).
         r = match_pair(BRUUN_HANS_GOLDGULDEN_POSTFIX, NUMISTA_HANS_GOLDGULDEN,
                        entity_id="danish_realm")
         self.assertEqual(r["decision"], "confident",
-                         f"Catalog override should rescue: got {r['decision']}")
+                         f"Hans Goldgulden merge should stay confident: got {r['decision']}")
 
 
 class TestRegressionGuards(unittest.TestCase):
