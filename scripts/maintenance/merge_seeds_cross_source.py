@@ -62,6 +62,7 @@ import re
 import sys
 from collections import Counter, defaultdict
 from datetime import date
+from functools import lru_cache
 from pathlib import Path
 
 import yaml
@@ -252,8 +253,16 @@ def _regnal_arabic_to_roman(s: str) -> str:
     return f"{name} {roman}" if roman else s
 
 
+@lru_cache(maxsize=None)
 def _normalise_ruler(ruler):
     """Canonicalise a ruler string for cross-source comparison.
+
+    @lru_cache: pure str→str (ruler is a scalar string or None). Profiling
+    the royal_holstein merge showed this called 1.55 M times costing 21 s
+    uncached — the same shape as `_normalise_nominal`, which costs 0.28 s
+    BECAUSE it is cached. match_pair re-normalises the same handful of ruler
+    strings across every O(n²) pair; memoising collapses that to one compute
+    per distinct ruler. (2026-06-04 perf pass.)
 
     Variants normalised to the same form (so reign-index queries +
     cross-source matcher hits don't fragment over spelling artefacts):
