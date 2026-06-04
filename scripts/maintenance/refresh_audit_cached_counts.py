@@ -75,11 +75,22 @@ def _split(ids: list, cache_dir: Path) -> tuple[list, list]:
     return cached, gap
 
 
+def _oos_id_set(slot) -> set[str]:
+    """OOS-exclusion slots come in two shapes: a dict {id: reason} (BO.7 /
+    BR-audit) or a bare list [id, ...] (legacy BO.6). Return ids as a str set
+    for either shape (or empty for None)."""
+    if not slot:
+        return set()
+    if isinstance(slot, dict):
+        return {str(k) for k in slot.keys()}
+    return {str(x) for x in slot}
+
+
 def _refresh_ucoin_bucket(b: dict) -> dict | None:
     """ucoin flat bucket. Returns a change-record dict if anything changed."""
     if "gap_tids" not in b:
         return None
-    oos = set(str(k) for k in (b.get("oos_excluded_tids") or {}).keys())
+    oos = _oos_id_set(b.get("oos_excluded_tids"))
     # Harvestable universe = current gap ∪ already-cached, minus oos-excluded.
     universe: list = []
     seen = set()
@@ -108,14 +119,35 @@ def _refresh_ucoin_bucket(b: dict) -> dict | None:
 
 
 def _refresh_numista_bucket(b: dict) -> dict | None:
-    """numista bucket (flat or nested leaf)."""
+    """numista bucket (flat or nested leaf).
+
+    Honours an ``oos_excluded_nids`` slot (dict {nid: reason}) the same way the
+    ucoin path honours ``oos_excluded_tids`` — any NID parked there is pruned
+    from ``in_scope_nids`` / ``in_scope_year_meta`` and never counted toward
+    cached/gap. This makes the OOS exclusion durable: if a future re-enumeration
+    re-adds a banknote/medal/pattern to ``in_scope_nids``, the next refresh
+    drops it back out (the §2.1 bucket picker reads ``in_scope_nids``, so the
+    prune is what stops the routine re-offering it)."""
     if "in_scope_nids" not in b:
         return None
-    universe = list(b.get("in_scope_nids") or [])
-    cached, gap = _split(universe, NUMISTA_DIR)
+    oos = _oos_id_set(b.get("oos_excluded_nids"))
     before_cached = b.get("cached_count")
     before_gap = len(b.get("gap_nids") or [])
+    before_total = b.get("in_scope_total")
     changed = False
+    # Prune any oos-excluded ids that leaked back into the in-scope structures.
+    if oos:
+        pruned = [n for n in (b.get("in_scope_nids") or []) if str(n) not in oos]
+        if pruned != list(b.get("in_scope_nids") or []):
+            b["in_scope_nids"] = pruned
+            changed = True
+            if "in_scope_year_meta" in b:
+                b["in_scope_year_meta"] = [
+                    m for m in b["in_scope_year_meta"] if str(m.get("nid")) not in oos]
+            if "in_scope_total" in b:
+                b["in_scope_total"] = len(pruned)
+    universe = list(b.get("in_scope_nids") or [])
+    cached, gap = _split(universe, NUMISTA_DIR)
     if b.get("cached_count") != len(cached):
         b["cached_count"] = len(cached)
         changed = True
@@ -124,7 +156,10 @@ def _refresh_numista_bucket(b: dict) -> dict | None:
         changed = True
     if not changed:
         return None
-    return {"cached": len(cached), "gap": len(gap), "before_cached": before_cached, "before_gap": before_gap}
+    rec = {"cached": len(cached), "gap": len(gap), "before_cached": before_cached, "before_gap": before_gap}
+    if before_total is not None and before_total != b.get("in_scope_total"):
+        rec["in_scope_total"] = b.get("in_scope_total")
+    return rec
 
 
 def _walk_numista_buckets(container: dict):
