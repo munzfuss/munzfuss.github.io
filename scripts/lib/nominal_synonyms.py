@@ -155,6 +155,7 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     (r"\bspecies[ -]?(?:thaler|taler|daler)s?\b", "speciedaler"),
     (r"\bdaler species\b", "speciedaler"),                 # «1 Thaler Species»→«speciedaler»
     (r"\bdouble daler\b", "2 daler"),                      # «Double Taler»→«2 daler»
+    (r"\bguldnobel\b", "nobel"),                           # Guldnobel («gold noble») ≡ the Nobel (gold by definition)
     (r"\bguldkrone\b", "gold krone"),                      # Guldkrone≡Gold Krone
     (r"\bgold (\d+|\d+/\d+) krone\b", r"\1 gold krone"),   # «gold 2 krone»→«2 gold krone»
 ]

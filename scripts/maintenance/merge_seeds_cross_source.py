@@ -1684,7 +1684,17 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
                 if (k.startswith("km/")
                         or k.startswith("hede/")
                         or k.startswith("galster/")
+                        or k == "galster"
                         or k in AUTHORITATIVE_TYPE_DEFINING_REFS):
+                    # `galster` is a TYPE-level catalogue (Galster N = one
+                    # numismatic type, like KM/Hede) — but `_catalog_refs`
+                    # scopes it as the bare key «galster» (no «/vol» suffix),
+                    # so the `galster/` prefix check never matched it. That
+                    # left same-Galster specimens from different mints (e.g.
+                    # Galster 24 Hans Nobel struck at Malmø AND København)
+                    # blocked by the mint-fallback disagreement. Ruler must
+                    # still agree (§9a gate), which prevents cross-volume
+                    # Galster-number collisions.
                     has_authoritative = True
         return non_subvariant_agree >= 2 or has_authoritative
 
