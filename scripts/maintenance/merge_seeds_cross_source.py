@@ -2938,18 +2938,86 @@ _MP_SEEDS: dict = {}
 _MP_ENTITY = None
 _MP_REIGN = None
 _MP_EXPLICIT: frozenset = frozenset()
+# Blocking candidate adjacency {i: sorted [j>i, ...]}; None = no blocking
+# (full O(n²) — the baseline path, kept for the MERGE_BLOCKING=0 regression
+# gate). See _build_candidate_adjacency for the soundness proof.
+_MP_CANDIDATES: dict | None = None
+
+# Candidate-blocking toggle. Default ON. MERGE_BLOCKING=0 forces the full
+# O(n²) baseline (used to prove byte-identical output vs the blocked path).
+_MERGE_BLOCKING = os.environ.get("MERGE_BLOCKING", "1") != "0"
 
 
-def _pass1_set_globals(ids, seeds_by_id, entity_id, reign_index, explicit_no_merge):
+def _build_candidate_adjacency(ids, seeds_by_id, entity_id, reign_index):
+    """Blocking index → {i: sorted [j>i, ...]} of candidate pairs to compare.
+
+    SOUNDNESS (zero regression by construction). match_pair NEVER returns a
+    non-no_match verdict unless `primary_true >= 2` (confidence calc lines
+    ~1713/1723/1727) OR the §9a path (line ~1700, which requires
+    `primary["catalog"] is True`). The four primary signals are {metal,
+    nominal, catalog, ruler}. Since `metal` is a SINGLE signal, `>=2 primary
+    TRUE` is impossible without at least one TRUE among {nominal, catalog,
+    ruler}. A primary signal is TRUE only when the two coins AGREE on that
+    value. Therefore EVERY non-no_match pair shares at least one of:
+      • the normalised nominal,
+      • a catalog ref (entity-scoped, same scope+value — or same numeric
+        core, to cover sub-variant tolerance like «15a» ≈ «15»),
+      • the normalised-or-D33-inferred ruler.
+    Indexing on exactly those tokens and emitting every co-posting pair yields
+    a strict SUPERSET of all confident + low_confidence pairs. The skipped
+    pairs are all guaranteed no_match — which neither union nor surface (PASS 2
+    registers no_merge only within confident components; no_match pairs aren't
+    written to match_uncertainty). So the merged output is unchanged. A
+    MERGE_BLOCKING=0 byte-identical diff gate confirms this empirically on top
+    of the proof. (2026-06-04 perf pass — turns danish_realm's 89.7 M O(n²)
+    match_pair calls into the ~shared-token candidate set.)
+    """
+    n = len(ids)
+    postings: dict = defaultdict(list)
+    for idx in range(n):
+        coin = seeds_by_id[ids[idx]]
+        toks = set()
+        nom = _normalise_nominal(coin.get("nominal"))
+        if nom:
+            toks.add(("n", nom))
+        ra = _normalise_ruler(coin.get("ruler"))
+        if not ra and reign_index:
+            ra = _infer_ruler(coin, reign_index)
+        if ra:
+            toks.add(("r", ra))
+        for scope, val in _catalog_refs(coin, entity_id).items():
+            for v in str(val).split("|"):
+                v = v.strip()
+                if not v:
+                    continue
+                toks.add(("c", scope, v))
+                m = re.match(r"\d+", v)        # numeric core → sub-variant tolerance
+                if m and m.group(0) != v:
+                    toks.add(("c", scope, m.group(0)))
+        for t in toks:
+            postings[t].append(idx)            # appended in ascending idx order
+    adj: dict = defaultdict(set)
+    for plist in postings.values():
+        L = len(plist)
+        for a in range(L):
+            ia = plist[a]
+            for b in range(a + 1, L):
+                adj[ia].add(plist[b])          # plist ascending → only j>ia
+    return {i: sorted(js) for i, js in adj.items()}
+
+
+def _pass1_set_globals(ids, seeds_by_id, entity_id, reign_index, explicit_no_merge,
+                       candidates=None):
     """Populate the PASS-1 worker globals. Called directly in the parent for
     the serial path, and as the Pool initializer for the parallel path."""
-    global _MP_IDS, _MP_SEEDS, _MP_ENTITY, _MP_REIGN, _MP_EXPLICIT
+    global _MP_IDS, _MP_SEEDS, _MP_ENTITY, _MP_REIGN, _MP_EXPLICIT, _MP_CANDIDATES
     global _CATALOG_REFS_MEMO_ENABLED
     _MP_IDS = ids
     _MP_SEEDS = seeds_by_id
     _MP_ENTITY = entity_id
     _MP_REIGN = reign_index
     _MP_EXPLICIT = explicit_no_merge
+    _MP_CANDIDATES = candidates
     _CATALOG_REFS_MEMO.clear()
     _CATALOG_REFS_MEMO_ENABLED = True
 
@@ -2969,7 +3037,12 @@ def _pass1_eval_i(i: int):
     n = len(ids)
     conf: list[dict] = []
     low: list[dict] = []
-    for j in range(i + 1, n):
+    # Candidate blocking: when an adjacency is supplied, only the j>i that
+    # SHARE >=1 of {nominal, catalog-ref, ruler} with i are compared — a
+    # provable superset of all non-no_match pairs (match_pair needs >=2
+    # primary TRUE, so >=1 of those three must agree). None → full O(n²).
+    js = _MP_CANDIDATES.get(i, ()) if _MP_CANDIDATES is not None else range(i + 1, n)
+    for j in js:
         b_id = ids[j]
         if frozenset({a_id, b_id}) in explicit:
             continue
@@ -3087,7 +3160,12 @@ def process_entity(entity_id: str) -> dict:
     # the SAME pair being processed and so never pre-block a not-yet-visited
     # pair (each pair is visited exactly once, i<j).
     _explicit = frozenset(uf.explicit_no_merge)
-    _pass1_set_globals(ids, seeds_by_id, entity_id, reign_index, _explicit)
+    # Candidate blocking (sound superset of all non-no_match pairs) — collapses
+    # the O(n²) PASS-1 fan-out to shared-token pairs. MERGE_BLOCKING=0 disables
+    # it (full O(n²) baseline) for the regression gate.
+    _candidates = (_build_candidate_adjacency(ids, seeds_by_id, entity_id, reign_index)
+                   if _MERGE_BLOCKING else None)
+    _pass1_set_globals(ids, seeds_by_id, entity_id, reign_index, _explicit, _candidates)
     if len(ids) >= _PASS1_PARALLEL_THRESHOLD:
         # Parallel across worker processes. imap_unordered scrambles row
         # order, so we re-sort by (a_id, b_id) afterwards — which is exactly
