@@ -393,3 +393,64 @@ def extract_nominal_from_title(title: str | None) -> str | None:
         nominal,
     ).strip()
     return nominal or None
+
+
+# ---------------------------------------------------------------------------
+# Scope classification — coin vs out-of-scope (banknote / exonumia / pattern).
+#
+# Numista catalogues coins AND banknotes AND patterns AND medals/tokens under
+# one issuer. The `ct=coin` listing filter still leaks Patterns (a coin-category
+# subtype) and occasionally medal/banknote rows. Per CLAUDE.md §9.1 (patterns /
+# trial strikes) + §9.2 (exonumia) those are OOS for the project's coin tables.
+# This is the authoritative classifier used at enumeration / §7.5 defensive
+# sampling / audit-manifest reclassification time. Authoritative signal is the
+# Numista "Type" field; falls back to title (pattern/trial) + metal (paper).
+# MISSING type → in-scope (never exclude on absent info; a Type-less older
+# harvest of "1 Sechsling" is still a coin).
+# ---------------------------------------------------------------------------
+_OOS_BANKNOTE_RE = re.compile(r"banknote", re.I)
+_OOS_EXONUMIA_RE = re.compile(
+    r"\bmedal|token|jeton|exonumia|utility item|counter token|rechenpfennig", re.I)
+_OOS_PATTERN_TYPE_RE = re.compile(r"\bpattern", re.I)
+_OOS_PATTERN_TITLE_RE = re.compile(
+    r"\b(pattern|trial)\s+strike|\((?:[^)]*\b(?:pattern|trial)\b[^)]*)\)", re.I)
+
+
+def classify_numista_scope(type_str: str | None = None,
+                           title: str | None = None,
+                           metal: str | None = None,
+                           denomination: str | None = None) -> tuple[bool, str, str]:
+    """Classify a Numista record as in-scope (coin) or OOS.
+
+    Returns ``(in_scope, kind, reason)`` where ``kind`` ∈
+    {``coin``, ``banknote``, ``exonumia``, ``pattern``}. OOS kinds set
+    ``in_scope=False`` with a human-readable ``reason``. Proofs of circulation
+    types are NOT excluded (a proof is the same coin type, not a pattern).
+
+    Positive-evidence-only: the OOS verdict fires only on an explicit signal in
+    the Numista ``Type`` field, the ``denomination`` (e.g. "Medal", "Harz
+    Rechenpfennig"), the title (pattern/trial strike), or ``metal == paper``.
+    A record with none of these (e.g. a Type-less older harvest of "1 Sechsling")
+    stays in-scope — never exclude a real coin on absent info.
+    """
+    t = (type_str or "").strip()
+    tl = t.lower()
+    denom = denomination or ""
+    ttl = title or ""
+    m = (metal or "").strip().lower()
+    # Haystack for exonumia/banknote: Type + denomination + title (NOT bare
+    # metal — "bronze"/"silver" alone are legit coin metals).
+    hay = f"{tl} {denom.lower()} {ttl.lower()}"
+    if _OOS_BANKNOTE_RE.search(hay) or m == "paper":
+        ev = f"Numista Type={t!r}" if _OOS_BANKNOTE_RE.search(tl) else (
+            f"denomination={denom!r}" if _OOS_BANKNOTE_RE.search(denom.lower()) else f"metal={m!r}")
+        return (False, "banknote", ev)
+    if _OOS_EXONUMIA_RE.search(hay):
+        ev = (f"Numista Type={t!r}" if _OOS_EXONUMIA_RE.search(tl)
+              else f"denomination={denom!r}" if _OOS_EXONUMIA_RE.search(denom.lower())
+              else f"title={ttl!r}")
+        return (False, "exonumia", ev)
+    if _OOS_PATTERN_TYPE_RE.search(tl) or _OOS_PATTERN_TITLE_RE.search(ttl):
+        ev = f"Numista Type={t!r}" if _OOS_PATTERN_TYPE_RE.search(tl) else f"title={ttl!r}"
+        return (False, "pattern", f"pattern/trial strike — {ev}")
+    return (True, "coin", "")

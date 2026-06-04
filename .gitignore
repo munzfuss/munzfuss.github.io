@@ -22,8 +22,10 @@ venv/
 *.swp
 .DS_Store
 
-# Claude Code session metadata (local-only)
-.claude/
+# Claude Code session metadata (local-only) — except the committed
+# permission ruleset the autonomous harvest routine relies on.
+.claude/*
+!.claude/settings.json
 
 # Environment / Secrets / API keys (NEVER commit)
 .env

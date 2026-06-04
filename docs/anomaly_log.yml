@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-01T10:40:23Z'
+  last_updated_utc: '2026-06-04T14:14:02Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1275,3 +1275,628 @@ anomalies:
     changed.
   resolved_at: '2026-06-01T10:40:23Z'
   resolved_by: claude
+- id: chrome_mcp_unavailable:source=chrome_mcp
+  type: chrome_mcp_unavailable
+  key_dims:
+    source: chrome_mcp
+  summary: Chrome MCP extension unreachable mid-run; Numista + ucoin batches blocked (both depend on Chrome
+    scraping).
+  status: resolved
+  instance_first_seen: '2026-06-01T19:09:40Z'
+  last_seen: '2026-06-02T13:08:32.125814Z'
+  occurrence_count: 2
+  affected_ids: {}
+  occurrences:
+  - run_utc: '2026-06-01T19:09:40Z'
+    batch_label: IU/259 (deferred)
+    detail: 'Run 2026-06-01T19:09:40Z: list_connected_browsers returned 1 browser at preflight, then empty
+      on select_browser + 3 retries over ~30s. Numista batch IU (lubeck_free_hanseatic_city) and ucoin
+      batch 259 (bremen_p1195) deferred — 0 IDs saved. IKMK (urllib, no Chrome) ran: 0 in-scope uncached.'
+    full_context:
+      numista_batch: IU
+      ucoin_batch: '259'
+      ikmk: 0-fetch (fully harvested)
+  - run_utc: '2026-06-02T13:08:32.125814Z'
+    batch_label: JL
+    detail: 'Run JL/276: list_connected_browsers initially returned Browser 1, but tabs_context_mcp failed
+      with ''not connected''; after ~70s of retries list_connected_browsers returned empty. Numista batch
+      (BO.7 hessen_kassel_landgraviate, 5 NIDs) + ucoin batch 276 deferred to next run. IKMK batch (urllib,
+      no Chrome) proceeds.'
+    full_context:
+      numista_batch: JL
+      ucoin_batch: '276'
+      deferred_numista:
+      - 262620
+      - 262627
+      - 262628
+      - 314561
+      - 153250
+  proposed_fix: 'User: confirm Chrome is open with the Claude-in-Chrome extension signed in. Numista/ucoin
+    batches auto-retry next cron run.'
+  resolution: 'Auto-resolved: Chrome back — Numista batch KE ran (5 NIDs cached).'
+  resolved_at: '2026-06-03T09:13:27Z'
+  resolved_by: harvest-routine-auto
+- id: audit_manifest_scope_drift:id=358086:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '358086'
+  summary: 'numista NID 358086 enumerated in lubeck_free_hanseatic_city coin gap list is a BANKNOTE (Composition:
+    Paper, Type: Standard circulation banknotes, 10 Thalers 1865 Commerz-Bank Lübeck), not a coin.'
+  status: resolved
+  instance_first_seen: '2026-06-01T20:11:31Z'
+  last_seen: '2026-06-01T20:11:31Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 358086
+  occurrences:
+  - run_utc: '2026-06-01T20:11:31Z'
+    batch_label: IU
+    detail: 'Batch IU (BO.7 lubeck_free_hanseatic_city): fetched N#358086 → 10 Thalers paper banknote
+      1865, 147×100 mm, Commerz-Bank Lübeck. Out-of-scope by TYPE (paper money, not circulation coin per
+      §9 exclusions). Not cached to avoid polluting coin cache + inflating cached count.'
+  proposed_fix: Reclassify N#358086 into BO.7 audit oos_excluded_nids slot (type=banknote). Re-screen
+    lubeck_free_hanseatic_city in_scope_nids for other paper-money entries (Numista catalogues banknotes
+    under the same issuer).
+  resolution: Reclassified into _BO7_audit lubeck_free_hanseatic_city.oos_excluded_nids (banknote/medal,
+    §9.1/§9.2) by scripts/maintenance/reclassify_bo7_oos.py; pruned from in_scope_nids/year_meta; refresh_audit_cached_counts
+    now honours oos_excluded_nids so re-enumeration can't re-introduce.
+  resolved_at: '2026-06-01T21:08:48Z'
+  resolved_by: reclassify_bo7_oos
+- id: audit_manifest_scope_drift:id=206506:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '206506'
+  summary: numista NID 206506 in lubeck_free_hanseatic_city coin gap list is a BANKNOTE (20 Thalers 1865
+    Commerz-Bank Lübeck, Paper, Pick# 312).
+  status: resolved
+  instance_first_seen: '2026-06-01T20:13:13Z'
+  last_seen: '2026-06-01T20:13:13Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 206506
+  occurrences:
+  - run_utc: '2026-06-01T20:13:13Z'
+    batch_label: IU
+    detail: 'Batch IU: 2nd consecutive banknote in lubeck_free_hanseatic_city uncached tail (after 358086).
+      Numista''s Lübeck issuer listing mixes paper money (Pick# refs) with coins; the BO.7 enumeration
+      captured banknotes as in-scope. Not cached.'
+  proposed_fix: 'Bulk re-screen lubeck_free_hanseatic_city in_scope_nids: any entry with Composition=Paper
+    / Type=banknotes / Pick# ref → oos_excluded_nids. Likely several more in the uncached tail.'
+  resolution: Reclassified into _BO7_audit lubeck_free_hanseatic_city.oos_excluded_nids (banknote/medal,
+    §9.1/§9.2) by scripts/maintenance/reclassify_bo7_oos.py; pruned from in_scope_nids/year_meta; refresh_audit_cached_counts
+    now honours oos_excluded_nids so re-enumeration can't re-introduce.
+  resolved_at: '2026-06-01T21:08:49Z'
+  resolved_by: reclassify_bo7_oos
+- id: audit_manifest_scope_drift:id=420815:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '420815'
+  summary: numista NID 420815 in lubeck_free_hanseatic_city coin gap list is an AWARD MEDAL (Poultry Breeding
+    Association, 1879-1882, Bronze, exonumia).
+  status: resolved
+  instance_first_seen: '2026-06-01T20:14:28Z'
+  last_seen: '2026-06-01T20:14:28Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 420815
+  occurrences:
+  - run_utc: '2026-06-01T20:14:28Z'
+    batch_label: IU
+    detail: 'Batch IU: 3rd consecutive OOS in lubeck_free_hanseatic_city uncached tail (2 banknotes +
+      this medal). Type: Award medals › Agricultural and industrial awards. Exonumia per §9.2. Not cached.'
+  proposed_fix: lubeck_free_hanseatic_city uncached tail is OOS-heavy (high NIDs = recently-added banknotes/medals).
+    Re-screen whole bucket for Composition=Paper/Bronze + Type=banknotes/medals → oos_excluded_nids.
+  resolution: Reclassified into _BO7_audit lubeck_free_hanseatic_city.oos_excluded_nids (banknote/medal,
+    §9.1/§9.2) by scripts/maintenance/reclassify_bo7_oos.py; pruned from in_scope_nids/year_meta; refresh_audit_cached_counts
+    now honours oos_excluded_nids so re-enumeration can't re-introduce.
+  resolved_at: '2026-06-01T21:08:49Z'
+  resolved_by: reclassify_bo7_oos
+- id: audit_manifest_scope_drift:manifest=bo7_audit_2026_05_24:scope=bulk_oos_sweep:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    manifest: _BO7_audit_2026-05-24
+    scope: bulk_oos_sweep
+  summary: BO.7 enumeration leaked 55 non-coin NIDs (patterns/medals/banknotes) into in_scope across 5
+    buckets; ct=coin alone does not exclude Patterns.
+  status: resolved
+  instance_first_seen: '2026-06-01T21:08:49Z'
+  last_seen: '2026-06-01T21:08:49Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 73285
+    - 86997
+    - 206506
+    - 242073
+    - 265073
+    - 266293
+    - 266297
+    - 266298
+    - 266299
+    - 267631
+    - 267632
+    - 271034
+    - 271035
+    - 271036
+    - 271078
+    - 280721
+    - 303457
+    - 307876
+    - 307877
+    - 312658
+    - 313080
+    - 313081
+    - 313082
+    - 313083
+    - 313084
+    - 313085
+    - 313086
+    - 314517
+    - 314523
+    - 314921
+    - 314923
+    - 314933
+    - 342834
+    - 347307
+    - 358086
+    - 382445
+    - 390833
+    - 391426
+    - 395184
+    - 397639
+    - 397858
+    - 399084
+    - 401336
+    - 409294
+    - 409302
+    - 409318
+    - 409357
+    - 412572
+    - 420815
+    - 422715
+    - 422716
+    - 511319
+    - 53400
+    - 569679
+  occurrences:
+  - run_utc: '2026-06-01T21:08:49Z'
+    batch_label: investigation-2026-06-01
+    detail: 'Type-attested sweep via classify_numista_scope: 55 OOS reclassified — bremen_free_imperial_city
+      23, lubeck 17, brunswick_wolfenbuttel_duchy 5, oldenburg_grand_duchy 5, brunswick_luneburg_calenberg
+      5. Mostly Krause-Pn / ''Patterns'' Type (§9.1) + ''Commemorative medals''/Rechenpfennig tokens (§9.2)
+      + 3 paper banknotes. Residual: ~1 no-Type medal (N#401199) lacks a positive signal, stays in-scope
+      until its Type is harvested.'
+  proposed_fix: 'Durable fix landed: (a) reclassify_bo7_oos.py + classify_numista_scope helper, (b) refresh_audit_cached_counts
+    honours oos_excluded_nids, (c) HARVEST_ROUTINE §7.5 Type-filter rule. Re-screen uncached gap tails
+    on next harvest.'
+  resolution: Fix landed this session (reclassify script + helper + refresh hardening + §7.5 doc).
+  resolved_at: '2026-06-01T21:08:49Z'
+  resolved_by: reclassify_bo7_oos
+- id: audit_manifest_scope_drift:id=422345:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '422345'
+  summary: numista NID 422345 in lubeck_free_hanseatic_city gap_nids is a MEMBERSHIP MEDAL (Horticultural
+    club Lübeck, ND 1885, Bronze, Type='Membership medals'), exonumia — not a coin.
+  status: resolved
+  instance_first_seen: '2026-06-01T21:09:13.763569Z'
+  last_seen: '2026-06-01T21:09:13.763569Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 422345
+  occurrences:
+  - run_utc: '2026-06-01T21:09:13.763569Z'
+    batch_label: IV
+    detail: 'Batch IV defensive sample (§7.5): survived prior OOS screening but is exonumia. KaiserAuss#
+      45, 27.12g 39.3mm bronze.'
+    full_context:
+      reason: membership_medal
+      url_tried: https://en.numista.com/422345
+  proposed_fix: Reclassify N#422345 into BO.7 lubeck oos_excluded_nids slot (type=exonumia/medal). Re-screen
+    remaining uncached tail (146484, 295089 high-NID candidates) for more medals/banknotes.
+  resolution: Reclassified N#422345 into BO.7 lubeck oos_excluded_nids (confirmed exonumia/pattern via
+    Numista Type, §7.5). lubeck now 108/108 CLOSED.
+  resolved_at: '2026-06-02T00:08:13Z'
+  resolved_by: harvest-routine-auto
+- id: audit_manifest_scope_drift:id=146484:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '146484'
+  summary: numista NID 146484 in lubeck_free_hanseatic_city gap_nids is a COMMEMORATIVE MEDAL (Opening
+    of Elbe-Trave Canal, 1900, Bronze 68mm, Type='Commemorative medals › Inauguration medals'), exonumia
+    — not a coin.
+  status: resolved
+  instance_first_seen: '2026-06-01T21:10:24.114065Z'
+  last_seen: '2026-06-01T21:10:24.114065Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 146484
+  occurrences:
+  - run_utc: '2026-06-01T21:10:24.114065Z'
+    batch_label: IV
+    detail: 'Batch IV defensive sample (§7.5): second OOS in a row in lubeck uncached tail. Behr# 740,
+      125.41g.'
+    full_context:
+      reason: commemorative_medal
+      url_tried: https://en.numista.com/146484
+  proposed_fix: Reclassify N#146484 into BO.7 lubeck oos_excluded_nids (type=exonumia/medal). lubeck uncached
+    tail confirmed OOS-heavy across two batch-IV samples; recommend full curation re-screen of remaining
+    gap_nids before further auto-harvest.
+  resolution: Reclassified N#146484 into BO.7 lubeck oos_excluded_nids (confirmed exonumia/pattern via
+    Numista Type, §7.5). lubeck now 108/108 CLOSED.
+  resolved_at: '2026-06-02T00:08:13Z'
+  resolved_by: harvest-routine-auto
+- id: audit_manifest_scope_drift:id=281413:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '281413'
+  summary: numista NID 281413 in lubeck_free_hanseatic_city gap_nids is a PATTERN (2 Mark, Aluminium-plated
+    copper, ND 1904-1912, Type='Patterns'), trial strike — not circulation coin.
+  status: resolved
+  instance_first_seen: '2026-06-01T21:12:53.612827Z'
+  last_seen: '2026-06-01T21:12:53.612827Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 281413
+  occurrences:
+  - run_utc: '2026-06-01T21:12:53.612827Z'
+    batch_label: IV
+    detail: 'Batch IV defensive sample (§7.5): pattern/trial strike, §9 exclusion #1. 4.13g 28.07mm.'
+    full_context:
+      reason: pattern_trial_strike
+      url_tried: https://en.numista.com/281413
+  proposed_fix: Reclassify N#281413 into BO.7 lubeck oos_excluded_nids (type=pattern). Confirms lubeck
+    uncached tail OOS-heavy; full curation re-screen recommended.
+  resolution: Reclassified N#281413 into BO.7 lubeck oos_excluded_nids (confirmed exonumia/pattern via
+    Numista Type, §7.5). lubeck now 108/108 CLOSED.
+  resolved_at: '2026-06-02T00:08:13Z'
+  resolved_by: harvest-routine-auto
+- id: audit_manifest_scope_drift:id=295089:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '295089'
+  summary: numista NID 295089 in lubeck_free_hanseatic_city gap_nids is a PATTERN (3 Mark, Aluminium plated
+    copper, 1913 A Berlin, Type='Patterns', Demonetized) — trial strike, not circulation coin.
+  status: resolved
+  instance_first_seen: '2026-06-01T22:08:30.033028Z'
+  last_seen: '2026-06-01T22:08:30.033028Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 295089
+  occurrences:
+  - run_utc: '2026-06-01T22:08:30.033028Z'
+    batch_label: IW
+    detail: 'Batch IW screen: 4th and final uncached lubeck gap_nid confirmed OOS. Entire lubeck uncached
+      tail now screened OOS-heavy: 422345 (membership medal), 146484 (commemorative medal), 281413 (pattern
+      2 Mark), 295089 (pattern 3 Mark). Bucket effectively curation-blocked.'
+    full_context:
+      type_field: Patterns
+      value: 3 Mark
+      composition: Aluminium plated copper
+      year: '1913'
+  proposed_fix: Reclassify N#295089 + the other 3 screened OOS NIDs into BO.7 lubeck_free_hanseatic_city
+    oos_excluded_nids slot so the §2.1 picker stops re-offering the curation-blocked tail.
+  resolution: Reclassified N#295089 into BO.7 lubeck oos_excluded_nids (confirmed exonumia/pattern via
+    Numista Type, §7.5). lubeck now 108/108 CLOSED.
+  resolved_at: '2026-06-02T00:08:13Z'
+  resolved_by: harvest-routine-auto
+- id: audit_manifest_scope_drift:bucket=hessen_kassel_electorate:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hessen_kassel_electorate
+  summary: BO.7 hessen_kassel_landgraviate and hessen_kassel_electorate in_scope_nids lists overlap almost
+    completely (255 shared NIDs); landgraviate-era pieces double-count into the electorate bucket.
+  status: resolved
+  instance_first_seen: '2026-06-01T23:21:18.717033Z'
+  last_seen: '2026-06-02T07:23:14.827322Z'
+  occurrence_count: 6
+  affected_ids:
+    numista:
+    - 355655
+    - 116957
+    - 355686
+    - 313033
+    - 307496
+    - 60471
+    - 303737
+    - 61122
+    - 278166
+    - 292371
+    - 339492
+    - 339491
+    - 268226
+    - 154665
+    - 268230
+    - 31269
+    - 268242
+    - 467841
+    - 268539
+    - 297460
+    - 268304
+    - 268243
+    - 274338
+    - 143329
+    - 278244
+  occurrences:
+  - run_utc: '2026-06-01T23:21:18.717033Z'
+    batch_label: IX
+    detail: Detected during batch IX (hessen_kassel_landgraviate harvest). All 256 landgraviate NIDs also
+      appear in electorate gap_nids. cached-count refresh now shows both buckets jumping 5->10 for the
+      same physical 5 Maurice-I NIDs (355655/116957/355686/313033/307496), confirming the double-listing.
+      Affects §6.1 coverage rendering (double count) and §2.1 picker (electorate re-offers already-cached
+      landgraviate NIDs).
+    full_context:
+      numista_batch: IX
+      ucoin_batch: '262'
+      overlap_count: 256
+      landgraviate_total: 256
+      electorate_total: 282
+  - run_utc: '2026-06-02T03:27:49Z'
+    batch_label: JB
+    detail: 'Batch JB: all 5 William V (1627-1637) landgraviate NIDs (60471, 303737, 61122, 278166, 292371)
+      are present in BOTH bucket lists. landgraviate∩electorate = 256 NIDs (landgraviate total 256, electorate
+      total 282). Harvesting landgraviate silently inflates electorate cached_count by the same amount;
+      coverage tables double-count the per-batch delta (+5 shows in both → +10 reported).'
+    full_context:
+      numista_batch: JB
+      ucoin_batch: '266'
+      overlap_count: 256
+  - run_utc: '2026-06-02T03:27:59Z'
+    batch_label: JB
+    detail: 'Batch JB: all 5 William V (1627-1637) landgraviate NIDs (60471, 303737, 61122, 278166, 292371)
+      are present in BOTH bucket lists. landgraviate∩electorate = 256 NIDs (landgraviate total 256, electorate
+      total 282). Harvesting landgraviate silently inflates electorate cached_count; coverage tables double-count
+      the per-batch delta (+5 in both → +10 reported).'
+    full_context:
+      numista_batch: JB
+      ucoin_batch: '266'
+      overlap_count: 256
+  - run_utc: '2026-06-02T05:23:01Z'
+    batch_label: JD
+    detail: 'Batch JD: all 5 fetched landgraviate NIDs (339492/339491/268226/154665/268230, William V/VI
+      death-year 1637) also appear in electorate bucket''s in_scope_nids, double-counting the §6.1 Δ (+10
+      shown for +5 actual fetches).'
+    full_context:
+      numista_batch: JD
+      ucoin_batch: '268'
+      ikmk_batch: skipped
+  - run_utc: '2026-06-02T06:24:13Z'
+    batch_label: JE
+    detail: 'Batch JE: the 5 NIDs harvested for hessen_kassel_landgraviate (31269/268242/467841/268539/297460
+      = William V/VI 1637-1651 Thaler/Goldgulden/Pfennig/commemoratives) are ALSO enumerated in the hessen_kassel_electorate
+      bucket''s in_scope_nids. These 1637-1651 coins are landgraviate (pre-1803), not electorate (1803-1866)
+      — Numista issuer-page enumeration overlapped the two Hesse-Cassel buckets. Effect: per-bucket Δ
+      double-counts (BO.7 TOTAL Δ shows +10 for 5 unique NIDs); electorate cached count inflated.'
+    full_context:
+      numista_batch: JE
+      ucoin_batch: '269'
+      ikmk_batch: BZ-skipped
+  - run_utc: '2026-06-02T07:23:14.827322Z'
+    batch_label: JF
+    detail: 'Batch JF: all 5 fetched landgraviate-era William VI NIDs (1651-1659: 268304/268243/274338/143329/278244)
+      appear in BOTH bucket lists. The two buckets share 255 NIDs. Δ-column double-counts +5 into electorate
+      even though the harvest targeted landgraviate only.'
+    full_context:
+      numista_batch: JF
+      ucoin_batch: '270'
+      ikmk_batch: BZ
+      bucket_overlap_count: 255
+  proposed_fix: Split the two Hesse-Kassel buckets by date (landgraviate pre-1803 vs electorate 1803-1866)
+    in BO.7 audit so a NID lands in exactly one bucket. Until then the Δ overlap is cosmetic; cache integrity
+    unaffected.
+  resolution: 'Date-split at 1803 via split_hessen_kassel_buckets.py: union 281 → landgraviate 215 (yf<1803),
+    electorate 66 (yf≥1803), overlap 0.'
+  resolved_at: '2026-06-02T08:15:22Z'
+  resolved_by: split_hessen_kassel_buckets
+- id: audit_manifest_scope_drift:bucket=hessen_kassel_landgraviate:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hessen_kassel_landgraviate
+  summary: BO.7 hessen_kassel_landgraviate gap list contained a Pattern NID enumerated as in-scope.
+  status: resolved
+  instance_first_seen: '2026-06-02T04:09:28Z'
+  last_seen: '2026-06-02T04:09:28Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 154633
+  occurrences:
+  - run_utc: '2026-06-02T04:09:28Z'
+    batch_label: JC
+    detail: 'Batch JC: N#154633 (10 Ducats William V 1634, gold pattern strike) has Numista Type=''Patterns''
+      — OOS per CLAUDE.md §9.1. Not saved; moved to oos_excluded_nids; in_scope_total 256→255.'
+    full_context:
+      numista_batch: JC
+      bucket: hessen_kassel_landgraviate
+      type: Patterns
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --write to sweep remaining cached Pattern/exonumia
+    NIDs in this bucket; defensive-sample more of the gap head.
+  resolution: Pattern N#154633 already parked in both Hesse buckets' oos_excluded_nids; confirmed excluded
+    from in_scope.
+  resolved_at: '2026-06-02T08:15:22Z'
+  resolved_by: split_hessen_kassel_buckets
+- id: audit_manifest_scope_drift:bucket=hessen_kassel_landgraviate:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hessen_kassel_landgraviate
+  summary: BO.7 hessen_kassel_landgraviate gap list contains OOS exonumia (medals) enumerated as in-scope
+    coins.
+  status: resolved
+  instance_first_seen: '2026-06-02T10:13:10Z'
+  last_seen: '2026-06-02T12:13:06.359199Z'
+  occurrence_count: 3
+  affected_ids:
+    numista:
+    - 278247
+    - 154674
+    - 411514
+    - 477231
+  occurrences:
+  - run_utc: '2026-06-02T10:13:10Z'
+    batch_label: JI
+    detail: 'Batch JI: N#278247 (1 Pfennig Charles I 1680, Obverse Trial, KM# Pn1, Type=''Patterns'')
+      was in in_scope_nids but is a pattern/trial strike (OOS per §9.1). Reclassified into oos_excluded_nids;
+      not cached.'
+    full_context:
+      numista_batch: JI
+      ucoin_batch: '273'
+      type: Patterns
+      km: KM# Pn1
+  - run_utc: '2026-06-02T11:10:22.505148Z'
+    batch_label: JJ
+    detail: 'Batch JJ: N#154674 enumerated as in_scope but is a silver pattern strike (Numista Type=''Patterns'',
+      1 Ducat Charles I 1686, Schuetz IV# 1296). Excluded into oos_excluded_nids; not cached.'
+    full_context:
+      reason: pattern
+      numista_batch: JJ
+  - run_utc: '2026-06-02T12:13:06.359199Z'
+    batch_label: JK
+    detail: 'Batch JK §7.5 type-check: 2 of 5 head gap NIDs are exonumia — N#411514 Inauguration medal
+      (french church Kassel Oberneustadt 1698, Silver), N#477231 Wedding medal (Friedrich I & Luise Dorothea
+      Sophie 1700, Silver). classify_numista_scope → (False, ''exonumia''). Reclassified into oos_excluded_nids
+      via reclassify_bo7_oos.py (in_scope_total 213→211); both added to KNOWN_UNCACHED_OOS for re-enumeration
+      durability.'
+    full_context:
+      numista_batch: JK
+      bucket: hessen_kassel_landgraviate
+  proposed_fix: Enumeration leaked medals despite ct=coin; reclassify_bo7_oos.py already pruned them.
+    Future re-enumeration of this bucket should apply classify_numista_scope post-filter.
+  resolution: All 4 affected NIDs (278247, 154674 = Numista Type='Patterns' trial strikes; 411514, 477231
+    = Type='Commemorative/Personality medals' exonumia) verified OOS via Chrome 2026-06-02 and already
+    present in manifest oos_excluded_nids (in_scope_total pruned to 211; not in in_scope_nids → picker
+    no longer offers them). Added 278247+154674 to reclassify_bo7_oos.py KNOWN_UNCACHED_OOS as re-enumeration
+    safety net.
+  resolved_at: '2026-06-02T20:55:27Z'
+  resolved_by: curator (Serhii, authorised in chat)
+- id: audit_manifest_scope_drift:bucket=hessen_kassel_landgraviate:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hessen_kassel_landgraviate
+  summary: BO.7 hessen_kassel_landgraviate gap list enumerated a Pattern NID as in-scope.
+  status: resolved
+  instance_first_seen: '2026-06-03T04:12:37.464696Z'
+  last_seen: '2026-06-03T04:12:37.464696Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 443854
+  occurrences:
+  - run_utc: '2026-06-03T04:12:37.464696Z'
+    batch_label: JZ
+    detail: 'Batch JZ: N#443854 (1 Thaler Frederick II ND 1760-1785, Silver, Numista Type=''Patterns'')
+      was offered by the §2.1 picker as in-scope; classify_numista_scope -> (False, ''pattern''). Reclassified
+      into oos_excluded_nids; in_scope_total 211->210.'
+    full_context:
+      numista_batch: JZ
+      type: Patterns
+  proposed_fix: reclassify_bo7_oos.py KNOWN_UNCACHED_OOS updated with 443854; rerun honoured the slot.
+    ct=coin listing still leaks Patterns — consider post-fetch scope filter at enumeration.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-03T07:59:57Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hessen_kassel_landgraviate:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hessen_kassel_landgraviate
+  summary: 'BO.7 hessen_kassel_landgraviate gap list contains an OOS pattern: N#317696 is Numista Type=''Patterns''
+    (1 Thaler William IX Bieberer Ausbeute, 1785).'
+  status: resolved
+  instance_first_seen: '2026-06-03T13:12:00.094044Z'
+  last_seen: '2026-06-03T13:12:00.094044Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 317696
+  occurrences:
+  - run_utc: '2026-06-03T13:12:00.094044Z'
+    batch_label: KI
+    detail: 'Batch KI: sampled NID 317696 returned Type=''Patterns'' — pattern/trial strike, OOS per CLAUDE.md
+      §9.1. Not saved. Folding into oos_excluded_nids.'
+    full_context:
+      type: Patterns
+      kind: pattern
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write folds 317696 into BO.7 audit oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-03T13:12:04Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hessen_kassel_landgraviate:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hessen_kassel_landgraviate
+  summary: BO.7 hessen_kassel_landgraviate gap list contains an OOS exonumia entry (commemorative medal)
+    mis-classified as in-scope coin.
+  status: resolved
+  instance_first_seen: '2026-06-03T17:09:32.855027Z'
+  last_seen: '2026-06-03T17:09:32.855027Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 411337
+  occurrences:
+  - run_utc: '2026-06-03T17:09:32.855027Z'
+    batch_label: KM
+    detail: 'Batch KM: N#411337 ''Commemorative medals'' (200th anniversary Wallonian-reformed community
+      Hanau, Wilhelm IX, 1797, silver, 50.26g) — Numista Type=''Commemorative medals'' → exonumia per
+      CLAUDE.md §9.2. classify_numista_scope returns (False,''exonumia''). Uncached OOS: record not saved.'
+    full_context:
+      reason: exonumia_medal
+      type: Commemorative medals
+      url: https://en.numista.com/411337
+  proposed_fix: Fold N#411337 into BO.7 audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-03T17:09:38Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hessen_kassel_electorate:id=202933:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hessen_kassel_electorate
+    id: '202933'
+  summary: Numista N#202933 enumerated as in-scope for hessen_kassel_electorate but is a BANKNOTE (Type='Standard
+    circulation banknotes', Composition=Paper) — OOS per CLAUDE.md §9.
+  status: resolved
+  instance_first_seen: '2026-06-04T14:13:55Z'
+  last_seen: '2026-06-04T14:13:55Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 202933
+  occurrences:
+  - run_utc: '2026-06-04T14:13:55Z'
+    batch_label: KZ
+    detail: 'Batch KZ defensive read: N#202933 ''10 Thalers - Hesse-Cassel'' 1855 is paper money, not
+      a coin. classify_numista_scope → (False, ''banknote''). Not saved; fold into oos_excluded_nids.'
+    full_context:
+      reason: banknote
+      url_tried: https://en.numista.com/202933
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#202933
+    into the BO.7 manifest oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-04T14:14:02Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
