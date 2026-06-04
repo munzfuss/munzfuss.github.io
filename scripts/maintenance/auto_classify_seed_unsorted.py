@@ -338,7 +338,17 @@ def _build_location_phase_index() -> dict[str, dict[str, list[tuple[str, int, in
                 if pid is None or yf is None or yt is None:
                     continue
                 for ent in consumes:
-                    out[ent][fuss_id].append((pid, int(yf), int(yt)))
+                    # consumes_entities entries are EITHER a bare entity-id
+                    # string OR a dict-form scoping rule {entity: id, year_to:
+                    # N, ...}. Normalise to the entity-id string — using the
+                    # dict as a dict key crashes (unhashable) and silently
+                    # broke classification for every location that uses the
+                    # year-scoped form (denmark consumes danish_norway/royal_
+                    # holstein this way).
+                    ent_id = ent.get("entity") if isinstance(ent, dict) else ent
+                    if not ent_id:
+                        continue
+                    out[ent_id][fuss_id].append((pid, int(yf), int(yt)))
     return out
 
 
