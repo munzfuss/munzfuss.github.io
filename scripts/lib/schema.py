@@ -516,6 +516,13 @@ class Source(_StrictBase):
     url: str | None = None
     ref: str | None = None
     note: str | None = None
+    display: bool = True
+    """When False the citation is SUPPRESSED from the rendered table but kept in
+    the data (data-accumulation principle — nothing is lost). Set by the
+    specimen-thinning pass for weightless museum over-collections: when a coin
+    has no weight and ≥5 KMM specimen citations, only ~3 representatives stay
+    visible (imaged-first), the rest are display:false. The renderer skips
+    display:false sources; the YAML retains every link + datum under the hood."""
 
 
 class FussRef(_StrictBase):

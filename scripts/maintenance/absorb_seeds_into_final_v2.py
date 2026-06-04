@@ -145,6 +145,83 @@ def _km_bases(coin: dict) -> set:
 
 
 # ---------------------------------------------------------------------------
+# Weightless-museum specimen suppression (§9a fallback — thin by HIDING, not
+# deleting). The §9a weight-sort thinning keeps min/middle/max of a weight
+# cluster; it can't fire when the specimens carry NO weight (KMM rarely
+# weighs small billon coins). For those over-collections we SUPPRESS the
+# surplus citations — keep them in the data, hide them from the render —
+# per the data-accumulation principle (nothing is lost). Keep ~3 visible:
+# imaged-first (the KMM record has a still photo), then lowest object-id.
+# User decision 2026-06-04.
+# ---------------------------------------------------------------------------
+import json as _json  # noqa: E402
+
+_KMK_CACHE_DIR = ROOT / "scripts" / "cache" / "kmk"
+_KMM_IMAGE_MEMO: dict[str, bool] = {}
+_SUPPRESS_THRESHOLD = 5
+_SUPPRESS_KEEP = 3
+
+
+def _kmm_nid_from_url(url):
+    if not url:
+        return None
+    m = re.search(r"/KMM/object/(\d+)", str(url))
+    return m.group(1) if m else None
+
+
+def _kmm_specimen_has_image(nid: str) -> bool:
+    """True when the KMM (Nationalmuseet) record has a still-photo asset.
+    Memoised cache read — maintenance-side only; the build never reads cache."""
+    if nid in _KMM_IMAGE_MEMO:
+        return _KMM_IMAGE_MEMO[nid]
+    has = False
+    try:
+        d = _json.loads((_KMK_CACHE_DIR / f"{nid}.json").read_text())
+        rel = d.get("related") or {}
+        assets = rel.get("assets") or [] if isinstance(rel, dict) else []
+        has = any(isinstance(a, dict) and a.get("type") == "still" for a in assets)
+    except (FileNotFoundError, ValueError):
+        has = False
+    _KMM_IMAGE_MEMO[nid] = has
+    return has
+
+
+def _suppress_weightless_museum_overcollection(coin: dict) -> int:
+    """Mark surplus weightless KMM specimen citations `display: false` so the
+    renderer hides them while the data keeps every link. Fires only when the
+    coin has NO weight reading AND carries ≥5 KMM citations; keeps the 3
+    best (imaged-first, then lowest object-id). Idempotent + deterministic —
+    safe to re-apply on every absorb. Returns the count suppressed."""
+    w = coin.get("weight_rough_g")
+    has_weight = (
+        (isinstance(w, list) and any(
+            isinstance(x, dict) and isinstance(x.get("value"), (int, float)) and x["value"] > 0
+            for x in w))
+        or (isinstance(w, (int, float)) and w > 0)
+    )
+    if has_weight:
+        return 0
+    srcs = coin.get("sources") or []
+    kmm = [s for s in srcs if isinstance(s, dict) and _kmm_nid_from_url(s.get("url"))]
+    if len(kmm) < _SUPPRESS_THRESHOLD:
+        return 0
+
+    def _rank(s):
+        nid = _kmm_nid_from_url(s["url"])
+        return (0 if _kmm_specimen_has_image(nid) else 1, int(nid))
+
+    keep_ids = {id(s) for s in sorted(kmm, key=_rank)[:_SUPPRESS_KEEP]}
+    n = 0
+    for s in kmm:
+        if id(s) in keep_ids:
+            s.pop("display", None)      # kept → render (schema default True)
+        else:
+            s["display"] = False
+            n += 1
+    return n
+
+
+# ---------------------------------------------------------------------------
 # Foundation-immutable rule (per DF1, current default)
 # ---------------------------------------------------------------------------
 
@@ -443,6 +520,8 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     sources = _collect_sources(members)
     if sources:
         out["sources"] = sources
+        # Hide (not delete) surplus weightless KMM specimen citations.
+        _suppress_weightless_museum_overcollection(out)
 
     # Inscriptions — gap-fill (foundation primary)
     for field in ("inscription_obv", "inscription_rev", "weight_rough_label"):
