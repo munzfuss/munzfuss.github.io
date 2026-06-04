@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-04T14:14:02Z'
+  last_updated_utc: '2026-06-04T23:16:36Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1900,3 +1900,37 @@ anomalies:
     refresh prunes them from in_scope.
   resolved_at: '2026-06-04T14:14:02Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
+- id: cloudflare_challenge_persistent:block=human_verification_wall:source=ucoin
+  type: cloudflare_challenge_persistent
+  key_dims:
+    source: ucoin
+    block: human_verification_wall
+  summary: ucoin listing-page access blocked by 'Verify You Are Human' interstitial (/check/?f=0); whole
+    ucoin batch deferred.
+  status: open
+  instance_first_seen: '2026-06-04T23:16:35.919257Z'
+  last_seen: '2026-06-04T23:16:35.919257Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 97776
+    - 97609
+    - 97852
+    - 97610
+    - 92524
+  occurrences:
+  - run_utc: '2026-06-04T23:16:35.919257Z'
+    batch_label: '325'
+    detail: 'BR-4 batch 325 (brunswick_luneburg_p1089): listing-page fetch bounced to https://en.ucoin.net/check/?f=0
+      ''Verify You Are Human'' on first attempt; persisted after 90s cooldown + re-navigate. Did NOT click
+      the Continue button (completing bot-detection is prohibited). No TIDs fetched this run; 5 targets
+      [97776,97609,97852,97610,92524] deferred to next run.'
+    full_context:
+      listing_url: https://en.ucoin.net/catalog/?country=brunswick_luneburg&period=1089
+      bounced_to: https://en.ucoin.net/check/?f=0
+  proposed_fix: Retry next cron run (defence is usually transient over an hour). If it persists across
+    multiple runs, the user may need to browse ucoin manually once to clear the human-check for the session,
+    or harvest cadence needs lengthening.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
