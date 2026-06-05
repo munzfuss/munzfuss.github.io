@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-05T11:11:49Z'
+  last_updated_utc: '2026-06-05T14:11:56Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1991,3 +1991,32 @@ anomalies:
     refresh prunes them from in_scope.
   resolved_at: '2026-06-05T11:11:49Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=563421:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '563421'
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS medal N#563421 (Type='Commemorative medals',
+    exonumia per §9.2).
+  status: open
+  instance_first_seen: '2026-06-05T14:11:56.066364Z'
+  last_seen: '2026-06-05T14:11:56.066364Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 563421
+  occurrences:
+  - run_utc: '2026-06-05T14:11:56.066364Z'
+    batch_label: LW
+    detail: 'Batch LW: N#563421 ''1 Portugalöser'' = 10 Ducats medal 1695, Gaed# 1665, classify_numista_scope
+      -> (False,''exonumia''). Not saved; remains uncached. Needs folding into oos_excluded_nids.'
+    full_context:
+      type: Commemorative medals
+      references: Gaed# 1665
+      kind: exonumia
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#563421
+    into BO.7 oos_excluded_nids.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
