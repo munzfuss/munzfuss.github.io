@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-05T07:12:20Z'
+  last_updated_utc: '2026-06-05T11:11:49Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1963,4 +1963,31 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-05T07:12:20Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=297468:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '297468'
+  summary: numista NID 297468 enumerated in hamburg_hanseatic_city but is a Pattern (OOS per §9.1).
+  status: resolved
+  instance_first_seen: '2026-06-05T11:11:43Z'
+  last_seen: '2026-06-05T11:11:43Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 297468
+  occurrences:
+  - run_utc: '2026-06-05T11:11:43Z'
+    batch_label: LU
+    detail: 'Batch LU: N#297468 = ''2 Schillings (Gold pattern strike)'' Hamburg 1689, Numista Type=''Patterns''.
+      classify_numista_scope → (False, ''pattern''). Gold pattern/trial strike, not struck for circulation.'
+    full_context:
+      oos_kind: pattern
+      issuer: hamburg_hanseatic_city
+  proposed_fix: Fold NID 297468 into _BO7_audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T11:11:49Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
