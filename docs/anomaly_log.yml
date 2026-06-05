@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-05T16:13:14Z'
+  last_updated_utc: '2026-06-05T17:15:08Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2109,4 +2109,36 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-05T16:13:14Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city in_scope_nids contains exonumia (commemorative medals) — OOS per
+    CLAUDE.md §9.2.
+  status: resolved
+  instance_first_seen: '2026-06-05T17:14:55.139343Z'
+  last_seen: '2026-06-05T17:14:55.139343Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 158487
+    - 391959
+    - 53396
+  occurrences:
+  - run_utc: '2026-06-05T17:14:55.139343Z'
+    batch_label: LZ
+    detail: 'Batch LZ: 3 of first-5 uncached NIDs are commemorative medals, not circulation coins — N#158487
+      (Imperial comission medal, silver), N#391959 (Paul Paulsen Bürgermeisterpfennig personality medal,
+      silver), N#53396 (Hamburg-freed-from-plague medal, pewter). Type field ''Commemorative medals''.
+      Not saved.'
+    full_context:
+      kind: exonumia
+      numista_batch: LZ
+  proposed_fix: Fold NIDs into BO.7 audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write (exonumia kind).
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T17:15:08Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
