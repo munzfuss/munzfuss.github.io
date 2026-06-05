@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-05T15:15:00Z'
+  last_updated_utc: '2026-06-05T16:13:14Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2080,4 +2080,33 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-05T15:15:00Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:id=391960:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    id: '391960'
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS medal N#391960 (exonumia).
+  status: resolved
+  instance_first_seen: '2026-06-05T16:07:49.522920Z'
+  last_seen: '2026-06-05T16:07:49.522920Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 391960
+  occurrences:
+  - run_utc: '2026-06-05T16:07:49.522920Z'
+    batch_label: LY
+    detail: 'Batch LY defensive fetch: N#391960 = ''Death of Joachim Lemmermann Bürgermeisterpfennig''
+      medal, Numista Type=''Commemorative medals › Personality medals'' → exonumia per §9.2. Not saved;
+      uncached-OOS.'
+    full_context:
+      kind: exonumia
+      type: Commemorative medals › Personality medals
+  proposed_fix: Fold N#391960 into BO7 audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T16:13:14Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
