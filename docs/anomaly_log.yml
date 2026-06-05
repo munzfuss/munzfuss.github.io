@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-04T23:16:36Z'
+  last_updated_utc: '2026-06-05T00:21:07Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1907,7 +1907,7 @@ anomalies:
     block: human_verification_wall
   summary: ucoin listing-page access blocked by 'Verify You Are Human' interstitial (/check/?f=0); whole
     ucoin batch deferred.
-  status: open
+  status: resolved
   instance_first_seen: '2026-06-04T23:16:35.919257Z'
   last_seen: '2026-06-04T23:16:35.919257Z'
   occurrence_count: 1
@@ -1931,6 +1931,7 @@ anomalies:
   proposed_fix: Retry next cron run (defence is usually transient over an hour). If it persists across
     multiple runs, the user may need to browse ucoin manually once to clear the human-check for the session,
     or harvest cadence needs lengthening.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: 'Auto-resolved: ucoin human-verification wall cleared in batch 325 retry — all 5 deferred
+    TIDs (92524, 97609, 97610, 97776, 97852) fetched + cached successfully this run.'
+  resolved_at: '2026-06-05T00:21:07Z'
+  resolved_by: harvest-routine-auto
