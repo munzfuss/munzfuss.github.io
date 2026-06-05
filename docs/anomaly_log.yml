@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-05T00:21:07Z'
+  last_updated_utc: '2026-06-05T07:12:20Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1935,3 +1935,32 @@ anomalies:
     TIDs (92524, 97609, 97610, 97776, 97852) fetched + cached successfully this run.'
   resolved_at: '2026-06-05T00:21:07Z'
   resolved_by: harvest-routine-auto
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=477360:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '477360'
+  summary: BO.7 hamburg_hanseatic_city in_scope_nids contains OOS medal N#477360 (religious medal, never
+    issued).
+  status: resolved
+  instance_first_seen: '2026-06-05T07:12:13Z'
+  last_seen: '2026-06-05T07:12:13Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 477360
+  occurrences:
+  - run_utc: '2026-06-05T07:12:13Z'
+    batch_label: LQ
+    detail: 'Batch LQ defensive read: N#477360 Type=''Religious medals'', title ''Medal on the goodness
+      of God'', Issued=''Never issued'', Gaed# 134. OOS per CLAUDE.md §9.2 (exonumia). Not saved to cache.'
+    full_context:
+      kind: medal
+      type_field: Religious medals
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write folds NID into oos_excluded_nids; refresh
+    prunes from in_scope_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T07:12:20Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
