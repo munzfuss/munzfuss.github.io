@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-05T22:13:52Z'
+  last_updated_utc: '2026-06-05T23:16:08Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2228,4 +2228,58 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-05T22:13:52Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia (medal) N#122912.
+  status: resolved
+  instance_first_seen: '2026-06-05T23:11:58Z'
+  last_seen: '2026-06-05T23:11:58Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 122912
+  occurrences:
+  - run_utc: '2026-06-05T23:11:58Z'
+    batch_label: MF
+    detail: 'Batch MF: N#122912 sampled = ''Medal - Death of Sara Catharina Langermann Bürgermeisterpfennig''
+      Type=''Commemorative medals › Personality medals'' (Gaed# 1887, 1754). classify_numista_scope →
+      (False, exonumia). OOS per CLAUDE.md §9.2. Not saved; remains in audit pending oos_excluded_nids
+      fold.'
+    full_context:
+      reason: exonumia_medal
+      url_tried: https://en.numista.com/122912
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write to fold N#122912 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T23:12:05Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia (medal) N#320407.
+  status: resolved
+  instance_first_seen: '2026-06-05T23:16:07Z'
+  last_seen: '2026-06-05T23:16:07Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 320407
+  occurrences:
+  - run_utc: '2026-06-05T23:16:07Z'
+    batch_label: MF
+    detail: 'Batch MF: N#320407 = ''10 Ducats'' commemorative Type=''Commemorative medals'' (Gaed# 1912,
+      1756). classify_numista_scope → (False, exonumia). OOS per CLAUDE.md §9.2. Not saved.'
+    full_context:
+      reason: exonumia_medal
+      url_tried: https://en.numista.com/320407
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write to fold N#320407 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T23:16:08Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
