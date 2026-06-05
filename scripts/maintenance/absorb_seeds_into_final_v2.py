@@ -455,6 +455,20 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     if diameters:
         out["diameter_mm"] = diameters
 
+    # Honor `_curation_holds` for measurement fields + their verified flags.
+    # `skip_first_list=True` drops the foundation-self's measurement values
+    # on regen, so a curator-set value that NO source attests (e.g. a
+    # canonical-Müntzfuß-anchor fineness inferred per §4 — the .979
+    # 23½-Karat Nobel anchor on weight-bearing specimens) would otherwise
+    # vanish. When the curator freezes such a field via
+    # `_curation_holds: {fineness: "…"}`, preserve the foundation's value
+    # (and its verified flag) across regen.
+    for _hf in ("fineness", "weight_rough_g", "diameter_mm",
+                "fineness_verified", "weight_rough_verified",
+                "diameter_mm_verified"):
+        if _hf in holds_keys and final_entry.get(_hf) is not None:
+            out[_hf] = final_entry[_hf]
+
     # Catalog rebuild: same principle as measurements — drop foundation's
     # absorb-cached list-form catalog values for cross-source fields
     # before re-deriving. Foundation's SCALAR catalog entries are V1-
@@ -517,6 +531,17 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # Numista / ucoin / auction refs that have no seed equivalent.
     # Phantom-citation persistence is a smaller issue than curator data
     # loss; dedup ensures legitimate duplicates collapse anyway.
+    #
+    # NB — a blanket `members[1:]` skip for `unified-*` foundations was
+    # tried and reverted: even pure-absorbed-looking foundations (final
+    # composed_of == [self]) can carry V1-curator sources merged in by a
+    # prior absorb (e.g. a `km-*` V1 member's Bruun / Numista / Heritage
+    # citations) that live ONLY on the foundation-self and are absent from
+    # the seed_unified member's own sources list. Skipping the foundation-
+    # self dropped 471 such legitimate citations across 224 entries.
+    # True phantoms (a museum citation the merger has since re-homed to a
+    # sibling entry — the f1g-68 / KMM 156725 case) are cleaned surgically
+    # at the data layer instead.
     sources = _collect_sources(members)
     if sources:
         out["sources"] = sources
