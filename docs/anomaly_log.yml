@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-05T17:15:08Z'
+  last_updated_utc: '2026-06-05T20:13:42Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2141,4 +2141,34 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-05T17:15:08Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:nid=178112:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    nid: '178112'
+  summary: Numista NID 178112 is a PATTERN (Type='Patterns', KM# Pn1, '2 Ducats silver pattern strike')
+    enumerated as in-scope in BO.7 hamburg_hanseatic_city — OOS per CLAUDE.md §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-05T20:12:07Z'
+  last_seen: '2026-06-05T20:12:07Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 178112
+  occurrences:
+  - run_utc: '2026-06-05T20:12:07Z'
+    batch_label: MC
+    detail: 'Batch MC defensive observation: NID 178112 page Type=''Patterns'', KM# Pn1 → classify_numista_scope
+      returns (False, ''pattern''). Record NOT saved to cache. Should fold into oos_excluded_nids via
+      reclassify_bo7_oos.py --from-anomalies.'
+    full_context:
+      bucket: hamburg_hanseatic_city
+      oos_kind: pattern
+      km: Pn1
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to move NID 178112
+    into BO.7 audit oos_excluded_nids slot (kind=pattern).
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T20:13:41Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
