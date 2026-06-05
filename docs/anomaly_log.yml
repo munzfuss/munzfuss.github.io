@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-05T14:11:56Z'
+  last_updated_utc: '2026-06-05T15:15:00Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1999,7 +1999,7 @@ anomalies:
     nid: '563421'
   summary: BO.7 hamburg_hanseatic_city gap list contains OOS medal N#563421 (Type='Commemorative medals',
     exonumia per §9.2).
-  status: open
+  status: resolved
   instance_first_seen: '2026-06-05T14:11:56.066364Z'
   last_seen: '2026-06-05T14:11:56.066364Z'
   occurrence_count: 1
@@ -2017,6 +2017,67 @@ anomalies:
       kind: exonumia
   proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#563421
     into BO.7 oos_excluded_nids.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T15:14:59Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=336381:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '336381'
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia N#336381 (Type='Religious medals',
+    '1 Ducat — The Four Commandments') per §9.2.
+  status: resolved
+  instance_first_seen: '2026-06-05T15:13:02Z'
+  last_seen: '2026-06-05T15:13:02Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 336381
+  occurrences:
+  - run_utc: '2026-06-05T15:13:02Z'
+    batch_label: LX
+    detail: 'Batch LX defensive type-check: N#336381 classify_numista_scope → (False, ''exonumia'', "Type=''Religious
+      medals''"). Not saved; remains in audit gap until reclassified.'
+    full_context:
+      type: Religious medals
+      numista_batch: LX
+      ucoin_batch: '339'
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#336381
+    into BO.7 oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T15:14:59Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=374554:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '374554'
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia N#374554 (Type='Religious medals',
+    '1 Ducat — The Four Commandments, 2nd variant') per §9.2.
+  status: resolved
+  instance_first_seen: '2026-06-05T15:13:26Z'
+  last_seen: '2026-06-05T15:13:26Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 374554
+  occurrences:
+  - run_utc: '2026-06-05T15:13:26Z'
+    batch_label: LX
+    detail: 'Batch LX defensive type-check: N#374554 classify_numista_scope → (False, ''exonumia'', "Type=''Religious
+      medals''"). Not saved; remains in audit gap until reclassified.'
+    full_context:
+      type: Religious medals
+      numista_batch: LX
+      ucoin_batch: '339'
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#374554
+    into BO.7 oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T15:15:00Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
