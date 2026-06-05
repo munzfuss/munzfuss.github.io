@@ -95,6 +95,40 @@ merges:
       1 Speciedaler Christian IV, KM 44 — two sub-types (Helsingør 1608-1610;
       Kopenhagen 1618-1621) of one coin, distinct from Hede 54 / KM 53.
 
+  # --- ½ Skilling Christian V — one coin Krause/Hede-split across many
+  # sub-variants (curator decision 2026-06-05, Serhii, by image). ---
+  - members:
+      - dk-numista-175690          # KM 421
+      - denmark-numismaster-64984  # KM 421.1
+      - dk-tid-96438               # KM 421.1 (ucoin)
+      - denmark-numismaster-64985  # KM 421.2
+      - kmk-152206                 # Hede 112 (museum)
+      - kmk-152207                 # Hede 112
+      - kmk-306336                 # Hede 112
+      - kmk-329995                 # Hede 112
+      - kmk-332469                 # Hede 112
+      - kmk-353274                 # Hede 112
+      - kmk-354439                 # Hede 112
+      - kmk-354549                 # Hede 112
+      - kmk-355703                 # Hede 112
+      - kmk-317181                 # Hede 112A (museum)
+      - kmk-317182                 # Hede 112A
+      - kmk-317183                 # Hede 112A
+      - kmk-372858                 # Hede 112A
+      - kmk-437512                 # Hede 112A
+      - dk-hede-c5h112aa           # Hede 112a (danskmoent, Sieg 3.1)
+      - dk-hede-c5h112ab           # Hede 112a (danskmoent, Sieg 3.2)
+    reason: |
+      ½ Skilling Christian V, Kopenhagen, 1693-1696 — ONE coin. Krause
+      splits it across KM 421 / 421.1 / 421.2; Hede across 112 / 112A /
+      112a (danskmoent aA/aB). Same denomination, ruler, mint, period
+      (~3.6 g billon) — visually one type. The auto-matcher returns
+      no_match on the KM sub-variant conflict (421.1 vs 421.2 etc.),
+      leaving the coin split across 8 clusters; this force-merge unites
+      them. Divergent KM/Hede indices accumulate list-form per §9a.
+      Verified 0 outsiders dragged in (all 8 source clusters contain only
+      these 20 family members). danskmoent.dk/chr/c5h112a.htm.
+
 no_merges:
   # --- dk-tid-94338 disentanglement (curator decision 2026-05-31, Serhii).
   # 1 Dukat Frederik V 1747 — the merger fused FOUR distinct coins into one
