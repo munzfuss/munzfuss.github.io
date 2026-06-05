@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `royal_holstein`.
-# Generated 2026-06-04 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-06 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1593 per-source seed entries.
-# Output: 986 unified entries (one per physical coin).
+# Output: 987 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: royal_holstein
-generated_at: '2026-06-04'
+generated_at: '2026-06-06'
 coins:
 - id: unified-denmark-numismaster-58049
   fuss: seed_unsorted
@@ -5557,6 +5557,7 @@ coins:
     - '178'
     hede_volume: c4h
     sieg: '161'
+    schou: 19-20,60-68,59-62,57-60
     numista: '199146'
   metal: silver
   metal_verified: true
@@ -5634,6 +5635,7 @@ coins:
     - 178b
     hede_volume: c4h
     sieg: '161'
+    schou: 157-159,96-99,81-85,51-56,59
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -5904,6 +5906,7 @@ coins:
     hede: 8A
     hede_volume: c4h
     sieg: '1'
+    schou: 7,10-11
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -5992,8 +5995,11 @@ coins:
     sieg:
     - '142.1'
     - '142.2'
+    schou:
+    - 3,13
+    - 4,14-15,2-5,1
+    - '3'
     bruun_collection_id: '6791'
-    schou: '3'
     bruun_part: II
     bruun_lot_no: 13175
     bruun_page: 129
@@ -6572,7 +6578,10 @@ coins:
     - '138.1'
     - '138.2'
     - '139'
-    schou: 42-44
+    schou:
+    - 30-32,38-41,29-30
+    - 42-44
+    - 31,17,28-29
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6627,6 +6636,9 @@ coins:
     sieg:
     - '135'
     - '136'
+    schou:
+    - 55-56,35
+    - 34,32
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6681,7 +6693,9 @@ coins:
     sieg:
     - '133.2'
     - '133.1'
-    schou: '43'
+    schou:
+    - 41-42,29-30,6-9
+    - '43'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -6698,9 +6712,6 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h127.htm
     ref: danskmoent.dk (Hede c5h127A)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148529
-    ref: KMM 148529 (Inv. KP 1656.1784)
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/352325
     ref: KMM 352325 (Inv. FP 5149 5149.33)
@@ -6723,7 +6734,6 @@ coins:
   composed_of:
   - dk-hede-c5h127a
   - dk-hede-c5h127b
-  - kmk-148529
   - kmk-352325
   - kmk-352339
   - kmk-352353
@@ -6745,8 +6755,10 @@ coins:
     hede: '128'
     hede_volume: c5h
     sieg: '131'
+    schou:
+    - 66-74,44-45
+    - 66-74 (1693), 44-45 (1694)
     numista: '87732'
-    schou: 66-74 (1693), 44-45 (1694)
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7287,6 +7299,7 @@ coins:
     - '45.1'
     - '45'
     schou:
+    - 1,4-5
     - '6'
     - '2'
     bruun_collection_id: '7866'
@@ -7380,8 +7393,10 @@ coins:
     sieg:
     - '42.3'
     - '45.3'
+    schou:
+    - 6,1-3,2
+    - '3'
     bruun_collection_id: '7888'
-    schou: '3'
     lange: 125d
     dav: '1311'
   metal: silver
@@ -7452,6 +7467,7 @@ coins:
     - '56'
     - '45.5'
     schou:
+    - 4-5,2-4
     - '6'
     - '2'
     bruun_collection_id: '7955'
@@ -7537,6 +7553,7 @@ coins:
     - '54'
     - '44'
     schou:
+    - 5-6,5,2
     - '7'
     - '5'
     - 5/6
@@ -7658,6 +7675,7 @@ coins:
     - '43.1'
     - '43.2'
     schou:
+    - 7,8,6-7,3
     - '8'
     - '7'
     bruun_collection_id:
@@ -8821,6 +8839,7 @@ coins:
     hede: 30A
     hede_volume: f2h
     sieg: '33.1'
+    schou: 2-4,1-13
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -9114,12 +9133,13 @@ coins:
     hede: 145A
     hede_volume: f3h
     sieg: '160'
+    schou:
+    - 5,9-10,1
+    - '5'
+    - '9'
     bruun_collection_id:
     - '6244'
     - '6300'
-    schou:
-    - '5'
-    - '9'
     bruun_part: II
     bruun_lot_no: 13139
     bruun_page: 103
@@ -9602,6 +9622,9 @@ coins:
     sieg:
     - '153.1'
     - '153.2'
+    schou:
+    - 44-65,29-36
+    - 66-67,37-41
     lange: 280 ff.
     numista: '111284'
   metal: silver
@@ -9690,7 +9713,9 @@ coins:
     - 57A
     - 57B
     hede_volume: f4h
-    schou: '1'
+    schou:
+    - '1'
+    - 2,1
     sieg:
     - '57'
     - '57.1'
@@ -10250,6 +10275,7 @@ coins:
     hede: '16'
     hede_volume: f6h
     sieg: '8'
+    schou: 1,2
     numista: '61491'
     lange: '161'
   metal: silver
@@ -11001,6 +11027,7 @@ coins:
     hede: '7'
     hede_volume: f6h
     sieg: '1'
+    schou: 2,10,9
     numista: '47922'
   metal: billon
   metal_verified: true
@@ -19053,6 +19080,30 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - kmk-148528
+- id: unified-kmk-148529
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 8 Skilling
+  year_first: 1694
+  year_last: 1694
+  year_label: '1694'
+  ruler: Christian 5
+  mint: Glückstadt
+  catalog:
+    schou: '43'
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/148529
+    ref: KMM 148529 (Inv. KP 1656.1784)
+  verification_note: *id002
+  issuing_entity: royal_holstein
+  composed_of:
+  - kmk-148529
 - id: unified-kmk-148530
   fuss: seed_unsorted
   phase: kmk

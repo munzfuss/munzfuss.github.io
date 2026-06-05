@@ -440,8 +440,14 @@ _REFS_RE = re.compile(
     # here only as a comment guard against future «look, the parser
     # missed Christian» additions.
     r"\b(Hede|Schou|Sieg|Galster|Bruun|Dav|Davenport|KM|Fr|Friedberg)\.?\s*"
+    # Danish per-variant lists write «Schou hhv. 6, 16-29 og 16-22» —
+    # «hhv.»/«henholdsvis» = «respectively». Skip that word so the number
+    # capture starts at the first die-no; «og» («and») joins further groups
+    # (normalised to a comma in _extract_refs). Without this the whole Schou
+    # list of such a variant was dropped (81 by_letter variants affected).
+    r"(?:hhv\.?\s*|henholdsvis\s*)?"
     r"([\d]+(?:\.\d+)*(?:[A-Za-z][\w\.]*)?"
-    r"(?:[\-/,]\s*\d+(?:\.\d+)*[A-Za-z]*)*)",
+    r"(?:(?:[\-/,]|\s+og)\s*\d+(?:\.\d+)*[A-Za-z]*)*)",
     re.IGNORECASE,
 )
 
@@ -455,7 +461,8 @@ def _extract_refs(text: str) -> dict[str, list[str]]:
             catalogue = "Dav"
         elif catalogue == "Friedberg":
             catalogue = "Fr"
-        num = re.sub(r"\s+", "", m.group(2))
+        num = re.sub(r"\bog\b", ",", m.group(2))   # «6, 16-29 og 16-22» → «6,16-29,16-22»
+        num = re.sub(r"\s+", "", num)
         bucket = refs.setdefault(catalogue, [])
         if num not in bucket:
             bucket.append(num)
