@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-05T21:12:19Z'
+  last_updated_utc: '2026-06-05T22:13:52Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2199,4 +2199,33 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-05T21:12:19Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city in_scope_nids contains a pattern (N#271193, '1 Ducat Copper Pattern'
+    1748) — OOS per CLAUDE.md §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-05T22:13:46.990355Z'
+  last_seen: '2026-06-05T22:13:46.990355Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 271193
+  occurrences:
+  - run_utc: '2026-06-05T22:13:46.990355Z'
+    batch_label: ME
+    detail: 'Batch ME defensive read: N#271193 Numista Type=''Patterns'' (1 Ducat Copper Pattern, Hamburg
+      1748, 2.21g). classify_numista_scope -> (False,''pattern''). Not saved; needs folding into oos_excluded_nids.'
+    full_context:
+      type: Patterns
+      kind: pattern
+      url: https://en.numista.com/271193
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#271193
+    into hamburg_hanseatic_city oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T22:13:52Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
