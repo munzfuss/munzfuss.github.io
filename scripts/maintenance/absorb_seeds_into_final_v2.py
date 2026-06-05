@@ -455,21 +455,27 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     if diameters:
         out["diameter_mm"] = diameters
 
-    # Honor `_curation_holds` for measurement fields, SUBJECT TO the
-    # verified-wins-over-unverified rule (§4). `skip_first_list=True` drops
-    # the foundation-self's measurement values on regen, so a curator-set
-    # value that NO source attests (e.g. a canonical-Müntzfuß-anchor
-    # fineness inferred per §4 — the .979 23½-Karat Nobel anchor on weight-
-    # bearing specimens) would otherwise vanish. Freezing it via
-    # `_curation_holds: {fineness: "…"}` preserves it across regen.
+    # Honor `_curation_holds` for measurement fields, reconciling the two
+    # rules that govern measurement merges:
+    #   • §9a «preserve-all»: every distinct source reading of a list-form
+    #     measurement (fineness / weight_rough_g / diameter_mm) is kept.
+    #   • §4 «verified-wins»: a SOURCE-VERIFIED reading displaces an
+    #     UNVERIFIED curator placeholder (which must NOT propagate).
     #
-    # BUT a hold on an UNVERIFIED measurement is a placeholder, not a lock:
-    # if a SOURCE member later attests the field as VERIFIED, that
-    # attestation DISPLACES the unverified hold (§4 «verified-wins»). The
-    # collected list (`out[_hf]`, from members via skip_first) and its
-    # OR-merged `*_verified` flag already carry the source value, so the
-    # hold is simply NOT applied in that case. A hold on an already-
-    # VERIFIED value (curator correction backed by a source) always wins.
+    # `skip_first_list=True` drops the foundation-self's readings on regen,
+    # so a curator-set value that no source attests (e.g. the canonical
+    # 23½-Karat .979 Nobel-fineness anchor) would otherwise vanish. Freezing
+    # it via `_curation_holds: {fineness: "…"}` brings it back — but the way
+    # it re-enters depends on what the sources now say:
+    #
+    #   (a) a source member attests the field VERIFIED while the hold is
+    #       UNVERIFIED → §4: the source displaces the hold. `out[_hf]`
+    #       (collected source readings) + the OR-merged `*_verified` flag
+    #       already carry the source value; the held value is dropped.
+    #   (b) otherwise (no verified source, OR the hold is itself verified)
+    #       → §9a: UNION the held value with the collected source readings.
+    #       A source's UNVERIFIED reading does NOT suppress the curator
+    #       anchor and vice-versa — both survive as distinct list entries.
     for _hf, _vf in (("fineness", "fineness_verified"),
                      ("weight_rough_g", "weight_rough_verified"),
                      ("diameter_mm", "diameter_mm_verified")):
@@ -478,14 +484,25 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
         held_verified = bool(final_entry.get(_vf))
         src_verified = (_or_merge_verified(members[1:], _vf)
                         if len(members) > 1 else None)
-        if held_verified or not src_verified:
-            # Hold wins: preserve the foundation's value + its verified flag.
-            out[_hf] = final_entry[_hf]
-            if final_entry.get(_vf) is not None:
-                out[_vf] = final_entry[_vf]
-        # else: a source member verifies this field — keep the collected
-        #       source value (out[_hf]) and its OR-merged verified flag,
-        #       letting the attested reading displace the unverified hold.
+        if (not held_verified) and src_verified:
+            # (a) §4 verified-wins: let the collected source readings +
+            #     OR-merged verified flag stand; drop the unverified hold.
+            continue
+        # (b) §9a preserve-all: union held value(s) with source readings.
+        held_val = final_entry[_hf]
+        merged = list(held_val) if isinstance(held_val, list) else [held_val]
+        collected = out.get(_hf)
+        if isinstance(collected, list):
+            def _k(e):
+                return (e.get("value"), e.get("source")) if isinstance(e, dict) else (e, None)
+            seen = {_k(e) for e in merged}
+            for e in collected:
+                if _k(e) not in seen:
+                    merged.append(e)
+                    seen.add(_k(e))
+        out[_hf] = merged
+        # `out[_vf]` already holds the OR-merge over all members (foundation
+        # + sources), which is the correct «any verified ⇒ verified» status.
 
     # Catalog rebuild: same principle as measurements — drop foundation's
     # absorb-cached list-form catalog values for cross-source fields
