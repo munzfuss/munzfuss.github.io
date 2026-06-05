@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-05T20:13:42Z'
+  last_updated_utc: '2026-06-05T21:12:19Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2171,4 +2171,32 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-05T20:13:41Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=320405:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '320405'
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS medal NID 320405 (Type='Commemorative medals',
+    10 Ducats gold).
+  status: resolved
+  instance_first_seen: '2026-06-05T21:12:19.238606Z'
+  last_seen: '2026-06-05T21:12:19.238606Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 320405
+  occurrences:
+  - run_utc: '2026-06-05T21:12:19.238606Z'
+    batch_label: MD
+    detail: 'Batch MD: N#320405 sampled during fetch = Commemorative medal (exonumia per CLAUDE.md §9.2),
+      classify_numista_scope → (False, ''exonumia''). Not saved. Folding into oos_excluded_nids.'
+    full_context:
+      kind: medal
+      type_field: Commemorative medals
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write folds NID into manifest oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T21:12:19Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
