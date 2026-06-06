@@ -36,26 +36,28 @@ losses. Status mixed:**
 - **SHIPPED (`49d4727` + cache `f71534b08`, committed, UNPUSHED):**
   per-variant Schou «hhv. … og …» list drop (81 by_letter variants).
   Safe — adds Schou values to existing entries, no id change.
-- **REVERTED (attempted this session, rolled back to clean):** (1)
-  by_letter year-less sub-variant recovery (`_extract_letter_groups`
-  drops variants whose line has no year, e.g. c4h117 «A) ring om kronen»
-  → 117A/117B lost; ~33 pages / +51 seed entries recoverable). (2)
-  year-prefix Schou «1829-37: 2» / «1731,1» (f6h4, c6h4) — systemic
-  `:`-sep + strip-year. **Why reverted:** the by_letter fix CHANGES
-  entry ids (bare `dk-hede-c4h112` → `c4h112a`/`c4h112b`), which breaks
-  a curator merge_decision referencing the bare id (`KeyError
-  dk-hede-c4h112` in merge) AND its resolution requires deciding the
-  c4h112 **sub-letter merge** — exactly the deferred «розглянемо
-  окремо» work. So this fix is ENTANGLED with the deferred sub-letter
-  merges; must be done as ONE coordinated pass. Dry-run also hinted the
-  merger may drop a hede value on consolidation (final showed Hede
-  117 → ['117','117A'], 117B absent) — verify on a clean run.
-  **Path forward** (coordinated): re-apply parser fixes → migrate the
-  c4h112 merge_decision (bare→112a/112b) with the curator's sub-letter
-  decision → make merge tolerant of dangling merge_decision refs
-  (warn-not-crash) → re-merge/absorb → verify sub-variants reach FINAL.
-- **The year-prefix Schou fix is id-safe** (only fixes Schou values) and
-  could ship independently of the by_letter entanglement if desired.
+- **SHIPPED — year-prefix Schou (`090b033` + cache `00cd21fb4`):**
+  «Schou 1829-37: 2» (year-range : die) / «Schou 1731,1» (Schou
+  year,running-no) — systemic `:`-sep + `_strip_year_tokens` (1500-1950,
+  Dav exempt). id-safe (0 by_letter changes). f6h4b → 2,3 ; c6h4 →
+  1,2,3 landed via 2 targeted seed edits (catalog is DEEP_MERGE so the
+  cleaned fresh value couldn't overwrite the stale existing one).
+- **SHIPPED — by_letter year-less recovery, Option B (`3fee3fa` + cache
+  `62ce09dc2`):** `_extract_letter_groups` no longer requires a year on
+  the variant line → +33 pages / +51 seed sub-variant entries (c4h117 →
+  117A/117B etc.). The id change (bare `dk-hede-c4h112` → `c4h112a/b`)
+  is handled WITHOUT changing the id mechanism (user steer):
+  (a) `lib/seed_merge.py` supersession-drop (uncurated bare with FRESH
+  sub-letter siblings is dropped — no bare+subletter dup);
+  (b) `merge_seeds_cross_source.py::_expand_member` — a merge_decision
+  member that is a now-absent Hede bare expands to its sub-letters
+  (`dk-hede-c4h112` → {`c4h112a`,`c4h112b`}); genuinely-missing →
+  warn+skip (no KeyError). force_union unions all; no_merge pairs only
+  across DISTINCT original members. Result: c4h112 «Hede 112 = KM 68»
+  applies to both 112A+112B; Hede 117 unifies 117A+117B (the «117B
+  dropped» was a stale-merge artifact — clean run unions all). Verified
+  via dry-run: 0 by_letter regressions, 0 unified entries lost, +12 net,
+  schema OK.
 - **REMAINING loss (analysed, not fixed):** of ~193 sub-variant-loss
   pages — 76 absent-from-seed (incl. in-scope c4h163 1 Speciedaler 1640,
   c4h164 — needs mint/filter diagnosis), 53 in-seed-bare regex-no-match
