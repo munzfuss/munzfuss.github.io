@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T16:13:57Z'
+  last_updated_utc: '2026-06-06T17:17:25Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3030,4 +3030,74 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-06T16:13:57Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia (commemorative medals).
+  status: resolved
+  instance_first_seen: '2026-06-06T17:09:56Z'
+  last_seen: '2026-06-06T17:14:17Z'
+  occurrence_count: 4
+  affected_ids:
+    numista:
+    - 151848
+    - 420060
+    - 143181
+    - 400184
+  occurrences:
+  - run_utc: '2026-06-06T17:09:56Z'
+    batch_label: MX
+    detail: 'Batch MX: N#151848 = ''500th anniversary of the unification of Ritzebuettel castle'' — Numista
+      Type=''Commemorative medals'', no denomination. classify_numista_scope → (False, exonumia). Not
+      saved.'
+  - run_utc: '2026-06-06T17:11:23Z'
+    batch_label: MX
+    detail: 'Batch MX: N#420060 = ''Medal - Death of pianist Hans von Buelow'' — Type=''Commemorative
+      medals > Personality medals'', no denomination. classify → exonumia. Not saved.'
+  - run_utc: '2026-06-06T17:12:46Z'
+    batch_label: MX
+    detail: 'Batch MX: N#143181 = ''150th anniversary Oevelgoenne-Neumuehlener Lotsenbruederschaft'' —
+      Type=''Commemorative medals'', Pewter, no denomination. exonumia. Not saved.'
+  - run_utc: '2026-06-06T17:14:17Z'
+    batch_label: MX
+    detail: 'Batch MX: N#400184 = ''Inauguration of the city hall of Hamburg'' — Type=''Commemorative
+      medals > Inauguration medals'', Bronze, no denomination. exonumia. Not saved. (4 of first-5 slice
+      were medals — bucket gap list contaminated.)'
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T17:14:23Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia (commemorative medals).
+  status: resolved
+  instance_first_seen: '2026-06-06T17:16:09Z'
+  last_seen: '2026-06-06T17:17:25Z'
+  occurrence_count: 2
+  affected_ids:
+    numista:
+    - 143182
+    - 378774
+  occurrences:
+  - run_utc: '2026-06-06T17:16:09Z'
+    batch_label: MX
+    detail: 'Batch MX: N#143182 = ''Souvenir Medal - Gardening exhibition'' — Type=''Commemorative medals
+      > Exhibition...'', silver-plated bronze, ''Round with a loop'', no denomination. exonumia. Not saved.'
+  - run_utc: '2026-06-06T17:17:25Z'
+    batch_label: MX
+    detail: 'Batch MX: N#378774 = ''100th anniversary Hamburg insurance club'' — Type=''Commemorative
+      medals'', silver 60mm, no denomination. exonumia. 6 of 7 fetched this run were 1890s commemorative
+      medals — switching Numista batch to brunswick_wolfenbuttel_principality for remaining slots.'
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write. Consider a full
+    Type-field sweep of hamburg_hanseatic_city uncached gap to bulk-exclude medals.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T17:17:25Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
