@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T07:10:24Z'
+  last_updated_utc: '2026-06-06T08:10:56Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2564,15 +2564,16 @@ anomalies:
   key_dims:
     source: numista
     bucket: hamburg_hanseatic_city
-  summary: BO.7 hamburg_hanseatic_city gap list contains OOS pattern strike N#106709 (1 Sechsling Pattern,
-    Type='Patterns').
+  summary: hamburg_hanseatic_city gap list contains OOS pattern strikes (Numista Type='Patterns').
   status: open
   instance_first_seen: '2026-06-06T07:10:24Z'
-  last_seen: '2026-06-06T07:10:24Z'
-  occurrence_count: 1
+  last_seen: '2026-06-06T08:10:56Z'
+  occurrence_count: 4
   affected_ids:
     numista:
     - 106709
+    - 178119
+    - 262530
   occurrences:
   - run_utc: '2026-06-06T07:10:24Z'
     batch_label: MN
@@ -2582,8 +2583,31 @@ anomalies:
       numista_batch: MN
       type: Patterns
       kind: pattern
-  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#106709
-    into oos_excluded_nids and resolve.
+  - run_utc: '2026-06-06T08:08:16Z'
+    batch_label: MO
+    detail: 'Batch MO: N#106709 = ''1 Sechsling (Pattern strike)'' Hamburg 1809, Type=''Patterns'' — OOS
+      per §9.1. Not saved.'
+    full_context:
+      numista_batch: MO
+      ucoin_batch: '356'
+      kind: pattern
+  - run_utc: '2026-06-06T08:09:30Z'
+    batch_label: MO
+    detail: 'Batch MO: N#178119 = ''1 Dreiling (Gold pattern strike)'' Hamburg 1823, KM# PnB15, Type=''Patterns''
+      — OOS per §9.1. Not saved.'
+    full_context:
+      numista_batch: MO
+      ucoin_batch: '356'
+      kind: pattern
+  - run_utc: '2026-06-06T08:10:56Z'
+    batch_label: MO
+    detail: 'Batch MO: N#262530 = ''1 Schilling (Gold Pattern)'' Hamburg 1823-1828, Type=''Patterns''
+      — OOS per §9.1. Not saved.'
+    full_context:
+      numista_batch: MO
+      ucoin_batch: '356'
+      kind: pattern
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold into oos_excluded_nids.
   resolution: null
   resolved_at: null
   resolved_by: null
