@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T09:17:36Z'
+  last_updated_utc: '2026-06-06T10:12:24Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2623,4 +2623,36 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-06T09:17:36Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS medals (exonumia per CLAUDE.md §9.2).
+  status: resolved
+  instance_first_seen: '2026-06-06T10:12:19.106768Z'
+  last_seen: '2026-06-06T10:12:19.106768Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 344958
+    - 192592
+    - 415966
+  occurrences:
+  - run_utc: '2026-06-06T10:12:19.106768Z'
+    batch_label: MQ
+    detail: 'Batch MQ: 3 of 5 enumerated NIDs are medals (Type=Commemorative/Personality/Award medals),
+      not standard circulation coins: N#344958 (Commemorative medals › Inauguration medals) — Salomon
+      Heine Hospital inauguration 1841; N#192592 (Personality medals › Wedding medals) — Conrad von Blücher-Altona
+      golden wedding 1844; N#415966 (Award medals › Scholastic/academic/scientific) — Medical Association
+      award medal 1844'
+    full_context:
+      numista_batch: MQ
+      kind: medal
+  proposed_fix: Fold OOS NIDs into BO.7 audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T10:12:24Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
