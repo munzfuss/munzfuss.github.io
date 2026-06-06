@@ -30,6 +30,52 @@ deferred). Detailed plan: `docs/V2_PIPELINE.md`. Detailed
 architecture: `docs/ARCHITECTURE.md` §«V2 entity-keyed pipeline».
 All other workstreams below paused during V2 unless user redirects.
 
+**§CT — Hede parser data-loss audit (2026-06-06). Catalog-graph tool
+(`scripts/oneoff/catalog_graph.py`, gitignored) surfaced 3 parser
+losses. Status mixed:**
+- **SHIPPED (`49d4727` + cache `f71534b08`, committed, UNPUSHED):**
+  per-variant Schou «hhv. … og …» list drop (81 by_letter variants).
+  Safe — adds Schou values to existing entries, no id change.
+- **REVERTED (attempted this session, rolled back to clean):** (1)
+  by_letter year-less sub-variant recovery (`_extract_letter_groups`
+  drops variants whose line has no year, e.g. c4h117 «A) ring om kronen»
+  → 117A/117B lost; ~33 pages / +51 seed entries recoverable). (2)
+  year-prefix Schou «1829-37: 2» / «1731,1» (f6h4, c6h4) — systemic
+  `:`-sep + strip-year. **Why reverted:** the by_letter fix CHANGES
+  entry ids (bare `dk-hede-c4h112` → `c4h112a`/`c4h112b`), which breaks
+  a curator merge_decision referencing the bare id (`KeyError
+  dk-hede-c4h112` in merge) AND its resolution requires deciding the
+  c4h112 **sub-letter merge** — exactly the deferred «розглянемо
+  окремо» work. So this fix is ENTANGLED with the deferred sub-letter
+  merges; must be done as ONE coordinated pass. Dry-run also hinted the
+  merger may drop a hede value on consolidation (final showed Hede
+  117 → ['117','117A'], 117B absent) — verify on a clean run.
+  **Path forward** (coordinated): re-apply parser fixes → migrate the
+  c4h112 merge_decision (bare→112a/112b) with the curator's sub-letter
+  decision → make merge tolerant of dangling merge_decision refs
+  (warn-not-crash) → re-merge/absorb → verify sub-variants reach FINAL.
+- **The year-prefix Schou fix is id-safe** (only fixes Schou values) and
+  could ship independently of the by_letter entanglement if desired.
+- **REMAINING loss (analysed, not fixed):** of ~193 sub-variant-loss
+  pages — 76 absent-from-seed (incl. in-scope c4h163 1 Speciedaler 1640,
+  c4h164 — needs mint/filter diagnosis), 53 in-seed-bare regex-no-match
+  (other variant-line formats), 22 out-of-scope post-1914, 16 multi-coin
+  pages. Plus **51 case-mismatched hede sub-letters** (kmk lowercase
+  «119b» vs hede uppercase «119B») — graph fixed (case-insensitive
+  label); DATA still case-split (affects matching — kmk-340579 «119b»
+  separate from 119B cluster). Systemic data fix pending: normalise hede
+  sub-letter to uppercase (merger ingest or per-builder).
+- **Curator verdicts in `catalog_graph.py::CURATOR_LINKS`** (graph-only,
+  NOT in pipeline): Hede 96 = KM 42; KM 80.1 = Hede 117/Sieg 41;
+  KM 80.2 = Hede 116/Sieg 40.
+
+**DEFERRED — Component-5 cross-Hede DATA merge (user: «запамʼятай але
+відклади», 2026-06-06).** «2 Skilling Christian IV» = one entry merging
+`unified-dk-hede-c4h116a` (116A/B + KM 80.2) + `unified-dk-hede-c4h117`
+(117/117A + KM 80.1) + `unified-dk-numista-197176` (116A/B + KM 69).
+Curator-decided but HELD with the 26 KM-distinguished sub-letter splits
+«розглянемо окремо». → `data/v2/merge_decisions/danish_realm.yml::merges`.
+
 **§CR + §CP/§CQ — KMK (8th specimen source) SHIPPED to final + pages
 (2026-06-02/03). All committed locally, UNPUSHED.** Chain of work this
 session:
