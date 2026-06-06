@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T08:10:56Z'
+  last_updated_utc: '2026-06-06T09:17:36Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2564,16 +2564,18 @@ anomalies:
   key_dims:
     source: numista
     bucket: hamburg_hanseatic_city
-  summary: hamburg_hanseatic_city gap list contains OOS pattern strikes (Numista Type='Patterns').
-  status: open
+  summary: Numista hamburg_hanseatic_city in_scope_nids contains OOS records (patterns + medals).
+  status: resolved
   instance_first_seen: '2026-06-06T07:10:24Z'
-  last_seen: '2026-06-06T08:10:56Z'
-  occurrence_count: 4
+  last_seen: '2026-06-06T09:17:30Z'
+  occurrence_count: 5
   affected_ids:
     numista:
     - 106709
     - 178119
     - 262530
+    - 119177
+    - 414405
   occurrences:
   - run_utc: '2026-06-06T07:10:24Z'
     batch_label: MN
@@ -2607,7 +2609,18 @@ anomalies:
       numista_batch: MO
       ucoin_batch: '356'
       kind: pattern
-  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold into oos_excluded_nids.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  - run_utc: '2026-06-06T09:17:30Z'
+    batch_label: MP
+    detail: 'Batch MP: 5 of 10 sampled uncached NIDs OOS — N#106709 (1 Sechsling pattern), N#178119 (1
+      Dreiling gold pattern KM#PnB15), N#262530 (1 Schilling gold pattern), N#119177 (1 Schilling gold
+      pattern), N#414405 (wedding medal, Personality medals). Not saved; remain candidates for oos_excluded_nids
+      reclassification.'
+    full_context:
+      numista_batch: MP
+      bucket: hamburg_hanseatic_city
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold these NIDs
+    into the audit's oos_excluded_nids slot so the §2.1 picker stops re-offering them.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T09:17:36Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
