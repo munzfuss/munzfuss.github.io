@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T17:17:25Z'
+  last_updated_utc: '2026-06-06T18:14:02Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3100,4 +3100,43 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-06T17:17:25Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:query=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    query: hamburg_hanseatic_city
+  summary: 'BO.7 hamburg_hanseatic_city gap list contains OOS exonumia + patterns: 3 commemorative medals
+    (157988, 391089, 395232) + 1 pattern strike (318156).'
+  status: resolved
+  instance_first_seen: '2026-06-06T18:13:54.737722Z'
+  last_seen: '2026-06-06T18:13:54.737722Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 157988
+    - 391089
+    - 395232
+    - 318156
+  occurrences:
+  - run_utc: '2026-06-06T18:13:54.737722Z'
+    batch_label: MY
+    detail: 'Batch MY: of 5 uncached NIDs at the head of hamburg_hanseatic_city, 4 are OOS — 157988 (Commemorative
+      medals, 1898 gymnastics tournament), 391089 (Commemorative medals, 1902 Reformed Community), 395232
+      (Commemorative medals, 1902 Sparkasse), 318156 (Patterns, 5 Mark copper pattern strike 1906). Confirmed
+      via classify_numista_scope. NIDs not cached; remain in audit until reclassified.'
+    full_context:
+      oos_kinds:
+        exonumia:
+        - 157988
+        - 391089
+        - 395232
+        pattern:
+        - 318156
+      numista_batch: MY
+  proposed_fix: Fold the 4 NIDs into _BO7_audit's oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T18:14:01Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
