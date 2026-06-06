@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T03:15:13Z'
+  last_updated_utc: '2026-06-06T05:24:27Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2368,4 +2368,109 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-06T03:15:13Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city in_scope_nids contains OOS exonumia (Commemorative medals).
+  status: resolved
+  instance_first_seen: '2026-06-06T05:08:20Z'
+  last_seen: '2026-06-06T05:23:09Z'
+  occurrence_count: 10
+  affected_ids:
+    numista:
+    - 304367
+    - 178116
+    - 178115
+    - 178107
+    - 314367
+    - 178117
+    - 188683
+    - 573241
+    - 134021
+    - 129561
+  occurrences:
+  - run_utc: '2026-06-06T05:08:20Z'
+    batch_label: ML
+    detail: 'Batch ML: N#304367 = 1 Dreiling Gold Pattern strike 1794 (KM# PnA13, Type=Patterns) — OOS
+      per CLAUDE.md §9.1. Not saved; remains enumerated in in_scope_nids.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      km: PnA13
+  - run_utc: '2026-06-06T05:10:54Z'
+    batch_label: ML
+    detail: 'Batch ML: N#178116 = 4 Schilling Gold pattern strike 1795 (KM# PnB13, Type=Patterns) — OOS
+      per CLAUDE.md §9.1. Not saved.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      km: PnB13
+  - run_utc: '2026-06-06T05:11:49Z'
+    batch_label: ML
+    detail: 'Batch ML: N#178115 = 1 Dreiling Gold pattern strike 1796 (KM# Pn13, Type=Patterns) — OOS
+      per CLAUDE.md §9.1. Not saved.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      km: Pn13
+  - run_utc: '2026-06-06T05:16:27Z'
+    batch_label: ML
+    detail: 'Batch ML: N#178107 = 8 Schilling Gold pattern strike 1797 (KM# 518 Type=Patterns) — OOS per
+      CLAUDE.md §9.1. Not saved.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      km: '518'
+  - run_utc: '2026-06-06T05:17:45Z'
+    batch_label: ML
+    detail: 'Batch ML: N#314367 = 32 Schilling Gold pattern strike 1797 (Fr# 1132, Type=Patterns) — OOS
+      per CLAUDE.md §9.1. Not saved.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      fr: '1132'
+  - run_utc: '2026-06-06T05:18:59Z'
+    batch_label: ML
+    detail: 'Batch ML: N#178117 = 1 Schilling Gold pattern strike 1798 (KM# Pn14, Type=Patterns) — OOS
+      per CLAUDE.md §9.1. Not saved.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      km: Pn14
+  - run_utc: '2026-06-06T05:20:06Z'
+    batch_label: ML
+    detail: 'Batch ML: N#188683 = Medal ''Departure of the Danes from Hamburg'' 1801 (Type=Commemorative
+      medals) — OOS per CLAUDE.md §9.2 exonumia. Not saved.'
+    full_context:
+      reason: exonumia_medal
+      kind: medal
+  - run_utc: '2026-06-06T05:21:00Z'
+    batch_label: ML
+    detail: 'Batch ML: N#573241 = 10 Ducats Portugaloser commemorative medal 1802 (See-Assecuranz-Compagnie,
+      Type=Commemorative medals) — OOS per CLAUDE.md §9.2. Not saved.'
+    full_context:
+      reason: exonumia_medal
+      kind: medal
+  - run_utc: '2026-06-06T05:21:57Z'
+    batch_label: ML
+    detail: 'Batch ML: N#134021 = Calendar medal ND(1804) (Type=Commemorative medals) — OOS per CLAUDE.md
+      §9.2. Not saved.'
+    full_context:
+      reason: exonumia_medal
+      kind: medal
+  - run_utc: '2026-06-06T05:23:09Z'
+    batch_label: ML
+    detail: 'Batch ML: N#129561 = ''Lifting of the Elbe river blockade'' commemorative medal 1805 (Type=Commemorative
+      medals) — OOS per CLAUDE.md §9.2. Not saved.'
+    full_context:
+      reason: exonumia_medal
+      kind: medal
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold medal NIDs
+    into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T05:24:27Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
