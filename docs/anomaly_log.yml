@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T10:12:24Z'
+  last_updated_utc: '2026-06-06T11:12:40Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2655,4 +2655,34 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-06T10:12:24Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=69938:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '69938'
+  summary: numista NID 69938 enumerated in-scope for hamburg_hanseatic_city is a commemorative medal (exonumia,
+    OOS per CLAUDE.md §9.2).
+  status: resolved
+  instance_first_seen: '2026-06-06T11:10:24Z'
+  last_seen: '2026-06-06T11:10:24Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 69938
+  occurrences:
+  - run_utc: '2026-06-06T11:10:24Z'
+    batch_label: MR
+    detail: 'Batch MR defensive-sample: N#69938 Type=''Commemorative medals'', Composition=Tin, title
+      ''Souvenir medal - Hamburg'', ND(1849). Not a circulation coin. NOT saved.'
+    full_context:
+      type: Commemorative medals
+      composition: Tin
+      kind: medal
+  proposed_fix: Fold NID 69938 into BO.7 audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write (kind=medal).
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T11:12:40Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
