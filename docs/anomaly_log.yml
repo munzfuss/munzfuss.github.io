@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T11:12:40Z'
+  last_updated_utc: '2026-06-06T13:18:29Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2685,4 +2685,38 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-06T11:12:40Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:query=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    query: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains exonumia (Commemorative medals) mis-enumerated
+    as in-scope coins.
+  status: resolved
+  instance_first_seen: '2026-06-06T13:18:23.151440Z'
+  last_seen: '2026-06-06T13:18:23.151440Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 404359
+    - 168226
+    - 443510
+    - 171297
+  occurrences:
+  - run_utc: '2026-06-06T13:18:23.151440Z'
+    batch_label: MT
+    detail: 'Batch MT: 4 of the first 5 picked NIDs are Numista Type=''Commemorative medals'' (exonumia,
+      OOS per CLAUDE.md §9.2). N#404359 (german-reformed church 60th anniv 1856), N#168226 (ship Borussia
+      1856), N#443510 (St. Nikolai inauguration 1863), N#171297 (free trade celebration 1867). All bronze/silver-plated-bronze
+      medals, no denomination.'
+    full_context:
+      numista_batch: MT
+      ucoin_batch: '361'
+      oos_kind: exonumia/medal
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold these NIDs
+    into hamburg_hanseatic_city oos_excluded_nids slot so the §2.1 picker stops re-offering them.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T13:18:29Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
