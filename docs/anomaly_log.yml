@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T05:24:27Z'
+  last_updated_utc: '2026-06-06T06:16:10Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2473,4 +2473,89 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-06T05:24:27Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=178118:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '178118'
+  summary: Numista NID 178118 in hamburg_hanseatic_city gap is a Pattern (KM# PnA15, '1 Dreiling Gold
+    pattern strike') — OOS per CLAUDE.md §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-06T06:09:55Z'
+  last_seen: '2026-06-06T06:09:55Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 178118
+  occurrences:
+  - run_utc: '2026-06-06T06:09:55Z'
+    batch_label: MM
+    detail: 'Batch MM: classify_numista_scope returned (False, ''pattern'', "pattern/trial strike — Numista
+      Type=''Patterns''"). Not saved to cache.'
+    full_context:
+      type: Patterns
+      references: KM# PnA15, Jaeg 6 NWD# 29b
+      kind: pattern
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold NID 178118
+    into _BO7_audit oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T06:10:00Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=266285:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '266285'
+  summary: Numista NID 266285 in hamburg_hanseatic_city gap is a Pattern (Schlum# 346.13, '1 Sechsling
+    Gold pattern') — OOS per CLAUDE.md §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-06T06:12:08Z'
+  last_seen: '2026-06-06T06:12:08Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 266285
+  occurrences:
+  - run_utc: '2026-06-06T06:12:08Z'
+    batch_label: MM
+    detail: 'Batch MM: Numista Type=''Patterns''. Not saved to cache.'
+    full_context:
+      type: Patterns
+      references: Schlum# 346.13
+      kind: pattern
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write folds NID 266285 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T06:12:09Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=314345:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '314345'
+  summary: Numista NID 314345 in hamburg_hanseatic_city gap is a Pattern ('32 Schillinge Courant Gold
+    pattern strike') — OOS per CLAUDE.md §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-06T06:16:10Z'
+  last_seen: '2026-06-06T06:16:10Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 314345
+  occurrences:
+  - run_utc: '2026-06-06T06:16:10Z'
+    batch_label: MM
+    detail: 'Batch MM: Numista Type=''Patterns''. Not saved to cache.'
+    full_context:
+      type: Patterns
+      kind: pattern
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write folds NID 314345 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T06:16:10Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
