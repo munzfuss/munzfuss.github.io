@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T19:20:02Z'
+  last_updated_utc: '2026-06-06T20:13:35Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3254,4 +3254,35 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-06T19:20:02Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:query=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    query: hamburg_hanseatic_city
+  summary: 'BO.7 hamburg_hanseatic_city gap list head contains OOS records: 3 commemorative medals (exonumia
+    §9.2) + 2 patterns (§9.1).'
+  status: resolved
+  instance_first_seen: '2026-06-06T20:13:29.873739Z'
+  last_seen: '2026-06-06T20:13:29.873739Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 388701
+    - 389495
+    - 48690
+    - 378504
+    - 295084
+  occurrences:
+  - run_utc: '2026-06-06T20:13:29.873739Z'
+    batch_label: NA
+    detail: 'Batch NA: all 5 head gap_nids OOS via classify_numista_scope — 388701 medal, 389495 medal,
+      48690 pattern (KM#Pn21), 378504 medal, 295084 pattern.'
+    full_context:
+      numista_batch: NA
+      ucoin_batch: '368'
+  proposed_fix: Fold into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T20:13:35Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
