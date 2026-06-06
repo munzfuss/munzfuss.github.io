@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T02:10:19Z'
+  last_updated_utc: '2026-06-06T03:15:13Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2291,7 +2291,7 @@ anomalies:
     nid: '320412'
   summary: Numista N#320412 enumerated in BO.7 hamburg_hanseatic_city is a Commemorative medal (exonumia,
     OOS per §9.2).
-  status: open
+  status: resolved
   instance_first_seen: '2026-06-06T02:10:19Z'
   last_seen: '2026-06-06T02:10:19Z'
   occurrence_count: 1
@@ -2305,6 +2305,67 @@ anomalies:
       → (False, ''exonumia''). Not saved.'
   proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#320412
     into oos_excluded_nids slot.
-  resolution: null
-  resolved_at: null
-  resolved_by: null
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T03:07:14Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=86205:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '86205'
+  summary: Numista N#86205 enumerated in BO.7 hamburg_hanseatic_city is a Pattern strike (KM# Pn11, OOS
+    per §9.1).
+  status: resolved
+  instance_first_seen: '2026-06-06T03:07:52.569260Z'
+  last_seen: '2026-06-06T03:07:52.569260Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 86205
+  occurrences:
+  - run_utc: '2026-06-06T03:07:52.569260Z'
+    batch_label: MJ
+    detail: 'Batch MJ: N#86205 ''1 Schilling (Pattern strike)'' Type=''Patterns'' KM# Pn11, Gold (.999),
+      1778. classify_numista_scope → (False, ''pattern''). Not saved.'
+    full_context:
+      numista_batch: MJ
+      type: Patterns
+      refs: KM# Pn11
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#86205
+    into oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T03:15:13Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=178114:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '178114'
+  summary: Numista N#178114 enumerated in BO.7 hamburg_hanseatic_city is a Gold pattern strike (KM# PnA12,
+    OOS per §9.1).
+  status: resolved
+  instance_first_seen: '2026-06-06T03:12:34.049802Z'
+  last_seen: '2026-06-06T03:12:34.049802Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 178114
+  occurrences:
+  - run_utc: '2026-06-06T03:12:34.049802Z'
+    batch_label: MJ
+    detail: 'Batch MJ: N#178114 ''1 Dreiling (Gold pattern strike)'' Type=''Patterns'' KM# PnA12, Gold,
+      1786. classify_numista_scope → (False, ''pattern''). Not saved.'
+    full_context:
+      numista_batch: MJ
+      type: Patterns
+      refs: KM# PnA12
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#178114
+    into oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T03:15:13Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
