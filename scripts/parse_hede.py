@@ -1249,8 +1249,11 @@ def _extract_letter_groups(text: str, page_hede: str) -> dict | None:
             mm_match = mm_m
         mintmaster = mm_match.group(1) if mm_match else None
         plausible_years = [y for y in years if 1450 <= y["year"] <= 1950]
-        if not plausible_years:
-            continue
+        # A year-less variant line is still a real sub-variant — many pages
+        # distinguish sub-types by DESIGN («A) ring om kronen» vs «B) uden
+        # ring», c4h117) with years only in the Zincksamlingen list. The
+        # «Hede {page_hede}{letter}» anchor (checked above) is the reliable
+        # signal; do NOT drop the letter just because its line carries no year.
         out[letter] = {
             "years": plausible_years,
             "catalog_refs": refs,

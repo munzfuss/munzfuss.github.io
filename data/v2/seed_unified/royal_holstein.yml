@@ -2,7 +2,7 @@
 # Generated 2026-06-06 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
-# Input: 1593 per-source seed entries.
+# Input: 1597 per-source seed entries.
 # Output: 987 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
@@ -4176,13 +4176,16 @@ coins:
     hede:
     - 21A
     - 21B
+    - 21C
     hede_volume: c3h
     schou:
     - 13-18
     - 19-20
+    - '1'
     sieg:
     - '44.1'
     - '44.2'
+    - '44.3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -4213,6 +4216,7 @@ coins:
   composed_of:
   - dk-hede-c3h21a
   - dk-hede-c3h21b
+  - dk-hede-c3h21c
 - id: unified-dk-hede-c3h22
   fuss: seed_unsorted
   phase: hede
@@ -5843,7 +5847,7 @@ coins:
   composed_of:
   - denmark-numismaster-65634
   - dk-hede-c4h4
-- id: unified-dk-hede-c4h5
+- id: unified-dk-hede-c4h5a
   fuss: seed_unsorted
   phase: hede
   kind: kurant
@@ -5857,12 +5861,12 @@ coins:
   ruler: Christian IV.
   mint: Haderslev
   catalog:
-    hede: '5'
+    hede:
+    - 5A
+    - 5B
     hede_volume: c4h
     schou: '3'
     sieg: '8'
-    others:
-    - schou# 4
     fr: '62.1'
   metal: gold
   metal_verified: true
@@ -5879,7 +5883,7 @@ coins:
     ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h5.htm
-    ref: danskmoent.dk (Hede c4h5)
+    ref: danskmoent.dk (Hede c4h5A)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -5888,7 +5892,8 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - denmark-numismaster-65629
-  - dk-hede-c4h5
+  - dk-hede-c4h5a
+  - dk-hede-c4h5b
 - id: unified-dk-hede-c4h8a
   fuss: seed_unsorted
   phase: hede
@@ -8512,7 +8517,7 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - dk-hede-c7h8
-- id: unified-dk-hede-c7h9
+- id: unified-dk-hede-c7h9a
   fuss: seed_unsorted
   phase: hede
   kind: kurant
@@ -8523,13 +8528,16 @@ coins:
   ruler: Christian VII.
   mint: Rethwisch
   catalog:
-    hede: '9'
+    hede:
+    - 9A
+    - 9B
     hede_volume: c7h
-    schou: '9'
-    sieg: '3'
-    others:
-    - schou# 10
-    - sieg# 2
+    schou:
+    - '9'
+    - '10'
+    sieg:
+    - '3'
+    - '2'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -8545,7 +8553,7 @@ coins:
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h9.htm
-    ref: danskmoent.dk (Hede c7h9)
+    ref: danskmoent.dk (Hede c7h9A)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -8558,7 +8566,8 @@ coins:
     basis: fin
     unit_raw: speciedalere
   composed_of:
-  - dk-hede-c7h9
+  - dk-hede-c7h9a
+  - dk-hede-c7h9b
 - id: unified-dk-hede-c8h13ab
   fuss: seed_unsorted
   phase: hede
@@ -8913,7 +8922,7 @@ coins:
     unit_raw: daler
   composed_of:
   - dk-hede-f2h30b
-- id: unified-dk-hede-f2h31
+- id: unified-dk-hede-f2h31a
   fuss: seed_unsorted
   phase: hede
   kind: scheide
@@ -8928,15 +8937,16 @@ coins:
   mint: Flensburg
   catalog:
     hede:
-    - '31'
     - 31A
+    - 31B
+    - '31'
     hede_volume: f2h
-    schou: '27'
-    sieg: '32.1'
-    others:
-    - sieg# 32.2
-    - schou# 32
-    - schou# 16
+    schou:
+    - 5-6,14-26
+    - 27,29
+    sieg:
+    - '32.1'
+    - '32.2'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -8952,7 +8962,7 @@ coins:
   sources:
   - type: literature
     url: https://www.danskmoent.dk/fr/f2h31.htm
-    ref: danskmoent.dk (Hede f2h31)
+    ref: danskmoent.dk (Hede f2h31A)
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/155202
     ref: KMM 155202 (Inv. FP 3115.5)
@@ -8980,7 +8990,8 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
-  - dk-hede-f2h31
+  - dk-hede-f2h31a
+  - dk-hede-f2h31b
   - kmk-155202
   - kmk-203799
   - kmk-279226

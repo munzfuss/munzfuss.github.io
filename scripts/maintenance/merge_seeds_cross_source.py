@@ -3138,14 +3138,44 @@ def process_entity(entity_id: str) -> dict:
     for cid in seeds_by_id:
         uf.find(cid)
 
+    def _expand_member(mid: str) -> list[str]:
+        """Resolve a merge_decision member id to the real seed id(s) present.
+
+        A Hede BARE id (e.g. `dk-hede-c4h112`) whose page the parser now splits
+        into sub-letter entries (`c4h112a`, `c4h112b`) expands to those — the
+        curator decision was made at the «whole Hede 112» level, so it applies
+        to every sub-variant (force_union: they ARE one coin; no_merge: each
+        sub-variant differs from the other-coin members). A genuinely-missing id
+        resolves to `[]` so the caller warns + skips (never KeyError-crashes).
+        Non-Hede ids (numista/ucoin/numismaster) have no alpha-suffix siblings,
+        so this is a no-op identity for them."""
+        if mid in seeds_by_id:
+            return [mid]
+        if re.search(r"\d$", mid):
+            subs = sorted(k for k in seeds_by_id
+                          if k.startswith(mid) and k[len(mid):].isalpha())
+            if subs:
+                return subs
+        return []
+
     # 1. Apply explicit no_merges first (curator decisions take precedence
-    #    over any auto-rule).
+    #    over any auto-rule). Expand each member; pair ONLY across distinct
+    #    original members (never within one member's sub-letter expansion —
+    #    112a/112b are sub-variants of one coin, not a curator no_merge pair).
     forced_no_merges: list[dict] = []
     for entry in decisions["no_merges"]:
-        members = entry.get("members") or []
-        for i in range(len(members)):
-            for j in range(i + 1, len(members)):
-                uf.add_no_merge(members[i], members[j], explicit=True)
+        groups = []
+        for m in (entry.get("members") or []):
+            exp = _expand_member(m)
+            if exp:
+                groups.append(exp)
+            else:
+                print(f"  ⚠ no_merge member {m!r} absent from seed — skipped")
+        for gi in range(len(groups)):
+            for gj in range(gi + 1, len(groups)):
+                for a in groups[gi]:
+                    for b in groups[gj]:
+                        uf.add_no_merge(a, b, explicit=True)
         forced_no_merges.append(entry)
 
     # 2. PRE-PASS: run matcher on every pair, register no_match pairs in
@@ -3431,11 +3461,19 @@ def process_entity(entity_id: str) -> dict:
     #    (genuine curator contradiction → warn, leave separate).
     forced_merges: list[dict] = []
     for entry in decisions["merges"]:
-        members = entry.get("members") or []
-        for i in range(1, len(members)):
-            ok, conflict = uf.force_union(members[0], members[i])
+        expanded: list[str] = []
+        for m in (entry.get("members") or []):
+            exp = _expand_member(m)
+            if exp:
+                expanded.extend(exp)
+            else:
+                print(f"  ⚠ merge member {m!r} absent from seed — skipped")
+        # union every expanded id into one class (a curator bare-Hede merge
+        # implies its sub-letters are the same coin → they join the class too).
+        for i in range(1, len(expanded)):
+            ok, conflict = uf.force_union(expanded[0], expanded[i])
             if not ok:
-                print(f"  ⚠ forced merge {members[0]} + {members[i]} "
+                print(f"  ⚠ forced merge {expanded[0]} + {expanded[i]} "
                       f"conflicts with explicit no_merge {sorted(conflict)} "
                       f"— left separate")
         forced_merges.append(entry)

@@ -63,6 +63,7 @@ Usage (in a builder):
 """
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Any
 
@@ -305,6 +306,42 @@ def merge_seed(
     for cid in sorted(orphan_ids):
         out.append(existing_by_id[cid])
         stats["orphan_curated"] += 1
+
+    # 2b. Drop an UNCURATED bare base entry that FRESH sub-entries now supersede:
+    #     a fresh id = bare id + an alpha sub-letter suffix (e.g. «…c4h117»
+    #     superseded by fresh «…c4h117a»/«…c4h117b» once the parser learns to
+    #     break out the sub-variants). Applies to orphan-kept AND freshly-built
+    #     bare entries, so the seed never carries both the bare page AND its
+    #     sub-letters. The sibling must be FRESH (not a stale orphan), so a bare
+    #     whose only sub-letter is itself a stale orphan is left untouched.
+    #     Curated bases (real fuss / `_curation_holds`) are always kept.
+    #     NB: merge_decisions that reference a dropped bare id are resolved by
+    #     the cross-source merger's `_expand_member` (bare → sub-letters), so
+    #     dropping the bare here does NOT dangle those references.
+    fresh_ids = set(fresh_by_id)
+
+    def _is_curated(c) -> bool:
+        if not isinstance(c, dict):
+            return True
+        if c.get("_curation_holds"):
+            return True
+        return c.get("fuss") not in (None, "seed_unsorted")
+
+    kept = []
+    for c in out:
+        cid = c.get("id") if isinstance(c, dict) else None
+        superseded = bool(
+            cid and re.search(r"\d$", cid) and not _is_curated(c)
+            and any(fid != cid and fid.startswith(cid) and fid[len(cid):].isalpha()
+                    for fid in fresh_ids)
+        )
+        if superseded:
+            stats["superseded_dropped"] = stats.get("superseded_dropped", 0) + 1
+            if cid not in fresh_ids:
+                stats["orphan_curated"] -= 1
+            continue
+        kept.append(c)
+    out = kept
 
     # 3. Apply curator-recorded source-index errata (§CN) LAST — after the
     # merge so the correction wins over the parser value, on every output
