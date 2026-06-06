@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-05T23:16:08Z'
+  last_updated_utc: '2026-06-06T02:10:19Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -2283,3 +2283,28 @@ anomalies:
     refresh prunes them from in_scope.
   resolved_at: '2026-06-05T23:16:08Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=320412:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '320412'
+  summary: Numista N#320412 enumerated in BO.7 hamburg_hanseatic_city is a Commemorative medal (exonumia,
+    OOS per §9.2).
+  status: open
+  instance_first_seen: '2026-06-06T02:10:19Z'
+  last_seen: '2026-06-06T02:10:19Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 320412
+  occurrences:
+  - run_utc: '2026-06-06T02:10:19Z'
+    batch_label: MI
+    detail: 'Batch MI: N#320412 ''10 Ducats'' Type=''Commemorative medals'' Gaed# 1932 only, no KM. classify_numista_scope
+      → (False, ''exonumia''). Not saved.'
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#320412
+    into oos_excluded_nids slot.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
