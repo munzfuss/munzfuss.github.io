@@ -446,10 +446,30 @@ _REFS_RE = re.compile(
     # (normalised to a comma in _extract_refs). Without this the whole Schou
     # list of such a variant was dropped (81 by_letter variants affected).
     r"(?:hhv\.?\s*|henholdsvis\s*)?"
+    # «:» joins year→die in «Schou 1829-37: 2, 1838: 3» / «Hede 13A: 1876» —
+    # the leading year is dropped in _extract_refs (see _strip_year_tokens).
     r"([\d]+(?:\.\d+)*(?:[A-Za-z][\w\.]*)?"
-    r"(?:(?:[\-/,]|\s+og)\s*\d+(?:\.\d+)*[A-Za-z]*)*)",
+    r"(?:(?:[\-/,:]|\s+og)\s*\d+(?:\.\d+)*[A-Za-z]*)*)",
     re.IGNORECASE,
 )
+
+
+def _strip_year_tokens(num: str, catalogue: str) -> str:
+    """Drop year / year-range tokens from a captured number list. Danish pages
+    write «Schou 1829-37: 2» (year-range : die) and «Schou 1731,1» (Schou
+    year,running-no) — the LEADING year is not a catalogue number. A 4-digit
+    1500-1950 leading value can only be a year for Schou/Hede/Sieg/KM/Fr/Galster
+    (their numbering never reaches the 1500s). Dav is EXEMPT — Davenport numbers
+    legitimately sit in the 1200-1700s (Dav 1288, 1725)."""
+    if catalogue == "Dav":
+        return num
+    kept = []
+    for t in num.split(","):
+        head = t.split("-")[0]
+        if head.isdigit() and 1500 <= int(head) <= 1950:
+            continue
+        kept.append(t)
+    return ",".join(kept)
 
 
 def _extract_refs(text: str) -> dict[str, list[str]]:
@@ -462,7 +482,11 @@ def _extract_refs(text: str) -> dict[str, list[str]]:
         elif catalogue == "Friedberg":
             catalogue = "Fr"
         num = re.sub(r"\bog\b", ",", m.group(2))   # «6, 16-29 og 16-22» → «6,16-29,16-22»
+        num = num.replace(":", ",")                 # «1829-37: 2» → «1829-37,2»
         num = re.sub(r"\s+", "", num)
+        num = _strip_year_tokens(num, catalogue)    # drop leading year(-range) tokens
+        if not num:
+            continue
         bucket = refs.setdefault(catalogue, [])
         if num not in bucket:
             bucket.append(num)
