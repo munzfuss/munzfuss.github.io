@@ -89,11 +89,14 @@ maintenance README) surfaced 3 parser losses. Status mixed:**
   vertex bridges Hede 29↔32 but per curator is most-likely a DIFFERENT die for
   each — not evidence of identity). Hub colouring driven by `PROCESSED` — **ALL
   9 components done (green ✓) as of 2026-06-07.** STANDING TASK (user): work
-  through ALL graph cases, recording each verdict — **COMPLETE**. NEXT (deferred,
-  user-gated): promote the recorded CURATOR_LINKS (merges) + CURATOR_DISTINCT
-  (no_merges) into `data/v2/merge_decisions/<entity>.yml` so the merger/absorb
-  enforce them. Component-1 + component-5 also carry deferred cross-Hede DATA
-  merges (see below).
+  through ALL graph cases, recording each verdict — **COMPLETE**.
+  **PROMOTED to `merge_decisions/danish_realm.yml` (2026-06-07, commit 80026ab):**
+  3 merges (comp 1/2/4 all-one-coin) + 14 no_merges (comp 3/5/7/8/9 distinctness).
+  seed_unified re-merged 7908→7895 (−13); verified 0 outsiders, all no_merge pairs
+  distinct. **NOT promoted (catalog-attribution, need §4 _source_errata not merge):**
+  comp 3 Hede96=KM42 (numista-15669 labels itself Hede 93A), comp 7 Hede26=KM413 /
+  Hede31=KM415, comp 8 Hede27=KM419 — these reassign a KM our data attributes to a
+  DIFFERENT Hede, so merging would unite curator-distinct coins. See FINAL-CONSOLIDATION below.
 - **Graph node-merge rules (`scripts/maintenance/catalog_graph.py`):** per-ruler
   namespacing; Hede sub-letters → one base vertex (case-insensitive
   119A=119a); Schou dies → one set-vertex per Hede; **Sieg dot-sub-numbers
@@ -101,12 +104,36 @@ maintenance README) surfaced 3 parser losses. Status mixed:**
   unlike KM, whose .N can be different coins per §9.4); Dav EC-volume
   prefix stripped; `_resolve_member` self-heals merge-shifted unified-ids.
 
-**DEFERRED — Component-5 cross-Hede DATA merge (user: «запамʼятай але
-відклади», 2026-06-06).** «2 Skilling Christian IV» = one entry merging
-`unified-dk-hede-c4h116a` (116A/B + KM 80.2) + `unified-dk-hede-c4h117`
-(117/117A + KM 80.1) + `unified-dk-numista-197176` (116A/B + KM 69).
-Curator-decided but HELD with the 26 KM-distinguished sub-letter splits
-«розглянемо окремо». → `data/v2/merge_decisions/danish_realm.yml::merges`.
+**SUPERSEDED — the old «Component-5 cross-Hede DATA merge» note (2026-06-06,
+«merge 116+117+numista-197176»).** The later SYSTEMATIC component-5 verdict
+(catalog_graph pass, user msg «2 скілінга це дві різні монети») is the opposite:
+Hede 116 (KM 80.2 / Sieg 40) ≠ Hede 117 (KM 80.1 / Sieg 41) — TWO distinct coins.
+This also matches the already-committed Group-B decisions (which keep KM 80.1 /
+MC_65041 separate from Hede 116). The split verdict is now pinned via
+`merge_decisions::no_merges` (comp 5, commit 80026ab). Do NOT resurrect the
+old merge — it was wrong.
+
+**PENDING — FINAL-LAYER CONSOLIDATION of the comp-1/2/4 merges (2026-06-07).**
+The seed_unified merge is done (merge_decisions + commit 80026ab), but the
+`final/danish_realm.yml` layer still has each merged coin SPLIT across multiple
+foundations with CONFLICTING fuss — the merge surfaced a bulk-promote
+mis-classification. `absorb` is foundation-immutable (DF1): it flags
+«curator classification clash» and SKIPS (won't auto-consolidate). The
+`classification_decisions::assignments` mechanism ADDS new finals (for
+genuinely-new coins) — it does NOT reclassify/merge EXISTING clashing
+foundations. So consolidation needs either a new foundation-merge step or
+manual foundation surgery. Curator-guided fuss (user 2026-06-07: «з кронами
+ясно kronemont; з марками менш очевидно, не критично, якщо неясно лишай
+seed_unsorted»):
+  - comp 2  1 Krone Christian V 1690-92  → `kronemont/II` (clear: majority +
+            Hede pieces already kronemont/II; precedent «1 Krone Chr V 1676-78»).
+  - comp 4  2 Mark Frederik III 1665-67  → `kronemont/I` (clear: all 3 final
+            entries already agree kronemont/I; precedent «2 Mark Frk III 1652»).
+  - comp 1  1 Krone Frederik III 1652-53 → `kronemont`, phase AMBIGUOUS: Hede
+            piece f3h91 = kronemont/I, ucoin piece tid-97152 = kronemont_chr_iv/II;
+            both phases' data list «1 Krone Frk III 1652-1653». 9_25_thaler/I
+            (numista-143477) is the clear mis-classification (Krone ≠ Speciedaler).
+            Needs Hede standard-param check to settle I vs chr_iv/II.
 
 **§CR + §CP/§CQ — KMK (8th specimen source) SHIPPED to final + pages
 (2026-06-02/03). All committed locally, UNPUSHED.** Chain of work this
