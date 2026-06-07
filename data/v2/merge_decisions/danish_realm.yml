@@ -129,6 +129,55 @@ merges:
       Verified 0 outsiders dragged in (all 8 source clusters contain only
       these 20 family members). danskmoent.dk/chr/c5h112a.htm.
 
+  # === Catalog-graph disambiguation pass (curator decision 2026-06-06/07,
+  # Serhii, by image — scripts/maintenance/catalog_graph.py 9-component pass).
+  # Each "all one coin" verdict force-unites the clusters the auto-matcher kept
+  # apart on KM/Hede sub-number divergence. Divergent KM/Hede/Sieg accumulate
+  # list-form per §9a; nominal divergences surface in match_uncertainty. ===
+
+  # Component 1 — 1 Krone Frederik III (= 4 Mark Danske): ALL one coin despite
+  # two KM families (KM 186.x 1652-53 + KM 192.x 1653) and three Hede (87/91/95).
+  - members:
+      - denmark-numismaster-65272   # KM 186.1, Hede 87, Dav 3569, Schou 22
+      - denmark-numismaster-65273   # KM 186.2, Hede 87, Dav 3569A
+      - denmark-numismaster-65274   # KM 192.1, Dav 3570 (no Hede)
+      - denmark-numismaster-65276   # KM 192.3 (no Hede)
+      - dk-hede-f3h91               # KM 192.2, Hede 91, Sieg 46, Schou 37/39
+      - dk-numista-143477           # KM 186/186.3, Hede 95, Schou 59
+    reason: |
+      1 Krone Frederik III (= 4 Mark Danske), ONE coin per curator visual
+      verdict. KM-186 family (1652-53: Hede 87/95, KM 186/186.1/186.2/186.3,
+      Dav 3569/3569A) + KM-192 family (1653: Hede 91, Sieg 46, KM 192.1/192.2/
+      192.3, Dav 3570/3570A) are sub-types of one type. NOTE: dk-hede-f3h91
+      prints nominal «4 Mark» vs «1 Krone» elsewhere (1 Krone = 4 Mark Danske)
+      — nominal divergence surfaces in match_uncertainty. catalog_graph comp 1.
+
+  # Component 2 — 1 Krone Christian V: ALL one coin despite the Hede 90/94 split.
+  - members:
+      - dk-hede-c5h90a              # KM 401/401.3, Hede 90A, Sieg 46.1, Dav 3642
+      - dk-hede-c5h90b              # KM 401.1, Hede 90B, Sieg 46.2, Dav 3642
+      - dk-hede-c5h90c              # KM 401.4, Hede 90C, Sieg 46.3, Dav 3645
+      - dk-hede-c5h94               # KM 401.2, Hede 94, Sieg 33, Dav 3643
+      - dk-bruun-7055               # KM 401, Hede 90/90B, Sieg 46.2, Dav 3643
+      - kmk-156921                  # Hede 90A/90C (museum)
+      - kmk-156932                  # Hede 90A/90 (museum)
+    reason: |
+      1 Krone Christian V, ONE coin per curator (Hede 90 = 94 = KM 401). The
+      KM 401 sub-numbers (401/401.1/401.2/401.3/401.4) + Hede 90A/B/C/94 are
+      mintmark/die sub-types of one type; Dav 3642/3643/3645 hang off the KM
+      sub-numbers. Divergent KM/Hede/Sieg accumulate list-form per §9a.
+      catalog_graph comp 2.
+
+  # Component 4 — 2 Mark Frederik III: ALL one coin (Hede 108 = 109 = 110 = KM 259).
+  - members:
+      - dk-hede-f3h108a            # KM 259/259.1, Hede 108A/B, Sieg 37.1/37.2
+      - dk-hede-f3h109             # KM 259.2, Hede 109, Sieg 38
+      - dk-hede-f3h110a            # KM 259.3, Hede 110A/B, Sieg 39.1/39.2
+    reason: |
+      2 Mark Frederik III, ONE coin per curator (Hede 108/109/110 = KM 259).
+      KM 259 sub-numbers (259/259.1/259.2/259.3) + Hede 108/109/110 are
+      sub-types of one type; accumulate list-form per §9a. catalog_graph comp 4.
+
 no_merges:
   # --- dk-tid-94338 disentanglement (curator decision 2026-05-31, Serhii).
   # 1 Dukat Frederik V 1747 — the merger fused FOUR distinct coins into one
@@ -255,3 +304,66 @@ no_merges:
   - members: [dk-hede-c4h54, dk-numista-199010]
     reason: |
       Hede 54 / KM 53 ≠ KM 44 coin (Numista 199010).
+
+  # === Catalog-graph disambiguation pass (curator decision 2026-06-06/07,
+  # Serhii, by image — catalog_graph.py). Distinctness verdicts pinning coins
+  # the curator confirmed are DIFFERENT types. Already separate in the auto-
+  # matcher; these pins protect against future auto-merges. ===
+
+  # Component 3 — 8 Skilling Christian IV: Hede 91 (KM 32.1), Hede 93 (KM 32),
+  # Hede 96 (KM 42) are THREE distinct coins.
+  - members: [dk-hede-c4h91, dk-hede-c4h93a]
+    reason: |
+      8 Skilling Christian IV: Hede 91 (KM 32.1) ≠ Hede 93 (KM 32). catalog_graph comp 3.
+  - members: [dk-hede-c4h91, dk-hede-c4h96]
+    reason: |
+      8 Skilling Christian IV: Hede 91 (KM 32.1) ≠ Hede 96 (KM 42). catalog_graph comp 3.
+  - members: [dk-hede-c4h93a, dk-hede-c4h96]
+    reason: |
+      8 Skilling Christian IV: Hede 93 (KM 32) ≠ Hede 96 (KM 42). catalog_graph comp 3.
+
+  # Component 5 — 2 Skilling Christian IV: Hede 116 (KM 80.2 / Sieg 40) ≠
+  # Hede 117 (KM 80.1 / Sieg 41) — two distinct coins. SUPERSEDES the earlier
+  # deferred «merge 116+117» note; curator systematic verdict is «дві різні монети».
+  - members: [dk-hede-c4h116a, dk-hede-c4h117a]
+    reason: |
+      2 Skilling Christian IV: Hede 116 (KM 80.2 / Sieg 40) ≠ Hede 117 (KM 80.1
+      / Sieg 41). catalog_graph comp 5.
+
+  # Component 7 — 1 Dukat Christian V: Hede 26, 29, 31, 32 are FOUR distinct coins.
+  # (Hede 31 represented by its primary 31A/B entry c5h31a.)
+  - members: [dk-hede-c5h26ab, dk-hede-c5h29]
+    reason: |
+      1 Dukat Christian V: Hede 26 ≠ Hede 29. catalog_graph comp 7.
+  - members: [dk-hede-c5h26ab, dk-hede-c5h31a]
+    reason: |
+      1 Dukat Christian V: Hede 26 ≠ Hede 31. catalog_graph comp 7.
+  - members: [dk-hede-c5h26ab, dk-hede-c5h32]
+    reason: |
+      1 Dukat Christian V: Hede 26 ≠ Hede 32. catalog_graph comp 7.
+  - members: [dk-hede-c5h29, dk-hede-c5h31a]
+    reason: |
+      1 Dukat Christian V: Hede 29 ≠ Hede 31. catalog_graph comp 7.
+  - members: [dk-hede-c5h29, dk-hede-c5h32]
+    reason: |
+      1 Dukat Christian V: Hede 29 ≠ Hede 32 — distinct despite the shared
+      Schou 8 vertex (curator: most-likely different dies). catalog_graph comp 7.
+  - members: [dk-hede-c5h31a, dk-hede-c5h32]
+    reason: |
+      1 Dukat Christian V: Hede 31 ≠ Hede 32. catalog_graph comp 7.
+
+  # Component 8 — 2 Dukat Christian V: Hede 27, 56, 58 are three distinct coins.
+  - members: [dk-hede-c5h27ab, dk-hede-c5h56]
+    reason: |
+      2 Dukat Christian V: Hede 27 ≠ Hede 56. catalog_graph comp 8.
+  - members: [dk-hede-c5h27ab, dk-hede-c5h58]
+    reason: |
+      2 Dukat Christian V: Hede 27 ≠ Hede 58. catalog_graph comp 8.
+  - members: [dk-hede-c5h56, dk-hede-c5h58]
+    reason: |
+      2 Dukat Christian V: Hede 56 ≠ Hede 58. catalog_graph comp 8.
+
+  # Component 9 — 2 Dukat Frederik V: Hede 10 ≠ Hede 14 — two distinct coins.
+  - members: [dk-hede-f5h10ab, dk-hede-f5h14]
+    reason: |
+      2 Dukat Frederik V: Hede 10 ≠ Hede 14. catalog_graph comp 9.
