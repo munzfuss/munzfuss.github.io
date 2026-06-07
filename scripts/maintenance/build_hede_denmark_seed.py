@@ -1114,32 +1114,31 @@ def main() -> int:
             stats["skipped_non_canonical"] += 1
             continue
         raw_mint = (d.get("mint") or "").strip().lstrip("),.;- ").strip()
-        # Discard mojibake / parser-artifact mints (single digit, lone
-        # punctuation, denomination-shaped strings).
-        if not raw_mint:
-            stats["skipped_no_mint"] += 1
-            continue
-        # If the mint looks like a denomination («1 Speciedaler» —
-        # parser folded the second nominal field in as mint), skip.
-        if re.match(r"^\d+\s+[A-Za-zæøå]", raw_mint):
-            stats["skipped_no_mint"] += 1
-            continue
-        # Strip leading «NN, » prefix («23, København» → «København»)
-        mint_clean = re.sub(r"^\d+\s*,\s*", "", raw_mint)
-        # Strip trailing punctuation
-        mint_clean = mint_clean.rstrip(".;,)").strip()
-        # Match against DK / SH / Norway mint set. Multi-mint Hede
-        # strings («København og Kongsberg», «Altona, Kopenhagen,
-        # Kongsberg») return a list — preserved on the coin so every
-        # parallel-strike city renders in the table.
-        mints_list = _normalize_mints(mint_clean)
-        if not mints_list:
-            stats["skipped_non_dk_mint"] += 1
-            skipped_mints[mint_clean] = skipped_mints.get(mint_clean, 0) + 1
-            continue
-        mint_normalised: str | list[str] = (
-            mints_list[0] if len(mints_list) == 1 else mints_list
+        # «Ruler, NOMINAL» pages have no top-level mint — it lives per-variant
+        # in by_letter[*]["mint"] (parser Part 2). Defer the no-mint skip so the
+        # by_letter path below can use the per-letter mint; only the default /
+        # by_hede single-mint paths still require a top-level mint.
+        by_letter_mints = any(
+            lv.get("mint") for lv in (d.get("by_letter") or {}).values()
         )
+        mint_normalised: str | list[str] | None = None
+        # A denomination-shaped mint («1 Speciedaler») is a stale field-swap
+        # artefact (parser Part 1 fixed the source of these) — ignore it.
+        if raw_mint and not re.match(r"^\d+\s+[A-Za-zæøå]", raw_mint):
+            # Strip leading «NN, » prefix («23, København» → «København»),
+            # then trailing punctuation.
+            mint_clean = re.sub(r"^\d+\s*,\s*", "", raw_mint).rstrip(".;,)").strip()
+            # Match against DK / SH / Norway mint set. Multi-mint Hede strings
+            # («København og Kongsberg», «Altona, Kopenhagen, Kongsberg») return
+            # a list — preserved so every parallel-strike city renders.
+            mints_list = _normalize_mints(mint_clean)
+            if mints_list:
+                mint_normalised = mints_list[0] if len(mints_list) == 1 else mints_list
+            else:
+                skipped_mints[mint_clean] = skipped_mints.get(mint_clean, 0) + 1
+        if mint_normalised is None and not by_letter_mints:
+            stats["skipped_no_mint"] += 1
+            continue
 
         hede_volume = d.get("ruler_volume") or ""
         if not hede_volume:
@@ -1170,12 +1169,23 @@ def main() -> int:
                     if sub_hede.lower() not in owned_subs:
                         stats["skipped_cross_reference_subhede"] += 1
                         continue
+                    # Per-letter (sub-variant) mint when the parser recovered one
+                    # (78A København, 78B Helsingør differ) — falls back to the
+                    # top-level mint for ordinary by_letter pages that share one.
+                    letter_mint = mint_normalised
+                    if lv.get("mint"):
+                        lm = _normalize_mints(str(lv["mint"]))
+                        if lm:
+                            letter_mint = lm[0] if len(lm) == 1 else lm
+                    if letter_mint is None:
+                        stats["skipped_no_mint"] += 1
+                        continue
                     coin = _build_coin(
                         hede_volume=hede_volume,
                         hede_number=sub_hede,
                         parsed=d,
                         spec=spec,
-                        mint_normalised=mint_normalised,
+                        mint_normalised=letter_mint,
                         years_override=lv.get("years"),
                         catalog_refs_override=lv.get("catalog_refs"),
                     )

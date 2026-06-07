@@ -39,6 +39,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.paths import HEDE_CACHE as CACHE_DIR  # noqa: E402
+from lib.mint_registry import canon_for_alias  # noqa: E402
 
 
 _TAG_RE = re.compile(r"<[^>]+>")
@@ -1052,6 +1053,47 @@ def _is_denomination(s: str) -> bool:
     return bool(_DENOM_SHAPE_RE.match(s or ""))
 
 
+# Mint recovery for «Ruler, NOMINAL» pages (the H1 carries no mint — it lives on
+# the per-variant A)/B)/C) lines). Verbatim (NOT registry-display): the seed
+# builder's _normalize_mints keys on the Danish source spelling «København».
+_MINT_CAND_RE = re.compile(r"[A-ZÆØÅ][A-Za-zæøåäöü]+")
+
+
+def _first_mint_in(segment: str) -> str | None:
+    """First recognised mint name (verbatim) in a text segment, else None."""
+    for cand in _MINT_CAND_RE.findall(segment or ""):
+        if canon_for_alias(cand) is not None:
+            return cand
+    return None
+
+
+def _mints_from_variant_lines(text: str) -> list[str]:
+    """All distinct mints (verbatim, deduped by canonical, first-seen order)
+    across the A)/B)/C) variant lines — for a single-coin page struck at
+    several mints (e.g. c7h35: A) København, B) Altona → one coin, both)."""
+    found: list[str] = []
+    seen: set[str] = set()
+    for m in re.finditer(r"(?m)^\s*[A-ZÆØÅ]\)\s*(.*)$", text):
+        for cand in _MINT_CAND_RE.findall(m.group(1)):
+            canon = canon_for_alias(cand)
+            if canon and canon not in seen:
+                seen.add(canon)
+                found.append(cand)
+    return found
+
+
+def _mint_per_letter_block(text: str) -> dict[str, str]:
+    """{letter: verbatim mint} from each letter-group block that names a mint.
+    Reuses the same block matcher as _extract_letter_groups so a letter's mint
+    aligns with its years/refs (78A København, 78B Helsingør)."""
+    out: dict[str, str] = {}
+    for m in _LETTER_GROUP_BLOCK_RE.finditer(text):
+        mint = _first_mint_in(m.group(2))
+        if mint:
+            out[m.group(1)] = mint
+    return out
+
+
 def _parse_header(html: str) -> dict:
     out: dict = {}
     title_m = _TITLE_TAG_RE.search(html)
@@ -1391,6 +1433,30 @@ def parse_one(html: str, basename: str) -> dict:
                             if k.lower() == sub_key.lower():
                                 specs["by_hede"][k]["years"] = lv["years"]
                                 break
+
+    # «Ruler, NOMINAL» mint recovery (Part 2). The H1 carried a nominal but no
+    # mint — the mint lives on the per-variant A)/B)/C) lines. Recover it so the
+    # seed builder doesn't drop the coin as mint-less. Runs AFTER by_letter +
+    # specs are populated; gated on «no top-level mint» so it never touches
+    # pages that already parse a mint.
+    if out.get("nominal") and not out.get("mint"):
+        by_letter = out.get("by_letter")
+        if by_letter:
+            # Per-letter (sub-variant) mint — 78A København, 78B Helsingør are
+            # DIFFERENT mints, so each by_letter entry gets its own. Verbatim;
+            # the builder normalises + uses it (fallback to top-level if absent).
+            for letter, mint in _mint_per_letter_block(text).items():
+                if letter in by_letter:
+                    by_letter[letter]["mint"] = mint
+        elif "by_hede" not in (out.get("specs") or {}):
+            # Single-coin page (one spec, no sub-grouping): one coin struck at
+            # all the variant-line mints → aggregate as a Danish-conjunction
+            # string, which _normalize_mints splits into a multi-mint list.
+            recovered = _mints_from_variant_lines(text)
+            if recovered:
+                out["mint"] = " og ".join(recovered)
+        # by_hede field-swap pages (c4h53) are left for a per-spec-group mint
+        # follow-up — each by_hede group can span different mints.
 
     # Catalog refs
     refs = _extract_refs(text)
