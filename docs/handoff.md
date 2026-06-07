@@ -65,7 +65,21 @@ maintenance README) surfaced 3 parser losses. Status mixed:**
   Current (662 cache pages): **515 OK, 3 sub_letter_loss, 12 field_swap,
   93 in_scope_absent, 25 oos_post_1914, 14 exonumia.** The actionable
   buckets:
-  - **field_swap — Part 1 (nominal) SHIPPED 2026-06-07 (commit 3cc3272).**
+  - **field_swap — Part 1 (nominal) + Part 2 (mint) SHIPPED 2026-06-07
+    (commits 3cc3272, 5f6ed52). RESOLVED.** Recovered +34 seed coins
+    (danish_realm +20, royal_holstein +14); audit OK 515→526, field_swap
+    12→0. Part 2 mechanic: parse_hede.py recovers the mint from the per-variant
+    A)/B)/C) lines when the H1 is mint-less — PER-LETTER on by_letter pages
+    (78A=København, 78B=Helsingør; verbatim so the builder's _normalize_mints
+    matches), AGGREGATE multi-mint on single-coin pages (c7h35). Builder
+    by_letter path uses the per-letter mint (fallback to top-level), no-mint
+    skip deferred when by_letter supplies mints. Verified 0 removed / 0
+    existing-coin mint changes. **Still at the seed layer — run merger→absorb
+    to render.** REMAINING field-swap residue: c4h53 (by_hede — needs
+    per-spec-group mint, each by_hede group can span mints) + 5 no-variant-mint
+    pages (c3h23, f6h1, f6h5, f6h26, f7h7 — no recognised mint on their lines;
+    nominal fixed by Part 1, stay absent). Historical detail below:
+  - **(superseded) field_swap Part 1-only note (commit 3cc3272).**
     Pages whose descriptor line is «Ruler, NOMINAL» (comma right after the
     ruler, NO mint; mint per-variant on A)/B)/C) lines) had the NOMINAL
     field-swapped into `mint`. parse_hede.py now extracts nominal correctly
