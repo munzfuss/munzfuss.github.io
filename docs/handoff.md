@@ -31,8 +31,9 @@ architecture: `docs/ARCHITECTURE.md` §«V2 entity-keyed pipeline».
 All other workstreams below paused during V2 unless user redirects.
 
 **§CT — Hede parser data-loss audit (2026-06-06). Catalog-graph tool
-(`scripts/oneoff/catalog_graph.py`, gitignored) surfaced 3 parser
-losses. Status mixed:**
+(`scripts/maintenance/catalog_graph.py` — promoted from gitignored
+`scripts/oneoff/` on 2026-06-07; committed + inventoried in the
+maintenance README) surfaced 3 parser losses. Status mixed:**
 - **SHIPPED (`49d4727` + cache `f71534b08`, committed, UNPUSHED):**
   per-variant Schou «hhv. … og …» list drop (81 by_letter variants).
   Safe — adds Schou values to existing entries, no id change.
@@ -93,7 +94,7 @@ losses. Status mixed:**
   (no_merges) into `data/v2/merge_decisions/<entity>.yml` so the merger/absorb
   enforce them. Component-1 + component-5 also carry deferred cross-Hede DATA
   merges (see below).
-- **Graph node-merge rules (catalog_graph.py, gitignored):** per-ruler
+- **Graph node-merge rules (`scripts/maintenance/catalog_graph.py`):** per-ruler
   namespacing; Hede sub-letters → one base vertex (case-insensitive
   119A=119a); Schou dies → one set-vertex per Hede; **Sieg dot-sub-numbers
   → one base vertex** (32.1-32.4 → «Sieg 32.x», sub-classes of one coin —
