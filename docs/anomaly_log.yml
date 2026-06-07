@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-06T20:13:35Z'
+  last_updated_utc: '2026-06-07T15:09:37Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3285,4 +3285,33 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-06T20:13:35Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+  summary: BO.7 brunswick_wolfenbuttel_principality gap list contains OOS exonumia (commemorative medal)
+    N#301155.
+  status: resolved
+  instance_first_seen: '2026-06-07T15:09:31.895515Z'
+  last_seen: '2026-06-07T15:09:31.895515Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 301155
+  occurrences:
+  - run_utc: '2026-06-07T15:09:31.895515Z'
+    batch_label: NT
+    detail: 'Batch NT defensive read: N#301155 ''2 Thalers - Henry Julius 1610'' Numista Type=''Commemorative
+      medals'' (exonumia, OOS per CLAUDE.md §9.2). classify_numista_scope → (False, ''exonumia''). Not
+      saved; to be folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies.'
+    full_context:
+      type: Commemorative medals
+      url: https://en.numista.com/301155
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to prune N#301155
+    from in_scope_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-07T15:09:37Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
