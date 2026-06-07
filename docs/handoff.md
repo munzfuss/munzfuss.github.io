@@ -15,6 +15,38 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## Soll/Δ-gap sweep (2026-06-07) — 8 coins fixed, 16 surfaced
+
+User flagged on the rendered Denmark page: rows with weight+fineness (so a
+Feingewicht is computed) but blank Soll/Δ. Root cause: the build's `_compute_coin`
+needs `coin.fraction` to be a key in `fuss.fractions`; many coins had
+`fraction: None` (or a fraction the fuss didn't define). **Audit any time with
+`scripts/maintenance/audit_hede_seed_loss.py`-style logic OR the inline check
+(weight+fineness present, fuss≠seed_unsorted, fraction not in fuss.fractions).**
+
+**FIXED (commits b79ae73, b59267b):** Nobel 2/3 (added nobel_fod fractions «2»/«3»
+= 2x/3x the per-Nobel Soll, §0 computation attribution) + 7 coins where the fuss
+already defined the key, fraction just None → set deterministic Δ-verified value:
+rhinsk_gylden_fod «1»; 8_daler_fod 1 Gulden «1» / 8 Skilling «1/6» (1 Daler=48 Sk);
+18_5_thaler 8 Rigsbankskilling «1/12» (8/96) / 16 Rbsk «1/6» (16/96). All Δ within
+tolerance.
+
+**SURFACED — 16 coins still soll-gap, need curator decision (NOT auto-set):**
+  - `reichsdukatenfuss` «4 Speciedaler» (unified-dk-numista-117501) — LIKELY
+    MIS-CLASSIFIED: silver .875 4-Speciedaler (fein 100.71 ≈ 4× 9¼-Speciedaler)
+    sitting under a GOLD Dukat fuss. Re-classify to 9_25_thaler «4» (or 9_thaler)?
+  - `11_333_thaler` «3 Krone» (numismaster-65368) — gold .993, fein 44.97; ratio
+    under this fuss unclear (possible gold-under-silver-fuss mismatch).
+  - Scheidemünze / billon sub-denoms where a full-Kurant Soll would be misleading
+    (the −% IS the seigniorage per §6 — curator call whether to show it):
+    `8_daler_fod` 1 Hvid / 1 Penning / 2 Skilling ×5; `9_thaler` 1 Denning;
+    `9_25_thaler` 3 Skilling Lybsk ×5 (Lybsk-skilling ratio needed);
+    `8_daler_lybsk_fod` 2 Rhinsk Gylden.
+  - Note: fraction auto-derivation (`absorb`/`lib.fraction_infer`) only runs on
+    newly-absorbed entries + can't resolve sub-unit ratios (8 Rbsk→1/12) — a
+    general «derive fraction over ALL final entries + sub-unit ratio table» pass
+    is the proper long-term fix.
+
 ## Current focus
 
 **V2 entity-keyed refactor — architecture refined 2026-05-18 to
