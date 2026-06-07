@@ -1033,6 +1033,24 @@ def _spec_from_around(text: str, brutto_pos: int) -> dict:
 _H1_RE = re.compile(r"<H1[^>]*>(.*?)</H1>", re.IGNORECASE | re.DOTALL)
 _TITLE_TAG_RE = re.compile(r"<TITLE>(.*?)</TITLE>", re.IGNORECASE | re.DOTALL)
 
+# A segment is denomination-shaped when it starts with a digit/fraction
+# («1 speciedaler», «½ Krone», «32 Skilling») OR opens with a bare denomination
+# noun («Blaffert u. år», «Dukat», «Breddaler»). Used to tell a lone «Ruler,
+# NOMINAL» H1 line (mint on the variant lines) from «Ruler, …, Mint».
+_DENOM_SHAPE_RE = re.compile(
+    r"^\s*(?:[\d½⅓¼⅔¾⅛⅜⅝⅞]"
+    r"|(?:blaffert|dukat|ducat|breddaler|piaster|s[øö]sling|hvid|penning|mark|"
+    r"skilling|krone|kroner|daler|speciedaler|rigsdaler|rigsbankdaler|gylden|"
+    r"guldkrone|guldm[øö]nt|solidi|sechsling|dreiling|witten|øre|"
+    r"frederik d'?or|christian d'?or)\b)",
+    re.IGNORECASE,
+)
+
+
+def _is_denomination(s: str) -> bool:
+    """True when the segment looks like a coin denomination, not a mint."""
+    return bool(_DENOM_SHAPE_RE.match(s or ""))
+
 
 def _parse_header(html: str) -> dict:
     out: dict = {}
@@ -1080,9 +1098,20 @@ def _parse_header(html: str) -> dict:
             # «1, 2, 3 og 4 speciedaler», mint «København».
             rs = [s.strip() for s in rest_text_no_yr.split(",") if s.strip()]
             if rs:
-                out["mint"] = rs[-1]
-                if len(rs) > 1:
-                    out["nominal"] = ", ".join(rs[:-1])
+                # «Ruler, NOMINAL» layout: a LONE denomination-shaped segment
+                # after the ruler-comma is the NOMINAL, not the mint — the mint
+                # lives on the per-variant A)/B)/C) lines, not on the H1 ruler
+                # line. Without this guard the parser field-swaps the nominal
+                # into the mint slot (c4h53 «1 speciedaler», c4h78 «4 Skilling»,
+                # f7h4 «1 Speciedaler» …). Restricted to len==1 + denomination
+                # shape so multi-segment / real-mint / mojibake-mint / parenthetical
+                # -mint / out-of-registry-mint lines keep their current parse.
+                if len(rs) == 1 and _is_denomination(rs[0]):
+                    out["nominal"] = rs[0]
+                else:
+                    out["mint"] = rs[-1]
+                    if len(rs) > 1:
+                        out["nominal"] = ", ".join(rs[:-1])
     else:
         out["ruler"] = ruler_line + "."
     if len(parts) >= 2 and "nominal" not in out:
