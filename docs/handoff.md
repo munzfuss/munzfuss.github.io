@@ -75,12 +75,16 @@ losses. Status mixed:**
   32.1** (8 Skilling Christian IV — Hede 96 = KM 42 above); **Hede 90 = 94 =
   KM 401** (1 Krone Christian V — all one coin despite the Hede 90/94 split;
   Dav 3642/3643/3645 hang off KM 401.x); **Hede 27 = KM 419 = KM 416** (2 Dukat
-  Christian V — Hede 27 carries TWO KM numbers, unusual but factual).
+  Christian V — Hede 27 carries TWO KM numbers, unusual but factual);
+  **Hede 26 = KM 413; Hede 31 = KM 415** (1 Dukat Christian V).
   `CURATOR_DISTINCT` = DIFFERENT-COIN (no edge, → `merge_decisions::no_merges`):
   Hede 10 ≠ Hede 14 (2 Dukat Frederik V); Hede 91 ≠ 93 ≠ 96 (8 Skilling Chr IV
   — KM 32.1 / KM 32 / KM 42); **Hede 27 ≠ 56 ≠ 58** (2 Dukat Christian V —
-  three distinct coins). Hub colouring driven by `PROCESSED` — **done:
-  components 2, 3, 4, 5, 6, 8, 9** (green ✓); pending: 1, 7. STANDING TASK
+  three distinct coins); **Hede 26 ≠ 29 ≠ 31 ≠ 32** (1 Dukat Christian V — four
+  distinct coins; KM 412 + KM A433 also separate. CAVEAT: shared «Schou 8»
+  vertex bridges Hede 29↔32 but per curator is most-likely a DIFFERENT die for
+  each — not evidence of identity). Hub colouring driven by `PROCESSED` — **done:
+  components 2, 3, 4, 5, 6, 7, 8, 9** (green ✓); pending: 1. STANDING TASK
   (user): work through ALL graph cases, recording each verdict; promote a
   ready batch to `data/v2/merge_decisions/<entity>.yml` (merges + no_merges).
 - **Graph node-merge rules (catalog_graph.py, gitignored):** per-ruler
