@@ -65,17 +65,27 @@ maintenance README) surfaced 3 parser losses. Status mixed:**
   Current (662 cache pages): **515 OK, 3 sub_letter_loss, 12 field_swap,
   93 in_scope_absent, 25 oos_post_1914, 14 exonumia.** The actionable
   buckets:
-  - **field_swap (12) — parser bug.** Pages whose descriptor line is
-    «Ruler, NOMINAL» (comma right after the ruler, NO mint on the line;
-    mint is per-variant on A)/B)/C) lines). parse_hede.py splits on the
-    comma and puts the NOMINAL into the `mint` slot → nominal=None → seed
-    builder skips (skipped_no_mint, build_hede_denmark_seed.py line ~1124).
-    Fix needs TWO parser changes: (a) extract nominal from «Ruler, NOMINAL»;
-    (b) collect per-variant mints (København/Helsingør/Altona from the
-    A)/B)/C) lines) into a multi-mint, since the page has no top-level mint.
-    Affected: c3h23, c4h53, c4h78, c8h3, f6h24/26/27, f6h5, f7h1/4/6/7.
-    Risk: parser surgery on 1872-line file — dry-run diff ALL 662 pages'
-    nominal/mint before/after to confirm 0 regressions on the 515 OK pages.
+  - **field_swap — Part 1 (nominal) SHIPPED 2026-06-07 (commit 3cc3272).**
+    Pages whose descriptor line is «Ruler, NOMINAL» (comma right after the
+    ruler, NO mint; mint per-variant on A)/B)/C) lines) had the NOMINAL
+    field-swapped into `mint`. parse_hede.py now extracts nominal correctly
+    (new `_is_denomination` guard; lone denom-shaped segment after the
+    ruler-comma = nominal, not mint). Verified: exactly the 13 pages change
+    (nominal set, mint→None), 0 regressions on 843 others. audit field_swap
+    12→0. **Part 2 (mint recovery, ~32 coins) NOT done — the real blocker.**
+    These pages still don't seed: the mint now lives on the per-variant lines
+    and must be recovered PER SUB-VARIANT (78A=København, 78B=Helsingør —
+    NOT one aggregate). The simple aggregate-mint version was implemented +
+    REVERTED after spot-check showed it mis-assigns (78A shown as Helsingør;
+    also `display_for_alias` «Kopenhagen» gets dropped by the builder's
+    _normalize_mints which keys on verbatim «København»). Correct Part 2 needs:
+    (a) per-letter mint in `_extract_letter_groups` (scan each A)/B)/C) body
+    for a registry mint, store VERBATIM); (b) per-hede mint for by_hede pages
+    (c4h53); (c) builder by_letter + by_hede paths use the per-sub-variant mint
+    (with fallback to top-level). Blast radius: ALL ~80 by_letter pages gain a
+    `mint` key → must dry-run measure existing-coin mint changes before shipping.
+    Affected field-swap pages: c3h23, c4h53, c4h78, c8h3, f6h24/26/27, f6h5,
+    f7h1/4/6/7 (+ bonus mint-less recoveries c7h35, c8h1, f7h11/16/17).
   - **sub_letter_loss (3):** c4h163 (missing B — «Fortuna til randen for
     neden», empty sub-variant line), f4h44 (missing B), f5h3 (A vs B case).
   - **in_scope_absent (93):** mostly pages with no single `specs.default`/
