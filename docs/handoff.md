@@ -70,10 +70,11 @@ losses. Status mixed:**
 - **Curator verdicts (catalog_graph.py, 2026-06-06).** Two journals:
   `CURATOR_LINKS` = IDENTITY (✔-edge, → `merge_decisions::merges`):
   Hede 96 = KM 42; KM 80.1 = Hede 117/Sieg 41; KM 80.2 = Hede 116/Sieg 40;
-  Hede 118 = KM 66; Hede 119 = KM 67. `CURATOR_DISTINCT` = DIFFERENT-COIN
+  Hede 118 = KM 66; Hede 119 = KM 67; **Hede 108 = 109 = 110 = KM 259**
+  (2 Mark Frederik III — all one coin). `CURATOR_DISTINCT` = DIFFERENT-COIN
   (no edge, → `merge_decisions::no_merges`): **Hede 10 ≠ Hede 14** (2 Dukat
   Frederik V). Hub colouring driven by `PROCESSED` set — **done: components
-  5, 6, 9** (green ✓); pending: 1, 2, 3, 4, 7, 8. STANDING TASK (user): work
+  4, 5, 6, 9** (green ✓); pending: 1, 2, 3, 7, 8. STANDING TASK (user): work
   through ALL graph cases, recording each verdict; promote a ready batch to
   `data/v2/merge_decisions/<entity>.yml` (merges + no_merges).
 - **Graph node-merge rules (catalog_graph.py, gitignored):** per-ruler
