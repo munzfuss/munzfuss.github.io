@@ -76,17 +76,23 @@ losses. Status mixed:**
   KM 401** (1 Krone Christian V — all one coin despite the Hede 90/94 split;
   Dav 3642/3643/3645 hang off KM 401.x); **Hede 27 = KM 419 = KM 416** (2 Dukat
   Christian V — Hede 27 carries TWO KM numbers, unusual but factual);
-  **Hede 26 = KM 413; Hede 31 = KM 415** (1 Dukat Christian V).
+  **Hede 26 = KM 413; Hede 31 = KM 415** (1 Dukat Christian V);
+  **Hede 87 = 91 = 95 = KM 186-family = KM 192-family** (1 Krone Frederik III
+  = 4 Mark Danske — ALL one coin despite two KM families + three Hede; f3h91
+  nominal printed «4 Mark» — surface nominal divergence in match_uncertainty).
   `CURATOR_DISTINCT` = DIFFERENT-COIN (no edge, → `merge_decisions::no_merges`):
   Hede 10 ≠ Hede 14 (2 Dukat Frederik V); Hede 91 ≠ 93 ≠ 96 (8 Skilling Chr IV
   — KM 32.1 / KM 32 / KM 42); **Hede 27 ≠ 56 ≠ 58** (2 Dukat Christian V —
   three distinct coins); **Hede 26 ≠ 29 ≠ 31 ≠ 32** (1 Dukat Christian V — four
   distinct coins; KM 412 + KM A433 also separate. CAVEAT: shared «Schou 8»
   vertex bridges Hede 29↔32 but per curator is most-likely a DIFFERENT die for
-  each — not evidence of identity). Hub colouring driven by `PROCESSED` — **done:
-  components 2, 3, 4, 5, 6, 7, 8, 9** (green ✓); pending: 1. STANDING TASK
-  (user): work through ALL graph cases, recording each verdict; promote a
-  ready batch to `data/v2/merge_decisions/<entity>.yml` (merges + no_merges).
+  each — not evidence of identity). Hub colouring driven by `PROCESSED` — **ALL
+  9 components done (green ✓) as of 2026-06-07.** STANDING TASK (user): work
+  through ALL graph cases, recording each verdict — **COMPLETE**. NEXT (deferred,
+  user-gated): promote the recorded CURATOR_LINKS (merges) + CURATOR_DISTINCT
+  (no_merges) into `data/v2/merge_decisions/<entity>.yml` so the merger/absorb
+  enforce them. Component-1 + component-5 also carry deferred cross-Hede DATA
+  merges (see below).
 - **Graph node-merge rules (catalog_graph.py, gitignored):** per-ruler
   namespacing; Hede sub-letters → one base vertex (case-insensitive
   119A=119a); Schou dies → one set-vertex per Hede; **Sieg dot-sub-numbers
