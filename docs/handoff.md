@@ -59,15 +59,32 @@ maintenance README) surfaced 3 parser losses. Status mixed:**
   dropped» was a stale-merge artifact — clean run unions all). Verified
   via dry-run: 0 by_letter regressions, 0 unified entries lost, +12 net,
   schema OK.
-- **REMAINING loss (analysed, not fixed):** of ~193 sub-variant-loss
-  pages — 76 absent-from-seed (incl. in-scope c4h163 1 Speciedaler 1640,
-  c4h164 — needs mint/filter diagnosis), 53 in-seed-bare regex-no-match
-  (other variant-line formats), 22 out-of-scope post-1914, 16 multi-coin
-  pages. Plus **51 case-mismatched hede sub-letters** (kmk lowercase
-  «119b» vs hede uppercase «119B») — graph fixed (case-insensitive
-  label); DATA still case-split (affects matching — kmk-340579 «119b»
-  separate from 119B cluster). Systemic data fix pending: normalise hede
-  sub-letter to uppercase (merger ingest or per-builder).
+- **REMAINING loss — RE-AUDITED 2026-06-07 (the old «76/53/22/16» count
+  was STALE; c4h163/c4h164 are seeded now).** Run
+  `scripts/maintenance/audit_hede_seed_loss.py` for the live breakdown.
+  Current (662 cache pages): **515 OK, 3 sub_letter_loss, 12 field_swap,
+  93 in_scope_absent, 25 oos_post_1914, 14 exonumia.** The actionable
+  buckets:
+  - **field_swap (12) — parser bug.** Pages whose descriptor line is
+    «Ruler, NOMINAL» (comma right after the ruler, NO mint on the line;
+    mint is per-variant on A)/B)/C) lines). parse_hede.py splits on the
+    comma and puts the NOMINAL into the `mint` slot → nominal=None → seed
+    builder skips (skipped_no_mint, build_hede_denmark_seed.py line ~1124).
+    Fix needs TWO parser changes: (a) extract nominal from «Ruler, NOMINAL»;
+    (b) collect per-variant mints (København/Helsingør/Altona from the
+    A)/B)/C) lines) into a multi-mint, since the page has no top-level mint.
+    Affected: c3h23, c4h53, c4h78, c8h3, f6h24/26/27, f6h5, f7h1/4/6/7.
+    Risk: parser surgery on 1872-line file — dry-run diff ALL 662 pages'
+    nominal/mint before/after to confirm 0 regressions on the 515 OK pages.
+  - **sub_letter_loss (3):** c4h163 (missing B — «Fortuna til randen for
+    neden», empty sub-variant line), f4h44 (missing B), f5h3 (A vs B case).
+  - **in_scope_absent (93):** mostly pages with no single `specs.default`/
+    `specs.by_hede` block, multi-coin pages («1, 2 og 3 speciedaler»),
+    undated «u.år» pages, or sub-variant-only «None»-nominal pages
+    (c4h124-136, c5h131-135). Per-case review; lower priority.
+  - **51 case-mismatched hede sub-letters** (kmk lowercase «119b» vs hede
+    «119B») — graph fixed; DATA still case-split. Systemic fix pending
+    (normalise hede sub-letter to uppercase at merger ingest / per-builder).
 - **Curator verdicts (catalog_graph.py, 2026-06-06).** Two journals:
   `CURATOR_LINKS` = IDENTITY (✔-edge, → `merge_decisions::merges`):
   Hede 96 = KM 42; KM 80.1 = Hede 117/Sieg 41; KM 80.2 = Hede 116/Sieg 40;
