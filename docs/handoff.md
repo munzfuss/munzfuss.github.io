@@ -149,31 +149,29 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
   and DROPS those now `no_match`. Self-heals the whole sticky class (KM-42 anomalies via
   weight-tier-1, Wolfenbüttel residue via mint discriminator). Uses only SAFE existing
   discriminators — no synonym risk. MUST dry-run with a printed drop-list for review.
-- 🟡 **nominal discriminator — IMPLEMENTED + dry-run regression FAILED → REVERTED, synonym
-  table needs more folds first.** Built `match_pair`: `_nominal_wildcard_match` (bare «daler»/
-  «gylden» vs a specific compound of the same unit + quantity → not a genuine difference, so
-  «1 Daler»/«Speciedaler» and «Guilder»/«Rhinsk Gylden» don't split) + the discriminator
-  (nominal genuinely differs AND `not _shares_type_level_catalog` → no_match; weak Schou/Sieg
-  tie doesn't carry it). Dry-run on danish_realm (vs a baseline with the same synonym table):
-  **unified 7874→7899, +25 merges blocked, ALL on pairs with NO catalogue overlap.** Diffed
-  the with/without composed_of partitions — **~half the splits are FALSE** (same coin, label
-  variance the synonym table doesn't fold yet):
-    • trailing «dansk»/«danske» default qualifier — «6 Skilling dansk» split from «6 Skilling»,
-      same for «8 Skilling dansk», «2 Mark danske», «4 Skilling dansk», «12 Skilling dansk»
-      (NB «lybsk»/«norsk» ARE distinguishing — only «dansk/danske» is the droppable default);
-    • spelling typo «Rigsbankdaler» vs «Rigsbanksdaler»;
-    • «½ Krone» vs «Halvkrone»; «Løvedaler» vs «Lion Daler/Taler» (DA vs EN);
-    • value-gloss tail «1 Krone, 4 Mark» / «1 Sovereign, 3 Guilder» (the «, N <denom>» annotation
-      splits it from the bare form).
-  LEGIT splits in the same run: «¼ vs ½ Portugaløser», «1 vs 2 Dukat», «1 vs 2 Ungersk gylden»,
-  «4 Mark vs Speciedaler». **Reverted the discriminator code (NOT committed, data restored).**
-  **Next:** extend `nominal_synonyms.py` for the FALSE-split categories above (strip trailing
-  «dansk/danske»; «halvkrone»→«1/2 krone»; «løvedaler»≡«lion daler/taler»; «rigsbanksdaler»→
-  «rigsbankdaler»; strip a trailing «, N <denom>» value-gloss), re-run the with/without dry-run
-  until the split list is ALL-legit, THEN ship the discriminator + full re-merge. The
-  discriminator code is reconstructable from this entry (wildcard helper + type-level-catalog
-  gate, mirroring the §9.4 mint discriminator at `merge_seeds_cross_source.py` ~L1735). NB:
-  KM-42's anomalies don't NEED this (weight-tier-1 + the re-validate pass handle them).
+- 🟡 **nominal discriminator — synonym table EXPANDED (`5b48840` + `e98c2bc`), discriminator
+  itself still to ship.** The discriminator was built + dry-run earlier this session and its
+  regression CAUGHT false splits (good — that's the regression's job); reverted, then the
+  table was expanded to fold every false-split category found. Expansion folds (verified over
+  1218 nominals, 0 new corruption): strip trailing «, N <unit>» value-gloss; drop «dansk/danske»
+  default qualifier (KEEP «lybsk»/«norsk»); «Halv-X»→«½ X»; «Lion Daler/Taler/Dalar»≡«Løvedaler»;
+  «Rigsbanks*» genitive-s typo; «Dobbel-» (no t) joins «Dobbelt-»; «ö/ä/ü» added to the
+  diacritic fold («öre»≡«øre»); «Courant»≡«Kurant»+«Kurant Dukat»→«Kurantdukat». Re-checking the
+  cached danish_realm dry-run split groups against the new table: **42→23 false splits, the
+  remaining ~23 are MOSTLY LEGIT** (¼/½ Portugaløser, 1/2-Dukat quantity, tariff-distinct Mark
+  /Krone, ¼-Ducat-vs-3-Mark).
+  **To SHIP the discriminator** (the code is reconstructable — wildcard helper + type-level-
+  catalog gate, mirroring the §9.4 mint discriminator at `merge_seeds_cross_source.py` ~L1735;
+  the wildcard + match_pair edits are in this session's reverted commit history): re-apply it,
+  re-run the with/without dry-run, confirm the last ~few residual edges (». <mint>» suffix like
+  «4 Skilling Rigsmønt. København og Altona»; «= X» equivalence nominals; the pre-existing
+  «1½»→«11/2» unicode artifact — a SEPARATE bug worth its own fix) are either legit or folded,
+  THEN ship + full re-merge. NB: KM-42's anomalies don't NEED this (weight-tier-1 + the
+  re-validate pass handle them).
+- 🟢 **Pre-existing bug: «1½» normalises to «11/2» not «1 1/2»** — the `_UNICODE_FRACTIONS`
+  fold replaces «½»→«1/2» with no leading space, so «1½ Thaler» → «11/2 daler». Affects
+  matching of 1½-denomination coins. Separate from the discriminator work; small fix in
+  `nominal_synonyms._UNICODE_FRACTIONS` / `_preprocess`.
 - 🟡 **Classify the 13 new Hesse-Kassel Numista coins** (`data/v2/classification_decisions/
   landgrafschaft_hessen_kassel.yml` pending list). They entered as `seed_unsorted` in the
   full re-parse below — assign fuss/phase (or fix matcher rules) per PB Phase-4. The 322
