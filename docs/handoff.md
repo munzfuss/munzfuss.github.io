@@ -74,17 +74,29 @@ separate seed_unsorted Wolfenbüttel coins; KMM 348808 (genuine Hede 55) stays i
 foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges added
 (290904↔348808, 290904↔c4h55, 348808↔291969).
 
+**DONE this session (latest first):**
+- ✅ **§9a weight-thinning → pipeline** (`fb91804` code, `264c4a8` data). `FieldValue.
+  display:bool=True` + `compute.normalise_field` skips display:false + `absorb._suppress_
+  weightless_museum_overcollection` now thins the weight-giving KMM bucket (≥5 → keep
+  min/middle/max by weight, hide the dropped citations + their weight readings by value;
+  catalog untouched). 1320 display:false across danish_realm/danish_norway/royal_holstein,
+  0 deletions. Verified end-to-end: KM-42 weight column 44→5 readings. **CAVEAT surfaced:**
+  the kept min for KM-42 is 0.44 g = the «Denning» anomaly — thinning correctly keeps the
+  envelope extremes, so sticky wrong-type specimens now show as min/max. → the re-validate
+  pass below is now also needed to keep the thinned envelope CLEAN.
+
 **OPEN / next (all user-directed this session — designs captured, NOT yet built):**
-- 🟡 **re-validate-composed_of absorb pass (HIGHEST leverage — recommended first).** The
+- 🟡 **re-validate-composed_of absorb pass (HIGHEST leverage — now doubly motivated).** The
   absorb NEVER re-validates existing composed_of members (only adds), so historical bad
   merges are STICKY — they survive every re-run + every new discriminator. This is why
   c4h55's foundation mint stayed polluted, and why KM-42 (`dk-tid-163034`, 8 Skilling
   Christian IV) STILL carries 2 wrong-type specimens despite weight-tier-1 already
   rejecting them: **KMM 137199 «Denning» 0.44 g «Sch 83»** (Russian-kopeck imitation) +
   **KMM 591520 «4 Skilling Lybsk Rytterpenning» 1.822 g «Sch 42»** — both merged via a
-  bare-Schou collision with the Hede-93 Schou cross-refs. The fix: an absorb pass that
-  re-runs `match_pair(member, foundation)` over every existing composed_of member and
-  DROPS those now `no_match`. Self-heals the whole sticky class (KM-42 anomalies via
+  bare-Schou collision with the Hede-93 Schou cross-refs. NOW the weight-thinning surfaces
+  the 0.44 Denning as the displayed min, so this pass is the clean-up. The fix: an absorb
+  pass that re-runs `match_pair(member, foundation)` over every existing composed_of member
+  and DROPS those now `no_match`. Self-heals the whole sticky class (KM-42 anomalies via
   weight-tier-1, Wolfenbüttel residue via mint discriminator). Uses only SAFE existing
   discriminators — no synonym risk. MUST dry-run with a printed drop-list for review.
 - 🟡 **nominal discriminator — TRIED + REVERTED (regression-prone).** Parallel to the mint
@@ -95,18 +107,6 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
   «1/2 vs 1/4 Portugaløser» was a legit split. Reverted both code + data. **Revisit AFTER
   completing the synonym table** (a curated task) — then the discriminator becomes safe.
   Note: KM-42's anomalies don't NEED it (weight-tier-1 + the re-validate pass handle them).
-- 🟡 **§9a weight-thinning → pipeline (user-confirmed; design FINAL).** Option 1 chosen:
-  HIDE (display:false, data kept) the intermediate weight VALUES + their citations of an
-  over-collected bucket; KEEP min/middle/max; **catalog refs NOT touched** (already merged
-  separately, so unique Schou/sub-variants survive — user direction). Build: (1) add
-  `display: bool = True` to `FieldValue` (schema.py ~L79); (2) `compute.normalise_field`
-  (~L14) filter `if fv.display is not False`; (3) extend `absorb._suppress_weightless_
-  museum_overcollection` — for the weight-giving KMM citations (cache-weight via
-  `_kmm_specimen_has_weight`), if ≥5, keep min / pos-len//2 / max by weight, set
-  display:false on the rest's citations + (by VALUE, since weight entries are {value,
-  "kmk"} with no nid) the matching weight_rough_g entries. KMM-first (cache-weight access);
-  IKMK/Bruun (inv-number-tagged sources) can extend later. Existing hard-coded
-  `thin_intra_subvariant_specimens.py` is the on-demand stopgap.
 - 🟡 **km multi-value handling + Numista parser (user-asked «роби»).** A coin can carry
   multiple KMs (sub-types OR fully separate KMs — confirmed on Numista). Update parser/
   builder so Numista multi-KM specimens are captured, + the km-fold (km is excluded from
