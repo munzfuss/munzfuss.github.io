@@ -75,6 +75,17 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
 (290904↔348808, 290904↔c4h55, 348808↔291969).
 
 **DONE this session (latest first):**
+- ✅ **Rhinsk Gylden fuss fix** (`896ffef` classifier, `2dc3adf` data). Christian III 1546
+  Flensburg gold Rhinsk Gylden (Hede c3h14 «1 Rhinsk Gylden» + c3h15 «2 Rhinsk Gylden»)
+  were mis-placed in the SILVER `8_daler_lybsk_fod` by the over-broad Flensborg mint-anchor
+  rule (§8a metal-mismatch). Root-cause fix: `allowed_metals` gate on `_MINT_BOUND_FUSSES`
+  bindings (gold can't match a silver Fuß). Moved both → `rhinsk_gylden_fod` phase 0 (joins
+  the 1536 Roskilde galster-c3g-131; Δ −1.7 % vs soll). Added fraction '2' (soll 6.496/5.002),
+  new ref `danskmoent-c3-rhinsk-gylden-1546` (Galster 130, NFM XII s.10), denmark.yml Phase-0
+  prose (bar year_to 1536→1546 + title + description + hintergrund + pdate hiatus 27y→17y).
+  Verified via computed JSON: both under rhinsk_gylden_fod phase 0, fraction 1/2. The 3
+  seed_unsorted Rhinsk Gylden (f2h7g, galster-hg-27, galster-hg-gej) are a SEPARATE
+  classification thread — not touched.
 - ✅ **§9a weight-thinning → pipeline** (`fb91804` code, `264c4a8` data). `FieldValue.
   display:bool=True` + `compute.normalise_field` skips display:false + `absorb._suppress_
   weightless_museum_overcollection` now thins the weight-giving KMM bucket (≥5 → keep
@@ -113,12 +124,11 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
   `normalise_catalog` → 2 residual `km#` overflow on `km-683-1…` + `numismaster-65993`,
   both bare-KM already covered by the km field; «683.1 / 683.2» is a malformed slash-
   scalar to fix too).
-- 🟡 **Rhinsk Gylden = WRONG FUSS, not a fraction question (user-flagged).** c3h14 (1 Rhinsk
-  Gylden) + c3h15 (2 Rhinsk Gylden) are mis-assigned to `8_daler_lybsk_fod`; they belong
-  in `rhinsk_gylden_fod` (which EXISTS, fraction «1» = 2.501 g → c3h14 fein 2.46 Δ −1.7 %,
-  c3h15 as «2» = 5.002 g Δ −1.7 % — clean). Move the whole Rhinsk-Gylden group + set
-  fraction. Residue of the flensborg_fod saga (TODO tasks 49-52). «1 Denning» (c4h169) =
-  special Russian-kopeck-imitation trade coin (1619 Glückstadt) — stays soll-less.
+- 🟢 **Rhinsk Gylden seed_unsorted tail (follow-up to the c3h14/c3h15 fix above).** 3 gold
+  Rhinsk Gylden still sit in `seed_unsorted`: `f2h7g` (Frederik II), `galster-hg-27`,
+  `galster-hg-gej`. They belong in `rhinsk_gylden_fod` too — classify them (the metal-gate
+  fix means a re-run of auto_classify won't mis-route them to silver). «1 Denning» (c4h169)
+  = Russian-kopeck-imitation trade coin (1619 Glückstadt) — stays soll-less, NOT Rhinsk.
 - 🟢 **Schou range-collapse (display feature, user-asked).** ≥3 CONSECUTIVE Schou numbers
   render as a range («33,34,35,36» → «33-36»; «71-76»; «97-99»). Display-time compaction
   of the Schou list (e.g. in the catalog-ref renderer).
