@@ -3903,12 +3903,12 @@ coins:
   ruler: Christian IV.
   issuing_entity: royal_holstein
   id: km-x005-chr-iv-1620
-  year_first: 1616
-  year_last: 1630
+  year_first: 1588
+  year_last: 1648
   year_ranges:
-  - - 1616
-    - 1630
-  year_label: 1616-1630
+  - - 1588
+    - 1648
+  year_label: 1588-1648
   mint: Glückstadt
   catalog:
     km:
@@ -3973,6 +3973,9 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/714818
     ref: KMM 714818 (Inv. FP 12405.232)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/203796
+    ref: KMM 203796 (Inv. FP 6588.5)
   note:
     de: 2 Skilling Lybsk = 1/24 Speciedaler · Christian IV. (Glückstadt 1620, früheste dokumentierte Glückstädter Sk-Lybsk-Stufe
       in der Reichsmüntzfuß-Phase 1617–1622). <b>Reichsmünzordnung-Standard-Feingehalt .888</b>; rohes Gewicht 1,01 g entspricht
@@ -4006,12 +4009,14 @@ coins:
   ruler: Christian IV.
   issuing_entity: royal_holstein
   id: km-x007-chr-iv-1620
-  year_first: 1588
-  year_last: 1648
+  year_first: 1620
+  year_last: 1624
   year_ranges:
-  - - 1588
-    - 1648
-  year_label: 1588-1648
+  - - 1620
+    - 1620
+  - - 1624
+    - 1624
+  year_label: 1620, 1624
   mint: Glückstadt
   catalog:
     km:
@@ -4019,7 +4024,6 @@ coins:
     - '9.1'
     - '9.2'
     numista: '108002'
-    lange: '55'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -4030,22 +4034,9 @@ coins:
   fineness:
   - value: 0.888
     source: numismaster
-  - value: 0.888
-    source: numista
-  - value: 0.888
-    source: ucoin
   weight_rough_g:
-  - value: 1.93
-    source: numista
-  - value: 1.93
-    source: ucoin
   - value: 2.016
     source: numismaster
-  diameter_mm:
-  - value: 18.0
-    source: numista
-  - value: 18.0
-    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-4-skilling-lybsk-1620/?tid=163638
@@ -4089,8 +4080,8 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
-  - unified-dk-numista-108002
-  - unified-kmk-46694
+  - unified-kmk-47348
+  - unified-schleswig_holstein-numismaster-92985
   - unified-schleswig_holstein-numismaster-92986
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
@@ -7821,40 +7812,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-167751
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1 Denning
-  ruler: Christian IV
-  issuing_entity: royal_holstein
-  id: unified-schleswig_holstein-numismaster-92960
-  year_first: 1620
-  year_last: 1620
-  year_label: '1620'
-  catalog:
-    km: '5.2'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.888
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_92960
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-92960
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -17470,20 +17427,27 @@ coins:
   year_label: 1620-1630
   mint: Glückstadt
   catalog:
+    km: '5.2'
     numista: '416350'
     sieg: '10'
     hede: '104'
   metal: silver
   metal_verified: true
-  fineness_verified: false
+  fineness_verified: true
   weight_rough_verified: false
   diameter_mm_verified: false
   mint_verified: true
   verified: false
+  fineness:
+  - value: 0.888
+    source: numismaster
   sources:
   - type: literature
     url: https://en.numista.com/416350
     ref: Numista N#416350 — 1 Denning - Christian IV
+  - type: literature
+    url: https://numismaster.com/MC_92960
+    ref: NumisMaster
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -18514,23 +18478,31 @@ coins:
   year_verified: false
   mint: Glückstadt
   catalog:
-    km: '85'
+    km:
+    - '85'
+    - '9'
     hede: '167'
     hede_volume: c4h
     schou: 36-48
     sieg: '168'
-    numista: '301532'
+    numista:
+    - '301532'
+    - '108002'
     lange: '55'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: false
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.888
     source: hede
+  - value: 0.888
+    source: numista
+  - value: 0.888
+    source: ucoin
   weight_rough_g:
   - value: 1.52
     source: kmk
@@ -18542,8 +18514,17 @@ coins:
     source: kmk
   - value: 1.9
     source: numista
+  - value: 1.93
+    source: numista
+  - value: 1.93
+    source: ucoin
   - value: 2.016
     source: hede
+  diameter_mm:
+  - value: 18.0
+    source: numista
+  - value: 18.0
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c4h167.htm
@@ -18574,6 +18555,12 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/714860
     ref: KMM 714860 (Inv. FP 12405.190)
+  - type: literature
+    url: https://en.numista.com/108002
+    ref: Numista N#108002 — 4 Skilling Lybsk - Christian IV Wire money
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-skilling-lybsk-1620/?tid=163638
+    ref: ucoin
   note:
     de: rytterpenning
     en: rytterpenning
@@ -18590,6 +18577,7 @@ coins:
     unit_raw: daler
   composed_of:
   - unified-dk-hede-c4h167
+  - unified-dk-numista-301532
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -25256,12 +25244,6 @@ coins:
   ruler: Christian 4
   issuing_entity: royal_holstein
   id: unified-kmk-155180
-  year_first: 1588
-  year_last: 1648
-  year_ranges:
-  - - 1588
-    - 1648
-  year_label: 1588-1648
   mint: Glückstadt
   catalog:
     hede:
@@ -33926,36 +33908,6 @@ coins:
   composed_of:
   - unified-kmk-86266
 - fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 4 Skilling lybsk
-  ruler: Christian 4
-  issuing_entity: royal_holstein
-  id: unified-kmk-372351
-  year_first: 1767
-  year_last: 1767
-  year_label: '1767'
-  mint: Glückstadt
-  catalog:
-    hede: '167'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/372351
-    ref: KMM 372351 (Inv. FP 4322.10)
-  verification_note:
-    de: 'KMK-Seed: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk). Felder museumsbelegt;
-      Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
-    en: 'KMK seed: record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk). Fields museum-attested;
-      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
-    uk: 'KMK-сід: запис із Королівського мюнцкабінету (Nationalmuseet Копенгаген, api.natmus.dk). Поля музейно-засвідчені;
-      Müntzfuß/фаза некласифіковані (seed_unsorted) до Phase-4.'
-  composed_of:
-  - unified-kmk-372351
-- fuss: seed_unsorted
   phase: hede
   kind: kurant
   nominal: 1 Portugaløser
@@ -34226,8 +34178,11 @@ coins:
   fraction: 1/24
   id: unified-dk-hede-f7h11a
   year_first: 1854
-  year_last: 1854
-  year_label: '1854'
+  year_last: 1856
+  year_ranges:
+  - - 1854
+    - 1856
+  year_label: 1854-1856
   mint:
   - Altona
   - Royal Danish
@@ -34304,7 +34259,6 @@ coins:
     unit: rigsdaler
     basis: fin
   composed_of:
-  - unified-dk-bruun-8228
   - unified-dk-hede-f7h11a
 - fuss: 18_5_thaler
   phase: III
@@ -34577,11 +34531,11 @@ coins:
   fraction: '2'
   id: unified-dk-hede-f7h6b
   year_first: 1854
-  year_last: 1856
+  year_last: 1863
   year_ranges:
   - - 1854
-    - 1856
-  year_label: 1854-1856
+    - 1863
+  year_label: 1854-1863
   mint:
   - Altona
   - Royal Danish
@@ -34768,6 +34722,40 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   composed_of:
   - unified-km-77-1-chr-v-1686
+- fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 4 Skilling lybsk
+  ruler: Christian 4
+  issuing_entity: royal_holstein
+  id: unified-kmk-352757
+  year_first: 1767
+  year_last: 1767
+  year_label: '1767'
+  mint: Glückstadt
+  catalog:
+    hede: '167'
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/352757
+    ref: KMM 352757 (Inv. FP 5113.17)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/372351
+    ref: KMM 372351 (Inv. FP 4322.10)
+    display: false
+  verification_note:
+    de: 'KMK-Seed: Datensatz aus der Kgl. Münz- und Medaillensammlung (Nationalmuseet Kopenhagen, api.natmus.dk). Felder museumsbelegt;
+      Müntzfuß/Phase noch unklassifiziert (seed_unsorted) bis zur Phase-4-Zuordnung.'
+    en: 'KMK seed: record from the Royal Coin Cabinet (Nationalmuseet Copenhagen, api.natmus.dk). Fields museum-attested;
+      Münzfuß/phase unclassified (seed_unsorted) pending Phase-4 assignment.'
+    uk: 'KMK-сід: запис із Королівського мюнцкабінету (Nationalmuseet Копенгаген, api.natmus.dk). Поля музейно-засвідчені;
+      Müntzfuß/фаза некласифіковані (seed_unsorted) до Phase-4.'
+  composed_of:
+  - unified-kmk-352757
 - fuss: reichsdukatenfuss
   phase: I
   kind: kurant

@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `erzbisthum_bremen_verden`.
-# Generated 2026-06-08 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-09 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/erzbisthum_bremen_verden.yml across all sources.
 #
 # Input: 223 per-source seed entries.
-# Output: 157 unified entries (one per physical coin).
+# Output: 155 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: erzbisthum_bremen_verden
-generated_at: '2026-06-08'
+generated_at: '2026-06-09'
 coins:
 - id: unified-dk-bruun-12130
   fuss: seed_unsorted
@@ -219,12 +219,17 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 7.0
+    source: ucoin
   - value: 7.01
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/129841
     ref: Numista N#129841 — ¼ Thaler - Henry III of Sachsen-Lauenburg - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-4-thaler-1583-1584/?tid=175436
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -238,6 +243,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-129841
+  - tid-tid-175436
 - id: unified-dk-numista-129842
   fuss: seed_unsorted
   phase: numista
@@ -728,16 +734,27 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 28.0
+    source: ucoin
   - value: 28.04
     source: numista
+  diameter_mm:
+  - value: 42.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/266573
     ref: Numista N#266573 — 1 Thaler - George of Brunswick - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1560/?tid=175543
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1560/?tid=175544
+    ref: ucoin
   note:
     de: 36 Grote (Rechnungs-Äquivalent)
     en: 36 Grote (accounting equivalent)
@@ -755,6 +772,8 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-266573
+  - tid-tid-175543
+  - tid-tid-175544
 - id: unified-dk-numista-270939
   fuss: seed_unsorted
   phase: numista
@@ -6019,76 +6038,3 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - tid-tid-175388
-- id: unified-tid-tid-175436
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ¼ Thaler
-  year_first: 1583
-  year_last: 1584
-  year_ranges:
-  - - 1583
-    - 1584
-  year_label: 1583-1584
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 7.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/bremen-1-4-thaler-1583-1584/?tid=175436
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: erzbisthum_bremen_verden
-  composed_of:
-  - tid-tid-175436
-- id: unified-tid-tid-175543
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1560
-  year_last: 1560
-  year_label: '1560'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 28.0
-    source: ucoin
-  diameter_mm:
-  - value: 42.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/bremen-1-thaler-1560/?tid=175543
-    ref: ucoin
-  - type: ucoin
-    url: https://en.ucoin.net/coin/bremen-1-thaler-1560/?tid=175544
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: erzbisthum_bremen_verden
-  composed_of:
-  - tid-tid-175543
-  - tid-tid-175544
