@@ -75,6 +75,12 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
 (290904↔348808, 290904↔c4h55, 348808↔291969).
 
 **DONE this session (latest first):**
+- ✅ **Mixed-number fraction fix** (`6238372`). `normalise_nominal` garbled «1½ Thaler» →
+  «11/2 daler» (no separator between whole part + vulgar fraction). Now inserts a zero-width
+  space before ANY unicode fraction following a digit (½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞) → «1 1/2», and the
+  leading-«1 » strip gains `(?!\d)` so «1 1/2» isn't collapsed to «1/2». 0 corruption left;
+  «1½» now matches the spelled «1 1/2». Maintenance-side — materializes a few 1½↔1-1/2 de-dup
+  matches on the next full re-merge.
 - ✅ **Full Numista re-parse materialization** (submodule `b77926fe` 398 sidecars; main
   data commit + classification_decisions). RE-PARSE only (no re-harvest — cache unchanged,
   0 API quota). `parse_numista --force` → `build_numista_seed` → `merge` (15 entities) →
@@ -168,10 +174,6 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
   «1½»→«11/2» unicode artifact — a SEPARATE bug worth its own fix) are either legit or folded,
   THEN ship + full re-merge. NB: KM-42's anomalies don't NEED this (weight-tier-1 + the
   re-validate pass handle them).
-- 🟢 **Pre-existing bug: «1½» normalises to «11/2» not «1 1/2»** — the `_UNICODE_FRACTIONS`
-  fold replaces «½»→«1/2» with no leading space, so «1½ Thaler» → «11/2 daler». Affects
-  matching of 1½-denomination coins. Separate from the discriminator work; small fix in
-  `nominal_synonyms._UNICODE_FRACTIONS` / `_preprocess`.
 - 🟡 **Classify the 13 new Hesse-Kassel Numista coins** (`data/v2/classification_decisions/
   landgrafschaft_hessen_kassel.yml` pending list). They entered as `seed_unsorted` in the
   full re-parse below — assign fuss/phase (or fix matcher rules) per PB Phase-4. The 322
