@@ -140,21 +140,31 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
   and DROPS those now `no_match`. Self-heals the whole sticky class (KM-42 anomalies via
   weight-tier-1, Wolfenbüttel residue via mint discriminator). Uses only SAFE existing
   discriminators — no synonym risk. MUST dry-run with a printed drop-list for review.
-- 🟡 **nominal discriminator — synonym table DONE (`5b48840`), discriminator itself still
-  to re-introduce.** The 7 false-split synonyms now fold in `nominal_synonyms.py`: «Dobbelt
-  X»→«2 X» (start-anchored, so «4 Dobbelt Groschen» the 4-fold coin is safe), «Specie /
-  Species / Rigsdaler-Specie / Specie-norsk / Speciemønt»→«speciedaler», with a «Specie(s)-
-  Dukat»→«speciedukat» guard (gold ducat, NOT daler). Verified over all 1214 nominals: 37
-  fold as intended, 0 unexpected. The «Brilledukat» from the old notes was a mis-recollection
-  (no such nominal in the data; «Brillenthaler» is a distinct coin, untouched). «1/4 vs 1/2
-  Portugaløser» correctly stays a real split. **Now re-introduce the discriminator** (block
-  a merge when normalised nominals genuinely differ + only a weak Schou/Sieg tie): the
-  synonym folds remove the 7 false splits; re-run the full merge and confirm only the legit
-  splits remain, then verify no regression. STILL ambiguous: bare «Daler» (Rigsdaler/Kurant/
-  Specie) — the discriminator must treat a bare-«daler» side as a wildcard (don't split on
-  it). NB: KM-42's anomalies don't NEED this (weight-tier-1 + the re-validate pass handle
-  them). The new synonyms also strengthen the EXISTING merger's nominal signal — a full
-  re-merge will fold some previously-split synonym pairs (expected, correct).
+- 🟡 **nominal discriminator — IMPLEMENTED + dry-run regression FAILED → REVERTED, synonym
+  table needs more folds first.** Built `match_pair`: `_nominal_wildcard_match` (bare «daler»/
+  «gylden» vs a specific compound of the same unit + quantity → not a genuine difference, so
+  «1 Daler»/«Speciedaler» and «Guilder»/«Rhinsk Gylden» don't split) + the discriminator
+  (nominal genuinely differs AND `not _shares_type_level_catalog` → no_match; weak Schou/Sieg
+  tie doesn't carry it). Dry-run on danish_realm (vs a baseline with the same synonym table):
+  **unified 7874→7899, +25 merges blocked, ALL on pairs with NO catalogue overlap.** Diffed
+  the with/without composed_of partitions — **~half the splits are FALSE** (same coin, label
+  variance the synonym table doesn't fold yet):
+    • trailing «dansk»/«danske» default qualifier — «6 Skilling dansk» split from «6 Skilling»,
+      same for «8 Skilling dansk», «2 Mark danske», «4 Skilling dansk», «12 Skilling dansk»
+      (NB «lybsk»/«norsk» ARE distinguishing — only «dansk/danske» is the droppable default);
+    • spelling typo «Rigsbankdaler» vs «Rigsbanksdaler»;
+    • «½ Krone» vs «Halvkrone»; «Løvedaler» vs «Lion Daler/Taler» (DA vs EN);
+    • value-gloss tail «1 Krone, 4 Mark» / «1 Sovereign, 3 Guilder» (the «, N <denom>» annotation
+      splits it from the bare form).
+  LEGIT splits in the same run: «¼ vs ½ Portugaløser», «1 vs 2 Dukat», «1 vs 2 Ungersk gylden»,
+  «4 Mark vs Speciedaler». **Reverted the discriminator code (NOT committed, data restored).**
+  **Next:** extend `nominal_synonyms.py` for the FALSE-split categories above (strip trailing
+  «dansk/danske»; «halvkrone»→«1/2 krone»; «løvedaler»≡«lion daler/taler»; «rigsbanksdaler»→
+  «rigsbankdaler»; strip a trailing «, N <denom>» value-gloss), re-run the with/without dry-run
+  until the split list is ALL-legit, THEN ship the discriminator + full re-merge. The
+  discriminator code is reconstructable from this entry (wildcard helper + type-level-catalog
+  gate, mirroring the §9.4 mint discriminator at `merge_seeds_cross_source.py` ~L1735). NB:
+  KM-42's anomalies don't NEED this (weight-tier-1 + the re-validate pass handle them).
 - 🟢 **Full Numista re-parse to materialize §9a accumulation across all entities**
   (follow-up to the multi-KM fix above). The parser/merge/hygiene code is shipped, but
   only danish_realm + gottorp_duchy seeds were re-run. To materialize lange/dav/fr multi-
