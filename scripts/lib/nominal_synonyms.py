@@ -49,7 +49,7 @@ _UNICODE_FRACTIONS = {
 }
 
 # Danish diacritics → ASCII (matching only — «Portugaløser» ≡ «Portugaloser»).
-_DIACRITIC_FOLD = {"ø": "o", "æ": "ae", "å": "a"}
+_DIACRITIC_FOLD = {"ø": "o", "æ": "ae", "å": "a", "ö": "o", "ä": "ae", "ü": "u"}
 
 # Bruun-catalogue region/issuer prefixes («Lübeck. Daler», «Oldenburg. Taler»).
 # Stripped leading-segment-wise; the region is not a coin-identity discriminator
@@ -165,8 +165,9 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     # so the multiplied form «4 Dobbelt Groschen» (a 4-fold coin, NOT
     # 2×) is left intact. Covers «Dobbelt dukat / speciedaler / krone /
     # skilling / hvid / royalin / mariengroschen / groschen / ungarsk
-    # gylden / guldkrone», one-word («Dobbeltkrone») or spaced.
-    (r"^(?:1\s+)?dobbelt[- ]?", "2 "),
+    # gylden / guldkrone», one-word («Dobbeltkrone») or spaced. The «t» is
+    # optional — both «Dobbelt-» and «Dobbel-» (Dobbeldukat) spellings occur.
+    (r"^(?:1\s+)?dobbelt?[- ]?", "2 "),
     # «Specie(s)-Dukat» / «Ducat Specie» = a Speciedukat (specie-grade
     # GOLD ducat), NOT a Speciedaler — guard BEFORE the bare specie fold
     # so the «specie» adjective isn't mis-read as the daler denomination.
@@ -182,6 +183,35 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     (r"\bspecie[- ]?norsk\b", "speciedaler"),
     (r"\bspeciem[øo]nt\b", "speciedaler"),
     (r"\bspecies?\b", "speciedaler"),
+    # --- label-variance folds that surfaced as FALSE splits when the
+    #     nominal discriminator was first dry-run (2026-06-08) ---
+    # Value-gloss tail «X, N <unit>» — «1 Krone, 4 Mark» / «1 Sovereign,
+    # 3 Guilder»: the «, N …» is a worth-annotation, not part of the
+    # denomination → strip it. MUST precede the comma-normaliser below so
+    # the comma is still present to anchor on. (A bare «, <word>» without a
+    # leading digit — «1 Skilling, norsk» — is a qualifier, NOT stripped.)
+    (r",\s*\d[\d/]*\s+\w.*$", ""),
+    (r",\s+", " "),                                  # remaining «X, qualifier» comma → space
+    # «dansk» / «danske» is the DEFAULT (Danish) qualifier — «6 Skilling
+    # dansk» ≡ «6 Skilling». Stripped as a standalone word. «lybsk» (Lübeck)
+    # and «norsk» (Norwegian) are GENUINELY distinguishing and are kept.
+    (r"\s*\bdanske?\b", ""),
+    # «Halv-X» (Danish «half») ≡ «½ X»: «Halvkrone»→«1/2 krone»,
+    # «Halvdaler», «Halvskilling», «Halv ørtug», «halv dukat», …
+    (r"\bhalv[ -]?", "1/2 "),
+    # «Lion Daler / Taler / Dalar» (EN/spelling variants) ≡ «Løvedaler»
+    # (DA «lion daler»); fold to the diacritic-folded «lovedaler».
+    (r"\blion\s+(?:dal[ae]r|taler)\b", "lovedaler"),
+    # Genitive-s spelling typos: «Rigsbanksdaler»→«Rigsbankdaler»,
+    # «Rigsbanksskilling»→«Rigsbankskilling» (explicit full words so the
+    # CORRECT «Rigsbankskilling» is never corrupted).
+    (r"\brigsbanksdaler\b", "rigsbankdaler"),
+    (r"\brigsbanksskilling\b", "rigsbankskilling"),
+    # «Courant» (EN/FR period spelling) ≡ «Kurant» (DE) — fold for matching
+    # only (display keeps the period «Courant» per CLAUDE.md §2). Then the
+    # spaced «Kurant Dukat» collapses to the one-word «Kurantdukat».
+    (r"\bcourant\b", "kurant"),
+    (r"\bkurant\s+dukat\b", "kurantdukat"),
 ]
 
 
