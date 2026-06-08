@@ -526,8 +526,48 @@ def _compute_catalog_groups(
                 out.append((1, t))
         return out
 
+    def collapse_runs(values: list[str]) -> list[str]:
+        """Sort an index-value list and collapse runs of ≥3 consecutive
+        bare integers into 'min-max' ranges. Every value is first expanded
+        to its integer members — so existing ranges ('23-24') and
+        overlapping/adjacent inputs ('25-26', '26') merge correctly
+        ('23-26') instead of rendering as a messy unsorted overlap. Runs
+        of 1-2 consecutive integers stay individual numbers (the ≥3
+        threshold). Non-integer tokens (sub-variant letters '93A', dotted
+        '77.1', register-qualified values) never collapse — they sort
+        naturally via value_key and parent types still precede their
+        sub-variants."""
+        ints: set[int] = set()
+        complex_toks: list[str] = []
+        for raw in values:
+            v = str(raw).strip()
+            if not v:
+                continue
+            m = re.fullmatch(r"(\d+)\s*[-–]\s*(\d+)", v)
+            if m and int(m.group(1)) <= int(m.group(2)):
+                ints.update(range(int(m.group(1)), int(m.group(2)) + 1))
+            elif re.fullmatch(r"\d+", v):
+                ints.add(int(v))
+            else:
+                complex_toks.append(v)
+        tokens: list[str] = []
+        si = sorted(ints)
+        i = 0
+        while i < len(si):
+            j = i
+            while j + 1 < len(si) and si[j + 1] == si[j] + 1:
+                j += 1
+            run = si[i:j + 1]
+            if len(run) >= 3:
+                tokens.append(f"{run[0]}-{run[-1]}")
+            else:
+                tokens.extend(str(n) for n in run)
+            i = j + 1
+        tokens.extend(complex_toks)
+        return sorted(dict.fromkeys(tokens), key=value_key)
+
     for p in groups:
-        groups[p] = sorted(set(groups[p]), key=value_key)
+        groups[p] = collapse_runs(groups[p])
 
     sorted_prefixes = sorted(groups.keys(), key=sort_key)
     out: list[tuple[str, list[str], str | None]] = [
