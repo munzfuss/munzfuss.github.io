@@ -74,25 +74,54 @@ separate seed_unsorted Wolfenbüttel coins; KMM 348808 (genuine Hede 55) stays i
 foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges added
 (290904↔348808, 290904↔c4h55, 348808↔291969).
 
-**OPEN / next:**
-- 🟡 **§9a weight-thinning → pipeline (user-confirmed «так», NOT yet built).** The
-  min/mid/max-by-weight specimen thinning is currently a HARD-CODED per-coin script
-  (`thin_intra_subvariant_specimens.py`, 2026-05-09 audit DROPS dict), not a general
-  absorb pass. Generalising needs a DECISION: `FieldValue` (weight entries) has no
-  `display` field (`_StrictBase`) — so either (1) add `display` to FieldValue + renderer/
-  compute support to HIDE intermediates (data kept, like KMM thinning), or (2) DELETE
-  them (§9a-style). User leaned «like KMM thinning» → option 1, but it's a schema+render
-  change. + reliable sub-variant grouping from the source string.
-- 🟡 **km multi-value handling (user-asked).** A coin can carry multiple KMs (sub-types OR
-  fully separate KMs — seen on Numista). Update the parser/builder + the km-fold (km is
-  excluded from `normalise_catalog` now → 2 residual `km#` overflow on `km-683-1…` +
-  `numismaster-65993`, both bare-KM already covered by the km field; «683.1 / 683.2» is
-  also a malformed slash-scalar).
-- 🟡 **2 Rhinsk Gylden / 8_daler_lybsk_fod fraction confused.** Did NOT apply fraction «2»
-  (would give Δ −90 %: fuss base «1» = 1 Daler 26 g, not 1 Rhinsk Gylden 2.46 g). The
-  existing «1 Rhinsk Gylden» (c3h14) is ALSO mis-fractioned «1». Needs the Rhinsk-Gylden↔
-  Daler-Lybsk rate, or leave soll-less. «1 Denning» (c4h169) = special Russian-kopeck-
-  imitation trade coin (1619, Glückstadt) — stays soll-less.
+**OPEN / next (all user-directed this session — designs captured, NOT yet built):**
+- 🟡 **re-validate-composed_of absorb pass (HIGHEST leverage — recommended first).** The
+  absorb NEVER re-validates existing composed_of members (only adds), so historical bad
+  merges are STICKY — they survive every re-run + every new discriminator. This is why
+  c4h55's foundation mint stayed polluted, and why KM-42 (`dk-tid-163034`, 8 Skilling
+  Christian IV) STILL carries 2 wrong-type specimens despite weight-tier-1 already
+  rejecting them: **KMM 137199 «Denning» 0.44 g «Sch 83»** (Russian-kopeck imitation) +
+  **KMM 591520 «4 Skilling Lybsk Rytterpenning» 1.822 g «Sch 42»** — both merged via a
+  bare-Schou collision with the Hede-93 Schou cross-refs. The fix: an absorb pass that
+  re-runs `match_pair(member, foundation)` over every existing composed_of member and
+  DROPS those now `no_match`. Self-heals the whole sticky class (KM-42 anomalies via
+  weight-tier-1, Wolfenbüttel residue via mint discriminator). Uses only SAFE existing
+  discriminators — no synonym risk. MUST dry-run with a printed drop-list for review.
+- 🟡 **nominal discriminator — TRIED + REVERTED (regression-prone).** Parallel to the mint
+  discriminator (block when normalised nominals differ + only weak Schou/Sieg tie). Full
+  re-merge → **9 splits, 7 are SYNONYMS** the `_normalise_nominal` table doesn't fold
+  (Dobbeldukat=2 Dukat, Dobbeltspecie=2 Speciedaler, Specie=Speciedaler, Brilledukat=2
+  Dukat; «Daler» is genuinely AMBIGUOUS — Rigsdaler/Kurantdaler/Speciedaler). Only
+  «1/2 vs 1/4 Portugaløser» was a legit split. Reverted both code + data. **Revisit AFTER
+  completing the synonym table** (a curated task) — then the discriminator becomes safe.
+  Note: KM-42's anomalies don't NEED it (weight-tier-1 + the re-validate pass handle them).
+- 🟡 **§9a weight-thinning → pipeline (user-confirmed; design FINAL).** Option 1 chosen:
+  HIDE (display:false, data kept) the intermediate weight VALUES + their citations of an
+  over-collected bucket; KEEP min/middle/max; **catalog refs NOT touched** (already merged
+  separately, so unique Schou/sub-variants survive — user direction). Build: (1) add
+  `display: bool = True` to `FieldValue` (schema.py ~L79); (2) `compute.normalise_field`
+  (~L14) filter `if fv.display is not False`; (3) extend `absorb._suppress_weightless_
+  museum_overcollection` — for the weight-giving KMM citations (cache-weight via
+  `_kmm_specimen_has_weight`), if ≥5, keep min / pos-len//2 / max by weight, set
+  display:false on the rest's citations + (by VALUE, since weight entries are {value,
+  "kmk"} with no nid) the matching weight_rough_g entries. KMM-first (cache-weight access);
+  IKMK/Bruun (inv-number-tagged sources) can extend later. Existing hard-coded
+  `thin_intra_subvariant_specimens.py` is the on-demand stopgap.
+- 🟡 **km multi-value handling + Numista parser (user-asked «роби»).** A coin can carry
+  multiple KMs (sub-types OR fully separate KMs — confirmed on Numista). Update parser/
+  builder so Numista multi-KM specimens are captured, + the km-fold (km is excluded from
+  `normalise_catalog` → 2 residual `km#` overflow on `km-683-1…` + `numismaster-65993`,
+  both bare-KM already covered by the km field; «683.1 / 683.2» is a malformed slash-
+  scalar to fix too).
+- 🟡 **Rhinsk Gylden = WRONG FUSS, not a fraction question (user-flagged).** c3h14 (1 Rhinsk
+  Gylden) + c3h15 (2 Rhinsk Gylden) are mis-assigned to `8_daler_lybsk_fod`; they belong
+  in `rhinsk_gylden_fod` (which EXISTS, fraction «1» = 2.501 g → c3h14 fein 2.46 Δ −1.7 %,
+  c3h15 as «2» = 5.002 g Δ −1.7 % — clean). Move the whole Rhinsk-Gylden group + set
+  fraction. Residue of the flensborg_fod saga (TODO tasks 49-52). «1 Denning» (c4h169) =
+  special Russian-kopeck-imitation trade coin (1619 Glückstadt) — stays soll-less.
+- 🟢 **Schou range-collapse (display feature, user-asked).** ≥3 CONSECUTIVE Schou numbers
+  render as a range («33,34,35,36» → «33-36»; «71-76»; «97-99»). Display-time compaction
+  of the Schou list (e.g. in the catalog-ref renderer).
 - 🟢 **Foundation-mint pollution (systemic note).** c4h55's foundation had accumulated a
   wrong mint (Wolfenbüttel) from historical bad merges; the absorb matches against the
   STORED foundation mint (re-derives only in enrich, AFTER matching), so the pollution
