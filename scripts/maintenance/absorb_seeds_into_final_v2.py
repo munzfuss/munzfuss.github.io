@@ -89,6 +89,15 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     _or_merge_verified,
     _catalog_refs,
     _shares_unique_id_ref,
+    _shares_type_level_catalog,
+    _nominal_wildcard_match,
+    # The merge module's nominal normaliser applies the FULL synonym table
+    # (Ducat→dukat, Dobbelt X→2 X, Guldkrone→gold krone, «(?)»→empty); the
+    # v2_seed_writer `_normalise_nominal` imported above does NOT. The
+    # re-validate identity check MUST use the same normaliser as match_pair's
+    # nominal discriminator, else synonym pairs («1 Ducat» vs «1 Dukat») read
+    # as genuine mismatches and get false-evicted.
+    _normalise_nominal as _mg_normalise_nominal,
 )
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices  # noqa: E402
 
@@ -906,12 +915,177 @@ def _all_basic_peers_no_match_primary(unified: dict, finals: list[dict],
 # fuesse.yml on every fraction-inference invocation would be wasteful.
 _FUSS_FRACTIONS_CACHE: dict[str, set] | None = None
 
+# Re-validate composed_of membership each run (evict identity-mismatched
+# members per `_revalidate_composed_of`). Default on; `--no-revalidate`
+# disables for a one-off debug run that must not mutate existing membership.
+REVALIDATE_ENABLED: bool = True
+
 
 def _get_fuss_fractions_cache() -> dict[str, set]:
     global _FUSS_FRACTIONS_CACHE
     if _FUSS_FRACTIONS_CACHE is None:
         _FUSS_FRACTIONS_CACHE = load_fuss_fractions()
     return _FUSS_FRACTIONS_CACHE
+
+
+def _nominal_genuinely_differs(a, b) -> bool:
+    """True iff two nominals are a GENUINE identity mismatch.
+
+    Mirrors the merger's nominal discriminator (merge_seeds_cross_source,
+    shipped 2026-06-08): normalise both via `_normalise_nominal`, treat
+    them as the same coin when equal OR when the bare-unit / same-unit-
+    compound wildcard (`_nominal_wildcard_match`) holds. Anything else is
+    a genuine difference («8 Skilling» vs «1 Denning», «2 Guldkrone» vs
+    «2 Dukat»). Empty / unparseable nominals are NOT a genuine difference
+    (can't assert a mismatch from missing data).
+    """
+    na, nb = _mg_normalise_nominal(a), _mg_normalise_nominal(b)
+    if not na or not nb or na == nb:
+        return False
+    if _nominal_wildcard_match(na, nb):
+        return False
+    return True
+
+
+def _revalidate_composed_of(
+    final_by_id: dict, unified_by_id: dict, entity_id: str
+) -> dict[str, set]:
+    """Re-validate existing composed_of membership; return per-host evict set.
+
+    The ABSORB stage is additive + STICKY: once a unified entry lands in a
+    foundation's `composed_of`, no later run re-checks whether it still
+    belongs. Earlier-pipeline mis-groupings (and V1-bootstrap composed_of
+    carried forward) therefore persist forever — e.g. the «1 Denning»
+    (unified-kmk-137199) + «4 Skilling lybsk» (unified-kmk-294714) members
+    fused into the KM 42 «8 Skilling» foundation, dragging a 0.44 g weight
+    onto an 8-Skilling row (caught 2026-06-08).
+
+    SAFE criterion — IDENTITY mismatch only, never specimen variance:
+    a member is evicted iff its normalised nominal GENUINELY differs from
+    the foundation's (`_nominal_genuinely_differs`) AND the two share NO
+    agreeing type-level catalogue (`_shares_type_level_catalog` — km / hede
+    / galster / dav / lange / numista / bruun_collection_id, NOT weak per-
+    reign Schou/Sieg). This is exactly the merger's nominal discriminator,
+    applied to existing membership. The weight-tier-1 disambiguator is
+    DELIBERATELY NOT used here: a same-nominal member whose weight diverges
+    >5 % is legitimate specimen variance (a worn / off-standard piece),
+    not a different coin — re-validating on weight would false-drop real
+    specimens (verified 2026-06-08: 24 of 38 weight-tier drops were
+    same-nominal). Once a member is evicted it re-enters the unabsorbed
+    pool and re-homes via the standard force-promote path; the shipped
+    nominal discriminator then prevents it re-absorbing into the same
+    foundation (no type-level tie → match_pair no_match).
+
+    Returns `{host_id: {evict_member_id, ...}}` for every foundation with
+    at least one identity-mismatched member.
+    """
+    evictions: dict[str, set] = {}
+    for fid, fc in final_by_id.items():
+        comp = fc.get("composed_of") or []
+        if len(comp) < 2:
+            continue
+        fa = _catalog_refs(fc, entity_id)
+        host_nom = fc.get("nominal")
+        for mid in comp:
+            if mid == fid:
+                continue  # self-link foundation contribution — never evict
+            m = unified_by_id.get(mid)
+            if m is None:
+                continue  # raw-seed / unknown member — not a unified entry
+            if not _nominal_genuinely_differs(host_nom, m.get("nominal")):
+                continue
+            if _shares_type_level_catalog(fa, _catalog_refs(m, entity_id)):
+                continue  # type-level catalogue tie overrides nominal diff
+            evictions.setdefault(fid, set()).add(mid)
+    return evictions
+
+
+def _wkey(v):
+    """Round-to-5 numeric key for weight/fineness/diameter value matching."""
+    try:
+        return round(float(v), 5)
+    except (TypeError, ValueError):
+        return None
+
+
+def _surgical_decontaminate(
+    fc: dict, evicted_members: list[dict], remaining_members: list[dict]
+) -> None:
+    """Strip ONLY the evicted members' EXCLUSIVE accumulated contributions.
+
+    Prior enrichment runs bake every member's measurements + sources onto
+    the foundation entry itself (members[0] == fc in `_enrich_final_entry`),
+    so dropping a member from composed_of is not enough — its 0.44 g weight,
+    its source URLs etc. survive on fc and re-pollute the next re-enrichment.
+
+    Twin-INDEPENDENT removal (no clean-foundation snapshot needed): for each
+    list-form measurement field (weight_rough_g / fineness / diameter_mm) and
+    for `sources`, drop a value from fc iff it is contributed by SOME evicted
+    member AND by NO remaining member. Values that no evicted member carries
+    (genuine foundation-own data, or orphan baked data with no current backer
+    — e.g. km-74's 4 Bruun/KMM source URLs) are PRESERVED untouched, honouring
+    §9a «preserve all data, never collapse». Mutates `fc` in place.
+
+    Year fields are intentionally left alone: an over-wide year range is the
+    safe direction per §0 («year_last overshooting acceptable, never clip»),
+    and re-enrichment unions years from the surviving member set anyway.
+    """
+    def _val_source_keys(members, field):
+        keys = set()
+        for m in members:
+            v = m.get(field)
+            if isinstance(v, list):
+                for x in v:
+                    if isinstance(x, dict) and _wkey(x.get("value")) is not None:
+                        keys.add((_wkey(x["value"]), x.get("source")))
+        return keys
+
+    def _source_keys(members):
+        keys = set()
+        for m in members:
+            for s in (m.get("sources") or []):
+                if isinstance(s, dict):
+                    keys.add((s.get("url"), s.get("ref"), s.get("type")))
+        return keys
+
+    for field in ("weight_rough_g", "fineness", "diameter_mm"):
+        cur = fc.get(field)
+        if not isinstance(cur, list):
+            continue  # scalar (curator / canonical Müntzfuß value) — leave it
+        ev_keys = _val_source_keys(evicted_members, field)
+        if not ev_keys:
+            continue
+        keep_keys = _val_source_keys(remaining_members, field)
+        kept = [
+            x for x in cur
+            if not (
+                isinstance(x, dict)
+                and (_wkey(x.get("value")), x.get("source")) in ev_keys
+                and (_wkey(x.get("value")), x.get("source")) not in keep_keys
+            )
+        ]
+        if kept:
+            fc[field] = kept
+        else:
+            fc.pop(field, None)
+
+    cur_sources = fc.get("sources")
+    if isinstance(cur_sources, list):
+        ev_src = _source_keys(evicted_members)
+        if ev_src:
+            keep_src = _source_keys(remaining_members)
+            kept = [
+                s for s in cur_sources
+                if not (
+                    isinstance(s, dict)
+                    and (s.get("url"), s.get("ref"), s.get("type")) in ev_src
+                    and (s.get("url"), s.get("ref"), s.get("type")) not in keep_src
+                )
+            ]
+            if kept:
+                fc["sources"] = kept
+            else:
+                fc.pop("sources", None)
 
 
 def process_entity(entity_id: str) -> dict:
@@ -1445,6 +1619,45 @@ def process_entity(entity_id: str) -> dict:
         print(f"  over-merge purge: evicted {len(forced_evict_promote)} "
               f"different-KM member(s) + reset host(s) to clean twin "
               f"→ re-match + force-promote standalone")
+
+    # RE-VALIDATE composed_of membership (IDENTITY mismatch eviction).
+    # The over-merge purge above only handles the curator-reviewed base-KM
+    # allowlist; this pass is criterion-driven and catches the broader
+    # «wrong-nominal member fused into a foundation» class (e.g. KM 42
+    # «8 Skilling» dragging in «1 Denning» + «4 Skilling lybsk»). Criterion
+    # = genuine nominal differ + no type-level catalogue tie (= the shipped
+    # merger nominal discriminator, applied to existing membership). Each
+    # evicted member is surgically decontaminated off the host (its weight /
+    # source contributions removed, orphan + remaining-member data kept),
+    # dropped from composed_of, and force-promoted standalone so it re-homes
+    # — the discriminator then blocks it re-absorbing (no type-level tie).
+    if REVALIDATE_ENABLED:
+        revalid = _revalidate_composed_of(final_by_id, unified_by_id, entity_id)
+        revalid_evicted = 0
+        for host_id, evict_set in revalid.items():
+            fc = final_by_id.get(host_id)
+            if not fc:
+                continue
+            comp = list(fc.get("composed_of") or [])
+            evict_now = {e for e in evict_set if e in comp}
+            if not evict_now:
+                continue
+            evicted_members = [unified_by_id[e] for e in evict_now
+                               if e in unified_by_id]
+            remaining_members = [unified_by_id[c] for c in comp
+                                 if c not in evict_now and c in unified_by_id]
+            _surgical_decontaminate(fc, evicted_members, remaining_members)
+            fc["composed_of"] = [c for c in comp if c not in evict_now]
+            forced_evict_promote |= evict_now
+            revalid_evicted += len(evict_now)
+            for e in sorted(evict_now):
+                m = unified_by_id.get(e, {})
+                print(f"  re-validate: {host_id} ({fc.get('nominal')!r}) "
+                      f"✗ evict {e} ({m.get('nominal')!r}) — identity mismatch")
+        if revalid_evicted:
+            print(f"  re-validate: evicted {revalid_evicted} identity-"
+                  f"mismatched member(s) across {len(revalid)} host(s) "
+                  f"→ decontaminated + force-promote standalone")
 
     # Build: already-absorbed unified ids (across all final composed_of lists)
     already_absorbed: dict[str, str] = {}
@@ -2016,9 +2229,15 @@ def main() -> int:
                         help="Write data/v2/final/ + data/v2/classification_decisions/")
     parser.add_argument("--entity", help="Process only this entity")
     parser.add_argument("--verbose", "-v", action="store_true")
+    parser.add_argument("--no-revalidate", action="store_true",
+                        help="Skip composed_of re-validation (identity-"
+                             "mismatch eviction) for this run")
     args = parser.parse_args()
     if args.apply:
         args.dry_run = False
+    if args.no_revalidate:
+        global REVALIDATE_ENABLED
+        REVALIDATE_ENABLED = False
 
     entities = [args.entity] if args.entity else _entities_with_seed_unified()
     if not entities:
