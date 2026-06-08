@@ -78,6 +78,12 @@ class FieldValue(_StrictBase):
     """
     value: float = Field(..., gt=0)
     source: str = Field(..., min_length=1)
+    # display:false hides this reading from the rendered weight/fineness
+    # column (and its derived Feingewicht) while keeping the data — the
+    # §9a weight-specimen thinning (min/middle/max of an over-collected
+    # single-resource museum bucket) sets it on the dropped intermediates.
+    # Default True so existing entries render unchanged.
+    display: bool = True
 
 
 class HedeMuentzfussYield(_StrictBase):

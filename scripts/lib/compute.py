@@ -24,9 +24,19 @@ def normalise_field(v) -> list[tuple[float, str | None]]:
     if isinstance(v, (int, float)):
         return [(float(v), None)]
     if isinstance(v, list):
-        return [(fv.value, fv.source) for fv in v]
+        # Skip readings flagged display:false (§9a weight-specimen
+        # thinning hides over-collected single-resource intermediates;
+        # the data stays in YAML but is excluded from the rendered
+        # column AND from the derived Feingewicht).
+        return [
+            (fv.value, fv.source)
+            for fv in v
+            if getattr(fv, "display", True) is not False
+        ]
     # FieldValue object (shouldn't happen at this layer but defensive)
     if hasattr(v, "value"):
+        if getattr(v, "display", True) is False:
+            return []
         return [(v.value, getattr(v, "source", None))]
     return []
 

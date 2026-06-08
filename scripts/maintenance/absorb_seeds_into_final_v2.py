@@ -189,25 +189,45 @@ def _kmm_specimen_has_image(nid: str) -> bool:
     return has
 
 
+_KMM_WEIGHT_VALUE_MEMO: dict[str, float | None] = {}
+
+
+def _kmm_specimen_weight(nid: str) -> float | None:
+    """The KMM record's Vægt (weight, g) value, or None when absent.
+    Memoised cache read — maintenance-side only."""
+    if nid in _KMM_WEIGHT_VALUE_MEMO:
+        return _KMM_WEIGHT_VALUE_MEMO[nid]
+    val = None
+    try:
+        d = _json.loads((_KMK_CACHE_DIR / f"{nid}.json").read_text())
+        ms = d.get("measurements") or []
+        for m in ms:
+            if (isinstance(m, dict) and m.get("dimension") == "Vægt"
+                    and isinstance(m.get("data"), (int, float))):
+                val = float(m["data"])
+                break
+    except (FileNotFoundError, ValueError):
+        val = None
+    _KMM_WEIGHT_VALUE_MEMO[nid] = val
+    return val
+
+
 def _kmm_specimen_has_weight(nid: str) -> bool:
     """True when the KMM record carries a Vægt (weight) measurement.
     Memoised cache read — maintenance-side only."""
     if nid in _KMM_WEIGHT_MEMO:
         return _KMM_WEIGHT_MEMO[nid]
-    has = False
-    try:
-        d = _json.loads((_KMK_CACHE_DIR / f"{nid}.json").read_text())
-        ms = d.get("measurements") or []
-        has = any(isinstance(m, dict) and m.get("dimension") == "Vægt"
-                  and isinstance(m.get("data"), (int, float)) for m in ms)
-    except (FileNotFoundError, ValueError):
-        has = False
+    has = _kmm_specimen_weight(nid) is not None
     _KMM_WEIGHT_MEMO[nid] = has
     return has
 
 
 _KEEP_KMM_IMAGE_ONLY = 3   # image but no weight → keep 3
 _KEEP_KMM_PURE = 1         # neither weight nor image → keep 1
+# §9a weight-specimen thinning: when one resource (KMM) over-collects
+# weight-giving specimens of the same coin, keep only min / middle / max
+# by weight — the intermediates add no variance-envelope information.
+_KMM_WEIGHT_THIN_THRESHOLD = 5   # thin only when ≥5 weight-giving KMM specimens
 
 
 def _suppress_weightless_museum_overcollection(coin: dict) -> int:
@@ -216,9 +236,15 @@ def _suppress_weightless_museum_overcollection(coin: dict) -> int:
     categories, keyed by what the KMM record carries (user direction
     2026-06-08):
 
-      • WEIGHT (with or without an image) — NOT touched here. The existing
-        §9a weight-specimen thinning (keep min/middle/max by weight) manages
-        those; this function only ensures they stay shown.
+      • WEIGHT (with or without an image) — §9a weight-specimen thinning:
+        when ≥5 weight-giving KMM specimens of the same coin pile up, keep
+        only min / middle / max by weight (the intermediates add no
+        variance-envelope info — all KMM specimens share absent fineness,
+        so the bucket is uniform per §9a). The dropped specimens' CITATIONS
+        are hidden here AND their matching `weight_rough_g` readings are
+        hidden (by value) so the weight column collapses to 3 spans. Catalog
+        refs are NOT touched — they're accumulated on the merged entry, so
+        unique Schou/sub-variant indices survive (user direction).
       • IMAGE only (no weight) — keep 3 (lowest object-id), hide the rest.
       • NEITHER weight nor image (natmus «Genstanden er endnu ikke
         affotograferet»; 79 % of all KMM cites — bare «museum holds a
@@ -231,11 +257,12 @@ def _suppress_weightless_museum_overcollection(coin: dict) -> int:
            if isinstance(s, dict) and _kmm_nid_from_url(s.get("url"))]
     if not kmm:
         return 0
-    image_only, pure = [], []
+    weight_giving, image_only, pure = [], [], []
     for s in kmm:
         nid = _kmm_nid_from_url(s["url"])
-        if _kmm_specimen_has_weight(nid):
-            s.pop("display", None)              # weight → always shown (§9a)
+        w = _kmm_specimen_weight(nid)
+        if w is not None:
+            weight_giving.append((s, nid, w))
         elif _kmm_specimen_has_image(nid):
             image_only.append(s)
         else:
@@ -253,8 +280,47 @@ def _suppress_weightless_museum_overcollection(coin: dict) -> int:
                     n += 1
                 s["display"] = False
 
+    # --- §9a weight-specimen thinning over the weight-giving KMM bucket ---
+    kept_weights: set[float] | None = None  # None = no thinning (keep all)
+    if len(weight_giving) >= _KMM_WEIGHT_THIN_THRESHOLD:
+        # deterministic sort: by weight, tie-break by object-id
+        wg = sorted(weight_giving, key=lambda t: (t[2], int(t[1])))
+        keep_idx = {0, len(wg) // 2, len(wg) - 1}
+        kept_weights = set()
+        for i, (s, nid, w) in enumerate(wg):
+            if i in keep_idx:
+                s.pop("display", None)
+                kept_weights.add(round(w, 5))
+            else:
+                if s.get("display") is not False:
+                    n += 1
+                s["display"] = False
+    else:
+        for s, nid, w in weight_giving:
+            s.pop("display", None)
+
     _cap(image_only, _KEEP_KMM_IMAGE_ONLY)
     _cap(pure, _KEEP_KMM_PURE)
+
+    # Hide the weight_rough_g readings of the dropped KMM specimens. The
+    # KMM weight entries carry source label "kmk" with no nid, so we match
+    # by value: keep only entries whose rounded value is one of the kept
+    # min/middle/max weights; flag the rest display:false (data kept).
+    if kept_weights is not None:
+        wfield = coin.get("weight_rough_g")
+        if isinstance(wfield, list):
+            for fv in wfield:
+                if not isinstance(fv, dict):
+                    continue
+                if str(fv.get("source", "")).strip().lower() != "kmk":
+                    continue
+                val = fv.get("value")
+                if not isinstance(val, (int, float)):
+                    continue
+                if round(float(val), 5) in kept_weights:
+                    fv.pop("display", None)
+                else:
+                    fv["display"] = False
     return n
 
 
