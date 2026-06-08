@@ -115,6 +115,36 @@ def _normalise_dav(code_raw: str, number: str):
 # «<Code># <number>» strings (full source label preserved), NOT dropped.
 
 
+def _normalise_km_number(n: str) -> str:
+    """Numista prints KM sub-variants with a European decimal comma
+    («404,1» = KM 404.1). Convert a bare comma-decimal to a dot so the
+    sub-variant renders consistently with the dotted form Numista uses
+    elsewhere («406.1»). Leaves anything that isn't a clean `\\d+,\\d+`
+    untouched."""
+    s = (n or "").strip()
+    m = re.fullmatch(r"(\d+),(\d+)", s)
+    return f"{m.group(1)}.{m.group(2)}" if m else s
+
+
+def _accumulate_ref(out: dict, field: str, value: str) -> None:
+    """Add a catalogue value to out[field], building a deduped, order-
+    preserving list on conflict (§9a data-accumulation: a single Numista
+    type can legitimately cite multiple KM / Lange / Fr / Dav numbers —
+    mint sub-variants like KM 406.1/406.2, or the same coin across two
+    Krause editions like KM 106/56). The first value stays scalar; a 2nd
+    distinct value promotes the field to list form. The schema accepts
+    list[str] for km/hede/sieg/schou/lange/fr/dav, so this is lossless
+    all the way to render."""
+    cur = out.get(field)
+    if cur is None:
+        out[field] = value
+    elif isinstance(cur, list):
+        if value not in cur:
+            cur.append(value)
+    elif cur != value:
+        out[field] = [cur, value]
+
+
 def parse_references_from_api_list(refs: list[dict[str, Any]] | None) -> dict[str, str]:
     """Convert API v3 `references: [{catalogue: {code}, number}, ...]`
     into the canonical dict. Unknown / unmodelled codes are dropped."""
@@ -137,14 +167,17 @@ def parse_references_from_api_list(refs: list[dict[str, Any]] | None) -> dict[st
             continue  # Numista self-ref / user-coin id — not a catalogue
         mapped = _NUMISTA_REF_CODE_MAP.get(code)
         if mapped:
-            # First occurrence wins; multi-volume refs (different KM in
-            # different Krause editions) get list-form later in the
-            # seed builder where merge logic applies.
-            out.setdefault(mapped, number_str)
+            # Accumulate every distinct value (§9a). A single Numista type
+            # can cite multiple KM (mint sub-variants 406.1/406.2, or the
+            # same coin across two Krause editions 106/56) — first-wins
+            # would silently drop the rest. KM comma-decimals normalise to
+            # dots (404,1 → 404.1).
+            val = _normalise_km_number(number_str) if mapped == "km" else number_str
+            _accumulate_ref(out, mapped, val)
             continue
         dav = _normalise_dav(code_raw, number_str)
         if dav:
-            out.setdefault(dav[0], dav[1])
+            _accumulate_ref(out, dav[0], dav[1])
             continue
         # Real catalogue ref our schema doesn't type → preserve in `others`.
         out.setdefault("others", [])
@@ -186,11 +219,12 @@ def parse_references_from_strings(items: list[str] | None) -> dict[str, str]:
                 continue
             mapped = _NUMISTA_REF_CODE_MAP.get(code)
             if mapped:
-                out.setdefault(mapped, number)
+                val = _normalise_km_number(number) if mapped == "km" else number
+                _accumulate_ref(out, mapped, val)
                 continue
             dav = _normalise_dav(code_raw, number)
             if dav:
-                out.setdefault(dav[0], dav[1])
+                _accumulate_ref(out, dav[0], dav[1])
                 continue
             out.setdefault("others", [])
             label = f"{code_raw}# {number}"

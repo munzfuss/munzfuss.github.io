@@ -354,4 +354,39 @@ def normalise_catalog(catalog: dict) -> int:
             if collapsed != val:
                 catalog[field] = collapsed
                 changes += 1
+
+    # 3. KM hygiene (km is the KMRef-union field, not in list_fields, so
+    #    handled explicitly): expand a slash-list scalar («683.1 / 683.2»)
+    #    into members, normalise a European decimal-comma sub-variant
+    #    («404,1» → «404.1») so it matches the dotted form Numista uses
+    #    elsewhere, and de-dup case-insensitively. A bare comma-decimal is
+    #    ONE value — only «/» separates a multi-KM list. Dict-form
+    #    (register-keyed) km is left untouched.
+    km = catalog.get("km")
+    if km is not None and not isinstance(km, dict):
+        raw: list = []
+        if isinstance(km, str):
+            for part in km.split("/"):
+                part = part.strip()
+                if part:
+                    raw.append(part)
+        elif isinstance(km, list):
+            raw = list(km)
+        else:
+            raw = [km]
+        norm: list = []
+        seen: set = set()
+        for v in raw:
+            if isinstance(v, str):
+                v2 = re.sub(r"^(\d+),(\d+)$", r"\1.\2", v.strip())
+                k = v2.lower()
+                if k not in seen:
+                    seen.add(k)
+                    norm.append(v2)
+            else:
+                norm.append(v)
+        new_km = norm[0] if len(norm) == 1 else norm
+        if new_km != km:
+            catalog["km"] = new_km
+            changes += 1
     return changes

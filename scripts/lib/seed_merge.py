@@ -217,6 +217,32 @@ def load_existing_seed(out_path: Path) -> tuple[Any, dict[str, CommentedMap]]:
     return doc, by_id
 
 
+def _union_cat_values(existing_v, fresh_v):
+    """Union two catalogue-field values (each scalar or list) into a
+    deduped, order-preserving result; collapses a singleton back to
+    scalar. String values dedup case-insensitively («406.1» vs «406.1»);
+    non-string entries (e.g. KMRef dicts) pass through without string
+    de-dup so dict-form km is never corrupted. Existing values lead."""
+    items: list = []
+    for src in (existing_v, fresh_v):
+        for v in (src if isinstance(src, list) else [src]):
+            if v is not None:
+                items.append(v)
+    out: list = []
+    seen: set = set()
+    for v in items:
+        if isinstance(v, (dict, list)):
+            out.append(v)  # structured (KMRef) — no string-key dedup
+            continue
+        k = str(v).strip().lower()
+        if k not in seen:
+            seen.add(k)
+            out.append(v)
+    if not out:
+        return existing_v
+    return out[0] if len(out) == 1 else out
+
+
 def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
     """Apply the 4-mechanism merge: fresh values flow into existing, preserving
     curated decisions. Mutates and returns `existing`."""
@@ -240,9 +266,25 @@ def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
             ex_v = existing.get(key)
             fr_v = fresh.get(key)
             if isinstance(ex_v, dict) and isinstance(fr_v, dict):
+                # List-capable catalogue sub-fields (km + every schema
+                # list-field: hede/sieg/schou/lange/fr/dav/…) UNION their
+                # existing + fresh values (§9a data-accumulation: a single
+                # Numista type can cite multiple KM, e.g. mint sub-variants
+                # 406.1/406.2 or the same coin across two Krause editions
+                # 106/56). Scalar-only sub-fields keep existing-wins. A
+                # curator who deliberately pruned a value freezes the whole
+                # `catalog` via _curation_holds, which skips this branch
+                # entirely (the `key in holds` guard above).
+                try:
+                    from lib.catalog_codes import schema_list_catalog_fields
+                except Exception:  # pragma: no cover
+                    from catalog_codes import schema_list_catalog_fields
+                _list_cap = schema_list_catalog_fields() | {"km"}
                 for sub_k, sub_v in fr_v.items():
                     if sub_k not in ex_v:
                         ex_v[sub_k] = sub_v
+                    elif sub_k in _list_cap:
+                        ex_v[sub_k] = _union_cat_values(ex_v[sub_k], sub_v)
             elif ex_v is None and fr_v is not None:
                 existing[key] = fr_v
             continue
