@@ -75,6 +75,15 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
 (290904↔348808, 290904↔c4h55, 348808↔291969).
 
 **DONE this session (latest first):**
+- ✅ **Nominal discriminator SHIPPED** (`fb7bc80` code, `a6e7f8b` data). `match_pair` now
+  blocks a merge when normalised nominals GENUINELY differ (synonym folds + daler/gylden
+  wildcard exclude label-variance) AND there's no TYPE-LEVEL catalogue tie (shared KM/Hede/
+  Galster/Dav/Fr/Lange/N#, not a weak per-reign Schou/Sieg) — mirrors the §9.4 mint
+  discriminator. Caught + fixed a Halvkrone/1½ collision: the «Halv-X» fold now consumes the
+  implicit-one («1 Halvkrone»=½ krone, not «1 1/2 krone»). Full re-merge + re-absorb (15
+  entities): NET de-dup (table folds > discriminator splits) — danish_realm final 7482→7455,
+  royal_holstein 944→941, danish_norway 2101→2099, gottorp +1; 11 entities unchanged.
+  Validate + build OK. ~2 residual edge false-splits left (see 🟢 below).
 - ✅ **Mixed-number fraction fix** (`6238372`). `normalise_nominal` garbled «1½ Thaler» →
   «11/2 daler» (no separator between whole part + vulgar fraction). Now inserts a zero-width
   space before ANY unicode fraction following a digit (½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞) → «1 1/2», and the
@@ -155,25 +164,13 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
   and DROPS those now `no_match`. Self-heals the whole sticky class (KM-42 anomalies via
   weight-tier-1, Wolfenbüttel residue via mint discriminator). Uses only SAFE existing
   discriminators — no synonym risk. MUST dry-run with a printed drop-list for review.
-- 🟡 **nominal discriminator — synonym table EXPANDED (`5b48840` + `e98c2bc`), discriminator
-  itself still to ship.** The discriminator was built + dry-run earlier this session and its
-  regression CAUGHT false splits (good — that's the regression's job); reverted, then the
-  table was expanded to fold every false-split category found. Expansion folds (verified over
-  1218 nominals, 0 new corruption): strip trailing «, N <unit>» value-gloss; drop «dansk/danske»
-  default qualifier (KEEP «lybsk»/«norsk»); «Halv-X»→«½ X»; «Lion Daler/Taler/Dalar»≡«Løvedaler»;
-  «Rigsbanks*» genitive-s typo; «Dobbel-» (no t) joins «Dobbelt-»; «ö/ä/ü» added to the
-  diacritic fold («öre»≡«øre»); «Courant»≡«Kurant»+«Kurant Dukat»→«Kurantdukat». Re-checking the
-  cached danish_realm dry-run split groups against the new table: **42→23 false splits, the
-  remaining ~23 are MOSTLY LEGIT** (¼/½ Portugaløser, 1/2-Dukat quantity, tariff-distinct Mark
-  /Krone, ¼-Ducat-vs-3-Mark).
-  **To SHIP the discriminator** (the code is reconstructable — wildcard helper + type-level-
-  catalog gate, mirroring the §9.4 mint discriminator at `merge_seeds_cross_source.py` ~L1735;
-  the wildcard + match_pair edits are in this session's reverted commit history): re-apply it,
-  re-run the with/without dry-run, confirm the last ~few residual edges (». <mint>» suffix like
-  «4 Skilling Rigsmønt. København og Altona»; «= X» equivalence nominals; the pre-existing
-  «1½»→«11/2» unicode artifact — a SEPARATE bug worth its own fix) are either legit or folded,
-  THEN ship + full re-merge. NB: KM-42's anomalies don't NEED this (weight-tier-1 + the
-  re-validate pass handle them).
+- 🟢 **Residual discriminator edge false-splits (curator-mergeable, low priority).** After
+  shipping (below), ~2 edge categories still split as FALSE on danish_realm: a trailing
+  «. <mint>» annotation («4 Skilling Rigsmønt. København og Altona» vs «4 Skilling Rigsmønt»)
+  and «= X» equivalence nominals («12 Rigsdaler courant = 2 Rigsdaler» vs «2 Rigsdaler»). Too
+  niche/risky for a broad fold; if they surface as real duplicates, merge via
+  `merge_decisions/`. The forgery splits («1 Skilling samtidig forfalskning» vs «1 Skilling»)
+  are arguably LEGIT (distinct items) — leave.
 - 🟡 **Classify the 13 new Hesse-Kassel Numista coins** (`data/v2/classification_decisions/
   landgrafschaft_hessen_kassel.yml` pending list). They entered as `seed_unsorted` in the
   full re-parse below — assign fuss/phase (or fix matcher rules) per PB Phase-4. The 322
