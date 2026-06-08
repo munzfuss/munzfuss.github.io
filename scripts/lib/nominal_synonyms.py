@@ -158,6 +158,30 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     (r"\bguldnobel\b", "nobel"),                           # Guldnobel («gold noble») ≡ the Nobel (gold by definition)
     (r"\bguldkrone\b", "gold krone"),                      # Guldkrone≡Gold Krone
     (r"\bgold (\d+|\d+/\d+) krone\b", r"\1 gold krone"),   # «gold 2 krone»→«2 gold krone»
+    # --- Danish «Dobbelt» (double) + «Specie» equivalences (nominal-
+    #     discriminator synonym table, 2026-06-08) ---
+    # «Dobbelt X» (Danish «double») ≡ «2 X». Folded ONLY when «dobbelt»
+    # HEADS the nominal (optionally behind a spurious implicit-one «1 »),
+    # so the multiplied form «4 Dobbelt Groschen» (a 4-fold coin, NOT
+    # 2×) is left intact. Covers «Dobbelt dukat / speciedaler / krone /
+    # skilling / hvid / royalin / mariengroschen / groschen / ungarsk
+    # gylden / guldkrone», one-word («Dobbeltkrone») or spaced.
+    (r"^(?:1\s+)?dobbelt[- ]?", "2 "),
+    # «Specie(s)-Dukat» / «Ducat Specie» = a Speciedukat (specie-grade
+    # GOLD ducat), NOT a Speciedaler — guard BEFORE the bare specie fold
+    # so the «specie» adjective isn't mis-read as the daler denomination.
+    (r"\bspecies?[- ]?dukat\b", "speciedukat"),
+    (r"\bdukat[- ]?species?\b", "speciedukat"),
+    # «Specie» / «Species» (standalone) and the «Rigsdaler Specie» /
+    # «Specie norsk» / «Speciemønt» forms ≡ «Speciedaler» (the bare
+    # specie IS the Rigsdaler-Species / Speciedaler). Compound guards
+    # FIRST so the daler isn't doubled («Rigsdaler Specie» → speciedaler,
+    # NOT «rigsdaler speciedaler»). «Speciedaler» / «Speciedukat» are
+    # untouched — there's no word boundary inside «specie­daler/dukat».
+    (r"\brigsdaler\s+species?\b", "speciedaler"),
+    (r"\bspecie[- ]?norsk\b", "speciedaler"),
+    (r"\bspeciem[øo]nt\b", "speciedaler"),
+    (r"\bspecies?\b", "speciedaler"),
 ]
 
 
