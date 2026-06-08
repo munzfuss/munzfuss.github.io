@@ -75,6 +75,19 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
 (290904↔348808, 290904↔c4h55, 348808↔291969).
 
 **DONE this session (latest first):**
+- ✅ **Numista multi-KM support + §9a catalogue accumulation** (`29b5de2` code, `c42c31d`
+  data, submodule `d283dd2a`). `numista_canonical.parse_references` (API+chrome) now
+  ACCUMULATES every distinct catalogue value into a deduped list instead of first-wins —
+  a single Numista type can cite multiple KM (406.1/406.2 mint sub-variants, or 106/56
+  across two Krause editions). KM comma-decimals normalise to dots (404,1→404.1).
+  `seed_merge` catalog deep-merge UNIONs list-capable sub-fields (was existing-key-wins,
+  which silently dropped the fresh 2nd KM); frozen-catalog curation still wins.
+  `catalog_codes.normalise_catalog` km hygiene: slash-scalar 683.1/683.2 → list, comma→dot,
+  dedup. Materialized for danish_realm + gottorp_duchy (5 types render multi-KM, verified;
+  resolved a dup 207063↔65186, 7493→7492 no loss; 683 slash-scalar fixed). **Other 14
+  Numista entities' seeds REVERTED** — their lange/dav/fr §9a accumulation (21 multi-ref
+  types total: lange 7, dav 6, km 5, fr 2) materializes on the next FULL pipeline run
+  (parse --force → build_numista_seed → merge → absorb ALL entities); code is committed.
 - ✅ **Catalog-index sort + range-collapse** (`94d6213`). `compute._compute_catalog_groups`
   now expands every index value to its integer members (existing ranges + overlapping/
   adjacent inputs merge: `23-24`+`25-26`+`26` → `23-26`), collapses runs of ≥3 consecutive
@@ -127,12 +140,15 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
   «1/2 vs 1/4 Portugaløser» was a legit split. Reverted both code + data. **Revisit AFTER
   completing the synonym table** (a curated task) — then the discriminator becomes safe.
   Note: KM-42's anomalies don't NEED it (weight-tier-1 + the re-validate pass handle them).
-- 🟡 **km multi-value handling + Numista parser (user-asked «роби»).** A coin can carry
-  multiple KMs (sub-types OR fully separate KMs — confirmed on Numista). Update parser/
-  builder so Numista multi-KM specimens are captured, + the km-fold (km is excluded from
-  `normalise_catalog` → 2 residual `km#` overflow on `km-683-1…` + `numismaster-65993`,
-  both bare-KM already covered by the km field; «683.1 / 683.2» is a malformed slash-
-  scalar to fix too).
+- 🟢 **Full Numista re-parse to materialize §9a accumulation across all entities**
+  (follow-up to the multi-KM fix above). The parser/merge/hygiene code is shipped, but
+  only danish_realm + gottorp_duchy seeds were re-run. To materialize lange/dav/fr multi-
+  ref accumulation for the other 14 entities (16 multi-ref types beyond the 5 KM ones),
+  run the FULL pipeline deliberately: `parse_numista --force` → `build_numista_seed` →
+  `merge_seeds_cross_source` (all) → `absorb_seeds_into_final_v2` (all), with a coin-count
+  + diff regression check per entity. NB: re-merge may resolve more cross-source dups
+  (richer catalog refs) — expect small final-count drops (de-dup, not loss; verify
+  composed_of preserves the absorbed seed ids).
 - 🟢 **Rhinsk Gylden seed_unsorted tail (follow-up to the c3h14/c3h15 fix above).** 3 gold
   Rhinsk Gylden still sit in `seed_unsorted`: `f2h7g` (Frederik II), `galster-hg-27`,
   `galster-hg-gej`. They belong in `rhinsk_gylden_fod` too — classify them (the metal-gate
