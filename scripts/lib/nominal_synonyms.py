@@ -202,7 +202,13 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     # and «norsk» (Norwegian) are GENUINELY distinguishing and are kept.
     (r"\s*\bdanske?\b", ""),
     # «Halv-X» (Danish «half») ≡ «½ X»: «Halvkrone»→«1/2 krone»,
-    # «Halvdaler», «Halvskilling», «Halv ørtug», «halv dukat», …
+    # «Halvdaler», «Halvskilling», «Halv ørtug», «halv dukat», …. The
+    # leading form CONSUMES the implicit-one («1 Halvkrone» = one half-
+    # krone = ½ krone, NOT «1 1/2 krone») — otherwise it would collide with
+    # the genuine mixed number «1½ Krone» after the «1½»→«1 1/2» fraction
+    # split. Anchored rule first, then a general one for a non-leading
+    # «halv» («½ Halvdaler»).
+    (r"^(?:1\s+)?halv[ -]?", "1/2 "),
     (r"\bhalv[ -]?", "1/2 "),
     # «Lion Daler / Taler / Dalar» (EN/spelling variants) ≡ «Løvedaler»
     # (DA «lion daler»); fold to the diacritic-folded «lovedaler».

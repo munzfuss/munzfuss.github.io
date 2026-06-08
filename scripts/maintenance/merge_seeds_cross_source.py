@@ -220,6 +220,25 @@ def _normalise_nominal(nominal):
     return _normalise_nominal_shared(nominal)
 
 
+def _nominal_wildcard_match(na: str, nb: str) -> bool:
+    """True when two NORMALISED nominals cannot be a GENUINE denomination
+    difference because one side is a bare ambiguous accounting unit and the
+    other a specific compound of the SAME unit at the SAME quantity:
+    «daler» (could be Specie-/Rigs-/Kurant-daler) vs «speciedaler»,
+    «gylden» (Sølv-/Rhinsk-) vs «rhinsk gylden». The bare unit is a
+    wildcard so the nominal discriminator never SPLITS on it. Same quantity
+    required; the shared unit must be ≥4 chars to avoid trivial coincidence."""
+    def _split_qty(n: str):
+        m = re.match(r"^(\d+(?:/\d+)?)\s+(.+)$", n)
+        return (m.group(1), m.group(2)) if m else ("1", n)
+    qa, ba = _split_qty(na)
+    qb, bb = _split_qty(nb)
+    if qa != qb or ba == bb:
+        return False
+    short, lng = (ba, bb) if len(ba) <= len(bb) else (bb, ba)
+    return len(short) >= 4 and lng.endswith(short)
+
+
 _ARABIC_ROMAN = {
     1: "i", 2: "ii", 3: "iii", 4: "iv", 5: "v", 6: "vi", 7: "vii", 8: "viii",
     9: "ix", 10: "x", 11: "xi", 12: "xii", 13: "xiii", 14: "xiv", 15: "xv",
@@ -1580,10 +1599,16 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     # confidence path.
     na = _normalise_nominal(coin_a.get("nominal"))
     nb = _normalise_nominal(coin_b.get("nominal"))
-    if na and nb:
-        primary["nominal"] = (na == nb)
-    else:
+    if not na or not nb:
         primary["nominal"] = None
+    elif na == nb:
+        primary["nominal"] = True
+    elif _nominal_wildcard_match(na, nb):
+        # Bare ambiguous unit («daler»/«gylden») vs a specific compound of
+        # the same unit + quantity — can't be a genuine difference.
+        primary["nominal"] = None
+    else:
+        primary["nominal"] = False
 
     # Catalog chain (entity-aware scoping for bare KM + ruler-aware for Hede)
     refs_a = _catalog_refs(coin_a, entity_id)
@@ -1614,34 +1639,31 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     # as a primary-disagreement (which would re-trigger no_match via
     # the `if primary_false` short-circuit on line ~1275).
     if primary["nominal"] is False:
-        if primary["catalog"] is True:
-            # Catalog carries; nominal-mismatch demoted to advisory.
+        # Nominal discriminator (shipped 2026-06-08 after the synonym table
+        # was expanded to fold the false-split label-variance categories).
+        # The normalised nominals GENUINELY differ (synonym folds + the
+        # daler/gylden wildcard above already excluded label-only variance).
+        # The catalogue decides whether that's two distinct coins or one
+        # type catalogued differently across sources:
+        #   • A TYPE-LEVEL catalogue tie (shared KM / Hede / Galster / Dav /
+        #     Fr / Lange / N#, NOT a weak per-reign Schou/Sieg) carries the
+        #     type identity → DEMOTE the nominal-mismatch to advisory (§9.4),
+        #     e.g. NumisMaster's «4 Speciedaler» vs Hede's «4 Daler» (KM-25).
+        #   • Only a weak Schou/Sieg tie, or no catalogue overlap → the
+        #     nominals are real different-denomination evidence and nothing
+        #     ties them → BLOCK the merge.
+        if _shares_type_level_catalog(refs_a, refs_b):
             why.append(
                 f"nominal: {coin_a.get('nominal')!r} ≠ {coin_b.get('nominal')!r} "
-                f"— demoted to advisory via catalog-agreement override (§9.4)"
+                f"— demoted to advisory via type-level catalogue agreement (§9.4)"
             )
             primary["nominal"] = None  # don't count as primary_false
-        elif primary["catalog"] is None:
-            # Catalog has NO overlap (no shared refs at all) — can't
-            # override BUT can't disprove either. Demote nominal disagree
-            # to None («can't tell» rather than «definitely different»)
-            # and let downstream confidence calc decide via the other
-            # signals. Critically: returning here as no_match would call
-            # `uf.add_no_merge(a, b)` and BLOCK any transitive union via
-            # a third party that shares catalog with both — even when
-            # the third party's evidence overwhelmingly identifies a, b
-            # as same-type (the «Guilder» NumisMaster vs «Rhinsk Gylden»
-            # Hede + KM-only-NumisMaster + Hede-only-Hede case).
+        else:
             why.append(
                 f"nominal: {coin_a.get('nominal')!r} ≠ {coin_b.get('nominal')!r} "
-                f"— demoted to advisory (no catalog overlap to evaluate)"
+                f"(genuinely different) AND no type-level catalogue tie "
+                f"(only Schou/Sieg or none) — different coin (§9.4 nominal discriminator)"
             )
-            primary["nominal"] = None
-        else:
-            # Catalog has overlap but DISAGREES (chain_state = 'disagree')
-            # — both sources cite catalog refs and they contradict each
-            # other. THIS is genuine different-type evidence. Keep hard-fail.
-            why.append(f"nominal: {coin_a.get('nominal')!r} ≠ {coin_b.get('nominal')!r}")
             return {"decision": "no_match", "primary": primary,
                     "fallback": fallback, "why": why}
 
