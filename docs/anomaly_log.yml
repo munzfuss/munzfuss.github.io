@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-07T15:09:37Z'
+  last_updated_utc: '2026-06-08T18:15:42Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3314,4 +3314,34 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-07T15:09:37Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+  summary: Numista BO.7 brunswick_wolfenbuttel_principality gap list contains OOS pattern NID 312634 (Type='Patterns',
+    KM# PnA1 gold pattern strike).
+  status: resolved
+  instance_first_seen: '2026-06-08T18:08:59.608208Z'
+  last_seen: '2026-06-08T18:08:59.608208Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312634
+  occurrences:
+  - run_utc: '2026-06-08T18:08:59.608208Z'
+    batch_label: OU
+    detail: 'Batch OU: sampled N#312634 = 2 Thalers Frederick Ulrich 1625 St. Jacobslöser gold pattern
+      strike, Type=''Patterns'' (KM# PnA1). OOS per CLAUDE.md §9.1 (patterns/trial strikes). Not saved
+      to cache; substituted N#31083 to keep batch at 5.'
+    full_context:
+      kind: pattern
+      km: PnA1
+      type: Patterns
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold 312634
+    into oos_excluded_nids and resolve this anomaly.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-08T18:15:42Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
