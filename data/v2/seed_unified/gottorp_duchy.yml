@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 538 per-source seed entries.
-# Output: 416 unified entries (one per physical coin).
+# Output: 417 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -6158,9 +6158,6 @@ coins:
   - type: literature
     url: https://en.numista.com/461448
     ref: Numista N#461448 — 1 Ducat - Christian III (Gottorp)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/81473
-    ref: KMM 81473 (Inv. GP 888.51)
   note:
     de: Dukat
     en: Dukat
@@ -6179,7 +6176,6 @@ coins:
   composed_of:
   - dk-galster-c3g-130
   - dk-numista-461448
-  - kmk-81473
 - id: unified-dk-numista-474509
   fuss: seed_unsorted
   phase: numista
@@ -10508,6 +10504,26 @@ coins:
   issuing_entity: gottorp_duchy
   composed_of:
   - kmk-81438
+- id: unified-kmk-81473
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Rhinsk gylden
+  ruler: Christian 3
+  mint: Gottorp
+  metal: gold
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/81473
+    ref: KMM 81473 (Inv. GP 888.51)
+  verification_note: *id001
+  issuing_entity: gottorp_duchy
+  composed_of:
+  - kmk-81473
 - id: unified-schleswig_holstein-numismaster-145857
   fuss: seed_unsorted
   phase: numismaster

@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 3913 per-source seed entries.
-# Output: 2180 unified entries (one per physical coin).
+# Output: 2195 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1561,6 +1561,83 @@ coins:
   - dk-bruun-10098
   - dk-numista-99197
   - dk-tid-143942
+- id: unified-dk-bruun-10128
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: ⅛ Speciedaler (12 Skilling)
+  year_first: 1671
+  year_last: 1671
+  year_label: '1671'
+  ruler: Christian V
+  mint: Christiania
+  catalog:
+    km: '104'
+    bruun_collection_id: '10128'
+    sieg: '44'
+    schou: '48'
+    hede: '35'
+    nmd: '74'
+    bruun_part: III
+    bruun_lot_no: 12097
+    bruun_page: 210
+    numista: '117156'
+    others:
+    - Rønning# 84
+    - AAJT# 63
+    skaare: '579'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.875
+    source: numismaster
+  - value: 0.875
+    source: numista
+  weight_rough_g:
+  - value: 3.59
+    source: bruun
+  - value: 3.61
+    source: numismaster
+  - value: 3.61
+    source: numista
+  diameter_mm:
+  - value: 23.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110694
+    ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 12097, p. 210
+  - type: literature
+    url: https://en.numista.com/117156
+    ref: Numista N#117156 — ⅛ Speciedaler - Christian V (Christiania) - Norway
+  note:
+    de: ⅛ Speciedaler
+    en: ⅛ Speciedaler
+    uk: ⅛ Speciedaler
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-110694
+  - dk-bruun-10128
+  - dk-numista-117156
 - id: unified-dk-bruun-10134
   fuss: seed_unsorted
   phase: bruun
@@ -1871,6 +1948,287 @@ coins:
   - dk-bruun-10232
   - dk-numista-117149
   - dk-tid-146015
+- id: unified-dk-bruun-10177
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Mark
+  year_first: 1671
+  year_last: 1679
+  year_ranges:
+  - - 1671
+    - 1671
+  - - 1673
+    - 1676
+  - - 1679
+    - 1679
+  year_label: 1671, 1673-1676, 1679
+  ruler: Christian V
+  mint: Christiania
+  catalog:
+    km: 94a
+    bruun_collection_id: '10177'
+    sieg: '24'
+    schou: '17'
+    hede: '44'
+    nmd: '116'
+    bruun_part: III
+    bruun_lot_no: 12101
+    bruun_page: 213
+    numista: '99348'
+    others:
+    - AAJT# 102-107
+    - Rønning# 95
+    skaare: '585'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.672
+    source: numismaster
+  - value: 0.672
+    source: numista
+  weight_rough_g:
+  - value: 5.49
+    source: bruun
+  - value: 5.57
+    source: numismaster
+  - value: 5.57
+    source: numista
+  diameter_mm:
+  - value: 26.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110635
+    ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 12101, p. 213
+  - type: literature
+    url: https://en.numista.com/99348
+    ref: Numista N#99348 — 1 Mark - Christian V (Christiania type I; heavy) - Norway
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-110635
+  - dk-bruun-10177
+  - dk-numista-99348
+- id: unified-dk-bruun-10245
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 4 Mark
+  year_first: 1681
+  year_last: 1695
+  year_ranges:
+  - - 1681
+    - 1695
+  year_label: 1681-1695
+  ruler: Christian V
+  mint: Christiania
+  catalog:
+    km:
+    - '148.1'
+    - '148'
+    bruun_collection_id:
+    - '10245'
+    - '10258'
+    - '10353'
+    - '10370'
+    - '10371'
+    sieg: '38'
+    schou:
+    - '25'
+    - '6'
+    - '10'
+    - '15'
+    - '17'
+    hede: '55'
+    nmd:
+    - '87'
+    - '88'
+    - '95'
+    - '96'
+    bruun_part: II
+    bruun_lot_no: 14083
+    bruun_page: 232
+    numista: '110303'
+    dav:
+    - EC II 3663
+    - EC II# 3663
+    others:
+    - AAJT# 75-77
+    - Rønning# 88
+    skaare: '581'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.672
+    source: numismaster
+  - value: 0.672
+    source: numista
+  weight_rough_g:
+  - value: 21.77
+    source: bruun
+  - value: 21.82
+    source: bruun
+  - value: 21.97
+    source: bruun
+  - value: 22.0
+    source: bruun
+  - value: 22.13
+    source: bruun
+  - value: 22.27
+    source: numismaster
+  - value: 22.27
+    source: numista
+  diameter_mm:
+  - value: 39.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110667
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14083, p. 232
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14085, p. 232
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14089, p. 233
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14091, p. 234
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 12114, p. 218
+  - type: literature
+    url: https://en.numista.com/110303
+    ref: Numista N#110303 — 4 Mark - Christian V (Christiania type II) - Norway
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-110667
+  - dk-bruun-10245
+  - dk-bruun-10258
+  - dk-bruun-10353
+  - dk-bruun-10370
+  - dk-bruun-10371
+  - dk-numista-110303
+- id: unified-dk-bruun-10257
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 4 Mark
+  year_first: 1681
+  year_last: 1695
+  year_ranges:
+  - - 1681
+    - 1695
+  year_label: 1681-1695
+  ruler: Christian V
+  mint: Christiania
+  catalog:
+    km:
+    - '148.2'
+    - '148'
+    bruun_collection_id: '10257'
+    sieg: '39'
+    schou: '5'
+    hede: '60'
+    nmd: '89'
+    bruun_part: II
+    bruun_lot_no: 14084
+    bruun_page: 232
+    dav: '3664'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.672
+    source: numismaster
+  - value: 0.672
+    source: ucoin
+  weight_rough_g:
+  - value: 22.05
+    source: bruun
+  - value: 22.27
+    source: numismaster
+  - value: 22.27
+    source: ucoin
+  diameter_mm:
+  - value: 39.0
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110647
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14084, p. 232
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1681-1695/?tid=145666
+    ref: ucoin
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-110647
+  - dk-bruun-10257
+  - dk-tid-145666
 - id: unified-dk-bruun-10260
   fuss: seed_unsorted
   phase: bruun
@@ -1913,8 +2271,6 @@ coins:
     source: numismaster
   - value: 0.672
     source: numista
-  - value: 0.672
-    source: ucoin
   weight_rough_g:
   - value: 11.12
     source: bruun
@@ -1922,13 +2278,9 @@ coins:
     source: numismaster
   - value: 11.14
     source: numista
-  - value: 11.14
-    source: ucoin
   diameter_mm:
   - value: 31.0
     source: numista
-  - value: 31.0
-    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110653
@@ -1939,9 +2291,6 @@ coins:
   - type: literature
     url: https://en.numista.com/117166
     ref: Numista N#117166 — 2 Mark - Christian V (Christiania type III; with PG) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-2-mark-1682-1685/?tid=144988
-    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -1958,7 +2307,6 @@ coins:
   - denmark-numismaster-110653
   - dk-bruun-10260
   - dk-numista-117166
-  - dk-tid-144988
 - id: unified-dk-bruun-10288
   fuss: seed_unsorted
   phase: bruun
@@ -2075,8 +2423,6 @@ coins:
     source: numismaster
   - value: 0.672
     source: numista
-  - value: 0.672
-    source: ucoin
   weight_rough_g:
   - value: 5.43
     source: bruun
@@ -2084,11 +2430,7 @@ coins:
     source: numismaster
   - value: 5.57
     source: numista
-  - value: 5.57
-    source: ucoin
   diameter_mm:
-  - value: 25.0
-    source: ucoin
   - value: 26.0
     source: numista
   sources:
@@ -2101,9 +2443,6 @@ coins:
   - type: literature
     url: https://en.numista.com/101712
     ref: Numista N#101712 — 1 Mark - Christian V (Kongsberg type B&II; without mintmark) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-mark-1687/?tid=144924
-    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -2120,7 +2459,109 @@ coins:
   - denmark-numismaster-110639
   - dk-bruun-10321
   - dk-numista-101712
-  - dk-tid-144924
+- id: unified-dk-bruun-10336
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Krone
+  year_first: 1688
+  year_last: 1699
+  year_ranges:
+  - - 1688
+    - 1699
+  year_label: 1688-1699
+  ruler: Christian V
+  mintmaster: Henning Christopher Meyer, the elder
+  mint: Kongsberg
+  catalog:
+    km: '183'
+    bruun_collection_id:
+    - '10336'
+    - '10337'
+    sieg: '42'
+    schou:
+    - '14'
+    - '15'
+    hede: '73'
+    nmd: 182B
+    bruun_part: III
+    bruun_lot_no: 12111
+    bruun_page: 218
+    numista: '101796'
+    dav:
+    - EC II 3666
+    - EC II# 3666
+    others:
+    - Brekke# 182C
+    - Brekke# 183
+    - Rønning# 117b
+    skaare: '622'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.672
+    source: numismaster
+  - value: 0.672
+    source: numista
+  - value: 0.672
+    source: ucoin
+  weight_rough_g:
+  - value: 22.06
+    source: bruun
+  - value: 22.27
+    source: numismaster
+  - value: 22.27
+    source: numista
+  - value: 22.27
+    source: ucoin
+  diameter_mm:
+  - value: 37.5
+    source: numista
+  - value: 39.0
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110681
+    ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 12111, p. 218
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14088, p. 233
+  - type: literature
+    url: https://en.numista.com/101796
+    ref: Numista N#101796 — 4 Mark - Christian V (Kongsberg type G&IV; HCM below branches; plain edge) - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1688-1699/?tid=145715
+    ref: ucoin
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-110681
+  - dk-bruun-10336
+  - dk-bruun-10337
+  - dk-numista-101796
+  - dk-tid-145715
 - id: unified-dk-bruun-10357
   fuss: seed_unsorted
   phase: bruun
@@ -3100,6 +3541,105 @@ coins:
   - dk-bruun-10509
   - dk-numista-117123
   - dk-tid-145745
+- id: unified-dk-bruun-10516
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 4 Mark
+  year_first: 1699
+  year_last: 1700
+  year_ranges:
+  - - 1699
+    - 1700
+  year_label: 1699-1700
+  ruler: Frederik IV
+  mintmaster: Henning Christopher Meyer, the elder
+  mint: Kongsberg
+  catalog:
+    km:
+    - '200.1'
+    - '200'
+    bruun_collection_id: '10516'
+    sieg: '10.1'
+    schou: '11'
+    hede:
+    - 1A
+    - 1B
+    nmd: '3'
+    bruun_part: II
+    bruun_lot_no: 14104
+    bruun_page: 240
+    numista: '101132'
+    dav:
+    - EC III# A1287
+    - EC III A1287
+    others:
+    - Brekke# 1
+    - Brekke# 2A
+    - Rønning# 130
+    skaare: '635'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.833
+    source: numismaster
+  - value: 0.833
+    source: numista
+  - value: 0.833
+    source: ucoin
+  weight_rough_g:
+  - value: 17.87
+    source: bruun
+  - value: 17.99
+    source: numismaster
+  - value: 17.99
+    source: numista
+  - value: 17.99
+    source: ucoin
+  diameter_mm:
+  - value: 35.0
+    source: numista
+  - value: 35.0
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110683
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14104, p. 240
+  - type: literature
+    url: https://en.numista.com/101132
+    ref: Numista N#101132 — 4 Mark - Frederik IV - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1699-1700/?tid=145966
+    ref: ucoin
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-110683
+  - dk-bruun-10516
+  - dk-numista-101132
+  - dk-tid-145966
 - id: unified-dk-bruun-10518
   fuss: seed_unsorted
   phase: bruun
@@ -3148,6 +3688,97 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-bruun-10518
+- id: unified-dk-bruun-10634
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 4 Mark
+  year_first: 1723
+  year_last: 1723
+  year_label: '1723'
+  ruler: Frederik IV
+  mintmaster: Henning Christopher Meyer, the younger
+  mint: Kongsberg
+  catalog:
+    km: '220'
+    bruun_collection_id: '10634'
+    sieg: '11'
+    schou: '3'
+    hede: '3'
+    nmd: '5'
+    bruun_part: II
+    bruun_lot_no: 14108
+    bruun_page: 242
+    numista: '101120'
+    dav:
+    - EC III 1290
+    - EC III# 1290
+    others:
+    - Rønning# 131
+    - Brekke# 3
+    skaare: '636'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.672
+    source: numismaster
+  - value: 0.672
+    source: numista
+  - value: 0.672
+    source: ucoin
+  weight_rough_g:
+  - value: 22.27
+    source: numismaster
+  - value: 22.27
+    source: numista
+  - value: 22.27
+    source: ucoin
+  - value: 22.42
+    source: bruun
+  diameter_mm:
+  - value: 41.0
+    source: numista
+  - value: 41.0
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_86252
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14108, p. 242
+  - type: literature
+    url: https://en.numista.com/101120
+    ref: Numista N#101120 — 4 Mark - Frederik IV - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1723/?tid=145856
+    ref: ucoin
+  note:
+    de: Krone
+    en: Krone
+    uk: Krone
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-86252
+  - dk-bruun-10634
+  - dk-numista-101120
+  - dk-tid-145856
 - id: unified-dk-bruun-10651
   fuss: seed_unsorted
   phase: bruun
@@ -5960,6 +6591,82 @@ coins:
   - dk-bruun-9496
   - dk-numista-444675
   - kmk-190526
+- id: unified-dk-bruun-9544
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: 1 Mark
+  year_first: 1644
+  year_last: 1647
+  year_ranges:
+  - - 1644
+    - 1647
+  year_label: 1644-1647
+  ruler: Christian IV
+  mint: Christiania
+  catalog:
+    km: '27'
+    bruun_collection_id: '9544'
+    sieg: '6'
+    schou: '63'
+    hede: '20'
+    nmd: '119'
+    bruun_part: II
+    bruun_lot_no: 14029
+    bruun_page: 197
+    numista: '99346'
+    others:
+    - Brekke# 117
+    - AAJT# 117
+    - Thesen# 117
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.593
+    source: numismaster
+  - value: 0.593
+    source: numista
+  weight_rough_g:
+  - value: 5.23
+    source: bruun
+  - value: 5.568
+    source: numista
+  - value: 5.57
+    source: numismaster
+  diameter_mm:
+  - value: 29.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110631
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14029, p. 197
+  - type: literature
+    url: https://en.numista.com/99346
+    ref: Numista N#99346 — 16 Skilling - Christian IV - Norway
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-110631
+  - dk-bruun-9544
+  - dk-numista-99346
 - id: unified-dk-bruun-9575
   fuss: seed_unsorted
   phase: bruun
@@ -7650,6 +8357,85 @@ coins:
   composed_of:
   - denmark-numismaster-110627
   - dk-bruun-9869
+- id: unified-dk-bruun-9872
+  fuss: seed_unsorted
+  phase: bruun
+  kind: kurant
+  nominal: ⅛ Speciedaler (12 Skilling)
+  year_first: 1661
+  year_last: 1661
+  year_label: '1661'
+  ruler: Frederik III
+  mint: Christiania
+  catalog:
+    km: '62'
+    bruun_collection_id: '9872'
+    sieg: '10.2'
+    schou: '46'
+    hede: 38B
+    nmd: 145A
+    bruun_part: I
+    bruun_lot_no: 1207
+    bruun_page: 285
+    others:
+    - Aagaard# 74.1
+    - Rønning# 59
+    - Brekke# 139
+    - Thesen# 145A
+    numista: '118992'
+    skaare: '553'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.875
+    source: numismaster
+  - value: 0.875
+    source: numista
+  weight_rough_g:
+  - value: 3.59
+    source: bruun
+  - value: 3.6
+    source: numismaster
+  - value: 3.6
+    source: numista
+  diameter_mm:
+  - value: 25.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110690
+    ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
+    ref: Bruun Part I, lot 1207, p. 285
+  - type: literature
+    url: https://en.numista.com/118992
+    ref: Numista N#118992 — ⅛ Speciedaler - Frederik III (Value on reverse; without wreath) - Norway
+  note:
+    de: ⅛ Speciedaler
+    en: ⅛ Speciedaler
+    uk: ⅛ Speciedaler
+  verification_note:
+    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
+      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
+      docs/research/moentordning_1541.md).'
+    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
+      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
+      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
+    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
+      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
+      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-110690
+  - dk-bruun-9872
+  - dk-numista-118992
 - id: unified-dk-bruun-9875
   fuss: seed_unsorted
   phase: bruun
@@ -10165,7 +10951,6 @@ coins:
   ruler: Christian IV.
   mint: Christiania
   catalog:
-    km: '27'
     hede: '20'
     hede_volume: nc4h
     schou:
@@ -10174,56 +10959,40 @@ coins:
     - '63'
     - '62'
     - '32'
-    bruun_collection_id: '9544'
-    sieg: '6'
-    nmd: '119'
-    bruun_part: II
-    bruun_lot_no: 14029
-    bruun_page: 197
-    numista: '99346'
-    others:
-    - Brekke# 117
-    - AAJT# 117
-    - Thesen# 117
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.593
     source: hede
-  - value: 0.593
-    source: numismaster
-  - value: 0.593
-    source: numista
   weight_rough_g:
-  - value: 5.23
-    source: bruun
+  - value: 5.38
+    source: kmk
+  - value: 5.39
+    source: kmk
+  - value: 5.41
+    source: kmk
   - value: 5.568
     source: hede
-  - value: 5.568
-    source: numista
-  - value: 5.57
-    source: numismaster
-  diameter_mm:
-  - value: 29.0
-    source: numista
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_110631
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14029, p. 197
   - type: literature
     url: https://www.danskmoent.dk/norge/nc4h20.htm
     ref: danskmoent.dk (Hede nc4h20)
-  - type: literature
-    url: https://en.numista.com/99346
-    ref: Numista N#99346 — 16 Skilling - Christian IV - Norway
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/157826
+    ref: KMM 157826 (Inv. FP 1466.206)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/157829
+    ref: KMM 157829 (Inv. FP 1466.203)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/157831
+    ref: KMM 157831 (Inv. FP 1466.201)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/347043
+    ref: KMM 347043 (Inv. FP 5437.803)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -10236,10 +11005,11 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
-  - denmark-numismaster-110631
-  - dk-bruun-9544
   - dk-hede-nc4h20
-  - dk-numista-99346
+  - kmk-157826
+  - kmk-157829
+  - kmk-157831
+  - kmk-347043
 - id: unified-dk-hede-nc4h3
   fuss: seed_unsorted
   phase: hede
@@ -11967,21 +12737,9 @@ coins:
   ruler: Christian V.
   mint: Christiania
   catalog:
-    km: '104'
     hede: '35'
     hede_volume: nc5h
     schou: '48'
-    bruun_collection_id: '10128'
-    sieg: '44'
-    nmd: '74'
-    bruun_part: III
-    bruun_lot_no: 12097
-    bruun_page: 210
-    numista: '117156'
-    others:
-    - Rønning# 84
-    - AAJT# 63
-    skaare: '579'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -11993,34 +12751,22 @@ coins:
   - value: 0.875
     source: hede
   - value: 0.875
-    source: numismaster
-  - value: 0.875
-    source: numista
+    source: ucoin
   weight_rough_g:
-  - value: 3.59
-    source: bruun
   - value: 3.61
-    source: numismaster
-  - value: 3.61
-    source: numista
+    source: ucoin
   - value: 3.611
     source: hede
   diameter_mm:
   - value: 23.0
-    source: numista
+    source: ucoin
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_110694
-    ref: NumisMaster
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 12097, p. 210
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h35.htm
     ref: danskmoent.dk (Hede nc5h35)
-  - type: literature
-    url: https://en.numista.com/117156
-    ref: Numista N#117156 — ⅛ Speciedaler - Christian V (Christiania) - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-12-skilling-1671/?tid=144917
+    ref: ucoin
   note:
     de: ⅛ Speciedaler
     en: ⅛ Speciedaler
@@ -12032,10 +12778,8 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_norway
   composed_of:
-  - denmark-numismaster-110694
-  - dk-bruun-10128
   - dk-hede-nc5h35
-  - dk-numista-117156
+  - dk-tid-144917
 - id: unified-dk-hede-nc5h37
   fuss: seed_unsorted
   phase: hede
@@ -12686,8 +13430,6 @@ coins:
     source: numismaster
   - value: 0.667
     source: numista
-  - value: 0.667
-    source: ucoin
   - value: 0.672
     source: hede
   weight_rough_g:
@@ -12695,15 +13437,11 @@ coins:
     source: numismaster
   - value: 10.63
     source: numista
-  - value: 10.63
-    source: ucoin
   - value: 11.136
     source: hede
   diameter_mm:
   - value: 31.0
     source: numista
-  - value: 31.0
-    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110650
@@ -12714,9 +13452,6 @@ coins:
   - type: literature
     url: https://en.numista.com/117162
     ref: Numista N#117162 — 2 Mark - Christian V (Christiania type II; light) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-2-mark-1671/?tid=144985
-    ref: ucoin
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/591487
     ref: KMM 591487 (Inv. FP 11639.3)
@@ -12735,7 +13470,6 @@ coins:
   - denmark-numismaster-110650
   - dk-hede-nc5h43
   - dk-numista-117162
-  - dk-tid-144985
   - kmk-591487
 - id: unified-dk-hede-nc5h44
   fuss: seed_unsorted
@@ -12755,7 +13489,6 @@ coins:
   ruler: Christian V.
   mint: Christiania
   catalog:
-    km: 94a
     hede: '44'
     hede_volume: nc5h
     schou:
@@ -12763,65 +13496,22 @@ coins:
     - '47'
     - '38'
     - '17'
-    bruun_collection_id: '10177'
-    sieg: '24'
-    nmd: '116'
-    bruun_part: III
-    bruun_lot_no: 12101
-    bruun_page: 213
-    numista: '99348'
-    others:
-    - AAJT# 102-107
-    - Rønning# 95
-    skaare: '585'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.672
     source: hede
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: numista
-  - value: 0.672
-    source: ucoin
   weight_rough_g:
-  - value: 5.49
-    source: bruun
   - value: 5.568
     source: hede
-  - value: 5.57
-    source: numismaster
-  - value: 5.57
-    source: numista
-  - value: 5.57
-    source: ucoin
-  diameter_mm:
-  - value: 25.0
-    source: ucoin
-  - value: 26.0
-    source: numista
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_110635
-    ref: NumisMaster
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 12101, p. 213
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h44.htm
     ref: danskmoent.dk (Hede nc5h44)
-  - type: literature
-    url: https://en.numista.com/99348
-    ref: Numista N#99348 — 1 Mark - Christian V (Christiania type I; heavy) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-16-skilling-1671-1679/?tid=144919
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -12834,11 +13524,7 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
-  - denmark-numismaster-110635
-  - dk-bruun-10177
   - dk-hede-nc5h44
-  - dk-numista-99348
-  - dk-tid-144919
 - id: unified-dk-hede-nc5h45
   fuss: seed_unsorted
   phase: hede
@@ -13415,56 +14101,25 @@ coins:
   ruler: Christian V.
   mint: Christiania
   catalog:
-    km: '136'
     hede: '53'
     hede_volume: nc5h
     schou: '28'
-    numista: '99117'
-    others:
-    - Rønning# 100
-    - AAJT# 126
-    skaare: '589'
   metal: billon
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.125
     source: hede
-  - value: 0.125
-    source: numismaster
-  - value: 0.125
-    source: numista
-  - value: 0.125
-    source: ucoin
   weight_rough_g:
   - value: 5.846
     source: hede
-  - value: 5.85
-    source: numismaster
-  - value: 5.85
-    source: numista
-  - value: 5.85
-    source: ucoin
-  diameter_mm:
-  - value: 22.0
-    source: numista
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_110621
-    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h53.htm
     ref: danskmoent.dk (Hede nc5h53)
-  - type: literature
-    url: https://en.numista.com/99117
-    ref: Numista N#99117 — 4 Skilling - Christian V (Christiania; Grenailletype) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-skilling-1677/?tid=143940
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -13477,10 +14132,7 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
-  - denmark-numismaster-110621
   - dk-hede-nc5h53
-  - dk-numista-99117
-  - dk-tid-143940
 - id: unified-dk-hede-nc5h54
   fuss: seed_unsorted
   phase: hede
@@ -13576,9 +14228,6 @@ coins:
   ruler: Christian V.
   mint: Christiania
   catalog:
-    km:
-    - '148.1'
-    - '148'
     hede: '55'
     hede_volume: nc5h
     schou:
@@ -13599,92 +14248,28 @@ coins:
     - '34'
     - '35'
     - '48'
-    bruun_collection_id:
-    - '10245'
-    - '10258'
-    - '10353'
-    - '10370'
-    - '10371'
-    sieg: '38'
-    nmd:
-    - '87'
-    - '88'
-    - '95'
-    - '96'
-    bruun_part: II
-    bruun_lot_no: 14083
-    bruun_page: 232
-    numista: '110303'
-    dav:
-    - EC II 3663
-    - EC II# 3663
-    others:
-    - AAJT# 75-77
-    - Rønning# 88
-    skaare: '581'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.672
     source: hede
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: numista
   weight_rough_g:
-  - value: 21.77
-    source: bruun
-  - value: 21.82
-    source: bruun
-  - value: 21.97
-    source: bruun
-  - value: 22.0
-    source: bruun
-  - value: 22.13
-    source: bruun
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: numista
   - value: 22.272
     source: hede
-  diameter_mm:
-  - value: 39.0
-    source: numista
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_110667
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14083, p. 232
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14085, p. 232
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14089, p. 233
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14091, p. 234
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 12114, p. 218
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h55.htm
     ref: danskmoent.dk (Hede nc5h55)
-  - type: literature
-    url: https://en.numista.com/110303
-    ref: Numista N#110303 — 4 Mark - Christian V (Christiania type II) - Norway
-  note:
-    de: Krone
-    en: Krone
-    uk: Krone
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/148571
+    ref: KMM 148571 (Inv. KP 1656.1742)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/371920
+    ref: KMM 371920 (Inv. FP 10472.36)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -13697,14 +14282,9 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
-  - denmark-numismaster-110667
-  - dk-bruun-10245
-  - dk-bruun-10258
-  - dk-bruun-10353
-  - dk-bruun-10370
-  - dk-bruun-10371
   - dk-hede-nc5h55
-  - dk-numista-110303
+  - kmk-148571
+  - kmk-371920
 - id: unified-dk-hede-nc5h56
   fuss: seed_unsorted
   phase: hede
@@ -14063,74 +14643,34 @@ coins:
   phase: hede
   kind: kurant
   nominal: 1 Krone
-  year_first: 1681
-  year_last: 1695
-  year_ranges:
-  - - 1681
-    - 1695
-  year_label: 1681-1695
+  year_first: 1683
+  year_last: 1683
+  year_label: '1683'
   ruler: Christian V.
   mint: Christiania
   catalog:
-    km:
-    - '148.2'
-    - '148'
     hede: '60'
     hede_volume: nc5h
     schou:
     - 4-5
     - '4'
     - '5'
-    bruun_collection_id: '10257'
-    sieg: '39'
-    nmd: '89'
-    bruun_part: II
-    bruun_lot_no: 14084
-    bruun_page: 232
-    dav: '3664'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.672
     source: hede
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: ucoin
   weight_rough_g:
-  - value: 22.05
-    source: bruun
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: ucoin
   - value: 22.272
     source: hede
-  diameter_mm:
-  - value: 39.0
-    source: ucoin
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_110647
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14084, p. 232
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h60.htm
     ref: danskmoent.dk (Hede nc5h60)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1681-1695/?tid=145666
-    ref: ucoin
-  note:
-    de: Krone
-    en: Krone
-    uk: Krone
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -14143,10 +14683,7 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
-  - denmark-numismaster-110647
-  - dk-bruun-10257
   - dk-hede-nc5h60
-  - dk-tid-145666
 - id: unified-dk-hede-nc5h61
   fuss: seed_unsorted
   phase: hede
@@ -14374,7 +14911,6 @@ coins:
     - '14'
     - '16'
     - '21'
-    - '6'
     bruun_collection_id:
     - '10293'
     - '10296'
@@ -14528,9 +15064,6 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-4-mark-1687/?tid=145718
     ref: ucoin
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/278786
-    ref: KMM 278786 (Inv. RP 471.11)
   note:
     de: Krone
     en: Krone
@@ -14569,7 +15102,6 @@ coins:
   - dk-tid-145694
   - dk-tid-145717
   - dk-tid-145718
-  - kmk-278786
 - id: unified-dk-hede-nc5h68
   fuss: seed_unsorted
   phase: hede
@@ -14957,7 +15489,6 @@ coins:
     - 1699
   year_label: 1688-1699
   ruler: Christian V.
-  mintmaster: Henning Christopher Meyer, the elder
   mint: Kongsberg
   catalog:
     km: '183'
@@ -14976,23 +15507,11 @@ coins:
     - '3'
     - '1'
     - '6'
-    - '15'
-    bruun_collection_id:
-    - '10336'
-    - '10337'
-    sieg: '42'
-    nmd: 182B
-    bruun_part: III
-    bruun_lot_no: 12111
-    bruun_page: 218
-    numista: '101796'
-    dav:
-    - EC II 3666
-    - EC II# 3666
+    numista: '101797'
     others:
-    - Brekke# 182C
-    - Brekke# 183
-    - Rønning# 117b
+    - Brekke# 184B
+    - Brekke# 186B
+    - Rønning# 117c
     skaare: '622'
   metal: silver
   metal_verified: true
@@ -15005,50 +15524,22 @@ coins:
   - value: 0.672
     source: hede
   - value: 0.672
-    source: numismaster
-  - value: 0.672
     source: numista
-  - value: 0.672
-    source: ucoin
   weight_rough_g:
-  - value: 22.06
-    source: bruun
-  - value: 22.27
-    source: numismaster
   - value: 22.27
     source: numista
-  - value: 22.27
-    source: ucoin
   - value: 22.272
     source: hede
   diameter_mm:
-  - value: 37.5
+  - value: 38.0
     source: numista
-  - value: 39.0
-    source: ucoin
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_110681
-    ref: NumisMaster
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 12111, p. 218
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14088, p. 233
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h73.htm
     ref: danskmoent.dk (Hede nc5h73)
   - type: literature
-    url: https://en.numista.com/101796
-    ref: Numista N#101796 — 4 Mark - Christian V (Kongsberg type G&IV; HCM below branches; plain edge) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1688-1699/?tid=145715
-    ref: ucoin
-  note:
-    de: Krone
-    en: Krone
-    uk: Krone
+    url: https://en.numista.com/101797
+    ref: Numista N#101797 — 4 Mark - Christian V (Kongsberg type G&IV; HCM below branches; rifled edge) - Norway
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15061,12 +15552,8 @@ coins:
     basis: fin
     unit_raw: rd.kr
   composed_of:
-  - denmark-numismaster-110681
-  - dk-bruun-10336
-  - dk-bruun-10337
   - dk-hede-nc5h73
-  - dk-numista-101796
-  - dk-tid-145715
+  - dk-numista-101797
 - id: unified-dk-hede-nc5h74
   fuss: seed_unsorted
   phase: hede
@@ -15553,8 +16040,6 @@ coins:
     source: numismaster
   - value: 0.833
     source: numista
-  - value: 0.833
-    source: ucoin
   weight_rough_g:
   - value: 4.497
     source: hede
@@ -15562,8 +16047,6 @@ coins:
     source: numismaster
   - value: 4.5
     source: numista
-  - value: 4.5
-    source: ucoin
   diameter_mm:
   - value: 23.0
     source: numista
@@ -15577,9 +16060,6 @@ coins:
   - type: literature
     url: https://en.numista.com/101385
     ref: Numista N#101385 — 1 Mark - Christian V (Kongsberg) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-1-mark-1699/?tid=144928
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15595,7 +16075,6 @@ coins:
   - denmark-numismaster-110644
   - dk-hede-nc5h80
   - dk-numista-101385
-  - dk-tid-144928
 - id: unified-dk-hede-nc6h1
   fuss: seed_unsorted
   phase: hede
@@ -15607,57 +16086,25 @@ coins:
   ruler: Christian VI.
   mint: Kongsberg
   catalog:
-    km: '233'
     hede: '1'
     hede_volume: nc6h
     schou: '1'
-    numista: '100322'
-    others:
-    - Brekke# 1
-    dav: '1296'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.672
     source: hede
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: numista
-  - value: 0.672
-    source: ucoin
   weight_rough_g:
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: numista
-  - value: 22.27
-    source: ucoin
   - value: 22.272
     source: hede
-  diameter_mm:
-  - value: 35.0
-    source: numista
-  - value: 41.0
-    source: ucoin
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_86263
-    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nc6h1.htm
     ref: danskmoent.dk (Hede nc6h1)
-  - type: literature
-    url: https://en.numista.com/100322
-    ref: Numista N#100322 — 4 Mark - Christian VI - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1736/?tid=145858
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -15670,10 +16117,7 @@ coins:
     basis: fin
     unit_raw: rd
   composed_of:
-  - denmark-numismaster-86263
   - dk-hede-nc6h1
-  - dk-numista-100322
-  - dk-tid-145858
 - id: unified-dk-hede-nc6h2
   fuss: seed_unsorted
   phase: hede
@@ -16600,6 +17044,9 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/148176
     ref: KMM 148176 (Inv. KP 1656.2137)
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/340389
+    ref: KMM 340389 (Inv. FP 5638.2)
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/352702
     ref: KMM 352702 (Inv. FP 5113.72)
   - type: museum
@@ -16622,6 +17069,7 @@ coins:
   - dk-numista-72027
   - dk-tid-88674
   - kmk-148176
+  - kmk-340389
   - kmk-352702
   - kmk-372300
 - id: unified-dk-hede-nc7h17
@@ -19383,37 +19831,20 @@ coins:
   ruler: Frederik III.
   mint: Christiania
   catalog:
-    km:
-    - '62'
-    - '63'
+    km: '63'
     hede:
     - '38'
-    - 38B
     - 38A
     hede_volume: nf3h
     schou:
     - '45'
     - '46'
-    bruun_collection_id: '9872'
-    sieg: '10.2'
-    nmd: 145A
-    bruun_part: I
-    bruun_lot_no: 1207
-    bruun_page: 285
+    numista: '118993'
     others:
-    - Aagaard# 74.1
-    - Rønning# 59
-    - Brekke# 139
-    - Thesen# 145A
     - Rønning# 59a
     - Brekke# 140
     - Thesen# 145B
-    numista:
-    - '118992'
-    - '118993'
-    skaare:
-    - '553'
-    - '554'
+    skaare: '554'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -19428,37 +19859,41 @@ coins:
     source: numismaster
   - value: 0.875
     source: numista
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
-  - value: 3.59
-    source: bruun
+  - value: 3.56
+    source: kmk
   - value: 3.596
     source: hede
   - value: 3.6
     source: numismaster
   - value: 3.6
     source: numista
+  - value: 3.6
+    source: ucoin
   diameter_mm:
   - value: 25.0
     source: numista
   sources:
   - type: literature
-    url: https://numismaster.com/MC_110690
-    ref: NumisMaster
-  - type: literature
     url: https://numismaster.com/MC_110691
     ref: NumisMaster
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Sept2024_LEBruun_Collection_Part_I_Catalog.pdf
-    ref: Bruun Part I, lot 1207, p. 285
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h38.htm
     ref: danskmoent.dk (Hede nf3h38)
   - type: literature
-    url: https://en.numista.com/118992
-    ref: Numista N#118992 — ⅛ Speciedaler - Frederik III (Value on reverse; without wreath) - Norway
-  - type: literature
     url: https://en.numista.com/118993
     ref: Numista N#118993 — ⅛ Speciedaler - Frederik III (Value on reverse; with wreath) - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-12-skilling-1661/?tid=144933
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-12-skilling-1661/?tid=145385
+    ref: ucoin
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/278488
+    ref: KMM 278488 (Inv. RP 709.2)
   note:
     de: ⅛ Speciedaler
     en: ⅛ Speciedaler
@@ -19475,12 +19910,12 @@ coins:
     basis: fin
     unit_raw: speciedalere
   composed_of:
-  - denmark-numismaster-110690
   - denmark-numismaster-110691
-  - dk-bruun-9872
   - dk-hede-nf3h38
-  - dk-numista-118992
   - dk-numista-118993
+  - dk-tid-144933
+  - dk-tid-145385
+  - kmk-278488
 - id: unified-dk-hede-nf3h39
   fuss: seed_unsorted
   phase: hede
@@ -21849,22 +22284,19 @@ coins:
   kind: kurant
   nominal: 1 Mark
   year_first: 1648
-  year_last: 1669
+  year_last: 1661
   year_ranges:
   - - 1648
-    - 1669
-  year_label: 1648-1669
+    - 1661
+  year_label: 1648-1661
   ruler: Frederik III.
   mint: Christiania
   catalog:
-    km:
-    - '32'
-    - '32.1'
+    km: '32'
     hede:
     - '68'
-    - 68A
-    - 68C
     - 68B
+    - 68C
     hede_volume: nf3h
     schou:
     - '39'
@@ -21894,11 +22326,11 @@ coins:
     - '110'
     - '60'
     - '64'
-    numista: '491154'
+    numista: '99347'
     others:
-    - Brekke# 165
-    - Thesen# 170
-    - Rønning# 64f-g
+    - Rønning# 64
+    - Brekke# 166
+    - Thesen# 171
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -21910,11 +22342,7 @@ coins:
   - value: 0.672
     source: hede
   - value: 0.672
-    source: numismaster
-  - value: 0.672
     source: numista
-  - value: 0.672
-    source: ucoin
   weight_rough_g:
   - value: 5.425
     source: kmk
@@ -21929,29 +22357,17 @@ coins:
   - value: 5.568
     source: hede
   - value: 5.57
-    source: numismaster
-  - value: 5.57
     source: numista
-  - value: 5.57
-    source: ucoin
   diameter_mm:
   - value: 28.0
     source: numista
-  - value: 28.6
-    source: ucoin
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_110632
-    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nf3h68.htm
     ref: danskmoent.dk (Hede nf3h68)
   - type: literature
-    url: https://en.numista.com/491154
-    ref: 'Numista N#491154 — 16 Skilling - Frederick III (Type I: date on reverse) - Norway'
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-16-skilling-1648-1661/?tid=143947
-    ref: ucoin
+    url: https://en.numista.com/99347
+    ref: 'Numista N#99347 — 16 Skilling - Frederick III (Type II: date on obverse; large monogram) - Norway'
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/197156
     ref: KMM 197156 (Inv. FP 3108.7128)
@@ -21989,10 +22405,8 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_norway
   composed_of:
-  - denmark-numismaster-110632
   - dk-hede-nf3h68
-  - dk-numista-491154
-  - dk-tid-143947
+  - dk-numista-99347
   - kmk-197156
   - kmk-197157
   - kmk-197162
@@ -22698,87 +23112,29 @@ coins:
     - 1700
   year_label: 1699-1700
   ruler: Frederik IV.
-  mintmaster: Henning Christopher Meyer, the elder
   mint: Kongsberg
   catalog:
-    km:
-    - '200.1'
-    - '200'
-    hede:
-    - '1'
-    - 1A
-    - 1B
+    hede: '1'
     hede_volume: nf4h
     schou:
     - '7'
     - '11'
-    bruun_collection_id: '10516'
-    sieg: '10.1'
-    nmd: '3'
-    bruun_part: II
-    bruun_lot_no: 14104
-    bruun_page: 240
-    numista: '101132'
-    dav:
-    - EC III# A1287
-    - EC III A1287
-    others:
-    - Brekke# 1
-    - Brekke# 2A
-    - Rønning# 130
-    skaare: '635'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.833
     source: hede
-  - value: 0.833
-    source: numismaster
-  - value: 0.833
-    source: numista
-  - value: 0.833
-    source: ucoin
   weight_rough_g:
-  - value: 17.87
-    source: bruun
   - value: 17.988
     source: hede
-  - value: 17.99
-    source: numismaster
-  - value: 17.99
-    source: numista
-  - value: 17.99
-    source: ucoin
-  diameter_mm:
-  - value: 35.0
-    source: numista
-  - value: 35.0
-    source: ucoin
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_110683
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14104, p. 240
   - type: literature
     url: https://www.danskmoent.dk/norge/nf4h1.htm
     ref: danskmoent.dk (Hede nf4h1)
-  - type: literature
-    url: https://en.numista.com/101132
-    ref: Numista N#101132 — 4 Mark - Frederik IV - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1699-1700/?tid=145966
-    ref: ucoin
-  note:
-    de: Krone
-    en: Krone
-    uk: Krone
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -22786,11 +23142,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_norway
   composed_of:
-  - denmark-numismaster-110683
-  - dk-bruun-10516
   - dk-hede-nf4h1
-  - dk-numista-101132
-  - dk-tid-145966
 - id: unified-dk-hede-nf4h16
   fuss: seed_unsorted
   phase: hede
@@ -23010,12 +23362,11 @@ coins:
   year_last: 1723
   year_label: '1723'
   ruler: Frederik IV.
-  mintmaster: Henning Christopher Meyer, the younger
+  mintmaster: Henning Christopher der Jüngere Meyer
   inscription_obv: FRIDERICUS IIII D - G REX - DAN NOR V G // III MARCK / DANSKE
   inscription_rev: DOMINUS MI-HI ADIUTOR // 17-23
   mint: Kongsberg
   catalog:
-    km: '220'
     hede: '3'
     hede_volume: nf4h
     schou:
@@ -23023,19 +23374,6 @@ coins:
     - '3'
     - '4'
     sieg: '11'
-    bruun_collection_id: '10634'
-    nmd: '5'
-    bruun_part: II
-    bruun_lot_no: 14108
-    bruun_page: 242
-    numista: '101120'
-    dav:
-    - EC III 1290
-    - EC III# 1290
-    others:
-    - Rønning# 131
-    - Brekke# 3
-    skaare: '636'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -23046,55 +23384,25 @@ coins:
   fineness:
   - value: 0.672
     source: hede
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: numista
-  - value: 0.672
-    source: ucoin
   weight_rough_g:
   - value: 21.63
     source: ikmk
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: numista
-  - value: 22.27
-    source: ucoin
   - value: 22.272
     source: hede
-  - value: 22.42
-    source: bruun
   diameter_mm:
   - value: 39.0
     source: ikmk
-  - value: 41.0
-    source: numista
-  - value: 41.0
-    source: ucoin
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_86252
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14108, p. 242
   - type: literature
     url: https://www.danskmoent.dk/norge/nf4h3.htm
     ref: danskmoent.dk (Hede nf4h3)
-  - type: literature
-    url: https://en.numista.com/101120
-    ref: Numista N#101120 — 4 Mark - Frederik IV - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1723/?tid=145856
-    ref: ucoin
   - type: museum
     url: https://ikmk.smb.museum/object?id=18240602
     ref: IKMK Berlin 18240602
   note:
-    de: Krone
-    en: Krone
-    uk: Krone
+    de: AR
+    en: AR
+    uk: AR
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -23102,11 +23410,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_norway
   composed_of:
-  - denmark-numismaster-86252
-  - dk-bruun-10634
   - dk-hede-nf4h3
-  - dk-numista-101120
-  - dk-tid-145856
   - ikmk-18240602
 - id: unified-dk-hede-nf4h4
   fuss: seed_unsorted
@@ -23122,7 +23426,6 @@ coins:
   ruler: Frederik IV.
   mint: Kongsberg
   catalog:
-    km: '222'
     hede: '4'
     hede_volume: nf4h
     schou:
@@ -23131,56 +23434,22 @@ coins:
     - '4'
     - '5'
     sieg: '12'
-    numista: '82387'
-    dav:
-    - EC III# 1292
-    - EC III 1292
-    others:
-    - Brekke# 4
-    - Rønning# 132
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.672
     source: hede
-  - value: 0.672
-    source: numismaster
-  - value: 0.672
-    source: numista
-  - value: 0.672
-    source: ucoin
   weight_rough_g:
-  - value: 22.27
-    source: numismaster
-  - value: 22.27
-    source: numista
-  - value: 22.27
-    source: ucoin
   - value: 22.272
     source: hede
-  diameter_mm:
-  - value: 41.0
-    source: numista
-  - value: 41.0
-    source: ucoin
   sources:
-  - type: literature
-    url: https://numismaster.com/MC_86260
-    ref: NumisMaster
   - type: literature
     url: https://www.danskmoent.dk/norge/nf4h4.htm
     ref: danskmoent.dk (Hede nf4h4)
-  - type: literature
-    url: https://en.numista.com/82387
-    ref: Numista N#82387 — 1 Krone - Frederik IV - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-mark-1725-1726/?tid=145857
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -23188,10 +23457,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_norway
   composed_of:
-  - denmark-numismaster-86260
   - dk-hede-nf4h4
-  - dk-numista-82387
-  - dk-tid-145857
 - id: unified-dk-hede-nf4h5
   fuss: seed_unsorted
   phase: hede
@@ -24303,6 +24569,73 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-100218
+- id: unified-dk-numista-100322
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 4 Mark = 1 Krone
+  year_first: 1736
+  year_last: 1736
+  year_label: '1736'
+  ruler: Christian VI
+  catalog:
+    km: '233'
+    numista: '100322'
+    hede: '1'
+    others:
+    - Brekke# 1
+    dav: '1296'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.672
+    source: numismaster
+  - value: 0.672
+    source: numista
+  - value: 0.672
+    source: ucoin
+  weight_rough_g:
+  - value: 22.27
+    source: numismaster
+  - value: 22.27
+    source: numista
+  - value: 22.27
+    source: ucoin
+  diameter_mm:
+  - value: 35.0
+    source: numista
+  - value: 41.0
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_86263
+    ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/100322
+    ref: Numista N#100322 — 4 Mark - Christian VI - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1736/?tid=145858
+    ref: ucoin
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-86263
+  - dk-numista-100322
+  - dk-tid-145858
 - id: unified-dk-numista-100330
   fuss: seed_unsorted
   phase: numista
@@ -25003,64 +25336,6 @@ coins:
   - dk-tid-145042
   - dk-tid-145043
   - dk-tid-145044
-- id: unified-dk-numista-101797
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 4 Mark = 1 Krone
-  year_first: 1690
-  year_last: 1695
-  year_ranges:
-  - - 1690
-    - 1690
-  - - 1692
-    - 1692
-  - - 1695
-    - 1695
-  year_label: 1690, 1692, 1695
-  ruler: Christian V
-  catalog:
-    km: '183'
-    numista: '101797'
-    hede: '73'
-    others:
-    - Brekke# 184B
-    - Brekke# 186B
-    - Rønning# 117c
-    skaare: '622'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numista
-  weight_rough_g:
-  - value: 22.27
-    source: numista
-  diameter_mm:
-  - value: 38.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/101797
-    ref: Numista N#101797 — 4 Mark - Christian V (Kongsberg type G&IV; HCM below branches; rifled edge) - Norway
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-numista-101797
 - id: unified-dk-numista-101798
   fuss: seed_unsorted
   phase: numista
@@ -25271,7 +25546,6 @@ coins:
     - Rønning# 115h
     - Brekke# 181D
     skaare: '621'
-    schou: '12'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -25285,8 +25559,6 @@ coins:
   - value: 0.672
     source: numista
   weight_rough_g:
-  - value: 21.84
-    source: kmk
   - value: 22.27
     source: numismaster
   - value: 22.27
@@ -25301,9 +25573,6 @@ coins:
   - type: literature
     url: https://en.numista.com/102270
     ref: Numista N#102270 — 4 Mark - Christian V (Kongsberg type G&II) - Norway
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148589
-    ref: KMM 148589 (Inv. KP 1656.1724)
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -25318,7 +25587,6 @@ coins:
   composed_of:
   - denmark-numismaster-110675
   - dk-numista-102270
-  - kmk-148589
 - id: unified-dk-numista-102381
   fuss: seed_unsorted
   phase: numista
@@ -26214,20 +26482,14 @@ coins:
     source: numismaster
   - value: 0.672
     source: numista
-  - value: 0.672
-    source: ucoin
   weight_rough_g:
   - value: 11.14
     source: numismaster
   - value: 11.14
     source: numista
-  - value: 11.14
-    source: ucoin
   diameter_mm:
   - value: 31.0
     source: numista
-  - value: 31.0
-    source: ucoin
   sources:
   - type: literature
     url: https://numismaster.com/MC_110651
@@ -26235,9 +26497,6 @@ coins:
   - type: literature
     url: https://en.numista.com/117164
     ref: Numista N#117164 — 2 Mark - Christian V (Christiania type II; heavy) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-2-mark-1672-1674/?tid=144986
-    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -26252,7 +26511,6 @@ coins:
   composed_of:
   - denmark-numismaster-110651
   - dk-numista-117164
-  - dk-tid-144986
 - id: unified-dk-numista-117339
   fuss: seed_unsorted
   phase: numista
@@ -27458,18 +27716,12 @@ coins:
     source: numismaster
   - value: 0.667
     source: numista
-  - value: 0.667
-    source: ucoin
   weight_rough_g:
   - value: 5.31
     source: numismaster
   - value: 5.31
     source: numista
-  - value: 5.31
-    source: ucoin
   diameter_mm:
-  - value: 25.0
-    source: ucoin
   - value: 26.0
     source: numista
   sources:
@@ -27479,9 +27731,6 @@ coins:
   - type: literature
     url: https://en.numista.com/37333
     ref: Numista N#37333 — 1 Mark - Christian V (Christiania type I; light) - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-16-skilling-1670/?tid=144918
-    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -27496,7 +27745,6 @@ coins:
   composed_of:
   - denmark-numismaster-110634
   - dk-numista-37333
-  - dk-tid-144918
 - id: unified-dk-numista-387243
   fuss: seed_unsorted
   phase: numista
@@ -30755,6 +31003,69 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-491148
+- id: unified-dk-numista-491154
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 16 Skilling = 1 Mark
+  year_first: 1648
+  year_last: 1669
+  year_ranges:
+  - - 1648
+    - 1669
+  year_label: 1648-1669
+  ruler: Frederick III
+  catalog:
+    km:
+    - '32'
+    - '32.1'
+    numista: '491154'
+    hede: 68A
+    others:
+    - Brekke# 165
+    - Thesen# 170
+    - Rønning# 64f-g
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.672
+    source: numismaster
+  - value: 0.672
+    source: numista
+  weight_rough_g:
+  - value: 5.57
+    source: numismaster
+  - value: 5.57
+    source: numista
+  diameter_mm:
+  - value: 28.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110632
+    ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/491154
+    ref: 'Numista N#491154 — 16 Skilling - Frederick III (Type I: date on reverse) - Norway'
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-110632
+  - dk-numista-491154
 - id: unified-dk-numista-491156
   fuss: seed_unsorted
   phase: numista
@@ -31715,6 +32026,79 @@ coins:
   - denmark-numismaster-86241
   - dk-numista-82372
   - dk-tid-145853
+- id: unified-dk-numista-82387
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 4 Mark = 1 Krone
+  year_first: 1725
+  year_last: 1726
+  year_ranges:
+  - - 1725
+    - 1726
+  year_label: 1725-1726
+  ruler: Frederick IV
+  catalog:
+    km: '222'
+    numista: '82387'
+    dav:
+    - EC III# 1292
+    - EC III 1292
+    hede: '4'
+    others:
+    - Brekke# 4
+    - Rønning# 132
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.672
+    source: numismaster
+  - value: 0.672
+    source: numista
+  - value: 0.672
+    source: ucoin
+  weight_rough_g:
+  - value: 22.27
+    source: numismaster
+  - value: 22.27
+    source: numista
+  - value: 22.27
+    source: ucoin
+  diameter_mm:
+  - value: 41.0
+    source: numista
+  - value: 41.0
+    source: ucoin
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_86260
+    ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/82387
+    ref: Numista N#82387 — 1 Krone - Frederik IV - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-mark-1725-1726/?tid=145857
+    ref: ucoin
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-86260
+  - dk-numista-82387
+  - dk-tid-145857
 - id: unified-dk-numista-82388
   fuss: seed_unsorted
   phase: numista
@@ -32948,6 +33332,72 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-99116
+- id: unified-dk-numista-99117
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 4 Skilling
+  year_first: 1677
+  year_last: 1677
+  year_label: '1677'
+  ruler: Christian V
+  catalog:
+    km: '136'
+    numista: '99117'
+    hede: '53'
+    others:
+    - Rønning# 100
+    - AAJT# 126
+    skaare: '589'
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.125
+    source: numismaster
+  - value: 0.125
+    source: numista
+  - value: 0.125
+    source: ucoin
+  weight_rough_g:
+  - value: 5.85
+    source: numismaster
+  - value: 5.85
+    source: numista
+  - value: 5.85
+    source: ucoin
+  diameter_mm:
+  - value: 22.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_110621
+    ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/99117
+    ref: Numista N#99117 — 4 Skilling - Christian V (Christiania; Grenailletype) - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-skilling-1677/?tid=143940
+    ref: ucoin
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: danish_norway
+  composed_of:
+  - denmark-numismaster-110621
+  - dk-numista-99117
+  - dk-tid-143940
 - id: unified-dk-numista-99119
   fuss: seed_unsorted
   phase: numista
@@ -33450,61 +33900,6 @@ coins:
   - denmark-numismaster-122269
   - dk-numista-99248
   - dk-tid-81026
-- id: unified-dk-numista-99347
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 16 Skilling = 1 Mark (1/6 Speciedaler)
-  year_first: 1649
-  year_last: 1661
-  year_ranges:
-  - - 1649
-    - 1661
-  year_label: 1649-1661
-  ruler: Frederik III
-  catalog:
-    km: '32'
-    numista: '99347'
-    hede:
-    - 68B
-    - 68C
-    others:
-    - Rønning# 64
-    - Brekke# 166
-    - Thesen# 171
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.672
-    source: numista
-  weight_rough_g:
-  - value: 5.57
-    source: numista
-  diameter_mm:
-  - value: 28.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/99347
-    ref: 'Numista N#99347 — 16 Skilling - Frederick III (Type II: date on obverse; large monogram) - Norway'
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-numista-99347
 - id: unified-dk-numista-99350
   fuss: seed_unsorted
   phase: numista
@@ -33676,6 +34071,48 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-143851
+- id: unified-dk-tid-143947
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 16 Skilling
+  year_first: 1648
+  year_last: 1661
+  year_ranges:
+  - - 1648
+    - 1661
+  year_label: 1648-1661
+  ruler: Frederick III
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.672
+    source: ucoin
+  weight_rough_g:
+  - value: 5.57
+    source: ucoin
+  diameter_mm:
+  - value: 28.6
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-16-skilling-1648-1661/?tid=143947
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-tid-143947
 - id: unified-dk-tid-144916
   fuss: seed_unsorted
   phase: ucoin
@@ -33718,14 +34155,14 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-144916
-- id: unified-dk-tid-144917
+- id: unified-dk-tid-144918
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 12 Skilling
-  year_first: 1671
-  year_last: 1671
-  year_label: '1671'
+  nominal: 16 Skilling
+  year_first: 1670
+  year_last: 1670
+  year_label: '1670'
   ruler: Christian V
   metal: silver
   metal_verified: true
@@ -33735,17 +34172,17 @@ coins:
   mint_verified: false
   verified: false
   fineness:
-  - value: 0.875
+  - value: 0.667
     source: ucoin
   weight_rough_g:
-  - value: 3.61
+  - value: 5.31
     source: ucoin
   diameter_mm:
-  - value: 23.0
+  - value: 25.0
     source: ucoin
   sources:
   - type: ucoin
-    url: https://en.ucoin.net/coin/norway-12-skilling-1671/?tid=144917
+    url: https://en.ucoin.net/coin/norway-16-skilling-1670/?tid=144918
     ref: ucoin
   verification_note:
     de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
@@ -33756,7 +34193,123 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   issuing_entity: danish_norway
   composed_of:
-  - dk-tid-144917
+  - dk-tid-144918
+- id: unified-dk-tid-144919
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 16 Skilling
+  year_first: 1671
+  year_last: 1679
+  year_ranges:
+  - - 1671
+    - 1679
+  year_label: 1671-1679
+  ruler: Christian V
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.672
+    source: ucoin
+  weight_rough_g:
+  - value: 5.57
+    source: ucoin
+  diameter_mm:
+  - value: 25.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-16-skilling-1671-1679/?tid=144919
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-tid-144919
+- id: unified-dk-tid-144924
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Mark
+  year_first: 1687
+  year_last: 1687
+  year_label: '1687'
+  ruler: Christian V
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.672
+    source: ucoin
+  weight_rough_g:
+  - value: 5.57
+    source: ucoin
+  diameter_mm:
+  - value: 25.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-mark-1687/?tid=144924
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-tid-144924
+- id: unified-dk-tid-144928
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 1 Mark
+  year_first: 1699
+  year_last: 1699
+  year_label: '1699'
+  ruler: Christian V
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.833
+    source: ucoin
+  weight_rough_g:
+  - value: 4.5
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-1-mark-1699/?tid=144928
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-tid-144928
 - id: unified-dk-tid-144931
   fuss: seed_unsorted
   phase: ucoin
@@ -33792,41 +34345,35 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-tid-144931
-- id: unified-dk-tid-144933
+- id: unified-dk-tid-144985
   fuss: seed_unsorted
   phase: ucoin
   kind: kurant
-  nominal: 12 Skilling
-  year_first: 1661
-  year_last: 1661
-  year_label: '1661'
-  ruler: Frederick III
-  catalog:
-    schou: '45'
+  nominal: 2 Mark
+  year_first: 1671
+  year_last: 1671
+  year_label: '1671'
+  ruler: Christian V
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   fineness:
-  - value: 0.875
+  - value: 0.667
     source: ucoin
   weight_rough_g:
-  - value: 3.56
-    source: kmk
-  - value: 3.6
+  - value: 10.63
+    source: ucoin
+  diameter_mm:
+  - value: 31.0
     source: ucoin
   sources:
   - type: ucoin
-    url: https://en.ucoin.net/coin/norway-12-skilling-1661/?tid=144933
+    url: https://en.ucoin.net/coin/norway-2-mark-1671/?tid=144985
     ref: ucoin
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-12-skilling-1661/?tid=145385
-    ref: ucoin
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/278488
-    ref: KMM 278488 (Inv. RP 709.2)
   verification_note:
     de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
       / NumisMaster / Bruun) vor §BF-Promotion.'
@@ -33836,9 +34383,91 @@ coins:
       Lange / NumisMaster / Bruun) перед §BF-промоцією.'
   issuing_entity: danish_norway
   composed_of:
-  - dk-tid-144933
-  - dk-tid-145385
-  - kmk-278488
+  - dk-tid-144985
+- id: unified-dk-tid-144986
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Mark
+  year_first: 1672
+  year_last: 1674
+  year_ranges:
+  - - 1672
+    - 1674
+  year_label: 1672-1674
+  ruler: Christian V
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.672
+    source: ucoin
+  weight_rough_g:
+  - value: 11.14
+    source: ucoin
+  diameter_mm:
+  - value: 31.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-mark-1672-1674/?tid=144986
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-tid-144986
+- id: unified-dk-tid-144988
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Mark
+  year_first: 1682
+  year_last: 1685
+  year_ranges:
+  - - 1682
+    - 1685
+  year_label: 1682-1685
+  ruler: Christian V
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.672
+    source: ucoin
+  weight_rough_g:
+  - value: 11.14
+    source: ucoin
+  diameter_mm:
+  - value: 31.0
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-mark-1682-1685/?tid=144988
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-tid-144988
 - id: unified-dk-tid-145426
   fuss: seed_unsorted
   phase: ucoin
@@ -38593,30 +39222,6 @@ coins:
   - kmk-148568
   - kmk-148569
   - kmk-175965
-- id: unified-kmk-148571
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Krone
-  year_first: 1691
-  year_last: 1691
-  year_label: '1691'
-  ruler: Christian 5
-  mint: Christiania
-  catalog:
-    schou: '33'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148571
-    ref: KMM 148571 (Inv. KP 1656.1742)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148571
 - id: unified-kmk-148572
   fuss: seed_unsorted
   phase: kmk
@@ -38817,6 +39422,34 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-148588
+- id: unified-kmk-148589
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 4 Mark
+  year_first: 1688
+  year_last: 1688
+  year_label: '1688'
+  ruler: Christian 5
+  mint: Kongsberg
+  catalog:
+    schou: '12'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 21.84
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/148589
+    ref: KMM 148589 (Inv. KP 1656.1724)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-148589
 - id: unified-kmk-148590
   fuss: seed_unsorted
   phase: kmk
@@ -52010,50 +52643,6 @@ coins:
   - kmk-346030
   - kmk-346031
   - kmk-346032
-- id: unified-kmk-157826
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Mark
-  year_first: 1647
-  year_last: 1647
-  year_label: '1647'
-  ruler: Christian 4
-  mint: Christiania
-  catalog:
-    hede: '20'
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 5.38
-    source: kmk
-  - value: 5.39
-    source: kmk
-  - value: 5.41
-    source: kmk
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/157826
-    ref: KMM 157826 (Inv. FP 1466.206)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/157829
-    ref: KMM 157829 (Inv. FP 1466.203)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/157831
-    ref: KMM 157831 (Inv. FP 1466.201)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/347043
-    ref: KMM 347043 (Inv. FP 5437.803)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-157826
-  - kmk-157829
-  - kmk-157831
-  - kmk-347043
 - id: unified-kmk-159761
   fuss: seed_unsorted
   phase: kmk
@@ -55655,6 +56244,30 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-278785
+- id: unified-kmk-278786
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 4 Mark
+  year_first: 1687
+  year_last: 1687
+  year_label: '1687'
+  ruler: Christian 5
+  catalog:
+    schou: '6'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/278786
+    ref: KMM 278786 (Inv. RP 471.11)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-278786
 - id: unified-kmk-278787
   fuss: seed_unsorted
   phase: kmk
@@ -59880,29 +60493,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-340178
-- id: unified-kmk-340389
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Skilling dansk
-  year_first: 1786
-  year_last: 1786
-  year_label: '1786'
-  ruler: Christian 7
-  catalog:
-    hede: '16'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/340389
-    ref: KMM 340389 (Inv. FP 5638.2)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-340389
 - id: unified-kmk-340575
   fuss: seed_unsorted
   phase: kmk
@@ -61855,29 +62445,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-371864
-- id: unified-kmk-371920
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Krone
-  year_first: 1691
-  year_last: 1691
-  year_label: '1691'
-  ruler: Christian 5
-  catalog:
-    hede: '55'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/371920
-    ref: KMM 371920 (Inv. FP 10472.36)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-371920
 - id: unified-kmk-372406
   fuss: seed_unsorted
   phase: kmk
