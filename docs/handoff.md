@@ -15,6 +15,68 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## Catalog-index normalization + KMM thinning (2026-06-08) — SHIPPED, 5 commits UNPUSHED
+
+Started as the «1 Speciedaler Christian IV (Hede 55)» 3-problem task, grew into a
+project-wide index refactor + a museum-citation declutter. **All committed locally,
+UNPUSHED (48 total unpushed). Pre-commit hook passed throughout; full V2 build clean,
+0 `schou#`/`sieg#` overflow site-wide.**
+
+**(A) Catalog-index normalization — `17c7e91` (code) + `75734e6` (data, all entities).**
+- `lib/catalog_codes.py::normalise_catalog()` — folds `others: <code># N` overflow
+  into its typed list-field (case-insensitive code, guarded against cf-/unlisted-),
+  + case-insensitive value de-dup («Hede 55C» + «55c» → one «55C»). Wired into EVERY
+  catalog-write chokepoint: `seed_merge.merge_one` (post deep-merge), `v2_seed_writer`
+  pre-write hygiene, `merge_seeds_cross_source.build_unified`, `absorb._enrich_final_entry`
+  + a blanket pass over every final entry (catches V1-carryover foundations).
+- **Restart-scope registry in `_catalog_refs`** (the §9.4 core): two records sharing an
+  index VALUE match only when they share its RESTART scope. Empirically measured:
+  **Hede 59 %, Schou 64 %, Sieg 42 %** of distinct values span ≥2 reigns → **per-ruler**
+  (`<idx>/<ruler>`); **KM 43 %** spans ≥2 entities → per-register; Galster per-volume;
+  Friedberg/Davenport/Numista/Bruun/Lange/NMD/Schive/Skaare/mb (~0 %) → global/bare.
+  **Sieg + Schou were BARE before (a §9.4 cross-reign collision bug); now ruler-scoped.**
+  `_catalog_chain_consistent` value-compare + both SUB_VARIANT_REFS membership tests
+  made scope-aware (`k.split("/",1)[0]`) + case-insensitive.
+- Rollout regression analysis (`scripts/oneoff/analyze_index_rollout_regressions.py`,
+  gitignored): **0 cross-ruler false-merges**; contained to 3 Danish entities (others 0
+  grouping change); 66 §9a museum-specimen consolidations; flagged «anomalies» all
+  accounting-equivalent nominals (12 RD Courant = 2 RD Species; 4 Mark = 1 Speciedaler;
+  16 Skilling = 1 Mark) + billon/silver — catalog-driven per §9.4. No over-merges.
+
+**(B) natmus errata — `18a5fbe`.** KMM 275643 «2 Skilling 1625» typeNumber «Hede 141»
+is wrong (Hede 141 = 8 Skilling 1630, confirmed by genuine specimen KMM 190547 +
+danskmoent c4h141; a 2-Skilling 1625 is uniquely Hede 134; natmus's OWN sibling
+KMM 335046 is tagged «H. 134A»). `_source_errata` hede 141→134 on the kmk seed
+(durable, survives rebuild via `_PRESERVE_ALWAYS_KEYS`). Specimen now groups with
+Hede 134; KMM 190547 stands alone as Hede 141.
+
+**(C) KMM museum-citation thinning — `7d37a92` (code) + `758cfba` (data).** 3-category
+declutter in `absorb._suppress_weightless_museum_overcollection`, keyed by what each
+KMM record carries (image read from cache `related.assets[type=still]` — VERIFIED
+equal to the natmus page: 290904 shows 3 photos / 123284 shows «Genstanden er endnu
+ikke affotograferet»):
+- WEIGHT (±image): untouched — the §9a weight-specimen thinning owns those; always shown.
+- IMAGE only (no weight): keep 3 (lowest object-id), hide rest.
+- NEITHER (79 % of all KMM cites): keep 1, hide rest.
+Hidden via `display: false` (data kept §9a — not deleted); 3266 surplus hidden, 0 weight
+hidden. Constants `_KEEP_KMM_IMAGE_ONLY=3` / `_KEEP_KMM_PURE=1`.
+
+**OPEN / next:**
+- 🔴 **290904 verdict (awaiting user).** PRO RELIGIONE 1627 Wolfenbüttel «Sch 5» (28.35 g,
+  KMM 290904, 3 photos) is still in c4h55 (`dk-tid-97358` composed_of) because it merged
+  at cross-source with KMM 348808 (genuine Hede 55 «daler» «H 55» 28.48 g) on year 1627 +
+  weight ~28.4 g. Splitting needs un-nesting 290904 from 348808 in `unified-kmk-290904`.
+  (The two clear anomalies KMM 290903 58.9 g + 291098 1.89 g gutergros were already
+  removed — sticky pre-2026-05-22 bad-matches the weight-tier-1 matcher now rejects.)
+- 🟡 **§9a weight-thinning is NOT auto-run in the pipeline** (on-demand
+  `thin_intra_subvariant_specimens.py` only). The «weight → keep 3 min/mid/max» the user
+  referenced is therefore NOT applied automatically in absorb output. Decide: move it into
+  absorb (like the new KMM thinning) or keep curator-on-demand.
+- 🟢 2 residual `km#` overflow (`km-683-1…`, `numismaster-65993`) — km excluded from the
+  fold (register dict-form complexity); add register-aware km-fold if wanted.
+- 🟢 `mb` index (24 % xEntity, 0 % xRuler) left bare — verify restart axis + scope if
+  per-region.
+
 ## Soll/Δ-gap sweep (2026-06-07) — 8 coins fixed, 16 surfaced
 
 User flagged on the rendered Denmark page: rows with weight+fineness (so a

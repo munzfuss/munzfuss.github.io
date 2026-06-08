@@ -961,12 +961,17 @@ inflation).
    `docs:`, `schema:`, `build:`, `fix:`). Commit messages in
    English regardless of chat language.
 
-3. **Update `docs/handoff.md`** if any of:
-   - Current focus changed.
-   - A pending verification opened (waiting on user input).
-   - A surface that was rebuilt deserves a one-liner for the next
-     session.
-   - Local commits got pushed (update «Local commit state» section).
+3. **Update `docs/handoff.md` — ALWAYS** (mandatory at session end, not
+   conditional; user direction 2026-06-08 «завжди записуй handoff»). Every
+   session that touched project work refreshes it — at minimum:
+   - Current focus (what was being done, what's next).
+   - Any pending verification awaiting user input (the 🔴 blockers).
+   - Surfaces rebuilt / mechanisms added this session (one-liner each).
+   - Local-commit / push state.
+   Even when little «changed», write the «session did X → next is Y» line so
+   the next agent picks up cold. Prune entries that no longer help. The ONLY
+   exception is a pure chat/explore session that touched no files (same
+   exception as the daily note in 4a).
 
 4. **Add to `docs/SOURCES.md` §13** any new source quirk that cost
    > 15 min to figure out.
