@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-06-06 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-08 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 3913 per-source seed entries.
-# Output: 2188 unified entries (one per physical coin).
+# Output: 2181 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-06-06'
+generated_at: '2026-06-08'
 coins:
 - id: unified-denmark-numismaster-110606
   fuss: seed_unsorted
@@ -3429,73 +3429,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-bruun-10726
-- id: unified-dk-bruun-10833
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 24 Skilling
-  year_first: 1772
-  year_last: 1788
-  year_ranges:
-  - - 1772
-    - 1775
-  - - 1783
-    - 1783
-  - - 1788
-    - 1788
-  year_label: 1772-1775, 1783, 1788
-  ruler: Christian VII
-  mint: Kongsberg
-  catalog:
-    km: '250'
-    bruun_collection_id: '10833'
-    sieg: '11.2'
-    schou: '10'
-    nmd: '36'
-    bruun_part: III
-    bruun_lot_no: 12130
-    bruun_page: 225
-    fp: '23.2'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.563
-    source: ucoin
-  weight_rough_g:
-  - value: 9.16
-    source: bruun
-  - value: 9.17
-    source: ucoin
-  diameter_mm:
-  - value: 29.5
-    source: ucoin
-  sources:
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 12130, p. 225
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-24-skilling-1772-1788/?tid=88738
-    ref: ucoin
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-bruun-10833
-  - dk-tid-88738
 - id: unified-dk-bruun-10871
   fuss: seed_unsorted
   phase: bruun
@@ -3650,77 +3583,6 @@ coins:
   - dk-bruun-10878
   - dk-numista-401274
   - kmk-333849
-- id: unified-dk-bruun-10942
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 4 Skilling
-  year_first: 1809
-  year_last: 1810
-  year_ranges:
-  - - 1809
-    - 1810
-  year_label: 1809-1810
-  ruler: Frederik VI
-  mint: Kongsberg
-  catalog:
-    km: '275'
-    bruun_collection_id: '10942'
-    sieg: '5'
-    schou: '5'
-    hede: '3'
-    nmd: 3A
-    bruun_part: III
-    bruun_lot_no: 12133
-    bruun_page: 226
-    numista: '97335'
-    others:
-    - Brekke# 3
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 22.27
-    source: ucoin
-  - value: 22.272
-    source: numista
-  - value: 23.57
-    source: bruun
-  diameter_mm:
-  - value: 32.0
-    source: ucoin
-  - value: 33.0
-    source: numista
-  sources:
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 12133, p. 226
-  - type: literature
-    url: https://en.numista.com/97335
-    ref: Numista N#97335 — 4 Skilling Courant - Frederik VI - Norway
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-4-skilling-1809-1810/?tid=88718
-    ref: ucoin
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-bruun-10942
-  - dk-numista-97335
-  - dk-tid-88718
 - id: unified-dk-bruun-10976
   fuss: seed_unsorted
   phase: bruun
@@ -4256,80 +4118,6 @@ coins:
   - dk-bruun-6737
   - dk-bruun-6738
   - dk-numista-460032
-- id: unified-dk-bruun-6884
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 3 Ducats
-  year_first: 1678
-  year_last: 1678
-  year_label: '1678'
-  ruler: Christian V
-  mint:
-  - Christiania
-  - Christiania mint
-  catalog:
-    km: '139'
-    bruun_collection_id: '6884'
-    sieg: '75'
-    schou: '2'
-    hede: '17'
-    nmd: 8A
-    bruun_part: III
-    bruun_lot_no: 11243
-    bruun_page: 126
-    numista: '417445'
-    others:
-    - AAJT# 8
-    fr: 12C
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.979
-    source: numismaster
-  - value: 0.979
-    source: numista
-  weight_rough_g:
-  - value: 9.82
-    source: bruun
-  - value: 10.47
-    source: numismaster
-  - value: 10.47
-    source: numista
-  diameter_mm:
-  - value: 29.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110816
-    ref: NumisMaster
-  - type: auction
-    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
-    ref: Bruun Part III, lot 11243, p. 126
-  - type: literature
-    url: https://en.numista.com/417445
-    ref: Numista N#417445 — 3 Ducats - Christian V (Christiania type IX) - Norway
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110816
-  - dk-bruun-6884
-  - dk-numista-417445
 - id: unified-dk-bruun-7235
   fuss: seed_unsorted
   phase: bruun
@@ -6223,82 +6011,6 @@ coins:
   - dk-bruun-9496
   - dk-numista-444675
   - kmk-190526
-- id: unified-dk-bruun-9544
-  fuss: seed_unsorted
-  phase: bruun
-  kind: kurant
-  nominal: 1 Mark
-  year_first: 1644
-  year_last: 1647
-  year_ranges:
-  - - 1644
-    - 1647
-  year_label: 1644-1647
-  ruler: Christian IV
-  mint: Christiania
-  catalog:
-    km: '27'
-    bruun_collection_id: '9544'
-    sieg: '6'
-    schou: '63'
-    hede: '20'
-    nmd: '119'
-    bruun_part: II
-    bruun_lot_no: 14029
-    bruun_page: 197
-    numista: '99346'
-    others:
-    - Brekke# 117
-    - AAJT# 117
-    - Thesen# 117
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.593
-    source: numismaster
-  - value: 0.593
-    source: numista
-  weight_rough_g:
-  - value: 5.23
-    source: bruun
-  - value: 5.568
-    source: numista
-  - value: 5.57
-    source: numismaster
-  diameter_mm:
-  - value: 29.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110631
-    ref: NumisMaster
-  - type: auction
-    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
-    ref: Bruun Part II, lot 14029, p. 197
-  - type: literature
-    url: https://en.numista.com/99346
-    ref: Numista N#99346 — 16 Skilling - Christian IV - Norway
-  verification_note:
-    de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
-      per-Specimen-Wert; Feingehalt fehlt in Bruun-Daten und folgt aus dem Wilcke 1950-Ordonnance-Spezifikations-Tabel (s.
-      docs/research/moentordning_1541.md).'
-    en: 'Bruun seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from
-      the Bruun auction catalogue (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto weight is a per-specimen value;
-      fineness is not in Bruun data and follows from the Wilcke 1950 ordinance specification table (see docs/research/moentordning_1541.md).'
-    uk: 'Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного
-      каталогу Bruun (Stack''s Bowers L. E. Bruun Collection 2024-2026). Brutto-вага це per-specimen значення; проба відсутня
-      в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110631
-  - dk-bruun-9544
-  - dk-numista-99346
 - id: unified-dk-bruun-9575
   fuss: seed_unsorted
   phase: bruun
@@ -8501,7 +8213,6 @@ coins:
   year_first: 1531
   year_last: 1531
   year_label: '1531'
-  ruler: Frederik 1
   mint: Christiania
   catalog:
     galster: 168, mangler hos
@@ -8509,22 +8220,15 @@ coins:
     jensen_skjoldager: N-15
     galster_volume: f1g
   metal: billon
-  metal_verified: false
   fineness_verified: false
-  weight_rough_verified: true
+  weight_rough_verified: false
   mint_verified: true
   verified: false
   year_verified: true
-  weight_rough_g:
-  - value: 1.44
-    source: kmk
   sources:
   - type: literature
     url: https://www.danskmoent.dk/norge/nf1g168.htm
     ref: Galster 168 (f1g) — danskmoent.dk norge_nf1g168.htm
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/139717
-    ref: KMM 139717 (Inv. KP 1715.420)
   verification_note:
     de: 'Galster-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus den danskmoent.dk-Galster-Seiten (Hosting der Galster-Numismatik) übernommen. Cross-references aus dem H1 + Beschreibungsblock
@@ -8538,7 +8242,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-galster-f1g-168
-  - kmk-139717
 - id: unified-dk-galster-hg-149
   fuss: seed_unsorted
   phase: galster
@@ -8961,10 +8664,10 @@ coins:
   catalog:
     hede: '15'
     hede_volume: f6h
-    schou: '7'
+    schou:
+    - '7'
+    - '8'
     sieg: '2'
-    others:
-    - schou# 8
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -9085,14 +8788,9 @@ coins:
     hede_volume: nc3h
     schou:
     - '1'
+    - '4'
     - '6'
     - '7'
-    - '4'
-    others:
-    - schou# 4
-    - Brekke# 3A
-    - AAJT# 3A
-    - Thesen# 3A
     bruun_collection_id:
     - '9300'
     - '9301'
@@ -9105,6 +8803,10 @@ coins:
     bruun_lot_no: 1173
     bruun_page: 239
     numista: '121234'
+    others:
+    - Brekke# 3A
+    - AAJT# 3A
+    - Thesen# 3A
     skaare: '323'
   metal: silver
   metal_verified: true
@@ -9331,18 +9033,11 @@ coins:
     hede_volume: nc4h
     schou:
     - '16'
-    - '15'
-    - '8'
+    - '17'
+    - '19'
     - '24'
-    others:
-    - schou# 17
-    - schou# 19
-    - schou# 24
-    - schou# 8
-    - Brekke# 26
-    - AAJT# 26
-    - Thesen# 27A
-    - Rønning# 6a
+    - '8'
+    - '15'
     bruun_collection_id:
     - '9308'
     - '9317'
@@ -9357,6 +9052,11 @@ coins:
     dav:
     - '3529'
     - EC II# 3529
+    others:
+    - Brekke# 26
+    - AAJT# 26
+    - Thesen# 27A
+    - Rønning# 6a
     skaare: '504'
   metal: silver
   metal_verified: true
@@ -9453,33 +9153,21 @@ coins:
     - '10'
     - 10A
     - 10B
-    - 10a
     hede_volume: nc4h
     schou:
     - '9'
+    - '11'
+    - '3'
+    - '6'
+    - '10'
+    - '38'
+    - '39'
+    - '23'
     - '19'
     - '20'
-    - '11'
-    - '10'
     - '5'
     - '12'
     - '26'
-    - '39'
-    others:
-    - schou# 11
-    - schou# 3
-    - schou# 6
-    - schou# 10
-    - schou# 38
-    - schou# 39
-    - schou# 23
-    - schou# 19
-    - schou# 20
-    - Brekke# 52-65
-    - Brekke# 66A
-    - Thesen# 52-65
-    - Thesen# 66A
-    - Rønning# 10
     bruun_collection_id:
     - '9321'
     - '9322'
@@ -9507,6 +9195,12 @@ coins:
     bruun_lot_no: 1176
     bruun_page: 243
     numista: '115222'
+    others:
+    - Brekke# 52-65
+    - Brekke# 66A
+    - Thesen# 52-65
+    - Thesen# 66A
+    - Rønning# 10
     skaare: '506'
   metal: silver
   metal_verified: true
@@ -9667,24 +9361,18 @@ coins:
     hede_volume: nc4h
     schou:
     - '23'
-    - '6'
-    - '14'
+    - '10'
+    - '13'
+    - '12'
+    - '5'
     - '11'
-    others:
-    - schou# 10
-    - schou# 13
-    - schou# 12
-    - schou# 5
-    - schou# 11
-    - schou# 6
-    - schou# 7
-    - schou# 25
-    - schou# 24
-    - schou# 26
-    - schou# 27
-    - Brekke# 74-87
-    - Thesen# 74-87
-    - Rønning# 13
+    - '6'
+    - '7'
+    - '25'
+    - '24'
+    - '26'
+    - '27'
+    - '14'
     bruun_collection_id:
     - '9324'
     - '9376'
@@ -9698,6 +9386,10 @@ coins:
     bruun_lot_no: 12048
     bruun_page: 183
     numista: '115216'
+    others:
+    - Brekke# 74-87
+    - Thesen# 74-87
+    - Rønning# 13
     skaare: '509'
   metal: silver
   metal_verified: true
@@ -9813,22 +9505,17 @@ coins:
     hede_volume: nc4h
     schou:
     - '28'
+    - '11'
+    - '14'
+    - '13'
+    - '7'
+    - '6'
+    - '15'
+    - '46'
+    - '27'
     - '30'
     - '12'
-    - '6'
     - '16'
-    others:
-    - schou# 11
-    - schou# 14
-    - schou# 13
-    - schou# 7
-    - schou# 6
-    - schou# 15
-    - schou# 46
-    - schou# 27
-    - Brekke# 95-108
-    - Thesen# 95-108
-    - Rønning# 16
     bruun_collection_id:
     - '9328'
     - '9338'
@@ -9842,6 +9529,10 @@ coins:
     bruun_lot_no: 12049
     bruun_page: 183
     numista: '115207'
+    others:
+    - Brekke# 95-108
+    - Thesen# 95-108
+    - Rønning# 16
     skaare: '511'
   metal: silver
   metal_verified: true
@@ -9937,18 +9628,17 @@ coins:
     hede_volume: nc4h
     schou:
     - '20'
-    - '28'
-    - '27'
     - '25'
+    - '27'
+    - '22'
+    - '29'
+    - '32'
+    - '89'
+    - '100'
+    - '101'
+    - '28'
+    numista: '99123'
     others:
-    - schou# 25
-    - schou# 27
-    - schou# 22
-    - schou# 29
-    - schou# 32
-    - schou# 89
-    - schou# 100
-    - schou# 101
     - Brekke# 121
     - Brekke# 122
     - AAJT# 121
@@ -9956,7 +9646,6 @@ coins:
     - Thesen# 121
     - Thesen# 122
     - Rønning# 19
-    numista: '99123'
     skaare: '514'
   metal: silver
   metal_verified: true
@@ -10046,19 +9735,17 @@ coins:
     hede_volume: nc4h
     schou:
     - '57'
-    - '58'
-    - '53'
-    - '52'
     - '48'
+    - '49'
+    - '51'
+    - '53'
+    - '58'
+    - '52'
+    numista: '98983'
     others:
-    - schou# 48
-    - schou# 49
-    - schou# 51
-    - schou# 53
     - Brekke# 128
     - Thesen# 128
     - Rønning# 23
-    numista: '98983'
     skaare: '518'
   metal: silver
   metal_verified: true
@@ -10154,13 +9841,14 @@ coins:
     km: '24'
     hede: '17'
     hede_volume: nc4h
-    schou: '141'
+    schou:
+    - '141'
+    - '45'
+    numista: '99011'
     others:
-    - schou# 45
     - Brekke# 130-134
     - Thesen# 130-134
     - Rønning# 24
-    numista: '99011'
     skaare: '519'
   metal: billon
   metal_verified: true
@@ -10336,16 +10024,16 @@ coins:
   catalog:
     hede: '19'
     hede_volume: nc4h
-    schou: '48'
-    others:
-    - schou# 54
-    - schou# 57
-    - schou# 36
-    - schou# 37
-    - schou# 39
-    - schou# 41
-    - schou# 28
-    - schou# 29
+    schou:
+    - '48'
+    - '54'
+    - '57'
+    - '36'
+    - '37'
+    - '39'
+    - '41'
+    - '28'
+    - '29'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -10531,48 +10219,65 @@ coins:
   ruler: Christian IV.
   mint: Christiania
   catalog:
+    km: '27'
     hede: '20'
     hede_volume: nc4h
-    schou: '76'
+    schou:
+    - '76'
+    - '82'
+    - '63'
+    - '62'
+    - '32'
+    bruun_collection_id: '9544'
+    sieg: '6'
+    nmd: '119'
+    bruun_part: II
+    bruun_lot_no: 14029
+    bruun_page: 197
+    numista: '99346'
     others:
-    - schou# 82
-    - schou# 63
-    - schou# 62
-    - schou# 32
+    - Brekke# 117
+    - AAJT# 117
+    - Thesen# 117
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.593
     source: hede
+  - value: 0.593
+    source: numismaster
+  - value: 0.593
+    source: numista
   weight_rough_g:
-  - value: 5.38
-    source: kmk
-  - value: 5.39
-    source: kmk
-  - value: 5.41
-    source: kmk
+  - value: 5.23
+    source: bruun
   - value: 5.568
     source: hede
+  - value: 5.568
+    source: numista
+  - value: 5.57
+    source: numismaster
+  diameter_mm:
+  - value: 29.0
+    source: numista
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110631
+    ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14029, p. 197
   - type: literature
     url: https://www.danskmoent.dk/norge/nc4h20.htm
     ref: danskmoent.dk (Hede nc4h20)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/157826
-    ref: KMM 157826 (Inv. FP 1466.206)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/157829
-    ref: KMM 157829 (Inv. FP 1466.203)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/157831
-    ref: KMM 157831 (Inv. FP 1466.201)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/347043
-    ref: KMM 347043 (Inv. FP 5437.803)
+  - type: literature
+    url: https://en.numista.com/99346
+    ref: Numista N#99346 — 16 Skilling - Christian IV - Norway
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -10585,11 +10290,10 @@ coins:
     basis: fin
     unit_raw: daler
   composed_of:
+  - denmark-numismaster-110631
+  - dk-bruun-9544
   - dk-hede-nc4h20
-  - kmk-157826
-  - kmk-157829
-  - kmk-157831
-  - kmk-347043
+  - dk-numista-99346
 - id: unified-dk-hede-nc4h3
   fuss: seed_unsorted
   phase: hede
@@ -10656,16 +10360,8 @@ coins:
     hede_volume: nc4h
     schou:
     - '24'
+    - '27'
     - '26'
-    others:
-    - schou# 27
-    - Brekke# 93
-    - Brekke# 94
-    - AAJT# 93
-    - AAJT# 94
-    - Thesen# 93
-    - Thesen# 94
-    - Rønning# 15
     bruun_collection_id: '9325'
     sieg: '8'
     nmd: '94'
@@ -10673,6 +10369,14 @@ coins:
     bruun_lot_no: 14011
     bruun_page: 184
     numista: '119412'
+    others:
+    - Brekke# 93
+    - Brekke# 94
+    - AAJT# 93
+    - AAJT# 94
+    - Thesen# 93
+    - Thesen# 94
+    - Rønning# 15
     skaare: '510'
   metal: silver
   metal_verified: true
@@ -10752,25 +10456,19 @@ coins:
     hede_volume: nc4h
     schou:
     - '11'
+    - '7'
+    - '8'
+    - '2'
+    - '3'
+    - '5'
+    - '14'
+    - '9'
+    - '4'
+    - '18'
+    - '30'
+    - '19'
     - '12'
-    others:
-    - schou# 7
-    - schou# 8
-    - schou# 2
-    - schou# 3
-    - schou# 5
-    - schou# 14
-    - schou# 9
-    - schou# 4
-    - schou# 18
-    - schou# 30
-    - schou# 19
-    - schou# 12
-    - schou# 13
-    - Rønning# 8
-    - Brekke# 49
-    - AAJT# 49
-    - Thesen# 49
+    - '13'
     bruun_collection_id: '9573'
     sieg: '16.4'
     nmd: '49'
@@ -10778,6 +10476,11 @@ coins:
     bruun_lot_no: 14033
     bruun_page: 200
     numista: '118914'
+    others:
+    - Rønning# 8
+    - Brekke# 49
+    - AAJT# 49
+    - Thesen# 49
     skaare: '505'
     dav: '3534'
   metal: silver
@@ -10871,12 +10574,6 @@ coins:
     schou:
     - '11'
     - '9'
-    others:
-    - schou# 9
-    - Rønning# 5
-    - Brekke# 24
-    - AAJT# 24
-    - Thesen# 25
     bruun_collection_id: '9571'
     sieg: '18.3'
     nmd: '25'
@@ -10884,6 +10581,11 @@ coins:
     bruun_lot_no: 14032
     bruun_page: 199
     numista: '119948'
+    others:
+    - Rønning# 5
+    - Brekke# 24
+    - AAJT# 24
+    - Thesen# 25
     skaare: '503'
     dav: '3532'
   metal: silver
@@ -11055,10 +10757,10 @@ coins:
     km: '124'
     hede: '10'
     hede_volume: nc5h
-    schou: '3'
-    others:
-    - schou# 3a-3c
-    - schou# 3b
+    schou:
+    - '3'
+    - 3a-3c
+    - 3b
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -11122,9 +10824,9 @@ coins:
     km: '119'
     hede: '11'
     hede_volume: nc5h
-    schou: '5'
-    others:
-    - schou# 2
+    schou:
+    - '5'
+    - '2'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -11179,11 +10881,12 @@ coins:
     km: '125'
     hede: '12'
     hede_volume: nc5h
-    schou: '5'
-    others:
-    - schou# 2
-    - AAJT# 5
+    schou:
+    - '5'
+    - '2'
     numista: '444987'
+    others:
+    - AAJT# 5
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -11256,10 +10959,7 @@ coins:
     schou:
     - '1'
     - '6'
-    others:
-    - schou# 6
-    - schou# 6a
-    - AAJT# 13
+    - 6a
     bruun_collection_id: '10150'
     sieg: '72.1'
     nmd: 13A
@@ -11268,6 +10968,8 @@ coins:
     bruun_page: 307
     numista: '422364'
     fr: 12b
+    others:
+    - AAJT# 13
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -11285,6 +10987,8 @@ coins:
   - value: 0.979
     source: ucoin
   weight_rough_g:
+  - value: 6.88
+    source: kmk
   - value: 6.94
     source: bruun
   - value: 6.98
@@ -11314,6 +11018,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-2-ducat-1673/?tid=145750
     ref: ucoin
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/278489
+    ref: KMM 278489 (Inv. RP 711.1)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -11326,6 +11033,7 @@ coins:
   - dk-hede-nc5h13
   - dk-numista-422364
   - dk-tid-145750
+  - kmk-278489
 - id: unified-dk-hede-nc5h14
   fuss: seed_unsorted
   phase: hede
@@ -11340,10 +11048,10 @@ coins:
     km: '126'
     hede: '14'
     hede_volume: nc5h
-    schou: '1'
-    others:
-    - schou# 6
-    - schou# 6a
+    schou:
+    - '1'
+    - '6'
+    - 6a
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -11404,10 +11112,9 @@ coins:
     km: '127'
     hede: '15'
     hede_volume: nc5h
-    schou: '1'
-    others:
-    - schou# 1a
-    - AAJT# 6
+    schou:
+    - '1'
+    - 1a
     bruun_collection_id: '10143'
     sieg: '79'
     nmd: 6A
@@ -11416,6 +11123,8 @@ coins:
     bruun_page: 228
     numista: '421613'
     fr: '13'
+    others:
+    - AAJT# 6
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -11499,12 +11208,8 @@ coins:
     hede_volume: nc5h
     schou:
     - '11'
+    - '2'
     - '8'
-    others:
-    - schou# 2
-    - schou# 8
-    - AAJT# 14
-    - AAJT# 17
     bruun_collection_id: '6811'
     sieg: '74.1'
     nmd: 14A
@@ -11512,6 +11217,9 @@ coins:
     bruun_lot_no: 11238
     bruun_page: 124
     numista: '326936'
+    others:
+    - AAJT# 14
+    - AAJT# 17
     fr: 12d
   metal: gold
   metal_verified: true
@@ -11585,30 +11293,66 @@ coins:
     - 1678
   year_label: 1673, 1678
   ruler: Christian V.
-  mint: Christiania
+  mint:
+  - Christiania
+  - Christiania mint
   catalog:
+    km: '139'
     hede: '17'
     hede_volume: nc5h
-    schou: '11'
+    schou:
+    - '11'
+    - '2'
+    - '8'
+    bruun_collection_id: '6884'
+    sieg: '75'
+    nmd: 8A
+    bruun_part: III
+    bruun_lot_no: 11243
+    bruun_page: 126
+    numista: '417445'
     others:
-    - schou# 2
-    - schou# 8
+    - AAJT# 8
+    fr: 12C
   metal: gold
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.979
     source: hede
+  - value: 0.979
+    source: numismaster
+  - value: 0.979
+    source: numista
   weight_rough_g:
+  - value: 9.82
+    source: bruun
+  - value: 10.47
+    source: numismaster
+  - value: 10.47
+    source: numista
   - value: 10.471
     source: hede
+  diameter_mm:
+  - value: 29.0
+    source: numista
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110816
+    ref: NumisMaster
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 11243, p. 126
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h16.htm
     ref: danskmoent.dk (Hede nc5h17)
+  - type: literature
+    url: https://en.numista.com/417445
+    ref: Numista N#417445 — 3 Ducats - Christian V (Christiania type IX) - Norway
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -11616,7 +11360,10 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_norway
   composed_of:
+  - denmark-numismaster-110816
+  - dk-bruun-6884
   - dk-hede-nc5h17
+  - dk-numista-417445
 - id: unified-dk-hede-nc5h25
   fuss: seed_unsorted
   phase: hede
@@ -11635,12 +11382,8 @@ coins:
     hede_volume: nc5h
     schou:
     - 9-10
+    - '11'
     - '9'
-    others:
-    - schou# 11
-    - schou# 9
-    - Rønning# 80
-    - AAJT# 43
     bruun_collection_id: '10086'
     sieg: '49.1'
     nmd: '54'
@@ -11648,6 +11391,9 @@ coins:
     bruun_lot_no: 1219
     bruun_page: 302
     numista: '99064'
+    others:
+    - Rønning# 80
+    - AAJT# 43
     skaare: '575'
     dav: '3650'
   metal: silver
@@ -11741,18 +11487,12 @@ coins:
     schou:
     - 9-10
     - '10'
+    - '8'
+    - '9'
     - '12'
-    others:
-    - schou# 10
-    - schou# 8
-    - schou# 9
-    - schou# 12
-    - schou# 11
-    - schou# 13
-    - schou# 4
-    - AAJT# 47
-    - AAJT# 49
-    - Rønning# 81
+    - '11'
+    - '13'
+    - '4'
     bruun_collection_id:
     - '10110'
     - '10112'
@@ -11768,6 +11508,10 @@ coins:
     bruun_lot_no: 14074
     bruun_page: 226
     numista: '117146'
+    others:
+    - AAJT# 47
+    - AAJT# 49
+    - Rønning# 81
     skaare: '576'
     dav: '3653'
   metal: silver
@@ -11863,17 +11607,9 @@ coins:
     hede_volume: nc5h
     schou:
     - '5'
+    - '2'
+    - '7'
     - '11'
-    others:
-    - schou# 2
-    - schou# 7
-    - AAJT# 33
-    - AAJT# 34
-    - Rønning# 79
-    - AAJT# 35
-    - AAJT# 37-42
-    - Ronning# 79
-    - AAJT# 36
     bruun_collection_id:
     - '10216'
     - '10230'
@@ -11889,6 +11625,14 @@ coins:
     - '445316'
     - '445318'
     - '462112'
+    others:
+    - AAJT# 33
+    - AAJT# 34
+    - Rønning# 79
+    - AAJT# 35
+    - AAJT# 37-42
+    - Ronning# 79
+    - AAJT# 36
     skaare: '574'
     dav:
     - '3652'
@@ -12369,18 +12113,19 @@ coins:
     - '37'
     - 37A
     hede_volume: nc5h
-    schou: '5'
+    schou:
+    - '5'
+    - '15'
+    - '9'
+    - '13'
+    - '10'
+    - '11'
+    - '12'
+    - '14'
+    numista: '102385'
     others:
-    - schou# 15
-    - schou# 9
-    - schou# 13
-    - schou# 10
-    - schou# 11
-    - schou# 12
-    - schou# 14
     - Rønning# 112
     - AAJT# 165
-    numista: '102385'
     skaare: '601'
     dav: '3657'
   metal: silver
@@ -12550,20 +12295,20 @@ coins:
     km: '193'
     hede: '39'
     hede_volume: nc5h
-    schou: '13'
-    others:
-    - schou# 14
-    - schou# 3
-    - schou# 11
-    - schou# 12
-    - schou# 1
-    - schou# 2
-    - schou# 16
-    - schou# 5
-    - schou# 20
-    - schou# 17
-    - schou# 7
-    - schou# 8
+    schou:
+    - '13'
+    - '14'
+    - '3'
+    - '11'
+    - '12'
+    - '1'
+    - '2'
+    - '16'
+    - '5'
+    - '20'
+    - '17'
+    - '7'
+    - '8'
     dav: '3661'
   metal: silver
   metal_verified: true
@@ -12635,9 +12380,6 @@ coins:
     - '19'
     - '17'
     - '18'
-    others:
-    - schou# 17
-    - schou# 18
     bruun_collection_id:
     - '10411'
     - '10412'
@@ -12725,26 +12467,22 @@ coins:
     hede_volume: nc5h
     schou:
     - '38'
+    - '14'
+    - '31'
+    - '32'
+    - '33'
+    - '35'
+    - '36'
+    - '37'
+    - '49'
+    - '50'
     - '34'
+    - '27'
+    - '11'
+    - '12'
+    - '13'
+    - '28'
     - '51'
-    others:
-    - schou# 14
-    - schou# 31
-    - schou# 32
-    - schou# 33
-    - schou# 35
-    - schou# 36
-    - schou# 37
-    - schou# 49
-    - schou# 50
-    - schou# 34
-    - schou# 27
-    - schou# 11
-    - schou# 12
-    - schou# 13
-    - schou# 28
-    - AAJT# 66A
-    - Rønning# 86
     bruun_collection_id:
     - '10120'
     - '10137'
@@ -12754,6 +12492,9 @@ coins:
     bruun_lot_no: 14075
     bruun_page: 226
     numista: '110343'
+    others:
+    - AAJT# 66A
+    - Rønning# 86
     skaare: '580'
     dav: '3662'
   metal: silver
@@ -12960,12 +12701,13 @@ coins:
     km: '105'
     hede: '43'
     hede_volume: nc5h
-    schou: '46'
+    schou:
+    - '46'
+    - '56'
+    numista: '117162'
     others:
-    - schou# 56
     - Rønning# 91
     - AAJT# 93
-    numista: '117162'
     skaare: '583'
   metal: silver
   metal_verified: true
@@ -13053,13 +12795,9 @@ coins:
     hede_volume: nc5h
     schou:
     - '24'
+    - '47'
+    - '38'
     - '17'
-    others:
-    - schou# 47
-    - schou# 38
-    - schou# 17
-    - AAJT# 102-107
-    - Rønning# 95
     bruun_collection_id: '10177'
     sieg: '24'
     nmd: '116'
@@ -13067,6 +12805,9 @@ coins:
     bruun_lot_no: 12101
     bruun_page: 213
     numista: '99348'
+    others:
+    - AAJT# 102-107
+    - Rønning# 95
     skaare: '585'
   metal: silver
   metal_verified: true
@@ -13154,14 +12895,15 @@ coins:
     km: 93a
     hede: '45'
     hede_volume: nc5h
-    schou: '25'
+    schou:
+    - '25'
+    - '66'
+    - '18'
+    numista: '99199'
     others:
-    - schou# 66
-    - schou# 18
     - AAJT# 118
     - AAJT# 119
     - Rønning# 98
-    numista: '99199'
     skaare: '587'
   metal: silver
   metal_verified: true
@@ -13239,12 +12981,13 @@ coins:
     km: '92'
     hede: '46'
     hede_volume: nc5h
-    schou: '31'
+    schou:
+    - '31'
+    - '50'
+    numista: '47278'
     others:
-    - schou# 50
     - Brekke# 127-129
     - Rønning# 101
-    numista: '47278'
     skaare: '590'
   metal: billon
   metal_verified: true
@@ -13325,19 +13068,20 @@ coins:
     - '48'
     - 48A
     hede_volume: nc5h
-    schou: '45'
+    schou:
+    - '45'
+    - '44'
+    - '21'
+    - '14'
+    - '32'
+    - '33'
+    - '46'
+    - '36'
+    - '10'
+    numista: '99068'
     others:
-    - schou# 44
-    - schou# 21
-    - schou# 14
-    - schou# 32
-    - schou# 33
-    - schou# 46
-    - schou# 36
-    - schou# 10
     - AAJT# 130A
     - Rønning# 102
-    numista: '99068'
     skaare: '591'
   metal: billon
   metal_verified: true
@@ -13414,13 +13158,12 @@ coins:
     hede_volume: nc5h
     schou:
     - 39-42
+    - '39'
     - '40'
+    numista: '99069'
     others:
-    - schou# 39
-    - schou# 40
     - Rønning# 103
     - AAJT# 131
-    numista: '99069'
     skaare: '592'
   metal: silver
   metal_verified: true
@@ -13466,6 +13209,12 @@ coins:
     url: https://en.ucoin.net/coin/norway-2-skilling-1673/?tid=143859
     ref: ucoin
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/148736
+    ref: KMM 148736 (Inv. KP 1656.1577)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/148737
+    ref: KMM 148737 (Inv. KP 1656.1576)
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/279167
     ref: KMM 279167 (Inv. FP 3528.277)
   - type: museum
@@ -13487,6 +13236,8 @@ coins:
   - dk-hede-nc5h49
   - dk-numista-99069
   - dk-tid-143859
+  - kmk-148736
+  - kmk-148737
   - kmk-279167
   - kmk-326591
 - id: unified-dk-hede-nc5h51
@@ -13510,14 +13261,15 @@ coins:
     - '51'
     - 51A
     hede_volume: nc5h
-    schou: 22-27
+    schou:
+    - 22-27
+    - '39'
+    - '22'
+    numista: '99003'
     others:
-    - schou# 39
-    - schou# 22
     - AAJT# 148
     - AAJT# 149
     - Rønning# 109
-    numista: '99003'
     skaare: '598'
   metal: billon
   metal_verified: true
@@ -13564,6 +13316,12 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/133329
     ref: KMM 133329 (Inv. FP 9374.124)
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/148726
+    ref: KMM 148726 (Inv. KP 1656.1587)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/148727
+    ref: KMM 148727 (Inv. KP 1656.1586)
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/155292
     ref: KMM 155292 (Inv. FP 3115.113)
   - type: museum
@@ -13589,6 +13347,8 @@ coins:
   - dk-numista-99003
   - dk-tid-143758
   - kmk-133329
+  - kmk-148726
+  - kmk-148727
   - kmk-155292
   - kmk-155293
   - kmk-352706
@@ -13769,12 +13529,13 @@ coins:
     km: '135'
     hede: '54'
     hede_volume: nc5h
-    schou: 29-30
+    schou:
+    - 29-30
+    - '29'
+    numista: '99105'
     others:
-    - schou# 29
     - Rønning# 105
     - AAJT# 136
-    numista: '99105'
     skaare: '595'
   metal: billon
   metal_verified: true
@@ -13856,30 +13617,22 @@ coins:
     hede_volume: nc5h
     schou:
     - '27'
+    - '28'
+    - '29'
+    - '24'
     - '25'
     - '6'
-    - '10'
     - '15'
+    - '9'
+    - '10'
     - '17'
-    others:
-    - schou# 28
-    - schou# 29
-    - schou# 24
-    - schou# 25
-    - schou# 6
-    - schou# 15
-    - schou# 9
-    - schou# 10
-    - schou# 17
-    - schou# 26
-    - schou# 18
-    - schou# 12
-    - schou# 33
-    - schou# 34
-    - schou# 35
-    - schou# 48
-    - AAJT# 75-77
-    - Rønning# 88
+    - '26'
+    - '18'
+    - '12'
+    - '33'
+    - '34'
+    - '35'
+    - '48'
     bruun_collection_id:
     - '10245'
     - '10258'
@@ -13899,6 +13652,9 @@ coins:
     dav:
     - '3663'
     - EC II# 3663
+    others:
+    - AAJT# 75-77
+    - Rønning# 88
     skaare: '581'
   metal: silver
   metal_verified: true
@@ -13999,13 +13755,14 @@ coins:
     - '56'
     - 56A
     hede_volume: nc5h
-    schou: '35'
+    schou:
+    - '35'
+    - '30'
+    - '14'
+    numista: '110302'
     others:
-    - schou# 30
-    - schou# 14
     - Rønning# 93
     - AAJT# 97
-    numista: '110302'
     skaare: '584'
   metal: silver
   metal_verified: true
@@ -14082,15 +13839,16 @@ coins:
     - '57'
     - 57A
     hede_volume: nc5h
-    schou: '36'
+    schou:
+    - '36'
+    - '31'
+    - '8'
+    - '16'
+    - '24'
+    numista: '445534'
     others:
-    - schou# 31
-    - schou# 8
-    - schou# 16
-    - schou# 24
     - Rønning# 96
     - AAJT# 108A
-    numista: '445534'
     skaare: '586'
   metal: silver
   metal_verified: true
@@ -14156,14 +13914,12 @@ coins:
     - '58'
     - 58A
     hede_volume: nc5h
-    schou: '39'
-    others:
-    - schou# 32
-    - schou# 9
-    - schou# 18
-    - schou# 20
-    - Rønning# 99
-    - AAJT# 120
+    schou:
+    - '39'
+    - '32'
+    - '9'
+    - '18'
+    - '20'
     bruun_collection_id: '10240'
     sieg: '20.1'
     nmd: '131'
@@ -14171,6 +13927,9 @@ coins:
     bruun_lot_no: 12104
     bruun_page: 214
     numista: '99200'
+    others:
+    - Rønning# 99
+    - AAJT# 120
     skaare: '588'
   metal: silver
   metal_verified: true
@@ -14254,12 +14013,13 @@ coins:
     km: '151'
     hede: '59'
     hede_volume: nc5h
-    schou: '20'
+    schou:
+    - '20'
+    - '21'
+    numista: '98992'
     others:
-    - schou# 21
     - Brekke# 143-145
     - Rønning# 106
-    numista: '98992'
     skaare: '593'
   metal: silver
   metal_verified: true
@@ -14353,10 +14113,8 @@ coins:
     hede_volume: nc5h
     schou:
     - 4-5
+    - '4'
     - '5'
-    others:
-    - schou# 4
-    - schou# 5
     bruun_collection_id: '10257'
     sieg: '39'
     nmd: '89'
@@ -14642,30 +14400,15 @@ coins:
     hede_volume: nc5h
     schou:
     - '11'
+    - '13'
+    - '15'
+    - '10'
+    - '18'
+    - '8'
     - '14'
     - '16'
     - '21'
     - '6'
-    others:
-    - schou# 13
-    - schou# 15
-    - schou# 10
-    - schou# 18
-    - schou# 8
-    - Brekke# 179F
-    - Rønning# 115e
-    - Brekke# 179C
-    - Rønning# 115c
-    - Brekke# 179H
-    - Rønning# 115g
-    - Brekke# 179A
-    - Rønning# 115b
-    - Ronning# 115a
-    - Brekke# 178B
-    - Ronning# 115
-    - Brekke# 178A
-    - Rønning# 115
-    - Brekke# 181C
     bruun_collection_id:
     - '10293'
     - '10296'
@@ -14690,6 +14433,21 @@ coins:
     - '102279'
     - '102280'
     - '445630'
+    others:
+    - Brekke# 179F
+    - Rønning# 115e
+    - Brekke# 179C
+    - Rønning# 115c
+    - Brekke# 179H
+    - Rønning# 115g
+    - Brekke# 179A
+    - Rønning# 115b
+    - Ronning# 115a
+    - Brekke# 178B
+    - Ronning# 115
+    - Brekke# 178A
+    - Rønning# 115
+    - Brekke# 181C
     skaare:
     - '621'
     - '620'
@@ -14865,13 +14623,14 @@ coins:
     - '68'
     - 68A
     hede_volume: nc5h
-    schou: '20'
+    schou:
+    - '20'
+    - 30-31
+    - '35'
+    numista: '101779'
     others:
-    - schou# 30-31
-    - schou# 35
     - Rønning# 119
     - Brekke# 195
-    numista: '101779'
     skaare: '624'
   metal: silver
   metal_verified: true
@@ -14955,15 +14714,16 @@ coins:
     - '69'
     - 69A
     hede_volume: nc5h
-    schou: 21-23
+    schou:
+    - 21-23
+    - 36-37
+    - '22'
+    - '21'
+    - '36'
+    numista: '101714'
     others:
-    - schou# 36-37
-    - schou# 22
-    - schou# 21
-    - schou# 36
     - Rønning# 122
     - Brekke# 211A
-    numista: '101714'
     skaare: '627'
   metal: silver
   metal_verified: true
@@ -15049,12 +14809,13 @@ coins:
     km: '153'
     hede: '70'
     hede_volume: nc5h
-    schou: '33'
+    schou:
+    - '33'
+    - '41'
+    numista: '98988'
     others:
-    - schou# 41
     - Brekke# 226
     - Rønning# 125
-    numista: '98988'
     skaare: '630'
   metal: silver
   metal_verified: true
@@ -15103,6 +14864,9 @@ coins:
     url: https://en.ucoin.net/coin/norway-2-skilling-1687/?tid=143936
     ref: ucoin
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/148592
+    ref: KMM 148592 (Inv. KP 1656.1721)
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/159793
     ref: KMM 159793 (Inv. FP 3931.144)
   note:
@@ -15126,6 +14890,7 @@ coins:
   - dk-numista-98988
   - dk-tid-143931
   - dk-tid-143936
+  - kmk-148592
   - kmk-159793
 - id: unified-dk-hede-nc5h71
   fuss: seed_unsorted
@@ -15146,13 +14911,14 @@ coins:
     - '71'
     - 71A
     hede_volume: nc5h
-    schou: '44'
+    schou:
+    - '44'
+    - '27'
+    numista: '99106'
     others:
-    - schou# 27
     - Brekke# 229
     - Brekke# 230
     - Rønning# 126
-    numista: '99106'
     skaare: '631'
   metal: silver
   metal_verified: true
@@ -15233,22 +14999,18 @@ coins:
     hede_volume: nc5h
     schou:
     - '14'
+    - '12'
+    - '31'
+    - '34'
+    - '51'
+    - '52'
+    - '32'
+    - '18'
+    - '30'
+    - '3'
+    - '1'
+    - '6'
     - '15'
-    others:
-    - schou# 12
-    - schou# 31
-    - schou# 34
-    - schou# 51
-    - schou# 52
-    - schou# 32
-    - schou# 18
-    - schou# 30
-    - schou# 3
-    - schou# 1
-    - schou# 6
-    - Brekke# 182C
-    - Brekke# 183
-    - Rønning# 117b
     bruun_collection_id:
     - '10336'
     - '10337'
@@ -15261,6 +15023,10 @@ coins:
     dav:
     - '3666'
     - EC II# 3666
+    others:
+    - Brekke# 182C
+    - Brekke# 183
+    - Rønning# 117b
     skaare: '622'
   metal: silver
   metal_verified: true
@@ -15352,14 +15118,14 @@ coins:
     km: '177'
     hede: '74'
     hede_volume: nc5h
-    schou: '38'
-    others:
-    - schou# 57
-    - schou# 36
-    - schou# 21
-    - schou# 4
-    - schou# 2
-    - schou# 8
+    schou:
+    - '38'
+    - '57'
+    - '36'
+    - '21'
+    - '4'
+    - '2'
+    - '8'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -15434,14 +15200,14 @@ coins:
     km: '175'
     hede: '75'
     hede_volume: nc5h
-    schou: '51'
-    others:
-    - schou# 42
-    - schou# 43
-    - schou# 40
-    - schou# 22
-    - schou# 5
-    - schou# 3
+    schou:
+    - '51'
+    - '42'
+    - '43'
+    - '40'
+    - '22'
+    - '5'
+    - '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -15598,10 +15364,10 @@ coins:
     km: '159'
     hede: '77'
     hede_volume: nc5h
-    schou: '29'
-    others:
-    - schou# 39
-    - schou# 5
+    schou:
+    - '29'
+    - '39'
+    - '5'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -15959,13 +15725,14 @@ coins:
     km: '224'
     hede: '2'
     hede_volume: nc6h
-    schou: '2'
+    schou:
+    - '2'
+    - '5'
+    - '9'
+    numista: '99203'
     others:
-    - schou# 5
-    - schou# 9
     - Brekke# 16-21
     - Rønning# 148
-    numista: '99203'
     skaare: '652'
   metal: silver
   metal_verified: true
@@ -16032,13 +15799,14 @@ coins:
     - '3'
     - 3A
     hede_volume: nc6h
-    schou: '5'
+    schou:
+    - '5'
+    - '3'
+    - '4'
+    numista: '99776'
     others:
-    - schou# 3
-    - schou# 4
     - Brekke# 2
     - Brekke# 3A
-    numista: '99776'
     skaare: '651'
   metal: silver
   metal_verified: true
@@ -16117,13 +15885,13 @@ coins:
     km: '231.2'
     hede: '4'
     hede_volume: nc6h
-    schou: '6'
-    others:
-    - schou# 8
-    - schou# 3
-    - schou# 2
-    - schou# 4
-    - schou# 1
+    schou:
+    - '6'
+    - '8'
+    - '3'
+    - '2'
+    - '4'
+    - '1'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -16145,6 +15913,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc6h4.htm
     ref: danskmoent.dk (Hede nc6h4)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/148326
+    ref: KMM 148326 (Inv. KP 1656.1987)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -16154,6 +15925,7 @@ coins:
   composed_of:
   - denmark-numismaster-86240
   - dk-hede-nc6h4
+  - kmk-148326
 - id: unified-dk-hede-nc6h5
   fuss: seed_unsorted
   phase: hede
@@ -16388,13 +16160,14 @@ coins:
     - 11A
     - 11B
     hede_volume: nc7h
-    schou: 3-4
-    others:
-    - schou# 3
-    - schou# 12
-    - schou# 2
-    - Brekke# 93-95
+    schou:
+    - 3-4
+    - '3'
+    - '12'
+    - '2'
     numista: '37619'
+    others:
+    - Brekke# 93-95
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -16439,8 +16212,11 @@ coins:
     url: https://en.ucoin.net/coin/norway-1-skilling-1768-1770/?tid=88589
     ref: ucoin
   - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/155286
-    ref: KMM 155286 (Inv. FP 3115.119)
+    url: https://samlinger.natmus.dk/KMM/object/148207
+    ref: KMM 148207 (Inv. KP 1656.2106)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/279162
+    ref: KMM 279162 (Inv. FP 3528.282)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -16457,7 +16233,8 @@ coins:
   - dk-hede-nc7h11
   - dk-numista-37619
   - dk-tid-88589
-  - kmk-155286
+  - kmk-148207
+  - kmk-279162
 - id: unified-dk-hede-nc7h12
   fuss: seed_unsorted
   phase: hede
@@ -16476,36 +16253,55 @@ coins:
   ruler: Christian VII.
   mint: Kongsberg
   catalog:
+    km: '250'
     hede: '12'
     hede_volume: nc7h
-    schou: '1'
-    others:
-    - schou# 2
-    - schou# 4
-    - schou# 10
-    - schou# 11
-    - schou# 9
+    schou:
+    - '1'
+    - '2'
+    - '4'
+    - '10'
+    - '11'
+    - '9'
+    bruun_collection_id: '10833'
+    sieg: '11.2'
+    nmd: '36'
+    bruun_part: III
+    bruun_lot_no: 12130
+    bruun_page: 225
+    fp: '23.2'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.562
     source: hede
+  - value: 0.563
+    source: ucoin
   weight_rough_g:
-  - value: 9.15
-    source: kmk
+  - value: 9.16
+    source: bruun
+  - value: 9.17
+    source: ucoin
   - value: 9.171
     source: hede
+  diameter_mm:
+  - value: 29.5
+    source: ucoin
   sources:
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 12130, p. 225
   - type: literature
     url: https://www.danskmoent.dk/norge/nc7h12.htm
     ref: danskmoent.dk (Hede nc7h12)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/333582
-    ref: KMM 333582 (Inv. RP 932.1)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-24-skilling-1772-1788/?tid=88738
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -16518,8 +16314,9 @@ coins:
     basis: fin
     unit_raw: rd
   composed_of:
+  - dk-bruun-10833
   - dk-hede-nc7h12
-  - kmk-333582
+  - dk-tid-88738
 - id: unified-dk-hede-nc7h13
   fuss: seed_unsorted
   phase: hede
@@ -16537,11 +16334,12 @@ coins:
     km: '251'
     hede: '13'
     hede_volume: nc7h
-    schou: '4'
-    others:
-    - schou# 5
-    - Brekke# 44-46
+    schou:
+    - '4'
+    - '5'
     numista: '46039'
+    others:
+    - Brekke# 44-46
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -16618,13 +16416,13 @@ coins:
     km: '257'
     hede: '14'
     hede_volume: nc7h
-    schou: '2'
-    others:
-    - schou# 5
-    - schou# 13
-    - schou# 15
-    - schou# 4
-    - schou# 10
+    schou:
+    - '2'
+    - '5'
+    - '13'
+    - '15'
+    - '4'
+    - '10'
     numista: '463166'
   metal: silver
   metal_verified: true
@@ -16780,13 +16578,14 @@ coins:
     km: '255'
     hede: '16'
     hede_volume: nc7h
-    schou: '17'
-    others:
-    - schou# 5
-    - schou# 8
-    - schou# 4
-    - Brekke# 75-85
+    schou:
+    - '17'
+    - '5'
+    - '8'
+    - '4'
     numista: '72027'
+    others:
+    - Brekke# 75-85
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -16831,8 +16630,14 @@ coins:
     url: https://en.ucoin.net/coin/norway-2-skilling-1778-1788/?tid=88674
     ref: ucoin
   - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/159807
-    ref: KMM 159807 (Inv. FP 3931.154)
+    url: https://samlinger.natmus.dk/KMM/object/148176
+    ref: KMM 148176 (Inv. KP 1656.2137)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/352702
+    ref: KMM 352702 (Inv. FP 5113.72)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/372300
+    ref: KMM 372300 (Inv. FP 4324.12)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -16849,7 +16654,9 @@ coins:
   - dk-hede-nc7h16
   - dk-numista-72027
   - dk-tid-88674
-  - kmk-159807
+  - kmk-148176
+  - kmk-352702
+  - kmk-372300
 - id: unified-dk-hede-nc7h17
   fuss: seed_unsorted
   phase: hede
@@ -16969,13 +16776,14 @@ coins:
     - '18'
     - 18A
     hede_volume: nc7h
-    schou: 3-4
-    others:
-    - schou# 6
-    - schou# 1
-    - schou# 3
-    - Brekke# 86-92
+    schou:
+    - 3-4
+    - '6'
+    - '1'
+    - '3'
     numista: '40310'
+    others:
+    - Brekke# 86-92
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -17061,18 +16869,10 @@ coins:
     hede_volume: nc7h
     schou:
     - '3'
+    - 3a
     - '2'
-    others:
-    - schou# 3a
-    - schou# 2
-    - schou# 1
-    - schou# 4
-    - Brekke# 3
-    - Brekke# 4
-    - Brekke# 5
-    - Brekke# 6
-    - Brekke# 7
-    - Brekke# 8
+    - '1'
+    - '4'
     bruun_collection_id: '10797'
     sieg: '17'
     nmd: '5'
@@ -17084,6 +16884,13 @@ coins:
     dav:
     - '1308'
     - EC III# 1308
+    others:
+    - Brekke# 3
+    - Brekke# 4
+    - Brekke# 5
+    - Brekke# 6
+    - Brekke# 7
+    - Brekke# 8
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -17163,11 +16970,8 @@ coins:
     schou:
     - '4'
     - '6'
-    others:
-    - schou# 6
-    - schou# 7
-    - schou# 2
-    - Brekke# 17-20
+    - '7'
+    - '2'
     bruun_collection_id: '10800'
     sieg: '13'
     nmd: '19'
@@ -17176,6 +16980,8 @@ coins:
     bruun_page: 248
     fp: '29.1'
     numista: '82389'
+    others:
+    - Brekke# 17-20
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -17263,14 +17069,10 @@ coins:
     - 4B
     - 4A
     hede_volume: nc7h
-    schou: '3'
-    others:
-    - schou# 4
-    - schou# 5
-    - Brekke# 9A
-    - Brekke# 9B
-    - Brekke# 9C
-    - Brekke# 10
+    schou:
+    - '3'
+    - '4'
+    - '5'
     bruun_collection_id: '10870'
     sieg: '18.2'
     nmd: 10A
@@ -17279,6 +17081,11 @@ coins:
     bruun_page: 322
     fp: '41.2'
     numista: '100312'
+    others:
+    - Brekke# 9A
+    - Brekke# 9B
+    - Brekke# 9C
+    - Brekke# 10
     dav: '1313'
   metal: silver
   metal_verified: true
@@ -17363,13 +17170,14 @@ coins:
     - '267.1'
     hede: '5'
     hede_volume: nc7h
-    schou: '6'
+    schou:
+    - '6'
+    - '7'
+    - '4'
+    numista: '100311'
     others:
-    - schou# 7
-    - schou# 4
     - Brekke# 15A
     - Brekke# 15B
-    numista: '100311'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -17464,15 +17272,10 @@ coins:
     - '2'
     - '8'
     - '6'
-    others:
-    - schou# 8
-    - schou# 6
-    - schou# 7
-    - schou# 4
-    - schou# 9
-    - schou# 1
-    - Brekke# 21
-    - Brekke# 29B
+    - '7'
+    - '4'
+    - '9'
+    - '1'
     bruun_collection_id:
     - '10882'
     - '10888'
@@ -17494,6 +17297,9 @@ coins:
     numista:
     - '100310'
     - '119228'
+    others:
+    - Brekke# 21
+    - Brekke# 29B
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -17593,12 +17399,12 @@ coins:
     km: '272'
     hede: '7'
     hede_volume: nc7h
-    schou: '9'
-    others:
-    - schou# 8
-    - schou# 10
-    - schou# 5
-    - schou# 3
+    schou:
+    - '9'
+    - '8'
+    - '10'
+    - '5'
+    - '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -17662,12 +17468,12 @@ coins:
     km: '271'
     hede: '8'
     hede_volume: nc7h
-    schou: '12'
-    others:
-    - schou# 14
-    - schou# 6
-    - schou# 8
-    - schou# 3
+    schou:
+    - '12'
+    - '14'
+    - '6'
+    - '8'
+    - '3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -17817,17 +17623,8 @@ coins:
     - '26'
     - '28'
     - '22'
-    others:
-    - schou# 28
-    - schou# 22
-    - schou# 11
-    - schou# 27
-    - Aagaard# 23.1
-    - Aagaard# 23.5 (49-3/50-2)
-    - Brekke# 126-131
-    - Thesen# 132-137
-    - Rønning# 53
-    - Rønning# 53a
+    - '11'
+    - '27'
     bruun_collection_id:
     - '9604'
     - '9619'
@@ -17838,6 +17635,13 @@ coins:
     bruun_part: III
     bruun_lot_no: 12066
     bruun_page: 191
+    others:
+    - Aagaard# 23.1
+    - Aagaard# 23.5 (49-3/50-2)
+    - Brekke# 126-131
+    - Thesen# 132-137
+    - Rønning# 53
+    - Rønning# 53a
     numista: '118985'
     skaare: '549'
   metal: silver
@@ -17934,12 +17738,8 @@ coins:
     hede_volume: nf3h
     schou:
     - '22'
-    - '8'
     - '23'
-    others:
-    - schou# 23
-    - Aagaard# 41.1 (52-3/52-3)
-    - Aagaard# 41.4 (53-2/53-2)
+    - '8'
     bruun_collection_id:
     - '9648'
     - '9663'
@@ -17950,6 +17750,9 @@ coins:
     bruun_part: I
     bruun_lot_no: 1193
     bruun_page: 263
+    others:
+    - Aagaard# 41.1 (52-3/52-3)
+    - Aagaard# 41.4 (53-2/53-2)
     numista: '55888'
     dav:
     - '3590'
@@ -18129,25 +17932,13 @@ coins:
     hede_volume: nf3h
     schou:
     - '20'
+    - '6'
+    - '10'
+    - '11'
+    - '15'
     - '21'
     - '7'
     - '8'
-    - '10'
-    - '11'
-    others:
-    - schou# 6
-    - schou# 10
-    - schou# 11
-    - schou# 15
-    - Aagaard# 45.2 (53-4/53.3)
-    - Aagaard# 45.1 (53-6/53-3)
-    - Aagaard# 45.5 (54-3/54-2)
-    - Aagaard# 45.4 (54-2/54-2)
-    - Aagaard# 45.7 (54-3/55-5)
-    - Aagaard# 45.8 (54-5/55-7)
-    - Brekke# 69-71
-    - Thesen# 75-77
-    - Rønning# 44
     bruun_collection_id:
     - '9660'
     - '9661'
@@ -18163,6 +17954,16 @@ coins:
     bruun_part: II
     bruun_lot_no: 14041
     bruun_page: 206
+    others:
+    - Aagaard# 45.2 (53-4/53.3)
+    - Aagaard# 45.1 (53-6/53-3)
+    - Aagaard# 45.5 (54-3/54-2)
+    - Aagaard# 45.4 (54-2/54-2)
+    - Aagaard# 45.7 (54-3/55-5)
+    - Aagaard# 45.8 (54-5/55-7)
+    - Brekke# 69-71
+    - Thesen# 75-77
+    - Rønning# 44
     numista: '100607'
     dav:
     - '3592'
@@ -18292,19 +18093,20 @@ coins:
     km: '77'
     hede: '2'
     hede_volume: nf3h
-    schou: '9'
-    others:
-    - schou# 6
-    - Aagaard# 2.1
-    - Rønning# 27
-    - Brekke# 3
-    - Thesen# 7
+    schou:
+    - '9'
+    - '6'
     bruun_collection_id: '9955'
     sieg: '69'
     nmd: '7'
     bruun_part: I
     bruun_lot_no: 1213
     bruun_page: 293
+    others:
+    - Aagaard# 2.1
+    - Rønning# 27
+    - Brekke# 3
+    - Thesen# 7
     numista: '117340'
     skaare: '522'
     fr: '4'
@@ -18387,21 +18189,10 @@ coins:
     hede_volume: nf3h
     schou:
     - '26'
-    - '25'
     - '9'
-    - '13'
     - '16'
-    others:
-    - schou# 9
-    - schou# 16
-    - Aagaard# 46.2
-    - Aagaard# 46.3
-    - Aagaard# 46.4 (53-3/55-1)
-    - Aagaard# 46.5
-    - Brekke# 115-120
-    - Thesen# 121-126
-    - Rønning# 50b
-    - Rønning# 50c
+    - '25'
+    - '13'
     bruun_collection_id:
     - '9664'
     - '9684'
@@ -18416,6 +18207,15 @@ coins:
     bruun_part: II
     bruun_lot_no: 14043
     bruun_page: 207
+    others:
+    - Aagaard# 46.2
+    - Aagaard# 46.3
+    - Aagaard# 46.4 (53-3/55-1)
+    - Aagaard# 46.5
+    - Brekke# 115-120
+    - Thesen# 121-126
+    - Rønning# 50b
+    - Rønning# 50c
     numista: '118976'
     skaare: '546'
   metal: silver
@@ -18520,17 +18320,9 @@ coins:
     hede_volume: nf3h
     schou:
     - '14'
+    - '18'
     - '12'
     - '19'
-    others:
-    - schou# 18
-    - Aagaard# 50.2 (55-1/56-4)
-    - Aagaard# 50.8 (57-2/57-1)
-    - Brekke# 72
-    - Brekke# 74
-    - Thesen# 78
-    - Thesen# 80
-    - Rønning# 44g
     bruun_collection_id:
     - '9715'
     - '9738'
@@ -18541,6 +18333,14 @@ coins:
     bruun_part: II
     bruun_lot_no: 14049
     bruun_page: 212
+    others:
+    - Aagaard# 50.2 (55-1/56-4)
+    - Aagaard# 50.8 (57-2/57-1)
+    - Brekke# 72
+    - Brekke# 74
+    - Thesen# 78
+    - Thesen# 80
+    - Rønning# 44g
     numista: '118916'
     skaare: '537'
     dav:
@@ -18744,23 +18544,22 @@ coins:
     hede_volume: nf3h
     schou:
     - '20'
+    - '23'
+    - '13'
     - '16'
+    - '17'
     - '14'
-    others:
-    - schou# 23
-    - schou# 13
-    - schou# 16
-    - schou# 17
-    - Aagaard# 55.11
-    - Brekke# 76
-    - Thesen# 82
-    - Rønning# 44k-44m
     bruun_collection_id: '9767'
     sieg: '33'
     nmd: 83A
     bruun_part: II
     bruun_lot_no: 14051
     bruun_page: 213
+    others:
+    - Aagaard# 55.11
+    - Brekke# 76
+    - Thesen# 82
+    - Rønning# 44k-44m
     numista: '111476'
     dav:
     - '3601'
@@ -18868,19 +18667,11 @@ coins:
     hede_volume: nf3h
     schou:
     - 18-19
+    - 21-22
+    - 11-12
+    - '21'
     - '18'
     - '19'
-    - '21'
-    others:
-    - schou# 21-22
-    - schou# 11-12
-    - schou# 21
-    - Aagaard# 57.2
-    - Aagaard# 57.1
-    - Aagaard# 58.2
-    - Brekke# 79
-    - Rønning# 45
-    - Thesen# 85
     bruun_collection_id:
     - '9769'
     - '9770'
@@ -18894,6 +18685,13 @@ coins:
     bruun_part: III
     bruun_lot_no: 12080
     bruun_page: 201
+    others:
+    - Aagaard# 57.2
+    - Aagaard# 57.1
+    - Aagaard# 58.2
+    - Brekke# 79
+    - Rønning# 45
+    - Thesen# 85
     numista: '416361'
     dav: '3603'
   metal: silver
@@ -18972,15 +18770,16 @@ coins:
     km: B52
     hede: '31'
     hede_volume: nf3h
-    schou: 18-19
+    schou:
+    - 18-19
+    - 21-22
+    - 11-12
+    - '21'
+    numista: '118208'
     others:
-    - schou# 21-22
-    - schou# 11-12
-    - schou# 21
     - Rønning# 39
     - Brekke# 42
     - Thesen# 47
-    numista: '118208'
     skaare: '533'
     dav: '3602'
   metal: silver
@@ -19055,14 +18854,15 @@ coins:
     - '32'
     - 32C
     hede_volume: nf3h
-    schou: '20'
+    schou:
+    - '20'
+    - '17'
+    - '18'
+    numista: '118917'
     others:
-    - schou# 17
-    - schou# 18
     - Rønning# 45b
     - Brekke# 81
     - Thesen# 87
-    numista: '118917'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -19132,20 +18932,19 @@ coins:
     hede_volume: nf3h
     schou:
     - '19'
+    - '21'
     - '24'
-    others:
-    - schou# 21
-    - schou# 24
-    - schou# 15
-    - schou# 17
-    - schou# 23
-    - Aagaard# 67.1
+    - '15'
+    - '17'
+    - '23'
     bruun_collection_id: '9802'
     sieg: '40.2'
     nmd: 89B
     bruun_part: I
     bruun_lot_no: 1201
     bruun_page: 277
+    others:
+    - Aagaard# 67.1
     dav: '3604'
   metal: silver
   metal_verified: true
@@ -19219,18 +19018,11 @@ coins:
     hede_volume: nf3h
     schou:
     - '12'
+    - 7-8
+    - '5'
     - '14'
     - '16'
     - '9'
-    others:
-    - schou# 7-8
-    - schou# 5
-    - Aagaard# 69.1
-    - Aagaard# 69.2
-    - Aagaard# 69.3
-    - Brekke# 43-45
-    - Thesen# 50
-    - Rønning# 39a-39d
     bruun_collection_id:
     - '9795'
     - '9796'
@@ -19242,6 +19034,13 @@ coins:
     bruun_part: II
     bruun_lot_no: 14054
     bruun_page: 215
+    others:
+    - Aagaard# 69.1
+    - Aagaard# 69.2
+    - Aagaard# 69.3
+    - Brekke# 43-45
+    - Thesen# 50
+    - Rønning# 39a-39d
     numista: '118210'
     skaare: '533'
     dav: '3606'
@@ -19336,10 +19135,17 @@ coins:
     - '35'
     - 35A
     hede_volume: nf3h
-    schou: '12'
+    schou:
+    - '12'
+    - 7-8
+    - '5'
+    bruun_collection_id: '9794'
+    sieg: '42.1'
+    nmd: '26'
+    bruun_part: II
+    bruun_lot_no: 14053
+    bruun_page: 214
     others:
-    - schou# 7-8
-    - schou# 5
     - Aagaard# 64
     - Brekke# 22
     - Brekke# 23
@@ -19347,12 +19153,6 @@ coins:
     - Thesen# 27
     - Ronning# 35
     - Ronning# 35a
-    bruun_collection_id: '9794'
-    sieg: '42.1'
-    nmd: '26'
-    bruun_part: II
-    bruun_lot_no: 14053
-    bruun_page: 214
     numista: '118177'
     skaare: '529'
     dav: '3605'
@@ -19431,14 +19231,15 @@ coins:
     km: '66'
     hede: '36'
     hede_volume: nf3h
-    schou: '12'
+    schou:
+    - '12'
+    - 7-8
+    - '5'
+    numista: '117503'
     others:
-    - schou# 7-8
-    - schou# 5
     - Ronning# 32
     - Brekke# 11
     - Thesen# 15
-    numista: '117503'
     skaare: '527'
   metal: silver
   metal_verified: true
@@ -19621,8 +19422,13 @@ coins:
     schou:
     - '45'
     - '46'
+    bruun_collection_id: '9872'
+    sieg: '10.2'
+    nmd: 145A
+    bruun_part: I
+    bruun_lot_no: 1207
+    bruun_page: 285
     others:
-    - schou# 46
     - Aagaard# 74.1
     - Rønning# 59
     - Brekke# 139
@@ -19630,12 +19436,6 @@ coins:
     - Rønning# 59a
     - Brekke# 140
     - Thesen# 145B
-    bruun_collection_id: '9872'
-    sieg: '10.2'
-    nmd: 145A
-    bruun_part: I
-    bruun_lot_no: 1207
-    bruun_page: 285
     numista:
     - '118992'
     - '118993'
@@ -19723,10 +19523,10 @@ coins:
     km: '64'
     hede: '39'
     hede_volume: nf3h
-    schou: '18'
-    others:
-    - schou# 12
-    - schou# 2
+    schou:
+    - '18'
+    - '12'
+    - '2'
     dav: '3609'
   metal: silver
   metal_verified: true
@@ -19789,16 +19589,15 @@ coins:
     schou:
     - '18'
     - '12'
+    - '2'
+    bruun_collection_id: '10082'
+    sieg: '45'
+    nmd: '52'
     others:
-    - schou# 12
-    - schou# 2
     - Aagaard# 60
     - Rønning# 40
     - Brekke# 46
     - Thesen# 52
-    bruun_collection_id: '10082'
-    sieg: '45'
-    nmd: '52'
     numista: '118901'
     skaare: '536'
     dav: '3608'
@@ -19884,17 +19683,9 @@ coins:
     hede_volume: nf3h
     schou:
     - 17-18
+    - '26'
     - '24'
     - '28'
-    others:
-    - schou# 26
-    - Aagaard# 79.1 (61-2/62-9)
-    - Aagaard# 79.4 (61-2/62-9)
-    - Brekke# 87
-    - Brekke# 89
-    - Thesen# 93
-    - Thesen# 95
-    - Rønning# 45i
     bruun_collection_id:
     - '9859'
     - '9890'
@@ -19905,6 +19696,14 @@ coins:
     bruun_part: III
     bruun_lot_no: 12084
     bruun_page: 204
+    others:
+    - Aagaard# 79.1 (61-2/62-9)
+    - Aagaard# 79.4 (61-2/62-9)
+    - Brekke# 87
+    - Brekke# 89
+    - Thesen# 93
+    - Thesen# 95
+    - Rønning# 45i
     numista: '118927'
     skaare: '540'
     dav: '3611'
@@ -20001,19 +19800,19 @@ coins:
     hede_volume: nf3h
     schou:
     - 17-18
+    - '26'
     - '18'
-    others:
-    - schou# 26
-    - Aagaard# 78.2
-    - Rønning# 39e
-    - Brekke# 48
-    - Thesen# 54
     bruun_collection_id: '9887'
     sieg: '47'
     nmd: '54'
     bruun_part: II
     bruun_lot_no: 14059
     bruun_page: 217
+    others:
+    - Aagaard# 78.2
+    - Rønning# 39e
+    - Brekke# 48
+    - Thesen# 54
     numista: '118904'
     skaare: '533'
     dav: '3610'
@@ -20198,19 +19997,20 @@ coins:
     km: '57'
     hede: '44'
     hede_volume: nf3h
-    schou: '17'
-    others:
-    - schou# 18
-    - Aagaard# 92.3
-    - Brekke# 49
-    - Thesen# 55
-    - Rønning# 39f
+    schou:
+    - '17'
+    - '18'
     bruun_collection_id: '9935'
     sieg: '49'
     nmd: '58'
     bruun_part: I
     bruun_lot_no: 1210
     bruun_page: 289
+    others:
+    - Aagaard# 92.3
+    - Brekke# 49
+    - Thesen# 55
+    - Rønning# 39f
     numista: '118903'
     skaare: '533'
     dav: '3613'
@@ -20376,14 +20176,15 @@ coins:
     - '48'
     - 48B
     hede_volume: nf3h
-    schou: 35-36
+    schou:
+    - 35-36
+    - '37'
+    - '35'
+    numista: '118930'
     others:
-    - schou# 37
-    - schou# 35
     - Rønning# 45n
     - Brekke# 90
     - Thesen# 96
-    numista: '118930'
     skaare: '540'
     dav: '3615'
   metal: silver
@@ -20454,21 +20255,21 @@ coins:
     hede_volume: nf3h
     schou:
     - '21'
+    - '31'
     - '32'
-    others:
-    - schou# 31
-    - Aagaard# 90.5
-    - Brekke# 94
-    - Brekke# 96
-    - Thesen# 100
-    - Thesen# 102
-    - Rønning# 45q
     bruun_collection_id: '9939'
     sieg: '52'
     nmd: '102'
     bruun_part: I
     bruun_lot_no: 1211
     bruun_page: 290
+    others:
+    - Aagaard# 90.5
+    - Brekke# 94
+    - Brekke# 96
+    - Thesen# 100
+    - Thesen# 102
+    - Rønning# 45q
     numista: '118943'
     skaare: '540'
     dav: '3617'
@@ -20549,23 +20350,10 @@ coins:
     hede_volume: nf3h
     schou:
     - 24,25,27
-    - '23'
-    - '25'
-    - '26'
     - '22'
-    others:
-    - schou# 22
-    - schou# 23
-    - schou# 26
-    - Aagaard# 99.1
-    - Aagaard# 100.1
-    - Aagaard# 103.1
-    - Rønning# 47
-    - Brekke# 100
-    - Thesen# 106
-    - Rønning# 47a
-    - Brekke# 99
-    - Thesen# 105
+    - '23'
+    - '26'
+    - '25'
     bruun_collection_id:
     - '9957'
     - '9958'
@@ -20581,6 +20369,16 @@ coins:
     bruun_part: I
     bruun_lot_no: 1214
     bruun_page: 294
+    others:
+    - Aagaard# 99.1
+    - Aagaard# 100.1
+    - Aagaard# 103.1
+    - Rønning# 47
+    - Brekke# 100
+    - Thesen# 106
+    - Rønning# 47a
+    - Brekke# 99
+    - Thesen# 105
     numista:
     - '118952'
     - '118954'
@@ -20683,20 +20481,20 @@ coins:
     hede_volume: nf3h
     schou:
     - 28-30
+    - '2'
+    - '29'
     - '28'
-    others:
-    - schou# 2
-    - schou# 29
-    - Aagaard# 102.2 (64-7/65-6)
-    - Rønning# 48
-    - Brekke# 103
-    - Thesen# 109
     bruun_collection_id: '9961'
     sieg: '58'
     nmd: '109'
     bruun_part: II
     bruun_lot_no: 14066
     bruun_page: 222
+    others:
+    - Aagaard# 102.2 (64-7/65-6)
+    - Rønning# 48
+    - Brekke# 103
+    - Thesen# 109
     numista: '444876'
     dav: '3621'
   metal: silver
@@ -20794,21 +20592,21 @@ coins:
     hede_volume: nf3h
     schou:
     - '31'
+    - '17'
+    - '19'
+    - '23'
     - '25'
-    others:
-    - schou# 17
-    - schou# 19
-    - schou# 23
-    - Aagaard# 106.7
-    - Brekke# 104-106
-    - Thesen# 110-112
-    - Rønning# 48
     bruun_collection_id: '10001'
     sieg: '60'
     nmd: '112'
     bruun_part: II
     bruun_lot_no: 14068
     bruun_page: 223
+    others:
+    - Aagaard# 106.7
+    - Brekke# 104-106
+    - Thesen# 110-112
+    - Rønning# 48
     numista: '114460'
     skaare: '544'
     dav: '3623'
@@ -21083,20 +20881,11 @@ coins:
     hede_volume: nf3h
     schou:
     - '1'
-    - '28'
     - '14'
+    - '15'
+    - '28'
     - '16'
     - '18'
-    others:
-    - schou# 14
-    - schou# 15
-    - Aagaard# 111.3 (67-4/67-9)
-    - Aagaard# 111.9 (68-1/68-7)
-    - Aagaard# 111.14
-    - Aagaard# 111.17
-    - Brekke# 107-109
-    - Thesen# 113-115
-    - Rønning# 48b
     bruun_collection_id:
     - '10004'
     - '10027'
@@ -21110,6 +20899,14 @@ coins:
     bruun_part: II
     bruun_lot_no: 14069
     bruun_page: 224
+    others:
+    - Aagaard# 111.3 (67-4/67-9)
+    - Aagaard# 111.9 (68-1/68-7)
+    - Aagaard# 111.14
+    - Aagaard# 111.17
+    - Brekke# 107-109
+    - Thesen# 113-115
+    - Rønning# 48b
     numista: '111387'
     dav:
     - '3625'
@@ -21217,20 +21014,19 @@ coins:
     hede_volume: nf3h
     schou:
     - '1'
+    - '7'
     - '10'
-    others:
-    - schou# 7
-    - schou# 10
-    - Aagaard# 110.5
-    - Brekke# 59-61
-    - Thesen# 65-67
-    - Rønning# 42a
     bruun_collection_id: '10026'
     sieg: '64'
     nmd: '66'
     bruun_part: III
     bruun_lot_no: 12090
     bruun_page: 207
+    others:
+    - Aagaard# 110.5
+    - Brekke# 59-61
+    - Thesen# 65-67
+    - Rønning# 42a
     numista: '118906'
     skaare: '535'
     dav: '3624'
@@ -21311,15 +21107,16 @@ coins:
     km: '79'
     hede: '64'
     hede_volume: nf3h
-    schou: '1'
+    schou:
+    - '1'
+    - '7'
+    - '10'
+    numista: '444691'
     others:
-    - schou# 7
-    - schou# 10
     - AAJT# 28
     - Brekke# 28
     - Thesen# 33
     - Rønning# 36a
-    numista: '444691'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -21466,14 +21263,6 @@ coins:
     schou:
     - 34-35
     - '35'
-    others:
-    - schou# 35
-    - Brekke# 143A
-    - Brekke# 143B
-    - Thesen# 143B
-    - Thesen# 148A
-    - Rønning# 62
-    - Rønning# 62a
     bruun_collection_id: '10052'
     sieg: '7.2'
     nmd: 148B
@@ -21481,6 +21270,13 @@ coins:
     bruun_lot_no: 14072
     bruun_page: 224
     numista: '118997'
+    others:
+    - Brekke# 143A
+    - Brekke# 143B
+    - Thesen# 143B
+    - Thesen# 148A
+    - Rønning# 62
+    - Rønning# 62a
     skaare: '557'
     dav: '3662'
   metal: silver
@@ -21556,45 +21352,37 @@ coins:
     hede_volume: nf3h
     schou:
     - 76-85
+    - '41'
+    - '30'
+    - '36'
     - '27'
+    - '71'
+    - '22'
+    - '23'
+    - '37'
+    - '40'
+    - '44'
+    - '76'
+    - '82'
+    - '85'
+    - '75'
+    - '56'
+    - '49'
+    - '53'
+    - '39'
+    - '48'
+    - '25'
+    - '43'
+    - '45'
+    - '101'
+    - '103'
+    - '104'
+    - '59'
+    - '57'
+    - '62'
+    - '42'
+    - '38'
     - '34'
-    others:
-    - schou# 41
-    - schou# 30
-    - schou# 36
-    - schou# 27
-    - schou# 71
-    - schou# 22
-    - schou# 23
-    - schou# 37
-    - schou# 40
-    - schou# 44
-    - schou# 76
-    - schou# 82
-    - schou# 85
-    - schou# 75
-    - schou# 56
-    - schou# 49
-    - schou# 53
-    - schou# 39
-    - schou# 48
-    - schou# 25
-    - schou# 43
-    - schou# 45
-    - schou# 101
-    - schou# 103
-    - schou# 104
-    - schou# 59
-    - schou# 57
-    - schou# 62
-    - schou# 42
-    - schou# 38
-    - AAJT# 154A
-    - AAJT# 154C
-    - Thesen# 159A
-    - Thesen# 159C
-    - Rønning# 63d
-    - Rønning# 63e
     bruun_collection_id:
     - '9652'
     - '9688'
@@ -21606,6 +21394,13 @@ coins:
     bruun_lot_no: 14039
     bruun_page: 204
     numista: '491150'
+    others:
+    - AAJT# 154A
+    - AAJT# 154C
+    - Thesen# 159A
+    - Thesen# 159C
+    - Rønning# 63d
+    - Rønning# 63e
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -22099,38 +21894,39 @@ coins:
     - 68C
     - 68B
     hede_volume: nf3h
-    schou: '39'
+    schou:
+    - '39'
+    - '88'
+    - 86-87
+    - 61-62
+    - 33-34
+    - '21'
+    - '31'
+    - '26'
+    - '41'
+    - '72'
+    - '73'
+    - '36'
+    - '28'
+    - '47'
+    - '48'
+    - '49'
+    - '86'
+    - '87'
+    - '61'
+    - '62'
+    - '59'
+    - '43'
+    - '34'
+    - '50'
+    - '110'
+    - '60'
+    - '64'
+    numista: '491154'
     others:
-    - schou# 88
-    - schou# 86-87
-    - schou# 61-62
-    - schou# 33-34
-    - schou# 21
-    - schou# 31
-    - schou# 26
-    - schou# 41
-    - schou# 72
-    - schou# 73
-    - schou# 36
-    - schou# 28
-    - schou# 47
-    - schou# 48
-    - schou# 49
-    - schou# 86
-    - schou# 87
-    - schou# 61
-    - schou# 62
-    - schou# 59
-    - schou# 43
-    - schou# 34
-    - schou# 50
-    - schou# 110
-    - schou# 60
-    - schou# 64
     - Brekke# 165
     - Thesen# 170
     - Rønning# 64f-g
-    numista: '491154'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -22254,25 +22050,26 @@ coins:
     - '69'
     - 69G
     hede_volume: nf3h
-    schou: '47'
+    schou:
+    - '47'
+    - 48-52
+    - '45'
+    - '31'
+    - '34'
+    - '37'
+    - '43'
+    - '30'
+    - '50'
+    - '89'
+    - '49'
+    - '35'
+    - '53'
+    - '65'
+    numista: '491146'
     others:
-    - schou# 48-52
-    - schou# 45
-    - schou# 31
-    - schou# 34
-    - schou# 37
-    - schou# 43
-    - schou# 30
-    - schou# 50
-    - schou# 89
-    - schou# 49
-    - schou# 35
-    - schou# 53
-    - schou# 65
     - Brekke# 200-202
     - Thesen# 205-207
     - Rønning# 65f
-    numista: '491146'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -22377,18 +22174,18 @@ coins:
     - 70B
     - 70A
     hede_volume: nf3h
-    schou: '60'
-    others:
-    - schou# 70
-    - schou# 47
-    - schou# 131
-    - schou# 150
-    - schou# 105
-    - schou# 108
-    - schou# 113
-    - schou# 73
-    - schou# 74
-    - schou# 9
+    schou:
+    - '60'
+    - '70'
+    - '47'
+    - '131'
+    - '150'
+    - '105'
+    - '108'
+    - '113'
+    - '73'
+    - '74'
+    - '9'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -22474,10 +22271,10 @@ coins:
     - 71A
     - 71C
     hede_volume: nf3h
-    schou: '48'
-    others:
-    - schou# 151
-    - schou# 123
+    schou:
+    - '48'
+    - '151'
+    - '123'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -22663,25 +22460,25 @@ coins:
     hede_volume: nf3h
     schou:
     - '30'
+    - '6'
+    - '19'
+    - '21'
+    - '22'
+    - '17'
+    - '18'
+    - '7'
     - '23'
-    others:
-    - schou# 6
-    - schou# 19
-    - schou# 21
-    - schou# 22
-    - schou# 17
-    - schou# 18
-    - schou# 7
-    - Aagaard# 17.1 (49-2/49-9)
-    - AAJT# 63A
-    - Rønning# 43
-    - Thesen# 69A
     bruun_collection_id: '9599'
     sieg: '21.2'
     nmd: 69C
     bruun_part: II
     bruun_lot_no: 14037
     bruun_page: 203
+    others:
+    - Aagaard# 17.1 (49-2/49-9)
+    - AAJT# 63A
+    - Rønning# 43
+    - Thesen# 69A
     numista: '444847'
     dav: '3583'
   metal: silver
@@ -22874,9 +22671,9 @@ coins:
     km: '78'
     hede: unknown_324
     hede_volume: nf3h
-    schou: '9'
-    others:
-    - schou# 6
+    schou:
+    - '9'
+    - '6'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -22942,11 +22739,6 @@ coins:
     schou:
     - '7'
     - '11'
-    others:
-    - schou# 11
-    - Brekke# 1
-    - Brekke# 2A
-    - Rønning# 130
     bruun_collection_id: '10516'
     sieg: '10.1'
     nmd: '3'
@@ -22955,6 +22747,10 @@ coins:
     bruun_page: 240
     numista: '101132'
     dav: EC III# A1287
+    others:
+    - Brekke# 1
+    - Brekke# 2A
+    - Rønning# 130
     skaare: '635'
   metal: silver
   metal_verified: true
@@ -23106,17 +22902,16 @@ coins:
   mint: Kongsberg
   catalog:
     km: '224'
-    hede:
-    - '17'
-    - 17B
+    hede: '17'
     hede_volume: nf4h
-    schou: 2-3
-    sieg: '5.1'
-    others:
-    - schou# 2
-    - schou# 4
-    - sieg# 5.2
-    - sieg# 5.3
+    schou:
+    - 2-3
+    - '2'
+    - '4'
+    sieg:
+    - '5.1'
+    - '5.2'
+    - '5.3'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -23141,8 +22936,8 @@ coins:
     url: https://en.ucoin.net/coin/norway-8-skilling-1727-1730/?tid=145800
     ref: ucoin
   - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/574997
-    ref: KMM 574997 (Inv. FP 11167.3)
+    url: https://samlinger.natmus.dk/KMM/object/148341
+    ref: KMM 148341 (Inv. KP 1656.1972)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -23152,7 +22947,7 @@ coins:
   composed_of:
   - dk-hede-nf4h17
   - dk-tid-145800
-  - kmk-574997
+  - kmk-148341
 - id: unified-dk-hede-nf4h2
   fuss: seed_unsorted
   phase: hede
@@ -23251,12 +23046,8 @@ coins:
     schou:
     - 3-6
     - '3'
+    - '4'
     sieg: '11'
-    others:
-    - schou# 3
-    - schou# 4
-    - Rønning# 131
-    - Brekke# 3
     bruun_collection_id: '10634'
     nmd: '5'
     bruun_part: II
@@ -23266,6 +23057,9 @@ coins:
     dav:
     - '1290'
     - EC III# 1290
+    others:
+    - Rønning# 131
+    - Brekke# 3
     skaare: '636'
   metal: silver
   metal_verified: true
@@ -23356,18 +23150,19 @@ coins:
     km: '222'
     hede: '4'
     hede_volume: nf4h
-    schou: '2'
+    schou:
+    - '2'
+    - '3'
+    - '4'
+    - '5'
     sieg: '12'
-    others:
-    - schou# 3
-    - schou# 4
-    - schou# 5
-    - Brekke# 4
-    - Rønning# 132
     numista: '82387'
     dav:
     - EC III# 1292
     - '1292'
+    others:
+    - Brekke# 4
+    - Rønning# 132
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -23438,9 +23233,9 @@ coins:
   catalog:
     hede: '5'
     hede_volume: nf4h
-    schou: '4'
-    others:
-    - schou# 6
+    schou:
+    - '4'
+    - '6'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -23484,20 +23279,22 @@ coins:
     - '6'
     - 6A
     hede_volume: nf4h
-    schou: '8'
-    sieg: 3.1-2
+    schou:
+    - '8'
+    - '7'
+    - '6'
+    - '2'
+    - '10'
+    - '11'
+    sieg:
+    - 3.1-2
+    - '3.1'
+    - '3.2'
+    numista: '82177'
     others:
-    - sieg# 3.1
-    - sieg# 3.2
-    - schou# 7
-    - schou# 6
-    - schou# 2
-    - schou# 10
-    - schou# 11
     - Brekke# 20
     - Brekke# 21
     - Brekke# 22
-    numista: '82177'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -23540,8 +23337,8 @@ coins:
     url: https://en.ucoin.net/coin/norway-8-skilling-1700-1702/?tid=143946
     ref: ucoin
   - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/155381
-    ref: KMM 155381 (Inv. FP 4093.1)
+    url: https://samlinger.natmus.dk/KMM/object/148488
+    ref: KMM 148488 (Inv. KP 1656.1825)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -23553,7 +23350,7 @@ coins:
   - dk-hede-nf4h6
   - dk-numista-82177
   - dk-tid-143946
-  - kmk-155381
+  - kmk-148488
 - id: unified-dk-hede-nf4h7
   fuss: seed_unsorted
   phase: hede
@@ -23571,12 +23368,13 @@ coins:
     km: '206'
     hede: '7'
     hede_volume: nf4h
-    schou: '7'
-    sieg: 2.1-2
-    others:
-    - sieg# 2.3-5
-    - schou# 17
-    - schou# 11
+    schou:
+    - '7'
+    - '17'
+    - '11'
+    sieg:
+    - 2.1-2
+    - 2.3-5
     numista: '483818'
   metal: silver
   metal_verified: true
@@ -23731,14 +23529,15 @@ coins:
     km: '242'
     hede: '1'
     hede_volume: nf5h
-    schou: '4'
-    others:
-    - schou# 1
-    - Brekke# 1
+    schou:
+    - '4'
+    - '1'
     numista: '100314'
     dav:
     - EC III# 1303
     - '1303'
+    others:
+    - Brekke# 1
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -23815,22 +23614,23 @@ coins:
     - '2'
     - 2A
     hede_volume: nf5h
-    schou: '13'
-    others:
-    - schou# 17
-    - schou# 18
-    - schou# 7
-    - schou# 6
-    - schou# 4
-    - schou# 1
-    - schou# 3
-    - schou# 9
-    - schou# 8
-    - schou# 5
-    - schou# 10
-    - schou# 11
-    - Brekke# 2-19
+    schou:
+    - '13'
+    - '17'
+    - '18'
+    - '7'
+    - '6'
+    - '4'
+    - '1'
+    - '3'
+    - '9'
+    - '8'
+    - '5'
+    - '10'
+    - '11'
     numista: '55890'
+    others:
+    - Brekke# 2-19
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -23875,8 +23675,14 @@ coins:
     url: https://en.ucoin.net/coin/norway-24-skilling-1746-1763/?tid=88723
     ref: ucoin
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/148302
+    ref: KMM 148302 (Inv. KP 1656.2011)
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/317555
     ref: KMM 317555 (Inv. FP 7044.35)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/334107
+    ref: KMM 334107 (Inv. RP 962.1)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -23888,7 +23694,9 @@ coins:
   - dk-hede-nf5h2
   - dk-numista-55890
   - dk-tid-88723
+  - kmk-148302
   - kmk-317555
+  - kmk-334107
 - id: unified-dk-hede-nf5h3
   fuss: seed_unsorted
   phase: hede
@@ -23912,11 +23720,12 @@ coins:
     - '3'
     - 3A
     hede_volume: nf5h
-    schou: '22'
-    others:
-    - schou# 11
-    - Brekke# 23
+    schou:
+    - '22'
+    - '11'
     numista: '99113'
+    others:
+    - Brekke# 23
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -23974,12 +23783,13 @@ coins:
     km: '240'
     hede: '4'
     hede_volume: nf5h
-    schou: '24'
+    schou:
+    - '24'
+    - '9'
+    numista: '85512'
     others:
-    - schou# 9
     - Brekke# 29-33
     - Rønning# 154
-    numista: '85512'
     skaare: '659'
   metal: billon
   metal_verified: true
@@ -24025,35 +23835,20 @@ coins:
     url: https://en.ucoin.net/coin/norway-1-skilling-1761-1765/?tid=88588
     ref: ucoin
   - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/155287
-    ref: KMM 155287 (Inv. FP 3115.118)
+    url: https://samlinger.natmus.dk/KMM/object/148215
+    ref: KMM 148215 (Inv. KP 1656.2098)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/159809
+    ref: KMM 159809 (Inv. FP 3931.152)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/159810
+    ref: KMM 159810 (Inv. FP 3931.151)
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/298430
     ref: KMM 298430 (Inv. FP 10291.5)
   - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/306399
-    ref: KMM 306399 (Inv. FP 7834.5)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/331669
-    ref: KMM 331669 (Inv. FP 6144.2)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/333774
-    ref: KMM 333774 (Inv. FP 5818.12)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/350170
-    ref: KMM 350170 (Inv. FP 10247.22)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/355658
-    ref: KMM 355658 (Inv. FP 4775.2)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/406253
-    ref: KMM 406253 (Inv. FP 2624.193)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/406254
-    ref: KMM 406254 (Inv. FP 2624.192)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/492518
-    ref: KMM 492518 (Inv. FP 10686.16)
+    url: https://samlinger.natmus.dk/KMM/object/308675
+    ref: KMM 308675 (Inv. FP 7430.41)
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/734535
     ref: KMM 734535 (Inv. FP 12773.4)
@@ -24068,16 +23863,11 @@ coins:
   - dk-hede-nf5h4
   - dk-numista-85512
   - dk-tid-88588
-  - kmk-155287
+  - kmk-148215
+  - kmk-159809
+  - kmk-159810
   - kmk-298430
-  - kmk-306399
-  - kmk-331669
-  - kmk-333774
-  - kmk-350170
-  - kmk-355658
-  - kmk-406253
-  - kmk-406254
-  - kmk-492518
+  - kmk-308675
   - kmk-734535
 - id: unified-dk-hede-nf5hunknown_387
   fuss: seed_unsorted
@@ -24100,9 +23890,9 @@ coins:
     km: 237a
     hede: unknown_387
     hede_volume: nf5h
-    schou: '22'
-    others:
-    - schou# 11
+    schou:
+    - '22'
+    - '11'
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -24137,6 +23927,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-2-skilling-1761-1764/?tid=88672
     ref: ucoin
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/148272
+    ref: KMM 148272 (Inv. KP 1656.2041)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -24147,6 +23940,7 @@ coins:
   - denmark-numismaster-86221
   - dk-hede-nf5hunknown_387
   - dk-tid-88672
+  - kmk-148272
 - id: unified-dk-hede-nf6h1
   fuss: seed_unsorted
   phase: hede
@@ -24228,11 +24022,12 @@ coins:
     km: '276'
     hede: '2'
     hede_volume: nf6h
-    schou: 3-4
-    others:
-    - schou# 4
-    - Brekke# 2
+    schou:
+    - 3-4
+    - '4'
     numista: '97334'
+    others:
+    - Brekke# 2
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -24298,22 +24093,35 @@ coins:
   ruler: Frederik VI.
   mint: Kongsberg
   catalog:
+    km: '275'
     hede: '3'
     hede_volume: nf6h
-    schou: 5-8
-    others:
-    - schou# 1
-    - schou# 5
-    - schou# 6
+    schou:
+    - 5-8
+    - '1'
+    - '5'
+    - '6'
+    bruun_collection_id: '10942'
+    sieg: '5'
+    nmd: 3A
+    bruun_part: III
+    bruun_lot_no: 12133
+    bruun_page: 226
   metal: silver
   metal_verified: true
+  fineness_verified: false
   weight_rough_verified: true
   mint_verified: true
   verified: false
   weight_rough_g:
   - value: 22.272
     source: hede
+  - value: 23.57
+    source: bruun
   sources:
+  - type: auction
+    url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
+    ref: Bruun Part III, lot 12133, p. 226
   - type: literature
     url: https://www.danskmoent.dk/norge/nf6h3.htm
     ref: danskmoent.dk (Hede nf6h3)
@@ -24324,6 +24132,7 @@ coins:
     uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   issuing_entity: danish_norway
   composed_of:
+  - dk-bruun-10942
   - dk-hede-nf6h3
 - id: unified-dk-hede-nf6h4
   fuss: seed_unsorted
@@ -24338,10 +24147,10 @@ coins:
   catalog:
     hede: '4'
     hede_volume: nf6h
-    schou: 12-15
-    others:
-    - schou# 12
-    - schou# 13
+    schou:
+    - 12-15
+    - '12'
+    - '13'
   metal: silver
   metal_verified: true
   weight_rough_verified: true
@@ -30198,7 +30007,6 @@ coins:
     fr: '8'
     others:
     - AAJT# 9
-    schou: '6'
   metal: gold
   metal_verified: true
   fineness_verified: true
@@ -30210,8 +30018,6 @@ coins:
   - value: 0.979
     source: numista
   weight_rough_g:
-  - value: 6.88
-    source: kmk
   - value: 6.98
     source: numista
   diameter_mm:
@@ -30221,9 +30027,6 @@ coins:
   - type: literature
     url: https://en.numista.com/462251
     ref: Numista N#462251 — 2 Ducats - Christian V (Christiania type II; with date) - Norway
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/278489
-    ref: KMM 278489 (Inv. RP 711.1)
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -30237,7 +30040,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-462251
-  - kmk-278489
 - id: unified-dk-numista-463165
   fuss: seed_unsorted
   phase: numista
@@ -32148,6 +31950,62 @@ coins:
   - dk-numista-94273
   - kmk-155289
   - kmk-333775
+- id: unified-dk-numista-97335
+  fuss: seed_unsorted
+  phase: numista
+  kind: kurant
+  nominal: 4 Skilling Courant
+  year_first: 1809
+  year_last: 1810
+  year_ranges:
+  - - 1809
+    - 1810
+  year_label: 1809-1810
+  ruler: Frederik VI
+  catalog:
+    km: '275'
+    numista: '97335'
+    hede: '3'
+    others:
+    - Brekke# 3
+  metal: copper
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  weight_rough_g:
+  - value: 22.27
+    source: ucoin
+  - value: 22.272
+    source: numista
+  diameter_mm:
+  - value: 32.0
+    source: ucoin
+  - value: 33.0
+    source: numista
+  sources:
+  - type: literature
+    url: https://en.numista.com/97335
+    ref: Numista N#97335 — 4 Skilling Courant - Frederik VI - Norway
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-4-skilling-1809-1810/?tid=88718
+    ref: ucoin
+  verification_note:
+    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
+      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
+      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
+      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
+      be checked against primary sources before promotion into curated entries.'
+    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
+      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
+      первинних джерел перед промоцією у кур''єйтед-записи.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-numista-97335
+  - dk-tid-88718
 - id: unified-dk-numista-98997
   fuss: seed_unsorted
   phase: numista
@@ -35167,6 +35025,33 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-139672
+- id: unified-kmk-139717
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Skilling
+  year_first: 1531
+  year_last: 1531
+  year_label: '1531'
+  ruler: Frederik 1
+  mint: Christiania
+  catalog:
+    schou: '6'
+  metal_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 1.44
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/139717
+    ref: KMM 139717 (Inv. KP 1715.420)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-139717
 - id: unified-kmk-139746
   fuss: seed_unsorted
   phase: kmk
@@ -35612,30 +35497,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-148168
-- id: unified-kmk-148176
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Skilling
-  year_first: 1786
-  year_last: 1786
-  year_label: '1786'
-  ruler: Christian 7
-  mint: Kongsberg
-  catalog:
-    schou: '4'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148176
-    ref: KMM 148176 (Inv. KP 1656.2137)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148176
 - id: unified-kmk-148177
   fuss: seed_unsorted
   phase: kmk
@@ -35800,54 +35661,6 @@ coins:
   composed_of:
   - kmk-148198
   - kmk-333841
-- id: unified-kmk-148207
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1769
-  year_last: 1769
-  year_label: '1769'
-  ruler: Christian 7
-  mint: Kongsberg
-  catalog:
-    schou: '12'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148207
-    ref: KMM 148207 (Inv. KP 1656.2106)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148207
-- id: unified-kmk-148215
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1765
-  year_last: 1765
-  year_label: '1765'
-  ruler: Frederik 5
-  mint: Kongsberg
-  catalog:
-    schou: '9'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148215
-    ref: KMM 148215 (Inv. KP 1656.2098)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148215
 - id: unified-kmk-148216
   fuss: seed_unsorted
   phase: kmk
@@ -36164,30 +35977,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-148271
-- id: unified-kmk-148272
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Skilling
-  year_first: 1761
-  year_last: 1761
-  year_label: '1761'
-  ruler: Frederik 5
-  mint: Kongsberg
-  catalog:
-    schou: '11'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148272
-    ref: KMM 148272 (Inv. KP 1656.2041)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148272
 - id: unified-kmk-148273
   fuss: seed_unsorted
   phase: kmk
@@ -36694,35 +36483,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-148301
-- id: unified-kmk-148302
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 24 Skilling
-  year_first: 1748
-  year_last: 1748
-  year_label: '1748'
-  ruler: Frederik 5
-  mint: Kongsberg
-  catalog:
-    schou: '6'
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148302
-    ref: KMM 148302 (Inv. KP 1656.2011)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/334107
-    ref: KMM 334107 (Inv. RP 962.1)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148302
-  - kmk-334107
 - id: unified-kmk-148306
   fuss: seed_unsorted
   phase: kmk
@@ -37083,30 +36843,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-148325
-- id: unified-kmk-148326
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 24 Skilling
-  year_first: 1735
-  year_last: 1735
-  year_label: '1735'
-  ruler: Christian 6
-  mint: Kongsberg
-  catalog:
-    schou: '8'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148326
-    ref: KMM 148326 (Inv. KP 1656.1987)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148326
 - id: unified-kmk-148329
   fuss: seed_unsorted
   phase: kmk
@@ -37179,30 +36915,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-148340
-- id: unified-kmk-148341
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 8 Skilling
-  year_first: 1730
-  year_last: 1730
-  year_label: '1730'
-  ruler: Frederik 4
-  mint: Kongsberg
-  catalog:
-    schou: '2'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148341
-    ref: KMM 148341 (Inv. KP 1656.1972)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148341
 - id: unified-kmk-148343
   fuss: seed_unsorted
   phase: kmk
@@ -38381,30 +38093,6 @@ coins:
   composed_of:
   - kmk-148482
   - kmk-175953
-- id: unified-kmk-148488
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 8 Skilling
-  year_first: 1702
-  year_last: 1702
-  year_label: '1702'
-  ruler: Frederik 4
-  mint: Kongsberg
-  catalog:
-    schou: '7'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148488
-    ref: KMM 148488 (Inv. KP 1656.1825)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148488
 - id: unified-kmk-148492
   fuss: seed_unsorted
   phase: kmk
@@ -39173,30 +38861,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-148591
-- id: unified-kmk-148592
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Skilling
-  year_first: 1687
-  year_last: 1687
-  year_label: '1687'
-  ruler: Christian 5
-  mint: Kongsberg
-  catalog:
-    schou: '41'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148592
-    ref: KMM 148592 (Inv. KP 1656.1721)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148592
 - id: unified-kmk-148593
   fuss: seed_unsorted
   phase: kmk
@@ -40240,34 +39904,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-148725
-- id: unified-kmk-148726
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1675
-  year_last: 1675
-  year_label: '1675'
-  ruler: Christian 5
-  mint: Christiania
-  catalog:
-    schou: '22'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148726
-    ref: KMM 148726 (Inv. KP 1656.1587)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148727
-    ref: KMM 148727 (Inv. KP 1656.1586)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148726
-  - kmk-148727
 - id: unified-kmk-148728
   fuss: seed_unsorted
   phase: kmk
@@ -40372,34 +40008,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-148734
-- id: unified-kmk-148736
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Skilling
-  year_first: 1673
-  year_last: 1673
-  year_label: '1673'
-  ruler: Christian 5
-  mint: Christiania
-  catalog:
-    schou: '40'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148736
-    ref: KMM 148736 (Inv. KP 1656.1577)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/148737
-    ref: KMM 148737 (Inv. KP 1656.1576)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-148736
-  - kmk-148737
 - id: unified-kmk-148745
   fuss: seed_unsorted
   phase: kmk
@@ -45282,19 +44890,10 @@ coins:
   mint: Christiania
   catalog:
     schou: '48'
-    hede: 71B
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
+  metal_verified: false
+  weight_rough_verified: false
   mint_verified: true
   verified: false
-  weight_rough_g:
-  - value: 0.59
-    source: kmk
-  - value: 0.65
-    source: kmk
-  - value: 0.89
-    source: kmk
   sources:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149255
@@ -45305,52 +44904,12 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/149257
     ref: KMM 149257 (Inv. KP 1656.1056)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/159761
-    ref: KMM 159761 (Inv. FP 3931.141)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/161188
-    ref: KMM 161188 (Inv. FP 2261.2)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/161246
-    ref: KMM 161246 (Inv. FP 4408.9)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/201157
-    ref: KMM 201157 (Inv. FP 3108.11393)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/201173
-    ref: KMM 201173 (Inv. FP 3108.11377)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/201189
-    ref: KMM 201189 (Inv. FP 3108.11361)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/437510
-    ref: KMM 437510 (Inv. FP 10576.3)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/693092
-    ref: KMM 693092 (Inv. FP 280.87)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/693093
-    ref: KMM 693093 (Inv. FP 280.86)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/693094
-    ref: KMM 693094 (Inv. FP 280.85)
   verification_note: *id002
   issuing_entity: danish_norway
   composed_of:
   - kmk-149255
   - kmk-149256
   - kmk-149257
-  - kmk-159761
-  - kmk-161188
-  - kmk-161246
-  - kmk-201157
-  - kmk-201173
-  - kmk-201189
-  - kmk-437510
-  - kmk-693092
-  - kmk-693093
-  - kmk-693094
 - id: unified-kmk-149264
   fuss: seed_unsorted
   phase: kmk
@@ -49140,6 +48699,77 @@ coins:
   - kmk-368417
   - kmk-394035
   - kmk-394087
+- id: unified-kmk-155286
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Skilling
+  year_first: 1770
+  year_last: 1770
+  year_label: '1770'
+  ruler: Christian 7
+  catalog:
+    hede: 11B
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/155286
+    ref: KMM 155286 (Inv. FP 3115.119)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-155286
+- id: unified-kmk-155287
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Skilling
+  year_first: 1764
+  year_last: 1764
+  year_label: '1764'
+  ruler: Frederik 5
+  mint: Kongsberg
+  catalog:
+    hede: '4'
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/155287
+    ref: KMM 155287 (Inv. FP 3115.118)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/306399
+    ref: KMM 306399 (Inv. FP 7834.5)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/331669
+    ref: KMM 331669 (Inv. FP 6144.2)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/333774
+    ref: KMM 333774 (Inv. FP 5818.12)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/350170
+    ref: KMM 350170 (Inv. FP 10247.22)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/355658
+    ref: KMM 355658 (Inv. FP 4775.2)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/492518
+    ref: KMM 492518 (Inv. FP 10686.16)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-155287
+  - kmk-306399
+  - kmk-331669
+  - kmk-333774
+  - kmk-350170
+  - kmk-355658
+  - kmk-492518
 - id: unified-kmk-155288
   fuss: seed_unsorted
   phase: kmk
@@ -49350,6 +48980,30 @@ coins:
   - kmk-369381
   - kmk-403373
   - kmk-693096
+- id: unified-kmk-155381
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 8 Skilling
+  year_first: 1700
+  year_last: 1700
+  year_label: '1700'
+  ruler: Frederik 4
+  mint: Kongsberg
+  catalog:
+    hede: 6A
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/155381
+    ref: KMM 155381 (Inv. FP 4093.1)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-155381
 - id: unified-kmk-155972
   fuss: seed_unsorted
   phase: kmk
@@ -50918,7 +50572,6 @@ coins:
     hede:
     - 67C
     - 67D
-    - 67c
   metal_verified: false
   weight_rough_verified: false
   mint_verified: true
@@ -52353,6 +52006,119 @@ coins:
   - kmk-346030
   - kmk-346031
   - kmk-346032
+- id: unified-kmk-157826
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Mark
+  year_first: 1647
+  year_last: 1647
+  year_label: '1647'
+  ruler: Christian 4
+  mint: Christiania
+  catalog:
+    hede: '20'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 5.38
+    source: kmk
+  - value: 5.39
+    source: kmk
+  - value: 5.41
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/157826
+    ref: KMM 157826 (Inv. FP 1466.206)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/157829
+    ref: KMM 157829 (Inv. FP 1466.203)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/157831
+    ref: KMM 157831 (Inv. FP 1466.201)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/347043
+    ref: KMM 347043 (Inv. FP 5437.803)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-157826
+  - kmk-157829
+  - kmk-157831
+  - kmk-347043
+- id: unified-kmk-159761
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Skilling
+  year_first: 1652
+  year_last: 1652
+  year_label: '1652'
+  ruler: Frederik 3
+  mint: Christiania
+  catalog:
+    hede: 71B
+    schou: '48'
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 0.59
+    source: kmk
+  - value: 0.65
+    source: kmk
+  - value: 0.89
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/159761
+    ref: KMM 159761 (Inv. FP 3931.141)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/161188
+    ref: KMM 161188 (Inv. FP 2261.2)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/161246
+    ref: KMM 161246 (Inv. FP 4408.9)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/201157
+    ref: KMM 201157 (Inv. FP 3108.11393)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/201173
+    ref: KMM 201173 (Inv. FP 3108.11377)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/201189
+    ref: KMM 201189 (Inv. FP 3108.11361)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/437510
+    ref: KMM 437510 (Inv. FP 10576.3)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/693092
+    ref: KMM 693092 (Inv. FP 280.87)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/693093
+    ref: KMM 693093 (Inv. FP 280.86)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/693094
+    ref: KMM 693094 (Inv. FP 280.85)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-159761
+  - kmk-161188
+  - kmk-161246
+  - kmk-201157
+  - kmk-201173
+  - kmk-201189
+  - kmk-437510
+  - kmk-693092
+  - kmk-693093
+  - kmk-693094
 - id: unified-kmk-159767
   fuss: seed_unsorted
   phase: kmk
@@ -52425,6 +52191,29 @@ coins:
   - kmk-159794
   - kmk-306342
   - kmk-372841
+- id: unified-kmk-159807
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Skilling
+  year_first: 1787
+  year_last: 1787
+  year_label: '1787'
+  ruler: Christian 7
+  catalog:
+    hede: '16'
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/159807
+    ref: KMM 159807 (Inv. FP 3931.154)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-159807
 - id: unified-kmk-159808
   fuss: seed_unsorted
   phase: kmk
@@ -52452,37 +52241,6 @@ coins:
   composed_of:
   - kmk-159808
   - kmk-326589
-- id: unified-kmk-159809
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1765
-  year_last: 1765
-  year_label: '1765'
-  ruler: Frederik 5
-  catalog:
-    hede: '4'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/159809
-    ref: KMM 159809 (Inv. FP 3931.152)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/159810
-    ref: KMM 159810 (Inv. FP 3931.151)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/308675
-    ref: KMM 308675 (Inv. FP 7430.41)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-159809
-  - kmk-159810
-  - kmk-308675
 - id: unified-kmk-159814
   fuss: seed_unsorted
   phase: kmk
@@ -55975,29 +55733,6 @@ coins:
   composed_of:
   - kmk-279161
   - kmk-306253
-- id: unified-kmk-279162
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1769
-  year_last: 1769
-  year_label: '1769'
-  ruler: Christian 7
-  catalog:
-    hede: 11B
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/279162
-    ref: KMM 279162 (Inv. FP 3528.282)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-279162
 - id: unified-kmk-279164
   fuss: seed_unsorted
   phase: kmk
@@ -58008,7 +57743,6 @@ coins:
     hede:
     - 48C
     - '48'
-    - 48c
   metal: copper
   metal_verified: true
   weight_rough_verified: false
@@ -59295,6 +59029,32 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-333246
+- id: unified-kmk-333582
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 24 Skilling
+  year_first: 1788
+  year_last: 1788
+  year_label: '1788'
+  ruler: Christian 7
+  mint: Kongsberg
+  metal: silver
+  metal_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 9.15
+    source: kmk
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/333582
+    ref: KMM 333582 (Inv. RP 932.1)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-333582
 - id: unified-kmk-333734
   fuss: seed_unsorted
   phase: kmk
@@ -61364,33 +61124,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-352243
-- id: unified-kmk-352702
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Skilling
-  year_first: 1786
-  year_last: 1786
-  year_label: '1786'
-  ruler: Christian 7
-  catalog:
-    hede: '16'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/352702
-    ref: KMM 352702 (Inv. FP 5113.72)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/372300
-    ref: KMM 372300 (Inv. FP 4324.12)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-352702
-  - kmk-372300
 - id: unified-kmk-352703
   fuss: seed_unsorted
   phase: kmk
@@ -62748,6 +62481,34 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-406221
+- id: unified-kmk-406253
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 1 Skilling
+  year_first: 1764
+  year_last: 1764
+  year_label: '1764'
+  ruler: Frederik 5
+  mint: Kongsberg
+  catalog:
+    schou: '24'
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/406253
+    ref: KMM 406253 (Inv. FP 2624.193)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/406254
+    ref: KMM 406254 (Inv. FP 2624.192)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-406253
+  - kmk-406254
 - id: unified-kmk-406257
   fuss: seed_unsorted
   phase: kmk
@@ -71734,6 +71495,30 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-574996
+- id: unified-kmk-574997
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 8 Skilling
+  year_first: 1727
+  year_last: 1727
+  year_label: '1727'
+  ruler: Frederik 4
+  mint: Kongsberg
+  catalog:
+    hede: 17B
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: true
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/574997
+    ref: KMM 574997 (Inv. FP 11167.3)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-574997
 - id: unified-kmk-575004
   fuss: seed_unsorted
   phase: kmk
