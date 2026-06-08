@@ -159,8 +159,7 @@ import json as _json  # noqa: E402
 
 _KMK_CACHE_DIR = ROOT / "scripts" / "cache" / "kmk"
 _KMM_IMAGE_MEMO: dict[str, bool] = {}
-_SUPPRESS_THRESHOLD = 5
-_SUPPRESS_KEEP = 3
+_KMM_WEIGHT_MEMO: dict[str, bool] = {}
 
 
 def _kmm_nid_from_url(url):
@@ -172,7 +171,10 @@ def _kmm_nid_from_url(url):
 
 def _kmm_specimen_has_image(nid: str) -> bool:
     """True when the KMM (Nationalmuseet) record has a still-photo asset.
-    Memoised cache read — maintenance-side only; the build never reads cache."""
+    Memoised cache read — maintenance-side only; the build never reads cache.
+    Verified equivalent to the natmus page state: records with a still asset
+    show photo(s); records without show «Genstanden er endnu ikke
+    affotograferet» (2026-06-08 live spot-check, KMM 290904 vs 123284)."""
     if nid in _KMM_IMAGE_MEMO:
         return _KMM_IMAGE_MEMO[nid]
     has = False
@@ -187,38 +189,72 @@ def _kmm_specimen_has_image(nid: str) -> bool:
     return has
 
 
+def _kmm_specimen_has_weight(nid: str) -> bool:
+    """True when the KMM record carries a Vægt (weight) measurement.
+    Memoised cache read — maintenance-side only."""
+    if nid in _KMM_WEIGHT_MEMO:
+        return _KMM_WEIGHT_MEMO[nid]
+    has = False
+    try:
+        d = _json.loads((_KMK_CACHE_DIR / f"{nid}.json").read_text())
+        ms = d.get("measurements") or []
+        has = any(isinstance(m, dict) and m.get("dimension") == "Vægt"
+                  and isinstance(m.get("data"), (int, float)) for m in ms)
+    except (FileNotFoundError, ValueError):
+        has = False
+    _KMM_WEIGHT_MEMO[nid] = has
+    return has
+
+
+_KEEP_KMM_IMAGE_ONLY = 3   # image but no weight → keep 3
+_KEEP_KMM_PURE = 1         # neither weight nor image → keep 1
+
+
 def _suppress_weightless_museum_overcollection(coin: dict) -> int:
-    """Mark surplus weightless KMM specimen citations `display: false` so the
-    renderer hides them while the data keeps every link. Fires only when the
-    coin has NO weight reading AND carries ≥5 KMM citations; keeps the 3
-    best (imaged-first, then lowest object-id). Idempotent + deterministic —
-    safe to re-apply on every absorb. Returns the count suppressed."""
-    w = coin.get("weight_rough_g")
-    has_weight = (
-        (isinstance(w, list) and any(
-            isinstance(x, dict) and isinstance(x.get("value"), (int, float)) and x["value"] > 0
-            for x in w))
-        or (isinstance(w, (int, float)) and w > 0)
-    )
-    if has_weight:
-        return 0
+    """Hide surplus low-information KMM specimen citations via `display: false`
+    (data kept — §9a accumulation — just not rendered on the page). Three
+    categories, keyed by what the KMM record carries (user direction
+    2026-06-08):
+
+      • WEIGHT (with or without an image) — NOT touched here. The existing
+        §9a weight-specimen thinning (keep min/middle/max by weight) manages
+        those; this function only ensures they stay shown.
+      • IMAGE only (no weight) — keep 3 (lowest object-id), hide the rest.
+      • NEITHER weight nor image (natmus «Genstanden er endnu ikke
+        affotograferet»; 79 % of all KMM cites — bare «museum holds a
+        specimen») — keep 1, hide the rest.
+
+    Fires regardless of whether the coin has weight from other sources.
+    Idempotent + deterministic. Returns the count newly hidden."""
     srcs = coin.get("sources") or []
-    kmm = [s for s in srcs if isinstance(s, dict) and _kmm_nid_from_url(s.get("url"))]
-    if len(kmm) < _SUPPRESS_THRESHOLD:
+    kmm = [s for s in srcs
+           if isinstance(s, dict) and _kmm_nid_from_url(s.get("url"))]
+    if not kmm:
         return 0
-
-    def _rank(s):
-        nid = _kmm_nid_from_url(s["url"])
-        return (0 if _kmm_specimen_has_image(nid) else 1, int(nid))
-
-    keep_ids = {id(s) for s in sorted(kmm, key=_rank)[:_SUPPRESS_KEEP]}
-    n = 0
+    image_only, pure = [], []
     for s in kmm:
-        if id(s) in keep_ids:
-            s.pop("display", None)      # kept → render (schema default True)
+        nid = _kmm_nid_from_url(s["url"])
+        if _kmm_specimen_has_weight(nid):
+            s.pop("display", None)              # weight → always shown (§9a)
+        elif _kmm_specimen_has_image(nid):
+            image_only.append(s)
         else:
-            s["display"] = False
-            n += 1
+            pure.append(s)
+    n = 0
+
+    def _cap(group, keep):
+        nonlocal n
+        ordered = sorted(group, key=lambda s: int(_kmm_nid_from_url(s["url"])))
+        for i, s in enumerate(ordered):
+            if i < keep:
+                s.pop("display", None)
+            else:
+                if s.get("display") is not False:
+                    n += 1
+                s["display"] = False
+
+    _cap(image_only, _KEEP_KMM_IMAGE_ONLY)
+    _cap(pure, _KEEP_KMM_PURE)
     return n
 
 
@@ -1994,13 +2030,17 @@ def main() -> int:
             # whose stale overflow would otherwise survive. Skips entries
             # that froze `catalog` via `_curation_holds`.
             for _fc in result["enriched_final_entries"]:
-                if not (isinstance(_fc, dict)
-                        and isinstance(_fc.get("catalog"), dict)):
+                if not isinstance(_fc, dict):
                     continue
-                _h = _fc.get("_curation_holds")
-                _hk = set(_h.keys() if isinstance(_h, dict) else (_h or []))
-                if "catalog" not in _hk:
-                    _fold_catalog_indices(_fc["catalog"])
+                if isinstance(_fc.get("catalog"), dict):
+                    _h = _fc.get("_curation_holds")
+                    _hk = set(_h.keys() if isinstance(_h, dict)
+                              else (_h or []))
+                    if "catalog" not in _hk:
+                        _fold_catalog_indices(_fc["catalog"])
+                # Uninformative-KMM thinning on EVERY final entry (incl.
+                # V1-carryover foundations not re-enriched this run).
+                _suppress_weightless_museum_overcollection(_fc)
             final_path.write_text(
                 _emit_final_yaml(ent, result["enriched_final_entries"],
                                   prior_doc),
