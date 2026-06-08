@@ -132,14 +132,21 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
   and DROPS those now `no_match`. Self-heals the whole sticky class (KM-42 anomalies via
   weight-tier-1, Wolfenbüttel residue via mint discriminator). Uses only SAFE existing
   discriminators — no synonym risk. MUST dry-run with a printed drop-list for review.
-- 🟡 **nominal discriminator — TRIED + REVERTED (regression-prone).** Parallel to the mint
-  discriminator (block when normalised nominals differ + only weak Schou/Sieg tie). Full
-  re-merge → **9 splits, 7 are SYNONYMS** the `_normalise_nominal` table doesn't fold
-  (Dobbeldukat=2 Dukat, Dobbeltspecie=2 Speciedaler, Specie=Speciedaler, Brilledukat=2
-  Dukat; «Daler» is genuinely AMBIGUOUS — Rigsdaler/Kurantdaler/Speciedaler). Only
-  «1/2 vs 1/4 Portugaløser» was a legit split. Reverted both code + data. **Revisit AFTER
-  completing the synonym table** (a curated task) — then the discriminator becomes safe.
-  Note: KM-42's anomalies don't NEED it (weight-tier-1 + the re-validate pass handle them).
+- 🟡 **nominal discriminator — synonym table DONE (`5b48840`), discriminator itself still
+  to re-introduce.** The 7 false-split synonyms now fold in `nominal_synonyms.py`: «Dobbelt
+  X»→«2 X» (start-anchored, so «4 Dobbelt Groschen» the 4-fold coin is safe), «Specie /
+  Species / Rigsdaler-Specie / Specie-norsk / Speciemønt»→«speciedaler», with a «Specie(s)-
+  Dukat»→«speciedukat» guard (gold ducat, NOT daler). Verified over all 1214 nominals: 37
+  fold as intended, 0 unexpected. The «Brilledukat» from the old notes was a mis-recollection
+  (no such nominal in the data; «Brillenthaler» is a distinct coin, untouched). «1/4 vs 1/2
+  Portugaløser» correctly stays a real split. **Now re-introduce the discriminator** (block
+  a merge when normalised nominals genuinely differ + only a weak Schou/Sieg tie): the
+  synonym folds remove the 7 false splits; re-run the full merge and confirm only the legit
+  splits remain, then verify no regression. STILL ambiguous: bare «Daler» (Rigsdaler/Kurant/
+  Specie) — the discriminator must treat a bare-«daler» side as a wildcard (don't split on
+  it). NB: KM-42's anomalies don't NEED this (weight-tier-1 + the re-validate pass handle
+  them). The new synonyms also strengthen the EXISTING merger's nominal signal — a full
+  re-merge will fold some previously-split synonym pairs (expected, correct).
 - 🟢 **Full Numista re-parse to materialize §9a accumulation across all entities**
   (follow-up to the multi-KM fix above). The parser/merge/hygiene code is shipped, but
   only danish_realm + gottorp_duchy seeds were re-run. To materialize lange/dav/fr multi-
