@@ -389,4 +389,39 @@ def normalise_catalog(catalog: dict) -> int:
         if new_km != km:
             catalog["km"] = new_km
             changes += 1
+
+    # 4. Davenport volume-fold: Davenport publishes in century-tagged
+    #    volumes («EC II» = European Crowns 1600-1700, «EC III» = 1700-1800,
+    #    «GT III», «SG», «BrSL», …) but the numbering is CONTINUOUS — «Dav
+    #    3668» and «EC II 3668» are the SAME reference (volume-implicit vs
+    #    volume-explicit). When BOTH a bare «N» and a volume-qualified
+    #    «<VOL> N» (same trailing number) sit in the `dav` list, the bare
+    #    form is a redundant less-precise duplicate → drop it, keep the
+    #    volume-qualified one. (Source: Numista cites one coin both ways,
+    #    which the §9a accumulation collects together.) A bare value with
+    #    NO matching qualified form is kept untouched.
+    dav = catalog.get("dav")
+    if isinstance(dav, list) and len(dav) > 1:
+        def _is_qualified(v: str) -> bool:
+            toks = v.split()
+            return len(toks) > 1 and not toks[0][:1].isdigit()
+
+        def _trailing_num(v: str) -> str:
+            return v.split()[-1].lower() if v.split() else v.lower()
+
+        qualified_nums = {
+            _trailing_num(v) for v in dav
+            if isinstance(v, str) and _is_qualified(v)
+        }
+        new_dav = [
+            v for v in dav
+            if not (
+                isinstance(v, str)
+                and not _is_qualified(v)
+                and v.strip().lower() in qualified_nums
+            )
+        ]
+        if new_dav != dav:
+            catalog["dav"] = new_dav[0] if len(new_dav) == 1 else new_dav
+            changes += 1
     return changes
