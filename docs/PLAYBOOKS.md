@@ -961,17 +961,18 @@ inflation).
    `docs:`, `schema:`, `build:`, `fix:`). Commit messages in
    English regardless of chat language.
 
-3. **Update `docs/handoff.md` — ALWAYS** (mandatory at session end, not
-   conditional; user direction 2026-06-08 «завжди записуй handoff»). Every
-   session that touched project work refreshes it — at minimum:
+3. **Update `docs/handoff.md` whenever there's something worth recording**
+   (user direction 2026-06-08: «записувати якщо є що писати, якщо це
+   видається логічним» — write it if there's something to write, when it
+   seems logical). That's almost every working session. Capture whichever
+   apply:
    - Current focus (what was being done, what's next).
    - Any pending verification awaiting user input (the 🔴 blockers).
    - Surfaces rebuilt / mechanisms added this session (one-liner each).
    - Local-commit / push state.
-   Even when little «changed», write the «session did X → next is Y» line so
-   the next agent picks up cold. Prune entries that no longer help. The ONLY
-   exception is a pure chat/explore session that touched no files (same
-   exception as the daily note in 4a).
+   Use judgment: don't pad an entry when nothing meaningful changed, but
+   don't skip when a real next-step / blocker / shipped change exists.
+   Prune entries that no longer help the next session pick up cold.
 
 4. **Add to `docs/SOURCES.md` §13** any new source quirk that cost
    > 15 min to figure out.
