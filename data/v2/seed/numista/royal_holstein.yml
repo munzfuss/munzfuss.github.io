@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-06-01T09:07:28Z'
+generated_at: '2026-06-08T19:52:12Z'
 entity: royal_holstein
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -177,7 +177,9 @@ coins:
       lange: '12'
       sieg: F1-47
       mb: '27'
-      dav: EC I# 8235
+      dav:
+        - EC I# 8235
+        - EC I 8235
       galster: '114'
     metal: silver
     fineness:
@@ -258,7 +260,9 @@ coins:
       mb: '48'
       sieg: '46'
       hede: '16'
-      dav: EC I# 8236
+      dav:
+        - EC I# 8236
+        - EC I 8236
     metal: silver
     fineness:
     weight_rough_g: 28.69
@@ -334,7 +338,9 @@ coins:
     catalog:
       numista: '103794'
       sieg: C3-47
-      dav: EC I# 8237
+      dav:
+        - EC I# 8237
+        - EC I 8237
       lange: '20'
     metal: silver
     fineness: 0.89
@@ -412,7 +418,9 @@ coins:
     catalog:
       numista: '309416'
       mb: '54'
-      dav: EC I# 8237
+      dav:
+        - EC I# 8237
+        - EC I 8237
       hede: '19'
       lange: 20 a
     metal: silver
@@ -690,7 +698,9 @@ coins:
     catalog:
       numista: '107814'
       km: '10'
-      lange: '58'
+      lange:
+        - '58'
+        - '59'
     metal: billon
     fineness:
     weight_rough_g: 0.63
@@ -729,7 +739,11 @@ coins:
     catalog:
       numista: '108359'
       km: '11'
-      lange: '46'
+      lange:
+        - '46'
+        - 46A
+        - '47'
+        - 47A
     metal: silver
     fineness: 0.888
     weight_rough_g: 1.461
@@ -807,7 +821,9 @@ coins:
     catalog:
       numista: '142977'
       km: '15'
-      lange: '34'
+      lange:
+        - '34'
+        - '35'
       dav: EC II 3668
     metal: silver
     fineness: 0.888
@@ -966,7 +982,10 @@ coins:
       numista: '143069'
       km: '29'
       fr: '37'
-      lange: '31'
+      lange:
+        - '31'
+        - 31A
+        - 31B
     metal: gold
     fineness: 0.986
     weight_rough_g: 3.5
@@ -1200,7 +1219,13 @@ coins:
     catalog:
       numista: '109009'
       km: '26'
-      lange: '48'
+      lange:
+        - '48'
+        - '49'
+        - '50'
+        - '51'
+        - 51A
+        - 51B
     metal: silver
     fineness: 0.812
     weight_rough_g: 1.57
@@ -1629,7 +1654,9 @@ coins:
     catalog:
       numista: '154272'
       km: '26'
-      lange: 51b
+      lange:
+        - 51b
+        - 51Ab
     metal: silver
     fineness: 0.812
     weight_rough_g: 1.78
@@ -2061,7 +2088,11 @@ coins:
     catalog:
       numista: '144810'
       km: '57'
-      lange: 70b
+      lange:
+        - 70b
+        - 71b
+        - '72'
+        - 73b
     metal: silver
     fineness: 0.812
     weight_rough_g: 1.67
@@ -2378,7 +2409,9 @@ coins:
       numista: '145748'
       km: '74'
       lange: '82'
-      dav: EC II 3676
+      dav:
+        - EC II 3676
+        - EC II 3676A
     metal: silver
     fineness: 0.888
     weight_rough_g: 29
@@ -2459,7 +2492,9 @@ coins:
     catalog:
       numista: '308517'
       km: '73'
-      dav: EC II# 3677
+      dav:
+        - EC II# 3677
+        - EC II 3677
       lange: 82 A
     metal: silver
     fineness: 0.888
@@ -2499,7 +2534,9 @@ coins:
     catalog:
       numista: '108760'
       km: '77'
-      dav: EC II 3679
+      dav:
+        - EC II 3679
+        - EC II 3679A
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -3279,7 +3316,9 @@ coins:
     mint: Altona
     catalog:
       numista: '565981'
-      km: '616.1'
+      km:
+        - '616.1'
+        - '616.3'
       hede: '37'
     metal: copper
     fineness:
@@ -3559,7 +3598,9 @@ coins:
     catalog:
       numista: '131730'
       km: '640'
-      dav: EC III# 1310
+      dav:
+        - EC III# 1310
+        - EC III 1310
     metal: silver
     fineness: 0.868
     weight_rough_g: 28.063
@@ -4178,7 +4219,10 @@ coins:
     catalog:
       numista: '132002'
       km: '651'
-      dav: EC III 1313
+      dav:
+        - EC III 1313
+        - EC IV 71
+        - ECT 71
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -4658,7 +4702,9 @@ coins:
     catalog:
       numista: '70515'
       km: '693'
-      dav: EC IV 72
+      dav:
+        - EC IV 72
+        - ECT 72
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -4699,7 +4745,9 @@ coins:
     catalog:
       numista: '22190'
       km: '695'
-      dav: EC IV 73
+      dav:
+        - EC IV 73
+        - ECT 73
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -5222,7 +5270,9 @@ coins:
     catalog:
       numista: '22116'
       km: '720'
-      dav: EC IV 74
+      dav:
+        - EC IV 74
+        - ECT 74
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -5692,7 +5742,9 @@ coins:
     catalog:
       numista: '83074'
       km: '744'
-      dav: EC IV 76
+      dav:
+        - EC IV 76
+        - ECT 76
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -5938,7 +5990,9 @@ coins:
     catalog:
       numista: '22121'
       km: '761'
-      dav: EC IV 77
+      dav:
+        - EC IV 77
+        - ECT 77
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893

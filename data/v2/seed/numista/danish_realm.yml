@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-06-08T18:18:51Z'
+generated_at: '2026-06-08T19:52:08Z'
 entity: danish_realm
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -452,7 +452,9 @@ coins:
     catalog:
       numista: '143575'
       sieg: C1-1
-      schive: XIII:38
+      schive:
+        - XIII:38
+        - XIII:39
     metal: silver
     issuing_entity: danish_realm
     verified: false
@@ -5599,7 +5601,11 @@ coins:
     catalog:
       numista: '109280'
       km: '60'
-      dav: EC II 3516
+      dav:
+        - EC II 3516
+        - EC II 3516a
+        - EC II 3516b
+        - EC II 3516c
     metal: silver
     fineness: 0.859
     weight_rough_g: 37.36
@@ -5638,7 +5644,10 @@ coins:
     catalog:
       numista: '109282'
       km: '61'
-      dav: EC II 3516a
+      dav:
+        - EC II 3516a
+        - EC II 3516b
+        - EC II 3516c
     metal: silver
     fineness: 0.859
     weight_rough_g: 37.816
@@ -5832,7 +5841,9 @@ coins:
     catalog:
       numista: '80227'
       km: '59'
-      dav: EC II 3517
+      dav:
+        - EC II 3517
+        - EC II 3517a
     metal: silver
     fineness: 0.859
     weight_rough_g: 18.766
@@ -12226,7 +12237,9 @@ coins:
     catalog:
       numista: '145724'
       km: '367'
-      dav: EC II 3636
+      dav:
+        - EC II 3636
+        - EC II 3636A
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.4
@@ -14496,7 +14509,9 @@ coins:
     catalog:
       numista: '183157'
       km: '484'
-      fr: '244.2'
+      fr:
+        - '244.2'
+        - '244.3'
     metal: gold
     fineness: 0.979
     weight_rough_g: 3.4
@@ -15273,7 +15288,9 @@ coins:
     catalog:
       numista: '190127'
       km: '525'
-      dav: EC III 1293
+      dav:
+        - EC III 1293
+        - Lg 528
     metal: silver
     fineness: 0.671
     weight_rough_g: 67.15
@@ -15503,7 +15520,9 @@ coins:
     catalog:
       numista: '90151'
       km: '537'
-      dav: EC III A1294
+      dav:
+        - EC III A1294
+        - EC III 1294
     metal: silver
     fineness: 0.671
     weight_rough_g: 23.29
@@ -16187,7 +16206,9 @@ coins:
     catalog:
       numista: '322683'
       km: '565'
-      fr: 271,1
+      fr:
+        - 271,1
+        - 271,2
     metal: gold
     fineness: 0.979
     weight_rough_g: 3.49
@@ -18344,7 +18365,9 @@ coins:
     catalog:
       numista: '22191'
       km: '741'
-      dav: EC IV 74
+      dav:
+        - EC IV 74
+        - ECT 74
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -18388,6 +18411,7 @@ coins:
       dav:
         - EC IV# 75
         - EC IV 75
+        - ECT 75
     metal: silver
     fineness:
     weight_rough_g: 28.893
@@ -18663,6 +18687,7 @@ coins:
       dav:
         - EC IV# 78
         - EC IV 78
+        - ECT 78
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -18701,7 +18726,9 @@ coins:
     catalog:
       numista: '83076'
       km: '772'
-      dav: EC IV 79
+      dav:
+        - EC IV 79
+        - ECT 79
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893

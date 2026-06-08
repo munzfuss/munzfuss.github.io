@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 3913 per-source seed entries.
-# Output: 2181 unified entries (one per physical coin).
+# Output: 2180 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -13,58 +13,6 @@
 id: danish_norway
 generated_at: '2026-06-08'
 coins:
-- id: unified-denmark-numismaster-110606
-  fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 2 Skilling
-  year_first: 1668
-  year_last: 1670
-  year_ranges:
-  - - 1668
-    - 1670
-  year_label: 1668-1670
-  ruler: Frederick III
-  catalog:
-    km: '85'
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.281
-    source: numismaster
-  - value: 0.281
-    source: ucoin
-  weight_rough_g:
-  - value: 1.22
-    source: numismaster
-  - value: 1.22
-    source: ucoin
-  diameter_mm:
-  - value: 17.2
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_110606
-    ref: NumisMaster
-  - type: ucoin
-    url: https://en.ucoin.net/coin/norway-2-skilling-1668-1670/?tid=143851
-    ref: ucoin
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  issuing_entity: danish_norway
-  composed_of:
-  - denmark-numismaster-110606
-  - dk-tid-143851
 - id: unified-denmark-numismaster-110619
   fuss: seed_unsorted
   phase: numismaster
@@ -1648,7 +1596,7 @@ coins:
     bruun_page: 211
     numista: '117147'
     dav:
-    - '3656'
+    - EC II 3656
     - EC II# 3656
     others:
     - AAJT# 48
@@ -2762,6 +2710,7 @@ coins:
     numista: '101783'
     dav:
     - '3648'
+    - EC II 3648B
     - EC II# 3648B
     others:
     - Rønning# 118
@@ -5626,7 +5575,7 @@ coins:
     bruun_page: 184
     numista: '55887'
     dav:
-    - '3534'
+    - EC II 3534
     - EC II# 3534
   metal: silver
   metal_verified: true
@@ -6022,9 +5971,7 @@ coins:
   ruler: Christian IV
   mint: Christiania
   catalog:
-    km:
-    - 11a
-    - 11A
+    km: 11a
     bruun_collection_id:
     - '9575'
     - '9576'
@@ -6223,7 +6170,7 @@ coins:
     - Rønning# 43a
     numista: '82384'
     dav:
-    - '3588'
+    - EC II 3588
     - EC II# 3588
     skaare: '537'
   metal: silver
@@ -6769,9 +6716,7 @@ coins:
   ruler: Frederik III
   mint: Christiania
   catalog:
-    km:
-    - 38a
-    - 38A
+    km: 38a
     bruun_collection_id:
     - '9658'
     - '9679'
@@ -7404,7 +7349,7 @@ coins:
     - Rønning# 45d-45f
     numista: '114453'
     dav:
-    - '3607'
+    - EC II 3607
     - EC II# 3607
     skaare: '539'
   metal: silver
@@ -7726,6 +7671,7 @@ coins:
     hede:
     - 69F
     - 69A
+    - 69B
     nmd: '204'
     bruun_part: II
     bruun_lot_no: 14058
@@ -9050,7 +8996,7 @@ coins:
     bruun_page: 242
     numista: '109480'
     dav:
-    - '3529'
+    - EC II 3529
     - EC II# 3529
     others:
     - Brekke# 26
@@ -12293,7 +12239,10 @@ coins:
   mint: Kongsberg
   catalog:
     km: '193'
-    hede: '39'
+    hede:
+    - '39'
+    - 39A-39C
+    - 39F
     hede_volume: nc5h
     schou:
     - '13'
@@ -12309,6 +12258,12 @@ coins:
     - '17'
     - '7'
     - '8'
+    numista: '102379'
+    others:
+    - Brekke# 171A-171C
+    - Brekke# 172A-172D
+    - Ronning# 113a
+    skaare: '612'
     dav: '3661'
   metal: silver
   metal_verified: true
@@ -12323,10 +12278,14 @@ coins:
   - value: 0.875
     source: numismaster
   - value: 0.875
+    source: numista
+  - value: 0.875
     source: ucoin
   weight_rough_g:
   - value: 28.89
     source: numismaster
+  - value: 28.89
+    source: numista
   - value: 28.89
     source: ucoin
   - value: 28.893
@@ -12334,6 +12293,8 @@ coins:
   diameter_mm:
   - value: 41.0
     source: ucoin
+  - value: 42.0
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_110749
@@ -12341,6 +12302,9 @@ coins:
   - type: literature
     url: https://www.danskmoent.dk/norge/nc5h39.htm
     ref: danskmoent.dk (Hede nc5h39)
+  - type: literature
+    url: https://en.numista.com/102379
+    ref: Numista N#102379 — 1 Speciedaler - Christian V (Kongsberg type V.A; without elephant on obverse) - Norway
   - type: ucoin
     url: https://en.ucoin.net/coin/norway-1-speciedaler-1693-1694/?tid=146027
     ref: ucoin
@@ -12357,6 +12321,7 @@ coins:
   composed_of:
   - denmark-numismaster-110749
   - dk-hede-nc5h39
+  - dk-numista-102379
   - dk-tid-146027
 - id: unified-dk-hede-nc5h40
   fuss: seed_unsorted
@@ -13260,6 +13225,7 @@ coins:
     hede:
     - '51'
     - 51A
+    - 51B
     hede_volume: nc5h
     schou:
     - 22-27
@@ -13650,7 +13616,7 @@ coins:
     bruun_page: 232
     numista: '110303'
     dav:
-    - '3663'
+    - EC II 3663
     - EC II# 3663
     others:
     - AAJT# 75-77
@@ -14452,8 +14418,8 @@ coins:
     - '621'
     - '620'
     dav:
-    - '3665'
     - 3665A
+    - EC II 3665
     - EC II# 3665
   metal: silver
   metal_verified: true
@@ -15021,7 +14987,7 @@ coins:
     bruun_page: 218
     numista: '101796'
     dav:
-    - '3666'
+    - EC II 3666
     - EC II# 3666
     others:
     - Brekke# 182C
@@ -15798,6 +15764,7 @@ coins:
     hede:
     - '3'
     - 3A
+    - 3B
     hede_volume: nc6h
     schou:
     - '5'
@@ -16882,7 +16849,7 @@ coins:
     fp: '39.1'
     numista: '82373'
     dav:
-    - '1308'
+    - EC III 1308
     - EC III# 1308
     others:
     - Brekke# 3
@@ -17068,6 +17035,7 @@ coins:
     - '4'
     - 4B
     - 4A
+    - 4C
     hede_volume: nc7h
     schou:
     - '3'
@@ -17614,10 +17582,13 @@ coins:
   - Christiania
   - Christiania mint
   catalog:
-    km: '35'
+    km:
+    - '35'
+    - '45.1'
     hede:
     - '12'
     - 12A
+    - 12B
     hede_volume: nf3h
     schou:
     - '26'
@@ -17755,8 +17726,8 @@ coins:
     - Aagaard# 41.4 (53-2/53-2)
     numista: '55888'
     dav:
-    - '3590'
     - '3592'
+    - EC II 3590
     - EC II# 3590
   metal: silver
   metal_verified: true
@@ -17967,7 +17938,7 @@ coins:
     numista: '100607'
     dav:
     - '3592'
-    - '3595'
+    - EC II 3595
     - EC II# 3595
     skaare: '537'
   metal: silver
@@ -18562,7 +18533,7 @@ coins:
     - Rønning# 44k-44m
     numista: '111476'
     dav:
-    - '3601'
+    - EC II 3601
     - EC II# 3601
     skaare: '537'
   metal: silver
@@ -19134,6 +19105,7 @@ coins:
     hede:
     - '35'
     - 35A
+    - 35B
     hede_volume: nf3h
     schou:
     - '12'
@@ -20909,7 +20881,7 @@ coins:
     - Rønning# 48b
     numista: '111387'
     dav:
-    - '3625'
+    - EC II 3625
     - EC II# 3625
     skaare: '544'
   metal: silver
@@ -22735,6 +22707,7 @@ coins:
     hede:
     - '1'
     - 1A
+    - 1B
     hede_volume: nf4h
     schou:
     - '7'
@@ -22746,7 +22719,9 @@ coins:
     bruun_lot_no: 14104
     bruun_page: 240
     numista: '101132'
-    dav: EC III# A1287
+    dav:
+    - EC III# A1287
+    - EC III A1287
     others:
     - Brekke# 1
     - Brekke# 2A
@@ -23055,7 +23030,7 @@ coins:
     bruun_page: 242
     numista: '101120'
     dav:
-    - '1290'
+    - EC III 1290
     - EC III# 1290
     others:
     - Rønning# 131
@@ -23159,7 +23134,7 @@ coins:
     numista: '82387'
     dav:
     - EC III# 1292
-    - '1292'
+    - EC III 1292
     others:
     - Brekke# 4
     - Rønning# 132
@@ -23535,7 +23510,7 @@ coins:
     numista: '100314'
     dav:
     - EC III# 1303
-    - '1303'
+    - EC III 1303
     others:
     - Brekke# 1
   metal: silver
@@ -25344,60 +25319,6 @@ coins:
   - denmark-numismaster-110675
   - dk-numista-102270
   - kmk-148589
-- id: unified-dk-numista-102379
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Speciedaler
-  year_first: 1693
-  year_last: 1694
-  year_ranges:
-  - - 1693
-    - 1694
-  year_label: 1693-1694
-  ruler: Christian V
-  catalog:
-    km: '193'
-    numista: '102379'
-    hede: 39A-39C
-    others:
-    - Brekke# 171A-171C
-    - Brekke# 172A-172D
-    - Ronning# 113a
-    skaare: '612'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numista
-  weight_rough_g:
-  - value: 28.89
-    source: numista
-  diameter_mm:
-  - value: 42.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/102379
-    ref: Numista N#102379 — 1 Speciedaler - Christian V (Kongsberg type V.A; without elephant on obverse) - Norway
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: danish_norway
-  composed_of:
-  - dk-numista-102379
 - id: unified-dk-numista-102381
   fuss: seed_unsorted
   phase: numista
@@ -25465,7 +25386,9 @@ coins:
     km: '190'
     numista: '102382'
     hede: 37C-37I
-    dav: EC II# 3659
+    dav:
+    - EC II# 3659
+    - EC II 3659
     others:
     - Brekke# 168A-168G
     - Brekke# 169A-169F
@@ -25625,7 +25548,9 @@ coins:
     km: '96'
     numista: '110342'
     hede: 41A-41C
-    dav: EC II# 3662
+    dav:
+    - EC II# 3662
+    - EC II 3662
     others:
     - AAJT# 65A
     - Rønning# 85
@@ -26602,7 +26527,9 @@ coins:
   catalog:
     km: '79'
     numista: '118180'
-    dav: EC II# 3622
+    dav:
+    - EC II# 3622
+    - EC II 3622
     hede: '59'
     others:
     - AAJT# 26A
@@ -26711,7 +26638,9 @@ coins:
   catalog:
     km: A46
     numista: '118915'
-    dav: EC II# 3592
+    dav:
+    - EC II# 3592
+    - EC II 3592
     hede: '14'
     others:
     - Brekke# 67
@@ -26836,11 +26765,13 @@ coins:
   year_label: '1788'
   ruler: Christian VII
   catalog:
-    km: '260'
+    km:
+    - '260'
+    - 645 (Denmark)
     numista: '119248'
     dav:
     - EC III# 1312
-    - '1312'
+    - EC III 1312
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -27191,7 +27122,9 @@ coins:
   catalog:
     numista: '121900'
     galster: UU# 169
-    schive: XVI:8
+    schive:
+    - XVI:8
+    - XVI:9
     skaare: '313'
     others:
     - Galster UU# 169
@@ -28235,7 +28168,9 @@ coins:
   catalog:
     numista: '444409'
     galster: UU# 165
-    schive: XV:24
+    schive:
+    - XV:24
+    - XV:25
     others:
     - Brekke# 1
     - AAJT# 1
@@ -29535,7 +29470,9 @@ coins:
   catalog:
     km: '129'
     numista: '445302'
-    dav: EC II# A3654
+    dav:
+    - EC II# A3654
+    - EC II A3654
     hede: 32B
     others:
     - AAJT# 23-25
@@ -29952,7 +29889,9 @@ coins:
   catalog:
     km: '109'
     numista: '462111'
-    dav: EC II# 3656
+    dav:
+    - EC II# 3656
+    - EC II 3656
     hede: 29B
     others:
     - Ronning# 81c
@@ -30839,7 +30778,9 @@ coins:
     - '32'
     - '32.2'
     numista: '491156'
-    hede: 68D
+    hede:
+    - 68D
+    - 68E
     others:
     - Brekke# 176A
     - Brekke# 176B
@@ -31342,7 +31283,7 @@ coins:
     numista: '61154'
     dav:
     - EC III# 1301
-    - '1301'
+    - EC III 1301
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -31474,7 +31415,9 @@ coins:
   catalog:
     km: '281'
     numista: '76225'
-    hede: '6'
+    hede:
+    - '6'
+    - 15B
     others:
     - Brekke# 8A
     - Brekke# 8B
@@ -31658,7 +31601,9 @@ coins:
     km: '194'
     numista: '82371'
     hede: 39A-39G
-    dav: EC II# 3661
+    dav:
+    - EC II# 3661
+    - EC II 3661
     others:
     - Brekke# 175A-175G
     - Rønning# 113c
@@ -31713,7 +31658,10 @@ coins:
     - '232'
     - '232.1'
     numista: '82372'
-    hede: 4A
+    hede:
+    - 4A
+    - 4B
+    - 4C
     others:
     - Brekke# 4A
     - Brekke# 4B
@@ -31848,7 +31796,9 @@ coins:
   catalog:
     km: 479 (Denmark)
     numista: '82693'
-    dav: EC III# 1289
+    dav:
+    - EC III# 1289
+    - EC III 1289
     hede: '38'
     others:
     - Brekke# 91A-91C
@@ -32429,7 +32379,9 @@ coins:
   year_label: 1649-1670
   ruler: Frederik III
   catalog:
-    km: '30'
+    km:
+    - '30'
+    - '85'
     numista: '99012'
     hede: 70A-70E
     others:
@@ -32447,14 +32399,21 @@ coins:
   verified: false
   fineness:
   - value: 0.281
+    source: numismaster
+  - value: 0.281
     source: numista
   weight_rough_g:
+  - value: 1.22
+    source: numismaster
   - value: 1.3
     source: numista
   diameter_mm:
   - value: 18.0
     source: numista
   sources:
+  - type: literature
+    url: https://numismaster.com/MC_110606
+    ref: NumisMaster
   - type: literature
     url: https://en.numista.com/99012
     ref: Numista N#99012 — 2 Skilling - Frederik III (Type I) - Norway
@@ -32470,6 +32429,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   issuing_entity: danish_norway
   composed_of:
+  - denmark-numismaster-110606
   - dk-numista-99012
 - id: unified-dk-numista-99070
   fuss: seed_unsorted
@@ -33505,7 +33465,9 @@ coins:
   catalog:
     km: '32'
     numista: '99347'
-    hede: 68B
+    hede:
+    - 68B
+    - 68C
     others:
     - Rønning# 64
     - Brekke# 166
@@ -33672,6 +33634,48 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - dk-numista-99778
+- id: unified-dk-tid-143851
+  fuss: seed_unsorted
+  phase: ucoin
+  kind: kurant
+  nominal: 2 Skilling
+  year_first: 1668
+  year_last: 1670
+  year_ranges:
+  - - 1668
+    - 1670
+  year_label: 1668-1670
+  ruler: Frederick III
+  metal: billon
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  diameter_mm_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.281
+    source: ucoin
+  weight_rough_g:
+  - value: 1.22
+    source: ucoin
+  diameter_mm:
+  - value: 17.2
+    source: ucoin
+  sources:
+  - type: ucoin
+    url: https://en.ucoin.net/coin/norway-2-skilling-1668-1670/?tid=143851
+    ref: ucoin
+  verification_note:
+    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
+      / NumisMaster / Bruun) vor §BF-Promotion.'
+    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
+      Lange / NumisMaster / Bruun) before §BF promotion.'
+    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
+      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
+  issuing_entity: danish_norway
+  composed_of:
+  - dk-tid-143851
 - id: unified-dk-tid-144916
   fuss: seed_unsorted
   phase: ucoin
