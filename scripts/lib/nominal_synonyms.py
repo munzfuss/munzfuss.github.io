@@ -76,6 +76,33 @@ def _strip_region_prefixes(s: str) -> str:
     return ". ".join(parts[i:])
 
 
+# Mint cities that appear as a trailing «. Mint[ og Mint]» SUFFIX on some
+# Numista nominals (e.g. «4 Skilling Rigsmønt. København og Altona»). The
+# mint belongs in the `mint` field, never in the nominal — stripping the
+# suffix lets the coin merge with the mint-less form. Raw (un-diacritic-
+# folded) spellings, since the strip runs before _DIACRITIC_FOLD.
+_MINT_SUFFIX_WORDS = frozenset({
+    "københavn", "kobenhavn", "altona", "glückstadt", "gluckstadt",
+    "kongsberg", "christiania", "helsingør", "helsingor", "ribe",
+})
+
+
+def _strip_mint_suffix(s: str) -> str:
+    """Drop a trailing «. <Mint>[ og/and <Mint>]» segment when the LAST
+    «. »-delimited segment is composed ONLY of known mint names (+ the
+    connectors og / and / comma). Conservative: a segment with any non-mint
+    token (an abbreviation like «Conr.», a denomination like «Mark») is left
+    intact, so «100 Rd. Conr.» and «1 Thaler = 1/14 Cölln. Mark» are untouched.
+    """
+    if ". " not in s:
+        return s
+    head, _, tail = s.rpartition(". ")
+    tokens = [t for t in re.split(r"\s+og\s+|\s+and\s+|,\s*|\s+", tail.strip()) if t]
+    if tokens and all(t in _MINT_SUFFIX_WORDS for t in tokens):
+        return head.strip()
+    return s
+
+
 def _normalise_dor(s: str) -> str:
     """Unify «d'or» spellings: curly/straight apostrophe, stray space, and a
     missing space before «d'or» («Frederikd'or» → «frederik d'or»)."""
@@ -96,8 +123,15 @@ def _preprocess(s: str) -> str:
         s = s.replace(u, a)
     s = _normalise_dor(s)
     s = re.sub(r"\s*\([^)]*\)", "", s)   # drop parenthetical glosses «X (Y)» → «X»
+    # Worth-equivalence tail «X = Y[ = Z]» — «2 Thaler = 1/7 Cölln. Mark =
+    # 3.5 Gulden» / «1 Thaler = 1/14 Cölln. Mark»: everything from the first
+    # «=» on is an accounting-worth annotation, not part of the denomination.
+    # Same principle as the «, N <unit>» worth-gloss strip in NOMINAL_SYNONYMS;
+    # «=» never appears inside a real denomination, so the strip is safe.
+    s = re.sub(r"\s*=\s*.*$", "", s)
     s = re.sub(r"\s+", " ", s).strip()
     s = _strip_region_prefixes(s)
+    s = _strip_mint_suffix(s)
     for d, a in _DIACRITIC_FOLD.items():
         s = s.replace(d, a)
     return s
