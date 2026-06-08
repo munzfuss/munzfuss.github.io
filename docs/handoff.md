@@ -75,6 +75,14 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
 (290904↔348808, 290904↔c4h55, 348808↔291969).
 
 **DONE this session (latest first):**
+- ✅ **Davenport volume-fold** (`bc1f9d7` code, `92557b3` data). «EC II» = Davenport
+  «European Crowns 1600-1700» (a VOLUME, not a source artifact; numbering continuous, so
+  «Dav 3668» = «EC II 3668»). `normalise_catalog` step 4 drops a bare «N» from the dav
+  list when a volume-qualified «<VOL> N» (EC/GT/SG/BrSL) with the same trailing number is
+  present; bare-with-no-match is kept. Materialized on 145 coins / 9 entities (148 bare
+  lines, pure deletion, no re-convergence). This bare+qualified accumulation was a
+  side-effect of the multi-KM session's dav accumulation.
+- ✅ **Nominal synonym table**
 - ✅ **Numista multi-KM support + §9a catalogue accumulation** (`29b5de2` code, `c42c31d`
   data, submodule `d283dd2a`). `numista_canonical.parse_references` (API+chrome) now
   ACCUMULATES every distinct catalogue value into a deduped list instead of first-wins —
