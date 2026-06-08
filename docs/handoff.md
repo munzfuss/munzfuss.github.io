@@ -15,6 +15,62 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## composed_of re-validate + full re-merge (2026-06-09) — SHIPPED, 3 commits UNPUSHED
+
+The absorb stage is additive + STICKY: once a unified entry lands in a
+foundation's `composed_of`, no later run re-checked whether it still
+belonged. Earlier mis-groupings (and V1-bootstrap composed_of carried
+forward) persisted forever — KM 42 «8 Skilling» (`dk-tid-163034`) had
+dragged in «1 Denning» (0.44 g) + «4 Skilling lybsk» (1.822 g) + two
+«6 Skilling», polluting the 8-Skilling weight envelope.
+
+**(A) `_revalidate_composed_of` — `51a609c` (absorb code + danish_realm final).**
+New absorb-stage pass (default on; `--no-revalidate` to skip). Evicts a
+composed_of member iff its normalised nominal GENUINELY differs from the
+foundation's AND the two share NO agreeing type-level catalogue — the SAME
+nominal discriminator shipped in `match_pair`, applied to existing
+membership. **Uses the merge module's synonym-aware `_normalise_nominal`
+(imported as `_mg_normalise_nominal`), NOT v2_seed_writer's bare one** —
+else synonym pairs («1 Ducat» vs «1 Dukat») false-evict (caught in dry-run:
+18→12 once the normaliser was fixed). The weight-tier disambiguator is
+DELIBERATELY NOT used (same-nominal weight divergence = specimen variance,
+not a different coin; verified 24/38 weight-tier drops were same-nominal).
+Evicted members are surgically decontaminated off the host
+(`_surgical_decontaminate`: only their EXCLUSIVE weight/source values
+removed — orphan + remaining-member data preserved per §9a; twin-
+independent, no clean-snapshot needed), dropped from composed_of, and
+force-promoted standalone (reuses the over-merge-purge `forced_evict_promote`
+path) so they re-home; the discriminator then blocks re-absorption.
+danish_realm: 12 evictions / 8 hosts → 10 re-homed standalone + 2 matched
+into correct existing finals; **0 coins lost**.
+
+**(B) Nominal folds — `1d08444` (`lib/nominal_synonyms.py`).** Two residual-
+edge folds for the discriminator (issuer-PREFIX «Oldenburg. Taler» was
+already handled by `_strip_region_prefixes`): worth-equivalence tail strip
+(`= …` → "", handles «1 Thaler = 1/14 Cölln. Mark» + the trailing weight-
+standard gloss) + `_strip_mint_suffix` (drops trailing «. <Mint>[ og <Mint>]»
+when the segment is mint-only — «4 Skilling Rigsmønt. København og Altona»
+→ «4 skilling rigsmont»; conservative, leaves «100 Rd. Conr.» / «Cölln. Mark»).
+
+**(C) Full re-merge + re-absorb — `2fcde35` (22 seed_unified + 5 final + 19 cd).**
+Materialises the discriminator + both folds across ALL 22 entities (prior
+ship covered only 4). 26651 seeds → 17337 unified (9314 merges). **Seed
+conservation verified — ZERO seeds lost everywhere**; only `_unclassified`
+grew (+322 newly-harvested seeds entering the merge → classification
+backlog, NOT a loss). danish_norway/royal_holstein/bremen_verden finals
+net −6/−1/−1 from legitimate cross-source de-dup (all underlying seeds
+confirmed still reaching a final). KM 42 stays clean (idempotent).
+
+**Deferred / open after this task:**
+- **`_unclassified` +322 classification backlog** — newly-harvested seeds
+  now in `seed_unified/_unclassified.yml` awaiting entity routing.
+- **General re-validate re-homing across transitive over-merges** — the
+  current pass evicts identity-mismatches one-level; a transitivity-aware
+  variant (re-home dropped members that themselves anchor a sub-cluster)
+  was scoped but deferred as regression-prone — own focused session.
+- «= X» / «Rd. Conr.» nominals beyond the folds above are curator-territory
+  (genuinely ambiguous worth-equivalences) — left as-is.
+
 ## Catalog-index normalization + KMM thinning (2026-06-08) — SHIPPED, 5 commits UNPUSHED
 
 Started as the «1 Speciedaler Christian IV (Hede 55)» 3-problem task, grew into a
