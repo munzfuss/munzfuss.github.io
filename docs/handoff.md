@@ -75,6 +75,15 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
 (290904↔348808, 290904↔c4h55, 348808↔291969).
 
 **DONE this session (latest first):**
+- ✅ **Catalog-index sort + range-collapse** (`94d6213`). `compute._compute_catalog_groups`
+  now expands every index value to its integer members (existing ranges + overlapping/
+  adjacent inputs merge: `23-24`+`25-26`+`26` → `23-26`), collapses runs of ≥3 consecutive
+  ints into `min-max`, keeps 1-2 runs as individual numbers, and sorts the whole group.
+  Applies to ALL index groups (Schou/Sieg/KM/Hede/Lange/…); non-integer tokens (93A, 77.1,
+  register-qualified) never collapse and keep parent-before-sub-variant order. Verified on
+  KM-42: `Schou# 21, 24, 25, 28, 32-36, 40, 42, 46-48, 51, 52, 56-59, 61, 62, 64, 68, 71-76,
+  83, 89, 90, 93, 95, 97-99`. NB: a 2-element run renders as two numbers per the ≥3 rule
+  (one-line threshold change if the user later wants ≥2).
 - ✅ **Rhinsk Gylden fuss fix** (`896ffef` classifier, `2dc3adf` data). Christian III 1546
   Flensburg gold Rhinsk Gylden (Hede c3h14 «1 Rhinsk Gylden» + c3h15 «2 Rhinsk Gylden»)
   were mis-placed in the SILVER `8_daler_lybsk_fod` by the over-broad Flensborg mint-anchor
@@ -129,9 +138,6 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
   `galster-hg-gej`. They belong in `rhinsk_gylden_fod` too — classify them (the metal-gate
   fix means a re-run of auto_classify won't mis-route them to silver). «1 Denning» (c4h169)
   = Russian-kopeck-imitation trade coin (1619 Glückstadt) — stays soll-less, NOT Rhinsk.
-- 🟢 **Schou range-collapse (display feature, user-asked).** ≥3 CONSECUTIVE Schou numbers
-  render as a range («33,34,35,36» → «33-36»; «71-76»; «97-99»). Display-time compaction
-  of the Schou list (e.g. in the catalog-ref renderer).
 - 🟢 **Foundation-mint pollution (systemic note).** c4h55's foundation had accumulated a
   wrong mint (Wolfenbüttel) from historical bad merges; the absorb matches against the
   STORED foundation mint (re-derives only in enrich, AFTER matching), so the pollution
