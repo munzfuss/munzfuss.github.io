@@ -61,19 +61,44 @@ ikke affotograferet»):
 Hidden via `display: false` (data kept §9a — not deleted); 3266 surplus hidden, 0 weight
 hidden. Constants `_KEEP_KMM_IMAGE_ONLY=3` / `_KEEP_KMM_PURE=1`.
 
+**(D) Verified-mint divergence disqualifier — `775660e` (code) + `e8f6215` (data).**
+RESOLVED the 290904 question + the whole Christian-IV Wolfenbüttel war-coinage cluster.
+`match_pair` now blocks a merge when both coins have VERIFIED disjoint scalar mints AND
+no strong TYPE-level catalogue tie (KM/Hede/Galster/Dav/Fr/Lange — not Schou/Sieg). So
+the Wolfenbüttel coins (mint Wolfenbüttel verified) no longer false-merge into København
+Hede 55 (mint Kopenhagen verified) via colliding Schou. `_shares_type_level_catalog`
+tolerates case-insensitive + numeric-core + bare-vs-dot-parent («579»≡«579.1»). Full
+re-merge of all 22 entities: **0 verified-mint splits of legit groups** (the 1 candidate
+was a dot-parent gap, fixed); effect contained to danish_realm. KMM 290904 + 291969 now
+separate seed_unsorted Wolfenbüttel coins; KMM 348808 (genuine Hede 55) stays in c4h55;
+foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges added
+(290904↔348808, 290904↔c4h55, 348808↔291969).
+
 **OPEN / next:**
-- 🔴 **290904 verdict (awaiting user).** PRO RELIGIONE 1627 Wolfenbüttel «Sch 5» (28.35 g,
-  KMM 290904, 3 photos) is still in c4h55 (`dk-tid-97358` composed_of) because it merged
-  at cross-source with KMM 348808 (genuine Hede 55 «daler» «H 55» 28.48 g) on year 1627 +
-  weight ~28.4 g. Splitting needs un-nesting 290904 from 348808 in `unified-kmk-290904`.
-  (The two clear anomalies KMM 290903 58.9 g + 291098 1.89 g gutergros were already
-  removed — sticky pre-2026-05-22 bad-matches the weight-tier-1 matcher now rejects.)
-- 🟡 **§9a weight-thinning is NOT auto-run in the pipeline** (on-demand
-  `thin_intra_subvariant_specimens.py` only). The «weight → keep 3 min/mid/max» the user
-  referenced is therefore NOT applied automatically in absorb output. Decide: move it into
-  absorb (like the new KMM thinning) or keep curator-on-demand.
-- 🟢 2 residual `km#` overflow (`km-683-1…`, `numismaster-65993`) — km excluded from the
-  fold (register dict-form complexity); add register-aware km-fold if wanted.
+- 🟡 **§9a weight-thinning → pipeline (user-confirmed «так», NOT yet built).** The
+  min/mid/max-by-weight specimen thinning is currently a HARD-CODED per-coin script
+  (`thin_intra_subvariant_specimens.py`, 2026-05-09 audit DROPS dict), not a general
+  absorb pass. Generalising needs a DECISION: `FieldValue` (weight entries) has no
+  `display` field (`_StrictBase`) — so either (1) add `display` to FieldValue + renderer/
+  compute support to HIDE intermediates (data kept, like KMM thinning), or (2) DELETE
+  them (§9a-style). User leaned «like KMM thinning» → option 1, but it's a schema+render
+  change. + reliable sub-variant grouping from the source string.
+- 🟡 **km multi-value handling (user-asked).** A coin can carry multiple KMs (sub-types OR
+  fully separate KMs — seen on Numista). Update the parser/builder + the km-fold (km is
+  excluded from `normalise_catalog` now → 2 residual `km#` overflow on `km-683-1…` +
+  `numismaster-65993`, both bare-KM already covered by the km field; «683.1 / 683.2» is
+  also a malformed slash-scalar).
+- 🟡 **2 Rhinsk Gylden / 8_daler_lybsk_fod fraction confused.** Did NOT apply fraction «2»
+  (would give Δ −90 %: fuss base «1» = 1 Daler 26 g, not 1 Rhinsk Gylden 2.46 g). The
+  existing «1 Rhinsk Gylden» (c3h14) is ALSO mis-fractioned «1». Needs the Rhinsk-Gylden↔
+  Daler-Lybsk rate, or leave soll-less. «1 Denning» (c4h169) = special Russian-kopeck-
+  imitation trade coin (1619, Glückstadt) — stays soll-less.
+- 🟢 **Foundation-mint pollution (systemic note).** c4h55's foundation had accumulated a
+  wrong mint (Wolfenbüttel) from historical bad merges; the absorb matches against the
+  STORED foundation mint (re-derives only in enrich, AFTER matching), so the pollution
+  survived re-runs until cleaned by hand. Other foundations may carry similar pollution —
+  a «re-validate existing composed_of members against the current matcher» absorb pass
+  would self-heal both this and the sticky-member problem.
 - 🟢 `mb` index (24 % xEntity, 0 % xRuler) left bare — verify restart axis + scope if
   per-region.
 
