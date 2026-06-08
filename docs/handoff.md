@@ -75,6 +75,15 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
 (290904↔348808, 290904↔c4h55, 348808↔291969).
 
 **DONE this session (latest first):**
+- ✅ **Full Numista re-parse materialization** (submodule `b77926fe` 398 sidecars; main
+  data commit + classification_decisions). RE-PARSE only (no re-harvest — cache unchanged,
+  0 API quota). `parse_numista --force` → `build_numista_seed` → `merge` (15 entities) →
+  `absorb` (15). Materialized: 398 types' §9a multi-ref list-form (hede/sieg/schou/km/lange/
+  fr/dav) + the session's synonym/Dav-fold/KM-hygiene across all entities. Side-effects of
+  the full --force: **+322 newly-parsed types → `_unclassified`** (harvested-but-never-parsed;
+  NOT rendered) + **+13 new coins → landgrafschaft_hessen_kassel** (final 77→86, pending
+  classification). De-dup from richer refs: danish_realm 7492→7482, royal_holstein 946→944,
+  danish_norway 2102→2101 (correct merges, NOT loss; validate OK, build OK).
 - ✅ **Davenport volume-fold** (`bc1f9d7` code, `92557b3` data). «EC II» = Davenport
   «European Crowns 1600-1700» (a VOLUME, not a source artifact; numbering continuous, so
   «Dav 3668» = «EC II 3668»). `normalise_catalog` step 4 drops a bare «N» from the dav
@@ -165,15 +174,11 @@ foundation mint cleaned [Kopenhagen, Wolfenbüttel] → Kopenhagen. 3 no_merges 
   discriminator code is reconstructable from this entry (wildcard helper + type-level-catalog
   gate, mirroring the §9.4 mint discriminator at `merge_seeds_cross_source.py` ~L1735). NB:
   KM-42's anomalies don't NEED this (weight-tier-1 + the re-validate pass handle them).
-- 🟢 **Full Numista re-parse to materialize §9a accumulation across all entities**
-  (follow-up to the multi-KM fix above). The parser/merge/hygiene code is shipped, but
-  only danish_realm + gottorp_duchy seeds were re-run. To materialize lange/dav/fr multi-
-  ref accumulation for the other 14 entities (16 multi-ref types beyond the 5 KM ones),
-  run the FULL pipeline deliberately: `parse_numista --force` → `build_numista_seed` →
-  `merge_seeds_cross_source` (all) → `absorb_seeds_into_final_v2` (all), with a coin-count
-  + diff regression check per entity. NB: re-merge may resolve more cross-source dups
-  (richer catalog refs) — expect small final-count drops (de-dup, not loss; verify
-  composed_of preserves the absorbed seed ids).
+- 🟡 **Classify the 13 new Hesse-Kassel Numista coins** (`data/v2/classification_decisions/
+  landgrafschaft_hessen_kassel.yml` pending list). They entered as `seed_unsorted` in the
+  full re-parse below — assign fuss/phase (or fix matcher rules) per PB Phase-4. The 322
+  new `_unclassified` Numista types are NOT rendered and need no action unless a future
+  classification pass routes them.
 - 🟢 **Rhinsk Gylden seed_unsorted tail (follow-up to the c3h14/c3h15 fix above).** 3 gold
   Rhinsk Gylden still sit in `seed_unsorted`: `f2h7g` (Frederik II), `galster-hg-27`,
   `galster-hg-gej`. They belong in `rhinsk_gylden_fod` too — classify them (the metal-gate
