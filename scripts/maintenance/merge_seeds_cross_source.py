@@ -1417,6 +1417,54 @@ def _mints_overlap(a, b):
     return False
 
 
+# Type-level catalogues: one number == one numismatic TYPE within scope
+# (KM register, Hede reign, Galster volume, the global Dav/Fr/Lange/mb/Numista/
+# Bruun-collection ids). A shared+agreeing ref here ties two records as the
+# SAME type (so a verified mint disagreement between them is a mint-VARIANT,
+# not a different coin). The collision-prone sub-variant refs Schou/Sieg/NMD/
+# Aagaard/Schive/Skaare are EXCLUDED — a shared Schou number alone does not
+# establish type identity (§9.4: Schou restarts per reign and collides across
+# minting contexts, e.g. Wolfenbüttel war coinage «Sch 5» vs København
+# Speciedaler Schou 5).
+_TYPE_LEVEL_CATALOGUES = frozenset({
+    "km", "hede", "galster", "dav", "fr", "lange", "davenport",
+    "friedberg", "mb", "numista", "bruun_collection_id",
+})
+
+
+def _type_level_numeric_core(v: str) -> str:
+    """«8226A» → «8226»: strip a trailing 1-2 letter sub-variant suffix.
+    Module-level twin of the nested helper in `_catalog_chain_consistent`."""
+    m = re.match(r"^(\d+(?:\.\d+)?)[a-z]{1,2}$", v.strip())
+    return m.group(1) if m else v.strip()
+
+
+def _shares_type_level_catalog(refs_a: dict, refs_b: dict) -> bool:
+    """True iff refs_a and refs_b share an AGREEING type-level catalogue ref
+    (scope-aware: «km/dk», «hede/christian iv» strip to «km», «hede»). Uses
+    case-insensitive + numeric-core («55A»≡«55») value tolerance, matching
+    `_catalog_chain_consistent`."""
+    for k in (set(refs_a) & set(refs_b)):
+        if k.split("/", 1)[0] not in _TYPE_LEVEL_CATALOGUES:
+            continue
+        va = {x.strip().lower() for x in str(refs_a[k]).split("|")}
+        vb = {x.strip().lower() for x in str(refs_b[k]).split("|")}
+        if va & vb:
+            return True
+        ca = {_type_level_numeric_core(x) for x in va}
+        cb = {_type_level_numeric_core(x) for x in vb}
+        if ca & cb:
+            return True
+        # Bare-vs-dot-parent tolerance («579» ≡ «579.1»), matching
+        # `_catalog_chain_consistent` — KM sub-variants of one parent type
+        # are the SAME type for the mint-discriminator's purposes.
+        pa = {m.group(1) for x in va if (m := re.match(r"^(\d+)\.\d+$", x))}
+        pb = {m.group(1) for x in vb if (m := re.match(r"^(\d+)\.\d+$", x))}
+        if (ca & pb) or (cb & pa):
+            return True
+    return False
+
+
 # ---------------------------------------------------------------------------
 # Match algorithm
 # ---------------------------------------------------------------------------
@@ -1674,6 +1722,25 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     fallback["years"] = _years_overlap(coin_a, coin_b)
     fallback["fineness"] = _fineness_within(coin_a, coin_b)
     fallback["mint"] = _mints_overlap(coin_a, coin_b)
+
+    # Verified-mint divergence disqualifier (§9.4, user direction 2026-06-08).
+    # `_mints_overlap` returns False ONLY when both sides have a VERIFIED,
+    # disjoint mint (per §4 an unverified guess can't disprove). That is a
+    # different-coin signal UNLESS a strong TYPE-level catalogue ref ties the
+    # two as a mint-VARIANT of one type. Without that tie, block — otherwise
+    # the §9a multi-specimen tolerance below would let a bare-Schou collision
+    # carry the merge. Catches Christian-IV's 1627 Wolfenbüttel war coinage
+    # (mint Wolfenbüttel verified) false-merging into the København Hede 55
+    # (mint Kopenhagen verified) via a colliding Schou number.
+    if fallback["mint"] is False and not _shares_type_level_catalog(
+            refs_a, refs_b):
+        why.append(
+            f"mint: {coin_a.get('mint')!r} ≠ {coin_b.get('mint')!r} (both "
+            "verified, disjoint) AND no strong type-level catalogue tie "
+            "(only Schou/Sieg or none) — different coin (§9.4 mint discriminator)"
+        )
+        return {"decision": "no_match", "primary": primary,
+                "fallback": fallback, "why": why}
 
     # Confidence calc
     primary_true = sum(1 for v in primary.values() if v is True)
