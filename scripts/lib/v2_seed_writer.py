@@ -186,6 +186,7 @@ from lib.mint_registry import (  # noqa: E402
     CANON_TO_DISPLAY as _MINT_CANON_TO_DISPLAY,
 )
 from lib.nominal_synonyms import normalise_nominal as _fold_denom  # noqa: E402
+from lib.catalog_codes import normalise_catalog as _fold_catalog_indices  # noqa: E402
 
 
 def _same_denomination(head_word: str, paren_word: str) -> bool:
@@ -1074,6 +1075,13 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
             _, n_split = _normalise_catalog(catalog)
             if n_split:
                 stats["catalog_split"] += n_split
+            # §9.4 index hygiene: fold `others: <code># N` into typed
+            # list-fields (case-insensitive code) + case-insensitive
+            # value de-dup («55C» / «55c» → one «55C»).
+            n_fold = _fold_catalog_indices(catalog)
+            if n_fold:
+                stats.setdefault("catalog_index_normalised", 0)
+                stats["catalog_index_normalised"] += n_fold
         # fineness-implies-metal rule: a source that attests fineness
         # has by definition also attested the metal (you cannot publish
         # «.875» without knowing whether it's silver or gold). When
@@ -1362,6 +1370,9 @@ def write_v2_seed(
                 if isinstance(catalog, dict):
                     _, n_cat = _normalise_catalog(catalog)
                     if n_cat:
+                        file_normalised += 1
+                    # §9.4 index hygiene (fold others→typed + case-dedup)
+                    if _fold_catalog_indices(catalog):
                         file_normalised += 1
                 # fineness-implies-metal rule
                 if (c.get("metal")

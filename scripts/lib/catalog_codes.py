@@ -244,3 +244,114 @@ def catalog_from_ref_dict(
         for elem in values:
             _emit(field, label, elem)
     return out
+
+
+# ---------------------------------------------------------------------------
+# Catalog hygiene — normalise indices before display / comparison
+# (CLAUDE.md §9.4, user direction 2026-06-08).
+# ---------------------------------------------------------------------------
+
+# An `others` token shaped «<code># <value>». The code is letters (+ volume
+# words / hyphen); the value starts with a digit (clean catalogue number).
+# Values beginning with a non-digit (e.g. «cf. 16», «unlisted») are NOT
+# matched — those stay in `others` per anti-pattern #5 (cf-/unlisted-forms
+# never become positive typed catalogue fields).
+_OTHERS_TOKEN_RE = re.compile(
+    r"^\s*([A-Za-zÆØÅæøåöüß][\w.\- ]*?)\s*#\s*(\d[\w.,/\- ]*?)\s*$"
+)
+# Sub-variant suffix = trailing run of letters on a catalogue value
+# («55C» → «C», «8226A» → «A»). Catalogue convention writes it UPPER-case;
+# used to pick the canonical representative among case-variants.
+_SUFFIX_RE = re.compile(r"[A-Za-zÆØÅæøåöü]+$")
+
+
+def _suffix_is_upper(v: str) -> bool:
+    m = _SUFFIX_RE.search(v.strip())
+    return bool(m) and m.group(0).isupper()
+
+
+def _dedup_values_ci(values: list) -> list:
+    """Case-insensitive, order-preserving de-dup of catalogue ref values.
+
+    Among case-variants («55C» / «55c») keep ONE: prefer the variant whose
+    alphabetic suffix is UPPER-case (catalogue convention), else first-seen.
+    Numeric-only values are unaffected (no case to fold)."""
+    chosen: dict[str, str] = {}
+    order: list[str] = []
+    for v in values:
+        s = str(v).strip()
+        if not s:
+            continue
+        k = s.lower()
+        if k not in chosen:
+            chosen[k] = s
+            order.append(k)
+        elif _suffix_is_upper(s) and not _suffix_is_upper(chosen[k]):
+            chosen[k] = s
+    return [chosen[k] for k in order]
+
+
+def normalise_catalog(catalog: dict) -> int:
+    """In-place catalog hygiene. Idempotent. Returns count of mutations.
+
+    Two operations, both case-insensitive:
+      1. FOLD — an `others` entry «<code># <value>» whose <code> (lower-cased)
+         maps to a typed, list-capable CatalogRefs field is moved INTO that
+         field (list-form when it gains a 2nd distinct value). Folded entries
+         leave `others`; the key is dropped when it empties. Codes the schema
+         does NOT type (aagaard, lott, mb_swedish, …) stay in `others`.
+      2. DEDUP — every list-form catalogue field is de-duplicated case-
+         insensitively («Hede 55C» + «55c» → one «55C»); a singleton list
+         collapses back to scalar.
+
+    This is the canonical «normalise indices, then compare/display» pass:
+    producer-side lower-case overflow («schou# 14») and case-variant
+    duplicates («55C» vs «55c») reconcile to one typed, deduped, case-
+    canonical form. Safe to re-apply on every seed/merge/absorb run."""
+    if not isinstance(catalog, dict):
+        return 0
+    changes = 0
+    schema_fields = schema_catalog_fields()
+    list_fields = schema_list_catalog_fields()
+
+    # 1. FOLD others → typed list-field
+    others = catalog.get("others")
+    if isinstance(others, list) and others:
+        keep: list = []
+        for tok in others:
+            field = value = None
+            if isinstance(tok, str):
+                m = _OTHERS_TOKEN_RE.match(tok)
+                if m:
+                    field = CATALOG_CODE_MAP.get(m.group(1).strip().lower())
+                    value = m.group(2).strip()
+            if (field and field in schema_fields and field in list_fields
+                    and value):
+                cur = catalog.get(field)
+                if cur is None:
+                    catalog[field] = value
+                else:
+                    cur_list = list(cur) if isinstance(cur, list) else [cur]
+                    if value.lower() not in {str(x).lower() for x in cur_list}:
+                        cur_list.append(value)
+                    catalog[field] = cur_list
+                changes += 1
+            else:
+                keep.append(tok)
+        if keep:
+            catalog["others"] = keep
+        else:
+            catalog.pop("others", None)
+
+    # 2. DEDUP list-form values case-insensitively + collapse singletons
+    for field in list(catalog.keys()):
+        if field == "others" or field not in list_fields:
+            continue
+        val = catalog.get(field)
+        if isinstance(val, list):
+            deduped = _dedup_values_ci(val)
+            collapsed = deduped[0] if len(deduped) == 1 else deduped
+            if collapsed != val:
+                catalog[field] = collapsed
+                changes += 1
+    return changes

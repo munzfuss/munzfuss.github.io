@@ -90,6 +90,7 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     _catalog_refs,
     _shares_unique_id_ref,
 )
+from lib.catalog_codes import normalise_catalog as _fold_catalog_indices  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -556,6 +557,14 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
                 out["catalog"][k] = filtered[0]
             else:
                 out["catalog"][k] = filtered
+
+    # §9.4 index hygiene on the assembled catalog: fold any `others:
+    # <code># N` overflow into its typed list-field (case-insensitive
+    # code) and de-dup list-form values case-insensitively («Hede 55C»
+    # + «55c» → one «55C»). Runs whenever the entry has a catalog dict
+    # (including the bulk-promote / single-member path skipped above).
+    if isinstance(out.get("catalog"), dict):
+        _fold_catalog_indices(out["catalog"])
 
     # Sources union — preserve curator-added entries on the foundation
     # alongside fresh seed-source citations, deduplicated by URL (single-
@@ -1978,6 +1987,20 @@ def main() -> int:
             V2_FINAL.mkdir(parents=True, exist_ok=True)
             final_path = V2_FINAL / f"{ent}.yml"
             prior_doc = _load_yaml(final_path)
+            # §9.4 blanket index hygiene: fold `others: <code># N` → typed
+            # list-field + case-insensitive value de-dup on EVERY final
+            # entry — including V1-carryover / prior-absorb foundations that
+            # were not re-enriched this run (no current seed_unified member),
+            # whose stale overflow would otherwise survive. Skips entries
+            # that froze `catalog` via `_curation_holds`.
+            for _fc in result["enriched_final_entries"]:
+                if not (isinstance(_fc, dict)
+                        and isinstance(_fc.get("catalog"), dict)):
+                    continue
+                _h = _fc.get("_curation_holds")
+                _hk = set(_h.keys() if isinstance(_h, dict) else (_h or []))
+                if "catalog" not in _hk:
+                    _fold_catalog_indices(_fc["catalog"])
             final_path.write_text(
                 _emit_final_yaml(ent, result["enriched_final_entries"],
                                   prior_doc),

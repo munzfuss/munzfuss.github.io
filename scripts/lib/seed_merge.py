@@ -271,6 +271,21 @@ def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
             continue
         del existing[key]
 
+    # §9.4 index hygiene on the MERGED catalog (post deep-merge). The
+    # deep-merge keeps existing sub-keys verbatim, so a stale scalar
+    # `schou: "20-21"` + `others: [schou# N]` shape survives the merge
+    # even though the fresh builder now emits clean list-form. Fold the
+    # `others: <code># N` overflow into its typed list-field (case-
+    # insensitive code) and de-dup list values case-insensitively
+    # («55C» / «55c» → one «55C»). Skipped when the curator froze
+    # `catalog` via `_curation_holds`.
+    if "catalog" not in holds and isinstance(existing.get("catalog"), dict):
+        try:
+            from lib.catalog_codes import normalise_catalog as _fold_cat
+        except Exception:  # pragma: no cover
+            from catalog_codes import normalise_catalog as _fold_cat
+        _fold_cat(existing["catalog"])
+
     return existing
 
 

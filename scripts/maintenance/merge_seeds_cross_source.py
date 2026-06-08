@@ -213,6 +213,7 @@ def _normalise_metal(metal, fineness):
 # compatibility — `_normalise_nominal` is called from many places
 # in this module.
 from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared
+from lib.catalog_codes import normalise_catalog as _fold_catalog_indices
 
 
 def _normalise_nominal(nominal):
@@ -841,7 +842,7 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         "friedberg": "fr",
         "davenport": "dav",
     }
-    for field in ("sieg", "schou", "lange", "fr", "dav", "mb",
+    for field in ("lange", "fr", "dav", "mb",
                   "jensen_skjoldager", "schive", "skaare", "friedberg",
                   "davenport", "numista", "bruun_collection_id"):
         val = cat.get(field)
@@ -865,6 +866,43 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
             refs[canonical] = "|".join(joined)
         else:
             refs[canonical] = new_val
+
+    # ── Catalogue-index RESTART-SCOPE registry (§9.4, user direction
+    # 2026-06-08: «всі індекси … зважати на те коли вони рестартують») ──
+    # Two records that share an index VALUE identify the same coin ONLY
+    # when they also share that index's RESTART-SCOPE. Each catalogue
+    # restarts its numbering along a different dimension:
+    #
+    #   per RULER    Hede, Schou, Sieg — Danish royal reign-numbered
+    #                catalogues; sequence restarts at 1 each reign.
+    #                (empirical xRuler-collision: Hede 59 %, Schou 64 %,
+    #                Sieg 42 % of distinct values span ≥2 reigns).
+    #                → key «<idx>/<ruler>».  hede + schou handled in their
+    #                own blocks (hede above, schou+sieg here).
+    #   per VOLUME   Galster — keyed «galster/<vol>» (vol ≈ reign).
+    #   per REGISTER KM — Krause restarts per country/region; keyed
+    #                «km/<register>» (xEntity-collision 43 %).
+    #   GLOBAL       Friedberg, Davenport(Dav), Numista N#,
+    #                bruun_collection_id, Lange, mb, NMD, Schive, Skaare,
+    #                Jensen-Skjoldager, FP, Behrens, … — continuous /
+    #                world catalogues (all <5 % xRuler, ~0–6 % xEntity):
+    #                bare key, handled by the global loop above.
+    #
+    # Schou + Sieg share the reign-scope derivation (ruler field first,
+    # else the hede_volume code which encodes the reign). Within the
+    # per-entity matcher the ruler is the right granularity (Danish vs
+    # Norwegian numbering is already separated by entity).
+    _reign = _normalise_ruler(coin.get("ruler")) or (
+        cat.get("hede_volume") or "").strip()
+    for _ridx in ("schou", "sieg"):
+        _v = cat.get(_ridx)
+        if _v is None:
+            continue
+        _key = f"{_ridx}/{_reign}" if _reign else _ridx
+        if isinstance(_v, list):
+            refs[_key] = "|".join(sorted(str(s).strip() for s in _v))
+        else:
+            refs[_key] = str(_v).strip()
 
     galster = cat.get("galster")
     if galster is not None:
@@ -984,7 +1022,10 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
         va, vb = refs_a[k], refs_b[k]
         sa = set(va.split("|"))
         sb = set(vb.split("|"))
-        if sa & sb:
+        # Case-insensitive value match (§9.4 index normalisation, user
+        # direction 2026-06-08): «55C» ≡ «55c». Compare lower-cased sets
+        # so a pure case-variant counts as agreement, not disagreement.
+        if {x.lower() for x in sa} & {x.lower() for x in sb}:
             agreeing.append(k)
             continue
         # Loosened match: compare numeric cores (8226A ≡ 8226). Applied
@@ -1021,11 +1062,19 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     #   - Hede agrees + Sieg differs → same coin (Sieg-1971 vs modern)
     #   - Galster agrees + Schou + bruun_coll_id differ → same coin
     #     (multi-specimen merge per §9a)
+    # Scope-aware sub-variant test: scoped keys («schou/christian iv»,
+    # «hede/frederik iii», «galster/c4g») carry a «base/scope» shape.
+    # Strip the scope so the membership test matches the bare catalogue
+    # name in SUB_VARIANT_REFS. Without this, ruler-scoped `schou` keys
+    # would be mis-classified as type-level (they contain «/») and the
+    # «Hede agrees + Schou differs → same coin» tolerance would break.
+    def _base(k):
+        return k.split("/", 1)[0]
     non_subvariant_agree = [
-        k for k in agreeing if k not in SUB_VARIANT_REFS
+        k for k in agreeing if _base(k) not in SUB_VARIANT_REFS
     ]
     non_subvariant_disagree = [
-        k for k in disagreeing if k not in SUB_VARIANT_REFS
+        k for k in disagreeing if _base(k) not in SUB_VARIANT_REFS
     ]
     if (len(non_subvariant_agree) >= 1
             and not non_subvariant_disagree):
@@ -1675,7 +1724,9 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
             sa = set(va.split("|")) if isinstance(va, str) else {str(va)}
             sb = set(vb.split("|")) if isinstance(vb, str) else {str(vb)}
             overlap = bool(sa & sb)
-            is_subvar = k in SUB_VARIANT_REFS_FOR_MULTISPECIMEN
+            # Scope-aware: «schou/christian iv» → base «schou» so the
+            # ruler-scoped Schou key still reads as a sub-variant ref.
+            is_subvar = k.split("/", 1)[0] in SUB_VARIANT_REFS_FOR_MULTISPECIMEN
             if not overlap and not is_subvar:
                 # Non-sub-variant disagreement disqualifies
                 return False
@@ -2795,6 +2846,13 @@ def build_unified(members: list[dict], unified_id: str,
     # Catalog deep-merge (entity-aware KM)
     cat, cat_conflicts = _deep_merge_catalog(members, entity_id)
     if cat:
+        # §9.4 index hygiene on the assembled unified catalog: fold any
+        # `others: <code># N` overflow into its typed list-field (case-
+        # insensitive code) + case-insensitive value de-dup. Keeps the
+        # seed_unified layer clean so the matcher AND the absorb both see
+        # normalised indices (a residual «schou# 185» in `others` would
+        # otherwise be invisible to the matcher and survive to the final).
+        _fold_catalog_indices(cat)
         out["catalog"] = cat
     conflicts.extend(cat_conflicts)
 
