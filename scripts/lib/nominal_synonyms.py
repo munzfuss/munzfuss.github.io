@@ -87,6 +87,11 @@ def _normalise_dor(s: str) -> str:
 
 def _preprocess(s: str) -> str:
     """Format-noise normalisation applied before the synonym table."""
+    # Separate a mixed-number quantity from a following vulgar fraction so
+    # «1½» → «1 ½» → «1 1/2» (not the garbled «11/2»). Covers EVERY unicode
+    # fraction, any whole part («2½», «1¼», «1¾», …). The space lets the
+    # leading-«1 » strip below correctly skip a «1 1/2» mixed number.
+    s = re.sub(r"(?<=\d)(?=[½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])", " ", s)
     for u, a in _UNICODE_FRACTIONS.items():
         s = s.replace(u, a)
     s = _normalise_dor(s)
@@ -245,6 +250,9 @@ def normalise_nominal(nominal: str | None) -> str:
         s = re.sub(pattern, replacement, s)
     # Strip leading «1 » (implicit-one quantifier). Applied AFTER synonyms
     # so «1 Rose Noble» → «1 rosenobel» → «rosenobel» works correctly.
-    # `^1\s+` won't touch «1/2», «1.5», «10», «1A», «2 Nobles».
-    s = re.sub(r"^1\s+", "", s)
+    # `^1\s+` won't touch «1/2», «1.5», «10», «1A», «2 Nobles». The
+    # negative-lookahead `(?!\d)` protects a «1 1/2» mixed number (the
+    # leading «1» is the whole part, NOT the implicit-one quantifier) —
+    # otherwise «1½ Daler» would collapse to «1/2 daler».
+    s = re.sub(r"^1\s+(?!\d)", "", s)
     return s
