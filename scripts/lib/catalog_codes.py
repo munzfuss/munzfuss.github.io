@@ -270,6 +270,43 @@ def _suffix_is_upper(v: str) -> bool:
     return bool(m) and m.group(0).isupper()
 
 
+def _clean_dav_value(v: str) -> str:
+    """Strip the stray «#» some sources attach to a Davenport volume code
+    («EC II# 3679» → «EC II 3679», «EC II#3529» → «EC II 3529»). A catalogue
+    number never contains «#», so removing it + collapsing whitespace is safe."""
+    if not isinstance(v, str) or "#" not in v:
+        return v
+    return re.sub(r"\s+", " ", v.replace("#", " ")).strip()
+
+
+def _dav_volume(v: str) -> str | None:
+    """The volume prefix of a Davenport value («EC II 3679» → «EC II»), or
+    None for a bare number («3679»). A value is volume-qualified when it has
+    >1 whitespace-token and the first token does NOT start with a digit."""
+    toks = str(v).split()
+    if len(toks) > 1 and not toks[0][:1].isdigit():
+        return " ".join(toks[:-1])
+    return None
+
+
+def _promote_bare_dav(dav_list: list) -> list:
+    """When a Davenport list carries exactly ONE distinct volume among its
+    qualified members, promote every bare number to that volume («[EC II 3679,
+    3679A]» → «[EC II 3679, EC II 3679A]»). Davenport numbering is continuous
+    within a volume, so a bare number sitting beside a single-volume sibling
+    belongs to that same volume. Ambiguous lists (0 or ≥2 volumes) are left
+    untouched — the volume of a lone bare number is unknowable."""
+    vols = {_dav_volume(v) for v in dav_list}
+    vols.discard(None)
+    if len(vols) != 1:
+        return dav_list
+    vol = next(iter(vols))
+    return [
+        f"{vol} {v}".strip() if _dav_volume(v) is None else v
+        for v in dav_list
+    ]
+
+
 def _dedup_values_ci(values: list) -> list:
     """Case-insensitive, order-preserving de-dup of catalogue ref values.
 
@@ -323,8 +360,14 @@ def normalise_catalog(catalog: dict) -> int:
             if isinstance(tok, str):
                 m = _OTHERS_TOKEN_RE.match(tok)
                 if m:
-                    field = CATALOG_CODE_MAP.get(m.group(1).strip().lower())
-                    value = m.group(2).strip()
+                    # map_catalog_token (not the bare CATALOG_CODE_MAP) so a
+                    # volume-qualified Davenport code «Dav EC II# 3679» folds
+                    # to dav «EC II 3679» instead of staying a dead others
+                    # token next to a redundant dav field.
+                    mapped = map_catalog_token(m.group(1).strip(),
+                                               m.group(2).strip())
+                    if mapped and mapped[0] != "others":
+                        field, value = mapped
             if (field and field in schema_fields and field in list_fields
                     and value):
                 cur = catalog.get(field)
@@ -342,6 +385,38 @@ def normalise_catalog(catalog: dict) -> int:
             catalog["others"] = keep
         else:
             catalog.pop("others", None)
+
+    # 1b. SLASH-SPLIT multi-value scalars + clean Davenport «#» artefacts.
+    #     A scalar «A / B» in any list-capable catalogue field is two values
+    #     (ucoin / Numista pack sub-variants this way: «125A / 125B», «138.1 /
+    #     138.2», «3679 / 3679A»). Left unsplit, the value matches NEITHER half
+    #     — an unsplit «125A / 125B» equals neither «125A» nor «125B», silently
+    #     blocking a cross-source merge of the same coin AND rendering an ugly
+    #     joined string. km keeps its own decimal-comma-aware split below; this
+    #     handles every other list-capable field. For `dav`, also strip the
+    #     stray volume «#» («EC II# 3679» → «EC II 3679») on every value.
+    for field in list_fields:
+        if field == "km":
+            continue
+        val = catalog.get(field)
+        if val is None:
+            continue
+        raw = val if isinstance(val, list) else [val]
+        out: list = []
+        for v in raw:
+            if isinstance(v, str):
+                for part in v.split("/"):
+                    part = part.strip()
+                    if field == "dav":
+                        part = _clean_dav_value(part)
+                    if part:
+                        out.append(part)
+            else:
+                out.append(v)
+        new_val = out[0] if len(out) == 1 else out
+        if new_val != val:
+            catalog[field] = new_val
+            changes += 1
 
     # 2. DEDUP list-form values case-insensitively + collapse singletons
     for field in list(catalog.keys()):
@@ -390,38 +465,47 @@ def normalise_catalog(catalog: dict) -> int:
             catalog["km"] = new_km
             changes += 1
 
-    # 4. Davenport volume-fold: Davenport publishes in century-tagged
+    # 4. Davenport volume normalisation. Davenport publishes in century-tagged
     #    volumes («EC II» = European Crowns 1600-1700, «EC III» = 1700-1800,
     #    «GT III», «SG», «BrSL», …) but the numbering is CONTINUOUS — «Dav
     #    3668» and «EC II 3668» are the SAME reference (volume-implicit vs
-    #    volume-explicit). When BOTH a bare «N» and a volume-qualified
-    #    «<VOL> N» (same trailing number) sit in the `dav` list, the bare
-    #    form is a redundant less-precise duplicate → drop it, keep the
-    #    volume-qualified one. (Source: Numista cites one coin both ways,
-    #    which the §9a accumulation collects together.) A bare value with
-    #    NO matching qualified form is kept untouched.
+    #    volume-explicit).
+    #    4a. PROMOTE — when a list has exactly ONE distinct volume, bare
+    #        numbers belong to it: «[EC II 3679, 3679A]» → «[EC II 3679,
+    #        EC II 3679A]» («3679A» is volume-unknowable alone, but its sole
+    #        sibling settles it). This is what unifies a ucoin coin that cites
+    #        bare numbers with a Numista one that cites «EC II N» once they
+    #        merge under §9a.
+    #    4b. FOLD — when ≥2 volumes coexist (promotion can't run), drop a bare
+    #        «N» that duplicates a qualified «<VOL> N» (the bare is the
+    #        less-precise twin). A bare with no qualified twin is kept.
+    #    4c. DEDUP — promotion can mint exact duplicates («[EC II 3679, 3679]»
+    #        → «[EC II 3679, EC II 3679]»); collapse them.
     dav = catalog.get("dav")
     if isinstance(dav, list) and len(dav) > 1:
+        promoted = _promote_bare_dav(dav)
+
         def _is_qualified(v: str) -> bool:
-            toks = v.split()
-            return len(toks) > 1 and not toks[0][:1].isdigit()
+            return _dav_volume(v) is not None
 
         def _trailing_num(v: str) -> str:
             return v.split()[-1].lower() if v.split() else v.lower()
 
         qualified_nums = {
-            _trailing_num(v) for v in dav
+            _trailing_num(v) for v in promoted
             if isinstance(v, str) and _is_qualified(v)
         }
-        new_dav = [
-            v for v in dav
+        folded = [
+            v for v in promoted
             if not (
                 isinstance(v, str)
                 and not _is_qualified(v)
                 and v.strip().lower() in qualified_nums
             )
         ]
+        new_dav = _dedup_values_ci(folded)
+        new_dav = new_dav[0] if len(new_dav) == 1 else new_dav
         if new_dav != dav:
-            catalog["dav"] = new_dav[0] if len(new_dav) == 1 else new_dav
+            catalog["dav"] = new_dav
             changes += 1
     return changes

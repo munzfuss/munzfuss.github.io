@@ -747,6 +747,25 @@ def _normalise_dav_value(v: str) -> str:
     return stripped or s
 
 
+def _split_multi(val) -> list[str]:
+    """Flatten a catalog value (scalar or list) into individual ref values,
+    splitting an «A / B» slash-multi scalar into its members. ucoin / Numista
+    pack sub-variants as «125A / 125B» / «3679 / 3679A» in ONE string; left
+    whole that value equals NEITHER «125A» nor «125B», so the matcher misses
+    the overlap and a same-coin cross-source merge is silently blocked. (Same
+    normalisation catalog_codes.normalise_catalog applies at write/display
+    time — done here so matching is correct even on not-yet-renormalised
+    seeds.)"""
+    out: list[str] = []
+    for v in (val if isinstance(val, list) else [val]):
+        s = str(v).strip()
+        if "/" in s:
+            out.extend(p.strip() for p in s.split("/") if p.strip())
+        elif s:
+            out.append(s)
+    return out
+
+
 # Per-coin memo for _catalog_refs. _catalog_refs is a pure function of
 # (coin, entity_id), but within ONE process_entity run the entity_id is
 # constant and the coin dicts are stable objects (held in seeds_by_id), so
@@ -832,10 +851,8 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         else:
             scope = ""
         key = f"hede/{scope}" if scope else "hede"
-        if isinstance(hede, list):
-            refs[key] = "|".join(sorted(str(h).strip() for h in hede))
-        else:
-            refs[key] = str(hede).strip()
+        hede_vals = _split_multi(hede)
+        refs[key] = "|".join(sorted(hede_vals)) if hede_vals else str(hede).strip()
 
     # Per-publication catalog identifiers — each is unique within its own
     # scope. Disagreement on any of these = different physical coins.
@@ -868,15 +885,10 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         if val is None:
             continue
         canonical = CATALOG_KEY_SYNONYMS.get(field, field)
-        if isinstance(val, list):
-            _items = [str(v).strip() for v in val]
-            if canonical == "dav":
-                _items = [_normalise_dav_value(x) for x in _items]
-            new_val = "|".join(sorted(_items))
-        else:
-            new_val = str(val).strip()
-            if canonical == "dav":
-                new_val = _normalise_dav_value(new_val)
+        _items = _split_multi(val)
+        if canonical == "dav":
+            _items = [_normalise_dav_value(x) for x in _items]
+        new_val = "|".join(sorted(_items)) if _items else str(val).strip()
         # When both synonyms attest the same key (e.g. coin has both `fr` and
         # `friedberg` set), merge values rather than letting the later one
         # overwrite. Preserves §«Data-accumulation principle».
@@ -918,10 +930,8 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
         if _v is None:
             continue
         _key = f"{_ridx}/{_reign}" if _reign else _ridx
-        if isinstance(_v, list):
-            refs[_key] = "|".join(sorted(str(s).strip() for s in _v))
-        else:
-            refs[_key] = str(_v).strip()
+        _vals = _split_multi(_v)
+        refs[_key] = "|".join(sorted(_vals)) if _vals else str(_v).strip()
 
     galster = cat.get("galster")
     if galster is not None:
