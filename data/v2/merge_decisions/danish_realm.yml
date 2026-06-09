@@ -436,3 +436,32 @@ no_merges:
   - members: [dk-tid-173642, kmk-693172]
     reason: |
       Host ucoin coin 1 (dk-tid-173642) ≠ coin 3 (KMM 693172, 8 Skilling 1625).
+  # --- over-merge audit splits (curator 2026-06-09, Serhii; found by
+  #     audit_overmerge_candidates.py) ---
+  # dk-tid-163014 «2 Skilling» host had a 1 Speciedaler (Hede 5, Dav 7760)
+  # fused in.
+  - members: [dk-hede-c4h112a, dk-bruun-5536]
+    reason: |
+      2 Skilling (Hede 112A/B, KM 68) ≠ 1 Speciedaler (Hede 5, Dav 7760) —
+      grossly different denominations stale-fused into the ucoin 2-Skilling host.
+  - members: [dk-tid-163014, dk-bruun-5536]
+    reason: |
+      ucoin 2-Skilling host (dk-tid-163014) ≠ 1 Speciedaler (dk-bruun-5536).
+  # dk-tid-94158 «1 Krone» host had a 2 Kronen (8 Mark) fused in.
+  - members: [dk-hede-f5h29, ikmk-18203664]
+    reason: |
+      1 Krone (Hede 29, KM 559, Dav EC III 1300A) ≠ 2 Kronen / 8 Mark
+      (Dav EC III 1300) — the double-krone is a different coin.
+  - members: [dk-tid-94158, ikmk-18203664]
+    reason: |
+      ucoin 1-Krone host (dk-tid-94158) ≠ 2 Kronen (ikmk-18203664).
+  # unified-dk-hede-c4h119a «1 Skilling» host had a CONTEMPORARY FORGERY fused in.
+  - members: [dk-hede-c4h119a, kmk-521]
+    reason: |
+      Genuine 1 Skilling (Hede 119, silver) ≠ «1 Skilling samtidig forfalskning»
+      (KMM 521, a contemporary BILLON counterfeit of Hede 119B) — keep the
+      forgery as its own record, not bundled with the genuine coin.
+  - members: [dk-hede-c4h118a, kmk-521]
+    reason: |
+      Genuine 1 Skilling Hede 118 (silver) ≠ the billon contemporary forgery
+      KMM 521.
