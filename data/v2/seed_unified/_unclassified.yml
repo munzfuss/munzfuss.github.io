@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/_unclassified.yml across all sources.
 #
 # Input: 4793 per-source seed entries.
-# Output: 3782 unified entries (one per physical coin).
+# Output: 3778 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -9390,26 +9390,39 @@ coins:
   year_last: 1634
   year_label: '1634'
   ruler: George (Georg)
+  mintmaster: Henning Schlüter
+  inscription_obv: GEORGIIVS D G DVX BRVNSW ET LVNEBVRG ANNO 1634
+  inscription_rev: FRATRVM CONCORDIA CRONAT
+  mint: Zellerfeld
   catalog:
     km: '12'
     numista: '266679'
     others:
     - Welter# 1440
+    - Fiala# 749
     dav: BrSL 136
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 57.51
+    source: ikmk
   - value: 57.64
     source: numista
+  diameter_mm:
+  - value: 57.0
+    source: ikmk
   sources:
   - type: literature
     url: https://en.numista.com/266679
     ref: Numista N#266679 — 2 Thalers - George (Löser) - Brunswick-Lüneburg-Calenberg
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18232468
+    ref: IKMK Berlin 18232468
   note:
     de: Löser
     en: Löser
@@ -9426,6 +9439,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-266679
+  - ikmk-18232468
 - id: unified-dk-numista-266680
   fuss: seed_unsorted
   phase: numista
@@ -9874,29 +9888,46 @@ coins:
   year_last: 1680
   year_label: '1680'
   ruler: Ernest Augustus (Ernst August)
+  mintmaster: Rudolf Bornemann
+  inscription_obv: ERNESTUS AVGVSTUS D G EPISCOP OSNABR DUX BRUNS & LUN
+  inscription_rev: VARIIS IN MOTIBUS EADEM
+  mint: Zellerfeld
   catalog:
     km: A269
     numista: '267978'
     others:
     - Welter# 1920
+    - Duve# 3
+    - Fiala# 2318
     dav: BrSL 233
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 50.94
+    source: ikmk
   - value: 52.3
     source: numista
   diameter_mm:
   - value: 65.0
     source: numista
+  - value: 66.0
+    source: ikmk
   sources:
   - type: literature
     url: https://en.numista.com/267978
     ref: Numista N#267978 — 2 Thalers - Ernest August Bischof of Osnabrück - Brunswick-Lüneburg-Calenberg
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18232502
+    ref: IKMK Berlin 18232502
+  note:
+    de: Löser
+    en: Löser
+    uk: Löser
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -9909,6 +9940,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-267978
+  - ikmk-18232502
 - id: unified-dk-numista-268170
   fuss: seed_unsorted
   phase: numista
@@ -13542,6 +13574,9 @@ coins:
   year_last: 1660
   year_label: '1660'
   ruler: George William (Georg Wilhelm)
+  mintmaster: Henning Schlüter
+  inscription_obv: V G G GEORG WILHELM HERTZOG ZU BRAUNSCHWEIG U LUNE
+  inscription_rev: PIETATE ET - JUSTITIA
   mint:
   - Goslar
   - Zellerfeld
@@ -13551,6 +13586,8 @@ coins:
     dav: BrSL 194
     others:
     - Welter# 1564
+    - Duve# 1
+    - Fiala# 1257
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -13561,13 +13598,24 @@ coins:
   weight_rough_g:
   - value: 143.5
     source: numista
+  - value: 144.92
+    source: ikmk
   diameter_mm:
   - value: 82.0
     source: numista
+  - value: 84.0
+    source: ikmk
   sources:
   - type: literature
     url: https://en.numista.com/292330
     ref: Numista N#292330 — 5 Thalers - George William - Brunswick-Lüneburg-Calenberg – Numista
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18232501
+    ref: IKMK Berlin 18232501
+  note:
+    de: Löser
+    en: Löser
+    uk: Löser
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -13580,6 +13628,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-292330
+  - ikmk-18232501
 - id: unified-dk-numista-292332
   fuss: seed_unsorted
   phase: numista
@@ -26977,23 +27026,42 @@ coins:
     - 1688
   year_label: 1681-1688
   ruler: Ernest Augustus (Ernst August)
+  mintmaster: Rudolf Bornemann
+  inscription_obv: SOLA BONA QUAE HONESTA - ANNO - 1681
+  mint: Zellerfeld
   catalog:
     km: '281'
     numista: '72517'
+    others:
+    - Duve# 5
+    - Fiala# 2332
+    - Welter# 1925
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 43.0
+    source: ikmk
   diameter_mm:
   - value: 62.0
     source: numista
+  - value: 63.0
+    source: ikmk
   sources:
   - type: literature
     url: https://en.numista.com/72517
     ref: Numista N#72517 — 1½ Thaler - Ernest August - Brunswick-Lüneburg-Calenberg
+  - type: museum
+    url: https://ikmk.smb.museum/object?id=18232529
+    ref: IKMK Berlin 18232529
+  note:
+    de: Löser
+    en: Löser
+    uk: Löser
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -27006,6 +27074,7 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - dk-numista-72517
+  - ikmk-18232529
 - id: unified-dk-numista-73028
   fuss: seed_unsorted
   phase: numista
@@ -42153,42 +42222,6 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18232467
-- id: unified-ikmk-18232468
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 2 Taler
-  year_first: 1634
-  year_last: 1634
-  year_label: '1634'
-  ruler: Georg
-  mintmaster: Henning Schlüter
-  inscription_obv: GEORGIIVS D G DVX BRVNSW ET LVNEBVRG ANNO 1634
-  inscription_rev: FRATRVM CONCORDIA CRONAT
-  mint: Zellerfeld
-  catalog:
-    others:
-    - Fiala# 749
-    - Welter# 1440
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 57.51
-    source: ikmk
-  diameter_mm:
-  - value: 57.0
-    source: ikmk
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18232468
-    ref: IKMK Berlin 18232468
-  verification_note: *id001
-  composed_of:
-  - ikmk-18232468
 - id: unified-ikmk-18232469
   fuss: seed_unsorted
   phase: ikmk
@@ -42561,88 +42594,6 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18232500
-- id: unified-ikmk-18232501
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 5 Taler
-  year_first: 1660
-  year_last: 1660
-  year_label: '1660'
-  ruler: Georg Wilhelm
-  mintmaster: Henning Schlüter
-  inscription_obv: V G G GEORG WILHELM HERTZOG ZU BRAUNSCHWEIG U LUNE
-  inscription_rev: PIETATE ET - JUSTITIA
-  mint: Zellerfeld
-  catalog:
-    others:
-    - Duve# 1
-    - Fiala# 1257
-    - Welter# 1564
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 144.92
-    source: ikmk
-  diameter_mm:
-  - value: 84.0
-    source: ikmk
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18232501
-    ref: IKMK Berlin 18232501
-  note:
-    de: Löser
-    en: Löser
-    uk: Löser
-  verification_note: *id001
-  composed_of:
-  - ikmk-18232501
-- id: unified-ikmk-18232502
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 2 Taler
-  year_first: 1680
-  year_last: 1680
-  year_label: '1680'
-  ruler: Ernst August
-  mintmaster: Rudolf Bornemann
-  inscription_obv: ERNESTUS AVGVSTUS D G EPISCOP OSNABR DUX BRUNS & LUN
-  inscription_rev: VARIIS IN MOTIBUS EADEM
-  mint: Zellerfeld
-  catalog:
-    others:
-    - Duve# 3
-    - Fiala# 2318
-    - Welter# 1920
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 50.94
-    source: ikmk
-  diameter_mm:
-  - value: 66.0
-    source: ikmk
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18232502
-    ref: IKMK Berlin 18232502
-  note:
-    de: Löser
-    en: Löser
-    uk: Löser
-  verification_note: *id001
-  composed_of:
-  - ikmk-18232502
 - id: unified-ikmk-18232504
   fuss: seed_unsorted
   phase: ikmk
@@ -42918,46 +42869,6 @@ coins:
   verification_note: *id001
   composed_of:
   - ikmk-18232528
-- id: unified-ikmk-18232529
-  fuss: seed_unsorted
-  phase: ikmk
-  kind: kurant
-  nominal: 1½ Taler
-  year_first: 1681
-  year_last: 1681
-  year_label: '1681'
-  ruler: Ernst August
-  mintmaster: Rudolf Bornemann
-  inscription_obv: SOLA BONA QUAE HONESTA - ANNO - 1681
-  mint: Zellerfeld
-  catalog:
-    others:
-    - Duve# 5
-    - Fiala# 2332
-    - Welter# 1925
-  metal: silver
-  metal_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 43.0
-    source: ikmk
-  diameter_mm:
-  - value: 63.0
-    source: ikmk
-  sources:
-  - type: museum
-    url: https://ikmk.smb.museum/object?id=18232529
-    ref: IKMK Berlin 18232529
-  note:
-    de: Löser
-    en: Löser
-    uk: Löser
-  verification_note: *id001
-  composed_of:
-  - ikmk-18232529
 - id: unified-ikmk-18232796
   fuss: seed_unsorted
   phase: ikmk

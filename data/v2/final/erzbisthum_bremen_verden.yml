@@ -85,25 +85,39 @@ coins:
   nominal: 1 Taler
   issuing_entity: erzbisthum_bremen_verden
   id: unified-dk-bruun-12323
-  year_first: 1674
+  year_first: 1673
   year_last: 1674
-  year_label: '1674'
+  year_ranges:
+  - - 1673
+    - 1674
+  year_label: 1673-1674
   catalog:
+    km: '83'
     bruun_collection_id: '12323'
-    dav: '6282'
+    dav: ST 6282
+    numista: '31052'
+    others:
+    - AAJ# 11
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
   - value: 29.1
     source: bruun
+  diameter_mm:
+  - value: 46.0
+    source: numista
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12179, p. 244
+  - type: literature
+    url: https://en.numista.com/31052
+    ref: Numista N#31052 — 1 Thaler - Charles XI - Duchy under Swedish possession of Bremen-Verden
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -968,51 +982,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-301158
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Thaler
-  ruler: Charles XI (Karl XI)
-  issuing_entity: erzbisthum_bremen_verden
-  id: unified-dk-numista-31052
-  year_first: 1673
-  year_last: 1674
-  year_ranges:
-  - - 1673
-    - 1674
-  year_label: 1673-1674
-  catalog:
-    km: '83'
-    numista: '31052'
-    dav: ST 6282
-    others:
-    - AAJ# 11
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  diameter_mm:
-  - value: 46.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/31052
-    ref: Numista N#31052 — 1 Thaler - Charles XI - Duchy under Swedish possession of Bremen-Verden
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-31052
 - fuss: seed_unsorted
   phase: numista
   kind: kurant

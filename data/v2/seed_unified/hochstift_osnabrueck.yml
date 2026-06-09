@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/hochstift_osnabrueck.yml across all sources.
 #
 # Input: 235 per-source seed entries.
-# Output: 196 unified entries (one per physical coin).
+# Output: 180 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -403,13 +403,20 @@ coins:
   weight_rough_g:
   - value: 6.38
     source: numista
+  - value: 6.4
+    source: ucoin
   diameter_mm:
   - value: 33.0
     source: numista
+  - value: 33.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/236579
     ref: Numista N#236579 — 3 Schilling - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-3-schilling-1633/?tid=173031
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -423,6 +430,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-236579
+  - tid-tid-173031
 - id: unified-dk-numista-237138
   fuss: seed_unsorted
   phase: numista
@@ -432,6 +440,7 @@ coins:
   year_last: 1637
   year_label: '1637'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Münster
   catalog:
     km: '46'
     numista: '237138'
@@ -443,18 +452,25 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 28.74
     source: numista
+  - value: 28.8
+    source: ucoin
   diameter_mm:
+  - value: 41.0
+    source: ucoin
   - value: 42.0
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/237138
     ref: Numista N#237138 — 1 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1637/?tid=173391
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -468,6 +484,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237138
+  - tid-tid-173391
 - id: unified-dk-numista-237286
   fuss: seed_unsorted
   phase: numista
@@ -488,17 +505,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 2.6
+    source: ucoin
   diameter_mm:
+  - value: 24.0
+    source: ucoin
   - value: 25.0
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/237286
     ref: Numista N#237286 — 1/14 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1656-1657/?tid=173336
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -512,6 +537,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237286
+  - tid-tid-173336
 - id: unified-dk-numista-237288
   fuss: seed_unsorted
   phase: numista
@@ -532,17 +558,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 2.4
+    source: ucoin
   diameter_mm:
   - value: 23.0
     source: numista
+  - value: 23.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/237288
     ref: Numista N#237288 — 4 Mariengroschen - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-4-mariengroschen-1656-1657/?tid=173147
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -556,6 +590,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237288
+  - tid-tid-173147
 - id: unified-dk-numista-237353
   fuss: seed_unsorted
   phase: numista
@@ -565,6 +600,7 @@ coins:
   year_last: 1657
   year_label: '1657'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Melle
   catalog:
     km: '74'
     numista: '237353'
@@ -573,17 +609,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 1.3
+    source: ucoin
   diameter_mm:
+  - value: 18.0
+    source: ucoin
   - value: 18.5
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/237353
     ref: Numista N#237353 — 6 Pfennigs - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1657/?tid=172945
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -597,6 +641,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237353
+  - tid-tid-172945
 - id: unified-dk-numista-237354
   fuss: seed_unsorted
   phase: numista
@@ -606,6 +651,7 @@ coins:
   year_last: 1657
   year_label: '1657'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Melle
   catalog:
     km: '76'
     numista: '237354'
@@ -614,17 +660,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 3.7
+    source: ucoin
   diameter_mm:
+  - value: 24.0
+    source: ucoin
   - value: 25.0
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/237354
     ref: Numista N#237354 — 1/14 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1657/?tid=173337
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -638,6 +692,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237354
+  - tid-tid-173337
 - id: unified-dk-numista-237368
   fuss: seed_unsorted
   phase: numista
@@ -647,6 +702,7 @@ coins:
   year_last: 1661
   year_label: '1661'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Melle
   catalog:
     km: '82'
     numista: '237368'
@@ -659,18 +715,25 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 28.64
     source: numista
+  - value: 28.8
+    source: ucoin
   diameter_mm:
   - value: 43.0
     source: numista
+  - value: 43.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/237368
     ref: Numista N#237368 — 1 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1661/?tid=173393
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -684,6 +747,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237368
+  - tid-tid-173393
 - id: unified-dk-numista-237373
   fuss: seed_unsorted
   phase: numista
@@ -1837,17 +1901,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 1.1
+    source: ucoin
   diameter_mm:
   - value: 17.0
     source: numista
+  - value: 17.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238854
     ref: Numista N#238854 — 6 Pfennigs - Ernest August II of York - Bishopric of Osnabrück (1721)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1721/?tid=172949
+    ref: ucoin
   note:
     de: 1/42 Thaler
     en: 1/42 Thaler
@@ -1865,6 +1937,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238854
+  - tid-tid-172949
 - id: unified-dk-numista-238856
   fuss: seed_unsorted
   phase: numista
@@ -1874,6 +1947,7 @@ coins:
   year_last: 1721
   year_label: '1721'
   ruler: Ernst August von York und Albany
+  mint: Osnabrück
   catalog:
     km: '234'
     numista: '238856'
@@ -1882,17 +1956,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 1.7
+    source: ucoin
   diameter_mm:
   - value: 20.0
     source: numista
+  - value: 20.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238856
     ref: Numista N#238856 — 12 Pfennigs - Ernest August II of York - Bishopric of Osnabrück (1721)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-12-pfennig-1721/?tid=172951
+    ref: ucoin
   note:
     de: 1/21 Thaler
     en: 1/21 Thaler
@@ -1910,6 +1992,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238856
+  - tid-tid-172951
 - id: unified-dk-numista-238858
   fuss: seed_unsorted
   phase: numista
@@ -1932,15 +2015,22 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 3.0
+    source: ucoin
   - value: 3.08
     source: numista
   diameter_mm:
   - value: 23.0
     source: numista
+  - value: 23.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238858
     ref: Numista N#238858 — 1/14 Thaler - Ernest August II of York - Bishopric of Osnabrück (1721)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1721/?tid=173343
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -1954,6 +2044,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238858
+  - tid-tid-173343
 - id: unified-dk-numista-238859
   fuss: seed_unsorted
   phase: numista
@@ -1971,17 +2062,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 1.2
+    source: ucoin
   diameter_mm:
   - value: 18.0
     source: numista
+  - value: 18.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238859
     ref: Numista N#238859 — 1 Mariengroschen - Ernest August II of York - Bishopric of Osnabrück (1721)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1721/?tid=173122
+    ref: ucoin
   note:
     de: 1/36 Thaler
     en: 1/36 Thaler
@@ -1999,6 +2098,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238859
+  - tid-tid-173122
 - id: unified-dk-numista-238860
   fuss: seed_unsorted
   phase: numista
@@ -2023,13 +2123,20 @@ coins:
   weight_rough_g:
   - value: 1.17
     source: numista
+  - value: 1.17
+    source: ucoin
   diameter_mm:
   - value: 17.0
     source: numista
+  - value: 17.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238860
     ref: Numista N#238860 — 1 Mariengroschen - Ernest August II of York - Bishopric of Osnabrück (1721) — KM# 241
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1721/?tid=173123
+    ref: ucoin
   note:
     de: 1/36 Thaler
     en: 1/36 Thaler
@@ -2047,6 +2154,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238860
+  - tid-tid-173123
 - id: unified-dk-numista-238862
   fuss: seed_unsorted
   phase: numista
@@ -2384,12 +2492,17 @@ coins:
   mint_verified: false
   verified: false
   diameter_mm:
+  - value: 30.0
+    source: ucoin
   - value: 31.0
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/238891
     ref: Numista N#238891 — 12 Pfennigs - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-schilling-1633/?tid=173026
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -2403,6 +2516,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238891
+  - tid-tid-173026
 - id: unified-dk-numista-268607
   fuss: seed_unsorted
   phase: numista
@@ -2412,6 +2526,7 @@ coins:
   year_last: 1631
   year_label: '1631'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Cologne
   catalog:
     km: '22'
     numista: '268607'
@@ -2423,18 +2538,25 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 28.8
+    source: ucoin
   - value: 29.12
     source: numista
   diameter_mm:
   - value: 41.0
     source: numista
+  - value: 41.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/268607
     ref: Numista N#268607 — 1 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1631/?tid=173390
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -2448,6 +2570,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-268607
+  - tid-tid-173390
 - id: unified-dk-numista-274693
   fuss: seed_unsorted
   phase: numista
@@ -2511,6 +2634,7 @@ coins:
   year_last: 1637
   year_label: '1637'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Münster
   catalog:
     km: B230
     numista: '274729'
@@ -2520,18 +2644,25 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 54.8
+    source: ucoin
   - value: 57.81
     source: numista
   diameter_mm:
   - value: 42.0
     source: numista
+  - value: 42.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/274729
     ref: Numista N#274729 — 2 Thalers - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-2-thaler-1637/?tid=178754
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -2545,6 +2676,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-274729
+  - tid-tid-178754
 - id: unified-dk-numista-295268
   fuss: seed_unsorted
   phase: numista
@@ -2607,6 +2739,7 @@ coins:
   year_last: 1657
   year_label: '1657'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Melle
   catalog:
     km: '78'
     numista: '307107'
@@ -2617,16 +2750,24 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 28.6
     source: numista
+  - value: 28.8
+    source: ucoin
+  diameter_mm:
+  - value: 40.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/307107
     ref: Numista N#307107 — 1 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1657/?tid=173392
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -2640,6 +2781,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-307107
+  - tid-tid-173392
 - id: unified-dk-numista-307108
   fuss: seed_unsorted
   phase: numista
@@ -5851,45 +5993,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-172902
-- id: unified-tid-tid-172945
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 6 Pfennig
-  year_first: 1657
-  year_last: 1657
-  year_label: '1657'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Melle
-  catalog:
-    km: '74'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.3
-    source: ucoin
-  diameter_mm:
-  - value: 18.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1657/?tid=172945
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-172945
 - id: unified-tid-tid-172947
   fuss: seed_unsorted
   phase: ucoin
@@ -5969,44 +6072,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-172948
-- id: unified-tid-tid-172949
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 6 Pfennig
-  year_first: 1721
-  year_last: 1721
-  year_label: '1721'
-  ruler: Ernest Augustus
-  catalog:
-    km: '232'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 1.1
-    source: ucoin
-  diameter_mm:
-  - value: 17.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1721/?tid=172949
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-172949
 - id: unified-tid-tid-172950
   fuss: seed_unsorted
   phase: ucoin
@@ -6045,45 +6110,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-172950
-- id: unified-tid-tid-172951
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 12 Pfennig
-  year_first: 1721
-  year_last: 1721
-  year_label: '1721'
-  ruler: Ernest Augustus
-  mint: Osnabrück
-  catalog:
-    km: '234'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.7
-    source: ucoin
-  diameter_mm:
-  - value: 20.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-12-pfennig-1721/?tid=172951
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-172951
 - id: unified-tid-tid-172952
   fuss: seed_unsorted
   phase: ucoin
@@ -6201,41 +6227,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173025
-- id: unified-tid-tid-173026
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Schilling
-  year_first: 1633
-  year_last: 1633
-  year_label: '1633'
-  ruler: Franz Wilhelm von Wartenberg
-  catalog:
-    km: '24'
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  diameter_mm:
-  - value: 30.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-schilling-1633/?tid=173026
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173026
 - id: unified-tid-tid-173028
   fuss: seed_unsorted
   phase: ucoin
@@ -6350,44 +6341,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173030
-- id: unified-tid-tid-173031
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 3 Schilling
-  year_first: 1633
-  year_last: 1633
-  year_label: '1633'
-  ruler: Franz Wilhelm von Wartenberg
-  catalog:
-    km: '29'
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 6.4
-    source: ucoin
-  diameter_mm:
-  - value: 33.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-3-schilling-1633/?tid=173031
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173031
 - id: unified-tid-tid-173032
   fuss: seed_unsorted
   phase: ucoin
@@ -6774,82 +6727,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173121
-- id: unified-tid-tid-173122
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Mariengroschen
-  year_first: 1721
-  year_last: 1721
-  year_label: '1721'
-  ruler: Ernest Augustus
-  catalog:
-    km: '240'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 1.2
-    source: ucoin
-  diameter_mm:
-  - value: 18.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1721/?tid=173122
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173122
-- id: unified-tid-tid-173123
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Mariengroschen
-  year_first: 1721
-  year_last: 1721
-  year_label: '1721'
-  ruler: Ernest Augustus
-  catalog:
-    km: '241'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 1.17
-    source: ucoin
-  diameter_mm:
-  - value: 17.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1721/?tid=173123
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173123
 - id: unified-tid-tid-173126
   fuss: seed_unsorted
   phase: ucoin
@@ -7131,47 +7008,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173145
-- id: unified-tid-tid-173147
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 4 Mariengroschen
-  year_first: 1656
-  year_last: 1657
-  year_ranges:
-  - - 1656
-    - 1657
-  year_label: 1656-1657
-  ruler: Franz Wilhelm von Wartenberg
-  catalog:
-    km: '59'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 2.4
-    source: ucoin
-  diameter_mm:
-  - value: 23.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-4-mariengroschen-1656-1657/?tid=173147
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173147
 - id: unified-tid-tid-173326
   fuss: seed_unsorted
   phase: ucoin
@@ -7249,86 +7085,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173333
-- id: unified-tid-tid-173336
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1/14 Thaler
-  year_first: 1656
-  year_last: 1657
-  year_ranges:
-  - - 1656
-    - 1657
-  year_label: 1656-1657
-  ruler: Franz Wilhelm von Wartenberg
-  catalog:
-    km: '55'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 2.6
-    source: ucoin
-  diameter_mm:
-  - value: 24.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1656-1657/?tid=173336
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173336
-- id: unified-tid-tid-173337
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1/14 Thaler
-  year_first: 1657
-  year_last: 1657
-  year_label: '1657'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Melle
-  catalog:
-    km: '76'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 3.7
-    source: ucoin
-  diameter_mm:
-  - value: 24.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1657/?tid=173337
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173337
 - id: unified-tid-tid-173338
   fuss: seed_unsorted
   phase: ucoin
@@ -7451,44 +7207,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173342
-- id: unified-tid-tid-173343
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1/14 Thaler
-  year_first: 1721
-  year_last: 1721
-  year_label: '1721'
-  ruler: Ernest Augustus
-  catalog:
-    km: '237'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 3.0
-    source: ucoin
-  diameter_mm:
-  - value: 23.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1721/?tid=173343
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173343
 - id: unified-tid-tid-173344
   fuss: seed_unsorted
   phase: ucoin
@@ -7722,162 +7440,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173350
-- id: unified-tid-tid-173390
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1631
-  year_last: 1631
-  year_label: '1631'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Cologne
-  catalog:
-    km: '22'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.8
-    source: ucoin
-  diameter_mm:
-  - value: 41.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1631/?tid=173390
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173390
-- id: unified-tid-tid-173391
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1637
-  year_last: 1637
-  year_label: '1637'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Münster
-  catalog:
-    km: '46'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.8
-    source: ucoin
-  diameter_mm:
-  - value: 41.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1637/?tid=173391
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173391
-- id: unified-tid-tid-173392
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1657
-  year_last: 1657
-  year_label: '1657'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Melle
-  catalog:
-    km: '78'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.8
-    source: ucoin
-  diameter_mm:
-  - value: 40.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1657/?tid=173392
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173392
-- id: unified-tid-tid-173393
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1661
-  year_last: 1661
-  year_label: '1661'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Melle
-  catalog:
-    km: '82'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.8
-    source: ucoin
-  diameter_mm:
-  - value: 43.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1661/?tid=173393
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173393
 - id: unified-tid-tid-173395
   fuss: seed_unsorted
   phase: ucoin
@@ -8042,42 +7604,3 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173402
-- id: unified-tid-tid-178754
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 2 Thaler
-  year_first: 1637
-  year_last: 1637
-  year_label: '1637'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Münster
-  catalog:
-    km: B230
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 54.8
-    source: ucoin
-  diameter_mm:
-  - value: 42.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-2-thaler-1637/?tid=178754
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-178754
