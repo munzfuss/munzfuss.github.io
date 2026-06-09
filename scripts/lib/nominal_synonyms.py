@@ -168,6 +168,10 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     (r"\bnobles?\b", "nobel"),
     (r"\bducats?\b", "dukat"),
     (r"\bducaten\b", "dukat"),
+    # German plural «Dukaten» spelled with «k» (the `ducaten` rule above only
+    # catches the «c» spelling) — «2 Dukaten» ≡ «2 Dukat» (same coin sharing
+    # Hede/Fr; corpus sweep 2026-06-09: 50+ occurrences «2/3/4/5/10/20 Dukaten»).
+    (r"\bdukaten\b", "dukat"),
     (r"\bthalers?\b", "daler"),
     # «Reichsthaler» (one word) ≡ the standard «Daler»/Thaler in our scope —
     # the existing `\bthalers?\b` rule can't reach it (no word boundary
@@ -180,6 +184,17 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     # for matching so «4 Marck» ≡ «4 Mark», «Marck Banco» ≡ «Mark Banco».
     (r"\bmarcks?\b", "mark"),
     (r"\bschillings?\b", "skilling"),
+    # English «Shilling(s)» (no «c») — Numista uses it for Danish/SH Skilling
+    # («8 Shillings» ≡ «8 Skilling», shared N#; sweep 2026-06-09). Distinct from
+    # «schilling» above (the «c» spelling); never matches inside «schilling».
+    (r"\bshillings?\b", "skilling"),
+    # Abbreviations: «Rigsbanksk.» → rigsbankskilling FIRST (so the bare «sk.»
+    # rule can't mis-touch it), then «Sk.» → skilling. «Sk.» is the period-
+    # anchored Danish abbreviation (76+ «1/2/4/12/24 Sk.» in the corpus sharing
+    # a Hede ref with the spelled-out «… Skilling»); the required «.» keeps it
+    # from matching «skilling» / «lybsk» (no period).
+    (r"\brigsbanksk\.", "rigsbankskilling"),
+    (r"\bsk\.", "skilling"),
     # «Guilder» (English) ≡ «Gulden» (German) ≡ «Gylden» (Danish).
     # NumisMaster uses «Guilder» for Rhenish/Danish gold guldens; Hede
     # uses «Gylden». Both refer to the same gold-coin family — normalise
@@ -257,6 +272,10 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     # spaced «Kurant Dukat» collapses to the one-word «Kurantdukat».
     (r"\bcourant\b", "kurant"),
     (r"\bkurant\s+dukat\b", "kurantdukat"),
+    # «Kurant Daler» (spaced) ≡ «Kurantdaler» — same coin (shared Fr/KM); the
+    # spaced form is a Numista label variant. Runs after courant→kurant so
+    # «Courant Daler» is also caught.
+    (r"\bkurant\s+daler\b", "kurantdaler"),
 ]
 
 
