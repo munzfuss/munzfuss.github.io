@@ -474,10 +474,19 @@ def _infer_metal(nominal: str, ruler: str | None, fineness: float | None) -> str
 # (Audit 2026-06-09: the 5 metal over-merge flags + 0 regressions.)
 _METAL_TEXT_MAP = {
     "guld": "gold", "sølv": "silver", "soelv": "silver",
-    "kobber": "copper", "bronze": "copper", "tin": "tin",
+    "kobber": "copper", "bronze": "bronze",
     "billon": "billon",
 }
-_METAL_WORD = r"(guld|sølv|soelv|kobber|billon|bronze|tin)"
+# «bronze» is a distinct schema metal class (Literal in schema.py — 259
+# uses), NOT collapsed to copper: danskmoent.dk distinguishes «Kobber»
+# (copper — Frederik VI / Christian VIII Rigsbankskilling) from «Bronze»
+# (the 1856+ Rigsmønt-reform small coinage, Hede c9h6/7, f7h16/17).
+# Cross-source matching treats bronze≡copper as one base-metal tier
+# (see merge_seeds_cross_source._normalise_metal) so the stored precise
+# value never blocks a merge with a coarser «copper» museum tag.
+# «tin» is intentionally absent — it is not a valid schema metal and the
+# only tin mentions in scope are Tinafslag off-strikes (prose, excluded).
+_METAL_WORD = r"(guld|sølv|soelv|kobber|billon|bronze)"
 # The metal must appear as the LEADING token of the coin's physical-
 # description line — three structural shapes danskmoent.dk uses, all
 # stating the coin's OWN metal. Free-prose mentions (off-strikes,

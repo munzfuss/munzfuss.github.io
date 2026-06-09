@@ -203,6 +203,15 @@ def _normalise_metal(metal, fineness):
             f_val = min(vals)
     if m == "silver" and f_val is not None and f_val < 0.5:
         return "billon"
+    # bronze / brass collapse to the copper base-metal tier FOR COMPARISON
+    # (mirrors lib/categorize.py grouping copper/bronze/brass together).
+    # A source's precise «bronze» (danskmoent.dk Rigsmønt 1856+) and a
+    # museum's coarser «copper» (KMM) name the SAME base-metal coin — the
+    # granularity difference must not block a merge or read as a real metal
+    # disagreement. The precise stored value survives via `_collect_metal`
+    # (authority-ranked), which reads the raw metal, not this normalised one.
+    if m in ("bronze", "brass"):
+        return "copper"
     return m
 
 
