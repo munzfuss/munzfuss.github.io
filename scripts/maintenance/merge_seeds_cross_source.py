@@ -240,6 +240,25 @@ def _nominal_wildcard_match(na: str, nb: str) -> bool:
     return len(short) >= 4 and lng.endswith(short)
 
 
+# A contemporary forgery / imitation is a DIFFERENT physical object from the
+# genuine coin it copies — yet it is catalogued BY what it imitates (Hede
+# tags «KMM 521» as a forfalskning of Hede 119B), so it shares the genuine
+# coin's catalogue ref. Without a guard, that shared ref demotes the nominal
+# discriminator and the forgery merges into the genuine type (caught 2026-06-09:
+# the «1 Skilling samtidig forfalskning» bouncing onto genuine Hede 119B).
+_FORGERY_RE = re.compile(
+    r"forfalskning|forfalsk|\bfalsk\b|efterligning|forgery|imitation|"
+    r"f[äa]lschung|nachahmung",
+    re.IGNORECASE,
+)
+
+
+def _is_forgery_nominal(nominal) -> bool:
+    """True when a nominal string carries a forgery / imitation marker
+    («samtidig forfalskning», «falsk 8 Skilling», «efterligning», …)."""
+    return bool(nominal and _FORGERY_RE.search(str(nominal)))
+
+
 _ARABIC_ROMAN = {
     1: "i", 2: "ii", 3: "iii", 4: "iv", 5: "v", 6: "vi", 7: "vii", 8: "viii",
     9: "ix", 10: "x", 11: "xi", 12: "xii", 13: "xiii", 14: "xiv", 15: "xv",
@@ -1650,6 +1669,23 @@ def match_pair(coin_a: dict, coin_b: dict, entity_id: str | None = None,
     # as a primary-disagreement (which would re-trigger no_match via
     # the `if primary_false` short-circuit on line ~1275).
     if primary["nominal"] is False:
+        # FORGERY GUARD (2026-06-09) — runs BEFORE the catalogue-tie demotion.
+        # A contemporary forgery / imitation is a different physical object
+        # from the genuine coin it copies, yet it is catalogued BY what it
+        # imitates (so it shares the genuine coin's Hede/KM). When exactly one
+        # side is forgery-marked, that shared catalogue must NOT demote the
+        # nominal mismatch — block the merge HARD so the forgery stays its own
+        # record (e.g. «1 Skilling samtidig forfalskning» (billon) vs the
+        # genuine Hede 119B 1 Skilling).
+        if (_is_forgery_nominal(coin_a.get("nominal"))
+                != _is_forgery_nominal(coin_b.get("nominal"))):
+            why.append(
+                f"forgery≠genuine: {coin_a.get('nominal')!r} vs "
+                f"{coin_b.get('nominal')!r} — shared catalogue does NOT merge "
+                f"a forgery into the type it imitates"
+            )
+            return {"decision": "no_match", "primary": primary,
+                    "fallback": fallback, "why": why}
         # Nominal discriminator (shipped 2026-06-08 after the synonym table
         # was expanded to fold the false-split label-variance categories).
         # The normalised nominals GENUINELY differ (synonym folds + the

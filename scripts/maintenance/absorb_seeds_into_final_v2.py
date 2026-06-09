@@ -91,6 +91,7 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     _shares_unique_id_ref,
     _shares_type_level_catalog,
     _nominal_wildcard_match,
+    _is_forgery_nominal,
     # The merge module's nominal normaliser applies the FULL synonym table
     # (Ducat→dukat, Dobbelt X→2 X, Guldkrone→gold krone, «(?)»→empty); the
     # v2_seed_writer `_normalise_nominal` imported above does NOT. The
@@ -992,6 +993,15 @@ def _revalidate_composed_of(
             m = unified_by_id.get(mid)
             if m is None:
                 continue  # raw-seed / unknown member — not a unified entry
+            # Forgery-asymmetry: a contemporary forgery / imitation is never
+            # the same object as the genuine coin it copies, even sharing its
+            # catalogue (it's catalogued BY what it imitates). Evict REGARDLESS
+            # of a type-level tie — the shared Hede/KM is exactly why it stuck
+            # (caught 2026-06-09: «1 Skilling samtidig forfalskning» bouncing
+            # between genuine Hede 119B hosts).
+            if _is_forgery_nominal(host_nom) != _is_forgery_nominal(m.get("nominal")):
+                evictions.setdefault(fid, set()).add(mid)
+                continue
             if not _nominal_genuinely_differs(host_nom, m.get("nominal")):
                 continue
             if _shares_type_level_catalog(fa, _catalog_refs(m, entity_id)):
