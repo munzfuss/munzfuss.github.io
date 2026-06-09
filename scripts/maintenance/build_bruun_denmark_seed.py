@@ -394,31 +394,88 @@ def parse_mint(lot: dict) -> str | None:
     return lot.get("mint")
 
 
+# Leading region word of a «. »-delimited TERRITORY segment. Used to strip
+# country/territory prefixes off the denomination WITHOUT mistaking a
+# denom-first lot («Skilling. Mint Error …») for a territory. Derived from
+# the META_SUBNATIONAL_TO_ENTITY token set.
+_TERRITORY_LEAD = re.compile(
+    r"^(?:schleswig|holstein|l[üu]beck|bremen|oldenburg|hesse|gotland|"
+    r"f[üu]rstbisthum|fuerstbisthum|erzbisthum|gottorp|sonderburg|s[øo]nderborg|"
+    r"norburg|gl[üu]cksburg|schauenburg|pinneberg|rantzau|lauenburg|"
+    r"osnabr[üu]ck|wismar|verden)\b",
+    re.IGNORECASE,
+)
+
+
+def _denom_from_text(text: str) -> str | None:
+    """Pull the denomination from one «<COUNTRY>[. <TERRITORY>…]. <denom>,
+    <year>.» string. The year after the comma may be Arabic (1589), Roman
+    (MDCIII), or «ND[ (year)]»."""
+    # PDF line-wrap repair: de-hyphenate split words («Bishop-\nric» →
+    # «Bishopric») then collapse ALL whitespace (incl. the newline that wraps a
+    # truncated «… Pinneberg.» territory from its «Taler, 1589» denom onto the
+    # next line — without this the «.»-class regex can't cross the newline).
+    text = re.sub(r"-\s*\n\s*", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    # Year lookahead accepts: «(» / digit / «ND…» / a Roman-numeral run
+    # (≥2 uppercase Roman chars — «MDCIII», «MDCXCII»). The {2,} guard keeps a
+    # stray capitalised word («Mint», «Mule») from being read as a year.
+    m = re.match(
+        r"^[^.]+\.\s+(.+?),\s*(?:ND(?:\s*[.\(]|\b)|[\(\d]|[MDCLXVI]{2,}\b)",
+        text,
+    )
+    if not m:
+        return None
+    d = m.group(1).strip()
+    # Strip leading COUNTRY/TERRITORY «. »-segments: the denom is the first
+    # segment that is NOT a known territory. Handles «Schleswig-Holstein-
+    # Schaumburg-Pinneberg. Taler» → «Taler» and «Lübeck (Bishopric). Taler»
+    # → «Taler», while keeping a denom-FIRST lot intact («Skilling. Mint
+    # Error — …» → «Skilling», not the trailing error annotation).
+    while ". " in d:
+        head, rest = d.split(". ", 1)
+        if _TERRITORY_LEAD.match(head):
+            d = rest.strip()
+        else:
+            d = head.strip()
+            break
+    # Source-gap guards (no denomination actually printed):
+    #   • «DENMARK. , 1572» → empty / digit-only residue
+    #   • «… Lübeck (Bishopric), 1608-IG» → year directly after territory, so
+    #     the residue IS the trailing territory (still matches _TERRITORY_LEAD)
+    # Both must yield None, not a junk «denom».
+    if not d or not re.search(r"[A-Za-zÀ-ÿ]", d):
+        return None
+    if _TERRITORY_LEAD.match(d):
+        return None
+    return d
+
+
 def parse_denomination(meta: str | None, body: str | None) -> str | None:
-    """Extract a denomination string from meta_line.
+    """Extract a denomination string from the lot's meta_line, falling back
+    to the body_excerpt when the meta_line is truncated.
 
     Patterns supported:
       A. «<COUNTRY>. <denom>, <year>.»          — standard dated form
       B. «<COUNTRY>. <denom>, ND.»              — undated (ND with period)
       C. «<COUNTRY>. <denom>, ND (year).»       — undated with attribution
+      D. «<COUNTRY> . <TERRITORY>. <denom>, …»  — German-states territory prefix
+      E. Roman-numeral dated «… <denom>, MDCIII (1603).»
+
+    BODY FALLBACK (2026-06-09): the PDF line-wrap routinely truncates the
+    meta_line of German-states lots to «GERMANY . Schleswig-Holstein-
+    Schaumburg-Pinneberg.» — the denom + year wrap onto the body's first
+    line. The body_excerpt always carries the full «COUNTRY. TERRITORY.
+    <denom>, <year>. Mint…» header, so when the meta_line yields nothing we
+    re-run the same extraction on the body. (Fixes 18 nominal-less Bruun
+    seeds — German Schauenburg/Sonderburg Taler + Roman-dated Speciedaler.)
     """
-    if not meta:
-        return None
-    # Cover (A) + (B) + (C): denomination is between «<COUNTRY>. » and the
-    # first comma; what follows is either a year, «ND.», or «ND (year».
-    m = re.match(
-        r"^[^.]+\.\s+([^,]+),\s*(?:ND(?:\s*[.\(]|\b)|[\(\d])",
-        meta,
-    )
-    if m:
-        d = m.group(1).strip()
-        # Filter junk
-        if d.startswith("Gotland.") or d.startswith("Schleswig"):
-            # secondary realm marker; strip it
-            m2 = re.match(r"^[^.]+\.\s+([^,]+)", d)
-            if m2:
-                d = m2.group(1).strip()
-        return d
+    for text in (meta, body):
+        if not text:
+            continue
+        d = _denom_from_text(text)
+        if d:
+            return d
     return None
 
 
