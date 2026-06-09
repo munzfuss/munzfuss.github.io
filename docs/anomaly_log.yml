@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-08T18:15:42Z'
+  last_updated_utc: '2026-06-09T00:13:39Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3344,4 +3344,35 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-08T18:15:42Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:nid=419416:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+    nid: '419416'
+  summary: numista NID 419416 enumerated in brunswick_wolfenbuttel_principality gap list is OOS — Type
+    'Patterns', KM# Pn2 (pattern/trial strike per §9.1).
+  status: resolved
+  instance_first_seen: '2026-06-09T00:13:33.796154Z'
+  last_seen: '2026-06-09T00:13:33.796154Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 419416
+  occurrences:
+  - run_utc: '2026-06-09T00:13:33.796154Z'
+    batch_label: PA
+    detail: 'Batch PA: N#419416 ¼ Thaler August der Jüngere 1643 Gold 10.3g — Numista Type field = ''Patterns'',
+      reference KM# Pn2. OOS per CLAUDE.md §9.1 (patterns excluded). Not saved.'
+    full_context:
+      type: Patterns
+      km: Pn2
+      metal: gold
+      denom: 1/4 Thaler
+  proposed_fix: Fold NID 419416 into _BO7_audit_2026-05-24.json oos_excluded_nids via reclassify_bo7_oos.py
+    --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-09T00:13:39Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
