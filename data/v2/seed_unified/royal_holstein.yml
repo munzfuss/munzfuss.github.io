@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1611 per-source seed entries.
-# Output: 987 unified entries (one per physical coin).
+# Output: 984 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -6491,6 +6491,7 @@ coins:
   ruler: Christian VII.
   mint: Altona
   catalog:
+    km: '645'
     hede: '25'
     hede_volume: c7h
     schou:
@@ -6498,22 +6499,35 @@ coins:
     - 7a
     sieg: '26'
     fr: '6'
+    numista: '325285'
+    dav: EC III 1312
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.875
     source: hede
+  - value: 0.875
+    source: numista
   weight_rough_g:
   - value: 23.582
     source: hede
+  - value: 23.62
+    source: numista
+  diameter_mm:
+  - value: 39.0
+    source: numista
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h25.htm
     ref: danskmoent.dk (Hede c7h25)
+  - type: literature
+    url: https://en.numista.com/325285
+    ref: Numista N#325285 — 1 Rigsdaler Courant "Rejsedaler" (Royal Visit)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -6527,6 +6541,7 @@ coins:
     unit_raw: rd.kr
   composed_of:
   - dk-hede-c7h25
+  - dk-numista-325285
 - id: unified-dk-hede-c7h36
   fuss: seed_unsorted
   phase: hede
@@ -9718,6 +9733,9 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/371039
     ref: KMM 371039 (Inv. FP 7874.7)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/372857
+    ref: KMM 372857 (Inv. FP 4276.8)
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -9738,6 +9756,7 @@ coins:
   - kmk-317177
   - kmk-368397
   - kmk-371039
+  - kmk-372857
 - id: unified-dk-hede-f6h16
   fuss: seed_unsorted
   phase: hede
@@ -14812,53 +14831,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-31393
-- id: unified-dk-numista-325285
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Kurant Daler
-  year_first: 1788
-  year_last: 1788
-  year_label: '1788'
-  ruler: Christian VII
-  mint: Altona
-  catalog:
-    km: '645'
-    numista: '325285'
-    dav: EC III 1312
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.875
-    source: numista
-  weight_rough_g:
-  - value: 23.62
-    source: numista
-  diameter_mm:
-  - value: 39.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/325285
-    ref: Numista N#325285 — 1 Rigsdaler Courant "Rejsedaler" (Royal Visit)
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-325285
 - id: unified-dk-numista-33159
   fuss: seed_unsorted
   phase: numista
@@ -24994,6 +24966,12 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/201039
     ref: KMM 201039 (Inv. FP 3108.11511)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/296097
+    ref: KMM 296097 (Inv. FP 9040.2)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/296098
+    ref: KMM 296098 (Inv. FP 9040.1)
   verification_note: *id002
   issuing_entity: royal_holstein
   composed_of:
@@ -25001,6 +24979,8 @@ coins:
   - kmk-200993
   - kmk-201026
   - kmk-201039
+  - kmk-296097
+  - kmk-296098
 - id: unified-kmk-201052
   fuss: seed_unsorted
   phase: kmk
@@ -25254,36 +25234,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - kmk-295860
-- id: unified-kmk-296097
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Sk., lybsk
-  year_first: 1620
-  year_last: 1629
-  year_ranges:
-  - - 1620
-    - 1629
-  year_label: 1620-1629
-  ruler: Hans den Yngre
-  catalog:
-    lange: '542'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/296097
-    ref: KMM 296097 (Inv. FP 9040.2)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/296098
-    ref: KMM 296098 (Inv. FP 9040.1)
-  verification_note: *id002
-  issuing_entity: royal_holstein
-  composed_of:
-  - kmk-296097
-  - kmk-296098
 - id: unified-kmk-298423
   fuss: seed_unsorted
   phase: kmk
@@ -27024,30 +26974,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - kmk-370986
-- id: unified-kmk-372857
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1 Sk.
-  year_first: 1719
-  year_last: 1719
-  year_label: '1719'
-  ruler: Frederik 4
-  mint: Rendsburg
-  catalog:
-    hede: '63'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/372857
-    ref: KMM 372857 (Inv. FP 4276.8)
-  verification_note: *id002
-  issuing_entity: royal_holstein
-  composed_of:
-  - kmk-372857
 - id: unified-kmk-405951
   fuss: seed_unsorted
   phase: kmk
