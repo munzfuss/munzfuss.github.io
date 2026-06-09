@@ -2918,7 +2918,8 @@ coins:
     schou:
     - 6-7
     - '1'
-    - 4/1-3
+    - '4'
+    - 1-3
     - '2'
     - 21-31
     galster_volume: f1g
@@ -3128,9 +3129,7 @@ coins:
     - '46'
     numista: '468485'
     mb: '48'
-    dav:
-    - EC I# 8236
-    - EC I 8236
+    dav: EC I 8236
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -3266,9 +3265,7 @@ coins:
     sieg: '50'
     numista: '309416'
     mb: '54'
-    dav:
-    - EC I# 8237
-    - EC I 8237
+    dav: EC I 8237
     lange: 20 a
   metal: silver
   metal_verified: true
@@ -5842,7 +5839,11 @@ coins:
     source: numismaster
   - value: 0.671
     source: numista
+  - value: 0.671
+    source: ucoin
   weight_rough_g:
+  - value: 22.27
+    source: ucoin
   - value: 22.272
     source: hede
   - value: 22.272
@@ -5852,6 +5853,8 @@ coins:
   diameter_mm:
   - value: 40.0
     source: numista
+  - value: 41.0
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h125.htm
@@ -5859,6 +5862,9 @@ coins:
   - type: literature
     url: https://en.numista.com/108760
     ref: Numista N#108760 — 4 Mark Dansk - Christian V (Type II; palm leaves)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1692-1694/?tid=163656
+    ref: ucoin
   - type: literature
     url: https://numismaster.com/MC_92997
     ref: NumisMaster
@@ -5878,6 +5884,7 @@ coins:
   - dk-hede-c5h125b
   - dk-hede-c5h125c
   - dk-numista-108760
+  - km-77-1-chr-v-1686
   - schleswig_holstein-numismaster-92997
 - id: unified-dk-hede-c5h126a
   fuss: seed_unsorted
@@ -6867,7 +6874,7 @@ coins:
     - 5-6,5,2
     - '7'
     - '5'
-    - 5/6
+    - '6'
     bruun_collection_id:
     - '7867'
     - '7931'
@@ -6880,7 +6887,9 @@ coins:
     others:
     - AKS# 4
     - Jaeg 6 NWD# 9
-    bruun_lot: 7867/7869
+    bruun_lot:
+    - '7867'
+    - '7869'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -11470,9 +11479,7 @@ coins:
   catalog:
     numista: '103794'
     sieg: C3-47
-    dav:
-    - EC I# 8237
-    - EC I 8237
+    dav: EC I 8237
     lange: '20'
   metal: silver
   metal_verified: true
@@ -12411,9 +12418,7 @@ coins:
     - '640'
     - '640.2'
     numista: '131730'
-    dav:
-    - EC III# 1310
-    - EC III 1310
+    dav: EC III 1310
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -14035,9 +14040,7 @@ coins:
   catalog:
     km: '73'
     numista: '308517'
-    dav:
-    - EC II# 3677
-    - EC II 3677
+    dav: EC II 3677
     lange: 82 A
   metal: silver
   metal_verified: true
@@ -14087,9 +14090,7 @@ coins:
     lange: '12'
     sieg: F1-47
     mb: '27'
-    dav:
-    - EC I# 8235
-    - EC I 8235
+    dav: EC I 8235
     galster: '114'
   metal: silver
   metal_verified: true
@@ -16862,65 +16863,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - km-733-chr-v-1842
-- id: unified-km-77-1-chr-v-1686
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 4 Mark dansk
-  year_first: 1692
-  year_last: 1694
-  year_ranges:
-  - - 1692
-    - 1694
-  year_label: 1692-1694
-  ruler: Christian V
-  catalog:
-    km:
-    - '77'
-    - '77.2'
-    hede: 125A / 125B
-    sieg: 138.1 / 138.2
-    dav: 3679 / 3679A
-    numista: '108760'
-    hede_volume: c5h
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.671
-    source: numismaster
-  - value: 0.671
-    source: ucoin
-  weight_rough_g:
-  - value: 22.27
-    source: ucoin
-  - value: 22.272
-    source: numismaster
-  diameter_mm:
-  - value: 41.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-4-mark-dansk-1692-1694/?tid=163656
-    ref: ucoin
-  - type: literature
-    url: https://numismaster.com/MC_92998
-    ref: NumisMaster
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - km-77-1-chr-v-1686
-  - schleswig_holstein-numismaster-92998
 - id: unified-km-x003-chr-iv-1623-sechzehntel
   fuss: seed_unsorted
   phase: ucoin
@@ -34154,6 +34096,43 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - schleswig_holstein-numismaster-92986
+- id: unified-schleswig_holstein-numismaster-92998
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 4 Mark Danske
+  year_first: 1693
+  year_last: 1693
+  year_label: '1693'
+  ruler: Christian V
+  catalog:
+    km: '77.2'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: false
+  verified: false
+  fineness:
+  - value: 0.671
+    source: numismaster
+  weight_rough_g:
+  - value: 22.272
+    source: numismaster
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_92998
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: royal_holstein
+  composed_of:
+  - schleswig_holstein-numismaster-92998
 - id: unified-schleswig_holstein-numismaster-92999
   fuss: seed_unsorted
   phase: numismaster
