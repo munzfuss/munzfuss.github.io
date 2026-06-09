@@ -1029,6 +1029,57 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
     return refs
 
 
+# Lange (Holstein) citations are list- and range-rich: a single value can be a
+# comma list («404A, 405»), an inclusive range («124-131»), an abbreviated range
+# («462-63» = 462-463, «280-90» = 280-290), a letter-bounded range («357A-357B»),
+# or any mix («431-32, 434, 436-38»). The generic «|»-split + numeric-core path
+# treats such a string as ONE opaque token, so «405» falsely disagrees with
+# «404A, 405». `_lange_numbers` expands a Lange value to the SET of base catalogue
+# numbers it covers; two Lange values then agree iff those sets intersect.
+#
+# Scoped to the `lange` register ONLY — range-expansion would corrupt registers
+# where «-» is a code separator, not a range (Sieg «C3-16» is one code; Dav
+# «ST 6515-6517»; etc.). It changes nothing about how the OTHER fields drive the
+# consolidated match decision — it only makes Lange's own agree/disagree correct.
+_LANGE_RANGE_RE = re.compile(r"^(\d+)[a-z]*-(\d+)[a-z]*$", re.IGNORECASE)
+_LANGE_SINGLE_RE = re.compile(r"^(\d+)[a-z]*$", re.IGNORECASE)
+
+
+def _lange_numbers(value: str) -> set[str]:
+    """Expand a Lange catalogue value to the set of base numbers it covers.
+
+    «405» → {405}; «404A, 405» → {404, 405}; «462-63» → {462, 463};
+    «280-90» → {280..290}; «357A-357B» → {357}; «431-32, 434, 436-38» →
+    {431, 432, 434, 436, 437, 438}. Letter suffixes collapse to the base
+    number (die-variant, per §9.4). Non-numeric tokens are kept verbatim so an
+    unparseable citation still self-matches."""
+    out: set[str] = set()
+    for tok in re.split(r"[|,]", str(value)):
+        tok = tok.strip()
+        if not tok:
+            continue
+        mr = _LANGE_RANGE_RE.match(tok)
+        if mr:
+            lo_s, hi_s = mr.group(1), mr.group(2)
+            lo = int(lo_s)
+            # Complete an abbreviated upper bound: «462-63» → hi «463»
+            # (replace the lo's trailing digits with the shorter hi suffix).
+            hi = int(lo_s[: len(lo_s) - len(hi_s)] + hi_s) if len(hi_s) < len(lo_s) else int(hi_s)
+            if hi < lo:
+                lo, hi = hi, lo
+            if 0 <= hi - lo <= 60:      # sane series; avoid pathological blow-up
+                out.update(str(n) for n in range(lo, hi + 1))
+            else:                        # too wide → keep endpoints only
+                out.update({str(lo), str(hi)})
+            continue
+        ms = _LANGE_SINGLE_RE.match(tok)
+        if ms:
+            out.add(ms.group(1))         # numeric core (drops the letter suffix)
+        else:
+            out.add(tok.lower())         # unparseable → verbatim self-match
+    return out
+
+
 def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     """Returns (state, has_overlap):
       state ∈ {'agree', 'disagree', 'no_overlap'}
@@ -1100,6 +1151,15 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     disagreeing: list[str] = []
     for k in shared:
         va, vb = refs_a[k], refs_b[k]
+        # Lange-specific value comparison (comma lists + numeric ranges) —
+        # see `_lange_numbers`. Bypasses the generic «|»-split path for this
+        # register only; other registers fall through unchanged.
+        if k.split("/", 1)[0] == "lange":
+            if _lange_numbers(va) & _lange_numbers(vb):
+                agreeing.append(k)
+            else:
+                disagreeing.append(k)
+            continue
         sa = set(va.split("|"))
         sb = set(vb.split("|"))
         # Case-insensitive value match (§9.4 index normalisation, user
