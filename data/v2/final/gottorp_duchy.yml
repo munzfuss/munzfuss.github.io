@@ -17,20 +17,33 @@ coins:
   - - 1681
     - 1682
   year_label: 1681-1682
+  mint: Gottorp
   catalog:
     km: '136'
-    bruun_collection_id: '14444'
+    bruun_collection_id:
+    - '14444'
+    - '14434'
     bruun_part: III
     bruun_lot_no: 12209
     bruun_page: 261
-    lange: 400, 401, 403
-    dav: '577'
+    lange:
+    - 400, 401, 403
+    - '401'
+    dav: SG 577
+    sieg: '16.3'
+    numista: '313889'
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
+  weight_rough_verified: true
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 21.47
+    source: numista
+  - value: 21.76
+    source: bruun
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
@@ -38,6 +51,12 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_167302
     ref: NumisMaster
+  - type: auction
+    url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
+    ref: Bruun Part II, lot 14221, p. 299
+  - type: literature
+    url: https://en.numista.com/313889
+    ref: Numista N#313889 — 2 Marks - Christian Albert
   note:
     de: 2 Mark ND (1681-1682) · KM und Davenport unlisted (Variante zu KM-136 / Dav-577)
     en: 2 Mark ND (1681-1682) · KM and Davenport unlisted (variant of KM-136 / Dav-577)
@@ -50,7 +69,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
-  - unified-schleswig_holstein-numismaster-167302
+  - unified-dk-bruun-14434
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -491,7 +510,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-dk-numista-301095
-  - unified-schleswig_holstein-numismaster-167258
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -980,7 +998,6 @@ coins:
       проби .500–.625 видалено 2026-05-10, бо жодне доступне джерело прямо не підтверджувало ці значення (за CLAUDE.md §0).'
   composed_of:
   - unified-dk-numista-301828
-  - unified-schleswig_holstein-numismaster-167287
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -1453,11 +1470,14 @@ coins:
   catalog:
     km: '174'
     numista: '319103'
-    lange: 439A, 440-441
+    lange:
+    - 439A, 440-441
+    - '441'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
+  diameter_mm_verified: false
   mint_verified: true
   verified: false
   sources:
@@ -1467,6 +1487,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces319103.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/319103
+    ref: Numista N#319103 — 1⁄48 Thaler - Frederick IV
   note:
     de: Kleinstes Silber-Teilstück
     en: The smallest silver sub-unit of the period.
@@ -1479,7 +1502,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
-  - unified-schleswig_holstein-numismaster-167324
+  - unified-dk-numista-319103
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -1572,7 +1595,9 @@ coins:
   catalog:
     km: '183'
     numista: '73161'
-    lange: 463B-467
+    lange:
+    - 463B-467
+    - '464'
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1596,6 +1621,9 @@ coins:
   - type: literature
     url: https://en.numista.com/73161
     ref: Numista N#73161 — 1 Schilling - Charles Frederick
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/304516
+    ref: KMM 304516 (Inv. FP 7941.14)
   note:
     de: '«I SCHILLING» + Datum · Münzstätte Tönning · Numista-Standardwert: 0,90 g / ⌀ 18 mm · Kleinstscheidemünze im 9¼-Fuß
       · rau 0,90 g × geschätzten <b>.125–.250</b> · Feingehalt im Kupfer-Silber-Legierungsbereich (typisch für 1-Schilling-Nominale
@@ -1635,7 +1663,10 @@ coins:
   catalog:
     km: '185'
     numista: '38955'
-    lange: 458-461
+    lange:
+    - 458-461
+    - '459'
+    - '460'
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1656,6 +1687,13 @@ coins:
   - type: literature
     url: https://en.numista.com/38955
     ref: Numista N#38955 — 4 Schilling - Charles Frederick
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/122414
+    ref: KMM 122414 (Inv. FP 2668.560)
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/122415
+    ref: KMM 122415 (Inv. FP 2668.561)
+    display: false
   note:
     de: 'Fortsetzung der lübischen Rechnung unter Karl Friedrich · Münzmeister Bastian Hille d. J. (Numista) · Scheidemünze
       · Raugewicht nicht online belegt · Feingehalt geschätzt <b>.500–.625</b> (Billon) — Münzmeister Bastian Hille d. J.,
@@ -1677,6 +1715,7 @@ coins:
       — діапазон підтверджено як continuous.'
   composed_of:
   - unified-dk-numista-38955
+  - unified-kmk-122415
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
   phase: I
@@ -2242,7 +2281,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-dk-numista-301664
-  - unified-schleswig_holstein-numismaster-167293
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -2874,7 +2912,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-dk-numista-317502
-  - unified-schleswig_holstein-numismaster-167241
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -3379,14 +3416,19 @@ coins:
   catalog:
     km: '5'
     numista: '301149'
-    lange: 280-290
+    lange:
+    - 280-290
+    - 280-90
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: false
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  diameter_mm:
+  - value: 28.0
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167337
@@ -3394,6 +3436,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301149.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/301149
+    ref: Numista N#301149 — 1⁄16 Thaler - John Adolphus
   note:
     de: 1/16 Thaler · Johann Adolf von Gottorp, 1594-1605
     en: 1/16 Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1594-1605
@@ -3406,7 +3451,7 @@ coins:
     uk: 'Аудит TODO A (2026-05-03) проти Numista _issues.json: усі 12 років від 1594 до 1605 явно перелічено, без gap-маркерів
       — діапазон підтверджено як continuous.'
   composed_of:
-  - unified-schleswig_holstein-numismaster-167337
+  - unified-dk-numista-301149
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -3425,7 +3470,9 @@ coins:
   catalog:
     km: '59'
     numista: '313518'
-    lange: 354A, 355A
+    lange:
+    - 354A, 355A
+    - 355A
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3443,6 +3490,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_167313
     ref: NumisMaster
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/406269
+    ref: KMM 406269 (Inv. FP 2624.203)
   note:
     de: 1/96 Thaler · Frederik III. von Gottorp, 1622-1623
     en: 1/96 Thaler · Frederick III, Duke of Schleswig-Holstein-Gottorp, 1622-1623
@@ -3479,13 +3529,19 @@ coins:
   catalog:
     km: '6'
     numista: '301812'
-    lange: 304-305A
+    lange:
+    - 304-305A
+    - '304'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 1.44
+    source: numista
   sources:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301812.html
@@ -3493,6 +3549,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_167327
     ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/301812
+    ref: Numista N#301812 — 1⁄32 Thaler - John Adolphus
   note:
     de: 1 Schilling = 1/32 Thaler · Johann Adolf von Gottorp, 1595-1597
     en: 1 Schilling = 1/32 Thaler · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1595-1597
@@ -3505,7 +3564,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
-  - unified-schleswig_holstein-numismaster-167327
+  - unified-dk-numista-301812
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -3990,7 +4049,9 @@ coins:
     others:
     - Saur# 3547
     - Saur# 3548
-    lange: 295A, 298-300, 301, 303A
+    lange:
+    - 295A, 298-300, 301, 303A
+    - '300'
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -3998,6 +4059,12 @@ coins:
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 2.05
+    source: numista
+  diameter_mm:
+  - value: 20.8
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167333
@@ -4005,6 +4072,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces301545.html
     ref: Numista
+  - type: literature
+    url: https://en.numista.com/301545
+    ref: Numista N#301545 — 1⁄24 Thaler - John Adolphus
   note:
     de: 1/24 Thaler = 1 Groschen · Johann Adolf von Gottorp, 1601-1603
     en: 1/24 Thaler = 1 Groschen · John Adolphus, Duke of Schleswig-Holstein-Gottorp, 1601-1603
@@ -4017,7 +4087,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
-  - unified-schleswig_holstein-numismaster-167333
+  - unified-dk-numista-301545
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -4086,12 +4156,18 @@ coins:
   year_last: 1658
   year_ranges:
   - - 1642
+    - 1642
+  - - 1645
+    - 1653
+  - - 1657
     - 1658
-  year_label: 1642-1658
+  year_label: 1642, 1645-1653, 1657-1658
   catalog:
     km: '93'
     numista: '85360'
-    lange: '344'
+    lange:
+    - '344'
+    - 342-353
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -4115,6 +4191,9 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/329931
     ref: KMM 329931 (Inv. FP 6346.5)
+  - type: literature
+    url: https://numismaster.com/MC_167344
+    ref: NumisMaster
   note:
     de: 1/16 Thaler · Frederik III. von Gottorp, 1642-1658
     en: 1/16 Thaler · Frederick III, Duke of Schleswig-Holstein-Gottorp, 1642-1658
@@ -6505,43 +6584,6 @@ coins:
   nominal: 1/96 Thaler
   ruler: Friedrich III
   issuing_entity: gottorp_duchy
-  id: unified-schleswig_holstein-numismaster-167312
-  year_first: 1621
-  year_last: 1624
-  year_ranges:
-  - - 1621
-    - 1621
-  - - 1624
-    - 1624
-  year_label: 1621, 1624
-  catalog:
-    km: '55'
-    lange: 354a-354b, 356
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167312
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-167312
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1/96 Thaler
-  ruler: Friedrich III
-  issuing_entity: gottorp_duchy
   id: unified-schleswig_holstein-numismaster-167315
   year_first: 1642
   year_last: 1642
@@ -6673,45 +6715,6 @@ coins:
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
   - unified-schleswig_holstein-numismaster-167340
-- fuss: seed_unsorted
-  phase: numismaster
-  kind: kurant
-  nominal: 1/16 Thaler
-  ruler: Friedrich III
-  issuing_entity: gottorp_duchy
-  id: unified-schleswig_holstein-numismaster-167344
-  year_first: 1642
-  year_last: 1658
-  year_ranges:
-  - - 1642
-    - 1642
-  - - 1645
-    - 1653
-  - - 1657
-    - 1658
-  year_label: 1642, 1645-1653, 1657-1658
-  catalog:
-    km: '93'
-    lange: 342-353
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: literature
-    url: https://numismaster.com/MC_167344
-    ref: NumisMaster
-  verification_note:
-    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
-      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
-    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
-      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
-    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
-      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
-  composed_of:
-  - unified-schleswig_holstein-numismaster-167344
 - fuss: seed_unsorted
   phase: numismaster
   kind: kurant
@@ -8128,49 +8131,6 @@ coins:
 - fuss: seed_unsorted
   phase: numista
   kind: kurant
-  nominal: 1⁄16 Thaler
-  ruler: John Adolphus
-  issuing_entity: gottorp_duchy
-  id: unified-dk-numista-301149
-  year_first: 1594
-  year_last: 1605
-  year_ranges:
-  - - 1594
-    - 1605
-  year_label: 1594-1605
-  catalog:
-    km: '5'
-    numista: '301149'
-    lange: 280-90
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  diameter_mm:
-  - value: 28.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/301149
-    ref: Numista N#301149 — 1⁄16 Thaler - John Adolphus
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-301149
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
   nominal: 1⁄48 Thaler
   ruler: Charles Frederick
   issuing_entity: gottorp_duchy
@@ -8209,95 +8169,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-301150
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1⁄24 Thaler
-  ruler: John Adolphus
-  issuing_entity: gottorp_duchy
-  id: unified-dk-numista-301545
-  year_first: 1601
-  year_last: 1603
-  year_ranges:
-  - - 1601
-    - 1603
-  year_label: 1601-1603
-  catalog:
-    km: '8'
-    numista: '301545'
-    lange: '300'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 2.05
-    source: numista
-  diameter_mm:
-  - value: 20.8
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/301545
-    ref: Numista N#301545 — 1⁄24 Thaler - John Adolphus
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-301545
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1⁄32 Thaler
-  ruler: John Adolphus
-  issuing_entity: gottorp_duchy
-  id: unified-dk-numista-301812
-  year_first: 1595
-  year_last: 1597
-  year_ranges:
-  - - 1595
-    - 1597
-  year_label: 1595-1597
-  catalog:
-    km: '6'
-    numista: '301812'
-    lange: '304'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.44
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/301812
-    ref: Numista N#301812 — 1⁄32 Thaler - John Adolphus
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-301812
 - fuss: seed_unsorted
   phase: numista
   kind: kurant
@@ -8445,13 +8316,17 @@ coins:
   year_last: 1624
   year_ranges:
   - - 1621
+    - 1621
+  - - 1624
     - 1624
-  year_label: 1621-1624
+  year_label: 1621, 1624
   mint: søsling
   catalog:
     km: '55'
     numista: '313367'
-    lange: 354b
+    lange:
+    - 354b
+    - 354a-354b, 356
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -8469,6 +8344,9 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/168015
     ref: KMM 168015 (Inv. FP 2366.6)
+  - type: literature
+    url: https://numismaster.com/MC_167312
+    ref: NumisMaster
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -8660,47 +8538,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-313816
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1⁄48 Thaler
-  ruler: Frederick IV
-  issuing_entity: gottorp_duchy
-  id: unified-dk-numista-319103
-  year_first: 1699
-  year_last: 1702
-  year_ranges:
-  - - 1699
-    - 1702
-  year_label: 1699-1702
-  mint: Tönning
-  catalog:
-    km: '174'
-    numista: '319103'
-    lange: '441'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://en.numista.com/319103
-    ref: Numista N#319103 — 1⁄48 Thaler - Frederick IV
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-319103
 - fuss: seed_unsorted
   phase: numista
   kind: kurant
@@ -8928,52 +8765,6 @@ coins:
   verification_note: *id001
   composed_of:
   - unified-kmk-122262
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 4 Skilling
-  ruler: Karl Frederik
-  issuing_entity: gottorp_duchy
-  id: unified-kmk-122414
-  year_first: 1704
-  year_last: 1704
-  year_label: '1704'
-  catalog:
-    lange: '459'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/122414
-    ref: KMM 122414 (Inv. FP 2668.560)
-  verification_note: *id001
-  composed_of:
-  - unified-kmk-122414
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 4 Skilling
-  ruler: Karl Frederik
-  issuing_entity: gottorp_duchy
-  id: unified-kmk-122415
-  year_first: 1705
-  year_last: 1705
-  year_label: '1705'
-  catalog:
-    lange: '460'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/122415
-    ref: KMM 122415 (Inv. FP 2668.561)
-  verification_note: *id001
-  composed_of:
-  - unified-kmk-122415
 - fuss: seed_unsorted
   phase: kmk
   kind: kurant
@@ -9668,29 +9459,6 @@ coins:
 - fuss: seed_unsorted
   phase: kmk
   kind: kurant
-  nominal: 1 Schilling
-  ruler: Karl Frederik
-  issuing_entity: gottorp_duchy
-  id: unified-kmk-304516
-  year_first: 1706
-  year_last: 1706
-  year_label: '1706'
-  catalog:
-    lange: '464'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/304516
-    ref: KMM 304516 (Inv. FP 7941.14)
-  verification_note: *id001
-  composed_of:
-  - unified-kmk-304516
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
   nominal: 1 Søsling
   ruler: Christian Albrecht
   issuing_entity: gottorp_duchy
@@ -9911,29 +9679,6 @@ coins:
   verification_note: *id001
   composed_of:
   - unified-kmk-351460
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 6 Schilling
-  ruler: Karl Frederik
-  issuing_entity: gottorp_duchy
-  id: unified-kmk-351730
-  year_first: 1726
-  year_last: 1726
-  year_label: '1726'
-  catalog:
-    lange: '457'
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/351730
-    ref: KMM 351730 (Inv. FP 5149 5149.628)
-  verification_note: *id001
-  composed_of:
-  - unified-kmk-351730
 - fuss: seed_unsorted
   phase: kmk
   kind: kurant
@@ -10438,37 +10183,6 @@ coins:
   verification_note: *id001
   composed_of:
   - unified-kmk-394027
-- fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 1/96 Thaler
-  ruler: Frederik 3
-  issuing_entity: gottorp_duchy
-  id: unified-kmk-406269
-  year_first: 1623
-  year_last: 1623
-  year_label: '1623'
-  catalog:
-    km: '68'
-    lange:
-    - 355A
-    - '355'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/406269
-    ref: KMM 406269 (Inv. FP 2624.203)
-  - type: literature
-    url: https://numismaster.com/MC_167314
-    ref: NumisMaster
-  verification_note: *id001
-  composed_of:
-  - unified-kmk-406269
 - fuss: seed_unsorted
   phase: kmk
   kind: kurant
@@ -12492,7 +12206,9 @@ coins:
   catalog:
     km: '218'
     numista: '38954'
-    lange: 454-457
+    lange:
+    - 454-457
+    - '457'
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -12513,6 +12229,9 @@ coins:
   - type: numista
     url: https://en.numista.com/catalogue/pieces38954.html
     ref: Numista
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/351730
+    ref: KMM 351730 (Inv. FP 5149 5149.628)
   note:
     de: 6 Schilling = 1/8 Thaler · Karl Friedrich von Gottorp, 1722-1726
     en: 6 Schilling = 1/8 Thaler · Charles Frederick, Duke of Schleswig-Holstein-Gottorp, 1722-1726
@@ -13078,46 +12797,3 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-313874
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 2 Marks
-  ruler: Christian Albert
-  issuing_entity: gottorp_duchy
-  id: unified-dk-numista-313889
-  year_first: 1681
-  year_last: 1682
-  year_ranges:
-  - - 1681
-    - 1682
-  year_label: 1681-1682
-  catalog:
-    km: '136'
-    numista: '313889'
-    dav: SG 577
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 21.47
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/313889
-    ref: Numista N#313889 — 2 Marks - Christian Albert
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-313889

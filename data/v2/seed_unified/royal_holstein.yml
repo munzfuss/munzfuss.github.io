@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1611 per-source seed entries.
-# Output: 980 unified entries (one per physical coin).
+# Output: 977 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11518,23 +11518,33 @@ coins:
     - 1554
   year_label: 1534, 1545-1546, 1554
   ruler: Christian III
+  mint: Flensburg
   catalog:
     mb: '33'
     schou: '1357'
-    lange: 23, 23AB
+    lange:
+    - 23, 23AB
+    - '23'
+    numista: '309411'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  mint_verified: false
+  diameter_mm_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 1.0
     source: numismaster
+  - value: 1.0
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_167727
     ref: NumisMaster MC_167727 — SCHLESWIG-HOLSTEIN MB# 33 6 Pfennig 1534 - 1554
+  - type: literature
+    url: https://en.numista.com/309411
+    ref: Numista N#309411 — 1 Sechsling - Christian III
   verification_note:
     de: 'NumisMaster-Seed (§AZ Tier 4): Krause-Mishler-basiertes kommerzielles Katalog. Pre-1604 KM-Nummerierung sparse —
       die meisten Pre-1541 Schleswig-Holstein-Herzogthum-Münzen kommen mit «MB#»-Nummerierung (Madai-Bach, vor-Krause). Per-Münze-Verifikation
@@ -11548,6 +11558,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numismaster-167727
+  - dk-numista-309411
   - schleswig_holstein-numismaster-167727
 - id: unified-dk-numismaster-167729
   fuss: seed_unsorted
@@ -11674,11 +11685,11 @@ coins:
   kind: kurant
   nominal: 1 Sosling Lybsk
   year_first: 1623
-  year_last: 1625
+  year_last: 1626
   year_ranges:
   - - 1623
-    - 1625
-  year_label: 1623-1625
+    - 1626
+  year_label: 1623-1626
   ruler: Christian IV
   mint: Glückstadt
   catalog:
@@ -11687,6 +11698,7 @@ coins:
     lange:
     - '58'
     - '59'
+    - 58, 59
   metal: billon
   metal_verified: true
   fineness_verified: true
@@ -11695,6 +11707,8 @@ coins:
   mint_verified: true
   verified: false
   fineness:
+  - value: 0.312
+    source: ucoin
   - value: 0.331
     source: numismaster
   weight_rough_g:
@@ -11702,13 +11716,20 @@ coins:
     source: numismaster
   - value: 0.63
     source: numista
+  - value: 0.63
+    source: ucoin
   diameter_mm:
   - value: 15.0
     source: numista
+  - value: 15.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/107814
     ref: Numista N#107814 — 1 Søsling Lybsk - Christian IV
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-sosling-1623-1626/?tid=163579
+    ref: ucoin
   - type: literature
     url: https://numismaster.com/MC_92967
     ref: NumisMaster
@@ -11725,6 +11746,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-107814
+  - km-10-chr-iv-1623
   - schleswig_holstein-numismaster-92967
 - id: unified-dk-numista-107815
   fuss: seed_unsorted
@@ -13132,20 +13154,23 @@ coins:
   phase: numista
   kind: kurant
   nominal: 3 Skilling Lybsk
-  year_first: 1645
+  year_first: 1641
   year_last: 1646
   year_ranges:
-  - - 1645
+  - - 1641
     - 1646
-  year_label: 1645-1646
+  year_label: 1641-1646
   ruler: Christian IV
   mint: Glückstadt
   catalog:
-    km: '26'
+    km:
+    - '26'
+    - '26.2'
     numista: '154272'
     lange:
     - 51b
     - 51Ab
+    - 51Ab, 51b
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -13156,16 +13181,25 @@ coins:
   fineness:
   - value: 0.812
     source: numista
+  - value: 0.812
+    source: ucoin
   weight_rough_g:
   - value: 1.78
     source: numista
+  - value: 1.79
+    source: ucoin
   diameter_mm:
   - value: 20.2
     source: numista
+  - value: 21.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/154272
     ref: Numista N#154272 — 1⁄16 Reichs Thaler - Christian IV (Legend type II; bust type II)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1641-1646/?tid=163623
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -13179,6 +13213,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-154272
+  - km-26-chr-iv-1645-l2b2
 - id: unified-dk-numista-181803
   fuss: seed_unsorted
   phase: numista
@@ -14280,50 +14315,6 @@ coins:
   composed_of:
   - dk-numista-309409
   - schleswig_holstein-numismaster-167739
-- id: unified-dk-numista-309411
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Sechsling
-  year_first: 1534
-  year_last: 1554
-  year_ranges:
-  - - 1534
-    - 1554
-  year_label: 1534-1554
-  ruler: Christian III
-  mint: Flensburg
-  catalog:
-    numista: '309411'
-    mb: '33'
-    lange: '23'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/309411
-    ref: Numista N#309411 — 1 Sechsling - Christian III
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-309411
 - id: unified-dk-numista-309418
   fuss: seed_unsorted
   phase: numista
@@ -16185,52 +16176,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - ikmk-18236636
-- id: unified-km-10-chr-iv-1623
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Søsling
-  year_first: 1623
-  year_last: 1626
-  year_ranges:
-  - - 1623
-    - 1626
-  year_label: 1623-1626
-  ruler: Christian IV
-  catalog:
-    km: '10'
-    lange: 58, 59
-    numista: '107814'
-  metal: billon
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.312
-    source: ucoin
-  weight_rough_g:
-  - value: 0.63
-    source: ucoin
-  diameter_mm:
-  - value: 15.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-sosling-1623-1626/?tid=163579
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - km-10-chr-iv-1623
 - id: unified-km-124-chr-v-1787
   fuss: seed_unsorted
   phase: ucoin
@@ -16459,52 +16404,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - km-26-chr-iv-1641-l2b1
-- id: unified-km-26-chr-iv-1645-l2b2
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1/16 Speciedaler
-  year_first: 1641
-  year_last: 1646
-  year_ranges:
-  - - 1641
-    - 1646
-  year_label: 1641-1646
-  ruler: Christian IV
-  catalog:
-    km: '26.2'
-    lange: 51Ab, 51b
-    numista: '154272'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  fineness:
-  - value: 0.812
-    source: ucoin
-  weight_rough_g:
-  - value: 1.79
-    source: ucoin
-  diameter_mm:
-  - value: 21.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1641-1646/?tid=163623
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - km-26-chr-iv-1645-l2b2
 - id: unified-km-358-h123-chr-v-1681
   fuss: seed_unsorted
   phase: ucoin
