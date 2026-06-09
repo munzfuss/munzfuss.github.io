@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1611 per-source seed entries.
-# Output: 984 unified entries (one per physical coin).
+# Output: 982 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -3427,6 +3427,7 @@ coins:
     schou:
     - '12'
     - '3'
+    - 13-14,3-4,5,1,19
     sieg:
     - '45.1'
     - '45.2'
@@ -3483,6 +3484,7 @@ coins:
     hede_volume: c4h
     schou:
     - '7'
+    - 7-8,4
     - '4'
     sieg:
     - '185'
@@ -3596,6 +3598,7 @@ coins:
     - '8'
     - '22'
     - '15'
+    - 11-35,18-26,5-11,22,15-16,8
     - '34'
     - '19'
     - '33'
@@ -3758,6 +3761,7 @@ coins:
     - '38'
     - '39'
     - '12'
+    - 37-44,12,25
     - '40'
     - '41'
     sieg:
@@ -3948,6 +3952,7 @@ coins:
     - '34'
     - '35'
     - '21'
+    - 10-11,9,9,19,24,33-35,21-22,18
     - '9'
     sieg:
     - '181'
@@ -4031,6 +4036,7 @@ coins:
     schou:
     - '27'
     - '41'
+    - 27,41
     sieg:
     - '177'
     - '182'
@@ -4286,6 +4292,7 @@ coins:
     - '66'
     - '50'
     - '34'
+    - 54-81,106-124,46-51,34-35
     sieg: '165'
     numista: '108359'
     lange:
@@ -4615,6 +4622,8 @@ coins:
     - '1642'
     - '35'
     - '33'
+    - 17-18,21-54,30-39,33-38
+    - 68-81,64-73
     sieg: '166'
   metal: silver
   metal_verified: true
@@ -5271,6 +5280,7 @@ coins:
     schou:
     - '1'
     - '4'
+    - 1-4,2
     - '2'
     sieg:
     - '144'
@@ -5572,6 +5582,7 @@ coins:
     - '25'
     - '19'
     - '21'
+    - 21-29,19-48,19-33,13-26,10-25,23-27,13-26,19-23
     sieg:
     - '137'
     - '137.1'
@@ -5684,6 +5695,7 @@ coins:
     schou:
     - '34'
     - '29'
+    - 29-30,30,34,28-29
     sieg: '134'
     numista: '108671'
   metal: silver
@@ -6295,7 +6307,9 @@ coins:
     - '633.1'
     hede: '12'
     hede_volume: c7h
-    schou: '2'
+    schou:
+    - '2'
+    - 5,2
     sieg: '29'
     numista: '110606'
   metal: silver
@@ -6367,7 +6381,9 @@ coins:
     km: '652'
     hede: '15'
     hede_volume: c7h
-    schou: '11'
+    schou:
+    - '11'
+    - 16-17,12-13,11
     sieg:
     - '27'
     - '20'
@@ -7185,6 +7201,7 @@ coins:
     - '9'
     - '11'
     - '10'
+    - 9,11-12,6-7,10
     - 9 (1787), 11-12 (1788), 6-7 (1789), 10 (1796)
     sieg:
     - '39'
@@ -7272,6 +7289,7 @@ coins:
     - '12'
     - '14'
     - '6'
+    - 10-12,13-14,10-11,10-11,6-7
     sieg:
     - '38'
     - '41'
@@ -7340,6 +7358,7 @@ coins:
     schou:
     - '14'
     - '9'
+    - 14-15,18-19,13-14,13,9
     sieg: '37'
   metal: silver
   metal_verified: true
@@ -7396,6 +7415,7 @@ coins:
     schou:
     - '20'
     - '15'
+    - 17,18,20,15,15
     sieg: '36'
     numista: '31895'
   metal: billon
@@ -7467,28 +7487,56 @@ coins:
   ruler: Christian VII.
   mint: Altona
   catalog:
+    km: '118'
     hede: '46'
     hede_volume: c7h
     schou: 18-22
-    sieg: '35'
-  metal: silver
+    sieg:
+    - '35'
+    - '38'
+    numista: '33159'
+    lange: '147'
+    others:
+    - Jaeg 6 NWD# 3
+    - Schön DM# 4
+  metal: copper
   metal_verified: true
+  fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   weight_rough_g:
   - value: 11.693
     source: hede
+  - value: 11.8
+    source: numista
+  - value: 11.8
+    source: ucoin
+  diameter_mm:
+  - value: 32.0
+    source: numista
+  - value: 32.0
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h46.htm
     ref: danskmoent.dk (Hede c7h46)
+  - type: literature
+    url: https://en.numista.com/33159
+    ref: Numista N#33159 — 1 Sechsling - Christian VII
+  - type: ucoin
+    url: https://en.ucoin.net/coin/schleswig_holstein-1-sechsling-1787/?tid=90502
+    ref: ucoin
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/155254
     ref: KMM 155254 (Inv. FP 3115.84)
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/578770
     ref: KMM 578770 (Inv. FP 11505.20)
+  - type: literature
+    url: https://numismaster.com/MC_120074
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -7497,8 +7545,11 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-hede-c7h46
+  - dk-numista-33159
+  - km-118-chr-v-1787
   - kmk-155254
   - kmk-578770
+  - schleswig_holstein-numismaster-120074
 - id: unified-dk-hede-c7h47
   fuss: seed_unsorted
   phase: hede
@@ -7510,28 +7561,54 @@ coins:
   ruler: Christian VII.
   mint: Altona
   catalog:
+    km: '116'
     hede: '47'
     hede_volume: c7h
     schou: '23'
-    sieg: '34'
-  metal: silver
+    sieg:
+    - '34'
+    - '37'
+    numista: '35000'
+    others:
+    - Jaeg 6 NWD# 2
+  metal: copper
   metal_verified: true
+  fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 5.8
+    source: numista
+  - value: 5.8
+    source: ucoin
   - value: 5.846
     source: hede
+  diameter_mm:
+  - value: 24.85
+    source: numista
+  - value: 24.85
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h47.htm
     ref: danskmoent.dk (Hede c7h47)
+  - type: literature
+    url: https://en.numista.com/35000
+    ref: Numista N#35000 — 1 Dreiling - Christian VII
+  - type: ucoin
+    url: https://en.ucoin.net/coin/schleswig_holstein-1-dreiling-1787/?tid=90498
+    ref: ucoin
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/148170
     ref: KMM 148170 (Inv. KP 1656.2143)
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/173049
     ref: KMM 173049 (Inv. FP 4469.10)
+  - type: literature
+    url: https://numismaster.com/MC_120073
+    ref: NumisMaster
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -7540,8 +7617,11 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-hede-c7h47
+  - dk-numista-35000
+  - km-116-chr-v-1787
   - kmk-148170
   - kmk-173049
+  - schleswig_holstein-numismaster-120073
 - id: unified-dk-hede-c7h5
   fuss: seed_unsorted
   phase: hede
@@ -7565,7 +7645,9 @@ coins:
     - 5B
     - 5A
     hede_volume: c7h
-    schou: '1'
+    schou:
+    - '1'
+    - 1,1
     sieg:
     - '47'
     - '30.2'
@@ -7635,6 +7717,7 @@ coins:
     schou:
     - '2'
     - '7'
+    - 2,7-8
     sieg: '4'
     dav: '1304'
   metal: silver
@@ -8487,6 +8570,7 @@ coins:
     schou:
     - '9'
     - '5'
+    - 9,8,5,5
     - '8'
     sieg: '159'
     bruun_collection_id:
@@ -8753,6 +8837,7 @@ coins:
     hede_volume: f3h
     schou:
     - '37'
+    - 37,20
     - '20'
     sieg: '156'
     bruun_collection_id: '6558'
@@ -8854,6 +8939,7 @@ coins:
     - '65'
     - '95'
     - '99'
+    - 53-67,90-103
     sieg:
     - '147'
     - '148.1'
@@ -8912,6 +8998,7 @@ coins:
     schou:
     - '106'
     - '98'
+    - 105-108,123-128,90-98
     sieg: '146'
   metal: silver
   metal_verified: true
@@ -9028,6 +9115,7 @@ coins:
     - '74'
     - '66'
     - '46'
+    - 72-82,111-145
     sieg:
     - '150.1'
     - '150.2'
@@ -9287,6 +9375,7 @@ coins:
     - '6'
     - '3'
     - '7'
+    - 8-10,3-6,19-25,6,12-16,3,7
     sieg: '55'
     numista: '108569'
   metal: silver
@@ -9380,7 +9469,9 @@ coins:
     km: '4'
     hede: '59'
     hede_volume: f4h
-    schou: '9'
+    schou:
+    - '9'
+    - 12-14,9-12,12-16
     sieg: '54'
     numista: '108578'
   metal: silver
@@ -9470,7 +9561,9 @@ coins:
     km: '8'
     hede: '60'
     hede_volume: f4h
-    schou: '1'
+    schou:
+    - '1'
+    - 1,1
     sieg: '61'
     bruun_collection_id: '7465'
     bruun_part: II
@@ -9583,6 +9676,7 @@ coins:
     schou:
     - '9'
     - '3'
+    - 7-11,6-9,5-8,6,3
     sieg: '59'
     numista: '88660'
   metal: silver
@@ -9676,6 +9770,7 @@ coins:
     schou:
     - '12'
     - 14a
+    - 12-14,7-11
     - '14'
     sieg:
     - '58'
@@ -10325,7 +10420,9 @@ coins:
     km: 154a
     hede: '30'
     hede_volume: f6h
-    schou: '2'
+    schou:
+    - '2'
+    - 1,3
     sieg:
     - '23'
     - '24'
@@ -10904,7 +11001,7 @@ coins:
     hede_volume: f7h
     schou: 7,1
     sieg: '9.2'
-  metal: silver
+  metal: copper
   metal_verified: true
   weight_rough_verified: true
   mint_verified: true
@@ -10955,7 +11052,7 @@ coins:
     hede_volume: f7h
     schou: '6'
     sieg: '8.2'
-  metal: silver
+  metal: copper
   metal_verified: true
   weight_rough_verified: true
   mint_verified: true
@@ -14831,128 +14928,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-31393
-- id: unified-dk-numista-33159
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Sechsling
-  year_first: 1787
-  year_last: 1787
-  year_label: '1787'
-  ruler: Christian VII
-  mint: Altona
-  catalog:
-    km: '118'
-    numista: '33159'
-    lange: '147'
-    sieg: '38'
-    hede: '46'
-    others:
-    - Jaeg 6 NWD# 3
-    - Schön DM# 4
-    hede_volume: c7h
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 11.8
-    source: numista
-  - value: 11.8
-    source: ucoin
-  diameter_mm:
-  - value: 32.0
-    source: numista
-  - value: 32.0
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://en.numista.com/33159
-    ref: Numista N#33159 — 1 Sechsling - Christian VII
-  - type: ucoin
-    url: https://en.ucoin.net/coin/schleswig_holstein-1-sechsling-1787/?tid=90502
-    ref: ucoin
-  - type: literature
-    url: https://numismaster.com/MC_120074
-    ref: NumisMaster
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-33159
-  - km-118-chr-v-1787
-  - schleswig_holstein-numismaster-120074
-- id: unified-dk-numista-35000
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Dreiling
-  year_first: 1787
-  year_last: 1787
-  year_label: '1787'
-  ruler: Christian VII
-  mint: Altona
-  catalog:
-    km: '116'
-    numista: '35000'
-    sieg: '37'
-    hede: '47'
-    others:
-    - Jaeg 6 NWD# 2
-    hede_volume: c7h
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 5.8
-    source: numista
-  - value: 5.8
-    source: ucoin
-  diameter_mm:
-  - value: 24.85
-    source: numista
-  - value: 24.85
-    source: ucoin
-  sources:
-  - type: literature
-    url: https://en.numista.com/35000
-    ref: Numista N#35000 — 1 Dreiling - Christian VII
-  - type: ucoin
-    url: https://en.ucoin.net/coin/schleswig_holstein-1-dreiling-1787/?tid=90498
-    ref: ucoin
-  - type: literature
-    url: https://numismaster.com/MC_120073
-    ref: NumisMaster
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-35000
-  - km-116-chr-v-1787
-  - schleswig_holstein-numismaster-120073
 - id: unified-dk-numista-398134
   fuss: seed_unsorted
   phase: numista
