@@ -63,10 +63,18 @@ _MINT_REGISTRY: dict[str, dict] = {
     # ──────────────────────────── Danish realm ─────────────────────────
     "kopenhagen": {
         # Copenhagen aka København aka Kjøbenhavn (pre-1948 Danish)
-        # aka Hafnia (Latin — Christian IV legends).
+        # aka Hafnia (Latin — Christian IV legends). Includes the U+FFFD
+        # mojibake form «k�benhavn» (iso-8859 → utf-8 round-trip, distinct
+        # from the «?»-mojibake «k?benhavn»), the «Kbh.» abbreviation, and
+        # the OCR/typo variants surveyed in the seed inventory (all map to
+        # the one canonical «Kopenhagen»).
         "aliases": {
             "kopenhagen", "copenhagen", "københavn", "kobenhavn",
-            "kjøbenhavn", "kjobenhavn", "k?benhavn", "hafnia",
+            "kjøbenhavn", "kjobenhavn", "k?benhavn", "k�benhavn",
+            "hafnia", "kbh", "kbh.",
+            # OCR/typo variants (low-count, from seed survey 2026-06-09)
+            "københavb", "københanv", "københavhn", "københavnh",
+            "københavbn", "købehavn", "københavn.",
         },
         "display": "Kopenhagen",
         "entity": "danish_realm",

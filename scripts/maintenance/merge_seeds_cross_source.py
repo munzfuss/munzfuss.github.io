@@ -214,6 +214,7 @@ def _normalise_metal(metal, fineness):
 # in this module.
 from lib.nominal_synonyms import normalise_nominal as _normalise_nominal_shared
 from lib.catalog_codes import normalise_catalog as _fold_catalog_indices
+from lib.v2_seed_writer import _canonicalise_mint
 
 
 def _normalise_nominal(nominal):
@@ -2350,22 +2351,20 @@ def _collect_mints(members: list[dict]) -> str | list[str] | None:
         else:
             # Nothing has a mint
             source_members = []
-    mints_set: list[str] = []
-    seen: set[str] = set()
+    raw_mints: list[str] = []
     for m in source_members:
         mint = m.get("mint")
         if mint is None:
             continue
-        mints = mint if isinstance(mint, list) else [mint]
-        for mt in mints:
-            if isinstance(mt, str) and mt not in seen:
-                seen.add(mt)
-                mints_set.append(mt)
-    if not mints_set:
-        return None
-    if len(mints_set) == 1:
-        return mints_set[0]
-    return sorted(mints_set)
+        for mt in (mint if isinstance(mint, list) else [mint]):
+            if isinstance(mt, str):
+                raw_mints.append(mt)
+    # Canonicalise spelling + de-dup + certain-wins across the WHOLE union
+    # (Kopenhagen ≡ København ≡ K�benhavn ≡ Kbh. → «Kopenhagen»; «Altona;
+    # Copenhagen» split; «X?» dropped when certain «X» also attested). One
+    # call so the certain-wins pass sees every member's mints together,
+    # instead of «[Kopenhagen, K�benhavn]» / «[Kopenhagen, Kopenhagen?]».
+    return _canonicalise_mint(raw_mints)
 
 
 def _collect_metal(members: list[dict]) -> str | None:

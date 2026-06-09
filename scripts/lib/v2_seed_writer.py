@@ -217,6 +217,20 @@ _MINT_COUNTRY_PREFIXES = frozenset({
     "schleswig-holstein", "lübeck", "hamburg",
 })
 
+# U+FFFD «�» mojibake (iso-8859 → utf-8 round-trip) → clean mint spelling.
+# Applied in `_canonicalise_mint` BEFORE the registry alias lookup so the
+# clean alias matches. No catch-all «�» → "" drop here (unlike the nominal
+# table) — corrupting an unrecognised mint to a wrong name is worse than
+# leaving it, and the registry alias set carries the «?»-mojibake variants.
+_MINT_MOJIBAKE_FIXES = (
+    ("K�benhavn", "København"),
+    ("Kj�benhavn", "Kjøbenhavn"),
+    ("Malm�", "Malmø"),
+    ("Gl�ckstadt", "Glückstadt"),
+    ("Helsing�r", "Helsingør"),
+    ("�rhus", "Århus"),
+)
+
 
 def _canonicalise_mint(raw):
     """Map an arbitrary mint string (or list) to canonical project
@@ -230,26 +244,44 @@ def _canonicalise_mint(raw):
     for item in items:
         if not isinstance(item, str):
             continue
+        # Fix U+FFFD mojibake (K�benhavn → København, Malm� → Malmø, …)
+        # BEFORE the alias lookup so the registry's clean alias matches.
+        base = item
+        for bad, good in _MINT_MOJIBAKE_FIXES:
+            base = base.replace(bad, good)
         # Strip paren tail «Altona (FK VS)» → «Altona»
-        base = re.sub(r"\s*\([^)]*\)\s*$", "", item).strip()
+        base = re.sub(r"\s*\([^)]*\)\s*$", "", base).strip()
         # Strip trailing « Mint» suffix (Bruun PDF convention) so the
         # canonical form matches project-bare-mint spelling. Consistent
         # with merger's `_normalise_mints` strip.
         base = re.sub(r"\s+Mint\s*$", "", base).strip()
         if not base:
             continue
-        # Split on comma — drop country prefix tokens, canonicalise the
-        # rest. «Denmark, Copenhagen» → Kopenhagen.
-        for tok in [t.strip() for t in base.split(",") if t.strip()]:
+        # Split on comma AND semicolon — both separate joint-mint tokens
+        # («Denmark, Copenhagen», «Altona; Copenhagen»).
+        for tok in [t.strip() for t in re.split(r"[,;]", base) if t.strip()]:
             # Re-strip « Mint» on each token in case multi-token form
             # like «Denmark, Copenhagen Mint» entered (rare but possible).
             tok = re.sub(r"\s+Mint\s*$", "", tok).strip()
-            key = tok.lower()
+            # Preserve a trailing «?» uncertainty marker: canonicalise the
+            # BASE spelling but re-append «?» so a lone uncertain attestation
+            # isn't silently promoted to certain (§4) — «København?» →
+            # «Kopenhagen?». The certain-wins pass below drops «X?» when the
+            # certain «X» is also attested.
+            uncertain = bool(re.search(r"\?\s*$", tok))
+            core = re.sub(r"\s*\?\s*$", "", tok).strip()
+            key = core.lower()
             if key in _MINT_COUNTRY_PREFIXES:
                 continue
-            canonical = _MINT_CANONICAL.get(key, tok)
+            canonical = _MINT_CANONICAL.get(key, core)
+            if uncertain:
+                canonical = f"{canonical}?"
             if canonical not in out_set:
                 out_set.append(canonical)
+    # Certain-wins: drop an uncertain «X?» when the certain «X» is also
+    # present in the same coin's mint list.
+    out_set = [c for c in out_set
+               if not (c.endswith("?") and c[:-1] in out_set)]
     if not out_set:
         return None
     return out_set[0] if len(out_set) == 1 else sorted(out_set)
