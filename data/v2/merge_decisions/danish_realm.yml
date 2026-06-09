@@ -177,6 +177,17 @@ merges:
       2 Mark Frederik III, ONE coin per curator (Hede 108/109/110 = KM 259).
       KM 259 sub-numbers (259/259.1/259.2/259.3) + Hede 108/109/110 are
       sub-types of one type; accumulate list-form per §9a. catalog_graph comp 4.
+  - members:
+      - dk-hede-c4h45
+      - dk-numista-268888
+    reason: |
+      Curator decision 2026-06-09 (Serhii, over-merge split). 1 Speciedaler
+      Christian IV 1596, ONE coin sharing Hede 45 + Davenport EC I 8232:
+        - dk-hede-c4h45    (danskmoent c4h45; Bruun II lot 13077; Sieg 95/111)
+        - dk-numista-268888 (Numista 268888, nominal «4 Marks» = 1 Speciedaler)
+      Matcher held them apart at low_confidence only because Numista labels the
+      nominal «4 Marks» (the accounting equivalent of 1 Speciedaler) + carries
+      no ruler. Same Hede 45 + same Dav 8232 ⇒ same coin; keep merged.
 
 no_merges:
   # --- dk-tid-94338 disentanglement (curator decision 2026-05-31, Serhii).
@@ -399,3 +410,29 @@ no_merges:
       discriminator at absorb. Split so 348808 joins its Hede 55 type and 291969
       is correctly blocked from c4h55 by the mint discriminator (Wolfenbüttel ≠
       Kopenhagen).
+  # --- dk-tid-173642 over-merge split (curator decision 2026-06-09, Serhii) ---
+  # A stale absorb had fused THREE coins into the ucoin host dk-tid-173642:
+  #   coin 1  Hede 44 Speciedaler 1596  (host + dk-hede-c4h44)
+  #   coin 2  Hede 45 Speciedaler 1596  (dk-hede-c4h45 + dk-numista-268888)
+  #   coin 3  KMM 693172 «8 Skilling» 1625, Schou 45 (its «Hede 45» tag is a
+  #           likely natmus type-number error — flagged, NOT errata'd)
+  # The current matcher already returns no_match on every cross pair; these
+  # no_merges lock the split + block the shared-(wrong)-Hede-45 coin2↔coin3
+  # collision from re-fusing on a catalog-tie nominal demotion.
+  - members: [dk-hede-c4h44, dk-hede-c4h45]
+    reason: |
+      Coin 1 (Hede 44) ≠ coin 2 (Hede 45) — different Hede type per §9.4.
+  - members: [dk-hede-c4h44, kmk-693172]
+    reason: |
+      Coin 1 (Hede 44 Speciedaler 1596) ≠ coin 3 (KMM 693172, 8 Skilling 1625).
+  - members: [dk-hede-c4h45, kmk-693172]
+    reason: |
+      Coin 2 (Hede 45 Speciedaler 1596) ≠ coin 3 (KMM 693172, 8 Skilling 1625).
+      Both carry «Hede 45» (coin 3's is a suspected natmus mis-tag) — block the
+      catalog-tie demotion from merging a Speciedaler with an 8-Skilling.
+  - members: [dk-tid-173642, dk-hede-c4h45]
+    reason: |
+      Host ucoin coin 1 (dk-tid-173642) ≠ coin 2 (Hede 45) — host stays Hede 44.
+  - members: [dk-tid-173642, kmk-693172]
+    reason: |
+      Host ucoin coin 1 (dk-tid-173642) ≠ coin 3 (KMM 693172, 8 Skilling 1625).
