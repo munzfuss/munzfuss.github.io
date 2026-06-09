@@ -402,7 +402,10 @@ _TERRITORY_LEAD = re.compile(
     r"^(?:schleswig|holstein|l[üu]beck|bremen|oldenburg|hesse|gotland|"
     r"f[üu]rstbisthum|fuerstbisthum|erzbisthum|gottorp|sonderburg|s[øo]nderborg|"
     r"norburg|gl[üu]cksburg|schauenburg|pinneberg|rantzau|lauenburg|"
-    r"osnabr[üu]ck|wismar|verden)\b",
+    r"osnabr[üu]ck|wismar|verden|"
+    # Foreign / Baltic secondary realms that prefix the denom on
+    # Swedish-section lots («SWEDEN. Swedish Livonia. Riga. 5 Ducats»).
+    r"swedish|livonia|riga|reval|pomerania|stralsund|stade)\b",
     re.IGNORECASE,
 )
 
@@ -419,9 +422,12 @@ def _denom_from_text(text: str) -> str | None:
     text = re.sub(r"\s+", " ", text).strip()
     # Year lookahead accepts: «(» / digit / «ND…» / a Roman-numeral run
     # (≥2 uppercase Roman chars — «MDCIII», «MDCXCII»). The {2,} guard keeps a
-    # stray capitalised word («Mint», «Mule») from being read as a year.
+    # stray capitalised word («Mint», «Mule») from being read as a year. An
+    # optional leading quote («5 Ducats, "1645"») is skipped — Bruun
+    # occasionally quotes a coin's stated (non-actual) date.
     m = re.match(
-        r"^[^.]+\.\s+(.+?),\s*(?:ND(?:\s*[.\(]|\b)|[\(\d]|[MDCLXVI]{2,}\b)",
+        r"^[^.]+\.\s+(.+?),\s*[“”\"'‘’]?\s*"
+        r"(?:ND(?:\s*[.\(]|\b)|[\(\d]|[MDCLXVI]{2,}\b)",
         text,
     )
     if not m:
