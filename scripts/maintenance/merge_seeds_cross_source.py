@@ -426,6 +426,28 @@ def _normalise_ruler(ruler):
     #   (Wallenstein etc.), «Johan Albrecht I», «Albrecht II. Alcibiades»
     #   are untouched; numeral guard reserves any future «Christian Albrecht I».
     s = re.sub(r"\bchristian\s+alb(?:recht|ert)\b(?!\s+[ivx]\b)", "christian albrecht", s)
+    # Cross-language ruler-NAME translations — NAME component only, the
+    # regnal NUMERAL is preserved (user direction 2026-06-09: «імʼя не може
+    # йти окремо від порядкового номера»). Numista publishes English ruler
+    # names; NumisMaster / Bruun / Hede the German/Danish form. Folding the
+    # NAME (not the numeral) lets «Charles Frederick» ≡ «Karl Friedrich»
+    # and «Francis William» ≡ «Franz Wilhelm» merge, while «George IV»
+    # stays ≠ «Charles II» (different name → «georg iv» ≠ «karl ii») and
+    # «Frederik VI» stays ≠ «Frederik IX» (different numeral). The POLITY is
+    # handled by the per-entity matcher — same name+numeral in two
+    # different issuing entities is never compared (so a same-named ruler
+    # of two different lands cannot cross-merge). Whole-word, German-states
+    # canonical (every Charles/Karl, George/Georg, etc. in scope is a
+    # German/Norwegian/Swedish ruler — there is no Danish «Karl»).
+    s = re.sub(r"\bcharles\b", "karl", s)
+    s = re.sub(r"\bgeorge\b", "georg", s)
+    s = re.sub(r"\bwilliam\b", "wilhelm", s)
+    s = re.sub(r"\bfrancis\b", "franz", s)
+    s = re.sub(r"\bernest\b", "ernst", s)
+    s = re.sub(r"\baugustus\b", "august", s)
+    s = re.sub(r"\bhenry\b", "heinrich", s)
+    s = re.sub(r"\berich\b", "erik", s)
+    s = re.sub(r"\badolphus\b", "adolf", s)
     # Arabic→roman regnal numeral (Christian 4 → christian iv, etc.) — LAST,
     # after spelling/synonym folds, so the name-part is already canonical.
     s = _regnal_arabic_to_roman(s)
