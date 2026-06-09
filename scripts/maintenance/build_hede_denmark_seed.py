@@ -449,6 +449,88 @@ def _infer_metal(nominal: str, ruler: str | None, fineness: float | None) -> str
     return "silver"
 
 
+# danskmoent.dk deep pages state the COIN'S OWN metal as a literal Danish
+# word in exactly two structural slots: the planchet-material phrase
+# («Firkantet blanket, guld») or a bare spec-block line («Kobber» on its
+# own line, right above «Vægt:»). That word is the SOURCE-OF-RECORD for
+# the metal class and must override the nominal-token heuristic, which
+# can't tell a 0,833 gold daler (Christian IV's firkantede gulddalere,
+# Hede 10-13) from a 0,833 silver piece, nor an 11,7 g copper Sechsling
+# (Hede 46/47, struck for Schleswig-Holstein) from silver. Both were
+# defaulted to «silver» with metal_verified=True — a §0b over-claim
+# corrected here by reading the page's own word.
+#
+# CRITICAL — scan ONLY those two structural slots, never free prose.
+# A page's body prose routinely names a SECONDARY metal that belongs to
+# an off-strike / pattern, NOT to the coin:
+#   • «Eksemplarer i sølv … betragtes af Hede som afslag» — Sølvafslag of
+#     a GOLD Dukat (f4h2-5); the coin is gold, the silver pieces are
+#     §9.3 off-strikes we filter out.
+#   • «2 ensidige prøveafslag i tin» — tin Tinafslag pattern of a SILVER
+#     Speciedaler (c8h3a-f); the coin is silver, not tin.
+# A whole-text scan flips these the wrong way. The planchet-phrase +
+# bare-line restriction matches the coin's own physical description and
+# structurally excludes off-strike / comparative / bibliographic prose.
+# (Audit 2026-06-09: the 5 metal over-merge flags + 0 regressions.)
+_METAL_TEXT_MAP = {
+    "guld": "gold", "sølv": "silver", "soelv": "silver",
+    "kobber": "copper", "bronze": "copper", "tin": "tin",
+    "billon": "billon",
+}
+_METAL_WORD = r"(guld|sølv|soelv|kobber|billon|bronze|tin)"
+# The metal must appear as the LEADING token of the coin's physical-
+# description line — three structural shapes danskmoent.dk uses, all
+# stating the coin's OWN metal. Free-prose mentions (off-strikes,
+# forgeries, comparisons, companion denominations) are mid-sentence and
+# never match these, so they're structurally excluded.
+#
+# Slot 1 — planchet phrase: «… blanket, guld» / «(Unii) Klipping, guld».
+_METAL_PLANCHET_RE = re.compile(
+    r"\b(?:blanket|klipping\w*|planchet)\s*,\s*" + _METAL_WORD + r"\b",
+    re.IGNORECASE,
+)
+# Slot 2 — leading spec line: metal word opens the line (after an optional
+# «YYYY,» / «YYYYa,» date prefix) and is immediately closed by «.» or «,»:
+#   «Kobber. Vægt 14,616g» · «Kobber. Forside …» · «1842, Kobber. Forside»
+# The trailing «[.,]» requirement rejects prose openers like «Sølv blev
+# brugt …» (metal followed by a space+word, not punctuation).
+_METAL_LEAD_RE = re.compile(
+    r"^\s*(?:\d{4}[a-z]?\s*,\s*)?" + _METAL_WORD + r"\s*[.,]",
+    re.IGNORECASE | re.MULTILINE,
+)
+# Slot 3 — bare spec line: the metal word alone on its own line
+# (danskmoent.dk renders «<LI>Kobber» → a standalone «Kobber» line).
+_METAL_BARE_LINE_RE = re.compile(
+    r"^\s*" + _METAL_WORD + r"\s*$", re.IGNORECASE | re.MULTILINE
+)
+
+
+def _metal_from_text(parsed: dict) -> str | None:
+    """Return the metal class the danskmoent.dk page states for the COIN
+    ITSELF — from the planchet phrase, a leading spec line, or a bare
+    spec line — or None when no slot is present (or slots disagree).
+
+    Deliberately ignores free prose so a secondary metal belonging to an
+    off-strike («Sølvafslag», «prøveafslag i tin»), a contemporary forgery
+    («forfalskning af kobber»), a companion denomination («20 kroner af
+    guld») or an «also exists in gold» note («Findes også i guld») cannot
+    masquerade as the coin's own metal. Stops at «Litteratur:» so
+    bibliographic titles («Guldudmøntningen i Haderslev») are out of
+    range. «Sølvafslag»/«Guldafslag» are single tokens — the \\b after the
+    metal word means they never match either."""
+    raw = parsed.get("raw_text") or ""
+    if not raw:
+        return None
+    body = re.split(r"Litteratur:", raw, maxsplit=1)[0]
+    hits = set()
+    for rx in (_METAL_PLANCHET_RE, _METAL_LEAD_RE, _METAL_BARE_LINE_RE):
+        for m in rx.finditer(body):
+            hits.add(_METAL_TEXT_MAP[m.group(1).lower()])
+    if len(hits) == 1:
+        return next(iter(hits))
+    return None  # silent, or slots disagree → defer to heuristic
+
+
 def _infer_kind(metal: str, nominal: str, ruler: str | None, fineness: float | None) -> str:
     """Default = kurant. Lower-tier silver / billon Skilling drops to
     scheide. Christian IV Krone (Kronemont, 1618-1645) is tarif."""
@@ -627,10 +709,21 @@ def _build_coin(
     # `metal_from_index`), fall through to the heuristic.
     is_index_stub = parsed.get("_source_type") == "index_stub"
     metal_from_index = parsed.get("metal_from_index") if is_index_stub else None
+    metal_from_text = _metal_from_text(parsed) if not is_index_stub else None
     if metal_from_index:
         metal = metal_from_index
+    elif metal_from_text:
+        metal = metal_from_text
     else:
         metal = _infer_metal(nominal, ruler, fineness)
+    # Billon downgrade — applies whatever the «silver» reading's origin.
+    # danskmoent.dk labels any silver-alloy piece «sølv» loosely (e.g.
+    # f6h7 «1 Skilling, Altona, sølv» at finhed 0,138); the fineness is
+    # the precise discriminator and below the billon threshold the coin
+    # is billon, not silver. Gold/copper/tin readings are unaffected —
+    # only «silver» is subject to the fineness check.
+    if metal == "silver" and fineness is not None and fineness < 0.30:
+        metal = "billon"
     kind = _infer_kind(metal, nominal, ruler, fineness)
     coin_id = f"dk-hede-{hede_volume}{hede_number.lower()}"
 
@@ -802,7 +895,7 @@ def _build_coin(
     # For index-stub coins, the overview table's metal column is the
     # source-of-record — flip metal_verified even though
     # fineness/weight stay null.
-    if fineness is not None or brutto is not None or metal_from_index:
+    if fineness is not None or brutto is not None or metal_from_index or metal_from_text:
         cm["metal_verified"] = True
     cm["mint_verified"] = False  # parser-heuristic; not flipped here
     vn = CommentedMap()
