@@ -760,15 +760,26 @@ coins:
   issuing_entity: royal_holstein
   id: km-26-chr-iv-1640-l1
   year_first: 1640
-  year_last: 1641
+  year_last: 1647
   year_ranges:
   - - 1640
-    - 1641
-  year_label: 1640-1641
+    - 1643
+  - - 1645
+    - 1647
+  year_label: 1640-1643, 1645-1647
   mint: Glückstadt
   catalog:
     km: '26'
-    numista: '154260'
+    numista:
+    - '154260'
+    - '109009'
+    lange:
+    - '48'
+    - '49'
+    - '50'
+    - '51'
+    - 51A
+    - 51B
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -778,11 +789,19 @@ coins:
   verified: false
   fineness:
   - value: 0.812
+    source: numismaster
+  - value: 0.812
     source: numista
   weight_rough_g:
+  - value: 1.57
+    source: numista
   - value: 1.64
     source: numista
+  - value: 1.785
+    source: numismaster
   diameter_mm:
+  - value: 20.0
+    source: numista
   - value: 20.56
     source: numista
   sources:
@@ -795,6 +814,12 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/denmark-1-16-speciedaler-1641-1646/?tid=163623
     ref: ucoin tid 163623
+  - type: literature
+    url: https://en.numista.com/109009
+    ref: Numista N#109009 — 1⁄16 Reichs Thaler - Christian IV (Legend type II; bust type I)
+  - type: literature
+    url: https://numismaster.com/MC_93001
+    ref: NumisMaster
   note:
     de: 1/16 Reichs Thaler = 3 Skilling Lybsk · Christian IV. (Glückstadt 1640–1641, Legend-Typ I) · Mzz. (f) = Monogramm
       mit Feder und ST-Buchstaben (Münzmeister Simon Timpf, ab 1641 in Glückstadt) · Obverse «CHRISTIANUS·IIII·D:G:» mit gekröntem
@@ -819,7 +844,7 @@ coins:
       (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
-  - unified-dk-numista-154260
+  - unified-dk-numista-109009
   v1_home_location: schleswig_holstein
 - fuss: 9_25_thaler
   phase: I
@@ -968,13 +993,20 @@ coins:
   ruler: Christian IV.
   issuing_entity: royal_holstein
   id: km-30-2-chr-iv-1642
-  year_first: 1642
-  year_last: 1642
-  year_label: '1642'
+  year_first: 1641
+  year_last: 1645
+  year_ranges:
+  - - 1641
+    - 1645
+  year_label: 1641-1645
   mint: Glückstadt
   catalog:
-    km: '30.2'
-    numista: '107815'
+    km:
+    - '30.2'
+    - '30'
+    numista:
+    - '107815'
+    - '109450'
     lange: '53'
     hede: 175B
   metal: silver
@@ -989,6 +1021,8 @@ coins:
     source: numismaster
   - value: 0.812
     source: numista
+  - value: 0.812
+    source: ucoin
   weight_rough_g:
   - value: 4.72
     source: kmk
@@ -996,11 +1030,15 @@ coins:
     source: kmk
   - value: 4.81
     source: kmk
+  - value: 4.87
+    source: ucoin
   - value: 4.872
     source: numismaster
   - value: 4.872
     source: numista
   diameter_mm:
+  - value: 29.0
+    source: ucoin
   - value: 29.3
     source: numista
   sources:
@@ -1418,9 +1456,14 @@ coins:
   - Kopenhagen
   - Royal Danish
   catalog:
-    km: '616'
+    km:
+    - '616'
+    - '616.1'
+    - '616.3'
     hede: '37'
-    numista: '958'
+    numista:
+    - '958'
+    - '565981'
     others:
     - KM# 616.1
     - KM# 616.2
@@ -1453,6 +1496,9 @@ coins:
   - type: literature
     url: https://en.numista.com/958
     ref: Numista N#958 — 1 Skilling - Christian VII (Copenhagen)
+  - type: literature
+    url: https://en.numista.com/565981
+    ref: Numista N#565981 — 1 Skilling - Christian VII Altona
   note:
     de: «1 SKILLING DANSK K·M· 1771» (K·M· = Kongelige Mønt) · ca. 55 Mio. Stück
     en: «1 SKILLING DANSK K·M· 1771» (K·M· = Kongelige Mønt) · ca. 55 Mio. pieces
@@ -1462,7 +1508,7 @@ coins:
     en: 'ucoin seed (V1 carry-over): pre-cache V1 curator entry, no cache backing.'
     uk: 'ucoin-seed (V1-carryover): pre-cache V1-curator entry без кеш-підтримки.'
   composed_of:
-  - unified-dk-numista-958
+  - unified-dk-numista-565981
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
   phase: III
@@ -5394,13 +5440,13 @@ coins:
   year_last: 1696
   year_ranges:
   - - 1693
-    - 1694
-  - - 1696
     - 1696
-  year_label: 1693-1694, 1696
+  year_label: 1693-1696
   mint: Glückstadt
   catalog:
-    km: '80.1'
+    km:
+    - '80.1'
+    - '80'
     hede:
     - 126A
     - 126B
@@ -5411,7 +5457,9 @@ coins:
     schou:
     - 55-56,35
     - 34,32
-    numista: '108725'
+    numista:
+    - '108725'
+    - '108733'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -5426,6 +5474,8 @@ coins:
     source: numismaster
   - value: 0.671
     source: numista
+  - value: 0.671
+    source: ucoin
   weight_rough_g:
   - value: 11.136
     source: hede
@@ -5433,9 +5483,13 @@ coins:
     source: numismaster
   - value: 11.136
     source: numista
+  - value: 11.14
+    source: ucoin
   diameter_mm:
   - value: 32.54
     source: numista
+  - value: 33.0
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h126.htm
@@ -5446,6 +5500,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_92994
     ref: NumisMaster
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-mark-dansk-1693-1696/?tid=163646
+    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -6019,9 +6076,11 @@ coins:
     - 1789
   - - 1797
     - 1797
+  - - 1799
+    - 1799
   - - 1808
     - 1808
-  year_label: 1787-1789, 1797, 1808
+  year_label: 1787-1789, 1797, 1799, 1808
   mint: Altona
   catalog:
     km:
@@ -6153,6 +6212,7 @@ coins:
   composed_of:
   - unified-dk-hede-c7h41a
   - unified-dk-hede-c7h41c
+  - unified-dk-hede-c7h41d
   - unified-schleswig_holstein-numismaster-120083
   _curation_holds:
     note: V1 backfill 2026-05-26 from schleswig_holstein.yml::unified-dk-hede-c7h41a (matched via seed-unified-bridge; V1→V2
@@ -15122,12 +15182,14 @@ coins:
   issuing_entity: royal_holstein
   fraction: 2/3
   id: unified-dk-numista-108733
-  year_first: 1693
+  year_first: 1694
   year_last: 1696
   year_ranges:
-  - - 1693
+  - - 1694
+    - 1694
+  - - 1696
     - 1696
-  year_label: 1693-1696
+  year_label: 1694, 1696
   mint: Glückstadt
   catalog:
     km:
@@ -15146,20 +15208,14 @@ coins:
     source: numismaster
   - value: 0.671
     source: numista
-  - value: 0.671
-    source: ucoin
   weight_rough_g:
   - value: 11.136
     source: numismaster
   - value: 11.136
     source: numista
-  - value: 11.14
-    source: ucoin
   diameter_mm:
   - value: 32.1
     source: numista
-  - value: 33.0
-    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/108733
@@ -15195,71 +15251,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-108733
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 3 Skilling Lybsk
-  ruler: Christian IV
-  issuing_entity: royal_holstein
-  id: unified-dk-numista-109009
-  year_first: 1640
-  year_last: 1647
-  year_ranges:
-  - - 1640
-    - 1643
-  - - 1645
-    - 1647
-  year_label: 1640-1643, 1645-1647
-  mint: Glückstadt
-  catalog:
-    km: '26'
-    numista: '109009'
-    lange:
-    - '48'
-    - '49'
-    - '50'
-    - '51'
-    - 51A
-    - 51B
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.812
-    source: numismaster
-  - value: 0.812
-    source: numista
-  weight_rough_g:
-  - value: 1.57
-    source: numista
-  - value: 1.785
-    source: numismaster
-  diameter_mm:
-  - value: 20.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/109009
-    ref: Numista N#109009 — 1⁄16 Reichs Thaler - Christian IV (Legend type II; bust type I)
-  - type: literature
-    url: https://numismaster.com/MC_93001
-    ref: NumisMaster
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-109009
 - fuss: seed_unsorted
   phase: numista
   kind: kurant
@@ -15333,12 +15324,9 @@ coins:
   issuing_entity: royal_holstein
   fraction: 1/6
   id: unified-dk-numista-109450
-  year_first: 1641
+  year_first: 1645
   year_last: 1645
-  year_ranges:
-  - - 1641
-    - 1645
-  year_label: 1641-1645
+  year_label: '1645'
   mint: Glückstadt
   catalog:
     km:
@@ -15355,18 +15343,12 @@ coins:
   fineness:
   - value: 0.812
     source: numista
-  - value: 0.812
-    source: ucoin
   weight_rough_g:
-  - value: 4.87
-    source: ucoin
   - value: 4.872
     source: numista
   diameter_mm:
   - value: 28.7
     source: numista
-  - value: 29.0
-    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/109450
@@ -17409,55 +17391,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-47999
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Skilling
-  ruler: Christian VII
-  issuing_entity: royal_holstein
-  id: unified-dk-numista-565981
-  year_first: 1771
-  year_last: 1785
-  year_ranges:
-  - - 1771
-    - 1785
-  year_label: 1771-1785
-  mint: Altona
-  catalog:
-    km:
-    - '616.1'
-    - '616.3'
-    numista: '565981'
-    hede: '37'
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 11.7
-    source: numista
-  diameter_mm:
-  - value: 30.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/565981
-    ref: Numista N#565981 — 1 Skilling - Christian VII Altona
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-565981
 - fuss: seed_unsorted
   phase: numista
   kind: kurant

@@ -2491,17 +2491,24 @@ coins:
   phase: numista
   kind: kurant
   nominal: ½ Thaler
-  year_first: 1622
+  year_first: 1618
   year_last: 1628
   year_ranges:
-  - - 1622
+  - - 1618
     - 1628
-  year_label: 1622-1628
+  year_label: 1618-1628
   ruler: Justus Herman / Ferdinand II
   mint: Altona
   catalog:
-    km: '128.1'
-    numista: '137416'
+    km:
+    - '128.1'
+    - '128'
+    numista:
+    - '137416'
+    - '278296'
+    lange: '956'
+    others:
+    - Weinm# 343
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2510,6 +2517,8 @@ coins:
   mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 14.44
+    source: numista
   - value: 14.5
     source: numista
   diameter_mm:
@@ -2519,6 +2528,9 @@ coins:
   - type: literature
     url: https://en.numista.com/137416
     ref: Numista N#137416 — ½ Thaler - Justus Hermann
+  - type: literature
+    url: https://en.numista.com/278296
+    ref: Numista N#278296 — 1/2 Thaler - Justus Hermann - HS-Pinneberg 1618-1628
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -2532,6 +2544,7 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - dk-numista-137416
+  - dk-numista-278296
 - id: unified-dk-numista-137417
   fuss: seed_unsorted
   phase: numista
@@ -3616,60 +3629,6 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - dk-numista-278295
-- id: unified-dk-numista-278296
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: ½ Thaler
-  year_first: 1618
-  year_last: 1628
-  year_ranges:
-  - - 1618
-    - 1628
-  year_label: 1618-1628
-  ruler: Jobst Hermann
-  mint: Altona
-  catalog:
-    km:
-    - '128'
-    - '128.2'
-    numista: '278296'
-    lange: '956'
-    others:
-    - Weinm# 343
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 14.44
-    source: numista
-  - value: 14.5
-    source: numismaster
-  sources:
-  - type: literature
-    url: https://en.numista.com/278296
-    ref: Numista N#278296 — 1/2 Thaler - Justus Hermann - HS-Pinneberg 1618-1628
-  - type: literature
-    url: https://numismaster.com/MC_175635
-    ref: NumisMaster
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: schauenburg_pinneberg
-  composed_of:
-  - dk-numista-278296
-  - schleswig_holstein-numismaster-175635
 - id: unified-dk-numista-278297
   fuss: seed_unsorted
   phase: numista
@@ -5368,6 +5327,41 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - schleswig_holstein-numismaster-175586
+- id: unified-schleswig_holstein-numismaster-175635
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: ½ Thaler
+  year_first: 1622
+  year_last: 1622
+  year_label: '1622'
+  ruler: Jobst Hermann
+  mint: Altona
+  catalog:
+    km: '128.2'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  weight_rough_g:
+  - value: 14.5
+    source: numismaster
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_175635
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - schleswig_holstein-numismaster-175635
 - id: unified-schleswig_holstein-numismaster-96056
   fuss: seed_unsorted
   phase: numismaster

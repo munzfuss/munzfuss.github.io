@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/royal_holstein.yml across all sources.
 #
 # Input: 1611 per-source seed entries.
-# Output: 977 unified entries (one per physical coin).
+# Output: 976 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -938,12 +938,9 @@ coins:
   phase: bruun
   kind: kurant
   nominal: 1 Speciedaler
-  year_first: 1640
-  year_last: 1648
-  year_ranges:
-  - - 1640
-    - 1648
-  year_label: 1640-1648
+  year_first: 1646
+  year_last: 1646
+  year_label: '1646'
   ruler: Christian IV
   mintmaster: Jacob Schwieger
   mint: Glückstadt
@@ -963,34 +960,18 @@ coins:
     bruun_part: II
     bruun_lot_no: 13120
     bruun_page: 90
-    numista: '199893'
-    dav: EC II 3670
+    dav: '3670'
   metal: silver
-  metal_verified: true
-  fineness_verified: true
+  metal_verified: false
+  fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: true
   verified: false
-  fineness:
-  - value: 0.888
-    source: numista
-  - value: 0.888
-    source: ucoin
   weight_rough_g:
   - value: 28.75
     source: bruun
-  - value: 28.75
-    source: ucoin
   - value: 28.76
     source: bruun
-  - value: 28.97
-    source: numista
-  diameter_mm:
-  - value: 43.0
-    source: numista
-  - value: 43.0
-    source: ucoin
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -998,12 +979,6 @@ coins:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Mar2026_BruunIV_Coins_Catalog.pdf
     ref: Bruun Part IV, lot 17058, p. 39
-  - type: literature
-    url: https://en.numista.com/199893
-    ref: Numista N#199893 — 1 Speciedaler - Christian IV (King bust; type 3)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1640-1648/?tid=163660
-    ref: ucoin
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -1019,8 +994,6 @@ coins:
   composed_of:
   - dk-bruun-5799
   - dk-bruun-5801
-  - dk-numista-199893
-  - km-27-chr-iv-1644
 - id: unified-dk-bruun-5821
   fuss: seed_unsorted
   phase: bruun
@@ -3959,12 +3932,16 @@ coins:
     sieg:
     - '181'
     - '186.2'
-    bruun_collection_id: '5660'
+    bruun_collection_id:
+    - '5660'
+    - '5801'
     lange: '39'
     bruun_part: II
     bruun_lot_no: 13114
     bruun_page: 86
-    numista: '199851'
+    numista:
+    - '199851'
+    - '199893'
     dav: EC II 3670
   metal: silver
   metal_verified: true
@@ -3978,8 +3955,14 @@ coins:
     source: hede
   - value: 0.888
     source: numista
+  - value: 0.888
+    source: ucoin
   weight_rough_g:
   - value: 28.74
+    source: numista
+  - value: 28.75
+    source: ucoin
+  - value: 28.97
     source: numista
   - value: 29.05
     source: bruun
@@ -3988,6 +3971,8 @@ coins:
   diameter_mm:
   - value: 43.0
     source: numista
+  - value: 43.0
+    source: ucoin
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -3998,6 +3983,12 @@ coins:
   - type: literature
     url: https://en.numista.com/199851
     ref: Numista N#199851 — 1 Speciedaler - Christian IV (King bust; type 1)
+  - type: literature
+    url: https://en.numista.com/199893
+    ref: Numista N#199893 — 1 Speciedaler - Christian IV (King bust; type 3)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-speciedaler-1640-1648/?tid=163660
+    ref: ucoin
   - type: literature
     url: https://numismaster.com/MC_93018
     ref: NumisMaster
@@ -4016,6 +4007,8 @@ coins:
   - dk-bruun-5660
   - dk-hede-c4h163
   - dk-numista-199851
+  - dk-numista-199893
+  - km-27-chr-iv-1644
   - schleswig_holstein-numismaster-93018
 - id: unified-dk-hede-c4h165
   fuss: seed_unsorted
@@ -5913,14 +5906,14 @@ coins:
   year_last: 1696
   year_ranges:
   - - 1693
-    - 1694
-  - - 1696
     - 1696
-  year_label: 1693-1694, 1696
+  year_label: 1693-1696
   ruler: Christian V.
   mint: Glückstadt
   catalog:
-    km: '80.1'
+    km:
+    - '80.1'
+    - '80'
     hede:
     - 126A
     - 126B
@@ -5931,7 +5924,9 @@ coins:
     schou:
     - 55-56,35
     - 34,32
-    numista: '108725'
+    numista:
+    - '108725'
+    - '108733'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -5946,6 +5941,8 @@ coins:
     source: numismaster
   - value: 0.671
     source: numista
+  - value: 0.671
+    source: ucoin
   weight_rough_g:
   - value: 11.136
     source: hede
@@ -5953,9 +5950,13 @@ coins:
     source: numismaster
   - value: 11.136
     source: numista
+  - value: 11.14
+    source: ucoin
   diameter_mm:
   - value: 32.54
     source: numista
+  - value: 33.0
+    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c5h126.htm
@@ -5963,6 +5964,9 @@ coins:
   - type: literature
     url: https://en.numista.com/108725
     ref: Numista N#108725 — 2 Mark Dansk - Christian V (Type II; palm leaves)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-2-mark-dansk-1693-1696/?tid=163646
+    ref: ucoin
   - type: literature
     url: https://numismaster.com/MC_92994
     ref: NumisMaster
@@ -5981,6 +5985,7 @@ coins:
   - dk-hede-c5h126a
   - dk-hede-c5h126b
   - dk-numista-108725
+  - km-80-2-chr-v-1694
   - schleswig_holstein-numismaster-92994
 - id: unified-dk-hede-c5h127a
   fuss: seed_unsorted
@@ -7023,6 +7028,7 @@ coins:
     - '40.2'
     - '43.1'
     - '43.2'
+    - '43'
     schou:
     - 7,8,6-7,3
     - '8'
@@ -7031,7 +7037,14 @@ coins:
     - '7870'
     - '7871'
     lange: '135'
-    numista: '325284'
+    numista:
+    - '325284'
+    - '60090'
+    others:
+    - AKS# 5
+    - Jaeg 6 NWD# 8
+    - C# 9
+    bruun_lot: '7870'
   metal: silver
   metal_verified: true
   fineness_verified: true
@@ -7044,14 +7057,22 @@ coins:
     source: hede
   - value: 0.875
     source: numista
+  - value: 0.875
+    source: ucoin
   weight_rough_g:
   - value: 9.59
     source: numista
   - value: 9.63
     source: bruun
+  - value: 9.63
+    source: numista
+  - value: 9.63
+    source: ucoin
   - value: 9.631
     source: hede
   diameter_mm:
+  - value: 31.75
+    source: ucoin
   - value: 32.0
     source: numista
   sources:
@@ -7067,6 +7088,12 @@ coins:
   - type: literature
     url: https://en.numista.com/325284
     ref: Numista N#325284 — ⅓ Speciesthaler / 20 Schilling Courant - Christian VII
+  - type: literature
+    url: https://en.numista.com/60090
+    ref: Numista N#60090 — ⅓ Speciesthaler / 20 Schilling Courant - Christian VII
+  - type: ucoin
+    url: https://en.ucoin.net/coin/schleswig_holstein-1-3-speciedaler-1787-1808/?tid=90616
+    ref: ucoin
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/574998
     ref: KMM 574998 (Inv. FP 11167.4)
@@ -7093,6 +7120,8 @@ coins:
   - dk-hede-c7h41a
   - dk-hede-c7h41b
   - dk-numista-325284
+  - dk-numista-60090
+  - km-130-chr-v-1787
   - kmk-574998
   - kmk-574999
   - kmk-578751
@@ -7101,72 +7130,32 @@ coins:
   phase: hede
   kind: kurant
   nominal: ⅓ Speciedaler
-  year_first: 1787
-  year_last: 1808
-  year_ranges:
-  - - 1787
-    - 1808
-  year_label: 1787-1808
+  year_first: 1789
+  year_last: 1789
+  year_label: '1789'
   ruler: Christian VII.
   mint: Altona
   catalog:
-    km: '130'
-    hede:
-    - 41C
-    - 41D
-    - '41'
-    - 41A
+    hede: 41C
     hede_volume: c7h
-    schou:
-    - 4-5
-    - '8'
-    - '7'
-    sieg:
-    - '40.3'
-    - '53'
-    - '43'
-    - '43.1'
-    numista: '60090'
-    lange: '135'
-    others:
-    - AKS# 5
-    - Jaeg 6 NWD# 8
-    - C# 9
-    bruun_lot: '7870'
+    schou: 4-5
+    sieg: '40.3'
   metal: silver
   metal_verified: true
   fineness_verified: true
   weight_rough_verified: true
-  diameter_mm_verified: true
   mint_verified: true
   verified: false
   fineness:
   - value: 0.875
     source: hede
-  - value: 0.875
-    source: numista
-  - value: 0.875
-    source: ucoin
   weight_rough_g:
-  - value: 9.63
-    source: numista
-  - value: 9.63
-    source: ucoin
   - value: 9.631
     source: hede
-  diameter_mm:
-  - value: 31.75
-    source: ucoin
   sources:
   - type: literature
     url: https://www.danskmoent.dk/chr/c7h41.htm
     ref: danskmoent.dk (Hede c7h41C)
-  - type: literature
-    url: https://en.numista.com/60090
-    ref: Numista N#60090 — ⅓ Speciesthaler / 20 Schilling Courant - Christian VII
-  - type: ucoin
-    url: https://en.ucoin.net/coin/schleswig_holstein-1-3-speciedaler-1787-1808/?tid=90616
-    ref: ucoin
   verification_note:
     de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
     en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
@@ -7180,9 +7169,50 @@ coins:
     unit_raw: speciedalere
   composed_of:
   - dk-hede-c7h41c
+- id: unified-dk-hede-c7h41d
+  fuss: seed_unsorted
+  phase: hede
+  kind: kurant
+  nominal: ⅓ Speciedaler
+  year_first: 1799
+  year_last: 1799
+  year_label: '1799'
+  ruler: Christian VII.
+  mint: Altona
+  catalog:
+    hede: 41D
+    hede_volume: c7h
+    schou: '8'
+    sieg: '53'
+  metal: silver
+  metal_verified: true
+  fineness_verified: true
+  weight_rough_verified: true
+  mint_verified: true
+  verified: false
+  fineness:
+  - value: 0.875
+    source: hede
+  weight_rough_g:
+  - value: 9.631
+    source: hede
+  sources:
+  - type: literature
+    url: https://www.danskmoent.dk/chr/c7h41.htm
+    ref: danskmoent.dk (Hede c7h41D)
+  verification_note:
+    de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+    en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from
+      danskmoent.dk.'
+    uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  issuing_entity: royal_holstein
+  hede_muentzfuss_yield:
+    value: 9.25
+    unit: speciedaler
+    basis: fin
+    unit_raw: speciedalere
+  composed_of:
   - dk-hede-c7h41d
-  - dk-numista-60090
-  - km-130-chr-v-1787
 - id: unified-dk-hede-c7h42
   fuss: seed_unsorted
   phase: hede
@@ -11753,14 +11783,21 @@ coins:
   phase: numista
   kind: kurant
   nominal: 8 Skilling Lybsk
-  year_first: 1642
-  year_last: 1642
-  year_label: '1642'
+  year_first: 1641
+  year_last: 1645
+  year_ranges:
+  - - 1641
+    - 1645
+  year_label: 1641-1645
   ruler: Christian IV
   mint: Glückstadt
   catalog:
-    km: '30.2'
-    numista: '107815'
+    km:
+    - '30.2'
+    - '30'
+    numista:
+    - '107815'
+    - '109450'
     lange: '53'
     hede: 175B
   metal: silver
@@ -11775,6 +11812,8 @@ coins:
     source: numismaster
   - value: 0.812
     source: numista
+  - value: 0.812
+    source: ucoin
   weight_rough_g:
   - value: 4.72
     source: kmk
@@ -11782,17 +11821,24 @@ coins:
     source: kmk
   - value: 4.81
     source: kmk
+  - value: 4.87
+    source: ucoin
   - value: 4.872
     source: numismaster
   - value: 4.872
     source: numista
   diameter_mm:
+  - value: 29.0
+    source: ucoin
   - value: 29.3
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/107815
     ref: Numista N#107815 — 8 Skilling Lybsk - Christian IV (Type 2)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-8-skilling-lybsk-1641-1645/?tid=163647
+    ref: ucoin
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/714861
     ref: KMM 714861 (Inv. FP 12405.189)
@@ -11818,6 +11864,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-107815
+  - km-30-3-chr-iv-1645
   - kmk-714861
   - kmk-714862
   - kmk-714863
@@ -11959,18 +12006,18 @@ coins:
   phase: numista
   kind: kurant
   nominal: 2 Mark Dansk
-  year_first: 1693
+  year_first: 1694
   year_last: 1696
   year_ranges:
-  - - 1693
+  - - 1694
+    - 1694
+  - - 1696
     - 1696
-  year_label: 1693-1696
+  year_label: 1694, 1696
   ruler: Christian V
   mint: Glückstadt
   catalog:
-    km:
-    - '80.2'
-    - '80'
+    km: '80.2'
     numista: '108733'
   metal: silver
   metal_verified: true
@@ -11984,27 +12031,18 @@ coins:
     source: numismaster
   - value: 0.671
     source: numista
-  - value: 0.671
-    source: ucoin
   weight_rough_g:
   - value: 11.136
     source: numismaster
   - value: 11.136
     source: numista
-  - value: 11.14
-    source: ucoin
   diameter_mm:
   - value: 32.1
     source: numista
-  - value: 33.0
-    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/108733
     ref: Numista N#108733 — 2 Mark Dansk - Christian V (Type II; laurel wreath)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-2-mark-dansk-1693-1696/?tid=163646
-    ref: ucoin
   - type: literature
     url: https://numismaster.com/MC_92995
     ref: NumisMaster
@@ -12021,7 +12059,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-108733
-  - km-80-2-chr-v-1694
   - schleswig_holstein-numismaster-92995
 - id: unified-dk-numista-108735
   fuss: seed_unsorted
@@ -12218,7 +12255,9 @@ coins:
   mint: Glückstadt
   catalog:
     km: '26'
-    numista: '109009'
+    numista:
+    - '109009'
+    - '154260'
     lange:
     - '48'
     - '49'
@@ -12241,15 +12280,22 @@ coins:
   weight_rough_g:
   - value: 1.57
     source: numista
+  - value: 1.64
+    source: numista
   - value: 1.785
     source: numismaster
   diameter_mm:
   - value: 20.0
     source: numista
+  - value: 20.56
+    source: numista
   sources:
   - type: literature
     url: https://en.numista.com/109009
     ref: Numista N#109009 — 1⁄16 Reichs Thaler - Christian IV (Legend type II; bust type I)
+  - type: literature
+    url: https://en.numista.com/154260
+    ref: Numista N#154260 — 1⁄16 Reichs Thaler - Christian IV (Legend type I)
   - type: literature
     url: https://numismaster.com/MC_93001
     ref: NumisMaster
@@ -12266,6 +12312,7 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-109009
+  - dk-numista-154260
   - schleswig_holstein-numismaster-93001
 - id: unified-dk-numista-109448
   fuss: seed_unsorted
@@ -12339,18 +12386,13 @@ coins:
   phase: numista
   kind: kurant
   nominal: 8 Skilling Lybsk
-  year_first: 1641
+  year_first: 1645
   year_last: 1645
-  year_ranges:
-  - - 1641
-    - 1645
-  year_label: 1641-1645
+  year_label: '1645'
   ruler: Christian IV
   mint: Glückstadt
   catalog:
-    km:
-    - '30.3'
-    - '30'
+    km: '30.3'
     numista: '109450'
   metal: silver
   metal_verified: true
@@ -12362,25 +12404,16 @@ coins:
   fineness:
   - value: 0.812
     source: numista
-  - value: 0.812
-    source: ucoin
   weight_rough_g:
-  - value: 4.87
-    source: ucoin
   - value: 4.872
     source: numista
   diameter_mm:
   - value: 28.7
     source: numista
-  - value: 29.0
-    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/109450
     ref: Numista N#109450 — 8 Skilling Lybsk - Christian IV (Type 3)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-8-skilling-lybsk-1641-1645/?tid=163647
-    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -12394,7 +12427,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-109450
-  - km-30-3-chr-iv-1645
 - id: unified-dk-numista-111285
   fuss: seed_unsorted
   phase: numista
@@ -13100,55 +13132,6 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-153862
-- id: unified-dk-numista-154260
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 3 Skilling Lybsk
-  year_first: 1640
-  year_last: 1641
-  year_ranges:
-  - - 1640
-    - 1641
-  year_label: 1640-1641
-  ruler: Christian IV
-  mint: Glückstadt
-  catalog:
-    km: '26'
-    numista: '154260'
-  metal: silver
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.812
-    source: numista
-  weight_rough_g:
-  - value: 1.64
-    source: numista
-  diameter_mm:
-  - value: 20.56
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/154260
-    ref: Numista N#154260 — 1⁄16 Reichs Thaler - Christian IV (Legend type I)
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-154260
 - id: unified-dk-numista-154272
   fuss: seed_unsorted
   phase: numista
@@ -15612,13 +15595,21 @@ coins:
     - 1785
   year_label: 1771-1785
   ruler: Christian VII
-  mint: Altona
+  mint:
+  - Altona
+  - Royal Danish
   catalog:
     km:
     - '616.1'
     - '616.3'
-    numista: '565981'
+    - '616'
+    numista:
+    - '565981'
+    - '958'
     hede: '37'
+    others:
+    - C# 47
+    hede_volume: c7h
   metal: copper
   metal_verified: true
   fineness_verified: false
@@ -15629,13 +15620,23 @@ coins:
   weight_rough_g:
   - value: 11.7
     source: numista
+  - value: 11.7
+    source: ucoin
   diameter_mm:
+  - value: 29.0
+    source: ucoin
   - value: 30.0
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/565981
     ref: Numista N#565981 — 1 Skilling - Christian VII Altona
+  - type: literature
+    url: https://en.numista.com/958
+    ref: Numista N#958 — 1 Skilling - Christian VII (Copenhagen)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/denmark-1-skilling-1771/?tid=78775
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -15649,6 +15650,8 @@ coins:
   issuing_entity: royal_holstein
   composed_of:
   - dk-numista-565981
+  - dk-numista-958
+  - km-616-chr-v-1771
 - id: unified-dk-numista-61491
   fuss: seed_unsorted
   phase: numista
@@ -15933,66 +15936,6 @@ coins:
   composed_of:
   - denmark-numismaster-65492
   - dk-numista-90574
-- id: unified-dk-numista-958
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Skilling
-  year_first: 1771
-  year_last: 1785
-  year_ranges:
-  - - 1771
-    - 1785
-  year_label: 1771-1785
-  ruler: Christian VII
-  mint:
-  - Altona
-  - Royal Danish
-  catalog:
-    km: '616'
-    numista: '958'
-    hede: '37'
-    others:
-    - C# 47
-    hede_volume: c7h
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 11.7
-    source: numista
-  - value: 11.7
-    source: ucoin
-  diameter_mm:
-  - value: 29.0
-    source: ucoin
-  - value: 30.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/958
-    ref: Numista N#958 — 1 Skilling - Christian VII (Copenhagen)
-  - type: ucoin
-    url: https://en.ucoin.net/coin/denmark-1-skilling-1771/?tid=78775
-    ref: ucoin
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: royal_holstein
-  composed_of:
-  - dk-numista-958
-  - km-616-chr-v-1771
 - id: unified-dk-numista-97292
   fuss: seed_unsorted
   phase: numista

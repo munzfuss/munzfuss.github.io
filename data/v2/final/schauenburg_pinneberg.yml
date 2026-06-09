@@ -6476,19 +6476,23 @@ coins:
   issuing_entity: schauenburg_pinneberg
   fraction: 1/2
   id: unified-schleswig_holstein-numismaster-96114
-  year_first: 1618
+  year_first: 1622
   year_last: 1628
   year_ranges:
-  - - 1618
+  - - 1622
+    - 1622
+  - - 1628
     - 1628
-  year_label: 1618-1628
+  year_label: 1622, 1628
   mint: Altona
   catalog:
     km:
     - '128.1'
     - '128'
     - '128.2'
-    numista: '278296'
+    numista:
+    - '278296'
+    - '137416'
     lange: '956'
     others:
     - Weinm# 343
@@ -6496,7 +6500,7 @@ coins:
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   weight_rough_g:
@@ -6504,6 +6508,11 @@ coins:
     source: numista
   - value: 14.5
     source: numismaster
+  - value: 14.5
+    source: numista
+  diameter_mm:
+  - value: 36.0
+    source: numista
   sources:
   - type: literature
     url: https://numismaster.com/MC_96114
@@ -6514,6 +6523,9 @@ coins:
   - type: literature
     url: https://numismaster.com/MC_175635
     ref: NumisMaster
+  - type: literature
+    url: https://en.numista.com/137416
+    ref: Numista N#137416 — ½ Thaler - Justus Hermann
   verification_note:
     de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
       gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
@@ -6522,7 +6534,8 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
-  - unified-dk-numista-278296
+  - unified-dk-numista-137416
+  - unified-schleswig_holstein-numismaster-175635
   - unified-schleswig_holstein-numismaster-96114
 - fuss: seed_unsorted
   phase: numismaster

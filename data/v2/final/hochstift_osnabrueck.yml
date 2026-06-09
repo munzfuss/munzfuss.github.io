@@ -1693,7 +1693,9 @@ coins:
   year_label: 1720-1721
   catalog:
     km: '219'
-    numista: '238849'
+    numista:
+    - '238849'
+    - '433332'
     others:
     - Kennepohl# 357d
     - Welter# 2499
@@ -1705,6 +1707,8 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 2.26
+    source: numista
   - value: 2.5
     source: ucoin
   diameter_mm:
@@ -1712,6 +1716,8 @@ coins:
     source: numista
   - value: 21.0
     source: ucoin
+  - value: 22.0
+    source: numista
   sources:
   - type: literature
     url: https://en.numista.com/238849
@@ -1719,6 +1725,9 @@ coins:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-mariengroschen-1720-1721/?tid=173141
     ref: ucoin
+  - type: literature
+    url: https://en.numista.com/433332
+    ref: Numista N#433332 — 2 Mariengroschen - Ernest August II of York - Bishopric of Osnabrück
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -3078,53 +3087,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-40632
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 2 Mariengroschen
-  ruler: Ernest Augustus of York and Albany (Ernst August von York und Albany)
-  issuing_entity: hochstift_osnabrueck
-  id: unified-dk-numista-433332
-  year_first: 1720
-  year_last: 1721
-  year_ranges:
-  - - 1720
-    - 1721
-  year_label: 1720-1721
-  catalog:
-    km: '219'
-    numista: '433332'
-    others:
-    - Welter# 2499
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 2.26
-    source: numista
-  diameter_mm:
-  - value: 22.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/433332
-    ref: Numista N#433332 — 2 Mariengroschen - Ernest August II of York - Bishopric of Osnabrück
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-433332
 - fuss: seed_unsorted
   phase: numista
   kind: kurant

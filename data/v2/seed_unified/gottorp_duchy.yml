@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/gottorp_duchy.yml across all sources.
 #
 # Input: 538 per-source seed entries.
-# Output: 384 unified entries (one per physical coin).
+# Output: 383 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1948,7 +1948,9 @@ coins:
     lange:
     - '444'
     - 444A
-    numista: '319169'
+    numista:
+    - '319169'
+    - '319272'
     fr: '3088'
   metal: gold
   metal_verified: true
@@ -1982,6 +1984,9 @@ coins:
     url: https://en.numista.com/319169
     ref: Numista N#319169 — 1 Ducat - Charles Frederick
   - type: literature
+    url: https://en.numista.com/319272
+    ref: Numista N#319272 — 1 Ducat - Charles Frederick
+  - type: literature
     url: https://numismaster.com/MC_79689
     ref: NumisMaster
   verification_note:
@@ -2000,6 +2005,7 @@ coins:
   - dk-bruun-14527
   - dk-bruun-14528
   - dk-numista-319169
+  - dk-numista-319272
   - schleswig_holstein-numismaster-79689
 - id: unified-dk-bruun-14529
   fuss: seed_unsorted
@@ -5765,49 +5771,6 @@ coins:
   composed_of:
   - dk-numista-319268
   - schleswig_holstein-numismaster-167245
-- id: unified-dk-numista-319272
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Ducat
-  year_first: 1705
-  year_last: 1705
-  year_label: '1705'
-  ruler: Charles Frederick
-  mint: Tönning
-  catalog:
-    numista: '319272'
-    lange: '444'
-  metal: gold
-  metal_verified: true
-  fineness_verified: true
-  weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  fineness:
-  - value: 0.986
-    source: numista
-  weight_rough_g:
-  - value: 3.5
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/319272
-    ref: Numista N#319272 — 1 Ducat - Charles Frederick
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: gottorp_duchy
-  composed_of:
-  - dk-numista-319272
 - id: unified-dk-numista-319277
   fuss: seed_unsorted
   phase: numista

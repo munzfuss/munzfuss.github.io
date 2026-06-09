@@ -1811,7 +1811,6 @@ coins:
       в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md).'
   composed_of:
   - unified-dk-bruun-14527
-  - unified-dk-numista-319272
   v1_home_location: schleswig_holstein
 - fuss: reichsdukatenfuss
   phase: I
@@ -2926,16 +2925,24 @@ coins:
   year_label: '1681'
   catalog:
     km: '131'
-    numista: '319277'
+    numista:
+    - '319277'
+    - '276520'
+    lange: '406'
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
+  diameter_mm_verified: true
   mint_verified: true
   verified: false
   weight_rough_g:
   - value: 1.02
+    source: numista
+  - value: 1.06
+    source: numista
+  diameter_mm:
+  - value: 20.0
     source: numista
   sources:
   - type: numista
@@ -2947,6 +2954,9 @@ coins:
   - type: literature
     url: https://en.numista.com/319277
     ref: Numista N#319277 — 1 Schilling - Christian Albert
+  - type: literature
+    url: https://en.numista.com/276520
+    ref: Numista N#276520 — 1 Schilling - Christian Albert
   note:
     de: 1 Schilling = 1/48 Thaler · Christian Albrecht von Gottorp, 1681
     en: 1 Schilling = 1/48 Thaler · Christian Albert, Duke of Schleswig-Holstein-Gottorp, 1681
@@ -2959,6 +2969,7 @@ coins:
     uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
       первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
   composed_of:
+  - unified-dk-numista-276520
   - unified-dk-numista-319277
   v1_home_location: schleswig_holstein
 - fuss: 9_thaler

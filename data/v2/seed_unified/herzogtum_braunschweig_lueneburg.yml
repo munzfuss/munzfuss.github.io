@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/herzogtum_braunschweig_lueneburg.yml across all sources.
 #
 # Input: 808 per-source seed entries.
-# Output: 768 unified entries (one per physical coin).
+# Output: 767 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -7614,9 +7614,12 @@ coins:
     - 1665
   year_label: 1650-1665
   ruler: Christian Louis (Christian Ludwig)
+  mint: Clausthal
   catalog:
     km: '220'
-    numista: '451274'
+    numista:
+    - '451274'
+    - '451320'
     others:
     - Welter# 1523
   metal: silver
@@ -7624,7 +7627,7 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 3.64
@@ -7636,6 +7639,13 @@ coins:
   - type: literature
     url: https://en.numista.com/451274
     ref: Numista N#451274 — 1/8 Thaler - Christian Louis - Brunswick-Lüneburg-Celle
+  - type: literature
+    url: https://en.numista.com/451320
+    ref: Numista N#451320 — 1/2 Reichsort / 1/8 Thaler - Christian Louis - Brunswick-Lüneburg-Celle (1650-1665)
+  note:
+    de: ½ Reichsort
+    en: ½ Reichsort
+    uk: ½ Reichsort
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -7649,6 +7659,7 @@ coins:
   issuing_entity: herzogtum_braunschweig_lueneburg
   composed_of:
   - dk-numista-451274
+  - dk-numista-451320
 - id: unified-dk-numista-451319
   fuss: seed_unsorted
   phase: numista
@@ -7687,52 +7698,6 @@ coins:
   issuing_entity: herzogtum_braunschweig_lueneburg
   composed_of:
   - dk-numista-451319
-- id: unified-dk-numista-451320
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: ⅛ Thaler
-  year_first: 1650
-  year_last: 1665
-  year_ranges:
-  - - 1650
-    - 1665
-  year_label: 1650-1665
-  ruler: Christian Louis (Christian Ludwig)
-  mint: Clausthal
-  catalog:
-    km: '220'
-    numista: '451320'
-    others:
-    - Welter# 1523
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: false
-  mint_verified: true
-  verified: false
-  sources:
-  - type: literature
-    url: https://en.numista.com/451320
-    ref: Numista N#451320 — 1/2 Reichsort / 1/8 Thaler - Christian Louis - Brunswick-Lüneburg-Celle (1650-1665)
-  note:
-    de: ½ Reichsort
-    en: ½ Reichsort
-    uk: ½ Reichsort
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: herzogtum_braunschweig_lueneburg
-  composed_of:
-  - dk-numista-451320
 - id: unified-dk-numista-451325
   fuss: seed_unsorted
   phase: numista
