@@ -1210,14 +1210,34 @@ def _catalog_chain_consistent(refs_a: dict, refs_b: dict):
     # «Hede agrees + Schou differs → same coin» tolerance would break.
     def _base(k):
         return k.split("/", 1)[0]
+    # Numista N# is a SOFT type-level ref: Numista routinely mints a SEPARATE
+    # N# for each sub-letter variant of ONE strong-catalogue type (Hede 32A →
+    # N#444851, 32B → N#444852; Hede 11A/11C → two N#). When a STRONG parent
+    # catalogue (Hede / KM / Galster / Dav / Fr / Lange — one number per coin
+    # TYPE within scope) AGREES, a Numista N# disagreement is a sub-variant
+    # split, not different-type evidence → tolerate it (the two N# accumulate
+    # into the merged entry's list-form `numista` per §9a). When numista is the
+    # ONLY shared type-level ref (no strong parent agrees), it stays a HARD
+    # discriminator: two distinct N# with nothing else shared are different
+    # types. (2026-06-09 — verified the 7 flagged pairs are Numista typology in
+    # the harvested data, not a project split.)
+    _STRONG_PARENT_CATALOGUES = {
+        "hede", "km", "galster", "dav", "davenport", "fr", "friedberg", "lange",
+    }
+    strong_parent_agrees = any(
+        _base(k) in _STRONG_PARENT_CATALOGUES for k in agreeing
+    )
+    tolerable_disagree = set(SUB_VARIANT_REFS)
+    if strong_parent_agrees:
+        tolerable_disagree.add("numista")
     non_subvariant_agree = [
         k for k in agreeing if _base(k) not in SUB_VARIANT_REFS
     ]
-    non_subvariant_disagree = [
-        k for k in disagreeing if _base(k) not in SUB_VARIANT_REFS
+    blocking_disagree = [
+        k for k in disagreeing if _base(k) not in tolerable_disagree
     ]
     if (len(non_subvariant_agree) >= 1
-            and not non_subvariant_disagree):
+            and not blocking_disagree):
         return ("agree", True)
     return ("disagree", True)
 
