@@ -15,6 +15,102 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## Source-quality + Schauenburg entity split (2026-06-10) — SHIPPED, all UNPUSHED (33 total)
+
+Six discrete tasks this session, all committed locally, **0 pushed** (push
+needs explicit user OK). Pre-commit hook + V2 build clean throughout.
+
+**(1) Bruun nominal-normalization restored — `f252733` (code) + `7f54d64` (data).**
+The Bruun seed builder had lost its display-nominal layer: fresh entries went
+in raw (no implicit-«1», roman not converted, fraction glyphs, NAME-parens,
+ø-spelling) while 1099 existing entries carried normalized forms — a naive
+re-run would degrade all of them. Added `_bruun_display_nominal()` +
+`extra_curated_fields=frozenset({"nominal"})` threaded through
+`merge_one`/`merge_seed`/`write_v2_seed` (default empty → no-op for other
+builders) so existing nominals are soft-preserved, fresh ones normalized.
+**parse_metal now runs on the RAW denomination** (parens intact) BEFORE the
+display strip — the descriptive paren carries the metal signal («12 Mark
+(Courant Ducat)»→gold, «8 Skilling (klippe)»→silver); running it on the
+stripped nominal had regressed 3 metals. Proven 0 semantic diff on re-run.
+`7f54d64` re-serialized the last PyYAML-style bruun seed (danish_realm) to
+ruamel — corpus format consistency.
+
+**(2) Absorb drops finals whose backing vanished — `78d54f2` (code+test) +
+`340219a` (data, −17).** Absorb was additive/sticky: a final persisted even
+when its backing seed_unified entry disappeared (the 622-exonumia hand-removal
+case). New drop: a `unified-*` final with NO live backing AND no curation
+(fuss seed_unsorted/None, no note/_curation_holds/promoted_to/curator-phase)
+is dropped — two enforcement points (explicit filter on the new final set +
+monotonic-guard exclusion so a final dropped by an earlier purge isn't
+resurrected). Module-level `_final_is_curated`/`_final_has_live_backing`/
+`_is_vanished_stale_final` + 19-case unit test (`tests/test_absorb_stale_final_drop.py`).
+Materialized 17 drops (15 cross-source-consolidation dups + 2 sub-variant
+re-key dups: dk-hede-f3h135→f3h135a/b, dk-galster-f1g-66→f1g-66c); verified 0
+seed orphaned, 0 cross-entity dup, note preserved.
+
+**(3) Re-serialize remaining stale seeds — `fe6574c`.** 5 seed files still in
+old PyYAML dash-at-parent style (3 kmk + 2 numismaster) → ruamel round-trip,
+0 semantic diff. Pure format (a builder re-run was wrong: kmk writes 0 files
+without parse-cache, numismaster re-run is a real data change). Corpus now
+uniformly ruamel.
+
+**(4) NGC grade-colour → copper — `ec63ace` (code) + `9720042` (data).**
+parse_metal reads the NGC/PCGS colour suffix (Brown/BN/RB/RD, anchored to
+«NGC <grade> <colour>» so prose «brown patina» never false-matches) →
+("copper", False), placed after explicit metal-words, before the weak
+denom heuristics. 24 in-scope flips (Danish bronze Øre, copper Rigsbanktegn,
+small Rigsbankskilling, 1677 siege klippe dk-bruun-7277, 1602 copper Penny).
+Knock-on: corrected metal unblocked 5 cross-source merges (Bruun KM-entry ↔
+Numista N#-entry, e.g. KM-754=N#43524) — verified 0 loss, 0 dup.
+
+**(5) Schauenburg 2-entity split — `997aa83`.** The old
+`holstein_schauenburg_county` umbrella conflated two regional traditions →
+split into **`grafschaft_schaumburg`** (Niedersachsen, 36 coins —
+Stadthagen/Bückeburg/Oldendorf/Rinteln, Mariengroschen tradition) +
+**`schauenburg_pinneberg`** (Holstein, 246 — Altona, SH-Courant + imperial
+1/24). holstein_schauenburg page consumes BOTH; schleswig_holstein consumes
+only the Holstein half (mirrors royal_holstein-on-denmark). Mechanism:
+new entity in issuing_entities; mint_registry (4 NS mints→grafschaft;
+Schauenburg issuer-name fallback→pinneberg); routing-rule routes_to
+grafschaft; **`build_numismaster_seed` now applies route_entity_with_rules**
+(was the 6-coin mis-route bug); bruun meta-tag→pinneberg. 123 county finals
+migrated verbatim (ids+notes preserved) then merge+absorb reconciled;
+test_entity_routing 10 green. See V2_DECISIONS D45 (+ D44 for the absorb drop).
+
+**(6) numista dav-dedup refresh — `b7b2165` (9 entities).** Re-running
+build_numista_seed materialized a stale catalog.dav: a 2-elem list with the
+SAME Davenport ref in two formats («EC II# 3656»+«EC II 3656») → scalar.
+218 entries, 0 other field changed. Seed-layer hygiene only — rendered final
+was already clean (absorb's `_fold_catalog_indices` normalizes on accumulate).
+numista-only quirk; ikmk/numismaster/bruun verified 0 non-Schauenburg drift.
+
+**OPEN / next (deferred this session):**
+- 🟡 **holstein_schauenburg page prose STALE after the split** — summary +
+  phases still describe the pre-split «104-piece bulk seed pending mint-city
+  resolution / IKMK doesn't distinguish the two territories» model; the page
+  now renders a clean 255-coin 2-entity split. Rewrite summary (drop
+  «pending») + reconsider phase structure (fuss_order is just seed_unsorted —
+  the coins are uncurated). Reader-facing inconsistency introduced by the
+  refactor; close next.
+- 🟡 **galster 66A/66B coverage** — the galster reparse now harvests only
+  `f1g66c.htm` (66C); `f1g66.htm` (66A/66B) is absent from the galster seed.
+  Verify whether the 1 Søsling 1524 Frederik I 66A/66B are the SAME coin as
+  66C (re-key, fine) or a genuinely-lost sub-variant (harvest gap). Surfaced
+  during the absorb stale-final investigation.
+- 🟢 **audit_prose.py + audit_i18n.py** not run this session despite new
+  trilingual prose (grafschaft_schaumburg entity description + routing-rule
+  descriptions). Lint for §0a/§0z/§2a + cross-lang consistency.
+- 🟢 **SOURCES.md §13** — add the numista «EC II#» dav-duplicate parser-quirk
+  entry (Davenport ref captured in `#` + non-`#` form; current
+  catalog-normalization de-dups).
+- 🟢 **Tooling lesson** (memory `tooling_lessons`): a coin-based semantic-diff
+  scoping script silently reverts CONFIG yml (issuing_entities / locations /
+  entity_routing_rules — no `coins` → «0 semantic» → reverted). Hit once this
+  session (caught at render: page dropped to 0 coins); exclude config dirs
+  from any auto-revert.
+- 🟢 Pre-existing standing TODOs untouched this session: schou-only (17)
+  catalog-noise; ~8 genuine catalog over-merges.
+
 ## composed_of re-validate + full re-merge (2026-06-09) — SHIPPED, 3 commits UNPUSHED
 
 The absorb stage is additive + STICKY: once a unified entry lands in a
