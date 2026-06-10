@@ -42,9 +42,14 @@ were silently dropped from the seed and never reached the coins.
   mint union [Kopenhagen, Malmö]. Both render on the Denmark page (verified).
 - **6penning** (Erik af Pommern, Åbo, pre-1481) + **halvrhin** (Hans ½
   Rhinsk gylden, u.år) re-parse as single-coin but stay out of seed scope
-  (undated, no reign-volume anchor → builder drops them). Pre-existing
-  fr_hg24 «1508» year is a forgery («falsk» per 1nobel.htm) — untouched,
-  predates this work.
+  (undated, no reign-volume anchor → builder drops them).
+- **Forgery-year drop (`3deea9d` + cache `afc092d`, data `e080583`).** Hans
+  1 Nobel (fr_hg24) carried 1508 — danskmoent flags «(1508 er falsk)»
+  (the only 1508-dated specimen is a forgery). Fixed via PARSER, not
+  errata (the source is correct, the parser mis-read it; errata is for
+  catalogue-index corrections). `_FORGERY_YEAR_PAREN_RE` strips a paren
+  with year+falsk before year extraction; cache-wide only `(1508 er falsk)`
+  matches → only fr_hg24 affected. year_label 1496,1502,1508 → 1496,1502.
 
 ## Source-quality + Schauenburg entity split (2026-06-10) — SHIPPED, all local/UNPUSHED (`git rev-list --count origin/main..HEAD` for the live count)
 
