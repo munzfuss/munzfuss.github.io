@@ -395,11 +395,32 @@ def merge_seed(
             return True
         return c.get("fuss") not in (None, "seed_unsorted")
 
+    def _own_cat_has_subletter(c) -> bool:
+        """True if the entry's OWN-source catalogue value already carries a
+        sub-letter (e.g. galster «66A-B», hede «117A»). Such an entry is
+        itself a sub-VARIANT page, not a bare PARENT that fresh sub-letters
+        supersede — so it must NOT be dropped. The catalogue field is found
+        from the id's source token («dk-galster-f1g-66» → galster «66A-B»;
+        «dk-hede-c4h117» → hede «117»). Without this guard the id-string
+        pattern alone («66» + fresh «66c») wrongly drops Galster 66A-B as if
+        66C superseded it, when 66A-B and 66C are DISTINCT sub-variants of the
+        same coin (both worth keeping). Caught 2026-06-10."""
+        if not isinstance(c, dict):
+            return False
+        cat = c.get("catalog") or {}
+        for tok in (c.get("id") or "").split("-"):
+            if tok in cat:
+                vals = cat[tok]
+                vals = vals if isinstance(vals, list) else [vals]
+                return any(re.search(r"[A-Za-z]", str(v)) for v in vals if v)
+        return False
+
     kept = []
     for c in out:
         cid = c.get("id") if isinstance(c, dict) else None
         superseded = bool(
             cid and re.search(r"\d$", cid) and not _is_curated(c)
+            and not _own_cat_has_subletter(c)
             and any(fid != cid and fid.startswith(cid) and fid[len(cid):].isalpha()
                     for fid in fresh_ids)
         )
