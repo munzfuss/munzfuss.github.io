@@ -55,6 +55,47 @@ _POSSESSIVE_H1_RE = re.compile(
 _COIN_PAGE_PREFIXES = ("chr_", "fr_", "norge_")
 _COIN_PAGE_ROOT_RE = re.compile(r"^(?:hansg|gotlg)\d+[\w\-]*\.htm$")
 
+# Single-coin pages disguised as overview-named files. A handful of
+# `<denom>.htm` filenames (2nobel.htm, 3nobel.htm, …) share the exact
+# naming of the genuine denomination-overview pages (1nobel.htm,
+# 1daler.htm) but are NOT overviews — they document a denomination
+# whose catalogue holds exactly ONE type, so danskmoent.dk never split
+# out a dedicated per-coin page; the «overview» URL IS the coin page.
+# Filename alone can't tell them apart (1nobel = overview, 2nobel =
+# single coin), so rule 3 below disambiguates by page CONTENT.
+#
+# A genuine overview (1nobel.htm) lists several coins across reigns:
+# a bare-denomination H1 («## 1 Nobel»), reign-range group headers
+# («Hans (1483-1513)»), several distinct Galster numbers, and cross-ref
+# markers («Se også» / «Møntrækken … ser således ud»). A single-coin
+# page (2nobel.htm) carries a ruler-keyword H1 («## Hans, 2 Nobel
+# 1502»), exactly ONE Galster number, and none of those overview
+# markers. ALL four single-coin signals must hold — any genuine
+# overview trips at least one guard, so the carve-out is conservative.
+_RULER_TOKEN = r"(?:Christian|Frederik|Hans|Margrethe|Erik|Olav|Olaf)"
+_SINGLE_COIN_H1_RE = re.compile(r"##\s*" + _RULER_TOKEN + r"\b")
+_REIGN_RANGE_HEADER_RE = re.compile(
+    _RULER_TOKEN + r"\s*\d*\.?\s*\(1[45]\d\d\s*[-–]\s*1[45]\d\d\)"
+)
+_GALSTER_NUMBER_RE = re.compile(r"Galster\s+(\d+\w*)")
+_OVERVIEW_TEXT_MARKERS = ("Se også", "ser således ud", "Møntrækken")
+
+
+def _is_single_coin_overview_page(text: str) -> bool:
+    """True when an overview-named page is really a single-coin page.
+
+    Conservative — returns True only when ALL hold: a ruler-keyword H1
+    is present, no reign-range group header, no overview cross-ref
+    marker, and exactly one distinct Galster number in the body.
+    """
+    if not _SINGLE_COIN_H1_RE.search(text):
+        return False
+    if _REIGN_RANGE_HEADER_RE.search(text):
+        return False
+    if any(marker in text for marker in _OVERVIEW_TEXT_MARKERS):
+        return False
+    return len(set(_GALSTER_NUMBER_RE.findall(text))) == 1
+
 
 def _extract_first_h1(text: str) -> str | None:
     """Return the first non-empty `## ` header line, or None.
@@ -109,6 +150,11 @@ def detect_page_shape(html_path: Path, text: str) -> str:
         or _COIN_PAGE_ROOT_RE.match(name)
     )
     if not is_coin_page:
+        # Carve-out: an overview-named file that is actually a single-coin
+        # page (2nobel.htm, 3nobel.htm — a denomination with one catalogued
+        # type) routes to the standard coin-parser, not the skip-parser.
+        if _is_single_coin_overview_page(text):
+            return "standard"
         return "reign_index"
 
     # 4. Possessive-H1 pages (Grevens Fejde series). Check H1 content

@@ -103,7 +103,7 @@ def parse_year_range(year_label: str | None) -> tuple[int | None, int | None]:
     """
     if not year_label:
         return None, None
-    years = [int(m) for m in re.findall(r"\b(1[5-6]\d{2})\b", year_label)]
+    years = [int(m) for m in re.findall(r"\b(1[4-6]\d{2})\b", year_label)]
     if not years:
         return None, None
     return min(years), max(years)
@@ -127,7 +127,7 @@ def parse_year_ranges(year_label: str | None) -> list[list[int]]:
         return []
     ranges: list[list[int]] = []
     for token in re.split(r"[,;]", year_label):
-        yrs = [int(m) for m in re.findall(r"\b(1[5-6]\d{2})\b", token)]
+        yrs = [int(m) for m in re.findall(r"\b(1[4-6]\d{2})\b", token)]
         if not yrs:
             continue
         ranges.append([min(yrs), max(yrs)])
@@ -286,13 +286,24 @@ def _build_sources(data: dict) -> list[dict]:
     manifest is still loaded for any future use, but is no longer emitted as a
     coin source.)
     """
+    # Galster number: filename-derived on per-coin pages (chr_/fr_/hansg…),
+    # but single-coin overview pages (2nobel.htm) carry it only in the
+    # parsed catalog_refs — fall back to that. The ruler_volume parenthetical
+    # is filename-derived too and absent on those pages; omit it cleanly
+    # rather than print «(?)».
+    galster_num = (
+        data.get("galster_number")
+        or (data.get("catalog_refs") or {}).get("galster")
+        or "?"
+    )
+    volume = data.get("ruler_volume")
+    volume_part = f" ({volume})" if volume else ""
     return [
         {
             "type": "literature",
             "url": data.get("source_url_hint"),
             "ref": (
-                f"Galster {data.get('galster_number', '?')} "
-                f"({data.get('ruler_volume', '?')}) — "
+                f"Galster {galster_num}{volume_part} — "
                 f"danskmoent.dk {data.get('source_file', '?')}"
             ),
         }

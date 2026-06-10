@@ -121,10 +121,10 @@ def _parse_header_h1(text: str) -> dict:
     rest_clean = re.sub(r"\s*\([RU][RRSU]*\)", "", rest)
     rest_clean = re.sub(r"\s+", " ", rest_clean).strip()
 
-    year_tokens = re.findall(r"(?<!\d)1[5-6]\d{2}(?:[-–]\d{4})?(?!\d)", rest_clean)
+    year_tokens = re.findall(r"(?<!\d)1[4-6]\d{2}(?:[-–]\d{4})?(?!\d)", rest_clean)
     if not year_tokens:
         body_clean = re.sub(r"\s*\([RU][RRSU]*\)", "", body_after)
-        year_tokens = re.findall(r"(?<!\d)1[5-6]\d{2}(?:[-–]\d{4})?(?!\d)", body_clean[:150])
+        year_tokens = re.findall(r"(?<!\d)1[4-6]\d{2}(?:[-–]\d{4})?(?!\d)", body_clean[:150])
     if year_tokens:
         out["year_label"] = ", ".join(year_tokens)
         for yt in year_tokens:
