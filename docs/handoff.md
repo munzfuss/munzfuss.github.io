@@ -15,6 +15,39 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## KMM impossible-year guard — galster-hg-31 1581 fixed (2026-06-11) — SHIPPED, 2 main UNPUSHED
+
+Closes the kmk-297794 «1513-1581» quirk surfaced by the Hans Galster-volume
+session. Root cause: 25 KMM (natmus) records carry a `creationEvent` with
+`yearFrom > yearTo` (raw inversion). The old `build_kmk_seed._year` only
+swapped, so an impossible value survived (Hans hvid 1581/1513 → 1513-1581;
+1581 is 68y after Hans †1513). New guard: swap when the implied span ≤ 20y
+(ordering slip — 7 records, all within reign), else DROP the event's year
+(year=None — 18 records, all impossible: truncated yearTo 152/58/675/…,
+post-reign yearFrom). Builder fix `d5eea8e`; data `bc4a341`.
+
+- **Materialised** by patching the 8 in-seed records' year fields directly
+  (full `build_kmk_seed` re-run RE-INFLATES — thinning is a separate step;
+  danish_realm dry-run shows 32215 vs thinned 9630, so DON'T full-rebuild
+  to materialise a few rows — patch the thinned seed with the canonical
+  ruamel config `typ=rt, preserve_quotes, width=200, indent(2,4,2)` or the
+  whole file reformats) → re-merge + re-absorb danish_realm + danish_norway.
+  galster-hg-31 1 Hvid Hans now reads 1481-1513; page has 0 «1581».
+- **Side effect (net improvement):** 6 KMM specimens (5 danish_realm + 1
+  danish_norway) whose 100-year bogus ranges had folded them into wrong
+  year-overlap groups now stand alone as seed_unsorted finals, year=None
+  (honest). final danish_realm +5, danish_norway +1.
+- **🟡 SURFACED — KMM Arabic-vs-Roman ruler-scope gap (separate, pre-existing,
+  affects many KMM specimens).** Those 6 don't merge with their true Hede
+  peers (e.g. kmk-191584 «Christian 4» Hede 67 vs curated «Christian IV.»
+  Hede 67) because `_normalise_ruler` maps Arabic «Christian 4» and Roman
+  «Christian IV.» to DIFFERENT scope keys → `hede/christian 4` ≠
+  `hede/christian iv` → no catalog tie. KMM `authority` is Arabic-numbered;
+  Hede/Galster/curated entries are Roman. Fixing `_normalise_ruler` to fold
+  Arabic↔Roman ordinals would re-attach a large class of orphaned KMM
+  museum specimens to their types. Own focused session — broad merge blast
+  radius, dry-run first.
+
 ## Numista discrete-year (year_list) harvest gap — 501 re-harvested (2026-06-10) — SHIPPED, 3 main + 1 submodule UNPUSHED
 
 User noticed Numista DOES give discrete struck years (1496, 1502) — in the
