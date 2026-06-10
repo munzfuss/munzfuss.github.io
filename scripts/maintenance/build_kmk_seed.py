@@ -167,6 +167,22 @@ def _split_place(src):
     return (canon or first or None), mintmaster
 
 
+# KMM data-quality: 25 cache records carry a creationEvent whose
+# `yearFrom` is LATER than `yearTo` (raw inversion). Two sub-patterns,
+# cleanly separated by the implied span:
+#   - ordering slip — both years plausible, just swapped (span ≤ ~10y:
+#     «1692/1682» → 1682-1692). Recover by swapping.
+#   - typo / impossible value — one year is garbage (span ≥ ~27y:
+#     Hans hvid «1581/1513» = 68y, since Hans †1513; truncated
+#     «1518/152» = 1366y). Swapping keeps the bad value, so DROP the
+#     event's year instead of propagating it (the specimen still merges
+#     and contributes weight/source per §9a; an undated specimen no
+#     longer widens a foundation's reign window — e.g. galster-hg-31).
+# Threshold 20 sits in the empty gap between the two clusters (max
+# ordering-slip span 10, min typo span 27).
+_INVERTED_EVENT_SWAP_MAX_SPAN = 20
+
+
 def _year(src):
     """creationEvents[].yearFrom/yearTo (strings) → (yf, yl)."""
     evs = src.get("creationEvents") or []
@@ -175,6 +191,12 @@ def _year(src):
         if not isinstance(e, dict):
             continue
         a, b = _int(e.get("yearFrom")), _int(e.get("yearTo"))
+        # Per-event raw inversion (yearFrom > yearTo) is a KMM data error.
+        if a is not None and b is not None and a > b:
+            if a - b <= _INVERTED_EVENT_SWAP_MAX_SPAN:
+                a, b = b, a            # ordering slip → swap
+            else:
+                continue               # typo / impossible value → drop event
         if a is not None:
             yfs.append(a)
         if b is not None:
