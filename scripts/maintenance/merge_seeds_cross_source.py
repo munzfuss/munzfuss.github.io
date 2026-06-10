@@ -1005,9 +1005,17 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
             # to bare scope.
             ruler_norm = _normalise_ruler(coin.get("ruler"))
             if ruler_norm:
-                # _normalise_ruler returns lowercase, so match case-insens
+                # _normalise_ruler returns lowercase, so match case-insens.
+                # The ordinal is OPTIONAL: Hans (1481-1513) carries no
+                # ordinal («Hans», not «Hans I» — he's the only
+                # Danish-Norwegian Hans), and his Galster volume code is
+                # the bare-initial «hg». Without the optional-numeral
+                # branch, a no-ordinal Hans ref stayed bare `galster`
+                # while the Galster-source entry sat in `galster/hg`, so
+                # the same Galster 24 (1 Nobel) never merged across
+                # sources (caught 2026-06-10 on Bruun-3831 ↔ galster-hg-24).
                 m = re.match(r"(christian|frederik|hans|erik|knud)"
-                             r"\s+([ivx]+|\d+)\.?", ruler_norm,
+                             r"(?:\s+([ivx]+|\d+))?\.?", ruler_norm,
                              flags=re.IGNORECASE)
                 if m:
                     name_initial = m.group(1)[0].lower()
@@ -1015,9 +1023,13 @@ def _catalog_refs(coin: dict, entity_id: str | None = None) -> dict[str, str]:
                     roman_map = {"I": "1", "II": "2", "III": "3",
                                  "IV": "4", "V": "5", "VI": "6",
                                  "VII": "7", "VIII": "8", "IX": "9", "X": "10"}
-                    arabic = roman_map.get(num.upper(), num)
-                    if arabic.isdigit():
-                        vol = f"{name_initial}{arabic}g"
+                    if num:
+                        arabic = roman_map.get(num.upper(), num)
+                        if arabic.isdigit():
+                            vol = f"{name_initial}{arabic}g"
+                    elif m.group(1).lower() == "hans":
+                        # Hans — no ordinal; Galster volume code is «hg».
+                        vol = "hg"
         key = f"galster/{vol}" if vol else "galster"
         if isinstance(galster, list):
             refs[key] = "|".join(sorted(str(g).strip() for g in galster))
