@@ -15,6 +15,37 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## Galster single-coin overview-page recovery: 2/3 Nobel danskmoent source (2026-06-10) — SHIPPED, 3 main + 1 submodule UNPUSHED
+
+User flagged that the danskmoent.dk source on **2 Nobel** (Hans 1502,
+N#428886) + **3 Nobel** (Hans 1496, N#428914) had vanished. Root cause:
+the Galster classifier (`scripts/lib/galster_parsers/classify.py` rule 3)
+routes any non-per-coin-filename page to the `reign_index` skip-parser as
+a redundant overview. `1nobel.htm` IS a genuine multi-reign overview, but
+`2nobel.htm` / `3nobel.htm` are **single-coin pages** (one catalogued
+type each → danskmoent never split a dedicated per-coin page), so they
+were silently dropped from the seed and never reached the coins.
+
+- **Fix (`c63779a`):** conservative content-based carve-out in rule 3 —
+  ruler-keyword H1 + exactly one Galster number + no overview markers
+  («Se også» / «ser således ud» / «Møntrækken» / reign-range header)
+  → route to `standard`. Dry-run over all 171 reign_index pages: exactly
+  4 flip (2nobel, 3nobel, 6penning, halvrhin), all genuine single-coin;
+  167 true overviews untouched. Also extended the galster year regex
+  `1[5-6]→1[4-6]` (standard.py + build_galster) so Hans-era 14xx years
+  parse — 3nobel's 1496 was being dropped (→ no seed). Blast radius:
+  only fr_hg24 (1 Nobel Hans) gains its genuine 1496 year. `_build_sources`
+  now falls back to catalog_refs.galster + omits empty volume parenthetical.
+- **Data (`99a1c69` + cache `bbad3177`):** re-parse → galster seed (+2
+  entries) → merge danish_realm → absorb. 2 Nobel gains catalog galster 26
+  + danskmoent/2nobel.htm; 3 Nobel gains schou 1 + danskmoent/3nobel.htm +
+  mint union [Kopenhagen, Malmö]. Both render on the Denmark page (verified).
+- **6penning** (Erik af Pommern, Åbo, pre-1481) + **halvrhin** (Hans ½
+  Rhinsk gylden, u.år) re-parse as single-coin but stay out of seed scope
+  (undated, no reign-volume anchor → builder drops them). Pre-existing
+  fr_hg24 «1508» year is a forgery («falsk» per 1nobel.htm) — untouched,
+  predates this work.
+
 ## Source-quality + Schauenburg entity split (2026-06-10) — SHIPPED, all local/UNPUSHED (`git rev-list --count origin/main..HEAD` for the live count)
 
 Six discrete tasks this session, all committed locally, **0 pushed** (push
