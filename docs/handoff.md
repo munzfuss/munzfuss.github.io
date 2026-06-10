@@ -84,32 +84,35 @@ SAME Davenport ref in two formats («EC II# 3656»+«EC II 3656») → scalar.
 was already clean (absorb's `_fold_catalog_indices` normalizes on accumulate).
 numista-only quirk; ikmk/numismaster/bruun verified 0 non-Schauenburg drift.
 
-**OPEN / next (deferred this session):**
-- 🟡 **holstein_schauenburg page prose STALE after the split** — summary +
-  phases still describe the pre-split «104-piece bulk seed pending mint-city
-  resolution / IKMK doesn't distinguish the two territories» model; the page
-  now renders a clean 255-coin 2-entity split. Rewrite summary (drop
-  «pending») + reconsider phase structure (fuss_order is just seed_unsorted —
-  the coins are uncurated). Reader-facing inconsistency introduced by the
-  refactor; close next.
-- 🟡 **galster 66A/66B coverage** — the galster reparse now harvests only
-  `f1g66c.htm` (66C); `f1g66.htm` (66A/66B) is absent from the galster seed.
-  Verify whether the 1 Søsling 1524 Frederik I 66A/66B are the SAME coin as
-  66C (re-key, fine) or a genuinely-lost sub-variant (harvest gap). Surfaced
-  during the absorb stale-final investigation.
-- 🟢 **audit_prose.py + audit_i18n.py** not run this session despite new
-  trilingual prose (grafschaft_schaumburg entity description + routing-rule
-  descriptions). Lint for §0a/§0z/§2a + cross-lang consistency.
-- 🟢 **SOURCES.md §13** — add the numista «EC II#» dav-duplicate parser-quirk
-  entry (Davenport ref captured in `#` + non-`#` form; current
-  catalog-normalization de-dups).
-- 🟢 **Tooling lesson** (memory `tooling_lessons`): a coin-based semantic-diff
-  scoping script silently reverts CONFIG yml (issuing_entities / locations /
-  entity_routing_rules — no `coins` → «0 semantic» → reverted). Hit once this
-  session (caught at render: page dropped to 0 coins); exclude config dirs
-  from any auto-revert.
-- 🟢 Pre-existing standing TODOs untouched this session: schou-only (17)
-  catalog-noise; ~8 genuine catalog over-merges.
+**CLOSED later in the session (the deferred clean-up, all committed):**
+- ✅ **galster 66A/66B genuinely lost — recovered** (`1b9e479` fix + `4c170ca`
+  data). NOT a re-key: 66A-B (pre-coronation Electus variant) ≠ 66C. Cause:
+  the `seed_merge` supersession-drop keyed on id-STRING and dropped
+  `dk-galster-f1g-66` (catalog «66A-B») as if `…-66c` superseded it. Fixed
+  catalogue-aware (`_own_cat_has_subletter`). Full re-run of hede+galster
+  found NO other dropped sub-variants — blast radius was exactly this 1 coin.
+- ✅ **holstein_schauenburg page prose rewritten** (`388e6bb`). Summary →
+  historical two-part principality (drop «104-piece pending / IKMK
+  undistinguished»); phase prose cleaned of §0z project-meta (source
+  file-paths / «Build-Assembly» / «Bulk-Seed» pipeline labels); §2-clean,
+  renders both parts.
+- ✅ **audits run** — `audit_prose` / `audit_i18n` on the new prose
+  (grafschaft_schaumburg desc + rewritten summary/phases): 0 new violations,
+  i18n-clean.
+- ✅ **SOURCES §13.1** numista EC II# quirk (`9b9d413`); **memory
+  tooling_lessons** scoping-bug entry (config-dir auto-revert).
+
+**OPEN / next:**
+- 🟡 **Systemic §2 «Taler» → «Thaler» normalisation (curator decision).**
+  Project-wide: ~1000+ `nominal: … Taler` (178 «1 Taler», 857 «1/24 Taler»,
+  …) + 657 §2 note-prose errors (`audit_prose` backlog). The nominal field
+  uses «Taler» pervasively while §2 wants «Thaler» in DE prose — the audit
+  flags notes, not nominals. NOT introduced by recent work; needs a deliberate
+  project-wide pass (nominals + notes together) or an explicit «keep Taler in
+  nominals» convention. The 1 holstein_schauenburg `audit_prose` hit
+  (unified-dk-bruun-14913 note) is one instance, left as-is pending this call.
+- 🟢 Pre-existing standing TODOs untouched: schou-only (17) catalog-noise;
+  ~8 genuine catalog over-merges.
 
 ## composed_of re-validate + full re-merge (2026-06-09) — SHIPPED, 3 commits UNPUSHED
 
