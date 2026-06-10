@@ -673,6 +673,11 @@ document.querySelectorAll('table tr').forEach(tr => {
 Fields exposed: `Issuer`, `Type`, `Years` (NOT `Year` singular), `Value`, `Currency`, `Composition`, `Weight`, `Diameter`, `Shape`, `Demonetized`, `Number`, `Date`, `References`. Fineness extraction: parse the `Composition` value's parenthesised decimal — `Silver (.875)` → 0.875, `Gold (.980)` → 0.98; some entries store as `(875/1000)` so the regex needs to handle both decimal and fraction forms.
 *Decision.* All per-NID extractors should use the `table tr` pattern; the innerText fallback only works for descriptive paragraphs (Obverse / Reverse prose blocks, NOT the spec table). — codified during BO.6 batch A.
 
+**Numista `dav` (Davenport) ref captured in TWO formats — «EC II# N» + «EC II N» duplicate (2026-06-10).**
+The Numista parser emitted the Davenport European-Crowns reference twice into one `catalog.dav` list — once with a stray `#` («EC II# 3656») and once without («EC II 3656») — the same ref (Davenport vol. II / III, number 3656) in two spellings. 218 entries across 9 numista seed entities carried the 2-element duplicate list. **Surfaced only on re-build:** the committed seeds predated the catalog-normalisation that collapses the `#` variant to the canonical scalar; the rendered final layer was always clean (the merger/absorb `_fold_catalog_indices` normalises the accumulated catalog, so final-layer `dav` had 0 duplicates).
+*Diagnosis.* numista-parser-only artifact — other sources (hede/galster/ikmk/numismaster/bruun/ucoin) never carried the `EC II#` form. Pure seed-layer staleness, not a data error.
+*Decision.* Materialized the seed-layer dedup (re-run `build_numista_seed` → scalar `dav`) — `b7b2165`, 9 entities. Aligns committed seeds with current builder output so future re-runs are clean diffs; no rendered-output change.
+
 ### 13.2 ucoin (en.ucoin.net)
 
 **ucoin slug-redirect-to-euro-cents is a RATE-LIMIT signal, not URL breakage (2026-05-13).**
