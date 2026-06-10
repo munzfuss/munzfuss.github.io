@@ -1098,6 +1098,58 @@ def _surgical_decontaminate(
                 fc.pop("sources", None)
 
 
+# ---------------------------------------------------------------------------
+# Stale-final detection (2026-06-10) — module-level so it is unit-testable.
+# See the STALE-FINAL DROP block in process_entity() for the full rationale.
+# ---------------------------------------------------------------------------
+
+# Seed-source phase tags. A bare phase like "kmk"/"bruun" on a final is the
+# SEED's source tag, not a curator decision — so it does NOT count as curation.
+_SEED_TAG_PHASES = frozenset({
+    "bruun", "hede", "kmk", "galster", "ikmk",
+    "numista", "numismaster", "ucoin", "seed_unsorted",
+})
+
+
+def _final_is_curated(fe: dict) -> bool:
+    """True if a final entry carries a curator decision that must survive an
+    automated drop: a real Müntzfuß (`fuss` not seed_unsorted/None), a `note`,
+    `_curation_holds`, `promoted_to`, or a curator-assigned `phase` (a bare
+    seed-source phase tag is NOT curation)."""
+    if fe.get("fuss") not in (None, "seed_unsorted"):
+        return True
+    if fe.get("note") or fe.get("_curation_holds") or fe.get("promoted_to"):
+        return True
+    ph = fe.get("phase")
+    if ph and ph not in _SEED_TAG_PHASES:
+        return True
+    return False
+
+
+def _final_has_live_backing(fe: dict, live_unified_ids: set, live_ids: set) -> bool:
+    """True if the final's own id is a current seed_unified head OR any of its
+    composed_of members resolves to a current seed_unified head / seed id."""
+    if fe.get("id") in live_unified_ids:
+        return True
+    return any(c in live_ids for c in (fe.get("composed_of") or []))
+
+
+def _is_vanished_stale_final(fe: dict, live_unified_ids: set, live_ids: set) -> bool:
+    """A PIPELINE-PROMOTED (`unified-*`) final whose backing seed_unified entry
+    has vanished and which carries no curation — safe to drop.
+
+    The `unified-*` id gate is the primary guard: a V1-bootstrap foundation
+    (real id, e.g. `dk-tid-…`) is the coin's OWN data, never seed-derived, so it
+    is never dropped here regardless of backing. The curation guard is the
+    second line of defence (keeps a bulk-promoted entry a curator has since
+    classified)."""
+    return (
+        str(fe.get("id") or "").startswith("unified-")
+        and not _final_has_live_backing(fe, live_unified_ids, live_ids)
+        and not _final_is_curated(fe)
+    )
+
+
 def process_entity(entity_id: str) -> dict:
     """Returns:
       {
@@ -2074,6 +2126,51 @@ def process_entity(entity_id: str) -> dict:
               f"corrected {corrected_fractions_count} entries "
               f"(prior buggy leading-frac path output)")
 
+    # STALE-FINAL DROP (2026-06-10). Absorb is otherwise additive/sticky: a
+    # final entry persists across runs even when the seed_unified entry that
+    # backed it disappears (its seed source was deleted or filtered out). The
+    # "stale composed_of refs purged" step above only trims dead REFS inside a
+    # surviving final — it never drops a WHOLE final whose every backing member
+    # has vanished. That left 622 stale exonumia finals behind during the
+    # 2026-06-09 KMM-exonumia suppress; they had to be removed by hand. This
+    # closes the loop: parallel to the out-of-scope and stale-foundation purges
+    # above, drop a final iff ALL of:
+    #   (a) it is a PIPELINE-PROMOTED entry (id form `unified-*`). A
+    #       V1-bootstrap foundation (real id, e.g. `dk-tid-…`) is the coin's
+    #       OWN data and is never seed-derived — it is NEVER dropped here, even
+    #       if its seed enrichment vanished (the curation guard (c) is a second
+    #       line of defence, but the id-form gate is the primary one);
+    #   (b) it has NO live backing — neither its own id nor any composed_of
+    #       member resolves to a CURRENT seed_unified head. Assessed HERE, after
+    #       enrichment has refreshed composed_of via `new_links`, so a unified
+    #       that was merely RE-KEYED (not deleted) is re-linked and still counts
+    #       as backed → no false drop;
+    #   (c) it carries NO curation — fuss is seed_unsorted/None, no `note`, no
+    #       `_curation_holds`, no `promoted_to`, and no curator-assigned phase
+    #       (a bare seed-source phase tag like `kmk`/`bruun` is not curation).
+    # A CURATED entry whose backing vanished is KEPT (surfaced, not silently
+    # dropped) — same spirit as §4 / the D-series "curated/verified wins": never
+    # lose curator work to an automated pass. The dropped ids are excluded from
+    # the monotonic guard below so it cannot re-promote them.
+    _live_unified_ids = set(unified_by_id)
+    _live_seed_ids = {
+        s for u in unified_entries for s in (u.get("composed_of") or [])
+    }
+    _live_ids = _live_unified_ids | _live_seed_ids
+
+    stale_dropped_ids: set[str] = set()
+    _kept_after_stale: list[dict] = []
+    for e in enriched_entries:
+        if _is_vanished_stale_final(e, _live_unified_ids, _live_ids):
+            stale_dropped_ids.add(str(e.get("id")))
+            continue
+        _kept_after_stale.append(e)
+    enriched_entries = _kept_after_stale
+    if stale_dropped_ids:
+        print(f"  [{entity_id}] stale finals dropped: "
+              f"{len(stale_dropped_ids)} entries (backing seed_unified gone, "
+              f"no curation): {sorted(stale_dropped_ids)[:8]}")
+
     # MONOTONIC-ABSORB GUARD (TODO §CH). A coin already on the page must
     # not silently vanish from final just because a new source (IKMK, …)
     # was merged in and shifted the stale-foundation-purge / bulk-promote
@@ -2110,6 +2207,19 @@ def process_entity(entity_id: str) -> dict:
         fid = fc.get("id")
         if not fid or fid in new_repr_ids:
             continue
+        # Vanished-backing stale final — do NOT resurrect. Checked directly on
+        # the prior-final entry (not via `stale_dropped_ids`) because such an
+        # entry may have been removed by an EARLIER purge (stale-foundation /
+        # self-fold) before the explicit stale-final filter above could see it;
+        # without this the monotonic guard re-promotes it verbatim and the
+        # whole point is defeated. Only fires for entries ABSENT from the new
+        # final (guarded by the `fid in new_repr_ids` check above), so a merely
+        # re-keyed unified — which would be present, re-linked via new_links —
+        # never reaches here. Same id-form + no-backing + no-curation gate as
+        # the explicit filter; both feed `stale_dropped_ids` for the stat.
+        if _is_vanished_stale_final(fc, _live_unified_ids, _live_ids):
+            stale_dropped_ids.add(str(fid))
+            continue
         if (_is_out_of_scope_nominal(fc.get("nominal"))
                 or _is_out_of_scope_catalog(fc.get("catalog"))):
             continue  # OOS — correctly dropped
@@ -2144,6 +2254,7 @@ def process_entity(entity_id: str) -> dict:
         "bulk_promoted": len(bulk_promoted),
         "stale_purged": purged_count,
         "out_of_scope_dropped": out_of_scope_final_dropped,
+        "stale_finals_dropped": len(stale_dropped_ids),
         "unmatched_unified_ids": unmatched,
         "multi_match_warnings": multi_match,
         "enrichment_conflicts": enrichment_conflicts,
@@ -2267,6 +2378,7 @@ def main() -> int:
         totals["bulk_promoted"] += result.get("bulk_promoted", 0)
         totals["stale_purged"] += result.get("stale_purged", 0)
         totals["out_of_scope_dropped"] += result.get("out_of_scope_dropped", 0)
+        totals["stale_finals_dropped"] += result.get("stale_finals_dropped", 0)
         totals["multi_match"] += len(result["multi_match_warnings"])
         totals["enrichment_conflicts"] += len(result["enrichment_conflicts"])
         totals["applied_assignments"] += len(result.get("applied_assignments") or [])
@@ -2374,6 +2486,7 @@ def main() -> int:
     print(f"  Genuinely new (pending):         {totals['genuinely_new']:>5d}")
     print(f"  Stale composed_of refs purged:   {totals['stale_purged']:>5d}")
     print(f"  Out-of-scope finals dropped:     {totals['out_of_scope_dropped']:>5d}")
+    print(f"  Stale finals dropped (no backing):{totals['stale_finals_dropped']:>5d}")
     print(f"  Multi-match warnings:            {totals['multi_match']:>5d}")
     print(f"  Enrichment conflicts (logged):   {totals['enrichment_conflicts']:>5d}")
     print(f"  Curator assignments applied:     {totals['applied_assignments']:>5d}")
