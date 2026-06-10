@@ -268,26 +268,31 @@ _MINT_REGISTRY: dict[str, dict] = {
         "entity": "danish_norway",
     },
 
-    # ────────────── Holstein-Schauenburg county ────────────────────────
+    # ────────── Grafschaft Schaumburg (Niedersachsen / Lower Saxon side) ──
+    # The Schauenburg dynasty's ancestral Lower-Saxon county (Landkreis
+    # Schaumburg) struck in the Niedersächsisch 36-Mariengroschen tradition;
+    # its mints route to grafschaft_schaumburg. The Holstein side (Altona,
+    # Pinneberg) routes to schauenburg_pinneberg. (Refactor 2026-06-10:
+    # the holstein_schauenburg_county umbrella was split into these two.)
     "oldendorf": {
         "aliases": {"oldendorf"},
         "display": "Oldendorf",
-        "entity": "holstein_schauenburg_county",
+        "entity": "grafschaft_schaumburg",
     },
     "rinteln": {
         "aliases": {"rinteln"},
         "display": "Rinteln",
-        "entity": "holstein_schauenburg_county",
+        "entity": "grafschaft_schaumburg",
     },
     "stadthagen": {
         "aliases": {"stadthagen"},
         "display": "Stadthagen",
-        "entity": "holstein_schauenburg_county",
+        "entity": "grafschaft_schaumburg",
     },
     "bueckeburg": {
         "aliases": {"bückeburg", "bueckeburg", "buckeburg", "b?ckeburg"},
         "display": "Bückeburg",
-        "entity": "holstein_schauenburg_county",
+        "entity": "grafschaft_schaumburg",
     },
 
     # ───────────────────────── Hanseatic ───────────────────────────────
@@ -661,8 +666,13 @@ _NATION_RULES: list[tuple] = [
     (_re.compile(r"osnabr[üu]ck|osnabruck"), "hochstift_osnabrueck"),
     (_re.compile(r"hessen|hesse|kassel|cassel"),
      "landgrafschaft_hessen_kassel"),
+    # Schauenburg issuer-name fallback → Holstein-Pinneberg by default;
+    # the schauenburg_niedersaechsisch_denoms routing rule re-routes the
+    # Niedersächsisch (Mariengroschen / Oldendorf-mint) pieces to
+    # grafschaft_schaumburg (the holstein_schauenburg_county umbrella was
+    # split into these two, 2026-06-10).
     (_re.compile(r"scha[ou]?[ue]nburg|schaumburg"),
-     "holstein_schauenburg_county"),
+     "schauenburg_pinneberg"),
     # ── Danish-Norwegian realm fallback. Danmark BEFORE Norge so
     #    «Danmark-Norge» / «Danmark; Norge» (dual monarchy) anchor to the
     #    realm, while bare «Norge» routes to danish_norway. ──

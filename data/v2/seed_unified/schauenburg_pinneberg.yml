@@ -2,8 +2,8 @@
 # Generated 2026-06-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/schauenburg_pinneberg.yml across all sources.
 #
-# Input: 248 per-source seed entries.
-# Output: 213 unified entries (one per physical coin).
+# Input: 252 per-source seed entries.
+# Output: 215 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -1981,6 +1981,7 @@ coins:
   year_first: 1620
   year_last: 1620
   year_label: '1620'
+  ruler: Ernst III
   catalog:
     km: '99'
     numista: '137342'
@@ -1992,6 +1993,8 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 0.8
+    source: numismaster
   - value: 0.84
     source: numista
   diameter_mm:
@@ -2001,6 +2004,9 @@ coins:
   - type: literature
     url: https://en.numista.com/137342
     ref: Numista N#137342 — 1 Groschen - Ernest III - County of Holstein-Schaumburg-Pinneberg – Numista
+  - type: literature
+    url: https://numismaster.com/MC_96088
+    ref: NumisMaster
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -2014,6 +2020,7 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - dk-numista-137342
+  - schleswig_holstein-numismaster-96088
 - id: unified-dk-numista-137343
   fuss: seed_unsorted
   phase: numista
@@ -2152,6 +2159,7 @@ coins:
   year_first: 1621
   year_last: 1621
   year_label: '1621'
+  ruler: Ernst III
   catalog:
     km: '116'
     numista: '137347'
@@ -2169,6 +2177,9 @@ coins:
   - type: literature
     url: https://en.numista.com/137347
     ref: Numista N#137347 — 1 Fürstengroschen - Ernest III (Kipper) - County of Holstein-Schaumburg-Pinneberg – Numista
+  - type: literature
+    url: https://numismaster.com/MC_96089
+    ref: NumisMaster
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -2182,6 +2193,7 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - dk-numista-137347
+  - schleswig_holstein-numismaster-96089
 - id: unified-dk-numista-137348
   fuss: seed_unsorted
   phase: numista
@@ -4390,6 +4402,37 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - schleswig_holstein-numismaster-171187
+- id: unified-schleswig_holstein-numismaster-171189
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1/24 Thaler
+  year_first: 1573
+  year_last: 1573
+  year_label: '1573'
+  ruler: Otto V
+  catalog:
+    mb: '10'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_171189
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - schleswig_holstein-numismaster-171189
 - id: unified-schleswig_holstein-numismaster-171190
   fuss: seed_unsorted
   phase: numismaster
@@ -5865,6 +5908,40 @@ coins:
   issuing_entity: schauenburg_pinneberg
   composed_of:
   - schleswig_holstein-numismaster-96081
+- id: unified-schleswig_holstein-numismaster-96084
+  fuss: seed_unsorted
+  phase: numismaster
+  kind: kurant
+  nominal: 1/24 Thaler
+  year_first: 1601
+  year_last: 1604
+  year_ranges:
+  - - 1601
+    - 1604
+  year_label: 1601-1604
+  ruler: Ernst III
+  catalog:
+    km: '7'
+  metal: silver
+  metal_verified: true
+  fineness_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: literature
+    url: https://numismaster.com/MC_96084
+    ref: NumisMaster
+  verification_note:
+    de: 'NumisMaster-Seed (§BK Phase 5): Krause-Mishler-basiertes kommerzielles Katalog (Librios). Per-Münze-Verifikation
+      gegen Primärquellen (Hede / Sieg / Lange / Wilcke / Schive) vor §BF-Promotion.'
+    en: 'NumisMaster seed (§BK Phase 5): Krause-Mishler-based commercial catalogue (Librios). Per-coin verification against
+      primary sources (Hede / Sieg / Lange / Wilcke / Schive) before §BF promotion.'
+    uk: 'NumisMaster-seed (§BK Phase 5): Krause-Mishler-базований комерційний каталог (Librios). Покоінна верифікація проти
+      первинних джерел (Hede / Sieg / Lange / Wilcke / Schive) перед §BF-промоцією.'
+  issuing_entity: schauenburg_pinneberg
+  composed_of:
+  - schleswig_holstein-numismaster-96084
 - id: unified-schleswig_holstein-numismaster-96085
   fuss: seed_unsorted
   phase: numismaster

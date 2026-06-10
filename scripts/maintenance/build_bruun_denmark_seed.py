@@ -144,7 +144,7 @@ META_SUBNATIONAL_TO_ENTITY: dict[str, str] = {
     "schleswig-holstein-glücksburg": "glucksburg_duchy",
     "schleswig-holstein-gottorp": "gottorp_duchy",
     "schleswig-holstein": "royal_holstein",  # fallback for unqualified SH
-    "holstein-schauenburg": "holstein_schauenburg_county",
+    "holstein-schauenburg": "schauenburg_pinneberg",
     "schauenburg-pinneberg": "schauenburg_pinneberg",
     "lübeck (bishopric)": "fuerstbisthum_luebeck",
     "luebeck (bishopric)": "fuerstbisthum_luebeck",

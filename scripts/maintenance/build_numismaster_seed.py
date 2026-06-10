@@ -45,6 +45,7 @@ import ruamel.yaml
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from lib.paths import NUMISMASTER_CACHE, PROJECT_ROOT  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+from lib.entity_routing import route_entity_with_rules  # noqa: E402
 
 # Per-CACHE-DIR year window applied to entries from that cache:
 #   schleswig_holstein  1514-1864 (Danish-jurisdiction SH end)
@@ -289,7 +290,7 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
     #   E.g. country=DENMARK + mint=Altona post-1640 → royal_holstein
     #   (Altona Royal-Danish mint location, NOT Copenhagen-area
     #   danish_realm). Country=SCHAUMBURG-PINNEBERG + mint=Rinteln →
-    #   holstein_schauenburg_county (not the Pinneberg subset).
+    #   schauenburg_pinneberg (Holstein side) or grafschaft_schaumburg (NS mints).
     #   Country=SCHAUMBURG-PINNEBERG + mint=Altona pre-1640 →
     #   schauenburg_pinneberg via year-aware override.
     #
@@ -456,6 +457,26 @@ def build_entry(data: dict, location: str, year_from: int, year_to: int) -> dict
     # via underscore-prefix; useful for cross-checking against mc_index.json /
     # MC_<N>.parsed.json without re-parsing the id from the sources[0].url).
     entry["_numismaster_mc"] = str(mc)
+
+    # Layer the tradition-driven entity-routing rules
+    # (data/v2/entity_routing_rules.yml) on top of the mint/country default
+    # computed above — same two-step path as build_numista_seed. Safe-mode:
+    # the rule actively re-routes only when the coin's mint is None /
+    # unverified, else just records a hint. This is what splits the Schauenburg
+    # coinage — Niedersächsisch denominations (Mariengroschen / Fürstengroschen
+    # / Arendschilling) on mint-less pieces re-route to grafschaft_schaumburg,
+    # while the Holstein-Pinneberg default (schauenburg_pinneberg) and the
+    # mint-authoritative Niedersachsen mints (Oldendorf/Stadthagen/… via
+    # mint_registry) are honoured. The NumisMaster `country` string doubles as
+    # the issuer lineage signal for the rule's issuer_any match.
+    routing_input = dict(entry)
+    routing_input["_numista_issuer"] = data.get("country")
+    routed_ent, _hint = route_entity_with_rules(
+        routing_input, default_entity=entry["issuing_entity"]
+    )
+    entry["issuing_entity"] = routed_ent
+    if _hint is not None:
+        entry["_entity_routing_hint"] = _hint
 
     return entry
 
