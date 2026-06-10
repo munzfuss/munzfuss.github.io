@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-06-10T12:25:55Z'
+generated_at: '2026-06-10T19:43:42Z'
 entity: danish_norway
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -23,10 +23,15 @@ coins:
       schive: XV:7
       skaare: '308'
       galster: '164'
+      others:
+        - Brekke# 2
+        - AAJT# 2
+        - Galster UU# 164
+        - Thesen# 2
     metal: billon
     fineness: 0.375
     weight_rough_g: 2.61
-    diameter_mm: 25.0
+    diameter_mm: 25
     issuing_entity: danish_norway
     verified: false
     fineness_verified: true
@@ -36,7 +41,7 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/110323
-        ref: Numista N#110323 — 1 Skilling - Christian II (Oslo)
+        ref: Numista N#110323 — 1 Skilling - Christian II (Oslo) - Norway
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -63,10 +68,15 @@ coins:
       skaare: '307'
       schive: XV:6
       galster: '163'
+      others:
+        - Brekke# 1
+        - AAJT# 1
+        - Galster UU# 163
+        - Thesen# 1
     metal: billon
     fineness: 0.375
     weight_rough_g: 2.61
-    diameter_mm: 25.0
+    diameter_mm: 25
     issuing_entity: danish_norway
     verified: false
     fineness_verified: true
@@ -76,7 +86,7 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/124914
-        ref: Numista N#124914 — 1 Skilling - Christian II
+        ref: Numista N#124914 — 1 Skilling - Christian II - Norway
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -142,17 +152,21 @@ coins:
     year_ranges:
       -   - 1524
           - 1533
-    ruler: Frederick I
+    ruler: Frederick I (Friedrich I)
     mint: Bergen
     catalog:
       numista: '120175'
       schive: XVI:14
       skaare: '314'
       galster: '170'
+      others:
+        - Galster UU# 170
+        - AAJT# 7
+        - Brekke# 7
     metal: silver
     fineness:
     weight_rough_g: 2.07
-    diameter_mm: 26.0
+    diameter_mm: 26
     issuing_entity: danish_norway
     verified: false
     fineness_verified: false
@@ -162,7 +176,7 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/120175
-        ref: Numista N#120175 — 1 Skilling - Frederik I (Bergen)
+        ref: Numista N#120175 — 1 Skilling - Frederik I (Bergen) - Norway
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -182,17 +196,26 @@ coins:
     year_ranges:
       -   - 1524
           - 1533
-    ruler: Frederick I
+    ruler: Frederick I (Friedrich I)
     mint: Christiania
     catalog:
       numista: '121754'
-      schive: XVI:11
+      schive:
+        - XVI:11
+        - XVI:12
       skaare: '311'
       galster: '167'
+      others:
+        - Galster UU# 167
+        - AAJT# 1
+        - AAJT# 2
+        - Brekke# 1
+        - Brekke# 2
+        - Thesen# 1
     metal: billon
     fineness: 0.219
     weight_rough_g: 2.05
-    diameter_mm: 24.0
+    diameter_mm: 24
     issuing_entity: danish_norway
     verified: false
     fineness_verified: true
@@ -202,7 +225,7 @@ coins:
     sources:
       - type: literature
         url: https://en.numista.com/121754
-        ref: Numista N#121754 — 1 Skilling - Frederik I (Oslo)
+        ref: Numista N#121754 — 1 Skilling - Frederik I (Oslo) - Norway
     verification_note:
       de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
         Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
@@ -267,11 +290,17 @@ coins:
       de: '1/96 Speciedaler'
       en: '1/96 Speciedaler'
       uk: '1/96 Speciedaler'
-    year_label: 1525-1530
+    year_label: 1525, 1526, 1528, 1530
     year_first: 1525
     year_last: 1530
     year_ranges:
       -   - 1525
+          - 1525
+      -   - 1526
+          - 1526
+      -   - 1528
+          - 1528
+      -   - 1530
           - 1530
     ruler: Frederik I
     mint:
@@ -689,46 +718,6 @@ coins:
         (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
       uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-  - id: dk-numista-121758
-    fuss: seed_unsorted
-    phase: numista
-    kind: kurant
-    nominal: 1 Skilling
-    year_label: 1533-1537 (1537)
-    year_first: 1533
-    year_last: 1537
-    year_ranges:
-      -   - 1533
-          - 1537
-    ruler: Christian III
-    mint: Bergen
-    catalog:
-      numista: '121758'
-      schive: XVII:6
-      skaare: '326'
-      galster: '176'
-    metal: billon
-    fineness: 0.219
-    weight_rough_g: 1.7
-    diameter_mm: 27.0
-    issuing_entity: danish_norway
-    verified: false
-    fineness_verified: true
-    weight_rough_verified: true
-    diameter_mm_verified: true
-    mint_verified: true
-    sources:
-      - type: literature
-        url: https://en.numista.com/121758
-        ref: Numista N#121758 — 1 Skilling - Christian III (Bergen)
-    verification_note:
-      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
-        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-      en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references
-        (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
-      uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
-        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
-    metal_verified: true
   - id: dk-numista-444496
     fuss: seed_unsorted
     phase: numista
@@ -768,6 +757,56 @@ coins:
       uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
         (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
     metal_verified: true
+  - id: dk-numista-121758
+    fuss: seed_unsorted
+    phase: numista
+    kind: kurant
+    nominal: 1 Skilling
+    year_label: '1537'
+    year_first: 1537
+    year_last: 1537
+    year_ranges:
+      -   - 1537
+          - 1537
+    ruler: Christian III
+    mint: Bergen
+    catalog:
+      numista: '121758'
+      schive:
+        - XVII:6
+        - XVII:7
+      skaare: '326'
+      galster: '176'
+      others:
+        - Brekke# 1
+        - Brekke# 1A
+        - AAJT# 1
+        - AAJT# 1A
+        - Galster UU# 176
+        - Thesen# 1A
+        - Thesen# 1B
+    metal: billon
+    fineness: 0.219
+    weight_rough_g: 1.7
+    diameter_mm: 27
+    issuing_entity: danish_norway
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    diameter_mm_verified: true
+    mint_verified: true
+    sources:
+      - type: literature
+        url: https://en.numista.com/121758
+        ref: Numista N#121758 — 1 Skilling - Christian III (Bergen) - Norway
+    verification_note:
+      de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert;
+        Cross-references (SIEG, Galster, Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
+      en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references
+        (SIEG, Galster, Schou, Fr) must be checked against primary sources before promotion into curated entries.'
+      uk: "Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки (en.numista.com). Numista редагується користувачами; cross-references
+        (SIEG, Galster, Schou, Fr) треба перевірити проти первинних джерел перед промоцією у кур'єйтед-записи."
+    metal_verified: true
   - id: dk-numista-120349
     fuss: seed_unsorted
     phase: numista
@@ -777,11 +816,13 @@ coins:
       de: '1/96 Speciedaler'
       en: '1/96 Speciedaler'
       uk: '1/96 Speciedaler'
-    year_label: 1543-1546
+    year_label: 1543, 1546
     year_first: 1543
     year_last: 1546
     year_ranges:
       -   - 1543
+          - 1543
+      -   - 1546
           - 1546
     ruler: Christian III
     mint:
@@ -820,11 +861,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Mark = 16 Skilling (1/6 Speciedaler)
-    year_label: 1543-1546
+    year_label: 1543, 1544, 1545, 1546
     year_first: 1543
     year_last: 1546
     year_ranges:
       -   - 1543
+          - 1543
+      -   - 1544
+          - 1544
+      -   - 1545
+          - 1545
+      -   - 1546
           - 1546
     ruler: Christian III
     mint:
@@ -1043,11 +1090,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Hvid
-    year_label: 1575-1578
+    year_label: 1575, 1576, 1577, 1578
     year_first: 1575
     year_last: 1578
     year_ranges:
       -   - 1575
+          - 1575
+      -   - 1576
+          - 1576
+      -   - 1577
+          - 1577
+      -   - 1578
           - 1578
     ruler: Frederick II
     mint:
@@ -1085,11 +1138,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1628-1629
+    year_label: 1628, 1629
     year_first: 1628
     year_last: 1629
     year_ranges:
       -   - 1628
+          - 1628
+      -   - 1629
           - 1629
     ruler: Christian IV
     mint:
@@ -1131,11 +1186,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: ⅛ Speciedaler
-    year_label: 1628-1629
+    year_label: 1628, 1629
     year_first: 1628
     year_last: 1629
     year_ranges:
       -   - 1628
+          - 1628
+      -   - 1629
           - 1629
     ruler: Christian IV
     mint:
@@ -1179,11 +1236,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: ¼ Speciedaler
-    year_label: 1628-1629
+    year_label: 1628, 1629
     year_first: 1628
     year_last: 1629
     year_ranges:
       -   - 1628
+          - 1628
+      -   - 1629
           - 1629
     ruler: Christian IV
     mint:
@@ -1227,11 +1286,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: ½ Speciedaler
-    year_label: 1628-1629
+    year_label: 1628, 1629
     year_first: 1628
     year_last: 1629
     year_ranges:
       -   - 1628
+          - 1628
+      -   - 1629
           - 1629
     ruler: Christian IV
     mint: Christiania
@@ -1276,11 +1337,43 @@ coins:
     phase: numista
     kind: kurant
     nominal: ⅛ Speciedaler
-    year_label: 1629-1647
+    year_label: 1629, 1630, 1631, 1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641, 1642, 1643, 1646, 1647
     year_first: 1629
     year_last: 1647
     year_ranges:
       -   - 1629
+          - 1629
+      -   - 1630
+          - 1630
+      -   - 1631
+          - 1631
+      -   - 1632
+          - 1632
+      -   - 1633
+          - 1633
+      -   - 1634
+          - 1634
+      -   - 1635
+          - 1635
+      -   - 1636
+          - 1636
+      -   - 1637
+          - 1637
+      -   - 1638
+          - 1638
+      -   - 1639
+          - 1639
+      -   - 1640
+          - 1640
+      -   - 1641
+          - 1641
+      -   - 1642
+          - 1642
+      -   - 1643
+          - 1643
+      -   - 1646
+          - 1646
+      -   - 1647
           - 1647
     ruler: Christian IV
     mint:
@@ -1320,11 +1413,43 @@ coins:
     phase: numista
     kind: kurant
     nominal: ¼ Speciedaler
-    year_label: 1629-1647
+    year_label: 1629, 1630, 1631, 1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641, 1642, 1643, 1646, 1647
     year_first: 1629
     year_last: 1647
     year_ranges:
       -   - 1629
+          - 1629
+      -   - 1630
+          - 1630
+      -   - 1631
+          - 1631
+      -   - 1632
+          - 1632
+      -   - 1633
+          - 1633
+      -   - 1634
+          - 1634
+      -   - 1635
+          - 1635
+      -   - 1636
+          - 1636
+      -   - 1637
+          - 1637
+      -   - 1638
+          - 1638
+      -   - 1639
+          - 1639
+      -   - 1640
+          - 1640
+      -   - 1641
+          - 1641
+      -   - 1642
+          - 1642
+      -   - 1643
+          - 1643
+      -   - 1646
+          - 1646
+      -   - 1647
           - 1647
     ruler: Christian IV
     mint:
@@ -1364,11 +1489,47 @@ coins:
     phase: numista
     kind: kurant
     nominal: ½ Speciedaler
-    year_label: 1629-1647
+    year_label: 1629, 1630, 1631, 1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641, 1642, 1643, 1644, 1645, 1646, 1647
     year_first: 1629
     year_last: 1647
     year_ranges:
       -   - 1629
+          - 1629
+      -   - 1630
+          - 1630
+      -   - 1631
+          - 1631
+      -   - 1632
+          - 1632
+      -   - 1633
+          - 1633
+      -   - 1634
+          - 1634
+      -   - 1635
+          - 1635
+      -   - 1636
+          - 1636
+      -   - 1637
+          - 1637
+      -   - 1638
+          - 1638
+      -   - 1639
+          - 1639
+      -   - 1640
+          - 1640
+      -   - 1641
+          - 1641
+      -   - 1642
+          - 1642
+      -   - 1643
+          - 1643
+      -   - 1644
+          - 1644
+      -   - 1645
+          - 1645
+      -   - 1646
+          - 1646
+      -   - 1647
           - 1647
     ruler: Christian IV
     mint:
@@ -1412,11 +1573,45 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1629-1647
+    year_label: 1629, 1630, 1631, 1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641, 1642, 1644, 1645, 1646, 1647
     year_first: 1629
     year_last: 1647
     year_ranges:
       -   - 1629
+          - 1629
+      -   - 1630
+          - 1630
+      -   - 1631
+          - 1631
+      -   - 1632
+          - 1632
+      -   - 1633
+          - 1633
+      -   - 1634
+          - 1634
+      -   - 1635
+          - 1635
+      -   - 1636
+          - 1636
+      -   - 1637
+          - 1637
+      -   - 1638
+          - 1638
+      -   - 1639
+          - 1639
+      -   - 1640
+          - 1640
+      -   - 1641
+          - 1641
+      -   - 1642
+          - 1642
+      -   - 1644
+          - 1644
+      -   - 1645
+          - 1645
+      -   - 1646
+          - 1646
+      -   - 1647
           - 1647
     ruler: Christian IV
     mint:
@@ -1500,11 +1695,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1641-1642
+    year_label: 1641, 1642
     year_first: 1641
     year_last: 1642
     year_ranges:
       -   - 1641
+          - 1641
+      -   - 1642
           - 1642
     ruler: Christian IV
     mint:
@@ -1544,11 +1741,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Skilling
-    year_label: 1641-1642
+    year_label: 1641, 1642
     year_first: 1641
     year_last: 1642
     year_ranges:
       -   - 1641
+          - 1641
+      -   - 1642
           - 1642
     ruler: Christian IV
     mint:
@@ -1590,11 +1789,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 8 Skilling
-    year_label: 1641-1642
+    year_label: 1641, 1642
     year_first: 1641
     year_last: 1642
     year_ranges:
       -   - 1641
+          - 1641
+      -   - 1642
           - 1642
     ruler: Christian IV
     mint:
@@ -1638,11 +1839,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Speciedaler
-    year_label: 1643-1645
+    year_label: 1643, 1644, 1645
     year_first: 1643
     year_last: 1645
     year_ranges:
       -   - 1643
+          - 1643
+      -   - 1644
+          - 1644
+      -   - 1645
           - 1645
     ruler: Christian IV
     mint:
@@ -1689,11 +1894,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 3 Speciedaler
-    year_label: 1643-1644
+    year_label: 1643, 1644
     year_first: 1643
     year_last: 1644
     year_ranges:
       -   - 1643
+          - 1643
+      -   - 1644
           - 1644
     ruler: Christian IV
     mint: Christiania
@@ -1738,11 +1945,21 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Skilling
-    year_label: 1643-1648
+    year_label: 1643, 1644, 1645, 1646, 1647, 1648
     year_first: 1643
     year_last: 1648
     year_ranges:
       -   - 1643
+          - 1643
+      -   - 1644
+          - 1644
+      -   - 1645
+          - 1645
+      -   - 1646
+          - 1646
+      -   - 1647
+          - 1647
+      -   - 1648
           - 1648
     ruler: Christian IV
     mint:
@@ -1782,11 +1999,19 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1643-1648
+    year_label: 1643, 1644, 1646, 1647, 1648
     year_first: 1643
     year_last: 1648
     year_ranges:
       -   - 1643
+          - 1643
+      -   - 1644
+          - 1644
+      -   - 1646
+          - 1646
+      -   - 1647
+          - 1647
+      -   - 1648
           - 1648
     ruler: Christian IV
     mint:
@@ -1924,11 +2149,17 @@ coins:
       de: '⅓ Speciedaler'
       en: '⅓ Speciedaler'
       uk: '⅓ Speciedaler'
-    year_label: 1644-1647
+    year_label: 1644, 1645, 1646, 1647
     year_first: 1644
     year_last: 1647
     year_ranges:
       -   - 1644
+          - 1644
+      -   - 1645
+          - 1645
+      -   - 1646
+          - 1646
+      -   - 1647
           - 1647
     ruler: Christian IV
     mint:
@@ -2110,11 +2341,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: 16 Skilling = 1 Mark (1/6 Speciedaler)
-    year_label: 1644-1647
+    year_label: 1644, 1645, 1646, 1647
     year_first: 1644
     year_last: 1647
     year_ranges:
       -   - 1644
+          - 1644
+      -   - 1645
+          - 1645
+      -   - 1646
+          - 1646
+      -   - 1647
           - 1647
     ruler: Christian IV
     mint:
@@ -2419,11 +2656,23 @@ coins:
     phase: numista
     kind: kurant
     nominal: 16 Skilling = 1 Mark
-    year_label: 1648-1669
+    year_label: 1648, 1663, 1665, 1666, 1667, 1668, 1669
     year_first: 1648
     year_last: 1669
     year_ranges:
       -   - 1648
+          - 1648
+      -   - 1663
+          - 1663
+      -   - 1665
+          - 1665
+      -   - 1666
+          - 1666
+      -   - 1667
+          - 1667
+      -   - 1668
+          - 1668
+      -   - 1669
           - 1669
     ruler: Frederick III
     mint:
@@ -2462,11 +2711,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 3 Speciedaler
-    year_label: 1649-1650
+    year_label: 1649, 1650
     year_first: 1649
     year_last: 1650
     year_ranges:
       -   - 1649
+          - 1649
+      -   - 1650
           - 1650
     ruler: Frederik III
     mint:
@@ -2508,11 +2759,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1649-1650
+    year_label: 1649, 1650
     year_first: 1649
     year_last: 1650
     year_ranges:
       -   - 1649
+          - 1649
+      -   - 1650
           - 1650
     ruler: Frederik III
     mint:
@@ -2554,11 +2807,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: ½ Speciedaler
-    year_label: 1649-1651
+    year_label: 1649, 1650, 1651
     year_first: 1649
     year_last: 1651
     year_ranges:
       -   - 1649
+          - 1649
+      -   - 1650
+          - 1650
+      -   - 1651
           - 1651
     ruler: Frederick III
     mint: Christiania
@@ -2601,11 +2858,21 @@ coins:
     phase: numista
     kind: kurant
     nominal: ¼ Speciedaler
-    year_label: 1649-1654
+    year_label: 1649, 1650, 1651, 1652, 1653, 1654
     year_first: 1649
     year_last: 1654
     year_ranges:
       -   - 1649
+          - 1649
+      -   - 1650
+          - 1650
+      -   - 1651
+          - 1651
+      -   - 1652
+          - 1652
+      -   - 1653
+          - 1653
+      -   - 1654
           - 1654
     ruler: Frederick III
     mint: Christiania
@@ -2650,11 +2917,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: ⅛ Speciedaler
-    year_label: 1649-1650
+    year_label: 1649, 1650
     year_first: 1649
     year_last: 1650
     year_ranges:
       -   - 1649
+          - 1649
+      -   - 1650
           - 1650
     ruler: Frederik III
     mint:
@@ -2900,11 +3169,53 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Skilling
-    year_label: 1649-1670
+    year_label: 1649, 1650, 1651, 1652, 1653, 1654, 1655, 1656, 1657, 1658, 1659, 1660, 1661, 1662, 1663, 1664, 1665, 1666, 1667, 1668, 1669, 1670
     year_first: 1649
     year_last: 1670
     year_ranges:
       -   - 1649
+          - 1649
+      -   - 1650
+          - 1650
+      -   - 1651
+          - 1651
+      -   - 1652
+          - 1652
+      -   - 1653
+          - 1653
+      -   - 1654
+          - 1654
+      -   - 1655
+          - 1655
+      -   - 1656
+          - 1656
+      -   - 1657
+          - 1657
+      -   - 1658
+          - 1658
+      -   - 1659
+          - 1659
+      -   - 1660
+          - 1660
+      -   - 1661
+          - 1661
+      -   - 1662
+          - 1662
+      -   - 1663
+          - 1663
+      -   - 1664
+          - 1664
+      -   - 1665
+          - 1665
+      -   - 1666
+          - 1666
+      -   - 1667
+          - 1667
+      -   - 1668
+          - 1668
+      -   - 1669
+          - 1669
+      -   - 1670
           - 1670
     ruler: Frederik III
     mint:
@@ -2944,11 +3255,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1649-1651
+    year_label: 1649, 1650, 1651
     year_first: 1649
     year_last: 1651
     year_ranges:
       -   - 1649
+          - 1649
+      -   - 1650
+          - 1650
+      -   - 1651
           - 1651
     ruler: Frederik III
     mint:
@@ -2989,11 +3304,53 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1649-1670
+    year_label: 1649, 1650, 1651, 1652, 1653, 1654, 1655, 1656, 1657, 1658, 1659, 1660, 1661, 1662, 1663, 1664, 1665, 1666, 1667, 1668, 1669, 1670
     year_first: 1649
     year_last: 1670
     year_ranges:
       -   - 1649
+          - 1649
+      -   - 1650
+          - 1650
+      -   - 1651
+          - 1651
+      -   - 1652
+          - 1652
+      -   - 1653
+          - 1653
+      -   - 1654
+          - 1654
+      -   - 1655
+          - 1655
+      -   - 1656
+          - 1656
+      -   - 1657
+          - 1657
+      -   - 1658
+          - 1658
+      -   - 1659
+          - 1659
+      -   - 1660
+          - 1660
+      -   - 1661
+          - 1661
+      -   - 1662
+          - 1662
+      -   - 1663
+          - 1663
+      -   - 1664
+          - 1664
+      -   - 1665
+          - 1665
+      -   - 1666
+          - 1666
+      -   - 1667
+          - 1667
+      -   - 1668
+          - 1668
+      -   - 1669
+          - 1669
+      -   - 1670
           - 1670
     ruler: Frederik III
     mint:
@@ -3040,11 +3397,33 @@ coins:
       de: '1/12 Speciedaler'
       en: '1/12 Speciedaler'
       uk: '1/12 Speciedaler'
-    year_label: 1649-1661
+    year_label: 1649, 1650, 1651, 1652, 1653, 1654, 1655, 1656, 1657, 1658, 1660, 1661
     year_first: 1649
     year_last: 1661
     year_ranges:
       -   - 1649
+          - 1649
+      -   - 1650
+          - 1650
+      -   - 1651
+          - 1651
+      -   - 1652
+          - 1652
+      -   - 1653
+          - 1653
+      -   - 1654
+          - 1654
+      -   - 1655
+          - 1655
+      -   - 1656
+          - 1656
+      -   - 1657
+          - 1657
+      -   - 1658
+          - 1658
+      -   - 1660
+          - 1660
+      -   - 1661
           - 1661
     ruler: Frederik III
     mint:
@@ -3085,11 +3464,33 @@ coins:
     phase: numista
     kind: kurant
     nominal: 16 Skilling = 1 Mark (1/6 Speciedaler)
-    year_label: 1649-1661
+    year_label: 1649, 1650, 1651, 1652, 1653, 1654, 1655, 1656, 1657, 1658, 1660, 1661
     year_first: 1649
     year_last: 1661
     year_ranges:
       -   - 1649
+          - 1649
+      -   - 1650
+          - 1650
+      -   - 1651
+          - 1651
+      -   - 1652
+          - 1652
+      -   - 1653
+          - 1653
+      -   - 1654
+          - 1654
+      -   - 1655
+          - 1655
+      -   - 1656
+          - 1656
+      -   - 1657
+          - 1657
+      -   - 1658
+          - 1658
+      -   - 1660
+          - 1660
+      -   - 1661
           - 1661
     ruler: Frederik III
     mint:
@@ -3130,11 +3531,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 3 Speciedaler
-    year_label: 1651-1652
+    year_label: 1651, 1652
     year_first: 1651
     year_last: 1652
     year_ranges:
       -   - 1651
+          - 1651
+      -   - 1652
           - 1652
     ruler: Frederik III
     mint:
@@ -3177,11 +3580,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1651-1652
+    year_label: 1651, 1652
     year_first: 1651
     year_last: 1652
     year_ranges:
       -   - 1651
+          - 1651
+      -   - 1652
           - 1652
     ruler: Frederik III
     mint:
@@ -3307,11 +3712,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1652-1653
+    year_label: 1652, 1653
     year_first: 1652
     year_last: 1653
     year_ranges:
       -   - 1652
+          - 1652
+      -   - 1653
           - 1653
     ruler: Frederick III
     mint: Christiania
@@ -3398,11 +3805,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1653-1656
+    year_label: 1653, 1654, 1655, 1656
     year_first: 1653
     year_last: 1656
     year_ranges:
       -   - 1653
+          - 1653
+      -   - 1654
+          - 1654
+      -   - 1655
+          - 1655
+      -   - 1656
           - 1656
     ruler: Frederick III
     mint:
@@ -3443,11 +3856,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1653-1656
+    year_label: 1653, 1654, 1655, 1656
     year_first: 1653
     year_last: 1656
     year_ranges:
       -   - 1653
+          - 1653
+      -   - 1654
+          - 1654
+      -   - 1655
+          - 1655
+      -   - 1656
           - 1656
     ruler: Frederick III
     mint: Christiania
@@ -3532,11 +3951,21 @@ coins:
     phase: numista
     kind: kurant
     nominal: ½ Speciedaler
-    year_label: 1653-1658
+    year_label: 1653, 1654, 1655, 1656, 1657, 1658
     year_first: 1653
     year_last: 1658
     year_ranges:
       -   - 1653
+          - 1653
+      -   - 1654
+          - 1654
+      -   - 1655
+          - 1655
+      -   - 1656
+          - 1656
+      -   - 1657
+          - 1657
+      -   - 1658
           - 1658
     ruler: Frederick III
     mint: Christiania
@@ -3622,11 +4051,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 3 Speciedaler
-    year_label: 1654-1655
+    year_label: 1654, 1655
     year_first: 1654
     year_last: 1655
     year_ranges:
       -   - 1654
+          - 1654
+      -   - 1655
           - 1655
     ruler: Frederik III
     mint:
@@ -3712,11 +4143,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1655-1657
+    year_label: 1655, 1656, 1657
     year_first: 1655
     year_last: 1657
     year_ranges:
       -   - 1655
+          - 1655
+      -   - 1656
+          - 1656
+      -   - 1657
           - 1657
     ruler: Frederick III
     mint: Christiania
@@ -3758,11 +4193,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: ¼ Speciedaler
-    year_label: 1655-1656
+    year_label: 1655, 1656
     year_first: 1655
     year_last: 1656
     year_ranges:
       -   - 1655
+          - 1655
+      -   - 1656
           - 1656
     ruler: Frederick III
     mint: Christiania
@@ -3848,11 +4285,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1656-1657
+    year_label: 1656, 1657
     year_first: 1656
     year_last: 1657
     year_ranges:
       -   - 1656
+          - 1656
+      -   - 1657
           - 1657
     ruler: Frederick III
     mint: Christiania
@@ -3938,11 +4377,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1657-1658
+    year_label: 1657, 1658
     year_first: 1657
     year_last: 1658
     year_ranges:
       -   - 1657
+          - 1657
+      -   - 1658
           - 1658
     ruler: Frederik III
     mint:
@@ -3983,11 +4424,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Speciedaler
-    year_label: 1657-1658
+    year_label: 1657, 1658
     year_first: 1657
     year_last: 1658
     year_ranges:
       -   - 1657
+          - 1657
+      -   - 1658
           - 1658
     ruler: Frederik III
     mint:
@@ -4030,11 +4473,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 3 Speciedaler
-    year_label: 1657-1658
+    year_label: 1657, 1658
     year_first: 1657
     year_last: 1658
     year_ranges:
       -   - 1657
+          - 1657
+      -   - 1658
           - 1658
     ruler: Frederik III
     mint: Christiania
@@ -4076,11 +4521,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1657-1658
+    year_label: 1657, 1658
     year_first: 1657
     year_last: 1658
     year_ranges:
       -   - 1657
+          - 1657
+      -   - 1658
           - 1658
     ruler: Frederick III
     mint: Christiania
@@ -4370,11 +4817,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1659-1662
+    year_label: 1659, 1660, 1661, 1662
     year_first: 1659
     year_last: 1662
     year_ranges:
       -   - 1659
+          - 1659
+      -   - 1660
+          - 1660
+      -   - 1661
+          - 1661
+      -   - 1662
           - 1662
     ruler: Frederik III
     mint:
@@ -4415,11 +4868,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 3 Speciedaler
-    year_label: 1659-1660
+    year_label: 1659, 1660
     year_first: 1659
     year_last: 1660
     year_ranges:
       -   - 1659
+          - 1659
+      -   - 1660
           - 1660
     ruler: Frederik III
     mint: Christiania
@@ -4464,11 +4919,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1659-1662
+    year_label: 1659, 1660, 1661, 1662
     year_first: 1659
     year_last: 1662
     year_ranges:
       -   - 1659
+          - 1659
+      -   - 1660
+          - 1660
+      -   - 1661
+          - 1661
+      -   - 1662
           - 1662
     ruler: Frederick III
     mint: Christiania
@@ -4550,11 +5011,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: ½ Speciedaler
-    year_label: 1659-1660
+    year_label: 1659, 1660
     year_first: 1659
     year_last: 1660
     year_ranges:
       -   - 1659
+          - 1659
+      -   - 1660
           - 1660
     ruler: Frederick III
     mint:
@@ -4638,11 +5101,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 8 Skilling
-    year_label: 1659-1660
+    year_label: 1659, 1660
     year_first: 1659
     year_last: 1660
     year_ranges:
       -   - 1659
+          - 1659
+      -   - 1660
           - 1660
     ruler: Frederick III (Frederik III)
     mint:
@@ -5132,11 +5597,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1662-1664
+    year_label: 1662, 1663, 1664
     year_first: 1662
     year_last: 1664
     year_ranges:
       -   - 1662
+          - 1662
+      -   - 1663
+          - 1663
+      -   - 1664
           - 1664
     ruler: Frederick III (Frederik III)
     mint: Christiania
@@ -5264,11 +5733,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1662-1664
+    year_label: 1662, 1663, 1664
     year_first: 1662
     year_last: 1664
     year_ranges:
       -   - 1662
+          - 1662
+      -   - 1663
+          - 1663
+      -   - 1664
           - 1664
     ruler: Frederik III
     mint: Christiania
@@ -5400,11 +5873,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 3 Speciedaler
-    year_label: 1663-1664
+    year_label: 1663, 1664
     year_first: 1663
     year_last: 1664
     year_ranges:
       -   - 1663
+          - 1663
+      -   - 1664
           - 1664
     ruler: Frederik III
     mint: Christiania
@@ -5626,11 +6101,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1663-1664
+    year_label: 1663, 1664
     year_first: 1663
     year_last: 1664
     year_ranges:
       -   - 1663
+          - 1663
+      -   - 1664
           - 1664
     ruler: Frederick III (Frederik III)
     mint:
@@ -5707,11 +6184,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 8 Skilling
-    year_label: 1663-1668
+    year_label: 1663, 1665, 1668
     year_first: 1663
     year_last: 1668
     year_ranges:
       -   - 1663
+          - 1663
+      -   - 1665
+          - 1665
+      -   - 1668
           - 1668
     ruler: Frederick III (Frederik III)
     mint:
@@ -5915,11 +6396,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1665-1667
+    year_label: 1665, 1666, 1667
     year_first: 1665
     year_last: 1667
     year_ranges:
       -   - 1665
+          - 1665
+      -   - 1666
+          - 1666
+      -   - 1667
           - 1667
     ruler: Frederik III
     mint:
@@ -5959,11 +6444,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1665-1667
+    year_label: 1665, 1666, 1667
     year_first: 1665
     year_last: 1667
     year_ranges:
       -   - 1665
+          - 1665
+      -   - 1666
+          - 1666
+      -   - 1667
           - 1667
     ruler: Frederik III
     mint:
@@ -6135,11 +6624,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 3 Speciedaler
-    year_label: 1665-1667
+    year_label: 1665, 1666, 1667
     year_first: 1665
     year_last: 1667
     year_ranges:
       -   - 1665
+          - 1665
+      -   - 1666
+          - 1666
+      -   - 1667
           - 1667
     ruler: Frederick III
     mint: Christiania
@@ -6313,11 +6806,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: ½ Speciedaler
-    year_label: 1665-1667
+    year_label: 1665, 1667
     year_first: 1665
     year_last: 1667
     year_ranges:
       -   - 1665
+          - 1665
+      -   - 1667
           - 1667
     ruler: Frederick III
     mint:
@@ -6647,11 +7142,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1667-1669
+    year_label: 1667, 1668, 1669
     year_first: 1667
     year_last: 1669
     year_ranges:
       -   - 1667
+          - 1667
+      -   - 1668
+          - 1668
+      -   - 1669
           - 1669
     ruler: Frederik III
     mint:
@@ -6692,11 +7191,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1667-1669
+    year_label: 1667, 1668, 1669
     year_first: 1667
     year_last: 1669
     year_ranges:
       -   - 1667
+          - 1667
+      -   - 1668
+          - 1668
+      -   - 1669
           - 1669
     ruler: Frederick III (Frederik III)
     mint: Christiania
@@ -6736,11 +7239,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 3 Speciedaler
-    year_label: 1667-1668
+    year_label: 1667, 1668
     year_first: 1667
     year_last: 1668
     year_ranges:
       -   - 1667
+          - 1667
+      -   - 1668
           - 1668
     ruler: Frederick III (Frederik III)
     mint:
@@ -6816,11 +7321,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1667-1668
+    year_label: 1667, 1668
     year_first: 1667
     year_last: 1668
     year_ranges:
       -   - 1667
+          - 1667
+      -   - 1668
           - 1668
     ruler: Frederick III (Frederik III)
     mint:
@@ -7215,11 +7722,29 @@ coins:
       de: '1 Krone'
       en: '1 Krone'
       uk: '1 Krone'
-    year_label: 1670-1680
+    year_label: 1670, 1671, 1672, 1673, 1674, 1676, 1677, 1678, 1679, 1680
     year_first: 1670
     year_last: 1680
     year_ranges:
       -   - 1670
+          - 1670
+      -   - 1671
+          - 1671
+      -   - 1672
+          - 1672
+      -   - 1673
+          - 1673
+      -   - 1674
+          - 1674
+      -   - 1676
+          - 1676
+      -   - 1677
+          - 1677
+      -   - 1678
+          - 1678
+      -   - 1679
+          - 1679
+      -   - 1680
           - 1680
     ruler: Christian V
     mint:
@@ -7302,11 +7827,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Mark
-    year_label: 1670-1671
+    year_label: 1670, 1671
     year_first: 1670
     year_last: 1671
     year_ranges:
       -   - 1670
+          - 1670
+      -   - 1671
           - 1671
     ruler: Christian V
     mint:
@@ -7603,11 +8130,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Mark
-    year_label: 1670-1680
+    year_label: 1670, 1680
     year_first: 1670
     year_last: 1680
     year_ranges:
       -   - 1670
+          - 1670
+      -   - 1680
           - 1680
     ruler: Christian V
     mint:
@@ -7680,11 +8209,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1670-1672
+    year_label: 1670, 1671, 1672
     year_first: 1670
     year_last: 1672
     year_ranges:
       -   - 1670
+          - 1670
+      -   - 1671
+          - 1671
+      -   - 1672
           - 1672
     ruler: Christian V
     mint:
@@ -7895,11 +8428,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Mark = 1 Krone
-    year_label: 1671-1672
+    year_label: 1671, 1672
     year_first: 1671
     year_last: 1672
     year_ranges:
       -   - 1671
+          - 1671
+      -   - 1672
           - 1672
     ruler: Christian V
     mint:
@@ -8024,11 +8559,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1671-1672
+    year_label: 1671, 1672
     year_first: 1671
     year_last: 1672
     year_ranges:
       -   - 1671
+          - 1671
+      -   - 1672
           - 1672
     ruler: Christian V
     mint:
@@ -8068,11 +8605,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1671-1672
+    year_label: 1671, 1672
     year_first: 1671
     year_last: 1672
     year_ranges:
       -   - 1671
+          - 1671
+      -   - 1672
           - 1672
     ruler: Christian V
     mint:
@@ -8208,11 +8747,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: ¼ Speciedaler
-    year_label: 1671-1675
+    year_label: 1671, 1675
     year_first: 1671
     year_last: 1675
     year_ranges:
       -   - 1671
+          - 1671
+      -   - 1675
           - 1675
     ruler: Christian V
     mint: Christiania
@@ -8373,11 +8914,21 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Mark
-    year_label: 1671-1679
+    year_label: 1671, 1673, 1674, 1675, 1676, 1679
     year_first: 1671
     year_last: 1679
     year_ranges:
       -   - 1671
+          - 1671
+      -   - 1673
+          - 1673
+      -   - 1674
+          - 1674
+      -   - 1675
+          - 1675
+      -   - 1676
+          - 1676
+      -   - 1679
           - 1679
     ruler: Christian V
     mint: Christiania
@@ -8416,11 +8967,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Mark = ⅓ Speciedaler
-    year_label: 1672-1674
+    year_label: 1672, 1673, 1674
     year_first: 1672
     year_last: 1674
     year_ranges:
       -   - 1672
+          - 1672
+      -   - 1673
+          - 1673
+      -   - 1674
           - 1674
     ruler: Christian V
     mint: Christiania
@@ -8459,11 +9014,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1672-1674
+    year_label: 1672, 1674
     year_first: 1672
     year_last: 1674
     year_ranges:
       -   - 1672
+          - 1672
+      -   - 1674
           - 1674
     ruler: Christian V
     mint:
@@ -8502,11 +9059,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 8 Skilling
-    year_label: 1672-1675
+    year_label: 1672, 1675
     year_first: 1672
     year_last: 1675
     year_ranges:
       -   - 1672
+          - 1672
+      -   - 1675
           - 1675
     ruler: Christian V
     mint: Christiania
@@ -8675,11 +9234,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Ducats
-    year_label: 1673-1678
+    year_label: 1673, 1678
     year_first: 1673
     year_last: 1678
     year_ranges:
       -   - 1673
+          - 1673
+      -   - 1678
           - 1678
     ruler: Christian V
     mint:
@@ -8761,11 +9322,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Ducats
-    year_label: 1673-1676
+    year_label: 1673, 1676
     year_first: 1673
     year_last: 1676
     year_ranges:
       -   - 1673
+          - 1673
+      -   - 1676
           - 1676
     ruler: Christian V
     mint:
@@ -9435,11 +9998,21 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1675-1680
+    year_label: 1675, 1676, 1677, 1678, 1679, 1680
     year_first: 1675
     year_last: 1680
     year_ranges:
       -   - 1675
+          - 1675
+      -   - 1676
+          - 1676
+      -   - 1677
+          - 1677
+      -   - 1678
+          - 1678
+      -   - 1679
+          - 1679
+      -   - 1680
           - 1680
     ruler: Christian V
     mint:
@@ -9478,11 +10051,21 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Speciedaler
-    year_label: 1675-1680
+    year_label: 1675, 1676, 1677, 1678, 1679, 1680
     year_first: 1675
     year_last: 1680
     year_ranges:
       -   - 1675
+          - 1675
+      -   - 1676
+          - 1676
+      -   - 1677
+          - 1677
+      -   - 1678
+          - 1678
+      -   - 1679
+          - 1679
+      -   - 1680
           - 1680
     ruler: Christian V
     mint:
@@ -9521,11 +10104,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Skilling
-    year_label: 1675-1682
+    year_label: 1675, 1682
     year_first: 1675
     year_last: 1682
     year_ranges:
       -   - 1675
+          - 1675
+      -   - 1682
           - 1682
     ruler: Christian V
     mint: Christiania
@@ -9567,11 +10152,27 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1675-1683
+    year_label: 1675, 1676, 1677, 1678, 1679, 1680, 1681, 1682, 1683
     year_first: 1675
     year_last: 1683
     year_ranges:
       -   - 1675
+          - 1675
+      -   - 1676
+          - 1676
+      -   - 1677
+          - 1677
+      -   - 1678
+          - 1678
+      -   - 1679
+          - 1679
+      -   - 1680
+          - 1680
+      -   - 1681
+          - 1681
+      -   - 1682
+          - 1682
+      -   - 1683
           - 1683
     ruler: Christian V
     mint:
@@ -9864,11 +10465,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Speciedaler
-    year_label: 1678-1680
+    year_label: 1678, 1679, 1680
     year_first: 1678
     year_last: 1680
     year_ranges:
       -   - 1678
+          - 1678
+      -   - 1679
+          - 1679
+      -   - 1680
           - 1680
     ruler: Christian V
     mint:
@@ -9908,11 +10513,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 3 Speciedaler
-    year_label: 1678-1680
+    year_label: 1678, 1679, 1680
     year_first: 1678
     year_last: 1680
     year_ranges:
       -   - 1678
+          - 1678
+      -   - 1679
+          - 1679
+      -   - 1680
           - 1680
     ruler: Christian V
     mint:
@@ -10090,11 +10699,39 @@ coins:
       de: '1 Krone'
       en: '1 Krone'
       uk: '1 Krone'
-    year_label: 1681-1695
+    year_label: 1681, 1682, 1683, 1684, 1685, 1686, 1687, 1688, 1689, 1690, 1691, 1692, 1693, 1694, 1695
     year_first: 1681
     year_last: 1695
     year_ranges:
       -   - 1681
+          - 1681
+      -   - 1682
+          - 1682
+      -   - 1683
+          - 1683
+      -   - 1684
+          - 1684
+      -   - 1685
+          - 1685
+      -   - 1686
+          - 1686
+      -   - 1687
+          - 1687
+      -   - 1688
+          - 1688
+      -   - 1689
+          - 1689
+      -   - 1690
+          - 1690
+      -   - 1691
+          - 1691
+      -   - 1692
+          - 1692
+      -   - 1693
+          - 1693
+      -   - 1694
+          - 1694
+      -   - 1695
           - 1695
     ruler: Christian V
     mint:
@@ -10484,11 +11121,15 @@ coins:
       de: '1/48 Speciedaler'
       en: '1/48 Speciedaler'
       uk: '1/48 Speciedaler'
-    year_label: 1684-1686
+    year_label: 1684, 1685, 1686
     year_first: 1684
     year_last: 1686
     year_ranges:
       -   - 1684
+          - 1684
+      -   - 1685
+          - 1685
+      -   - 1686
           - 1686
     ruler: Christian V
     mint: Christiania
@@ -10755,11 +11396,13 @@ coins:
       de: '1/48 Speciedaler'
       en: '1/48 Speciedaler'
       uk: '1/48 Speciedaler'
-    year_label: 1686-1687
+    year_label: 1686, 1687
     year_first: 1686
     year_last: 1687
     year_ranges:
       -   - 1686
+          - 1686
+      -   - 1687
           - 1687
     ruler: Christian V
     mint: Kongsberg
@@ -10798,11 +11441,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Skilling
-    year_label: 1686-1687
+    year_label: 1686, 1687
     year_first: 1686
     year_last: 1687
     year_ranges:
       -   - 1686
+          - 1686
+      -   - 1687
           - 1687
     ruler: Christian V
     mint: Kongsberg
@@ -10889,11 +11534,13 @@ coins:
       de: '⅓ Speciedaler'
       en: '⅓ Speciedaler'
       uk: '⅓ Speciedaler'
-    year_label: 1687-1688
+    year_label: 1687, 1688
     year_first: 1687
     year_last: 1688
     year_ranges:
       -   - 1687
+          - 1687
+      -   - 1688
           - 1688
     ruler: Christian V
     mint: Kongsberg
@@ -11121,11 +11768,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Mark = 1 Krone
-    year_label: 1687-1688
+    year_label: 1687, 1688
     year_first: 1687
     year_last: 1688
     year_ranges:
       -   - 1687
+          - 1687
+      -   - 1688
           - 1688
     ruler: Christian V
     mint: Kongsberg
@@ -11207,11 +11856,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Mark = 1 Krone
-    year_label: 1687-1688
+    year_label: 1687, 1688
     year_first: 1687
     year_last: 1688
     year_ranges:
       -   - 1687
+          - 1687
+      -   - 1688
           - 1688
     ruler: Christian V
     mint: Kongsberg
@@ -11336,11 +11987,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Skilling
-    year_label: 1687-1688
+    year_label: 1687, 1688
     year_first: 1687
     year_last: 1688
     year_ranges:
       -   - 1687
+          - 1687
+      -   - 1688
           - 1688
     ruler: Christian V
     mint: Kongsberg
@@ -11380,11 +12033,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1687-1688
+    year_label: 1687, 1688
     year_first: 1687
     year_last: 1688
     year_ranges:
       -   - 1687
+          - 1687
+      -   - 1688
           - 1688
     ruler: Christian V
     mint:
@@ -11600,11 +12255,33 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Mark = 1 Krone
-    year_label: 1688-1699
+    year_label: 1688, 1689, 1690, 1691, 1692, 1693, 1694, 1695, 1696, 1697, 1698, 1699
     year_first: 1688
     year_last: 1699
     year_ranges:
       -   - 1688
+          - 1688
+      -   - 1689
+          - 1689
+      -   - 1690
+          - 1690
+      -   - 1691
+          - 1691
+      -   - 1692
+          - 1692
+      -   - 1693
+          - 1693
+      -   - 1694
+          - 1694
+      -   - 1695
+          - 1695
+      -   - 1696
+          - 1696
+      -   - 1697
+          - 1697
+      -   - 1698
+          - 1698
+      -   - 1699
           - 1699
     ruler: Christian V
     mint:
@@ -11863,11 +12540,33 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1688-1699
+    year_label: 1688, 1689, 1690, 1691, 1692, 1693, 1694, 1695, 1696, 1697, 1698, 1699
     year_first: 1688
     year_last: 1699
     year_ranges:
       -   - 1688
+          - 1688
+      -   - 1689
+          - 1689
+      -   - 1690
+          - 1690
+      -   - 1691
+          - 1691
+      -   - 1692
+          - 1692
+      -   - 1693
+          - 1693
+      -   - 1694
+          - 1694
+      -   - 1695
+          - 1695
+      -   - 1696
+          - 1696
+      -   - 1697
+          - 1697
+      -   - 1698
+          - 1698
+      -   - 1699
           - 1699
     ruler: Christian V
     mint:
@@ -11906,11 +12605,31 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Skilling
-    year_label: 1688-1699
+    year_label: 1688, 1690, 1691, 1692, 1693, 1694, 1695, 1696, 1697, 1698, 1699
     year_first: 1688
     year_last: 1699
     year_ranges:
       -   - 1688
+          - 1688
+      -   - 1690
+          - 1690
+      -   - 1691
+          - 1691
+      -   - 1692
+          - 1692
+      -   - 1693
+          - 1693
+      -   - 1694
+          - 1694
+      -   - 1695
+          - 1695
+      -   - 1696
+          - 1696
+      -   - 1697
+          - 1697
+      -   - 1698
+          - 1698
+      -   - 1699
           - 1699
     ruler: Christian V
     mint:
@@ -11949,11 +12668,21 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Mark
-    year_label: 1689-1699
+    year_label: 1689, 1693, 1695, 1697, 1698, 1699
     year_first: 1689
     year_last: 1699
     year_ranges:
       -   - 1689
+          - 1689
+      -   - 1693
+          - 1693
+      -   - 1695
+          - 1695
+      -   - 1697
+          - 1697
+      -   - 1698
+          - 1698
+      -   - 1699
           - 1699
     ruler: Christian V
     mint:
@@ -11992,11 +12721,21 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Mark
-    year_label: 1689-1694
+    year_label: 1689, 1690, 1691, 1692, 1693, 1694
     year_first: 1689
     year_last: 1694
     year_ranges:
       -   - 1689
+          - 1689
+      -   - 1690
+          - 1690
+      -   - 1691
+          - 1691
+      -   - 1692
+          - 1692
+      -   - 1693
+          - 1693
+      -   - 1694
           - 1694
     ruler: Christian V
     mint:
@@ -12035,11 +12774,25 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Mark
-    year_label: 1689-1696
+    year_label: 1689, 1690, 1691, 1692, 1693, 1694, 1695, 1696
     year_first: 1689
     year_last: 1696
     year_ranges:
       -   - 1689
+          - 1689
+      -   - 1690
+          - 1690
+      -   - 1691
+          - 1691
+      -   - 1692
+          - 1692
+      -   - 1693
+          - 1693
+      -   - 1694
+          - 1694
+      -   - 1695
+          - 1695
+      -   - 1696
           - 1696
     ruler: Christian V
     mint:
@@ -12253,11 +13006,21 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Mark = 16 Skilling
-    year_label: 1692-1699
+    year_label: 1692, 1693, 1695, 1697, 1698, 1699
     year_first: 1692
     year_last: 1699
     year_ranges:
       -   - 1692
+          - 1692
+      -   - 1693
+          - 1693
+      -   - 1695
+          - 1695
+      -   - 1697
+          - 1697
+      -   - 1698
+          - 1698
+      -   - 1699
           - 1699
     ruler: Christian V
     mint: Kongsberg
@@ -12297,11 +13060,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1692-1693
+    year_label: 1692, 1693
     year_first: 1692
     year_last: 1693
     year_ranges:
       -   - 1692
+          - 1692
+      -   - 1693
           - 1693
     ruler: Christian V
     mint: Kongsberg
@@ -12385,11 +13150,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1693-1694
+    year_label: 1693, 1694
     year_first: 1693
     year_last: 1694
     year_ranges:
       -   - 1693
+          - 1693
+      -   - 1694
           - 1694
     ruler: Christian V
     mint:
@@ -12474,11 +13241,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1694-1695
+    year_label: 1694, 1695
     year_first: 1694
     year_last: 1695
     year_ranges:
       -   - 1694
+          - 1694
+      -   - 1695
           - 1695
     ruler: Christian V
     mint:
@@ -12517,11 +13286,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1695-1696
+    year_label: 1695, 1696
     year_first: 1695
     year_last: 1696
     year_ranges:
       -   - 1695
+          - 1695
+      -   - 1696
           - 1696
     ruler: Christian V
     mint: Kongsberg
@@ -12682,11 +13453,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Mark = 1 Krone
-    year_label: 1699-1700
+    year_label: 1699, 1700
     year_first: 1699
     year_last: 1700
     year_ranges:
       -   - 1699
+          - 1699
+      -   - 1700
           - 1700
     ruler: Frederick IV
     mint:
@@ -12945,11 +13718,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 8 Skilling
-    year_label: 1700-1702
+    year_label: 1700, 1701, 1702
     year_first: 1700
     year_last: 1702
     year_ranges:
       -   - 1700
+          - 1700
+      -   - 1701
+          - 1701
+      -   - 1702
           - 1702
     ruler: Frederick IV
     mint:
@@ -12988,11 +13765,33 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Skilling
-    year_label: 1700-1712
+    year_label: 1700, 1701, 1702, 1703, 1704, 1705, 1706, 1707, 1708, 1710, 1711, 1712
     year_first: 1700
     year_last: 1712
     year_ranges:
       -   - 1700
+          - 1700
+      -   - 1701
+          - 1701
+      -   - 1702
+          - 1702
+      -   - 1703
+          - 1703
+      -   - 1704
+          - 1704
+      -   - 1705
+          - 1705
+      -   - 1706
+          - 1706
+      -   - 1707
+          - 1707
+      -   - 1708
+          - 1708
+      -   - 1710
+          - 1710
+      -   - 1711
+          - 1711
+      -   - 1712
           - 1712
     ruler: Frederik IV
     mint:
@@ -13031,11 +13830,39 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1700-1714
+    year_label: 1700, 1701, 1702, 1703, 1704, 1705, 1706, 1707, 1708, 1709, 1710, 1711, 1712, 1713, 1714
     year_first: 1700
     year_last: 1714
     year_ranges:
       -   - 1700
+          - 1700
+      -   - 1701
+          - 1701
+      -   - 1702
+          - 1702
+      -   - 1703
+          - 1703
+      -   - 1704
+          - 1704
+      -   - 1705
+          - 1705
+      -   - 1706
+          - 1706
+      -   - 1707
+          - 1707
+      -   - 1708
+          - 1708
+      -   - 1709
+          - 1709
+      -   - 1710
+          - 1710
+      -   - 1711
+          - 1711
+      -   - 1712
+          - 1712
+      -   - 1713
+          - 1713
+      -   - 1714
           - 1714
     ruler: Frederik IV
     mint:
@@ -13074,11 +13901,37 @@ coins:
     phase: numista
     kind: kurant
     nominal: 8 Skilling
-    year_label: 1702-1715
+    year_label: 1702, 1703, 1704, 1705, 1706, 1707, 1708, 1709, 1710, 1711, 1712, 1713, 1714, 1715
     year_first: 1702
     year_last: 1715
     year_ranges:
       -   - 1702
+          - 1702
+      -   - 1703
+          - 1703
+      -   - 1704
+          - 1704
+      -   - 1705
+          - 1705
+      -   - 1706
+          - 1706
+      -   - 1707
+          - 1707
+      -   - 1708
+          - 1708
+      -   - 1709
+          - 1709
+      -   - 1710
+          - 1710
+      -   - 1711
+          - 1711
+      -   - 1712
+          - 1712
+      -   - 1713
+          - 1713
+      -   - 1714
+          - 1714
+      -   - 1715
           - 1715
     ruler: Frederick IV
     mint:
@@ -13198,11 +14051,19 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1714-1718
+    year_label: 1714, 1715, 1716, 1717, 1718
     year_first: 1714
     year_last: 1718
     year_ranges:
       -   - 1714
+          - 1714
+      -   - 1715
+          - 1715
+      -   - 1716
+          - 1716
+      -   - 1717
+          - 1717
+      -   - 1718
           - 1718
     ruler: Frederik IV
     mint:
@@ -13245,11 +14106,15 @@ coins:
       de: '1 Mark = 1/6 Speciedaler'
       en: '1 Mark = 1/6 Speciedaler'
       uk: '1 Mark = 1/6 Speciedaler'
-    year_label: 1715-1717
+    year_label: 1715, 1716, 1717
     year_first: 1715
     year_last: 1717
     year_ranges:
       -   - 1715
+          - 1715
+      -   - 1716
+          - 1716
+      -   - 1717
           - 1717
     ruler: Frederick IV
     mint:
@@ -13290,11 +14155,25 @@ coins:
       de: '⅛ Speciedaler'
       en: '⅛ Speciedaler'
       uk: '⅛ Speciedaler'
-    year_label: 1717-1724
+    year_label: 1717, 1718, 1719, 1720, 1721, 1722, 1723, 1724
     year_first: 1717
     year_last: 1724
     year_ranges:
       -   - 1717
+          - 1717
+      -   - 1718
+          - 1718
+      -   - 1719
+          - 1719
+      -   - 1720
+          - 1720
+      -   - 1721
+          - 1721
+      -   - 1722
+          - 1722
+      -   - 1723
+          - 1723
+      -   - 1724
           - 1724
     ruler: Frederick IV
     mint:
@@ -13376,11 +14255,17 @@ coins:
       de: '1/96 Speciedaler'
       en: '1/96 Speciedaler'
       uk: '1/96 Speciedaler'
-    year_label: 1719-1722
+    year_label: 1719, 1720, 1721, 1722
     year_first: 1719
     year_last: 1722
     year_ranges:
       -   - 1719
+          - 1719
+      -   - 1720
+          - 1720
+      -   - 1721
+          - 1721
+      -   - 1722
           - 1722
     ruler: Frederick IV
     mint:
@@ -13419,11 +14304,23 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1719-1725
+    year_label: 1719, 1720, 1721, 1722, 1723, 1724, 1725
     year_first: 1719
     year_last: 1725
     year_ranges:
       -   - 1719
+          - 1719
+      -   - 1720
+          - 1720
+      -   - 1721
+          - 1721
+      -   - 1722
+          - 1722
+      -   - 1723
+          - 1723
+      -   - 1724
+          - 1724
+      -   - 1725
           - 1725
     ruler: Frederik IV
     mint:
@@ -13510,11 +14407,13 @@ coins:
       de: '⅓ Speciedaler'
       en: '⅓ Speciedaler'
       uk: '⅓ Speciedaler'
-    year_label: 1725-1726
+    year_label: 1725, 1726
     year_first: 1725
     year_last: 1726
     year_ranges:
       -   - 1725
+          - 1725
+      -   - 1726
           - 1726
     ruler: Frederick IV
     mint:
@@ -13554,11 +14453,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Mark = 1 Krone
-    year_label: 1725-1726
+    year_label: 1725, 1726
     year_first: 1725
     year_last: 1726
     year_ranges:
       -   - 1725
+          - 1725
+      -   - 1726
           - 1726
     ruler: Frederick IV
     mint:
@@ -13642,11 +14543,17 @@ coins:
       de: '1/12 Speciedaler'
       en: '1/12 Speciedaler'
       uk: '1/12 Speciedaler'
-    year_label: 1727-1730
+    year_label: 1727, 1728, 1729, 1730
     year_first: 1727
     year_last: 1730
     year_ranges:
       -   - 1727
+          - 1727
+      -   - 1728
+          - 1728
+      -   - 1729
+          - 1729
+      -   - 1730
           - 1730
     ruler: Frederick IV
     mint: Norwegian
@@ -13759,11 +14666,21 @@ coins:
     phase: numista
     kind: kurant
     nominal: 8 Skilling
-    year_label: 1730-1735
+    year_label: 1730, 1731, 1732, 1733, 1734, 1735
     year_first: 1730
     year_last: 1735
     year_ranges:
       -   - 1730
+          - 1730
+      -   - 1731
+          - 1731
+      -   - 1732
+          - 1732
+      -   - 1733
+          - 1733
+      -   - 1734
+          - 1734
+      -   - 1735
           - 1735
     ruler: Christian VI
     mint:
@@ -13806,11 +14723,13 @@ coins:
       de: '¼ Speciedaler'
       en: '¼ Speciedaler'
       uk: '¼ Speciedaler'
-    year_label: 1734-1735
+    year_label: 1734, 1735
     year_first: 1734
     year_last: 1735
     year_ranges:
       -   - 1734
+          - 1734
+      -   - 1735
           - 1735
     ruler: Christian VI
     mint:
@@ -13851,11 +14770,33 @@ coins:
     phase: numista
     kind: kurant
     nominal: 24 Skilling
-    year_label: 1735-1746
+    year_label: 1735, 1736, 1737, 1738, 1739, 1740, 1741, 1742, 1743, 1744, 1745, 1746
     year_first: 1735
     year_last: 1746
     year_ranges:
       -   - 1735
+          - 1735
+      -   - 1736
+          - 1736
+      -   - 1737
+          - 1737
+      -   - 1738
+          - 1738
+      -   - 1739
+          - 1739
+      -   - 1740
+          - 1740
+      -   - 1741
+          - 1741
+      -   - 1742
+          - 1742
+      -   - 1743
+          - 1743
+      -   - 1744
+          - 1744
+      -   - 1745
+          - 1745
+      -   - 1746
           - 1746
     ruler: Christian VI
     mint:
@@ -13938,11 +14879,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1742-1745
+    year_label: 1742, 1743, 1745
     year_first: 1742
     year_last: 1745
     year_ranges:
       -   - 1742
+          - 1742
+      -   - 1743
+          - 1743
+      -   - 1745
           - 1745
     ruler: Christian VI
     mint:
@@ -13981,11 +14926,45 @@ coins:
     phase: numista
     kind: kurant
     nominal: 24 Skilling
-    year_label: 1746-1763
+    year_label: 1746, 1747, 1748, 1749, 1750, 1751, 1752, 1753, 1754, 1755, 1756, 1757, 1758, 1759, 1760, 1761, 1762, 1763
     year_first: 1746
     year_last: 1763
     year_ranges:
       -   - 1746
+          - 1746
+      -   - 1747
+          - 1747
+      -   - 1748
+          - 1748
+      -   - 1749
+          - 1749
+      -   - 1750
+          - 1750
+      -   - 1751
+          - 1751
+      -   - 1752
+          - 1752
+      -   - 1753
+          - 1753
+      -   - 1754
+          - 1754
+      -   - 1755
+          - 1755
+      -   - 1756
+          - 1756
+      -   - 1757
+          - 1757
+      -   - 1758
+          - 1758
+      -   - 1759
+          - 1759
+      -   - 1760
+          - 1760
+      -   - 1761
+          - 1761
+      -   - 1762
+          - 1762
+      -   - 1763
           - 1763
     ruler: Frederick V
     mint:
@@ -14022,11 +15001,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1747-1756
+    year_label: 1747, 1756
     year_first: 1747
     year_last: 1756
     year_ranges:
       -   - 1747
+          - 1747
+      -   - 1756
           - 1756
     ruler: Frederik V
     mint:
@@ -14106,11 +15087,19 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Skilling
-    year_label: 1761-1765
+    year_label: 1761, 1762, 1763, 1764, 1765
     year_first: 1761
     year_last: 1765
     year_ranges:
       -   - 1761
+          - 1761
+      -   - 1762
+          - 1762
+      -   - 1763
+          - 1763
+      -   - 1764
+          - 1764
+      -   - 1765
           - 1765
     ruler: Frederick V
     mint:
@@ -14149,11 +15138,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1761-1764
+    year_label: 1761, 1762, 1763, 1764
     year_first: 1761
     year_last: 1764
     year_ranges:
       -   - 1761
+          - 1761
+      -   - 1762
+          - 1762
+      -   - 1763
+          - 1763
+      -   - 1764
           - 1764
     ruler: Frederik V
     mint:
@@ -14229,11 +15224,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 24 Skilling
-    year_label: 1763-1765
+    year_label: 1763, 1764, 1765
     year_first: 1763
     year_last: 1765
     year_ranges:
       -   - 1763
+          - 1763
+      -   - 1764
+          - 1764
+      -   - 1765
           - 1765
     ruler: Frederick V
     mint:
@@ -14399,11 +15398,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Skilling
-    year_label: 1768-1770
+    year_label: 1768, 1769, 1770
     year_first: 1768
     year_last: 1770
     year_ranges:
       -   - 1768
+          - 1768
+      -   - 1769
+          - 1769
+      -   - 1770
           - 1770
     ruler: Christian VII
     mint:
@@ -14478,11 +15481,15 @@ coins:
     phase: numista
     kind: kurant
     nominal: 8 Skilling
-    year_label: 1773-1775
+    year_label: 1773, 1774, 1775
     year_first: 1773
     year_last: 1775
     year_ranges:
       -   - 1773
+          - 1773
+      -   - 1774
+          - 1774
+      -   - 1775
           - 1775
     ruler: Christian VII
     mint:
@@ -14519,11 +15526,21 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1776-1785
+    year_label: 1776, 1777, 1778, 1779, 1781, 1785
     year_first: 1776
     year_last: 1785
     year_ranges:
       -   - 1776
+          - 1776
+      -   - 1777
+          - 1777
+      -   - 1778
+          - 1778
+      -   - 1779
+          - 1779
+      -   - 1781
+          - 1781
+      -   - 1785
           - 1785
     ruler: Christian VII
     mint:
@@ -14566,11 +15583,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: ½ Speciedaler
-    year_label: 1776-1779
+    year_label: 1776, 1777, 1778, 1779
     year_first: 1776
     year_last: 1779
     year_ranges:
       -   - 1776
+          - 1776
+      -   - 1777
+          - 1777
+      -   - 1778
+          - 1778
+      -   - 1779
           - 1779
     ruler: Christian VII
     mint:
@@ -14652,11 +15675,31 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1778-1788
+    year_label: 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785, 1786, 1787, 1788
     year_first: 1778
     year_last: 1788
     year_ranges:
       -   - 1778
+          - 1778
+      -   - 1779
+          - 1779
+      -   - 1780
+          - 1780
+      -   - 1781
+          - 1781
+      -   - 1782
+          - 1782
+      -   - 1783
+          - 1783
+      -   - 1784
+          - 1784
+      -   - 1785
+          - 1785
+      -   - 1786
+          - 1786
+      -   - 1787
+          - 1787
+      -   - 1788
           - 1788
     ruler: Christian VII
     mint:
@@ -14738,11 +15781,45 @@ coins:
       de: '1/12 Speciedaler'
       en: '1/12 Speciedaler'
       uk: '1/12 Speciedaler'
-    year_label: 1778-1795
+    year_label: 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785, 1786, 1787, 1788, 1789, 1790, 1791, 1792, 1793, 1794, 1795
     year_first: 1778
     year_last: 1795
     year_ranges:
       -   - 1778
+          - 1778
+      -   - 1779
+          - 1779
+      -   - 1780
+          - 1780
+      -   - 1781
+          - 1781
+      -   - 1782
+          - 1782
+      -   - 1783
+          - 1783
+      -   - 1784
+          - 1784
+      -   - 1785
+          - 1785
+      -   - 1786
+          - 1786
+      -   - 1787
+          - 1787
+      -   - 1788
+          - 1788
+      -   - 1789
+          - 1789
+      -   - 1790
+          - 1790
+      -   - 1791
+          - 1791
+      -   - 1792
+          - 1792
+      -   - 1793
+          - 1793
+      -   - 1794
+          - 1794
+      -   - 1795
           - 1795
     ruler: Christian VII
     mint:
@@ -14779,11 +15856,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Skilling
-    year_label: 1779-1780
+    year_label: 1779, 1780
     year_first: 1779
     year_last: 1780
     year_ranges:
       -   - 1779
+          - 1779
+      -   - 1780
           - 1780
     ruler: Christian VII
     mint:
@@ -15021,11 +16100,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1791-1792
+    year_label: 1791, 1792
     year_first: 1791
     year_last: 1792
     year_ranges:
       -   - 1791
+          - 1791
+      -   - 1792
           - 1792
     ruler: Christian VII
     mint:
@@ -15068,11 +16149,17 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Speciedaler
-    year_label: 1792-1795
+    year_label: 1792, 1793, 1794, 1795
     year_first: 1792
     year_last: 1795
     year_ranges:
       -   - 1792
+          - 1792
+      -   - 1793
+          - 1793
+      -   - 1794
+          - 1794
+      -   - 1795
           - 1795
     ruler: Christian VII
     mint: Kongsberg
@@ -15111,11 +16198,25 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1/15 Speciedaler = 1/12 Rigsdaler Courant
-    year_label: 1795-1802
+    year_label: 1795, 1796, 1797, 1798, 1799, 1800, 1801, 1802
     year_first: 1795
     year_last: 1802
     year_ranges:
       -   - 1795
+          - 1795
+      -   - 1796
+          - 1796
+      -   - 1797
+          - 1797
+      -   - 1798
+          - 1798
+      -   - 1799
+          - 1799
+      -   - 1800
+          - 1800
+      -   - 1801
+          - 1801
+      -   - 1802
           - 1802
     ruler: Christian VII
     mint: Norwegian
@@ -15151,11 +16252,27 @@ coins:
     phase: numista
     kind: kurant
     nominal: ⅓ Speciedaler
-    year_label: 1795-1803
+    year_label: 1795, 1796, 1797, 1798, 1799, 1800, 1801, 1802, 1803
     year_first: 1795
     year_last: 1803
     year_ranges:
       -   - 1795
+          - 1795
+      -   - 1796
+          - 1796
+      -   - 1797
+          - 1797
+      -   - 1798
+          - 1798
+      -   - 1799
+          - 1799
+      -   - 1800
+          - 1800
+      -   - 1801
+          - 1801
+      -   - 1802
+          - 1802
+      -   - 1803
           - 1803
     ruler: Christian VII
     mint: Norwegian
@@ -15192,11 +16309,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: ⅔ Speciedaler
-    year_label: 1795-1796
+    year_label: 1795, 1796
     year_first: 1795
     year_last: 1796
     year_ranges:
       -   - 1795
+          - 1795
+      -   - 1796
           - 1796
     ruler: Christian VII
     mint:
@@ -15234,11 +16353,23 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1/5 Speciedaler = ¼ Rigsdaler Courant
-    year_label: 1796-1803
+    year_label: 1796, 1797, 1798, 1799, 1800, 1801, 1803
     year_first: 1796
     year_last: 1803
     year_ranges:
       -   - 1796
+          - 1796
+      -   - 1797
+          - 1797
+      -   - 1798
+          - 1798
+      -   - 1799
+          - 1799
+      -   - 1800
+          - 1800
+      -   - 1801
+          - 1801
+      -   - 1803
           - 1803
     ruler: Christian VII
     mint: Norwegian
@@ -15276,11 +16407,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1/15 Speciedaler = 1/12 Rigsdaler Courant
-    year_label: 1797-1802
+    year_label: 1797, 1802
     year_first: 1797
     year_last: 1802
     year_ranges:
       -   - 1797
+          - 1797
+      -   - 1802
           - 1802
     ruler: Christian VII
     mint:
@@ -15350,11 +16483,23 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling
-    year_label: 1800-1807
+    year_label: 1800, 1801, 1802, 1803, 1804, 1805, 1807
     year_first: 1800
     year_last: 1807
     year_ranges:
       -   - 1800
+          - 1800
+      -   - 1801
+          - 1801
+      -   - 1802
+          - 1802
+      -   - 1803
+          - 1803
+      -   - 1804
+          - 1804
+      -   - 1805
+          - 1805
+      -   - 1807
           - 1807
     ruler: Christian VII
     mint:
@@ -15666,11 +16811,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 4 Skilling Courant
-    year_label: 1809-1810
+    year_label: 1809, 1810
     year_first: 1809
     year_last: 1810
     year_ranges:
       -   - 1809
+          - 1809
+      -   - 1810
           - 1810
     ruler: Frederik VI
     mint:
@@ -15707,11 +16854,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 2 Skilling Courant
-    year_label: 1810-1811
+    year_label: 1810, 1811
     year_first: 1810
     year_last: 1811
     year_ranges:
       -   - 1810
+          - 1810
+      -   - 1811
           - 1811
     ruler: Frederick VI
     mint:

@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-06-10T12:25:57Z'
+generated_at: '2026-06-10T19:43:44Z'
 entity: danish_realm
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -675,7 +675,7 @@ coins:
     phase: numista
     kind: kurant
     nominal: 1 Nobel
-    year_label: 1496-1502
+    year_label: 1496, 1502
     year_first: 1496
     year_last: 1502
     ruler: John I (Hans I)
@@ -705,6 +705,8 @@ coins:
     weight_rough_g: 14.75
     year_ranges:
       -   - 1496
+          - 1496
+      -   - 1502
           - 1502
     diameter_mm:
     fineness:
@@ -3919,11 +3921,13 @@ coins:
     phase: numista
     kind: kurant
     nominal: 5 Ducats (= 10 In fraction column)
-    year_label: 1592-1593
+    year_label: 1592, 1593
     year_first: 1592
     year_last: 1593
     year_ranges:
       -   - 1592
+          - 1592
+      -   - 1593
           - 1593
     ruler: Christian IV
     mint:
@@ -15486,11 +15490,13 @@ coins:
       de: Reisedaler
       en: Reisedaler
       uk: Reisedaler
-    year_label: 1732-1733
+    year_label: 1732, 1733
     year_first: 1732
     year_last: 1733
     year_ranges:
       -   - 1732
+          - 1732
+      -   - 1733
           - 1733
     ruler: Christian VI
     mint: Kopenhagen
