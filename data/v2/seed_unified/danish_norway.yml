@@ -3,7 +3,7 @@
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 3903 per-source seed entries.
-# Output: 2130 unified entries (one per physical coin).
+# Output: 2129 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -23127,12 +23127,12 @@ coins:
   phase: hede
   kind: scheide
   nominal: 2 Skilling
-  year_first: 1649
-  year_last: 1667
+  year_first: 1648
+  year_last: 1670
   year_ranges:
-  - - 1649
-    - 1667
-  year_label: 1649-1667
+  - - 1648
+    - 1670
+  year_label: 1648-1670
   ruler: Frederik III.
   mint: Christiania
   catalog:
@@ -23163,6 +23163,7 @@ coins:
   diameter_mm_verified: true
   mint_verified: true
   verified: false
+  year_verified: false
   fineness:
   - value: 0.281
     source: hede
@@ -23200,6 +23201,9 @@ coins:
     url: https://samlinger.natmus.dk/KMM/object/279169
     ref: KMM 279169 (Inv. FP 3528.275)
   - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/301822
+    ref: KMM 301822 (Inv. FP 8410.108)
+  - type: museum
     url: https://samlinger.natmus.dk/KMM/object/372348
     ref: KMM 372348 (Inv. FP 4322.13)
   verification_note:
@@ -23220,6 +23224,7 @@ coins:
   - kmk-149278
   - kmk-149279
   - kmk-279169
+  - kmk-301822
   - kmk-372348
 - id: unified-dk-hede-nf3h71
   fuss: seed_unsorted
@@ -56676,26 +56681,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-301821
-- id: unified-kmk-301822
-  fuss: seed_unsorted
-  phase: kmk
-  kind: kurant
-  nominal: 2 Sk.
-  ruler: Frederik 3
-  catalog:
-    hede: 70B
-  metal_verified: false
-  weight_rough_verified: false
-  mint_verified: false
-  verified: false
-  sources:
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/301822
-    ref: KMM 301822 (Inv. FP 8410.108)
-  verification_note: *id002
-  issuing_entity: danish_norway
-  composed_of:
-  - kmk-301822
 - id: unified-kmk-301823
   fuss: seed_unsorted
   phase: kmk
