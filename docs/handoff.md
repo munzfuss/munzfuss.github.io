@@ -15,6 +15,43 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## Numista discrete-year (year_list) harvest gap — 501 re-harvested (2026-06-10) — SHIPPED, 3 main + 1 submodule UNPUSHED
+
+User noticed Numista DOES give discrete struck years (1496, 1502) — in the
+«Manage my collection» date table — but our data showed the continuous
+range «1496-1502». Diagnosed: loss is at the HARVEST step, not the parser.
+The thin BO.1/chrome extractor (HARVEST_GUIDE) read only the «Years» range
+feature, never the `table.collection` date column, so 501 in-scope
+multi-year types had `year_first/last` but `year_list: null` →
+`build_numista_seed` fell back to a continuous `year_ranges`. The whole
+downstream was already discrete-ready (`parse_numista_chrome` consumes
+`year_list`; seed builder emits `[[y,y]]`; merger's `_union_year_ranges`
+prefers discretes). The v3 API does NOT help (`parse_numista_api` hardcodes
+`year_list=null`; discrete list needs the un-fetched `/types/{id}/issues`).
+
+- **Harvest (`submodule 93b0460d`, cache pointer `<bumped>`):** re-harvested
+  all 501 via Chrome MCP same-origin `fetch()` + DOMParser of
+  `table.collection` (≈30 NIDs/JS-call, 0.3 s pacing, 0 Cloudflare 403s).
+  **417 gained discrete years, 84 confirmed range-only** (kept, NOT
+  fabricated). year_list written to raw cache + parsed sidecars.
+- **HARVEST_GUIDE extractor upgraded** (`docs`) to capture `year_list` from
+  the date table — durable fix so future harvests + re-harvests get it.
+- **Materialised (`012fb9e`):** re-parse (surgical — deleted only the 501
+  sidecars, re-parsed WITHOUT --force to avoid surfacing 575 unrelated
+  newly-parseable types) → re-merge + re-absorb. **412 propagated** into
+  rendered finals across danish_norway + bremen_verden + oldenburg +
+  braunschweig_lueneburg + sachsen_lauenburg + osnabrueck (gapped labels
+  render). danish_norway −3 = lossless Hans-1-Hvid consolidation (the
+  prior Galster-volume fix reaching this entity; seed 3903/3903).
+- **Residual (entity-routing backlog, NOT this task):** 5 hanseatic_lubeck
+  + 144 `_unclassified`-final coins whose numista seed routes to
+  `_unclassified` (≠ their foundation's entity) — year_list is in cache +
+  `_unclassified` seed, propagates once they're classified. See SOURCES §13.1.
+- **Method gotcha for next time:** `parse_numista.py --force` re-parses the
+  WHOLE cache and surfaces newly-parseable types (575 → _unclassified, +
+  stray hamburg/danish_norway final churn). For a targeted re-parse, delete
+  only the target sidecars and run WITHOUT --force.
+
 ## Hans Galster volume-scope fix — 1 Nobel year + 31 split-dup consolidations (2026-06-10) — SHIPPED, 2 main UNPUSHED
 
 User flagged: 1 Nobel Hans (Galster 24) rendered «1496-1502» (continuous)
