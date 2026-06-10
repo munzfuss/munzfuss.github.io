@@ -520,12 +520,33 @@ function extract() {
     if (fm) fineness = parseFloat(fm[1]);
   }
 
+  // DISCRETE issue years — MANDATORY. The «Years» feature field above is
+  // only the type's min/max RANGE («1496-1502»); it does NOT reveal whether
+  // every intermediate year was struck. The discrete dates live in the
+  // «Manage my collection» date table (`table.collection`, first column:
+  // «Date / Undetermined / 1496 / 1502 / …»). Capturing them lets
+  // build_numista_seed emit per-year `year_ranges` ([[1496,1496],[1502,1502]])
+  // instead of a false continuous span. EMPTY result = the type has no dated
+  // issues on Numista → keep the range (do NOT fabricate). Without this step
+  // the harvest silently drops the discrete-year signal (the 2026-06-10
+  // 501-entry re-harvest gap — see SOURCES §13.1).
+  let year_list = null;
+  const ct = document.querySelector('table.collection');
+  if (ct) {
+    const ys = new Set();
+    ct.querySelectorAll('tr').forEach(row => {
+      const c = row.querySelector('th, td');
+      if (c) { const m = c.textContent.trim().match(/^(1[2-9]\d{2})$/); if (m) ys.add(+m[1]); }
+    });
+    if (ys.size) year_list = [...ys].sort((a,b)=>a-b);
+  }
+
   return {
     id: nid, title,
     issuer_text: get('Issuer'),
     ruler_text: getMulti('King', 'Duke', 'Ruler', 'Bishop', 'Count', 'Emperor', 'Queen'),
     type: get('Type'),
-    years_text: yearsRaw, min_year, max_year,
+    years_text: yearsRaw, min_year, max_year, year_list,
     value_text: get('Value'), currency: get('Currency'),
     composition_text: composition, fineness,
     weight_g: parseFloat(get('Weight')?.match(/([\d.]+)\s*g/)?.[1] || 'NaN') || null,
