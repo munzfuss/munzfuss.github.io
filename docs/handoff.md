@@ -15,6 +15,36 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## Hans Galster volume-scope fix — 1 Nobel year + 31 split-dup consolidations (2026-06-10) — SHIPPED, 2 main UNPUSHED
+
+User flagged: 1 Nobel Hans (Galster 24) rendered «1496-1502» (continuous)
+but sources attest discrete 1496 + 1502. Root cause was a **cross-source
+matcher gap**, not the year-merge rule (`_union_year_ranges` is correct):
+the coin was SPLIT across two finals — `unified-dk-bruun-3831`
+(Bruun+Numista+KMM; Numista's loose min/max `[[1496,1502]]` drove the
+year) and `unified-dk-galster-hg-24` (discrete `[[1496,1496],[1502,1502]]`).
+They never merged because `_catalog_refs` derives the Galster volume-scope
+from the ruler via a regex requiring a NUMERAL — **Hans has no ordinal**,
+so his refs stayed bare `galster` while the Galster-source entry sat in
+`galster/hg`; same Galster 24 → no catalog tie → `no_match`.
+
+- **Fix (`a37c821`):** make the ordinal optional in the volume-derivation
+  regex; map no-ordinal Hans → `hg`. Now bruun/kmk/numista Hans galster
+  refs scope to `/hg` and merge with Galster-source entries.
+- **Data (`bc6dc40`):** re-merge + re-absorb. 1 Nobel now ONE entry,
+  `year_label '1496, 1502'` (discrete wins — period not wider than
+  discrete min-max), galster source + Galster 24 + schou 2,3 all unified.
+  68 Hans bare-galster seed refs re-scoped; **31 stale Hans foundations
+  consolidated into peers** (1 Nobel/24, 1 Skilling/29, Goldgulden/27,
+  1 Hvid/31 +17 KMM specimens, …) — all same-galster-number same-type
+  (verified: every galster-31 member is Hans 1 Hvid; 0 wrong-ruler merge;
+  seed conservation 12819/12819, 0 loss).
+- **Surfaced (NOT fixed — pre-existing KMM quirk):** `kmk-297794` (Hans
+  1 Hvid, Galster 31) carries a loose KMM date «1513-1581», so the
+  consolidated `unified-dk-galster-hg-31` year_label widened to
+  «1481-1581» (1581 ≫ Hans †1513). A KMM date-field error on one
+  specimen, not a merge defect. Candidate for a KMM date-sanity pass.
+
 ## Galster single-coin overview-page recovery: 2/3 Nobel danskmoent source (2026-06-10) — SHIPPED, 3 main + 1 submodule UNPUSHED
 
 User flagged that the danskmoent.dk source on **2 Nobel** (Hans 1502,
