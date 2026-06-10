@@ -15,7 +15,7 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
-## Source-quality + Schauenburg entity split (2026-06-10) — SHIPPED, all UNPUSHED (33 total)
+## Source-quality + Schauenburg entity split (2026-06-10) — SHIPPED, all local/UNPUSHED (`git rev-list --count origin/main..HEAD` for the live count)
 
 Six discrete tasks this session, all committed locally, **0 pushed** (push
 needs explicit user OK). Pre-commit hook + V2 build clean throughout.
