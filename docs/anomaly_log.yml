@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-09T00:13:39Z'
+  last_updated_utc: '2026-06-10T00:10:06Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3375,4 +3375,30 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-09T00:13:39Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=446230:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '446230'
+  summary: Numista NID 446230 is a commemorative event MEDAL (exonumia, OOS per §9.2), mis-enumerated
+    as in-scope in BO.7 brunswick_wolfenbuttel_principality.
+  status: resolved
+  instance_first_seen: '2026-06-10T00:10:05Z'
+  last_seen: '2026-06-10T00:10:05Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 446230
+  occurrences:
+  - run_utc: '2026-06-10T00:10:05Z'
+    batch_label: PQ
+    detail: 'Batch PQ: N#446230 Type=''Commemorative medals › Event medals'' (Conquest of Brunswick 1671),
+      refs Brock We#/Leschhorn# (medal catalogues), no denomination. classify_numista_scope → (False,
+      ''exonumia''). Folded into oos_excluded_nids.'
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write folds NID into oos_excluded_nids; picker
+    stops re-offering it.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-10T00:10:06Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
