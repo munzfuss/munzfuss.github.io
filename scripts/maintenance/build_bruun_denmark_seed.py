@@ -529,7 +529,17 @@ def _bruun_display_nominal(raw: str | None) -> str | None:
     return normalise_nominal_display(s)
 
 
-def parse_metal(denom: str | None, refs: dict) -> tuple[str, bool]:
+# NGC/PCGS grade-colour suffix — applied ONLY to copper/bronze coins (silver
+# and gold get a bare numeric grade). Anchored to the «NGC/PCGS <grade> <colour>»
+# shape so a stray «brown patina» in prose never false-matches. Matches e.g.
+# «NGC MS-64 Brown», «NGC MS-64+ Red Brown», «NGC PROOF-63 BN».
+_NGC_GRADE_COLOUR_RE = re.compile(
+    r"(?:NGC|PCGS)\s+[A-Z]{2,8}[\s\-]*\d{0,2}\+?\s+(?:RED\s+BROWN|BROWN|BN|RB|RD)\b",
+    re.IGNORECASE,
+)
+
+
+def parse_metal(denom: str | None, refs: dict, body: str | None = None) -> tuple[str, bool]:
     """Best-effort metal classification from denomination.
 
     Returns (metal, verified) tuple. **Bruun does not state the metal
@@ -566,9 +576,7 @@ def parse_metal(denom: str | None, refs: dict) -> tuple[str, bool]:
     # (1) Friedberg ref — reliable external gold signal, regardless of denom.
     if "fr" in refs_lc or "friedberg" in refs_lc:
         return ("gold", True)
-    if not denom:
-        return ("silver", False)  # safest default — no source signal
-    d = denom.lower()
+    d = (denom or "").lower()
     # (2) Explicit metal WORD in the nominal — the catalogue names the metal.
     # SILVER takes precedence and is matched broadly («silver»/«sølv») so that
     # «Sølvgylden», «Halv Sølvgylden», «Silver Gulden», «Sølvafslag …» never
@@ -580,7 +588,23 @@ def parse_metal(denom: str | None, refs: dict) -> tuple[str, bool]:
     # and the metal-ambiguous «gulden» family.
     if "gold" in d or "guldkrone" in d or "guldgylden" in d or "guldreal" in d:
         return ("gold", True)
+    # (3) NGC/PCGS grade-COLOUR suffix → copper. NGC applies a colour code
+    # (Red «RD» / Red-Brown «RB» / Brown «BN», or spelled-out «Brown» / «Red
+    # Brown») ONLY to copper/bronze coins; silver and gold get a bare numeric
+    # grade. So «NGC MS-64 Brown» in the lot body is a strong physical metal
+    # signal that overrides the weak denomination-NAME heuristics below
+    # (Skilling→billon, klippe→silver, Øre→default-silver). It is INDIRECT
+    # (names surface colour, not assayed fineness) → verified=False, so per §4
+    # it cannot block a cross-source merge and a source that assays the metal
+    # still overrides it. Placed AFTER the explicit metal-WORD checks so a
+    # «Sølv…»-named piece is never overridden. Caught 2026-06-10: siege klippe
+    # (dk-bruun-7277) + the Øre / Rigsbanktegn / small-Rigsbankskilling copper
+    # series were mis-rendered silver/billon.
+    if body and _NGC_GRADE_COLOUR_RE.search(body):
+        return ("copper", False)
     # --- denomination-NAME heuristics below: weak guess → verified=False ---
+    if not d:
+        return ("silver", False)  # safest default — no source signal
     if "10 kroner" in d or "20 kroner" in d:  # Danish gold-standard gold coins
         return ("gold", False)
     if any(t in d for t in [
@@ -666,7 +690,7 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     # so it must run AFTER metal classification — otherwise the metal signal is
     # lost (regression caught 2026-06-10: 7661 gold→silver, 4156/7277 →billon).
     raw_denom = parse_denomination(meta, body)
-    metal, metal_verified = parse_metal(raw_denom, refs)
+    metal, metal_verified = parse_metal(raw_denom, refs, body=body)
     denom = _bruun_display_nominal(raw_denom)
     mintmaster = parse_mintmaster(body)
 
