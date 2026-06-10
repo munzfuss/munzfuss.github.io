@@ -47,6 +47,7 @@ from lib.mint_registry import (  # noqa: E402
     classify_nation_to_entity, display_for_alias,
 )
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+from lib.ruler_reigns import reign_window  # noqa: E402
 
 # Non-coin / exonumia object types (§9.2 medals · jetons · tokens; §9.3
 # off-strikes; plus banknotes · dies · tools · misc). KMM's `workDescription`
@@ -184,9 +185,19 @@ _INVERTED_EVENT_SWAP_MAX_SPAN = 20
 
 
 def _year(src):
-    """creationEvents[].yearFrom/yearTo (strings) → (yf, yl)."""
+    """creationEvents[].yearFrom/yearTo (strings) → (yf, yl, year_verified).
+
+    When a malformed event's year is dropped and NO usable year remains,
+    fall back to the named ruler's reign window (year_verified=False)
+    rather than leaving the coin year-less: the merger needs a year as a
+    fallback signal to attach a museum specimen to its type (two same-Hede
+    specimens lacking any other fallback else fail to merge — caught
+    2026-06-11 on Christian-IV Hede-67 2-Skilling specimens). The reign
+    window is plausible-but-estimated, so it does not propagate the
+    garbage value while still letting §9a multi-specimen merges fire."""
     evs = src.get("creationEvents") or []
     yfs, yls = [], []
+    malformed = False
     for e in evs:
         if not isinstance(e, dict):
             continue
@@ -196,6 +207,7 @@ def _year(src):
             if a - b <= _INVERTED_EVENT_SWAP_MAX_SPAN:
                 a, b = b, a            # ordering slip → swap
             else:
+                malformed = True
                 continue               # typo / impossible value → drop event
         if a is not None:
             yfs.append(a)
@@ -205,7 +217,11 @@ def _year(src):
     yl = max(yls) if yls else (yf if yf is not None else None)
     if yf is not None and yl is not None and yl < yf:
         yf, yl = yl, yf
-    return yf, yl
+    if yf is None and malformed:
+        reign = reign_window(src.get("authority"))
+        if reign:
+            return reign[0], reign[1], False   # reign-window estimate
+    return yf, yl, True
 
 
 def _weight(src):
@@ -285,7 +301,7 @@ def build_entry(src) -> dict | None:
         return None
     rid = int(rid)
 
-    yf, yl = _year(src)
+    yf, yl, year_verified = _year(src)
     # Era scope gate (mission lower bound 1481 / upper 1914). Undated kept —
     # finer dual-anchor (DK 1514 / German 1559) left to Phase 4.
     if yf is not None and (yf < 1481 or yf > 1914):
@@ -329,6 +345,9 @@ def build_entry(src) -> dict | None:
         "year_last": yl,
         "year_label": year_label,
         "year_ranges": [[yf, yl]] if yf is not None else None,
+        # Only emitted when False (reign-window estimate); renderer
+        # defaults to verified=true, so a normal dated coin stays clean.
+        "year_verified": False if not year_verified else None,
         "weight_rough_g": w,
         "weight_rough_verified": w is not None,
         "catalog": catalog or None,
