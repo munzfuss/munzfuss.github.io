@@ -243,10 +243,20 @@ def _union_cat_values(existing_v, fresh_v):
     return out[0] if len(out) == 1 else out
 
 
-def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
+def merge_one(
+    existing: CommentedMap, fresh: CommentedMap,
+    extra_curated: frozenset = frozenset(),
+) -> CommentedMap:
     """Apply the 4-mechanism merge: fresh values flow into existing, preserving
-    curated decisions. Mutates and returns `existing`."""
+    curated decisions. Mutates and returns `existing`.
+
+    `extra_curated` — per-builder field names treated as soft-curated for THIS
+    call only (existing wins if present), on top of the global CURATED_FIELDS.
+    Used e.g. by the Bruun builder to preserve `nominal` (its display
+    normalisation lives outside the current parser; a naive regen would degrade
+    «½ Portugaløser» → «1/2 Portugaloser»). Existing wins; fresh fills gaps."""
     holds = set(existing.get(_CURATION_HOLDS_KEY) or [])
+    curated = CURATED_FIELDS | extra_curated
     fresh_keys = set(fresh.keys())
     existing_keys = set(existing.keys())
 
@@ -256,7 +266,7 @@ def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
         if key in holds:
             # Frozen field: existing state wins (present-or-absent).
             continue
-        if key in CURATED_FIELDS:
+        if key in curated:
             # Soft-curated: existing wins if present, fresh fills gaps.
             if key in existing_keys:
                 continue
@@ -332,7 +342,8 @@ def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
 
 
 def merge_seed(
-    coins_fresh: list, out_path: Path
+    coins_fresh: list, out_path: Path,
+    extra_curated: frozenset = frozenset(),
 ) -> tuple[list, dict[str, int]]:
     """Merge fresh-generated coins against the on-disk seed at `out_path`.
 
@@ -351,7 +362,7 @@ def merge_seed(
     # 1. For every fresh entry, merge into existing or take fresh.
     for cid, fresh in fresh_by_id.items():
         if cid in existing_by_id:
-            merged = merge_one(existing_by_id[cid], fresh)
+            merged = merge_one(existing_by_id[cid], fresh, extra_curated)
             out.append(merged)
             stats["merged_existing"] += 1
         else:

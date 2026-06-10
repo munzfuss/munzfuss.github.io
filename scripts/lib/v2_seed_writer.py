@@ -1250,6 +1250,7 @@ def write_v2_seed(
     dry_run: bool = False,
     no_merge: bool = False,
     extra_top_level: dict | None = None,
+    extra_curated_fields: frozenset = frozenset(),
 ) -> dict:
     """Group `coins` by `issuing_entity` → write
     `data/v2/seed/<source_name>/<entity>.yml` per entity.
@@ -1464,7 +1465,7 @@ def write_v2_seed(
         out_path = src_dir / f"{entity}.yml"
         merge_stats = {"merged_existing": 0, "added_new": len(ents), "orphan_curated": 0}
         if not dry_run and not no_merge:
-            ents, merge_stats = merge_seed(ents, out_path)
+            ents, merge_stats = merge_seed(ents, out_path, extra_curated_fields)
 
         print(f"  [{entity}] {len(ents)} entries  "
               f"(merged={merge_stats['merged_existing']}, "
@@ -1503,7 +1504,7 @@ def write_v2_seed(
         unclassified.sort(key=lambda e: (e.get("year_first") or 9999, e.get("id") or ""))
         merge_stats = {"merged_existing": 0, "added_new": len(unclassified), "orphan_curated": 0}
         if not dry_run and not no_merge:
-            unclassified, merge_stats = merge_seed(unclassified, unclass_path)
+            unclassified, merge_stats = merge_seed(unclassified, unclass_path, extra_curated_fields)
         print(f"  [_unclassified] {len(unclassified)} entries")
         if not dry_run:
             yaml = ruamel.yaml.YAML(typ="rt")

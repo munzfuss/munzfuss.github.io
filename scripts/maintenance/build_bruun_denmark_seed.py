@@ -61,6 +61,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+from lib.v2_seed_writer import normalise_nominal_display  # noqa: E402
 
 
 def _classify_entity(mint, is_norway: bool, meta_line: str | None = None,
@@ -485,6 +486,49 @@ def parse_denomination(meta: str | None, body: str | None) -> str | None:
     return None
 
 
+_FRACTION_GLYPHS = {
+    "1/2": "½", "1/3": "⅓", "2/3": "⅔", "1/4": "¼", "3/4": "¾",
+    "1/8": "⅛", "3/8": "⅜",
+}
+
+
+def _bruun_display_nominal(raw: str | None) -> str | None:
+    """Reader-facing display normalisation for a raw Bruun denomination.
+
+    The seed's nominals were normalised once by a now-removed pass; the live
+    parser emits the raw catalogue string. This reproduces that normalisation so
+    fresh / new entries render cleanly AND a regen of existing entries is a
+    no-op (existing nominals are additionally soft-preserved via the builder's
+    `extra_curated_fields={'nominal'}`, which covers the ~24 curated/special
+    cases — Portugaløser-canonical, inconsistent value-parens, editorial
+    prefixes — that aren't algorithmically reproducible).
+
+    Steps (reproduces 1075/1099 of the committed seed exactly):
+      • strip a trailing «Klippe» / «, Klippe» form-qualifier (→ note territory);
+      • strip a NAME-only parenthetical «(Rhinsk Gulden)» but KEEP a VALUE
+        parenthetical «(3 Mark)» (leading digit) — a value equivalence;
+      • ASCII fractions → unicode glyphs, incl. mixed «2 1/2»/«1-1/2» → «2½»/«1½»;
+      • ø-spelling of the Danish denomination words;
+      • then the shared `normalise_nominal_display` (Noble→Nobel, Halv→½,
+        roman→arabic, implicit «1 », location/editorial strip)."""
+    if raw is None:
+        return None
+    s = str(raw).strip()
+    if not s:
+        return None
+    s = re.sub(r",?\s+Klippe\b", "", s)
+    s = re.sub(r"\s*\((?!\s*\d)[^)]*\)", "", s).strip()   # drop NAME-paren, keep VALUE-paren
+    s = re.sub(
+        r"(\d)[\s-]+(1/2|1/3|2/3|1/4|3/4|1/8|3/8)\b",
+        lambda m: m.group(1) + _FRACTION_GLYPHS[m.group(2)], s)
+    for ascii_frac, glyph in sorted(_FRACTION_GLYPHS.items(), key=lambda kv: -len(kv[0])):
+        s = re.sub(r"(?<!\d)" + re.escape(ascii_frac) + r"(?!\d)", glyph, s)
+    s = (s.replace("Portugaloser", "Portugaløser")
+          .replace("Sosling", "Søsling")
+          .replace("Lovedaler", "Løvedaler"))
+    return normalise_nominal_display(s)
+
+
 def parse_metal(denom: str | None, refs: dict) -> tuple[str, bool]:
     """Best-effort metal classification from denomination.
 
@@ -615,8 +659,15 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     refs = lot.get("refs") or {}
     ruler = parse_ruler_from_meta(meta, body, lot.get("ruler"))
     mint = parse_mint(lot)
-    denom = parse_denomination(meta, body)
-    metal, metal_verified = parse_metal(denom, refs)
+    # parse_metal MUST see the RAW denomination (descriptive parens intact):
+    # «12 Mark (Courant Ducat)» → the «Ducat» token drives the gold heuristic,
+    # «8 Skilling (klippe)» → the «klippe» token drives the silver heuristic.
+    # _bruun_display_nominal strips those name-parens for the rendered nominal,
+    # so it must run AFTER metal classification — otherwise the metal signal is
+    # lost (regression caught 2026-06-10: 7661 gold→silver, 4156/7277 →billon).
+    raw_denom = parse_denomination(meta, body)
+    metal, metal_verified = parse_metal(raw_denom, refs)
+    denom = _bruun_display_nominal(raw_denom)
     mintmaster = parse_mintmaster(body)
 
     # GENERIC catalogue mapping (§CJ): schema-field keys → typed; every other
@@ -799,6 +850,14 @@ def main() -> int:
         ),
         dry_run=args.dry_run,
         no_merge=args.no_merge,
+        # `nominal` is soft-preserved across regen: the live parser emits the
+        # raw catalogue string and `_bruun_display_nominal` reproduces the
+        # algorithmic normalisation for 1075/1099, but ~24 curated/special
+        # nominals (Portugaløser-canonical, inconsistent value-parens, editorial
+        # prefixes, parser-None → curated) aren't algorithmically reproducible —
+        # preserving `nominal` keeps those (and any future curator edit) intact
+        # so a regen never degrades a stored nominal.
+        extra_curated_fields=frozenset({"nominal"}),
         extra_top_level={
             "scope_year_from": YEAR_FROM,
             "scope_year_to": YEAR_TO,
