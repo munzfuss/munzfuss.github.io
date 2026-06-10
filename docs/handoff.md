@@ -15,7 +15,7 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
-## KMM impossible-year guard — galster-hg-31 1581 fixed (2026-06-11) — SHIPPED, 2 main UNPUSHED
+## KMM impossible-year guard — galster-hg-31 1581 fixed (2026-06-11) — SHIPPED, UNPUSHED (4 commits: d5eea8e/bc4a341 then revised fbc926c/d73819c)
 
 Closes the kmk-297794 «1513-1581» quirk surfaced by the Hans Galster-volume
 session. Root cause: 25 KMM (natmus) records carry a `creationEvent` with
@@ -26,27 +26,35 @@ swapped, so an impossible value survived (Hans hvid 1581/1513 → 1513-1581;
 (year=None — 18 records, all impossible: truncated yearTo 152/58/675/…,
 post-reign yearFrom). Builder fix `d5eea8e`; data `bc4a341`.
 
-- **Materialised** by patching the 8 in-seed records' year fields directly
+- **Materialised** by patching the in-seed records' year fields directly
   (full `build_kmk_seed` re-run RE-INFLATES — thinning is a separate step;
   danish_realm dry-run shows 32215 vs thinned 9630, so DON'T full-rebuild
   to materialise a few rows — patch the thinned seed with the canonical
   ruamel config `typ=rt, preserve_quotes, width=200, indent(2,4,2)` or the
   whole file reformats) → re-merge + re-absorb danish_realm + danish_norway.
-  galster-hg-31 1 Hvid Hans now reads 1481-1513; page has 0 «1581».
-- **Side effect (net improvement):** 6 KMM specimens (5 danish_realm + 1
-  danish_norway) whose 100-year bogus ranges had folded them into wrong
-  year-overlap groups now stand alone as seed_unsorted finals, year=None
-  (honest). final danish_realm +5, danish_norway +1.
-- **🟡 SURFACED — KMM Arabic-vs-Roman ruler-scope gap (separate, pre-existing,
-  affects many KMM specimens).** Those 6 don't merge with their true Hede
-  peers (e.g. kmk-191584 «Christian 4» Hede 67 vs curated «Christian IV.»
-  Hede 67) because `_normalise_ruler` maps Arabic «Christian 4» and Roman
-  «Christian IV.» to DIFFERENT scope keys → `hede/christian 4` ≠
-  `hede/christian iv` → no catalog tie. KMM `authority` is Arabic-numbered;
-  Hede/Galster/curated entries are Roman. Fixing `_normalise_ruler` to fold
-  Arabic↔Roman ordinals would re-attach a large class of orphaned KMM
-  museum specimens to their types. Own focused session — broad merge blast
-  radius, dry-run first.
+  galster-hg-31 1 Hvid Hans now reads 1481-1513; page has 0 year-«1581».
+- **REVISED — null → reign-window anchor (`fbc926c` + `d73819c`).** The first
+  approach NULLED the year on dropped events. That removed the coin's ONLY
+  merger fallback signal, so 6 same-type museum specimens (Christian-IV
+  Hede-67 2-Skilling etc.) that share a type-level catalogue but carry no
+  fineness/mint stopped merging and surfaced as standalone seed_unsorted
+  finals — a regression. Fix: a dropped-all-year record now anchors to the
+  named ruler's reign window via `lib.ruler_reigns.reign_window`
+  (year_verified=False) — plausible-but-estimated, so the §9a multi-specimen
+  merge fires again without the garbage value. 191584 now re-merges into a
+  4-member Christian-IV group (year 1588-1648 unverified). Bare-«Hans»
+  (no ordinal) doesn't resolve a reign → stays year-None, harmless (merges
+  via Galster).
+- **❌ CORRECTED — the «KMM Arabic-vs-Roman ruler-scope gap» I flagged here
+  earlier DOES NOT EXIST.** I asserted it WITHOUT verifying (§0b lapse).
+  `merge_seeds_cross_source._normalise_ruler` ALREADY folds Arabic↔Roman:
+  `_normalise_ruler("Christian 4") == _normalise_ruler("Christian IV.") ==
+  "christian iv"` → same scope key. The real reason those specimens stood
+  alone was the year-null regression above (matcher requires primary +
+  ≥1 fallback; nulling the year left primary_true=4 / fallback=0 →
+  «insufficient signals» → no_match). Now fixed by the reign-window anchor.
+  NB: they still don't merge with the CURATED `c4h67` — but that's a genuine
+  metal disagreement (KMM silver vs curated billon), correctly blocked.
 
 ## Numista discrete-year (year_list) harvest gap — 501 re-harvested (2026-06-10) — SHIPPED, 3 main + 1 submodule UNPUSHED
 
