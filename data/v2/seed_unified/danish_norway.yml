@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `danish_norway`.
-# Generated 2026-06-10 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-11 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/danish_norway.yml across all sources.
 #
 # Input: 3903 per-source seed entries.
-# Output: 2129 unified entries (one per physical coin).
+# Output: 2130 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,7 +11,7 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: danish_norway
-generated_at: '2026-06-10'
+generated_at: '2026-06-11'
 coins:
 - id: unified-denmark-numismaster-110619
   fuss: seed_unsorted
@@ -48063,17 +48063,16 @@ coins:
   kind: kurant
   nominal: 2 Skilling
   year_first: 1649
-  year_last: 1688
+  year_last: 1670
   year_ranges:
   - - 1649
-    - 1688
-  year_label: 1649-1688
+    - 1670
+  year_label: 1649-1670
   ruler: Frederik 3
   mint: Christiania
   catalog:
     hede:
     - 70E
-    - 70B
     - '70'
   metal: silver
   metal_verified: true
@@ -48089,9 +48088,6 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/155255
     ref: KMM 155255 (Inv. FP 3115.104)
-  - type: museum
-    url: https://samlinger.natmus.dk/KMM/object/301822
-    ref: KMM 301822 (Inv. FP 8410.108)
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/332646
     ref: KMM 332646 (Inv. FP 5964.4)
@@ -48111,7 +48107,6 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-155255
-  - kmk-301822
   - kmk-332646
   - kmk-344367
   - kmk-368417
@@ -56681,6 +56676,26 @@ coins:
   issuing_entity: danish_norway
   composed_of:
   - kmk-301821
+- id: unified-kmk-301822
+  fuss: seed_unsorted
+  phase: kmk
+  kind: kurant
+  nominal: 2 Sk.
+  ruler: Frederik 3
+  catalog:
+    hede: 70B
+  metal_verified: false
+  weight_rough_verified: false
+  mint_verified: false
+  verified: false
+  sources:
+  - type: museum
+    url: https://samlinger.natmus.dk/KMM/object/301822
+    ref: KMM 301822 (Inv. FP 8410.108)
+  verification_note: *id002
+  issuing_entity: danish_norway
+  composed_of:
+  - kmk-301822
 - id: unified-kmk-301823
   fuss: seed_unsorted
   phase: kmk
