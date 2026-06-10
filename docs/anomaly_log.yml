@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-10T00:10:06Z'
+  last_updated_utc: '2026-06-10T03:15:39Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3402,3 +3402,36 @@ anomalies:
     refresh prunes them from in_scope.
   resolved_at: '2026-06-10T00:10:06Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
+- id: cloudflare_challenge_persistent:bucket=brunswick_luneburg_p1083:source=ucoin
+  type: cloudflare_challenge_persistent
+  key_dims:
+    source: ucoin
+    bucket: brunswick_luneburg_p1083
+  summary: ucoin rate-limit defence escalated to /blockip.plx during brunswick_luneburg_p1083 listing-page
+    enumeration; slug→TID map unresolvable, batch 439 deferred.
+  status: open
+  instance_first_seen: '2026-06-10T03:15:39.171887Z'
+  last_seen: '2026-06-10T03:15:39.171887Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 92488
+    - 92489
+    - 92490
+    - 132819
+  occurrences:
+  - run_utc: '2026-06-10T03:15:39.171887Z'
+    batch_label: '439'
+    detail: 'Batch 439: listing pages for country=brunswick_luneburg&period=1083 repeatedly redirected
+      to /check/?f=0, then to /blockip.plx (IP-level block) after cookie-clear retries. Pages 1-2 resolved
+      (96 anchors) but none of the 4 target TIDs; page 3+ blocked. Targets 92488/92489/92490/132819 deferred
+      to next run as retry candidates.'
+    full_context:
+      numista_batch: PT
+      ucoin_batch: '439'
+      block_url: /blockip.plx
+  proposed_fix: Wait out the ucoin IP block (typically resolves within hours); retry next cron run. Targets
+    remain in audit gap_tids. Consider longer inter-page pacing for large buckets.
+  resolution: null
+  resolved_at: null
+  resolved_by: null
