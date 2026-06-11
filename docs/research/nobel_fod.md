@@ -78,7 +78,7 @@ hedges («*maaske ogsaa i Finhed*»). The documented figures, by source:
 
 | Fineness | = Karat | Source / context | Citation |
 |---|---|---|---|
-| ~1.000 (24 Karat) | 24 Karat | the **Dutch model** (groote gouden reaal 1487) the Danish nobel copies «perhaps also in fineness» | Galster, galkult.htm |
+| **.992** (≈ 24 Karat) | 24 Karat | the **Dutch model** (groote gouden reaal 1487, Dordrecht) the Danish nobel copies «perhaps also in fineness» — Galster says 24 Karat; Numista attests **Gold .992** (14.71 g) | Galster, galkult.htm + Numista N#358746 |
 | **.979** | **23½ Karat** | **Christian II 1514 Møntordning** (Sommeren 1514, Dienis Blicher Brev, Malmø) — Nobel 16/Cölln. Mark, brutto 14.616 g, fein 14.310 g | Wilcke 7-2 (1950) p.152-153, via Suhm + Rigsarkivet T.K. — transcript `docs/research/wilcke_1514_1541_specs.md` |
 | **.9583** | **23 Karat** | **Frederik I 1524 Møntordning** — «(Db.) Nobel» 16/Cölln. Mark, brutto 14.616 g, fein 14.007 g | Wilcke 7-2 (1950), same transcript |
 | **.979** | 23½ Karat | **1532 specimens** (Galster 45 København/Malmø + Galster 69 Ribe) — danskmoent deep pages: «Bruttovægt 14,375g, Finhed 0,979, Finvægt 14,08g» | danskmoent.dk/fr/f1g45.htm + /fr/f1g69.htm (parsed cache `scripts/cache/danskmoent/galster/fr_f1g45.json`, `fr_f1g69.json`); corroborated by Numista N#428544 «Gold .979» |
@@ -89,6 +89,16 @@ hedges («*maaske ogsaa i Finhed*»). The documented figures, by source:
 1524 23-Karat (.958) and the 1531 23⅛-Karat (.986) figures — suggests intermediate
 refinement attempt». Net: there is **no single fixed Nobel fineness** in the
 sources — a range, which the fuss card honestly flags «ungewiß».
+
+**Resolution of Galster's «maybe also in fineness» hedge (2026-06-11).** Galster
+left the model↔Nobel fineness match open. The documented figures now settle it:
+the Dutch model is **.992** (Numista N#358746) / 24 Karat (Galster), the Danish
+Nobel **.979** / 23½ Karat (1514 ordinance + 1532 specimens). They are CLOSE but
+NOT identical — the Nobel runs ~½ Karat (≈1.3 % absolute) below the model. So
+design + weight match the model, but fineness does **not** (Nobel slightly
+lower). The fuss/location prose now states this as a definite «slightly lower
+fineness» rather than Galster's hedge; the verbatim «maaske ogsaa i Finhed» quote
+stays in the `galster-unionstidens-nobel` ref.
 
 **Weight (brutto / fein), 1 Nobel:**
 - Wilcke ordinance Soll: **14.616 g brutto** (= 233.856 / 16, i.e. 16 Nobel per
