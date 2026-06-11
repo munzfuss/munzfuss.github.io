@@ -1,6 +1,6 @@
 status: seed
 source: Stack's Bowers L. E. Bruun Collection (parts I-IV, 2024-2026)
-generated_at: '2026-06-01T13:45:55Z'
+generated_at: '2026-06-10T10:04:31Z'
 entity: danish_realm
 scope_note: §AZ Tier 1 — Bruun corpus pre-1541 realm lots, covers the gap Hede 1971 doesn't catalogue (Christian II + Frederik I + Christian III pre-1541 Møntordning). NOT a substitute for the Hede 
   seed at v2/seed/hede/; parallel source.
@@ -448,7 +448,9 @@ coins:
       bruun_collection_id: '3957'
       sieg: '22.3'
       schou: '3'
-      jensen_skjoldager: L-01/L-34
+      jensen_skjoldager:
+        - L-01
+        - L-34
       bruun_part: III
       bruun_lot_no: 11154
       bruun_page: 83
@@ -491,7 +493,9 @@ coins:
       bruun_collection_id: '3964'
       sieg: '21'
       schou: '4'
-      jensen_skjoldager: S-01/S-05
+      jensen_skjoldager:
+        - S-01
+        - S-05
       bruun_part: III
       bruun_lot_no: 11155
       bruun_page: 83
@@ -537,7 +541,9 @@ coins:
       bruun_lot_no: 13051
       bruun_page: 51
       galster: '56'
-      jensen_skjoldager: 51/55
+      jensen_skjoldager:
+        - '51'
+        - '55'
     metal: billon
     fineness:
     weight_rough_g: 1.84
@@ -617,7 +623,9 @@ coins:
       bruun_collection_id: '4006'
       sieg: '20'
       schou: '9'
-      jensen_skjoldager: 76B/83
+      jensen_skjoldager:
+        - 76B
+        - '83'
       bruun_part: II
       bruun_lot_no: 13052
       bruun_page: 51
@@ -704,7 +712,9 @@ coins:
       bruun_lot_no: 13053
       bruun_page: 51
       galster: 55A
-      jensen_skjoldager: 53/58
+      jensen_skjoldager:
+        - '53'
+        - '58'
     metal: billon
     fineness:
     weight_rough_g:
@@ -830,7 +840,9 @@ coins:
       sieg: '35'
       schou: '1'
       friedberg: '10'
-      jensen_skjoldager: T21/25
+      jensen_skjoldager:
+        - T21
+        - '25'
       bruun_part: I
       bruun_lot_no: 1004
       bruun_page: 34
@@ -878,7 +890,9 @@ coins:
       sieg: '35'
       schou: '2'
       friedberg: '10'
-      jensen_skjoldager: T-22/26
+      jensen_skjoldager:
+        - T-22
+        - '26'
       bruun_part: III
       bruun_lot_no: 11157
       bruun_page: 84
@@ -921,7 +935,9 @@ coins:
       bruun_collection_id: '4075'
       sieg: '29'
       schou: '15'
-      jensen_skjoldager: T-81/T-86
+      jensen_skjoldager:
+        - T-81
+        - T-86
       bruun_part: III
       bruun_lot_no: 11158
       bruun_page: 85
@@ -1172,7 +1188,7 @@ coins:
       bruun_lot_no: 11162
       bruun_page: 86
       galster: '93'
-    metal: billon
+    metal: silver
     fineness:
     weight_rough_g: 2.72
     issuing_entity: danish_realm
@@ -2989,7 +3005,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: 1 Portugaløser
+    nominal: ½ Portugaløser
     note:
       de: '5 Ducats'
       en: '5 Ducats'
@@ -3032,6 +3048,9 @@ coins:
         це per-specimen значення; проба відсутня в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md)."
     mintmaster: Andreas Metzner
     metal_verified: true
+    _curation_holds:
+      nominal: Bruun IV/III source = «Half Portugaloser (5 Ducats)» = ½ Portugaløser (Christian IV Haderslev, Hede 6, Fr 63, ~17.3g). Stale parser mis-stored as «1 Portugaløser» (dropped «Half»); §0 
+        correction, source-attested.
   - id: dk-bruun-4601
     fuss: seed_unsorted
     phase: bruun
@@ -3565,7 +3584,7 @@ coins:
       bruun_part: III
       bruun_lot_no: 11176
       bruun_page: 93
-    metal: silver
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -3633,7 +3652,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal:
+    nominal: 1 Speciedaler
     year_label: '1603'
     year_first: 1603
     year_last: 1603
@@ -3739,6 +3758,7 @@ coins:
       bruun_page: 32
       others:
         - Aagaard# 4
+      aagaard: '4'
     metal: silver
     fineness:
     weight_rough_g: 2.98
@@ -3784,6 +3804,9 @@ coins:
       bruun_page: 67
       others:
         - Aagaard# 3 (3/3)
+      aagaard:
+        - 3 (3
+        - 3)
     metal: silver
     fineness:
     weight_rough_g: 2.95
@@ -4136,6 +4159,7 @@ coins:
       bruun_page: 95
       others:
         - Aagaard# 2
+      aagaard: '2'
     metal: silver
     fineness:
     weight_rough_g:
@@ -6796,6 +6820,7 @@ coins:
       bruun_page: 83
       others:
         - Aagaard# 10
+      aagaard: '10'
     metal: silver
     fineness:
     weight_rough_g: 28.65
@@ -6845,6 +6870,7 @@ coins:
       bruun_page: 83
       others:
         - Aagaard# 8
+      aagaard: '8'
     metal: silver
     fineness:
     weight_rough_g: 28.57
@@ -6869,7 +6895,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: Lower Saxony. Speciedaler
+    nominal: 1 Lower Saxony
     year_label: '1627'
     year_first: 1627
     year_last: 1627
@@ -6890,6 +6916,7 @@ coins:
       bruun_page: 101
       others:
         - Aagaard# 7
+      aagaard: '7'
     metal: silver
     fineness:
     weight_rough_g: 28.16
@@ -6915,15 +6942,13 @@ coins:
     phase: bruun
     kind: kurant
     _source_errata:
-    - field: km
-      printed: '68'
-      correct: null
-      reason: "Bruun Part II, lot 13110, p.83 prints «KM-68» on this 1627 Wolfenbüttel Speciedaler (Hede-5, Dav-7760, Sieg-196, Schou-11), but KM-68 (Denmark) is the 2-Kroneskilling 1619 (V1 km-68-chr-iv-1619 + ucoin tid 163014, independently). Adjacent-KM cataloguer error (§13.3, same class as KM-240 commit 37f5b6d): the km-68 collision leaked Dav-7760 onto the 2-Skilling entries, yet Davenport only lists crown-size coins — proof the Speciedaler was wrongly merged into the small coin. Removed (real KM not invented per §0; type is identified by Hede-5 / Dav-7760 / Sieg-196). 2026-06-03."
-      curator: serg
-    _errata_applied:
-    - field: km
-      printed: '68'
-      correct: null
+      - field: km
+        printed: '68'
+        correct:
+        reason: "Bruun Part II, lot 13110, p.83 prints «KM-68» on this 1627 Wolfenbüttel Speciedaler (Hede-5, Dav-7760, Sieg-196, Schou-11), but KM-68 (Denmark) is the 2-Kroneskilling 1619 (V1 km-68-chr-iv-1619
+          + ucoin tid 163014, independently). Adjacent-KM cataloguer error (§13.3, same class as KM-240 commit 37f5b6d): the km-68 collision leaked Dav-7760 onto the 2-Skilling entries, yet Davenport only
+          lists crown-size coins — proof the Speciedaler was wrongly merged into the small coin. Removed (real KM not invented per §0; type is identified by Hede-5 / Dav-7760 / Sieg-196). 2026-06-03."
+        curator: serg
     nominal: 1 Speciedaler
     note:
       de: 'Reichstaler'
@@ -6948,6 +6973,8 @@ coins:
       bruun_page: 83
       others:
         - Aagaard# 6
+      km:
+      aagaard: '6'
     metal: silver
     fineness:
     weight_rough_g: 28.93
@@ -6968,11 +6995,15 @@ coins:
       uk: "Bruun-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з аукціонного каталогу Bruun (Stack's Bowers L. E. Bruun Collection 2024-2026). Brutto-вага
         це per-specimen значення; проба відсутня в Bruun-даних і випливає з таблиці специфікацій ордонансів Wilcke 1950 (див. docs/research/moentordning_1541.md)."
     metal_verified: false
+    _errata_applied:
+      - field: km
+        printed: '68'
+        correct:
   - id: dk-bruun-5538
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: Lower Saxony. Gutergroschen
+    nominal: 1 Lower Saxony
     year_label: '1627'
     year_first: 1627
     year_last: 1627
@@ -6992,6 +7023,7 @@ coins:
       bruun_page: 102
       others:
         - Aagaard# 15.3 (this example)
+      aagaard: 15.3 (this example)
     metal: silver
     fineness:
     weight_rough_g:
@@ -7472,6 +7504,7 @@ coins:
       bruun_page: 95
       others:
         - Aagaard# 1.1
+      aagaard: '1.1'
     metal: silver
     fineness:
     weight_rough_g: 58.23
@@ -7518,6 +7551,7 @@ coins:
       bruun_page: 93
       others:
         - Aagaard# 2.1
+      aagaard: '2.1'
     metal: silver
     fineness:
     weight_rough_g: 29.1
@@ -8373,6 +8407,7 @@ coins:
       bruun_page: 96
       others:
         - Aagaard# 2.1
+      aagaard: '2.1'
     metal: gold
     fineness:
     weight_rough_g: 13.69
@@ -8418,6 +8453,7 @@ coins:
       bruun_page: 94
       others:
         - Aagaard# 4.2
+      aagaard: '4.2'
     metal: gold
     fineness:
     weight_rough_g: 6.75
@@ -8463,6 +8499,7 @@ coins:
       bruun_page: 97
       others:
         - Aagaard# 5.1
+      aagaard: '5.1'
     metal: gold
     fineness:
     weight_rough_g: 3.45
@@ -8508,6 +8545,9 @@ coins:
       bruun_page: 43
       others:
         - Aagaard# 6.1 (48-2/48-2)
+      aagaard:
+        - 6.1 (48-2
+        - 48-2)
     metal: gold
     fineness:
     weight_rough_g: 3.45
@@ -8553,6 +8593,7 @@ coins:
       bruun_page: 109
       others:
         - Aagaard# 7.1
+      aagaard: '7.1'
     metal: gold
     fineness:
     weight_rough_g: 1.68
@@ -8577,7 +8618,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal:
+    nominal: ¼ Speciedaler
     year_label: '1648'
     year_first: 1648
     year_last: 1648
@@ -8639,6 +8680,7 @@ coins:
       bruun_page: 43
       others:
         - Aagaard# 67.1
+      aagaard: '67.1'
     metal: silver
     fineness:
     weight_rough_g: 7.11
@@ -8683,6 +8725,9 @@ coins:
       bruun_page: 109
       others:
         - Aagaard# 69.3 (48-2v/48.3)
+      aagaard:
+        - 69.3 (48-2v
+        - 48.3)
     metal: silver
     fineness:
     weight_rough_g: 2.43
@@ -8728,6 +8773,9 @@ coins:
       bruun_page: 98
       others:
         - Aagaard# 8.1 (49-1/49-2)
+      aagaard:
+        - 8.1 (49-1
+        - 49-2)
     metal: gold
     fineness:
     weight_rough_g: 3.45
@@ -8773,6 +8821,9 @@ coins:
       bruun_page: 99
       others:
         - Aagaard# 74.1 (49-2/49-5)
+      aagaard:
+        - 74.1 (49-2
+        - 49-5)
     metal: silver
     fineness:
     weight_rough_g: 57.79
@@ -8818,6 +8869,7 @@ coins:
       bruun_page: 95
       others:
         - Aagaard# 8.2
+      aagaard: '8.2'
     metal: gold
     fineness:
     weight_rough_g: 3.46
@@ -8863,6 +8915,7 @@ coins:
       bruun_page: 96
       others:
         - Aagaard# 77
+      aagaard: '77'
     metal: silver
     fineness:
     weight_rough_g: 28.74
@@ -8908,6 +8961,7 @@ coins:
       bruun_page: 44
       others:
         - Aagaard# 8.3
+      aagaard: '8.3'
     metal: gold
     fineness:
     weight_rough_g: 3.45
@@ -8953,6 +9007,9 @@ coins:
       bruun_page: 100
       others:
         - Aagaard# 1.1 (51-3/51-3)
+      aagaard:
+        - 1.1 (51-3
+        - 51-3)
     metal: silver
     fineness:
     weight_rough_g: 37.52
@@ -8998,6 +9055,9 @@ coins:
       bruun_page: 96
       others:
         - Aagaard# 6.1 (51.8/51-46)
+      aagaard:
+        - 6.1 (51.8
+        - 51-46)
     metal: silver
     fineness:
     weight_rough_g: 18.42
@@ -9047,6 +9107,7 @@ coins:
       bruun_page: 101
       others:
         - Aagaard# 9.1
+      aagaard: '9.1'
     metal: gold
     fineness:
     weight_rough_g: 1.72
@@ -9092,6 +9153,9 @@ coins:
       bruun_page: 103
       others:
         - Aagaard# 14.1 (53-1/53.1)
+      aagaard:
+        - 14.1 (53-1
+        - 53.1)
     metal: gold
     fineness:
     weight_rough_g: 7.03
@@ -9137,6 +9201,7 @@ coins:
       bruun_page: 104
       others:
         - Aagaard# 15.2
+      aagaard: '15.2'
     metal: gold
     fineness:
     weight_rough_g: 3.47
@@ -9182,6 +9247,7 @@ coins:
       bruun_page: 46
       others:
         - Aagaard# 10.1
+      aagaard: '10.1'
     metal: gold
     fineness:
     weight_rough_g: 3.46
@@ -9227,6 +9293,7 @@ coins:
       bruun_page: 105
       others:
         - Aagaard# 80.1
+      aagaard: '80.1'
     metal: silver
     fineness:
     weight_rough_g: 57.96
@@ -9272,6 +9339,7 @@ coins:
       bruun_page: 97
       others:
         - Aagaard# 78.1
+      aagaard: '78.1'
     metal: silver
     fineness:
     weight_rough_g: 57.88
@@ -9317,6 +9385,7 @@ coins:
       bruun_page: 110
       others:
         - Aagaard# 17.1
+      aagaard: '17.1'
     metal: silver
     fineness:
     weight_rough_g: 21.91
@@ -9366,6 +9435,7 @@ coins:
       bruun_page: 97
       others:
         - Aagaard# 33.5
+      aagaard: '33.5'
     metal: silver
     fineness:
     weight_rough_g: 21.98
@@ -9415,6 +9485,7 @@ coins:
       bruun_page: 98
       others:
         - Aagaard# 18.1
+      aagaard: '18.1'
     metal: gold
     fineness:
     weight_rough_g: 5.97
@@ -9460,6 +9531,7 @@ coins:
       bruun_page: 108
       others:
         - Aagaard# 17.1
+      aagaard: '17.1'
     metal: gold
     fineness:
     weight_rough_g: 6.0
@@ -9505,6 +9577,7 @@ coins:
       bruun_page: 111
       others:
         - Aagaard# 82.1
+      aagaard: '82.1'
     metal: silver
     fineness:
     weight_rough_g: 57.03
@@ -9550,6 +9623,7 @@ coins:
       bruun_page: 99
       others:
         - Aagaard# 83.1
+      aagaard: '83.1'
     metal: silver
     fineness:
     weight_rough_g: 28.66
@@ -9594,6 +9668,7 @@ coins:
       bruun_page: 99
       others:
         - Aagaard# 48.1
+      aagaard: '48.1'
     metal: silver
     fineness:
     weight_rough_g: 44.64
@@ -9638,6 +9713,7 @@ coins:
       bruun_page: 46
       others:
         - Aagaard# 34
+      aagaard: '34'
     metal: billon
     fineness:
     weight_rough_g:
@@ -9683,6 +9759,7 @@ coins:
       bruun_page: 100
       others:
         - Aagaard# 82.2
+      aagaard: '82.2'
     metal: silver
     fineness:
     weight_rough_g: 57.12
@@ -9728,6 +9805,9 @@ coins:
       bruun_page: 112
       others:
         - Aagaard# 83.2 (53.1/56.2)
+      aagaard:
+        - 83.2 (53.1
+        - 56.2)
     metal: silver
     fineness:
     weight_rough_g: 28.63
@@ -9773,6 +9853,7 @@ coins:
       bruun_page: 101
       others:
         - Aagaard# 19.1
+      aagaard: '19.1'
     metal: gold
     fineness:
     weight_rough_g: 13.75
@@ -9818,6 +9899,9 @@ coins:
       bruun_page: 112
       others:
         - Aagaard# 20.1 (57-1/57-1)
+      aagaard:
+        - 20.1 (57-1
+        - 57-1)
     metal: gold
     fineness:
     weight_rough_g: 6.93
@@ -9863,6 +9947,7 @@ coins:
       bruun_page: 109
       others:
         - Aagaard# 21.1
+      aagaard: '21.1'
     metal: gold
     fineness:
     weight_rough_g: 3.5
@@ -9908,6 +9993,7 @@ coins:
       bruun_page: 102
       others:
         - Aagaard# 86.2
+      aagaard: '86.2'
     metal: silver
     fineness:
     weight_rough_g: 58.12
@@ -9953,6 +10039,7 @@ coins:
       bruun_page: 113
       others:
         - Aagaard# 64.1
+      aagaard: '64.1'
     metal: silver
     fineness:
     weight_rough_g: 44.52
@@ -10001,6 +10088,9 @@ coins:
       bruun_page: 111
       others:
         - Aagaard# 74.1 (59-E1/59-E1)
+      aagaard:
+        - 74.1 (59-E1
+        - 59-E1)
     metal: gold
     fineness:
     weight_rough_g: 34.78
@@ -10049,6 +10139,9 @@ coins:
       bruun_page: 47
       others:
         - Aagaard# 74.1 (59-E1/59-E1)
+      aagaard:
+        - 74.1 (59-E1
+        - 59-E1)
     metal: gold
     fineness:
     weight_rough_g: 17.4
@@ -10092,6 +10185,9 @@ coins:
       bruun_page: 104
       others:
         - Aagaard# 76.1 (59-E3/59-E1)
+      aagaard:
+        - 76.1 (59-E3
+        - 59-E1)
     metal: gold
     fineness:
     weight_rough_g: 17.16
@@ -10136,6 +10232,9 @@ coins:
       bruun_page: 112
       others:
         - Aagaard# 74.1 (59-E1/59-E1)
+      aagaard:
+        - 74.1 (59-E1
+        - 59-E1)
     metal: gold
     fineness:
     weight_rough_g: 10.47
@@ -10181,6 +10280,7 @@ coins:
       bruun_page: 113
       others:
         - Aagaard# 23.1
+      aagaard: '23.1'
     metal: gold
     fineness:
     weight_rough_g: 1.71
@@ -10226,6 +10326,7 @@ coins:
       bruun_page: 105
       others:
         - Aagaard# 73.1
+      aagaard: '73.1'
     metal: silver
     fineness:
     weight_rough_g: 44.54
@@ -10271,6 +10372,9 @@ coins:
       bruun_page: 114
       others:
         - Aagaard# 74.1 (59-E1/59-E1)
+      aagaard:
+        - 74.1 (59-E1
+        - 59-E1)
     metal: silver
     fineness:
     weight_rough_g: 21.95
@@ -10316,6 +10420,7 @@ coins:
       bruun_page: 115
       others:
         - Aagaard# 25.1
+      aagaard: '25.1'
     metal: gold
     fineness:
     weight_rough_g: 0.86
@@ -10361,6 +10466,7 @@ coins:
       bruun_page: 105
       others:
         - Aagaard# 24
+      aagaard: '24'
     metal: gold
     fineness:
     weight_rough_g: 3.47
@@ -10406,6 +10512,7 @@ coins:
       bruun_page: 116
       others:
         - Aagaard# 24.6
+      aagaard: '24.6'
     metal: gold
     fineness:
     weight_rough_g: 3.48
@@ -10451,6 +10558,7 @@ coins:
       bruun_page: 118
       others:
         - Aagaard# 86.3
+      aagaard: '86.3'
     metal: silver
     fineness:
     weight_rough_g: 56.98
@@ -10496,6 +10604,7 @@ coins:
       bruun_page: 106
       others:
         - Aagaard# 91.2
+      aagaard: '91.2'
     metal: silver
     fineness:
     weight_rough_g: 28.05
@@ -10541,6 +10650,7 @@ coins:
       bruun_page: 117
       others:
         - Aagaard# 87.3
+      aagaard: '87.3'
     metal: silver
     fineness:
     weight_rough_g: 28.69
@@ -10586,6 +10696,7 @@ coins:
       bruun_page: 117
       others:
         - Aagaard# 31.2
+      aagaard: '31.2'
     metal: gold
     fineness:
     weight_rough_g: 3.46
@@ -10634,6 +10745,7 @@ coins:
       bruun_page: 107
       others:
         - Aagaard# 97.1
+      aagaard: '97.1'
     metal: gold
     fineness:
     weight_rough_g: 34.67
@@ -10679,6 +10791,9 @@ coins:
       bruun_page: 48
       others:
         - Aagaard# 28.1 (62-1/62-2)
+      aagaard:
+        - 28.1 (62-1
+        - 62-2)
     metal: gold
     fineness:
     weight_rough_g: 6.92
@@ -10725,6 +10840,7 @@ coins:
       bruun_page: 108
       others:
         - Aagaard# 31.1
+      aagaard: '31.1'
     metal: gold
     fineness:
     weight_rough_g: 3.48
@@ -10770,6 +10886,7 @@ coins:
       bruun_page: 119
       others:
         - Aagaard# 95.1
+      aagaard: '95.1'
     metal: silver
     fineness:
     weight_rough_g: 85.99
@@ -10819,6 +10936,9 @@ coins:
       bruun_page: 49
       others:
         - Aagaard# 97.2 (62.1/63-1)
+      aagaard:
+        - 97.2 (62.1
+        - 63-1)
     metal: gold
     fineness:
     weight_rough_g: 34.5
@@ -10864,6 +10984,9 @@ coins:
       bruun_page: 118
       others:
         - Aagaard# 97.2 (62.1/63.1)
+      aagaard:
+        - 97.2 (62.1
+        - 63.1)
     metal: gold
     fineness:
     weight_rough_g: 13.86
@@ -10909,6 +11032,7 @@ coins:
       bruun_page: 120
       others:
         - Aagaard# 36.1
+      aagaard: '36.1'
     metal: gold
     fineness:
     weight_rough_g: 6.93
@@ -10955,6 +11079,7 @@ coins:
       bruun_page: 109
       others:
         - Aagaard# 36.2
+      aagaard: '36.2'
     metal: gold
     fineness:
     weight_rough_g:
@@ -11001,6 +11126,7 @@ coins:
       bruun_page: 50
       others:
         - Aagaard# 96.2
+      aagaard: '96.2'
     metal: silver
     fineness:
     weight_rough_g: 57.86
@@ -11050,6 +11176,7 @@ coins:
       bruun_page: 51
       others:
         - Aagaard# 99.1
+      aagaard: '99.1'
     metal: gold
     fineness:
     weight_rough_g: 34.79
@@ -11094,6 +11221,7 @@ coins:
       bruun_page: 123
       others:
         - Aagaard# 99.1
+      aagaard: '99.1'
     metal: gold
     fineness:
     weight_rough_g: 17.26
@@ -11140,6 +11268,7 @@ coins:
       bruun_page: 125
       others:
         - Aagaard# 37.1
+      aagaard: '37.1'
     metal: gold
     fineness:
     weight_rough_g: 13.94
@@ -11185,6 +11314,7 @@ coins:
       bruun_page: 52
       others:
         - Aagaard# 38.1
+      aagaard: '38.1'
     metal: gold
     fineness:
     weight_rough_g: 6.95
@@ -11231,6 +11361,7 @@ coins:
       bruun_page: 110
       others:
         - Aagaard# 41.1
+      aagaard: '41.1'
     metal: gold
     fineness:
     weight_rough_g: 3.47
@@ -11277,6 +11408,7 @@ coins:
       bruun_page: 119
       others:
         - Aagaard# 42.1
+      aagaard: '42.1'
     metal: gold
     fineness:
     weight_rough_g: 1.72
@@ -11323,6 +11455,7 @@ coins:
       bruun_page: 111
       others:
         - Aagaard# 43.1
+      aagaard: '43.1'
     metal: gold
     fineness:
     weight_rough_g: 1.65
@@ -11368,6 +11501,7 @@ coins:
       bruun_page: 111
       others:
         - Aagaard# 44.1
+      aagaard: '44.1'
     metal: gold
     fineness:
     weight_rough_g: 0.87
@@ -11413,6 +11547,9 @@ coins:
       bruun_page: 111
       others:
         - Aagaard# 101.1 (64-1/64.2)
+      aagaard:
+        - 101.1 (64-1
+        - 64.2)
     metal: silver
     fineness:
     weight_rough_g: 28.47
@@ -11457,6 +11594,7 @@ coins:
       bruun_page: 112
       others:
         - Aagaard# 106.1 (Aagaard erroneously gives a reference to Bruun-6436)
+      aagaard: 106.1 (Aagaard erroneously gives a reference to Bruun-6436)
     metal: gold
     fineness:
     weight_rough_g: 17.3
@@ -11502,6 +11640,7 @@ coins:
       bruun_page: 114
       others:
         - Aagaard# 48.1
+      aagaard: '48.1'
     metal: gold
     fineness:
     weight_rough_g: 3.44
@@ -11548,6 +11687,7 @@ coins:
       bruun_page: 119
       others:
         - Aagaard# 47.1
+      aagaard: '47.1'
     metal: gold
     fineness:
     weight_rough_g: 3.48
@@ -11598,6 +11738,7 @@ coins:
       bruun_page: 128
       others:
         - Aagaard# 58.1
+      aagaard: '58.1'
     metal: gold
     fineness:
     weight_rough_g: 0.9
@@ -11643,6 +11784,9 @@ coins:
       bruun_page: 129
       others:
         - Aagaard# 105.1 (65-2/65-2)
+      aagaard:
+        - 105.1 (65-2
+        - 65-2)
     metal: silver
     fineness:
     weight_rough_g: 56.38
@@ -11689,6 +11833,9 @@ coins:
       bruun_page: 115
       others:
         - Aagaard# 105.1 (65-1/65-2)
+      aagaard:
+        - 105.1 (65-1
+        - 65-2)
     metal: silver
     fineness:
     weight_rough_g: 57.88
@@ -11734,6 +11881,7 @@ coins:
       bruun_page: 120
       others:
         - Aagaard# 144.1
+      aagaard: '144.1'
     metal: silver
     fineness:
     weight_rough_g: 19.3
@@ -11783,6 +11931,7 @@ coins:
       bruun_page: 130
       others:
         - Aagaard# 60.1
+      aagaard: '60.1'
     metal: gold
     fineness:
     weight_rough_g: 5.63
@@ -11828,6 +11977,7 @@ coins:
       bruun_page: 115
       others:
         - Aagaard# 96.2
+      aagaard: '96.2'
     metal: silver
     fineness:
     weight_rough_g: 22.07
@@ -11872,6 +12022,7 @@ coins:
       bruun_page: 120
       others:
         - Aagaard# 97.1
+      aagaard: '97.1'
     metal: silver
     fineness:
     weight_rough_g: 22.41
@@ -11921,6 +12072,7 @@ coins:
       bruun_page: 116
       others:
         - Aagaard# 86.11
+      aagaard: '86.11'
     metal: silver
     fineness:
     weight_rough_g: 22.21
@@ -11970,6 +12122,7 @@ coins:
       bruun_page: 133
       others:
         - Aagaard# 56.1
+      aagaard: '56.1'
     metal: gold
     fineness:
     weight_rough_g: 6.94
@@ -12016,6 +12169,7 @@ coins:
       bruun_page: 134
       others:
         - Aagaard# 61.1
+      aagaard: '61.1'
     metal: gold
     fineness:
     weight_rough_g: 3.47
@@ -12061,6 +12215,7 @@ coins:
       bruun_page: 135
       others:
         - Aagaard# 53.1
+      aagaard: '53.1'
     metal: gold
     fineness:
     weight_rough_g: 3.48
@@ -12105,6 +12260,7 @@ coins:
       bruun_page: 53
       others:
         - Aagaard# 52.1
+      aagaard: '52.1'
     metal: gold
     fineness:
     weight_rough_g: 3.41
@@ -12151,6 +12307,7 @@ coins:
       bruun_page: 121
       others:
         - Aagaard# 117.1
+      aagaard: '117.1'
     metal: silver
     fineness:
     weight_rough_g: 29.01
@@ -12196,6 +12353,7 @@ coins:
       bruun_page: 117
       others:
         - Aagaard# 116.1
+      aagaard: '116.1'
     metal: silver
     fineness:
     weight_rough_g: 29.13
@@ -12241,6 +12399,7 @@ coins:
       bruun_page: 54
       others:
         - Aagaard# 107.3
+      aagaard: '107.3'
     metal: silver
     fineness:
     weight_rough_g: 28.64
@@ -12291,6 +12450,9 @@ coins:
       bruun_page: 131
       others:
         - Aagaard# 62.1 (68.1/68.1)
+      aagaard:
+        - 62.1 (68.1
+        - 68.1)
     metal: gold
     fineness:
     weight_rough_g: 5.55
@@ -12336,6 +12498,9 @@ coins:
       bruun_page: 118
       others:
         - Aagaard# 62.1 (68-1/68-2)
+      aagaard:
+        - 62.1 (68-1
+        - 68-2)
     metal: gold
     fineness:
     weight_rough_g: 5.49
@@ -12381,6 +12546,7 @@ coins:
       bruun_page: 56
       others:
         - Aagaard# 61.2
+      aagaard: '61.2'
     metal: gold
     fineness:
     weight_rough_g: 3.48
@@ -12426,6 +12592,7 @@ coins:
       bruun_page: 121
       others:
         - Aagaard# 51.2
+      aagaard: '51.2'
     metal: gold
     fineness:
     weight_rough_g: 0.96
@@ -12471,6 +12638,7 @@ coins:
       bruun_page: 136
       others:
         - Aagaard# 109.1
+      aagaard: '109.1'
     metal: silver
     fineness:
     weight_rough_g: 57.56
@@ -12517,6 +12685,7 @@ coins:
       bruun_page: 56
       others:
         - Aagaard# 111.1
+      aagaard: '111.1'
     metal: silver
     fineness:
     weight_rough_g: 56.76
@@ -12562,6 +12731,7 @@ coins:
       bruun_page: 122
       others:
         - Aagaard# 112.1
+      aagaard: '112.1'
     metal: silver
     fineness:
     weight_rough_g: 28.94
@@ -12608,6 +12778,7 @@ coins:
       bruun_page: 119
       others:
         - Aagaard# 118.1
+      aagaard: '118.1'
     metal: silver
     fineness:
     weight_rough_g: 28.79
@@ -12653,6 +12824,7 @@ coins:
       bruun_page: 120
       others:
         - Aagaard# 116.3
+      aagaard: '116.3'
     metal: silver
     fineness:
     weight_rough_g: 21.54
@@ -12697,6 +12869,7 @@ coins:
       hede: 80B
       others:
         - Aagaard# 119.2
+      aagaard: '119.2'
     metal: gold
     metal_verified: false
     fineness:
@@ -12739,6 +12912,7 @@ coins:
       hede: 80A
       others:
         - Aagaard# 118.2
+      aagaard: '118.2'
     metal: silver
     metal_verified: false
     fineness:
@@ -12784,6 +12958,9 @@ coins:
       bruun_page: 137
       others:
         - Aagaard# 64.1 (69-1/69-2)
+      aagaard:
+        - 64.1 (69-1
+        - 69-2)
     metal: gold
     fineness:
     weight_rough_g: 3.42
@@ -12829,6 +13006,7 @@ coins:
       bruun_page: 121
       others:
         - Aagaard# 57.1
+      aagaard: '57.1'
     metal: gold
     fineness:
     weight_rough_g: 1.58
@@ -12875,6 +13053,7 @@ coins:
       bruun_page: 57
       others:
         - Aagaard# 123.1
+      aagaard: '123.1'
     metal: silver
     fineness:
     weight_rough_g: 57.94
@@ -12920,6 +13099,7 @@ coins:
       bruun_page: 138
       others:
         - Aagaard# 121.1
+      aagaard: '121.1'
     metal: silver
     fineness:
     weight_rough_g: 57.44
@@ -12965,6 +13145,7 @@ coins:
       bruun_page: 122
       others:
         - Aagaard# 111.2
+      aagaard: '111.2'
     metal: silver
     fineness:
     weight_rough_g: 57.71
@@ -13010,6 +13191,7 @@ coins:
       bruun_page: 57
       others:
         - Aagaard# 112.2
+      aagaard: '112.2'
     metal: silver
     fineness:
     weight_rough_g: 28.56
@@ -13056,6 +13238,7 @@ coins:
       bruun_page: 139
       others:
         - Aagaard# 114.1
+      aagaard: '114.1'
     metal: silver
     fineness:
     weight_rough_g: 28.65
@@ -13101,6 +13284,7 @@ coins:
       bruun_page: 123
       others:
         - Aagaard# 119.1
+      aagaard: '119.1'
     metal: silver
     fineness:
     weight_rough_g: 29.19
@@ -13146,6 +13330,9 @@ coins:
       bruun_page: 58
       others:
         - Aagaard# 117.7 (69-GK4/69-GK10)
+      aagaard:
+        - 117.7 (69-GK4
+        - 69-GK10)
     metal: silver
     fineness:
     weight_rough_g: 22.08
@@ -13194,6 +13381,7 @@ coins:
       bruun_page: 122
       others:
         - Aagaard# 142.1
+      aagaard: '142.1'
     metal: billon
     fineness:
     weight_rough_g: 2.93
@@ -13236,6 +13424,7 @@ coins:
       hede: '82'
       others:
         - Aagaard# 122.1
+      aagaard: '122.1'
     metal: silver
     metal_verified: false
     fineness:
@@ -13281,6 +13470,7 @@ coins:
       bruun_page: 140
       others:
         - Aagaard# 65.1
+      aagaard: '65.1'
     metal: gold
     fineness:
     weight_rough_g: 6.95
@@ -13326,6 +13516,7 @@ coins:
       bruun_page: 123
       others:
         - Aagaard# 64.2
+      aagaard: '64.2'
     metal: gold
     fineness:
     weight_rough_g: 3.46
@@ -13371,6 +13562,7 @@ coins:
       bruun_page: 141
       others:
         - Aagaard# 66.1
+      aagaard: '66.1'
     metal: gold
     fineness:
     weight_rough_g: 0.87
@@ -13438,7 +13630,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal:
+    nominal: 1 Speciedaler
     year_label: '1670'
     year_first: 1670
     year_last: 1670
@@ -13540,7 +13732,7 @@ coins:
       km: '460'
       hede: '59'
     metal: gold
-    metal_verified: false
+    metal_verified: true
     fineness:
     weight_rough_g: 6.91
     issuing_entity: danish_realm
@@ -13686,7 +13878,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: Danish East India Company. 2 Speciedaler
+    nominal: 1 Danish East India Company
     year_label: '1671'
     year_first: 1671
     year_last: 1671
@@ -14224,6 +14416,7 @@ coins:
       bruun_page: 125
       others:
         - Aagaard# 15
+      aagaard: '15'
     metal: silver
     fineness:
     weight_rough_g: 38.01
@@ -14388,7 +14581,8 @@ coins:
       hede: 133A
       others:
         - Aagaard# 8
-    metal: billon
+      aagaard: '8'
+    metal: copper
     metal_verified: false
     fineness:
     weight_rough_g: 16.84
@@ -14429,6 +14623,7 @@ coins:
       hede: 134B
       others:
         - Aagaard# 4
+      aagaard: '4'
     metal: billon
     metal_verified: false
     fineness:
@@ -14471,7 +14666,8 @@ coins:
       hede: 135A
       others:
         - Aagaard# 2
-    metal: billon
+      aagaard: '2'
+    metal: copper
     metal_verified: false
     fineness:
     weight_rough_g: 8.91
@@ -14516,6 +14712,7 @@ coins:
       bruun_page: 154
       others:
         - Aagaard# 24
+      aagaard: '24'
     metal: silver
     fineness:
     weight_rough_g: 22.26
@@ -14562,6 +14759,7 @@ coins:
       bruun_page: 130
       others:
         - Aagaard# 26
+      aagaard: '26'
     metal: silver
     fineness:
     weight_rough_g: 21.87
@@ -14743,6 +14941,7 @@ coins:
       bruun_page: 128
       others:
         - Aagaard# 8.1
+      aagaard: '8.1'
     metal: gold
     fineness:
     weight_rough_g: 4.44
@@ -15311,6 +15510,7 @@ coins:
       bruun_page: 130
       others:
         - Aagaard# 53
+      aagaard: '53'
     metal: silver
     fineness:
     weight_rough_g: 66.75
@@ -15357,6 +15557,7 @@ coins:
       bruun_page: 66
       others:
         - Aagaard# 59
+      aagaard: '59'
     metal: silver
     fineness:
     weight_rough_g: 22.11
@@ -15405,6 +15606,7 @@ coins:
       bruun_page: 136
       others:
         - Aagaard# 61
+      aagaard: '61'
     metal: silver
     fineness:
     weight_rough_g: 22.37
@@ -15430,7 +15632,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal:
+    nominal: 5 Ducats
     year_label: '1692'
     year_first: 1692
     year_last: 1692
@@ -16253,7 +16455,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: Copenhagen. ½ Ducat
+    nominal: Copenhagen
     year_label: '1696'
     year_first: 1696
     year_last: 1696
@@ -17555,7 +17757,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal: Gold Off-Metal. 2 Skilling
+    nominal: 1 Gold Off-Metal
     year_label: '1711'
     year_first: 1711
     year_last: 1711
@@ -19723,7 +19925,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17132
       bruun_page: 84
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -19814,7 +20016,7 @@ coins:
       bruun_part: II
       bruun_lot_no: 13228
       bruun_page: 162
-    metal: silver
+    metal: gold
     fineness:
     weight_rough_g: 3.12
     issuing_entity: danish_realm
@@ -20957,7 +21159,7 @@ coins:
     fuss: seed_unsorted
     phase: bruun
     kind: kurant
-    nominal:
+    nominal: 1 Skilling
     year_label: '1771'
     year_first: 1771
     year_last: 1771
@@ -20976,7 +21178,7 @@ coins:
       bruun_lot_no: 11290
       bruun_page: 145
       fp: '2.17'
-    metal: silver
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -21418,7 +21620,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17151
       bruun_page: 91
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -21460,7 +21662,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17152
       bruun_page: 91
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -21503,7 +21705,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17153
       bruun_page: 91
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -21545,7 +21747,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17154
       bruun_page: 91
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -21587,7 +21789,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17155
       bruun_page: 91
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -21629,7 +21831,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17156
       bruun_page: 92
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -21671,7 +21873,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17157
       bruun_page: 92
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -22057,7 +22259,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17178
       bruun_page: 99
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -22528,7 +22730,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17196
       bruun_page: 104
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -22570,7 +22772,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17197
       bruun_page: 104
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -22656,7 +22858,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17200
       bruun_page: 105
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -23346,7 +23548,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17228
       bruun_page: 114
-    metal: billon
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -24112,7 +24314,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17246
       bruun_page: 118
-    metal: silver
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -24196,7 +24398,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17248
       bruun_page: 118
-    metal: silver
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -24620,7 +24822,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17257
       bruun_page: 120
-    metal: silver
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -25045,7 +25247,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17268
       bruun_page: 122
-    metal: silver
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -25603,7 +25805,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17280
       bruun_page: 124
-    metal: silver
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm
@@ -25646,7 +25848,7 @@ coins:
       bruun_part: IV
       bruun_lot_no: 17281
       bruun_page: 124
-    metal: silver
+    metal: copper
     fineness:
     weight_rough_g:
     issuing_entity: danish_realm

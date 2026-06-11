@@ -186,6 +186,7 @@ from lib.mint_registry import (  # noqa: E402
     CANON_TO_DISPLAY as _MINT_CANON_TO_DISPLAY,
 )
 from lib.nominal_synonyms import normalise_nominal as _fold_denom  # noqa: E402
+from lib.catalog_codes import normalise_catalog as _fold_catalog_indices  # noqa: E402
 
 
 def _same_denomination(head_word: str, paren_word: str) -> bool:
@@ -216,6 +217,20 @@ _MINT_COUNTRY_PREFIXES = frozenset({
     "schleswig-holstein", "lübeck", "hamburg",
 })
 
+# U+FFFD «�» mojibake (iso-8859 → utf-8 round-trip) → clean mint spelling.
+# Applied in `_canonicalise_mint` BEFORE the registry alias lookup so the
+# clean alias matches. No catch-all «�» → "" drop here (unlike the nominal
+# table) — corrupting an unrecognised mint to a wrong name is worse than
+# leaving it, and the registry alias set carries the «?»-mojibake variants.
+_MINT_MOJIBAKE_FIXES = (
+    ("K�benhavn", "København"),
+    ("Kj�benhavn", "Kjøbenhavn"),
+    ("Malm�", "Malmø"),
+    ("Gl�ckstadt", "Glückstadt"),
+    ("Helsing�r", "Helsingør"),
+    ("�rhus", "Århus"),
+)
+
 
 def _canonicalise_mint(raw):
     """Map an arbitrary mint string (or list) to canonical project
@@ -229,26 +244,44 @@ def _canonicalise_mint(raw):
     for item in items:
         if not isinstance(item, str):
             continue
+        # Fix U+FFFD mojibake (K�benhavn → København, Malm� → Malmø, …)
+        # BEFORE the alias lookup so the registry's clean alias matches.
+        base = item
+        for bad, good in _MINT_MOJIBAKE_FIXES:
+            base = base.replace(bad, good)
         # Strip paren tail «Altona (FK VS)» → «Altona»
-        base = re.sub(r"\s*\([^)]*\)\s*$", "", item).strip()
+        base = re.sub(r"\s*\([^)]*\)\s*$", "", base).strip()
         # Strip trailing « Mint» suffix (Bruun PDF convention) so the
         # canonical form matches project-bare-mint spelling. Consistent
         # with merger's `_normalise_mints` strip.
         base = re.sub(r"\s+Mint\s*$", "", base).strip()
         if not base:
             continue
-        # Split on comma — drop country prefix tokens, canonicalise the
-        # rest. «Denmark, Copenhagen» → Kopenhagen.
-        for tok in [t.strip() for t in base.split(",") if t.strip()]:
+        # Split on comma AND semicolon — both separate joint-mint tokens
+        # («Denmark, Copenhagen», «Altona; Copenhagen»).
+        for tok in [t.strip() for t in re.split(r"[,;]", base) if t.strip()]:
             # Re-strip « Mint» on each token in case multi-token form
             # like «Denmark, Copenhagen Mint» entered (rare but possible).
             tok = re.sub(r"\s+Mint\s*$", "", tok).strip()
-            key = tok.lower()
+            # Preserve a trailing «?» uncertainty marker: canonicalise the
+            # BASE spelling but re-append «?» so a lone uncertain attestation
+            # isn't silently promoted to certain (§4) — «København?» →
+            # «Kopenhagen?». The certain-wins pass below drops «X?» when the
+            # certain «X» is also attested.
+            uncertain = bool(re.search(r"\?\s*$", tok))
+            core = re.sub(r"\s*\?\s*$", "", tok).strip()
+            key = core.lower()
             if key in _MINT_COUNTRY_PREFIXES:
                 continue
-            canonical = _MINT_CANONICAL.get(key, tok)
+            canonical = _MINT_CANONICAL.get(key, core)
+            if uncertain:
+                canonical = f"{canonical}?"
             if canonical not in out_set:
                 out_set.append(canonical)
+    # Certain-wins: drop an uncertain «X?» when the certain «X» is also
+    # present in the same coin's mint list.
+    out_set = [c for c in out_set
+               if not (c.endswith("?") and c[:-1] in out_set)]
     if not out_set:
         return None
     return out_set[0] if len(out_set) == 1 else sorted(out_set)
@@ -1074,6 +1107,13 @@ def _apply_pre_write_hygiene(coins: list[dict]) -> tuple[list[dict], dict[str, i
             _, n_split = _normalise_catalog(catalog)
             if n_split:
                 stats["catalog_split"] += n_split
+            # §9.4 index hygiene: fold `others: <code># N` into typed
+            # list-fields (case-insensitive code) + case-insensitive
+            # value de-dup («55C» / «55c» → one «55C»).
+            n_fold = _fold_catalog_indices(catalog)
+            if n_fold:
+                stats.setdefault("catalog_index_normalised", 0)
+                stats["catalog_index_normalised"] += n_fold
         # fineness-implies-metal rule: a source that attests fineness
         # has by definition also attested the metal (you cannot publish
         # «.875» without knowing whether it's silver or gold). When
@@ -1210,6 +1250,7 @@ def write_v2_seed(
     dry_run: bool = False,
     no_merge: bool = False,
     extra_top_level: dict | None = None,
+    extra_curated_fields: frozenset = frozenset(),
 ) -> dict:
     """Group `coins` by `issuing_entity` → write
     `data/v2/seed/<source_name>/<entity>.yml` per entity.
@@ -1363,6 +1404,9 @@ def write_v2_seed(
                     _, n_cat = _normalise_catalog(catalog)
                     if n_cat:
                         file_normalised += 1
+                    # §9.4 index hygiene (fold others→typed + case-dedup)
+                    if _fold_catalog_indices(catalog):
+                        file_normalised += 1
                 # fineness-implies-metal rule
                 if (c.get("metal")
                         and bool(c.get("fineness_verified"))
@@ -1421,7 +1465,7 @@ def write_v2_seed(
         out_path = src_dir / f"{entity}.yml"
         merge_stats = {"merged_existing": 0, "added_new": len(ents), "orphan_curated": 0}
         if not dry_run and not no_merge:
-            ents, merge_stats = merge_seed(ents, out_path)
+            ents, merge_stats = merge_seed(ents, out_path, extra_curated_fields)
 
         print(f"  [{entity}] {len(ents)} entries  "
               f"(merged={merge_stats['merged_existing']}, "
@@ -1460,7 +1504,7 @@ def write_v2_seed(
         unclassified.sort(key=lambda e: (e.get("year_first") or 9999, e.get("id") or ""))
         merge_stats = {"merged_existing": 0, "added_new": len(unclassified), "orphan_curated": 0}
         if not dry_run and not no_merge:
-            unclassified, merge_stats = merge_seed(unclassified, unclass_path)
+            unclassified, merge_stats = merge_seed(unclassified, unclass_path, extra_curated_fields)
         print(f"  [_unclassified] {len(unclassified)} entries")
         if not dry_run:
             yaml = ruamel.yaml.YAML(typ="rt")

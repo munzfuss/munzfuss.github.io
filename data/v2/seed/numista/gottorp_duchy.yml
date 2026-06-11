@@ -1,6 +1,6 @@
 status: seed
 source: Numista en.numista.com per-coin catalogue (API v3 + chrome scrape)
-generated_at: '2026-06-01T09:07:26Z'
+generated_at: '2026-06-08T19:52:10Z'
 entity: gottorp_duchy
 scope_note: 'Generic Numista Phase 3 seed — consumes canonical Phase 2 sidecars at scripts/cache/numista/parsed/. Mint-driven entity classification with issuer-string fallback when mint is absent. Numista
   is user-edited; cross-references (SIEG, Galster, Schou, Fr, MB, Lange, Dav) require primary-source verification before §BF promotion. Phase-2 driver: scripts/parse_numista.py.'
@@ -1661,7 +1661,9 @@ coins:
     mint:
     catalog:
       numista: '276168'
-      km: '106'
+      km:
+        - '106'
+        - '56'
       lange: '383'
     metal: silver
     fineness:
@@ -2471,7 +2473,9 @@ coins:
     mint: Tönning
     catalog:
       numista: '319271'
-      km: '146'
+      km:
+        - '146'
+        - '69'
       lange: '373'
       fr: 3080a
       others:

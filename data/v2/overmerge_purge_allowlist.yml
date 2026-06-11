@@ -10,3 +10,22 @@ dk-tid-97358:
 - unified-dk-numista-82678
 unified-dk-hede-c5h60:
 - unified-dk-numista-328512
+# MANUAL (curator 2026-06-09, Serhii) — NOT generator-derived (same-nominal
+# Hede-split, outside the base-KM generator criterion). Stale absorb fused 3
+# coins into ucoin host dk-tid-173642; evict coin 2 (Hede 45) + coin 3 (KMM
+# 693172, 8 Skilling 1625) + reset host to its ucoin twin so coin 1 (Hede 44)
+# keeps no stale Hede-45 / Numista-268888 / KMM data. Durably locked by the
+# matching no_merges in merge_decisions/danish_realm.yml.
+dk-tid-173642:
+- unified-dk-hede-c4h45
+- unified-kmk-693172
+# MANUAL (curator 2026-06-09, Serhii) — over-merge audit splits
+# (audit_overmerge_candidates.py). Each evicts the wrong-coin member + resets
+# the host to its clean twin; durably locked by no_merges in
+# merge_decisions/danish_realm.yml.
+dk-tid-163014:        # 2-Skilling host had a 1 Speciedaler (Hede 5) fused in
+- unified-dk-bruun-5536
+dk-tid-94158:         # 1-Krone host had a 2 Kronen (8 Mark) fused in
+- unified-ikmk-18203664
+unified-dk-hede-c4h119a:  # genuine 1-Skilling host had a billon forgery fused in
+- unified-kmk-521

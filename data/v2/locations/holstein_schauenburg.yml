@@ -4,17 +4,21 @@ name:
   en: County of Holstein-Schauenburg
   uk: Графство Гольштейн-Шауенбург
 summary:
-  de: Reichslehen der Schauenburger Linie unter Ernst III. (1601-1622), geographisch geteilt zwischen der Grafschaft Pinneberg (heute Kreis Pinneberg im Schleswig-Holstein) und der Stammgrafschaft 
-    Schaumburg (Stadthagen / Bückeburg, heute Niedersachsen). IKMK Berlin trennt diese beiden Territorien nicht — der vorliegende Bestand ist Bulk-Seed (104 Stücke 1616-1622), bis Müntzort und 
-    Müntzfuß durch Weinmeister 1908 + Bei der Wieden 1961 für jeden Eintrag geklärt sind.
-  en: Imperial fief of the Schauenburg dynasty under Ernst III (1601-1622), geographically split between the County of Pinneberg (today Kreis Pinneberg in Schleswig-Holstein) and the ancestral County 
-    of Schaumburg (Stadthagen / Bückeburg, today Lower Saxony). IKMK Berlin doesn't distinguish the two territories — this holding is a bulk seed (104 pieces 1616-1622) pending mint-city and Müntzfuß 
-    resolution via Weinmeister 1908 + Bei der Wieden 1961 per coin.
-  uk: Імперський лен династії Шауенбург під Ернстом III (1601-1622), географічно розділений між графством Піннеберг (сучасний Кreis Піннеберг у Шлезвіг-Гольштейні) та родовим графством Шаумбург 
-    (Stadthagen / Bückeburg, сучасна Нижня Саксонія). IKMK Berlin не розрізняє ці дві території — цей фонд є bulk-сід (104 монети 1616-1622) до встановлення міста карбування та Müntzfuß через 
-    Weinmeister 1908 + Bei der Wieden 1961 для кожного запису.
+  de: Reichslehen der Schauenburger Linie, geographisch zweiteilig — die holsteinische Grafschaft Pinneberg (Müntzstätte Altona, heute Kreis Pinneberg in Schleswig-Holstein) und die niedersächsische
+    Stammgrafschaft Schaumburg (Müntzstätten Stadthagen, Bückeburg, Rinteln und Oldendorf, heute Niedersachsen). Jede Hälfte folgte der Müntztradition ihrer Region — die Pinneberger Seite dem
+    Schleswig-Holsteinischen Reichsthaler-Courant, die Schaumburger Seite dem niedersächsischen System zu 36 Mariengroschen auf den Reichsthaler. Beide Theile wurden 1601-1622 unter Ernst III.
+    gemeinsam regiert; die Linie erlosch 1640 mit Otto V., worauf Pinneberg an den dänisch-königlichen Holsteiner Antheil fiel.
+  en: Imperial fief of the Schauenburg line, geographically in two halves — the Holstein County of Pinneberg (Altona mint, today Kreis Pinneberg in Schleswig-Holstein) and the Lower-Saxon ancestral
+    County of Schaumburg (mints at Stadthagen, Bückeburg, Rinteln and Oldendorf, today Lower Saxony). Each half followed its region's coinage tradition — the Pinneberg side the Schleswig-Holstein
+    Reichsthaler-Courant, the Schaumburg side the Lower-Saxon system of 36 Mariengroschen to the Reichsthaler. Both parts were ruled jointly by Ernst III in 1601-1622; the line died out in 1640 with
+    Otto V, whereupon Pinneberg passed to the Royal-Danish portion of Holstein.
+  uk: Імперський лен династії Шауенбург, географічно дводільний — гольштейнське графство Піннеберг (монетний двір Altona, сучасний Кreis Піннеберг у Шлезвіг-Гольштейні) та нижньосаксонське родове
+    графство Шаумбург (монетні двори Stadthagen, Bückeburg, Rinteln та Oldendorf, сучасна Нижня Саксонія). Кожна половина дотримувалася монетної традиції свого регіону — піннебергзька сторона
+    шлезвіг-гольштейнського Reichsthaler-Courant, шаумбурзька — нижньосаксонської системи 36 Mariengroschen на Reichsthaler. Обидві частини правилися спільно Ернстом III у 1601-1622 рр.; лінія
+    згасла 1640 р. з Отто V, після чого Піннеберг перейшов до королівсько-данської частини Гольштейну.
 consumes_entities:
-  - holstein_schauenburg_county
+  - schauenburg_pinneberg
+  - grafschaft_schaumburg
 fuss_order:
   - seed_unsorted
 phases:
@@ -25,20 +29,20 @@ phases:
       from_label: '1606'
       to_label: '1622'
       title:
-        de: Ernst III., Bulk-Seed (Holstein-Schauenburg)
-        en: Ernst III, bulk seed (Holstein-Schauenburg)
-        uk: Ернст III, bulk-сід (Holstein-Schauenburg)
+        de: Ernst III. (1601–1622)
+        en: Ernst III (1601–1622)
+        uk: Ернст III (1601–1622)
     - id: II
       year_from: 1559
       year_to: 1914
       from_label: '1622'
       to_label: '1640'
       title:
-        de: Just Herman und Otto V., Bulk-Seed (niedersächsische Seite)
-        en: Just Herman and Otto V, bulk seed (Niedersächsisch side)
-        uk: Юст Герман і Отто V, bulk-сід (нижньосаксонська сторона)
+        de: Just Herman und Otto V. (1622–1640)
+        en: Just Herman and Otto V (1622–1640)
+        uk: Юст Герман і Отто V (1622–1640)
       description:
-        de: Spätschauenburgische Prägungen der niedersächsischen Tradition (Mariengroschen, Münzstätte Oldendorf) biß zum Aussterben der Pinneberger Linie 1640.
+        de: Spätschauenburgische Prägungen der niedersächsischen Tradition (Mariengroschen, Müntzstätte Oldendorf) biß zum Aussterben der Pinneberger Linie 1640.
         en: Late-Schauenburg coinage of the Niedersächsisch tradition (Mariengroschen, Oldendorf mint) until the Pinneberg line's extinction in 1640.
         uk: Пізньошауенбурзьке карбування нижньосаксонської традиції (Mariengroschen, монетний двір Oldendorf) до згасання піннебергзької лінії 1640 р.
     - id: numismaster
@@ -47,13 +51,10 @@ phases:
       from_label: (?)
       to_label: (?)
       title:
-        de: Bulk-Seed · NumisMaster (Krause-Mishler)
-        en: Bulk seed · NumisMaster (Krause-Mishler)
-        uk: Bulk-seed · NumisMaster (Krause-Mishler)
+        de: Weitere Stücke (Krause-Mishler)
+        en: Further pieces (Krause-Mishler)
+        uk: Інші монети (Krause-Mishler)
       description:
-        de: Sammelphase für die aus NumisMaster (Librios-Plattform, Krause-Mishler-Katalog) bulk-importierten Schaumburg-Pinneberg-Grafschaftsstücke. Quelle ist 
-          <code>data/seed/numismaster/schleswig_holstein.yml</code> — gefiltert auf <code>holstein_schauenburg_county</code> beim Build-Assembly.
-        en: Catch-all phase for Schaumburg-Pinneberg county coins bulk-imported from NumisMaster (Librios platform, Krause-Mishler catalogue). Source is 
-          <code>data/seed/numismaster/schleswig_holstein.yml</code> — filtered on <code>holstein_schauenburg_county</code> at build-assembly time.
-        uk: Збірна фаза для монет графства Шаумбург-Піннеберг, bulk-імпортованих з NumisMaster (платформа Librios, каталог Krause-Mishler). Джерело — 
-          <code>data/seed/numismaster/schleswig_holstein.yml</code>, фільтр на <code>holstein_schauenburg_county</code> під час build-assembly.
+        de: Schauenburger Grafschaftsstücke nach dem Krause-Mishler-Katalog, deren Einzelzuordnung von Müntzstätte und Müntzfuß noch aussteht.
+        en: Schauenburg county pieces per the Krause-Mishler catalogue, whose individual mint and Müntzfuß attribution is still outstanding.
+        uk: Монети графства Шауенбург за каталогом Krause-Mishler, чия поіменна атрибуція монетного двору та Müntzfuß ще очікується.

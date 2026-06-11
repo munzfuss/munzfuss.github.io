@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `erzbisthum_bremen_verden`.
-# Generated 2026-06-04 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/erzbisthum_bremen_verden.yml across all sources.
 #
 # Input: 223 per-source seed entries.
-# Output: 157 unified entries (one per physical coin).
+# Output: 154 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,13 +11,13 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: erzbisthum_bremen_verden
-generated_at: '2026-06-04'
+generated_at: '2026-06-10'
 coins:
 - id: unified-dk-bruun-12130
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: Bremen & Verden. 4 Mark
+  nominal: 4 Mark
   year_first: 1660
   year_last: 1660
   year_label: '1660'
@@ -57,7 +57,7 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: Bremen & Verden. 4 Mark
+  nominal: 4 Mark
   year_first: 1670
   year_last: 1670
   year_label: '1670'
@@ -96,27 +96,41 @@ coins:
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: Bremen & Verden. Taler
-  year_first: 1674
+  nominal: 1 Taler
+  year_first: 1673
   year_last: 1674
-  year_label: '1674'
+  year_ranges:
+  - - 1673
+    - 1674
+  year_label: 1673-1674
   ruler: Karl XI
   catalog:
+    km: '83'
     bruun_collection_id: '12323'
-    dav: '6282'
+    numista: '31052'
+    dav: ST 6282
+    others:
+    - AAJ# 11
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
   - value: 29.1
     source: bruun
+  diameter_mm:
+  - value: 46.0
+    source: numista
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12179, p. 244
+  - type: literature
+    url: https://en.numista.com/31052
+    ref: Numista N#31052 — 1 Thaler - Charles XI - Duchy under Swedish possession of Bremen-Verden
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -131,6 +145,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-bruun-12323
+  - dk-numista-31052
 - id: unified-dk-numista-129840
   fuss: seed_unsorted
   phase: numista
@@ -146,7 +161,7 @@ coins:
   catalog:
     numista: '129840'
     mb: '94'
-    dav: GT I# 8980
+    dav: GT I 8980
     others:
     - Jungk# 230
     - Welter# 503
@@ -217,12 +232,17 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 7.0
+    source: ucoin
   - value: 7.01
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/129841
     ref: Numista N#129841 — ¼ Thaler - Henry III of Sachsen-Lauenburg - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-4-thaler-1583-1584/?tid=175436
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -236,6 +256,7 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-129841
+  - tid-tid-175436
 - id: unified-dk-numista-129842
   fuss: seed_unsorted
   phase: numista
@@ -355,7 +376,7 @@ coins:
   catalog:
     km: '38'
     numista: '129848'
-    dav: CCT# 5078
+    dav: CCT 5078
     others:
     - Jungk# 363
   metal: silver
@@ -514,7 +535,7 @@ coins:
   catalog:
     numista: '167726'
     mb: '104'
-    dav: GT I# 8985
+    dav: GT I 8985
     others:
     - Jungk# 294
   metal: silver
@@ -713,23 +734,34 @@ coins:
   catalog:
     numista: '266573'
     mb: '86'
-    dav: GT I# 8982
+    dav: GT I 8982
     others:
     - Jungk# 240
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 28.0
+    source: ucoin
   - value: 28.04
     source: numista
+  diameter_mm:
+  - value: 42.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/266573
     ref: Numista N#266573 — 1 Thaler - George of Brunswick - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1560/?tid=175543
+    ref: ucoin
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-thaler-1560/?tid=175544
+    ref: ucoin
   note:
     de: 36 Grote (Rechnungs-Äquivalent)
     en: 36 Grote (accounting equivalent)
@@ -747,6 +779,8 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - dk-numista-266573
+  - tid-tid-175543
+  - tid-tid-175544
 - id: unified-dk-numista-270939
   fuss: seed_unsorted
   phase: numista
@@ -801,7 +835,7 @@ coins:
   catalog:
     km: '113'
     numista: '270940'
-    dav: ST# 6283
+    dav: ST 6283
     others:
     - AAJ# 13
   metal: silver
@@ -974,51 +1008,6 @@ coins:
   composed_of:
   - dk-numista-301158
   - tid-tid-175564
-- id: unified-dk-numista-31052
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1673
-  year_last: 1674
-  year_ranges:
-  - - 1673
-    - 1674
-  year_label: 1673-1674
-  ruler: Charles XI (Karl XI)
-  catalog:
-    km: '83'
-    numista: '31052'
-    dav: ST# 6282
-    others:
-    - AAJ# 11
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  diameter_mm:
-  - value: 46.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/31052
-    ref: Numista N#31052 — 1 Thaler - Charles XI - Duchy under Swedish possession of Bremen-Verden
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: erzbisthum_bremen_verden
-  composed_of:
-  - dk-numista-31052
 - id: unified-dk-numista-317317
   fuss: seed_unsorted
   phase: numista
@@ -1037,7 +1026,7 @@ coins:
     - '19'
     numista: '317317'
     lange: '493'
-    dav: CCT# 5076
+    dav: CCT 5076
     others:
     - Jungk# 310
   metal: silver
@@ -1191,7 +1180,7 @@ coins:
   catalog:
     numista: '352504'
     mb: '95'
-    dav: GT I# 8979
+    dav: GT I 8979
     others:
     - Jungk# 237
     - Welter# 501
@@ -1335,7 +1324,7 @@ coins:
   catalog:
     km: '19.2'
     numista: '397794'
-    dav: CCT# 5074
+    dav: CCT 5074
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1422,7 +1411,7 @@ coins:
   catalog:
     numista: '426081'
     mb: '85'
-    dav: GT I# 8981
+    dav: GT I 8981
     others:
     - Jungk# 219
   metal: silver
@@ -1465,7 +1454,7 @@ coins:
   catalog:
     numista: '426154'
     mb: '84'
-    dav: GT I# 8978
+    dav: GT I 8978
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1508,7 +1497,7 @@ coins:
   catalog:
     numista: '426182'
     mb: '87'
-    dav: GT I# 8977
+    dav: GT I 8977
     others:
     - Jungk# 217
   metal: silver
@@ -5995,76 +5984,3 @@ coins:
   issuing_entity: erzbisthum_bremen_verden
   composed_of:
   - tid-tid-175388
-- id: unified-tid-tid-175436
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ¼ Thaler
-  year_first: 1583
-  year_last: 1584
-  year_ranges:
-  - - 1583
-    - 1584
-  year_label: 1583-1584
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 7.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/bremen-1-4-thaler-1583-1584/?tid=175436
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: erzbisthum_bremen_verden
-  composed_of:
-  - tid-tid-175436
-- id: unified-tid-tid-175543
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1560
-  year_last: 1560
-  year_label: '1560'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 28.0
-    source: ucoin
-  diameter_mm:
-  - value: 42.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/bremen-1-thaler-1560/?tid=175543
-    ref: ucoin
-  - type: ucoin
-    url: https://en.ucoin.net/coin/bremen-1-thaler-1560/?tid=175544
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: erzbisthum_bremen_verden
-  composed_of:
-  - tid-tid-175543
-  - tid-tid-175544

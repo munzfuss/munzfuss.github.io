@@ -63,6 +63,7 @@ Usage (in a builder):
 """
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Any
 
@@ -216,10 +217,46 @@ def load_existing_seed(out_path: Path) -> tuple[Any, dict[str, CommentedMap]]:
     return doc, by_id
 
 
-def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
+def _union_cat_values(existing_v, fresh_v):
+    """Union two catalogue-field values (each scalar or list) into a
+    deduped, order-preserving result; collapses a singleton back to
+    scalar. String values dedup case-insensitively («406.1» vs «406.1»);
+    non-string entries (e.g. KMRef dicts) pass through without string
+    de-dup so dict-form km is never corrupted. Existing values lead."""
+    items: list = []
+    for src in (existing_v, fresh_v):
+        for v in (src if isinstance(src, list) else [src]):
+            if v is not None:
+                items.append(v)
+    out: list = []
+    seen: set = set()
+    for v in items:
+        if isinstance(v, (dict, list)):
+            out.append(v)  # structured (KMRef) — no string-key dedup
+            continue
+        k = str(v).strip().lower()
+        if k not in seen:
+            seen.add(k)
+            out.append(v)
+    if not out:
+        return existing_v
+    return out[0] if len(out) == 1 else out
+
+
+def merge_one(
+    existing: CommentedMap, fresh: CommentedMap,
+    extra_curated: frozenset = frozenset(),
+) -> CommentedMap:
     """Apply the 4-mechanism merge: fresh values flow into existing, preserving
-    curated decisions. Mutates and returns `existing`."""
+    curated decisions. Mutates and returns `existing`.
+
+    `extra_curated` — per-builder field names treated as soft-curated for THIS
+    call only (existing wins if present), on top of the global CURATED_FIELDS.
+    Used e.g. by the Bruun builder to preserve `nominal` (its display
+    normalisation lives outside the current parser; a naive regen would degrade
+    «½ Portugaløser» → «1/2 Portugaloser»). Existing wins; fresh fills gaps."""
     holds = set(existing.get(_CURATION_HOLDS_KEY) or [])
+    curated = CURATED_FIELDS | extra_curated
     fresh_keys = set(fresh.keys())
     existing_keys = set(existing.keys())
 
@@ -229,7 +266,7 @@ def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
         if key in holds:
             # Frozen field: existing state wins (present-or-absent).
             continue
-        if key in CURATED_FIELDS:
+        if key in curated:
             # Soft-curated: existing wins if present, fresh fills gaps.
             if key in existing_keys:
                 continue
@@ -239,9 +276,25 @@ def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
             ex_v = existing.get(key)
             fr_v = fresh.get(key)
             if isinstance(ex_v, dict) and isinstance(fr_v, dict):
+                # List-capable catalogue sub-fields (km + every schema
+                # list-field: hede/sieg/schou/lange/fr/dav/…) UNION their
+                # existing + fresh values (§9a data-accumulation: a single
+                # Numista type can cite multiple KM, e.g. mint sub-variants
+                # 406.1/406.2 or the same coin across two Krause editions
+                # 106/56). Scalar-only sub-fields keep existing-wins. A
+                # curator who deliberately pruned a value freezes the whole
+                # `catalog` via _curation_holds, which skips this branch
+                # entirely (the `key in holds` guard above).
+                try:
+                    from lib.catalog_codes import schema_list_catalog_fields
+                except Exception:  # pragma: no cover
+                    from catalog_codes import schema_list_catalog_fields
+                _list_cap = schema_list_catalog_fields() | {"km"}
                 for sub_k, sub_v in fr_v.items():
                     if sub_k not in ex_v:
                         ex_v[sub_k] = sub_v
+                    elif sub_k in _list_cap:
+                        ex_v[sub_k] = _union_cat_values(ex_v[sub_k], sub_v)
             elif ex_v is None and fr_v is not None:
                 existing[key] = fr_v
             continue
@@ -270,11 +323,27 @@ def merge_one(existing: CommentedMap, fresh: CommentedMap) -> CommentedMap:
             continue
         del existing[key]
 
+    # §9.4 index hygiene on the MERGED catalog (post deep-merge). The
+    # deep-merge keeps existing sub-keys verbatim, so a stale scalar
+    # `schou: "20-21"` + `others: [schou# N]` shape survives the merge
+    # even though the fresh builder now emits clean list-form. Fold the
+    # `others: <code># N` overflow into its typed list-field (case-
+    # insensitive code) and de-dup list values case-insensitively
+    # («55C» / «55c» → one «55C»). Skipped when the curator froze
+    # `catalog` via `_curation_holds`.
+    if "catalog" not in holds and isinstance(existing.get("catalog"), dict):
+        try:
+            from lib.catalog_codes import normalise_catalog as _fold_cat
+        except Exception:  # pragma: no cover
+            from catalog_codes import normalise_catalog as _fold_cat
+        _fold_cat(existing["catalog"])
+
     return existing
 
 
 def merge_seed(
-    coins_fresh: list, out_path: Path
+    coins_fresh: list, out_path: Path,
+    extra_curated: frozenset = frozenset(),
 ) -> tuple[list, dict[str, int]]:
     """Merge fresh-generated coins against the on-disk seed at `out_path`.
 
@@ -293,7 +362,7 @@ def merge_seed(
     # 1. For every fresh entry, merge into existing or take fresh.
     for cid, fresh in fresh_by_id.items():
         if cid in existing_by_id:
-            merged = merge_one(existing_by_id[cid], fresh)
+            merged = merge_one(existing_by_id[cid], fresh, extra_curated)
             out.append(merged)
             stats["merged_existing"] += 1
         else:
@@ -305,6 +374,63 @@ def merge_seed(
     for cid in sorted(orphan_ids):
         out.append(existing_by_id[cid])
         stats["orphan_curated"] += 1
+
+    # 2b. Drop an UNCURATED bare base entry that FRESH sub-entries now supersede:
+    #     a fresh id = bare id + an alpha sub-letter suffix (e.g. «…c4h117»
+    #     superseded by fresh «…c4h117a»/«…c4h117b» once the parser learns to
+    #     break out the sub-variants). Applies to orphan-kept AND freshly-built
+    #     bare entries, so the seed never carries both the bare page AND its
+    #     sub-letters. The sibling must be FRESH (not a stale orphan), so a bare
+    #     whose only sub-letter is itself a stale orphan is left untouched.
+    #     Curated bases (real fuss / `_curation_holds`) are always kept.
+    #     NB: merge_decisions that reference a dropped bare id are resolved by
+    #     the cross-source merger's `_expand_member` (bare → sub-letters), so
+    #     dropping the bare here does NOT dangle those references.
+    fresh_ids = set(fresh_by_id)
+
+    def _is_curated(c) -> bool:
+        if not isinstance(c, dict):
+            return True
+        if c.get("_curation_holds"):
+            return True
+        return c.get("fuss") not in (None, "seed_unsorted")
+
+    def _own_cat_has_subletter(c) -> bool:
+        """True if the entry's OWN-source catalogue value already carries a
+        sub-letter (e.g. galster «66A-B», hede «117A»). Such an entry is
+        itself a sub-VARIANT page, not a bare PARENT that fresh sub-letters
+        supersede — so it must NOT be dropped. The catalogue field is found
+        from the id's source token («dk-galster-f1g-66» → galster «66A-B»;
+        «dk-hede-c4h117» → hede «117»). Without this guard the id-string
+        pattern alone («66» + fresh «66c») wrongly drops Galster 66A-B as if
+        66C superseded it, when 66A-B and 66C are DISTINCT sub-variants of the
+        same coin (both worth keeping). Caught 2026-06-10."""
+        if not isinstance(c, dict):
+            return False
+        cat = c.get("catalog") or {}
+        for tok in (c.get("id") or "").split("-"):
+            if tok in cat:
+                vals = cat[tok]
+                vals = vals if isinstance(vals, list) else [vals]
+                return any(re.search(r"[A-Za-z]", str(v)) for v in vals if v)
+        return False
+
+    kept = []
+    for c in out:
+        cid = c.get("id") if isinstance(c, dict) else None
+        superseded = bool(
+            cid and re.search(r"\d$", cid) and not _is_curated(c)
+            and not _own_cat_has_subletter(c)
+            and any(fid != cid and fid.startswith(cid) and fid[len(cid):].isalpha()
+                    for fid in fresh_ids)
+        )
+        if superseded:
+            stats["superseded_dropped"] = stats.get("superseded_dropped", 0) + 1
+            if cid not in fresh_ids:
+                stats["orphan_curated"] -= 1
+            continue
+        kept.append(c)
+    out = kept
 
     # 3. Apply curator-recorded source-index errata (§CN) LAST — after the
     # merge so the correction wins over the parser value, on every output

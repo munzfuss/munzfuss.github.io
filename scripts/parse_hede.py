@@ -39,6 +39,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lib.paths import HEDE_CACHE as CACHE_DIR  # noqa: E402
+from lib.mint_registry import canon_for_alias  # noqa: E402
 
 
 _TAG_RE = re.compile(r"<[^>]+>")
@@ -440,10 +441,36 @@ _REFS_RE = re.compile(
     # here only as a comment guard against future «look, the parser
     # missed Christian» additions.
     r"\b(Hede|Schou|Sieg|Galster|Bruun|Dav|Davenport|KM|Fr|Friedberg)\.?\s*"
+    # Danish per-variant lists write «Schou hhv. 6, 16-29 og 16-22» —
+    # «hhv.»/«henholdsvis» = «respectively». Skip that word so the number
+    # capture starts at the first die-no; «og» («and») joins further groups
+    # (normalised to a comma in _extract_refs). Without this the whole Schou
+    # list of such a variant was dropped (81 by_letter variants affected).
+    r"(?:hhv\.?\s*|henholdsvis\s*)?"
+    # «:» joins year→die in «Schou 1829-37: 2, 1838: 3» / «Hede 13A: 1876» —
+    # the leading year is dropped in _extract_refs (see _strip_year_tokens).
     r"([\d]+(?:\.\d+)*(?:[A-Za-z][\w\.]*)?"
-    r"(?:[\-/,]\s*\d+(?:\.\d+)*[A-Za-z]*)*)",
+    r"(?:(?:[\-/,:]|\s+og)\s*\d+(?:\.\d+)*[A-Za-z]*)*)",
     re.IGNORECASE,
 )
+
+
+def _strip_year_tokens(num: str, catalogue: str) -> str:
+    """Drop year / year-range tokens from a captured number list. Danish pages
+    write «Schou 1829-37: 2» (year-range : die) and «Schou 1731,1» (Schou
+    year,running-no) — the LEADING year is not a catalogue number. A 4-digit
+    1500-1950 leading value can only be a year for Schou/Hede/Sieg/KM/Fr/Galster
+    (their numbering never reaches the 1500s). Dav is EXEMPT — Davenport numbers
+    legitimately sit in the 1200-1700s (Dav 1288, 1725)."""
+    if catalogue == "Dav":
+        return num
+    kept = []
+    for t in num.split(","):
+        head = t.split("-")[0]
+        if head.isdigit() and 1500 <= int(head) <= 1950:
+            continue
+        kept.append(t)
+    return ",".join(kept)
 
 
 def _extract_refs(text: str) -> dict[str, list[str]]:
@@ -455,7 +482,12 @@ def _extract_refs(text: str) -> dict[str, list[str]]:
             catalogue = "Dav"
         elif catalogue == "Friedberg":
             catalogue = "Fr"
-        num = re.sub(r"\s+", "", m.group(2))
+        num = re.sub(r"\bog\b", ",", m.group(2))   # «6, 16-29 og 16-22» → «6,16-29,16-22»
+        num = num.replace(":", ",")                 # «1829-37: 2» → «1829-37,2»
+        num = re.sub(r"\s+", "", num)
+        num = _strip_year_tokens(num, catalogue)    # drop leading year(-range) tokens
+        if not num:
+            continue
         bucket = refs.setdefault(catalogue, [])
         if num not in bucket:
             bucket.append(num)
@@ -1002,6 +1034,65 @@ def _spec_from_around(text: str, brutto_pos: int) -> dict:
 _H1_RE = re.compile(r"<H1[^>]*>(.*?)</H1>", re.IGNORECASE | re.DOTALL)
 _TITLE_TAG_RE = re.compile(r"<TITLE>(.*?)</TITLE>", re.IGNORECASE | re.DOTALL)
 
+# A segment is denomination-shaped when it starts with a digit/fraction
+# («1 speciedaler», «½ Krone», «32 Skilling») OR opens with a bare denomination
+# noun («Blaffert u. år», «Dukat», «Breddaler»). Used to tell a lone «Ruler,
+# NOMINAL» H1 line (mint on the variant lines) from «Ruler, …, Mint».
+_DENOM_SHAPE_RE = re.compile(
+    r"^\s*(?:[\d½⅓¼⅔¾⅛⅜⅝⅞]"
+    r"|(?:blaffert|dukat|ducat|breddaler|piaster|s[øö]sling|hvid|penning|mark|"
+    r"skilling|krone|kroner|daler|speciedaler|rigsdaler|rigsbankdaler|gylden|"
+    r"guldkrone|guldm[øö]nt|solidi|sechsling|dreiling|witten|øre|"
+    r"frederik d'?or|christian d'?or)\b)",
+    re.IGNORECASE,
+)
+
+
+def _is_denomination(s: str) -> bool:
+    """True when the segment looks like a coin denomination, not a mint."""
+    return bool(_DENOM_SHAPE_RE.match(s or ""))
+
+
+# Mint recovery for «Ruler, NOMINAL» pages (the H1 carries no mint — it lives on
+# the per-variant A)/B)/C) lines). Verbatim (NOT registry-display): the seed
+# builder's _normalize_mints keys on the Danish source spelling «København».
+_MINT_CAND_RE = re.compile(r"[A-ZÆØÅ][A-Za-zæøåäöü]+")
+
+
+def _first_mint_in(segment: str) -> str | None:
+    """First recognised mint name (verbatim) in a text segment, else None."""
+    for cand in _MINT_CAND_RE.findall(segment or ""):
+        if canon_for_alias(cand) is not None:
+            return cand
+    return None
+
+
+def _mints_from_variant_lines(text: str) -> list[str]:
+    """All distinct mints (verbatim, deduped by canonical, first-seen order)
+    across the A)/B)/C) variant lines — for a single-coin page struck at
+    several mints (e.g. c7h35: A) København, B) Altona → one coin, both)."""
+    found: list[str] = []
+    seen: set[str] = set()
+    for m in re.finditer(r"(?m)^\s*[A-ZÆØÅ]\)\s*(.*)$", text):
+        for cand in _MINT_CAND_RE.findall(m.group(1)):
+            canon = canon_for_alias(cand)
+            if canon and canon not in seen:
+                seen.add(canon)
+                found.append(cand)
+    return found
+
+
+def _mint_per_letter_block(text: str) -> dict[str, str]:
+    """{letter: verbatim mint} from each letter-group block that names a mint.
+    Reuses the same block matcher as _extract_letter_groups so a letter's mint
+    aligns with its years/refs (78A København, 78B Helsingør)."""
+    out: dict[str, str] = {}
+    for m in _LETTER_GROUP_BLOCK_RE.finditer(text):
+        mint = _first_mint_in(m.group(2))
+        if mint:
+            out[m.group(1)] = mint
+    return out
+
 
 def _parse_header(html: str) -> dict:
     out: dict = {}
@@ -1049,9 +1140,20 @@ def _parse_header(html: str) -> dict:
             # «1, 2, 3 og 4 speciedaler», mint «København».
             rs = [s.strip() for s in rest_text_no_yr.split(",") if s.strip()]
             if rs:
-                out["mint"] = rs[-1]
-                if len(rs) > 1:
-                    out["nominal"] = ", ".join(rs[:-1])
+                # «Ruler, NOMINAL» layout: a LONE denomination-shaped segment
+                # after the ruler-comma is the NOMINAL, not the mint — the mint
+                # lives on the per-variant A)/B)/C) lines, not on the H1 ruler
+                # line. Without this guard the parser field-swaps the nominal
+                # into the mint slot (c4h53 «1 speciedaler», c4h78 «4 Skilling»,
+                # f7h4 «1 Speciedaler» …). Restricted to len==1 + denomination
+                # shape so multi-segment / real-mint / mojibake-mint / parenthetical
+                # -mint / out-of-registry-mint lines keep their current parse.
+                if len(rs) == 1 and _is_denomination(rs[0]):
+                    out["nominal"] = rs[0]
+                else:
+                    out["mint"] = rs[-1]
+                    if len(rs) > 1:
+                        out["nominal"] = ", ".join(rs[:-1])
     else:
         out["ruler"] = ruler_line + "."
     if len(parts) >= 2 and "nominal" not in out:
@@ -1218,8 +1320,11 @@ def _extract_letter_groups(text: str, page_hede: str) -> dict | None:
             mm_match = mm_m
         mintmaster = mm_match.group(1) if mm_match else None
         plausible_years = [y for y in years if 1450 <= y["year"] <= 1950]
-        if not plausible_years:
-            continue
+        # A year-less variant line is still a real sub-variant — many pages
+        # distinguish sub-types by DESIGN («A) ring om kronen» vs «B) uden
+        # ring», c4h117) with years only in the Zincksamlingen list. The
+        # «Hede {page_hede}{letter}» anchor (checked above) is the reliable
+        # signal; do NOT drop the letter just because its line carries no year.
         out[letter] = {
             "years": plausible_years,
             "catalog_refs": refs,
@@ -1328,6 +1433,30 @@ def parse_one(html: str, basename: str) -> dict:
                             if k.lower() == sub_key.lower():
                                 specs["by_hede"][k]["years"] = lv["years"]
                                 break
+
+    # «Ruler, NOMINAL» mint recovery (Part 2). The H1 carried a nominal but no
+    # mint — the mint lives on the per-variant A)/B)/C) lines. Recover it so the
+    # seed builder doesn't drop the coin as mint-less. Runs AFTER by_letter +
+    # specs are populated; gated on «no top-level mint» so it never touches
+    # pages that already parse a mint.
+    if out.get("nominal") and not out.get("mint"):
+        by_letter = out.get("by_letter")
+        if by_letter:
+            # Per-letter (sub-variant) mint — 78A København, 78B Helsingør are
+            # DIFFERENT mints, so each by_letter entry gets its own. Verbatim;
+            # the builder normalises + uses it (fallback to top-level if absent).
+            for letter, mint in _mint_per_letter_block(text).items():
+                if letter in by_letter:
+                    by_letter[letter]["mint"] = mint
+        elif "by_hede" not in (out.get("specs") or {}):
+            # Single-coin page (one spec, no sub-grouping): one coin struck at
+            # all the variant-line mints → aggregate as a Danish-conjunction
+            # string, which _normalize_mints splits into a multi-mint list.
+            recovered = _mints_from_variant_lines(text)
+            if recovered:
+                out["mint"] = " og ".join(recovered)
+        # by_hede field-swap pages (c4h53) are left for a per-spec-group mint
+        # follow-up — each by_hede group can span different mints.
 
     # Catalog refs
     refs = _extract_refs(text)

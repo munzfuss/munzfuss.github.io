@@ -89,7 +89,18 @@ from maintenance.merge_seeds_cross_source import (  # noqa: E402
     _or_merge_verified,
     _catalog_refs,
     _shares_unique_id_ref,
+    _shares_type_level_catalog,
+    _nominal_wildcard_match,
+    _is_forgery_nominal,
+    # The merge module's nominal normaliser applies the FULL synonym table
+    # (Ducat→dukat, Dobbelt X→2 X, Guldkrone→gold krone, «(?)»→empty); the
+    # v2_seed_writer `_normalise_nominal` imported above does NOT. The
+    # re-validate identity check MUST use the same normaliser as match_pair's
+    # nominal discriminator, else synonym pairs («1 Ducat» vs «1 Dukat») read
+    # as genuine mismatches and get false-evicted.
+    _normalise_nominal as _mg_normalise_nominal,
 )
+from lib.catalog_codes import normalise_catalog as _fold_catalog_indices  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -158,8 +169,7 @@ import json as _json  # noqa: E402
 
 _KMK_CACHE_DIR = ROOT / "scripts" / "cache" / "kmk"
 _KMM_IMAGE_MEMO: dict[str, bool] = {}
-_SUPPRESS_THRESHOLD = 5
-_SUPPRESS_KEEP = 3
+_KMM_WEIGHT_MEMO: dict[str, bool] = {}
 
 
 def _kmm_nid_from_url(url):
@@ -171,7 +181,10 @@ def _kmm_nid_from_url(url):
 
 def _kmm_specimen_has_image(nid: str) -> bool:
     """True when the KMM (Nationalmuseet) record has a still-photo asset.
-    Memoised cache read — maintenance-side only; the build never reads cache."""
+    Memoised cache read — maintenance-side only; the build never reads cache.
+    Verified equivalent to the natmus page state: records with a still asset
+    show photo(s); records without show «Genstanden er endnu ikke
+    affotograferet» (2026-06-08 live spot-check, KMM 290904 vs 123284)."""
     if nid in _KMM_IMAGE_MEMO:
         return _KMM_IMAGE_MEMO[nid]
     has = False
@@ -186,38 +199,138 @@ def _kmm_specimen_has_image(nid: str) -> bool:
     return has
 
 
+_KMM_WEIGHT_VALUE_MEMO: dict[str, float | None] = {}
+
+
+def _kmm_specimen_weight(nid: str) -> float | None:
+    """The KMM record's Vægt (weight, g) value, or None when absent.
+    Memoised cache read — maintenance-side only."""
+    if nid in _KMM_WEIGHT_VALUE_MEMO:
+        return _KMM_WEIGHT_VALUE_MEMO[nid]
+    val = None
+    try:
+        d = _json.loads((_KMK_CACHE_DIR / f"{nid}.json").read_text())
+        ms = d.get("measurements") or []
+        for m in ms:
+            if (isinstance(m, dict) and m.get("dimension") == "Vægt"
+                    and isinstance(m.get("data"), (int, float))):
+                val = float(m["data"])
+                break
+    except (FileNotFoundError, ValueError):
+        val = None
+    _KMM_WEIGHT_VALUE_MEMO[nid] = val
+    return val
+
+
+def _kmm_specimen_has_weight(nid: str) -> bool:
+    """True when the KMM record carries a Vægt (weight) measurement.
+    Memoised cache read — maintenance-side only."""
+    if nid in _KMM_WEIGHT_MEMO:
+        return _KMM_WEIGHT_MEMO[nid]
+    has = _kmm_specimen_weight(nid) is not None
+    _KMM_WEIGHT_MEMO[nid] = has
+    return has
+
+
+_KEEP_KMM_IMAGE_ONLY = 3   # image but no weight → keep 3
+_KEEP_KMM_PURE = 1         # neither weight nor image → keep 1
+# §9a weight-specimen thinning: when one resource (KMM) over-collects
+# weight-giving specimens of the same coin, keep only min / middle / max
+# by weight — the intermediates add no variance-envelope information.
+_KMM_WEIGHT_THIN_THRESHOLD = 5   # thin only when ≥5 weight-giving KMM specimens
+
+
 def _suppress_weightless_museum_overcollection(coin: dict) -> int:
-    """Mark surplus weightless KMM specimen citations `display: false` so the
-    renderer hides them while the data keeps every link. Fires only when the
-    coin has NO weight reading AND carries ≥5 KMM citations; keeps the 3
-    best (imaged-first, then lowest object-id). Idempotent + deterministic —
-    safe to re-apply on every absorb. Returns the count suppressed."""
-    w = coin.get("weight_rough_g")
-    has_weight = (
-        (isinstance(w, list) and any(
-            isinstance(x, dict) and isinstance(x.get("value"), (int, float)) and x["value"] > 0
-            for x in w))
-        or (isinstance(w, (int, float)) and w > 0)
-    )
-    if has_weight:
-        return 0
+    """Hide surplus low-information KMM specimen citations via `display: false`
+    (data kept — §9a accumulation — just not rendered on the page). Three
+    categories, keyed by what the KMM record carries (user direction
+    2026-06-08):
+
+      • WEIGHT (with or without an image) — §9a weight-specimen thinning:
+        when ≥5 weight-giving KMM specimens of the same coin pile up, keep
+        only min / middle / max by weight (the intermediates add no
+        variance-envelope info — all KMM specimens share absent fineness,
+        so the bucket is uniform per §9a). The dropped specimens' CITATIONS
+        are hidden here AND their matching `weight_rough_g` readings are
+        hidden (by value) so the weight column collapses to 3 spans. Catalog
+        refs are NOT touched — they're accumulated on the merged entry, so
+        unique Schou/sub-variant indices survive (user direction).
+      • IMAGE only (no weight) — keep 3 (lowest object-id), hide the rest.
+      • NEITHER weight nor image (natmus «Genstanden er endnu ikke
+        affotograferet»; 79 % of all KMM cites — bare «museum holds a
+        specimen») — keep 1, hide the rest.
+
+    Fires regardless of whether the coin has weight from other sources.
+    Idempotent + deterministic. Returns the count newly hidden."""
     srcs = coin.get("sources") or []
-    kmm = [s for s in srcs if isinstance(s, dict) and _kmm_nid_from_url(s.get("url"))]
-    if len(kmm) < _SUPPRESS_THRESHOLD:
+    kmm = [s for s in srcs
+           if isinstance(s, dict) and _kmm_nid_from_url(s.get("url"))]
+    if not kmm:
         return 0
-
-    def _rank(s):
-        nid = _kmm_nid_from_url(s["url"])
-        return (0 if _kmm_specimen_has_image(nid) else 1, int(nid))
-
-    keep_ids = {id(s) for s in sorted(kmm, key=_rank)[:_SUPPRESS_KEEP]}
-    n = 0
+    weight_giving, image_only, pure = [], [], []
     for s in kmm:
-        if id(s) in keep_ids:
-            s.pop("display", None)      # kept → render (schema default True)
+        nid = _kmm_nid_from_url(s["url"])
+        w = _kmm_specimen_weight(nid)
+        if w is not None:
+            weight_giving.append((s, nid, w))
+        elif _kmm_specimen_has_image(nid):
+            image_only.append(s)
         else:
-            s["display"] = False
-            n += 1
+            pure.append(s)
+    n = 0
+
+    def _cap(group, keep):
+        nonlocal n
+        ordered = sorted(group, key=lambda s: int(_kmm_nid_from_url(s["url"])))
+        for i, s in enumerate(ordered):
+            if i < keep:
+                s.pop("display", None)
+            else:
+                if s.get("display") is not False:
+                    n += 1
+                s["display"] = False
+
+    # --- §9a weight-specimen thinning over the weight-giving KMM bucket ---
+    kept_weights: set[float] | None = None  # None = no thinning (keep all)
+    if len(weight_giving) >= _KMM_WEIGHT_THIN_THRESHOLD:
+        # deterministic sort: by weight, tie-break by object-id
+        wg = sorted(weight_giving, key=lambda t: (t[2], int(t[1])))
+        keep_idx = {0, len(wg) // 2, len(wg) - 1}
+        kept_weights = set()
+        for i, (s, nid, w) in enumerate(wg):
+            if i in keep_idx:
+                s.pop("display", None)
+                kept_weights.add(round(w, 5))
+            else:
+                if s.get("display") is not False:
+                    n += 1
+                s["display"] = False
+    else:
+        for s, nid, w in weight_giving:
+            s.pop("display", None)
+
+    _cap(image_only, _KEEP_KMM_IMAGE_ONLY)
+    _cap(pure, _KEEP_KMM_PURE)
+
+    # Hide the weight_rough_g readings of the dropped KMM specimens. The
+    # KMM weight entries carry source label "kmk" with no nid, so we match
+    # by value: keep only entries whose rounded value is one of the kept
+    # min/middle/max weights; flag the rest display:false (data kept).
+    if kept_weights is not None:
+        wfield = coin.get("weight_rough_g")
+        if isinstance(wfield, list):
+            for fv in wfield:
+                if not isinstance(fv, dict):
+                    continue
+                if str(fv.get("source", "")).strip().lower() != "kmk":
+                    continue
+                val = fv.get("value")
+                if not isinstance(val, (int, float)):
+                    continue
+                if round(float(val), 5) in kept_weights:
+                    fv.pop("display", None)
+                else:
+                    fv["display"] = False
     return n
 
 
@@ -455,6 +568,55 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     if diameters:
         out["diameter_mm"] = diameters
 
+    # Honor `_curation_holds` for measurement fields, reconciling the two
+    # rules that govern measurement merges:
+    #   • §9a «preserve-all»: every distinct source reading of a list-form
+    #     measurement (fineness / weight_rough_g / diameter_mm) is kept.
+    #   • §4 «verified-wins»: a SOURCE-VERIFIED reading displaces an
+    #     UNVERIFIED curator placeholder (which must NOT propagate).
+    #
+    # `skip_first_list=True` drops the foundation-self's readings on regen,
+    # so a curator-set value that no source attests (e.g. the canonical
+    # 23½-Karat .979 Nobel-fineness anchor) would otherwise vanish. Freezing
+    # it via `_curation_holds: {fineness: "…"}` brings it back — but the way
+    # it re-enters depends on what the sources now say:
+    #
+    #   (a) a source member attests the field VERIFIED while the hold is
+    #       UNVERIFIED → §4: the source displaces the hold. `out[_hf]`
+    #       (collected source readings) + the OR-merged `*_verified` flag
+    #       already carry the source value; the held value is dropped.
+    #   (b) otherwise (no verified source, OR the hold is itself verified)
+    #       → §9a: UNION the held value with the collected source readings.
+    #       A source's UNVERIFIED reading does NOT suppress the curator
+    #       anchor and vice-versa — both survive as distinct list entries.
+    for _hf, _vf in (("fineness", "fineness_verified"),
+                     ("weight_rough_g", "weight_rough_verified"),
+                     ("diameter_mm", "diameter_mm_verified")):
+        if _hf not in holds_keys or final_entry.get(_hf) is None:
+            continue
+        held_verified = bool(final_entry.get(_vf))
+        src_verified = (_or_merge_verified(members[1:], _vf)
+                        if len(members) > 1 else None)
+        if (not held_verified) and src_verified:
+            # (a) §4 verified-wins: let the collected source readings +
+            #     OR-merged verified flag stand; drop the unverified hold.
+            continue
+        # (b) §9a preserve-all: union held value(s) with source readings.
+        held_val = final_entry[_hf]
+        merged = list(held_val) if isinstance(held_val, list) else [held_val]
+        collected = out.get(_hf)
+        if isinstance(collected, list):
+            def _k(e):
+                return (e.get("value"), e.get("source")) if isinstance(e, dict) else (e, None)
+            seen = {_k(e) for e in merged}
+            for e in collected:
+                if _k(e) not in seen:
+                    merged.append(e)
+                    seen.add(_k(e))
+        out[_hf] = merged
+        # `out[_vf]` already holds the OR-merge over all members (foundation
+        # + sources), which is the correct «any verified ⇒ verified» status.
+
     # Catalog rebuild: same principle as measurements — drop foundation's
     # absorb-cached list-form catalog values for cross-source fields
     # before re-deriving. Foundation's SCALAR catalog entries are V1-
@@ -508,6 +670,14 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
             else:
                 out["catalog"][k] = filtered
 
+    # §9.4 index hygiene on the assembled catalog: fold any `others:
+    # <code># N` overflow into its typed list-field (case-insensitive
+    # code) and de-dup list-form values case-insensitively («Hede 55C»
+    # + «55c» → one «55C»). Runs whenever the entry has a catalog dict
+    # (including the bulk-promote / single-member path skipped above).
+    if isinstance(out.get("catalog"), dict):
+        _fold_catalog_indices(out["catalog"])
+
     # Sources union — preserve curator-added entries on the foundation
     # alongside fresh seed-source citations, deduplicated by URL (single-
     # page hosts) or by (url, ref, type) (multi-record sources like the
@@ -517,6 +687,17 @@ def _enrich_final_entry(final_entry: dict, members: list[dict],
     # Numista / ucoin / auction refs that have no seed equivalent.
     # Phantom-citation persistence is a smaller issue than curator data
     # loss; dedup ensures legitimate duplicates collapse anyway.
+    #
+    # NB — a blanket `members[1:]` skip for `unified-*` foundations was
+    # tried and reverted: even pure-absorbed-looking foundations (final
+    # composed_of == [self]) can carry V1-curator sources merged in by a
+    # prior absorb (e.g. a `km-*` V1 member's Bruun / Numista / Heritage
+    # citations) that live ONLY on the foundation-self and are absent from
+    # the seed_unified member's own sources list. Skipping the foundation-
+    # self dropped 471 such legitimate citations across 224 entries.
+    # True phantoms (a museum citation the merger has since re-homed to a
+    # sibling entry — the f1g-68 / KMM 156725 case) are cleaned surgically
+    # at the data layer instead.
     sources = _collect_sources(members)
     if sources:
         out["sources"] = sources
@@ -735,12 +916,238 @@ def _all_basic_peers_no_match_primary(unified: dict, finals: list[dict],
 # fuesse.yml on every fraction-inference invocation would be wasteful.
 _FUSS_FRACTIONS_CACHE: dict[str, set] | None = None
 
+# Re-validate composed_of membership each run (evict identity-mismatched
+# members per `_revalidate_composed_of`). Default on; `--no-revalidate`
+# disables for a one-off debug run that must not mutate existing membership.
+REVALIDATE_ENABLED: bool = True
+
 
 def _get_fuss_fractions_cache() -> dict[str, set]:
     global _FUSS_FRACTIONS_CACHE
     if _FUSS_FRACTIONS_CACHE is None:
         _FUSS_FRACTIONS_CACHE = load_fuss_fractions()
     return _FUSS_FRACTIONS_CACHE
+
+
+def _nominal_genuinely_differs(a, b) -> bool:
+    """True iff two nominals are a GENUINE identity mismatch.
+
+    Mirrors the merger's nominal discriminator (merge_seeds_cross_source,
+    shipped 2026-06-08): normalise both via `_normalise_nominal`, treat
+    them as the same coin when equal OR when the bare-unit / same-unit-
+    compound wildcard (`_nominal_wildcard_match`) holds. Anything else is
+    a genuine difference («8 Skilling» vs «1 Denning», «2 Guldkrone» vs
+    «2 Dukat»). Empty / unparseable nominals are NOT a genuine difference
+    (can't assert a mismatch from missing data).
+    """
+    na, nb = _mg_normalise_nominal(a), _mg_normalise_nominal(b)
+    if not na or not nb or na == nb:
+        return False
+    if _nominal_wildcard_match(na, nb):
+        return False
+    return True
+
+
+def _revalidate_composed_of(
+    final_by_id: dict, unified_by_id: dict, entity_id: str
+) -> dict[str, set]:
+    """Re-validate existing composed_of membership; return per-host evict set.
+
+    The ABSORB stage is additive + STICKY: once a unified entry lands in a
+    foundation's `composed_of`, no later run re-checks whether it still
+    belongs. Earlier-pipeline mis-groupings (and V1-bootstrap composed_of
+    carried forward) therefore persist forever — e.g. the «1 Denning»
+    (unified-kmk-137199) + «4 Skilling lybsk» (unified-kmk-294714) members
+    fused into the KM 42 «8 Skilling» foundation, dragging a 0.44 g weight
+    onto an 8-Skilling row (caught 2026-06-08).
+
+    SAFE criterion — IDENTITY mismatch only, never specimen variance:
+    a member is evicted iff its normalised nominal GENUINELY differs from
+    the foundation's (`_nominal_genuinely_differs`) AND the two share NO
+    agreeing type-level catalogue (`_shares_type_level_catalog` — km / hede
+    / galster / dav / lange / numista / bruun_collection_id, NOT weak per-
+    reign Schou/Sieg). This is exactly the merger's nominal discriminator,
+    applied to existing membership. The weight-tier-1 disambiguator is
+    DELIBERATELY NOT used here: a same-nominal member whose weight diverges
+    >5 % is legitimate specimen variance (a worn / off-standard piece),
+    not a different coin — re-validating on weight would false-drop real
+    specimens (verified 2026-06-08: 24 of 38 weight-tier drops were
+    same-nominal). Once a member is evicted it re-enters the unabsorbed
+    pool and re-homes via the standard force-promote path; the shipped
+    nominal discriminator then prevents it re-absorbing into the same
+    foundation (no type-level tie → match_pair no_match).
+
+    Returns `{host_id: {evict_member_id, ...}}` for every foundation with
+    at least one identity-mismatched member.
+    """
+    evictions: dict[str, set] = {}
+    for fid, fc in final_by_id.items():
+        comp = fc.get("composed_of") or []
+        if len(comp) < 2:
+            continue
+        fa = _catalog_refs(fc, entity_id)
+        host_nom = fc.get("nominal")
+        for mid in comp:
+            if mid == fid:
+                continue  # self-link foundation contribution — never evict
+            m = unified_by_id.get(mid)
+            if m is None:
+                continue  # raw-seed / unknown member — not a unified entry
+            # Forgery-asymmetry: a contemporary forgery / imitation is never
+            # the same object as the genuine coin it copies, even sharing its
+            # catalogue (it's catalogued BY what it imitates). Evict REGARDLESS
+            # of a type-level tie — the shared Hede/KM is exactly why it stuck
+            # (caught 2026-06-09: «1 Skilling samtidig forfalskning» bouncing
+            # between genuine Hede 119B hosts).
+            if _is_forgery_nominal(host_nom) != _is_forgery_nominal(m.get("nominal")):
+                evictions.setdefault(fid, set()).add(mid)
+                continue
+            if not _nominal_genuinely_differs(host_nom, m.get("nominal")):
+                continue
+            if _shares_type_level_catalog(fa, _catalog_refs(m, entity_id)):
+                continue  # type-level catalogue tie overrides nominal diff
+            evictions.setdefault(fid, set()).add(mid)
+    return evictions
+
+
+def _wkey(v):
+    """Round-to-5 numeric key for weight/fineness/diameter value matching."""
+    try:
+        return round(float(v), 5)
+    except (TypeError, ValueError):
+        return None
+
+
+def _surgical_decontaminate(
+    fc: dict, evicted_members: list[dict], remaining_members: list[dict]
+) -> None:
+    """Strip ONLY the evicted members' EXCLUSIVE accumulated contributions.
+
+    Prior enrichment runs bake every member's measurements + sources onto
+    the foundation entry itself (members[0] == fc in `_enrich_final_entry`),
+    so dropping a member from composed_of is not enough — its 0.44 g weight,
+    its source URLs etc. survive on fc and re-pollute the next re-enrichment.
+
+    Twin-INDEPENDENT removal (no clean-foundation snapshot needed): for each
+    list-form measurement field (weight_rough_g / fineness / diameter_mm) and
+    for `sources`, drop a value from fc iff it is contributed by SOME evicted
+    member AND by NO remaining member. Values that no evicted member carries
+    (genuine foundation-own data, or orphan baked data with no current backer
+    — e.g. km-74's 4 Bruun/KMM source URLs) are PRESERVED untouched, honouring
+    §9a «preserve all data, never collapse». Mutates `fc` in place.
+
+    Year fields are intentionally left alone: an over-wide year range is the
+    safe direction per §0 («year_last overshooting acceptable, never clip»),
+    and re-enrichment unions years from the surviving member set anyway.
+    """
+    def _val_source_keys(members, field):
+        keys = set()
+        for m in members:
+            v = m.get(field)
+            if isinstance(v, list):
+                for x in v:
+                    if isinstance(x, dict) and _wkey(x.get("value")) is not None:
+                        keys.add((_wkey(x["value"]), x.get("source")))
+        return keys
+
+    def _source_keys(members):
+        keys = set()
+        for m in members:
+            for s in (m.get("sources") or []):
+                if isinstance(s, dict):
+                    keys.add((s.get("url"), s.get("ref"), s.get("type")))
+        return keys
+
+    for field in ("weight_rough_g", "fineness", "diameter_mm"):
+        cur = fc.get(field)
+        if not isinstance(cur, list):
+            continue  # scalar (curator / canonical Müntzfuß value) — leave it
+        ev_keys = _val_source_keys(evicted_members, field)
+        if not ev_keys:
+            continue
+        keep_keys = _val_source_keys(remaining_members, field)
+        kept = [
+            x for x in cur
+            if not (
+                isinstance(x, dict)
+                and (_wkey(x.get("value")), x.get("source")) in ev_keys
+                and (_wkey(x.get("value")), x.get("source")) not in keep_keys
+            )
+        ]
+        if kept:
+            fc[field] = kept
+        else:
+            fc.pop(field, None)
+
+    cur_sources = fc.get("sources")
+    if isinstance(cur_sources, list):
+        ev_src = _source_keys(evicted_members)
+        if ev_src:
+            keep_src = _source_keys(remaining_members)
+            kept = [
+                s for s in cur_sources
+                if not (
+                    isinstance(s, dict)
+                    and (s.get("url"), s.get("ref"), s.get("type")) in ev_src
+                    and (s.get("url"), s.get("ref"), s.get("type")) not in keep_src
+                )
+            ]
+            if kept:
+                fc["sources"] = kept
+            else:
+                fc.pop("sources", None)
+
+
+# ---------------------------------------------------------------------------
+# Stale-final detection (2026-06-10) — module-level so it is unit-testable.
+# See the STALE-FINAL DROP block in process_entity() for the full rationale.
+# ---------------------------------------------------------------------------
+
+# Seed-source phase tags. A bare phase like "kmk"/"bruun" on a final is the
+# SEED's source tag, not a curator decision — so it does NOT count as curation.
+_SEED_TAG_PHASES = frozenset({
+    "bruun", "hede", "kmk", "galster", "ikmk",
+    "numista", "numismaster", "ucoin", "seed_unsorted",
+})
+
+
+def _final_is_curated(fe: dict) -> bool:
+    """True if a final entry carries a curator decision that must survive an
+    automated drop: a real Müntzfuß (`fuss` not seed_unsorted/None), a `note`,
+    `_curation_holds`, `promoted_to`, or a curator-assigned `phase` (a bare
+    seed-source phase tag is NOT curation)."""
+    if fe.get("fuss") not in (None, "seed_unsorted"):
+        return True
+    if fe.get("note") or fe.get("_curation_holds") or fe.get("promoted_to"):
+        return True
+    ph = fe.get("phase")
+    if ph and ph not in _SEED_TAG_PHASES:
+        return True
+    return False
+
+
+def _final_has_live_backing(fe: dict, live_unified_ids: set, live_ids: set) -> bool:
+    """True if the final's own id is a current seed_unified head OR any of its
+    composed_of members resolves to a current seed_unified head / seed id."""
+    if fe.get("id") in live_unified_ids:
+        return True
+    return any(c in live_ids for c in (fe.get("composed_of") or []))
+
+
+def _is_vanished_stale_final(fe: dict, live_unified_ids: set, live_ids: set) -> bool:
+    """A PIPELINE-PROMOTED (`unified-*`) final whose backing seed_unified entry
+    has vanished and which carries no curation — safe to drop.
+
+    The `unified-*` id gate is the primary guard: a V1-bootstrap foundation
+    (real id, e.g. `dk-tid-…`) is the coin's OWN data, never seed-derived, so it
+    is never dropped here regardless of backing. The curation guard is the
+    second line of defence (keeps a bulk-promoted entry a curator has since
+    classified)."""
+    return (
+        str(fe.get("id") or "").startswith("unified-")
+        and not _final_has_live_backing(fe, live_unified_ids, live_ids)
+        and not _final_is_curated(fe)
+    )
 
 
 def process_entity(entity_id: str) -> dict:
@@ -1275,6 +1682,45 @@ def process_entity(entity_id: str) -> dict:
               f"different-KM member(s) + reset host(s) to clean twin "
               f"→ re-match + force-promote standalone")
 
+    # RE-VALIDATE composed_of membership (IDENTITY mismatch eviction).
+    # The over-merge purge above only handles the curator-reviewed base-KM
+    # allowlist; this pass is criterion-driven and catches the broader
+    # «wrong-nominal member fused into a foundation» class (e.g. KM 42
+    # «8 Skilling» dragging in «1 Denning» + «4 Skilling lybsk»). Criterion
+    # = genuine nominal differ + no type-level catalogue tie (= the shipped
+    # merger nominal discriminator, applied to existing membership). Each
+    # evicted member is surgically decontaminated off the host (its weight /
+    # source contributions removed, orphan + remaining-member data kept),
+    # dropped from composed_of, and force-promoted standalone so it re-homes
+    # — the discriminator then blocks it re-absorbing (no type-level tie).
+    if REVALIDATE_ENABLED:
+        revalid = _revalidate_composed_of(final_by_id, unified_by_id, entity_id)
+        revalid_evicted = 0
+        for host_id, evict_set in revalid.items():
+            fc = final_by_id.get(host_id)
+            if not fc:
+                continue
+            comp = list(fc.get("composed_of") or [])
+            evict_now = {e for e in evict_set if e in comp}
+            if not evict_now:
+                continue
+            evicted_members = [unified_by_id[e] for e in evict_now
+                               if e in unified_by_id]
+            remaining_members = [unified_by_id[c] for c in comp
+                                 if c not in evict_now and c in unified_by_id]
+            _surgical_decontaminate(fc, evicted_members, remaining_members)
+            fc["composed_of"] = [c for c in comp if c not in evict_now]
+            forced_evict_promote |= evict_now
+            revalid_evicted += len(evict_now)
+            for e in sorted(evict_now):
+                m = unified_by_id.get(e, {})
+                print(f"  re-validate: {host_id} ({fc.get('nominal')!r}) "
+                      f"✗ evict {e} ({m.get('nominal')!r}) — identity mismatch")
+        if revalid_evicted:
+            print(f"  re-validate: evicted {revalid_evicted} identity-"
+                  f"mismatched member(s) across {len(revalid)} host(s) "
+                  f"→ decontaminated + force-promote standalone")
+
     # Build: already-absorbed unified ids (across all final composed_of lists)
     already_absorbed: dict[str, str] = {}
     for fid, fc in final_by_id.items():
@@ -1680,6 +2126,51 @@ def process_entity(entity_id: str) -> dict:
               f"corrected {corrected_fractions_count} entries "
               f"(prior buggy leading-frac path output)")
 
+    # STALE-FINAL DROP (2026-06-10). Absorb is otherwise additive/sticky: a
+    # final entry persists across runs even when the seed_unified entry that
+    # backed it disappears (its seed source was deleted or filtered out). The
+    # "stale composed_of refs purged" step above only trims dead REFS inside a
+    # surviving final — it never drops a WHOLE final whose every backing member
+    # has vanished. That left 622 stale exonumia finals behind during the
+    # 2026-06-09 KMM-exonumia suppress; they had to be removed by hand. This
+    # closes the loop: parallel to the out-of-scope and stale-foundation purges
+    # above, drop a final iff ALL of:
+    #   (a) it is a PIPELINE-PROMOTED entry (id form `unified-*`). A
+    #       V1-bootstrap foundation (real id, e.g. `dk-tid-…`) is the coin's
+    #       OWN data and is never seed-derived — it is NEVER dropped here, even
+    #       if its seed enrichment vanished (the curation guard (c) is a second
+    #       line of defence, but the id-form gate is the primary one);
+    #   (b) it has NO live backing — neither its own id nor any composed_of
+    #       member resolves to a CURRENT seed_unified head. Assessed HERE, after
+    #       enrichment has refreshed composed_of via `new_links`, so a unified
+    #       that was merely RE-KEYED (not deleted) is re-linked and still counts
+    #       as backed → no false drop;
+    #   (c) it carries NO curation — fuss is seed_unsorted/None, no `note`, no
+    #       `_curation_holds`, no `promoted_to`, and no curator-assigned phase
+    #       (a bare seed-source phase tag like `kmk`/`bruun` is not curation).
+    # A CURATED entry whose backing vanished is KEPT (surfaced, not silently
+    # dropped) — same spirit as §4 / the D-series "curated/verified wins": never
+    # lose curator work to an automated pass. The dropped ids are excluded from
+    # the monotonic guard below so it cannot re-promote them.
+    _live_unified_ids = set(unified_by_id)
+    _live_seed_ids = {
+        s for u in unified_entries for s in (u.get("composed_of") or [])
+    }
+    _live_ids = _live_unified_ids | _live_seed_ids
+
+    stale_dropped_ids: set[str] = set()
+    _kept_after_stale: list[dict] = []
+    for e in enriched_entries:
+        if _is_vanished_stale_final(e, _live_unified_ids, _live_ids):
+            stale_dropped_ids.add(str(e.get("id")))
+            continue
+        _kept_after_stale.append(e)
+    enriched_entries = _kept_after_stale
+    if stale_dropped_ids:
+        print(f"  [{entity_id}] stale finals dropped: "
+              f"{len(stale_dropped_ids)} entries (backing seed_unified gone, "
+              f"no curation): {sorted(stale_dropped_ids)[:8]}")
+
     # MONOTONIC-ABSORB GUARD (TODO §CH). A coin already on the page must
     # not silently vanish from final just because a new source (IKMK, …)
     # was merged in and shifted the stale-foundation-purge / bulk-promote
@@ -1716,6 +2207,19 @@ def process_entity(entity_id: str) -> dict:
         fid = fc.get("id")
         if not fid or fid in new_repr_ids:
             continue
+        # Vanished-backing stale final — do NOT resurrect. Checked directly on
+        # the prior-final entry (not via `stale_dropped_ids`) because such an
+        # entry may have been removed by an EARLIER purge (stale-foundation /
+        # self-fold) before the explicit stale-final filter above could see it;
+        # without this the monotonic guard re-promotes it verbatim and the
+        # whole point is defeated. Only fires for entries ABSENT from the new
+        # final (guarded by the `fid in new_repr_ids` check above), so a merely
+        # re-keyed unified — which would be present, re-linked via new_links —
+        # never reaches here. Same id-form + no-backing + no-curation gate as
+        # the explicit filter; both feed `stale_dropped_ids` for the stat.
+        if _is_vanished_stale_final(fc, _live_unified_ids, _live_ids):
+            stale_dropped_ids.add(str(fid))
+            continue
         if (_is_out_of_scope_nominal(fc.get("nominal"))
                 or _is_out_of_scope_catalog(fc.get("catalog"))):
             continue  # OOS — correctly dropped
@@ -1750,6 +2254,7 @@ def process_entity(entity_id: str) -> dict:
         "bulk_promoted": len(bulk_promoted),
         "stale_purged": purged_count,
         "out_of_scope_dropped": out_of_scope_final_dropped,
+        "stale_finals_dropped": len(stale_dropped_ids),
         "unmatched_unified_ids": unmatched,
         "multi_match_warnings": multi_match,
         "enrichment_conflicts": enrichment_conflicts,
@@ -1845,9 +2350,15 @@ def main() -> int:
                         help="Write data/v2/final/ + data/v2/classification_decisions/")
     parser.add_argument("--entity", help="Process only this entity")
     parser.add_argument("--verbose", "-v", action="store_true")
+    parser.add_argument("--no-revalidate", action="store_true",
+                        help="Skip composed_of re-validation (identity-"
+                             "mismatch eviction) for this run")
     args = parser.parse_args()
     if args.apply:
         args.dry_run = False
+    if args.no_revalidate:
+        global REVALIDATE_ENABLED
+        REVALIDATE_ENABLED = False
 
     entities = [args.entity] if args.entity else _entities_with_seed_unified()
     if not entities:
@@ -1867,6 +2378,7 @@ def main() -> int:
         totals["bulk_promoted"] += result.get("bulk_promoted", 0)
         totals["stale_purged"] += result.get("stale_purged", 0)
         totals["out_of_scope_dropped"] += result.get("out_of_scope_dropped", 0)
+        totals["stale_finals_dropped"] += result.get("stale_finals_dropped", 0)
         totals["multi_match"] += len(result["multi_match_warnings"])
         totals["enrichment_conflicts"] += len(result["enrichment_conflicts"])
         totals["applied_assignments"] += len(result.get("applied_assignments") or [])
@@ -1918,6 +2430,24 @@ def main() -> int:
             V2_FINAL.mkdir(parents=True, exist_ok=True)
             final_path = V2_FINAL / f"{ent}.yml"
             prior_doc = _load_yaml(final_path)
+            # §9.4 blanket index hygiene: fold `others: <code># N` → typed
+            # list-field + case-insensitive value de-dup on EVERY final
+            # entry — including V1-carryover / prior-absorb foundations that
+            # were not re-enriched this run (no current seed_unified member),
+            # whose stale overflow would otherwise survive. Skips entries
+            # that froze `catalog` via `_curation_holds`.
+            for _fc in result["enriched_final_entries"]:
+                if not isinstance(_fc, dict):
+                    continue
+                if isinstance(_fc.get("catalog"), dict):
+                    _h = _fc.get("_curation_holds")
+                    _hk = set(_h.keys() if isinstance(_h, dict)
+                              else (_h or []))
+                    if "catalog" not in _hk:
+                        _fold_catalog_indices(_fc["catalog"])
+                # Uninformative-KMM thinning on EVERY final entry (incl.
+                # V1-carryover foundations not re-enriched this run).
+                _suppress_weightless_museum_overcollection(_fc)
             final_path.write_text(
                 _emit_final_yaml(ent, result["enriched_final_entries"],
                                   prior_doc),
@@ -1956,6 +2486,7 @@ def main() -> int:
     print(f"  Genuinely new (pending):         {totals['genuinely_new']:>5d}")
     print(f"  Stale composed_of refs purged:   {totals['stale_purged']:>5d}")
     print(f"  Out-of-scope finals dropped:     {totals['out_of_scope_dropped']:>5d}")
+    print(f"  Stale finals dropped (no backing):{totals['stale_finals_dropped']:>5d}")
     print(f"  Multi-match warnings:            {totals['multi_match']:>5d}")
     print(f"  Enrichment conflicts (logged):   {totals['enrichment_conflicts']:>5d}")
     print(f"  Curator assignments applied:     {totals['applied_assignments']:>5d}")

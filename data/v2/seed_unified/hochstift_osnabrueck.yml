@@ -1,9 +1,9 @@
 # V2 seed_unified for political entity `hochstift_osnabrueck`.
-# Generated 2026-06-03 by scripts/maintenance/merge_seeds_cross_source.py
+# Generated 2026-06-10 by scripts/maintenance/merge_seeds_cross_source.py
 # from data/v2/seed/<source>/hochstift_osnabrueck.yml across all sources.
 #
 # Input: 235 per-source seed entries.
-# Output: 196 unified entries (one per physical coin).
+# Output: 179 unified entries (one per physical coin).
 #
 # Each unified entry's `composed_of` lists the per-source seeds
 # it absorbed via the §5.2 match hierarchy. `weight_rough_g[]`,
@@ -11,13 +11,13 @@
 # every reading per CLAUDE.md §9a. `sources[]` is the union.
 
 id: hochstift_osnabrueck
-generated_at: '2026-06-03'
+generated_at: '2026-06-10'
 coins:
 - id: unified-dk-bruun-11903
   fuss: seed_unsorted
   phase: bruun
   kind: kurant
-  nominal: Osnabrück. Taler
+  nominal: 1 Taler
   year_first: 1633
   year_last: 1633
   year_label: '1633'
@@ -35,12 +35,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 28.95
-    source: tid
+    source: ucoin
   - value: 29.08
     source: bruun
   diameter_mm:
   - value: 29.0
-    source: tid
+    source: ucoin
   sources:
   - type: auction
     url: https://www.danskmoent.dk/pdf/SBG_Mar2025_LEBruunPtII_WebCatalog_LR.pdf
@@ -92,12 +92,12 @@ coins:
   - value: 6.6
     source: numista
   - value: 7.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 30.0
     source: numista
   - value: 31.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/122833
@@ -147,12 +147,12 @@ coins:
   - value: 1.4
     source: numista
   - value: 1.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 19.0
     source: numista
   - value: 19.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/158187
@@ -201,12 +201,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.2
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
     source: numista
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/184154
@@ -251,14 +251,14 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.3
-    source: tid
+    source: ucoin
   - value: 2.32
     source: numista
   diameter_mm:
   - value: 21.0
     source: numista
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/214017
@@ -306,7 +306,7 @@ coins:
   - value: 26.0
     source: numista
   - value: 26.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/236323
@@ -355,7 +355,7 @@ coins:
   - value: 29.0
     source: numista
   - value: 29.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/236325
@@ -403,13 +403,20 @@ coins:
   weight_rough_g:
   - value: 6.38
     source: numista
+  - value: 6.4
+    source: ucoin
   diameter_mm:
   - value: 33.0
     source: numista
+  - value: 33.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/236579
     ref: Numista N#236579 — 3 Schilling - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-3-schilling-1633/?tid=173031
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -423,6 +430,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-236579
+  - tid-tid-173031
 - id: unified-dk-numista-237138
   fuss: seed_unsorted
   phase: numista
@@ -432,10 +440,11 @@ coins:
   year_last: 1637
   year_label: '1637'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Münster
   catalog:
     km: '46'
     numista: '237138'
-    dav: CCT# 5672
+    dav: CCT 5672
     others:
     - Kennepohl# 225
   metal: silver
@@ -443,18 +452,25 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 28.74
     source: numista
+  - value: 28.8
+    source: ucoin
   diameter_mm:
+  - value: 41.0
+    source: ucoin
   - value: 42.0
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/237138
     ref: Numista N#237138 — 1 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1637/?tid=173391
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -468,6 +484,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237138
+  - tid-tid-173391
 - id: unified-dk-numista-237286
   fuss: seed_unsorted
   phase: numista
@@ -488,17 +505,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 2.6
+    source: ucoin
   diameter_mm:
+  - value: 24.0
+    source: ucoin
   - value: 25.0
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/237286
     ref: Numista N#237286 — 1/14 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1656-1657/?tid=173336
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -512,6 +537,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237286
+  - tid-tid-173336
 - id: unified-dk-numista-237288
   fuss: seed_unsorted
   phase: numista
@@ -532,17 +558,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 2.4
+    source: ucoin
   diameter_mm:
   - value: 23.0
     source: numista
+  - value: 23.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/237288
     ref: Numista N#237288 — 4 Mariengroschen - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-4-mariengroschen-1656-1657/?tid=173147
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -556,6 +590,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237288
+  - tid-tid-173147
 - id: unified-dk-numista-237353
   fuss: seed_unsorted
   phase: numista
@@ -565,6 +600,7 @@ coins:
   year_last: 1657
   year_label: '1657'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Melle
   catalog:
     km: '74'
     numista: '237353'
@@ -573,17 +609,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 1.3
+    source: ucoin
   diameter_mm:
+  - value: 18.0
+    source: ucoin
   - value: 18.5
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/237353
     ref: Numista N#237353 — 6 Pfennigs - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1657/?tid=172945
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -597,6 +641,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237353
+  - tid-tid-172945
 - id: unified-dk-numista-237354
   fuss: seed_unsorted
   phase: numista
@@ -606,6 +651,7 @@ coins:
   year_last: 1657
   year_label: '1657'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Melle
   catalog:
     km: '76'
     numista: '237354'
@@ -614,17 +660,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 3.7
+    source: ucoin
   diameter_mm:
+  - value: 24.0
+    source: ucoin
   - value: 25.0
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/237354
     ref: Numista N#237354 — 1/14 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1657/?tid=173337
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -638,6 +692,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237354
+  - tid-tid-173337
 - id: unified-dk-numista-237368
   fuss: seed_unsorted
   phase: numista
@@ -647,10 +702,11 @@ coins:
   year_last: 1661
   year_label: '1661'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Melle
   catalog:
     km: '82'
     numista: '237368'
-    dav: CCT# 5741
+    dav: CCT 5741
     others:
     - Kennepohl# 256
     - Emm/Koz# 91
@@ -659,18 +715,25 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 28.64
     source: numista
+  - value: 28.8
+    source: ucoin
   diameter_mm:
   - value: 43.0
     source: numista
+  - value: 43.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/237368
     ref: Numista N#237368 — 1 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1661/?tid=173393
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -684,6 +747,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-237368
+  - tid-tid-173393
 - id: unified-dk-numista-237373
   fuss: seed_unsorted
   phase: numista
@@ -711,12 +775,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 22.0
     source: numista
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/237373
@@ -764,10 +828,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   - value: 19.0
     source: numista
   sources:
@@ -821,10 +885,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.7
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 19.0
-    source: tid
+    source: ucoin
   - value: 20.0
     source: numista
   sources:
@@ -873,12 +937,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 23.0
     source: numista
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/237378
@@ -929,14 +993,14 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.6
-    source: tid
+    source: ucoin
   - value: 3.73
     source: numista
   diameter_mm:
   - value: 26.0
     source: numista
   - value: 26.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/237385
@@ -990,10 +1054,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 7.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 31.0
-    source: tid
+    source: ucoin
   - value: 33.0
     source: numista
   sources:
@@ -1051,12 +1115,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 7.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 32.0
     source: numista
   - value: 32.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/237408
@@ -1093,7 +1157,7 @@ coins:
   catalog:
     km: '136'
     numista: '237412'
-    dav: SG# 411
+    dav: SG 411
     others:
     - Kennepohl# 301
     - Kennepohl# 304b
@@ -1107,10 +1171,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 16.6
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 35.0
-    source: tid
+    source: ucoin
   - value: 36.0
     source: numista
   sources:
@@ -1160,12 +1224,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.9
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.0
     source: numista
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238233
@@ -1210,14 +1274,14 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.9
-    source: tid
+    source: ucoin
   - value: 0.93
     source: numista
   diameter_mm:
   - value: 17.0
     source: numista
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238234
@@ -1268,12 +1332,12 @@ coins:
   - value: 2.77
     source: numista
   - value: 2.77
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 24.0
     source: numista
   - value: 24.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238235
@@ -1310,7 +1374,7 @@ coins:
   catalog:
     km: '174.1'
     numista: '238237'
-    dav: SG# 724
+    dav: SG 724
     others:
     - Kennepohl# 310b
     - Kennepohl# 320b
@@ -1323,10 +1387,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 17.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 35.0
-    source: tid
+    source: ucoin
   - value: 36.0
     source: numista
   sources:
@@ -1377,10 +1441,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.6
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 24.0
-    source: tid
+    source: ucoin
   - value: 25.0
     source: numista
   sources:
@@ -1430,12 +1494,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.2
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 20.0
     source: numista
   - value: 20.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238783
@@ -1481,12 +1545,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.7
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 24.0
     source: numista
   - value: 24.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238785
@@ -1534,12 +1598,12 @@ coins:
   - value: 2.45
     source: numista
   - value: 2.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 22.0
     source: numista
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238786
@@ -1588,12 +1652,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.6
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.0
     source: numista
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238788
@@ -1670,7 +1734,9 @@ coins:
   ruler: Ernest Augustus of York and Albany (Ernst August von York und Albany)
   catalog:
     km: '219'
-    numista: '238849'
+    numista:
+    - '238849'
+    - '433332'
     others:
     - Kennepohl# 357d
     - Welter# 2499
@@ -1682,17 +1748,24 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 2.26
+    source: numista
   - value: 2.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.0
     source: numista
   - value: 21.0
-    source: tid
+    source: ucoin
+  - value: 22.0
+    source: numista
   sources:
   - type: literature
     url: https://en.numista.com/238849
     ref: Numista N#238849 — 2 Mariengroschen - Ernest August II of York - Bishopric of Osnabrück
+  - type: literature
+    url: https://en.numista.com/433332
+    ref: Numista N#433332 — 2 Mariengroschen - Ernest August II of York - Bishopric of Osnabrück
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-mariengroschen-1720-1721/?tid=173141
     ref: ucoin
@@ -1709,6 +1782,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238849
+  - dk-numista-433332
   - tid-tid-173141
 - id: unified-dk-numista-238850
   fuss: seed_unsorted
@@ -1740,12 +1814,12 @@ coins:
   - value: 3.12
     source: numista
   - value: 3.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 23.0
     source: numista
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238850
@@ -1793,12 +1867,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 5.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 27.0
     source: numista
   - value: 27.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238851
@@ -1837,17 +1911,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 1.1
+    source: ucoin
   diameter_mm:
   - value: 17.0
     source: numista
+  - value: 17.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238854
     ref: Numista N#238854 — 6 Pfennigs - Ernest August II of York - Bishopric of Osnabrück (1721)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1721/?tid=172949
+    ref: ucoin
   note:
     de: 1/42 Thaler
     en: 1/42 Thaler
@@ -1865,6 +1947,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238854
+  - tid-tid-172949
 - id: unified-dk-numista-238856
   fuss: seed_unsorted
   phase: numista
@@ -1874,6 +1957,7 @@ coins:
   year_last: 1721
   year_label: '1721'
   ruler: Ernst August von York und Albany
+  mint: Osnabrück
   catalog:
     km: '234'
     numista: '238856'
@@ -1882,17 +1966,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
+  weight_rough_g:
+  - value: 1.7
+    source: ucoin
   diameter_mm:
   - value: 20.0
     source: numista
+  - value: 20.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238856
     ref: Numista N#238856 — 12 Pfennigs - Ernest August II of York - Bishopric of Osnabrück (1721)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-12-pfennig-1721/?tid=172951
+    ref: ucoin
   note:
     de: 1/21 Thaler
     en: 1/21 Thaler
@@ -1910,6 +2002,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238856
+  - tid-tid-172951
 - id: unified-dk-numista-238858
   fuss: seed_unsorted
   phase: numista
@@ -1932,15 +2025,22 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 3.0
+    source: ucoin
   - value: 3.08
     source: numista
   diameter_mm:
   - value: 23.0
     source: numista
+  - value: 23.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238858
     ref: Numista N#238858 — 1/14 Thaler - Ernest August II of York - Bishopric of Osnabrück (1721)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1721/?tid=173343
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -1954,6 +2054,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238858
+  - tid-tid-173343
 - id: unified-dk-numista-238859
   fuss: seed_unsorted
   phase: numista
@@ -1971,17 +2072,25 @@ coins:
   metal: silver
   metal_verified: true
   fineness_verified: false
-  weight_rough_verified: false
+  weight_rough_verified: true
   diameter_mm_verified: true
   mint_verified: false
   verified: false
+  weight_rough_g:
+  - value: 1.2
+    source: ucoin
   diameter_mm:
   - value: 18.0
     source: numista
+  - value: 18.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238859
     ref: Numista N#238859 — 1 Mariengroschen - Ernest August II of York - Bishopric of Osnabrück (1721)
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1721/?tid=173122
+    ref: ucoin
   note:
     de: 1/36 Thaler
     en: 1/36 Thaler
@@ -1999,6 +2108,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238859
+  - tid-tid-173122
 - id: unified-dk-numista-238860
   fuss: seed_unsorted
   phase: numista
@@ -2023,13 +2133,20 @@ coins:
   weight_rough_g:
   - value: 1.17
     source: numista
+  - value: 1.17
+    source: ucoin
   diameter_mm:
   - value: 17.0
     source: numista
+  - value: 17.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238860
     ref: Numista N#238860 — 1 Mariengroschen - Ernest August II of York - Bishopric of Osnabrück (1721) — KM# 241
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1721/?tid=173123
+    ref: ucoin
   note:
     de: 1/36 Thaler
     en: 1/36 Thaler
@@ -2047,6 +2164,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238860
+  - tid-tid-173123
 - id: unified-dk-numista-238862
   fuss: seed_unsorted
   phase: numista
@@ -2075,12 +2193,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 8.6
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 30.5
     source: numista
   - value: 30.5
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238862
@@ -2117,7 +2235,7 @@ coins:
   catalog:
     km: '246'
     numista: '238863'
-    dav: SG# 725
+    dav: SG 725
     others:
     - Welter# 2491
     - Kennepohl# 358
@@ -2132,10 +2250,10 @@ coins:
   - value: 17.0
     source: numista
   - value: 17.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 36.0
-    source: tid
+    source: ucoin
   - value: 37.0
     source: numista
   sources:
@@ -2174,7 +2292,7 @@ coins:
   catalog:
     km: '255'
     numista: '238866'
-    dav: GT II# 2505
+    dav: GT II 2505
     others:
     - Welter# 2490
     - Kennepohl# 374
@@ -2187,12 +2305,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 28.8
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 41.0
     source: numista
   - value: 41.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238866
@@ -2239,7 +2357,7 @@ coins:
   - value: 25.5
     source: numista
   - value: 25.5
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/238871
@@ -2384,12 +2502,17 @@ coins:
   mint_verified: false
   verified: false
   diameter_mm:
+  - value: 30.0
+    source: ucoin
   - value: 31.0
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/238891
     ref: Numista N#238891 — 12 Pfennigs - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-schilling-1633/?tid=173026
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -2403,6 +2526,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-238891
+  - tid-tid-173026
 - id: unified-dk-numista-268607
   fuss: seed_unsorted
   phase: numista
@@ -2412,10 +2536,11 @@ coins:
   year_last: 1631
   year_label: '1631'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Cologne
   catalog:
     km: '22'
     numista: '268607'
-    dav: CCT# 5670
+    dav: CCT 5670
     others:
     - Kennepohl# 212
   metal: silver
@@ -2423,18 +2548,25 @@ coins:
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 28.8
+    source: ucoin
   - value: 29.12
     source: numista
   diameter_mm:
   - value: 41.0
     source: numista
+  - value: 41.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/268607
     ref: Numista N#268607 — 1 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1631/?tid=173390
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -2448,6 +2580,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-268607
+  - tid-tid-173390
 - id: unified-dk-numista-274693
   fuss: seed_unsorted
   phase: numista
@@ -2461,7 +2594,7 @@ coins:
   catalog:
     km: '90'
     numista: '274693'
-    dav: Lg# 229
+    dav: Lg 229
     others:
     - Welter# 1933
   metal: silver
@@ -2475,12 +2608,12 @@ coins:
   - value: 84.72
     source: numista
   - value: 84.72
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 85.0
     source: numista
   - value: 85.5
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/274693
@@ -2511,27 +2644,35 @@ coins:
   year_last: 1637
   year_label: '1637'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Münster
   catalog:
     km: B230
     numista: '274729'
-    dav: CCT# B5671
+    dav: CCT B5671
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
   diameter_mm_verified: true
-  mint_verified: false
+  mint_verified: true
   verified: false
   weight_rough_g:
+  - value: 54.8
+    source: ucoin
   - value: 57.81
     source: numista
   diameter_mm:
   - value: 42.0
     source: numista
+  - value: 42.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/274729
     ref: Numista N#274729 — 2 Thalers - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-2-thaler-1637/?tid=178754
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -2545,6 +2686,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-274729
+  - tid-tid-178754
 - id: unified-dk-numista-295268
   fuss: seed_unsorted
   phase: numista
@@ -2557,7 +2699,7 @@ coins:
   catalog:
     km: '94'
     numista: '295268'
-    dav: Lg# 227
+    dav: Lg 227
     others:
     - Kennepohl# 259 c
   metal: silver
@@ -2571,12 +2713,12 @@ coins:
   - value: 139.3
     source: numista
   - value: 139.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 85.5
     source: numista
   - value: 85.5
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/295268
@@ -2607,26 +2749,35 @@ coins:
   year_last: 1657
   year_label: '1657'
   ruler: Francis William of Wartenberg (Franz Wilhelm von Wartenberg)
+  mint: Melle
   catalog:
     km: '78'
     numista: '307107'
-    dav: CCT# 5740
+    dav: CCT 5740
     others:
     - Kennepohl# 242/243
   metal: silver
   metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
-  diameter_mm_verified: false
-  mint_verified: false
+  diameter_mm_verified: true
+  mint_verified: true
   verified: false
   weight_rough_g:
   - value: 28.6
     source: numista
+  - value: 28.8
+    source: ucoin
+  diameter_mm:
+  - value: 40.0
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/307107
     ref: Numista N#307107 — 1 Thaler - Francis William of Wartenberg - Bishopric of Osnabrück
+  - type: ucoin
+    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1657/?tid=173392
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -2640,6 +2791,7 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - dk-numista-307107
+  - tid-tid-173392
 - id: unified-dk-numista-307108
   fuss: seed_unsorted
   phase: numista
@@ -2655,7 +2807,7 @@ coins:
   catalog:
     km: '87'
     numista: '307108'
-    dav: CCT# 5673
+    dav: CCT 5673
     others:
     - Welter# 1886
     - Kennepohl# 260/265
@@ -2668,12 +2820,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 28.8
-    source: tid
+    source: ucoin
   - value: 29.0
     source: numista
   diameter_mm:
   - value: 44.0
-    source: tid
+    source: ucoin
   - value: 44.5
     source: numista
   sources:
@@ -2709,7 +2861,7 @@ coins:
   catalog:
     km: A154
     numista: '307122'
-    dav: CCT# 5674A
+    dav: CCT 5674A
     others:
     - Kennepohl# 307a
   metal: silver
@@ -2769,12 +2921,12 @@ coins:
   - value: 14.43
     source: numista
   - value: 14.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 38.0
     source: numista
   - value: 38.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/307354
@@ -2857,7 +3009,7 @@ coins:
   catalog:
     km: '91'
     numista: '397837'
-    dav: Lg# 228
+    dav: Lg 228
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -2869,12 +3021,12 @@ coins:
   - value: 115.97
     source: numista
   - value: 115.97
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 85.0
     source: numista
   - value: 85.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/397837
@@ -2908,7 +3060,7 @@ coins:
   catalog:
     km: '198'
     numista: '40203'
-    dav: GT II# 2504
+    dav: GT II 2504
     others:
     - Kennepohl# 341
   metal: silver
@@ -2920,14 +3072,14 @@ coins:
   verified: false
   weight_rough_g:
   - value: 29.1
-    source: tid
+    source: ucoin
   - value: 29.18
     source: numista
   diameter_mm:
   - value: 42.0
     source: numista
   - value: 42.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/40203
@@ -2962,7 +3114,7 @@ coins:
   catalog:
     km: '154'
     numista: '40632'
-    dav: CCT# 5674
+    dav: CCT 5674
     others:
     - Kennepohl# 307
   metal: silver
@@ -2974,12 +3126,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 29.1
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 41.0
     source: numista
   - value: 41.0
-    source: tid
+    source: ucoin
   sources:
   - type: literature
     url: https://en.numista.com/40632
@@ -3001,53 +3153,6 @@ coins:
   composed_of:
   - dk-numista-40632
   - tid-tid-172220
-- id: unified-dk-numista-433332
-  fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 2 Mariengroschen
-  year_first: 1720
-  year_last: 1721
-  year_ranges:
-  - - 1720
-    - 1721
-  year_label: 1720-1721
-  ruler: Ernest Augustus of York and Albany (Ernst August von York und Albany)
-  catalog:
-    km: '219'
-    numista: '433332'
-    others:
-    - Welter# 2499
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 2.26
-    source: numista
-  diameter_mm:
-  - value: 22.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/433332
-    ref: Numista N#433332 — 2 Mariengroschen - Ernest August II of York - Bishopric of Osnabrück
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - dk-numista-433332
 - id: unified-dk-numista-47256
   fuss: seed_unsorted
   phase: numista
@@ -3063,7 +3168,7 @@ coins:
   catalog:
     km: '137'
     numista: '47256'
-    dav: SG# 411
+    dav: SG 411
     others:
     - Kennepohl# 300
     - Kennepohl# 303
@@ -3077,12 +3182,12 @@ coins:
   verified: false
   weight_rough_g:
   - value: 16.6
-    source: tid
+    source: ucoin
   - value: 16.68
     source: numista
   diameter_mm:
   - value: 35.0
-    source: tid
+    source: ucoin
   - value: 36.0
     source: numista
   sources:
@@ -3128,10 +3233,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.8
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 15.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-heller-1791-1805/?tid=171950
@@ -3165,7 +3270,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 20.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-heller-1790/?tid=171951
@@ -3197,7 +3302,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-pfennig-1566/?tid=172011
@@ -3229,7 +3334,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 16.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-pfennig-1570/?tid=172013
@@ -3261,7 +3366,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-pfennig-1566/?tid=172018
@@ -3293,7 +3398,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-pfennig-1590/?tid=172019
@@ -3325,7 +3430,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 16.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-pfennig-1594/?tid=172020
@@ -3360,7 +3465,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-pfennig-1599-1622/?tid=172021
@@ -3397,7 +3502,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-pfennig-1676-1698/?tid=172022
@@ -3431,7 +3536,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 17.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-pfennig-1731/?tid=172023
@@ -3465,7 +3570,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-pfennig-1790/?tid=172024
@@ -3502,10 +3607,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.95
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-pfennig-1791-1805/?tid=172025
@@ -3537,7 +3642,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 16.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-1-2-pfennig-1566/?tid=172026
@@ -3572,7 +3677,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 16.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-1-2-pfennig-1570-1594/?tid=172027
@@ -3604,7 +3709,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 16.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-1-2-pfennig-1590/?tid=172028
@@ -3639,7 +3744,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-1-2-pfennig-1599-1622/?tid=172029
@@ -3673,7 +3778,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-1-2-pfennig-1676/?tid=172030
@@ -3710,7 +3815,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-1-2-pfennig-1719-1731/?tid=172032
@@ -3747,7 +3852,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-1-2-pfennig-1791-1805/?tid=172033
@@ -3779,7 +3884,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-pfennig-1566/?tid=172160
@@ -3811,7 +3916,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-pfennig-1566/?tid=172161
@@ -3846,7 +3951,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-pfennig-1570-1594/?tid=172162
@@ -3878,7 +3983,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-pfennig-1590/?tid=172163
@@ -3910,7 +4015,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-pfennig-1599/?tid=172164
@@ -3947,10 +4052,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.0
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-pfennig-1791-1805/?tid=172165
@@ -3982,7 +4087,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 19.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1566/?tid=172166
@@ -4014,7 +4119,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1570/?tid=172167
@@ -4047,7 +4152,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1590/?tid=172168
@@ -4079,7 +4184,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1594/?tid=172169
@@ -4114,7 +4219,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1599-1670/?tid=172170
@@ -4148,7 +4253,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 19.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1676/?tid=172171
@@ -4185,10 +4290,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1704-1760/?tid=172172
@@ -4222,7 +4327,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1790/?tid=172173
@@ -4256,10 +4361,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 4.0
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 29.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1805/?tid=172174
@@ -4291,7 +4396,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 20.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1566/?tid=172175
@@ -4323,7 +4428,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 20.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1570/?tid=172176
@@ -4355,7 +4460,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1586/?tid=172177
@@ -4387,7 +4492,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 20.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1590/?tid=172178
@@ -4422,7 +4527,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1599-1670/?tid=172179
@@ -4459,10 +4564,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.1
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1676-1690/?tid=172180
@@ -4499,10 +4604,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1704-1790/?tid=172181
@@ -4537,10 +4642,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.2
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-5-pfennig-1597-1695/?tid=172183
@@ -4575,7 +4680,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-5-pfennig-1702/?tid=172185
@@ -4612,10 +4717,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 4.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-5-pfennig-1704-1728/?tid=172186
@@ -4648,7 +4753,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1566/?tid=172187
@@ -4680,7 +4785,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1586/?tid=172188
@@ -4715,7 +4820,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 26.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1597-1625/?tid=172189
@@ -4747,7 +4852,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 26.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-7-pfennig-1597/?tid=172190
@@ -4779,7 +4884,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-8-pfennig-1570/?tid=172191
@@ -4814,7 +4919,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 27.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-8-pfennig-1597-1625/?tid=172192
@@ -4849,7 +4954,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 28.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-9-pfennig-1597-1625/?tid=172193
@@ -4881,7 +4986,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 28.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-10-pfennig-1597/?tid=172194
@@ -4913,7 +5018,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 32.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-12-pfennig-1570/?tid=172195
@@ -4945,7 +5050,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 30.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-12-pfennig-1590/?tid=172196
@@ -4980,10 +5085,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.9
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 32.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-12-pfennig-1599-1633/?tid=172197
@@ -5017,7 +5122,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 14.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-pfennig-1606/?tid=172198
@@ -5051,7 +5156,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 16.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-pfennig-1606/?tid=172199
@@ -5085,7 +5190,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 19.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1606/?tid=172200
@@ -5119,10 +5224,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 4.28
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 23.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1740/?tid=172201
@@ -5156,7 +5261,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1605/?tid=172214
@@ -5190,7 +5295,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1606/?tid=172215
@@ -5224,7 +5329,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 30.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-9-pfennig-1605/?tid=172216
@@ -5258,7 +5363,7 @@ coins:
   verified: false
   diameter_mm:
   - value: 32.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-12-pfennig-1605/?tid=172218
@@ -5293,10 +5398,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 12.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-1-2-pfennig-1657/?tid=172666
@@ -5331,10 +5436,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 13.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-1-2-pfennig-1657/?tid=172667
@@ -5369,10 +5474,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.53
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 14.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-pfennig-1657/?tid=172668
@@ -5407,10 +5512,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.53
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 14.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-pfennig-1657/?tid=172669
@@ -5445,10 +5550,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.6
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 16.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1657/?tid=172670
@@ -5486,10 +5591,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.7
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 16.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1702-1704/?tid=172671
@@ -5524,10 +5629,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.85
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 14.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1718/?tid=172673
@@ -5562,10 +5667,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.9
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 14.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-pfennig-1766/?tid=172675
@@ -5601,10 +5706,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.9
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1657/?tid=172893
@@ -5642,10 +5747,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.0
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1702-1703/?tid=172894
@@ -5680,10 +5785,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.75
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 16.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1718/?tid=172895
@@ -5718,10 +5823,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.9
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 15.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1718/?tid=172896
@@ -5756,10 +5861,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.98
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 15.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-4-pfennig-1766/?tid=172897
@@ -5795,10 +5900,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-5-pfennig-1657/?tid=172898
@@ -5833,10 +5938,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.0
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 16.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-5-pfennig-1718/?tid=172902
@@ -5851,45 +5956,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-172902
-- id: unified-tid-tid-172945
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 6 Pfennig
-  year_first: 1657
-  year_last: 1657
-  year_label: '1657'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Melle
-  catalog:
-    km: '74'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.3
-    source: tid
-  diameter_mm:
-  - value: 18.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1657/?tid=172945
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-172945
 - id: unified-tid-tid-172947
   fuss: seed_unsorted
   phase: ucoin
@@ -5913,10 +5979,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.0
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1702-1703/?tid=172947
@@ -5951,10 +6017,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.15
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1702/?tid=172948
@@ -5969,44 +6035,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-172948
-- id: unified-tid-tid-172949
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 6 Pfennig
-  year_first: 1721
-  year_last: 1721
-  year_label: '1721'
-  ruler: Ernest Augustus
-  catalog:
-    km: '232'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 1.1
-    source: tid
-  diameter_mm:
-  - value: 17.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1721/?tid=172949
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-172949
 - id: unified-tid-tid-172950
   fuss: seed_unsorted
   phase: ucoin
@@ -6027,10 +6055,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.42
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 18.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-6-pfennig-1766/?tid=172950
@@ -6045,45 +6073,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-172950
-- id: unified-tid-tid-172951
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 12 Pfennig
-  year_first: 1721
-  year_last: 1721
-  year_label: '1721'
-  ruler: Ernest Augustus
-  mint: Osnabrück
-  catalog:
-    km: '234'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 1.7
-    source: tid
-  diameter_mm:
-  - value: 20.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-12-pfennig-1721/?tid=172951
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-172951
 - id: unified-tid-tid-172952
   fuss: seed_unsorted
   phase: ucoin
@@ -6105,10 +6094,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.1
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 20.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-12-pfennig-1766/?tid=172952
@@ -6144,10 +6133,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-28-thaler-1656/?tid=173024
@@ -6183,10 +6172,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.7
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-28-thaler-1661/?tid=173025
@@ -6201,41 +6190,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173025
-- id: unified-tid-tid-173026
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Schilling
-  year_first: 1633
-  year_last: 1633
-  year_label: '1633'
-  ruler: Franz Wilhelm von Wartenberg
-  catalog:
-    km: '24'
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  diameter_mm:
-  - value: 30.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-schilling-1633/?tid=173026
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173026
 - id: unified-tid-tid-173028
   fuss: seed_unsorted
   phase: ucoin
@@ -6256,10 +6210,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.0
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 24.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-schilling-1642/?tid=173028
@@ -6294,10 +6248,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.0
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-schilling-1663/?tid=173029
@@ -6332,10 +6286,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.68
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-schilling-1702/?tid=173030
@@ -6350,44 +6304,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173030
-- id: unified-tid-tid-173031
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 3 Schilling
-  year_first: 1633
-  year_last: 1633
-  year_label: '1633'
-  ruler: Franz Wilhelm von Wartenberg
-  catalog:
-    km: '29'
-  metal: copper
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 6.4
-    source: tid
-  diameter_mm:
-  - value: 33.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-3-schilling-1633/?tid=173031
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173031
 - id: unified-tid-tid-173032
   fuss: seed_unsorted
   phase: ucoin
@@ -6408,10 +6324,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.0
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-groschen-1662/?tid=173032
@@ -6447,10 +6363,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.23
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 20.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-groschen-1663/?tid=173034
@@ -6486,10 +6402,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.84
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 20.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-groschen-1663/?tid=173035
@@ -6525,10 +6441,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.8
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 16.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-mattier-1663/?tid=173036
@@ -6566,10 +6482,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.82
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-mattier-1704-1709/?tid=173037
@@ -6604,10 +6520,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1663/?tid=173114
@@ -6642,10 +6558,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 20.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1714/?tid=173118
@@ -6680,10 +6596,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 19.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1715/?tid=173119
@@ -6718,10 +6634,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.44
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 17.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1718/?tid=173120
@@ -6756,10 +6672,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 19.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1718/?tid=173121
@@ -6774,82 +6690,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173121
-- id: unified-tid-tid-173122
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Mariengroschen
-  year_first: 1721
-  year_last: 1721
-  year_label: '1721'
-  ruler: Ernest Augustus
-  catalog:
-    km: '240'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 1.2
-    source: tid
-  diameter_mm:
-  - value: 18.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1721/?tid=173122
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173122
-- id: unified-tid-tid-173123
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Mariengroschen
-  year_first: 1721
-  year_last: 1721
-  year_label: '1721'
-  ruler: Ernest Augustus
-  catalog:
-    km: '241'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 1.17
-    source: tid
-  diameter_mm:
-  - value: 17.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-mariengroschen-1721/?tid=173123
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173123
 - id: unified-tid-tid-173126
   fuss: seed_unsorted
   phase: ucoin
@@ -6871,10 +6711,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 19.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-mariengroschen-1656/?tid=173126
@@ -6910,10 +6750,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.6
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 19.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-mariengroschen-1669/?tid=173132
@@ -6949,10 +6789,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 0.92
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 19.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-mariengroschen-1669/?tid=173133
@@ -6990,10 +6830,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 1.95
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 22.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-mariengroschen-1703-1711/?tid=173134
@@ -7031,10 +6871,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.7
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-mariengroschen-1717-1720/?tid=173137
@@ -7072,10 +6912,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-2-mariengroschen-1720-1722/?tid=173140
@@ -7113,10 +6953,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-3-mariengroschen-1717-1718/?tid=173145
@@ -7131,47 +6971,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173145
-- id: unified-tid-tid-173147
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 4 Mariengroschen
-  year_first: 1656
-  year_last: 1657
-  year_ranges:
-  - - 1656
-    - 1657
-  year_label: 1656-1657
-  ruler: Franz Wilhelm von Wartenberg
-  catalog:
-    km: '59'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 2.4
-    source: tid
-  diameter_mm:
-  - value: 23.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-4-mariengroschen-1656-1657/?tid=173147
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173147
 - id: unified-tid-tid-173326
   fuss: seed_unsorted
   phase: ucoin
@@ -7193,10 +6992,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 8.08
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 31.5
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-12-mariengroschen-1676/?tid=173326
@@ -7231,10 +7030,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 17.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 35.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-24-mariengroschen-1703/?tid=173333
@@ -7249,86 +7048,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173333
-- id: unified-tid-tid-173336
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1/14 Thaler
-  year_first: 1656
-  year_last: 1657
-  year_ranges:
-  - - 1656
-    - 1657
-  year_label: 1656-1657
-  ruler: Franz Wilhelm von Wartenberg
-  catalog:
-    km: '55'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 2.6
-    source: tid
-  diameter_mm:
-  - value: 24.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1656-1657/?tid=173336
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173336
-- id: unified-tid-tid-173337
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1/14 Thaler
-  year_first: 1657
-  year_last: 1657
-  year_label: '1657'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Melle
-  catalog:
-    km: '76'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 3.7
-    source: tid
-  diameter_mm:
-  - value: 24.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1657/?tid=173337
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173337
 - id: unified-tid-tid-173338
   fuss: seed_unsorted
   phase: ucoin
@@ -7352,10 +7071,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.1
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 24.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1667-1668/?tid=173338
@@ -7394,10 +7113,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.6
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1702-1703/?tid=173339
@@ -7433,10 +7152,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 2.8
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1721/?tid=173342
@@ -7451,44 +7170,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173342
-- id: unified-tid-tid-173343
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1/14 Thaler
-  year_first: 1721
-  year_last: 1721
-  year_label: '1721'
-  ruler: Ernest Augustus
-  catalog:
-    km: '237'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 3.0
-    source: tid
-  diameter_mm:
-  - value: 23.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1721/?tid=173343
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173343
 - id: unified-tid-tid-173344
   fuss: seed_unsorted
   phase: ucoin
@@ -7509,10 +7190,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.0
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 23.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-14-thaler-1721/?tid=173344
@@ -7548,10 +7229,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-12-thaler-1714/?tid=173346
@@ -7587,10 +7268,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.4
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 25.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-12-thaler-1718/?tid=173347
@@ -7626,10 +7307,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 4.9
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 29.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-8-thaler-1656/?tid=173348
@@ -7665,10 +7346,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 3.6
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 26.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-8-thaler-1662/?tid=173349
@@ -7704,10 +7385,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 7.3
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 34.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-4-thaler-1662/?tid=173350
@@ -7722,162 +7403,6 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173350
-- id: unified-tid-tid-173390
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1631
-  year_last: 1631
-  year_label: '1631'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Cologne
-  catalog:
-    km: '22'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.8
-    source: tid
-  diameter_mm:
-  - value: 41.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1631/?tid=173390
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173390
-- id: unified-tid-tid-173391
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1637
-  year_last: 1637
-  year_label: '1637'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Münster
-  catalog:
-    km: '46'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.8
-    source: tid
-  diameter_mm:
-  - value: 41.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1637/?tid=173391
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173391
-- id: unified-tid-tid-173392
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1657
-  year_last: 1657
-  year_label: '1657'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Melle
-  catalog:
-    km: '78'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.8
-    source: tid
-  diameter_mm:
-  - value: 40.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1657/?tid=173392
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173392
-- id: unified-tid-tid-173393
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 1 Thaler
-  year_first: 1661
-  year_last: 1661
-  year_label: '1661'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Melle
-  catalog:
-    km: '82'
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 28.8
-    source: tid
-  diameter_mm:
-  - value: 43.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-1-thaler-1661/?tid=173393
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-173393
 - id: unified-tid-tid-173395
   fuss: seed_unsorted
   phase: ucoin
@@ -7898,10 +7423,10 @@ coins:
   verified: false
   weight_rough_g:
   - value: 28.8
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 41.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-thaler-1701/?tid=173395
@@ -7937,13 +7462,13 @@ coins:
   verified: false
   fineness:
   - value: 0.986
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-ducat-1637/?tid=173400
@@ -7979,13 +7504,13 @@ coins:
   verified: false
   fineness:
   - value: 0.986
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-ducat-1642/?tid=173401
@@ -8021,13 +7546,13 @@ coins:
   verified: false
   fineness:
   - value: 0.986
-    source: tid
+    source: ucoin
   weight_rough_g:
   - value: 3.5
-    source: tid
+    source: ucoin
   diameter_mm:
   - value: 21.0
-    source: tid
+    source: ucoin
   sources:
   - type: ucoin
     url: https://en.ucoin.net/coin/osnabruck-1-ducat-1666/?tid=173402
@@ -8042,42 +7567,3 @@ coins:
   issuing_entity: hochstift_osnabrueck
   composed_of:
   - tid-tid-173402
-- id: unified-tid-tid-178754
-  fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: 2 Thaler
-  year_first: 1637
-  year_last: 1637
-  year_label: '1637'
-  ruler: Franz Wilhelm von Wartenberg
-  mint: Münster
-  catalog:
-    km: B230
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  diameter_mm_verified: true
-  mint_verified: true
-  verified: false
-  weight_rough_g:
-  - value: 54.8
-    source: tid
-  diameter_mm:
-  - value: 42.0
-    source: tid
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/osnabruck-2-thaler-1637/?tid=178754
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  issuing_entity: hochstift_osnabrueck
-  composed_of:
-  - tid-tid-178754

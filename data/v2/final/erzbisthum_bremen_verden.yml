@@ -85,25 +85,39 @@ coins:
   nominal: 1 Taler
   issuing_entity: erzbisthum_bremen_verden
   id: unified-dk-bruun-12323
-  year_first: 1674
+  year_first: 1673
   year_last: 1674
-  year_label: '1674'
+  year_ranges:
+  - - 1673
+    - 1674
+  year_label: 1673-1674
   catalog:
+    km: '83'
     bruun_collection_id: '12323'
-    dav: '6282'
+    dav: ST 6282
+    numista: '31052'
+    others:
+    - AAJ# 11
   metal: silver
-  metal_verified: false
+  metal_verified: true
   fineness_verified: false
   weight_rough_verified: true
+  diameter_mm_verified: true
   mint_verified: false
   verified: false
   weight_rough_g:
   - value: 29.1
     source: bruun
+  diameter_mm:
+  - value: 46.0
+    source: numista
   sources:
   - type: auction
     url: https://stacksbowers.com/wp-content/themes/stacksbowers/uploads/catalogs/SBG_Oct2025_LE_Bruun_Coins_Part_III.pdf
     ref: Bruun Part III, lot 12179, p. 244
+  - type: literature
+    url: https://en.numista.com/31052
+    ref: Numista N#31052 — 1 Thaler - Charles XI - Duchy under Swedish possession of Bremen-Verden
   verification_note:
     de: 'Bruun-Seed: spezifikische Münzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus dem Bruun-Auktionskatalog (Stack''s Bowers L. E. Bruun Collection 2024-2026) übernommen. Brutto-Gewicht ist ein
@@ -133,7 +147,7 @@ coins:
   catalog:
     numista: '129840'
     mb: '94'
-    dav: GT I# 8980
+    dav: GT I 8980
     others:
     - Jungk# 230
     - Welter# 503
@@ -202,12 +216,17 @@ coins:
   mint_verified: false
   verified: false
   weight_rough_g:
+  - value: 7.0
+    source: ucoin
   - value: 7.01
     source: numista
   sources:
   - type: literature
     url: https://en.numista.com/129841
     ref: Numista N#129841 — ¼ Thaler - Henry III of Sachsen-Lauenburg - Archbishopric of Bremen
+  - type: ucoin
+    url: https://en.ucoin.net/coin/bremen-1-4-thaler-1583-1584/?tid=175436
+    ref: ucoin
   verification_note:
     de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
       aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
@@ -338,7 +357,7 @@ coins:
   catalog:
     km: '38'
     numista: '129848'
-    dav: CCT# 5078
+    dav: CCT 5078
     others:
     - Jungk# 363
   metal: silver
@@ -496,7 +515,7 @@ coins:
   catalog:
     numista: '167726'
     mb: '104'
-    dav: GT I# 8985
+    dav: GT I 8985
     others:
     - Jungk# 294
   metal: silver
@@ -693,7 +712,7 @@ coins:
   catalog:
     numista: '266573'
     mb: '86'
-    dav: GT I# 8982
+    dav: GT I 8982
     others:
     - Jungk# 240
   metal: silver
@@ -737,7 +756,6 @@ coins:
       первинних джерел перед промоцією у кур''єйтед-записи.'
   composed_of:
   - unified-dk-numista-266573
-  - unified-tid-tid-175543
 - fuss: seed_unsorted
   phase: numista
   kind: kurant
@@ -793,7 +811,7 @@ coins:
   catalog:
     km: '113'
     numista: '270940'
-    dav: ST# 6283
+    dav: ST 6283
     others:
     - AAJ# 13
   metal: silver
@@ -968,51 +986,6 @@ coins:
   phase: numista
   kind: kurant
   nominal: 1 Thaler
-  ruler: Charles XI (Karl XI)
-  issuing_entity: erzbisthum_bremen_verden
-  id: unified-dk-numista-31052
-  year_first: 1673
-  year_last: 1674
-  year_ranges:
-  - - 1673
-    - 1674
-  year_label: 1673-1674
-  catalog:
-    km: '83'
-    numista: '31052'
-    dav: ST# 6282
-    others:
-    - AAJ# 11
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: false
-  diameter_mm_verified: true
-  mint_verified: false
-  verified: false
-  diameter_mm:
-  - value: 46.0
-    source: numista
-  sources:
-  - type: literature
-    url: https://en.numista.com/31052
-    ref: Numista N#31052 — 1 Thaler - Charles XI - Duchy under Swedish possession of Bremen-Verden
-  verification_note:
-    de: 'Numista-Seed: spezifikische Müntzfuß- und Phase-Zuordnung sowie Per-Münze-Verifikation stehen noch aus; Daten direkt
-      aus der HTML-Katalogseite (en.numista.com) übernommen. Numista ist Benutzer-editiert; Cross-references (SIEG, Galster,
-      Schou, Fr) müssen gegen Primärquellen geprüft werden bevor in kuratierte Einträge promotet.'
-    en: 'Numista seed: Müntzfuß and phase assignment plus per-coin verification are still outstanding; data taken directly
-      from the HTML catalog page (en.numista.com). Numista is user-edited; cross-references (SIEG, Galster, Schou, Fr) must
-      be checked against primary sources before promotion into curated entries.'
-    uk: 'Numista-seed: призначення Müntzfuß і фази та покоінна верифікація ще очікуються; дані взято безпосередньо з HTML-каталог-сторінки
-      (en.numista.com). Numista редагується користувачами; cross-references (SIEG, Galster, Schou, Fr) треба перевірити проти
-      первинних джерел перед промоцією у кур''єйтед-записи.'
-  composed_of:
-  - unified-dk-numista-31052
-- fuss: seed_unsorted
-  phase: numista
-  kind: kurant
-  nominal: 1 Thaler
   ruler: John Frederick of Holstein-Gottorp (Johann Friedrich von Holstein-Gottorp)
   issuing_entity: erzbisthum_bremen_verden
   id: unified-dk-numista-317317
@@ -1028,7 +1001,7 @@ coins:
     - '19'
     numista: '317317'
     lange: '493'
-    dav: CCT# 5076
+    dav: CCT 5076
     others:
     - Jungk# 310
   metal: silver
@@ -1180,7 +1153,7 @@ coins:
   catalog:
     numista: '352504'
     mb: '95'
-    dav: GT I# 8979
+    dav: GT I 8979
     others:
     - Jungk# 237
     - Welter# 501
@@ -1328,7 +1301,7 @@ coins:
   catalog:
     km: '19.2'
     numista: '397794'
-    dav: CCT# 5074
+    dav: CCT 5074
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1415,7 +1388,7 @@ coins:
   catalog:
     numista: '426081'
     mb: '85'
-    dav: GT I# 8981
+    dav: GT I 8981
     others:
     - Jungk# 219
   metal: silver
@@ -1458,7 +1431,7 @@ coins:
   catalog:
     numista: '426154'
     mb: '84'
-    dav: GT I# 8978
+    dav: GT I 8978
   metal: silver
   metal_verified: true
   fineness_verified: false
@@ -1501,7 +1474,7 @@ coins:
   catalog:
     numista: '426182'
     mb: '87'
-    dav: GT I# 8977
+    dav: GT I 8977
     others:
     - Jungk# 217
   metal: silver
@@ -5044,40 +5017,6 @@ coins:
   composed_of:
   - unified-tid-tid-175388
 - fuss: seed_unsorted
-  phase: ucoin
-  kind: kurant
-  nominal: ¼ Thaler
-  issuing_entity: erzbisthum_bremen_verden
-  id: unified-tid-tid-175436
-  year_first: 1583
-  year_last: 1584
-  year_ranges:
-  - - 1583
-    - 1584
-  year_label: 1583-1584
-  metal: silver
-  metal_verified: true
-  fineness_verified: false
-  weight_rough_verified: true
-  mint_verified: false
-  verified: false
-  weight_rough_g:
-  - value: 7.0
-    source: ucoin
-  sources:
-  - type: ucoin
-    url: https://en.ucoin.net/coin/bremen-1-4-thaler-1583-1584/?tid=175436
-    ref: ucoin
-  verification_note:
-    de: 'ucoin-Seed: user-edited Münzkatalog (ucoin.net). Per-Münze-Verifikation gegen Primärquellen (Hede / Sieg / Lange
-      / NumisMaster / Bruun) vor §BF-Promotion.'
-    en: 'ucoin seed: user-edited coin catalogue (ucoin.net). Per-coin verification against primary sources (Hede / Sieg /
-      Lange / NumisMaster / Bruun) before §BF promotion.'
-    uk: 'ucoin-seed: користувацький каталог монет (ucoin.net). Покоінна верифікація проти первинних джерел (Hede / Sieg /
-      Lange / NumisMaster / Bruun) перед §BF-промоцією.'
-  composed_of:
-  - unified-tid-tid-175436
-- fuss: seed_unsorted
   phase: kmk
   kind: kurant
   nominal: 1 Dütken
@@ -5172,6 +5111,7 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200793
     ref: KMM 200793 (Inv. FP 3108.11757)
+    display: false
   verification_note: *id002
   composed_of:
   - unified-kmk-200792
@@ -5204,9 +5144,11 @@ coins:
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200795
     ref: KMM 200795 (Inv. FP 3108.11755)
+    display: false
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200796
     ref: KMM 200796 (Inv. FP 3108.11754)
+    display: false
   - type: museum
     url: https://samlinger.natmus.dk/KMM/object/200797
     ref: KMM 200797 (Inv. FP 3108.11753)

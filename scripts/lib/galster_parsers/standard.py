@@ -174,6 +174,12 @@ _CATALOGUE_KEYWORDS = (
     "Galster", "Schou", "Sieg", "Hede", "Sømod", "Schive", "Lange",
     "Friedberg", "Fr.", "Fr",
     "Jensen/Skjoldager", "Jensen Skjoldager", "Jensen og Skjoldager",
+    # «Reinhold Junge» — the catalogue of Christian III mint master Reinhold
+    # Junge's coinage (Count's Feud klippinge + first dalers 1534-1537), cited
+    # by danskmoent.dk alongside Galster/Schou/Sieg. MUST precede no narrower
+    # token; without it the preceding «Sieg N, Reinhold Junge M» captured the
+    # whole tail into the sieg value (e.g. c3g102 sieg «10, Reinhold Junge 20»).
+    "Reinhold Junge",
     "Delzanno", "Lott", "MB", "NMD", "MNI", "Aagaard",
 )
 _CATALOGUE_KEYWORD_RE = re.compile(
@@ -269,6 +275,11 @@ def _parse_description_and_refs(text: str) -> tuple[str | None, dict]:
                     kw_clean = "friedberg"
                 elif kw_clean.startswith("jensen"):
                     kw_clean = "jensen_skjoldager"
+                elif kw_clean == "reinhold_junge":
+                    # Untyped catalogue → keep a clean display label so
+                    # catalog_from_ref_dict routes it to others as
+                    # «Reinhold Junge# N» (not «reinhold_junge# N»).
+                    kw_clean = "Reinhold Junge"
                 refs[kw_clean] = value_clean
     return desc, refs
 

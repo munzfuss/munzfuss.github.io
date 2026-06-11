@@ -48,8 +48,27 @@ from lib.mint_registry import (  # noqa: E402
 )
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
 
-# workDescription values that are exonumia (§9.2) → skip.
-_SKIP_WORKDESC = {"Medalje", "Regnepenning"}
+# Non-coin / exonumia object types (§9.2 medals · jetons · tokens; §9.3
+# off-strikes; plus banknotes · dies · tools · misc). KMM's `workDescription`
+# is a controlled vocab — a genuine coin LEADS with «Mønt» («Mønt», «Mønt,
+# medalje», «Møntimitation», «Mønt, falsk» stay). Anything that leads with one
+# of these object types — or contains «afslag» (off-strike) anywhere, incl.
+# «Mønt, afslag» — is excluded from the coin table. (Verified 2026-06-09: ~637
+# such records were rendering as phantom coin rows, ~332 of them nominal-less
+# «(?)» rows — the KMM source has no denomination for non-coins.)
+_EXONUMIA_WORKDESC_LEAD = (
+    "medalje", "medaljør", "medaille", "jeton", "regnepenning", "andet",
+    "seddel", "polet", "stempel", "plakette", "emblem", "relief",
+)
+
+
+def _is_exonumia_workdesc(wd: str | None) -> bool:
+    w = (wd or "").strip().lower()
+    if not w:
+        return False
+    if "afslag" in w:          # off-strike (§9.3) — also «Mønt, afslag»
+        return True
+    return any(w.startswith(lead) for lead in _EXONUMIA_WORKDESC_LEAD)
 
 # Catalogue-author prefix in `typeNumber` → CatalogRefs key. KMM writes these
 # heavily ABBREVIATED («H. 71» = Hede, «G. 23b» = Galster, «Sch 54» = Schou),
@@ -237,7 +256,7 @@ _VNOTE = {
 
 
 def build_entry(src) -> dict | None:
-    if (src.get("workDescription") or "") in _SKIP_WORKDESC:
+    if _is_exonumia_workdesc(src.get("workDescription")):
         return None
     rid = src.get("id")
     if not (isinstance(rid, int) or (isinstance(rid, str) and str(rid).isdigit())):

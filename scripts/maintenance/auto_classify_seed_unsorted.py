@@ -700,7 +700,15 @@ _DENOMINATION_ANCHOR_RULES: list[dict] = [
 #
 # Each entry's `kind_by_nominal` callback derives kind from the
 # coin's nominal at classification time (e.g. Søsling lybsk → scheide;
-# Daler / Sølvgylden / Rhinsk Gylden → kurant).
+# Daler / Sølvgylden → kurant).
+#
+# `allowed_metals` (optional): §8a step-1 metal-mismatch filter. A
+# binding for a silver/billon Müntzfuß MUST NOT capture a gold coin,
+# even when mint+ruler+year all match — the metal class decides the
+# Fuß lineage before anything else. (Without this gate the 8-Daler-
+# Lybsk silver binding silently swallowed Christian III's GOLD Rhinsk
+# Gylden of 1546 (Hede c3h14/c3h15, Flensborg) — they belong in the
+# gold `rhinsk_gylden_fod`, not the silver Flensborg line.)
 _MINT_BOUND_FUSSES: dict[str, dict] = {
     # 8-Daler-Lybsk-Fod — Flensborg mint, Christian III only,
     # 1545-1571 (1545-1554 main phase, 1554-1571 tail under Frederik II
@@ -709,6 +717,11 @@ _MINT_BOUND_FUSSES: dict[str, dict] = {
     # promotion to Christian III only, with year_max=1559 covering his
     # death 1559-01-01 + a 1 y boundary buffer).
     #
+    # SILVER/BILLON ONLY (Daler / Mark / Skilling silver, Hvid / Penning
+    # billon at 14¼ Lod / lower). Gold Rhinsk Gylden of the same mint+
+    # ruler+year is explicitly excluded via `allowed_metals` → routed to
+    # `rhinsk_gylden_fod` instead.
+    #
     # Source: Wilcke 1950 pp. 25-26 (Flensborg Bestalling 22 Jan 1547),
     # fuesse.yml 8_daler_lybsk_fod definition. Mint variants
     # tolerated: «Flensburg» (German/English) / «Flensborg» (Danish).
@@ -716,6 +729,7 @@ _MINT_BOUND_FUSSES: dict[str, dict] = {
     # «Christian III», «Christian III. of Denmark», etc.).
     "8_daler_lybsk_fod": {
         "allowed_mints": {"Flensburg", "Flensborg"},
+        "allowed_metals": {"silver", "billon"},
         "ruler_substring": "Christian III",
         "year_min": 1545,
         "year_max": 1559,
@@ -726,7 +740,7 @@ _MINT_BOUND_FUSSES: dict[str, dict] = {
                               ("søsling", "sosling", "hvid", "penning", "skilling"))
             else "kurant"
         ),
-        "rationale": "8-Daler-Lybsk-Fod — mint=Flensburg + ruler=Christian III (Wilcke 1950 pp. 25-26)",
+        "rationale": "8-Daler-Lybsk-Fod — mint=Flensburg + ruler=Christian III + silver/billon (Wilcke 1950 pp. 25-26)",
     },
 }
 
@@ -736,6 +750,11 @@ def _coin_matches_mint_binding(coin: dict, binding: dict) -> bool:
     binding's constraints. Used by both the anchor rule (positive
     promotion) and the delta-math filter (defensive guard).
     """
+    # §8a step-1: metal-mismatch is an absolute disqualifier — a
+    # silver/billon binding never captures a gold coin (or vice versa).
+    allowed_metals = binding.get("allowed_metals")
+    if allowed_metals and coin.get("metal") not in allowed_metals:
+        return False
     mint = coin.get("mint")
     # Mint may be scalar or list — match if any element is in allowed
     mints = mint if isinstance(mint, list) else ([mint] if mint else [])

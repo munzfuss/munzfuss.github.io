@@ -59,7 +59,9 @@ rules:
   - id: schauenburg_niedersaechsisch_denoms
     description: |
       Schauenburg-lineage coins struck in Niedersächsisch-tradition
-      denominations route to holstein_schauenburg_county. The
+      denominations route to grafschaft_schaumburg (the dynasty's
+      ancestral Lower-Saxon county); the Holstein side routes to
+      schauenburg_pinneberg. The
       Pinneberg/Schauenburg dual-coinage system audit 2026-05-27
       established: Schauenburg dynasty struck at TWO mints serving
       separate economic systems — Altona (SH side, Pinneberg county,
@@ -123,12 +125,13 @@ rules:
         # by ISSUER chip («Holstein-Schaumburg-Pinneberg» →
         # schauenburg_pinneberg) — not by this rule. Verified against
         # NumisMaster reverse legends 2026-05-29 (§CE).
-    routes_to: holstein_schauenburg_county
+    routes_to: grafschaft_schaumburg
     audit:
       first_added: '2026-05-27'
       first_run_corpus: |
         12 entries identified in data/v2/final/schauenburg_pinneberg.yml
-        that should reside in holstein_schauenburg_county:
+        that should reside in grafschaft_schaumburg (formerly the
+        holstein_schauenburg_county umbrella, retired 2026-06-10):
           - km-135-just-herman-1624 (4 Mariengroschen Oldendorf 1624)
           - unified-schleswig_holstein-numismaster-96072 (2 Mariengroschen)
           - unified-schleswig_holstein-numismaster-96073 (4 Mariengroschen)

@@ -526,6 +526,58 @@ canvas.
 
 ---
 
+## 2026-06 — Catalogue indices are matched per RESTART-SCOPE, not as bare globals
+
+Two records sharing a catalogue index VALUE identify the same coin **only when
+they also share that index's restart-scope** — because most catalogues restart
+their numbering along some dimension (CLAUDE.md §9.4). Measured empirically over
+the seed corpus (fraction of distinct values that collide across the dimension):
+
+| index | restart axis | collision | scope key |
+|---|---|---:|---|
+| Hede | per ruler/reign | 59 % cross-reign | `hede/<ruler>` |
+| Schou | per ruler/reign | **64 %** cross-reign | `schou/<ruler>` |
+| Sieg | per ruler/reign | 42 % cross-reign | `sieg/<ruler>` |
+| KM | per Krause register | 43 % cross-entity | `km/<register>` |
+| Galster | per volume | 51 % cross-vol | `galster/<vol>` |
+| Friedberg, Davenport, Numista N#, Bruun-coll-id, Lange, mb, NMD, Schive, Skaare | global | ~0 % | bare |
+
+Implemented in `merge_seeds_cross_source._catalog_refs` (the scope-key registry).
+**Schou + Sieg were BARE before 2026-06-08 — a live cross-reign false-merge bug**
+(e.g. Christian-IV «Schou 14» Speciedaler false-matching a Frederik-III coin);
+now ruler-scoped like Hede. Scope-aware membership tests use `k.split("/",1)[0]`.
+Value comparison is case-insensitive (and `normalise_catalog` de-dups «55C»/«55c»
+case-insensitively + folds `others: <code># N` overflow into the typed list-field).
+Rollout verified: **0 cross-ruler false-merges**; the now-visible per-reign Schou
+cross-refs let stranded museum specimens consolidate into their type (§9a).
+Code: commit `17c7e91`; rollout `75734e6`.
+
+## 2026-06 — KMM museum citations thinned by information class (display-only)
+
+KMM (Nationalmuseet) holds the world's largest Danish-coin collection, so a coin
+can carry dozens of KMM citations — 79 % of which give NEITHER weight NOR image
+(bare «museum holds a specimen»). Render-declutter rule, by what each record
+carries (`_suppress_weightless_museum_overcollection`): **weight** → untouched
+(the §9a weight-specimen thinning owns those); **image-only** → keep 3; **neither**
+→ keep 1. Surplus hidden via `display: false` — **data is kept, not deleted**
+(§9a accumulation; URLs stay queryable). Image presence is read from cache
+`related.assets[type=still]` (verified == the natmus page; see SOURCES §8.3).
+User decision 2026-06-08. Code: commit `7d37a92`; data `758cfba`.
+
+## 2026-06 — natmus typeNumber «Hede 141» on KMM 275643 is wrong → corrected to Hede 134
+
+The strongest claim in the project (`_source_errata` per §4/§CN) is reserved for
+«the source printed the wrong index». KMM 275643 («2 Skilling 1625», 1.038 g)
+prints typeNumber «Hede 141», but Hede 141 IS the 8 Skilling 1630 (2.386 g) —
+proven by the genuine specimen KMM 190547 («8 Skilling 1630», «H:141; Sch:16») +
+danskmoent c4h141. A 2-Skilling dated 1625 is uniquely Hede 134 (1624-1627/1629);
+natmus's OWN sibling KMM 335046 («2 Skilling 1625») is correctly tagged «H. 134A».
+Corrected via `_source_errata` hede 141→134 with full corroboration in the reason
+field (user-confirmed). The specimen now groups with Hede 134; KMM 190547 stands
+alone as the real Hede 141. Commit `18a5fbe`.
+
+---
+
 ## Decision template for future entries
 
 ```markdown

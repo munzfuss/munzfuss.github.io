@@ -36,11 +36,11 @@ class TestEntityRouting(unittest.TestCase):
             "year_last": 1626,
         }
         ent, hint = route_entity_with_rules(coin, default_entity="schauenburg_pinneberg")
-        self.assertEqual(ent, "holstein_schauenburg_county")
+        self.assertEqual(ent, "grafschaft_schaumburg")
         self.assertIsNotNone(hint)
         self.assertTrue(hint["active"])
         self.assertEqual(hint["rule_id"], "schauenburg_niedersaechsisch_denoms")
-        self.assertEqual(hint["would_route_to"], "holstein_schauenburg_county")
+        self.assertEqual(hint["would_route_to"], "grafschaft_schaumburg")
         self.assertIn("ruler_lineage", hint["matched_on"])
         self.assertIn("denomination", hint["matched_on"])
 
@@ -55,9 +55,9 @@ class TestEntityRouting(unittest.TestCase):
             "year_first": 1624,
             "year_last": 1624,
         }
-        ent, hint = route_entity_with_rules(coin, default_entity="holstein_schauenburg_county")
+        ent, hint = route_entity_with_rules(coin, default_entity="grafschaft_schaumburg")
         # Mint wins (verified); rule writes hint with agrees_with_active=True.
-        self.assertEqual(ent, "holstein_schauenburg_county")
+        self.assertEqual(ent, "grafschaft_schaumburg")
         self.assertIsNotNone(hint)
         self.assertFalse(hint["active"])
         self.assertTrue(hint["agrees_with_active"])
@@ -120,7 +120,7 @@ class TestEntityRouting(unittest.TestCase):
             "year_first": 1612,
         }
         ent, hint = route_entity_with_rules(coin, default_entity="schauenburg_pinneberg")
-        self.assertEqual(ent, "holstein_schauenburg_county")
+        self.assertEqual(ent, "grafschaft_schaumburg")
         self.assertTrue(hint["active"])
 
     # ── Case 7: issuer-only OR match (ruler empty, issuer carries lineage) ──
@@ -135,7 +135,7 @@ class TestEntityRouting(unittest.TestCase):
             "year_first": 1620,
         }
         ent, hint = route_entity_with_rules(coin, default_entity="schauenburg_pinneberg")
-        self.assertEqual(ent, "holstein_schauenburg_county")
+        self.assertEqual(ent, "grafschaft_schaumburg")
         self.assertTrue(hint["active"])
         # matched on issuer, not ruler
         self.assertIn("issuer", hint["matched_on"])

@@ -61,6 +61,7 @@ sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
 from lib.catalog_codes import catalog_from_ref_dict  # noqa: E402
 from lib.v2_entity_classify import classify_mint_to_entity  # noqa: E402
 from lib.v2_seed_writer import write_v2_seed  # noqa: E402
+from lib.v2_seed_writer import normalise_nominal_display  # noqa: E402
 
 
 def _classify_entity(mint, is_norway: bool, meta_line: str | None = None,
@@ -143,7 +144,7 @@ META_SUBNATIONAL_TO_ENTITY: dict[str, str] = {
     "schleswig-holstein-glücksburg": "glucksburg_duchy",
     "schleswig-holstein-gottorp": "gottorp_duchy",
     "schleswig-holstein": "royal_holstein",  # fallback for unqualified SH
-    "holstein-schauenburg": "holstein_schauenburg_county",
+    "holstein-schauenburg": "schauenburg_pinneberg",
     "schauenburg-pinneberg": "schauenburg_pinneberg",
     "lübeck (bishopric)": "fuerstbisthum_luebeck",
     "luebeck (bishopric)": "fuerstbisthum_luebeck",
@@ -394,35 +395,151 @@ def parse_mint(lot: dict) -> str | None:
     return lot.get("mint")
 
 
+# Leading region word of a «. »-delimited TERRITORY segment. Used to strip
+# country/territory prefixes off the denomination WITHOUT mistaking a
+# denom-first lot («Skilling. Mint Error …») for a territory. Derived from
+# the META_SUBNATIONAL_TO_ENTITY token set.
+_TERRITORY_LEAD = re.compile(
+    r"^(?:schleswig|holstein|l[üu]beck|bremen|oldenburg|hesse|gotland|"
+    r"f[üu]rstbisthum|fuerstbisthum|erzbisthum|gottorp|sonderburg|s[øo]nderborg|"
+    r"norburg|gl[üu]cksburg|schauenburg|pinneberg|rantzau|lauenburg|"
+    r"osnabr[üu]ck|wismar|verden|"
+    # Foreign / Baltic secondary realms that prefix the denom on
+    # Swedish-section lots («SWEDEN. Swedish Livonia. Riga. 5 Ducats»).
+    r"swedish|livonia|riga|reval|pomerania|stralsund|stade)\b",
+    re.IGNORECASE,
+)
+
+
+def _denom_from_text(text: str) -> str | None:
+    """Pull the denomination from one «<COUNTRY>[. <TERRITORY>…]. <denom>,
+    <year>.» string. The year after the comma may be Arabic (1589), Roman
+    (MDCIII), or «ND[ (year)]»."""
+    # PDF line-wrap repair: de-hyphenate split words («Bishop-\nric» →
+    # «Bishopric») then collapse ALL whitespace (incl. the newline that wraps a
+    # truncated «… Pinneberg.» territory from its «Taler, 1589» denom onto the
+    # next line — without this the «.»-class regex can't cross the newline).
+    text = re.sub(r"-\s*\n\s*", "", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    # Year lookahead accepts: «(» / digit / «ND…» / a Roman-numeral run
+    # (≥2 uppercase Roman chars — «MDCIII», «MDCXCII»). The {2,} guard keeps a
+    # stray capitalised word («Mint», «Mule») from being read as a year. An
+    # optional leading quote («5 Ducats, "1645"») is skipped — Bruun
+    # occasionally quotes a coin's stated (non-actual) date.
+    m = re.match(
+        r"^[^.]+\.\s+(.+?),\s*[“”\"'‘’]?\s*"
+        r"(?:ND(?:\s*[.\(]|\b)|[\(\d]|[MDCLXVI]{2,}\b)",
+        text,
+    )
+    if not m:
+        return None
+    d = m.group(1).strip()
+    # Strip leading COUNTRY/TERRITORY «. »-segments: the denom is the first
+    # segment that is NOT a known territory. Handles «Schleswig-Holstein-
+    # Schaumburg-Pinneberg. Taler» → «Taler» and «Lübeck (Bishopric). Taler»
+    # → «Taler», while keeping a denom-FIRST lot intact («Skilling. Mint
+    # Error — …» → «Skilling», not the trailing error annotation).
+    while ". " in d:
+        head, rest = d.split(". ", 1)
+        if _TERRITORY_LEAD.match(head):
+            d = rest.strip()
+        else:
+            d = head.strip()
+            break
+    # Source-gap guards (no denomination actually printed):
+    #   • «DENMARK. , 1572» → empty / digit-only residue
+    #   • «… Lübeck (Bishopric), 1608-IG» → year directly after territory, so
+    #     the residue IS the trailing territory (still matches _TERRITORY_LEAD)
+    # Both must yield None, not a junk «denom».
+    if not d or not re.search(r"[A-Za-zÀ-ÿ]", d):
+        return None
+    if _TERRITORY_LEAD.match(d):
+        return None
+    return d
+
+
 def parse_denomination(meta: str | None, body: str | None) -> str | None:
-    """Extract a denomination string from meta_line.
+    """Extract a denomination string from the lot's meta_line, falling back
+    to the body_excerpt when the meta_line is truncated.
 
     Patterns supported:
       A. «<COUNTRY>. <denom>, <year>.»          — standard dated form
       B. «<COUNTRY>. <denom>, ND.»              — undated (ND with period)
       C. «<COUNTRY>. <denom>, ND (year).»       — undated with attribution
+      D. «<COUNTRY> . <TERRITORY>. <denom>, …»  — German-states territory prefix
+      E. Roman-numeral dated «… <denom>, MDCIII (1603).»
+
+    BODY FALLBACK (2026-06-09): the PDF line-wrap routinely truncates the
+    meta_line of German-states lots to «GERMANY . Schleswig-Holstein-
+    Schaumburg-Pinneberg.» — the denom + year wrap onto the body's first
+    line. The body_excerpt always carries the full «COUNTRY. TERRITORY.
+    <denom>, <year>. Mint…» header, so when the meta_line yields nothing we
+    re-run the same extraction on the body. (Fixes 18 nominal-less Bruun
+    seeds — German Schauenburg/Sonderburg Taler + Roman-dated Speciedaler.)
     """
-    if not meta:
-        return None
-    # Cover (A) + (B) + (C): denomination is between «<COUNTRY>. » and the
-    # first comma; what follows is either a year, «ND.», or «ND (year».
-    m = re.match(
-        r"^[^.]+\.\s+([^,]+),\s*(?:ND(?:\s*[.\(]|\b)|[\(\d])",
-        meta,
-    )
-    if m:
-        d = m.group(1).strip()
-        # Filter junk
-        if d.startswith("Gotland.") or d.startswith("Schleswig"):
-            # secondary realm marker; strip it
-            m2 = re.match(r"^[^.]+\.\s+([^,]+)", d)
-            if m2:
-                d = m2.group(1).strip()
-        return d
+    for text in (meta, body):
+        if not text:
+            continue
+        d = _denom_from_text(text)
+        if d:
+            return d
     return None
 
 
-def parse_metal(denom: str | None, refs: dict) -> tuple[str, bool]:
+_FRACTION_GLYPHS = {
+    "1/2": "½", "1/3": "⅓", "2/3": "⅔", "1/4": "¼", "3/4": "¾",
+    "1/8": "⅛", "3/8": "⅜",
+}
+
+
+def _bruun_display_nominal(raw: str | None) -> str | None:
+    """Reader-facing display normalisation for a raw Bruun denomination.
+
+    The seed's nominals were normalised once by a now-removed pass; the live
+    parser emits the raw catalogue string. This reproduces that normalisation so
+    fresh / new entries render cleanly AND a regen of existing entries is a
+    no-op (existing nominals are additionally soft-preserved via the builder's
+    `extra_curated_fields={'nominal'}`, which covers the ~24 curated/special
+    cases — Portugaløser-canonical, inconsistent value-parens, editorial
+    prefixes — that aren't algorithmically reproducible).
+
+    Steps (reproduces 1075/1099 of the committed seed exactly):
+      • strip a trailing «Klippe» / «, Klippe» form-qualifier (→ note territory);
+      • strip a NAME-only parenthetical «(Rhinsk Gulden)» but KEEP a VALUE
+        parenthetical «(3 Mark)» (leading digit) — a value equivalence;
+      • ASCII fractions → unicode glyphs, incl. mixed «2 1/2»/«1-1/2» → «2½»/«1½»;
+      • ø-spelling of the Danish denomination words;
+      • then the shared `normalise_nominal_display` (Noble→Nobel, Halv→½,
+        roman→arabic, implicit «1 », location/editorial strip)."""
+    if raw is None:
+        return None
+    s = str(raw).strip()
+    if not s:
+        return None
+    s = re.sub(r",?\s+Klippe\b", "", s)
+    s = re.sub(r"\s*\((?!\s*\d)[^)]*\)", "", s).strip()   # drop NAME-paren, keep VALUE-paren
+    s = re.sub(
+        r"(\d)[\s-]+(1/2|1/3|2/3|1/4|3/4|1/8|3/8)\b",
+        lambda m: m.group(1) + _FRACTION_GLYPHS[m.group(2)], s)
+    for ascii_frac, glyph in sorted(_FRACTION_GLYPHS.items(), key=lambda kv: -len(kv[0])):
+        s = re.sub(r"(?<!\d)" + re.escape(ascii_frac) + r"(?!\d)", glyph, s)
+    s = (s.replace("Portugaloser", "Portugaløser")
+          .replace("Sosling", "Søsling")
+          .replace("Lovedaler", "Løvedaler"))
+    return normalise_nominal_display(s)
+
+
+# NGC/PCGS grade-colour suffix — applied ONLY to copper/bronze coins (silver
+# and gold get a bare numeric grade). Anchored to the «NGC/PCGS <grade> <colour>»
+# shape so a stray «brown patina» in prose never false-matches. Matches e.g.
+# «NGC MS-64 Brown», «NGC MS-64+ Red Brown», «NGC PROOF-63 BN».
+_NGC_GRADE_COLOUR_RE = re.compile(
+    r"(?:NGC|PCGS)\s+[A-Z]{2,8}[\s\-]*\d{0,2}\+?\s+(?:RED\s+BROWN|BROWN|BN|RB|RD)\b",
+    re.IGNORECASE,
+)
+
+
+def parse_metal(denom: str | None, refs: dict, body: str | None = None) -> tuple[str, bool]:
     """Best-effort metal classification from denomination.
 
     Returns (metal, verified) tuple. **Bruun does not state the metal
@@ -459,9 +576,7 @@ def parse_metal(denom: str | None, refs: dict) -> tuple[str, bool]:
     # (1) Friedberg ref — reliable external gold signal, regardless of denom.
     if "fr" in refs_lc or "friedberg" in refs_lc:
         return ("gold", True)
-    if not denom:
-        return ("silver", False)  # safest default — no source signal
-    d = denom.lower()
+    d = (denom or "").lower()
     # (2) Explicit metal WORD in the nominal — the catalogue names the metal.
     # SILVER takes precedence and is matched broadly («silver»/«sølv») so that
     # «Sølvgylden», «Halv Sølvgylden», «Silver Gulden», «Sølvafslag …» never
@@ -473,7 +588,23 @@ def parse_metal(denom: str | None, refs: dict) -> tuple[str, bool]:
     # and the metal-ambiguous «gulden» family.
     if "gold" in d or "guldkrone" in d or "guldgylden" in d or "guldreal" in d:
         return ("gold", True)
+    # (3) NGC/PCGS grade-COLOUR suffix → copper. NGC applies a colour code
+    # (Red «RD» / Red-Brown «RB» / Brown «BN», or spelled-out «Brown» / «Red
+    # Brown») ONLY to copper/bronze coins; silver and gold get a bare numeric
+    # grade. So «NGC MS-64 Brown» in the lot body is a strong physical metal
+    # signal that overrides the weak denomination-NAME heuristics below
+    # (Skilling→billon, klippe→silver, Øre→default-silver). It is INDIRECT
+    # (names surface colour, not assayed fineness) → verified=False, so per §4
+    # it cannot block a cross-source merge and a source that assays the metal
+    # still overrides it. Placed AFTER the explicit metal-WORD checks so a
+    # «Sølv…»-named piece is never overridden. Caught 2026-06-10: siege klippe
+    # (dk-bruun-7277) + the Øre / Rigsbanktegn / small-Rigsbankskilling copper
+    # series were mis-rendered silver/billon.
+    if body and _NGC_GRADE_COLOUR_RE.search(body):
+        return ("copper", False)
     # --- denomination-NAME heuristics below: weak guess → verified=False ---
+    if not d:
+        return ("silver", False)  # safest default — no source signal
     if "10 kroner" in d or "20 kroner" in d:  # Danish gold-standard gold coins
         return ("gold", False)
     if any(t in d for t in [
@@ -552,8 +683,15 @@ def build_coin_entry(part: int, lot: dict) -> dict | None:
     refs = lot.get("refs") or {}
     ruler = parse_ruler_from_meta(meta, body, lot.get("ruler"))
     mint = parse_mint(lot)
-    denom = parse_denomination(meta, body)
-    metal, metal_verified = parse_metal(denom, refs)
+    # parse_metal MUST see the RAW denomination (descriptive parens intact):
+    # «12 Mark (Courant Ducat)» → the «Ducat» token drives the gold heuristic,
+    # «8 Skilling (klippe)» → the «klippe» token drives the silver heuristic.
+    # _bruun_display_nominal strips those name-parens for the rendered nominal,
+    # so it must run AFTER metal classification — otherwise the metal signal is
+    # lost (regression caught 2026-06-10: 7661 gold→silver, 4156/7277 →billon).
+    raw_denom = parse_denomination(meta, body)
+    metal, metal_verified = parse_metal(raw_denom, refs, body=body)
+    denom = _bruun_display_nominal(raw_denom)
     mintmaster = parse_mintmaster(body)
 
     # GENERIC catalogue mapping (§CJ): schema-field keys → typed; every other
@@ -736,6 +874,14 @@ def main() -> int:
         ),
         dry_run=args.dry_run,
         no_merge=args.no_merge,
+        # `nominal` is soft-preserved across regen: the live parser emits the
+        # raw catalogue string and `_bruun_display_nominal` reproduces the
+        # algorithmic normalisation for 1075/1099, but ~24 curated/special
+        # nominals (Portugaløser-canonical, inconsistent value-parens, editorial
+        # prefixes, parser-None → curated) aren't algorithmically reproducible —
+        # preserving `nominal` keeps those (and any future curator edit) intact
+        # so a regen never degrades a stored nominal.
+        extra_curated_fields=frozenset({"nominal"}),
         extra_top_level={
             "scope_year_from": YEAR_FROM,
             "scope_year_to": YEAR_TO,

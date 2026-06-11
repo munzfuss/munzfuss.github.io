@@ -95,6 +95,100 @@ merges:
       1 Speciedaler Christian IV, KM 44 — two sub-types (Helsingør 1608-1610;
       Kopenhagen 1618-1621) of one coin, distinct from Hede 54 / KM 53.
 
+  # --- ½ Skilling Christian V — one coin Krause/Hede-split across many
+  # sub-variants (curator decision 2026-06-05, Serhii, by image). ---
+  - members:
+      - dk-numista-175690          # KM 421
+      - denmark-numismaster-64984  # KM 421.1
+      - dk-tid-96438               # KM 421.1 (ucoin)
+      - denmark-numismaster-64985  # KM 421.2
+      - kmk-152206                 # Hede 112 (museum)
+      - kmk-152207                 # Hede 112
+      - kmk-306336                 # Hede 112
+      - kmk-329995                 # Hede 112
+      - kmk-332469                 # Hede 112
+      - kmk-353274                 # Hede 112
+      - kmk-354439                 # Hede 112
+      - kmk-354549                 # Hede 112
+      - kmk-355703                 # Hede 112
+      - kmk-317181                 # Hede 112A (museum)
+      - kmk-317182                 # Hede 112A
+      - kmk-317183                 # Hede 112A
+      - kmk-372858                 # Hede 112A
+      - kmk-437512                 # Hede 112A
+      - dk-hede-c5h112aa           # Hede 112a (danskmoent, Sieg 3.1)
+      - dk-hede-c5h112ab           # Hede 112a (danskmoent, Sieg 3.2)
+    reason: |
+      ½ Skilling Christian V, Kopenhagen, 1693-1696 — ONE coin. Krause
+      splits it across KM 421 / 421.1 / 421.2; Hede across 112 / 112A /
+      112a (danskmoent aA/aB). Same denomination, ruler, mint, period
+      (~3.6 g billon) — visually one type. The auto-matcher returns
+      no_match on the KM sub-variant conflict (421.1 vs 421.2 etc.),
+      leaving the coin split across 8 clusters; this force-merge unites
+      them. Divergent KM/Hede indices accumulate list-form per §9a.
+      Verified 0 outsiders dragged in (all 8 source clusters contain only
+      these 20 family members). danskmoent.dk/chr/c5h112a.htm.
+
+  # === Catalog-graph disambiguation pass (curator decision 2026-06-06/07,
+  # Serhii, by image — scripts/maintenance/catalog_graph.py 9-component pass).
+  # Each "all one coin" verdict force-unites the clusters the auto-matcher kept
+  # apart on KM/Hede sub-number divergence. Divergent KM/Hede/Sieg accumulate
+  # list-form per §9a; nominal divergences surface in match_uncertainty. ===
+
+  # Component 1 — 1 Krone Frederik III (= 4 Mark Danske): ALL one coin despite
+  # two KM families (KM 186.x 1652-53 + KM 192.x 1653) and three Hede (87/91/95).
+  - members:
+      - denmark-numismaster-65272   # KM 186.1, Hede 87, Dav 3569, Schou 22
+      - denmark-numismaster-65273   # KM 186.2, Hede 87, Dav 3569A
+      - denmark-numismaster-65274   # KM 192.1, Dav 3570 (no Hede)
+      - denmark-numismaster-65276   # KM 192.3 (no Hede)
+      - dk-hede-f3h91               # KM 192.2, Hede 91, Sieg 46, Schou 37/39
+      - dk-numista-143477           # KM 186/186.3, Hede 95, Schou 59
+    reason: |
+      1 Krone Frederik III (= 4 Mark Danske), ONE coin per curator visual
+      verdict. KM-186 family (1652-53: Hede 87/95, KM 186/186.1/186.2/186.3,
+      Dav 3569/3569A) + KM-192 family (1653: Hede 91, Sieg 46, KM 192.1/192.2/
+      192.3, Dav 3570/3570A) are sub-types of one type. NOTE: dk-hede-f3h91
+      prints nominal «4 Mark» vs «1 Krone» elsewhere (1 Krone = 4 Mark Danske)
+      — nominal divergence surfaces in match_uncertainty. catalog_graph comp 1.
+
+  # Component 2 — 1 Krone Christian V: ALL one coin despite the Hede 90/94 split.
+  - members:
+      - dk-hede-c5h90a              # KM 401/401.3, Hede 90A, Sieg 46.1, Dav 3642
+      - dk-hede-c5h90b              # KM 401.1, Hede 90B, Sieg 46.2, Dav 3642
+      - dk-hede-c5h90c              # KM 401.4, Hede 90C, Sieg 46.3, Dav 3645
+      - dk-hede-c5h94               # KM 401.2, Hede 94, Sieg 33, Dav 3643
+      - dk-bruun-7055               # KM 401, Hede 90/90B, Sieg 46.2, Dav 3643
+      - kmk-156921                  # Hede 90A/90C (museum)
+      - kmk-156932                  # Hede 90A/90 (museum)
+    reason: |
+      1 Krone Christian V, ONE coin per curator (Hede 90 = 94 = KM 401). The
+      KM 401 sub-numbers (401/401.1/401.2/401.3/401.4) + Hede 90A/B/C/94 are
+      mintmark/die sub-types of one type; Dav 3642/3643/3645 hang off the KM
+      sub-numbers. Divergent KM/Hede/Sieg accumulate list-form per §9a.
+      catalog_graph comp 2.
+
+  # Component 4 — 2 Mark Frederik III: ALL one coin (Hede 108 = 109 = 110 = KM 259).
+  - members:
+      - dk-hede-f3h108a            # KM 259/259.1, Hede 108A/B, Sieg 37.1/37.2
+      - dk-hede-f3h109             # KM 259.2, Hede 109, Sieg 38
+      - dk-hede-f3h110a            # KM 259.3, Hede 110A/B, Sieg 39.1/39.2
+    reason: |
+      2 Mark Frederik III, ONE coin per curator (Hede 108/109/110 = KM 259).
+      KM 259 sub-numbers (259/259.1/259.2/259.3) + Hede 108/109/110 are
+      sub-types of one type; accumulate list-form per §9a. catalog_graph comp 4.
+  - members:
+      - dk-hede-c4h45
+      - dk-numista-268888
+    reason: |
+      Curator decision 2026-06-09 (Serhii, over-merge split). 1 Speciedaler
+      Christian IV 1596, ONE coin sharing Hede 45 + Davenport EC I 8232:
+        - dk-hede-c4h45    (danskmoent c4h45; Bruun II lot 13077; Sieg 95/111)
+        - dk-numista-268888 (Numista 268888, nominal «4 Marks» = 1 Speciedaler)
+      Matcher held them apart at low_confidence only because Numista labels the
+      nominal «4 Marks» (the accounting equivalent of 1 Speciedaler) + carries
+      no ruler. Same Hede 45 + same Dav 8232 ⇒ same coin; keep merged.
+
 no_merges:
   # --- dk-tid-94338 disentanglement (curator decision 2026-05-31, Serhii).
   # 1 Dukat Frederik V 1747 — the merger fused FOUR distinct coins into one
@@ -221,3 +315,153 @@ no_merges:
   - members: [dk-hede-c4h54, dk-numista-199010]
     reason: |
       Hede 54 / KM 53 ≠ KM 44 coin (Numista 199010).
+
+  # === Catalog-graph disambiguation pass (curator decision 2026-06-06/07,
+  # Serhii, by image — catalog_graph.py). Distinctness verdicts pinning coins
+  # the curator confirmed are DIFFERENT types. Already separate in the auto-
+  # matcher; these pins protect against future auto-merges. ===
+
+  # Component 3 — 8 Skilling Christian IV: Hede 91 (KM 32.1), Hede 93 (KM 32),
+  # Hede 96 (KM 42) are THREE distinct coins.
+  - members: [dk-hede-c4h91, dk-hede-c4h93a]
+    reason: |
+      8 Skilling Christian IV: Hede 91 (KM 32.1) ≠ Hede 93 (KM 32). catalog_graph comp 3.
+  - members: [dk-hede-c4h91, dk-hede-c4h96]
+    reason: |
+      8 Skilling Christian IV: Hede 91 (KM 32.1) ≠ Hede 96 (KM 42). catalog_graph comp 3.
+  - members: [dk-hede-c4h93a, dk-hede-c4h96]
+    reason: |
+      8 Skilling Christian IV: Hede 93 (KM 32) ≠ Hede 96 (KM 42). catalog_graph comp 3.
+
+  # Component 5 — 2 Skilling Christian IV: Hede 116 (KM 80.2 / Sieg 40) ≠
+  # Hede 117 (KM 80.1 / Sieg 41) — two distinct coins. SUPERSEDES the earlier
+  # deferred «merge 116+117» note; curator systematic verdict is «дві різні монети».
+  - members: [dk-hede-c4h116a, dk-hede-c4h117a]
+    reason: |
+      2 Skilling Christian IV: Hede 116 (KM 80.2 / Sieg 40) ≠ Hede 117 (KM 80.1
+      / Sieg 41). catalog_graph comp 5.
+
+  # Component 7 — 1 Dukat Christian V: Hede 26, 29, 31, 32 are FOUR distinct coins.
+  # (Hede 31 represented by its primary 31A/B entry c5h31a.)
+  - members: [dk-hede-c5h26ab, dk-hede-c5h29]
+    reason: |
+      1 Dukat Christian V: Hede 26 ≠ Hede 29. catalog_graph comp 7.
+  - members: [dk-hede-c5h26ab, dk-hede-c5h31a]
+    reason: |
+      1 Dukat Christian V: Hede 26 ≠ Hede 31. catalog_graph comp 7.
+  - members: [dk-hede-c5h26ab, dk-hede-c5h32]
+    reason: |
+      1 Dukat Christian V: Hede 26 ≠ Hede 32. catalog_graph comp 7.
+  - members: [dk-hede-c5h29, dk-hede-c5h31a]
+    reason: |
+      1 Dukat Christian V: Hede 29 ≠ Hede 31. catalog_graph comp 7.
+  - members: [dk-hede-c5h29, dk-hede-c5h32]
+    reason: |
+      1 Dukat Christian V: Hede 29 ≠ Hede 32 — distinct despite the shared
+      Schou 8 vertex (curator: most-likely different dies). catalog_graph comp 7.
+  - members: [dk-hede-c5h31a, dk-hede-c5h32]
+    reason: |
+      1 Dukat Christian V: Hede 31 ≠ Hede 32. catalog_graph comp 7.
+
+  # Component 8 — 2 Dukat Christian V: Hede 27, 56, 58 are three distinct coins.
+  - members: [dk-hede-c5h27ab, dk-hede-c5h56]
+    reason: |
+      2 Dukat Christian V: Hede 27 ≠ Hede 56. catalog_graph comp 8.
+  - members: [dk-hede-c5h27ab, dk-hede-c5h58]
+    reason: |
+      2 Dukat Christian V: Hede 27 ≠ Hede 58. catalog_graph comp 8.
+  - members: [dk-hede-c5h56, dk-hede-c5h58]
+    reason: |
+      2 Dukat Christian V: Hede 56 ≠ Hede 58. catalog_graph comp 8.
+
+  # Component 9 — 2 Dukat Frederik V: Hede 10 ≠ Hede 14 — two distinct coins.
+  - members: [dk-hede-f5h10ab, dk-hede-f5h14]
+    reason: |
+      2 Dukat Frederik V: Hede 10 ≠ Hede 14. catalog_graph comp 9.
+  - members:
+      - kmk-290904
+      - kmk-348808
+    reason: |
+      Curator decision 2026-06-08 (Serhii, by natmus image). KMM 290904 is
+      Christian IV's 1627 PRO RELIGIONE Speciedaler struck at Wolfenbüttel
+      (crowned C4 monogram + «MON PRO RELIGIONE», typeNumber «Sch 5» / «B 718»,
+      28.35 g, 3 photos) — the Thirty-Years-War occupation coinage, a DIFFERENT
+      type from the København portrait Speciedaler Hede 55 (KMM 348808 «daler»
+      «H 55» 28.48 g). They merged only on year 1627 + weight ~28.4 g + Christian
+      IV + silver; split them.
+  - members:
+      - kmk-290904
+      - dk-hede-c4h55
+    reason: |
+      Curator decision 2026-06-08. Blocks the absorb from re-matching the
+      Wolfenbüttel PRO RELIGIONE Speciedaler (KMM 290904) into the København
+      Hede 55 (dk-hede-c4h55) via the false «Schou 5» collision — both are
+      Christian-IV «Schou 5», but the Wolfenbüttel war-coinage «Sch 5» is a
+      different cataloguing context from the København Speciedaler sub-variant
+      Schou 5. 290904 belongs in seed_unsorted (no confident curated host).
+  - members:
+      - kmk-348808
+      - kmk-291969
+    reason: |
+      Curator decision 2026-06-08. KMM 348808 (genuine Hede 55 «daler», no
+      mint) and KMM 291969 (Wolfenbüttel war coin «Sch 11», 1627) share NO
+      catalogue ref and merge only on weight+year+ruler — bundling a Wolfenbüttel
+      coin with a Hede 55 one, whose hede-55 tie then bypasses the §9.4 mint
+      discriminator at absorb. Split so 348808 joins its Hede 55 type and 291969
+      is correctly blocked from c4h55 by the mint discriminator (Wolfenbüttel ≠
+      Kopenhagen).
+  # --- dk-tid-173642 over-merge split (curator decision 2026-06-09, Serhii) ---
+  # A stale absorb had fused THREE coins into the ucoin host dk-tid-173642:
+  #   coin 1  Hede 44 Speciedaler 1596  (host + dk-hede-c4h44)
+  #   coin 2  Hede 45 Speciedaler 1596  (dk-hede-c4h45 + dk-numista-268888)
+  #   coin 3  KMM 693172 «8 Skilling» 1625, Schou 45 (its «Hede 45» tag is a
+  #           likely natmus type-number error — flagged, NOT errata'd)
+  # The current matcher already returns no_match on every cross pair; these
+  # no_merges lock the split + block the shared-(wrong)-Hede-45 coin2↔coin3
+  # collision from re-fusing on a catalog-tie nominal demotion.
+  - members: [dk-hede-c4h44, dk-hede-c4h45]
+    reason: |
+      Coin 1 (Hede 44) ≠ coin 2 (Hede 45) — different Hede type per §9.4.
+  - members: [dk-hede-c4h44, kmk-693172]
+    reason: |
+      Coin 1 (Hede 44 Speciedaler 1596) ≠ coin 3 (KMM 693172, 8 Skilling 1625).
+  - members: [dk-hede-c4h45, kmk-693172]
+    reason: |
+      Coin 2 (Hede 45 Speciedaler 1596) ≠ coin 3 (KMM 693172, 8 Skilling 1625).
+      Both carry «Hede 45» (coin 3's is a suspected natmus mis-tag) — block the
+      catalog-tie demotion from merging a Speciedaler with an 8-Skilling.
+  - members: [dk-tid-173642, dk-hede-c4h45]
+    reason: |
+      Host ucoin coin 1 (dk-tid-173642) ≠ coin 2 (Hede 45) — host stays Hede 44.
+  - members: [dk-tid-173642, kmk-693172]
+    reason: |
+      Host ucoin coin 1 (dk-tid-173642) ≠ coin 3 (KMM 693172, 8 Skilling 1625).
+  # --- over-merge audit splits (curator 2026-06-09, Serhii; found by
+  #     audit_overmerge_candidates.py) ---
+  # dk-tid-163014 «2 Skilling» host had a 1 Speciedaler (Hede 5, Dav 7760)
+  # fused in.
+  - members: [dk-hede-c4h112a, dk-bruun-5536]
+    reason: |
+      2 Skilling (Hede 112A/B, KM 68) ≠ 1 Speciedaler (Hede 5, Dav 7760) —
+      grossly different denominations stale-fused into the ucoin 2-Skilling host.
+  - members: [dk-tid-163014, dk-bruun-5536]
+    reason: |
+      ucoin 2-Skilling host (dk-tid-163014) ≠ 1 Speciedaler (dk-bruun-5536).
+  # dk-tid-94158 «1 Krone» host had a 2 Kronen (8 Mark) fused in.
+  - members: [dk-hede-f5h29, ikmk-18203664]
+    reason: |
+      1 Krone (Hede 29, KM 559, Dav EC III 1300A) ≠ 2 Kronen / 8 Mark
+      (Dav EC III 1300) — the double-krone is a different coin.
+  - members: [dk-tid-94158, ikmk-18203664]
+    reason: |
+      ucoin 1-Krone host (dk-tid-94158) ≠ 2 Kronen (ikmk-18203664).
+  # unified-dk-hede-c4h119a «1 Skilling» host had a CONTEMPORARY FORGERY fused in.
+  - members: [dk-hede-c4h119a, kmk-521]
+    reason: |
+      Genuine 1 Skilling (Hede 119, silver) ≠ «1 Skilling samtidig forfalskning»
+      (KMM 521, a contemporary BILLON counterfeit of Hede 119B) — keep the
+      forgery as its own record, not bundled with the genuine coin.
+  - members: [dk-hede-c4h118a, kmk-521]
+    reason: |
+      Genuine 1 Skilling Hede 118 (silver) ≠ the billon contemporary forgery
+      KMM 521.

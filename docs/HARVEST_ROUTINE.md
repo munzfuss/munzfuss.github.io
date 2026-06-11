@@ -550,6 +550,31 @@ The script walks BO.6 first, then BO.7, picks the first priority with uncached N
 
 ### §2.2. Numista priority order
 
+**Priority 0 (STANDING — drains before any enumeration below).** Numista
+`year_list` backfill. This is a RE-READ task, NOT enumeration — its NIDs are
+already cached, so the §2.1 picker (which only looks for *uncached* NIDs) is
+structurally blind to it and will never reach it on its own. Each run, BEFORE
+walking Manifest A/B:
+
+1. Load `docs/handoff_numista_year_list_reharvest.yml::pending` (list of
+   `{nid, year_first, year_last, gap, …}`, sorted by year-gap descending).
+2. If non-empty, take the next **5** NIDs, re-fetch each Numista page, and read
+   its struck years. Apply the §2.3-B `year_list` encoding: comma-form
+   («1496, 1502») → `year_list: [1496, 1502]`; dash-form / single → `year_list:
+   null`. Overwrite the cached JSON (preserve all other fields).
+3. Remove each completed NID from `pending`. When `pending` is empty, the
+   backfill is done — fall through to Manifest A/B enumeration as normal.
+
+Rationale: the 122-entry queue was created 2026-05-22 (user N#420401 data-loss
+audit — «1496, 1502» discrete strike years collapsed to a continuous 1496-1502
+range, a §4 «source years are immutable» violation). It was filed as HIGH in
+`docs/handoff.md` #0, but the routine batches off THIS file + `_harvest_handoff
+.json::priority_override`, never the handoff prose — so for two weeks it sat at
+0/122 done while the picker ground through BO.7. Wiring it here as Priority 0
+makes the priority real: every cron run drains 5 until the queue empties (~24
+runs). Re-build the affected Numista seeds + re-merge after the queue closes
+(or incrementally) so the discrete `year_list` reaches the rendered table.
+
 **Manifest A — BO.6 (`_BO6_audit_2026-05-20.json`): Denmark + Norway + SH cluster.** Status as of 2026-05-24: all DK/NO buckets at 100 % (✅ CLOSED). SH cluster: 67/67 (✅ CLOSED).
 
 | Priority | Bucket | Era | Status |

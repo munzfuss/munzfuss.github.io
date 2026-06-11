@@ -1,6 +1,6 @@
 status: seed
 source: Hede 1971 (danskmoent.dk cache)
-generated_at: '2026-06-01T13:46:04Z'
+generated_at: '2026-06-09T17:15:21Z'
 entity: royal_holstein
 scope_note: 'Hede 1971 seed via danskmoent.dk parser cache (scripts/cache/hede). Scope: 1514 <= year_first <= 1914. Per-entry curation: fuss/phase/fraction/issuing_entity/kind/note/*_verified flags survive
   regen; `_curation_holds: {field: why, ...}` for per-entry escape hatches. Fresh entries appear with `fuss=seed_unsorted, phase=hede` as the curation signal.'
@@ -173,6 +173,42 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-c3h21c
+    fuss: seed_unsorted
+    phase: hede
+    kind: scheide
+    nominal: 1 Søsling Lybsk
+    year_label: '1545'
+    year_first: 1545
+    ruler: Christian III.
+    mint: Flensburg
+    catalog:
+      hede: 21C
+      hede_volume: c3h
+      schou: '1'
+      sieg: '44.3'
+    metal: silver
+    fineness: 0.406
+    weight_rough_g: 1.292
+    hede_muentzfuss_yield:
+      value: 9.287
+      unit: speciedaler
+      basis: fin
+      unit_raw: daler
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c3h21.htm
+        ref: danskmoent.dk (Hede c3h21C)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c3h14
     fuss: seed_unsorted
     phase: hede
@@ -252,11 +288,13 @@ coins:
     catalog:
       hede: '22'
       hede_volume: c3h
-      schou: '12'
-      sieg: '45.1'
-      others:
-        - schou# 3
-        - sieg# 45.2
+      schou:
+        - '12'
+        - '3'
+        - 13-14,3-4,5,1,19
+      sieg:
+        - '45.1'
+        - '45.2'
     metal: silver
     fineness: 0.406
     weight_rough_g: 1.292
@@ -291,11 +329,11 @@ coins:
     catalog:
       hede: '19'
       hede_volume: c3h
-      schou: 1-5
+      schou:
+        - 1-5
+        - '2'
+        - '3'
       sieg: '50'
-      others:
-        - schou# 2
-        - schou# 3
     metal: silver
     fineness: 0.89
     weight_rough_g: 29.232
@@ -330,10 +368,10 @@ coins:
     catalog:
       hede: '20'
       hede_volume: c3h
-      schou: 6-8
+      schou:
+        - 6-8
+        - '7'
       sieg: '48'
-      others:
-        - schou# 7
     metal: silver
     fineness: 0.89
     weight_rough_g: 14.616
@@ -369,6 +407,7 @@ coins:
       hede: 30A
       hede_volume: f2h
       sieg: '33.1'
+      schou: 2-4,1-13
     metal: silver
     fineness: 0.391
     weight_rough_g: 1.856
@@ -391,7 +430,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-f2h31
+  - id: dk-hede-f2h31a
     fuss: seed_unsorted
     phase: hede
     kind: scheide
@@ -401,14 +440,10 @@ coins:
     ruler: Frederik II.
     mint: Flensburg
     catalog:
-      hede: '31'
+      hede: 31A
       hede_volume: f2h
-      schou: '27'
+      schou: 5-6,14-26
       sieg: '32.1'
-      others:
-        - sieg# 32.2
-        - schou# 32
-        - schou# 16
     metal: silver
     fineness: 0.328
     weight_rough_g: 1.124
@@ -420,7 +455,43 @@ coins:
     sources:
       - type: literature
         url: https://www.danskmoent.dk/fr/f2h31.htm
-        ref: danskmoent.dk (Hede f2h31)
+        ref: danskmoent.dk (Hede f2h31A)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f2h31b
+    fuss: seed_unsorted
+    phase: hede
+    kind: scheide
+    nominal: 1 Søsling Lybsk
+    year_label: '1566'
+    year_first: 1566
+    ruler: Frederik II.
+    mint: Flensburg
+    catalog:
+      hede: 31B
+      hede_volume: f2h
+      schou: 27,29
+      sieg: '32.2'
+    metal: silver
+    fineness: 0.328
+    weight_rough_g: 1.124
+    hede_muentzfuss_yield:
+      value: 10.237
+      unit: speciedaler
+      basis: fin
+      unit_raw: daler
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f2h31.htm
+        ref: danskmoent.dk (Hede f2h31B)
     issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
@@ -549,6 +620,7 @@ coins:
       hede: 8A
       hede_volume: c4h
       sieg: '1'
+      schou: 7,10-11
     metal: gold
     fineness: 0.986
     weight_rough_g: 3.49
@@ -595,7 +667,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-c4h5
+  - id: dk-hede-c4h5a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -605,18 +677,43 @@ coins:
     ruler: Christian IV.
     mint: Haderslev
     catalog:
-      hede: '5'
+      hede: 5A
       hede_volume: c4h
       schou: '3'
       sieg: '8'
-      others:
-        - schou# 4
     metal: gold
     weight_rough_g: 34.88
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c4h5.htm
-        ref: danskmoent.dk (Hede c4h5)
+        ref: danskmoent.dk (Hede c4h5A)
+    issuing_entity: royal_holstein
+    verified: false
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-c4h5b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Portugaløser
+    year_label: '1592'
+    year_first: 1592
+    ruler: Christian IV.
+    mint: Haderslev
+    catalog:
+      hede: 5B
+      hede_volume: c4h
+    metal: gold
+    weight_rough_g: 34.88
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c4h5.htm
+        ref: danskmoent.dk (Hede c4h5B)
     issuing_entity: royal_holstein
     verified: false
     weight_rough_verified: true
@@ -671,12 +768,12 @@ coins:
     catalog:
       hede: '173'
       hede_volume: c4h
-      schou: '27'
+      schou:
+        - '27'
+        - '32'
+        - '35'
+        - '39'
       sieg: '171'
-      others:
-        - schou# 32
-        - schou# 35
-        - schou# 39
     metal: silver
     fineness: 0.59
     weight_rough_g: 8.352
@@ -711,10 +808,10 @@ coins:
     catalog:
       hede: '169'
       hede_volume: c4h
-      schou: 80-84
+      schou:
+        - 80-84
+        - '80'
       sieg: '163'
-      others:
-        - schou# 80
     metal: silver
     fineness: 0.888
     weight_rough_g: 0.487
@@ -754,22 +851,23 @@ coins:
     catalog:
       hede: '156'
       hede_volume: c4h
-      schou: '13'
+      schou:
+        - '13'
+        - '14'
+        - '16'
+        - '17'
+        - '21'
+        - '25'
+        - '26'
+        - '29'
+        - '35'
+        - '18'
+        - '7'
+        - '8'
+        - '22'
+        - '15'
+        - 11-35,18-26,5-11,22,15-16,8
       sieg: '178'
-      others:
-        - schou# 14
-        - schou# 16
-        - schou# 17
-        - schou# 21
-        - schou# 25
-        - schou# 26
-        - schou# 29
-        - schou# 35
-        - schou# 18
-        - schou# 7
-        - schou# 8
-        - schou# 22
-        - schou# 15
     metal: silver
     fineness: 0.888
     weight_rough_g: 29.232
@@ -809,12 +907,13 @@ coins:
     catalog:
       hede: '160'
       hede_volume: c4h
-      schou: '37'
+      schou:
+        - '37'
+        - '38'
+        - '39'
+        - '12'
+        - 37-44,12,25
       sieg: '176'
-      others:
-        - schou# 38
-        - schou# 39
-        - schou# 12
     metal: silver
     fineness: 0.888
     weight_rough_g: 14.616
@@ -849,11 +948,11 @@ coins:
     catalog:
       hede: '161'
       hede_volume: c4h
-      schou: 45-48
+      schou:
+        - 45-48
+        - '46'
+        - '47'
       sieg: '174'
-      others:
-        - schou# 46
-        - schou# 47
     metal: silver
     fineness: 0.888
     weight_rough_g: 7.308
@@ -889,11 +988,12 @@ coins:
     catalog:
       hede: '170'
       hede_volume: c4h
-      schou: '66'
+      schou:
+        - '66'
+        - '50'
+        - '34'
+        - 54-81,106-124,46-51,34-35
       sieg: '165'
-      others:
-        - schou# 50
-        - schou# 34
     metal: silver
     fineness: 0.888
     weight_rough_g: 1.461
@@ -928,11 +1028,11 @@ coins:
     catalog:
       hede: '172'
       hede_volume: c4h
-      schou: 35-44
+      schou:
+        - 35-44
+        - '35'
+        - '41'
       sieg: '169'
-      others:
-        - schou# 35
-        - schou# 41
     metal: silver
     fineness: 0.888
     weight_rough_g: 2.923
@@ -1002,13 +1102,14 @@ coins:
     catalog:
       hede: '163'
       hede_volume: c4h
-      schou: '11'
+      schou:
+        - '11'
+        - '24'
+        - '34'
+        - '35'
+        - '21'
+        - 10-11,9,9,19,24,33-35,21-22,18
       sieg: '181'
-      others:
-        - schou# 24
-        - schou# 34
-        - schou# 35
-        - schou# 21
     metal: silver
     fineness: 0.888
     weight_rough_g: 29.232
@@ -1044,13 +1145,15 @@ coins:
     catalog:
       hede: '176'
       hede_volume: c4h
-      schou: '17'
+      schou:
+        - '17'
+        - '41'
+        - '1642'
+        - '35'
+        - '33'
+        - 17-18,21-54,30-39,33-38
+        - 68-81,64-73
       sieg: '166'
-      others:
-        - schou# 41
-        - schou# 1642
-        - schou# 35
-        - schou# 33
     metal: silver
     fineness: 0.812
     weight_rough_g: 1.785
@@ -1087,6 +1190,7 @@ coins:
       hede: 178A
       hede_volume: c4h
       sieg: '161'
+      schou: 19-20,60-68,59-62,57-60
     metal: silver
     fineness: 0.312
     weight_rough_g: 0.704
@@ -1121,10 +1225,10 @@ coins:
     catalog:
       hede: '177'
       hede_volume: c4h
-      schou: 103-109
+      schou:
+        - 103-109
+        - '105'
       sieg: '167'
-      others:
-        - schou# 105
     metal: silver
     fineness: 0.812
     weight_rough_g: 1.785
@@ -1161,6 +1265,7 @@ coins:
       hede: 178B
       hede_volume: c4h
       sieg: '161'
+      schou: 157-159,96-99,81-85,51-56,59
     metal: silver
     fineness: 0.312
     weight_rough_g: 0.704
@@ -1196,7 +1301,9 @@ coins:
     catalog:
       hede: '154'
       hede_volume: c4h
-      schou: '7'
+      schou:
+        - '7'
+        - 7-8,4
       sieg: '185'
     metal: gold
     fineness: 0.979
@@ -1228,10 +1335,11 @@ coins:
     catalog:
       hede: '165'
       hede_volume: c4h
-      schou: '27'
+      schou:
+        - '27'
+        - '41'
+        - 27,41
       sieg: '177'
-      others:
-        - schou# 41
     metal: silver
     fineness: 0.888
     weight_rough_g: 14.616
@@ -1302,14 +1410,14 @@ coins:
     catalog:
       hede: '179'
       hede_volume: c4h
-      schou: 44-54
+      schou:
+        - 44-54
+        - '46'
+        - '47'
+        - '50'
+        - '52'
+        - '53'
       sieg: '172'
-      others:
-        - schou# 46
-        - schou# 47
-        - schou# 50
-        - schou# 52
-        - schou# 53
     metal: silver
     fineness: 0.593
     weight_rough_g: 11.136
@@ -1349,6 +1457,7 @@ coins:
       hede: 145A
       hede_volume: f3h
       sieg: '160'
+      schou: 5,9-10,1
     metal: gold
     fineness: 0.917
     weight_rough_g: 5.996
@@ -1383,15 +1492,17 @@ coins:
     catalog:
       hede: '149'
       hede_volume: f3h
-      schou: 65-66
-      sieg: '147'
-      others:
-        - sieg# 148.1
-        - sieg# 148.2
-        - sieg# 149
-        - schou# 65
-        - schou# 95
-        - schou# 99
+      schou:
+        - 65-66
+        - '65'
+        - '95'
+        - '99'
+        - 53-67,90-103
+      sieg:
+        - '147'
+        - '148.1'
+        - '148.2'
+        - '149'
     metal: silver
     fineness: 0.812
     weight_rough_g: 1.785
@@ -1427,10 +1538,11 @@ coins:
     catalog:
       hede: '150'
       hede_volume: f3h
-      schou: '106'
+      schou:
+        - '106'
+        - '98'
+        - 105-108,123-128,90-98
       sieg: '146'
-      others:
-        - schou# 98
     metal: silver
     fineness: 0.312
     weight_rough_g: 0.704
@@ -1467,6 +1579,7 @@ coins:
       hede: 153A
       hede_volume: f3h
       sieg: '153.1'
+      schou: 44-65,29-36
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -1503,6 +1616,7 @@ coins:
       hede: 153B
       hede_volume: f3h
       sieg: '153.2'
+      schou: 66-67,37-41
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -1572,7 +1686,9 @@ coins:
     catalog:
       hede: '148'
       hede_volume: f3h
-      schou: '37'
+      schou:
+        - '37'
+        - 37,20
       sieg: '156'
     metal: silver
     fineness: 0.888
@@ -1608,11 +1724,11 @@ coins:
     catalog:
       hede: '151'
       hede_volume: f3h
-      schou: 51-52
+      schou:
+        - 51-52
+        - '51'
+        - '52'
       sieg: '152'
-      others:
-        - schou# 51
-        - schou# 52
     metal: silver
     fineness: 0.812
     weight_rough_g: 3.57
@@ -1655,18 +1771,20 @@ coins:
     catalog:
       hede: '152'
       hede_volume: f3h
-      schou: 54-69
-      sieg: '150.1'
-      others:
-        - schou# 70-71
-        - schou# 56
-        - schou# 58
-        - schou# 140
-        - schou# 74
-        - schou# 66
-        - schou# 46
-        - sieg# 150.2
-        - sieg# 151
+      schou:
+        - 54-69
+        - 70-71
+        - '56'
+        - '58'
+        - '140'
+        - '74'
+        - '66'
+        - '46'
+        - 72-82,111-145
+      sieg:
+        - '150.1'
+        - '150.2'
+        - '151'
     metal: silver
     fineness: 0.812
     weight_rough_g: 1.785
@@ -1702,10 +1820,11 @@ coins:
     catalog:
       hede: '144'
       hede_volume: f3h
-      schou: '9'
+      schou:
+        - '9'
+        - '5'
+        - 9,8,5,5
       sieg: '159'
-      others:
-        - schou# 5
     metal: gold
     fineness: 0.979
     weight_rough_g: 3.49
@@ -1740,21 +1859,22 @@ coins:
     catalog:
       hede: '121'
       hede_volume: c5h
-      schou: '22'
+      schou:
+        - '22'
+        - '23'
+        - '35'
+        - '36'
+        - '38'
+        - '20'
+        - '16'
+        - '18'
+        - '12'
+        - '14'
+        - '25'
+        - '19'
+        - '21'
+        - 21-29,19-48,19-33,13-26,10-25,23-27,13-26,19-23
       sieg: '137'
-      others:
-        - schou# 23
-        - schou# 35
-        - schou# 36
-        - schou# 38
-        - schou# 20
-        - schou# 16
-        - schou# 18
-        - schou# 12
-        - schou# 14
-        - schou# 25
-        - schou# 19
-        - schou# 21
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -1791,6 +1911,7 @@ coins:
       hede: 115A
       hede_volume: c5h
       sieg: '142.1'
+      schou: 3,13
     metal: gold
     fineness: 0.979
     weight_rough_g: 3.49
@@ -1825,6 +1946,7 @@ coins:
       hede: 115B
       hede_volume: c5h
       sieg: '142.2'
+      schou: 4,14-15,2-5,1
     metal: gold
     fineness: 0.979
     weight_rough_g: 3.49
@@ -1855,10 +1977,11 @@ coins:
     catalog:
       hede: '122'
       hede_volume: c5h
-      schou: '34'
+      schou:
+        - '34'
+        - '29'
+        - 29-30,30,34,28-29
       sieg: '134'
-      others:
-        - schou# 29
     metal: silver
     fineness: 0.671
     weight_rough_g: 11.136
@@ -1897,11 +2020,13 @@ coins:
     catalog:
       hede: '117'
       hede_volume: c5h
-      schou: '1'
-      sieg: '144'
-      others:
-        - sieg# 127
-        - schou# 4
+      schou:
+        - '1'
+        - '4'
+        - 1-4,2
+      sieg:
+        - '144'
+        - '127'
     metal: gold
     fineness: 0.979
     weight_rough_g: 3.49
@@ -1931,10 +2056,10 @@ coins:
     catalog:
       hede: '124'
       hede_volume: c5h
-      schou: 31-32
+      schou:
+        - 31-32
+        - '31'
       sieg: '132'
-      others:
-        - schou# 31
     metal: silver
     fineness: 0.812
     weight_rough_g: 1.785
@@ -2038,6 +2163,7 @@ coins:
       hede: 125A
       hede_volume: c5h
       sieg: '138.1'
+      schou: 30-32,38-41,29-30
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -2110,6 +2236,7 @@ coins:
       hede: 126A
       hede_volume: c5h
       sieg: '135'
+      schou: 55-56,35
     metal: silver
     fineness: 0.671
     weight_rough_g: 11.136
@@ -2146,6 +2273,7 @@ coins:
       hede: '128'
       hede_volume: c5h
       sieg: '131'
+      schou: 66-74,44-45
     metal: silver
     fineness: 0.437
     weight_rough_g: 1.951
@@ -2182,6 +2310,7 @@ coins:
       hede: 125C
       hede_volume: c5h
       sieg: '139'
+      schou: 31,17,28-29
     metal: silver
     fineness: 0.671
     weight_rough_g: 22.272
@@ -2221,6 +2350,7 @@ coins:
       hede: 126B
       hede_volume: c5h
       sieg: '136'
+      schou: 34,32
     metal: silver
     fineness: 0.671
     weight_rough_g: 11.136
@@ -2260,6 +2390,7 @@ coins:
       hede: 127A
       hede_volume: c5h
       sieg: '133.2'
+      schou: 41-42,29-30,6-9
     metal: silver
     fineness: 0.562
     weight_rough_g: 3.057
@@ -2368,14 +2499,15 @@ coins:
     catalog:
       hede: '58'
       hede_volume: f4h
-      schou: '9'
+      schou:
+        - '9'
+        - '5'
+        - '25'
+        - '6'
+        - '3'
+        - '7'
+        - 8-10,3-6,19-25,6,12-16,3,7
       sieg: '55'
-      others:
-        - schou# 5
-        - schou# 25
-        - schou# 6
-        - schou# 3
-        - schou# 7
     metal: silver
     fineness: 0.562
     weight_rough_g: 3.057
@@ -2442,6 +2574,7 @@ coins:
       hede: 57B
       hede_volume: f4h
       sieg: '57'
+      schou: 2,1
     metal: gold
     fineness: 0.979
     weight_rough_g: 3.49
@@ -2472,7 +2605,9 @@ coins:
     catalog:
       hede: '59'
       hede_volume: f4h
-      schou: '9'
+      schou:
+        - '9'
+        - 12-14,9-12,12-16
       sieg: '54'
     metal: silver
     fineness: 0.329
@@ -2509,10 +2644,11 @@ coins:
     catalog:
       hede: '62'
       hede_volume: f4h
-      schou: '9'
+      schou:
+        - '9'
+        - '3'
+        - 7-11,6-9,5-8,6,3
       sieg: '59'
-      others:
-        - schou# 3
     metal: silver
     fineness: 0.562
     weight_rough_g: 3.898
@@ -2548,7 +2684,9 @@ coins:
     catalog:
       hede: '60'
       hede_volume: f4h
-      schou: '1'
+      schou:
+        - '1'
+        - 1,1
       sieg: '61'
     metal: gold
     fineness: 0.979
@@ -2611,12 +2749,14 @@ coins:
     catalog:
       hede: '63'
       hede_volume: f4h
-      schou: '12'
-      sieg: '58'
-      others:
-        - sieg# 58.1
-        - sieg# 58.2
-        - schou# 14a
+      schou:
+        - '12'
+        - 14a
+        - 12-14,7-11
+      sieg:
+        - '58'
+        - '58.1'
+        - '58.2'
     metal: billon
     fineness: 0.187
     weight_rough_g: 0.769
@@ -2652,10 +2792,11 @@ coins:
     catalog:
       hede: '6'
       hede_volume: c7h
-      schou: '2'
+      schou:
+        - '2'
+        - '7'
+        - 2,7-8
       sieg: '4'
-      others:
-        - schou# 7
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -2762,12 +2903,12 @@ coins:
     catalog:
       hede: '8'
       hede_volume: c7h
-      schou: 2-6
+      schou:
+        - 2-6
+        - '3'
+        - '5'
+        - '6'
       sieg: '5'
-      others:
-        - schou# 3
-        - schou# 5
-        - schou# 6
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -2790,7 +2931,7 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
-  - id: dk-hede-c7h9
+  - id: dk-hede-c7h9a
     fuss: seed_unsorted
     phase: hede
     kind: kurant
@@ -2800,13 +2941,10 @@ coins:
     ruler: Christian VII.
     mint: Rethwisch
     catalog:
-      hede: '9'
+      hede: 9A
       hede_volume: c7h
       schou: '9'
       sieg: '3'
-      others:
-        - schou# 10
-        - sieg# 2
     metal: silver
     fineness: 0.875
     weight_rough_g: 14.447
@@ -2818,7 +2956,43 @@ coins:
     sources:
       - type: literature
         url: https://www.danskmoent.dk/chr/c7h9.htm
-        ref: danskmoent.dk (Hede c7h9)
+        ref: danskmoent.dk (Hede c7h9A)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-c7h9b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: ½ Speciedaler
+    year_label: '1769'
+    year_first: 1769
+    ruler: Christian VII.
+    mint: Rethwisch
+    catalog:
+      hede: 9B
+      hede_volume: c7h
+      schou: '10'
+      sieg: '2'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 14.447
+    hede_muentzfuss_yield:
+      value: 9.25
+      unit: speciedaler
+      basis: fin
+      unit_raw: speciedalere
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c7h9.htm
+        ref: danskmoent.dk (Hede c7h9B)
     issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
@@ -2845,7 +3019,9 @@ coins:
     catalog:
       hede: '5'
       hede_volume: c7h
-      schou: '1'
+      schou:
+        - '1'
+        - 1,1
       sieg: '47'
     metal: gold
     fineness: 0.903
@@ -2880,7 +3056,9 @@ coins:
     catalog:
       hede: '12'
       hede_volume: c7h
-      schou: '2'
+      schou:
+        - '2'
+        - 5,2
       sieg: '29'
     metal: silver
     fineness: 0.875
@@ -2992,6 +3170,7 @@ coins:
       hede: 39B
       hede_volume: c7h
       sieg: '42.2'
+      schou: 1,4-5
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -3068,6 +3247,7 @@ coins:
       hede: 40A
       hede_volume: c7h
       sieg: '41'
+      schou: 5-6,5,2
     metal: silver
     fineness: 0.875
     weight_rough_g: 19.263
@@ -3108,6 +3288,7 @@ coins:
       hede: 41A
       hede_volume: c7h
       sieg: '40.1'
+      schou: 7,8,6-7,3
     metal: silver
     fineness: 0.875
     weight_rough_g: 9.631
@@ -3182,11 +3363,12 @@ coins:
     catalog:
       hede: '42'
       hede_volume: c7h
-      schou: '9'
+      schou:
+        - '9'
+        - '11'
+        - '10'
+        - 9,11-12,6-7,10
       sieg: '39'
-      others:
-        - schou# 11
-        - schou# 10
     metal: silver
     fineness: 0.687
     weight_rough_g: 6.129
@@ -3226,11 +3408,12 @@ coins:
     catalog:
       hede: '43'
       hede_volume: c7h
-      schou: '12'
+      schou:
+        - '12'
+        - '14'
+        - '6'
+        - 10-12,13-14,10-11,10-11,6-7
       sieg: '38'
-      others:
-        - schou# 14
-        - schou# 6
     metal: silver
     fineness: 0.5
     weight_rough_g: 4.214
@@ -3270,10 +3453,11 @@ coins:
     catalog:
       hede: '44'
       hede_volume: c7h
-      schou: '14'
+      schou:
+        - '14'
+        - '9'
+        - 14-15,18-19,13-14,13,9
       sieg: '37'
-      others:
-        - schou# 9
     metal: silver
     fineness: 0.375
     weight_rough_g: 2.809
@@ -3313,10 +3497,11 @@ coins:
     catalog:
       hede: '45'
       hede_volume: c7h
-      schou: '20'
+      schou:
+        - '20'
+        - '15'
+        - 17,18,20,15,15
       sieg: '36'
-      others:
-        - schou# 15
     metal: billon
     fineness: 0.25
     weight_rough_g: 1.499
@@ -3352,7 +3537,7 @@ coins:
       hede_volume: c7h
       schou: 18-22
       sieg: '35'
-    metal: silver
+    metal: copper
     weight_rough_g: 11.693
     sources:
       - type: literature
@@ -3381,7 +3566,7 @@ coins:
       hede_volume: c7h
       schou: '23'
       sieg: '34'
-    metal: silver
+    metal: copper
     weight_rough_g: 5.846
     sources:
       - type: literature
@@ -3408,11 +3593,11 @@ coins:
     catalog:
       hede: '25'
       hede_volume: c7h
-      schou: '7'
+      schou:
+        - '7'
+        - 7a
       sieg: '26'
       fr: '6'
-      others:
-        - schou# 7a
     metal: silver
     fineness: 0.875
     weight_rough_g: 23.582
@@ -3449,6 +3634,7 @@ coins:
       hede: 39D
       hede_volume: c7h
       sieg: '42.3'
+      schou: 6,1-3,2
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -3523,7 +3709,9 @@ coins:
     catalog:
       hede: '15'
       hede_volume: c7h
-      schou: '11'
+      schou:
+        - '11'
+        - 16-17,12-13,11
       sieg: '27'
     metal: silver
     fineness: 0.5
@@ -3560,6 +3748,7 @@ coins:
       hede: 39E
       hede_volume: c7h
       sieg: '42.4'
+      schou: 4-5,2-4
     metal: silver
     fineness: 0.875
     weight_rough_g: 28.893
@@ -3811,6 +4000,7 @@ coins:
       hede: '7'
       hede_volume: f6h
       sieg: '1'
+      schou: 2,10,9
     metal: billon
     fineness: 0.138
     weight_rough_g: 0.923
@@ -3850,6 +4040,7 @@ coins:
       hede: '16'
       hede_volume: f6h
       sieg: '8'
+      schou: 1,2
     metal: silver
     fineness: 0.375
     weight_rough_g: 2.809
@@ -3862,6 +4053,41 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h16.htm
         ref: danskmoent.dk (Hede f6h16)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f6h24c
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Rigsbankdaler
+    year_label: '1813'
+    year_first: 1813
+    ruler: Frederik VI.
+    mint: Altona
+    catalog:
+      hede: 24C
+      hede_volume: f6h
+      schou: '3'
+      sieg: '26.3'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 14.447
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f6h24.htm
+        ref: danskmoent.dk (Hede f6h24C)
     issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
@@ -3890,10 +4116,12 @@ coins:
     catalog:
       hede: '30'
       hede_volume: f6h
-      schou: '2'
-      sieg: '23'
-      others:
-        - sieg# 24
+      schou:
+        - '2'
+        - 1,3
+      sieg:
+        - '23'
+        - '24'
     metal: silver
     fineness: 0.5
     weight_rough_g: 4.214
@@ -3928,11 +4156,11 @@ coins:
     catalog:
       hede: '31'
       hede_volume: f6h
-      schou: '2'
+      schou:
+        - '2'
+        - '4'
+        - '3'
       sieg: '22'
-      others:
-        - schou# 4
-        - schou# 3
     metal: silver
     fineness: 0.375
     weight_rough_g: 2.809
@@ -3944,6 +4172,76 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h31.htm
         ref: danskmoent.dk (Hede f6h31)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f6h24d
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Rigsbankdaler
+    year_label: '1818'
+    year_first: 1818
+    ruler: Frederik VI.
+    mint: Altona
+    catalog:
+      hede: 24D
+      hede_volume: f6h
+      schou: '1'
+      sieg: '26.4'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 14.447
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f6h24.htm
+        ref: danskmoent.dk (Hede f6h24D)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f6h24e
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Rigsbankdaler
+    year_label: '1819'
+    year_first: 1819
+    ruler: Frederik VI.
+    mint: Altona
+    catalog:
+      hede: 24E
+      hede_volume: f6h
+      schou: '2'
+      sieg: '26.5'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 14.447
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f6h24.htm
+        ref: danskmoent.dk (Hede f6h24E)
     issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
@@ -4095,7 +4393,7 @@ coins:
     catalog:
       hede: 4B
       hede_volume: f6h
-      schou: 1829-37
+      schou: 2,3
       sieg: '33'
     metal: gold
     fineness: 0.896
@@ -4104,6 +4402,44 @@ coins:
       - type: literature
         url: https://www.danskmoent.dk/fr/f6h4.htm
         ref: danskmoent.dk (Hede f6h4B)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f6h27a
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Rigsbankdaler
+    year_label: 1833–1836, 1839
+    year_first: 1833
+    year_last: 1839
+    year_ranges:
+      - [1833, 1836]
+      - [1839, 1839]
+    ruler: Frederik VI.
+    mint: Altona
+    catalog:
+      hede: 27A
+      hede_volume: f6h
+      sieg: '28.1'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 14.447
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f6h27.htm
+        ref: danskmoent.dk (Hede f6h27A)
     issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
@@ -4219,6 +4555,41 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-c8h3b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_label: '1840'
+    year_first: 1840
+    ruler: Christian VIII.
+    mint: Altona
+    catalog:
+      hede: 3B
+      hede_volume: c8h
+      schou: '2'
+      sieg: '13.2'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 28.893
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c8h3.htm
+        ref: danskmoent.dk (Hede c8h3B)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c8h13ab
     fuss: seed_unsorted
     phase: hede
@@ -4251,6 +4622,42 @@ coins:
       uk: 'Hede index-stub: тільки рядок огляду c8hede.htm підтверджує цей запис (deep-сторінка Hede відсутня на danskmoent.dk). Вага та проба не зафіксовані; повна покоінна верифікація залежить від §AZ
         paper-source імпорту (Hede 1971 + Galster 1965). Коментар з індексу: «FF / K ; 13A (Sieg 1): Rigsbankskilling; 13B (Sieg 2): R.B.S. Hede: 1842: 3 og 1/5 Rigsbankskilling. I: NNUM 1956 ; Sømod: Krone,
         scepter og sværd (2000) ; Wilcke IV side 386»'
+  - id: dk-hede-c8h1b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 2 Christian D'or
+    year_label: 1842, 1844–1845, 1847
+    year_first: 1842
+    year_last: 1847
+    year_ranges:
+      - [1842, 1842]
+      - [1844, 1845]
+      - [1847, 1847]
+    ruler: Christian VIII.
+    mint: Altona
+    catalog:
+      hede: 1B
+      hede_volume: c8h
+      schou: 1,1,1,1
+      sieg: '16.2'
+    metal: gold
+    fineness: 0.896
+    weight_rough_g: 13.284
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c8h1.htm
+        ref: danskmoent.dk (Hede c8h1B)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-c8h9
     fuss: seed_unsorted
     phase: hede
@@ -4263,11 +4670,12 @@ coins:
     catalog:
       hede: '9'
       hede_volume: c8h
-      schou: '7'
-      sieg: '6'
-      others:
-        - schou# 8
-        - sieg# 7
+      schou:
+        - '7'
+        - '8'
+      sieg:
+        - '6'
+        - '7'
     metal: billon
     fineness: 0.229
     weight_rough_g: 1.519
@@ -4306,11 +4714,11 @@ coins:
     catalog:
       hede: '2'
       hede_volume: c8h
-      schou: 1,3,2,2
+      schou:
+        - 1,3,2,2
+        - '1'
+        - '2'
       sieg: '15'
-      others:
-        - schou# 1
-        - schou# 2
     metal: gold
     fineness: 0.896
     weight_rough_g: 6.642
@@ -4364,6 +4772,116 @@ coins:
       de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
       en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
       uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-c8h3c
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_label: 1844–1845, 1847
+    year_first: 1844
+    year_last: 1847
+    year_ranges:
+      - [1844, 1845]
+      - [1847, 1847]
+    ruler: Christian VIII.
+    mint: Altona
+    catalog:
+      hede: 3C
+      hede_volume: c8h
+      schou: 4,4,4
+      sieg: '13.3'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 28.893
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/chr/c8h3.htm
+        ref: danskmoent.dk (Hede c8h3C)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f7h1b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 2 Frederik D'or
+    year_label: 1851–1855
+    year_first: 1851
+    year_last: 1855
+    ruler: Frederik VII.
+    mint: Altona
+    catalog:
+      hede: 1B
+      hede_volume: f7h
+      schou: '1'
+      sieg: '16'
+    metal: gold
+    fineness: 0.896
+    weight_rough_g: 13.284
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h1.htm
+        ref: danskmoent.dk (Hede f7h1B)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f7h4b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Speciedaler
+    year_label: 1851, 1853
+    year_first: 1851
+    year_last: 1853
+    year_ranges:
+      - [1851, 1851]
+      - [1853, 1853]
+    ruler: Frederik VII.
+    mint: Altona
+    catalog:
+      hede: 4B
+      hede_volume: f7h
+      schou: 2,4
+      sieg: '6.2'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 28.893
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsbankdaler
+      basis: fin
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h4.htm
+        ref: danskmoent.dk (Hede f7h4B)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
   - id: dk-hede-f7h2
     fuss: seed_unsorted
     phase: hede
@@ -4388,6 +4906,174 @@ coins:
     issuing_entity: royal_holstein
     verified: false
     fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f7h11a
+    fuss: seed_unsorted
+    phase: hede
+    kind: scheide
+    nominal: 4 Skilling Rigsmønt. København og Altona
+    year_label: '1854'
+    year_first: 1854
+    ruler: Frederik VII.
+    mint: Altona
+    catalog:
+      hede: 11A
+      hede_volume: f7h
+      schou: '8'
+      sieg: '10'
+    metal: billon
+    fineness: 0.25
+    weight_rough_g: 1.856
+    hede_muentzfuss_yield:
+      value: 21.0
+      unit: rigsdaler
+      basis: fin
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h11.htm
+        ref: danskmoent.dk (Hede f7h11A)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f7h6b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 2 Rigsdaler
+    year_label: 1854–1856
+    year_first: 1854
+    year_last: 1856
+    ruler: Frederik VII.
+    mint: Altona
+    catalog:
+      hede: 6B
+      hede_volume: f7h
+      schou: 4,3,2
+      sieg: '14.2'
+    metal: silver
+    fineness: 0.875
+    weight_rough_g: 28.893
+    hede_muentzfuss_yield:
+      value: 18.5
+      unit: rigsdaler
+      basis: fin
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h6.htm
+        ref: danskmoent.dk (Hede f7h6B)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f7h16b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 1 Skilling Rigsmønt
+    year_label: 1856, 1860
+    year_first: 1856
+    year_last: 1860
+    year_ranges:
+      - [1856, 1856]
+      - [1860, 1860]
+    ruler: Frederik VII.
+    mint: Altona
+    catalog:
+      hede: 16B
+      hede_volume: f7h
+      schou: 7,1
+      sieg: '9.2'
+    metal: bronze
+    weight_rough_g: 3.897
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h16.htm
+        ref: danskmoent.dk (Hede f7h16B)
+    issuing_entity: royal_holstein
+    verified: false
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f7h1c
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: 2 Frederik D'or
+    year_label: 1856–1857, 1859
+    year_first: 1856
+    year_last: 1859
+    year_ranges:
+      - [1856, 1857]
+      - [1859, 1859]
+    ruler: Frederik VII.
+    mint: Altona
+    catalog:
+      hede: 1C
+      hede_volume: f7h
+      schou: '1'
+      sieg: '16'
+    metal: gold
+    fineness: 0.896
+    weight_rough_g: 13.284
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h1.htm
+        ref: danskmoent.dk (Hede f7h1C)
+    issuing_entity: royal_holstein
+    verified: false
+    fineness_verified: true
+    weight_rough_verified: true
+    metal_verified: true
+    mint_verified: true
+    verification_note:
+      de: 'Hede-Seed: Müntzfuß-Zuordnung, Phase und Per-Münze-Verifikation stehen noch aus; Daten direkt aus danskmoent.dk übernommen.'
+      en: 'Hede seed: Müntzfuß assignment, phase and per-coin verification are still outstanding; data lifted directly from danskmoent.dk.'
+      uk: 'Hede-seed: призначення Müntzfuß, фази та покоінна верифікація ще очікуються; дані взято безпосередньо з danskmoent.dk.'
+  - id: dk-hede-f7h17b
+    fuss: seed_unsorted
+    phase: hede
+    kind: kurant
+    nominal: ½ Skilling Rigsmønt
+    year_label: '1857'
+    year_first: 1857
+    ruler: Frederik VII.
+    mint: Altona
+    catalog:
+      hede: 17B
+      hede_volume: f7h
+      schou: '6'
+      sieg: '8.2'
+    metal: bronze
+    weight_rough_g: 1.949
+    sources:
+      - type: literature
+        url: https://www.danskmoent.dk/fr/f7h17.htm
+        ref: danskmoent.dk (Hede f7h17B)
+    issuing_entity: royal_holstein
+    verified: false
     weight_rough_verified: true
     metal_verified: true
     mint_verified: true

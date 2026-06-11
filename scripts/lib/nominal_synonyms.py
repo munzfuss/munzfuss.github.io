@@ -49,7 +49,7 @@ _UNICODE_FRACTIONS = {
 }
 
 # Danish diacritics → ASCII (matching only — «Portugaløser» ≡ «Portugaloser»).
-_DIACRITIC_FOLD = {"ø": "o", "æ": "ae", "å": "a"}
+_DIACRITIC_FOLD = {"ø": "o", "æ": "ae", "å": "a", "ö": "o", "ä": "ae", "ü": "u"}
 
 # Bruun-catalogue region/issuer prefixes («Lübeck. Daler», «Oldenburg. Taler»).
 # Stripped leading-segment-wise; the region is not a coin-identity discriminator
@@ -76,6 +76,33 @@ def _strip_region_prefixes(s: str) -> str:
     return ". ".join(parts[i:])
 
 
+# Mint cities that appear as a trailing «. Mint[ og Mint]» SUFFIX on some
+# Numista nominals (e.g. «4 Skilling Rigsmønt. København og Altona»). The
+# mint belongs in the `mint` field, never in the nominal — stripping the
+# suffix lets the coin merge with the mint-less form. Raw (un-diacritic-
+# folded) spellings, since the strip runs before _DIACRITIC_FOLD.
+_MINT_SUFFIX_WORDS = frozenset({
+    "københavn", "kobenhavn", "altona", "glückstadt", "gluckstadt",
+    "kongsberg", "christiania", "helsingør", "helsingor", "ribe",
+})
+
+
+def _strip_mint_suffix(s: str) -> str:
+    """Drop a trailing «. <Mint>[ og/and <Mint>]» segment when the LAST
+    «. »-delimited segment is composed ONLY of known mint names (+ the
+    connectors og / and / comma). Conservative: a segment with any non-mint
+    token (an abbreviation like «Conr.», a denomination like «Mark») is left
+    intact, so «100 Rd. Conr.» and «1 Thaler = 1/14 Cölln. Mark» are untouched.
+    """
+    if ". " not in s:
+        return s
+    head, _, tail = s.rpartition(". ")
+    tokens = [t for t in re.split(r"\s+og\s+|\s+and\s+|,\s*|\s+", tail.strip()) if t]
+    if tokens and all(t in _MINT_SUFFIX_WORDS for t in tokens):
+        return head.strip()
+    return s
+
+
 def _normalise_dor(s: str) -> str:
     """Unify «d'or» spellings: curly/straight apostrophe, stray space, and a
     missing space before «d'or» («Frederikd'or» → «frederik d'or»)."""
@@ -87,12 +114,24 @@ def _normalise_dor(s: str) -> str:
 
 def _preprocess(s: str) -> str:
     """Format-noise normalisation applied before the synonym table."""
+    # Separate a mixed-number quantity from a following vulgar fraction so
+    # «1½» → «1 ½» → «1 1/2» (not the garbled «11/2»). Covers EVERY unicode
+    # fraction, any whole part («2½», «1¼», «1¾», …). The space lets the
+    # leading-«1 » strip below correctly skip a «1 1/2» mixed number.
+    s = re.sub(r"(?<=\d)(?=[½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])", " ", s)
     for u, a in _UNICODE_FRACTIONS.items():
         s = s.replace(u, a)
     s = _normalise_dor(s)
     s = re.sub(r"\s*\([^)]*\)", "", s)   # drop parenthetical glosses «X (Y)» → «X»
+    # Worth-equivalence tail «X = Y[ = Z]» — «2 Thaler = 1/7 Cölln. Mark =
+    # 3.5 Gulden» / «1 Thaler = 1/14 Cölln. Mark»: everything from the first
+    # «=» on is an accounting-worth annotation, not part of the denomination.
+    # Same principle as the «, N <unit>» worth-gloss strip in NOMINAL_SYNONYMS;
+    # «=» never appears inside a real denomination, so the strip is safe.
+    s = re.sub(r"\s*=\s*.*$", "", s)
     s = re.sub(r"\s+", " ", s).strip()
     s = _strip_region_prefixes(s)
+    s = _strip_mint_suffix(s)
     for d, a in _DIACRITIC_FOLD.items():
         s = s.replace(d, a)
     return s
@@ -129,6 +168,10 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     (r"\bnobles?\b", "nobel"),
     (r"\bducats?\b", "dukat"),
     (r"\bducaten\b", "dukat"),
+    # German plural «Dukaten» spelled with «k» (the `ducaten` rule above only
+    # catches the «c» spelling) — «2 Dukaten» ≡ «2 Dukat» (same coin sharing
+    # Hede/Fr; corpus sweep 2026-06-09: 50+ occurrences «2/3/4/5/10/20 Dukaten»).
+    (r"\bdukaten\b", "dukat"),
     (r"\bthalers?\b", "daler"),
     # «Reichsthaler» (one word) ≡ the standard «Daler»/Thaler in our scope —
     # the existing `\bthalers?\b` rule can't reach it (no word boundary
@@ -141,6 +184,17 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     # for matching so «4 Marck» ≡ «4 Mark», «Marck Banco» ≡ «Mark Banco».
     (r"\bmarcks?\b", "mark"),
     (r"\bschillings?\b", "skilling"),
+    # English «Shilling(s)» (no «c») — Numista uses it for Danish/SH Skilling
+    # («8 Shillings» ≡ «8 Skilling», shared N#; sweep 2026-06-09). Distinct from
+    # «schilling» above (the «c» spelling); never matches inside «schilling».
+    (r"\bshillings?\b", "skilling"),
+    # Abbreviations: «Rigsbanksk.» → rigsbankskilling FIRST (so the bare «sk.»
+    # rule can't mis-touch it), then «Sk.» → skilling. «Sk.» is the period-
+    # anchored Danish abbreviation (76+ «1/2/4/12/24 Sk.» in the corpus sharing
+    # a Hede ref with the spelled-out «… Skilling»); the required «.» keeps it
+    # from matching «skilling» / «lybsk» (no period).
+    (r"\brigsbanksk\.", "rigsbankskilling"),
+    (r"\bsk\.", "skilling"),
     # «Guilder» (English) ≡ «Gulden» (German) ≡ «Gylden» (Danish).
     # NumisMaster uses «Guilder» for Rhenish/Danish gold guldens; Hede
     # uses «Gylden». Both refer to the same gold-coin family — normalise
@@ -155,8 +209,73 @@ NOMINAL_SYNONYMS: list[tuple[str, str]] = [
     (r"\bspecies[ -]?(?:thaler|taler|daler)s?\b", "speciedaler"),
     (r"\bdaler species\b", "speciedaler"),                 # «1 Thaler Species»→«speciedaler»
     (r"\bdouble daler\b", "2 daler"),                      # «Double Taler»→«2 daler»
+    (r"\bguldnobel\b", "nobel"),                           # Guldnobel («gold noble») ≡ the Nobel (gold by definition)
     (r"\bguldkrone\b", "gold krone"),                      # Guldkrone≡Gold Krone
     (r"\bgold (\d+|\d+/\d+) krone\b", r"\1 gold krone"),   # «gold 2 krone»→«2 gold krone»
+    # --- Danish «Dobbelt» (double) + «Specie» equivalences (nominal-
+    #     discriminator synonym table, 2026-06-08) ---
+    # «Dobbelt X» (Danish «double») ≡ «2 X». Folded ONLY when «dobbelt»
+    # HEADS the nominal (optionally behind a spurious implicit-one «1 »),
+    # so the multiplied form «4 Dobbelt Groschen» (a 4-fold coin, NOT
+    # 2×) is left intact. Covers «Dobbelt dukat / speciedaler / krone /
+    # skilling / hvid / royalin / mariengroschen / groschen / ungarsk
+    # gylden / guldkrone», one-word («Dobbeltkrone») or spaced. The «t» is
+    # optional — both «Dobbelt-» and «Dobbel-» (Dobbeldukat) spellings occur.
+    (r"^(?:1\s+)?dobbelt?[- ]?", "2 "),
+    # «Specie(s)-Dukat» / «Ducat Specie» = a Speciedukat (specie-grade
+    # GOLD ducat), NOT a Speciedaler — guard BEFORE the bare specie fold
+    # so the «specie» adjective isn't mis-read as the daler denomination.
+    (r"\bspecies?[- ]?dukat\b", "speciedukat"),
+    (r"\bdukat[- ]?species?\b", "speciedukat"),
+    # «Specie» / «Species» (standalone) and the «Rigsdaler Specie» /
+    # «Specie norsk» / «Speciemønt» forms ≡ «Speciedaler» (the bare
+    # specie IS the Rigsdaler-Species / Speciedaler). Compound guards
+    # FIRST so the daler isn't doubled («Rigsdaler Specie» → speciedaler,
+    # NOT «rigsdaler speciedaler»). «Speciedaler» / «Speciedukat» are
+    # untouched — there's no word boundary inside «specie­daler/dukat».
+    (r"\brigsdaler\s+species?\b", "speciedaler"),
+    (r"\bspecie[- ]?norsk\b", "speciedaler"),
+    (r"\bspeciem[øo]nt\b", "speciedaler"),
+    (r"\bspecies?\b", "speciedaler"),
+    # --- label-variance folds that surfaced as FALSE splits when the
+    #     nominal discriminator was first dry-run (2026-06-08) ---
+    # Value-gloss tail «X, N <unit>» — «1 Krone, 4 Mark» / «1 Sovereign,
+    # 3 Guilder»: the «, N …» is a worth-annotation, not part of the
+    # denomination → strip it. MUST precede the comma-normaliser below so
+    # the comma is still present to anchor on. (A bare «, <word>» without a
+    # leading digit — «1 Skilling, norsk» — is a qualifier, NOT stripped.)
+    (r",\s*\d[\d/]*\s+\w.*$", ""),
+    (r",\s+", " "),                                  # remaining «X, qualifier» comma → space
+    # «dansk» / «danske» is the DEFAULT (Danish) qualifier — «6 Skilling
+    # dansk» ≡ «6 Skilling». Stripped as a standalone word. «lybsk» (Lübeck)
+    # and «norsk» (Norwegian) are GENUINELY distinguishing and are kept.
+    (r"\s*\bdanske?\b", ""),
+    # «Halv-X» (Danish «half») ≡ «½ X»: «Halvkrone»→«1/2 krone»,
+    # «Halvdaler», «Halvskilling», «Halv ørtug», «halv dukat», …. The
+    # leading form CONSUMES the implicit-one («1 Halvkrone» = one half-
+    # krone = ½ krone, NOT «1 1/2 krone») — otherwise it would collide with
+    # the genuine mixed number «1½ Krone» after the «1½»→«1 1/2» fraction
+    # split. Anchored rule first, then a general one for a non-leading
+    # «halv» («½ Halvdaler»).
+    (r"^(?:1\s+)?halv[ -]?", "1/2 "),
+    (r"\bhalv[ -]?", "1/2 "),
+    # «Lion Daler / Taler / Dalar» (EN/spelling variants) ≡ «Løvedaler»
+    # (DA «lion daler»); fold to the diacritic-folded «lovedaler».
+    (r"\blion\s+(?:dal[ae]r|taler)\b", "lovedaler"),
+    # Genitive-s spelling typos: «Rigsbanksdaler»→«Rigsbankdaler»,
+    # «Rigsbanksskilling»→«Rigsbankskilling» (explicit full words so the
+    # CORRECT «Rigsbankskilling» is never corrupted).
+    (r"\brigsbanksdaler\b", "rigsbankdaler"),
+    (r"\brigsbanksskilling\b", "rigsbankskilling"),
+    # «Courant» (EN/FR period spelling) ≡ «Kurant» (DE) — fold for matching
+    # only (display keeps the period «Courant» per CLAUDE.md §2). Then the
+    # spaced «Kurant Dukat» collapses to the one-word «Kurantdukat».
+    (r"\bcourant\b", "kurant"),
+    (r"\bkurant\s+dukat\b", "kurantdukat"),
+    # «Kurant Daler» (spaced) ≡ «Kurantdaler» — same coin (shared Fr/KM); the
+    # spaced form is a Numista label variant. Runs after courant→kurant so
+    # «Courant Daler» is also caught.
+    (r"\bkurant\s+daler\b", "kurantdaler"),
 ]
 
 
@@ -190,6 +309,9 @@ def normalise_nominal(nominal: str | None) -> str:
         s = re.sub(pattern, replacement, s)
     # Strip leading «1 » (implicit-one quantifier). Applied AFTER synonyms
     # so «1 Rose Noble» → «1 rosenobel» → «rosenobel» works correctly.
-    # `^1\s+` won't touch «1/2», «1.5», «10», «1A», «2 Nobles».
-    s = re.sub(r"^1\s+", "", s)
+    # `^1\s+` won't touch «1/2», «1.5», «10», «1A», «2 Nobles». The
+    # negative-lookahead `(?!\d)` protects a «1 1/2» mixed number (the
+    # leading «1» is the whole part, NOT the implicit-one quantifier) —
+    # otherwise «1½ Daler» would collapse to «1/2 daler».
+    s = re.sub(r"^1\s+(?!\d)", "", s)
     return s
