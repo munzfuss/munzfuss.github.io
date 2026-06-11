@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-11T15:16:09Z'
+  last_updated_utc: '2026-06-11T19:32:54Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3470,12 +3470,12 @@ anomalies:
   key_dims:
     doc: HARVEST_ROUTINE.md
     section: §2.2/§2.3-B year_list backfill
-  summary: §2.3-B dash->null year_list rule unsafe; verified-correct entries drained via detailed-issues-table
-    method, queue 97->92.
+  summary: HARVEST_ROUTINE §2.2/§2.3-B year_list rule conflicts with the established 'chrome_date_table'
+    cache convention; literal 'dash->null' would destroy discrete-year data.
   status: open
   instance_first_seen: '2026-06-11T13:16:37.310890Z'
-  last_seen: '2026-06-11T15:16:09Z'
-  occurrence_count: 3
+  last_seen: '2026-06-11T19:32:54.079689Z'
+  occurrence_count: 4
   affected_ids:
     numista:
     - 115207
@@ -3493,6 +3493,8 @@ anomalies:
     - 82372
     - 72027
     - 110323
+    - 40310
+    - 99003
   occurrences:
   - run_utc: '2026-06-11T13:16:37.310890Z'
     batch_label: QX
@@ -3530,9 +3532,20 @@ anomalies:
       queue_before: 97
       queue_after: 92
       method: table.collection per-row inspection
-  proposed_fix: 'Curation: rewrite §2.2/§2.3-B to mandate reading table.collection per-row (detect ''ND
-    (range)'' undated issues) rather than the summary Years field; consider a bulk-close script for the
-    remaining 92.'
+  - run_utc: '2026-06-11T19:32:54.079689Z'
+    batch_label: year_list_backfill
+    detail: 'Run 2026-06-11: drained 5 from the Priority-0 backfill queue. Cache files carry _year_list_via=''chrome_date_table_*''
+      set by reading Numista''s per-year strike table, NOT the §2.3-B ''Years''-field shape. Concrete
+      cases where §2.3-B ''dash->null'' would be WRONG: N#40310 Years=''1800-1807'' (dash) but date table
+      omits 1806 -> correct year_list [1800-1805,1807]; N#99003 Years=''1675-1682'' (dash) but only [1675,1682]
+      struck. Literal dash->null re-introduces the §4 data-loss the backfill exists to fix. Doc §2.2/§2.3-B
+      should be updated to prescribe the date-table read as the canonical method.'
+    full_context:
+      queue_pending_after: 77
+      processed_this_run: 5
+  proposed_fix: Update HARVEST_ROUTINE.md §2.2 + §2.3-B to make 'read Numista per-year strike table' the
+    canonical year_list source, with the Years-field dash/comma heuristic only as a fallback when no per-year
+    table exists.
   resolution: null
   resolved_at: null
   resolved_by: null
