@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-11T14:19:49Z'
+  last_updated_utc: '2026-06-11T15:16:09Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3470,12 +3470,12 @@ anomalies:
   key_dims:
     doc: HARVEST_ROUTINE.md
     section: §2.2/§2.3-B year_list backfill
-  summary: 'Priority-0 year_list backfill heuristic ''dash-form Years field -> year_list: null'' is UNSAFE;
-    would corrupt already-correct discrete year_lists.'
+  summary: §2.3-B dash->null year_list rule unsafe; verified-correct entries drained via detailed-issues-table
+    method, queue 97->92.
   status: open
   instance_first_seen: '2026-06-11T13:16:37.310890Z'
-  last_seen: '2026-06-11T14:19:49Z'
-  occurrence_count: 2
+  last_seen: '2026-06-11T15:16:09Z'
+  occurrence_count: 3
   affected_ids:
     numista:
     - 115207
@@ -3488,6 +3488,11 @@ anomalies:
     - 75266
     - 99008
     - 99196
+    - 99347
+    - 54204
+    - 82372
+    - 72027
+    - 110323
   occurrences:
   - run_utc: '2026-06-11T13:16:37.310890Z'
     batch_label: QX
@@ -3514,9 +3519,20 @@ anomalies:
     full_context:
       queue_file: docs/handoff_numista_year_list_reharvest.yml
       method: verified-correct drain
-  proposed_fix: Rewrite §2.2/§2.3-B backfill step to compare against the detailed table.collection per-year
-    issues, not the summary Years field. Consider a one-shot verification script to bulk-close the remaining
-    queue.
+  - run_utc: '2026-06-11T15:16:09Z'
+    batch_label: QX
+    detail: 'Batch QX (Priority 0): re-read 5 NIDs via Numista table.collection detailed issues. 99347
+      dated-discrete [1649-58,1660,1661] (1659 gap) matches cache; 54204/82372/72027 dated-continuous
+      full lists match; 110323 collection shows ND(1513-1523) UNDATED issues (Schive XV:7-9) -> empty
+      year_list CORRECT (a naive year-regex would wrongly emit discrete [1513,1523]). All 5 verified-correct,
+      no cache mutation.'
+    full_context:
+      queue_before: 97
+      queue_after: 92
+      method: table.collection per-row inspection
+  proposed_fix: 'Curation: rewrite §2.2/§2.3-B to mandate reading table.collection per-row (detect ''ND
+    (range)'' undated issues) rather than the summary Years field; consider a bulk-close script for the
+    remaining 92.'
   resolution: null
   resolved_at: null
   resolved_by: null
