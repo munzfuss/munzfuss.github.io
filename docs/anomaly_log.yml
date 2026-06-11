@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-10T04:19:55Z'
+  last_updated_utc: '2026-06-11T07:13:39Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3437,3 +3437,31 @@ anomalies:
     now 159/159 closed.'
   resolved_at: '2026-06-10T04:19:54Z'
   resolved_by: harvest-routine-auto
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+  summary: BO.7 brunswick_wolfenbuttel_principality in_scope_nids includes OOS exonumia (medal) N#446492.
+  status: resolved
+  instance_first_seen: '2026-06-11T07:13:33.205639Z'
+  last_seen: '2026-06-11T07:13:33.205639Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 446492
+  occurrences:
+  - run_utc: '2026-06-11T07:13:33.205639Z'
+    batch_label: QU
+    detail: 'Batch QU: N#446492 = ''Medal - To the voyage of Elisabeth Christine to Spain'' (Type=''Commemorative
+      medals › Event medals'', Silver 29.07g). classify_numista_scope → (False, ''exonumia''). Not saved;
+      remains in manifest in_scope_nids until folded to oos_excluded_nids.'
+    full_context:
+      reason: exonumia_medal
+      url_tried: https://en.numista.com/446492
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#446492
+    into oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-11T07:13:39Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
