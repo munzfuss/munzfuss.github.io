@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-11T19:32:54Z'
+  last_updated_utc: '2026-06-11T20:20:44Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3470,12 +3470,14 @@ anomalies:
   key_dims:
     doc: HARVEST_ROUTINE.md
     section: §2.2/§2.3-B year_list backfill
-  summary: HARVEST_ROUTINE §2.2/§2.3-B year_list rule conflicts with the established 'chrome_date_table'
-    cache convention; literal 'dash->null' would destroy discrete-year data.
+  summary: '§2.2 Priority-0 / §2.3-B literal rule (''read the Years field; dash-form -> year_list null'')
+    is INSUFFICIENT for the backfill: the Years summary cell always shows a dash range, but the discrete
+    struck years live in `table.collection tr.date_row td.date`. Applying the literal rule destroys correct
+    discrete year_list data.'
   status: open
   instance_first_seen: '2026-06-11T13:16:37.310890Z'
-  last_seen: '2026-06-11T19:32:54.079689Z'
-  occurrence_count: 4
+  last_seen: '2026-06-11T20:20:44Z'
+  occurrence_count: 5
   affected_ids:
     numista:
     - 115207
@@ -3495,6 +3497,8 @@ anomalies:
     - 110323
     - 40310
     - 99003
+    - 100214
+    - 420401
   occurrences:
   - run_utc: '2026-06-11T13:16:37.310890Z'
     batch_label: QX
@@ -3543,9 +3547,19 @@ anomalies:
     full_context:
       queue_pending_after: 77
       processed_this_run: 5
-  proposed_fix: Update HARVEST_ROUTINE.md §2.2 + §2.3-B to make 'read Numista per-year strike table' the
-    canonical year_list source, with the Years-field dash/comma heuristic only as a fallback when no per-year
-    table exists.
+  - run_utc: '2026-06-11T20:20:44Z'
+    batch_label: QX
+    detail: 'Batch QX (year_list backfill, 5 NIDs): N#100214 Years-cell ''1796-1803'' but struck = [1796..1801,1803]
+      (gap@1802) -> MUST stay discrete; N#420401 Years-cell ''1496-1502'' but struck = [1496,1502] (gap)
+      -> MUST stay discrete. Literal ''dash->null'' would have wiped both. Correct method: read td.date
+      cells, set year_list=null only when the struck set is a CONTIGUOUS run min..max, else keep the discrete
+      list. N#99111/152728/99000 were genuinely contiguous/empty -> null.'
+    full_context:
+      numista_batch: QX
+      method: table.collection td.date contiguity check
+  proposed_fix: Rewrite §2.3-B backfill extraction to read `table.collection tr.date_row td.date` (discrete
+    struck years) and decide year_list by contiguity, NOT by the dash/comma shape of the Years summary
+    cell.
   resolution: null
   resolved_at: null
   resolved_by: null
