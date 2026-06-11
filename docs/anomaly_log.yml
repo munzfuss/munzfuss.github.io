@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-11T21:15:16Z'
+  last_updated_utc: '2026-06-11T22:16:42Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3470,14 +3470,12 @@ anomalies:
   key_dims:
     doc: HARVEST_ROUTINE.md
     section: §2.2/§2.3-B year_list backfill
-  summary: '§2.2 Priority-0 / §2.3-B literal rule (''read the Years field; dash-form -> year_list null'')
-    is INSUFFICIENT for the backfill: the Years summary cell always shows a dash range, but the discrete
-    struck years live in `table.collection td.date`. Applying the literal rule destroys correct discrete
-    year_list data.'
+  summary: HARVEST_ROUTINE §2.3-B literal 'dash->null' year_list rule conflicts with the authoritative
+    struck-years widget (table.collection td.date); routine uses the widget, not the Years-field separator.
   status: open
   instance_first_seen: '2026-06-11T13:16:37.310890Z'
-  last_seen: '2026-06-11T21:15:16Z'
-  occurrence_count: 6
+  last_seen: '2026-06-11T22:16:42Z'
+  occurrence_count: 7
   affected_ids:
     numista:
     - 115207
@@ -3501,6 +3499,9 @@ anomalies:
     - 420401
     - 99011
     - 420606
+    - 444416
+    - 81301
+    - 121758
   occurrences:
   - run_utc: '2026-06-11T13:16:37.310890Z'
     batch_label: QX
@@ -3565,8 +3566,14 @@ anomalies:
       years [1643,1644,1646,1647,1648] (gap@1645) → discrete; N#420606 Years=''1797-1802'' (dash) but
       struck years [1797,1802] (gap) → discrete. Literal dash→null would have destroyed both. 99203/118976/118985
       genuinely contiguous → null. Struck-years widget (table.collection td.date) is authoritative.'
-  proposed_fix: Rewrite §2.3-B backfill extraction to read `table.collection td.date` (discrete struck
-    years) and decide year_list by contiguity, NOT by the dash/comma shape of the Years summary cell.
+  - run_utc: '2026-06-11T22:16:42Z'
+    batch_label: year_list_backfill
+    detail: 'Batch year_list_backfill (this run): N#444416 (Years ''1525-1530'' dash, struck {1525,1526,1528,1530}
+      gap@1527,1529), N#121758 (Years ''1533-1537'' dash, struck {1533,1537}), N#81301 (Years ''1782-1786''
+      dash, struck {1782,1784,1785} gap@1783) all need discrete year_list despite dash-form Years field.
+      Literal §2.3-B would have nulled them. table.collection td.date is authoritative.'
+  proposed_fix: Update HARVEST_ROUTINE §2.3-B to key year_list encoding off the table.collection td.date
+    struck-years widget (contiguous->null, gapped->verbatim list), not the Years-field separator.
   resolution: null
   resolved_at: null
   resolved_by: null
