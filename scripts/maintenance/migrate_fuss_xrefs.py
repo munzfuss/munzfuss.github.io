@@ -35,11 +35,21 @@ import yaml
 REPO = Path(__file__).resolve().parents[2]
 FUESSE_YML = REPO / "data" / "shared" / "fuesse.yml"
 
-# Display-name → key for the two cards converted by hand on 2026-06-11.
-# (These spans no longer hold the key, so they need an explicit map.)
+# Display-name → key for cross-refs hand-written as the DISPLAY NAME
+# (not the snake_case key) inside a `<code>…</code>` span. These need an
+# explicit map because the span no longer holds the key.
+#   - Rosenobel-fod / Nobelfod: the two cards de-snake_cased by hand on
+#     2026-06-11.
+#   - rigsdukatfod / Rigsdukatfod: the Denmark per-location override name
+#     of `reichsdukatenfuss` — written literally in the nobel_fod
+#     hintergrund instead of via the marker (caught 2026-06-11).
+# Per-location override names like «Rigsdukatfod» resolve to the right
+# text per page through the marker, so the literal must become the key.
 DISPLAY_NAME_TO_KEY = {
     "Rosenobel-fod": "rosenobel_fod",
     "Nobelfod": "nobel_fod",
+    "Rigsdukatfod": "reichsdukatenfuss",
+    "rigsdukatfod": "reichsdukatenfuss",
 }
 
 
