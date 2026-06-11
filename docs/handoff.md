@@ -15,6 +15,33 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## Fuss cross-reference system — SHIPPED 2026-06-11, UNPUSHED (commit 451d0f0; TODO §CT closed)
+
+Prose references a Müntzfuß by stable id now — `[fuss:KEY]` — not a
+hand-written `<code>Name</code>` span. Post-render resolver
+`scripts/lib/fuss_refs.py::process_html(html, lang, name_map)` (mirrors
+`refs_pool`, called at both build.py post-render sites) substitutes the
+EFFECTIVE name (per-location `fuss_periods[KEY].name` override layered
+over global `fuesse[KEY].name`) and links to `#fuss-KEY` when that card
+is on the page (plain `<code>` otherwise; unknown key → visible §0
+placeholder). build_landing gained a `fuesse` param for the global-name
+map. Migration `scripts/maintenance/migrate_fuss_xrefs.py` (idempotent)
+converted 168 refs across fuesse.yml + V1/V2 location yamls. Tests
+`tests/test_fuss_refs.py` 7/7. Payoff proven in render: same
+`[fuss:reichsdukatenfuss]` → «Rigsdukatfod» (linked) on Denmark,
+«Reichsdukatenfuß» (plain) on Hamburg. Cross-PAGE linking deferred (would
+need a key→owning-location map). Full spec + as-built:
+`docs/fuss_cross_refs_design.md`. **Next:** if a new fuss is referenced
+in prose, just write `[fuss:newkey]` — no name, no `<code>`. Optional
+follow-up noted in design doc: an `audit_prose.py` rule flagging NEW
+hand-written `<code>fuss-name</code>` spans to stop the convention
+eroding.
+
+Also this session (2026-06-11), earlier commits 4a86665 / 8428c9f /
+627c4a8: Nobel/Rosenobel prose polish — UK «сучасн-»→«тогочасн-» where
+period-relative; rosenobel «contemporary→earlier nobel_fod» factual fix;
+«Reichsdukat»→«Dukat» (Danish coin name) in the Nobelfod description.
+
 ## KMM impossible-year guard — galster-hg-31 1581 fixed (2026-06-11) — SHIPPED, UNPUSHED (4 commits: d5eea8e/bc4a341 then revised fbc926c/d73819c)
 
 Closes the kmk-297794 «1513-1581» quirk surfaced by the Hans Galster-volume
