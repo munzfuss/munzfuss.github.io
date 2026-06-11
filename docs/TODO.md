@@ -1442,6 +1442,14 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 ## Normal priority
 
+### CT. 🟢 Fuss cross-reference system — author by id, resolve display name + clickable link at build time  *(opened 2026-06-11)* *(est: medium)* *(type: feature)*
+
+**Design complete — full spec in [`docs/fuss_cross_refs_design.md`](fuss_cross_refs_design.md).** Implementation pending.
+
+Replace hand-written `<code>Fuss-Name</code>` cross-refs in prose with id-markers `[fuss:KEY]`. A post-render pass (new `scripts/lib/fuss_refs.py`, mirroring `refs_pool.process_html`, called at the same two build sites) substitutes the **effective display name** — honouring per-location `fuss_periods[KEY].name` overrides (the live «Reichsdukatenfuß» ↔ «Rigsdukatfod» mechanism) — and wraps it in a clickable `<a href="#fuss-KEY">` when the card is present on the page (anchors already rendered at [location.html.j2:760](../templates/location.html.j2); plain `<code>` fallback when off-page). Payoff: renaming a standard touches one `name` field and every cross-ref updates, with the right name per jurisdiction.
+
+User decisions (2026-06-11): reference by id ✓; clickable link to card ✓. Migration (key-form `<code>KEY</code>` sweep across `fuesse.yml` + `data/v2/locations/*` + `data/locations/*`, ~dozens of occurrences: `11_333_thaler` 21×, `9_25_thaler` 18×, `8_daler_fod` 18×, `18_5_thaler` 18×, etc., plus the 2 already-converted display-name cards `Rosenobel-fod` / `Nobelfod`) is part of the build-out — see design doc §Migration + §Test plan.
+
 ### CG. 🟢 §1 nominal hygiene — `nominal` carries ONLY the denomination + its numeric quantity (strip locations / equivalents / fractions / weights / nicknames / editorial words; normalise Halv→½ + Roman→Arabic; remove medals)  *(opened 2026-05-30, scope expanded 2026-05-30)* *(est: medium-large)* *(type: data-audit + curation)*
 
 **Surfaced.** 2026-05-30, during the Nobel-spelling normalisation work (V2_DECISIONS D43); scope expanded same day after the user reviewed the prepend-1 guard's skip-list. Two user clarifications of CLAUDE.md §1:
