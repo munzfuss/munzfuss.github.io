@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-04T14:14:02Z'
+  last_updated_utc: '2026-06-11T07:13:39Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -1899,4 +1899,1569 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-04T14:14:02Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: cloudflare_challenge_persistent:block=human_verification_wall:source=ucoin
+  type: cloudflare_challenge_persistent
+  key_dims:
+    source: ucoin
+    block: human_verification_wall
+  summary: ucoin listing-page access blocked by 'Verify You Are Human' interstitial (/check/?f=0); whole
+    ucoin batch deferred.
+  status: resolved
+  instance_first_seen: '2026-06-04T23:16:35.919257Z'
+  last_seen: '2026-06-04T23:16:35.919257Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 97776
+    - 97609
+    - 97852
+    - 97610
+    - 92524
+  occurrences:
+  - run_utc: '2026-06-04T23:16:35.919257Z'
+    batch_label: '325'
+    detail: 'BR-4 batch 325 (brunswick_luneburg_p1089): listing-page fetch bounced to https://en.ucoin.net/check/?f=0
+      ''Verify You Are Human'' on first attempt; persisted after 90s cooldown + re-navigate. Did NOT click
+      the Continue button (completing bot-detection is prohibited). No TIDs fetched this run; 5 targets
+      [97776,97609,97852,97610,92524] deferred to next run.'
+    full_context:
+      listing_url: https://en.ucoin.net/catalog/?country=brunswick_luneburg&period=1089
+      bounced_to: https://en.ucoin.net/check/?f=0
+  proposed_fix: Retry next cron run (defence is usually transient over an hour). If it persists across
+    multiple runs, the user may need to browse ucoin manually once to clear the human-check for the session,
+    or harvest cadence needs lengthening.
+  resolution: 'Auto-resolved: ucoin human-verification wall cleared in batch 325 retry — all 5 deferred
+    TIDs (92524, 97609, 97610, 97776, 97852) fetched + cached successfully this run.'
+  resolved_at: '2026-06-05T00:21:07Z'
+  resolved_by: harvest-routine-auto
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=477360:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '477360'
+  summary: BO.7 hamburg_hanseatic_city in_scope_nids contains OOS medal N#477360 (religious medal, never
+    issued).
+  status: resolved
+  instance_first_seen: '2026-06-05T07:12:13Z'
+  last_seen: '2026-06-05T07:12:13Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 477360
+  occurrences:
+  - run_utc: '2026-06-05T07:12:13Z'
+    batch_label: LQ
+    detail: 'Batch LQ defensive read: N#477360 Type=''Religious medals'', title ''Medal on the goodness
+      of God'', Issued=''Never issued'', Gaed# 134. OOS per CLAUDE.md §9.2 (exonumia). Not saved to cache.'
+    full_context:
+      kind: medal
+      type_field: Religious medals
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write folds NID into oos_excluded_nids; refresh
+    prunes from in_scope_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T07:12:20Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=297468:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '297468'
+  summary: numista NID 297468 enumerated in hamburg_hanseatic_city but is a Pattern (OOS per §9.1).
+  status: resolved
+  instance_first_seen: '2026-06-05T11:11:43Z'
+  last_seen: '2026-06-05T11:11:43Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 297468
+  occurrences:
+  - run_utc: '2026-06-05T11:11:43Z'
+    batch_label: LU
+    detail: 'Batch LU: N#297468 = ''2 Schillings (Gold pattern strike)'' Hamburg 1689, Numista Type=''Patterns''.
+      classify_numista_scope → (False, ''pattern''). Gold pattern/trial strike, not struck for circulation.'
+    full_context:
+      oos_kind: pattern
+      issuer: hamburg_hanseatic_city
+  proposed_fix: Fold NID 297468 into _BO7_audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T11:11:49Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=563421:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '563421'
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS medal N#563421 (Type='Commemorative medals',
+    exonumia per §9.2).
+  status: resolved
+  instance_first_seen: '2026-06-05T14:11:56.066364Z'
+  last_seen: '2026-06-05T14:11:56.066364Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 563421
+  occurrences:
+  - run_utc: '2026-06-05T14:11:56.066364Z'
+    batch_label: LW
+    detail: 'Batch LW: N#563421 ''1 Portugalöser'' = 10 Ducats medal 1695, Gaed# 1665, classify_numista_scope
+      -> (False,''exonumia''). Not saved; remains uncached. Needs folding into oos_excluded_nids.'
+    full_context:
+      type: Commemorative medals
+      references: Gaed# 1665
+      kind: exonumia
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#563421
+    into BO.7 oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T15:14:59Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=336381:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '336381'
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia N#336381 (Type='Religious medals',
+    '1 Ducat — The Four Commandments') per §9.2.
+  status: resolved
+  instance_first_seen: '2026-06-05T15:13:02Z'
+  last_seen: '2026-06-05T15:13:02Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 336381
+  occurrences:
+  - run_utc: '2026-06-05T15:13:02Z'
+    batch_label: LX
+    detail: 'Batch LX defensive type-check: N#336381 classify_numista_scope → (False, ''exonumia'', "Type=''Religious
+      medals''"). Not saved; remains in audit gap until reclassified.'
+    full_context:
+      type: Religious medals
+      numista_batch: LX
+      ucoin_batch: '339'
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#336381
+    into BO.7 oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T15:14:59Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=374554:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '374554'
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia N#374554 (Type='Religious medals',
+    '1 Ducat — The Four Commandments, 2nd variant') per §9.2.
+  status: resolved
+  instance_first_seen: '2026-06-05T15:13:26Z'
+  last_seen: '2026-06-05T15:13:26Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 374554
+  occurrences:
+  - run_utc: '2026-06-05T15:13:26Z'
+    batch_label: LX
+    detail: 'Batch LX defensive type-check: N#374554 classify_numista_scope → (False, ''exonumia'', "Type=''Religious
+      medals''"). Not saved; remains in audit gap until reclassified.'
+    full_context:
+      type: Religious medals
+      numista_batch: LX
+      ucoin_batch: '339'
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#374554
+    into BO.7 oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T15:15:00Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:id=391960:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    id: '391960'
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS medal N#391960 (exonumia).
+  status: resolved
+  instance_first_seen: '2026-06-05T16:07:49.522920Z'
+  last_seen: '2026-06-05T16:07:49.522920Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 391960
+  occurrences:
+  - run_utc: '2026-06-05T16:07:49.522920Z'
+    batch_label: LY
+    detail: 'Batch LY defensive fetch: N#391960 = ''Death of Joachim Lemmermann Bürgermeisterpfennig''
+      medal, Numista Type=''Commemorative medals › Personality medals'' → exonumia per §9.2. Not saved;
+      uncached-OOS.'
+    full_context:
+      kind: exonumia
+      type: Commemorative medals › Personality medals
+  proposed_fix: Fold N#391960 into BO7 audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T16:13:14Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city in_scope_nids contains exonumia (commemorative medals) — OOS per
+    CLAUDE.md §9.2.
+  status: resolved
+  instance_first_seen: '2026-06-05T17:14:55.139343Z'
+  last_seen: '2026-06-05T17:14:55.139343Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 158487
+    - 391959
+    - 53396
+  occurrences:
+  - run_utc: '2026-06-05T17:14:55.139343Z'
+    batch_label: LZ
+    detail: 'Batch LZ: 3 of first-5 uncached NIDs are commemorative medals, not circulation coins — N#158487
+      (Imperial comission medal, silver), N#391959 (Paul Paulsen Bürgermeisterpfennig personality medal,
+      silver), N#53396 (Hamburg-freed-from-plague medal, pewter). Type field ''Commemorative medals''.
+      Not saved.'
+    full_context:
+      kind: exonumia
+      numista_batch: LZ
+  proposed_fix: Fold NIDs into BO.7 audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write (exonumia kind).
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T17:15:08Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:nid=178112:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    nid: '178112'
+  summary: Numista NID 178112 is a PATTERN (Type='Patterns', KM# Pn1, '2 Ducats silver pattern strike')
+    enumerated as in-scope in BO.7 hamburg_hanseatic_city — OOS per CLAUDE.md §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-05T20:12:07Z'
+  last_seen: '2026-06-05T20:12:07Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 178112
+  occurrences:
+  - run_utc: '2026-06-05T20:12:07Z'
+    batch_label: MC
+    detail: 'Batch MC defensive observation: NID 178112 page Type=''Patterns'', KM# Pn1 → classify_numista_scope
+      returns (False, ''pattern''). Record NOT saved to cache. Should fold into oos_excluded_nids via
+      reclassify_bo7_oos.py --from-anomalies.'
+    full_context:
+      bucket: hamburg_hanseatic_city
+      oos_kind: pattern
+      km: Pn1
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to move NID 178112
+    into BO.7 audit oos_excluded_nids slot (kind=pattern).
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T20:13:41Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=320405:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '320405'
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS medal NID 320405 (Type='Commemorative medals',
+    10 Ducats gold).
+  status: resolved
+  instance_first_seen: '2026-06-05T21:12:19.238606Z'
+  last_seen: '2026-06-05T21:12:19.238606Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 320405
+  occurrences:
+  - run_utc: '2026-06-05T21:12:19.238606Z'
+    batch_label: MD
+    detail: 'Batch MD: N#320405 sampled during fetch = Commemorative medal (exonumia per CLAUDE.md §9.2),
+      classify_numista_scope → (False, ''exonumia''). Not saved. Folding into oos_excluded_nids.'
+    full_context:
+      kind: medal
+      type_field: Commemorative medals
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write folds NID into manifest oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T21:12:19Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city in_scope_nids contains a pattern (N#271193, '1 Ducat Copper Pattern'
+    1748) — OOS per CLAUDE.md §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-05T22:13:46.990355Z'
+  last_seen: '2026-06-05T22:13:46.990355Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 271193
+  occurrences:
+  - run_utc: '2026-06-05T22:13:46.990355Z'
+    batch_label: ME
+    detail: 'Batch ME defensive read: N#271193 Numista Type=''Patterns'' (1 Ducat Copper Pattern, Hamburg
+      1748, 2.21g). classify_numista_scope -> (False,''pattern''). Not saved; needs folding into oos_excluded_nids.'
+    full_context:
+      type: Patterns
+      kind: pattern
+      url: https://en.numista.com/271193
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#271193
+    into hamburg_hanseatic_city oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T22:13:52Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia (medal) N#122912.
+  status: resolved
+  instance_first_seen: '2026-06-05T23:11:58Z'
+  last_seen: '2026-06-05T23:11:58Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 122912
+  occurrences:
+  - run_utc: '2026-06-05T23:11:58Z'
+    batch_label: MF
+    detail: 'Batch MF: N#122912 sampled = ''Medal - Death of Sara Catharina Langermann Bürgermeisterpfennig''
+      Type=''Commemorative medals › Personality medals'' (Gaed# 1887, 1754). classify_numista_scope →
+      (False, exonumia). OOS per CLAUDE.md §9.2. Not saved; remains in audit pending oos_excluded_nids
+      fold.'
+    full_context:
+      reason: exonumia_medal
+      url_tried: https://en.numista.com/122912
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write to fold N#122912 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T23:12:05Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia (medal) N#320407.
+  status: resolved
+  instance_first_seen: '2026-06-05T23:16:07Z'
+  last_seen: '2026-06-05T23:16:07Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 320407
+  occurrences:
+  - run_utc: '2026-06-05T23:16:07Z'
+    batch_label: MF
+    detail: 'Batch MF: N#320407 = ''10 Ducats'' commemorative Type=''Commemorative medals'' (Gaed# 1912,
+      1756). classify_numista_scope → (False, exonumia). OOS per CLAUDE.md §9.2. Not saved.'
+    full_context:
+      reason: exonumia_medal
+      url_tried: https://en.numista.com/320407
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write to fold N#320407 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-05T23:16:08Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=320412:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '320412'
+  summary: Numista N#320412 enumerated in BO.7 hamburg_hanseatic_city is a Commemorative medal (exonumia,
+    OOS per §9.2).
+  status: resolved
+  instance_first_seen: '2026-06-06T02:10:19Z'
+  last_seen: '2026-06-06T02:10:19Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 320412
+  occurrences:
+  - run_utc: '2026-06-06T02:10:19Z'
+    batch_label: MI
+    detail: 'Batch MI: N#320412 ''10 Ducats'' Type=''Commemorative medals'' Gaed# 1932 only, no KM. classify_numista_scope
+      → (False, ''exonumia''). Not saved.'
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#320412
+    into oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T03:07:14Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=86205:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '86205'
+  summary: Numista N#86205 enumerated in BO.7 hamburg_hanseatic_city is a Pattern strike (KM# Pn11, OOS
+    per §9.1).
+  status: resolved
+  instance_first_seen: '2026-06-06T03:07:52.569260Z'
+  last_seen: '2026-06-06T03:07:52.569260Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 86205
+  occurrences:
+  - run_utc: '2026-06-06T03:07:52.569260Z'
+    batch_label: MJ
+    detail: 'Batch MJ: N#86205 ''1 Schilling (Pattern strike)'' Type=''Patterns'' KM# Pn11, Gold (.999),
+      1778. classify_numista_scope → (False, ''pattern''). Not saved.'
+    full_context:
+      numista_batch: MJ
+      type: Patterns
+      refs: KM# Pn11
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#86205
+    into oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T03:15:13Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=178114:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '178114'
+  summary: Numista N#178114 enumerated in BO.7 hamburg_hanseatic_city is a Gold pattern strike (KM# PnA12,
+    OOS per §9.1).
+  status: resolved
+  instance_first_seen: '2026-06-06T03:12:34.049802Z'
+  last_seen: '2026-06-06T03:12:34.049802Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 178114
+  occurrences:
+  - run_utc: '2026-06-06T03:12:34.049802Z'
+    batch_label: MJ
+    detail: 'Batch MJ: N#178114 ''1 Dreiling (Gold pattern strike)'' Type=''Patterns'' KM# PnA12, Gold,
+      1786. classify_numista_scope → (False, ''pattern''). Not saved.'
+    full_context:
+      numista_batch: MJ
+      type: Patterns
+      refs: KM# PnA12
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#178114
+    into oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T03:15:13Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city in_scope_nids contains OOS exonumia (Commemorative medals).
+  status: resolved
+  instance_first_seen: '2026-06-06T05:08:20Z'
+  last_seen: '2026-06-06T05:23:09Z'
+  occurrence_count: 10
+  affected_ids:
+    numista:
+    - 304367
+    - 178116
+    - 178115
+    - 178107
+    - 314367
+    - 178117
+    - 188683
+    - 573241
+    - 134021
+    - 129561
+  occurrences:
+  - run_utc: '2026-06-06T05:08:20Z'
+    batch_label: ML
+    detail: 'Batch ML: N#304367 = 1 Dreiling Gold Pattern strike 1794 (KM# PnA13, Type=Patterns) — OOS
+      per CLAUDE.md §9.1. Not saved; remains enumerated in in_scope_nids.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      km: PnA13
+  - run_utc: '2026-06-06T05:10:54Z'
+    batch_label: ML
+    detail: 'Batch ML: N#178116 = 4 Schilling Gold pattern strike 1795 (KM# PnB13, Type=Patterns) — OOS
+      per CLAUDE.md §9.1. Not saved.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      km: PnB13
+  - run_utc: '2026-06-06T05:11:49Z'
+    batch_label: ML
+    detail: 'Batch ML: N#178115 = 1 Dreiling Gold pattern strike 1796 (KM# Pn13, Type=Patterns) — OOS
+      per CLAUDE.md §9.1. Not saved.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      km: Pn13
+  - run_utc: '2026-06-06T05:16:27Z'
+    batch_label: ML
+    detail: 'Batch ML: N#178107 = 8 Schilling Gold pattern strike 1797 (KM# 518 Type=Patterns) — OOS per
+      CLAUDE.md §9.1. Not saved.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      km: '518'
+  - run_utc: '2026-06-06T05:17:45Z'
+    batch_label: ML
+    detail: 'Batch ML: N#314367 = 32 Schilling Gold pattern strike 1797 (Fr# 1132, Type=Patterns) — OOS
+      per CLAUDE.md §9.1. Not saved.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      fr: '1132'
+  - run_utc: '2026-06-06T05:18:59Z'
+    batch_label: ML
+    detail: 'Batch ML: N#178117 = 1 Schilling Gold pattern strike 1798 (KM# Pn14, Type=Patterns) — OOS
+      per CLAUDE.md §9.1. Not saved.'
+    full_context:
+      reason: pattern_oos
+      kind: pattern
+      km: Pn14
+  - run_utc: '2026-06-06T05:20:06Z'
+    batch_label: ML
+    detail: 'Batch ML: N#188683 = Medal ''Departure of the Danes from Hamburg'' 1801 (Type=Commemorative
+      medals) — OOS per CLAUDE.md §9.2 exonumia. Not saved.'
+    full_context:
+      reason: exonumia_medal
+      kind: medal
+  - run_utc: '2026-06-06T05:21:00Z'
+    batch_label: ML
+    detail: 'Batch ML: N#573241 = 10 Ducats Portugaloser commemorative medal 1802 (See-Assecuranz-Compagnie,
+      Type=Commemorative medals) — OOS per CLAUDE.md §9.2. Not saved.'
+    full_context:
+      reason: exonumia_medal
+      kind: medal
+  - run_utc: '2026-06-06T05:21:57Z'
+    batch_label: ML
+    detail: 'Batch ML: N#134021 = Calendar medal ND(1804) (Type=Commemorative medals) — OOS per CLAUDE.md
+      §9.2. Not saved.'
+    full_context:
+      reason: exonumia_medal
+      kind: medal
+  - run_utc: '2026-06-06T05:23:09Z'
+    batch_label: ML
+    detail: 'Batch ML: N#129561 = ''Lifting of the Elbe river blockade'' commemorative medal 1805 (Type=Commemorative
+      medals) — OOS per CLAUDE.md §9.2. Not saved.'
+    full_context:
+      reason: exonumia_medal
+      kind: medal
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold medal NIDs
+    into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T05:24:27Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=178118:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '178118'
+  summary: Numista NID 178118 in hamburg_hanseatic_city gap is a Pattern (KM# PnA15, '1 Dreiling Gold
+    pattern strike') — OOS per CLAUDE.md §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-06T06:09:55Z'
+  last_seen: '2026-06-06T06:09:55Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 178118
+  occurrences:
+  - run_utc: '2026-06-06T06:09:55Z'
+    batch_label: MM
+    detail: 'Batch MM: classify_numista_scope returned (False, ''pattern'', "pattern/trial strike — Numista
+      Type=''Patterns''"). Not saved to cache.'
+    full_context:
+      type: Patterns
+      references: KM# PnA15, Jaeg 6 NWD# 29b
+      kind: pattern
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold NID 178118
+    into _BO7_audit oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T06:10:00Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=266285:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '266285'
+  summary: Numista NID 266285 in hamburg_hanseatic_city gap is a Pattern (Schlum# 346.13, '1 Sechsling
+    Gold pattern') — OOS per CLAUDE.md §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-06T06:12:08Z'
+  last_seen: '2026-06-06T06:12:08Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 266285
+  occurrences:
+  - run_utc: '2026-06-06T06:12:08Z'
+    batch_label: MM
+    detail: 'Batch MM: Numista Type=''Patterns''. Not saved to cache.'
+    full_context:
+      type: Patterns
+      references: Schlum# 346.13
+      kind: pattern
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write folds NID 266285 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T06:12:09Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=314345:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '314345'
+  summary: Numista NID 314345 in hamburg_hanseatic_city gap is a Pattern ('32 Schillinge Courant Gold
+    pattern strike') — OOS per CLAUDE.md §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-06T06:16:10Z'
+  last_seen: '2026-06-06T06:16:10Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 314345
+  occurrences:
+  - run_utc: '2026-06-06T06:16:10Z'
+    batch_label: MM
+    detail: 'Batch MM: Numista Type=''Patterns''. Not saved to cache.'
+    full_context:
+      type: Patterns
+      kind: pattern
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write folds NID 314345 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T06:16:10Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: Numista hamburg_hanseatic_city in_scope_nids contains OOS records (patterns + medals).
+  status: resolved
+  instance_first_seen: '2026-06-06T07:10:24Z'
+  last_seen: '2026-06-06T09:17:30Z'
+  occurrence_count: 5
+  affected_ids:
+    numista:
+    - 106709
+    - 178119
+    - 262530
+    - 119177
+    - 414405
+  occurrences:
+  - run_utc: '2026-06-06T07:10:24Z'
+    batch_label: MN
+    detail: 'Batch MN: N#106709 is a Numista Type=''Patterns'' (1 Sechsling Pattern strike 1809) — OOS
+      per CLAUDE.md §9.1. Not saved. NID remains in in_scope_nids; needs folding into oos_excluded_nids.'
+    full_context:
+      numista_batch: MN
+      type: Patterns
+      kind: pattern
+  - run_utc: '2026-06-06T08:08:16Z'
+    batch_label: MO
+    detail: 'Batch MO: N#106709 = ''1 Sechsling (Pattern strike)'' Hamburg 1809, Type=''Patterns'' — OOS
+      per §9.1. Not saved.'
+    full_context:
+      numista_batch: MO
+      ucoin_batch: '356'
+      kind: pattern
+  - run_utc: '2026-06-06T08:09:30Z'
+    batch_label: MO
+    detail: 'Batch MO: N#178119 = ''1 Dreiling (Gold pattern strike)'' Hamburg 1823, KM# PnB15, Type=''Patterns''
+      — OOS per §9.1. Not saved.'
+    full_context:
+      numista_batch: MO
+      ucoin_batch: '356'
+      kind: pattern
+  - run_utc: '2026-06-06T08:10:56Z'
+    batch_label: MO
+    detail: 'Batch MO: N#262530 = ''1 Schilling (Gold Pattern)'' Hamburg 1823-1828, Type=''Patterns''
+      — OOS per §9.1. Not saved.'
+    full_context:
+      numista_batch: MO
+      ucoin_batch: '356'
+      kind: pattern
+  - run_utc: '2026-06-06T09:17:30Z'
+    batch_label: MP
+    detail: 'Batch MP: 5 of 10 sampled uncached NIDs OOS — N#106709 (1 Sechsling pattern), N#178119 (1
+      Dreiling gold pattern KM#PnB15), N#262530 (1 Schilling gold pattern), N#119177 (1 Schilling gold
+      pattern), N#414405 (wedding medal, Personality medals). Not saved; remain candidates for oos_excluded_nids
+      reclassification.'
+    full_context:
+      numista_batch: MP
+      bucket: hamburg_hanseatic_city
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold these NIDs
+    into the audit's oos_excluded_nids slot so the §2.1 picker stops re-offering them.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T09:17:36Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS medals (exonumia per CLAUDE.md §9.2).
+  status: resolved
+  instance_first_seen: '2026-06-06T10:12:19.106768Z'
+  last_seen: '2026-06-06T10:12:19.106768Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 344958
+    - 192592
+    - 415966
+  occurrences:
+  - run_utc: '2026-06-06T10:12:19.106768Z'
+    batch_label: MQ
+    detail: 'Batch MQ: 3 of 5 enumerated NIDs are medals (Type=Commemorative/Personality/Award medals),
+      not standard circulation coins: N#344958 (Commemorative medals › Inauguration medals) — Salomon
+      Heine Hospital inauguration 1841; N#192592 (Personality medals › Wedding medals) — Conrad von Blücher-Altona
+      golden wedding 1844; N#415966 (Award medals › Scholastic/academic/scientific) — Medical Association
+      award medal 1844'
+    full_context:
+      numista_batch: MQ
+      kind: medal
+  proposed_fix: Fold OOS NIDs into BO.7 audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T10:12:24Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:nid=69938:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    nid: '69938'
+  summary: numista NID 69938 enumerated in-scope for hamburg_hanseatic_city is a commemorative medal (exonumia,
+    OOS per CLAUDE.md §9.2).
+  status: resolved
+  instance_first_seen: '2026-06-06T11:10:24Z'
+  last_seen: '2026-06-06T11:10:24Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 69938
+  occurrences:
+  - run_utc: '2026-06-06T11:10:24Z'
+    batch_label: MR
+    detail: 'Batch MR defensive-sample: N#69938 Type=''Commemorative medals'', Composition=Tin, title
+      ''Souvenir medal - Hamburg'', ND(1849). Not a circulation coin. NOT saved.'
+    full_context:
+      type: Commemorative medals
+      composition: Tin
+      kind: medal
+  proposed_fix: Fold NID 69938 into BO.7 audit oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write (kind=medal).
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T11:12:40Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:query=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    query: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains exonumia (Commemorative medals) mis-enumerated
+    as in-scope coins.
+  status: resolved
+  instance_first_seen: '2026-06-06T13:18:23.151440Z'
+  last_seen: '2026-06-06T13:18:23.151440Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 404359
+    - 168226
+    - 443510
+    - 171297
+  occurrences:
+  - run_utc: '2026-06-06T13:18:23.151440Z'
+    batch_label: MT
+    detail: 'Batch MT: 4 of the first 5 picked NIDs are Numista Type=''Commemorative medals'' (exonumia,
+      OOS per CLAUDE.md §9.2). N#404359 (german-reformed church 60th anniv 1856), N#168226 (ship Borussia
+      1856), N#443510 (St. Nikolai inauguration 1863), N#171297 (free trade celebration 1867). All bronze/silver-plated-bronze
+      medals, no denomination.'
+    full_context:
+      numista_batch: MT
+      ucoin_batch: '361'
+      oos_kind: exonumia/medal
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold these NIDs
+    into hamburg_hanseatic_city oos_excluded_nids slot so the §2.1 picker stops re-offering them.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T13:18:29Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=399822:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '399822'
+  summary: 'numista NID 399822 is OOS (exonumia: Commemorative medal) but enumerated in BO.7 hamburg_hanseatic_city
+    in_scope_nids.'
+  status: resolved
+  instance_first_seen: '2026-06-06T14:08:17Z'
+  last_seen: '2026-06-06T14:08:17Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 399822
+  occurrences:
+  - run_utc: '2026-06-06T14:08:17Z'
+    batch_label: MU
+    detail: 'Batch MU: N#399822 Type=''Commemorative medals'' (Tin/white metal), ''Free trade celebration''
+      1867. classify_numista_scope → (False, ''exonumia''). Not saved; fold into oos_excluded_nids.'
+    full_context:
+      type: Commemorative medals
+      kind: exonumia
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold 399822
+    into oos_excluded_nids (kind=exonumia/medal).
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T14:13:54Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=318572:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '318572'
+  summary: 'numista NID 318572 is OOS (exonumia: Award medal) but enumerated in BO.7 hamburg_hanseatic_city
+    in_scope_nids.'
+  status: resolved
+  instance_first_seen: '2026-06-06T14:09:41Z'
+  last_seen: '2026-06-06T14:09:41Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 318572
+  occurrences:
+  - run_utc: '2026-06-06T14:09:41Z'
+    batch_label: MU
+    detail: 'Batch MU: N#318572 Type=''Award medals › Agricultural and industrial awards'' (Bronze), HAPAG
+      long service medal ND(1870-1903). Not saved; fold into oos_excluded_nids.'
+    full_context:
+      type: Award medals
+      kind: exonumia
+  proposed_fix: Run reclassify_bo7_oos.py --from-anomalies --write to fold 318572 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T14:13:55Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=318575:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '318575'
+  summary: 'numista NID 318575 is OOS (exonumia: Award medal, silver HAPAG) but enumerated in BO.7 hamburg_hanseatic_city
+    in_scope_nids.'
+  status: resolved
+  instance_first_seen: '2026-06-06T14:10:49Z'
+  last_seen: '2026-06-06T14:10:49Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 318575
+  occurrences:
+  - run_utc: '2026-06-06T14:10:49Z'
+    batch_label: MU
+    detail: 'Batch MU: N#318575 Type=''Award medals › Agricultural and industrial awards'' (Silver), HAPAG
+      long service medal ND(1870-1903). Not saved; fold into oos_excluded_nids.'
+    full_context:
+      type: Award medals
+      kind: exonumia
+  proposed_fix: Run reclassify_bo7_oos.py --from-anomalies --write to fold 318575 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T14:13:55Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=175637:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '175637'
+  summary: 'numista NID 175637 is OOS (exonumia: Award/prize medal) but enumerated in BO.7 hamburg_hanseatic_city
+    in_scope_nids.'
+  status: resolved
+  instance_first_seen: '2026-06-06T14:12:08Z'
+  last_seen: '2026-06-06T14:12:08Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 175637
+  occurrences:
+  - run_utc: '2026-06-06T14:12:08Z'
+    batch_label: MU
+    detail: 'Batch MU: N#175637 Type=''Award medals'' (Bronze), Prize medal Gardening club Hamburg-Altona
+      1874. Not saved; fold into oos_excluded_nids.'
+    full_context:
+      type: Award medals
+      kind: exonumia
+  proposed_fix: Run reclassify_bo7_oos.py --from-anomalies --write to fold 175637 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T14:13:55Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=187023:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '187023'
+  summary: 'numista NID 187023 is OOS (exonumia: Award/prize medal) but enumerated in BO.7 hamburg_hanseatic_city
+    in_scope_nids.'
+  status: resolved
+  instance_first_seen: '2026-06-06T14:16:37Z'
+  last_seen: '2026-06-06T14:16:37Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 187023
+  occurrences:
+  - run_utc: '2026-06-06T14:16:37Z'
+    batch_label: MU
+    detail: 'Batch MU: N#187023 Type=''Award medals'' (Bronze), Prize medal Carrier pigeon support ND(1875-1900).
+      Not saved; fold into oos_excluded_nids.'
+    full_context:
+      type: Award medals
+      kind: exonumia
+  proposed_fix: Run reclassify_bo7_oos.py --from-anomalies --write to fold 187023 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T14:24:16Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=292377:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '292377'
+  summary: numista NID 292377 is OOS (pattern/trial strike) but enumerated in BO.7 hamburg_hanseatic_city
+    in_scope_nids.
+  status: resolved
+  instance_first_seen: '2026-06-06T14:17:47Z'
+  last_seen: '2026-06-06T14:17:47Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 292377
+  occurrences:
+  - run_utc: '2026-06-06T14:17:47Z'
+    batch_label: MU
+    detail: 'Batch MU: N#292377 Type=''Patterns'', 20 Mark (Obverse Trial) ND(1875-1913) J. Not saved;
+      fold into oos_excluded_nids.'
+    full_context:
+      type: Patterns
+      kind: pattern
+  proposed_fix: Run reclassify_bo7_oos.py --from-anomalies --write to fold 292377 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T14:24:17Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=284550:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '284550'
+  summary: numista NID 284550 is OOS (pattern/trial strike) but enumerated in BO.7 hamburg_hanseatic_city
+    in_scope_nids.
+  status: resolved
+  instance_first_seen: '2026-06-06T14:18:48Z'
+  last_seen: '2026-06-06T14:18:48Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 284550
+  occurrences:
+  - run_utc: '2026-06-06T14:18:48Z'
+    batch_label: MU
+    detail: 'Batch MU: N#284550 Type=''Patterns'', 2 Mark copper trial 1876 J. Not saved; fold into oos_excluded_nids.'
+    full_context:
+      type: Patterns
+      kind: pattern
+  proposed_fix: Run reclassify_bo7_oos.py --from-anomalies --write to fold 284550 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T14:24:17Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=371793:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '371793'
+  summary: numista NID 371793 is OOS (pattern/trial strike) but enumerated in BO.7 hamburg_hanseatic_city
+    in_scope_nids.
+  status: resolved
+  instance_first_seen: '2026-06-06T14:22:24Z'
+  last_seen: '2026-06-06T14:22:24Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 371793
+  occurrences:
+  - run_utc: '2026-06-06T14:22:24Z'
+    batch_label: MU
+    detail: 'Batch MU: N#371793 Type=''Patterns'', 2½ Tola trade-coinage copper-nickel trial 1877. Not
+      saved; fold into oos_excluded_nids.'
+    full_context:
+      type: Patterns
+      kind: pattern
+  proposed_fix: Run reclassify_bo7_oos.py --from-anomalies --write to fold 371793 into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T14:24:17Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: 'BO.7 hamburg_hanseatic_city gap list contains OOS exonumia + patterns: 4 medals (157791, 158236,
+    365536, 178146) + 1 pattern (511689) sampled in Numista batch MV.'
+  status: resolved
+  instance_first_seen: '2026-06-06T15:12:43.477980Z'
+  last_seen: '2026-06-06T15:12:43.477980Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 157791
+    - 511689
+    - 158236
+    - 365536
+    - 178146
+  occurrences:
+  - run_utc: '2026-06-06T15:12:43.477980Z'
+    batch_label: MV
+    detail: 'Batch MV: all 5 head-of-gap uncached NIDs are OOS per classify_numista_scope. 157791 exonumia
+      (Commemorative/Exhibition medal); 511689 pattern (2 Mark Pattern gold); 158236 exonumia (Advertising
+      medallions); 365536 exonumia (Commemorative/Exhibition medal); 178146 exonumia (Commemorative/Event
+      medal). None saved to cache.'
+    full_context:
+      numista_batch: MV
+      bucket: hamburg_hanseatic_city
+  proposed_fix: Fold the 5 NIDs into BO.7 audit oos_excluded_nids via scripts/maintenance/reclassify_bo7_oos.py
+    --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T15:12:48Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: 'BO.7 hamburg_hanseatic_city gap tail is medal-polluted: 2 more OOS commemorative medals (75917,
+    466477) sampled in Numista batch MV after first 5; uncached tail dominated by 1877-1888 medals.'
+  status: resolved
+  instance_first_seen: '2026-06-06T15:15:54.705161Z'
+  last_seen: '2026-06-06T15:15:54.705161Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 75917
+    - 466477
+  occurrences:
+  - run_utc: '2026-06-06T15:15:54.705161Z'
+    batch_label: MV
+    detail: 'Batch MV continued: 75917 exonumia (Commemorative/Event medal, Geographers Conference); 466477
+      exonumia (Commemorative medal, Hamburg Liberation). 7/7 head-of-gap NIDs OOS this run. Numista front
+      stopped as scope-cleaning only (0 coins saved).'
+    full_context:
+      numista_batch: MV
+      bucket: hamburg_hanseatic_city
+  proposed_fix: Fold into BO.7 oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies --write. Consider
+    a full re-enumeration of hamburg_hanseatic_city with the ct=coin + type filter to purge the remaining
+    medal tail in bulk rather than per-batch.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T15:15:55Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains exonumia (medals) — OOS per §9.2.
+  status: resolved
+  instance_first_seen: '2026-06-06T16:13:44.992005Z'
+  last_seen: '2026-06-06T16:13:44.992005Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 422505
+    - 422607
+  occurrences:
+  - run_utc: '2026-06-06T16:13:44.992005Z'
+    batch_label: MW
+    detail: 'Batch MW: 2 of 5 picked NIDs are KaiserAuss exhibition medals (Type=''Commemorative medals''):
+      N#422505 (Trade and Industry exhibition 1889, Tin), N#422607 (same, 1889, Tin). Not saved; fold
+      into oos_excluded_nids.'
+    full_context:
+      oos_kind: exonumia
+      numista_batch: MW
+      ucoin_batch: '364'
+  proposed_fix: Run reclassify_bo7_oos.py --from-anomalies --write to fold NIDs into oos_excluded_nids
+    slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T16:13:57Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia (commemorative medals).
+  status: resolved
+  instance_first_seen: '2026-06-06T17:09:56Z'
+  last_seen: '2026-06-06T17:14:17Z'
+  occurrence_count: 4
+  affected_ids:
+    numista:
+    - 151848
+    - 420060
+    - 143181
+    - 400184
+  occurrences:
+  - run_utc: '2026-06-06T17:09:56Z'
+    batch_label: MX
+    detail: 'Batch MX: N#151848 = ''500th anniversary of the unification of Ritzebuettel castle'' — Numista
+      Type=''Commemorative medals'', no denomination. classify_numista_scope → (False, exonumia). Not
+      saved.'
+  - run_utc: '2026-06-06T17:11:23Z'
+    batch_label: MX
+    detail: 'Batch MX: N#420060 = ''Medal - Death of pianist Hans von Buelow'' — Type=''Commemorative
+      medals > Personality medals'', no denomination. classify → exonumia. Not saved.'
+  - run_utc: '2026-06-06T17:12:46Z'
+    batch_label: MX
+    detail: 'Batch MX: N#143181 = ''150th anniversary Oevelgoenne-Neumuehlener Lotsenbruederschaft'' —
+      Type=''Commemorative medals'', Pewter, no denomination. exonumia. Not saved.'
+  - run_utc: '2026-06-06T17:14:17Z'
+    batch_label: MX
+    detail: 'Batch MX: N#400184 = ''Inauguration of the city hall of Hamburg'' — Type=''Commemorative
+      medals > Inauguration medals'', Bronze, no denomination. exonumia. Not saved. (4 of first-5 slice
+      were medals — bucket gap list contaminated.)'
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T17:14:23Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+  summary: BO.7 hamburg_hanseatic_city gap list contains OOS exonumia (commemorative medals).
+  status: resolved
+  instance_first_seen: '2026-06-06T17:16:09Z'
+  last_seen: '2026-06-06T17:17:25Z'
+  occurrence_count: 2
+  affected_ids:
+    numista:
+    - 143182
+    - 378774
+  occurrences:
+  - run_utc: '2026-06-06T17:16:09Z'
+    batch_label: MX
+    detail: 'Batch MX: N#143182 = ''Souvenir Medal - Gardening exhibition'' — Type=''Commemorative medals
+      > Exhibition...'', silver-plated bronze, ''Round with a loop'', no denomination. exonumia. Not saved.'
+  - run_utc: '2026-06-06T17:17:25Z'
+    batch_label: MX
+    detail: 'Batch MX: N#378774 = ''100th anniversary Hamburg insurance club'' — Type=''Commemorative
+      medals'', silver 60mm, no denomination. exonumia. 6 of 7 fetched this run were 1890s commemorative
+      medals — switching Numista batch to brunswick_wolfenbuttel_principality for remaining slots.'
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write. Consider a full
+    Type-field sweep of hamburg_hanseatic_city uncached gap to bulk-exclude medals.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T17:17:25Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:query=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    query: hamburg_hanseatic_city
+  summary: 'BO.7 hamburg_hanseatic_city gap list contains OOS exonumia + patterns: 3 commemorative medals
+    (157988, 391089, 395232) + 1 pattern strike (318156).'
+  status: resolved
+  instance_first_seen: '2026-06-06T18:13:54.737722Z'
+  last_seen: '2026-06-06T18:13:54.737722Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 157988
+    - 391089
+    - 395232
+    - 318156
+  occurrences:
+  - run_utc: '2026-06-06T18:13:54.737722Z'
+    batch_label: MY
+    detail: 'Batch MY: of 5 uncached NIDs at the head of hamburg_hanseatic_city, 4 are OOS — 157988 (Commemorative
+      medals, 1898 gymnastics tournament), 391089 (Commemorative medals, 1902 Reformed Community), 395232
+      (Commemorative medals, 1902 Sparkasse), 318156 (Patterns, 5 Mark copper pattern strike 1906). Confirmed
+      via classify_numista_scope. NIDs not cached; remain in audit until reclassified.'
+    full_context:
+      oos_kinds:
+        exonumia:
+        - 157988
+        - 391089
+        - 395232
+        pattern:
+        - 318156
+      numista_batch: MY
+  proposed_fix: Fold the 4 NIDs into _BO7_audit's oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies
+    --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T18:14:01Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:kind=exonumia:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    kind: exonumia
+  summary: BO.7 hamburg_hanseatic_city gap list contains commemorative medals (exonumia, OOS per §9.2).
+  status: resolved
+  instance_first_seen: '2026-06-06T19:13:33.815223Z'
+  last_seen: '2026-06-06T19:13:33.815223Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 134198
+    - 382919
+    - 387252
+    - 400474
+  occurrences:
+  - run_utc: '2026-06-06T19:13:33.815223Z'
+    batch_label: MZ
+    detail: 'Batch MZ: 4 of 5 sampled gap NIDs are Numista Type=''Commemorative medals'' (St. Michaelis
+      134198, Bismarck Monument 382919, O''Swald 387252, Norddeutsche Bank 400474) — all 1906 Hamburg
+      medals, OOS for coin tables.'
+    full_context:
+      numista_batch: MZ
+      bucket: hamburg_hanseatic_city
+  proposed_fix: Fold NIDs into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies --write; refresh
+    prunes from in_scope.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T19:13:40Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:kind=pattern:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    kind: pattern
+  summary: BO.7 hamburg_hanseatic_city gap list contains a pattern strike (OOS per §9.1).
+  status: resolved
+  instance_first_seen: '2026-06-06T19:13:33.815223Z'
+  last_seen: '2026-06-06T19:13:33.815223Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 178128
+  occurrences:
+  - run_utc: '2026-06-06T19:13:33.815223Z'
+    batch_label: MZ
+    detail: 'Batch MZ: N#178128 is Numista Type=''Patterns'' (20 Mark Pattern 1907, X# 2) — trial strike,
+      OOS for coin tables.'
+    full_context:
+      numista_batch: MZ
+      bucket: hamburg_hanseatic_city
+  proposed_fix: Fold NID into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T19:13:40Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:kind=pattern:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    kind: pattern
+  summary: BO.7 hamburg_hanseatic_city gap list contains pattern strikes (OOS per §9.1).
+  status: resolved
+  instance_first_seen: '2026-06-06T19:20:01.401608Z'
+  last_seen: '2026-06-06T19:20:01.401608Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 267648
+    - 178129
+  occurrences:
+  - run_utc: '2026-06-06T19:20:01.401608Z'
+    batch_label: MZ
+    detail: 'Batch MZ (2nd sweep): N#267648 + N#178129 are Numista Type=''Patterns'' (20 Mark Patterns
+      1907).'
+    full_context:
+      numista_batch: MZ
+      bucket: hamburg_hanseatic_city
+  proposed_fix: Fold into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T19:20:02Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=hamburg_hanseatic_city:kind=exonumia:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: hamburg_hanseatic_city
+    kind: exonumia
+  summary: BO.7 hamburg_hanseatic_city gap list contains shooting-festival medals (exonumia, OOS per §9.2).
+  status: resolved
+  instance_first_seen: '2026-06-06T19:20:01.401608Z'
+  last_seen: '2026-06-06T19:20:01.401608Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 128098
+    - 148852
+  occurrences:
+  - run_utc: '2026-06-06T19:20:01.401608Z'
+    batch_label: MZ
+    detail: 'Batch MZ (2nd sweep): N#128098 + N#148852 are Numista Type=''Exhibition, fair and festival
+      medals › Shooting medals'' (16th Hamburg shooting festival 1909).'
+    full_context:
+      numista_batch: MZ
+      bucket: hamburg_hanseatic_city
+  proposed_fix: Fold into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T19:20:02Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:query=hamburg_hanseatic_city:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    query: hamburg_hanseatic_city
+  summary: 'BO.7 hamburg_hanseatic_city gap list head contains OOS records: 3 commemorative medals (exonumia
+    §9.2) + 2 patterns (§9.1).'
+  status: resolved
+  instance_first_seen: '2026-06-06T20:13:29.873739Z'
+  last_seen: '2026-06-06T20:13:29.873739Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 388701
+    - 389495
+    - 48690
+    - 378504
+    - 295084
+  occurrences:
+  - run_utc: '2026-06-06T20:13:29.873739Z'
+    batch_label: NA
+    detail: 'Batch NA: all 5 head gap_nids OOS via classify_numista_scope — 388701 medal, 389495 medal,
+      48690 pattern (KM#Pn21), 378504 medal, 295084 pattern.'
+    full_context:
+      numista_batch: NA
+      ucoin_batch: '368'
+  proposed_fix: Fold into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-06T20:13:35Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+  summary: BO.7 brunswick_wolfenbuttel_principality gap list contains OOS exonumia (commemorative medal)
+    N#301155.
+  status: resolved
+  instance_first_seen: '2026-06-07T15:09:31.895515Z'
+  last_seen: '2026-06-07T15:09:31.895515Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 301155
+  occurrences:
+  - run_utc: '2026-06-07T15:09:31.895515Z'
+    batch_label: NT
+    detail: 'Batch NT defensive read: N#301155 ''2 Thalers - Henry Julius 1610'' Numista Type=''Commemorative
+      medals'' (exonumia, OOS per CLAUDE.md §9.2). classify_numista_scope → (False, ''exonumia''). Not
+      saved; to be folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies.'
+    full_context:
+      type: Commemorative medals
+      url: https://en.numista.com/301155
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to prune N#301155
+    from in_scope_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-07T15:09:37Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+  summary: Numista BO.7 brunswick_wolfenbuttel_principality gap list contains OOS pattern NID 312634 (Type='Patterns',
+    KM# PnA1 gold pattern strike).
+  status: resolved
+  instance_first_seen: '2026-06-08T18:08:59.608208Z'
+  last_seen: '2026-06-08T18:08:59.608208Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312634
+  occurrences:
+  - run_utc: '2026-06-08T18:08:59.608208Z'
+    batch_label: OU
+    detail: 'Batch OU: sampled N#312634 = 2 Thalers Frederick Ulrich 1625 St. Jacobslöser gold pattern
+      strike, Type=''Patterns'' (KM# PnA1). OOS per CLAUDE.md §9.1 (patterns/trial strikes). Not saved
+      to cache; substituted N#31083 to keep batch at 5.'
+    full_context:
+      kind: pattern
+      km: PnA1
+      type: Patterns
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold 312634
+    into oos_excluded_nids and resolve this anomaly.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-08T18:15:42Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:nid=419416:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+    nid: '419416'
+  summary: numista NID 419416 enumerated in brunswick_wolfenbuttel_principality gap list is OOS — Type
+    'Patterns', KM# Pn2 (pattern/trial strike per §9.1).
+  status: resolved
+  instance_first_seen: '2026-06-09T00:13:33.796154Z'
+  last_seen: '2026-06-09T00:13:33.796154Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 419416
+  occurrences:
+  - run_utc: '2026-06-09T00:13:33.796154Z'
+    batch_label: PA
+    detail: 'Batch PA: N#419416 ¼ Thaler August der Jüngere 1643 Gold 10.3g — Numista Type field = ''Patterns'',
+      reference KM# Pn2. OOS per CLAUDE.md §9.1 (patterns excluded). Not saved.'
+    full_context:
+      type: Patterns
+      km: Pn2
+      metal: gold
+      denom: 1/4 Thaler
+  proposed_fix: Fold NID 419416 into _BO7_audit_2026-05-24.json oos_excluded_nids via reclassify_bo7_oos.py
+    --from-anomalies --write.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-09T00:13:39Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:id=446230:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    id: '446230'
+  summary: Numista NID 446230 is a commemorative event MEDAL (exonumia, OOS per §9.2), mis-enumerated
+    as in-scope in BO.7 brunswick_wolfenbuttel_principality.
+  status: resolved
+  instance_first_seen: '2026-06-10T00:10:05Z'
+  last_seen: '2026-06-10T00:10:05Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 446230
+  occurrences:
+  - run_utc: '2026-06-10T00:10:05Z'
+    batch_label: PQ
+    detail: 'Batch PQ: N#446230 Type=''Commemorative medals › Event medals'' (Conquest of Brunswick 1671),
+      refs Brock We#/Leschhorn# (medal catalogues), no denomination. classify_numista_scope → (False,
+      ''exonumia''). Folded into oos_excluded_nids.'
+  proposed_fix: reclassify_bo7_oos.py --from-anomalies --write folds NID into oos_excluded_nids; picker
+    stops re-offering it.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-10T00:10:06Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: cloudflare_challenge_persistent:bucket=brunswick_luneburg_p1083:source=ucoin
+  type: cloudflare_challenge_persistent
+  key_dims:
+    source: ucoin
+    bucket: brunswick_luneburg_p1083
+  summary: ucoin rate-limit defence escalated to /blockip.plx during brunswick_luneburg_p1083 listing-page
+    enumeration; slug→TID map unresolvable, batch 439 deferred.
+  status: resolved
+  instance_first_seen: '2026-06-10T03:15:39.171887Z'
+  last_seen: '2026-06-10T03:15:39.171887Z'
+  occurrence_count: 1
+  affected_ids:
+    ucoin:
+    - 92488
+    - 92489
+    - 92490
+    - 132819
+  occurrences:
+  - run_utc: '2026-06-10T03:15:39.171887Z'
+    batch_label: '439'
+    detail: 'Batch 439: listing pages for country=brunswick_luneburg&period=1083 repeatedly redirected
+      to /check/?f=0, then to /blockip.plx (IP-level block) after cookie-clear retries. Pages 1-2 resolved
+      (96 anchors) but none of the 4 target TIDs; page 3+ blocked. Targets 92488/92489/92490/132819 deferred
+      to next run as retry candidates.'
+    full_context:
+      numista_batch: PT
+      ucoin_batch: '439'
+      block_url: /blockip.plx
+  proposed_fix: Wait out the ucoin IP block (typically resolves within hours); retry next cron run. Targets
+    remain in audit gap_tids. Consider longer inter-page pacing for large buckets.
+  resolution: 'Auto-resolved: ucoin IP block (/blockip.plx) cleared this run after cookie-clear + 90s
+    wait; all 4 deferred TIDs (92488, 92489, 92490, 132819) fetched successfully in batch 439. brunswick_luneburg_p1083
+    now 159/159 closed.'
+  resolved_at: '2026-06-10T04:19:54Z'
+  resolved_by: harvest-routine-auto
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+  summary: BO.7 brunswick_wolfenbuttel_principality in_scope_nids includes OOS exonumia (medal) N#446492.
+  status: resolved
+  instance_first_seen: '2026-06-11T07:13:33.205639Z'
+  last_seen: '2026-06-11T07:13:33.205639Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 446492
+  occurrences:
+  - run_utc: '2026-06-11T07:13:33.205639Z'
+    batch_label: QU
+    detail: 'Batch QU: N#446492 = ''Medal - To the voyage of Elisabeth Christine to Spain'' (Type=''Commemorative
+      medals › Event medals'', Silver 29.07g). classify_numista_scope → (False, ''exonumia''). Not saved;
+      remains in manifest in_scope_nids until folded to oos_excluded_nids.'
+    full_context:
+      reason: exonumia_medal
+      url_tried: https://en.numista.com/446492
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#446492
+    into oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-11T07:13:39Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
