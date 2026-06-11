@@ -1442,9 +1442,9 @@ IKMK (Münzkabinett Berlin) is primarily a non-DK collection (~7088 records, mos
 
 ## Normal priority
 
-### CT. 🟢 Fuss cross-reference system — author by id, resolve display name + clickable link at build time  *(opened 2026-06-11)* *(est: medium)* *(type: feature)*
+### CT. ✅ DONE 2026-06-11 — Fuss cross-reference system — author by id, resolve display name + clickable link at build time  *(opened + closed 2026-06-11)* *(est: medium)* *(type: feature)*
 
-**Design complete — full spec in [`docs/fuss_cross_refs_design.md`](fuss_cross_refs_design.md).** Implementation pending.
+**IMPLEMENTED same day.** Resolver `scripts/lib/fuss_refs.py`, wired into `build.py` at both post-render sites, migration `scripts/maintenance/migrate_fuss_xrefs.py` converted 168 refs, tests `tests/test_fuss_refs.py` (7 green). End-to-end verified: same `[fuss:reichsdukatenfuss]` marker → «Rigsdukatfod» (linked) on Denmark, «Reichsdukatenfuß» (plain) on Hamburg. Full spec + as-built notes in [`docs/fuss_cross_refs_design.md`](fuss_cross_refs_design.md).
 
 Replace hand-written `<code>Fuss-Name</code>` cross-refs in prose with id-markers `[fuss:KEY]`. A post-render pass (new `scripts/lib/fuss_refs.py`, mirroring `refs_pool.process_html`, called at the same two build sites) substitutes the **effective display name** — honouring per-location `fuss_periods[KEY].name` overrides (the live «Reichsdukatenfuß» ↔ «Rigsdukatfod» mechanism) — and wraps it in a clickable `<a href="#fuss-KEY">` when the card is present on the page (anchors already rendered at [location.html.j2:760](../templates/location.html.j2); plain `<code>` fallback when off-page). Payoff: renaming a standard touches one `name` field and every cross-ref updates, with the right name per jurisdiction.
 

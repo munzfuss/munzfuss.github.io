@@ -1,12 +1,27 @@
-# Fuss cross-reference system — design (code pending)
+# Fuss cross-reference system — design + implementation
 
-> **Status: design-complete, implementation pending.** Tracked as
-> `docs/TODO.md` §CT. Decisions taken with the user 2026-06-11:
+> **Status: IMPLEMENTED 2026-06-11** (commit lands same day). Tracked
+> as `docs/TODO.md` §CT (closed). Decisions taken with the user:
 > reference fusses by **stable id**, resolve the display name at build
 > time (honouring per-location name overrides), and render the result
-> as a **clickable link** to the fuss card. This document is the
-> implementation spec — a future session should be able to build it
-> from here cold.
+> as a **clickable link** to the fuss card.
+>
+> **As built** (matches this spec):
+> - Resolver: [`scripts/lib/fuss_refs.py`](../scripts/lib/fuss_refs.py)
+>   (`process_html(html, lang, name_map)`).
+> - Wired into [`scripts/build.py`](../scripts/build.py) at both
+>   post-render sites (per-location after the refs_pool pass; landing
+>   with global names + new `fuesse` param).
+> - Migration: [`scripts/maintenance/migrate_fuss_xrefs.py`](../scripts/maintenance/migrate_fuss_xrefs.py)
+>   — converted 168 hand-written cross-refs (all `<code>KEY</code>`
+>   key-forms + the two display-name cards) to `[fuss:KEY]` across
+>   `fuesse.yml` + V1/V2 location yamls.
+> - Tests: [`tests/test_fuss_refs.py`](../tests/test_fuss_refs.py) (7,
+>   all green). Verified end-to-end in the render: Denmark shows
+>   «Rigsdukatfod» (override, linked), Hamburg «Reichsdukatenfuß»
+>   (global, plain) — same `[fuss:reichsdukatenfuss]` marker.
+>
+> The text below is the original spec, retained as the reference.
 
 ## Problem
 
