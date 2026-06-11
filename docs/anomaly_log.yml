@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-11T13:16:37Z'
+  last_updated_utc: '2026-06-11T14:19:49Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3474,8 +3474,8 @@ anomalies:
     would corrupt already-correct discrete year_lists.'
   status: open
   instance_first_seen: '2026-06-11T13:16:37.310890Z'
-  last_seen: '2026-06-11T13:16:37.310890Z'
-  occurrence_count: 1
+  last_seen: '2026-06-11T14:19:49Z'
+  occurrence_count: 2
   affected_ids:
     numista:
     - 115207
@@ -3483,6 +3483,11 @@ anomalies:
     - 115222
     - 116009
     - 55890
+    - 99204
+    - 99108
+    - 75266
+    - 99008
+    - 99196
   occurrences:
   - run_utc: '2026-06-11T13:16:37.310890Z'
     batch_label: QX
@@ -3498,10 +3503,20 @@ anomalies:
     full_context:
       queue_file: docs/handoff_numista_year_list_reharvest.yml
       pending_after: 102
-  proposed_fix: 'Rewrite §2.2/§2.3-B backfill step to: re-read the DETAILED per-year issues section, set
-    year_list to the actual struck years listed there; only set null when the detailed section confirms
-    a truly continuous range. Consider a one-shot script to verify all 102 remaining queue entries'' cached
-    year_lists against the detailed sections and bulk-close.'
+  - run_utc: '2026-06-11T14:19:49Z'
+    batch_label: QX
+    detail: 'Re-read of 5 NIDs (99204/99108/75266/99008/99196). Numista summary ''Years'' shows dash ranges,
+      but the detailed table.collection per-year issues confirm: 99204 [1778-1795], 99108 [1700-1714],
+      75266 [1702-1715] truly continuous; 99008 [1700-1708,1710-1712] (1709 gap) and 99196 [1649-1658,1660-1661]
+      (1659 gap) DISCRETE. All 5 cached year_lists already match the detailed issues exactly — verified-correct,
+      drained from queue without cache mutation. Continued evidence the whole queue''s cached year_lists
+      are already correct; dash->null rule must NOT be applied.'
+    full_context:
+      queue_file: docs/handoff_numista_year_list_reharvest.yml
+      method: verified-correct drain
+  proposed_fix: Rewrite §2.2/§2.3-B backfill step to compare against the detailed table.collection per-year
+    issues, not the summary Years field. Consider a one-shot verification script to bulk-close the remaining
+    queue.
   resolution: null
   resolved_at: null
   resolved_by: null
