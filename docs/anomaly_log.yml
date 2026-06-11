@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-11T07:13:39Z'
+  last_updated_utc: '2026-06-11T13:16:37Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3465,3 +3465,43 @@ anomalies:
     refresh prunes them from in_scope.
   resolved_at: '2026-06-11T07:13:39Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
+- id: doc_update_pending:doc=harvest_routine_md:section=2_2_2_3_b_year_list_backfill
+  type: doc_update_pending
+  key_dims:
+    doc: HARVEST_ROUTINE.md
+    section: §2.2/§2.3-B year_list backfill
+  summary: 'Priority-0 year_list backfill heuristic ''dash-form Years field -> year_list: null'' is UNSAFE;
+    would corrupt already-correct discrete year_lists.'
+  status: open
+  instance_first_seen: '2026-06-11T13:16:37.310890Z'
+  last_seen: '2026-06-11T13:16:37.310890Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 115207
+    - 115216
+    - 115222
+    - 116009
+    - 55890
+  occurrences:
+  - run_utc: '2026-06-11T13:16:37.310890Z'
+    batch_label: QX
+    detail: Re-read of 5 NIDs (115207/115216/115222/116009/55890, Christian IV NO Speciedaler 1629-1647
+      + Frederik V 24 Sk 1746-1763) shows Numista's summary 'Years' field displays a dash range (e.g.
+      '1629-1647') even when actual struck years are DISCRETE (real gaps at 1644-1645 / 1643). The cached
+      year_lists already hold the correct discrete years (verified against Numista's detailed per-year
+      issues section, exact match). Applying the literal §2.3-B 'dash -> null' rule would DESTROY this
+      correct discrete data — a §4 'source years immutable' regression in reverse. Backfill must compare
+      against the DETAILED issues section, not the summary field. The whole 102-entry remaining queue
+      likely shares this property (cached year_lists already correct) and may be closeable after a verification
+      sweep — user decision.
+    full_context:
+      queue_file: docs/handoff_numista_year_list_reharvest.yml
+      pending_after: 102
+  proposed_fix: 'Rewrite §2.2/§2.3-B backfill step to: re-read the DETAILED per-year issues section, set
+    year_list to the actual struck years listed there; only set null when the detailed section confirms
+    a truly continuous range. Consider a one-shot script to verify all 102 remaining queue entries'' cached
+    year_lists against the detailed sections and bulk-close.'
+  resolution: null
+  resolved_at: null
+  resolved_by: null
