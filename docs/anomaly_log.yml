@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-11T20:20:44Z'
+  last_updated_utc: '2026-06-11T21:15:16Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3472,12 +3472,12 @@ anomalies:
     section: §2.2/§2.3-B year_list backfill
   summary: '§2.2 Priority-0 / §2.3-B literal rule (''read the Years field; dash-form -> year_list null'')
     is INSUFFICIENT for the backfill: the Years summary cell always shows a dash range, but the discrete
-    struck years live in `table.collection tr.date_row td.date`. Applying the literal rule destroys correct
-    discrete year_list data.'
+    struck years live in `table.collection td.date`. Applying the literal rule destroys correct discrete
+    year_list data.'
   status: open
   instance_first_seen: '2026-06-11T13:16:37.310890Z'
-  last_seen: '2026-06-11T20:20:44Z'
-  occurrence_count: 5
+  last_seen: '2026-06-11T21:15:16Z'
+  occurrence_count: 6
   affected_ids:
     numista:
     - 115207
@@ -3499,6 +3499,8 @@ anomalies:
     - 99003
     - 100214
     - 420401
+    - 99011
+    - 420606
   occurrences:
   - run_utc: '2026-06-11T13:16:37.310890Z'
     batch_label: QX
@@ -3557,9 +3559,14 @@ anomalies:
     full_context:
       numista_batch: QX
       method: table.collection td.date contiguity check
-  proposed_fix: Rewrite §2.3-B backfill extraction to read `table.collection tr.date_row td.date` (discrete
-    struck years) and decide year_list by contiguity, NOT by the dash/comma shape of the Years summary
-    cell.
+  - run_utc: '2026-06-11T21:15:16Z'
+    batch_label: QX
+    detail: 'Batch QX (year_list backfill, 2026-06-12): N#99011 Years=''1643-1648'' (dash) but struck
+      years [1643,1644,1646,1647,1648] (gap@1645) → discrete; N#420606 Years=''1797-1802'' (dash) but
+      struck years [1797,1802] (gap) → discrete. Literal dash→null would have destroyed both. 99203/118976/118985
+      genuinely contiguous → null. Struck-years widget (table.collection td.date) is authoritative.'
+  proposed_fix: Rewrite §2.3-B backfill extraction to read `table.collection td.date` (discrete struck
+    years) and decide year_list by contiguity, NOT by the dash/comma shape of the Years summary cell.
   resolution: null
   resolved_at: null
   resolved_by: null
