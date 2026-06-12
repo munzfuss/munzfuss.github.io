@@ -421,6 +421,61 @@ def _canonicalise_aagaard(catalog: dict) -> int:
     return 1 if (typed_present or found_in_others) else 0
 
 
+# Catalogue fields whose values are plain catalogue NUMBERS (ranges + sub-letter
+# suffixes + dotted sub-variants), where a coin's multi-source list should be
+# flattened, deduped, range-subsumed and numerically sorted. Excludes fields
+# with special value shapes: km (register-aware), dav/davenport (volume codes),
+# aagaard (die-pairs → others), numista (N# ordering is curator-set), and the
+# *_volume / *_id / bruun_lot helper fields.
+_NUMERIC_INDEX_FIELDS: set[str] = {
+    "schou", "sieg", "hede", "lange", "galster", "nmd", "fp", "fr", "mb",
+    "behrens", "schive", "skaare", "thomsen", "fiala", "gaedechens",
+    "hauberg", "jesse", "kreber", "welter", "bergsoe",
+}
+_PLAIN_RANGE_RE = re.compile(r"^(\d+)-(\d+)$")
+_PLAIN_INT_RE = re.compile(r"^(\d+)$")
+
+
+def _index_sort_key(tok: str) -> tuple:
+    """Sort a catalogue token by leading integer, then dotted sub-variant
+    («16.1» < «16.2»), then the raw string (so «16» < «16A» < «16.1»)."""
+    m = re.match(r"(\d+)", tok)
+    lead = int(m.group(1)) if m else 10**9
+    m2 = re.match(r"^(\d+)\.(\d+)", tok)
+    dec = int(m2.group(2)) if m2 else -1
+    return (lead, dec, tok)
+
+
+def normalise_numeric_index(value):
+    """Flatten a catalogue-number field (scalar or list) into one clean, sorted
+    list of atomic tokens. Splits comma/slash-joined multi-value strings
+    («6,9,7» → 6,9,7), dedups, drops a plain integer subsumed by a plain range
+    (9 and 10 inside «8-13» → dropped), and sorts numerically. Sub-letter
+    («16A»), dotted («16.1») and suffixed-range («39a-39d») tokens are preserved
+    verbatim (never subsumed). Returns a scalar when one token remains.
+    Idempotent."""
+    raw = value if isinstance(value, list) else [value]
+    toks: list[str] = []
+    for v in raw:
+        if v is None:
+            continue
+        for part in re.split(r"[,/]", str(v)):
+            part = part.strip()
+            if part:
+                toks.append(part)
+    seen: set[str] = set()
+    uniq = [t for t in toks if not (t in seen or seen.add(t))]
+    ranges = [(int(m.group(1)), int(m.group(2)))
+              for t in uniq if (m := _PLAIN_RANGE_RE.match(t))]
+
+    def _covered(t: str) -> bool:
+        m = _PLAIN_INT_RE.match(t)
+        return bool(m) and any(lo <= int(m.group(1)) <= hi for lo, hi in ranges)
+
+    kept = sorted((t for t in uniq if not _covered(t)), key=_index_sort_key)
+    return kept[0] if len(kept) == 1 else kept
+
+
 def normalise_catalog(catalog: dict) -> int:
     """In-place catalog hygiene. Idempotent. Returns count of mutations.
 
@@ -530,6 +585,40 @@ def normalise_catalog(catalog: dict) -> int:
             if collapsed != val:
                 catalog[field] = collapsed
                 changes += 1
+
+    # 2b. NUMERIC INDEX normalisation — plain catalogue-number fields accumulate
+    #     multi-source attestations that overlap («Schou 6,7,9» from one source +
+    #     «6,9,7» from another, or individuals «9, 10» beside a range «8-13»).
+    #     Flatten comma/slash-joined tokens, dedup, drop plain ints subsumed by a
+    #     plain range, and sort numerically so the field renders one clean list.
+    for field in _NUMERIC_INDEX_FIELDS:
+        val = catalog.get(field)
+        if val is None:
+            continue
+        new_val = normalise_numeric_index(val)
+        if new_val != val:
+            catalog[field] = new_val
+            changes += 1
+
+    # 2c. Drop a *_hede1971 old-edition number that leaked into its base list.
+    #     `sieg`/`schou` carry the MODERN reference; the `*_hede1971` companion
+    #     holds the (systematically differing) Hede-1971-edition number, which
+    #     the renderer surfaces as «(Hede-1971: X)». When a source also fed that
+    #     old number into the modern list it renders twice — «147, 141
+    #     (Hede-1971: 147)» — so strip it, leaving the modern reference only
+    #     («141 (Hede-1971: 147)»). Never empties the list (if the old number is
+    #     the sole entry, the companion would have nothing to annotate).
+    for base in ("sieg", "schou"):
+        old = catalog.get(f"{base}_hede1971")
+        val = catalog.get(base)
+        if old is None or val is None:
+            continue
+        old_s = str(old).strip()
+        vals = val if isinstance(val, list) else [val]
+        filtered = [v for v in vals if str(v).strip() != old_s]
+        if filtered and len(filtered) != len(vals):
+            catalog[base] = filtered[0] if len(filtered) == 1 else filtered
+            changes += 1
 
     # 3. KM hygiene (km is the KMRef-union field, not in list_fields, so
     #    handled explicitly): expand a slash-list scalar («683.1 / 683.2»)
