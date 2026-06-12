@@ -77,7 +77,12 @@ REF_PATTERNS = {
     "Bruun":   re.compile(r"\bBruun[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Fr":      re.compile(r"\bFr[\.\-:]?\s*(\d+[A-Za-z]*(?:\.\d+)?)", re.IGNORECASE),
     "Schou":   re.compile(r"\bSchou[\-:]?\s*(\d+[A-Za-z]*(?:[\-/]\d+)?)", re.IGNORECASE),
-    "Aagaard": re.compile(r"\bAagaard[\-:]?\s*(\d+(?:\.\d+)?)", re.IGNORECASE),
+    # Aagaard cites a die-combination in a trailing paren — «74.1 (49-2/49-5)»,
+    # «117.7 (69-GK4/69-GK10)» (year[-mintmaster]die / year[-mintmaster]die).
+    # That is meaningful die-study data and is kept. The paren group requires
+    # a DIGIT-led interior (`\(\d`) so editorial prose — «(Aagaard erroneously
+    # gives a reference to Bruun-6436)», «(this example)» — is NOT captured.
+    "Aagaard": re.compile(r"\bAagaard[\-:]?\s*(\d+(?:\.\d+)?(?:\s*\(\d[^)]*\))?)", re.IGNORECASE),
     "Dav":     re.compile(r"\bDav[\.\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Brekke":  re.compile(r"\bBrekke[\-:]?\s*(\d+[A-Za-z]*)", re.IGNORECASE),
     "Wilcke":  re.compile(r"\bWilcke[\-:]?\s*(\d+(?:\.\d+)?)", re.IGNORECASE),
@@ -280,7 +285,7 @@ def parse_part(slug: str) -> list[dict]:
                 region = m_meta.group(1).strip()
                 meta_line = bl_s
                 break
-        # Refs. Mask parenthetical spans before extraction: a catalogue
+        # Refs. Mask parenthetical spans for MOST refs: a catalogue
         # cross-reference or editorial correction prints OTHER catalogues'
         # numbers inside a paren note — e.g.
         #   «… Aagaard-106.1 (Aagaard erroneously gives a reference to
@@ -288,13 +293,16 @@ def parse_part(slug: str) -> list[dict]:
         # A naïve search grabs the bracketed «Bruun-6436» (it precedes the
         # real standalone «Bruun-6435»), mislabelling the coin with the very
         # number the note flags as wrong. Length-preserving mask keeps the
-        # \b word boundaries and string offsets intact. Also strips the
-        # trailing «(…)» note from the Aagaard token so its field carries the
-        # bare index (catalog-index-only convention).
+        # \b word boundaries and string offsets intact.
+        # EXCEPTION: Aagaard runs against the UNMASKED text because its
+        # citation legitimately carries a trailing die-combination paren
+        # («74.1 (49-2/49-5)») that we keep; its own pattern requires a
+        # digit-led interior so editorial prose parens are still dropped.
         body_for_refs = re.sub(r"\([^)]*\)", lambda m: " " * len(m.group(0)), body_match)
         refs = {}
         for k, pat in REF_PATTERNS.items():
-            mm = pat.search(body_for_refs)
+            text = body_match if k == "Aagaard" else body_for_refs
+            mm = pat.search(text)
             if mm:
                 refs[k] = mm.group(1)
         # Year — meta_line first (cataloguer's authoritative dating),
