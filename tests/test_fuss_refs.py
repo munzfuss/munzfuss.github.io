@@ -40,16 +40,19 @@ class TestFussRefs(unittest.TestCase):
         out = fuss_refs.process_html(html, "de", NAME_MAP)
         self.assertIn(
             '<a class="fuss-xref" href="#fuss-rosenobel_fod">'
-            '<code>Rosenobel-fod</code></a>',
+            'Rosenobel-fod</a>',
             out,
         )
+        # Ordinary text link — not code-styled.
+        self.assertNotIn("<code>Rosenobel-fod</code>", out)
 
-    def test_off_page_marker_is_plain_code_no_link(self):
-        # No `id="fuss-nobel_fod"` anchor on this page → plain <code>.
+    def test_off_page_marker_is_plain_text_no_link(self):
+        # No `id="fuss-nobel_fod"` anchor on this page → bare name, no link.
         html = 'card without that anchor. [fuss:nobel_fod] here.'
         out = fuss_refs.process_html(html, "de", NAME_MAP)
-        self.assertIn("<code>Nobelfod</code>", out)
+        self.assertIn("anchor. Nobelfod here.", out)
         self.assertNotIn('href="#fuss-nobel_fod"', out)
+        self.assertNotIn("<code>Nobelfod</code>", out)
 
     def test_unknown_key_renders_visible_placeholder(self):
         html = "[fuss:does_not_exist]"
@@ -64,8 +67,8 @@ class TestFussRefs(unittest.TestCase):
         html = '<section id="fuss-reichsdukatenfuss">x</section> [fuss:reichsdukatenfuss]'
         dk = fuss_refs.process_html(html, "de", {"reichsdukatenfuss": "Rigsdukatfod"})
         de = fuss_refs.process_html(html, "de", {"reichsdukatenfuss": "Reichsdukatenfuß"})
-        self.assertIn("<code>Rigsdukatfod</code>", dk)
-        self.assertIn("<code>Reichsdukatenfuß</code>", de)
+        self.assertIn(">Rigsdukatfod</a>", dk)
+        self.assertIn(">Reichsdukatenfuß</a>", de)
 
     def test_marker_adjacent_to_punctuation(self):
         html = ('<section id="fuss-nobel_fod">x</section> '
@@ -82,8 +85,9 @@ class TestFussRefs(unittest.TestCase):
                 '<section id="fuss-rosenobel_fod">y</section>'
                 ' [fuss:nobel_fod] [fuss:rosenobel_fod]')
         out = fuss_refs.process_html(html, "de", NAME_MAP)
-        self.assertIn("<code>Nobelfod</code>", out)
-        self.assertIn("<code>Rosenobel-fod</code>", out)
+        self.assertIn(">Nobelfod</a>", out)
+        self.assertIn(">Rosenobel-fod</a>", out)
+        self.assertNotIn("<code>", out)
 
     def test_no_markers_is_noop(self):
         html = "<p>plain prose, no markers</p>"

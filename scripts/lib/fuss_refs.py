@@ -66,10 +66,12 @@ def process_html(html: str, lang: str, name_map: dict[str, str]) -> str:
                 silently dropped — §0).
 
     Returns the HTML with every `[fuss:KEY]` replaced by:
-      - `<a class="fuss-xref" href="#fuss-KEY"><code>name</code></a>`
-        when the `#fuss-KEY` anchor is present on this page, or
-      - `<code>name</code>` when it is not (no dead in-page link;
-        cross-page linking is a deferred enhancement — see design doc), or
+      - `<a class="fuss-xref" href="#fuss-KEY">name</a>` when the
+        `#fuss-KEY` anchor is present on this page (an ordinary text link
+        — NOT code-styled; the fuss name is a proper noun, not an
+        identifier), or
+      - the bare `name` when it is not (no dead in-page link; cross-page
+        linking is a deferred enhancement — see design doc), or
       - a red `[UNKNOWN FUSS: KEY]` placeholder when KEY is not in name_map.
     """
     anchors = present_anchors(html)
@@ -78,14 +80,14 @@ def process_html(html: str, lang: str, name_map: dict[str, str]) -> str:
         key = m.group(1)
         name = name_map.get(key)
         if name is None:
-            # §0 — surface the gap, never silently vanish.
+            # §0 — surface the gap, never silently vanish. The raw key is
+            # an identifier here, so it keeps its <code> monospace.
             return (
                 f'<b style="color:#c00">[UNKNOWN FUSS: '
                 f'<code>{key}</code>]</b>'
             )
-        inner = f"<code>{name}</code>"
         if key in anchors:
-            return f'<a class="fuss-xref" href="#fuss-{key}">{inner}</a>'
-        return inner
+            return f'<a class="fuss-xref" href="#fuss-{key}">{name}</a>'
+        return name
 
     return FUSS_REF_RE.sub(replace, html)

@@ -64,8 +64,13 @@ renders (on the page where that card is present) as:
 
 ```html
 … <b>Nicht</b> verwandt mit der
-  <a class="fuss-xref" href="#fuss-rosenobel_fod"><code>Rosenobel-fod</code></a>-Linie …
+  <a class="fuss-xref" href="#fuss-rosenobel_fod">Rosenobel-fod</a>-Linie …
 ```
+
+(Render note, 2026-06-12: the fuss name is an ordinary text link — NOT
+`<code>`-styled. The name is a proper noun, not an identifier; monospace
+read as out-of-place. Off-page refs render as the bare name; only the raw
+key in the UNKNOWN-FUSS placeholder keeps `<code>`.)
 
 Renaming the standard = edit one `name` field (global card or location
 override); every cross-ref updates automatically, with the right name
