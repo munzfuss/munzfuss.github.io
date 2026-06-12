@@ -15,6 +15,32 @@
 > a few sessions before either being completed (delete) or promoted to
 > `docs/TODO.md` (with full context).
 
+## Denmark gold-gylden Rhinsk/Ungersk reclassification — SHIPPED 2026-06-12, UNPUSHED (commit 682e5e5 + d4d7e3a + eefddf5)
+
+Discriminator between `rhinsk_gylden_fod` (Rhenish gylden, .75 / 18 Karat /
+72 per Cölln. mark — **academic source: Wilcke 1950 w7-2 p.184 «Rinske
+Gylden (18 Karat, 72 Stkr.)»**, ref `wilcke-rhinsk-gylden-1524-standard`) and
+`reichsdukatenfuss` (Ungersk/Dukat, .986) is FINENESS, not weight. Numista's
+generic "Goldgulden" label hides this → systematic misrouting. danskmoent/
+Galster classify each coin (Galster 27 = Rhinsk; Galster 46 / c2g-89 =
+Ungersk). Fixed so far:
+- Frederik I 1527 (Galster 59) → rhinsk_gylden_fod (commit eefddf5).
+- Hans ~1497 N#355730 (Galster 27, danskmoent hg27 «den ældste i
+  Skandinavien») → rhinsk_gylden_fod; now the EARLIEST Danish Rhinsk Gylden
+  (commit 682e5e5). reichsdukatenfuss de-facto anchor corrected 1481→1513
+  (Christian II Ungersk Galster c2g-89, already on the fuss) — the old prose
+  wrongly used the Hans Rhinsk coin as the .986 anchor.
+
+**OPEN follow-up (flagged, not done): ~58 seed_unsorted gold gylden/dukat
+coins** on danish_realm carry the same Numista-"Goldgulden" ambiguity (e.g.
+f2h7e Ungersk / f2h7g Rhinsk 1584, kmk-137161/2 Ungersk 1592, kmk-575432
+Frederik I 1531 Ungersk). A Rhinsk-vs-Ungersk classify sweep by
+danskmoent/Galster fineness is the next batch task. Mechanism reminder: a
+coin only renders on its bar if `phase` is defined for that fuss AND
+year_first is within the phase year-envelope (±1) — extend the phase/bar
+year_from when a coin predates it (build.py:1005-1023). Duplicates across
+sources merge via `promoted_to` + `composed_of` (Pass 1 skips promoted).
+
 ## Fuss cross-reference system — SHIPPED 2026-06-11, UNPUSHED (commit 451d0f0; TODO §CT closed)
 
 Prose references a Müntzfuß by stable id now — `[fuss:KEY]` — not a
