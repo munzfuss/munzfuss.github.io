@@ -208,6 +208,10 @@ _KMM_YEAR_ERRATA = {
     # type as yearFrom==yearTo, so the true value is a single year 1593.
     # Curator-confirmed 2026-06-12.
     "687807": (1593, 1593),
+    # «1784-1874»: yearTo 1874 is a transposed-digit typo of 1784 (Christian VII,
+    # reign 1766-1808 — 1874 is impossible). The Hede sibling (c7h33c) attests
+    # 1784-1785; drop the typo → yearFrom 1784. Curator-confirmed 2026-06-12.
+    "122089": (1784, 1784),
 }
 
 
