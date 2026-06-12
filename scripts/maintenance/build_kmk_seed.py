@@ -197,6 +197,19 @@ _INVERTED_EVENT_SWAP_MAX_SPAN = 20
 _MIN_PLAUSIBLE_YEAR = 900
 _MAX_PLAUSIBLE_YEAR = 2025
 
+# Per-record year errata — KMM yearTo typos the magnitude guard CANNOT catch
+# because the bad value is itself a plausible 4-digit year (digit transposition
+# rather than an extra digit). Keyed by KMM object id (str); value is the
+# curator-confirmed (year_first, year_last). Each entry requires explicit user
+# confirmation of the true year before being added (see CLAUDE.md §4 spirit).
+_KMM_YEAR_ERRATA = {
+    # «1593-1953»: yearTo 1953 is a transposed-digit typo of 1593 (Johan Adolph
+    # of Gottorp, reign 1590-1616 — 1953 is impossible). KMM marks a single-year
+    # type as yearFrom==yearTo, so the true value is a single year 1593.
+    # Curator-confirmed 2026-06-12.
+    "687807": (1593, 1593),
+}
+
 
 def _year(src):
     """creationEvents[].yearFrom/yearTo (strings) → (yf, yl, year_verified).
@@ -209,6 +222,9 @@ def _year(src):
     2026-06-11 on Christian-IV Hede-67 2-Skilling specimens). The reign
     window is plausible-but-estimated, so it does not propagate the
     garbage value while still letting §9a multi-specimen merges fire."""
+    erratum = _KMM_YEAR_ERRATA.get(str(src.get("id")))
+    if erratum is not None:
+        return erratum[0], erratum[1], True   # curator-confirmed correction
     evs = src.get("creationEvents") or []
     yfs, yls = [], []
     malformed = False
