@@ -183,6 +183,20 @@ def _split_place(src):
 # ordering-slip span 10, min typo span 27).
 _INVERTED_EVENT_SWAP_MAX_SPAN = 20
 
+# KMM data-quality #2: a creationEvent year is occasionally a typo with an
+# extra (or missing) digit — «1613»→«16113», «1689»→«16890», «1813»→«11813»,
+# «1708»→«17089». The bad value is an impossible year; left in place it
+# widens the coin's span to e.g. 1613-16113, which the timeline clamps to
+# its right edge (1914), painting a spurious minting period across centuries
+# (caught 2026-06-12 on Denmark 9-/9¼-/18½-Thaler bars). Any endpoint
+# outside this window is treated as a typo and DROPPED (the plausible
+# endpoint still anchors the coin). The broad century estimates KMM uses for
+# undated coins — «1500-1750», «1600-1799», «1536-1869» — sit inside the
+# window AND always carry an empty/absent `authority`, so they are NOT
+# affected; they remain legitimate wide datings.
+_MIN_PLAUSIBLE_YEAR = 900
+_MAX_PLAUSIBLE_YEAR = 2025
+
 
 def _year(src):
     """creationEvents[].yearFrom/yearTo (strings) → (yf, yl, year_verified).
@@ -202,6 +216,13 @@ def _year(src):
         if not isinstance(e, dict):
             continue
         a, b = _int(e.get("yearFrom")), _int(e.get("yearTo"))
+        # Magnitude sanity: an endpoint outside [_MIN, _MAX] is a digit-typo
+        # («1613»→«16113»). Drop it so it cannot widen the coin's span to an
+        # impossible year; the plausible endpoint still anchors the coin.
+        if a is not None and not (_MIN_PLAUSIBLE_YEAR <= a <= _MAX_PLAUSIBLE_YEAR):
+            a, malformed = None, True
+        if b is not None and not (_MIN_PLAUSIBLE_YEAR <= b <= _MAX_PLAUSIBLE_YEAR):
+            b, malformed = None, True
         # Per-event raw inversion (yearFrom > yearTo) is a KMM data error.
         if a is not None and b is not None and a > b:
             if a - b <= _INVERTED_EVENT_SWAP_MAX_SPAN:
