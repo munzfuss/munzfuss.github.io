@@ -334,8 +334,24 @@ _VNOTE = {
 }
 
 
+# Confirmed-noise museum tray specimens — KMM records with NO catalogue
+# index, NO denomination/material, a wrong/box-level ruler, and an artificial
+# broad creationEvent span (the whole denomination era, e.g. 1874-1945) that
+# does NOT represent a datable type. The real per-ruler Øre types these would
+# duplicate are already fully catalogued in the data (c9h18a/c9h19a/f8h7/… with
+# KM#). They carry no signal and only paint misleading wide mint-runs. Dropped
+# on curator confirmation 2026-06-12 (Frederik-VII-misattributed Øre orphans).
+_KMM_DROP_IDS = {
+    368856, 368870, 368884,   # 25 Øre «1904-1944», ruler «Frederik 7»
+    368904, 368950, 368995,   # 2 Øre  «1874-1945», ruler «Frederik 7»
+    368996, 369067, 369138,   # 1 Øre  «1882-1944», ruler «Frederik 7»
+}
+
+
 def build_entry(src) -> dict | None:
     if _is_exonumia_workdesc(src.get("workDescription")):
+        return None
+    if src.get("id") in _KMM_DROP_IDS or str(src.get("id")) in {str(x) for x in _KMM_DROP_IDS}:
         return None
     rid = src.get("id")
     if not (isinstance(rid, int) or (isinstance(rid, str) and str(rid).isdigit())):
