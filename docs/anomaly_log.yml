@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-13T05:12:44Z'
+  last_updated_utc: '2026-06-13T10:14:59Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3694,4 +3694,33 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-13T05:12:44Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+  summary: BO.7 brunswick_wolfenbuttel_principality in_scope_nids contains OOS pattern N#312648 (Numista
+    Type='Patterns', gold pattern strike).
+  status: resolved
+  instance_first_seen: '2026-06-13T10:13:40.408899Z'
+  last_seen: '2026-06-13T10:13:40.408899Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312648
+  occurrences:
+  - run_utc: '2026-06-13T10:13:40.408899Z'
+    batch_label: SC
+    detail: 'Batch SC: N#312648 ''2 Pfennigs - Charles I (Gold pattern strike)'' classified OOS by numista_canonical.classify_numista_scope
+      → (False,''pattern''). Not saved; needs folding into oos_excluded_nids.'
+    full_context:
+      numista_batch: SC
+      type: Patterns
+      title: 2 Pfennigs - Charles I (Gold pattern strike)
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#312648
+    into the BO.7 audit's oos_excluded_nids slot.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-13T10:14:58Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
