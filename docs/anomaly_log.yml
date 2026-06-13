@@ -1,6 +1,6 @@
 _metadata:
   schema_version: 1
-  last_updated_utc: '2026-06-13T04:13:32Z'
+  last_updated_utc: '2026-06-13T05:12:44Z'
   doc: docs/ANOMALY_LOG.md
   writer_lib: scripts/lib/anomaly_log.py
 anomalies:
@@ -3635,4 +3635,63 @@ anomalies:
   resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
     refresh prunes them from in_scope.
   resolved_at: '2026-06-13T04:13:32Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:nid=312638:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+    nid: '312638'
+  summary: Numista N#312638 enumerated in-scope but is a Gold pattern strike (KM# Pn19) — OOS per §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-13T05:09:03Z'
+  last_seen: '2026-06-13T05:09:03Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312638
+  occurrences:
+  - run_utc: '2026-06-13T05:09:03Z'
+    batch_label: RX
+    detail: 'Batch RX: N#312638 ''2 Pfennigs - Ferdinand Albert II (Gold pattern strike)'', Type=''Patterns'',
+      Composition=Gold (.986), KM# Pn19. classify_numista_scope -> (False,''pattern''). Not saved; uncached
+      OOS.'
+    full_context:
+      reason: pattern
+      url: https://en.numista.com/312638
+      kind: pattern
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#312638
+    into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-13T05:12:44Z'
+  resolved_by: reclassify_bo7_oos --from-anomalies
+- id: audit_manifest_scope_drift:bucket=brunswick_wolfenbuttel_principality:nid=312643:source=numista
+  type: audit_manifest_scope_drift
+  key_dims:
+    source: numista
+    bucket: brunswick_wolfenbuttel_principality
+    nid: '312643'
+  summary: Numista N#312643 enumerated in-scope but is a Gold pattern strike (KM# Pn20) — OOS per §9.1.
+  status: resolved
+  instance_first_seen: '2026-06-13T05:11:28Z'
+  last_seen: '2026-06-13T05:11:28Z'
+  occurrence_count: 1
+  affected_ids:
+    numista:
+    - 312643
+  occurrences:
+  - run_utc: '2026-06-13T05:11:28Z'
+    batch_label: RX
+    detail: 'Batch RX: N#312643 ''6 Pfennigs - Ferdinand Albert II'', Type=''Patterns'', Composition=Gold
+      (.986), KM# Pn20. Not saved; uncached OOS.'
+    full_context:
+      reason: pattern
+      url: https://en.numista.com/312643
+      kind: pattern
+  proposed_fix: Run scripts/maintenance/reclassify_bo7_oos.py --from-anomalies --write to fold N#312643
+    into oos_excluded_nids.
+  resolution: Affected NIDs folded into oos_excluded_nids via reclassify_bo7_oos.py --from-anomalies;
+    refresh prunes them from in_scope.
+  resolved_at: '2026-06-13T05:12:44Z'
   resolved_by: reclassify_bo7_oos --from-anomalies
